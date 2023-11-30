@@ -93,7 +93,6 @@ class SslCommerzPaymentController extends Controller
 			]);
 		}
 
-
 		 // create checkout row
 		 $checkout                  = new Checkout;
 		 $checkout->checkout_date   = date('Y-m-d H:i:s');

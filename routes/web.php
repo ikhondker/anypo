@@ -149,31 +149,31 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 
 /* ======================== Email Verification======================================== */
 Route::get('/email/verify', function () {
-if (tenant('id') == '') {
-    return view('auth.landlord-verify-email');
-} else {
-    return view('auth.verify-email');
-}
-})->middleware('auth')->name('verification.notice');
+	if (tenant('id') == '') {
+		return view('auth.landlord-verify-email');
+	} else {
+		return view('auth.verify-email');
+	}
+	})->middleware('auth')->name('verification.notice');
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-$request->fulfill();
-return redirect('/home');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+	$request->fulfill();
+	return redirect('/home');
+	})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
-try {
-    session()->put('resent', true);
-    $user = User::where('email', $request->input('email'))->firstOrFail();
-    $user->sendEmailVerificationNotification();
-} catch (\Exception $exception) {
-    // General Exception class which is the parent of all Exceptions
-}
-//$request->user()->sendEmailVerificationNotification();
-//return back()->with('message', 'Verification link sent!');
-return back()->with('success', 'Verification link sent! Please check your mail and clink on "Verify Email Address" link.');
+	try {
+		session()->put('resent', true);
+		$user = User::where('email', $request->input('email'))->firstOrFail();
+		$user->sendEmailVerificationNotification();
+	} catch (\Exception $exception) {
+		// General Exception class which is the parent of all Exceptions
+	}
+	//$request->user()->sendEmailVerificationNotification();
+	//return back()->with('message', 'Verification link sent!');
+	return back()->with('success', 'Verification link sent! Please check your mail and clink on "Verify Email Address" link.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
@@ -250,7 +250,6 @@ Route::resource('contacts', ContactController::class);
 
 /* ======================== Checkout ======================================== */
 use App\Http\Controllers\Landlord\CheckoutController;
-
 Route::resource('checkouts', CheckoutController::class);
 
 /**
