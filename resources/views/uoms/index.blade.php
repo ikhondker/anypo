@@ -1,0 +1,78 @@
+@extends('layouts.app')
+@section('title','UOM')
+
+@section('content')
+
+    <x-page-header>
+        @slot('title')
+            UOM
+        @endslot
+        @slot('buttons')
+            <x-buttons.header.create object="Uom"/>
+        @endslot
+    </x-page-header>
+
+    <div class="row">
+        <div class="col-8">
+
+            <div class="card">
+                <div class="card-header">
+                    <x-cards.header-search-export-bar object="Uom"/>
+                    <h5 class="card-title">
+                        @if (request('term'))
+                            Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+                        @else
+                            UOM Lists
+                        @endif
+                    </h5>
+                    <h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+                </div>
+
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Enable</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($uoms as $uom)
+                            <tr>
+                                <td>{{ $uom->id }}</td>
+                                <td>{{ $uom->name }}</td>
+                                <td><x-list.my-boolean :value="$uom->enable"/></td>
+                                <td class="table-action">
+                                    <x-list.actions object="Uom" :id="$uom->id" :show="false"/>
+                                    <a href="{{ route('uoms.destroy',$uom->id) }}" class="me-2 modal-boolean-advance" 
+                                        data-entity="Uom" data-name="{{ $uom->name }}" data-status="{{ ($uom->enable ? 'Disable' : 'Enable') }}"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($uom->enable ? 'Disable' : 'Enable') }}">
+                                        <i class="align-middle text-muted" data-feather="{{ ($uom->enable ? 'bell-off' : 'bell') }}"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <div class="row pt-3">
+                        {{ $uoms->links() }}
+                    </div>
+                    <!-- end pagination -->
+                    
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+
+        </div>
+         <!-- end col -->
+    </div>
+     <!-- end row -->
+
+     @include('includes.modal-boolean-advance')    
+
+@endsection
+

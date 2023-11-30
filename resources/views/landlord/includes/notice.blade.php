@@ -1,0 +1,13 @@
+@if ($setup->show_banner)
+	<div class="alert alert-soft-danger alert-dismissible fade show" role="alert">
+		<div class="d-flex">
+			<div class="flex-shrink-0">
+				<i class="bi-exclamation-triangle-fill"></i>
+			</div>
+			<div class="flex-grow-1 ms-2">
+				<span class="fw-semibold">Notice!</span> {{ $setup->banner_message }}
+			</div>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	</div>
+@endif

@@ -1,0 +1,1 @@
+<span class="badge {{ ($value ? 'bg-info' : 'bg-danger') }}">{{ ($value ? 'Yes' : 'No') }}</span>

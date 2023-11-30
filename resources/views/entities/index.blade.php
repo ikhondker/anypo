@@ -1,0 +1,71 @@
+@extends('layouts.app')
+@section('title','Entity List')
+
+@section('content')
+
+    <x-page-header>
+        @slot('title')
+            Entity List
+        @endslot
+        @slot('buttons')
+            
+        @endslot
+    </x-page-header>
+
+    <div class="row">
+        <div class="col-8">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Entity List</h5>
+                    <h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Entity</th>
+                                <th>Name</th>
+                                <th>Route</th>
+                                <th>Sub-dir</th>
+                                <th>Notification</th>
+                                <th>Enable?</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($entities as $entity)
+                            <tr>
+                                <td>{{ $entity->entity }}</td>
+                                <td>{{ $entity->name }}</td>
+                                <td>{{ $entity->route }}</td>
+                                <td>{{ $entity->subdir }}</td>
+                                <td><x-list.my-boolean :value="$entity->notification"/></td>
+                                <td><x-list.my-boolean :value="$entity->enable"/></td>
+                                <td class="table-action">
+                                    <a href="{{ route('entities.destroy',$entity->entity) }}" class="me-2 modal-boolean-advance" 
+                                        data-entity="Entity" data-name="{{ $entity->name }}" data-status="{{ ($entity->enable ? 'Disable' : 'Enable') }}"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($entity->enable ? 'Disable' : 'Enable') }}">
+                                        <i class="align-middle text-muted" data-feather="{{ ($entity->enable ? 'bell-off' : 'bell') }}"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                   
+                    
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+
+        </div>
+         <!-- end col -->
+    </div>
+     <!-- end row -->
+
+     @include('includes.modal-boolean-advance')
+
+@endsection
+

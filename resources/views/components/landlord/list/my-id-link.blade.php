@@ -1,0 +1,1 @@
+<a href="{{ route($route.'.show',$id)  }}"><span class="text-info">#{{ $id }}</span></a>

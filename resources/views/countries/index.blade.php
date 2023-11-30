@@ -1,0 +1,77 @@
+@extends('layouts.app')
+@section('title','Countries')
+
+@section('content')
+
+    <x-page-header>
+        @slot('title')
+            Countries
+        @endslot
+        @slot('buttons')
+        <x-buttons.header.create object="Country"/>
+        @endslot
+    </x-page-header>
+
+    <div class="row">
+        <div class="col-8">
+
+            <div class="card">
+                <div class="card-header">
+                    <x-cards.header-search-export-bar object="Country"/>
+                    <h5 class="card-title">
+                        @if (request('term'))
+                            Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+                        @else
+                            Activity Lists
+                        @endif
+                    </h5>
+                    <h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Country</th>
+                                <th>Name</th>
+                                <th>Enable?</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($countries as $country)
+                            <tr>
+                                <td>{{ $country->country }}</td>
+                                <td>{{ $country->name }}</td>
+                                <td><x-list.my-boolean :value="$country->enable"/></td>
+                                <td class="table-action">
+                                    <x-list.actions object="Country" :id="$country->country" :show="false"/>
+                                    <a href="{{ route('countries.destroy',$country->country) }}" class="me-2 modal-boolean-advance" 
+                                        data-entity="Country" data-name="{{ $country->name }}" data-status="{{ ($country->enable ? 'Disable' : 'Enable') }}"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($country->enable ? 'Disable' : 'Enable') }}">
+                                        <i class="align-middle text-muted" data-feather="{{ ($country->enable ? 'bell-off' : 'bell') }}"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <div class="row pt-3">
+                        {{ $countries->links() }}
+                    </div>
+                    <!-- end pagination -->
+                    
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+
+        </div>
+         <!-- end col -->
+    </div>
+     <!-- end row -->
+
+     @include('includes.modal-boolean-advance')
+
+@endsection
+

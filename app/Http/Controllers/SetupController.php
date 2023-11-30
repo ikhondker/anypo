@@ -1,0 +1,258 @@
+<?php
+/**
+ * ==================================================================================
+ * @version v1.0.0
+ * ==================================================================================
+ * @file        SetupController.php
+ * @brief       This file contains the implementation of the SetupController class.
+ * @author      Iqbal H. Khondker
+ * @created     27-Apr-2023
+ * @copyright   (c) Copyright by Iqbal H. Khondker
+ * ==================================================================================
+ * Revision History:
+ * Date			Version	Author    		        Comments
+ * ----------------------------------------------------------------------------------
+ * 27-Apr-2023	v1.0.0	Iqbal H Khondker		Created.
+ * DD-Mon-YYYY	v1.0.0	Iqbal H Khondker		Modification brief.
+ * ==================================================================================
+*/
+
+namespace App\Http\Controllers;
+
+use App\Models\Setup;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSetupRequest;
+use App\Http\Requests\UpdateSetupRequest;
+
+# Models
+use App\Models\User;
+use App\Models\Budget;
+use App\Models\Country;
+use App\Models\Currency;
+# Enums
+# Helpers
+use App\Helpers\EventLog;
+use App\Helpers\FileUpload;
+use App\Helpers\Export;
+
+# Notifications
+# Mails
+# Packages
+# Seeded
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
+
+# Exceptions
+# Events
+
+
+class SetupController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+
+        $setups = Setup::latest()->orderBy('id', 'desc')->paginate(10);
+        return view('setups.index', compact('setups'))->with('i', (request()->input('page', 1) - 1) * 10);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        abort(403);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreSetupRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreSetupRequest $request)
+    {
+        abort(403);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Setup  $setup
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Setup $setup)
+    {
+        $this->authorize('view', $setup);
+        return view('setups.show', compact('setup'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Setup  $setup
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Setup $setup)
+    {
+        $this->authorize('update', $setup);
+
+        //$currencies = Currency::getAll();
+        $countries = Country::getAll();
+        $admins = User::getAdmins();
+
+        return view('setups.edit', compact('setup', 'admins', 'countries'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateSetupRequest  $request
+     * @param  \App\Models\Setup  $setup
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateSetupRequest $request, Setup $setup)
+    {
+        $this->authorize('update', $setup);
+
+        $request->validate([
+
+        ]);
+
+        if ($file = $request->file('file_to_upload')) {
+            $fileName = FileUpload::uploadLogo($request);
+            $request->merge(['logo'       => $fileName ]);
+        }
+
+        $setup->update($request->all());
+
+        // Write to Log
+        EventLog::event('setup', $setup->id, 'update', 'name', $request->name);
+
+        return redirect()->route('setups.show', $setup->id)->with('success', 'Setup updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Setup  $setup
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Setup $setup)
+    {
+        $setup->fill(['show_message' => !$setup->show_message]);
+        $setup->update();
+
+        // Write to Log
+        EventLog::event('setup', $setup->id, 'status', 'show_message', $setup->show_message);
+        return redirect()->route('setups.index')->with('success', 'Message Status Updated successfully');
+
+    }
+
+    public function image($filename)
+    {
+        Log::debug('fileName='.$filename);
+
+        //shown as: http://geda.localhost:8000/setups/image/logo.png
+        $path = storage_path('app/logo/'. $filename);
+        //Log::debug('path= '. $path);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+        return $response;
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Setup  $setup
+     * @return \Illuminate\Http\Response
+     */
+    public function notice(Setup $setup)
+    {
+        $this->authorize('update', $setup);
+
+        return view('setups.notice', compact('setup'));
+    }
+
+    public function updatenotice(Request $request, Setup $setup)
+    {
+        $this->authorize('update', $setup);
+
+        // $request->validate([
+
+        // ]);
+
+        // check box
+        if($request->has('show_notice')) {
+            //Checkbox checked
+            $request->merge(['show_notice' =>  1]);
+        } else {
+            //Checkbox not checked
+            $request->merge([ 'show_notice' =>  0]);
+        }
+
+
+        $setup->update($request->all());
+
+        // Write to Log
+        EventLog::event('setup', $setup->id, 'update', 'show_notice', $request->show_notice);
+
+        return redirect()->route('setups.show', $setup->id)->with('success', 'Notice setting saved.');
+    }
+
+    public function freeze(Request $request, Setup $setup)
+    {
+        $this->authorize('update', $setup);
+
+        // update setup
+        $request->merge(['freezed'       => true ]);
+        // $request->validate([
+
+        // ]);
+        $setup->update($request->all());
+
+        //enable that base currency
+        $currency = Currency::where('currency', $setup->currency)->first();
+        $currency->enable = true;
+        $currency->save();
+
+        $budget = Budget::where('currency', '<>', $setup->currency)->first();
+        $budget->currency = $setup->currency;
+        $budget->save();
+
+
+        // Write to Log
+        EventLog::event('setup', $setup->id, 'update', 'name', $request->name);
+
+        return redirect()->route('setups.show', $setup->id)->with('success', 'Setup completed. You may start using this application.');
+    }
+
+}

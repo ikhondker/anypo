@@ -1,0 +1,172 @@
+@extends('layouts.app')
+@section('title','Project')
+
+@section('content')
+
+    <x-page-header>
+        @slot('title')
+            Project
+        @endslot
+        @slot('buttons')
+            <x-buttons.header.create object="Project"/>
+        @endslot
+    </x-page-header>
+
+    <div class="row">
+        <div class="col-md-6 col-xxl-3 d-flex">
+            <div class="card illustration flex-fill">
+                <div class="card-body p-0 d-flex flex-fill">
+                    <div class="row g-0 w-100">
+                        <div class="col-6">
+                            <div class="illustration-text p-3 m-1">
+                                <h4 class="illustration-text">Welcome Back, {{ auth()->user()->name }}!</h4>
+                                <p class="mb-0">Projects Listing</p>
+                            </div>
+                        </div>
+                        <div class="col-6 align-self-end text-end">
+                            <img src="{{asset('img/illustrations/customer-support.png')}}" width="100px" height="100px" alt="Social" class="img-fluid illustration-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xxl-3 d-flex">
+            <div class="card flex-fill">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col mt-0">
+                            <h5 class="card-title">Total Projects</h5>
+                        </div>
+
+                        <div class="col-auto">
+                            <div class="stat stat-sm">
+                                <i class="align-middle" data-feather="activity"></i>
+                            </div>
+                        </div>
+                    </div>
+                    @php
+                        use App\Models\Project;
+                        $count_total        = Project::count();
+                        $count_open     = Project::where('closed',false )->count();
+                        $count_closed    = Project::where('closed',true )->count();
+                        //$count_draft        = Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
+                    @endphp
+                    <span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xxl-3 d-flex">
+            <div class="card flex-fill">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col mt-0">
+                            <h5 class="card-title">Open Projects</h5>
+                        </div>
+                        <div class="col-auto">
+                            <div class="stat stat-sm">
+                                <i class="align-middle" data-feather="shopping-bag"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <span class="h1 d-inline-block mt-1">{{ $count_open }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xxl-3 d-flex">
+            <div class="card flex-fill">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col mt-0">
+                            <h5 class="card-title">Closed Projects</h5>
+                        </div>
+
+                        <div class="col-auto">
+                            <div class="stat stat-sm">
+                                <i class="align-middle" data-feather="shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="h1 d-inline-block mt-1">{{ $count_closed }}</span>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+
+    <div class="row">
+        <div class="col-8">
+
+            <div class="card">
+                <div class="card-header">
+                    <x-cards.header-search-export-bar object="Project"/>
+                    <h5 class="card-title">
+                        @if (request('term'))
+                            Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+                        @else
+                            Project Lists
+                        @endif
+                    </h5>
+                    <h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>PM</th>
+                                <th>Start-End</th>
+                                <th>Budget Control?</th>
+                                <th>Budget</th>
+                                <th>Available</th>
+                                <th>Closed</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($projects as $project)
+                            <tr>
+                                <td>{{ $project->id }}</td>
+                                <td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->name }}</a></td>
+                                <td>{{ $project->pm->name }}</td>
+                                <td><x-list.my-date :value="$project->start_date"/> - <x-list.my-date :value="$project->end_date"/></td>
+                                <td><x-list.my-boolean :value="$project->budget_control"/></td>
+                                <td><x-list.my-number :value="$project->amount"/></td>
+                                <td class="text-end"><x-list.my-number :value="$project->amount - $project->amount_po_booked - $project->amount_po_issued"/></td>
+                                <td><x-list.my-closed :value="$project->closed"/></td>
+                                <td class="table-action">
+                                    <x-list.actions object="Project" :id="$project->id" :show="true"/>
+                                    <a href="{{ route('projects.destroy',$project->id) }}" class="me-2 modal-boolean-advance" 
+                                        data-entity="Project" data-name="{{ $project->name }}" data-status="{{ ($project->closed ? 'Open' : 'Close') }}"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($project->closed ? 'Open' : 'Close') }}">
+                                        <i class="align-middle text-muted" data-feather="{{ ($project->enable ? 'bell-off' : 'bell') }}"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <div class="row pt-3">
+                        {{ $projects->links() }}
+                    </div>
+                    <!-- end pagination -->
+                    
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+
+        </div>
+         <!-- end col -->
+    </div>
+     <!-- end row -->
+
+     @include('includes.modal-boolean-advance')    
+
+@endsection
+
