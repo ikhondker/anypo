@@ -42,7 +42,7 @@ class PrlController extends Controller
         $items = Item::getAll();
         //$uoms = Uom::getAllClient();
 
-        return view('prls.create', with(compact('pr', 'items')));
+        return view('tenant.prls.create', with(compact('pr', 'items')));
     }
 
 
@@ -57,7 +57,7 @@ class PrlController extends Controller
         }
         $prls = $prls->orderBy('id', 'DESC')->paginate(10);
 
-        return view('prls.index', compact('prls'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.prls.index', compact('prls'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -119,7 +119,7 @@ class PrlController extends Controller
         $items = Item::getAll();
         //$uoms = Uom::getAllClient();
 
-        return view('prls.edit', with(compact('pr', 'prl', 'items')));
+        return view('tenant.prls.edit', with(compact('pr', 'prl', 'items')));
     }
 
     /**

@@ -116,7 +116,7 @@ class DashboardController extends Controller
 
 
         // ====================== View ====================================
-        return view('dashboards.index', compact(
+        return view('tenant.dashboards.index', compact(
             'budget_labels',
             'budget_data',
             'budget_colors',

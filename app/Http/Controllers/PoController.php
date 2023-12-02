@@ -33,7 +33,7 @@ class PoController extends Controller
             $depts->where('name', 'Like', '%' . request('term') . '%');
         }
         $depts = $depts->orderBy('id', 'DESC')->paginate(10);
-        return view('depts.index', compact('depts'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.pos.index', compact('depts'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -42,7 +42,7 @@ class PoController extends Controller
     public function create()
     {
         $this->authorize('create', Dept::class);
-        return view('depts.create');
+        return view('tenant.pos.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class PoController extends Controller
     public function edit(Po $po)
     {
         $this->authorize('update', $dept);
-        return view('depts.edit', compact('dept'));
+        return view('tenant.pos.edit', compact('dept'));
     }
 
     /**

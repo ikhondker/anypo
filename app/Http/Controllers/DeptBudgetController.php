@@ -42,7 +42,7 @@ class DeptBudgetController extends Controller
             });
         }
         $dept_budgets = $dept_budgets->orderBy('id', 'DESC')->paginate(10);
-        return view('dept-budgets.index', compact('dept_budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.dept-budgets.index', compact('dept_budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
 
@@ -53,7 +53,7 @@ class DeptBudgetController extends Controller
     {
         Log::debug("deptBudget->id=".$deptBudget->id);
         $dept_budgets = DeptBudget::where('budget_id', $deptBudget->budget_id)->where('dept_id', $deptBudget->dept_id)->orderBy('id', 'ASC')->paginate(10);
-        return view('dept-budgets.revision', compact('deptBudget', 'dept_budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.dept-budgets.revision', compact('deptBudget', 'dept_budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -65,7 +65,7 @@ class DeptBudgetController extends Controller
 
         $budgets = Budget::getAll();
         $depts = Dept::getAll();
-        return view('dept-budgets.create', compact('budgets', 'depts'));
+        return view('tenant.dept-budgets.create', compact('budgets', 'depts'));
     }
 
     /**
@@ -79,7 +79,7 @@ class DeptBudgetController extends Controller
         // Write to Log
         EventLog::event('deptBudget', $dept_budget->id, 'create');
 
-        return redirect()->route('dept-budgets.index')->with('success', 'DeptBudget created successfully.');
+        return redirect()->route('tenant.dept-budgets.index')->with('success', 'DeptBudget created successfully.');
     }
 
     /**
@@ -88,7 +88,7 @@ class DeptBudgetController extends Controller
     public function show(DeptBudget $deptBudget)
     {
         //$this->authorize('view', $deptBudget);
-        return view('dept-budgets.show', compact('deptBudget'));
+        return view('tenant.dept-budgets.show', compact('deptBudget'));
     }
 
     /**
@@ -98,7 +98,7 @@ class DeptBudgetController extends Controller
     {
         $this->authorize('update', $deptBudget);
 
-        return view('dept-budgets.edit', compact('deptBudget'));
+        return view('tenant.dept-budgets.edit', compact('deptBudget'));
     }
 
     /**
@@ -187,7 +187,7 @@ class DeptBudgetController extends Controller
 
         $deptBudget = DeptBudget::where('id', $deptBudget->id)->get()->firstOrFail();
         $attachments = Attachment::where('entity', EntityEnum::DEPTBUDGET->value)->where('article_id', $deptBudget->id)->get()->all();
-        return view('dept-budgets.detach', compact('deptBudget', 'attachments'));
+        return view('tenant.dept-budgets.detach', compact('deptBudget', 'attachments'));
     }
 
 }

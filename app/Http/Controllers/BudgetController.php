@@ -39,7 +39,7 @@ class BudgetController extends Controller
         }
         $budgets = $budgets->orderBy('id', 'DESC')->paginate(10);
 
-        return view('budgets.index', compact('budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.budgets.index', compact('budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -101,7 +101,7 @@ class BudgetController extends Controller
     {
         //$this->authorize('view', $budget);
 
-        return view('budgets.show', compact('budget'));
+        return view('tenant.budgets.show', compact('budget'));
     }
 
     /**
@@ -111,7 +111,7 @@ class BudgetController extends Controller
     {
         $this->authorize('update', $budget);
 
-        return view('budgets.edit', compact('budget'));
+        return view('tenant.budgets.edit', compact('budget'));
     }
 
     /**
@@ -179,7 +179,7 @@ class BudgetController extends Controller
 
         $budget = Budget::where('id', $budget->id)->get()->firstOrFail();
         $attachments = Attachment::where('entity', EntityEnum::BUDGET->value)->where('article_id', $budget->id)->get()->all();
-        return view('budgets.detach', compact('budget', 'attachments'));
+        return view('tenant.budgets.detach', compact('budget', 'attachments'));
     }
 
 }

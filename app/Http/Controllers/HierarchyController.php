@@ -35,7 +35,7 @@ class HierarchyController extends Controller
             $hierarchies->where('name', 'Like', '%' . request('term') . '%');
         }
         $hierarchies = $hierarchies->orderBy('id', 'DESC')->paginate(10);
-        return view('hierarchies.index', compact('hierarchies'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.hierarchies.index', compact('hierarchies'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -48,7 +48,7 @@ class HierarchyController extends Controller
         $users = User::NonSeeded()->get();
         //$users = User::getAll();
 
-        return view('hierarchies.create', compact('users'));
+        return view('tenant.hierarchies.create', compact('users'));
     }
 
     /**
@@ -115,7 +115,7 @@ class HierarchyController extends Controller
         //$this->authorize('view', $user);
 
         $hierarchyls        = Hierarchyl::where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
-        return view('hierarchies.show', compact('hierarchy', 'hierarchyls'));
+        return view('tenant.hierarchies.show', compact('hierarchy', 'hierarchyls'));
     }
 
     /**
@@ -176,7 +176,7 @@ class HierarchyController extends Controller
 
         //return view('hierarchies.edit',compact('hierarchy'));
 
-        return view('hierarchies.edit')
+        return view('tenant.hierarchies.edit')
             ->with(compact('hierarchy', 'users'))
             ->with(['approver_id_1' => $approver_id_1])
             ->with(['approver_id_2' => $approver_id_2])

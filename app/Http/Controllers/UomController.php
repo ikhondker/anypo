@@ -33,7 +33,7 @@ class UomController extends Controller
             $uoms->where('name', 'Like', '%' . request('term') . '%');
         }
         $uoms = $uoms->orderBy('id', 'DESC')->paginate(10);
-        return view('uoms.index', compact('uoms'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.uoms.index', compact('uoms'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -42,7 +42,7 @@ class UomController extends Controller
     public function create()
     {
         $this->authorize('create', Uom::class);
-        return view('uoms.create');
+        return view('tenant.uoms.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class UomController extends Controller
     public function edit(Uom $uom)
     {
         $this->authorize('update', $uom);
-        return view('uoms.edit', compact('uom'));
+        return view('tenant.uoms.edit', compact('uom'));
     }
 
     /**

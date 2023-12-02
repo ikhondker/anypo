@@ -34,7 +34,7 @@ class UploadItemController extends Controller
             $upload_items->where('name', 'Like', '%' . request('term') . '%');
         }
         $upload_items = $upload_items->orderBy('id', 'DESC')->paginate(25);
-        return view('upload-items.index', compact('upload_items'))->with('i', (request()->input('page', 1) - 1) * 25);
+        return view('tenant.lookup.upload-items.index', compact('upload_items'))->with('i', (request()->input('page', 1) - 1) * 25);
     }
 
     /**
@@ -44,7 +44,7 @@ class UploadItemController extends Controller
     {
         $this->authorize('create', UploadItem::class);
 
-        return view('upload-items.create');
+        return view('tenant.lookup.upload-items.create');
     }
 
     /**
@@ -126,7 +126,7 @@ class UploadItemController extends Controller
     {
         $this->authorize('view', $uploadItem);
 
-        return view('upload-items.show', compact('uploadItem'));
+        return view('tenant.lookup.upload-items.show', compact('uploadItem'));
     }
 
     /**
@@ -136,7 +136,7 @@ class UploadItemController extends Controller
     {
 
         $this->authorize('update', $uploadItem);
-        return view('upload-items.edit', compact('uploadItem'));
+        return view('tenant.lookup.upload-items.edit', compact('uploadItem'));
     }
 
     /**

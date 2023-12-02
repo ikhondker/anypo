@@ -71,7 +71,7 @@ class SetupController extends Controller
     {
 
         $setups = Setup::latest()->orderBy('id', 'desc')->paginate(10);
-        return view('setups.index', compact('setups'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.admin.setups.index', compact('setups'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -104,7 +104,7 @@ class SetupController extends Controller
     public function show(Setup $setup)
     {
         $this->authorize('view', $setup);
-        return view('setups.show', compact('setup'));
+        return view('tenant.admin.setups.show', compact('setup'));
     }
 
     /**
@@ -121,7 +121,7 @@ class SetupController extends Controller
         $countries = Country::getAll();
         $admins = User::getAdmins();
 
-        return view('setups.edit', compact('setup', 'admins', 'countries'));
+        return view('tenant.admin.setups.edit', compact('setup', 'admins', 'countries'));
     }
 
     /**
@@ -199,7 +199,7 @@ class SetupController extends Controller
     {
         $this->authorize('update', $setup);
 
-        return view('setups.notice', compact('setup'));
+        return view('tenant.admin.setups.notice', compact('setup'));
     }
 
     public function updatenotice(Request $request, Setup $setup)

@@ -35,7 +35,7 @@ class MenuController extends Controller
         }
         $menus = $menus->orderBy('node_name', 'ASC')->paginate(40);
 
-        return view('menus.index', compact('menus'))->with('i', (request()->input('page', 1) - 1) * 40);
+        return view('tenant.backend.menus.index', compact('menus'))->with('i', (request()->input('page', 1) - 1) * 40);
     }
 
     /**
@@ -45,7 +45,7 @@ class MenuController extends Controller
     {
         $this->authorize('create', Menu::class);
 
-        return view('menus.create');
+        return view('tenant.backend.menus.create');
     }
 
     /**
@@ -77,7 +77,7 @@ class MenuController extends Controller
     {
         $this->authorize('update', $menu);
 
-        return view('menus.edit', compact('menu'));
+        return view('tenant.backend.menus.edit', compact('menu'));
     }
 
     /**

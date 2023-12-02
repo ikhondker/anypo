@@ -65,7 +65,7 @@ class PrController extends Controller
             $prs->where('summary', 'LIKE', '%' . request('term') . '%');
         }
         $prs = $prs->orderBy('id', 'DESC')->paginate(10);
-        return view('prs.index', compact('prs'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.prs.index', compact('prs'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -81,7 +81,7 @@ class PrController extends Controller
         $projects = Project::getAll();
 
 
-        return view('prs.create', compact('suppliers', 'depts', 'items', 'projects'));
+        return view('tenant.prs.create', compact('suppliers', 'depts', 'items', 'projects'));
 
     }
 
@@ -157,7 +157,7 @@ class PrController extends Controller
 
         $pr = Pr::where('id', $pr->id)->get()->firstOrFail();
         $attachments = Attachment::where('entity', EntityEnum::PR->value)->where('article_id', $pr->id)->get()->all();
-        return view('prs.detach', compact('pr', 'attachments'));
+        return view('tenant.prs.detach', compact('pr', 'attachments'));
     }
 
     /**
@@ -181,7 +181,7 @@ class PrController extends Controller
             $wfl = "";
         }
         //dd($wfl);
-        return view('prs.show', compact('pr', 'prls', 'wfl'));
+        return view('tenant.prs.show', compact('pr', 'prls', 'wfl'));
     }
 
     /**
@@ -197,7 +197,7 @@ class PrController extends Controller
         $projects = Project::getAll();
         $users = User::getAll();
 
-        return view('prs.edit', compact('pr', 'suppliers', 'depts', 'projects', 'users'));
+        return view('tenant.prs.edit', compact('pr', 'suppliers', 'depts', 'projects', 'users'));
     }
 
     /**

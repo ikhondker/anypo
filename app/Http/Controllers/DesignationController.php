@@ -35,7 +35,7 @@ class DesignationController extends Controller
             $designations->where('name', 'Like', '%' . request('term') . '%');
         }
         $designations = $designations->orderBy('id', 'DESC')->paginate(10);
-        return view('designations.index', compact('designations'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.designations.index', compact('designations'))->with('i', (request()->input('page', 1) - 1) * 10);
 
     }
 
@@ -46,7 +46,7 @@ class DesignationController extends Controller
     {
         $this->authorize('create', Designation::class);
 
-        return view('designations.create');
+        return view('tenant.designations.create');
     }
 
     /**
@@ -68,7 +68,7 @@ class DesignationController extends Controller
      */
     public function show(Designation $designation)
     {
-        return view('designations.show', compact('designation'));
+        return view('tenant.designations.show', compact('designation'));
     }
 
     /**
@@ -78,7 +78,7 @@ class DesignationController extends Controller
     {
         $this->authorize('update', $designation);
 
-        return view('designations.edit', compact('designation'));
+        return view('tenant.designations.edit', compact('designation'));
     }
 
     /**

@@ -61,7 +61,7 @@ class TemplateController extends Controller
         $templates = $templates->orderBy('id', 'DESC')->paginate(10);
         //$templates = Template::latest()->orderBy('id','desc')->paginate(10);
 
-        return view('templates.index', compact('templates'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.backend.templates.index', compact('templates'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -76,7 +76,7 @@ class TemplateController extends Controller
         $users = User::getAll();
         $countries = Country::getAll();
 
-        return view('templates.create', compact('users', 'countries'));
+        return view('tenant.backend.templates.create', compact('users', 'countries'));
     }
 
     /**
@@ -105,7 +105,7 @@ class TemplateController extends Controller
         //dd($request);
         $template = Template::create($request->all());
         // Write to Log
-        EventLog::event('template', $template->id, 'create');
+        EventLog::event('tenant.template', $template->id, 'create');
 
 
         // Upload File, if any, insert row in attachment table  and get attachments id
@@ -128,7 +128,7 @@ class TemplateController extends Controller
     {
         $this->authorize('view', $template);
         $entity = EntityEnum::TEMPLATE->value ;
-        return view('templates.show', compact('template', 'entity'));
+        return view('tenant.backend.templates.show', compact('template', 'entity'));
     }
 
     /**
@@ -146,7 +146,7 @@ class TemplateController extends Controller
 
         // Write Event Log
         EventLog::event('template', $template->id, 'edit', 'template', $template->name);
-        return view('templates.edit', compact('template', 'users', 'countries'));
+        return view('tenant.backend.templates.edit', compact('template', 'users', 'countries'));
     }
 
     /**

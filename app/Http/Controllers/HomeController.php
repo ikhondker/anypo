@@ -84,7 +84,7 @@ class HomeController extends Controller
 
     public function help()
     {
-        return view('help');
+        return view('tenant.help');
     }
 
 

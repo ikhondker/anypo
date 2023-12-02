@@ -24,114 +24,114 @@ use App\Jobs\ImportAllRate;
 
 class CurrencyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
 
-        $currencies = Currency::query();
-        if (request('term')) {
-            $currencies->where('currency', 'Like', '%' . request('term') . '%');
-        }
-        $currencies = $currencies->orderBy('enable', 'DESC')->orderBy('currency', 'ASC')->paginate(25);
-        return view('currencies.index', compact('currencies'))->with('i', (request()->input('page', 1) - 1) * 25);
+		$currencies = Currency::query();
+		if (request('term')) {
+			$currencies->where('currency', 'Like', '%' . request('term') . '%');
+		}
+		$currencies = $currencies->orderBy('enable', 'DESC')->orderBy('currency', 'ASC')->paginate(25);
+		return view('tenant.currencies.index', compact('currencies'))->with('i', (request()->input('page', 1) - 1) * 25);
 
-    }
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $this->authorize('create', Currency::class);
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		$this->authorize('create', Currency::class);
 
-        return view('currencies.create');
-    }
+		return view('tenant.currencies.create');
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCurrencyRequest $request)
-    {
-        $this->authorize('create', Currency::class);
-        $request->merge(['enable'   => true ]);
-        $currency = Currency::create($request->all());
-        // Write to Log
-        EventLog::event('currency', $currency->currency, 'create');
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreCurrencyRequest $request)
+	{
+		$this->authorize('create', Currency::class);
+		$request->merge(['enable'   => true ]);
+		$currency = Currency::create($request->all());
+		// Write to Log
+		EventLog::event('currency', $currency->currency, 'create');
 
-        return redirect()->route('currencies.index')->with('success', 'Currency created successfully.');
-    }
+		return redirect()->route('currencies.index')->with('success', 'Currency created successfully.');
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Currency $currency)
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(Currency $currency)
+	{
+		//
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Currency $currency)
-    {
-        $this->authorize('update', $currency);
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(Currency $currency)
+	{
+		$this->authorize('update', $currency);
 
-        return view('currencies.edit', compact('currency'));
-    }
+		return view('tenant.currencies.edit', compact('currency'));
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCurrencyRequest $request, Currency $currency)
-    {
-        $this->authorize('update', $currency);
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateCurrencyRequest $request, Currency $currency)
+	{
+		$this->authorize('update', $currency);
 
-        //$request->validate();
-        $request->validate([
-        ]);
-        $currency->update($request->all());
+		//$request->validate();
+		$request->validate([
+		]);
+		$currency->update($request->all());
 
-        // Write to Log
-        EventLog::event('currency', $currency->name, 'update', 'name', $request->name);
+		// Write to Log
+		EventLog::event('currency', $currency->name, 'update', 'name', $request->name);
 
-        return redirect()->route('currencies.index')->with('success', 'Currency information updated successfully');
-    }
+		return redirect()->route('currencies.index')->with('success', 'Currency information updated successfully');
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Currency $currency)
-    {
-        //$this->authorize('delete', $color);
-        $currency->fill(['enable' => !$currency->enable]);
-        $currency->update();
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Currency $currency)
+	{
+		//$this->authorize('delete', $color);
+		$currency->fill(['enable' => !$currency->enable]);
+		$currency->update();
 
-        // Write to Log
-        EventLog::event('currency', $currency->currency, 'update', 'enable', $currency->enable);
+		// Write to Log
+		EventLog::event('currency', $currency->currency, 'update', 'enable', $currency->enable);
 
-        // import rate for newly enabled currency
-        if ($currency->enable) {
-            //dispatch(new App\Jobs\ImportAllRate());
-            ImportAllRate::dispatch();
-            Log::debug("Rates importing for ".$currency->currency);
-        }
+		// import rate for newly enabled currency
+		if ($currency->enable) {
+			//dispatch(new App\Jobs\ImportAllRate());
+			ImportAllRate::dispatch();
+			Log::debug("Rates importing for ".$currency->currency);
+		}
 
-        return redirect()->route('currencies.index')->with('success', 'Currency status updated successfully.');
-    }
+		return redirect()->route('currencies.index')->with('success', 'Currency status updated successfully.');
+	}
 
-    public function export()
-    {
-        $this->authorize('export', Currency::class);
+	public function export()
+	{
+		$this->authorize('export', Currency::class);
 
-        $data = DB::select("SELECT currency, name, country, IF(enable, 'Yes', 'No') AS enable
-        FROM currencies
-        ORDER BY currency;
-        ");
-        $dataArray = json_decode(json_encode($data), true);
-        // used Export Helper
-        return Export::csv('users', $dataArray);
-    }
+		$data = DB::select("SELECT currency, name, country, IF(enable, 'Yes', 'No') AS enable
+		FROM currencies
+		ORDER BY currency;
+		");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('currencies', $dataArray);
+	}
 
 }

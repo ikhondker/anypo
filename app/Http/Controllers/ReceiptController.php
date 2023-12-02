@@ -42,7 +42,7 @@ class ReceiptController extends Controller
     public function create()
     {
         $this->authorize('create', Dept::class);
-        return view('depts.create');
+        return view('tenant.depts.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class ReceiptController extends Controller
     public function edit(Receipt $receipt)
     {
         $this->authorize('update', $dept);
-        return view('depts.edit', compact('dept'));
+        return view('tenant.depts.edit', compact('dept'));
     }
 
     /**
@@ -90,7 +90,7 @@ class ReceiptController extends Controller
 
         // Write to Log
         EventLog::event('dept', $dept->id, 'update', 'name', $dept->name);
-        return redirect()->route('depts.index')->with('success', 'Dept updated successfully');
+        return redirect()->route('tenant.depts.index')->with('success', 'Dept updated successfully');
     }
 
     /**

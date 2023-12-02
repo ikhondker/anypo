@@ -35,7 +35,7 @@ class ActivityController extends Controller
             $activities->where('object_name', 'Like', '%' . request('term') . '%');
         }
         $activities = $activities->orderBy('id', 'DESC')->paginate(50);
-        return view('activities.index', compact('activities'))->with('i', (request()->input('page', 1) - 1) * 50);
+        return view('tenant.admin.activities.index', compact('activities'))->with('i', (request()->input('page', 1) - 1) * 50);
     }
 
     /**
@@ -61,7 +61,7 @@ class ActivityController extends Controller
     {
         $this->authorize('view', $activity);
 
-        return view('activities.show', compact('activity'));
+        return view('tenant.admin.activities.show', compact('activity'));
     }
 
     /**

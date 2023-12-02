@@ -38,7 +38,7 @@ class ProjectController extends Controller
             $projects->where('name', 'Like', '%' . request('term') . '%');
         }
         $projects = $projects->orderBy('id', 'DESC')->paginate(10);
-        return view('projects.index', compact('projects'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.projects.index', compact('projects'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -49,7 +49,7 @@ class ProjectController extends Controller
         $this->authorize('create', Project::class);
         $pms = User::primary()->get();
 
-        return view('projects.create', compact('pms'));
+        return view('tenant.projects.create', compact('pms'));
     }
 
     /**
@@ -81,7 +81,7 @@ class ProjectController extends Controller
     {
         $this->authorize('view', $project);
 
-        return view('projects.show', compact('project'));
+        return view('tenant.projects.show', compact('project'));
     }
 
     /**
@@ -92,7 +92,7 @@ class ProjectController extends Controller
         $this->authorize('update', $project);
 
         $pms = User::primary()->get();
-        return view('projects.edit', compact('project', 'pms'));
+        return view('tenant.projects.edit', compact('project', 'pms'));
     }
 
     /**
@@ -168,6 +168,6 @@ class ProjectController extends Controller
 
         $project = Project::where('id', $project->id)->get()->firstOrFail();
         $attachments = Attachment::where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->get()->all();
-        return view('projects.detach', compact('project', 'attachments'));
+        return view('tenant.projects.detach', compact('project', 'attachments'));
     }
 }
