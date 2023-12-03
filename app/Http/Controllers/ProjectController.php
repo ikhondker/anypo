@@ -49,7 +49,7 @@ class ProjectController extends Controller
         $this->authorize('create', Project::class);
         $pms = User::primary()->get();
 
-        return view('tenant.projects.create', compact('pms'));
+        return view('tenant.lookup.projects.create', compact('pms'));
     }
 
     /**
@@ -81,7 +81,7 @@ class ProjectController extends Controller
     {
         $this->authorize('view', $project);
 
-        return view('tenant.projects.show', compact('project'));
+        return view('tenant.lookup.projects.show', compact('project'));
     }
 
     /**
@@ -92,7 +92,7 @@ class ProjectController extends Controller
         $this->authorize('update', $project);
 
         $pms = User::primary()->get();
-        return view('tenant.projects.edit', compact('project', 'pms'));
+        return view('tenant.lookup.projects.edit', compact('project', 'pms'));
     }
 
     /**
@@ -168,6 +168,6 @@ class ProjectController extends Controller
 
         $project = Project::where('id', $project->id)->get()->firstOrFail();
         $attachments = Attachment::where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->get()->all();
-        return view('tenant.projects.detach', compact('project', 'attachments'));
+        return view('tenant.lookup.projects.detach', compact('project', 'attachments'));
     }
 }

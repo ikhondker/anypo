@@ -33,7 +33,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return view('reports.index');
+        return view('tenant.reports.index');
     }
 
     /**
@@ -109,7 +109,7 @@ class ReportController extends Controller
             'supplier' => $supplier,
             'prls' => $prls,
         ];
-        $pdf = PDF::loadView('reports.formats.pr', $data);
+        $pdf = PDF::loadView('tenant.reports.formats.pr', $data);
         // (Optional) Setup the paper size and orientation
         $pdf->setPaper('A4', 'portrait');
         $pdf->output();
@@ -150,7 +150,7 @@ class ReportController extends Controller
             'date' => date('m/d/Y'),
             //'products' => Product::all()
         ];
-        $pdf = PDF::loadView('reports.rnd.htmltable', $data);
+        $pdf = PDF::loadView('tenant.reports.rnd.htmltable', $data);
         //$pdf = PDF::loadView('reports.htmltable', $data)->setPaper('A4', 'landscape');
         //$pdf = PDF::loadView('reports.style2', $data);
         //$pdf = PDF::loadView('reports.appstack', $data);
@@ -188,7 +188,7 @@ class ReportController extends Controller
             'date' => date('m/d/Y'),
             //'products' => Product::all()
         ];
-        $pdf = PDF::loadView('reports.rnd.template-pr', $data);
+        $pdf = PDF::loadView('tenant.reports.rnd.template-pr', $data);
         // (Optional) Setup the paper size and orientation
         $pdf->setPaper('A4', 'portrait');
         $pdf->output();
@@ -227,7 +227,7 @@ class ReportController extends Controller
             'date' => date('m/d/Y'),
             //'products' => Product::all()
         ];
-        $pdf = PDF::loadView('reports.rnd.template-po', $data);
+        $pdf = PDF::loadView('tenant.reports.rnd.template-po', $data);
         return $pdf->stream('templatepo.pdf');
     }
 
@@ -243,7 +243,7 @@ class ReportController extends Controller
             //'settings'  => Setting::first()
         ];
 
-        $pdf = PDF::loadView('reports.formats.stocks', $data);
+        $pdf = PDF::loadView('tenant.reports.formats.stocks', $data);
         return $pdf->stream('stocks.pdf');
     }
 

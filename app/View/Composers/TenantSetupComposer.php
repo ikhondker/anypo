@@ -5,9 +5,9 @@ namespace App\View\Composers;
 //use App\Repositories\UserRepository;
 use Illuminate\View\View;
  
-use App\Models\Setup;
-
-class SetupComposer
+use App\Models\Tenant\Admin\Setup;
+//use App\Models\Setup;
+class TenantSetupComposer
 {
     /**
      * Create a new profile composer.

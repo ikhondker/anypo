@@ -44,7 +44,7 @@ class WfController extends Controller
             $wfs->where('article_id', 'Like', '%' . request('term') . '%');
         }
         $wfs = $wfs->orderBy('id', 'DESC')->paginate(10);
-        return view('tenant.wfs.index', compact('wfs'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.workflow.wfs.index', compact('wfs'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -54,7 +54,7 @@ class WfController extends Controller
     {
         $this->authorize('create', Wf::class);
 
-        return view('tenant.wfs.create');
+        return view('tenant.workflow.wfs.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class WfController extends Controller
         $this->authorize('view', $wf);
 
         $wfls        = Wfl::where('wf_id', $wf->id)->orderBy('id', 'asc')->get();
-        return view('tenant.wfs.show', compact('wf', 'wfls'));
+        return view('tenant.workflow.wfs.show', compact('wf', 'wfls'));
     }
 
     /**
@@ -146,7 +146,7 @@ class WfController extends Controller
     public function resetpr()
     {
         //$this->authorize('resetpr',Wf::class);
-        return view('tenant.wfs.reset-pr');
+        return view('tenant.workflow.wfs.reset-pr');
     }
 
     /**
@@ -202,6 +202,6 @@ class WfController extends Controller
     public function resetpo()
     {
         //$this->authorize('resetpo',Wf::class);
-        return view('tenant.wfs.resetpo');
+        return view('tenant.workflow.wfs.resetpo');
     }
 }

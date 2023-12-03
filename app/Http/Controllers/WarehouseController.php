@@ -34,7 +34,7 @@ class WarehouseController extends Controller
             $warehouses->where('name', 'Like', '%' . request('term') . '%');
         }
         $warehouses = $warehouses->orderBy('id', 'DESC')->paginate(10);
-        return view('tenant.warehouses.index', compact('warehouses'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.lookup.warehouses.index', compact('warehouses'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -46,7 +46,7 @@ class WarehouseController extends Controller
 
         $countries = Country::getAll();
 
-        return view('tenant.warehouses.create', compact('countries'));
+        return view('tenant.lookup.warehouses.create', compact('countries'));
     }
 
     /**
@@ -71,7 +71,7 @@ class WarehouseController extends Controller
     {
         $this->authorize('view', $warehouse);
 
-        return view('tenant.warehouses.show', compact('warehouse'));
+        return view('tenant.lookup.warehouses.show', compact('warehouse'));
     }
 
     /**
@@ -81,7 +81,7 @@ class WarehouseController extends Controller
     {
         $this->authorize('update', $warehouse);
         $countries = Country::getAll();
-        return view('tenant.warehouses.edit', compact('warehouse', 'countries'));
+        return view('tenant.lookup.warehouses.edit', compact('warehouse', 'countries'));
     }
 
     /**

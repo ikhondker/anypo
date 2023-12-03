@@ -33,7 +33,7 @@ class GroupController extends Controller
             $groups->where('name', 'Like', '%' . request('term') . '%');
         }
         $groups = $groups->orderBy('id', 'DESC')->paginate(10);
-        return view('tenant.groups.index', compact('groups'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.lookup.groups.index', compact('groups'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -42,7 +42,7 @@ class GroupController extends Controller
     public function create()
     {
         $this->authorize('create', Group::class);
-        return view('tenant.groups.create');
+        return view('tenant.lookup.groups.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class GroupController extends Controller
     public function edit(Group $group)
     {
         $this->authorize('update', $group);
-        return view('tenant.groups.edit', compact('group'));
+        return view('tenant.lookup.groups.edit', compact('group'));
     }
 
     /**

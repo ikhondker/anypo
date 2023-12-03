@@ -35,7 +35,7 @@ class CountryController extends Controller
         }
         $countries = $countries->orderBy('enable', 'DESC')->orderBy('country', 'ASC')->paginate(25);
 
-        return view('tenant.countries.index', compact('countries'))->with('i', (request()->input('page', 1) - 1) * 25);
+        return view('tenant.lookup.countries.index', compact('countries'))->with('i', (request()->input('page', 1) - 1) * 25);
     }
 
     /**
@@ -45,7 +45,7 @@ class CountryController extends Controller
     {
         $this->authorize('create', Country::class);
 
-        return view('tenant.countries.create');
+        return view('tenant.lookup.countries.create');
     }
 
     /**
@@ -76,7 +76,7 @@ class CountryController extends Controller
     {
         $this->authorize('update', $country);
 
-        return view('tenant.countries.edit', compact('country'));
+        return view('tenant.lookup.countries.edit', compact('country'));
     }
 
     /**

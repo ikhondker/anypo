@@ -33,7 +33,7 @@ class SupplierController extends Controller
             $suppliers->where('name', 'Like', '%' . request('term') . '%');
         }
         $suppliers = $suppliers->orderBy('id', 'DESC')->paginate(10);
-        return view('tenant.suppliers.index', compact('suppliers'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.lookup.suppliers.index', compact('suppliers'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -42,7 +42,7 @@ class SupplierController extends Controller
     public function create()
     {
         $this->authorize('create', Supplier::class);
-        return view('tenant.suppliers.create');
+        return view('tenant.lookup.suppliers.create');
     }
 
     /**
@@ -64,7 +64,7 @@ class SupplierController extends Controller
     public function show(Supplier $supplier)
     {
         $this->authorize('view', $supplier);
-        return view('tenant.suppliers.show', compact('supplier'));
+        return view('tenant.lookup.suppliers.show', compact('supplier'));
     }
 
     /**
@@ -73,7 +73,7 @@ class SupplierController extends Controller
     public function edit(Supplier $supplier)
     {
         $this->authorize('update', $supplier);
-        return view('tenant.suppliers.edit', compact('supplier'));
+        return view('tenant.lookup.suppliers.edit', compact('supplier'));
     }
 
     /**

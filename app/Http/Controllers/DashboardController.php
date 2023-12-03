@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 
 # Models
-use App\Models\Setup;
+//use App\Models\Setup;
+use App\Models\Tenant\Admin\Setup;
 use App\Models\User;
 use App\Models\DeptBudget;
 

@@ -33,7 +33,7 @@ class CategoryController extends Controller
         }
         $categories = $categories->orderBy('id', 'DESC')->paginate(10);
 
-        return view('tenant.categories.index', compact('categories'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.lookup.categories.index', compact('categories'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -43,7 +43,7 @@ class CategoryController extends Controller
     {
         $this->authorize('create', Category::class);
 
-        return view('tenant.categories.create');
+        return view('tenant.lookup.categories.create');
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('tenant.categories.show', compact('category'));
+        return view('tenant.lookup.categories.show', compact('category'));
     }
 
     /**
@@ -74,7 +74,7 @@ class CategoryController extends Controller
     {
         $this->authorize('update', $category);
 
-        return view('tenant.categories.edit', compact('category'));
+        return view('tenant.lookup.categories.edit', compact('category'));
     }
 
     /**

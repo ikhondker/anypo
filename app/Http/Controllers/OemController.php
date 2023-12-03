@@ -33,7 +33,7 @@ class OemController extends Controller
             $oems->where('name', 'Like', '%' . request('term') . '%');
         }
         $oems = $oems->orderBy('id', 'DESC')->paginate(10);
-        return view('tenant.oems.index', compact('oems'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.lookup.oems.index', compact('oems'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -42,7 +42,7 @@ class OemController extends Controller
     public function create()
     {
         $this->authorize('create', Oem::class);
-        return view('tenant.oems.create');
+        return view('tenant.lookup.oems.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class OemController extends Controller
     public function edit(Oem $oem)
     {
         $this->authorize('update', $oem);
-        return view('tenant.oems.edit', compact('oem'));
+        return view('tenant.lookup.oems.edit', compact('oem'));
     }
 
     /**

@@ -38,7 +38,7 @@ class ItemController extends Controller
             $items->where('name', 'Like', '%' . request('term') . '%');
         }
         $items = $items->orderBy('id', 'DESC')->paginate(25);
-        return view('tenant.items.index', compact('items'))->with('i', (request()->input('page', 1) - 1) * 25);
+        return view('tenant.lookup.items.index', compact('items'))->with('i', (request()->input('page', 1) - 1) * 25);
     }
 
     /**
@@ -53,7 +53,7 @@ class ItemController extends Controller
         $oems = Oem::primary()->get();
         $gl_types = GlType::primary()->get();
 
-        return view('tenant.items.create', compact('categories', 'uoms', 'oems', 'gl_types'));
+        return view('tenant.lookup.items.create', compact('categories', 'uoms', 'oems', 'gl_types'));
     }
 
     /**
@@ -83,7 +83,7 @@ class ItemController extends Controller
     {
         $this->authorize('view', $item);
 
-        return view('tenant.items.show', compact('item'));
+        return view('tenant.lookup.items.show', compact('item'));
 
     }
 
@@ -99,7 +99,7 @@ class ItemController extends Controller
         $oems = Oem::primary()->get();
         $gl_types = GlType::primary()->get();
 
-        return view('tenant.items.edit', compact('item', 'categories', 'uoms', 'oems', 'gl_types'));
+        return view('tenant.lookup.items.edit', compact('item', 'categories', 'uoms', 'oems', 'gl_types'));
     }
 
     /**

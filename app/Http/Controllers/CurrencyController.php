@@ -35,7 +35,7 @@ class CurrencyController extends Controller
 			$currencies->where('currency', 'Like', '%' . request('term') . '%');
 		}
 		$currencies = $currencies->orderBy('enable', 'DESC')->orderBy('currency', 'ASC')->paginate(25);
-		return view('tenant.currencies.index', compact('currencies'))->with('i', (request()->input('page', 1) - 1) * 25);
+		return view('tenant.lookup.currencies.index', compact('currencies'))->with('i', (request()->input('page', 1) - 1) * 25);
 
 	}
 
@@ -46,7 +46,7 @@ class CurrencyController extends Controller
 	{
 		$this->authorize('create', Currency::class);
 
-		return view('tenant.currencies.create');
+		return view('tenant.lookup.currencies.create');
 	}
 
 	/**
@@ -78,7 +78,7 @@ class CurrencyController extends Controller
 	{
 		$this->authorize('update', $currency);
 
-		return view('tenant.currencies.edit', compact('currency'));
+		return view('tenant.lookup.currencies.edit', compact('currency'));
 	}
 
 	/**

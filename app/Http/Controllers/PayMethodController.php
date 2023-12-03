@@ -33,7 +33,7 @@ class PayMethodController extends Controller
             $pay_methods->where('name', 'Like', '%' . request('term') . '%');
         }
         $pay_methods = $pay_methods->orderBy('id', 'DESC')->paginate(10);
-        return view('tenant.pay-methods.index', compact('pay_methods'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('tenant.lookup.pay-methods.index', compact('pay_methods'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -44,7 +44,7 @@ class PayMethodController extends Controller
         $this->authorize('create', PayMethod::class);
         $currencies = Currency::primary()->get();
 
-        return view('tenant.pay-methods.create', compact('currencies'));
+        return view('tenant.lookup.pay-methods.create', compact('currencies'));
     }
 
     /**
@@ -67,7 +67,7 @@ class PayMethodController extends Controller
     public function show(PayMethod $payMethod)
     {
         //$this->authorize('view', $payMethod);
-        return view('pay-methods.show', compact('payMethod'));
+        return view('tenant.lookup.pay-methods.show', compact('payMethod'));
 
     }
 
@@ -77,7 +77,7 @@ class PayMethodController extends Controller
     public function edit(PayMethod $payMethod)
     {
         $this->authorize('update', $payMethod);
-        return view('tenant.pay-methods.edit', compact('payMethod'));
+        return view('tenant.lookup.pay-methods.edit', compact('payMethod'));
     }
 
     /**

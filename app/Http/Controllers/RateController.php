@@ -32,7 +32,7 @@ class RateController extends Controller
             $rates->where('to_currency', 'Like', '%' . request('term') . '%');
         }
         $rates = $rates->orderBy('rate_date', 'DESC')->paginate(25);
-        return view('tenant.rates.index', compact('rates'))->with('i', (request()->input('page', 1) - 1) * 25);
+        return view('tenant.lookup.rates.index', compact('rates'))->with('i', (request()->input('page', 1) - 1) * 25);
     }
 
     /**

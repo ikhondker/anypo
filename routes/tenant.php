@@ -24,7 +24,9 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\EntityController;
 
-use App\Http\Controllers\SetupController;
+use App\Http\Controllers\Tenant\Admin\SetupController;
+
+// TODO Check
 use App\Http\Controllers\FileAccessController;
 
 use App\Http\Controllers\DeptController;

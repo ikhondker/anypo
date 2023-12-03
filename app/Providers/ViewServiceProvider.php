@@ -40,8 +40,8 @@ class ViewServiceProvider extends ServiceProvider
 			//Log::debug("current_route_name =".$raw_route_name);
 			try {
 				$menu = Menu::where('raw_route_name',$raw_route_name)
-				->where('enable',true)
-				->firstOrFail();
+					->where('enable',true)
+					->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
 				// Log::debug("node_name not Found! raw_route_name =".$raw_route_name);
 				$menu->raw_route_name   = $raw_route_name;
@@ -61,26 +61,24 @@ class ViewServiceProvider extends ServiceProvider
 		*/
 		// TODO seperate 
 		view()->composer('layouts.app', function ($view) {
-            $raw_route_name = \Request::route()->getName();
-            $menu                 = new Menu;
+			$raw_route_name = \Request::route()->getName();
+			$menu                 = new Menu;
+			//Log::debug("current_route_name =".$current_route_name);
+			try {
+				$menu = Menu::where('raw_route_name',$raw_route_name)
+					->where('enable',true)
+					->firstOrFail();
+			} catch (ModelNotFoundException $exception) {
+				// Log::debug("node_name not Found! raw_route_name =".$raw_route_name);
+				$menu->raw_route_name   = $raw_route_name;
+				$menu->route_name       = $raw_route_name;
+				$menu->node_name        = '';
+			}
+			$view->with('_node_name', $menu->node_name)->with('_route_name', $menu->route_name);
+		});
 
-            //Log::debug("current_route_name =".$current_route_name);
-
-            try {
-                $menu = Menu::where('raw_route_name',$raw_route_name)
-                ->where('enable',true)
-                ->firstOrFail();
-            } catch (ModelNotFoundException $exception) {
-                // Log::debug("node_name not Found! raw_route_name =".$raw_route_name);
-                $menu->raw_route_name   = $raw_route_name;
-                $menu->route_name       = $raw_route_name;
-                $menu->node_name        = '';
-            }
-            $view->with('_node_name', $menu->node_name)->with('_route_name', $menu->route_name);
-        });
-
-        Facades\View::composer('layouts.app', \App\View\Composers\SetupComposer::class);
-        Facades\View::composer('layouts.app', \App\View\Composers\NotificationComposer::class);
+		Facades\View::composer('layouts.app', \App\View\Composers\TenantSetupComposer::class);
+		Facades\View::composer('layouts.app', \App\View\Composers\NotificationComposer::class);
 
 
 	}

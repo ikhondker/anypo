@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Tenant\Admin;;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,8 +29,6 @@ class Setup extends Model
         'updated_at'        => 'datetime',
         'created_at'        => 'datetime',
     ];
-
-
 
 
     /* ----------------- HasMany ------------------------ */
