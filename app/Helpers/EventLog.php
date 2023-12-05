@@ -21,7 +21,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Request;
 
-use App\Models\Activity;
+use App\Models\Tenant\Admin\Activity;
 use Illuminate\Support\Facades\Log;
 
 use App\Enum\UserRoleEnum;

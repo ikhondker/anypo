@@ -17,7 +17,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-with-simple-search object="Group" :export="true"/>
+                    <x-cards.header-search-export-bar object="Group" :export="true"/>
                 </div>
                 <div class="card-body">
                     <table class="table">

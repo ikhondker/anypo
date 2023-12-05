@@ -9,39 +9,41 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ImpersonateController;
 
-use App\Http\Controllers\TemplateController;
-use App\Http\Controllers\AttachmentController;
-use App\Http\Controllers\MenuController;
+use App\Http\Controllers\Tenant\Admin\ActivityController;
+use App\Http\Controllers\Tenant\Admin\AttachmentController;
+use App\Http\Controllers\Tenant\Admin\SetupController;
+use App\Http\Controllers\Tenant\Admin\UserController;
+
+use App\Http\Controllers\Tenant\Lookup\CategoryController;
+use App\Http\Controllers\Tenant\Lookup\CountryController;
+use App\Http\Controllers\Tenant\Lookup\CurrencyController;
+use App\Http\Controllers\Tenant\Lookup\DeptController;
+use App\Http\Controllers\Tenant\Lookup\DesignationController;
+use App\Http\Controllers\Tenant\Lookup\GroupController;
+use App\Http\Controllers\Tenant\Lookup\ItemController;
+use App\Http\Controllers\Tenant\Lookup\OemController;
+use App\Http\Controllers\Tenant\Lookup\PayMethodController;
+use App\Http\Controllers\Tenant\Lookup\ProjectController;
+use App\Http\Controllers\Tenant\Lookup\RateController;
+use App\Http\Controllers\Tenant\Lookup\SupplierController;
+use App\Http\Controllers\Tenant\Lookup\UomController;
+use App\Http\Controllers\Tenant\Lookup\UploadItemController;
+use App\Http\Controllers\Tenant\Lookup\WarehouseController;
+
+
+use App\Http\Controllers\Tenant\Manage\EntityController;
+use App\Http\Controllers\Tenant\Manage\MenuController;
+use App\Http\Controllers\Tenant\Manage\TableController;
+use App\Http\Controllers\Tenant\Manage\TemplateController;
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\TableController;
 use App\Http\Controllers\NotificationController;
-
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\CountryController;
-use App\Http\Controllers\CurrencyController;
-use App\Http\Controllers\EntityController;
-
-use App\Http\Controllers\Tenant\Admin\SetupController;
 
 // TODO Check
 use App\Http\Controllers\FileAccessController;
 
-use App\Http\Controllers\DeptController;
-use App\Http\Controllers\DesignationController;
-use App\Http\Controllers\GroupController;
-use App\Http\Controllers\WarehouseController;
-use App\Http\Controllers\CategoryController;
-
-use App\Http\Controllers\UomController;
-use App\Http\Controllers\OemController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\BudgetController;
-
-use App\Http\Controllers\ItemController;
 use App\Http\Controllers\HierarchyController;
 use App\Http\Controllers\HierarchylController;
 use App\Http\Controllers\WfController;
@@ -49,7 +51,7 @@ use App\Http\Controllers\WflController;
 
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DeptBudgetController;
-use App\Http\Controllers\PayMethodController;
+
 
 use App\Http\Controllers\PrController;
 use App\Http\Controllers\PrlController;
@@ -57,11 +59,11 @@ use App\Http\Controllers\PoController;
 use App\Http\Controllers\PolController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\RateController;
+
 use App\Http\Controllers\DocController;
 
 
-use App\Http\Controllers\UploadItemController;
+
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 use App\Helpers\GetRate;

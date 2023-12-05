@@ -19,10 +19,11 @@
 
 namespace App\Http\Controllers\Tenant\Admin;
 
+use App\Http\Controllers\Controller;
+
 //use App\Models\Setup;
 use App\Models\Tenant\Admin\Setup;
 
-use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Tenant\Admin\StoreSetupRequest;
 use App\Http\Requests\Tenant\Admin\UpdateSetupRequest;

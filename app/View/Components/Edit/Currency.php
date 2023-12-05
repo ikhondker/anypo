@@ -15,7 +15,7 @@ class Currency extends Component
      */
     public function __construct(public string $value)
     {
-        $this->currencies = \App\Models\Currency::getActives();
+        $this->currencies = \App\Models\Tenant\Lookup\Currency::getActives();
     }
 
     /**
