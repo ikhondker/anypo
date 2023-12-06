@@ -6,9 +6,9 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Models\Pr;
-use App\Models\Prl;
-use App\Models\Item;
+use App\Models\Tenant\Pr;
+use App\Models\Tenant\Prl;
+use App\Models\Tenant\Lookup\Item;
 use Illuminate\Support\Facades\Log;
 
 class PrLines extends Component

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /* IQBAL 21-OCT-22 */
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
-use App\Models\Entity;
+use App\Models\Tenant\Manage\Entity;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 

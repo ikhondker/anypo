@@ -295,7 +295,7 @@
 						<div class="col-8 text-start">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<a class="text-muted" href="#">Support</a>
+									<a class="text-muted" href="#">Support*</a>
 								</li>
 								<li class="list-inline-item">
 									<a class="text-muted" href="{{ route('help') }}">Help Center</a>
@@ -383,7 +383,7 @@
 
 	<script src="{{asset('js/app.js')}}"></script>
 
-	@livewireScripts
+	{{-- @livewireScripts --}}
 </body>
 
 </html>

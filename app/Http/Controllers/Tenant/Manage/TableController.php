@@ -61,9 +61,9 @@
  * @since      File available since Release: 0.1
  */
 
-namespace App\Http\Controllers;
+ namespace App\Http\Controllers\Tenant\Manage;
 
-use App\Http\Controllers\Controller;
+ use App\Http\Controllers\Controller;
 
 // Models
 //use App\Models\Table;
@@ -89,7 +89,8 @@ class TableController extends Controller
 
 	public function index()
 	{
-		$this->authorize('viewAny', Table::class);
+		// TODO why? 403 to system
+		//$this->authorize('viewAny', Table::class);
 
 		$tables = DB::select('SHOW TABLES');
 		// foreach ($tables as $table) {

@@ -24,11 +24,12 @@ use Request;
 
 //use App\Models\Entity;
 use App\Models\User;
-use App\Models\Pr;
-use App\Models\Dept;
-use App\Models\Hierarchy;
-use App\Models\Wf;
-use App\Models\Wfl;
+use App\Models\Tenant\Pr;
+
+use App\Models\Tenant\Lookup\Dept;
+use App\Models\Tenant\Workflow\Hierarchy;
+use App\Models\Tenant\Workflow\Wf;
+use App\Models\Tenant\Workflow\Wfl;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

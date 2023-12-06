@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 /* IQBAL 21-OCT-22 */
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
-use App\Models\Pr;
-use App\Models\Po;
-use App\Models\PayMethod;
+use App\Models\Tenant\Pr;
+use App\Models\Tenant\Po;
+use App\Models\Tenant\Lookup\PayMethod;
 use Illuminate\Database\Eloquent\Builder;
 
 class Currency extends Model

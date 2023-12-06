@@ -36,33 +36,29 @@ use App\Http\Controllers\Tenant\Manage\MenuController;
 use App\Http\Controllers\Tenant\Manage\TableController;
 use App\Http\Controllers\Tenant\Manage\TemplateController;
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\NotificationController;
 
+use App\Http\Controllers\Tenant\Workflow\HierarchyController;
+use App\Http\Controllers\Tenant\Workflow\HierarchylController;
+use App\Http\Controllers\Tenant\Workflow\WfController;
+use App\Http\Controllers\Tenant\Workflow\WflController;
+
+
+use App\Http\Controllers\Tenant\BudgetController;
+use App\Http\Controllers\Tenant\DeptBudgetController;
+use App\Http\Controllers\Tenant\DashboardController;
+use App\Http\Controllers\Tenant\NotificationController;
+use App\Http\Controllers\Tenant\PaymentController;
+use App\Http\Controllers\Tenant\PoController;
+use App\Http\Controllers\Tenant\PolController;
+use App\Http\Controllers\Tenant\PrController;
+use App\Http\Controllers\Tenant\PrlController;
+use App\Http\Controllers\Tenant\ReceiptController;
+use App\Http\Controllers\Tenant\ReportController;
+
+use App\Http\Controllers\HomeController;
 // TODO Check
 use App\Http\Controllers\FileAccessController;
-
-use App\Http\Controllers\BudgetController;
-use App\Http\Controllers\HierarchyController;
-use App\Http\Controllers\HierarchylController;
-use App\Http\Controllers\WfController;
-use App\Http\Controllers\WflController;
-
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\DeptBudgetController;
-
-
-use App\Http\Controllers\PrController;
-use App\Http\Controllers\PrlController;
-use App\Http\Controllers\PoController;
-use App\Http\Controllers\PolController;
-use App\Http\Controllers\ReceiptController;
-use App\Http\Controllers\PaymentController;
-
 use App\Http\Controllers\DocController;
-
-
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -432,25 +428,25 @@ Route::middleware([
 	});
 	
 	/* ======================== Pages ======================================== */
-	 Route::get('/faq', function () {
-		return view('pages.faq');
-	})->name('faq');
+	// Route::get('/faq', function () {
+	// 	return view('pages.faq');
+	// })->name('faq');
 
 	Route::get('/tos', function () {
-		return view('pages.tos');
+		return view('tenant.pages.tos');
 	})->name('tos');
 
 	Route::get('/privacy', function () {
-		return view('pages.privacy');
+		return view('tenant.pages.privacy');
 	})->name('privacy');
 
-	Route::get('/about', function () {
-		return view('pages.about-us');
-	})->name('about');
+	// Route::get('/about', function () {
+	// 	return view('pages.about-us');
+	// })->name('about');
 
-	Route::get('/contact-us', function () {
-		return view('pages.contact-us');
-	})->name('contact-us');
+	// Route::get('/contact-us', function () {
+	// 	return view('pages.contact-us');
+	// })->name('contact-us');
 
 
 });

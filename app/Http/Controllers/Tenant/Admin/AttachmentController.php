@@ -9,12 +9,14 @@ use App\Http\Requests\Tenant\Admin\StoreAttachmentRequest;
 use App\Http\Requests\Tenant\Admin\UpdateAttachmentRequest;
 
 # Models
-use App\Models\Entity;
-use App\Models\Pr;
-use App\Models\Po;
-use App\Models\Project;
-use App\Models\Budget;
-use App\Models\DeptBudget;
+
+use App\Models\Tenant\Manage\Entity;
+use App\Models\Tenant\Lookup\Project;
+
+use App\Models\Tenant\Pr;
+use App\Models\Tenant\Po;
+use App\Models\Tenant\Budget;
+use App\Models\Tenant\DeptBudget;
 
 # Enums
 use App\Enum\EntityEnum;

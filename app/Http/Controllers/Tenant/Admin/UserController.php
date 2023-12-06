@@ -27,8 +27,8 @@ use App\Http\Requests\Tenant\Admin\StoreUserRequest;
 use App\Http\Requests\Tenant\Admin\UpdateUserRequest;
 
 # Models
-use App\Models\Country;
-use App\Models\Designation;
+use App\Models\Tenant\Lookup\Country;
+use App\Models\Tenant\Lookup\Designation;
 # Enums
 use App\Enum\UserRoleEnum;
 # Helpers

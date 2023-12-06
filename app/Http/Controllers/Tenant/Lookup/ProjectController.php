@@ -11,7 +11,7 @@ use App\Http\Requests\Tenant\Lookup\UpdateProjectRequest;
 
 # Models
 use App\Models\User;
-use App\Models\Attachment;
+use App\Models\Tenant\Admin\Attachment;
 # Enums
 use App\Enum\EntityEnum;
 # Helpers

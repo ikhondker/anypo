@@ -7,29 +7,43 @@ use App\Enum\UserRoleEnum;
 // needed for scope IQBAL
 use App\Enum\TicketStatusEnum;
 
+/*
+|-----------------------------------------------------------------------------
+| Landlord																	 + 
+|-----------------------------------------------------------------------------
+*/
 use App\Models\Landlord\Ticket;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Comment;
 use App\Models\Landlord\Invoice;
 use App\Models\Landlord\Payment;
-
-// IQBAL 27-SEP-22
 use App\Models\Landlord\Service;
-
-
 use App\Models\Landlord\Checkout;
-use Laravel\Sanctum\HasApiTokens;
-
-use App\Traits\AddCreatedUpdatedBy;
 
 use App\Models\Landlord\Admin\Country;
 use App\Models\Landlord\Admin\Activity;
 use App\Models\Landlord\Admin\Template;
+use App\Models\Landlord\Admin\Attachment;
+
+/*
+|-----------------------------------------------------------------------------
+| Tenant																	 + 
+|-----------------------------------------------------------------------------
+*/
+use App\Models\Tenant\Lookup\Dept;
+use App\Models\Tenant\Lookup\Designation;
+
+
+use App\Traits\AddCreatedUpdatedBy;
+
+
+use Laravel\Sanctum\HasApiTokens;
+
+
 use Illuminate\Database\Eloquent\Model;
 
-
 use Illuminate\Notifications\Notifiable;
-use App\Models\Landlord\Admin\Attachment;
+
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
@@ -429,12 +443,6 @@ class User extends Authenticatable implements MustVerifyEmail
 		]);
 
 	}
-
-
-
-
-
-
 
 	// =========== created and updated by =======================================================
 

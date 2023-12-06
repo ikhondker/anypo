@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Tenant\Manage;
 
-use App\Models\Entity;
+use App\Models\Tenant\Manage\Entity;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
-
 
 class EntityPolicy
 {

@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tenant\Manage;
 
-use App\Models\Template;
-use App\Http\Requests\StoreTemplateRequest;
-use App\Http\Requests\UpdateTemplateRequest;
+use App\Http\Controllers\Controller;
+
+use App\Models\Tenant\Manage\Template;
+use App\Http\Requests\Tenant\Manage\StoreTemplateRequest;
+use App\Http\Requests\Tenant\Manage\UpdateTemplateRequest;
 
 
 //
@@ -13,7 +15,7 @@ use App\Http\Requests\UpdateTemplateRequest;
 
 # Models
 use App\Models\User;
-use App\Models\Country;
+use App\Models\Tenant\Lookup\Country;
 # Enums
 # Helpers
 use App\Helpers\FileUpload;

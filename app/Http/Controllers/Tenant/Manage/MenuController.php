@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tenant\Manage;
+
+use App\Http\Controllers\Controller;
 
 // 1. Enums
 // 2. Helpers
@@ -10,12 +12,12 @@ use App\Helpers\Export;
 // 4. Mails
 // 5. Packages
 // 6. Requests
-use App\Http\Requests\StoreMenuRequest;
-use App\Http\Requests\UpdateMenuRequest;
+use App\Http\Requests\Tenant\Manage\StoreMenuRequest;
+use App\Http\Requests\Tenant\Manage\UpdateMenuRequest;
 // 7. Exceptions
 // 8. Events
 // 9. Models
-use App\Models\Menu;
+use App\Models\Tenant\Manage\Menu;
 // 10. Seeded
 use DB;
 

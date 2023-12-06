@@ -21,7 +21,7 @@ use App\Http\Requests\Tenant\Lookup\UpdateDeptRequest;
 // 8. Events
 // 9. Models
 use App\Models\Tenant\Lookup\Dept;
-use App\Models\Hierarchy;
+use App\Models\Tenant\Workflow\Hierarchy;
 // 10. Seeded
 use DB;
 

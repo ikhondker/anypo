@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Requests\Landlord\Admin;
 
-//namespace App\Http\Requests;
+//namespace App\Http\Requests\Tenant;
 
 use Illuminate\Foundation\Http\FormRequest;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Tenant\Manage;
 
-use App\Models\Template;
+use App\Models\Tenant\Manage\Template;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

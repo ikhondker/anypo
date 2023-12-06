@@ -18,7 +18,6 @@
 */
 
 namespace App\Http\Controllers\Tenant\Admin;
-
 use App\Http\Controllers\Controller;
 
 //use App\Models\Setup;
@@ -30,9 +29,9 @@ use App\Http\Requests\Tenant\Admin\UpdateSetupRequest;
 
 # Models
 use App\Models\User;
-use App\Models\Budget;
-use App\Models\Country;
-use App\Models\Currency;
+use App\Models\Tenant\Budget;
+use App\Models\Tenant\Lookup\Country;
+use App\Models\Tenant\Lookup\Currency;
 # Enums
 # Helpers
 use App\Helpers\EventLog;

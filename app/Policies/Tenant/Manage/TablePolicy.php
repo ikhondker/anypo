@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Tenant\Manage;
 
-use App\Models\Table;
+use App\Models\Tenant\Manage\Table;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 use App\Enum\UserRoleEnum;

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Builder;
 
-use App\Models\Item;
+use App\Models\Tenant\Lookup\Item;
 
 class Category extends Model
 {

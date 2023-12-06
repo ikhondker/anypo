@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 // IQBAL 27-SEP-22
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
-use App\Models\Country;
-use App\Models\Currency;
+// use App\Models\Tenant\Lookup\Country;
+// use App\Models\Tenant\Lookup\Currency;
 
 class Setup extends Model
 {

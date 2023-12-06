@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Models\Wfl;
+use App\Models\Tenant\Workflow\Wfl;
 
 class ApprovalHistory extends Component
 {

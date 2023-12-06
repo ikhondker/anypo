@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     @php
-                        use App\Models\Pr;
+                        use App\Models\Tenant\Pr;
                         use App\Enum\AuthStatusEnum;
 
                         $count_total        = Pr::count();

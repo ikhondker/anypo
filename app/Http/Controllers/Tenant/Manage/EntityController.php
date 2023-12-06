@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tenant\Manage;
 
-use App\Models\Entity;
-use App\Http\Requests\StoreEntityRequest;
-use App\Http\Requests\UpdateEntityRequest;
+use App\Http\Controllers\Controller;
+
+use App\Models\Tenant\Manage\Entity;
+use App\Http\Requests\Tenant\Manage\StoreEntityRequest;
+use App\Http\Requests\Tenant\Manage\UpdateEntityRequest;
 
 
 # Models

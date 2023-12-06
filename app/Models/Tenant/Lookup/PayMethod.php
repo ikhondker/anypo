@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /* IQBAL 21-OCT-22 */
 use App\Traits\AddCreatedUpdatedBy;
-use App\Models\Currency;
+use App\Models\Tenant\Lookup\Currency;
 
 
 class PayMethod extends Model
