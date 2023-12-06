@@ -3,14 +3,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Reports
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Reports"/>
+            <x-tenant.buttons.header.create object="Reports"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">

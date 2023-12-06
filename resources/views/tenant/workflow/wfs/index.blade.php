@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Wf
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Wf"/>
+            <x-tenant.buttons.header.create object="Wf"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Wf"/>
+                    <x-tenant.cards.header-search-export-bar object="Wf"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -48,11 +48,11 @@
                                 <td>{{ $wf->article_id }}</td>
                                 <td>{{ $wf->entity }}</td>
                                 <td>{{ $wf->relHierarchy->name }}</td>
-                                <td><x-list.my-badge :value="$wf->wf_status"/></td>
-                                <td><x-list.my-badge :value="$wf->auth_status"/></td>
-                                <td><x-list.my-date-time :value="$wf->created_at"/></td>
+                                <td><x-tenant.list.my-badge :value="$wf->wf_status"/></td>
+                                <td><x-tenant.list.my-badge :value="$wf->auth_status"/></td>
+                                <td><x-tenant.list.my-date-time :value="$wf->created_at"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Wf" :id="$wf->id" :edit="false" :show="true"/>
+                                    <x-tenant.list.actions object="Wf" :id="$wf->id" :edit="false" :show="true"/>
                                 </td>
                             </tr>
                             @endforeach
@@ -74,7 +74,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Menu
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Menu"/>
-            <x-buttons.header.create object="Menu"/>
+            <x-tenant.buttons.header.lists object="Menu"/>
+            <x-tenant.buttons.header.create object="Menu"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('menus.update',$menu->id) }}" method="POST" enctype="multipart/form-data">
@@ -68,7 +68,7 @@
                             </div>
                             
 
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
                             
                         </div>
                     </div>

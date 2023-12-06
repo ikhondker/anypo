@@ -4,16 +4,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit PayMethod
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="PayMethod"/>
-            <x-buttons.header.create object="PayMethod"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="PayMethod"/>
+            <x-tenant.buttons.header.create object="PayMethod"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('pay-methods.update',$payMethod->id) }}" method="POST" enctype="multipart/form-data">
@@ -28,8 +28,8 @@
                         </div>
                         <div class="card-body">
 
-                            <x-edit.id-read-only :value="$payMethod->id"/>
-                            <x-edit.name :value="$payMethod->name"/>
+                            <x-tenant.edit.id-read-only :value="$payMethod->id"/>
+                            <x-tenant.edit.name :value="$payMethod->name"/>
                                 
                             <div class="mb-3">
                                 <label class="form-label">Number</label>
@@ -67,10 +67,10 @@
                                     <div class="text-danger text-xs">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <x-edit.start-date :value="date('Y-m-d',strtotime($payMethod->start_date))"/>
-                            <x-edit.end-date :value="date('Y-m-d',strtotime($payMethod->end_date))"/>
+                            <x-tenant.edit.start-date :value="date('Y-m-d',strtotime($payMethod->start_date))"/>
+                            <x-tenant.edit.end-date :value="date('Y-m-d',strtotime($payMethod->end_date))"/>
 
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
                             
                         </div>
                     </div>

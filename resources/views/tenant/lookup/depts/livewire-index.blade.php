@@ -3,14 +3,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Departments
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Dept"/>
+            <x-tenant.buttons.header.create object="Dept"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
@@ -22,7 +22,7 @@
     </div>
      <!-- end row -->
 
-     {{-- @include('includes.modal-boolean-advance')     --}}
+     {{-- @include('tenant.includes.modal-boolean-advance')     --}}
 
 @endsection
 

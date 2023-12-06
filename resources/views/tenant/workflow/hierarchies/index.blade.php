@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Hierarchy
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Hierarchy"/>
+            <x-tenant.buttons.header.create object="Hierarchy"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Hierarchy"/>
+                    <x-tenant.cards.header-search-export-bar object="Hierarchy"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -44,10 +44,10 @@
                             <tr>
                                 <td>{{ $hierarchy->id }}</td>
                                 <td><a class="text-info" href="{{ route('hierarchies.show',$hierarchy->id) }}">{{ $hierarchy->name }}</a></td>
-                                <td><x-list.my-date-time :value="$hierarchy->created_at"/></td>
-                                <td><x-list.my-boolean :value="$hierarchy->enable"/></td>
+                                <td><x-tenant.list.my-date-time :value="$hierarchy->created_at"/></td>
+                                <td><x-tenant.list.my-boolean :value="$hierarchy->enable"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Hierarchy" :id="$hierarchy->id"/>
+                                    <x-tenant.list.actions object="Hierarchy" :id="$hierarchy->id"/>
                                     <a href="{{ route('hierarchies.destroy',$hierarchy->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Hierarchy" data-name="{{ $hierarchy->name }}" data-status="{{ ($hierarchy->enable ? 'Disable' : 'Enable') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($hierarchy->enable ? 'Disable' : 'Enable') }}">
@@ -74,7 +74,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

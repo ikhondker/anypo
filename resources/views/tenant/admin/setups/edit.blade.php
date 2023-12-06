@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Setup
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Setup"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Setup"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('setups.update',$setup->id) }}" method="POST" enctype="multipart/form-data">
@@ -231,8 +231,8 @@
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
-                                <x-show.logo logo="{{ $setup->logo }}"/>
-                                <x-attachment.create />
+                                <x-tenant.show.logo logo="{{ $setup->logo }}"/>
+                                <x-tenant.attachment.create  />
                             </div>
                         </div>
                     </div>
@@ -255,7 +255,7 @@
                                 @enderror
                             </div>
                             
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
                         </div>
                     </div>
                 </div>

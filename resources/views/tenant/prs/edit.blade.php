@@ -4,16 +4,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Pr
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Pr"/>
-            <x-buttons.header.create object="Pr"/>
+            <x-tenant.buttons.header.lists object="Pr"/>
+            <x-tenant.buttons.header.create object="Pr"/>
             <a href="{{ route('prs.show', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Pr</a>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('prs.update',$pr->id) }}" method="POST" enctype="multipart/form-data">
@@ -67,9 +67,9 @@
                                 @enderror
                             </div>
                             
-                            <x-edit.currency :value="$pr->currency"/>
+                            <x-tenant.edit.currency :value="$pr->currency"/>
 
-                            {{-- <x-widgets.submit/> --}}
+                            {{-- <x-tenant.widgets.submit/> --}}
                             
                         </div>
                     </div>
@@ -107,9 +107,9 @@
                                 @enderror
                             </div>
 
-                            <x-edit.notes :value="$pr->notes"/>
+                            <x-tenant.edit.notes :value="$pr->notes"/>
 
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
                             
                         </div>
                     </div>
@@ -118,7 +118,7 @@
             </div>
 
             <!-- widget-pr-lines -->
-            <x-widgets.pr-lines id="{{ $pr->id }}" :show="true"/>
+            <x-tenant.widgets.pr-lines id="{{ $pr->id }}" :show="true"/>
             
     </form>
     <!-- /.form end -->

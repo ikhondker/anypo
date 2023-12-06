@@ -5,15 +5,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Change Password
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="User"/>
-            <x-buttons.header.lists object="User"/>
+            <x-tenant.buttons.header.create object="User"/>
+            <x-tenant.buttons.header.lists object="User"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
      <!-- form start -->
      <form action="{{ route('users.changepass',['user'=>$user->id]) }}" method="POST">
@@ -50,7 +50,7 @@
                                     <div class="text-danger text-xs">{{ $message }}</div>
                                 @enderror
                         </div>
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>
@@ -66,13 +66,13 @@
                                 <span class="h6 text-secondary">Avatar:</span>
                             </div>
                             <div class="col-sm-9">
-                                <x-show.avatar avatar="{{ $user->avatar }}"/>
+                                <x-tenant.show.avatar avatar="{{ $user->avatar }}"/>
                             </div>
                         </div>
 
-                        <x-show.my-text     value="{{ $user->name }}"/>
-                        <x-show.my-badge    value="{{ $user->role }}" label="Role"/>
-                        {{-- <x-show.my-badge    value="{{ $user->id }}" label="ID"/> --}}
+                        <x-tenant.show.my-text     value="{{ $user->name }}"/>
+                        <x-tenant.show.my-badge    value="{{ $user->role }}" label="Role"/>
+                        {{-- <x-tenant.show.my-badge    value="{{ $user->id }}" label="ID"/> --}}
                     </div>
                 </div>
             </div>

@@ -7,14 +7,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Dashboard
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="User"/>
+            <x-tenant.buttons.header.create object="User"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-md-6 col-xxl-3 d-flex">

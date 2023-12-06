@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Prl
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Prl"/>
-            <x-buttons.header.create object="Prl"/>
+            <x-tenant.buttons.header.lists object="Prl"/>
+            <x-tenant.buttons.header.create object="Prl"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('prls.update',$prl->id) }}" method="POST" enctype="multipart/form-data">

@@ -3,16 +3,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Hierarchy
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Hierarchy"/>
-            <x-buttons.header.create object="Hierarchy"/>
-            <x-buttons.header.edit object="Hierarchy" :id="$hierarchy->id"/>
+            <x-tenant.buttons.header.lists object="Hierarchy"/>
+            <x-tenant.buttons.header.create object="Hierarchy"/>
+            <x-tenant.buttons.header.edit object="Hierarchy" :id="$hierarchy->id"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-6">

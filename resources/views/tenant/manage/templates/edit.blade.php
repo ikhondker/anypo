@@ -5,18 +5,18 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Template
         @endslot
         @slot('buttons')
             <button class="btn btn-primary me-1" type="submit" form="myform"><i class="fas fa-save"></i> Save</button>
             {{-- <input type="submit" form="myform" value="Update1" class="btn btn-primary float-end me-2"/> --}}
-            <x-buttons.header.lists object="Template"/>
+            <x-tenant.buttons.header.lists object="Template"/>
             <a href="{{ route('templates.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> Create Template</a>
 
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('templates.update',$template->id) }}" method="POST" enctype="multipart/form-data">
@@ -80,7 +80,7 @@
                                     @enderror
                                 </div>
                             
-                                <x-widgets.submit/>
+                                <x-tenant.widgets.submit/>
                                 
                             
                         </div>
@@ -256,7 +256,7 @@
                         <div class="card-body">
 
                             <div class="mb-3">
-                                <x-attachment.create />
+                                <x-tenant.attachment.create  />
                             </div>
 
                             <div class="mb-3">

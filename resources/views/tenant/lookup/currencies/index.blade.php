@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Currency
         @endslot
         @slot('buttons')
-        <x-buttons.header.create object="Currency"/>
+        <x-tenant.buttons.header.create object="Currency"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Currency"/>
+                    <x-tenant.cards.header-search-export-bar object="Currency"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -45,10 +45,10 @@
                                 <td>{{ $currency->currency }}</td>
                                 <td>{{ $currency->name }}</td>
                                 <td>{{ $currency->country }}</td>
-                                <td><x-list.my-boolean :value="$currency->enable"/></td>
-                                <td><x-list.my-boolean :value="$currency->rates"/></td>
+                                <td><x-tenant.list.my-boolean :value="$currency->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$currency->rates"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Currency" :id="$currency->currency" :show="false"/>
+                                    <x-tenant.list.actions object="Currency" :id="$currency->currency" :show="false"/>
                                     <a href="{{ route('currencies.destroy',$currency->currency) }}" class="me-2 modal-boolean-advance" 
                                             data-entity="Currency" data-name="{{ $currency->currency }}" data-status="{{ ($currency->enable ? 'Disable' : 'Enable') }}"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($currency->enable ? 'Disable' : 'Enable') }}">
@@ -75,7 +75,7 @@
     </div>
      <!-- end row -->
 
-    @include('includes.modal-boolean-advance')
+    @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

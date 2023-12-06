@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
         Prl
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Prl"/>
+            <x-tenant.buttons.header.create object="Prl"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-10">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Prl"/>
+                    <x-tenant.cards.header-search-export-bar object="Prl"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -52,9 +52,9 @@
                                 <td>{{ $prl->qty }}</td>
                                 <td>{{ $prl->price }}</td>
                                 <td>{{ $prl->amount }}</td>
-                                <td><x-list.my-boolean :value="$prl->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$prl->enable"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Prl" :id="$prl->id" :show="false"/>
+                                    <x-tenant.list.actions object="Prl" :id="$prl->id" :show="false"/>
                                     <a href="{{ route('prls.destroy',$prl->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Prl" data-name="{{ $prl->name }}" data-status="{{ ($prl->enable ? 'Disable' : 'Enable') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($prl->enable ? 'Disable' : 'Enable') }}">
@@ -81,7 +81,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

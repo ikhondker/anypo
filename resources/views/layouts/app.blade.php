@@ -73,7 +73,7 @@
 					{{-- <span class="text-sm align-middle text-muted"><small>[{{ $_node_name }}][ {{ $_route_name }}]</small></span> --}}
 		        </a>
 
-				@include('includes.sidebar')
+				@include('tenant.includes.sidebar')
 
 				{{-- <div class="sidebar-cta">
 					<div class="sidebar-cta-content">
@@ -271,7 +271,7 @@
 							<!-- /.content -->
 						@else 
 							<!-- content -->
-							@include('includes.initial')
+							@include('tenant.includes.initial')
 							<!-- /.content -->
 						@endif
 						{{-- <div class="row">

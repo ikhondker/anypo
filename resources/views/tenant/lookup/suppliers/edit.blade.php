@@ -4,16 +4,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Supplier
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Supplier"/>
-            <x-buttons.header.create object="Supplier"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Supplier"/>
+            <x-tenant.buttons.header.create object="Supplier"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('suppliers.update',$supplier->id) }}" method="POST" enctype="multipart/form-data">
@@ -27,11 +27,11 @@
                         <h5 class="card-title">Supplier Info</h5>
                     </div>
                     <div class="card-body">
-                        <x-edit.id-read-only :value="$supplier->id"/>
-                        <x-edit.name :value="$supplier->name"/>
-                        <x-edit.contact-person value="{{ $supplier->contact_person }}"/>
-                        <x-edit.cell :value="$supplier->cell"/>
-                        <x-widgets.submit/>
+                        <x-tenant.edit.id-read-only :value="$supplier->id"/>
+                        <x-tenant.edit.name :value="$supplier->name"/>
+                        <x-tenant.edit.contact-person value="{{ $supplier->contact_person }}"/>
+                        <x-tenant.edit.cell :value="$supplier->cell"/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>
@@ -43,14 +43,14 @@
                         <h5 class="card-title">Warehouse Info</h5>
                     </div>
                     <div class="card-body">
-                        <x-edit.address1 :value="$supplier->address1"/>
-                        <x-edit.address2 :value="$supplier->address2"/>
+                        <x-tenant.edit.address1 :value="$supplier->address1"/>
+                        <x-tenant.edit.address2 :value="$supplier->address2"/>
                         <div class="row">
-                            <x-edit.city :value="$supplier->city"/>
-                            <x-edit.state value="{{ $supplier->state }}"/>
-                            <x-edit.zip :value="$supplier->zip"/>
+                            <x-tenant.edit.city :value="$supplier->city"/>
+                            <x-tenant.edit.state value="{{ $supplier->state }}"/>
+                            <x-tenant.edit.zip :value="$supplier->zip"/>
                         </div>
-                        <x-edit.country :value="$supplier->country"/>
+                        <x-tenant.edit.country :value="$supplier->country"/>
                     </div>        
                 </div>
             </div>

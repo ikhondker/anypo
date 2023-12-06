@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             UOM
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Uom"/>
+            <x-tenant.buttons.header.create object="Uom"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Uom"/>
+                    <x-tenant.cards.header-search-export-bar object="Uom"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -43,9 +43,9 @@
                             <tr>
                                 <td>{{ $uom->id }}</td>
                                 <td>{{ $uom->name }}</td>
-                                <td><x-list.my-boolean :value="$uom->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$uom->enable"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Uom" :id="$uom->id" :show="false"/>
+                                    <x-tenant.list.actions object="Uom" :id="$uom->id" :show="false"/>
                                     <a href="{{ route('uoms.destroy',$uom->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Uom" data-name="{{ $uom->name }}" data-status="{{ ($uom->enable ? 'Disable' : 'Enable') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($uom->enable ? 'Disable' : 'Enable') }}">
@@ -72,7 +72,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

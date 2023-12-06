@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create Wf
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Wf"/>
+            <x-tenant.buttons.header.lists object="Wf"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('wfs.store') }}" method="POST" enctype="multipart/form-data">

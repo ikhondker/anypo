@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
         Supplier
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Supplier"/>
+            <x-tenant.buttons.header.create object="Supplier"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Supplier"/>
+                    <x-tenant.cards.header-search-export-bar object="Supplier"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -46,9 +46,9 @@
                                 <td><a class="text-info" href="{{ route('suppliers.show',$supplier->id) }}">{{ $supplier->name }}</a></td>
                                 <td>{{ $supplier->contact_person }}</td>
                                 <td>{{ $supplier->cell }}</td>
-                                <td><x-list.my-boolean :value="$supplier->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$supplier->enable"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Supplier" :id="$supplier->id"/>
+                                    <x-tenant.list.actions object="Supplier" :id="$supplier->id"/>
                                     <a href="{{ route('suppliers.destroy',$supplier->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Supplier" data-name="{{ $supplier->name }}" data-status="{{ ($supplier->enable ? 'Disable' : 'Enable') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($supplier->enable ? 'Disable' : 'Enable') }}">
@@ -75,7 +75,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

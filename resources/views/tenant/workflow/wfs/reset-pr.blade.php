@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Reset PR Workflow
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Pr"/>
+            <x-tenant.buttons.header.lists object="Pr"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('wfs.deletewfpr') }}" method="POST">
@@ -38,7 +38,7 @@
                             @enderror
                         </div>
                         
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>

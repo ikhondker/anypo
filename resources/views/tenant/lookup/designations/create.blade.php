@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create Designation
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Designation"/>
+            <x-tenant.buttons.header.lists object="Designation"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('designations.store') }}" method="POST" enctype="multipart/form-data">
@@ -37,7 +37,7 @@
                             @enderror
                         </div>
                         
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>

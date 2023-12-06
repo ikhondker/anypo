@@ -3,15 +3,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Budgets
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Budget"/>
-            <x-buttons.header.edit object="Budget" :id="$budget->id"/>
+            <x-tenant.buttons.header.lists object="Budget"/>
+            <x-tenant.buttons.header.edit object="Budget" :id="$budget->id"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
 
     <div class="row">
@@ -21,13 +21,13 @@
                     <h5 class="card-title">Budget Info</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-badge    value="{{ $budget->fy }}" label="FY"/>
-                    <x-show.my-text     value="{{ $budget->name }}"/>
-                    <x-show.my-date     value="{{ $budget->start_date  }}"/>
-                    <x-show.my-date     value="{{ $budget->end_date  }}"/>
-                    <x-show.my-text     value="{{ $budget->notes }}" label="Notes"/>
-                    <x-show.my-boolean  value="{{ $budget->enable }}"/>
-                    {{-- <x-show.my-badge    value="{{ $budget->id }}"/> --}}
+                    <x-tenant.show.my-badge    value="{{ $budget->fy }}" label="FY"/>
+                    <x-tenant.show.my-text     value="{{ $budget->name }}"/>
+                    <x-tenant.show.my-date     value="{{ $budget->start_date  }}"/>
+                    <x-tenant.show.my-date     value="{{ $budget->end_date  }}"/>
+                    <x-tenant.show.my-text     value="{{ $budget->notes }}" label="Notes"/>
+                    <x-tenant.show.my-boolean  value="{{ $budget->enable }}"/>
+                    {{-- <x-tenant.show.my-badge    value="{{ $budget->id }}"/> --}}
                 </div>
             </div>
 
@@ -37,10 +37,10 @@
                 </div>
                 <div class="card-body">
                     <div class="row mb-3">
-                        <x-show.my-number     value="{{ $budget->amount }}"/>
-                        <x-show.my-number     value="{{ $budget->amount_po_booked }}" label="PO Booked"/>
-                        <x-show.my-number     value="{{ $budget->amount_po_issued }}" label="PO Issued"/>
-                        <x-show.my-number     value="{{ $budget->amount - $budget->amount_po_booked - $budget->amount_po_issued }}" label="Available"/>
+                        <x-tenant.show.my-number     value="{{ $budget->amount }}"/>
+                        <x-tenant.show.my-number     value="{{ $budget->amount_po_booked }}" label="PO Booked"/>
+                        <x-tenant.show.my-number     value="{{ $budget->amount_po_issued }}" label="PO Issued"/>
+                        <x-tenant.show.my-number     value="{{ $budget->amount - $budget->amount_po_booked - $budget->amount_po_issued }}" label="Available"/>
                     </div>
                 </div>
             </div>
@@ -65,13 +65,13 @@
                             <span class="h6 text-secondary">Attachments:</span>
                         </div>
                         <div class="col-sm-9">
-                            <x-attachment.all entity="BUDGET" aid="{{ $budget->id }}"/>
+                            <x-tenant.attachment.all entity="BUDGET" aid="{{ $budget->id }}"/>
                         </div>
                     </div>
 
                     <form action="{{ route('budgets.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
                         @csrf
-                        {{-- <x-attachment.create /> --}}
+                        {{-- <x-tenant.attachment.create  /> --}}
                         <input type="text" name="attach_budget_id" id="attach_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $budget->id ) }}" hidden>
                         <div class="row">
                             <div class="col-sm-3 text-end">
@@ -99,10 +99,10 @@
                     <h5 class="card-title">Budget PR</h5>
                 </div>
                 <div class="card-body">
-                <x-show.my-number     value="{{ $budget->amount }}"/>
-                <x-show.my-number     value="{{ $budget->amount_pr_booked }}"/>
-                <x-show.my-number     value="{{ $budget->amount_pr_issued }}"/>
-                <x-show.my-number     value="{{ $budget->amount - $budget->amount_pr_booked - $budget->amount_pr_issued }}"/>
+                <x-tenant.show.my-number     value="{{ $budget->amount }}"/>
+                <x-tenant.show.my-number     value="{{ $budget->amount_pr_booked }}"/>
+                <x-tenant.show.my-number     value="{{ $budget->amount_pr_issued }}"/>
+                <x-tenant.show.my-number     value="{{ $budget->amount - $budget->amount_pr_booked - $budget->amount_pr_issued }}"/>
                 </div>
             </div>
 
@@ -111,9 +111,9 @@
                 <h5 class="card-title">GRS</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-number     value="{{ $budget->amount }}"/>
-                    <x-show.my-number     value="{{ $budget->amount_grs }}"/>
-                    <x-show.my-number     value="{{ $budget->amount- $budget->amount_grs }}"/>
+                    <x-tenant.show.my-number     value="{{ $budget->amount }}"/>
+                    <x-tenant.show.my-number     value="{{ $budget->amount_grs }}"/>
+                    <x-tenant.show.my-number     value="{{ $budget->amount- $budget->amount_grs }}"/>
                 </div>
             </div>
 
@@ -122,9 +122,9 @@
                 <h5 class="card-title">Payment Details</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-number     value="{{ $budget->amount }}"/>
-                    <x-show.my-number     value="{{ $budget->amount_payment }}"/>
-                    <x-show.my-number     value="{{ $budget->amount- $budget->amount_payment }}"/>
+                    <x-tenant.show.my-number     value="{{ $budget->amount }}"/>
+                    <x-tenant.show.my-number     value="{{ $budget->amount_payment }}"/>
+                    <x-tenant.show.my-number     value="{{ $budget->amount- $budget->amount_payment }}"/>
                 </div>
             </div>
 

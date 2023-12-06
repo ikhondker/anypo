@@ -3,14 +3,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Project
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Project"/>
+            <x-tenant.buttons.header.create object="Project"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-md-6 col-xxl-3 d-flex">
@@ -102,7 +102,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Project"/>
+                    <x-tenant.cards.header-search-export-bar object="Project"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -134,12 +134,12 @@
                                 <td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->name }}</a></td>
                                 <td>{{ $project->pm->name }}</td>
                                 <td><x-list.my-date :value="$project->start_date"/> - <x-list.my-date :value="$project->end_date"/></td>
-                                <td><x-list.my-boolean :value="$project->budget_control"/></td>
-                                <td><x-list.my-number :value="$project->amount"/></td>
-                                <td class="text-end"><x-list.my-number :value="$project->amount - $project->amount_po_booked - $project->amount_po_issued"/></td>
-                                <td><x-list.my-closed :value="$project->closed"/></td>
+                                <td><x-tenant.list.my-boolean :value="$project->budget_control"/></td>
+                                <td><x-tenant.list.my-number :value="$project->amount"/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_po_booked - $project->amount_po_issued"/></td>
+                                <td><x-tenant.list.my-closed :value="$project->closed"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Project" :id="$project->id" :show="true"/>
+                                    <x-tenant.list.actions object="Project" :id="$project->id" :show="true"/>
                                     <a href="{{ route('projects.destroy',$project->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Project" data-name="{{ $project->name }}" data-status="{{ ($project->closed ? 'Open' : 'Close') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($project->closed ? 'Open' : 'Close') }}">
@@ -166,7 +166,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

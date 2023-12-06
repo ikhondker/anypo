@@ -3,17 +3,17 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             View Pr
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Pr"/>
-            <x-buttons.header.create object="Pr"/>
-            <x-buttons.header.edit object="Pr" :id="$pr->id"/>
-            <x-buttons.header.edit object="Pr" :id="$pr->id"/>
+            <x-tenant.buttons.header.lists object="Pr"/>
+            <x-tenant.buttons.header.create object="Pr"/>
+            <x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
+            <x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
     
     <div class="row">
         <div class="col-6">
@@ -22,12 +22,12 @@
                     <h5 class="card-title">Pr Info</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-badge    value="{{ $pr->id }}" label="PR#"/>
-                    <x-show.my-text     value="{{ $pr->summary }}"/>
-                    <x-show.my-number   value="{{ $pr->amount }}" label="Amount"/>
-                    <x-show.my-text     value="{{ $pr->relSupplier->name }}" label="Supplier"/>
-                    <x-show.my-date     value="{{$pr->pr_date }}"/>
-                    <x-show.my-text     value="{{ $pr->notes }}" label="Notes"/>
+                    <x-tenant.show.my-badge    value="{{ $pr->id }}" label="PR#"/>
+                    <x-tenant.show.my-text     value="{{ $pr->summary }}"/>
+                    <x-tenant.show.my-number   value="{{ $pr->amount }}" label="Amount"/>
+                    <x-tenant.show.my-text     value="{{ $pr->relSupplier->name }}" label="Supplier"/>
+                    <x-tenant.show.my-date     value="{{$pr->pr_date }}"/>
+                    <x-tenant.show.my-text     value="{{ $pr->notes }}" label="Notes"/>
                     <x-show.my-edit-link object="Pr" :id="$pr->id"/>
                 </div>
             </div>
@@ -39,22 +39,22 @@
                     <h5 class="card-title">Supporting Info</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-badge    value="{{ $pr->status }}" label="Status"/>
-                    <x-show.my-text     value="{{ $pr->relRequestor->name }}" label="Requestor"/>
-                    <x-show.my-text     value="{{ $pr->relDept->name }}" label="Dept"/>
-                    <x-show.my-text     value="{{ $pr->relProject->name }}" label="Project"/>
-                    <x-show.my-date-time value="{{$pr->auth_date }}" label="Auth Date"/>
+                    <x-tenant.show.my-badge    value="{{ $pr->status }}" label="Status"/>
+                    <x-tenant.show.my-text     value="{{ $pr->relRequestor->name }}" label="Requestor"/>
+                    <x-tenant.show.my-text     value="{{ $pr->relDept->name }}" label="Dept"/>
+                    <x-tenant.show.my-text     value="{{ $pr->relProject->name }}" label="Project"/>
+                    <x-tenant.show.my-date-time value="{{$pr->auth_date }}" label="Auth Date"/>
                     <div class="row mb-3">
                         <div class="col-sm-3 text-end">
                             <span class="h6 text-secondary">Attachments:</span>
                         </div>
                         <div class="col-sm-9">
-                            <x-attachment.all entity="PR" aid="{{ $pr->id }}"/>
+                            <x-tenant.attachment.all entity="PR" aid="{{ $pr->id }}"/>
                         </div>
                     </div>
                     <form action="{{ route('prs.add') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
                         @csrf
-                        {{-- <x-attachment.create /> --}}
+                        {{-- <x-tenant.attachment.create  /> --}}
                         <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $pr->id ) }}" hidden>
                         {{-- <x-buttons.submit/> --}}
 
@@ -91,18 +91,18 @@
 
 
     <!-- widget-pr-lines -->
-    <x-widgets.pr-lines id="{{ $pr->id }}"/>
+    <x-tenant.widgets.pr-lines id="{{ $pr->id }}"/>
     <!-- /.widget-pr-lines -->
 
     <!-- Approval History -->
     @if ($pr->wf_id <> 0)
-        <x-widgets.approval-history id="{{ $pr->wf_id }}"/>
+        <x-tenant.widgets.approval-history id="{{ $pr->wf_id }}"/>
     @endif
     
 
     <!-- approval form, show only if pending to current auth user -->
     {{-- @if (\App\Helpers\Workflow::allowApprove($pr->wf_id))
-    @include('includes.wfd-approve-reject')
+    @include('tenant.includes.wfd-approve-reject')
     @endif  --}}
 
     <script type="text/javascript">

@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             DeptBudget
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="DeptBudget"/>
+            <x-tenant.buttons.header.create object="DeptBudget"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-10">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="DeptBudget"/>
+                    <x-tenant.cards.header-search-export-bar object="DeptBudget"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -57,16 +57,16 @@
                                 <td><x-list.my-date :value="$dept_budget->budget->start_date"/> - <x-list.my-date :value="$dept_budget->budget->end_date"/></td>
                                 
 
-                                <td class="text-end"><x-list.my-number :value="$dept_budget->amount"/></td>
-                                <td class="text-end"><x-list.my-number :value="$dept_budget->amount_pr_booked + $dept_budget->amount_pr_issued"/></td>
-                                <td class="text-end"><x-list.my-number :value="$dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr_issued "/></td>
-                                <td class="text-end"><x-list.my-number :value="$dept_budget->amount_po_booked + $dept_budget->amount_po_issued"/></td>
-                                <td class="text-end"><x-list.my-number :value="$dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po_issued"/></td>
-                                <td class="text-end"><x-list.my-number :value="$dept_budget->amount_grs"/></td>
-                                <td class="text-end"><x-list.my-number :value="$dept_budget->amount_payment"/></td>
-                                <td><x-list.my-closed :value="$dept_budget->freeze"/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr_booked + $dept_budget->amount_pr_issued"/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr_issued "/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_po_booked + $dept_budget->amount_po_issued"/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po_issued"/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_grs"/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_payment"/></td>
+                                <td><x-tenant.list.my-closed :value="$dept_budget->freeze"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="DeptBudget" :id="$dept_budget->id"/>
+                                    <x-tenant.list.actions object="DeptBudget" :id="$dept_budget->id"/>
                                     <a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="DeptBudget" data-name="{{ $dept_budget->budget->name }}" data-status="{{ ($dept_budget->freeze ? 'Unfreeze' : 'Freeze') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept_budget->enable ? 'Unfreeze' : 'Freeze') }}">
@@ -93,7 +93,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

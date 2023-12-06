@@ -3,15 +3,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Documentation
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Dept"/>
-            <x-buttons.header.create object="Dept"/>
+            <x-tenant.buttons.header.lists object="Dept"/>
+            <x-tenant.buttons.header.create object="Dept"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
 
     <div class="row">

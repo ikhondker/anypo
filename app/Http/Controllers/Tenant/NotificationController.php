@@ -19,7 +19,7 @@ class NotificationController extends Controller
     public function index()
     {
         // show only unread notifications
-        return view('notifications.index');
+        return view('tenant.notifications.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class NotificationController extends Controller
     public function all()
     {
         // show all notifications
-        return view('notifications.all');
+        return view('tenant.notifications.all');
     }
 
     /**
@@ -52,7 +52,7 @@ class NotificationController extends Controller
      */
     public function show(Notification $notification)
     {
-        return view('notifications.show', compact('notification'));
+        return view('tenant.notifications.show', compact('notification'));
     }
 
     /**

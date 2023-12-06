@@ -4,16 +4,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit DeptBudget
         @endslot
         @slot('buttons')
-        <x-buttons.header.save/>
-            <x-buttons.header.lists object="DeptBudget"/>
-            <x-buttons.header.create object="DeptBudget"/>
+        <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="DeptBudget"/>
+            <x-tenant.buttons.header.create object="DeptBudget"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('dept-budgets.update',$deptBudget->id) }}" method="POST" enctype="multipart/form-data">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="card-body">
 
-                            <x-edit.id-read-only :value="$deptBudget->id"/>
+                            <x-tenant.edit.id-read-only :value="$deptBudget->id"/>
 
                             <div class="mb-3">
                                 <label class="form-label">FY</label>
@@ -43,9 +43,9 @@
                                 <input type="text" name="dept_name" id="dept_name" class="form-control" placeholder="" value="{{ $deptBudget->dept->name }}" readonly>
                             </div>
 
-                            <x-edit.amount :value="$deptBudget->amount"/>
-                            <x-edit.notes value="{{ $deptBudget->notes }}"/>
-                            <x-widgets.submit/>
+                            <x-tenant.edit.amount :value="$deptBudget->amount"/>
+                            <x-tenant.edit.notes value="{{ $deptBudget->notes }}"/>
+                            <x-tenant.widgets.submit/>
                             
                         </div>
                     </div>

@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create Uom
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Uom"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Uom"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('uoms.store') }}" method="POST" enctype="multipart/form-data">
@@ -38,7 +38,7 @@
                             @enderror
                         </div>
                         
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>

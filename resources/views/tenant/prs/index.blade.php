@@ -3,14 +3,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Pr
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Pr"/>
+            <x-tenant.buttons.header.create object="Pr"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-md-6 col-xxl-3 d-flex">
@@ -105,7 +105,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Pr"/>
+                    <x-tenant.cards.header-search-export-bar object="Pr"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -140,11 +140,11 @@
                                 <td>{{ $pr->relRequestor->name }}</td>
                                 <td>{{ $pr->relDept->name }}</td>
                                 <td>{{ $pr->currency }}</td>
-                                <td class="text-end"><x-list.my-number :value="$pr->amount"/></td>
-                                <td><x-list.my-badge :value="$pr->auth_status"/></td>
-                                <td><x-list.my-badge :value="$pr->status"/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$pr->amount"/></td>
+                                <td><x-tenant.list.my-badge :value="$pr->auth_status"/></td>
+                                <td><x-tenant.list.my-badge :value="$pr->status"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Pr" :id="$pr->id"/>
+                                    <x-tenant.list.actions object="Pr" :id="$pr->id"/>
                                     <a href="{{ route('prs.destroy', $pr->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Pr" data-name="{{ $pr->id }}" data-status="Delete"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
@@ -171,7 +171,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             General Notice/Message
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
+            <x-tenant.buttons.header.save/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('setups.updatenotice',$setup->id) }}" method="POST">
@@ -53,7 +53,7 @@
                                 </label>
                             </div>
 
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
                         </div>
                     </div>
                     

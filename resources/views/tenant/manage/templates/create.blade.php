@@ -4,7 +4,7 @@
 
 
 @section('content')
-<x-page-header>
+<x-tenant.page-header>
     @slot('title')
         Create Template
     @endslot
@@ -12,7 +12,7 @@
         <button class="btn btn-primary me-1" type="submit" form="myform"><i class="fas fa-save"></i> Save</button>
         <a href="{{ route('templates.index') }}" class="btn btn-primary float-end me-2"><i class="fas fa-list"></i> Template List</a>
     @endslot
-</x-page-header>
+</x-tenant.page-header>
 
 <!-- form start -->
 <form id="myform" action="{{ route('templates.store') }}" method="POST" enctype="multipart/form-data">
@@ -69,7 +69,7 @@
                             @enderror
                         </div>
                     
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                         
                     
                 </div>
@@ -245,7 +245,7 @@
                 <div class="card-body">
 
                     <div class="mb-3">
-                        <x-attachment.create />
+                        <x-tenant.attachment.create  />
                     </div>
 
                     <div class="mb-3">

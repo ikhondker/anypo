@@ -3,14 +3,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Setup
         @endslot
         @slot('buttons')
             
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
     
     <div class="row">
         <div class="col-12">
@@ -52,8 +52,8 @@
                                 <td>{{ $setup->email }}</td>
                                 <td>{{ $setup->website }}</td>
                                 <td>{{ $setup->admin_user->name }}</td>
-                                <td><x-list.my-boolean :value="$setup->show_notice"/></td>
-                                <td class="table-action"><x-list.actions object="Setup" :id="$setup->id"/></td>
+                                <td><x-tenant.list.my-boolean :value="$setup->show_notice"/></td>
+                                <td class="table-action"><x-tenant.list.actions object="Setup" :id="$setup->id"/></td>
                             </tr>
                             @endforeach
                         </tbody>

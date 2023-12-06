@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create PayMethod
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="PayMethod"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="PayMethod"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('pay-methods.store') }}" method="POST" enctype="multipart/form-data">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-body">
                         
-                        <x-create.name/>
+                        <x-tenant.create.name/>
                        
                         
 
@@ -76,10 +76,10 @@
                             @enderror
                         </div>
 
-                        <x-create.start-date/>
-                        <x-create.end-date/>
+                        <x-tenant.create.start-date/>
+                        <x-tenant.create.end-date/>
 
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>

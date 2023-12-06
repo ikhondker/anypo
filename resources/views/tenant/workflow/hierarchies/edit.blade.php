@@ -4,16 +4,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Hierarchy
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Hierarchy"/>
-            <x-buttons.header.create object="Hierarchy"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Hierarchy"/>
+            <x-tenant.buttons.header.create object="Hierarchy"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('hierarchies.update',$hierarchy->id) }}" method="POST" enctype="multipart/form-data">
@@ -110,7 +110,7 @@
 
                                 <div class="mb-3 row">
                                     <div class="col-sm-10 ml-sm-auto">
-                                        <x-widgets.submit/>
+                                        <x-tenant.widgets.submit/>
                                     </div>
                                 </div>
                             </form>

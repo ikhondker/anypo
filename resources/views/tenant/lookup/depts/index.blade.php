@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Dept
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Dept"/>
+            <x-tenant.buttons.header.create object="Dept"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Dept"/>
+                    <x-tenant.cards.header-search-export-bar object="Dept"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -46,9 +46,9 @@
                                 <td><a class="text-info" href="{{ route('depts.show',$dept->id) }}">{{ $dept->name }}</a></td>
                                 <td><a class="text-info" href="{{ route('hierarchies.show',$dept->pr_hierarchy_id) }}">{{ $dept->prHierarchy->name }}</a></td>
                                 <td><a class="text-info" href="{{ route('hierarchies.show',$dept->po_hierarchy_id) }}">{{ $dept->poHierarchy->name }}</a></td>
-                                <td><x-list.my-boolean :value="$dept->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$dept->enable"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Dept" :id="$dept->id"/>
+                                    <x-tenant.list.actions object="Dept" :id="$dept->id"/>
                                     <a href="{{ route('depts.destroy', $dept->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Dept" data-name="{{ $dept->name }}" data-status="{{ ($dept->enable ? 'Disable' : 'Enable') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept->enable ? 'Disable' : 'Enable') }}">
@@ -75,7 +75,7 @@
     </div>
      <!-- end row -->
 
-    @include('includes.modal-boolean-advance')
+    @include('tenant.includes.modal-boolean-advance')
     
 @endsection
 

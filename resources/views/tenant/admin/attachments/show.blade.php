@@ -3,16 +3,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             View Dept
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Dept"/>
-            <x-buttons.header.create object="Dept"/>
-            <x-buttons.header.edit object="Dept" :id="$dept->id"/>
+            <x-tenant.buttons.header.lists object="Dept"/>
+            <x-tenant.buttons.header.create object="Dept"/>
+            <x-tenant.buttons.header.edit object="Dept" :id="$dept->id"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-6">
@@ -21,9 +21,9 @@
                     <h5 class="card-title">Dept Info</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-text     value="{{ $dept->name }}"/>
-                    <x-show.my-badge    value="{{ $dept->id }}" label="ID"/>
-                    <x-show.my-boolean  value="{{ $dept->enable }}"/>
+                    <x-tenant.show.my-text     value="{{ $dept->name }}"/>
+                    <x-tenant.show.my-badge    value="{{ $dept->id }}" label="ID"/>
+                    <x-tenant.show.my-boolean  value="{{ $dept->enable }}"/>
                 </div>
             </div>
         </div>
@@ -34,8 +34,8 @@
                     <h5 class="card-title">Supporting Info</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-date-time value="{{$dept->created_at }}" label="Created At"/>
-                    <x-show.my-date-time value="{{$dept->updated_at }}" label="Updated At"/>
+                    <x-tenant.show.my-date-time value="{{$dept->created_at }}" label="Created At"/>
+                    <x-tenant.show.my-date-time value="{{$dept->updated_at }}" label="Updated At"/>
                 </div>
             </div>
         </div>

@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create Pr
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Pr"/>
+            <x-tenant.buttons.header.lists object="Pr"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('prs.store') }}" method="POST" enctype="multipart/form-data">
@@ -81,7 +81,7 @@
                             </div>
                         </div>
 
-                        <x-create.currency/>	
+                        <x-tenant.create.currency/>	
                         
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                             @enderror
                         </div>
 
-                        <x-attachment.create />
+                        <x-tenant.attachment.create  />
                         
                     </div>
             </div>
@@ -132,8 +132,8 @@
                         </thead>
                         <tbody>
                             
-                            @include('includes.pr-line-add')
-                            @include('includes.pr-footer-add')
+                            @include('tenant.includes.pr-line-add')
+                            @include('tenant.includes.pr-footer-add')
 
                         </tbody>
                     </table>

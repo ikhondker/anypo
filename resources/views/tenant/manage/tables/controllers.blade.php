@@ -6,14 +6,14 @@
 
 
 @section('content')
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Controllers Lists
         @endslot
         @slot('buttons')
-            <x-table-links/>
+            <x-tenant.table-links/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-12">

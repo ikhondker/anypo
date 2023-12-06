@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Wf
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Wf"/>
-            <x-buttons.header.create object="Wf"/>
+            <x-tenant.buttons.header.lists object="Wf"/>
+            <x-tenant.buttons.header.create object="Wf"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('wfs.update',$wf->id) }}" method="POST" enctype="multipart/form-data">
@@ -43,7 +43,7 @@
                                 @enderror
                             </div>
 
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
                             
                         </div>
                     </div>

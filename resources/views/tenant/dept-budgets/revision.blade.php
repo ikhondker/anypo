@@ -3,15 +3,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
         DeptBudget Revision
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="DeptBudget"/>
-            <x-buttons.header.lists object="DeptBudget"/>
+            <x-tenant.buttons.header.create object="DeptBudget"/>
+            <x-tenant.buttons.header.lists object="DeptBudget"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-10">
@@ -43,10 +43,10 @@
                                 <td>{{ $dept_budget->budget->name }}</td>
                                 <td><x-list.my-date :value="$dept_budget->budget->start_date"/> - <x-list.my-date :value="$dept_budget->budget->end_date"/></td>
                                 <td>{{ $dept_budget->dept->name }}</td>
-                                <td><x-list.my-date-time :value="$dept_budget->created_at"/></td> 
+                                <td><x-tenant.list.my-date-time :value="$dept_budget->created_at"/></td> 
                                 <td>{{ $dept_budget->user_created_by->name }}</td>     
-                                <td class="text-end"><x-list.my-number :value="$dept_budget->amount"/></td>
-                                <td><x-list.my-boolean :value="$dept_budget->revision"/></td>
+                                <td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
+                                <td><x-tenant.list.my-boolean :value="$dept_budget->revision"/></td>
                                 <td>{{ $dept_budget->notes }}</td>
                             </tr>
                             @endforeach
@@ -68,7 +68,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

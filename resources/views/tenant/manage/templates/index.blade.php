@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Templates Lists
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Template"/>
+            <x-tenant.buttons.header.create object="Template"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-12">
@@ -62,10 +62,10 @@
                                 <td class="">{{  $template->user->name}}</td>
                                 <td class=""><span class="badge bg-primary-light">{{  $template->my_enum}}</span> </td>
                                 <td class="text-center">
-                                    <x-list.my-boolean :value="$template->enable"/>
+                                    <x-tenant.list.my-boolean :value="$template->enable"/>
                                 </td>
                                 <td class="table-action">
-                                    <x-list.actions object="Template" :id="$template->id"/>
+                                    <x-tenant.list.actions object="Template" :id="$template->id"/>
                                     <a href="{{ route('templates.destroy',$template->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Template" data-name="{{ $template->name }}" data-status="{{ ($template->enable ? 'Disable' : 'Enable') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($template->enable ? 'Disable' : 'Enable') }}">
@@ -90,6 +90,6 @@
         </div>
     </div>
 
-    @include('includes.modal-boolean-advance')    
+    @include('tenant.includes.modal-boolean-advance')    
 @endsection
 

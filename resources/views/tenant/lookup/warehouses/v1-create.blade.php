@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create Warehouse
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Warehouse"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Warehouse"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('warehouses.store') }}" method="POST" enctype="multipart/form-data">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-body">
                         
-                        <x-create.name/>
+                        <x-tenant.create.name/>
                        
                         <div class="mb-3">
                             <label class="form-label">Warehouse Name</label>
@@ -61,7 +61,7 @@
                             @enderror
                         </div>
 
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                             </select>
                         </div>
 
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>

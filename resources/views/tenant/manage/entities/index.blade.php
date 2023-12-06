@@ -3,14 +3,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Entity List
         @endslot
         @slot('buttons')
             
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
@@ -40,8 +40,8 @@
                                 <td>{{ $entity->name }}</td>
                                 <td>{{ $entity->route }}</td>
                                 <td>{{ $entity->subdir }}</td>
-                                <td><x-list.my-boolean :value="$entity->notification"/></td>
-                                <td><x-list.my-boolean :value="$entity->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$entity->notification"/></td>
+                                <td><x-tenant.list.my-boolean :value="$entity->enable"/></td>
                                 <td class="table-action">
                                     <a href="{{ route('entities.destroy',$entity->entity) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Entity" data-name="{{ $entity->name }}" data-status="{{ ($entity->enable ? 'Disable' : 'Enable') }}"
@@ -65,7 +65,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')
+     @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

@@ -4,17 +4,17 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             View Template
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Template"/>
+            <x-tenant.buttons.header.lists object="Template"/>
             <a href="{{ route('templates.create') }}" class="btn btn-primary float-end me-2"><i class="fas fa-plus"></i> New Template</a>
             <a href="{{ route('templates.edit',$template->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-edit"></i> Edit Template</a>
             <a href="{{ route('templates.index') }}" class="btn btn-primary float-end me-2"><i class="fas fa-plus"></i> Template List</a>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-6">
@@ -24,15 +24,15 @@
                     <h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
                 </div>
                 <div class="card-body">
-                    <x-show.my-text     value="{{ $template->code }}" label="CODE"/>
-                    <x-show.my-text     value="{{ $template->summary }}" label="Summary"/>
-                    <x-show.my-text     value="{{ $template->name }}"/>
-                    <x-show.my-text     value="{{ $template->email }}" label="E-mail"/>
-                    <x-show.my-text     value="{{ $template->phone }}" label="Phone"/>
-                    <x-show.my-text     value="{{ $template->user->name  }}" label="User Name"/>
-                    <x-show.my-badge    value="{{ $template->my_enum }}" label="Enum/Role:"/>
-                    <x-show.my-boolean  value="{{ $template->enable }}"/>
-                    <x-show.my-badge    value="{{ $template->id }}" label="ID"/>
+                    <x-tenant.show.my-text     value="{{ $template->code }}" label="CODE"/>
+                    <x-tenant.show.my-text     value="{{ $template->summary }}" label="Summary"/>
+                    <x-tenant.show.my-text     value="{{ $template->name }}"/>
+                    <x-tenant.show.my-text     value="{{ $template->email }}" label="E-mail"/>
+                    <x-tenant.show.my-text     value="{{ $template->phone }}" label="Phone"/>
+                    <x-tenant.show.my-text     value="{{ $template->user->name  }}" label="User Name"/>
+                    <x-tenant.show.my-badge    value="{{ $template->my_enum }}" label="Enum/Role:"/>
+                    <x-tenant.show.my-boolean  value="{{ $template->enable }}"/>
+                    <x-tenant.show.my-badge    value="{{ $template->id }}" label="ID"/>
                     {{-- <x-button.edit object="Template" :id="$template->id"/> --}}
                 </div>
             </div>
@@ -46,12 +46,12 @@
                     <h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
                 </div>
                 <div class="card-body">
-                    <x-show.my-text value="{{ $template->address1 }}" label="Address1"/>
-                    <x-show.my-text value="{{ $template->address2 }}" label="Address2"/>
-                    <x-show.my-text value="{{ $template->zip }}" label="Zip"/>
-                    <x-show.my-text value="{{ $template->state }}" label="state"/>
-                    <x-show.my-integer value="{{ $template->qty }}" label="Qty"/>                                
-                    <x-show.my-number value="{{ $template->amount }}" label="Amount"/>            
+                    <x-tenant.show.my-text value="{{ $template->address1 }}" label="Address1"/>
+                    <x-tenant.show.my-text value="{{ $template->address2 }}" label="Address2"/>
+                    <x-tenant.show.my-text value="{{ $template->zip }}" label="Zip"/>
+                    <x-tenant.show.my-text value="{{ $template->state }}" label="state"/>
+                    <x-tenant.show.my-integer value="{{ $template->qty }}" label="Qty"/>                                
+                    <x-tenant.show.my-number value="{{ $template->amount }}" label="Amount"/>            
                     {{-- <x-button.edit object="Template" :id="$template->id"/> --}}
                 </div>
             </div>
@@ -93,9 +93,9 @@
                     <h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
                 </div>
                 <div class="card-body">
-                    <x-show.my-boolean   value="{{ $template->enable }}" label="Boolean"/>
-                    <x-show.my-date  value="{{ $template->my_date }}" label="Date"/>
-                    <x-show.my-date-time value="{{ $template->my_date_time }}" label="DateTime"/>           
+                    <x-tenant.show.my-boolean   value="{{ $template->enable }}" label="Boolean"/>
+                    <x-tenant.show.my-date  value="{{ $template->my_date }}" label="Date"/>
+                    <x-tenant.show.my-date-time value="{{ $template->my_date_time }}" label="DateTime"/>           
                 </div>
             </div>
             <!-- end card -->

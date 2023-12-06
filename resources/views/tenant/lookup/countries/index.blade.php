@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Countries
         @endslot
         @slot('buttons')
-        <x-buttons.header.create object="Country"/>
+        <x-tenant.buttons.header.create object="Country"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Country"/>
+                    <x-tenant.cards.header-search-export-bar object="Country"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -42,9 +42,9 @@
                             <tr>
                                 <td>{{ $country->country }}</td>
                                 <td>{{ $country->name }}</td>
-                                <td><x-list.my-boolean :value="$country->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$country->enable"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Country" :id="$country->country" :show="false"/>
+                                    <x-tenant.list.actions object="Country" :id="$country->country" :show="false"/>
                                     <a href="{{ route('countries.destroy',$country->country) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Country" data-name="{{ $country->name }}" data-status="{{ ($country->enable ? 'Disable' : 'Enable') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($country->enable ? 'Disable' : 'Enable') }}">
@@ -71,7 +71,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')
+     @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

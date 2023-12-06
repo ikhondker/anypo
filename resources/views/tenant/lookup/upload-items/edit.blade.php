@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Interface Item
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="UploadItem"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="UploadItem"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
     <!-- form start -->
     <form id="myform" action="{{ route('upload-items.update',$uploadItem->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -25,8 +25,8 @@
                             <h5 class="card-title">Interface Item Info</h5>
                         </div>
                         <div class="card-body">
-                            <x-edit.id-read-only :value="$uploadItem->id"/>
-                            <x-edit.name :value="$uploadItem->name"/>
+                            <x-tenant.edit.id-read-only :value="$uploadItem->id"/>
+                            <x-tenant.edit.name :value="$uploadItem->name"/>
                             <div class="mb-3">
                                 <label class="form-label">Category</label>
                                 <input type="text" class="form-control @error('category') is-invalid @enderror" 
@@ -57,8 +57,8 @@
                                     <div class="text-danger text-xs">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <x-edit.price :value="$uploadItem->price"/>
-                            <x-widgets.submit/>
+                            <x-tenant.edit.price :value="$uploadItem->price"/>
+                            <x-tenant.widgets.submit/>
                         </div>
                     </div>
                 </div>

@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Warehouse
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Warehouse"/>
+            <x-tenant.buttons.header.create object="Warehouse"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Warehouse"/>
+                    <x-tenant.cards.header-search-export-bar object="Warehouse"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -46,9 +46,9 @@
                                 <td><a class="text-info" href="{{ route('warehouses.show',$warehouse->id) }}">{{ $warehouse->name }}</a></td>
                                 <td>{{ $warehouse->contact_person }}</td>
                                 <td>{{ $warehouse->cell }}</td>
-                                <td><x-list.my-boolean :value="$warehouse->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$warehouse->enable"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Warehouse" :id="$warehouse->id"/>
+                                    <x-tenant.list.actions object="Warehouse" :id="$warehouse->id"/>
 
                                     <a href="{{ route('warehouses.destroy',$warehouse->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Warehouse" data-name="{{ $warehouse->name }}" data-status="{{ ($warehouse->enable ? 'Disable' : 'Enable') }}"
@@ -76,7 +76,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

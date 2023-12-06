@@ -4,16 +4,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Item
         @endslot
         @slot('buttons')
-        <x-buttons.header.save/>
-            <x-buttons.header.lists object="Item"/>
-            <x-buttons.header.create object="Item"/>
+        <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Item"/>
+            <x-tenant.buttons.header.create object="Item"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('items.update',$item->id) }}" method="POST" enctype="multipart/form-data">
@@ -28,9 +28,9 @@
                         </div>
                         <div class="card-body">
 
-                            <x-edit.id-read-only :value="$item->id"/>
-                            <x-edit.name :value="$item->name"/>
-                            <x-edit.price :value="$item->price"/>
+                            <x-tenant.edit.id-read-only :value="$item->id"/>
+                            <x-tenant.edit.name :value="$item->name"/>
+                            <x-tenant.edit.price :value="$item->price"/>
 
 
                                 <div class="mb-3 col-md-6">
@@ -83,7 +83,7 @@
                                 </select>
                             </div>
 
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
                             
                         </div>
                     </div>

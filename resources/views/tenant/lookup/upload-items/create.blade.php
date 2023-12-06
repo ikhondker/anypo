@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Upload Items
         @endslot
         @slot('buttons')
             
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('upload-items.store') }}" method="POST" enctype="multipart/form-data">
@@ -46,7 +46,7 @@
                             @enderror
                         </div>
 
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>

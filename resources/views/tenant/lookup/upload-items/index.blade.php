@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Upload Items
         @endslot
@@ -14,14 +14,14 @@
             <a href="{{ route('upload-items.create') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-circle-up"></i> 2. Upload File</a>
             <a href="{{asset('downloads/anypo-bulk-item-upload-template-20230818.xlsx')}}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-circle-down"></i> 1. Download Template</a>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-12">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="UploadItem"/>
+                    <x-tenant.cards.header-search-export-bar object="UploadItem"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -60,7 +60,7 @@
                                 <td>{{ $upload_item->uom }}</td>
                                 <td>{{ $upload_item->price }}</td>
                                 <td>{{ $upload_item->gl_type_name }}</td>
-                                <td><x-list.my-date-time :value="$upload_item->created_at"/></td>
+                                <td><x-tenant.list.my-date-time :value="$upload_item->created_at"/></td>
                                 <td>{{ $upload_item->owner->name }}</td>
                                 <td>
                                     @switch($upload_item->status)
@@ -79,7 +79,7 @@
                                 
                                 </td>
                                 <td class="table-action">
-                                    <x-list.actions object="UploadItem" :id="$upload_item->id"/>
+                                    <x-tenant.list.actions object="UploadItem" :id="$upload_item->id"/>
                                 </td>
                             </tr>
                             @endforeach
@@ -101,7 +101,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

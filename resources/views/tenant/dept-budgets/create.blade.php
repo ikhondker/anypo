@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create DeptBudget
         @endslot
         @slot('buttons')
-        <x-buttons.header.save/>
-            <x-buttons.header.lists object="DeptBudget"/>
+        <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="DeptBudget"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('dept-budgets.store') }}" method="POST" enctype="multipart/form-data">
@@ -51,10 +51,10 @@
                                 <div class="text-danger text-xs">{{ $message }}</div>
                             @enderror
                         </div>
-                        <x-create.amount/>
-                        <x-create.notes/>
+                        <x-tenant.create.amount/>
+                        <x-tenant.create.notes/>
 
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>

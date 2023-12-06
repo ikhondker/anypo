@@ -4,14 +4,14 @@
 
 @section('freeze')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Initial Onetime Setup
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
+            <x-tenant.buttons.header.save/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('setups.freeze',$setup->id) }}" method="POST">
@@ -46,7 +46,7 @@
                                 </select>
                             </div>
                            
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
                         </div>
                     </div>
                     

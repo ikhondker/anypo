@@ -4,16 +4,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Budget
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Budget"/>
-            <x-buttons.header.create object="Budget"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Budget"/>
+            <x-tenant.buttons.header.create object="Budget"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('budgets.update',$budget->id) }}" method="POST" enctype="multipart/form-data">
@@ -43,8 +43,8 @@
                                 @enderror
                             </div>
 
-                            <x-edit.notes value="{{ $budget->notes }}"/>
-                            <x-widgets.submit/>
+                            <x-tenant.edit.notes value="{{ $budget->notes }}"/>
+                            <x-tenant.widgets.submit/>
                             
                         </div>
                     </div>

@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create Hierarchy
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Hierarchy"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Hierarchy"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('hierarchies.store') }}" method="POST" enctype="multipart/form-data">
@@ -115,7 +115,7 @@
                             </div>
                             <div class="mb-3 row">
                                 <div class="col-sm-10 ml-sm-auto">
-                                    <x-widgets.submit/>
+                                    <x-tenant.widgets.submit/>
                                    
                                 </div>
                             </div>

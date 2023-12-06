@@ -4,16 +4,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit Project
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Project"/>
-            <x-buttons.header.create object="Project"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Project"/>
+            <x-tenant.buttons.header.create object="Project"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('projects.update',$project->id) }}" method="POST" enctype="multipart/form-data">
@@ -28,10 +28,10 @@
                         </div>
                         <div class="card-body">
 
-                            <x-edit.id-read-only :value="$project->id"/>
-                            <x-edit.name :value="$project->name"/>
-                            <x-edit.start-date :value="date('Y-m-d',strtotime($project->start_date))"/>
-                            <x-edit.end-date :value="date('Y-m-d',strtotime($project->end_date))"/>
+                            <x-tenant.edit.id-read-only :value="$project->id"/>
+                            <x-tenant.edit.name :value="$project->name"/>
+                            <x-tenant.edit.start-date :value="date('Y-m-d',strtotime($project->start_date))"/>
+                            <x-tenant.edit.end-date :value="date('Y-m-d',strtotime($project->end_date))"/>
                             <div class="mb-3">
                                 <label class="form-label">Project Manager</label>
                                 <select class="form-control" name="pm_id">
@@ -41,7 +41,7 @@
                                 </select>
                             </div>
 
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
  
                         </div>
                     </div>
@@ -62,9 +62,9 @@
                                 </label>
                             </div>
 
-                            <x-edit.amount :value="$project->amount"/>
+                            <x-tenant.edit.amount :value="$project->amount"/>
 
-                            <x-widgets.submit/>
+                            <x-tenant.widgets.submit/>
  
                         </div>
                     </div>

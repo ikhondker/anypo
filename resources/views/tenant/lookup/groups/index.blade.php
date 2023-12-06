@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Group
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="Group"/>
+            <x-tenant.buttons.header.create object="Group"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Group" :export="true"/>
+                    <x-tenant.cards.header-search-export-bar object="Group" :export="true"/>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -34,9 +34,9 @@
                             <tr>
                                 <td>{{ $group->id }}</td>
                                 <td>{{ $group->name }}</td>
-                                <td><x-list.my-boolean :value="$group->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$group->enable"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="Group" :id="$group->id" :show="false"/>
+                                    <x-tenant.list.actions object="Group" :id="$group->id" :show="false"/>
                                     <a href="{{ route('groups.destroy',$group->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="Group" data-name="{{ $group->name }}" data-status="{{ ($group->enable ? 'Disable' : 'Enable') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($group->enable ? 'Disable' : 'Enable') }}">
@@ -63,7 +63,7 @@
     </div>
      <!-- end row -->
 
-     @include('includes.modal-boolean-advance')    
+     @include('tenant.includes.modal-boolean-advance')    
 
 @endsection
 

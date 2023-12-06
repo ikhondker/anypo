@@ -3,20 +3,20 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Edit PR Line
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Pr"/>
-            <x-buttons.header.create object="Pr"/>
-            <x-buttons.header.edit object="Pr" :id="$pr->id"/>
-            <x-buttons.header.pdf object="Pr" :id="$pr->id"/>
-            <x-buttons.header.add-line object="Prl" :id="$pr->id"/>
+            <x-tenant.buttons.header.lists object="Pr"/>
+            <x-tenant.buttons.header.create object="Pr"/>
+            <x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
+            <x-tenant.buttons.header.pdf object="Pr" :id="$pr->id"/>
+            <x-tenant.buttons.header.add-line object="Prl" :id="$pr->id"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
     
-    @include('includes.view-pr-header')
+    @include('tenant.includes.view-pr-header')
 
     <!-- form start -->
     <form action="{{ route('prls.update',$prl->id) }}" method="POST" enctype="multipart/form-data">
@@ -26,7 +26,7 @@
         
 
         <!-- widget-pr-lines -->
-        <x-widgets.pr-lines id="{{ $pr->id }}" :edit="true" pid="{{ $prl->id }}"/>
+        <x-tenant.widgets.pr-lines id="{{ $pr->id }}" :edit="true" pid="{{ $prl->id }}"/>
         <!-- /.widget-pr-lines -->
 
     </form>
@@ -34,13 +34,13 @@
 
     <!-- Approval History -->
     @if ($pr->wf_id <> 0)
-        <x-widgets.approval-history id="{{ $pr->wf_id }}"/>
+        <x-tenant.widgets.approval-history id="{{ $pr->wf_id }}"/>
     @endif
     
 
     <!-- approval form, show only if pending to current auth user -->
     {{-- @if (\App\Helpers\Workflow::allowApprove($pr->wf_id))
-    @include('includes.wfd-approve-reject')
+    @include('tenant.includes.wfd-approve-reject')
     @endif  --}}
 
       

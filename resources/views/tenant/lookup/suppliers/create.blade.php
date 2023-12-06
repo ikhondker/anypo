@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create Supplier
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Supplier"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Supplier"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('suppliers.store') }}" method="POST" enctype="multipart/form-data">
@@ -25,10 +25,10 @@
                     <h5 class="card-title">Supplier Info</h5>
                     </div>
                     <div class="card-body">
-                        <x-create.name/>
-                        <x-create.contact-person/>
-                        <x-create.cell/>
-                        <x-widgets.submit/>
+                        <x-tenant.create.name/>
+                        <x-tenant.create.contact-person/>
+                        <x-tenant.create.cell/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>
@@ -39,15 +39,15 @@
                     <h5 class="card-title">Warehouse Info</h5>
                     </div>
                     <div class="card-body">
-                        <x-create.address1/>
-                        <x-create.address2/>
+                        <x-tenant.create.address1/>
+                        <x-tenant.create.address2/>
                         <div class="row">
-                            <x-create.city/>
-                            <x-create.state/>
-                            <x-create.zip/>
+                            <x-tenant.create.city/>
+                            <x-tenant.create.state/>
+                            <x-tenant.create.zip/>
                         </div>
-                        <x-create.country/>
-                        <x-widgets.submit/>
+                        <x-tenant.create.country/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>

@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create Menu
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Menu"/>
+            <x-tenant.buttons.header.lists object="Menu"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form action="{{ route('menus.store') }}" method="POST" enctype="multipart/form-data">
@@ -59,7 +59,7 @@
                             @enderror
                         </div>
 
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                     </div>
                 </div>
             </div>

@@ -3,14 +3,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Activities
         @endslot
         @slot('buttons')
             
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         
@@ -18,7 +18,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="Activity"/>
+                    <x-tenant.cards.header-search-export-bar object="Activity"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -48,15 +48,15 @@
                             @foreach ($activities as $activity)
                             <tr>
                                 <td>{{ $activity->id }}</td>
-                                <td><x-list.my-date-time :value="$activity->created_at"/></td>
+                                <td><x-tenant.list.my-date-time :value="$activity->created_at"/></td>
                                 <td>{{ $activity->object_name }}</td>
                                 <td>{{ $activity->object_id }}</td>
                                 <td>{{ $activity->event_name }}</td>
                                 <td>{{ $activity->column_name }}</td>
                                 <td>{{ $activity->prior_value }}</td>
                                 <td>{{ $activity->user->name }}</td>
-                                <td><x-list.my-badge :value="$activity->role"/></td>
-                                <td class="table-action"><x-list.actions object="Activity" :id="$activity->id" :edit="false"/></td>
+                                <td><x-tenant.list.my-badge :value="$activity->role"/></td>
+                                <td class="table-action"><x-tenant.list.actions object="Activity" :id="$activity->id" :edit="false"/></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -77,7 +77,7 @@
     </div>
      <!-- end row -->
 
-     {{-- @include('includes.modal-boolean') --}}
+     {{-- @include('tenant.includes.modal-boolean') --}}
 
 @endsection
 

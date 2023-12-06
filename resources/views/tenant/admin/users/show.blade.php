@@ -3,17 +3,17 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Users
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="User"/>
-            <x-buttons.header.create object="User"/>
-            <x-buttons.header.edit object="User" :id="$user->id"/>
-            <x-buttons.header.password :id="$user->id"/>
+            <x-tenant.buttons.header.lists object="User"/>
+            <x-tenant.buttons.header.create object="User"/>
+            <x-tenant.buttons.header.edit object="User" :id="$user->id"/>
+            <x-tenant.buttons.header.password :id="$user->id"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
 
     <div class="row">
@@ -23,14 +23,14 @@
                     <h5 class="card-title">User Info</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-text     value="{{ $user->name }}"/>
-                    <x-show.my-email    value="{{ $user->email }}"/>
-                    <x-show.my-text     value="{{ $user->cell }}" label="Cell"/>
-                    <x-show.my-text     value="{{ $user->designation_name->name }}" label="Title"/>
-                    <x-show.my-text     value="{{ $user->dept_name->name }}" label="Dept"/>
-                    <x-show.my-badge    value="{{ $user->role }}" label="Role"/>
-                    <x-show.my-boolean  value="{{ $user->enable }}"/>
-                    <x-show.my-badge    value="{{ $user->id }}"/>
+                    <x-tenant.show.my-text     value="{{ $user->name }}"/>
+                    <x-tenant.show.my-email    value="{{ $user->email }}"/>
+                    <x-tenant.show.my-text     value="{{ $user->cell }}" label="Cell"/>
+                    <x-tenant.show.my-text     value="{{ $user->designation_name->name }}" label="Title"/>
+                    <x-tenant.show.my-text     value="{{ $user->dept_name->name }}" label="Dept"/>
+                    <x-tenant.show.my-badge    value="{{ $user->role }}" label="Role"/>
+                    <x-tenant.show.my-boolean  value="{{ $user->enable }}"/>
+                    <x-tenant.show.my-badge    value="{{ $user->id }}"/>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                            <span class="h6 text-secondary">Avatar:</span>
                         </div>
                         <div class="col-sm-9">
-                            <x-show.avatar avatar="{{ $user->avatar }}"/>
+                            <x-tenant.show.avatar avatar="{{ $user->avatar }}"/>
                         </div>
                     </div>
                 </div>
@@ -58,10 +58,10 @@
                     <h5 class="card-title">User Address</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-text value="{{ $user->address1 }}" label="Address1"/>
-                    <x-show.my-text value="{{ $user->address2 }}" label="Address2"/>
-                    <x-show.my-text value="{{ $user->city.', '.$user->state.', '.$user->zip  }}" label="City"/>    
-                    <x-show.my-text value="{{ $user->country_name->name }}" label="Country"/>
+                    <x-tenant.show.my-text value="{{ $user->address1 }}" label="Address1"/>
+                    <x-tenant.show.my-text value="{{ $user->address2 }}" label="Address2"/>
+                    <x-tenant.show.my-text value="{{ $user->city.', '.$user->state.', '.$user->zip  }}" label="City"/>    
+                    <x-tenant.show.my-text value="{{ $user->country_name->name }}" label="Country"/>
                 </div>
             </div>
 
@@ -70,11 +70,11 @@
                 <h5 class="card-title">Other Details</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-date-time   value="{{ $user->email_verified_at }}" label="Verified"/>
-                    <x-show.my-date-time   value="{{ $user->last_login_at }}" label="Last Login"/>
-                    <x-show.my-text        value="{{ $user->last_login_ip }}" label="Last IP"/>
-                    <x-show.my-url         value="{{ $user->facebook }}" label="Facebook"/>
-                    <x-show.my-url         value="{{ $user->linkedin }}" label="LinkedIn"/>
+                    <x-tenant.show.my-date-time   value="{{ $user->email_verified_at }}" label="Verified"/>
+                    <x-tenant.show.my-date-time   value="{{ $user->last_login_at }}" label="Last Login"/>
+                    <x-tenant.show.my-text        value="{{ $user->last_login_ip }}" label="Last IP"/>
+                    <x-tenant.show.my-url         value="{{ $user->facebook }}" label="Facebook"/>
+                    <x-tenant.show.my-url         value="{{ $user->linkedin }}" label="LinkedIn"/>
                 </div>
             </div>
             

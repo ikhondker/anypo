@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create User
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="User"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="User"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
@@ -72,7 +72,7 @@
                             </select>
                         </div>
 
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
 
                     </div>
                 </div>

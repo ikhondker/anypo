@@ -7,14 +7,14 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Dashboard
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="User"/>
+            <x-tenant.buttons.header.create object="User"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     
     <div class="row">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     @php
-                        use App\Models\Budget;
+                        use App\Models\Tenant\Budget;
                         use Illuminate\Database\Eloquent\ModelNotFoundException; 
                         try {
                             $budget= Budget::where('fy', date('Y') )->get()->firstOrFail();
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     @php
-                        use App\Models\Pr;
+                        use App\Models\Tenant\Pr;
                         use Carbon\Carbon;
                         $fy = Carbon::now()->format('Y');
                         $po_sum= Pr::whereYear('auth_date', '=', $fy)->sum('amount');

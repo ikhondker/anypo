@@ -3,21 +3,21 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             PayMethod
         @endslot
         @slot('buttons')
-            <x-buttons.header.create object="PayMethod"/>
+            <x-tenant.buttons.header.create object="PayMethod"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-8">
 
             <div class="card">
                 <div class="card-header">
-                    <x-cards.header-search-export-bar object="PayMethod"/>
+                    <x-tenant.cards.header-search-export-bar object="PayMethod"/>
                     <h5 class="card-title">
                         @if (request('term'))
                             Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -50,9 +50,9 @@
                                 <td>{{ $payMethod->pay_method_number }}</td>
                                 <td>{{ $payMethod->currency }}</td>
                                 <td><x-list.my-date :value="$payMethod->start_date"/> - <x-list.my-date :value="$payMethod->end_date"/></td>
-                                <td><x-list.my-boolean :value="$payMethod->enable"/></td>
+                                <td><x-tenant.list.my-boolean :value="$payMethod->enable"/></td>
                                 <td class="table-action">
-                                    <x-list.actions object="PayMethod" :id="$payMethod->id"/>
+                                    <x-tenant.list.actions object="PayMethod" :id="$payMethod->id"/>
                                     <a href="{{ route('pay-methods.destroy', $payMethod->id) }}" class="me-2 modal-boolean-advance" 
                                         data-entity="PayMethod" data-name="{{ $payMethod->name }}" data-status="{{ ($payMethod->enable ? 'Disable' : 'Enable') }}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($payMethod->enable ? 'Disable' : 'Enable') }}">
@@ -79,7 +79,7 @@
     </div>
      <!-- end row -->
 
-    @include('includes.modal-boolean-advance')
+    @include('tenant.includes.modal-boolean-advance')
     
 @endsection
 

@@ -3,16 +3,16 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Wf
         @endslot
         @slot('buttons')
-            <x-buttons.header.lists object="Wf"/>
-            <x-buttons.header.create object="Wf"/>
-            <x-buttons.header.edit object="Wf" :id="$wf->id"/>
+            <x-tenant.buttons.header.lists object="Wf"/>
+            <x-tenant.buttons.header.create object="Wf"/>
+            <x-tenant.buttons.header.edit object="Wf" :id="$wf->id"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-6">
@@ -21,10 +21,10 @@
                     <h5 class="card-title">Wf Info</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-badge    value="{{ $wf->id }}" label="ID"/>
-                    <x-show.my-text     value="{{ $wf->entity }}" label="Entity"/>
-                    <x-show.my-text     value="{{ $wf->article_id }}" label="Article"/>
-                    <x-show.my-text     value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
+                    <x-tenant.show.my-badge    value="{{ $wf->id }}" label="ID"/>
+                    <x-tenant.show.my-text     value="{{ $wf->entity }}" label="Entity"/>
+                    <x-tenant.show.my-text     value="{{ $wf->article_id }}" label="Article"/>
+                    <x-tenant.show.my-text     value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
                 </div>
             </div>
         </div>
@@ -35,12 +35,12 @@
                     <h5 class="card-title">Supporting Info</h5>
                 </div>
                 <div class="card-body">
-                    <x-show.my-badge    value="{{ $wf->wf_status }}" label="WF Status"/>
-                    <x-show.my-badge    value="{{ $wf->auth_status }}" label="Auth Status"/>
-                    <x-show.my-text    value="{{ $wf->last_performer->name }}" label="Final Approver"/>
-                    <x-show.my-date-time    value="{{ $wf->auth_date }}" label="Auth Date"/>
-                    {{-- <x-show.my-date-time value="{{$wf->created_at }}" label="Created At"/>
-                    <x-show.my-date-time value="{{$wf->updated_at }}" label="Updated At"/> --}}
+                    <x-tenant.show.my-badge    value="{{ $wf->wf_status }}" label="WF Status"/>
+                    <x-tenant.show.my-badge    value="{{ $wf->auth_status }}" label="Auth Status"/>
+                    <x-tenant.show.my-text    value="{{ $wf->last_performer->name }}" label="Final Approver"/>
+                    <x-tenant.show.my-date-time    value="{{ $wf->auth_date }}" label="Auth Date"/>
+                    {{-- <x-tenant.show.my-date-time value="{{$wf->created_at }}" label="Created At"/>
+                    <x-tenant.show.my-date-time value="{{$wf->updated_at }}" label="Updated At"/> --}}
                 </div>
             </div>
         </div>

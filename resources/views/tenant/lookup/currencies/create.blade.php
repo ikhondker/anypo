@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <x-page-header>
+    <x-tenant.page-header>
         @slot('title')
             Create Currency
         @endslot
         @slot('buttons')
-            <x-buttons.header.save/>
-            <x-buttons.header.lists object="Currency"/>
+            <x-tenant.buttons.header.save/>
+            <x-tenant.buttons.header.lists object="Currency"/>
         @endslot
-    </x-page-header>
+    </x-tenant.page-header>
 
     <!-- form start -->
     <form id="myform" action="{{ route('currencies.store') }}" method="POST" enctype="multipart/form-data">
@@ -50,7 +50,7 @@
                             @enderror
                         </div>
                         
-                        <x-widgets.submit/>
+                        <x-tenant.widgets.submit/>
                         
                     </div>
                 </div>
