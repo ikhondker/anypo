@@ -19,43 +19,45 @@ class AuthServiceProvider extends ServiceProvider
 		| Common																	 + 
 		|-----------------------------------------------------------------------------
 		*/
-		'App\Models\User' 	=> 'App\Policies\UserPolicy',
-		'App\Models\Tenant' => 'App\Policies\TenantPolicy',
-		'App\Models\Domain' => 'App\Policies\DomainPolicy',
+		'App\Models\User' 				=> 'App\Policies\UserPolicy',
+		'App\Models\Tenant'				=> 'App\Policies\TenantPolicy',
+		'App\Models\Domain' 			=> 'App\Policies\DomainPolicy',
+
 		/*
 		|-----------------------------------------------------------------------------
 		| Landlord																	 + 
 		|-----------------------------------------------------------------------------
 		*/
-		'App\Models\Landlord\Account'   => 'App\Policies\Landlord\AccountPolicy',
-		'App\Models\Landlord\Activity' 	=> 'App\Policies\Landlord\ActivityPolicy',
-		'App\Models\Landlord\Checkout' 	=> 'App\Policies\Landlord\CheckoutPolicy',
-		'App\Models\Landlord\Comment' 	=> 'App\Policies\Landlord\CommentPolicy',
-		'App\Models\Landlord\Contact' 	=> 'App\Policies\Landlord\ContactPolicy',
-		'App\Models\Landlord\Dashboard' => 'App\Policies\Landlord\DashboardPolicy',
-		'App\Models\Landlord\Dept'		=> 'App\Policies\Landlord\DeptPolicy',
-		'App\Models\Landlord\Invoice' 	=> 'App\Policies\Landlord\InvoicePolicy',
-		'App\Models\Landlord\Notification' => 'App\Policies\Landlord\NotificationPolicy',
-		'App\Models\Landlord\Payment' 	=> 'App\Policies\Landlord\PaymentPolicy',
-		'App\Models\Landlord\Service' 	=> 'App\Policies\Landlord\ServicePolicy',
-		'App\Models\Landlord\Ticket' 	=> 'App\Policies\Landlord\TicketPolicy',
-		'App\Models\Landlord\Report' 	=> 'App\Policies\Landlord\ReportPolicy',
-		'App\Models\Landlord\Process' 	=> 'App\Policies\Landlord\ProcessPolicy',
-		'App\Models\Landlord\Attachment' => 'App\Policies\Landlord\AttachmentPolicy',
-
-		// check ? TODO
-		'App\Models\Landlord\Admin\Category' 	=> 'App\Policies\Landlord\Admin\CategoryPolicy',
-		'App\Models\Landlord\Admin\Country' 	=> 'App\Policies\Landlord\Admin\CountryPolicy',
-		'App\Models\Landlord\Admin\Entity' 		=> 'App\Policies\Landlord\Admin\EntityPolicy',
-		'App\Models\Landlord\Admin\Menu' 		=> 'App\Policies\Landlord\Admin\MenuPolicy',
-		'App\Models\Landlord\Admin\PaymentMethod' => 'App\Policies\Landlord\Admin\PaymentMethodPolicy',
-		'App\Models\Landlord\Admin\Priority' 	=> 'App\Policies\Landlord\Admin\PriorityPolicy',
-		'App\Models\Landlord\Admin\Product' 	=> 'App\Policies\Landlord\Admin\ProductPolicy',
-		'App\Models\Landlord\Admin\Rating' 		=> 'App\Policies\Landlord\Admin\RatingPolicy',
-		'App\Models\Landlord\Admin\Setup' 		=> 'App\Policies\Landlord\Admin\SetupPolicy',
-		'App\Models\Landlord\Admin\Status' 		=> 'App\Policies\Landlord\Admin\StatusPolicy',
-		'App\Models\Landlord\Admin\Table' 		=> 'App\Policies\Landlord\Admin\TablePolicy',
-		'App\Models\Landlord\Admin\Template' 	=> 'App\Policies\Landlord\Admin\TemplatePolicy',
+		'App\Models\Landlord\Account'			=> 'App\Policies\Landlord\AccountPolicy',
+		'App\Models\Landlord\Comment' 			=> 'App\Policies\Landlord\CommentPolicy',
+		'App\Models\Landlord\Contact' 			=> 'App\Policies\Landlord\ContactPolicy',
+		'App\Models\Landlord\Dashboard' 		=> 'App\Policies\Landlord\DashboardPolicy',
+		//'App\Models\Landlord\Notification' 		=> 'App\Policies\Landlord\NotificationPolicy',
+		'App\Models\Landlord\Report' 			=> 'App\Policies\Landlord\ReportPolicy',
+		'App\Models\Landlord\Service' 			=> 'App\Policies\Landlord\ServicePolicy',
+		'App\Models\Landlord\Ticket' 			=> 'App\Policies\Landlord\TicketPolicy',
+		
+		'App\Models\Landlord\Admin\Activity'		=> 'App\Policies\Landlord\Admin\ActivityPolicy',
+		'App\Models\Landlord\Admin\Payment' 		=> 'App\Policies\Landlord\Admin\PaymentPolicy',
+		'App\Models\Landlord\Admin\Invoice' 		=> 'App\Policies\Landlord\Admin\InvoicePolicy',
+		
+		'App\Models\Landlord\Lookup\Category' 		=> 'App\Policies\Landlord\Lookup\CategoryPolicy',
+		'App\Models\Landlord\Lookup\Country' 		=> 'App\Policies\Landlord\Lookup\CountryPolicy',
+		'App\Models\Landlord\Lookup\Dept'			=> 'App\Policies\Landlord\Lookup\DeptPolicy',
+		'App\Models\Landlord\Lookup\PaymentMethod' 	=> 'App\Policies\Landlord\Lookup\PaymentMethodPolicy',
+		'App\Models\Landlord\Lookup\Priority' 		=> 'App\Policies\Landlord\Lookup\PriorityPolicy',
+		'App\Models\Landlord\Lookup\Product' 		=> 'App\Policies\Landlord\Lookup\ProductPolicy',
+		'App\Models\Landlord\Lookup\Rating' 		=> 'App\Policies\Landlord\Lookup\RatingPolicy',
+		'App\Models\Landlord\Lookup\Status' 		=> 'App\Policies\Landlord\Lookup\StatusPolicy',
+		
+		'App\Models\Landlord\Manage\Attachment' 	=> 'App\Policies\Landlord\Manage\AttachmentPolicy',
+		'App\Models\Landlord\Manage\Checkout' 		=> 'App\Policies\Landlord\Manage\CheckoutPolicy',
+		'App\Models\Landlord\Manage\Entity' 		=> 'App\Policies\Landlord\Manage\EntityPolicy',
+		'App\Models\Landlord\Manage\Menu' 			=> 'App\Policies\Landlord\Manage\MenuPolicy',
+		'App\Models\Landlord\Manage\Process' 		=> 'App\Policies\Landlord\Manage\ProcessPolicy',
+		'App\Models\Landlord\Manage\Setup' 			=> 'App\Policies\Landlord\Manage\SetupPolicy',
+		'App\Models\Landlord\Manage\Table' 			=> 'App\Policies\Landlord\Manage\TablePolicy',
+		'App\Models\Landlord\Manage\Template' 		=> 'App\Policies\Landlord\Manage\TemplatePolicy',
 
 		/*
 		|-----------------------------------------------------------------------------
@@ -91,7 +93,6 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Workflow\Hierarchyl' => 'App\Policies\Tenant\Workflow\HierarchylPolicy',
 		'App\Models\Tenant\Workflow\Wf'         => 'App\Policies\Tenant\Workflow\WfPolicy',
 		'App\Models\Tenant\Workflow\Wfl'        => 'App\Policies\Tenant\Workflow\WflPolicy',
-
 
 		'App\Models\Tenant\Budget'            	=> 'App\Policies\Tenant\BudgetPolicy',
 		'App\Models\Tenant\DeptBudget'          => 'App\Policies\Tenant\DeptBudgetPolicy',

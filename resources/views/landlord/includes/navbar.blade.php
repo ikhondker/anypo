@@ -138,7 +138,7 @@
 					<!-- Account -->
 					<li class="nav-item">
 						<a id="accountMegaMenu" class="hs-mega-menu-invoker nav-link active"
-							href="{{ route('provision.pricing') }}" role="button" aria-expanded="false">Pricing</a>
+							href="{{ route('home.pricing') }}" role="button" aria-expanded="false">Pricing</a>
 					</li>
 					<!-- End Account -->
 

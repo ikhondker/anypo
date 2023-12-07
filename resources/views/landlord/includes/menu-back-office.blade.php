@@ -87,8 +87,6 @@
 @include('landlord.includes.submenu-account')
 <!-- ========== END Account ========== -->
 
-
-
 @if (auth()->user()->role->value == \App\Enum\UserRoleEnum::SYSTEM->value)
 	<!-- Nav -->
 	<span class="text-cap">SYSTEM</span>

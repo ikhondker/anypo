@@ -16,8 +16,7 @@ use App\Models\Landlord\Payment;
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
 
-use App\Models\Landlord\Admin\Product;
-
+use App\Models\Landlord\Manage\Product;
 
 // Enums
 use App\Enum\LandlordCheckoutStatusEnum;

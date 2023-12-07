@@ -59,11 +59,11 @@
 									data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="bi bi-eye" style="font-size: 1.3rem;"></i></i>
 								</a>
-								<a href="{{ route('provision.web', $invoice->invoice_no) }}" target="_blank"
+								<a href="{{ route('home.invoice', $invoice->invoice_no) }}" target="_blank"
 									class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="View Online">
 									<i class="bi bi-globe" style="font-size: 1.3rem;"></i></i>
 								</a>
-								<a href="{{ route('reports.invoice', $invoice->id) }}" class="text-body"
+								<a href="{{ route('reports.pdf-invoice', $invoice->id) }}" class="text-body"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
 									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>
 								</a>
@@ -129,7 +129,7 @@
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 								<i data-feather="eye" class="fea text-muted"></i>
 							</a>
-							<a href="{{ route('provision.web', $invoice->invoice_no) }}" target="_blank"
+							<a href="{{ route('home.invoice', $invoice->invoice_no) }}" target="_blank"
 								class="action-btn btn-view bs-tooltip me-2" data-bs-toggle="tooltip" data-bs-placement="top"
 								title="View Online">
 								<i data-feather="globe" class="fea text-muted"></i>

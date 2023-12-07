@@ -29,8 +29,8 @@ use App\Models\User;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Service;
 
-use App\Models\Landlord\Admin\Country;
-use App\Models\Landlord\Admin\Product;
+use App\Models\Landlord\Manage\Country;
+use App\Models\Landlord\Manage\Product;
 
 
 // Enums
@@ -80,7 +80,7 @@ class AccountController extends Controller
 		
 		$this->authorize('viewAll',Account::class);
 		$accounts = Account::orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.admin.accounts.all', compact('accounts'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.accounts.all', compact('accounts'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
 	/**

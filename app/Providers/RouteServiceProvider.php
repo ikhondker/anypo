@@ -43,8 +43,7 @@ class RouteServiceProvider extends ServiceProvider
 			$this->mapApiRoutes();
 			$this->mapWebRoutes();
 			// IQBAL
-			$this->mapAdminRoutes();
-
+			//$this->mapManageRoutes();
 		});
 	}
 
@@ -75,16 +74,15 @@ class RouteServiceProvider extends ServiceProvider
 			return config('tenancy.central_domains');
 		}
 
-		protected function mapAdminRoutes()
+		protected function mapManageRoutes()
 		{
-			Route::prefix('admin')
+			Route::prefix('manage')
 				->middleware('web')
 				//->middleware('web', 'can:admin')
 				//->namespace($this->namespace.'\Admin')
 				->namespace($this->namespace)
 				//->name('admin.')
-				->group(base_path('routes/admin.php'));
-				
+				->group(base_path('routes/manage.php'));
 		}
 
 

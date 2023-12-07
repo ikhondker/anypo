@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Landlord;
 
 use App\Http\Controllers\Controller;
 
-// Controller
-use App\Http\Controllers\Landlord\ProvisionController;
 
 // Models
 use App\Models\User;

@@ -20,10 +20,11 @@ use App\Models\Landlord\Payment;
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Checkout;
 
-use App\Models\Landlord\Admin\Country;
-use App\Models\Landlord\Admin\Activity;
-use App\Models\Landlord\Admin\Template;
-use App\Models\Landlord\Admin\Attachment;
+use App\Models\Landlord\Lookup\Country;
+
+use App\Models\Landlord\Manage\Activity;
+use App\Models\Landlord\Manage\Template;
+use App\Models\Landlord\Manage\Attachment;
 
 /*
 |-----------------------------------------------------------------------------

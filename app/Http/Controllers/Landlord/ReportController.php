@@ -9,7 +9,7 @@ use App\Models\Landlord\Payment;
 use App\Models\Landlord\Invoice;
 use App\Models\Landlord\Account;
 
-use App\Models\Landlord\Admin\Setup;
+use App\Models\Landlord\Manage\Setup;
 
 use App\Http\Requests\Landlord\StoreReportRequest;
 use App\Http\Requests\Landlord\UpdateReportRequest;

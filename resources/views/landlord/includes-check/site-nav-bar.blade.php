@@ -42,7 +42,7 @@
             <ul class="navigation-menu nav-right">
                 <li><a href="{{ route('welcome') }}" class="sub-menu-item">Home</a></li>
                 <li><a href="{{ route('product') }}" class="sub-menu-item">{{ config('app.name') }}</a></li>
-                <li><a href="{{ route('provision.pricing') }}" class="sub-menu-item">Pricing</a></li>
+                <li><a href="{{ route('home.pricing') }}" class="sub-menu-item">Pricing</a></li>
                 {{-- <li><a href="{{ route('page') }}" class="sub-menu-item">Tickets</a></li> --}}
                 <li><a href="{{ route('faq') }}" class="sub-menu-item">FAQ</a></li>
                 <li><a href="{{ route('about') }}" class="sub-menu-item">About Us</a></li>

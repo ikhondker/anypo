@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\ImpersonateController;
+use App\Http\Controllers\Tenant\TestController;
+//use App\Http\Controllers\ImpersonateController;
 
 use App\Http\Controllers\Tenant\Admin\ActivityController;
 use App\Http\Controllers\Tenant\Admin\AttachmentController;
@@ -30,12 +30,10 @@ use App\Http\Controllers\Tenant\Lookup\UomController;
 use App\Http\Controllers\Tenant\Lookup\UploadItemController;
 use App\Http\Controllers\Tenant\Lookup\WarehouseController;
 
-
 use App\Http\Controllers\Tenant\Manage\EntityController;
 use App\Http\Controllers\Tenant\Manage\MenuController;
 use App\Http\Controllers\Tenant\Manage\TableController;
 use App\Http\Controllers\Tenant\Manage\TemplateController;
-
 
 use App\Http\Controllers\Tenant\Workflow\HierarchyController;
 use App\Http\Controllers\Tenant\Workflow\HierarchylController;

@@ -12,7 +12,7 @@ use App\Models\User;
 use App\Models\Landlord\Checkouts;
 use App\Models\Landlord\Account;
 
-use App\Models\Landlord\Admin\Product;
+use App\Models\Landlord\Manage\Product;
 
 use App\Enum\ServiceStatusEnum;
 

@@ -9,7 +9,7 @@ use Illuminate\View\View;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
-use App\Models\Landlord\Admin\Menu;
+use App\Models\Landlord\Manage\Menu;
 
 
 class ViewServiceProvider extends ServiceProvider

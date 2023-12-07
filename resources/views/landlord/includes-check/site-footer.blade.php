@@ -27,7 +27,7 @@
 
                                 <li><a href="{{ route('about') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> About us</a></li>
                                 <li><a href="{{ route('product') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> {{ config('app.name') }}</a></li>
-                                <li><a href="{{ route('provision.pricing') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Pricing</a></li>
+                                <li><a href="{{ route('home.pricing') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Pricing</a></li>
                                 <li><a href="{{ route('faq') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> FAQ</a></li>
                                 <li><a href="{{ route('contact-us') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Contact Us</a></li>
 

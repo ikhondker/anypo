@@ -81,13 +81,13 @@
 
 						<div class="d-grid">
 							@guest
-								<a class="btn btn-primary btn-transition" href="{{ route('provision.checkout') }}">Get started</a>
+								<a class="btn btn-primary btn-transition" href="{{ route('home.checkout') }}">Get started</a>
 							@endguest
 							@auth
 								@if (auth()->user()->account_id == '')
-									<a class="btn btn-primary btn-transition" href="{{ route('provision.checkout') }}">Get	started</a>
+									<a class="btn btn-primary btn-transition" href="{{ route('home.checkout') }}">Get	started</a>
 								@else
-									<a class="btn btn-primary btn-transition" href="{{ route('provision.checkout') }}">Have This</a>
+									<a class="btn btn-primary btn-transition" href="{{ route('home.checkout') }}">Have This</a>
 								@endif
 							@endauth
 

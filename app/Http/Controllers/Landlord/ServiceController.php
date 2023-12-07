@@ -29,7 +29,7 @@ use App\Models\User;
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
 
-use App\Models\Landlord\Admin\Product;
+use App\Models\Landlord\Lookup\Product;
 
 // Enums
 use App\Enum\UserRoleEnum;
@@ -94,7 +94,7 @@ class ServiceController extends Controller
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 		$account = Account::where('id', auth()->user()->account_id)->first();
 
-		return view('landlord.admin.services.all', compact('services', 'addons','account'))
+		return view('landlord.services.all', compact('services', 'addons','account'))
 			->with('i', (request()->input('page', 1) - 1) * 10);
 		//->with('cur_account_id',$services->account_id)
 	}
@@ -147,7 +147,7 @@ class ServiceController extends Controller
 	{
 		$this->authorize('update', $service);
 		$owners = User::getOwners($service->account_id);
-		return view('landlord.admin.services.edit', compact('service', 'owners'));
+		return view('landlord.services.edit', compact('service', 'owners'));
 	}
 
 	/**

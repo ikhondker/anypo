@@ -5,8 +5,8 @@ namespace App\View\Composers;
 //use App\Repositories\UserRepository;
 use Illuminate\View\View;
  
-use App\Models\Landlord\Admin\Setup;
-use App\Models\Landlord\Admin\Country;
+use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Country;
 
 class LandlordSetupComposer
 {

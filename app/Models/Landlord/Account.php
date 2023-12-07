@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
-use App\Models\Landlord\Admin\Country;
-use App\Models\Landlord\Admin\Status;
+use App\Models\Landlord\Lookup\Country;
+use App\Models\Landlord\Lookup\Status;
 
 use App\Enum\LandlordAccountStatusEnum;
 
@@ -22,7 +22,6 @@ class Account extends Model
 	protected $fillable = [
 		'site', 'name', 'currency', 'tagline', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'website', 'facebook', 'linkedin', 'email', 'cell', 'owner_id', 'primary_product_id', 'base_mnth', 'base_user', 'base_gb', 'base_price', 'mnth', 'user', 'gb', 'price', 'start_date', 'end_date', 'next_bill_generated', 'next_invoice_no', 'last_bill_date', 'expired_at', 'count_user', 'count_product', 'used_gb', 'maintenance', 'status_code', 'logo', 'updated_by', 'updated_at',
 	];
-
 
 	protected $casts = [
 		'start_date'            => 'date',

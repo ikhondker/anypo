@@ -22,7 +22,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Request;
 
-use App\Models\Landlord\Activity;
+use App\Models\Landlord\Admin\Activity;
 use Illuminate\Support\Facades\Log;
 
 use App\Enum\UserRoleEnum;

@@ -56,7 +56,7 @@ class ContactController extends Controller
 		$this->authorize('viewAll',Contact::class);
 		
 		$contacts= Contact::orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.admin.contacts.all',compact('contacts'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.contacts.all',compact('contacts'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
 	/**

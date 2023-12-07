@@ -48,7 +48,7 @@
                             <td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>
                             <td><x-landlord.list.actions object="Payment" :id="$payment->id" :export="false"
                                     :enable="false" />
-                                <a href="{{ route('reports.receipt', $payment->id) }}" class="text-body"
+                                <a href="{{ route('reports.pdf-payment', $payment->id) }}" class="text-body"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
                                     <i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>
                                 </a>

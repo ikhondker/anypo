@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <a href="{{ route('provision.checkout',['id'=>'1003']) }}" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Upgrade A</a>
+        <a href="{{ route('home.checkout',['id'=>'1003']) }}" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Upgrade A</a>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

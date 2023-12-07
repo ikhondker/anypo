@@ -13,9 +13,9 @@ use App\Models\User;
 use App\Models\Landlord\Dept;
 
 
-use App\Models\Landlord\Admin\Priority;
-use App\Models\Landlord\Admin\Rating;
-use App\Models\Landlord\Admin\Status;
+use App\Models\Landlord\Manage\Priority;
+use App\Models\Landlord\Manage\Rating;
+use App\Models\Landlord\Manage\Status;
 
 use App\Enum\LandlordTicketStatusEnum;
 

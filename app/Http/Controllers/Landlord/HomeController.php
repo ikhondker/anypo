@@ -135,6 +135,54 @@ class HomeController extends Controller
 		return redirect()->back()->with(['success' => 'Thank you for contacting us. We will contact you shortly.']);
 	}
 
+	public function pricing()
+	{
+		$product = Product::where('id', config('bo.DEFAULT_PRODUCT_ID'))->first();
+
+		// get service_id of current logged-in user
+		if (Auth::check()) {
+			if (auth()->user()->account_id == '') {
+				$cur_product_id = '';
+			} else {
+				//$account_id= auth()->user()->account_id;
+				$account = Account::where('id', auth()->user()->account_id)->first();
+				$cur_product_id = $account->primary_product_id;
+			}
+		} else {
+			$cur_product_id = '';
+		}
+
+		//Log::debug("auth()->user()->account_id=". auth()->user()->account_id);
+		//Log::debug("cur_product_id=". $cur_service_id);
+		//return view('pages.pricing')->with('id',$id);
+		return view('landlord.pages.pricing', compact('product'))->with('cur_product_id', $cur_product_id);
+	}
+
+	public function checkout()
+	{
+		// check if existing user is has already linked with an account. Then stops here
+		if (auth()->check()) {
+			if (auth()->user()->account_id <> '') {
+				return view('landlord.pages.error')->with('msg', 'User is has already linked with an account! You can not buy new Account.');
+			}
+		}
+
+		$product = Product::where('id', config('bo.DEFAULT_PRODUCT_ID'))->first();
+		return view('landlord.pages.checkout', compact('product'));
+	}
+
+
+	// this is public link. No authentication needed
+	public function onlineInvoice($invoice_no)
+	{
+		//$entity = static::ENTITY ;
+		$setup 		= Setup::with('relCountry')->where('id', config('bo.SETUP_ID'))->first();
+		$invoice 	= Invoice::where('invoice_no', $invoice_no)->first();
+		$account 	= Account::with('relCountry')->where('id', $invoice->account_id)->first();
+
+		return view('landlord.admin.invoices.invoice', compact('invoice', 'account', 'setup'));
+	}
+
 
 	public function testNotification()
 	{
@@ -213,8 +261,5 @@ class HomeController extends Controller
 	//     //return view('invoices.show',compact('invoice','entity'));
 	//     return view('invoices.invoice',compact('invoice'));
 	// }
-
-
-
 
 }

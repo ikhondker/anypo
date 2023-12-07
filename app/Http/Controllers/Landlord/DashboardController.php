@@ -28,10 +28,11 @@ use App\Models\Landlord\Dashboard;
 use App\Models\Landlord\Ticket;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Service;
-use App\Models\Landlord\Invoice;
-use App\Models\Landlord\Payment;
 
-use App\Models\Landlord\Admin\Setup;
+use App\Models\Landlord\Admin\Invoice;
+use App\Models\Landlord\Admin\Payment;
+
+use App\Models\Landlord\Manage\Setup;
 
 // Enums
 use App\Enum\UserRoleEnum;
@@ -167,7 +168,7 @@ class DashboardController extends Controller
 		$count_agent_closed_tickets  = Ticket::byAgentClosed()->count();
 		//$count_service  = Service::all()->count();
 		//$count_users    = User::all()->count();
-		return view('landlord.admin.dashboards.backoffice', with(compact('notifications','setup','count_notif',
+		return view('landlord.dashboards.backoffice', with(compact('notifications','setup','count_notif',
 			'count_agent_open_tickets', 'count_unassigned_tickets',
 			'count_all_open_tickets', 'count_agent_closed_tickets', 
 			'tickets', 
@@ -267,7 +268,7 @@ class DashboardController extends Controller
 		$count_invoices = Invoice::all()->count();
 		$count_payments = Payment::all()->count();
 		$count_users    = User::all()->count();
-		return view('landlord.admin.dashboards.system', with(compact('notifications','setup','count_notif',
+		return view('landlord.dashboards.system', with(compact('notifications','setup','count_notif',
 			'count_tickets','count_service',
 			'count_invoices', 'count_payments','count_users','tickets'
 		)));

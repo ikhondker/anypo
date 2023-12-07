@@ -29,7 +29,7 @@ use App\Models\User;
 use App\Models\Landlord\Ticket;
 use App\Models\Landlord\Dept;
 
-use App\Models\Landlord\Admin\Priority;
+use App\Models\Landlord\Manage\Priority;
 
 // Enums
 use App\Enum\UserRoleEnum;
@@ -99,7 +99,7 @@ class TicketController extends Controller
 
 		$tickets = Ticket::orderBy('id', 'DESC')->paginate(10);
 
-		return view('landlord.admin.tickets.all', compact('tickets'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.tickets.all', compact('tickets'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
 	/**
@@ -243,7 +243,7 @@ class TicketController extends Controller
 		$this->authorize('assign', $ticket);
 
 		$agents = User::getAllAgent();
-		return view('landlord.admin.tickets.assign', compact('ticket', 'agents'));
+		return view('landlord.tickets.assign', compact('ticket', 'agents'));
 	}
 
 	public function close(Ticket $ticket)

@@ -27,7 +27,7 @@
 			</div>
 			<div class="flex-grow-1 ms-2">
 				<span class="fw-semibold">Info!</span> You have an unpaid invoice 		
-				<a class="text-danger" href="{{ route('provision.web', $account->next_invoice_no) }}" target="_blank"> #{{ $account->next_invoice_no }}</a>.
+				<a class="text-danger" href="{{ route('home.invoice', $account->next_invoice_no) }}" target="_blank"> #{{ $account->next_invoice_no }}</a>.
 				Might consider paying it now.
 			</div>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
