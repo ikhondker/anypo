@@ -15,12 +15,11 @@ use App\Models\Tenant;
 use App\Models\Domain;
 
 use App\Models\Landlord\Account;
-use App\Models\Landlord\Checkout;
-use App\Models\Landlord\Invoice;
-use App\Models\Landlord\Payment;
 use App\Models\Landlord\Service;
-
-use App\Models\Landlord\Manage\Product;
+use App\Models\Landlord\Admin\Invoice;
+use App\Models\Landlord\Admin\Payment;
+use App\Models\Landlord\Lookup\Product;
+use App\Models\Landlord\Manage\Checkout;
 
 // Enums
 use App\Enum\UserRoleEnum;

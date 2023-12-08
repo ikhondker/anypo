@@ -19,16 +19,16 @@
 namespace App\Enum;
 
 enum UserRoleEnum: string{
-	case GUEST      = 'guest';  // // was used in EventLog. TODO
-	case USER       = 'user';   // both landlord and tenant
-	case BUYER      = 'buyer';
-	case MANAGER    = 'manager';
-	case HOD        = 'hod';
-	case CXO        = 'cxo';
-	case ADMIN      = 'admin';      // customer admin, both landlord and tenant
-	case SUPPORT    = 'support';
-	case SUPERVISOR = 'supervisor';
-	case DEVELOPER  = 'developer';
-	case ACCOUNTS   = 'accounts';   // landlord only
-	case SYSTEM     = 'system';
+	case GUEST		= 'guest';		// was used in EventLog. TODO
+	case USER		= 'user';		// both landlord and tenant
+	case BUYER		= 'buyer';
+	case MANAGER	= 'manager';
+	case HOD		= 'hod';
+	case CXO		= 'cxo';
+	case ADMIN		= 'admin';		// customer admin, both landlord and tenant
+	case SUPPORT	= 'support';
+	case SUPERVISOR	= 'supervisor';
+	case DEVELOPER	= 'developer';
+	case ACCOUNTS	= 'accounts';	// landlord only
+	case SYSTEM		= 'system';
 }

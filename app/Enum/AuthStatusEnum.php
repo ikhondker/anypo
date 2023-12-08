@@ -19,10 +19,10 @@
 namespace App\Enum;
 
 enum AuthStatusEnum:string{
-    case DRAFT      = 'draft';
-    case SUBMITTED  = 'submitted';
-    case INPROCESS  = 'in-process';
-    case APPROVED   = 'approved';
-    case REJECTED   = 'rejected';
-    case ERROR      = 'error';
+	case DRAFT		= 'draft';
+	case SUBMITTED	= 'submitted';
+	case INPROCESS	= 'in-process';
+	case APPROVED	= 'approved';
+	case REJECTED	= 'rejected';
+	case ERROR		= 'error';
 }

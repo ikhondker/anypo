@@ -25,8 +25,8 @@ use Illuminate\Notifications\Notification;
 
 
 use App\Models\User;
-use App\Models\Landlord\Invoice;
-use App\Models\Landlord\Payment;
+use App\Models\Landlord\Admin\Invoice;
+use App\Models\Landlord\Admin\Payment;
 
 class InvoicePaid extends Notification implements ShouldQueue
 {

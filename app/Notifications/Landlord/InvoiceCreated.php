@@ -24,7 +24,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 use App\Models\User;
-use App\Models\Landlord\Invoice;
+use App\Models\Landlord\Admin\Invoice;
 
 
 class InvoiceCreated extends Notification implements ShouldQueue

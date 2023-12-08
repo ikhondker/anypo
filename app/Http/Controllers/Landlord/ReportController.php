@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Landlord;
 use App\Http\Controllers\Controller;
 
 use App\Models\Landlord\Report;
-use App\Models\Landlord\Payment;
-use App\Models\Landlord\Invoice;
 use App\Models\Landlord\Account;
+
+use App\Models\Landlord\Admin\Payment;
+use App\Models\Landlord\Admin\Invoice;
+
 
 use App\Models\Landlord\Manage\Setup;
 

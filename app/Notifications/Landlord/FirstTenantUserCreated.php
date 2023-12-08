@@ -18,9 +18,6 @@ class FirstTenantUserCreated extends Notification  implements ShouldQueue
 	protected $random_password;
 	protected $domain;
 
-
-	
-
 	/**
 	 * Create a new notification instance.
 	 */

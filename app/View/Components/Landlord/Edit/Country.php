@@ -15,7 +15,7 @@ class Country extends Component
      */
     public function __construct(public string $value='')
     {
-        $this->countries = \App\Models\Landlord\Admin\Country::getAll();
+        $this->countries = \App\Models\Landlord\Lookup\Country::getAll();
     }
 
     /**

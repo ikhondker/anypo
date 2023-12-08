@@ -26,7 +26,7 @@
 				<i class="bi-exclamation-triangle-fill"></i>
 			</div>
 			<div class="flex-grow-1 ms-2">
-				<span class="fw-semibold">Info!</span> You have an unpaid invoice 		
+				<span class="fw-semibold">Information: </span> You have an unpaid invoice 		
 				<a class="text-danger" href="{{ route('home.invoice', $account->next_invoice_no) }}" target="_blank"> #{{ $account->next_invoice_no }}</a>.
 				Might consider paying it now.
 			</div>

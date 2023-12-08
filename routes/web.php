@@ -172,11 +172,11 @@ Route::post('/save-contact', [HomeController::class, 'saveContact'])->name('home
 //Route::get('/payment/{invoice_no}',[App\Http\Controllers\HomeController::class, 'payment'])->name('home.payment');
 
 /* ======================== Provision Controller ======================================== */
-use App\Http\Controllers\Landlord\ProvisionController; // No authentication <================
-Route::get('/pricing', [ProvisionController::class, 'pricing'])->name('provision.pricing');
+//use App\Http\Controllers\Landlord\ProvisionController; // No authentication <================
+//Route::get('/pricing', [ProvisionController::class, 'pricing'])->name('provision.pricing');
 //Route::get('/checkout/{id}', [ProvisionController::class, 'checkout'])->name('provision.checkout');
-Route::get('/checkout', [ProvisionController::class, 'checkout'])->name('provision.checkout');
-Route::get('/online/{invoice_no}', [ProvisionController::class, 'onlineInvoice'])->name('provision.web');
+//Route::get('/checkout', [ProvisionController::class, 'checkout'])->name('provision.checkout');
+//Route::get('/online/{invoice_no}', [ProvisionController::class, 'onlineInvoice'])->name('provision.web');
 
 /* ======================== Contact ======================================== */
 use App\Http\Controllers\Landlord\ContactController;

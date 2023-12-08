@@ -19,8 +19,7 @@
 
 namespace App\Helpers;
 
-use App\Models\Landlord\Invoice;
-
+use App\Models\Landlord\Admin\Invoice;
 
 class Bo
 {

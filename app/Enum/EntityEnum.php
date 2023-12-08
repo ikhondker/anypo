@@ -19,14 +19,14 @@
 namespace App\Enum;
 
 enum EntityEnum: string{
-    case BUDGET     = 'BUDGET';
-    case DEPTBUDGET = 'DEPTBUDGET';
-    case PR         = 'PR';
-    case PO         = 'PO';
-    case PROJECT    = 'PROJECT';
-    case RECEIPT    = 'RECEIPT';
-    case PAYMENT    = 'PAYMENT';
-    case TEMPLATE    = 'TEMPLATE';
+	case BUDGET     = 'BUDGET';
+	case DEPTBUDGET = 'DEPTBUDGET';
+	case PR			= 'PR';
+	case PO			= 'PO';
+	case PROJECT	= 'PROJECT';
+	case RECEIPT	= 'RECEIPT';
+	case PAYMENT	= 'PAYMENT';
+	case TEMPLATE	= 'TEMPLATE';
 }
 
 

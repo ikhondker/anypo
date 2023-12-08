@@ -26,7 +26,6 @@ use Illuminate\Notifications\Notification;
 use App\Models\User;
 use App\Models\Landlord\Account;
 
-
 class ServicePurchased extends Notification implements ShouldQueue
 {
 	use Queueable;
