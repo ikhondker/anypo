@@ -154,7 +154,7 @@
 
 	<li class="sidebar-item {{ ($_route_name == 'help' ? "active" : "") }}">
 		<a class="sidebar-link" href="{{ route('help') }}">
-			<i class="align-middle" data-feather="book-open"></i><span class="align-middle">Help</span>
+			<i class="align-middle" data-feather="book-open"></i><span class="align-middle">Help {{ $_node_name }} {{ $_route_name }} </span>
 		</a>
 	</li>
 </ul>

@@ -35,7 +35,7 @@ use Str;
 #Jobs
 use App\Jobs\Landlord\CreateTenant;
 
-
+//use Storage;
 class TestController extends Controller
 {
 	public $random_password;
@@ -43,10 +43,49 @@ class TestController extends Controller
 	public function run()
 	{
 
-		$invoice_no=Bo::getInvoiceNo();
-		Log::debug("invoice_no= ".$invoice_no );
-		return redirect('/home')->with('success', 'Tenant created 1');
+		$subdir ='demo2';
+
+		// Copy avatar.png to newly created tenant
+		$path = public_path("ytenants\\".$subdir."\avatar");
+    	if(!File::isDirectory($path)){
+        	File::makeDirectory($path, 0644, true, true);
+		} 
+		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
+
+		// Copy logo.png to newly created tenant
+		$path = public_path("ytenants\\".$subdir."\logo");
+		if(!File::isDirectory($path)){
+			File::makeDirectory($path, 0644, true, true);
+		} 
+		File::copy(public_path('assets\logo\logo.png'), $path.'\logo.png');
+		dd('Copy File done at'.now().'.');
+
+
+		//Log::debug("path a= ".public_path('assets\avatar\avatar.png') );
+		Log::debug("path = ".$path  );
+		//File::copy(public_path('assets\avatar\avatar.png'), public_path('xtenants\demo1\avatar\avatar.png'));
+		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
+
+		$file = storage_path('app/file.zip');
+		$destination = public_path('files/file.zip');
+		//Storage::copy($file,$destination);
+		Log::debug("source= ".$file );
+		Log::debug("destination = ". $destination);
+		
+		//File::copy(public_path('assets\avatar\avatar.png'), public_path('xtenants/demo1/avatar/avatar.png'));
+		//Log::debug("path l= ".public_path('assets\logo\logo.png') );
+		//File::copy(public_path('assets\logo\logo.png'), public_path('xtenants/demo1/logo/avatar.png'));
+        dd('Copy File done at'.now().'.');
+
+
+		Log::debug("app.names= ".config('app.name') );
+		return redirect('/home')->with('success', 'Files Copied');
 		exit;
+
+		//$invoice_no=Bo::getInvoiceNo();
+		//Log::debug("invoice_no= ".$invoice_no );
+		//return redirect('/home')->with('success', 'Tenant created 1');
+		//exit;
 
 		Log::debug("app.names= ".config('app.name') );
 		Log::debug("app.domain= ".config('app.domain') );

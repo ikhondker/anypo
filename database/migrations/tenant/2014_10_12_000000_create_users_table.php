@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('linkedin')->nullable();
             $table->boolean('ban')->default(true); 
             $table->string('timezone', 255)->default('UTC');
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->nullable()->default('avatar.png');
             $table->text('notes')->nullable();
             $table->boolean('enable')->default(false);  // only make first admin true
             $table->boolean('seeded')->default(false); 

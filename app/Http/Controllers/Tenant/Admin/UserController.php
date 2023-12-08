@@ -59,305 +59,330 @@ use DB;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $users = User::query();
-        if (request('term')) {
-            $users->where('name', 'Like', '%' . request('term') . '%');
-        }
-        //Log::debug("role=".auth()->user()->role->value);
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		$users = User::query();
+		if (request('term')) {
+			$users->where('name', 'Like', '%' . request('term') . '%');
+		}
+		//Log::debug("role=".auth()->user()->role->value);
 
-        //$users = User::latest()->orderBy('id','desc')->paginate(10);
-        if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
-            $users = $users->orderBy('id', 'DESC')->paginate(10);
-        } else {
-            $users = $users->NonSeeded()->orderBy('id', 'DESC')->paginate(10);
-        }
+		//$users = User::latest()->orderBy('id','desc')->paginate(10);
+		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
+			$users = $users->orderBy('id', 'DESC')->paginate(10);
+		} else {
+			$users = $users->NonSeeded()->orderBy('id', 'DESC')->paginate(10);
+		}
 
-        //$users = $users->orderBy('id', 'DESC')->paginate(10);
-        // switch (auth()->user()->role->value) {
-        //     case UserRoleEnum::USER->value:
-        //         $users= $users->byuser()->orderBy('id', 'DESC')->paginate(10);
-        //         break;
-        //     case UserRoleEnum::ADMIN->value:
-        //         $users= $users->byaccount()->orderBy('id', 'DESC')->paginate(10);
-        //         break;
-        //     default:
-        //         $users= $users->orderBy('id', 'DESC')->paginate(10);
-        //         Log::debug("Other roles!");
-        // }
-        return view('tenant.admin.users.index', compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
-    }
+		//$users = $users->orderBy('id', 'DESC')->paginate(10);
+		// switch (auth()->user()->role->value) {
+		//     case UserRoleEnum::USER->value:
+		//         $users= $users->byuser()->orderBy('id', 'DESC')->paginate(10);
+		//         break;
+		//     case UserRoleEnum::ADMIN->value:
+		//         $users= $users->byaccount()->orderBy('id', 'DESC')->paginate(10);
+		//         break;
+		//     default:
+		//         $users= $users->orderBy('id', 'DESC')->paginate(10);
+		//         Log::debug("Other roles!");
+		// }
+		return view('tenant.admin.users.index', compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $this->authorize('create', User::class);
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		$this->authorize('create', User::class);
 
-        // $emps = Emp::select('id','name')
-        //     ->where('status', 'active')
-        //     ->orderBy('id','asc')
-        //     ->get();
-        //$emps = Emp::getAll();
+		// $emps = Emp::select('id','name')
+		//     ->where('status', 'active')
+		//     ->orderBy('id','asc')
+		//     ->get();
+		//$emps = Emp::getAll();
 
-        return view('tenant.admin.users.create');
-    }
+		return view('tenant.admin.users.create');
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreUserRequest $request)
-    {
-        $this->authorize('create', User::class);
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreUserRequest $request)
+	{
+		$this->authorize('create', User::class);
 
-        //user settings
-        //$request->merge(['account_id'   => auth()->user()->account_id]);
-        $request->merge(['enable'       => true]);
-        $request->merge(['seeded'       => false]);
+		//user settings
+		//$request->merge(['account_id'   => auth()->user()->account_id]);
+		$request->merge(['enable'       => true]);
+		$request->merge(['seeded'       => false]);
 
-        // if($request->has('admin')){
-        //     //Checkbox checked
-        //     $request->merge(['role'     => UserRoleEnum::ADMIN->value ]);
-        // }else{
-        //     //Checkbox not checked
-        //     $request->merge(['role'     => UserRoleEnum::USER->value ]);
-        // }
+		// if($request->has('admin')){
+		//     //Checkbox checked
+		//     $request->merge(['role'     => UserRoleEnum::ADMIN->value ]);
+		// }else{
+		//     //Checkbox not checked
+		//     $request->merge(['role'     => UserRoleEnum::USER->value ]);
+		// }
 
-        $random_password                = Str::random(12);
-        $request->merge(['password'     => Hash::make($random_password) ]);
-        //Log::channel('bo')->info('password='.$random_password);
-        //$request->merge(['email_verified_at' => now()]);
+		$random_password                = Str::random(12);
+		$request->merge(['password'     => Hash::make($random_password) ]);
+		//Log::channel('bo')->info('password='.$random_password);
+		//$request->merge(['email_verified_at' => now()]);
 
-        // create User
-        $user = User::create($request->all());
-        if ($user) {
+		// create User
+		$user = User::create($request->all());
+		if ($user) {
 
-            // Send Verification Email
-            event(new Registered($user));
+			// Send Verification Email
+			event(new Registered($user));
 
-            // Send notification on new user creation
-            $user->notify(new UserCreated($user, $random_password));
+			// Send notification on new user creation
+			$user->notify(new UserCreated($user, $random_password));
 
-            EventLog::event('user', $user->id, 'create');
+			EventLog::event('user', $user->id, 'create');
 
-            return redirect()->route('users.index')->with('success', 'User created successfully.');
-        } else {
-            return redirect()->route('users.index')->with('error', 'User creation failed!');
-        }
-
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        $this->authorize('view', $user);
-        return view('tenant.admin.users.show', compact('user'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        $this->authorize('update', $user);
-
-        $countries = Country::getAll();
-        $designations = Designation::getAll();
-
-        return view('tenant.admin.users.edit', compact('user', 'countries', 'designations'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        $this->authorize('update', $user);
-
-        //Log::debug('I am inside update!');
-        // upload to private folder and show using user.show route
-        // Upload File, if any, insert row in attachment table  and get attachments id
-        //if ($file = $request->file('file_to_upload')) {
-        //    $request->merge(['user_id'    => $user->id ]);
-        //    $user_id = FileUpload::uploadPhoto($request);
-        //}
+			return redirect()->route('users.index')->with('success', 'User created successfully.');
+		} else {
+			return redirect()->route('users.index')->with('error', 'User creation failed!');
+		}
 
 
-        // for non admin role field is not shown
-        if ($request->has('role')) {
-            Log::debug('role Found!');
-        } else {
-            $request->merge(['role'    => $user->role ]);
-            Log::debug('role hidden for system users!');
-        }
+	}
 
-        //$request->validate();
-        $request->validate([
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(User $user)
+	{
+		$this->authorize('view', $user);
+		return view('tenant.admin.users.show', compact('user'));
+	}
 
-        ]);
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(User $user)
+	{
+		$this->authorize('update', $user);
 
-        if ($file = $request->file('file_to_upload')) {
-            $fileName = FileUpload::uploadAvatar($request);
-            $request->merge(['avatar'       => $fileName ]);
-        }
+		$countries = Country::getAll();
+		$designations = Designation::getAll();
 
-        // TODO add Role update
-        if (auth()->user()->role->value <> UserRoleEnum::ADMIN->value) {
+		return view('tenant.admin.users.edit', compact('user', 'countries', 'designations'));
+	}
 
-        }
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateUserRequest $request, User $user)
+	{
+		$this->authorize('update', $user);
 
-        if ($request->input('role') <> $user->role) {
-            EventLog::event('user', $user->id, 'update', 'role', $user->role);
-        }
-
-        $user->update($request->all());
-        EventLog::event('user', $user->id, 'update', 'name', $request->name);
-
-        return redirect()->route('users.index')->with('success', 'User profile updated successfully.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        $this->authorize('delete', $user);
-
-        $user->fill(['enable' => !$user->enable]);
-        $user->update();
-
-        // Notify User of Enable
-        if($user->enable) {
-            $action = 'ACTIVATED';
-            $actionURL = route('login');
-            $account = User::where('id', $user->id)->first();
-            $account->notify(new UserActions($account, $action, $actionURL));
-        }
-        // Write to Log
-        EventLog::event('user', $user->id, 'status', 'enable', $user->enable);
-
-        return redirect()->route('users.index')->with('success', 'User Status Updated successfully');
-
-    }
+		//Log::debug('I am inside update!');
+		// upload to private folder and show using user.show route
+		// Upload File, if any, insert row in attachment table  and get attachments id
+		//if ($file = $request->file('file_to_upload')) {
+		//    $request->merge(['user_id'    => $user->id ]);
+		//    $user_id = FileUpload::uploadPhoto($request);
+		//}
 
 
-    public function role()
-    {
-        //$users = User::whereIn('role',['emp','user','supervisor','owner'])->orderBy('id','desc')->paginate(20);
-        $users = User::latest()->orderBy('id', 'desc')->paginate(10);
-        return view('tenant.admin.users.role', compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
-    }
+		// for non admin role field is not shown
+		if ($request->has('role')) {
+			Log::debug('Role Found!');
+		} else {
+			$request->merge(['role'    => $user->role->value ]);
+			Log::debug('Role hidden for system users!');
+		}
 
-    // TODO bottom footer
-    public function updaterole(User $user, $role)
-    {
-        $this->authorize('updaterole', $user);
-        $user->role = $role;
-        $user->update();
+		//$request->validate();
+		$request->validate([
 
-        // update user roles
-        //$data = User::find($id);
-        //$data->role = $role;
-        //dd($user->id);
-        //$data->save();
-        //use App\MyData as MyData;
-        //$myData->where('id', $request->id)->update(['active' => $request->active]);
+		]);
 
-        // Write to Log
-        EventLog::event('user', $user->id, 'updaterole', 'name', $role);
-        return redirect()->back()->with(['success' => 'User '.$user->name.' role to ['.$role.'] updated successfully']);
-        //return redirect()->route('users.index')->with('success', 'User '.$user->name.' role to ['.$role.'] updated successfully');
-    }
+		// if ($file = $request->file('file_to_upload')) {
+		//     $fileName = FileUpload::uploadAvatar($request);
+		//     $request->merge(['avatar'       => $fileName ]);
+		// }
 
-    public function password(User $user)
-    {
-        $this->authorize('changepass', $user);
-        return view('tenant.admin.users.password', compact('user'));
-    }
+		
+		if ($image = $request->file('file_to_upload')) {
+		
+			// upload to D:\laravel\anypo\public\tenant\demo1\avatar
+			// also defined in ViewComposer
+			$avatar_dir = "tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR')."\\";
 
-    public function changepass(Request $request, User $user)
-    {
+			$destinationPath = public_path( $avatar_dir);
+			//Log::debug('destinationPath= '. $destinationPath);
 
-        $this->authorize('changepass', $user);
+			$token          = $user->id ."-" . Str::uuid();
+			$extension      = "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 
-        //$request->validate();
-        // $request->validate([
-        // ]);
+			$profileImage   = $token . "-uploaded" . $extension;
+			$thumbImage     = $token. $extension;
 
-        $request->validate([
-            'password1'  => ['required'],
-            'password2'  => ['same:password1'],
-        ]);
+			$image->move($destinationPath, $profileImage);
+			$request->merge(['avatar' => $thumbImage ]);
 
-        //dd($request->password1);
-        //$user->password = bcrypt($request->password1);
-        $user->password = Hash::make($request->password1);
-        $user->update();
+			//resize to thumbnail
+			$image_resize = Image::make(public_path($avatar_dir).$profileImage);
+			$image_resize->fit(160, 160);
+			$image_resize->save(public_path($avatar_dir .$thumbImage));
+		} 
 
-        // Write to Log
-        EventLog::event('user', $user->id, 'update', 'password', $request->id);
-        return redirect()->route('users.index')->with('success', 'User password updated successfully');
-    }
+		// TODO add Role update
+		if (auth()->user()->role->value <> UserRoleEnum::ADMIN->value) {
+
+		}
+
+		if ($request->input('role') <> $user->role) {
+			EventLog::event('user', $user->id, 'update', 'role', $user->role);
+		}
+
+		$user->update($request->all());
+		EventLog::event('user', $user->id, 'update', 'name', $request->name);
+
+		return redirect()->route('users.index')->with('success', 'User profile updated successfully.');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(User $user)
+	{
+		$this->authorize('delete', $user);
+
+		$user->fill(['enable' => !$user->enable]);
+		$user->update();
+
+		// Notify User of Enable
+		if($user->enable) {
+			$action = 'ACTIVATED';
+			$actionURL = route('login');
+			$account = User::where('id', $user->id)->first();
+			$account->notify(new UserActions($account, $action, $actionURL));
+		}
+		// Write to Log
+		EventLog::event('user', $user->id, 'status', 'enable', $user->enable);
+
+		return redirect()->route('users.index')->with('success', 'User Status Updated successfully');
+
+	}
 
 
-    public function export()
-    {
-        $data = DB::select("SELECT id, name, email, cell, role, enable 
-            FROM users");
-        $dataArray = json_decode(json_encode($data), true);
-        // used Export Helper
-        return Export::csv('users', $dataArray);
+	public function role()
+	{
+		//$users = User::whereIn('role',['emp','user','supervisor','owner'])->orderBy('id','desc')->paginate(20);
+		$users = User::latest()->orderBy('id', 'desc')->paginate(10);
+		return view('tenant.admin.users.role', compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
+	}
 
-    }
+	// TODO bottom footer
+	public function updaterole(User $user, $role)
+	{
+		$this->authorize('updaterole', $user);
+		$user->role = $role;
+		$user->update();
 
-    public function image($filename)
-    {
-        //shown as: http://geda.localhost:8000/image/4.jpg
-        //$path = storage_path('uploads/' . $filename);
-        $path = storage_path('app/public/profile/'. $filename);
-        Log::debug('path= '. $path);
+		// update user roles
+		//$data = User::find($id);
+		//$data->role = $role;
+		//dd($user->id);
+		//$data->save();
+		//use App\MyData as MyData;
+		//$myData->where('id', $request->id)->update(['active' => $request->active]);
 
-        if (!File::exists($path)) {
-            abort(404);
-            Log::debug('FILE does not exists! '. $filename);
-        }
+		// Write to Log
+		EventLog::event('user', $user->id, 'updaterole', 'name', $role);
+		return redirect()->back()->with(['success' => 'User '.$user->name.' role to ['.$role.'] updated successfully']);
+		//return redirect()->route('users.index')->with('success', 'User '.$user->name.' role to ['.$role.'] updated successfully');
+	}
 
-        $file = File::get($path);
-        $type = File::mimeType($path);
+	public function password(User $user)
+	{
+		$this->authorize('changepass', $user);
+		return view('tenant.admin.users.password', compact('user'));
+	}
 
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-        return $response;
-    }
+	public function changepass(Request $request, User $user)
+	{
 
-    public function impersonate(User $user)
-    {
-        $this->authorize('impersonate', User::class);
+		$this->authorize('changepass', $user);
 
-        if ($user->id !== ($original = auth()->user()->id)) {
-            session()->put('original_user', $original);
-            auth()->login($user);
-        }
-        EventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
-        return redirect('/home');
+		//$request->validate();
+		// $request->validate([
+		// ]);
 
-    }
+		$request->validate([
+			'password1'  => ['required'],
+			'password2'  => ['same:password1'],
+		]);
 
-    public function leaveImpersonate()
-    {
-        EventLog::event('user', session()->get('original_user'), 'leave-impersonate', 'id', auth()->user()->id);
-        auth()->loginUsingId(session()->get('original_user'));
-        session()->forget('original_user');
+		//dd($request->password1);
+		//$user->password = bcrypt($request->password1);
+		$user->password = Hash::make($request->password1);
+		$user->update();
 
-        return redirect('/home');
-    }
+		// Write to Log
+		EventLog::event('user', $user->id, 'update', 'password', $request->id);
+		return redirect()->route('users.index')->with('success', 'User password updated successfully');
+	}
+
+
+	public function export()
+	{
+		$data = DB::select("SELECT id, name, email, cell, role, enable 
+			FROM users");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('users', $dataArray);
+
+	}
+
+	public function image($filename)
+	{
+		//shown as: http://geda.localhost:8000/image/4.jpg
+		//$path = storage_path('uploads/' . $filename);
+		$path = storage_path('app/public/profile/'. $filename);
+		Log::debug('path= '. $path);
+
+		if (!File::exists($path)) {
+			abort(404);
+			Log::debug('FILE does not exists! '. $filename);
+		}
+
+		$file = File::get($path);
+		$type = File::mimeType($path);
+
+		$response = Response::make($file, 200);
+		$response->header("Content-Type", $type);
+		return $response;
+	}
+
+	public function impersonate(User $user)
+	{
+		$this->authorize('impersonate', User::class);
+
+		if ($user->id !== ($original = auth()->user()->id)) {
+			session()->put('original_user', $original);
+			auth()->login($user);
+		}
+		EventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
+		return redirect('/home');
+
+	}
+
+	public function leaveImpersonate()
+	{
+		EventLog::event('user', session()->get('original_user'), 'leave-impersonate', 'id', auth()->user()->id);
+		auth()->loginUsingId(session()->get('original_user'));
+		session()->forget('original_user');
+
+		return redirect('/home');
+	}
 
 }

@@ -34,6 +34,11 @@ class ViewServiceProvider extends ServiceProvider
 		|-----------------------------------------------------------------------------
 		*/
 
+		view()->composer('landlord.*', function ($view) {
+			$view->with('_avatar_dir',config('bo.DIR_AVATAR'));
+			$view->with('_logo_dir',config('bo.DIR_LOGO'));
+		});
+
 		view()->composer('layouts.landlord-app', function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu                 = new Menu;
@@ -59,7 +64,14 @@ class ViewServiceProvider extends ServiceProvider
 		| Tenant																	 + 
 		|-----------------------------------------------------------------------------
 		*/
-		// TODO seperate 
+		// TODO separate 
+
+		view()->composer('tenant.*', function ($view) {
+			$view->with('_avatar_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR')."\\");
+			$view->with('_logo_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\");	
+		});
+
+
 		view()->composer('layouts.app', function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu                 = new Menu;

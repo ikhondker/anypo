@@ -58,12 +58,12 @@
 				<a class="sidebar-brand" href="{{ route('home') }}">
 					{{-- <img src="{{asset('logo/logo.png')}}" width="90px" height="90px"/> <br> --}}
 					@auth
-						@if ( $_setup->logo == "")
+						{{-- @if ( $_setup->logo == "")
 							<img src="{{ asset('/logo/logo.png')}}" width="90px" height="90px" class="" alt="{{ $_setup->name }}"/><br>
 						@else
 							<img src="/logo/{{ $_setup->logo }}" width="90px" height="90px" class="" alt="{{ $_setup->name }}"/><br>
-						@endif
-					
+						@endif --}}
+						<img src="{{ url( $_logo_dir . $_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/><br>
 					{{-- <span class="text-dark">{{ $_setup->name}},{{ $_setup->address1 }}, {{ $_setup->city.', '.$_setup->state.', '.$_setup->zip  }} {{ $_setup->country }}</span> --}}
 					@endauth
 
@@ -200,9 +200,9 @@
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								@auth
 									@if ( auth()->user()->avatar == "")
-										<img src="{{ asset('/avatar/avatar.png')}}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
+										<img src="{{ url($_avatar_dir . 'avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
 									@else
-										<img src="/avatar/{{ auth()->user()->avatar }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
+										<img src="{{ url($_avatar_dir . auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
 									@endif
 									<span class="text-dark">{{ Str::limit(auth()->user()->name, 25, '...') }}</span>
 								@endauth

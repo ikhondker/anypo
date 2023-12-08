@@ -26,12 +26,18 @@ class Bo
 {
 	public static function getInvoiceNo()
 	{
-		
 		// generate unique invoice_no
 		do {
 			$invoice_no = random_int(1000000, 9999999);
 		} while (Invoice::where("invoice_no", "=", $invoice_no)->first());
 		return $invoice_no;
 	}
+
+	public static function deleteTenant($site)
+	{
+
+		return true;
+	}
+
 
 }

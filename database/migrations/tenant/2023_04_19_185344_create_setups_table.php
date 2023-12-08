@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->string('facebook')->nullable();
             $table->string('linkedin')->nullable();
-            $table->string('logo')->nullable();
+            $table->string('logo')->nullable()->default('logo.png');
             $table->boolean('show_banner')->default(false); 
             $table->text('banner_message')->nullable();
             //$table->boolean('show_notice')->default(false);

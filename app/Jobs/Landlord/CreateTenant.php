@@ -137,6 +137,9 @@ class CreateTenant implements ShouldQueue
 		$checkout->status_code =  LandlordCheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
 		
+		// copy logo and avatar default files
+		$service_id = self::copyCheckoutFiles($this->checkout_id);
+
 	}
 
 	public function test()
@@ -190,7 +193,31 @@ class CreateTenant implements ShouldQueue
 		return $user_id;
 	}
 
+	public static function copyCheckoutFiles($checkout_id = 0)
+	{
+		Log::channel('bo')->info('Copying Default Logo and Avatar png copied.');
+		$checkout = Checkout::where('id', $checkout_id)->first();
+		$subdir 		=$checkout->site;
 
+		// Copy avatar.png to newly created tenant
+		$path = public_path("tenants\\".$subdir."\avatar");
+		Log::channel('bo')->info('Copying avatar.png to '.$path);
+    	if(!File::isDirectory($path)){
+        	File::makeDirectory($path, 0644, true, true);
+		} 
+		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
+
+		// Copy logo.png to newly created tenant
+		$path = public_path("tenants\\".$subdir."\logo");
+		if(!File::isDirectory($path)){
+			File::makeDirectory($path, 0644, true, true);
+		} 
+		Log::channel('bo')->info('Copying logo.png to '.$path);
+		File::copy(public_path('assets\logo\logo.png'), $path.'\logo.png');
+
+		Log::channel('bo')->info('Default Logo and Avatar png copied.');
+		return 0;
+	}
 	public static function createCheckoutAccount($checkout_id = 0)
 	{
 

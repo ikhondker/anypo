@@ -216,8 +216,8 @@ Route::middleware([
 	
 
 	/* ======================== FileAccess ======================================== */
-	Route::get('/logo/{file}', [FileAccessController::class, 'logo'])->name('logo');
-	Route::get('/avatar/{file}', [FileAccessController::class, 'avatar'])->name('avatar');
+	//Route::get('/logo/{file}', [FileAccessController::class, 'logo'])->name('logo');
+	//Route::get('/avatar/{file}', [FileAccessController::class, 'avatar'])->name('avatar');
 
 	/* ======================== Dept (template)======================================== */
 	Route::resource('depts', DeptController::class)->middleware(['auth', 'verified']);
