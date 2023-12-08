@@ -16,7 +16,7 @@
 	</li>
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'users.password' ? 'active' : '' }}"
-			href="{{ route('users.my-password-change', auth()->user()->id) }}">
+			href="{{ route('users.password-change', auth()->user()->id) }}">
 			<i class="bi-shield-shaded nav-icon"></i> Change Password
 		</a>
 	</li>

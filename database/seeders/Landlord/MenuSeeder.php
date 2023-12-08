@@ -160,7 +160,7 @@ class MenuSeeder extends Seeder
             [ 'raw_route_name' => 'tickets.all',        'route_name' => 'tickets.index',        'access' => 'B'],
 
             [ 'raw_route_name' => 'users.show',         'route_name' => 'users.show',           'access' => 'F'],
-            [ 'raw_route_name' => 'users.password',     'route_name' => 'users.password',       'access' => 'F'],
+            [ 'raw_route_name' => 'users.password-change',     'route_name' => 'users.password-change',       'access' => 'F'],
             [ 'raw_route_name' => 'users.index',        'route_name' => 'users.index',          'access' => 'F'],
             [ 'raw_route_name' => 'users.update',       'route_name' => 'users.index',          'access' => 'F'],
             [ 'raw_route_name' => 'users.edit',         'route_name' => 'users.show',           'access' => 'F'],

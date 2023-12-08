@@ -89,6 +89,8 @@ Route::middleware([
 	 /* ======================== make auth universal ========================================  */
 	 Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
 		Auth::routes(); 
+
+		
 	});
    
 	/* ======================== User ========================================  */

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\View\Components\Alert;
+namespace App\View\Components\Tenant\Alert;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Error extends Component
+class Success extends Component
 {
     public $message;
     /**
      * Create a new component instance.
      */
-    public function __construct( $message = '')
+    public function __construct( $message)
     {
         $this->message = $message;
     }
@@ -22,6 +22,6 @@ class Error extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.alert.error');
+        return view('components.tenant.alert.success');
     }
 }

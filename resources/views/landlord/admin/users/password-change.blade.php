@@ -6,7 +6,7 @@
 
   <!-- Card -->
   <div class="card">
-	<form action="{{ route('users.update.password',['user'=>$user->id]) }}" method="POST">
+	<form action="{{ route('users.password-update',['user'=>$user->id]) }}" method="POST">
 		@csrf
 		{{-- @method('PUT') --}}
 		<input type="hidden" name="id" value="{{ $user->id }}">

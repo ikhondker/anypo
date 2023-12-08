@@ -1,22 +1,22 @@
 <?php
 /**
- * ==================================================================================
- * @version v1.0.0
- * ==================================================================================
- * @file        UserController.php
- * @brief       This file contains the implementation of the UserController class.
- * @author      Iqbal H. Khondker 
- * @created     27-Apr-2023
- * @copyright   (c) Copyright by Iqbal H. Khondker
- * ==================================================================================
- * Revision History:
- * Date			Version	Author    		        Comments
- * ----------------------------------------------------------------------------------
- * 27-Apr-2023	v1.0.0	Iqbal H Khondker		Created.
- * DD-Mon-YYYY	v1.0.0	Iqbal H Khondker		Modification brief.
- * ==================================================================================
+* =====================================================================================
+* @version v1.0.0
+* =====================================================================================
+* @file			UserController.php
+* @brief		This file contains the implementation of the UserController
+* @path			\app\Http\Controllers\Landlord\Admin
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		10-DEC-2023
+* @copyright	(c) Iqbal H. Khondker 
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 10-DEC-2023	v1.0.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
 */
-
 namespace App\Http\Controllers\Landlord\Admin;
 
 use App\Http\Controllers\Controller;
@@ -315,16 +315,14 @@ class UserController extends Controller
 		return redirect()->route('users.index')->with('success','User '.$user->name.' role to \''.$role.'\' updated successfully');
 	}
 
-	public function userPassword(User $user)
+	public function changePassword(User $user) 
 	{
 		//$this->authorize('changepass',$user);  
 
 		Log::debug('Inside userPassword!');
 		Log::debug('Role='. auth()->user()->role->value);
-		
 
-
-		return view('landlord.admin.users.user-password',compact('user')); 
+		return view('landlord.admin.users.password-change',compact('user')); 
 	}
 
 	public function updatePassword(Request $request, User $user)
@@ -344,7 +342,7 @@ class UserController extends Controller
 
 		// Write to Log
 		LandlordEventLog::event('user',$user->id,'update','password',$request->id);
-		return redirect()->route('dashboard.index')->with('success','User password updated successfully');
+		return redirect()->route('dashboards.index')->with('success','User password updated successfully');
 	}
 
 	public function export()

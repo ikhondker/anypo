@@ -42,6 +42,9 @@
 					//echo $file['filename'] .'<br>' ;
 					$fname = $file['filename'];
 					$bname = $file['basename'];
+					//$dname = $file['dirname'];
+					$dname = substr($file['dirname'],strlen(base_path()));
+					
 
 					//use App\Http\Controllers\AccountController;
 					//Route::resource('accounts', AccountController::class);
@@ -56,21 +59,22 @@
 				<div class="alert alert-primary" role="alert">
 <pre>
 /**
-	* ==================================================================================
-	* @version v1.0.0
-	* ==================================================================================
-	* @file        {{ $bname }}
-	* @brief       This file contains the implementation of the {{ $fname }} Notification.
-	* @author      Iqbal H. Khondker &lt;ihk@khondker.com&gt;
-	* @created     7-Dec-2023
-	* @copyright   (c) Copyright by Iqbal H. Khondker
-	* ==================================================================================
-	* Revision History:
-	* Date			Version	Author				Comments
-	* ----------------------------------------------------------------------------------
-	* 10-Dec-2023	v1.0.0	Iqbal H Khondker	Created.
-	* DD-Mon-YYYY	v1.0.1	Iqbal H Khondker	Modification brief.
-	* ==================================================================================
+* =====================================================================================
+* @version v1.0.0
+* =====================================================================================
+* @file			{{ $bname }}
+* @brief		This file contains the implementation of the {{ $fname }}
+* @path			{{ $dname }}
+* @author		Iqbal H. Khondker &lt;ihk@khondker.com&gt;
+* @created		10-DEC-2023
+* @copyright	(c) Iqbal H. Khondker 
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 10-DEC-2023	v1.0.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
 */
 </pre>
 

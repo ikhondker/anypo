@@ -219,7 +219,6 @@ use App\Http\Controllers\TenantController;
 Route::resource('tenants', TenantController::class)->middleware(['auth', 'verified']);
 
 
-
 /**
 * ==================================================================================
 * Routes need auth and email verification ['auth', 'verified']
@@ -276,17 +275,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== User ========================================  */
 	Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
 	// TODO why remove
-	//Route::get('/users/delete/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-	//Route::get('users-password/{user}', [UserController::class, 'userPassword'])->name('users.password');
-	Route::get('/user/my-password-change/{user}', [UserController::class, 'userPassword'])->name('users.my-password-change');
-	Route::post('/user/update-password/{user}', [UserController::class, 'updatePassword'])->name('users.update.password');
+	// Route::get('/users/delete/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+	// Route::get('users-password/{user}', [UserController::class, 'userPassword'])->name('users.password');
+	Route::get('/user/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
+	Route::post('/user/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
 	Route::get('/user/export', [UserController::class, 'export'])->name('users.export');
 	Route::get('/user/role', [UserController::class, 'role'])->name('users.role');
 	Route::get('/user/updaterole/{user}/{role}', [UserController::class, 'updaterole'])->name('users.updaterole');
-	//Route::get('/user/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
+	// Route::get('/user/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
 	Route::get('/user/image/{filename}', [UserController::class, 'image'])->name('users.image');
 	// TODO
-	//Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
+	// Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
 	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
 	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
@@ -340,10 +339,10 @@ use App\Http\Controllers\Landlord\Manage\TemplateController;
 //Route::middleware(['auth', 'verified','can:access-back-office'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
-	Route::get('dashboard', function () {
-		// Matches The "/admin/dashboard" URL
-		return "This is from admin route from admin.route file at after auth " . now();
-	});
+	// Route::get('dashboard', function () {
+	// 	// Matches The "/admin/dashboard" URL
+	// 	return "This is from admin route from admin.route file at after auth " . now();
+	// });
 	
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
