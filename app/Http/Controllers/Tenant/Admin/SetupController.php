@@ -152,22 +152,22 @@ class SetupController extends Controller
 		if ($image = $request->file('file_to_upload')) {
 			// upload to D:\laravel\anypo\public\tenant\demo1\avatar
 			// also defined in ViewComposer
-			$avatar_dir = "tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\";
-			$destinationPath = public_path( $avatar_dir);
+			$logo_dir = "tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\";
+			$destinationPath = public_path( $logo_dir);
 
 			$token          = $setup->id ."-" . Str::uuid();
 			$extension      = "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 
-			$profileImage   = $token . "-uploaded" . $extension;
+			$logoImage   = $token . "-uploaded" . $extension;
 			$thumbImage     = $token. $extension;
 
-			$image->move($destinationPath, $profileImage);
+			$image->move($destinationPath, $logoImage);
 			$request->merge(['logo' => $thumbImage ]);
 
 			//resize to thumbnail
-			$image_resize = Image::make(public_path($avatar_dir).$profileImage);
+			$image_resize = Image::make(public_path($logo_dir).$logoImage);
 			$image_resize->fit(160, 160);
-			$image_resize->save(public_path($avatar_dir .$thumbImage));
+			$image_resize->save(public_path($logo_dir .$thumbImage));
 		}
 
 

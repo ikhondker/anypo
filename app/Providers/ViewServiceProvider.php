@@ -34,9 +34,10 @@ class ViewServiceProvider extends ServiceProvider
 		|-----------------------------------------------------------------------------
 		*/
 
-		view()->composer('landlord.*', function ($view) {
-			$view->with('_avatar_dir',config('bo.DIR_AVATAR'));
-			$view->with('_logo_dir',config('bo.DIR_LOGO'));
+		view()->composer(['landlord.*','layouts.landlord-app'], function ($view) {
+			$view->with('_avatar_dir',"landlord\\".config('bo.DIR_AVATAR')."\\");
+			$view->with('_logo_dir',"landlord\\".config('bo.DIR_LOGO')."\\");
+			//$view->with('_logo_dir',config('bo.DIR_LOGO'));
 		});
 
 		view()->composer('layouts.landlord-app', function ($view) {
@@ -64,9 +65,7 @@ class ViewServiceProvider extends ServiceProvider
 		| Tenant																	 + 
 		|-----------------------------------------------------------------------------
 		*/
-		// TODO separate 
-
-		view()->composer('tenant.*', function ($view) {
+		view()->composer(['tenant.*','layouts.app'], function ($view) {
 			$view->with('_avatar_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR')."\\");
 			$view->with('_logo_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\");	
 		});

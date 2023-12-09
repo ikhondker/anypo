@@ -30,14 +30,14 @@
 					<td>
 						<div class="d-flex align-items-center">
 							<div class="flex-shrink-0">
-								<img class="avatar avatar-sm avatar-circle" src="{{ url(config('bo.DIR_LOGO').$account->logo) }}"  alt="{{ $account->name }}" title="{{ $account->name }}">
+								<img class="avatar avatar-sm avatar-circle" src="{{ url($_logo_dir.$account->logo) }}"  alt="{{ $account->name }}" title="{{ $account->name }}">
 							</div>
 
 							<div class="flex-grow-1 ms-3">
 								<a class="d-inline-block link-dark" href="#">
-									<h6 class="text-hover-primary mb-0">{{ $account->name }}</h6>
+									<h6 class="text-hover-primary mb-0">{{ $account->name }} [{{$account->site }}]</h6>
 								</a>
-								<small class="d-block">Owner: {{ $account->owner->name }}</small>
+								<small class="d-block">Owner: {{ $account->owner->name }} </small>
 							</div>
 						</div>
 					</td>

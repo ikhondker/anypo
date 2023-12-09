@@ -71,9 +71,16 @@
 					@auth
 						<li class="nav-item">
 							<a href="{{ route('users.show', auth()->user()->id) }}" class="nav-link text-muted">
-								<i class="bi-person-circle  nav-icon"></i>
+								{{-- <i class="bi-person-circle  nav-icon"></i> --}}
+								<span class="avatar avatar-xs avatar-circle">
+									<img class="avatar-img" src="{{ url($_avatar_dir.$_landlord_user->avatar) }}" 
+									alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}">
+								</span>
 								{{ Str::limit(auth()->user()->name, 15, '...') }}
 							</a>
+
+							{{-- <img class="avatar avatar-xs avatar-circle" src="{{ url($_avatar_dir.$_landlord_user->avatar) }}"
+								alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}"> --}}
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('logout') }}" class="nav-link text-muted">

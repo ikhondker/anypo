@@ -23,7 +23,7 @@ class UpdateUserRequest extends FormRequest
 	{
 		//TODO
 		return [
-			'cell'				=> 'required|max:10|unique:users,cell,'. $this->user->id,
+			'cell'				=> 'required|min:6|max:20|unique:users,cell,'. $this->user->id,
 			'name'				=> 'required|max:100',
 			'address1'			=> 'required|max:100',
 			// 'email'			=> 'required|email|max:100',

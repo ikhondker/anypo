@@ -75,8 +75,9 @@
 									<div class="d-none d-lg-block text-center mb-5">
 
 										<div class="avatar avatar-xxl avatar-circle mb-3">
-											<img class="avatar-img" src="{{ url(config('bo.DIR_AVATAR').$_landlord_user->avatar) }}"
+											<img class="avatar-img" src="{{ url($_avatar_dir.$_landlord_user->avatar) }}"
 												alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}">
+												
 											<img class="avatar-status avatar-lg-status"
 												src="{{ asset('/assets/svg/illustrations/top-vendor.svg') }}"
 												alt="Image Description" data-bs-toggle="tooltip" data-bs-placement="top"

@@ -344,6 +344,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	// 	return "This is from admin route from admin.route file at after auth " . now();
 	// });
 	
+	/* ======================== Account ======================================== */
+	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.destroy');
+
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
 	Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
@@ -360,7 +363,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::resource('statuses', StatusController::class);
 	Route::get('/status/export', [StatusController::class, 'export'])->name('statuses.export');
 	Route::get('/statuses/delete/{ status }', [StatusController::class, 'destroy'])->name('statuses.destroy');
-
 
 
 	/* ======================== Attachment ======================================== */

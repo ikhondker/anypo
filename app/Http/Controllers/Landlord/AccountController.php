@@ -25,12 +25,20 @@ use App\Http\Requests\Landlord\UpdateAccountRequest;
 
 // Models
 use App\Models\User;
+
+use App\Models\Domain;
+use App\Models\Tenant;
+
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Service;
 
-use App\Models\Landlord\Manage\Country;
-use App\Models\Landlord\Manage\Product;
+use App\Models\Landlord\Lookup\Country;
+use App\Models\Landlord\Lookup\Product;
 
+use App\Models\Landlord\Admin\Invoice;
+use App\Models\Landlord\Admin\Payment;
+
+use App\Models\Landlord\Manage\Checkout;
 
 // Enums
 use App\Enum\UserRoleEnum;
@@ -151,8 +159,13 @@ class AccountController extends Controller
 
 		if ($image = $request->file('file_to_upload')) {
 
+			// upload to D:\laravel\anypo\public\landlord\logo
+			// also defined in ViewComposer
+			$logo_dir = "landlord\\".config('bo.DIR_LOGO')."\\";
+			$destinationPath = public_path( $logo_dir);
+
 			//Log::debug("A config('bo.DIR_LOGO')=".config('bo.DIR_LOGO'));
-			$destinationPath = public_path(config('bo.DIR_LOGO'));
+			//$destinationPath = public_path(config('bo.DIR_LOGO'));
 
 			$token          = $account->id ."-" . Str::uuid();
 			$extension      = "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
@@ -164,10 +177,12 @@ class AccountController extends Controller
 			$image->move($destinationPath, $logoImage);
 			$request->merge(['logo' => $thumbImage]);
 
+	
 			//resize to thumbnail
-			$image_resize = Image::make(public_path() . config('bo.DIR_LOGO') . $logoImage);
+			$image_resize = Image::make(public_path($logo_dir).$logoImage);
 			$image_resize->fit(160, 160);
-			$image_resize->save(public_path(config('bo.DIR_LOGO') . $thumbImage));
+			$image_resize->save(public_path($logo_dir .$thumbImage));
+
 		}
 		
 		$account->update($request->all());
@@ -187,7 +202,38 @@ class AccountController extends Controller
 	 */
 	public function destroy(Account $account)
 	{
-		//
+
+		$account_id= $account->id;
+
+		Log::debug("Deleting Account id=".$account_id);
+
+		$result = Payment::where('account_id', $account_id)->delete();
+		Log::debug("Payment Deleted =". $result);
+
+		$result = Invoice::where('account_id', $account_id)->delete();
+		Log::debug("Invoice Deleted =". $result);
+
+		$result = Service::where('account_id', $account_id)->delete();
+		Log::debug("Service Deleted =". $result);
+
+		$result = Checkout::where('account_id', $account_id)->delete();
+		Log::debug("Checkout Deleted =". $result);
+
+		$result = Domain::where('tenant_id', $account->site)->delete();
+		Log::debug("Domain Deleted =". $result);
+
+		$result = Tenant::where('id', $account->site)->delete();
+		Log::debug("Tenant Deleted =". $result);
+
+
+		$result = Account::where('id', $account_id)->delete();
+		Log::debug("Account Deleted =". $result);
+
+		$result = User::where('account_id', $account->id)->delete();
+		Log::debug("User Deleted =". $result);
+
+
+		return redirect()->route('accounts.index')->with('success', 'Account Deleted successfully');
 	}
 
 	public function export()

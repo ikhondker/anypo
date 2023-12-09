@@ -33,11 +33,4 @@ class Bo
 		return $invoice_no;
 	}
 
-	public static function deleteTenant($site)
-	{
-
-		return true;
-	}
-
-
 }

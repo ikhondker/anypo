@@ -22,7 +22,7 @@
 				<div class="d-flex align-items-center">
 					<!-- Avatar -->
 					<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-							<img id="avatarImg" class="avatar-img" src="{{ url(config('bo.DIR_LOGO').$account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
+							<img id="avatarImg" class="avatar-img" src="{{ url($_logo_dir.$account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
 					</label>
 					<div class="d-grid d-sm-flex gap-2 ms-4">
 
@@ -66,15 +66,25 @@
 	</div>
 	<!-- End Body -->
 
-
 	<!-- Footer -->
 	<div class="card-footer pt-0">
 		<div class="d-flex justify-content-end gap-3">
+			@if ( auth()->user()->role->value == App\Enum\UserRoleEnum::SYSTEM->value)
+				<a href="{{ route('accounts.destroy', $account->id) }}"
+					class="btn btn-danger sweet-alert2-confirm-advance" data-entity="Account"
+					data-name="{{ $account->name }}"
+					data-status="DELETE" data-bs-toggle="tooltip"
+					data-bs-placement="top" title="DELETE">
+					DELETE
+				</a>
+			 @endif
 			<a class="btn btn-primary" href="{{ route('accounts.edit',$account->id) }}">Edit</a>
 		</div>
 	</div>
 	<!-- End Footer -->
 </div>
 <!-- End Card -->
+
+@include('landlord.includes.sweet-alert2-confirm-advance')
 
 @endsection

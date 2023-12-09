@@ -209,15 +209,8 @@ class UserController extends Controller
 		
 		$this->authorize('update', $user);  
 		
-		// upload to private folder and show using user.show route
-		// Upload File, if any, insert row in attachment table  and get attachments id
-		//if ($file = $request->file('file_to_upload')) {
-		//    $request->merge(['user_id'    => $user->id ]);
-		//    $user_id = FileUpload::uploadPhoto($request);
-		//} 
-
 		$request->merge(['state'    => Str::upper($request->input('state')) ]);
-		//$request->validate();
+
 		$request->validate([
 
 		]);
@@ -227,11 +220,12 @@ class UserController extends Controller
 		// default location D:\laravel\bo04\public
 		if ($image = $request->file('file_to_upload')) {
 		
-			// uploaded to D:\laravel\bo04\public\landlord\profile
-			//Log::debug("A config('bo.DIR_AVATAR')=".config('bo.DIR_AVATAR'));
+			// upload to D:\laravel\anypo\public\landlord\avatar
+			// also defined in ViewComposer
+			$avatar_dir = "landlord\\".config('bo.DIR_AVATAR')."\\";
+			$destinationPath = public_path( $avatar_dir);
 
-			$destinationPath = public_path(config('bo.DIR_AVATAR'));
-		   // Log::debug("destinationPath=".$destinationPath);
+		   // Log::debug("destinationPath=".$destinationPath); 
 
 			$token          = $user->id ."-" . Str::uuid();
 			$extension      = "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
@@ -239,25 +233,14 @@ class UserController extends Controller
 			$profileImage   = $token . "-uploaded" . $extension;
 			$thumbImage     = $token. $extension;
 
-			//$profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-			//$profileImage   = $user->id . "-uploaded." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-			//$thumbImage 	= $user->id . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-
-			//Log::debug("profileImage=".$profileImage);
-			//Log::debug("thumbImage=".$thumbImage);
-
 			$image->move($destinationPath, $profileImage);
 			$request->merge(['avatar' => $thumbImage ]);
 
-			//keep front slash here
-			//$image_resize = Image::make(public_path().'/landlord/avatar/'.$profileImage);
-			//$image_resize->fit(90, 90);
-			//$image_resize->save(public_path('/landlord/avatar/' .$thumbImage));
-
+			
 			//resize to thumbnail
-			$image_resize = Image::make(public_path().config('bo.DIR_AVATAR').$profileImage);
+			$image_resize = Image::make(public_path($avatar_dir).$profileImage);
 			$image_resize->fit(160, 160);
-			$image_resize->save(public_path(config('bo.DIR_AVATAR') .$thumbImage));
+			$image_resize->save(public_path($avatar_dir .$thumbImage));
 		} 
 
 		$user->update($request->all());

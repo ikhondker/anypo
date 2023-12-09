@@ -29,7 +29,7 @@
 						<div class="d-flex align-items-center">
 							<!-- Avatar -->
 							<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-								<img id="avatarImg" class="avatar-img" src="{{ url(config('bo.DIR_AVATAR').$user->avatar) }}" alt="{{ $user->name }}" title="{{ $user->name }}">
+								<img id="avatarImg" class="avatar-img" src="{{ url($_avatar_dir.$user->avatar) }}" alt="{{ $user->name }}" title="{{ $user->name }}">
 							</label>
 							<div class="d-grid d-sm-flex gap-2 ms-4">
 								<input type="file" class="form-control form-control-sm" name="file_to_upload"
