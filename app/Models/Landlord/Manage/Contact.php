@@ -17,7 +17,7 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Models\Landlord;
+namespace App\Models\Landlord\Manage;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -36,7 +36,7 @@ class Contact extends Model
     use HasFactory, Notifiable;
 
     public $fillable = [
-        'name', 'email', 'subject', 'message', 'owner_id', 'ip', 'user_id', 'contact_date'
+        'type', 'first_name', 'last_name', 'email', 'cell', 'subject', 'message', 'contact_date', 'tenant', 'user_id', 'attachment_id', 'ip', 'country', 'updated_at',
     ];
 
     /**

@@ -21,8 +21,8 @@ namespace App\Helpers;
 
 use App\Models\User;
 
-use App\Models\Landlord\Attachment;
-use App\Models\Landlord\Admin\Entity;
+use App\Models\Landlord\Manage\Attachment;
+use App\Models\Landlord\Manage\Entity;
 
 
 use File;

@@ -150,7 +150,7 @@ Route::get('/contact-us', function () {
 */
 Route::get('/', function () {
 	return view('home');
-})->name('welcome');
+})->name('home');
 // IQBAL 28-feb-23
 Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
@@ -179,7 +179,7 @@ Route::post('/save-contact', [HomeController::class, 'saveContact'])->name('home
 //Route::get('/online/{invoice_no}', [ProvisionController::class, 'onlineInvoice'])->name('provision.web');
 
 /* ======================== Contact ======================================== */
-use App\Http\Controllers\Landlord\ContactController;
+use App\Http\Controllers\Landlord\Manage\ContactController;
 Route::resource('contacts', ContactController::class);
 
 /**

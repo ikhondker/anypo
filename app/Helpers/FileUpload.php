@@ -20,8 +20,8 @@
 
 namespace App\Helpers;
 
-use App\Models\Attachment;
-use App\Models\Entity;
+use App\Models\Tenant\Manage\Attachment;
+use App\Models\Tenant\Manage\Entity;
 use App\Models\User;
 
 use File;

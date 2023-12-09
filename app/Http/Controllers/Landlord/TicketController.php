@@ -27,7 +27,8 @@ use App\Http\Requests\Landlord\UpdateTicketRequest;
 // Models
 use App\Models\User;
 use App\Models\Landlord\Ticket;
-use App\Models\Landlord\Dept;
+
+use App\Models\Landlord\Lookup\Dept;
 
 use App\Models\Landlord\Manage\Priority;
 

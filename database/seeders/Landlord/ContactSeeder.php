@@ -5,7 +5,8 @@ namespace Database\Seeders\Landlord;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Landlord\Contact;
+
+use App\Models\Landlord\Manage\Contact;
 
 class ContactSeeder extends Seeder
 {

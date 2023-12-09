@@ -3,8 +3,8 @@
  * ==================================================================================
  * @version v1.0.0
  * ==================================================================================
- * @file        Contacted.php
- * @brief       This file contains the implementation of the Contacted Notification.
+ * @file        UserRegistered.php
+ * @brief       This file contains the implementation of the UserRegistered Notification.
  * @author      Iqbal H. Khondker 
  * @created     27-Apr-2023
  * @copyright   (c) Copyright by Iqbal H. Khondker
@@ -16,26 +16,27 @@
  * DD-Mon-YYYY	v1.0.0	Iqbal H Khondker		Modification brief.
  * ==================================================================================
 */
-namespace App\Notifications\Landlord;
+namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-use App\Models\Landlord\Manage\Contact;
 use App\Models\User;
 
-class Contacted extends Notification implements ShouldQueue
+
+class UserRegistered extends Notification implements ShouldQueue
 {
+    protected $user;
     use Queueable;
-    protected $contact;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct(Contact $contact)
+    public function __construct(User $user)
     {
-        $this->contact = $contact;
+        $this->user = $user;
     }
 
     /**
@@ -44,7 +45,7 @@ class Contacted extends Notification implements ShouldQueue
      * @return array<int, string>
      */
     public function via(object $notifiable): array
-    {
+    { 
         return ['mail'];
     }
 
@@ -54,18 +55,15 @@ class Contacted extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                ->subject('Website Contact: '.$this->contact->subject)
-                ->line('Hi: '.$this->contact->name)
-                ->line('Thanks. We have received the following:')
-                ->line('From: '.$this->contact->name)
-                ->line('Subject: '.$this->contact->subject)
-                ->line('Email: '.$this->contact->email)
-                ->line('Message : '.$this->contact->message)
-                ->line('Timestamp: '.now().'.')
-                ->line('We will connect soon.')
-                ->line('Thank you for using our application!');
-    }
-
+            ->subject('Registration complete at '.config('app.name'))
+            ->greeting('Hello, '.$this->user->name)
+            ->line('Welcome to '.config('app.name').'.')
+            ->line('Thank you for the registration.')
+            ->line('You will be receiving another email shortly to verify your email with link')
+            ->line('Please click on that link to verify email Address')
+            ->line('Thank you for using '.config('app.name').' application!');
+   }
+    
     /**
      * Get the array representation of the notification.
      *

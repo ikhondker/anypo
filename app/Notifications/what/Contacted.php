@@ -16,7 +16,7 @@
  * DD-Mon-YYYY	v1.0.0	Iqbal H Khondker		Modification brief.
  * ==================================================================================
 */
-namespace App\Notifications\Landlord;
+namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -29,7 +29,7 @@ use App\Models\User;
 class Contacted extends Notification implements ShouldQueue
 {
     use Queueable;
-    protected $contact;
+
     /**
      * Create a new notification instance.
      */

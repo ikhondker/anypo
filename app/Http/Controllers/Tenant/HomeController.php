@@ -18,13 +18,12 @@
  * ==================================================================================
 */
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
 // Models
 use App\Models\User;
-use App\Models\Pr;
+use App\Models\Tenant\Pr;
 // use App\Models\Landlord\Contact;
 // use App\Models\Landlord\Service;
 // use App\Models\Landlord\Account;
@@ -86,9 +85,6 @@ class HomeController extends Controller
     {
         return view('tenant.pages.help');
     }
-
-
-
 
     /**
      * Store a newly created resource in storage.

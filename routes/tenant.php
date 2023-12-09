@@ -53,10 +53,10 @@ use App\Http\Controllers\Tenant\PrlController;
 use App\Http\Controllers\Tenant\ReceiptController;
 use App\Http\Controllers\Tenant\ReportController;
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Tenant\HomeController;
 // TODO Check
-use App\Http\Controllers\FileAccessController;
-use App\Http\Controllers\DocController;
+//use App\Http\Controllers\FileAccessController;
+//use App\Http\Controllers\DocController;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 

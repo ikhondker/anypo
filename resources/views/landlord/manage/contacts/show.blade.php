@@ -7,14 +7,15 @@
   <!-- Card -->
   <div class="card">
     <div class="card-header border-bottom">
-        <h4 class="card-header-title">View Contact</h4>
+        <h4 class="card-header-title">View Visitor Contact</h4>
     </div>
 
     <!-- Body -->
     <div class="card-body">
         
-        <x-landlord.show.my-text       value="{{ $contact->name }}"/>
+        <x-landlord.show.my-text       value="{{ $contact->first_name.' '.$contact->last_name }}"/>
         <x-landlord.show.my-text       value="{{ $contact->email }}" label="E-mail"/>
+        <x-landlord.show.my-text       value="{{ $contact->cell }}" label="Cell"/>
         <x-landlord.show.my-text       value="{{ $contact->subject }}" label="Subject"/>
         <x-landlord.show.my-text       value="{{ $contact->message }}" label="Message"/>
 

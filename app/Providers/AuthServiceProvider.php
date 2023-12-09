@@ -28,14 +28,14 @@ class AuthServiceProvider extends ServiceProvider
 		| Landlord																	 + 
 		|-----------------------------------------------------------------------------
 		*/
-		'App\Models\Landlord\Account'			=> 'App\Policies\Landlord\AccountPolicy',
-		'App\Models\Landlord\Comment' 			=> 'App\Policies\Landlord\CommentPolicy',
-		'App\Models\Landlord\Contact' 			=> 'App\Policies\Landlord\ContactPolicy',
-		'App\Models\Landlord\Dashboard' 		=> 'App\Policies\Landlord\DashboardPolicy',
+		'App\Models\Landlord\Account'				=> 'App\Policies\Landlord\AccountPolicy',
+		'App\Models\Landlord\Comment' 				=> 'App\Policies\Landlord\CommentPolicy',
+		
+		'App\Models\Landlord\Dashboard' 			=> 'App\Policies\Landlord\DashboardPolicy',
 		//'App\Models\Landlord\Notification' 		=> 'App\Policies\Landlord\NotificationPolicy',
-		'App\Models\Landlord\Report' 			=> 'App\Policies\Landlord\ReportPolicy',
-		'App\Models\Landlord\Service' 			=> 'App\Policies\Landlord\ServicePolicy',
-		'App\Models\Landlord\Ticket' 			=> 'App\Policies\Landlord\TicketPolicy',
+		'App\Models\Landlord\Report' 				=> 'App\Policies\Landlord\ReportPolicy',
+		'App\Models\Landlord\Service' 				=> 'App\Policies\Landlord\ServicePolicy',
+		'App\Models\Landlord\Ticket' 				=> 'App\Policies\Landlord\TicketPolicy',
 		
 		'App\Models\Landlord\Admin\Activity'		=> 'App\Policies\Landlord\Admin\ActivityPolicy',
 		'App\Models\Landlord\Admin\Payment' 		=> 'App\Policies\Landlord\Admin\PaymentPolicy',
@@ -51,6 +51,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Lookup\Status' 		=> 'App\Policies\Landlord\Lookup\StatusPolicy',
 		
 		'App\Models\Landlord\Manage\Attachment' 	=> 'App\Policies\Landlord\Manage\AttachmentPolicy',
+		'App\Models\Landlord\Manage\Contact' 		=> 'App\Policies\Landlord\Manage\ContactPolicy',
 		'App\Models\Landlord\Manage\Checkout' 		=> 'App\Policies\Landlord\Manage\CheckoutPolicy',
 		'App\Models\Landlord\Manage\Entity' 		=> 'App\Policies\Landlord\Manage\EntityPolicy',
 		'App\Models\Landlord\Manage\Menu' 			=> 'App\Policies\Landlord\Manage\MenuPolicy',

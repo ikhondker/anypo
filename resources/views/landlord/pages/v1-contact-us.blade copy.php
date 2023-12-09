@@ -76,14 +76,16 @@
 					<div class="col-sm-6">
 						<!-- Form -->
 						<div class="mb-3">
-							<label class="form-label" for="first_name">First name</label>
-							<input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" 
-								name="first_name" id="first_name" placeholder="First name"     
-								value="{{ old('first_name', auth()->check() ? auth()->user()->name : '') }}"
-								required/>
-							@error('first_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
+						<label class="form-label" for="hireUsFormFirstNameEg3">First name</label>
+						<input type="text" class="form-control form-control-lg" name="hireUsFormNameFirstName" id="hireUsFormFirstNameEg3" placeholder="First name" aria-label="First name">
+						<input type="text" class="form-control @error('name') is-invalid @enderror" 
+							name="first_name" id="first_name" placeholder="First name"     
+							value="{{ old('first_name', '' ) }}"
+							required/>
+						@error('first_name')
+							<div class="text-danger text-xs">{{ $message }}</div>
+						@enderror
+						
 						</div>
 						<!-- End Form -->
 					</div>
@@ -92,13 +94,16 @@
 					<div class="col-sm-6">
 						<!-- Form -->
 						<div class="mb-3">
-							<label class="form-label" for="last_name">Last name</label>
-							<input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" 
-								name="last_name" id="last_name" placeholder="Last name"     
-								value="{{ old('last_name', '' ) }}"/>
-							@error('last_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
+						<label class="form-label" for="hireUsFormLasttNameEg3">Last name</label>
+						<input type="text" class="form-control form-control-lg" name="hireUsFormNameLastName" id="hireUsFormLasttNameEg3" placeholder="Last name" aria-label="Last name">
+						<input type="text" class="form-control @error('name') is-invalid @enderror" 
+							name="last_name" id="last_name" placeholder="Last name"     
+							value="{{ old('last_name', '' ) }}"
+							required/>
+						@error('last_name')
+							<div class="text-danger text-xs">{{ $message }}</div>
+						@enderror
+
 						</div>
 						<!-- End Form -->
 					</div>
@@ -110,14 +115,8 @@
 					<div class="col-sm-6">
 						<!-- Form -->
 						<div class="mb-3">
-							<label class="form-label" for="email">Email address</label>
-							<input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" 
-								name="email" id="email" placeholder="you@example.com"     
-								value="{{ old('email', auth()->check() ? auth()->user()->email : '' ) }}"
-								required/>
-							@error('email')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
+						<label class="form-label" for="hireUsFormWorkEmailEg3">Email address</label>
+						<input type="email" class="form-control form-control-lg" name="hireUsFormNameWorkEmail" id="hireUsFormWorkEmailEg3" placeholder="you@example.com" aria-label="you@example.com">
 						</div>
 						<!-- End Form -->
 					</div>
@@ -126,13 +125,8 @@
 					<div class="col-sm-6">
 						<!-- Form -->
 						<div class="mb-3">
-							<label class="form-label" for="cell">Cell <span class="form-label-secondary">(Optional)</span></label>
-							<input type="text" class="form-control form-control-lg @error('cell') is-invalid @enderror" 
-								name="cell" id="cell" placeholder="+x(xxx)xxx-xx-xx"
-								value="{{ old('cell', auth()->check() ? auth()->user()->cell : ''  ) }}"/>
-							@error('cell')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
+						<label class="form-label" for="hireUsFormPhoneEg3">Phone <span class="form-label-secondary">(Optional)</span></label>
+						<input type="text" class="form-control form-control-lg" name="hireUsFormNamePhone" id="hireUsFormPhoneEg3" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx">
 						</div>
 						<!-- End Form -->
 					</div>
@@ -142,30 +136,13 @@
 	
 					<!-- Form -->
 					<div class="mb-3">
-						<label class="form-label" for="message">Details</label>
-						<textarea class="form-control form-control-lg @error('message') is-invalid @enderror" 
-							name="message" placeholder="Tell us about your ..." rows="4" required>{{ old('message', 'Tell us about your ...') }}</textarea>
-						@error('message')
-							<div class="text-danger text-xs">{{ $message }}</div>
-						@enderror
+					<label class="form-label" for="hireUsFormDetails">Details</label>
+					<textarea class="form-control form-control-lg" name="hireUsFormNameDetails" id="hireUsFormDetails" placeholder="Tell us about your ..." aria-label="Tell us about your ..." rows="4"></textarea>
 					</div>
 					<!-- End Form -->
 	
-					<!-- Form -->
-					<div class="mb-3">
-						<label class="form-label" for="message">Attachment</label>
-						<input type="file" class="form-control form-control-sm" name="file_to_upload"
-									id="file_to_upload"
-									accept=".docs,.xlsx.jpg,.jpeg,.png,.zip,.rar"
-									placeholder="file_to_upload"> 
-						@error('file_to_upload')
-							<div class="text-danger text-xs">{{ $message }}</div>
-						@enderror
-					</div>
-					<!-- End Form -->
-
 					<div class="d-grid">
-						<button type="submit" class="btn btn-primary btn-lg">Send inquiry</button>
+					<button type="submit" class="btn btn-primary btn-lg">Send inquiry</button>
 					</div>
 	
 					<div class="text-center">

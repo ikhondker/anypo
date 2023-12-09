@@ -19,13 +19,11 @@
 */
 
 namespace App\Http\Controllers\Landlord;
-
 use App\Http\Controllers\Controller;
  
 // Models
 use App\Models\User;
 
-use App\Models\Landlord\Contact;
 
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
@@ -36,6 +34,7 @@ use App\Models\Landlord\Admin\Invoice;
 use App\Models\Landlord\Lookup\Product;
 
 use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Contact;
 
 //use App\Models\Landlord\Manage\Country;
 
@@ -43,7 +42,7 @@ use App\Models\Landlord\Manage\Setup;
 use App\Enum\PackageEnum;
 
 // Helpers
-use App\Helpers\FileUpload;
+use App\Helpers\LandlordFileUpload;
 use App\Helpers\LandlordEventLog;
 
 // Notification
@@ -53,6 +52,7 @@ use App\Notifications\Landlord\UserRegistered;
 use App\Notifications\Landlord\InvoiceCreated;
 use App\Notifications\Landlord\ServiceUpgraded;
 use App\Notifications\Landlord\AddonPurchased;
+
 use App\Notifications\Landlord\Contacted;
 
 // Mail
@@ -68,7 +68,7 @@ use Str;
 use DB;
 
 
-use App\Http\Requests\Landlord\StoreContactRequest;
+use App\Http\Requests\Landlord\Manage\StoreContactRequest;
 
 class HomeController extends Controller
 {
@@ -104,29 +104,31 @@ class HomeController extends Controller
 		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 
 		//Log::debug("I AM HERE INSIDE STORE");
-
-		$request->merge(['user_id'     => $user_id]);
-		$request->merge(['ip'          => $request->ip()]);
+		$request->merge(['tenant'     	=> tenant('id)')]);
+		$request->merge(['user_id'     	=> $user_id]);
+		$request->merge(['ip'          	=> $request->ip()]);
+		
 
 		$request->validate([
-			'name'      => 'required',
-			'email'     => 'required|email',
-			//'phone'     => 'required|digits:10|numeric',
-			'subject'   => 'required',
-			'message'   => 'required'
+			'first_name'	=> 'required',
+			'email'			=> 'required|email',
+			//'phone'     	=> 'required|digits:10|numeric',
+			//'subject'   	=> 'required',
+			'message'		=> 'required'
 		], [
-			'name.required' => 'Name is Required',
-			'email.unique'   => 'Email is required.',
+			'first_name.required'	=> 'First Name is Required',
+			'email.required'		=> 'Email is required.',
 		]);
 
-		// create contact
+		// create contact with subject
+		$request->merge(['subject'		=> 'Website Contact from '. $request->input('first_name')]);
 		$contact = Contact::create($request->all());
 
 		// Upload File, if any, insert row in attachment table  and get attachments id
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'   => $contact->id]);
 			$request->merge(['entity'       => $ENTITY]);  
-			$attachment_id = FileUpload::upload($request);
+			$attachment_id = LandlordFileUpload::upload($request);
 
 			// update back table with attachment_id
 			$contact->attachment_id = $attachment_id;
@@ -140,10 +142,12 @@ class HomeController extends Controller
 		$mgr = User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
 		$mgr->notify(new Contacted($contact));
 
-		return redirect()->back()->with(['success' => 'Thank you for contacting us. We will contact you shortly.']);
+		return redirect()->route('home')->with('success', 'Thank you for contacting us. We will contact you shortly.');
+
+		//return redirect()->back()->with(['success' => 'Thank you for contacting us. We will contact you shortly.']);
 	}
 
-	public function pricing()
+	public function pricing()  
 	{
 		$product = Product::where('id', config('bo.DEFAULT_PRODUCT_ID'))->first();
 

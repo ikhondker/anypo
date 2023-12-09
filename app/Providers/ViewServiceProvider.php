@@ -58,7 +58,7 @@ class ViewServiceProvider extends ServiceProvider
 		});
 
 		Facades\View::composer('layouts.landlord-app', \App\View\Composers\LandlordSetupComposer::class);
-		Facades\View::composer('layouts.landlord-app', \App\View\Composers\LandlordUserComposer::class);
+		Facades\View::composer(['layouts.landlord-app','layouts.landlord'], \App\View\Composers\LandlordUserComposer::class);
 
 		/*
 		|-----------------------------------------------------------------------------

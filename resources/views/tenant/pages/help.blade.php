@@ -5,15 +5,16 @@
 
     <x-tenant.page-header>
         @slot('title')
-            Documentation
+            Help & Documentation
         @endslot
         @slot('buttons')
-            <x-tenant.buttons.header.lists object="Dept"/>
-            <x-tenant.buttons.header.create object="Dept"/>
+			<a href="tel:{{config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-square-plus"></i> Call us at {{config('akk.SUPPORT_PHONE_NO')}}</a>
+			<a href="{{ env('APP_URL') }}/contact-us" target=_blank class="btn btn-primary float-end me-2"><i class="fa-regular fa-square-plus"></i> Contact Us</a>
+			<a href="{{ env('APP_URL') }}/tickets/create" target=_blank class="btn btn-primary float-end me-2"><i class="fa-regular fa-square-plus"></i> Create Support Ticket</a>
         @endslot
     </x-tenant.page-header>
 
-
+	
     <div class="row">
         <div class="col-md-3 col-xl-2">
 

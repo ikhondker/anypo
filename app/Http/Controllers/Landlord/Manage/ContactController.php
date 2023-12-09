@@ -18,14 +18,14 @@
 * =====================================================================================
 */
 
-namespace App\Http\Controllers\Landlord;
+namespace App\Http\Controllers\Landlord\Manage;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Landlord\StoreContactRequest;
-use App\Http\Requests\Landlord\UpdateContactRequest;
+use App\Http\Requests\Landlord\Manage\StoreContactRequest;
+use App\Http\Requests\Landlord\Manage\UpdateContactRequest;
 
 // Models
-use App\Models\Landlord\Contact;
+use App\Models\Landlord\Manage\Contact;
 
 // Enums
 // Helpers
@@ -56,7 +56,7 @@ class ContactController extends Controller
 		$this->authorize('viewAll',Contact::class);
 		
 		$contacts= Contact::orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.contacts.all',compact('contacts'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.manage.contacts.all',compact('contacts'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
 	/**
@@ -95,7 +95,7 @@ class ContactController extends Controller
 	{
 		$this->authorize('view', $contact);
 		$entity = static::ENTITY ;
-		return view('landlord.contacts.show',compact('contact','entity'));
+		return view('landlord.manage.contacts.show',compact('contact','entity'));
 
 	}
 

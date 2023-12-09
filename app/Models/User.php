@@ -157,7 +157,7 @@ class User extends Authenticatable implements MustVerifyEmail
 		}	
 	}
 
-	// usages Auth::user()->isAdmin()
+	// usages auth()->user()->isAdmin()
 	public function isAdmin()
 	{
 		if ($this->enable == 1) {
