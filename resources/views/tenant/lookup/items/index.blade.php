@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     @php
-                        use App\Models\Item;
+                        use App\Models\Tenant\Lookup\Item;
                         $count_total        = Item::count();
                         $count_enable     = Item::where('enable',true )->count();
                         $count_disable    = Item::where('enable',false )->count();

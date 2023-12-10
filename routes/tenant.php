@@ -40,6 +40,7 @@ use App\Http\Controllers\Tenant\Workflow\HierarchylController;
 use App\Http\Controllers\Tenant\Workflow\WfController;
 use App\Http\Controllers\Tenant\Workflow\WflController;
 
+use App\Http\Controllers\Tenant\Support\TicketController;
 
 use App\Http\Controllers\Tenant\BudgetController;
 use App\Http\Controllers\Tenant\DeptBudgetController;
@@ -52,6 +53,7 @@ use App\Http\Controllers\Tenant\PrController;
 use App\Http\Controllers\Tenant\PrlController;
 use App\Http\Controllers\Tenant\ReceiptController;
 use App\Http\Controllers\Tenant\ReportController;
+
 
 use App\Http\Controllers\Tenant\HomeController;
 // TODO Check
@@ -89,8 +91,6 @@ Route::middleware([
 	 /* ======================== make auth universal ========================================  */
 	 Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
 		Auth::routes(); 
-
-		
 	});
    
 	/* ======================== User ========================================  */
@@ -370,6 +370,10 @@ Route::middleware([
 	Route::resource('rates', RateController::class)->middleware(['auth', 'verified']);
 	Route::get('/rate/export',[RateController::class,'export'])->name('rates.export');
 	Route::get('/rates/delete/{rate}',[RateController::class,'destroy'])->name('rates.destroy');
+
+	/* ======================== Ticket ======================================== */
+	Route::resource('tickets', TicketController::class);
+	
 
 	/* ======================== Misc Tenant Routes  ========================================  */
 	// IQBAL 28-feb-23

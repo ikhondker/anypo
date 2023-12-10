@@ -62,14 +62,14 @@
 					<th style="width: 5%;">Action</th>
 				</tr>
 				</thead>
-		
+				
 				<tbody>
 					@foreach ($tickets as $ticket)
 						<tr>
 							<td>
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle" src="{{ url(config('bo.DIR_AVATAR').$ticket->owner->avatar) }}"  alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
+										<img class="avatar avatar-sm avatar-circle" src="{{ url($_avatar_dir.$ticket->owner->avatar) }}"  alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
 										{{-- <i class="bi bi-person-circle text-danger" style="font-size: 1.3rem;"></i> --}}
 									</div>
 									<div class="flex-grow-1 ms-3">

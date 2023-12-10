@@ -65,7 +65,7 @@
 							<td>
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle" src="{{ url(config('bo.DIR_AVATAR').$ticket->owner->avatar) }}"  alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
+										<img class="avatar avatar-sm avatar-circle" src="{{ url($_avatar_dir.$ticket->owner->avatar) }}"  alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
 									</div>
 									<div class="flex-grow-1 ms-3">
 										<a class="d-inline-block link-dark" href="{{ route('tickets.show',$ticket->id) }}">

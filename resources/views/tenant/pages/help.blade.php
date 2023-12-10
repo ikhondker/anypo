@@ -9,14 +9,13 @@
         @endslot
         @slot('buttons')
 			<a href="tel:{{config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-square-plus"></i> Call us at {{config('akk.SUPPORT_PHONE_NO')}}</a>
-			<a href="{{ env('APP_URL') }}/contact-us" target=_blank class="btn btn-primary float-end me-2"><i class="fa-regular fa-square-plus"></i> Contact Us</a>
-			<a href="{{ env('APP_URL') }}/tickets/create" target=_blank class="btn btn-primary float-end me-2"><i class="fa-regular fa-square-plus"></i> Create Support Ticket</a>
+			<a  href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-square-plus"></i> Create Support Ticket</a>
         @endslot
     </x-tenant.page-header>
 
 	
     <div class="row">
-        <div class="col-md-3 col-xl-2">
+        <div class="col-md-3 col-xl-2"> 
 
             <div class="card">
                 <div class="card-header">
