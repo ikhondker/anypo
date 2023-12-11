@@ -22,13 +22,11 @@
 
 						<div class="col-sm-auto order-1 order-sm-2 text-sm-end mb-3">
 							<div class="mb-3">
-								<h2 class="text-danger">Access Denied!</h2>
+								<h2 class="text-danger">Woops!</h2>
 							</div>
-							{{-- <div class="mb-3">
-								<h2>Access Denied!</h2>
+							<div class="mb-3">
+								<h3 class="text-info">403: Access Denied.</h2>
 							</div>
- --}}
-							
 						</div>
 						<!-- End Col -->
 					</div>

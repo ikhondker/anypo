@@ -59,7 +59,7 @@ class TicketController extends Controller
 		$tenant_id= tenant('id');
 		$name=auth()->user()->name;
 		$email=auth()->user()->email;
-		$email=auth()->user()->cell;
+		$cell=auth()->user()->cell;
 
 		$name='User 8 by Tenant';
 		$email='user8@example.com';

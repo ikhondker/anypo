@@ -22,13 +22,11 @@
 
 						<div class="col-sm-auto order-1 order-sm-2 text-sm-end mb-3">
 							<div class="mb-3">
-								<h2 class="text-danger">Page Not Found!</h2>
+								<h2 class="text-danger">Woops!</h2>
 							</div>
 							<div class="mb-3">
-								<h2>Page Not Found!</h2>
+								<h3 class="text-info">404: Page Not Found.</h2>
 							</div>
-
-							
 						</div>
 						<!-- End Col -->
 					</div>

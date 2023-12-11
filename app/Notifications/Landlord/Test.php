@@ -55,7 +55,7 @@ class Test extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject('Welcome to '. config('app.name').' - Client Area Login Details')
+                    ->subject('[TEST] Welcome to '. config('app.name').' - '. now())
 					->greeting('Hello Iqbal,')
 					->line('Welcome to '.config('app.name').'. Please review this email in its entirety as it contains important information.')
 					->line(' Your client area login account has been created as follows:')

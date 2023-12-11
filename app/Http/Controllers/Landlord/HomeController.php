@@ -207,7 +207,7 @@ class HomeController extends Controller
 			'id'            => $user->id,
 			'from'          => $user->name,
 			'to'            => $user->name,
-			'subject'       => 'FYI. Support Ticket #' . $user->id . ' has been ' . Str::lower($action) . '.',
+			'subject'       => '[TEST] FYI. Support Ticket #' . $user->id . ' has been ' . Str::lower($action) . '.',
 			'greeting'      => 'Hi ' . $user->name . ',',
 			'body'          => 'FYI, Support Ticket #' . $user->id . ' has been ' . Str::lower($action) . '.',
 			'thanks'        => 'Thank you for using ' . config('app.name') . '!',
