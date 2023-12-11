@@ -49,7 +49,7 @@
                                 <td><a class="text-info" href="{{ route('pay-methods.show',$payMethod->id) }}">{{ $payMethod->name }}</a></td>
                                 <td>{{ $payMethod->pay_method_number }}</td>
                                 <td>{{ $payMethod->currency }}</td>
-                                <td><x-list.my-date :value="$payMethod->start_date"/> - <x-list.my-date :value="$payMethod->end_date"/></td>
+                                <td><x-tenant.list.my-date :value="$payMethod->start_date"/> - <x-tenant.list.my-date :value="$payMethod->end_date"/></td>
                                 <td><x-tenant.list.my-boolean :value="$payMethod->enable"/></td>
                                 <td class="table-action">
                                     <x-tenant.list.actions object="PayMethod" :id="$payMethod->id"/>

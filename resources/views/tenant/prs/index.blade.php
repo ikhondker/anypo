@@ -136,7 +136,7 @@
                             <tr>
                                 <td>{{ $pr->id }}</td>
                                 <td><a class="text-info" href="{{ route('prs.show',$pr->id) }}">{{ $pr->summary }}</a></td>
-                                <td><x-list.my-date :value="$pr->pr_date"/></td>
+                                <td><x-tenant.list.my-date :value="$pr->pr_date"/></td>
                                 <td>{{ $pr->relRequestor->name }}</td>
                                 <td>{{ $pr->relDept->name }}</td>
                                 <td>{{ $pr->currency }}</td>

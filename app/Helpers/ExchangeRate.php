@@ -32,8 +32,8 @@ use Illuminate\Support\Facades\Http;
 
 // Enums
 use Carbon\Carbon;
-use App\Models\Rate;
-use App\Models\Setup;
+use App\Models\Tenant\Lookup\Rate;
+use App\Models\Tenant\Admin\Setup;
 use App\Helpers\EventLog;
 
 use DB;

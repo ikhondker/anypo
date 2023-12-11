@@ -43,6 +43,19 @@ class TestController extends Controller
     public function run()
     {
 
+        $tenant = Tenant::where('id', 'demo1')->first();
+		// run seeders in tenant
+		$tenant->run(function () {
+			//$seeder = new \Database\Seeders\UserSeeder();
+            $seeder = new \Database\Seeders\TenantSeeder();
+			$seeder->run();
+		});
+		// Write event log
+		Log::debug('Seeder run for tenant=' . $tenant->id);
+		
+        exit;
+
+
         //$a=BackOffice::ReportError('PR','Test111 22 33 44');
         $a=BackOffice::ReportInfo('PR','Test111 22 33 44');
         dd($a . now());

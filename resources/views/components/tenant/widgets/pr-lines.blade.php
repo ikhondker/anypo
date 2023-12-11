@@ -43,8 +43,8 @@
                                     <td class="">{{ $prl->summary }}</td>
                                     <td class="">{{ $prl->item->uom->name }}</td>
                                     <td class="text-end">{{ $prl->qty }}</td>
-                                    <td class="text-end"><x-list.my-number :value="$prl->price"/></td>
-                                    <td class="text-end"><x-list.my-number :value="$prl->amount"/></td>
+                                    <td class="text-end"><x-tenant.list.my-number :value="$prl->price"/></td>
+                                    <td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>
                                     <td class="">
                                         <a href="{{ route('prls.edit',$prl->id) }}" class="text-muted d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">Edit</a> | 
                                         <a href="{{ route('prls.destroy',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
@@ -57,14 +57,14 @@
                         @endforeach
 
                         @if ($add)
-                            @include('includes.pr-line-add')
-                            @include('includes.pr-footer-edit')
+                            @include('tenant.includes.pr-line-add')
+                            @include('tenant.includes.pr-footer-edit')
                         @endif
                         @if ($edit)
-                            @include('includes.pr-footer-edit')
+                            @include('tenant.includes.pr-footer-edit')
                         @endif
                         @if ($show)
-                            @include('includes.pr-footer-view')
+                            @include('tenant.includes.pr-footer-view')
                         @endif 
                         
                             

@@ -44,12 +44,23 @@ class TestController extends Controller
 	public function run()
 	{
 
+
+		$tenant = Tenant::where('id', 'demo1')->first();
+		// run seeders in tenant
+		$tenant->run(function () {
+			$seeder = new \Database\Seeders\TenantSeeder();
+			$seeder->run();
+		});
+		// Write event log
+		Log::debug('Seeder run for tenant=' . $tenant->id);
+		
+        exit;
+
+
+
 		$subdir ='demo2';
-
-
 		// copy logo and avatar default files
-		$service_id = self::copyCheckoutFiles(1004);
-
+		//$service_id = self::copyCheckoutFiles(1004);
 		exit;
 
 

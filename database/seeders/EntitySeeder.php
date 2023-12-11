@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Entity;
+use App\Models\Tenant\Manage\Entity;
 use Illuminate\Support\Facades\Schema;
 
 class EntitySeeder extends Seeder

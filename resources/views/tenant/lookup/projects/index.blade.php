@@ -133,7 +133,7 @@
                                 <td>{{ $project->id }}</td>
                                 <td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->name }}</a></td>
                                 <td>{{ $project->pm->name }}</td>
-                                <td><x-list.my-date :value="$project->start_date"/> - <x-list.my-date :value="$project->end_date"/></td>
+                                <td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>
                                 <td><x-tenant.list.my-boolean :value="$project->budget_control"/></td>
                                 <td><x-tenant.list.my-number :value="$project->amount"/></td>
                                 <td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_po_booked - $project->amount_po_issued"/></td>

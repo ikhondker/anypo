@@ -41,7 +41,7 @@
                             <tr>
                                 <td>{{ $dept_budget->id }}</td>
                                 <td>{{ $dept_budget->budget->name }}</td>
-                                <td><x-list.my-date :value="$dept_budget->budget->start_date"/> - <x-list.my-date :value="$dept_budget->budget->end_date"/></td>
+                                <td><x-tenant.list.my-date :value="$dept_budget->budget->start_date"/> - <x-tenant.list.my-date :value="$dept_budget->budget->end_date"/></td>
                                 <td>{{ $dept_budget->dept->name }}</td>
                                 <td><x-tenant.list.my-date-time :value="$dept_budget->created_at"/></td> 
                                 <td>{{ $dept_budget->user_created_by->name }}</td>     

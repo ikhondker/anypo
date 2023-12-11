@@ -7,8 +7,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
 use Faker\Generator;
-use App\Models\Budget;
-use App\Models\DeptBudget;
+use App\Models\Tenant\Budget;
+use App\Models\Tenant\DeptBudget;
 
 class DeptBudgetSeeder extends Seeder
 {

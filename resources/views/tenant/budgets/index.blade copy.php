@@ -45,8 +45,8 @@
                             <tr>
                                 <td>{{ $budget->id }}</td>
                                 <td>{{ $budget->name }}</td>
-                                <td><x-list.my-date :value="$budget->start_date"/></td>
-                                <td><x-list.my-date :value="$budget->end_date"/></td>
+                                <td><x-tenant.list.my-date :value="$budget->start_date"/></td>
+                                <td><x-tenant.list.my-date :value="$budget->end_date"/></td>
                                 <td class="text-end"><x-tenant.list.my-number :value="$budget->amount"/></td>
                                 <td class="text-end"><x-tenant.list.my-number :value="$budget->pr_booked_amount"/></td>
                                 <td class="text-end"><x-tenant.list.my-number :value="$budget->pr_issued_amount"/></td>

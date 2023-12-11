@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Builder;
 /* IQBAL 21-OCT-22 */
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
-use App\Models\Budget;
-use App\Models\Dept;
+use App\Models\Tenant\Budget;
+use App\Models\Tenant\Lookup\Dept;
 
 class DeptBudget extends Model
 {

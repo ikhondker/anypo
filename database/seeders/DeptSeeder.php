@@ -7,8 +7,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
 use Faker\Generator;
-use App\Models\Dept;
-use App\Models\Hierarchy;
+use App\Models\Tenant\Lookup\Dept;
+use App\Models\Tenant\Workflow\Hierarchy;
 
 class DeptSeeder extends Seeder
 {

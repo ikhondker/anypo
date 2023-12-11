@@ -52,7 +52,7 @@
                             <tr>
                                 <td>{{ $budget->fy }}</td>
                                 <td><a class="text-info" href="{{ route('budgets.show',$budget->id) }}">{{ $budget->name }}</a></td>
-                                <td><x-list.my-date :value="$budget->start_date"/> - <x-list.my-date :value="$budget->end_date"/></td>
+                                <td><x-tenant.list.my-date :value="$budget->start_date"/> - <x-tenant.list.my-date :value="$budget->end_date"/></td>
                                 <td>{{ $budget->currency }}</td>
                                 <td class="text-end"><x-tenant.list.my-number :value="$budget->amount"/></td>
                                 <td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr_booked + $budget->amount_pr_issued"/></td>

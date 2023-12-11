@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Menu;
+use App\Models\Tenant\Manage\Menu;
 
 class MenuSeeder extends Seeder
 {

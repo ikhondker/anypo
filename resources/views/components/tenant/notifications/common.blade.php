@@ -24,10 +24,10 @@
                         @endif
                     </td>
                     <td>
-                        <x-list.my-date-time :value="$notification->created_at"/>
+                        <x-tenant.list.my-date-time :value="$notification->created_at"/>
                     </td>
                     <td>
-                        <x-list.my-date-time :value="$notification->read_at"/>
+                        <x-tenant.list.my-date-time :value="$notification->read_at"/>
                     </td>
                     <td class="table-action">
                         <a href="{{ route('notifications.show',$notification->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="align-middle" data-feather="eye"></i></a>
@@ -46,4 +46,4 @@
         @endif
     </tbody>
 </table>
-@include('includes.modal-boolean')
+@include('tenant.includes.modal-boolean')

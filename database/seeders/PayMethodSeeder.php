@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\PayMethod;
+use App\Models\Tenant\Lookup\PayMethod;
 use Faker\Generator;
 
 class PayMethodSeeder extends Seeder

@@ -417,7 +417,8 @@ Route::middleware([
 	})->name('test');
 	
 	//Route::get('testrun/',[TestController::class, 'run'])->name('tests.run');
-	Route::get('testrun/',[TestController::class, 'run'])->middleware(['auth', 'verified']);
+	//Route::get('testrun/',[TestController::class, 'run'])->middleware(['auth', 'verified']);
+	Route::get('testrun/',[TestController::class, 'run']);
 
 	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
 	//Route::get('/entity/export',[EntityController::class, 'export'])->name('entities.export');

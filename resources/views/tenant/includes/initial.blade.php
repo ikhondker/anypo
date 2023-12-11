@@ -1,7 +1,7 @@
 
 @php
-use App\Models\Setup;
-use App\Models\Currency;
+use App\Models\Tenant\Admin\Setup;
+use App\Models\Tenant\Lookup\Currency;
 $currencies = Currency::getAll();
 $setup = Setup::first();
 

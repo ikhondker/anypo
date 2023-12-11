@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Uom;
+use App\Models\Tenant\Lookup\Uom;
 
 class UomSeeder extends Seeder
 {

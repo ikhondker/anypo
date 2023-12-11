@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Budget;
+use App\Models\Tenant\Budget;
 use Carbon\Carbon;
 
 class BudgetSeeder extends Seeder

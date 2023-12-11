@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Category;
+use App\Models\Tenant\Lookup\Category;
 
 class CategorySeeder extends Seeder
 {

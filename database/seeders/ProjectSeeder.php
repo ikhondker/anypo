@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Project;
+use App\Models\Tenant\Lookup\Project;
 use App\Models\User;
 
 class ProjectSeeder extends Seeder

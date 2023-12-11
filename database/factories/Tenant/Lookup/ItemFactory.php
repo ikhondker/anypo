@@ -1,12 +1,12 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Tenant\Lookup;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Category;
-use App\Models\Oem;
-use App\Models\Uom;
+use App\Models\Tenant\Lookup\Category;
+use App\Models\Tenant\Lookup\Oem;
+use App\Models\Tenant\Lookup\Uom;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Item>

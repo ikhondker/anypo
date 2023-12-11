@@ -29,6 +29,8 @@ use App\Models\User;
 use App\Models\Domain;
 use App\Models\Tenant;
 
+use App\Models\Landlord\Ticket;
+use App\Models\Landlord\Comment;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Service;
 
@@ -204,8 +206,22 @@ class AccountController extends Controller
 	{
 
 		$account_id= $account->id;
-
 		Log::debug("Deleting Account id=".$account_id);
+
+		Log::debug("Delete Tickets =");
+		$tickets = Ticket::where('account_id', $account_id)->get();
+		$tickets->each(function($tickets) {
+			$tickets->comments()->delete();
+			$tickets->delete();
+		});
+
+		//dd($tickets);
+		//Log::debug("Ticket Deleted =". $result);
+		//$tickets->comments()->delete();
+		//$tickets->delete();
+
+		//$result = Ticket::where('account_id', $account_id)->delete();
+		//Log::debug("Ticket Deleted =". $result);
 
 		$result = Payment::where('account_id', $account_id)->delete();
 		Log::debug("Payment Deleted =". $result);
@@ -224,6 +240,8 @@ class AccountController extends Controller
 
 		$result = Tenant::where('id', $account->site)->delete();
 		Log::debug("Tenant Deleted =". $result);
+
+
 
 
 		$result = Account::where('id', $account_id)->delete();

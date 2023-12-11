@@ -23,7 +23,6 @@ use App\Http\Controllers\Controller;
 //use App\Models\Setup;
 use App\Models\Tenant\Admin\Setup;
 
-
 use App\Http\Requests\Tenant\Admin\StoreSetupRequest;
 use App\Http\Requests\Tenant\Admin\UpdateSetupRequest;
 
@@ -259,23 +258,28 @@ class SetupController extends Controller
 	{
 		$this->authorize('update', $setup);
 
-		// update setup
-		$request->merge(['freezed'       => true ]);
-		// $request->validate([
+		$base = $request->input('currency');
 
-		// ]);
-		$setup->update($request->all());
+		Log::debug('setup->currency='.$setup->currency);
+		Log::debug('request input='.$request->input('currency'));
 
-		//enable that base currency
-		$currency = Currency::where('currency', $setup->currency)->first();
+		// enable that base currency
+		$currency = Currency::where('currency', $base)->first();
 		$currency->enable = true;
 		$currency->save();
 
-		$budget = Budget::where('currency', '<>', $setup->currency)->first();
-		$budget->currency = $setup->currency;
-		$budget->save();
+		$budget = Budget::where('currency', '<>', $base)->first();
+		if(! is_null($budget)) {
+			Log::debug('Budget->currency='.$budget->currency);
+			Log::debug('Budget->id='.$budget->id);
+			$budget->currency = $setup->currency;
+			$budget->save();
+		}
 
-
+		// update setup. 
+		$request->merge(['freezed'       => true ]);
+		$setup->update($request->all());
+		
 		// Write to Log
 		EventLog::event('setup', $setup->id, 'update', 'name', $request->name);
 

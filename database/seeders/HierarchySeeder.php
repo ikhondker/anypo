@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Hierarchy;
+use App\Models\Tenant\Workflow\Hierarchy;
 
 class HierarchySeeder extends Seeder
 {

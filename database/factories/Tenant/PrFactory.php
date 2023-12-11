@@ -1,16 +1,15 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-
-use App\Models\Dept;
-use App\Models\DeptBudget;
 use App\Models\User;
-use App\Models\Supplier;
-use App\Models\Project;
+use App\Models\Tenant\DeptBudget;
 
+use App\Models\Tenant\Lookup\Dept;
+use App\Models\Tenant\Lookup\Supplier;
+use App\Models\Tenant\Lookup\Project;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pr>

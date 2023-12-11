@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Prl;
+use App\Models\Tenant\Prl;
 
 class PrlSeeder extends Seeder
 {

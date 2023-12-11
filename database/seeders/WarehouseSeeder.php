@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 // IQBAL
 use Faker\Generator;
 
-use App\Models\Warehouse;
+use App\Models\Tenant\Lookup\Warehouse;
 
 class WarehouseSeeder extends Seeder
 {

@@ -32,6 +32,8 @@ use App\Models\Landlord\Lookup\Priority;
 use App\Models\Landlord\Lookup\Rating;
 use App\Models\Landlord\Lookup\Status;
 
+use App\Models\Landlord\Comment;
+
 use App\Enum\LandlordTicketStatusEnum;
 
 class Ticket extends Model

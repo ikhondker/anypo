@@ -17,6 +17,7 @@ use App\Http\Requests\Tenant\Manage\UpdateTemplateRequest;
 use App\Models\User;
 use App\Models\Tenant\Lookup\Country;
 # Enums
+use App\Enum\EntityEnum;
 # Helpers
 use App\Helpers\FileUpload;
 use App\Helpers\EventLog;

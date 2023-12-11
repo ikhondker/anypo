@@ -55,6 +55,8 @@ use Illuminate\Support\Facades\Auth;
 class CreateTenant implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+	
+	public $timeout = 300;
 
 	protected $checkout_id;
 
@@ -422,7 +424,7 @@ class CreateTenant implements ShouldQueue
 
 		// run seeders in tenant
 		$tenant->run(function () {
-			$seeder = new \Database\Seeders\UserSeeder();
+			$seeder = new \Database\Seeders\TenantSeeder();
 			$seeder->run();
 		});
 		// Write event log

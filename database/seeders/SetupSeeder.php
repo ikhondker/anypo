@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Setup;
+use App\Models\Tenant\Admin\Setup;
 
 class SetupSeeder extends Seeder
 {
@@ -31,7 +31,7 @@ class SetupSeeder extends Seeder
                 'email'           => 'info@yourcompany.com',
                 'cell'            => '+880191310509',
                 'website'         => 'https://www.yourcompany.com',
-                'notice'          => 'This is a test public message. This is a test public message. This is a test public message.',
+                'banner_message'  => 'This is a test public message. This is a test public message. This is a test public message.',
                 'facebook'        => 'https://www.facebook.com/yourcompany',
                 'linkedin'        => 'https://www.linkedin.com/company/1666430/',
                 'created_by'      => 1,
