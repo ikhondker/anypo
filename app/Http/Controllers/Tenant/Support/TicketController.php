@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Log;
 
 class TicketController extends Controller
 {
+	// define entity constant for file upload and workflow
+	const ENTITY   = 'TICKET';
+
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -54,16 +57,15 @@ class TicketController extends Controller
 		//Stancl\Tenancy\Database\Concerns\CentralConnection
 		
 		$tenant_id= tenant('id');
-
-		$id=1002;
 		$name=auth()->user()->name;
 		$email=auth()->user()->email;
+		$email=auth()->user()->cell;
 
-		//$name='User 6 by Tenant';
-		//$email='user6@example.com';
+		$name='User 8 by Tenant';
+		$email='user8@example.com';
 		
 		// create user in Landlord if don't exists
-		tenancy()->central(function ($tenant)  use ($tenant_id, $name, $email) {
+		tenancy()->central(function ($tenant)  use ($tenant_id, $name, $email,$cell) {
 			
 			Log::debug("tenant_id= ".$tenant_id);
 			$account = \App\Models\Landlord\Account::where('site', $tenant_id)->first();
@@ -71,70 +73,72 @@ class TicketController extends Controller
 			Log::debug("email= ".$email);
 			$user = \App\Models\User::where('email', $email)->first();
 			if(is_null($user)) {
-				Log::debug("create user for= ".$email);   
+				Log::debug("create user for= ".$email);
+				$random_password    = \Illuminate\Support\Str::random(12);
+
 				$user = \App\Models\User::create([
-					'name' 		=> $name,
-					'email' 	=> $email,
-					'account_id' 	=> $account->id,
-					'password' 	=> \Illuminate\Support\Facades\Hash::make($tenant->initial_password),
+					'name' 				=> $name,
+					'email' 			=> $email,
+					'cell' 				=> $cell,
+					'email_verified_at'	=> NOW(),   //Already Verified in tenant
+					'account_id' 		=> $account->id,
+					'password' 			=> bcrypt($random_password),
 				]);
+
+				// Send notification on new user creation  with initial password
+				$user->notify(new \App\Notifications\Landlord\UserCreated($user, $random_password));
+
 				Log::debug('Landlord user Created id=' . $user->id);
 			} else {
 				Log::debug("user found = ".$email);
 			}
-			//return \App\Models\User::find(1001);
-			//return $user;
 		});
 		
-		//dd($landlordUser);
-		//$landlordUserId=$landlordUser->id;
-
 		// now create the ticket under that landlord user
-		$landlordTicket = tenancy()->central(function ($tenant)  use ($email) {
+		$landlordTicket = tenancy()->central(function ($tenant)  use ($email,$request) {
 				Log::debug("email= ".$email);
 				// now must get
 				$user = \App\Models\User::where('email', $email)->first();
-				//$user = \App\Models\User::where('id', $landlordUserId)->first();
 				
-					Log::debug("first must get = ".$user->email);
-					// Create Ticket
-					$ticket = \App\Models\Landlord\Ticket::create([
-						'title' 		=> 'from tenant',
-						'content' 		=> 'from tenant',
-						'owner_id' 		=> $user->id,
-						'account_id' 	=> $user->account_id,
-						'dept_id' 		=> 1001,
-						'priority_id' 	=> 1001,
-						'category_id' 	=> 1001,
-					]);
-					Log::debug('Ticket created =' . $ticket->id);
+				Log::debug("Landlord User id = ".$user->id);
+				// Create Ticket
+				$ticket = \App\Models\Landlord\Ticket::create([
+					'title' 		=> $request->input('title'),
+					'content' 		=> $request->input('content'),
+					'ticket_date'	=> date('Y-m-d H:i:s'),
+					'status_code'	=> \App\Enum\LandlordTicketStatusEnum::NEW->value,
+					'owner_id' 		=> $user->id,
+					'account_id' 	=> $user->account_id,
+					'dept_id' 		=> 1004,	// Support
+					'priority_id' 	=> 1002,	// Medium
+					'category_id' 	=> 1005,	// Technical Issue
+				]);
+				Log::debug('Ticket created =' . $ticket->id);
 
-					//Write to Log
-					\App\Helpers\LandlordEventLog::event('ticket', $ticket->id, 'create');
+				//Write to Log
+				\App\Helpers\LandlordEventLog::event('ticket', $ticket->id, 'create');
 
-					// Send notification to Ticket creator
-					// $owner = User::where('id', $ticket->owner_id)->first();
-					$user->notify(new \App\Notifications\Landlord\TicketCreated($user, $ticket));
+				// Upload File, if any, insert row in attachment table  and get attachments id
+				if ($file = $request->file('file_to_upload')) {
+					$request->merge(['article_id'	=> $ticket->id]);
+					$request->merge(['entity'		=> static::ENTITY]);
+					$attachment_id = \App\Helpers\LandlordFileUpload::upload($request);
 
-					// Send notification to Support Manager
-					$mgr = \App\Models\User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
-					$mgr->notify(new \App\Notifications\Landlord\TicketCreated($mgr, $ticket));
+					// update back table with attachment_id
+					$ticket->attachment_id = $attachment_id;
+					$ticket->save();
+				}
 
-					return $ticket;
-				//return \App\Models\User::find($landlordUserId);
+				// Send notification to Ticket creator
+				$user->notify(new \App\Notifications\Landlord\TicketCreated($user, $ticket));
+
+				// Send notification to Support Manager
+				$mgr = \App\Models\User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
+				$mgr->notify(new \App\Notifications\Landlord\TicketCreated($mgr, $ticket));
+
+				return $ticket;
+				
 		});
-		//dd($aa);
-
-		// // Upload File, if any, insert row in attachment table  and get attachments id
-		// if ($file = $request->file('file_to_upload')) {
-		// 	$request->merge(['article_id'	=> $ticket->id]);
-		// 	$request->merge(['entity'		=> static::ENTITY]);
-		// 	$attachment_id = LandlordFileUpload::upload($request);
-
-		// 	// update back table with attachment_id
-		// 	$ticket->attachment_id = $attachment_id;
-		// 	$ticket->save();
-		// }
 
 		return redirect()->route('dashboards.index')->with('success', 'Ticket #' . $landlordTicket->id . ' created successfully.');
 	}

@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 
 use App\Models\User;
 
-class FirstTenantUserCreated extends Notification  implements ShouldQueue
+class FirstTenantAdminCreated extends Notification  implements ShouldQueue
 {
 	
 

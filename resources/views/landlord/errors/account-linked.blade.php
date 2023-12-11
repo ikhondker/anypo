@@ -22,7 +22,7 @@
 
                         <p class="card-text">However, system found an Associated Account with your user name.</p>
                         <p class="card-text">Please contact support at support@HawarIT.com</p>
-                        <a href="{{ route('welcome') }}" class="btn btn-primary">Go to Home</a>
+                        <a href="{{ route('home') }}" class="btn btn-primary">Go to Home</a>
                     </div>
                     <!-- End Heading -->
             </div>

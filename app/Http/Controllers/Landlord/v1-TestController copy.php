@@ -12,7 +12,6 @@ use App\Models\Domain;
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Ticket;
-use App\Models\Landlord\Manage\Checkout;
 
 // Enums
 use App\Enum\UserRoleEnum;
@@ -45,14 +44,6 @@ class TestController extends Controller
 	{
 
 		$subdir ='demo2';
-
-
-		// copy logo and avatar default files
-		$service_id = self::copyCheckoutFiles(1004);
-
-		exit;
-
-
 
 		// Copy avatar.png to newly created tenant
 		$path = public_path("ytenants\\".$subdir."\avatar");
@@ -291,36 +282,6 @@ class TestController extends Controller
 		//$this->authorize('update',$advance);
 		//return view('testrun');
 	}
-
-
-	public static function copyCheckoutFiles($checkout_id = 0)
-	{
-		Log::channel('bo')->info('Copying Default Logo and Avatar png copied.');
-		$checkout 		= Checkout::where('id', $checkout_id)->first();
-		$subdir 		=$checkout->site;
-
-		// Copy avatar.png to newly created tenant
-		$path = public_path("tenant\\".$subdir."\avatar");
-		Log::channel('bo')->info('Create Folder: '.$path);
-    	if(!File::isDirectory($path)){
-        	File::makeDirectory($path, 0644, true, true);
-		} 
-		Log::channel('bo')->info('Copying avatar.png to '.$path);
-		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
-
-		// Copy logo.png to newly created tenant
-		$path = public_path("tenants\\".$subdir."\logo");
-		Log::channel('bo')->info('Create Folder: '.$path);
-		if(!File::isDirectory($path)){
-			File::makeDirectory($path, 0644, true, true);
-		} 
-		Log::channel('bo')->info('Copying logo.png to '.$path);
-		File::copy(public_path('assets\logo\logo.png'), $path.'\logo.png');
-
-		Log::channel('bo')->info('Default Logo and Avatar png copied.');
-		return 0;
-	}
-
 
 	public function child1()
 	{

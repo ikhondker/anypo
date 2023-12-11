@@ -15,7 +15,7 @@ class Priority extends Component
      */
     public function __construct(public string $value='')
     {
-        $this->priorities = \App\Models\Landlord\Admin\Priority::getAll();
+        $this->priorities = \App\Models\Landlord\Lookup\Priority::getAll();
     }
 
     /**

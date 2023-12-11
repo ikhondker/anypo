@@ -9,26 +9,30 @@ use App\Models\Landlord\Dept;
 
 class DeptSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        $depts =  [
-            [
-              'name' => 'General',
-            ],
-            [
-              'name' => 'Sales',
-            ],
-            [
-            'name' => 'Billing',
-            ],
-            [
-            'name' => 'Technical',
-            ],
-          ];
-          //
-          Dept::insert($depts);
-    }
+		/**
+		 * Run the database seeds.
+		 */
+		public function run(): void
+		{
+				$depts =  [
+						[
+							'id'	=> '1001',
+							'name' 	=> 'General',
+						],
+						[
+							'id'	=> '1002',
+							'name' => 'Sales',
+						],
+						[
+							'id'	=> '1003',
+						'name' => 'Billing',
+						],
+						[
+							'id'	=> '1004',
+							'name' => 'Support',
+						],
+					];
+					//
+					Dept::insert($depts);
+		}
 }

@@ -23,10 +23,10 @@
 											@if (auth()->user()->isFrontOffice())
 												<img class="avatar avatar-circle" src="{{ asset('/assets/avatar/avatarb.png') }}" alt="Support Engineer" title="Support Engineer">
 											@else
-												<img class="avatar avatar-circle" src="{{ url(config('bo.DIR_AVATAR').$comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
+												<img class="avatar avatar-circle" src="{{ url($_avatar_dir.$comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
 											@endif
 										@else
-											<img class="avatar avatar-circle" src="{{ url(config('bo.DIR_AVATAR').$comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
+											<img class="avatar avatar-circle" src="{{ url($_avatar_dir.$comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
 										@endif
 								  	</div>
 									<div class="flex-grow-1 ms-3">

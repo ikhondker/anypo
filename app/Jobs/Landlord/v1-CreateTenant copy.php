@@ -39,14 +39,13 @@ use App\Notifications\Landlord\UserCreated;
 use App\Notifications\Landlord\InvoiceCreated;
 use App\Notifications\Landlord\InvoicePaid;
 //use App\Notifications\Landlord\ServicePurchased;
-use App\Notifications\Landlord\FirstTenantAdminCreated;
+use App\Notifications\Landlord\FirstTenantUserCreated;
 
 // Event
 use Illuminate\Auth\Events\Registered;
 
 // Seeded
 use Str;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -197,21 +196,19 @@ class CreateTenant implements ShouldQueue
 	public static function copyCheckoutFiles($checkout_id = 0)
 	{
 		Log::channel('bo')->info('Copying Default Logo and Avatar png copied.');
-		$checkout 		= Checkout::where('id', $checkout_id)->first();
+		$checkout = Checkout::where('id', $checkout_id)->first();
 		$subdir 		=$checkout->site;
 
 		// Copy avatar.png to newly created tenant
-		$path = public_path("tenant\\".$subdir."\avatar");
-		Log::channel('bo')->info('Create Folder: '.$path);
+		$path = public_path("tenants\\".$subdir."\avatar");
+		Log::channel('bo')->info('Copying avatar.png to '.$path);
     	if(!File::isDirectory($path)){
         	File::makeDirectory($path, 0644, true, true);
 		} 
-		Log::channel('bo')->info('Copying avatar.png to '.$path);
 		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
 
 		// Copy logo.png to newly created tenant
-		$path = public_path("tenant\\".$subdir."\logo");
-		Log::channel('bo')->info('Create Folder: '.$path);
+		$path = public_path("tenants\\".$subdir."\logo");
 		if(!File::isDirectory($path)){
 			File::makeDirectory($path, 0644, true, true);
 		} 
@@ -221,7 +218,6 @@ class CreateTenant implements ShouldQueue
 		Log::channel('bo')->info('Default Logo and Avatar png copied.');
 		return 0;
 	}
-
 	public static function createCheckoutAccount($checkout_id = 0)
 	{
 
@@ -412,7 +408,10 @@ class CreateTenant implements ShouldQueue
 		$tenant = Tenant::create([
 			'id' 				=> $tenant_id,
 			// Custom columns inside data
-			//'initial_owner_id' 	=> $checkout->owner_id,
+			'initial_owner_id' 	=> $checkout->owner_id,
+			'initial_name' 		=> $checkout->account_name,
+			'initial_email' 	=> $checkout->email,
+			'initial_password' 	=> Str::random(12),
 		]);
 
 		// // this auto run migrations
@@ -420,51 +419,44 @@ class CreateTenant implements ShouldQueue
 			'domain' => $domain
 		]);
 
-		// run seeders in tenant
+		// // run seeders
 		$tenant->run(function () {
 			$seeder = new \Database\Seeders\UserSeeder();
 			$seeder->run();
 		});
-		// Write event log
-		//Log::debug('Tenant Created id=' . $tenant->id);
+
+		// // Write event log
+		Log::debug('Tenant Created id=' . $tenant->id);
 		LandlordEventLog::event('tenant', $tenant->id, 'create');
-
-		
-
-		// create first tenant admin for tenant
-		$email 			= $checkout->email;
-		$account_name 	= $checkout->account_name;
-		$random_password    = \Illuminate\Support\Str::random(12);
 
 		$tenant = Tenant::find($tenant_id);
 
-		$tenant->run(function($tenant) use ($account_name, $email,$random_password){
+		// create first admin for tenant
+		$tenant->run(function($tenant){
 			Log::debug('Tenant id =' . $tenant->id);
+			// Log::debug('Tenant initial_owner_id =' . $tenant->initial_owner_id);
+			// Log::debug('Tenant initial_owner_name =' . $tenant->initial_name);
+			// Log::debug('Tenant initial_owner_email =' . $tenant->initial_email);
+			// Log::debug('Tenant initial_owner_tenant_password =' . $tenant->initial_password);
 
 			// create admin user in newly created tenant
 			$user = User::create([
-				'name' 		=> $account_name,
-				'email' 	=> $email,
-				'email_verified_at'	=> NOW(),   // TODO this is not verified Already Verified in tenant
-				'role'      => \App\Enum\UserRoleEnum::ADMIN->value,
-				'password' 	=> Hash::make($random_password),
-				'enable' 	=> true,
-				//'password' 	=> bcrypt($random_password),
-
+				'name' 		=> $tenant->initial_name,
+				'email' 	=> $tenant->initial_email,
+				'password' 	=> Hash::make($tenant->initial_password),
 			]);
 			Log::debug('Tenant Admin User Created id=' . $user->id);
 
-			// TODO Send Verification Email from tenant context
-			// event(new Registered($user));
-
-		}
+			}
 		);
 		//Log::debug('Admin User Created by job');
 
-		// Send notification to this new tenant admin user from landlord
+
+		// Send notification on new user creation
 		$user = User::where('id', $checkout->owner_id)->first();
-		$domain = \App\Models\Domain::where('tenant_id', $tenant->id)->first();
-		$user->notify(new FirstTenantAdminCreated($user, $random_password, $domain));
+		$domain = Domain::where('tenant_id', $tenant_id)->first();
+
+		$user->notify(new FirstTenantUserCreated($user, $tenant->initial_password, $domain));
 		Log::debug('Admin User Notified '.$user->name);
 
 		return $tenant->id;

@@ -47,7 +47,7 @@
                 <h5 class="card-title">Payment Canceled!</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <p class="card-text">Please contact support at support@HawarIT.com</p>
-                <a href="{{ route('welcome') }}" class="btn btn-primary">Go to Home</a>
+                <a href="{{ route('home') }}" class="btn btn-primary">Go to Home</a>
             </div>
         </div>
 

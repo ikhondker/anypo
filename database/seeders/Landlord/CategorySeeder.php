@@ -16,16 +16,24 @@ class CategorySeeder extends Seeder
 	{
 		$categories =  [
 			[
+				'id'	=> '1001',
 				'name' => 'General',
 			],
 			[
+				'id'	=> '1002',
 				'name' => 'User Issues',
 			],
 			[
+				'id'	=> '1003',
 				'name' => 'Billing Issue',
 			],
 			[
+				'id'	=> '1004',
 				'name' => 'Add-on Issues',
+			],
+			[
+				'id'	=> '1005',
+				'name' => 'Technical Issues',
 			],
 		  ];
 		//

@@ -16,7 +16,7 @@
 
 						<p>&nbsp;</p>
 						<p class="card-text">We are available 24 hours a day to assist you via our <a href="{{ config('app.url') }}">support ticket system </a> or via email at support{{ '@'.config('app.domain') }}</p>
-						<a href="{{ route('welcome') }}" class="btn btn-primary">Go to Home</a>
+						<a href="{{ route('home') }}" class="btn btn-primary">Go to Home</a>
 					</div>
 					<!-- End Heading -->
 			</div>

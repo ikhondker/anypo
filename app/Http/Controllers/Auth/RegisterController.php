@@ -115,7 +115,7 @@ class RegisterController extends Controller
 			'password'  => Hash::make($data['password']),
 		]);
 
-		// // Send notification on new user registration
+		// Send notification on new user registration
 		$user->notify(new UserRegistered($user));
 
 		// Write to Log
