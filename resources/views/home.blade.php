@@ -9,7 +9,7 @@
             <div class="col-md-6 col-lg-5">
               <!-- Heading -->
               <div class="mb-5">
-                <h1>Build awesome apps with your web skills</h1>
+                <h1>Build awesome apps with your web skills VPS</h1>
                 <p>Built on standard web technology, teams use Front to build beautiful cross-platform hybrid apps in a fraction of the time.</p>
               </div>
               <!-- End Title & Description -->
