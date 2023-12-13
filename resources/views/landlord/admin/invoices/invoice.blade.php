@@ -120,11 +120,11 @@
 					<div class="mb-3">
 						<h3>Thank you!</h3>
 						
-						<p class="small">If you have any questions concerning this invoice, please create a support ticket via our <a href="{{ config('app.url') }}">Support Ticket System </a> or via email at support{{ '@'.config('app.domain') }}</p>
+						<p class="small">If you have any questions concerning this invoice, please create a support ticket via our <a href="{{ route('tickets.create') }}">Support Ticket System </a> or via email at support{{ '@'.config('app.domain') }}</p>
 
 					</div>
 
-					<p class="small mb-0">&copy;{{ date('Y').' '. env('APP_NAME') }}.</p>
+					<p class="small mb-0">&copy;{{ date('Y') }} <a href={{ route('home') }}>{{ env('APP_NAME') }}</a></p>
 				</div>
 			</div>
 			<!-- End Card -->

@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 		$users =  [
 			[
 				'id'                => '1001',
-				'name'              => 'System User',
+				'name'              => 'System Admin',
 				'email'             => 'system@example.com',
 				'role'              => 'system',
 				'email_verified_at' => now(),
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'                => '1003',
-				'name'              => 'Mr Support Manager 1',
+				'name'              => 'Support Manager 1',
 				'email'             => 'manager@example.com',
 				'role'              => 'manager',
 				'email_verified_at' => now(),
@@ -75,7 +75,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'                => '1004',
-				'name'              => 'Mr Accounts Manager',
+				'name'              => 'Accounts Manager',
 				'email'             => 'accounts@example.com',
 				'role'              => 'accounts',
 				'email_verified_at' => now(),
@@ -92,7 +92,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'                => '1005',
-				'name'              => 'Mr. Support Agent 1',
+				'name'              => 'Support Agent 1',
 				'email'             => 'agent1@example.com',
 				'role'              => 'support',
 				'email_verified_at' => now(),
@@ -109,7 +109,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'                => '1006',
-				'name'              => 'Mr. Support Agent 2',
+				'name'              => 'Support Agent 2',
 				'email'             => 'agent2@example.com',
 				'role'              => 'support',
 				'email_verified_at' => now(),

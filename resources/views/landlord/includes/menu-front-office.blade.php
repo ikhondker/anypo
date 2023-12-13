@@ -24,11 +24,7 @@
 			<i class="bi-ui-checks-grid nav-icon"></i> Accounts
 		</a>
 	</li>
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'services.index' ? 'active' : '' }}" href="{{ route('services.index') }}">
-			<i class="bi-columns nav-icon"></i> Services
-		</a>
-	</li>
+
 
 </ul>
 <!-- End List -->
@@ -38,6 +34,12 @@
 	<span class="text-cap">ADMIN</span>
 	<!-- List -->
 	<ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+		<li class="nav-item">
+			<a class="nav-link {{ $_route_name == 'services.index' ? 'active' : '' }}" href="{{ route('services.index') }}">
+				<i class="bi-columns nav-icon"></i> Services
+			</a>
+		</li>
+		
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'invoices.index' ? 'active' : '' }}"
 				href="{{ route('invoices.index') }}">

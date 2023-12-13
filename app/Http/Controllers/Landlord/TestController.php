@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Tenant;
 use App\Models\Domain;
-use App\Models\Landlord\Service;
+use App\Models\Landlord\Admin\Service;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Ticket;
 use App\Models\Landlord\Manage\Checkout;

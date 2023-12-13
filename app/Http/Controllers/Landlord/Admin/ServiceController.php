@@ -17,7 +17,7 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Http\Controllers\Landlord;
+namespace App\Http\Controllers\Landlord\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Landlord\StoreServiceRequest;
@@ -25,7 +25,7 @@ use App\Http\Requests\Landlord\UpdateServiceRequest;
 
 // Models
 use App\Models\User;
-use App\Models\Landlord\Service;
+use App\Models\Landlord\Admin\Service;
 use App\Models\Landlord\Account;
 
 use App\Models\Landlord\Lookup\Product;
@@ -70,7 +70,7 @@ class ServiceController extends Controller
 
 		//return view('landlord.pages.error')->with('msg', 'User is has already linked with an account! You can not buy new Account.');
 
-		return view('landlord.services.index', compact('services', 'addons','account'))
+		return view('landlord.admin.services.index', compact('services', 'addons','account'))
 			->with('i', (request()->input('page', 1) - 1) * 10);
 		//->with('cur_account_id',$services->account_id)
 	}
@@ -93,7 +93,7 @@ class ServiceController extends Controller
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 		$account = Account::where('id', auth()->user()->account_id)->first();
 
-		return view('landlord.services.all', compact('services', 'addons','account'))
+		return view('landlord.admin.services.all', compact('services', 'addons','account'))
 			->with('i', (request()->input('page', 1) - 1) * 10);
 		//->with('cur_account_id',$services->account_id)
 	}
@@ -133,7 +133,7 @@ class ServiceController extends Controller
 		//$purAddons = Addon::getAddons($service->id);
 		//$avlAddons = Product::getAddons($service->product_id);
 		//return view('landlord.services.show',compact('service','entity','avlAddons','purAddons','avlAddons'));
-		return view('landlord.services.show', compact('service', 'entity'));
+		return view('landlord.admin.services.show', compact('service', 'entity'));
 	}
 
 	/**
@@ -146,7 +146,7 @@ class ServiceController extends Controller
 	{
 		$this->authorize('update', $service);
 		$owners = User::getOwners($service->account_id);
-		return view('landlord.services.edit', compact('service', 'owners'));
+		return view('landlord.admin.services.edit', compact('service', 'owners'));
 	}
 
 	/**

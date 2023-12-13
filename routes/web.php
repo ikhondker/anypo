@@ -229,12 +229,13 @@ use App\Http\Controllers\Landlord\CommentController;
 use App\Http\Controllers\Landlord\DashboardController;
 use App\Http\Controllers\Landlord\NotificationController;
 use App\Http\Controllers\Landlord\TicketController;
-use App\Http\Controllers\Landlord\ServiceController;
+
 use App\Http\Controllers\Landlord\ReportController;
 
 use App\Http\Controllers\Landlord\Admin\ActivityController;
 use App\Http\Controllers\Landlord\Admin\InvoiceController;
 use App\Http\Controllers\Landlord\Admin\PaymentController;
+use App\Http\Controllers\Landlord\Admin\ServiceController;
 use App\Http\Controllers\Landlord\Admin\UserController;
 
 Route::middleware(['auth', 'verified'])->group(function () {

@@ -34,13 +34,14 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Dashboard' 			=> 'App\Policies\Landlord\DashboardPolicy',
 		//'App\Models\Landlord\Notification' 		=> 'App\Policies\Landlord\NotificationPolicy',
 		'App\Models\Landlord\Report' 				=> 'App\Policies\Landlord\ReportPolicy',
-		'App\Models\Landlord\Service' 				=> 'App\Policies\Landlord\ServicePolicy',
+		
 		'App\Models\Landlord\Ticket' 				=> 'App\Policies\Landlord\TicketPolicy',
 		
 		'App\Models\Landlord\Admin\Activity'		=> 'App\Policies\Landlord\Admin\ActivityPolicy',
 		'App\Models\Landlord\Admin\Payment' 		=> 'App\Policies\Landlord\Admin\PaymentPolicy',
 		'App\Models\Landlord\Admin\Invoice' 		=> 'App\Policies\Landlord\Admin\InvoicePolicy',
-		
+		'App\Models\Landlord\Admin\Service' 		=> 'App\Policies\Landlord\Admin\ServicePolicy',
+
 		'App\Models\Landlord\Lookup\Category' 		=> 'App\Policies\Landlord\Lookup\CategoryPolicy',
 		'App\Models\Landlord\Lookup\Country' 		=> 'App\Policies\Landlord\Lookup\CountryPolicy',
 		'App\Models\Landlord\Lookup\Dept'			=> 'App\Policies\Landlord\Lookup\DeptPolicy',

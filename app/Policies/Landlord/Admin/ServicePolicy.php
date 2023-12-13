@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies\Landlord;
+namespace App\Policies\Landlord\Admin;
 
-use App\Models\Landlord\Service;
+use App\Models\Landlord\Admin\Service;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

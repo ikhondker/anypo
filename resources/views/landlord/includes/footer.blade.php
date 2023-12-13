@@ -12,7 +12,8 @@
 
 		<!-- List -->
 		<ul class="list-unstyled list-py-1">
-		  <li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> 153 Williamson Plaza, Maggieberg</a></li>
+		  <li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_landlord_setup->address1.' '. $_landlord_setup->city }}</a></li>
+		  <li><a class="link-sm link-light" href="#">{{ $_landlord_setup->state.' '. $_landlord_setup->zip }}, Canada</a></li>
 		  <li><a class="link-sm link-light" href="tel:1-062-109-9222"><i class="bi-telephone-inbound-fill me-1"></i> +1 (062) 109-9222</a></li>
 		</ul>
 		<!-- End List -->
