@@ -86,11 +86,14 @@ class CreateTenant implements ShouldQueue
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
 		$checkout->status_code = LandlordCheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
+		Log::debug('0. Processing Site='.$checkout->site);
 
 		// create or update user
+		Log::debug('1. Calling  createUpdateCheckoutUser');
 		$user_id= self::createUpdateCheckoutUser($this->checkout_id);
 		
 		// Create account 
+		Log::debug('2. Calling  createCheckoutAccount');
 		$account_id		= self::createCheckoutAccount($this->checkout_id);
 
 		// update account_id in checkout
@@ -106,15 +109,18 @@ class CreateTenant implements ShouldQueue
 		LandlordEventLog::event('user', $user->id, 'update', $account_id);
 		
 		// create service	
+		Log::debug('3. Calling  createCheckoutService');
 		$service_id = self::createCheckoutService($this->checkout_id);
 
 		// generate first invoice for this account and notify
+		Log::debug('4. Calling  createCheckoutInvoice');
 		$invoice_id = self::createCheckoutInvoice($this->checkout_id);
 		$checkout->invoice_id     = $invoice_id;
 		$checkout->save();
 
 		// pay this first invoice and notify
 		//$payment_id = self::payInvoice($invoice_id);
+		Log::debug('5. Calling  payCheckoutInvoice');
 		$payment_id = self::payCheckoutInvoice($checkout->invoice_id );
 
 		// update account with billed date
@@ -134,6 +140,7 @@ class CreateTenant implements ShouldQueue
 
 		// Create new tenant TODO
 		Log::debug("Creating Tenant for checkout ID= ".$this->checkout_id);
+		Log::debug('6. Calling  createTenant');
 		$tenant_id= self::createTenant();
 
 		// mark checkout as complete
@@ -141,6 +148,7 @@ class CreateTenant implements ShouldQueue
 		$checkout->update();
 		
 		// copy logo and avatar default files
+		Log::debug('7. Calling  copyCheckoutFiles');
 		$service_id = self::copyCheckoutFiles($this->checkout_id);
 
 	}
@@ -252,6 +260,8 @@ class CreateTenant implements ShouldQueue
 		$account->gb                = $checkout->gb;
 		$account->price         	= $checkout->price;
 
+		//Log::debug('$checkout->mnth=' . $checkout->mnth);
+		//Log::debug('$end date=' . now()->addMonth($checkout->mnth));
 		$account->start_date    	= now();
 		$account->end_date      	= now()->addMonth($checkout->mnth);
 		// defaulted

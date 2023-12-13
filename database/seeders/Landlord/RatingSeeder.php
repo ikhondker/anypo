@@ -5,7 +5,7 @@ namespace Database\Seeders\Landlord;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Landlord\Admin\Rating;
+use App\Models\Landlord\Lookup\Rating;
 
 class RatingSeeder extends Seeder
 {

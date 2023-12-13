@@ -60,7 +60,7 @@ class UserCreated extends Notification implements ShouldQueue
 					->greeting('Hello '. $this->user->name . ',')
 					->line('Welcome to '. config('app.name') .'. Please review this email in its entirety as it contains important information.')
 					->line(' Your client area login account has been created as follows:')
-					->line('Email: '.$this->user->email.'.')
+					->line('Email: '.$this->user->email)
 					->line('Password: '.$this->random_password)
 					->line('Please use following link to login:')
 					->action('Login', url('/login'))

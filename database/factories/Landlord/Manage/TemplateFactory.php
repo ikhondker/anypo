@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\Landlord\Admin;
+namespace Database\Factories\Landlord\Manage;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

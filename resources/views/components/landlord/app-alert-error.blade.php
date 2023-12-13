@@ -1,9 +1,9 @@
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-	<strong><i class="bi bi-exclamation-triangle"></i> Error! </strong>  {{ $message }} 
+	<strong><i class="bi bi-exclamation-triangle" style="font-size: 1.3rem;"></i> Error! </strong>  {{ $message }} 
 	@if($errors->any())
 	<ul>
 		@foreach ($errors->all() as $error)
-			<li class=""><i class="bi bi-exclamation-triangle"></i> {{ $error }}</li>
+			<li class="">{{ $error }}</li>
 		@endforeach
 	</ul>
 	@endif

@@ -34,7 +34,7 @@ class ViewServiceProvider extends ServiceProvider
 		|-----------------------------------------------------------------------------
 		*/
 
-		view()->composer(['landlord.*','layouts.landlord-app','components.landlord.widget.ticket-comments'], function ($view) {
+		view()->composer(['landlord.*','layouts.landlord-app','components.landlord.widget.ticket-comments','components.landlord.widget.ticket-lists'], function ($view) {
 			$view->with('_avatar_dir',"landlord\\".config('bo.DIR_AVATAR')."\\");
 			$view->with('_logo_dir',"landlord\\".config('bo.DIR_LOGO')."\\");
 			//$view->with('_logo_dir',config('bo.DIR_LOGO'));

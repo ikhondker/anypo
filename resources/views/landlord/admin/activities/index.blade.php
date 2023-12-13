@@ -31,7 +31,9 @@
 						<td>
 							<div class="d-flex align-items-center">
 								<div class="flex-shrink-0">
-									<img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img8.jpg" alt="Image Description">
+									<img class="avatar avatar-sm avatar-circle"
+											src="{{ url($_avatar_dir . $activity->user->avatar) }}"
+											alt="{{ $activity->user->name }}" title="{{ $activity->user->name }}">
 								</div>
 				
 								<div class="flex-grow-1 ms-3">

@@ -5,7 +5,7 @@ namespace Database\Seeders\Landlord;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Landlord\Admin\Entity;
+use App\Models\Landlord\Manage\Entity;
 
 class EntitySeeder extends Seeder
 {

@@ -35,7 +35,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ url(config('bo.DIR_LOGO') . $invoice->account->logo) }}"
+											src="{{ url($_logo_dir. $invoice->account->logo) }}"
 											alt="{{ $invoice->account->name }}" title="{{ $invoice->account->name }}">
 									</div>
 

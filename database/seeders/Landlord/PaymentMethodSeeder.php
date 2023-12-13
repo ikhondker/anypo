@@ -5,7 +5,7 @@ namespace Database\Seeders\Landlord;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Landlord\Admin\PaymentMethod;
+use App\Models\Landlord\Lookup\PaymentMethod;
 
 class PaymentMethodSeeder extends Seeder
 {

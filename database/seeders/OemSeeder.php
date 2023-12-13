@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Tenant\lookup\Oem;
+use App\Models\Tenant\Lookup\Oem;
 
 class OemSeeder extends Seeder
 {

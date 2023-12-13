@@ -5,7 +5,7 @@ namespace Database\Seeders\Landlord;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Landlord\Admin\Priority;
+use App\Models\Landlord\Lookup\Priority;
 
 class PrioritySeeder extends Seeder
 {

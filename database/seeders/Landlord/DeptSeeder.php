@@ -5,7 +5,7 @@ namespace Database\Seeders\Landlord;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Landlord\Dept;
+use App\Models\Landlord\Lookup\Dept;
 
 class DeptSeeder extends Seeder
 {

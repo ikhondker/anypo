@@ -32,7 +32,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ url(config('bo.DIR_AVATAR') . $activity->user->avatar) }}"
+											src="{{ url($_avatar_dir . $activity->user->avatar) }}"
 											alt="{{ $activity->user->name }}" title="{{ $activity->user->name }}">
 									</div>
 
