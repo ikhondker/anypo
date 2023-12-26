@@ -22,35 +22,15 @@ use Illuminate\Http\Request;
 * ==================================================================================
 */
 use App\Http\Controllers\Landlord\TestController;
-
 Route::get('testrun/', [TestController::class, 'run'])->name('tests.run');
-
 Route::get('/test', function () {
 	//return view('landlord.pages.info')->with('title','Sample Title!')->with('msg','Sample message!');
-	return view('landlord.pages.error');
+	//return view('landlord.pages.error');
+	return view('landlord.test');
 })->name('test');
-
-Route::get('/invociehtm', function () {
-return view('invociehtm');
-})->name('invociehtm');
-
-// Route::get('/page', function () {
-//     return view('paghtm');
-// })->name('page');
-
-// Route::get('/design', function () {
-//     return view('design');
-// })->name('design');
-
-// Route::get('/soon', function () {
-//     return view('coming-soon');
-// })->name('soon');
 
 //use App\Http\Controllers\ChartController;
 //Route::get('chart', [ChartController::class, 'index']);
-Route::get('/both', function () {
-	return view('welcome');
-});
 
 
 /**
@@ -162,7 +142,7 @@ Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 /* ======================== Home Controller ======================================== */
 use App\Http\Controllers\Landlord\HomeController;
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+//Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('home.pricing');
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
 Route::get('/online/{invoice_no}', [HomeController::class, 'onlineInvoice'])->name('home.invoice');
@@ -476,4 +456,33 @@ Route::get('/account-linked', function () {
 //     });
 // });
 	
+/**
+* ==================================================================================
+* Route for aws
+* ==================================================================================
+*/
 	
+#http://anypo.s3-website-us-east-1.amazonaws.com/avatars\1
+#object url: https://anypo.s3.amazonaws.com/avatars/img4.jpg
+Route::get('buckets', function(){
+	$disk = 'avatars';
+	//$heroImage = Storage::get('img5.jpg');
+	//$uploadedPath = Storage::disk($disk)->put('img5.jpg', $heroImage);
+	
+	#Object URL
+	#https://anypo.s3.amazonaws.com/avatars/img5.jpg
+
+	// return whole image Ok
+	//return Storage::disk('s3')->response('avatars/' . 'img5.jpg');
+	
+	// OK
+	return Redirect::to('https://anypo.s3.amazonaws.com/avatars/img5.jpg');
+
+});
+
+// Route::get('buckets', function(){
+//     $disk = 'invoices';
+//     $heroImage = Storage::get('img4.jpg');
+//     $uploadedPath = Storage::disk($disk)->put('img4.jpg', $heroImage);
+//     return Storage::disk($disk)->url($uploadedPath);
+// });

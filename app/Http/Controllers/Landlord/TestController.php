@@ -44,6 +44,7 @@ class TestController extends Controller
 	public function run()
 	{
 
+		exit;
 
 		$tenant = Tenant::where('id', 'demo1')->first();
 		// run seeders in tenant

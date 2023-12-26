@@ -85,9 +85,19 @@
 							@endguest
 							@auth
 								@if (auth()->user()->account_id == '')
-									<a class="btn btn-primary btn-transition" href="{{ route('home.checkout') }}">Get	started</a>
+									<a class="btn btn-primary btn-transition" href="{{ route('home.checkout') }}">Get started</a>
 								@else
-									<a class="btn btn-primary btn-transition" href="{{ route('home.checkout') }}">Have This</a>
+									{{-- <a class="btn btn-primary btn-transition" href="#">You already Have This</a> --}}
+									<div class="alert alert-primary" role="alert">
+										<div class="d-flex">
+										  <div class="flex-shrink-0">
+											<i class="bi bi-check-circle"></i>
+										  </div>
+										  <div class="flex-grow-1 ms-2">
+											Information: Thanks for having this service already.
+										  </div>
+										</div>
+									  </div>
 								@endif
 							@endauth
 
