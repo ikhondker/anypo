@@ -51,6 +51,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+
 use Str;
 use DB;
 
@@ -174,7 +176,7 @@ class UserController extends Controller
 
 		return view('tenant.admin.users.edit', compact('user', 'countries', 'designations'));
 	}
-
+ 
 	/**
 	 * Update the specified resource in storage.
 	 */
@@ -182,16 +184,7 @@ class UserController extends Controller
 	{
 		$this->authorize('update', $user);
 
-		//Log::debug('I am inside update!');
-		// upload to private folder and show using user.show route
-		// Upload File, if any, insert row in attachment table  and get attachments id
-		//if ($file = $request->file('file_to_upload')) {
-		//    $request->merge(['user_id'    => $user->id ]);
-		//    $user_id = FileUpload::uploadPhoto($request);
-		//}
-
-
-		// for non admin role field is not shown
+		// for non admin role field is not shown TODO
 		if ($request->has('role')) {
 			Log::debug('Role Found!');
 		} else {
@@ -204,35 +197,30 @@ class UserController extends Controller
 
 		]);
 
-		// if ($file = $request->file('file_to_upload')) {
-		//     $fileName = FileUpload::uploadAvatar($request);
-		//     $request->merge(['avatar'       => $fileName ]);
-		// }
-
-		
 		if ($image = $request->file('file_to_upload')) {
+			// $request->validate([
+			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			// ]);
+
+			// extract the uploaded file
+			$image = $request->file('file_to_upload');
 		
-			// upload to D:\laravel\anypo\public\tenant\demo1\avatar
-			// also defined in ViewComposer
-			$avatar_dir = "tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR')."\\";
+			$token			= tenant('id') ."-". $user->id . "-" . uniqid();
+			$extension		='.'.$image->extension();
+			
+			$uploadedImage	= $token . "-uploaded" . $extension;
+			$thumbImage		= $token. $extension;
 
-			$destinationPath = public_path( $avatar_dir);
-			//Log::debug('destinationPath= '. $destinationPath);
-
-			$token          = $user->id ."-" . Str::uuid();
-			$extension      = "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-
-			$profileImage   = $token . "-uploaded" . $extension;
-			$thumbImage     = $token. $extension;
-
-			$image->move($destinationPath, $profileImage);
-			$request->merge(['avatar' => $thumbImage ]);
-
-			//resize to thumbnail
-			$image_resize = Image::make(public_path($avatar_dir).$profileImage);
+			// upload uploaded image
+			$path = Storage::disk('s3ta')->put($uploadedImage, file_get_contents($image));
+			
+			//resize to thumbnail and upload
+			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
-			$image_resize->save(public_path($avatar_dir .$thumbImage));
-		} 
+            $path =Storage::disk('s3ta')->put($thumbImage, $image_resize->stream()->__toString());
+
+			$request->merge(['avatar' => $thumbImage ]);
+		}
 
 		// TODO add Role update
 		if (auth()->user()->role->value <> UserRoleEnum::ADMIN->value) {

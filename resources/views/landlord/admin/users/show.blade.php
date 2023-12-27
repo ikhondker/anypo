@@ -5,8 +5,12 @@
 @section('content')
 	<!-- Card -->
 	<div class="card">
-		<div class="card-header border-bottom">
+
+		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 			<h4 class="card-header-title">User Profile</h4>
+			<a class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}">
+				<i class="bi bi-pencil-square me-1"></i> Edit User
+			</a>
 		</div>
 
 		<!-- Body -->
@@ -22,8 +26,7 @@
 					<div class="d-flex align-items-center">
 						<!-- Avatar -->
 						<label class="avatar avatar-xxl avatar-circle" for="avatarUploader">
-							<img id="avatarImg" class="avatar-img" src="{{ url( $_avatar_dir . $user->avatar) }}"
-								alt="{{ $user->name }}" title="{{ $user->name }}">
+							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3la')->url($user->avatar) }}" alt="{{ $user->name }}" title="{{ $user->name }}">
 						</label>
 						<div class="d-grid d-sm-flex gap-2 ms-4">
 
@@ -57,7 +60,9 @@
 		<!-- Footer -->
 		<div class="card-footer pt-0">
 			<div class="d-flex justify-content-end gap-3">
-				<a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
+				<a class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}">
+					<i class="bi bi-pencil-square me-1"></i> Edit User
+				</a>
 			</div>
 		</div>
 		<!-- End Footer -->

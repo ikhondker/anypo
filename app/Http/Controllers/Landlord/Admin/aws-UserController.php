@@ -210,34 +210,76 @@ class UserController extends Controller
 	{
 		
 		$this->authorize('update', $user);  
+		
 		$request->merge(['state'    => Str::upper($request->input('state')) ]);
 
 		$request->validate([
 
 		]);
 
-		if ($image = $request->file('file_to_upload')) {
-			// $request->validate([
-			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-			// ]);
+		// https://image.intervention.io/v2
+		// https://laracasts.com/discuss/channels/general-discussion/laravel-5-image-upload-and-resize?page=1
+		// default location D:\laravel\bo04\public
+		if ($image = $request->file('xxxfile_to_upload')) {
+		
+			// upload to D:\laravel\anypo\public\landlord\avatar
+			// also defined in ViewComposer
+			$avatar_dir = "landlord\\".config('bo.DIR_AVATAR')."\\";
+			$destinationPath = public_path( $avatar_dir);
 
-			// extract the uploaded file
+		   // Log::debug("destinationPath=".$destinationPath); 
+
+			$token          = $user->id ."-" . Str::uuid();
+			$extension      = "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+
+			$profileImage   = $token . "-uploaded" . $extension;
+			$thumbImage     = $token. $extension;
+
+			$image->move($destinationPath, $profileImage);
+			$request->merge(['avatar' => $thumbImage ]);
+			
+			//resize to thumbnail
+			$image_resize = Image::make(public_path($avatar_dir).$profileImage);
+			$image_resize->fit(160, 160);
+			$image_resize->save(public_path($avatar_dir .$thumbImage));
+		} 
+
+		//https://www.itsolutionstuff.com/post/laravel-amazon-s3-file-upload-tutorialexample.html
+		if ($image = $request->file('file_to_upload')) {
+			$request->validate([
+				'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			]);
+
+			//extracts the uploaded file
 			$image = $request->file('file_to_upload');
 		
-			//$token		= $user->id ."-" . Str::uuid();
-			$token			= $user->id ."-" . uniqid();
-			$extension		='.'.$image->extension();
-			
-			$uploadedImage	= $token . "-uploaded" . $extension;
-			$thumbImage		= $token. $extension;
+			//$imageName = time().'.'.$request->image->extension();
+			//$token          = $user->id ."-" . Str::uuid();
+			$token          = $user->id ."-" . uniqid();
 
-			// upload uploaded image
-			$path = Storage::disk('s3la')->put($uploadedImage, file_get_contents($image));
+			$extension      ='.'.$image->extension();
+			
+			$uploadedImage   = $token . "-uploaded" . $extension;
+			$thumbImage     = $token. $extension;
+
+			Log::debug('uploadedImage='.$uploadedImage);
+			Log::debug('thumbImage='.$thumbImage);
+
+			//$imageName = $user->id ."-" . Str::uuid().'.'.$request->image->extension(); 
+			//$imageName = $user->id ."-" . Str::uuid().'.'.$request->image->extension(); 
+			
+			// upload uploaded image OK
+			$path = Storage::disk('avatars')->put($uploadedImage, file_get_contents($image));
+			//$path = Storage::disk('avatars')->put('abc.jpg', $image);
+			
+			// OK
+			//$heroImage = Storage::get('img5.jpg');
+			//$path = Storage::disk('avatars')->put($uploadedImage, $heroImage);
 			
 			//resize to thumbnail and upload
 			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
-            $path =Storage::disk('s3la')->put($thumbImage, $image_resize->stream()->__toString());
+            $path =Storage::disk('avatars')->put($thumbImage, $image_resize->stream()->__toString());
 
 			$request->merge(['avatar' => $thumbImage ]);
 		}

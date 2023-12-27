@@ -98,7 +98,7 @@
 						</div>
 						<div class="col-sm-9">
 							{{-- <x-tenant.show.logo logo="{{ $setup->logo }}"/> --}}
-							<img src="{{ url( $_logo_dir . $setup->logo) }}" alt="{{ $setup->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $setup->name }}" width="120px">
+							<img src="{{ Storage::disk('s3tl')->url($setup->logo) }}" alt="{{ $setup->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $setup->name }}" width="120px">
 						</div>
 					 </div>
 				</div>

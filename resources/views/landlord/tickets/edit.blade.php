@@ -14,7 +14,7 @@
 
 			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 				<h5 class="card-header-title">Edit Ticket info</h5>
-				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
+				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-floppy"></i> Save</button>
 			</div>
 
 			<!-- Body -->

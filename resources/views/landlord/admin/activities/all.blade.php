@@ -32,7 +32,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ url($_avatar_dir . $activity->user->avatar) }}"
+											src="{{ Storage::disk('s3la')->url($activity->user->avatar) }}"
 											alt="{{ $activity->user->name }}" title="{{ $activity->user->name }}">
 									</div>
 

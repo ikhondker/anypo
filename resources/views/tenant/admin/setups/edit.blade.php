@@ -231,7 +231,7 @@
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
-                                <img src="{{ url( $_logo_dir . $setup->logo) }}" alt="{{ $setup->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $setup->name }}" width="120px">
+                                <img src="{{ Storage::disk('s3tl')->url($setup->logo) }}" alt="{{ $setup->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $setup->name }}" width="120px">
                                 {{-- <x-tenant.show.logo logo="{{ $setup->logo }}"/> --}}
                                 <x-tenant.attachment.create  />
                             </div>

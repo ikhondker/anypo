@@ -465,10 +465,15 @@ Route::get('/account-linked', function () {
 #http://anypo.s3-website-us-east-1.amazonaws.com/avatars\1
 #object url: https://anypo.s3.amazonaws.com/avatars/img4.jpg
 Route::get('buckets', function(){
-	$disk = 'avatars';
+	// OK
+	//$disk = 'avatars';
 	//$heroImage = Storage::get('img5.jpg');
 	//$uploadedPath = Storage::disk($disk)->put('img5.jpg', $heroImage);
 	
+	$disk = 's3-landlord-avatars';
+	$heroImage = Storage::get('img5.jpg');
+	$uploadedPath = Storage::disk($disk)->put('img5.jpg', $heroImage);
+
 	#Object URL
 	#https://anypo.s3.amazonaws.com/avatars/img5.jpg
 

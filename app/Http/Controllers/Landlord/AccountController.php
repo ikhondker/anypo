@@ -56,6 +56,7 @@ use App\Helpers\LandlordEventLog;
 use Illuminate\Support\Facades\Log;
 use Image;
 use Str;
+use Illuminate\Support\Facades\Storage;
 
 // Notification
 use Notification;
@@ -152,42 +153,32 @@ class AccountController extends Controller
 	{
 		$this->authorize('update', $account);
 
-		//$request->validate();
-		//$request->validate([]);
-
-		// if ($file = $request->file('file_to_upload')) {
-		//     $fileName = FileUpload::uploadLogo($request, (string) $account->id);
-		//     $request->merge(['logo'       => $fileName ]);
-		// }
-
 		if ($image = $request->file('file_to_upload')) {
+			// $request->validate([
+			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			// ]);
 
-			// upload to D:\laravel\anypo\public\landlord\logo
-			// also defined in ViewComposer
-			$logo_dir = "landlord\\".config('bo.DIR_LOGO')."\\";
-			$destinationPath = public_path( $logo_dir);
-
-			//Log::debug("A config('bo.DIR_LOGO')=".config('bo.DIR_LOGO'));
-			//$destinationPath = public_path(config('bo.DIR_LOGO'));
-
-			$token          = $account->id ."-" . Str::uuid();
-			$extension      = "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-
-			$logoImage      = $token . "-uploaded" . $extension;
-			$thumbImage     = $token. $extension;
-
-			// uploaded to D:\laravel\bo04\public\landlord\logo
-			$image->move($destinationPath, $logoImage);
-			$request->merge(['logo' => $thumbImage]);
-
-	
-			//resize to thumbnail
-			$image_resize = Image::make(public_path($logo_dir).$logoImage);
-			$image_resize->fit(160, 160);
-			$image_resize->save(public_path($logo_dir .$thumbImage));
-
-		}
+			// extract the uploaded file
+			$image = $request->file('file_to_upload');
 		
+			$token			= $account->id ."-" . uniqid();
+			$extension		='.'.$image->extension();
+			
+			$uploadedImage	= $token . "-uploaded" . $extension;
+			$thumbImage		= $token. $extension;
+
+			// upload uploaded image
+			$path = Storage::disk('s3ll')->put($uploadedImage, file_get_contents($image));
+			
+			//resize to thumbnail and upload
+			$image_resize = Image::make($image->getRealPath());
+			$image_resize->fit(160, 160);
+            $path =Storage::disk('s3ll')->put($thumbImage, $image_resize->stream()->__toString());
+
+			$request->merge(['logo' => $thumbImage]);
+		}
+
+
 		$account->update($request->all());
 
 		if ($request->input('name') <> $account->name) {

@@ -49,6 +49,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 
+
 # Exceptions
 # Events
 
@@ -139,34 +140,29 @@ class SetupController extends Controller
 	{
 		$this->authorize('update', $setup);
 
-		$request->validate([
-
-		]);
-
-		// if ($file = $request->file('file_to_upload')) {
-		//     $fileName = FileUpload::uploadLogo($request);
-		//     $request->merge(['logo'       => $fileName ]);
-		// }
-
 		if ($image = $request->file('file_to_upload')) {
-			// upload to D:\laravel\anypo\public\tenant\demo1\avatar
-			// also defined in ViewComposer
-			$logo_dir = "tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\";
-			$destinationPath = public_path( $logo_dir);
+			// $request->validate([
+			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			// ]);
 
-			$token          = $setup->id ."-" . Str::uuid();
-			$extension      = "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+			// extract the uploaded file
+			$image = $request->file('file_to_upload');
+		
+			$token			= tenant('id') ."-". $setup->id ."-" . uniqid();
+			$extension		='.'.$image->extension();
+			
+			$uploadedImage	= $token . "-uploaded" . $extension;
+			$thumbImage		= $token. $extension;
 
-			$logoImage   = $token . "-uploaded" . $extension;
-			$thumbImage     = $token. $extension;
-
-			$image->move($destinationPath, $logoImage);
-			$request->merge(['logo' => $thumbImage ]);
-
-			//resize to thumbnail
-			$image_resize = Image::make(public_path($logo_dir).$logoImage);
+			// upload uploaded image
+			$path = Storage::disk('s3tl')->put($uploadedImage, file_get_contents($image));
+			
+			//resize to thumbnail and upload
+			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
-			$image_resize->save(public_path($logo_dir .$thumbImage));
+            $path =Storage::disk('s3tl')->put($thumbImage, $image_resize->stream()->__toString());
+
+			$request->merge(['logo' => $thumbImage]);
 		}
 
 

@@ -22,12 +22,12 @@
 					<div class="d-flex align-items-center">
 						<!-- Avatar -->
 						<label class="avatar avatar-xxl avatar-circle" for="avatarUploader">
-							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('avatars')->url('/landlord/avatar/avatar.png') }}"	alt="abc" title="CDN">
-							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('avatars')->url('avatar.png') }}"	alt="abc" title="CDN">
+							{{-- <img id="avatarImg" class="avatar-img" src="{{ Storage::disk('avatars')->url('/landlord/avatar/avatar.png') }}"	alt="abc" title="CDN"> --}}
+							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3-landlord-avatars')->url('avatar.png') }}"	alt="abc" title="CDN">
 
 							{{-- <img src="{{ Storage::disk('s3')->url('img5.jpg') }}"> --}}
-							<img id="avatarImg" class="avatar-img" src="https://anypo.s3.amazonaws.com/avatars/img5.jpg"	alt="abc" title="abc">
-							<img id="avatarImg" class="avatar-img" src="https://d36yu27tkxden3.cloudfront.net/landlord/avatar/avatar.png"	alt="abc" title="OK">
+							{{-- <img id="avatarImg" class="avatar-img" src="https://anypo.s3.amazonaws.com/avatars/img5.jpg"	alt="abc" title="S3 OK">
+							<img id="avatarImg" class="avatar-img" src="https://d36yu27tkxden3.cloudfront.net/landlord/avatar/avatar.png"	alt="abc" title="OK"> --}}
 							
 							
 

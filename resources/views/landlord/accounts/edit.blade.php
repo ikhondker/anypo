@@ -6,13 +6,13 @@
 
 <!-- Card -->
 <div class="card">
-	<form action="{{ route('accounts.update',$account->id) }}" method="POST" enctype="multipart/form-data">
+	<form id="myform" action="{{ route('accounts.update',$account->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
 
 		<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 			<h5 class="card-header-title">Edit Billing Account</h5>
-			<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
+			<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-floppy"></i> Save</button>
 		</div>
 
 		<!-- Body -->
@@ -26,7 +26,7 @@
 					<div class="d-flex align-items-center">
 						<!-- Avatar -->
 						<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-							<img id="avatarImg" class="avatar-img" src="{{ url($_logo_dir.$account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
+							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3ll')->url($account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
 						</label>
 						<div class="d-grid d-sm-flex gap-2 ms-4">
 							<input type="file" class="form-control form-control-sm" name="file_to_upload"

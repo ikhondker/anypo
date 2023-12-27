@@ -73,8 +73,8 @@
 							<a href="{{ route('users.show', auth()->user()->id) }}" class="nav-link text-muted">
 								{{-- <i class="bi-person-circle  nav-icon"></i> --}}
 								<span class="avatar avatar-xs avatar-circle">
-									<img class="avatar-img" src="{{ url($_avatar_dir.$_landlord_user->avatar) }}" 
-									alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}">
+									{{-- <img class="avatar-img" src="{{ url($_avatar_dir.$_landlord_user->avatar) }}"  alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}"> --}}
+									<img class="avatar-img" src="{{ Storage::disk('s3la')->url($_landlord_user->avatar)  }}"  alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}">
 								</span>
 								{{ Str::limit(auth()->user()->name, 15, '...') }}
 							</a>

@@ -134,7 +134,7 @@
 								<td>
 									{{-- <x-tenant.list.my-avatar :avatar="$user->avatar"/> --}}
 									{{-- <img src="{{ url("tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR') . $user->avatar) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">		 --}}
-									<img src="{{ url( $_avatar_dir . $user->avatar) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
+									<img src="{{ Storage::disk('s3ta')->url($user->avatar) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
 									<a class="text-info" href="{{ route('users.show',$user->id) }}">{{ $user->name }}</a>
 									@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value) && $user->seeded )
 										<span class="text-danger"> (*)</span>

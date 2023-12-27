@@ -70,7 +70,8 @@
 							<td>
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle" src="{{ url($_avatar_dir.$user->avatar) }}"  alt="{{ $user->name }}" title="{{ $user->name }}">
+										{{-- <img class="avatar avatar-sm avatar-circle" src="{{ url($_avatar_dir.$user->avatar) }}"  alt="{{ $user->name }}" title="{{ $user->name }}"> --}}
+										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3la')->url($user->avatar) }}"  alt="{{ $user->name }}" title="{{ $user->name }}">
 									</div>
 									<div class="flex-grow-1 ms-3">
 										<a class="d-inline-block link-dark" href="{{ route('users.show', $user->id) }}">

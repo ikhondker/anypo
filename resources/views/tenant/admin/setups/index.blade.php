@@ -44,7 +44,7 @@
 									@else
 										<img src="/logo/{{ $setup->logo }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $setup->name }}"/>
 									@endif --}}
-									<img src="{{ url( $_logo_dir . $setup->logo) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $setup->name }}"/>
+									<img src="{{ Storage::disk('s3tl')->url($setup->logo) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $setup->name }}"/>
 									<a class="text-info" href="{{ route('setups.show',$setup->id) }}">{{ $setup->name }}</a>
 
 								</td>

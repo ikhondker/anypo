@@ -6,14 +6,14 @@
 	<!-- Card -->
 	<div class="card">
 
-		<form action="{{ route('users.update',$user->id) }}" method="POST" enctype="multipart/form-data">
+		<form id="myform" action="{{ route('users.update',$user->id) }}" method="POST" enctype="multipart/form-data">
 			@csrf
 			@method('PUT')
 			<input type="hidden" name="id" value="{{ $user->id }}">
 
 			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 				<h5 class="card-header-title">Edit User</h5>
-				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
+				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-floppy"></i> Save</button>
 			</div>
 
 			<!-- Body -->
@@ -29,7 +29,7 @@
 						<div class="d-flex align-items-center">
 							<!-- Avatar -->
 							<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-								<img id="avatarImg" class="avatar-img" src="{{ url($_avatar_dir.$user->avatar) }}" alt="{{ $user->name }}" title="{{ $user->name }}">
+								<img id="avatarImg" class="avatar-img" src="{{  Storage::disk('s3la')->url($user->avatar) }}" alt="{{ $user->name }}" title="{{ $user->name }}">
 							</label>
 							<div class="d-grid d-sm-flex gap-2 ms-4">
 								<input type="file" class="form-control form-control-sm" name="file_to_upload"

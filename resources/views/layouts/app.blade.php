@@ -9,19 +9,22 @@
 	<meta name="author" content="Bootlab">
 
 	<title>@yield('title', 'AnyPO.com')</title>
-	<link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
+	<link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 	<!-- Choose your preferred color scheme -->
-	<link href="{{asset('css/light.css')}}" rel="stylesheet">
+	{{-- <link href="{{asset('css/light.css')}}" rel="stylesheet"> --}}
+	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}">
+
 	<!-- <link href="css/dark.css" rel="stylesheet"> -->
 
 	<!-- Custom style -->
-	<link href="{{asset('css/custom.css')}}" rel="stylesheet">
-	
+	{{-- <link href="{{asset('css/custom.css')}}" rel="stylesheet"> --}}
+	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/custom.css') }}">
+
 	<!-- BEGIN SETTINGS -->
 	<!-- Remove this after purchasing -->
 	{{-- <link class="js-stylesheet" href="css/light.css" rel="stylesheet">
@@ -34,8 +37,10 @@
 	</script>
 
 	{{-- sweetalert2 v11.7.3 --}}
-	<script	src="{{asset('js/sweetalert2.min.js')}}"></script>
-	<link href="{{asset('css/sweetalert2.css')}}" rel="stylesheet">
+	{{-- <script	src="{{asset('js/sweetalert2.min.js')}}"></script>
+	<link href="{{asset('css/sweetalert2.css')}}" rel="stylesheet"> --}}
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" >
 	{{-- or --}}
 	{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
@@ -63,7 +68,8 @@
 						@else
 							<img src="/logo/{{ $_setup->logo }}" width="90px" height="90px" class="" alt="{{ $_setup->name }}"/><br>
 						@endif --}}
-						<img src="{{ url( $_logo_dir . $_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/><br>
+						
+						<img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/><br>
 					{{-- <span class="text-dark">{{ $_setup->name}},{{ $_setup->address1 }}, {{ $_setup->city.', '.$_setup->state.', '.$_setup->zip  }} {{ $_setup->country }}</span> --}}
 					@endauth
 
@@ -99,7 +105,11 @@
 					{{-- <i class="hamburger align-self-center"></i> --}}
 					{{-- <i class="align-middle" data-feather="layout"></i>  --}}
 					{{-- <i class="fas fa-plus fa-2xl align-self-center"></i> --}}
-					<i class="fa-solid fa-bars fa-2xl align-self-center text-muted"></i>
+					{{-- <i class="fa-solid fa-bars-staggered"></i> --}}
+					{{-- <i class="fa-solid fa-expand"></i> --}}
+					{{-- <i class="fa-solid fa-arrows-left-right-to-line"></i> --}}
+					{{-- <i class="fa-solid fa-up-right-and-down-left-from-center"></i> --}}
+					<i class="hamburger align-self-center fa-2xl align-self-center text-muted"></i>
 				</a>
 
 				{{-- <form class="d-none d-sm-inline-block">
@@ -199,15 +209,17 @@
 							</a>
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								@auth
-									@if ( auth()->user()->avatar == "")
-										<img src="{{ url($_avatar_dir . 'avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
-									@else
-										<img src="{{ url($_avatar_dir . auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
-									@endif
+									<img src="{{ Storage::disk('s3ta')->url(auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
 									<span class="text-dark">{{ Str::limit(auth()->user()->name, 25, '...') }}</span>
+									{{-- @if ( auth()->user()->avatar == "")
+										<img src="{{ url($_avatar_dir . 'avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
+									@else --}}
+										{{-- <img src="{{ url($_avatar_dir . auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/> --}}
+								{{-- @endif --}}
 								@endauth
                             	@guest
-									<img src="{{asset('img/avatar.png')}}" class="avatar img-fluid rounded-circle me-1" alt="Guest" /> 
+									{{-- <img src="{{asset('img/avatar.png')}}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />  --}}
+									<img src="{{ Storage::disk('s3ta')->url('avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="Guest" /> 
 									<span class="text-dark">Guest</span>
 								@endguest
 							</a>
@@ -381,7 +393,8 @@
 		</div>
 	</div>
 
-	<script src="{{asset('js/app.js')}}"></script>
+	{{-- <script src="{{asset('js/app.js')}}"></script> --}}
+	<script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script>
 
 	{{-- @livewireScripts --}}
 </body>
