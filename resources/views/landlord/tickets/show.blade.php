@@ -30,7 +30,7 @@
 					<!-- Media -->
 					<div class="d-flex mb-3">
 						<div class="flex-shrink-0">
-							<img class="avatar avatar-circle" src="{{ url($_avatar_dir.$ticket->owner->avatar) }}" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
+							<img class="avatar avatar-circle" src="{{ Storage::disk('s3la')->url($ticket->owner->avatar) }}" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
 						</div>
 
 						<div class="flex-grow-1 ms-3">

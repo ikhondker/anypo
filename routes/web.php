@@ -129,7 +129,7 @@ Route::get('/contact-us', function () {
 * ==================================================================================
 */
 Route::get('/', function () {
-	return view('home');
+	return view('landlord.home');
 })->name('home');
 // IQBAL 28-feb-23
 Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');

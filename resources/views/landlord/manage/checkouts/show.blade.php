@@ -22,7 +22,7 @@
 				<div class="d-flex align-items-center">
 					<!-- Avatar -->
 					<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-						<img id="avatarImg" class="avatar-img" src="{{ asset('/assets/img/160x160/img9.jpg') }}"
+						<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/avatar.png')  }}"
 							alt="Image Description">
 					</label>
 

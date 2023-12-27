@@ -5,8 +5,9 @@
 		<!-- Logo -->
 		<div class="mb-5">
 		  <a class="navbar-brand" href="./index.html" aria-label="Space">
-			<img class="navbar-brand-logo" src="{{ asset('/assets/svg/logos/logo-white.svg') }}" alt="Image Description">
+			<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('svg/logos/logo-white.svg') }}" alt="Image Description">
 		  </a>
+		  
 		</div>
 		<!-- End Logo -->
 

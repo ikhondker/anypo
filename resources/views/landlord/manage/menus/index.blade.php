@@ -35,7 +35,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ asset('/assets/logo/logo.png') }}" alt="Logo">
+											src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
 									</div>
 									<div class="flex-grow-1 ms-3">
 										<a class="d-inline-block link-dark" href="{{ route('menus.show', $menu->id) }}">

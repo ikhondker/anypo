@@ -35,7 +35,7 @@
 							<td>
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img8.jpg"
+										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3ll')->url($service->account->logo) }}"
 											alt="Image Description">
 									</div>
 

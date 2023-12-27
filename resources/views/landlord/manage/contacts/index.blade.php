@@ -34,7 +34,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0">
-                                        <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img8.jpg" alt="Image Description">
+                                        <img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" alt="Image Description">
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <a class="d-inline-block link-dark" href="#">

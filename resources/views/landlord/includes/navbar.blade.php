@@ -109,7 +109,7 @@
 		<nav class="js-mega-menu navbar-nav-wrap">
 			<!-- Default Logo -->
 			<a class="navbar-brand" href="{{ route('home') }}" aria-label="aypo.net">
-				<img class="navbar-brand-logo" src="{{ asset('/assets/logo/logo.svg') }}" alt="Logo">
+				<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo.svg') }}" alt="Logo">
 			</a>
 			<!-- End Default Logo -->
 

@@ -18,8 +18,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 	<!-- Choose your prefered color scheme -->
-	<link href="{{asset('css/light.css')}}" rel="stylesheet">
-	
+	{{-- <link href="{{asset('css/light.css')}}" rel="stylesheet"> --}}
+	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}">
+
 </head>
 <!--
   HOW TO USE: 
@@ -48,7 +49,8 @@
 		</main>
 	</div>
 
-	<script src="{{asset('js/app.js')}}"></script>
+	{{-- <script src="{{asset('js/app.js')}}"></script> --}}
+	<script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script>
 
 </body>
 

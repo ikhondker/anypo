@@ -35,7 +35,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ url(config('bo.DIR_LOGO') . $service->account->logo) }}"
+											src="{{  Storage::disk('s3ll')->url($service->account->logo) }}"
 											alt="{{ $service->account->name }}" title="{{ $service->account->name }}">
 									</div>
 
