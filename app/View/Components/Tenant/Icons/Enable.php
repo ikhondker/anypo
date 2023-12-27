@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Icons;
+namespace App\View\Components\Tenant\Icons;
 
 use Closure;
 use Illuminate\Contracts\View\View;

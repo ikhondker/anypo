@@ -149,9 +149,9 @@ class CreateTenant implements ShouldQueue
 		$checkout->status_code =  LandlordCheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
 		
-		// copy logo and avatar default files
-		Log::debug('7. Calling  copyCheckoutFiles');
-		$service_id = self::copyCheckoutFiles($this->checkout_id);
+		// copy logo and avatar default files Not needed after AWS CDN
+		// Log::debug('7. Calling  copyCheckoutFiles');
+		// $service_id = self::copyCheckoutFiles($this->checkout_id);
 
 	}
 
