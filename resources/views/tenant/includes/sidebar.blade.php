@@ -154,7 +154,7 @@
 	</li>
 	<li class="sidebar-item {{ ($_route_name == 'tickets.create' ? "active" : "") }}">
 		<a class="sidebar-link" href="{{ route('tickets.create') }}">
-			<i class="align-middle" data-feather="book-open"></i><span class="align-middle"> Support Ticket</span>
+			<i class="align-middle" data-feather="book-open"></i><span class="align-middle"> Support</span>
 		</a>
 	</li>
 </ul>

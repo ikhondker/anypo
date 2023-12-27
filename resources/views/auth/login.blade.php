@@ -4,7 +4,7 @@
 @section('content')
 
 	<div class="text-center mt-4">
-		<h1 class="h2">Welcome back, [tenant]</h1>
+		<h1 class="h2">Welcome back,</h1>
 		<p class="lead">Sign in to your existing account to continue</p>
 	</div>
 

@@ -16,6 +16,20 @@
 					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png')  }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
 				</div>
 				
+				@if (session('status'))
+					<div class="mt-3">
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							<div class="alert-icon">
+								<i class="far fa-fw fa-bell"></i>
+							</div>
+							<div class="alert-message">
+								{{ session('status') }}
+							</div>
+						</div>
+					</div>	
+				@endif
+
 				<form action="{{ route('password.email') }}" method="post" onsubmit="return validateForm()">
 					@csrf
 					<div class="mb-3">

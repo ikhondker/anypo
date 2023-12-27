@@ -22,7 +22,7 @@
 					<div class="mb-3">
 						<label class="form-label">Email</label>
 						<input class="form-control form-control-lg @error('email') is-invalid @enderror" 
-							type="email" name="email"  value="{{ old('email') }}" 
+							id="email" type="email" name="email" value="{{ old('email') }}" 
 							placeholder="Enter your email" 
 							required autocomplete="email" autofocus/>
 							@error('email')
@@ -43,7 +43,7 @@
 					<div class="mb-3">
 						<label class="form-label">Password</label>
 						<input class="form-control form-control-lg  @error('password') is-invalid @enderror" 
-							type="password" name="password" 
+							id="password"  type="password" name="password" 
 							placeholder="Enter password" 
 							required autocomplete="new-password"/>
 							@error('password')
@@ -54,15 +54,13 @@
 					<div class="mb-3">
 						<label class="form-label">Confirm Password</label>
 						<input class="form-control form-control-lg  @error('password') is-invalid @enderror" 
-							type="password" name="password_confirmation" id="password-confirm" 
+							id="password-confirm" type="password" name="password_confirmation" 
 							placeholder="Enter password" 
 							required autocomplete="new-password"/>
 							@error('password_confirmation')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 					</div>
-
-					
 				   
 					<div>
 						<div class="form-check align-items-center">

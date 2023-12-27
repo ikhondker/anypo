@@ -18,7 +18,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-	<link href="{{asset('css/light.css')}}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}">
 </head>
 
 <body>
@@ -34,7 +34,7 @@
 	<nav class="navbar navbar-expand-md navbar-light landing-navbar">
 		<div class="container">
 			<a class="navbar-brand landing-brand" href="#">
-				<img src="{{asset('/logo/logo.png')}}" width="80px" height="80px"/> 
+				<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="80px" height="80px"/> 
 			</a>
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item d-none d-md-inline-block">
@@ -81,7 +81,8 @@
 			<div class="row small">
 				<div class="col-xl-3 col-lg-4 col-md-6">
 					<div>
-						<h3 class="text-light">Logo</h3>
+						{{-- <h3 class="text-light">Logo</h3> --}}
+						<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="80px" height="80px"/> 
 						<p class="mb-30 text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad soluta facilis
 						eos quia optio iusto odit atque eum tempore, quisquam officiis vero veniam hic,</p>
 					</div>
@@ -90,7 +91,7 @@
 					<div class="">
 						<h4 class="text-light">Quick Link</h4>
 						<ul class="list-unstyled">
-							<li><a href="#" class="text-light">Home</a></li>
+							<li><a href="{{ route('home') }}" class="text-light">Home</a></li>
 							<li><a href="#" class="text-light">About Us</a></li>
 							<li><a href="#" class="text-light">Service</a></li>
 							<li><a href="#" class="text-light">Contact</a></li>
@@ -101,7 +102,7 @@
 				  <div>
 					<h4 class="text-light">Service</h4>
 					<ul class="list-unstyled">
-						<li><a href="#" class="text-light">Home</a></li>
+						<li><a href="{{ route('home') }}" class="text-light">Home</a></li>
 						<li><a href="#" class="text-light">About Us</a></li>
 						<li><a href="#" class="text-light">Service</a></li>
 						<li><a href="#" class="text-light">Contact</a></li>
@@ -126,7 +127,7 @@
 			</div>
 		</div>
 	</section>
-	<script src="js/app.js"></script>
+	<script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script>
 </body>
 
 </html>

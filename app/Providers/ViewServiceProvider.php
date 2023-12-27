@@ -34,11 +34,11 @@ class ViewServiceProvider extends ServiceProvider
 		|-----------------------------------------------------------------------------
 		*/
 
-		view()->composer(['landlord.*','layouts.landlord-app','components.landlord.widget.ticket-comments','components.landlord.widget.ticket-lists'], function ($view) {
-			$view->with('_avatar_dir',"landlord\\".config('bo.DIR_AVATAR')."\\");
-			$view->with('_logo_dir',"landlord\\".config('bo.DIR_LOGO')."\\");
-			//$view->with('_logo_dir',config('bo.DIR_LOGO'));
-		});
+		// view()->composer(['landlord.*','layouts.landlord-app','components.landlord.widget.ticket-comments','components.landlord.widget.ticket-lists'], function ($view) {
+		// 	$view->with('_avatar_dir',"landlord\\".config('bo.DIR_AVATAR')."\\");
+		// 	$view->with('_logo_dir',"landlord\\".config('bo.DIR_LOGO')."\\");
+		// 	//$view->with('_logo_dir',config('bo.DIR_LOGO'));
+		// });
 
 		view()->composer('layouts.landlord-app', function ($view) {
 			$raw_route_name = \Request::route()->getName();
@@ -65,10 +65,10 @@ class ViewServiceProvider extends ServiceProvider
 		| Tenant																	 + 
 		|-----------------------------------------------------------------------------
 		*/
-		view()->composer(['tenant.*','layouts.app'], function ($view) {
-			$view->with('_avatar_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR')."\\");
-			$view->with('_logo_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\");	
-		});
+		// view()->composer(['tenant.*','layouts.app'], function ($view) {
+		// 	$view->with('_avatar_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR')."\\");
+		// 	$view->with('_logo_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\");	
+		// });
 
 
 		view()->composer('layouts.app', function ($view) {

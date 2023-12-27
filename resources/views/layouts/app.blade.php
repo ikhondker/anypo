@@ -230,11 +230,11 @@
 								@endauth
 
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{ route('users.index') }}"><i class="align-middle me-1" data-feather="user"></i> [xx Users]</a>
 								<a class="dropdown-item" href="{{ route('dashboards.index') }}"><i class="align-middle me-1" data-feather="pie-chart"></i> Dashboard</a>
-								<a class="dropdown-item" href="{{ route('privacy') }}">Privacy</a>
-								<a class="dropdown-item" href="{{ route('help') }}">Help</a>
-								<a class="dropdown-item" href="{{ route('logout') }}">Sign out</a>
+								<a class="dropdown-item" href="{{ route('notifications.index') }}"><i class="align-middle me-1" data-feather="user"></i> Notifications</a>
+								<a class="dropdown-item" href="{{ route('tickets.create')  }}"><i class="align-middle me-1" data-feather="user"></i> Support</a>
+								<a class="dropdown-item" href="{{ route('help') }}"> <i class="align-middle me-1" data-feather="user"></i> Help</a>
+								<a class="dropdown-item" href="{{ route('logout') }}"><i class="align-middle me-1" data-feather="user"></i> Sign out</a>
 							</div>
 						</li>
 					</ul>
@@ -307,7 +307,7 @@
 						<div class="col-8 text-start">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<a class="text-muted" href="#">Support*</a>
+									<a class="text-muted" href="{{ route('tickets.create') }}">Support</a>
 								</li>
 								<li class="list-inline-item">
 									<a class="text-muted" href="{{ route('help') }}">Help Center</a>
