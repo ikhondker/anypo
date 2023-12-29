@@ -1,6 +1,6 @@
 @extends('layouts.landlord-blank')
 @section('title', 'Error - 404')
-@section('breadcrumb', 'Error - 404')
+@section('breadcrumb', '503: Service Unavailable')
 
 
 @section('content')
@@ -15,7 +15,7 @@
 					<div class="row justify-content-lg-between">
 						<div class="col-sm order-2 order-sm-1 mb-3">
 							<div class="mb-2">
-								<img class="avatar" src="{{ asset('/assets/logo/logo.svg') }}" alt="Logo">
+								<img class="avatar" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
 							</div>
 						</div>
 						<!-- End Col -->
@@ -25,7 +25,7 @@
 								<h2 class="text-danger">Woops!</h2>
 							</div>
 							<div class="mb-3">
-								<h3 class="text-info">503: Service Unavailable. Please try after sometime.</h2>
+								<h3 class="text-info">503: Service Unavailable.</h2>
 							</div>
 						</div>
 						<!-- End Col -->
@@ -37,15 +37,15 @@
 						<!-- Content -->
 						<div class="container text-center">
 							<div class="mb-3">
-								<img class="img-fluid" src="{{ asset('/assets/svg/illustrations/oc-error.svg') }}" alt="Image Description" style="width: 30rem;">
+								<img class="img-fluid" src="{{ Storage::disk('s3l')->url('svg/illustrations/oc-error.svg') }}" alt="Image Description" style="width: 30rem;">
 							</div>
 
 							<div class="mb-4">
-								<p class="fs-4 mb-0">Oops! Looks like you followed a bad link.</p>
-								<p class="fs-4">If you think this is a problem with us, please <a class="link" href="{{ route('contact-us') }}">tell us</a>.</p>
+								{{-- <p class="fs-4 mb-0">Oops! Looks like you followed a bad link.</p> --}}
+								<p class="fs-4">Briefly Unavailable for Scheduled Maintenance. Check Back in a Minute.</p>
 							</div>
 
-							<a class="btn btn-primary" href="{{ route('home') }}">Go back home</a>
+							{{-- <a class="btn btn-primary" href="{{ route('home') }}">Go back home</a> --}}
 						</div>
 
 					</div>
@@ -53,7 +53,7 @@
 
 					<hr class="my-5">
 
-					<p class="small mb-0">&copy; {{ date('Y').' '. env('APP_NAME') }}</p>
+					<p class="small mb-0">&copy; {{ date('Y').' ' }} AnyPO</p>
 				</div>
 			</div>
 			<!-- End Card -->

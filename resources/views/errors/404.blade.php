@@ -15,7 +15,7 @@
 					<div class="row justify-content-lg-between">
 						<div class="col-sm order-2 order-sm-1 mb-3">
 							<div class="mb-2">
-								<img class="avatar" src="{{ asset('/assets/logo/logo.svg') }}" alt="Logo">
+								<img class="avatar" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
 							</div>
 						</div>
 						<!-- End Col -->
@@ -37,7 +37,7 @@
 						<!-- Content -->
 						<div class="container text-center">
 							<div class="mb-3">
-								<img class="img-fluid" src="{{ asset('/assets/svg/illustrations/oc-error.svg') }}" alt="Image Description" style="width: 30rem;">
+								<img class="img-fluid" src="{{ Storage::disk('s3l')->url('svg/illustrations/oc-error.svg') }}" alt="Image Description" style="width: 30rem;">
 							</div>
 
 							<div class="mb-4">

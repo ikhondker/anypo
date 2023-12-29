@@ -3,11 +3,10 @@
 	<div class="row content-space-t-2">
 	  <div class="col-lg-3 mb-7 mb-lg-0">
 		<!-- Logo -->
-		<div class="mb-5">
+		<div class="mb-3">
 		  <a class="navbar-brand" href="./index.html" aria-label="Space">
-			<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('svg/logos/logo-white.svg') }}" alt="Image Description">
+			<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-white.svg') }}" alt="Logo">
 		  </a>
-		  
 		</div>
 		<!-- End Logo -->
 

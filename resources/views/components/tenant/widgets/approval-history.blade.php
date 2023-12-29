@@ -21,7 +21,7 @@
                     <tr>
                         <td class=""> {{ $loop->iteration }} #{{ $wfl->id }}</td>
                         <td class="">{{ $wfl->performer->name }}({{ $wfl->performer->designation_name->name }})</td>
-                        <td class=""><x-list.my-date-time :value="$wfl->action_date"/></td>
+                        <td class=""><x-tenant.list.my-date-time :value="$wfl->action_date"/></td>
                         <td class=""><span class="badge bg-success">{{ $wfl->action }}</span></td>
                         <td class="">{{ $wfl->notes }}</td>
                     </tr>

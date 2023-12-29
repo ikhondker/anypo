@@ -19,9 +19,12 @@
 	<link rel="stylesheet" href="{{ asset('/assets/vendor/bootstrap-icons/font/bootstrap-icons.css') }}">
 
 	<!-- CSS Front Template -->
-	<link rel="stylesheet" href="{{ asset('/assets/css/theme.css') }}">
-	<link rel="stylesheet" href="{{ asset('/assets/css/landlord.css') }}">
-	
+	{{-- <link rel="stylesheet" href="{{ asset('/assets/css/theme.css') }}">
+	<link rel="stylesheet" href="{{ asset('/assets/css/landlord.css') }}"> --}}
+	<link rel="stylesheet" href="{{ Storage::disk('s3l')->url('css/theme.css') }}">
+	<link rel="stylesheet" href="{{ Storage::disk('s3l')->url('css/landlord.css') }}">
+
+
 </head>
 
 <body>

@@ -7,15 +7,15 @@
 
 @section('content')
 
-    <x-page-header>
-        @slot('title')
-            Modal Window
-        @endslot
-        @slot('buttons')
-            <a href="#" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> Home</a>
-            <a href="#" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New project</a>
-        @endslot
-    </x-page-header>
+    <x-tenant.page-header>
+            @slot('title')
+                Modal Window
+            @endslot
+            @slot('buttons')
+                <a href="#" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> Home</a>
+                <a href="#" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New project</a>
+            @endslot
+    </x-tenant.page-header>
 
     <div class="row">
         <div class="col-12">
