@@ -9,11 +9,11 @@
 	<meta name="author" content="Bootlab">
 
 	<title>@yield('title', 'AnyPO.com')</title>
-	<link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
+	<link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" >
 
 	<!-- Choose your preferred color scheme -->
 	{{-- <link href="{{asset('css/light.css')}}" rel="stylesheet"> --}}
@@ -69,7 +69,9 @@
 							<img src="/logo/{{ $_setup->logo }}" width="90px" height="90px" class="" alt="{{ $_setup->name }}"/><br>
 						@endif --}}
 						
-						<img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/><br>
+						<img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
+						<h5 class="text-info">{{ $_setup->name}}</h5>
+						{{-- <span class="h4 text-info m-2">{{ $_setup->name}}</span> --}}
 					{{-- <span class="text-dark">{{ $_setup->name}},{{ $_setup->address1 }}, {{ $_setup->city.', '.$_setup->state.', '.$_setup->zip  }} {{ $_setup->country }}</span> --}}
 					@endauth
 
@@ -120,9 +122,48 @@
 						</button>
 					</div>
 				</form> --}}
-			
+
+				<ul class="navbar-nav">
+					<li class="nav-item px-2 dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              				Menu
+            			</a>
+						<div class="dropdown-menu dropdown-menu-start dropdown-mega" aria-labelledby="servicesDropdown">
+							<div class="d-md-flex align-items-start justify-content-start">
+								<div class="dropdown-mega-list">
+									<div class="dropdown-header">Summary</div>
+									<a class="dropdown-item" href="{{ route('prs.create') }}">Create PR</a>
+									<a class="dropdown-item" href="{{ route('pos.create') }}">Create PO</a>
+									<a class="dropdown-item" href="{{ route('items.create') }}">Create Item</a>
+									<a class="dropdown-item" href="{{ route('receipts.create') }}">Create Receipt</a>
+									<a class="dropdown-item" href="{{ route('users.index') }}">User List</a>
+								</div>
+								<div class="dropdown-mega-list">
+									<div class="dropdown-header">Transaction</div>
+									<a class="dropdown-item" href="#">Layouts</a>
+									<a class="dropdown-item" href="#">Basic Inputs</a>
+									<a class="dropdown-item" href="#">Input Groups</a>
+									<a class="dropdown-item" href="#">Advanced Inputs</a>
+									<a class="dropdown-item" href="#">Editors</a>
+									<a class="dropdown-item" href="#">Validation</a>
+									
+								</div>
+								<div class="dropdown-mega-list">
+									<div class="dropdown-header">Reports</div>
+									<a class="dropdown-item" href="#">Basic Tables</a>
+									<a class="dropdown-item" href="#">Responsive Table</a>
+									<a class="dropdown-item" href="#">Table with Buttons</a>
+									<a class="dropdown-item" href="#">Column Search</a>
+									<a class="dropdown-item" href="#">Muulti Selection</a>
+									
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
 				@auth
-					<span class="h3 text-info m-2">{{ $_setup->name}}</span>
+					{{-- <img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $_setup->name }}" /> 
+					<span class="h3 text-info m-2">{{ $_setup->name}}</span> --}}
 					@if(session('original_user'))
 						<a href="{{ route('users.leave-impersonate') }}" class="me-2 text-danger">[LEAVE IMPERSONATE =>]</a>
 					@endif 
@@ -135,18 +176,22 @@
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
+						
+						<a class="nav-flag dropdown-toggle" href="#" id="languageDropdown" data-bs-toggle="no-dropdown">
+							<img src="{{ Storage::disk('s3t')->url('img/flags/'. Str::lower($_setup->country).'.png') }}" alt="{{ $_setup->country }}" /> 
+						</a>
 
 						<li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
 								<div class="position-relative">
-									<i class="align-middle" data-feather="message-circle"></i>
+										<i class="align-middle" data-feather="bell-off"></i>
 									<span class="indicator"> {{ $_count_unread_notifications }} </span>
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
 								<div class="dropdown-menu-header">
 									<div class="position-relative">
-										{{ $_count_unread_notifications }} New Messages
+										{{ $_count_unread_notifications }} New Notification
 									</div>
 								</div>
 								<div class="list-group">
@@ -171,38 +216,11 @@
 									@endauth
 								</div>
 								<div class="dropdown-menu-footer">
-									<a href="{{ route('notifications.index') }}" class="text-muted">Show all messages</a>
+									<a href="{{ route('notifications.index') }}" class="text-muted">Show all Notifications</a>
 								</div>
 							</div>
 						</li>
-						
-						<li class="nav-item dropdown">
-							<a class="nav-flag dropdown-toggle" href="#" id="languageDropdown" data-bs-toggle="dropdown">
-								<i class="align-middle" data-feather="list"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-								<a class="dropdown-item" href="{{ route('prs.create') }}">
-									<i class="align-middle" data-feather="command"></i>
-									<span class="align-middle">Create PR</span>
-								</a>
-								<a class="dropdown-item" href="{{ route('pos.create') }}">
-									<i class="align-middle" data-feather="command"></i>
-									<span class="align-middle">Create PO</span>
-								</a>
-								<a class="dropdown-item" href="{{ route('items.create') }}">
-									<i class="align-middle" data-feather="command"></i>
-									<span class="align-middle">Create Item</span>
-								</a>
-								<a class="dropdown-item" href="{{ route('users.index') }}">
-									<i class="align-middle" data-feather="command"></i>
-									<span class="align-middle">User List</span>
-								</a>
-								<a class="dropdown-item" href="{{ route('receipts.create') }}">
-									<i class="align-middle" data-feather="command"></i>
-									<span class="align-middle">Create Receipt</span>
-								</a>
-							</div>
-						</li>
+
 						<li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
 								<i class="align-middle" data-feather="settings"></i>
@@ -247,7 +265,7 @@
 					<div class="row justify-start">
 						<div class="col-lg-8">
 							<!-- Show Notice -->
-							@if ($_setup->show_notice && ($_setup->notice <> '') )
+							@if ($_setup->show_banner && ($_setup->banner_message <> '') )
 
 								<div class="alert alert-danger alert-outline alert-dismissible" role="alert">
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -255,7 +273,7 @@
 										<i class="far fa-fw fa-bell"></i>
 									</div>
 									<div class="alert-message text-danger">
-										<strong class="text-danger">NOTICE!</strong> {{ $_setup->notice}}
+										<strong class="text-danger">ANNOUNCEMENT!</strong> {{ $_setup->banner_message}}
 									</div>
 								</div>
 							@endif

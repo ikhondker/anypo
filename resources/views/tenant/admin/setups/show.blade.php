@@ -8,7 +8,7 @@
 			View Setup
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('setups.notice',$setup->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-edit"></i> Notice</a>
+			<a href="{{ route('setups.announcement',$setup->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-edit"></i> Announcement</a>
 			<x-tenant.buttons.header.edit object="Setup" :id="$setup->id"/>
 		@endslot
 	</x-tenant.page-header>
@@ -108,11 +108,11 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-				<h5 class="card-title">Notice</h5>
+				<h5 class="card-title">Announcement</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-boolean   value="{{ $setup->show_notice }}" label="Show Notice?"/>
-					<x-tenant.show.my-text value="{{ $setup->notice }}" label="Notice Text"/>
+					<x-tenant.show.my-boolean   value="{{ $setup->show_banner }}" label="Show Announcement?"/>
+					<x-tenant.show.my-text value="{{ $setup->banner_message }}" label="Announcement"/>
 					<x-tenant.show.my-text value="{{ $setup->cell }}" label="Cell"/>
 				</div>
 			</div>

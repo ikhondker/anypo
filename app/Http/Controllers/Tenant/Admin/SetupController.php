@@ -221,7 +221,7 @@ class SetupController extends Controller
 	{
 		$this->authorize('update', $setup);
 
-		return view('tenant.admin.setups.notice', compact('setup'));
+		return view('tenant.admin.setups.announcement', compact('setup'));
 	}
 
 	public function updatenotice(Request $request, Setup $setup)
@@ -233,21 +233,21 @@ class SetupController extends Controller
 		// ]);
 
 		// check box
-		if($request->has('show_notice')) {
+		if($request->has('show_banner')) {
 			//Checkbox checked
-			$request->merge(['show_notice' =>  1]);
+			$request->merge(['show_banner' =>  1]);
 		} else {
 			//Checkbox not checked
-			$request->merge([ 'show_notice' =>  0]);
+			$request->merge([ 'show_banner' =>  0]);
 		}
 
 
 		$setup->update($request->all());
 
 		// Write to Log
-		EventLog::event('setup', $setup->id, 'update', 'show_notice', $request->show_notice);
+		EventLog::event('setup', $setup->id, 'update', 'show_banner', $request->show_banner);
 
-		return redirect()->route('setups.show', $setup->id)->with('success', 'Notice setting saved.');
+		return redirect()->route('setups.show', $setup->id)->with('success', 'Announcement setting saved.');
 	}
 
 	public function freeze(Request $request, Setup $setup)

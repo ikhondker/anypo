@@ -6,7 +6,7 @@
 
     <x-tenant.page-header>
         @slot('title')
-            General Notice/Message
+            Announcement
         @endslot
         @slot('buttons')
             <x-tenant.buttons.header.save/>
@@ -22,7 +22,7 @@
                 <div class="col-6">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Currency Setup </h5>
+                            <h5 class="card-title">Announcement </h5>
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
@@ -38,9 +38,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Notice Text:</label>
-                                <textarea class="form-control" name="notice"  placeholder="Enter Notice ..." rows="3">{{ old('notes', $setup->notice) }}</textarea>
-                                @error('notice')
+                                <label class="form-label">Announcement Text:</label>
+                                <textarea class="form-control" name="banner_message"  placeholder="Enter Announcement ..." rows="3">{{ old('banner_message', $setup->banner_message) }}</textarea>
+                                @error('banner_message')
                                     <div class="text-danger text-xs">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -48,8 +48,8 @@
                             <div class="mb-3">
                                 <label class="form-check m-0">
                                 <input type="checkbox" class="form-check-input"
-                                    name="show_notice" id="show_notice"  @checked($setup->show_notice)/>
-                                <span class="form-check-label text-danger">Show Notice?</span>
+                                    name="show_banner" id="show_banner"  @checked($setup->show_banner)/>
+                                <span class="form-check-label text-danger">Display above Announcement?</span>
                                 </label>
                             </div>
 

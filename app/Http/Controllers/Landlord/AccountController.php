@@ -197,6 +197,12 @@ class AccountController extends Controller
 	public function destroy(Account $account)
 	{
 
+
+		Log::debug("Delete Tickets = ??????");
+
+		return true;
+		exit;
+
 		$account_id= $account->id;
 		Log::debug("Deleting Account id=".$account_id);
 

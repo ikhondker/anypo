@@ -9,7 +9,7 @@
 <!-- Favicon -->
 {{-- <link rel="shortcut icon" href="./favicon.ico"> --}}
 {{-- <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"> --}}
-<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+<link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
 
 
 <!-- Font -->

@@ -94,19 +94,44 @@ Route::middleware([
 	* Route for Testing purpose
 	* ==================================================================================
 	*/
-	Route::get('testrun/',[TestController::class, 'run'])->name('test.run');
-	Route::get('/test', function () {
+
+	Route::get('/testt', function () {
+
+		//$details['email'] = 'your_email@gmail.com';
+		//dispatch(new App\Jobs\ImportAllRate());
+		//dd('done at ' . now());
+		//Log::debug('role Found!');
+		// $url = url('user/profile', [1]);
+		// Log::debug($url);
+		$url = url('prs', [1001]);
+		Log::debug($url);
+		$url = url('prs/1001');
+		Log::debug($url);
+		
+		// $url = action([HomeController::class, 'index']);
+		// Log::debug($url);
+		// $url = action([PrController::class, 'show'], ['pr' => 1001]);
+		// Log::debug($url);
+		// $url = route('prs.show', ['pr' => 1001]);
+		// Log::debug($url);
 		dd('done at ' .date('Y'));
-	})->name('test');
+
+		//return view('test');
+		//$x = GetRate::getRate('USD','BDT');
+		//echo $x;
+
+		//return view('reports.template-pr',['title' => 'Company XYZ', 'date' => '1-Aug-2023']);
+	})->name('testt');
 	
-	
+	Route::get('testrunt/',[TestController::class, 'run'])->name('testt.run');
+	//Route::get('testrun/',[TestController::class, 'run'])->middleware(['auth', 'verified']);
+	//Route::get('testrun/',[TestController::class, 'run']);
+
 	/* ======================== make auth universal ========================================  */
 	 Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
 		Auth::routes(); 
 	});
    
-	// IQBAL 28-feb-23
-	Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 	/* ======================== User ========================================  */
 	Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
@@ -225,7 +250,7 @@ Route::middleware([
 	/* ======================== Setup ======================================== */
 	Route::resource('setups', SetupController::class)->middleware(['auth', 'verified']);
 	Route::get('setups/image/{filename}',[SetupController::class, 'image'])->name('setups.image');
-	Route::get('setups/announcement/{setup}', [SetupController::class, 'notice'])->name('setups.announcement');
+	Route::get('setups/notice/{setup}', [SetupController::class, 'notice'])->name('setups.notice');
 	Route::post('setups/updatenotice/{setup}', [SetupController::class, 'updatenotice'])->name('setups.updatenotice');
 	Route::post('setups/freeze/{setup}', [SetupController::class, 'freeze'])->name('setups.freeze');
 	
@@ -391,6 +416,8 @@ Route::middleware([
 	
 
 	/* ======================== Misc Tenant Routes  ========================================  */
+	// IQBAL 28-feb-23
+	Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 	Route::get('/html', function () {
 		return view('blankhtml');

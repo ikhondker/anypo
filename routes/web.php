@@ -22,10 +22,9 @@ use Illuminate\Http\Request;
 * ==================================================================================
 */
 use App\Http\Controllers\Landlord\TestController;
-Route::get('testrun/', [TestController::class, 'run'])->name('tests.run');
+//TODO php artisan route:cache error
+Route::get('/testrun', [TestController::class, 'run'])->name('test.run');
 Route::get('/test', function () {
-	//return view('landlord.pages.info')->with('title','Sample Title!')->with('msg','Sample message!');
-	//return view('landlord.pages.error');
 	return view('landlord.test');
 })->name('test');
 
@@ -39,10 +38,14 @@ Route::get('/test', function () {
 * ==================================================================================
 */
 // Login Routes...
+//TODO php artisan route:cache error
 use App\Http\Controllers\Auth\LoginController;
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('auth.login');
 Route::post('/login', [LoginController::class, 'login']);
+// IQBAL 28-feb-23
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
+
 
 // Registration Routes...
 use App\Http\Controllers\Auth\RegisterController;
@@ -67,6 +70,7 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 * Public Routes related to Email verification
 * ==================================================================================
 */
+
 Route::get('/email/verify', function () {
 	if (tenant('id') == '') {
 		return view('auth.landlord-verify-email');
@@ -99,6 +103,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 * Public Page Routes
 * ==================================================================================
 */
+
 Route::get('/product', function () {
 	return view('landlord.pages.product');
 })->name('product');
@@ -131,8 +136,6 @@ Route::get('/contact-us', function () {
 Route::get('/', function () {
 	return view('landlord.home');
 })->name('home');
-// IQBAL 28-feb-23
-Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 /**
 * ==================================================================================
@@ -326,16 +329,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	// });
 	
 	/* ======================== Account ======================================== */
-	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.destroy');
+	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.delete');
 
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
-	Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
+	//P2 Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.delete');
 		
 	/* ======================== Country ======================================== */
 	Route::resource('countries', CountryController::class);
 	Route::get('/country/export',[CountryController::class,'export'])->name('countries.export');
-	Route::get('/countries/delete/{country}',[CountryController::class, 'destroy'])->name('countries.destroy');
+	Route::get('/countries/delete/{country}',[CountryController::class, 'destroy'])->name('countries.delete');
 
 	/* ======================== Product ======================================== */
 	Route::resource('products', ProductController::class);
@@ -343,8 +346,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== Status ======================================== */
 	Route::resource('statuses', StatusController::class);
 	Route::get('/status/export', [StatusController::class, 'export'])->name('statuses.export');
-	Route::get('/statuses/delete/{ status }', [StatusController::class, 'destroy'])->name('statuses.destroy');
-
+	Route::get('/statuses/delete/{status}', [StatusController::class, 'destroy'])->name('statuses.delete');
 
 	/* ======================== Attachment ======================================== */
 	Route::resource('attachments', AttachmentController::class);
@@ -362,7 +364,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== Menu ======================================== */
 	Route::resource('menus', MenuController::class);
 	Route::get('/menu/export', [MenuController::class,'export'])->name('menus.export');
-	Route::get('/menus/delete/{ menu }', [MenuController::class,'destroy'])->name('menus.destroy');
+	Route::get('/menus/delete/{menu}', [MenuController::class,'destroy'])->name('menus.delete');
 
 	/* ======================== Process ======================================== */
 	Route::resource('processes', ProcessController::class);
@@ -388,11 +390,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== Template ========================================  */
 	Route::resource('templates', TemplateController::class);
 	Route::get('/template/export', [TemplateController::class, 'export'])->name('templates.export');
-	//Route::get('/template/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.destroy');
+	Route::get('/template/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
 
 	
-
-
 	/* ======================== Ticket ========================================  */
 	Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
 	Route::get('/ticket/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');

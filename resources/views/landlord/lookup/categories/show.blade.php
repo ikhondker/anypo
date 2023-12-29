@@ -1,26 +1,26 @@
 @extends('layouts.landlord-app')
 @section('title','Users')
-@section('breadcrumb','View Users')
+@section('breadcrumb','View Category')
 
 @section('content')
     <!-- Card -->
     <div class="card">
         <div class="card-header border-bottom">
-            <h4 class="card-header-title">User info</h4>
+            <h4 class="card-header-title">User Category</h4>
         </div>
 
         <!-- Body -->
         <div class="card-body">
             <!-- Form -->
             <div class="row mb-4">
-              <label class="col-sm-3 col-form-label form-label">Profile photo</label>
+              <label class="col-sm-3 col-form-label form-label">Category photo</label>
 
               <div class="col-sm-9">
                 <!-- Media -->
                 <div class="d-flex align-items-center">
                   <!-- Avatar -->
                   <label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-                    <img id="avatarImg" class="avatar-img" src="{{ asset('/assets/img/160x160/img9.jpg') }}" alt="Image Description">
+                    <img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Image Description">
                   </label>
 
                   <div class="d-grid d-sm-flex gap-2 ms-4">

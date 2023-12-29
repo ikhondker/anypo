@@ -49,9 +49,10 @@
 							
 							<td><x-landlord.list.my-enable :value="$country->enable" /></td>
 							<td>
+								
 
-								<x-landlord.list.actions object="Country" :id="$country->country" />
-								<a href="{{ route('countries.destroy', $country->country) }}"
+								{{-- <x-landlord.list.actions object="Country" :id="$country->country" /> --}}
+								<a href="{{ route('countries.delete', $country->country) }}"
 									class="text-body sweet-alert2-confirm-advance" data-entity="Country"
 									data-name="{{ $country->name }}"
 									data-status="{{ $country->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"

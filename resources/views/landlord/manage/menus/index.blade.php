@@ -53,7 +53,7 @@
 							<td>
 
 								<x-landlord.list.actions object="Menu" :id="$menu->id" />
-								<a href="{{ route('menus.destroy', $menu->id) }}"
+								<a href="{{ route('menus.delete', $menu->id) }}"
 									class="text-body sweet-alert2-confirm-advance" data-entity="Menu"
 									data-name="{{ $menu->route_name }}"
 									data-status="{{ $menu->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"

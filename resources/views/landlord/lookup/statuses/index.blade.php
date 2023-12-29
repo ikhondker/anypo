@@ -72,7 +72,7 @@
 							<td><x-landlord.list.my-enable :value="$status->enable" /></td>
 							<td>
 								<x-landlord.list.actions object="Status" :id="$status->code" />
-								<a href="{{ route('statuses.destroy', $status->code) }}"
+								<a href="{{ route('statuses.delete', $status->code) }}"
 									class="text-body sweet-alert2-confirm-advance" data-entity="Status"
 									data-name="{{ $status->name }}"
 									data-status="{{ $status->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"

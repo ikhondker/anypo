@@ -2,7 +2,7 @@
 
 namespace App\Policies\Landlord\Manage;
 
-use App\Models\Landlord\Admin\Menu;
+use App\Models\Landlord\Manage\Menu;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -47,9 +47,11 @@ class MenuPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Menu $menu): bool
+    public function delete(User $user, Menu $menu): Response
     {
-        //
+        return $user->isSystem()
+        ? Response::allow()
+        : Response::deny(config('bo.MSG_DENY'));
     }
 
     /**

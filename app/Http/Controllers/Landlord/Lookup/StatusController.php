@@ -109,6 +109,14 @@ class StatusController extends Controller
 	 */
 	public function destroy(Status $status)
 	{
-		//
+		//$this->authorize('delete', $user);  
+
+		$status->fill(['enable'=>!$status->enable]);
+		$status->update();
+
+		// Write to Log
+		LandlordEventLog::event('status',$status->id,'status','enable',$status->enable);
+
+		return redirect()->route('statuses.index')->with('success','Status Status Updated successfully');
 	}
 }
