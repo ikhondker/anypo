@@ -12,7 +12,7 @@
 					<div class="row justify-content-lg-between">
 						<div class="col-sm order-2 order-sm-1 mb-3">
 							<div class="mb-2">
-								<img class="avatar-xl" src="{{ asset('/assets/logo/logo.svg') }}" alt="Logo">
+								<img class="avatar-xl" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
 							</div>
 
 							{{-- <h1 class="h2 text-primary">{{ $setup->name }}</h1> --}}

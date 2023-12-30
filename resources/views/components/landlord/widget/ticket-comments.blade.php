@@ -21,7 +21,7 @@
 								  	<div class="flex-shrink-0">
 										@if ($comment->by_backoffice)
 											@if (auth()->user()->isFrontOffice())
-												<img class="avatar avatar-circle" src="{{ Storage::disk('s3la')->url('avatar/avatarb.png') }}" alt="Support Engineer" title="Support Engineer">
+												<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/avatarb.png') }}" alt="Support Engineer" title="Support Engineer">
 											@else
 											
 												<img class="avatar avatar-circle" src="{{ Storage::disk('s3la')->url($comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">

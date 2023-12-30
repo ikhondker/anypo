@@ -8,9 +8,8 @@
 	<!-- Card -->
 	<div class="card">
 
-		<form action="{{ route('tickets.update', $ticket->id) }}" method="POST">
+		<form action="{{ route('tickets.doassign', $ticket->id) }}" method="POST">
 			@csrf
-			@method('PUT')
 
 			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 				<h5 class="card-header-title">Assign Ticket </h5>

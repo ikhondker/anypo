@@ -135,7 +135,11 @@ Route::get('/contact-us', function () {
 */
 Route::get('/', function () {
 	return view('landlord.home');
+})->name('root');
+Route::get('/home', function () {
+	return view('landlord.home');
 })->name('home');
+
 
 /**
 * ==================================================================================
@@ -247,6 +251,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/ticket/export', [TicketController::class, 'export'])->name('tickets.export');
 	//Route::get('/tickets/pdf/{pr}', [TicketController::class,'pdf'])->name('tickets.pdf');
 	Route::get('/ticket/close/{ticket}', [TicketController::class, 'close'])->name('tickets.close');
+
+
 
 	/* ======================== Service ======================================== */
 	Route::resource('services', ServiceController::class);
@@ -390,12 +396,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== Template ========================================  */
 	Route::resource('templates', TemplateController::class);
 	Route::get('/template/export', [TemplateController::class, 'export'])->name('templates.export');
-	Route::get('/template/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
+	Route::post('/template/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
 
 	
 	/* ======================== Ticket ========================================  */
 	Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
 	Route::get('/ticket/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
+	Route::post('/ticket/doassign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.doassign');
 
 	/* ======================== User ========================================  */
 	Route::get('/user/all', [UserController::class, 'all'])->name('users.all');

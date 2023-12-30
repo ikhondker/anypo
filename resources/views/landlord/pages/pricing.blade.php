@@ -54,7 +54,7 @@
 						<div class="d-flex align-items-end">
 							<div class="flex-shrink-0">
 								<img class="avatar avatar-lg avatar-4x3"
-									src="{{ asset('/assets/svg/illustrations/oc-money-profits.svg') }}"
+									src="{{ Storage::disk('s3l')->url('svg/illustrations/oc-money-profits.svg') }}"
 									alt="Image Description">
 							</div>
 

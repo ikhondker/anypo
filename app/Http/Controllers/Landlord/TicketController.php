@@ -48,11 +48,11 @@ use App\Notifications\Landlord\TicketAssigned;
 use App\Notifications\Landlord\TicketClosed;
 
 // Seeded
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Str;
 use DB;
-use Illuminate\Support\Facades\Request;
 
 class TicketController extends Controller
 {
@@ -133,7 +133,7 @@ class TicketController extends Controller
 			'status_code'	=> LandlordTicketStatusEnum::NEW->value,
 			'owner_id'		=> auth()->user()->id,
 			'account_id'	=> auth()->user()->account_id,
-			'ip'			=> Request::ip()
+			'ip'			=> $request->ip()
 		]);
 
 		// Create Ticket
@@ -246,6 +246,25 @@ class TicketController extends Controller
 		$agents = User::getAllAgent();
 		return view('landlord.tickets.assign', compact('ticket', 'agents'));
 	}
+
+	public function doAssign(Request $request, Ticket $ticket)
+	{
+		
+		//$this->authorize('update',$ticket);
+		$ticket->agent_id   = $request->input('agent_id');
+		$ticket->save();
+		
+		LandlordEventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
+
+		// Send notification to Assigned Agent
+		$agent = User::where('id', $request->input('agent_id'))->first();
+		$agent->notify(new TicketAssigned($agent, $ticket));
+		
+		LandlordEventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
+
+		return redirect()->route('tickets.show', $ticket->id)->with('success', 'Ticket #' . $ticket->id . ' assigned to agent and notified.');
+	}
+
 
 	public function close(Ticket $ticket)
 	{

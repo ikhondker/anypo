@@ -1,6 +1,6 @@
 @extends('layouts.landlord-app')
 @section('title', 'My Invoices')
-@section('breadcrumb', 'My Invoices')
+@section('breadcrumb', 'All Invoices')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 	<div class="card">
 
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-			<h5 class="card-header-title">Your Invoices</h5>
+			<h5 class="card-header-title">All Invoices</h5>
 			<a class="btn btn-primary btn-sm" href="{{ route('invoices.create') }}">
 				<i class="bi bi-plus-square me-1"></i> Generate Invoice
 			</a>

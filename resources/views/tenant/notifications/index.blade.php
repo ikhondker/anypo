@@ -8,11 +8,11 @@
             Unread Notifications
         @endslot
         @slot('buttons')
-            <a href="{{ route('notifications.all') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-message"></i> All Notification</a>
+            <a href="{{ route('notifications.all') }}" class="btn btn-primary float-end me-2"><i data-feather="bell-off"></i> All Notification</a>
             {{-- <x-tenant.buttons.header.create object="Dept"/> --}}
         @endslot
     </x-tenant.page-header>
-
+    bell-off
     @include('tenant.includes.notification-stat')
     
     <div class="row">

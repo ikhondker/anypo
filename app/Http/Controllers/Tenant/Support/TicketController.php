@@ -64,43 +64,69 @@ class TicketController extends Controller
 		$name='User 8 by Tenant';
 		$email='user8@example.com';
 		
-		// create user in Landlord if don't exists
-		tenancy()->central(function ($tenant)  use ($tenant_id, $name, $email,$cell) {
+		// create or find user in Landlord if don't exists
+		$landlordUserId = tenancy()->central(function ($tenant)  use ($tenant_id, $name, $email, $cell) {
 			
 			Log::debug("tenant_id= ".$tenant_id);
 			$account = \App\Models\Landlord\Account::where('site', $tenant_id)->first();
 			
-			Log::debug("email= ".$email);
+			// check if user need to create
+			$createLandlordUser =false;
+
+			// Find user with same email
+			//Log::debug("email= ".$email);
 			$user = \App\Models\User::where('email', $email)->first();
-			if(is_null($user)) {
-				Log::debug("create user for= ".$email);
-				$random_password    = \Illuminate\Support\Str::random(12);
 
-				$user = \App\Models\User::create([
-					'name' 				=> $name,
-					'email' 			=> $email,
-					'cell' 				=> $cell,
-					'email_verified_at'	=> NOW(),   //Already Verified in tenant
-					'account_id' 		=> $account->id,
-					'password' 			=> bcrypt($random_password),
-				]);
+			// email not found and user with cell number
+			if (is_null($user)) {
+				$createLandlordUser =true;
 
-				// Send notification on new user creation  with initial password
-				$user->notify(new \App\Notifications\Landlord\UserCreated($user, $random_password));
+				// try to find use with same mobile number
+				if ($cell <> '') {
+					$user = \App\Models\User::where('cell', $cell)->first();
 
-				Log::debug('Landlord user Created id=' . $user->id);
+					// user with same cell not found
+					if (is_null($user)) {
+						$createLandlordUser =true;
+					} else {
+						$createLandlordUser =false;
+					}	
+				}
+
+				if ( $createLandlordUser ){
+					Log::debug("create user for mail= ".$email.' cell = '. $cell);
+					$random_password    = \Illuminate\Support\Str::random(12);
+
+					$user = \App\Models\User::create([
+						'name' 				=> $name,
+						'email' 			=> $email,
+						'cell' 				=> $cell,
+						'email_verified_at'	=> NOW(),   //Already Verified in tenant
+						'account_id' 		=> $account->id,
+						'password' 			=> bcrypt($random_password),
+					]);
+					
+					// Send notification on new user creation  with initial password
+					$user->notify(new \App\Notifications\Landlord\UserCreated($user, $random_password));
+					Log::debug('Landlord user Created id=' . $user->id);
+				}
+
 			} else {
 				Log::debug("user found = ".$email);
 			}
+			return $user->id;
 		});
+
+		
+		Log::debug("landlordUserId = ".$landlordUserId);
 		
 		// now create the ticket under that landlord user
-		$landlordTicket = tenancy()->central(function ($tenant)  use ($email,$request) {
-				Log::debug("email= ".$email);
+		$landlordTicket = tenancy()->central(function ($tenant)  use ($landlordUserId, $request) {
+				//Log::debug("email= ".$email);
 				// now must get
-				$user = \App\Models\User::where('email', $email)->first();
+				$user = \App\Models\User::where('id', $landlordUserId)->first();
 				
-				Log::debug("Landlord User id = ".$user->id);
+				//Log::debug("Landlord User id = ".$user->id);
 				// Create Ticket
 				$ticket = \App\Models\Landlord\Ticket::create([
 					'title' 		=> $request->input('title'),

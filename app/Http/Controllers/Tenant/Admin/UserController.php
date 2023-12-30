@@ -37,9 +37,9 @@ use App\Helpers\Export;
 use App\Helpers\EventLog;
 # Notifications
 use Notification;
-use App\Notifications\UserCreated;  //TODO
+use App\Notifications\Tenant\UserCreated;  //TODO
 use Illuminate\Auth\Events\Registered;
-use App\Notifications\UserActions;
+use App\Notifications\Tenant\UserActions;
 # Mails
 # Jobs
 # Packages

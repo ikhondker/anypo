@@ -58,7 +58,9 @@ class CreateTenant implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 	
-	public $timeout = 300;
+	//The process "D:\xampp\php\php.exe artisan queue:work --once --name=default --queue=default --backoff=0 --memory=128 --sleep=3 --tries=1" exceeded the timeout of 60 seconds. 
+	public $timeout = 1200;
+	public $failOnTimeout = true;
 
 	protected $checkout_id;
 

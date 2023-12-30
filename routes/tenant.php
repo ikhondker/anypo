@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -221,7 +224,6 @@ Route::middleware([
 	Route::resource('entities', EntityController::class)->middleware(['auth', 'verified']);
 	Route::get('/entities/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
 	
-
 	/* ======================== Setup ======================================== */
 	Route::resource('setups', SetupController::class)->middleware(['auth', 'verified']);
 	Route::get('setups/image/{filename}',[SetupController::class, 'image'])->name('setups.image');

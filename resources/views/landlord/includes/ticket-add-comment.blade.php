@@ -11,7 +11,6 @@
 			@csrf
 			<input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
 
-
 			<!-- Form -->
 			<div class="row mb-4">
 				<label for="content" class="col-sm-3 col-form-label form-label">Content :</label>

@@ -28,7 +28,7 @@
                     <label class="form-label">Email</label>
                     <input class="form-control form-control-lg  @error('email') is-invalid @enderror" 
                         type="email" name="email"  value="{{ old('email') }}"
-                        placeholder="you@yourcompany.com" 
+                        placeholder="email@example.com" 
                         required autocomplete="email" autofocus/>
                         @error('email')
                             <div class="text-danger text-xs">{{ $message }}</div>

@@ -1,6 +1,6 @@
 @extends('layouts.landlord-app')
 @section('title', 'Activity Log')
-@section('breadcrumb', 'Activity Log')
+@section('breadcrumb', 'All Activity Log')
 
 
 @section('content')
@@ -9,7 +9,7 @@
 	<!-- Card -->
 	<div class="card">
 		<div class="card-header">
-			<h5 class="card-header-title">Activity Log</h5>
+			<h5 class="card-header-title">All Activity Log</h5>
 		</div>
 
 		<!-- Table -->

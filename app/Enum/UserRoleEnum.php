@@ -27,9 +27,9 @@ enum UserRoleEnum: string{
 	case HOD		= 'hod';
 	case CXO		= 'cxo';
 	case ADMIN		= 'admin';		// customer admin, both landlord and tenant
-	case SUPPORT	= 'support';
-	case SUPERVISOR	= 'supervisor';
-	case DEVELOPER	= 'developer';
-	case ACCOUNTS	= 'accounts';	// landlord only
-	case SYSTEM		= 'system';
+	case SUPPORT	= 'support';	// backoffice
+	case SUPERVISOR	= 'supervisor';	// backoffice
+	case DEVELOPER	= 'developer';	// backoffice
+	case ACCOUNTS	= 'accounts';	// backoffice
+	case SYSTEM		= 'system';		//backoffice
 }

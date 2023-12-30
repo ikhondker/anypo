@@ -102,12 +102,15 @@ class CommentController extends Controller
 			'ip'				=> Request::ip()
 		]);
 
+		$isInternal =false;
 		if($request->has('internal')){
 			//Checkbox checked
 			$request->merge(['is_internal'		=> true ]);
+			$isInternal =true;
 		}else{
 			//Checkbox not checked
 			$request->merge(['is_internal'		=> false ]);
+			$isInternal =false;
 		}
 
 		// add comment
@@ -150,7 +153,7 @@ class CommentController extends Controller
 				$agent->notify(new TicketUpdated($agent, $ticket));
 			}
 		} elseif (auth()->user()->isBackOffice()) {
-			// change ticket status  if back office is updating
+			// change ticket status if back office is updating
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
 			$status_code = $request->input('status_code');
 			//$ticket->status_code = LandlordTicketStatusEnum::CUSTWORKING->value;
@@ -162,14 +165,18 @@ class CommentController extends Controller
 
 					break;
 				case LandlordTicketStatusEnum::CUSTWORKING->value:
-					// Send notification to Ticket creator if agent updates the tickets
-					$owner = User::where('id', $ticket->owner_id)->first();
-					$owner->notify(new TicketUpdated($owner, $ticket));
+					if (! $isInternal){
+						// Send notification to Ticket creator if agent updates the tickets
+						$owner = User::where('id', $ticket->owner_id)->first();
+						$owner->notify(new TicketUpdated($owner, $ticket));
+					}
 					break;
 				case LandlordTicketStatusEnum::RESOLVED->value:
-					// Send notification to Ticket creator if agent closes the tickets
-					$owner = User::where('id', $ticket->owner_id)->first();
-					$owner->notify(new TicketClosed($owner, $ticket));
+					if (! $isInternal){
+						// Send notification to Ticket creator if agent closes the tickets
+						$owner = User::where('id', $ticket->owner_id)->first();
+						$owner->notify(new TicketClosed($owner, $ticket));
+					}
 					return redirect()->route('tickets.show',$request->input('ticket_id'))->with('success','Ticket Closed successfully');
 					break;
 				default:

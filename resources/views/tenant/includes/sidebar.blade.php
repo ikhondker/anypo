@@ -8,7 +8,7 @@
 	
 	<li class="sidebar-item {{ ($_route_name == 'notifications.index' ? "active" : "") }}">
 		<a class="sidebar-link" href="{{ route('notifications.index') }}">
-			<i class="align-middle" data-feather="layout"></i><span class="align-middle">Notifications*</span>
+			<i class="align-middle" data-feather="bell-off"></i><span class="align-middle">Notifications*</span>
 			<span class="badge badge-sidebar-primary">{{ $_count_unread_notifications }}</span>
 		</a>
 	</li>
@@ -149,12 +149,12 @@
 
 	<li class="sidebar-item {{ ($_route_name == 'help' ? "active" : "") }}">
 		<a class="sidebar-link" href="{{ route('help') }}">
-			<i class="align-middle" data-feather="book-open"></i><span class="align-middle">Help</span>
+			<i class="align-middle" data-feather="help-circle"></i><span class="align-middle">Help</span>
 		</a>
 	</li>
 	<li class="sidebar-item {{ ($_route_name == 'tickets.create' ? "active" : "") }}">
 		<a class="sidebar-link" href="{{ route('tickets.create') }}">
-			<i class="align-middle" data-feather="book-open"></i><span class="align-middle"> Support</span>
+			<i class="align-middle" data-feather="message-square"></i><span class="align-middle"> Support</span>
 		</a>
 	</li>
 </ul>

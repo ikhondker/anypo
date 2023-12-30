@@ -30,37 +30,10 @@ class TicketLists extends Component
 		//dd($tickets);
 
 		switch (auth()->user()->role->value) {
-			case UserRoleEnum::ADMIN->value:
-				switch ($type) {
-					case "LAST5":
-						$this->title = "Last 5 Tickets";
-						$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->limit(5)->get();
-						break;
-					case "ALL":
-						$this->title = "All Tickets";
-						$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->limit(10)->get();
-						break;
-					case "OPEN":
-						$this->title = "Open Tickets";
-						//$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->get();
-						$this->tickets = Ticket::byAccountOpen()->orderBy('id', 'DESC')->get();
-						break;
-					case "CLOSED":
-						$this->title = "Last 5 Closed Tickets";
-						//$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->get();
-						$this->tickets = Ticket::byAccountClosed()->orderBy('id', 'DESC')->limit(5)->get();
-						break;
-					default:
-				}
-				
-				//$this->tickets = Ticket::get();
-				//dd($this->tickets);
-				break;
-
 			case UserRoleEnum::USER->value:
 				switch ($type) {
 					case "LAST5":
-						$this->title = "Last 5 Tickets";
+						$this->title = "Recent Tickets (Last 5)";
 						$this->tickets = Ticket::byUser()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					case "ALL":
@@ -73,33 +46,83 @@ class TicketLists extends Component
 						$this->tickets = Ticket::byUserOpen()->orderBy('id', 'DESC')->get();
 						break;
 					case "CLOSED":
-						$this->title = "Last 5 Closed Tickets";
+						$this->title = "Recent Closed Tickets (Last 5)";
 						$this->tickets = Ticket::byUserClosed()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					default:
-
 				}
 				break;
-				case UserRoleEnum::SUPPORT->value:
-					switch ($type) {
-						case "UNASSIGNED":
-							$this->title = "Unassigned 5 Tickets";
-							$this->tickets = Ticket::ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
-							break;
+			case UserRoleEnum::ADMIN->value:
+				switch ($type) {
+					case "LAST5":
+						$this->title = "Recent Tickets (Last 5)";
+						$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->limit(5)->get();
+						break;
+					case "ALL":
+						$this->title = "All Tickets";
+						$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->limit(10)->get();
+						break;
+					case "OPEN":
+						$this->title = "Open Tickets";
+						//$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->get();
+						$this->tickets = Ticket::byAccountOpen()->orderBy('id', 'DESC')->get();
+						break;
+					case "CLOSED":
+						$this->title = "Recent Closed Tickets (Last 5)";
+						//$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->get();
+						$this->tickets = Ticket::byAccountClosed()->orderBy('id', 'DESC')->limit(5)->get();
+						break;
+					default:
+				}
+				break;
+			case UserRoleEnum::SUPPORT->value:
+				switch ($type) {
+					case "UNASSIGNED":
+						$this->title = "Unassigned Tickets (Last 5)";
+						$this->tickets = Ticket::ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
+						break;
 
-						case "MY":
-							$this->title = "Assigned to Me";
-							$this->tickets = Ticket::byAgentOpen()->orderBy('id', 'DESC')->limit(5)->get();
-							break;
-						
-						case "OPEN":
-							$this->title = "Open 5 Tickets";
-							$this->tickets = Ticket::byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
-							break;
-						
-						default:
-					}
+					case "MY":
+						$this->title = "Assigned to Me";
+						$this->tickets = Ticket::byAgentOpen()->orderBy('id', 'DESC')->limit(5)->get();
+						break;
+					
+					case "OPEN":
+						$this->title = "Open Tickets (Last 5)";
+						$this->tickets = Ticket::byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
+						break;
+					
+					default:
+				}
 					break;
+			case UserRoleEnum::SUPERVISOR->value:
+				switch ($type) {
+					case "UNASSIGNED":
+						$this->title = "Unassigned Tickets (Last 5)";
+						$this->tickets = Ticket::ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
+						break;
+					case "OPEN":
+						$this->title = "Open Tickets (Last 5)";
+						$this->tickets = Ticket::byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
+						break;
+					
+					default:
+				}
+				break;
+			case UserRoleEnum::SYSTEM->value:
+				switch ($type) {
+					case "UNASSIGNED":
+						$this->title = "Unassigned Tickets (Last 5)";
+						$this->tickets = Ticket::ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
+						break;
+					case "OPEN":
+						$this->title = "Open Tickets (Last 5)";
+						$this->tickets = Ticket::byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
+						break;
+					
+					default:
+				}
+				break;
 
 			default:
 				//Log::debug("Inside Ticket Index. Ignore. Other roles!");

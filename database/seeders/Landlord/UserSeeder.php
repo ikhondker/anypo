@@ -58,9 +58,9 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'                => '1003',
-				'name'              => 'Support Manager 1',
-				'email'             => 'manager@example.com',
-				'role'              => 'manager',
+				'name'              => 'Support supervisor 1',
+				'email'             => 'supervisor@example.com',
+				'role'              => 'supervisor',
 				'email_verified_at' => now(),
 				'password'          => bcrypt('password') , // password
 				'remember_token'    => Str::random(10),

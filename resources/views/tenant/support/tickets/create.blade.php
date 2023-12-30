@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('title','User')
-@section('breadcrumb','Create Ticket')
+@section('breadcrumb','Create Support Ticket')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Create Ticket
+			Create Support Ticket
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.save/>

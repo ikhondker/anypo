@@ -200,7 +200,7 @@
 											<a href="{{ route('notifications.show', $notification->id) }}" class="list-group-item">
 												<div class="row g-0 align-items-center">
 													<div class="col-2">
-														<img src="{{asset('img/avatars/avatar-5.jpg')}}" class="avatar img-fluid rounded-circle" alt="{{ $notification->data['from'] }}">
+														<img src="{{ Storage::disk('s3t')->url('avatar/avatarb.png') }}" class="avatar img-fluid rounded-circle" alt="{{ $notification->data['from'] }}">
 													</div>
 													<div class="col-10 ps-2">
 														<div class="text-dark">{{ $notification->data['from'] }}</div>
@@ -244,15 +244,15 @@
 							<div class="dropdown-menu dropdown-menu-end">
 								@auth
 									<a class="dropdown-item" href="{{ route('users.show',auth()->user()->id) }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-									<a class="dropdown-item" href="{{ route('users.password',Auth::user()->id) }}"><i class="align-middle me-1" data-feather="user"></i> Change Password</a>
+									<a class="dropdown-item" href="{{ route('users.password',Auth::user()->id) }}"><i class="align-middle me-1" data-feather="key"></i> Change Password</a>
 								@endauth
 
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{ route('dashboards.index') }}"><i class="align-middle me-1" data-feather="pie-chart"></i> Dashboard</a>
-								<a class="dropdown-item" href="{{ route('notifications.index') }}"><i class="align-middle me-1" data-feather="user"></i> Notifications</a>
-								<a class="dropdown-item" href="{{ route('tickets.create')  }}"><i class="align-middle me-1" data-feather="user"></i> Support</a>
-								<a class="dropdown-item" href="{{ route('help') }}"> <i class="align-middle me-1" data-feather="user"></i> Help</a>
-								<a class="dropdown-item" href="{{ route('logout') }}"><i class="align-middle me-1" data-feather="user"></i> Sign out</a>
+								<a class="dropdown-item" href="{{ route('notifications.index') }}"><i class="align-middle me-1" data-feather="bell-off"></i> Notifications</a>
+								<a class="dropdown-item" href="{{ route('help') }}"> <i class="align-middle me-1" data-feather="help-circle"></i> Help</a>
+								<a class="dropdown-item" href="{{ route('tickets.create')  }}"><i class="align-middle me-1" data-feather="message-square"></i> Support</a>
+								<a class="dropdown-item" href="{{ route('logout') }}"><i class="align-middle text-danger me-1" data-feather="power"></i> Sign out</a>
 							</div>
 						</li>
 					</ul>

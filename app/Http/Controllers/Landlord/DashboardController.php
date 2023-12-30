@@ -55,7 +55,7 @@ class DashboardController extends Controller
 	 */
 	public function index()
 	{
-
+		// Total 4 Dashboard user,admin, backoffice and system
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
 				return self::userDashboard();
@@ -70,7 +70,8 @@ class DashboardController extends Controller
 				return self::supervisorDashboard();
 				break;
 			case UserRoleEnum::DEVELOPER->value:
-				return self::supportDashboard();
+				//return self::developerDashboard();
+				//return self::backofficeDashboard();
 				break;
 			case UserRoleEnum::SYSTEM->value:
 				return self::systemDashboard();
@@ -92,7 +93,6 @@ class DashboardController extends Controller
 
 		$ticketsOpen = Ticket::byuser()->orderBy('id', 'DESC');
 		$ticketsLast5 = Ticket::byuser()->orderBy('id', 'DESC')->limit(5);
-
 	
 		$count_tickets_open  = Ticket::byUserOpen()->count();
 		$count_tickets_total  = Ticket::byUser()->count();
@@ -103,12 +103,12 @@ class DashboardController extends Controller
 		$count_payments = Payment::byaccount()->count();
 		$count_users    = User::byuser()->count();
 
-				return view('landlord.dashboards.index', with(compact('notifications','setup','count_notif',
-					'count_tickets_open', 'count_tickets_total',
-					'count_accounts', 'count_service',
-					'count_invoices', 'count_payments','count_users',
-					'ticketsOpen','ticketsLast5',
-					)));
+		return view('landlord.dashboards.index', with(compact('notifications','setup','count_notif',
+			'count_tickets_open', 'count_tickets_total',
+			'count_accounts', 'count_service',
+			'count_invoices', 'count_payments','count_users',
+			'ticketsOpen','ticketsLast5',
+		)));
 	}
 
 
@@ -129,6 +129,7 @@ class DashboardController extends Controller
 				
 		$count_tickets_open  = Ticket::byAccountOpen()->count();
 		$count_tickets_total  = Ticket::byAccount()->count();
+
 
 		$count_accounts = Account::byUser()->count();
 		$count_service  = Service::byUser()->count();
@@ -168,6 +169,7 @@ class DashboardController extends Controller
 		$count_unassigned_tickets  = Ticket::byUnassigned()->count();
 		$count_all_open_tickets  = Ticket::byallopen()->count();
 		$count_agent_closed_tickets  = Ticket::byAgentClosed()->count();
+
 		//$count_service  = Service::all()->count();
 		//$count_users    = User::all()->count();
 		return view('landlord.dashboards.backoffice', with(compact('notifications','setup','count_notif',
@@ -217,16 +219,16 @@ class DashboardController extends Controller
 		//return view('tenant.dashboard',compact('orders','products','settings','orders_weeks','sales_today','sales_week','sales_month','count_products','count_orders', 'count_users','sum_sales'));
 
 		// redirect to proper dashboard
-		
+		$count_tickets  = Ticket::all()->count();
 		$count_all_open_tickets  = Ticket::byallopen()->count();
 		$count_unassigned_tickets  = Ticket::byunassigned()->count();
-		$count_all_onhold_tickets  = Ticket::byallclosed()->count();
+		$count_all_closed_tickets  = Ticket::byallclosed()->count();
+
 		//$count_all_closed_tickets  = Ticket::byallclosed()->count();
 		$count_service  = Service::all()->count();
 		$count_users    = User::all()->count();
-		return view('landlord.dashboards.backoffice', with(compact('notifications','setup','count_notif',
-		'count_all_open_tickets', 'count_unassigned_tickets',
-		'count_all_onhold_tickets', 'count_service','count_users','tickets'
+		return view('landlord.dashboards.supervisor', with(compact('tickets','setup',
+			'count_tickets','count_all_open_tickets','count_unassigned_tickets','count_all_closed_tickets'
 		)));
 	}
 
@@ -266,13 +268,19 @@ class DashboardController extends Controller
 
 		
 		$count_tickets  = Ticket::all()->count();
+		$count_all_open_tickets  = Ticket::byallopen()->count();
+		$count_unassigned_tickets  = Ticket::byunassigned()->count();
+		$count_all_closed_tickets  = Ticket::byallclosed()->count();
+		
+		$count_accounts  = Account::all()->count();
 		$count_service  = Service::all()->count();
 		$count_invoices = Invoice::all()->count();
 		$count_payments = Payment::all()->count();
 		$count_users    = User::all()->count();
-		return view('landlord.dashboards.system', with(compact('notifications','setup','count_notif',
-			'count_tickets','count_service',
-			'count_invoices', 'count_payments','count_users','tickets'
+		return view('landlord.dashboards.system', with(compact('tickets','setup',
+			'count_tickets','count_all_open_tickets','count_unassigned_tickets','count_all_closed_tickets',
+			'count_accounts','count_service','count_invoices','count_payments',
+			'count_users'
 		)));
 			
 	}

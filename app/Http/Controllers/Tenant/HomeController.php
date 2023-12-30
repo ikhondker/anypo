@@ -42,7 +42,7 @@ use App\Helpers\EventLog;
 
 // Notification
 use Notification;
-use App\Notifications\Test;
+use App\Notifications\Tenant\Test;
 use App\Notifications\PrActions;
 // use App\Notifications\Landlord\UserRegistered;
 // use App\Notifications\Landlord\InvoiceCreated;

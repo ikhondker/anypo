@@ -1,12 +1,12 @@
 @extends('layouts.landlord-app')
 @section('title', 'Payments')
-@section('breadcrumb', 'My Payments')
+@section('breadcrumb', 'All Payments')
 
 @section('content')
 	<!-- Card -->
 	<div class="card">
 		<div class="card-header">
-			<h5 class="card-header-title">Your Payments</h5>
+			<h5 class="card-header-title">All Payments</h5>
 		</div>
 
 		<!-- Table -->
