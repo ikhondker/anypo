@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'                => '1003',
-				'name'              => 'Support supervisor 1',
+				'name'              => 'Support Supervisor',
 				'email'             => 'supervisor@example.com',
 				'role'              => 'supervisor',
 				'email_verified_at' => now(),

@@ -76,7 +76,7 @@
 	<!-- Footer -->
 	<div class="card-footer pt-0">
 		<div class="d-flex justify-content-end gap-3">
-			@if ( auth()->user()->role->value == App\Enum\UserRoleEnum::SYSTEM->value)
+			@if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
 				<a href="{{ route('accounts.delete', $account->id) }}"
 					class="btn btn-danger btn-sm sweet-alert2-confirm-advance" data-entity="Account"
 					data-name="{{ $account->name }}"

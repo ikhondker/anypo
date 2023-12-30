@@ -95,7 +95,7 @@
 							<td>{{ $user->cell }} </td>
 							<td>{{ $user->user_account->name }} </td>
 							<td>
-								@if ($user->role == App\Enum\UserRoleEnum::USER)
+								@if ($user->role == UserRoleEnum::USER)
 									<span class="badge bg-info">{{ $user->role }}</span>
 								@else
 									<span class="badge bg-danger">{{ $user->role }}</span>

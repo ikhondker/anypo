@@ -39,7 +39,7 @@
             </div>
     
             <div class="device-browser-frame">
-                <img class="device-browser-img" src="../assets/img/1618x1010/img1.jpg" alt="Image Description">
+                <img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img1.jpg') }}" alt="Image Description">
             </div>
             </figure>
             <!-- End Browser Device -->
@@ -82,7 +82,7 @@
                     <use xlink:href="#circleImgID2"/>
                     </clipPath>
                     <g clip-path="url(#circleImgID1)">
-                    <image width="450" height="450" xlink:href="../assets/img/450x450/img1.jpg" ></image>
+                    <image width="450" height="450" xlink:href="{{ Storage::disk('s3l')->url('img/450x450/img1.jpg') }}" ></image>
                     </g>
                 </g>
                 </svg>
@@ -183,7 +183,7 @@
                 </div>
     
                 <div class="device-browser-frame">
-                    <img class="device-browser-img" src="../assets/img/1618x1010/img6.jpg" alt="Image Description">
+                    <img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img6.jpg') }}" alt="Image Description">
                 </div>
                 </figure>
                 <!-- End Browser Device -->

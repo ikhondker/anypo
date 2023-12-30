@@ -141,25 +141,25 @@
 			<p class="text-white-50 small">
 			  <span class="text-muted">{{ auth()->user()->name }} {{ '| '.auth()->user()->id .' |' }}  {{ auth()->user()->email .' |' }} </span>
 
-			  @if ( auth()->user()->role->value == App\Enum\UserRoleEnum::USER->value )
+			  @if ( auth()->user()->role->value == UserRoleEnum::USER->value )
 				<span class="badge bg-primary-light">user </span>|
 			  @else
 				<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'user']) }}">user</a> |
 			  @endif
 
-			  @if ( auth()->user()->role->value == App\Enum\UserRoleEnum::ADMIN->value)
+			  @if ( auth()->user()->role->value == UserRoleEnum::ADMIN->value)
 				<span class="badge bg-primary-light">admin </span>|
 			  @else
 				<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'admin']) }}">admin</a> |
 			  @endif
 
-			  @if ( auth()->user()->role->value == App\Enum\UserRoleEnum::SUPPORT->value)
+			  @if ( auth()->user()->role->value == UserRoleEnum::SUPPORT->value)
 				<span class="badge bg-primary-light">support </span>|
 			  @else
 				<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'support']) }}">support</a> |
 			  @endif
 
-			  @if ( auth()->user()->role->value == App\Enum\UserRoleEnum::SYSTEM->value)
+			  @if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
 				  <span class="badge bg-light text-primary">system </span>
 			  @else
 				<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'system']) }}">system</a>

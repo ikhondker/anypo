@@ -26,106 +26,106 @@ use DB;
 
 class WarehouseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $warehouses = Warehouse::query();
-        if (request('term')) {
-            $warehouses->where('name', 'Like', '%' . request('term') . '%');
-        }
-        $warehouses = $warehouses->orderBy('id', 'DESC')->paginate(10);
-        return view('tenant.lookup.warehouses.index', compact('warehouses'))->with('i', (request()->input('page', 1) - 1) * 10);
-    }
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		$warehouses = Warehouse::query();
+		if (request('term')) {
+			$warehouses->where('name', 'Like', '%' . request('term') . '%');
+		}
+		$warehouses = $warehouses->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.lookup.warehouses.index', compact('warehouses'))->with('i', (request()->input('page', 1) - 1) * 10);
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $this->authorize('create', Warehouse::class);
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		$this->authorize('create', Warehouse::class);
 
-        $countries = Country::getAll();
+		$countries = Country::getAll();
 
-        return view('tenant.lookup.warehouses.create', compact('countries'));
-    }
+		return view('tenant.lookup.warehouses.create', compact('countries'));
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreWarehouseRequest $request)
-    {
-        $this->authorize('create', Warehouse::class);
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreWarehouseRequest $request)
+	{
+		$this->authorize('create', Warehouse::class);
 
-        $warehouse = Warehouse::create($request->all());
+		$warehouse = Warehouse::create($request->all());
 
-        // Write to Log
-        EventLog::event('warehouse', $warehouse->id, 'create');
+		// Write to Log
+		EventLog::event('warehouse', $warehouse->id, 'create');
 
-        return redirect()->route('warehouses.index')->with('success', 'Warehouse created successfully.');
-    }
+		return redirect()->route('warehouses.index')->with('success', 'Warehouse created successfully.');
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Warehouse $warehouse)
-    {
-        $this->authorize('view', $warehouse);
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(Warehouse $warehouse)
+	{
+		$this->authorize('view', $warehouse);
 
-        return view('tenant.lookup.warehouses.show', compact('warehouse'));
-    }
+		return view('tenant.lookup.warehouses.show', compact('warehouse'));
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Warehouse $warehouse)
-    {
-        $this->authorize('update', $warehouse);
-        $countries = Country::getAll();
-        return view('tenant.lookup.warehouses.edit', compact('warehouse', 'countries'));
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(Warehouse $warehouse)
+	{
+		$this->authorize('update', $warehouse);
+		$countries = Country::getAll();
+		return view('tenant.lookup.warehouses.edit', compact('warehouse', 'countries'));
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateWarehouseRequest $request, Warehouse $warehouse)
-    {
-        $this->authorize('update', $warehouse);
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateWarehouseRequest $request, Warehouse $warehouse)
+	{
+		$this->authorize('update', $warehouse);
 
-        //$request->validate();
-        $request->validate([
+		//$request->validate();
+		$request->validate([
 
-        ]);
-        $warehouse->update($request->all());
+		]);
+		$warehouse->update($request->all());
 
-        // Write to Log
-        EventLog::event('warehouse', $warehouse->id, 'update', 'name', $warehouse->name);
-        return redirect()->route('warehouses.index')->with('success', 'Warehouse updated successfully');
-    }
+		// Write to Log
+		EventLog::event('warehouse', $warehouse->id, 'update', 'name', $warehouse->name);
+		return redirect()->route('warehouses.index')->with('success', 'Warehouse updated successfully');
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Warehouse $warehouse)
-    {
-        $this->authorize('delete', $warehouse);
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Warehouse $warehouse)
+	{
+		$this->authorize('delete', $warehouse);
 
-        $warehouse->fill(['enable' => !$warehouse->enable]);
-        $warehouse->update();
+		$warehouse->fill(['enable' => !$warehouse->enable]);
+		$warehouse->update();
 
-        // Write to Log
-        EventLog::event('warehouse', $warehouse->id, 'status', 'enable', $warehouse->enable);
+		// Write to Log
+		EventLog::event('warehouse', $warehouse->id, 'status', 'enable', $warehouse->enable);
 
-        return redirect()->route('warehouses.index')->with('success', 'Warehouse status Updated successfully');
-    }
+		return redirect()->route('warehouses.index')->with('success', 'Warehouse status Updated successfully');
+	}
 
-    public function export()
-    {
-        $data = DB::select("SELECT id, name, contact_person, cell, address1, address2, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as enable
-        FROM warehouses");
-        $dataArray = json_decode(json_encode($data), true);
-        // used Export Helper
-        return Export::csv('warehouses', $dataArray);
-    }
+	public function export()
+	{
+		$data = DB::select("SELECT id, name, contact_person, cell, address1, address2, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as enable
+		FROM warehouses");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('warehouses', $dataArray);
+	}
 }

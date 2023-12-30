@@ -31,128 +31,128 @@ use Str;
 
 class ItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $items = Item::query();
-        if (request('term')) {
-            $items->where('name', 'Like', '%' . request('term') . '%');
-        }
-        $items = $items->orderBy('id', 'DESC')->paginate(25);
-        return view('tenant.lookup.items.index', compact('items'))->with('i', (request()->input('page', 1) - 1) * 25);
-    }
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		$items = Item::query();
+		if (request('term')) {
+			$items->where('name', 'Like', '%' . request('term') . '%');
+		}
+		$items = $items->orderBy('id', 'DESC')->paginate(25);
+		return view('tenant.lookup.items.index', compact('items'))->with('i', (request()->input('page', 1) - 1) * 25);
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $this->authorize('create', Item::class);
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		$this->authorize('create', Item::class);
 
-        $categories = Category::primary()->get();
-        $uoms = Uom::primary()->get();
-        $oems = Oem::primary()->get();
-        $gl_types = GlType::primary()->get();
+		$categories = Category::primary()->get();
+		$uoms = Uom::primary()->get();
+		$oems = Oem::primary()->get();
+		$gl_types = GlType::primary()->get();
 
-        return view('tenant.lookup.items.create', compact('categories', 'uoms', 'oems', 'gl_types'));
-    }
+		return view('tenant.lookup.items.create', compact('categories', 'uoms', 'oems', 'gl_types'));
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreItemRequest $request)
-    {
-        $this->authorize('create', Item::class);
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreItemRequest $request)
+	{
+		$this->authorize('create', Item::class);
 
-        $request->merge([
-            'code' =>  Str::upper($request['code']),
-       ]);
+		$request->merge([
+			'code' =>  Str::upper($request['code']),
+	   ]);
 
 
 
-        $item = Item::create($request->all());
-        // Write to Log
-        EventLog::event('item', $item->id, 'create');
+		$item = Item::create($request->all());
+		// Write to Log
+		EventLog::event('item', $item->id, 'create');
 
-        return redirect()->route('items.index')->with('success', 'Item created successfully.');
-    }
+		return redirect()->route('items.index')->with('success', 'Item created successfully.');
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Item $item)
-    {
-        $this->authorize('view', $item);
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(Item $item)
+	{
+		$this->authorize('view', $item);
 
-        return view('tenant.lookup.items.show', compact('item'));
+		return view('tenant.lookup.items.show', compact('item'));
 
-    }
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Item $item)
-    {
-        $this->authorize('update', $item);
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(Item $item)
+	{
+		$this->authorize('update', $item);
 
-        $categories = Category::primary()->get();
-        $uoms = Uom::primary()->get();
-        $oems = Oem::primary()->get();
-        $gl_types = GlType::primary()->get();
+		$categories = Category::primary()->get();
+		$uoms = Uom::primary()->get();
+		$oems = Oem::primary()->get();
+		$gl_types = GlType::primary()->get();
 
-        return view('tenant.lookup.items.edit', compact('item', 'categories', 'uoms', 'oems', 'gl_types'));
-    }
+		return view('tenant.lookup.items.edit', compact('item', 'categories', 'uoms', 'oems', 'gl_types'));
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateItemRequest $request, Item $item)
-    {
-        $this->authorize('update', $item);
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateItemRequest $request, Item $item)
+	{
+		$this->authorize('update', $item);
 
-        $request->merge([
-            'code' =>  Str::upper($request['code']),
-       ]);
+		$request->merge([
+			'code' =>  Str::upper($request['code']),
+	   ]);
 
-        //$request->validate();
-        $request->validate([
+		//$request->validate();
+		$request->validate([
 
-        ]);
-        $item->update($request->all());
+		]);
+		$item->update($request->all());
 
-        // Write to Log
-        EventLog::event('item', $item->id, 'update', 'name', $item->name);
-        return redirect()->route('items.index')->with('success', 'Item updated successfully');
-    }
+		// Write to Log
+		EventLog::event('item', $item->id, 'update', 'name', $item->name);
+		return redirect()->route('items.index')->with('success', 'Item updated successfully');
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Item $item)
-    {
-        $this->authorize('delete', $item);
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Item $item)
+	{
+		$this->authorize('delete', $item);
 
-        $item->fill(['enable' => !$item->enable]);
-        $item->update();
+		$item->fill(['enable' => !$item->enable]);
+		$item->update();
 
-        // Write to Log
-        EventLog::event('item', $item->id, 'status', 'enable', $item->enable);
+		// Write to Log
+		EventLog::event('item', $item->id, 'status', 'enable', $item->enable);
 
-        return redirect()->route('items.index')->with('success', 'Item status Updated successfully');
-    }
+		return redirect()->route('items.index')->with('success', 'Item status Updated successfully');
+	}
 
-    public function export()
-    {
-        $data = DB::select("SELECT i.id, i.name, i.notes, c.name category_name, o.name oem_name, u.name uom_name, i.price, i.stock, i.account_type,
-            IF(i.enable, 'Yes', 'No') as Enable 
-            FROM items i, categories c, oems o, uoms u
-            WHERE i.category_id = c.id
-            AND i.oem_id=o.id
-            AND i.uom_id=u.id ");
-        $dataArray = json_decode(json_encode($data), true);
-        // used Export Helper
-        return Export::csv('users', $dataArray);
-    }
+	public function export()
+	{
+		$data = DB::select("SELECT i.id, i.name, i.notes, c.name category_name, o.name oem_name, u.name uom_name, i.price, i.stock, i.account_type,
+			IF(i.enable, 'Yes', 'No') as Enable 
+			FROM items i, categories c, oems o, uoms u
+			WHERE i.category_id = c.id
+			AND i.oem_id=o.id
+			AND i.uom_id=u.id ");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('users', $dataArray);
+	}
 }

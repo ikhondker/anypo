@@ -217,7 +217,7 @@ class UserController extends Controller
 			//resize to thumbnail and upload
 			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
-            $path =Storage::disk('s3ta')->put($thumbImage, $image_resize->stream()->__toString());
+			$path =Storage::disk('s3ta')->put($thumbImage, $image_resize->stream()->__toString());
 
 			$request->merge(['avatar' => $thumbImage ]);
 		}

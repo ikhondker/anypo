@@ -445,8 +445,6 @@ class CreateTenant implements ShouldQueue
 		//Log::debug('Tenant Created id=' . $tenant->id);
 		LandlordEventLog::event('tenant', $tenant->id, 'create');
 
-		
-
 		// create first tenant admin for tenant
 		$email 			= $checkout->email;
 		$account_name 	= $checkout->account_name;

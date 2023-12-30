@@ -29,7 +29,7 @@
 </ul>
 <!-- End List -->
 
-@if (auth()->user()->role->value == \App\Enum\UserRoleEnum::ADMIN->value)
+@if (auth()->user()->role->value == \UserRoleEnum::ADMIN->value)
 	<!-- Nav -->
 	<span class="text-cap">ADMIN</span>
 	<!-- List -->

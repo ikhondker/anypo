@@ -191,9 +191,7 @@
 
 					<!-- Button -->
 					<li class="nav-item">
-						<a class="btn btn-primary btn-transition"
-							href="https://themes.getbootstrap.com/product/front-multipurpose-responsive-template/"
-							target="_blank">Buy now</a>
+						<a class="btn btn-primary btn-transition"	href="{{ route('home.pricing') }}">Buy now</a>
 					</li>
 					<!-- End Button -->
 				</ul>

@@ -45,7 +45,7 @@ class FirstTenantAdminCreated extends Notification  implements ShouldQueue
 	{
 		return (new MailMessage)
 		//->subject('Admin User Credential for domain '.$this->domain->domain.' ')
-		->subject('Welcome to '. $this->domain->domain .' - Application Admin Login Details')
+		->subject( $this->domain->domain .' : Application Admin Login Details')
 		->greeting('Hello '.$this->user->name.',')
 		->line('Welcome to '.config('app.name').'. Your site '. $this->domain->domain.' is ready to use. Please review this email in its entirety as it contains important information. Your Application Admin account has been created as follows:')
 		->line('Email: '.$this->user->email.'.')

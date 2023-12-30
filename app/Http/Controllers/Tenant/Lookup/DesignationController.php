@@ -28,104 +28,104 @@ use DB;
 
 class DesignationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
 
-        $designations = Designation::query();
-        if (request('term')) {
-            $designations->where('name', 'Like', '%' . request('term') . '%');
-        }
-        $designations = $designations->orderBy('id', 'DESC')->paginate(10);
-        return view('tenant.lookup.designations.index', compact('designations'))->with('i', (request()->input('page', 1) - 1) * 10);
+		$designations = Designation::query();
+		if (request('term')) {
+			$designations->where('name', 'Like', '%' . request('term') . '%');
+		}
+		$designations = $designations->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.lookup.designations.index', compact('designations'))->with('i', (request()->input('page', 1) - 1) * 10);
 
-    }
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $this->authorize('create', Designation::class);
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		$this->authorize('create', Designation::class);
 
-        return view('tenant.lookup.designations.create');
-    }
+		return view('tenant.lookup.designations.create');
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreDesignationRequest $request)
-    {
-        $this->authorize('create', Designation::class);
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreDesignationRequest $request)
+	{
+		$this->authorize('create', Designation::class);
 
-        $designation = Designation::create($request->all());
-        // Write to Log
-        EventLog::event('designation', $designation->id, 'create');
+		$designation = Designation::create($request->all());
+		// Write to Log
+		EventLog::event('designation', $designation->id, 'create');
 
-        return redirect()->route('designations.index')->with('success', 'Designation created successfully.');
-    }
+		return redirect()->route('designations.index')->with('success', 'Designation created successfully.');
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Designation $designation)
-    {
-        return view('tenant.lookup.designations.show', compact('designation'));
-    }
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(Designation $designation)
+	{
+		return view('tenant.lookup.designations.show', compact('designation'));
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Designation $designation)
-    {
-        $this->authorize('update', $designation);
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(Designation $designation)
+	{
+		$this->authorize('update', $designation);
 
-        return view('tenant.lookup.designations.edit', compact('designation'));
-    }
+		return view('tenant.lookup.designations.edit', compact('designation'));
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateDesignationRequest $request, Designation $designation)
-    {
-        $this->authorize('update', $designation);
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateDesignationRequest $request, Designation $designation)
+	{
+		$this->authorize('update', $designation);
 
-        //$request->validate();
-        $request->validate([
+		//$request->validate();
+		$request->validate([
 
-        ]);
-        $designation->update($request->all());
+		]);
+		$designation->update($request->all());
 
-        // Write to Log
-        EventLog::event('designation', $designation->id, 'update', 'name', $designation->name);
-        return redirect()->route('designations.index')->with('success', 'Designation updated successfully');
-    }
+		// Write to Log
+		EventLog::event('designation', $designation->id, 'update', 'name', $designation->name);
+		return redirect()->route('designations.index')->with('success', 'Designation updated successfully');
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Designation $designation)
-    {
-        $this->authorize('delete', $designation);
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Designation $designation)
+	{
+		$this->authorize('delete', $designation);
 
-        $designation->fill(['enable' => !$designation->enable]);
-        $designation->update();
+		$designation->fill(['enable' => !$designation->enable]);
+		$designation->update();
 
-        // Write to Log
-        EventLog::event('designation', $designation->id, 'status', 'enable', $designation->enable);
+		// Write to Log
+		EventLog::event('designation', $designation->id, 'status', 'enable', $designation->enable);
 
-        return redirect()->route('designations.index')->with('success', 'Designation status Updated successfully');
-    }
+		return redirect()->route('designations.index')->with('success', 'Designation status Updated successfully');
+	}
 
-    public function export()
-    {
-        $data = DB::select("SELECT id, name, IF(enable, 'Yes', 'No') as enable
-        FROM designations");
-        $dataArray = json_decode(json_encode($data), true);
-        // used Export Helper
-        return Export::csv('designations', $dataArray);
+	public function export()
+	{
+		$data = DB::select("SELECT id, name, IF(enable, 'Yes', 'No') as enable
+		FROM designations");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('designations', $dataArray);
 
-    }
+	}
 }

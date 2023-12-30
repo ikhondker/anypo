@@ -56,7 +56,7 @@
                             @break
                         @case(UserRoleEnum::SUPPORT->value)
                         
-                        @case(UserRoleEnum::MANAGER->value)
+                        @case(UserRoleEnum::SUPERVISOR->value)
                             <li class="has-submenu parent-parent-menu-item">
                                 <a href="javascript:void(0)">Support</a><span class="menu-arrow"></span>
                                 <ul class="submenu">

@@ -88,10 +88,10 @@
                                 <a class="text-foot" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'agent']) }}">agent</a> |
                             @endif
 
-                            @if ( auth()->user()->role->value == UserRoleEnum::MANAGER->value)
-                                <span class="text-danger">manager </span>|
+                            @if ( auth()->user()->role->value == UserRoleEnum::SUPERVISOR->value)
+                                <span class="text-danger">supervisor </span>|
                             @else
-                                <a class="text-foot" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'manager']) }}">manager</a> |
+                                <a class="text-foot" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'supervisor']) }}">supervisor</a> |
                             @endif
 
                             @if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)

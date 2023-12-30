@@ -114,13 +114,13 @@
 										@endswitch
 
 										@switch(auth()->user()->role->value)
-											@case(\App\Enum\UserRoleEnum::USER->value)
+											@case(\UserRoleEnum::USER->value)
 												@break
 
-											@case(\App\Enum\UserRoleEnum::ADMIN->value)
+											@case(\UserRoleEnum::ADMIN->value)
 												@break
 
-											@case(\App\Enum\UserRoleEnum::SYSTEM->value)
+											@case(\UserRoleEnum::SYSTEM->value)
 												<span class="badge bg-danger">System</span>
 											@break
 

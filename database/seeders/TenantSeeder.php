@@ -43,7 +43,8 @@ class TenantSeeder extends Seeder
 
 		$this->call(\Database\Seeders\BudgetSeeder::class);
 		$this->call(\Database\Seeders\DeptBudgetSeeder::class);
-
+		
+		//TODO Remove
 		$this->call(\Database\Seeders\PrSeeder::class);
 		$this->call(\Database\Seeders\PrlSeeder::class);
 		}

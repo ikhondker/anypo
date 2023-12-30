@@ -10,6 +10,11 @@
 <div class="card">
     <div class="card-body">
         <div class="m-sm-4">
+
+            <div class="text-center">
+                <img src="{{ Storage::disk('s3t')->url('avatar/avatar.png')  }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
+            </div>
+            
             <form class="d-inline" method="POST" action="{{ route('verification.send') }}">
                 @csrf
                 

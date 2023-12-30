@@ -63,12 +63,12 @@
                             <label class="form-label text-danger">Role</label>
                             <select class="form-control" name="role" required>
                                 <option value=""><< Role >> </option>
-                                <option value="{{ App\Enum\UserRoleEnum::USER->value }}" {{ App\Enum\UserRoleEnum::USER->value == old('role') ? 'selected' : '' }}>User</option>
-                                <option value="{{ App\Enum\UserRoleEnum::BUYER->value }}" {{ App\Enum\UserRoleEnum::BUYER->value == old('role') ? 'selected' : '' }}>Buyer</option>
-                                <option value="{{ App\Enum\UserRoleEnum::MANAGER->value }}" {{ App\Enum\UserRoleEnum::MANAGER->value == old('role') ? 'selected' : '' }}>Manager</option>
-                                <option value="{{ App\Enum\UserRoleEnum::HOD->value }}" {{ App\Enum\UserRoleEnum::HOD->value == old('role') ? 'selected' : '' }}>HoD</option>
-                                <option value="{{ App\Enum\UserRoleEnum::CXO->value }}" {{ App\Enum\UserRoleEnum::CXO->value == old('role') ? 'selected' : '' }}>CxO</option>
-                                <option value="{{ App\Enum\UserRoleEnum::ADMIN->value }}" {{ App\Enum\UserRoleEnum::ADMIN->value == old('role') ? 'selected' : '' }}>Admin</option>
+                                <option value="{{ UserRoleEnum::USER->value }}" {{ UserRoleEnum::USER->value == old('role') ? 'selected' : '' }}>User</option>
+                                <option value="{{ UserRoleEnum::BUYER->value }}" {{ UserRoleEnum::BUYER->value == old('role') ? 'selected' : '' }}>Buyer</option>
+                                <option value="{{ UserRoleEnum::MANAGER->value }}" {{ UserRoleEnum::MANAGER->value == old('role') ? 'selected' : '' }}>Manager</option>
+                                <option value="{{ UserRoleEnum::HOD->value }}" {{ UserRoleEnum::HOD->value == old('role') ? 'selected' : '' }}>HoD</option>
+                                <option value="{{ UserRoleEnum::CXO->value }}" {{ UserRoleEnum::CXO->value == old('role') ? 'selected' : '' }}>CxO</option>
+                                <option value="{{ UserRoleEnum::ADMIN->value }}" {{ UserRoleEnum::ADMIN->value == old('role') ? 'selected' : '' }}>Admin</option>
                             </select>
                         </div>
 
