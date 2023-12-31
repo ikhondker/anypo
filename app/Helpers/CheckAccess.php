@@ -34,100 +34,100 @@ use App\Enum\UserRoleEnum;
 
 class CheckAccess
 {
-    public static function isBackOffice($role)
-    {
-        switch($role) {
-            case(UserRoleEnum::SUPPORT->value):
-                return true;
-                break;
-            case(UserRoleEnum::SUPERVISOR->value):
-                return true;
-                break;
-            case(UserRoleEnum::SYSTEM->value):
-                return true;
-                break;
-            default:
-                return false;
-        }
-    }
+	public static function isBackOffice($role)
+	{
+		switch($role) {
+			case(UserRoleEnum::SUPPORT->value):
+				return true;
+				break;
+			case(UserRoleEnum::SUPERVISOR->value):
+				return true;
+				break;
+			case(UserRoleEnum::SYSTEM->value):
+				return true;
+				break;
+			default:
+				return false;
+		}
+	}
 
-    public static function isSystem($role)
-    {
-        switch($role) {
-            case(UserRoleEnum::SYSTEM->value):
-                return true;
-                break;
-            default:
-                return false;
-        }
-    }
+	public static function isSystem($role)
+	{
+		switch($role) {
+			case(UserRoleEnum::SYSTEM->value):
+				return true;
+				break;
+			default:
+				return false;
+		}
+	}
 
 
-    public static function aboveAdmin($role)
-    {
-        switch($role) {
-            case(UserRoleEnum::ADMIN->value):
-                return true;
-                break;
-            case(UserRoleEnum::SUPPORT->value):
-                return true;
-                break;
-            case(UserRoleEnum::SUPERVISOR->value):
-                return true;
-                break;
-            case(UserRoleEnum::SYSTEM->value):   // users\edit.index direct call
-                return true;
-                break;
-            default:
-                return false;
-        }
-    }
+	public static function aboveAdmin($role)
+	{
+		switch($role) {
+			case(UserRoleEnum::ADMIN->value):
+				return true;
+				break;
+			case(UserRoleEnum::SUPPORT->value):
+				return true;
+				break;
+			case(UserRoleEnum::SUPERVISOR->value):
+				return true;
+				break;
+			case(UserRoleEnum::SYSTEM->value):   // users\edit.index direct call
+				return true;
+				break;
+			default:
+				return false;
+		}
+	}
 
-    public static function aboveManager($role)
-    {
-        switch($role) {
-            case(UserRoleEnum::MANAGER->value):
-                return true;
-                break;
-            case(UserRoleEnum::HOD->value):
-                return true;
-                break;
-            case(UserRoleEnum::ADMIN->value):
-                return true;
-                break;
-            case(UserRoleEnum::SUPPORT->value):
-                return true;
-                break;
-            default:
-                return false;
-        }
-    }
+	public static function aboveManager($role)
+	{
+		switch($role) {
+			case(UserRoleEnum::MANAGER->value):
+				return true;
+				break;
+			case(UserRoleEnum::HOD->value):
+				return true;
+				break;
+			case(UserRoleEnum::ADMIN->value):
+				return true;
+				break;
+			case(UserRoleEnum::SUPPORT->value):
+				return true;
+				break;
+			default:
+				return false;
+		}
+	}
 
-    // Not used yet
-    public static function isPrivileged($role)
-    {
-        switch($role) {
-            case(UserRoleEnum::BUYER->value):
-                return true;
-                break;
-            case(UserRoleEnum::MANAGER->value):
-                return true;
-                break;
-            case(UserRoleEnum::HOD->value):
-                return true;
-                break;
-            case(UserRoleEnum::CXO->value):
-                return true;
-                break;
-            case(UserRoleEnum::ADMIN->value):
-                return true;
-                break;
-            case(UserRoleEnum::SYSTEM->value):
-                return true;
-                break;
-            default:
-                return false;
-        }
-    }
+	// Not used yet
+	public static function isPrivileged($role)
+	{
+		switch($role) {
+			case(UserRoleEnum::BUYER->value):
+				return true;
+				break;
+			case(UserRoleEnum::MANAGER->value):
+				return true;
+				break;
+			case(UserRoleEnum::HOD->value):
+				return true;
+				break;
+			case(UserRoleEnum::CXO->value):
+				return true;
+				break;
+			case(UserRoleEnum::ADMIN->value):
+				return true;
+				break;
+			case(UserRoleEnum::SYSTEM->value):
+				return true;
+				break;
+			default:
+				return false;
+		}
+	}
 
 }

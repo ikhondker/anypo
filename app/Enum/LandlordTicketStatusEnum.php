@@ -20,14 +20,14 @@
 namespace App\Enum;
 
 enum LandlordTicketStatusEnum:string{
-    case NEW	            ='1001';  
-    case ASSIGNED	        ='1004';
-    case PENDING	        ='1005';
-    case INPROGRESS         ='1006';
-    case DEVELOPMENT        ='1007';
-    case BUGFIXING          ='1008';
-    case CUSTWORKING        ='1010'; 
-    //case RESOLVED	        ='1011'; Not used
-    case CLOSED	            ='1012';
-    case ONHOLD	            ='1015';
+	case NEW				='1001';  
+	case ASSIGNED			='1004';
+	case PENDING			='1005';
+	case INPROGRESS			='1006';
+	case DEVELOPMENT		='1007';
+	case BUGFIXING			='1008';
+	case CUSTWORKING		='1010'; 
+	//case RESOLVED			='1011'; Not used
+	case CLOSED				='1012';
+	case ONHOLD				='1015';
 }

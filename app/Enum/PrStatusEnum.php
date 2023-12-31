@@ -20,10 +20,10 @@
 namespace App\Enum;
 
 enum PrStatusEnum: string{
-    case OPEN       = 'open';
-    case CLOSED     = 'closed';
-    case FORCED     = 'force-closed';
-    case CANCELED   = 'canceled';
-    case ERROR      = 'error';
+	case OPEN		= 'open';
+	case CLOSED		= 'closed';
+	case FORCED		= 'force-closed';
+	case CANCELED	= 'canceled';
+	case ERROR	= 'error';
 }
 

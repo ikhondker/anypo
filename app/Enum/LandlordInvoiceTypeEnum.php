@@ -20,8 +20,8 @@
 namespace App\Enum;
 
 enum LandlordInvoiceTypeEnum:string{
-    case CHECKOUT       ='checkout';
-    case SUBSCRIPTION   ='subscription';
-    case ADDON          ='addon';
-    case ARCHIVE        ='archive';
+	case CHECKOUT		='checkout';
+	case SUBSCRIPTION	='subscription';
+	case ADDON			='addon';
+	case ARCHIVE		='archive';
 }

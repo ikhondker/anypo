@@ -26,6 +26,6 @@ class StoreCheckoutRequest extends FormRequest
 		];
 	}
 
-	
+
 
 }

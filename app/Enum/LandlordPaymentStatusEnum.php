@@ -20,9 +20,9 @@
 namespace App\Enum;
 
 enum LandlordPaymentStatusEnum:string{
-    case DRAFT      = '1002';
-    case PAID       = '1014';
-    case CANCELED   = '1020';
-    case FAILED     = '1021';  
-    case ERROR	    = '1022';
+	case DRAFT		= '1002';
+	case PAID		= '1014';
+	case CANCELED	= '1020';
+	case FAILED		= '1021';  
+	case ERROR		= '1022';
 }

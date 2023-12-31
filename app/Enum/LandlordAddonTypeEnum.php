@@ -20,8 +20,8 @@
 namespace App\Enum;
 
 enum LandlordAddonTypeEnum: string{
-    case NA     = 'na';
-    case USER   = 'user';
-    case GB     = 'gb';
-    case BONUS  = 'bonus';
+	case NA		= 'na';
+	case USER	= 'user';
+	case GB		= 'gb';
+	case BONUS	= 'bonus';
 }

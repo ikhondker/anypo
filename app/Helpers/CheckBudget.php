@@ -41,116 +41,116 @@ use Carbon\Carbon;
 
 class CheckBudget
 {
-    public static function checkAndBookPr($pr_id)
-    {
-        //Log::debug("Inside bookBudget");
-        $pr = Pr::where('id', $pr_id)->first();
+	public static function checkAndBookPr($pr_id)
+	{
+		//Log::debug("Inside bookBudget");
+		$pr = Pr::where('id', $pr_id)->first();
 
-        // check if dept_budget for this year exists
+		// check if dept_budget for this year exists
 
-        // increase booking
+		// increase booking
 
-        // check if budget for this year exists
-        $fy = Carbon::now()->format('Y');
-        //Log::debug("fy".$fy);
-        try {
-            $budget = Budget::primary()->where('fy', $fy)->firstOrFail();
-        } catch (ModelNotFoundException $exception) {
-            Log::debug("Inside ModelNotFoundException");
-            return 'E001';
-        }
+		// check if budget for this year exists
+		$fy = Carbon::now()->format('Y');
+		//Log::debug("fy".$fy);
+		try {
+			$budget = Budget::primary()->where('fy', $fy)->firstOrFail();
+		} catch (ModelNotFoundException $exception) {
+			Log::debug("Inside ModelNotFoundException");
+			return 'E001';
+		}
 
-        // check if dept_budget for this year exists
-        Log::debug("pr->dept_id=".$pr->dept_id);
-        Log::debug("pr->dept_budget_id=".$pr->dept_budget_id);
+		// check if dept_budget for this year exists
+		Log::debug("pr->dept_id=".$pr->dept_id);
+		Log::debug("pr->dept_budget_id=".$pr->dept_budget_id);
 
-        try {
-            $dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-        } catch (ModelNotFoundException $exception) {
-            //Log::debug("Inside ModelNotFoundException");
-            return 'E002';
-        }
+		try {
+			$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
+		} catch (ModelNotFoundException $exception) {
+			//Log::debug("Inside ModelNotFoundException");
+			return 'E002';
+		}
 
-        // check if budget is available
-        if (($dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr_issued)  > $pr->fc_amount) {
-            // book pr budget
-            //Log::debug("Updating  dept_budget");
-            $dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked  + $pr->fc_amount;
-            $dept_budget->save();
+		// check if budget is available
+		if (($dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr_issued)  > $pr->fc_amount) {
+			// book pr budget
+			//Log::debug("Updating  dept_budget");
+			$dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked  + $pr->fc_amount;
+			$dept_budget->save();
 
-            //Log::debug("Updating  budget");
-            $budget->amount_pr_booked  = $budget->amount_pr_booked  + $pr->fc_amount;
-            $budget->save();
-        } else {
-            return 'E003';
-        }
+			//Log::debug("Updating  budget");
+			$budget->amount_pr_booked  = $budget->amount_pr_booked  + $pr->fc_amount;
+			$budget->save();
+		} else {
+			return 'E003';
+		}
 
-        // update projects budget
-        $project = Project::where('id', $pr->project_id)->firstOrFail();
-        $project->amount_pr_booked  = $project->amount_pr_booked  + $pr->fc_amount;
-        $project->save();
+		// update projects budget
+		$project = Project::where('id', $pr->project_id)->firstOrFail();
+		$project->amount_pr_booked  = $project->amount_pr_booked  + $pr->fc_amount;
+		$project->save();
 
-        return 'E000';
-    }
+		return 'E000';
+	}
 
-    public static function reverseBookingPr($pr_id)
-    {
+	public static function reverseBookingPr($pr_id)
+	{
 
-        $pr = Pr::where('id', $pr_id)->first();
+		$pr = Pr::where('id', $pr_id)->first();
 
-        $dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-        $dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked - $pr->fc_amount;
-        $dept_budget->save();
-
-
-
-        $budget = Budget::primary()->where('id', $dept_budget->budget_id)->firstOrFail();
-        $budget->amount_pr_booked  = $budget->amount_pr_booked  - $pr->fc_amount;
-        $budget->save();
-
-        $project = Project::where('id', $pr->project_id)->firstOrFail();
-        $project->amount_pr_booked  = $project->amount_pr_booked  - $pr->fc_amount;
-        $project->save();
-
-        return 'E000';
-    }
-
-    public static function confirmBudgetPr($pr_id)
-    {
-        $pr = Pr::where('id', $pr_id)->first();
-
-        $dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-        $dept_budget->amount_pr_issued  = $dept_budget->amount_pr_issued + $pr->fc_amount;
-        $dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked - $pr->fc_amount;
-        $dept_budget->save();
-
-        $budget = Budget::primary()->where('id', $dept_budget->budget_id)->firstOrFail();
-        $budget->amount_pr_issued  = $budget->amount_pr_issued  + $pr->fc_amount;
-        $budget->amount_pr_booked  = $budget->amount_pr_booked  - $pr->fc_amount;
-        $budget->save();
-
-        $project = Project::where('id', $pr->project_id)->firstOrFail();
-        $project->amount_pr_issued  = $project->amount_pr_issued  + $pr->fc_amount;
-        $project->amount_pr_booked  = $project->amount_pr_booked  - $pr->fc_amount;
-        $project->save();
-
-        return 'E000';
-    }
+		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
+		$dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked - $pr->fc_amount;
+		$dept_budget->save();
 
 
-    public static function reversBudget($role)
-    {
-        return false;
-    }
 
-    public static function updateDeptBudget($role)
-    {
-        return false;
-    }
+		$budget = Budget::primary()->where('id', $dept_budget->budget_id)->firstOrFail();
+		$budget->amount_pr_booked  = $budget->amount_pr_booked  - $pr->fc_amount;
+		$budget->save();
 
-    public static function updateCompanyBudget($role)
-    {
-        return false;
-    }
+		$project = Project::where('id', $pr->project_id)->firstOrFail();
+		$project->amount_pr_booked  = $project->amount_pr_booked  - $pr->fc_amount;
+		$project->save();
+
+		return 'E000';
+	}
+
+	public static function confirmBudgetPr($pr_id)
+	{
+		$pr = Pr::where('id', $pr_id)->first();
+
+		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
+		$dept_budget->amount_pr_issued  = $dept_budget->amount_pr_issued + $pr->fc_amount;
+		$dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked - $pr->fc_amount;
+		$dept_budget->save();
+
+		$budget = Budget::primary()->where('id', $dept_budget->budget_id)->firstOrFail();
+		$budget->amount_pr_issued  = $budget->amount_pr_issued  + $pr->fc_amount;
+		$budget->amount_pr_booked  = $budget->amount_pr_booked  - $pr->fc_amount;
+		$budget->save();
+
+		$project = Project::where('id', $pr->project_id)->firstOrFail();
+		$project->amount_pr_issued  = $project->amount_pr_issued  + $pr->fc_amount;
+		$project->amount_pr_booked  = $project->amount_pr_booked  - $pr->fc_amount;
+		$project->save();
+
+		return 'E000';
+	}
+
+
+	public static function reversBudget($role)
+	{
+		return false;
+	}
+
+	public static function updateDeptBudget($role)
+	{
+		return false;
+	}
+
+	public static function updateCompanyBudget($role)
+	{
+		return false;
+	}
 
 }

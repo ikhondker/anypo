@@ -20,8 +20,8 @@
 namespace App\Enum;
 
 enum InterfaceStatusEnum: string{
-    case DRAFT      = 'draft';
-    case ERROR      = 'error';
-    case VALIDATED  = 'validated';
-    case UPLOADED   = 'uploaded';
+	case DRAFT		= 'draft';
+	case ERROR		= 'error';
+	case VALIDATED	= 'validated';
+	case UPLOADED	= 'uploaded';
 }

@@ -40,132 +40,132 @@ use DB;
 
 class ExchangeRate
 {
-    public static function getRate($currency, $fc_currency)
-    {
-        // check if budget for this year exists
-        $rate = 0;
-        try {
-            $rate = Rate::where('rate_date', Carbon::now()->startOfMonth())
-                ->where('currency', $currency)
-                ->where('fc_currency', $fc_currency)
-                ->firstOrFail();
-            Log::debug("Rate Found =".$rate->rate);
-            return $rate->rate;
-        } catch (\Exception $exception) {
-            // General Exception class which is the parent of all Exceptions
-            Log::debug('Still rate not found after importing data');
-            return 0;
-        }
-    }
+	public static function getRate($currency, $fc_currency)
+	{
+		// check if budget for this year exists
+		$rate = 0;
+		try {
+			$rate = Rate::where('rate_date', Carbon::now()->startOfMonth())
+				->where('currency', $currency)
+				->where('fc_currency', $fc_currency)
+				->firstOrFail();
+			Log::debug("Rate Found =".$rate->rate);
+			return $rate->rate;
+		} catch (\Exception $exception) {
+			// General Exception class which is the parent of all Exceptions
+			Log::debug('Still rate not found after importing data');
+			return 0;
+		}
+	}
 
 
-    public static function importRates()
-    {
-        // download rates
-        Log::debug("inside importRates");
+	public static function importRates()
+	{
+		// download rates
+		Log::debug("inside importRates");
 
-        $setup = Setup::first();
-        $fc_currency  = $setup->currency;
-        Log::debug("fc_currency=".$fc_currency);
+		$setup = Setup::first();
+		$fc_currency  = $setup->currency;
+		Log::debug("fc_currency=".$fc_currency);
 
-        // check if current months import rates imported
+		// check if current months import rates imported
 
-        // if ($setup->last_rate_date <> '') {
-        //     $last_rate_month    	= $setup->last_rate_date->startOfMonth();
-        // } else {
-        //     $last_rate_month    	= '';
-        // }
-        // Log::debug("last_rate_month=".$last_rate_month);
+		// if ($setup->last_rate_date <> '') {
+		//     $last_rate_month    	= $setup->last_rate_date->startOfMonth();
+		// } else {
+		//     $last_rate_month    	= '';
+		// }
+		// Log::debug("last_rate_month=".$last_rate_month);
 
-        // $current_rate_month    	= Carbon::now()->startOfMonth();
-        // Log::debug("current_rate_month=".$current_rate_month);
-        // if ($last_rate_month == $current_rate_month){
-        //     // dont import . retunr
-        //     Log::debug("Rates already imported for ".$current_rate_month);
-        //     return true;
-        // }
+		// $current_rate_month    	= Carbon::now()->startOfMonth();
+		// Log::debug("current_rate_month=".$current_rate_month);
+		// if ($last_rate_month == $current_rate_month){
+		//     // dont import . retunr
+		//     Log::debug("Rates already imported for ".$current_rate_month);
+		//     return true;
+		// }
 
-        //$rate = 0;
+		//$rate = 0;
 
-        $apikey         = 'be73b7dba663446bb6214e87048df5e0';
-        $fc_currency  = urlencode($fc_currency);
+		$apikey			= 'be73b7dba663446bb6214e87048df5e0';
+		$fc_currency	= urlencode($fc_currency);
 
-        // Note: openexchangerates always return USD as base currency
-        // https://openexchangerates.org/api/latest.json?app_id=be73b7dba663446bb6214e87048df5e0&base=USD
-        $url = 'https://openexchangerates.org/api/latest.json?app_id='.$apikey.'&base=USD';
-        //Log::debug("URL=".$url);
-        $response = Http::get($url);
+		// Note: openexchangerates always return USD as base currency
+		// https://openexchangerates.org/api/latest.json?app_id=be73b7dba663446bb6214e87048df5e0&base=USD
+		$url = 'https://openexchangerates.org/api/latest.json?app_id='.$apikey.'&base=USD';
+		//Log::debug("URL=".$url);
+		$response = Http::get($url);
 
-        // Exclude TOO SMALL TODO
-        //"BTC": 0.000033653167,
-        $exclude = array("BTC", "XAU", "XPD", "XPT");
+		// Exclude TOO SMALL TODO
+		//"BTC": 0.000033653167,
+		$exclude = array("BTC", "XAU", "XPD", "XPT");
 
-        if ($response->ok()) {
+		if ($response->ok()) {
 
-            $json = $response->json();
+			$json = $response->json();
 
-            // Always USD
-            // oe stand for openexchange
-            $oe_base = $json['base'];
-            Log::debug('Openexchangerates Base Currency='. $oe_base);
+			// Always USD
+			// oe stand for openexchange
+			$oe_base = $json['base'];
+			Log::debug('Openexchangerates Base Currency='. $oe_base);
 
-            //get all rates data
-            $rates = $json['rates'];
+			//get all rates data
+			$rates = $json['rates'];
 
-            // USD to tenant fc currency exchange rate
-            $usd_to_fc = (float) $rates[$fc_currency];
-            Log::debug('USD to tenant FC currency '.$setup->currency." =". $usd_to_fc);
+			// USD to tenant fc currency exchange rate
+			$usd_to_fc = (float) $rates[$fc_currency];
+			Log::debug('USD to tenant FC currency '.$setup->currency." =". $usd_to_fc);
 
-            //$currencies = Currency::primary()->orderBy('id', 'DESC');
+			//$currencies = Currency::primary()->orderBy('id', 'DESC');
 
-            $currencies = DB::select("SELECT currency 
-                FROM currencies c
-                WHERE c.enable = true 
-                AND c.currency NOT IN (SELECT r.currency
-                    FROM rates r
-                    WHERE 1 = 1
-                    AND r.fc_currency ='".$setup->currency."'
-                    AND DATE(now()) NOT BETWEEN DATE(r.from_date) and DATE(r.from_date))
-                ");
+			$currencies = DB::select("SELECT currency 
+				FROM currencies c
+				WHERE c.enable = true 
+				AND c.currency NOT IN (SELECT r.currency
+					FROM rates r
+					WHERE 1 = 1
+					AND r.fc_currency ='".$setup->currency."'
+					AND DATE(now()) NOT BETWEEN DATE(r.from_date) and DATE(r.from_date))
+				");
 
 
-            foreach ($currencies as $currency) {
-                //Log::debug('Inserting rate for Currency='. $currency->currency);
-                $cur_currency = $currency->currency;
-                $usd_to_currency = (float) $rates[$cur_currency];
-                //Log::debug('usd_to_currency='. $usd_to_currency);
-                $base_rate               = (float) $usd_to_currency / $usd_to_fc;
-                //Log::debug('base_rate='. $base_rate);
+			foreach ($currencies as $currency) {
+				//Log::debug('Inserting rate for Currency='. $currency->currency);
+				$cur_currency 		= $currency->currency;
+				$usd_to_currency 	= (float) $rates[$cur_currency];
+				//Log::debug('usd_to_currency='. $usd_to_currency);
+				$base_rate			= (float) $usd_to_currency / $usd_to_fc;
+				//Log::debug('base_rate='. $base_rate);
 
-                // insert in exchange table
-                $rate                   = new Rate();
-                $rate->rate_date    	= Carbon::now()->startOfMonth();
-                $rate->fc_currency      = $fc_currency;
-                $rate->currency    	    = $cur_currency;
-                $rate->from_date    	= Carbon::now()->startOfMonth();
-                $rate->to_date    		= Carbon::now()->endOfMonth();
-                $rate->rate    	        = round(1 / $base_rate, 8);
-                $rate->inverse_rate    	= round($base_rate, 8);
-                $rate->save();
-                //Log::debug("base=".$rate->base_currency.' to_currency='.$rate->to_currency.' wusd='.$raw_usd.' rate='.$rate->rate .' inv rate='.$rate->inverse_rate );
-                // $rate_id                =$rate->id;
+				// insert in exchange table
+				$rate				= new Rate();
+				$rate->rate_date	= Carbon::now()->startOfMonth();
+				$rate->fc_currency	= $fc_currency;
+				$rate->currency		= $cur_currency;
+				$rate->from_date	= Carbon::now()->startOfMonth();
+				$rate->to_date		= Carbon::now()->endOfMonth();
+				$rate->rate			= round(1 / $base_rate, 8);
+				$rate->inverse_rate	= round($base_rate, 8);
+				$rate->save();
+				//Log::debug("base=".$rate->base_currency.' to_currency='.$rate->to_currency.' wusd='.$raw_usd.' rate='.$rate->rate .' inv rate='.$rate->inverse_rate );
+				// $rate_id=$rate->id;
 
-            }
-            //Log::debug("Import complete. Returning with true");
+			}
+			//Log::debug("Import complete. Returning with true");
 
-            // set back the  last rate import date
-            $setup = Setup::first();
-            $setup->last_rate_date    	= Carbon::now()->startOfMonth();
-            $setup->save();
+			// set back the  last rate import date
+			$setup = Setup::first();
+			$setup->last_rate_date    	= Carbon::now()->startOfMonth();
+			$setup->save();
 
-            // Write to Log
-            EventLog::event('rates', $setup->id, 'import');
+			// Write to Log
+			EventLog::event('rates', $setup->id, 'import');
 
-            return true;
-        } else {
-            Log::debug("Http::get Response ERROR. Please Try again.");
-            return false;
-        }
+			return true;
+		} else {
+			Log::debug("Http::get Response ERROR. Please Try again.");
+			return false;
+		}
 
-    }
+	}
 }

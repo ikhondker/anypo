@@ -37,236 +37,236 @@ use Illuminate\Support\Facades\Auth;
 
 class FileUpload
 {
-    public static function upload(FormRequest $request)
-    {
+	public static function upload(FormRequest $request)
+	{
 
-        // ===> both file_to_upload and fileName is used
+		// ===> both file_to_upload and fileName is used
 
-        $fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-        $org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
+		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-        //Log::debug('fileName='.$fileName);
-        //Log::debug('org_fileName='.$org_fileName);
+		//Log::debug('fileName='.$fileName);
+		//Log::debug('org_fileName='.$org_fileName);
 
-        // get entity and subdirectory to upload
-        $entity 		= Entity::where('entity', $request->entity)->first();
-        $subdir 		= $entity->subdir;
+		// get entity and subdirectory to upload
+		$entity 		= Entity::where('entity', $request->entity)->first();
+		$subdir 		= $entity->subdir;
 
-        // OK. Store File in Storage Private Folder. Auto create folder
-        // $request->file_to_upload->storeAs('private/pr/', $fileName);
-        // D:\laravel\po02\storage\tenantgeda\app\private\pr
-        $request->file_to_upload->storeAs('private/'.$subdir.'/', $fileName);
+		// OK. Store File in Storage Private Folder. Auto create folder
+		// $request->file_to_upload->storeAs('private/pr/', $fileName);
+		// D:\laravel\po02\storage\tenantgeda\app\private\pr
+		$request->file_to_upload->storeAs('private/'.$subdir.'/', $fileName);
 
-        // create Attachment record TODO rewrite
-        $attachment                 	= new Attachment();
-        $attachment->article_id        	= $request->article_id;
-        $attachment->entity   			= $request->entity;
-        $attachment->file_entity   		= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
+		// create Attachment record TODO rewrite
+		$attachment					= new Attachment();
+		$attachment->article_id		= $request->article_id;
+		$attachment->entity   		= $request->entity;
+		$attachment->file_entity   	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
 
-        $attachment->owner_id   		= auth()->check() ? auth()->user()->id : config('akk.GUEST_USER_ID');
+		$attachment->owner_id   	= auth()->check() ? auth()->user()->id : config('akk.GUEST_USER_ID');
 
-        $attachment->summary   			= ($request->has('summary')) ? $request->summary : 'No details';
-        $attachment->file_name   		= $fileName;
-        $attachment->org_file_name   	= $org_fileName;
-        $attachment->file_type   		= $request->file('file_to_upload')->getMimeType();
-        $attachment->file_size   		= $request->file('file_to_upload')->getSize();
-        $attachment->upload_date   		= now(); //date('Y-m-d H:i:s');
-        //$attachment = Attachment::create($input);
+		$attachment->summary   		= ($request->has('summary')) ? $request->summary : 'No details';
+		$attachment->file_name   	= $fileName;
+		$attachment->org_file_name  = $org_fileName;
+		$attachment->file_type   	= $request->file('file_to_upload')->getMimeType();
+		$attachment->file_size   	= $request->file('file_to_upload')->getSize();
+		$attachment->upload_date   	= now(); //date('Y-m-d H:i:s');
+		//$attachment = Attachment::create($input);
 
-        $attachment->save();
+		$attachment->save();
 
-        // try {
-        //     $uploadedFile->storeAs(
-        //         $path,
-        //         $fileName,
-        //         $fileSystem
-        //     );
-        //     return $fileName;
-        // } catch ( \Exception $e ) {
-        //     throw new \Exception($e);
-        // }
+		// try {
+		//     $uploadedFile->storeAs(
+		//         $path,
+		//         $fileName,
+		//         $fileSystem
+		//     );
+		//     return $fileName;
+		// } catch ( \Exception $e ) {
+		//     throw new \Exception($e);
+		// }
 
-        return $attachment->id;
-    }
+		return $attachment->id;
+	}
 
-    public static function uploadPublicPhoto(FormRequest $request)
-    {
+	public static function uploadPublicPhoto(FormRequest $request)
+	{
 
-        // ===> both file_to_upload and filename is used
-        $fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-        $org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
+		// ===> both file_to_upload and filename is used
+		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-        //Log::debug('fileName='.$fileName);
-        //Log::debug('org_fileName='.$org_fileName);
+		//Log::debug('fileName='.$fileName);
+		//Log::debug('org_fileName='.$org_fileName);
 
-        // get entity and subdir
-        $subdir 		= 'profile';
+		// get entity and subdir
+		$subdir 		= 'profile';
 
-        try {
-            // OK. Store File in Storage Private Folder. Auto create folder
-            $request->file_to_upload->move(public_path('landlord/'.$subdir), $fileName);
+		try {
+			// OK. Store File in Storage Private Folder. Auto create folder
+			$request->file_to_upload->move(public_path('landlord/'.$subdir), $fileName);
 
-        } catch (Exception $e) {
+		} catch (Exception $e) {
 
-            $message = $e->getMessage();
-            var_dump('Exception Message: '. $message);
+			$message = $e->getMessage();
+			var_dump('Exception Message: '. $message);
 
-            $code = $e->getCode();
-            var_dump('Exception Code: '. $code);
+			$code = $e->getCode();
+			var_dump('Exception Code: '. $code);
 
-            $string = $e->__toString();
-            var_dump('Exception String: '. $string);
-            Log::debug('FAIL to upload profile photo!');
+			$string = $e->__toString();
+			var_dump('Exception String: '. $string);
+			Log::debug('FAIL to upload profile photo!');
 
-            exit;
-        }
+			exit;
+		}
 
-        // check on-hand stock
-        // show <img src="{{ asset('/landlord/profile/643d1fe033c85.PNG') }}" style="height: 50px;width:100px;">
-        return true;
-    }
+		// check on-hand stock
+		// show <img src="{{ asset('/landlord/profile/643d1fe033c85.PNG') }}" style="height: 50px;width:100px;">
+		return true;
+	}
 
 
-    public static function uploadPhoto(FormRequest $request)
-    {
+	public static function uploadPhoto(FormRequest $request)
+	{
 
-        // ===> both file_to_upload and filename is used
-        // root: po02\storage\tenantgeda\app
-        $fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-        $org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
+		// ===> both file_to_upload and filename is used
+		// root: po02\storage\tenantgeda\app
+		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-        //Log::debug('fileName='.$fileName);
-        //Log::debug('org_fileName='.$org_fileName);
+		//Log::debug('fileName='.$fileName);
+		//Log::debug('org_fileName='.$org_fileName);
 
-        // get entity and subdir
-        $subdir 		= 'logo';
+		// get entity and subdir
+		$subdir 		= 'logo';
 
-        try {
-            // OK. Store File in Storage Private Folder. Auto create folder
-            //$request->file_to_upload->storeAs('private/pr/', $fileName);
-            //$request->file_to_upload->storeAs('private/'.$subdir.'/', $fileName);
-            //$request->file_to_upload->storeAs($subdir.'/', $fileName);
-            $request->file_to_upload->storeAs('/', $fileName);
-            //$request->file_to_upload->move(public_path('landlord/'.$subdir), $fileName);
+		try {
+			// OK. Store File in Storage Private Folder. Auto create folder
+			//$request->file_to_upload->storeAs('private/pr/', $fileName);
+			//$request->file_to_upload->storeAs('private/'.$subdir.'/', $fileName);
+			//$request->file_to_upload->storeAs($subdir.'/', $fileName);
+			$request->file_to_upload->storeAs('/', $fileName);
+			//$request->file_to_upload->move(public_path('landlord/'.$subdir), $fileName);
 
-        } catch (Exception $e) {
+		} catch (Exception $e) {
 
-            $message = $e->getMessage();
-            var_dump('Exception Message: '. $message);
+			$message = $e->getMessage();
+			var_dump('Exception Message: '. $message);
 
-            $code = $e->getCode();
-            var_dump('Exception Code: '. $code);
+			$code = $e->getCode();
+			var_dump('Exception Code: '. $code);
 
-            $string = $e->__toString();
-            var_dump('Exception String: '. $string);
-            Log::debug('FAIL to upload profile photo!');
+			$string = $e->__toString();
+			var_dump('Exception String: '. $string);
+			Log::debug('FAIL to upload profile photo!');
 
-            exit;
-        }
+			exit;
+		}
 
-        // check on-hand stock
-        //$user = User::find($request->user_id);
-        // update profile photo
-        //$user->photo = $fileName;
-        //$user->save();
-        return 1;
-    }
+		// check on-hand stock
+		//$user = User::find($request->user_id);
+		// update profile photo
+		//$user->photo = $fileName;
+		//$user->save();
+		return 1;
+	}
 
-    // user in SetupController
-    public static function uploadLogo(FormRequest $request)
-    {
-        //check https://stackoverflow.com/questions/50997652/laravel-retrieve-images-from-storage-to-view
-        // 17-MAY-2023
-        // OK. Store File in Storage Private Folder. Auto create folder
-        // both file_to_upload and fileName is used
-        // root: po02\storage\tenantgeda\app
-        // set subdir within default location i.e. po02\storage\tenantgeda\app
-        $subdir 		= 'logo';
+	// user in SetupController
+	public static function uploadLogo(FormRequest $request)
+	{
+		//check https://stackoverflow.com/questions/50997652/laravel-retrieve-images-from-storage-to-view
+		// 17-MAY-2023
+		// OK. Store File in Storage Private Folder. Auto create folder
+		// both file_to_upload and fileName is used
+		// root: po02\storage\tenantgeda\app
+		// set subdir within default location i.e. po02\storage\tenantgeda\app
+		$subdir 		= 'logo';
 
-        $fileName 		= date("YmdHis")."-".$request->file('file_to_upload')->getClientOriginalName();
-        //Log::debug('fileName='.$fileName);
+		$fileName 		= date("YmdHis")."-".$request->file('file_to_upload')->getClientOriginalName();
+		//Log::debug('fileName='.$fileName);
 
-        try {
-            // OK. Store File in Storage Private Folder. Auto create folder
-            $request->file_to_upload->storeAs($subdir.'/', $fileName);
+		try {
+			// OK. Store File in Storage Private Folder. Auto create folder
+			$request->file_to_upload->storeAs($subdir.'/', $fileName);
 
-            //resize to thumbnail
-            $thumbImage 	= "logo." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-            $path = storage_path('app/'.$subdir.'/'. $fileName);
-            $image_resize = Image::make($path);
-            $image_resize->fit(90, 90);
-            $image_resize->save(storage_path('app/'.$subdir.'/'. $thumbImage));
-            return $thumbImage;
+			//resize to thumbnail
+			$thumbImage 	= "logo." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+			$path = storage_path('app/'.$subdir.'/'. $fileName);
+			$image_resize = Image::make($path);
+			$image_resize->fit(90, 90);
+			$image_resize->save(storage_path('app/'.$subdir.'/'. $thumbImage));
+			return $thumbImage;
 
-        } catch (Exception $e) {
+		} catch (Exception $e) {
 
-            $message = $e->getMessage();
-            var_dump('Exception Message: '. $message);
+			$message = $e->getMessage();
+			var_dump('Exception Message: '. $message);
 
-            $code = $e->getCode();
-            var_dump('Exception Code: '. $code);
+			$code = $e->getCode();
+			var_dump('Exception Code: '. $code);
 
-            $string = $e->__toString();
-            var_dump('Exception String: '. $string);
-            Log::debug('Failed to upload company logo!');
+			$string = $e->__toString();
+			var_dump('Exception String: '. $string);
+			Log::debug('Failed to upload company logo!');
 
-            exit;
-        }
+			exit;
+		}
 
-        // check on-hand stock
-        //$user = User::find($request->user_id);
-        // update profile photo
-        //$user->photo = $fileName;
-        //$user->save();
-        return 1;
-    }
+		// check on-hand stock
+		//$user = User::find($request->user_id);
+		// update profile photo
+		//$user->photo = $fileName;
+		//$user->save();
+		return 1;
+	}
 
-    // user in UserController
-    public static function uploadAvatar(FormRequest $request)
-    {
-        //check https://stackoverflow.com/questions/50997652/laravel-retrieve-images-from-storage-to-view
-        // 17-MAY-2023
-        // OK. Store File in Storage Private Folder. Auto create folder
-        // both file_to_upload and fileName is used
-        // root: po02\storage\tenantgeda\app
-        // set subdir within default location i.e. po02\storage\tenantgeda\app
-        $subdir 		= 'avatar';
+	// user in UserController
+	public static function uploadAvatar(FormRequest $request)
+	{
+		//check https://stackoverflow.com/questions/50997652/laravel-retrieve-images-from-storage-to-view
+		// 17-MAY-2023
+		// OK. Store File in Storage Private Folder. Auto create folder
+		// both file_to_upload and fileName is used
+		// root: po02\storage\tenantgeda\app
+		// set subdir within default location i.e. po02\storage\tenantgeda\app
+		$subdir 		= 'avatar';
 
-        $fileName 		= date("YmdHis")."-".$request->file('file_to_upload')->getClientOriginalName();
-        //Log::debug('fileName='.$fileName);
+		$fileName 		= date("YmdHis")."-".$request->file('file_to_upload')->getClientOriginalName();
+		//Log::debug('fileName='.$fileName);
 
-        try {
-            // OK. Store File in Storage Private Folder. Auto create folder
-            $request->file_to_upload->storeAs($subdir.'/', $fileName);
+		try {
+			// OK. Store File in Storage Private Folder. Auto create folder
+			$request->file_to_upload->storeAs($subdir.'/', $fileName);
 
-            //resize to thumbnail
-            $thumbImage 	= $request->input('id'). "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-            $path = storage_path('app/'.$subdir.'/'. $fileName);
-            $image_resize = Image::make($path);
-            $image_resize->fit(90, 90);
-            $image_resize->save(storage_path('app/'.$subdir.'/'. $thumbImage));
-            return $thumbImage;
+			//resize to thumbnail
+			$thumbImage 	= $request->input('id'). "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+			$path = storage_path('app/'.$subdir.'/'. $fileName);
+			$image_resize = Image::make($path);
+			$image_resize->fit(90, 90);
+			$image_resize->save(storage_path('app/'.$subdir.'/'. $thumbImage));
+			return $thumbImage;
 
-        } catch (Exception $e) {
+		} catch (Exception $e) {
 
-            $message = $e->getMessage();
-            var_dump('Exception Message: '. $message);
+			$message = $e->getMessage();
+			var_dump('Exception Message: '. $message);
 
-            $code = $e->getCode();
-            var_dump('Exception Code: '. $code);
+			$code = $e->getCode();
+			var_dump('Exception Code: '. $code);
 
-            $string = $e->__toString();
-            var_dump('Exception String: '. $string);
-            Log::debug('Failed to upload profile photo!');
+			$string = $e->__toString();
+			var_dump('Exception String: '. $string);
+			Log::debug('Failed to upload profile photo!');
 
-            exit;
-        }
+			exit;
+		}
 
-        // check on-hand stock
-        //$user = User::find($request->user_id);
-        // update profile photo
-        //$user->photo = $fileName;
-        //$user->save();
-        return 1;
-    }
+		// check on-hand stock
+		//$user = User::find($request->user_id);
+		// update profile photo
+		//$user->photo = $fileName;
+		//$user->save();
+		return 1;
+	}
 }

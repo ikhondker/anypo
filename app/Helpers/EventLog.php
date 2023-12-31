@@ -35,25 +35,25 @@ use App\Enum\UserRoleEnum;
 
 class EventLog
 {
-    // Write Event Log
-    // LogEvent('template',$template->id,'create','colname',$template->id);
-    public static function event($object_name, $object_id = 0, $event_name = null, $column_name = null, $prior_value = null, $object_type = "C")
-    {
-        $log 				= [];
-        $log['object_name'] = $object_name;
-        $log['object_id'] 	= $object_id;
-        $log['event_name'] 	= $event_name;
-        $log['column_name'] = $column_name;
-        $log['prior_value'] = $prior_value;
-        $log['object_type'] = $object_type;			// C-Control ,M-Model
-        $log['url'] 		= Request::fullUrl();
-        $log['method'] 		= Request::method();
-        $log['ip'] 			= Request::ip();
-        $log['role'] 		= auth()->check() ? auth()->user()->role : UserRoleEnum::SYSTEM->value ;
-        $log['user_id'] 	= auth()->check() ? auth()->user()->id : config('akk.SYSTEM_USER_ID');
+	// Write Event Log
+	// LogEvent('template',$template->id,'create','colname',$template->id);
+	public static function event($object_name, $object_id = 0, $event_name = null, $column_name = null, $prior_value = null, $object_type = "C")
+	{
+		$log 				= [];
+		$log['object_name'] = $object_name;
+		$log['object_id'] 	= $object_id;
+		$log['event_name'] 	= $event_name;
+		$log['column_name'] = $column_name;
+		$log['prior_value'] = $prior_value;
+		$log['object_type'] = $object_type;			// C-Control ,M-Model
+		$log['url'] 		= Request::fullUrl();
+		$log['method'] 		= Request::method();
+		$log['ip'] 			= Request::ip();
+		$log['role'] 		= auth()->check() ? auth()->user()->role : UserRoleEnum::SYSTEM->value ;
+		$log['user_id'] 	= auth()->check() ? auth()->user()->id : config('akk.SYSTEM_USER_ID');
 
-        Activity::create($log);
-    }
+		Activity::create($log);
+	}
 
 
 }

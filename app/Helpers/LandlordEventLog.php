@@ -41,7 +41,7 @@ class LandlordEventLog
 	// LogEvent('template',$template->id,'create','colname',$template->id);
 	public static function event($object_name, $object_id = 0, $event_name = null, $column_name = null, $prior_value = null, $object_type = "C")
 	{
-		$log                = [];
+		$log				= [];
 		//$log['account_id']  = auth()->user()->account_id;
 		$log['account_id']  = auth()->check() ? auth()->user()->account_id : '1000';
 		$log['object_name'] = $object_name;
@@ -50,10 +50,10 @@ class LandlordEventLog
 		$log['column_name'] = $column_name;
 		$log['prior_value'] = $prior_value;
 		$log['object_type'] = $object_type;            // C-Control ,M-Model
-		$log['url']         = Request::fullUrl();
-		$log['method']      = Request::method();
-		$log['ip']          = Request::ip();
-		$log['role']        = auth()->check() ? auth()->user()->role : UserRoleEnum::SYSTEM->value;
+		$log['url']			= Request::fullUrl();
+		$log['method']		= Request::method();
+		$log['ip']			= Request::ip();
+		$log['role']		= auth()->check() ? auth()->user()->role : UserRoleEnum::SYSTEM->value;
 		$log['user_id']     = auth()->check() ? auth()->user()->id : config('bo.SYSTEM_USER_ID');
 
 		Activity::create($log);

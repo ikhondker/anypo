@@ -20,10 +20,10 @@
 namespace App\Enum;
 
 enum WfStatusEnum: string{
-    case OPEN       = 'open';
-    case CLOSED     = 'closed';
-    case RESET      = 'reset';
-    case INVALID    = 'invalid';
-    case ERROR      = 'error';
-    case CANCELED   = 'canceled';
+	case OPEN		= 'open';
+	case CLOSED		= 'closed';
+	case RESET		= 'reset';
+	case INVALID	= 'invalid';
+	case ERROR		= 'error';
+	case CANCELED	= 'canceled';
 }

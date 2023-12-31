@@ -57,20 +57,20 @@ class LandlordFileUpload
 		$request->file_to_upload->storeAs('private/' . $subdir . '/', $fileName);
 
 		// create Attachment record TODO rewrite
-		$attachment                 	= new Attachment;
-		$attachment->article_id        	= $request->article_id;
-		$attachment->entity   			= $request->entity;
-		$attachment->file_entity   		= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
+		$attachment					= new Attachment;
+		$attachment->article_id		= $request->article_id;
+		$attachment->entity   		= $request->entity;
+		$attachment->file_entity   	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
 
-		$attachment->owner_id   		= auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
-		// $attachment->emp_id   		= ($request->has('emp_id')) ? $request->emp_id : Auth::user()->emp_id;
+		$attachment->owner_id   	= auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
+		// $attachment->emp_id   	= ($request->has('emp_id')) ? $request->emp_id : Auth::user()->emp_id;
 
-		$attachment->summary   			= ($request->has('summary')) ? $request->summary : 'No Details';
-		$attachment->file_name   		= $fileName;
-		$attachment->org_file_name   	= $org_fileName;
-		$attachment->file_type   		= $request->file('file_to_upload')->getMimeType();
-		$attachment->file_size   		= $request->file('file_to_upload')->getSize();
-		$attachment->upload_date   		= now(); //date('Y-m-d H:i:s');
+		$attachment->summary   		= ($request->has('summary')) ? $request->summary : 'No Details';
+		$attachment->file_name   	= $fileName;
+		$attachment->org_file_name  = $org_fileName;
+		$attachment->file_type   	= $request->file('file_to_upload')->getMimeType();
+		$attachment->file_size   	= $request->file('file_to_upload')->getSize();
+		$attachment->upload_date   	= now(); //date('Y-m-d H:i:s');
 		//$attachment = Attachment::create($input);
 
 		$attachment->save();

@@ -20,15 +20,15 @@
 namespace App\Enum;
 
 enum WflActionEnum: string{
-    case CREATED    = 'created';
-    case SUBMITTED  = 'submitted';
-    case PENDING    = 'pending';
-    case FORWARD    = 'forward';
-    case QUESTION   = 'question';
-    case ANSWER     = 'answer';
-    case APPROVED   = 'approved';
-    case DELEGATED  = 'delegated';
-    case REJECTED   = 'rejected';
-    case CANCELED   = 'canceled';
+	case CREATED	= 'created';
+	case SUBMITTED	= 'submitted';
+	case PENDING	= 'pending';
+	case FORWARD	= 'forward';
+	case QUESTION	= 'question';
+	case ANSWER		= 'answer';
+	case APPROVED	= 'approved';
+	case DELEGATED	= 'delegated';
+	case REJECTED	= 'rejected';
+	case CANCELED	= 'canceled';
 }
 
