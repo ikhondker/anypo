@@ -12,18 +12,18 @@ use App\Models\User;
 
 class UploadItem extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
-    
-    protected $fillable = [
-        'owner_id', 'name', 'notes', 'code', 'category', 'oem', 'uom', 'price', 'account_type', 'status', 'remark', 'category_id', 'oem_id', 'uom_id', 'updated_at',
-    ];
+	use HasFactory, AddCreatedUpdatedBy;
+	
+	protected $fillable = [
+		'owner_id', 'name', 'notes', 'code', 'category', 'oem', 'uom', 'price', 'account_type', 'status', 'remark', 'category_id', 'oem_id', 'uom_id', 'updated_at',
+	];
 
-    /* ----------------- HasMany ------------------------ */
-    /* ---------------- belongsTo ---------------------- */
-    public function owner() { 
-        return $this->belongsTo(User::class,'owner_id')->withDefault([
-            'name' => '[ Empty ]',
-        ]);
-    }
+	/* ----------------- HasMany ------------------------ */
+	/* ---------------- belongsTo ---------------------- */
+	public function owner() { 
+		return $this->belongsTo(User::class,'owner_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
 
 }

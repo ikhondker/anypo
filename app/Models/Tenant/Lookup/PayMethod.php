@@ -13,44 +13,44 @@ use App\Models\Tenant\Lookup\Currency;
 
 class PayMethod extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
-    protected $fillable = [
-        'name', 'pay_method_number', 'bank_name', 'branch_name', 'start_date', 'end_date', 'currency', 'notes', 'enable', 'updated_by', 'updated_at',
-    ];
-    
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'updated_at'        => 'datetime',
-        'created_at'        => 'datetime',
-    ];
+	protected $fillable = [
+		'name', 'pay_method_number', 'bank_name', 'branch_name', 'start_date', 'end_date', 'currency', 'notes', 'enable', 'updated_by', 'updated_at',
+	];
+	
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array<string, string>
+	 */
+	protected $casts = [
+		'updated_at'        => 'datetime',
+		'created_at'        => 'datetime',
+	];
 
-     /* ----------------- Functions ---------------------- */
-     public static function getAll() {
-        return  PayMethod::select('id','name')
-          ->where('enable', true)
-          ->orderBy('id','asc')
-          ->get();
-    }
+	 /* ----------------- Functions ---------------------- */
+	 public static function getAll() {
+		return  PayMethod::select('id','name')
+		  ->where('enable', true)
+		  ->orderBy('id','asc')
+		  ->get();
+	}
 
-     /* ----------------- Scopes ------------------------- */
-    /**
-     * Scope a query to only include current account users.
-     */
-    public function scopePrimary(Builder $query): void
-    {
-        $query->where('enable', true);
-    }
+	 /* ----------------- Scopes ------------------------- */
+	/**
+	 * Scope a query to only include current account users.
+	 */
+	public function scopePrimary(Builder $query): void
+	{
+		$query->where('enable', true);
+	}
 
-    /* ----------------- HasMany ------------------------ */
+	/* ----------------- HasMany ------------------------ */
 
-    /* ----------------- belongsTo ---------------------- */
-    public function currency() { 
-        return $this->belongsTo(Currency::class); 
-    }
+	/* ----------------- belongsTo ---------------------- */
+	public function currency() { 
+		return $this->belongsTo(Currency::class); 
+	}
 
 }

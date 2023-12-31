@@ -27,57 +27,57 @@ use App\Models\User;
 
 class UserCreated extends Notification implements ShouldQueue
 {
-    
-    protected $user;
-    protected $random_password;
-    use Queueable;
+	
+	protected $user;
+	protected $random_password;
+	use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(User $user,String $random_password)
-    {
-        $this->user = $user;
-        $this->random_password=$random_password;
-    }
+	/**
+	 * Create a new notification instance.
+	 */
+	public function __construct(User $user,String $random_password)
+	{
+		$this->user = $user;
+		$this->random_password=$random_password;
+	}
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
-    public function via(object $notifiable): array
-    {
-        return ['mail'];
-    }
+	/**
+	 * Get the notification's delivery channels.
+	 *
+	 * @return array<int, string>
+	 */
+	public function via(object $notifiable): array
+	{
+		return ['mail'];
+	}
 
-    /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
+	/**
+	 * Get the mail representation of the notification.
+	 */
+	public function toMail(object $notifiable): MailMessage
+	{
+		return (new MailMessage)
 
-                    ->subject('Welcome, your '.config('app.name').' account at has been created.')
-                    ->greeting('Hello, '.$this->user->name)
-                    ->line('Welcome to '.config('app.name').'.')
-                    ->line('Your account has been created as follows: ')
-                    ->line('Login Email: '.$this->user->email.'.')
-                    ->line('Login Password: '.$this->random_password)
-                    ->line('Please use following link to login.')
-                    ->action('Login', url('/login'))
-                    ->line('Thank you for using '.config('app.name').' application!');
-    }
+					->subject('Welcome, your '.config('app.name').' account at has been created.')
+					->greeting('Hello, '.$this->user->name)
+					->line('Welcome to '.config('app.name').'.')
+					->line('Your account has been created as follows: ')
+					->line('Login Email: '.$this->user->email.'.')
+					->line('Login Password: '.$this->random_password)
+					->line('Please use following link to login.')
+					->action('Login', url('/login'))
+					->line('Thank you for using '.config('app.name').' application!');
+	}
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
-    }
+	/**
+	 * Get the array representation of the notification.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function toArray(object $notifiable): array
+	{
+		return [
+			//
+		];
+	}
 }

@@ -12,5 +12,5 @@ use App\Models\User;
 
 class Table extends Model
 {
-    use HasFactory;
+	use HasFactory;
 }

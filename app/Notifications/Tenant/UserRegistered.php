@@ -28,51 +28,51 @@ use App\Models\User;
 
 class UserRegistered extends Notification implements ShouldQueue
 {
-    protected $user;
-    use Queueable;
+	protected $user;
+	use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
+	/**
+	 * Create a new notification instance.
+	 */
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
-    public function via(object $notifiable): array
-    { 
-        return ['mail'];
-    }
+	/**
+	 * Get the notification's delivery channels.
+	 *
+	 * @return array<int, string>
+	 */
+	public function via(object $notifiable): array
+	{ 
+		return ['mail'];
+	}
 
-    /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-            ->subject('Registration complete at '.config('app.name'))
-            ->greeting('Hello, '.$this->user->name)
-            ->line('Welcome to '.config('app.name').'.')
-            ->line('Thank you for the registration.')
-            ->line('You will be receiving another email shortly to verify your email with link')
-            ->line('Please click on that link to verify email Address')
-            ->line('Thank you for using '.config('app.name').' application!');
+	/**
+	 * Get the mail representation of the notification.
+	 */
+	public function toMail(object $notifiable): MailMessage
+	{
+		return (new MailMessage)
+			->subject('Registration complete at '.config('app.name'))
+			->greeting('Hello, '.$this->user->name)
+			->line('Welcome to '.config('app.name').'.')
+			->line('Thank you for the registration.')
+			->line('You will be receiving another email shortly to verify your email with link')
+			->line('Please click on that link to verify email Address')
+			->line('Thank you for using '.config('app.name').' application!');
    }
-    
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
-    }
+	
+	/**
+	 * Get the array representation of the notification.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function toArray(object $notifiable): array
+	{
+		return [
+			//
+		];
+	}
 }

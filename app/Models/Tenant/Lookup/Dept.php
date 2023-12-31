@@ -12,51 +12,51 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dept extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
-    protected $fillable = [
-        'name', 'pr_hierarchy_id', 'po_hierarchy_id', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
-    ];
-    
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'updated_at'        => 'datetime',
-        'created_at'        => 'datetime',
-    ];
-
-
-    /* ----------------- Functions ---------------------- */
-    public static function getAll()
-    {
-        return Dept::select('id', 'name')
-            ->where('enable', true)
-            ->orderBy('id', 'asc')
-            ->get();
-    }
-
-    /* ----------------- HasMany ------------------------ */
-    public function deptBudgets(): HasMany
-    {
-        return $this->hasMany(DeptBudget::class, 'budget_id');
-    }
-
-    public function dept2(): HasMany
-    {
-        return $this->hasMany(Pr::class, 'dept_id');
-    }
+	protected $fillable = [
+		'name', 'pr_hierarchy_id', 'po_hierarchy_id', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
+	];
+	
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array<string, string>
+	 */
+	protected $casts = [
+		'updated_at'        => 'datetime',
+		'created_at'        => 'datetime',
+	];
 
 
-    /* ---------------- belongsTo ---------------------- */
-    public function prHierarchy(){
-        return $this->belongsTo(Hierarchy::class,'pr_hierarchy_id');
-    }
+	/* ----------------- Functions ---------------------- */
+	public static function getAll()
+	{
+		return Dept::select('id', 'name')
+			->where('enable', true)
+			->orderBy('id', 'asc')
+			->get();
+	}
 
-    public function poHierarchy(){
-        return $this->belongsTo(Hierarchy::class,'po_hierarchy_id');
-    }
+	/* ----------------- HasMany ------------------------ */
+	public function deptBudgets(): HasMany
+	{
+		return $this->hasMany(DeptBudget::class, 'budget_id');
+	}
+
+	public function dept2(): HasMany
+	{
+		return $this->hasMany(Pr::class, 'dept_id');
+	}
+
+
+	/* ---------------- belongsTo ---------------------- */
+	public function prHierarchy(){
+		return $this->belongsTo(Hierarchy::class,'pr_hierarchy_id');
+	}
+
+	public function poHierarchy(){
+		return $this->belongsTo(Hierarchy::class,'po_hierarchy_id');
+	}
 
 }

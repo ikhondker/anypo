@@ -12,10 +12,10 @@ use App\Models\User;
 
 class Receipt extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
-    protected $fillable = [
-        'name','enable','updated_at','updated_by'
+	protected $fillable = [
+		'name','enable','updated_at','updated_by'
    ];
    /* ----------------- Functions ---------------------- */
    /* ----------------- HasMany ------------------------ */

@@ -14,34 +14,34 @@ use App\Enum\WflActionEnum;
 
 class Wfl extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
-    protected $fillable = [
-        'wf_id', 'sequence_num', 'performer_id', 'action_date', 'action', 'notes', 'updated_by', 'updated_at',
-    ];
+	protected $fillable = [
+		'wf_id', 'sequence_num', 'performer_id', 'action_date', 'action', 'notes', 'updated_by', 'updated_at',
+	];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'updated_at'    => 'datetime',
-        'created_at'    => 'datetime',
-        'action'        => WflActionEnum::class,
-    ];
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array<string, string>
+	 */
+	protected $casts = [
+		'updated_at'    => 'datetime',
+		'created_at'    => 'datetime',
+		'action'        => WflActionEnum::class,
+	];
 
-    
-    /* ----------------- Functions ---------------------- */
-    /* ----------------- HasMany ------------------------ */
-    /* ---------------- belongsTo ---------------------- */
-    public function wf(){
-        return $this->belongsTo(Wf::class,'wf_id');
-    }
+	
+	/* ----------------- Functions ---------------------- */
+	/* ----------------- HasMany ------------------------ */
+	/* ---------------- belongsTo ---------------------- */
+	public function wf(){
+		return $this->belongsTo(Wf::class,'wf_id');
+	}
 
-    public function performer(){
-        return $this->belongsTo(User::class,'performer_id');
-    }
+	public function performer(){
+		return $this->belongsTo(User::class,'performer_id');
+	}
 
 
 }

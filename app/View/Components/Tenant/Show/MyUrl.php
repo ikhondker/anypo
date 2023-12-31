@@ -8,22 +8,22 @@ use Illuminate\View\Component;
 
 class MyUrl extends Component
 {
-    public $label;
-    public $value;
-    /**
-     * Create a new component instance.
-     */
-    public function __construct($value, $label='')
-    {
-        $this->label = ($label == '')? 'Website' : $label;
-        $this->value = $value;
-    }
+	public $label;
+	public $value;
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct($value, $label='')
+	{
+		$this->label = ($label == '')? 'Website' : $label;
+		$this->value = $value;
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.show.my-url');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.show.my-url');
+	}
 }

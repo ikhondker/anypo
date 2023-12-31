@@ -10,19 +10,19 @@ use App\Models\Landlord\Manage\Country;
 
 class LandlordSetupComposer
 {
-    /**
-     * Create a new profile composer.
-     */
-    public function __construct() {}
+	/**
+	 * Create a new profile composer.
+	 */
+	public function __construct() {}
  
-    /**
-     * Bind data to the view.
-     */
-    public function compose(View $view): void
-    {
+	/**
+	 * Bind data to the view.
+	 */
+	public function compose(View $view): void
+	{
 
-        $setup = Setup::with('relCountry')->first();
-        $view->with(['_landlord_setup' => $setup]);
-        //$view->with('count', $this->users->count());
-    }
+		$setup = Setup::with('relCountry')->first();
+		$view->with(['_landlord_setup' => $setup]);
+		//$view->with('count', $this->users->count());
+	}
 }

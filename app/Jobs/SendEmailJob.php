@@ -17,26 +17,26 @@ use Illuminate\Support\Facades\Log;
 
 class SendEmailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $details;
+	protected $details;
   
-    /**
-     * Create a new job instance.
-     */
-    public function __construct($details)
-    {
-        $this->details = $details;
-    }
+	/**
+	 * Create a new job instance.
+	 */
+	public function __construct($details)
+	{
+		$this->details = $details;
+	}
 
-    /**
-     * Execute the job.
-     */
-    public function handle(): void
-    {
-        $email = new SendEmailTest();
-        Mail::to($this->details['email'])->send($email);
-        Log::debug("Inside handle of SendEmailJob!");
+	/**
+	 * Execute the job.
+	 */
+	public function handle(): void
+	{
+		$email = new SendEmailTest();
+		Mail::to($this->details['email'])->send($email);
+		Log::debug("Inside handle of SendEmailJob!");
 
-    }
+	}
 }

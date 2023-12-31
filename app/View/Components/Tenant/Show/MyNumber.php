@@ -8,26 +8,26 @@ use Illuminate\View\Component;
 
 class MyNumber extends Component
 {
-    public $label;
-    public $value;
-    /**
-     * Create a new component instance.
-     */
-    public function __construct($value, $label='')
-    {
-        $this->label = ($label == '')? 'Amount' : $label;
-        if (is_numeric($value)){
-            $this->value = $value;
-        } else {
-            $this->value = 0;
-        }
-    }
+	public $label;
+	public $value;
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct($value, $label='')
+	{
+		$this->label = ($label == '')? 'Amount' : $label;
+		if (is_numeric($value)){
+			$this->value = $value;
+		} else {
+			$this->value = 0;
+		}
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.show.my-number');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.show.my-number');
+	}
 }

@@ -11,21 +11,21 @@ use App\Models\User;
 
 class Group extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
-    protected $fillable = [
-        'name','enable','updated_at','updated_by'
+	protected $fillable = [
+		'name','enable','updated_at','updated_by'
    ];
-    /* ----------------- Functions ---------------------- */
+	/* ----------------- Functions ---------------------- */
 
-    public static function getAll() {
-        return  Group::select('id','name')
-          ->where('enable', true)
-          ->orderBy('id','asc')
-          ->get();
-    }
+	public static function getAll() {
+		return  Group::select('id','name')
+		  ->where('enable', true)
+		  ->orderBy('id','asc')
+		  ->get();
+	}
 
-    /* ----------------- HasMany ------------------------ */
-    /* ---------------- belongsTo ---------------------- */
+	/* ----------------- HasMany ------------------------ */
+	/* ---------------- belongsTo ---------------------- */
 
 }

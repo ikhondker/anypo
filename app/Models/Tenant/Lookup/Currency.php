@@ -15,50 +15,50 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Currency extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
-    protected $primaryKey   = 'currency';
-    protected $keyType      = 'string';
+	use HasFactory, AddCreatedUpdatedBy;
+	protected $primaryKey   = 'currency';
+	protected $keyType      = 'string';
 
-    protected $fillable = [
-        'currency', 'name', 'country', 'symbol', 'enable', 'rates', 'never', 'updated_by', 'updated_at',
-    ];
+	protected $fillable = [
+		'currency', 'name', 'country', 'symbol', 'enable', 'rates', 'never', 'updated_by', 'updated_at',
+	];
 
-    /* ----------------- Functions ---------------------- */
-    public static function getAll() {
-        return  Currency::select('currency','name','country')
-          ->orderBy('currency','asc')
-          ->get();
-    }
+	/* ----------------- Functions ---------------------- */
+	public static function getAll() {
+		return  Currency::select('currency','name','country')
+		  ->orderBy('currency','asc')
+		  ->get();
+	}
 
-    public static function getActives() {
-        return  Currency::select('currency','name','country')
-            ->where('enable',true)
-            ->orderBy('name','asc')
-            ->get();
-    }
+	public static function getActives() {
+		return  Currency::select('currency','name','country')
+			->where('enable',true)
+			->orderBy('name','asc')
+			->get();
+	}
 
-    /* ----------------- Scopes ------------------------- */
-    public function scopePrimary(Builder $query): void
-    {
-        $query->where('enable', true);
-    }
+	/* ----------------- Scopes ------------------------- */
+	public function scopePrimary(Builder $query): void
+	{
+		$query->where('enable', true);
+	}
 
-    /* ----------------- HasMany ------------------------ */
-    public function setup(): HasMany {
-        return $this->hasMany(Setup::class,'currency');
-    }
+	/* ----------------- HasMany ------------------------ */
+	public function setup(): HasMany {
+		return $this->hasMany(Setup::class,'currency');
+	}
 
-    public function paymethod(): HasMany {
-        return $this->hasMany(PayMethod::class,'currency');
-    }
+	public function paymethod(): HasMany {
+		return $this->hasMany(PayMethod::class,'currency');
+	}
 
-    public function pr(): HasMany {
-        return $this->hasMany(Pr::class,'currency');
-    }
+	public function pr(): HasMany {
+		return $this->hasMany(Pr::class,'currency');
+	}
 
-    public function po(): HasMany {
-        return $this->hasMany(Po::class,'currency');
-    }
+	public function po(): HasMany {
+		return $this->hasMany(Po::class,'currency');
+	}
 
-    /* ---------------- belongsTo ---------------------- */
+	/* ---------------- belongsTo ---------------------- */
 }

@@ -9,19 +9,19 @@ use App\Models\Tenant\Admin\Setup;
 //use App\Models\Setup;
 class TenantSetupComposer
 {
-    /**
-     * Create a new profile composer.
-     */
-    public function __construct() {}
+	/**
+	 * Create a new profile composer.
+	 */
+	public function __construct() {}
  
-    /**
-     * Bind data to the view.
-     */
-    public function compose(View $view): void
-    {
+	/**
+	 * Bind data to the view.
+	 */
+	public function compose(View $view): void
+	{
 
-        $setup = Setup::first();
-        $view->with(['_setup' => $setup]);
-        //$view->with('count', $this->users->count());
-    }
+		$setup = Setup::first();
+		$view->with(['_setup' => $setup]);
+		//$view->with('count', $this->users->count());
+	}
 }

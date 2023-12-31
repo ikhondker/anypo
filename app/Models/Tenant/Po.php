@@ -12,18 +12,18 @@ use App\Models\Currency;
 
 class Po extends Model
 {
-    use HasFactory;
-    use AddCreatedUpdatedBy;
+	use HasFactory;
+	use AddCreatedUpdatedBy;
 
-    protected $fillable = [
-        'name','enable','updated_at','updated_by'
-    ];
-    /* ----------------- Functions ---------------------- */
-    /* ----------------- HasMany ------------------------ */
-    /* ---------------- belongsTo ---------------------- */
-    public function relCurrency()
-    {
-        return $this->belongsTo(Currency::class, 'currency');
-    }
+	protected $fillable = [
+		'name','enable','updated_at','updated_by'
+	];
+	/* ----------------- Functions ---------------------- */
+	/* ----------------- HasMany ------------------------ */
+	/* ---------------- belongsTo ---------------------- */
+	public function relCurrency()
+	{
+		return $this->belongsTo(Currency::class, 'currency');
+	}
 
 }

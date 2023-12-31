@@ -13,19 +13,19 @@ use App\Models\Country;
 
 class Warehouse extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
-    protected $fillable = [
-        'name', 'contact_person', 'cell', 'address1', 'address2', 'city', 'zip', 'state', 'country', 'website', 'email', 'enable', 'updated_by', 'updated_at',
+	protected $fillable = [
+		'name', 'contact_person', 'cell', 'address1', 'address2', 'city', 'zip', 'state', 'country', 'website', 'email', 'enable', 'updated_by', 'updated_at',
    ];
    
 
-    /* ----------------- Functions ---------------------- */
-    /* ----------------- HasMany ------------------------ */
-    /* ---------------- belongsTo ---------------------- */
-    public function relCountry(){
-        return $this->belongsTo(Country::class,'country');
-    }
+	/* ----------------- Functions ---------------------- */
+	/* ----------------- HasMany ------------------------ */
+	/* ---------------- belongsTo ---------------------- */
+	public function relCountry(){
+		return $this->belongsTo(Country::class,'country');
+	}
 
 
 }

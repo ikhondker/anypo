@@ -8,21 +8,21 @@ use Illuminate\View\Component;
 
 class All extends Component
 {
-    public $notifications;
+	public $notifications;
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
-    {
-        $this->notifications = auth()->user()->Notifications; 
-    }
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct()
+	{
+		$this->notifications = auth()->user()->Notifications; 
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.notifications.common');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.notifications.common');
+	}
 }

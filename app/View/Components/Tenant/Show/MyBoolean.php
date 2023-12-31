@@ -8,23 +8,23 @@ use Illuminate\View\Component;
 
 class MyBoolean extends Component
 {
-    public $label;
-    public $value;
+	public $label;
+	public $value;
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct($value, $label='Enable')
-    {
-          $this->value = $value;
-        $this->label = $label;
-    }
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct($value, $label='Enable')
+	{
+		  $this->value = $value;
+		$this->label = $label;
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.show.my-boolean');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.show.my-boolean');
+	}
 }

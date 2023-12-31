@@ -14,27 +14,27 @@ use App\Helpers\ExchangeRate;
 
 class ImportAllRate implements ShouldQueue,  ShouldBeUnique
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+	/**
+	 * Create a new job instance.
+	 */
+	public function __construct()
+	{
+		//
+	}
 
-    /**
-     * Execute the job.
-     */
-    public function handle(): void
-    {
-        //Called fomr CurrencyController.php: and  DashboardController.php
+	/**
+	 * Execute the job.
+	 */
+	public function handle(): void
+	{
+		//Called fomr CurrencyController.php: and  DashboardController.php
    
-        // Import exchange rate for all current enabled currency
-        $x = ExchangeRate::importRates();
-        //$x = GetRate::getRate('USD','BDT');
-        //echo $x;
-        Log::debug("Inside handle of ImportAllRateJob!");
-    }
+		// Import exchange rate for all current enabled currency
+		$x = ExchangeRate::importRates();
+		//$x = GetRate::getRate('USD','BDT');
+		//echo $x;
+		Log::debug("Inside handle of ImportAllRateJob!");
+	}
 }

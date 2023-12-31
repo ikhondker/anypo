@@ -14,43 +14,43 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Attachment extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
-    use SoftDeletes;
+	use SoftDeletes;
   
-    protected $casts = [
-        'deleted_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'created_at' => 'datetime',
-    ];
+	protected $casts = [
+		'deleted_at' => 'datetime',
+		'updated_at' => 'datetime',
+		'created_at' => 'datetime',
+	];
 
 
-    protected $fillable = [
-        'entity', 'article_id', 'file_entity', 'owner_id', 'summary', 'file_name', 'file_type', 'file_size', 'org_file_name', 'upload_date', 'view_count', 'status', 'updated_by', 'updated_at',
-    ];
+	protected $fillable = [
+		'entity', 'article_id', 'file_entity', 'owner_id', 'summary', 'file_name', 'file_type', 'file_size', 'org_file_name', 'upload_date', 'view_count', 'status', 'updated_by', 'updated_at',
+	];
 
-    /* ----------------- Functions ---------------------- */
-    public static function xxgetAll()
-    {
-        return Attachment::select('id', 'name')
-            ->where('enable', true)
-            ->orderBy('id', 'asc')
-            ->get();
-    }
+	/* ----------------- Functions ---------------------- */
+	public static function xxgetAll()
+	{
+		return Attachment::select('id', 'name')
+			->where('enable', true)
+			->orderBy('id', 'asc')
+			->get();
+	}
 
-    /* ----------------- Scopes ------------------------- */
+	/* ----------------- Scopes ------------------------- */
 
 
-    /* ----------------- HasMany ------------------------ */
-     
+	/* ----------------- HasMany ------------------------ */
+	 
   
-    /* ----------------- belongsTo ---------------------- */
-    public function entity(){
-        return $this->belongsTo(Entity::class,'entity');
-    }
-     public function owner(){
-        return $this->belongsTo(User::class,'owner_id');
-    }
+	/* ----------------- belongsTo ---------------------- */
+	public function entity(){
+		return $this->belongsTo(Entity::class,'entity');
+	}
+	 public function owner(){
+		return $this->belongsTo(User::class,'owner_id');
+	}
 }
 
 

@@ -13,38 +13,38 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Uom extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
-    protected $fillable = [
-        'name','enable','updated_at','updated_by'
-    ];
+	protected $fillable = [
+		'name','enable','updated_at','updated_by'
+	];
    
 
-    /* ----------------- Scopes ------------------------- */
-    /**
-     * Scope a query to only  non-seeded users.
-     */
-    public function scopePrimary(Builder $query): void
-    {
-        $query->where('enable', true);
-    }
+	/* ----------------- Scopes ------------------------- */
+	/**
+	 * Scope a query to only  non-seeded users.
+	 */
+	public function scopePrimary(Builder $query): void
+	{
+		$query->where('enable', true);
+	}
 
-    /* ----------------- Functions ---------------------- */
-    public static function getAll() {
-        return  Uom::select('id','name')
-          ->where('enable', true)
-          ->orderBy('id','asc')
-          ->get();
-    }
+	/* ----------------- Functions ---------------------- */
+	public static function getAll() {
+		return  Uom::select('id','name')
+		  ->where('enable', true)
+		  ->orderBy('id','asc')
+		  ->get();
+	}
 
-    
-    /* ----------------- HasMany ------------------------ */
+	
+	/* ----------------- HasMany ------------------------ */
 
-    public function item(): HasMany
-    {
-        return $this->hasMany(Item::class, 'uom_id');
-    }
+	public function item(): HasMany
+	{
+		return $this->hasMany(Item::class, 'uom_id');
+	}
 
-    /* ---------------- belongsTo ---------------------- */
+	/* ---------------- belongsTo ---------------------- */
 
 }
