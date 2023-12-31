@@ -27,52 +27,52 @@ use App\Models\User;
 
 class UserRegistered extends Notification implements ShouldQueue
 {
-    use Queueable;
+	use Queueable;
 
-    protected $user;
-    
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
+	protected $user;
+	
+	/**
+	 * Create a new notification instance.
+	 */
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
-    public function via(object $notifiable): array
-    { 
-        return ['mail'];
-    }
+	/**
+	 * Get the notification's delivery channels.
+	 *
+	 * @return array<int, string>
+	 */
+	public function via(object $notifiable): array
+	{ 
+		return ['mail'];
+	}
 
-    /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-            ->subject('Welcome to '. config('app.name').' - Client Area')
-            ->greeting('Hello '. $this->user->name . ',')
-            ->line('Welcome to '. config('app.name') .'. Please review this email in its entirety as it contains important information.')
-            ->line('Please use following link to login:')
-            ->action('Login', url('/login'))
-            ->line('NOTE: We have sent a separate email for your email address verification. Please verify your email address before login.')
-            ->line('Thank you for using our application!');
-    }
-    
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
-    }
+	/**
+	 * Get the mail representation of the notification.
+	 */
+	public function toMail(object $notifiable): MailMessage
+	{
+		return (new MailMessage)
+			->subject('Welcome to '. config('app.name').' - Client Area')
+			->greeting('Hello '. $this->user->name . ',')
+			->line('Welcome to '. config('app.name') .'. Please review this email in its entirety as it contains important information.')
+			->line('Please use following link to login:')
+			->action('Login', url('/login'))
+			->line('NOTE: We have sent a separate email for your email address verification. Please verify your email address before login.')
+			->line('Thank you for using our application!');
+	}
+	
+	/**
+	 * Get the array representation of the notification.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function toArray(object $notifiable): array
+	{
+		return [
+			//
+		];
+	}
 }

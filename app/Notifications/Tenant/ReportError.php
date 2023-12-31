@@ -73,14 +73,14 @@ class ReportError extends Notification implements ShouldQueue
 	public function toArray(object $notifiable): array
 	{
 		$details = [
-			'entity'   		=> 'PR',
-			'id'            => $this->performer->id,
-			'from'          => 'System',
-			'to'            => 'System',
-			'subject'       => $this->subject,
-			'greeting'      => 'Hi Team,',
-			'body'          => $this->line,
-			'thanks'        => 'Thank you for using '. config('app.name').'!',
+			'entity'		=> 'PR',
+			'id'			=> $this->performer->id,
+			'from'			=> 'System',
+			'to'			=> 'System',
+			'subject'		=> $this->subject,
+			'greeting'		=> 'Hi Team,',
+			'body'			=> $this->line,
+			'thanks'	=> 'Thank you for using '. config('app.name').'!',
 			'actionText'    => 'View PR',
 			'actionURL'     => $this->actionURL,
 		];

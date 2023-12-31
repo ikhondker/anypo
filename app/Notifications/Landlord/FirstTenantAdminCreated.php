@@ -23,9 +23,9 @@ class FirstTenantAdminCreated extends Notification  implements ShouldQueue
 	 */
 	public function __construct(User $user, String $random_password, $domain)
 	{
-		$this->user             = $user;
-		$this->random_password  = $random_password;
-		$this->domain             = $domain;
+		$this->user				= $user;
+		$this->random_password	= $random_password;
+		$this->domain			= $domain;
 	}
 
 	/**

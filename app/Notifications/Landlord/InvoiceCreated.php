@@ -89,16 +89,16 @@ class InvoiceCreated extends Notification implements ShouldQueue
 	public function toDatabase($notifiable)
 	{
 		return [
-			'entity'        => $this->details['entity'],
-			'id'            => $this->details['id'],
-			'from'          => $this->details['from'],
-			'to'            => $this->details['to'],
-			'subject'       => $this->details['subject'],
-			'greeting'      => $this->details['greeting'],
-			'body'          => $this->details['body'],
-			'thanks'        => $this->details['thanks'],
-			'actionText'    => $this->details['actionText'],
-			'actionURL'     => $this->details['actionURL'],
+			'entity'		=> $this->details['entity'],
+			'id'			=> $this->details['id'],
+			'from'			=> $this->details['from'],
+			'to'			=> $this->details['to'],
+			'subject'		=> $this->details['subject'],
+			'greeting'		=> $this->details['greeting'],
+			'body'			=> $this->details['body'],
+			'thanks'		=> $this->details['thanks'],
+			'actionText'	=> $this->details['actionText'],
+			'actionURL'		=> $this->details['actionURL'],
 		];
 	}
 }
