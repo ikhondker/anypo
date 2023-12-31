@@ -46,10 +46,10 @@
 					</div>
 					@php
 						use App\Models\Tenant\Lookup\Project;
-						$count_total        = Project::count();
-						$count_open     = Project::where('closed',false )->count();
-						$count_closed    = Project::where('closed',true )->count();
-						//$count_draft        = Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
+						$count_total	= Project::count();
+						$count_open		= Project::where('closed',false )->count();
+						$count_closed	= Project::where('closed',true )->count();
+						//$count_draft	= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 					@endphp
 					<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
 				   

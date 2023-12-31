@@ -8,7 +8,7 @@
 * @path			\app\Http\Controllers\Landlord\Admin
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -64,7 +64,7 @@ use DB;
 //use App\Mail\Tenant\ActivationMail;
 
 class UserController extends Controller
-{   
+{
 	// used to export data into csv
 	//use ExportTrait;
 
@@ -101,9 +101,9 @@ class UserController extends Controller
 	 */
 	public function all()
 	{
-		
+
 		$this->authorize('viewAll', User::class);
-		
+
 		$users = User::query();
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
@@ -146,25 +146,25 @@ class UserController extends Controller
 		$this->authorize('create', User::class);
 
 		//user settings
-		$request->merge(['account_id'   => auth()->user()->account_id]);
-		$request->merge(['enable'       => true]);
+		$request->merge(['account_id'	=> auth()->user()->account_id]);
+		$request->merge(['enable'		=> true]);
 		if($request->has('admin')){
 			//Checkbox checked
-			$request->merge(['role'     => UserRoleEnum::ADMIN->value ]);
+			$request->merge(['role'		=> UserRoleEnum::ADMIN->value ]);
 		}else{
 			//Checkbox not checked
-			$request->merge(['role'     => UserRoleEnum::USER->value ]);
+			$request->merge(['role'		=> UserRoleEnum::USER->value ]);
 		}
 
-		$random_password                = Str::random(12);
-		$request->merge(['password'     => Hash::make($random_password) ]);
+		$random_password 				= Str::random(12);
+		$request->merge(['password'		=> Hash::make($random_password) ]);
 		//Log::channel('bo')->info('password='.$random_password);
 		//$request->merge(['email_verified_at' => now()]);
 
 		// create User
 		$user = User::create($request->all());
 
-		// Send Verification Email 
+		// Send Verification Email
 		event(new Registered($user));
 
 		// Send notification on new user creation
@@ -195,7 +195,7 @@ class UserController extends Controller
 	 */
 	public function edit(User $user)
 	{
-		$this->authorize('update', $user);  
+		$this->authorize('update', $user);
 		return view('landlord.admin.users.edit',compact('user'));
 	}
 
@@ -208,8 +208,8 @@ class UserController extends Controller
 	 */
 	public function update(UpdateUserRequest $request, User $user)
 	{
-		
-		$this->authorize('update', $user);  
+
+		$this->authorize('update', $user);
 		$request->merge(['state'    => Str::upper($request->input('state')) ]);
 
 		$request->validate([
@@ -223,21 +223,21 @@ class UserController extends Controller
 
 			// extract the uploaded file
 			$image = $request->file('file_to_upload');
-		
+
 			//$token		= $user->id ."-" . Str::uuid();
 			$token			= $user->id ."-" . uniqid();
 			$extension		='.'.$image->extension();
-			
+
 			$uploadedImage	= $token . "-uploaded" . $extension;
 			$thumbImage		= $token. $extension;
 
 			// upload uploaded image
 			$path = Storage::disk('s3la')->put($uploadedImage, file_get_contents($image));
-			
+
 			//resize to thumbnail and upload
 			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
-            $path =Storage::disk('s3la')->put($thumbImage, $image_resize->stream()->__toString());
+			$path =Storage::disk('s3la')->put($thumbImage, $image_resize->stream()->__toString());
 
 			$request->merge(['avatar' => $thumbImage ]);
 		}
@@ -260,7 +260,7 @@ class UserController extends Controller
 	 */
 	public function destroy(User $user)
 	{
-		//$this->authorize('delete', $user);  
+		//$this->authorize('delete', $user);
 
 		$user->fill(['enable'=>!$user->enable]);
 		$user->update();
@@ -280,7 +280,7 @@ class UserController extends Controller
 
 	public function updaterole(User $user, $role)
 	{
-		//$this->authorize('updaterole',$user);  
+		//$this->authorize('updaterole',$user);
 		$user->role = $role;
 		$user->update();
 
@@ -298,21 +298,21 @@ class UserController extends Controller
 		return redirect()->route('users.index')->with('success','User '.$user->name.' role to \''.$role.'\' updated successfully');
 	}
 
-	public function changePassword(User $user) 
+	public function changePassword(User $user)
 	{
-		//$this->authorize('changepass',$user);  
+		//$this->authorize('changepass',$user);
 
 		Log::debug('Inside userPassword!');
 		Log::debug('Role='. auth()->user()->role->value);
 
-		return view('landlord.admin.users.password-change',compact('user')); 
+		return view('landlord.admin.users.password-change',compact('user'));
 	}
 
 	public function updatePassword(Request $request, User $user)
 	{
-		$this->authorize('update',$user);  
-		//$this->authorize('changepass',$user);  
-		
+		$this->authorize('update',$user);
+		//$this->authorize('changepass',$user);
+
 		$request->validate([
 			'password1'  => 'required|min:8',
 			'password2'  => 'same:password1|min:8',
@@ -336,11 +336,11 @@ class UserController extends Controller
 		if (auth()->user()->isBackOffice()){
 			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable FROM users");
 		} else if (auth()->user()->isAdmin()){
-			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable 
+			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable
 				FROM users
 				WHERE account_id=".auth()->user()->account_id);
 		} else {
-			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable 
+			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable
 				FROM users
 				WHERE  id =".auth()->user()->id);
 		}
@@ -367,7 +367,7 @@ class UserController extends Controller
 
 		$file = File::get($path);
 		$type = File::mimeType($path);
-	 
+
 		$response = Response::make($file, 200);
 		$response->header("Content-Type", $type);
 		return $response;
@@ -376,21 +376,21 @@ class UserController extends Controller
 
 	public function didnotupdate(UpdateUserRequest $request, User $user)
 	{
-		
-		$this->authorize('update', $user);  
+
+		$this->authorize('update', $user);
 
 		// upload to private folder and show using user.show route
 		// Upload File, if any, insert row in attachment table  and get attachments id
 		//if ($file = $request->file('file_to_upload')) {
 		//    $request->merge(['user_id'    => $user->id ]);
 		//    $user_id = FileUpload::uploadPhoto($request);
-		//} 
+		//}
 
 		// https://image.intervention.io/v2
 		// https://laracasts.com/discuss/channels/general-discussion/laravel-5-image-upload-and-resize?page=1
 		// default location D:\laravel\bo04\public
 		if ($image = $request->file('file_to_upload')) {
-			// uploaded to D:\laravel\bo04\public\landlord\profile    
+			// uploaded to D:\laravel\bo04\public\landlord\profile
 			Log::debug("A config('bo.DIR_AVATAR')=".config('bo.DIR_AVATAR'));
 
 			//$destinationPath    = config('bo.DIR_AVATAR');
@@ -408,7 +408,7 @@ class UserController extends Controller
 			$request->merge(['avatar' => $thumbImage ]);
 			//$file-> move(public_path('public/Image'), $filename);
 			//$request['my_image'] = $profileImage;
-			//$input['my_image'] = "$profileImage";            
+			//$input['my_image'] = "$profileImage";
 
 			//resize to thumbnail
 			$image_resize = Image::make(public_path().'/landlord/avatar/'.$profileImage);

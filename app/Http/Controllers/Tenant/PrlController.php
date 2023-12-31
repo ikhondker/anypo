@@ -78,8 +78,8 @@ class PrlController extends Controller
 	{
 		$this->authorize('create', Prl::class);
 
-		$request->merge(['sub_total'     => $request->input('prl_amount')]);
-		$request->merge(['amount'        => $request->input('prl_amount')]);
+		$request->merge(['sub_total'	=> $request->input('prl_amount')]);
+		$request->merge(['amount'		=> $request->input('prl_amount')]);
 
 		//$request->merge(['pr_date'     => date('Y-m-d H:i:s')]);
 		$prl = Prl::create($request->all());
@@ -89,11 +89,11 @@ class PrlController extends Controller
 		// update PR header
 		$pr = Pr::where('id', $prl->pr_id)->firstOrFail();
 		$prl_sum = Prl::where('pr_id', '=', $pr->id)->sum('amount');
-		$pr->sub_total          = $prl_sum;
-		$pr->tax                = $request->input('tax');
-		$pr->shipping           = $request->input('shipping');
-		$pr->discount           = $request->input('discount');
-		$pr->amount             = $prl_sum + $request->input('tax') + $request->input('shipping') - $request->input('discount');
+		$pr->sub_total		= $prl_sum;
+		$pr->tax			= $request->input('tax');
+		$pr->shipping		= $request->input('shipping');
+		$pr->discount		= $request->input('discount');
+		$pr->amount			= $prl_sum + $request->input('tax') + $request->input('shipping') - $request->input('discount');
 		$pr->save();
 
 		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'Requisition line added successfully');
@@ -132,8 +132,8 @@ class PrlController extends Controller
 	{
 		$this->authorize('update', $prl);
 
-		$request->merge(['sub_total'     => $request->input('prl_amount')]);
-		$request->merge(['amount'        => $request->input('prl_amount')]);
+		$request->merge(['sub_total'	=> $request->input('prl_amount')]);
+		$request->merge(['amount'		=> $request->input('prl_amount')]);
 
 		//$request->validate();
 		$request->validate([
@@ -145,13 +145,13 @@ class PrlController extends Controller
 		EventLog::event('Prl', $prl->id, 'edit');
 
 		// update PR header
-		$pr             = Pr::where('id', $prl->pr_id)->firstOrFail();
-		$prl_sum        = Prl::where('pr_id', '=', $prl->pr_id)->sum('amount');
-		$pr->sub_total  = $prl_sum;
-		$pr->tax        = $request->input('tax');
-		$pr->shipping   = $request->input('shipping');
-		$pr->discount   = $request->input('discount');
-		$pr->amount     = $prl_sum + $request->input('tax') + $request->input('shipping') - $request->input('discount');
+		$pr				= Pr::where('id', $prl->pr_id)->firstOrFail();
+		$prl_sum		= Prl::where('pr_id', '=', $prl->pr_id)->sum('amount');
+		$pr->sub_total	= $prl_sum;
+		$pr->tax		= $request->input('tax');
+		$pr->shipping	= $request->input('shipping');
+		$pr->discount	= $request->input('discount');
+		$pr->amount		= $prl_sum + $request->input('tax') + $request->input('shipping') - $request->input('discount');
 		$pr->save();
 
 		// Write to Log
@@ -172,8 +172,8 @@ class PrlController extends Controller
 
 		// update PR header
 		$pr = Pr::where('id', $prl->pr_id)->firstOrFail();
-		$pr->sub_total       =  $pr->sub_total -  $prl->amount;
-		$pr->amount          =  $pr->amount -  $prl->amount;
+		$pr->sub_total		=  $pr->sub_total -  $prl->amount;
+		$pr->amount			=  $pr->amount -  $prl->amount;
 		$pr->save();
 
 		// Write to Log

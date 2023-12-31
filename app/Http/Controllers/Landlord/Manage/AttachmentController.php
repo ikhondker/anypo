@@ -237,7 +237,7 @@ class AttachmentController extends Controller
 
 
 		//header('Content-type: image/jpeg;');
-        //header("Content-Length: " . strlen($imagefile));
+		//header("Content-Length: " . strlen($imagefile));
 	}
 
 

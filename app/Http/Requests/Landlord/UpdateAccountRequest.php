@@ -23,11 +23,11 @@ class UpdateAccountRequest extends FormRequest
 	{
 		//TODO check if mail and cell will be unique
 		return [
-			'name'              => 'required|max:100',
-			'address1'          => 'required|max:100',
-			'email'             => 'required|email|max:100',
-			'cell'              => 'required|max:20',
-			'file_to_upload'    => 'image|mimes:jpeg,png,jpg,gif|max:1024'
+			'name'				=> 'required|max:100',
+			'address1'			=> 'required|max:100',
+			'email'				=> 'required|email|max:100',
+			'cell'				=> 'required|max:20',
+			'file_to_upload'	=> 'image|mimes:jpeg,png,jpg,gif|max:1024'
 		];
 	}
 

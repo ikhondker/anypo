@@ -80,7 +80,7 @@ class WfController extends Controller
 	{
 		$this->authorize('view', $wf);
 
-		$wfls        = Wfl::where('wf_id', $wf->id)->orderBy('id', 'asc')->get();
+		$wfls = Wfl::where('wf_id', $wf->id)->orderBy('id', 'asc')->get();
 		return view('tenant.workflow.wfs.show', compact('wf', 'wfls'));
 	}
 

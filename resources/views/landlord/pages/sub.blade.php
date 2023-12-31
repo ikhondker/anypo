@@ -14,8 +14,8 @@
 	<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 	<script type="text/javascript">
 	  Paddle.Environment.set("sandbox");
-	  Paddle.Setup({ 
-		seller: 15117 // replace with your Paddle seller ID 
+	  Paddle.Setup({
+		seller: 15117 // replace with your Paddle seller ID
 	  });
 	</script>
 
@@ -67,7 +67,7 @@
 			</li>
 			<li>
 			  <h5>Links</h5>
-  
+
 			  <!-- Socials -->
 			  <ul class="list-inline">
 				<li class="list-inline-item">
@@ -75,13 +75,13 @@
 					<i class="bi-facebook"></i>
 				  </a>
 				</li>
-  
+
 				<li class="list-inline-item">
 				  <a class="btn btn-soft-secondary btn-xs btn-icon rounded-circle" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Capsule on Twitter">
 					<i class="bi-twitter"></i>
 				  </a>
 				</li>
-  
+
 				<li class="list-inline-item">
 				  <a class="btn btn-soft-secondary btn-xs btn-icon rounded-circle" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Capsule on Github">
 					<i class="bi-github"></i>
@@ -95,28 +95,28 @@
 		</div>
 	  </div>
 	  <!-- End Col -->
-  
+
 	  <div class="col-md-9">
 		<div class="mb-5">
 		  <p>Capsule was launched in 2009 following the founders' frustration with existing CRM services that were either overly simplistic or far too complex for most businesses. We believe the value of a modern CRM lies in the ability to help businesses stay organized, know more about their customers, build strong relationships and to make the most of sales opportunities, all while minimizing user input. We built Capsule to deliver on these values and today Capsule is used by thousands of businesses of all sizes all over the world.</p>
-  
+
 		  <div class="collapse" id="employerOverviewDescriptionCollapse">
 			<p>We're based in Manchester, United Kingdom, a city with a creative heart that was founded on science and industry and the birthplace of the modern computer.</p>
 		  </div>
-  
+
 		  <a class="link link-collapse" data-bs-toggle="collapse" href="#employerOverviewDescriptionCollapse" role="button" aria-expanded="false" aria-controls="employerOverviewDescriptionCollapse">
 			<span class="link-collapse-default">Read more</span>
 			<span class="link-collapse-active">Read less</span>
 		  </a>
 		</div>
-  
+
 		<div id="fancyboxGallery">
 		  <div class="row gx-3">
 			<div class="col-4 col-sm px-2 mb-3 mb-sm-0">
 			  <!-- Media Viewer -->
 			  <a class="media-viewer" href="../assets/img/900x900/img1.jpg" data-fslightbox="jobOverviewGallery">
 				<img class="img-fluid rounded-2" src="../assets/img/900x900/img1.jpg" alt="Image Description">
-  
+
 				<span class="media-viewer-container">
 				  <span class="media-viewer-icon">
 					<i class="bi-plus media-viewer-icon-inner"></i>
@@ -126,12 +126,12 @@
 			  <!-- End Media Viewer -->
 			</div>
 			<!-- End Col -->
-  
+
 			<div class="col-4 col-sm px-2 mb-3 mb-sm-0">
 			  <!-- Media Viewer -->
 			  <a class="media-viewer" href="../assets/img/900x900/img8.jpg" data-fslightbox="jobOverviewGallery">
 				<img class="img-fluid rounded-2" src="../assets/img/900x900/img8.jpg" alt="Image Description">
-  
+
 				<span class="media-viewer-container">
 				  <span class="media-viewer-icon">
 					<i class="bi-plus media-viewer-icon-inner"></i>
@@ -141,12 +141,12 @@
 			  <!-- End Media Viewer -->
 			</div>
 			<!-- End Col -->
-  
+
 			<div class="col-4 col-sm px-2 mb-3 mb-sm-0">
 			  <!-- Media Viewer -->
 			  <a class="media-viewer" href="../assets/img/900x900/img7.jpg" data-fslightbox="jobOverviewGallery">
 				<img class="img-fluid rounded-2" src="../assets/img/900x900/img7.jpg" alt="Image Description">
-  
+
 				<span class="media-viewer-container">
 				  <span class="media-viewer-icon">
 					<i class="bi-plus media-viewer-icon-inner"></i>
@@ -156,12 +156,12 @@
 			  <!-- End Media Viewer -->
 			</div>
 			<!-- End Col -->
-  
+
 			<div class="col-4 col-sm px-2 mb-3 mb-sm-0">
 			  <!-- Media Viewer -->
 			  <a class="media-viewer" href="../assets/img/900x900/img23.jpg" data-fslightbox="jobOverviewGallery">
 				<img class="img-fluid rounded-2" src="../assets/img/900x900/img23.jpg" alt="Image Description">
-  
+
 				<span class="media-viewer-container">
 				  <span class="media-viewer-icon">
 					<i class="bi-plus media-viewer-icon-inner"></i>
@@ -171,12 +171,12 @@
 			  <!-- End Media Viewer -->
 			</div>
 			<!-- End Col -->
-  
+
 			<div class="col-4 col-sm px-2 mb-3 mb-sm-0">
 			  <!-- Media Viewer -->
 			  <a class="media-viewer" href="../assets/img/900x900/img9.jpg" data-fslightbox="jobOverviewGallery">
 				<img class="img-fluid rounded-2" src="../assets/img/900x900/img9.jpg" alt="Image Description">
-  
+
 				<span class="media-viewer-container">
 				  <span class="media-viewer-icon media-viewer-icon-active">
 					<span class="media-viewer-icon-inner">+2</span>
@@ -188,7 +188,7 @@
 			<!-- End Col -->
 		  </div>
 		  <!-- End Row -->
-  
+
 		  <a class="d-none" href="../assets/img/900x900/img2.jpg" data-fslightbox="jobOverviewGallery"></a>
 		  <a class="d-none" href="../assets/img/900x900/img19.jpg" data-fslightbox="jobOverviewGallery"></a>
 		</div>
@@ -208,7 +208,7 @@
 			<p>The powerful and flexible theme for all kinds of businesses</p>
 		</div>
 		<!-- End Heading -->
-	
+
 		<div class="text-center mb-10">
 			<!-- List Checked -->
 			<ul class="list-inline list-checked list-checked-primary">
@@ -218,7 +218,7 @@
 			</ul>
 			<!-- End List Checked -->
 		</div>
-	
+
 		<div class="row">
 			<div class="col-lg-7 mb-9 mb-lg-0">
 			<div class="pe-lg-6">
@@ -232,7 +232,7 @@
 					</div>
 					<div class="device-browser-header-browser-bar">www.htmlstream.com/front/</div>
 				</div>
-	
+
 				<div class="device-browser-frame">
 					<img class="device-browser-img" src="../assets/img/1618x1010/img6.jpg" alt="Image Description">
 				</div>
@@ -241,7 +241,7 @@
 			</div>
 			</div>
 			<!-- End Col -->
-	
+
 			<div class="col-lg-5">
 			<!-- Heading -->
 			<div class="mb-4">
@@ -249,7 +249,7 @@
 				<p>We help businesses bring ideas to life in the digital world, by designing and implementing the technology tools that they need to win.</p>
 			</div>
 			<!-- End Heading -->
-	
+
 			<!-- List Checked -->
 			<ul class="list-checked list-checked-primary mb-5">
 				<li class="list-checked-item">Less routine – more creativity</li>
@@ -257,29 +257,29 @@
 				<li class="list-checked-item">Scale budgets efficiently</li>
 			</ul>
 			<!-- End List Checked -->
-	
+
 			<a class="btn btn-primary" href="#">Get started</a>
-	
+
 			<hr class="my-5">
-	
+
 			<span class="d-block">Trusted by leading companies</span>
-	
+
 			<div class="row">
 				<div class="col py-3">
 				<img class="avatar avatar-4x3" src="../assets/svg/brands/fitbit-dark.svg" alt="Logo">
 				</div>
 				<!-- End Col -->
-	
+
 				<div class="col py-3">
 				<img class="avatar avatar-4x3" src="../assets/svg/brands/forbes-dark.svg" alt="Logo">
 				</div>
 				<!-- End Col -->
-	
+
 				<div class="col py-3">
 				<img class="avatar avatar-4x3" src="../assets/svg/brands/mailchimp-dark.svg" alt="Logo">
 				</div>
 				<!-- End Col -->
-	
+
 				<div class="col py-3">
 				<img class="avatar avatar-4x3" src="../assets/svg/brands/layar-dark.svg" alt="Logo">
 				</div>
@@ -299,7 +299,7 @@
 
 @section('bo04-content')
 
-   
+
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-lg-5 col-md-6">
@@ -314,7 +314,7 @@
 							<li class="mb-0"><span class="text-dark h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Beautiful and easy to understand animations</li>
 							<li class="mb-0"><span class="text-dark h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Our Talented & Experienced Marketing Agency</li>
 							<li class="mb-0"><span class="text-dark h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Theme advantages are pixel perfect design</li>
-						</ul>                        
+						</ul>
 					</div>
 				</div><!--end col-->
 			</div><!--end row-->
@@ -404,7 +404,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="tiny-slide px-md-5">
 							<div class="card client-testi text-center">
 								<img src="images/client/02.jpg" class="avatar avatar-small rounded-pill mx-auto" alt="">
@@ -419,7 +419,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="tiny-slide px-md-5">
 							<div class="card client-testi text-center">
 								<img src="images/client/03.jpg" class="avatar avatar-small rounded-pill mx-auto" alt="">
@@ -449,19 +449,19 @@
 				<div class="col-lg-2 col-md-2 col-6 text-center">
 					<img src="images/client/logo-2.svg" class="img-fluid" alt="">
 				</div><!--end col-->
-				
+
 				<div class="col-lg-2 col-md-2 col-6 text-center">
 					<img src="images/client/logo-3.svg" class="img-fluid" alt="">
 				</div><!--end col-->
-				
+
 				<div class="col-lg-2 col-md-2 col-6 text-center">
 					<img src="images/client/logo-4.svg" class="img-fluid" alt="">
 				</div><!--end col-->
-				
+
 				<div class="col-lg-2 col-md-2 col-6 text-center">
 					<img src="images/client/logo-5.svg" class="img-fluid" alt="">
 				</div><!--end col-->
-				
+
 				<div class="col-lg-2 col-md-2 col-6 text-center">
 					<img src="images/client/logo-6.svg" class="img-fluid" alt="">
 				</div><!--end col-->
@@ -485,7 +485,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="tiny-slide">
 							<div class="card team team-primary">
 								<div class="card-img">
@@ -500,7 +500,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="tiny-slide">
 							<div class="card team team-primary">
 								<div class="card-img">
@@ -515,7 +515,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="tiny-slide">
 							<div class="card team team-primary">
 								<div class="card-img">
@@ -530,7 +530,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="tiny-slide">
 							<div class="card team team-primary">
 								<div class="card-img">
@@ -545,7 +545,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="tiny-slide">
 							<div class="card team team-primary">
 								<div class="card-img">
@@ -596,6 +596,6 @@
 				</div><!--end col-->
 			</div><!--end row-->
 		</div><!--end container-->
-	
+
 
 @endsection

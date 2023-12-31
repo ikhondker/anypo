@@ -22,12 +22,12 @@ class StoreItemRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'name'          => 'required|min:5|max:120',
-			'category_id'   => 'required|integer|exists:categories,id',
-			'uom_id'        => 'required|integer|exists:uoms,id',
-			'oem_id'        => 'required|integer|exists:oems,id',
-			'code'          => 'required|max:10|unique:items,code',
-			'price'         => 'required|numeric|min:1.00|max:999999.99',
+			'name'			=> 'required|min:5|max:120',
+			'category_id'	=> 'required|integer|exists:categories,id',
+			'uom_id'		=> 'required|integer|exists:uoms,id',
+			'oem_id'		=> 'required|integer|exists:oems,id',
+			'code'			=> 'required|max:10|unique:items,code',
+			'price'			=> 'required|numeric|min:1.00|max:999999.99',
 		];
 	}
 }

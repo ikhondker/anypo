@@ -119,8 +119,8 @@ class UserController extends Controller
 
 		//user settings
 		//$request->merge(['account_id'   => auth()->user()->account_id]);
-		$request->merge(['enable'       => true]);
-		$request->merge(['seeded'       => false]);
+		$request->merge(['enable'	=> true]);
+		$request->merge(['seeded'	=> false]);
 
 		// if($request->has('admin')){
 		//     //Checkbox checked
@@ -130,8 +130,8 @@ class UserController extends Controller
 		//     $request->merge(['role'     => UserRoleEnum::USER->value ]);
 		// }
 
-		$random_password                = Str::random(12);
-		$request->merge(['password'     => Hash::make($random_password) ]);
+		$random_password			= Str::random(12);
+		$request->merge(['password'	=> Hash::make($random_password) ]);
 		//Log::channel('bo')->info('password='.$random_password);
 		//$request->merge(['email_verified_at' => now()]);
 

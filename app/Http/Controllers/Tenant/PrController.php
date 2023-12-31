@@ -100,10 +100,10 @@ class PrController extends Controller
 		$this->authorize('create', Pr::class);
 
 		// dont set dept_budget_id . It will be save during submissions
-		$request->merge(['requestor_id'     => 	auth()->id() ]);
-		$request->merge(['pr_date'          => date('Y-m-d H:i:s')]);
-		$request->merge(['sub_total'        => $request->input('prl_amount')]);
-		$request->merge(['amount'           => $request->input('prl_amount') + $request->input('tax') + $request->input('shipping') - $request->input('discount')]);
+		$request->merge(['requestor_id'	=> 	auth()->id() ]);
+		$request->merge(['pr_date'		=> date('Y-m-d H:i:s')]);
+		$request->merge(['sub_total'	=> $request->input('prl_amount')]);
+		$request->merge(['amount'		=> $request->input('prl_amount') + $request->input('tax') + $request->input('shipping') - $request->input('discount')]);
 
 		//dd($request);
 		$pr = Pr::create($request->all());
@@ -111,23 +111,23 @@ class PrController extends Controller
 		EventLog::event('pr', $pr->id, 'create');
 
 		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'    => $pr->id ]);
-			$request->merge(['entity'       => EntityEnum::PR->value ]);
+			$request->merge(['article_id'	=> $pr->id ]);
+			$request->merge(['entity'		=> EntityEnum::PR->value ]);
 			$attid = FileUpload::upload($request);
-			//$request->merge(['logo'       => $fileName ]);
+			//$request->merge(['logo'		=> $fileName ]);
 		}
 
 		// create prl lines
-		$prl                = new Prl();
-		$prl->pr_id         = $pr->id;
-		$prl->item_id       = $request->input('item_id');
-		$prl->summary       = $request->input('summary');
-		$prl->qty           = $request->input('qty');
-		$prl->price         = $request->input('price');
-		$prl->amount        = $request->input('prl_amount');
+		$prl			= new Prl();
+		$prl->pr_id		= $pr->id;
+		$prl->item_id	= $request->input('item_id');
+		$prl->summary	= $request->input('summary');
+		$prl->qty		= $request->input('qty');
+		$prl->price		= $request->input('price');
+		$prl->amount	= $request->input('prl_amount');
 
 		$prl->save();
-		$prl_id             = $prl->id;
+		$prl_id			= $prl->id;
 		//Log::debug("wf_id = ".$wf_id );
 
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please edit as necessary.');
@@ -149,10 +149,10 @@ class PrController extends Controller
 		//EventLog::event('pr',$pr->id,'create');
 
 		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'    => $request->input('attach_pr_id') ]);
-			$request->merge(['entity'       => EntityEnum::PR->value ]);
+			$request->merge(['article_id'	=> $request->input('attach_pr_id') ]);
+			$request->merge(['entity'		=> EntityEnum::PR->value ]);
 			$attid = FileUpload::upload($request);
-			//$request->merge(['logo'       => $fileName ]);
+			//$request->merge(['logo'	=> $fileName ]);
 		}
 
 		return redirect()->route('prs.show', $request->input('attach_pr_id'))->with('success', 'File Uploaded successfully.');
@@ -310,9 +310,9 @@ class PrController extends Controller
 		// PR in functional currency
 		//dd($pr,$setup);
 		if ($pr->currency == $setup->currency) {
-			$pr->fc_currency    = $setup->currency;
-			$pr->fc_exchange_rate = 1;
-			$pr->fc_amount      = $pr->amount;
+			$pr->fc_currency 		= $setup->currency;
+			$pr->fc_exchange_rate 	= 1;
+			$pr->fc_amount			= $pr->amount;
 			$pr->save();
 		} else {
 			$rate = ExchangeRate::getRate($pr->currency, $setup->currency);
@@ -320,8 +320,8 @@ class PrController extends Controller
 				return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 			} else {
 
-				$pr->fc_currency        = $setup->currency;
-				$pr->fc_exchange_rate   = round($rate, 6);
+				$pr->fc_currency		= $setup->currency;
+				$pr->fc_exchange_rate	= round($rate, 6);
 				// Log::debug("rate=".$rate);
 				// Log::debug("fc_exchange_rate=".$pr->fc_exchange_rate);
 				// Log::debug("amount=".$pr->amount);

@@ -39,109 +39,109 @@ use Str;
 class MenuController extends Controller
 {
 
-     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(){
-        $this->middleware('auth'); 
-    }
+	 /**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct(){
+		$this->middleware('auth'); 
+	}
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //$this->authorize('viewAny', Menu::class);
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		//$this->authorize('viewAny', Menu::class);
 
-        $menus = Menu::query();
-        if (request('term')) {
-            $menus->where('name', 'Like', '%'.request('term').'%');
-        }
-        $menus = $menus->orderBy('route_name', 'ASC')->paginate(40);
+		$menus = Menu::query();
+		if (request('term')) {
+			$menus->where('name', 'Like', '%'.request('term').'%');
+		}
+		$menus = $menus->orderBy('route_name', 'ASC')->paginate(40);
 
-        return view('landlord.manage.menus.index', compact('menus'))->with('i', (request()->input('page', 1) - 1) * 40);
-    }
+		return view('landlord.manage.menus.index', compact('menus'))->with('i', (request()->input('page', 1) - 1) * 40);
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //$this->authorize('create', Menu::class);
-        return view('landlord.manage.menus.create');
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		//$this->authorize('create', Menu::class);
+		return view('landlord.manage.menus.create');
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreMenuRequest $request)
-    {
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreMenuRequest $request)
+	{
 
-        $request->merge(['access'    => Str::upper($request->input('access')) ]);
-        //$this->authorize('create', Menu::class);
-        //$validated = $request->validated();
+		$request->merge(['access'    => Str::upper($request->input('access')) ]);
+		//$this->authorize('create', Menu::class);
+		//$validated = $request->validated();
 
-        $menu = Menu::create($request->all());
-        // Write to Log
-        LandlordEventLog::event('menu', $menu->id, 'create');
+		$menu = Menu::create($request->all());
+		// Write to Log
+		LandlordEventLog::event('menu', $menu->id, 'create');
 
-        return redirect()->route('menus.index')->with('success', 'Menu created successfully.');
-    }
+		return redirect()->route('menus.index')->with('success', 'Menu created successfully.');
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Menu $menu)
-    {
-       //$this->authorize('view', $menu);
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(Menu $menu)
+	{
+	   //$this->authorize('view', $menu);
 		return view('landlord.manage.menus.show', compact('menu'));
-    }
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Menu $menu)
-    {
-        //$this->authorize('update', $menu);
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(Menu $menu)
+	{
+		//$this->authorize('update', $menu);
 
-        return view('landlord.manage.menus.edit', compact('menu'));
-    }
+		return view('landlord.manage.menus.edit', compact('menu'));
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateMenuRequest $request, Menu $menu)
-    {
-        //$this->authorize('update', $menu);
-        
-        $request->merge(['access'    => Str::upper($request->input('access')) ]);
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateMenuRequest $request, Menu $menu)
+	{
+		//$this->authorize('update', $menu);
+		
+		$request->merge(['access'    => Str::upper($request->input('access')) ]);
 
-        //$request->validate();
-        // $request->validate([
-        // ]);
+		//$request->validate();
+		// $request->validate([
+		// ]);
 
-        $menu->update($request->all());
+		$menu->update($request->all());
 
-        // Write to Log
-        LandlordEventLog::event('menu', $menu->id, 'update', 'name', $request->raw_route_name);
+		// Write to Log
+		LandlordEventLog::event('menu', $menu->id, 'update', 'name', $request->raw_route_name);
 
-        return redirect()->route('menus.index')->with('success', 'Menu updated successfully');
-    }
+		return redirect()->route('menus.index')->with('success', 'Menu updated successfully');
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Menu $menu)
-    {
-        $this->authorize('delete', $menu);
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Menu $menu)
+	{
+		$this->authorize('delete', $menu);
 
-        $menu->fill(['enable' => ! $menu->enable]);
-        $menu->update();
-        // Write to Log
-        LandlordEventLog::event('menu', $menu->id, 'status', 'enable', $menu->enable);
+		$menu->fill(['enable' => ! $menu->enable]);
+		$menu->update();
+		// Write to Log
+		LandlordEventLog::event('menu', $menu->id, 'status', 'enable', $menu->enable);
 
-        return redirect()->route('menus.index')->with('success', 'Menu status Updated successfully');
-    }
+		return redirect()->route('menus.index')->with('success', 'Menu status Updated successfully');
+	}
 }

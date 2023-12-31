@@ -60,14 +60,14 @@ class BudgetController extends Controller
 		$fy = $fy + 1 ;
 
 		$budget = new Budget();
-		$budget->fy         = (string) $fy;
-		$budget->name       = 'Budget for ' .$budget->fy;
-		$budget->start_date = Carbon::parse($budget->fy.'-01-01');
-		$budget->end_date   = Carbon::parse($budget->fy.'-12-31');
-		$budget->currency   = $setup->currency;
-		$budget->notes      = 'Budget for ' .$budget->fy;
+		$budget->fy			= (string) $fy;
+		$budget->name		= 'Budget for ' .$budget->fy;
+		$budget->start_date	= Carbon::parse($budget->fy.'-01-01');
+		$budget->end_date	= Carbon::parse($budget->fy.'-12-31');
+		$budget->currency	= $setup->currency;
+		$budget->notes		= 'Budget for ' .$budget->fy;
 		;
-		$budget->enable     = true;
+		$budget->enable	= true;
 		$budget->save();
 		$budget_id = $budget->id;
 
@@ -167,8 +167,8 @@ class BudgetController extends Controller
 		//$this->authorize('create', Budget::class);
 
 		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'       => $request->input('attach_budget_id') ]);
-			$request->merge(['entity'           => EntityEnum::BUDGET->value ]);
+			$request->merge(['article_id'	=> $request->input('attach_budget_id') ]);
+			$request->merge(['entity'		=> EntityEnum::BUDGET->value ]);
 			$attid = FileUpload::upload($request);
 		}
 		return redirect()->route('budgets.show', $request->input('attach_budget_id'))->with('success', 'File Uploaded successfully.');

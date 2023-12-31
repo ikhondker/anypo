@@ -22,8 +22,8 @@ class StoreCountryRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'country'           => 'required|min:2|max:2|unique:countries,country',
-			'name'              => 'required|min:2|max:100',
+			'country'		=> 'required|min:2|max:2|unique:countries,country',
+			'name'			=> 'required|min:2|max:100',
 		];
 	}
 
@@ -34,7 +34,7 @@ class StoreCountryRequest extends FormRequest
 	 */
 	public function messages() {
 		return [
-			'country.unique'       => 'This country code is in use. It should be unique.',
+			'country.unique'	=> 'This country code is in use. It should be unique.',
 		];
 	}
 }

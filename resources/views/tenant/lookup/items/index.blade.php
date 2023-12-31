@@ -46,10 +46,10 @@
 					</div>
 					@php
 						use App\Models\Tenant\Lookup\Item;
-						$count_total        = Item::count();
-						$count_enable     = Item::where('enable',true )->count();
-						$count_disable    = Item::where('enable',false )->count();
-						//$count_draft        = Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
+						$count_total	= Item::count();
+						$count_enable	= Item::where('enable',true )->count();
+						$count_disable	= Item::where('enable',false )->count();
+						//$count_draft	= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 					@endphp
 					<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
 				   

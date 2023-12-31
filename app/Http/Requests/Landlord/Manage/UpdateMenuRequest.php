@@ -23,9 +23,9 @@ class UpdateMenuRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'raw_route_name'  => 'required|max:100',
-			'route_name'      => 'required|max:100',
-			'access'          => 'required|in:F,C,B,S,X',
+			'raw_route_name'	=> 'required|max:100',
+			'route_name'		=> 'required|max:100',
+			'access'			=> 'required|in:F,C,B,S,X',
 		];
 	}
 

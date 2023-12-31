@@ -22,13 +22,13 @@ class UpdateUserRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'name'              => 'required|min:5|max:100',
-			'email'             => 'required|max:100|unique:users,email,'. $this->user->id,
-			'cell'              => 'required|max:20|unique:users,cell,'. $this->user->id,
-			//'role'              => 'required',
-			'facebook'          => 'nullable|url' ,
-			'linkedin'          => 'nullable|url',
-			'file_to_upload'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024'
+			'name'			=> 'required|min:5|max:100',
+			'email'			=> 'required|max:100|unique:users,email,'. $this->user->id,
+			'cell'			=> 'required|max:20|unique:users,cell,'. $this->user->id,
+			//'role'		=> 'required',
+			'facebook'		=> 'nullable|url' ,
+			'linkedin'		=> 'nullable|url',
+			'file_to_upload'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024'
 		];
 	}
 }

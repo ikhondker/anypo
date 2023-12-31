@@ -81,8 +81,8 @@ class LoginController extends Controller
 		// Write to Log IQBAL
 		if (tenant('id') == '') {
 			// address timeout issue
-    		if(isset($user)){
-    			LandlordEventLog::event('user', auth()->user()->id, 'sign-out');
+			if(isset($user)){
+				LandlordEventLog::event('user', auth()->user()->id, 'sign-out');
 			}
 		} else {
 			EventLog::event('user', auth()->user()->id, 'sign-out');

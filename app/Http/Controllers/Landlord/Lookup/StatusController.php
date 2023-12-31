@@ -93,7 +93,7 @@ class StatusController extends Controller
 		
 		// $request->validate([
 		// 	'title '  => 'required|max:200',
-        // ]);
+		// ]);
 
 
 		$status->update($request->all());

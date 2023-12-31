@@ -51,13 +51,13 @@
 							<x-tenant.edit.zip :value="$supplier->zip"/>
 						</div>
 						<x-tenant.edit.country :value="$supplier->country"/>
-					</div>        
+					</div>
 				</div>
 			</div>
 			<!-- end col-6 -->
 		</div>
 
-			
+
 	</form>
 	<!-- /.form end -->
 @endsection

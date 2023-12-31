@@ -80,13 +80,13 @@ class UploadItemController extends Controller
 			->delete();
 
 		try {
-			$spreadsheet    = IOFactory::load($the_file->getRealPath());
-			$sheet          = $spreadsheet->getActiveSheet();
-			$row_limit      = $sheet->getHighestDataRow();
-			$column_limit   = $sheet->getHighestDataColumn();
-			$row_range      = range(2, $row_limit);
-			$column_range   = range('H', $column_limit);
-			$startcount     = 1;
+			$spreadsheet	= IOFactory::load($the_file->getRealPath());
+			$sheet			= $spreadsheet->getActiveSheet();
+			$row_limit		= $sheet->getHighestDataRow();
+			$column_limit	= $sheet->getHighestDataColumn();
+			$row_range		= range(2, $row_limit);
+			$column_range	= range('H', $column_limit);
+			$startcount		= 1;
 
 			$created_at = now();
 			$updated_at = now();
@@ -95,17 +95,17 @@ class UploadItemController extends Controller
 			$data = array();
 			foreach ($row_range as $row) {
 				$data[] = [
-					'owner_id'      => $owner_id,
-					'name'          => $sheet->getCell('A' . $row)->getValue(),
-					'code'          => $sheet->getCell('B' . $row)->getValue(),
-					'notes'         => $sheet->getCell('C' . $row)->getValue(),
-					'category'      => $sheet->getCell('D' . $row)->getValue(),
-					'oem'           => $sheet->getCell('E' . $row)->getValue(),
-					'uom'           => $sheet->getCell('F' . $row)->getValue(),
-					'price'         => $sheet->getCell('G' . $row)->getValue(),
-					'gl_type_name'  => $sheet->getCell('H' . $row)->getValue(),
-					'created_at'    => $created_at,
-					'updated_at'    => $updated_at,
+					'owner_id'		=> $owner_id,
+					'name'			=> $sheet->getCell('A' . $row)->getValue(),
+					'code'			=> $sheet->getCell('B' . $row)->getValue(),
+					'notes'			=> $sheet->getCell('C' . $row)->getValue(),
+					'category'		=> $sheet->getCell('D' . $row)->getValue(),
+					'oem'			=> $sheet->getCell('E' . $row)->getValue(),
+					'uom'			=> $sheet->getCell('F' . $row)->getValue(),
+					'price'			=> $sheet->getCell('G' . $row)->getValue(),
+					'gl_type_name'	=> $sheet->getCell('H' . $row)->getValue(),
+					'created_at'	=> $created_at,
+					'updated_at'	=> $updated_at,
 				];
 				$startcount++;
 			}
@@ -149,7 +149,7 @@ class UploadItemController extends Controller
 	{
 		$this->authorize('update', $uploadItem);
 
-		$request->merge(['status'       => InterfaceStatusEnum::DRAFT->value ]);
+		$request->merge(['status'	=> InterfaceStatusEnum::DRAFT->value ]);
 
 		//$request->validate();
 		$request->validate([
@@ -234,11 +234,11 @@ class UploadItemController extends Controller
 				} else {
 					UploadItem::where('id', $upload_item->id)
 						->update([
-							'category_id'   => $category_id,
-							'oem_id'        => $oem_id,
-							'uom_id'        => $uom_id,
-							'gl_type'       => $gl_type,
-							'status'        => InterfaceStatusEnum::VALIDATED->value,
+							'category_id'	=> $category_id,
+							'oem_id'		=> $oem_id,
+							'uom_id'		=> $uom_id,
+							'gl_type'		=> $gl_type,
+							'status'		=> InterfaceStatusEnum::VALIDATED->value,
 						]);
 				}
 
@@ -267,14 +267,14 @@ class UploadItemController extends Controller
 			//id name notes code category_id oem_id uom_id price stock reorder account_type photo enable created_by created_at updated_by updated_at
 
 			$item = [
-				'name'          => $upload_item->name,
-				'code'          => $upload_item->code,
-				'notes'         => $upload_item->notes,
-				'category_id'   => $upload_item->category_id,
-				'oem_id'        => $upload_item->oem_id,
-				'uom_id'        => $upload_item->uom_id,
-				'price'         => $upload_item->price,
-				'gl_type'       => $upload_item->gl_type,
+				'name'			=> $upload_item->name,
+				'code'			=> $upload_item->code,
+				'notes'			=> $upload_item->notes,
+				'category_id'	=> $upload_item->category_id,
+				'oem_id'		=> $upload_item->oem_id,
+				'uom_id'		=> $upload_item->uom_id,
+				'price'			=> $upload_item->price,
+				'gl_type'		=> $upload_item->gl_type,
 			];
 
 			Item::create($item); // don't forget to fill $fillable in Model

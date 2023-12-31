@@ -27,37 +27,37 @@ use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Password Reset Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller is responsible for handling password reset requests
+	| and uses a simple trait to include this behavior. You're free to
+	| explore this trait and override any methods you wish to tweak.
+	|
+	*/
 
-    use ResetsPasswords;
+	use ResetsPasswords;
 
-    /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+	/**
+	 * Where to redirect users after resetting their password.
+	 *
+	 * @var string
+	 */
+	protected $redirectTo = RouteServiceProvider::HOME;
 
-    // IQBAL 20-APR-2023
-    // D:\laravel\bo04\vendor\laravel\ui\auth-backend\ResetsPasswords.php
-    //added to overwrite the login form
-    public function showResetForm(Request $request)
-    {
-        $token = $request->route()->parameter('token');
+	// IQBAL 20-APR-2023
+	// D:\laravel\bo04\vendor\laravel\ui\auth-backend\ResetsPasswords.php
+	//added to overwrite the login form
+	public function showResetForm(Request $request)
+	{
+		$token = $request->route()->parameter('token');
 
-        if (tenant('id') == '') {
-            return view('auth.passwords.landlord-reset')->with(['token' => $token, 'email' => $request->email]);
-        } else {
-            return view('auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
-        }
-    }
+		if (tenant('id') == '') {
+			return view('auth.passwords.landlord-reset')->with(['token' => $token, 'email' => $request->email]);
+		} else {
+			return view('auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
+		}
+	}
 }

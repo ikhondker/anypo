@@ -49,7 +49,7 @@ class LandlordEventLog
 		$log['event_name']  = $event_name;
 		$log['column_name'] = $column_name;
 		$log['prior_value'] = $prior_value;
-		$log['object_type'] = $object_type;            // C-Control ,M-Model
+		$log['object_type'] = $object_type;			// C-Control ,M-Model
 		$log['url']			= Request::fullUrl();
 		$log['method']		= Request::method();
 		$log['ip']			= Request::ip();

@@ -118,8 +118,8 @@ class CommentController extends Controller
 
 		 // Upload File, if any, insert row in attachment table and get attachments id
 		 if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'    => $comment->id ]);
-			$request->merge(['entity'       => static::ENTITY ]);
+			$request->merge(['article_id'	=> $comment->id ]);
+			$request->merge(['entity'		=> static::ENTITY ]);
 			$attachment_id = LandlordFileUpload::upload($request);
 
 			// update back table with attachment_id

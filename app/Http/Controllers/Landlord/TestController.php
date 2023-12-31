@@ -54,7 +54,7 @@ class TestController extends Controller
 		});
 		// Write event log
 		Log::debug('Seeder run for tenant=' . $tenant->id);
-		
+
         exit;
 
 
@@ -70,14 +70,14 @@ class TestController extends Controller
 		$path = public_path("ytenants\\".$subdir."\avatar");
     	if(!File::isDirectory($path)){
         	File::makeDirectory($path, 0644, true, true);
-		} 
+		}
 		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
 
 		// Copy logo.png to newly created tenant
 		$path = public_path("ytenants\\".$subdir."\logo");
 		if(!File::isDirectory($path)){
 			File::makeDirectory($path, 0644, true, true);
-		} 
+		}
 		File::copy(public_path('assets\logo\logo.png'), $path.'\logo.png');
 		dd('Copy File done at'.now().'.');
 
@@ -92,7 +92,7 @@ class TestController extends Controller
 		//Storage::copy($file,$destination);
 		Log::debug("source= ".$file );
 		Log::debug("destination = ". $destination);
-		
+
 		//File::copy(public_path('assets\avatar\avatar.png'), public_path('xtenants/demo1/avatar/avatar.png'));
 		//Log::debug("path l= ".public_path('assets\logo\logo.png') );
 		//File::copy(public_path('assets\logo\logo.png'), public_path('xtenants/demo1/logo/avatar.png'));
@@ -113,7 +113,7 @@ class TestController extends Controller
 		Log::debug("app.url= ".config('app.url') );
 		Log::debug("central_domains= ".config('bo.landlord_domain') );
 
-		return view('landlord.pages.info')->with('title','Transaction Successful!')->with('msg','Thank you for purchasing '.config('app.name').' service. 
+		return view('landlord.pages.info')->with('title','Transaction Successful!')->with('msg','Thank you for purchasing '.config('app.name').' service.
 		We have sent the login and other details to your email address. Please check your email.');
 
 		return redirect('/home')->with('success', 'Tenant created 1');
@@ -124,7 +124,7 @@ class TestController extends Controller
 		// Log::debug("Creating Tenant for  1 ");
 		// return redirect('/home')->with('success', 'Tenant created');
 		// exit;
-		
+
 		// // auto run migration
 		// $tenant_id = 'demo3';
 		// $domain = $tenant_id . '.' . 'localhost';
@@ -136,7 +136,7 @@ class TestController extends Controller
 		//     'domain' => $domain
 		// ]);
 
-		
+
 		// //OK
 		// $tenant->run(function()		{
 		//     $seeder = new \Database\Seeders\UserSeeder();
@@ -161,18 +161,18 @@ class TestController extends Controller
 		// exit;
 
 
-		$user                    = new User();
-		$random_password                = Str::random(12);
+		$user				= new User();
+		$random_password	= Str::random(12);
 		$domain = Domain::where('tenant_id', 'demo1')->first();
 		Log::debug('central random_password =' . $random_password);
 
 		$tenant = Tenant::find('demo1');
 		//tenancy()->initialize($tenant);
 		// create your user for tenant here
-		$x = $tenant->run(function($tenant){ 
-			Log::debug('Admin User Creation inside tenant context');	
+		$x = $tenant->run(function($tenant){
+			Log::debug('Admin User Creation inside tenant context');
 			// create admin user in newly created tenant
-			
+
 			// $user = User::create([
 			// 	'name' 		=> 'John Doe',
 			// 	'email' 	=> 'john3@example.com',
@@ -181,11 +181,11 @@ class TestController extends Controller
 			// Log::debug('User Created id=' . $user->id);
 				Log::debug('Tenant random_password =' . $tenant);
 				return 99;
-			}        
+			}
 		);
 		//Log::debug('Admin User Created by job');
 		//tenancy()->end();
-		
+
 		Log::debug('x= = '.$x);
 		return redirect('/home')->with('success', 'Admin User Created created');
 		exit;
@@ -199,20 +199,20 @@ class TestController extends Controller
 		// $tenant = Tenant::find('demo1');
 		// tenancy()->initialize($tenant);
 		// // create your user for tenant here
-		// $tenant->run(function(){ // your code to create users here 
+		// $tenant->run(function(){ // your code to create users here
 		// 	// create admin user in newly created tenant
 		// 	User::create([
 		// 		'name' => 'John Doe',
 		// 		'email' => 'john@example.com',
 		// 		'password' => bcrypt('password'),
 		// 	]);
-		// 	}        
+		// 	}
 		// );
 		// return redirect('/home')->with('success', 'User John created');
 		// exit;
 
 
-		
+
 
 
 
@@ -316,7 +316,7 @@ class TestController extends Controller
 		Log::channel('bo')->info('Create Folder: '.$path);
     	if(!File::isDirectory($path)){
         	File::makeDirectory($path, 0644, true, true);
-		} 
+		}
 		Log::channel('bo')->info('Copying avatar.png to '.$path);
 		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
 
@@ -325,7 +325,7 @@ class TestController extends Controller
 		Log::channel('bo')->info('Create Folder: '.$path);
 		if(!File::isDirectory($path)){
 			File::makeDirectory($path, 0644, true, true);
-		} 
+		}
 		Log::channel('bo')->info('Copying logo.png to '.$path);
 		File::copy(public_path('assets\logo\logo.png'), $path.'\logo.png');
 

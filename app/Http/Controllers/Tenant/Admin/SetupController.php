@@ -273,7 +273,7 @@ class SetupController extends Controller
 		}
 
 		// update setup. 
-		$request->merge(['freezed'       => true ]);
+		$request->merge(['freezed'	=> true ]);
 		$setup->update($request->all());
 		
 		// Write to Log

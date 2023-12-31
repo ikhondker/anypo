@@ -12,7 +12,7 @@
 
 		<!-- Body -->
 		<div class="card-body">
-		
+
 			<!-- Form -->
 			<div class="row mb-4">
 			<label class="col-sm-3 col-form-label form-label">Template Logo</label>
@@ -56,21 +56,21 @@
 
 				<x-landlord.show.my-text value="{{ $template->address1 }}" label="Address1"/>
 				<x-landlord.show.my-text value="{{ $template->address2 }}" label="Address2"/>
-				<x-landlord.show.my-number value="{{ $template->qty }}" label="Qty"/>                                
-				<x-landlord.show.my-number value="{{ $template->amount }}" label="Amount"/>         
+				<x-landlord.show.my-number value="{{ $template->qty }}" label="Qty"/>
+				<x-landlord.show.my-number value="{{ $template->amount }}" label="Amount"/>
 
-				<x-landlord.show.my-enable   value="{{ $template->my_bool }}"/>
-				<x-landlord.show.my-date          value="{{ $template->my_date }}" label="Date"/>
-				<x-landlord.show.my-date-time         value="{{ $template->my_date_time }}" label="Datetime"/>
+				<x-landlord.show.my-enable		value="{{ $template->my_bool }}"/>
+				<x-landlord.show.my-date		value="{{ $template->my_date }}" label="Date"/>
+				<x-landlord.show.my-date-time	value="{{ $template->my_date_time }}" label="Datetime"/>
 
 
 					<div class="row mb-4">
 						<label class="col-sm-3 col-form-label form-label">Photo:</label>
 						<div class="col-sm-9 col-form-label">
 							@if ( $template->image <> '')
-							<img src="{{ url('profile/'.$template->image) }}" width="90px"> 
+							<img src="{{ url('profile/'.$template->image) }}" width="90px">
 							@else
-								<img src="{{ url('profile/avatar.png') }}" width="90px"> 
+								<img src="{{ url('profile/avatar.png') }}" width="90px">
 							@endif
 						</div>
 					</div>
@@ -85,7 +85,7 @@
 		</div>
 		</div>
 		<!-- End Footer -->
-		
+
 	</div>
 	<!-- End Card -->
 @endsection

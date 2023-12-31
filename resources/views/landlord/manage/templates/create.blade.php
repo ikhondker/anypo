@@ -144,10 +144,10 @@
 					<div class="col-sm-10">
 						<select class="form-control js-example-basic-single" name="my_enum" required>
 							<option value=""><< Role >> </option>
-							<option value="user"        {{ 'user' == old('my_enum') ? 'selected' : '' }}>User</option>
-							<option value="agent"    {{ 'agent' == old('my_enum') ? 'selected' : '' }}>Agent</option>
-							<option value="admin"       {{ 'admin' == old('my_enum') ? 'selected' : '' }}>Admin</option>
-							<option value="system"    {{ 'system' == old('my_enum') ? 'selected' : '' }}>System</option>
+							<option value="user" {{ 'user' == old('my_enum') ? 'selected' : '' }}>User</option>
+							<option value="agent" {{ 'agent' == old('my_enum') ? 'selected' : '' }}>Agent</option>
+							<option value="admin" {{ 'admin' == old('my_enum') ? 'selected' : '' }}>Admin</option>
+							<option value="system" {{ 'system' == old('my_enum') ? 'selected' : '' }}>System</option>
 						</select>
 					</div>
 				</div>

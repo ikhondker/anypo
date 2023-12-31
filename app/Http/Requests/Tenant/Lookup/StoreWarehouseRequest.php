@@ -22,7 +22,7 @@ class StoreWarehouseRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'name'              => 'required|min:5|max:100',
+			'name'		=> 'required|min:5|max:100',
 		];
 	}
 }

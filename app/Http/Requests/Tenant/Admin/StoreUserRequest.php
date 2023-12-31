@@ -39,11 +39,11 @@ class StoreUserRequest extends FormRequest
 	 */
 	public function messages() {
 		return [
-			'name.required'     => 'User Name is Required',
-			'email.required'    => 'email is Required',
-			'email.unique'      => 'This email is in use. It should be unique.',
-			'cell.required'     => 'Cell Number is Required',
-			'cell.unique'       => 'This cell number is in use. It should be unique.',
+			'name.required'		=> 'User Name is Required',
+			'email.required'	=> 'email is Required',
+			'email.unique'		=> 'This email is in use. It should be unique.',
+			'cell.required'		=> 'Cell Number is Required',
+			'cell.unique'		=> 'This cell number is in use. It should be unique.',
 		];
 	}
 

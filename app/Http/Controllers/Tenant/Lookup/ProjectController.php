@@ -158,8 +158,8 @@ class ProjectController extends Controller
 	{
 		//$this->authorize('create', Budget::class);
 		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'    => $request->input('attach_project_id') ]);
-			$request->merge(['entity'       => EntityEnum::PROJECT->value ]);
+			$request->merge(['article_id'	=> $request->input('attach_project_id') ]);
+			$request->merge(['entity'		=> EntityEnum::PROJECT->value ]);
 			$attid = FileUpload::upload($request);
 		}
 		return redirect()->route('projects.show', $request->input('attach_project_id'))->with('success', 'File Uploaded successfully.');

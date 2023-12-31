@@ -22,8 +22,8 @@ class UpdateSetupRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'name'              => 'required|min:2|max:150',
-			'file_to_upload'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024'
+			'name'				=> 'required|min:2|max:150',
+			'file_to_upload'	=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024'
 		];
 	}
 }

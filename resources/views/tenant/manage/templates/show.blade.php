@@ -50,8 +50,8 @@
 					<x-tenant.show.my-text value="{{ $template->address2 }}" label="Address2"/>
 					<x-tenant.show.my-text value="{{ $template->zip }}" label="Zip"/>
 					<x-tenant.show.my-text value="{{ $template->state }}" label="state"/>
-					<x-tenant.show.my-integer value="{{ $template->qty }}" label="Qty"/>                                
-					<x-tenant.show.my-number value="{{ $template->amount }}" label="Amount"/>            
+					<x-tenant.show.my-integer value="{{ $template->qty }}" label="Qty"/>
+					<x-tenant.show.my-number value="{{ $template->amount }}" label="Amount"/>
 					{{-- <x-button.edit object="Template" :id="$template->id"/> --}}
 				</div>
 			</div>
@@ -75,12 +75,12 @@
 						</div>
 						<div class="col-sm-9">
 							@if ( $template->image <> '')
-								<img src="{{ url('template/'.$template->image) }}" width="100px"> 
+								<img src="{{ url('template/'.$template->image) }}" width="100px">
 							@else
-								<img src="{{asset('/logo/logo.png')}}" width="120px"> 
+								<img src="{{asset('/logo/logo.png')}}" width="120px">
 							@endif
 						</div>
-					 </div>                    
+					 </div>
 				</div>
 			</div>
 			<!-- end card -->
@@ -95,7 +95,7 @@
 				<div class="card-body">
 					<x-tenant.show.my-boolean   value="{{ $template->enable }}" label="Boolean"/>
 					<x-tenant.show.my-date  value="{{ $template->my_date }}" label="Date"/>
-					<x-tenant.show.my-date-time value="{{ $template->my_date_time }}" label="DateTime"/>           
+					<x-tenant.show.my-date-time value="{{ $template->my_date_time }}" label="DateTime"/>
 				</div>
 			</div>
 			<!-- end card -->

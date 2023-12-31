@@ -287,7 +287,7 @@ class AccountController extends Controller
 		// don't change start or expire ate
 
 		// get current logged-in user account_id
-		$account_id        = auth()->user()->account_id;
+		$account_id		= auth()->user()->account_id;
 
 		// disable existing service and addons
 		$update_product = DB::table('account_services')
@@ -298,25 +298,25 @@ class AccountController extends Controller
 		// create new AccountService
 		$service = Service::where('id', $new_service_id)->first();
 
-		$accountService                 = new AccountService();
+		$accountService					= new AccountService();
 
-		$accountService->service_id     = $new_service_id;
-		$accountService->name           = $service->name;
+		$accountService->service_id		= $new_service_id;
+		$accountService->name			= $service->name;
 
-		$accountService->account_id     = $account_id;
-		$accountService->owner_id       = auth()->user()->id;
+		$accountService->account_id		= $account_id;
+		$accountService->owner_id		= auth()->user()->id;
 
 		// $accountService->base_mnth    	= $service->mnth;
 		// $accountService->base_user    	= $service->user;
 		// $accountService->base_gb    	= $service->gb;
 		// $accountService->base_price     = $service->price;
 
-		$accountService->mnth           = $service->mnth;
-		$accountService->user           = $service->user;
-		$accountService->gb             = $service->gb;
-		$accountService->price          = $service->price;
-		$accountService->start_date     = now();
-		//$accountService->end_date       = now()->addMonth($service->mnth);;
+		$accountService->mnth			= $service->mnth;
+		$accountService->user			= $service->user;
+		$accountService->gb				= $service->gb;
+		$accountService->price			= $service->price;
+		$accountService->start_date		= now();
+		//$accountService->end_date		= now()->addMonth($service->mnth);;
 		$accountService->save();
 
 		//$account_service_id             = $accountService->id;
@@ -325,18 +325,18 @@ class AccountController extends Controller
 
 		// Find and update the account with new parameter
 		$account = Account::where('id', $account_id)->first();
-		$account->service_id    		= $new_service_id;
-		$account->owner_id        		= auth()->user()->id;
+		$account->service_id		= $new_service_id;
+		$account->owner_id			= auth()->user()->id;
 
-		$account->base_mnth        		= $service->mnth;
-		$account->base_user        		= $service->user;
-		$account->base_gb        		= $service->gb;
-		$account->base_price    		= $service->price;
+		$account->base_mnth			= $service->mnth;
+		$account->base_user			= $service->user;
+		$account->base_gb			= $service->gb;
+		$account->base_price		= $service->price;
 
-		$account->mnth            = $service->mnth;
-		$account->user            = $service->user;
-		$account->gb            = $service->gb;
-		$account->price         = $service->price;
+		$account->mnth				= $service->mnth;
+		$account->user				= $service->user;
+		$account->gb				= $service->gb;
+		$account->price				= $service->price;
 
 		$account->save();
 		LandlordEventLog::event('account', $account->id, 'updated');
@@ -363,16 +363,16 @@ class AccountController extends Controller
 			->first();
 
 		// update account with user+GB+service name
-		$account            = Account::where('id', $account_id)->first();
+		$account		= Account::where('id', $account_id)->first();
 		
 		Log::debug('account->user =' . $account->user);
 		Log::debug('account->gb =' . $account->gb);
 		Log::debug('account->price =' . $account->price);
 
 
-		$account->user      = $account->user + $addon->user;
-		$account->gb        = $account->gb + $addon->gb;
-		$account->price     = $account->price + $addon->price;
+		$account->user		= $account->user + $addon->user;
+		$account->gb		= $account->gb + $addon->gb;
+		$account->price		= $account->price + $addon->price;
 		$account->save();
 		Log::debug('Account qty updated for account_id=' . $account->id);
 
@@ -385,17 +385,17 @@ class AccountController extends Controller
 		LandlordEventLog::event('account', $account->id, 'update', 'price', $account->price);
 
 		// add service row
-		$service                = new Service;
-		$service->addon         = true;
-		$service->product_id    = $addon->id;
-		$service->name   		= $addon->name;
-		$service->name          = $addon->name;
-		$service->account_id    = $account->id;
-		$service->owner_id      = $account->owner_id;
-		$service->mnth          = $addon->mnth;
-		$service->user          = $addon->user;
-		$service->gb            = $addon->gb;
-		$service->price         = $addon->price;
+		$service				= new Service;
+		$service->addon			= true;
+		$service->product_id	= $addon->id;
+		$service->name			= $addon->name;
+		$service->name			= $addon->name;
+		$service->account_id	= $account->id;
+		$service->owner_id		= $account->owner_id;
+		$service->mnth			= $addon->mnth;
+		$service->user			= $addon->user;
+		$service->gb			= $addon->gb;
+		$service->price			= $addon->price;
 
 		$service->start_date    = now();
 		$service->save();

@@ -8,7 +8,7 @@
 * @path			\app\Http\Controllers\Landlord\Manage
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -50,214 +50,215 @@ use Str;
 
 class TemplateController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct(){
-    //     $this->middleware('auth');
-    // }
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	// public function __construct(){
+	//     $this->middleware('auth');
+	// }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index()
+	{
 
-        $this->authorize('viewAny', Template::class);
+		$this->authorize('viewAny', Template::class);
 
-        //$templates = Template::latest()->orderBy('id','desc')->paginate(10);
+		//$templates = Template::latest()->orderBy('id','desc')->paginate(10);
 
-        $templates = Template::query();
-        if (request('term')) {
-            $templates->where('name', 'Like', '%' . request('term') . '%');
-        }
+		$templates = Template::query();
+		if (request('term')) {
+			$templates->where('name', 'Like', '%' . request('term') . '%');
+		}
 
-        $templates = $templates->orderBy('id', 'DESC')->paginate(10);
-        //$templates = Template::latest()->orderBy('id','desc')->paginate(10);
+		$templates = $templates->orderBy('id', 'DESC')->paginate(10);
+		//$templates = Template::latest()->orderBy('id','desc')->paginate(10);
 
-        return view('landlord.manage.templates.index', compact('templates'))->with('i', (request()->input('page', 1) - 1) * 20);
-    }
+		return view('landlord.manage.templates.index', compact('templates'))->with('i', (request()->input('page', 1) - 1) * 20);
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create', Template::class);
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create()
+	{
+		$this->authorize('create', Template::class);
 
-        $users = User::getAll();
-        $countries = Country::getAll();
+		$users = User::getAll();
+		$countries = Country::getAll();
 
-        return view('landlord.manage.templates.create', compact('users', 'countries'));
-    }
+		return view('landlord.manage.templates.create', compact('users', 'countries'));
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTemplateRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreTemplateRequest $request)
-    {
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \App\Http\Requests\StoreTemplateRequest  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(StoreTemplateRequest $request)
+	{
 
-        $this->authorize('create', Template::class);
-        if ($request->has('my_bool')) {
-            //Checkbox checked
-            $request->merge(['my_bool' =>  1,]);
-        } else {
-            //Checkbox not checked
-            $request->merge(['my_bool' =>  0,]);
-        }
+		$this->authorize('create', Template::class);
+		if ($request->has('my_bool')) {
+			//Checkbox checked
+			$request->merge(['my_bool' =>  1,]);
+		} else {
+			//Checkbox not checked
+			$request->merge(['my_bool' =>  0,]);
+		}
 
-        //$this->authorize('create',Entity::class);
-        $request->merge([
-            'code' =>  Str::upper($request['code']),
-        ]);
+		//$this->authorize('create',Entity::class);
+		$request->merge([
+			'code' =>  Str::upper($request['code']),
+		]);
 
-        //dd($request);
-        $template = Template::create($request->all());
-        // Write to Log
-        LandlordEventLog::event('template', $template->id, 'create');
-
-
-        // Upload File, if any, insert row in attachment table  and get attachments id
-        if ($file = $request->file('file_to_upload')) {
-            $request->merge(['article_id'    => $template->id]);
-            $request->merge(['entity'       => EntityEnum::TEMPLATE->value]);
-            $attid = FileUpload::upload($request);
-        }
-
-        return redirect()->route('templates.index')->with('success', 'Templates created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Template  $template
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Template $template)
-    {
-        $this->authorize('view', $template);
-        $entity = 'TEMPLATE';
-        return view('landlord.manage.templates.show', compact('template', 'entity'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Template  $template
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Template $template)
-    {
-
-        $this->authorize('update', $template);
-        $users = User::getAll();
-        $countries = Country::getAll();
-
-        // Write Event Log
-        LandlordEventLog::event('template', $template->id, 'edit', 'template', $template->name);
-        return view('landlord.manage.templates.edit', compact('template', 'users', 'countries'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTemplateRequest  $request
-     * @param  \App\Models\Template  $template
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTemplateRequest $request, Template $template)
-    {
-        $this->authorize('update', $template);
-
-        // check if old value has been change
-        if ($request->input('address2') <> $template->address2) {
-            LandlordEventLog::event('template', $template->id, 'update', 'address2', $template->address2);
-        }
-        if ($request->input('email') <> $template->email) {
-            LandlordEventLog::event('template', $template->id, 'update', 'email', $template->email);
-        }
-
-        if ($request->input('agent_id') <> $template->agent_id) {
-
-            // Send notification to Assigned Agent            $agent = User::where('id', $request->input('agent_id'))->first();
-            $agent->notify(new templateAssigned($agent, $template));
-            LandlordEventLog::event('template', $template->id, 'update', 'agent_id', $template->agent_id);
-        }
-
-        // check box
-        if ($request->has('my_bool')) {
-            //Checkbox checked
-            $request->merge(['my_bool' =>  1]);
-        } else {
-            //Checkbox not checked
-            $request->merge(['my_bool' =>  0]);
-        }
-
-        //$request->validate();
-        $request->validate([]);
-        $template->update($request->all());
-
-        LandlordEventLog::event('template', $template->id, 'update', 'name', $template->name);
-        return redirect()->route('templates.index')->with('success', 'Template updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Template  $template
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Template $template)
-    {
-
-        $this->authorize('delete', $template);
-
-        $template->fill(['enable' => !$template->enable]);
-        $template->update();
-
-        // Write to Log
-        LandlordEventLog::event('template', $template->id, 'enable', 'status', $template->enable);
-
-        return redirect()->route('templates.index')->with('success', 'Template Status updated successfully');
-    }
+		//dd($request);
+		$template = Template::create($request->all());
+		// Write to Log
+		LandlordEventLog::event('template', $template->id, 'create');
 
 
-    public function submit(Template $template)
-    {
+		// Upload File, if any, insert row in attachment table  and get attachments id
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $template->id]);
+			$request->merge(['entity'		=> EntityEnum::TEMPLATE->value]);
+			$attid = FileUpload::upload($request);
+		}
 
-        //$this->authorize('delete', $template);
+		return redirect()->route('templates.index')->with('success', 'Templates created successfully.');
+	}
 
-        // Write to Log
-        //LandlordEventLog::event('template',$template->id,'enable','status',$template->enable);
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  \App\Models\Template  $template
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show(Template $template)
+	{
+		$this->authorize('view', $template);
+		$entity = 'TEMPLATE';
+		return view('landlord.manage.templates.show', compact('template', 'entity'));
+	}
 
-        return redirect()->route('landlord.manage.templates.show', $template->id)->with('success', 'Template Submitted successfully');
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  \App\Models\Template  $template
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit(Template $template)
+	{
 
-    /**
-     *
-     * Export selected column to csv format
-     *
-     */
-    public function export()
-    {
+		$this->authorize('update', $template);
+		$users = User::getAll();
+		$countries = Country::getAll();
 
-        $data = DB::select("SELECT id, code, name, summary, user_id, address1, address2, city, state, zip, country, email, phone, qty, amount, notes,
-                enable, my_date, my_date_time, my_enum, my_url, logo, avatar, attachment, fbpage, deleted_at, created_by, created_at, updated_by, updated_at
-                FROM templates
-                 ORDER BY id
-                 ");
-        $dataArray = json_decode(json_encode($data), true);
+		// Write Event Log
+		LandlordEventLog::event('template', $template->id, 'edit', 'template', $template->name);
+		return view('landlord.manage.templates.edit', compact('template', 'users', 'countries'));
+	}
 
-        // export to CSV
-        return Export::csv('templates', $dataArray);
-    }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \App\Http\Requests\UpdateTemplateRequest  $request
+	 * @param  \App\Models\Template  $template
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(UpdateTemplateRequest $request, Template $template)
+	{
+		$this->authorize('update', $template);
+
+		// check if old value has been change
+		if ($request->input('address2') <> $template->address2) {
+			LandlordEventLog::event('template', $template->id, 'update', 'address2', $template->address2);
+		}
+		if ($request->input('email') <> $template->email) {
+			LandlordEventLog::event('template', $template->id, 'update', 'email', $template->email);
+		}
+
+		if ($request->input('agent_id') <> $template->agent_id) {
+
+			// Send notification to Assigned Agent
+			// $agent = User::where('id', $request->input('agent_id'))->first();
+			$agent->notify(new templateAssigned($agent, $template));
+			LandlordEventLog::event('template', $template->id, 'update', 'agent_id', $template->agent_id);
+		}
+
+		// check box
+		if ($request->has('my_bool')) {
+			//Checkbox checked
+			$request->merge(['my_bool' =>  1]);
+		} else {
+			//Checkbox not checked
+			$request->merge(['my_bool' =>  0]);
+		}
+
+		//$request->validate();
+		$request->validate([]);
+		$template->update($request->all());
+
+		LandlordEventLog::event('template', $template->id, 'update', 'name', $template->name);
+		return redirect()->route('templates.index')->with('success', 'Template updated successfully');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  \App\Models\Template  $template
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy(Template $template)
+	{
+
+		$this->authorize('delete', $template);
+
+		$template->fill(['enable' => !$template->enable]);
+		$template->update();
+
+		// Write to Log
+		LandlordEventLog::event('template', $template->id, 'enable', 'status', $template->enable);
+
+		return redirect()->route('templates.index')->with('success', 'Template Status updated successfully');
+	}
+
+
+	public function submit(Template $template)
+	{
+
+		//$this->authorize('delete', $template);
+
+		// Write to Log
+		//LandlordEventLog::event('template',$template->id,'enable','status',$template->enable);
+
+		return redirect()->route('landlord.manage.templates.show', $template->id)->with('success', 'Template Submitted successfully');
+	}
+
+	/**
+	 *
+	 * Export selected column to csv format
+	 *
+	 */
+	public function export()
+	{
+
+		$data = DB::select("SELECT id, code, name, summary, user_id, address1, address2, city, state, zip, country, email, phone, qty, amount, notes,
+				enable, my_date, my_date_time, my_enum, my_url, logo, avatar, attachment, fbpage, deleted_at, created_by, created_at, updated_by, updated_at
+				FROM templates
+				 ORDER BY id
+				 ");
+		$dataArray = json_decode(json_encode($data), true);
+
+		// export to CSV
+		return Export::csv('templates', $dataArray);
+	}
 }

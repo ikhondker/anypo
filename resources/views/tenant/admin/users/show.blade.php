@@ -71,11 +71,11 @@
 				<h5 class="card-title">Other Details</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-date-time   value="{{ $user->email_verified_at }}" label="Verified"/>
-					<x-tenant.show.my-date-time   value="{{ $user->last_login_at }}" label="Last Login"/>
-					<x-tenant.show.my-text        value="{{ $user->last_login_ip }}" label="Last IP"/>
-					<x-tenant.show.my-url         value="{{ $user->facebook }}" label="Facebook"/>
-					<x-tenant.show.my-url         value="{{ $user->linkedin }}" label="LinkedIn"/>
+					<x-tenant.show.my-date-time	value="{{ $user->email_verified_at }}" label="Verified"/>
+					<x-tenant.show.my-date-time	value="{{ $user->last_login_at }}" label="Last Login"/>
+					<x-tenant.show.my-text		value="{{ $user->last_login_ip }}" label="Last IP"/>
+					<x-tenant.show.my-url		value="{{ $user->facebook }}" label="Facebook"/>
+					<x-tenant.show.my-url		value="{{ $user->linkedin }}" label="LinkedIn"/>
 				</div>
 			</div>
 			

@@ -202,15 +202,15 @@ class Workflow
 		$details = [
 			'entity'		=> $wf->entity,
 			'id'			=> $wf->article_id,
-			'from'		=> $owner->name,
-			'to'            => $approver->name,
-			'subject'       => $entity->name. '#'. $wf->article_id.' need your approval.', // $advance->summary
-			'greeting'      => 'Hi '.$approver->name.',',
-			'body'          => $entity->name. '#'.$wf->article_id.' is submitted for your approval. Please review.',
-			'thanks'        => 'Thank you for using '. config('app.name').'!',
-			'actionText'    => 'View Document',
-			//'actionURL'   => route('advances.show', ['advance' => $wf->article_id]),
-			'actionURL'     => route($entity->route.'.show', $wf->article_id),
+			'from'			=> $owner->name,
+			'to'			=> $approver->name,
+			'subject'		=> $entity->name. '#'. $wf->article_id.' need your approval.', // $advance->summary
+			'greeting'		=> 'Hi '.$approver->name.',',
+			'body'			=> $entity->name. '#'.$wf->article_id.' is submitted for your approval. Please review.',
+			'thanks'		=> 'Thank you for using '. config('app.name').'!',
+			'actionText'	=> 'View Document',
+			//'actionURL'	=> route('advances.show', ['advance' => $wf->article_id]),
+			'actionURL'	=> route($entity->route.'.show', $wf->article_id),
 		];
 		$approver->notify(new ApprovalNotification($details));
 

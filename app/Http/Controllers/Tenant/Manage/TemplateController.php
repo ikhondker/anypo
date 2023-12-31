@@ -113,8 +113,8 @@ class TemplateController extends Controller
 
 		// Upload File, if any, insert row in attachment table  and get attachments id
 		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'    => $template->id ]);
-			$request->merge(['entity'       => EntityEnum::TEMPLATE->value ]);
+			$request->merge(['article_id'	=> $template->id ]);
+			$request->merge(['entity'		=> EntityEnum::TEMPLATE->value ]);
 			$attid = FileUpload::upload($request);
 		}
 

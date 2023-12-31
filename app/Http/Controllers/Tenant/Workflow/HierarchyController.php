@@ -64,10 +64,10 @@ class HierarchyController extends Controller
 
 		//dd($request);
 		// create Hierarchyl row 1
-		$hierarchyl                 = new Hierarchyl();
+		$hierarchyl					= new Hierarchyl();
 
 		$hierarchyl->hid    		= $hierarchy->id;
-		$hierarchyl->approver_id    = $request->input('approver_id_1');
+		$hierarchyl->approver_id	= $request->input('approver_id_1');
 		$hierarchyl->save();
 
 		//Log::debug('approver_id_2='.$request->input('approver_id_2'));
@@ -76,30 +76,30 @@ class HierarchyController extends Controller
 		//Log::debug('approver_id_5='.$request->input('approver_id_5'));
 
 		if ($request->input('approver_id_2') <> "") {
-			$hierarchyl                 = new Hierarchyl();
-			$hierarchyl->hid    		= $hierarchy->id;
-			$hierarchyl->approver_id = $request->input('approver_id_2');
+			$hierarchyl					= new Hierarchyl();
+			$hierarchyl->hid			= $hierarchy->id;
+			$hierarchyl->approver_id	= $request->input('approver_id_2');
 			$hierarchyl->save();
 		}
 
 		if ($request->input('approver_id_3') <> "") {
-			$hierarchyl                 = new Hierarchyl();
+			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid    		= $hierarchy->id;
 			$hierarchyl->approver_id = $request->input('approver_id_3');
 			$hierarchyl->save();
 		}
 
 		if ($request->input('approver_id_4') <> "") {
-			$hierarchyl                 = new Hierarchyl();
+			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid    		= $hierarchy->id;
-			$hierarchyl->approver_id = $request->input('approver_id_4');
+			$hierarchyl->approver_id 	= $request->input('approver_id_4');
 			$hierarchyl->save();
 		}
 
 		if ($request->input('approver_id_5') <> "") {
-			$hierarchyl                 = new Hierarchyl();
+			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid    		= $hierarchy->id;
-			$hierarchyl->approver_id = $request->input('approver_id_5');
+			$hierarchyl->approver_id 	= $request->input('approver_id_5');
 			$hierarchyl->save();
 		}
 
@@ -116,7 +116,7 @@ class HierarchyController extends Controller
 	{
 		//$this->authorize('view', $user);
 
-		$hierarchyls        = Hierarchyl::where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
+		$hierarchyls = Hierarchyl::where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
 		return view('tenant.workflow.hierarchies.show', compact('hierarchy', 'hierarchyls'));
 	}
 
@@ -126,7 +126,7 @@ class HierarchyController extends Controller
 	public function edit(Hierarchy $hierarchy)
 	{
 		$this->authorize('update', $hierarchy);
-		$hierarchyls        = Hierarchyl::where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
+		$hierarchyls = Hierarchyl::where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
 		//$users = User::NonSeeded();
 		//$users = User::getAll();
 		$users = User::NonSeeded()->get();
@@ -207,38 +207,38 @@ class HierarchyController extends Controller
 		DB::table('hierarchyls')->where('hid', $hierarchy->id)->delete();
 
 		// re- create lines
-		$hierarchyl                 = new Hierarchyl();
+		$hierarchyl					= new Hierarchyl();
 
 		$hierarchyl->hid    		= $hierarchy->id;
-		$hierarchyl->approver_id    = $request->input('approver_id_1');
+		$hierarchyl->approver_id	= $request->input('approver_id_1');
 		$hierarchyl->save();
 
 
 		if ($request->input('approver_id_2') <> "") {
-			$hierarchyl                 = new Hierarchyl();
+			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid    		= $hierarchy->id;
-			$hierarchyl->approver_id = $request->input('approver_id_2');
+			$hierarchyl->approver_id 	= $request->input('approver_id_2');
 			$hierarchyl->save();
 		}
 
 		if ($request->input('approver_id_3') <> "") {
-			$hierarchyl                 = new Hierarchyl();
+			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid    		= $hierarchy->id;
-			$hierarchyl->approver_id = $request->input('approver_id_3');
+			$hierarchyl->approver_id 	= $request->input('approver_id_3');
 			$hierarchyl->save();
 		}
 
 		if ($request->input('approver_id_4') <> "") {
-			$hierarchyl                 = new Hierarchyl();
+			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid    		= $hierarchy->id;
-			$hierarchyl->approver_id = $request->input('approver_id_4');
+			$hierarchyl->approver_id 	= $request->input('approver_id_4');
 			$hierarchyl->save();
 		}
 
 		if ($request->input('approver_id_5') <> "") {
-			$hierarchyl                 = new Hierarchyl();
+			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid    		= $hierarchy->id;
-			$hierarchyl->approver_id = $request->input('approver_id_5');
+			$hierarchyl->approver_id 	= $request->input('approver_id_5');
 			$hierarchyl->save();
 		}
 

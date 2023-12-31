@@ -49,7 +49,7 @@
 
 </head>
 <!--
-  HOW TO USE: 
+  HOW TO USE:
   data-theme: default (default), dark, light
   data-layout: fluid (default), boxed
   data-sidebar-position: left (default), right
@@ -68,7 +68,7 @@
 						@else
 							<img src="/logo/{{ $_setup->logo }}" width="90px" height="90px" class="" alt="{{ $_setup->name }}"/><br>
 						@endif --}}
-						
+
 						<img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
 						<h5 class="text-info">{{ $_setup->name}}</h5>
 						{{-- <span class="h4 text-info m-2">{{ $_setup->name}}</span> --}}
@@ -79,7 +79,7 @@
 					{{-- <span class="text-sm align-middle text-primary">{{ $_setup->name}}</span> --}}
 					{{-- <span class="text-sm align-middle text-muted"><small>CONTROL EXPENSES</small></span><br> --}}
 					{{-- <span class="text-sm align-middle text-muted"><small>[{{ $_node_name }}][ {{ $_route_name }}]</small></span> --}}
-		        </a>
+				</a>
 
 				@include('tenant.includes.sidebar')
 
@@ -126,8 +126,8 @@
 				<ul class="navbar-nav">
 					<li class="nav-item px-2 dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              				Menu
-            			</a>
+						Menu
+		     			</a>
 						<div class="dropdown-menu dropdown-menu-start dropdown-mega" aria-labelledby="servicesDropdown">
 							<div class="d-md-flex align-items-start justify-content-start">
 								<div class="dropdown-mega-list">
@@ -146,7 +146,7 @@
 									<a class="dropdown-item" href="#">Advanced Inputs</a>
 									<a class="dropdown-item" href="#">Editors</a>
 									<a class="dropdown-item" href="#">Validation</a>
-									
+
 								</div>
 								<div class="dropdown-mega-list">
 									<div class="dropdown-header">Reports</div>
@@ -155,18 +155,18 @@
 									<a class="dropdown-item" href="#">Table with Buttons</a>
 									<a class="dropdown-item" href="#">Column Search</a>
 									<a class="dropdown-item" href="#">Muulti Selection</a>
-									
+
 								</div>
 							</div>
 						</div>
 					</li>
 				</ul>
 				@auth
-					{{-- <img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $_setup->name }}" /> 
+					{{-- <img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $_setup->name }}" />
 					<span class="h3 text-info m-2">{{ $_setup->name}}</span> --}}
 					@if(session('original_user'))
 						<a href="{{ route('users.leave-impersonate') }}" class="me-2 text-danger">[LEAVE IMPERSONATE =>]</a>
-					@endif 
+					@endif
 					{{-- <span class="text-dark">{{ $_setup->name}},{{ $_setup->address1 }}, {{ $_setup->city.', '.$_setup->state.', '.$_setup->zip  }} {{ $_setup->country }}</span> --}}
 				@endauth
 				@guest
@@ -176,9 +176,9 @@
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
-						
+
 						<a class="nav-flag dropdown-toggle" href="#" id="languageDropdown" data-bs-toggle="no-dropdown">
-							<img src="{{ Storage::disk('s3t')->url('img/flags/'. Str::lower($_setup->country).'.png') }}" alt="{{ $_setup->country }}" /> 
+							<img src="{{ Storage::disk('s3t')->url('img/flags/'. Str::lower($_setup->country).'.png') }}" alt="{{ $_setup->country }}" />
 						</a>
 
 						<li class="nav-item dropdown">
@@ -235,9 +235,9 @@
 										{{-- <img src="{{ url($_avatar_dir . auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/> --}}
 								{{-- @endif --}}
 								@endauth
-                            	@guest
+									@guest
 									{{-- <img src="{{asset('img/avatar.png')}}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />  --}}
-									<img src="{{ Storage::disk('s3ta')->url('avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="Guest" /> 
+									<img src="{{ Storage::disk('s3ta')->url('avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />
 									<span class="text-dark">Guest</span>
 								@endguest
 							</a>
@@ -299,7 +299,7 @@
 							<!-- content -->
 							@yield('content')
 							<!-- /.content -->
-						@else 
+						@else
 							<!-- content -->
 							@include('tenant.includes.initial')
 							<!-- /.content -->
@@ -338,9 +338,9 @@
 								</li>
 
 								@auth
-									<span class="badge bg-primary-light">{{ tenant('id') }}</span> 
-									<span class="text-muted">{{ auth()->user()->name }} {{ '| '.auth()->user()->id .' |' }}  {{ auth()->user()->email .' |' }} </span> 
-									
+									<span class="badge bg-primary-light">{{ tenant('id') }}</span>
+									<span class="text-muted">{{ auth()->user()->name }} {{ '| '.auth()->user()->id .' |' }}  {{ auth()->user()->email .' |' }} </span>
+
 									@if ( auth()->user()->role->value == UserRoleEnum::USER->value )
 										<span class="badge bg-primary-light">user </span>|
 									@else

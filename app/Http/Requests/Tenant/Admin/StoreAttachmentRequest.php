@@ -22,11 +22,11 @@ class StoreAttachmentRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'entity'        => 'required',
-			'article_id'    => 'required',
-			'owner_id'      => 'required|integer|exists:users,id',
-			'file_name'     => 'required',
-			'org_file_name' => 'required',
+			'entity'		=> 'required',
+			'article_id'	=> 'required',
+			'owner_id'		=> 'required|integer|exists:users,id',
+			'file_name'		=> 'required',
+			'org_file_name'	=> 'required',
 		];
 	}
 }

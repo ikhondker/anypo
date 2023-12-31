@@ -22,8 +22,8 @@ class StoreCurrencyRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'currency'           => 'required|min:3|max:3|unique:currencies,currency',
-			'name'              => 'required|min:2|max:100',
+			'currency'		=> 'required|min:3|max:3|unique:currencies,currency',
+			'name'			=> 'required|min:2|max:100',
 		];
 	}
 	
@@ -34,7 +34,7 @@ class StoreCurrencyRequest extends FormRequest
 	 */
 	public function messages() {
 		return [
-			'currency.unique'       => 'This currency code is in use. It should be unique.',
+			'currency.unique'	=> 'This currency code is in use. It should be unique.',
 		];
 	}
 

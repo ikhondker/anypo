@@ -42,7 +42,7 @@ use Illuminate\Support\Facades\Auth;
 class PaymentController extends Controller
 {
 	// define entity constant for file upload and workflow
-	const ENTITY        = 'PAYMENT';
+	const ENTITY	= 'PAYMENT';
 
 	/**
 	 * Display a listing of the resource.

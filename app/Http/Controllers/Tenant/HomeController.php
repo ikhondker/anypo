@@ -102,8 +102,8 @@ class HomeController extends Controller
 
 		//Log::debug("I AM HERE INSIDE STORE");
 
-		$request->merge(['user_id'     => $user_id]);
-		$request->merge(['ip'          => $request->ip()]);
+		$request->merge(['user_id'	=> $user_id]);
+		$request->merge(['ip'		=> $request->ip()]);
 
 		$request->validate([
 			'name'      => 'required',
@@ -121,8 +121,8 @@ class HomeController extends Controller
 
 		// Upload File, if any, insert row in attachment table  and get attachments id
 		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'   => $contact->id ]);
-			$request->merge(['entity'       => $ENTITY ]);
+			$request->merge(['article_id'	=> $contact->id ]);
+			$request->merge(['entity'		=> $ENTITY ]);
 			$attachment_id = FileUpload::upload($request);
 
 			// update back table with attachment_id
@@ -156,17 +156,17 @@ class HomeController extends Controller
 		$action = "Submitted";
 
 		$details = [
-			'entity'   		=> 'TICKET',
-			'id'            => $user->id,
-			'from'          => $user->name,
-			'to'            => $user->name,
-			'subject'       => '[ TEST ] Support Ticket #'. $user->id.' has been '.Str::lower($action).'.',
-			'greeting'      => 'Hi '.$user->name.',',
-			'body'          => 'Please note, Support Ticket #'.$user->id.' has been '.Str::lower($action).'.',
-			'thanks'        => 'Thank you for using '. config('app.name').'!',
-			'actionText'    => 'View Document',
-			//'actionURL'   => route('advances.show', ['advance' => $wf->article_id]),
-			'actionURL'     => route('users.show', $user->id),
+			'entity'		=> 'TICKET',
+			'id'			=> $user->id,
+			'from'			=> $user->name,
+			'to'			=> $user->name,
+			'subject'		=> '[ TEST ] Support Ticket #'. $user->id.' has been '.Str::lower($action).'.',
+			'greeting'		=> 'Hi '.$user->name.',',
+			'body'			=> 'Please note, Support Ticket #'.$user->id.' has been '.Str::lower($action).'.',
+			'thanks'		=> 'Thank you for using '. config('app.name').'!',
+			'actionText'	=> 'View Document',
+			//'actionURL'	=> route('advances.show', ['advance' => $wf->article_id]),
+			'actionURL'		=> route('users.show', $user->id),
 		];
 
 		// $details = [

@@ -29,8 +29,8 @@
 							<x-tenant.edit.name :value="$uploadItem->name"/>
 							<div class="mb-3">
 								<label class="form-label">Category</label>
-								<input type="text" class="form-control @error('category') is-invalid @enderror" 
-									name="category" id="category" placeholder="Category"     
+								<input type="text" class="form-control @error('category') is-invalid @enderror"
+									name="category" id="category" placeholder="Category"
 									value="{{ old('category', $uploadItem->category ) }}"
 									required/>
 								@error('category')
@@ -39,8 +39,8 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">UOM</label>
-								<input type="text" class="form-control @error('uom') is-invalid @enderror" 
-									name="uom" id="uom" placeholder="UOM"     
+								<input type="text" class="form-control @error('uom') is-invalid @enderror"
+									name="uom" id="uom" placeholder="UOM"
 									value="{{ old('uom', $uploadItem->uom ) }}"
 									required/>
 								@error('uom')
@@ -49,8 +49,8 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">OEM</label>
-								<input type="text" class="form-control @error('oem') is-invalid @enderror" 
-									name="oem" id="oem" placeholder="OEM"     
+								<input type="text" class="form-control @error('oem') is-invalid @enderror"
+									name="oem" id="oem" placeholder="OEM"
 									value="{{ old('oem', $uploadItem->oem ) }}"
 									required/>
 								@error('oem')
@@ -70,14 +70,14 @@
 							<h5 class="card-title">Interface Item Supporting Info</h5>
 						</div>
 						<div class="card-body">
-							
-						</div>        
+
+						</div>
 					</div>
 				</div>
 				<!-- end col-6 -->
 			</div>
 
-			
+
 	</form>
 	<!-- /.form end -->
 @endsection

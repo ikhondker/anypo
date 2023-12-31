@@ -12,18 +12,18 @@
 
 		<!-- Body -->
 		<div class="card-body">
-			<x-landlord.show.my-id       id="{{ $attachment->id }}"/>
-			<x-landlord.show.my-text     value="{{ $attachment->entity }}" label="Entity"/>
-			<x-landlord.show.my-text     value="{{ $attachment->file_entity }}" label="File Entity:"/>
-			<x-landlord.show.my-text     value="{{ $attachment->article_id }}" label="Article ID"/>
-			<x-landlord.show.my-text     value="{{ $attachment->file_name }}" label="File Name"/>
-			<x-landlord.show.my-text     value="{{ $attachment->org_file_name }}" label="Org File Name"/>
+			<x-landlord.show.my-id		id="{{ $attachment->id }}"/>
+			<x-landlord.show.my-text	value="{{ $attachment->entity }}" label="Entity"/>
+			<x-landlord.show.my-text	value="{{ $attachment->file_entity }}" label="File Entity:"/>
+			<x-landlord.show.my-text	value="{{ $attachment->article_id }}" label="Article ID"/>
+			<x-landlord.show.my-text	value="{{ $attachment->file_name }}" label="File Name"/>
+			<x-landlord.show.my-text	value="{{ $attachment->org_file_name }}" label="Org File Name"/>
 
-			<x-landlord.show.my-text     value="{{ $attachment->file_type }}" label="Type"/>
-			<x-landlord.show.my-text     value="{{ number_format($attachment->file_size / 1048576,2)  }}" label="Size (MB)"/>
-			<x-landlord.show.my-text     value="{{ $attachment->owner->name }}" label="Owner"/>
-			<x-landlord.show.my-text     value="{{ $attachment->summary }}" c/>
-			<x-landlord.show.my-badge    value="{{ $attachment->status }}" label="Status"/>
+			<x-landlord.show.my-text	value="{{ $attachment->file_type }}" label="Type"/>
+			<x-landlord.show.my-text	value="{{ number_format($attachment->file_size / 1048576,2)  }}" label="Size (MB)"/>
+			<x-landlord.show.my-text	value="{{ $attachment->owner->name }}" label="Owner"/>
+			<x-landlord.show.my-text	value="{{ $attachment->summary }}" c/>
+			<x-landlord.show.my-badge	value="{{ $attachment->status }}" label="Status"/>
 
 			<div class="row mb-4">
 				<label class="col-sm-3 col-form-label form-label">Attachments X :</label>

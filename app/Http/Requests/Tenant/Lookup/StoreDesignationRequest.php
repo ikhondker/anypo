@@ -22,7 +22,7 @@ class StoreDesignationRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'name'              => 'required|min:2|max:100',
+			'name'	=> 'required|min:2|max:100',
 		];
 	}
 }

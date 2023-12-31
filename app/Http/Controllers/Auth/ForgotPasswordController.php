@@ -25,28 +25,28 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset emails and
-    | includes a trait which assists in sending these notifications from
-    | your application to your users. Feel free to explore this trait.
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Password Reset Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller is responsible for handling password reset emails and
+	| includes a trait which assists in sending these notifications from
+	| your application to your users. Feel free to explore this trait.
+	|
+	*/
 
-    use SendsPasswordResetEmails;
+	use SendsPasswordResetEmails;
 
-    // IQBAL 20-APR-2023
-    // D:\laravel\bo04\vendor\laravel\ui\auth-backend\SendsPasswordResetEmails.php
-    //added to overwrite the login form
-    public function showLinkRequestForm()
-    {
-        if (tenant('id') == '') {
-            return view('auth.passwords.landlord-email');
-        } else {
-            return view('auth.passwords.email');
-        }
-    }
+	// IQBAL 20-APR-2023
+	// D:\laravel\bo04\vendor\laravel\ui\auth-backend\SendsPasswordResetEmails.php
+	//added to overwrite the login form
+	public function showLinkRequestForm()
+	{
+		if (tenant('id') == '') {
+			return view('auth.passwords.landlord-email');
+		} else {
+			return view('auth.passwords.email');
+		}
+	}
 }

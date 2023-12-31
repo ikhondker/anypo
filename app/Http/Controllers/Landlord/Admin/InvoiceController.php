@@ -184,19 +184,19 @@ class InvoiceController extends Controller
 
 		// create new Invoice
 		// logic: create invoice from the next date, after current billed date
-		$invoice                = new Invoice();
+		$invoice				= new Invoice();
 		// get unique invoice_no
-		$invoice->invoice_no    = Bo::getInvoiceNo();
-		$invoice->invoice_date  = now();
+		$invoice->invoice_no	= Bo::getInvoiceNo();
+		$invoice->invoice_date	= now();
 		//Log::channel('bo')->info('Account id='. $account_id.' last_bill_from_date '.$account->last_bill_from_date);
-		$invoice->invoice_type    = LandlordInvoiceTypeEnum::SUBSCRIPTION->value;
-		$invoice->from_date     = $account->end_date->addDay(1);
-		$invoice->to_date       = $account->end_date->addDay(1)->addMonth($period);
+		$invoice->invoice_type	= LandlordInvoiceTypeEnum::SUBSCRIPTION->value;
+		$invoice->from_date		= $account->end_date->addDay(1);
+		$invoice->to_date		= $account->end_date->addDay(1)->addMonth($period);
 		//Log::channel('bo')->info('Account id='. $account_id.' SECOND inv start '.$invoice->from_date.' to date '.$invoice->to_date);
 		Log::channel('bo')->info('Account id=' . $account_id . ' SECOND inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date . ' period= ' . $period);
 
-		$invoice->due_date      = $account->end_date;
-		$invoice->summary       = 'Invoice for ' . $account->name . ' for site' . $account->site;
+		$invoice->due_date		= $account->end_date;
+		$invoice->summary		= 'Invoice for ' . $account->name . ' for site' . $account->site;
 
 		switch ($period) {
 			case '1':
@@ -219,15 +219,15 @@ class InvoiceController extends Controller
 		  }
 
 		Log::debug('discount_pc= ' . $discount_pc);
-		$invoice->price         = round($period * $account->price * (100 - $discount_pc)/100,2) ;
-		$invoice->subtotal      = $invoice->price;
-		$invoice->amount        = $invoice->price;
-		$invoice->account_id    = $account->id;
-		$invoice->owner_id      = $account->owner_id;
+		$invoice->price		= round($period * $account->price * (100 - $discount_pc)/100,2) ;
+		$invoice->subtotal	= $invoice->price;
+		$invoice->amount	= $invoice->price;
+		$invoice->account_id= $account->id;
+		$invoice->owner_id	= $account->owner_id;
 
 		// create invoice
-		$invoice->currency      = 'USD';
-		$invoice->status_code   = LandlordInvoiceStatusEnum::DUE->value;
+		$invoice->currency		= 'USD';
+		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
 		$invoice->save();
 
 		Log::debug('Invoice Generated id=' . $invoice->id);
@@ -236,9 +236,9 @@ class InvoiceController extends Controller
 		// update account billing info
 		//$account->last_bill_from_date   = $invoice->from_date;
 		//$account->last_bill_to_date     = $invoice->to_date;
-		$account->next_bill_generated         = true;
-		$account->next_invoice_no    	= $invoice->invoice_no;
-		$account->last_bill_date         = now();
+		$account->next_bill_generated	= true;
+		$account->next_invoice_no		= $invoice->invoice_no;
+		$account->last_bill_date		= now();
 
 		$account->save();
 		Log::debug('Account Updated id=' . $account->id);
