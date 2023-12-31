@@ -33,29 +33,29 @@ use App\Models\User;
 
 class Contact extends Model
 {
-    use HasFactory, Notifiable;
+	use HasFactory, Notifiable;
 
-    public $fillable = [
-        'type', 'first_name', 'last_name', 'email', 'cell', 'subject', 'message', 'contact_date', 'tenant', 'user_id', 'attachment_id', 'ip', 'country', 'updated_at',
-    ];
+	public $fillable = [
+		'type', 'first_name', 'last_name', 'email', 'cell', 'subject', 'message', 'contact_date', 'tenant', 'user_id', 'attachment_id', 'ip', 'country', 'updated_at',
+	];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'contact_date'     => 'datetime',
-    ];
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array<string, string>
+	 */
+	protected $casts = [
+		'contact_date'     => 'datetime',
+	];
 
-    /* ---------------- HasMany ---------------------- */
+	/* ---------------- HasMany ---------------------- */
 
 
-    /* ---------------- belongsTo ---------------------- */
-    public function owner()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+	/* ---------------- belongsTo ---------------------- */
+	public function owner()
+	{
+		return $this->belongsTo(User::class, 'user_id');
+	}
 
-    /* ---------------- created and updated by ---------------------- */
+	/* ---------------- created and updated by ---------------------- */
 }

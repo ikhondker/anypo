@@ -75,13 +75,13 @@ class ContactController extends Controller
 
 		//Log::debug("I AM HERE INSIDE STORE");
 
-		$request->merge(['ip'          => Request::ip()]);
+		$request->merge(['ip'	=> Request::ip()]);
 		$request->validate([
-			'name'      => 'required',
-			'email'     => 'required|email',
-			//'phone'     => 'required|digits:10|numeric',
-			'subject'   => 'required',
-			'message'   => 'required'
+			'name'		=> 'required',
+			'email'		=> 'required|email',
+			//'phone'	=> 'required|digits:10|numeric',
+			'subject'	=> 'required',
+			'message'	=> 'required'
 		]);
 
 		Contact::create($request->all());

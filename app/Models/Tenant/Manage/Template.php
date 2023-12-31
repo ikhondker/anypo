@@ -17,10 +17,10 @@ class Template extends Model
 		// ];
 		
 		protected $casts = [ 
-				'my_date_time'  =>'datetime',
-				'my_date'       =>'datetime',
-				'updated_at'    => 'datetime',
-				'created_at'    => 'datetime',
+				'my_date_time'	=> 'datetime',
+				'my_date'		=> 'datetime',
+				'updated_at'	=> 'datetime',
+				'created_at'	=> 'datetime',
 		];
 		
 		protected $fillable = [

@@ -25,9 +25,9 @@ class Setup extends Model
 	 * @var array<string, string>
 	 */
 	protected $casts = [
-		'last_rate_date'    => 'datetime',
-		'updated_at'        => 'datetime',
-		'created_at'        => 'datetime',
+		'last_rate_date'	=> 'datetime',
+		'updated_at'		=> 'datetime',
+		'created_at'		=> 'datetime',
 	];
 
 

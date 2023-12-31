@@ -11,44 +11,44 @@ use Illuminate\Queue\SerializesModels;
 
 class SendEmailTest extends Mailable
 {
-    use Queueable, SerializesModels;
+	use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+	/**
+	 * Create a new message instance.
+	 */
+	public function __construct()
+	{
+		//
+	}
 
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            //subject: 'Send Email Test',
-            subject: 'How To Send E-mail Using Queue In laravel 10',
-        );
-    }
+	/**
+	 * Get the message envelope.
+	 */
+	public function envelope(): Envelope
+	{
+		return new Envelope(
+			//subject: 'Send Email Test',
+			subject: 'How To Send E-mail Using Queue In laravel 10',
+		);
+	}
 
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'emails.test',
-        );
-    }
+	/**
+	 * Get the message content definition.
+	 */
+	public function content(): Content
+	{
+		return new Content(
+			view: 'emails.test',
+		);
+	}
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
-    }
+	/**
+	 * Get the attachments for the message.
+	 *
+	 * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+	 */
+	public function attachments(): array
+	{
+		return [];
+	}
 }

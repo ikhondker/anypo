@@ -68,9 +68,9 @@ class SubscriptionInvoicePaid implements ShouldQueue
 
 		//extend account validity end_date
 		$account = Account::where('id', $invoice->account_id)->first();
-		$account->next_bill_generated   = false;
-		$account->next_invoice_no       = 0;
-		$account->end_date              = $invoice->end_date;
+		$account->next_bill_generated	= false;
+		$account->next_invoice_no		= 0;
+		$account->end_date				= $invoice->end_date;
 
 
 		$account->save();

@@ -41,14 +41,14 @@ class Account extends Model
 	];
 
 	protected $casts = [
-		'start_date'            => 'date',
-		'end_date'              => 'date',
-		//'last_bill_from_date'   => 'datetime',
-		//'last_bill_to_date'     => 'datetime',
-		'expired_at'            => 'date',
-		'updated_at'            => 'datetime',
-		'created_at'            => 'datetime',
-		'status_code'             => LandlordAccountStatusEnum::class,
+		'start_date'			=> 'date',
+		'end_date'				=> 'date',
+		//'last_bill_from_date'	=> 'datetime',
+		//'last_bill_to_date'	=> 'datetime',
+		'expired_at'			=> 'date',
+		'updated_at'			=> 'datetime',
+		'created_at'			=> 'datetime',
+		'status_code'			=> LandlordAccountStatusEnum::class,
 	];
 
 	/* ---------------- Scope ---------------------- */

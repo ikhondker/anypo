@@ -54,8 +54,8 @@ class TestController extends Controller
 		});
 		// Write event log
 		Log::debug('Seeder run for tenant=' . $tenant->id);
-
-        exit;
+		
+		exit;
 
 
 
@@ -69,7 +69,7 @@ class TestController extends Controller
 		// Copy avatar.png to newly created tenant
 		$path = public_path("ytenants\\".$subdir."\avatar");
     	if(!File::isDirectory($path)){
-        	File::makeDirectory($path, 0644, true, true);
+			 	File::makeDirectory($path, 0644, true, true);
 		}
 		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
 

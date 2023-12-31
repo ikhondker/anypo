@@ -11,15 +11,15 @@ use App\Models\User;
 
 class Menu extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
-    protected $fillable = [
-        'raw_route_name', 'route_name', 'access', 'enable', 'updated_by', 'updated_at',
-    ];
+	protected $fillable = [
+		'raw_route_name', 'route_name', 'access', 'enable', 'updated_by', 'updated_at',
+	];
 
-    protected $casts = [
-        'updated_at'            => 'datetime',
-        'created_at'            => 'datetime',
-    ];
+	protected $casts = [
+		'updated_at'	=> 'datetime',
+		'created_at'	=> 'datetime',
+	];
 
 }

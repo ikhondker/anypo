@@ -204,9 +204,9 @@ class ReportController extends Controller
 		$text = "DRAFT";
 
 		// Get height and width of text
-		$font       = $pdf->getFontMetrics()->get_font("lato", "bold");
-		$txtHeight  = $pdf->getFontMetrics()->getFontHeight($font, 75);
-		$textWidth  = $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
+		$font		= $pdf->getFontMetrics()->get_font("lato", "bold");
+		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
+		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
 		// Specify horizontal and vertical position
 		$x = (($width - $textWidth) / 1.4);
 		$y = (($height - $txtHeight) / 2);

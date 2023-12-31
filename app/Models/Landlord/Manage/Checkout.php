@@ -29,12 +29,12 @@ class Checkout extends Model
 	 * @var array<string, string>
 	 */
 	protected $casts = [
-		'checkout_date'     => 'datetime',
-		'start_date'     => 'date',
-		'end_date'      => 'date',
-		'updated_at'        => 'datetime',
-		'created_at'        => 'datetime',
-		'status_code'         => LandlordCheckoutStatusEnum::class,
+		'checkout_date'	=> 'datetime',
+		'start_date'	=> 'date',
+		'end_date'		=> 'date',
+		'updated_at'	=> 'datetime',
+		'created_at'	=> 'datetime',
+		'status_code'	=> LandlordCheckoutStatusEnum::class,
 	];
 
 	/* ---------------- HasMany ---------------------- */

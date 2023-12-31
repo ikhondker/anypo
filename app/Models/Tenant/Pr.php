@@ -36,11 +36,11 @@ class Pr extends Model
 	 * @var array<string, string>
 	 */
 	protected $casts = [
-		'deleted_at'        => 'datetime',
-		'updated_at'        => 'datetime',
-		'created_at'        => 'datetime',
-		'status'            => PrStatusEnum::class,
-		'auth_status'       => AuthStatusEnum::class,
+		'deleted_at'	=> 'datetime',
+		'updated_at'	=> 'datetime',
+		'created_at'	=> 'datetime',
+		'status'		=> PrStatusEnum::class,
+		'auth_status'	=> AuthStatusEnum::class,
 	];
 
 

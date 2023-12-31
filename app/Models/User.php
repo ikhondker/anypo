@@ -85,12 +85,12 @@ class User extends Authenticatable implements MustVerifyEmail
 	 * @var array<string, string>
 	 */
 	protected $casts = [
-		'email_verified_at' => 'datetime',
-        'password' 			=> 'hashed',
-		'last_login_at'     => 'datetime',
-		'updated_at'        => 'datetime',
-		'created_at'        => 'datetime',
-		'role'              => UserRoleEnum::class
+		'email_verified_at'	=> 'datetime',
+		'password'			=> 'hashed',
+		'last_login_at'		=> 'datetime',
+		'updated_at'		=> 'datetime',
+		'created_at'		=> 'datetime',
+		'role'				=> UserRoleEnum::class
 	];
 
 

@@ -178,7 +178,7 @@ class DeptBudgetController extends Controller
 			$request->merge(['article_id'	=> $request->input('attach_dept_budget_id') ]);
 			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value  ]);
 			$attid = FileUpload::upload($request);
-			//$request->merge(['logo'       => $fileName ]);
+			//$request->merge(['logo'=> $fileName ]);
 		}
 
 		return redirect()->route('dept-budgets.show', $request->input('attach_dept_budget_id'))->with('success', 'File Uploaded successfully.');

@@ -170,8 +170,8 @@ class CreateTenant implements ShouldQueue
 		// make existing user admin if not admin
 		if ($checkout->existing_user) {
 			// for existing user  owner_id is already set in checkout for existing user SslCommerzPaymentController.index
-			$user           = User::where('id', $checkout->owner_id)->first();
-			$user->role     = UserRoleEnum::ADMIN->value;
+			$user			= User::where('id', $checkout->owner_id)->first();
+			$user->role		= UserRoleEnum::ADMIN->value;
 			$user->save();
 			Log::debug('Existing User Role updated for id=' . $user->id);
 			// Write event log
@@ -179,14 +179,14 @@ class CreateTenant implements ShouldQueue
 			$user_id = $checkout->owner_id;
 		} else {
 			// create new admin user			
-			$user               = new User();
-			$user->name         = $checkout->account_name;
-			$user->email        = $checkout->email;
-			$user->role         = UserRoleEnum::ADMIN->value;
-			$random_password    = Str::random(12);
-			$user->password     = bcrypt($random_password);
+			$user			= new User();
+			$user->name		= $checkout->account_name;
+			$user->email	= $checkout->email;
+			$user->role		= UserRoleEnum::ADMIN->value;
+			$random_password= Str::random(12);
+			$user->password	= bcrypt($random_password);
 			//TODO MUST comment
-			$user->password     = bcrypt('password');
+			$user->password	= bcrypt('password');
 			$user->save();
 
 			// update owner_id in checkout
@@ -217,8 +217,8 @@ class CreateTenant implements ShouldQueue
 		// Copy avatar.png to newly created tenant
 		$path = public_path("tenant\\".$subdir."\avatar");
 		Log::channel('bo')->info('Create Folder: '.$path);
-    	if(!File::isDirectory($path)){
-        	File::makeDirectory($path, 0644, true, true);
+		if(!File::isDirectory($path)){
+			File::makeDirectory($path, 0644, true, true);
 		} 
 		Log::channel('bo')->info('Copying avatar.png to '.$path);
 		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
@@ -246,23 +246,23 @@ class CreateTenant implements ShouldQueue
 
 		// create new Account
 		// id name tagline address1 address2 city state zip postcode country web fbpage lipage email cell user_count service_count enable logo created_by created_at updated_by updated_at
-		$account                    = new Account();
-		$account->name              = $checkout->account_name;
-		$account->email             = $checkout->email;
+		$account					= new Account();
+		$account->name				= $checkout->account_name;
+		$account->email				= $checkout->email;
 
-		$account->site              = $checkout->site;
+		$account->site				= $checkout->site;
 		$account->primary_product_id = $checkout->product_id;
-		$account->owner_id          = $checkout->owner_id;
+		$account->owner_id			= $checkout->owner_id;
 
-		$account->base_mnth         = $checkout->mnth;
-		$account->base_user         = $checkout->user;
-		$account->base_gb           = $checkout->gb;
-		$account->base_price        = $checkout->price;
+		$account->base_mnth			= $checkout->mnth;
+		$account->base_user			= $checkout->user;
+		$account->base_gb			= $checkout->gb;
+		$account->base_price		= $checkout->price;
 
-		$account->mnth              = $checkout->mnth;
-		$account->user              = $checkout->user;
-		$account->gb                = $checkout->gb;
-		$account->price         	= $checkout->price;
+		$account->mnth				= $checkout->mnth;
+		$account->user				= $checkout->user;
+		$account->gb				= $checkout->gb;
+		$account->price				= $checkout->price;
 
 		//Log::debug('$checkout->mnth=' . $checkout->mnth);
 		//Log::debug('$end date=' . now()->addMonth($checkout->mnth));
@@ -275,7 +275,7 @@ class CreateTenant implements ShouldQueue
 
 		$account->save();
 
-		//$account_id             = $account->id;
+		//$account_id		= $account->id;
 		Log::debug('Account Created id=' . $account->id);
 		// Write event log
 		LandlordEventLog::event('account', $account->id, 'create');
@@ -295,23 +295,23 @@ class CreateTenant implements ShouldQueue
 		// create new Service for this account
 		// id name account_id is_addon addon_type owner_id base_mnth base_user base_gb base_price mnth user gb price
 		// subtotal tax vat amount notes start_date end_date enable created_by created_at updated_by updated_at
-		$service                 = new Service();
+		$service				= new Service();
 
-		$service->product_id    = $checkout->product_id;
-		$service->name          = $checkout->product_name;
+		$service->product_id	= $checkout->product_id;
+		$service->name			= $checkout->product_name;
 
-		$service->account_id    = $checkout->account_id;
-		$service->owner_id      = $checkout->owner_id;
+		$service->account_id	= $checkout->account_id;
+		$service->owner_id		= $checkout->owner_id;
 
-		$service->mnth          = $checkout->mnth;
-		$service->user          = $checkout->user;
-		$service->gb            = $checkout->gb;
-		$service->price         = $checkout->price;
-		$service->start_date    = now();
+		$service->mnth			= $checkout->mnth;
+		$service->user			= $checkout->user;
+		$service->gb			= $checkout->gb;
+		$service->price			= $checkout->price;
+		$service->start_date	= now();
 
-		$service->end_date       = now()->addMonth($checkout->mnth);
+		$service->end_date		= now()->addMonth($checkout->mnth);
 		$service->save();
-		//$account_service_id             = $service->id;
+		//$account_service_id	= $service->id;
 
 		Log::debug('Account Service created id=' . $service->id);
 		LandlordEventLog::event('service', $service->id, 'create');
@@ -334,28 +334,28 @@ class CreateTenant implements ShouldQueue
 
 		// create new Invoice
 		// logic: create invoice from the next date, after current billed date
-		$invoice                = new Invoice();
+		$invoice				= new Invoice();
 
 		// get unique invoice_no
-		$invoice->invoice_no    = Bo::getInvoiceNo();
+		$invoice->invoice_no	= Bo::getInvoiceNo();
 
 		$invoice->invoice_date  = now();
 		//Log::channel('bo')->info('Account id='. $account_id.' last_bill_from_date '.$account->last_bill_from_date);
 
 		// this is the first bill for initial purchase
-		$invoice->invoice_type  = LandlordInvoiceTypeEnum::CHECKOUT->value;
-		$invoice->from_date     = $checkout->start_date;
-		$invoice->to_date       = $checkout->end_date;
+		$invoice->invoice_type	= LandlordInvoiceTypeEnum::CHECKOUT->value;
+		$invoice->from_date		= $checkout->start_date;
+		$invoice->to_date		= $checkout->end_date;
 		Log::channel('bo')->info('Account id=' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
 		//Log::channel('bo')->info('password='.$random_password);
 
-		$invoice->due_date      = $checkout->end_date;
-		$invoice->summary       = 'Invoice for ' . $checkout->account_name . ' for site' . $checkout->site;
-		$invoice->price         = $checkout->price;
-		$invoice->subtotal      = $checkout->price;
-		$invoice->amount        = $checkout->price; // TODO ??
-		$invoice->account_id    = $checkout->account_id;
-		$invoice->owner_id      = $checkout->owner_id;
+		$invoice->due_date		= $checkout->end_date;
+		$invoice->summary		= 'Invoice for ' . $checkout->account_name . ' for site' . $checkout->site;
+		$invoice->price			= $checkout->price;
+		$invoice->subtotal		= $checkout->price;
+		$invoice->amount		= $checkout->price; // TODO ??
+		$invoice->account_id	= $checkout->account_id;
+		$invoice->owner_id	= $checkout->owner_id;
 
 		// create invoice
 		$invoice->currency      = 'USD';
@@ -366,7 +366,7 @@ class CreateTenant implements ShouldQueue
 		LandlordEventLog::event('invoice', $invoice->id, 'create');
 
 		// post invoice creation update
-		$user           = User::where('id', $checkout->owner_id)->first();
+		$user		= User::where('id', $checkout->owner_id)->first();
 
 		// Invoice Created Notification
 		$user->notify(new InvoiceCreated($user, $invoice));
@@ -386,16 +386,16 @@ class CreateTenant implements ShouldQueue
 		// summary pay_date invoice_id account_id owner_id payment_method_id amount cheque_no payment_token reference_id notes status ip created_by created_at updated_by updated_at
 
 		// create payment
-		$payment                     = new Payment();
-		$payment->summary            = 'Payment for Invoice #' . $invoice->invoice_no;
-		$payment->pay_date           = now();
-		$payment->invoice_id         = $invoice->id;
-		$payment->account_id         = $invoice->account_id;
-		$payment->owner_id           = $invoice->owner_id; // Might be guest as well
-		$payment->payment_method_id  = PaymentMethodEnum::CARD->value;
-		$payment->amount             = $invoice->amount;
-		$payment->status_code        = LandlordPaymentStatusEnum::PAID->value;
-		//$payment->ip               = $request->ip(); // ERROR
+		$payment					= new Payment();
+		$payment->summary			= 'Payment for Invoice #' . $invoice->invoice_no;
+		$payment->pay_date			= now();
+		$payment->invoice_id		= $invoice->id;
+		$payment->account_id		= $invoice->account_id;
+		$payment->owner_id			= $invoice->owner_id; // Might be guest as well
+		$payment->payment_method_id	= PaymentMethodEnum::CARD->value;
+		$payment->amount			= $invoice->amount;
+		$payment->status_code		= LandlordPaymentStatusEnum::PAID->value;
+		//$payment->ip				= $request->ip(); // ERROR
 		$payment->save();
 
 		Log::debug('payment account id =' . $payment->account_id);
@@ -403,8 +403,8 @@ class CreateTenant implements ShouldQueue
 		LandlordEventLog::event('payment', $payment->id, 'create');
 
 		// update paid amount in invoice as paid
-		$invoice->status_code        = LandlordInvoiceStatusEnum::PAID->value;
-		$invoice->amount_paid        = $invoice->amount_paid + $payment->amount;
+		$invoice->status_code		= LandlordInvoiceStatusEnum::PAID->value;
+		$invoice->amount_paid		= $invoice->amount_paid + $payment->amount;
 		$invoice->save();
 		LandlordEventLog::event('invoice', $invoice->id, 'update', 'status', LandlordPaymentStatusEnum::PAID->value);
 

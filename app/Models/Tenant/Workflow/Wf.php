@@ -29,10 +29,10 @@ class Wf extends Model
 	 * @var array<string, string>
 	 */
 	protected $casts = [
-		'updated_at'        => 'datetime',
-		'created_at'        => 'datetime',
-		'wf_status'         => WfStatusEnum::class,
-		'auth_status'       => AuthStatusEnum::class
+		'updated_at'	=> 'datetime',
+		'created_at'	=> 'datetime',
+		'wf_status'		=> WfStatusEnum::class,
+		'auth_status'	=> AuthStatusEnum::class
 	];
 
 	/* ---------------- belongsTo ---------------------- */

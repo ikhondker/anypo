@@ -28,8 +28,8 @@ class Country extends Model
 	 * @var array<string, string>
 	 */
 	protected $casts = [
-		'updated_at'        => 'datetime',
-		'created_at'        => 'datetime',
+		'updated_at'	=> 'datetime',
+		'created_at'	=> 'datetime',
 	];
 
 	

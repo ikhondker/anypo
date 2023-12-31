@@ -42,12 +42,12 @@ class Invoice extends Model
 	];
 
 	protected $casts = [
-		'invoice_date'      => 'datetime',
-		'start_date'        => 'datetime',
-		'end_date'          => 'datetime',
-		'updated_at'        => 'datetime',
-		'created_at'        => 'datetime',
-		'status_code'       => LandlordInvoiceStatusEnum::class,
+		'invoice_date'	=> 'datetime',
+		'start_date'	=> 'datetime',
+		'end_date'		=> 'datetime',
+		'updated_at'	=> 'datetime',
+		'created_at'	=> 'datetime',
+		'status_code'	=> LandlordInvoiceStatusEnum::class,
 	];
 
 	/* ---------------- Scope ---------------------- */

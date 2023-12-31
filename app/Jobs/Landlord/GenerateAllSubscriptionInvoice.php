@@ -50,7 +50,7 @@ class GenerateAllSubscriptionInvoice implements ShouldQueue
      */
     public function handle(): void
     {
-        $setup = Setup::first();
+		 $setup = Setup::first();
 
 		// Create a test invoice
 		$invoice = new InvoiceController();
@@ -69,7 +69,7 @@ class GenerateAllSubscriptionInvoice implements ShouldQueue
 		$accounts = Account::
 			where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
 			->where('next_bill_generated', false )
-            //->where('id', 1005 )
+			     //->where('id', 1005 )
 			->orderBy('id', 'ASC')
 			->get();
 			
@@ -79,12 +79,12 @@ class GenerateAllSubscriptionInvoice implements ShouldQueue
 			if ($diff <= $setup->days_gen_bill) {
 				Log::debug('Generating Invoice for Account id=' . $account->id);
 				$invoice_id = $invoice->createSubscriptionInvoice($account->id,1);
-                if ($invoice_id <> 0) {
-                    Log::channel('bo')->info('Account id=' . $account->id . ' Invoice#' . $invoice_id . ' generated.');
-                } else {
-                    Log::channel('bo')->info('Account id=' . $account->id . ' Invoice creation failed.');
-                }
-            } else {
+				if ($invoice_id <> 0) {
+					Log::channel('bo')->info('Account id=' . $account->id . ' Invoice#' . $invoice_id . ' generated.');
+				} else {
+					Log::channel('bo')->info('Account id=' . $account->id . ' Invoice creation failed.');
+				}
+		} else {
 				Log::debug('skipped for Account id=' . $account->id);
 			}
 		}
