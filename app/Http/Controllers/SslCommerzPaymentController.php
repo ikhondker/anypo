@@ -73,9 +73,9 @@ class SslCommerzPaymentController extends Controller
 
 		if (auth()->check()) {
 			$request->validate([
-				'site'          => 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
-				//'name'          => 'required|max:100',
-				//'account_name'  => 'required|max:100|',
+				'site'			=> 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
+				//'name'		=> 'required|max:100',
+				//'account_name'=> 'required|max:100|',
 			],[
 				'site.required' => 'Site Name is Required!',
 				'site.unique'   => 'This site code is already in use. Please try another.',
@@ -83,10 +83,10 @@ class SslCommerzPaymentController extends Controller
 			]);
 		} else {
 			$request->validate([
-				'site'          => 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
-				//'name'          => 'required|max:100',
-				'email'         => 'required|email|max:100|unique:users,email',
-				'account_name'  => 'required|max:100|',
+				'site'			=> 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
+				//'name'		=> 'required|max:100',
+				'email'			=> 'required|email|max:100|unique:users,email',
+				'account_name'	=> 'required|max:100|',
 			],[
 				'site.required' => 'Site name is Required!',
 				'site.unique'   => 'This site code is already in use. Please try another.',
@@ -96,24 +96,24 @@ class SslCommerzPaymentController extends Controller
 		}
 
 		 // create checkout row
-		 $checkout                  = new Checkout;
-		 $checkout->checkout_date   = date('Y-m-d H:i:s');
-		 $checkout->site            = Str::lower($request->input('site'));
+		 $checkout					= new Checkout;
+		 $checkout->checkout_date	= date('Y-m-d H:i:s');
+		 $checkout->site			= Str::lower($request->input('site'));
 		 $checkout->account_name    = $request->input('account_name');
 
 		 if (auth()->check()) {
-			$checkout->existing_user   = true;
-			$checkout->owner_id        = auth()->user()->id;
-			$checkout->email           = auth()->user()->email;
-			$checkout->address1           = auth()->user()->address1;
-			$checkout->address2           = auth()->user()->address2;
-			$checkout->city           = auth()->user()->city;
-			$checkout->state           = auth()->user()->state;
-			$checkout->zip           = auth()->user()->zip;
-			$checkout->country           = auth()->user()->country;
+			$checkout->existing_user	= true;
+			$checkout->owner_id			= auth()->user()->id;
+			$checkout->email			= auth()->user()->email;
+			$checkout->address1			= auth()->user()->address1;
+			$checkout->address2			= auth()->user()->address2;
+			$checkout->city				= auth()->user()->city;
+			$checkout->state			= auth()->user()->state;
+			$checkout->zip				= auth()->user()->zip;
+			$checkout->country			= auth()->user()->country;
 		} else {
-			$checkout->existing_user   = false;
-			$checkout->email           = $request->input('email');
+			$checkout->existing_user	= false;
+			$checkout->email			= $request->input('email');
 		}
 
 		// get product
@@ -127,11 +127,11 @@ class SslCommerzPaymentController extends Controller
 		$checkout->user				= $product->user;
 		$checkout->gb				= $product->gb;
 
-		$checkout->start_date    = now();
-		$checkout->end_date      = now()->addMonth($product->mnth);
+		$checkout->start_date	= now();
+		$checkout->end_date		= now()->addMonth($product->mnth);
 
-		$checkout->status_code		= LandlordCheckoutStatusEnum::DRAFT->value;
-		$checkout->ip              = $request->ip();
+		$checkout->status_code	= LandlordCheckoutStatusEnum::DRAFT->value;
+		$checkout->ip			= $request->ip();
 		
 		$checkout->save();
 		$checkout_id				= $checkout->id;
@@ -145,35 +145,35 @@ class SslCommerzPaymentController extends Controller
 
 		$post_data = array();
 		$post_data['total_amount']  = $checkout->price ; # IQBALYou cant not pay less than 10
-		$post_data['currency']      = "USD";
-		$post_data['tran_id']       = uniqid(); // tran_id must be unique
+		$post_data['currency']		= "USD";
+		$post_data['tran_id']		= uniqid(); // tran_id must be unique
 
 		# CUSTOMER INFORMATION
-		$post_data['cus_name']      = $checkout->name;
-		$post_data['cus_email']     = $checkout->email;
-		$post_data['cus_add1']      = 'Customer Address';
-		$post_data['cus_add2']      = "";
-		$post_data['cus_city']      = "";
-		$post_data['cus_state']     = "";
-		$post_data['cus_postcode']  = "";
-		$post_data['cus_country']   = "Bangladesh";
-		$post_data['cus_phone']     = '8801XXXXXXXXX';
-		$post_data['cus_fax']       = "";
+		$post_data['cus_name']		= $checkout->name;
+		$post_data['cus_email']		= $checkout->email;
+		$post_data['cus_add1']		= 'Customer Address';
+		$post_data['cus_add2']		= "";
+		$post_data['cus_city']		= "";
+		$post_data['cus_state']		= "";
+		$post_data['cus_postcode']	= "";
+		$post_data['cus_country']	= "Bangladesh";
+		$post_data['cus_phone'] 	= '8801XXXXXXXXX';
+		$post_data['cus_fax']		= "";
 
 		# SHIPMENT INFORMATION
-		$post_data['ship_name']     = "Store Test";
-		$post_data['ship_add1']     = "Dhaka";
-		$post_data['ship_add2']     = "Dhaka";
-		$post_data['ship_city']     = "Dhaka";
-		$post_data['ship_state']    = "Dhaka";
-		$post_data['ship_postcode'] = "1000";
-		$post_data['ship_phone']    = "";
-		$post_data['ship_country']  = "Bangladesh";
+		$post_data['ship_name']		= "Store Test";
+		$post_data['ship_add1']		= "Dhaka";
+		$post_data['ship_add2']		= "Dhaka";
+		$post_data['ship_city']		= "Dhaka";
+		$post_data['ship_state']	= "Dhaka";
+		$post_data['ship_postcode']	= "1000";
+		$post_data['ship_phone']	= "";
+		$post_data['ship_country']	= "Bangladesh";
 
-		$post_data['shipping_method']   = "NO";
-		$post_data['product_name']      = "Computer";
-		$post_data['product_category']  = "Goods";
-		$post_data['product_profile']   = "physical-goods";
+		$post_data['shipping_method']	= "NO";
+		$post_data['product_name']		= "Computer";
+		$post_data['product_category']	= "Goods";
+		$post_data['product_profile']	= "physical-goods";
 
 		# OPTIONAL PARAMETERS
 		$post_data['value_a'] = "CHECKOUT";   /* IQBAL */
@@ -212,64 +212,64 @@ class SslCommerzPaymentController extends Controller
 		}
 
 		 // create payment
-		 $payment                  = new Payment;
-		 $payment->pay_date             = date('Y-m-d H:i:s');
-		 $payment->invoice_id           = $invoice->id;
-		 $payment->account_id           = $invoice->account_id;
-		 $payment->summary              = $invoice->summary;
-		 $payment->payment_method_id    = PaymentMethodEnum::CARD->value;
-		 $payment->amount               = $invoice->amount;
-		 $payment->ip                   = $request->ip();
+		 $payment						= new Payment;
+		 $payment->pay_date				= date('Y-m-d H:i:s');
+		 $payment->invoice_id			= $invoice->id;
+		 $payment->account_id			= $invoice->account_id;
+		 $payment->summary				= $invoice->summary;
+		 $payment->payment_method_id	= PaymentMethodEnum::CARD->value;
+		 $payment->amount				= $invoice->amount;
+		 $payment->ip					= $request->ip();
 		 if (auth()->check()) {
-			$payment->owner_id        = auth()->user()->id;
+			$payment->owner_id			= auth()->user()->id;
 		} else {
 			//
 		}
-		$payment->status_code              = LandlordPaymentStatusEnum::DRAFT->value;
+		$payment->status_code			= LandlordPaymentStatusEnum::DRAFT->value;
 		$payment->save();
-		$payment_id               = $payment->id;
+		$payment_id						= $payment->id;
 
 		# Here you have to receive all the order data to initate the payment.
 		# Let's say, your oder transaction informations are saving in a table called "orders"
 		# In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
 		$post_data = array();
-		$post_data['total_amount']  = $payment->amount ; # IQBALYou cant not pay less than 10
-		$post_data['currency']      = "USD";
-		$post_data['tran_id']       = uniqid(); // tran_id must be unique
+		$post_data['total_amount']	= $payment->amount ; # IQBALYou cant not pay less than 10
+		$post_data['currency']		= "USD";
+		$post_data['tran_id']		= uniqid(); // tran_id must be unique
 
 		# CUSTOMER INFORMATION
-		$post_data['cus_name']      = 'TODO';  //TODO
-		$post_data['cus_email']     = 'you@example.com';  //TODO
-		$post_data['cus_add1']      = 'Customer Address';
-		$post_data['cus_add2']      = "";
-		$post_data['cus_city']      = "";
-		$post_data['cus_state']     = "";
-		$post_data['cus_postcode']  = "";
-		$post_data['cus_country']   = "Bangladesh";
-		$post_data['cus_phone']     = '8801XXXXXXXXX';
-		$post_data['cus_fax']       = "";
+		$post_data['cus_name']		= 'TODO';  //TODO
+		$post_data['cus_email']		= 'you@example.com';  //TODO
+		$post_data['cus_add1']		= 'Customer Address';
+		$post_data['cus_add2']		= "";
+		$post_data['cus_city']		= "";
+		$post_data['cus_state']		= "";
+		$post_data['cus_postcode']	= "";
+		$post_data['cus_country']	= "Bangladesh";
+		$post_data['cus_phone']		= '8801XXXXXXXXX';
+		$post_data['cus_fax']		= "";
 
 		# SHIPMENT INFORMATION
-		$post_data['ship_name']     = "Store Test";
-		$post_data['ship_add1']     = "Dhaka";
-		$post_data['ship_add2']     = "Dhaka";
-		$post_data['ship_city']     = "Dhaka";
-		$post_data['ship_state']    = "Dhaka";
-		$post_data['ship_postcode'] = "1000";
-		$post_data['ship_phone']    = "";
-		$post_data['ship_country']  = "Bangladesh";
+		$post_data['ship_name']		= "Store Test";
+		$post_data['ship_add1']		= "Dhaka";
+		$post_data['ship_add2']		= "Dhaka";
+		$post_data['ship_city']		= "Dhaka";
+		$post_data['ship_state']	= "Dhaka";
+		$post_data['ship_postcode']	= "1000";
+		$post_data['ship_phone']	= "";
+		$post_data['ship_country']	= "Bangladesh";
 
-		$post_data['shipping_method']   = "NO";
-		$post_data['product_name']      = "Computer";
-		$post_data['product_category']  = "Goods";
-		$post_data['product_profile']   = "physical-goods";
+		$post_data['shipping_method']	= "NO";
+		$post_data['product_name']		= "Computer";
+		$post_data['product_category']	= "Goods";
+		$post_data['product_profile']	= "physical-goods";
 
 		# OPTIONAL PARAMETERS
-		$post_data['value_a']       = "PAYMENT";   /* IQBAL */
-		$post_data['value_b']       = $payment_id; /* IQBAL */
-		$post_data['value_c']       = "ref003";
-		$post_data['value_d']       = "ref004";
+		$post_data['value_a']		= "PAYMENT";   /* IQBAL */
+		$post_data['value_b']		= $payment_id; /* IQBAL */
+		$post_data['value_c']		= "ref003";
+		$post_data['value_d']		= "ref004";
 
 		$sslc = new SslCommerzNotification();
 		# initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payment gateway here )
@@ -289,7 +289,7 @@ class SslCommerzPaymentController extends Controller
 		//Log::debug("I AM HERE INSIDE payment");
 
 		// get account
-		$account            = Account::where('id', auth()->user()->account_id)->first();
+		$account		= Account::where('id', auth()->user()->account_id)->first();
 
 		// get addon detail
 		$addon = Product::where('id', $request->input('addon_id') )->first();
@@ -299,21 +299,21 @@ class SslCommerzPaymentController extends Controller
 		//$invoice = Invoice::where('id', $request->input('invoice_id') )->first();
 
 		// create service row
-		$service                  = new Service;
+		$service				= new Service;
 
-		$service->addon         = true;
-		$service->product_id    = $addon->id;
-		$service->name          = $addon->name;
+		$service->addon			= true;
+		$service->product_id	= $addon->id;
+		$service->name			= $addon->name;
 		$service->account_id    = $account->id;
-		$service->owner_id      = $account->owner_id;
-		$service->mnth          = $addon->mnth;
-		$service->user          = $addon->user;
-		$service->gb            = $addon->gb;
-		$service->price         = $payable_addon;
-		$service->start_date    = now();
-		$service->status_code   = LandlordServiceStatusEnum::DRAFT->value;
+		$service->owner_id		= $account->owner_id;
+		$service->mnth			= $addon->mnth;
+		$service->user			= $addon->user;
+		$service->gb			= $addon->gb;
+		$service->price			= $payable_addon;
+		$service->start_date	= now();
+		$service->status_code	= LandlordServiceStatusEnum::DRAFT->value;
 		$service->save();
-		$service_id               = $service->id;
+		$service_id				= $service->id;
 
 		Log::debug('New Service added =' . $service->id);
 		LandlordEventLog::event('service', $service->id, 'created');
@@ -326,42 +326,42 @@ class SslCommerzPaymentController extends Controller
 		# In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
 		$post_data = array();
-		$post_data['total_amount']  = $payable_addon ; # IQBALYou cant not pay less than 10
-		$post_data['currency']      = "USD";
-		$post_data['tran_id']       = uniqid(); // tran_id must be unique
+		$post_data['total_amount']	= $payable_addon ; # IQBALYou cant not pay less than 10
+		$post_data['currency']		= "USD";
+		$post_data['tran_id']		= uniqid(); // tran_id must be unique
 
 		# CUSTOMER INFORMATION
-		$post_data['cus_name']      = 'TODO';  //TODO
-		$post_data['cus_email']     = 'you@example.com';  //TODO
-		$post_data['cus_add1']      = 'Customer Address';
-		$post_data['cus_add2']      = "";
-		$post_data['cus_city']      = "";
-		$post_data['cus_state']     = "";
-		$post_data['cus_postcode']  = "";
-		$post_data['cus_country']   = "Bangladesh";
-		$post_data['cus_phone']     = '8801XXXXXXXXX';
-		$post_data['cus_fax']       = "";
+		$post_data['cus_name']		= 'TODO';  //TODO
+		$post_data['cus_email']		= 'you@example.com';  //TODO
+		$post_data['cus_add1']		= 'Customer Address';
+		$post_data['cus_add2']		= "";
+		$post_data['cus_city']		= "";
+		$post_data['cus_state']		= "";
+		$post_data['cus_postcode']	= "";
+		$post_data['cus_country']	= "Bangladesh";
+		$post_data['cus_phone']		= '8801XXXXXXXXX';
+		$post_data['cus_fax']	= "";
 
 		# SHIPMENT INFORMATION
-		$post_data['ship_name']     = "Store Test";
-		$post_data['ship_add1']     = "Dhaka";
-		$post_data['ship_add2']     = "Dhaka";
-		$post_data['ship_city']     = "Dhaka";
-		$post_data['ship_state']    = "Dhaka";
-		$post_data['ship_postcode'] = "1000";
-		$post_data['ship_phone']    = "";
-		$post_data['ship_country']  = "Bangladesh";
+		$post_data['ship_name']		= "Store Test";
+		$post_data['ship_add1']		= "Dhaka";
+		$post_data['ship_add2']		= "Dhaka";
+		$post_data['ship_city']		= "Dhaka";
+		$post_data['ship_state']	= "Dhaka";
+		$post_data['ship_postcode']	= "1000";
+		$post_data['ship_phone']	= "";
+		$post_data['ship_country']	= "Bangladesh";
 
-		$post_data['shipping_method']   = "NO";
-		$post_data['product_name']      = "Computer";
-		$post_data['product_category']  = "Goods";
-		$post_data['product_profile']   = "physical-goods";
+		$post_data['shipping_method']	= "NO";
+		$post_data['product_name']		= "Computer";
+		$post_data['product_category']	= "Goods";
+		$post_data['product_profile']	= "physical-goods";
 
 		# OPTIONAL PARAMETERS
-		$post_data['value_a']       = "ADDON";   /* IQBAL */
-		$post_data['value_b']       = $service_id; /* IQBAL */
-		$post_data['value_c']       = "ref003";
-		$post_data['value_d']       = "ref004";
+		$post_data['value_a']		= "ADDON";   /* IQBAL */
+		$post_data['value_b']		= $service_id; /* IQBAL */
+		$post_data['value_c']		= "ref003";
+		$post_data['value_d']		= "ref004";
 
 		$sslc = new SslCommerzNotification();
 		# initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
@@ -377,7 +377,7 @@ class SslCommerzPaymentController extends Controller
 	// when payment return success, landed here
 	public function success(Request $request)
 	{
-		//$tran_id        = $request->input('tran_id');
+		//$tran_id	= $request->input('tran_id');
 
 		$trx_type   =  $request->input('value_a');
 		$trx_id     =  $request->input('value_b');

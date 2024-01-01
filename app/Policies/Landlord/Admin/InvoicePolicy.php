@@ -88,9 +88,9 @@ class InvoicePolicy
 	 */
 	public function pdfInvoice(User $user, Invoice $invoice): Response
 	{
-        Log::debug("inside pdfInvoice= ". $invoice->id );
-        Log::info(json_encode($invoice)); 
-        //Log::info(json_encode($user)); 
+		Log::debug("inside pdfInvoice= ". $invoice->id );
+		Log::info(json_encode($invoice)); 
+		//Log::info(json_encode($user)); 
 
 		return (
 			(($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isBackOffice()

@@ -18,6 +18,19 @@
  * ==================================================================================
 */
 
+// templates 
+# 1. Enums
+# 2. Helpers
+# 3. Models
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Packages
+# 8. Exceptions
+# 9. Events
+# 10 Seeded
+
+
 namespace App\Http\Controllers\Tenant\Admin;
 
 use App\Http\Controllers\Controller;

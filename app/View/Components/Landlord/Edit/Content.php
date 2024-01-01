@@ -8,19 +8,19 @@ use Illuminate\View\Component;
 
 class Content extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(public string $value='')
-    {
-        //
-    }
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct(public string $value='')
+	{
+		//
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.landlord.edit.content');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.landlord.edit.content');
+	}
 }

@@ -19,8 +19,8 @@ class All extends Component
 	 */
 	public function __construct($entity, $aid)
 	{
-		$this->entity   = $entity;
-		$this->aid       = $aid;
+		$this->entity	= $entity;
+		$this->aid		= $aid;
 		$this->attachments = Attachment::where('entity', $entity)->where('article_id', $aid)->get()->all();
 	}
 

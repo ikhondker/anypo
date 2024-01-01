@@ -79,11 +79,11 @@ class RegisterController extends Controller
 	protected function validator(array $data)
 	{
 		return Validator::make($data, [
-			'name'      => ['required', 'string', 'max:255'],
-			'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
-			'password'  => ['required', 'string', 'min:8', 'confirmed'],
-			'password_confirmation'  => ['required', 'string', 'min:8'],
-			'terms'     => 'accepted'
+			'name'		=> ['required', 'string', 'max:255'],
+			'email'		=> ['required', 'string', 'email', 'max:255', 'unique:users'],
+			'password'	=> ['required', 'string', 'min:8', 'confirmed'],
+			'password_confirmation'	=> ['required', 'string', 'min:8'],
+			'terms'		=> 'accepted'
 		]);
 	}
 
@@ -108,11 +108,11 @@ class RegisterController extends Controller
 
 		// uncomment check tenant or landlord
 		$user = User::create([
-			'name'      => $data['name'],
-			'email'     => $data['email'],
+			'name'		=> $data['name'],
+			'email'		=> $data['email'],
 			//'email_verified_at'     => NOW(),   //MUST Comment
-			'role'      => UserRoleEnum::USER->value,
-			'password'  => Hash::make($data['password']),
+			'role'		=> UserRoleEnum::USER->value,
+			'password'	=> Hash::make($data['password']),
 		]);
 
 		// Send notification on new user registration

@@ -54,12 +54,12 @@ class TestController extends Controller
 		});
 		// Write event log
 		Log::debug('Seeder run for tenant=' . $tenant->id);
-		
+
 		exit;
 
 
 
-		$subdir ='demo2';
+		$subdir = 'demo2';
 		// copy logo and avatar default files
 		//$service_id = self::copyCheckoutFiles(1004);
 		exit;
@@ -67,39 +67,39 @@ class TestController extends Controller
 
 
 		// Copy avatar.png to newly created tenant
-		$path = public_path("ytenants\\".$subdir."\avatar");
-    	if(!File::isDirectory($path)){
-			 	File::makeDirectory($path, 0644, true, true);
-		}
-		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
-
-		// Copy logo.png to newly created tenant
-		$path = public_path("ytenants\\".$subdir."\logo");
-		if(!File::isDirectory($path)){
+		$path = public_path("ytenants\\" . $subdir . "\avatar");
+		if (!File::isDirectory($path)) {
 			File::makeDirectory($path, 0644, true, true);
 		}
-		File::copy(public_path('assets\logo\logo.png'), $path.'\logo.png');
-		dd('Copy File done at'.now().'.');
+		File::copy(public_path('assets\avatar\avatar.png'), $path . '\avatar.png');
+
+		// Copy logo.png to newly created tenant
+		$path = public_path("ytenants\\" . $subdir . "\logo");
+		if (!File::isDirectory($path)) {
+			File::makeDirectory($path, 0644, true, true);
+		}
+		File::copy(public_path('assets\logo\logo.png'), $path . '\logo.png');
+		dd('Copy File done at' . now() . '.');
 
 
 		//Log::debug("path a= ".public_path('assets\avatar\avatar.png') );
-		Log::debug("path = ".$path  );
+		Log::debug("path = " . $path);
 		//File::copy(public_path('assets\avatar\avatar.png'), public_path('xtenants\demo1\avatar\avatar.png'));
-		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
+		File::copy(public_path('assets\avatar\avatar.png'), $path . '\avatar.png');
 
 		$file = storage_path('app/file.zip');
 		$destination = public_path('files/file.zip');
 		//Storage::copy($file,$destination);
-		Log::debug("source= ".$file );
-		Log::debug("destination = ". $destination);
+		Log::debug("source= " . $file);
+		Log::debug("destination = " . $destination);
 
 		//File::copy(public_path('assets\avatar\avatar.png'), public_path('xtenants/demo1/avatar/avatar.png'));
 		//Log::debug("path l= ".public_path('assets\logo\logo.png') );
 		//File::copy(public_path('assets\logo\logo.png'), public_path('xtenants/demo1/logo/avatar.png'));
-        dd('Copy File done at'.now().'.');
+		dd('Copy File done at' . now() . '.');
 
 
-		Log::debug("app.names= ".config('app.name') );
+		Log::debug("app.names= " . config('app.name'));
 		return redirect('/home')->with('success', 'Files Copied');
 		exit;
 
@@ -108,12 +108,12 @@ class TestController extends Controller
 		//return redirect('/home')->with('success', 'Tenant created 1');
 		//exit;
 
-		Log::debug("app.names= ".config('app.name') );
-		Log::debug("app.domain= ".config('app.domain') );
-		Log::debug("app.url= ".config('app.url') );
-		Log::debug("central_domains= ".config('bo.landlord_domain') );
+		Log::debug("app.names= " . config('app.name'));
+		Log::debug("app.domain= " . config('app.domain'));
+		Log::debug("app.url= " . config('app.url'));
+		Log::debug("central_domains= " . config('bo.landlord_domain'));
 
-		return view('landlord.pages.info')->with('title','Transaction Successful!')->with('msg','Thank you for purchasing '.config('app.name').' service.
+		return view('landlord.pages.info')->with('title', 'Transaction Successful!')->with('msg', 'Thank you for purchasing ' . config('app.name') . ' service.
 		We have sent the login and other details to your email address. Please check your email.');
 
 		return redirect('/home')->with('success', 'Tenant created 1');
@@ -169,16 +169,17 @@ class TestController extends Controller
 		$tenant = Tenant::find('demo1');
 		//tenancy()->initialize($tenant);
 		// create your user for tenant here
-		$x = $tenant->run(function($tenant){
-			Log::debug('Admin User Creation inside tenant context');
-			// create admin user in newly created tenant
+		$x = $tenant->run(
+			function ($tenant) {
+				Log::debug('Admin User Creation inside tenant context');
+				// create admin user in newly created tenant
 
-			// $user = User::create([
-			// 	'name' 		=> 'John Doe',
-			// 	'email' 	=> 'john3@example.com',
-			// 	'password' 	=> Hash::make($random_password),
-			// ]);
-			// Log::debug('User Created id=' . $user->id);
+				// $user = User::create([
+				// 	'name' 		=> 'John Doe',
+				// 	'email' 	=> 'john3@example.com',
+				// 	'password' 	=> Hash::make($random_password),
+				// ]);
+				// Log::debug('User Created id=' . $user->id);
 				Log::debug('Tenant random_password =' . $tenant);
 				return 99;
 			}
@@ -186,7 +187,7 @@ class TestController extends Controller
 		//Log::debug('Admin User Created by job');
 		//tenancy()->end();
 
-		Log::debug('x= = '.$x);
+		Log::debug('x= = ' . $x);
 		return redirect('/home')->with('success', 'Admin User Created created');
 		exit;
 
@@ -309,25 +310,25 @@ class TestController extends Controller
 	{
 		Log::channel('bo')->info('Copying Default Logo and Avatar png copied.');
 		$checkout 		= Checkout::where('id', $checkout_id)->first();
-		$subdir 		=$checkout->site;
+		$subdir 		= $checkout->site;
 
 		// Copy avatar.png to newly created tenant
-		$path = public_path("tenant\\".$subdir."\avatar");
-		Log::channel('bo')->info('Create Folder: '.$path);
-    	if(!File::isDirectory($path)){
-        	File::makeDirectory($path, 0644, true, true);
-		}
-		Log::channel('bo')->info('Copying avatar.png to '.$path);
-		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
-
-		// Copy logo.png to newly created tenant
-		$path = public_path("tenants\\".$subdir."\logo");
-		Log::channel('bo')->info('Create Folder: '.$path);
-		if(!File::isDirectory($path)){
+		$path = public_path("tenant\\" . $subdir . "\avatar");
+		Log::channel('bo')->info('Create Folder: ' . $path);
+		if (!File::isDirectory($path)) {
 			File::makeDirectory($path, 0644, true, true);
 		}
-		Log::channel('bo')->info('Copying logo.png to '.$path);
-		File::copy(public_path('assets\logo\logo.png'), $path.'\logo.png');
+		Log::channel('bo')->info('Copying avatar.png to ' . $path);
+		File::copy(public_path('assets\avatar\avatar.png'), $path . '\avatar.png');
+
+		// Copy logo.png to newly created tenant
+		$path = public_path("tenants\\" . $subdir . "\logo");
+		Log::channel('bo')->info('Create Folder: ' . $path);
+		if (!File::isDirectory($path)) {
+			File::makeDirectory($path, 0644, true, true);
+		}
+		Log::channel('bo')->info('Copying logo.png to ' . $path);
+		File::copy(public_path('assets\logo\logo.png'), $path . '\logo.png');
 
 		Log::channel('bo')->info('Default Logo and Avatar png copied.');
 		return 0;

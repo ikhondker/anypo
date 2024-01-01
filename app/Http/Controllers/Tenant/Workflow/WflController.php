@@ -127,17 +127,17 @@ class WflController extends Controller
 
 			// get and update wf record
 			$wf = Wf::where('id', $wfl->wf_id)->first();
-			$wf->auth_status    = $auth_status;
-			$wf->wf_status      = WfStatusEnum::CLOSED->value;
+			$wf->auth_status	= $auth_status;
+			$wf->wf_status		= WfStatusEnum::CLOSED->value;
 			$wf->save();
 
 			// update related entity status
 			switch($wf->entity) {
 				case('PR'):
 					$pr = Pr::where('id', $wf->article_id)->first();
-					$pr->auth_status    = $auth_status;
-					$pr->auth_date      = date('Y-m-d H:i:s');
-					$pr->auth_userid    = auth()->user()->id;
+					$pr->auth_status	= $auth_status;
+					$pr->auth_date		= date('Y-m-d H:i:s');
+					$pr->auth_userid	= auth()->user()->id;
 					$pr->save();
 
 					// confirm budget
@@ -152,9 +152,9 @@ class WflController extends Controller
 					break;
 				case('PO '):
 					$po = Po::where('id', $wf->article_id)->first();
-					$po->auth_status    = $auth_status;
-					$po->auth_date      = date('Y-m-d H:i:s');
-					$po->auth_userid    = auth()->user()->id;
+					$po->auth_status	= $auth_status;
+					$po->auth_date		= date('Y-m-d H:i:s');
+					$po->auth_userid	= auth()->user()->id;
 					$po->save();
 					break;
 				default:

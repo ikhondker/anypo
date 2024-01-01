@@ -24,11 +24,11 @@ class Actions extends Component
 	 */
 	public function __construct($object, $id=1, $show = true, $edit = true, $enable = false)
 	{
-		$this->object   = $object;
-		$this->id       = $id;
-		$this->show     = $show; 
-		$this->edit     = $edit; 
-		$this->enable   = $enable; 
+		$this->object	= $object;
+		$this->id		= $id;
+		$this->show		= $show; 
+		$this->edit		= $edit; 
+		$this->enable	= $enable; 
 
 		//$this->route = Str::lower(Str::plural($object));
 		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));

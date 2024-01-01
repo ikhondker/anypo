@@ -42,7 +42,7 @@ class ViewServiceProvider extends ServiceProvider
 
 		view()->composer('layouts.landlord-app', function ($view) {
 			$raw_route_name = \Request::route()->getName();
-			$menu                 = new Menu;
+			$menu	= new Menu;
 			//Log::debug("current_route_name =".$raw_route_name);
 			try {
 				$menu = Menu::where('raw_route_name',$raw_route_name)
@@ -50,9 +50,9 @@ class ViewServiceProvider extends ServiceProvider
 					->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
 				// Log::debug("node_name not Found! raw_route_name =".$raw_route_name);
-				$menu->raw_route_name   = $raw_route_name;
-				$menu->route_name       = $raw_route_name;
-				//$menu->node_name        = '';
+				$menu->raw_route_name	= $raw_route_name;
+				$menu->route_name		= $raw_route_name;
+				//$menu->node_name		= '';
 			}
 			$view->with('_route_name', $menu->route_name)->with('_access', $menu->access);
 		});
@@ -73,7 +73,7 @@ class ViewServiceProvider extends ServiceProvider
 
 		view()->composer('layouts.app', function ($view) {
 			$raw_route_name = \Request::route()->getName();
-			$menu                 = new Menu;
+			$menu	= new Menu;
 			//Log::debug("current_route_name =".$current_route_name);
 			try {
 				$menu = Menu::where('raw_route_name',$raw_route_name)
@@ -81,9 +81,9 @@ class ViewServiceProvider extends ServiceProvider
 					->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
 				// Log::debug("node_name not Found! raw_route_name =".$raw_route_name);
-				$menu->raw_route_name   = $raw_route_name;
-				$menu->route_name       = $raw_route_name;
-				$menu->node_name        = '';
+				$menu->raw_route_name	= $raw_route_name;
+				$menu->route_name		= $raw_route_name;
+				$menu->node_name		= '';
 			}
 			$view->with('_node_name', $menu->node_name)->with('_route_name', $menu->route_name);
 		});

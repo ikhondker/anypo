@@ -266,12 +266,12 @@ class CreateTenant implements ShouldQueue
 
 		//Log::debug('$checkout->mnth=' . $checkout->mnth);
 		//Log::debug('$end date=' . now()->addMonth($checkout->mnth));
-		$account->start_date    	= now();
-		$account->end_date      	= now()->addMonth($checkout->mnth);
+		$account->start_date		= now();
+		$account->end_date			= now()->addMonth($checkout->mnth);
 		// defaulted
-		$account->next_bill_generated    = false;
-		$account->next_invoice_no    = 0;
-		$account->last_bill_date    = now();;
+		$account->next_bill_generated	= false;
+		$account->next_invoice_no		= 0;
+		$account->last_bill_date		= now();;
 
 		$account->save();
 
@@ -457,12 +457,12 @@ class CreateTenant implements ShouldQueue
 
 			// create admin user in newly created tenant
 			$user = User::create([
-				'name' 		=> $account_name,
-				'email' 	=> $email,
+				'name'		=> $account_name,
+				'email'		=> $email,
 				'email_verified_at'	=> NOW(),   // TODO this is not verified Already Verified in tenant
-				'role'      => \App\Enum\UserRoleEnum::ADMIN->value,
-				'password' 	=> Hash::make($random_password),
-				'enable' 	=> true,
+				'role'		=> \App\Enum\UserRoleEnum::ADMIN->value,
+				'password'	=> Hash::make($random_password),
+				'enable'	=> true,
 				//'password' 	=> bcrypt($random_password),
 
 			]);

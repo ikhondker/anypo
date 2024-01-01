@@ -21,8 +21,8 @@ class Submit extends Component
 	 */
 	public function __construct($object, $id=1)
 	{
-		$this->object   = $object;
-		$this->id       = $id;
+		$this->object	= $object;
+		$this->id		= $id;
 
 		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
 		$this->title = 'Submit '.$object;

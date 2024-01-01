@@ -16,7 +16,7 @@ class Enable extends Component
 	 */
 	public function __construct($enable = true)
 	{
-		$this->enable       = $enable;
+		$this->enable	= $enable;
 	}
 
 	/**

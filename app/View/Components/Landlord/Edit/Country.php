@@ -8,21 +8,21 @@ use Illuminate\View\Component;
 
 class Country extends Component
 {
-    public $countries;
+	public $countries;
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(public string $value='')
-    {
-        $this->countries = \App\Models\Landlord\Lookup\Country::getAll();
-    }
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct(public string $value='')
+	{
+		$this->countries = \App\Models\Landlord\Lookup\Country::getAll();
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.landlord.edit.country');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.landlord.edit.country');
+	}
 }

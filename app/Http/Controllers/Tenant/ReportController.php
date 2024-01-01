@@ -238,10 +238,10 @@ class ReportController extends Controller
 	public function stocks()
 	{
 		$data = [
-			'title'     => 'On-Hand Stock Report',
-			'date'      => date('m/d/Y'),
-			'items'  => Item::all(),
-			'total'     => Item::all()->sum('price'),
+			'title'		=> 'On-Hand Stock Report',
+			'date'		=> date('m/d/Y'),
+			'items'		=> Item::all(),
+			'total'		=> Item::all()->sum('price'),
 			//'settings'  => Setting::first()
 		];
 

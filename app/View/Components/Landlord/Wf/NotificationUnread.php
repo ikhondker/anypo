@@ -8,25 +8,25 @@ use Illuminate\View\Component;
 
 class NotificationUnread extends Component
 {
-    public $notifications;
+	public $notifications;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->notifications = auth()->user()->unreadNotifications; 
-    }
+	/**
+	 * Create a new component instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->notifications = auth()->user()->unreadNotifications; 
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.landlord.wf.notifications');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 *
+	 * @return \Illuminate\Contracts\View\View|\Closure|string
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.landlord.wf.notifications');
+	}
 }

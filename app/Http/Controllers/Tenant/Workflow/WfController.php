@@ -160,7 +160,7 @@ class WfController extends Controller
 		// check if pr status only in-process
 
 		// update PR header
-		// $pr             = Pr::where('id', $request->input('pr_id'))->firstOrFail();
+		// $pr	= Pr::where('id', $request->input('pr_id'))->firstOrFail();
 		// if ($pr->auth_status->value <> AuthStatusEnum::INPROCESS->value){
 		//     return back()->withError("PR#".$request->input('pr_id')." is not in IN-PROCESS status!")->withInput();
 		// }

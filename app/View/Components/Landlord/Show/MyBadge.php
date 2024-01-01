@@ -8,32 +8,32 @@ use Illuminate\View\Component;
 
 class MyBadge extends Component
 {
-    //public $label;
-    //public $value;
+	//public $label;
+	//public $value;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct(
-        public string $value,
-        public string $badge ="info",
-        public string $label='Name',
-        )
-    {
-        //$this->label = ($label == '')? 'Name' : $label;
-        //$this->value = $value;
+	/**
+	 * Create a new component instance.
+	 *
+	 * @return void
+	 */
+	public function __construct(
+		public string $value,
+		public string $badge ="info",
+		public string $label='Name',
+		)
+	{
+		//$this->label = ($label == '')? 'Name' : $label;
+		//$this->value = $value;
 
-    }
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.landlord.show.my-badge');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 *
+	 * @return \Illuminate\Contracts\View\View|\Closure|string
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.landlord.show.my-badge');
+	}
 }

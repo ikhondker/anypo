@@ -25,7 +25,7 @@ class UserPolicy
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -34,7 +34,7 @@ class UserPolicy
 		//
 	}
 
-	// Only back office users can view all accounts 
+	// Only back office users can view all accounts
 	public function viewAll(User $user): Response
 	{
 		return $user->isBackOffice()
@@ -48,10 +48,10 @@ class UserPolicy
 	 */
 	public function view(User $user, User $model): Response
 	{
-		
+
 		if (tenant('id') == ''){
 
-			// owner, account admin and back office users can view ticket 
+			// owner, account admin and back office users can view ticket
 			if ($user->role->value == UserRoleEnum::USER->value) {
 				return ($user->id == $model->id)
 					? Response::allow()
@@ -65,7 +65,7 @@ class UserPolicy
 						? Response::allow()
 						: Response::deny(config('bo.MSG_DENY'));
 			} else {
-				return ( false ) 
+				return ( false )
 				? Response::allow()
 				: Response::deny(config('bo.MSG_DENY'));
 			}
@@ -116,7 +116,7 @@ class UserPolicy
 	{
 
 		if (tenant('id') == ''){
-			// owner, account admin and back office users can view ticket 
+			// owner, account admin and back office users can view ticket
 			if ($user->role->value == UserRoleEnum::USER->value) {
 				// user is allowed to update only own
 				return ($user->id == $model->id)
@@ -131,7 +131,7 @@ class UserPolicy
 						? Response::allow()
 						: Response::deny(config('bo.MSG_DENY'));
 			} else {
-				return ( false ) 
+				return ( false )
 				? Response::allow()
 				: Response::deny(config('bo.MSG_DENY'));
 			}
@@ -142,10 +142,10 @@ class UserPolicy
 					? Response::allow()
 					: Response::deny(config('akk.MSG_DENY'));
 			} else {
-				// admin can edit own and others 
+				// admin can edit own and others
 				return ( $user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isBackOffice($user->role->value) || ($user->id === $model->id) )
 				? Response::allow()
-				: Response::deny(config('akk.MSG_DENY'));        
+				: Response::deny(config('akk.MSG_DENY'));
 			}
 		}
 
@@ -176,7 +176,7 @@ class UserPolicy
 						? Response::allow()
 						: Response::deny(config('bo.MSG_DENY'));
 			} else {
-				return ( false ) 
+				return ( false )
 				? Response::allow()
 				: Response::deny(config('bo.MSG_DENY'));
 			}
@@ -189,23 +189,23 @@ class UserPolicy
 			} else if ($user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isBackOffice($user->role->value)) {
 				return ( true )
 					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));    
+					: Response::deny(config('akk.MSG_DENY'));
 			} else {
 				return ( $user->id === $model->id )
 					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));        
+					: Response::deny(config('akk.MSG_DENY'));
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function delete(User $user, User $model): Response
 	{
 	   //  only back-office can disable seeded users
-	
+
 	   if (tenant('id') == ''){
 			//  Admin user for current account users only
 			// stop deactivating himself
@@ -218,7 +218,7 @@ class UserPolicy
 						? Response::allow()
 						: Response::deny(config('bo.MSG_DENY'));
 			} else {
-				return ( false ) 
+				return ( false )
 				? Response::allow()
 				: Response::deny(config('bo.MSG_DENY'));
 			}
@@ -236,10 +236,10 @@ class UserPolicy
 			} else {
 				return ( $user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isBackOffice($user->role->value) )
 					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));        
+					: Response::deny(config('akk.MSG_DENY'));
 			}
 		}
-	   
+
 
 	}
 
@@ -274,7 +274,7 @@ class UserPolicy
 				? Response::allow()
 				: Response::deny(config('akk.MSG_DENY'));
 		}
-		
+
 	}
 
 
@@ -287,9 +287,9 @@ class UserPolicy
 	 */
 	public function updaterole(User $user, User $model): bool
 	{
-		// Only system 
+		// Only system
 		return false;
 	}
 
-	
+
 }

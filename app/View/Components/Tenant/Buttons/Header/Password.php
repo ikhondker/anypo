@@ -15,7 +15,7 @@ class Password extends Component
 	 */
 	public function __construct( $id=0)
 	{
-		$this->id       = $id;
+		$this->id	= $id;
 	}
 
 	/**

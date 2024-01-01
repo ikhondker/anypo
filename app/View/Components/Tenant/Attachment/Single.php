@@ -17,8 +17,8 @@ class Single extends Component
 	 */
 	public function __construct($id)
 	{
-		$this->id       = $id;
-		 $this->attachment = Attachment::where('id', $id)->get()->first();
+		$this->id			= $id;
+		 $this->attachment 	= Attachment::where('id', $id)->get()->first();
 	}
 
 	/**

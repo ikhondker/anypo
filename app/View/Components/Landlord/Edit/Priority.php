@@ -8,21 +8,21 @@ use Illuminate\View\Component;
 
 class Priority extends Component
 {
-    public $priorities;
+	public $priorities;
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(public string $value='')
-    {
-        $this->priorities = \App\Models\Landlord\Lookup\Priority::getAll();
-    }
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct(public string $value='')
+	{
+		$this->priorities = \App\Models\Landlord\Lookup\Priority::getAll();
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.landlord.edit.priority');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.landlord.edit.priority');
+	}
 }

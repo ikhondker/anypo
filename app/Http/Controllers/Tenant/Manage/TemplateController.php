@@ -173,7 +173,8 @@ class TemplateController extends Controller
 
 		if ($request->input('agent_id') <> $template->agent_id) {
 
-			// Send notification to Assigned Agent            $agent = User::where('id', $request->input('agent_id'))->first();
+			// Send notification to Assigned Agent
+			//$agent = User::where('id', $request->input('agent_id'))->first();
 			$agent->notify(new templateAssigned($agent, $template));
 			EventLog::event('template', $template->id, 'update', 'agent_id', $template->agent_id);
 		}
