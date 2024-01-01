@@ -37,8 +37,8 @@ class PaymentMethod extends Model
 	];
 
 	protected $casts = [
-		'updated_at'    => 'datetime',
-		'created_at'    => 'datetime',
+		'updated_at'	=> 'datetime',
+		'created_at'	=> 'datetime',
 	];
 
 	/* ---------------- HasMany ---------------------- */

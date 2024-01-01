@@ -41,7 +41,6 @@ class ActivityPolicy
 		return CheckAccess::aboveAdmin($user->role->value)
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
-		   
 	}
 
 	/**
@@ -73,7 +72,6 @@ class ActivityPolicy
 		return CheckAccess::aboveAdmin($user->role->value)
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
-		   
 	}
 
 	/**

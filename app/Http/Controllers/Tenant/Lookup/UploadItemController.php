@@ -88,9 +88,9 @@ class UploadItemController extends Controller
 			$column_range	= range('H', $column_limit);
 			$startcount		= 1;
 
-			$created_at = now();
-			$updated_at = now();
-			$owner_id   = auth()->user()->id;
+			$created_at 	= now();
+			$updated_at 	= now();
+			$owner_id		= auth()->user()->id;
 
 			$data = array();
 			foreach ($row_range as $row) {

@@ -52,7 +52,7 @@ class TestController extends Controller
 		});
 		// Write event log
 		Log::debug('Seeder run for tenant=' . $tenant->id);
-		
+
 		exit;
 
 
@@ -60,7 +60,7 @@ class TestController extends Controller
 		$a=BackOffice::ReportInfo('PR','Test111 22 33 44');
 		dd($a . now());
 
-   
+
 		// https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_rjxI0w322t8Mgu1ReRztUcoqwqCYEQwyRAnKCpCZ&currencies=EUR%2CUSD&base_currency=CAD
 		// {
 		//     "data": {
@@ -82,7 +82,7 @@ class TestController extends Controller
 		$response = Http::get('https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_rjxI0w322t8Mgu1ReRztUcoqwqCYEQwyRAnKCpCZ&currencies=EUR');
 		$jsonData = $response->json();
 		$data= $jsonData['data'];
-		
+
 		Log::debug("EUR=".$data['EUR']);
 		Log::debug("response->ok()=".$response->ok());
 		Log::debug("response->successful()=".$response->successful());
@@ -90,8 +90,8 @@ class TestController extends Controller
 
 		// [2023-08-08 18:27:40] local.DEBUG: EUR=0.9083401321
 		// [2023-08-08 18:27:40] local.DEBUG: response->ok()=1
-		// [2023-08-08 18:27:40] local.DEBUG: response->successful()1  
-		// [2023-08-08 18:27:40] local.DEBUG: response->serverError()   
+		// [2023-08-08 18:27:40] local.DEBUG: response->successful()1
+		// [2023-08-08 18:27:40] local.DEBUG: response->serverError()
 
 
 		// Boolean checks on the response
@@ -111,7 +111,7 @@ class TestController extends Controller
 
 		$data = [
 			'title' => 'Company XYZ',
-			'date'  => date('m/d/Y'),
+			'date' 	=> date('m/d/Y'),
 			//'products' => Product::all()
 		];
 
@@ -124,14 +124,14 @@ class TestController extends Controller
 		//return view('reports.appstack');
 		//return view('errors.404');
 		// Send notification on new purchase
-		
+
 		Log::debug("I AM HERE INSIDE RUN");
-	   
+
 		return redirect('/login')
 			->with('error','Account updated successfully');
 
 
-		// Send notification on new user registration 
+		// Send notification on new user registration
 		//$user = User::where('id', 1001)->first();
 		//$user->notify(new UserRegistered($user));
 		//return redirect('/home')->with('error','Account updated successfully',$c1,$c2);
@@ -186,7 +186,7 @@ class TestController extends Controller
 		// $user = ['name'=>$user_name, 'email'=>$user_email];
 		// Log::channel('bo')->info('User details',[$user]);
 
-		
+
 		//$addons= Service::orderBy('id', 'ASC');
 		//$addons= User::orderBy('id', 'ASC');
 		//dd($addons);
@@ -200,20 +200,20 @@ class TestController extends Controller
 		// echo $emp_id;
 		// $emp = Emp::where('id', $emp_id)->first();
 		// echo $emp->code;
-		//$this->authorize('update',$advance);  
+		//$this->authorize('update',$advance);
 		//return view('testrun');
-	   
-   }
 
-	public function child1() { 
+	}
+
+	public function child1() {
 		Log::channel('bo')->info('This is inside child1!');
 		return 1;
-   }
+	}
 
 	public function child2() {
 		Log::channel('bo')->info('This is inside child2!');
 		return 2;
-   }
+	}
 
 }
 

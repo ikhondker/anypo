@@ -30,8 +30,8 @@ class Status extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
 
-	protected $primaryKey   = 'code';
-	protected $keyType      = 'string';
+	protected $primaryKey	= 'code';
+	protected $keyType		= 'string';
 
 	protected $fillable = [
 		'name', 'badge', 'icon', 'accounts', 'tickets', 'checkouts', 'invoices', 'payments', 'notify_user', 'email_user', 'enable', 'updated_by', 'updated_at',

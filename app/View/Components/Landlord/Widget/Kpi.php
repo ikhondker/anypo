@@ -23,7 +23,7 @@ class Kpi extends Component
 	)
 	{
 		//
-		//$this->route     = $route; 
+		//$this->route	= $route; 
 	}
 
 	/**

@@ -15,7 +15,7 @@ class Submit extends Component
 	 */
 	public function __construct(public string $title='Save')
 	{
-		//$this->title       = $title;
+		//$this->title	= $title;
 		//$this->title = ($title == '') ? 'Save' : $title;
 
 	}

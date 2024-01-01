@@ -92,7 +92,7 @@ class StatusController extends Controller
 
 		
 		// $request->validate([
-		// 	'title '  => 'required|max:200',
+		// 	'title ' => 'required|max:200',
 		// ]);
 
 
@@ -109,7 +109,7 @@ class StatusController extends Controller
 	 */
 	public function destroy(Status $status)
 	{
-		//$this->authorize('delete', $user);  
+		//$this->authorize('delete', $user);
 
 		$status->fill(['enable'=>!$status->enable]);
 		$status->update();

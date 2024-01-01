@@ -16,14 +16,14 @@ class Designation extends Model
 
 	protected $fillable = [
 		'name','enable','updated_at','updated_by'
-   ];
-   
+	];
+
 	/* ----------------- Functions ---------------------- */
 	public static function getAll() {
-		return  Designation::select('id','name')
-		  ->where('enable', true)
-		  ->orderBy('id','asc')
-		  ->get();
+		return Designation::select('id','name')
+			->where('enable', true)
+			->orderBy('id','asc')
+			->get();
 	}
 
 	/* ----------------- Scopes ------------------------- */

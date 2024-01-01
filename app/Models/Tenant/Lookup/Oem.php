@@ -18,7 +18,6 @@ class Oem extends Model
 	protected $fillable = [
 		'name','enable','updated_at','updated_by'
 	];
-   
 
 	/* ----------------- Scopes ------------------------- */
 	/**
@@ -31,18 +30,18 @@ class Oem extends Model
 
 	/* ----------------- Functions ---------------------- */
 	public static function getAll() {
-		return  Oem::select('id','name')
-		  ->where('enable', true)
-		  ->orderBy('id','asc')
-		  ->get();
+		return Oem::select('id','name')
+			->where('enable', true)
+			->orderBy('id','asc')
+			->get();
 	}
-   /* ----------------- HasMany ------------------------ */
-   public function item(): HasMany
-   {
-	   return $this->hasMany(Item::class, 'oem_id');
-   }
+	/* ----------------- HasMany ------------------------ */
+	public function item(): HasMany
+	{
+		return $this->hasMany(Item::class, 'oem_id');
+	}
 
 
-   /* ---------------- belongsTo ---------------------- */
+	/* ---------------- belongsTo ---------------------- */
 
 }

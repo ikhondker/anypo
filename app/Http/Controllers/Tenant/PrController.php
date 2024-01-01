@@ -139,10 +139,10 @@ class PrController extends Controller
 	{
 		$this->authorize('create', Pr::class);
 
-		//$request->merge(['emp_id'           => Auth::user()->emp_id ]);
+		//$request->merge(['emp_id'	=> Auth::user()->emp_id ]);
 		//$request->merge(['requestor_id' => 	auth()->id() ]);
-		//$request->merge(['pr_date'     => date('Y-m-d H:i:s')]);
-		//$request->merge(['dept_budget_id'     => '1001']);
+		//$request->merge(['pr_date' => date('Y-m-d H:i:s')]);
+		//$request->merge(['dept_budget_id'	=> '1001']);
 
 		//$pr = Pr::create($request->all());
 		// Write to Log
@@ -362,7 +362,7 @@ class PrController extends Controller
 		$pr->auth_status = AuthStatusEnum::INPROCESS->value;
 		$pr->submission_date = Carbon::now();
 		$pr->update();
-		EventLog::event('pr', $pr->id, 'submit');     // Write to Log
+		EventLog::event('pr', $pr->id, 'submit');	// Write to Log
 
 		// Send notification to Pr creator
 		$action = WflActionEnum::SUBMITTED->value;

@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
 			'name'				=> 'required|max:100',
 			'address1'			=> 'required|max:100',
 			// 'email'			=> 'required|email|max:100',
-			'file_to_upload'    => 'image|mimes:jpeg,png,jpg,gif|max:1024'
+			'file_to_upload'	=> 'image|mimes:jpeg,png,jpg,gif|max:1024'
 		];
 	}
 
@@ -39,7 +39,7 @@ class UpdateUserRequest extends FormRequest
 	public function messages(): array
 	{
 		return [
-			//'site.required' => 'A site site  is required',
+			//'site.required' => 'A site site is required',
 		];
 	}
 

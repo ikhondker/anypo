@@ -32,7 +32,7 @@ use App\Models\Landlord\Manage\Checkout;
 class CheckoutController extends Controller
 {
 	// define entity constant for file upload and workflow
-	const ENTITY   = 'CHECKOUT';
+	const ENTITY	= 'CHECKOUT';
 
 	/**
 	 * Display a listing of the resource.

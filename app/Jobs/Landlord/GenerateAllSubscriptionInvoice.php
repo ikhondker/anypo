@@ -35,22 +35,22 @@ use Illuminate\Support\Facades\Log;
 
 class GenerateAllSubscriptionInvoice implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+	/**
+	 * Create a new job instance.
+	 */
+	public function __construct()
+	{
+		//
+	}
 
-    /**
-     * Execute the job.
-     */
-    public function handle(): void
-    {
-		 $setup = Setup::first();
+	/**
+	 * Execute the job.
+	 */
+	public function handle(): void
+	{
+		$setup = Setup::first();
 
 		// Create a test invoice
 		$invoice = new InvoiceController();
@@ -62,31 +62,30 @@ class GenerateAllSubscriptionInvoice implements ShouldQueue
 		// get all active account for which has bill_generated is false
 		// $diff = now()->diffInDays($model->created_at);
 		//$accounts= Account::where('bill_generated', false)->where('enable', true)->orderBy('id', 'ASC')->get();
-		
+
 		// all account where end_date is earlier than now()-7 days
 		// 			->where('end_date', '<', now()->subDays(7))
 
-		$accounts = Account::
-			where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
-			->where('next_bill_generated', false )
-			     //->where('id', 1005 )
+		$accounts = Account::where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
+			->where('next_bill_generated', false)
+			//->where('id', 1005 )
 			->orderBy('id', 'ASC')
 			->get();
-			
+
 		foreach ($accounts as $account) {
 			// generate invoice 3 days before expire
 			$diff = now()->diffInDays($account->end_date);
 			if ($diff <= $setup->days_gen_bill) {
 				Log::debug('Generating Invoice for Account id=' . $account->id);
-				$invoice_id = $invoice->createSubscriptionInvoice($account->id,1);
+				$invoice_id = $invoice->createSubscriptionInvoice($account->id, 1);
 				if ($invoice_id <> 0) {
 					Log::channel('bo')->info('Account id=' . $account->id . ' Invoice#' . $invoice_id . ' generated.');
 				} else {
 					Log::channel('bo')->info('Account id=' . $account->id . ' Invoice creation failed.');
 				}
-		} else {
+			} else {
 				Log::debug('skipped for Account id=' . $account->id);
 			}
 		}
-    }
+	}
 }

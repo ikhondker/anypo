@@ -46,21 +46,21 @@ class Prl extends Model
 	public static function xxgetLinesByPrId($pr_id)
 	{
 		return Prl::select('id', 'name')
-		   ->where('pr_id', $pr_id)
-		   ->orderBy('id', 'asc')
-		   ->get();
+			->where('pr_id', $pr_id)
+			->orderBy('id', 'asc')
+			->get();
 	}
 
 	/* ----------------- HasMany ------------------------ */
-	
+
 
 	/* ---------------- belongsTo ---------------------- */
 	public function pr(){
-		return $this->belongsTo(Pr::class,'pr_id');    
+		return $this->belongsTo(Pr::class,'pr_id');
 	}
 
 	public function item(){
-		return $this->belongsTo(Item::class,'item_id');    
+		return $this->belongsTo(Item::class,'item_id');
 	}
 
 

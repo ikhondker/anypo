@@ -162,7 +162,7 @@ class WfController extends Controller
 		// update PR header
 		// $pr	= Pr::where('id', $request->input('pr_id'))->firstOrFail();
 		// if ($pr->auth_status->value <> AuthStatusEnum::INPROCESS->value){
-		//     return back()->withError("PR#".$request->input('pr_id')." is not in IN-PROCESS status!")->withInput();
+		//		return back()->withError("PR#".$request->input('pr_id')." is not in IN-PROCESS status!")->withInput();
 		// }
 
 		try {
@@ -178,7 +178,7 @@ class WfController extends Controller
 				Log::debug("WF # ".$pr->wf_id." not Found! Check!");
 			}
 
-			//  reverse Booking
+			// reverse Booking
 			$retcode = CheckBudget::reverseBookingPr($pr->id);
 			Log::debug("retcode = ".$retcode);
 
@@ -188,7 +188,7 @@ class WfController extends Controller
 			$pr->submission_date = null;
 			$pr->update();
 
-			EventLog::event('pr', $pr->id, 'reset');     // Write to Log
+			EventLog::event('pr', $pr->id, 'reset');	// Write to Log
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
 			Log::debug("PR#".$request->input('pr_id')." not Found or PR is not in 'IN-PROCESS' status!");

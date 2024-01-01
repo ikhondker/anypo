@@ -39,7 +39,7 @@ class Dept extends Model
 
 	public static function getAll()
 	{
-		return  Dept::select('id', 'name')
+		return Dept::select('id', 'name')
 			->where('enable', true)
 			->orderBy('id', 'asc')
 			->get();

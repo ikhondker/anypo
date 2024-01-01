@@ -57,7 +57,7 @@ class ServiceUpgraded extends Notification implements ShouldQueue
 		return (new MailMessage)
 			->subject('Service has been upgraded for Account#'.$this->account->id.'')
 			->greeting('Hello, '.$this->user->name)
-			->line('Your Service in  Account#'.$this->account->id.' for site '.$this->account->site .' has been upgraded.')
+			->line('Your Service in Account#'.$this->account->id.' for site '.$this->account->site .' has been upgraded.')
 			->action('View Account', url('/accounts'))
 			->line('Thank you for using our application!');
 	}

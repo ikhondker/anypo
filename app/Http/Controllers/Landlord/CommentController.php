@@ -54,7 +54,7 @@ use Illuminate\Support\Facades\Request;
 class CommentController extends Controller
 {
 	// define entity constant for file upload and workflow
-	const ENTITY   = 'COMMENT';
+	const ENTITY	= 'COMMENT';
 
 
 	/**
@@ -80,13 +80,13 @@ class CommentController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param  \App\Http\Requests\StoreCommentRequest  $request
+	 * @param \App\Http\Requests\StoreCommentRequest $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(StoreCommentRequest $request)
 	{
 		// $this->authorize('create',Prl::class);
-		//$request->merge(['pr_date'     => date('Y-m-d H:i:s')]);
+		//$request->merge(['pr_date' => date('Y-m-d H:i:s')]);
 
 		// if (auth()->user()->isBackOffice()){
 		// 	$by_backoffice		= true;
@@ -183,7 +183,7 @@ class CommentController extends Controller
 					Log::debug("Invalid status_code=". $status_code);
 			}
 		} else {
-			Log::debug("Not an Front Office or Back Office! role=". auth()->user()->role->value ." Ticket=".  $request->input('ticket_id') );
+			Log::debug("Not an Front Office or Back Office! role=". auth()->user()->role->value ." Ticket=". $request->input('ticket_id') );
 		}
 
 		// Write to Log
@@ -197,7 +197,7 @@ class CommentController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\Models\Comment  $comment
+	 * @param \App\Models\Comment $comment
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Comment $comment)
@@ -208,7 +208,7 @@ class CommentController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\Models\Comment  $comment
+	 * @param \App\Models\Comment $comment
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Comment $comment)
@@ -219,8 +219,8 @@ class CommentController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  \App\Http\Requests\UpdateCommentRequest  $request
-	 * @param  \App\Models\Comment  $comment
+	 * @param \App\Http\Requests\UpdateCommentRequest $request
+	 * @param \App\Models\Comment $comment
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(UpdateCommentRequest $request, Comment $comment)
@@ -231,7 +231,7 @@ class CommentController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\Models\Comment  $comment
+	 * @param \App\Models\Comment $comment
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Comment $comment)

@@ -89,19 +89,19 @@ class DashboardController extends Controller
 
 		// show only open notifications
 		$notifications = auth()->user()->unreadNotifications;
-		$count_notif   = auth()->user()->unreadNotifications()->count();
+		$count_notif	= auth()->user()->unreadNotifications()->count();
 
 		$ticketsOpen = Ticket::byuser()->orderBy('id', 'DESC');
 		$ticketsLast5 = Ticket::byuser()->orderBy('id', 'DESC')->limit(5);
 	
-		$count_tickets_open  = Ticket::byUserOpen()->count();
-		$count_tickets_total  = Ticket::byUser()->count();
+		$count_tickets_open		= Ticket::byUserOpen()->count();
+		$count_tickets_total	= Ticket::byUser()->count();
 
 		$count_accounts = Account::byUser()->count();
-		$count_service  = Service::byUser()->count();
+		$count_service	= Service::byUser()->count();
 		$count_invoices = Invoice::byaccount()->count();
 		$count_payments = Payment::byaccount()->count();
-		$count_users    = User::byuser()->count();
+		$count_users	= User::byuser()->count();
 
 		return view('landlord.dashboards.index', with(compact('notifications','setup','count_notif',
 			'count_tickets_open', 'count_tickets_total',
@@ -121,21 +121,21 @@ class DashboardController extends Controller
 		$account = Account::where('id', auth()->user()->account_id)->first();
 
 		// show only open notifications
-		$notifications = auth()->user()->unreadNotifications;
-		$count_notif   = auth()->user()->unreadNotifications()->count();
+		$notifications 	= auth()->user()->unreadNotifications;
+		$count_notif	= auth()->user()->unreadNotifications()->count();
 
 		$ticketsOpen = Ticket::byAccountOpen()->orderBy('id', 'DESC');
 		$ticketsLast5 = Ticket::byAccount()->orderBy('id', 'DESC')->limit(5);
 				
-		$count_tickets_open  = Ticket::byAccountOpen()->count();
-		$count_tickets_total  = Ticket::byAccount()->count();
+		$count_tickets_open	= Ticket::byAccountOpen()->count();
+		$count_tickets_total= Ticket::byAccount()->count();
 
 
 		$count_accounts = Account::byUser()->count();
-		$count_service  = Service::byUser()->count();
+		$count_service	= Service::byUser()->count();
 		$count_invoices = Invoice::byAccount()->count();
 		$count_payments = Payment::byAccount()->count();
-		$count_users    = User::byAccount()->count();
+		$count_users	= User::byAccount()->count();
 
 		return view('landlord.dashboards.admin', with(compact('notifications','setup','count_notif','account',
 			'count_tickets_open', 'count_tickets_total',
@@ -157,21 +157,21 @@ class DashboardController extends Controller
 		$setup = Setup::first();
 
 		// show only open notifications
-		$notifications = auth()->user()->unreadNotifications;
-		$count_notif   = auth()->user()->unreadNotifications()->count();
+		$notifications 	= auth()->user()->unreadNotifications;
+		$count_notif	= auth()->user()->unreadNotifications()->count();
 
 		$tickets= Ticket::orderBy('id', 'DESC')
 			->where ('agent_id','=', null )
 			->limit(5)->get();
 
 	
-		$count_agent_open_tickets  = Ticket::byAgentOpen()->count();
-		$count_unassigned_tickets  = Ticket::byUnassigned()->count();
-		$count_all_open_tickets  = Ticket::byallopen()->count();
-		$count_agent_closed_tickets  = Ticket::byAgentClosed()->count();
+		$count_agent_open_tickets	= Ticket::byAgentOpen()->count();
+		$count_unassigned_tickets	= Ticket::byUnassigned()->count();
+		$count_all_open_tickets		= Ticket::byallopen()->count();
+		$count_agent_closed_tickets	= Ticket::byAgentClosed()->count();
 
-		//$count_service  = Service::all()->count();
-		//$count_users    = User::all()->count();
+		//$count_service = Service::all()->count();
+		//$count_users		= User::all()->count();
 		return view('landlord.dashboards.backoffice', with(compact('notifications','setup','count_notif',
 			'count_agent_open_tickets', 'count_unassigned_tickets',
 			'count_all_open_tickets', 'count_agent_closed_tickets', 
@@ -195,8 +195,8 @@ class DashboardController extends Controller
 		$setup = Setup::first();
 
 		// show only open notifications
-		$notifications = auth()->user()->unreadNotifications;
-		$count_notif   = auth()->user()->unreadNotifications()->count();
+		$notifications 	= auth()->user()->unreadNotifications;
+		$count_notif	= auth()->user()->unreadNotifications()->count();
 
 		$tickets= Ticket::orderBy('id', 'DESC')
 			->where ('agent_id','=', null )
@@ -219,14 +219,14 @@ class DashboardController extends Controller
 		//return view('tenant.dashboard',compact('orders','products','settings','orders_weeks','sales_today','sales_week','sales_month','count_products','count_orders', 'count_users','sum_sales'));
 
 		// redirect to proper dashboard
-		$count_tickets  = Ticket::all()->count();
-		$count_all_open_tickets  = Ticket::byallopen()->count();
-		$count_unassigned_tickets  = Ticket::byunassigned()->count();
-		$count_all_closed_tickets  = Ticket::byallclosed()->count();
+		$count_tickets = Ticket::all()->count();
+		$count_all_open_tickets 	= Ticket::byallopen()->count();
+		$count_unassigned_tickets	= Ticket::byunassigned()->count();
+		$count_all_closed_tickets	= Ticket::byallclosed()->count();
 
-		//$count_all_closed_tickets  = Ticket::byallclosed()->count();
-		$count_service  = Service::all()->count();
-		$count_users    = User::all()->count();
+		//$count_all_closed_tickets = Ticket::byallclosed()->count();
+		$count_service	= Service::all()->count();
+		$count_users	= User::all()->count();
 		return view('landlord.dashboards.supervisor', with(compact('tickets','setup',
 			'count_tickets','count_all_open_tickets','count_unassigned_tickets','count_all_closed_tickets'
 		)));
@@ -243,8 +243,8 @@ class DashboardController extends Controller
 		$setup = Setup::first();
 
 		// show only open notifications
-		$notifications = auth()->user()->unreadNotifications;
-		$count_notif   = auth()->user()->unreadNotifications()->count();
+		$notifications 	= auth()->user()->unreadNotifications;
+		$count_notif	= auth()->user()->unreadNotifications()->count();
 
 		$tickets= Ticket::orderBy('id', 'DESC')
 			->where ('agent_id','=', null )
@@ -267,16 +267,16 @@ class DashboardController extends Controller
 		//return view('tenant.dashboard',compact('orders','products','settings','orders_weeks','sales_today','sales_week','sales_month','count_products','count_orders', 'count_users','sum_sales'));
 
 		
-		$count_tickets  = Ticket::all()->count();
-		$count_all_open_tickets  = Ticket::byallopen()->count();
-		$count_unassigned_tickets  = Ticket::byunassigned()->count();
-		$count_all_closed_tickets  = Ticket::byallclosed()->count();
+		$count_tickets	= Ticket::all()->count();
+		$count_all_open_tickets		= Ticket::byallopen()->count();
+		$count_unassigned_tickets	= Ticket::byunassigned()->count();
+		$count_all_closed_tickets	= Ticket::byallclosed()->count();
 		
-		$count_accounts  = Account::all()->count();
-		$count_service  = Service::all()->count();
+		$count_accounts	= Account::all()->count();
+		$count_service	= Service::all()->count();
 		$count_invoices = Invoice::all()->count();
 		$count_payments = Payment::all()->count();
-		$count_users    = User::all()->count();
+		$count_users	= User::all()->count();
 		return view('landlord.dashboards.system', with(compact('tickets','setup',
 			'count_tickets','count_all_open_tickets','count_unassigned_tickets','count_all_closed_tickets',
 			'count_accounts','count_service','count_invoices','count_payments',

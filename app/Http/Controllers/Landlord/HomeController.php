@@ -94,12 +94,12 @@ class HomeController extends Controller
 	 */
 	public function saveContact(StoreContactRequest $request)
 	{
-		$ENTITY   = 'CONTACT';
+		$ENTITY	= 'CONTACT';
 
 		//Log::debug("I AM HERE INSIDE STORE");
 
-		//$request->merge(['ip'          => Request::ip()]);
-		//$request->merge(['ip'          => '127.0.01']);
+		//$request->merge(['ip' => Request::ip()]);
+		//$request->merge(['ip' => '127.0.01']);
 
 		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 
@@ -112,8 +112,8 @@ class HomeController extends Controller
 		$request->validate([
 			'first_name'	=> 'required',
 			'email'			=> 'required|email',
-			//'phone'     	=> 'required|digits:10|numeric',
-			//'subject'   	=> 'required',
+			//'phone'		=> 'required|digits:10|numeric',
+			//'subject'		=> 'required',
 			'message'		=> 'required'
 		], [
 			'first_name.required'	=> 'First Name is Required',
@@ -124,10 +124,10 @@ class HomeController extends Controller
 		$request->merge(['subject'		=> 'Website Contact from '. $request->input('first_name')]);
 		$contact = Contact::create($request->all());
 
-		// Upload File, if any, insert row in attachment table  and get attachments id
+		// Upload File, if any, insert row in attachment table and get attachments id
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $contact->id]);
-			$request->merge(['entity'		=> $ENTITY]);  
+			$request->merge(['entity'		=> $ENTITY]);
 			$attachment_id = LandlordFileUpload::upload($request);
 
 			// update back table with attachment_id
@@ -147,7 +147,7 @@ class HomeController extends Controller
 		//return redirect()->back()->with(['success' => 'Thank you for contacting us. We will contact you shortly.']);
 	}
 
-	public function pricing()  
+	public function pricing()
 	{
 		$product = Product::where('id', config('bo.DEFAULT_PRODUCT_ID'))->first();
 
@@ -211,9 +211,9 @@ class HomeController extends Controller
 			'greeting'		=> 'Hi ' . $user->name . ',',
 			'body'			=> 'FYI, Support Ticket #' . $user->id . ' has been ' . Str::lower($action) . '.',
 			'thanks'		=> 'Thank you for using ' . config('app.name') . '!',
-			'actionText'    => 'View Document',
-			//'actionURL'   => route('advances.show', ['advance' => $wf->article_id]),
-			'actionURL'     => route('users.show', $user->id),
+			'actionText'	=> 'View Document',
+			//'actionURL'	=> route('advances.show', ['advance' => $wf->article_id]),
+			'actionURL'		=> route('users.show', $user->id),
 		];
 
 		// $details = [

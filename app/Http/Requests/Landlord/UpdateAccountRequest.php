@@ -39,7 +39,7 @@ class UpdateAccountRequest extends FormRequest
 	public function messages(): array
 	{
 		return [
-			//'site.required' => 'A site site  is required',
+			//'site.required' => 'A site site is required',
 		];
 	}
 

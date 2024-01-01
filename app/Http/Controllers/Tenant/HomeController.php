@@ -91,12 +91,12 @@ class HomeController extends Controller
 	 */
 	public function saveContact(StoreContactRequest $request)
 	{
-		$ENTITY   = 'CONTACT';
+		$ENTITY	= 'CONTACT';
 
 		//Log::debug("I AM HERE INSIDE STORE");
 
 		//$request->merge(['ip'          => Request::ip()]);
-		//$request->merge(['ip'          => '127.0.01']);
+		//$request->merge(['ip'        => '127.0.01']);
 
 		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 
@@ -106,14 +106,14 @@ class HomeController extends Controller
 		$request->merge(['ip'		=> $request->ip()]);
 
 		$request->validate([
-			'name'      => 'required',
-			'email'     => 'required|email',
-			//'phone'     => 'required|digits:10|numeric',
-			'subject'   => 'required',
-			'message'   => 'required'
+			'name'		=> 'required',
+			'email'		=> 'required|email',
+			//'phone'	=> 'required|digits:10|numeric',
+			'subject'	=> 'required',
+			'message'	=> 'required'
 		], [
-			'name.required' => 'Name is Required',
-			'email.unique'   => 'Email is required.',
+			'name.required'	=> 'Name is Required',
+			'email.unique'	=> 'Email is required.',
 		]);
 
 		// create contact

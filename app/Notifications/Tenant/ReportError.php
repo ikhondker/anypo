@@ -28,11 +28,10 @@ class ReportError extends Notification implements ShouldQueue
 	 */
 	public function __construct($entity,$subject)
 	{
-		$this->entity       = $entity;
-		$this->actionURL    = Request::fullUrl();
+		$this->entity		= $entity;
+		$this->actionURL	= Request::fullUrl();
 
-		$this->subject  = '[ERROR] '. tenant('id').'/'.$this->entity .' : '.$subject;
-		//$this->line     = ''
+		$this->subject = '[ERROR] '. tenant('id').'/'.$this->entity .' : '.$subject;
 		//Log::debug("Inside system notification". Request::fullUrl() );
 		$this->performer = User::where('id', auth()->user()->id )->first();
 	}
@@ -81,21 +80,21 @@ class ReportError extends Notification implements ShouldQueue
 			'greeting'		=> 'Hi Team,',
 			'body'			=> $this->line,
 			'thanks'	=> 'Thank you for using '. config('app.name').'!',
-			'actionText'    => 'View PR',
-			'actionURL'     => $this->actionURL,
+			'actionText'	=> 'View PR',
+			'actionURL'		=> $this->actionURL,
 		];
 
 		return [
-			'entity'        => $details['entity'],
-			'id'            => $details['id'],
-			'from'          => $details['from'],
-			'to'            => $details['to'],
-			'subject'       => $details['subject'],
-			'greeting'      => $details['greeting'],
-			'body'          => $details['body'],
-			'thanks'        => $details['thanks'],
-			'actionText'    => $details['actionText'],
-			'actionURL'     => $details['actionURL'],
+			'entity'		=> $details['entity'],
+			'id'			=> $details['id'],
+			'from'			=> $details['from'],
+			'to'			=> $details['to'],
+			'subject'		=> $details['subject'],
+			'greeting'		=> $details['greeting'],
+			'body'			=> $details['body'],
+			'thanks'		=> $details['thanks'],
+			'actionText'	=> $details['actionText'],
+			'actionURL'		=> $details['actionURL'],
 		];
 	}
 }

@@ -37,8 +37,8 @@ class TicketUpdated extends Notification implements ShouldQueue
 	 */
 	public function __construct(User $user, Ticket $ticket)
 	{
-		$this->user     = $user;
-		$this->ticket   = $ticket;
+		$this->user		= $user;
+		$this->ticket 	= $ticket;
 	}
 
 	/**
@@ -59,7 +59,7 @@ class TicketUpdated extends Notification implements ShouldQueue
 		return (new MailMessage)
 		->subject('Support Ticket#'.$this->ticket->id.' has been updated')
 		->greeting('Hello '.$this->user->name.',')
-		->line('Support Ticket#'.$this->ticket->id.' for '.$this->ticket->title .'  has been updated.')
+		->line('Support Ticket#'.$this->ticket->id.' for '.$this->ticket->title .' has been updated.')
 		->action('View Ticket', url('/tickets/'.$this->ticket->id))
 		->line('Thank you for using our application!');
 	}

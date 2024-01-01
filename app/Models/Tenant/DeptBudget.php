@@ -18,10 +18,10 @@ class DeptBudget extends Model
 
 	protected $fillable = [
 		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'end_date', 'notes', 'freeze', 'updated_by', 'updated_at',
-   ];
+	];
 
-   /* ----------------- Scopes ------------------------- */
-   /**
+	/* ----------------- Scopes ------------------------- */
+	/**
 	 * Scope a query to only include current account users.
 	 */
 	public function scopePrimary(Builder $query): void
@@ -55,6 +55,4 @@ class DeptBudget extends Model
 	public function user_updated_by(){
 		return $this->belongsTo(User::class,'updated_by');
 	}
-
-   
 }

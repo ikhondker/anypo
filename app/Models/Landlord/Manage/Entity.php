@@ -16,8 +16,8 @@ class Entity extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
 
-	protected $primaryKey   = 'entity';
-	protected $keyType      = 'string';
+	protected $primaryKey	= 'entity';
+	protected $keyType		= 'string';
 
 	protected $fillable = [
 		'entity', 'name', 'route', 'subdir', 'notification', 'enable', 'updated_by', 'updated_at',
@@ -25,7 +25,7 @@ class Entity extends Model
 
 	public static function libraryDocs()
 	{
-		return  Entity::select('entity', 'name')
+		return Entity::select('entity', 'name')
 			->where('enable', true)
 			->where('in_library', true)
 			->orderBy('entity', 'asc')

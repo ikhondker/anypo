@@ -79,7 +79,7 @@ class MenuController extends Controller
 	public function store(StoreMenuRequest $request)
 	{
 
-		$request->merge(['access'    => Str::upper($request->input('access')) ]);
+		$request->merge(['access'	=> Str::upper($request->input('access')) ]);
 		//$this->authorize('create', Menu::class);
 		//$validated = $request->validated();
 
@@ -116,7 +116,7 @@ class MenuController extends Controller
 	{
 		//$this->authorize('update', $menu);
 		
-		$request->merge(['access'    => Str::upper($request->input('access')) ]);
+		$request->merge(['access'	=> Str::upper($request->input('access')) ]);
 
 		//$request->validate();
 		// $request->validate([

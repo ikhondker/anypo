@@ -31,12 +31,12 @@ use Str;
 
 class CountryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-         //$this->authorize('viewAny', Country::class);
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		 //$this->authorize('viewAny', Country::class);
 
 		 $countries = Country::query();
 		 if (request('term')) {
@@ -45,54 +45,54 @@ class CountryController extends Controller
 		 $countries = $countries->orderBy('name', 'ASC')->paginate(40);
  
 		 return view('landlord.lookup.countries.index', compact('countries'))->with('i', (request()->input('page', 1) - 1) * 40);
-    }
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		//
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCountryRequest $request)
-    {
-        //
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreCountryRequest $request)
+	{
+		//
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Country $country)
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(Country $country)
+	{
+		//
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Country $country)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(Country $country)
+	{
+		//
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCountryRequest $request, Country $country)
-    {
-        //
-    }
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateCountryRequest $request, Country $country)
+	{
+		//
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Country $country)
-    {
-        //$this->authorize('delete', $user);  
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Country $country)
+	{
+		//$this->authorize('delete', $user);
 
 		$country->fill(['enable'=>!$country->enable]);
 		$country->update();
@@ -101,5 +101,5 @@ class CountryController extends Controller
 		LandlordEventLog::event('country',$country->country,'status','enable',$country->enable);
 
 		return redirect()->route('countries.index')->with('success','Country Status Updated successfully');
-    }
+	}
 }

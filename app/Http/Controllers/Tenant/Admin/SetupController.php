@@ -235,10 +235,10 @@ class SetupController extends Controller
 		// check box
 		if($request->has('show_banner')) {
 			//Checkbox checked
-			$request->merge(['show_banner' =>  1]);
+			$request->merge(['show_banner' => 1]);
 		} else {
 			//Checkbox not checked
-			$request->merge([ 'show_banner' =>  0]);
+			$request->merge([ 'show_banner' => 0]);
 		}
 
 

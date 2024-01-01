@@ -78,7 +78,7 @@ class WflController extends Controller
 	public function update(UpdateWflRequest $request, Wfl $wfl)
 	{
 		//$this->authorize('update',$wfl);
-		$request->merge(['action_date'     => date('Y-m-d H:i:s')]);
+		$request->merge(['action_date' => date('Y-m-d H:i:s')]);
 		//$request->validate();
 		$request->validate([
 
@@ -164,10 +164,10 @@ class WflController extends Controller
 
 		// // next approver exists
 		// if (\App\Helpers\Workflow::getApprover( $wfl->wf_id)){
-		//     // do nothing just find and notify next approver
-		//     Workflow::notifyApprover($wfl->wf_id);
+		//		do nothing just find and notify next approver
+		//		Workflow::notifyApprover($wfl->wf_id);
 		// } else {
-		//     // this is the last step
+		//	this is the last step
 		// }
 		//return redirect()->route('dashboards.index')->with('success','Done');
 

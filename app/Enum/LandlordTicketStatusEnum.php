@@ -8,7 +8,7 @@
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -20,13 +20,13 @@
 namespace App\Enum;
 
 enum LandlordTicketStatusEnum:string{
-	case NEW				='1001';  
+	case NEW				='1001';
 	case ASSIGNED			='1004';
 	case PENDING			='1005';
 	case INPROGRESS			='1006';
 	case DEVELOPMENT		='1007';
 	case BUGFIXING			='1008';
-	case CUSTWORKING		='1010'; 
+	case CUSTWORKING		='1010';
 	//case RESOLVED			='1011'; Not used
 	case CLOSED				='1012';
 	case ONHOLD				='1015';

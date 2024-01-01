@@ -109,15 +109,15 @@ class TemplateController extends Controller
 		$this->authorize('create', Template::class);
 		if ($request->has('my_bool')) {
 			//Checkbox checked
-			$request->merge(['my_bool' =>  1,]);
+			$request->merge(['my_bool' => 1,]);
 		} else {
 			//Checkbox not checked
-			$request->merge(['my_bool' =>  0,]);
+			$request->merge(['my_bool' => 0,]);
 		}
 
 		//$this->authorize('create',Entity::class);
 		$request->merge([
-			'code' =>  Str::upper($request['code']),
+			'code' => Str::upper($request['code']),
 		]);
 
 		//dd($request);

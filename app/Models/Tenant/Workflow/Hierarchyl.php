@@ -17,7 +17,7 @@ class Hierarchyl extends Model
 	protected $fillable = [
 		'hid', 'sequence', 'approver_id', 'enable', 'updated_by', 'updated_at',
 	];
-   
+
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */
 	/* ---------------- belongsTo ---------------------- */

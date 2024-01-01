@@ -28,5 +28,5 @@ use App\Models\User;
 
 class Dashboard extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 }

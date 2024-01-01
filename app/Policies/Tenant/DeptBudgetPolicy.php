@@ -73,7 +73,6 @@ class DeptBudgetPolicy
 		return CheckAccess::aboveAdmin($user->role->value)
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
-		   
 	}
 	
 	

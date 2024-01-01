@@ -67,8 +67,8 @@ class ItemController extends Controller
 		$this->authorize('create', Item::class);
 
 		$request->merge([
-			'code' =>  Str::upper($request['code']),
-	   ]);
+			'code' => Str::upper($request['code']),
+		]);
 
 
 
@@ -113,8 +113,8 @@ class ItemController extends Controller
 		$this->authorize('update', $item);
 
 		$request->merge([
-			'code' =>  Str::upper($request['code']),
-	   ]);
+			'code' => Str::upper($request['code']),
+		]);
 
 		//$request->validate();
 		$request->validate([

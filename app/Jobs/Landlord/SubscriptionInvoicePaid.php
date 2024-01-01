@@ -58,7 +58,7 @@ class SubscriptionInvoicePaid implements ShouldQueue
 		$invoice->update();
 
 		// mark payment as paid
-		$payment->status_code =  LandlordPaymentStatusEnum::PAID->value;
+		$payment->status_code = LandlordPaymentStatusEnum::PAID->value;
 		$payment->update();
 		LandlordEventLog::event('payment', $payment->id, 'create');
 

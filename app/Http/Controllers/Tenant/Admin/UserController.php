@@ -131,7 +131,7 @@ class UserController extends Controller
 		$this->authorize('create', User::class);
 
 		//user settings
-		//$request->merge(['account_id'   => auth()->user()->account_id]);
+		//$request->merge(['account_id' => auth()->user()->account_id]);
 		$request->merge(['enable'	=> true]);
 		$request->merge(['seeded'	=> false]);
 
@@ -201,7 +201,7 @@ class UserController extends Controller
 		if ($request->has('role')) {
 			Log::debug('Role Found!');
 		} else {
-			$request->merge(['role'    => $user->role->value ]);
+			$request->merge(['role'	=> $user->role->value ]);
 			Log::debug('Role hidden for system users!');
 		}
 
@@ -319,8 +319,8 @@ class UserController extends Controller
 		// ]);
 
 		$request->validate([
-			'password1'  => ['required'],
-			'password2'  => ['same:password1'],
+			'password1' => ['required'],
+			'password2' => ['same:password1'],
 		]);
 
 		//dd($request->password1);

@@ -49,7 +49,7 @@ class Priority extends Model
 
 	public static function getAll()
 	{
-		return  Priority::select('id', 'name')
+		return Priority::select('id', 'name')
 			->where('enable', true)
 			->orderBy('id', 'asc')
 			->get();

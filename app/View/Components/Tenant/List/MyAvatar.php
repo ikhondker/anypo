@@ -16,7 +16,7 @@ class MyAvatar extends Component
 	 */
 	public function __construct($avatar, $size="48px")
 	{
-		$this->avatar   = $avatar;
+		$this->avatar	= $avatar;
 	}
 
 	/**

@@ -414,7 +414,7 @@ class TableController extends Controller
 			$result = array_search(str_replace("Controller", "", $file['filename']), $objects, true);
 			if ($result == "") {
 				//not found
-				echo  $file['filename'].'<br>';
+				echo $file['filename'].'<br>';
 			}
 		}
 
@@ -428,7 +428,7 @@ class TableController extends Controller
 			$result = array_search($file['filename'], $objects, true);
 			if ($result == "") {
 				//not found
-				echo  $file['filename'].'<br>';
+				echo $file['filename'].'<br>';
 			}
 		}
 
@@ -443,12 +443,12 @@ class TableController extends Controller
 			$result = array_search(str_replace("Policy", "", $file['filename']), $objects, true);
 			if ($result == "") {
 				//not found
-				echo  $file['filename'].'<br>';
+				echo $file['filename'].'<br>';
 			}
 		}
 
 		// check if requests exists
-		echo "============================ Additional Store+Update Requests :  app\Http\Requests =====================".'<br>';
+		echo "============================ Additional Store+Update Requests : app\Http\Requests =====================".'<br>';
 		$filesInFolder = \File::files(base_path().'\app\Http\Requests');
 		foreach($filesInFolder as $path) {
 			$file = pathinfo($path);
@@ -468,7 +468,7 @@ class TableController extends Controller
 				);
 				if ($result == "") {
 					//not found
-					echo  $file['filename'].'<br>';
+					echo $file['filename'].'<br>';
 				}
 			} else {
 				$result = array_search(
@@ -482,7 +482,7 @@ class TableController extends Controller
 				);
 				if ($result == "") {
 					//not found
-					echo  $file['filename'].'<br>';
+					echo $file['filename'].'<br>';
 				}
 
 			}
@@ -510,10 +510,10 @@ class TableController extends Controller
 
 		foreach($filesInFolder as $path) {
 			$file = pathinfo($path);
-			// echo $file['dirname'] .'<br>' ;     // D:\laravel\ho03\app\Http\Controllers
-			// echo $file['basename'] .'<br>' ;    // ActivityController.php
-			// echo $file['extension'] .'<br>' ;   // php
-			// echo $file['filename'] .'<br>' ;    // ActivityController
+			// echo $file['dirname'] .'<br>' ;		// D:\laravel\ho03\app\Http\Controllers
+			// echo $file['basename'] .'<br>' ;		// ActivityController.php
+			// echo $file['extension'] .'<br>' ;	// php
+			// echo $file['filename'] .'<br>' ;		// ActivityController
 
 			$f = $file['dirname']."\\". $file['basename'];
 			//Log::debug('file= '. $f);

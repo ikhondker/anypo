@@ -31,10 +31,10 @@ class PayMethod extends Model
 
 	 /* ----------------- Functions ---------------------- */
 	 public static function getAll() {
-		return  PayMethod::select('id','name')
-		  ->where('enable', true)
-		  ->orderBy('id','asc')
-		  ->get();
+		return PayMethod::select('id','name')
+			->where('enable', true)
+			->orderBy('id','asc')
+			->get();
 	}
 
 	 /* ----------------- Scopes ------------------------- */

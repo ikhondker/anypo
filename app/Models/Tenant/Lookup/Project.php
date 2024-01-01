@@ -17,9 +17,9 @@ class Project extends Model
 
 	protected $fillable = [
 		'name', 'pm_id', 'start_date', 'end_date', 'budget_control', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'notes', 'text_color', 'bg_color', 'icon', 'closed', 'updated_by', 'updated_at',
-   ];
+	];
 
-   /* ----------------- Scopes ------------------------- */
+	/* ----------------- Scopes ------------------------- */
 	/**
 	 * Scope a query to only  non-seeded users.
 	 */
@@ -30,7 +30,7 @@ class Project extends Model
 
 	/* ----------------- Functions ---------------------- */
 	public static function getAll() {
-		return  Project::select('id', 'name')
+		return Project::select('id', 'name')
 			->orderBy('id', 'asc')
 			->get();
 	}

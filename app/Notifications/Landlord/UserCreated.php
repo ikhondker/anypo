@@ -36,8 +36,8 @@ class UserCreated extends Notification implements ShouldQueue
 	 */
 	public function __construct(User $user, String $random_password)
 	{
-		$this->user             = $user;
-		$this->random_password  = $random_password;
+		$this->user				= $user;
+		$this->random_password	= $random_password;
 	}
 
 	/**

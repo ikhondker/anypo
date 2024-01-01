@@ -210,7 +210,7 @@ class UserController extends Controller
 	{
 
 		$this->authorize('update', $user);
-		$request->merge(['state'    => Str::upper($request->input('state')) ]);
+		$request->merge(['state'	=> Str::upper($request->input('state')) ]);
 
 		$request->validate([
 
@@ -314,8 +314,8 @@ class UserController extends Controller
 		//$this->authorize('changepass',$user);
 
 		$request->validate([
-			'password1'  => 'required|min:8',
-			'password2'  => 'same:password1|min:8',
+			'password1' => 'required|min:8',
+			'password2' => 'same:password1|min:8',
 		]);
 
 		//dd($request->password1);
@@ -342,7 +342,7 @@ class UserController extends Controller
 		} else {
 			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable
 				FROM users
-				WHERE  id =".auth()->user()->id);
+				WHERE id =".auth()->user()->id);
 		}
 
 		//Log::debug('Role= '. auth()->user()->role->value);
@@ -382,7 +382,7 @@ class UserController extends Controller
 		// upload to private folder and show using user.show route
 		// Upload File, if any, insert row in attachment table  and get attachments id
 		//if ($file = $request->file('file_to_upload')) {
-		//    $request->merge(['user_id'    => $user->id ]);
+		//    $request->merge(['user_id'   => $user->id ]);
 		//    $user_id = FileUpload::uploadPhoto($request);
 		//}
 
@@ -393,12 +393,12 @@ class UserController extends Controller
 			// uploaded to D:\laravel\bo04\public\landlord\profile
 			Log::debug("A config('bo.DIR_AVATAR')=".config('bo.DIR_AVATAR'));
 
-			//$destinationPath    = config('bo.DIR_AVATAR');
+			//$destinationPath = config('bo.DIR_AVATAR');
 			$destinationPath = '/landlord/avatar/';
 			Log::debug("destinationPath=".$destinationPath);
 
 			//$profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-			$profileImage   = $user->id . "-uploaded." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+			$profileImage	= $user->id . "-uploaded." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 			$thumbImage 	= $user->id . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 
 			Log::debug("profileImage=".$profileImage);

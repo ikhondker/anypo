@@ -32,11 +32,11 @@ class PrActions extends Notification implements ShouldQueue
 	 */
 	public function __construct(User $user, Pr $pr, $action, $actionURL)
 	{
-		$this->user     = $user;
-		$this->pr       = $pr;
-		$this->action   = $action;
-		$this->actionURL = $actionURL;
-		//$this->details  = $details;
+		$this->user		= $user;
+		$this->pr		= $pr;
+		$this->action	= $action;
+		$this->actionURL= $actionURL;
+		//$this->details= $details;
 
 		//Log::debug("user_id = ".$this->user->id );
 		//Log::debug("pr_id = ".$this->pr->id );
@@ -44,20 +44,20 @@ class PrActions extends Notification implements ShouldQueue
 
 		switch ($this->action) {
 			case WflActionEnum::SUBMITTED->value:
-				$this->subject  = '[FYI] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' has been '.Str::lower($this->action).'.';
-				$this->line     = 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
+				$this->subject	= '[FYI] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' has been '.Str::lower($this->action).'.';
+				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
 				break;
 			case WflActionEnum::PENDING->value:
-				$this->subject  = '[Action Required] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' requires your approval.';
-				$this->line     = 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' requires your approval.';
+				$this->subject	= '[Action Required] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' requires your approval.';
+				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' requires your approval.';
 				break;
 			case WflActionEnum::REJECTED->value:
-				$this->subject  = '[FYI] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' has been '.Str::lower($this->action).'.';
-				$this->line     = 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
+				$this->subject	= '[FYI] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' has been '.Str::lower($this->action).'.';
+				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
 				break;
 			case WflActionEnum::APPROVED->value:
-				$this->subject  = '[FYI] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' has been '.Str::lower($this->action).'.';
-				$this->line     = 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
+				$this->subject	= '[FYI] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' has been '.Str::lower($this->action).'.';
+				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
 				break;
 			default:
 				// Success 

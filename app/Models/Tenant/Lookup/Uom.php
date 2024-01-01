@@ -18,7 +18,6 @@ class Uom extends Model
 	protected $fillable = [
 		'name','enable','updated_at','updated_by'
 	];
-   
 
 	/* ----------------- Scopes ------------------------- */
 	/**
@@ -31,10 +30,10 @@ class Uom extends Model
 
 	/* ----------------- Functions ---------------------- */
 	public static function getAll() {
-		return  Uom::select('id','name')
-		  ->where('enable', true)
-		  ->orderBy('id','asc')
-		  ->get();
+		returnUom::select('id','name')
+			->where('enable', true)
+			->orderBy('id','asc')
+			->get();
 	}
 
 	

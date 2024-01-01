@@ -40,11 +40,11 @@ class DashboardController extends Controller
 		$setup = Setup::first();
 		// check if current months import rates imported
 		if ($setup->last_rate_date <> '') {
-			$last_rate_month    	= $setup->last_rate_date->startOfMonth();
+			$last_rate_month	= $setup->last_rate_date->startOfMonth();
 		} else {
-			$last_rate_month    	= '';
+			$last_rate_month	= '';
 		}
-		$current_rate_month    	= Carbon::now()->startOfMonth();
+		$current_rate_month		= Carbon::now()->startOfMonth();
 
 		if ($last_rate_month <> $current_rate_month) {
 			// import current rates using queue

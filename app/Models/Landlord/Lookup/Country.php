@@ -39,7 +39,7 @@ class Country extends Model
 
 	public static function getAll()
 	{
-		return  Country::select('country', 'name')
+		return Country::select('country', 'name')
 			->where('enable', true)
 			->orderBy('name', 'asc')
 			->get();

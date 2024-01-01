@@ -8,7 +8,7 @@
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -23,6 +23,6 @@ enum LandlordPaymentStatusEnum:string{
 	case DRAFT		= '1002';
 	case PAID		= '1014';
 	case CANCELED	= '1020';
-	case FAILED		= '1021';  
+	case FAILED		= '1021';
 	case ERROR		= '1022';
 }

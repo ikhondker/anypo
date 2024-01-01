@@ -127,7 +127,7 @@ class DeptController extends Controller
 	public function export()
 	{
 		$data = DB::select("
-			SELECT d.id, d.name,  IF(d.enable, 'Yes', 'No') enable, hpr.name pr_hierarchy_name, hpo.name po_hierarchy_name
+			SELECT d.id, d.name, IF(d.enable, 'Yes', 'No') enable, hpr.name pr_hierarchy_name, hpo.name po_hierarchy_name
 			FROM depts d, hierarchies hpr, hierarchies hpo
 			WHERE d.pr_hierarchy_id=hpr.id
 			AND d.po_hierarchy_id=hpo.id

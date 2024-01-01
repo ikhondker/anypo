@@ -88,7 +88,7 @@ class AttachmentController extends Controller
 
 		// Upload File, in private folder if any, insert row in attachment table  and get attachments id
 		// if ($file = $request->file('file_to_upload')) {
-		//    $request->merge(['entity'      => $request->entity ]);
+		//    $request->merge(['entity'  => $request->entity ]);
 		//    $request->merge(['emp_id'      => $request->emp_id ]);
 		//    $request->merge(['article_id'  => $request->emp_id ]);
 		//    $attid = FileUpload::upload($request);

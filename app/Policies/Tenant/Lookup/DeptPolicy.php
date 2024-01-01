@@ -28,7 +28,7 @@ class DeptPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-	   //
+		//
 	}
 
 	/**

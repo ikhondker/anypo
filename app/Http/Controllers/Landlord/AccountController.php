@@ -8,7 +8,7 @@
 * @path			\app\Http\Controllers\Landlord
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -66,7 +66,7 @@ use App\Notifications\Landlord\AddonPurchased;
 class AccountController extends Controller
 {
 	// define entity constant for file upload and workflow
-	public const ENTITY   = 'ACCOUNT';
+	public const ENTITY	= 'ACCOUNT';
 
 	/**
 	 * Display a listing of the resource.
@@ -88,7 +88,7 @@ class AccountController extends Controller
 	public function all()
 	{
 		//$accounts= Account::orderBy('id', 'DESC')->paginate(10);
-		
+
 		$this->authorize('viewAll',Account::class);
 		$accounts = Account::orderBy('id', 'DESC')->paginate(10);
 		return view('landlord.accounts.all', compact('accounts'))->with('i', (request()->input('page', 1) - 1) * 10);
@@ -107,7 +107,7 @@ class AccountController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param  \App\Http\Requests\StoreAccountRequest  $request
+	 * @param \App\Http\Requests\StoreAccountRequest$request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(StoreAccountRequest $request)
@@ -118,7 +118,7 @@ class AccountController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\Models\Account  $account
+	 * @param \App\Models\Account $account
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Account $account)
@@ -132,7 +132,7 @@ class AccountController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\Models\Account  $account
+	 * @param \App\Models\Account $account
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Account $account)
@@ -145,8 +145,8 @@ class AccountController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  \App\Http\Requests\UpdateAccountRequest  $request
-	 * @param  \App\Models\Account  $account
+	 * @param \App\Http\Requests\UpdateAccountRequest $request
+	 * @param \App\Models\Account $account
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(UpdateAccountRequest $request, Account $account)
@@ -160,16 +160,16 @@ class AccountController extends Controller
 
 			// extract the uploaded file
 			$image = $request->file('file_to_upload');
-		
+
 			$token			= $account->id ."-" . uniqid();
 			$extension		='.'.$image->extension();
-			
+
 			$uploadedImage	= $token . "-uploaded" . $extension;
 			$thumbImage		= $token. $extension;
 
 			// upload uploaded image
 			$path = Storage::disk('s3ll')->put($uploadedImage, file_get_contents($image));
-			
+
 			//resize to thumbnail and upload
 			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
@@ -191,7 +191,7 @@ class AccountController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\Models\Account  $account
+	 * @param \App\Models\Account $account
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Account $account)
@@ -266,14 +266,14 @@ class AccountController extends Controller
 				FROM accounts
 				WHERE id=".auth()->user()->account_id);
 		}
-		
+
 		$dataArray = json_decode(json_encode($data), true);
 		// export to CSV
 		return Export::csv('accounts', $dataArray);
 	}
 
 	/**
-	 *  IQBAL Upgrade package. Applicable only for logged-in user
+	 * IQBAL Upgrade package. Applicable only for logged-in user
 	 */
 	public function upgrade($new_service_id)
 	{
@@ -306,10 +306,10 @@ class AccountController extends Controller
 		$accountService->account_id		= $account_id;
 		$accountService->owner_id		= auth()->user()->id;
 
-		// $accountService->base_mnth    	= $service->mnth;
-		// $accountService->base_user    	= $service->user;
-		// $accountService->base_gb    	= $service->gb;
-		// $accountService->base_price     = $service->price;
+		// $accountService->base_mnth	= $service->mnth;
+		// $accountService->base_user	= $service->user;
+		// $accountService->base_gb		= $service->gb;
+		// $accountService->base_price	= $service->price;
 
 		$accountService->mnth			= $service->mnth;
 		$accountService->user			= $service->user;
@@ -350,7 +350,7 @@ class AccountController extends Controller
 	}
 
 	/**
-	 *  IQBAL add-addon package when no payment is needed
+	 * IQBAL add-addon package when no payment is needed
 	*/
 	public function addAddon($account_id, $addon_id)
 	{
@@ -358,13 +358,13 @@ class AccountController extends Controller
 
 		// add addon to Service
 		$addon = Product::where('id', $addon_id)
-			->where('addon',true)    
-			->where('enable',true)    
+			->where('addon',true)
+			->where('enable',true)
 			->first();
 
 		// update account with user+GB+service name
 		$account		= Account::where('id', $account_id)->first();
-		
+
 		Log::debug('account->user =' . $account->user);
 		Log::debug('account->gb =' . $account->gb);
 		Log::debug('account->price =' . $account->price);
@@ -397,7 +397,7 @@ class AccountController extends Controller
 		$service->gb			= $addon->gb;
 		$service->price			= $addon->price;
 
-		$service->start_date    = now();
+		$service->start_date	= now();
 		$service->save();
 		Log::debug('New Service added =' . $service->id);
 		LandlordEventLog::event('service', $service->id, 'created');

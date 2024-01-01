@@ -110,7 +110,7 @@ class RegisterController extends Controller
 		$user = User::create([
 			'name'		=> $data['name'],
 			'email'		=> $data['email'],
-			//'email_verified_at'     => NOW(),   //MUST Comment
+			//'email_verified_at'  => NOW(),	//MUST Comment
 			'role'		=> UserRoleEnum::USER->value,
 			'password'	=> Hash::make($data['password']),
 		]);

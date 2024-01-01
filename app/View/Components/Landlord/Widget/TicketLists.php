@@ -128,9 +128,6 @@ class TicketLists extends Component
 				//Log::debug("Inside Ticket Index. Ignore. Other roles!");
 				$this->tickets = [];
 		}
-
-
-	  
 	}
 
 	/**

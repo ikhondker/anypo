@@ -20,7 +20,7 @@ class Item extends Model
 
 	/* ----------------- Functions ---------------------- */
 	public static function getAll() {
-		return  Item::select('id', 'name')
+		return Item::select('id', 'name')
 			->where('enable', true)
 			->orderBy('id', 'asc')
 			->get();

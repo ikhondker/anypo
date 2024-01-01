@@ -14,8 +14,8 @@ class Country extends Model
 {
 
 	use HasFactory, AddCreatedUpdatedBy;
-	protected $primaryKey   = 'country';
-	protected $keyType      = 'string';
+	protected $primaryKey	= 'country';
+	protected $keyType		= 'string';
 
 	protected $fillable = [
 		 'country','name','enable','updated_at','updated_by'
@@ -34,9 +34,9 @@ class Country extends Model
 
 	
 	public static function getAll() {
-		return  Country::select('country','name')
-		  ->orderBy('name','asc')
-		  ->get();
+		return Country::select('country','name')
+			->orderBy('name','asc')
+			->get();
 	}
 
 	public function scopePrimary(Builder $query): void

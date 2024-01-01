@@ -53,7 +53,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class InvoiceController extends Controller
 {
 	// define entity constant for file upload and workflow
-	const ENTITY   = 'INVOICE';
+	const ENTITY	= 'INVOICE';
 
 
 	/**
@@ -201,22 +201,22 @@ class InvoiceController extends Controller
 		switch ($period) {
 			case '1':
 				$discount_pc =0 ;
-			  	break;
-		  	case '3':
+				break;
+			case '3':
 				$discount_pc = $setup->discount_pc_3 ;
-			  break;
-		  	case '6':
+				break;
+			case '6':
 				$discount_pc = $setup->discount_pc_6 ;
-			  	break;
-	  		case '12':
+				break;
+			case '12':
 				$discount_pc = $setup->discount_pc_12 ;
-			  	break;
+			 	break;
 			case '24':
 				$discount_pc = $setup->discount_pc_24 ;
 				break;
 			default:
 				$discount_pc =0 ;
-		  }
+		}
 
 		Log::debug('discount_pc= ' . $discount_pc);
 		$invoice->price		= round($period * $account->price * (100 - $discount_pc)/100,2) ;
@@ -234,8 +234,8 @@ class InvoiceController extends Controller
 		LandlordEventLog::event('invoice', $invoice->id, 'create');
 
 		// update account billing info
-		//$account->last_bill_from_date   = $invoice->from_date;
-		//$account->last_bill_to_date     = $invoice->to_date;
+		//$account->last_bill_from_date	= $invoice->from_date;
+		//$account->last_bill_to_date	= $invoice->to_date;
 		$account->next_bill_generated	= true;
 		$account->next_invoice_no		= $invoice->invoice_no;
 		$account->last_bill_date		= now();

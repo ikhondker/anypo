@@ -121,7 +121,7 @@ class TestController extends Controller
 
 
 		// CreateTenant::dispatch("1");
-		// Log::debug("Creating Tenant for  1 ");
+		// Log::debug("Creating Tenant for 1 ");
 		// return redirect('/home')->with('success', 'Tenant created');
 		// exit;
 
@@ -129,7 +129,7 @@ class TestController extends Controller
 		// $tenant_id = 'demo3';
 		// $domain = $tenant_id . '.' . 'localhost';
 		// $tenant = Tenant::create([
-		//     'id' => $tenant_id
+		//		'id' => $tenant_id
 		// ]);
 
 		// $tenant->createDomain([
@@ -156,7 +156,7 @@ class TestController extends Controller
 
 
 		// CreateTenant::dispatch("1");
-		// Log::debug("Creating Tenant for  1 ");
+		// Log::debug("Creating Tenant for	1 ");
 		// return redirect('/home')->with('success', 'Tenant created 1');
 		// exit;
 
@@ -193,7 +193,7 @@ class TestController extends Controller
 
 
 		CreateTenant::dispatch("1");
-		Log::debug("Creating Tenant for  1 ");
+		Log::debug("Creating Tenant for	1 ");
 		return redirect('/home')->with('success', 'Tenant created');
 		exit;
 

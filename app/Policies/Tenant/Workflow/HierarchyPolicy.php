@@ -43,7 +43,7 @@ class HierarchyPolicy
 	 */
 	public function create(User $user): Response
 	{
-		//  Admin role user only
+		// Admin role user only
 		return ( $user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isBackOffice($user->role->value) )
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));

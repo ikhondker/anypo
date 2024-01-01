@@ -50,9 +50,9 @@ class Ticket extends Model
 	 * @var array<string, string>
 	 */
 	protected $casts = [
-		'ticket_date'   => 'datetime',
-		'created_at'    => 'datetime',
-		'status_code'     => LandlordTicketStatusEnum::class,
+		'ticket_date'	=> 'datetime',
+		'created_at'	=> 'datetime',
+		'status_code'	=> LandlordTicketStatusEnum::class,
 	];
 
 

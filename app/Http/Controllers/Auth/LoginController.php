@@ -125,7 +125,7 @@ class LoginController extends Controller
 		//auth()->user()->notify(new StatusNotification());
 
 		// redirect to error page if account_id is not set
-		if (((auth()->user()->role->value === 'user') || (auth()->user()->role->value === 'admin'))  && (is_null(auth()->user()->account_id))) {
+		if (((auth()->user()->role->value === 'user') || (auth()->user()->role->value === 'admin')) && (is_null(auth()->user()->account_id))) {
 			Session::flush();
 			Auth::logout();
 			return 'account-missing/';
@@ -146,9 +146,9 @@ class LoginController extends Controller
 	{
 		//Log::debug('I am here!');
 		return [
-			'email'    => request()->email,
+			'email'	 	=> request()->email,
 			'password' => request()->password,
-			'enable'   => true,  // do not allow disabled user to login
+			'enable'	=> true,  // do not allow disabled user to login
 			//is_null('email_verified_at')
 		];
 	}

@@ -113,7 +113,7 @@ class SupplierController extends Controller
 
 	public function export()
 	{
-		$data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable  
+		$data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable 
 			FROM suppliers");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

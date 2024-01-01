@@ -99,7 +99,7 @@ class SslCommerzPaymentController extends Controller
 		 $checkout					= new Checkout;
 		 $checkout->checkout_date	= date('Y-m-d H:i:s');
 		 $checkout->site			= Str::lower($request->input('site'));
-		 $checkout->account_name    = $request->input('account_name');
+		 $checkout->account_name	= $request->input('account_name');
 
 		 if (auth()->check()) {
 			$checkout->existing_user	= true;
@@ -304,7 +304,7 @@ class SslCommerzPaymentController extends Controller
 		$service->addon			= true;
 		$service->product_id	= $addon->id;
 		$service->name			= $addon->name;
-		$service->account_id    = $account->id;
+		$service->account_id	= $account->id;
 		$service->owner_id		= $account->owner_id;
 		$service->mnth			= $addon->mnth;
 		$service->user			= $addon->user;
@@ -379,8 +379,8 @@ class SslCommerzPaymentController extends Controller
 	{
 		//$tran_id	= $request->input('tran_id');
 
-		$trx_type   =  $request->input('value_a');
-		$trx_id     =  $request->input('value_b');
+		$trx_type	=  $request->input('value_a');
+		$trx_id		=  $request->input('value_b');
 		Log::debug("success: trx_type=".$trx_type." trx_id=".$trx_id);
 
 		switch ($trx_type) {

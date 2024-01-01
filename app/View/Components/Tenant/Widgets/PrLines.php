@@ -36,7 +36,7 @@ class PrLines extends Component
 		$this->prls = Prl::where('pr_id', $id)->get()->all();
 		//Log::debug("id=".$id." selected_prl_id=".$this->selected_prl_id);
 
-		$this->add  = $add;
+		$this->add	= $add;
 		$this->edit = $edit;
 		$this->show = $show;
 	}

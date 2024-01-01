@@ -22,8 +22,8 @@ class MyId extends Component
 
 	)
 	{
-		  //$this->id = $id;
-		 // $this->label = ($label == '')? 'ID' : $label;
+		//$this->id = $id;
+		// $this->label = ($label == '')? 'ID' : $label;
 	}
 
 	/**

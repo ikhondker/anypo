@@ -153,9 +153,9 @@ class ExchangeRate
 			}
 			//Log::debug("Import complete. Returning with true");
 
-			// set back the  last rate import date
+			// set back the last rate import date
 			$setup = Setup::first();
-			$setup->last_rate_date    	= Carbon::now()->startOfMonth();
+			$setup->last_rate_date = Carbon::now()->startOfMonth();
 			$setup->save();
 
 			// Write to Log

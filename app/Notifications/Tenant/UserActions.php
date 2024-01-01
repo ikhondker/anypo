@@ -27,15 +27,15 @@ class UserActions extends Notification implements ShouldQueue
 	 */
 	public function __construct(User $user, $action, $actionURL)
 	{
-		$this->user     = $user;
-		$this->action   = $action;
-		$this->actionURL   = $actionURL;
+		$this->user		= $user;
+		$this->action	= $action;
+		$this->actionURL= $actionURL;
 
 		switch ($this->action) {
 			case 'ACTIVATED':
-				$this->subject  = '[FYA] Your '.config('app.name').' account at has been '.Str::lower($this->action).'.';
-				$this->line1     = 'Please note, your '.config('app.name').' account at has been '.Str::lower($this->action).'.';
-				$this->line2     = 'Please use this as login email: '.$this->user->email;
+				$this->subject = '[FYA] Your '.config('app.name').' account at has been '.Str::lower($this->action).'.';
+				$this->line1	= 'Please note, your '.config('app.name').' account at has been '.Str::lower($this->action).'.';
+				$this->line2	= 'Please use this as login email: '.$this->user->email;
 				break;
 			default:
 				// Success 

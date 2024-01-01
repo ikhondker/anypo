@@ -59,7 +59,7 @@ class CurrencyController extends Controller
 	public function store(StoreCurrencyRequest $request)
 	{
 		$this->authorize('create', Currency::class);
-		$request->merge(['enable'   => true ]);
+		$request->merge(['enable'	=> true ]);
 		$currency = Currency::create($request->all());
 		// Write to Log
 		EventLog::event('currency', $currency->currency, 'create');

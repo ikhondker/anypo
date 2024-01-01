@@ -71,8 +71,8 @@ class UserPolicy
 			}
 
 		} else {
-			//  only back-office can see seeded users view
-			if  ($model->seeded) {
+			// only back-office can see seeded users view
+			if ($model->seeded) {
 				return ( CheckAccess::isBackOffice($user->role->value))
 					? Response::allow()
 					: Response::deny(config('akk.MSG_DENY'));
@@ -93,12 +93,12 @@ class UserPolicy
 	{
 
 		if (tenant('id') == ''){
-			//  Admin role user only
+			// Admin role user only
 			return ( $user->isAdmin() || $user->isBackOffice() )
 				? Response::allow()
 				: Response::deny(config('bo.MSG_DENY'));
 		} else {
-			 //  Admin role user only
+			 // Admin role user only
 			 return ( CheckAccess::aboveAdmin($user->role->value) )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));
@@ -136,8 +136,8 @@ class UserPolicy
 				: Response::deny(config('bo.MSG_DENY'));
 			}
 		} else {
-			//  only back-office can edit seeded users
-			if  ($model->seeded) {
+			// only back-office can edit seeded users
+			if ($model->seeded) {
 				return ( CheckAccess::isBackOffice($user->role->value))
 					? Response::allow()
 					: Response::deny(config('akk.MSG_DENY'));
@@ -181,8 +181,8 @@ class UserPolicy
 				: Response::deny(config('bo.MSG_DENY'));
 			}
 		} else {
-			//  only back-office can edit seeded users
-			if  ($model->seeded) {
+			// only back-office can edit seeded users
+			if ($model->seeded) {
 				return ( CheckAccess::isBackOffice($user->role->value))
 					? Response::allow()
 					: Response::deny(config('akk.MSG_DENY'));
@@ -204,10 +204,10 @@ class UserPolicy
 	 */
 	public function delete(User $user, User $model): Response
 	{
-	   //  only back-office can disable seeded users
+		// only back-office can disable seeded users
 
-	   if (tenant('id') == ''){
-			//  Admin user for current account users only
+		if (tenant('id') == ''){
+			// Admin user for current account users only
 			// stop deactivating himself
 			if ($user->isAdmin() ) {
 				return (($user->account_id == $model->account_id) && ($user->id <> $model->id) )
@@ -223,8 +223,8 @@ class UserPolicy
 				: Response::deny(config('bo.MSG_DENY'));
 			}
 		} else {
-			//  only back-office can edit seeded users
-			if  ($model->seeded) {
+			// only back-office can edit seeded users
+			if ($model->seeded) {
 				return ( CheckAccess::isBackOffice($user->role->value))
 					? Response::allow()
 					: Response::deny(config('akk.MSG_DENY'));

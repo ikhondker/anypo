@@ -12,5 +12,5 @@ use App\Models\User;
 
 class Process extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 }

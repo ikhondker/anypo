@@ -45,7 +45,7 @@ class Contact extends Model
 	 * @var array<string, string>
 	 */
 	protected $casts = [
-		'contact_date'     => 'datetime',
+		'contact_date'	=> 'datetime',
 	];
 
 	/* ---------------- HasMany ---------------------- */

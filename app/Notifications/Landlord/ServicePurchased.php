@@ -36,8 +36,8 @@ class ServicePurchased extends Notification implements ShouldQueue
 	 */
 	public function __construct(User $user, Account $account)
 	{
-		$this->user     = $user;
-		$this->account  = $account;
+		$this->user		= $user;
+		$this->account	= $account;
 	}
 
 	/**

@@ -21,7 +21,7 @@ class Lists extends Component
 	 */
 	public function __construct($object)
 	{
-		 $this->object   = $object;
+		 $this->object	= $object;
 
 		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
 		$this->title = $object. ' List';

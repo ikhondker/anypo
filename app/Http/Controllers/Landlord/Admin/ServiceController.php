@@ -43,7 +43,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class ServiceController extends Controller
 {
 	// define entity constant for file upload and workflow
-	const ENTITY   = 'SERVICE';
+	const ENTITY	= 'SERVICE';
 
 	/**
 	 * Display a listing of the resource.

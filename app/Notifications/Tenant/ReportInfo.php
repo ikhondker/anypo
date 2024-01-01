@@ -30,10 +30,9 @@ class ReportInfo extends Notification implements ShouldQueue
 	 */
 	public function __construct($entity,$subject)
 	{
-		$this->entity       = $entity;
-		$this->actionURL    = Request::fullUrl();
-		$this->subject  = '[ FYI ] '. tenant('id').'/'.$this->entity .' : '.$subject;
-		//$this->line     = ''
+		$this->entity		= $entity;
+		$this->actionURL	= Request::fullUrl();
+		$this->subject = '[ FYI ] '. tenant('id').'/'.$this->entity .' : '.$subject;
 		Log::debug("Inside system notification". Request::fullUrl() );
 		$this->performer = User::where('id', auth()->user()->id )->first();
 	}
@@ -74,29 +73,29 @@ class ReportInfo extends Notification implements ShouldQueue
 	public function toArray(object $notifiable): array
 	{
 		$details = [
-			'entity'   		=> 'PR',
-			'id'            => $this->performer->id,
-			'from'          => 'System',
-			'to'            => 'System',
-			'subject'       => $this->subject,
-			'greeting'      => 'Hi Team,',
-			'body'          => $this->line,
-			'thanks'        => 'Thank you for using '. config('app.name').'!',
-			'actionText'    => 'View PR',
-			'actionURL'     => $this->actionURL,
+			'entity'		=> 'PR',
+			'id'			=> $this->performer->id,
+			'from'			=> 'System',
+			'to'			=> 'System',
+			'subject'		=> $this->subject,
+			'greeting'		=> 'Hi Team,',
+			'body'			=> $this->line,
+			'thanks'		=> 'Thank you for using '. config('app.name').'!',
+			'actionText'	=> 'View PR',
+			'actionURL'		=> $this->actionURL,
 		];
 
 		return [
-			'entity'        => $details['entity'],
-			'id'            => $details['id'],
-			'from'          => $details['from'],
-			'to'            => $details['to'],
-			'subject'       => $details['subject'],
-			'greeting'      => $details['greeting'],
-			'body'          => $details['body'],
-			'thanks'        => $details['thanks'],
-			'actionText'    => $details['actionText'],
-			'actionURL'     => $details['actionURL'],
+			'entity'		=> $details['entity'],
+			'id'			=> $details['id'],
+			'from'			=> $details['from'],
+			'to'			=> $details['to'],
+			'subject'		=> $details['subject'],
+			'greeting'		=> $details['greeting'],
+			'body'			=> $details['body'],
+			'thanks'		=> $details['thanks'],
+			'actionText'	=> $details['actionText'],
+			'actionURL'		=> $details['actionURL'],
 		];
 	}
 }

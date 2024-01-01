@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Log;
 class ProductController extends Controller
 {
 	// define entity constant for file upload and workflow
-	const ENTITY   = 'PRODUCT';
+	const ENTITY	= 'PRODUCT';
 
 	/**
 	 * Create a new controller instance.
@@ -112,7 +112,7 @@ class ProductController extends Controller
 		$product->update($request->all());
 
 		// if ( $request->input('owner_id') <> $service->owner_id ) {
-		//     LandlordEventLog::event('service',$service->id,'update','owner_id',$service->owner_id);
+		//		LandlordEventLog::event('service',$service->id,'update','owner_id',$service->owner_id);
 		// }
 
 		return redirect()->route('products.index')->with('success', 'Product updated successfully');

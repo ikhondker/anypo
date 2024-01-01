@@ -21,14 +21,14 @@ class Supplier extends Model
 
 	/* ----------------- Functions ---------------------- */
 	public static function getAll() {
-		return  Supplier::select('id', 'name')
+		return Supplier::select('id', 'name')
 			->where('enable', true)
 			->orderBy('id', 'asc')
 			->get();
 	}
 
 	public static function getAll1() {
-		return  Supplier::select('id', 'name')
+		return Supplier::select('id', 'name')
 			->where('enable', true)
 			->orderBy('id', 'asc')
 			->get();

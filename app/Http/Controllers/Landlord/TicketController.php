@@ -57,7 +57,7 @@ use DB;
 class TicketController extends Controller
 {
 	// define entity constant for file upload and workflow
-	const ENTITY   = 'TICKET';
+	const ENTITY	= 'TICKET';
 
 	/**
 	 * Display a listing of the resource.
@@ -141,7 +141,7 @@ class TicketController extends Controller
 		// Write to Log
 		LandlordEventLog::event('ticket', $ticket->id, 'create');
 
-		// Upload File, if any, insert row in attachment table  and get attachments id
+		// Upload File, if any, insert row in attachment table and get attachments id
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $ticket->id]);
 			$request->merge(['entity'		=> static::ENTITY]);
@@ -251,7 +251,7 @@ class TicketController extends Controller
 	{
 		
 		//$this->authorize('update',$ticket);
-		$ticket->agent_id   = $request->input('agent_id');
+		$ticket->agent_id	= $request->input('agent_id');
 		$ticket->save();
 		
 		LandlordEventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
@@ -270,7 +270,7 @@ class TicketController extends Controller
 	{
 		//$this->authorize('update',$ticket);
 
-		$ticket->status_code   = LandlordTicketStatusEnum::CLOSED->value;
+		$ticket->status_code	= LandlordTicketStatusEnum::CLOSED->value;
 		$ticket->save();
 		LandlordEventLog::event('ticket', $ticket->id, 'update', 'status_code', $ticket->status_code);
 

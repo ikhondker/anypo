@@ -68,7 +68,7 @@ class Workflow
 				//$dept_id = $pr->dept_id;
 				$dept = Dept::where('id', $pr->dept_id)->first();
 				$hierarchy = Hierarchy::where('id', $dept->pr_hierarchy_id)->firstOrFail();
-				$hierarchy_id =  $hierarchy->id;
+				$hierarchy_id =	$hierarchy->id;
 				break;
 			case EntityEnum::PO->value:
 				break;
@@ -89,7 +89,7 @@ class Workflow
 		// }
 
 		// create WF header and child row
-		if ($hierarchy_id <>  0) {
+		if ($hierarchy_id <> 0) {
 
 			// create WF header row
 			$wf					= new Wf();
@@ -111,7 +111,7 @@ class Workflow
 				SELECT ".$wf_id.",approver_id 
 				FROM hierarchyls WHERE hid= ".$hierarchy_id.";");
 		} else {
-			$wf_id  = 0;
+			$wf_id = 0;
 		}
 
 		return $wf_id;

@@ -95,9 +95,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
 	/* ----------------- Functions ---------------------- */
-    /* ----------------- Scopes ------------------------- */
-    /* ----------------- HasMany ------------------------ */
-    /* ----------------- belongsTo ---------------------- */
+	/* ----------------- Scopes ------------------------- */
+	/* ----------------- HasMany ------------------------ */
+	/* ----------------- belongsTo ---------------------- */
 
 	/*
 	|-----------------------------------------------------------------------------
@@ -116,28 +116,27 @@ class User extends Authenticatable implements MustVerifyEmail
 	//TODO change
 	/* ---------------- Functions ---------------------- */
 	public static function getAllLandlord() {
-		return  User::select('id','name')
-		  ->where('enable', true)
-		  ->orderBy('id','asc')
-		  ->get();
+		return User::select('id','name')
+			->where('enable', true)
+			->orderBy('id','asc')
+			->get();
 	}
 
 	public static function getAllAgent() {
-		return  User::select('id','name')
-		  ->where('enable', true)
-		  ->where('role', 'support')
-		  ->orderBy('id','asc')
-		  ->get();
+		return User::select('id','name')
+		->where('enable', true)
+		 ->where('role', 'support')
+		 ->orderBy('id','asc')
+		 ->get();
 	}
 
 	public static function getOwners($account_id) {
-		return  User::select('id','name')
-		  ->where('enable', true)
-		  ->where('account_id', $account_id)
-		  ->orderBy('id','asc')
-		  ->get();
+		return User::select('id','name')
+		 ->where('enable', true)
+		 ->where('account_id', $account_id)
+		 ->orderBy('id','asc')
+		 ->get();
 	}
-
 
 	public function isFrontOffice()
 	{
@@ -304,7 +303,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	/* ----------------- Functions ---------------------- */
 	public static function getAdmins()
 	{
-		return  User::select('id', 'name')
+		return User::select('id', 'name')
 			->where('role', 'admin')
 			->where('enable', true)
 			->where('seeded', false)

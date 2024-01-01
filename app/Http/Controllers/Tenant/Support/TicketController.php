@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 class TicketController extends Controller
 {
 	// define entity constant for file upload and workflow
-	const ENTITY   = 'TICKET';
+	const ENTITY = 'TICKET';
 
 	/**
 	 * Display a listing of the resource.
@@ -28,7 +28,7 @@ class TicketController extends Controller
 	 */
 	public function create()
 	{
-	   // $this->authorize('create',Ticket::class);
+		// $this->authorize('create',Ticket::class);
 
 		//$depts = Dept::getAll();
 		//$priorities = Priority::getAll(); 
@@ -65,7 +65,7 @@ class TicketController extends Controller
 		$email='user8@example.com';
 		
 		// create or find user in Landlord if don't exists
-		$landlordUserId = tenancy()->central(function ($tenant)  use ($tenant_id, $name, $email, $cell) {
+		$landlordUserId = tenancy()->central(function ($tenant) use ($tenant_id, $name, $email, $cell) {
 			
 			Log::debug("tenant_id= ".$tenant_id);
 			$account = \App\Models\Landlord\Account::where('site', $tenant_id)->first();
@@ -95,18 +95,18 @@ class TicketController extends Controller
 
 				if ( $createLandlordUser ){
 					Log::debug("create user for mail= ".$email.' cell = '. $cell);
-					$random_password    = \Illuminate\Support\Str::random(12);
+					$random_password	= \Illuminate\Support\Str::random(12);
 
 					$user = \App\Models\User::create([
 						'name' 				=> $name,
 						'email' 			=> $email,
 						'cell' 				=> $cell,
-						'email_verified_at'	=> NOW(),   //Already Verified in tenant
+						'email_verified_at'	=> NOW(),	//Already Verified in tenant
 						'account_id' 		=> $account->id,
 						'password' 			=> bcrypt($random_password),
 					]);
 					
-					// Send notification on new user creation  with initial password
+					// Send notification on new user creation with initial password
 					$user->notify(new \App\Notifications\Landlord\UserCreated($user, $random_password));
 					Log::debug('Landlord user Created id=' . $user->id);
 				}
@@ -121,7 +121,7 @@ class TicketController extends Controller
 		Log::debug("landlordUserId = ".$landlordUserId);
 		
 		// now create the ticket under that landlord user
-		$landlordTicket = tenancy()->central(function ($tenant)  use ($landlordUserId, $request) {
+		$landlordTicket = tenancy()->central(function ($tenant) use ($landlordUserId, $request) {
 				//Log::debug("email= ".$email);
 				// now must get
 				$user = \App\Models\User::where('id', $landlordUserId)->first();
@@ -144,7 +144,7 @@ class TicketController extends Controller
 				//Write to Log
 				\App\Helpers\LandlordEventLog::event('ticket', $ticket->id, 'create');
 
-				// Upload File, if any, insert row in attachment table  and get attachments id
+				// Upload File, if any, insert row in attachment table and get attachments id
 				if ($file = $request->file('file_to_upload')) {
 					$request->merge(['article_id'	=> $ticket->id]);
 					$request->merge(['entity'		=> static::ENTITY]);

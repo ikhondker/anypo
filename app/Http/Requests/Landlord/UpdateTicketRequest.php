@@ -22,7 +22,7 @@ class UpdateTicketRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'title'  => 'required|max:200',
+			'title'	=> 'required|max:200',
 		];
 	}
 }

@@ -81,7 +81,7 @@ class PrlController extends Controller
 		$request->merge(['sub_total'	=> $request->input('prl_amount')]);
 		$request->merge(['amount'		=> $request->input('prl_amount')]);
 
-		//$request->merge(['pr_date'     => date('Y-m-d H:i:s')]);
+		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
 		$prl = Prl::create($request->all());
 		// Write to Log
 		EventLog::event('Prl', $prl->id, 'create');
@@ -172,8 +172,8 @@ class PrlController extends Controller
 
 		// update PR header
 		$pr = Pr::where('id', $prl->pr_id)->firstOrFail();
-		$pr->sub_total		=  $pr->sub_total -  $prl->amount;
-		$pr->amount			=  $pr->amount -  $prl->amount;
+		$pr->sub_total		= $pr->sub_total - $prl->amount;
+		$pr->amount			= $pr->amount - $prl->amount;
 		$pr->save();
 
 		// Write to Log

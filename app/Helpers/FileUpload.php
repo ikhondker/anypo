@@ -60,17 +60,17 @@ class FileUpload
 		// create Attachment record TODO rewrite
 		$attachment					= new Attachment();
 		$attachment->article_id		= $request->article_id;
-		$attachment->entity   		= $request->entity;
-		$attachment->file_entity   	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
+		$attachment->entity			= $request->entity;
+		$attachment->file_entity	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
 
-		$attachment->owner_id   	= auth()->check() ? auth()->user()->id : config('akk.GUEST_USER_ID');
+		$attachment->owner_id		= auth()->check() ? auth()->user()->id : config('akk.GUEST_USER_ID');
 
-		$attachment->summary   		= ($request->has('summary')) ? $request->summary : 'No details';
-		$attachment->file_name   	= $fileName;
-		$attachment->org_file_name  = $org_fileName;
-		$attachment->file_type   	= $request->file('file_to_upload')->getMimeType();
-		$attachment->file_size   	= $request->file('file_to_upload')->getSize();
-		$attachment->upload_date   	= now(); //date('Y-m-d H:i:s');
+		$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No details';
+		$attachment->file_name		= $fileName;
+		$attachment->org_file_name	= $org_fileName;
+		$attachment->file_type		= $request->file('file_to_upload')->getMimeType();
+		$attachment->file_size		= $request->file('file_to_upload')->getSize();
+		$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
 		//$attachment = Attachment::create($input);
 
 		$attachment->save();

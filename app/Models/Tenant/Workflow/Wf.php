@@ -40,7 +40,7 @@ class Wf extends Model
 		return $this->belongsTo(Hierarchy::class,'hierarchy_id');
 	}
 
-	  public function last_performer(){
+	public function last_performer(){
 		return $this->belongsTo(User::class, 'auth_userid')->withDefault([
 			'name' => '[ Empty ]',
 		]);

@@ -62,7 +62,7 @@ class UserRegistered extends Notification implements ShouldQueue
 			->line('You will be receiving another email shortly to verify your email with link')
 			->line('Please click on that link to verify email Address')
 			->line('Thank you for using '.config('app.name').' application!');
-   }
+	}
 	
 	/**
 	 * Get the array representation of the notification.

@@ -9,8 +9,7 @@ use Illuminate\View\Component;
 class MyDate extends Component
 {
 	//public $label;
-   // public $value;
-
+	// public $value;
 
 	/**
 	 * Create a new component instance.

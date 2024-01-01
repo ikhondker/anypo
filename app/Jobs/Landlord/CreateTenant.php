@@ -93,38 +93,38 @@ class CreateTenant implements ShouldQueue
 		Log::debug('0. Processing Site='.$checkout->site);
 
 		// create or update user
-		Log::debug('1. Calling  createUpdateCheckoutUser');
+		Log::debug('1. Calling createUpdateCheckoutUser');
 		$user_id= self::createUpdateCheckoutUser($this->checkout_id);
 		
 		// Create account 
-		Log::debug('2. Calling  createCheckoutAccount');
+		Log::debug('2. Calling createCheckoutAccount');
 		$account_id		= self::createCheckoutAccount($this->checkout_id);
 
 		// update account_id in checkout
 		$checkout		= Checkout::where('id', $this->checkout_id)->first();
-		$checkout->account_id     = $account_id;
+		$checkout->account_id	= $account_id;
 		$checkout->save();
 
 		// update user account_id
 		$user = User::where('id', $user_id)->first();
-		$user->account_id    = $account_id;
+		$user->account_id	= $account_id;
 		$user->save();
 		Log::debug('User account_id update uid=' . $user->id);
 		LandlordEventLog::event('user', $user->id, 'update', $account_id);
 		
 		// create service	
-		Log::debug('3. Calling  createCheckoutService');
+		Log::debug('3. Calling createCheckoutService');
 		$service_id = self::createCheckoutService($this->checkout_id);
 
 		// generate first invoice for this account and notify
-		Log::debug('4. Calling  createCheckoutInvoice');
+		Log::debug('4. Calling createCheckoutInvoice');
 		$invoice_id = self::createCheckoutInvoice($this->checkout_id);
-		$checkout->invoice_id     = $invoice_id;
+		$checkout->invoice_id	= $invoice_id;
 		$checkout->save();
 
 		// pay this first invoice and notify
 		//$payment_id = self::payInvoice($invoice_id);
-		Log::debug('5. Calling  payCheckoutInvoice');
+		Log::debug('5. Calling payCheckoutInvoice');
 		$payment_id = self::payCheckoutInvoice($checkout->invoice_id );
 
 		// update account with billed date
@@ -138,21 +138,21 @@ class CreateTenant implements ShouldQueue
 		// $user->notify(new ServicePurchased($user, $account));
 
 		// update product sold_qty column
-		$product				= Product::where('id', $checkout->product_id )->first();
-		$product->sold_qty     = $product->sold_qty+1;
+		$product			= Product::where('id', $checkout->product_id )->first();
+		$product->sold_qty	= $product->sold_qty+1;
 		$product->save();
 
 		// Create new tenant TODO
 		Log::debug("Creating Tenant for checkout ID= ".$this->checkout_id);
-		Log::debug('6. Calling  createTenant');
+		Log::debug('6. Calling createTenant');
 		$tenant_id= self::createTenant();
 
 		// mark checkout as complete
-		$checkout->status_code =  LandlordCheckoutStatusEnum::COMPLETED->value;
+		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
 		
 		// copy logo and avatar default files Not needed after AWS CDN
-		// Log::debug('7. Calling  copyCheckoutFiles');
+		// Log::debug('7. Calling copyCheckoutFiles');
 		// $service_id = self::copyCheckoutFiles($this->checkout_id);
 
 	}
@@ -339,7 +339,7 @@ class CreateTenant implements ShouldQueue
 		// get unique invoice_no
 		$invoice->invoice_no	= Bo::getInvoiceNo();
 
-		$invoice->invoice_date  = now();
+		$invoice->invoice_date = now();
 		//Log::channel('bo')->info('Account id='. $account_id.' last_bill_from_date '.$account->last_bill_from_date);
 
 		// this is the first bill for initial purchase
@@ -355,11 +355,11 @@ class CreateTenant implements ShouldQueue
 		$invoice->subtotal		= $checkout->price;
 		$invoice->amount		= $checkout->price; // TODO ??
 		$invoice->account_id	= $checkout->account_id;
-		$invoice->owner_id	= $checkout->owner_id;
+		$invoice->owner_id		= $checkout->owner_id;
 
 		// create invoice
-		$invoice->currency      = 'USD';
-		$invoice->status_code   = LandlordInvoiceStatusEnum::DUE->value;
+		$invoice->currency		= 'USD';
+		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
 		$invoice->save();
 
 		Log::debug('Invoice Generated id=' . $invoice->id);
@@ -448,7 +448,7 @@ class CreateTenant implements ShouldQueue
 		// create first tenant admin for tenant
 		$email 			= $checkout->email;
 		$account_name 	= $checkout->account_name;
-		$random_password    = \Illuminate\Support\Str::random(12);
+		$random_password= \Illuminate\Support\Str::random(12);
 
 		$tenant = Tenant::find($tenant_id);
 
@@ -459,7 +459,7 @@ class CreateTenant implements ShouldQueue
 			$user = User::create([
 				'name'		=> $account_name,
 				'email'		=> $email,
-				'email_verified_at'	=> NOW(),   // TODO this is not verified Already Verified in tenant
+				'email_verified_at'	=> NOW(),	// TODO this is not verified Already Verified in tenant
 				'role'		=> \App\Enum\UserRoleEnum::ADMIN->value,
 				'password'	=> Hash::make($random_password),
 				'enable'	=> true,

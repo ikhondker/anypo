@@ -17,7 +17,7 @@ class Attachment extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	use SoftDeletes;
-  
+
 	protected $casts = [
 		'deleted_at' => 'datetime',
 		'updated_at' => 'datetime',
@@ -43,7 +43,6 @@ class Attachment extends Model
 
 	/* ----------------- HasMany ------------------------ */
 	 
-  
 	/* ----------------- belongsTo ---------------------- */
 	public function entity(){
 		return $this->belongsTo(Entity::class,'entity');

@@ -11,38 +11,38 @@ use App\Models\User;
 
 class Template extends Model
 {
-  use HasFactory, AddCreatedUpdatedBy;
-  // protected $dates = [
-  //   'my_date',
-  // ];
+	use HasFactory, AddCreatedUpdatedBy;
+	// protected $dates = [
+	//   'my_date',
+	// ];
 
-  protected $casts = [
-    'my_date'       =>  'date',
-    'my_date_time'  =>  'date',
+	protected $casts = [
+		'my_date'		=> 'date',
+		'my_date_time'	=> 'date',
 
-  ];
+	];
 
-  protected $fillable = [
-    'code', 'summary', 'name', 'user_id', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'phone', 'qty', 'amount', 'notes', 'my_bool', 'my_date', 'my_date_time', 'my_enum', 'my_image', 'fbpage', 'updated_by', 'updated_at',
-  ];
+	protected $fillable = [
+		'code', 'summary', 'name', 'user_id', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'phone', 'qty', 'amount', 'notes', 'my_bool', 'my_date', 'my_date_time', 'my_enum', 'my_image', 'fbpage', 'updated_by', 'updated_at',
+	];
 
-  /* ---------------- HasMany ---------------------- */
+	/* ---------------- HasMany ---------------------- */
 
 
-  /* ---------------- belongsTo ---------------------- */
-  public function user()
-  {
-    return $this->belongsTo(User::class, 'user_id');
-  }
+	/* ---------------- belongsTo ---------------------- */
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'user_id');
+	}
 
-  /* ---------------- created and updated by ---------------------- */
-  public function user_created_by()
-  {
-    return $this->belongsTo(User::class, 'created_by');
-  }
+	/* ---------------- created and updated by ---------------------- */
+	public function user_created_by()
+	{
+		return $this->belongsTo(User::class, 'created_by');
+	}
 
-  public function user_updated_by()
-  {
-    return $this->belongsTo(User::class, 'updated_by');
-  }
+	public function user_updated_by()
+	{
+		return $this->belongsTo(User::class, 'updated_by');
+	}
 }

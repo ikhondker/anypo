@@ -55,7 +55,7 @@ class SupplierPolicy
 	 */
 	public function update(User $user, Supplier $supplier): Response
 	{
-		//  admin user only
+		// admin user only
 		return ( CheckAccess::aboveAdmin($user->role->value) )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));

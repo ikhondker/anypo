@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Builder;
 class Currency extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
-	protected $primaryKey   = 'currency';
-	protected $keyType      = 'string';
+	protected $primaryKey	= 'currency';
+	protected $keyType		= 'string';
 
 	protected $fillable = [
 		'currency', 'name', 'country', 'symbol', 'enable', 'rates', 'never', 'updated_by', 'updated_at',
@@ -25,13 +25,13 @@ class Currency extends Model
 
 	/* ----------------- Functions ---------------------- */
 	public static function getAll() {
-		return  Currency::select('currency','name','country')
-		  ->orderBy('currency','asc')
-		  ->get();
+		return Currency::select('currency','name','country')
+			->orderBy('currency','asc')
+			->get();
 	}
 
 	public static function getActives() {
-		return  Currency::select('currency','name','country')
+		return Currency::select('currency','name','country')
 			->where('enable',true)
 			->orderBy('name','asc')
 			->get();

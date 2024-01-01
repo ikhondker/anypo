@@ -64,10 +64,10 @@ class ProjectController extends Controller
 
 		if($request->has('budget_control')) {
 			//Checkbox checked
-			$request->merge(['budget_control' =>  1,]);
+			$request->merge(['budget_control' => 1,]);
 		} else {
 			//Checkbox not checked
-			$request->merge([ 'budget_control' =>  0,]);
+			$request->merge([ 'budget_control' => 0,]);
 		}
 
 		$project = Project::create($request->all());
@@ -108,10 +108,10 @@ class ProjectController extends Controller
 		// check box
 		if($request->has('budget_control')) {
 			//Checkbox checked
-			$request->merge(['budget_control' =>  1]);
+			$request->merge(['budget_control' => 1]);
 		} else {
 			//Checkbox not checked
-			$request->merge(['budget_control' =>  0]);
+			$request->merge(['budget_control' => 0]);
 		}
 
 		//$request->validate();

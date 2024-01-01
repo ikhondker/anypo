@@ -16,7 +16,7 @@ class MyBoolean extends Component
 	 */
 	public function __construct($value, $label='Enable')
 	{
-		  $this->value = $value;
+		$this->value = $value;
 		$this->label = $label;
 	}
 

@@ -5,7 +5,7 @@
  * ==================================================================================
  * @file        GetRate.php
  * @brief       This file contains the implementation of the GetRate Helper.
- * @author      Iqbal H. Khondker 
+ * @author      Iqbal H. Khondker
  * @created     27-Apr-2023
  * @copyright   (c) Copyright by Iqbal H. Khondker
  * ==================================================================================
@@ -24,7 +24,7 @@ use Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\Exception;  
+use Illuminate\Database\Eloquent\Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
@@ -51,7 +51,7 @@ class GetRate
 				->firstOrFail();
 			Log::debug("Rate Found EUR=".$ex->rate);
 		} catch (\Exception $exception) {
-			// General Exception class which is the parent of all Exceptions 
+			// General Exception class which is the parent of all Exceptions
 			// download rates
 			//$response = Http::get('https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_rjxI0w322t8Mgu1ReRztUcoqwqCYEQwyRAnKCpCZ&currencies=EUR');
 			Log::debug("Exception Hit");
@@ -75,13 +75,13 @@ class GetRate
 
 				// insert in rate table
 				$ex					= new Exchange;
-				$ex->rate_date    	= Carbon::now()->startOfMonth();
-				$ex->base_currency  = $base_currency;
-				$ex->to_currency    = $to_currency;
-				$ex->from_date    	= Carbon::now()->startOfMonth();
-				$ex->to_date    	= Carbon::now()->endOfMonth();
-				$ex->rate    		   = $rate;
-				$ex->inverse_rate   = 1/$rate;
+				$ex->rate_date		= Carbon::now()->startOfMonth();
+				$ex->base_currency	= $base_currency;
+				$ex->to_currency	= $to_currency;
+				$ex->from_date		= Carbon::now()->startOfMonth();
+				$ex->to_date		= Carbon::now()->endOfMonth();
+				$ex->rate			= $rate;
+				$ex->inverse_rate	= 1/$rate;
 				$ex->save();
 				$ex_id				= $ex->id;
 
@@ -92,7 +92,7 @@ class GetRate
 		}
 
 
-		
+
 		// https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_rjxI0w322t8Mgu1ReRztUcoqwqCYEQwyRAnKCpCZ&currencies=EUR%2CUSD&base_currency=CAD
 		// {
 		//     "data": {
@@ -114,7 +114,7 @@ class GetRate
 		// $response = Http::get('https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_rjxI0w322t8Mgu1ReRztUcoqwqCYEQwyRAnKCpCZ&currencies=EUR');
 		// $jsonData = $response->json();
 		// $data= $jsonData['data'];
-		
+
 		// Log::debug("EUR=".$data['EUR']);
 		// Log::debug("response->ok()=".$response->ok());
 		// Log::debug("response->successful()=".$response->successful());
@@ -122,8 +122,8 @@ class GetRate
 
 		// [2023-08-08 18:27:40] local.DEBUG: EUR=0.9083401321
 		// [2023-08-08 18:27:40] local.DEBUG: response->ok()=1
-		// [2023-08-08 18:27:40] local.DEBUG: response->successful()1  
-		// [2023-08-08 18:27:40] local.DEBUG: response->serverError()   
+		// [2023-08-08 18:27:40] local.DEBUG: response->successful()1
+		// [2023-08-08 18:27:40] local.DEBUG: response->serverError()
 
 
 		// Boolean checks on the response

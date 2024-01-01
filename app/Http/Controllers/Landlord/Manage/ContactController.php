@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Log;
 class ContactController extends Controller
 {
 	// define entity constant for file upload and workflow
-	const ENTITY   = 'CONTACT';
+	const ENTITY	= 'CONTACT';
 	
 	/**
 	 * Display a listing of the resource.
@@ -64,7 +64,7 @@ class ContactController extends Controller
 	 */
 	public function create()
 	{
-	   //
+		//
 	}
 
 	/**

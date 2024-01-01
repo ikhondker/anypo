@@ -74,7 +74,7 @@ class UploadItemPolicy
 	 */
 	public function restore(User $user, UploadItem $uploadItem): bool
 	{
-	   
+		
 	}
 
 	/**

@@ -15,7 +15,7 @@ class Dept extends Component
 	 */
 	public function __construct(public string $value='')
 	{
-	   $this->depts = \App\Models\Landlord\Lookup\Dept::getAll();
+		$this->depts = \App\Models\Landlord\Lookup\Dept::getAll();
 	}
 
 	/**

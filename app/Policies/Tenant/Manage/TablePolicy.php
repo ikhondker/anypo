@@ -94,7 +94,7 @@ class TablePolicy
 	{
 		//return ( CheckAccess::isSystem($user->role->value) )
 		Log::debug('inside policy');
-		return  false;
+		return false;
 
 	}
 	/**

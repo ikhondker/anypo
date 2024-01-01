@@ -69,7 +69,6 @@ class RatePolicy
 		return ( true )
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
-		   
 	}
 
 	/**

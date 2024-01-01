@@ -21,7 +21,7 @@ class MyInteger extends Component
 		public string $label='Amount X'
 	)
 	{
-	   // $this->label = ($label == '')? 'Amount' : $label;
+		// $this->label = ($label == '')? 'Amount' : $label;
 		if (is_numeric($value)){
 			$this->value = $value;
 		} else {

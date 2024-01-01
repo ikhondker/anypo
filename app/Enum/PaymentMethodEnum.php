@@ -8,7 +8,7 @@
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -20,7 +20,7 @@
 namespace App\Enum;
 
 enum PaymentMethodEnum:string{
-	case CASH		= '1001';  
+	case CASH		= '1001';
 	case CARD		= '1002';
 	case MFS		= '1003';
 	case CHECK		= '1004';
