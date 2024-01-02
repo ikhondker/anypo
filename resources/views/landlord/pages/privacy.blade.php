@@ -3,9 +3,8 @@
 
 @section('content')
 
-	
 	<!-- Content -->
-	<div class="container content-space-3 content-space-lg-4">
+	<div class="container content-space-3 content-space-lg-2">
 		<!-- Card -->
 		<div class="card card-lg">
 			<!-- Header -->

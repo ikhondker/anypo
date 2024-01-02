@@ -56,7 +56,8 @@ class ReportController extends Controller
 
 		//Log::info(json_encode($invoice)); 
 		//$this->authorize('xxInvoice', Invoice::class);
-		
+		//Log::debug("inside pdfInvoice= ". $invoice->id );
+
 		// NOTE: Uses InvoicePolicy
 		$this->authorize('pdfInvoice', $invoice);
 
@@ -79,15 +80,17 @@ class ReportController extends Controller
 		//dd($id, $prls);
 
 		$data = [
-			'title' => 'Company XYZ',
-			'id' => $invoice->id,
-			'date' => date('m/d/Y'),
-			'setup' => $setup,
-			'invoice' => $invoice,
-			'account' => $account,
+			//'title' 	=> 'Company XYZ',
+			'id' 		=> $invoice->id,
+			'date' 		=> date('m/d/Y'),
+			'setup' 	=> $setup,
+			'invoice' 	=> $invoice,
+			'account' 	=> $account,
 		];
 		
 		$pdf = PDF::loadView('landlord.reports.formats.invoice', $data);
+			// ->setOption('fontDir', public_path('/fonts/lato'));
+
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
 		$pdf->output();
@@ -102,7 +105,7 @@ class ReportController extends Controller
 		$text = Str::upper($invoice->status->name);
 
 		// Get height and width of text
-		$font		= $pdf->getFontMetrics()->get_font("lato", "bold");
+		$font		= $pdf->getFontMetrics()->get_font("Lato", "bold");
 		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
 		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
 		// Specify horizontal and vertical position
@@ -114,9 +117,8 @@ class ReportController extends Controller
 		$canvas->set_opacity(.2);
 
 		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
-		
 
-		return $pdf->stream('invoice.pdf');
+		return $pdf->stream('Invoice#'.$invoice->id.'.pdf');
 	}
 
 

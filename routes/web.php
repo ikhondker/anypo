@@ -24,9 +24,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Landlord\TestController;
 //TODO php artisan route:cache error
 Route::get('/testrun', [TestController::class, 'run'])->name('test.run');
+
 Route::get('/test', function () {
 	return view('landlord.test');
 })->name('test');
+
+Route::get('pdf', [TestController::class, 'generatePDF'])->name('pdf');
+
 
 //use App\Http\Controllers\ChartController;
 //Route::get('chart', [ChartController::class, 'index']);

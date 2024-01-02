@@ -88,8 +88,8 @@ class InvoicePolicy
 	 */
 	public function pdfInvoice(User $user, Invoice $invoice): Response
 	{
-		Log::debug("inside pdfInvoice= ". $invoice->id );
-		Log::info(json_encode($invoice)); 
+		//Log::debug("inside pdfInvoice= ". $invoice->id );
+		//Log::info(json_encode($invoice)); 
 		//Log::info(json_encode($user)); 
 
 		return (

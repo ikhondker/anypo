@@ -17,13 +17,14 @@
 				<label class="col-sm-3 col-form-label form-label">Profile Photo :</label>
 
 				<div class="col-sm-9">
-
+						<img id="avatarImg"  src="{{ asset('/asset/image/card-11.svg') }}"	alt="abc" title="CDN">
+						<img id="avatarImg" class="avatar-img" src="{{ asset('/assets/image/avatar.png') }}"	alt="abc" title="CDN">
 					<!-- Media -->
 					<div class="d-flex align-items-center">
 						<!-- Avatar -->
 						<label class="avatar avatar-xxl avatar-circle" for="avatarUploader">
 							{{-- <img id="avatarImg" class="avatar-img" src="{{ Storage::disk('avatars')->url('/landlord/avatar/avatar.png') }}"	alt="abc" title="CDN"> --}}
-							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3-landlord-avatars')->url('avatar.png') }}"	alt="abc" title="CDN">
+							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}"	alt="abc" title="CDN">
 
 							{{-- <img src="{{ Storage::disk('s3')->url('img5.jpg') }}"> --}}
 							{{-- <img id="avatarImg" class="avatar-img" src="https://anypo.s3.amazonaws.com/avatars/img5.jpg"	alt="abc" title="S3 OK">

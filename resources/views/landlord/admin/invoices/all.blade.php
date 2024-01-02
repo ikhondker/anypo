@@ -63,7 +63,7 @@
 									class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="View Online">
 									<i class="bi bi-globe" style="font-size: 1.3rem;"></i></i>
 								</a>
-								<a href="{{ route('reports.pdf-invoice', $invoice->id) }}" class="text-body"
+								<a href="{{ route('reports.pdf-invoice', $invoice->id) }}" class="text-body" target="_blank"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
 									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>
 								</a>

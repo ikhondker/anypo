@@ -36,7 +36,12 @@ use Str;
 #Jobs
 use App\Jobs\Landlord\CreateTenant;
 
+# Package
+use PDF;
+
+
 //use Storage;
+
 class TestController extends Controller
 {
 	public $random_password;
@@ -304,6 +309,17 @@ class TestController extends Controller
 		//$this->authorize('update',$advance);
 		//return view('testrun');
 	}
+
+	public function generatePDF()
+    {
+        $data = [
+            'title' => 'Welcome to ItSolutionStuff.com',
+        ]; 
+              
+        $pdf = PDF::loadView('landlord.reports.formats.example2', $data);
+       
+        return $pdf->stream('fonts.pdf');
+    }
 
 
 	public static function copyCheckoutFiles($checkout_id = 0)
