@@ -9,6 +9,14 @@ use Illuminate\Auth\Access\Response;
 class StatusPolicy
 {
 	/**
+	 * Perform pre-authorization checks.
+	 */
+	public function before(User $user, string $ability): bool|null
+	{
+		return $user->isSystem();
+	}
+	
+	/**
 	 * Determine whether the user can view any models.
 	 */
 	public function viewAny(User $user): bool

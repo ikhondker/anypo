@@ -72,6 +72,7 @@
 // Helpers
 // Seeded
 
+use App\Models\Tenant\Manage\Table;
 
 use File;
 use DB;
@@ -91,7 +92,7 @@ class TableController extends Controller
 	public function index()
 	{
 		// TODO why? 403 to system
-		//$this->authorize('viewAny', Table::class);
+		$this->authorize('viewAny', Table::class);
 
 		$tables = DB::select('SHOW TABLES');
 		// foreach ($tables as $table) {
@@ -176,6 +177,7 @@ class TableController extends Controller
 
 	public function structure($table)
 	{
+
 		$this->authorize('structure', Table::class);
 		//$this->authorize('structure');
 
@@ -186,11 +188,13 @@ class TableController extends Controller
 
 	public function controllers()
 	{
-		Log::debug('before inside controllers');
+		Log::debug('before inside policy controllers 1');
+		
 		$this->authorize('controllers', Table::class);
-		Log::debug('after inside controllers');
 
-		$filesInFolder = \File::files(base_path().'\app\Http\Controllers');
+		Log::debug('after inside policy controllers');
+
+		$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 
 		return view('tenant.manage.tables.controllers', compact('filesInFolder'))->with('i', 0);
 

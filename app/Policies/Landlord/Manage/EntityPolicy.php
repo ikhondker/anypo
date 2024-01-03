@@ -11,6 +11,14 @@ use App\Enum\UserRoleEnum;
 class EntityPolicy
 {
 	/**
+	 * Perform pre-authorization checks.
+	 */
+	public function before(User $user, string $ability): bool|null
+	{
+		return $user->isSystem();
+	}
+
+	/**
 	 * Determine whether the user can view any models.
 	 */
 	public function viewAny(User $user): bool
@@ -33,7 +41,7 @@ class EntityPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -41,9 +49,7 @@ class EntityPolicy
 	 */
 	public function update(User $user, Entity $entity): Response
 	{
-		return ($user->role->value == UserRoleEnum::SYSTEM->value)
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -51,7 +57,7 @@ class EntityPolicy
 	 */
 	public function delete(User $user, Entity $entity): bool
 	{
-		//
+		return false;
 	}
 
 	/**

@@ -15,10 +15,7 @@ class TemplatePolicy
 	 */
 	public function before(User $user, string $ability): bool|null
 	{
-		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
-			return true;
-		}
-		return null;
+		return $user->isSystem();
 	}
 
 	/**
@@ -34,9 +31,7 @@ class TemplatePolicy
 	 */
 	public function view(User $user, Template $template): Response
 	{
-		return ($user->role->value == UserRoleEnum::SYSTEM->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -44,9 +39,7 @@ class TemplatePolicy
 	 */
 	public function create(User $user): Response
 	{
-		return ($user->role->value == UserRoleEnum::SYSTEM->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -54,9 +47,7 @@ class TemplatePolicy
 	 */
 	public function update(User $user, Template $template): Response
 	{
-		return ($user->role->value == UserRoleEnum::SYSTEM->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -64,9 +55,7 @@ class TemplatePolicy
 	 */
 	public function delete(User $user, Template $template): Response
 	{
-		return ($user->role->value == UserRoleEnum::SYSTEM->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**

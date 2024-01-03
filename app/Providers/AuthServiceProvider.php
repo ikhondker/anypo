@@ -19,9 +19,9 @@ class AuthServiceProvider extends ServiceProvider
 		| Common																	 + 
 		|-----------------------------------------------------------------------------
 		*/
-		'App\Models\User' 				=> 'App\Policies\UserPolicy',
-		'App\Models\Tenant'				=> 'App\Policies\TenantPolicy',
-		'App\Models\Domain' 			=> 'App\Policies\DomainPolicy',
+		'App\Models\User' 							=> 'App\Policies\UserPolicy',
+		'App\Models\Tenant'							=> 'App\Policies\TenantPolicy',
+		'App\Models\Domain' 						=> 'App\Policies\DomainPolicy',
 
 		/*
 		|-----------------------------------------------------------------------------

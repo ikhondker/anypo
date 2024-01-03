@@ -2,38 +2,35 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Example 2</title>
+		<title>Invoice</title>
 		{{-- <link rel="stylesheet" href="style.css" media="all" /> --}}
 
 	<!-- ========== STYLE ========== -->
 	@include('landlord.reports.single-page-css')
 	<!-- ========== STYLE ========== -->
+
 	</head>
 	<body>
-		<header class="clearfix">
-			<div id="logo">
-				<img src="{{ storage_path('app/logo/logo.png') }}">
-			</div>
-			<div id="company">
-				<h2 class="name">Company Name</h2>
-				<div>455 Foggy Heights, AZ 85004, US</div>
-				<div>(602) 519-0450</div>
-				<div>company@example1.com</div>
-			</div>
-			</div>
-		</header>
+		<!-- ========== STYLE ========== -->
+		@include('landlord.reports.parts.letterhead')
+		<!-- ========== STYLE ========== -->
 		<main>
 			<div id="details" class="clearfix">
 				<div id="client">
 					<div class="to">INVOICE TO:</div>
-					<h2 class="name">John Doe</h2>
-					<div class="address">796 Silver Harbour, TX 79273, US</div>
-					<div class="email">john@example.com</div>
+					<h2 class="name">{{ $account->name }}</h2>
+					<div class="address">ACCOUNT ID#{{ $account->id }}</div>
+					<div class="address">{{ $account->address1.', '. $account->address2 }}</div>
+					<div class="address">{{ $account->city.', '.$account->state.', '.$account->zip. ', '.$account->country  }}</div>
+					{{-- <div class="address">796 Silver Harbour, TX 79273, US</div>
+					<div class="email">john@example.com</div> --}}
 				</div>
 				<div id="invoice">
-					<h1>INVOICE #10321</h1>
-					<div class="date">Date of Invoice: 01/06/2014</div>
-					<div class="date">Due Date: 30/06/2014</div>
+					<h1>INVOICE #{{ $invoice->id}}</h1>
+					<div class="date">DATE: {{ strtoupper(date('d-M-y', strtotime($invoice->invoice_date))) }}</div>
+					
+					<div class="date">STATUS: {{Str::upper($invoice->status->name)}} </div>
+					{{-- <div class="date">Due Date: 30/06/2014</div> --}}
 				</div>
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0">
@@ -49,10 +46,10 @@
 				<tbody>
 					<tr>
 						<td class="no">01</td>
-						<td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
-						<td class="unit">$40.00</td>
-						<td class="qty">30</td>
-						<td class="total">$1,200.00</td>
+						<td class="desc"><h3>{{ Str::upper($invoice->invoice_type) }}</h3>{{ $invoice->summary }}</td>
+						<td class="unit">${{ number_format($invoice->amount,2) }}</td>
+						<td class="qty">1</td>
+						<td class="total">${{ number_format($invoice->amount,2) }}</td>
 					</tr>
 					{{-- <tr>
 						<td class="no">02</td>
@@ -73,28 +70,27 @@
 					<tr>
 						<td colspan="2"></td>
 						<td colspan="2">SUBTOTAL</td>
-						<td>$5,200.00</td>
+						<td>${{ number_format($invoice->amount,2) }}</td>
 					</tr>
-					<tr>
+					{{-- <tr>
 						<td colspan="2"></td>
 						<td colspan="2">TAX 25%</td>
 						<td>$1,300.00</td>
-					</tr>
+					</tr> --}}
 					<tr>
 						<td colspan="2"></td>
 						<td colspan="2">GRAND TOTAL</td>
-						<td>$6,500.00</td>
+						<td>${{ number_format($invoice->amount,2) }}</td>
 					</tr>
 				</tfoot>
 			</table>
-			<div id="thanks">Thank you!</div>
-			<div id="notices">
-				<div>NOTICE:</div>
-				<div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-			</div>
+			<!-- ========== STYLE ========== -->
+			@include('landlord.reports.parts.thankyou')
+			<!-- ========== STYLE ========== -->
+			
 		</main>
-		<footer>
-			Invoice was created on a computer and is valid without the signature and seal.
-		</footer>
+		<!-- ========== STYLE ========== -->
+		@include('landlord.reports.parts.footer')
+		<!-- ========== STYLE ========== -->
 	</body>
 </html>

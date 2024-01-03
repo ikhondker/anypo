@@ -9,8 +9,9 @@
 		font-weight: normal;
 		font-style: normal;
 		font-variant: normal;
-		src: url("fonts/lato/Lato-Regular.ttf") format('truetype');
-	}
+		/* src: url("fonts/lato/Lato-Regular.ttf") format('truetype'); */
+		src: url({{storage_path().'/fonts/lato/Lato-Regular.ttf'}}) format("truetype");
+   	}
 
 	.clearfix:after {
 		content: "";
@@ -103,7 +104,7 @@
 
 	table th,
 	table td {
-		padding: 10px;
+		padding: 20px;
 		background: #EEEEEE;
 		text-align: center;
 		border-bottom: 1px solid #FFFFFF;

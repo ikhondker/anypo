@@ -18,10 +18,7 @@ class TablePolicy
 	 */
 	public function before(User $user, string $ability): bool|null
 	{
-		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
-			return true;
-		}
-		return null;
+		return $user->isSystem();
 	}
 
 	/**
@@ -92,45 +89,35 @@ class TablePolicy
 	 */
 	public function controllers(User $user): Response
 	{
-		return $user->isSystem()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 	/**
 	 * Determine whether the user can create models.
 	 */
 	public function models(User $user): Response
 	{
-		return $user->isSystem()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 	/**
 	 * Determine whether the user can create models.
 	 */
 	public function routes(User $user): Response
 	{
-		return $user->isSystem()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 	/**
 	 * Determine whether the user can create models.
 	 */
 	public function routeCode(User $user): Response
 	{
-		return $user->isSystem()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 	/**
 	 * Determine whether the user can create models.
 	 */
 	public function policies(User $user): Response
 	{
-		return $user->isSystem()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -138,9 +125,7 @@ class TablePolicy
 	 */
 	public function comments(User $user): Response
 	{
-		return $user->isSystem()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -148,9 +133,7 @@ class TablePolicy
 	 */
 	public function check(User $user): Response
 	{
-		return $user->isSystem()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -158,8 +141,6 @@ class TablePolicy
 	 */
 	public function messages(User $user): Response
 	{
-		return $user->isSystem()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 }

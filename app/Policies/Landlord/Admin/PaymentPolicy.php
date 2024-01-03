@@ -84,8 +84,8 @@ class PaymentPolicy
 	 */
 	public function pdfPayment(User $user, Payment $payment): Response
 	{
-		Log::debug("inside pdfPayment= ". $payment->id );
-		Log::info(json_encode($payment)); 
+		//Log::debug("inside pdfPayment= ". $payment->id );
+		//Log::info(json_encode($payment)); 
 		//Log::info(json_encode($user)); 
 
 		return (

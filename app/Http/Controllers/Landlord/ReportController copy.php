@@ -94,23 +94,22 @@ class ReportController extends Controller
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
 		$pdf->output();
-
 		// Get height and width of page
+
 		$canvas = $pdf->getDomPDF()->getCanvas();
 		$height = $canvas->get_height();
 		$width = $canvas->get_width();
 
 		// Specify watermark text
+		//$text = "DRAFT";
 		$text = Str::upper($invoice->status->name);
 
 		// Get height and width of text
-		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");
-		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
+		$font		= $pdf->getFontMetrics()->get_font("Lato", "bold");
 		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
 		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-		
 		// Specify horizontal and vertical position
-		$x = (($width - $textWidth) / 1.6);
+		$x = (($width - $textWidth) / 1.4);
 		$y = (($height - $txtHeight) / 2);
 
 		$color = array(255,0,0);
@@ -119,7 +118,7 @@ class ReportController extends Controller
 
 		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
 
-		return $pdf->stream('Invoice'.$invoice->id.'.pdf');
+		return $pdf->download('Invoice.pdf');
 	}
 
 
@@ -159,7 +158,7 @@ class ReportController extends Controller
 		$pdf = PDF::loadView('landlord.reports.formats.receipt', $data);
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
-	
+		$pdf->output();
 		// Get height and width of page
 
 		$canvas = $pdf->getDomPDF()->getCanvas();

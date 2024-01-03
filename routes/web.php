@@ -330,8 +330,8 @@ use App\Http\Controllers\Landlord\Manage\TemplateController;
 
 // TODO uncomment
 // Ref: app/Providers/AppServiceProvider.php
-//Route::middleware(['auth', 'verified','can:access-back-office'])->group(function () {
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified','can:access-back-office'])->group(function () {
+//Route::middleware(['auth', 'verified'])->group(function () {
 
 	// Route::get('dashboard', function () {
 	// 	// Matches The "/admin/dashboard" URL

@@ -61,19 +61,16 @@
 		<nav id="sidebar" class="sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="{{ route('home') }}">
-					{{-- <img src="{{asset('logo/logo.png')}}" width="90px" height="90px"/> <br> --}}
 					@auth
-						{{-- @if ( $_setup->logo == "")
-							<img src="{{ asset('/logo/logo.png')}}" width="90px" height="90px" class="" alt="{{ $_setup->name }}"/><br>
-						@else
-							<img src="/logo/{{ $_setup->logo }}" width="90px" height="90px" class="" alt="{{ $_setup->name }}"/><br>
-						@endif --}}
-
 						<img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
-						<h5 class="text-info">{{ $_setup->name}}</h5>
-						{{-- <span class="h4 text-info m-2">{{ $_setup->name}}</span> --}}
-					{{-- <span class="text-dark">{{ $_setup->name}},{{ $_setup->address1 }}, {{ $_setup->city.', '.$_setup->state.', '.$_setup->zip  }} {{ $_setup->country }}</span> --}}
+						<h4 class="text-info">{{ $_setup->name}}</h4>
+						<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>
 					@endauth
+					@guest
+						<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
+						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
+						<h6 class="text-danger">Guest!</h6>
+					@endguest
 
 					{{-- <img src="/logo/{{ $_setup->logo }}" width="70px" height="70px" class="" alt="{{ $_setup->name }}"/><br> --}}
 					{{-- <span class="text-sm align-middle text-primary">{{ $_setup->name}}</span> --}}
@@ -164,9 +161,6 @@
 				@auth
 					{{-- <img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $_setup->name }}" />
 					<span class="h3 text-info m-2">{{ $_setup->name}}</span> --}}
-					@if(session('original_user'))
-						<a href="{{ route('users.leave-impersonate') }}" class="me-2 text-danger">[LEAVE IMPERSONATE =>]</a>
-					@endif
 					{{-- <span class="text-dark">{{ $_setup->name}},{{ $_setup->address1 }}, {{ $_setup->city.', '.$_setup->state.', '.$_setup->zip  }} {{ $_setup->country }}</span> --}}
 				@endauth
 				@guest

@@ -16,7 +16,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->id()->startingValue(1001);
+            $table->id()->startingValue(100001);
             $table->string('summary');
             $table->string('invoice_no')->unique();
             $table->string('invoice_type')->default(LandlordInvoiceTypeEnum::SUBSCRIPTION->value); 

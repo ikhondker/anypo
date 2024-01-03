@@ -2,13 +2,14 @@
 
 namespace App\Policies\Tenant\Manage;
 
-use App\Models\Tenant\Manage\Table;
+//use App\Models\Tenant\Manage\Table;
+
 use App\Models\User;
+
 use Illuminate\Auth\Access\Response;
-use App\Enum\UserRoleEnum;
 
 use Illuminate\Support\Facades\Log;
-use App\Helpers\CheckAccess;
+//use App\Helpers\CheckAccess;
 
 class TablePolicy
 {
@@ -18,10 +19,7 @@ class TablePolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ( $user->role->value == UserRoleEnum::SYSTEM->value) {
-			return true;
-		}
-		return null;
+		return $user->isSystem();
 	}
 
 	/**
@@ -90,10 +88,8 @@ class TablePolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function controllers(User $user): bool 
+	public function controllers(User $user): Response 
 	{
-		//return ( CheckAccess::isSystem($user->role->value) )
-		Log::debug('inside policy');
 		return false;
 
 	}

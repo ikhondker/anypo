@@ -53,7 +53,7 @@
 
 					<hr class="my-5">
 
-					<p class="small mb-0">&copy; {{ date('Y').' ' }} AnyPO</p>
+					<p class="small mb-0">&copy; {{ date('Y').' ' }} ANYPO.NET</p>
 				</div>
 			</div>
 			<!-- End Card -->
