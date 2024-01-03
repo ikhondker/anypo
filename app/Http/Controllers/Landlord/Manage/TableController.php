@@ -54,6 +54,8 @@ use App\Http\Controllers\Controller;
 //use App\Models\Table;
 // Enums
 // Helpers
+// Helpers
+use App\Helpers\Docs;
 // Seeded
 
 use App\Models\Landlord\Manage\Table;
@@ -75,17 +77,9 @@ class TableController extends Controller
 
 	public function index()
 	{
-		//$this->authorize('viewAny', Table::class);
-
-		$tables = DB::select('SHOW TABLES');
-		// foreach ($tables as $table) {
-		//     foreach ($table as $key => $value)
-		//         echo $value;
-		// }
-		//dd($tables);
+		$this->authorize('viewAny', Table::class);
+		$tables = Docs::tables();
 		return view('landlord.manage.tables.index', compact('tables'))->with('i', 0);
-		//$templates = Template::latest()->orderBy('id','desc')->paginate(10);
-		//return view('templates.index',compact('templates'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
 	/**
@@ -118,9 +112,8 @@ class TableController extends Controller
 	public function show(Table $table)
 	{
 		//dd($table);
-
-		$columns = DB::select('describe ' . $table);
-		return view('landlord.manage.tables.show', with(compact('table', 'columns')));
+		//$columns = DB::select('describe ' . $table);
+		//return view('landlord.manage.tables.show', with(compact('table', 'columns')));
 	}
 
 	/**
@@ -159,110 +152,30 @@ class TableController extends Controller
 
 	public function structure($table)
 	{
-		//$this->authorize('structure', Table::class);
-		//$this->authorize('structure');
-
-		//dd($tname);
-		$columns = DB::SELECT('describe ' . $table);
+		$this->authorize('structure', Table::class);
+		$columns = Docs::columns($table);
 		return view('landlord.manage.tables.structure', with(compact('columns', 'table')));
 	}
 
 	public function controllers()
 	{
-		Log::debug('before inside controllers');
 		$this->authorize('controllers', Table::class);
-		Log::debug('after inside controllers');
-
-		$filesInFolder = \File::files(base_path() . '\app\Http\Controllers\Landlord');
-
+		$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord');
 		return view('landlord.manage.tables.controllers', compact('filesInFolder'))->with('i', 0);
-
-		echo '<table>';
-
-		$thead = '
-			<thead>
-				<tr>
-					<th class="" scope="col">#</th>
-					<th class="" scope="col">Controller</th>
-					<th class="" scope="col">Object</th>
-					<th class="" scope="col">Route</th>
-					<th class="" scope="col">URL</th>
-					<th class="" scope="col">File</th>
-					<th class="" scope="col">Modified</th>
-					<th class="" scope="col">Days</th>
-				</tr>
-			</thead>
-		';
-		echo $thead;
-
-		$i = 0;
-		foreach ($filesInFolder as $path) {
-			$i++;
-			$file = pathinfo($path);
-			$f = $file['filename'];
-			//$t= $file['mTime'];
-			$t1 = File::lastModified($path);
-			//$t = $t1->toDateTimeString();
-
-			//$t=gmdate("Y-m-d\TH:i:s\Z", $t1)->diffForHumans();
-			// ok
-			//$t = Carbon::createFromTimestamp($t1)->format('m/d/Y');
-			$t = Carbon::parse($t1)->diffForHumans();
-			$td = Carbon::parse($t1);
-
-			$result = $td->diffInDays(now(), false);
-
-
-			$removed = Str::remove('Controller', $f);
-			$route = Str::lower(Str::plural(Str::snake($removed, '-')));
-			//$rname = $route.".index";
-			//echo $f.'-'.$removed .'-'.$route.' ' ;
-			//echo "<a href=".route('advances.index').">URL: ". $removed." </a> <br>";
-			//$url= "<a href=".route( ".$rname." ).">Jump to URL</a>";
-			$url = "<a href=\"http://localhost:8000/" . $route . "\">Jump to URL</a>";
-			$dl = 'file:///D:/laravel/bo02/app/Http/Controllers/';
-			$tr = '
-				<tr>
-					<td>' . $i . '</td>
-					<td>' . $f . '</td>
-					<td>' . $removed . '</td>
-					<td>' . $route . '</td>
-					<td>' . $url . '</td>
-					<td>File</td>
-					<td>' . $t . '</td>
-					<td>' . $result . '</td>
-				</tr>
-				';
-			echo $tr;
-		}
-		echo '</table>';
+		
 	}
 
 
 	public function models()
 	{
-
 		$this->authorize('models', Table::class);
-
-		$filesInFolder = \File::files(base_path() . '\app\Models\Landlord');
-
+		$filesInFolder = Docs::getFiles('\app\Models\Landlord');
 		return view('landlord.manage.tables.models', compact('filesInFolder'))->with('i', 0);
-
-		foreach ($filesInFolder as $path) {
-			$file = pathinfo($path);
-			echo $file['filename'] . '<br>';
-
-			//$fname = $file['filename'];
-			//echo "App\Models\". $fname." => App\Policies\".$fname."Policy";
-			//echo "'App\Models\\". $fname."' => 'App\Policies\\". $fname . "Policy',</br>";
-		}
 	}
 
 	public function routes()
 	{
-
 		$this->authorize('routes', Table::class);
-
 		// https://laravel.com/api/6.x/Illuminate/Routing/RouteCollection.html
 		$routes = Route::getRoutes()->getRoutesByName();
 		return view('landlord.manage.tables.all-routes', compact('routes'))->with('i', 0);
@@ -270,36 +183,16 @@ class TableController extends Controller
 
 	public function routeCode()
 	{
-
 		$this->authorize('routeCode', Table::class);
-
-		$filesInFolder = \File::files(base_path() . '\app\Models\Landlord');
-
+		$filesInFolder = Docs::getFiles('\app\Models\Landlord');
 		return view('landlord.manage.tables.routes', compact('filesInFolder'))->with('i', 0);
-
-		foreach ($filesInFolder as $path) {
-			$file = pathinfo($path);
-			//echo $file['filename'] .'<br>' ;
-			$fname = $file['filename'];
-			//echo "App\Models\". $fname." => App\Policies\".$fname."Policy";
-			//echo "'App\Models\\". $fname."' => 'App\Policies\\". $fname . "Policy',</br>";
-			echo "* ======================== " . $fname . " ========================================  /</br>";
-			echo "use App\Http\Controllers\\Landlord\\" . $fname . "Controller; </br>";
-			echo "Route::resource('" . strtolower(Str::plural($fname)) . "', " . $fname . "Controller::class);</br></br>";
-			//echo "Route::resource('".strtolower(Str::plural($fname))."', ".$fname."Controller::class);</br></br>";
-			//echo "Route::get('/".strtolower(Str::plural($fname))."/export', ".$fname."Controller::class);</br></br>";
-			//echo "Route::get('/".strtolower(Str::plural($fname))."/delete/', ".$fname."Controller::class);</br></br>";
-		}
 	}
 
 	public function policies()
 	{
 
 		$this->authorize('policies', Table::class);
-
-		//$filesInFolder = \File::files(base_path().'\app\Models');
-		$filesInFolder = \File::files(base_path() . '\app\Models\Landlord\Admin'); // <<============= Models
-
+		$filesInFolder = Docs::getFiles('\app\Models\Landlord');	// <<============= Models
 		return view('landlord.manage.tables.policies', compact('filesInFolder'))->with('i', 0);
 	}
 
@@ -307,15 +200,14 @@ class TableController extends Controller
 	{
 		$this->authorize('comments', Table::class);
 
-		$filesInFolder = \File::files(base_path() . '\app\Http\Controllers\Landlord\Admin');
+		//$filesInFolder = \File::files(base_path() . '\app\Http\Controllers\Landlord\Admin');
 		//$filesInFolder = \File::files(base_path() . '\app\Models\Landlord\Lookup');
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Auth');
 		//$filesInFolder = \File::files(base_path().'\app\Enum');
 		//$filesInFolder = \File::files(base_path().'\app\Helpers');
-
 		//$filesInFolder = \File::files(base_path().'\app\Notifications');
 		
-
+		$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord\Admin');
 		return view('landlord.manage.tables.comments', compact('filesInFolder'))->with('i', 0);
 	}
 
@@ -458,11 +350,8 @@ class TableController extends Controller
 
 	public function messages()
 	{
-
 		$this->authorize('messages', Table::class);
-
 		$filesInFolder = \File::files(base_path() . '\app\Http\Controllers');
-
 		foreach ($filesInFolder as $path) {
 			$file = pathinfo($path);
 			// echo $file['dirname'] .'<br>' ;	// D:\laravel\ho03\app\Http\Controllers
@@ -482,11 +371,9 @@ class TableController extends Controller
 					echo $line . '<br>';
 				}
 			}
-
 			if ($file['filename'] == 'DeptController') {
 				return;
 			}
-
 			//$contents = Storage::get('path-to-your/abc.csv');
 			//$content = File::get($filename);
 			//$content = File::get( $file['dirname']."\\". $file['basename'] );

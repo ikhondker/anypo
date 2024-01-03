@@ -157,12 +157,16 @@
 			<i class="align-middle" data-feather="message-square"></i><span class="align-middle"> Support</span>
 		</a>
 	</li>
+	<li class="sidebar-item }}">
+		<a class="sidebar-link" href="{{ route('logout') }}">
+			<i class="align-middle text-danger" data-feather="power"></i><span class="align-middle"> Logout</span>
+		</a>
+	</li>
 
 	@if(session('original_user'))
 		<li class="sidebar-item">
 			<a class="sidebar-link" href="{{ route('users.leave-impersonate') }}">
 				<i class="align-middle text-danger" data-feather="power"></i><span class="align-middle text-danger"> Leave Impersonate</span>
-				{{-- <a href="{{ route('users.leave-impersonate') }}" class="me-2 text-danger">[LEAVE IMPERSONATE =>]</a> --}}
 			</a>
 		</li>
 	@endif

@@ -8,6 +8,20 @@ use App\Models\Tenant;
 use App\Http\Requests\StoreTenantRequest;
 use App\Http\Requests\UpdateTenantRequest;
 
+
+// Templates  4-JAN-2024
+# 1. Enums
+# 2. Helpers
+# 3. Models
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Packages
+# 8. Exceptions
+# 9. Events
+# 10 Seeded
+
+
 class TenantController extends Controller
 {
 	/**

@@ -28,45 +28,25 @@
 					<th scope="col">Days Ago</th>
 					<th scope="col">Days</th>
 					<th scope="col">Jump</th>
-
 				</tr>
 				</thead>
 				<tbody>
-					@foreach($filesInFolder as $path) 
-						@php
-							$file = pathinfo($path);
-							$f= $file['filename'] ;
-							//$t= $file['mTime'];
-							$last_modified=File::lastModified($path);
-							//$t = $t1->toDateTimeString();
-							//$t=gmdate("Y-m-d\TH:i:s\Z", $t1)->diffForHumans();
-							// ok
-							//$t = Carbon::createFromTimestamp($t1)->format('m/d/Y');
-							$last_modified_human= \Carbon\Carbon::parse($last_modified)->diffForHumans();
-							$last_modified_date= \Carbon\Carbon::parse($last_modified);
-							$days = $last_modified_date->diffInDays(now(), false);
-	
-							$removed = Str::remove('Controller', $f);
-							$route = Str::lower(Str::plural(Str::snake($removed, '-')));
-						@endphp
-						
+					@foreach($filesInFolder as $row) 
 						<tr>
 							<th scope="row">{{ ++$i }}</th>
-							<td>{{ $f }}</td>
-							<td>{{ Str::lower($f) }}</td>
-							<td>{{ $route }}</td>
+							<td>{{ $row['f'] }}</td>
+							<td>{{ Str::lower($row['f']) }}</td>
+							<td>{{ $row['route'] }}</td>
 							<td class="text-start">
-								@if ($days < 7)
-								<span class="text-danger">  {{ $last_modified_human }} <span>
+								@if ($row['days'] < 7)
+								<span class="text-danger">  {{ $row['last_modified_human'] }} <span>
 								@else
-								{{ $last_modified_human }}
+								{{ $row['last_modified_human'] }}
 								@endif
 							</td>
-							<td class="text-start">{{ $days }}</td>
-							<td class="table-action"><a class="text-info" href="http://localhost:8000/{{ $route }}">Jump</a></td>
+							<td class="text-start">{{ $row['days'] }}</td>
+							<td class="table-action"><a class="text-info" href="http://localhost:8000/{{ $row['route'] }}">Jump</a></td>
 						</tr>
-							
-					
 					@endforeach
 
 				</tbody>
