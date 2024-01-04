@@ -17,7 +17,7 @@ class UploadItemPolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ( $user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->isSystem()) {
 			return true;
 		}
 		return null;
@@ -44,7 +44,7 @@ class UploadItemPolicy
 	 */
 	public function create(User $user): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
 	}
@@ -54,7 +54,7 @@ class UploadItemPolicy
 	 */
 	public function update(User $user, UploadItem $uploadItem): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
 	}
@@ -64,7 +64,7 @@ class UploadItemPolicy
 	 */
 	public function delete(User $user, UploadItem $uploadItem): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
 	}

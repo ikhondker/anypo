@@ -16,7 +16,7 @@ class CategoryPolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ( $user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->isSystem()) {
 			return true;
 		}
 		return null;
@@ -43,7 +43,7 @@ class CategoryPolicy
 	 */
 	public function create(User $user): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));
 	}
@@ -53,7 +53,7 @@ class CategoryPolicy
 	 */
 	public function update(User $user, Category $category): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));
 	}
@@ -63,7 +63,7 @@ class CategoryPolicy
 	 */
 	public function delete(User $user, Category $category): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));
 	}

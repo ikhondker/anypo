@@ -16,12 +16,12 @@ class WflPolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ( $user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->isSystem()) {
 			return true;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */

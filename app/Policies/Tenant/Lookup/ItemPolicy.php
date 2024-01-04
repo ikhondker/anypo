@@ -16,12 +16,12 @@ class ItemPolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ( $user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->isSystem()) {
 			return true;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -43,7 +43,7 @@ class ItemPolicy
 	 */
 	public function create(User $user): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
 	}
@@ -53,7 +53,7 @@ class ItemPolicy
 	 */
 	public function update(User $user, Item $item): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
 	}
@@ -63,7 +63,7 @@ class ItemPolicy
 	 */
 	public function delete(User $user, Item $item): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			? Response::allow()
 			: Response::deny(config('akk.MSG_DENY'));
 	}

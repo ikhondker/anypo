@@ -8,46 +8,46 @@ use App\Enum\LandlordPaymentStatusEnum;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id()->startingValue(1001);
-            $table->string('summary');
-            $table->dateTime('pay_date')->useCurrent();
-            $table->foreignId('invoice_id')->constrained('invoices');
-            $table->foreignId('account_id')->nullable()->constrained('accounts');
-            $table->foreignId('owner_id')->nullable()->constrained('users');
-            $table->foreignId('payment_method_id')->constrained('payment_methods');
-            $table->float('amount',8,2)->default(0);
-            $table->string('currency')->default('usd');
-            $table->string('cheque_no')->nullable();
-            $table->string('payment_token')->nullable();
-            $table->string('reference_id')->nullable();
-            $table->text('notes')->nullable();
-            $table->string('ip')->nullable();
-            /** ENUM */
-            //$table->string('status')->default(LandlordPaymentStatusEnum::DRAFT->value);
-            /** end ENUM */
-            /** ENUM */
-            $table->string('status_code',4)->default(LandlordPaymentStatusEnum::DRAFT->value); 
-            $table->foreign('status_code')->references('code')->on('statuses');
-            //$table->foreignId('status_id')->default(LandlordPaymentStatusEnum::NEW->value)->constrained('statuses');
-            /** end ENUM */
-            $table->biginteger('created_by')->default(1001);
-            $table->timestamp('created_at')->useCurrent();
-            $table->biginteger('updated_by')->default(1001);
-            $table->timestamp('updated_at')->useCurrent();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 */
+	public function up(): void
+	{
+		Schema::create('payments', function (Blueprint $table) {
+			$table->id()->startingValue(1001);
+			$table->string('summary');
+			$table->dateTime('pay_date')->useCurrent();
+			$table->foreignId('invoice_id')->constrained('invoices');
+			$table->foreignId('account_id')->nullable()->constrained('accounts');
+			$table->foreignId('owner_id')->nullable()->constrained('users');
+			$table->foreignId('payment_method_id')->constrained('payment_methods');
+			$table->float('amount',8,2)->default(0);
+			$table->string('currency')->default('usd');
+			$table->string('cheque_no')->nullable();
+			$table->string('payment_token')->nullable();
+			$table->string('reference_id')->nullable();
+			$table->text('notes')->nullable();
+			$table->string('ip')->nullable();
+			/** ENUM */
+			//$table->string('status')->default(LandlordPaymentStatusEnum::DRAFT->value);
+			/** end ENUM */
+			/** ENUM */
+			$table->string('status_code',4)->default(LandlordPaymentStatusEnum::DRAFT->value); 
+			$table->foreign('status_code')->references('code')->on('statuses');
+			//$table->foreignId('status_id')->default(LandlordPaymentStatusEnum::NEW->value)->constrained('statuses');
+			/** end ENUM */
+			$table->biginteger('created_by')->default(1001);
+			$table->timestamp('created_at')->useCurrent();
+			$table->biginteger('updated_by')->default(1001);
+			$table->timestamp('updated_at')->useCurrent();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('payments');
-    }
+	/**
+	 * Reverse the migrations.
+	 */
+	public function down(): void
+	{
+		Schema::dropIfExists('payments');
+	}
 };

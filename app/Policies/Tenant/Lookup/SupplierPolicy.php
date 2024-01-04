@@ -12,18 +12,17 @@ use App\Enum\UserRoleEnum;
 
 class SupplierPolicy
 {
-
 	/**
 	 * Perform pre-authorization checks.
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ( $user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->isSystem()) {
 			return true;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -45,7 +44,7 @@ class SupplierPolicy
 	 */
 	public function create(User $user): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));
 	}
@@ -56,7 +55,7 @@ class SupplierPolicy
 	public function update(User $user, Supplier $supplier): Response
 	{
 		// admin user only
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));
 	}
@@ -66,7 +65,7 @@ class SupplierPolicy
 	 */
 	public function delete(User $user, Supplier $supplier): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));
 	}

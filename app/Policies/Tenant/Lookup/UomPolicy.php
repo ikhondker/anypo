@@ -17,11 +17,12 @@ class UomPolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ( $user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->isSystem()) {
 			return true;
 		}
 		return null;
 	}
+
 	
 	/**
 	 * Determine whether the user can view any models.
@@ -44,7 +45,7 @@ class UomPolicy
 	 */
 	public function create(User $user): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));
 	}
@@ -54,7 +55,7 @@ class UomPolicy
 	 */
 	public function update(User $user, Uom $uom): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 			 ? Response::allow()
 			 : Response::deny(config('akk.MSG_DENY'));
 	}
@@ -64,7 +65,7 @@ class UomPolicy
 	 */
 	public function delete(User $user, Uom $uom): Response
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
+		return ( $user->isAdmin()  )
 		? Response::allow()
 		: Response::deny(config('akk.MSG_DENY'));
 	}

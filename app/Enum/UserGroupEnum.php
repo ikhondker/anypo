@@ -19,21 +19,22 @@
 */
 namespace App\Enum;
 
-// user->isAdmin() cover admin and back office for both Landlord and Tenant
-
-enum UserRoleEnum: string{
+enum UserGroupEnum: string{
 	case GUEST		= 'guest';		// was used in EventLog. TODO
-	case USER		= 'user';		// Landlord + Tenant
- 	case BUYER		= 'buyer';
+	
+	case USER		= 'user';		// both landlord and tenant
+	
+	case BUYER		= 'buyer';
+	
 	case MANAGER	= 'manager';
 	case HOD		= 'hod';
 	case CXO		= 'cxo';
-	case ADMIN		= 'admin';		// Landlord + Tenant, customer admin, 
 	
-	// Bellow back office roles. They have by default customer admin access
-	case SUPPORT	= 'support';	// Landlord + Tenant
-	case SUPERVISOR	= 'supervisor';	// Landlord + Tenant
- 	case DEVELOPER	= 'developer';	// Landlord
-	case ACCOUNTS	= 'accounts';	// Landlord
-	case SYSTEM		= 'system';		// Landlord + Tenant, ack-office
+	case ADMIN		= 'admin';		// customer admin, both landlord and tenant
+	
+	case SUPPORT	= 'support';	// back-office,  both landlord and tenant
+	case SUPERVISOR	= 'supervisor';	// back-office,  both landlord and tenant
+	case DEVELOPER	= 'developer';	// back-office
+	case ACCOUNTS	= 'accounts';	// back-office
+	case SYSTEM		= 'system';		// back-office,  both landlord and tenant
 }

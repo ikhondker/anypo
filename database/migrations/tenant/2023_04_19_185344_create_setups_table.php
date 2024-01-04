@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('logo')->nullable()->default('logo.png');
             $table->boolean('show_banner')->default(false); 
             $table->text('banner_message')->nullable();
+            $table->string('version')->nullable()->default('1.0');
             //$table->boolean('show_notice')->default(false);
             //$table->text('notice')->nullable();
             $table->biginteger('admin_id')->nullable(); // No foreign key intentional TODO

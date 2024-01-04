@@ -15,7 +15,10 @@ class TemplatePolicy
 	 */
 	public function before(User $user, string $ability): bool|null
 	{
-		return $user->isSystem();
+		if ($user->isSystem()) {
+			return true;
+		}
+		return null;
 	}
 
 	/**

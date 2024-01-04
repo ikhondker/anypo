@@ -119,6 +119,8 @@ class CountryController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Country::class);
+
 		$data = DB::select("SELECT country, name, IF(enable, 'Yes', 'No') AS enable 
 		FROM countries");
 		$dataArray = json_decode(json_encode($data), true);

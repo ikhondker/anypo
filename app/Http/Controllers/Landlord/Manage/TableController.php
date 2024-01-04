@@ -1,50 +1,22 @@
 <?php
 /**
 * =====================================================================================
-* @version v1.0.0
+* @version v1.0
 * =====================================================================================
 * @file			TableController.php
 * @brief		This file contains the implementation of the TableController
 * @path			\app\Http\Controllers\Landlord\Manage
 * @author		Iqbal H. Khondker <ihk@khondker.com>
-* @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
 * -------------------------------------------------------------------------------------
-* 10-DEC-2023	v1.0.0	Iqbal H Khondker	Created
-* DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-
-/**
- * Author:    Iqbal H Khondker <ihk@khondker.com>
- * Created:   23-APR-2023
- *
- * (c) Copyright by Blub Corp.
- **/
-//Using comment headers in your source code files
-
-/**
- * File: myfile.cpp
- * Author: John Doe
- * Description: This file contains the implementation of the MyClass class.
- * Date: 2022-03-15
- *
- * @file            TableController.php
- * @description     This file contains the implementation of the TableController class.
- * @author          Iqbal H Khondker <ihk@khondker.com>
- * @created         23-APR-2023
- * @copyright       Iqbal H Khondker
- *
- * @license    http://www.submit2contest.com Proprietary
- * @version    0.1
- * @link       http://www.submit2contest.com
- * @see        http://www.khondker.com
- * @since      File available since Release: 0.1
- */
-
 
 namespace App\Http\Controllers\Landlord\Manage;
 
@@ -207,7 +179,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Helpers');
 		//$filesInFolder = \File::files(base_path().'\app\Notifications');
 		
-		$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord\Admin');
+		$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord\Manage');
 		return view('landlord.manage.tables.comments', compact('filesInFolder'))->with('i', 0);
 	}
 

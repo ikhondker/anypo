@@ -1,20 +1,20 @@
 <?php
 /**
 * =====================================================================================
-* @version v1.0.0
+* @version v1.0
 * =====================================================================================
 * @file			TicketController.php
 * @brief		This file contains the implementation of the TicketController
 * @path			\app\Http\Controllers\Landlord
 * @author		Iqbal H. Khondker <ihk@khondker.com>
-* @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
 * -------------------------------------------------------------------------------------
-* 10-DEC-2023	v1.0.0	Iqbal H Khondker	Created
-* DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
 
@@ -160,7 +160,7 @@ class TicketController extends Controller
 		$mgr = User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
 		$mgr->notify(new TicketCreated($mgr, $ticket));
 
-		return redirect()->route('tickets.index')->with('success', 'Ticket #' . $ticket->id . ' created successfully.');
+		return redirect()->route('tickets.index')->with('success', 'A New Ticket No ' . $ticket->id . ' is created. We will come back to you soon. Thanks.');
 	}
 
 	/**

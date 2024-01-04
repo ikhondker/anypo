@@ -3,6 +3,6 @@
 		<span class="h6 text-secondary">{{ $label }} X:</span>
 	</div>
 	<div class="col-sm-9">
-		{{number_format($value, 2)}} XXUSD
+		{{number_format($value, 2)}} {{ $_setup->currency }}
 	</div>
 </div>

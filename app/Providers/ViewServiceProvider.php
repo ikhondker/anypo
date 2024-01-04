@@ -88,9 +88,9 @@ class ViewServiceProvider extends ServiceProvider
 			$view->with('_node_name', $menu->node_name)->with('_route_name', $menu->route_name);
 		});
 
-		Facades\View::composer('layouts.app', \App\View\Composers\TenantSetupComposer::class);
+		Facades\View::composer(['layouts.app','tenant.*','components.tenant.create.amount','components.tenant.edit.amount','components.tenant.show.my-amount'], 
+				\App\View\Composers\TenantSetupComposer::class);
 		Facades\View::composer('layouts.app', \App\View\Composers\NotificationComposer::class);
-
-
+		// view()->composer(['landlord.*','layouts.landlord-app','components.landlord.widget.ticket-comments','components.landlord.widget.ticket-lists'], function ($view) {
 	}
 }

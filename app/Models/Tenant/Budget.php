@@ -34,7 +34,7 @@ class Budget extends Model
 	public static function getAll()
 	{
 		return Budget::select('id', 'name')
-			->where('enable', true)
+			->where('freeze', false)
 			->orderBy('id', 'asc')
 			->get();
 	}

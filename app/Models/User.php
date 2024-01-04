@@ -138,6 +138,12 @@ class User extends Authenticatable implements MustVerifyEmail
 		 ->get();
 	}
 
+	/*
+	|-----------------------------------------------------------------------------
+	| Access Related Both Landlord and Tenant 									 +  
+	|-----------------------------------------------------------------------------
+	*/
+
 	public function isFrontOffice()
 	{
 		if ($this->enable == 1) {
@@ -162,6 +168,40 @@ class User extends Authenticatable implements MustVerifyEmail
 		if ($this->enable == 1) {
 			switch ($this->role->value) {
 				case (UserRoleEnum::ADMIN->value):
+					return true;
+					break;
+				case (UserRoleEnum::DEVELOPER->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPPORT->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPERVISOR->value):
+					return true;
+					break;
+				case (UserRoleEnum::SYSTEM->value):
+					return true;
+					break;
+				default:
+					return false;
+			}
+		} else {
+			return false;
+		}	
+	}
+
+
+	public function isManagement()
+	{
+		if ($this->enable == 1) {
+			switch ($this->role->value) {
+				case (UserRoleEnum::MANAGER->value):
+					return true;
+					break;
+				case (UserRoleEnum::HOD->value):
+					return true;
+					break;
+				case (UserRoleEnum::CXO->value):
 					return true;
 					break;
 				default:

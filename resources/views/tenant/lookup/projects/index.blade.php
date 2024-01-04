@@ -24,7 +24,7 @@
 							</div>
 						</div>
 						<div class="col-6 align-self-end text-end">
-							<img src="{{asset('img/illustrations/customer-support.png')}}" width="100px" height="100px" alt="Social" class="img-fluid illustration-img">
+							<img src="{{ Storage::disk('s3t')->url('img/illustrations/customer-support.png') }}" width="100px" height="100px" alt="Social" class="img-fluid illustration-img">
 						</div>
 					</div>
 				</div>

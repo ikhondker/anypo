@@ -14,6 +14,18 @@ use App\Enum\LandlordTicketStatusEnum;
 class TicketPolicy
 {
 	/**
+	 * Perform pre-authorization checks.
+	 */
+	public function before(User $user, string $ability): bool|null
+	{
+		if ($user->isSystem()) {
+			return true;
+		}
+		return null;
+	}
+
+
+	/**
 	 * Determine whether the user can view any models.
 	 */
 	public function viewAny(User $user): bool

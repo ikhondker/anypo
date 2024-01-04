@@ -16,12 +16,12 @@ class DesignationPolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ( $user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->isSystem()) {
 			return true;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -41,31 +41,25 @@ class DesignationPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-		? Response::allow()
-		: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Designation $designation): Response
+	public function update(User $user, Designation $designation): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-		? Response::allow()
-		: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, Designation $designation): Response
+	public function delete(User $user, Designation $designation): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-		? Response::allow()
-		: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**

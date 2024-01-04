@@ -6,50 +6,50 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('templates', function (Blueprint $table) {
-            $table->id()->startingValue(1001);
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->text('summary');
-            $table->foreignId('user_id')->constrained('users')->default(1);
-            $table->text('address1')->nullable();
-            $table->text('address2')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('zip')->nullable();
-            $table->string('country',2)->default('US');
-            $table->string('email',100);
-            $table->string('cell',100)->nullable();
-            $table->integer('qty')->default(0);
-            $table->float('amount',8,2)->default(0);
-            $table->text('notes')->nullable();
-            $table->boolean('enable')->default(true); 
-            $table->date('my_date')->nullable()->useCurrent();
-            $table->dateTime('my_date_time', $precision = 0)->nullable()->useCurrent();
-            $table->enum('my_enum', ['user', 'admin','agent','manager','system'])->default('user'); 
-            $table->string('my_url')->nullable();
-            $table->string('logo')->nullable(); /* public */
-            $table->string('avatar')->nullable(); /* private */
-            $table->string('attachment')->nullable(); /* private */ 
-            $table->string('fbpage')->nullable();
-            $table->softDeletes();
-            $table->biginteger('created_by')->default(1001);
-            $table->timestamp('created_at')->useCurrent();
-            $table->biginteger('updated_by')->default(1001);
-            $table->timestamp('updated_at')->useCurrent();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 */
+	public function up(): void
+	{
+		Schema::create('templates', function (Blueprint $table) {
+			$table->id()->startingValue(1001);
+			$table->string('code')->unique();
+			$table->string('name');
+			$table->text('summary');
+			$table->foreignId('user_id')->constrained('users')->default(1);
+			$table->text('address1')->nullable();
+			$table->text('address2')->nullable();
+			$table->string('city')->nullable();
+			$table->string('state')->nullable();
+			$table->string('zip')->nullable();
+			$table->string('country',2)->default('US');
+			$table->string('email',100);
+			$table->string('cell',100)->nullable();
+			$table->integer('qty')->default(0);
+			$table->float('amount',8,2)->default(0);
+			$table->text('notes')->nullable();
+			$table->boolean('enable')->default(true); 
+			$table->date('my_date')->nullable()->useCurrent();
+			$table->dateTime('my_date_time', $precision = 0)->nullable()->useCurrent();
+			$table->enum('my_enum', ['user', 'admin','agent','manager','system'])->default('user'); 
+			$table->string('my_url')->nullable();
+			$table->string('logo')->nullable(); /* public */
+			$table->string('avatar')->nullable(); /* private */
+			$table->string('attachment')->nullable(); /* private */ 
+			$table->string('fbpage')->nullable();
+			$table->softDeletes();
+			$table->biginteger('created_by')->default(1001);
+			$table->timestamp('created_at')->useCurrent();
+			$table->biginteger('updated_by')->default(1001);
+			$table->timestamp('updated_at')->useCurrent();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('templates');
-    }
+	/**
+	 * Reverse the migrations.
+	 */
+	public function down(): void
+	{
+		Schema::dropIfExists('templates');
+	}
 };

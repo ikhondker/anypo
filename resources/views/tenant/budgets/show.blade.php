@@ -37,10 +37,10 @@
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
-						<x-tenant.show.my-number     value="{{ $budget->amount }}"/>
-						<x-tenant.show.my-number     value="{{ $budget->amount_po_booked }}" label="PO Booked"/>
-						<x-tenant.show.my-number     value="{{ $budget->amount_po_issued }}" label="PO Issued"/>
-						<x-tenant.show.my-number     value="{{ $budget->amount - $budget->amount_po_booked - $budget->amount_po_issued }}" label="Available"/>
+						<x-tenant.show.my-amount     value="{{ $budget->amount }}"/>
+						<x-tenant.show.my-amount     value="{{ $budget->amount_po_booked }}" label="PO Booked"/>
+						<x-tenant.show.my-amount     value="{{ $budget->amount_po_issued }}" label="PO Issued"/>
+						<x-tenant.show.my-amount     value="{{ $budget->amount - $budget->amount_po_booked - $budget->amount_po_issued }}" label="Available"/>
 					</div>
 				</div>
 			</div>
@@ -99,10 +99,10 @@
 					<h5 class="card-title">Budget PR</h5>
 				</div>
 				<div class="card-body">
-				<x-tenant.show.my-number     value="{{ $budget->amount }}"/>
-				<x-tenant.show.my-number     value="{{ $budget->amount_pr_booked }}"/>
-				<x-tenant.show.my-number     value="{{ $budget->amount_pr_issued }}"/>
-				<x-tenant.show.my-number     value="{{ $budget->amount - $budget->amount_pr_booked - $budget->amount_pr_issued }}"/>
+				<x-tenant.show.my-amount     value="{{ $budget->amount }}"/>
+				<x-tenant.show.my-amount     value="{{ $budget->amount_pr_booked }}"/>
+				<x-tenant.show.my-amount     value="{{ $budget->amount_pr_issued }}"/>
+				<x-tenant.show.my-amount     value="{{ $budget->amount - $budget->amount_pr_booked - $budget->amount_pr_issued }}"/>
 				</div>
 			</div>
 
@@ -111,9 +111,9 @@
 				<h5 class="card-title">GRS</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-number     value="{{ $budget->amount }}"/>
-					<x-tenant.show.my-number     value="{{ $budget->amount_grs }}"/>
-					<x-tenant.show.my-number     value="{{ $budget->amount- $budget->amount_grs }}"/>
+					<x-tenant.show.my-amount     value="{{ $budget->amount }}"/>
+					<x-tenant.show.my-amount     value="{{ $budget->amount_grs }}"/>
+					<x-tenant.show.my-amount     value="{{ $budget->amount- $budget->amount_grs }}"/>
 				</div>
 			</div>
 
@@ -122,9 +122,9 @@
 				<h5 class="card-title">Payment Details</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-number     value="{{ $budget->amount }}"/>
-					<x-tenant.show.my-number     value="{{ $budget->amount_payment }}"/>
-					<x-tenant.show.my-number     value="{{ $budget->amount- $budget->amount_payment }}"/>
+					<x-tenant.show.my-amount     value="{{ $budget->amount }}"/>
+					<x-tenant.show.my-amount     value="{{ $budget->amount_payment }}"/>
+					<x-tenant.show.my-amount     value="{{ $budget->amount- $budget->amount_payment }}"/>
 				</div>
 			</div>
 

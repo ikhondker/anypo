@@ -27,7 +27,7 @@
 					<div class="card-body">
 						
 						<div class="mb-3">
-							<p class="text-danger text-small">You can only reset PR workflow which are in in-PROCESS status.</p>
+							<p class="text-danger text-small">You can only reset PR workflow which are in IN-PROCESS status.</p>
 							<label class="form-label">PR Number</label>
 							<input type="text" class="form-control @error('pr_id') is-invalid @enderror" 
 								name="pr_id" id="pr_id" placeholder="0000"     

@@ -34,7 +34,7 @@ use App\Enum\UserRoleEnum;
 
 class CheckAccess
 {
-	public static function isBackOffice($role)
+	public static function xxisBackOffice($role)
 	{
 		switch($role) {
 			case(UserRoleEnum::SUPPORT->value):
@@ -51,7 +51,7 @@ class CheckAccess
 		}
 	}
 
-	public static function isSystem($role)
+	public static function xxisSystem($role)
 	{
 		switch($role) {
 			case(UserRoleEnum::SYSTEM->value):
@@ -104,7 +104,7 @@ class CheckAccess
 	}
 
 	// Not used yet
-	public static function isPrivileged($role)
+	public static function xxisPrivileged($role)
 	{
 		switch($role) {
 			case(UserRoleEnum::BUYER->value):

@@ -6,18 +6,16 @@ use App\Models\Tenant\Lookup\Dept;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
-use App\Enum\UserRoleEnum;
+use Illuminate\Support\Facades\Log;
 
 class DeptPolicy
 {
-	
 	/**
 	 * Perform pre-authorization checks.
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ( $user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->isSystem()) {
 			return true;
 		}
 		return null;
@@ -42,31 +40,25 @@ class DeptPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	} 
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Dept $dept): Response
+	public function update(User $user, Dept $dept): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();	
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, Dept $dept): Response
+	public function delete(User $user, Dept $dept): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**

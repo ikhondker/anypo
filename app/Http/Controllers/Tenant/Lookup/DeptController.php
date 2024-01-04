@@ -24,6 +24,7 @@ use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Workflow\Hierarchy;
 // 10. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
 
 class DeptController extends Controller
 {
@@ -51,7 +52,6 @@ class DeptController extends Controller
 	public function create()
 	{
 		$this->authorize('create', Dept::class);
-
 		return view('tenant.lookup.depts.create');
 	}
 
@@ -60,6 +60,7 @@ class DeptController extends Controller
 	 */
 	public function store(StoreDeptRequest $request)
 	{
+		
 		$this->authorize('create', Dept::class);
 		$dept = Dept::create($request->all());
 		// Write to Log

@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'                => '1002',
-				'name'              => 'Mr Support Manger',
+				'name'              => 'Mr Support Supervisor',
 				'email'             => 'supervisor@example.com',
 				'role'              => 'supervisor',
 				'email_verified_at' => now(),
@@ -77,24 +77,24 @@ class UserSeeder extends Seeder
 				'facebook'          => $faker->url,
 				'linkedin'          => $faker->url,
 			],
+			// [
+			// 	'id'                => '1004',
+			// 	'name'              => 'Admin User',
+			// 	'email'             => 'admin@example.com',
+			// 	'role'              => 'admin',
+			// 	'email_verified_at' => now(),
+			// 	'password'          => bcrypt('password') , // password
+			// 	'remember_token'    => Str::random(10),
+			// 	'cell'              => $faker->PhoneNumber(),
+			// 	'address1'          => $faker->address,
+			// 	'address2'          => $faker->address,
+			// 	'city'              => $faker->city,
+			// 	'zip'               => $faker->postcode,
+			// 	'facebook'          => $faker->url,
+			// 	'linkedin'          => $faker->url,
+			// ],
 			[
 				'id'                => '1004',
-				'name'              => 'Admin User',
-				'email'             => 'admin@example.com',
-				'role'              => 'admin',
-				'email_verified_at' => now(),
-				'password'          => bcrypt('password') , // password
-				'remember_token'    => Str::random(10),
-				'cell'              => $faker->PhoneNumber(),
-				'address1'          => $faker->address,
-				'address2'          => $faker->address,
-				'city'              => $faker->city,
-				'zip'               => $faker->postcode,
-				'facebook'          => $faker->url,
-				'linkedin'          => $faker->url,
-			],
-			[
-				'id'                => '1005',
 				'name'              => 'Mr. User 1',
 				'email'             => 'user1@example.com',
 				'role'              => 'user',
@@ -110,7 +110,7 @@ class UserSeeder extends Seeder
 				'linkedin'          => $faker->url,
 			],
 			[
-				'id'                => '1006',
+				'id'                => '1005',
 				'name'              => 'Mr User 2',
 				'email'             => 'user2@example.com',
 				'role'              => 'user',
@@ -126,7 +126,7 @@ class UserSeeder extends Seeder
 				'linkedin'          => $faker->url,
 			],
 			[
-				'id'                => '1007',
+				'id'                => '1006',
 				'name'              => 'Mr Buyer 1',
 				'email'             => 'buyer1@example.com',
 				'role'              => 'buyer',
@@ -142,7 +142,7 @@ class UserSeeder extends Seeder
 				'linkedin'          => $faker->url,
 			],
 			[
-				'id'                => '1008',
+				'id'                => '1007',
 				'name'              => 'Mr Buyer 2',
 				'email'             => 'buyer2@example.com',
 				'role'              => 'buyer',
@@ -158,7 +158,7 @@ class UserSeeder extends Seeder
 				'linkedin'          => $faker->url,
 			],
 			[
-				'id'                => '1009',
+				'id'                => '1008',
 				'name'              => 'Mr Manager',
 				'email'             => 'manager@example.com',
 				'role'              => 'manager',
@@ -174,10 +174,26 @@ class UserSeeder extends Seeder
 				'linkedin'          => $faker->url,
 			],
 			[
-				'id'                => '1010',
+				'id'                => '1009',
 				'name'              => 'Mr HoD',
 				'email'             => 'hod@example.com',
 				'role'              => 'hod',
+				'email_verified_at' => now(),
+				'password'          => bcrypt('password') , // password
+				'remember_token'    => Str::random(10),
+				'cell'              => $faker->PhoneNumber(),
+				'address1'          => $faker->address,
+				'address2'          => $faker->address,
+				'city'              => $faker->city,
+				'zip'               => $faker->postcode,
+				'facebook'          => $faker->url,
+				'linkedin'          => $faker->url,
+			],
+			[
+				'id'                => '1010',
+				'name'              => 'Mr CxO',
+				'email'             => 'cxo@example.com',
+				'role'              => 'cxo',
 				'email_verified_at' => now(),
 				'password'          => bcrypt('password') , // password
 				'remember_token'    => Str::random(10),
@@ -202,5 +218,6 @@ class UserSeeder extends Seeder
 		User::where('id', 1004)->update(['enable' => true]);
 		User::where('id', 1005)->update(['enable' => true]);
 		User::where('id', 1006)->update(['enable' => true]);
+		User::where('id', 1007)->update(['enable' => true]);
 	}
 }
