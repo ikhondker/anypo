@@ -23,16 +23,10 @@
 					<h5 class="card-title">Policies Lists</h5>
 				</div>
 				<div class="card-body">
-							<h5>App\Provider\AuthServiceProvider.php</h5>
-							@foreach($filesInFolder as $path) 
-									@php
-										$file = pathinfo($path);
-										$fname = $file['filename'];
-										//'App\Models\Landlord\Account' => 'App\Policies\Landlord\AccountPolicy',
-									@endphp
-										{{-- 'App\Models\Landlord\{{ $fname }}' => 'App\Policies\Landlord\{{ $fname }}Policy',</br> --}}
-										'App\Models\{{ $fname }}' => 'App\Policies\{{ $fname }}Policy',</br>
-							@endforeach
+					<h5>App\Provider\AuthServiceProvider.php</h5>
+					@foreach($filesInFolder as $row) 
+						'App\Models\Tenant\{{ $row['fname'] }}' => 'App\Policies\Tenant\{{ $row['fname'] }}Policy',</br>
+					@endforeach
 				</div>
 			</div>
 		</div>

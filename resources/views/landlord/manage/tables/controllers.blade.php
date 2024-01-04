@@ -12,7 +12,6 @@
 	<div class="card">
 		<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 			<h5 class="card-header-title">Controllers List</h5>
-
 		</div>
 
 		<!-- card-body -->

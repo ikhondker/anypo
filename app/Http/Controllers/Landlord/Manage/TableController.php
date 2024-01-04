@@ -211,7 +211,13 @@ class TableController extends Controller
 		return view('landlord.manage.tables.comments', compact('filesInFolder'))->with('i', 0);
 	}
 
+	public function messages()
+	{
+		$this->authorize('messages', Table::class);
+		$filesInFolder = Docs::messages('\app\Http\Controllers');
+	}
 
+	// TODO
 	public function check()
 	{
 
@@ -347,51 +353,4 @@ class TableController extends Controller
 
 	}
 
-
-	public function messages()
-	{
-		$this->authorize('messages', Table::class);
-		$filesInFolder = \File::files(base_path() . '\app\Http\Controllers');
-		foreach ($filesInFolder as $path) {
-			$file = pathinfo($path);
-			// echo $file['dirname'] .'<br>' ;	// D:\laravel\ho03\app\Http\Controllers
-			// echo $file['basename'] .'<br>' ;	// ActivityController.php
-			// echo $file['extension'] .'<br>' ;// php
-			// echo $file['filename'] .'<br>' ;	// ActivityController
-
-			$f = $file['dirname'] . "\\" . $file['basename'];
-			//Log::debug('file= '. $f);
-
-			echo '-------------------------------------<br>';
-			echo $f . '<br>';
-			echo '-------------------------------------<br>';
-			foreach (file($f) as $line) {
-				// authorize, with
-				if (Str::contains($line, 'with')) {
-					echo $line . '<br>';
-				}
-			}
-			if ($file['filename'] == 'DeptController') {
-				return;
-			}
-			//$contents = Storage::get('path-to-your/abc.csv');
-			//$content = File::get($filename);
-			//$content = File::get( $file['dirname']."\\". $file['basename'] );
-			// foreach($content as $line) {
-			//     $contains = Str::contains($line, 'with->');
-			//     if (Str::contains($line, 'with->')) {
-			//         echo $line .'<br>' ;
-			//     }
-			// }
-			// File::lines($file['dirname']."\\". $file['basename'])->each(
-			//     function ($line) {
-			//       $this->info($line);
-			//     }
-			// );
-
-			// File::lines('whatever/file.txt')->each(function ($line) {
-			//     $this->info($line);
-			// }
-		}
-	}
 }

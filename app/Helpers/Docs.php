@@ -112,4 +112,33 @@ class Docs
 		return $data;
 		//return $filesInFolder;
 	}
+
+	public static function messages($folder)
+	{
+		
+		//$filesInFolder = \File::files(base_path() . '\app\Http\Controllers');
+		$filesInFolder = \File::files(base_path() . $folder);
+
+		foreach ($filesInFolder as $path) {
+			$file = pathinfo($path);
+			// echo $file['dirname'] .'<br>' ;	// D:\laravel\ho03\app\Http\Controllers
+			// echo $file['basename'] .'<br>' ;	// ActivityController.php
+			// echo $file['extension'] .'<br>' ;// php
+			// echo $file['filename'] .'<br>' ;	// ActivityController
+
+			$f = $file['dirname'] . "\\" . $file['basename'];
+			//Log::debug('file= '. $f);
+
+			echo '-------------------------------------<br>';
+			echo $f . '<br>';
+			echo '-------------------------------------<br>';
+			foreach (file($f) as $line) {
+				// authorize, with
+				if (Str::contains($line, 'with(')) {
+					echo $line . '<br>';
+				}
+			}
+		}
+	}
+
 }	

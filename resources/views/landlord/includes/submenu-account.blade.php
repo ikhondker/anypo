@@ -22,7 +22,7 @@
 	</li>
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'users.index' ? 'active' : '' }}" href="{{ route('logout') }}">
-			<i class="bi-box-arrow-right nav-icon"></i> Logout
+			<i class="bi bi-power nav-icon text-danger"></i> Logout
 		</a>
 	</li>
 </ul>

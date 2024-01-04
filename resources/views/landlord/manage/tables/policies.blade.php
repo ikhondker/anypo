@@ -17,7 +17,6 @@
 			<x-landlord.table-links/>
 			<h5>App\Provider\AuthServiceProvider.php</h5>
 			@foreach($filesInFolder as $row) 
-				{{-- 'App\Models\Landlord\{{ $fname }}' => 'App\Policies\Landlord\{{ $fname }}Policy',</br> --}}
 				'App\Models\Landlord\{{ $row['fname'] }}' => 'App\Policies\Landlord\{{ $row['fname'] }}Policy',</br>
 			@endforeach
 		</div>
