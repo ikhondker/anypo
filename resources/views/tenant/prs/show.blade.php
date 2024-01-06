@@ -11,13 +11,15 @@
 			<x-tenant.buttons.header.lists object="Pr"/>
 			<x-tenant.buttons.header.create object="Pr"/>
 			<x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
-			<a href="{{ route('prls.createline', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-plus"></i> Add Line</a>
-			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-print"></i> Print</a>
-			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-check-to-slot"></i> Submit</a>
-			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fa-solid fa-sack-dollar"></i> Payment</a>
+			<a href="{{ route('prls.createline', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="plus"></i> Add Line</a>
+			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
+			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="external-link"></i> Submit</a>
+			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a>
 		@endslot
 	</x-tenant.page-header>
 	
+	
+
 	@include('tenant.includes.view-pr-header')
 
 	<!-- widget-pr-lines -->

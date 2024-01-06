@@ -133,7 +133,7 @@ class HomeController extends Controller
 		// Send notification to the contact
 		$contact->notify(new Contacted($contact));
 
-		// Send notification to manager
+		// Send notification to support manager
 		$mgr = User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
 		$mgr->notify(new Contacted($contact));
 

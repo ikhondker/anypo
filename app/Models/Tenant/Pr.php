@@ -43,6 +43,120 @@ class Pr extends Model
 		'auth_status'	=> AuthStatusEnum::class,
 	];
 
+	/* ----------------- Scopes ------------------------- */
+
+	//$this->count_total		= Pr::count();
+	//$this->count_approved	= Pr::where('auth_status',AuthStatusEnum::APPROVED->value )->count();
+	//$this->count_inprocess	= Pr::where('auth_status',AuthStatusEnum::INPROCESS->value )->count();
+	//$this->count_draft		= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
+
+	/**
+	 * Scope a query to all PR of a Tenant.
+	*/
+	public function scopeAll(Builder $query): void
+	{
+		$query; 
+	}
+	
+	public function scopeApprovedPoPending(Builder $query): void
+	{
+		$query->where('auth_status',AuthStatusEnum::APPROVED->value)
+			->where('po_id',0); 
+	}
+
+	/**
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopeAllApproved(Builder $query): void
+	{
+		$query->where('auth_status',AuthStatusEnum::APPROVED->value); 
+	}
+
+	/**
+	 * Scope a query to only All InProcess PR for current tenant.
+	*/
+	public function scopeAllInProcess(Builder $query): void
+	{
+		$query->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+	}
+	/**
+	 * Scope a query to only All Draft PR for current tenant.
+	*/
+	public function scopeAllDraft(Builder $query): void
+	{
+		$query->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+	}
+
+
+	/**
+	 * Scope a query to only All PR for current user.
+	*/
+	public function scopeByUserAll(Builder $query): void
+	{
+		$query->where('requestor_id', auth()->user()->id ); 
+	}
+
+	/**
+	 * Scope a query to only All Approved PR for current user.
+	*/
+	public function scopeByUserApproved(Builder $query): void
+	{
+		$query->where('requestor_id', auth()->user()->id )
+		->where('auth_status',AuthStatusEnum::APPROVED->value); 
+	}
+
+	/**
+	 * Scope a query to only All InProcess PR for current user.
+	*/
+	public function scopeByUserInProcess(Builder $query): void
+	{
+		$query->where('requestor_id', auth()->user()->id )
+		->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+	}
+	/**
+	 * Scope a query to only All Draft PR for current user.
+	*/
+	public function scopeByUserDraft(Builder $query): void
+	{
+		$query->where('requestor_id', auth()->user()->id )
+		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+	}
+
+
+	/**
+	 * Scope a query to only All PR for current user dept.
+	*/
+	public function scopeByDeptAll(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id ); 
+	}
+
+	/**
+	 * Scope a query to only All Approved PR for current dept.
+	*/
+	public function scopeByDeptApproved(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id)
+		->where('auth_status',AuthStatusEnum::APPROVED->value); 
+	}
+
+	/**
+	 * Scope a query to only All InProcess PR for current dept.
+	*/
+	public function scopeByDeptInProcess(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id )
+		->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+	}
+	/**
+	 * Scope a query to only All Draft PR for current dept.
+	*/
+	public function scopeByDeptDraft(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id)
+		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+	}
+
 
 	/* ----------------- Functions ---------------------- */
 	

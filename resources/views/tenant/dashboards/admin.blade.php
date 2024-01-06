@@ -16,6 +16,8 @@
 		@endslot
 	</x-tenant.page-header>
 
+	<x-tenant.widgets.budget-stat/>
+	
 	<x-tenant.widgets.pr-counts/>
 	
 	<x-tenant.widgets.pr-lists/>

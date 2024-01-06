@@ -37,7 +37,21 @@ class PrPolicy
 	 */
 	public function view(User $user, Pr $pr): bool
 	{
-		return true; 
+		// owner, manager, hod, admin and system can view PR
+		if ($user->isAdmin() ) {
+			return true;
+		} elseif ($user->role->value == UserRoleEnum::USER->value) {
+			return ($user->id == $pr->requestor_id);
+		} elseif ($user->role->value == UserRoleEnum::BUYER->value) {
+			return true;
+		} elseif ($user->role->value == UserRoleEnum::HOD->value) {
+			return ($user->dept_id == $pr->dept_id);
+		} elseif ($user->role->value == UserRoleEnum::CXO->value) {
+			return true;
+
+		} else {
+			return ( false ) ;
+		}
 	}
 
 	/**

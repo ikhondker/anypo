@@ -33,6 +33,7 @@ return new class extends Migration
 			$table->boolean('show_banner')->default(false);
 			$table->text('banner_message')->nullable();
 			$table->string('version')->nullable()->default('1.0');
+			$table->string('build')->nullable()->default('1001');
 			$table->biginteger('days_gen_bill')->default(7);
 			$table->biginteger('days_due')->default(7);
 			$table->biginteger('days_pastdue')->default(14);

@@ -50,7 +50,7 @@ class ProjectController extends Controller
 	public function create()
 	{
 		$this->authorize('create', Project::class);
-		$pms = User::primary()->get();
+		$pms = User::Tenant()->get();
 
 		return view('tenant.lookup.projects.create', compact('pms'));
 	}
@@ -94,7 +94,7 @@ class ProjectController extends Controller
 	{
 		$this->authorize('update', $project);
 
-		$pms = User::primary()->get();
+		$pms = User::Tenant()->get();
 		return view('tenant.lookup.projects.edit', compact('project', 'pms'));
 	}
 

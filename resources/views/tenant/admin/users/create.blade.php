@@ -65,7 +65,6 @@
 								<option value=""><< Role >> </option>
 								<option value="{{ UserRoleEnum::USER->value }}" {{ UserRoleEnum::USER->value == old('role') ? 'selected' : '' }}>User</option>
 								<option value="{{ UserRoleEnum::BUYER->value }}" {{ UserRoleEnum::BUYER->value == old('role') ? 'selected' : '' }}>Buyer</option>
-								<option value="{{ UserRoleEnum::MANAGER->value }}" {{ UserRoleEnum::MANAGER->value == old('role') ? 'selected' : '' }}>Manager</option>
 								<option value="{{ UserRoleEnum::HOD->value }}" {{ UserRoleEnum::HOD->value == old('role') ? 'selected' : '' }}>HoD</option>
 								<option value="{{ UserRoleEnum::CXO->value }}" {{ UserRoleEnum::CXO->value == old('role') ? 'selected' : '' }}>CxO</option>
 								<option value="{{ UserRoleEnum::ADMIN->value }}" {{ UserRoleEnum::ADMIN->value == old('role') ? 'selected' : '' }}>Admin</option>

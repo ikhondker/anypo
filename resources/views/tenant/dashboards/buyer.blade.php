@@ -9,7 +9,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Dashboard
+			Dashboard [TODO]
 		@endslot
 		@slot('buttons')
 			{{-- <x-tenant.buttons.header.create object="User"/> --}}
@@ -18,13 +18,13 @@
 
 	<x-tenant.widgets.pr-counts/>
 	
-	<x-tenant.widgets.pr-lists/>
+	<x-tenant.widgets.pr-lists-po-pending/>
 	
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-				<h5 class="card-title">Empty card Test</h5>
+				<h5 class="card-title">Last 5 PO TODO</h5>
 				</div>
 				<div class="card-body">
 

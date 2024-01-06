@@ -154,6 +154,15 @@ class User extends Authenticatable implements MustVerifyEmail
 				case (UserRoleEnum::ADMIN->value):
 					return true;
 					break;
+				case (UserRoleEnum::BUYER->value):
+					return true;
+					break;
+				case (UserRoleEnum::HOD->value):
+					return true;
+					break;
+				case (UserRoleEnum::CXO->value):
+					return true;
+					break;
 				default:
 					return false;
 			}
@@ -191,13 +200,10 @@ class User extends Authenticatable implements MustVerifyEmail
 	}
 
 
-	public function isManagement()
+	public function xxisManagement()
 	{
 		if ($this->enable == 1) {
 			switch ($this->role->value) {
-				case (UserRoleEnum::MANAGER->value):
-					return true;
-					break;
 				case (UserRoleEnum::HOD->value):
 					return true;
 					break;
@@ -363,18 +369,18 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/* ----------------- Scopes ------------------------- */
 	/**
-	 * Scope a query to only  non-seeded users.
+	 * Scope a query to only Tenant Active users.
 	*/
-	public function scopePrimary(Builder $query): void
+	public function scopeTenant(Builder $query): void
 	{
 		$query->where('enable', true)
-			->where('seeded', false);
+			->where('seeded', false); 
 	}
 
 	/**
-	 * Scope a query to only  non-seeded users.
+	 * Scope a query to only tenant all non-seeded users.
 	*/
-	public function scopeNonSeeded(Builder $query): void
+	public function scopeTenantAll(Builder $query): void
 	{
 		$query->where('seeded', false);
 	}
@@ -382,7 +388,15 @@ class User extends Authenticatable implements MustVerifyEmail
 	/**
 	 * Scope a query to only  non-seeded users.
 	*/
-	public function scopeInactive(Builder $query): void
+	// public function scopeNonSeeded(Builder $query): void
+	// {
+	// 	$query->where('seeded', false);
+	// }
+
+	/**
+	 * Scope a query to only  non-seeded users.
+	*/
+	public function scopeTenantInactive(Builder $query): void
 	{
 		$query->where('enable', false)
 			->where('seeded', false);
@@ -391,10 +405,9 @@ class User extends Authenticatable implements MustVerifyEmail
 	/**
 	 * Scope a query to only  non-seeded users.
 	*/
-	public function scopeAdmin(Builder $query): void
+	public function scopeTenantAdmin(Builder $query): void
 	{
-		$query->where('enable', true)
-			->where('seeded', false)
+		$query->where('seeded', false)
 			->where('role', UserRoleEnum::ADMIN->value );
 	}
 

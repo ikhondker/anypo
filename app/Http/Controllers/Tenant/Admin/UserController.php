@@ -89,7 +89,7 @@ class UserController extends Controller
 		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
 			$users = $users->orderBy('id', 'DESC')->paginate(10);
 		} else {
-			$users = $users->NonSeeded()->orderBy('id', 'DESC')->paginate(10);
+			$users = $users->TenantAll()->orderBy('id', 'DESC')->paginate(10);
 		}
 
 		//$users = $users->orderBy('id', 'DESC')->paginate(10);

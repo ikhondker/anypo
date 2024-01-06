@@ -19,6 +19,7 @@ return new class extends Migration
 			$table->string('email')->unique();
 			$table->biginteger('designation_id')->nullable()->default(1001);
 			$table->biginteger('dept_id')->nullable()->default(1001); // No foreign key intentional TODO
+			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use
 			/** ENUM */
 			$table->string('role')->default(UserRoleEnum::USER->value);
 			/** end ENUM */

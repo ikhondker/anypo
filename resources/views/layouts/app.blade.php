@@ -346,14 +346,6 @@
 									@else
 										<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'buyer']) }}">buyer</a> |
 									@endif
-
-									@if ( auth()->user()->role->value == UserRoleEnum::MANAGER->value )
-										<span class="badge bg-primary-light">manager </span>|
-									@else
-										<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'manager']) }}">manager</a> |
-									@endif
-
-
 									@if ( auth()->user()->role->value == UserRoleEnum::HOD->value )
 										<span class="badge bg-primary-light">hod </span>|
 									@else

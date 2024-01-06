@@ -11,7 +11,14 @@
 			<x-tenant.buttons.header.create object="User"/>
 		@endslot
 	</x-tenant.page-header>
-
+	
+	@php
+		use App\Models\User;
+		$count_total    = User::TenantAll()->count();
+		$count_active   = User::Tenant()->count();
+		$count_inactive = User::TenantInactive()->count();
+		$count_admin    = User::TenantAdmin()->count();
+	@endphp
 
 	<div class="row">
 		<div class="col-md-6 col-xxl-3 d-flex">
@@ -28,15 +35,7 @@
 							</div>
 						</div>
 					</div>
-					@php
-						use App\Models\User;
-						$count_total    = User::NonSeeded()->count();
-						$count_active   = User::Primary()->count();
-						$count_inactive = User::Inactive()->count();
-						$count_admin    = User::Admin()->count();
-					@endphp
 					<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
-
 				</div>
 			</div>
 		</div>
@@ -54,7 +53,7 @@
 						</div>
 					</div>
 
-					<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
+					<span class="h1 d-inline-block mt-1">{{ $count_active }}</span>
 				</div>
 			</div>
 		</div>
@@ -122,7 +121,7 @@
 								<th>Email</th>
 								<th>Title</th>
 								<th>Cell No</th>
-								<th>Last Login</th>
+								<th>Dept</th>
 								<th>Role</th>
 								<th>Enable</th>
 								<th>Action</th>
@@ -143,7 +142,7 @@
 								<td>{{ $user->email }}</td>
 								<td>{{ $user->designation_name->name }}</td>
 								<td>{{ $user->cell }}</td>
-								<td><x-tenant.list.my-date-time :value="$user->last_login_at"/></td>
+								<td>{{ $user->dept_name->name }}</td>
 								<td><x-tenant.list.my-badge :value="$user->role"/></td>
 								<td><x-tenant.list.my-boolean :value="$user->enable"/></td>
 								<td class="table-action">

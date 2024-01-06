@@ -84,7 +84,6 @@
 									<select class="form-control" name="role">
 										<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }}  value="user">User</option>
 										<option {{ 'buyer' == old('role',$user->role->value) ? 'selected' : '' }} value="buyer">Buyer</option>
-										<option {{ 'manager' == old('role',$user->role->value) ? 'selected' : '' }} value="manager">Manager</option>
 										<option {{ 'hod' == old('role',$user->role->value) ? 'selected' : '' }} value="hod">HoD</option>
 										<option {{ 'cxo' == old('role',$user->role->value) ? 'selected' : '' }} value="cxo">CxO</option>
 										<option {{ 'admin' == old('role',$user->role->value) ? 'selected' : '' }} value="admin">Admin</option>

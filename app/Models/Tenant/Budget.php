@@ -29,6 +29,14 @@ class Budget extends Model
 		$query->where('freeze', false);
 	} 
 
+	/**
+	 * Scope a query to only All PR for current user dept.
+	*/
+	public function scopeByFy(Builder $query): void
+	{
+		$query->where('fy',  date('Y'));
+	}
+
 
 	/* ----------------- Functions ---------------------- */
 	public static function getAll()

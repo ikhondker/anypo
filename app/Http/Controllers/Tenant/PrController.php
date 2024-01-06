@@ -30,6 +30,7 @@ use App\Models\Tenant\Workflow\Wfl;
 
 # Enums
 //use App\Enum\PrStatusEnum;
+use App\Enum\UserRoleEnum;
 use App\Enum\EntityEnum;
 use App\Enum\WflActionEnum;
 use App\Enum\AuthStatusEnum;
@@ -71,10 +72,27 @@ class PrController extends Controller
 		if (request('term')) {
 			$prs->where('summary', 'LIKE', '%' . request('term') . '%');
 		}
-		$prs = $prs->orderBy('id', 'DESC')->paginate(10);
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::USER->value:
+				$prs = $prs->ByUserAll()->paginate(10);
+				break;
+			case UserRoleEnum::HOD->value:
+				$prs = $prs->ByDeptAll()->paginate(10);
+				break;
+			case UserRoleEnum::BUYER->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
+				$prs = $prs->orderBy('id', 'DESC')->paginate(10);
+				break;
+			default:
+				$prs = $prs->ByUserAll()->paginate(10);
+				Log::debug("Other roles!");
+		}
+
 		return view('tenant.prs.index', compact('prs'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
-
+ 
 	/**
 	 * Show the form for creating a new resource.
 	 */
@@ -87,7 +105,6 @@ class PrController extends Controller
 		$suppliers = Supplier::getAll1();
 		$projects = Project::getAll();
 
-
 		return view('tenant.prs.create', compact('suppliers', 'depts', 'items', 'projects'));
 
 	}
@@ -98,7 +115,7 @@ class PrController extends Controller
 	public function store(StorePrRequest $request)
 	{
 		$this->authorize('create', Pr::class);
-
+		
 		// dont set dept_budget_id . It will be save during submissions
 		$request->merge(['requestor_id'	=> 	auth()->id() ]);
 		$request->merge(['pr_date'		=> date('Y-m-d H:i:s')]);
@@ -117,6 +134,8 @@ class PrController extends Controller
 			//$request->merge(['logo'		=> $fileName ]);
 		}
 
+		
+
 		// create prl lines
 		$prl			= new Prl();
 		$prl->pr_id		= $pr->id;
@@ -129,6 +148,7 @@ class PrController extends Controller
 		$prl->save();
 		$prl_id			= $prl->id;
 		//Log::debug("wf_id = ".$wf_id );
+	
 
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please edit as necessary.');
 		//return redirect()->route('prs.index')->with('success', 'Pr created successfully.');

@@ -29,6 +29,18 @@ class DeptBudget extends Model
 		$query->where('freeze', false);
 	}
 
+	/**
+	 * Scope a query to only All PR for current user dept.
+	*/
+	public function scopeByDeptFy(Builder $query): void
+	{
+			$query->whereHas('budget', function ($q) {
+                $q->where('fy',  date('Y'));
+            })
+			->where('dept_id', auth()->user()->dept_id ); 
+	}
+
+
 	/* ----------------- Functions ---------------------- */
 	public static function getAll() {
 		return User::select('id','name')

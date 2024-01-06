@@ -25,14 +25,15 @@ enum UserRoleEnum: string{
 	case GUEST		= 'guest';		// was used in EventLog. TODO
 	case USER		= 'user';		// Landlord + Tenant
  	case BUYER		= 'buyer';
-	case MANAGER	= 'manager';
+	// TODO Deletes
+	case MANAGER	= 'manager';	// for Future in Tenant when unit within Dept is enabled
 	case HOD		= 'hod';
 	case CXO		= 'cxo';
 	case ADMIN		= 'admin';		// Landlord + Tenant, customer admin, 
 	
 	// Bellow back office roles. They have by default customer admin access
 	case SUPPORT	= 'support';	// Landlord + Tenant
-	case SUPERVISOR	= 'supervisor';	// Landlord + Tenant
+	case SUPERVISOR	= 'supervisor';	// Landlord +
  	case DEVELOPER	= 'developer';	// Landlord
 	case ACCOUNTS	= 'accounts';	// Landlord
 	case SYSTEM		= 'system';		// Landlord + Tenant, ack-office
