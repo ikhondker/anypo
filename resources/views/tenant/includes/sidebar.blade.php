@@ -32,7 +32,7 @@
 			<span class="align-middle">Budget</span>
 		</a>
 		<ul id="budget" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'budget' ? "show" : "") }}" data-bs-parent="#sidebar">
-			<li class="sidebar-item {{ ($_route_name == 'budgets.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Annual Budget*</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'budgets.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Budget*</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'dept-budgets.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('dept-budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Dept Budgets*</a></li>
 		</ul>
 	</li>

@@ -83,7 +83,7 @@ class HomeController extends Controller
 
 	public function help()
 	{
-		return view('tenant.pages.help');
+		return view('tenant.help.help');
 	}
 
 	/**

@@ -2,7 +2,7 @@
 
 namespace App\Policies\Tenant;
 
-use App\Models\Po;
+use App\Models\Tenant\Po;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

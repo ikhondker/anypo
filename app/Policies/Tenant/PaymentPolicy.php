@@ -2,7 +2,7 @@
 
 namespace App\Policies\Tenant;
 
-use App\Models\Payment;
+use App\Models\Tenant\Payment;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

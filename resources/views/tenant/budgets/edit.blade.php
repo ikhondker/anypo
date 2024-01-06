@@ -25,6 +25,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Budget Info</h5>
+							<h6 class="card-subtitle text-muted">Note: To edit budget amount, edit the Department budget. It will be automatically reflected in company budget.</h6>
 						</div>
 						<div class="card-body">
 
@@ -44,10 +45,40 @@
 							</div>
 
 							<x-tenant.edit.notes value="{{ $budget->notes }}"/>
+
+							<x-tenant.attachment.create/>
+
 							<x-tenant.widgets.submit/>
 							
 						</div>
 					</div>
+
+					<div class="card">
+						<div class="card-header">
+							<div class="card-actions float-end">
+								<div class="dropdown position-relative">
+									<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
+										<i class="align-middle" data-feather="more-horizontal"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end">
+										<a class="dropdown-item" href="{{ route('budgets.detach',$budget->id) }}">Delete Attachment</a>
+									</div>
+								</div>
+							</div>
+							<h5 class="card-title">Attachments</h5>
+						</div>
+						<div class="card-body">
+							<div class="row mb-3">
+								<div class="col-sm-3 text-end">
+									<span class="h6 text-secondary">Attachments:</span>
+								</div>
+								<div class="col-sm-9">
+									<x-tenant.attachment.all entity="BUDGET" aid="{{ $budget->id }}"/>
+								</div>
+							</div>
+						
+						</div>
+					</div>	
 				</div>
 				<!-- end col-6 -->
 
@@ -58,8 +89,7 @@
 				</div>
 				<!-- end col-6 -->
 			</div>
-
-			
+		
 	</form>
 	<!-- /.form end -->
 @endsection

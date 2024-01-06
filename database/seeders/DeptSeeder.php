@@ -22,35 +22,51 @@ class DeptSeeder extends Seeder
 		//Dept::truncate();
 		//Schema::enableForeignKeyConstraints();
 		
-
 		$faker = app(Generator::class);
 
 		$depts =  [
 			[
-				'name' => 'Sales & Marketing',
-				'pr_hierarchy_id' => 1002,
-				'po_hierarchy_id' => Hierarchy::inRandomOrder()->first()->id,
+				'id' 				=> 1001,
+				'name' 				=> 'Sales',
+				'pr_hierarchy_id' 	=> 1002,
+				'po_hierarchy_id' 	=> Hierarchy::inRandomOrder()->first()->id,
 			],
 			[
-				'name' => 'Finance',
-				'pr_hierarchy_id' => 1002,
-				'po_hierarchy_id' => Hierarchy::inRandomOrder()->first()->id,
-		  ],
+				'id' 				=> 1002,
+				'name' 				=> 'Marketing',
+				'pr_hierarchy_id' 	=> 1002,
+				'po_hierarchy_id' 	=> Hierarchy::inRandomOrder()->first()->id,
+			],
 			[
-				'name' => 'Operation',
-				'pr_hierarchy_id' => 1002,
-				'po_hierarchy_id' => Hierarchy::inRandomOrder()->first()->id,
-		  ],
+				'id' 				=> 1003,
+				'name' 				=> 'IT',
+				'pr_hierarchy_id' 	=> 1002,
+				'po_hierarchy_id' 	=> Hierarchy::inRandomOrder()->first()->id,
+		  	],
+		  	[
+				'id' 				=> 1004,
+				'name' 				=> 'Production',
+				'pr_hierarchy_id' 	=> 1002,
+				'po_hierarchy_id' 	=> Hierarchy::inRandomOrder()->first()->id,
+		  	],
 			[
-				'name' => 'HR & Admin',
-				'pr_hierarchy_id' => 1002,
-				'po_hierarchy_id' => Hierarchy::inRandomOrder()->first()->id,
-		  ],
+				'id' 				=> 1005,
+				'name' 				=> 'Finance',
+				'pr_hierarchy_id' 	=> 1002,
+				'po_hierarchy_id' 	=> Hierarchy::inRandomOrder()->first()->id,
+		  	],
 			[
-				'name' => 'Management',
-				'pr_hierarchy_id' => 1002,
-				'po_hierarchy_id' => Hierarchy::inRandomOrder()->first()->id,
-		  ],
+				'id' 				=> 1006,
+				'name' 				=> 'HR & Admin',
+				'pr_hierarchy_id' 	=> 1002,
+				'po_hierarchy_id' 	=> Hierarchy::inRandomOrder()->first()->id,
+		  	],
+			[
+				'id' 				=> 1007,
+				'name' 				=> 'Management',
+				'pr_hierarchy_id' 	=> 1002,
+				'po_hierarchy_id' 	=> Hierarchy::inRandomOrder()->first()->id,
+		  	],
 		  ];
 		//
 		Dept::insert($depts);

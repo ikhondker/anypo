@@ -264,13 +264,14 @@ class SetupController extends Controller
 		$currency->enable = true;
 		$currency->save();
 
-		$budget = Budget::where('currency', '<>', $base)->first();
-		if(! is_null($budget)) {
-			Log::debug('Budget->currency='.$budget->currency);
-			Log::debug('Budget->id='.$budget->id);
-			$budget->currency = $setup->currency;
-			$budget->save();
-		}
+		// NO longer needed as currency removed form budget table
+		// $budget = Budget::where('currency', '<>', $base)->first();
+		// if(! is_null($budget)) {
+		// 	Log::debug('Budget->currency='.$budget->currency);
+		// 	Log::debug('Budget->id='.$budget->id);
+		// 	$budget->currency = $setup->currency;
+		// 	$budget->save();
+		// }
 
 		// update setup. 
 		$request->merge(['freezed'	=> true ]);

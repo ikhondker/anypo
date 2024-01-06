@@ -10,40 +10,35 @@ use App\Models\Tenant\Lookup\Oem;
 
 class OemSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-      //Schema::disableForeignKeyConstraints();
-      //Oem::truncate();
-      //Schema::enableForeignKeyConstraints();
-      
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+	  //Schema::disableForeignKeyConstraints();
+	  //Oem::truncate();
+	  //Schema::enableForeignKeyConstraints();
+	  
+		$oems =  [
+			[
+				'id' 	=> 1001,
+				'name'	=> 'General',
+			],
+			[
+				'id' 	=> 1002,
+				'name' => 'Samsung',
+			],
+			[
+				'id' 	=> 1003,
+				'name' => 'Apple',
+			],
+			[
+				'id' 	=> 1004,
+				'name' => 'Intel',
+			],
+		  
+		];
 
-      
-
-        $oems =  [
-            [
-                'name' => 'General',
-            ],
-            [
-                'name' => 'Samsung',
-            ],
-            [
-                'name' => 'LG',
-            ],
-            [
-                'name' => 'Oppo',
-            ],
-            [
-                'name' => 'Aarong',
-            ],
-            [
-                'name' => 'Nokia',
-            ]
-          
-        ];
-
-        Oem::insert($oems);
-    }
+		Oem::insert($oems);
+	}
 }

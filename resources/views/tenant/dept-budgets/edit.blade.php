@@ -45,6 +45,9 @@
 
 							<x-tenant.edit.amount :value="$deptBudget->amount"/>
 							<x-tenant.edit.notes value="{{ $deptBudget->notes }}"/>
+
+							<x-tenant.attachment.create/>
+							
 							<x-tenant.widgets.submit/>
 							
 						</div>

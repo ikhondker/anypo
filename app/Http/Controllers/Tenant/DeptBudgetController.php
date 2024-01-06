@@ -114,7 +114,7 @@ class DeptBudgetController extends Controller
 		// check if budget exists and nt freezed. should exists
 		$budget = Budget::where('id', $deptBudget->budget_id)->first();
 		if ($budget->freeze) {
-			return redirect()->route('budgets.index')->with('error', 'Budget is freezed. Your admin need to unfreeze it, before update!');
+			return redirect()->route('budgets.index')->with('error', 'Budget '.$budget->name.'is freezed. Your admin need to unfreeze it, before update!');
 		}
 
 		$request->validate([
@@ -124,6 +124,15 @@ class DeptBudgetController extends Controller
 		// create revision row
 		//Log::debug("Input=".$request->input('amount'));
 		//Log::debug("amount=".$deptBudget->amount);
+
+		// upload file as record
+		if ($file = $request->file('file_to_upload')) {
+			Log::debug("file_to_upload=");
+
+			$request->merge(['article_id'	=> $deptBudget->id ]);
+			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
+			$attid = FileUpload::upload($request);
+		}
 
 		// budget has been modified
 		if ($request->input('amount') <> $deptBudget->amount) {
@@ -136,7 +145,7 @@ class DeptBudgetController extends Controller
 		//dd($deptBudget);
 		$deptBudget->update($request->all());
 
-		return redirect()->route('dept-budgets.index')->with('success', 'DeptBudget updated successfully');
+		return redirect()->route('dept-budgets.show',$deptBudget->id )->with('success', 'DeptBudget updated successfully');
 	}
 
 	/**
@@ -159,7 +168,7 @@ class DeptBudgetController extends Controller
 	{
 		$this->authorize('export', Budget::class);
 		$data = DB::select("SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr_issued, db.amount_po_booked, db.amount_po_issued, db.amount_grs, db.amount_payment, 
-		db.notes, IF(db.enable, 'Yes', 'No') as Enable
+		db.notes, 	IF(db.freeze, 'Yes', 'No') as Freeze
 		FROM dept_budgets db,budgets b,depts d
 		WHERE db.budget_id = b.id
 		AND db.dept_id=d.id");

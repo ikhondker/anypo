@@ -18,6 +18,11 @@
 
 	<x-tenant.widgets.budget-stat/>
 
+	<div class="row">
+		<x-tenant.charts.budget-pie/>
+	
+	</div>
+
 	<x-tenant.widgets.pr-counts/>
 	
 	<x-tenant.widgets.pr-lists/>

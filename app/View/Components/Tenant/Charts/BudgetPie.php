@@ -6,7 +6,10 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+use App\Enum\UserRoleEnum;
+
 use DB;
+use Illuminate\Support\Facades\Log;
 
 class BudgetPie extends Component
 {
@@ -19,13 +22,37 @@ class BudgetPie extends Component
 	 */
 	public function __construct()
 	{
+		//'dept_id', auth()->user()->dept_id
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::HOD->value:
+				$sql= "SELECT db.amount - db.amount_po_booked - db.amount_po_issued as amount, db.amount_po_booked, db.amount_po_issued
+				FROM budgets b, dept_budgets db
+				WHERE b.id=db.budget_id
+				AND b.fy = date('Y')
+				AND db.dept_id= ".auth()->user()->dept_id." ";
+				break;
+			case UserRoleEnum::BUYER->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
+				$sql= "SELECT b.amount - b.amount_po_booked - b.amount_po_issued as amount, b.amount_po_booked, b.amount_po_issued
+				FROM budgets b
+				WHERE b.fy = date('Y')";
+				break;
+			default:
+			Log::debug('Role Not Found!');
+		}
+
 		// ====================== Budget====================================
-		$records = DB::select("SELECT amount-amount_po_booked-amount_po_issued as amount, amount_po_booked, amount_po_issued
+		$records = DB::select("SELECT amount - amount_po_booked - amount_po_issued as amount, amount_po_booked, amount_po_issued
 		FROM budgets b
 		WHERE b.fy = date('Y')");
 		//$result = $dept_budgets->toArray();
 		//$data = [];
 		
+		Log::debug('sql='.$sql);
+		$records = DB::select($sql);
+
 		$this->budget_labels[] = "Available";
 		$this->budget_labels[] = "PO Booked";
 		$this->budget_labels[] = "PO Issued";

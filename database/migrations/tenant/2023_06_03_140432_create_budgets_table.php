@@ -17,7 +17,7 @@ return new class extends Migration
 			$table->string('name');
 			$table->dateTime('start_date', $precision = 0)->nullable()->useCurrent();
 			$table->dateTime('end_date', $precision = 0)->nullable()->useCurrent();
-			$table->string('currency',3)->default('USD');
+			//$table->string('currency',3)->default('USD');
 			$table->float('amount', 15, 2)->default(0);
 			$table->float('amount_pr_booked', 15, 2)->default(0);
 			$table->float('amount_pr_issued', 15, 2)->default(0);

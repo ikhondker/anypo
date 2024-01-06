@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			DeptBudget
+			Department Budget [{{ ($_setup->currency ) }}]
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="DeptBudget"/>
@@ -33,10 +33,10 @@
 							<tr>
 								<th>ID</th>
 								<th>Dept</th>
-								<th>Budget Name</th>
+								<th>FY</th>
 								<th>Budget Period</th>
 								
-								<th class="text-end">Amount</th>
+								<th class="text-end">Budget</th>
 								<th class="text-end">PR</th>
 								<th class="text-end">Available (PR)</th>
 								<th class="text-end">PO</th>
@@ -53,7 +53,7 @@
 							<tr>
 								<td>{{ $dept_budget->id }}</td>
 								<td><a class="text-info" href="{{ route('dept-budgets.show',$dept_budget->id) }}">{{ $dept_budget->dept->name  }}</a></td>
-								<td>{{ $dept_budget->budget->name }}</td>
+								<td>{{ $dept_budget->budget->fy }}</td>
 								<td><x-tenant.list.my-date :value="$dept_budget->budget->start_date"/> - <x-tenant.list.my-date :value="$dept_budget->budget->end_date"/></td>
 								
 

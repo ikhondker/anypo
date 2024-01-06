@@ -2,7 +2,7 @@
 
 namespace App\Policies\Tenant;
 
-use App\Models\DeptBudget;
+use App\Models\Tenant\DeptBudget;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -42,38 +42,30 @@ class DeptBudgetPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, DeptBudget $deptBudget): Response
+	public function update(User $user, DeptBudget $deptBudget): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return ( $user->isAdmin() && !$deptBudget->freeze );
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, DeptBudget $deptBudget): Response
+	public function delete(User $user, DeptBudget $deptBudget): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-		? Response::allow()
-		: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
-	public function export(User $user): Response
+	public function export(User $user): bool
 	{
-		return CheckAccess::aboveAdmin($user->role->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 	
 	

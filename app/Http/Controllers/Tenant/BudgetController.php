@@ -8,8 +8,8 @@ use App\Http\Requests\Tenant\StoreBudgetRequest;
 use App\Http\Requests\Tenant\UpdateBudgetRequest;
 
 # Models
-use App\Models\Admin\Setup;
-use App\Models\Attachment;
+use App\Models\Tenant\Admin\Setup;
+use App\Models\Tenant\Admin\Attachment;
 # Enums
 use App\Enum\EntityEnum;
 # Helpers
@@ -23,6 +23,7 @@ use App\Helpers\FileUpload;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 # Exceptions
 # Events
@@ -48,10 +49,10 @@ class BudgetController extends Controller
 	 */
 	public function create()
 	{
+
 		$this->authorize('create', Budget::class);
 
 		$setup = Setup::first();
-
 
 		$lastbudget = Budget::latest()->first();
 		$lastbudget = Budget::orderBy('fy', 'desc')->first();
@@ -64,10 +65,9 @@ class BudgetController extends Controller
 		$budget->name		= 'Budget for ' .$budget->fy;
 		$budget->start_date	= Carbon::parse($budget->fy.'-01-01');
 		$budget->end_date	= Carbon::parse($budget->fy.'-12-31');
-		$budget->currency	= $setup->currency;
 		$budget->notes		= 'Budget for ' .$budget->fy;
 		;
-		$budget->enable	= true;
+		$budget->freeze	= false;
 		$budget->save();
 		$budget_id = $budget->id;
 
@@ -128,10 +128,19 @@ class BudgetController extends Controller
 		]);
 		$budget->update($request->all());
 
+
+		// upload file as record
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $budget->id ]);
+			$request->merge(['entity'		=> EntityEnum::BUDGET->value ]);
+			$attid = FileUpload::upload($request);
+		}
+
 		// Write to Log
 		EventLog::event('budget', $budget->id, 'update', 'name', $budget->name);
 
-		return redirect()->route('budgets.index')->with('success', 'Budget updated successfully');
+		return redirect()->route('budgets.show',$budget->id )->with('success', 'Budget updated successfully');
+
 	}
 
 	/**
@@ -154,7 +163,7 @@ class BudgetController extends Controller
 	{
 		$this->authorize('export', Budget::class);
 		$data = DB::select("SELECT id, fy, name, start_date, end_date, amount, amount_pr_booked, amount_pr_issued, amount_po_booked, amount_po_issued, amount_grs, amount_payment, notes, 
-				IF(enable, 'Yes', 'No') as Enable
+				IF(freeze, 'Yes', 'No') as Freeze
 			FROM budgets");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
