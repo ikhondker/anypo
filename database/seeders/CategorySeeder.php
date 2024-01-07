@@ -57,8 +57,6 @@ class CategorySeeder extends Seeder
 			// 	'id' 	=> 1009,
 			// 	'name' => 'Petty Cash',
 			// ],
-
-
 	  ];
 	  //
 	  Category::insert($categories);

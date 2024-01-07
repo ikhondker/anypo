@@ -45,7 +45,7 @@ class ReportPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -53,7 +53,7 @@ class ReportPolicy
 	 */
 	public function update(User $user, Report $report): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -61,7 +61,7 @@ class ReportPolicy
 	 */
 	public function delete(User $user, Report $report): bool
 	{
-		//
+		return false;
 	}
 
 	/**

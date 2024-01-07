@@ -5,16 +5,18 @@ use App\Http\Controllers\Controller;
 
 
 use App\Models\Tenant\Report;
-use App\Http\Requests\StoreReportRequest;
-use App\Http\Requests\UpdateReportRequest;
+use App\Http\Requests\Tenant\StoreReportRequest;
+use App\Http\Requests\Tenant\UpdateReportRequest;
 
 
 # Models
+use App\Models\User;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Admin\Setup;
 # Enums
+use App\Enum\UserRoleEnum;
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -27,6 +29,7 @@ use DB;
 # Events
 # Package
 use PDF;
+use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
 {
@@ -35,7 +38,18 @@ class ReportController extends Controller
 	 */
 	public function index()
 	{
-		return view('tenant.reports.index');
+
+		$reports = Report::query();
+		if (request('term')) {
+			$reports->where('name', 'Like', '%'.request('term').'%');
+		}
+		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
+			$reports = $reports->orderBy('id', 'DESC')->paginate(100);
+			return view('tenant.reports.index', compact('reports'))->with('i', (request()->input('page', 1) - 1) * 10);
+		} else {
+			$reports = $reports->where('enable', true)->orderBy('id', 'DESC')->paginate(100);
+			return view('tenant.reports.index', compact('reports'))->with('i', (request()->input('page', 1) - 1) * 10);
+		}
 	}
 
 	/**
@@ -43,7 +57,9 @@ class ReportController extends Controller
 	 */
 	public function create()
 	{
-		//
+		$pms = User::Tenant()->get();
+		$report_id='1003';
+		return view('tenant.reports.date-from-to', compact('report_id','pms'));
 	}
 
 	/**
@@ -51,7 +67,32 @@ class ReportController extends Controller
 	 */
 	public function store(StoreReportRequest $request)
 	{
-		//
+		$report_id	= $request->input('report_id');
+		$start_date	= $request->input('start_date');
+		$end_date	= $request->input('end_date');
+		$pm_id		= $request->input('pm_id');
+
+		Log::debug('report_id='.$report_id);
+		Log::debug('start_date='.$start_date);
+		Log::debug('end_date='.$end_date);
+		Log::debug('pm_id='.$pm_id);
+
+		switch ($report_id) {
+			case '1003':
+				return self::r1003();
+				break;
+			default:
+				Log::debug("Report ID not found!");
+		}
+
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function r1003()
+	{
+		Log::debug("Inside r1003!");
 	}
 
 	/**
@@ -59,7 +100,9 @@ class ReportController extends Controller
 	 */
 	public function show(Report $report)
 	{
-		//
+		//$this->authorize('view', $report);
+
+		return view('tenant.reports.show', compact('report'));
 	}
 
 	/**
@@ -67,7 +110,9 @@ class ReportController extends Controller
 	 */
 	public function edit(Report $report)
 	{
-		//
+		$pms = User::Tenant()->get();
+		$report_id='1003';
+		return view('tenant.reports.parameters', compact('report','report_id','pms'));
 	}
 
 	/**
@@ -85,6 +130,17 @@ class ReportController extends Controller
 	{
 		//
 	}
+
+	public function export()
+	{
+		$this->authorize('export', Budget::class);
+		$data = DB::select("SELECT id, name, title, access, article_id, start_date, end_date, user_id, item_id, supplier_id, project_id, category_id, dept_id, warehouse_id, order_by, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at, 
+		FROM reports");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('reports', $dataArray);
+	}
+
 
 	public function pr($id)
 	{

@@ -93,7 +93,7 @@
 					</div>
 				</div> --}}
 				<div class="fixed-bottom text-sm pb-2 ps-4" >
-					<span class="text-center">© anypo.net Version 1.1</span>
+					<span class="text-center">© {{ env('APP_NAME') }} v{{ env('APP_VERSION') }}</span>
 				</div>
 
 			</div>

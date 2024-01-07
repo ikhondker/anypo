@@ -12,8 +12,22 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('reports', function (Blueprint $table) {
-			$table->id();
-			$table->timestamps();
+			$table->id()->startingValue(1001);
+			$table->string('name');
+			$table->string('title')->nullable();
+			$table->string('access')->default('all'); 
+			$table->string('article_id')->default(false); 
+			$table->boolean('start_date')->default(true); 
+			$table->boolean('end_date')->default(true); 
+			$table->boolean('account_id')->default(false); 
+			$table->boolean('service_id')->default(true); 
+			$table->boolean('user_id')->default(true); 
+			$table->boolean('item_id')->default(false); 
+			$table->boolean('enable')->default(true); 
+			$table->biginteger('created_by')->default(1001);
+			$table->timestamp('created_at')->useCurrent();
+			$table->biginteger('updated_by')->default(1001);
+			$table->timestamp('updated_at')->useCurrent();
 		});
 	}
 

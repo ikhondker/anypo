@@ -26,7 +26,7 @@ class OemSeeder extends Seeder
 			],
 			[
 				'id' 	=> 1002,
-				'name' => 'Samsung',
+				'name' => 'HP',
 			],
 			[
 				'id' 	=> 1003,
@@ -34,9 +34,16 @@ class OemSeeder extends Seeder
 			],
 			[
 				'id' 	=> 1004,
-				'name' => 'Intel',
+				'name' => 'ASUS',
 			],
-		  
+			[
+				'id' 	=> 1005,
+				'name' => 'Lenovo',
+			],
+			[
+				'id' 	=> 1006,
+				'name' => 'Dell',
+			],
 		];
 
 		Oem::insert($oems);

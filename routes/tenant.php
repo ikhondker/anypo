@@ -320,6 +320,7 @@ Route::middleware([
 
 	/* ======================== report ========================================  */
 	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
+	Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
 	Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
 	Route::get('/report/createPDF',[ReportController::class, 'createPDF'])->name('reports.createPDF');
 	Route::get('/report/templatepr',[ReportController::class, 'templatepr'])->name('reports.templatepr');
