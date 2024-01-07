@@ -43,22 +43,26 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($reports as $reports)
+							@foreach ($reports as $report)
 							<tr>
-								<td>{{ $reports->id }}</td>
-								<td><a class="text-info" href="{{ route('reports.show',$reports->id) }}">{{ $reports->name }}</a></td>
-								<td>{{ $reports->title }}</td>
-								<td>{{ $reports->access }}</td>
-								<td><x-tenant.list.my-boolean :value="$reports->start_date"/></td>
-								<td><x-tenant.list.my-boolean :value="$reports->end_date"/></td>
-								<td><x-tenant.list.my-boolean :value="$reports->enable"/></td>
+								<td>{{ $report->id }}</td>
+								<td><a class="text-info" href="{{ route('reports.show',$report->id) }}">{{ $report->name }}</a></td>
+								<td>{{ $report->title }}</td>
+								<td>{{ $report->access }}</td>
+								<td><x-tenant.list.my-boolean :value="$report->start_date"/></td>
+								<td><x-tenant.list.my-boolean :value="$report->end_date"/></td>
+								<td><x-tenant.list.my-boolean :value="$report->enable"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Report" :id="$reports->id"/>
-									<a href="{{ route('reports.destroy', $reports->id) }}" class="me-2 modal-boolean-advance" 
-										data-entity="Report" data-name="{{ $reports->name }}" data-status="{{ ($reports->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($reports->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($reports->enable ? 'bell-off' : 'bell') }}"></i>
+									<x-tenant.list.actions object="Report" :id="$report->id"/>
+									<a href="{{ route('reports.destroy', $report->id) }}" class="me-2 modal-boolean-advance" 
+										data-entity="Report" data-name="{{ $report->name }}" data-status="{{ ($report->enable ? 'Disable' : 'Enable') }}"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($report->enable ? 'Disable' : 'Enable') }}">
+										<i class="align-middle text-muted" data-feather="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
+									<a wire:ignore href="{{ route('reports.edit',$report->id)  }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+										<i class="align-middle" data-feather="layout"></i>
+									</a>
+
 								</td>
 							</tr>
 							@endforeach

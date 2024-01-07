@@ -12,10 +12,13 @@
 			<x-tenant.buttons.header.create object="Pr"/>
 			<x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
 			<a href="{{ route('prls.createline', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="plus"></i> Add Line</a>
-			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
 			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Duplicate*</a>
-			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="external-link"></i> Submit</a>
 			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a>
+			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
+			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
+				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
+				<i data-feather="external-link"></i> Submit</a>
 		@endslot
 	</x-tenant.page-header>
 	
@@ -39,7 +42,7 @@
 		<x-tenant.widgets.approval-history id="{{ $pr->wf_id }}"/>
 	@endif
 	
-	
+	@include('tenant.includes.modal-boolean-advance')
 	  
 @endsection
 

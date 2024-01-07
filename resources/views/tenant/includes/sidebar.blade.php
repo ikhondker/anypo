@@ -37,17 +37,11 @@
 		</ul>
 	</li>
 
-	<li class="sidebar-item {{ ($_node_name == 'reports' ? "active" : "") }}">
-		<a data-bs-target="#reports"s data-bs-toggle="collapse" class="sidebar-link collapsed">
-			<i class="align-middle" data-feather="grid"></i> 
-			<span class="align-middle">Reports</span>
+
+	<li class="sidebar-item {{ ($_route_name == 'reports.index' ? "active" : "") }}">
+		<a class="sidebar-link" href="{{ route('reports.index') }}">
+			<i class="align-middle" data-feather="layout"></i><span class="align-middle">Reports</span>
 		</a>
-		<ul id="reports" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'reports' ? "show" : "") }}" data-bs-parent="#sidebar">
-			<li class="sidebar-item {{ ($_route_name == 'budgets.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('reports.index') }}"><i class="align-middle" data-feather="layout"></i>PR*</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'dept-budgets.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('reports.index') }}"><i class="align-middle" data-feather="layout"></i>PR Lines*</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'budgets.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('reports.index') }}"><i class="align-middle" data-feather="layout"></i>PO*</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'dept-budgets.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('reports.index') }}"><i class="align-middle" data-feather="layout"></i>PO Lines*</a></li>
-		</ul>
 	</li>
 
 	<li class="sidebar-item {{ ($_node_name == 'items' ? "active" : "") }}">

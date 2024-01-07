@@ -32,10 +32,10 @@ use Illuminate\Support\Facades\Auth;
 // Enums
 use App\Enum\UserRoleEnum;
 
-use App\Models\Pr;
-use App\Models\Budget;
-use App\Models\Project;
-use App\Models\DeptBudget;
+use App\Models\Tenant\Pr;
+use App\Models\Tenant\Budget;
+use App\Models\Tenant\DeptBudget;
+use App\Models\Tenant\Lookup\Project;
 
 use Carbon\Carbon;
 

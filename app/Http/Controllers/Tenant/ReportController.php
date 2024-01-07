@@ -45,7 +45,7 @@ class ReportController extends Controller
 		}
 		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
 			$reports = $reports->orderBy('id', 'DESC')->paginate(100);
-			return view('tenant.reports.index', compact('reports'))->with('i', (request()->input('page', 1) - 1) * 10);
+			return view('tenant.reports.all', compact('reports'))->with('i', (request()->input('page', 1) - 1) * 10);
 		} else {
 			$reports = $reports->where('enable', true)->orderBy('id', 'DESC')->paginate(100);
 			return view('tenant.reports.index', compact('reports'))->with('i', (request()->input('page', 1) - 1) * 10);
@@ -162,6 +162,64 @@ class ReportController extends Controller
 	}
 
 	public function pr($id)
+	{
+		//todo auth check
+		//todo if pr exists
+		$setup = Setup::first();
+		//$setup = Setup::where('id', config('akk.SETUP_ID'))->firstOrFail();
+		$pr = Pr::with('requestor')->where('id', $id)->firstOrFail();
+		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
+		$prls = Prl::with('item')->where('pr_id', $pr->id)->get()->all();
+
+		//$prls = Prl::where('pr_id', $id)->firstOrFail();
+		//$prls = Prl::getLinesByPrId($id);
+		//$prls = Prl::By_pr_id($id);
+		//$prls = Prl::where('pr_id', $id)->firstOrFail();
+		//dd($id, $prls);
+
+		$data = [
+			'title' => 'Company XYZ',
+			'id' => $id,
+			'date' => date('m/d/Y'),
+			'setup' => $setup,
+			'pr' => $pr,
+			'supplier' => $supplier,
+			'prls' => $prls,
+		];
+		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'portrait');
+		$pdf->output();
+		// Get height and width of page
+
+		$canvas = $pdf->getDomPDF()->getCanvas();
+		$height = $canvas->get_height();
+		$width = $canvas->get_width();
+
+		// Specify watermark text
+		$text = "DRAFT";
+
+		// Get height and width of text
+		$font		= $pdf->getFontMetrics()->get_font("lato", "bold");
+		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
+		$textWidth 	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
+		// Specify horizontal and vertical position
+		$x = (($width - $textWidth) / 1.4);
+		$y = (($height - $txtHeight) / 2);
+
+		$color = array(255,0,0);
+		//$canvas->set_opacity(.2,"Multiply");
+		$canvas->set_opacity(.2);
+
+		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
+		//$canvas->page_text($width/5, $height/2, $text, $font, 55, array(125,0,0),2,2,-30);
+		//$canvas->page_text($width/5, $height/2, 'ANYPO.NET', $font, 55,  array(255,153,153), 2, 2, -30);
+
+		return $pdf->stream('templatepr.pdf');
+	}
+
+
+	public function prv1($id)
 	{
 		//todo auth check
 		//todo if pr exists

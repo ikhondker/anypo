@@ -134,7 +134,6 @@ class PrController extends Controller
 			//$request->merge(['logo'		=> $fileName ]);
 		}
 
-		
 
 		// create prl lines
 		$prl			= new Prl();
@@ -295,6 +294,7 @@ class PrController extends Controller
 
 	public function submit(Pr $pr)
 	{
+		
 		if ($pr->auth_status->value <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.index')->with('error', 'You can only submit if the status is '. AuthStatusEnum::DRAFT->value .' !');
 		}
