@@ -57,9 +57,7 @@ class ReportController extends Controller
 	 */
 	public function create()
 	{
-		$pms = User::Tenant()->get();
-		$report_id='1003';
-		return view('tenant.reports.date-from-to', compact('report_id','pms'));
+		//
 	}
 
 	/**
@@ -67,33 +65,11 @@ class ReportController extends Controller
 	 */
 	public function store(StoreReportRequest $request)
 	{
-		$report_id	= $request->input('report_id');
-		$start_date	= $request->input('start_date');
-		$end_date	= $request->input('end_date');
-		$pm_id		= $request->input('pm_id');
-
-		Log::debug('report_id='.$report_id);
-		Log::debug('start_date='.$start_date);
-		Log::debug('end_date='.$end_date);
-		Log::debug('pm_id='.$pm_id);
-
-		switch ($report_id) {
-			case '1003':
-				return self::r1003();
-				break;
-			default:
-				Log::debug("Report ID not found!");
-		}
+		
 
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function r1003()
-	{
-		Log::debug("Inside r1003!");
-	}
+	
 
 	/**
 	 * Display the specified resource.
@@ -112,7 +88,7 @@ class ReportController extends Controller
 	{
 		$pms = User::Tenant()->get();
 		$report_id='1003';
-		return view('tenant.reports.parameters', compact('report','report_id','pms'));
+		return view('tenant.reports.parameters', compact('report','pms'));
 	}
 
 	/**
@@ -120,15 +96,43 @@ class ReportController extends Controller
 	 */
 	public function update(UpdateReportRequest $request, Report $report)
 	{
-		//
+		$report_id	= $request->input('report_id');
+		$start_date	= $request->input('start_date');
+		$end_date	= $request->input('end_date');
+		$pm_id		= $request->input('pm_id');
+
+		Log::debug('report_id='.$report_id);
+		Log::debug('start_date='.$start_date);
+		Log::debug('end_date='.$end_date);
+		Log::debug('pm_id='.$pm_id);
+
+		switch ($report_id) {
+			case '1001':
+				return self::r1001();
+				break;
+			case '1003':
+				return self::r1003();
+				break;
+			default:
+				Log::debug("Report ID not found!");
+		}
 	}
+
 
 	/**
 	 * Remove the specified resource from storage.
 	 */
 	public function destroy(Report $report)
 	{
-		//
+		$this->authorize('delete', $report);
+
+		$report->fill(['enable' => ! $report->enable]);
+		$report->update();
+
+		// Write to Log
+		EventLog::event('report', $report->id, 'status', 'enable', $report->enable);
+
+		return redirect()->route('reports.index')->with('success', 'Report status Updated successfully');
 	}
 
 	public function export()
@@ -141,6 +145,21 @@ class ReportController extends Controller
 		return Export::csv('reports', $dataArray);
 	}
 
+	/**
+	 * Display the specified resource.
+	 */
+	public function r1001()
+	{
+		Log::debug("Inside r1001!");
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function r1003()
+	{
+		Log::debug("Inside r1003!");
+	}
 
 	public function pr($id)
 	{

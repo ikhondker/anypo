@@ -62,17 +62,62 @@
 									<a class="btn btn-primary text-white" href="{{ route('reports.templatepo') }}">Template PO</a>
 								</td>
 							</tr>
-							@foreach ($reports as $report)
-								<tr>
-									<td>4</td>
-									<td>{{ $report->name }}</td>
-									<td>{{ $report->title }}</td>
-									<td class="table-action">
-										<a class="btn btn-primary text-white" href="{{ route('reports.edit',$report->id) }}">Run</a>
-									</td>
-								</tr>
-							@endforeach
-							
+							<tr>
+								<td>4</td>
+								<td>Budget Utilization Report</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.stocks') }}">Onhand Stock </a>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Dept Budget Utilization Report</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.stocks') }}">Onhand Stock </a>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Onhand Stock</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.stocks') }}">Onhand Stock </a>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Purchase Requisition Details Report</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.stocks') }}">Onhand Stock </a>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Purchase Order Details Report</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.stocks') }}">Onhand Stock </a>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Goods Receipt Details Report</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.stocks') }}">Onhand Stock </a>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Payment Details Report</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.stocks') }}">Onhand Stock </a>
+								</td>
+							</tr>
 
 						</tbody>
 					</table>

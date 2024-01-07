@@ -14,21 +14,20 @@
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form id="myform" action="{{ route('reports.store') }}" method="POST" enctype="multipart/form-data">
+	<form id="myform" action="{{ route('reports.update', $report->id) }}" method="POST">
 		@csrf
-		
+		@method('PUT')
 
 		<div class="row">
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Report Parameter</h5>
-						<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
+						<h5 class="card-title"> {{ $report->name }}</h5>
+						<h6 class="card-subtitle text-muted">Please enter reports parameter and clink on run.</h6>
 					</div>
 					<div class="card-body">
-						
-							<input type="text" name="report_id" id="report_id" class="form-control" placeholder="ID" value="{{ old('report_id',$report_id ) }}">
 							<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id',$report->id ) }}">
+
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right">Start Date </label>
 								<div class="col-sm-10">
@@ -41,6 +40,7 @@
 										@enderror
 								</div>
 							</div>
+
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right">End Date </label>
 								<div class="col-sm-10">
@@ -53,6 +53,7 @@
 									@enderror
 								</div>
 							</div>
+							
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right">Project Manager </label>
 								<div class="col-sm-10">
@@ -67,6 +68,7 @@
 									@enderror
 								</div>
 							</div>
+
 							<fieldset class="mb-3">
 								<div class="row">
 									<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">Radios</label>
@@ -82,6 +84,7 @@
 									</div>
 								</div>
 							</fieldset>
+
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">Checkbox</label>
 								<div class="col-sm-10">
@@ -91,6 +94,7 @@
 									</label>
 								</div>
 							</div>
+
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">&nbsp;</label>
 								<div class="col-sm-10 ml-sm-auto">

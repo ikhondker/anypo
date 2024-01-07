@@ -13,6 +13,7 @@
 			<x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
 			<a href="{{ route('prls.createline', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="plus"></i> Add Line</a>
 			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
+			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Duplicate*</a>
 			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="external-link"></i> Submit</a>
 			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a>
 		@endslot
