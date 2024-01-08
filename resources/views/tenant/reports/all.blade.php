@@ -43,6 +43,41 @@
 							</tr>
 						</thead>
 						<tbody>
+							
+
+							<tr>
+								<td>1</td>
+								<td>Parameter Testing 1</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.edit','1004') }}">Run</a>
+								</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Create PDF</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.createPDF') }}">Create PDF</a>
+								</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Template PR</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.templatepr') }}">Template PR</a>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Template PO</td>
+								<td>run</td>
+								<td class="table-action">
+									<a class="btn btn-primary text-white" href="{{ route('reports.templatepo') }}">Template PO</a>
+								</td>
+							</tr>
+
 							@foreach ($reports as $report)
 							<tr>
 								<td>{{ $report->id }}</td>
@@ -59,10 +94,9 @@
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($report->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
-									<a wire:ignore href="{{ route('reports.edit',$report->id)  }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+									<a wire:ignore href="{{ route('reports.edit',$report->id)  }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Run">
 										<i class="align-middle" data-feather="layout"></i>
 									</a>
-
 								</td>
 							</tr>
 							@endforeach

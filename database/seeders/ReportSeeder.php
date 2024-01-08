@@ -25,7 +25,7 @@ class ReportSeeder extends Seeder
 			],
 			[
 				'id' 	=> 1003,
-				'name' => 'Printed PR pdf',
+				'name' => '*Printed PR pdf',
 			],
 			[
 				'id' 	=> 1004,
@@ -37,7 +37,7 @@ class ReportSeeder extends Seeder
 			],
 			[
 				'id' 	=> 1006,
-				'name' => 'Purchase Requisition Details Report',
+				'name' => '*Purchase Requisition Details Report',
 			],
 			[
 				'id' 	=> 1007,

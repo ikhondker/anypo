@@ -1,8 +1,4 @@
 <style>
-	/* @font-face {
- font-family: SourceSansPro;
- src: url(SourceSansPro-Regular.ttf);
-} */
 
 	@font-face {
 		font-family: 'Lato';
@@ -32,8 +28,8 @@
 		color: #555555;
 		background: #FFFFFF;
 		font-family: Lato;
-		/* font-family: Arial, sans-serif; */
 		font-size: 14px;
+
 	}
 
 	header {

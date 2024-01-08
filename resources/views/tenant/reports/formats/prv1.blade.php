@@ -16,9 +16,18 @@
 	  font-size: 12px;
 	}
 
+	@font-face {
+		font-family: 'Lato';
+		font-weight: normal;
+		font-style: normal;
+		font-variant: normal;
+		/* src: url("fonts/lato/Lato-Regular.ttf") format('truetype'); */
+		src: url({{ storage_path().'/fonts/lato/Lato-Regular.ttf'}}) format("truetype");
+   	}
+
 	
 	.letterhead {
-	  font-size: 10px;
+	  font-size: 16px;
 	  padding: 0px;
 	  vertical-align: bottom;
 	}

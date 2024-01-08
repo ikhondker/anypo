@@ -55,6 +55,8 @@ class ReportController extends Controller
 	public function viewPdfInvoice(Invoice $invoice)
 	{
 
+		Log::debug('storage_path()='.storage_path());
+		
 		//Log::info(json_encode($invoice)); 
 		//$this->authorize('xxInvoice', Invoice::class);
 		//Log::debug("inside pdfInvoice= ". $invoice->id );

@@ -148,8 +148,8 @@ class PrController extends Controller
 		$prl_id			= $prl->id;
 		//Log::debug("wf_id = ".$wf_id );
 	
-
-		return redirect()->route('prs.show', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please edit as necessary.');
+		
+		return redirect()->route('prls.createline', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please add more line.');
 		//return redirect()->route('prs.index')->with('success', 'Pr created successfully.');
 	}
 

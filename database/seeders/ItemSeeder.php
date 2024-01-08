@@ -29,6 +29,16 @@ class ItemSeeder extends Seeder
 				'uom_id'		=> 1001,
 			],
 			[
+				'name'			=> 'GST',
+				'notes'			=> 'GRT',
+				'price'			=> 0,
+				'stock'			=> 99999999,
+				'reorder'		=> 99999999,
+				'category_id'	=> 1002,
+				'oem_id'		=> 1001,
+				'uom_id'		=> 1001,
+			],
+			[
 				'name'			=> 'Shipping',
 				'notes'			=> 'Shipping',
 				'price'			=> 0,

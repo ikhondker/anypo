@@ -29,6 +29,7 @@ use DB;
 # Events
 # Package
 use PDF;
+use Str;
 use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
@@ -44,10 +45,10 @@ class ReportController extends Controller
 			$reports->where('name', 'Like', '%'.request('term').'%');
 		}
 		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
-			$reports = $reports->orderBy('id', 'DESC')->paginate(100);
+			$reports = $reports->orderBy('id', 'ASC')->paginate(100);
 			return view('tenant.reports.all', compact('reports'))->with('i', (request()->input('page', 1) - 1) * 10);
 		} else {
-			$reports = $reports->where('enable', true)->orderBy('id', 'DESC')->paginate(100);
+			$reports = $reports->where('enable', true)->orderBy('id', 'ASC')->paginate(100);
 			return view('tenant.reports.index', compact('reports'))->with('i', (request()->input('page', 1) - 1) * 10);
 		}
 	}
@@ -96,22 +97,27 @@ class ReportController extends Controller
 	 */
 	public function update(UpdateReportRequest $request, Report $report)
 	{
-		$report_id	= $request->input('report_id');
+		Log::debug('storage_path()='.storage_path());
+
+		//$report_id	= $request->input('report_id');
 		$start_date	= $request->input('start_date');
 		$end_date	= $request->input('end_date');
 		$pm_id		= $request->input('pm_id');
 
-		Log::debug('report_id='.$report_id);
+		Log::debug('report_id='.$report->id);
 		Log::debug('start_date='.$start_date);
 		Log::debug('end_date='.$end_date);
 		Log::debug('pm_id='.$pm_id);
 
-		switch ($report_id) {
+		switch ($report->id) {
 			case '1001':
 				return self::r1001();
 				break;
 			case '1003':
 				return self::r1003();
+				break;
+			case '1006':
+				return self::r1006($start_date, $end_date);
 				break;
 			default:
 				Log::debug("Report ID not found!");
@@ -156,55 +162,90 @@ class ReportController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function r1003()
+	public function r1006($start_date, $end_date,$id='1004')
 	{
-		Log::debug("Inside r1003!");
+		
+		// NOTE: Uses InvoicePolicy
+		//$this->authorize('pdfInvoice', $invoice);
+		Log::debug('INISDE r1006');
+		Log::debug('start_date='.$start_date);
+		Log::debug('end_date='.$end_date);
+
+		$setup 		= Setup::first();
+		$report 	= Report::where('id', '1006')->firstOrFail();
+		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
+		$supplier 	= Supplier::where('id', $pr->supplier_id)->firstOrFail();
+		//$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
+		$prls 		= Prl::with('item')->get()->all();
+		
+		//return view('tenant.reports.formats.1006', compact('setup','pr','prls','supplier','report'));
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'pr' 		=> $pr,
+			'prls' 		=> $prls,
+
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.1006', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('Pr'.$pr->id.'.pdf');
 	}
 
 	public function pr($id)
 	{
 		//todo auth check
 		//todo if pr exists
+		//Log::debug('storage_path()='.storage_path());
+		
+
+		// NOTE: Uses InvoicePolicy
+		//$this->authorize('pdfInvoice', $invoice);
+
 		$setup = Setup::first();
-		//$setup = Setup::where('id', config('akk.SETUP_ID'))->firstOrFail();
 		$pr = Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
 		$prls = Prl::with('item')->where('pr_id', $pr->id)->get()->all();
-
-		//$prls = Prl::where('pr_id', $id)->firstOrFail();
-		//$prls = Prl::getLinesByPrId($id);
-		//$prls = Prl::By_pr_id($id);
-		//$prls = Prl::where('pr_id', $id)->firstOrFail();
-		//dd($id, $prls);
+		
+		//return view('tenant.reports.formats.invoice', compact('setup','pr','prls','supplier'));
 
 		$data = [
-			'title' => 'Company XYZ',
-			'id' => $id,
-			'date' => date('m/d/Y'),
-			'setup' => $setup,
-			'pr' => $pr,
-			'supplier' => $supplier,
-			'prls' => $prls,
+			//'title' 	=> 'Company XYZ',
+			'id' 		=> $pr->id,
+			'date' 		=> date('m/d/Y'),
+			'setup' 	=> $setup,
+			'pr' 		=> $pr,
+			'supplier' 	=> $supplier,
+			'prls' 		=> $prls,
 		];
-		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
+		
+		$pdf = PDF::loadView('tenant.reports.formats.invoice', $data);
+			// ->setOption('fontDir', public_path('/fonts/lato'));
+
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
 		$pdf->output();
-		// Get height and width of page
 
+		// Get height and width of page
 		$canvas = $pdf->getDomPDF()->getCanvas();
 		$height = $canvas->get_height();
 		$width = $canvas->get_width();
-
+		
 		// Specify watermark text
-		$text = "DRAFT";
+		$text = Str::upper($pr->auth_status->name);
 
 		// Get height and width of text
-		$font		= $pdf->getFontMetrics()->get_font("lato", "bold");
+		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");
+		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
 		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
-		$textWidth 	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
+		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
+		
 		// Specify horizontal and vertical position
-		$x = (($width - $textWidth) / 1.4);
+		$x = (($width - $textWidth) / 1.6);
 		$y = (($height - $txtHeight) / 2);
 
 		$color = array(255,0,0);
@@ -212,15 +253,16 @@ class ReportController extends Controller
 		$canvas->set_opacity(.2);
 
 		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
-		//$canvas->page_text($width/5, $height/2, $text, $font, 55, array(125,0,0),2,2,-30);
-		//$canvas->page_text($width/5, $height/2, 'ANYPO.NET', $font, 55,  array(255,153,153), 2, 2, -30);
 
-		return $pdf->stream('templatepr.pdf');
+		return $pdf->stream('Pr'.$pr->id.'.pdf');
 	}
-
 
 	public function prv1($id)
 	{
+
+		Log::debug('storage_path()='.storage_path());
+		//storage_path()=D:\laravel\anypo\storage/tenantdemo1  
+
 		//todo auth check
 		//todo if pr exists
 		$setup = Setup::first();
@@ -244,7 +286,7 @@ class ReportController extends Controller
 			'supplier' => $supplier,
 			'prls' => $prls,
 		];
-		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
+		$pdf = PDF::loadView('tenant.reports.formats.prv1', $data);
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
 		$pdf->output();

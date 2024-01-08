@@ -34,7 +34,7 @@
 					<tbody>
 						@foreach ($prls as $prl)
 							@if ( $selected_prl_id == $prl->id )
-								@include('includes.pr-line-edit')
+								@include('tenant.includes.pr-line-edit')
 							@else
 								
 								<tr class="">

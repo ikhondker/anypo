@@ -9,7 +9,7 @@
 			Report Parameter
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
+			<a href="{{ route('reports.index') }}" class="btn btn-primary float-end me-2"><i data-feather="list"></i> Reports List</a>
 		@endslot
 	</x-tenant.page-header>
 
@@ -26,7 +26,7 @@
 						<h6 class="card-subtitle text-muted">Please enter reports parameter and clink on run.</h6>
 					</div>
 					<div class="card-body">
-							<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id',$report->id ) }}">
+							{{-- <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id',$report->id ) }}"> --}}
 
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right">Start Date </label>
@@ -53,22 +53,22 @@
 									@enderror
 								</div>
 							</div>
-							
-							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">Project Manager </label>
-								<div class="col-sm-10">
-									<select class="form-control" name="pm_id" required>
-										<option value=""><< Project Manager >> </option>
-										@foreach ($pms as $user)
-											<option value="{{ $user->id }}" {{ $user->id == old('pm_id') ? 'selected' : '' }} >{{ $user->name }} </option>
-										@endforeach
-									</select>
-									@error('pm_id')
-										<div class="text-danger text-xs">{{ $message }}</div>
-									@enderror
+							@if ($report->pm_id)
+								<div class="mb-3 row">
+									<label class="col-form-label col-sm-2 text-sm-right">Project Manager </label>
+									<div class="col-sm-10">
+										<select class="form-control" name="pm_id" required>
+											<option value=""><< Project Manager >> </option>
+											@foreach ($pms as $user)
+												<option value="{{ $user->id }}" {{ $user->id == old('pm_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+											@endforeach
+										</select>
+										@error('pm_id')
+											<div class="text-danger text-xs">{{ $message }}</div>
+										@enderror
+									</div>
 								</div>
-							</div>
-
+							@endif 
 							<fieldset class="mb-3">
 								<div class="row">
 									<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">Radios</label>

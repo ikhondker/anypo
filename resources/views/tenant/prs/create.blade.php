@@ -131,10 +131,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							
 							@include('tenant.includes.pr-line-add')
 							@include('tenant.includes.pr-footer-add')
-
 						</tbody>
 					</table>
 				</div>
