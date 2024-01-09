@@ -63,7 +63,7 @@
 						{{ $wfs->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -74,7 +74,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')    
+	 @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

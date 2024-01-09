@@ -64,7 +64,7 @@
 						<p class="small text-start">Already have an account? <a href="{{ route('login') }}">Sign In</a></p>
 					</div>
 					<div class="col-6 text-end pt-2">
-						   
+						
 					</div>
 				</div>
 				

@@ -16,9 +16,8 @@
 	</x-tenant.page-header>
 	
 	@include('tenant.includes.view-pr-header-basic')
-   
+
 	@include('tenant.includes.detach-by-article')
  
-
 @endsection
 

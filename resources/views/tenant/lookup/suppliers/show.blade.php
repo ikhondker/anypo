@@ -21,13 +21,13 @@
 					<h5 class="card-title">Supplier Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text     value="{{ $supplier->name }}"/>
-					<x-tenant.show.my-text     value="{{ $supplier->contact_person }}" label="Contact Person"/>
-					<x-tenant.show.my-text     value="{{ $supplier->cell }}" label="Cell"/>
-					<x-tenant.show.my-email    value="{{ $supplier->email }}"/>
-					<x-tenant.show.my-url      value="{{ $supplier->website }}"/>
-					<x-tenant.show.my-badge    value="{{ $supplier->id }}"/>
-					<x-tenant.show.my-boolean  value="{{ $supplier->enable }}"/>
+					<x-tenant.show.my-text		value="{{ $supplier->name }}"/>
+					<x-tenant.show.my-text		value="{{ $supplier->contact_person }}" label="Contact Person"/>
+					<x-tenant.show.my-text		value="{{ $supplier->cell }}" label="Cell"/>
+					<x-tenant.show.my-email		value="{{ $supplier->email }}"/>
+					<x-tenant.show.my-url		value="{{ $supplier->website }}"/>
+					<x-tenant.show.my-badge		value="{{ $supplier->id }}"/>
+					<x-tenant.show.my-boolean	value="{{ $supplier->enable }}"/>
 				</div>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 				<div class="card-body">
 					<x-tenant.show.my-text value="{{ $supplier->address1 }}" label="Address1"/>
 					<x-tenant.show.my-text value="{{ $supplier->address2 }}" label="Address2"/>
-					<x-tenant.show.my-text value="{{ $supplier->city.', '.$supplier->state.', '.$supplier->zip  }}" label="City"/>    
+					<x-tenant.show.my-text value="{{ $supplier->city.', '.$supplier->state.', '.$supplier->zip  }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $supplier->relCountry->name }}" label="Country"/>
 				</div>
 			</div>

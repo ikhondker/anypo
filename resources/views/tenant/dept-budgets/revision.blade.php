@@ -43,8 +43,8 @@
 								<td>{{ $dept_budget->budget->name }}</td>
 								<td><x-tenant.list.my-date :value="$dept_budget->budget->start_date"/> - <x-tenant.list.my-date :value="$dept_budget->budget->end_date"/></td>
 								<td>{{ $dept_budget->dept->name }}</td>
-								<td><x-tenant.list.my-date-time :value="$dept_budget->created_at"/></td> 
-								<td>{{ $dept_budget->user_created_by->name }}</td>     
+								<td><x-tenant.list.my-date-time :value="$dept_budget->created_at"/></td>
+								<td>{{ $dept_budget->user_created_by->name }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
 								<td><x-tenant.list.my-boolean :value="$dept_budget->revision"/></td>
 								<td>{{ $dept_budget->notes }}</td>
@@ -57,7 +57,7 @@
 						{{ $dept_budgets->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -68,7 +68,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')    
+	 @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

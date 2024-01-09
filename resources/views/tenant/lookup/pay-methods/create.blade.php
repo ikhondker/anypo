@@ -25,22 +25,22 @@
 						<h5 class="card-title">PayMethod Info</h5>
 					</div>
 					<div class="card-body">
-						
+
 						<x-tenant.create.name/>
-					   
-						
+
+
 
 						<div class="mb-3">
 							<label class="form-label">Number</label>
-							<input type="text" class="form-control @error('pay_method_number') is-invalid @enderror" 
-								name="pay_method_number" id="pay_method_number" placeholder="999-999-999"     
+							<input type="text" class="form-control @error('pay_method_number') is-invalid @enderror"
+								name="pay_method_number" id="pay_method_number" placeholder="999-999-999"
 								value="{{ old('pay_method_number', '') }}"
 								/>
 							@error('pay_method_number')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						
+
 						<div class="mb-3">
 							<label class="form-label">Currency</label>
 							<select class="form-control" name="currency" required>
@@ -56,8 +56,8 @@
 
 						<div class="mb-3">
 							<label class="form-label">Bank Name</label>
-							<input type="text" class="form-control @error('bank_name') is-invalid @enderror" 
-								name="bank_name" id="bank_name" placeholder="Bank Name"     
+							<input type="text" class="form-control @error('bank_name') is-invalid @enderror"
+								name="bank_name" id="bank_name" placeholder="Bank Name"
 								value="{{ old('bank_name','' ) }}"
 								/>
 							@error('bank_name')
@@ -67,8 +67,8 @@
 
 						<div class="mb-3">
 							<label class="form-label">Branch Name</label>
-							<input type="text" class="form-control @error('branch_name') is-invalid @enderror" 
-								name="branch_name" id="branch_name" placeholder="Branch Name"     
+							<input type="text" class="form-control @error('branch_name') is-invalid @enderror"
+								name="branch_name" id="branch_name" placeholder="Branch Name"
 								value="{{ old('branch_name', '' ) }}"
 								/>
 							@error('branch_name')
@@ -85,7 +85,7 @@
 			</div>
 			<!-- end col-6 -->
 			<div class="col-6">
-				
+
 			</div>
 			<!-- end col-6 -->
 		</div>

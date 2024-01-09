@@ -43,9 +43,9 @@
 								$budget_amount = 0 ;
 								$budget_po_issued  = 0;
 							} else {
-								$budget_used_pc     = $budget->amount_po_issued / $budget->amount * 100;
-								$budget_amount      = $budget->amount ;
-								$budget_po_issued  = $budget->amount_po_issued ;
+								$budget_used_pc		= $budget->amount_po_issued / $budget->amount * 100;
+								$budget_amount		= $budget->amount ;
+								$budget_po_issued	= $budget->amount_po_issued ;
 							}
 						} catch (\Exception $ex) {
 							// Error handling code

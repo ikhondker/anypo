@@ -31,8 +31,8 @@
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right">Start Date </label>
 								<div class="col-sm-10">
-										<input type="date" class="form-control @error('start_date') is-invalid @enderror" 
-											name="start_date" id="start_date" placeholder=""     
+										<input type="date" class="form-control @error('start_date') is-invalid @enderror"
+											name="start_date" id="start_date" placeholder=""
 											value="{{ old('start_date', date('Y-m-d') ) }}"
 											required/>
 										@error('start_date')
@@ -44,8 +44,8 @@
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right">End Date </label>
 								<div class="col-sm-10">
-									<input type="date" class="form-control @error('end_date') is-invalid @enderror" 
-										name="end_date" id="end_date" placeholder=""     
+									<input type="date" class="form-control @error('end_date') is-invalid @enderror"
+										name="end_date" id="end_date" placeholder=""
 										value="{{ old('end_date', date('Y-m-d') ) }}"
 										required/>
 									@error('end_date')
@@ -68,7 +68,7 @@
 										@enderror
 									</div>
 								</div>
-							@endif 
+							@endif
 							<fieldset class="mb-3">
 								<div class="row">
 									<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">Radios</label>
@@ -108,10 +108,10 @@
 			<!-- end col-6 -->
 
 			<div class="col-6">
-				
+
 			</div>
 			<!-- end col-6 -->
-			
+
 		</div>
 		<!-- end row -->
 

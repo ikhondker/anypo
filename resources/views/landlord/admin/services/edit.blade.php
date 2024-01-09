@@ -13,10 +13,10 @@
 		<div class="row my-section-row justify-content-between">
 			<div class="col-xl-7">
 					<h6>Service Info:-</h6>
-					<x-landlord.show.my-text     value="{{ $service->summary }}"/>
-					<x-landlord.show.my-text     value="{{  $service->name }}" label="Name"/>
-					<x-landlord.show.my-enable   value="{{ $service->enable }}"/>
-					<x-landlord.show.my-badge    value="{{ $service->id }}" label="ID"/>
+					<x-landlord.show.my-text	value="{{ $service->summary }}"/>
+					<x-landlord.show.my-text	value="{{  $service->name }}" label="Name"/>
+					<x-landlord.show.my-enable	value="{{ $service->enable }}"/>
+					<x-landlord.show.my-badge	value="{{ $service->id }}" label="ID"/>
 			</div>
 			<div class="col-xl-5">
 				<h6>Dates and Price:-</h6>

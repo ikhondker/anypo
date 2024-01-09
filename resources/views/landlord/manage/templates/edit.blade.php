@@ -19,7 +19,7 @@
 
 			<!-- Body -->
 			<div class="card-body">
-			
+
 
 				<!-- Form -->
 				<div class="row mb-4">
@@ -75,13 +75,13 @@
 				<!-- End Form -->
 				<x-landlord.edit.country :value="$template->country"/>
 
-					{{-- Old FORMAT bellow ------     --}}
+					{{-- Old FORMAT bellow --------}}
 					<div class="form-group row">
 						<label for="summary" class="col-sm-3 col-form-label col-form-label-sm">Summary:</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control form-control-sm" 
-								name="summary" id="summary" placeholder="Summary" 
-								value="{{ old('summary', $template->summary ) }}"     
+							<input type="text" class="form-control form-control-sm"
+								name="summary" id="summary" placeholder="Summary"
+								value="{{ old('summary', $template->summary ) }}"
 								class="@error('summary') is-invalid @enderror" required>
 							@error('summary')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -92,17 +92,17 @@
 					<div class="form-group row">
 						<label for="code" class="col-sm-3 col-form-label col-form-label-sm">Code:</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control form-control-sm" 
-								name="code" id="code" placeholder="Code" 
+							<input type="text" class="form-control form-control-sm"
+								name="code" id="code" placeholder="Code"
 								style="text-transform: uppercase"
-								value="{{ old('code', $template->code ) }}"     
+								value="{{ old('code', $template->code ) }}"
 								class="@error('code') is-invalid @enderror" required>
 							@error('code')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
 					</div>
-	
+
 					<div class="form-group row">
 						<label for="user_id" class="col-sm-3 col-form-label col-form-label-sm">User</label>
 						<div class="col-sm-9">
@@ -113,7 +113,7 @@
 							</select>
 						</div>
 					</div>
-	
+
 					<div class="form-group row">
 						<label for="my_enum" class="col-sm-3 col-form-label col-form-label-sm">Role</label>
 						<div class="col-sm-9">
@@ -129,24 +129,24 @@
 					<div class="form-group row">
 						<label for="qty" class="col-sm-3 col-form-label col-form-label-sm">Qty</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control form-control-sm" 
+							<input type="number" class="form-control form-control-sm"
 								name="qty" id="qty" placeholder="1"
 								value="{{ old('qty', $template->qty ) }}"
-								style="text-align: right;" min="1" 
+								style="text-align: right;" min="1"
 								class="@error('qty') is-invalid @enderror">
 							@error('qty')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
 					</div>
-	
+
 					<div class="form-group row">
 						<label for="lnpage" class="col-sm-3 col-form-label col-form-label-sm">Amount</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control form-control-sm" 
-								name="amount" id="amount" placeholder="1.00" 
+							<input type="number" class="form-control form-control-sm"
+								name="amount" id="amount" placeholder="1.00"
 								style="text-align: right;" step='0.01' min="1"
-								value="{{ old('amount', $template->amount ) }}"     
+								value="{{ old('amount', $template->amount ) }}"
 								class="@error('amount') is-invalid @enderror">
 							@error('amount')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -158,13 +158,13 @@
 					<div class="form-group row">
 						<label for="summary" class="col-sm-3 col-form-label col-form-label-sm">Notes:</label>
 						<div class="col-sm-9">
-							
-								<textarea class="form-control form-control-sm" rows="3" name="notes" 
+
+								<textarea class="form-control form-control-sm" rows="3" name="notes"
 								placeholder="Enter ...">{{ old('notes', $template->notes) }}</textarea>
-		
+
 						</div>
 					</div>
-		
+
 					<div class="form-group row">
 						<label for="name" class="col-sm-3 col-form-label col-form-label-sm">Image</label>
 						<div class="col-sm-9">
@@ -176,22 +176,22 @@
 					<div class="form-group row">
 						<label for="my_date" class="col-sm-3 col-form-label col-form-label-sm">Date</label>
 						<div class="col-sm-9">
-							<input type="date" class="form-control form-control-sm" 
-								name="my_date" id="my_date" placeholder="" 
+							<input type="date" class="form-control form-control-sm"
+								name="my_date" id="my_date" placeholder=""
 								value="{{ old('my_date', $template->my_date ) }}"
 								class="@error('my_date') is-invalid @enderror">
 							@error('my_date')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
-							
+
 						</div>
 					</div>
-		
+
 					<div class="form-group row">
 						<label for="lnpage" class="col-sm-3 col-form-label col-form-label-sm">DateTime</label>
 						<div class="col-sm-9">
-							<input type="date" class="form-control form-control-sm" 
-								name="my_date_time" id="my_date_time" placeholder="" 
+							<input type="date" class="form-control form-control-sm"
+								name="my_date_time" id="my_date_time" placeholder=""
 								value="{{ old('my_date_time',$template->my_date_time) }}"
 								class="@error('my_date_time') is-invalid @enderror">
 							@error('my_date_time')
@@ -199,7 +199,7 @@
 							@enderror
 						</div>
 					</div>
-		
+
 					<div class="form-group row">
 						<label for="lnpage" class="col-sm-3 col-form-label col-form-label-sm">Boolean</label>
 						<div class="col-sm-9">
@@ -207,7 +207,7 @@
 							<label class="form-check-label" for="form-check-default-checked">
 								Active
 							</label>
-		
+
 						</div>
 					</div>
 

@@ -11,7 +11,7 @@
 		font-variant: normal;
 		/* src: url("fonts/lato/Lato-Regular.ttf") format('truetype'); */
 		src: url({{storage_path().'/fonts/lato/Lato-Regular.ttf'}}) format("truetype");
-   	}
+	}
 
 	.clearfix:after {
 		content: "";

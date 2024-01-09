@@ -52,7 +52,7 @@
 						//$count_draft	= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 					@endphp
 					<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
-				   
+
 				</div>
 			</div>
 		</div>
@@ -69,7 +69,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<span class="h1 d-inline-block mt-1">{{ $count_open }}</span>
 				</div>
 			</div>
@@ -93,7 +93,7 @@
 				</div>
 			</div>
 		</div>
-	   
+
 	</div>
 
 
@@ -140,7 +140,7 @@
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Project" :id="$project->id" :show="true"/>
-									<a href="{{ route('projects.destroy',$project->id) }}" class="me-2 modal-boolean-advance" 
+									<a href="{{ route('projects.destroy',$project->id) }}" class="me-2 modal-boolean-advance"
 										data-entity="Project" data-name="{{ $project->name }}" data-status="{{ ($project->closed ? 'Open' : 'Close') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($project->closed ? 'Open' : 'Close') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($project->enable ? 'bell-off' : 'bell') }}"></i>
@@ -155,7 +155,7 @@
 						{{ $projects->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -166,7 +166,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')    
+	 @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

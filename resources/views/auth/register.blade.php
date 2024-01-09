@@ -61,7 +61,7 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 					</div>
-				   
+
 					<div>
 						<div class="form-check align-items-center">
 							<input id="terms" type="checkbox" class="form-check-input" name="terms">
@@ -99,7 +99,7 @@
 							<p class="small text-start">Already have an account? <a href="{{ route('login') }}">Sign In</a></p>
 						</div>
 						<div class="col-6 text-end pt-2">
-							   
+							
 						</div>
 					</div>
 					

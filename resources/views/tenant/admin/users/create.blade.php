@@ -25,11 +25,11 @@
 					<h5 class="card-title">Create User</h5>
 					</div>
 					<div class="card-body">
-						
+
 						<div class="mb-3">
 							<label class="form-label">Email</label>
-							<input type="email" class="form-control @error('email') is-invalid @enderror" 
-								name="email" id="email" placeholder="name@company.com"     
+							<input type="email" class="form-control @error('email') is-invalid @enderror"
+								name="email" id="email" placeholder="name@company.com"
 								value="{{ old('email', 'email@example.com' ) }}"
 								required/>
 							@error('email')
@@ -38,19 +38,19 @@
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Full Name</label>
-							<input type="text" class="form-control @error('name') is-invalid @enderror" 
-								name="name" id="name" placeholder="Full Name"     
+							<input type="text" class="form-control @error('name') is-invalid @enderror"
+								name="name" id="name" placeholder="Full Name"
 								value="{{ old('name', '' ) }}"
 								required/>
 							@error('name')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						
+
 						<div class="mb-3">
 							<label class="form-label">Cell</label>
-							<input type="text" class="form-control @error('cell') is-invalid @enderror" 
-								name="cell" id="cell" placeholder="01911310509"     
+							<input type="text" class="form-control @error('cell') is-invalid @enderror"
+								name="cell" id="cell" placeholder="01911310509"
 								value="{{ old('cell', '01911310509' ) }}"
 								required/>
 							@error('cell')
@@ -78,7 +78,7 @@
 			</div>
 			<!-- end col-6 -->
 			<div class="col-6">
-				
+
 			</div>
 			<!-- end col-6 -->
 		</div>

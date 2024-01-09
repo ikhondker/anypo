@@ -21,11 +21,11 @@
 					<h5 class="card-title">Dept Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text     value="{{ $dept->name }}"/>
-					<x-tenant.show.my-text     value="{{ $dept->prHierarchy->name }}" label="PR Hierarchy"/>
-					<x-tenant.show.my-text     value="{{ $dept->poHierarchy->name }}" label="PO Hierarchy"/>
-					<x-tenant.show.my-badge    value="{{ $dept->id }}" label="ID"/>
-					<x-tenant.show.my-boolean  value="{{ $dept->enable }}"/>
+					<x-tenant.show.my-text		value="{{ $dept->name }}"/>
+					<x-tenant.show.my-text		value="{{ $dept->prHierarchy->name }}" label="PR Hierarchy"/>
+					<x-tenant.show.my-text		value="{{ $dept->poHierarchy->name }}" label="PO Hierarchy"/>
+					<x-tenant.show.my-badge		value="{{ $dept->id }}" label="ID"/>
+					<x-tenant.show.my-boolean	value="{{ $dept->enable }}"/>
 				</div>
 			</div>
 		</div>

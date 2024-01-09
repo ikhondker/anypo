@@ -35,7 +35,7 @@
 								<th>Dept</th>
 								<th>FY</th>
 								<th>Budget Period</th>
-								
+
 								<th class="text-end">Budget</th>
 								<th class="text-end">PR</th>
 								<th class="text-end">Available (PR)</th>
@@ -55,7 +55,7 @@
 								<td><a class="text-info" href="{{ route('dept-budgets.show',$dept_budget->id) }}">{{ $dept_budget->dept->name  }}</a></td>
 								<td>{{ $dept_budget->budget->fy }}</td>
 								<td><x-tenant.list.my-date :value="$dept_budget->budget->start_date"/> - <x-tenant.list.my-date :value="$dept_budget->budget->end_date"/></td>
-								
+
 
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr_booked + $dept_budget->amount_pr_issued"/></td>
@@ -67,7 +67,7 @@
 								<td><x-tenant.list.my-closed :value="$dept_budget->freeze"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="DeptBudget" :id="$dept_budget->id"/>
-									<a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 modal-boolean-advance" 
+									<a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 modal-boolean-advance"
 										data-entity="DeptBudget" data-name="{{ $dept_budget->budget->name }}" data-status="{{ ($dept_budget->freeze ? 'Unfreeze' : 'Freeze') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept_budget->enable ? 'Unfreeze' : 'Freeze') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($dept_budget->freeze ? 'bell-off' : 'bell') }}"></i>
@@ -82,7 +82,7 @@
 						{{ $dept_budgets->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -93,7 +93,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')    
+	 @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

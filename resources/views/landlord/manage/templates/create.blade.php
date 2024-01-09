@@ -41,10 +41,10 @@
 				<div class="form-group row mb-4">
 					<label for="code" class="col-sm-2 col-form-label text-end text-secondary">CODE:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" 
+						<input type="text" class="form-control"
 							style="text-transform: uppercase"
-							name="code" id="code" placeholder="CODE" 
-							value="{{ old('code', "" ) }}"     
+							name="code" id="code" placeholder="CODE"
+							value="{{ old('code', "" ) }}"
 							class="@error('code') is-invalid @enderror" required>
 						@error('code')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -55,9 +55,9 @@
 				<div class="form-group row mb-4">
 					<label for="summary" class="col-sm-2 col-form-label text-end text-secondary">Summary:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" 
-							name="summary" id="summary" placeholder="Summary" 
-							value="{{ old('summary', "" ) }}"     
+						<input type="text" class="form-control"
+							name="summary" id="summary" placeholder="Summary"
+							value="{{ old('summary', "" ) }}"
 							class="@error('summary') is-invalid @enderror" required>
 						@error('summary')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -68,9 +68,9 @@
 				<div class="form-group row mb-4">
 					<label for="name" class="col-sm-2 col-form-label text-end text-secondary">Name:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" 
-							name="name" id="name" placeholder="Name" 
-							value="{{ old('name', "" ) }}"     
+						<input type="text" class="form-control"
+							name="name" id="name" placeholder="Name"
+							value="{{ old('name', "" ) }}"
 							class="@error('name') is-invalid @enderror" required>
 						@error('name')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -80,7 +80,7 @@
 				<div class="form-group row mb-4">
 					<label for="notes" class="col-sm-2 col-form-label text-end text-secondary">Notes:</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" rows="3" name="Description" 
+						<textarea class="form-control" rows="3" name="Description"
 						placeholder="Enter ...">{{ old('notes', "Enter ...") }}</textarea>
 					</div>
 				</div>
@@ -88,9 +88,9 @@
 				<div class="form-group row mb-4">
 					<label for="address1" class="col-sm-2 col-form-label text-end text-secondary">Address1:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" 
-							name="address1" id="address1" placeholder="address1" 
-							value="{{ old('address1', "address1" ) }}"     
+						<input type="text" class="form-control"
+							name="address1" id="address1" placeholder="address1"
+							value="{{ old('address1', "address1" ) }}"
 							class="@error('address1') is-invalid @enderror">
 						@error('address1')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -101,9 +101,9 @@
 				<div class="form-group row mb-4">
 					<label for="email" class="col-sm-2 col-form-label text-end text-secondary">Email:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" 
-							name="email" id="email" placeholder="email@example.com" 
-							value="{{ old('email', "email@example.com" ) }}"     
+						<input type="text" class="form-control"
+							name="email" id="email" placeholder="email@example.com"
+							value="{{ old('email', "email@example.com" ) }}"
 							class="@error('email') is-invalid @enderror" required>
 						@error('email')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -114,8 +114,8 @@
 				<div class="form-group row mb-4">
 					<label for="phone" class="col-sm-2 col-form-label text-end text-secondary">Phone:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" 
-							name="phone" id="phone" placeholder="phone" 
+						<input type="text" class="form-control"
+							name="phone" id="phone" placeholder="phone"
 							value="{{ old('phone', "01911310509" ) }}"
 							class="@error('phone') is-invalid @enderror">
 						@error('phone')
@@ -138,7 +138,7 @@
 						@enderror
 					</div>
 				</div>
-				
+
 				<div class="form-group row mb-4">
 					<label for="my_enum" class="col-sm-2 col-form-label text-end text-secondary">Role:</label>
 					<div class="col-sm-10">
@@ -156,10 +156,10 @@
 				<div class="form-group row mb-4">
 					<label for="qty" class="col-sm-2 col-form-label text-end text-secondary">Qty:</label>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" 
-							name="qty" id="qty" placeholder="1" 
+						<input type="number" class="form-control"
+							name="qty" id="qty" placeholder="1"
 							value="{{ old('qty', "1" ) }}"
-							style="text-align: right;" min="1" 
+							style="text-align: right;" min="1"
 							class="@error('qty') is-invalid @enderror" required>
 						@error('qty')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -170,8 +170,8 @@
 				<div class="form-group row mb-4">
 					<label for="amount" class="col-sm-2 col-form-label text-end text-secondary">Amount:</label>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" 
-							name="amount" id="amount" placeholder="1.00" 
+						<input type="number" class="form-control"
+							name="amount" id="amount" placeholder="1.00"
 							style="text-align: right;" step='0.01' min="1"
 							value="{{ old('amount', "1.0" ) }}"
 							class="@error('amount') is-invalid @enderror" required>
@@ -183,8 +183,8 @@
 				<div class="form-group row mb-4">
 					<label for="my_date" class="col-sm-2 col-form-label text-end text-secondary">Date:</label>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" 
-							name="my_date" id="my_date" placeholder="Enter Date" 
+						<input type="date" class="form-control"
+							name="my_date" id="my_date" placeholder="Enter Date"
 							value="{{ old('my_date', date('Y-m-d') ) }}"
 							class="@error('my_date') is-invalid @enderror" required>
 						@error('my_date')
@@ -195,8 +195,8 @@
 				<div class="form-group row mb-4">
 					<label for="my_date_time" class="col-sm-2 col-form-label text-end text-secondary">Date Time:</label>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" 
-							name="my_date_time" id="my_date_time" placeholder="Enter Date and Time" 
+						<input type="date" class="form-control"
+							name="my_date_time" id="my_date_time" placeholder="Enter Date and Time"
 							value="{{ old('my_date_time', date('Y-m-d') ) }}"
 							class="@error('my_date_time') is-invalid @enderror">
 						@error('my_date_time')
@@ -204,7 +204,7 @@
 						@enderror
 					</div>
 				</div>
-				
+
 				<div class="form-group row mb-4">
 					<label for="my_bool" class="col-sm-2 col-form-label text-end text-secondary">Boolean:</label>
 					<div class="col-sm-10">
@@ -217,7 +217,7 @@
 					</div>
 				</div>
 
-				<x-landlord.attachment.create />    
+				<x-landlord.attachment.create />
 
 				<div class="form-group row mb-4">
 					<label for="my_date_time" class="col-sm-2 col-form-label text-end text-secondary">Date Time:</label>
@@ -236,6 +236,6 @@
 		</form>
 	</div>
 	<!-- End Card -->
-	
+
 @endsection
 

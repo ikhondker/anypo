@@ -19,8 +19,8 @@
 		@enderror
 	</td>
 	<td class="">
-		<input type="text" class="form-control @error('summary') is-invalid @enderror" 
-			name="summary" id="summary" placeholder="Line summary"     
+		<input type="text" class="form-control @error('summary') is-invalid @enderror"
+			name="summary" id="summary" placeholder="Line summary"
 			value="{{ old('summary', '' ) }}"
 			required/>
 		@error('summary')
@@ -29,19 +29,19 @@
 	</td>
 	<td class="">11</td>
 	<td class="text-end">
-		<input type="number" class="form-control @error('qty') is-invalid @enderror" 
+		<input type="number" class="form-control @error('qty') is-invalid @enderror"
 			style="text-align: right;" min="1"
-			name="qty" id="qty" placeholder="1" 
-			value="{{ old('qty','1') }}"     
+			name="qty" id="qty" placeholder="1"
+			value="{{ old('qty','1') }}"
 			required>
 		@error('qty')
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('price') is-invalid @enderror" 
+		<input type="number" step='0.01' min="1" class="form-control @error('price') is-invalid @enderror"
 			style="text-align: right;"
-			name="price" id="price" placeholder="1.00" 
+			name="price" id="price" placeholder="1.00"
 			value="{{ old('price','1.00') }}"
 			required>
 		@error('price')
@@ -49,9 +49,9 @@
 		@enderror
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('prl_amount') is-invalid @enderror" 
+		<input type="number" step='0.01' min="1" class="form-control @error('prl_amount') is-invalid @enderror"
 			style="text-align: right;"
-			name="prl_amount" id="prl_amount" placeholder="1.00" 
+			name="prl_amount" id="prl_amount" placeholder="1.00"
 			value="{{ old('prl_amount','1.00') }}"
 			required>
 		@error('prl_amount')

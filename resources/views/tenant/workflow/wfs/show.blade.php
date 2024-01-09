@@ -21,10 +21,10 @@
 					<h5 class="card-title">Wf Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge    value="{{ $wf->id }}" label="ID"/>
-					<x-tenant.show.my-text     value="{{ $wf->entity }}" label="Entity"/>
-					<x-tenant.show.my-text     value="{{ $wf->article_id }}" label="Article"/>
-					<x-tenant.show.my-text     value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
+					<x-tenant.show.my-badge		value="{{ $wf->id }}" label="ID"/>
+					<x-tenant.show.my-text		value="{{ $wf->entity }}" label="Entity"/>
+					<x-tenant.show.my-text		value="{{ $wf->article_id }}" label="Article"/>
+					<x-tenant.show.my-text		value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
 				</div>
 			</div>
 		</div>
@@ -35,10 +35,10 @@
 					<h5 class="card-title">Supporting Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge    value="{{ $wf->wf_status }}" label="WF Status"/>
-					<x-tenant.show.my-badge    value="{{ $wf->auth_status }}" label="Auth Status"/>
-					<x-tenant.show.my-text    value="{{ $wf->last_performer->name }}" label="Final Approver"/>
-					<x-tenant.show.my-date-time    value="{{ $wf->auth_date }}" label="Auth Date"/>
+					<x-tenant.show.my-badge		value="{{ $wf->wf_status }}" label="WF Status"/>
+					<x-tenant.show.my-badge		value="{{ $wf->auth_status }}" label="Auth Status"/>
+					<x-tenant.show.my-text		value="{{ $wf->last_performer->name }}" label="Final Approver"/>
+					<x-tenant.show.my-date-time	value="{{ $wf->auth_date }}" label="Auth Date"/>
 					{{-- <x-tenant.show.my-date-time value="{{$wf->created_at }}" label="Created At"/>
 					<x-tenant.show.my-date-time value="{{$wf->updated_at }}" label="Updated At"/> --}}
 				</div>
@@ -85,7 +85,7 @@
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-		   
+		
 		</div>
 		<!-- end col-6 -->
 	</div>

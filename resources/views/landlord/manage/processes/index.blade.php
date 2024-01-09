@@ -5,9 +5,8 @@
 
 @section('content')
 
-
-	   <!-- Card -->
-	   <div class="card">
+		<!-- Card -->
+		<div class="card">
 		<div class="card-header border-bottom">
 		  <h4 class="card-header-title">Process</h4>
 		</div>
@@ -15,7 +14,6 @@
 		<!-- Table -->
 		<div class="table-responsive">
 			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-			   
 		
 				<tbody>
 					<tr>
@@ -42,8 +40,6 @@
 
 	  </div>
 	  <!-- End Card -->
-
-   
 @endsection
 
 

@@ -6,7 +6,7 @@
 				<h5 class="card-title">Attachment</h5>
 				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
 			</div>
-			
+
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr>
@@ -29,7 +29,7 @@
 						<td><x-tenant.list.my-date-time :value="$attachment->upload_date"/></td>
 						<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 						<td class="table-action">
-							<a href="{{ route('attachments.destroy', $attachment->id) }}" class="me-2 modal-boolean-advance" 
+							<a href="{{ route('attachments.destroy', $attachment->id) }}" class="me-2 modal-boolean-advance"
 								data-entity="Attachment" data-name="{{ $attachment->org_file_name }}" data-status="Delete"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 								<i class="align-middle text-muted" data-feather="trash-2"></i>
@@ -43,7 +43,7 @@
 			</table>
 		</div>
 	</div>
-</div>    
+</div>
 {{-- ============================================================== --}}
 
-@include('tenant.includes.modal-boolean-advance')   
+@include('tenant.includes.modal-boolean-advance')

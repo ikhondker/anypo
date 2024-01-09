@@ -33,7 +33,7 @@
 					<!-- End Row -->
 
 					<div class="row justify-content-md-between mb-3">
-					   
+					
 						<!-- Content -->
 						<div class="container text-center">
 							<div class="mb-3">
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<!-- End Card -->
-		   
+		
 		</div>
 	</div>
 

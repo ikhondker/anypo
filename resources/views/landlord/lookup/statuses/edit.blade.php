@@ -20,12 +20,12 @@
 
 				<x-landlord.edit.id-read-only :value="$status->code"/>
 				<x-landlord.edit.name :value="$status->name"/>
-			   <!-- Form -->
+				<!-- Form -->
 				<div class="row mb-4">
 					<label for="badge" class="col-sm-3 col-form-label form-label">Badge :</label>
 					<div class="col-sm-9">
-					<input type="text" class="form-control @error('badge') is-invalid @enderror" 
-							name="badge" id="badge" placeholder="badge"     
+					<input type="text" class="form-control @error('badge') is-invalid @enderror"
+							name="badge" id="badge" placeholder="badge"
 							value="{{ old('badge', $status->badge ) }}"
 							required/>
 						@error('badge')

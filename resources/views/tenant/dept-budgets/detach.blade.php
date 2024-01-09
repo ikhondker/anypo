@@ -22,14 +22,14 @@
 					<h5 class="card-title">DeptBudget Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge    value="{{ $deptBudget->budget->fy }}" label="FY"/>
-					<x-tenant.show.my-text     value="{{ $deptBudget->budget->name }}" label="Name"/>
-					<x-tenant.show.my-text     value="{{ $deptBudget->dept->name }}" label="Dept"/>
-					<x-tenant.show.my-date     value="{{ $deptBudget->budget->start_date }}" label="Start Date"/>
-					<x-tenant.show.my-date     value="{{ $deptBudget->budget->end_date }}" label="End Date"/>
-					<x-tenant.show.my-boolean  value="{{ $deptBudget->freeze }}"/>
-					<x-tenant.show.my-badge    value="{{ $deptBudget->id }}"/>
-					<x-tenant.show.my-text     value="{{ $deptBudget->notes }}" label="Notes"/>
+					<x-tenant.show.my-badge		value="{{ $deptBudget->budget->fy }}" label="FY"/>
+					<x-tenant.show.my-text		value="{{ $deptBudget->budget->name }}" label="Name"/>
+					<x-tenant.show.my-text		value="{{ $deptBudget->dept->name }}" label="Dept"/>
+					<x-tenant.show.my-date		value="{{ $deptBudget->budget->start_date }}" label="Start Date"/>
+					<x-tenant.show.my-date		value="{{ $deptBudget->budget->end_date }}" label="End Date"/>
+					<x-tenant.show.my-boolean	value="{{ $deptBudget->freeze }}"/>
+					<x-tenant.show.my-badge		value="{{ $deptBudget->id }}"/>
+					<x-tenant.show.my-text		value="{{ $deptBudget->notes }}" label="Notes"/>
 
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<!-- end row -->
-   
+
 	@include('tenant.includes.detach-by-article')
  
 

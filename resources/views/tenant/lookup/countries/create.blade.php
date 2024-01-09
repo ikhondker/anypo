@@ -28,9 +28,9 @@
 
 						<div class="mb-3">
 							<label class="form-label">Country Code</label>
-							<input type="text" class="form-control @error('country') is-invalid @enderror" 
+							<input type="text" class="form-control @error('country') is-invalid @enderror"
 								name="country" id="country" placeholder="XX"
-								style="text-transform: uppercase" 
+								style="text-transform: uppercase"
 								value="{{ old('country', '' ) }}"
 								required/>
 							@error('country')
@@ -40,15 +40,15 @@
 
 						<div class="mb-3">
 							<label class="form-label">Country Name</label>
-							<input type="text" class="form-control @error('name') is-invalid @enderror" 
-								name="name" id="name" placeholder="Country Name"     
+							<input type="text" class="form-control @error('name') is-invalid @enderror"
+								name="name" id="name" placeholder="Country Name"
 								value="{{ old('name', '' ) }}"
 								required/>
 							@error('name')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						
+
 						<x-tenant.widgets.submit/>
 
 					</div>
@@ -56,7 +56,7 @@
 			</div>
 			<!-- end col-6 -->
 			<div class="col-6">
-				
+
 			</div>
 			<!-- end col-6 -->
 		</div>

@@ -24,15 +24,15 @@
 					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text     value="{{ $template->code }}" label="CODE"/>
-					<x-tenant.show.my-text     value="{{ $template->summary }}" label="Summary"/>
-					<x-tenant.show.my-text     value="{{ $template->name }}"/>
-					<x-tenant.show.my-text     value="{{ $template->email }}" label="E-mail"/>
-					<x-tenant.show.my-text     value="{{ $template->phone }}" label="Phone"/>
-					<x-tenant.show.my-text     value="{{ $template->user->name  }}" label="User Name"/>
-					<x-tenant.show.my-badge    value="{{ $template->my_enum }}" label="Enum/Role:"/>
-					<x-tenant.show.my-boolean  value="{{ $template->enable }}"/>
-					<x-tenant.show.my-badge    value="{{ $template->id }}" label="ID"/>
+					<x-tenant.show.my-text		value="{{ $template->code }}" label="CODE"/>
+					<x-tenant.show.my-text		value="{{ $template->summary }}" label="Summary"/>
+					<x-tenant.show.my-text		value="{{ $template->name }}"/>
+					<x-tenant.show.my-text		value="{{ $template->email }}" label="E-mail"/>
+					<x-tenant.show.my-text		value="{{ $template->phone }}" label="Phone"/>
+					<x-tenant.show.my-text		value="{{ $template->user->name  }}" label="User Name"/>
+					<x-tenant.show.my-badge		value="{{ $template->my_enum }}" label="Enum/Role:"/>
+					<x-tenant.show.my-boolean	value="{{ $template->enable }}"/>
+					<x-tenant.show.my-badge		value="{{ $template->id }}" label="ID"/>
 					{{-- <x-button.edit object="Template" :id="$template->id"/> --}}
 				</div>
 			</div>
@@ -71,7 +71,7 @@
 				<div class="card-body">
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
-						   <span class="h6 text-secondary">Photo:</span>
+							<span class="h6 text-secondary">Photo:</span>
 						</div>
 						<div class="col-sm-9">
 							@if ( $template->image <> '')
@@ -93,8 +93,8 @@
 					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-boolean   value="{{ $template->enable }}" label="Boolean"/>
-					<x-tenant.show.my-date  value="{{ $template->my_date }}" label="Date"/>
+					<x-tenant.show.my-boolean	value="{{ $template->enable }}" label="Boolean"/>
+					<x-tenant.show.my-date		value="{{ $template->my_date }}" label="Date"/>
 					<x-tenant.show.my-date-time value="{{ $template->my_date_time }}" label="DateTime"/>
 				</div>
 			</div>

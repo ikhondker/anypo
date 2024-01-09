@@ -44,10 +44,10 @@
 							</div>
 					</div>
 					<!-- End Form -->
-					<x-landlord.show.my-badge    value="{{ $domain->id }}" label="ID"/>
-					<x-landlord.show.my-badge    value="{{ $domain->tenant_id }}" label="Tenant"/>
-					<x-landlord.show.my-text     value="{{ $domain->domain }}" label="Domain"/>
-					<x-landlord.show.my-date     value="{{ $domain->created_at }}"/>
+					<x-landlord.show.my-badge	value="{{ $domain->id }}" label="ID"/>
+					<x-landlord.show.my-badge	value="{{ $domain->tenant_id }}" label="Tenant"/>
+					<x-landlord.show.my-text	value="{{ $domain->domain }}" label="Domain"/>
+					<x-landlord.show.my-date	value="{{ $domain->created_at }}"/>
 			</div>
 			<!-- End Body -->
 

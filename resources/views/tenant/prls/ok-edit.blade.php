@@ -34,8 +34,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">Prl Name</label>
-								<input type="text" class="form-control @error('summary') is-invalid @enderror" 
-									name="summary" id="summary" placeholder="Prl summary"     
+								<input type="text" class="form-control @error('summary') is-invalid @enderror"
+									name="summary" id="summary" placeholder="Prl summary"
 									value="{{ old('summary', $prl->summary ) }}"
 									/>
 								@error('summary')
@@ -44,7 +44,7 @@
 							</div>
 
 							<x-buttons.submit/>
-							
+
 						</div>
 					</div>
 				</div>
@@ -52,13 +52,13 @@
 
 				<div class="col-6">
 					<div class="card">
-						
+
 					</div>
 				</div>
 				<!-- end col-6 -->
 			</div>
 
-			
+
 	</form>
 	<!-- /.form end -->
 @endsection

@@ -35,8 +35,8 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Budget Name</label>
-								<input type="text" class="form-control @error('name') is-invalid @enderror" 
-									name="name" id="name" placeholder="Budget Name"     
+								<input type="text" class="form-control @error('name') is-invalid @enderror"
+									name="name" id="name" placeholder="Budget Name"
 									value="{{ old('name', $budget->name ) }}"
 									/>
 								@error('name')
@@ -49,7 +49,7 @@
 							<x-tenant.attachment.create/>
 
 							<x-tenant.widgets.submit/>
-							
+
 						</div>
 					</div>
 
@@ -76,20 +76,20 @@
 									<x-tenant.attachment.all entity="BUDGET" aid="{{ $budget->id }}"/>
 								</div>
 							</div>
-						
+
 						</div>
-					</div>	
+					</div>
 				</div>
 				<!-- end col-6 -->
 
 				<div class="col-6">
 					<div class="card">
-						
+
 					</div>
 				</div>
 				<!-- end col-6 -->
 			</div>
-		
+
 	</form>
 	<!-- /.form end -->
 @endsection

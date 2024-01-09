@@ -36,7 +36,7 @@
 	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
 	crossorigin="anonymous">
 </script> --}}
-    
+
 {{-- jquery v3.7.1 --}}
 {{-- <script	src="{{ asset('/assets/js/jquery-3.7.1.min.js') }}"></script> --}}
 <script	src="{{ Storage::disk('s3l')->url('js/jquery-3.7.1.min.js') }}"></script>

@@ -17,7 +17,7 @@
 
 			<!-- Body -->
 			<div class="card-body">
-			
+
 				<!-- Form -->
 				<div class="row mb-4">
 					<label class="col-sm-3 col-form-label form-label">Profile photo</label>
@@ -58,8 +58,8 @@
 				<div class="row mb-4">
 					<label for="raw_route_name" class="col-sm-3 col-form-label form-label">Raw Route Name :</label>
 					<div class="col-sm-9">
-					<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror" 
-							name="raw_route_name" id="raw_route_name" placeholder="raw_route_name"     
+					<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror"
+							name="raw_route_name" id="raw_route_name" placeholder="raw_route_name"
 							value="{{ old('raw_route_name', $menu->raw_route_name ) }}"
 							required/>
 						@error('raw_route_name')
@@ -73,8 +73,8 @@
 				<div class="row mb-4">
 					<label for="route_name" class="col-sm-3 col-form-label form-label">Route Name :</label>
 					<div class="col-sm-9">
-					<input type="text" class="form-control @error('route_name') is-invalid @enderror" 
-							name="route_name" id="route_name" placeholder="route_name"     
+					<input type="text" class="form-control @error('route_name') is-invalid @enderror"
+							name="route_name" id="route_name" placeholder="route_name"
 							value="{{ old('route_name', $menu->route_name ) }}"
 							required/>
 						@error('route_name')
@@ -88,9 +88,9 @@
 				<div class="row mb-4">
 					<label for="access" class="col-sm-3 col-form-label form-label">Access :</label>
 					<div class="col-sm-9">
-					<input type="text" class="form-control @error('access') is-invalid @enderror" 
+					<input type="text" class="form-control @error('access') is-invalid @enderror"
 							style="text-transform: uppercase"
-							name="access" id="access" placeholder="F"     
+							name="access" id="access" placeholder="F"
 							value="{{ old('access', $menu->access ) }}"
 							required/>
 						@error('access')
@@ -99,7 +99,7 @@
 					</div>
 				</div>
 				<!-- End Form -->
-				
+
 			</div>
 			<!-- End Body -->
 

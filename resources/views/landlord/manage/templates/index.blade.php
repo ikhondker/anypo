@@ -15,7 +15,7 @@
 		</div>
 
 
-	   
+
 			<!-- Table -->
 			<div class="table-responsive">
 				<table class="table table-sm table-borderless table-thead-bordered card-table">
@@ -47,7 +47,7 @@
 							</td>
 							<td class="table-action">
 								<x-landlord.list.actions object="Template" :id="$template->id"/>
-								<a href="{{ route('templates.destroy',$template->id) }}" class="me-2 sweet-alert2-confirm-advance" 
+								<a href="{{ route('templates.destroy',$template->id) }}" class="me-2 sweet-alert2-confirm-advance"
 									data-entity="Template" data-name="{{ $template->name }}" data-status="{{ ($template->enable ? 'Disable' : 'Enable') }}"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($template->enable ? 'Disable' : 'Enable') }}">
 									<i class="align-middle text-muted" data-feather="{{ ($template->enable ? 'bell-off' : 'bell') }}"></i>
@@ -64,12 +64,12 @@
 			 <!-- card-body -->
 		<div class="card-body">
 			{{ $templates->links() }}
-	   </div>
+		</div>
 		<!-- /. card-body -->
 
 	</div>
 	<!-- End Card -->
 
-	@include('landlord.includes.sweet-alert2-confirm-advance')    
+	@include('landlord.includes.sweet-alert2-confirm-advance')
 @endsection
 

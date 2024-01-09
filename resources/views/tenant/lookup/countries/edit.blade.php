@@ -35,8 +35,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">Country Name</label>
-								<input type="text" class="form-control @error('name') is-invalid @enderror" 
-									name="name" id="name" placeholder="Country Name"     
+								<input type="text" class="form-control @error('name') is-invalid @enderror"
+									name="name" id="name" placeholder="Country Name"
 									value="{{ old('name', $country->name ) }}"
 									/>
 								@error('name')
@@ -45,7 +45,7 @@
 							</div>
 
 							<x-tenant.widgets.submit/>
-							
+
 						</div>
 					</div>
 				</div>
@@ -53,13 +53,13 @@
 
 				<div class="col-6">
 					<div class="card">
-						
+
 					</div>
 				</div>
 				<!-- end col-6 -->
 			</div>
 
-			
+
 	</form>
 	<!-- /.form end -->
 @endsection

@@ -23,14 +23,14 @@
 					<h5 class="card-title">User Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text     value="{{ $user->name }}"/>
-					<x-tenant.show.my-email    value="{{ $user->email }}"/>
-					<x-tenant.show.my-text     value="{{ $user->cell }}" label="Cell"/>
-					<x-tenant.show.my-text     value="{{ $user->designation_name->name }}" label="Title"/>
-					<x-tenant.show.my-text     value="{{ $user->dept_name->name }}" label="Dept"/>
-					<x-tenant.show.my-badge    value="{{ $user->role }}" label="Role"/>
-					<x-tenant.show.my-boolean  value="{{ $user->enable }}"/>
-					<x-tenant.show.my-badge    value="{{ $user->id }}"/>
+					<x-tenant.show.my-text		value="{{ $user->name }}"/>
+					<x-tenant.show.my-email		value="{{ $user->email }}"/>
+					<x-tenant.show.my-text		value="{{ $user->cell }}" label="Cell"/>
+					<x-tenant.show.my-text		value="{{ $user->designation_name->name }}" label="Title"/>
+					<x-tenant.show.my-text		value="{{ $user->dept_name->name }}" label="Dept"/>
+					<x-tenant.show.my-badge		value="{{ $user->role }}" label="Role"/>
+					<x-tenant.show.my-boolean	value="{{ $user->enable }}"/>
+					<x-tenant.show.my-badge	value="{{ $user->id }}"/>
 				</div>
 			</div>
 
@@ -41,7 +41,7 @@
 				<div class="card-body">
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
-						   <span class="h6 text-secondary">Avatar:</span>
+							<span class="h6 text-secondary">Avatar:</span>
 						</div>
 						<div class="col-sm-9">
 								{{-- <x-tenant.show.avatar avatar="{{ $user->avatar }}"/> --}}
@@ -61,7 +61,7 @@
 				<div class="card-body">
 					<x-tenant.show.my-text value="{{ $user->address1 }}" label="Address1"/>
 					<x-tenant.show.my-text value="{{ $user->address2 }}" label="Address2"/>
-					<x-tenant.show.my-text value="{{ $user->city.', '.$user->state.', '.$user->zip  }}" label="City"/>    
+					<x-tenant.show.my-text value="{{ $user->city.', '.$user->state.', '.$user->zip  }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $user->country_name->name }}" label="Country"/>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 					<x-tenant.show.my-url		value="{{ $user->linkedin }}" label="LinkedIn"/>
 				</div>
 			</div>
-			
+
 		</div>
 		<!-- end col-6 -->
 	</div>
@@ -86,11 +86,11 @@
 
 	<div class="row">
 		<div class="col-6">
-			
+
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-			
+
 		</div>
 		<!-- end col-6 -->
 	</div>

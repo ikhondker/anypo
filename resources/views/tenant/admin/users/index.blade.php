@@ -14,10 +14,10 @@
 	
 	@php
 		use App\Models\User;
-		$count_total    = User::TenantAll()->count();
-		$count_active   = User::Tenant()->count();
-		$count_inactive = User::TenantInactive()->count();
-		$count_admin    = User::TenantAdmin()->count();
+		$count_total	= User::TenantAll()->count();
+		$count_active	= User::Tenant()->count();
+		$count_inactive	= User::TenantInactive()->count();
+		$count_admin	= User::TenantAdmin()->count();
 	@endphp
 
 	<div class="row">

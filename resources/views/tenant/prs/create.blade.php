@@ -24,18 +24,18 @@
 					<h5 class="card-title">Requisition Info</h5>
 					</div>
 					<div class="card-body">
-						
+
 						<div class="mb-3">
 							<label class="form-label">Pr Summary</label>
-							<input type="text" class="form-control @error('summary') is-invalid @enderror" 
-								name="summary" id="summary" placeholder="PR summary"     
+							<input type="text" class="form-control @error('summary') is-invalid @enderror"
+								name="summary" id="summary" placeholder="PR summary"
 								value="{{ old('summary', '' ) }}"
 								required/>
 							@error('summary')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						
+
 						<div class="mb-3 row">
 							<label class="col-form-label col-sm-2 text-sm-right">Dept Name</label>
 							<div class="col-sm-10">
@@ -81,8 +81,8 @@
 							</div>
 						</div>
 
-						<x-tenant.create.currency/>	
-						
+						<x-tenant.create.currency/>
+
 					</div>
 				</div>
 			</div>
@@ -102,7 +102,7 @@
 						</div>
 
 						<x-tenant.attachment.create  />
-						
+
 					</div>
 			</div>
 			<!-- end col-6 -->
@@ -137,7 +137,7 @@
 					</table>
 				</div>
 			</div>
-		</div>    
+		</div>
 		{{-- ============================================================== --}}
 
 	</form>

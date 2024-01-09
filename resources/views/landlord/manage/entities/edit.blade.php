@@ -17,7 +17,7 @@
 
 		<!-- Body -->
 		<div class="card-body">
-		
+
 			<!-- Form -->
 			<div class="row mb-4">
 				<label class="col-sm-3 col-form-label form-label">Profile photo</label>
@@ -59,8 +59,8 @@
 			<div class="row mb-4">
 				<label for="route" class="col-sm-3 col-form-label form-label">Route Name :</label>
 				<div class="col-sm-9">
-				<input type="text" class="form-control @error('route') is-invalid @enderror" 
-						name="route" id="route" placeholder="route"     
+				<input type="text" class="form-control @error('route') is-invalid @enderror"
+						name="route" id="route" placeholder="route"
 						value="{{ old('route', $entity->route ) }}"
 						required/>
 					@error('route')
@@ -74,8 +74,8 @@
 			<div class="row mb-4">
 				<label for="subdir" class="col-sm-3 col-form-label form-label">Route Name :</label>
 				<div class="col-sm-9">
-				<input type="text" class="form-control @error('subdir') is-invalid @enderror" 
-						name="subdir" id="subdir" placeholder="subdir"     
+				<input type="text" class="form-control @error('subdir') is-invalid @enderror"
+						name="subdir" id="subdir" placeholder="subdir"
 						value="{{ old('subdir', $entity->subdir ) }}"
 						required/>
 					@error('subdir')
@@ -89,9 +89,9 @@
 			<div class="row mb-4">
 				<label for="notification" class="col-sm-3 col-form-label form-label">Access :</label>
 				<div class="col-sm-9">
-				<input type="text" class="form-control @error('notification') is-invalid @enderror" 
+				<input type="text" class="form-control @error('notification') is-invalid @enderror"
 						style="text-transform: uppercase"
-						name="notification" id="notification" placeholder="F"     
+						name="notification" id="notification" placeholder="F"
 						value="{{ old('notification', $entity->notification ) }}"
 						required/>
 					@error('notification')
@@ -100,7 +100,7 @@
 				</div>
 			</div>
 			<!-- End Form -->
-			
+
 		</div>
 		<!-- End Body -->
 

@@ -44,15 +44,15 @@
 			</div>
 			</div>
 			<!-- End Form -->
-				<x-landlord.show.my-text     value="{{ $template->code }}" label="CODE"/>
-				<x-landlord.show.my-text     value="{{ $template->summary }}" label="Summary"/>
-				<x-landlord.show.my-text     value="{{ $template->name }}"/>
-				<x-landlord.show.my-text     value="{{ $template->email }}" label="E-mail"/>
-				<x-landlord.show.my-text     value="{{ $template->phone }}" label="Phone"/>
-				<x-landlord.show.my-badge    value="{{ $template->user->name  }}" label="User Name"/>
-				<x-landlord.show.my-badge    value="{{ $template->my_enum }}" label="Enum/Role:"/>
-				<x-landlord.show.my-enable   value="{{ $template->enable }}"/>
-				<x-landlord.show.my-badge    value="{{ $template->id }}" label="ID"/>
+				<x-landlord.show.my-text	value="{{ $template->code }}" label="CODE"/>
+				<x-landlord.show.my-text	value="{{ $template->summary }}" label="Summary"/>
+				<x-landlord.show.my-text	value="{{ $template->name }}"/>
+				<x-landlord.show.my-text	value="{{ $template->email }}" label="E-mail"/>
+				<x-landlord.show.my-text	value="{{ $template->phone }}" label="Phone"/>
+				<x-landlord.show.my-badge	value="{{ $template->user->name  }}" label="User Name"/>
+				<x-landlord.show.my-badge	value="{{ $template->my_enum }}" label="Enum/Role:"/>
+				<x-landlord.show.my-enable	value="{{ $template->enable }}"/>
+				<x-landlord.show.my-badge	value="{{ $template->id }}" label="ID"/>
 
 				<x-landlord.show.my-text value="{{ $template->address1 }}" label="Address1"/>
 				<x-landlord.show.my-text value="{{ $template->address2 }}" label="Address2"/>

@@ -3,7 +3,7 @@
 		<span class="h6 text-secondary">ID X:</span>
 	</div>
 	<div class="col-sm-9">
-	   <span class="badge bg-primary-light">{{ $id }}</span> 
+		<span class="badge bg-primary-light">{{ $id }}</span> 
 	</div>
 </div>
 

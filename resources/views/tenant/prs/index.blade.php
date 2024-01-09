@@ -40,7 +40,7 @@
 								<th>Dept</th>
 								<th>Currency</th>
 								<th class="text-end">Amount</th>
-								<th>Approval</th> 
+								<th>Approval</th>
 								<th>Status</th>
 								<th>Action</th>
 							</tr>
@@ -59,7 +59,7 @@
 								<td><x-tenant.list.my-badge :value="$pr->status"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Pr" :id="$pr->id"/>
-									<a href="{{ route('prs.destroy', $pr->id) }}" class="me-2 modal-boolean-advance" 
+									<a href="{{ route('prs.destroy', $pr->id) }}" class="me-2 modal-boolean-advance"
 										data-entity="Pr" data-name="{{ $pr->id }}" data-status="Delete"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 										<i class="align-middle text-muted" data-feather="trash-2"></i>
@@ -74,7 +74,7 @@
 						{{ $prs->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -85,7 +85,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')    
+	 @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

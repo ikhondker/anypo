@@ -5,11 +5,11 @@
 	</div>
 	<div>
 		<div style="text-align:left"><br>
-			Printed at: {{ now()->format('d-M-Y H:i:s') }} by 
+			Printed at: {{ now()->format('d-M-Y H:i:s') }} by
 			@if(Auth::check())
 				{{ auth()->user()->name }}
 			@else
-				Guest    
+				Guest
 			@endif
 			from: {{ URL::current() }}
 		</div>

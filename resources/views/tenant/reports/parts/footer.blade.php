@@ -1,11 +1,11 @@
 
 <footer class="clearfix">
 	<div id="timestamp">
-		Printed at: {{ now()->format('d-M-Y H:i:s') }} by 
+		Printed at: {{ now()->format('d-M-Y H:i:s') }} by
 			@if(Auth::check())
 				{{ auth()->user()->name }}
 			@else
-				Guest    
+				Guest
 			@endif
 			from: {{ URL::current() }}
 	</div>
@@ -14,11 +14,11 @@
 	</div>
 </footer>
 
-{{-- 
+{{--
 <footer>
 	<div class='parent'>
 		<div class='timestamp'>timestamp 1</div>
 		<div class='pagenum'>pagenum 2</div>
 	</div>
-	
+
 </footer> --}}

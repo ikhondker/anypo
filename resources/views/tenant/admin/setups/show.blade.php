@@ -20,11 +20,11 @@
 				<h5 class="card-title">Basic Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text     value="{{ $setup->name }}"/> 
-					<x-tenant.show.my-text     value="{{ $setup->tagline }}" label="Tagline"/>
-					<x-tenant.show.my-text     value="{{ $setup->admin_user->name }}" label="Admin"/>
-					<x-tenant.show.my-boolean  value="{{ $setup->freezed }}" label="Setup freezed"/>
-					<x-tenant.show.my-boolean  value="{{ $setup->enable }}"/>
+					<x-tenant.show.my-text		value="{{ $setup->name }}"/>
+					<x-tenant.show.my-text		value="{{ $setup->tagline }}" label="Tagline"/>
+					<x-tenant.show.my-text		value="{{ $setup->admin_user->name }}" label="Admin"/>
+					<x-tenant.show.my-boolean	value="{{ $setup->freezed }}" label="Setup freezed"/>
+					<x-tenant.show.my-boolean	value="{{ $setup->enable }}"/>
 				</div>
 			</div>
 		</div>
@@ -37,10 +37,10 @@
 				<div class="card-body">
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
-						   <span class="h6 text-secondary">Currency:</span>
+							<span class="h6 text-secondary">Currency:</span>
 						</div>
 						<div class="col-sm-9">
-						   {{ $setup->currency.' - '.$setup->relCurrency->name.' ('.$setup->relCurrency->country.')' }} <x-tenant.info info="Note: You wont be able to change the currency."/>
+							{{ $setup->currency.' - '.$setup->relCurrency->name.' ('.$setup->relCurrency->country.')' }} <x-tenant.info info="Note: You wont be able to change the currency."/>
 						</div>
 					</div>
 					<x-tenant.show.my-number value="{{ $setup->tax }}" label="Tax %"/>
@@ -76,7 +76,7 @@
 				<div class="card-body">
 					<x-tenant.show.my-text value="{{ $setup->address1 }}" label="Address1"/>
 					<x-tenant.show.my-text value="{{ $setup->address2 }}" label="Address2"/>
-					<x-tenant.show.my-text value="{{ $setup->city.', '.$setup->state.', '.$setup->zip  }}" label="City"/>    
+					<x-tenant.show.my-text value="{{ $setup->city.', '.$setup->state.', '.$setup->zip  }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $setup->country_name->name }}" label="Country"/>
 				</div>
 			</div>
@@ -94,7 +94,7 @@
 				<div class="card-body">
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
-						   <span class="h6 text-secondary">Logo:</span>
+							<span class="h6 text-secondary">Logo:</span>
 						</div>
 						<div class="col-sm-9">
 							{{-- <x-tenant.show.logo logo="{{ $setup->logo }}"/> --}}
@@ -111,7 +111,7 @@
 				<h5 class="card-title">Announcement</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-boolean   value="{{ $setup->show_banner }}" label="Show Announcement?"/>
+					<x-tenant.show.my-boolean	value="{{ $setup->show_banner }}" label="Show Announcement?"/>
 					<x-tenant.show.my-text value="{{ $setup->banner_message }}" label="Announcement"/>
 					<x-tenant.show.my-text value="{{ $setup->cell }}" label="Cell"/>
 				</div>

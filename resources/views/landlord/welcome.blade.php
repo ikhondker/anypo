@@ -464,5 +464,4 @@
 		</div><!--end bg image-->
 	</div><!--end container-->
 	<!-- CTA End -->
-   
 @endsection

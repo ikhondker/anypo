@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	// text: `Are you sure you want to ${status} ${entity}  "${country}"?`,
 	//text: `Are you sure you want to delete  "${name}" ${username} this record?`,
-	// sweet alert to link 
+	// sweet alert to link
 	$('.enable-confirm').on('click', function (e) {
 		e.preventDefault();
 		const url = $(this).attr('href');
@@ -28,5 +28,5 @@
 			}
 		});
 	});
-  
-</script>    
+
+</script>

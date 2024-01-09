@@ -59,8 +59,6 @@
 							@endforeach
 						</tbody>
 					</table>
-
-				   
 				</div>
 				<!-- end card-body -->
 			</div>

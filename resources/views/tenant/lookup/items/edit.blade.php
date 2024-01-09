@@ -35,9 +35,9 @@
 
 								<div class="mb-3 col-md-6">
 									<label for="code" class="form-label">Code</label>
-									<input type="text" class="form-control @error('code') is-invalid @enderror" 
+									<input type="text" class="form-control @error('code') is-invalid @enderror"
 										name="code" id="code" placeholder="XXXX" maxlength="10"
-										style="text-transform: uppercase"    
+										style="text-transform: uppercase"
 										value="{{ old('code', $item->code ) }}"
 										required/>
 									@error('code')
@@ -73,7 +73,7 @@
 									@endforeach
 								</select>
 							</div>
-							
+
 							<div class="mb-3">
 								<label class="form-label">GL Type</label>
 								<select class="form-control" name="gl_type">
@@ -84,7 +84,7 @@
 							</div>
 
 							<x-tenant.widgets.submit/>
-							
+
 						</div>
 					</div>
 				</div>
@@ -92,13 +92,13 @@
 
 				<div class="col-6">
 					<div class="card">
-						
+
 					</div>
 				</div>
 				<!-- end col-6 -->
 			</div>
 
-			
+
 	</form>
 	<!-- /.form end -->
 @endsection

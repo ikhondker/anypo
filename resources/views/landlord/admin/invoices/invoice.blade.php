@@ -22,14 +22,14 @@
 						<div class="col-sm-auto order-1 order-sm-2 text-sm-end mb-3">
 							<div class="mb-3">
 								<h2 class="text-success">{{ strtoupper($invoice->status->name) }}</h2>
-								@if ($invoice->status_code->value == App\Enum\LandlordInvoiceStatusEnum::DUE->value) 
+								@if ($invoice->status_code->value == App\Enum\LandlordInvoiceStatusEnum::DUE->value)
 									<form action="{{ url('/payment') }}" method="POST" class="needs-validation">
 										<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 										<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
 										<button class="btn btn-primary btn-sm" type="submit">
 											<i class="bi bi-plus-square me-1"></i>Pay Invoice (Hosted)
 										</button>
-									</form>    
+									</form>
 								@endif
 							</div>
 							<div class="mb-3">
@@ -119,7 +119,7 @@
 
 					<div class="mb-3">
 						<h3>Thank you!</h3>
-						
+
 						<p class="small">If you have any questions concerning this invoice, please create a support ticket via our <a href="{{ route('tickets.create') }}">Support Ticket System </a> or via email at support{{ '@'.config('app.domain') }}</p>
 
 					</div>
@@ -143,8 +143,8 @@
 						<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 						<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
 						<button class="btn btn-primary" type="submit">Pay Invoice (Hosted)</button>
-					</form>   
-				@endif 
+					</form>
+				@endif
 			</div>
 			<!-- End Footer -->
 		</div>

@@ -213,6 +213,6 @@
 		float: left;
 	}
 	.pagenum:before {
-    	content: counter(page);
+		content: counter(page);
 	}
 </style>

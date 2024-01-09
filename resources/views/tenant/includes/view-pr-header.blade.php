@@ -5,11 +5,11 @@
 					<h5 class="card-title">PR# {{ $pr->id }}</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text     value="{{ $pr->summary }}"/>
-					<x-tenant.show.my-amount-currency   value="{{ $pr->amount }}" currency="{{ $pr->currency }}" />
-					<x-tenant.show.my-text     value="{{ $pr->relRequestor->name }}" label="Requestor"/>
-					<x-tenant.show.my-text     value="{{ $pr->relSupplier->name }}" label="Supplier"/>
-					<x-tenant.show.my-date     value="{{ $pr->pr_date }}"/>
+					<x-tenant.show.my-text		value="{{ $pr->summary }}"/>
+					<x-tenant.show.my-amount-currency	value="{{ $pr->amount }}" currency="{{ $pr->currency }}" />
+					<x-tenant.show.my-text		value="{{ $pr->relRequestor->name }}" label="Requestor"/>
+					<x-tenant.show.my-text		value="{{ $pr->relSupplier->name }}" label="Supplier"/>
+					<x-tenant.show.my-date		value="{{ $pr->pr_date }}"/>
 					<div class="row">
 						<div class="col-sm-3 text-end">
 							
@@ -39,12 +39,12 @@
 					<h5 class="card-title">Supporting Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge    value="{{ $pr->auth_status }}" label="Auth Status"/>
-					<x-tenant.show.my-date-time value="{{$pr->auth_date }}" label="Auth Date"/>
-					<x-tenant.show.my-badge    value="{{ $pr->status }}" label="Status"/>
-					<x-tenant.show.my-text     value="{{ $pr->relDept->name }}" label="Dept"/>
-					<x-tenant.show.my-text     value="{{ $pr->relProject->name }}" label="Project"/>
-					<x-tenant.show.my-text     value="{{ $pr->notes }}" label="Notes"/>
+					<x-tenant.show.my-badge		value="{{ $pr->auth_status }}" label="Auth Status"/>
+					<x-tenant.show.my-date-time	value="{{$pr->auth_date }}" label="Auth Date"/>
+					<x-tenant.show.my-badge		value="{{ $pr->status }}" label="Status"/>
+					<x-tenant.show.my-text		value="{{ $pr->relDept->name }}" label="Dept"/>
+					<x-tenant.show.my-text		value="{{ $pr->relProject->name }}" label="Project"/>
+					<x-tenant.show.my-text		value="{{ $pr->notes }}" label="Notes"/>
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
 							<span class="h6 text-secondary">Attachments:</span>

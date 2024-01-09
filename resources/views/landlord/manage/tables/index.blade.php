@@ -12,11 +12,11 @@
 		<div class="card-header">
 			<h5 class="card-header-title">Table List DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]</h5>
 		</div>
-	
+
 		<!-- card-body -->
 		<div class="card-body">
 			<x-landlord.table-links/>
-		
+
 			<!-- Table -->
 			<div class="table-responsive">
 				<table class="table table-sm table-borderless table-thead-bordered card-table">
@@ -35,8 +35,8 @@
 								<td><a href="{{ route('tables.structure', ['table'=>$value]) }}"><span class="text-info">{{ $value }}</span></a></td>
 								<td><a class="btn btn-success btn-sm" href="{{ route('tables.structure', ['table'=>$value]) }}">View</a></td>
 							</tr>
-							@endforeach    
-						@endforeach  
+							@endforeach
+						@endforeach
 
 					</tbody>
 				</table>

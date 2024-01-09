@@ -128,7 +128,6 @@
 	}
 	/* table.shipToFrom td, table.shipToFrom th{text-align:left} */
 
-   
 </style>
 </head>
 <body>

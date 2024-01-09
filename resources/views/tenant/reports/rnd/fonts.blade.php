@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-   
+
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
@@ -23,7 +23,7 @@
 		padding-bottom: 8px;
 	}
 	#my-header-table h1,h2,h3 {
-	   
+
 		margin-top: 0px;
 		margin-bottom: 1px;
 		color: #1F9BCF;
@@ -73,10 +73,7 @@
 </style>
 </head>
 <body>
-   
 	
-
-
 	<table id="my-header-table">
 		<tr>
 			<td width="60%" style="text-align:left; vertical-align: bottom;">
@@ -101,7 +98,7 @@
 				<p class="l">
 					The quick brown fox jumps over the lazy dog - Lato
 				</p>
-			   
+			
 				<p class="r">
 					The quick brown fox jumps over the lazy dog - Roboto
 				</p>

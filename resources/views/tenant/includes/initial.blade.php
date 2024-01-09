@@ -48,7 +48,7 @@ $setup = Setup::first();
 									@endforeach
 								</select>
 							</div>
-						   
+					
 							<x-tenant.widgets.submit/>
 						</div>
 					</div>

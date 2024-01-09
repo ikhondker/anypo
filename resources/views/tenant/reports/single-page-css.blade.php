@@ -21,7 +21,7 @@
 
 	body {
 		position: relative;
-		/* commented 
+		/* commented
 		width: 21cm;
 		height: 29.7cm; */
 		margin: 0 auto;
@@ -148,7 +148,7 @@
 	table td.qty,
 	table td.total {
 		/* font-size: 1.2em; */
-		
+
 	}
 
 	table tbody tr:last-child td {
@@ -202,7 +202,7 @@
 		bottom: 0;
 		font-size: .8em; /* added */
 		border-top: 1px solid #AAAAAA;
-		padding: 8px 0;	/* 8px 0 */ 
+		padding: 8px 0;	/* 8px 0 */
 		text-align: center;
 	}
 
@@ -210,12 +210,12 @@
 	#pagenum {
 		float: right;
 		text-align: right;
-		
+
 	}
 	#timestamp {
 		float: left;
 	}
 	.pagenum:before {
-    	content: counter(page);
+		content: counter(page);
 	}
 </style>

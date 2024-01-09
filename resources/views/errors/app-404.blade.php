@@ -23,7 +23,5 @@
 	</div>
 	 <!-- end row -->
 
-	   
-
 @endsection
 

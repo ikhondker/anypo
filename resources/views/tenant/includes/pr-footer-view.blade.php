@@ -32,6 +32,5 @@
 			<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->amount"/></strong></td>
 			<td class="" scope="col">&nbsp</td>
 		</tr>
-					   
 
 {{-- ============================================================== --}}

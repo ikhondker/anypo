@@ -16,7 +16,7 @@
 		<div class="card-body">
 			<x-landlord.table-links/>
 
-			@foreach($filesInFolder as $row) 
+			@foreach($filesInFolder as $row)
 				<div class="alert alert-secondary" role="alert">
 					<!-- ========== INCLUDE ========== -->
 					@include('shared.includes.tables.routes')
@@ -24,7 +24,7 @@
 				</div>
 			@endforeach
 		</div>
-	</div>    
+	</div>
 	<!-- End Card -->
 
 @endsection

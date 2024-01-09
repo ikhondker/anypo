@@ -4,7 +4,6 @@
 
 @section('content')
 @inject('carbon', 'Carbon\Carbon')
-   
 
 	<!-- Card -->
 	<div class="card">

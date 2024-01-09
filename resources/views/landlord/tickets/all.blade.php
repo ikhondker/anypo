@@ -7,7 +7,7 @@
 
 	<!-- Card -->
 	<div class="card">
-		
+
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 			<h5 class="card-header-title">
 				@if (request('term'))
@@ -56,13 +56,13 @@
 				<thead class="thead-light">
 				<tr>
 					<th>&nbsp; &nbsp; Subject</th>
-					
+
 					<th>Priority/Dept</th>
 					<th>Status</th>
 					<th style="width: 5%;">Action</th>
 				</tr>
 				</thead>
-				
+
 				<tbody>
 					@foreach ($tickets as $ticket)
 						<tr>
@@ -78,7 +78,7 @@
 												[#{{ $ticket->id }}] {{ Str::limit($ticket->title, 45) }}
 											</h6>
 										</a>
-										<small class="d-block"> 
+										<small class="d-block">
 											{{ $ticket->owner->name }} | {{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }} | {{ $ticket->dept->name }}
 											@if ( auth()->user()->isBackOffice()  && ($ticket->agent_id <> ''))
 												| {{ $ticket->agent->name }}
@@ -87,9 +87,9 @@
 									</div>
 								</div>
 							</td>
-							
+
 							<td>
-								<x-landlord.list.my-badge :value="$ticket->priority->name" badge="{{ $ticket->priority->badge }}"/> 
+								<x-landlord.list.my-badge :value="$ticket->priority->name" badge="{{ $ticket->priority->badge }}"/>
 								{{-- <x-landlord.list.my-badge :value="$ticket->dept->name"/><br> --}}
 							</td>
 							<td><x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/></td>
@@ -104,7 +104,7 @@
 								</a>
 							</td>
 						</tr>
-					@endforeach    
+					@endforeach
 
 				</tbody>
 			</table>
@@ -118,7 +118,7 @@
 			<!--/. pagination -->
 		</div>
 		<!-- /. card-body -->
-	
+
 	</div>
 	<!-- End Card -->
 
@@ -169,10 +169,10 @@
 						<td class="text-center">
 							{{-- <x-landlord.list.actions object="Ticket" :id="$ticket->id" :edit="false" :enable="false"/> --}}
 							<a href="{{ route('tickets.show',$ticket->id) }}" class="action-btn btn-view bs-tooltip me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-								<i data-feather="eye" class="fea text-muted"></i> 
+								<i data-feather="eye" class="fea text-muted"></i>
 							</a>
 							<a href="{{ route('tickets.edit',$ticket->id) }}" class="action-btn btn-view bs-tooltip me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-								<i data-feather="edit" class="fea text-muted"></i> 
+								<i data-feather="edit" class="fea text-muted"></i>
 							</a>
 							<a href="{{ route('tickets.assign',$ticket->id) }}" class="action-btn btn-view bs-tooltip me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
 								<i class="bi bi-person-circle"></i>
@@ -181,7 +181,7 @@
 					</tr>
 					@endforeach
 
-					
+
 				</tbody>
 			</table>
 		</div>

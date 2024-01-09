@@ -38,7 +38,7 @@
 					//$count_draft	 = Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 				@endphp
 				<span class="h1 d-inline-block mt-1">{{ $count_unread }}</span>
-			   
+			
 			</div>
 		</div>
 	</div>
@@ -79,5 +79,5 @@
 			</div>
 		</div>
 	</div>
-   
+
 </div>

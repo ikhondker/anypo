@@ -21,11 +21,11 @@
 					<h5 class="card-title">Warehouse Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text     value="{{ $warehouse->name }}"/>
-					<x-tenant.show.my-email    value="{{ $warehouse->contact_person }}" label="Contact Person"/>    
-					<x-tenant.show.my-text     value="{{ $warehouse->cell }}" label="Cell"/>
-					<x-tenant.show.my-badge    value="{{ $warehouse->id }}"/>
-					<x-tenant.show.my-boolean  value="{{ $warehouse->enable }}"/>
+					<x-tenant.show.my-text		value="{{ $warehouse->name }}"/>
+					<x-tenant.show.my-email		value="{{ $warehouse->contact_person }}" label="Contact Person"/>
+					<x-tenant.show.my-text		value="{{ $warehouse->cell }}" label="Cell"/>
+					<x-tenant.show.my-badge		value="{{ $warehouse->id }}"/>
+					<x-tenant.show.my-boolean	value="{{ $warehouse->enable }}"/>
 				</div>
 			</div>
 		</div>
@@ -38,7 +38,7 @@
 				<div class="card-body">
 					<x-tenant.show.my-text value="{{ $warehouse->address1 }}" label="Address1"/>
 					<x-tenant.show.my-text value="{{ $warehouse->address2 }}" label="Address1"/>
-					<x-tenant.show.my-text value="{{ $warehouse->city.', '.$warehouse->state.', '.$warehouse->zip  }}" label="City"/>    
+					<x-tenant.show.my-text value="{{ $warehouse->city.', '.$warehouse->state.', '.$warehouse->zip  }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $warehouse->relCountry->name }}" label="Country"/>
 				</div>
 			</div>

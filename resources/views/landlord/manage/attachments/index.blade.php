@@ -8,7 +8,7 @@
 
 	<!-- Card -->
 	<div class="card">
-			
+
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 			<h5 class="card-header-title">All Attachments</h5>
 			<a class="btn btn-primary btn-sm" href="{{ route('attachments.create') }}">
@@ -29,7 +29,7 @@
 					<th style="width: 5%;">Action</th>
 				</tr>
 				</thead>
-		
+
 				<tbody>
 					@foreach ($attachments as $attachment)
 						<tr>
@@ -47,7 +47,7 @@
 							<td><x-landlord.attachment.show-by-id id="{{ $attachment->id }}"/></td>
 							<td><x-landlord.list.actions object="Attachment" :id="$attachment->id"/></td>
 						</tr>
-					@endforeach    
+					@endforeach
 
 				</tbody>
 			</table>

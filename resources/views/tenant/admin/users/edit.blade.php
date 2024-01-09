@@ -36,8 +36,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">Full Name</label>
-								<input type="text" class="form-control @error('name') is-invalid @enderror" 
-									name="name" id="name" placeholder="Full Name"     
+								<input type="text" class="form-control @error('name') is-invalid @enderror"
+									name="name" id="name" placeholder="Full Name"
 									value="{{ old('name', $user->name ) }}"
 									required/>
 								@error('name')
@@ -45,12 +45,12 @@
 								@enderror
 							</div>
 
-						  
+
 
 							<div class="mb-3">
 								<label class="form-label">Email</label>
-								<input type="email" class="form-control @error('email') is-invalid @enderror" 
-									name="email" id="email" placeholder="name@company.com"     
+								<input type="email" class="form-control @error('email') is-invalid @enderror"
+									name="email" id="email" placeholder="name@company.com"
 									value="{{ old('email', $user->email ) }}"
 									readonly/>
 								@error('email')
@@ -69,8 +69,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">Cell</label>
-								<input type="text" class="form-control @error('cell') is-invalid @enderror" 
-									name="cell" id="cell" placeholder="01911310509"     
+								<input type="text" class="form-control @error('cell') is-invalid @enderror"
+									name="cell" id="cell" placeholder="01911310509"
 									value="{{ old('cell', $user->cell ) }}"
 									required/>
 								@error('cell')
@@ -103,8 +103,8 @@
 						<div class="card-body">
 							<div class="mb-3">
 								<label class="form-label">Address 1</label>
-								<input type="text" class="form-control @error('address1') is-invalid @enderror" 
-									name="address1" id="address1" placeholder="Address 1"     
+								<input type="text" class="form-control @error('address1') is-invalid @enderror"
+									name="address1" id="address1" placeholder="Address 1"
 									value="{{ old('address1', $user->address1 ) }}"
 									required/>
 								@error('address1')
@@ -114,8 +114,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">Address 2</label>
-								<input type="text" class="form-control @error('address2') is-invalid @enderror" 
-									name="address2" id="address2" placeholder="Address 2"     
+								<input type="text" class="form-control @error('address2') is-invalid @enderror"
+									name="address2" id="address2" placeholder="Address 2"
 									value="{{ old('address2', $user->address2 ) }}"
 									/>
 								@error('address2')
@@ -126,8 +126,8 @@
 							<div class="row">
 								<div class="mb-3 col-md-6">
 									<label for="city" class="form-label">City</label>
-									<input type="text" class="form-control @error('city') is-invalid @enderror" 
-										name="city" id="city" placeholder="City"     
+									<input type="text" class="form-control @error('city') is-invalid @enderror"
+										name="city" id="city" placeholder="City"
 										value="{{ old('city', $user->city ) }}"
 										required/>
 									@error('city')
@@ -136,8 +136,8 @@
 								</div>
 								<div class="mb-3 col-md-4">
 									<label for="state" class="form-label">State</label>
-									<input type="text" class="form-control @error('state') is-invalid @enderror" 
-										name="state" id="state" placeholder="N/A"     
+									<input type="text" class="form-control @error('state') is-invalid @enderror"
+										name="state" id="state" placeholder="N/A"
 										style="text-transform: uppercase"
 										value="{{ old('state', $user->state ) }}"
 										required/>
@@ -147,8 +147,8 @@
 								</div>
 								<div class="mb-3 col-md-2">
 									<label for="zip" class="form-label">Zip</label>
-									<input type="text" class="form-control @error('zip') is-invalid @enderror" 
-										name="zip" id="zip" placeholder="1234"     
+									<input type="text" class="form-control @error('zip') is-invalid @enderror"
+										name="zip" id="zip" placeholder="1234"
 										value="{{ old('zip', $user->zip ) }}"
 										required/>
 									@error('zip')
@@ -183,7 +183,7 @@
 							<div class="mb-3">
 								{{-- <x-tenant.show.avatar avatar="{{ $user->avatar }}"/> --}}
 								<img src="{{ Storage::disk('s3ta')->url($user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
-								
+
 								<x-tenant.attachment.create  />
 							</div>
 						</div>
@@ -199,9 +199,9 @@
 
 							<div class="mb-3">
 								<label class="form-label">Facebook</label>
-								<input type="text" class="form-control @error('facebook') is-invalid @enderror" 
-									name="facebook" id="facebook" placeholder="https://www.facebook.com/username" 
-									value="{{ old('facebook', $user->facebook ) }}"      
+								<input type="text" class="form-control @error('facebook') is-invalid @enderror"
+									name="facebook" id="facebook" placeholder="https://www.facebook.com/username"
+									value="{{ old('facebook', $user->facebook ) }}"
 									/>
 								@error('facebook')
 									<div class="text-danger text-xs">{{ $message }}</div>
@@ -209,9 +209,9 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">LinkedIn</label>
-								<input type="text" class="form-control @error('linkedin') is-invalid @enderror" 
-									name="linkedin" id="linkedin" placeholder="https://www.linkedin.com/username" 
-									value="{{ old('linkedin', $user->linkedin ) }}"      
+								<input type="text" class="form-control @error('linkedin') is-invalid @enderror"
+									name="linkedin" id="linkedin" placeholder="https://www.linkedin.com/username"
+									value="{{ old('linkedin', $user->linkedin ) }}"
 									/>
 								@error('linkedin')
 									<div class="text-danger text-xs">{{ $message }}</div>

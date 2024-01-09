@@ -12,17 +12,17 @@
 		<!-- Body -->
 		<div class="card-body">
 			
-			<x-landlord.show.my-badge    value="{{ $status->code }}" label="Code"/>
-			<x-landlord.show.my-text     value="{{ $status->name }}"/>
-			<x-landlord.show.my-badge    value="{{ $status->badge }}" label="Badge"/>
-		   
-			<x-landlord.show.my-enable   value="{{ $status->accounts }}" label="Accounts"/>
-			<x-landlord.show.my-enable   value="{{ $status->accounts }}" label="Services"/>
-			<x-landlord.show.my-enable   value="{{ $status->tickets }}" label="Tickets"/>
-			<x-landlord.show.my-enable   value="{{ $status->checkouts }}" label="Checkouts"/>
-			<x-landlord.show.my-enable   value="{{ $status->invoices }}" label="Invoices"/>
-			<x-landlord.show.my-enable   value="{{ $status->payments }}" label="Payments"/>
-			<x-landlord.show.my-enable   value="{{ $status->enable }}"/>
+			<x-landlord.show.my-badge	value="{{ $status->code }}" label="Code"/>
+			<x-landlord.show.my-text	value="{{ $status->name }}"/>
+			<x-landlord.show.my-badge	value="{{ $status->badge }}" label="Badge"/>
+		
+			<x-landlord.show.my-enable	value="{{ $status->accounts }}" label="Accounts"/>
+			<x-landlord.show.my-enable	value="{{ $status->accounts }}" label="Services"/>
+			<x-landlord.show.my-enable	value="{{ $status->tickets }}" label="Tickets"/>
+			<x-landlord.show.my-enable	value="{{ $status->checkouts }}" label="Checkouts"/>
+			<x-landlord.show.my-enable	value="{{ $status->invoices }}" label="Invoices"/>
+			<x-landlord.show.my-enable	value="{{ $status->payments }}" label="Payments"/>
+			<x-landlord.show.my-enable	value="{{ $status->enable }}"/>
 
 		</div>
 		<!-- End Body -->

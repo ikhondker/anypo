@@ -25,15 +25,15 @@
 					<h5 class="card-title">Item Info</h5>
 					</div>
 					<div class="card-body">
-						
+
 						<x-tenant.create.name/>
 						<x-tenant.create.price/>
 
 						<div class="mb-3 col-md-6">
 							<label for="code" class="form-label">Code</label>
-							<input type="text" class="form-control @error('code') is-invalid @enderror" 
+							<input type="text" class="form-control @error('code') is-invalid @enderror"
 								name="code" id="code" placeholder="XXXX" maxlength="10"
-								style="text-transform: uppercase"   
+								style="text-transform: uppercase"
 								value="{{ old('code', '' ) }}"
 								required/>
 							@error('code')
@@ -53,7 +53,7 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						
+
 
 						<div class="mb-3">
 							<label class="form-label">UoM</label>
@@ -99,7 +99,7 @@
 			</div>
 			<!-- end col-6 -->
 			<div class="col-6">
-				
+
 			</div>
 			<!-- end col-6 -->
 		</div>

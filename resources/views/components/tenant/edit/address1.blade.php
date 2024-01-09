@@ -1,7 +1,7 @@
 <div class="mb-3">
 	<label class="form-label">Address 1 X</label>
-	<input type="text" class="form-control @error('address1') is-invalid @enderror" 
-		name="address1" id="address1" placeholder="Address 1"     
+	<input type="text" class="form-control @error('address1') is-invalid @enderror"
+		name="address1" id="address1" placeholder="Address 1"
 		value="{{ old('address1', $value ) }}"
 		required/>
 	@error('address1')

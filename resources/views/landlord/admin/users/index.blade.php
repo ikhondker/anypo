@@ -7,7 +7,7 @@
 
 	<!-- Card -->
 	<div class="card">
-	
+
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 			<h5 class="card-header-title">
 				@if (request('term'))
@@ -61,7 +61,7 @@
 					<th style="width: 5%;">Action</th>
 				</tr>
 				</thead>
-		
+
 				<tbody>
 					@foreach ($users as $user)
 						<tr>
@@ -98,23 +98,23 @@
 							<td>
 
 								<x-landlord.list.actions object="User" :id="$user->id"/>
-								<a href="{{ route('users.destroy',$user->id) }}" class="text-body sweet-alert2-confirm-advance" 
+								<a href="{{ route('users.destroy',$user->id) }}" class="text-body sweet-alert2-confirm-advance"
 									data-entity="User" data-name="{{ $user->name }}" data-status="{{ ($user->enable ? 'Disable' : 'Enable') }}"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($user->enable ? 'Disable' : 'Enable') }}">
 									<i class="bi {{ ($user->enable ? 'bi-bell-slash' : 'bi-bell') }} " style="font-size: 1.3rem;"></i>
 								</a>
 
-							
+
 								@if(session('original_user'))
 									<a href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">
 										<i class="bi bi-box-arrow-left text-danger" style="font-size: 1.3rem;"></i>
 									</a>
-								@else 
+								@else
 									@can('impersonate',$user)
 										<a href="{{ route('users.impersonate',$user->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
 											<i class="bi bi-box-arrow-right text-success" style="font-size: 1.3rem;"></i>
 										</a>
-									@endcan    
+									@endcan
 								@endif
 
 								{{-- <a class="text-body" href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" title="Locked">
@@ -123,14 +123,14 @@
 								</a> --}}
 							</td>
 						</tr>
-					@endforeach    
-			
+					@endforeach
+
 
 				</tbody>
 			</table>
 		</div>
 		<!-- End Table -->
-	
+
 		<!-- card-body -->
 		<div class="card-body">
 			<!-- pagination -->
@@ -142,7 +142,7 @@
 	</div>
 	<!-- End Card -->
 
-	@include('landlord.includes.sweet-alert2-confirm-advance')    
+	@include('landlord.includes.sweet-alert2-confirm-advance')
 
 @endsection
 

@@ -39,8 +39,8 @@
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Hierarchy Name</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control @error('name') is-invalid @enderror" 
-										name="name" id="name" placeholder="Hierarchy Name"     
+										<input type="text" class="form-control @error('name') is-invalid @enderror"
+										name="name" id="name" placeholder="Hierarchy Name"
 										value="{{ old('name', $hierarchy->name ) }}"
 										/>
 										@error('name')
@@ -78,14 +78,14 @@
 										</select>
 									</div>
 								</div>
-								
+
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Fourth Approver</label>
 									<div class="col-sm-10">
 										<select class="form-control" name="approver_id_4">
 											@if ($approver_id_4 == 0)
 												<option value=""><< Fourth Approver >> </option>
-											@endif    
+											@endif
 											@foreach ($users as $user)
 												<option {{ $user->id == old('approver_id_4',$approver_id_4) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 											@endforeach
@@ -100,7 +100,7 @@
 										<select class="form-control" name="approver_id_5">
 											@if ($approver_id_5 == 0)
 												<option value=""><< Fifth Approver >> </option>
-											@endif    
+											@endif
 											@foreach ($users as $user)
 												<option {{ $user->id == old('approver_id_5',$approver_id_5) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 											@endforeach
@@ -122,13 +122,13 @@
 
 				<div class="col-6">
 					<div class="card">
-						
+
 					</div>
 				</div>
 				<!-- end col-6 -->
 			</div>
 
-			
+
 	</form>
 	<!-- /.form end -->
 @endsection

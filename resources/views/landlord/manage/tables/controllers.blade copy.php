@@ -6,7 +6,6 @@
 
 
 @section('content')
-   
 
 	<!-- Card -->
 	<div class="card">

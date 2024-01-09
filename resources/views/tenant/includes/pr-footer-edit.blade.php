@@ -3,9 +3,9 @@
 		<strong>Subtotal:</strong>
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('sub_total') is-invalid @enderror" 
+		<input type="number" step='0.01' min="1" class="form-control @error('sub_total') is-invalid @enderror"
 			style="text-align: right;"
-			name="sub_total" id="sub_total" placeholder="1.00" 
+			name="sub_total" id="sub_total" placeholder="1.00"
 			value="{{ old('sub_total',$pr->sub_total) }}"
 			required readonly>
 		@error('sub_total')
@@ -22,9 +22,9 @@
 		Tax:
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('tax') is-invalid @enderror" 
+		<input type="number" step='0.01' min="1" class="form-control @error('tax') is-invalid @enderror"
 			style="text-align: right;"
-			name="tax" id="tax" placeholder="1.00" 
+			name="tax" id="tax" placeholder="1.00"
 			value="{{ old('tax',$pr->tax) }}"
 			required>
 		@error('tax')
@@ -41,9 +41,9 @@
 		Shipping:
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('shipping') is-invalid @enderror" 
+		<input type="number" step='0.01' min="1" class="form-control @error('shipping') is-invalid @enderror"
 			style="text-align: right;"
-			name="shipping" id="shipping" placeholder="1.00" 
+			name="shipping" id="shipping" placeholder="1.00"
 			value="{{ old('shipping',$pr->shipping) }}"
 			required>
 		@error('shipping')
@@ -60,9 +60,9 @@
 		Discount (-):
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('discount') is-invalid @enderror" 
+		<input type="number" step='0.01' min="1" class="form-control @error('discount') is-invalid @enderror"
 			style="text-align: right;"
-			name="discount" id="discount" placeholder="1.00" 
+			name="discount" id="discount" placeholder="1.00"
 			value="{{ old('discount',$pr->discount) }}"
 			required>
 		@error('discount')
@@ -79,9 +79,9 @@
 		<strong>TOTAL:</strong>
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror" 
+		<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror"
 			style="text-align: right;"
-			name="amount" id="amount" placeholder="1.00" 
+			name="amount" id="amount" placeholder="1.00"
 			value="{{ old('amount',$pr->amount) }}"
 			required readonly>
 		@error('amount')
@@ -96,9 +96,9 @@
 
 <tr class="">
 	<td colspan="6" class="">
-		
+
 	</td>
 	<td class="">
 		<x-tenant.widgets.submit/>
 	</td>
-</tr>    
+</tr>

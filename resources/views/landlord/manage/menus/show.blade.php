@@ -44,11 +44,11 @@
 						<!-- End Form -->
 
 						
-						<x-landlord.show.my-text     value="{{ $menu->raw_route_name }}" label="raw_route_name"/>
-						<x-landlord.show.my-text     value="{{ $menu->raw_route_name }}" label="route_name"/>
-						<x-landlord.show.my-text     value="{{ $menu->access }}" label="Access"/>
+						<x-landlord.show.my-text	value="{{ $menu->raw_route_name }}" label="raw_route_name"/>
+						<x-landlord.show.my-text	value="{{ $menu->raw_route_name }}" label="route_name"/>
+						<x-landlord.show.my-text	value="{{ $menu->access }}" label="Access"/>
 
-						<x-landlord.show.my-enable   value="{{ $menu->enable }}"/>
+						<x-landlord.show.my-enable	value="{{ $menu->enable }}"/>
 					
 				</div>
 				<!-- End Body -->

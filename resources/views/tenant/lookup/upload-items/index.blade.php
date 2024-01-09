@@ -8,7 +8,7 @@
 			Upload Items
 		@endslot
 		@slot('buttons')
-		
+
 			<a href="{{ route('upload-items.import') }}" class="btn btn-primary float-end me-2"><i class="fas fa-plus"></i> 4. Import</a>
 			<a href="{{ route('upload-items.check') }}" class="btn btn-primary float-end me-2"><i class="fas fa-plus"></i> 3. Validate</a>
 			<a href="{{ route('upload-items.create') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-circle-up"></i> 2. Upload File</a>
@@ -65,18 +65,18 @@
 								<td>
 									@switch($upload_item->status)
 										@case(App\Enum\InterfaceStatusEnum::DRAFT->value)
-											<span class="badge bg-success">{{ $upload_item->status }}</span> 
+											<span class="badge bg-success">{{ $upload_item->status }}</span>
 											@break
 										@case(App\Enum\InterfaceStatusEnum::VALIDATED->value)
-											<span class="badge bg-info">{{ $upload_item->status }}</span> 
+											<span class="badge bg-info">{{ $upload_item->status }}</span>
 											@break
 										@case(App\Enum\InterfaceStatusEnum::ERROR->value)
-											<span class="badge bg-danger">{{ $upload_item->status }}</span> 
+											<span class="badge bg-danger">{{ $upload_item->status }}</span>
 											@break
 										@default
-											<span class="badge bg-success">{{ $upload_item->status }}</span> 
+											<span class="badge bg-success">{{ $upload_item->status }}</span>
 									@endswitch
-								
+
 								</td>
 								<td class="table-action">
 									<x-tenant.list.actions object="UploadItem" :id="$upload_item->id"/>
@@ -90,7 +90,7 @@
 						{{ $upload_items->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -101,7 +101,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')    
+	 @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

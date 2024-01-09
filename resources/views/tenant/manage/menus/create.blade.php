@@ -24,12 +24,12 @@
 					<h5 class="card-title">Menu Info</h5>
 					</div>
 					<div class="card-body">
-						
-						
+
+
 						<div class="mb-3">
 							<label class="form-label">Raw Route Name</label>
-							<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror" 
-								name="raw_route_name" id="raw_route_name" placeholder="Raw Route Name"     
+							<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror"
+								name="raw_route_name" id="raw_route_name" placeholder="Raw Route Name"
 								value="{{ old('raw_route_name', '' ) }}"
 								required/>
 							@error('raw_route_name')
@@ -39,8 +39,8 @@
 
 						<div class="mb-3">
 							<label class="form-label">Route Name</label>
-							<input type="text" class="form-control @error('route_name') is-invalid @enderror" 
-								name="route_name" id="route_name" placeholder="Route Name"     
+							<input type="text" class="form-control @error('route_name') is-invalid @enderror"
+								name="route_name" id="route_name" placeholder="Route Name"
 								value="{{ old('route_name', '' ) }}"
 								required/>
 							@error('route_name')
@@ -50,8 +50,8 @@
 
 						<div class="mb-3">
 							<label class="form-label">Node Name</label>
-							<input type="text" class="form-control @error('node_name') is-invalid @enderror" 
-								name="node_name" id="node_name" placeholder="Node Name"     
+							<input type="text" class="form-control @error('node_name') is-invalid @enderror"
+								name="node_name" id="node_name" placeholder="Node Name"
 								value="{{ old('node_name', '' ) }}"
 								/>
 							@error('node_name')
@@ -65,7 +65,7 @@
 			</div>
 			<!-- end col-6 -->
 			<div class="col-6">
-				
+
 			</div>
 			<!-- end col-6 -->
 		</div>

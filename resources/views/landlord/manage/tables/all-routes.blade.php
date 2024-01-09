@@ -45,7 +45,7 @@
 					'api/user',
 					'/'
 				);
-			@endphp   
+			@endphp
 			<tbody>
 				@foreach($routes as $route)
 					@if (! in_array($route->uri(), $skip_routes ))

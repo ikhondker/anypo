@@ -37,18 +37,18 @@
 					</div>
 					<!-- End Form -->
 
-					{{-- <x-landlord.show.my-text     value="{{ $service->summary }}"/> --}}
-					<x-landlord.show.my-text     value="{{ $service->name }}" label="Service"/>
-					<x-landlord.show.my-date value="{{ $service->start_date }}" label="Start Date"/>
-					<x-landlord.show.my-date value="{{ $service->end_date }}" label="End Date"/>
-					<x-landlord.show.my-text   value="{{ $service->account_id }}" label="Account"/>
-					<x-landlord.show.my-integer   value="{{ $service->user }}" label="User"/>
-					<x-landlord.show.my-integer   value="{{ $service->mnth }}" label="Month"/>
-					<x-landlord.show.my-integer   value="{{ $service->gb }}" label="GB"/>
-					<x-landlord.show.my-number value="{{  $service->price }}" label="Price (USD)"/>
-					<x-landlord.show.my-enable   value="{{ $service->enable }}"/>
-					<x-landlord.show.my-enable   value="{{ $service->addon }}" label="Addon?"/>
-					<x-landlord.show.my-badge    value="{{ $service->id }}" label="ID"/>
+					{{-- <x-landlord.show.my-text	value="{{ $service->summary }}"/> --}}
+					<x-landlord.show.my-text	value="{{ $service->name }}" label="Service"/>
+					<x-landlord.show.my-date	value="{{ $service->start_date }}" label="Start Date"/>
+					<x-landlord.show.my-date	value="{{ $service->end_date }}" label="End Date"/>
+					<x-landlord.show.my-text	value="{{ $service->account_id }}" label="Account"/>
+					<x-landlord.show.my-integer	value="{{ $service->user }}" label="User"/>
+					<x-landlord.show.my-integer	value="{{ $service->mnth }}" label="Month"/>
+					<x-landlord.show.my-integer	value="{{ $service->gb }}" label="GB"/>
+					<x-landlord.show.my-number	value="{{  $service->price }}" label="Price (USD)"/>
+					<x-landlord.show.my-enable	value="{{ $service->enable }}"/>
+					<x-landlord.show.my-enable	value="{{ $service->addon }}" label="Addon?"/>
+					<x-landlord.show.my-badge	value="{{ $service->id }}" label="ID"/>
 
 				</div>
 				<!-- End Body -->

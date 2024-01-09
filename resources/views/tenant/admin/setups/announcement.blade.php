@@ -26,7 +26,7 @@
 						</div>
 						<div class="card-body">
 							<div class="mb-3">
-							   
+							
 								<div class="alert alert-warning alert-outline" role="alert">
 									<div class="alert-icon">
 										<i class="far fa-fw fa-bell"></i>
@@ -44,7 +44,7 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
-						   
+						
 							<div class="mb-3">
 								<label class="form-check m-0">
 								<input type="checkbox" class="form-check-input"

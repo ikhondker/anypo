@@ -5,12 +5,12 @@
 					<h5 class="card-title">PR# {{ $pr->id }}</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text     value="{{ $pr->summary }}"/>
-					<x-tenant.show.my-badge    value="{{ $pr->auth_status }}" label="Auth Status"/>
-					<x-tenant.show.my-badge    value="{{ $pr->status }}" label="Status"/>
-					<x-tenant.show.my-amount   value="{{ $pr->amount }}"/>
-					<x-tenant.show.my-text     value="{{ $pr->relRequestor->name }}" label="Requestor"/>
-					<x-tenant.show.my-date     value="{{ $pr->pr_date }}"/>
+					<x-tenant.show.my-text		value="{{ $pr->summary }}"/>
+					<x-tenant.show.my-badge		value="{{ $pr->auth_status }}" label="Auth Status"/>
+					<x-tenant.show.my-badge		value="{{ $pr->status }}" label="Status"/>
+					<x-tenant.show.my-amount	value="{{ $pr->amount }}"/>
+					<x-tenant.show.my-text		value="{{ $pr->relRequestor->name }}" label="Requestor"/>
+					<x-tenant.show.my-date		value="{{ $pr->pr_date }}"/>
 					<div class="row">
 						<div class="col-sm-3 text-end">
 							

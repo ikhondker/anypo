@@ -52,7 +52,7 @@
 						//$count_draft	= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 					@endphp
 					<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
-				   
+
 				</div>
 			</div>
 		</div>
@@ -69,7 +69,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<span class="h1 d-inline-block mt-1">{{ $count_enable }}</span>
 				</div>
 			</div>
@@ -93,7 +93,7 @@
 				</div>
 			</div>
 		</div>
-	   
+
 	</div>
 
 
@@ -140,7 +140,7 @@
 								<td><x-tenant.list.my-boolean :value="$item->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Item" :id="$item->id"/>
-									<a href="{{ route('items.destroy',$item->id) }}" class="me-2 modal-boolean-advance" 
+									<a href="{{ route('items.destroy',$item->id) }}" class="me-2 modal-boolean-advance"
 										data-entity="Item" data-name="{{ $item->name }}" data-status="{{ ($item->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($item->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($item->enable ? 'bell-off' : 'bell') }}"></i>
@@ -155,7 +155,7 @@
 						{{ $items->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -166,7 +166,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')    
+	 @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

@@ -31,7 +31,7 @@
 							<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
 						</div>
 						<div class="card-body">
-							
+
 								<div class="mb-3">
 									<label class="form-label">ID</label>
 									<input type="text" class="form-control" placeholder="ID" value="{{ old('id', $template->id ) }}" readonly>
@@ -39,8 +39,8 @@
 
 								<div class="mb-3">
 									<label class="form-label">Full Name</label>
-									<input type="text" class="form-control @error('name') is-invalid @enderror" 
-										name="name" id="name" placeholder="Full Name"     
+									<input type="text" class="form-control @error('name') is-invalid @enderror"
+										name="name" id="name" placeholder="Full Name"
 										value="{{ old('name', $template->name ) }}"
 										required/>
 									@error('name')
@@ -49,8 +49,8 @@
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Summary</label>
-									<input type="text" class="form-control @error('summary') is-invalid @enderror" 
-										name="summary" id="summary" placeholder="Summary"     
+									<input type="text" class="form-control @error('summary') is-invalid @enderror"
+										name="summary" id="summary" placeholder="Summary"
 										value="{{ old('summary', $template->summary ) }}"
 										required/>
 									@error('summary')
@@ -59,30 +59,30 @@
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Email</label>
-									<input type="email" class="form-control @error('email') is-invalid @enderror" 
-										name="email" id="email" placeholder="name@company.com"     
+									<input type="email" class="form-control @error('email') is-invalid @enderror"
+										name="email" id="email" placeholder="name@company.com"
 										value="{{ old('email', $template->email ) }}"
 										required/>
 									@error('email')
 										<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror
 								</div>
-								
+
 
 								<div class="mb-3">
 									<label class="form-label">Cell</label>
-									<input type="text" class="form-control @error('cell') is-invalid @enderror" 
-										name="cell" id="cell" placeholder="01911310509"     
+									<input type="text" class="form-control @error('cell') is-invalid @enderror"
+										name="cell" id="cell" placeholder="01911310509"
 										value="{{ old('cell', $template->cell ) }}"
 										required/>
 									@error('cell')
 										<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror
 								</div>
-							
+
 								<x-tenant.widgets.submit/>
-								
-							
+
+
 						</div>
 					</div>
 				</div>
@@ -97,8 +97,8 @@
 
 								<div class="mb-3">
 									<label class="form-label">Address 1</label>
-									<input type="text" class="form-control @error('address1') is-invalid @enderror" 
-										name="address1" id="address1" placeholder="Address 1"     
+									<input type="text" class="form-control @error('address1') is-invalid @enderror"
+										name="address1" id="address1" placeholder="Address 1"
 										value="{{ old('address1', $template->address1 ) }}"
 										required/>
 									@error('address1')
@@ -108,8 +108,8 @@
 
 								<div class="mb-3">
 									<label class="form-label">Address 2</label>
-									<input type="text" class="form-control @error('address2') is-invalid @enderror" 
-										name="address2" id="address2" placeholder="Address 2"     
+									<input type="text" class="form-control @error('address2') is-invalid @enderror"
+										name="address2" id="address2" placeholder="Address 2"
 										value="{{ old('address2', $template->address2 ) }}"
 										required/>
 									@error('address2')
@@ -119,8 +119,8 @@
 
 								<div class="mb-3">
 									<label class="form-label">Zip</label>
-									<input type="text" class="form-control @error('zip') is-invalid @enderror" 
-										name="zip" id="zip" placeholder="1234"     
+									<input type="text" class="form-control @error('zip') is-invalid @enderror"
+										name="zip" id="zip" placeholder="1234"
 										value="{{ old('zip', $template->zip ) }}"
 										required/>
 									@error('zip')
@@ -130,8 +130,8 @@
 
 								<div class="mb-3">
 									<label class="form-label">State</label>
-									<input type="text" class="form-control @error('state') is-invalid @enderror" 
-										name="state" id="state" placeholder="N/A"     
+									<input type="text" class="form-control @error('state') is-invalid @enderror"
+										name="state" id="state" placeholder="N/A"
 										value="{{ old('state', $template->state ) }}"
 										required/>
 									@error('state')
@@ -148,8 +148,8 @@
 									</select>
 								</div>
 
-		   
-							
+
+
 						</div>
 					</div>
 				</div>
@@ -165,10 +165,10 @@
 							<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
 						</div>
 						<div class="card-body">
-							
+
 								<div class="mb-3">
 									<label class="form-label">Code</label>
-									<input type="text" class="form-control @error('code') is-invalid @enderror" 
+									<input type="text" class="form-control @error('code') is-invalid @enderror"
 										name="code" id="code" placeholder="XX01"
 										style="text-transform: uppercase"
 										value="{{ old('code', $template->code ) }}"
@@ -177,7 +177,7 @@
 										<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror
 								</div>
-								
+
 
 								<div class="mb-3">
 									<label class="form-label">User</label>
@@ -187,7 +187,7 @@
 										@endforeach
 									</select>
 								</div>
-				
+
 								<div class="mb-3">
 									<label class="form-label">Role</label>
 									<select class="form-control" name="my_enum" placeholder="Enum" value="user">
@@ -198,7 +198,7 @@
 									</select>
 								</div>
 
-							
+
 						</div>
 					</div>
 				</div>
@@ -212,8 +212,8 @@
 						<div class="card-body">
 							<div class="mb-3">
 								<label class="form-label">Qty</label>
-								<input type="number" class="form-control @error('qty') is-invalid @enderror" 
-									name="qty" id="qty" placeholder="1"     
+								<input type="number" class="form-control @error('qty') is-invalid @enderror"
+									name="qty" id="qty" placeholder="1"
 									value="{{ old('qty', $template->qty ) }}"
 									min="1" required/>
 								@error('qty')
@@ -223,8 +223,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">Amount</label>
-								<input type="number" class="form-control @error('amount') is-invalid @enderror" 
-									name="amount" id="amount" placeholder="XX01"     
+								<input type="number" class="form-control @error('amount') is-invalid @enderror"
+									name="amount" id="amount" placeholder="XX01"
 									value="{{ old('amount', $template->amount ) }}"
 									step='0.01' min="1" required/>
 								@error('amount')
@@ -238,7 +238,7 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
-						
+
 						</div>
 					</div>
 				</div>
@@ -276,8 +276,8 @@
 						<div class="card-body">
 							<div class="mb-3">
 								<label class="form-label">Date</label>
-								<input type="date" class="form-control @error('my_date') is-invalid @enderror" 
-									name="my_date" id="my_date" placeholder=""     
+								<input type="date" class="form-control @error('my_date') is-invalid @enderror"
+									name="my_date" id="my_date" placeholder=""
 									value="{{ old('my_date', $template->my_date->toDateString() ) }}"
 									required/>
 								@error('my_date')
@@ -287,8 +287,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">Date</label>
-								<input type="date" class="form-control @error('my_date_time') is-invalid @enderror" 
-									name="my_date_time" id="my_date_time" placeholder=""     
+								<input type="date" class="form-control @error('my_date_time') is-invalid @enderror"
+									name="my_date_time" id="my_date_time" placeholder=""
 									value="{{ old('my_date_time', $template->my_date_time->toDateString() ) }}"
 									required/>
 								@error('my_date_time')

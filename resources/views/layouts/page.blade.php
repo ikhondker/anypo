@@ -26,8 +26,8 @@
 	{{-- <div class="navbar navbar-dark bg-dark">
 		<div class="container-fluid">
 			<span class="navbar-text mx-auto py-0 text-white">
-      			AppStack for Bootstrap v5.2.3 is out now!
-    		</span>
+				AppStack for Bootstrap v5.2.3 is out now!
+			</span>
 		</div>
 	</div> --}}
 

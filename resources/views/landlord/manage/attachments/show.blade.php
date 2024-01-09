@@ -32,7 +32,7 @@
 					<x-landlord.attachment.show-by-id id="{{ $attachment->id }}"/>
 				@else
 					Missing!
-				@endif    
+				@endif
 				</div>
 			</div>
 
@@ -53,5 +53,5 @@
 	</div>
 	<!-- End Card -->
 
-	  
+
 @endsection

@@ -13,10 +13,10 @@
 			</a>
 
 			{{-- <div class="dropdown-menu dropdown-menu-end">
-			   <a class="dropdown-item" href="{{ route('prs.create') }}">Create PR</a>
-			   <a class="dropdown-item" href="{{ route('pos.create') }}">Create PO</a>
-			   <a class="dropdown-item" href="{{ route('receipts.create') }}">Create Receipt</a>
-			   <a class="dropdown-item" href="{{ route('items.create') }}">Create Item</a>
+				<a class="dropdown-item" href="{{ route('prs.create') }}">Create PR</a>
+				<a class="dropdown-item" href="{{ route('pos.create') }}">Create PO</a>
+				<a class="dropdown-item" href="{{ route('receipts.create') }}">Create Receipt</a>
+				<a class="dropdown-item" href="{{ route('items.create') }}">Create Item</a>
 			</div> --}}
 			{{ $buttons }}
 		{{-- </div> --}}

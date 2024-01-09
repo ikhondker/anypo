@@ -35,8 +35,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">PR Summary</label>
-								<input type="text" class="form-control @error('summary') is-invalid @enderror" 
-									name="summary" id="summary" placeholder="PR Summary"     
+								<input type="text" class="form-control @error('summary') is-invalid @enderror"
+									name="summary" id="summary" placeholder="PR Summary"
 									value="{{ old('summary', $pr->summary ) }}"
 									/>
 								@error('summary')
@@ -66,11 +66,11 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
-							
+
 							<x-tenant.edit.currency :value="$pr->currency"/>
 
 							{{-- <x-tenant.widgets.submit/> --}}
-							
+
 						</div>
 					</div>
 				</div>
@@ -110,7 +110,7 @@
 							<x-tenant.edit.notes :value="$pr->notes"/>
 
 							<x-tenant.widgets.submit/>
-							
+
 						</div>
 					</div>
 				</div>
@@ -119,7 +119,7 @@
 
 			<!-- widget-pr-lines -->
 			<x-tenant.widgets.pr-lines id="{{ $pr->id }}" :show="true"/>
-			
+
 	</form>
 	<!-- /.form end -->
 @endsection

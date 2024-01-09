@@ -36,7 +36,7 @@
 							@if ( $selected_prl_id == $prl->id )
 								@include('tenant.includes.pr-line-edit')
 							@else
-								
+
 								<tr class="">
 									<td class="">{{ $prl->id }}</td>
 									<td class="">{{ $prl->item->name }}</td>
@@ -46,7 +46,7 @@
 									<td class="text-end"><x-tenant.list.my-number :value="$prl->price"/></td>
 									<td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>
 									<td class="">
-										<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">Edit</a> | 
+										<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">Edit</a> |
 										<a href="{{ route('prls.destroy',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
 											<i class="align-middle" data-feather="trash-2"></i>
 										</a>
@@ -65,14 +65,14 @@
 						@endif
 						@if ($show)
 							@include('tenant.includes.pr-footer-view')
-						@endif 
-						
-							
-					   
+						@endif
+
+
+
 
 					</tbody>
 				</table>
 			</div>
 		</div>
-	</div>    
+	</div>
 {{-- ============================================================== --}}

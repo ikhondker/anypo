@@ -43,8 +43,8 @@
 						</div>
 						<!-- End Form -->
 
-						<x-landlord.show.my-text     value="{{ $category->name }}"/>
-						<x-landlord.show.my-enable   value="{{ $category->enable }}"/>
+						<x-landlord.show.my-text	value="{{ $category->name }}"/>
+						<x-landlord.show.my-enable	value="{{ $category->enable }}"/>
 					
 				</div>
 				<!-- End Body -->

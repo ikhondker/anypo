@@ -6,7 +6,7 @@
 
 	<!-- Card -->
 	<div class="card">
-		
+
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 			<h5 class="card-header-title">Visitor Contact</h5>
 			<a class="btn btn-primary btn-sm" href="{{ route('contacts.create') }}">
@@ -27,7 +27,7 @@
 
 				</tr>
 				</thead>
-		
+
 				<tbody>
 					@foreach ($contacts as $contact)
 						<tr>
@@ -46,14 +46,14 @@
 									</div>
 								</div>
 							</td>
-							
+
 							<td><x-landlord.list.my-date :value="$contact->created_at"/></td>
 							<td>{{ Str::limit($contact->subject,15) }}</td>
 							<td><x-landlord.attachment.show-by-id id="{{ $contact->attachment_id }}"/></td>
 							<td><x-landlord.list.actions object="Contact" :id="$contact->id" :export="false" :enable="false"/></td>
 						</tr>
-					@endforeach    
-			
+					@endforeach
+
 
 				</tbody>
 			</table>

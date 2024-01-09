@@ -22,13 +22,13 @@
 					<h5 class="card-title">Budget Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge    value="{{ $budget->id }}"/>
-					<x-tenant.show.my-text     value="{{ $budget->name }}"/>
-					<x-tenant.show.my-date     value="{{ $budget->start_date  }}"/>
-					<x-tenant.show.my-date     value="{{ $budget->end_date  }}"/>
-					<x-tenant.show.my-text     value="{{ $budget->name }}" label="Name"/>
-					<x-tenant.show.my-text     value="{{ $budget->notes }}" label="Notes"/>
-					<x-tenant.show.my-boolean  value="{{ $budget->freeze }}"  label="Freeze?"/>
+					<x-tenant.show.my-badge		value="{{ $budget->id }}"/>
+					<x-tenant.show.my-text		value="{{ $budget->name }}"/>
+					<x-tenant.show.my-date		value="{{ $budget->start_date  }}"/>
+					<x-tenant.show.my-date		value="{{ $budget->end_date  }}"/>
+					<x-tenant.show.my-text		value="{{ $budget->name }}" label="Name"/>
+					<x-tenant.show.my-text		value="{{ $budget->notes }}" label="Notes"/>
+					<x-tenant.show.my-boolean	value="{{ $budget->freeze }}"  label="Freeze?"/>
 				</div>
 			</div>
 
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 	<!-- end row -->
-   
+
 	@include('tenant.includes.detach-by-article')
  
 

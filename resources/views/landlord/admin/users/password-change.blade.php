@@ -10,7 +10,7 @@
 		@csrf
 		{{-- @method('PUT') --}}
 		<input type="hidden" name="id" value="{{ $user->id }}">
-		
+
 		<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 			<h5 class="card-header-title">Change Password</h5>
 			<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
@@ -18,7 +18,7 @@
 
 		<!-- Body -->
 		<div class="card-body">
-		
+
 			<!-- Form -->
 			<div class="row mb-4">
 				<label class="col-sm-3 col-form-label form-label">Profile photo</label>
@@ -65,8 +65,8 @@
 			<div class="row mb-4">
 				<label for="password1" class="col-sm-3 col-form-label form-label">Password:</label>
 				<div class="col-sm-9">
-					<input type="password" class="form-control form-control-sm @error('password1') is-invalid @enderror" 
-							name="password1" id="password1" placeholder="New Password"     
+					<input type="password" class="form-control form-control-sm @error('password1') is-invalid @enderror"
+							name="password1" id="password1" placeholder="New Password"
 							value="{{ old('password1', $user->password1  ) }}"
 							required/>
 						@error('password1')
@@ -80,8 +80,8 @@
 			 <div class="row mb-4">
 				<label for="password2" class="col-sm-3 col-form-label form-label">Confirm Password:</label>
 				<div class="col-sm-9">
-					<input type="password" class="form-control form-control-sm @error('password2') is-invalid @enderror" 
-							name="password2" id="password2" placeholder="Re-enter Password"     
+					<input type="password" class="form-control form-control-sm @error('password2') is-invalid @enderror"
+							name="password2" id="password2" placeholder="Re-enter Password"
 							value="{{ old('password2', $user->password2  ) }}"
 							required/>
 						@error('password2')
@@ -100,7 +100,7 @@
 <!-- End Card -->
 
 
-  
+
 
 
 @endsection

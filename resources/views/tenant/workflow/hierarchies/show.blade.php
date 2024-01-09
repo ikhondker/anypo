@@ -52,7 +52,7 @@
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-		   
+		
 		</div>
 		<!-- end col-6 -->
 	</div>

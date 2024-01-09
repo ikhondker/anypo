@@ -16,7 +16,7 @@
 		<div class="card-body">
 			<x-landlord.table-links/>
 
-			@foreach($filesInFolder as $path) 
+			@foreach($filesInFolder as $path)
 						@php
 							$file = pathinfo($path);
 							$f= $file['filename'] ;
@@ -57,7 +57,7 @@
 
 					@endforeach
 		</div>
-	</div>    
+	</div>
 	<!-- End Card -->
 
 @endsection

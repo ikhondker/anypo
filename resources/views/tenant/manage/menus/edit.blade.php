@@ -34,8 +34,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">Raw Route Name</label>
-								<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror" 
-									name="raw_route_name" id="raw_route_name" placeholder="Raw Route Name"     
+								<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror"
+									name="raw_route_name" id="raw_route_name" placeholder="Raw Route Name"
 									value="{{ old('raw_route_name', $menu->raw_route_name ) }}"
 									required/>
 								@error('route_name')
@@ -47,8 +47,8 @@
 
 							<div class="mb-3">
 								<label class="form-label">Route Name</label>
-								<input type="text" class="form-control @error('route_name') is-invalid @enderror" 
-									name="route_name" id="route_name" placeholder="Route Name"     
+								<input type="text" class="form-control @error('route_name') is-invalid @enderror"
+									name="route_name" id="route_name" placeholder="Route Name"
 									value="{{ old('route_name', $menu->route_name ) }}"
 									required/>
 								@error('route_name')
@@ -58,18 +58,18 @@
 
 							<div class="mb-3">
 								<label class="form-label">Node Name</label>
-								<input type="text" class="form-control @error('node_name') is-invalid @enderror" 
-									name="node_name" id="node_name" placeholder="Node Name"     
+								<input type="text" class="form-control @error('node_name') is-invalid @enderror"
+									name="node_name" id="node_name" placeholder="Node Name"
 									value="{{ old('node_name', $menu->node_name ) }}"
 									/>
 								@error('node_name')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
-							
+
 
 							<x-tenant.widgets.submit/>
-							
+
 						</div>
 					</div>
 				</div>
@@ -77,13 +77,13 @@
 
 				<div class="col-6">
 					<div class="card">
-						
+
 					</div>
 				</div>
 				<!-- end col-6 -->
 			</div>
 
-			
+
 	</form>
 	<!-- /.form end -->
 @endsection

@@ -48,7 +48,7 @@
 								<td><x-tenant.list.my-boolean :value="$hierarchy->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Hierarchy" :id="$hierarchy->id"/>
-									<a href="{{ route('hierarchies.destroy',$hierarchy->id) }}" class="me-2 modal-boolean-advance" 
+									<a href="{{ route('hierarchies.destroy',$hierarchy->id) }}" class="me-2 modal-boolean-advance"
 										data-entity="Hierarchy" data-name="{{ $hierarchy->name }}" data-status="{{ ($hierarchy->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($hierarchy->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($hierarchy->enable ? 'bell-off' : 'bell') }}"></i>
@@ -63,7 +63,7 @@
 						{{ $hierarchies->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -74,7 +74,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')    
+	 @include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

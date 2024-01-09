@@ -24,9 +24,9 @@
 							<h5 class="card-title">Empty card Test</h5>
 						</div>
 						<div class="card-body">
-							<img src="{{asset('img/anypo.png')}}" width="80px" height="45px"/> 
-							<img src="/tenancy/assets/img/anypo.png" width="80px" height="45px"/> 
-							<img src="{{ public_path('anypo.png') }}" width="80px" height="45px"/> 
+							<img src="{{asset('img/anypo.png')}}" width="80px" height="45px"/>
+							<img src="/tenancy/assets/img/anypo.png" width="80px" height="45px"/>
+							<img src="{{ public_path('anypo.png') }}" width="80px" height="45px"/>
 							<img src="/img/anypo.png" width="80px" height="45px"/>
 							<img src="{{ public_path('/img/anypo.png') }}" style="width: 80px; height: 80px">
 							<img src="{{ storage_path('app/avatar.png') }}" style="width: 80px">
@@ -40,17 +40,17 @@
 
 							<a href="/testrun" data-name="abc" data-username='uname' class="btn btn-danger delete-confirm">Delete Link</a>
 
-							
+
 							<?php
-							echo "The time is " . date("YmdHis"); 
+							echo "The time is " . date("YmdHis");
 							?>
 
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			
+
+
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
@@ -76,9 +76,9 @@
 						});
 				});
 
-			 
 
-				// sweet alert to link 
+
+				// sweet alert to link
 		$('.delete-confirm').on('click', function (e) {
 				e.preventDefault();
 				const url = $(this).attr('href');
@@ -97,7 +97,7 @@
 						}
 				});
 		});
-	
+
 
 
 
@@ -125,9 +125,9 @@
 					});
 			});
 
-			 
 
-	</script>    
+
+	</script>
 
 
 

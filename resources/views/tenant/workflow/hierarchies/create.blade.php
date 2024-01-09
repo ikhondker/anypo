@@ -32,8 +32,8 @@
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right">Hierarchy Name</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control @error('name') is-invalid @enderror" 
-									name="name" id="name" placeholder="Hierarchy Name"     
+									<input type="text" class="form-control @error('name') is-invalid @enderror"
+									name="name" id="name" placeholder="Hierarchy Name"
 									value="{{ old('name', '' ) }}"
 									required/>
 								@error('name')
@@ -116,7 +116,7 @@
 							<div class="mb-3 row">
 								<div class="col-sm-10 ml-sm-auto">
 									<x-tenant.widgets.submit/>
-								   
+
 								</div>
 							</div>
 						</form>
@@ -126,7 +126,7 @@
 			</div>
 			<!-- end col-6 -->
 			<div class="col-6">
-				
+
 			</div>
 			<!-- end col-6 -->
 		</div>

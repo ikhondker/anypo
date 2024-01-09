@@ -22,14 +22,14 @@
 					<h5 class="card-title">Project Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge    value="{{ $project->id }}"/>
-					<x-tenant.show.my-text     value="{{ $project->name }}"/>
-					<x-tenant.show.my-date     value="{{ $project->start_date  }}"/>
-					<x-tenant.show.my-date     value="{{ $project->end_date  }}"/>
-					<x-tenant.show.my-text     value="{{ $project->pm->name }}" label="Project Manager"/>
-					<x-tenant.show.my-text     value="{{ $project->notes }}" label="Notes"/>
-					<x-tenant.show.my-boolean  value="{{ $project->closed }}" label="Closed?"/>
-					<x-tenant.show.my-badge    value="{{ $project->id }}"/>
+					<x-tenant.show.my-badge		value="{{ $project->id }}"/>
+					<x-tenant.show.my-text		value="{{ $project->name }}"/>
+					<x-tenant.show.my-date		value="{{ $project->start_date  }}"/>
+					<x-tenant.show.my-date		value="{{ $project->end_date  }}"/>
+					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
+					<x-tenant.show.my-text		value="{{ $project->notes }}" label="Notes"/>
+					<x-tenant.show.my-boolean	value="{{ $project->closed }}" label="Closed?"/>
+					<x-tenant.show.my-badge		value="{{ $project->id }}"/>
 				</div>
 			</div>
 
@@ -39,10 +39,10 @@
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
-						<x-tenant.show.my-amount     value="{{ $project->amount }}"/>
-						<x-tenant.show.my-amount     value="{{ $project->amount_po_booked }}" label="PO Booked"/>
-						<x-tenant.show.my-amount     value="{{ $project->amount_po_issued }}" label="PO Issued"/>
-						<x-tenant.show.my-amount     value="{{ $project->amount - $project->amount_po_booked - $project->amount_po_issued }}" label="Available"/>
+						<x-tenant.show.my-amount	value="{{ $project->amount }}"/>
+						<x-tenant.show.my-amount	value="{{ $project->amount_po_booked }}" label="PO Booked"/>
+						<x-tenant.show.my-amount	value="{{ $project->amount_po_issued }}" label="PO Issued"/>
+						<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_po_booked - $project->amount_po_issued }}" label="Available"/>
 					</div>
 				</div>
 			</div>
@@ -98,10 +98,10 @@
 					<h5 class="card-title">Project PR</h5>
 				</div>
 				<div class="card-body">
-				<x-tenant.show.my-amount     value="{{ $project->amount }}"/>
-				<x-tenant.show.my-amount     value="{{ $project->amount_pr_booked }}"/>
-				<x-tenant.show.my-amount     value="{{ $project->amount_pr_issued }}"/>
-				<x-tenant.show.my-amount     value="{{ $project->amount - $project->amount_pr_booked - $project->amount_pr_issued }}"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount }}"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount_pr_booked }}"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount_pr_issued }}"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_pr_booked - $project->amount_pr_issued }}"/>
 				</div>
 			</div>
 
@@ -110,9 +110,9 @@
 				<h5 class="card-title">GRS</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-amount     value="{{ $project->amount }}"/>
-					<x-tenant.show.my-amount     value="{{ $project->amount_grs }}"/>
-					<x-tenant.show.my-amount     value="{{ $project->amount- $project->amount_grs }}"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount }}"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount_grs }}"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount- $project->amount_grs }}"/>
 				</div>
 			</div>
 
@@ -121,9 +121,9 @@
 				<h5 class="card-title">Payment Details</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-amount     value="{{ $project->amount }}"/>
-					<x-tenant.show.my-amount     value="{{ $project->amount_payment }}"/>
-					<x-tenant.show.my-amount     value="{{ $project->amount- $project->amount_payment }}"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount }}"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount_payment }}"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount- $project->amount_payment }}"/>
 				</div>
 			</div>
 			

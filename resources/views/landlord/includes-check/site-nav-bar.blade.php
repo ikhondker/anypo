@@ -48,7 +48,7 @@
 				<li><a href="{{ route('about') }}" class="sub-menu-item">About Us</a></li>
 				<li><a href="{{ route('contact-us') }}" class="sub-menu-item">Contact Us</a></li>
 				@auth
-			   
+			
 					@switch(auth()->user()->role->value)
 						@case(UserRoleEnum::USER->value)
 							@break

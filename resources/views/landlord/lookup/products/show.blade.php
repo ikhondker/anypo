@@ -12,13 +12,13 @@
 
 		<!-- Body -->
 		<div class="card-body">
-			<x-landlord.show.my-text     value="{{ $product->name }}" label="Product"/>
-			<x-landlord.show.my-enable   value="{{ $product->enable }}"/>
-			<x-landlord.show.my-badge    value="{{ $product->id }}" label="ID"/>
-			<x-landlord.show.my-date value="{{ $product->created_at }}" label="Created At:"/>
-			<x-landlord.show.my-date value="{{ $product->start_date }}" label="Start Date"/>
-			<x-landlord.show.my-date value="{{ $product->end_date }}" label="End Date"/>
-			<x-landlord.show.my-number value="{{  $product->price }}" label="Price"/>
+			<x-landlord.show.my-text	value="{{ $product->name }}" label="Product"/>
+			<x-landlord.show.my-enable	value="{{ $product->enable }}"/>
+			<x-landlord.show.my-badge	value="{{ $product->id }}" label="ID"/>
+			<x-landlord.show.my-date	value="{{ $product->created_at }}" label="Created At:"/>
+			<x-landlord.show.my-date	value="{{ $product->start_date }}" label="Start Date"/>
+			<x-landlord.show.my-date	value="{{ $product->end_date }}" label="End Date"/>
+			<x-landlord.show.my-number	value="{{  $product->price }}" label="Price"/>
 
 		</div>
 		<!-- End Body -->

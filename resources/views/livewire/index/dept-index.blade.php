@@ -4,7 +4,7 @@
 	</div>
 	<div class="card-body">
 	  
-	   <table class="table">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -38,7 +38,7 @@
 			{{ $depts->links() }}
 		</div>
 		<!-- end pagination -->
-	   
+	
 	</div>
 	<!-- end card-body -->
 
