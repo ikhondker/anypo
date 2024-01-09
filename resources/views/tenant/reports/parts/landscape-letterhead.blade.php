@@ -8,9 +8,9 @@
 	</div>
 	<div id="company">
 		<h2 class="name">{{ $report->name }}</h2>
-		<div>Parameter 1</div>
-		<div>parameter 2</div>
-		<div><small>Report Date {{ strtoupper(date('d-M-Y H:i:s', strtotime(now()))) }}<small></div>
+		<div>{{ $param1 }}</div>
+		<div>{{ $param2 }}</div>
+		{{-- <div><small>Report Date {{ strtoupper(date('d-M-Y H:i:s', strtotime(now()))) }}<small></div> --}}
 		{{-- <div>{{ $setup->cell }} {{ $setup->email }}</div>	 --}}
 		{{-- <div>{{ $setup->email }}</div>	 --}}
 		{{-- <div>{{ $setup->website }}</div> --}}

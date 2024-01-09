@@ -7,7 +7,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
 
 	<!-- ========== STYLE ========== -->
-	@include('tenant.reports.landscape-css')
+	@include('tenant.reports.portrait-css')
 	<!-- ========== STYLE ========== -->
 
 	</head>

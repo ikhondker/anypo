@@ -101,6 +101,11 @@
 	<td class="">
 		<div class="mb-3 float-end">
 			<a class="btn btn-secondary" href="{{ url()->previous() }}"><i data-feather="x-circle"></i> Cancel</a>
+			<button type="submit" name="action" value="save">Save</button>
+    
+			{{-- <button type="submit" name="action" value="preview">Preview</button>
+    		<button type="submit" name="action" value="advanced_edit">Advanced edit</button> --}}
+
 			<button type="submit" id="submit" name="submit" class="btn btn-primary"><i data-feather="save"></i> Save and Add Line</button>
 		</div>
 	</td>

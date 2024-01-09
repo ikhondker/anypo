@@ -162,7 +162,7 @@ class ReportController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function r1006($start_date, $end_date,$id='1004')
+	public function r1006($start_date, $end_date, $id='1004')
 	{
 		
 		// NOTE: Uses InvoicePolicy
@@ -175,17 +175,25 @@ class ReportController extends Controller
 		$report 	= Report::where('id', '1006')->firstOrFail();
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$supplier 	= Supplier::where('id', $pr->supplier_id)->firstOrFail();
-		//$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
-		$prls 		= Prl::with('item')->get()->all();
-		
+		//$prls 	= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
+		//$prls 		= Prl::with('pr')->with('item')->get()->all();
+		//$prls = DB::select("SELECT * FROM prls");
+		$prls = DB::select("
+			SELECT p.id pr_id, p.pr_date,p.auth_status, 
+			l.line_num,l.summary, l.item_id, l.qty, l.price, l.amount FROM prs p , prls l 
+			WHERE p.id =l.pr_id
+			AND p.pr_date BETWEEN '".$start_date."' AND '".$end_date."'
+		");
+
 		//return view('tenant.reports.formats.1006', compact('setup','pr','prls','supplier','report'));
 
 		$data = [
+			'param1' 	=> 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date))),
+			'param2' 	=> 'empty',
 			'setup' 	=> $setup,
 			'report' 	=> $report,
-			'pr' 		=> $pr,
+			//'pr' 		=> $pr,
 			'prls' 		=> $prls,
-
 		];
 
 		$pdf = PDF::loadView('tenant.reports.formats.1006', $data);
@@ -193,7 +201,7 @@ class ReportController extends Controller
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
 
-		return $pdf->stream('Pr'.$pr->id.'.pdf');
+		return $pdf->stream('Prl'.$pr->id.'.pdf');
 	}
 
 	public function pr($id)
@@ -211,7 +219,7 @@ class ReportController extends Controller
 		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
 		$prls = Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 		
-		//return view('tenant.reports.formats.invoice', compact('setup','pr','prls','supplier'));
+		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
 
 		$data = [
 			//'title' 	=> 'Company XYZ',
@@ -223,7 +231,7 @@ class ReportController extends Controller
 			'prls' 		=> $prls,
 		];
 		
-		$pdf = PDF::loadView('tenant.reports.formats.invoice', $data);
+		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
 			// ->setOption('fontDir', public_path('/fonts/lato'));
 
 		// (Optional) Setup the paper size and orientation

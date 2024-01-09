@@ -157,6 +157,17 @@ class Pr extends Model
 		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
 	}
 
+	/**
+	 * Scope a query to only All Draft PR for current dept.
+	*/
+	public function scopeCreatedBetweenDates(Builder $query): void
+	{
+		$query->whereDate('pr_date', '>=', $dates[0])
+        ->whereDate('pr_date', '<=', $dates[1]);
+
+		
+	}
+
 
 	/* ----------------- Functions ---------------------- */
 	

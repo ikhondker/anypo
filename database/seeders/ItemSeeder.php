@@ -16,7 +16,7 @@ class ItemSeeder extends Seeder
 	public function run(): void
 	{
 		//Item::factory()->count(10)->create();
-	
+		//TODO change item code to laptop/tables/mobile etc..
 		$items =  [
 			[
 				'name'			=> 'Tax',
