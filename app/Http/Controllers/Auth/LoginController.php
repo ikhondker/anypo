@@ -120,10 +120,6 @@ class LoginController extends Controller
 	// logout if account error for user/admin/agent/manager
 	public function xxredirectTo()
 	{
-		// I have just need to redirect to strings, not using the route() method.
-		//redirect('/home/dashboard');
-		//auth()->user()->notify(new StatusNotification());
-
 		// redirect to error page if account_id is not set
 		if (((auth()->user()->role->value === 'user') || (auth()->user()->role->value === 'admin')) && (is_null(auth()->user()->account_id))) {
 			Session::flush();
@@ -134,8 +130,6 @@ class LoginController extends Controller
 			Auth::logout();
 			return 'account-linked/';
 		} else {
-			//Auth::user()->last_login_at = new DateTime();
-			//Auth::user()->save();
 			return 'dashboards/';
 		}
 	}
@@ -144,7 +138,6 @@ class LoginController extends Controller
 	//added to overwrite the login credentials
 	protected function credentials(Request $request)
 	{
-		//Log::debug('I am here!');
 		return [
 			'email'	 	=> request()->email,
 			'password' => request()->password,

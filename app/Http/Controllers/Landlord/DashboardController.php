@@ -77,10 +77,13 @@ class DashboardController extends Controller
 				break;
 			default:
 				return self::userDashboard();
-				Log::debug("Other roles!");
+				Log::debug('Other roles= '. auth()->user()->role->value);
+
+				
 		}
 	}
 
+	
 	private function userDashboard()
 	{
 

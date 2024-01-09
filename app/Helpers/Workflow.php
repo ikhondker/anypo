@@ -21,9 +21,7 @@
 namespace App\Helpers;
 
 use Request;
-#use App\Models\Tenant\Activity as LogActivityModel;
 
-//use App\Models\Entity;
 use App\Models\User;
 use App\Models\Tenant\Pr;
 
@@ -44,9 +42,6 @@ use App\Enum\WflActionEnum;
 use DB;
 use Notification;
 
-//use App\Notifications\TicketCreated;
-//use App\Notifications\TicketUpdated;
-
 class Workflow
 {
 	public static function submitWf($entity, $article_id)
@@ -55,10 +50,6 @@ class Workflow
 		// wf_key is not used
 		//$entity = Entity::where('entity',$entity)->first();
 		//$wf_key = $doc_type->wf_key;
-
-		// get dept id of the emp
-		//$emp = Emp::where('id',$emp_id)->first();
-		//$dept_id = $emp->dept_id;
 
 		switch ($entity) {
 			case EntityEnum::PR->value:
@@ -93,15 +84,11 @@ class Workflow
 
 			// create WF header row
 			$wf					= new Wf();
-			//$wf->wf_key		= $wf_key;
 			$wf->entity			= $entity;
 			$wf->article_id		= $article_id;
 			$wf->hierarchy_id	= $hierarchy_id;
 			$wf->save();
 			$wf_id				= $wf->id;
-
-			// insert into wf child
-			//Log::debug("Inserting into wfds");
 
 			// Insert submission row first TODO
 			DB::INSERT("INSERT INTO wfls(wf_id, performer_id, action_date, action, notes) 
@@ -117,7 +104,7 @@ class Workflow
 		return $wf_id;
 	}
 
-	// check if curerent logged-in user can approve current document
+	// check if current logged-in user can approve current document
 	public static function allowApprove($wf_id)
 	{
 		try {
@@ -139,20 +126,6 @@ class Workflow
 			return 0;
 		}
 	}
-
-
-	// Check if any more approver exists who need to approve document
-	public static function xxgetApprover($wf_id)
-	{
-		try {
-			// get next approver
-			$wfd = Wfl::where('wf_id', $wf_id)->where('action', 'PENDING')->firstOrFail();
-			return true;
-		} catch (ModelNotFoundException $exception) {
-			return false;
-		}
-	}
-
 
 	public static function TBDnotifyApprover($wf_id)
 	{

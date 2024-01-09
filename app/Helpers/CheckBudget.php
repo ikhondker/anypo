@@ -43,16 +43,14 @@ class CheckBudget
 {
 	public static function checkAndBookPr($pr_id)
 	{
-		//Log::debug("Inside bookBudget");
+		
 		$pr = Pr::where('id', $pr_id)->first();
 
 		// check if dept_budget for this year exists
-
 		// increase booking
 
 		// check if budget for this year exists
 		$fy = Carbon::now()->format('Y');
-		//Log::debug("fy".$fy);
 		try {
 			$budget = Budget::primary()->where('fy', $fy)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
@@ -71,14 +69,12 @@ class CheckBudget
 			return 'E002';
 		}
 
-		// check if budget is available
+		// check if budget is available then update dept_budget
 		if (($dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr_issued) > $pr->fc_amount) {
 			// book pr budget
-			//Log::debug("Updating dept_budget");
 			$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked + $pr->fc_amount;
 			$dept_budget->save();
 
-			//Log::debug("Updating budget");
 			$budget->amount_pr_booked = $budget->amount_pr_booked + $pr->fc_amount;
 			$budget->save();
 		} else {
@@ -101,8 +97,6 @@ class CheckBudget
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked - $pr->fc_amount;
 		$dept_budget->save();
-
-
 
 		$budget = Budget::primary()->where('id', $dept_budget->budget_id)->firstOrFail();
 		$budget->amount_pr_booked = $budget->amount_pr_booked - $pr->fc_amount;

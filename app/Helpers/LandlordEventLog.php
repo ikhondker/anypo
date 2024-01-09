@@ -28,21 +28,17 @@ use Illuminate\Support\Facades\Log;
 
 use App\Enum\UserRoleEnum;
 
-// $table->enum('role', ['emp','tl','hr','finance','hradmin','management','support','admin','system'])->default('emp');
-
-//use App\Helpers\EventLog;
-//EventLog::event('user',$user->id,'update','name', $request->name);
-//EventLog::event('user',$user->id,'create');
-
+// 	Sample Logo
+//	EventLog::event('user',$user->id,'update','name', $request->name);
+//	EventLog::event('user',$user->id,'create');
+// 	LogEvent('template',$template->id,'create','column',$template->id);
 
 class LandlordEventLog
 {
-	// Write Event Log
-	// LogEvent('template',$template->id,'create','colname',$template->id);
+	
 	public static function event($object_name, $object_id = 0, $event_name = null, $column_name = null, $prior_value = null, $object_type = "C")
 	{
 		$log				= [];
-		//$log['account_id']= auth()->user()->account_id;
 		$log['account_id']	= auth()->check() ? auth()->user()->account_id : '1000';
 		$log['object_name'] = $object_name;
 		$log['object_id']	= $object_id;

@@ -146,7 +146,6 @@ class CommentController extends Controller
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
 			$ticket->status_code = LandlordTicketStatusEnum::PENDING->value;
 			$ticket->update();
-			//Log::debug("user updated ticket!");
 			if ($ticket->agent_id <> ''){
 				// Send notification to Assigned Agent if customer updates the ticket
 				$agent = User::where('id',$ticket->agent_id )->first();
@@ -180,7 +179,8 @@ class CommentController extends Controller
 					return redirect()->route('tickets.show',$request->input('ticket_id'))->with('success','Ticket Closed successfully');
 					break;
 				default:
-					Log::debug("Invalid status_code=". $status_code);
+					Log::channel('bo')->info('landlord.comment.store Invalid status_code='. $status_code);
+				
 			}
 		} else {
 			Log::debug("Not an Front Office or Back Office! role=". auth()->user()->role->value ." Ticket=". $request->input('ticket_id') );

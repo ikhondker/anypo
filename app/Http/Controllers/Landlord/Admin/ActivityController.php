@@ -27,7 +27,6 @@ use App\Http\Requests\Landlord\Admin\UpdateActivityRequest;
 // Models
 use App\Models\Landlord\Admin\Activity;
 
-
 // Enums
 use App\Enum\UserRoleEnum;
 

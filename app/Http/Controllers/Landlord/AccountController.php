@@ -198,9 +198,8 @@ class AccountController extends Controller
 	{
 
 		$account_id = $account->id;
-		Log::debug("Deleting Account id=" . $account_id);
+		Log::channel('bo')->info('Deleting Account id=' . $account_id);
 
-		Log::debug("Delete Tickets =");
 		$tickets = Ticket::where('account_id', $account_id)->get();
 		$tickets->each(function ($tickets) {
 			$tickets->comments()->delete();
@@ -216,32 +215,28 @@ class AccountController extends Controller
 		//Log::debug("Ticket Deleted =". $result);
 
 		$result = Payment::where('account_id', $account_id)->delete();
-		Log::debug("Payment Deleted =" . $result);
+		Log::channel('bo')->info('Payment Deleted =' . $result);
 
 		$result = Invoice::where('account_id', $account_id)->delete();
-		Log::debug("Invoice Deleted =" . $result);
+		Log::channel('bo')->info('Invoice Deleted =' . $result);
 
 		$result = Service::where('account_id', $account_id)->delete();
-		Log::debug("Service Deleted =" . $result);
+		Log::channel('bo')->info('Service Deleted =' . $result);
 
 		$result = Checkout::where('account_id', $account_id)->delete();
-		Log::debug("Checkout Deleted =" . $result);
+		Log::channel('bo')->info('Checkout Deleted =' . $result);
 
 		$result = Domain::where('tenant_id', $account->site)->delete();
-		Log::debug("Domain Deleted =" . $result);
+		Log::channel('bo')->info('Domain Deleted =' . $result);
 
 		$result = Tenant::where('id', $account->site)->delete();
-		Log::debug("Tenant Deleted =" . $result);
-
-
-
+		Log::channel('bo')->info('Tenant Deleted =' . $result);
 
 		$result = Account::where('id', $account_id)->delete();
-		Log::debug("Account Deleted =" . $result);
+		Log::channel('bo')->info('Account Deleted =' . $result);
 
 		$result = User::where('account_id', $account->id)->delete();
-		Log::debug("User Deleted =" . $result);
-
+		Log::channel('bo')->info('User Deleted =' . $result);
 
 		return redirect()->route('accounts.index')->with('success', 'Account Deleted successfully');
 	}
@@ -300,11 +295,6 @@ class AccountController extends Controller
 		$accountService->account_id		= $account_id;
 		$accountService->owner_id		= auth()->user()->id;
 
-		// $accountService->base_mnth	= $service->mnth;
-		// $accountService->base_user	= $service->user;
-		// $accountService->base_gb		= $service->gb;
-		// $accountService->base_price	= $service->price;
-
 		$accountService->mnth			= $service->mnth;
 		$accountService->user			= $service->user;
 		$accountService->gb				= $service->gb;
@@ -334,7 +324,6 @@ class AccountController extends Controller
 
 		$account->save();
 		LandlordEventLog::event('account', $account->id, 'updated');
-		//Log::debug('Account updated id='. $account->id);
 
 		// Send notification on service upgrade
 		$user = User::where('id', auth()->user()->id)->first();
@@ -348,7 +337,8 @@ class AccountController extends Controller
 	*/
 	public function addAddon($account_id, $addon_id)
 	{
-		Log::debug("Buying new addon account=" . $account_id . " product_id=" . $addon_id);
+
+		Log::channel('bo')->info('Buying new addon account='. $account_id . ' product_id=' . $addon_id);
 
 		// add addon to Service
 		$addon = Product::where('id', $addon_id)
@@ -359,20 +349,17 @@ class AccountController extends Controller
 		// update account with user+GB+service name
 		$account		= Account::where('id', $account_id)->first();
 
-		Log::debug('account->user =' . $account->user);
-		Log::debug('account->gb =' . $account->gb);
-		Log::debug('account->price =' . $account->price);
+		// Log::debug('account->user =' . $account->user);
+		// Log::debug('account->gb =' . $account->gb);
+		// Log::debug('account->price =' . $account->price);
 
 
 		$account->user		= $account->user + $addon->user;
 		$account->gb		= $account->gb + $addon->gb;
 		$account->price		= $account->price + $addon->price;
 		$account->save();
-		Log::debug('Account qty updated for account_id=' . $account->id);
+		Log::channel('bo')->info('Account qty updated for account_id=' .  $account->id);
 
-		Log::debug('addon->user =' . $addon->user);
-		Log::debug('addon->gb =' . $addon->gb);
-		Log::debug('addon->price =' . $addon->price);
 
 		LandlordEventLog::event('account', $account->id, 'update', 'user', $account->user);
 		LandlordEventLog::event('account', $account->id, 'update', 'gb', $account->gb);
@@ -393,7 +380,9 @@ class AccountController extends Controller
 
 		$service->start_date	= now();
 		$service->save();
-		Log::debug('New Service added =' . $service->id);
+
+		Log::channel('bo')->info('New Service added=' .  $service->id);
+
 		LandlordEventLog::event('service', $service->id, 'created');
 
 		// Send notification on add-on bought

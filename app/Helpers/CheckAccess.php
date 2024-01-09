@@ -28,42 +28,15 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 
-// $table->enum('role', ['emp','tl','hr','finance','hradmin','management','support','admin','system'])->default('emp');
 // Enums
 use App\Enum\UserRoleEnum;
 
 class CheckAccess
 {
-	public static function xxisBackOffice($role)
-	{
-		switch($role) {
-			case(UserRoleEnum::SUPPORT->value):
-				return true;
-				break;
-			case(UserRoleEnum::SUPERVISOR->value):
-				return true;
-				break;
-			case(UserRoleEnum::SYSTEM->value):
-				return true;
-				break;
-			default:
-				return false;
-		}
-	}
-
-	public static function xxisSystem($role)
-	{
-		switch($role) {
-			case(UserRoleEnum::SYSTEM->value):
-				return true;
-				break;
-			default:
-				return false;
-		}
-	}
 
 
-	public static function aboveAdmin($role)
+
+	public static function xxaboveAdmin($role)
 	{
 		switch($role) {
 			case(UserRoleEnum::ADMIN->value):
@@ -83,7 +56,7 @@ class CheckAccess
 		}
 	}
 
-	public static function aboveManager($role)
+	public static function xxaboveManager($role)
 	{
 		switch($role) {
 			case(UserRoleEnum::MANAGER->value):
@@ -96,33 +69,6 @@ class CheckAccess
 				return true;
 				break;
 			case(UserRoleEnum::SUPPORT->value):
-				return true;
-				break;
-			default:
-				return false;
-		}
-	}
-
-	// Not used yet
-	public static function xxisPrivileged($role)
-	{
-		switch($role) {
-			case(UserRoleEnum::BUYER->value):
-				return true;
-				break;
-			case(UserRoleEnum::MANAGER->value):
-				return true;
-				break;
-			case(UserRoleEnum::HOD->value):
-				return true;
-				break;
-			case(UserRoleEnum::CXO->value):
-				return true;
-				break;
-			case(UserRoleEnum::ADMIN->value):
-				return true;
-				break;
-			case(UserRoleEnum::SYSTEM->value):
 				return true;
 				break;
 			default:

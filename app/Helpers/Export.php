@@ -24,16 +24,7 @@ class Export
 {
 	public static function csv($filename, $data)
 	{
-		//$data = json_decode(json_encode(DB::select('CALL get_users_unpaid_invoices')), True);
-
-		// $data = array(
-		//     array("firstname" => "Mary", "lastname" => "Johnson", "age" => 25),
-		//     array("firstname" => "Amanda", "lastname" => "Miller", "age" => 18),
-		// );
-
-		//$data = Prototype::all()->toArray();
-		//$data = Uom::all('uom', 'name', 'enable','created_by','created_at','updated_by','updated_at')->toArray();
-
+		
 		function cleanData(&$str)
 		{
 			if ($str == 't') {

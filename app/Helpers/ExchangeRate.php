@@ -42,7 +42,7 @@ class ExchangeRate
 {
 	public static function getRate($currency, $fc_currency)
 	{
-		// check if budget for this year exists
+		// check if rate  exists
 		$rate = 0;
 		try {
 			$rate = Rate::where('rate_date', Carbon::now()->startOfMonth())

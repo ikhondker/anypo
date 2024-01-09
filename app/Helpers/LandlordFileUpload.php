@@ -45,15 +45,11 @@ class LandlordFileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		//Log::debug('fileName='.$fileName);
-		//Log::debug('org_fileName='.$org_fileName);
-
 		// get entity and subdir
 		$entity 		= Entity::where('entity', $request->entity)->first();
 		$subdir 		= $entity->subdir;
 
 		// OK. Store File in Storage Private Folder. Auto create folder
-		//$request->file_to_upload->storeAs('private/pr/', $fileName);
 		$request->file_to_upload->storeAs('private/' . $subdir . '/', $fileName);
 
 		// create Attachment record TODO rewrite
@@ -63,7 +59,6 @@ class LandlordFileUpload
 		$attachment->file_entity 	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
 
 		$attachment->owner_id		= auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
-		// $attachment->emp_id		= ($request->has('emp_id')) ? $request->emp_id : Auth::user()->emp_id;
 
 		$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No Details';
 		$attachment->file_name		= $fileName;
@@ -71,7 +66,6 @@ class LandlordFileUpload
 		$attachment->file_type	 	= $request->file('file_to_upload')->getMimeType();
 		$attachment->file_size	 	= $request->file('file_to_upload')->getSize();
 		$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
-		//$attachment = Attachment::create($input);
 
 		$attachment->save();
 
@@ -96,9 +90,6 @@ class LandlordFileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		//Log::debug('fileName='.$fileName);
-		//Log::debug('org_fileName='.$org_fileName);
-
 		// get entity and subdir
 		$subdir 		= 'profile';
 
@@ -120,8 +111,6 @@ class LandlordFileUpload
 			exit;
 		}
 
-		// check on-hand stock
-		// show <img src="{{ asset('/landlord/profile/643d1fe033c85.PNG') }}" style="height: 50px;width:100px;">
 		return true;
 	}
 
@@ -133,17 +122,14 @@ class LandlordFileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		//Log::debug('fileName='.$fileName);
-		//Log::debug('org_fileName='.$org_fileName);
-
 		// get entity and subdir
 		$subdir 		= 'profile';
 
 		try {
 			// OK. Store File in Storage Private Folder. Auto create folder
 			//$request->file_to_upload->storeAs('private/pr/', $fileName);
-			$request->file_to_upload->storeAs('public/' . $subdir . '/', $fileName);
 			//$request->file_to_upload->move(public_path('landlord/'.$subdir), $fileName);
+			$request->file_to_upload->storeAs('public/' . $subdir . '/', $fileName);
 
 		} catch (Exception $e) {
 
@@ -160,11 +146,6 @@ class LandlordFileUpload
 			exit;
 		}
 
-		// check on-hand stock
-		//$user = User::find($request->user_id);
-		// update profile photo
-		//$user->photo = $fileName;
-		//$user->save();
-		return 1;
+		return true;
 	}
 }

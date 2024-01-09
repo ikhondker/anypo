@@ -22,8 +22,6 @@ namespace App\Helpers;
 use DB;
 use File;
 use Str;
-//use App\Notifications\TicketCreated;
-//use App\Notifications\TicketUpdated;
 
 class Docs
 {
@@ -42,51 +40,19 @@ class Docs
 
 
 		$data = array();
-		
-		// $array = array(
-		// 	0 => array(
-		// 		'name' => 'John Doe',
-		// 		'email' => 'john@example.com'
-		// 	),
-		// 	1 => array(
-		// 		'name' => 'Jane Doe',
-		// 		'email' => 'jane@example.com'
-		// 	),
-		// );
-		
-		// foreach ( $array  as $groupid => $fields) {
-		// 	echo "hi element ". $groupid . "\n";
-		// 	echo ". name is ". $fields['name'] . "\n";
-		// 	echo ". email is ". $fields['email'] . "\n";
-		// }
-
-		// exit;
-		// $array[0] = array();
-		// $array[0]['name'] = 'John Doe';
-		// $array[0]['email'] = 'john@example.com';
-
-		// $array[1] = array();
-		// $array[1]['name'] = 'Jane Doe';
-		// $array[1]['email'] = 'jane@example.com';
-
 		$i=0;
 
 		foreach($filesInFolder as $path) {
 			$file = pathinfo($path);
 			$f= $file['filename'] ;
 			$b= $file['basename'] ;
-			//$t= $file['mTime'];
 
-			//$file = pathinfo($path);
-			//echo $file['filename'] .'<br>' ;
 			$fname = $file['filename'];
 			$bname = $file['basename'];
 			$dname = substr($file['dirname'],strlen(base_path()));
 
 
 			$last_modified=File::lastModified($path);
-			//$t = $t1->toDateTimeString();
-			//$t=gmdate("Y-m-d\TH:i:s\Z", $t1)->diffForHumans();
 			// ok
 			//$t = Carbon::createFromTimestamp($t1)->format('m/d/Y');
 			$last_modified_human= \Carbon\Carbon::parse($last_modified)->diffForHumans();
@@ -110,7 +76,6 @@ class Docs
 			$i=$i+1;
 		}
 		return $data;
-		//return $filesInFolder;
 	}
 
 	public static function messages($folder)
@@ -127,7 +92,6 @@ class Docs
 			// echo $file['filename'] .'<br>' ;	// ActivityController
 
 			$f = $file['dirname'] . "\\" . $file['basename'];
-			//Log::debug('file= '. $f);
 
 			echo '-------------------------------------<br>';
 			echo $f . '<br>';

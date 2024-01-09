@@ -45,9 +45,6 @@ class FileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		//Log::debug('fileName='.$fileName);
-		//Log::debug('org_fileName='.$org_fileName);
-
 		// get entity and subdirectory to upload
 		$entity 		= Entity::where('entity', $request->entity)->first();
 		$subdir 		= $entity->subdir;
@@ -71,7 +68,6 @@ class FileUpload
 		$attachment->file_type		= $request->file('file_to_upload')->getMimeType();
 		$attachment->file_size		= $request->file('file_to_upload')->getSize();
 		$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
-		//$attachment = Attachment::create($input);
 
 		$attachment->save();
 
@@ -96,8 +92,6 @@ class FileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		//Log::debug('fileName='.$fileName);
-		//Log::debug('org_fileName='.$org_fileName);
 
 		// get entity and subdir
 		$subdir 		= 'profile';
@@ -121,8 +115,6 @@ class FileUpload
 			exit;
 		}
 
-		// check on-hand stock
-		// show <img src="{{ asset('/landlord/profile/643d1fe033c85.PNG') }}" style="height: 50px;width:100px;">
 		return true;
 	}
 
@@ -135,8 +127,6 @@ class FileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		//Log::debug('fileName='.$fileName);
-		//Log::debug('org_fileName='.$org_fileName);
 
 		// get entity and subdir
 		$subdir 		= 'logo';
@@ -146,8 +136,8 @@ class FileUpload
 			//$request->file_to_upload->storeAs('private/pr/', $fileName);
 			//$request->file_to_upload->storeAs('private/'.$subdir.'/', $fileName);
 			//$request->file_to_upload->storeAs($subdir.'/', $fileName);
-			$request->file_to_upload->storeAs('/', $fileName);
 			//$request->file_to_upload->move(public_path('landlord/'.$subdir), $fileName);
+			$request->file_to_upload->storeAs('/', $fileName);
 
 		} catch (Exception $e) {
 
@@ -163,13 +153,8 @@ class FileUpload
 
 			exit;
 		}
-
-		// check on-hand stock
-		//$user = User::find($request->user_id);
-		// update profile photo
-		//$user->photo = $fileName;
-		//$user->save();
-		return 1;
+	
+		return true;
 	}
 
 	// user in SetupController

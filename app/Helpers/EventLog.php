@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Log;
 
 use App\Enum\UserRoleEnum;
 
-// $table->enum('role', ['emp','tl','hr','finance','hradmin','management','support','admin','system'])->default('emp');
 
 //use App\Helpers\EventLog;
 //EventLog::event('user',$user->id,'update','name', $request->name);

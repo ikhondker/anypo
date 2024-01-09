@@ -97,15 +97,6 @@ class RegisterController extends Controller
 	{
 
 		// sign up mail https://codelapan.com/post/send-welcome-email-notification-after-user-register-in-laravel-8
-		// return User::create([
-		//     'name' => $data['name'],
-		//     'email' => $data['email'],
-		//     'password' => Hash::make($data['password']),
-		// ]);
-
-		//Log::debug('I am inside create');
-		//Log::debug('name='.$data['name']);
-
 		// uncomment check tenant or landlord
 		$user = User::create([
 			'name'		=> $data['name'],
