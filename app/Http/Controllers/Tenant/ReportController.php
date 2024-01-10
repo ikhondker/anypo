@@ -189,14 +189,14 @@ class ReportController extends Controller
 
 		$data = [
 			'param1' 	=> 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date))),
-			'param2' 	=> 'empty',
-			'setup' 	=> $setup,
+			'param2' 	=> '',
+			//'setup' 	=> $setup,
 			'report' 	=> $report,
 			//'pr' 		=> $pr,
 			'prls' 		=> $prls,
 		];
 
-		$pdf = PDF::loadView('tenant.reports.formats.1006', $data);
+		$pdf = PDF::loadView('tenant.reports.formats.1006a', $data);
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();

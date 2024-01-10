@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
+use App\Models\Tenant\Manage\UomClass;
+
 use Illuminate\Database\Eloquent\Builder;
 
 class Uom extends Model
@@ -39,11 +41,10 @@ class Uom extends Model
 	
 	/* ----------------- HasMany ------------------------ */
 
-	public function item(): HasMany
-	{
-		return $this->hasMany(Item::class, 'uom_id');
-	}
+	
 
 	/* ---------------- belongsTo ---------------------- */
-
+	public function uom_class(){
+		return $this->belongsTo(UomClass::class,'uom_class_id');
+	}
 }

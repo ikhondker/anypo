@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('projects', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('name');
+			$table->string('name')->unique();
 			$table->string('code')->unique()->nullable();
 			$table->foreignId('pm_id')->constrained('users')->nullable();
 			$table->dateTime('start_date', $precision = 0)->nullable()->useCurrent();

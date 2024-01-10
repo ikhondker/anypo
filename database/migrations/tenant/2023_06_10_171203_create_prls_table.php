@@ -21,6 +21,7 @@ return new class extends Migration
 			//$table->foreignId('project_id')->nullable()->constrained('projects');
 			$table->string('summary');
 			$table->foreignId('item_id')->constrained('items');
+			$table->foreignId('uom_id')->constrained('uoms');
 			$table->text('notes')->nullable();
 			$table->float('qty')->default(1);
 			//$table->foreignId('uom_id')->constrained('uoms');

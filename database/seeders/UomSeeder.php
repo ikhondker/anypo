@@ -26,25 +26,32 @@ class UomSeeder extends Seeder
 			// 	'name'	=> 'Each',
 			// ],
 			[
-				'id' 	=> 1001,
-				'name' => 'Pcs',
+				'id' 			=> 1001,
+				'name' 			=> 'Pcs',
+				'uom_class_id' 	=> '1001',
+				
 			],
 			[
-				'id' 	=> 1002,
-				'name' => 'Kg',
+				'id' 			=> 1002,
+				'name' 			=> 'Meter',
+				'uom_class_id' 	=> '1002',
 			],
 			[
-				'id' 	=> 1003,
-				'name' => 'Meter',
+				'id' 			=> 1003,
+				'name' 			=> 'Kg',
+				'uom_class_id' 	=> '1003',
 			],
 			[
-				'id' 	=> 1004,
-				'name' => 'Day',
+				'id' 			=> 1004,
+				'name' 			=> 'Litre',
+				'uom_class_id' 	=> '1004',
 			],
 			[
-				'id' 	=> 1005,
-				'name' => 'Litre',
+				'id' 			=> 1005,
+				'name' 			=> 'Day',
+				'uom_class_id' 	=> '1005',
 			],
+			
 
 		];
 		//
