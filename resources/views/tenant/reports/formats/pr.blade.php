@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Invoice</title>
+		<title>Requisition</title>
 		{{-- <link rel="stylesheet" href="style.css" media="all" /> --}}
 		<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
 

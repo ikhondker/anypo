@@ -34,10 +34,9 @@
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
-								<th>Class</th>
 								<th>Default</th>
 								<th>Conversion</th>
-								
+								<th>UoM Class</th>
 								<th>Enable</th>
 								<th>Action</th>
 							</tr>
@@ -47,9 +46,9 @@
 							<tr>
 								<td>{{ $uom->id }}</td>
 								<td>{{ $uom->name }}</td>
-								<td>{{ $uom->uom_class->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$uom->default"/></td>
 								<td>{{ number_format($uom->conversion, 4)  }}</td>
+								<td>{{ $uom->uom_class->name }}</td>
 
 								<td><x-tenant.list.my-boolean :value="$uom->enable"/></td>
 								<td class="table-action">

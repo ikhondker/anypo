@@ -1,7 +1,6 @@
 <tr class="">
 	<td class="">
 		<input type="text" name="pr_id" id="pr_id" class="form-control" placeholder="ID" value="{{ old('pr_id', $pr->id ) }}" hidden>
-
 		<a href="#" class="btn btn-primary float-start"><i class="fas fa-edit"></i></a>
 	</td>
 	<td class="">
@@ -23,7 +22,13 @@
 			<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
-	<td class="">11</td>
+	<td class="">
+		<select class="form-control" name="uom_id">
+			@foreach ($uoms as $uom)
+				<option {{ $uom->id == old('uom_id',$prl->uom_id) ? 'selected' : '' }} value="{{ $uom->id }}">{{ $uom->name }} </option>
+			@endforeach
+		</select>
+	</td>
 	<td class="text-end">
 		<input type="number" class="form-control @error('qty') is-invalid @enderror"
 			style="text-align: right;" min="1"

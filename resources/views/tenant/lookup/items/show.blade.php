@@ -26,6 +26,7 @@
 					<x-tenant.show.my-text		value="{{ $item->relGlType->name }}" label="Gl Type"/>
 					<x-tenant.show.my-text		value="{{ $item->category->name }}" label="Category"/>
 					<x-tenant.show.my-text		value="{{ $item->oem->name }}" label="OEM"/>
+					<x-tenant.show.my-text		value="{{ $item->uom_class->name }}" label="UoM Class"/>	
 					<x-tenant.show.my-text		value="{{ $item->uom->name }}" label="UoM"/>
 					<x-tenant.show.my-number	value="{{ $item->price }}" label="Price"/>
 					<x-tenant.show.my-badge		value="{{ $item->id }}" label="ID"/>

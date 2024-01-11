@@ -26,7 +26,8 @@ class ItemSeeder extends Seeder
 				'reorder'		=> 99999999,
 				'category_id'	=> 1002,
 				'oem_id'		=> 1001,
-				//'uom_id'		=> 1001,
+				'uom_class_id'	=> 1001,
+				'uom_id'		=> 1001,
 			],
 			[
 				'name'			=> 'GST',
@@ -36,7 +37,8 @@ class ItemSeeder extends Seeder
 				'reorder'		=> 99999999,
 				'category_id'	=> 1002,
 				'oem_id'		=> 1001,
-				//'uom_id'		=> 1001,
+				'uom_class_id'	=> 1001,
+				'uom_id'		=> 1001,
 			],
 			[
 				'name'			=> 'Shipping',
@@ -46,7 +48,8 @@ class ItemSeeder extends Seeder
 				'reorder'		=> 99999999,
 				'category_id'	=> 1003,
 				'oem_id'		=> 1001,
-				//'uom_id'		=> 1001,
+				'uom_class_id'	=> 1001,
+				'uom_id'		=> 1001,
 			],
 			[
 				'name'			=> 'Lenovo ThinkPad E16 Business Laptop',
@@ -56,7 +59,8 @@ class ItemSeeder extends Seeder
 				'reorder'		=> 99999999,
 				'category_id'	=> 1004,
 				'oem_id'		=> 1005,
-				//'uom_id'		=> 1001,
+				'uom_class_id'	=> 1001,
+				'uom_id'		=> 1001,
 			],
 			[
 				'name'			=> 'ASUS Zenbook 15 Laptop,',
@@ -66,7 +70,8 @@ class ItemSeeder extends Seeder
 				'reorder'		=> 99999999,
 				'category_id'	=> 1004,
 				'oem_id'		=> 1004,
-				//'uom_id'		=> 1001,
+				'uom_class_id'	=> 1001,
+				'uom_id'		=> 1001,
 			],
 			[
 				'name'			=> 'Apple 2023 15.3-Inch MacBook Air Laptop',
@@ -76,7 +81,8 @@ class ItemSeeder extends Seeder
 				'reorder'		=> 99999999,
 				'category_id'	=> 1003,
 				'oem_id'		=> 1003,
-				//'uom_id'		=> 1001,
+				'uom_class_id'	=> 1001,
+				'uom_id'		=> 1001,
 			],
 			[
 				'name'			=> 'ASUS Zenbook S 13 OLED Ultra Laptop',
@@ -86,7 +92,8 @@ class ItemSeeder extends Seeder
 				'reorder'		=> 99999999,
 				'category_id'	=> 1004,
 				'oem_id'		=> 1004,
-				//'uom_id'		=> 1001,
+				'uom_class_id'	=> 1001,
+				'uom_id'		=> 1001,
 			],
 			[
 				'name'			=> 'Dell Inspiron 16 5630 Laptop ',
@@ -96,7 +103,8 @@ class ItemSeeder extends Seeder
 				'reorder'		=> 99999999,
 				'category_id'	=> 1004,
 				'oem_id'		=> 1006,
-				//'uom_id'		=> 1001,
+				'uom_class_id'	=> 1001,
+				'uom_id'		=> 1001,
 			],
 			[
 				'name'			=> 'Dell Inspiron 14 Plus 7420 Laptop',
@@ -106,7 +114,8 @@ class ItemSeeder extends Seeder
 				'reorder'		=> 99999999,
 				'category_id'	=> 1004,
 				'oem_id'		=> 1006,
-				//'uom_id'		=> 1001,
+				'uom_class_id'	=> 1001,
+				'uom_id'		=> 1001,
 			],
 		
 		];

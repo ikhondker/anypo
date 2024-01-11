@@ -14,6 +14,6 @@ class PrSeeder extends Seeder
      */
     public function run(): void
     {
-        Pr::factory()->count(20)->create();
+        Pr::factory()->count(7)->create();
     }
 }

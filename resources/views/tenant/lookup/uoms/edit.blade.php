@@ -32,7 +32,10 @@
 								<label class="form-label">ID</label>
 								<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $uom->id ) }}" readonly>
 							</div>
-
+							<div class="mb-3">
+								<label class="form-label">UOM Class</label>
+								<input type="text" name="uom_class_id" id="id" class="form-control" placeholder="ID" value="{{ old('uom_class_id', $uom->uom_class->name ) }}" readonly>
+							</div>
 							<div class="mb-3">
 								<label class="form-label">Uom Name</label>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -40,6 +43,17 @@
 									value="{{ old('name', $uom->name ) }}"
 									/>
 								@error('name')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
+							<div class="mb-3">
+								<label class="form-label">Conversion </label>
+								<input type="number" class="form-control @error('conversion') is-invalid @enderror"
+									name="conversion" id="conversion" placeholder="1.0000"
+									value="{{ old('conversion', $uom->conversion ) }}"
+									step='0.01' min="1" required/>
+								@error('conversion')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>

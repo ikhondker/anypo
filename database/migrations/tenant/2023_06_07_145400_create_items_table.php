@@ -19,7 +19,8 @@ return new class extends Migration
 			$table->string('sku')->unique()->nullable();
 			$table->foreignId('category_id')->constrained('categories');
 			$table->foreignId('oem_id')->constrained('oems');
-			//$table->foreignId('uom_id')->constrained('uoms');
+			$table->foreignId('uom_class_id')->constrained('uom_classes');
+			$table->foreignId('uom_id')->constrained('uoms');
 			$table->string('gl_type',1)->default('E'); 
 			//$table->foreignId('uom')->constrained('uoms')->references('uom');
 			$table->float('price', 15, 2)->default(0);

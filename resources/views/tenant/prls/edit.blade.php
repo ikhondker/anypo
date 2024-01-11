@@ -23,8 +23,6 @@
 		@csrf
 		@method('PUT')
 
-		
-
 		<!-- widget-pr-lines -->
 		<x-tenant.widgets.pr-lines id="{{ $pr->id }}" :edit="true" pid="{{ $prl->id }}"/>
 		<!-- /.widget-pr-lines -->

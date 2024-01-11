@@ -8,6 +8,12 @@ use App\Http\Requests\Tenant\StorePrlRequest;
 use App\Http\Requests\Tenant\UpdatePrlRequest;
 
 # Models
+use App\Models\Tenant\Lookup\Item;
+use App\Models\Tenant\Lookup\Uom;
+
+use App\Models\Tenant\Pr;
+use App\Models\Tenant\Prl;
+
 # Enums
 # Helpers
 use App\Helpers\EventLog;
@@ -20,11 +26,7 @@ use DB;
 use Illuminate\Support\Facades\Log;
 # Exceptions
 # Events
-use App\Models\Tenant\Pr;
-use App\Models\Tenant\Prl;
 
-use App\Models\Tenant\Lookup\Item;
-use App\Models\Tenant\Lookup\Uom;
 
 class PrlController extends Controller
 {
@@ -44,8 +46,9 @@ class PrlController extends Controller
 
 		$items = Item::getAll();
 		//$uoms = Uom::getAllClient();
+		$uoms = Uom::primary()->get();
 
-		return view('tenant.prls.create', with(compact('pr', 'items')));
+		return view('tenant.prls.create', with(compact('pr','items','uoms')));
 	}
 
 
@@ -77,19 +80,25 @@ class PrlController extends Controller
 	public function store(StorePrlRequest $request)
 	{
 		$this->authorize('create', Prl::class);
-
+		// get max line num for the
+		$line_num 						= Prl::where('pr_id', '=',$request->input('pr_id'))->max('line_num');
+		$request->merge(['line_num'		=> $line_num +1]);
 		$request->merge(['sub_total'	=> $request->input('prl_amount')]);
 		$request->merge(['amount'		=> $request->input('prl_amount')]);
+		
 
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
+		// TODO add line num
+
 		$prl = Prl::create($request->all());
 		// Write to Log
 		EventLog::event('Prl', $prl->id, 'create');
 
 		// update PR header
-		$pr = Pr::where('id', $prl->pr_id)->firstOrFail();
-		$prl_sum = Prl::where('pr_id', '=', $pr->id)->sum('amount');
+		$pr 				= Pr::where('id', $prl->pr_id)->firstOrFail();
+		$prl_sum 			= Prl::where('pr_id', '=', $pr->id)->sum('amount');
 		$pr->sub_total		= $prl_sum;
+
 		$pr->tax			= $request->input('tax');
 		$pr->shipping		= $request->input('shipping');
 		$pr->discount		= $request->input('discount');
@@ -118,11 +127,10 @@ class PrlController extends Controller
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 
 		$pr = Pr::where('id', $prl->pr_id)->first();
-
 		$items = Item::getAll();
-		//$uoms = Uom::getAllClient();
+		$uoms = Uom::primary()->get();
 
-		return view('tenant.prls.edit', with(compact('pr', 'prl', 'items')));
+		return view('tenant.prls.edit', with(compact('pr', 'prl', 'items','uoms')));
 	}
 
 	/**

@@ -27,7 +27,17 @@
 			<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
-	<td class="">11</td>
+	<td class="">
+			<select class="form-control" name="uom_id" required>
+				<option value=""><< UoM >> </option>
+				@foreach ($uoms as $uom)
+					<option value="{{ $uom->id }}" {{ $uom->id == old('uom_id') ? 'selected' : '' }} >{{ $uom->name }} </option>
+				@endforeach
+			</select>
+			@error('uom_id')
+				<div class="text-danger text-xs">{{ $message }}</div>
+			@enderror
+	</td>
 	<td class="text-end">
 		<input type="number" class="form-control @error('qty') is-invalid @enderror"
 			style="text-align: right;" min="1"

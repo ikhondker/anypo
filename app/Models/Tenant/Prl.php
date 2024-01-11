@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Tenant\Lookup\Item;
+use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Pr;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -19,7 +20,7 @@ class Prl extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'pr_id', 'line_num', 'summary', 'item_id', 'notes', 'qty', 'price', 'sub_total', 'tax', 'vat', 'amount', 'received_qty', 'status', 'updated_by', 'updated_at',
+		'pr_id', 'line_num', 'summary', 'item_id', 'uom_id', 'notes', 'qty', 'price', 'sub_total', 'tax', 'vat', 'amount', 'received_qty', 'status', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -63,5 +64,8 @@ class Prl extends Model
 		return $this->belongsTo(Item::class,'item_id');
 	}
 
+	public function uom(){
+		return $this->belongsTo(Uom::class,'uom_id');
+	}
 
 }

@@ -66,8 +66,12 @@ class ItemController extends Controller
 	{
 		$this->authorize('create', Item::class);
 
+		// get uom to find uom_class_id
+		$uom = Uom::where('id', $request->input('uom_id') )->first();
+
 		$request->merge([
 			'code' => Str::upper($request['code']),
+			'uom_class_id' => $uom->uom_class_id,
 		]);
 
 
@@ -98,7 +102,7 @@ class ItemController extends Controller
 		$this->authorize('update', $item);
 
 		$categories = Category::primary()->get();
-		$uoms = Uom::primary()->get();
+		$uoms = Uom::byUomClass($item->uom_class_id)->get();
 		$oems = Oem::primary()->get();
 		$gl_types = GlType::primary()->get();
 

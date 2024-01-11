@@ -18,13 +18,15 @@ use App\Models\Tenant\Prl;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 
+
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Admin\Attachment;
 
 use App\Models\Tenant\Lookup\Dept;
-use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Lookup\Item;
+use App\Models\Tenant\Lookup\Uom;
 
 use App\Models\Tenant\Workflow\Wfl;
 
@@ -102,10 +104,11 @@ class PrController extends Controller
 
 		$depts = Dept::getAll();
 		$items = Item::getAll();
+		$uoms = Uom::primary()->get();
 		$suppliers = Supplier::getAll1();
 		$projects = Project::getAll();
 
-		return view('tenant.prs.create', compact('suppliers', 'depts', 'items', 'projects'));
+		return view('tenant.prs.create', compact('suppliers', 'depts', 'items','uoms', 'projects'));
 
 	}
 
@@ -144,10 +147,12 @@ class PrController extends Controller
 		}
 
 
-		// create prl lines
+		// create prl lines TODO lin num
 		$prl			= new Prl();
 		$prl->pr_id		= $pr->id;
+		$prl->line_num	= 1;	
 		$prl->item_id	= $request->input('item_id');
+		$prl->uom_id	= $request->input('uom_id');
 		$prl->summary	= $request->input('summary');
 		$prl->qty		= $request->input('qty');
 		$prl->price		= $request->input('price');
@@ -227,7 +232,7 @@ class PrController extends Controller
 		$this->authorize('update', $pr);
 
 		$depts = Dept::getAll();
-		//$items = Item::getAll();
+		
 		$suppliers = Supplier::getAll1();
 		$projects = Project::getAll();
 		$users = User::getAll();

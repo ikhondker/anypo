@@ -9,13 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
+use App\Models\Tenant\Manage\UomClass;
 
 class Item extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'notes', 'code', 'sku', 'category_id', 'oem_id', 'uom_id', 'gl_type', 'price', 'stock', 'reorder', 'photo', 'enable', 'updated_by', 'updated_at',
+		'name', 'notes', 'code', 'sku', 'category_id', 'oem_id', 'uom_class_id', 'uom_id', 'gl_type', 'price', 'stock', 'reorder', 'photo', 'enable', 'updated_by', 'updated_at',
 	];
 
 	/* ----------------- Functions ---------------------- */
@@ -45,9 +46,13 @@ class Item extends Model
 		return $this->belongsTo(Oem::class,'oem_id');
 	}
 
+	public function uom_class(){
+		return $this->belongsTo(UomClass::class,'uom_class_id');
+	}
 	public function uom(){
 		return $this->belongsTo(Uom::class,'uom_id');
 	}
+
 	public function relGlType(){
 		return $this->belongsTo(GlType::class,'gl_type');
 	}

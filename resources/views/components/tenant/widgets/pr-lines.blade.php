@@ -38,10 +38,10 @@
 							@else
 
 								<tr class="">
-									<td class="">{{ $prl->id }}</td>
+									<td class="">{{ $prl->line_num }}</td>
 									<td class="">{{ $prl->item->name }}</td>
 									<td class="">{{ $prl->summary }}</td>
-									<td class="">{{ $prl->item->uom->name }}</td>
+									<td class="">{{ $prl->uom->name }}</td>
 									<td class="text-end">{{ $prl->qty }}</td>
 									<td class="text-end"><x-tenant.list.my-number :value="$prl->price"/></td>
 									<td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>

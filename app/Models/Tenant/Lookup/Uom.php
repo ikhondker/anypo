@@ -18,7 +18,7 @@ class Uom extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name','enable','updated_at','updated_by'
+		'name', 'uom_class_id', 'conversion', 'text_color', 'bg_color', 'icon', 'default', 'enable', 'updated_by', 'updated_at',
 	];
 
 	/* ----------------- Scopes ------------------------- */
@@ -28,6 +28,15 @@ class Uom extends Model
 	public function scopePrimary(Builder $query): void
 	{
 		$query->where('enable', true);
+	}
+
+	/**
+	 * Scope a query to return UoM of a uom_class.
+	 */
+	public function scopebyUomClass(Builder $query,$uom_class_id=1001): void
+	{
+		$query->WHERE('uom_class_id',$uom_class_id)
+		->where('enable', true);
 	}
 
 	/* ----------------- Functions ---------------------- */
@@ -40,8 +49,12 @@ class Uom extends Model
 
 	
 	/* ----------------- HasMany ------------------------ */
-
-	
+	public function item() {
+		return $this->hasMany(Item::class);
+	}
+	public function prl() {
+		return $this->hasMany(Prl::class);
+	}
 
 	/* ---------------- belongsTo ---------------------- */
 	public function uom_class(){

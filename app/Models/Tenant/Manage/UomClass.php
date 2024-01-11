@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
+use App\Models\Tenant\Lookup\Uom;
 
 class UomClass extends Model
 {
@@ -20,9 +21,10 @@ class UomClass extends Model
 	];
 
 	/* ----------------- HasMany ------------------------ */
-	public function item(): HasMany
+	public function uom(): HasMany
 	{
-		return $this->hasMany(Item::class, 'uom_id');
+		return $this->hasMany(Uom::class, 'uom_id');
 	}
 
+	/* ---------------- belongsTo ---------------------- */
 }

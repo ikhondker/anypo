@@ -21,8 +21,7 @@
 				<i data-feather="external-link"></i> Submit</a>
 		@endslot
 	</x-tenant.page-header>
-	
-	
+		
 
 	@include('tenant.includes.view-pr-header')
 

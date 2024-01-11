@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
 use App\Models\Tenant\Lookup\Item;
+use App\Models\Tenant\Lookup\Uom;
 use Illuminate\Support\Facades\Log;
 
 class PrLines extends Component
@@ -18,6 +19,7 @@ class PrLines extends Component
 	public $pr;
 	public $prls;
 	public $items;
+	public $uoms;
 	public $add;
 	public $edit;
 	public $show;
@@ -27,7 +29,8 @@ class PrLines extends Component
 	 */
 	public function __construct($id, $add=false, $edit=false, $show=false, $pid=0)
 	{
-		$this->items = Item::getAll();
+		$this->items 	= Item::getAll();
+		$this->uoms 	= Uom::primary()->get();
 
 		//$this->selected_prl_id = ($selected_prl_id == 0) ? 0 : $selected_prl_id  ;
 		$this->selected_prl_id = $pid;

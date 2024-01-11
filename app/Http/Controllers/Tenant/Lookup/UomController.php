@@ -75,6 +75,7 @@ class UomController extends Controller
 	public function edit(Uom $uom)
 	{
 		$this->authorize('update', $uom);
+		
 		return view('tenant.lookup.uoms.edit', compact('uom'));
 	}
 

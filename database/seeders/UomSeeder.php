@@ -27,7 +27,7 @@ class UomSeeder extends Seeder
 			// ],
 			[
 				'id' 			=> 1001,
-				'name' 			=> 'Pcs',
+				'name' 			=> 'Each',
 				'uom_class_id' 	=> '1001',
 				
 			],

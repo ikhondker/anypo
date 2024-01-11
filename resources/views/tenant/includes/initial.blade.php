@@ -49,7 +49,10 @@ $setup = Setup::first();
 								</select>
 							</div>
 					
-							<x-tenant.widgets.submit/>
+							<div class="mb-3 float-end">
+								<button type="submit" id="submit" name="submit" class="btn btn-primary"><i data-feather="save"></i> Freeze Setup</button>
+							</div>
+							
 						</div>
 					</div>
 					
