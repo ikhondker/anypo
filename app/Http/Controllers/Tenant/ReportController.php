@@ -171,7 +171,7 @@ class ReportController extends Controller
 		Log::debug('start_date='.$start_date);
 		Log::debug('end_date='.$end_date);
 
-		$setup 		= Setup::first();
+		//$setup 		= Setup::first();
 		$report 	= Report::where('id', '1006')->firstOrFail();
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$supplier 	= Supplier::where('id', $pr->supplier_id)->firstOrFail();
@@ -196,7 +196,7 @@ class ReportController extends Controller
 			'prls' 		=> $prls,
 		];
 
-		$pdf = PDF::loadView('tenant.reports.formats.1006a', $data);
+		$pdf = PDF::loadView('tenant.reports.formats.1006', $data);
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
@@ -209,25 +209,24 @@ class ReportController extends Controller
 		//todo auth check
 		//todo if pr exists
 		//Log::debug('storage_path()='.storage_path());
-		
 
 		// NOTE: Uses InvoicePolicy
 		//$this->authorize('pdfInvoice', $invoice);
 
 		$setup = Setup::first();
+		$report 	= Report::where('id', '1003')->firstOrFail();
 		$pr = Pr::with('requestor')->where('id', $id)->firstOrFail();
-		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
 		$prls = Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 		
 		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
 
 		$data = [
 			//'title' 	=> 'Company XYZ',
-			'id' 		=> $pr->id,
-			'date' 		=> date('m/d/Y'),
+			//'id' 		=> $pr->id,
+			//'date' 		=> date('m/d/Y'),
 			'setup' 	=> $setup,
+			'report' 	=> $report,
 			'pr' 		=> $pr,
-			'supplier' 	=> $supplier,
 			'prls' 		=> $prls,
 		];
 		
