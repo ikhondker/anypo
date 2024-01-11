@@ -13,8 +13,8 @@ return new class extends Migration
 	{
 		Schema::create('menus', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('raw_route_name');
-			$table->string('route_name')->nullable();
+			$table->string('raw_route_name')->unique();
+			$table->string('route_name');
 			$table->string('node_name')->nullable();
 			$table->boolean('enable')->default(true);
 			$table->biginteger('created_by')->default(1001);

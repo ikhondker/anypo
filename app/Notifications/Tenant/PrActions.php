@@ -7,7 +7,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 use App\Models\User;
-use App\Models\Pr;
+use App\Models\Tenant\Pr;
 
 use Str;
 

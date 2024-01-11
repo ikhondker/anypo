@@ -24,7 +24,6 @@ return new class extends Migration
 			$table->foreignId('uom_id')->constrained('uoms');
 			$table->text('notes')->nullable();
 			$table->float('qty')->default(1);
-			//$table->foreignId('uom_id')->constrained('uoms');
 			$table->float('price')->default(0);
 			$table->float('sub_total')->default(0);
 			$table->float('tax')->default(0);

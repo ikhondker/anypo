@@ -48,7 +48,7 @@ class HierarchyController extends Controller
 	{
 		$this->authorize('create', Hierarchy::class);
 
-		$users = User::NonSeeded()->get();
+		$users = User::Tenant()->get();
 		//$users = User::getAll();
 
 		return view('tenant.workflow.hierarchies.create', compact('users'));
@@ -130,7 +130,7 @@ class HierarchyController extends Controller
 		$hierarchyls = Hierarchyl::where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
 		//$users = User::NonSeeded();
 		//$users = User::getAll();
-		$users = User::NonSeeded()->get();
+		$users = User::Tenant()->get();
 
 
 		$approver_id_1 = 0;

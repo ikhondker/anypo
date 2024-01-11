@@ -23,7 +23,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Enable</th>
 								<th>Action</th>
@@ -32,7 +32,7 @@
 						<tbody>
 							@foreach ($groups as $group)
 							<tr>
-								<td>{{ $group->id }}</td>
+								<td>{{ $loop->iteration }}</td>
 								<td>{{ $group->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$group->enable"/></td>
 								<td class="table-action">

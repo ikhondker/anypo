@@ -32,7 +32,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Enable</th>
 								<th>Action</th>
@@ -41,7 +41,7 @@
 						<tbody>
 							@foreach ($oems as $oem)
 							<tr>
-								<td>{{ $oem->id }}</td>
+								<td>{{ $loop->iteration }}</td>
 								<td>{{ $oem->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$oem->enable"/></td>
 								<td class="table-action">

@@ -49,7 +49,7 @@ use App\Helpers\ExchangeRate;
 # Notifications
 use Notification;
 //use App\Notifications\PrCreated;
-use App\Notifications\PrActions;
+use App\Notifications\Tenant\PrActions;
 # Mails
 # Packages
 # Seeded
@@ -119,20 +119,12 @@ class PrController extends Controller
 	{
 		$this->authorize('create', Pr::class);
 		
-		// switch ($request->input('action')) {
-		// 	case 'save':
-		// 		// Save model
-		// 		break;
-		// 	case 'preview':
-		// 		// Preview model
-		// 		break;
-		// }
+		
 
 		// dont set dept_budget_id . It will be save during submissions
 		$request->merge(['requestor_id'	=> 	auth()->id() ]);
 		$request->merge(['pr_date'		=> date('Y-m-d H:i:s')]);
-		$request->merge(['sub_total'	=> $request->input('prl_amount')]);
-		$request->merge(['amount'		=> $request->input('prl_amount') + $request->input('tax') + $request->input('shipping') - $request->input('discount')]);
+		$request->merge(['amount'		=> $request->input('prl_amount')]);
 
 		//dd($request);
 		$pr = Pr::create($request->all());
@@ -162,8 +154,16 @@ class PrController extends Controller
 		$prl_id			= $prl->id;
 		//Log::debug("wf_id = ".$wf_id );
 	
-		
-		return redirect()->route('prls.createline', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please add more line.');
+		switch ($request->input('action')) {
+			case 'save':
+				return redirect()->route('prs.show', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully.');
+				break;
+			case 'save_add':
+				return redirect()->route('prls.createline', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please add more line.');
+				break;
+		}
+
+		//return redirect()->route('prls.createline', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please add more line.');
 		//return redirect()->route('prs.index')->with('success', 'Pr created successfully.');
 	}
 
@@ -379,7 +379,7 @@ class PrController extends Controller
 				return redirect()->back()->with('error', config('akk.MSG_E003'));
 				break;
 			case 'E999':
-				return redirect()->back()->with('error', config('akk.MSG_E99')) ;
+				return redirect()->back()->with('error', config('akk.MSG_E999')) ;
 				break;
 			default:
 				// Success

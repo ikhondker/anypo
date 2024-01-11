@@ -32,7 +32,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Date Created</th>
 								<th>Enable</th>
@@ -42,7 +42,7 @@
 						<tbody>
 							@foreach ($hierarchies as $hierarchy)
 							<tr>
-								<td>{{ $hierarchy->id }}</td>
+								<td>{{ $loop->iteration }}</td>
 								<td><a class="text-info" href="{{ route('hierarchies.show',$hierarchy->id) }}">{{ $hierarchy->name }}</a></td>
 								<td><x-tenant.list.my-date-time :value="$hierarchy->created_at"/></td>
 								<td><x-tenant.list.my-boolean :value="$hierarchy->enable"/></td>

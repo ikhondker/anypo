@@ -22,7 +22,7 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Activity Lists
+							Designation Lists
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
@@ -31,7 +31,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>#SL</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Enable</th>
 								<th>Action</th>
@@ -40,7 +40,7 @@
 						<tbody>
 							@foreach ($designations as $designation)
 							<tr>
-								<td>{{ $designation->id }}</td>
+								<td>{{ $loop->iteration }}</td>
 								<td>{{ $designation->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$designation->enable"/></td>
 								<td class="table-action">

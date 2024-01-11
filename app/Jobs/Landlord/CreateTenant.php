@@ -457,11 +457,13 @@ class CreateTenant implements ShouldQueue
 
 			// create admin user in newly created tenant
 			$user = User::create([
-				'name'		=> $account_name,
-				'email'		=> $email,
+				'name'				=> $account_name,
+				'email'				=> $email,
 				'email_verified_at'	=> NOW(),	// TODO this is not verified Already Verified in tenant
-				'role'		=> \App\Enum\UserRoleEnum::ADMIN->value,
-				'password'	=> Hash::make($random_password),
+				'role'				=> \App\Enum\UserRoleEnum::ADMIN->value,
+				'password'			=> Hash::make($random_password),
+				'designation_id'	=> 1001,	// System/IT Administrator
+				'dept_id'			=> 1001,	// IT
 				'enable'	=> true,
 				//'password' 	=> bcrypt($random_password),
 

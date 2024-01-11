@@ -31,7 +31,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>PR Hierarchy</th>
 								<th>PO Hierarchy</th>
@@ -42,7 +42,7 @@
 						<tbody>
 							@foreach ($depts as $dept)
 							<tr>
-								<td>{{ $dept->id }}</td>
+								<td>{{ $loop->iteration }}</td>
 								<td><a class="text-info" href="{{ route('depts.show',$dept->id) }}">{{ $dept->name }}</a></td>
 								<td><a class="text-info" href="{{ route('hierarchies.show',$dept->pr_hierarchy_id) }}">{{ $dept->prHierarchy->name }}</a></td>
 								<td><a class="text-info" href="{{ route('hierarchies.show',$dept->po_hierarchy_id) }}">{{ $dept->poHierarchy->name }}</a></td>

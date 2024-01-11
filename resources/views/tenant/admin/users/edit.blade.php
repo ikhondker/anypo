@@ -78,7 +78,7 @@
 								@enderror
 							</div>
 
-							@if ( ( \App\Helpers\CheckAccess::aboveAdmin(auth()->user()->role->value) ) && (auth()->user()->id <> $user->id) )
+							@if ( auth()->user()->isAdmin() && (auth()->user()->id <> $user->id) )
 								<div class="mb-3">
 									<label class="form-label text-danger">Modify Role:</label>
 									<select class="form-control" name="role">

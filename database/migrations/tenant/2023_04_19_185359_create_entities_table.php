@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('entities', function (Blueprint $table) {
 			$table->string('entity',15);    //  model: protected $primaryKey = 'entity'; // Hardcoded in Workflow Helper only
-			$table->string('name');
+			$table->string('name')->unique();
 			$table->string('route')->nullable();
 			$table->string('subdir');
 			$table->boolean('notification')->default(false); 

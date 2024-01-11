@@ -26,6 +26,6 @@ class ApprovalHistory extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.widgets.approval-history');
+		return view('components.tenant.widgets.approval-history');
 	}
 }

@@ -62,6 +62,9 @@
 									<label class="col-form-label col-sm-2 text-sm-right">Second Approver</label>
 									<div class="col-sm-10">
 										<select class="form-control" name="approver_id_2">
+											@if ($approver_id_2 == 0)
+												<option value="0"><< Second Approver >> </option>
+											@endif
 											@foreach ($users as $user)
 												<option {{ $user->id == old('approver_id_2',$approver_id_2) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 											@endforeach
@@ -72,6 +75,9 @@
 									<label class="col-form-label col-sm-2 text-sm-right">Third Approver</label>
 									<div class="col-sm-10">
 										<select class="form-control" name="approver_id_3">
+											@if ($approver_id_3 == 0)
+												<option value="0"><< Third Approver >> </option>
+											@endif
 											@foreach ($users as $user)
 												<option {{ $user->id == old('approver_id_3',$approver_id_3) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 											@endforeach
@@ -84,7 +90,7 @@
 									<div class="col-sm-10">
 										<select class="form-control" name="approver_id_4">
 											@if ($approver_id_4 == 0)
-												<option value=""><< Fourth Approver >> </option>
+												<option value="0"><< Fourth Approver >> </option>
 											@endif
 											@foreach ($users as $user)
 												<option {{ $user->id == old('approver_id_4',$approver_id_4) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
@@ -99,7 +105,7 @@
 									<div class="col-sm-10">
 										<select class="form-control" name="approver_id_5">
 											@if ($approver_id_5 == 0)
-												<option value=""><< Fifth Approver >> </option>
+												<option value="0"><< Fifth Approver >> </option>
 											@endif
 											@foreach ($users as $user)
 												<option {{ $user->id == old('approver_id_5',$approver_id_5) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>

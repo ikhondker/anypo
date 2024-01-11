@@ -97,12 +97,9 @@ class PrlController extends Controller
 		// update PR header
 		$pr 				= Pr::where('id', $prl->pr_id)->firstOrFail();
 		$prl_sum 			= Prl::where('pr_id', '=', $pr->id)->sum('amount');
-		$pr->sub_total		= $prl_sum;
 
-		$pr->tax			= $request->input('tax');
-		$pr->shipping		= $request->input('shipping');
-		$pr->discount		= $request->input('discount');
-		$pr->amount			= $prl_sum + $request->input('tax') + $request->input('shipping') - $request->input('discount');
+		
+		$pr->amount			= $prl_sum;
 		$pr->save();
 
 		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'Requisition line added successfully');

@@ -28,11 +28,11 @@ return new class extends Migration
 			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->text('notes')->nullable();
 			$table->string('currency',3)->default('USD');
-			$table->float('sub_total', 15, 2)->default(0);
-			$table->float('tax')->default(0);
-			$table->float('vat')->default(0);
-			$table->float('shipping')->default(0);
-			$table->float('discount')->default(0);
+			// $table->float('sub_total', 15, 2)->default(0);
+			// $table->float('tax')->default(0);
+			// $table->float('vat')->default(0);
+			// $table->float('shipping')->default(0);
+			// $table->float('discount')->default(0);
 			$table->float('amount', 15, 2)->default(0);
 			$table->string('fc_currency',3)->default('USD');
 			$table->double('fc_exchange_rate', 15, 10)->default(1);

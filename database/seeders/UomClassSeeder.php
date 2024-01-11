@@ -35,7 +35,7 @@ class UomClassSeeder extends Seeder
 			],
 			[
 				'id' 	=> 1004,
-				'name' => 'Volume',
+				'name' => 'Capacity',
 			],
 			[
 				'id' 	=> 1005,

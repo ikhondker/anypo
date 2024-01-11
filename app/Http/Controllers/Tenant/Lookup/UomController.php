@@ -35,8 +35,8 @@ class UomController extends Controller
 		if (request('term')) {
 			$uoms->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$uoms = $uoms->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.uoms.index', compact('uoms'))->with('i', (request()->input('page', 1) - 1) * 10);
+		$uoms = $uoms->orderBy('id', 'DESC')->paginate(20);
+		return view('tenant.lookup.uoms.index', compact('uoms'))->with('i', (request()->input('page', 1) - 1) * 20);
 	}
 
 	/**

@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('depts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('name');
+			$table->string('name')->unique();
 			$table->biginteger('pr_hierarchy_id')->default(1001);
 			$table->biginteger('po_hierarchy_id')->default(1001);
 			$table->string('text_color')->nullable();

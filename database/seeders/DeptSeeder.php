@@ -27,22 +27,22 @@ class DeptSeeder extends Seeder
 		$depts =  [
 			[
 				'id' 				=> 1001,
+				'name' 				=> 'IT',
+				'pr_hierarchy_id' 	=> 1001,
+				'po_hierarchy_id' 	=> 1002,
+		  	],
+			[
+				'id' 				=> 1002,
 				'name' 				=> 'Sales',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 			],
 			[
-				'id' 				=> 1002,
+				'id' 				=> 1003,
 				'name' 				=> 'Marketing',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 			],
-			[
-				'id' 				=> 1003,
-				'name' 				=> 'IT',
-				'pr_hierarchy_id' 	=> 1001,
-				'po_hierarchy_id' 	=> 1002,
-		  	],
 		  	[
 				'id' 				=> 1004,
 				'name' 				=> 'Production',

@@ -58,18 +58,20 @@
 
 						@if ($add)
 							@include('tenant.includes.pr-line-add')
+
 							@include('tenant.includes.pr-footer-edit')
 						@endif
 						@if ($edit)
 							@include('tenant.includes.pr-footer-edit')
 						@endif
 						@if ($show)
-							@include('tenant.includes.pr-footer-view')
+							<tr>
+								<td class="" colspan="5" scope="col">&nbsp;</td>
+								<td class="text-end" scope="col"><strong>Total:</strong></td>
+								<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->amount"/></strong></td>
+								<td class="" scope="col">&nbsp</td>
+							</tr>
 						@endif
-
-
-
-
 					</tbody>
 				</table>
 			</div>

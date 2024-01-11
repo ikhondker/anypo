@@ -31,7 +31,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Contact Person</th>
 								<th>Cell</th>
@@ -42,7 +42,7 @@
 						<tbody>
 							@foreach ($warehouses as $warehouse)
 							<tr>
-								<td>{{ $warehouse->id }}</td>
+								<td>{{ $loop->iteration }}</td>
 								<td><a class="text-info" href="{{ route('warehouses.show',$warehouse->id) }}">{{ $warehouse->name }}</a></td>
 								<td>{{ $warehouse->contact_person }}</td>
 								<td>{{ $warehouse->cell }}</td>

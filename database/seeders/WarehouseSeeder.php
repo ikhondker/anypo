@@ -14,39 +14,39 @@ class WarehouseSeeder extends Seeder
 {
 
 
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
 
-        $faker = app(Generator::class);
+		$faker = app(Generator::class);
 
-        $warehouses =  [
-            [
-                'name'          => 'Seeded (Edit as Necessary)',
-                'address1'      => $faker->address,
-                'address2'      => $faker->address,
-                'zip'           => $faker->postcode,
-                'city'          => $faker->city,
-            ],
-            [
-                'name'          => 'Seeded at Location 1',
-                'address1'      => $faker->address,
-                'address2'      => $faker->address,
-                'zip'           => $faker->postcode,
-                'city'          => $faker->city,
-            ],
-            [
-                'name'          => 'Seeded at Location 2',
-                'address1'      => $faker->address,
-                'address2'      => $faker->address,
-                'zip'           => $faker->postcode,
-                'city'          => $faker->city,
+		$warehouses =  [
+			[
+				'name'          => 'Head-Office',
+				'address1'      => $faker->address,
+				'address2'      => $faker->address,
+				'zip'           => $faker->postcode,
+				'city'          => $faker->city,
+			],
+			[
+				'name'          => 'Branch Office',
+				'address1'      => $faker->address,
+				'address2'      => $faker->address,
+				'zip'           => $faker->postcode,
+				'city'          => $faker->city,
+			],
+			[
+				'name'          => 'Regional Warehouse',
+				'address1'      => $faker->address,
+				'address2'      => $faker->address,
+				'zip'           => $faker->postcode,
+				'city'          => $faker->city,
 
-            ],
-          ];
-          //
-          Warehouse::insert($warehouses);
-    }
+			],
+		  ];
+		  //
+		  Warehouse::insert($warehouses);
+	}
 }

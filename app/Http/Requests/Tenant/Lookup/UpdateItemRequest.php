@@ -22,11 +22,12 @@ class UpdateItemRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'name'			=> 'required|min:5|max:120',
+			'name'			=> 'required|min:5|max:120|unique:items,name,'. $this->item->id,
+			'code'			=> 'required|max:10|unique:items,code,'. $this->item->id,
 			'category_id'	=> 'required|integer|exists:categories,id',
 			'uom_id'		=> 'required|integer|exists:uoms,id',
 			'oem_id'		=> 'required|integer|exists:oems,id',
-			'code'			=> 'required|max:10|unique:items,code,'. $this->item->id,
+			
 			'price'			=> 'required|numeric|min:1.00|max:999999.99',
 		];
 	}
