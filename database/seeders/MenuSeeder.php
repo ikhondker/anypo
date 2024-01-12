@@ -56,7 +56,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'designations.create','route_name' => 'designations.index', 'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'entities.index','route_name' => 'entities.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'groups.index','route_name' => 'groups.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'groups.index','route_name' => 'groups.index', 'node_name' => 'system'],
 			
 			[ 'raw_route_name' => 'hierarchies.index','route_name' => 'hierarchies.index', 'node_name' => 'workflow'],
 			[ 'raw_route_name' => 'hierarchies.show','route_name' => 'hierarchies.index', 'node_name' => 'workflow'],

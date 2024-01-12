@@ -12,7 +12,7 @@
 			{{-- <x-tenant.buttons.header.create object="Dept"/> --}}
 		@endslot
 	</x-tenant.page-header>
-	bell-off
+	
 	@include('tenant.includes.notification-stat')
 	
 	<div class="row">

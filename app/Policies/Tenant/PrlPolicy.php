@@ -29,7 +29,7 @@ class PrlPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -37,7 +37,7 @@ class PrlPolicy
 	 */
 	public function view(User $user, Prl $prl): bool
 	{
-		//
+		return false;
 	}
 
 	/**

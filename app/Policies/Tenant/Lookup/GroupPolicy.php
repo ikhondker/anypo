@@ -27,7 +27,7 @@ class GroupPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -35,7 +35,7 @@ class GroupPolicy
 	 */
 	public function view(User $user, Group $group): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -43,7 +43,7 @@ class GroupPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return false;
 	}
 
 	/**
@@ -51,7 +51,7 @@ class GroupPolicy
 	 */
 	public function update(User $user, Group $group): bool
 	{
-		return $user->isAdmin();
+		return false;
 	}
 
 	/**

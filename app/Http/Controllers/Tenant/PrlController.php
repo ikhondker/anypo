@@ -36,13 +36,13 @@ class PrlController extends Controller
 	 * @param  \App\Models\Prl  $prl
 	 * @return \Illuminate\Http\Response
 	 */
-	public function createLine($id)
+	public function createLine($pr_id)
 	{
 		//$this->authorize('update',$pr);
 		// Write Event Log
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 
-		$pr = Pr::where('id', $id)->first();
+		$pr = Pr::where('id', $pr_id)->first();
 
 		$items = Item::getAll();
 		//$uoms = Uom::getAllClient();
@@ -57,6 +57,8 @@ class PrlController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny', Prl::class);
+
 		$prls = Prl::query();
 		if (request('term')) {
 			$prls->where('name', 'Like', '%'.request('term').'%');
@@ -71,7 +73,7 @@ class PrlController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -85,7 +87,6 @@ class PrlController extends Controller
 		$request->merge(['line_num'		=> $line_num +1]);
 		$request->merge(['sub_total'	=> $request->input('prl_amount')]);
 		$request->merge(['amount'		=> $request->input('prl_amount')]);
-		
 
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
 		// TODO add line num
@@ -110,7 +111,7 @@ class PrlController extends Controller
 	 */
 	public function show(Prl $prl)
 	{
-		//
+		abort(403);
 	}
 
 	/**

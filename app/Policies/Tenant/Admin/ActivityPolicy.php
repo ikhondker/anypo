@@ -26,21 +26,17 @@ class ActivityPolicy
 	/**
 	 * Determine whether the user can view any models.
 	 */
-	public function viewAny(User $user): Response
+	public function viewAny(User $user): bool
 	{
-		return CheckAccess::aboveAdmin($user->role->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Activity $activity): Response
+	public function view(User $user, Activity $activity): bool
 	{
-		return CheckAccess::aboveAdmin($user->role->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
@@ -67,11 +63,9 @@ class ActivityPolicy
 		return false;
 	}
 	
-	public function export(User $user): Response
+	public function export(User $user): bool
 	{
-		return CheckAccess::aboveAdmin($user->role->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**

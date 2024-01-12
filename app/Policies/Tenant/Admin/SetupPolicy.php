@@ -30,7 +30,7 @@ class SetupPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -38,7 +38,7 @@ class SetupPolicy
 	 */
 	public function view(User $user, Setup $setup): bool
 	{
-		return true;
+		return $user->isAdmin();
 	}
 
 	/**
@@ -52,11 +52,9 @@ class SetupPolicy
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Setup $setup): Response
+	public function update(User $user, Setup $setup): bool
 	{
-		return CheckAccess::aboveAdmin($user->role->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**

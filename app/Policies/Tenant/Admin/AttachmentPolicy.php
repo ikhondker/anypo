@@ -27,11 +27,9 @@ class AttachmentPolicy
 	/**
 	 * Determine whether the user can view any models.
 	 */
-	public function viewAny(User $user): Response
+	public function viewAny(User $user): bool
 	{
-		return CheckAccess::aboveAdmin($user->role->value)
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
@@ -39,7 +37,7 @@ class AttachmentPolicy
 	 */
 	public function view(User $user, Attachment $attachment): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**

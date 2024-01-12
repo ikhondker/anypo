@@ -62,7 +62,7 @@ class AttachmentController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -70,7 +70,7 @@ class AttachmentController extends Controller
 	 */
 	public function store(StoreAttachmentRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -114,7 +114,7 @@ class AttachmentController extends Controller
 	 */
 	public function edit(Attachment $attachment)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -122,7 +122,7 @@ class AttachmentController extends Controller
 	 */
 	public function update(UpdateAttachmentRequest $request, Attachment $attachment)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -130,7 +130,8 @@ class AttachmentController extends Controller
 	 */
 	public function destroy(Attachment $attachment)
 	{
-
+		// TODO 
+		// add authorize
 		switch ($attachment->entity) {
 			case EntityEnum::BUDGET->value:
 				$budget = Budget::where('id', $attachment->article_id)->get()->firstOrFail();

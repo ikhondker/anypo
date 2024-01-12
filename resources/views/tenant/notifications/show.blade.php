@@ -28,7 +28,7 @@
 					<p><strong>{{ $notification->data['greeting'] }}</strong></p>
 					{{-- <p>&nbsp;</p> --}}
 					<p>{{ $notification->data['body'] }}</p>
-					<a class="btn btn-info" href="{{ $notification->data['actionURL'] }}">{{ $notification->data['actionText'] }}</a>
+					<a class="btn btn-info" href="{{ $notification->data['actionURL'] }}"><i data-feather="eye"></i> {{ $notification->data['actionText'] }}</a>
 					<p>&nbsp;</p>
 					<p>{{ $notification->data['thanks'] }}</p>
 					{{-- <p>&nbsp;</p> --}}
@@ -45,10 +45,10 @@
 					<p class=""><small class="text-muted">Attachment: <x-landlord.attachment.list-one  entity="{{ $entity }}" aid="{{ $ticket->id }}"/></small></p> --}}
 					<hr>
 					<div class="float-end mt-n1">
-						<a class="btn btn-secondary" href="{{ route('notifications.index') }}">Back to Notifications List</a>
+						<a class="btn btn-primary" href="{{ route('notifications.index') }}"><i data-feather="list"></i> Notifications List</a>
 					</div>
 					@if ( $notification->read_at == "")
-					<a class="btn btn-warning" href="{{ route('notifications.read',$notification->id) }}">Mark as Read</a>
+					<a class="btn btn-success" href="{{ route('notifications.read',$notification->id) }}"><i data-feather="check-circle"></i> Mark as Read</a>
 					@endif
 				</div>
 			</div>

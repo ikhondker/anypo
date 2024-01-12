@@ -445,8 +445,8 @@ class PrController extends Controller
 		
 		// User and Hod can copy into own department
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
-			$pr->requestor_id	= $auth()->user()->id;
-			$pr->dept_id		= $auth()->user()->dept_id;
+			$pr->requestor_id	= auth()->user()->id;
+			$pr->dept_id		= auth()->user()->dept_id;
 		} else {
 			$pr->requestor_id	= $sourcePr->requestor_id;
 			$pr->dept_id		= $sourcePr->dept_id;

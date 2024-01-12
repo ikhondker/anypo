@@ -64,7 +64,7 @@ class UserSeeder extends Seeder
 			// TODO Must Remove 
 			[
 				'id'                => '1003',
-				'name'              => 'Admin User',
+				'name'              => 'Admin User (Remove)',
 				'email'             => 'admin@example.com',
 				'role'              => 'admin',
 				'email_verified_at' => now(),
