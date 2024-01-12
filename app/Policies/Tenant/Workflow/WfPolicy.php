@@ -26,21 +26,17 @@ class WfPolicy
 	/**
 	 * Determine whether the user can view any models.
 	 */
-	public function viewAny(User $user): Response
+	public function viewAny(User $user): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-		? Response::allow()
-		: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Wf $wf): Response
+	public function view(User $user, Wf $wf): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**

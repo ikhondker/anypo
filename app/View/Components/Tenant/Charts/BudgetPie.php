@@ -50,7 +50,7 @@ class BudgetPie extends Component
 		//$result = $dept_budgets->toArray();
 		//$data = [];
 		
-		Log::debug('sql='.$sql);
+		//Log::debug('sql='.$sql);
 		$records = DB::select($sql);
 
 		$this->budget_labels[] = "Available";

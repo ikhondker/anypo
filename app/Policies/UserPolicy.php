@@ -51,7 +51,11 @@ class UserPolicy
 	{
 
 		if (tenant('id') == ''){
-
+			/*
+			|-----------------------------------------------------------------------------
+			| Landlord																	 + 
+			|-----------------------------------------------------------------------------
+			*/
 			// owner, account admin and back office users can view ticket
 			if ($user->role->value == UserRoleEnum::USER->value) {
 				return ($user->id == $model->id)
@@ -72,6 +76,11 @@ class UserPolicy
 			}
 
 		} else {
+			/*
+			|-----------------------------------------------------------------------------
+			| Tenant																	 + 
+			|-----------------------------------------------------------------------------
+			*/
 			// only back-office can see seeded users view
 			if ($model->seeded) {
 				return ( CheckAccess::isBackOffice($user->role->value))
@@ -83,8 +92,6 @@ class UserPolicy
 					: Response::deny(config('akk.MSG_DENY'));
 			}
 		}
-
-
 	}
 
 	/**
@@ -94,11 +101,21 @@ class UserPolicy
 	{
 
 		if (tenant('id') == ''){
+			/*
+			|-----------------------------------------------------------------------------
+			| Landlord																	 + 
+			|-----------------------------------------------------------------------------
+			*/
 			// Admin role user only
 			return ( $user->isAdmin() || $user->isBackOffice() )
 				? Response::allow()
 				: Response::deny(config('bo.MSG_DENY'));
 		} else {
+			/*
+			|-----------------------------------------------------------------------------
+			| Tenant																	 + 
+			|-----------------------------------------------------------------------------
+			*/
 			 // Admin role user only
 			 return ( CheckAccess::aboveAdmin($user->role->value) )
 			 ? Response::allow()
@@ -113,10 +130,15 @@ class UserPolicy
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, User $model): Response
+	public function update(User $user, User $model): bool
 	{
 
 		if (tenant('id') == ''){
+			/*
+			|-----------------------------------------------------------------------------
+			| Landlord																	 + 
+			|-----------------------------------------------------------------------------
+			*/
 			// owner, account admin and back office users can view ticket
 			if ($user->role->value == UserRoleEnum::USER->value) {
 				// user is allowed to update only own
@@ -137,77 +159,38 @@ class UserPolicy
 				: Response::deny(config('bo.MSG_DENY'));
 			}
 		} else {
+			/*
+			|-----------------------------------------------------------------------------
+			| Tenant																	 + 
+			|-----------------------------------------------------------------------------
+			*/
 			// only back-office can edit seeded users
 			if ($model->seeded) {
-				return ( CheckAccess::isBackOffice($user->role->value))
-					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));
+				return $user->isBackOffice();
 			} else {
-				// admin can edit own and others
-				return ( $user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isBackOffice($user->role->value) || ($user->id === $model->id) )
-				? Response::allow()
-				: Response::deny(config('akk.MSG_DENY'));
+				// admin can edit all and others can edit only own
+				return ( $user->isBackOffice() || ($user->id === $model->id) );
 			}
 		}
 
 	}
 
-	/**
-	 * Determine whether the user can update the model.
-	 *
-	 * @param  \App\Models\User  $user
-	 * @param  \App\Models\User  $model
-	 * @return \Illuminate\Auth\Access\Response|bool
-	 */
-	public function changepass(User $user, User $model)
-	{
-
-		if (tenant('id') == ''){
-			if ($user->role->value == UserRoleEnum::USER->value) {
-				// user is allowed to update only own
-				return ($user->id == $model->id)
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
-			} elseif ($user->isAdmin() ) {
-				return ( $user->account_id == $model->account_id)
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
-			} elseif ($user->isBackOffice()) {
-					return ( true)
-						? Response::allow()
-						: Response::deny(config('bo.MSG_DENY'));
-			} else {
-				return ( false )
-				? Response::allow()
-				: Response::deny(config('bo.MSG_DENY'));
-			}
-		} else {
-			// only back-office can edit seeded users
-			if ($model->seeded) {
-				return ( CheckAccess::isBackOffice($user->role->value))
-					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));
-			} else if ($user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isBackOffice($user->role->value)) {
-				return ( true )
-					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));
-			} else {
-				return ( $user->id === $model->id )
-					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));
-			}
-		}
-
-	}
+	
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function delete(User $user, User $model): Response
 	{
+		
+		
 		// only back-office can disable seeded users
-
 		if (tenant('id') == ''){
+			/*
+			|-----------------------------------------------------------------------------
+			| Landlord																	 + 
+			|-----------------------------------------------------------------------------
+			*/
 			// Admin user for current account users only
 			// stop deactivating himself
 			if ($user->isAdmin() ) {
@@ -224,26 +207,77 @@ class UserPolicy
 				: Response::deny(config('bo.MSG_DENY'));
 			}
 		} else {
+			/*
+			|-----------------------------------------------------------------------------
+			| Tenant																	 + 
+			|-----------------------------------------------------------------------------
+			*/
+			
+		 	if ($user->id == $model->id) {
+				// prevent all self deactivation
+				return ( false ) ;
+			} elseif ($model->seeded) {
+				// only back-office can edit seeded users
+				return $user->isBackOffice();
+			} else {
+				return $user->isAdmin();
+			}
+		}
+	}
+
+
+	/**
+	 * Determine whether the user can update the model.
+	 *
+	 * @param  \App\Models\User  $user
+	 * @param  \App\Models\User  $model
+	 * @return \Illuminate\Auth\Access\Response|bool
+	 */
+	public function changepass(User $user, User $model) : bool
+	{
+
+		if (tenant('id') == ''){
+			/*
+			|-----------------------------------------------------------------------------
+			| Landlord																	 + 
+			|-----------------------------------------------------------------------------
+			*/
+			if ($user->role->value == UserRoleEnum::USER->value) {
+				// user is allowed to update only own
+				return ($user->id == $model->id)
+					? Response::allow()
+					: Response::deny(config('bo.MSG_DENY'));
+			} elseif ($user->isAdmin() ) {
+				return ( $user->account_id == $model->account_id)
+					? Response::allow()
+					: Response::deny(config('bo.MSG_DENY'));
+			} elseif ($user->isBackOffice()) {
+					return ( true)
+						? Response::allow()
+						: Response::deny(config('bo.MSG_DENY'));
+			} else {
+				return ( false )
+				? Response::allow()
+				: Response::deny(config('bo.MSG_DENY'));
+			}
+		} else {
+			/*
+			|-----------------------------------------------------------------------------
+			| Tenant																	 + 
+			|-----------------------------------------------------------------------------
+			*/
 			// only back-office can edit seeded users
 			if ($model->seeded) {
-				return ( CheckAccess::isBackOffice($user->role->value))
-					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));
-			} else if ($user->id == $model->id) {
-				// prevent all self deactivation
-				return ( false )
-					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));
+				return $user->isBackOffice();
+			} else if ($user->isAdmin()) {
+				return ( true );
 			} else {
-				return ( $user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isBackOffice($user->role->value) )
-					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));
+				// allow to change only own password
+				return ( $user->id === $model->id );
 			}
 		}
 
-
 	}
-
 	/**
 	 * Determine whether the user can restore the model.
 	 */

@@ -83,17 +83,21 @@
 						</div>
 						<div class="card-body">
 
-							<div class="mb-3">
-								<label class="form-label">Dept</label>
-								<select class="form-control" name="dept_id">
-									@foreach ($depts as $dept)
-										<option {{ $dept->id == old('dept_id',$pr->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
-									@endforeach
-								</select>
-								@error('dept_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
+							@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
+								<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
+							@else
+								<div class="mb-3">
+									<label class="form-label">Dept</label>
+									<select class="form-control" name="dept_id">
+										@foreach ($depts as $dept)
+											<option {{ $dept->id == old('dept_id',$pr->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
+										@endforeach
+									</select>
+									@error('dept_id')
+										<div class="text-danger text-xs">{{ $message }}</div>
+									@enderror
+								</div>
+							@endif
 
 							<div class="mb-3">
 								<label class="form-label">Project</label>

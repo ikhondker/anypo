@@ -200,25 +200,6 @@ class User extends Authenticatable implements MustVerifyEmail
 	}
 
 
-	public function xxisManagement()
-	{
-		if ($this->enable == 1) {
-			switch ($this->role->value) {
-				case (UserRoleEnum::HOD->value):
-					return true;
-					break;
-				case (UserRoleEnum::CXO->value):
-					return true;
-					break;
-				default:
-					return false;
-			}
-		} else {
-			return false;
-		}	
-	}
-
-
 	public function isBackOffice()
 	{
 		if ($this->enable == 1) {

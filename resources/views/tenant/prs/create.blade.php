@@ -36,20 +36,24 @@
 							@enderror
 						</div>
 
-						<div class="mb-3 row">
-							<label class="col-form-label col-sm-2 text-sm-right">Dept Name</label>
-							<div class="col-sm-10">
-								<select class="form-control" name="dept_id" required>
-									<option value=""><< Dept >> </option>
-									@foreach ($depts as $dept)
-										<option value="{{ $dept->id }}" {{ $dept->id == old('dept_id') ? 'selected' : '' }} >{{ $dept->name }} </option>
-									@endforeach
-								</select>
-								@error('dept_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
+						@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
+							<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
+						@else
+							<div class="mb-3 row">
+								<label class="col-form-label col-sm-2 text-sm-right">Dept Name</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="dept_id" required>
+										<option value=""><< Dept >> </option>
+										@foreach ($depts as $dept)
+											<option value="{{ $dept->id }}" {{ $dept->id == old('dept_id') ? 'selected' : '' }} >{{ $dept->name }} </option>
+										@endforeach
+									</select>
+									@error('dept_id')
+										<div class="text-danger text-xs">{{ $message }}</div>
+									@enderror
+								</div>
 							</div>
-						</div>
+						@endif
 
 						<div class="mb-3 row">
 							<label class="col-form-label col-sm-2 text-sm-right">Supplier</label>

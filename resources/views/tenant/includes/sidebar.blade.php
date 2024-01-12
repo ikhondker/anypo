@@ -77,7 +77,7 @@
 		<ul id="lookups" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'lookups' ? "show" : "") }}" data-bs-parent="#sidebar">
 			<li class="sidebar-item {{ ($_route_name == 'depts.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('depts.index') }}"><i class="align-middle" data-feather="circle"></i>Dept</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'designations.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('designations.index') }}"><i class="align-middle" data-feather="circle"></i>Designation</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'groups.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('groups.index') }}"><i class="align-middle" data-feather="circle"></i>Group</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'groups.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('groups.index') }}"><i class="align-middle" data-feather="circle"></i>Group (?)</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'oems.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('oems.index') }}"><i class="align-middle" data-feather="circle"></i>OEM</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'warehouses.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('warehouses.index') }}"><i class="align-middle" data-feather="circle"></i>Warehouse**</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'pay-methods.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('pay-methods.index') }}"><i class="align-middle" data-feather="circle"></i>Pay Methods**</a></li>

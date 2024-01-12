@@ -35,6 +35,7 @@ use App\Models\Tenant\Workflow\Wfl;
 use App\Enum\UserRoleEnum;
 use App\Enum\EntityEnum;
 use App\Enum\WflActionEnum;
+use App\Enum\PrStatusEnum;
 use App\Enum\AuthStatusEnum;
 
 //use App\Enum\ActionEnum;
@@ -118,15 +119,18 @@ class PrController extends Controller
 	public function store(StorePrRequest $request)
 	{
 		$this->authorize('create', Pr::class);
-		
-		
+		$setup = Setup::first();
 
-		// dont set dept_budget_id . It will be save during submissions
+		// don't set dept_budget_id . It will be save during submissions
 		$request->merge(['requestor_id'	=> 	auth()->id() ]);
 		$request->merge(['pr_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['amount'		=> $request->input('prl_amount')]);
 
-		//dd($request);
+		// User and HoD Can create only own department PR
+		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
+			$request->merge(['dept_id'		=> auth()->user()->dept_id]);
+		} 
+
 		$pr = Pr::create($request->all());
 		// Write to Log
 		EventLog::event('pr', $pr->id, 'create');
@@ -138,7 +142,6 @@ class PrController extends Controller
 			//$request->merge(['logo'		=> $fileName ]);
 		}
 
-
 		// create prl lines TODO lin num
 		$prl			= new Prl();
 		$prl->pr_id		= $pr->id;
@@ -149,6 +152,9 @@ class PrController extends Controller
 		$prl->qty		= $request->input('qty');
 		$prl->price		= $request->input('price');
 		$prl->amount	= $request->input('prl_amount');
+
+		
+
 
 		$prl->save();
 		$prl_id			= $prl->id;
@@ -215,7 +221,7 @@ class PrController extends Controller
 				$wfl = Wfl::where('wf_id', $pr->wf_id)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
 				$wfl = "";
-				Log::debug("WF # ".$pr->wf_id." not Found!");
+				Log::debug("pr.show: Okay. Not pending with current user.");
 			}
 		} else {
 			$wfl = "";
@@ -251,6 +257,12 @@ class PrController extends Controller
 		$request->validate([
 
 		]);
+
+		// User and HoD Can not edit department PR
+		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
+			$request->merge(['dept_id'		=> auth()->user()->dept_id]);
+		} 
+
 		$pr->update($request->all());
 
 		// Write to Log
@@ -417,6 +429,55 @@ class PrController extends Controller
 		}
 
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition submitted for approval successfully.');
+	}
+
+	public function copy(Pr $pr)
+	{
+		$this->authorize('view', $pr);
+
+		$sourcePr = Pr::where('id', $pr->id)->first();
+		$pr				= new Pr;
+		
+		//  don't set dept_budget_id . It will be save during submissions
+		//  Populate Function currency amounts during submit
+		$pr->summary			= $sourcePr->summary;
+		$pr->pr_date			= now();
+		
+		// User and Hod can copy into own department
+		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
+			$pr->requestor_id	= $auth()->user()->id;
+			$pr->dept_id		= $auth()->user()->dept_id;
+		} else {
+			$pr->requestor_id	= $sourcePr->requestor_id;
+			$pr->dept_id		= $sourcePr->dept_id;
+		}
+
+		$pr->need_by_date		= $sourcePr->need_by_date;
+		$pr->project_id			= $sourcePr->project_id;
+		$pr->supplier_id		= $sourcePr->supplier_id;
+		$pr->notes				= $sourcePr->notes;
+		$pr->currency			= $sourcePr->currency;
+		$pr->amount				= $sourcePr->amount;
+		$pr->fc_currency		= $sourcePr->fc_currency;
+		$pr->fc_exchange_rate	= $sourcePr->fc_exchange_rate;
+		$pr->fc_amount			= $sourcePr->fc_amount;
+		$pr->status				= PrStatusEnum::OPEN->value;
+		$pr->auth_status		= AuthStatusEnum::DRAFT->value;
+		$pr->save();
+		$pr_id					= $pr->id;
+
+		// copy lines into prls
+		$sql= "INSERT INTO prls( pr_id, line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, vat, amount, status ) 
+		SELECT ".$pr->id.",line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, vat, amount, '".PrStatusEnum::OPEN->value."'  
+		FROM prls WHERE 
+		pr_id= ".$sourcePr->id." ;";
+		//Log::debug('sql=' . $sql);
+		DB::INSERT($sql);
+
+		Log::debug('New PR created =' . $pr->id);
+		EventLog::event('pr-copy', $pr->id, 'copied');	// Write to Log
+
+		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition #'.$pr_id.' created.');
 	}
 
 }

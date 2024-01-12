@@ -318,7 +318,7 @@ Route::middleware([
 	Route::get('/wfl/export',[WflController::class,'export'])->name('wfls.export');
 	Route::get('/wfls/delete/{wfl}',[WflController::class,'destroy'])->name('wfls.destroy');
 
-	/* ======================== report ========================================  */
+	/* ======================== Report ========================================  */
 	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
 	Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
 	Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
@@ -350,6 +350,7 @@ Route::middleware([
 	Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
 	Route::get('/prs/detach/{pr}',[PrController::class,'detach'])->name('prs.detach');
 	Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
+	Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
 
 	/* ======================== Prl ======================================== */
 	Route::resource('prls', PrlController::class)->middleware(['auth', 'verified']);

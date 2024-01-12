@@ -38,6 +38,10 @@ use App\Helpers\EventLog;
 
 use DB;
 
+// called from Pr.submit
+// $rate = ExchangeRate::getRate($pr->currency, $setup->currency);
+// Dashboard.index
+
 class ExchangeRate
 {
 	public static function getRate($currency, $fc_currency)
@@ -163,7 +167,7 @@ class ExchangeRate
 
 			return true;
 		} else {
-			Log::debug("Http::get Response ERROR. Please Try again.");
+			Log::warning("Http::get Response ERROR. Please Try again.");
 			return false;
 		}
 
