@@ -33,21 +33,17 @@ class CheckoutPolicy
 	}
 
 	// Only back office users can view all tickets 
-	public function viewAll(User $user): Response
+	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 	
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Checkout $checkout): Response
+	public function view(User $user, Checkout $checkout): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
@@ -55,17 +51,15 @@ class CheckoutPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Checkout $checkout): Response
+	public function update(User $user, Checkout $checkout): bool
 	{
-		return ($user->isSystem())
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -73,7 +67,7 @@ class CheckoutPolicy
 	 */
 	public function delete(User $user, Checkout $checkout): bool
 	{
-		//
+		return false;
 	}
 
 	/**

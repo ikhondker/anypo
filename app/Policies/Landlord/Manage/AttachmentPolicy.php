@@ -34,11 +34,9 @@ class AttachmentPolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Attachment $attachment): Response
+	public function view(User $user, Attachment $attachment): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
@@ -46,17 +44,15 @@ class AttachmentPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Attachment $attachment): Response
+	public function update(User $user, Attachment $attachment): bool
 	{
-		return ($user->isSystem())
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**

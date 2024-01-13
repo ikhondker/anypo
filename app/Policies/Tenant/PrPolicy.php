@@ -6,9 +6,7 @@ use App\Models\Tenant\Pr;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
-
 
 class PrPolicy
 {
@@ -75,7 +73,15 @@ class PrPolicy
 	 */
 	public function delete(User $user, Pr $pr): bool
 	{
-		//
+		return ( $user->isAdmin || ($user->id === $pr->requestor_id) ) && ($pr->auth_status->value == AuthStatusEnum::DRAFT->value) ;
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function cancel(User $user, Pr $pr): bool
+	{
+		return $user->isAdmin ;
 	}
 
 	/**

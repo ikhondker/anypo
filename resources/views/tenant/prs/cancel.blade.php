@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title','Reset PR Workflow')
-@section('breadcrumb','Reset PR Workflow')
+@section('title','Cancel Approved Requisition')
+@section('breadcrumb','Cancel Approved Requisition')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Reset PR Workflow
+			Cancel Requisition
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr"/>
@@ -14,7 +14,7 @@
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form action="{{ route('wfs.wf-reset-pr') }}" method="POST">
+	<form action="{{ route('prs.cancel') }}" method="POST">
 		@csrf
 
 		<div class="row">
@@ -22,7 +22,7 @@
 				
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Reset PR Workflow</h5>
+						<h5 class="card-title">Cancel Requisition</h5>
 						<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
 					</div>
 					<div class="card-body">
@@ -34,7 +34,7 @@
 									<i data-feather="alert-triangle" class="text-danger"></i>
 								</div>
 								<div class="alert-message">
-									<strong>Note: </strong> You can only reset PR workflow which are in IN-PROCESS or ERROR status.
+									<strong>Note: </strong> You can only cancel APPROVED requisitions which are not been converted to PO yet.
 								</div>
 							</div>
 

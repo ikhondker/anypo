@@ -89,6 +89,8 @@ class CheckBudget
 		return 'E000';
 	}
 
+	// wfl->reject
+	// pr->cancel
 	public static function reverseBookingPr($pr_id)
 	{
 

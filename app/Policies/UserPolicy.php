@@ -5,10 +5,6 @@ namespace App\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-
-#Tenant
-use App\Helpers\CheckAccess;
-
 use App\Enum\UserRoleEnum;
 
 use Illuminate\Support\Facades\Log;
@@ -32,22 +28,34 @@ class UserPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		if (tenant('id') == ''){
+			/*
+			|-----------------------------------------------------------------------------
+			| Landlord																	 + 
+			|-----------------------------------------------------------------------------
+			*/
+			return $user->isAdmin();
+		} else {
+			/*
+			|-----------------------------------------------------------------------------
+			| Tenant																	 + 
+			|-----------------------------------------------------------------------------
+			*/
+			return $user->isAdmin();
+		}
 	}
 
 	// Only back office users can view all accounts
-	public function viewAll(User $user): Response
+	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, User $model): Response
+	public function view(User $user, User $model): bool
 	{
 
 		if (tenant('id') == ''){
@@ -58,21 +66,13 @@ class UserPolicy
 			*/
 			// owner, account admin and back office users can view ticket
 			if ($user->role->value == UserRoleEnum::USER->value) {
-				return ($user->id == $model->id)
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
+				return ($user->id == $model->id);
 			} elseif ($user->isAdmin() ) {
-				return ( $user->account_id == $model->account_id)
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
+				return ( $user->account_id == $model->account_id);
 			} elseif ($user->isBackOffice()) {
-					return ( true)
-						? Response::allow()
-						: Response::deny(config('bo.MSG_DENY'));
+					return (true);
 			} else {
-				return ( false )
-				? Response::allow()
-				: Response::deny(config('bo.MSG_DENY'));
+				return ( false );
 			}
 
 		} else {
@@ -83,13 +83,9 @@ class UserPolicy
 			*/
 			// only back-office can see seeded users view
 			if ($model->seeded) {
-				return ( CheckAccess::isBackOffice($user->role->value))
-					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));
+				return $user->isBackOffice();
 			} else {
-				return ( true )
-					? Response::allow()
-					: Response::deny(config('akk.MSG_DENY'));
+				return $user->isAdmin();
 			}
 		}
 	}
@@ -97,7 +93,7 @@ class UserPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
 
 		if (tenant('id') == ''){
@@ -107,9 +103,7 @@ class UserPolicy
 			|-----------------------------------------------------------------------------
 			*/
 			// Admin role user only
-			return ( $user->isAdmin() || $user->isBackOffice() )
-				? Response::allow()
-				: Response::deny(config('bo.MSG_DENY'));
+			return ( $user->isAdmin() || $user->isBackOffice() );
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
@@ -117,13 +111,7 @@ class UserPolicy
 			|-----------------------------------------------------------------------------
 			*/
 			 // Admin role user only
-			 return ( CheckAccess::aboveAdmin($user->role->value) )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
-
-			// return ( CheckAccess::isBackOffice($user->role->value) )
-			// 	? Response::allow()
-			// 	: Response::deny(config('akk.MSG_DENY'));
+			 return ( $user->isAdmin() || $user->isBackOffice() );
 		}
 	}
 
@@ -142,21 +130,13 @@ class UserPolicy
 			// owner, account admin and back office users can view ticket
 			if ($user->role->value == UserRoleEnum::USER->value) {
 				// user is allowed to update only own
-				return ($user->id == $model->id)
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
-			} elseif ($user->isAdmin() ) {
-				return ( $user->account_id == $model->account_id)
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
+				return ($user->id == $model->id);
+			} elseif ($user->isAdmin() & ($user->account_id == $model->account_id) ) {
+				return ( true );
 			} elseif ($user->isBackOffice()) {
-					return ( true)
-						? Response::allow()
-						: Response::deny(config('bo.MSG_DENY'));
+					return ( true);
 			} else {
-				return ( false )
-				? Response::allow()
-				: Response::deny(config('bo.MSG_DENY'));
+				return ( false );
 			}
 		} else {
 			/*
@@ -180,7 +160,7 @@ class UserPolicy
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, User $model): Response
+	public function delete(User $user, User $model): bool
 	{
 		
 		
@@ -193,18 +173,12 @@ class UserPolicy
 			*/
 			// Admin user for current account users only
 			// stop deactivating himself
-			if ($user->isAdmin() ) {
-				return (($user->account_id == $model->account_id) && ($user->id <> $model->id) )
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
-			} elseif ($user->isBackOffice()) {
-					return ( true)
-						? Response::allow()
-						: Response::deny(config('bo.MSG_DENY'));
+			if ($user->isAdmin() && ($user->account_id == $model->account_id)) {
+				return ( $user->id <> $model->id );
+			} elseif ($user->isBackOffice() && ($user->id <> $model->id) ) {
+					return ( true);
 			} else {
-				return ( false )
-				? Response::allow()
-				: Response::deny(config('bo.MSG_DENY'));
+				return ( false );
 			}
 		} else {
 			/*
@@ -244,21 +218,13 @@ class UserPolicy
 			*/
 			if ($user->role->value == UserRoleEnum::USER->value) {
 				// user is allowed to update only own
-				return ($user->id == $model->id)
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
+				return ($user->id == $model->id);
 			} elseif ($user->isAdmin() ) {
-				return ( $user->account_id == $model->account_id)
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
+				return ( $user->account_id == $model->account_id);
 			} elseif ($user->isBackOffice()) {
-					return ( true)
-						? Response::allow()
-						: Response::deny(config('bo.MSG_DENY'));
+					return ( true);
 			} else {
-				return ( false )
-				? Response::allow()
-				: Response::deny(config('bo.MSG_DENY'));
+				return ( false );
 			}
 		} else {
 			/*
@@ -269,7 +235,7 @@ class UserPolicy
 			// only back-office can edit seeded users
 			if ($model->seeded) {
 				return $user->isBackOffice();
-			} else if ($user->isAdmin()) {
+			} else if ($user->isAdmin() && ($user->id === $model->id) ) {
 				return ( true );
 			} else {
 				// allow to change only own password
@@ -295,19 +261,24 @@ class UserPolicy
 	}
 
 
-	public function impersonate(User $user): Response
+	public function impersonate(User $user): bool
 	{
 		// only back-office impersonate
 		//Log::debug("user->role->value = ". $user->role->value );
-
 		if (tenant('id') == ''){
-			return ( $user->isBackOffice() )
-				? Response::allow()
-				: Response::deny(config('bo.MSG_DENY'));
+			/*
+			|-----------------------------------------------------------------------------
+			| Landlord																	 + 
+			|-----------------------------------------------------------------------------
+			*/
+			return $user->isBackOffice();
 		} else {
-			return ( CheckAccess::isBackOffice($user->role->value) )
-				? Response::allow()
-				: Response::deny(config('akk.MSG_DENY'));
+			/*
+			|-----------------------------------------------------------------------------
+			| Tenant																	 + 
+			|-----------------------------------------------------------------------------
+			*/
+			return $user->isBackOffice();
 		}
 
 	}

@@ -6,7 +6,6 @@ use App\Models\Tenant\Lookup\UploadItem;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
 
 
@@ -28,7 +27,7 @@ class UploadItemPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -36,37 +35,31 @@ class UploadItemPolicy
 	 */
 	public function view(User $user, UploadItem $uploadItem): bool
 	{
-		return true;
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return ( $user->isAdmin()  )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, UploadItem $uploadItem): Response
+	public function update(User $user, UploadItem $uploadItem): bool
 	{
-		return ( $user->isAdmin()  )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, UploadItem $uploadItem): Response
+	public function delete(User $user, UploadItem $uploadItem): bool
 	{
-		return ( $user->isAdmin()  )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**

@@ -31,6 +31,9 @@ class GroupController extends Controller
 	 */
 	public function index()
 	{
+
+		$this->authorize('viewAny', Group::class);
+
 		$groups = Group::query();
 		if (request('term')) {
 			$groups->where('name', 'Like', '%' . request('term') . '%');

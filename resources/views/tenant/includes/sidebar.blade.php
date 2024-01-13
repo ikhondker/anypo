@@ -51,10 +51,10 @@
 		</a>
 		<ul id="items" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'items' ? "show" : "") }}" data-bs-parent="#sidebar">
 			<li class="sidebar-item {{ ($_route_name == 'items.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('items.index') }}"><i class="align-middle" data-feather="circle"></i>Items*</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'categories.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('categories.index') }}"><i class="align-middle" data-feather="circle"></i>Category*</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'uoms.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('uoms.index') }}"><i class="align-middle" data-feather="circle"></i>UOM</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'upload-items.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('upload-items.index') }}"><i class="align-middle" data-feather="circle"></i>Interface *</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'upload-items.create' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('upload-items.create') }}"><i class="align-middle" data-feather="circle"></i>Item Upload *</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'uoms.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('uoms.index') }}"><i class="align-middle" data-feather="circle"></i>UOM</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'categories.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('categories.index') }}"><i class="align-middle" data-feather="circle"></i>Category*</a></li>
 		</ul>
 	</li>
 	
@@ -95,8 +95,8 @@
 			<ul id="workflow" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'workflow' ? "show" : "") }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'hierarchies.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('hierarchies.index') }}"><i class="align-middle" data-feather="circle"></i>Hierarchy</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'wfs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('wfs.index') }}"><i class="align-middle" data-feather="circle"></i>Workflow</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'wfs.reset-pr' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('wfs.reset-pr') }}"><i class="align-middle" data-feather="circle"></i>Reset PR Workflow *</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'wfs.reset-po' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('wfs.reset-po') }}"><i class="align-middle" data-feather="circle"></i>Reset PO Workflow *</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'wfs.get-reset-pr-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('wfs.get-reset-pr-num') }}"><i class="align-middle" data-feather="circle"></i>Reset PR Workflow *</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'wfs.get-reset-po-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('wfs.get-reset-po-num') }}"><i class="align-middle" data-feather="circle"></i>Reset PO Workflow *</a></li>
 			</ul>
 		</li>
 
@@ -106,7 +106,7 @@
 				<span class="align-middle">Cancellation</span>
 			</a>
 			<ul id="cancel" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'cancel' ? "show" : "") }}" data-bs-parent="#sidebar">
-				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="circle"></i>Cancel PR*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'prs.get-cancel-pr-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.get-cancel-pr-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel PR*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="circle"></i>Cancel PO*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="circle"></i>Cancel Receipt*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="circle"></i>Cancel Payment*</a></li>
@@ -144,6 +144,17 @@
 			</ul>
 		</li>
 	{{-- @endif --}}
+
+	<li class="sidebar-item {{ ($_node_name == 'profile' ? "active" : "") }}">
+		<a data-bs-target="#profile" data-bs-toggle="collapse" class="sidebar-link">
+			<i class="align-middle" data-feather="grid"></i> 
+			<span class="align-middle">My Account (*)</span>
+		</a>
+		<ul id="profile" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'profile' ? "show" : "") }}" data-bs-parent="#sidebar">
+			<li class="sidebar-item {{ ($_route_name == 'projects.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('users.show',auth()->user()->id) }}"><i class="align-middle" data-feather="circle"></i>View Profile*</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'suppliers.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('users.password',Auth::user()->id) }}"><i class="align-middle" data-feather="circle"></i>Change Password*</a></li>
+		</ul>
+	</li>
 
 	<li class="sidebar-item {{ ($_route_name == 'help' ? "active" : "") }}">
 		<a class="sidebar-link" href="{{ route('help') }}">

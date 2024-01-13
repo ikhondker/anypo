@@ -38,6 +38,8 @@ class DeptBudgetController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny', Budget::class);
+
 		$dept_budgets = DeptBudget::query();
 		if (request('term')) {
 			$dept_budgets->whereHas('dept', function ($q) {
@@ -52,7 +54,7 @@ class DeptBudgetController extends Controller
 	/**
 	* Display a listing of the resource.
 	*/
-	public function revision(DeptBudget $deptBudget)
+	public function xxrevision(DeptBudget $deptBudget)
 	{
 		Log::debug("deptBudget->id=".$deptBudget->id);
 		$dept_budgets = DeptBudget::where('budget_id', $deptBudget->budget_id)->where('dept_id', $deptBudget->dept_id)->orderBy('id', 'ASC')->paginate(10);
@@ -90,7 +92,7 @@ class DeptBudgetController extends Controller
 	 */
 	public function show(DeptBudget $deptBudget)
 	{
-		//$this->authorize('view', $deptBudget);
+		$this->authorize('view', $deptBudget);
 		return view('tenant.dept-budgets.show', compact('deptBudget'));
 	}
 

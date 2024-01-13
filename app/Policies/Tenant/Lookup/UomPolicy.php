@@ -6,7 +6,6 @@ use App\Models\Tenant\Lookup\Uom;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
 
 
@@ -43,31 +42,25 @@ class UomPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return ( $user->isAdmin()  )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Uom $uom): Response
+	public function update(User $user, Uom $uom): bool
 	{
-		return ( $user->isAdmin()  )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, Uom $uom): Response
+	public function delete(User $user, Uom $uom): bool
 	{
-		return ( $user->isAdmin()  )
-		? Response::allow()
-		: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**

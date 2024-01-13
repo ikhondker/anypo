@@ -257,7 +257,7 @@
 				<div class="container-fluid p-0">
 
 					<div class="row justify-start">
-						<div class="col-lg-8">
+						<div class="col-lg-6">
 							<!-- Show Notice -->
 							@if ($_setup->show_banner && ($_setup->banner_message <> '') )
 
@@ -286,30 +286,17 @@
 							@endif --}}
 						</div>
 					</div>
-						{{-- <h1 class="h3 mb-3">Blank Page</h1> --}}
+					{{-- <h1 class="h3 mb-3">Blank Page</h1> --}}
 
-
-						@if ($_setup->freezed)
-							<!-- content -->
-							@yield('content')
-							<!-- /.content -->
-						@else
-							<!-- content -->
-							@include('tenant.includes.initial')
-							<!-- /.content -->
-						@endif
-						{{-- <div class="row">
-							<div class="col-12">
-								<div class="card">
-									<div class="card-header">
-										<h5 class="card-title">Empty card Layout</h5>
-									</div>
-									<div class="card-body">
-									</div>
-								</div>
-							</div>
-						</div> --}}
-
+					@if ($_setup->freezed)
+						<!-- content -->
+						@yield('content')
+						<!-- /.content -->
+					@else
+						<!-- content -->
+						@include('tenant.includes.initial')
+						<!-- /.content -->
+					@endif
 				</div>
 			</main>
 

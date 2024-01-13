@@ -153,9 +153,6 @@ class PrController extends Controller
 		$prl->price		= $request->input('price');
 		$prl->amount	= $request->input('prl_amount');
 
-		
-
-
 		$prl->save();
 		$prl_id			= $prl->id;
 		//Log::debug("wf_id = ".$wf_id );
@@ -307,6 +304,66 @@ class PrController extends Controller
 		$pr->delete();
 
 		return redirect()->route('prs.index')->with('success', 'Purchase Requisition deleted successfully');
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function getCancelPrNum()
+	{
+
+		$this->authorize('cancel',Pr::class);
+		
+		Log::debug('pr_id=getCancelPrNum');
+		
+		return view('tenant.prs.cancel');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function cancel(StorePrRequest $request)
+	{
+		
+		$this->authorize('cancel',Pr::class);
+
+		try {
+			$pr = Pr::where('id', $request->input('pr_id'))->firstOrFail();
+
+			if ($pr->auth_status->value == AuthStatusEnum::DRAFT->value) {
+				return redirect()->route('prs.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
+			}
+	
+			if ($pr->auth_status->value <> AuthStatusEnum::APPROVED->value) {
+				return redirect()->route('prs.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
+			}
+	
+			if ($pr->po_id  <> 0 ) {
+				return redirect()->route('prs.cancel')->with('error', 'This Requisition is already converted to PO#'.$pr->po_id.'. Requisition can not be canceled.');
+			}
+	
+			//  Reverse Booking
+			$retcode = CheckBudget::reverseBookingPr($pr->id);
+			Log::debug("retcode = ".$retcode);
+	
+			// Cancel All PR Lines
+			Prl::where('pr_id', $pr->id)
+				  ->update(['status' => PrStatusEnum::CANCELED->value]);
+	
+			// cancel PR
+			Pr::where('id', $pr->id)
+				->update(['status' => PrStatusEnum::CANCELED->value]);
+	
+			// Write to Log
+			EventLog::event('Pr', $pr->id, 'cancel', 'id', $pr->id);
+	
+			return redirect()->route('prs.index')->with('success', 'Purchase Requisition canceled successfully.');
+		
+		} catch (ModelNotFoundException $exception) {
+			// Error handling code
+			//Log::debug("PR#".$request->input('pr_id')." not Found!");
+			return back()->withError("PR#".$request->input('pr_id')." not Found!")->withInput();
+		}
 	}
 
 	public function export()

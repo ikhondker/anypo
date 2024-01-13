@@ -28,9 +28,9 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'budgets.create','route_name' => 'budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'budgets.detach','route_name' => 'budgets.index', 'node_name' => 'budget'],
 
-			[ 'raw_route_name' => 'categories.index','route_name' => 'categories.index', 'node_name' => 'item'],
-			[ 'raw_route_name' => 'categories.edit','route_name' => 'categories.index', 'node_name' => 'item'],
-			[ 'raw_route_name' => 'categories.create','route_name' => 'categories.index', 'node_name' => 'item'],
+			[ 'raw_route_name' => 'categories.index','route_name' => 'categories.index', 'node_name' => 'items'],
+			[ 'raw_route_name' => 'categories.edit','route_name' => 'categories.index', 'node_name' => 'items'],
+			[ 'raw_route_name' => 'categories.create','route_name' => 'categories.index', 'node_name' => 'items'],
 
 			[ 'raw_route_name' => 'countries.index','route_name' => 'countries.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'countries.edit','route_name' => 'countries.index', 'node_name' => 'lookups'],
@@ -87,7 +87,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'prs.create','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.createline','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.detach','route_name' => 'prs.index', 'node_name' => 'purchase'],
-			
+
+
+			[ 'raw_route_name' => 'prs.get-cancel-pr-num','route_name' => 'prs.get-cancel-pr-num', 'node_name' => 'cancel'],
+			[ 'raw_route_name' => 'pos.get-cancel-po-num','route_name' => 'pos.get-cancel-po-num', 'node_name' => 'cancel'],
+
 
 			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],
 
@@ -141,7 +145,8 @@ class MenuSeeder extends Seeder
 
 			[ 'raw_route_name' => 'wfs.index','route_name' => 'wfs.index', 'node_name' => 'workflow'],
 			[ 'raw_route_name' => 'wfs.show','route_name' => 'wfs.index', 'node_name' => 'workflow'],
-			[ 'raw_route_name' => 'wfs.reset-pr','route_name' => 'wfs.reset-pr', 'node_name' => 'workflow'],
+			[ 'raw_route_name' => 'wfs.get-reset-pr-num','route_name' => 'wfs.get-reset-pr-num', 'node_name' => 'workflow'],
+			[ 'raw_route_name' => 'wfs.get-reset-po-num','route_name' => 'wfs.get-reset-po-num', 'node_name' => 'workflow'],
 
 		  ];
 		//

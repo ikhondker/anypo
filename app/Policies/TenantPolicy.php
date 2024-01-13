@@ -31,11 +31,9 @@ class TenantPolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Tenant $tenant): Response
+	public function view(User $user, Tenant $tenant): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**

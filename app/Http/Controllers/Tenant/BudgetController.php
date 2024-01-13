@@ -35,6 +35,8 @@ class BudgetController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny', Budget::class);
+
 		$budgets = Budget::query();
 		if (request('term')) {
 			$budgets->where('name', 'Like', '%'.request('term').'%');

@@ -33,9 +33,7 @@ class ProductPolicy
 	 */
 	public function view(User $user, Product $product): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
@@ -43,7 +41,7 @@ class ProductPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -51,7 +49,7 @@ class ProductPolicy
 	 */
 	public function update(User $user, Product $product): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -59,7 +57,7 @@ class ProductPolicy
 	 */
 	public function delete(User $user, Product $product): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -67,7 +65,7 @@ class ProductPolicy
 	 */
 	public function restore(User $user, Product $product): bool
 	{
-		//
+		return false;
 	}
 
 	/**

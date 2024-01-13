@@ -33,11 +33,9 @@ class DomainPolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Domain $domain): Response
+	public function view(User $user, Domain $domain): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**

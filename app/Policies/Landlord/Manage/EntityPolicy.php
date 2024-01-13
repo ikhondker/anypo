@@ -32,11 +32,9 @@ class EntityPolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Entity $entity): Response
+	public function view(User $user, Entity $entity): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -50,7 +48,7 @@ class EntityPolicy
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Entity $entity): Response
+	public function update(User $user, Entity $entity): bool
 	{
 		return false;
 	}

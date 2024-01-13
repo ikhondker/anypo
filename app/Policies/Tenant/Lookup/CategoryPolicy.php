@@ -6,7 +6,6 @@ use App\Models\Tenant\Lookup\Category;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
 
 class CategoryPolicy
@@ -43,29 +42,23 @@ class CategoryPolicy
 	 */
 	public function create(User $user): Response
 	{
-		return ( $user->isAdmin()  )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		$user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Category $category): Response
+	public function update(User $user, Category $category): bool
 	{
-		return ( $user->isAdmin()  )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		$user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, Category $category): Response
+	public function delete(User $user, Category $category): bool
 	{
-		return ( $user->isAdmin()  )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		$user->isAdmin();
 	}
 
 	/**
@@ -81,8 +74,6 @@ class CategoryPolicy
 	 */
 	public function forceDelete(User $user, Category $category): bool
 	{
-		return ( $user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isPrivileged($user->role->value) )
-		? Response::allow()
-		: Response::deny(config('akk.MSG_DENY'));
+		$user->isAdmin();
 	}
 }

@@ -6,7 +6,6 @@ use App\Models\Tenant\DeptBudget;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
 
 class DeptBudgetPolicy
@@ -28,7 +27,7 @@ class DeptBudgetPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isManagement();
 	}
 
 	/**
@@ -36,7 +35,7 @@ class DeptBudgetPolicy
 	 */
 	public function view(User $user, DeptBudget $deptBudget): bool
 	{
-		return true;
+		return $user->isManagement();
 	}
 
 	/**
@@ -44,7 +43,7 @@ class DeptBudgetPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return $user->isManagement();
 	}
 
 	/**
@@ -52,7 +51,7 @@ class DeptBudgetPolicy
 	 */
 	public function update(User $user, DeptBudget $deptBudget): bool
 	{
-		return ( $user->isAdmin() && !$deptBudget->freeze );
+		return ( $user->isManagement() && !$deptBudget->freeze );
 	}
 
 	/**
@@ -60,12 +59,12 @@ class DeptBudgetPolicy
 	 */
 	public function delete(User $user, DeptBudget $deptBudget): bool
 	{
-		return $user->isAdmin();
+		return $user->isManagement();
 	}
 
 	public function export(User $user): bool
 	{
-		return $user->isAdmin();
+		return $user->isManagement();
 	}
 	
 	

@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Tenant\Workflow\Wf;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
 
 class WfPolicy
@@ -63,6 +62,13 @@ class WfPolicy
 		return false;
 	}
 
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function reset(User $user, Wf $wf): bool
+	{
+		return $user->isAdmin();
+	}
 	/**
 	 * Determine whether the user can restore the model.
 	 */

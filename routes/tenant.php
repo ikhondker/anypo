@@ -308,10 +308,10 @@ Route::middleware([
 	/* ======================== Wf ======================================== */
 	Route::resource('wfs', WfController::class)->middleware(['auth', 'verified']);
 	Route::get('/wf/export',[WfController::class,'export'])->name('wfs.export');
-	Route::get('/wf/reset-pr',[WfController::class,'resetpr'])->name('wfs.reset-pr');
-	Route::post('/wf/deletewfpr',[WfController::class,'deletewfpr'])->name('wfs.deletewfpr');
-	Route::get('/wf/reset-po',[WfController::class,'resetpo'])->name('wfs.reset-po');
-	Route::get('/wfs/delete/{wf}',[WfController::class,'destroy'])->name('wfs.destroy');
+	Route::get('/wf/get-reset-pr-num',[WfController::class,'getResetPrNum'])->name('wfs.get-reset-pr-num');
+	Route::post('/wf/wf-reset-pr',[WfController::class,'wfResetPr'])->name('wfs.wf-reset-pr');
+	Route::get('/wf/get-reset-po-num',[WfController::class,'getResetPrNum'])->name('wfs.get-reset-po-num');
+	Route::post('/wf/wf-reset-po',[WfController::class,'wfResetPr'])->name('wfs.wf-reset-po');
 
 	/* ======================== Wfl ======================================== */
 	Route::resource('wfls', WflController::class)->middleware(['auth', 'verified']);
@@ -351,6 +351,9 @@ Route::middleware([
 	Route::get('/prs/detach/{pr}',[PrController::class,'detach'])->name('prs.detach');
 	Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
 	Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
+	Route::get('/pr/get-cancel-pr-num',[PrController::class,'getCancelPrNum'])->name('prs.get-cancel-pr-num');
+	Route::post('/prs/cancel',[PrController::class,'cancel'])->name('prs.cancel');
+	
 
 	/* ======================== Prl ======================================== */
 	Route::resource('prls', PrlController::class)->middleware(['auth', 'verified']);

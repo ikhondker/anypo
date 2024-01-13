@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 use Illuminate\Support\Facades\Log;
-//use App\Helpers\CheckAccess;
 
 class TablePolicy
 {

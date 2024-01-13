@@ -27,28 +27,21 @@ class ServicePolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return (($user->account_id == $service->account_id) && $user->isAdmin()) || $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
-
+		return (($user->account_id == $service->account_id) && $user->isAdmin()) || $user->isBackOffice();
 	}
 
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Service $service): Response
+	public function view(User $user, Service $service): bool
 	{
-		return (($user->account_id == $service->account_id) && $user->isAdmin()) || $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return (($user->account_id == $service->account_id) && $user->isAdmin()) || $user->isBackOffice();
 	}
 
 	// Only back office users can view all tickets 
-	public function viewAll(User $user): Response
+	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	
@@ -57,17 +50,15 @@ class ServicePolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Service $service): Response
+	public function update(User $user, Service $service): bool
 	{
-		return ($user->isSystem())
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**

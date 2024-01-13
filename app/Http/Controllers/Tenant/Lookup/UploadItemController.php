@@ -32,6 +32,9 @@ class UploadItemController extends Controller
 	 */
 	public function index()
 	{
+
+		$this->authorize('viewAny', UploadItem::class);
+
 		$upload_items = UploadItem::query();
 		if (request('term')) {
 			$upload_items->where('name', 'Like', '%' . request('term') . '%');

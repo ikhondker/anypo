@@ -7,7 +7,6 @@ use App\Models\Tenant\Admin\Attachment;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
 
 class AttachmentPolicy

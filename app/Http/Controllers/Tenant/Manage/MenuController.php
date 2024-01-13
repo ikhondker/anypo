@@ -33,7 +33,7 @@ class MenuController extends Controller
 
 		$menus = Menu::query();
 		if (request('term')) {
-			$menus->where('name', 'Like', '%'.request('term').'%');
+			$menus->where('raw_route_name', 'Like', '%'.request('term').'%');
 		}
 		$menus = $menus->orderBy('node_name', 'ASC')->paginate(40);
 

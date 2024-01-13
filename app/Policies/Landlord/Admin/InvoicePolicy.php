@@ -30,45 +30,35 @@ class InvoicePolicy
 	}
 
 	// Only back office users can view all tickets 
-	public function viewAll(User $user): Response
+	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 	
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Invoice $invoice): Response
+	public function view(User $user, Invoice $invoice): bool
 	{
-		return (
-			(($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isBackOffice()
-		)
-		? Response::allow()
-		: Response::deny(config('bo.MSG_DENY'));
+		return (($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isBackOffice();
+
 	}
 
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return (
-			($user->isAdmin()) || $user->isBackOffice()
-		)
-		? Response::allow()
-		: Response::deny(config('bo.MSG_DENY'));
+		return ($user->isAdmin()) || $user->isBackOffice();
+	
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Invoice $invoice): Response
+	public function update(User $user, Invoice $invoice): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
@@ -98,16 +88,13 @@ class InvoicePolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function pdfInvoice(User $user, Invoice $invoice): Response
+	public function pdfInvoice(User $user, Invoice $invoice): bool
 	{
 		//Log::debug("inside pdfInvoice= ". $invoice->id );
 		//Log::info(json_encode($invoice)); 
 		//Log::info(json_encode($user)); 
 
-		return (
-			(($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isBackOffice()
-		)
-		? Response::allow()
-		: Response::deny(config('bo.MSG_DENY'));
+		return (($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isBackOffice();
+		
 	}
 }

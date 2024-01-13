@@ -6,8 +6,6 @@ use App\Models\Tenant\Lookup\PayMethod;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
 
 
@@ -45,31 +43,25 @@ class PayMethodPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-		? Response::allow()
-		: Response::deny(config('akk.MSG_DENY'));
+		$user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, PayMethod $payMethod): Response
+	public function update(User $user, PayMethod $payMethod): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		$user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, PayMethod $payMethod): Response
+	public function delete(User $user, PayMethod $payMethod): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		$user->isAdmin();
 	}
 
 	/**

@@ -33,9 +33,7 @@ class CountryPolicy
 	 */
 	public function view(User $user, Country $country): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
@@ -43,9 +41,7 @@ class CountryPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**

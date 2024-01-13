@@ -24,6 +24,6 @@ enum PrStatusEnum: string{
 	case CLOSED		= 'closed';
 	case FORCED		= 'force-closed';
 	case CANCELED	= 'canceled';
-	case ERROR	= 'error';
+	case ERROR		= 'error';
 }
 

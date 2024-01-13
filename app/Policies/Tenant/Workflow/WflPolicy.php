@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Tenant\Workflow\Wfl;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
 
 class WflPolicy
@@ -35,9 +34,7 @@ class WflPolicy
 	 */
 	public function view(User $user, Wfl $wfl): bool
 	{
-		return ( CheckAccess::aboveAdmin($user->role->value) )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		$user->isAdmin();
 
 	}
 

@@ -145,17 +145,18 @@ class WfController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function resetpr()
+	public function getResetPrNum()
 	{
-		//$this->authorize('resetpr',Wf::class);
+		$this->authorize('reset',Wf::class);
 		return view('tenant.workflow.wfs.reset-pr');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function deletewfpr(StoreWfRequest $request)
+	public function wfResetPr(StoreWfRequest $request)
 	{
+		$this->authorize('reset',Wf::class);
 		// $this->authorize('resetpr',Wf::class);
 		// check if pr status only in-process
 
@@ -166,7 +167,7 @@ class WfController extends Controller
 		// }
 
 		try {
-			$pr = PR::where('id', $request->input('pr_id'))->where('auth_status', AuthStatusEnum::INPROCESS->value)->firstOrFail();
+			$pr = Pr::where('id', $request->input('pr_id'))->where('auth_status', AuthStatusEnum::INPROCESS->value)->firstOrFail();
 
 			// mark wf as RESET
 			try {

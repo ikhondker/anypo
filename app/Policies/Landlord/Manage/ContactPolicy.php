@@ -26,25 +26,21 @@ class ContactPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isBackOffice();
 	}
 
 	// Only back office users can view all tickets
-	public function viewAll(User $user): Response
+	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Contact $contact): Response
+	public function view(User $user, Contact $contact): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
@@ -52,17 +48,15 @@ class ContactPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Contact $contact): Response
+	public function update(User $user, Contact $contact): bool
 	{
-		return ($user->role->value == UserRoleEnum::SYSTEM->value)
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**

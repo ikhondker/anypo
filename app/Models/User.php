@@ -199,6 +199,33 @@ class User extends Authenticatable implements MustVerifyEmail
 		}	
 	}
 
+	// usages auth()->user()->isisManagement()
+	public function isManagement()
+	{
+		if ($this->enable == 1) {
+			switch ($this->role->value) {
+				case (UserRoleEnum::ADMIN->value):
+					return true;
+					break;
+				case (UserRoleEnum::HOD->value):
+					return true;
+					break;
+				case (UserRoleEnum::CXO->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPPORT->value):
+					return true;
+					break;
+				case (UserRoleEnum::SYSTEM->value):
+					return true;
+					break;
+				default:
+					return false;
+			}
+		} else {
+			return false;
+		}	
+	}
 
 	public function isBackOffice()
 	{

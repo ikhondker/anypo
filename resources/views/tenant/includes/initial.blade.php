@@ -30,14 +30,16 @@ $setup = Setup::first();
 						<div class="card-body">
 							<div class="mb-3">
 								
-								<div class="alert alert-danger alert-outline" role="alert">
+								<div class="alert alert-warning alert-dismissible" role="alert">
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									<div class="alert-icon">
-										<i class="far fa-fw fa-bell"></i>
+										<i data-feather="alert-triangle" class="text-danger"></i>
 									</div>
-									<div class="alert-message text-danger">
-										<strong class="text-danger">WARNING!</strong> Please note you wont be able to change this currency setting once you have saved!
+									<div class="alert-message">
+										<strong>Note: </strong> Please note you wont be able to change this currency setting once you have saved!
 									</div>
 								</div>
+
 							</div>
 
 							<div class="mb-3">

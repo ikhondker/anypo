@@ -33,6 +33,8 @@ class HierarchyController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny', Hierarchy::class);
+
 		$hierarchies = Hierarchy::query();
 		if (request('term')) {
 			$hierarchies->where('name', 'Like', '%' . request('term') . '%');

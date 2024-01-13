@@ -30,11 +30,9 @@ class StatusPolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Status $status): Response
+	public function view(User $user, Status $status): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
@@ -42,7 +40,7 @@ class StatusPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -50,7 +48,7 @@ class StatusPolicy
 	 */
 	public function update(User $user, Status $status): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -58,7 +56,7 @@ class StatusPolicy
 	 */
 	public function delete(User $user, Status $status): bool
 	{
-		//
+		return false;
 	}
 
 	/**

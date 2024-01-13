@@ -6,7 +6,6 @@ use App\Models\Tenant\Workflow\Hierarchyl;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Helpers\CheckAccess;
 use App\Enum\UserRoleEnum;
 
 
@@ -29,7 +28,7 @@ class HierarchylPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -37,7 +36,7 @@ class HierarchylPolicy
 	 */
 	public function view(User $user, Hierarchyl $hierarchyl): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -45,9 +44,7 @@ class HierarchylPolicy
 	 */
 	public function create(User $user): Response
 	{
-		return ( $user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isPrivileged($user->role->value) )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -55,9 +52,7 @@ class HierarchylPolicy
 	 */
 	public function update(User $user, Hierarchyl $hierarchyl): Response
 	{
-		return ( $user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isPrivileged($user->role->value) )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -65,9 +60,7 @@ class HierarchylPolicy
 	 */
 	public function delete(User $user, Hierarchyl $hierarchyl): Response
 	{
-		return ( $user->role->value == UserRoleEnum::ADMIN->value || CheckAccess::isPrivileged($user->role->value) )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**

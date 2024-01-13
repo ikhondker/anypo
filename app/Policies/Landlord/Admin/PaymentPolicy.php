@@ -30,23 +30,18 @@ class PaymentPolicy
 	}
 
 	// Only back office users can view all tickets 
-	public function viewAll(User $user): Response
+	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 	
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Payment $payment): Response
+	public function view(User $user, Payment $payment): bool
 	{
-		return (
-			(($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isBackOffice()
-		)
-		? Response::allow()
-		: Response::deny(config('bo.MSG_DENY'));
+		return (($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isBackOffice();
+		
 	}
 
 	/**
@@ -60,11 +55,9 @@ class PaymentPolicy
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Payment $payment): Response
+	public function update(User $user, Payment $payment): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
@@ -94,16 +87,13 @@ class PaymentPolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function pdfPayment(User $user, Payment $payment): Response
+	public function pdfPayment(User $user, Payment $payment): bool
 	{
 		//Log::debug("inside pdfPayment= ". $payment->id );
 		//Log::info(json_encode($payment)); 
 		//Log::info(json_encode($user)); 
 
-		return (
-			(($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isBackOffice()
-		)
-		? Response::allow()
-		: Response::deny(config('bo.MSG_DENY'));
+		return (($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isBackOffice();
+		
 	}
 }

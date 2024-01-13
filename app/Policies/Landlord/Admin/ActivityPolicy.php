@@ -4,8 +4,6 @@ namespace App\Policies\Landlord\Admin;
 
 use App\Models\Landlord\Admin\Activity;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
-
 
 use App\Enum\UserRoleEnum;
 
@@ -33,23 +31,18 @@ class ActivityPolicy
 
 
 	// Only back office users can view all tickets
-	public function viewAll(User $user): Response
+	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isBackOffice();
 	}
 
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Activity $activity): Response
+	public function view(User $user, Activity $activity): bool
 	{
-		return (
-			(($user->account_id == $activity->account_id) && $user->isAdmin()) || $user->isBackOffice()
-		)
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return (($user->account_id == $activity->account_id) && $user->isAdmin()) || $user->isBackOffice();
+		
 	}
 
 	/**
@@ -63,11 +56,9 @@ class ActivityPolicy
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Activity $activity): Response
+	public function update(User $user, Activity $activity): bool
 	{
-		return ($user->role->value == UserRoleEnum::SYSTEM->value)
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -75,7 +66,7 @@ class ActivityPolicy
 	 */
 	public function delete(User $user, Activity $activity): bool
 	{
-		//
+		return false;
 	}
 
 	/**
