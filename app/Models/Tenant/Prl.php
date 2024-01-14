@@ -13,7 +13,7 @@ use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Pr;
 use Illuminate\Database\Eloquent\Builder;
 
-use App\Enum\PrStatusEnum;
+use App\Enum\ClosureStatusEnum;
 
 class Prl extends Model
 {
@@ -29,9 +29,9 @@ class Prl extends Model
 	 * @var array<string, string>
 	 */
 	protected $casts = [
-		'updated_at'	=> 'datetime',
-		'created_at'	=> 'datetime',
-		'status'		=> PrStatusEnum::class,
+		'updated_at'		=> 'datetime',
+		'created_at'		=> 'datetime',
+		'closure_status'	=> ClosureStatusEnum::class,
 	];
 
 	/**
@@ -43,14 +43,6 @@ class Prl extends Model
 	}
 
 	/* ----------------- Functions ---------------------- */
-
-	public static function xxgetLinesByPrId($pr_id)
-	{
-		return Prl::select('id', 'name')
-			->where('pr_id', $pr_id)
-			->orderBy('id', 'asc')
-			->get();
-	}
 
 	/* ----------------- HasMany ------------------------ */
 

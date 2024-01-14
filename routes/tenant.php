@@ -322,6 +322,7 @@ Route::middleware([
 	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
 	Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
 	Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
+	Route::get('/report/po/{id}',[ReportController::class, 'po'])->name('reports.po');
 	Route::get('/report/createPDF',[ReportController::class, 'createPDF'])->name('reports.createPDF');
 	Route::get('/report/templatepr',[ReportController::class, 'templatepr'])->name('reports.templatepr');
 	Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
@@ -364,12 +365,23 @@ Route::middleware([
 	/* ======================== Po ======================================== */
 	Route::resource('pos', PoController::class)->middleware(['auth', 'verified']);
 	Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
-	Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
+	Route::get('/pos/pdf/{po}',[PrController::class,'pdf'])->name('pos.pdf');
+	Route::get('/pos/delete/{po}',[PrController::class,'destroy'])->name('pos.destroy');
+
+	Route::post('/po/attach',[PrController::class,'attach'])->name('pos.attach');
+	Route::get('/pos/detach/{po}',[PoController::class,'detach'])->name('pos.detach');
+	Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
+	Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
+	Route::get('/po/get-cancel-po-num',[PoController::class,'getCancelPoNum'])->name('pos.get-cancel-po-num');
+	Route::post('/pos/cancel',[PoController::class,'cancel'])->name('pos.cancel');
+	
 
 	/* ======================== Pol ======================================== */
 	Route::resource('pols', PolController::class)->middleware(['auth', 'verified']);
 	Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
 	Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
+	Route::get('/pols/createline/{id}',[PolController::class, 'createLine'])->name('pols.createline');
+
 
 	/* ======================== Receipt ======================================== */
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);

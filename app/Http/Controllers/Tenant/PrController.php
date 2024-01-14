@@ -31,11 +31,10 @@ use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Workflow\Wfl;
 
 # Enums
-//use App\Enum\PrStatusEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\EntityEnum;
 use App\Enum\WflActionEnum;
-use App\Enum\PrStatusEnum;
+use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
 
 //use App\Enum\ActionEnum;
@@ -165,24 +164,12 @@ class PrController extends Controller
 				return redirect()->route('prls.createline', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please add more line.');
 				break;
 		}
-
-		//return redirect()->route('prls.createline', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please add more line.');
-		//return redirect()->route('prs.index')->with('success', 'Pr created successfully.');
 	}
 
 	// add attachments
 	public function attach(StorePrRequest $request)
 	{
 		$this->authorize('create', Pr::class);
-
-		//$request->merge(['emp_id'	=> Auth::user()->emp_id ]);
-		//$request->merge(['requestor_id' => 	auth()->id() ]);
-		//$request->merge(['pr_date' => date('Y-m-d H:i:s')]);
-		//$request->merge(['dept_budget_id'	=> '1001']);
-
-		//$pr = Pr::create($request->all());
-		// Write to Log
-		//EventLog::event('pr',$pr->id,'create');
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_pr_id') ]);
@@ -223,7 +210,6 @@ class PrController extends Controller
 		} else {
 			$wfl = "";
 		}
-		//dd($wfl);
 		return view('tenant.prs.show', compact('pr', 'prls', 'wfl'));
 	}
 
@@ -249,11 +235,6 @@ class PrController extends Controller
 	public function update(UpdatePrRequest $request, Pr $pr)
 	{
 		$this->authorize('update', $pr);
-
-		//$request->validate();
-		$request->validate([
-
-		]);
 
 		// User and HoD Can not edit department PR
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
@@ -348,11 +329,11 @@ class PrController extends Controller
 	
 			// Cancel All PR Lines
 			Prl::where('pr_id', $pr->id)
-				  ->update(['status' => PrStatusEnum::CANCELED->value]);
+				  ->update(['status' => ClosureStatusEnum::CANCELED->value]);
 	
 			// cancel PR
 			Pr::where('id', $pr->id)
-				->update(['status' => PrStatusEnum::CANCELED->value]);
+				->update(['status' => ClosureStatusEnum::CANCELED->value]);
 	
 			// Write to Log
 			EventLog::event('Pr', $pr->id, 'cancel', 'id', $pr->id);
@@ -518,14 +499,14 @@ class PrController extends Controller
 		$pr->fc_currency		= $sourcePr->fc_currency;
 		$pr->fc_exchange_rate	= $sourcePr->fc_exchange_rate;
 		$pr->fc_amount			= $sourcePr->fc_amount;
-		$pr->status				= PrStatusEnum::OPEN->value;
+		$pr->closure_status		= ClosureStatusEnum::OPEN->value;
 		$pr->auth_status		= AuthStatusEnum::DRAFT->value;
 		$pr->save();
 		$pr_id					= $pr->id;
 
 		// copy lines into prls
 		$sql= "INSERT INTO prls( pr_id, line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, vat, amount, status ) 
-		SELECT ".$pr->id.",line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, vat, amount, '".PrStatusEnum::OPEN->value."'  
+		SELECT ".$pr->id.",line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, vat, amount, '".ClosureStatusEnum::OPEN->value."'  
 		FROM prls WHERE 
 		pr_id= ".$sourcePr->id." ;";
 		//Log::debug('sql=' . $sql);

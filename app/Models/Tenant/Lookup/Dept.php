@@ -44,10 +44,6 @@ class Dept extends Model
 		return $this->hasMany(DeptBudget::class, 'budget_id');
 	}
 
-	public function dept2(): HasMany
-	{
-		return $this->hasMany(Pr::class, 'dept_id');
-	}
 
 
 	/* ---------------- belongsTo ---------------------- */

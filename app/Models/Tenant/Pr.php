@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /* IQBAL 21-OCT-22 */
 use App\Traits\AddCreatedUpdatedBy;
-
 use App\Models\User;
 
 use App\Models\Tenant\Prl;
@@ -17,7 +16,7 @@ use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Currency;
 
-use App\Enum\PrStatusEnum;
+use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -39,7 +38,7 @@ class Pr extends Model
 		'deleted_at'	=> 'datetime',
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
-		'status'		=> PrStatusEnum::class,
+		'closure_status'		=> ClosureStatusEnum::class,
 		'auth_status'	=> AuthStatusEnum::class,
 	];
 
@@ -163,9 +162,7 @@ class Pr extends Model
 	public function scopeCreatedBetweenDates(Builder $query): void
 	{
 		$query->whereDate('pr_date', '>=', $dates[0])
-        ->whereDate('pr_date', '<=', $dates[1]);
-
-		
+			->whereDate('pr_date', '<=', $dates[1]);
 	}
 
 
@@ -178,22 +175,29 @@ class Pr extends Model
 
 	/* ---------------- belongsTo ---------------------- */
 	public function relDept(){
-		return $this->belongsTo(Dept::class, 'dept_id');
+		return $this->belongsTo(Dept::class,'dept_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 	public function relCurrency(){
-		return $this->belongsTo(Currency::class, 'currency');
+		return $this->belongsTo(Currency::class,'currency')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 	public function requestor(){
-		return $this->belongsTo(User::class, 'requestor_id');
+		return $this->belongsTo(User::class,'requestor_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
-	
 	public function relSupplier(){
-		return $this->belongsTo(Supplier::class, 'supplier_id');
+		return $this->belongsTo(Supplier::class,'supplier_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 	public function relProject(){
-		return $this->belongsTo(Project::class, 'project_id');
+		return $this->belongsTo(Project::class,'project_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
-	public function relRequestor(){
-		return $this->belongsTo(User::class, 'requestor_id');
-	}
+	
 }

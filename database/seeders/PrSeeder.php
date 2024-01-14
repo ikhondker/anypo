@@ -9,11 +9,11 @@ use App\Models\Tenant\Pr;
 
 class PrSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        Pr::factory()->count(7)->create();
-    }
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		Pr::factory()->count(7)->create();
+	}
 }

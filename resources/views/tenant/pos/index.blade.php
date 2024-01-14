@@ -1,30 +1,30 @@
 @extends('layouts.app')
-@section('title','Pr')
+@section('title','Purchase Orders')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Pr
+			Purchase Orders
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Pr"/>
+			<x-tenant.buttons.header.create object="Po"/>
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.widgets.pr-counts/>
+	{{-- <x-tenant.widgets.pr-counts/> --}}
 
 	<div class="row">
 		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Pr"/>
+					<x-tenant.cards.header-search-export-bar object="Po"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Requisition  Lists
+							Purchase Order Lists
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
@@ -46,21 +46,21 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($prs as $pr)
+							@foreach ($pos as $po)
 							<tr>
-								<td>{{ $pr->id }}</td>
-								<td><a class="text-info" href="{{ route('prs.show',$pr->id) }}">{{ $pr->summary }}</a></td>
-								<td><x-tenant.list.my-date :value="$pr->pr_date"/></td>
-								<td>{{ $pr->requestor->name }}</td>
-								<td>{{ $pr->relDept->name }}</td>
-								<td>{{ $pr->currency }}</td>
-								<td class="text-end"><x-tenant.list.my-number :value="$pr->amount"/></td>
-								<td><x-tenant.list.my-badge :value="$pr->auth_status"/></td>
-								<td><x-tenant.list.my-badge :value="$pr->status"/></td>
+								<td>{{ $po->id }}</td>
+								<td><a class="text-info" href="{{ route('pos.show',$po->id) }}">{{ $po->summary }}</a></td>
+								<td><x-tenant.list.my-date :value="$po->po_date"/></td>
+								<td>{{ $po->requestor->name }}</td>
+								<td>{{ $po->relDept->name }}</td>
+								<td>{{ $po->currency }}</td>
+								<td class="text-end"><x-tenant.list.my-number :value="$po->amount"/></td>
+								<td><x-tenant.list.my-badge :value="$po->auth_status"/></td>
+								<td><x-tenant.list.my-badge :value="$po->status"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Pr" :id="$pr->id"/>
-									<a href="{{ route('prs.destroy', $pr->id) }}" class="me-2 modal-boolean-advance"
-										data-entity="Pr" data-name="{{ $pr->id }}" data-status="Delete"
+									<x-tenant.list.actions object="Po" :id="$po->id"/>
+									<a href="{{ route('pos.destroy', $po->id) }}" class="me-2 modal-boolean-advance"
+										data-entity="Po" data-name="{{ $po->id }}" data-status="Delete"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 										<i class="align-middle text-muted" data-feather="trash-2"></i>
 									</a>
@@ -71,7 +71,7 @@
 					</table>
 
 					<div class="row pt-3">
-						{{ $prs->links() }}
+						{{ $pos->links() }}
 					</div>
 					<!-- end pagination -->
 

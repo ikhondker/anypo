@@ -19,7 +19,7 @@
 			<a href="{{ route('prs.copy', $pr->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
 				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Duplicate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
-				<i data-feather="printer"></i> Covert to PO</a>
+				<i data-feather="printer"></i> Covert to PO*</a>
 			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a>
 			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
 			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"

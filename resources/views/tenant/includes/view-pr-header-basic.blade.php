@@ -9,7 +9,7 @@
 					<x-tenant.show.my-badge		value="{{ $pr->auth_status }}" label="Auth Status"/>
 					<x-tenant.show.my-badge		value="{{ $pr->status }}" label="Status"/>
 					<x-tenant.show.my-amount	value="{{ $pr->amount }}"/>
-					<x-tenant.show.my-text		value="{{ $pr->relRequestor->name }}" label="Requestor"/>
+					<x-tenant.show.my-text		value="{{ $pr->requestor->name }}" label="Requestor"/>
 					<x-tenant.show.my-date		value="{{ $pr->pr_date }}"/>
 					<div class="row">
 						<div class="col-sm-3 text-end">
