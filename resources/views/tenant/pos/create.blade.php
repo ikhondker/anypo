@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title','Pr')
-@section('breadcrumb','Create Pr')
+@section('title','Create Purchase Order')
+@section('breadcrumb','Create Purchase Order')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Create Pr
+			Create Purchase Order
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr"/>
@@ -14,21 +14,21 @@
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form action="{{ route('prs.store') }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('pos.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
 		<div class="row">
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Requisition Info</h5>
+					<h5 class="card-title">Purchase Order Info</h5>
 					</div>
 					<div class="card-body">
 
 						<div class="mb-3">
-							<label class="form-label">Pr Summary</label>
+							<label class="form-label">PO Summary</label>
 							<input type="text" class="form-control @error('summary') is-invalid @enderror"
-								name="summary" id="summary" placeholder="PR summary"
+								name="summary" id="summary" placeholder="PO summary"
 								value="{{ old('summary', '' ) }}"
 								required/>
 							@error('summary')
@@ -94,7 +94,7 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Requisition Info</h5>
+					<h5 class="card-title">Additional Info</h5>
 					</div>
 					<div class="card-body">
 						<div class="mb-3">
@@ -118,7 +118,7 @@
 			<div class="col-12 col-xl-12">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Requisition Lines</h5>
+						<h5 class="card-title">Purchase Order Lines</h5>
 						<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
 					</div>
 					<table class="table">
@@ -135,7 +135,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@include('tenant.includes.pr-line-add')
+							@include('tenant.includes.po.po-line-add')
 
 							<tr class="">
 								<td colspan="6" class="text-end">

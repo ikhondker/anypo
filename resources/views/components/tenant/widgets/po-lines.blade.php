@@ -15,7 +15,7 @@
 						</div>
 					</div>
 				</div>
-				<h5 class="card-title">Requisition Lines</h5>
+				<h5 class="card-title">Purchase Order Lines</h5>
 				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
 			</div>
 			<table class="table">
@@ -34,9 +34,8 @@
 				<tbody>
 					@foreach ($pols as $pol)
 						@if ( $selected_pol_id == $pol->id )
-							@include('tenant.includes.po-line-edit')
+							@include('tenant.includes.po.po-line-edit')
 						@else
-
 							<tr class="">
 								<td class="">{{ $pol->line_num }}</td>
 								<td class="">{{ $pol->item->name }}</td>
@@ -57,12 +56,11 @@
 					@endforeach
 
 					@if ($add)
-						@include('tenant.includes.po-line-add')
-
-						@include('tenant.includes.po-footer-edit')
+						@include('tenant.includes.po.po-line-add')
+						{{-- @include('tenant.includes.po.po-footer-edit') --}}
 					@endif
-					@if ($edit)
-						@include('tenant.includes.po-footer-edit')
+					@if ($add || $edit)
+						@include('tenant.includes.po.po-footer-edit')
 					@endif
 					@if ($show)
 						<tr>

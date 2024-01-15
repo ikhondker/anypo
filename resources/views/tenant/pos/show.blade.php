@@ -26,10 +26,10 @@
 	</x-tenant.page-header>
 		
 
-	@include('tenant.includes.view-po-header')
+	@include('tenant.includes.po.view-po-header')
 
 	<!-- widget-po-lines -->
-	<x-tenant.widgets.po-lines po_id="{{ $po->id }}" :show="true"/>
+	<x-tenant.widgets.po-lines :id="$po->id" :show="true"/>
 		
 	<!-- /.widget-po-lines -->
 

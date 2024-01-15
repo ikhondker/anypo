@@ -5,8 +5,8 @@ use App\Http\Controllers\Controller;
 
 
 use App\Models\Tenant\Po;
-use App\Http\Requests\Tenant\StorePrRequest;
-use App\Http\Requests\Tenant\UpdatePrRequest;
+use App\Http\Requests\Tenant\StorePoRequest;
+use App\Http\Requests\Tenant\UpdatePoRequest;
 
 use App\Http\Controllers\Tenant\DeptBudgetControllers;
 
@@ -122,6 +122,8 @@ class PoController extends Controller
 		//$request->merge(['requestor_id'	=> 	auth()->id() ]);
 		$request->merge(['po_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['amount'		=> $request->input('pol_amount')]);
+		$request->merge(['buyer_id'		=> auth()->user()->id]);
+		$request->merge(['requestor_id'		=> auth()->user()->id]);
 
 		// User and HoD Can create only own department PO
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
@@ -165,9 +167,10 @@ class PoController extends Controller
 	}
 
 	// add attachments
-	public function attach(StorePrRequest $request)
+	public function attach(StorePoRequest $request)
 	{
-		$this->authorize('create', Po::class);
+		
+		
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
@@ -203,7 +206,7 @@ class PoController extends Controller
 				$wfl = Wfl::where('wf_id', $po->wf_id)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
 				$wfl = "";
-				Log::debug("pr.show: Okay. Not pending with current user.");
+				Log::debug("po.show: Okay. Not pending with current user.");
 			}
 		} else {
 			$wfl = "";
@@ -302,7 +305,7 @@ class PoController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function cancel(StorePrRequest $request)
+	public function cancel(StorePoRequest $request)
 	{
 		
 		$this->authorize('cancel',Po::class);
@@ -323,7 +326,7 @@ class PoController extends Controller
 			}
 	
 			//  Reverse Booking
-			$retcode = CheckBudget::reverseBookingPr($po->id);
+			$retcode = CheckBudget::reverseBookingPo($po->id);
 			Log::debug("retcode = ".$retcode);
 	
 			// Cancel All PO Lines

@@ -27,7 +27,7 @@ class PoLines extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($po_id, $add=false, $edit=false, $show=false, $pid=0)
+	public function __construct($id, $add=false, $edit=false, $show=false, $pid=0)
 	{
 		$this->items 	= Item::getAll();
 		$this->uoms 	= Uom::primary()->get();
@@ -35,8 +35,8 @@ class PoLines extends Component
 		//$this->selected_prl_id = ($selected_prl_id == 0) ? 0 : $selected_prl_id  ;
 		$this->selected_pol_id = $pid;
 		
-		$this->po 	= Po::where('id', $po_id)->get()->first();
-		$this->pols = Pol::where('po_id', $po_id)->get()->all();
+		$this->po 	= Po::where('id', $id)->get()->first();
+		$this->pols = Pol::where('po_id', $id)->get()->all();
 		//Log::debug("id=".$id." selected_prl_id=".$this->selected_prl_id);
 
 		$this->add	= $add;

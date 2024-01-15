@@ -8,14 +8,14 @@
 			Remove Attachments
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pr"/>
-			<x-tenant.buttons.header.create object="Pr"/>
-			<x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
-			<a href="{{ route('prs.show', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Pr</a>
+			<x-tenant.buttons.header.lists object="Po"/>
+			<x-tenant.buttons.header.create object="Po"/>
+			<x-tenant.buttons.header.edit object="Po" :id="$po->id"/>
+			<a href="{{ route('pos.show', $po->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View PO</a>
 		@endslot
 	</x-tenant.page-header>
 	
-	@include('tenant.includes.view-pr-header-basic')
+	@include('tenant.includes.po.view-po-header-basic')
 
 	@include('tenant.includes.detach-by-article')
  

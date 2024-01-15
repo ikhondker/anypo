@@ -294,7 +294,7 @@
 						<!-- /.content -->
 					@else
 						<!-- content -->
-						@include('tenant.includes.initial')
+						@include('tenant.setups.initial')
 						<!-- /.content -->
 					@endif
 				</div>

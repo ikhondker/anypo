@@ -27,7 +27,7 @@ class Po extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'summary', 'po_date', 'need_by_date', 'requestor_id', 'dept_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'sub_total', 'tax', 'vat', 'shipping', 'discount', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_amount', 'submission_date', 'status', 'auth_status', 'auth_date', 'auth_userid', 'wf_key', 'hierarchy_id', 'po_id', 'wf_id', 'updated_by', 'updated_at',
+		'summary', 'buyer_id', 'po_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_amount', 'submission_date', 'amount_paid', 'status', 'pay_status', 'auth_status', 'auth_date', 'auth_userid', 'wf_key', 'hierarchy_id', 'pr_id', 'wf_id', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -65,6 +65,12 @@ class Po extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
+	public function buyer(){
+		return $this->belongsTo(User::class,'buyer_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
 	public function relSupplier(){
 		return $this->belongsTo(Supplier::class,'supplier_id')->withDefault([
 			'name' => '[ Empty ]',

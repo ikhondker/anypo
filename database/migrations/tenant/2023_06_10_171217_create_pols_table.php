@@ -25,15 +25,15 @@ return new class extends Migration
 			$table->foreignId('uom_id')->constrained('uoms');
 			$table->float('qty')->default(1);
 			$table->float('price')->default(0);
-			$table->float('sub_total')->default(0);
-			$table->float('tax')->default(0);
-			$table->float('vat')->default(0);
+			$table->float('sub_total')->default(0);	// Future User
+			$table->float('tax')->default(0);		// Future User
+			$table->float('vat')->default(0);		// Future User
 			$table->float('amount')->default(0);
 			$table->foreignId('requestor_id')->constrained('users')->nullable();
-			$table->foreignId('dept_id')->constrained('depts')->nullable();
-			$table->foreignId('project_id')->nullable()->constrained('projects')->nullable();
-			$table->biginteger('prl_id')->default(0);		// Future
-			$table->biginteger('requestor_id')->default(0);	// Future
+			$table->foreignId('dept_id')->constrained('depts')->nullable();			// Future User. Covert to PO
+			$table->biginteger('unit_id')->nullable()->default(1001);			// Future User. Covert to PO
+			$table->foreignId('project_id')->nullable()->constrained('projects');	// Future User. Covert to PO
+			$table->biginteger('prl_id')->default(0);		// // PR that converted to PO
 			$table->float('received_qty')->default(0);
 			/** ENUM */
 			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);;

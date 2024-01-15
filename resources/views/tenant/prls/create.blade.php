@@ -14,7 +14,7 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	@include('tenant.includes.view-pr-header')
+	@include('tenant.includes.pr.view-pr-header')
 
 	<!-- form start -->
 	<form action="{{ route('prls.store') }}" method="POST" enctype="multipart/form-data">

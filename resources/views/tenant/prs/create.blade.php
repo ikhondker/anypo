@@ -94,7 +94,7 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Requisition Info</h5>
+					<h5 class="card-title">Additional Info</h5>
 					</div>
 					<div class="card-body">
 						<div class="mb-3">
@@ -135,7 +135,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@include('tenant.includes.pr-line-add')
+							@include('tenant.includes.pr.pr-line-add')
 
 							<tr class="">
 								<td colspan="6" class="text-end">

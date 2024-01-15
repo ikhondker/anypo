@@ -1,30 +1,30 @@
 @extends('layouts.app')
-@section('title','Edit PR Line')
+@section('title','Edit Purchase Order Line')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Edit PR Line
+		Edit Purchase Order Line
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pr"/>
-			<x-tenant.buttons.header.create object="Pr"/>
-			<x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
-			<x-tenant.buttons.header.pdf object="Pr" :id="$pr->id"/>
+			<x-tenant.buttons.header.lists object="Po"/>
+			<x-tenant.buttons.header.create object="Po"/>
+			<x-tenant.buttons.header.edit object="Po" :id="$pr->id"/>
+			<x-tenant.buttons.header.pdf object="Po" :id="$pr->id"/>
 			<x-tenant.buttons.header.add-line object="Prl" :id="$pr->id"/>
 		@endslot
 	</x-tenant.page-header>
 	
-	@include('tenant.includes.view-pr-header')
+	@include('tenant.includes.po.view-po-header')
 
 	<!-- form start -->
-	<form action="{{ route('prls.update',$prl->id) }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('pols.update',$prl->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
 
-		<!-- widget-pr-lines -->
-		<x-tenant.widgets.pr-lines id="{{ $pr->id }}" :edit="true" pid="{{ $prl->id }}"/>
+		<!-- widget-po-lines -->
+		<x-tenant.widgets.po-lines id="{{ $po->id }}" :edit="true" pid="{{ $pol->id }}"/>
 		<!-- /.widget-pr-lines -->
 
 	</form>

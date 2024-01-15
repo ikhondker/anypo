@@ -34,7 +34,7 @@
 					<tbody>
 						@foreach ($prls as $prl)
 							@if ( $selected_prl_id == $prl->id )
-								@include('tenant.includes.pr-line-edit')
+								@include('tenant.includes.pr.pr-line-edit')
 							@else
 
 								<tr class="">
@@ -57,12 +57,12 @@
 						@endforeach
 
 						@if ($add)
-							@include('tenant.includes.pr-line-add')
+							@include('tenant.includes.pr.pr-line-add')
 
-							@include('tenant.includes.pr-footer-edit')
+							@include('tenant.includes.pr.pr-footer-edit')
 						@endif
 						@if ($edit)
-							@include('tenant.includes.pr-footer-edit')
+							@include('tenant.includes.pr.pr-footer-edit')
 						@endif
 						@if ($show)
 							<tr>

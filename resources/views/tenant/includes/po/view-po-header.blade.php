@@ -8,8 +8,9 @@
 					<x-tenant.show.my-text		value="{{ $po->summary }}"/>
 					<x-tenant.show.my-amount-currency	value="{{ $po->amount }}" currency="{{ $po->currency }}" />
 					<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
+					<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
 					<x-tenant.show.my-text		value="{{ $po->relSupplier->name }}" label="Supplier"/>
-					<x-tenant.show.my-date		value="{{ $po->pr_date }}"/>
+					<x-tenant.show.my-date		value="{{ $po->po_date }}"/>
 					<div class="row">
 						<div class="col-sm-3 text-end">
 							
@@ -32,7 +33,7 @@
 								<i class="align-middle" data-feather="more-horizontal"></i>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="{{ route('prs.detach',$po->id) }}">Delete Attachment</a>
+								<a class="dropdown-item" href="{{ route('pos.detach',$po->id) }}">Delete Attachment</a>
 							</div>
 						</div>
 					</div>
@@ -50,14 +51,14 @@
 							<span class="h6 text-secondary">Attachments:</span>
 						</div>
 						<div class="col-sm-9">
-							<x-tenant.attachment.all entity="PR" aid="{{ $po->id }}"/>
+							<x-tenant.attachment.all entity="PO" aid="{{ $po->id }}"/>
 						</div>
 					</div>
 
-					<form action="{{ route('prs.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
+					<form action="{{ route('pos.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 						@csrf
 						{{-- <x-tenant.attachment.create  /> --}}
-						<input type="text" name="attach_pr_id" id="attach_pr_id" class="form-control" placeholder="ID" value="{{ old('id', $po->id ) }}" hidden>
+						<input type="text" name="attach_po_id" id="attach_po_id" class="form-control" placeholder="ID" value="{{ old('id', $po->id ) }}" hidden>
 						<div class="row">
 							<div class="col-sm-3 text-end">
 							

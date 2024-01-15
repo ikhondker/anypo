@@ -16,7 +16,7 @@
 							
 						</div>
 						<div class="col-sm-9 text-end">
-							<x-show.my-edit-link object="Pr" :id="$pr->id"/>
+							<x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
 						</div>
 					</div>
 					

@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
 
-use App\Models\Tenant\Pol;
 use App\Http\Requests\Tenant\StorePolRequest;
 use App\Http\Requests\Tenant\UpdatePolRequest;
 
 # Models
+# Models
+use App\Models\Tenant\Lookup\Item;
+use App\Models\Tenant\Lookup\Uom;
+
+use App\Models\Tenant\Po;
+use App\Models\Tenant\Pol;
 # Enums
 use App\Enum\EntityEnum;
 # Helpers
@@ -25,6 +30,28 @@ use DB;
 
 class PolController extends Controller
 {
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @param  \App\Models\Pol  $pol
+	 * @return \Illuminate\Http\Response
+	 */
+	public function createLine($pr_id)
+	{
+		//$this->authorize('update',$pr);
+		// Write Event Log
+		//LogEvent('template',$template->id,'edit','template',$template->id);
+
+		$po = Po::where('id', $pr_id)->first();
+
+		$items = Item::getAll();
+		//$uoms = Uom::getAllClient();
+		$uoms = Uom::primary()->get();
+
+		return view('tenant.pols.create', with(compact('po','items','uoms')));
+	}
+
+
 	/**
 	 * Display a listing of the resource.
 	 */

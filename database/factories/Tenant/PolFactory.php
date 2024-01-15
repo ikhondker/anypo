@@ -4,10 +4,13 @@ namespace Database\Factories\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use App\Models\User;
+
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
+use App\Models\Tenant\Lookup\Dept;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pol>
@@ -23,6 +26,8 @@ class PolFactory extends Factory
 	{
 		return [
 			'po_id'			=> Po::inRandomOrder()->first()->id,
+			'requestor_id'	=> User::inRandomOrder()->first()->id,
+			'dept_id'		=> Dept::inRandomOrder()->first()->id,
 			'summary'		=> $this->faker->sentence,
 			'item_id'		=> Item::inRandomOrder()->first()->id,
 			'notes'			=> $this->faker->paragraph,

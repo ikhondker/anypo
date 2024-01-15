@@ -30,7 +30,7 @@
 	</x-tenant.page-header>
 		
 
-	@include('tenant.includes.view-pr-header')
+	@include('tenant.includes.pr.view-pr-header')
 
 	<!-- widget-pr-lines -->
 	<x-tenant.widgets.pr-lines id="{{ $pr->id }}" :show="true"/>

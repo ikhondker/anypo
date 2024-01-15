@@ -6,7 +6,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Edit Pr
+			Edit PR#{{ $pr->id }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr"/>
@@ -24,14 +24,14 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Pr Info</h5>
+							<h5 class="card-title">Edit PR#{{ $pr->id }}</h5>
 						</div>
 						<div class="card-body">
 
-							<div class="mb-3">
+							{{-- <div class="mb-3">
 								<label class="form-label">ID</label>
 								<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $pr->id ) }}" readonly>
-							</div>
+							</div> --}}
 
 							<div class="mb-3">
 								<label class="form-label">PR Summary</label>
