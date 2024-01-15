@@ -129,16 +129,16 @@ class CommentController extends Controller
 
 		// check if ticket is marked as closed
 		// if($request->has('close')){
-		//     //Checkbox checked
-		//     $ticket = Ticket::where('id', $request->input('ticket_id') )->first();
-		//     $ticket->status_code = LandlordTicketStatusEnum::RESOLVED->value;
-		//     $ticket->update();
+		//		//Checkbox checked
+		//		$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
+		//		$ticket->status_code = LandlordTicketStatusEnum::RESOLVED->value;
+		//		$ticket->update();
 
-		//     // Send notification to Ticket creator if agent updates the tickets
-		//     $owner = User::where('id', $ticket->owner_id)->first();
-		//     $owner->notify(new TicketClosed($owner, $ticket));
+		//		// Send notification to Ticket creator if agent updates the tickets
+		//		$owner = User::where('id', $ticket->owner_id)->first();
+		//		$owner->notify(new TicketClosed($owner, $ticket));
 
-		//     return redirect()->route('tickets.show',$request->input('ticket_id'))->with('success','Ticket Closed successfully');
+		//		return redirect()->route('tickets.show',$request->input('ticket_id'))->with('success','Ticket Closed successfully');
 		// }
 
 		// change ticket status PENDING if customer is updating

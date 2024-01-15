@@ -126,9 +126,9 @@ class UserController extends Controller
 		$this->authorize('create',User::class);
 
 		// $emps = Emp::select('id','name')
-		//     ->where('status', 'active')
-		//     ->orderBy('id','asc')
-		//     ->get();
+		//	->where('status', 'active')
+		//	->orderBy('id','asc')
+		//	->get();
 		//$emps = Emp::getAll();
 
 		return view('landlord.admin.users.create');
@@ -383,8 +383,8 @@ class UserController extends Controller
 		// upload to private folder and show using user.show route
 		// Upload File, if any, insert row in attachment table  and get attachments id
 		//if ($file = $request->file('file_to_upload')) {
-		//    $request->merge(['user_id'   => $user->id ]);
-		//    $user_id = FileUpload::uploadPhoto($request);
+		//	$request->merge(['user_id'   => $user->id ]);
+		//	$user_id = FileUpload::uploadPhoto($request);
 		//}
 
 		// https://image.intervention.io/v2

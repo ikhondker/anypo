@@ -9,11 +9,11 @@ use App\Models\Landlord\Payment;
 
 class PaymentSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        Payment::factory()->count(15)->create();
-    }
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		Payment::factory()->count(15)->create();
+	}
 }

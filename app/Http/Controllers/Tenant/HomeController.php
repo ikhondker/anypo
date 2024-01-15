@@ -4,14 +4,14 @@
  * ==================================================================================
  * @version v1.0.1
  * ==================================================================================
- * @file        HomeController.php
- * @brief       This file contains the implementation of the HomeController class.
- * @author      Iqbal H. Khondker
- * @created     27-Apr-2023
+ * @file		   HomeController.php
+ * @brief		  This file contains the implementation of the HomeController class.
+ * @author		 Iqbal H. Khondker
+ * @created		27-Apr-2023
  * @copyright   (c) Copyright by Iqbal H. Khondker
  * ==================================================================================
  * Revision History:
- * Date			Version	Author    		        Comments
+ * Date			Version	Author    				   Comments
  * ----------------------------------------------------------------------------------
  * 27-Apr-2023	v1.0.1	Iqbal H Khondker		Copied from bo and modified for removing landlord
  * DD-Mon-YYYY	v1.0.0	Iqbal H Khondker		Modification brief.
@@ -95,8 +95,8 @@ class HomeController extends Controller
 
 		//Log::debug("I AM HERE INSIDE STORE");
 
-		//$request->merge(['ip'          => Request::ip()]);
-		//$request->merge(['ip'        => '127.0.01']);
+		//$request->merge(['ip'		=> Request::ip()]);
+		//$request->merge(['ip'		=> '127.0.01']);
 
 		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 
@@ -170,12 +170,12 @@ class HomeController extends Controller
 		];
 
 		// $details = [
-		//     'greeting' => 'Hi Artisan',
-		//     'body' => 'This is my first notification from ItSolutionStuff.com',
-		//     'thanks' => 'Thank you for using ItSolutionStuff.com tutorial!',
-		//     'actionText' => 'View My Site',
-		//     'actionURL' => url('/'),
-		//     'id' => 10005
+		//		'greeting' => 'Hi Artisan',
+		//		'body' => 'This is my first notification from ItSolutionStuff.com',
+		//		'thanks' => 'Thank you for using ItSolutionStuff.com tutorial!',
+		//		'actionText' => 'View My Site',
+		//		'actionURL' => url('/'),
+		//		'id' => 10005
 		// ];
 
 		//Notification::send($user, new TestNotification($details));
@@ -197,7 +197,7 @@ class HomeController extends Controller
 		dd("Email is sent successfully.");
 
 		// if (Mail::failures()) {
-		//     return response()->Fail('Sorry! Please try again latter');
+		//		return response()->Fail('Sorry! Please try again latter');
 		// }else{
 		//    return response()->success('Great! Successfully send in your mail');
 		// }
@@ -211,20 +211,20 @@ class HomeController extends Controller
 
 	// public function preview($invoice_no)
 	// {
-	//     //$entity = static::ENTITY ;
-	//     $invoice = Invoice::where('invoice_no', $invoice_no)->first();
+	//		//$entity = static::ENTITY ;
+	//		$invoice = Invoice::where('invoice_no', $invoice_no)->first();
 
-	//     //return view('invoices.show',compact('invoice','entity'));
-	//     return view('invoices.invoice',compact('invoice'));
+	//		//return view('invoices.show',compact('invoice','entity'));
+	//		return view('invoices.invoice',compact('invoice'));
 	// }
 
 	// public function payment($invoice_no)
 	// {
-	//     //$entity = static::ENTITY ;
-	//     $invoice = Invoice::where('invoice_no', $invoice_no)->first();
+	//		//$entity = static::ENTITY ;
+	//		$invoice = Invoice::where('invoice_no', $invoice_no)->first();
 
-	//     //return view('invoices.show',compact('invoice','entity'));
-	//     return view('invoices.invoice',compact('invoice'));
+	//		//return view('invoices.show',compact('invoice','entity'));
+	//		return view('invoices.invoice',compact('invoice'));
 	// }
 
 

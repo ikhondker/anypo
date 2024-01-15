@@ -9,11 +9,11 @@ use App\Models\Landlord\Invoice;
 
 class InvoiceSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        Invoice::factory()->count(15)->create();
-    }
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		Invoice::factory()->count(15)->create();
+	}
 }

@@ -26,7 +26,7 @@ return new class extends Migration
 			$table->foreignId('attachment_id')->nullable()->constrained('attachments');
 			$table->string('ip')->nullable();
 			$table->string('country',2)->default('us');
-//          $table->foreignId('user_id')->nullable()->constrained('users');
+//			$table->foreignId('user_id')->nullable()->constrained('users');
 			$table->timestamps();
 		});
 	}

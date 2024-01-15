@@ -217,12 +217,12 @@ class HomeController extends Controller
 		];
 
 		// $details = [
-		//     'greeting' => 'Hi Artisan',
-		//     'body' => 'This is my first notification from ItSolutionStuff.com',
-		//     'thanks' => 'Thank you for using ItSolutionStuff.com tuto!',
-		//     'actionText' => 'View My Site',
-		//     'actionURL' => url('/'),
-		//     'id' => 10005
+		//		'greeting' => 'Hi Artisan',
+		//		'body' => 'This is my first notification from ItSolutionStuff.com',
+		//		'thanks' => 'Thank you for using ItSolutionStuff.com tuto!',
+		//		'actionText' => 'View My Site',
+		//		'actionURL' => url('/'),
+		//		'id' => 10005
 		// ];
 
 		//Notification::send($user, new TestNotification($details));
@@ -244,9 +244,9 @@ class HomeController extends Controller
 		dd("Email is sent successfully.");
 
 		// if (Mail::failures()) {
-		//     return response()->Fail('Sorry! Please try again latter');
+		//		return response()->Fail('Sorry! Please try again latter');
 		// }else{
-		//    return response()->success('Great! Successfully send in your mail');
+		//	return response()->success('Great! Successfully send in your mail');
 		// }
 
 		// send via notification
@@ -258,20 +258,20 @@ class HomeController extends Controller
 
 	// public function preview($invoice_no)
 	// {
-	//     //$entity = static::ENTITY ;
-	//     $invoice = Invoice::where('invoice_no', $invoice_no)->first();
+	//		//$entity = static::ENTITY ;
+	//		$invoice = Invoice::where('invoice_no', $invoice_no)->first();
 
-	//     //return view('invoices.show',compact('invoice','entity'));
-	//     return view('invoices.invoice',compact('invoice'));
+	//		//return view('invoices.show',compact('invoice','entity'));
+	//		return view('invoices.invoice',compact('invoice'));
 	// }
 
 	// public function payment($invoice_no)
 	// {
-	//     //$entity = static::ENTITY ;
-	//     $invoice = Invoice::where('invoice_no', $invoice_no)->first();
+	//		//$entity = static::ENTITY ;
+	//		$invoice = Invoice::where('invoice_no', $invoice_no)->first();
 
-	//     //return view('invoices.show',compact('invoice','entity'));
-	//     return view('invoices.invoice',compact('invoice'));
+	//		//return view('invoices.show',compact('invoice','entity'));
+	//		return view('invoices.invoice',compact('invoice'));
 	// }
 
 }

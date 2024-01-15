@@ -9,18 +9,18 @@ use App\Enum\AuthStatusEnum;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('pos', function (Blueprint $table) {
-            $table->id()->startingValue(1001);
+	/**
+	 * Run the migrations.
+	 */
+	public function up(): void
+	{
+		Schema::create('pos', function (Blueprint $table) {
+			$table->id()->startingValue(1001);
 			$table->string('summary');
-            $table->foreignId('buyer_id')->constrained('users');
+			$table->foreignId('buyer_id')->constrained('users');
 			$table->dateTime('po_date')->useCurrent();
 			$table->dateTime('need_by_date')->useCurrent();
-			$table->foreignId('requestor_id')->constrained('users');
+			//$table->foreignId('requestor_id')->constrained('users');
 			$table->foreignId('dept_id')->constrained('depts');
 			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
@@ -34,12 +34,12 @@ return new class extends Migration
 			$table->double('fc_exchange_rate', 15, 10)->default(1);
 			$table->float('fc_amount', 15, 2)->default(0);
 			$table->dateTime('submission_date')->nullable();
-            $table->float('amount_paid')->default(0);
+			$table->float('amount_paid')->default(0);
 			/** ENUM */
 			$table->string('status')->default(ClosureStatusEnum::OPEN->value);;
 			/** end ENUM */
 			$table->enum('pay_status', ['DUE','PAID','PARITAL','ERROR'])->default('DUE');
-            /** ENUM */
+			/** ENUM */
 			$table->string('auth_status')->default(AuthStatusEnum::DRAFT->value);
 			/** end ENUM */
 			$table->dateTime('auth_date',)->nullable();
@@ -53,15 +53,15 @@ return new class extends Migration
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent();
-           
-        });
-    }
+		   
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('pos');
-    }
+	/**
+	 * Reverse the migrations.
+	 */
+	public function down(): void
+	{
+		Schema::dropIfExists('pos');
+	}
 };

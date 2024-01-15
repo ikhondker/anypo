@@ -9,29 +9,29 @@ use App\Models\Tenant\Lookup\GlType;
 
 class GlTypeSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        //GlType::truncate();
-        //Schema::enableForeignKeyConstraints();
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		//GlType::truncate();
+		//Schema::enableForeignKeyConstraints();
 
-        $gl_types =  [
-            [
-                'gl_type'   => 'E',
-                'name'      => 'Expense',
-            ],
-            [
-                'gl_type'   => 'A',
-                'name'      => 'Assets',
-            ],
-            [
-                'gl_type'   => 'I',
-                'name'      => 'Inventory',
-            ],
-        ];
-        //
-        GLType::insert($gl_types);
-    }
+		$gl_types =  [
+			[
+				'gl_type'   => 'E',
+				'name'		=> 'Expense',
+			],
+			[
+				'gl_type'   => 'A',
+				'name'		=> 'Assets',
+			],
+			[
+				'gl_type'   => 'I',
+				'name'		=> 'Inventory',
+			],
+		];
+		//
+		GLType::insert($gl_types);
+	}
 }

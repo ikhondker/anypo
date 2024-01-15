@@ -9,11 +9,11 @@ use App\Models\Tenant\Lookup\Supplier;
 
 class SupplierSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        Supplier::factory()->count(10)->create();
-    }
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		Supplier::factory()->count(10)->create();
+	}
 }

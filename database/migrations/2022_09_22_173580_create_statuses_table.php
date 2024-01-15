@@ -12,7 +12,7 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('statuses', function (Blueprint $table) {
-			$table->string('code',4);    //  model: protected $primaryKey = 'entity'; // Hardcoded in Workflow Helper only
+			$table->string('code',4);	//  model: protected $primaryKey = 'entity'; // Hardcoded in Workflow Helper only
 			//$table->id()->startingValue(1001);
 			$table->string('name');
 			//$table->string('message')->nullable();

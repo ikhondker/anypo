@@ -25,7 +25,7 @@ class CreateTenantsTable extends Migration
 			// $table->string('initial_email')->nullable();
 			// $table->string('initial_password')->nullable();
 			$table->integer('user')->default(3);
-            $table->integer('gb')->default(5);
+			$table->integer('gb')->default(5);
 			$table->integer('count_user')->default(0);
 			$table->integer('count_gb')->default(0);
 			$table->integer('count_pr')->default(0);

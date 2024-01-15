@@ -13,17 +13,17 @@ use App\Models\Landlord\Ticket;
  */
 class CommentFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
-        return [
-            'content'            => $this->faker->paragraph,
-            'ticket_id'           => Ticket::inRandomOrder()->first()->id,
-            'owner_id'           => User::inRandomOrder()->first()->id,
-        ];
-    }
+	/**
+	 * Define the model's default state.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function definition(): array
+	{
+		return [
+			'content'			=> $this->faker->paragraph,
+			'ticket_id'			=> Ticket::inRandomOrder()->first()->id,
+			'owner_id'			=> User::inRandomOrder()->first()->id,
+		];
+	}
 }

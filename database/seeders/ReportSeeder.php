@@ -9,12 +9,12 @@ use App\Models\Tenant\Report;
 
 class ReportSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        $reports =  [
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		$reports =  [
 			[
 				'id' 	=> 1001,
 				'name' 	=> 'Test Reports',
@@ -48,7 +48,7 @@ class ReportSeeder extends Seeder
 				'name' => 'Goods Receipt Details Report',
 			],
 
-            [
+			[
 				'id' 	=> 1009,
 				'name' => 'Payment Details Report',
 			],
@@ -56,5 +56,5 @@ class ReportSeeder extends Seeder
 	  ];
 	  
 	  Report::insert($reports);
-    }
+	}
 }

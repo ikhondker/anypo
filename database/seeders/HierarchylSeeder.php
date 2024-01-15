@@ -31,8 +31,8 @@ class HierarchylSeeder extends Seeder
 				'approver_id'	=> '1009',
 			],
 			// [
-			//     'hid'           => 1001,
-			//     'approver_id'   => '1003',
+			//		'hid'		=> 1001,
+			//		'approver_id'   => '1003',
 			// ],
 			[
 				'hid'			=> 1002,
@@ -43,14 +43,14 @@ class HierarchylSeeder extends Seeder
 				'approver_id'	=> '1009',
 			],
 			// [
-			//     'hid'           => 1002,
-			//     'approver_id'   => '1003',
+			//		'hid'		=> 1002,
+			//		'approver_id'   => '1003',
 			// ],
 
 			// INSERT INTO hierarchyls(hid, approver_id) 
-			//     SELECT 1003/1004,approver_id 
-			//     FROM hierarchyls 
-			//     WHERE hid= 1001;
+			//		SELECT 1003/1004,approver_id 
+			//		FROM hierarchyls 
+			//		WHERE hid= 1001;
 
 
 			];

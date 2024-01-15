@@ -89,12 +89,12 @@ class AttachmentController extends Controller
 
 		// Upload File, in private folder if any, insert row in attachment table  and get attachments id
 		// if ($file = $request->file('file_to_upload')) {
-		//    $request->merge(['entity'  => $request->entity ]);
-		//    $request->merge(['emp_id'      => $request->emp_id ]);
-		//    $request->merge(['article_id'  => $request->emp_id ]);
-		//    $attid = FileUpload::upload($request);
+		//	$request->merge(['entity'  => $request->entity ]);
+		//	$request->merge(['emp_id'	  => $request->emp_id ]);
+		//	$request->merge(['article_id'  => $request->emp_id ]);
+		//	$attid = FileUpload::upload($request);
 		// } else{
-			//     unset($input['image']);
+			//	 unset($input['image']);
 			// }
 
 		//$attachment = Attachment::create($input);
@@ -103,10 +103,10 @@ class AttachmentController extends Controller
 		//LandlordEventLog::event('attachment',$attid,'create');
 
 		// $request->validate([
-		//     'name' => 'required',
-		//     'email' => 'required|email|unique:users',
-		//     'password' => 'required|min:6',
-		//     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+		//	 'name' => 'required',
+		//	 'email' => 'required|email|unique:users',
+		//	 'password' => 'required|min:6',
+		//	 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 		// ]);
 
 		FileUpload::uploadPublicPhoto($request);

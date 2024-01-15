@@ -10,11 +10,11 @@ use App\Models\Landlord\Manage\Contact;
 
 class ContactSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        Contact::factory()->count(10)->create();
-    }
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		Contact::factory()->count(10)->create();
+	}
 }

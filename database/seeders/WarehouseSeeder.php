@@ -24,25 +24,25 @@ class WarehouseSeeder extends Seeder
 
 		$warehouses =  [
 			[
-				'name'          => 'Head-Office',
-				'address1'      => $faker->address,
-				'address2'      => $faker->address,
-				'zip'           => $faker->postcode,
-				'city'          => $faker->city,
+				'name'			=> 'Head-Office',
+				'address1'		=> $faker->address,
+				'address2'		=> $faker->address,
+				'zip'			=> $faker->postcode,
+				'city'			=> $faker->city,
 			],
 			[
-				'name'          => 'Branch Office',
-				'address1'      => $faker->address,
-				'address2'      => $faker->address,
-				'zip'           => $faker->postcode,
-				'city'          => $faker->city,
+				'name'			=> 'Branch Office',
+				'address1'		=> $faker->address,
+				'address2'		=> $faker->address,
+				'zip'			=> $faker->postcode,
+				'city'			=> $faker->city,
 			],
 			[
-				'name'          => 'Regional Warehouse',
-				'address1'      => $faker->address,
-				'address2'      => $faker->address,
-				'zip'           => $faker->postcode,
-				'city'          => $faker->city,
+				'name'			=> 'Regional Warehouse',
+				'address1'		=> $faker->address,
+				'address2'		=> $faker->address,
+				'zip'			=> $faker->postcode,
+				'city'			=> $faker->city,
 
 			],
 		  ];

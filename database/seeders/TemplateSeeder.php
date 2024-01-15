@@ -9,11 +9,11 @@ use App\Models\Tenant\Manage\Template;
 
 class TemplateSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        Template::factory()->count(25)->create();
-    }
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		Template::factory()->count(25)->create();
+	}
 }

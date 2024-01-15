@@ -11,15 +11,15 @@ use App\Models\Dept;
  */
 class DeptBudgetFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
-        return [
-            //
-        ];
-    }
+	/**
+	 * Define the model's default state.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function definition(): array
+	{
+		return [
+			//
+		];
+	}
 }

@@ -138,23 +138,23 @@ class TestController extends Controller
 		// ]);
 
 		// $tenant->createDomain([
-		//     'domain' => $domain
+		//	'domain' => $domain
 		// ]);
 
 
 		// //OK
 		// $tenant->run(function()		{
-		//     $seeder = new \Database\Seeders\UserSeeder();
-		//     $seeder->run();
+		//	$seeder = new \Database\Seeders\UserSeeder();
+		//	$seeder->run();
 		// });
 
 		// $tenant->run(function()
 		// {
-		//     User::create([
-		//         'name' 		=> 'John Doe',
+		//	User::create([
+		//	'name' 		=> 'John Doe',
 		// 		'email' 	=> 'john3@example.com',
 		// 		'password' => bcrypt('password'),
-		//     ]);
+		//	]);
 		// });
 		return redirect('/home')->with('success', 'Tenant created 1');
 		exit;
@@ -247,21 +247,21 @@ class TestController extends Controller
 		//return redirect('/dashboard')->with('status', 'Profile updated!');
 
 		// return redirect()->route('index.index')
-		//     ->with('warning', 'warning message')
-		//     ->with('success', 'success message');
+		//	->with('warning', 'warning message')
+		//	->with('success', 'success message');
 
 		// return redirect()->route('accounts.index')
-		//     ->with('success','Account updated successfully');
+		//	->with('success','Account updated successfully');
 
 		return redirect('/login')
 			->with('error', 'Account updated successfully');
 
 
 		// return redirect()->route('pages.success')
-		//      ->with('success','Account updated successfully');
+		//	 ->with('success','Account updated successfully');
 
 		// return view('pages.success')
-		//     ->with('success','Account updated successfully');
+		//	->with('success','Account updated successfully');
 
 		//$role = UserRoleEnum::MANAGER;
 		// https://www.scratchcode.io/laravel-notification-tutorial-with-example/
@@ -311,15 +311,13 @@ class TestController extends Controller
 	}
 
 	public function generatePDF()
-    {
-        $data = [
-            'title' => 'Welcome to ItSolutionStuff.com',
-        ]; 
-              
-        $pdf = PDF::loadView('landlord.reports.formats.example2', $data);
-       
-        return $pdf->stream('fonts.pdf');
-    }
+	{
+		$data = [
+			'title' => 'Welcome to ItSolutionStuff.com',
+		]; 
+		$pdf = PDF::loadView('landlord.reports.formats.example2', $data);
+		return $pdf->stream('fonts.pdf');
+	}
 
 
 	public static function copyCheckoutFiles($checkout_id = 0)

@@ -32,15 +32,15 @@ class HierarchySeeder extends Seeder
 			],
 			// [
 		  
-			//     'name'          => 'All PO Approval',
+			//	'name'		=> 'All PO Approval',
 			// ],
 			// [
 		  
-			//     'name'          => 'PR Approval for Sales',
+			//	'name'		=> 'PR Approval for Sales',
 			// ],
 			// [
 		  
-			//     'name'          => 'PO Approval for Finance',
+			//	'name'		=> 'PO Approval for Finance',
 			// ],
 			];
 		  //
