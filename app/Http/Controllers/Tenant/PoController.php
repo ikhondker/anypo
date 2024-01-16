@@ -169,9 +169,6 @@ class PoController extends Controller
 	// add attachments
 	public function attach(StorePoRequest $request)
 	{
-		
-		
-
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PO->value ]);

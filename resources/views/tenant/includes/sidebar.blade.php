@@ -80,7 +80,7 @@
 			
 			<li class="sidebar-item {{ ($_route_name == 'oems.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('oems.index') }}"><i class="align-middle" data-feather="circle"></i>OEM</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'warehouses.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('warehouses.index') }}"><i class="align-middle" data-feather="circle"></i>Warehouse**</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'pay-methods.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('pay-methods.index') }}"><i class="align-middle" data-feather="circle"></i>Pay Methods**</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'bank-accounts.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('bank-accounts.index') }}"><i class="align-middle" data-feather="circle"></i>Bank Accounts*</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'currencies.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('currencies.index') }}"><i class="align-middle" data-feather="circle"></i>Currency</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'rates.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('rates.index') }}"><i class="align-middle" data-feather="circle"></i>Exchange Rate</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'countries.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-feather="circle"></i>Country</a></li>

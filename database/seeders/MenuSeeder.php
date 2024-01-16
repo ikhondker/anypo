@@ -71,10 +71,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'menus.index','route_name' => 'menus.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'oems.index','route_name' => 'oems.index', 'node_name' => 'lookups'],
 		   
-			[ 'raw_route_name' => 'pay-methods.index','route_name' => 'pay-methods.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'pay-methods.show','route_name' => 'pay-methods.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'pay-methods.edit','route_name' => 'pay-methods.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'pay-methods.create','route_name' => 'pay-methods.index', 'node_name' => 'lookups'],
+			
 
 			[ 'raw_route_name' => 'pos.index','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.show','route_name' => 'pos.index', 'node_name' => 'purchase'],
@@ -142,6 +139,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'warehouses.show','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.edit','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.create','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
+
+			[ 'raw_route_name' => 'bank-accounts.index','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'bank-accounts.show','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'bank-accounts.edit','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'bank-accounts.create','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'wfs.index','route_name' => 'wfs.index', 'node_name' => 'workflow'],
 			[ 'raw_route_name' => 'wfs.show','route_name' => 'wfs.index', 'node_name' => 'workflow'],

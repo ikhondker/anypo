@@ -121,7 +121,7 @@ class PrController extends Controller
 		$setup = Setup::first();
 
 		// don't set dept_budget_id . It will be save during submissions
-		$request->merge(['requestor_id'	=> 	auth()->id() ]);
+		$request->merge(['requestor_id'	=> 	auth()->user()->id ]);
 		$request->merge(['pr_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['amount'		=> $request->input('prl_amount')]);
 

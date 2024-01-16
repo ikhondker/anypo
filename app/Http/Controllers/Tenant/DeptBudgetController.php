@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
-
 use App\Models\Tenant\DeptBudget;
 use App\Http\Requests\Tenant\StoreDeptBudgetRequest;
 use App\Http\Requests\Tenant\UpdateDeptBudgetRequest;
 
 # Models
 use App\Models\Tenant\Budget;
-
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Admin\Attachment;
 # Enums
@@ -38,7 +36,7 @@ class DeptBudgetController extends Controller
 	 */
 	public function index()
 	{
-		$this->authorize('viewAny', Budget::class);
+		$this->authorize('viewAny', DeptBudget::class);
 
 		$dept_budgets = DeptBudget::query();
 		if (request('term')) {

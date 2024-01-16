@@ -98,8 +98,6 @@ class PrlController extends Controller
 		// update PR header
 		$pr 				= Pr::where('id', $prl->pr_id)->firstOrFail();
 		$prl_sum 			= Prl::where('pr_id', '=', $pr->id)->sum('amount');
-
-		
 		$pr->amount			= $prl_sum;
 		$pr->save();
 

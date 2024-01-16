@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Tenant\Lookup;
 use App\Http\Controllers\Controller;
 
 
-
-
 // 1. Enums
 // 2. Helpers
 use App\Helpers\EventLog;
@@ -33,7 +31,7 @@ class DeptController extends Controller
 	 */
 	public function index()
 	{
-		//$this->authorize('viewAny',Dept::class);
+		$this->authorize('viewAny',Dept::class);
 
 		//liveware
 		//return view('depts.index');

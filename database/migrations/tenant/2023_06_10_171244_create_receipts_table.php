@@ -14,9 +14,10 @@ return new class extends Migration
 		Schema::create('receipts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->dateTime('receive_date', $precision = 0)->nullable()->useCurrent();
+			$table->enum('rcv_type', ['RECEIVE','ADJUSTMENT','MISCELLANEOUS'])->default('receive'); 
 			$table->string('summary');
 			$table->foreignId('pol_id')->constrained('pols');
-			$table->foreignId('item_id')->constrained('items');
+			//$table->foreignId('item_id')->constrained('items');
 			$table->foreignId('user_id')->constrained('users');
 			//$table->foreignId('supplier_id')->nullable()->constrained('organizations');
 			$table->unsignedinteger('qty')->default(1);
@@ -26,7 +27,6 @@ return new class extends Migration
 			$table->float('base_exchange_rate')->default(1);
 			$table->float('base_amount')->default(0);
 			//$table->string('attachment')->nullable();
-			$table->enum('type', ['RECEIVE','ADJUSTMENT','MISCELLANEOUS'])->default('receive'); 
 			$table->enum('status', ['RECEIVED','CANCELED','RETURNED'])->default('RECEIVED'); 
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

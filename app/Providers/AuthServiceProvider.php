@@ -85,6 +85,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Lookup\Uom'			=> 'App\Policies\Tenant\Lookup\UomPolicy',
 		'App\Models\Tenant\Lookup\UploadItem'	=> 'App\Policies\Tenant\Lookup\UploadItemPolicy',
 		'App\Models\Tenant\Lookup\Warehouse'	=> 'App\Policies\Tenant\Lookup\WarehousePolicy',
+		'App\Models\Tenant\Lookup\BankAccount'	=> 'App\Policies\Tenant\Lookup\BankAccountPolicy',
 
 		'App\Models\Tenant\Manage\Entity'		=> 'App\Policies\Tenant\Manage\EntityPolicy',
 		'App\Models\Tenant\Manage\Menu'			=> 'App\Policies\Tenant\Manage\MenuPolicy',
@@ -99,15 +100,16 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Budget'				=> 'App\Policies\Tenant\BudgetPolicy',
 		'App\Models\Tenant\DeptBudget'			=> 'App\Policies\Tenant\DeptBudgetPolicy',
 		'App\Models\Tenant\Notification'		=> 'App\Policies\Tenant\NotificationPolicy',
-		'App\Models\Tenant\Payment'				=> 'App\Policies\Tenant\PaymentPolicy',
+		
 		'App\Models\Tenant\Po'					=> 'App\Policies\Tenant\PoPolicy',
 		'App\Models\Tenant\Pol'					=> 'App\Policies\Tenant\PolPolicy',
 		'App\Models\Tenant\Pr'					=> 'App\Policies\Tenant\PrPolicy',
 		'App\Models\Tenant\Prl'					=> 'App\Policies\Tenant\PrlPolicy',
+		'App\Models\Tenant\Payment'				=> 'App\Policies\Tenant\PaymentPolicy',
 		'App\Models\Tenant\Receipt' 			=> 'App\Policies\Tenant\ReceiptPolicy',
 		'App\Models\Tenant\Report' 				=> 'App\Policies\Tenant\ReportPolicy',
 		
-		// 'App\Models\BankAccount' => 'App\Policies\BankAccountPolicy',
+		
 		// 'App\Models\Tenant' => 'App\Policies\TenantPolicy',
 		// 'App\Models\User' => 'App\Policies\UserPolicy',
 

@@ -1,24 +1,24 @@
 <?php
 
-namespace App\View\Components\Tenant\Attachment;
+namespace App\View\Components\Tenant\Widgets;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Tenant\Admin\Attachment;
 
-class Single extends Component
+use App\Models\Tenant\Payment;
+
+class PoPayments extends Component
 {
-	public $id;
-	public $attachment;
+
+	public $payments;
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct($id)
 	{
-		$this->id			= $id;
-		$this->attachment 	= Attachment::where('id', $id)->get()->first();
+		$this->payments 	= Payment::where('po_id', $id)->get()->all();
 	}
 
 	/**
@@ -26,6 +26,6 @@ class Single extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.attachment.single');
+		return view('components.tenant.widgets.po-payments');
 	}
 }

@@ -22,7 +22,7 @@ use App\Http\Controllers\Tenant\Lookup\CountryController;
 use App\Http\Controllers\Tenant\Lookup\CurrencyController;
 use App\Http\Controllers\Tenant\Lookup\DeptController;
 use App\Http\Controllers\Tenant\Lookup\DesignationController;
-use App\Http\Controllers\Tenant\Lookup\GroupController;
+//use App\Http\Controllers\Tenant\Lookup\GroupController;
 use App\Http\Controllers\Tenant\Lookup\ItemController;
 use App\Http\Controllers\Tenant\Lookup\OemController;
 use App\Http\Controllers\Tenant\Lookup\PayMethodController;
@@ -32,6 +32,7 @@ use App\Http\Controllers\Tenant\Lookup\SupplierController;
 use App\Http\Controllers\Tenant\Lookup\UomController;
 use App\Http\Controllers\Tenant\Lookup\UploadItemController;
 use App\Http\Controllers\Tenant\Lookup\WarehouseController;
+use App\Http\Controllers\Tenant\Lookup\BankAccountController;
 
 use App\Http\Controllers\Tenant\Manage\EntityController;
 use App\Http\Controllers\Tenant\Manage\MenuController;
@@ -256,6 +257,13 @@ Route::middleware([
 	Route::get('/warehouse/export',[WarehouseController::class,'export'])->name('warehouses.export');
 	Route::get('/warehouses/delete/{warehouse}',[WarehouseController::class,'destroy'])->name('warehouses.destroy');
 
+	/* ======================== BankAccount ======================================== */
+	Route::resource('bank-accounts', BankAccountController::class)->middleware(['auth', 'verified']);
+	Route::get('/bank-account/export',[BankAccountController::class,'export'])->name('bank-accounts.export');
+	Route::get('/bank-accounts/delete/{bankAccount}',[BankAccountController::class,'destroy'])->name('bank-accounts.destroy');
+	Route::post('/bank-account/attach',[BankAccountController::class,'attach'])->name('bank-accounts.attach');
+	Route::get('/bank-accounts/detach/{bankAccount}',[BankAccountController::class,'detach'])->name('bank-accounts.detach');
+
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class)->middleware(['auth', 'verified']);
 	Route::get('/category/export',[CategoryController::class, 'export'])->name('categories.export');
@@ -338,9 +346,9 @@ Route::middleware([
 	Route::get('/dept-budgets/detach/{deptBudget}',[DeptBudgetController::class,'detach'])->name('dept-budgets.detach');
    
 	/* ======================== PayMethod ======================================== */
-	Route::resource('pay-methods', PayMethodController::class)->middleware(['auth', 'verified']);
-	Route::get('/pay-method/export',[PayMethodController::class,'export'])->name('pay-methods.export');
-	Route::get('/pay-methods/delete/{payMethod}',[PayMethodController::class,'destroy'])->name('pay-methods.destroy');
+	//Route::resource('pay-methods', PayMethodController::class)->middleware(['auth', 'verified']);
+	//Route::get('/pay-method/export',[PayMethodController::class,'export'])->name('pay-methods.export');
+	//Route::get('/pay-methods/delete/{payMethod}',[PayMethodController::class,'destroy'])->name('pay-methods.destroy');
 
 	/* ======================== Pr ======================================== */
 	Route::resource('prs', PrController::class)->middleware(['auth', 'verified']);
@@ -391,6 +399,7 @@ Route::middleware([
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class)->middleware(['auth', 'verified']);
 	Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
+	Route::get('/payment/show-by-po/{id}',[PaymentController::class, 'showByPo'])->name('payments.show-by-po');
 	Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
 
 	/* ======================== UploadItem ======================================== */
