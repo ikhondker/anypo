@@ -15,7 +15,7 @@
 						</div>
 					</div>
 				</div>
-				<h5 class="card-title">Purchase Order Payments</h5>
+				<h5 class="card-title">Purchase Order Receipts</h5>
 				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
 			</div>
 			<table class="table">

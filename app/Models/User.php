@@ -199,6 +199,28 @@ class User extends Authenticatable implements MustVerifyEmail
 		}	
 	}
 
+	// usages auth()->user()->isBuyer()
+	public function isBuyer()
+	{
+		if ($this->enable == 1) {
+			switch ($this->role->value) {
+				case (UserRoleEnum::ADMIN->value):
+					return true;
+					break;
+				case (UserRoleEnum::BUYER->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPPORT->value):
+					return true;
+					break;
+				default:
+					return false;
+			}
+		} else {
+			return false;
+		}	
+	}
+
 	// usages auth()->user()->isisManagement()
 	public function isManagement()
 	{

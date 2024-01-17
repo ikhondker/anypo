@@ -60,7 +60,7 @@
 								<td class="table-action">
 									<x-tenant.list.actions object="Po" :id="$po->id"/>
 									<a href="{{ route('payments.show-by-po',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Payment">
-										<i class="align-middle" data-feather="eye"></i>
+										<i class="align-middle" data-feather="dollar-sign"></i>
 									</a>
 									<a href="{{ route('pos.destroy', $po->id) }}" class="me-2 modal-boolean-advance"
 										data-entity="Po" data-name="{{ $po->id }}" data-status="Delete"

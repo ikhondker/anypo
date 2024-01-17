@@ -27,7 +27,7 @@ class ReceiptPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isBuyer() || $user->isManagement();
 	}
 
 	/**
@@ -35,7 +35,7 @@ class ReceiptPolicy
 	 */
 	public function view(User $user, Receipt $receipt): bool
 	{
-		//
+		return $user->isBuyer() || $user->isManagement();
 	}
 
 	/**
@@ -43,7 +43,7 @@ class ReceiptPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return $user->isBuyer();
 	}
 
 	/**
@@ -76,5 +76,13 @@ class ReceiptPolicy
 	public function forceDelete(User $user, Receipt $receipt): bool
 	{
 		//
+	}
+
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isBuyer();
 	}
 }

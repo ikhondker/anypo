@@ -26,6 +26,7 @@
 						<th class="">Summary</th>
 						<th class="">UOM</th>
 						<th class="text-end">Qty</th>
+						<th class="text-end">Received</th>
 						<th class="text-end">Price</th>
 						<th class="text-end">Amount</th>
 						<th class="">Action</th>
@@ -42,14 +43,18 @@
 								<td class="">{{ $pol->summary }}</td>
 								<td class="">{{ $pol->uom->name }}</td>
 								<td class="text-end">{{ $pol->qty }}</td>
+								<td class="text-end">{{ $pol->received_qty }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$pol->price"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$pol->amount"/></td>
 								<td class="table-action">
+									<a href="{{ route('pols.show',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
+
 									<a href="{{ route('pols.edit',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 										<i class="align-middle" data-feather="edit"></i></a>
 
 									<a href="{{ route('receipts.show-by-pol',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
-										<i class="align-middle" data-feather="eye"></i></a>
+										<i class="align-middle" data-feather="check-circle"></i></a>
 
 									<a href="{{ route('prls.destroy',$pol->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
 										<i class="align-middle" data-feather="trash-2"></i>

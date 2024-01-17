@@ -28,7 +28,7 @@ class PaymentPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isBuyer() || $user->isManagement();
 	}
 
 	/**
@@ -36,7 +36,7 @@ class PaymentPolicy
 	 */
 	public function view(User $user, Payment $payment): bool
 	{
-		//
+		return $user->isBuyer() || $user->isManagement();
 	}
 
 	/**
@@ -44,7 +44,7 @@ class PaymentPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return $user->isBuyer();
 	}
 
 	/**
@@ -77,5 +77,13 @@ class PaymentPolicy
 	public function forceDelete(User $user, Payment $payment): bool
 	{
 		//
+	}
+
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isBuyer();
 	}
 }

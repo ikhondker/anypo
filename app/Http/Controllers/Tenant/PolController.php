@@ -81,7 +81,9 @@ class PolController extends Controller
 	 */
 	public function show(Pol $pol)
 	{
-		//
+		//$this->authorize('view', $pol);
+
+		return view('tenant.pols.show', compact('pol'));
 	}
 
 	/**

@@ -30,14 +30,13 @@ class PaymentController extends Controller
 	 */
 	public function showByPo($po_id)
 	{
-		//$this->authorize('update',$pr);
-		// Write Event Log
-		//LogEvent('template',$template->id,'edit','template',$template->id);
 
+		$this->authorize('view', Payment::class);
+
+		
 		$po = Po::where('id', $po_id)->first();
-
-		//$items = Item::getAll();
-		//$uoms = Uom::getAllClient();
+	
+		
 		$bank_accounts = BankAccount::primary()->get();
 
 		return view('tenant.payments.show-by-po', with(compact('po','bank_accounts')));
@@ -124,4 +123,17 @@ class PaymentController extends Controller
 	{
 		//
 	}
+
+	public function export()
+	{
+		$this->authorize('export', Payment::class);
+
+		$data = DB::select("SELECT id, pay_date, payee_id, po_id, bank_account_id, cheque_no, currency, amount, fc_currency, fc_exchange_rate, fc_amount, for_entity, notes, status, created_by, created_at, updated_by, updated_at, FROM payments
+		");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('payments', $dataArray);
+	}
+
+
 }

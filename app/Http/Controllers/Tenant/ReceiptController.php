@@ -40,15 +40,11 @@ class ReceiptController extends Controller
 	 */
 	public function showByPol($pol_id)
 	{
-		//$this->authorize('update',$pr);
-		// Write Event Log
-		//LogEvent('template',$template->id,'edit','template',$template->id);
+		
+		$this->authorize('view', Receipt::class);
 
 		$pol = Pol::where('id', $pol_id)->first();
-
 		$po = Po::where('id', $pol->po_id)->first();
-
-
 		$warehouses = Warehouse::primary()->get();
 
 		return view('tenant.receipts.show-by-pol', with(compact('po','pol','warehouses')));
@@ -83,7 +79,7 @@ class ReceiptController extends Controller
 	 */
 	public function store(StoreReceiptRequest $request)
 	{
-		//$this->authorize('create', Receipt::class);
+		$this->authorize('create', Receipt::class);
 
 		$request->merge(['receiver_id'	=> 	auth()->user()->id ]);
 		$receipt = Receipt::create($request->all());
@@ -149,6 +145,8 @@ class ReceiptController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Receipt::class);
+
 		$data = DB::select("SELECT id, receive_date, rcv_type, pol_id, warehouse_id, receiver_id, qty, notes, status, created_by, created_at, updated_by, updated_at, FROM receipts
 		");
 		$dataArray = json_decode(json_encode($data), true);

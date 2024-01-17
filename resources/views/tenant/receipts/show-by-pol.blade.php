@@ -6,7 +6,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Create Payments
+			Create Receipt
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.save/>

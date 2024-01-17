@@ -44,6 +44,9 @@
 		<x-tenant.widgets.approval-history id="{{ $po->wf_id }}"/>
 	@endif
 	
+
+	<x-tenant.widgets.po-payments :id="$po->id" />
+
 	@include('tenant.includes.modal-boolean-advance')
 	  
 @endsection
