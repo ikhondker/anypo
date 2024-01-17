@@ -15,7 +15,7 @@ class Receipt extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name','enable','updated_at','updated_by'
+		'receive_date', 'rcv_type', 'pol_id', 'warehouse_id', 'receiver_id', 'qty', 'notes', 'status', 'updated_by', 'updated_at',
 	];
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */

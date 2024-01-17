@@ -19,10 +19,10 @@
 */
 namespace App\Enum;
 
-enum PaymentStatusEnum:string{
-	case DUE		= 'due';
-	case PAID		= 'paid';
-	case PARTIAL	= 'partial';
-	case VOID		= 'void';
+enum ReceiptStatusEnum:string{
+	case RECEIVED	= 'received';
+	case RETURNED	= 'returned';
+	case CANCELED	= 'canceled';
 	case ERROR		= 'error';
 }
+

@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 use App\Enum\EntityEnum;
+use App\Enum\PaymentStatusEnum;
 
 return new class extends Migration
 {
@@ -18,20 +19,21 @@ return new class extends Migration
 			$table->dateTime('pay_date')->useCurrent();
 			$table->foreignId('payee_id')->constrained('users');
 			$table->biginteger('po_id')->default(0);
-			$table->string('summary')->nullable();
+			//$table->string('summary')->nullable();
 			$table->foreignId('bank_account_id')->constrained('bank_accounts')->nullable();
 			$table->string('cheque_no');
-			$table->float('amount')->default(0);
-			$table->string('base_currency',3)->default('USD');
-			$table->float('base_exchange_rate')->default(1);
-			$table->float('base_amount')->default(0);
+			$table->string('currency',3)->default('USD');
+			$table->float('amount', 15, 2)->default(0);
+			$table->string('fc_currency',3)->default('USD');					// Functional Currency
+			$table->double('fc_exchange_rate', 15, 10)->default(1);
+			$table->float('fc_amount', 15, 2)->default(0);
 			//$table->foreignId('organization_id')->constrained('organizations');
 			//$table->biginteger('for_doc_type_id')->constrained('doc_types');
 			$table->string('for_entity',15)->default(EntityEnum::PO->value); 
-			
-			$table->biginteger('article_id')->default(0);
 			$table->text('notes')->nullable();
-			$table->enum('status', ['DRAFT','POSTED','CONFIRMED','VOID'])->default('DRAFT');
+			/** ENUM */
+			$table->string('status')->default(PaymentStatusEnum::PAID->value);;
+			/** end ENUM */
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);

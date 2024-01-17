@@ -1,6 +1,6 @@
 {{-- ================================================================== --}}
 <div class="row">
-	<div class="col-12 col-xl-12">
+	<div class="col-8 col-xl-8">
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -15,7 +15,7 @@
 						</div>
 					</div>
 				</div>
-				<h5 class="card-title">Purchase Order Payments</h5>
+				<h5 class="card-title">Purchase Order Receipts</h5>
 				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
 			</div>
 			<table class="table">
@@ -41,7 +41,7 @@
 							<td class="text-end">{{ $payment->cheque_no }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/></td>
 							<td class="text-end">{{ $payment->po_no }}</td>
-							<td class="">
+							<td class="table-action">
 								<a href="{{ route('prls.edit',$payment->id) }}" class="text-muted d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">Edit</a> |
 								<a href="{{ route('prls.destroy',$payment->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
 									<i class="align-middle" data-feather="trash-2"></i>

@@ -36,7 +36,7 @@ class PolController extends Controller
 	 * @param  \App\Models\Pol  $pol
 	 * @return \Illuminate\Http\Response
 	 */
-	public function createLine($pr_id)
+	public function addLine($pr_id)
 	{
 		//$this->authorize('update',$pr);
 		// Write Event Log

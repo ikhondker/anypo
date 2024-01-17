@@ -11,6 +11,8 @@ use App\Models\User;
 
 use App\Models\Country;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class Warehouse extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
@@ -19,8 +21,19 @@ class Warehouse extends Model
 		'name', 'contact_person', 'cell', 'address1', 'address2', 'city', 'zip', 'state', 'country', 'website', 'email', 'enable', 'updated_by', 'updated_at',
 	];
 
+
+	/* ----------------- Scopes ------------------------- */
+	/**
+	 * Scope a query to only  non-seeded users.
+	 */
+	public function scopePrimary(Builder $query): void
+	{
+		$query->where('enable', true);
+	}
+
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */
+
 	/* ---------------- belongsTo ---------------------- */
 	public function relCountry(){
 		return $this->belongsTo(Country::class,'country');

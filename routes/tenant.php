@@ -383,18 +383,17 @@ Route::middleware([
 	Route::get('/po/get-cancel-po-num',[PoController::class,'getCancelPoNum'])->name('pos.get-cancel-po-num');
 	Route::post('/pos/cancel',[PoController::class,'cancel'])->name('pos.cancel');
 	
-
 	/* ======================== Pol ======================================== */
 	Route::resource('pols', PolController::class)->middleware(['auth', 'verified']);
 	Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
 	Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
-	Route::get('/pols/createline/{id}',[PolController::class, 'createLine'])->name('pols.createline');
-
+	Route::get('/pols/add-line/{id}',[PolController::class, 'addLine'])->name('pols.add-line');
 
 	/* ======================== Receipt ======================================== */
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);
 	Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
 	Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
+	Route::get('/receipt/show-by-pol/{id}',[ReceiptController::class, 'showByPol'])->name('receipts.show-by-pol');
 
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class)->middleware(['auth', 'verified']);
