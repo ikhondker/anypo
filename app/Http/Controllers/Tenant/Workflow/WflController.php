@@ -12,6 +12,7 @@ use App\Models\Tenant\Workflow\Wf;
 use App\Models\Tenant\Workflow\Wfl;
 
 use App\Models\Tenant\Pr;
+use App\Models\Tenant\Po;
 
 use App\Models\User;
 # Enums
@@ -89,9 +90,9 @@ class WflController extends Controller
 		// get the wf and article details
 		$wf = Wf::where('id', $wfl->wf_id)->first();
 		switch($wf->entity) {
-			case('PR'):
+			case(EntityEnum::PR->value):
 				$pr = Pr::where('id', $wf->article_id)->first();
-			case('PO'):
+			case(EntityEnum::PR->value):
 				$po = Po::where('id', $wf->article_id)->first();
 				break;
 			default:
@@ -114,13 +115,13 @@ class WflController extends Controller
 				$next_approver_id = Workflow::getNextApproverId($wfl->wf_id);
 				
 				if ($next_approver_id <> 0) {
-					Log::debug("next approve found! = ");
+					//Log::debug("next approve found! = ");
 					//$booEndWf = false;
 					return self::moveToNext();
 					
 				} else {
 					// document is approved
-					Log::debug("This was the top approver ");
+					//Log::debug("This was the top approver ");
 					return self::approved();
 					//$booEndWf = true;
 				}

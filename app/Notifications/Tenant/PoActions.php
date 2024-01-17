@@ -48,11 +48,11 @@ class PoActions extends Notification implements ShouldQueue
 				$this->line		= 'Purchase Order #'.$this->po->id.' for '.$this->po->summary .' requires your approval.';
 				break;
 			case WflActionEnum::REJECTED->value:
-				$this->subject	= '[FYI] PR #'.$this->po->id.' '. $this->po->summary .' for '. number_format($this->po->amount, 2).$this->po->currency.' has been '.Str::lower($this->action).'.';
+				$this->subject	= '[FYI] PO #'.$this->po->id.' '. $this->po->summary .' for '. number_format($this->po->amount, 2).$this->po->currency.' has been '.Str::lower($this->action).'.';
 				$this->line		= 'Purchase Order #'.$this->po->id.' for '.$this->po->summary .' has been '.Str::lower($this->action).'.';
 				break;
 			case WflActionEnum::APPROVED->value:
-				$this->subject	= '[FYI] PR #'.$this->po->id.' '. $this->po->summary .' for '. number_format($this->po->amount, 2).$this->po->currency.' has been '.Str::lower($this->action).'.';
+				$this->subject	= '[FYI] PO #'.$this->po->id.' '. $this->po->summary .' for '. number_format($this->po->amount, 2).$this->po->currency.' has been '.Str::lower($this->action).'.';
 				$this->line		= 'Purchase Order #'.$this->po->id.' for '.$this->po->summary .' has been '.Str::lower($this->action).'.';
 				break;
 			default:

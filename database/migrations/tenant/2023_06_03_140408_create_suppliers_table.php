@@ -17,7 +17,6 @@ return new class extends Migration
 			$table->string('address1');
 			$table->string('address2')->nullable();
 			$table->string('contact_person')->nullable();
-			
 			$table->string('cell')->nullable();
 			$table->string('city')->nullable();
 			$table->string('zip')->nullable();

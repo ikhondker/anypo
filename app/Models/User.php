@@ -522,7 +522,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function designation_name()
 	{
 		return $this->belongsTo(Designation::class, 'designation_id')->withDefault([
-			'name' => '[ Empty1 ]',
+			'name' => '[ Empty ]',
 		]);
 
 	}

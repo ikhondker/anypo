@@ -26,18 +26,20 @@
 							<tr>
 								<th>#</th>
 								<th>Approver Name</th>
-								<th>Email</th>
 								<th>Title</th>
+								<th>Dept</th>
+								<th>Email</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($hierarchyls as $hierarchyl)
 							<tr>
-								<td><span class="badge bg-primary-light">{{ $hierarchyl->id }}</span></td>
+								<td><span class="badge bg-primary-light">{{ $loop->iteration }}</span></td>
 								<td>{{ $hierarchyl->approver->name }}</td>
-								<td>{{ $hierarchyl->approver->email }} </td>
 								<td>{{ $hierarchyl->approver->designation_name->name }} </td>
+								<td>{{ $hierarchyl->approver->dept_name->name }} </td>
+								<td>{{ $hierarchyl->approver->email }} </td>
 								<td class="table-action">
 									{{-- <a class="btn btn-info" href="{{ route('hierarchy_details.edit',$hierarchy_detail->id) }}">Edit (TBD)</a>
 									<a class="btn btn-danger" href="{{ route('hierarchy_details.show',$hierarchy_detail->id) }}">Enable (TBD)</a> --}}

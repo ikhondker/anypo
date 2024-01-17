@@ -8,7 +8,7 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Approval of: PR#{{ $pr->id}} - {{ $pr->summary}}</h5>
+					<h5 class="card-title">Approval of: </h5>
 					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
 				</div>
 				<div class="card-body">
