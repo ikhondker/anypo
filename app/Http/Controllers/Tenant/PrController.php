@@ -359,6 +359,8 @@ class PrController extends Controller
 	public function submit(Pr $pr)
 	{
 		
+		$this->authorize('submit', $pr);
+
 		if ($pr->auth_status->value <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.index')->with('error', 'You can only submit if the status is '. AuthStatusEnum::DRAFT->value .' !');
 		}

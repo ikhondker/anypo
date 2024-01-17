@@ -16,9 +16,9 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.widgets.budget-stat/>
+	<x-tenant.dashboards.budget-stat/>
 	
-	<x-tenant.widgets.pr-counts/>
+	<x-tenant.dashboards.pr-counts/>
 	
 	<div class="row">
 		<x-tenant.charts.budget-pie/>

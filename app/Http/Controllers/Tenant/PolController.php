@@ -36,13 +36,13 @@ class PolController extends Controller
 	 * @param  \App\Models\Pol  $pol
 	 * @return \Illuminate\Http\Response
 	 */
-	public function addLine($pr_id)
+	public function addLine($po_id)
 	{
 		//$this->authorize('update',$pr);
 		// Write Event Log
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 
-		$po = Po::where('id', $pr_id)->first();
+		$po = Po::where('id', $po_id)->first();
 
 		$items = Item::getAll();
 		//$uoms = Uom::getAllClient();
@@ -73,7 +73,31 @@ class PolController extends Controller
 	 */
 	public function store(StorePolRequest $request)
 	{
-		//
+		$this->authorize('create', Pol::class);
+
+		// get Po detail 
+		$po 				= Po::where('id', $request->input('po_id'))->firstOrFail();
+
+		//dd($po);
+		// get max line num for the
+		$line_num 						= Pol::where('po_id', '=',$po->id)->max('line_num');
+		$request->merge(['line_num'		=> $line_num +1]);
+		$request->merge(['sub_total'	=> $request->input('pol_amount')]);
+		$request->merge(['amount'		=> $request->input('pol_amount')]);
+		
+		$request->merge(['dept_id'		=> $po->dept_id]);
+		$request->merge(['requestor_id'	=> $po->requestor_id]);
+		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
+		$pol = Pol::create($request->all());
+		// Write to Log
+		EventLog::event('Pol', $pol->id, 'create');
+
+		// update PO header
+		$pol_sum 			= Pol::where('po_id', '=', $po->id)->sum('amount');
+		$po->amount			= $pol_sum;
+		$po->save();
+
+		return redirect()->route('pos.show', $pol->po_id)->with('success', 'Purchase Order line added successfully');
 	}
 
 	/**

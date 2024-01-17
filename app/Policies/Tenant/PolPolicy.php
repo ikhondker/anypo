@@ -27,7 +27,7 @@ class PolPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -35,7 +35,7 @@ class PolPolicy
 	 */
 	public function view(User $user, Pol $pol): bool
 	{
-		//
+		return $user->isAdmin() || $user->isBuyer() || $user->isManagement();
 	}
 
 	/**
@@ -43,7 +43,7 @@ class PolPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return $user->isBuyer();
 	}
 
 	/**
@@ -51,7 +51,7 @@ class PolPolicy
 	 */
 	public function update(User $user, Pol $pol): bool
 	{
-		//
+		return $user->isBuyer();
 	}
 
 	/**

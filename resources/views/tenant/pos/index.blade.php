@@ -33,10 +33,10 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>PR#</th>
+								<th>PO#</th>
 								<th>Summary</th>
 								<th>Date</th>
-								<th>Requestor</th>
+								<th>Buyer</th>
 								<th>Dept</th>
 								<th>Currency</th>
 								<th class="text-end">Amount</th>

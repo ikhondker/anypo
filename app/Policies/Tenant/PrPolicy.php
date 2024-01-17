@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
+use App\Enum\AuthStatusEnum;
 
 class PrPolicy
 {
@@ -46,11 +47,19 @@ class PrPolicy
 			return ($user->dept_id == $pr->dept_id);
 		} elseif ($user->role->value == UserRoleEnum::CXO->value) {
 			return true;
-
 		} else {
 			return ( false ) ;
 		}
 	}
+
+	/**
+	 * Determine whether the user can update the model.
+	 */
+	public function submit(User $user, Pr $pr): bool
+	{
+		return ($pr->auth_status->value == AuthStatusEnum::DRAFT->value); 
+	}
+
 
 	/**
 	 * Determine whether the user can create models.

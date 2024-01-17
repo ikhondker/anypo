@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Widgets;
+namespace App\View\Components\Tenant\Dashboards;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -85,6 +85,6 @@ class BudgetStat extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.budget-stat');
+		return view('components.tenant.dashboards.budget-stat');
 	}
 }

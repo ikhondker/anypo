@@ -90,7 +90,7 @@ class ViewServiceProvider extends ServiceProvider
 
 		Facades\View::composer(['layouts.app','tenant.*',
 				'components.tenant.create.amount','components.tenant.edit.amount','components.tenant.show.my-amount',
-				'components.tenant.widgets.pr-counts'
+				'components.tenant.dashboards.*'
 				], 
 				\App\View\Composers\TenantSetupComposer::class);
 		Facades\View::composer('layouts.app', \App\View\Composers\NotificationComposer::class);

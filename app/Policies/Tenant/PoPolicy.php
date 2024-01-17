@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
-
+use App\Enum\AuthStatusEnum;
 
 class PoPolicy
 {
@@ -28,7 +28,7 @@ class PoPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin() || $user->isBuyer() || $user->isManagement();
 	}
 
 	/**
@@ -36,15 +36,34 @@ class PoPolicy
 	 */
 	public function view(User $user, Po $po): bool
 	{
-		return true;
+		if ($user->isAdmin() ) {
+			return true;
+		} elseif ($user->role->value == UserRoleEnum::BUYER->value) {
+			return ($user->id == $po->buyer_id);
+		} elseif ($user->role->value == UserRoleEnum::HOD->value) {
+			return ($user->dept_id == $po->dept_id);
+		} elseif ($user->role->value == UserRoleEnum::CXO->value) {
+			return true;
+		} else {
+			return ( false ) ;
+		}
+	}
+
+
+	/**
+	 * Determine whether the user can update the model.
+	 */
+	public function submit(User $user, Po $po): bool
+	{
+		return ($po->auth_status->value == AuthStatusEnum::DRAFT->value); 
 	}
 
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		//
+		return $user->isBuyer();
 	}
 
 	/**
@@ -52,7 +71,7 @@ class PoPolicy
 	 */
 	public function update(User $user, Po $po): bool
 	{
-		//
+		return $user->isBuyer();
 	}
 
 	/**
@@ -60,7 +79,7 @@ class PoPolicy
 	 */
 	public function delete(User $user, Po $po): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**

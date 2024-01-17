@@ -19,8 +19,8 @@
 			<a href="{{ route('payments.create-for-po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a>
 			<a href="{{ route('reports.po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
 			<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
-				data-entity="" data-name="PR#{{ $po->id }}" data-status="Submit"
-				data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Order">
+				data-entity="" data-name="PO#{{ $po->id }}" data-status="Submit"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Submit">
 				<i data-feather="external-link"></i> Submit</a>
 		@endslot
 	</x-tenant.page-header>
@@ -41,7 +41,7 @@
 
 	<!-- Approval History -->
 	@if ($po->wf_id <> 0)
-		<x-tenant.widgets.approval-history id="{{ $po->wf_id }}"/>
+		<x-tenant.wf.approval-history id="{{ $po->wf_id }}"/>
 	@endif
 	
 

@@ -20,7 +20,7 @@ class Pol extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'po_id', 'line_num', 'summary', 'notes', 'item_id', 'uom_id', 'qty', 'price', 'sub_total', 'tax', 'vat', 'amount', 'received_qty', 'closure_status', 'asset_created', 'asset_date', 'updated_by', 'updated_at',
+		'po_id', 'line_num', 'summary', 'notes', 'item_id', 'uom_id', 'qty', 'price', 'sub_total', 'tax', 'vat', 'amount', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'prl_id', 'received_qty', 'closure_status', 'asset_created', 'asset_date', 'updated_by', 'updated_at',
 	];
 
 	/**

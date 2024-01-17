@@ -24,8 +24,8 @@ class PrActions extends Notification implements ShouldQueue
 	protected $action;
 	protected $actionURL;
 
-	protected $subject='Subject';
-	protected $line='Line Description'; 
+	protected $subject 	='Subject';
+	protected $line 	='Line Description'; 
 
 	/**
 	 * Create a new notification instance.
@@ -112,7 +112,7 @@ class PrActions extends Notification implements ShouldQueue
 		];
 	}
 
-		/**
+	/**
 	 * IQBAL Get the array representation of the notification.
 	 *
 	 * @param  mixed  $notifiable
@@ -120,7 +120,6 @@ class PrActions extends Notification implements ShouldQueue
 	 */
 	public function toDatabase($notifiable)
 	{
-		//Log::debug("INSIDE toDatabase 1!");
 
 		$details = [
 			'entity'		=> 'PR',

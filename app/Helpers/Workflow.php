@@ -24,6 +24,7 @@ use Request;
 
 use App\Models\User;
 use App\Models\Tenant\Pr;
+use App\Models\Tenant\Po;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Workflow\Hierarchy;
@@ -62,6 +63,13 @@ class Workflow
 				$hierarchy_id =	$hierarchy->id;
 				break;
 			case EntityEnum::PO->value:
+				// TODO try catch exception handing
+				$po = Po::where('id', $article_id)->first();
+				$requestor_id = $po->buyer_id;
+				//$dept_id = $pr->dept_id;
+				$dept = Dept::where('id', $po->dept_id)->first();
+				$hierarchy = Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
+				$hierarchy_id =	$hierarchy->id;
 				break;
 			default:
 				Log::debug("Other Entity!");

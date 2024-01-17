@@ -30,9 +30,13 @@ class UserSeeder extends Seeder
 
 		$users =  [
 			[
-				'id'				 => '1001',
+				'id'				=> '1001',
 				'name'				=> 'System Owner',
 				'email'				=> 'system@example.com',
+				
+				'designation_id'	=> '1001',
+				'dept_id'			=> '1001',
+
 				'role'				=> 'system',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -41,14 +45,16 @@ class UserSeeder extends Seeder
 				'address1'			=> $faker->address,
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
 			[
-				'id'				  => '1002',
+				'id'				=> '1002',
 				'name'				=> 'Mr Support User',
 				'email'				=> 'support@example.com',
+				'designation_id'	=> '1001',
+				'dept_id'			=> '1001',
 				'role'				=> 'support',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -57,15 +63,17 @@ class UserSeeder extends Seeder
 				'address1'			=> $faker->address,
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
 			// TODO Must Remove 
 			[
-				'id'				  => '1003',
+				'id'				=> '1003',
 				'name'				=> 'Admin User (Remove)',
 				'email'				=> 'admin@example.com',
+				'designation_id'	=> '1001',
+				'dept_id'			=> '1001',
 				'role'				=> 'admin',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -74,15 +82,17 @@ class UserSeeder extends Seeder
 				'address1'			=> $faker->address,
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
 
 			[
-				'id'				  => '1004',
+				'id'				=> '1004',
 				'name'				=> 'Mr. User 1',
 				'email'				=> 'user1@example.com',
+				'designation_id'	=> '1007',
+				'dept_id'			=> '1003',
 				'role'				=> 'user',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -91,14 +101,16 @@ class UserSeeder extends Seeder
 				'address1'			=> $faker->address,
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
 			[
-				'id'				  => '1005',
+				'id'				=> '1005',
 				'name'				=> 'Mr User 2',
 				'email'				=> 'user2@example.com',
+				'designation_id'	=> '1007',
+				'dept_id'			=> '1004',
 				'role'				=> 'user',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -107,14 +119,16 @@ class UserSeeder extends Seeder
 				'address1'			=> $faker->address,
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
 			[
-				'id'				  => '1006',
+				'id'				=> '1006',
 				'name'				=> 'Mr Buyer 1',
 				'email'				=> 'buyer1@example.com',
+				'designation_id'	=> '1002',
+				'dept_id'			=> '1009',
 				'role'				=> 'buyer',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -128,9 +142,11 @@ class UserSeeder extends Seeder
 				'linkedin'			=> $faker->url,
 			],
 			[
-				'id'				  => '1007',
+				'id'				=> '1007',
 				'name'				=> 'Mr Buyer 2',
 				'email'				=> 'buyer2@example.com',
+				'designation_id'	=> '1002',
+				'dept_id'			=> '1009',
 				'role'				=> 'buyer',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -144,9 +160,11 @@ class UserSeeder extends Seeder
 				'linkedin'			=> $faker->url,
 			],
 			[
-				'id'				  => '1008',
+				'id'				=> '1008',
 				'name'				=> 'Mr HoD',
 				'email'				=> 'hod@example.com',
+				'designation_id'	=> '1004',
+				'dept_id'			=> '1003',
 				'role'				=> 'hod',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -155,14 +173,16 @@ class UserSeeder extends Seeder
 				'address1'			=> $faker->address,
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
 			[
-				'id'				  => '1009',
+				'id'				=> '1009',
 				'name'				=> 'Mr CxO',
 				'email'				=> 'cxo@example.com',
+				'designation_id'	=> '1003',
+				'dept_id'			=> '1007',
 				'role'				=> 'cxo',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -171,7 +191,7 @@ class UserSeeder extends Seeder
 				'address1'			=> $faker->address,
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Widgets;
+namespace App\View\Components\Tenant\Wf;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -26,6 +26,6 @@ class ApprovalHistory extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.approval-history');
+		return view('components.tenant.wf.approval-history');
 	}
 }

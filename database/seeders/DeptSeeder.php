@@ -33,25 +33,25 @@ class DeptSeeder extends Seeder
 		  	],
 			[
 				'id' 				=> 1002,
+				'name' 				=> 'Finance',
+				'pr_hierarchy_id' 	=> 1001,
+				'po_hierarchy_id' 	=> 1002,
+		  	],
+			[
+				'id' 				=> 1003,
 				'name' 				=> 'Sales',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 			],
 			[
-				'id' 				=> 1003,
+				'id' 				=> 1004,
 				'name' 				=> 'Marketing',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 			],
 		  	[
-				'id' 				=> 1004,
-				'name' 				=> 'Production',
-				'pr_hierarchy_id' 	=> 1001,
-				'po_hierarchy_id' 	=> 1002,
-		  	],
-			[
 				'id' 				=> 1005,
-				'name' 				=> 'Finance',
+				'name' 				=> 'Production',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 		  	],

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Widgets;
+namespace App\View\Components\Tenant\Dashboards;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -78,10 +78,6 @@ class PrCounts extends Component
 			Log::debug('Role Not Found!');
 		}
 
-		// $this->count_total		= Pr::count();
-		// $this->count_approved	= Pr::where('auth_status',AuthStatusEnum::APPROVED->value )->count();
-		// $this->count_inprocess	= Pr::where('auth_status',AuthStatusEnum::INPROCESS->value )->count();
-		// $this->count_draft		= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 	}
 
 	/**
@@ -89,6 +85,6 @@ class PrCounts extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.pr-counts');
+		return view('components.tenant.dashboards.pr-counts');
 	}
 }

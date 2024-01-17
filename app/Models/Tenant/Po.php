@@ -27,7 +27,7 @@ class Po extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'summary', 'buyer_id', 'po_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_amount', 'submission_date', 'amount_paid', 'status', 'pay_status', 'auth_status', 'auth_date', 'auth_userid', 'wf_key', 'hierarchy_id', 'pr_id', 'wf_id', 'updated_by', 'updated_at',
+		'summary', 'buyer_id', 'po_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_amount', 'submission_date', 'amount_paid', 'status', 'payment_status', 'auth_status', 'auth_date', 'auth_userid', 'wf_key', 'hierarchy_id', 'pr_id', 'wf_id', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -42,6 +42,124 @@ class Po extends Model
 		'closure_status'		=> ClosureStatusEnum::class,
 		'auth_status'	=> AuthStatusEnum::class,
 	];
+
+		/* ----------------- Scopes ------------------------- */
+
+	//$this->count_total		= Pr::count();
+	//$this->count_approved	= Pr::where('auth_status',AuthStatusEnum::APPROVED->value )->count();
+	//$this->count_inprocess	= Pr::where('auth_status',AuthStatusEnum::INPROCESS->value )->count();
+	//$this->count_draft		= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
+
+	/**
+	 * Scope a query to all PR of a Tenant.
+	*/
+	public function scopeAll(Builder $query): void
+	{
+		$query; 
+	}
+	
+	/**
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopeAllApproved(Builder $query): void
+	{
+		$query->where('auth_status',AuthStatusEnum::APPROVED->value); 
+	}
+
+	/**
+	 * Scope a query to only All InProcess PR for current tenant.
+	*/
+	public function scopeAllInProcess(Builder $query): void
+	{
+		$query->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+	}
+	/**
+	 * Scope a query to only All Draft PR for current tenant.
+	*/
+	public function scopeAllDraft(Builder $query): void
+	{
+		$query->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+	}
+
+
+	/**
+	 * Scope a query to only All PR for current user.
+	*/
+	public function scopeByUserAll(Builder $query): void
+	{
+		$query->where('buyer_id', auth()->user()->id ); 
+	}
+
+	/**
+	 * Scope a query to only All Approved PR for current user.
+	*/
+	public function scopeByUserApproved(Builder $query): void
+	{
+		$query->where('buyer_id', auth()->user()->id )
+		->where('auth_status',AuthStatusEnum::APPROVED->value); 
+	}
+
+	/**
+	 * Scope a query to only All InProcess PR for current user.
+	*/
+	public function scopeByUserInProcess(Builder $query): void
+	{
+		$query->where('buyer_id', auth()->user()->id )
+		->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+	}
+	/**
+	 * Scope a query to only All Draft PR for current user.
+	*/
+	public function scopeByUserDraft(Builder $query): void
+	{
+		$query->where('buyer_id', auth()->user()->id )
+		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+	}
+
+
+	/**
+	 * Scope a query to only All PR for current user dept.
+	*/
+	public function scopeByDeptAll(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id ); 
+	}
+
+	/**
+	 * Scope a query to only All Approved PR for current dept.
+	*/
+	public function scopeByDeptApproved(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id)
+		->where('auth_status',AuthStatusEnum::APPROVED->value); 
+	}
+
+	/**
+	 * Scope a query to only All InProcess PR for current dept.
+	*/
+	public function scopeByDeptInProcess(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id )
+		->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+	}
+	/**
+	 * Scope a query to only All Draft PR for current dept.
+	*/
+	public function scopeByDeptDraft(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id)
+		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+	}
+
+	/**
+	 * Scope a query to only All Draft PR for current dept.
+	*/
+	public function scopeCreatedBetweenDates(Builder $query): void
+	{
+		$query->whereDate('po_date', '>=', $dates[0])
+			->whereDate('po_date', '<=', $dates[1]);
+	}
+
 
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */

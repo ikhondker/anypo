@@ -45,7 +45,7 @@
 
 	<!-- Approval History -->
 	@if ($pr->wf_id <> 0)
-		<x-tenant.widgets.approval-history id="{{ $pr->wf_id }}"/>
+		<x-tenant.wf.approval-history id="{{ $pr->wf_id }}"/>
 	@endif
 	
 	@include('tenant.includes.modal-boolean-advance')

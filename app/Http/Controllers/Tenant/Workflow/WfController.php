@@ -199,12 +199,59 @@ class WfController extends Controller
 		return redirect()->route('prs.show', $request->input('pr_id'))->with('success', 'Requisition status reset successfully');
 	}
 
+
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function resetpo()
+	public function getResetPoNum()
 	{
-		//$this->authorize('resetpo',Wf::class);
-		return view('tenant.workflow.wfs.resetpo');
+		$this->authorize('reset',Wf::class);
+		return view('tenant.workflow.wfs.reset-po');
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function wfResetPo(StoreWfRequest $request)
+	{
+		//$this->authorize('reset',Wf::class);
+
+		// update PR header
+		// $pr	= Pr::where('id', $request->input('pr_id'))->firstOrFail();
+		// if ($pr->auth_status->value <> AuthStatusEnum::INPROCESS->value){
+		//		return back()->withError("PR#".$request->input('pr_id')." is not in IN-PROCESS status!")->withInput();
+		// }
+
+		try {
+			$po = Po::where('id', $request->input('po_id'))->where('auth_status', AuthStatusEnum::INPROCESS->value)->firstOrFail();
+
+			// mark wf as RESET
+			try {
+				$wf = Wf::findOrFail($po->wf_id);
+				$wf->wf_status = WfStatusEnum::RESET->value;
+				$wf->update();
+			} catch (ModelNotFoundException $exception) {
+				// Error handling code
+				Log::debug("WF # ".$po->wf_id." not Found! Check!");
+			}
+
+			// reverse Booking
+			$retcode = CheckBudget::reverseBookingPr($po->id);
+			Log::debug("retcode = ".$retcode);
+
+			//reset pr wf_id and status
+			$po->wf_id = 0;
+			$po->auth_status = AuthStatusEnum::DRAFT->value;
+			$po->submission_date = null;
+			$po->update();
+
+			EventLog::event('po', $po->id, 'reset');	// Write to Log
+		} catch (ModelNotFoundException $exception) {
+			// Error handling code
+			Log::debug("PO#".$request->input('po_id')." not Found or PO is not in 'IN-PROCESS' status!");
+			//return back()->withError($exception->getMessage())->withInput();
+			return back()->withError("PO#".$request->input('po_id')." not Found or PO is not in IN-PROCESS status!")->withInput();
+		}
+		return redirect()->route('pos.show', $request->input('po_id'))->with('success', 'Purchase Order status reset successfully');
 	}
 }

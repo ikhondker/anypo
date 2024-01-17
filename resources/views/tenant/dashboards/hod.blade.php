@@ -16,14 +16,13 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.widgets.budget-stat/>
+	<x-tenant.dashboards.budget-stat/>
 
 	<div class="row">
 		<x-tenant.charts.budget-pie/>
-	
 	</div>
 
-	<x-tenant.widgets.pr-counts/>
+	<x-tenant.dashboards.pr-counts/>
 	
 	<x-tenant.widgets.pr-lists/>
 	

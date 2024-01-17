@@ -16,8 +16,8 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.widgets.pr-counts/>
-	
+	<x-tenant.dashboards.po-counts/>
+
 	<x-tenant.widgets.pr-lists-po-pending/>
 	
 	<div class="row">
