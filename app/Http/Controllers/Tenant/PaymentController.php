@@ -28,7 +28,7 @@ class PaymentController extends Controller
 	 * @param  \App\Models\Pol  $pol
 	 * @return \Illuminate\Http\Response
 	 */
-	public function showByPo($po_id)
+	public function createForPo($po_id)
 	{
 
 		$this->authorize('view', Payment::class);
@@ -39,7 +39,7 @@ class PaymentController extends Controller
 		
 		$bank_accounts = BankAccount::primary()->get();
 
-		return view('tenant.payments.show-by-po', with(compact('po','bank_accounts')));
+		return view('tenant.payments.create-for-po', with(compact('po','bank_accounts')));
 	}
 
 	/**

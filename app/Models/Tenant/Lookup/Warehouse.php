@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
-use App\Models\Country;
+use App\Models\Tenant\Lookup\Country;
 
 use Illuminate\Database\Eloquent\Builder;
 

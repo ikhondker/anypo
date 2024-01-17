@@ -16,7 +16,7 @@
 				data-entity="" data-name="PR#{{ $po->id }}" data-status="Duplicate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate Order">
 				<i data-feather="printer"></i> Duplicate</a>
-			<a href="{{ route('payments.show-by-po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a>
+			<a href="{{ route('payments.create-for-po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a>
 			<a href="{{ route('reports.po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
 			<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
 				data-entity="" data-name="PR#{{ $po->id }}" data-status="Submit"

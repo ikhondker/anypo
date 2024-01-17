@@ -393,12 +393,12 @@ Route::middleware([
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);
 	Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
 	Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
-	Route::get('/receipt/show-by-pol/{id}',[ReceiptController::class, 'showByPol'])->name('receipts.show-by-pol');
+	Route::get('/receipt/create-for-pol/{id}',[ReceiptController::class, 'createForPol'])->name('receipts.create-for-pol');
 
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class)->middleware(['auth', 'verified']);
 	Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
-	Route::get('/payment/show-by-po/{id}',[PaymentController::class, 'showByPo'])->name('payments.show-by-po');
+	Route::get('/payment/create-for-po/{id}',[PaymentController::class, 'createForPo'])->name('payments.create-for-po');
 	Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
 
 	/* ======================== UploadItem ======================================== */

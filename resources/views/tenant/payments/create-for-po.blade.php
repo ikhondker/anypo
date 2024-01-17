@@ -14,6 +14,9 @@
 		@endslot
 	</x-tenant.page-header> 
 
+
+	@include('tenant.includes.po.view-po-header-basic')
+	
 	<!-- form start -->
 	<form id="myform" action="{{ route('payments.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf

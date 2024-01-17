@@ -108,7 +108,7 @@
 			<ul id="cancel" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'cancel' ? "show" : "") }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'prs.get-cancel-pr-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.get-cancel-pr-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel PR*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="circle"></i>Cancel PO*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="circle"></i>Cancel Receipt*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="circle"></i>Return Goods*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="circle"></i>Cancel Payment*</a></li>
 			</ul>
 		</li>

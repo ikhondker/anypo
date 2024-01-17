@@ -38,7 +38,7 @@ class ReceiptController extends Controller
 	 * @param  \App\Models\Pol  $pol
 	 * @return \Illuminate\Http\Response
 	 */
-	public function showByPol($pol_id)
+	public function createForPol($pol_id)
 	{
 		
 		$this->authorize('view', Receipt::class);
@@ -47,7 +47,7 @@ class ReceiptController extends Controller
 		$po = Po::where('id', $pol->po_id)->first();
 		$warehouses = Warehouse::primary()->get();
 
-		return view('tenant.receipts.show-by-pol', with(compact('po','pol','warehouses')));
+		return view('tenant.receipts.create-for-pol', with(compact('po','pol','warehouses')));
 	}
 
 
