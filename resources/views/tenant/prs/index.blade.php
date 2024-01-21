@@ -12,7 +12,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.widgets.pr-counts/>
+	<x-tenant.dashboards.pr-counts/>
 
 	<div class="row">
 		<div class="col-12">

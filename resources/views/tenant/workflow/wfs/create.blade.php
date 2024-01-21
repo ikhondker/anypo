@@ -37,7 +37,7 @@
 							@enderror
 						</div>
 
-						<x-buttons.submit/>
+						<x-tenant.widgets.submit/>
 					</div>
 				</div>
 			</div>

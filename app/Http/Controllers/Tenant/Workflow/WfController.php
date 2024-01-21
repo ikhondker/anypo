@@ -54,9 +54,9 @@ class WfController extends Controller
 	 */
 	public function create()
 	{
-		$this->authorize('create', Wf::class);
-
-		return view('tenant.workflow.wfs.create');
+		abort(403);
+		//$this->authorize('create', Wf::class);
+		//return view('tenant.workflow.wfs.create');
 	}
 
 	/**
@@ -64,13 +64,7 @@ class WfController extends Controller
 	 */
 	public function store(StoreWfRequest $request)
 	{
-		$this->authorize('create', Wf::class);
-
-		$wf = Wf::create($request->all());
-		// Write to Log
-		EventLog::event('wf', $wf->id, 'create');
-
-		return redirect()->route('wfs.index')->with('success', 'Wf created successfully.');
+		abort(403);
 	}
 
 	/**

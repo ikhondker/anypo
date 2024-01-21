@@ -16,7 +16,7 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	@include('tenant.includes.view-pr-header')
+	@include('tenant.includes.pr.view-pr-header')
 
 	<!-- form start -->
 	<form action="{{ route('prls.update',$prl->id) }}" method="POST" enctype="multipart/form-data">
@@ -32,7 +32,7 @@
 
 	<!-- Approval History -->
 	@if ($pr->wf_id <> 0)
-		<x-tenant.widgets.approval-history id="{{ $pr->wf_id }}"/>
+		<x-tenant.wf.approval-history id="{{ $pr->wf_id }}"/>
 	@endif
 	
 

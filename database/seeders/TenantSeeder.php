@@ -41,6 +41,7 @@ class TenantSeeder extends Seeder
 		$this->call(\Database\Seeders\UomSeeder::class);
 
 		$this->call(\Database\Seeders\WarehouseSeeder::class);
+		$this->call(\Database\Seeders\BankAccountSeeder::class);
 		$this->call(\Database\Seeders\ItemSeeder::class);
 
 		$this->call(\Database\Seeders\BudgetSeeder::class);
