@@ -64,7 +64,7 @@ class SslCommerzPaymentController extends Controller
 
 	public function index(Request $request)
 	{
-		 // create rows in checkout and then hosted payment
+		// create rows in checkout and then hosted payment
 		// don't check unique email for existing logged-in user
 
 		Validator::extend('without_spaces', function($attr, $value){
@@ -386,7 +386,6 @@ class SslCommerzPaymentController extends Controller
 		switch ($trx_type) {
 			case "CHECKOUT":
 
-				
 				// Create new tenant
 				Log::debug("Creating Tenant for checkout ID= ".$trx_id);
 				CreateTenant::dispatch($trx_id);

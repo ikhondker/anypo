@@ -21,7 +21,7 @@
 
 							<div class="col-md-7 col-lg-8">
 								<h4 class="mb-3">Product Detail</h4>
-								<form action="{{ route('checkout-stripe') }}" method="POST" class="needs-validation">
+								<form action="{{ url('/pay') }}" method="POST" class="needs-validation">
 
 									{{-- <form method="POST" class="needs-validation" novalidate> --}}
 									<input type="hidden" value="{{ csrf_token() }}" name="_token" />

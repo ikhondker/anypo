@@ -194,6 +194,7 @@
 						<a class="btn btn-primary btn-transition"	href="{{ route('home.pricing') }}">Buy now</a>
 					</li>
 					<!-- End Button -->
+					
 				</ul>
 			</div>
 			<!-- End Collapse -->

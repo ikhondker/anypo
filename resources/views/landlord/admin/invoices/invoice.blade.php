@@ -23,11 +23,11 @@
 							<div class="mb-3">
 								<h2 class="text-success">{{ strtoupper($invoice->status->name) }}</h2>
 								@if ($invoice->status_code->value == App\Enum\LandlordInvoiceStatusEnum::DUE->value)
-									<form action="{{ url('/payment') }}" method="POST" class="needs-validation">
+									<form action="{{ url('/payment-stripe') }}" method="POST" class="needs-validation">
 										<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 										<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
 										<button class="btn btn-primary btn-sm" type="submit">
-											<i class="bi bi-plus-square me-1"></i>Pay Invoice (Hosted)
+											<i class="bi bi-currency-dollar me-1"></i>Pay Invoice
 										</button>
 									</form>
 								@endif

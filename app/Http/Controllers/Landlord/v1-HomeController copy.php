@@ -28,8 +28,8 @@ use App\Models\User;
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
 
+
 use App\Models\Landlord\Admin\Invoice;
-use App\Models\Landlord\Admin\Payment;
 
 use App\Models\Landlord\Lookup\Product;
 
@@ -40,10 +40,9 @@ use App\Models\Landlord\Manage\Checkout;
 //use App\Models\Landlord\Manage\Country;
 
 // Enums
-use App\Enum\PaymentMethodEnum;
+use App\Enum\PackageEnum;
 use App\Enum\LandlordCheckoutStatusEnum;
-use App\Enum\LandlordInvoiceStatusEnum;
-use App\Enum\LandlordPaymentStatusEnum;
+
 
 // Helpers
 use App\Helpers\LandlordFileUpload;
@@ -238,7 +237,7 @@ class HomeController extends Controller
 		$checkout->ip				= $request->ip();
 
 		$checkout->save();
-		//$checkout_id				= $checkout->id;
+		$checkout_id				= $checkout->id;
 
 		return redirect($session->url);
 	}
@@ -272,10 +271,10 @@ class HomeController extends Controller
 			'price_data' => [
 				'currency' => 'usd',
 				'product_data' => [
-					'name' => 'Subscription fee as per Invoice #'.$invoice->id,
+					'name' => 'Subscription fee as per invocie#'.$invoice->id,
 					// 'images' => [$product->image]
 				],
-				'unit_amount' => $invoice->amount * 100,
+				'unit_amount' => $payment->amount * 100,
 			],
 			'quantity' => 1,
 		];
@@ -285,7 +284,6 @@ class HomeController extends Controller
 			'mode' => 'payment',
 			'success_url' => route('checkout.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
 			'cancel_url' => route('checkout.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-			'metadata' => ['trx_type' => 'PAYMENT'],
 		]);
 
 		//Log::debug(' session created Id ='.$session->id );
@@ -293,7 +291,7 @@ class HomeController extends Controller
 		
 		 // create payment
 		 $payment						= new Payment;
-		 $payment->session_id			= $session->id;
+		 $payment->session_id		= $session->id;
 		 $payment->pay_date				= date('Y-m-d H:i:s');
 		 $payment->invoice_id			= $invoice->id;
 		 $payment->account_id			= $invoice->account_id;
@@ -308,7 +306,8 @@ class HomeController extends Controller
 		}
 		$payment->status_code			= LandlordPaymentStatusEnum::DRAFT->value;
 		$payment->save();
-		//$payment_id						= $payment->id;
+		$payment_id						= $payment->id;
+
 		
 		return redirect($session->url);
 	}
@@ -322,12 +321,14 @@ class HomeController extends Controller
 		
 		try {
 			$session = \Stripe\Checkout\Session::retrieve($sessionId);
+
+			
+
 			if (!$session) {
 				throw new NotFoundHttpException;
 			}
 			
 			//Log::debug($session);
-			$trx_type	=  $session->metadata->trx_type;
 			Log::debug('metadata trx_type='. $session->metadata->trx_type);
 
 			switch ($trx_type) {
@@ -347,19 +348,14 @@ class HomeController extends Controller
 					break;
 				case "PAYMENT":
 					// Mark invoice as paid
-					$payment = Payment::where('session_id', $session->id)->first();
-					if (!$payment) {
-						throw new NotFoundHttpException();
-					}
-					if ($payment->status_code->value == LandlordPaymentStatusEnum::DRAFT->value) {
-						Log::debug("SubscriptionInvoicePaid payment_id= ".$payment->id);
-						// SubscriptionInvoicePaid::dispatch($trx_id);
-					}
+					Log::debug("SubscriptionInvoicePaid payment_id= ".$trx_id);
+					SubscriptionInvoicePaid::dispatch($trx_id);
 					return view('landlord.pages.info')->with('title','Payment Successful')
-						->with('msg','Thank you for your payment. We have received your payment.');
+					->with('msg','Thank you for your payment. We have received your payment.');
 					break;
+
 				default:
-					Log::Error("home.success Invalid transaction type!");
+					Log::debug("Invalid transaction type!");
 			}
 
 		} catch (\Exception $e) {
@@ -379,42 +375,18 @@ class HomeController extends Controller
 			if (!$session) {
 				throw new NotFoundHttpException;
 			}
-
-			//Log::debug($session);
-			$trx_type	=  $session->metadata->trx_type;
-			Log::debug('metadata trx_type='. $session->metadata->trx_type);
-
-			switch ($trx_type) {
-				case "CHECKOUT":
-					$checkout = Checkout::where('session_id', $session->id)->first();
-					if (!$checkout) {
-						throw new NotFoundHttpException();
-					}
-
-					if ($checkout->status_code->value == LandlordCheckoutStatusEnum::DRAFT->value) {
-						$checkout->status_code = LandlordCheckoutStatusEnum::CANCELED->value;
-						$checkout->update();
-						Log::debug('checkout Canceled');
-					}
-					return view('landlord.pages.info')->with('title','Checkout Canceled!')->with('msg','Checkout canceled by user request!');
-					break;
-				case "PAYMENT":
-					$payment = Payment::where('session_id', $session->id)->first();
-					if (!$payment) {
-						throw new NotFoundHttpException();
-					}
-
-					if ($payment->status_code->value == LandlordPaymentStatusEnum::DRAFT->value) {
-						$payment->status_code = LandlordPaymentStatusEnum::CANCELED->value;
-						$payment->amount = 0;
-						$payment->update();
-						Log::debug('payment Canceled');
-					}
-					return view('landlord.pages.info')->with('title','Payment Canceled!')->with('msg','Payment canceled by user request!');
-					break;
-				default:
-					Log::Error("home.success Invalid transaction type!");
+			
+			$checkout = Checkout::where('session_id', $session->id)->first();
+			if (!$checkout) {
+				throw new NotFoundHttpException();
 			}
+
+			if ($checkout->status_code->value == LandlordCheckoutStatusEnum::DRAFT->value) {
+				$checkout->status_code = LandlordCheckoutStatusEnum::CANCELED->value;
+				$checkout->update();
+				Log::debug('checkout Canceled');
+			}
+
 		} catch (\Exception $e) {
 			throw new NotFoundHttpException();
 		}

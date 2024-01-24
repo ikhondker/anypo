@@ -17,6 +17,13 @@ class UserSeeder extends Seeder
 	 */
 	public function run(): void
 	{
+
+		/*
+		|-----------------------------------------------------------------------------
+		| Landlord																	 + 
+		|-----------------------------------------------------------------------------
+		*/
+		
 		//User::factory()->count(10)->create();
 		$faker = app(Generator::class);
 		//User::truncate();

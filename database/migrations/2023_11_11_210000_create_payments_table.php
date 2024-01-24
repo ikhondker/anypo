@@ -16,6 +16,7 @@ return new class extends Migration
 		Schema::create('payments', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('summary');
+			$table->string('session_id')->nullable();
 			$table->dateTime('pay_date')->useCurrent();
 			$table->foreignId('invoice_id')->constrained('invoices');
 			$table->foreignId('account_id')->nullable()->constrained('accounts');

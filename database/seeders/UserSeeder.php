@@ -21,6 +21,13 @@ class UserSeeder extends Seeder
 	public function run(): void
 	{
 
+
+		/*
+		|-----------------------------------------------------------------------------
+		| Tenant																	 + 
+		|-----------------------------------------------------------------------------
+		*/
+
 		//Schema::disableForeignKeyConstraints();
 		//User::truncate();
 		//Schema::enableForeignKeyConstraints();

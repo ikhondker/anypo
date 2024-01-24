@@ -156,11 +156,26 @@ use App\Http\Controllers\Landlord\HomeController;
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('home.pricing');
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
+
 Route::get('/online/{invoice_no}', [HomeController::class, 'onlineInvoice'])->name('home.invoice');
 Route::get('/send', [HomeController::class, 'testNotification'])->name('send');
 Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
 Route::post('/save-contact', [HomeController::class, 'saveContact'])->name('home.savecontact');
 //Route::get('/payment/{invoice_no}',[App\Http\Controllers\HomeController::class, 'payment'])->name('home.payment');
+
+/**
+* ==================================================================================
+* Public routes for stripe
+* ==================================================================================
+*/
+
+Route::post('/checkout-stripe', [HomeController::class, 'checkoutStripe'])->name('checkout-stripe');
+Route::post('/payment-stripe', [HomeController::class, 'paymentStripe'])->name('payment-stripe');
+Route::get('/success', [HomeController::class, 'success'])->name('checkout.success');
+Route::get('/cancel', [HomeController::class, 'cancel'])->name('checkout.cancel');
+// TODO
+// Route::post('/webhook', [HomeController::class, 'webhook'])->name('checkout.webhook');
+
 
 /* ======================== Provision Controller ======================================== */
 //use App\Http\Controllers\Landlord\ProvisionController; // No authentication <================
@@ -178,21 +193,18 @@ Route::resource('contacts', ContactController::class);
 * Public routes for SSLCOMMERZ
 * ==================================================================================
 */
-use App\Http\Controllers\SslCommerzPaymentController;
-//Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-//Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+// use App\Http\Controllers\SslCommerzPaymentController;
+// //Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+// //Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+// Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+// Route::post('/payment', [SslCommerzPaymentController::class, 'payment']);
+// Route::post('/paymentaddon', [SslCommerzPaymentController::class, 'paymentaddon']);
+// Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+// Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+// Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+// Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+// Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
-Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-Route::post('/payment', [SslCommerzPaymentController::class, 'payment']);
-Route::post('/paymentaddon', [SslCommerzPaymentController::class, 'paymentaddon']);
-
-Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
-
-Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
-
-Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 
 

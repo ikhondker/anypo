@@ -16,6 +16,7 @@ return new class extends Migration
 		Schema::create('checkouts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->dateTime('checkout_date')->useCurrent();
+			$table->string('session_id');
 			$table->string('site');
 			$table->string('email');
 			$table->string('account_name');
