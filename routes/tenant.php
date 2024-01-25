@@ -326,15 +326,7 @@ Route::middleware([
 	Route::get('/wfl/export',[WflController::class,'export'])->name('wfls.export');
 	Route::get('/wfls/delete/{wfl}',[WflController::class,'destroy'])->name('wfls.destroy');
 
-	/* ======================== Report ========================================  */
-	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
-	Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
-	Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
-	Route::get('/report/po/{id}',[ReportController::class, 'po'])->name('reports.po');
-	Route::get('/report/createPDF',[ReportController::class, 'createPDF'])->name('reports.createPDF');
-	Route::get('/report/templatepr',[ReportController::class, 'templatepr'])->name('reports.templatepr');
-	Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
-	Route::get('/report/stocks',[ReportController::class, 'stocks'])->name('reports.stocks');
+	
 
 	/* ======================== DeptBudget ======================================== */
 	Route::resource('dept-budgets', DeptBudgetController::class)->middleware(['auth', 'verified']);
@@ -360,6 +352,7 @@ Route::middleware([
 	Route::get('/prs/detach/{pr}',[PrController::class,'detach'])->name('prs.detach');
 	Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
 	Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
+	Route::get('/prs/convert-to-po/{pr}',[PrController::class, 'convertPo'])->name('prs.convert');
 	Route::get('/pr/get-cancel-pr-num',[PrController::class,'getCancelPrNum'])->name('prs.get-cancel-pr-num');
 	Route::post('/prs/cancel',[PrController::class,'cancel'])->name('prs.cancel');
 	
@@ -405,6 +398,16 @@ Route::middleware([
 	Route::get('/payment/get-cancel-pay-num',[PaymentController::class,'getCancelPayNum'])->name('payments.get-cancel-pay-num');
 	Route::post('/payments/cancel',[PaymentController::class,'cancel'])->name('payments.cancel');
 	
+	/* ======================== Report ========================================  */
+	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
+	Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
+	Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
+	Route::get('/report/po/{id}',[ReportController::class, 'po'])->name('reports.po');
+	Route::get('/report/createPDF',[ReportController::class, 'createPDF'])->name('reports.createPDF');
+	Route::get('/report/templatepr',[ReportController::class, 'templatepr'])->name('reports.templatepr');
+	Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
+	Route::get('/report/stocks',[ReportController::class, 'stocks'])->name('reports.stocks');
+	Route::get('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
 
 	/* ======================== UploadItem ======================================== */
 	Route::resource('upload-items', UploadItemController::class)->middleware(['auth', 'verified']);

@@ -16,6 +16,6 @@ class PolSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Pol::factory()->count(40)->create();
+		Pol::factory()->count(50)->create();
 	}
 }

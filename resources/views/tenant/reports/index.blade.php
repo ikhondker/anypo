@@ -25,7 +25,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
-								<th>Enable</th>
+								<th>Description</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -33,11 +33,11 @@
 							
 							@foreach ($reports as $report)
 								<tr>
-									<td>4</td>
+									<td>{{ $loop->iteration }}</td>
 									<td>{{ $report->name }}</td>
 									<td>{{ $report->title }}</td>
 									<td class="table-action">
-										<a class="btn btn-primary text-white" href="{{ route('reports.edit',$report->id) }}">Run</a>
+										<a class="btn btn-primary text-white" href="{{ route('reports.run',$report->id) }}">Run</a>
 									</td>
 								</tr>
 							@endforeach

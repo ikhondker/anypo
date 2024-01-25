@@ -14,6 +14,6 @@ class PoSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Po::factory()->count(7)->create();
+		Po::factory()->count(10)->create();
 	}
 }

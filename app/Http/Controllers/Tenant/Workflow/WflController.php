@@ -200,7 +200,7 @@ class WflController extends Controller
 			case('PR'):
 				$pr->auth_status	= $auth_status;
 				$pr->auth_date		= date('Y-m-d H:i:s');
-				$pr->auth_userid	= auth()->user()->id;
+				$pr->auth_user_id	= auth()->user()->id;
 				$pr->save();
 
 				// confirm budget
@@ -217,7 +217,7 @@ class WflController extends Controller
 			case('PO '):
 				$po->auth_status	= $auth_status;
 				$po->auth_date		= date('Y-m-d H:i:s');
-				$po->auth_userid	= auth()->user()->id;
+				$po->auth_user_id	= auth()->user()->id;
 				$po->save();
 				break;
 			default:

@@ -31,7 +31,7 @@ class PoFactory extends Factory
 			'dept_budget_id'	=> DeptBudget::inRandomOrder()->first()->id,
 			'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 			'project_id'		=> Project::inRandomOrder()->first()->id,
-			'po_date'			=> $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
+			'po_date'			=> $this->faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now', $timezone = null),
 			'notes'			  	=> $this->faker->paragraph,
 			//'sub_total'		=> $this->faker->numberBetween(1000,20000),
 			//'tax'				=> $this->faker->numberBetween(100,500),

@@ -39,13 +39,13 @@ return new class extends Migration
 			$table->float('fc_amount', 15, 2)->default(0);
 			$table->dateTime('submission_date')->nullable();
 			/** ENUM */
-			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);;
+			$table->string('status')->default(ClosureStatusEnum::OPEN->value);;
 			/** end ENUM */
 			/** ENUM */
 			$table->string('auth_status')->default(AuthStatusEnum::DRAFT->value);
 			/** end ENUM */
 			$table->dateTime('auth_date',)->nullable();
-			$table->integer('auth_userid')->nullable();
+			$table->integer('auth_user_id')->nullable();
 			//$table->enum('status', ['OPEN','CANCELED','CLOSED'])->default('OPEN');
 			//$table->enum('auth_status', ['DRAFT','SUBMITTED','IN-PROCESS','APPROVED','REJECTED','ERROR'])->default('DRAFT');
 			$table->string('wf_key',10)->default('WFPR');

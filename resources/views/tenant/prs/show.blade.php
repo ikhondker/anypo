@@ -16,8 +16,8 @@
 				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Duplicate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate Requisition">
 				<i data-feather="printer"></i> Duplicate</a>
-			<a href="{{ route('prs.copy', $pr->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
-				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Duplicate"
+			<a href="{{ route('prs.convert', $pr->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
+				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Covert to PO"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
 				<i data-feather="printer"></i> Covert to PO*</a>
 			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a>

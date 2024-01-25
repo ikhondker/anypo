@@ -125,7 +125,7 @@ class WfController extends Controller
 
 	public function export()
 	{
-		$data = DB::select("SELECT wf.id, wf.entity, wf.article_id, wf.hierarchy_id, wf.wf_status, wf.auth_status, wf.auth_userid, wf.auth_date,
+		$data = DB::select("SELECT wf.id, wf.entity, wf.article_id, wf.hierarchy_id, wf.wf_status, wf.auth_status, wf.auth_user_id, wf.auth_date,
 		wfl.id line_id, p.name performer_name,wfl.assign_date, wfl.action_date, wfl.action, wfl.notes
 		FROM wfs wf,wfls wfl, users p
 		WHERE wf.id=wfl.wf_id 

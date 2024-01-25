@@ -25,7 +25,7 @@ return new class extends Migration
 			/** ENUM */
 			$table->string('auth_status')->default(AuthStatusEnum::DRAFT->value);
 			/** end ENUM */
-			$table->integer('auth_userid')->nullable();
+			$table->integer('auth_user_id')->nullable();
 			$table->dateTime('auth_date',)->nullable();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

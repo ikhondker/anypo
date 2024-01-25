@@ -88,6 +88,14 @@ class PrPolicy
 	/**
 	 * Determine whether the user can delete the model.
 	 */
+	public function convert(User $user): bool
+	{
+		return $user->isBuyer() ;
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
 	public function cancel(User $user): bool
 	{
 		return $user->isAdmin() ;

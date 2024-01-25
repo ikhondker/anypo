@@ -33,7 +33,7 @@
 								<div class="col-sm-10">
 										<input type="date" class="form-control @error('start_date') is-invalid @enderror"
 											name="start_date" id="start_date" placeholder=""
-											value="{{ old('start_date', date('Y-m-d') ) }}"
+											value="{{ old('start_date', date('Y-m-01') ) }}"
 											required/>
 										@error('start_date')
 											<div class="text-danger text-xs">{{ $message }}</div>
@@ -53,6 +53,21 @@
 									@enderror
 								</div>
 							</div>
+							<div class="mb-3 row">
+								<label class="col-form-label col-sm-2 text-sm-right">Department </label>
+								<div class="col-sm-10">
+									<select class="form-control" name="dept_id" required>
+										<option value=""><< Department >> </option>
+										@foreach ($depts as $dept)
+											<option value="{{ $dept->id }}" {{ $dept->id == old('pm_id') ? 'selected' : '' }} >{{ $dept->name }} </option>
+										@endforeach
+									</select>
+									@error('dept_id')
+										<div class="text-danger text-xs">{{ $message }}</div>
+									@enderror
+								</div>
+							</div>
+
 							@if ($report->pm_id)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Project Manager </label>

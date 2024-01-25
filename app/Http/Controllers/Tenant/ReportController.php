@@ -13,7 +13,13 @@ use App\Http\Requests\Tenant\UpdateReportRequest;
 use App\Models\User;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
+
+use App\Models\Tenant\Lookup\Dept;
+use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Lookup\Warehouse;
 use App\Models\Tenant\Lookup\Supplier;
+use App\Models\Tenant\Lookup\BankAccount;
+
 use App\Models\Tenant\Admin\Setup;
 # Enums
 use App\Enum\UserRoleEnum;
@@ -54,6 +60,21 @@ class ReportController extends Controller
 	}
 
 	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function run(Report $report)
+	{
+		$depts = Dept::Primary()->get();
+		$suppliers = Supplier::Primary()->get();
+		$projects = Project::Primary()->get();
+		$warehouses = Warehouse::Primary()->get();
+		$bankAccounts = BankAccount::Primary()->get();
+		$pms = User::Tenant()->get();
+		//$report_id='1003';
+		return view('tenant.reports.parameters', compact('report','depts','pms'));
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 */
 	public function create()
@@ -88,7 +109,7 @@ class ReportController extends Controller
 	public function edit(Report $report)
 	{
 		$pms = User::Tenant()->get();
-		$report_id='1003';
+		//$report_id='1003';
 		return view('tenant.reports.parameters', compact('report','pms'));
 	}
 

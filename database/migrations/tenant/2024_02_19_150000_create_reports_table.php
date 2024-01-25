@@ -14,7 +14,7 @@ return new class extends Migration
 		Schema::create('reports', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('name');
-			$table->string('title')->nullable();
+			$table->string('summary')->nullable();
 			$table->string('access')->default('all'); 
 			$table->string('article_id')->default(false); 
 			$table->string('article_id_required')->default(false); 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 
 use App\Models\Tenant\Pr;
+use App\Models\Tenant\Po;
 use App\Http\Requests\Tenant\StorePrRequest;
 use App\Http\Requests\Tenant\UpdatePrRequest;
 
@@ -522,6 +523,59 @@ class PrController extends Controller
 		EventLog::event('pr-copy', $pr->id, 'copied');	// Write to Log
 
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition #'.$pr_id.' created.');
+	}
+
+	public function convertPo(Pr $pr)
+	{
+		$this->authorize('convert', $pr);
+
+		// if ($pr->auth_status->value <> AuthStatusEnum::APPROVED->value) {
+		// 	return redirect()->route('prs.show',$pr->id)->with('error', 'You can only convert to PO if Requisition status is '. AuthStatusEnum::DRAFT->value .' !');
+		// }
+
+		if ($pr->po_id <> 0) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'Requisition already converted to PO #'. $pr->po_id .' !');
+		}
+
+		$pr = Pr::where('id', $pr->id)->first();
+		//  don't set dept_budget_id . It will be save during submissions
+		//  Populate Function currency amounts during submit
+		$po				= new Po;
+		$po->summary		= $pr->summary;
+		$po->buyer_id		= auth()->user()->id;
+		$po->po_date		= now();
+		$po->need_by_date	= $pr->need_by_date;
+		$po->requestor_id	= $pr->requestor_id;
+		$po->dept_id		= $pr->dept_id;
+		$po->unit_id		= $pr->unit_id;
+		$po->project_id		= $pr->project_id;
+		//dept_budget_id
+		$po->supplier_id	= $pr->supplier_id;
+		$po->notes			= $pr->notes;
+		$po->currency		= $pr->currency;
+		$po->amount			= $pr->amount;
+
+		$po->closure_status	= ClosureStatusEnum::OPEN->value;
+		$po->auth_status	= AuthStatusEnum::DRAFT->value;
+		$po->save();
+		$po_id				= $po->id;
+		
+		// copy prls into pols
+		$sql= "INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, vat, amount, notes, status ) 
+		SELECT ".$po_id.",line_num, summary, item_id, uom_id,  qty, price, sub_total, tax, vat, amount, notes, '".ClosureStatusEnum::OPEN->value."'  
+		FROM prls WHERE 
+		pr_id= ".$pr->id." ;";
+		//Log::debug('sql=' . $sql);
+		DB::INSERT($sql);
+
+		// update source PR 
+		$pr->po_id		= $po_id;
+		$pr->save();
+
+		Log::debug('New PR created =' . $pr->id);
+		EventLog::event('pr-convert', $pr->id, 'converted');	// Write to Log
+
+		return redirect()->route('pos.show', $po_id)->with('success', 'Purchase Order #'.$po_id.' created.');
 	}
 
 }

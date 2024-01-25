@@ -22,13 +22,13 @@ return new class extends Migration
 			$table->string('summary');
 			$table->foreignId('item_id')->constrained('items');
 			$table->foreignId('uom_id')->constrained('uoms');
-			$table->text('notes')->nullable();
 			$table->float('qty')->default(1);
 			$table->float('price')->default(0);
 			$table->float('sub_total')->default(0);
 			$table->float('tax')->default(0);
 			$table->float('vat')->default(0);
 			$table->float('amount')->default(0);
+			$table->text('notes')->nullable();
 			/** ENUM */
 			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);;
 			/** end ENUM */

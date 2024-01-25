@@ -9,6 +9,7 @@ use App\Models\Tenant\Workflow\Hierarchy;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Dept extends Model
 {
@@ -28,6 +29,16 @@ class Dept extends Model
 		'created_at'	=> 'datetime',
 	];
 
+	
+	
+	/* ----------------- Scopes ------------------------- */
+	/**
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopePrimary(Builder $query): void
+	{
+		$query->where('enable',true)->orderBy('name', 'asc'); 
+	}
 
 	/* ----------------- Functions ---------------------- */
 	public static function getAll()
@@ -43,8 +54,6 @@ class Dept extends Model
 	{
 		return $this->hasMany(DeptBudget::class, 'budget_id');
 	}
-
-
 
 	/* ---------------- belongsTo ---------------------- */
 	public function prHierarchy(){

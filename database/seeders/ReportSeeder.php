@@ -37,7 +37,7 @@ class ReportSeeder extends Seeder
 			],
 			[
 				'id' 	=> 1006,
-				'name' => '*Purchase Requisition Details Report',
+				'name' => 'Purchase Requisition Details Report*',
 			],
 			[
 				'id' 	=> 1007,
@@ -52,9 +52,22 @@ class ReportSeeder extends Seeder
 				'id' 	=> 1009,
 				'name' => 'Payment Details Report',
 			],
-
-	  ];
+	  	];
 	  
+		  $reports =  [
+			[
+				'id' 					=> 1006,
+				'name' 					=> 'Purchase Requisition Detail Report*',
+				'summary' 				=> 'Purchase Requisition Detail Report*',
+				'start_date' 			=> true,
+				'start_date_required' 	=> true,
+				'end_date' 				=> true,
+				'end_date_required' 	=> true,
+				'dept_id' 				=> true,
+				'dept_id_required' 		=> false,
+			],
+
+	  	];
 	  Report::insert($reports);
 	}
 }

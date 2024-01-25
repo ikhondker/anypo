@@ -20,7 +20,7 @@ class Wf extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'entity', 'article_id', 'hierarchy_id', 'wf_status', 'auth_status', 'auth_userid', 'auth_date', 'updated_by', 'updated_at',
+		'entity', 'article_id', 'hierarchy_id', 'wf_status', 'auth_status', 'auth_user_id', 'auth_date', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -41,7 +41,7 @@ class Wf extends Model
 	}
 
 	public function last_performer(){
-		return $this->belongsTo(User::class, 'auth_userid')->withDefault([
+		return $this->belongsTo(User::class, 'auth_user_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

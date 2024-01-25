@@ -348,6 +348,8 @@ class PoController extends Controller
 			Po::where('id', $po->id)
 				->update(['status' => ClosureStatusEnum::CANCELED->value]);
 	
+			// TODO open the PR
+				
 			// Write to Log
 			EventLog::event('Po', $po->id, 'cancel', 'id', $po->id);
 	

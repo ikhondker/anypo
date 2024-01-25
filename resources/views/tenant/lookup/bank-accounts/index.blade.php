@@ -45,9 +45,9 @@
 							<tr>
 								<td>{{ $loop->iteration }}</td>
 								<td><a class="text-info" href="{{ route('bank-accounts.show',$bank_account->id) }}">{{ $bank_account->ac_name }}</a></td>
-								<td> {{ $bank_account->ac_number }}</td>
-								<td> {{ $bank_account->bank_name }}</td>
-								<td> {{ $bank_account->currency }}</td>
+								<td>{{ $bank_account->ac_number }}</td>
+								<td>{{ $bank_account->bank_name }}</td>
+								<td>{{ $bank_account->currency }}</td>
 								<td><x-tenant.list.my-boolean :value="$bank_account->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="BankAccount" :id="$bank_account->id"/>

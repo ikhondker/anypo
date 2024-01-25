@@ -22,10 +22,10 @@
 				<tbody>
 					@foreach ($attachments as $attachment)
 					<tr>
-						<td class=""> {{ $loop->iteration }}</td>
-						<td class=""> {{ $attachment->owner->name }}</td>
-						<td class=""> {{ $attachment->org_file_name }}</td>
-						<td class=""> {{ $attachment->file_size }}</td>
+						<td class="">{{ $loop->iteration }}</td>
+						<td class="">{{ $attachment->owner->name }}</td>
+						<td class="">{{ $attachment->org_file_name }}</td>
+						<td class="">{{ $attachment->file_size }}</td>
 						<td><x-tenant.list.my-date-time :value="$attachment->upload_date"/></td>
 						<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 						<td class="table-action">
