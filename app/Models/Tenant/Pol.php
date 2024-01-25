@@ -39,7 +39,7 @@ class Pol extends Model
 	/* ---------------- belongsTo ---------------------- */
 	/* ---------------- belongsTo ---------------------- */
 	public function po(){
-		return $this->belongsTo(Po::class,'pr_id');
+		return $this->belongsTo(Po::class,'po_id');
 	}
 
 	public function item(){

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Builder;
 
+use App\Models\Tenant\Payments;
+
 class BankAccount extends Model
 {
     use HasFactory;
@@ -27,4 +29,13 @@ class BankAccount extends Model
 	{
 		$query->where('enable', true);
 	}
+
+	/* ----------------- Functions ---------------------- */
+	/* ----------------- HasMany ------------------------ */
+	public function payments() {
+		return $this->hasMany(Payments::class);
+	}
+	/* ---------------- belongsTo ---------------------- */
+	
+
 }

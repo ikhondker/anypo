@@ -43,7 +43,7 @@ class Po extends Model
 		'auth_status'	=> AuthStatusEnum::class,
 	];
 
-		/* ----------------- Scopes ------------------------- */
+	/* ----------------- Scopes ------------------------- */
 
 	//$this->count_total		= Pr::count();
 	//$this->count_approved	= Pr::where('auth_status',AuthStatusEnum::APPROVED->value )->count();
@@ -83,9 +83,9 @@ class Po extends Model
 
 
 	/**
-	 * Scope a query to only All PR for current user.
+	 * Scope a query to only All PO for current user.
 	*/
-	public function scopeByUserAll(Builder $query): void
+	public function scopeByBuyerAll(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id ); 
 	}
@@ -93,7 +93,7 @@ class Po extends Model
 	/**
 	 * Scope a query to only All Approved PR for current user.
 	*/
-	public function scopeByUserApproved(Builder $query): void
+	public function scopeByBuyerApproved(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id )
 		->where('auth_status',AuthStatusEnum::APPROVED->value); 
@@ -102,7 +102,7 @@ class Po extends Model
 	/**
 	 * Scope a query to only All InProcess PR for current user.
 	*/
-	public function scopeByUserInProcess(Builder $query): void
+	public function scopeByBuyerInProcess(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id )
 		->where('auth_status',AuthStatusEnum::INPROCESS->value);  
@@ -110,7 +110,7 @@ class Po extends Model
 	/**
 	 * Scope a query to only All Draft PR for current user.
 	*/
-	public function scopeByUserDraft(Builder $query): void
+	public function scopeByBuyerDraft(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id )
 		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 

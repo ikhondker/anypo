@@ -82,15 +82,15 @@ class PrPolicy
 	 */
 	public function delete(User $user, Pr $pr): bool
 	{
-		return ( $user->isAdmin || ($user->id === $pr->requestor_id) ) && ($pr->auth_status->value == AuthStatusEnum::DRAFT->value) ;
+		return ( $user->isAdmin() || ($user->id === $pr->requestor_id) ) && ($pr->auth_status->value == AuthStatusEnum::DRAFT->value) ;
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function cancel(User $user, Pr $pr): bool
+	public function cancel(User $user): bool
 	{
-		return $user->isAdmin ;
+		return $user->isAdmin() ;
 	}
 
 	/**

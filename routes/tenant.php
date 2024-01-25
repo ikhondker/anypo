@@ -363,12 +363,12 @@ Route::middleware([
 	Route::get('/pr/get-cancel-pr-num',[PrController::class,'getCancelPrNum'])->name('prs.get-cancel-pr-num');
 	Route::post('/prs/cancel',[PrController::class,'cancel'])->name('prs.cancel');
 	
-
 	/* ======================== Prl ======================================== */
 	Route::resource('prls', PrlController::class)->middleware(['auth', 'verified']);
 	Route::get('/prl/export',[PrlController::class,'export'])->name('prls.export');
 	Route::get('/prls/delete/{prl}',[PrlController::class,'destroy'])->name('prls.destroy');
 	Route::get('/prls/createline/{id}',[PrlController::class, 'createLine'])->name('prls.createline');
+	// TODO pol cancel here
 
 	/* ======================== Po ======================================== */
 	Route::resource('pos', PoController::class)->middleware(['auth', 'verified']);
@@ -393,13 +393,18 @@ Route::middleware([
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);
 	Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
 	Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
-	Route::get('/receipt/create-for-pol/{id}',[ReceiptController::class, 'createForPol'])->name('receipts.create-for-pol');
-
+	Route::get('/receipt/create-for-pol/{id}',[ReceiptController::class,'createForPol'])->name('receipts.create-for-pol');
+	Route::get('/receipt/get-return-grn-num',[ReceiptController::class,'getCancelGrnNum'])->name('receipts.get-return-grn-num');
+	Route::post('/receipts/cancel',[ReceiptController::class,'cancel'])->name('receipts.cancel');
+	
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class)->middleware(['auth', 'verified']);
 	Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
 	Route::get('/payment/create-for-po/{id}',[PaymentController::class, 'createForPo'])->name('payments.create-for-po');
 	Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
+	Route::get('/payment/get-cancel-pay-num',[PaymentController::class,'getCancelPayNum'])->name('payments.get-cancel-pay-num');
+	Route::post('/payments/cancel',[PaymentController::class,'cancel'])->name('payments.cancel');
+	
 
 	/* ======================== UploadItem ======================================== */
 	Route::resource('upload-items', UploadItemController::class)->middleware(['auth', 'verified']);

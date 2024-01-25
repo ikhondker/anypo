@@ -64,6 +64,14 @@ class PaymentPolicy
 	}
 
 	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function cancel(User $user): bool
+	{
+		return $user->isAdmin() ;
+	}
+	
+	/**
 	 * Determine whether the user can restore the model.
 	 */
 	public function restore(User $user, Payment $payment): bool

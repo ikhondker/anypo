@@ -272,11 +272,10 @@
 								</div>
 							@endif
 
-							<!-- Form Success Message Box -->
+							
 							@if (session('success'))
 								<x-tenant.alert.success message="{{ session('success') }}"/>
 							@endif
-							<!-- Form Error Message Box (including Form Validation ) -->
 							@if (session('error') || $errors->any())
 								<x-tenant.alert.error message="{{ session('error') }}"/>
 							@endif

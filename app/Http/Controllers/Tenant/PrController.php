@@ -293,9 +293,9 @@ class PrController extends Controller
 	public function getCancelPrNum()
 	{
 
-		$this->authorize('cancel',Pr::class);
+		$this->authorize('cancel', Pr::class);
 		
-		Log::debug('pr_id=getCancelPrNum');
+		//Log::debug('pr_id=getCancelPrNum');
 		
 		return view('tenant.prs.cancel');
 	}
@@ -306,33 +306,37 @@ class PrController extends Controller
 	public function cancel(StorePrRequest $request)
 	{
 		
-		$this->authorize('cancel',Pr::class);
+		$this->authorize('cancel', Pr::class);
+		$pr_id= $request->input('pr_id');
 
 		try {
-			$pr = Pr::where('id', $request->input('pr_id'))->firstOrFail();
+			$pr = Pr::where('id', $pr_id)->firstOrFail();
 
-			if ($pr->auth_status->value == AuthStatusEnum::DRAFT->value) {
-				return redirect()->route('prs.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
+			if ($pr->auth_status == AuthStatusEnum::DRAFT->value) {
+				return back()->withError("Please delete DRAFT Requisition if needed!")->withInput();
+				//return redirect()->route('prs.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
 			}
 	
-			if ($pr->auth_status->value <> AuthStatusEnum::APPROVED->value) {
-				return redirect()->route('prs.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
+			if ($pr->auth_status <> AuthStatusEnum::APPROVED->value) {
+				return back()->withError("Only APPROVED Purchase Requisition can be canceled!")->withInput();
+				//return redirect()->route('prs.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
 			}
 	
 			if ($pr->po_id  <> 0 ) {
-				return redirect()->route('prs.cancel')->with('error', 'This Requisition is already converted to PO#'.$pr->po_id.'. Requisition can not be canceled.');
+				return back()->withError('This Requisition is already converted to PO #'.$pr->po_id.'. Requisition can not be canceled.')->withInput();
+				//return redirect()->route('prs.cancel')->with('error', 'This Requisition is already converted to PO#'.$pr->po_id.'. Requisition can not be canceled.');
 			}
 	
 			//  Reverse Booking
-			$retcode = CheckBudget::reverseBookingPr($pr->id);
-			Log::debug("retcode = ".$retcode);
+			$retcode = CheckBudget::reverseBookingPr($pr_id);
+			Log::debug("pr.cancel retcode = ".$retcode);
 	
 			// Cancel All PR Lines
-			Prl::where('pr_id', $pr->id)
+			Prl::where('pr_id', $pr_id)
 				  ->update(['status' => ClosureStatusEnum::CANCELED->value]);
 	
 			// cancel PR
-			Pr::where('id', $pr->id)
+			Pr::where('id', $pr_id)
 				->update(['status' => ClosureStatusEnum::CANCELED->value]);
 	
 			// Write to Log
@@ -343,7 +347,7 @@ class PrController extends Controller
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
 			//Log::debug("PR#".$request->input('pr_id')." not Found!");
-			return back()->withError("PR#".$request->input('pr_id')." not Found!")->withInput();
+			return back()->withError("PR #".$pr_id." not Found!")->withInput();
 		}
 	}
 

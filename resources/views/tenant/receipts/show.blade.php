@@ -21,12 +21,16 @@
 					<h5 class="card-title">Receipt Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $receipt->summary }}"/>
-					<x-tenant.show.my-date		value="{{ $receipt->pay_date }}"/>
-					<x-tenant.show.my-number		value="{{ $receipt->amount }}"/>
-					<x-tenant.show.my-text		value="{{ $receipt->cheque_no }}" label="Ref/Cheque No"/>
-					<x-tenant.show.my-badge		value="{{ $receipt->po_id }}" label="PO#"/>
-					<x-tenant.show.my-badge		value="{{ $receipt->status }}" label="status#"/>
+					<x-tenant.show.my-text		value="{{ $receipt->id }}"/>
+					<x-tenant.show.my-date		value="{{ $receipt->receive_date }}"/>
+					<x-tenant.show.my-text		value="{{ $receipt->warehouse->name }}" label="Warehouse"/>	
+					<x-tenant.show.my-badge		value="{{ $receipt->pol->po_id }}" label="PO#"/>
+					<x-tenant.show.my-badge		value="{{ $receipt->pol->line_num }}" label="Line#"/>
+					<x-tenant.show.my-text		value="{{ $receipt->pol->summary }}" label="Item"/>	
+					<x-tenant.show.my-number	value="{{ $receipt->pol->qty }}" label="Ord Qty" />	
+					<x-tenant.show.my-number	value="{{ $receipt->qty }}" label="Rcv Qty" />
+					<x-tenant.show.my-text		value="{{ $receipt->receiver->name }}" label="Receiver"/>	
+					<x-tenant.show.my-badge		value="{{ $receipt->status }}" label="Status"/>
 					<x-tenant.show.my-text		value="{{ $receipt->notes }}"/>
 				</div>
 			</div>

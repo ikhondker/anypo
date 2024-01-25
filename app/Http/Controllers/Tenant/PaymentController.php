@@ -12,12 +12,16 @@ use App\Http\Requests\Tenant\StorePaymentRequest;
 use App\Http\Requests\Tenant\UpdatePaymentRequest;
 # Enums
 use App\Enum\EntityEnum;
+use App\Enum\UserRoleEnum;
+use App\Enum\PaymentStatusEnum;
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
 use App\Helpers\FileUpload;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -31,9 +35,8 @@ class PaymentController extends Controller
 	public function createForPo($po_id)
 	{
 
-		$this->authorize('view', Payment::class);
-
-		
+		$this->authorize('create', Payment::class);
+				
 		$po = Po::where('id', $po_id)->first();
 	
 		
@@ -47,13 +50,29 @@ class PaymentController extends Controller
 	 */
 	public function index()
 	{
-		$this->authorize('viewAny',Payment::class);
+		$this->authorize('viewAny', Payment::class);
 
 		$payments = Payment::query();
 		if (request('term')) {
 			$payments->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$payments = $payments->orderBy('id', 'DESC')->paginate(10);
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::BUYER->value:
+				// buyer can see all payment of all his po's
+				$payments = $payments->ByPoBuyer(auth()->user()->id)->paginate(10);
+				break;
+			case UserRoleEnum::HOD->value:
+				$payments = $payments->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				break;
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
+				$payments = $payments->orderBy('id', 'DESC')->paginate(10);
+				break;
+			default:
+				$payments = $payments->ByUserAll()->paginate(10);
+				Log::debug("payment.index Other roles!");
+		}
 		return view('tenant.payments.index', compact('payments'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
@@ -75,7 +94,7 @@ class PaymentController extends Controller
 		$request->merge(['payee_id'	=> 	auth()->user()->id ]);
 		$payment = Payment::create($request->all());
 
-		// update PR header
+		// update PO header
 		$po 				= Po::where('id', $payment->po_id)->firstOrFail();
 		$po->amount			= $po->amount_paid + $payment->amount;
 		$po->save();
@@ -133,6 +152,55 @@ class PaymentController extends Controller
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('payments', $dataArray);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function getCancelPayNum()
+	{
+
+		//$this->authorize('cancel',Payment::class);
+		
+		return view('tenant.payments.cancel');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function cancel(StorePaymentRequest $request)
+	{
+		
+		$this->authorize('cancel',Payment::class);
+		
+		$payment_id = $request->input('payment_id');
+
+		try {
+			$payment = Payment::where('id', $payment_id)->firstOrFail();
+
+			
+			if ($payment->status <> PaymentStatusEnum::PAID->value) {
+				return back()->withError("You can only cancel payment with status paid!")->withInput();
+			}
+	
+			//  Reverse PO Payment
+			$po 				= Po::where('id', $payment->po_id)->firstOrFail();
+			$po->amount			= $po->amount_paid - $payment->amount;
+			$po->save();
+
+			// cancel Payment
+			Payment::where('id', $payment->id)
+				->update(['status' => PaymentStatusEnum::VOID->value]);
+	
+			// Write to Log
+			EventLog::event('Payment', $payment->id, 'void', 'id', $payment->id);
+	
+			return redirect()->route('payments.index')->with('success', 'Payment canceled successfully.');
+		
+		} catch (ModelNotFoundException $exception) {
+			// Error handling code
+			return back()->withError("Payment #".$payment_id." not Found!")->withInput();
+		}
 	}
 
 

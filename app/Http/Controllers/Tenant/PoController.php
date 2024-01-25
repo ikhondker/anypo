@@ -80,7 +80,7 @@ class PoController extends Controller
 				$pos = $pos->ByDeptAll()->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
-				$pos = $pos->ByUserAll()->paginate(10);
+				$pos = $pos->ByBuyerAll()->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
@@ -298,7 +298,6 @@ class PoController extends Controller
 
 		$this->authorize('cancel',Po::class);
 		
-	
 		return view('tenant.pos.cancel');
 	}
 
@@ -309,42 +308,54 @@ class PoController extends Controller
 	{
 		
 		$this->authorize('cancel',Po::class);
+		$po_id= $request->input('po_id');
 
 		try {
-			$po = Po::where('id', $request->input('po_id'))->firstOrFail();
+			$po = Po::where('id',$po_id )->firstOrFail();
 
-			if ($po->auth_status->value == AuthStatusEnum::DRAFT->value) {
-				return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
+			if ($po->auth_status == AuthStatusEnum::DRAFT->value) {
+				//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
+				return back()->withError("Please delete DRAFT Requisition if needed!")->withInput();
 			}
 	
-			if ($po->auth_status->value <> AuthStatusEnum::APPROVED->value) {
-				return redirect()->route('pos.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
+			if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+				return back()->withError("Only APPROVED Purchase Order can be canceled!!")->withInput();
+				//return redirect()->route('pos.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
 			}
 	
-			if ($po->po_id  <> 0 ) {
-				return redirect()->route('pos.cancel')->with('error', 'This Requisition is already converted to PO#'.$po->po_id.'. Requisition can not be canceled.');
+			// Check payment exists
+			if ($po->amount_paid <> 0 ) {
+				return back()->withError("PPayment exists for this PO. Can not cancel!!")->withInput();
+				//return redirect()->route('pos.cancel')->with('error', 'Payment exists for this PO. Can not cancel!');
 			}
-	
+
+			// Check receipts exists
+			$received_qty		= Pol::where('po_id',$po_id)->sum('received_qty');
+			if ($received_qty <> 0 ) {
+				return back()->withError("Receipt exists for this PO. Can not cancel!")->withInput();
+				//return redirect()->route('pos.cancel')->with('error', 'Receipt exists for this PO. Can not cancel!');
+			}
+			
 			//  Reverse Booking
 			$retcode = CheckBudget::reverseBookingPo($po->id);
 			Log::debug("retcode = ".$retcode);
 	
 			// Cancel All PO Lines
-			Pol::where('po_id', $po->id)
+			Pol::where('po_id',$po_id)
 				  ->update(['status' => ClosureStatusEnum::CANCELED->value]);
 	
-			// cancel PO
+			// Cancel PO
 			Po::where('id', $po->id)
 				->update(['status' => ClosureStatusEnum::CANCELED->value]);
 	
 			// Write to Log
 			EventLog::event('Po', $po->id, 'cancel', 'id', $po->id);
 	
-			return redirect()->route('pos.index')->with('success', 'Purchase Requisition canceled successfully.');
+			return redirect()->route('pos.index')->with('success', 'Purchase Order canceled successfully.');
 		
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
-			return back()->withError("PO#".$request->input('po_id')." not Found!")->withInput();
+			return back()->withError("PO #".$po_id." not Found!")->withInput();
 		}
 	}
 

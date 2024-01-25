@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Payment Lists')
+@section('title','Receipt Lists')
 
 @section('content')
 
@@ -8,16 +8,16 @@
 			Receipt Lists
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Payment"/>
+			<x-tenant.buttons.header.create object="Receipt"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Payment"/>
+					<x-tenant.cards.header-search-export-bar object="Receipt"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -35,9 +35,10 @@
 								<th>GRN#</th>
 								<th>Date</th>
 								<th>Warehouse</th>
+								<th>PO#</th>
 								<th>Item</th>
 								<th>Qty</th>
-								<th>PO#</th>
+								<th>Receiver</th>
 								<th>Status</th>
 								<th>Action</th>
 							</tr>
@@ -48,10 +49,11 @@
 								<td>{{ $loop->iteration }}</td>
 								<td><a class="text-info" href="{{ route('receipts.show',$receipt->id) }}">{{ $receipt->id }}</a></td>
 								<td>{{ $receipt->receive_date }}</td>
-								<td>{{ $receipt->warehouse_id }}</td>
-								<td>{{ $receipt->pol_id }}</td>
+								<td>{{ $receipt->warehouse->name }}</td>
+								<td>{{ $receipt->pol->po_id }}</td>
+								<td>{{ $receipt->pol->summary }}</td>
 								<td>{{ $receipt->qty }}</td>
-								<td>{{ $receipt->pol_id }}</td>
+								<td>{{ $receipt->receiver->name }}</td>
 								<td><x-tenant.list.my-badge :value="$receipt->status"/></td>
 								<td class="table-action">
 									<a href="{{ route('receipts.show',$receipt->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">

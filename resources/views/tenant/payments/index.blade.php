@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -32,12 +32,14 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Name</th>
 								<th>Date</th>
+								<th>PO#</th>
+								<th>Bank</th>
 								<th>Ref/Cheque</th>
 								<th>Amount</th>
-								<th>PO#</th>
-								<th>Enable</th>
+								<th>Currency</th>
+								<th>Paid By</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -45,11 +47,13 @@
 							@foreach ($payments as $payment)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
-								<td><a class="text-info" href="{{ route('payments.show',$payment->id) }}">{{ $payment->summary }}</a></td>
 								<td>{{ $payment->pay_date }}</td>
-								<td>{{ $payment->cheque_no }}</td>
-								<td>{{ $payment->amount }}</td>
 								<td>{{ $payment->po_id }}</td>
+								<td>{{ $payment->bank_account->ac_name }}</td>
+								<td>{{ $payment->cheque_no }}</td>
+								<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/></td>
+								<td>{{ $payment->currency }}</td>
+								<td>{{ $payment->payee->name }}</td>
 								<td><x-tenant.list.my-badge :value="$payment->status"/></td>
 								<td class="table-action">
 									<a href="{{ route('payments.show',$payment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">

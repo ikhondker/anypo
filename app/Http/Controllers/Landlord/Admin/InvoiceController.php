@@ -146,7 +146,7 @@ class InvoiceController extends Controller
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		if ($account->next_bill_generated) {
 			Log::debug('Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
-			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id=' . $account->id . '! Can not create more Invoices.');
+			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for this Account! Can not create more Invoices.');
 		}
 
 		Log::channel('bo')->info('Generating Invoice for Account id=' . $account_id);
@@ -161,7 +161,7 @@ class InvoiceController extends Controller
 		// }
 
 		if ($invoice_id <> 0) {
-			return redirect()->route('invoices.index')->with('success', 'Invoice#' . $invoice_id . ' created successfully.');
+			return redirect()->route('invoices.index')->with('success', 'Invoice #' . $invoice_id . ' created successfully.');
 		} else {
 			return redirect()->route('invoices.index')->with('error', 'Invoice creation Failed!');
 		}

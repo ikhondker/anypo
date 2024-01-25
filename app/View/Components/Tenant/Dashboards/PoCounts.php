@@ -31,17 +31,17 @@ class PoCounts extends Component
 	{
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:
-				$this->count_total		= Po::ByUserAll()->count();
-				$this->sum_total		= Po::ByUserAll()->sum('amount');
+				$this->count_total		= Po::ByBuyerAll()->count();
+				$this->sum_total		= Po::ByBuyerAll()->sum('amount');
 
-				$this->count_approved	= Po::ByUserApproved()->count();
-				$this->sum_approved		= Po::ByUserApproved()->sum('amount');
+				$this->count_approved	= Po::ByBuyerApproved()->count();
+				$this->sum_approved		= Po::ByBuyerApproved()->sum('amount');
 
-				$this->count_inprocess	= Po::ByUserInProcess()->count();
-				$this->sum_inprocess	= Po::ByUserInProcess()->sum('amount');
+				$this->count_inprocess	= Po::ByBuyerInProcess()->count();
+				$this->sum_inprocess	= Po::ByBuyerInProcess()->sum('amount');
 
-				$this->count_draft		= Po::ByUserDraft()->count();
-				$this->sum_draft		= Po::ByUserDraft()->sum('amount');
+				$this->count_draft		= Po::ByBuyerDraft()->count();
+				$this->sum_draft		= Po::ByBuyerDraft()->sum('amount');
 				break;
 			case UserRoleEnum::HOD->value:
 				$this->count_total		= Po::ByDeptAll()->count();

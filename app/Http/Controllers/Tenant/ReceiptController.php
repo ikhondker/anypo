@@ -13,9 +13,10 @@ use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 use App\Models\Tenant\Lookup\Warehouse;
 
-
 # Enums
 use App\Enum\EntityEnum;
+use App\Enum\UserRoleEnum;
+use App\Enum\ReceiptStatusEnum;
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -25,7 +26,8 @@ use App\Helpers\FileUpload;
 # Packages
 # Seeded
 use DB;
-
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 # Exceptions
 # Events
 
@@ -40,8 +42,7 @@ class ReceiptController extends Controller
 	 */
 	public function createForPol($pol_id)
 	{
-		
-		$this->authorize('view', Receipt::class);
+		$this->authorize('create', Receipt::class);
 
 		$pol = Pol::where('id', $pol_id)->first();
 		$po = Po::where('id', $pol->po_id)->first();
@@ -62,7 +63,26 @@ class ReceiptController extends Controller
 		if (request('term')) {
 			$receipts->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$receipts = $receipts->orderBy('id', 'DESC')->paginate(10);
+
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::BUYER->value:
+				// buyer can see all payment of all his po's
+				$receipts = $receipts->ByPoBuyer(auth()->user()->id)->paginate(10);
+				break;
+			case UserRoleEnum::HOD->value:
+				$receipts = $receipts->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				break;
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
+				$receipts = $receipts->orderBy('id', 'DESC')->paginate(10);
+				break;
+			default:
+				$receipts = $receipts->ByUserAll()->paginate(10);
+				Log::debug("payment.index Other roles!");
+		}
+
+		//$receipts = $receipts->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.receipts.index', compact('receipts'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
@@ -84,10 +104,9 @@ class ReceiptController extends Controller
 		$request->merge(['receiver_id'	=> 	auth()->user()->id ]);
 		$receipt = Receipt::create($request->all());
 
-		// update PO header
-		
+		// update POl rcv quantity
 		$pol 				= Pol::where('id', $receipt->pol_id)->firstOrFail();
-		$pol->received_qty			= $pol->received_qty + $receipt->qty;
+		$pol->received_qty	= $pol->received_qty + $receipt->qty;
 		$pol->save();
 
 		if ($file = $request->file('file_to_upload')) {
@@ -153,4 +172,52 @@ class ReceiptController extends Controller
 		// used Export Helper
 		return Export::csv('receipts', $dataArray);
 	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function getCancelGrnNum()
+	{
+
+		$this->authorize('cancel',Receipt::class);
+		
+		return view('tenant.receipts.cancel');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function cancel(StoreReceiptRequest $request)
+	{
+		
+		$this->authorize('cancel',Receipt::class);
+		$receipt_id = $request->input('receipt_id');
+
+		try {
+			$receipt = Receipt::where('id', $receipt_id)->firstOrFail();
+
+			if ($receipt->status <> ReceiptStatusEnum::RECEIVED->value) {
+				return back()->withError("You can only cancel Receipt with status received!")->withInput();
+			}
+	
+			// update POL rcv quantity
+			$pol 				= Pol::where('id', $receipt_id)->firstOrFail();
+			$pol->received_qty	= $pol->received_qty - $receipt->qty;
+			$pol->save();
+			
+			// Cancel Receipt
+			Receipt::where('id', $receipt_id)
+				->update(['status' => ReceiptStatusEnum::CANCELED->value]);
+		
+			// Write to Log
+			EventLog::event('Receipt', $receipt_id, 'cancel', 'id', $receipt_id);
+	
+			return redirect()->route('receipts.index')->with('success', 'Receipts canceled successfully.');
+		
+		} catch (ModelNotFoundException $exception) {
+			// Error handling code
+			return back()->withError("Receipt #".$receipt_id." not Found!")->withInput();
+		}
+	}
+
 }

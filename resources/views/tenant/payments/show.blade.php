@@ -21,12 +21,14 @@
 					<h5 class="card-title">Payment Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $payment->summary }}"/>
 					<x-tenant.show.my-date		value="{{ $payment->pay_date }}"/>
-					<x-tenant.show.my-number		value="{{ $payment->amount }}"/>
-					<x-tenant.show.my-text		value="{{ $payment->cheque_no }}" label="Ref/Cheque No"/>
 					<x-tenant.show.my-badge		value="{{ $payment->po_id }}" label="PO#"/>
-					<x-tenant.show.my-badge		value="{{ $payment->status }}" label="status#"/>
+					<x-tenant.show.my-text		value="{{ $payment->bank_account->ac_name }}"/>
+					<x-tenant.show.my-number	value="{{ $payment->amount }}"/>
+					<x-tenant.show.my-text		value="{{ $payment->currency }}"/>
+					<x-tenant.show.my-text		value="{{ $payment->cheque_no }}" label="Ref/Cheque No"/>
+					<x-tenant.show.my-text		value="{{ $payment->payee->name }}" label="Ref/Cheque No"/>
+					<x-tenant.show.my-badge		value="{{ $payment->status }}" label="Status"/>
 					<x-tenant.show.my-text		value="{{ $payment->notes }}"/>
 				</div>
 			</div>

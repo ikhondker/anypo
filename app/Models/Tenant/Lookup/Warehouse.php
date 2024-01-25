@@ -13,6 +13,8 @@ use App\Models\Tenant\Lookup\Country;
 
 use Illuminate\Database\Eloquent\Builder;
 
+use App\Models\Tenant\Receipts;
+
 class Warehouse extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
@@ -33,6 +35,9 @@ class Warehouse extends Model
 
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */
+	public function receipts() {
+		return $this->hasMany(Receipts::class);
+	}
 
 	/* ---------------- belongsTo ---------------------- */
 	public function relCountry(){

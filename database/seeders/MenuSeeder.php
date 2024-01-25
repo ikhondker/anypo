@@ -95,8 +95,8 @@ class MenuSeeder extends Seeder
 
 			[ 'raw_route_name' => 'prs.get-cancel-pr-num','route_name' => 'prs.get-cancel-pr-num', 'node_name' => 'cancel'],
 			[ 'raw_route_name' => 'pos.get-cancel-po-num','route_name' => 'pos.get-cancel-po-num', 'node_name' => 'cancel'],
-			[ 'raw_route_name' => 'pos.get-cancel-grs-num','route_name' => 'pos.get-cancel-grs-num', 'node_name' => 'cancel'],
-			[ 'raw_route_name' => 'pos.get-cancel-pay-num','route_name' => 'pos.get-cancel-pay-num', 'node_name' => 'cancel'],
+			[ 'raw_route_name' => 'receipts.get-return-grn-num','route_name' => 'receipts.get-return-grn-num', 'node_name' => 'cancel'],
+			[ 'raw_route_name' => 'payments.get-cancel-pay-num','route_name' => 'payments.get-cancel-pay-num', 'node_name' => 'cancel'],
 
 			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],
 

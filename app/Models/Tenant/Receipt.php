@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
+use App\Models\Tenant\Po;
+use App\Models\Tenant\Pol;
+use App\Models\Tenant\Lookup\Warehouse;
+
+use Illuminate\Database\Eloquent\Builder;
 
 class Receipt extends Model
 {
@@ -17,9 +22,47 @@ class Receipt extends Model
 	protected $fillable = [
 		'receive_date', 'rcv_type', 'pol_id', 'warehouse_id', 'receiver_id', 'qty', 'notes', 'status', 'updated_by', 'updated_at',
 	];
+
+	/* ----------------- Scopes ------------------------- */
+	/**
+	 * Scope a query to return all payment of PO's where he is the buyer.
+	*/
+	public function scopeByPoBuyer(Builder $query, $id): void
+	{
+		$query->with('pol')->whereHas('pol.po', function ($q) use ($id) {
+			$q->where('buyer_id', $id);
+        });
+	}
+
+	/**
+	 *  Scope a query to return all payment of PO's of his dept.
+	*/
+	public function scopeByPoDept(Builder $query,$id): void
+	{
+		$query->with('pol')->whereHas('pol.po', function ($q) use ($id) {
+			$q->where('dept_id', $id);
+        });
+
+	}
+	
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */
+	
 	/* ---------------- belongsTo ---------------------- */
-
+	public function pol(){
+		return $this->belongsTo(Pol::class,'pol_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+	public function receiver(){
+		return $this->belongsTo(User::class,'receiver_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+	public function warehouse(){
+		return $this->belongsTo(Warehouse::class,'warehouse_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
 
 }
