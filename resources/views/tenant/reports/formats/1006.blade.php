@@ -10,9 +10,11 @@
 			<tr>
 				<th class="unit">#</th>
 				<th class="unit">PR#</th>
+				<th class="unit">DEPT</th>
 				<th class="unit">LINE#</th>
 				<th class="unit">DESCRIPTION</th>
 				<th class="unit">UOM</th>
+				<th class="unit">CURRENCY</th>
 				<th class="unit">UNIT PRICE</th>
 				<th class="unit">QUANTITY</th>
 				<th class="unit">AMOUNT</th>
@@ -26,10 +28,12 @@
 			<tr>
 				<td class="desc">{{ $loop->iteration }}</td>
 				<td class="desc">{{ $prl->pr_id }}</td>
+				<td class="desc">{{ $prl->dept_name }}</td>
 				<td class="desc">{{ $prl->line_num }}</td>
 				<td class="desc">{{ $prl->summary }}</td>
-				<td class="desc">{{ $prl->item_id }} </td>
-				<td class="qty">{{ number_format($prl->amount,2) }}</td>
+				<td class="desc">{{ $prl->uom_name }} </td>
+				<td class="desc">{{ $prl->currency }} </td>
+				<td class="qty">{{ number_format($prl->price,2) }}</td>
 				<td class="qty">{{ $prl->qty }}</td>
 				<td class="qty">{{ number_format($prl->amount,2) }}</td>
 			</tr>

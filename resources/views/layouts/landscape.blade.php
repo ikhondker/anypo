@@ -257,13 +257,13 @@
 			</div>
 			<div id="company">
 				<h2 class="name">{{ $report->name }}</h2>
+				<div>BASE CURRENCY: {{ $_setup->currency }}</div>
 				@if ($param1 <> '')
 					<div>{{ $param1 }}</div>
 				@endif
 				@if ($param2 <> '')
 					<div>{{ $param2 }}</div>
 				@endif
-				<div>CURRENCY: {{ $_setup->currency }}</div>
 				{{-- <div><small>Report Date {{ strtoupper(date('d-M-Y H:i:s', strtotime(now()))) }}<small></div> --}}
 				{{-- <div>{{ $setup->cell }} {{ $setup->email }}</div>	 --}}
 				{{-- <div>{{ $setup->email }}</div>	 --}}

@@ -42,6 +42,14 @@ class ReportPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
+	public function run(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isManagement());
+	}
+
+	/**
+	 * Determine whether the user can create models.
+	 */
 	public function create(User $user): bool
 	{
 		return false;

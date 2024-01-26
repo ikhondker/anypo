@@ -14,7 +14,6 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('pols', function (Blueprint $table) {
-
 			$table->id()->startingValue(1001);
 			$table->foreignId('po_id')->constrained('pos');
 			$table->biginteger('line_num')->default(0);
@@ -24,14 +23,17 @@ return new class extends Migration
 			$table->foreignId('uom_id')->constrained('uoms');
 			$table->float('qty')->default(1);
 			$table->float('price')->default(0);
-			$table->float('sub_total')->default(0);	// Future User
-			$table->float('tax')->default(0);		// Future User
-			$table->float('vat')->default(0);		// Future User
+			$table->float('sub_total')->default(0);						// Future User
+			$table->float('tax')->default(0);							// Future User
+			$table->float('gst')->default(0);							// Future User
 			$table->float('amount')->default(0);
+			$table->string('fc_currency',3)->default('USD');			// Functional Currency
+			$table->double('fc_exchange_rate', 15, 10)->default(1);
+			$table->float('fc_amount', 15, 2)->default(0);
 			$table->text('notes')->nullable();
 			$table->foreignId('requestor_id')->constrained('users')->nullable();
 			$table->foreignId('dept_id')->constrained('depts')->nullable();			// Future User. Covert to PO
-			$table->biginteger('unit_id')->nullable()->default(1001);			// Future User. Covert to PO
+			$table->biginteger('unit_id')->nullable()->default(1001);				// Future User. Covert to PO
 			$table->foreignId('project_id')->nullable()->constrained('projects');	// Future User. Covert to PO
 			$table->biginteger('prl_id')->default(0);		// // PR that converted to PO
 			$table->float('received_qty')->default(0);

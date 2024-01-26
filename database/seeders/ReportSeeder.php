@@ -57,8 +57,8 @@ class ReportSeeder extends Seeder
 		  $reports =  [
 			[
 				'id' 					=> 1006,
-				'name' 					=> 'Purchase Requisition Detail Report*',
-				'summary' 				=> 'Purchase Requisition Detail Report*',
+				'name' 					=> 'Approved Purchase Requisition Detail Report*',
+				'summary' 				=> 'Approved Purchase Requisition Detail Report (For a Date range, by Department)',
 				'start_date' 			=> true,
 				'start_date_required' 	=> true,
 				'end_date' 				=> true,

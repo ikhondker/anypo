@@ -34,7 +34,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
-								<th>Title</th>
+								<th>summary</th>
 								<th>Access</th>
 								<th>Start Date</th>
 								<th>End Date</th>
@@ -82,7 +82,7 @@
 							<tr>
 								<td>{{ $report->id }}</td>
 								<td><a class="text-info" href="{{ route('reports.show',$report->id) }}">{{ $report->name }}</a></td>
-								<td>{{ $report->title }}</td>
+								<td>{{ $report->summary }}</td>
 								<td>{{ $report->access }}</td>
 								<td><x-tenant.list.my-boolean :value="$report->start_date"/></td>
 								<td><x-tenant.list.my-boolean :value="$report->end_date"/></td>

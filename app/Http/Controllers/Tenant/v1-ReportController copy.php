@@ -23,8 +23,6 @@ use App\Models\Tenant\Lookup\BankAccount;
 use App\Models\Tenant\Admin\Setup;
 # Enums
 use App\Enum\UserRoleEnum;
-use App\Enum\AuthStatusEnum;
-
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -195,40 +193,39 @@ class ReportController extends Controller
 	{
 		
 		$this->authorize('run',Report::class);
-		$report 	= Report::where('id', '1006')->firstOrFail();
-
+		
 		// Log::debug('start_date='.$start_date);
 		// Log::debug('end_date='.$end_date);
 		// Log::debug('dept_id='.$dept_id);
 
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
-		if ($dept_id <> ''){
-			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
-			$param2 	= 'Dept: '. $dept->name;
-		} else {
-			$param2 	= '';
-		}
-
-		//TODO AND p.auth_status='".AuthStatusEnum::APPROVED->value."'
+		//$setup 		= Setup::first();
+		$report 	= Report::where('id', '1006')->firstOrFail();
+		//$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
+		//$supplier 	= Supplier::where('id', $pr->supplier_id)->firstOrFail();
+		//$prls 	= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
+		//$prls 		= Prl::with('pr')->with('item')->get()->all();
+		//$prls = DB::select("SELECT * FROM prls");
 		$sql = "
 			SELECT p.id pr_id, d.name dept_name, p.pr_date,p.auth_status, 
 			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount ,p.currency
 			FROM prs p , prls l , uoms u, depts d
-			WHERE 1=1
-			AND p.dept_id =d.id 
+			WHERE p.dept_id =d.id 
 			AND l.uom_id=u.id
-			AND p.id =l.pr_id
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-			AND p.pr_date BETWEEN '".$start_date."' AND '".$end_date."'
+			AND p.id =l.pr_id"
+			. ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ')  .
+			" AND p.pr_date BETWEEN '".$start_date."' AND '".$end_date."'
 		";
-		//Log::debug('sql='.$sql);
+// 
+		Log::debug('sql='.$sql);
 		$prls = DB::select($sql);
+		//return view('tenant.reports.formats.1006', compact('setup','pr','prls','supplier','report'));
 
 		$data = [
+			'param1' 	=> 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date))),
+			'param2' 	=> '',
+			//'setup' 	=> $setup,
 			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
+			//'pr' 		=> $pr,
 			'prls' 		=> $prls,
 		];
 

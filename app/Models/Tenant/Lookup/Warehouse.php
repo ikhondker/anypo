@@ -9,11 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
+use App\Models\Tenant\Receipts;
 use App\Models\Tenant\Lookup\Country;
 
 use Illuminate\Database\Eloquent\Builder;
-
-use App\Models\Tenant\Receipts;
 
 class Warehouse extends Model
 {
@@ -34,6 +33,8 @@ class Warehouse extends Model
 	}
 
 	/* ----------------- Functions ---------------------- */
+
+
 	/* ----------------- HasMany ------------------------ */
 	public function receipts() {
 		return $this->hasMany(Receipts::class);

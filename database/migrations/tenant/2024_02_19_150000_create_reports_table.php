@@ -18,12 +18,12 @@ return new class extends Migration
 			$table->string('access')->default('all'); 
 			$table->string('article_id')->default(false); 
 			$table->string('article_id_required')->default(false); 
-			$table->boolean('start_date')->default(true); 
-			$table->boolean('start_date_required')->default(true); 
-			$table->boolean('end_date')->default(true); 
-			$table->boolean('end_date_required')->default(true); 
-			$table->boolean('user_id')->default(true); 
-			$table->boolean('user_id_required')->default(true); 
+			$table->boolean('start_date')->default(false); 
+			$table->boolean('start_date_required')->default(false); 
+			$table->boolean('end_date')->default(false); 
+			$table->boolean('end_date_required')->default(false); 
+			$table->boolean('user_id')->default(false); 
+			$table->boolean('user_id_required')->default(false); 
 			$table->boolean('item_id')->default(false); 
 			$table->boolean('item_id_required')->default(false); 
 			$table->boolean('supplier_id')->default(false); 
