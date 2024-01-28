@@ -20,7 +20,7 @@ class Prl extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'pr_id', 'line_num', 'summary', 'item_id', 'uom_id', 'notes', 'qty', 'price', 'sub_total', 'tax', 'vat', 'amount', 'received_qty', 'status', 'updated_by', 'updated_at',
+		'pr_id', 'line_num', 'summary', 'item_id', 'uom_id', 'qty', 'price', 'sub_total', 'tax', 'gst', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_amount', 'notes', 'closure_status', 'updated_by', 'updated_at',
 	];
 
 	/**

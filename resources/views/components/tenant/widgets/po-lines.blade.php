@@ -28,6 +28,9 @@
 						<th class="text-end">Qty</th>
 						<th class="text-end">Received</th>
 						<th class="text-end">Price</th>
+						<th class="text-end">Sub Total</th>
+						<th class="text-end">Tax</th>
+						<th class="text-end">GST</th>
 						<th class="text-end">Amount</th>
 						<th class="">Action</th>
 					</tr>
@@ -45,6 +48,9 @@
 								<td class="text-end">{{ $pol->qty }}</td>
 								<td class="text-end">{{ $pol->received_qty }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$pol->price"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$pol->sub_total"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$pol->tax"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$pol->gst"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$pol->amount"/></td>
 								<td class="table-action">
 									<a href="{{ route('pols.show',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
@@ -74,8 +80,11 @@
 					@endif
 					@if ($show)
 						<tr>
-							<td class="" colspan="5" scope="col">&nbsp;</td>
-							<td class="text-end" scope="col"><strong>Total:</strong></td>
+							<td class="" colspan="6" scope="col">&nbsp;</td>
+							<td class="text-end" scope="col"><strong>TOTAL:</strong></td>
+							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->sub_total"/></strong></td>
+							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->tax"/></strong></td>
+							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->gst"/></strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->amount"/></strong></td>
 							<td class="" scope="col">&nbsp</td>
 						</tr>

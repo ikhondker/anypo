@@ -6,7 +6,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Create Pr
+			Create PRequisition
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr"/>

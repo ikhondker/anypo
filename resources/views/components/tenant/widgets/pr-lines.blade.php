@@ -27,6 +27,9 @@
 							<th class="">UOM</th>
 							<th class="text-end">Qty</th>
 							<th class="text-end">Price</th>
+							<th class="text-end">Sub Total</th>
+							<th class="text-end">Tax</th>
+							<th class="text-end">GST</th>
 							<th class="text-end">Amount</th>
 							<th class="">Action</th>
 						</tr>
@@ -44,6 +47,9 @@
 									<td class="">{{ $prl->uom->name }}</td>
 									<td class="text-end">{{ $prl->qty }}</td>
 									<td class="text-end"><x-tenant.list.my-number :value="$prl->price"/></td>
+									<td class="text-end"><x-tenant.list.my-number :value="$prl->sub_total"/></td>
+									<td class="text-end"><x-tenant.list.my-number :value="$prl->tax"/></td>
+									<td class="text-end"><x-tenant.list.my-number :value="$prl->gst"/></td>
 									<td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>
 									<td class="">
 										<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">Edit</a> |
@@ -67,7 +73,11 @@
 						@if ($show)
 							<tr>
 								<td class="" colspan="5" scope="col">&nbsp;</td>
-								<td class="text-end" scope="col"><strong>Total:</strong></td>
+								
+								<td class="text-end" scope="col"><strong>TOTAL:</strong></td>
+								<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->sub_total"/></strong></td>
+								<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->tax"/></strong></td>
+								<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->gst"/></strong></td>
 								<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->amount"/></strong></td>
 								<td class="" scope="col">&nbsp</td>
 							</tr>

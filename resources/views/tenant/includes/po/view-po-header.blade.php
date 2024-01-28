@@ -7,10 +7,11 @@
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $po->summary }}"/>
 					<x-tenant.show.my-amount-currency	value="{{ $po->amount }}" currency="{{ $po->currency }}" />
+					<x-tenant.show.my-date		value="{{ $po->po_date }}"/>
 					<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
 					<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
 					<x-tenant.show.my-text		value="{{ $po->relSupplier->name }}" label="Supplier"/>
-					<x-tenant.show.my-date		value="{{ $po->po_date }}"/>
+					<x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>
 					<div class="row">
 						<div class="col-sm-3 text-end">
 							

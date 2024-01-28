@@ -36,7 +36,8 @@ $setup = Setup::first();
 										<i data-feather="alert-triangle" class="text-danger"></i>
 									</div>
 									<div class="alert-message">
-										<strong>Note: </strong> Please note you wont be able to change this currency setting once you have saved!
+										<strong>Note: </strong> Please note you wont be able to change this currency setting once you have saved! 
+										Your budget and all financial summary reporting will be in this currency.
 									</div>
 								</div>
 

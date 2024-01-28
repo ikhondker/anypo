@@ -33,12 +33,13 @@ class PoFactory extends Factory
 			'project_id'		=> Project::inRandomOrder()->first()->id,
 			'po_date'			=> $this->faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now', $timezone = null),
 			'notes'			  	=> $this->faker->paragraph,
-			//'sub_total'		=> $this->faker->numberBetween(1000,20000),
-			//'tax'				=> $this->faker->numberBetween(100,500),
-			//'vat'				=> $this->faker->numberBetween(200,1000),
-			//'shipping'		=> $this->faker->numberBetween(100,400),
-			//'discount'		=> $this->faker->numberBetween(-100,-500),
+			'sub_total'		=> $this->faker->numberBetween(1000,20000),
+			'tax'				=> $this->faker->numberBetween(100,500),
+			'gst'				=> $this->faker->numberBetween(200,1000),
 			'amount'			=> $this->faker->numberBetween(1000,25000),
+			'fc_currency'		=> 'BDT',
+			'fc_exchange_rate'	=> $this->faker->numberBetween(100,120),
+			'fc_amount'			=> $this->faker->numberBetween(15000,25000),
 		];
 	}
 }

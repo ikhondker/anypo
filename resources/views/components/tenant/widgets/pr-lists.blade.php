@@ -20,6 +20,7 @@
 							<th>Requestor</th>
 							<th>Dept</th>
 							<th>Currency</th>
+							
 							<th class="text-end">Amount</th>
 							<th>Approval</th> 
 							<th>Status</th>
