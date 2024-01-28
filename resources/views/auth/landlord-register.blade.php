@@ -70,8 +70,6 @@
 
 					<!-- Check -->
 					<div class="form-check mb-3">
-						{{-- <input class="form-check-input me-3" type="checkbox" id="form-check-default" name="terms">
-						--}}
 						<input type="checkbox" class="form-check-input" id="form-check-default" name="terms" required>
 						<label class="form-check-label small" for="form-check-default"> By submitting this form I have
 							read and acknowledged the <a href="{{ route('tos') }}" target="_blank">Terms of

@@ -36,7 +36,7 @@ class Dept extends Model
 		'name', 'enable', 'updated_at', 'updated_by'
 	];
 
-
+	/* ---------------- Functions ---------------------- */
 	public static function getAll()
 	{
 		return Dept::select('id', 'name')
@@ -45,11 +45,18 @@ class Dept extends Model
 			->get();
 	}
 
+	/* ---------------- Scope ---------------------- */
+	
+	
+	/* ---------------- HasMany ---------------------- */
 	public function tickets()
 	{
 		return $this->hasMany(Ticket::class);
 	}
 
+	/* ---------------- belongsTo ---------------------- */
+
+	/* ---------------- created and updated by ---------------------- */
 	public function user_created_by()
 	{
 		return $this->belongsTo(User::class, 'created_by');

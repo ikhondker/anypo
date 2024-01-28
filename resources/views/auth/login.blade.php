@@ -14,8 +14,6 @@
 				<div class="text-center">
 					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png')  }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
 				</div>
-				{{-- TODO --}}
-				{{-- <form action="{{ route('login') }}" method="post" onsubmit="return validateForm()"> --}}
 				<form action="{{ route('login') }}" method="post">
 
 					@csrf
@@ -47,9 +45,6 @@
 						<div class="button-group d-flex justify-content-center flex-wrap">
 							<button type="submit" id="submit" name="submit" class="btn btn-lg btn-primary w-100">Sign In</button>
 						</div>
-						
-						{{-- <button type="submit" id="submit" name="submit" class="btn btn-lg btn-primary">Sign In</button> --}}
-						<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
 					</div>
 
 					<div class="row mt-3">

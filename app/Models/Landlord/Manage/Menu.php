@@ -21,5 +21,10 @@ class Menu extends Model
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
 	];
-
+	/* ---------------- Scope ---------------------- */
+	
+	
+	/* ---------------- HasMany ---------------------- */
+	
+	/* ---------------- belongsTo ---------------------- */
 }

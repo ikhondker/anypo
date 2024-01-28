@@ -44,6 +44,9 @@ class Category extends Model
 			'created_at'	=> 'datetime',
 		];
 
+	/* ---------------- Scope ---------------------- */
+	
+	
 	/* ---------------- HasMany ---------------------- */
 
 

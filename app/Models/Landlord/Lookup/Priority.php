@@ -46,7 +46,7 @@ class Priority extends Model
 	];
 
 
-
+	/* ---------------- Functions ---------------------- */
 	public static function getAll()
 	{
 		return Priority::select('id', 'name')

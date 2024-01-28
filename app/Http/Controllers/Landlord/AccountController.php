@@ -75,7 +75,6 @@ class AccountController extends Controller
 	 */
 	public function index()
 	{
-		//$accounts= Account::orderBy('id', 'DESC')->paginate(10);
 		$accounts = Account::byAccount()->orderBy('id', 'DESC')->paginate(10);
 		return view('landlord.accounts.index', compact('accounts'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
@@ -87,8 +86,6 @@ class AccountController extends Controller
 	 */
 	public function all()
 	{
-		//$accounts= Account::orderBy('id', 'DESC')->paginate(10);
-
 		$this->authorize('viewAll', Account::class);
 		$accounts = Account::orderBy('id', 'DESC')->paginate(10);
 		return view('landlord.accounts.all', compact('accounts'))->with('i', (request()->input('page', 1) - 1) * 10);
@@ -124,7 +121,6 @@ class AccountController extends Controller
 	public function show(Account $account)
 	{
 		$this->authorize('view', $account);
-
 		$entity = static::ENTITY;
 		return view('landlord.accounts.show', compact('account', 'entity'));
 	}
@@ -154,10 +150,7 @@ class AccountController extends Controller
 		$this->authorize('update', $account);
 
 		if ($image = $request->file('file_to_upload')) {
-			// $request->validate([
-			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-			// ]);
-
+			
 			// extract the uploaded file
 			$image = $request->file('file_to_upload');
 
@@ -197,6 +190,8 @@ class AccountController extends Controller
 	public function destroy(Account $account)
 	{
 
+		$this->authorize('delete', $account);
+
 		$account_id = $account->id;
 		Log::channel('bo')->info('Deleting Account id=' . $account_id);
 
@@ -205,14 +200,6 @@ class AccountController extends Controller
 			$tickets->comments()->delete();
 			$tickets->delete();
 		});
-
-		//dd($tickets);
-		//Log::debug("Ticket Deleted =". $result);
-		//$tickets->comments()->delete();
-		//$tickets->delete();
-
-		//$result = Ticket::where('account_id', $account_id)->delete();
-		//Log::debug("Ticket Deleted =". $result);
 
 		$result = Payment::where('account_id', $account_id)->delete();
 		Log::channel('bo')->info('Payment Deleted =' . $result);
@@ -243,6 +230,7 @@ class AccountController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Account::class);
 		//$data = Size::all()->toArray();
 		if (auth()->user()->isBackOffice()) {
 			$data = DB::select("SELECT id, site, name, currency, tagline, address1, address2, city, state, zip, country, website, facebook, linkedin, email, cell, owner_id, primary_product_id, base_mnth, base_user, base_gb, base_price, mnth, user, gb, price, start_date, end_date, last_bill_from_date, last_bill_to_date, bill_generated, bill_gen_date, expired_at, count_user, count_product, used_gb, maintenance, status_code, logo, created_by, created_at, updated_by, updated_at, FROM accounts");

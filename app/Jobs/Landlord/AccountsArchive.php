@@ -14,7 +14,6 @@ use App\Models\User;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Admin\Setup;
 
-
 // Seeded
 use Str;
 use Illuminate\Support\Facades\Log;

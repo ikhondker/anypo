@@ -46,8 +46,6 @@ class Service extends Model
 		'created_at'	=> 'datetime',
 	];
 
-
-
 	/* ---------------- Scope ---------------------- */
 
 	/**

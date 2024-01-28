@@ -29,11 +29,9 @@ class ImportAllRate implements ShouldQueue, ShouldBeUnique
 	 */
 	public function handle(): void
 	{
-		//Called fomr CurrencyController.php: and DashboardController.php
+		// Called fomr CurrencyController.php: and DashboardController.php
 		// Import exchange rate for all current enabled currency
 		$x = ExchangeRate::importRates();
-		//$x = GetRate::getRate('USD','BDT');
-		//echo $x;
 		Log::debug("Inside handle of ImportAllRateJob!");
 	}
 }

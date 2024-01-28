@@ -72,19 +72,15 @@ class TicketController extends Controller
 			$tickets->where('title', 'Like', '%' . request('term') . '%');
 		}
 
-		//$tickets= Ticket::orderBy('id', 'DESC')->paginate(10);
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::ADMIN->value:
-				//$tickets = Ticket::byaccount()->orderBy('id', 'DESC')->paginate(10);
 				$tickets = $tickets->byAccount()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				//$tickets = Ticket::byuser()->orderBy('id', 'DESC')->paginate(10);
 				$tickets = $tickets->byUser()->orderBy('id', 'DESC')->paginate(10);
 				Log::debug("Inside Ticket Index. Ignore. Other roles!");
 		}
 
-		//$templates = Template::latest()->orderBy('id','desc')->paginate(10);
 		return view('landlord.tickets.index', compact('tickets'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
@@ -250,7 +246,7 @@ class TicketController extends Controller
 	public function doAssign(Request $request, Ticket $ticket)
 	{
 		
-		//$this->authorize('update',$ticket);
+		$this->authorize('assign', $ticket);
 		$ticket->agent_id	= $request->input('agent_id');
 		$ticket->save();
 		
@@ -268,7 +264,7 @@ class TicketController extends Controller
 
 	public function close(Ticket $ticket)
 	{
-		//$this->authorize('update',$ticket);
+		$this->authorize('update',$ticket);
 
 		$ticket->status_code	= LandlordTicketStatusEnum::CLOSED->value;
 		$ticket->save();
@@ -284,6 +280,8 @@ class TicketController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Ticket::class);
+
 		if (auth()->user()->isBackOffice()){
 			$data = DB::select("SELECT id, title, content, ticket_date, owner_id, account_id, status_code, created_at
 				FROM tickets");

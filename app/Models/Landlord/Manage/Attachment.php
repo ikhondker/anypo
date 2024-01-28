@@ -49,14 +49,6 @@ class Attachment extends Model
 		return $this->belongsTo(User::class, 'owner_id');
 	}
 
-	// public function entity(){
-	//     return $this->belongsTo(Entity::class,'entity');
-	// }
-
-	// public function file_entity(){
-	//     return $this->belongsTo(Entity::class,'file_entity');
-	// }
-
 	/* ---------------- created and updated by ---------------------- */
 	public function user_created_by()
 	{

@@ -19,7 +19,6 @@ use App\Models\Landlord\Admin\Payment;
 use App\Enum\LandlordInvoiceStatusEnum;
 use App\Enum\LandlordPaymentStatusEnum;
 
-
 // Helpers
 use App\Helpers\LandlordEventLog;
 
@@ -72,8 +71,7 @@ class SubscriptionInvoicePaid implements ShouldQueue
 		$account->next_invoice_no		= 0;
 		$account->end_date				= $invoice->end_date;
 
-
 		$account->save();
-		Log::debug('Account validity extended =' . $account->id);
+		Log::debug('jobs.SubscriptionInvoicePaid Account validity extended =' . $account->id);
 	}
 }

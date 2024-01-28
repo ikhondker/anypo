@@ -37,6 +37,7 @@ class Country extends Model
 		'name', 'enable', 'updated_at', 'updated_by'
 	];
 
+	/* ---------------- Functions ---------------------- */
 	public static function getAll()
 	{
 		return Country::select('country', 'name')
@@ -45,6 +46,16 @@ class Country extends Model
 			->get();
 	}
 
+	/* ---------------- Scope ---------------------- */
+	
+	
+	/* ---------------- HasMany ---------------------- */
+
+
+	/* ---------------- belongsTo ---------------------- */
+
+
+	/* ---------------- created and updated by ---------------------- */
 	public function user_created_by()
 	{
 		return $this->belongsTo(User::class, 'created_by');

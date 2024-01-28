@@ -52,7 +52,7 @@ class GenerateAllSubscriptionInvoice implements ShouldQueue
 	{
 		$setup = Setup::first();
 
-		// Create a test invoice
+		// Create a blank invoice . Not model but Controller
 		$invoice = new InvoiceController();
 
 		// end_date is approaching now()
@@ -84,7 +84,7 @@ class GenerateAllSubscriptionInvoice implements ShouldQueue
 					Log::channel('bo')->info('Account id=' . $account->id . ' Invoice creation failed.');
 				}
 			} else {
-				Log::debug('skipped for Account id=' . $account->id);
+				Log::debug('Skipped for Account id=' . $account->id);
 			}
 		}
 	}

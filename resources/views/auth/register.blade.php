@@ -74,21 +74,6 @@
 						</div>
 					</div>
 
-					
-					{{-- <div class="col-12">
-						<div class="mb-3">
-							<div class="form-check form-check-primary form-check-inline">
-								<input class="form-check-input me-3" type="checkbox" id="form-check-default" name="terms">
-								<label class="form-check-label" for="form-check-default">
-									<span class="text-danger">*</span>I agree the <a href="{{ route('tos') }}" target="_blank" class="text-primary">Terms and Conditions</a>
-								</label>
-								@error('terms')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-						</div>
-					</div><!--end col--> --}}
-
 					<div class="text-end mt-3">
 						<div class="button-group d-flex justify-content-center flex-wrap">
 							<button type="submit" id="submit" name="submit" class="btn btn-lg btn-primary w-100">Register</button>

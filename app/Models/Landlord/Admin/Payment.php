@@ -51,10 +51,6 @@ class Payment extends Model
 		'status_code'	=> LandlordPaymentStatusEnum::class,
 	];
 
-	// protected $dates = [
-	//     'pay_date'
-	// ];
-
 	/* ---------------- Scope ---------------------- */
 	/**
 	 * Scope a query to only include current users account.

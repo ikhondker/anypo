@@ -143,8 +143,8 @@ class ActivityController extends Controller
 	 */
 	public function export()
 	{
-
-		//$data = Uom::all()->toArray();
+		$this->authorize('export', Activity::class);
+		
 		$data = DB::select("SELECT a.id, a.object_name, a.object_id, a.event_name ,a.column_name, a.prior_value, a.url,a.role, a.user_id, a.created_at
 			FROM activities a
 			");

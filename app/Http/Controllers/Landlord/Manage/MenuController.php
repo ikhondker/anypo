@@ -74,7 +74,6 @@ class MenuController extends Controller
 		$this->authorize('create', Menu::class);
 		
 		$request->merge(['access'	=> Str::upper($request->input('access')) ]);
-		//$validated = $request->validated();
 		$menu = Menu::create($request->all());
 		// Write to Log
 		LandlordEventLog::event('menu', $menu->id, 'create');

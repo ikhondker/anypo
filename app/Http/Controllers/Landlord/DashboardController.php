@@ -21,13 +21,11 @@ namespace App\Http\Controllers\Landlord;
 
 use App\Http\Controllers\Controller;
 
-
 // Models
 use App\Models\User;
 use App\Models\Landlord\Dashboard;
 use App\Models\Landlord\Ticket;
 use App\Models\Landlord\Account;
-
 
 use App\Models\Landlord\Admin\Invoice;
 use App\Models\Landlord\Admin\Payment;
@@ -54,7 +52,7 @@ class DashboardController extends Controller
 	 */
 	public function index()
 	{
-		// Total 4 Dashboard user,admin, backoffice and system
+		
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
 				return self::userDashboard();
@@ -77,9 +75,7 @@ class DashboardController extends Controller
 				break;
 			default:
 				return self::userDashboard();
-				Log::debug('Other roles= '. auth()->user()->role->value);
-
-				
+				Log::debug('dashbaord.index Other roles= '. auth()->user()->role->value);
 		}
 	}
 
@@ -148,7 +144,6 @@ class DashboardController extends Controller
 
 	}
 
-
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -180,10 +175,7 @@ class DashboardController extends Controller
 			'tickets', 
 		)));
 			
-		// return view('dashboards.index', with(compact('notifications','setup',
-		//		'count_tickets', 'count_notif','count_service',
-		//		'count_invoices', 'count_payments','count_users',
-		//	)));
+	
 	}
 
 
@@ -204,23 +196,7 @@ class DashboardController extends Controller
 			->where ('agent_id','=', null )
 			->limit(5)->get();
 
-		// $orders_weeks   = Dashboard::CountOrdersWeek();
-		// Log::debug('orders_weeks: '.$orders_weeks);
-		// $sales_today		= Dashboard::SalesToday();
-		// Log::debug('sales_today'.$sales_today);
-		// $sales_week		 = Dashboard::SalesWeek();
-		// Log::debug('sales_week'.$sales_week);
-		// $sales_month		= Dashboard::SalesMonth();
-		// Log::debug('sales_month'.$sales_month);
-		// $count_products  = Product::all()->count();
-		// $count_orders		= Order::all()->count();
-		// $count_users		 = User::all()->count();
-		// $sum_sales		   = Order::all()->sum('amount');
-		// $orders		= Order::all()->take(5);
-		// $products		   = Product::all()->take(5);
-		//return view('tenant.dashboard',compact('orders','products','settings','orders_weeks','sales_today','sales_week','sales_month','count_products','count_orders', 'count_users','sum_sales'));
-
-		// redirect to proper dashboard
+		
 		$count_tickets = Ticket::all()->count();
 		$count_all_open_tickets 	= Ticket::byallopen()->count();
 		$count_unassigned_tickets	= Ticket::byunassigned()->count();

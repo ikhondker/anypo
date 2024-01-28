@@ -107,17 +107,12 @@ class HomeController extends Controller
 			if (auth()->user()->account_id == '') {
 				$cur_product_id = '';
 			} else {
-				//$account_id= auth()->user()->account_id;
 				$account = Account::where('id', auth()->user()->account_id)->first();
 				$cur_product_id = $account->primary_product_id;
 			}
 		} else {
 			$cur_product_id = '';
 		}
-
-		//Log::debug("auth()->user()->account_id=". auth()->user()->account_id);
-		//Log::debug("cur_product_id=". $cur_service_id);
-		//return view('pages.pricing')->with('id',$id);
 		return view('landlord.pages.pricing', compact('product'))->with('cur_product_id', $cur_product_id);
 	}
 
@@ -129,19 +124,15 @@ class HomeController extends Controller
 				return view('landlord.pages.error')->with('msg', 'User is has already linked with an account! You can not buy new Account.');
 			}
 		}
-
 		$product = Product::where('id', config('bo.DEFAULT_PRODUCT_ID'))->first();
 		return view('landlord.pages.checkout', compact('product'));
 	}
 
-
-
+	// new service purchase checkout
 	public function checkoutStripe(Request $request)
 	{
-
 		// create rows in checkout and then hosted payment
 		// don't check unique email for existing logged-in user
-
 		Validator::extend('without_spaces', function($attr, $value){
 			return preg_match('/^\S*$/u', $value);
 		});
@@ -188,12 +179,13 @@ class HomeController extends Controller
 			'quantity' => 1,
 		];
 
+		
 		$session = \Stripe\Checkout\Session::create([
 			'line_items' => $lineItems,
 			'mode' => 'payment',
 			'success_url' => route('checkout.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
 			'cancel_url' => route('checkout.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-			'metadata' => ['trx_type' => 'CHECKOUT'],
+			'metadata' 	=> ['trx_type' => 'CHECKOUT'],
 		]);
 
 		//Log::debug(' session created Id ='.$session->id );
@@ -234,7 +226,6 @@ class HomeController extends Controller
 		$checkout->start_date		= now();
 		$checkout->end_date			= now()->addMonth($product->mnth);
 
-		
 		$checkout->status_code		= LandlordCheckoutStatusEnum::DRAFT->value;
 		$checkout->ip				= $request->ip();
 
@@ -244,29 +235,18 @@ class HomeController extends Controller
 		return redirect($session->url);
 	}
 
-
+	// used to pay subscription invoices
 	public function paymentStripe(Request $request)
 	{
-
-		// create rows in checkout and then hosted payment
-		// don't check unique email for existing logged-in user
-
 		// get invoice details
 		$invoice = Invoice::where('id', $request->input('invoice_id') )->first();
 
 		// check if invoice is already paid
-		//Log::debug("invoice id=".$invoice->id);
-		//Log::debug("invoice_no=".$invoice->invoice_no);
-		//Log::debug("invoice status_code=".$invoice->status_code->value);
-
 		if ($invoice->status_code->value <> LandlordInvoiceStatusEnum::DUE->value) {
 			return redirect()->route('invoices.index')->with('error','Invoice #'.$invoice->invoice_no.' can not be paid!');
 		}
 
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-
-		// get product
-		//$product = Product::where('id', config('bo.DEFAULT_PRODUCT_ID') )->first();
 
 		$lineItems = [];
 		$lineItems[] = [
@@ -289,9 +269,6 @@ class HomeController extends Controller
 			'metadata' => ['trx_type' => 'PAYMENT'],
 		]);
 
-		//Log::debug(' session created Id ='.$session->id );
-
-		
 		 // create payment
 		 $payment						= new Payment;
 		 $payment->session_id			= $session->id;
@@ -314,7 +291,7 @@ class HomeController extends Controller
 		return redirect($session->url);
 	}
 
-
+	// landed here both for chekcout and subscription payment
 	public function success(Request $request)
 	{
 
@@ -338,8 +315,8 @@ class HomeController extends Controller
 						throw new NotFoundHttpException();
 					}
 					if ($checkout->status_code->value == LandlordCheckoutStatusEnum::DRAFT->value) {
-						Log::debug('Inside success checkout_id='. $checkout->id);
-						//CreateTenant::dispatch($checkout->id);
+						Log::debug('checkpout.success checkout_id='. $checkout->id);
+						// CreateTenant::dispatch($checkout->id);
 					}
 					return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
 						->with('msg','We have received your payment. We are currently preparing your service instance. 
@@ -368,10 +345,10 @@ class HomeController extends Controller
 		}
 
 	}
-
+	
+	// landed here both for chekcout and subscription payment
 	public function cancel(Request $request)
 	{
-		
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 		$sessionId = $request->get('session_id');
 		
@@ -381,9 +358,8 @@ class HomeController extends Controller
 				throw new NotFoundHttpException;
 			}
 
-			//Log::debug($session);
 			$trx_type	=  $session->metadata->trx_type;
-			Log::debug('metadata trx_type='. $session->metadata->trx_type);
+			//Log::debug('metadata trx_type='. $session->metadata->trx_type);
 
 			switch ($trx_type) {
 				case "CHECKOUT":
@@ -409,7 +385,7 @@ class HomeController extends Controller
 						$payment->status_code = LandlordPaymentStatusEnum::CANCELED->value;
 						$payment->amount = 0;
 						$payment->update();
-						Log::debug('payment Canceled');
+						Log::debug('Payment Canceled');
 					}
 					return view('landlord.pages.info')->with('title','Payment Canceled!')->with('msg','Payment canceled by user request!');
 					break;
@@ -423,9 +399,11 @@ class HomeController extends Controller
 		return view('landlord.pages.info')->with('title','Transaction Canceled!')->with('msg','Transaction canceled by user request!');
 	}
 
+
+	// TODO Please use session_id to troublehsot in stripe dashboard
 	public function webhook()
 	{
-		// TODO 
+		
 		Log::debug('Inside Webhook');
 		// This is your Stripe CLI webhook secret for testing your endpoint locally.
 		$endpoint_secret = env('STRIPE_WEBHOOK_SECRET');

@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 // IQBAL 27-SEP-22
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
+use App\Models\Ticket;
 
 class Status extends Model
 {
@@ -46,4 +47,16 @@ class Status extends Model
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
 	];
+
+	/* ---------------- Scope ---------------------- */
+	
+	
+	/* ---------------- HasMany ---------------------- */
+	public function tickets()
+	{
+		return $this->hasMany(Ticket::class);
+	}
+
+	/* ---------------- belongsTo ---------------------- */
+	
 }

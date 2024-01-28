@@ -51,11 +51,9 @@ class NotificationController extends Controller
 	 */
 	public function index()
 	{
-
 		// show only open notifications
 		$notifications = auth()->user()->Notifications;
 		return view('landlord.notifications.index', with(compact('notifications')));
-
 	}
 
 	/**
@@ -126,14 +124,11 @@ class NotificationController extends Controller
 
 	public function read(Notification $notification)
 	{
-		//Log::debug("INSIDE notification");
 		//Log::debug("notification=".$notification->id );
 
 		$notif = auth()->user()->notifications()->where('id', $notification->id)->first();
 		if ($notif) {
 			 $notif->markAsRead();
-			 //return redirect()->route('dashboards.index')->with('success','Notification marked as read.');
-			 //return redirect($notification->data['link']);
 			 return back()->withMessage('Notification marked as read.');
 		}
 	}

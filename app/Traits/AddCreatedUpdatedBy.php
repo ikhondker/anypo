@@ -56,7 +56,6 @@ trait AddCreatedUpdatedBy
 					// TODO
 					$model->created_by = config('bo.GUEST_USER_ID');
 				}
-
 				//$model->updated_by = auth()->user()->id;
 			}
 		});
