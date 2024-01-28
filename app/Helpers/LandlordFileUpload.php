@@ -29,6 +29,7 @@ use File;
 // use Illuminate\Support\Facades\File;
 
 use Request;
+use Exception;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
@@ -49,38 +50,36 @@ class LandlordFileUpload
 		$entity 		= Entity::where('entity', $request->entity)->first();
 		$subdir 		= $entity->subdir;
 
-		// OK. Store File in Storage Private Folder. Auto create folder
-		$request->file_to_upload->storeAs('private/' . $subdir . '/', $fileName);
+		try {
+			//Code that may throw an Exception
+			// OK. Store File in Storage Private Folder. Auto create folder
+			$request->file_to_upload->storeAs('private/' . $subdir . '/', $fileName);
 
-		// create Attachment record TODO rewrite
-		$attachment					= new Attachment;
-		$attachment->article_id		= $request->article_id;
-		$attachment->entity			= $request->entity;
-		$attachment->file_entity 	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
+			// create Attachment record TODO rewrite
+			$attachment					= new Attachment;
+			$attachment->article_id		= $request->article_id;
+			$attachment->entity			= $request->entity;
+			$attachment->file_entity 	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
 
-		$attachment->owner_id		= auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
+			$attachment->owner_id		= auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 
-		$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No Details';
-		$attachment->file_name		= $fileName;
-		$attachment->org_file_name	= $org_fileName;
-		$attachment->file_type	 	= $request->file('file_to_upload')->getMimeType();
-		$attachment->file_size	 	= $request->file('file_to_upload')->getSize();
-		$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
+			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No Details';
+			$attachment->file_name		= $fileName;
+			$attachment->org_file_name	= $org_fileName;
+			$attachment->file_type	 	= $request->file('file_to_upload')->getMimeType();
+			$attachment->file_size	 	= $request->file('file_to_upload')->getSize();
+			$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
 
-		$attachment->save();
-
-		// try {
-		//     $uploadedFile->storeAs(
-		//         $path,
-		//         $fileName,
-		//         $fileSystem
-		//     );
-		//     return $fileName;
-		// } catch ( \Exception $e ) {
-		//     throw new \Exception($e);
-		// }
-
-		return $attachment->id;
+			$attachment->save();
+			$attachment_id				=$attachment->id;
+		} catch (Exception $e) {
+			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
+			Log::error('LandlordFileUpload.upload '.$e->getMessage());
+			// Either form a friendlier message to display to the user OR redirect them to a failure page
+			$attachment_id = 0;
+		}
+		
+		return $attachment_id;
 	}
 
 	public static function uploadPublicPhoto(FormRequest $request)

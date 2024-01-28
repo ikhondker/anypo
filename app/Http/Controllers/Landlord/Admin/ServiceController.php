@@ -58,18 +58,12 @@ class ServiceController extends Controller
 		$services = Service::byAccount()->orderBy('id', 'ASC')->paginate(10);
 
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
-		//$account = Account::where('id', auth()->user()->account_id)->first();
-		//$account = Account::where('id', auth()->user()->account_id)->firstOrFail();
-
+		
 		try {
 			$account = Account::where('id', auth()->user()->account_id)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
 			 return redirect()->route('dashboards.index')->with('error', 'No Service found!');
-			 //return redirect()->route('home')->with('error', 'Service not found!');
-			 //return view('landlord.pages.error')->with('msg', 'User is has already linked with an account! You can not buy new Account.');
 		}
-
-		//return view('landlord.pages.error')->with('msg', 'User is has already linked with an account! You can not buy new Account.');
 
 		return view('landlord.admin.services.index', compact('services', 'addons','account'))
 			->with('i', (request()->input('page', 1) - 1) * 10);
@@ -87,16 +81,12 @@ class ServiceController extends Controller
 		
 		$this->authorize('viewAll',Service::class);
 
-		// $services= Service::orderBy('id', 'ASC')->paginate(10);
-		// return view('landlord.services.index',compact('services'))->with('i', (request()->input('page', 1) - 1) * 10);
-
 		$services = Service::orderBy('id', 'ASC')->paginate(10);
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 		$account = Account::where('id', auth()->user()->account_id)->first();
 
 		return view('landlord.admin.services.all', compact('services', 'addons','account'))
 			->with('i', (request()->input('page', 1) - 1) * 10);
-		//->with('cur_account_id',$services->account_id)
 	}
 
 	/**
@@ -106,7 +96,7 @@ class ServiceController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -117,7 +107,7 @@ class ServiceController extends Controller
 	 */
 	public function store(StoreServiceRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -131,9 +121,6 @@ class ServiceController extends Controller
 		$this->authorize('view', $service);
 
 		$entity = static::ENTITY;
-		//$purAddons = Addon::getAddons($service->id);
-		//$avlAddons = Product::getAddons($service->product_id);
-		//return view('landlord.services.show',compact('service','entity','avlAddons','purAddons','avlAddons'));
 		return view('landlord.admin.services.show', compact('service', 'entity'));
 	}
 
@@ -161,7 +148,6 @@ class ServiceController extends Controller
 	{
 		$this->authorize('update', $service);
 
-		//$request->validate();
 		$request->validate([]);
 		$service->update($request->all());
 

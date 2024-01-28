@@ -60,9 +60,6 @@ class LoginController extends Controller
 	 */
 	protected $redirectTo = RouteServiceProvider::HOME;
 
-
-
-
 	/**
 	 * Create a new controller instance.
 	 *
@@ -70,7 +67,6 @@ class LoginController extends Controller
 	 */
 	public function __construct()
 	{
-
 		$this->middleware('guest')->except('logout');
 	}
 
@@ -78,7 +74,7 @@ class LoginController extends Controller
 	// logout from a link and redirect to home
 	public function logout(Request $request)
 	{
-		// Write to Log IQBAL
+		// Write logout event to Log
 		if (tenant('id') == '') {
 			// address timeout issue
 			if(isset($user)){
@@ -87,7 +83,6 @@ class LoginController extends Controller
 		} else {
 			EventLog::event('user', auth()->user()->id, 'sign-out');
 		}
-
 		Session::flush();
 		Auth::logout();
 		return redirect('/');
@@ -108,8 +103,7 @@ class LoginController extends Controller
 		} else {
 			EventLog::event('user', $user->id, 'sign-in');
 		}
-
-
+		// TODO
 		// $user->update([
 		//     'last_login_at' => Now(),
 		//     'last_login_ip' => $request->getClientIp()
@@ -135,14 +129,15 @@ class LoginController extends Controller
 	}
 
 	// IQBAL 9-sep-2022
-	//added to overwrite the login credentials
+	// Added to overwrite the login credentials
 	protected function credentials(Request $request)
 	{
 		return [
-			'email'	 	=> request()->email,
-			'password' => request()->password,
+			'email'		=> request()->email,
+			'password'	=> request()->password,
 			'enable'	=> true,  // do not allow disabled user to login
-			//is_null('email_verified_at')
+			// TODO Check if we need to uncoment it
+			// is_null('email_verified_at')
 		];
 	}
 
@@ -151,7 +146,6 @@ class LoginController extends Controller
 	//added to overwrite the login form
 	public function showLoginForm()
 	{
-
 		if (tenant('id') == '') {
 			return view('auth.landlord-login');
 		} else {

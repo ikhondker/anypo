@@ -38,14 +38,13 @@ class Docs
 		//$filesInFolder = \File::files(base_path() . '\app\Models\Landlord');
 		$filesInFolder = \File::files(base_path() . $folder);
 
-
 		$data = array();
 		$i=0;
 
 		foreach($filesInFolder as $path) {
-			$file = pathinfo($path);
-			$f= $file['filename'] ;
-			$b= $file['basename'] ;
+			$file 	= pathinfo($path);
+			$f		= $file['filename'] ;
+			$b		= $file['basename'] ;
 
 			$fname = $file['filename'];
 			$bname = $file['basename'];
@@ -55,8 +54,8 @@ class Docs
 			$last_modified=File::lastModified($path);
 			// ok
 			//$t = Carbon::createFromTimestamp($t1)->format('m/d/Y');
-			$last_modified_human= \Carbon\Carbon::parse($last_modified)->diffForHumans();
-			$last_modified_date= \Carbon\Carbon::parse($last_modified);
+			$last_modified_human	= \Carbon\Carbon::parse($last_modified)->diffForHumans();
+			$last_modified_date		= \Carbon\Carbon::parse($last_modified);
 			$days = $last_modified_date->diffInDays(now(), false);
 
 			$removed = Str::remove('Controller', $f);

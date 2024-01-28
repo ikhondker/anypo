@@ -40,22 +40,13 @@ use Str;
 class MenuController extends Controller
 {
 
-	 /**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct(){
-		$this->middleware('auth'); 
-	}
-
+	
 	/**
 	 * Display a listing of the resource.
 	 */
 	public function index()
 	{
-		//$this->authorize('viewAny', Menu::class);
-
+		$this->authorize('viewAny', Menu::class);
 		$menus = Menu::query();
 		if (request('term')) {
 			$menus->where('name', 'Like', '%'.request('term').'%');
@@ -70,7 +61,7 @@ class MenuController extends Controller
 	 */
 	public function create()
 	{
-		//$this->authorize('create', Menu::class);
+		$this->authorize('create', Menu::class);
 		return view('landlord.manage.menus.create');
 	}
 
@@ -80,10 +71,10 @@ class MenuController extends Controller
 	public function store(StoreMenuRequest $request)
 	{
 
+		$this->authorize('create', Menu::class);
+		
 		$request->merge(['access'	=> Str::upper($request->input('access')) ]);
-		//$this->authorize('create', Menu::class);
 		//$validated = $request->validated();
-
 		$menu = Menu::create($request->all());
 		// Write to Log
 		LandlordEventLog::event('menu', $menu->id, 'create');
@@ -96,7 +87,7 @@ class MenuController extends Controller
 	 */
 	public function show(Menu $menu)
 	{
-	   //$this->authorize('view', $menu);
+	   $this->authorize('view', $menu);
 		return view('landlord.manage.menus.show', compact('menu'));
 	}
 
@@ -105,8 +96,7 @@ class MenuController extends Controller
 	 */
 	public function edit(Menu $menu)
 	{
-		//$this->authorize('update', $menu);
-
+		$this->authorize('update', $menu);
 		return view('landlord.manage.menus.edit', compact('menu'));
 	}
 
@@ -115,13 +105,8 @@ class MenuController extends Controller
 	 */
 	public function update(UpdateMenuRequest $request, Menu $menu)
 	{
-		//$this->authorize('update', $menu);
-		
+		$this->authorize('update', $menu);
 		$request->merge(['access'	=> Str::upper($request->input('access')) ]);
-
-		//$request->validate();
-		// $request->validate([
-		// ]);
 
 		$menu->update($request->all());
 

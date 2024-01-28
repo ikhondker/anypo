@@ -27,13 +27,14 @@ use Illuminate\Support\Facades\Log;
 use App\Enum\UserRoleEnum;
 
 
-//use App\Helpers\EventLog;
-//EventLog::event('user',$user->id,'update','name', $request->name);
-//EventLog::event('user',$user->id,'create');
-
+// use App\Helpers\EventLog;
+// EventLog::event('user',$user->id,'update','name', $request->name);
+// EventLog::event('user',$user->id,'create');
 
 class EventLog
 {
+	
+
 	// Write Event Log
 	// LogEvent('template',$template->id,'create','colname',$template->id);
 	public static function event($object_name, $object_id = 0, $event_name = null, $column_name = null, $prior_value = null, $object_type = "C")

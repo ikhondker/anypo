@@ -48,10 +48,8 @@ class Workflow
 	public static function submitWf($entity, $article_id)
 	{
 
-		// wf_key is not used
-		//$entity = Entity::where('entity',$entity)->first();
-		//$wf_key = $doc_type->wf_key;
-
+		
+		// dont need exception as can not save dept with hierarchy
 		switch ($entity) {
 			case EntityEnum::PR->value:
 				// TODO try catch exception handing
@@ -59,8 +57,13 @@ class Workflow
 				$requestor_id = $pr->requestor_id;
 				//$dept_id = $pr->dept_id;
 				$dept = Dept::where('id', $pr->dept_id)->first();
-				$hierarchy = Hierarchy::where('id', $dept->pr_hierarchy_id)->firstOrFail();
-				$hierarchy_id =	$hierarchy->id;
+				try {
+					$hierarchy = Hierarchy::where('id', $dept->pr_hierarchy_id)->firstOrFail();
+					$hierarchy_id =	$hierarchy->id;
+				} catch (ModelNotFoundException $exception) {
+				 	$hierarchy_id =  0;
+				 	Log::debug("Hierarchy not Found for entity=".$entity." article_id=".$article_id." emp_id=".$emp_id." dept_id=".$dept_id);
+				}
 				break;
 			case EntityEnum::PO->value:
 				// TODO try catch exception handing
@@ -68,24 +71,17 @@ class Workflow
 				$requestor_id = $po->buyer_id;
 				//$dept_id = $pr->dept_id;
 				$dept = Dept::where('id', $po->dept_id)->first();
-				$hierarchy = Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
-				$hierarchy_id =	$hierarchy->id;
+				try {
+					$hierarchy = Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
+					$hierarchy_id =	$hierarchy->id;
+				} catch (ModelNotFoundException $exception) {
+					$hierarchy_id =  0;
+					Log::debug("Hierarchy not Found for entity=".$entity." article_id=".$article_id." emp_id=".$emp_id." dept_id=".$dept_id);
+		   		}
 				break;
 			default:
-				Log::debug("Other Entity!");
+				Log::debug("Workflow.submitWf Other Entity!");
 		}
-
-		// try {
-		//  	// TODO must uncomment
-		// 	// $hierarchy = Hierarchy::where('wf_key', $wf_key)->where('dept_id', $dept_id)->firstOrFail();
-		// 	//$hierarchy = Hierarchy::where('entity', $entity)->firstOrFail();
-		// 	$hierarchy_id =  $hierarchy->id;
-		// 	Log::debug("Hierarchy =".$hierarchy_id);
-		// } catch (ModelNotFoundException $exception) {
-		// 	$hierarchy_id =  0;
-		// 	Log::debug("Hierarchy not Found for entity=".$entity." article_id=".$article_id." emp_id=".$emp_id." dept_id=".$dept_id);
-		//  	//return back()->withError($exception->getMessage())->withInput();
-		// }
 
 		// create WF header and child row
 		if ($hierarchy_id <> 0) {
@@ -133,68 +129,5 @@ class Workflow
 		} catch (ModelNotFoundException $exception) {
 			return 0;
 		}
-	}
-
-	public static function TBDnotifyApprover($wf_id)
-	{
-
-		// get wf record
-		$wf = Wf::where('id', $wf_id)->first();
-
-		// get entity record
-		$entity = Entity::where('entity', $wf->entity)->first();
-
-		// get notify article instance and emp_id
-		$emp_id = 0;
-		//@include('includes.wf-get-notify-article-instance');
-		switch($wf->entity) {
-			case('SALADV'):
-				//$route='Advance';
-				$advance = Advance::where('id', $wf->article_id)->first();
-				$emp_id = $advance->emp_id;
-				break;
-			case('LEAVE'):
-				$leave = Leave::where('id', $wf->article_id)->first();
-				$emp_id = $leave->emp_id;
-				break;
-			case('PR'):
-				$pr = Pr::where('id', $wf->article_id)->first();
-				$emp_id = $pr->emp_id;
-				break;
-			case('PO '):
-				$po = Po::where('id', $wf->article_id)->first();
-				$emp_id = $po->emp_id;
-				break;
-			default:
-				Log::debug("wf-get-notify-article-instance.blade.php = ERROR");
-		}
-
-		//Log::debug("After Include @notifyApprover! entity=".$entity->name." emp_id=".$emp_id);
-
-		// find and notify first/next approver
-		//$wfd = Wfd::with('wf')->where('wf_id', $wf->wf_id)->where('action', 'PENDING')->firstOrFail();
-		//$wfd = Wfd::where('wf_id', $wf->wf_id)->where('action', 'PENDING')->firstOrFail();
-		// TODO if not data in wfds show error
-		$wfd = Wfd::where('wf_id', $wf_id)->where('action', 'PENDING')->firstOrFail();
-
-		$owner = User::where('emp_id', $emp_id)->first();
-		$approver = User::where('id', $wfd->performer_id)->first();
-
-		$details = [
-			'entity'		=> $wf->entity,
-			'id'			=> $wf->article_id,
-			'from'			=> $owner->name,
-			'to'			=> $approver->name,
-			'subject'		=> $entity->name. '#'. $wf->article_id.' need your approval.', // $advance->summary
-			'greeting'		=> 'Hi '.$approver->name.',',
-			'body'			=> $entity->name. '#'.$wf->article_id.' is submitted for your approval. Please review.',
-			'thanks'		=> 'Thank you for using '. config('app.name').'!',
-			'actionText'	=> 'View Document',
-			//'actionURL'	=> route('advances.show', ['advance' => $wf->article_id]),
-			'actionURL'	=> route($entity->route.'.show', $wf->article_id),
-		];
-		$approver->notify(new ApprovalNotification($details));
-
-		//return true;
 	}
 }

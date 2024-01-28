@@ -42,7 +42,6 @@ class StatusController extends Controller
 	public function index()
 	{
 		$statuses = Status::latest()->orderBy('code', 'asc')->get();
-		//dd($statuses);
 		return view('landlord.lookup.statuses.index', compact('statuses'));
 	}
 
@@ -51,7 +50,7 @@ class StatusController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -59,7 +58,7 @@ class StatusController extends Controller
 	 */
 	public function store(StoreStatusRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -67,7 +66,7 @@ class StatusController extends Controller
 	 */
 	public function show(Status $status)
 	{
-		//$this->authorize('view', $tenant);
+		$this->authorize('view', $tenant);
 		return view('landlord.lookup.statuses.show', compact('status'));
 	}
 
@@ -76,7 +75,7 @@ class StatusController extends Controller
 	 */
 	public function edit(Status $status)
 	{
-		//$this->authorize('update', $status);
+		$this->authorize('update', $status);
 		return view('landlord.lookup.statuses.edit', compact('status'));
 	}
 
@@ -86,19 +85,8 @@ class StatusController extends Controller
 	public function update(UpdateStatusRequest $request, Status $status)
 	{
 		//$this->authorize('update', $status);
-
-
-		//$request->validate();
 		$request->validate([]);
-
-		
-		// $request->validate([
-		// 	'title ' => 'required|max:200',
-		// ]);
-
-
 		$status->update($request->all());
-
 
 		LandlordEventLog::event('status', $status->id, 'update', 'name', $request->name);
 
@@ -110,7 +98,7 @@ class StatusController extends Controller
 	 */
 	public function destroy(Status $status)
 	{
-		//$this->authorize('delete', $user);
+		$this->authorize('delete', $user);
 
 		$status->fill(['enable'=>!$status->enable]);
 		$status->update();

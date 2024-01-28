@@ -90,8 +90,7 @@ class CheckBudget
 		return 'E000';
 	}
 
-	// wfl->reject
-	// pr->cancel
+	// Called from wfl->reject and pr->cancel
 	public static function reverseBookingPr($pr_id)
 	{
 
@@ -183,8 +182,7 @@ class CheckBudget
 		return 'E000';
 	}
 
-	// wfl->reject
-	// po->cancel
+	// Called from wfl->reject and po->cancel
 	public static function reverseBookingPo($po_id)
 	{
 

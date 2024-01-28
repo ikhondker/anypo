@@ -24,6 +24,17 @@ use App\Models\Landlord\Admin\Invoice;
 
 class Bo
 {
+
+	// TODO Use this
+	// use Exception;
+	// try {
+	// 	//Code that may throw an Exception
+	// } catch (Exception $e) {
+	// 	// Log the message locally OR use a tool like Bugsnag/Flare to log the error
+	// Log::error('invoice.store '. $e->getMessage());
+	// 	// Either form a friendlier message to display to the user OR redirect them to a failure page
+	// }
+
 	public static function getInvoiceNo()
 	{
 		// Generate unique invoice_no

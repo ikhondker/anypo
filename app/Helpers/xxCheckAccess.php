@@ -48,7 +48,7 @@ class CheckAccess
 			case(UserRoleEnum::SUPERVISOR->value):
 				return true;
 				break;
-			case(UserRoleEnum::SYSTEM->value):   // users\edit.index direct call
+			case(UserRoleEnum::SYSTEM->value):	// users\edit.index direct call
 				return true;
 				break;
 			default:

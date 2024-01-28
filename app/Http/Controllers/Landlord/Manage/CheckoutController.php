@@ -58,7 +58,7 @@ class CheckoutController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -66,7 +66,7 @@ class CheckoutController extends Controller
 	 */
 	public function store(StoreCheckoutRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -85,6 +85,7 @@ class CheckoutController extends Controller
 	public function edit(Checkout $checkout)
 	{
 		$this->authorize('update', $checkout);
+		abort(403);
 	}
 
 	/**
@@ -93,6 +94,7 @@ class CheckoutController extends Controller
 	public function update(UpdateCheckoutRequest $request, Checkout $checkout)
 	{
 		$this->authorize('update', $checkout);
+		abort(403);
 	}
 
 	/**
@@ -100,6 +102,6 @@ class CheckoutController extends Controller
 	 */
 	public function destroy(Checkout $checkout)
 	{
-		//
+		abort(403);
 	}
 }

@@ -34,17 +34,7 @@ use DB;
 
 class EntityController extends Controller
 {
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
-
-
+	
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -64,7 +54,6 @@ class EntityController extends Controller
 	public function create()
 	{
 		$this->authorize('create', Entity::class);
-
 		return view('landlord.manage.entities.create');
 	}
 
@@ -93,6 +82,7 @@ class EntityController extends Controller
 	 */
 	public function show(Entity $entity)
 	{
+		$this->authorize('view', $entity);
 		return view('landlord.manage.entities.show', compact('entity'));
 	}
 
@@ -104,8 +94,7 @@ class EntityController extends Controller
 	 */
 	public function edit(Entity $entity)
 	{
-		//$this->authorize('update',$entity);
-
+		$this->authorize('update',$entity);
 		// Write Event Log
 		//LandlordEventLog::event('template',$template->id,'edit','template',$template->id);
 		return view('landlord.manage.entities.edit', compact('entity'));
@@ -120,9 +109,8 @@ class EntityController extends Controller
 	 */
 	public function update(UpdateEntityRequest $request, Entity $entity)
 	{
-		//$this->authorize('update',$entity);
+		$this->authorize('update',$entity);
 
-		//$request->validate();
 		$request->validate([]);
 		$entity->update($request->all());
 
@@ -139,7 +127,7 @@ class EntityController extends Controller
 	 */
 	public function destroy(Entity $entity)
 	{
-		//$this->authorize('delete',$entity);
+		$this->authorize('delete',$entity);
 
 		$entity->fill(['enable' => !$entity->enable]);
 		$entity->update();
@@ -151,6 +139,7 @@ class EntityController extends Controller
 
 	public function export()
 	{
+		$this->authorize('download', Entity::class);
 		$data = DB::select("SELECT
 			entity, name, code, subdir, module, slug, enable, created_by, created_at, updated_by, updated_at
 			FROM entities");

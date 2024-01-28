@@ -61,9 +61,6 @@ use Str;
 use DB;
 
 
-//use App\Models\Tenant\Setting;
-//use App\Mail\Tenant\ActivationMail;
-
 class UserController extends Controller
 {
 	// used to export data into csv
@@ -82,7 +79,6 @@ class UserController extends Controller
 		}
 		//Log::debug("role=".auth()->user()->role->value);
 
-		//$users = User::latest()->orderBy('id','desc')->paginate(10);
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::ADMIN->value:
 				$users= $users->byAccount()->orderBy('id', 'DESC')->paginate(10);
@@ -109,8 +105,6 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		//Log::debug("role=".auth()->user()->role->value);
-		//$users = User::latest()->orderBy('id','desc')->paginate(10);
 		$users= $users->orderBy('id', 'DESC')->paginate(20);
 		return view('landlord.admin.users.all',compact('users'))->with('i', (request()->input('page', 1) - 1) * 20);
 	}
@@ -124,13 +118,6 @@ class UserController extends Controller
 	public function create()
 	{
 		$this->authorize('create',User::class);
-
-		// $emps = Emp::select('id','name')
-		//	->where('status', 'active')
-		//	->orderBy('id','asc')
-		//	->get();
-		//$emps = Emp::getAll();
-
 		return view('landlord.admin.users.create');
 
 	}
@@ -159,8 +146,6 @@ class UserController extends Controller
 
 		$random_password 				= Str::random(12);
 		$request->merge(['password'		=> Hash::make($random_password) ]);
-		//Log::channel('bo')->info('password='.$random_password);
-		//$request->merge(['email_verified_at' => now()]);
 
 		// create User
 		$user = User::create($request->all());
@@ -172,7 +157,6 @@ class UserController extends Controller
 		$user->notify(new UserCreated($user,$random_password));
 
 		LandlordEventLog::event('user',$user->id,'create');
-
 		return redirect()->route('users.index')->with('success','User created successfully.');
 	}
 
@@ -212,20 +196,14 @@ class UserController extends Controller
 
 		$this->authorize('update', $user);
 		$request->merge(['state'	=> Str::upper($request->input('state')) ]);
-
 		$request->validate([
 
 		]);
 
 		if ($image = $request->file('file_to_upload')) {
-			// $request->validate([
-			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-			// ]);
-
 			// extract the uploaded file
 			$image = $request->file('file_to_upload');
 
-			//$token		= $user->id ."-" . Str::uuid();
 			$token			= $user->id ."-" . uniqid();
 			$extension		='.'.$image->extension();
 
@@ -243,15 +221,10 @@ class UserController extends Controller
 			$request->merge(['avatar' => $thumbImage ]);
 		}
 
-
 		$user->update($request->all());
-
 		LandlordEventLog::event('user',$user->id,'update','name', $request->name);
-
 		return redirect()->route('dashboards.index')->with('success','User profile updated successfully.');
 	}
-
-
 
 	/**
 	 * Remove the specified resource from storage.
@@ -261,7 +234,7 @@ class UserController extends Controller
 	 */
 	public function destroy(User $user)
 	{
-		//$this->authorize('delete', $user);
+		$this->authorize('delete', $user);
 
 		$user->fill(['enable'=>!$user->enable]);
 		$user->update();
@@ -274,34 +247,24 @@ class UserController extends Controller
 
 	public function role()
 	{
-		//$users = User::whereIn('role',['emp','user','supervisor','owner'])->orderBy('id','desc')->paginate(20);
 		$users = User::latest()->orderBy('id','desc')->paginate(10);
 		return view('users.role',compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
 	public function updaterole(User $user, $role)
 	{
-		//$this->authorize('updaterole',$user);
+		//TODO Check $this->authorize('updaterole',$user);
 		$user->role = $role;
 		$user->update();
 
-		// update user roles
-		//$data = User::find($id);
-		//$data->role = $role;
-		//dd($user->id);
-		//$data->save();
-		//use App\MyData as MyData;
-		//$myData->where('id', $request->id)->update(['active' => $request->active]);
-
 		// Write to Log
 		LandlordEventLog::event('user',$user->id,'updaterole','name',$role);
-
 		return redirect()->route('users.index')->with('success','User '.$user->name.' role to \''.$role.'\' updated successfully');
 	}
 
 	public function changePassword(User $user)
 	{
-		//$this->authorize('changepass',$user);
+		$this->authorize('changepass',$user);
 
 		Log::debug('Inside userPassword!');
 		Log::debug('Role='. auth()->user()->role->value);
@@ -331,8 +294,6 @@ class UserController extends Controller
 
 	public function export()
 	{
-		//Log::debug('Role='. auth()->user()->role->value);
-		//Log::debug('Enum='. UserRoleEnum::ADMIN->value);
 
 		if (auth()->user()->isBackOffice()){
 			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable FROM users");
@@ -346,93 +307,9 @@ class UserController extends Controller
 				WHERE id =".auth()->user()->id);
 		}
 
-		//Log::debug('Role= '. auth()->user()->role->value);
-		//$data = DB::select("SELECT id, name, email, cell, role, enable FROM users");
-
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('users', $dataArray);
-	}
-
-	public function image($filename)
-	{
-		//shown as: http://geda.localhost:8000/image/4.jpg
-		//$path = storage_path('uploads/' . $filename);
-		$path = storage_path('app/public/profile/'. $filename);
-		Log::debug('path= '. $path);
-
-		if (!File::exists($path)) {
-			abort(404);
-			Log::debug('FILE does not exists! '. $filename);
-		}
-
-		$file = File::get($path);
-		$type = File::mimeType($path);
-
-		$response = Response::make($file, 200);
-		$response->header("Content-Type", $type);
-		return $response;
-	}
-
-
-	public function didnotupdate(UpdateUserRequest $request, User $user)
-	{
-
-		$this->authorize('update', $user);
-
-		// upload to private folder and show using user.show route
-		// Upload File, if any, insert row in attachment table  and get attachments id
-		//if ($file = $request->file('file_to_upload')) {
-		//	$request->merge(['user_id'   => $user->id ]);
-		//	$user_id = FileUpload::uploadPhoto($request);
-		//}
-
-		// https://image.intervention.io/v2
-		// https://laracasts.com/discuss/channels/general-discussion/laravel-5-image-upload-and-resize?page=1
-		// default location D:\laravel\bo04\public
-		if ($image = $request->file('file_to_upload')) {
-			// uploaded to D:\laravel\bo04\public\landlord\profile
-			Log::debug("A config('bo.DIR_AVATAR')=".config('bo.DIR_AVATAR'));
-
-			//$destinationPath = config('bo.DIR_AVATAR');
-			$destinationPath = '/landlord/avatar/';
-			Log::debug("destinationPath=".$destinationPath);
-
-			//$profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-			$profileImage	= $user->id . "-uploaded." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-			$thumbImage 	= $user->id . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-
-			Log::debug("profileImage=".$profileImage);
-			Log::debug("thumbImage=".$thumbImage);
-
-			$image->move($destinationPath, $profileImage);
-			$request->merge(['avatar' => $thumbImage ]);
-			//$file-> move(public_path('public/Image'), $filename);
-			//$request['my_image'] = $profileImage;
-			//$input['my_image'] = "$profileImage";
-
-			//resize to thumbnail
-			$image_resize = Image::make(public_path().'/landlord/avatar/'.$profileImage);
-			$image_resize->fit(90, 90);
-			$image_resize->save(public_path('/landlord/avatar/' .$thumbImage));
-
-			//resize to thumbnail
-			//$image_resize = Image::make(public_path().config('bo.DIR_AVATAR').$profileImage);
-			//$image_resize->fit(90, 90);
-			//$image_resize->save(public_path(config('bo.DIR_AVATAR') .$thumbImage));
-		}
-
-		//$request->validate();
-		$request->validate([
-
-		]);
-
-		$user->update($request->all());
-
-
-		LandlordEventLog::event('user',$user->id,'update','name', $request->name);
-
-		return redirect()->route('users.index')->with('success','User profile updated successfully.');
 	}
 
 	public function impersonate(User $user)

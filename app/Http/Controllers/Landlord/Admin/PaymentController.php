@@ -51,7 +51,6 @@ class PaymentController extends Controller
 	 */
 	public function index()
 	{
-		//$payments = Payment::latest()->orderBy('id','desc')->paginate(10);
 		$payments = Payment::byAccount()->orderBy('id', 'desc')->paginate(10);
 		return view('landlord.admin.payments.index', compact('payments'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
@@ -64,9 +63,7 @@ class PaymentController extends Controller
 	 */
 	public function all()
 	{
-
 		$this->authorize('viewAll',Payment::class);
-		//$payments = Payment::latest()->orderBy('id','desc')->paginate(10);
 		$payments = Payment::orderBy('id', 'desc')->paginate(10);
 		return view('landlord.admin.payments.all', compact('payments'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
@@ -78,10 +75,8 @@ class PaymentController extends Controller
 	 */
 	public function create()
 	{
-		// $this->authorize('create',Payment::class);
-		// $bank_accounts = BankAccount::getAll();
-		// $organizations = Organization::getAll();
-		// return view('landlord.payments.create',compact('bank_accounts','organizations'));
+		// Created from home.paymentStripe 
+		abort(403);
 	}
 
 	/**
@@ -118,6 +113,8 @@ class PaymentController extends Controller
 	public function edit(Payment $payment)
 	{
 		$this->authorize('update', $payment);
+		// TODO only for backend
+		abort(403);
 	}
 
 	/**
@@ -130,14 +127,7 @@ class PaymentController extends Controller
 	public function update(UpdatePaymentRequest $request, Payment $payment)
 	{
 		$this->authorize('update', $payment);
-
-		//$request->validate();
-		//$request->validate([]);
-		$payment->update($request->all());
-
-		LandlordEventLog::event('payment', $payment->id, 'update', 'name', $payment->name);
-		LandlordEventLog::event('payment', $payment->id, 'update', 'limit', $payment->limit);
-		return redirect()->route('payments.index')->with('success', 'Payment updated successfully');
+		abort(403);
 	}
 
 	/**

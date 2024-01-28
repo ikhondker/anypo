@@ -64,7 +64,7 @@ class ContactController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -73,7 +73,6 @@ class ContactController extends Controller
 	public function store(StoreContactRequest $request)
 	{
 
-		//Log::debug("I AM HERE INSIDE STORE");
 
 		$request->merge(['ip'	=> Request::ip()]);
 		$request->validate([
@@ -105,6 +104,7 @@ class ContactController extends Controller
 	public function edit(Contact $contact)
 	{
 		$this->authorize('update', $contact);
+		abort(403);
 	}
 
 	/**
@@ -113,6 +113,7 @@ class ContactController extends Controller
 	public function update(UpdateContactRequest $request, Contact $contact)
 	{
 		$this->authorize('update', $contact);
+		abort(403);
 	}
 
 	/**

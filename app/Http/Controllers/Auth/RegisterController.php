@@ -79,11 +79,11 @@ class RegisterController extends Controller
 	protected function validator(array $data)
 	{
 		return Validator::make($data, [
-			'name'		=> ['required', 'string', 'max:255'],
-			'email'		=> ['required', 'string', 'email', 'max:255', 'unique:users'],
-			'password'	=> ['required', 'string', 'min:8', 'confirmed'],
+			'name'					=> ['required', 'string', 'max:255'],
+			'email'					=> ['required', 'string', 'email', 'max:255', 'unique:users'],
+			'password'				=> ['required', 'string', 'min:8', 'confirmed'],
 			'password_confirmation'	=> ['required', 'string', 'min:8'],
-			'terms'		=> 'accepted'
+			'terms'					=> 'accepted'
 		]);
 	}
 
@@ -95,13 +95,12 @@ class RegisterController extends Controller
 	 */
 	protected function create(array $data)
 	{
-
 		// sign up mail https://codelapan.com/post/send-welcome-email-notification-after-user-register-in-laravel-8
 		// uncomment check tenant or landlord
 		$user = User::create([
 			'name'		=> $data['name'],
 			'email'		=> $data['email'],
-			//'email_verified_at'  => NOW(),	//MUST Comment
+			//'email_verified_at'  => NOW(),	// Keep commnet. DO not auto verify email 
 			'role'		=> UserRoleEnum::USER->value,
 			'password'	=> Hash::make($data['password']),
 		]);
@@ -115,7 +114,6 @@ class RegisterController extends Controller
 		} else {
 			EventLog::event('user', $user->id, 'register');
 		}
-
 		return $user;
 	}
 

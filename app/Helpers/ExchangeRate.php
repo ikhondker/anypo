@@ -38,9 +38,9 @@ use App\Helpers\EventLog;
 
 use DB;
 
-// called from Pr.submit
+// called from Pr.submit and Po.submit and Dashboard.index
 // $rate = ExchangeRate::getRate($pr->currency, $setup->currency);
-// Dashboard.index
+// 
 
 class ExchangeRate
 {
@@ -53,11 +53,11 @@ class ExchangeRate
 				->where('currency', $currency)
 				->where('fc_currency', $fc_currency)
 				->firstOrFail();
-			Log::debug("Rate Found =".$rate->rate);
+			Log::debug("ExchangeRate.getRate Rate Found =".$rate->rate);
 			return $rate->rate;
 		} catch (\Exception $exception) {
 			// General Exception class which is the parent of all Exceptions
-			Log::debug('Still rate not found after importing data');
+			Log::debug('ExchangeRate.getRate Still rate not found after importing data');
 			return 0;
 		}
 	}
@@ -66,11 +66,10 @@ class ExchangeRate
 	public static function importRates()
 	{
 		// download rates
-		Log::debug("inside importRates");
-
+	
 		$setup = Setup::first();
 		$fc_currency  = $setup->currency;
-		Log::debug("fc_currency=".$fc_currency);
+		Log::debug("ExchangeRate.importRates fc_currency=".$fc_currency);
 
 		// check if current months import rates imported
 
@@ -97,7 +96,6 @@ class ExchangeRate
 		// Note: openexchangerates always return USD as base currency
 		// https://openexchangerates.org/api/latest.json?app_id=be73b7dba663446bb6214e87048df5e0&base=USD
 		$url = 'https://openexchangerates.org/api/latest.json?app_id='.$apikey.'&base=USD';
-		//Log::debug("URL=".$url);
 		$response = Http::get($url);
 
 		// Exclude TOO SMALL TODO
@@ -152,10 +150,7 @@ class ExchangeRate
 				$rate->inverse_rate	= round($base_rate, 8);
 				$rate->save();
 				//Log::debug("base=".$rate->base_currency.' to_currency='.$rate->to_currency.' wusd='.$raw_usd.' rate='.$rate->rate .' inv rate='.$rate->inverse_rate );
-				// $rate_id=$rate->id;
-
 			}
-			//Log::debug("Import complete. Returning with true");
 
 			// set back the last rate import date
 			$setup = Setup::first();
@@ -167,9 +162,8 @@ class ExchangeRate
 
 			return true;
 		} else {
-			Log::warning("Http::get Response ERROR. Please Try again.");
+			Log::warning("ExchangeRate.importRates Http::get Response ERROR. Please Try again.");
 			return false;
 		}
-
 	}
 }

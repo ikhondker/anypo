@@ -45,6 +45,7 @@ use Notification;
 use App\Notifications\Landlord\InvoiceCreated;
 
 // Seeded
+use Exception;
 use Illuminate\Support\Facades\Log;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -63,16 +64,7 @@ class InvoiceController extends Controller
 	 */
 	public function index()
 	{
-		//$invoices= Invoice::orderBy('id', 'DESC')->paginate(10);
-		// switch (auth()->user()->role->value) {
-		// 	case UserRoleEnum::ADMIN->value:
-		// 		$invoices = Invoice::byAccount()->orderBy('id', 'DESC')->paginate(10);
-		// 		break;
-		// 	default:
-		// 		$invoices = Invoice::byAccount()->orderBy('id', 'DESC')->paginate(10);
-		// 		Log::debug("Inside Invoice Index. Ignore. Other roles!");
-		// }
-
+		// front end invoice list
 		$invoices = Invoice::byAccount()->orderBy('id', 'DESC')->paginate(10);
 		return view('landlord.admin.invoices.index', compact('invoices'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
@@ -85,13 +77,9 @@ class InvoiceController extends Controller
 	 */
 	public function all()
 	{
-
+		// backend invoice list
 		$this->authorize('viewAll',Invoice::class);
-
-		//$invoices= Invoice::orderBy('id', 'DESC')->paginate(10);
-
 		$invoices = Invoice::orderBy('id', 'DESC')->paginate(10);
-
 		return view('landlord.admin.invoices.all', compact('invoices'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
@@ -107,20 +95,17 @@ class InvoiceController extends Controller
 
 		if (auth()->user()->account_id == '') {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
-			//return view('landlord.pages.error')->with('title','Account not Found!')->with('msg','Sorry, you can not generate Invoice as not valid Account Found!');
-			//abort(403);
 		}
 
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		if ($account->next_bill_generated) {
-			Log::debug('Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
+			Log::debug('invoice.create Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id=' . $account->id . '! Can not create more Invoices.');
 		}
 
 		$setup = Setup::with('relCountry')->where('id', config('bo.SETUP_ID'))->first();
 
 		return view('landlord.admin.invoices.create', compact('account', 'setup'));
-		//return view('landlord.invoices.create');
 	}
 
 	/**
@@ -135,7 +120,6 @@ class InvoiceController extends Controller
 		// Create future Invoice Manually by user+admin
 		$this->authorize('create', Invoice::class);
 
-		//Log::debug('Period =' . $request->period);
 		$period 		= $request->period;
 		$account_id 	= auth()->user()->account_id;
 
@@ -145,20 +129,20 @@ class InvoiceController extends Controller
 
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		if ($account->next_bill_generated) {
-			Log::debug('Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
+			Log::debug('invoice.store Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for this Account! Can not create more Invoices.');
 		}
 
-		Log::channel('bo')->info('Generating Invoice for Account id=' . $account_id);
-		Log::debug('Generating Invoice for Account id=' . $account_id);
-		// Create invoice
-		$invoice_id = self::createSubscriptionInvoice($account_id, $period);
-		
-		// try {
-		//		$account = Account::where('id', $account_id)->firstOrFail();
-		// } catch (ModelNotFoundException $exception) {
-		//		return redirect()->route('invoices.index')->with('error', 'Account#' . $account_id . ' not found!');
-		// }
+		try {
+			// Create invoice
+			Log::channel('bo')->info('Generating Invoice for Account id=' . $account_id);
+			$invoice_id = self::createSubscriptionInvoice($account_id, $period);
+		} catch (Exception $e) {
+			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
+			Log::error('invoice.store '. $e->getMessage());
+			$invoice_id = 0;
+		}
+
 
 		if ($invoice_id <> 0) {
 			return redirect()->route('invoices.index')->with('success', 'Invoice #' . $invoice_id . ' created successfully.');
@@ -170,7 +154,6 @@ class InvoiceController extends Controller
 
 	public function createSubscriptionInvoice($account_id, $period)
 	{
-		
 		$setup = Setup::first();
 		Log::debug('Generating Invoice for account_id= ' . $account_id .'for period='. $period);
 		$account = Account::where('id', $account_id)->first();
@@ -180,7 +163,6 @@ class InvoiceController extends Controller
 			Log::debug('Unpaid invoice exists for Account id=' . $account_id . ' Invoice not created.');
 			return 0;
 		}
-
 
 		// create new Invoice
 		// logic: create invoice from the next date, after current billed date
@@ -218,7 +200,7 @@ class InvoiceController extends Controller
 				$discount_pc =0 ;
 		}
 
-		Log::debug('discount_pc= ' . $discount_pc);
+		Log::debug('invoice.createSubscriptionInvoice Discount_pc= ' . $discount_pc);
 		$invoice->price		= round($period * $account->price * (100 - $discount_pc)/100,2) ;
 		$invoice->subtotal	= $invoice->price;
 		$invoice->amount	= $invoice->price;
@@ -230,7 +212,7 @@ class InvoiceController extends Controller
 		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
 		$invoice->save();
 
-		Log::debug('Invoice Generated id=' . $invoice->id);
+		Log::debug('invoice.createSubscriptionInvoice Invoice Generated id=' . $invoice->id);
 		LandlordEventLog::event('invoice', $invoice->id, 'create');
 
 		// update account billing info
@@ -241,16 +223,12 @@ class InvoiceController extends Controller
 		$account->last_bill_date		= now();
 
 		$account->save();
-		Log::debug('Account Updated id=' . $account->id);
 
 		// identify user to notify
 		$user = User::where('id', $account->owner_id)->first();
 
 		// Invoice Created Notification
 		$user->notify(new InvoiceCreated($user, $invoice));
-
-		//Log::debug('Account Created id='. $account->id);
-		//return redirect()->route('processes.index')->with('success','Invoice Generation Process completed successfully.');
 		return $invoice->id;
 
 		//return view('landlord.invoices.show', compact('invoice', 'entity'));

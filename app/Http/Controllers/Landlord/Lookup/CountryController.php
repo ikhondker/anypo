@@ -37,13 +37,13 @@ class CountryController extends Controller
 	 */
 	public function index()
 	{
-		 //$this->authorize('viewAny', Country::class);
+		$this->authorize('viewAny', Country::class);
 
-		 $countries = Country::query();
-		 if (request('term')) {
+		$countries = Country::query();
+		if (request('term')) {
 			 $countries->where('name', 'Like', '%'.request('term').'%');
-		 }
-		 $countries = $countries->orderBy('name', 'ASC')->paginate(40);
+		}
+		$countries = $countries->orderBy('name', 'ASC')->paginate(40);
  
 		 return view('landlord.lookup.countries.index', compact('countries'))->with('i', (request()->input('page', 1) - 1) * 40);
 	}
@@ -69,7 +69,7 @@ class CountryController extends Controller
 	 */
 	public function show(Country $country)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -77,7 +77,7 @@ class CountryController extends Controller
 	 */
 	public function edit(Country $country)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -85,7 +85,7 @@ class CountryController extends Controller
 	 */
 	public function update(UpdateCountryRequest $request, Country $country)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -93,7 +93,7 @@ class CountryController extends Controller
 	 */
 	public function destroy(Country $country)
 	{
-		//$this->authorize('delete', $user);
+		$this->authorize('delete', $user);
 
 		$country->fill(['enable'=>!$country->enable]);
 		$country->update();

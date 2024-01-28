@@ -49,16 +49,7 @@ use App\Helpers\LandlordEventLog;
 
 class SetupController extends Controller
 {
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
-
+	
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -112,7 +103,7 @@ class SetupController extends Controller
 	 */
 	public function edit(Setup $setup)
 	{
-		//$this->authorize('update', $setup);
+		$this->authorize('update', $setup);
 		return view('landlord.manage.setups.edit', compact('setup'));
 	}
 
@@ -125,10 +116,7 @@ class SetupController extends Controller
 	 */
 	public function update(UpdateSetupRequest $request, Setup $setup)
 	{
-		//$this->authorize('update', $setup);
-
-		//$request->validate();
-
+		$this->authorize('update', $setup);
 
 		// check box
 		if ($request->has('maintenance')) {
@@ -164,6 +152,9 @@ class SetupController extends Controller
 	 */
 	public function destroy(Setup $setup)
 	{
+		// TODO Check
+		abort(403);
+
 		$setup->fill(['show_message' => !$setup->show_message]);
 		$setup->update();
 

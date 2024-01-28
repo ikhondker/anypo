@@ -63,7 +63,6 @@ class ActivityController extends Controller
 	 */
 	public function all()
 	{
-		
 		$this->authorize('viewAll',Activity::class);
 		$activities = Activity::latest()->orderBy('id', 'desc')->paginate(25);
 		return view('landlord.admin.activities.all', compact('activities'))->with('i', (request()->input('page', 1) - 1) * 10);
@@ -147,8 +146,8 @@ class ActivityController extends Controller
 
 		//$data = Uom::all()->toArray();
 		$data = DB::select("SELECT a.id, a.object_name, a.object_id, a.event_name ,a.column_name, a.prior_value, a.url,a.role, a.user_id, a.created_at
-				 FROM activities a
-				 ");
+			FROM activities a
+			");
 
 		$dataArray = json_decode(json_encode($data), true);
 

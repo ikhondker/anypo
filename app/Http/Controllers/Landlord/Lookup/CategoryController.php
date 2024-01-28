@@ -36,8 +36,7 @@ class CategoryController extends Controller
 	 */
 	public function index()
 	{
-		 //$this->authorize('viewAny', Category::class);
-
+	 //$this->authorize('viewAny', Category::class);
 		 $categories = Category::query();
 		 if (request('term')) {
 			 $categories->where('name', 'Like', '%'.request('term').'%');
@@ -52,8 +51,7 @@ class CategoryController extends Controller
 	 */
 	public function create()
 	{
-		//$this->authorize('create', Category::class);
-
+		$this->authorize('create', Category::class);
 		return view('landlord.lookup.categories.create');
 	}
 
@@ -62,11 +60,10 @@ class CategoryController extends Controller
 	 */
 	public function store(StoreCategoryRequest $request)
 	{
-	   // $this->authorize('create', Category::class);
+	   	$this->authorize('create', Category::class);
 		$category = Category::create($request->all());
 		// Write to Log
 		LandlordEventLog::event('category', $category->id, 'create');
-
 		return redirect()->route('categories.index')->with('success', 'Category created successfully.');
 	}
 
@@ -75,7 +72,7 @@ class CategoryController extends Controller
 	 */
 	public function show(Category $category)
 	{
-		//$this->authorize('view', $category);
+		$this->authorize('view', $category);
 		return view('landlord.lookup.categories.show', compact('category'));
 	}
 
@@ -84,8 +81,7 @@ class CategoryController extends Controller
 	 */
 	public function edit(Category $category)
 	{
-		//$this->authorize('update', $category);
-
+		$this->authorize('update', $category);
 		return view('landlord.lookup.categories.edit', compact('category'));
 	}
 
@@ -94,9 +90,8 @@ class CategoryController extends Controller
 	 */
 	public function update(UpdateCategoryRequest $request, Category $category)
 	{
-		//$this->authorize('update', $category);
+		$this->authorize('update', $category);
 
-		//$request->validate();
 		$request->validate([
 		]);
 		$category->update($request->all());
@@ -112,7 +107,7 @@ class CategoryController extends Controller
 	 */
 	public function destroy(Category $category)
 	{
-		//$this->authorize('delete', $user);
+		$this->authorize('delete', $user);
 
 		$category->fill(['enable'=>!$category->enable]);
 		$category->update();

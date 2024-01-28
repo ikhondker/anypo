@@ -65,7 +65,7 @@ class ProductController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -73,7 +73,7 @@ class ProductController extends Controller
 	 */
 	public function store(StoreProductRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -81,13 +81,8 @@ class ProductController extends Controller
 	 */
 	public function show(Product $product)
 	{
-		//$this->authorize('view', $product);
-
-		$entity = static::ENTITY;
-		//$purAddons = Addon::getAddons($service->id);
-		//$avlAddons = Product::getAddons($service->product_id);
-		//return view('landlord.manage.products.show',compact('service','entity','avlAddons','purAddons','avlAddons'));
-		return view('landlord.lookup.products.show', compact('product', 'entity'));
+		$this->authorize('view', $product);
+		abort(403);
 	}
 
 	/**
@@ -107,13 +102,8 @@ class ProductController extends Controller
 	{
 		$this->authorize('update', $product);
 
-		//$request->validate();
 		$request->validate([]);
 		$product->update($request->all());
-
-		// if ( $request->input('owner_id') <> $service->owner_id ) {
-		//		LandlordEventLog::event('service',$service->id,'update','owner_id',$service->owner_id);
-		// }
 
 		return redirect()->route('products.index')->with('success', 'Product updated successfully');
 	}
