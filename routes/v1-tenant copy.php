@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -19,7 +22,7 @@ use App\Http\Controllers\Tenant\Lookup\CountryController;
 use App\Http\Controllers\Tenant\Lookup\CurrencyController;
 use App\Http\Controllers\Tenant\Lookup\DeptController;
 use App\Http\Controllers\Tenant\Lookup\DesignationController;
-use App\Http\Controllers\Tenant\Lookup\GroupController;
+//use App\Http\Controllers\Tenant\Lookup\GroupController;
 use App\Http\Controllers\Tenant\Lookup\ItemController;
 use App\Http\Controllers\Tenant\Lookup\OemController;
 use App\Http\Controllers\Tenant\Lookup\PayMethodController;
@@ -29,6 +32,7 @@ use App\Http\Controllers\Tenant\Lookup\SupplierController;
 use App\Http\Controllers\Tenant\Lookup\UomController;
 use App\Http\Controllers\Tenant\Lookup\UploadItemController;
 use App\Http\Controllers\Tenant\Lookup\WarehouseController;
+use App\Http\Controllers\Tenant\Lookup\BankAccountController;
 
 use App\Http\Controllers\Tenant\Manage\EntityController;
 use App\Http\Controllers\Tenant\Manage\MenuController;
@@ -94,44 +98,19 @@ Route::middleware([
 	* Route for Testing purpose
 	* ==================================================================================
 	*/
-
-	Route::get('/testt', function () {
-
-		//$details['email'] = 'your_email@gmail.com';
-		//dispatch(new App\Jobs\ImportAllRate());
-		//dd('done at ' . now());
-		//Log::debug('role Found!');
-		// $url = url('user/profile', [1]);
-		// Log::debug($url);
-		$url = url('prs', [1001]);
-		Log::debug($url);
-		$url = url('prs/1001');
-		Log::debug($url);
-		
-		// $url = action([HomeController::class, 'index']);
-		// Log::debug($url);
-		// $url = action([PrController::class, 'show'], ['pr' => 1001]);
-		// Log::debug($url);
-		// $url = route('prs.show', ['pr' => 1001]);
-		// Log::debug($url);
+	Route::get('testrun/',[TestController::class, 'run'])->name('test.run');
+	Route::get('/test', function () {
 		dd('done at ' .date('Y'));
-
-		//return view('test');
-		//$x = GetRate::getRate('USD','BDT');
-		//echo $x;
-
-		//return view('reports.template-pr',['title' => 'Company XYZ', 'date' => '1-Aug-2023']);
-	})->name('testt');
+	})->name('test');
 	
-	Route::get('testrunt/',[TestController::class, 'run'])->name('testt.run');
-	//Route::get('testrun/',[TestController::class, 'run'])->middleware(['auth', 'verified']);
-	//Route::get('testrun/',[TestController::class, 'run']);
-
+	
 	/* ======================== make auth universal ========================================  */
 	 Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
 		Auth::routes(); 
 	});
    
+	// IQBAL 28-feb-23
+	Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 	/* ======================== User ========================================  */
 	Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
@@ -246,11 +225,10 @@ Route::middleware([
 	Route::resource('entities', EntityController::class)->middleware(['auth', 'verified']);
 	Route::get('/entities/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
 	
-
 	/* ======================== Setup ======================================== */
 	Route::resource('setups', SetupController::class)->middleware(['auth', 'verified']);
 	Route::get('setups/image/{filename}',[SetupController::class, 'image'])->name('setups.image');
-	Route::get('setups/notice/{setup}', [SetupController::class, 'notice'])->name('setups.notice');
+	Route::get('setups/announcement/{setup}', [SetupController::class, 'notice'])->name('setups.announcement');
 	Route::post('setups/updatenotice/{setup}', [SetupController::class, 'updatenotice'])->name('setups.updatenotice');
 	Route::post('setups/freeze/{setup}', [SetupController::class, 'freeze'])->name('setups.freeze');
 	
@@ -278,6 +256,13 @@ Route::middleware([
 	Route::resource('warehouses', WarehouseController::class)->middleware(['auth', 'verified']);
 	Route::get('/warehouse/export',[WarehouseController::class,'export'])->name('warehouses.export');
 	Route::get('/warehouses/delete/{warehouse}',[WarehouseController::class,'destroy'])->name('warehouses.destroy');
+
+	/* ======================== BankAccount ======================================== */
+	Route::resource('bank-accounts', BankAccountController::class)->middleware(['auth', 'verified']);
+	Route::get('/bank-account/export',[BankAccountController::class,'export'])->name('bank-accounts.export');
+	Route::get('/bank-accounts/delete/{bankAccount}',[BankAccountController::class,'destroy'])->name('bank-accounts.destroy');
+	Route::post('/bank-account/attach',[BankAccountController::class,'attach'])->name('bank-accounts.attach');
+	Route::get('/bank-accounts/detach/{bankAccount}',[BankAccountController::class,'detach'])->name('bank-accounts.detach');
 
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class)->middleware(['auth', 'verified']);
@@ -331,23 +316,17 @@ Route::middleware([
 	/* ======================== Wf ======================================== */
 	Route::resource('wfs', WfController::class)->middleware(['auth', 'verified']);
 	Route::get('/wf/export',[WfController::class,'export'])->name('wfs.export');
-	Route::get('/wf/reset-pr',[WfController::class,'resetpr'])->name('wfs.reset-pr');
-	Route::post('/wf/deletewfpr',[WfController::class,'deletewfpr'])->name('wfs.deletewfpr');
-	Route::get('/wf/reset-po',[WfController::class,'resetpo'])->name('wfs.reset-po');
-	Route::get('/wfs/delete/{wf}',[WfController::class,'destroy'])->name('wfs.destroy');
+	Route::get('/wf/get-reset-pr-num',[WfController::class,'getResetPrNum'])->name('wfs.get-reset-pr-num');
+	Route::post('/wf/wf-reset-pr',[WfController::class,'wfResetPr'])->name('wfs.wf-reset-pr');
+	Route::get('/wf/get-reset-po-num',[WfController::class,'getResetPoNum'])->name('wfs.get-reset-po-num');
+	Route::post('/wf/wf-reset-po',[WfController::class,'wfResetPo'])->name('wfs.wf-reset-po');
 
 	/* ======================== Wfl ======================================== */
 	Route::resource('wfls', WflController::class)->middleware(['auth', 'verified']);
 	Route::get('/wfl/export',[WflController::class,'export'])->name('wfls.export');
 	Route::get('/wfls/delete/{wfl}',[WflController::class,'destroy'])->name('wfls.destroy');
 
-	/* ======================== report ========================================  */
-	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
-	Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
-	Route::get('/report/createPDF',[ReportController::class, 'createPDF'])->name('reports.createPDF');
-	Route::get('/report/templatepr',[ReportController::class, 'templatepr'])->name('reports.templatepr');
-	Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
-	Route::get('/report/stocks',[ReportController::class, 'stocks'])->name('reports.stocks');
+	
 
 	/* ======================== DeptBudget ======================================== */
 	Route::resource('dept-budgets', DeptBudgetController::class)->middleware(['auth', 'verified']);
@@ -359,9 +338,9 @@ Route::middleware([
 	Route::get('/dept-budgets/detach/{deptBudget}',[DeptBudgetController::class,'detach'])->name('dept-budgets.detach');
    
 	/* ======================== PayMethod ======================================== */
-	Route::resource('pay-methods', PayMethodController::class)->middleware(['auth', 'verified']);
-	Route::get('/pay-method/export',[PayMethodController::class,'export'])->name('pay-methods.export');
-	Route::get('/pay-methods/delete/{payMethod}',[PayMethodController::class,'destroy'])->name('pay-methods.destroy');
+	//Route::resource('pay-methods', PayMethodController::class)->middleware(['auth', 'verified']);
+	//Route::get('/pay-method/export',[PayMethodController::class,'export'])->name('pay-methods.export');
+	//Route::get('/pay-methods/delete/{payMethod}',[PayMethodController::class,'destroy'])->name('pay-methods.destroy');
 
 	/* ======================== Pr ======================================== */
 	Route::resource('prs', PrController::class)->middleware(['auth', 'verified']);
@@ -372,32 +351,63 @@ Route::middleware([
 	Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
 	Route::get('/prs/detach/{pr}',[PrController::class,'detach'])->name('prs.detach');
 	Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
-
+	Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
+	Route::get('/prs/convert-to-po/{pr}',[PrController::class, 'convertPo'])->name('prs.convert');
+	Route::get('/pr/get-cancel-pr-num',[PrController::class,'getCancelPrNum'])->name('prs.get-cancel-pr-num');
+	Route::post('/prs/cancel',[PrController::class,'cancel'])->name('prs.cancel');
+	
 	/* ======================== Prl ======================================== */
 	Route::resource('prls', PrlController::class)->middleware(['auth', 'verified']);
 	Route::get('/prl/export',[PrlController::class,'export'])->name('prls.export');
 	Route::get('/prls/delete/{prl}',[PrlController::class,'destroy'])->name('prls.destroy');
 	Route::get('/prls/createline/{id}',[PrlController::class, 'createLine'])->name('prls.createline');
+	// TODO pol cancel here
 
 	/* ======================== Po ======================================== */
 	Route::resource('pos', PoController::class)->middleware(['auth', 'verified']);
 	Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
+	Route::get('/pos/pdf/{po}',[PoController::class,'pdf'])->name('pos.pdf');
 	Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
 
+	Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
+	Route::get('/pos/detach/{po}',[PoController::class,'detach'])->name('pos.detach');
+	Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
+	Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
+	Route::get('/po/get-cancel-po-num',[PoController::class,'getCancelPoNum'])->name('pos.get-cancel-po-num');
+	Route::post('/pos/cancel',[PoController::class,'cancel'])->name('pos.cancel');
+	
 	/* ======================== Pol ======================================== */
 	Route::resource('pols', PolController::class)->middleware(['auth', 'verified']);
 	Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
 	Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
+	Route::get('/pols/add-line/{id}',[PolController::class, 'addLine'])->name('pols.add-line');
 
 	/* ======================== Receipt ======================================== */
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);
 	Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
 	Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
-
+	Route::get('/receipt/create-for-pol/{id}',[ReceiptController::class,'createForPol'])->name('receipts.create-for-pol');
+	Route::get('/receipt/get-return-grn-num',[ReceiptController::class,'getCancelGrnNum'])->name('receipts.get-return-grn-num');
+	Route::post('/receipts/cancel',[ReceiptController::class,'cancel'])->name('receipts.cancel');
+	
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class)->middleware(['auth', 'verified']);
 	Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
+	Route::get('/payment/create-for-po/{id}',[PaymentController::class, 'createForPo'])->name('payments.create-for-po');
 	Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
+	Route::get('/payment/get-cancel-pay-num',[PaymentController::class,'getCancelPayNum'])->name('payments.get-cancel-pay-num');
+	Route::post('/payments/cancel',[PaymentController::class,'cancel'])->name('payments.cancel');
+	
+	/* ======================== Report ========================================  */
+	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
+	Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
+	Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
+	Route::get('/report/po/{id}',[ReportController::class, 'po'])->name('reports.po');
+	Route::get('/report/createPDF',[ReportController::class, 'createPDF'])->name('reports.createPDF');
+	Route::get('/report/templatepr',[ReportController::class, 'templatepr'])->name('reports.templatepr');
+	Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
+	Route::get('/report/stocks',[ReportController::class, 'stocks'])->name('reports.stocks');
+	Route::get('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
 
 	/* ======================== UploadItem ======================================== */
 	Route::resource('upload-items', UploadItemController::class)->middleware(['auth', 'verified']);
@@ -416,8 +426,6 @@ Route::middleware([
 	
 
 	/* ======================== Misc Tenant Routes  ========================================  */
-	// IQBAL 28-feb-23
-	Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 	Route::get('/html', function () {
 		return view('blankhtml');
