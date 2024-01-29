@@ -130,6 +130,9 @@
 								<th class="">UOM</th>
 								<th class="text-end">Qty</th>
 								<th class="text-end">Price</th>
+								<th class="text-end">Subtotal</th>
+								<th class="text-end">Tax</th>
+								<th class="text-end">GST</th>
 								<th class="text-end">Amount</th>
 								<th class="">Action</th>
 							</tr>
@@ -138,7 +141,7 @@
 							@include('tenant.includes.pr.pr-line-add')
 
 							<tr class="">
-								<td colspan="6" class="text-end">
+								<td colspan="9" class="text-end">
 									<strong>TOTAL:</strong>
 								</td>
 								<td class="text-end">
@@ -156,10 +159,10 @@
 								</td>
 							</tr>
 							<tr class="">
-								<td colspan="6" class="">
+								<td colspan="8" class="">
 
 								</td>
-								<td class="">
+								<td colspan="2" class="">
 									<div class="mb-3 float-end">
 										<a class="btn btn-secondary" href="{{ url()->previous() }}"><i data-feather="x-circle"></i> Cancel</a>
 										<button type="submit" id="submit" name="action" value="save" class="btn btn-primary"><i data-feather="save"></i> Save</button>

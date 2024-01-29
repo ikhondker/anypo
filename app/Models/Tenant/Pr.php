@@ -20,6 +20,9 @@ use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
 use Illuminate\Database\Eloquent\Builder;
 
+use Illuminate\Support\Facades\Log;
+use DB;
+
 class Pr extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
@@ -41,6 +44,94 @@ class Pr extends Model
 		'closure_status'		=> ClosureStatusEnum::class,
 		'auth_status'	=> AuthStatusEnum::class,
 	];
+
+
+	/* ----------------- Functions ---------------------- */
+
+	public static function updateFcValues($id)
+	{
+
+		$setup = Setup::first();
+		$pr				= Pr::where('id', $id)->firstOrFail();
+		$rate = ExchangeRate::getRate($pr->currency, $setup->currency);
+
+
+		// populate Pr fc columns
+
+		Prl::where('pr_id', $pr->id)
+		->update([
+			'category_id'	=> $category_id,
+			'oem_id'		=> $oem_id,
+			'uom_id'		=> $uom_id,
+			'gl_type'		=> $gl_type,
+			'status'		=> InterfaceStatusEnum::VALIDATED->value,
+			]);
+
+
+		// Cancel All PO Lines
+			Prl::where('pr_id',$pr->id)
+				  ->update(['status' => ClosureStatusEnum::CANCELED->value]);
+
+		// update PR header
+		$pr				= Pr::where('id', $id)->firstOrFail();
+		$result= Prl::where('pr_id', $pr->id)->get( array(
+			DB::raw('SUM(sub_total) as sub_total'),
+			DB::raw('SUM(tax) as tax'),
+			DB::raw('SUM(gst) as gst'),
+			DB::raw('SUM(amount) as amount'),
+		));
+		
+		//Log::debug('Value of id=' . $rs);
+		//Log::debug('Value of tax=' . $r->tax);
+
+		foreach($result as $row) {
+			Log::debug('results sub_total ='. $row['sub_total']);
+			Log::debug('results tax ='. $row['tax']);
+			Log::debug('results gst ='. $row['gst']);
+			Log::debug('results amount ='. $row['amount']);
+
+			$pr->sub_total	= $row['sub_total'] ;
+			$pr->tax		= $row['tax'] ;
+			$pr->gst		= $row['gst'] ;
+			$pr->amount		= $row['amount'];
+		}
+	
+		$pr->save();
+
+		return 0;
+	}
+
+	public static function updatePrHeaderValue($id)
+	{
+
+		// update PR header
+		$pr				= Pr::where('id', $id)->firstOrFail();
+		$result= Prl::where('pr_id', $pr->id)->get( array(
+			DB::raw('SUM(sub_total) as sub_total'),
+			DB::raw('SUM(tax) as tax'),
+			DB::raw('SUM(gst) as gst'),
+			DB::raw('SUM(amount) as amount'),
+		));
+		
+		//Log::debug('Value of id=' . $rs);
+		//Log::debug('Value of tax=' . $r->tax);
+
+		foreach($result as $row) {
+			Log::debug('results sub_total ='. $row['sub_total']);
+			Log::debug('results tax ='. $row['tax']);
+			Log::debug('results gst ='. $row['gst']);
+			Log::debug('results amount ='. $row['amount']);
+
+			$pr->sub_total	= $row['sub_total'] ;
+			$pr->tax		= $row['tax'] ;
+			$pr->gst		= $row['gst'] ;
+			$pr->amount		= $row['amount'];
+		}
+	
+		$pr->save();
+
+		return 0;
+	}
 
 	/* ----------------- Scopes ------------------------- */
 

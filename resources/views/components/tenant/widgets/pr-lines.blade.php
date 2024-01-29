@@ -52,7 +52,9 @@
 									<td class="text-end"><x-tenant.list.my-number :value="$prl->gst"/></td>
 									<td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>
 									<td class="">
-										<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">Edit</a> |
+									
+										<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top"title="Edit"><i class="align-middle" data-feather="edit"></i>
+										</a>
 										<a href="{{ route('prls.destroy',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
 											<i class="align-middle" data-feather="trash-2"></i>
 										</a>
@@ -73,7 +75,6 @@
 						@if ($show)
 							<tr>
 								<td class="" colspan="5" scope="col">&nbsp;</td>
-								
 								<td class="text-end" scope="col"><strong>TOTAL:</strong></td>
 								<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->sub_total"/></strong></td>
 								<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->tax"/></strong></td>

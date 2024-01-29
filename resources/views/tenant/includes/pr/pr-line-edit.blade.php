@@ -49,6 +49,38 @@
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
+	
+	<td class="text-end">
+		<input type="number" step='0.01' min="1" class="form-control @error('sub_total') is-invalid @enderror"
+			style="text-align: right;"
+			name="sub_total" id="sub_total" placeholder="1.00"
+			value="{{ old('sub_total', $prl->sub_total ) }}"
+			required>
+		@error('sub_total')
+				<div class="text-danger text-xs">{{ $message }}</div>
+		@enderror
+	</td>
+	<td class="text-end">
+		<input type="number" step='0.01' min="1" class="form-control @error('tax') is-invalid @enderror"
+			style="text-align: right;"
+			name="tax" id="tax" placeholder="1.00"
+			value="{{ old('tax', $prl->tax ) }}"
+			required>
+		@error('tax')
+				<div class="text-danger text-xs">{{ $message }}</div>
+		@enderror
+	</td>
+	<td class="text-end">
+		<input type="number" step='0.01' min="1" class="form-control @error('gst') is-invalid @enderror"
+			style="text-align: right;"
+			name="gst" id="gst" placeholder="1.00"
+			value="{{ old('gst', $prl->gst ) }}"
+			required>
+		@error('gst')
+				<div class="text-danger text-xs">{{ $message }}</div>
+		@enderror
+	</td>
+
 	<td class="text-end">
 		<input type="number" step='0.01' min="1" class="form-control @error('prl_amount') is-invalid @enderror"
 			style="text-align: right;"

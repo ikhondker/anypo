@@ -85,21 +85,17 @@ class PrlController extends Controller
 		// get max line num for the
 		$line_num 						= Prl::where('pr_id', '=',$request->input('pr_id'))->max('line_num');
 		$request->merge(['line_num'		=> $line_num +1]);
-		$request->merge(['sub_total'	=> $request->input('prl_amount')]);
 		$request->merge(['amount'		=> $request->input('prl_amount')]);
 
+		//$request->merge(['sub_total'	=> $request->input('sub_total')]);
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
-		// TODO add line num
-
 		$prl = Prl::create($request->all());
+
 		// Write to Log
 		EventLog::event('Prl', $prl->id, 'create');
 
-		// update PR header
-		$pr 				= Pr::where('id', $prl->pr_id)->firstOrFail();
-		$prl_sum 			= Prl::where('pr_id', '=', $pr->id)->sum('amount');
-		$pr->amount			= $prl_sum;
-		$pr->save();
+		// 	update PR Header value
+		$result = Pr::updatePrHeaderValue($prl->pr_id);
 
 		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'Requisition line added successfully');
 	}
@@ -136,7 +132,7 @@ class PrlController extends Controller
 	{
 		$this->authorize('update', $prl);
 
-		$request->merge(['sub_total'	=> $request->input('prl_amount')]);
+		//$request->merge(['sub_total'	=> $request->input('prl_amount')]);
 		$request->merge(['amount'		=> $request->input('prl_amount')]);
 
 		//$request->validate();
@@ -148,20 +144,13 @@ class PrlController extends Controller
 		// Write to Log
 		EventLog::event('Prl', $prl->id, 'edit');
 
-		// update PR header
-		$pr				= Pr::where('id', $prl->pr_id)->firstOrFail();
-		$prl_sum		= Prl::where('pr_id', '=', $prl->pr_id)->sum('amount');
-		//$pr->sub_total	= $prl_sum;
-		//$pr->tax		= $request->input('tax');
-		//$pr->shipping	= $request->input('shipping');
-		//$pr->discount	= $request->input('discount');
-		$pr->amount		= $prl_sum ;
-		$pr->save();
+		// 	update PR Header value
+		$result = Pr::updatePrHeaderValue($prl->pr_id);
 
 		// Write to Log
 		EventLog::event('prl', $prl->id, 'update', 'summary', $prl->summary);
 
-		return redirect()->route('prs.show', $pr->id)->with('success', 'PR Line updated successfully');
+		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR Line updated successfully');
 	}
 
 	/**
@@ -176,8 +165,10 @@ class PrlController extends Controller
 
 		// update PR header
 		$pr = Pr::where('id', $prl->pr_id)->firstOrFail();
-		$pr->sub_total		= $pr->sub_total - $prl->amount;
-		$pr->amount			= $pr->amount - $prl->amount;
+		$pr->sub_total		= $pr->sub_total- $prl->sub_total;
+		$pr->tax			= $pr->tax 		- $prl->tax;
+		$pr->gst			= $pr->gst 		- $prl->gst;
+		$pr->amount			= $pr->amount 	- $prl->amount;
 		$pr->save();
 
 		// Write to Log

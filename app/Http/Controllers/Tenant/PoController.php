@@ -125,6 +125,8 @@ class PoController extends Controller
 		$request->merge(['amount'		=> $request->input('pol_amount')]);
 		$request->merge(['buyer_id'		=> auth()->user()->id]);
 		$request->merge(['requestor_id'	=> auth()->user()->id]);
+		$request->merge(['fc_currency'	=> $setup->currency]);
+
 
 		// User and HoD Can create only own department PO
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {

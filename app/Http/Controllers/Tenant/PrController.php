@@ -120,11 +120,11 @@ class PrController extends Controller
 	{
 		$this->authorize('create', Pr::class);
 		$setup = Setup::first();
-
+		// create PR with zero value and then update
 		// don't set dept_budget_id . It will be save during submissions
 		$request->merge(['requestor_id'	=> 	auth()->user()->id ]);
 		$request->merge(['pr_date'		=> date('Y-m-d H:i:s')]);
-		$request->merge(['amount'		=> $request->input('prl_amount')]);
+		$request->merge(['fc_currency'	=> $setup->currency]);
 
 		// User and HoD Can create only own department PR
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
@@ -142,7 +142,7 @@ class PrController extends Controller
 			//$request->merge(['logo'		=> $fileName ]);
 		}
 
-		// create prl lines TODO lin num
+		// create prl lines line with line number
 		$prl			= new Prl();
 		$prl->pr_id		= $pr->id;
 		$prl->line_num	= 1;	
@@ -151,12 +151,18 @@ class PrController extends Controller
 		$prl->summary	= $request->input('summary');
 		$prl->qty		= $request->input('qty');
 		$prl->price		= $request->input('price');
+		$prl->sub_total	= $request->input('sub_total');
+		$prl->tax		= $request->input('tax');
+		$prl->gst		= $request->input('gst');
 		$prl->amount	= $request->input('prl_amount');
 
 		$prl->save();
 		$prl_id			= $prl->id;
 		//Log::debug("wf_id = ".$wf_id );
 	
+		// 	update PR Header value
+		$result = Pr::updatePrHeaderValue($prl->pr_id);
+
 		switch ($request->input('action')) {
 			case 'save':
 				return redirect()->route('prs.show', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully.');
@@ -370,6 +376,7 @@ class PrController extends Controller
 			return redirect()->route('prs.index')->with('error', 'You can only submit if the status is '. AuthStatusEnum::DRAFT->value .' !');
 		}
 
+		// generate fc_currency value and check budget	
 		// check if budget created and set dept_budget_id
 		// check if budget for this year exists
 		$fy = Carbon::now()->format('Y');
@@ -410,7 +417,6 @@ class PrController extends Controller
 			if ($rate == 0) {
 				return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 			} else {
-
 				$pr->fc_currency		= $setup->currency;
 				$pr->fc_exchange_rate	= round($rate, 6);
 				// Log::debug("rate=".$rate);

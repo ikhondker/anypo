@@ -8,6 +8,7 @@ use App\Http\Controllers\Landlord\ProvisionController;
 
 // Models
 use App\Models\User;
+use App\Models\Tenant\Prl;
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
 
@@ -43,6 +44,34 @@ class TestController extends Controller
 	public function run()
 	{
 
+	
+		$rs= Prl::where('id',1001)->get( array(
+			DB::raw('SUM(sub_total) as sub_total'),
+			DB::raw('SUM(tax) as tax'),
+			DB::raw('SUM(gst) as gst'),
+			DB::raw('SUM(amount) as amount'),
+		));
+		
+		Log::debug('Value of id=' . $rs);
+		//Log::debug('Value of tax=' . $r->tax);
+
+		foreach($rs as $r) {
+			Log::debug('results sub_total ='. $r['sub_total']);
+			Log::debug('results tax ='. $r['tax']);
+			Log::debug('results gst ='. $r['gst']);
+			Log::debug('results amount ='. $r['amount']);
+			}
+
+		$sql = "SELECT SUM(sub_total) as sub_total, SUM(tax) as tax  FROM prls WHERE id = :ID";
+		$results = DB::select($sql,['ID'=>1001]);
+
+		Log::debug('Value of results=' . print_r($results));
+		//Log::debug('Value of tax=' . $result->tax);
+		foreach($results as $result) {
+			Log::debug('r tax ='. $result['tax']);
+			}
+
+		exit;
 		$tenant = Tenant::where('id', 'demo1')->first();
 		// run seeders in tenant
 		$tenant->run(function () {
