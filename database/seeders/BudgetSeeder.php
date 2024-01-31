@@ -34,7 +34,7 @@ class BudgetSeeder extends Seeder
 				'name'			=> 'Budget for 2024',
 				'start_date'	=> Carbon::parse('2024-01-01'),
 				'end_date'		=> Carbon::parse('2024-12-31'),
-				'amount'		=> 7000,  //TODO remove
+				'amount'		=> 700000,  //TODO remove
 			],
 			// [
 			//	 'fy'			=> '2025',

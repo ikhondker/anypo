@@ -24,6 +24,14 @@ class PolFactory extends Factory
 	 */
 	public function definition(): array
 	{
+
+		$qty				= $this->faker->numberBetween(1,10);
+		$price				= $this->faker->numberBetween(10,20);
+		$sub_total			= $qty*$price;
+		$tax				= $this->faker->numberBetween(20,40);
+		$gst				= $this->faker->numberBetween(20,40);
+		$fc_exchange_rate	= 125.20;
+
 		return [
 			'po_id'				=> Po::inRandomOrder()->first()->id,
 			'requestor_id'		=> User::inRandomOrder()->first()->id,
@@ -31,16 +39,17 @@ class PolFactory extends Factory
 			'summary'			=> $this->faker->sentence,
 			'item_id'			=> Item::inRandomOrder()->first()->id,
 			'notes'				=> $this->faker->paragraph,
-			'qty'				=> $this->faker->numberBetween(1,50),
+			'qty'				=> $qty,
 			'uom_id'			=> Uom::inRandomOrder()->first()->id,
-			'price'				=> $this->faker->numberBetween(1000,20000),
-			'sub_total'			=> $this->faker->numberBetween(1000,20000),
-			'tax'				=> $this->faker->numberBetween(100,500),
-			'gst'				=> $this->faker->numberBetween(200,1000),
-			'amount'			=> $this->faker->numberBetween(1000,25000),
-			'fc_currency'		=> 'BDT',
-			'fc_exchange_rate'	=> $this->faker->numberBetween(100,120),
-			'fc_amount'			=> $this->faker->numberBetween(15000,25000),
+			'price'				=> $price,
+			'sub_total'			=> $sub_total,
+			'tax'				=> $tax,
+			'gst'				=> $gst,
+			'amount'			=> $sub_total + $tax + $gst,
+			'fc_sub_total'		=> $sub_total * $fc_exchange_rate,
+			'fc_tax'			=> $tax * $fc_exchange_rate,
+			'fc_gst'			=> $gst * $fc_exchange_rate,
+			'fc_amount'			=> ($sub_total + $tax + $gst) * $fc_exchange_rate,
 		];
 	}
 }

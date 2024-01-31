@@ -28,37 +28,37 @@ class DeptBudgetSeeder extends Seeder
 			[
 				'budget_id'			=> Budget::inRandomOrder()->first()->id,
 				'dept_id'			=> '1001',
-				'amount'			=> 1000,
+				'amount'			=> 10000000,
 			],
 			[
 				'budget_id'			=> Budget::inRandomOrder()->first()->id,
 				'dept_id'			=> '1002',
-				'amount'			=> 1000,
+				'amount'			=> 100000,
 			],
 			[
 				'budget_id'			=> Budget::inRandomOrder()->first()->id,
 				'dept_id'			=> '1003',
-				'amount'			=> 1000,
+				'amount'			=> 100000,
 			],
 			[
 				'budget_id'			=> Budget::inRandomOrder()->first()->id,
 				'dept_id'			=> '1004',
-				'amount'			=> 1000,
+				'amount'			=> 100000,
 			],
 			[
 				'budget_id'			=> Budget::inRandomOrder()->first()->id,
 				'dept_id'			=> '1005',
-				'amount'			=> 1000,
+				'amount'			=> 100000,
 			],
 			[
 				'budget_id'			=> Budget::inRandomOrder()->first()->id,
 				'dept_id'			=> '1006',
-				'amount'			=> 1000,
+				'amount'			=> 100000,
 			],
 			[
 				'budget_id'			=> Budget::inRandomOrder()->first()->id,
 				'dept_id'			=> '1007',
-				'amount'			=> 1000,
+				'amount'			=> 100000,
 			],
 		  ];
 		//

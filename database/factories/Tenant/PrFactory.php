@@ -23,6 +23,12 @@ class PrFactory extends Factory
 	 */
 	public function definition(): array
 	{
+
+		$sub_total			= $this->faker->numberBetween(1000,20000);
+		$tax				= $this->faker->numberBetween(100,500);
+		$gst				= $this->faker->numberBetween(200,1000);
+		$fc_exchange_rate	= 125.20;
+
 		return [
 			'summary'			=> $this->faker->sentence,
 			'requestor_id'		=> User::inRandomOrder()->first()->id,
@@ -33,13 +39,16 @@ class PrFactory extends Factory
 			'currency'			=> 'USD',
 			'pr_date'			=> $this->faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now', $timezone = null),
 			'notes'				=> $this->faker->paragraph,
-			'sub_total'			=> $this->faker->numberBetween(1000,20000),
-			'tax'				=> $this->faker->numberBetween(100,500),
-			'gst'				=> $this->faker->numberBetween(200,1000),
-			'amount'			=> $this->faker->numberBetween(15000,25000),
-			
-			'fc_exchange_rate'	=> $this->faker->numberBetween(100,120),
-			'fc_amount'			=> $this->faker->numberBetween(15000,25000),
+			'sub_total'			=> $sub_total,
+			'tax'				=> $tax,
+			'gst'				=> $gst,
+			'amount'			=> $sub_total + $tax + $gst,
+			'fc_currency'		=> 'BDT',
+			'fc_exchange_rate'	=> $fc_exchange_rate,
+			'fc_sub_total'		=> $sub_total * $fc_exchange_rate,
+			'fc_tax'			=> $tax * $fc_exchange_rate,
+			'fc_gst'			=> $gst * $fc_exchange_rate,
+			'fc_amount'			=> ($sub_total + $tax + $gst) * $fc_exchange_rate,
 		];
 	}
 }

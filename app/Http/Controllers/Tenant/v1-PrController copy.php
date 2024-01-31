@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
+
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
 use App\Http\Requests\Tenant\StorePrRequest;
@@ -17,6 +18,7 @@ use App\Models\User;
 use App\Models\Tenant\Prl;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
+
 
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Admin\Attachment;
@@ -402,12 +404,32 @@ class PrController extends Controller
 		}
 
 		// 	Populate functional currency values
-		$result = Pr::updatePrFcValues($pr->id);
-		
-		if ($result == 0) {
-			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
-		} 
-	
+		$result = Pr::updatePrFcValues($prl->pr_id);
+
+		//  Populate Function currency amounts
+		$setup = Setup::first();
+		// PR in functional currency
+		//dd($pr,$setup);
+		if ($pr->currency == $setup->currency) {
+			$pr->fc_currency 		= $setup->currency;
+			$pr->fc_exchange_rate 	= 1;
+			$pr->fc_amount			= $pr->amount;
+			$pr->save();
+		} else {
+			$rate = ExchangeRate::getRate($pr->currency, $setup->currency);
+			if ($rate == 0) {
+				return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+			} else {
+				$pr->fc_currency		= $setup->currency;
+				$pr->fc_exchange_rate	= round($rate, 6);
+				// Log::debug("rate=".$rate);
+				// Log::debug("fc_exchange_rate=".$pr->fc_exchange_rate);
+				// Log::debug("amount=".$pr->amount);
+				$pr->fc_amount = round($pr->amount * $pr->fc_exchange_rate, 2);
+				$pr->save();
+			}
+		}
+
 		//  Check and book Budget
 		$retcode = CheckBudget::checkAndBookPr($pr->id);
 		//Log::debug("retcode = ".$retcode );
@@ -493,14 +515,14 @@ class PrController extends Controller
 		$pr->fc_currency		= $sourcePr->fc_currency;
 		$pr->fc_exchange_rate	= $sourcePr->fc_exchange_rate;
 		$pr->fc_amount			= $sourcePr->fc_amount;
-		$pr->status				= ClosureStatusEnum::OPEN->value;
+		$pr->closure_status		= ClosureStatusEnum::OPEN->value;
 		$pr->auth_status		= AuthStatusEnum::DRAFT->value;
 		$pr->save();
 		$pr_id					= $pr->id;
 
 		// copy lines into prls
-		$sql= "INSERT INTO prls( pr_id, line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, closure_status ) 
-		SELECT ".$pr->id.",line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, '".ClosureStatusEnum::OPEN->value."'  
+		$sql= "INSERT INTO prls( pr_id, line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, vat, amount, status ) 
+		SELECT ".$pr->id.",line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, vat, amount, '".ClosureStatusEnum::OPEN->value."'  
 		FROM prls WHERE 
 		pr_id= ".$sourcePr->id." ;";
 		//Log::debug('sql=' . $sql);
@@ -548,8 +570,8 @@ class PrController extends Controller
 		$po_id				= $po->id;
 		
 		// copy prls into pols
-		$sql= "INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, closure_status ) 
-		SELECT ".$po_id.",line_num, summary, item_id, uom_id,  qty, price, sub_total, tax, gst, amount, notes, '".ClosureStatusEnum::OPEN->value."'  
+		$sql= "INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, vat, amount, notes, status ) 
+		SELECT ".$po_id.",line_num, summary, item_id, uom_id,  qty, price, sub_total, tax, vat, amount, notes, '".ClosureStatusEnum::OPEN->value."'  
 		FROM prls WHERE 
 		pr_id= ".$pr->id." ;";
 		//Log::debug('sql=' . $sql);
