@@ -48,6 +48,8 @@
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
+	<td class="text-end">N/A
+	</td>
 	<td class="text-end">
 		<input type="number" step='0.01' min="1" class="form-control @error('price') is-invalid @enderror"
 			style="text-align: right;"
@@ -59,12 +61,42 @@
 		@enderror
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('pol_amount') is-invalid @enderror"
+		<input type="number" step='0.01' min="1" class="form-control @error('sub_total') is-invalid @enderror"
 			style="text-align: right;"
-			name="pol_amount" id="pol_amount" placeholder="1.00"
-			value="{{ old('pol_amount','1.00') }}"
+			name="sub_total" id="sub_total" placeholder="1.00"
+			value="{{ old('sub_total','1.00') }}"
 			required>
-		@error('pol_amount')
+		@error('sub_total')
+				<div class="text-danger text-xs">{{ $message }}</div>
+		@enderror
+	</td>
+	<td class="text-end">
+		<input type="number" step='0.01' min="1" class="form-control @error('tax') is-invalid @enderror"
+			style="text-align: right;"
+			name="tax" id="tax" placeholder="1.00"
+			value="{{ old('tax','1.00') }}"
+			required>
+		@error('tax')
+				<div class="text-danger text-xs">{{ $message }}</div>
+		@enderror
+	</td>
+	<td class="text-end">
+		<input type="number" step='0.01' min="1" class="form-control @error('gst') is-invalid @enderror"
+			style="text-align: right;"
+			name="gst" id="gst" placeholder="1.00"
+			value="{{ old('gst','1.00') }}"
+			required>
+		@error('gst')
+				<div class="text-danger text-xs">{{ $message }}</div>
+		@enderror
+	</td>
+	<td class="text-end">
+		<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror"
+			style="text-align: right;"
+			name="amount" id="amount" placeholder="1.00"
+			value="{{ old('amount','1.00') }}"
+			required>
+		@error('amount')
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>

@@ -50,7 +50,7 @@ class Pr extends Model
 
 
 	/* ----------------- Functions ---------------------- */
-
+	// populate functions currency columns in PR header nad lines
 	public static function updatePrFcValues($pr_id)
 	{
 
@@ -78,10 +78,10 @@ class Pr extends Model
 			}
 
 			DB::statement("UPDATE prls SET 
-				fc_sub_total	= round(fc_sub_total * ".$rate.",2),
-				fc_tax			= round(fc_tax * ".$rate.",2),
-				fc_gst			= round(fc_gst * ".$rate.",2),
-				fc_amount		= round(fc_amount * ".$rate.",2)
+				fc_sub_total	= round(sub_total * ".$rate.",2),
+				fc_tax			= round(tax * ".$rate.",2),
+				fc_gst			= round(gst * ".$rate.",2),
+				fc_amount		= round(amount * ".$rate.",2)
 				WHERE pr_id = ".$pr_id."");
 		}
 
@@ -110,6 +110,7 @@ class Pr extends Model
 		return 1;
 	}
 
+	// populate PR headed amount columns based on child rows
 	public static function updatePrHeaderValue($id)
 	{
 
@@ -123,11 +124,6 @@ class Pr extends Model
 		));
 		
 		foreach($result as $row) {
-			// Log::debug('results sub_total ='. $row['sub_total']);
-			// Log::debug('results tax ='. $row['tax']);
-			// Log::debug('results gst ='. $row['gst']);
-			// Log::debug('results amount ='. $row['amount']);
-
 			$pr->sub_total	= $row['sub_total'] ;
 			$pr->tax		= $row['tax'] ;
 			$pr->gst		= $row['gst'] ;

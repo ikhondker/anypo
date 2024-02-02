@@ -1,5 +1,5 @@
 <tr class="">
-	<td colspan="6" class="text-end">
+	<td colspan="10" class="text-end">
 		<strong>TOTAL:</strong>
 	</td>
 	<td class="text-end">
@@ -17,10 +17,10 @@
 	</td>
 </tr>
 <tr class="">
-	<td colspan="6" class="">
+	<td colspan="8" class="">
 
 	</td>
-	<td class="text-end">
+	<td colspan="3" class="text-end">
 		<a class="btn btn-secondary" href="{{ url()->previous() }}"><i data-feather="x-circle"></i> Cancel</a>
 		<button type="submit" id="submit" name="action" value="save" class="btn btn-primary"><i data-feather="save"></i> Save1</button>
 		<button type="submit" id="submit" name="action" value="save_add" class="btn btn-primary"><i data-feather="save"></i> Save and Add Line</button>

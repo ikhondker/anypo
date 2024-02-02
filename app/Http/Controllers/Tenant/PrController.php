@@ -124,6 +124,12 @@ class PrController extends Controller
 		$request->merge(['pr_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['fc_currency'	=> $setup->currency]);
 
+		// as this is the first line pr value will be same as prl values
+		$request->merge(['sub_total'	=> $request->input('sub_total')]);
+		$request->merge(['tax'			=> $request->input('tax')]);
+		$request->merge(['gst'			=> $request->input('gst')]);
+		$request->merge(['amount'		=> $request->input('amount')]);
+
 		// User and HoD Can create only own department PR
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
 			$request->merge(['dept_id'		=> auth()->user()->dept_id]);
@@ -152,7 +158,7 @@ class PrController extends Controller
 		$prl->sub_total	= $request->input('sub_total');
 		$prl->tax		= $request->input('tax');
 		$prl->gst		= $request->input('gst');
-		$prl->amount	= $request->input('prl_amount');
+		$prl->amount	= $request->input('amount');
 
 		$prl->save();
 		$prl_id			= $prl->id;
@@ -489,10 +495,14 @@ class PrController extends Controller
 		$pr->supplier_id		= $sourcePr->supplier_id;
 		$pr->notes				= $sourcePr->notes;
 		$pr->currency			= $sourcePr->currency;
+
+		$pr->sub_total			= $sourcePr->sub_total;
+		$pr->tax				= $sourcePr->tax;
+		$pr->gst				= $sourcePr->gst;
 		$pr->amount				= $sourcePr->amount;
 		$pr->fc_currency		= $sourcePr->fc_currency;
-		$pr->fc_exchange_rate	= $sourcePr->fc_exchange_rate;
-		$pr->fc_amount			= $sourcePr->fc_amount;
+		//$pr->fc_exchange_rate	= $sourcePr->fc_exchange_rate;
+		//$pr->fc_amount			= $sourcePr->fc_amount;
 		$pr->status				= ClosureStatusEnum::OPEN->value;
 		$pr->auth_status		= AuthStatusEnum::DRAFT->value;
 		$pr->save();
@@ -515,7 +525,7 @@ class PrController extends Controller
 	public function convertPo(Pr $pr)
 	{
 		$this->authorize('convert', $pr);
-
+		// TODO
 		// if ($pr->auth_status->value <> AuthStatusEnum::APPROVED->value) {
 		// 	return redirect()->route('prs.show',$pr->id)->with('error', 'You can only convert to PO if Requisition status is '. AuthStatusEnum::DRAFT->value .' !');
 		// }
@@ -527,7 +537,7 @@ class PrController extends Controller
 		$pr = Pr::where('id', $pr->id)->first();
 		//  don't set dept_budget_id . It will be save during submissions
 		//  Populate Function currency amounts during submit
-		$po				= new Po;
+		$po					= new Po;
 		$po->summary		= $pr->summary;
 		$po->buyer_id		= auth()->user()->id;
 		$po->po_date		= now();
@@ -540,18 +550,26 @@ class PrController extends Controller
 		$po->supplier_id	= $pr->supplier_id;
 		$po->notes			= $pr->notes;
 		$po->currency		= $pr->currency;
+		$po->fc_currency	= $pr->fc_currency;
+
+		$po->sub_total		= $pr->sub_total;
+		$po->tax			= $pr->tax;
+		$po->gst			= $pr->gst;
 		$po->amount			= $pr->amount;
 
-		$po->closure_status	= ClosureStatusEnum::OPEN->value;
+		$po->status			= ClosureStatusEnum::OPEN->value;
 		$po->auth_status	= AuthStatusEnum::DRAFT->value;
 		$po->save();
 		$po_id				= $po->id;
 		
 		// copy prls into pols
-		$sql= "INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, closure_status ) 
-		SELECT ".$po_id.",line_num, summary, item_id, uom_id,  qty, price, sub_total, tax, gst, amount, notes, '".ClosureStatusEnum::OPEN->value."'  
-		FROM prls WHERE 
-		pr_id= ".$pr->id." ;";
+		$sql= "INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes,
+		requestor_id, dept_id, unit_id, closure_status ) 
+		SELECT ".$po_id.",prl.line_num, prl.summary, prl.item_id, prl.uom_id,  prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
+		pr.requestor_id, pr.dept_id, pr.unit_id,'".ClosureStatusEnum::OPEN->value."'  
+		FROM prls prl,prs pr
+		WHERE pr.id=prl.pr_id
+		AND pr_id= ".$pr->id." ;";
 		//Log::debug('sql=' . $sql);
 		DB::INSERT($sql);
 

@@ -10,6 +10,7 @@ use App\Http\Requests\Tenant\UpdateReportRequest;
 
 
 # Models
+
 use App\Models\User;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
@@ -48,7 +49,7 @@ class ReportController extends Controller
 	public function index()
 	{
 
-		$reports = Report::query();
+		$reports = Report::query(); 
 		if (request('term')) {
 			$reports->where('name', 'Like', '%'.request('term').'%');
 		}
@@ -120,7 +121,7 @@ class ReportController extends Controller
 	 */
 	public function update(UpdateReportRequest $request, Report $report)
 	{
-		Log::debug('I am here 1');
+		//Log::debug('I am here 1');
 
 		//$report_id	= $request->input('report_id');
 		$start_date			= $request->input('start_date');
@@ -145,6 +146,9 @@ class ReportController extends Controller
 			case '1003':
 				return self::r1003();
 				break;
+			case '1004':
+					return self::r1004($start_date, $end_date, $dept_id);
+					break;	
 			case '1006':
 				return self::r1006($start_date, $end_date, $dept_id);
 				break;
@@ -191,15 +195,17 @@ class ReportController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function r1006($start_date, $end_date, $dept_id)
+	public function r1004($start_date, $end_date, $dept_id)
 	{
 		
 		$this->authorize('run',Report::class);
-		$report 	= Report::where('id', '1006')->firstOrFail();
+		$report 	= Report::where('id', '1004')->firstOrFail();
 
 		// Log::debug('start_date='.$start_date);
 		// Log::debug('end_date='.$end_date);
 		// Log::debug('dept_id='.$dept_id);
+		Log::debug("I am here 1");
+		
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
@@ -232,7 +238,7 @@ class ReportController extends Controller
 			'prls' 		=> $prls,
 		];
 
-		$pdf = PDF::loadView('tenant.reports.formats.1006', $data);
+		$pdf = PDF::loadView('tenant.reports.formats.1004', $data);
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
@@ -245,15 +251,18 @@ class ReportController extends Controller
 		//todo auth check
 		//todo if pr exists
 		//Log::debug('storage_path()='.storage_path());
-
-		// NOTE: Uses InvoicePolicy
-		//$this->authorize('pdfInvoice', $invoice);
-
-		$setup = Setup::first();
-		$report 	= Report::where('id', '1003')->firstOrFail();
-		$pr = Pr::with('requestor')->where('id', $id)->firstOrFail();
-		$prls = Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 		
+		//Log::debug('Value of id=' . $id);
+		// NOTE: Uses InvoicePolicy
+		// $this->authorize('pdfInvoice', $invoice);
+
+		$setup 		= Setup::first();
+		$report 	= Report::where('id', '1002')->firstOrFail();
+		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
+		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
+		
+		Log::debug('I AM HER 1');
+
 		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
 
 		$data = [
@@ -272,6 +281,8 @@ class ReportController extends Controller
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
 		$pdf->output();
+
+		Log::debug('I AM HER 2');
 
 		// Get height and width of page
 		$canvas = $pdf->getDomPDF()->getCanvas();

@@ -11,9 +11,9 @@
 			<x-tenant.buttons.header.lists object="Po"/>
 			<x-tenant.buttons.header.create object="Po"/>
 			<x-tenant.buttons.header.edit object="Po" :id="$po->id"/>
-			<a href="{{ route('pols.add-line', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="plus"></i> Add Line</a>
+			<a href="{{ route('pols.createline', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="plus"></i> Add Line</a>
 			<a href="{{ route('pos.copy', $po->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
-				data-entity="" data-name="PR#{{ $po->id }}" data-status="Duplicate"
+				data-entity="" data-name="PO#{{ $po->id }}" data-status="Duplicate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate Order">
 				<i data-feather="printer"></i> Duplicate</a>
 			<a href="{{ route('payments.create-for-po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a>

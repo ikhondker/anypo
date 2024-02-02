@@ -82,12 +82,12 @@
 	</td>
 
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('prl_amount') is-invalid @enderror"
+		<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror"
 			style="text-align: right;"
-			name="prl_amount" id="prl_amount" placeholder="1.00"
-			value="{{ old('prl_amount',$prl->amount) }}"
+			name="amount" id="amount" placeholder="1.00"
+			value="{{ old('amount',$prl->amount) }}"
 			required>
-		@error('prl_amount')
+		@error('amount')
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>

@@ -47,7 +47,7 @@
 							@foreach ($payments as $payment)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
-								<td>{{ $payment->pay_date }}</td>
+								<td><x-tenant.list.my-date :value="$payment->pay_date"/></td>
 								<td>{{ $payment->po_id }}</td>
 								<td>{{ $payment->bank_account->ac_name }}</td>
 								<td>{{ $payment->cheque_no }}</td>

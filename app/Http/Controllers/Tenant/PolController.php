@@ -24,6 +24,7 @@ use App\Helpers\Export;
 # Packages
 # Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
 
 # Exceptions
 # Events
@@ -75,6 +76,8 @@ class PolController extends Controller
 	{
 		$this->authorize('create', Pol::class);
 
+		
+		Log::debug('po_id= ' . $request->input('po_id'));
 		// get Po detail 
 		$po 				= Po::where('id', $request->input('po_id'))->firstOrFail();
 
@@ -82,22 +85,30 @@ class PolController extends Controller
 		// get max line num for the
 		$line_num 						= Pol::where('po_id', '=',$po->id)->max('line_num');
 		$request->merge(['line_num'		=> $line_num +1]);
-		$request->merge(['sub_total'	=> $request->input('pol_amount')]);
-		$request->merge(['amount'		=> $request->input('pol_amount')]);
+		//$request->merge(['sub_total'	=> $request->input('pol_amount')]);
+		//$request->merge(['amount'		=> $request->input('pol_amount')]);
 		
 		$request->merge(['dept_id'		=> $po->dept_id]);
 		$request->merge(['requestor_id'	=> $po->requestor_id]);
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
+
 		$pol = Pol::create($request->all());
+
+		Log::debug('I AM HERE 1');
+
 		// Write to Log
 		EventLog::event('Pol', $pol->id, 'create');
 
-		// update PO header
-		$pol_sum 			= Pol::where('po_id', '=', $po->id)->sum('amount');
-		$po->amount			= $pol_sum;
-		$po->save();
+		// update PO Header value
+		$result = Po::updatePoHeaderValue($pol->po_id);
+		Log::debug('I AM HERE 2');
 
+		// $pol_sum 			= Pol::where('po_id', '=', $po->id)->sum('amount');
+		// $po->amount			= $pol_sum;
+		// $po->save();
+		Log::debug('I AM HERE 3');
 		return redirect()->route('pos.show', $pol->po_id)->with('success', 'Purchase Order line added successfully');
+
 	}
 
 	/**
@@ -115,7 +126,15 @@ class PolController extends Controller
 	 */
 	public function edit(Pol $pol)
 	{
-		//
+		$this->authorize('update', $pol);
+		// Write Event Log
+		//LogEvent('template',$template->id,'edit','template',$template->id);
+
+		$po = Po::where('id', $pol->po_id)->first();
+		$items = Item::getAll();
+		$uoms = Uom::primary()->get();
+
+		return view('tenant.pols.edit', with(compact('po', 'pol', 'items','uoms')));
 	}
 
 	/**
@@ -123,7 +142,28 @@ class PolController extends Controller
 	 */
 	public function update(UpdatePolRequest $request, Pol $pol)
 	{
-		//
+		$this->authorize('update', $pol);
+
+		//$request->merge(['sub_total'	=> $request->input('prl_amount')]);
+		//$request->merge(['amount'		=> $request->input('amount')]);
+		$request->merge(['amount'		=> $request->input('sub_total')+$request->input('tax')+$request->input('gst')]);
+
+		//$request->validate();
+		$request->validate([
+
+		]);
+		$pol->update($request->all());
+
+		// Write to Log
+		EventLog::event('Pol', $pol->id, 'edit');
+
+		// 	update PO Header value
+		$result = Po::updatePoHeaderValue($pol->po_id);
+
+		// Write to Log
+		EventLog::event('pol', $pol->id, 'update', 'summary', $pol->summary);
+
+		return redirect()->route('pos.show', $pol->po_id)->with('success', 'Purchase Order Line updated successfully');
 	}
 
 	/**

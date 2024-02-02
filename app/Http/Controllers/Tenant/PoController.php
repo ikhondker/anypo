@@ -122,10 +122,15 @@ class PoController extends Controller
 		// don't set dept_budget_id . It will be save during submissions
 		//$request->merge(['requestor_id'	=> 	auth()->id() ]);
 		$request->merge(['po_date'		=> date('Y-m-d H:i:s')]);
-		$request->merge(['amount'		=> $request->input('pol_amount')]);
 		$request->merge(['buyer_id'		=> auth()->user()->id]);
 		$request->merge(['requestor_id'	=> auth()->user()->id]);
 		$request->merge(['fc_currency'	=> $setup->currency]);
+		
+		// as this is the first line pr value will be same as pol values
+		$request->merge(['sub_total'	=> $request->input('sub_total')]);
+		$request->merge(['tax'			=> $request->input('tax')]);
+		$request->merge(['gst'			=> $request->input('gst')]);
+		$request->merge(['amount'		=> $request->input('amount')]);
 
 
 		// User and HoD Can create only own department PO
@@ -155,7 +160,10 @@ class PoController extends Controller
 		$pol->summary		= $request->input('summary');
 		$pol->qty			= $request->input('qty');
 		$pol->price			= $request->input('price');
-		$pol->amount		= $request->input('pol_amount');
+		$pol->sub_total		= $request->input('sub_total');
+		$pol->tax			= $request->input('tax');
+		$pol->gst			= $request->input('gst');
+		$pol->amount		= $request->input('amount');
 
 		$pol->save();
 		$pol_id			= $pol->id;
@@ -397,34 +405,16 @@ class PoController extends Controller
 			return redirect()->route('prs.index')->with('error', 'Department Budget is not defined for FY'.$fy.'. Please add budget and try again.');
 		}
 
-		//  Populate Function currency amounts
-		$setup = Setup::first();
-		// PO in functional currency
+		// 	Populate functional currency values
+		$result = Po::updatePoFcValues($po->id);
 
-		if ($po->currency == $setup->currency) {
-			$po->fc_currency 		= $setup->currency;
-			$po->fc_exchange_rate 	= 1;
-			$po->fc_amount			= $po->amount;
-			$po->save();
-		} else {
-			$rate = ExchangeRate::getRate($po->currency, $setup->currency);
-			if ($rate == 0) {
-				return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
-			} else {
-
-				$po->fc_currency		= $setup->currency;
-				$po->fc_exchange_rate	= round($rate, 6);
-				// Log::debug("rate=".$rate);
-				// Log::debug("fc_exchange_rate=".$po->fc_exchange_rate);
-				// Log::debug("amount=".$po->amount);
-				$po->fc_amount = round($po->amount * $po->fc_exchange_rate, 2);
-				$po->save();
-			}
-		}
+		if ($result == 0) {
+			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		} 
 
 		//  Check and book Budget
 		$retcode = CheckBudget::checkAndBookPo($po->id);
-		//Log::debug("retcode = ".$retcode );
+		Log::debug("retcode = ".$retcode );
 
 		switch ($retcode) {
 			case 'E001':
@@ -481,48 +471,52 @@ class PoController extends Controller
 	{
 		$this->authorize('view', $po);
 
-		$sourcePr = Pr::where('id', $po->id)->first();
-		$po				= new Pr;
+		$sourcePo = Po::where('id', $po->id)->first();
+		$po				= new Po;
 		
 		//  don't set dept_budget_id . It will be save during submissions
 		//  Populate Function currency amounts during submit
-		$po->summary			= $sourcePr->summary;
-		$po->pr_date			= now();
-		
+		$po->summary			= $sourcePo->summary;
+		$po->po_date			= now();
+		$po->buyer_id			= auth()->user()->id;
+
 		// User and Hod can copy into own department
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
 			$po->requestor_id	= auth()->user()->id;
 			$po->dept_id		= auth()->user()->dept_id;
 		} else {
-			$po->requestor_id	= $sourcePr->requestor_id;
-			$po->dept_id		= $sourcePr->dept_id;
+			$po->requestor_id	= $sourcePo->requestor_id;
+			$po->dept_id		= $sourcePo->dept_id;
 		}
 
-		$po->need_by_date		= $sourcePr->need_by_date;
-		$po->project_id			= $sourcePr->project_id;
-		$po->supplier_id		= $sourcePr->supplier_id;
-		$po->notes				= $sourcePr->notes;
-		$po->currency			= $sourcePr->currency;
-		$po->amount				= $sourcePr->amount;
-		$po->fc_currency		= $sourcePr->fc_currency;
-		$po->fc_exchange_rate	= $sourcePr->fc_exchange_rate;
-		$po->fc_amount			= $sourcePr->fc_amount;
-		$po->closure_status		= ClosureStatusEnum::OPEN->value;
+		$po->need_by_date		= $sourcePo->need_by_date;
+		$po->project_id			= $sourcePo->project_id;
+		$po->supplier_id		= $sourcePo->supplier_id;
+		$po->notes				= $sourcePo->notes;
+		$po->currency			= $sourcePo->currency;
+
+		$po->sub_total			= $sourcePo->sub_total;
+		$po->tax				= $sourcePo->tax;
+		$po->gst				= $sourcePo->gst;
+		$po->amount				= $sourcePo->amount;
+		$po->fc_currency		= $sourcePo->fc_currency;
+
+		$po->status				= ClosureStatusEnum::OPEN->value;
 		$po->auth_status		= AuthStatusEnum::DRAFT->value;
 		$po->save();
-		$pr_id					= $po->id;
+		$po_id					= $po->id;
 
 		// copy lines into prls
-		$sql= "INSERT INTO prls( pr_id, line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, vat, amount, status ) 
-		SELECT ".$po->id.",line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, vat, amount, '".ClosureStatusEnum::OPEN->value."'  
-		FROM prls WHERE 
-		pr_id= ".$sourcePr->id." ;";
+		$sql= "INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, closure_status ) 
+		SELECT ".$po->id.",line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, '".ClosureStatusEnum::OPEN->value."'  
+		FROM pols WHERE 
+		po_id= ".$sourcePo->id." ;";
 		//Log::debug('sql=' . $sql);
 		DB::INSERT($sql);
 
-		Log::debug('New PR created =' . $po->id);
+		Log::debug('New PO created =' . $po->id);
 		EventLog::event('po-copy', $po->id, 'copied');	// Write to Log
 
-		return redirect()->route('prs.show', $po->id)->with('success', 'Purchase Requisition #'.$pr_id.' created.');
+		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Requisition #'.$po_id.' created.');
 	}
 }

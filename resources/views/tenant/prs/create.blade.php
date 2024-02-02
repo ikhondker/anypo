@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title','Pr')
-@section('breadcrumb','Create Pr')
+@section('title','Requisition')
+@section('breadcrumb','Create Requisition')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Create PRequisition
+			Create Requisition
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr"/>
@@ -145,12 +145,12 @@
 									<strong>TOTAL:</strong>
 								</td>
 								<td class="text-end">
-									<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror"
+									<input type="number" step='0.01' min="1" class="form-control @error('pr_amount') is-invalid @enderror"
 										style="text-align: right;"
-										name="amount" id="amount" placeholder="1.00"
-										value="{{ old('amount','1.00') }}"
+										name="pr_amount" id="pr_amount" placeholder="1.00"
+										value="{{ old('pr_amount','1.00') }}"
 										required readonly>
-									@error('amount')
+									@error('pr_amount')
 											<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror
 								</td>

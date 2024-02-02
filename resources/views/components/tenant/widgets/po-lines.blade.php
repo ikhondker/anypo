@@ -80,7 +80,7 @@
 					@endif
 					@if ($show)
 						<tr>
-							<td class="" colspan="6" scope="col">&nbsp;</td>
+							<td class="" colspan="5" scope="col">&nbsp;</td>
 							<td class="text-end" scope="col"><strong>TOTAL:</strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->sub_total"/></strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->tax"/></strong></td>

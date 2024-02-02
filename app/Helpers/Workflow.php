@@ -38,7 +38,7 @@ use Illuminate\Support\Str;
 
 use App\Enum\EntityEnum;
 use App\Enum\WflActionEnum;
-
+use App\Enum\AuthStatusEnum;
 
 use DB;
 use Notification;
@@ -48,7 +48,6 @@ class Workflow
 	public static function submitWf($entity, $article_id)
 	{
 
-		
 		// dont need exception as can not save dept with hierarchy
 		switch ($entity) {
 			case EntityEnum::PR->value:
@@ -91,6 +90,8 @@ class Workflow
 			$wf->entity			= $entity;
 			$wf->article_id		= $article_id;
 			$wf->hierarchy_id	= $hierarchy_id;
+			$wf->auth_status 	= AuthStatusEnum::INPROCESS->value;
+
 			$wf->save();
 			$wf_id				= $wf->id;
 

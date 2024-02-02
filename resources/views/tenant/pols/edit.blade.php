@@ -10,16 +10,16 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po"/>
 			<x-tenant.buttons.header.create object="Po"/>
-			<x-tenant.buttons.header.edit object="Po" :id="$pr->id"/>
-			<x-tenant.buttons.header.pdf object="Po" :id="$pr->id"/>
-			<x-tenant.buttons.header.add-line object="Prl" :id="$pr->id"/>
+			<x-tenant.buttons.header.edit object="Po" :id="$po->id"/>
+			<x-tenant.buttons.header.pdf object="Po" :id="$po->id"/>
+			<x-tenant.buttons.header.add-line object="Pol" :id="$po->id"/>
 		@endslot
 	</x-tenant.page-header>
 	
 	@include('tenant.includes.po.view-po-header')
 
 	<!-- form start -->
-	<form action="{{ route('pols.update',$prl->id) }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('pols.update',$pol->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
 
@@ -31,8 +31,8 @@
 	<!-- /.form end -->
 
 	<!-- Approval History -->
-	@if ($pr->wf_id <> 0)
-		<x-tenant.widgets.approval-history id="{{ $pr->wf_id }}"/>
+	@if ($po->wf_id <> 0)
+		<x-tenant.wf.approval-history id="{{ $po->wf_id }}"/>
 	@endif
 	
 

@@ -136,7 +136,9 @@ class CheckBudget
 	
 	public static function checkAndBookPo($po_id)
 	{
-		
+
+		Log::debug("Inside checkAndBookPo");
+
 		$po = Po::where('id', $po_id)->first();
 
 		// check if dept_budget for this year exists
@@ -147,7 +149,7 @@ class CheckBudget
 		try {
 			$budget = Budget::primary()->where('fy', $fy)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
-			Log::debug("Inside ModelNotFoundException");
+			Log::debug("Inside checkAndBookPo ModelNotFoundException");
 			return 'E001';
 		}
 
@@ -161,6 +163,8 @@ class CheckBudget
 			//Log::debug("Inside ModelNotFoundException");
 			return 'E002';
 		}
+
+		Log::info(print_r($dept_budget, true));
 
 		// check if budget is available then update dept_budget
 		if (($dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po_issued) > $po->fc_amount) {

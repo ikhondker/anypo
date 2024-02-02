@@ -85,7 +85,7 @@ class PrlController extends Controller
 		// get max line num for the
 		$line_num 						= Prl::where('pr_id', '=',$request->input('pr_id'))->max('line_num');
 		$request->merge(['line_num'		=> $line_num +1]);
-		$request->merge(['amount'		=> $request->input('prl_amount')]);
+		
 
 		//$request->merge(['sub_total'	=> $request->input('sub_total')]);
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
@@ -133,7 +133,7 @@ class PrlController extends Controller
 		$this->authorize('update', $prl);
 
 		//$request->merge(['sub_total'	=> $request->input('prl_amount')]);
-		$request->merge(['amount'		=> $request->input('prl_amount')]);
+		$request->merge(['amount'		=> $request->input('sub_total')+$request->input('tax')+$request->input('gst')]);
 
 		//$request->validate();
 		$request->validate([

@@ -58,7 +58,6 @@
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
-
 	<td class="text-end">
 		<input type="number" step='0.01' min="1" class="form-control @error('sub_total') is-invalid @enderror"
 			style="text-align: right;"
@@ -90,12 +89,12 @@
 		@enderror
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('prl_amount') is-invalid @enderror"
+		<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror"
 			style="text-align: right;"
-			name="prl_amount" id="prl_amount" placeholder="1.00"
-			value="{{ old('prl_amount','1.00') }}"
+			name="amount" id="amount" placeholder="1.00"
+			value="{{ old('amount','1.00') }}"
 			required>
-		@error('prl_amount')
+		@error('amount')
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>

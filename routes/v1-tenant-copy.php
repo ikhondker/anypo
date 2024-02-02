@@ -380,8 +380,7 @@ Route::middleware([
 	Route::resource('pols', PolController::class)->middleware(['auth', 'verified']);
 	Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
 	Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
-	Route::get('/pols/createline/{id}',[PolController::class, 'addLine'])->name('pols.createline');
-	
+	Route::get('/pols/add-line/{id}',[PolController::class, 'addLine'])->name('pols.add-line');
 
 	/* ======================== Receipt ======================================== */
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);

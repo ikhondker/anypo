@@ -20,13 +20,12 @@
 	<form action="{{ route('pols.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-	<!-- widget-pr-lines -->
-	<x-tenant.widgets.po-lines id="{{ $po->id }}" :add="true"/>
-	<!-- /.widget-pr-lines -->
+		<!-- widget-pr-lines -->
+		<x-tenant.widgets.po-lines id="{{ $po->id }}" :add="true"/>
+		<!-- /.widget-pr-lines -->
 
 	</form>
 	<!-- /.form end -->
-
 		
 @endsection
 

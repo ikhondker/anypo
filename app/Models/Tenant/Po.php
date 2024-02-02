@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
+use App\Helpers\ExchangeRate;
+
 use App\Models\Tenant\Pol;
+use App\Models\Tenant\Admin\Setup;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
@@ -19,7 +22,10 @@ use App\Models\Tenant\Lookup\Currency;
 use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
 use Illuminate\Database\Eloquent\Builder;
+ 
+use Illuminate\Support\Facades\Log;
 
+use DB;
 
 class Po extends Model
 {
@@ -27,7 +33,7 @@ class Po extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'summary', 'buyer_id', 'po_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'submission_date', 'amount_paid', 'status', 'payment_status', 'auth_status', 'auth_date', 'auth_user_id', 'wf_key', 'hierarchy_id', 'pr_id', 'wf_id', 'updated_by', 'updated_at',
+		'summary', 'buyer_id', 'po_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'submission_date', 'amount_paid', 'status', 'payment_status', 'auth_status', 'auth_date', 'auth_user_id', 'wf_key', 'hierarchy_id', 'po_id', 'wf_id', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -43,12 +49,101 @@ class Po extends Model
 		'auth_status'	=> AuthStatusEnum::class,
 	];
 
+
+/* ----------------- Functions ---------------------- */
+	// populate functions currency columns in PO header nad lines
+	public static function updatePoFcValues($po_id)
+	{
+
+		$setup 	= Setup::first();
+		$po		= Po::where('id', $po_id)->firstOrFail();
+
+		Log::debug('updatePoFcValues =' . $po->currency.$setup->currency);
+
+		// populate fc columns for all pol lines
+		if ($po->currency == $setup->currency){
+			$rate = 1;
+			DB::statement("UPDATE pols SET 
+				fc_sub_total	= sub_total,
+				fc_tax			= tax,
+				fc_gst			= gst,
+				fc_amount		= amount
+				WHERE po_id = ".$po_id."");
+		} else {
+			$rate = round(ExchangeRate::getRate($po->currency, $setup->currency),6);
+			// update all pols fc columns
+			// update pr fc columns
+			// ERROR rate not found 
+			if ($rate == 0){
+				Log::error('pr.updatePrFcValues rate not found currency=' . $po->currency.' fc_currency='.$setup->currency);
+				return 0;
+			}
+
+			DB::statement("UPDATE pols SET 
+				fc_sub_total	= round(sub_total * ". $rate .",2),
+				fc_tax			= round(tax * ". $rate .",2),
+				fc_gst			= round(gst * ". $rate .",2),
+				fc_amount		= round(amount * ". $rate .",2)
+				WHERE po_id = ". $po_id);
+		}
+
+		// get prl summary
+		$result= Pol::where('po_id', $po_id)->get( array(
+			DB::raw('SUM(fc_sub_total) as fc_sub_total'),
+			DB::raw('SUM(fc_tax) as fc_tax'),
+			DB::raw('SUM(fc_gst) as fc_gst'),
+			DB::raw('SUM(fc_amount) as fc_amount'),
+		));
+		
+		//Log::debug('Value of id=' . $rs);
+		//Log::debug('Value of tax=' . $r->tax);
+
+		// update PR header
+		foreach($result as $row) {
+			$po->fc_exchange_rate	= $rate;
+			$po->fc_sub_total		= $row['fc_sub_total'] ;
+			$po->fc_tax				= $row['fc_tax'] ;
+			$po->fc_gst				= $row['fc_gst'] ;
+			$po->fc_amount			= $row['fc_amount'];
+		}
+	
+		$po->save();
+
+		return 1;
+	}
+
+	// populate PO headed amount columns based on child rows
+	public static function updatePoHeaderValue($id)
+	{
+
+		//Log::debug('updatePoHeaderValue id=' . $id);
+		// update PR header
+		$po				= Po::where('id', $id)->firstOrFail();
+		$result= Pol::where('po_id', $po->id)->get( array(
+			DB::raw('SUM(sub_total) as sub_total'),
+			DB::raw('SUM(tax) as tax'),
+			DB::raw('SUM(gst) as gst'),
+			DB::raw('SUM(amount) as amount'),
+		));
+		
+		foreach($result as $row) {
+			$po->sub_total	= $row['sub_total'] ;
+			$po->tax		= $row['tax'] ;
+			$po->gst		= $row['gst'] ;
+			$po->amount		= $row['amount'];
+		}
+	
+		$po->save();
+
+		return 0;
+	}
+
 	/* ----------------- Scopes ------------------------- */
 
-	//$this->count_total		= Pr::count();
-	//$this->count_approved	= Pr::where('auth_status',AuthStatusEnum::APPROVED->value )->count();
-	//$this->count_inprocess	= Pr::where('auth_status',AuthStatusEnum::INPROCESS->value )->count();
-	//$this->count_draft		= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
+	//$this->count_total		= Po::count();
+	//$this->count_approved		= Po::where('auth_status',AuthStatusEnum::APPROVED->value )->count();
+	//$this->count_inprocess	= Po::where('auth_status',AuthStatusEnum::INPROCESS->value )->count();
+	//$this->count_draft		= Po::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 
 	/**
 	 * Scope a query to all PR of a Tenant.
