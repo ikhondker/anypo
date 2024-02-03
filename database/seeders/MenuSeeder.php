@@ -89,15 +89,20 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'receipts.show','route_name' => 'receipts.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'receipts.create-for-pol','route_name' => 'receipts.index', 'node_name' => 'purchase'],
 
+			[ 'raw_route_name' => 'invoices.index','route_name' => 'invoices.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'invoices.show','route_name' => 'invoices.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'invoices.create-for-po','route_name' => 'invoices.index', 'node_name' => 'purchase'],
+
+			[ 'raw_route_name' => 'receipts.get-return-grn-num','route_name' => 'receipts.get-return-grn-num', 'node_name' => 'cancel'],
+
 			[ 'raw_route_name' => 'payments.index','route_name' => 'payments.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'payments.show','route_name' => 'payments.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'payments.create-for-po','route_name' => 'payments.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'payments.get-cancel-pay-num','route_name' => 'payments.get-cancel-pay-num', 'node_name' => 'cancel'],
 
 			[ 'raw_route_name' => 'prs.get-cancel-pr-num','route_name' => 'prs.get-cancel-pr-num', 'node_name' => 'cancel'],
 			[ 'raw_route_name' => 'pos.get-cancel-po-num','route_name' => 'pos.get-cancel-po-num', 'node_name' => 'cancel'],
-			[ 'raw_route_name' => 'receipts.get-return-grn-num','route_name' => 'receipts.get-return-grn-num', 'node_name' => 'cancel'],
-			[ 'raw_route_name' => 'payments.get-cancel-pay-num','route_name' => 'payments.get-cancel-pay-num', 'node_name' => 'cancel'],
-
+			
 			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],
 
 			[ 'raw_route_name' => 'projects.index','route_name' => 'projects.index', 'node_name' => 'master'],

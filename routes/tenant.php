@@ -48,14 +48,20 @@ use App\Http\Controllers\Tenant\Support\TicketController;
 
 use App\Http\Controllers\Tenant\BudgetController;
 use App\Http\Controllers\Tenant\DeptBudgetController;
+use App\Http\Controllers\Tenant\DeptBudgetUsagesController;
+
+
 use App\Http\Controllers\Tenant\DashboardController;
 use App\Http\Controllers\Tenant\NotificationController;
-use App\Http\Controllers\Tenant\PaymentController;
-use App\Http\Controllers\Tenant\PoController;
-use App\Http\Controllers\Tenant\PolController;
+
 use App\Http\Controllers\Tenant\PrController;
 use App\Http\Controllers\Tenant\PrlController;
+use App\Http\Controllers\Tenant\PoController;
+use App\Http\Controllers\Tenant\PolController;
 use App\Http\Controllers\Tenant\ReceiptController;
+use App\Http\Controllers\Tenant\InvoiceController;
+use App\Http\Controllers\Tenant\InvoiceLinesController;
+use App\Http\Controllers\Tenant\PaymentController;
 use App\Http\Controllers\Tenant\ReportController;
 
 
@@ -337,7 +343,12 @@ Route::middleware([
 	Route::post('/dept-budget/attach',[DeptBudgetController::class,'attach'])->name('dept-budgets.attach');
 	Route::get('/dept-budgets/detach/{deptBudget}',[DeptBudgetController::class,'detach'])->name('dept-budgets.detach');
    
-	/* ======================== PayMethod ======================================== */
+	/* ======================== DeptBudgetUsages ======================================== */
+	Route::resource('deptbudgetusages', DeptBudgetUsagesController::class)->middleware(['auth', 'verified']);
+	Route::get('/deptbudgetusages/export',[DeptBudgetUsagesController::class,'export'])->name('deptbudgetusages.export');
+	Route::get('/deptbudgetusages/delete/{deptbudgetusages}',[DeptBudgetUsagesController::class,'destroy'])->name('deptbudgetusages.destroy');
+
+		/* ======================== PayMethod ======================================== */
 	//Route::resource('pay-methods', PayMethodController::class)->middleware(['auth', 'verified']);
 	//Route::get('/pay-method/export',[PayMethodController::class,'export'])->name('pay-methods.export');
 	//Route::get('/pay-methods/delete/{payMethod}',[PayMethodController::class,'destroy'])->name('pay-methods.destroy');
@@ -390,6 +401,17 @@ Route::middleware([
 	Route::get('/receipt/create-for-pol/{id}',[ReceiptController::class,'createForPol'])->name('receipts.create-for-pol');
 	Route::get('/receipt/get-return-grn-num',[ReceiptController::class,'getCancelGrnNum'])->name('receipts.get-return-grn-num');
 	Route::post('/receipts/cancel',[ReceiptController::class,'cancel'])->name('receipts.cancel');
+	
+	/* ======================== Invoice ======================================== */
+	Route::resource('invoices', InvoiceController::class)->middleware(['auth', 'verified']);
+	Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
+	Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
+	Route::get('/invoices/create-for-po/{id}',[InvoiceController::class, 'createForPo'])->name('invoices.create-for-po');
+
+	/* ======================== InvoiceLines ======================================== */
+	Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
+	Route::get('/invoicelines/export',[InvoiceLinesController::class,'export'])->name('invoicelines.export');
+	Route::get('/invoicelines/delete/{invoicelines}',[InvoiceLinesController::class,'destroy'])->name('invoicelines.destroy');
 	
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class)->middleware(['auth', 'verified']);

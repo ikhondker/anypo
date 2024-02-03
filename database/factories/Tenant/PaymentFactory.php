@@ -5,7 +5,8 @@ namespace Database\Factories\Tenant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 Use App\Models\User;
-use App\Models\Tenant\Po;
+use App\Models\Tenant\Invoice;
+use App\Models\Tenant\Payment;
 use App\Models\Tenant\Lookup\BankAccount;
 
 /**
@@ -21,13 +22,14 @@ class PaymentFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'pay_date'			=> $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
+			'invoice_id'		=> Invoice::inRandomOrder()->first()->id,
+			'pay_date'			=> $this->faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now', $timezone = null),
 			'payee_id'			=> User::inRandomOrder()->first()->id,
-			'po_id'				=> Po::inRandomOrder()->first()->id,
 			'bank_account_id'	=> BankAccount::inRandomOrder()->first()->id,
 			'cheque_no'			=> $this->faker->numberBetween($min = 100000, $max = 900000),
 			'amount'			=> $this->faker->numberBetween(1000,50000),
 			'notes'				=> $this->faker->paragraph,
+			'currency'			=> 'BDT',
 			'fc_currency'		=> 'BDT',
 			'fc_exchange_rate'	=> $this->faker->numberBetween(100,120),
 			'fc_amount'			=> $this->faker->numberBetween(15000,25000),

@@ -22,6 +22,7 @@
 			<li class="sidebar-item {{ ($_route_name == 'prs.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="layout"></i>PR*</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'pos.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('pos.index') }}"><i class="align-middle" data-feather="layout"></i>PO*</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'receipts.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('receipts.index') }}"><i class="align-middle" data-feather="layout"></i>Receipts*</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'invoices.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('invoices.index') }}"><i class="align-middle" data-feather="layout"></i>Invoices*</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'payments.index' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('payments.index') }}"><i class="align-middle" data-feather="layout"></i>Payments*</a></li>
 		</ul>
 	</li>

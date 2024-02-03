@@ -99,16 +99,18 @@ class AuthServiceProvider extends ServiceProvider
 
 		'App\Models\Tenant\Budget'				=> 'App\Policies\Tenant\BudgetPolicy',
 		'App\Models\Tenant\DeptBudget'			=> 'App\Policies\Tenant\DeptBudgetPolicy',
+		'App\Models\Tenant\DeptBudgetLine'		=> 'App\Policies\Tenant\DeptBudgetLinePolicy',
 		'App\Models\Tenant\Notification'		=> 'App\Policies\Tenant\NotificationPolicy',
 		
 		'App\Models\Tenant\Po'					=> 'App\Policies\Tenant\PoPolicy',
 		'App\Models\Tenant\Pol'					=> 'App\Policies\Tenant\PolPolicy',
 		'App\Models\Tenant\Pr'					=> 'App\Policies\Tenant\PrPolicy',
 		'App\Models\Tenant\Prl'					=> 'App\Policies\Tenant\PrlPolicy',
+		'App\Models\Tenant\Invoice'				=> 'App\Policies\Tenant\InvoicePolicy',
+		'App\Models\Tenant\InvoiceLine'			=> 'App\Policies\Tenant\InvoiceLinePolicy',
 		'App\Models\Tenant\Payment'				=> 'App\Policies\Tenant\PaymentPolicy',
 		'App\Models\Tenant\Receipt' 			=> 'App\Policies\Tenant\ReceiptPolicy',
 		'App\Models\Tenant\Report' 				=> 'App\Policies\Tenant\ReportPolicy',
-		
 		
 		// 'App\Models\Tenant' => 'App\Policies\TenantPolicy',
 		// 'App\Models\User' => 'App\Policies\UserPolicy',

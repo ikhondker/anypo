@@ -16,17 +16,19 @@ return new class extends Migration
 	{
 		Schema::create('payments', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
+			$table->foreignId('invoice_id')->constrained('invoices');
 			$table->dateTime('pay_date')->useCurrent();
 			$table->foreignId('payee_id')->constrained('users');
-			$table->biginteger('po_id')->default(0);
 			//$table->string('summary')->nullable();
 			$table->foreignId('bank_account_id')->constrained('bank_accounts')->nullable();
 			$table->string('cheque_no');
-			$table->string('currency',3)->default('USD');
+			$table->string('currency',3);
 			$table->float('amount', 15, 2)->default(0);
-			$table->string('fc_currency',3)->default('USD');					// Functional Currency
+			$table->string('fc_currency',3);					// Functional Currency
 			$table->double('fc_exchange_rate', 15, 10)->default(1);
 			$table->float('fc_amount', 15, 2)->default(0);
+			$table->string('dr_account')->default('100001')->nullable();
+			$table->string('cr_account')->default('100001')->nullable();
 			//$table->foreignId('organization_id')->constrained('organizations');
 			//$table->biginteger('for_doc_type_id')->constrained('doc_types');
 			$table->string('for_entity',15)->default(EntityEnum::PO->value); 

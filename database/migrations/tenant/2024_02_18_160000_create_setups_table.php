@@ -30,6 +30,9 @@ return new class extends Migration
 			$table->string('website')->nullable();
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
+			$table->string('ac_liability')->default('200001');
+			$table->string('ac_accrual')->default('200002');
+			$table->string('ac_clearing')->default('200003');
 			$table->string('logo')->nullable()->default('logo.png');
 			$table->boolean('show_banner')->default(false); 
 			$table->text('banner_message')->nullable();
