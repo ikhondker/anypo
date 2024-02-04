@@ -33,7 +33,7 @@ class Country extends Model
 	];
 
 	
-	public static function getAll() {
+	public static function tbdgetAll() {
 		return Country::select('country','name')
 			->orderBy('name','asc')
 			->get();

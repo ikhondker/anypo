@@ -403,10 +403,15 @@ Route::middleware([
 	Route::post('/receipts/cancel',[ReceiptController::class,'cancel'])->name('receipts.cancel');
 	
 	/* ======================== Invoice ======================================== */
+
 	Route::resource('invoices', InvoiceController::class)->middleware(['auth', 'verified']);
+	Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
+
 	Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
 	Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
 	Route::get('/invoices/create-for-po/{id}',[InvoiceController::class, 'createForPo'])->name('invoices.create-for-po');
+	Route::get('/invoice/get-cancel-inv-num',[InvoiceController::class,'getCancelInvNum'])->name('invoices.get-cancel-inv-num');
+	Route::post('/invoices/cancel',[InvoiceController::class,'cancel'])->name('invoices.cancel');
 
 	/* ======================== InvoiceLines ======================================== */
 	Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
@@ -419,8 +424,9 @@ Route::middleware([
 	Route::get('/payment/create-for-po/{id}',[PaymentController::class, 'createForPo'])->name('payments.create-for-po');
 	Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
 	Route::get('/payment/get-cancel-pay-num',[PaymentController::class,'getCancelPayNum'])->name('payments.get-cancel-pay-num');
-	Route::post('/payments/cancel',[PaymentController::class,'cancel'])->name('payments.cancel');
-	
+	//Route::post('/payments/cancel',[PaymentController::class,'cancel'])->name('payments.cancel');
+	Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
+
 	/* ======================== Report ========================================  */
 	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
 	Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');

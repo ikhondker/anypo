@@ -24,7 +24,6 @@ return new class extends Migration
 			$table->string('cheque_no');
 			$table->string('currency',3);
 			$table->float('amount', 15, 2)->default(0);
-			$table->string('fc_currency',3);					// Functional Currency
 			$table->double('fc_exchange_rate', 15, 10)->default(1);
 			$table->float('fc_amount', 15, 2)->default(0);
 			$table->string('dr_account')->default('100001')->nullable();

@@ -1,20 +1,20 @@
 @extends('layouts.app')
-@section('title','Cancel Payment')
-@section('breadcrumb','Cancel Payment')
+@section('title','Cancel Invoice')
+@section('breadcrumb','Cancel Invoice')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Cancel Payment
+			Cancel Invoice
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Payment"/>
+			<x-tenant.buttons.header.lists object="Invoice"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form action="{{ route('payments.cancel') }}" method="POST">
+	<form action="{{ route('invoices.cancel') }}" method="POST">
 		@csrf
 
 		<div class="row">
@@ -22,7 +22,7 @@
 				
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Cancel Payment</h5>
+						<h5 class="card-title">Cancel Invoice</h5>
 						<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
 					</div>
 					<div class="card-body">
@@ -39,13 +39,13 @@
 							</div> --}}
 
 							<div class="mb-3 mt-4 row">
-								<label class="col-form-label col-sm-2 text-sm-right">Payment Number</label>
+								<label class="col-form-label col-sm-2 text-sm-right">Invoice ID</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control @error('payment_id') is-invalid @enderror"
-									name="payment_id" id="payment_id" placeholder="0000"
-									value="{{ old('payment_id', '' ) }}"
+									<input type="text" class="form-control @error('invoice_id') is-invalid @enderror"
+									name="invoice_id" id="invoice_id" placeholder="0000"
+									value="{{ old('invoice_id', '' ) }}"
 									required/>
-									@error('payment_id')
+									@error('invoice_id')
 										<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror
 								</div>

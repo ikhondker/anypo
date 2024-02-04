@@ -36,10 +36,12 @@
 								<th>PO#</th>
 								<th>Summary</th>
 								<th>Date</th>
-								<th>Buyer</th>
 								<th>Dept</th>
 								<th>Currency</th>
-								<th class="text-end">Amount</th>
+								<th class="text-end">PO Amount</th>
+								<th class="text-end">GRS Amount</th>
+								<th class="text-end">Invoice Amount</th>
+								<th class="text-end">Paid Amount</th>
 								<th>Approval</th>
 								<th>Status</th>
 								<th>Action</th>
@@ -51,10 +53,13 @@
 								<td>{{ $po->id }}</td>
 								<td><a class="text-info" href="{{ route('pos.show',$po->id) }}">{{ $po->summary }}</a></td>
 								<td><x-tenant.list.my-date :value="$po->po_date"/></td>
-								<td>{{ $po->requestor->name }}</td>
 								<td>{{ $po->relDept->name }}</td>
 								<td>{{ $po->currency }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$po->amount"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_grs"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_invoiced"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_paid"/></td>
+
 								<td><x-tenant.list.my-badge :value="$po->auth_status"/></td>
 								<td><x-tenant.list.my-badge :value="$po->status"/></td>
 								<td class="table-action">

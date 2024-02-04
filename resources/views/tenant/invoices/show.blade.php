@@ -31,6 +31,7 @@
 					<x-tenant.show.my-number	value="{{ $invoice->gst }}"/>			
 					<x-tenant.show.my-number	value="{{ $invoice->amount }}"/>
 					<x-tenant.show.my-number	value="{{ $invoice->paid_amount }}"/>
+					<x-tenant.show.my-text		value="{{ $invoice->poc->name }}"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->status }}" label="Status"/>
 					<x-tenant.show.my-text		value="{{ $invoice->notes }}"/>
 				</div>
@@ -51,6 +52,8 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
+
+	<x-tenant.widgets.inv-payments :id="$invoice->id" />
 
 @endsection
 

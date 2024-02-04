@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 use App\Enum\InvoiceStatusEnum;
+use App\Enum\PaymentStatusEnum;
 
 return new class extends Migration
 {
@@ -18,15 +19,16 @@ return new class extends Migration
 			$table->dateTime('inv_date')->useCurrent();
 			$table->foreignId('po_id')->constrained('pos');
 			$table->string('summary');
+			$table->foreignId('poc_id')->constrained('users');
 			$table->string('invoice_no');
-			$table->dateTime('invoice_date')->useCurrent();
+			$table->dateTime('invoice_date')->useCurrent(); 
 			$table->string('currency',3);
 			$table->float('sub_total', 15, 2)->default(0);
 			$table->float('tax',15,2)->default(0);
 			$table->float('gst',15,2)->default(0);
 			$table->float('amount', 15, 2)->default(0);
 			$table->float('paid_amount', 15, 2)->default(0);
-			$table->string('fc_currency',3);							// Functional Currency
+			//$table->string('fc_currency',3);							// Functional Currency
 			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
 			$table->float('fc_sub_total', 15, 2)->default(0);			// Functional Currency
 			$table->float('fc_tax',15,2)->default(0);					// Functional Currency
@@ -38,6 +40,9 @@ return new class extends Migration
 			$table->text('notes')->nullable();
 			/** ENUM */
 			$table->string('status')->default(InvoiceStatusEnum::DRAFT->value);;
+			/** end ENUM */
+			/** ENUM */
+			$table->string('payment_status')->default(PaymentStatusEnum::UNPAID->value);;
 			/** end ENUM */
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

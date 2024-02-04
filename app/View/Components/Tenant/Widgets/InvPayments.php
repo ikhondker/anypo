@@ -6,20 +6,18 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-//use App\Models\Tenant\Po;
-use App\Models\Tenant\Receipt;
+use App\Models\Tenant\Payment;
 
-
-class PoLineReceipts extends Component
+class InvPayments extends Component
 {
-	public $receipts;
+	public $payments;
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct($id)
 	{
-		$this->receipts 	= Receipt::where('pol_id', $id)->get()->all();
+		$this->payments 	= Payment::where('invoice_id', $id)->get()->all();
 	}
 
 	/**
@@ -27,6 +25,6 @@ class PoLineReceipts extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.po-line-receipts');
+		return view('components.tenant.widgets.inv-payments');
 	}
 }

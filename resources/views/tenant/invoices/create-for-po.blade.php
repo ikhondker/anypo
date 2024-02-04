@@ -6,7 +6,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Create Invoice
+			Invoices for PO #{{ $po->id }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.save/>
@@ -15,14 +15,15 @@
 	</x-tenant.page-header> 
 
 
-	@include('tenant.includes.po.view-po-header-basic')
+	@include('tenant.includes.po.view-po-header')
 	
+	<x-tenant.widgets.po-invoices :id="$po->id" />
+
 	<!-- form start -->
 	<form id="myform" action="{{ route('invoices.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		<input type="text" name="po_id" id="po_id" class="form-control" placeholder="ID" value="{{ old('po_id', $po->id ) }}" hidden>
 		
-
 		<div class="row">
 			<div class="col-6">
 				<div class="card">
@@ -33,11 +34,11 @@
 
 						<div class="mb-3">
 							<label class="form-label">Invoice No</label>
-							<input type="text" class="form-control @error('inv_no') is-invalid @enderror"
-								name="inv_no" id="inv_no" placeholder="Summary"
-								value="{{ old('inv_no', '' ) }}"
+							<input type="text" class="form-control @error('invoice_no') is-invalid @enderror"
+								name="invoice_no" id="invoice_no" placeholder="Summary"
+								value="{{ old('invoice_no', '' ) }}"
 								required/>
-							@error('inv_no')
+							@error('invoice_no')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
@@ -53,7 +54,29 @@
 							@enderror
 						</div>
 
-						
+						<div class="mb-3">
+							<label class="form-label">Invoice PoC</label>
+							<select class="form-control" name="poc_id" required>
+								<option value=""><< PoC Name >> </option>
+								@foreach ($pocs as $user)
+									<option value="{{ $user->id }}" {{ $user->id == old('poc_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+								@endforeach
+							</select>
+							@error('poc_id')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label">Invoice No</label>
+							<input type="text" class="form-control @error('currency') is-invalid @enderror"
+								name="currency" id="currency" placeholder="Summary"
+								value="{{ $po->currency }}"
+								readonly/>
+							@error('invoice_no')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
 
 						<div class="mb-3">
 							<label class="form-label">Amount</label>
@@ -85,6 +108,6 @@
 	</form>
 	<!-- /.form end -->
 	
-	<x-tenant.widgets.po-invoices :id="$po->id" />
+	
 
 @endsection

@@ -377,7 +377,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	*/
 
 	/* ----------------- Functions ---------------------- */
-	public static function getAdmins()
+	public static function xxgetAdmins()
 	{
 		return User::select('id', 'name')
 			->where('role', 'admin')
@@ -387,7 +387,7 @@ class User extends Authenticatable implements MustVerifyEmail
 			->get();
 	}
 
-	public static function getAll()
+	public static function xxgetAll()
 	{
 		return User::select('id', 'name')
 			->where('enable', true)
@@ -414,6 +414,15 @@ class User extends Authenticatable implements MustVerifyEmail
 	{
 		$query->where('seeded', false);
 	}
+
+	public function scopeAdmins(Builder $query): void
+	{
+		$query->where('role', UserRoleEnum::ADMIN->value)
+			->where('enable', true)
+			->where('seeded', false)
+			->orderBy('name', 'asc');
+	}
+
 
 	/**
 	 * Scope a query to only  non-seeded users.

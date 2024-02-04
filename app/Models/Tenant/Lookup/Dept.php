@@ -41,7 +41,7 @@ class Dept extends Model
 	}
 
 	/* ----------------- Functions ---------------------- */
-	public static function getAll()
+	public static function tbdgetAll()
 	{
 		return Dept::select('id', 'name')
 			->where('enable', true)

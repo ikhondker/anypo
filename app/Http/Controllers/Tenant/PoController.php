@@ -231,11 +231,11 @@ class PoController extends Controller
 	{
 		$this->authorize('update', $po);
 
-		$depts = Dept::getAll();
+		$depts = Dept::primary()->get();
 		
-		$suppliers = Supplier::getAll1();
-		$projects = Project::getAll();
-		$users = User::getAll();
+		$suppliers = Supplier::primary()->get();
+		$projects = Project::primary()->get();
+		$users = User::tenant()->get();
 
 		return view('tenant.pos.edit', compact('po', 'suppliers', 'depts', 'projects', 'users'));
 	}

@@ -32,7 +32,7 @@ class Category extends Model
 
 
 	/* ----------------- Functions ---------------------- */
-	public static function getAll()
+	public static function tbdgetAll()
 	{
 		return Category::select('id', 'name')
 			->where('enable', true)

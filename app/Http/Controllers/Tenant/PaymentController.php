@@ -168,9 +168,12 @@ class PaymentController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function cancel(StorePaymentRequest $request)
+	// public function cancel(StorePaymentRequest $request)
+	public function cancel(Payment $payment)
 	{
-		
+		Log::debug('Value of payment id=' . $payment->id);
+		exit;
+
 		$this->authorize('cancel',Payment::class);
 		
 		$payment_id = $request->input('payment_id');

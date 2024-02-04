@@ -74,4 +74,11 @@ class InvoicePolicy
 	{
 		//
 	}
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function cancel(User $user): bool
+	{
+		return $user->isAdmin() ;
+	}
 }

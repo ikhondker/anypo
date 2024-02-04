@@ -11,6 +11,8 @@ use App\Models\User;
 
 use App\Models\Tenant\Manage\UomClass;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class Item extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
@@ -19,14 +21,27 @@ class Item extends Model
 		'name', 'notes', 'code', 'sku', 'category_id', 'oem_id', 'uom_class_id', 'uom_id', 'gl_type', 'price', 'stock', 'reorder', 'photo', 'enable', 'updated_by', 'updated_at',
 	];
 
+
+	
+	/* ----------------- Scopes ------------------------- */
+	/**
+	 * Scope a query to only Tenant Active users.
+	*/
+	public function scopePrimary(Builder $query): void
+	{
+		$query->where('enable', true)
+			->orderBy('id', 'asc'); 
+	}
+
 	/* ----------------- Functions ---------------------- */
-	public static function getAll() {
+	public static function tbdgetAll() {
 		return Item::select('id', 'name')
 			->where('enable', true)
 			->orderBy('id', 'asc')
 			->get();
 	}
 
+	
 	
 	/* ----------------- HasMany ------------------------ */
 	public function prl() {

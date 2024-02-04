@@ -20,9 +20,8 @@
 namespace App\Enum;
 
 enum InvoiceStatusEnum:string{
-	case DUE		= 'draft';
+	case DRAFT		= 'draft';
 	case POSTED		= 'posted';
-	case PAID		= 'paid';
 	case CANCELED	= 'canceled';
 	case ERROR		= 'error';
 }

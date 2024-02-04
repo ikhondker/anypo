@@ -19,7 +19,7 @@ class Designation extends Model
 	];
 
 	/* ----------------- Functions ---------------------- */
-	public static function getAll() {
+	public static function tbdgetAll() {
 		return Designation::select('id','name')
 			->where('enable', true)
 			->orderBy('id','asc')

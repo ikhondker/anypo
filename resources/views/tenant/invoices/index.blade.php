@@ -37,9 +37,9 @@
 								<th>PO#</th>
 								<th>INV NO#</th>
 								<th>Summary</th>
-								<th>Amount</th>
 								<th>Currency</th>
-								<th>Booked By</th>
+								<th>Amount</th>
+								<th>Paid</th>
 								<th>Status</th>
 								<th>Action</th>
 							</tr>
@@ -52,9 +52,9 @@
 								<td>{{ $invoice->po_id }}</td>
 								<td>{{ $invoice->invoice_no }}</td>
 								<td>{{ $invoice->summary }}</td>
-								<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
 								<td>{{ $invoice->currency }}</td>
-								<td>{{ $invoice->creator_id }}</td>
+								<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$invoice->paid_amount"/></td>
 								<td><x-tenant.list.my-badge :value="$invoice->status"/></td>
 								<td class="table-action">
 									<a href="{{ route('invoices.show',$invoice->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">

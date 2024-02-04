@@ -30,7 +30,7 @@ class PayMethod extends Model
 	];
 
 	 /* ----------------- Functions ---------------------- */
-	 public static function getAll() {
+	 public static function tbdgetAll() {
 		return PayMethod::select('id','name')
 			->where('enable', true)
 			->orderBy('id','asc')

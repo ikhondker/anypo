@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
+use App\Models\User;
+
 use App\Models\Tenant\Invoice;
 use App\Http\Requests\Tenant\StoreInvoiceRequest;
 use App\Http\Requests\Tenant\UpdateInvoiceRequest;
@@ -14,6 +16,7 @@ use App\Models\Tenant\Po;
 use App\Enum\EntityEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\InvoiceStatusEnum;
+use App\Enum\PaymentStatusEnum;
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -38,8 +41,9 @@ class InvoiceController extends Controller
 		$this->authorize('create', Invoice::class);
 				
 		$po = Po::where('id', $po_id)->first();
-	
-		return view('tenant.invoices.create-for-po', with(compact('po')));
+		$pocs	= User::Tenant()->get();
+
+		return view('tenant.invoices.create-for-po', with(compact('po','pocs')));
 	}
 
 	/**
@@ -55,7 +59,7 @@ class InvoiceController extends Controller
 		}
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:
-				// buyer can see all payment of all his po's
+				// buyer can see all invoice of all his po's
 				$invoices = $invoices->ByPoBuyer(auth()->user()->id)->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
@@ -68,7 +72,7 @@ class InvoiceController extends Controller
 				break;
 			default:
 				$invoices = $invoices->ByUserAll()->paginate(10);
-				Log::debug("payment.index Other roles!");
+				Log::debug("invoice.index Other roles!");
 		}
 		return view('tenant.invoices.index', compact('invoices'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
@@ -76,9 +80,13 @@ class InvoiceController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create()
+	public function create(Po $po)
 	{
-		//
+		$this->authorize('create', Invoice::class);
+		Log::debug('Value of PO id in create=' . $po->id);		
+		//$po = Po::where('id', $po_id)->first();
+		$pocs	= User::Tenant()->get();
+		return view('tenant.invoices.create-for-po', with(compact('po','pocs')));
 	}
 
 	/**
@@ -87,23 +95,24 @@ class InvoiceController extends Controller
 	public function store(StoreInvoiceRequest $request)
 	{
 		$this->authorize('create', Invoice::class);
+		
+		//Log::debug('inside invoice .store');
 
-		$request->merge(['payee_id'	=> 	auth()->user()->id ]);
-		$payment = Invoice::create($request->all());
+		$invoice = Invoice::create($request->all());
 
 		// update PO header
-		$po 				= Po::where('id', $payment->po_id)->firstOrFail();
-		$po->amount			= $po->amount_paid + $payment->amount;
+		$po 					= Po::where('id', $invoice->po_id)->firstOrFail();
+		$po->amount_invoiced	= $po->amount_invoiced + $invoice->amount;
 		$po->save();
 
 		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'	=> $payment->id ]);
-			$request->merge(['entity'		=> EntityEnum::PAYMENT->value ]);
+			$request->merge(['article_id'	=> $invoice->id ]);
+			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
 			$attid = FileUpload::upload($request);
 		}
 
 		// Write to Log
-		EventLog::event('payment', $payment->id, 'create');
+		EventLog::event('invoice', $invoice->id, 'create');
 		return redirect()->route('invoices.index')->with('success', 'Invoice created successfully.');
 	}
 
@@ -154,7 +163,7 @@ class InvoiceController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function getCancelPayNum()
+	public function getCancelInvNum()
 	{
 
 		//$this->authorize('cancel',Invoice::class);
@@ -165,38 +174,37 @@ class InvoiceController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function cancel(StorePaymentRequest $request)
+	public function cancel(StoreInvoiceRequest $request)
 	{
 		
 		$this->authorize('cancel',Invoice::class);
 		
-		$payment_id = $request->input('payment_id');
+		$invoice_id = $request->input('invoice_id');
 
 		try {
-			$payment = Invoice::where('id', $payment_id)->firstOrFail();
-
+			$invoice = Invoice::where('id', $invoice_id)->firstOrFail();
 			
-			if ($payment->status <> PaymentStatusEnum::PAID->value) {
-				return back()->withError("You can only cancel payment with status paid!")->withInput();
+			if ($invoice->payment_status <> PaymentStatusEnum::UNPAID->value) {
+				return back()->withError("You can not cancel a paid Invoice! Please void Payments first!")->withInput();
 			}
 	
-			//  Reverse PO Invoice
-			$po 				= Po::where('id', $payment->po_id)->firstOrFail();
-			$po->amount			= $po->amount_paid - $payment->amount;
+			//  Reverse PO Invoiced amount
+			$po 				= Po::where('id', $invoice->po_id)->firstOrFail();
+			$po->amount_invoiced			= $po->amount_invoiced - $invoice->amount;
 			$po->save();
 
 			// cancel Invoice
-			Invoice::where('id', $payment->id)
-				->update(['status' => PaymentStatusEnum::VOID->value]);
+			Invoice::where('id', $invoice->id)
+				->update(['status' => InvoiceStatusEnum::CANCELED->value]);
 	
 			// Write to Log
-			EventLog::event('Invoice', $payment->id, 'void', 'id', $payment->id);
+			EventLog::event('Invoice', $invoice->id, 'cancel', 'id', $invoice->id);
 	
 			return redirect()->route('invoices.index')->with('success', 'Invoice canceled successfully.');
 		
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
-			return back()->withError("Invoice #".$payment_id." not Found!")->withInput();
+			return back()->withError("Invoice #".$invoice_id." not Found!")->withInput();
 		}
 	}
 

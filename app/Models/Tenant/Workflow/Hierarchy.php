@@ -19,7 +19,7 @@ class Hierarchy extends Model
 	];
 	
 	/* ----------------- Functions ---------------------- */
-	public static function getAll()
+	public static function tbdgetAll()
 	{
 		 return Hierarchy::select('id', 'name')
 			 ->where('enable', true)

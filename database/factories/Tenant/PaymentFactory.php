@@ -30,7 +30,6 @@ class PaymentFactory extends Factory
 			'amount'			=> $this->faker->numberBetween(1000,50000),
 			'notes'				=> $this->faker->paragraph,
 			'currency'			=> 'BDT',
-			'fc_currency'		=> 'BDT',
 			'fc_exchange_rate'	=> $this->faker->numberBetween(100,120),
 			'fc_amount'			=> $this->faker->numberBetween(15000,25000),
 		];

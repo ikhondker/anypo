@@ -34,14 +34,19 @@ return new class extends Migration
 			$table->float('tax',15,2)->default(0);
 			$table->float('gst',15,2)->default(0);
 			$table->float('amount', 15, 2)->default(0);
+			$table->dateTime('submission_date')->nullable();
 			$table->string('fc_currency',3);							// Functional Currency
 			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
 			$table->float('fc_sub_total', 15, 2)->default(0);			// Functional Currency
 			$table->float('fc_tax',15,2)->default(0);					// Functional Currency
 			$table->float('fc_gst',15,2)->default(0);					// Functional Currency
 			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
-			$table->dateTime('submission_date')->nullable();
+			$table->float('amount_grs')->default(0);
+			$table->float('fc_amount_grs')->default(0);
+			$table->float('amount_invoiced')->default(0);
+			$table->float('fc_amount_invoiced')->default(0);
 			$table->float('amount_paid')->default(0);
+			$table->float('fc_amount_paid')->default(0);
 			/** ENUM */
 			$table->string('status')->default(ClosureStatusEnum::OPEN->value);;
 			/** end ENUM */

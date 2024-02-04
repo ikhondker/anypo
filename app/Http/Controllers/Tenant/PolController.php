@@ -45,7 +45,7 @@ class PolController extends Controller
 
 		$po = Po::where('id', $po_id)->first();
 
-		$items = Item::getAll();
+		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
 		$uoms = Uom::primary()->get();
 

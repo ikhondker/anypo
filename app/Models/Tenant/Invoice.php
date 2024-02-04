@@ -15,7 +15,7 @@ class Invoice extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'end_date', 'notes', 'freeze', 'updated_by', 'updated_at',
+		'inv_date', 'po_id', 'summary', 'poc_id', 'invoice_no', 'invoice_date', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'paid_amount', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'fc_paid_amount', 'dr_account', 'cr_account', 'notes', 'status', 'payment_status', 'updated_by', 'updated_at',
 	];
 
 	/* ----------------- Scopes ------------------------- */
@@ -57,8 +57,8 @@ class Invoice extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
-	public function creator(){
-		return $this->belongsTo(User::class,'creator_id')->withDefault([
+	public function poc(){
+		return $this->belongsTo(User::class,'poc_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

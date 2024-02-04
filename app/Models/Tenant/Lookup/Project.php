@@ -29,7 +29,7 @@ class Project extends Model
 	}
 
 	/* ----------------- Functions ---------------------- */
-	public static function getAll() {
+	public static function tbdgetAll() {
 		return Project::select('id', 'name')
 			->orderBy('id', 'asc')
 			->get();

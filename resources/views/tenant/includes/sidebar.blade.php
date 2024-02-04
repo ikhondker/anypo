@@ -110,6 +110,7 @@
 				<li class="sidebar-item {{ ($_route_name == 'prs.get-cancel-pr-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.get-cancel-pr-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel PR*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'pos.get-cancel-po-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('pos.get-cancel-po-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel PO*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'receipts.get-return-grn-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('receipts.get-return-grn-num') }}"><i class="align-middle" data-feather="circle"></i>Return Goods*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'invoices.get-cancel-inv-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('invoices.get-cancel-inv-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel Invoice*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'payments.get-cancel-pay-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('payments.get-cancel-pay-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel Payment*</a></li>
 			</ul>
 		</li>

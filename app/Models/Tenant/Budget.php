@@ -39,7 +39,7 @@ class Budget extends Model
 
 
 	/* ----------------- Functions ---------------------- */
-	public static function getAll()
+	public static function tbdgetAll()
 	{
 		return Budget::select('id', 'name')
 			->where('freeze', false)
