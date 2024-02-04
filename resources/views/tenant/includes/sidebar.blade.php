@@ -101,20 +101,6 @@
 			</ul>
 		</li>
 
-		<li class="sidebar-item {{ ($_node_name == 'cancel' ? "active" : "") }}">
-			<a data-bs-target="#cancel" data-bs-toggle="collapse" class="sidebar-link collapsed">
-				<i class="align-middle" data-feather="grid"></i> 
-				<span class="align-middle">Cancellation</span>
-			</a>
-			<ul id="cancel" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'cancel' ? "show" : "") }}" data-bs-parent="#sidebar">
-				<li class="sidebar-item {{ ($_route_name == 'prs.get-cancel-pr-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('prs.get-cancel-pr-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel PR*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'pos.get-cancel-po-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('pos.get-cancel-po-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel PO*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'receipts.get-return-grn-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('receipts.get-return-grn-num') }}"><i class="align-middle" data-feather="circle"></i>Return Goods*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'invoices.get-cancel-inv-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('invoices.get-cancel-inv-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel Invoice*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'payments.get-cancel-pay-num' ? "active" : "") }}"><a class="sidebar-link" href="{{ route('payments.get-cancel-pay-num') }}"><i class="align-middle" data-feather="circle"></i>Cancel Payment*</a></li>
-			</ul>
-		</li>
-
 		<li class="sidebar-item {{ ($_node_name == 'admin' ? "active" : "") }}">
 			<a data-bs-target="#admin" data-bs-toggle="collapse" class="sidebar-link collapsed">
 				<i class="align-middle" data-feather="grid"></i> 

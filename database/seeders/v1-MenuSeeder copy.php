@@ -71,30 +71,37 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'menus.index','route_name' => 'menus.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'oems.index','route_name' => 'oems.index', 'node_name' => 'lookups'],
 		   
-			[ 'raw_route_name' => 'prs.index','route_name' => 'prs.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'prs.show','route_name' => 'prs.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'prs.edit','route_name' => 'prs.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'prs.create','route_name' => 'prs.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'prs.createline','route_name' => 'prs.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'prs.detach','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			
 			[ 'raw_route_name' => 'pos.index','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.show','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.edit','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.create','route_name' => 'pos.index', 'node_name' => 'purchase'],
 
+
+			[ 'raw_route_name' => 'prs.index','route_name' => 'prs.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'prs.show','route_name' => 'prs.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'prs.edit','route_name' => 'prs.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'prs.create','route_name' => 'prs.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'prs.createline','route_name' => 'prs.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'prs.detach','route_name' => 'prs.index', 'node_name' => 'purchase'],
+
 			[ 'raw_route_name' => 'receipts.index','route_name' => 'receipts.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'receipts.show','route_name' => 'receipts.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'receipts.create','route_name' => 'receipts.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'receipts.create-for-pol','route_name' => 'receipts.index', 'node_name' => 'purchase'],
 
 			[ 'raw_route_name' => 'invoices.index','route_name' => 'invoices.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'invoices.show','route_name' => 'invoices.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'invoices.create','route_name' => 'invoices.index', 'node_name' => 'purchase'],
-			
+			[ 'raw_route_name' => 'invoices.create-for-po','route_name' => 'invoices.index', 'node_name' => 'purchase'],
+
+			[ 'raw_route_name' => 'receipts.get-return-grn-num','route_name' => 'receipts.get-return-grn-num', 'node_name' => 'cancel'],
+
 			[ 'raw_route_name' => 'payments.index','route_name' => 'payments.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'payments.show','route_name' => 'payments.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'payments.create','route_name' => 'payments.index', 'node_name' => 'purchase'],
-			
+			[ 'raw_route_name' => 'payments.create-for-po','route_name' => 'payments.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'payments.get-cancel-pay-num','route_name' => 'payments.get-cancel-pay-num', 'node_name' => 'cancel'],
+
+			[ 'raw_route_name' => 'prs.get-cancel-pr-num','route_name' => 'prs.get-cancel-pr-num', 'node_name' => 'cancel'],
+			[ 'raw_route_name' => 'pos.get-cancel-po-num','route_name' => 'pos.get-cancel-po-num', 'node_name' => 'cancel'],
 			
 			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],
 

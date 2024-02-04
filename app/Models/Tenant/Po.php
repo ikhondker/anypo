@@ -21,6 +21,7 @@ use App\Models\Tenant\Lookup\Currency;
 
 use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
+
 use Illuminate\Database\Eloquent\Builder;
  
 use Illuminate\Support\Facades\Log;
@@ -45,6 +46,7 @@ class Po extends Model
 		'deleted_at'	=> 'datetime',
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
+		'po_date'			=> 'date',
 		'closure_status'		=> ClosureStatusEnum::class,
 		'auth_status'	=> AuthStatusEnum::class,
 	];

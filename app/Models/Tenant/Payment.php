@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
+
+use App\Enum\PaymentStatusEnum;
+
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Lookup\BankAccount;
 
@@ -19,7 +22,19 @@ class Payment extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'pay_date', 'payee_id', 'po_id', 'bank_account_id', 'cheque_no', 'currency', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_amount', 'for_entity', 'notes', 'status', 'updated_by', 'updated_at',
+		'invoice_id', 'pay_date', 'payee_id', 'bank_account_id', 'cheque_no', 'currency', 'amount', 'fc_exchange_rate', 'fc_amount', 'dr_account', 'cr_account', 'for_entity', 'notes', 'status', 'updated_by', 'updated_at',
+	];
+
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array<string, string>
+	 */
+	protected $casts = [
+		'updated_at'		=> 'datetime',
+		'created_at'		=> 'datetime',
+		'pay_date'			=> 'date',
+		'status'			=> PaymentStatusEnum::class
 	];
 
 	/* ----------------- Scopes ------------------------- */

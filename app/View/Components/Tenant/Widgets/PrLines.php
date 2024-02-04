@@ -29,7 +29,7 @@ class PrLines extends Component
 	 */
 	public function __construct($id, $add=false, $edit=false, $show=false, $pid=0)
 	{
-		$this->items 	= Item::getAll();
+		$this->items 	= Item::All();
 		$this->uoms 	= Uom::primary()->get();
 
 		//$this->selected_prl_id = ($selected_prl_id == 0) ? 0 : $selected_prl_id  ;

@@ -101,12 +101,12 @@ class PrController extends Controller
 	{
 		$this->authorize('create', Pr::class);
 
-		$depts = Dept::getAll();
-		$items = Item::getAll();
+		$depts = Dept::primary()->get();
+		$items = Item::primary()->get();
+		$suppliers = Supplier::primary()->get();
+		$projects = Project::primary()->get();
 		$uoms = Uom::primary()->get();
-		$suppliers = Supplier::getAll1();
-		$projects = Project::getAll();
-
+		
 		return view('tenant.prs.create', compact('suppliers', 'depts', 'items','uoms', 'projects'));
 
 	}
@@ -231,11 +231,11 @@ class PrController extends Controller
 	{
 		$this->authorize('update', $pr);
 
-		$depts = Dept::getAll();
+		$depts = Dept::primary()->get();
 		
-		$suppliers = Supplier::getAll1();
-		$projects = Project::getAll();
-		$users = User::getAll();
+		$suppliers = Supplier::primary()->get();
+		$projects = Project::primary()->get();
+		$users = User::tenant()->get();
 
 		return view('tenant.prs.edit', compact('pr', 'suppliers', 'depts', 'projects', 'users'));
 	}
@@ -301,7 +301,7 @@ class PrController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function getCancelPrNum()
+	public function xxgetCancelPrNum()
 	{
 
 		$this->authorize('cancel', Pr::class);
@@ -314,21 +314,22 @@ class PrController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function cancel(StorePrRequest $request)
+	public function cancel(Pr $pr)
 	{
-		
+
 		$this->authorize('cancel', Pr::class);
-		$pr_id= $request->input('pr_id');
+	
+		$pr_id= $pr->id;
 
 		try {
 			$pr = Pr::where('id', $pr_id)->firstOrFail();
 
-			if ($pr->auth_status == AuthStatusEnum::DRAFT->value) {
+			if ($pr->auth_status->value == AuthStatusEnum::DRAFT->value) {
 				return back()->withError("Please delete DRAFT Requisition if needed!")->withInput();
 				//return redirect()->route('prs.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
 			}
 	
-			if ($pr->auth_status <> AuthStatusEnum::APPROVED->value) {
+			if ($pr->auth_status->value <> AuthStatusEnum::APPROVED->value) {
 				return back()->withError("Only APPROVED Purchase Requisition can be canceled!")->withInput();
 				//return redirect()->route('prs.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
 			}
@@ -348,7 +349,13 @@ class PrController extends Controller
 	
 			// cancel PR
 			Pr::where('id', $pr_id)
-				->update(['status' => ClosureStatusEnum::CANCELED->value]);
+				->update([
+					'sub_total' 	=> 0,
+					'tax' 			=> 0,
+					'gst' 			=> 0,
+					'amount' 		=> 0,
+					'status' 		=> ClosureStatusEnum::CANCELED->value
+				]);
 	
 			// Write to Log
 			EventLog::event('Pr', $pr->id, 'cancel', 'id', $pr->id);
@@ -525,10 +532,10 @@ class PrController extends Controller
 	public function convertPo(Pr $pr)
 	{
 		$this->authorize('convert', $pr);
-		// TODO
-		// if ($pr->auth_status->value <> AuthStatusEnum::APPROVED->value) {
-		// 	return redirect()->route('prs.show',$pr->id)->with('error', 'You can only convert to PO if Requisition status is '. AuthStatusEnum::DRAFT->value .' !');
-		// }
+		
+		if ($pr->auth_status->value <> AuthStatusEnum::APPROVED->value) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only convert to PO if Requisition status is '. AuthStatusEnum::DRAFT->value .' !');
+		}
 
 		if ($pr->po_id <> 0) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'Requisition already converted to PO #'. $pr->po_id .' !');

@@ -40,7 +40,7 @@ class ReceiptController extends Controller
 	 * @param  \App\Models\Pol  $pol
 	 * @return \Illuminate\Http\Response
 	 */
-	public function createForPol($pol_id)
+	public function xxcreateForPol($pol_id)
 	{
 		$this->authorize('create', Receipt::class);
 
@@ -89,9 +89,16 @@ class ReceiptController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create()
+	public function create(Pol $pol)
 	{
-		//
+		$this->authorize('create', Receipt::class);
+
+		//$pol = Pol::where('id', $pol_id)->first();
+		$po = Po::where('id', $pol->po_id)->first();
+		$warehouses = Warehouse::primary()->get();
+
+		return view('tenant.receipts.create-for-pol', with(compact('po','pol','warehouses')));
+
 	}
 
 	/**
@@ -176,7 +183,7 @@ class ReceiptController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function getCancelGrnNum()
+	public function xxgetCancelGrnNum()
 	{
 
 		$this->authorize('cancel',Receipt::class);
@@ -187,30 +194,36 @@ class ReceiptController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function cancel(StoreReceiptRequest $request)
+	public function cancel(Receipt $receipt)
 	{
+		$this->authorize('cancel', Receipt::class);
 		
-		$this->authorize('cancel',Receipt::class);
-		$receipt_id = $request->input('receipt_id');
+		$receipt_id=$receipt->id;
+
+		Log::debug('Value of receipt_id=' . $receipt_id);
 
 		try {
 			$receipt = Receipt::where('id', $receipt_id)->firstOrFail();
 
-			if ($receipt->status <> ReceiptStatusEnum::RECEIVED->value) {
+			Log::debug('Value of receipt_id 22222=' . $receipt_id);
+			if ($receipt->status->value <> ReceiptStatusEnum::RECEIVED->value) {
 				return back()->withError("You can only cancel Receipt with status received!")->withInput();
 			}
 	
 			// update POL rcv quantity
-			$pol 				= Pol::where('id', $receipt_id)->firstOrFail();
+			$pol 				= Pol::where('id', $receipt->pol_id)->firstOrFail();
 			$pol->received_qty	= $pol->received_qty - $receipt->qty;
 			$pol->save();
 			
 			// Cancel Receipt
 			Receipt::where('id', $receipt_id)
-				->update(['status' => ReceiptStatusEnum::CANCELED->value]);
+				->update([
+					'qty' => 0,
+					'status' => ReceiptStatusEnum::CANCELED->value
+					]);
 		
 			// Write to Log
-			EventLog::event('Receipt', $receipt_id, 'cancel', 'id', $receipt_id);
+			EventLog::event('receipt', $receipt_id, 'cancel', 'id', $receipt_id);
 	
 			return redirect()->route('receipts.index')->with('success', 'Receipts canceled successfully.');
 		

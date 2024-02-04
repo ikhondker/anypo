@@ -14,15 +14,15 @@
 		@endslot
 	</x-tenant.page-header> 
 
-
-	@include('tenant.includes.po.view-po-header-basic')
+	@include('tenant.includes.po.view-po-header')
 	
+	<x-tenant.widgets.inv-payments :id="$invoice->id" />
+
 	<!-- form start -->
 	<form id="myform" action="{{ route('payments.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
-		<input type="text" name="po_id" id="po_id" class="form-control" placeholder="ID" value="{{ old('po_id', $po->id ) }}" hidden>
+		<input type="text" name="invoice_id" id="invoice_id" class="form-control" placeholder="ID" value="{{ old('invoice_id', $invoice->id ) }}" hidden>
 		
-
 		<div class="row">
 			<div class="col-6">
 				<div class="card">
@@ -54,7 +54,16 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-
+						<div class="mb-3">
+							<label class="form-label">Currency</label>
+							<input type="text" class="form-control @error('currency') is-invalid @enderror"
+								name="currency" id="currency" placeholder="Summary"
+								value="{{ $po->currency }}"
+								readonly/>
+							@error('invoice_no')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
 						<div class="mb-3">
 							<label class="form-label">Cheque/Ref No</label>
 							<input type="text" class="form-control @error('cheque_no') is-invalid @enderror"
@@ -96,6 +105,6 @@
 	</form>
 	<!-- /.form end -->
 	
-	<x-tenant.widgets.po-payments :id="$po->id" />
+	
 
 @endsection

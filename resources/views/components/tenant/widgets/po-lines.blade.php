@@ -59,7 +59,7 @@
 									<a href="{{ route('pols.edit',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 										<i class="align-middle" data-feather="edit"></i></a>
 
-									<a href="{{ route('receipts.create-for-pol',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
+									<a href="{{ route('receipts.create',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
 										<i class="align-middle" data-feather="check-circle"></i></a>
 
 									<a href="{{ route('pols.destroy',$pol->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">

@@ -35,10 +35,21 @@
 						<div class="mb-3">
 							<label class="form-label">Invoice No</label>
 							<input type="text" class="form-control @error('invoice_no') is-invalid @enderror"
-								name="invoice_no" id="invoice_no" placeholder="Summary"
+								name="invoice_no" id="invoice_no" placeholder="XXXXX"
 								value="{{ old('invoice_no', '' ) }}"
 								required/>
 							@error('invoice_no')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label">Invoice Date</label>
+							<input type="date" class="form-control @error('invoice_date') is-invalid @enderror"
+								name="invoice_date" id="invoice_date" placeholder=""
+								value="{{ old('invoice_date', date('Y-m-01') ) }}"
+								required/>
+							@error('invoice_date')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
@@ -66,9 +77,22 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
+				
+
+						
+					</div>
+				</div>
+			</div>
+			<!-- end col-6 -->
+			<div class="col-6">
+				<div class="card">
+					<div class="card-header">
+						<h5 class="card-title">Invoice Info</h5>
+					</div>
+					<div class="card-body">
 
 						<div class="mb-3">
-							<label class="form-label">Invoice No</label>
+							<label class="form-label">Currency</label>
 							<input type="text" class="form-control @error('currency') is-invalid @enderror"
 								name="currency" id="currency" placeholder="Summary"
 								value="{{ $po->currency }}"
@@ -88,18 +112,13 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-
 						<x-tenant.create.notes/>
-
+						
 						<x-tenant.attachment.create/>
-
+						
 						<x-tenant.widgets.submit/>
 					</div>
 				</div>
-			</div>
-			<!-- end col-6 -->
-			<div class="col-6">
-
 			</div>
 			<!-- end col-6 -->
 		</div>

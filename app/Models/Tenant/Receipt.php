@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
+use App\Enum\ReceiptStatusEnum;
+
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 use App\Models\Tenant\Lookup\Warehouse;
@@ -21,6 +23,19 @@ class Receipt extends Model
 
 	protected $fillable = [
 		'receive_date', 'rcv_type', 'pol_id', 'warehouse_id', 'receiver_id', 'qty', 'notes', 'status', 'updated_by', 'updated_at',
+	];
+
+
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array<string, string>
+	 */
+	protected $casts = [
+		'updated_at'		=> 'datetime',
+		'created_at'		=> 'datetime',
+		'receive_date'		=> 'date',
+		'status'			=> ReceiptStatusEnum::class
 	];
 
 	/* ----------------- Scopes ------------------------- */

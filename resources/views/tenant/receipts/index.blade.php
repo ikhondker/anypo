@@ -8,7 +8,7 @@
 			Receipt Lists
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Receipt"/>
+			{{-- <x-tenant.buttons.header.create object="Receipt"/> --}}
 		@endslot
 	</x-tenant.page-header>
 

@@ -301,34 +301,24 @@ class PoController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function getCancelPoNum()
-	{
-
-		$this->authorize('cancel',Po::class);
-		
-		return view('tenant.pos.cancel');
-	}
-
-	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function cancel(StorePoRequest $request)
+	public function cancel(Po $po)
 	{
 		
 		$this->authorize('cancel',Po::class);
-		$po_id= $request->input('po_id');
+		//$po_id= $request->input('po_id');
+		$po_id = $po->id;
 
 		try {
 			$po = Po::where('id',$po_id )->firstOrFail();
 
-			if ($po->auth_status == AuthStatusEnum::DRAFT->value) {
+			if ($po->auth_status->value == AuthStatusEnum::DRAFT->value) {
 				//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
 				return back()->withError("Please delete DRAFT Requisition if needed!")->withInput();
 			}
 	
-			if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+			if ($po->auth_status->value <> AuthStatusEnum::APPROVED->value) {
 				return back()->withError("Only APPROVED Purchase Order can be canceled!!")->withInput();
 				//return redirect()->route('pos.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
 			}
@@ -356,7 +346,13 @@ class PoController extends Controller
 	
 			// Cancel PO
 			Po::where('id', $po->id)
-				->update(['status' => ClosureStatusEnum::CANCELED->value]);
+				->update([
+					'sub_total' 	=> 0,
+					'tax' 			=> 0,
+					'gst' 			=> 0,
+					'amount' 		=> 0,
+					'status' => ClosureStatusEnum::CANCELED->value
+				]);
 	
 			// TODO open the PR
 				

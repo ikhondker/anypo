@@ -8,7 +8,8 @@
 			Invoice Lists
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Invoice"/>
+			{{-- <x-tenant.buttons.header.create object="Invoice"/> --}}
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -41,6 +42,7 @@
 								<th>Amount</th>
 								<th>Paid</th>
 								<th>Status</th>
+								<th>Pay Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -56,11 +58,14 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$invoice->paid_amount"/></td>
 								<td><x-tenant.list.my-badge :value="$invoice->status"/></td>
+								<td><x-tenant.list.my-badge :value="$invoice->payment_status"/></td>
 								<td class="table-action">
-									<a href="{{ route('invoices.show',$invoice->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+									<a href="{{ route('invoices.show',$invoice->id) }}" class="me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i>
 									</a>
-									<a href="{{ route('depts.destroy', $invoice->id) }}" class="me-2 modal-boolean-advance" 
+									<a href="{{ route('payments.create',$invoice->id) }}" class="me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice">
+										<i class="align-middle" data-feather="dollar-sign"></i></a>
+									<a href="{{ route('depts.destroy', $invoice->id) }}" class="me-1 modal-boolean-advance" 
 										data-entity="Invoice" data-name="{{ $invoice->name }}" data-status="{{ ($invoice->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($invoice->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($invoice->enable ? 'bell-off' : 'bell') }}"></i>

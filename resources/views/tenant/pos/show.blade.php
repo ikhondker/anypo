@@ -10,19 +10,21 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po"/>
 			<x-tenant.buttons.header.create object="Po"/>
-			<a href="{{ route('invoices.create', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="plus"></i> Inv Create</a>
+			{{-- <a href="{{ route('invoices.create', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="plus"></i> Inv Create</a> --}}
 			{{-- <x-tenant.buttons.header.edit object="Po" :id="$po->id"/> --}}
 			{{-- <a href="{{ route('pols.createline', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="plus"></i> Add Line</a> --}}
-			<a href="{{ route('pos.copy', $po->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
+			{{-- <a href="{{ route('pos.copy', $po->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
 				data-entity="" data-name="PO#{{ $po->id }}" data-status="Duplicate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate Order">
-				<i data-feather="printer"></i> Duplicate</a>
+				<i data-feather="printer"></i> Duplicate</a> --}}
+
 			{{-- <a href="{{ route('payments.create-for-po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a> --}}
 			<a href="{{ route('reports.po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
 			<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
 				data-entity="" data-name="PO#{{ $po->id }}" data-status="Submit"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Submit">
 				<i data-feather="external-link"></i> Submit</a>
+				
 				<div class="dropdown me-2 d-inline-block position-relative">
 					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
 						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
@@ -31,15 +33,22 @@
 						<a class="dropdown-item" href="{{ route('pos.edit', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
 						<a class="dropdown-item" href="{{ route('pols.createline', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> Add Line</a>
 						<a class="dropdown-item" href="{{ route('reports.po', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> Print PO</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Duplicate</a>
+						<a class="dropdown-item modal-boolean-advance"  href="{{ route('pos.copy', $po->id) }}"
+							data-entity="" data-name="PO#{{ $po->id }}" data-status="Duplicate"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate Order">
+							<i class="align-middle me-1" data-feather="copy"></i> Duplicate</a>
 						<a class="dropdown-item" href="{{ route('pos.detach',$po->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachments</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> View Receipt</a>
-						<a class="dropdown-item" href="{{ route('invoices.create-for-po', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> View/Create Invoice</a>
-						<a class="dropdown-item" href="{{ route('payments.create-for-po', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> View Payments</a>
+						<a class="dropdown-item" href="{{ route('invoices.create', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> View/Create Invoice</a>
+						{{-- <a class="dropdown-item" href="{{ route('payments.create-for-po', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> View Payments</a> --}}
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Cancel PO</a>
+						<a class="dropdown-item modal-boolean-advance"  href="{{ route('pos.cancel', $po->id) }}"
+							data-entity="" data-name="PO#{{ $po->id }}" data-status="Cancel"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel PO">
+							<i class="align-middle me-1" data-feather="copy"></i> Cancel PO</a>
+
 					</div>
 				</div>
 

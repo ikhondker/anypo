@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Tenant\Payment;
 use App\Models\Tenant\Po;
+use App\Models\Tenant\Invoice;
 
 use App\Models\Tenant\Lookup\BankAccount;
 use App\Http\Requests\Tenant\StorePaymentRequest;
@@ -25,25 +26,6 @@ use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @param  \App\Models\Pol  $pol
-	 * @return \Illuminate\Http\Response
-	 */
-	public function createForPo($po_id)
-	{
-
-		$this->authorize('create', Payment::class);
-				
-		$po = Po::where('id', $po_id)->first();
-	
-		
-		$bank_accounts = BankAccount::primary()->get();
-
-		return view('tenant.payments.create-for-po', with(compact('po','bank_accounts')));
-	}
 
 	/**
 	 * Display a listing of the resource.
@@ -79,9 +61,15 @@ class PaymentController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create()
+	public function create(Invoice $invoice)
 	{
-		//
+		$this->authorize('create', Payment::class);
+				
+		$po = Po::where('id', $invoice->po_id)->first();
+			
+		$bank_accounts = BankAccount::primary()->get();
+
+		return view('tenant.payments.create-for-po', with(compact('po','invoice','bank_accounts')));
 	}
 
 	/**
@@ -94,10 +82,10 @@ class PaymentController extends Controller
 		$request->merge(['payee_id'	=> 	auth()->user()->id ]);
 		$payment = Payment::create($request->all());
 
-		// update PO header
-		$po 				= Po::where('id', $payment->po_id)->firstOrFail();
-		$po->amount			= $po->amount_paid + $payment->amount;
-		$po->save();
+		// update Invoice  header
+		$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
+		$invoice->paid_amount	= $invoice->paid_amount + $payment->amount;
+		$invoice->save();
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $payment->id ]);
@@ -107,7 +95,7 @@ class PaymentController extends Controller
 
 		// Write to Log
 		EventLog::event('payment', $payment->id, 'create');
-		return redirect()->route('payments.index')->with('success', 'Payment created successfully.');
+		return redirect()->route('payments.create',$invoice->id)->with('success', 'Payment created successfully.');
 	}
 
 	/**
@@ -171,32 +159,31 @@ class PaymentController extends Controller
 	// public function cancel(StorePaymentRequest $request)
 	public function cancel(Payment $payment)
 	{
-		Log::debug('Value of payment id=' . $payment->id);
-		exit;
-
+	
 		$this->authorize('cancel',Payment::class);
-		
-		$payment_id = $request->input('payment_id');
+		$payment_id = $payment->id;
 
 		try {
 			$payment = Payment::where('id', $payment_id)->firstOrFail();
 
-			
-			if ($payment->status <> PaymentStatusEnum::PAID->value) {
+			if ($payment->status->value <> PaymentStatusEnum::PAID->value) {
 				return back()->withError("You can only cancel payment with status paid!")->withInput();
 			}
 	
-			//  Reverse PO Payment
-			$po 				= Po::where('id', $payment->po_id)->firstOrFail();
-			$po->amount			= $po->amount_paid - $payment->amount;
-			$po->save();
+			//  Reverse Invoice Payment
+			$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
+			$invoice->paid_amount	= $invoice->paid_amount - $payment->amount;
+			$invoice->save();
 
 			// cancel Payment
 			Payment::where('id', $payment->id)
-				->update(['status' => PaymentStatusEnum::VOID->value]);
+				->update([
+					'amount' => 0,
+					'status' => PaymentStatusEnum::VOID->value
+				]);
 	
 			// Write to Log
-			EventLog::event('Payment', $payment->id, 'void', 'id', $payment->id);
+			EventLog::event('payment', $payment->id, 'void', 'id', $payment->id);
 	
 			return redirect()->route('payments.index')->with('success', 'Payment canceled successfully.');
 		

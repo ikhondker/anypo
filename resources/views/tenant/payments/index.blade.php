@@ -8,7 +8,7 @@
 		Payment Lists
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Payment"/>
+			{{-- <x-tenant.buttons.header.create object="Payment"/> --}}
 		@endslot
 	</x-tenant.page-header>
 

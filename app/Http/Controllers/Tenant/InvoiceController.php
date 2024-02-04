@@ -11,6 +11,7 @@ use App\Http\Requests\Tenant\UpdateInvoiceRequest;
 
 
 use App\Models\Tenant\Po;
+use App\Models\Tenant\Payment;
 
 # Enums
 use App\Enum\EntityEnum;
@@ -29,23 +30,7 @@ use Illuminate\Support\Facades\Log;
 
 class InvoiceController extends Controller
 {
-		/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @param  \App\Models\Pol  $pol
-	 * @return \Illuminate\Http\Response
-	 */
-	public function createForPo($po_id)
-	{
-
-		$this->authorize('create', Invoice::class);
-				
-		$po = Po::where('id', $po_id)->first();
-		$pocs	= User::Tenant()->get();
-
-		return view('tenant.invoices.create-for-po', with(compact('po','pocs')));
-	}
-
+	
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -86,6 +71,7 @@ class InvoiceController extends Controller
 		Log::debug('Value of PO id in create=' . $po->id);		
 		//$po = Po::where('id', $po_id)->first();
 		$pocs	= User::Tenant()->get();
+
 		return view('tenant.invoices.create-for-po', with(compact('po','pocs')));
 	}
 
@@ -113,7 +99,7 @@ class InvoiceController extends Controller
 
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'create');
-		return redirect()->route('invoices.index')->with('success', 'Invoice created successfully.');
+		return redirect()->route('pos.create',$po->id)->with('success', 'Invoice created successfully.');
 	}
 
 	/**
@@ -163,7 +149,7 @@ class InvoiceController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function getCancelInvNum()
+	public function xxgetCancelInvNum()
 	{
 
 		//$this->authorize('cancel',Invoice::class);
@@ -174,20 +160,26 @@ class InvoiceController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function cancel(StoreInvoiceRequest $request)
+	public function cancel(Invoice $invoice)
 	{
 		
-		$this->authorize('cancel',Invoice::class);
+		$this->authorize('cancel', Invoice::class);
 		
-		$invoice_id = $request->input('invoice_id');
+		$invoice_id = $invoice->id;
+		
 
 		try {
 			$invoice = Invoice::where('id', $invoice_id)->firstOrFail();
 			
-			if ($invoice->payment_status <> PaymentStatusEnum::UNPAID->value) {
+			if ($invoice->payment_status->value <> PaymentStatusEnum::UNPAID->value) {
 				return back()->withError("You can not cancel a paid Invoice! Please void Payments first!")->withInput();
 			}
-	
+
+			$sum_payments		   = Payment::where('invoice_id',$invoice_id)->sum('amount');
+			if ($sum_payments <> 0) {
+				return back()->withError("Payment Exists! Please void Payments first!")->withInput();
+			}
+
 			//  Reverse PO Invoiced amount
 			$po 				= Po::where('id', $invoice->po_id)->firstOrFail();
 			$po->amount_invoiced			= $po->amount_invoiced - $invoice->amount;
@@ -195,10 +187,17 @@ class InvoiceController extends Controller
 
 			// cancel Invoice
 			Invoice::where('id', $invoice->id)
-				->update(['status' => InvoiceStatusEnum::CANCELED->value]);
+				->update([
+					'sub_total' 	=> 0,
+					'tax' 			=> 0,
+					'gst' 			=> 0,
+					'amount' 		=> 0,
+					'paid_amount' 	=> 0,
+					'status' 		=> InvoiceStatusEnum::CANCELED->value
+				]);
 	
 			// Write to Log
-			EventLog::event('Invoice', $invoice->id, 'cancel', 'id', $invoice->id);
+			EventLog::event('invoice', $invoice->id, 'cancel', 'id', $invoice->id);
 	
 			return redirect()->route('invoices.index')->with('success', 'Invoice canceled successfully.');
 		

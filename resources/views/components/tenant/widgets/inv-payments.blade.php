@@ -15,7 +15,7 @@
 						</div>
 					</div>
 				</div>
-				<h5 class="card-title">Purchase Order Payments</h5>
+				<h5 class="card-title">Invoice Payments</h5>
 				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
 			</div>
 			<table class="table">
@@ -33,11 +33,9 @@
 				<tbody>
 					@foreach ($payments as $payment)
 						<tr class="">
-							
+							<td class="">{{ $payment->id }}</td>
 							<td class="">{{ $payment->pay_date }}</td>
-							<td class="">{{ $payment->payee_id }}</td>
-							
-							<td class="">{{ $payment->bank_account_id }}</td>
+							<td class="">{{ $payment->bank_account->ac_name }}</td>
 							<td class="text-end">{{ $payment->cheque_no }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/></td>
 							<td class="text-end">{{ $payment->po_no }}</td>

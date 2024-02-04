@@ -16,12 +16,11 @@ return new class extends Migration
 	{
 		Schema::create('invoices', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->dateTime('inv_date')->useCurrent();
+			$table->string('invoice_no');
+			$table->dateTime('invoice_date')->useCurrent(); 
 			$table->foreignId('po_id')->constrained('pos');
 			$table->string('summary');
 			$table->foreignId('poc_id')->constrained('users');
-			$table->string('invoice_no');
-			$table->dateTime('invoice_date')->useCurrent(); 
 			$table->string('currency',3);
 			$table->float('sub_total', 15, 2)->default(0);
 			$table->float('tax',15,2)->default(0);

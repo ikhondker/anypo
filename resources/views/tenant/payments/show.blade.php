@@ -9,21 +9,22 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Payment"/>
-			<x-tenant.buttons.header.create object="Payment"/>
 			<x-tenant.buttons.header.edit object="Payment" :id="$payment->id"/>
-
-				<div class="dropdown me-2 d-inline-block position-relative">
-					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
-			  		</a>
-					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="{{ route('payments.edit', $payment->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Duplicate</a>
-						
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{{ route('payments.cancel', $payment->id) }}">Cancel Payment</a>
-					</div>
+			<div class="dropdown me-2 d-inline-block position-relative">
+				<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
+					<i class="align-middle mt-n1" data-feather="folder"></i> Actions
+				</a>
+				<div class="dropdown-menu dropdown-menu-end">
+					<a class="dropdown-item" href="{{ route('payments.edit', $payment->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
+					<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Duplicate</a>
+					
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item modal-boolean-advance"  href="{{ route('payments.cancel', $payment->id) }}"
+						data-entity="" data-name="PO #{{ $payment->id }}" data-status="Cancel"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
+						<i class="align-middle me-1" data-feather="copy"></i> Cancel Payment</a>
 				</div>
+			</div>
 		@endslot
 	</x-tenant.page-header>
 
@@ -62,5 +63,6 @@
 	</div>
 	<!-- end row -->
 
+	@include('tenant.includes.modal-boolean-advance')
 @endsection
 

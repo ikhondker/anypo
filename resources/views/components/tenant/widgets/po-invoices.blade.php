@@ -22,11 +22,11 @@
 				<thead>
 					<tr>
 						<th class="">ID#</th>
-						<th class="text-end">PO#1</th>
-						<th class="text-end">Invoice No</th>
+						<th class="">PO#</th>
+						<th class="">Invoice No</th>
 						<th class="">Date</th>
 						<th class="">Summary</th>
-						<th class="text-end">Currency</th>
+						<th class="">Currency</th>
 						<th class="text-end">Amount</th>
 						<th class="text-end">Paid Amount</th>
 						<th class="">Action</th>
@@ -35,9 +35,9 @@
 				<tbody>
 					@foreach ($invoices as $invoice)
 						<tr class="">
-							<td class="text-end">{{  $invoice->id }}</td>
-							<td class="text-end">{{ $invoice->po_id }}</td>
-							<td class="text-end">{{ $invoice->invoice_no }}</td>
+							<td class="">{{ $invoice->id }}</td>
+							<td class="">{{ $invoice->po_id }}</td>
+							<td class="">{{ $invoice->invoice_no }}</td>
 							<td class="">{{ $invoice->inv_date }}</td>
 							<td class="">{{ $invoice->summary }}</td>
 							<td class="">{{ $invoice->currency }}</td>
@@ -46,6 +46,8 @@
 							<td class="table-action">
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="align-middle" data-feather="eye"></i></a>
+								<a href="{{ route('payments.create',$invoice->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice">
+										<i class="align-middle" data-feather="dollar-sign"></i></a>
 								<a href="{{ route('prls.edit',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 									<i class="align-middle" data-feather="edit"></i></a>
 									<a href="{{ route('prls.destroy',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">

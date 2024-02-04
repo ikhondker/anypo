@@ -355,17 +355,18 @@ Route::middleware([
 
 	/* ======================== Pr ======================================== */
 	Route::resource('prs', PrController::class)->middleware(['auth', 'verified']);
+	Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
 	Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
 	Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
-	Route::get('/prs/cancel/{pr}',[PrController::class,'cancel'])->name('prs.cancel');
-	Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
 
 	Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
 	Route::get('/prs/detach/{pr}',[PrController::class,'detach'])->name('prs.detach');
 	Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
 	Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
 	Route::get('/prs/convert-to-po/{pr}',[PrController::class, 'convertPo'])->name('prs.convert');
-		
+	Route::get('/pr/get-cancel-pr-num',[PrController::class,'getCancelPrNum'])->name('prs.get-cancel-pr-num');
+	Route::post('/prs/cancel',[PrController::class,'cancel'])->name('prs.cancel');
+	
 	/* ======================== Prl ======================================== */
 	Route::resource('prls', PrlController::class)->middleware(['auth', 'verified']);
 	Route::get('/prl/export',[PrlController::class,'export'])->name('prls.export');
@@ -375,17 +376,16 @@ Route::middleware([
 
 	/* ======================== Po ======================================== */
 	Route::resource('pos', PoController::class)->middleware(['auth', 'verified']);
+	Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
 	Route::get('/pos/pdf/{po}',[PoController::class,'pdf'])->name('pos.pdf');
 	Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
-	Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
-	Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
 
 	Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
 	Route::get('/pos/detach/{po}',[PoController::class,'detach'])->name('pos.detach');
 	Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
 	Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
-
-
+	Route::get('/po/get-cancel-po-num',[PoController::class,'getCancelPoNum'])->name('pos.get-cancel-po-num');
+	Route::post('/pos/cancel',[PoController::class,'cancel'])->name('pos.cancel');
 	
 	/* ======================== Pol ======================================== */
 	Route::resource('pols', PolController::class)->middleware(['auth', 'verified']);
@@ -396,31 +396,36 @@ Route::middleware([
 
 	/* ======================== Receipt ======================================== */
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);
-	Route::get('/receipts/create/{pol}',[ReceiptController::class,'create'])->name('receipts.create');
-	Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
-	Route::get('/receipts/cancel/{receipt}',[ReceiptController::class,'cancel'])->name('receipts.cancel');
 	Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
+	Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
+	Route::get('/receipt/create-for-pol/{id}',[ReceiptController::class,'createForPol'])->name('receipts.create-for-pol');
+	Route::get('/receipt/get-return-grn-num',[ReceiptController::class,'getCancelGrnNum'])->name('receipts.get-return-grn-num');
+	Route::post('/receipts/cancel',[ReceiptController::class,'cancel'])->name('receipts.cancel');
 	
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class)->middleware(['auth', 'verified']);
 	Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
-	//Route::get('/invoice/get-cancel-inv-num',[InvoiceController::class,'getCancelInvNum'])->name('invoices.get-cancel-inv-num');
-	Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
-	Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
+
 	Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
+	Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
+	Route::get('/invoices/create-for-po/{id}',[InvoiceController::class, 'createForPo'])->name('invoices.create-for-po');
+	Route::get('/invoice/get-cancel-inv-num',[InvoiceController::class,'getCancelInvNum'])->name('invoices.get-cancel-inv-num');
+	Route::post('/invoices/cancel',[InvoiceController::class,'cancel'])->name('invoices.cancel');
 
 	/* ======================== InvoiceLines ======================================== */
-	//Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
-	//Route::get('/invoicelines/export',[InvoiceLinesController::class,'export'])->name('invoicelines.export');
-	//Route::get('/invoicelines/delete/{invoicelines}',[InvoiceLinesController::class,'destroy'])->name('invoicelines.destroy');
+	Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
+	Route::get('/invoicelines/export',[InvoiceLinesController::class,'export'])->name('invoicelines.export');
+	Route::get('/invoicelines/delete/{invoicelines}',[InvoiceLinesController::class,'destroy'])->name('invoicelines.destroy');
 	
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class)->middleware(['auth', 'verified']);
-	Route::get('/payments/create/{invoice}',[PaymentController::class,'create'])->name('payments.create');
-	Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
-	Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
 	Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
-	
+	Route::get('/payment/create-for-po/{id}',[PaymentController::class, 'createForPo'])->name('payments.create-for-po');
+	Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
+	Route::get('/payment/get-cancel-pay-num',[PaymentController::class,'getCancelPayNum'])->name('payments.get-cancel-pay-num');
+	//Route::post('/payments/cancel',[PaymentController::class,'cancel'])->name('payments.cancel');
+	Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
+
 	/* ======================== Report ========================================  */
 	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
 	Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
