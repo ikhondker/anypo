@@ -28,6 +28,16 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'budgets.create','route_name' => 'budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'budgets.detach','route_name' => 'budgets.index', 'node_name' => 'budget'],
 
+			[ 'raw_route_name' => 'dept-budgets.index','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.show','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.edit','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.create','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.detach','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+
+			[ 'raw_route_name' => 'dbus.index','route_name' => 'dbus.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dbus.show','route_name' => 'dbus.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dbus.edit','route_name' => 'dbus.index', 'node_name' => 'budget'],
+
 			[ 'raw_route_name' => 'categories.index','route_name' => 'categories.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'categories.edit','route_name' => 'categories.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'categories.create','route_name' => 'categories.index', 'node_name' => 'items'],
@@ -40,11 +50,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'currencies.edit','route_name' => 'currencies.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'currencies.create','route_name' => 'currencies.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'dept-budgets.index','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.show','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.edit','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.create','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.detach','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+
 
 			[ 'raw_route_name' => 'depts.index','route_name' => 'depts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'depts.show','route_name' => 'depts.index', 'node_name' => 'lookups'],

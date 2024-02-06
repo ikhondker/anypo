@@ -32,6 +32,11 @@ use Str;
 
 use Illuminate\Support\Facades\Http;
 
+use App\Enum\EntityEnum;
+use App\Enum\EventEnum;
+
+#Jobs
+use App\Jobs\Tenant\RecordDeptBudgetUsage;
 
 class TestController extends Controller
 {
@@ -43,6 +48,9 @@ class TestController extends Controller
 
 	public function run()
 	{
+		// run job to Sync Budget
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, 1001, EventEnum::BOOK->value);
+		exit;
 
 	
 		$rs= Prl::where('id',1001)->get( array(

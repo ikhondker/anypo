@@ -22,7 +22,7 @@ class GlTypeController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -30,7 +30,7 @@ class GlTypeController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -38,7 +38,7 @@ class GlTypeController extends Controller
 	 */
 	public function show(GlType $glType)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -46,7 +46,7 @@ class GlTypeController extends Controller
 	 */
 	public function edit(GlType $glType)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -54,7 +54,7 @@ class GlTypeController extends Controller
 	 */
 	public function update(Request $request, GlType $glType)
 	{
-		//
+		abort(403);
 	}
 
 	/**

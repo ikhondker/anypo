@@ -386,8 +386,8 @@ class PoController extends Controller
 			return redirect()->route('prs.index')->with('error', 'Budget is not defined for '.$fy.'. Please open this years budget and try again.');
 		}
 
-		if ($budget->freeze) {
-			return redirect()->route('prs.show', $po->id)->with('error', 'Budget for this period is freezed! You can not submit new PO for approval!');
+		if ($budget->closed) {
+			return redirect()->route('prs.show', $po->id)->with('error', 'Budget for this period is closed! You can not submit new PO for approval!');
 		}
 
 		// check if dept_budget for this year exists then update dept_budget_id column
@@ -403,6 +403,10 @@ class PoController extends Controller
 			return redirect()->route('prs.index')->with('error', 'Department Budget is not defined for FY'.$fy.'. Please add budget and try again.');
 		}
 
+		if ($dept_budget->closed) {
+			return redirect()->route('prs.index')->with('error', 'Department budget is closed!. Will Need to open it for any transaction.');
+		} 
+		
 		// 	Populate functional currency values
 		$result = Po::updatePoFcValues($po->id);
 

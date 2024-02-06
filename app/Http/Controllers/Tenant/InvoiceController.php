@@ -147,17 +147,6 @@ class InvoiceController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function xxgetCancelInvNum()
-	{
-
-		//$this->authorize('cancel',Invoice::class);
-		
-		return view('tenant.invoices.cancel');
-	}
-
-	/**
 	 * Remove the specified resource from storage.
 	 */
 	public function cancel(Invoice $invoice)

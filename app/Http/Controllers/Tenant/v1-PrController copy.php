@@ -386,8 +386,8 @@ class PrController extends Controller
 			return redirect()->route('prs.index')->with('error', 'Budget is not defined for '.$fy.'. Please open this years budget and try again');
 		}
 
-		if ($budget->freeze) {
-			return redirect()->route('prs.show', $pr->id)->with('error', 'Budget for this period is freezed! You can not submit new PR for approval!');
+		if ($budget->closed) {
+			return redirect()->route('prs.show', $pr->id)->with('error', 'Budget for this period is closed! You can not submit new PR for approval!');
 		}
 
 		// check if dept_budget for this year exists then update dept_budget_id column

@@ -48,8 +48,7 @@ use App\Http\Controllers\Tenant\Support\TicketController;
 
 use App\Http\Controllers\Tenant\BudgetController;
 use App\Http\Controllers\Tenant\DeptBudgetController;
-use App\Http\Controllers\Tenant\DeptBudgetUsagesController;
-
+use App\Http\Controllers\Tenant\DbuController;
 
 use App\Http\Controllers\Tenant\DashboardController;
 use App\Http\Controllers\Tenant\NotificationController;
@@ -332,8 +331,6 @@ Route::middleware([
 	Route::get('/wfl/export',[WflController::class,'export'])->name('wfls.export');
 	Route::get('/wfls/delete/{wfl}',[WflController::class,'destroy'])->name('wfls.destroy');
 
-	
-
 	/* ======================== DeptBudget ======================================== */
 	Route::resource('dept-budgets', DeptBudgetController::class)->middleware(['auth', 'verified']);
 	Route::get('/dept-budget/export',[DeptBudgetController::class,'export'])->name('dept-budgets.export');
@@ -343,12 +340,12 @@ Route::middleware([
 	Route::post('/dept-budget/attach',[DeptBudgetController::class,'attach'])->name('dept-budgets.attach');
 	Route::get('/dept-budgets/detach/{deptBudget}',[DeptBudgetController::class,'detach'])->name('dept-budgets.detach');
    
-	/* ======================== DeptBudgetUsages ======================================== */
-	Route::resource('deptbudgetusages', DeptBudgetUsagesController::class)->middleware(['auth', 'verified']);
-	Route::get('/deptbudgetusages/export',[DeptBudgetUsagesController::class,'export'])->name('deptbudgetusages.export');
-	Route::get('/deptbudgetusages/delete/{deptbudgetusages}',[DeptBudgetUsagesController::class,'destroy'])->name('deptbudgetusages.destroy');
+	/* ======================== Dbu ======================================== */
+	Route::resource('dbus', DbuController::class)->middleware(['auth', 'verified']);
+	Route::get('/dbu/export',[DbuController::class,'export'])->name('dbus.export');
+	Route::get('/dbus/delete/{dbu}',[DbuController::class,'destroy'])->name('dbus.destroy');
 
-		/* ======================== PayMethod ======================================== */
+	/* ======================== PayMethod ======================================== */
 	//Route::resource('pay-methods', PayMethodController::class)->middleware(['auth', 'verified']);
 	//Route::get('/pay-method/export',[PayMethodController::class,'export'])->name('pay-methods.export');
 	//Route::get('/pay-methods/delete/{payMethod}',[PayMethodController::class,'destroy'])->name('pay-methods.destroy');

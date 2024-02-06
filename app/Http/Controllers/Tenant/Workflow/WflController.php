@@ -19,6 +19,8 @@ use App\Models\User;
 use App\Enum\AuthStatusEnum;
 use App\Enum\WfStatusEnum;
 use App\Enum\WflActionEnum;
+use App\Enum\EntityEnum;
+
 # Helpers
 use App\Helpers\CheckBudget;
 use App\Helpers\EventLog;
@@ -89,15 +91,15 @@ class WflController extends Controller
 		
 		// get the wf and article details
 		$wf = Wf::where('id', $wfl->wf_id)->first();
-		switch($wf->entity) {
-			case(EntityEnum::PR->value):
-				$pr = Pr::where('id', $wf->article_id)->first();
-			case(EntityEnum::PR->value):
-				$po = Po::where('id', $wf->article_id)->first();
-				break;
-			default:
-				Log::debug("Error!. Invalid Entity in wfl.update rejected");
-		}
+		// switch($wf->entity) {
+		// 	case(EntityEnum::PR->value):
+		// 		$pr = Pr::where('id', $wf->article_id)->first();
+		// 	case(EntityEnum::PR->value):
+		// 		$po = Po::where('id', $wf->article_id)->first();
+		// 		break;
+		// 	default:
+		// 		Log::debug("Error!. Invalid Entity in wfl.update rejected");
+		// }
 
 		// $booEndWf = false;
 		// $auth_status = '';
@@ -108,21 +110,20 @@ class WflController extends Controller
 
 		switch($request->input('action')) {
 			case(WflActionEnum::REJECTED->value):
-				return self::rejected();
+				self::rejected($wf);
 				break;
 			case(WflActionEnum::APPROVED->value):
 				//$auth_status = AuthStatusEnum::APPROVED->value;
 				$next_approver_id = Workflow::getNextApproverId($wfl->wf_id);
 				
 				if ($next_approver_id <> 0) {
-					//Log::debug("next approve found! = ");
+					//Log::debug("next approver found! = ");
 					//$booEndWf = false;
-					return self::moveToNext();
-					
+					self::moveToNext($wf);
 				} else {
 					// document is approved
 					//Log::debug("This was the top approver ");
-					return self::approved();
+					self::approved($wf);
 					//$booEndWf = true;
 				}
 				break;
@@ -134,7 +135,6 @@ class WflController extends Controller
 
 		// // this is the last step, update wf and pr/po else notify next approver
 		// if ($booEndWf) {
-
 			
 		// } else {
 			
@@ -152,6 +152,7 @@ class WflController extends Controller
 		//LogEvent('wfl',$wfl->id,'update','action',$wfl->action_code);
 		//return redirect()->route('dashboards.index')->with('success','Wf Details updated successfully');
 		//return back()->withMessage('Workflow updated.');
+
 		return redirect()->route('prs.index')->with('success', 'Workflow has been updated accordingly.');
 
 	}
@@ -164,15 +165,26 @@ class WflController extends Controller
 		//
 	}
 
-	public function rejected(Wfl $wfl)
+	public function rejected(Wf $wf)
 	{
-		$auth_status = AuthStatusEnum::REJECTED->value;
-		// update related entity status 
+
+		// update wf record
+		$wf->auth_status	= AuthStatusEnum::REJECTED->value;
+		$wf->wf_status		= WfStatusEnum::CLOSED->value;
+		$wf->save();
+
+		// update related entity+article status 
 		switch($wf->entity) {
 			case('PR'):
 				//  reverse Booking
-				$retcode = CheckBudget::reverseBookingPr($pr->id);
+				$pr = Pr::where('id', $wf->article_id)->first();
+				$retcode = CheckBudget::prBudgetBookReverse($pr->id);
 				Log::debug("retcode = ".$retcode);
+				$pr->auth_status	= AuthStatusEnum::REJECTED->value;
+				$pr->auth_date		= date('Y-m-d H:i:s');
+				$pr->auth_user_id	= auth()->user()->id;
+				$pr->save();
+
 				// send rejection mail to requestor
 				$action = WflActionEnum::REJECTED->value;
 				$actionURL = route('prs.show', $pr->id);
@@ -184,13 +196,13 @@ class WflController extends Controller
 			default:
 				Log::debug("Error!. Invalid Entity in wfl.update rejected");
 		}
-}
-	public function approved(Wfl $wfl)
+		return true;
+	}
+
+	public function approved(Wf $wf)
 	{
 		// update wf record
-		///$wf = Wf::where('id', $wfl->wf_id)->first();
-		$auth_status = AuthStatusEnum::APPROVED->value;
-		$wf->auth_status	= $auth_status;
+		$wf->auth_status	= AuthStatusEnum::APPROVED->value;
 		$wf->wf_status		= WfStatusEnum::CLOSED->value;
 		$wf->save();
 
@@ -198,14 +210,15 @@ class WflController extends Controller
 		// update related entity status
 		switch($wf->entity) {
 			case('PR'):
-				$pr->auth_status	= $auth_status;
+				$pr = Pr::where('id', $wf->article_id)->first();
+				$pr->auth_status	=  AuthStatusEnum::APPROVED->value;
 				$pr->auth_date		= date('Y-m-d H:i:s');
 				$pr->auth_user_id	= auth()->user()->id;
 				$pr->save();
 
 				// confirm budget
-				$retcode = CheckBudget::confirmBudgetPr($pr->id);
-				Log::debug("retcode = ".$retcode);
+				$retcode = CheckBudget::prBudgetApprove($pr->id);
+				//Log::debug("retcode = ".$retcode);
 
 				// send approval mail to requestor
 				$action = WflActionEnum::APPROVED->value;
@@ -223,15 +236,17 @@ class WflController extends Controller
 			default:
 				Log::debug("Error!. Invalid Entity in wfl.update");
 		}
+
+		return true;
 	}
-	public function moveToNext(Wfl $wfl)
+	public function moveToNext(Wf $wf)
 	{
 		// do nothing just find and notify next approver
 		// send approval mail  to next approver TODO
 		// TODO Workflow::notifyApprover($wfl->wf_id);
 
 		// next approver exists	
-		Log::debug("notifying next approver ");
+		//Log::debug("notifying next approver ");
 		$auth_status = AuthStatusEnum::APPROVED->value;
 		switch($wf->entity) {
 			case('PR'):
@@ -251,6 +266,8 @@ class WflController extends Controller
 			default:
 				Log::debug("Error!. Invalid Entity in wfl.update");
 		}
+
+		return true;
 	}
 
 }

@@ -17,7 +17,7 @@ class DeptBudget extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'end_date', 'notes', 'freeze', 'updated_by', 'updated_at',
+		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'end_date', 'notes', 'closed', 'updated_by', 'updated_at',
 	];
 
 	/* ----------------- Scopes ------------------------- */
@@ -26,7 +26,7 @@ class DeptBudget extends Model
 	 */
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('freeze', false);
+		$query->where('closed', false);
 	}
 
 	/**

@@ -99,8 +99,8 @@ class UomSeeder extends Seeder
 				'conversion' 	=> 0.9144,
 			],
 		];
-		//
-		Uom::insert($uoms_length);
+		// TODO
+		// Uom::insert($uoms_length);
 
 		$uoms_mass =  [
 			[
@@ -119,8 +119,8 @@ class UomSeeder extends Seeder
 				'conversion' 	=> 0.0283495,
 			],
 		];
-		//
-		Uom::insert($uoms_mass);
+		// TODO
+		// Uom::insert($uoms_mass);
 
 		$uoms_capacity =  [
 			[
@@ -134,8 +134,8 @@ class UomSeeder extends Seeder
 				'conversion' 	=> 4.54609,
 			],
 		];
-		//
-		Uom::insert($uoms_capacity);
+		// TODO
+		// Uom::insert($uoms_capacity);
 		
 		$uoms_time =  [
 			[
@@ -154,8 +154,8 @@ class UomSeeder extends Seeder
 				'conversion' 	=> 30,
 			],
 		];
-		//
-		Uom::insert($uoms_time);
+		// TODO
+		//Uom::insert($uoms_time);
 
 	}
 }

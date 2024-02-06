@@ -207,12 +207,11 @@ class UserSeeder extends Seeder
 
 		User::insert($users);
 		
-		// Mask as seeded user and Activate
-		User::where('id', 1001)->update(['enable' => true,'seeded' => true]);
+		// Mask as seeded user and Activate	// TODO 
+		User::where('id', 1001)->update(['enable' => true,'seeded' => false]);	// SYSTEM must make it true
 		User::where('id', 1002)->update(['enable' => true,'seeded' => true]);
-		User::where('id', 1003)->update(['enable' => true,'seeded' => true]);
+		User::where('id', 1003)->update(['enable' => true,'seeded' => false]);	// ADMIN must make it true
 		
-
 		// TODO Mark as enable for testing 
 		User::where('id', 1004)->update(['enable' => true]);
 		User::where('id', 1005)->update(['enable' => true]);

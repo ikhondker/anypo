@@ -68,8 +68,8 @@ class BudgetController extends Controller
 		$budget->start_date	= Carbon::parse($budget->fy.'-01-01');
 		$budget->end_date	= Carbon::parse($budget->fy.'-12-31');
 		$budget->notes		= 'Budget for ' .$budget->fy;
-		;
-		$budget->freeze	= false;
+		
+		$budget->closed	= false;
 		$budget->save();
 		$budget_id = $budget->id;
 
@@ -152,11 +152,11 @@ class BudgetController extends Controller
 	{
 		$this->authorize('delete', $budget);
 
-		$budget->fill(['freeze' => ! $budget->freeze]);
+		$budget->fill(['closed' => ! $budget->closed]);
 		$budget->update();
 
 		// Write to Log
-		EventLog::event('budget', $budget->id, 'status', 'freeze', $budget->freeze);
+		EventLog::event('budget', $budget->id, 'status', 'closed', $budget->closed);
 
 		return redirect()->route('budgets.index')->with('success', 'Budget status Updated successfully');
 	}
@@ -165,7 +165,7 @@ class BudgetController extends Controller
 	{
 		$this->authorize('export', Budget::class);
 		$data = DB::select("SELECT id, fy, name, start_date, end_date, amount, amount_pr_booked, amount_pr_issued, amount_po_booked, amount_po_issued, amount_grs, amount_payment, notes, 
-				IF(freeze, 'Yes', 'No') as Freeze
+				IF(closed, 'Yes', 'No') as closed
 			FROM budgets");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

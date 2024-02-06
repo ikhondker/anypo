@@ -21,14 +21,16 @@ namespace App\Enum;
 
 enum EventEnum: string{
 	case CREATE		= 'create';
+	case UPDATE		= 'update';
 	case SUBMIT		= 'submit';
-	case FORWARD	= 'forward';
+	case APPROVE	= 'approve';
+	//case FORWARD	= 'forward';
 	case BOOK		= 'book';
 	case CONFIRM	= 'confirm';
 	case REVERSE	= 'reverse';
-	case ADJUST		= 'adjust';
+	//case ADJUST		= 'adjust';
 	case CANCEL		= 'cancel';
-	case PAYMENT	= 'payment';
+	//case PAYMENT	= 'payment';
 }
 
 

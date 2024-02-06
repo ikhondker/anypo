@@ -41,7 +41,7 @@
 								<th class="text-end">Available (PO)</th>
 								<th class="text-end">GRS</th>
 								<th class="text-end">Payment</th>
-								<th>Freeze?</th>
+								<th>Closed?</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -59,13 +59,13 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount - $budget->amount_po_booked - $budget->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_payment"/></td>
-								<td class="text-start"><x-tenant.list.my-closed :value="$budget->freeze"/></td>
+								<td class="text-start"><x-tenant.list.my-closed :value="$budget->closed"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Budget" :id="$budget->id" :show="true"/>
 									<a href="{{ route('budgets.destroy',$budget->id) }}" class="me-2 modal-boolean-advance" 
-										data-entity="Budget" data-name="{{ $budget->name }}" data-status="{{ ($budget->freeze ? 'UnFreeze' : 'Freeze') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($budget->freeze ? 'UnFreeze' : 'freeze') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($budget->freeze ? 'bell-off' : 'bell') }}"></i>
+										data-entity="Budget" data-name="{{ $budget->name }}" data-status="{{ ($budget->closed ? 'Open' : 'Close') }}"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($budget->closed ? 'Open' : 'Close') }}">
+										<i class="align-middle text-muted" data-feather="{{ ($budget->closed ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

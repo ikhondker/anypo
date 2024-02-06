@@ -174,7 +174,7 @@ class WfController extends Controller
 			}
 
 			// reverse Booking
-			$retcode = CheckBudget::reverseBookingPr($pr->id);
+			$retcode = CheckBudget::prBudgetBookReverse($pr->id);
 			Log::debug("retcode = ".$retcode);
 
 			//reset pr wf_id and status

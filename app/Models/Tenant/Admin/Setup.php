@@ -16,7 +16,7 @@ class Setup extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'tagline', 'currency', 'freezed', 'tax', 'gst', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'cell', 'website', 'facebook', 'linkedin', 'logo', 'show_banner', 'banner_message', 'admin_id', 'last_rate_date', 'maintenance', 'debug', 'enable', 'archive', 'purge', 'updated_by', 'updated_at',
+		'name', 'tagline', 'currency', 'freezed', 'tax', 'gst', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'cell', 'website', 'facebook', 'linkedin', 'ac_liability', 'ac_accrual', 'ac_clearing', 'logo', 'show_banner', 'banner_message', 'version', 'build', 'admin_id', 'landlord_account_id', 'last_rate_date', 'maintenance', 'debug', 'enable', 'readonly', 'updated_by', 'updated_at',
 	];
 
 	/**

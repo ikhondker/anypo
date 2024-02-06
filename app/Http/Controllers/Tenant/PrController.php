@@ -385,22 +385,26 @@ class PrController extends Controller
 			return redirect()->route('prs.index')->with('error', 'Budget is not defined for '.$fy.'. Please open this years budget and try again');
 		}
 
-		if ($budget->freeze) {
+		if ($budget->closed) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Budget for this period is freezed! You can not submit new PR for approval!');
 		}
 
 		// check if dept_budget for this year exists then update dept_budget_id column
 		try {
-			$dept_budget = DeptBudget::primary()
-				->where('budget_id', $budget->id)
+			$dept_budget = DeptBudget::where('budget_id', $budget->id)
 				->where('dept_id', $pr->dept_id)
 				->firstOrFail();
 			$pr->dept_budget_id = $dept_budget->id;
 			$pr->save();
+			
 		} catch (ModelNotFoundException $exception) {
 			//Log::debug("Inside ModelNotFoundException");
 			return redirect()->route('prs.index')->with('error', 'Department Budget is not defined for FY'.$fy.'. Please add budget and try again');
 		}
+
+		if ($dept_budget->closed) {
+			return redirect()->route('prs.index')->with('error', 'Department budget is closed!. Will Need to open it for any transaction.');
+		} 
 
 		// 	Populate functional currency values
 		$result = Pr::updatePrFcValues($pr->id);
@@ -408,24 +412,9 @@ class PrController extends Controller
 		if ($result == 0) {
 			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		} 
-	
-		//  Check and book Project Budget
-		$retcode = CheckBudget::bookProjectBudgetPr($pr->id);
-		//Log::debug("retcode = ".$retcode );
-		switch ($retcode) {
-			case 'E004':
-				return redirect()->back()->with('error', config('akk.MSG_E004'));
-				break;
-			case 'E999':
-				return redirect()->back()->with('error', config('akk.MSG_E999')) ;
-				break;
-			default:
-				// Success
-		}
-
 
 		//  Check and book Dept Budget
-		$retcode = CheckBudget::bookDeptBudgetPr($pr->id);
+		$retcode = CheckBudget::prBudgetBook($pr->id);
 		//Log::debug("retcode = ".$retcode );
 		switch ($retcode) {
 			case 'E001':

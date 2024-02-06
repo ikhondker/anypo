@@ -25,6 +25,8 @@ use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 
+use App\Jobs\Tenant\ConsolidateBudget;
+
 # Exceptions
 # Events
 
@@ -83,7 +85,7 @@ class DeptBudgetController extends Controller
 		EventLog::event('deptBudget', $dept_budget->id, 'create');
 
 		//update company budget for that year
-		$result = Budget::updateCompanyBudget($deptBudget->budget_id);
+		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		return redirect()->route('tenant.dept-budgets.index')->with('success', 'DeptBudget created successfully.');
 	}
@@ -116,8 +118,8 @@ class DeptBudgetController extends Controller
 
 		// check if budget exists and nt freezed. should exists
 		$budget = Budget::where('id', $deptBudget->budget_id)->first();
-		if ($budget->freeze) {
-			return redirect()->route('budgets.index')->with('error', 'Budget '.$budget->name.'is freezed. Your admin need to unfreeze it, before update!');
+		if ($budget->closed) {
+			return redirect()->route('budgets.index')->with('error', 'Budget '.$budget->name.'is closed. Your admin need to unfreeze it, before update!');
 		}
 
 		// create revision row
@@ -132,15 +134,17 @@ class DeptBudgetController extends Controller
 		}
 
 		// budget has been modified
-		Log::debug('Value of $deptBudget->amount=' . $deptBudget->amount);
-		Log::debug('Value of $request->input(amount)=' . $request->input('amount'));
+		//Log::debug('Value of $deptBudget->amount=' . $deptBudget->amount);
+		//Log::debug('Value of $request->input(amount)=' . $request->input('amount'));
 		
 		$old_dept_budget_amount =$deptBudget->amount;
 		$deptBudget->update($request->all());
 
 		if ($request->input('amount') <> $old_dept_budget_amount) {
 			//update company budget for that year
-			$result = Budget::updateCompanyBudget($deptBudget->budget_id);
+			ConsolidateBudget::dispatch($deptBudget->budget_id);
+
+			//$result = Budget::updateCompanyBudget($deptBudget->budget_id);
 			EventLog::event('deptBudget', $deptBudget->id, 'update', 'amount', $deptBudget->amount);
 		}
 
@@ -154,11 +158,11 @@ class DeptBudgetController extends Controller
 	{
 		$this->authorize('delete', $deptBudget);
 
-		$deptBudget->fill(['freeze' => !$deptBudget->freeze]);
+		$deptBudget->fill(['closed' => !$deptBudget->closed]);
 		$deptBudget->update();
 
 		// Write to Log
-		EventLog::event('deptBudget', $deptBudget->id, 'status', 'freeze', $deptBudget->freeze);
+		EventLog::event('deptBudget', $deptBudget->id, 'status', 'closed', $deptBudget->closed);
 
 		return redirect()->route('dept-budgets.index')->with('success', 'DeptBudget status Updated successfully');
 	}
@@ -167,7 +171,7 @@ class DeptBudgetController extends Controller
 	{
 		$this->authorize('export', Budget::class);
 		$data = DB::select("SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr_issued, db.amount_po_booked, db.amount_po_issued, db.amount_grs, db.amount_payment, 
-		db.notes, 	IF(db.freeze, 'Yes', 'No') as Freeze
+		db.notes, 	IF(db.closed, 'Yes', 'No') as Closed
 		FROM dept_budgets db,budgets b,depts d
 		WHERE db.budget_id = b.id
 		AND db.dept_id=d.id");

@@ -58,7 +58,7 @@ class Pr extends Model
 		$setup 	= Setup::first();
 		$pr		= Pr::where('id', $pr_id)->firstOrFail();
 
-		Log::debug('Value of id=' . $pr->currency.$setup->currency);
+		//Log::debug('Pr.updatePrFcValues Value of currency=' . $pr->currency.$setup->currency);
 
 		if ($pr->currency == $setup->currency){
 			$rate = 1;

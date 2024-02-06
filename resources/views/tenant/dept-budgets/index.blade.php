@@ -43,7 +43,7 @@
 								<th class="text-end">Available (PO)</th>
 								<th class="text-end">GRS</th>
 								<th class="text-end">Payment</th>
-								<th class="text-end">Freeze</th>
+								<th class="text-end">Closed</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -64,13 +64,13 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_payment"/></td>
-								<td><x-tenant.list.my-closed :value="$dept_budget->freeze"/></td>
+								<td><x-tenant.list.my-closed :value="$dept_budget->closed"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="DeptBudget" :id="$dept_budget->id"/>
 									<a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 modal-boolean-advance"
-										data-entity="DeptBudget" data-name="{{ $dept_budget->budget->name }}" data-status="{{ ($dept_budget->freeze ? 'Unfreeze' : 'Freeze') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept_budget->enable ? 'Unfreeze' : 'Freeze') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($dept_budget->freeze ? 'bell-off' : 'bell') }}"></i>
+										data-entity="DeptBudget" data-name="{{ $dept_budget->budget->name }}" data-status="{{ ($dept_budget->closed ? 'Open' : 'Close') }}"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept_budget->closed ? 'Open' : 'Close') }}">
+										<i class="align-middle text-muted" data-feather="{{ ($dept_budget->closed ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

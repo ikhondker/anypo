@@ -21,7 +21,8 @@ class Budget extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'fy', 'name', 'start_date', 'end_date', 'currency', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'notes', 'text_color', 'bg_color', 'icon', 'freeze', 'updated_by', 'updated_at',
+		'fy', 'name', 'start_date', 'end_date', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'notes', 'text_color', 'bg_color', 'icon', 'closed', 'updated_by', 'updated_at',
+
 	];
 
 	/* ----------------- Scopes ------------------------- */
@@ -30,7 +31,7 @@ class Budget extends Model
 	 */
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('freeze', false);
+		$query->where('closed', false);
 	} 
 
 	/**
@@ -52,10 +53,10 @@ class Budget extends Model
 	}
 
 	// populate Company Budget 
-	public static function updateCompanyBudget($dept_budget_id)
+	public static function xxxxupdateCompanyBudget($budget_id)
 	{
 
-		$budget = Budget::where('id', $dept_budget_id)->firstOrFail();
+		$budget = Budget::where('id', $budget_id)->firstOrFail();
 		
 		Log::debug('Value of dept_budget_id=' . $dept_budget_id);
 		$result= DeptBudget::where('budget_id', $budget->id)->get( array(

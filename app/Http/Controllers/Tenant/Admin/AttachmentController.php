@@ -135,8 +135,8 @@ class AttachmentController extends Controller
 		switch ($attachment->entity) {
 			case EntityEnum::BUDGET->value:
 				$budget = Budget::where('id', $attachment->article_id)->get()->firstOrFail();
-				if ($budget->freeze) {
-					return redirect()->back()->with('error', 'Attachment can not be deleted from freeze Budget!');
+				if ($budget->closed) {
+					return redirect()->back()->with('error', 'Attachment can not be deleted from closed Budget!');
 				} else {
 					EventLog::event('Budget', $budget->id, 'detach', 'id', $attachment->id);
 					$attachment->delete();
@@ -145,8 +145,8 @@ class AttachmentController extends Controller
 				break;
 			case EntityEnum::DEPTBUDGET->value:
 				$deptBudget = DeptBudget::where('id', $attachment->article_id)->get()->firstOrFail();
-				if ($deptBudget->freeze) {
-					return redirect()->back()->with('error', 'Attachment can not be deleted from freeze Budget!');
+				if ($deptBudget->closed) {
+					return redirect()->back()->with('error', 'Attachment can not be deleted from closed Budget!');
 				} else {
 					EventLog::event('DeptBudget', $deptBudget->id, 'detach', 'id', $attachment->id);
 					$attachment->delete();

@@ -25,7 +25,7 @@ return new class extends Migration
 			$table->dateTime('end_date', $precision = 0)->nullable();
 			//$table->boolean('revision')->default(false); 
 			$table->text('notes')->nullable();
-			$table->boolean('freeze')->default(false); 
+			$table->boolean('closed')->default(false); 
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);

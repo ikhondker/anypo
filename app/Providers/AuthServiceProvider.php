@@ -99,7 +99,7 @@ class AuthServiceProvider extends ServiceProvider
 
 		'App\Models\Tenant\Budget'				=> 'App\Policies\Tenant\BudgetPolicy',
 		'App\Models\Tenant\DeptBudget'			=> 'App\Policies\Tenant\DeptBudgetPolicy',
-		'App\Models\Tenant\DeptBudgetLine'		=> 'App\Policies\Tenant\DeptBudgetLinePolicy',
+		'App\Models\Tenant\Dbu'					=> 'App\Policies\Tenant\DbuPolicy',
 		'App\Models\Tenant\Notification'		=> 'App\Policies\Tenant\NotificationPolicy',
 		
 		'App\Models\Tenant\Po'					=> 'App\Policies\Tenant\PoPolicy',

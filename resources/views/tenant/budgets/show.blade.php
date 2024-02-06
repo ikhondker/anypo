@@ -23,11 +23,11 @@
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-badge		value="{{ $budget->fy }}" label="FY"/>
-					<x-tenant.show.my-text		value="{{ $budget->name }}"/>
-					<x-tenant.show.my-date		value="{{ $budget->start_date  }}"/>
-					<x-tenant.show.my-date		value="{{ $budget->end_date  }}"/>
+					<x-tenant.show.my-text		value="{{ $budget->name }}" label="Name"/>
+					<x-tenant.show.my-date		value="{{ $budget->start_date }}" label="Start Date"/>
+					<x-tenant.show.my-date		value="{{ $budget->end_date }}" label="End Date"/>
 					<x-tenant.show.my-text		value="{{ $budget->notes }}" label="Notes"/>
-					<x-tenant.show.my-boolean	value="{{ $budget->enable }}"  label="Freeze?"/>
+					<x-tenant.show.my-closed	value="{{ $budget->closed }}"  label="Closed?"/>
 					{{-- <x-tenant.show.my-badge value="{{ $budget->id }}"/> --}}
 				</div>
 			</div>
@@ -97,7 +97,7 @@
 				</div>
 				<div class="card-body">
 				<x-tenant.show.my-amount	value="{{ $budget->amount }}" label="Budget"/>
-				<x-tenant.show.my-amount	value="{{ $budget->amount_pr_booked }}" label="PR Approved"/>
+				<x-tenant.show.my-amount	value="{{ $budget->amount_pr_booked }}" label="PR Booked"/>
 				<x-tenant.show.my-amount	value="{{ $budget->amount_pr_issued }}" label="PR Issues" />
 				<x-tenant.show.my-amount	value="{{ $budget->amount - $budget->amount_pr_booked - $budget->amount_pr_issued }}" label="Available"/>
 				</div>
