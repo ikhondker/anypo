@@ -66,8 +66,8 @@ class DeptBudgetController extends Controller
 	{
 		$this->authorize('create', DeptBudget::class);
 
-		$budgets = Budget::getAll();
-		$depts = Dept::getAll();
+		$budgets = Budget::primary()->get();
+		$depts = Dept::primary()->get();
 		return view('tenant.dept-budgets.create', compact('budgets', 'depts'));
 	}
 
@@ -81,6 +81,9 @@ class DeptBudgetController extends Controller
 		$dept_budget = DeptBudget::create($request->all());
 		// Write to Log
 		EventLog::event('deptBudget', $dept_budget->id, 'create');
+
+		//update company budget for that year
+		$result = Budget::updateCompanyBudget($deptBudget->budget_id);
 
 		return redirect()->route('tenant.dept-budgets.index')->with('success', 'DeptBudget created successfully.');
 	}
@@ -117,33 +120,29 @@ class DeptBudgetController extends Controller
 			return redirect()->route('budgets.index')->with('error', 'Budget '.$budget->name.'is freezed. Your admin need to unfreeze it, before update!');
 		}
 
-		$request->validate([
-
-		]);
-
 		// create revision row
 		//Log::debug("Input=".$request->input('amount'));
 		//Log::debug("amount=".$deptBudget->amount);
 
 		// upload file as record
 		if ($file = $request->file('file_to_upload')) {
-			Log::debug("file_to_upload=");
-
 			$request->merge(['article_id'	=> $deptBudget->id ]);
 			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
 			$attid = FileUpload::upload($request);
 		}
 
 		// budget has been modified
-		if ($request->input('amount') <> $deptBudget->amount) {
-			//update main budget
-			$budget->amount = $budget->amount - $deptBudget->amount + $request->input('amount');
-			$budget->save();
+		Log::debug('Value of $deptBudget->amount=' . $deptBudget->amount);
+		Log::debug('Value of $request->input(amount)=' . $request->input('amount'));
+		
+		$old_dept_budget_amount =$deptBudget->amount;
+		$deptBudget->update($request->all());
+
+		if ($request->input('amount') <> $old_dept_budget_amount) {
+			//update company budget for that year
+			$result = Budget::updateCompanyBudget($deptBudget->budget_id);
 			EventLog::event('deptBudget', $deptBudget->id, 'update', 'amount', $deptBudget->amount);
 		}
-
-		//dd($deptBudget);
-		$deptBudget->update($request->all());
 
 		return redirect()->route('dept-budgets.show',$deptBudget->id )->with('success', 'DeptBudget updated successfully');
 	}

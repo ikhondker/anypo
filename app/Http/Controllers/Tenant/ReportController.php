@@ -25,6 +25,7 @@ use App\Models\Tenant\Admin\Setup;
 # Enums
 use App\Enum\UserRoleEnum;
 use App\Enum\AuthStatusEnum;
+use App\Enum\InvoiceStatusEnum;
 
 # Helpers
 use App\Helpers\EventLog;
@@ -147,12 +148,22 @@ class ReportController extends Controller
 				return self::r1003();
 				break;
 			case '1004':
-					return self::r1004($start_date, $end_date, $dept_id);
-					break;	
+				return self::r1004($start_date, $end_date, $dept_id);
+				break;	
+			case '1005':
+				return self::r1005($start_date, $end_date, $dept_id);
+				break;	
 			case '1006':
 				return self::r1006($start_date, $end_date, $dept_id);
 				break;
-			default:
+			case '1007':
+				return self::r1007($start_date, $end_date, $dept_id);
+				break;
+			case '1008':
+				return self::r1008($start_date, $end_date, $dept_id);
+				break;
+		
+				default:
 				Log::debug("Report ID not found!");
 		}
 	}
@@ -199,13 +210,12 @@ class ReportController extends Controller
 	{
 		
 		$this->authorize('run',Report::class);
+		
 		$report 	= Report::where('id', '1004')->firstOrFail();
 
 		// Log::debug('start_date='.$start_date);
 		// Log::debug('end_date='.$end_date);
 		// Log::debug('dept_id='.$dept_id);
-		Log::debug("I am here 1");
-		
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
@@ -218,10 +228,11 @@ class ReportController extends Controller
 
 		//TODO AND p.auth_status='".AuthStatusEnum::APPROVED->value."'
 		$sql = "
-			SELECT p.id pr_id, d.name dept_name, p.pr_date,p.auth_status, 
-			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount ,p.currency
+			SELECT p.id pr_id, p.currency, d.name dept_name, p.pr_date,p.auth_status, 
+			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
 			FROM prs p , prls l , uoms u, depts d
 			WHERE 1=1
+			AND p.auth_status = '".AuthStatusEnum::APPROVED->value."'
 			AND p.dept_id =d.id 
 			AND l.uom_id=u.id
 			AND p.id =l.pr_id
@@ -243,7 +254,217 @@ class ReportController extends Controller
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
 
-		return $pdf->stream('grs-'.strtotime("now").'.pdf');
+		return $pdf->stream('prl-'.strtotime("now").'.pdf');
+	}
+
+	public function r1005($start_date, $end_date, $dept_id)
+	{
+		
+		$this->authorize('run',Report::class);
+		
+		$report 	= Report::where('id', '1005')->firstOrFail();
+
+		// Log::debug('start_date='.$start_date);
+		// Log::debug('end_date='.$end_date);
+		// Log::debug('dept_id='.$dept_id);
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		//TODO AND p.auth_status='".AuthStatusEnum::APPROVED->value."'
+		$sql = "
+			SELECT p.id po_id, p.currency, d.name dept_name, p.po_date,p.auth_status, 
+			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
+			FROM pos p , pols l , uoms u, depts d
+			WHERE 1=1
+			AND p.auth_status = '".AuthStatusEnum::APPROVED->value."'
+			AND p.dept_id =d.id 
+			AND l.uom_id=u.id
+			AND p.id =l.po_id
+			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND p.po_date BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+		//Log::debug('sql='.$sql);
+		$pols = DB::select($sql);
+
+		$data = [
+			'report' 	=> $report,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'pols' 		=> $pols,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.1005', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('pol-'.strtotime("now").'.pdf');
+	}
+
+	public function r1006($start_date, $end_date, $dept_id)
+	{
+		
+		$this->authorize('run',Report::class);
+		
+		$report 	= Report::where('id', '1006')->firstOrFail();
+
+		// Log::debug('start_date='.$start_date);
+		// Log::debug('end_date='.$end_date);
+		// Log::debug('dept_id='.$dept_id);
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		$sql = "
+			SELECT r.id, r.receive_date, r.warehouse_id,w.name warehouse_name, r.receiver_id, r.qty rcv_qty, r.fc_amount, 
+			l.line_num, l.summary, u.name uom_name,l.qty ord_qty,
+			p.id po_id, p.po_date, d.name dept_name
+			FROM receipts r, pols l,pos p, uoms u, depts d,warehouses w
+			WHERE 1=1
+			AND r.pol_id =l.id 
+			AND p.id =l.po_id
+			AND p.dept_id =d.id 
+			AND l.uom_id=u.id
+			AND r.warehouse_id = w.id
+			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND r.receive_date BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+		//Log::debug('sql='.$sql);
+		$receipts = DB::select($sql);
+
+		$data = [
+			'report' 	=> $report,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'receipts'	=> $receipts,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.1006', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('receipts-'.strtotime("now").'.pdf');
+	}
+
+	public function r1007($start_date, $end_date, $dept_id)
+	{
+		
+		$this->authorize('run',Report::class);
+		
+		$report 	= Report::where('id', '1007')->firstOrFail();
+
+		// Log::debug('start_date='.$start_date);
+		// Log::debug('end_date='.$end_date);
+		// Log::debug('dept_id='.$dept_id);
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		$sql = "
+			SELECT i.id, i.po_id, i.summary, i.invoice_no, i.invoice_date, i.currency, 
+			i.sub_total, i.tax, i.gst, i.amount, i.fc_amount,
+			s.name supplier_name, d.name dept_name
+			FROM invoices i, pos p, depts d, suppliers s
+			WHERE 1=1
+			AND i.po_id =p.id 
+			AND p.supplier_id = s.id
+			AND i.status = '".InvoiceStatusEnum::POSTED->value."'
+			AND p.dept_id =d.id 
+			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND p.po_date BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+
+		//Log::debug('sql='.$sql);
+		$invoices = DB::select($sql);
+
+		$data = [
+			'report' 	=> $report,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'invoices'	=> $invoices,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.1007', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
+	}
+
+	public function r1008($start_date, $end_date, $dept_id)
+	{
+		
+		$this->authorize('run',Report::class);
+		
+		$report 	= Report::where('id', '1008')->firstOrFail();
+
+		// Log::debug('start_date='.$start_date);
+		// Log::debug('end_date='.$end_date);
+		// Log::debug('dept_id='.$dept_id);
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		$sql = "
+			SELECT pay.id, pay.invoice_id, pay.pay_date, b.ac_name, pay.cheque_no, pay.currency, pay.amount,pay.fc_amount,
+			i.invoice_no, i.invoice_date,
+			p.id po_id, d.name dept_name
+			FROM payments pay, invoices i, pos p, depts d, bank_accounts b
+			WHERE 1=1
+			AND pay.invoice_id =i.id 
+			AND pay.bank_account_id =b.id 
+			AND i.po_id =p.id 
+			AND p.dept_id =d.id 
+
+			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND pay.pay_date BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+
+		//Log::debug('sql='.$sql);
+		$payments = DB::select($sql);
+
+		$data = [
+			'report' 	=> $report,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'payments'	=> $payments,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.1008', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
 	}
 
 	public function pr($id)
@@ -261,14 +482,9 @@ class ReportController extends Controller
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 		
-		Log::debug('I AM HER 1');
-
 		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
 
 		$data = [
-			//'title' 	=> 'Company XYZ',
-			//'id' 		=> $pr->id,
-			//'date' 		=> date('m/d/Y'),
 			'setup' 	=> $setup,
 			'report' 	=> $report,
 			'pr' 		=> $pr,
@@ -282,7 +498,7 @@ class ReportController extends Controller
 		$pdf->setPaper('A4', 'portrait');
 		$pdf->output();
 
-		Log::debug('I AM HER 2');
+		
 
 		// Get height and width of page
 		$canvas = $pdf->getDomPDF()->getCanvas();

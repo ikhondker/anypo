@@ -98,7 +98,7 @@
 
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-10">
 
 			<div class="card">
 				<div class="card-header">
@@ -120,9 +120,15 @@
 								<th>Name</th>
 								<th>PM</th>
 								<th>Start-End</th>
-								<th>Budget Control?</th>
-								<th>Budget</th>
-								<th>Available</th>
+							
+								<th class="text-end">Budget</th>
+								<th class="text-end">PR</th>
+								<th class="text-end">Available (PR)</th>
+								<th class="text-end">PO</th>
+								<th class="text-end">Available (PO)</th>
+								<th class="text-end">GRS</th>
+								<th class="text-end">Payment</th>
+
 								<th>Closed</th>
 								<th>Action</th>
 							</tr>
@@ -134,9 +140,13 @@
 								<td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->name }}</a></td>
 								<td>{{ $project->pm->name }}</td>
 								<td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>
-								<td><x-tenant.list.my-boolean :value="$project->budget_control"/></td>
-								<td><x-tenant.list.my-number :value="$project->amount"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_pr_booked + $project->amount_pr_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_pr_booked - $project->amount_pr_issued "/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_po_booked + $project->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_po_booked - $project->amount_po_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_grs"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_payment"/></td>
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Project" :id="$project->id" :show="true"/>

@@ -1,6 +1,6 @@
 @extends('layouts.landscape')
 
-@section('title','Requisition Lines')
+@section('title','Requisition Lines2')
 {{-- @section('breadcrumb','Create Pr') --}}
 
 @section('content')
@@ -8,10 +8,10 @@
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
 			<tr>
-				<th class="unit">SL</th>
+				<th class="unit">#</th>
+				
 				<th class="unit">PR#</th>
-				<th class="unit">REQ. DATE</th>
-				<th class="unit">LN#</th>
+				<th class="unit">LINE#</th>
 				<th class="unit">DESCRIPTION</th>
 				<th class="unit">DEPT</th>
 				<th class="unit">UOM</th>
@@ -26,18 +26,17 @@
 			@php 
 				$sum = 0
 			@endphp
-			@foreach ($prls as $prl)
+			@foreach ($pols as $pol)
 			<tr>
-				<td class="sl">{{ $loop->iteration }}</td>
-				<td class="desc">{{ $prl->pr_id }}</td>
-				<td class="desc">{{ date('d-M-y', strtotime($prl->pr_date)) }}</td>
-				<td class="sl">{{ $prl->line_num }}</td>
-				<td class="desc">{{ $prl->summary }}</td>
-				<td class="desc">{{ $prl->dept_name }}</td>
-				<td class="desc">{{ $prl->uom_name }} </td>
-				<td class="qty">{{ number_format($prl->price,2) }}</td>
-				<td class="desc">{{ $prl->currency }} </td>
-				<td class="qty">{{ $prl->qty }}</td>
+				<td class="desc">{{ $loop->iteration }}</td>
+				<td class="desc">{{ $pol->po_id }}</td>
+				<td class="desc">{{ $pol->line_num }}</td>
+				<td class="desc" width="40%">{{ $pol->summary }}</td>
+				<td class="desc">{{ $pol->dept_name }}</td>
+				<td class="desc">{{ $pol->uom_name }} </td>
+				<td class="qty">{{ number_format($pol->price,2) }}</td>
+				<td class="desc">{{ $pol->currency }} </td>
+				<td class="qty">{{ $pol->qty }}</td>
 				<td class="qty">{{ number_format($prl->amount,2) }}</td>
 				<td class="qty">{{ number_format($prl->fc_amount,2) }}</td>	
 			</tr>
@@ -50,7 +49,7 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="8"></td>
+				<td colspan="7"></td>
 				<td colspan="2">TOTAL:</td>
 				<td class="qty" colspan="2">{{ $_setup->currency }} {{  number_format($sum,2) }}</td>
 			</tr>

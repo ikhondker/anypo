@@ -44,7 +44,7 @@ class PrlController extends Controller
 
 		$pr = Pr::where('id', $pr_id)->first();
 
-		$items = Item::getAll();
+		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
 		$uoms = Uom::primary()->get();
 
@@ -86,10 +86,15 @@ class PrlController extends Controller
 		$line_num 						= Prl::where('pr_id', '=',$request->input('pr_id'))->max('line_num');
 		$request->merge(['line_num'		=> $line_num +1]);
 		
+		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
+		$request->merge(['tax'			=> $request->input('tax')]);
+		$request->merge(['gst'			=> $request->input('gst')]);
+		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
 
 		//$request->merge(['sub_total'	=> $request->input('sub_total')]);
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
 		$prl = Prl::create($request->all());
+
 
 		// Write to Log
 		EventLog::event('Prl', $prl->id, 'create');
@@ -119,7 +124,7 @@ class PrlController extends Controller
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 
 		$pr = Pr::where('id', $prl->pr_id)->first();
-		$items = Item::getAll();
+		$items = Item::primary()->get();
 		$uoms = Uom::primary()->get();
 
 		return view('tenant.prls.edit', with(compact('pr', 'prl', 'items','uoms')));
@@ -133,7 +138,12 @@ class PrlController extends Controller
 		$this->authorize('update', $prl);
 
 		//$request->merge(['sub_total'	=> $request->input('prl_amount')]);
-		$request->merge(['amount'		=> $request->input('sub_total')+$request->input('tax')+$request->input('gst')]);
+		//$request->merge(['amount'		=> $request->input('sub_total')+$request->input('tax')+$request->input('gst')]);
+
+		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
+		$request->merge(['tax'			=> $request->input('tax')]);
+		$request->merge(['gst'			=> $request->input('gst')]);
+		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
 
 		//$request->validate();
 		$request->validate([

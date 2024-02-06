@@ -51,7 +51,7 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Project Info</h5>
+							<h5 class="card-title">Project Info (TODO) </h5>
 						</div>
 						<div class="card-body">
 							<div class="mb-3">

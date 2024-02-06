@@ -22,7 +22,7 @@ class ReceiptFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'receive_date'	=> $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
+			'receive_date'	=> $this->faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now', $timezone = null),
 			'pol_id'		=> Pol::inRandomOrder()->first()->id,
 			'warehouse_id'	=> Warehouse::inRandomOrder()->first()->id,
 			'receiver_id'	=> User::inRandomOrder()->first()->id,

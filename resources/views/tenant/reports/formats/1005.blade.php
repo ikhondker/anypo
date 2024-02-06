@@ -1,6 +1,6 @@
 @extends('layouts.landscape')
 
-@section('title','Requisition Lines')
+@section('title','Purchase Order Lines')
 {{-- @section('breadcrumb','Create Pr') --}}
 
 @section('content')
@@ -9,8 +9,8 @@
 		<thead>
 			<tr>
 				<th class="unit">SL</th>
-				<th class="unit">PR#</th>
-				<th class="unit">REQ. DATE</th>
+				<th class="unit">PO#</th>
+				<th class="unit">PO &nbsp; DATE</th>
 				<th class="unit">LN#</th>
 				<th class="unit">DESCRIPTION</th>
 				<th class="unit">DEPT</th>
@@ -26,25 +26,25 @@
 			@php 
 				$sum = 0
 			@endphp
-			@foreach ($prls as $prl)
+			@foreach ($pols as $pol)
 			<tr>
 				<td class="sl">{{ $loop->iteration }}</td>
-				<td class="desc">{{ $prl->pr_id }}</td>
-				<td class="desc">{{ date('d-M-y', strtotime($prl->pr_date)) }}</td>
-				<td class="sl">{{ $prl->line_num }}</td>
-				<td class="desc">{{ $prl->summary }}</td>
-				<td class="desc">{{ $prl->dept_name }}</td>
-				<td class="desc">{{ $prl->uom_name }} </td>
-				<td class="qty">{{ number_format($prl->price,2) }}</td>
-				<td class="desc">{{ $prl->currency }} </td>
-				<td class="qty">{{ $prl->qty }}</td>
-				<td class="qty">{{ number_format($prl->amount,2) }}</td>
-				<td class="qty">{{ number_format($prl->fc_amount,2) }}</td>	
+				<td class="desc">{{ $pol->po_id }}</td>
+				<td class="desc">{{ date('d-M-y', strtotime($pol->po_date)) }}</td>
+				<td class="sl">{{ $pol->line_num }}</td>
+				<td class="desc">{{ $pol->summary }}</td>
+				<td class="desc">{{ $pol->dept_name }}</td>
+				<td class="desc">{{ $pol->uom_name }} </td>
+				<td class="qty">{{ number_format($pol->price,2) }}</td>
+				<td class="desc">{{ $pol->currency }} </td>
+				<td class="qty">{{ $pol->qty }}</td>
+				<td class="qty">{{ number_format($pol->amount,2) }}</td>
+				<td class="qty">{{ number_format($pol->fc_amount,2) }}</td>	
 			</tr>
 			{{-- @empty
 				<td olspan="7" class="desc">No Data Found!</td> --}}
 				@php 
-					$sum = $sum + $prl->fc_amount;
+					$sum = $sum + $pol->fc_amount;
 				@endphp
 			@endforeach
 		</tbody>

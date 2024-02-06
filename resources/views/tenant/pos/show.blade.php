@@ -42,7 +42,7 @@
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> View Receipt</a>
 						<a class="dropdown-item" href="{{ route('invoices.create', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> View/Create Invoice</a>
 						{{-- <a class="dropdown-item" href="{{ route('payments.create-for-po', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> View Payments</a> --}}
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
+						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Run PO Detail Report*</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item modal-boolean-advance"  href="{{ route('pos.cancel', $po->id) }}"
 							data-entity="" data-name="PO#{{ $po->id }}" data-status="Cancel"

@@ -4,8 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\EventEnum;
-
 return new class extends Migration
 {
 	/**
@@ -13,7 +11,7 @@ return new class extends Migration
 	 */
 	public function up(): void
 	{
-		Schema::create('dept_budget_usages', function (Blueprint $table) {
+		Schema::create('dbus', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->foreignId('dept_budget_id')->constrained('dept_budgets');
 			/** ENUM */
@@ -45,6 +43,6 @@ return new class extends Migration
 	 */
 	public function down(): void
 	{
-		Schema::dropIfExists('dept_budget_usages');
+		Schema::dropIfExists('dbus');
 	}
 };

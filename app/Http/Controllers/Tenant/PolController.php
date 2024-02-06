@@ -85,9 +85,12 @@ class PolController extends Controller
 		// get max line num for the
 		$line_num 						= Pol::where('po_id', '=',$po->id)->max('line_num');
 		$request->merge(['line_num'		=> $line_num +1]);
-		//$request->merge(['sub_total'	=> $request->input('pol_amount')]);
-		//$request->merge(['amount'		=> $request->input('pol_amount')]);
 		
+		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
+		$request->merge(['tax'			=> $request->input('tax')]);
+		$request->merge(['gst'			=> $request->input('gst')]);
+		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
+
 		$request->merge(['dept_id'		=> $po->dept_id]);
 		$request->merge(['requestor_id'	=> $po->requestor_id]);
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
@@ -131,7 +134,8 @@ class PolController extends Controller
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 
 		$po = Po::where('id', $pol->po_id)->first();
-		$items = Item::getAll();
+		
+		$items = Item::primary()->get();
 		$uoms = Uom::primary()->get();
 
 		return view('tenant.pols.edit', with(compact('po', 'pol', 'items','uoms')));
@@ -146,7 +150,11 @@ class PolController extends Controller
 
 		//$request->merge(['sub_total'	=> $request->input('prl_amount')]);
 		//$request->merge(['amount'		=> $request->input('amount')]);
-		$request->merge(['amount'		=> $request->input('sub_total')+$request->input('tax')+$request->input('gst')]);
+		//$request->merge(['amount'		=> $request->input('sub_total')+$request->input('tax')+$request->input('gst')]);
+		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
+		$request->merge(['tax'			=> $request->input('tax')]);
+		$request->merge(['gst'			=> $request->input('gst')]);
+		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
 
 		//$request->validate();
 		$request->validate([

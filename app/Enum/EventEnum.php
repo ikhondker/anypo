@@ -24,6 +24,7 @@ enum EventEnum: string{
 	case SUBMIT		= 'submit';
 	case FORWARD	= 'forward';
 	case BOOK		= 'book';
+	case CONFIRM	= 'confirm';
 	case REVERSE	= 'reverse';
 	case ADJUST		= 'adjust';
 	case CANCEL		= 'cancel';

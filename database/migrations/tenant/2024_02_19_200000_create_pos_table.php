@@ -22,7 +22,7 @@ return new class extends Migration
 			$table->dateTime('po_date')->useCurrent();
 			$table->dateTime('need_by_date')->useCurrent();
 			$table->foreignId('requestor_id')->constrained('users');
-			$table->foreignId('dept_id')->constrained('depts');	
+			$table->foreignId('dept_id')->constrained('depts');
 			$table->biginteger('unit_id')->nullable()->default(1001);				// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
 			$table->biginteger('dept_budget_id')->nullable();   // Intentional kept null to allow user save draft PO before budget upload
@@ -67,7 +67,7 @@ return new class extends Migration
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent();
-		   
+
 		});
 	}
 

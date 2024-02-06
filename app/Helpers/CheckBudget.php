@@ -42,15 +42,30 @@ use Carbon\Carbon;
 
 class CheckBudget
 {
-	public static function checkAndBookPr($pr_id)
+
+	public static function bookProjectBudgetPr($pr_id)
+	{
+		$pr = Pr::where('id', $pr_id)->first();
+
+		// check and book projects budget
+		$project = Project::primary()->where('id', $pr->project_id)->firstOrFail();
+		// check if budget is available then update dept_budget
+		if (($project->amount - $project->amount_pr_booked - $project->amount_pr_issued) > $pr->fc_amount) {
+			$project->amount_pr_booked = $project->amount_pr_booked + $pr->fc_amount;
+			$project->save();
+		} else {
+			return 'E004';
+		}
+	}
+
+
+	public static function bookDeptBudgetPr($pr_id)
 	{
 		
 		$pr = Pr::where('id', $pr_id)->first();
+		
 
 		// check if dept_budget for this year exists
-		// increase booking
-
-		// check if budget for this year exists
 		$fy = Carbon::now()->format('Y');
 		try {
 			$budget = Budget::primary()->where('fy', $fy)->firstOrFail();
@@ -60,9 +75,8 @@ class CheckBudget
 		}
 
 		// check if dept_budget for this year exists
-		Log::debug("pr->dept_id=".$pr->dept_id);
-		Log::debug("pr->dept_budget_id=".$pr->dept_budget_id);
-
+		//Log::debug("pr->dept_id=".$pr->dept_id);
+		//Log::debug("pr->dept_budget_id=".$pr->dept_budget_id);
 		try {
 			$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
@@ -75,18 +89,26 @@ class CheckBudget
 			// book pr budget
 			$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked + $pr->fc_amount;
 			$dept_budget->save();
+			
+			
+			// insert row in DeptBudgetUsages table
+			$dbu					= new DeptBudgetUsages();
+			$dbu->dept_budget_id	= $dept_budget->id;
+			$dbu->entity			= EntityEnum::PR->value;	
+			$dbu->article_id		= $pr_id;
+			$dbu->event				= EventEnum::BOOK->value;
+			$dbu->amount_pr_booked	= $pr->fc_amount;
+			$dbu->save();
+
 
 			$budget->amount_pr_booked = $budget->amount_pr_booked + $pr->fc_amount;
 			$budget->save();
+			
 		} else {
 			return 'E003';
 		}
 
-		// update projects budget
-		$project = Project::where('id', $pr->project_id)->firstOrFail();
-		$project->amount_pr_booked = $project->amount_pr_booked + $pr->fc_amount;
-		$project->save();
-
+		
 		return 'E000';
 	}
 

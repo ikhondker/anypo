@@ -14,7 +14,7 @@ class Country extends Component
 	 */
 	public function __construct()
 	{
-		$this->countries = \App\Models\Tenant\Lookup\Country::getAll();
+		$this->countries = \App\Models\Tenant\Lookup\Country::All();
 	}
 
 	/**

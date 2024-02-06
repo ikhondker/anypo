@@ -125,10 +125,10 @@ class PrController extends Controller
 		$request->merge(['fc_currency'	=> $setup->currency]);
 
 		// as this is the first line pr value will be same as prl values
-		$request->merge(['sub_total'	=> $request->input('sub_total')]);
+		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
 		$request->merge(['tax'			=> $request->input('tax')]);
 		$request->merge(['gst'			=> $request->input('gst')]);
-		$request->merge(['amount'		=> $request->input('amount')]);
+		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
 
 		// User and HoD Can create only own department PR
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
@@ -155,10 +155,11 @@ class PrController extends Controller
 		$prl->summary	= $request->input('summary');
 		$prl->qty		= $request->input('qty');
 		$prl->price		= $request->input('price');
-		$prl->sub_total	= $request->input('sub_total');
+
+		$prl->sub_total	= $request->input('qty') * $request->input('price');
 		$prl->tax		= $request->input('tax');
 		$prl->gst		= $request->input('gst');
-		$prl->amount	= $request->input('amount');
+		$prl->amount	= ($request->input('qty') * $request->input('price')) +$request->input('tax')+$request->input('gst');
 
 		$prl->save();
 		$prl_id			= $prl->id;
@@ -299,19 +300,6 @@ class PrController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function xxgetCancelPrNum()
-	{
-
-		$this->authorize('cancel', Pr::class);
-		
-		//Log::debug('pr_id=getCancelPrNum');
-		
-		return view('tenant.prs.cancel');
-	}
-
-	/**
 	 * Remove the specified resource from storage.
 	 */
 	public function cancel(Pr $pr)
@@ -421,10 +409,24 @@ class PrController extends Controller
 			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		} 
 	
-		//  Check and book Budget
-		$retcode = CheckBudget::checkAndBookPr($pr->id);
+		//  Check and book Project Budget
+		$retcode = CheckBudget::bookProjectBudgetPr($pr->id);
 		//Log::debug("retcode = ".$retcode );
+		switch ($retcode) {
+			case 'E004':
+				return redirect()->back()->with('error', config('akk.MSG_E004'));
+				break;
+			case 'E999':
+				return redirect()->back()->with('error', config('akk.MSG_E999')) ;
+				break;
+			default:
+				// Success
+		}
 
+
+		//  Check and book Dept Budget
+		$retcode = CheckBudget::bookDeptBudgetPr($pr->id);
+		//Log::debug("retcode = ".$retcode );
 		switch ($retcode) {
 			case 'E001':
 				return redirect()->back()->with('error', config('akk.MSG_E001'));

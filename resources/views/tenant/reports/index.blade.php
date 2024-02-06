@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-10">
 
 			<div class="card">
 				<div class="card-header">

@@ -23,28 +23,34 @@ class ProjectSeeder extends Seeder
 	 
 			$projects =  [
 				[
-					'name'  => 'Generic',
-					'pm_id' => User::inRandomOrder()->first()->id,
+					'name'  	=> 'Generic',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
 				],
 				[
-					'name' => 'GB06',
-					'pm_id' => User::inRandomOrder()->first()->id,
+					'name' 		=> 'GB06',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
 				],
 				[
-					'name' => 'GB07',
-					'pm_id' => User::inRandomOrder()->first()->id,
+					'name' 		=> 'GB07',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
 				],
 				[
-					'name' => 'GB08',
-					'pm_id' => User::inRandomOrder()->first()->id,
+					'name' 		=> 'GB08',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
 				],
 				[
-					'name' => 'GB09',
-					'pm_id' => User::inRandomOrder()->first()->id,
+					'name' 		=> 'GB09',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
 				],
 				[
-					'name' => 'GB10',
-					'pm_id' => User::inRandomOrder()->first()->id,
+					'name' 		=> 'GB10',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
 				],
 			];
 			//

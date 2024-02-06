@@ -134,7 +134,11 @@
 				font-size: 1.6em;
 				background: #57B223;
 			}
-		
+
+			table .sl {
+				text-align: center;
+			}
+
 			table .desc {
 				text-align: left;
 			}
@@ -156,7 +160,6 @@
 			table td.qty,
 			table td.total {
 				/* font-size: 1.2em; */
-		
 			}
 		
 			/* table tbody tr:last-child td {
@@ -164,10 +167,13 @@
 			} */
 		
 			table tfoot td {
-				padding: 10px 20px;
+				text-align: right;
+				padding: 10px 10px;
 				background: #FFFFFF;
+				border-left: none;
+				border-right: none;
 				border-bottom: none;
-				font-size: 1.2em;
+				font-size: 1em;
 				white-space: nowrap;
 				border-top: 1px solid #AAAAAA;
 			}
@@ -257,7 +263,7 @@
 			</div>
 			<div id="company">
 				<h2 class="name">{{ $report->name }}</h2>
-				<div>BASE CURRENCY: {{ $_setup->currency }}</div>
+				<div>Functional Currency: {{ $_setup->currency }}</div>
 				@if ($param1 <> '')
 					<div>{{ $param1 }}</div>
 				@endif

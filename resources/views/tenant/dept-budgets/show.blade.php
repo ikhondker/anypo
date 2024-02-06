@@ -41,7 +41,7 @@
 					</div>
 					<x-tenant.show.my-date		value="{{ $deptBudget->budget->start_date }}" label="Start Date"/>
 					<x-tenant.show.my-date		value="{{ $deptBudget->budget->end_date }}" label="End Date"/>
-					<x-tenant.show.my-boolean	value="{{ $deptBudget->freeze }}"/>
+					<x-tenant.show.my-boolean	value="{{ $deptBudget->freeze }}" label="Freeze?"/>
 					<x-tenant.show.my-badge		value="{{ $deptBudget->id }}"/>
 					<x-tenant.show.my-text		value="{{ $deptBudget->notes }}" label="Notes"/>
 				</div>

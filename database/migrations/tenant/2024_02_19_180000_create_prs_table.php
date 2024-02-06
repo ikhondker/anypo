@@ -20,7 +20,7 @@ return new class extends Migration
 			$table->dateTime('pr_date')->useCurrent();
 			$table->dateTime('need_by_date')->useCurrent();
 			$table->foreignId('requestor_id')->constrained('users');
-			$table->foreignId('dept_id')->constrained('depts');
+			$table->foreignId('dept_id')->constrained('depts')->index();
 			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
 			$table->biginteger('dept_budget_id')->nullable();   // Intentional kept null to allow user save draft PR before budget upload

@@ -78,7 +78,7 @@ class ReportSeeder extends Seeder
 			],
 			[
 				'id' 					=> 1004,
-				'name' 					=> 'Approved Purchase Requisition Detail Report*',
+				'name' 					=> 'Requisition Detail Report',
 				'summary' 				=> 'Approved Purchase Requisition Detail Report (For a Date range, by Department)',
 				'start_date' 			=> true,
 				'start_date_required' 	=> true,
@@ -89,7 +89,7 @@ class ReportSeeder extends Seeder
 			],
 			[
 				'id' 					=> 1005,
-				'name' 					=> 'Approved Purchase Order Detail Report*',
+				'name' 					=> 'Purchase Order Detail Report',
 				'summary' 				=> 'Approved Purchase Order Detail Report (For a Date range, by Department)',
 				'start_date' 			=> true,
 				'start_date_required' 	=> true,
@@ -98,6 +98,40 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> true,
 				'dept_id_required' 		=> false,
 			],
+			[
+				'id' 					=> 1006,
+				'name' 					=> 'Goods Receipt Register',
+				'summary' 				=> 'Goods Receipt Detail Report (For a Date range, by Department)',
+				'start_date' 			=> true,
+				'start_date_required' 	=> true,
+				'end_date' 				=> true,
+				'end_date_required' 	=> true,
+				'dept_id' 				=> true,
+				'dept_id_required' 		=> false,
+			],
+			[
+				'id' 					=> 1007,
+				'name' 					=> 'Invoice Register',
+				'summary' 				=> 'Invoice Register (For a Date range, by Department)',
+				'start_date' 			=> true,
+				'start_date_required' 	=> true,
+				'end_date' 				=> true,
+				'end_date_required' 	=> true,
+				'dept_id' 				=> true,
+				'dept_id_required' 		=> false,
+			],
+			[
+				'id' 					=> 1008,
+				'name' 					=> 'Payment Register',
+				'summary' 				=> 'Payment Register (For a Date range, by Department)',
+				'start_date' 			=> true,
+				'start_date_required' 	=> true,
+				'end_date' 				=> true,
+				'end_date_required' 	=> true,
+				'dept_id' 				=> true,
+				'dept_id_required' 		=> false,
+			],
+
 	  	];
 	  Report::insert($reports);
 	}

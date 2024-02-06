@@ -127,11 +127,12 @@ class PoController extends Controller
 		$request->merge(['fc_currency'	=> $setup->currency]);
 		
 		// as this is the first line pr value will be same as pol values
-		$request->merge(['sub_total'	=> $request->input('sub_total')]);
+		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
 		$request->merge(['tax'			=> $request->input('tax')]);
 		$request->merge(['gst'			=> $request->input('gst')]);
-		$request->merge(['amount'		=> $request->input('amount')]);
+		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
 
+		
 
 		// User and HoD Can create only own department PO
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
@@ -160,11 +161,12 @@ class PoController extends Controller
 		$pol->summary		= $request->input('summary');
 		$pol->qty			= $request->input('qty');
 		$pol->price			= $request->input('price');
-		$pol->sub_total		= $request->input('sub_total');
-		$pol->tax			= $request->input('tax');
-		$pol->gst			= $request->input('gst');
-		$pol->amount		= $request->input('amount');
-
+		
+		$pol->sub_total	= $request->input('qty') * $request->input('price');
+		$pol->tax		= $request->input('tax');
+		$pol->gst		= $request->input('gst');
+		$pol->amount	= ($request->input('qty') * $request->input('price')) +$request->input('tax')+$request->input('gst');
+		
 		$pol->save();
 		$pol_id			= $pol->id;
 		//Log::debug("pol_id = ".$pol_id );
