@@ -22,12 +22,14 @@ use App\Enum\WflActionEnum;
 use App\Enum\EntityEnum;
 
 # Helpers
-use App\Helpers\CheckBudget;
+use App\Helpers\PrBudget;
+use App\Helpers\PoBudget;
 use App\Helpers\EventLog;
 use App\Helpers\Workflow;
 # Notifications
 use Notification;
 use App\Notifications\Tenant\PrActions;
+use App\Notifications\Tenant\PoActions;
 # Mails
 # Packages
 # Seeded
@@ -45,7 +47,7 @@ class WflController extends Controller
 	 */
 	public function index()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -53,7 +55,7 @@ class WflController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -61,7 +63,7 @@ class WflController extends Controller
 	 */
 	public function store(StoreWflRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -69,7 +71,7 @@ class WflController extends Controller
 	 */
 	public function show(Wfl $wfl)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -77,7 +79,7 @@ class WflController extends Controller
 	 */
 	public function edit(Wfl $wfl)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -178,8 +180,9 @@ class WflController extends Controller
 			case('PR'):
 				//  reverse Booking
 				$pr = Pr::where('id', $wf->article_id)->first();
-				$retcode = CheckBudget::prBudgetBookReverse($pr->id);
+				$retcode = PrBudget::prBudgetBookReject($pr->id);
 				Log::debug("retcode = ".$retcode);
+
 				$pr->auth_status	= AuthStatusEnum::REJECTED->value;
 				$pr->auth_date		= date('Y-m-d H:i:s');
 				$pr->auth_user_id	= auth()->user()->id;
@@ -192,6 +195,21 @@ class WflController extends Controller
 				$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 				break;
 			case('PO'):
+				//  reverse Booking
+				$po = Po::where('id', $wf->article_id)->first();
+				$retcode = PoBudget::prBudgetBookReject($po->id);
+				Log::debug("retcode = ".$retcode);
+
+				$po->auth_status	= AuthStatusEnum::REJECTED->value;
+				$po->auth_date		= date('Y-m-d H:i:s');
+				$po->auth_user_id	= auth()->user()->id;
+				$po->save();
+
+				// send rejection mail to requestor
+				$action = WflActionEnum::REJECTED->value;
+				$actionURL = route('pos.show', $po->id);
+				$requestor = User::where('id', $po->requestor_id)->first();
+				$requestor->notify(new PoActions($requestor, $po, $action, $actionURL));
 				break;
 			default:
 				Log::debug("Error!. Invalid Entity in wfl.update rejected");
@@ -217,7 +235,7 @@ class WflController extends Controller
 				$pr->save();
 
 				// confirm budget
-				$retcode = CheckBudget::prBudgetApprove($pr->id);
+				$retcode = PrBudget::prBudgetApprove($pr->id);
 				//Log::debug("retcode = ".$retcode);
 
 				// send approval mail to requestor
@@ -225,13 +243,25 @@ class WflController extends Controller
 				$actionURL = route('prs.show', $pr->id);
 				$requestor = User::where('id', $pr->requestor_id)->first();
 				$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
-
 				break;
 			case('PO '):
-				$po->auth_status	= $auth_status;
+
+				$po = Po::where('id', $wf->article_id)->first();
+				$po->auth_status	=  AuthStatusEnum::APPROVED->value;
 				$po->auth_date		= date('Y-m-d H:i:s');
 				$po->auth_user_id	= auth()->user()->id;
 				$po->save();
+
+				// confirm budget
+				$retcode = PoBudget::poBudgetApprove($po->id);
+				//Log::debug("retcode = ".$retcode);
+
+				// send approval mail to requestor
+				$action = WflActionEnum::APPROVED->value;
+				$actionURL = route('pos.show', $po->id);
+				$requestor = User::where('id', $po->requestor_id)->first();
+				$requestor->notify(new PoActions($requestor, $po, $action, $actionURL));
+
 				break;
 			default:
 				Log::debug("Error!. Invalid Entity in wfl.update");

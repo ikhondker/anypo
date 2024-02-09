@@ -24,7 +24,7 @@
 		@method('PUT')
 
 		<!-- widget-po-lines -->
-		<x-tenant.widgets.po-lines id="{{ $po->id }}" :edit="true" pid="{{ $pol->id }}"/>
+		<x-tenant.widgets.po.lines id="{{ $po->id }}" :edit="true" pid="{{ $pol->id }}"/>
 		<!-- /.widget-pr-lines -->
 
 	</form>

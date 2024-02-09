@@ -63,7 +63,7 @@
 			style="text-align: right;"
 			name="sub_total" id="sub_total" placeholder="1.00"
 			value="{{ old('sub_total','1.00') }}"
-			required>
+			readonly>
 		@error('sub_total')
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
@@ -93,7 +93,7 @@
 			style="text-align: right;"
 			name="amount" id="amount" placeholder="1.00"
 			value="{{ old('amount','1.00') }}"
-			required>
+			readonly>
 		@error('amount')
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror

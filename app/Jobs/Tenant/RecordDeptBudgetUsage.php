@@ -73,12 +73,15 @@ class RecordDeptBudgetUsage implements ShouldQueue
 					case EventEnum::BOOK->value:
 						$dbu->amount_pr_booked	= $pr->fc_amount;
 						break;
-					case EventEnum::REVERSE->value:
+					case EventEnum::REJECT->value:
 						$dbu->amount_pr_booked	= - $pr->fc_amount;
 						break;
 					case EventEnum::APPROVE->value:
 						$dbu->amount_pr_booked	= - $pr->fc_amount;
 						$dbu->amount_pr_issued	= $pr->fc_amount;
+						break;
+					case EventEnum::CANCEL->value:
+						$dbu->amount_pr_issued	= - $pr->fc_amount;
 						break;
 					default:
 						Log::debug("job.RecordDeptBudgetUsage Other Event!");
@@ -97,12 +100,15 @@ class RecordDeptBudgetUsage implements ShouldQueue
 					case EventEnum::BOOK->value:
 						$dbu->amount_po_booked	= $po->fc_amount;
 						break;
-					case EventEnum::REVERSE->value:
+					case EventEnum::REJECT->value:
 						$dbu->amount_po_booked	= - $po->fc_amount;
 						break;
 					case EventEnum::APPROVE->value:
 						$dbu->amount_po_booked	= - $po->fc_amount;
 						$dbu->amount_po_issued	= $po->fc_amount;
+						break;
+					case EventEnum::CANCEL->value:
+						$dbu->amount_po_issued	= - $po->fc_amount;
 						break;
 					default:
 						Log::debug("job.RecordDeptBudgetUsage Other Event!");

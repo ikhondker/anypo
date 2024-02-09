@@ -23,12 +23,14 @@ enum EventEnum: string{
 	case CREATE		= 'create';
 	case UPDATE		= 'update';
 	case SUBMIT		= 'submit';
+	
 	//case FORWARD	= 'forward';
 	case BOOK		= 'book';
 	case REJECT		= 'reject';
 	case APPROVE	= 'approve';
 	case CANCEL		= 'cancel';
-	//case ADJUST	= 'adjust';
+	//case CONFIRM	= 'confirm';
+	//case ADJUST		= 'adjust';
 	//case PAYMENT	= 'payment';
 }
 

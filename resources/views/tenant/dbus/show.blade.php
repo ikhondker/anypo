@@ -18,13 +18,13 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">DeptBudget Info</h5>
+					<h5 class="card-title">DeptBudget Usages Info</h5>
 					<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $dbu->id }}" label="ID"/>
-					<x-tenant.show.my-text		value="{{ $dbu->dept_budget->budget->fy }}" label="FY"/>
-					<x-tenant.show.my-text		value="{{ $dbu->dept_budget->dept->name }}" label="Dept"/>
+					<x-tenant.show.my-text		value="{{ $dbu->deptBudget->budget->fy }}" label="FY"/>
+					<x-tenant.show.my-text		value="{{ $dbu->dept->name }}" label="Dept"/>
 					<x-tenant.show.my-date		value="{{ $dbu->created_at }}" label="Date"/>
 					<x-tenant.show.my-text		value="{{ $dbu->entity }}" label="Entity"/>
 					<x-tenant.show.my-text		value="{{ $dbu->article_id }}" label="Article ID"/>
@@ -44,9 +44,9 @@
 				</div>
 				<div class="card-body">
 				<x-tenant.show.my-amount	value="{{ $dbu->amount_pr_booked }}" label="PR Booked"/>
-				<x-tenant.show.my-amount	value="{{ $dbu->amount_pr_issued }}" label="PR Issued"/>
+				<x-tenant.show.my-amount	value="{{ $dbu->amount_pr_issued }}" label="PR Approved"/>
 				<x-tenant.show.my-amount	value="{{ $dbu->amount_po_booked }}" label="PO Booked"/>
-				<x-tenant.show.my-amount	value="{{ $dbu->amount_po_issued }}" label="PR Issued"/>
+				<x-tenant.show.my-amount	value="{{ $dbu->amount_po_issued }}" label="PO Issued"/>
 				<x-tenant.show.my-amount	value="{{ $dbu->amount_grs }}" label="GRS Amount"/>
 				<x-tenant.show.my-amount	value="{{ $dbu->amount_payment }}" label="Payment Amount"/>
 				</div>

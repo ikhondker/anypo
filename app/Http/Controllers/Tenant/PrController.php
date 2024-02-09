@@ -43,7 +43,7 @@ use App\Helpers\EventLog;
 use App\Helpers\Export;
 use App\Helpers\Workflow;
 use App\Helpers\FileUpload;
-use App\Helpers\CheckBudget;
+use App\Helpers\PrBudget;
 use App\Helpers\ExchangeRate;
 # Notifications
 use Notification;
@@ -327,8 +327,8 @@ class PrController extends Controller
 				//return redirect()->route('prs.cancel')->with('error', 'This Requisition is already converted to PO#'.$pr->po_id.'. Requisition can not be canceled.');
 			}
 	
-			//  Reverse Booking
-			$retcode = CheckBudget::reverseBookingPr($pr_id);
+			//  Reverse Booking TODO
+			$retcode = PrBudget::prBudgetApproveCancel($pr_id); 
 			Log::debug("pr.cancel retcode = ".$retcode);
 	
 			// Cancel All PR Lines
@@ -414,7 +414,7 @@ class PrController extends Controller
 		} 
 
 		//  Check and book Dept Budget
-		$retcode = CheckBudget::prBudgetBook($pr->id);
+		$retcode = PrBudget::prBudgetBook($pr->id);
 		//Log::debug("retcode = ".$retcode );
 		switch ($retcode) {
 			case 'E001':

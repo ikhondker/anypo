@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			CheckBudget.php
-* @brief		This file contains the implementation of the CheckBudget
+* @file			PoBudget.php
+* @brief		This file contains the implementation of the PoBudget
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -34,7 +34,6 @@ use App\Enum\UserRoleEnum;
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 
-use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
@@ -46,121 +45,8 @@ use Carbon\Carbon;
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
 
-class CheckBudget
+class PoBudget
 {
-
-	public static function prBudgetBook($pr_id)
-	{
-
-		$pr = Pr::where('id', $pr_id)->first();
-
-		// check if dept_budget for this year exists
-		$fy = Carbon::now()->format('Y');
-		try {
-			$budget = Budget::primary()->where('fy', $fy)->firstOrFail();
-		} catch (ModelNotFoundException $exception) {
-			Log::debug("Inside ModelNotFoundException");
-			return 'E001';
-		}
-
-		// check if dept_budget for this year exists
-		//Log::debug("pr->dept_id=".$pr->dept_id);
-		//Log::debug("pr->dept_budget_id=".$pr->dept_budget_id);
-		try {
-			$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-		} catch (ModelNotFoundException $exception) {
-			//Log::debug("Inside ModelNotFoundException");
-			return 'E002';
-		}
-
-		// only check if budget is available 
-		$dept_budget_available =false;
-		if (($dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr_issued) > $pr->fc_amount) {
-			$dept_budget_available =true;
-		} else {
-			return 'E003';
-		}
-
-		// check if project budget available
-		$project_budget_available =false;
-		$project = Project::primary()->where('id', $pr->project_id)->firstOrFail();
-			if (($project->amount - $project->amount_pr_booked - $project->amount_pr_issued) > $pr->fc_amount) {
-			$project_budget_available =true;
-		} else {
-			return 'E004';
-		}
-
-		// both budget is available 
-		if ($project_budget_available && $dept_budget_available ) {
-			// book pr dept budget
-			$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked + $pr->fc_amount;
-			$dept_budget->save();
-
-			// book project budget
-			$project->amount_pr_booked = $project->amount_pr_booked + $pr->fc_amount;
-			$project->save();
-
-
-			// run job to Sync Budget
-			RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::BOOK->value);
-			ConsolidateBudget::dispatch($dept_budget->budget_id);
-		}
-		return 'E000';
-	}
-
-	// Called from wfl->reject and pr->cancel
-	public static function prBudgetBookReverse($pr_id)
-	{
-
-		$pr = Pr::where('id', $pr_id)->first();
-
-		// reverse Pr dept budget booking 
-		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-		$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked - $pr->fc_amount;
-		$dept_budget->save();
-		
-		// reverse Pr project booking 
-		$project = Project::where('id', $pr->project_id)->firstOrFail();
-		$project->amount_pr_booked = $project->amount_pr_booked - $pr->fc_amount;
-		$project->save();
-
-		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::REVERSE->value);
-		ConsolidateBudget::dispatch($dept_budget->budget_id);
-
-		Log::debug("CheckBudget.prBudgetBookReverse Inside");
-
-		return 'E000';
-	}
-
-	public static function prBudgetApprove($pr_id)
-	{
-		$pr = Pr::where('id', $pr_id)->first();
-		// Pr dept budget approved
-		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-		$dept_budget->amount_pr_issued = $dept_budget->amount_pr_issued + $pr->fc_amount;
-		$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked - $pr->fc_amount;
-		$dept_budget->save();
-
-		// Pr project budget used
-		$project = Project::where('id', $pr->project_id)->firstOrFail();
-		$project->amount_pr_issued = $project->amount_pr_issued + $pr->fc_amount;
-		$project->amount_pr_booked = $project->amount_pr_booked - $pr->fc_amount;
-		$project->save();
-
-		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::APPROVE->value);
-		ConsolidateBudget::dispatch($dept_budget->budget_id);
-
-		return 'E000';
-	}
-
-	public static function prBudgetApproveReverse($pr_id)
-	{
-		//
-	}
-
-
 	public static function poBudgetBook($po_id)
 	{
 
@@ -234,7 +120,7 @@ class CheckBudget
 	}
 
 	// Called from wfl->reject and po->cancel
-	public static function poBudgetBookReverse($po_id)
+	public static function poBudgetBookReject($po_id)
 	{
 
 		$po = Po::where('id', $pr_id)->first();
@@ -250,10 +136,10 @@ class CheckBudget
 		$project->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::REVERSE->value);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::REJECT->value);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-		Log::debug("CheckBudget.reverseBookingPo Inside");
+		Log::debug("PoBudget.poBudgetBookReject Inside");
 
 		return 'E000';
 	}
@@ -281,10 +167,27 @@ class CheckBudget
 	}
 	
 
-	public static function poBudgetApproveReverse($po_id)
+	public static function poBudgetApproveCancel($po_id)
 	{
-		return false;
+		$po = Po::where('id', $po_id)->first();
+
+		// Cancel Po dept budget booking 
+		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->amount_po_issued = $dept_budget->amount_po_issued - $po->fc_amount;
+		$dept_budget->save();
+		
+		// Cancel Po project booking 
+		$project = Project::where('id', $po->project_id)->firstOrFail();
+		$project->amount_po_issued = $project->amount_po_issued - $po->fc_amount;
+		$project->save();
+
+		// run job to Sync Budget
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::CANCEL->value);
+		ConsolidateBudget::dispatch($dept_budget->budget_id);
+
+		Log::debug("PoBudget.poBudgetApproveCancel Inside");
+
+		return 'E000';
 	}
 
-	
 }

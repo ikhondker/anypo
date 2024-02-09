@@ -44,9 +44,9 @@
 								<th>Event</th>
 								<th>Project</th>
 								<th class="text-end">PR Booked</th>
-								<th class="text-end">PR Confirmed</th>
+								<th class="text-end">PR Approved</th>
 								<th class="text-end">PO Booked</th>
-								<th class="text-end">Po Confirmed</th>
+								<th class="text-end">PO Issued</th>
 								<th class="text-end">GRS</th>
 								<th class="text-end">Payment</th>
 								<th>Action</th>

@@ -42,7 +42,7 @@ use App\Helpers\EventLog;
 use App\Helpers\Export;
 use App\Helpers\Workflow;
 use App\Helpers\FileUpload;
-use App\Helpers\CheckBudget;
+use App\Helpers\PoBudget;
 use App\Helpers\ExchangeRate;
 # Notifications
 use Notification;
@@ -336,8 +336,8 @@ class PoController extends Controller
 				//return redirect()->route('pos.cancel')->with('error', 'Receipt exists for this PO. Can not cancel!');
 			}
 			
-			//  Reverse Booking
-			$retcode = CheckBudget::reverseBookingPo($po->id);
+			//  Reverse Approve Budget
+			$retcode = PoBudget::poBudgetApproveCancel($po_id); 
 			Log::debug("retcode = ".$retcode);
 	
 			// Cancel All PO Lines
@@ -413,7 +413,7 @@ class PoController extends Controller
 		} 
 
 		//  Check and book Budget
-		$retcode = CheckBudget::poBudgetBook($po->id);
+		$retcode = PoBudget::poBudgetBook($po->id);
 		Log::debug("retcode = ".$retcode );
 
 		switch ($retcode) {

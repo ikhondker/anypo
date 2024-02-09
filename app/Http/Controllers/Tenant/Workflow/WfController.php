@@ -19,7 +19,8 @@ use App\Enum\WflActionEnum;
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
-use App\Helpers\CheckBudget;
+use App\Helpers\PrBudget;
+use App\Helpers\PoBudget;
 # Notifications
 # Mails
 # Packages
@@ -174,7 +175,7 @@ class WfController extends Controller
 			}
 
 			// reverse Booking
-			$retcode = CheckBudget::prBudgetBookReverse($pr->id);
+			$retcode = PrBudget::prBudgetBookReject($pr->id);
 			Log::debug("retcode = ".$retcode);
 
 			//reset pr wf_id and status
@@ -230,7 +231,7 @@ class WfController extends Controller
 			}
 
 			// reverse Booking
-			$retcode = CheckBudget::poBudgetBookReverse($po->id);
+			$retcode = PoBudget::poBudgetBookReject($po->id);
 			Log::debug("retcode = ".$retcode);
 
 			//reset po wf_id and status

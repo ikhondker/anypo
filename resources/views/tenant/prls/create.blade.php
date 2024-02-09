@@ -21,7 +21,7 @@
 		@csrf
 
 		<!-- widget-pr-lines -->
-		<x-tenant.widgets.pr-lines id="{{ $pr->id }}" :add="true"/>
+		<x-tenant.widgets.pr.lines id="{{ $pr->id }}" :add="true"/>
 		<!-- /.widget-pr-lines -->
 
 	</form>
