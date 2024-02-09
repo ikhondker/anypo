@@ -43,7 +43,7 @@
 						<tbody>
 							@foreach ($bank_accounts as $bank_account)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td>{{ $bank_accounts->firstItem() + $loop->index }}</td>
 								<td><a class="text-info" href="{{ route('bank-accounts.show',$bank_account->id) }}">{{ $bank_account->ac_name }}</a></td>
 								<td>{{ $bank_account->ac_number }}</td>
 								<td>{{ $bank_account->bank_name }}</td>

@@ -46,7 +46,8 @@ class DeptBudgetController extends Controller
 				$q->where('name', 'LIKE', '%' .request('term'). '%');
 			});
 		}
-		$dept_budgets = $dept_budgets->orderBy('id', 'DESC')->paginate(10);
+
+		$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.dept-budgets.index', compact('dept_budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 

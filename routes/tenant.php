@@ -180,7 +180,11 @@ Route::middleware([
 	Route::resource('tables', TableController::class);
 	Route::get('/table/structure/{table}',[TableController::class, 'structure'])->name('tables.structure');
 	Route::get('/table/controllers',[TableController::class, 'controllers'])->name('tables.controllers');
+	Route::get('/table/controllers-fnc',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
+	Route::get('/table/helpers-fnc',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
+	
 	Route::get('/table/models',[TableController::class, 'models'])->name('tables.models');
+	Route::get('/table/models-fnc',[TableController::class, 'fncModels'])->name('tables.fnc-models');
 	Route::get('/table/routes',[TableController::class, 'routes'])->name('tables.routes');
 	Route::get('/table/route-code',[TableController::class, 'routeCode'])->name('tables.route-code');
 	Route::get('/table/policies',[TableController::class, 'policies'])->name('tables.policies');

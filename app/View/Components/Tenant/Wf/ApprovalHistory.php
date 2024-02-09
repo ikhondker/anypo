@@ -18,7 +18,7 @@ class ApprovalHistory extends Component
 	 */
 	public function __construct($id)
 	{
-		$this->wfls = Wfl::with('performer')->where('wf_id', $id)->get()->all();
+		$this->wfls = Wfl::with('performer.designation')->where('wf_id', $id)->get()->all();
 	}
 
 	/**

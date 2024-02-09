@@ -52,7 +52,7 @@
 								<td><a class="text-info" href="{{ route('prs.show',$pr->id) }}">{{ $pr->summary }}</a></td>
 								<td><x-tenant.list.my-date :value="$pr->pr_date"/></td>
 								<td>{{ $pr->requestor->name }}</td>
-								<td>{{ $pr->relDept->name }}</td>
+								<td>{{ $pr->dept->name }}</td>
 								<td>{{ $pr->currency }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$pr->amount"/></td>
 								<td><x-tenant.list.my-badge :value="$pr->auth_status"/></td>

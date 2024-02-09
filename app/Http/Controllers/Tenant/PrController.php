@@ -84,7 +84,7 @@ class PrController extends Controller
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$prs = $prs->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->with("requestor")->with("dept")->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
 				$prs = $prs->ByUserAll()->paginate(10);
@@ -209,7 +209,7 @@ class PrController extends Controller
 	{
 		$this->authorize('view', $pr);
 
-		$prls = Prl::where('pr_id', $pr->id)->get()->all();
+		$prls = Prl::with("item")->with("uom")->where('pr_id', $pr->id)->get()->all();
 
 		// approve-reject form
 		if ($pr->auth_status->value == AuthStatusEnum::INPROCESS->value) {

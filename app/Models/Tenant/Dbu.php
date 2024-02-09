@@ -10,18 +10,46 @@ use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Dept;
+use App\Models\Tenant\Lookup\Project;
 
 class Dbu extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'dept_budget_id', 'entity', 'article_id', 'event', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'updated_by', 'updated_at',
+		'dept_budget_id', 'entity', 'article_id', 'event', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'updated_by', 'updated_at',
 	];
 
 
 	/* ---------------- belongsTo ---------------------- */
-	public function dept_budget(){
-		return $this->belongsTo(DeptBudget::class,'dept_budget_id');
+	public function deptBudget(){
+		return $this->belongsTo(DeptBudget::class,'dept_budget_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
+
+	public function dept(){
+		return $this->belongsTo(Dept::class,'dept_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+	public function project(){
+		return $this->belongsTo(Project::class,'project_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+	public function user(){
+		return $this->belongsTo(User::class,'user_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+
+	/* ----------------- Scopes ------------------------- */
+
+	/* ----------------- Functions ---------------------- */
+
+	/* ----------------- HasMany ------------------------ */
+
 }

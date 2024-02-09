@@ -11,6 +11,23 @@
 			<x-tenant.buttons.header.lists object="Project"/>
 			<x-tenant.buttons.header.create object="Project"/>
 			<x-tenant.buttons.header.edit object="Project" :id="$project->id"/>
+
+				<div class="dropdown me-2 d-inline-block position-relative">
+					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
+						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
+					</a>
+					<div class="dropdown-menu dropdown-menu-end">
+						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
+						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
+						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
+					</div>
+				</div>
+
+				
 		@endslot
 	</x-tenant.page-header>
 
@@ -132,6 +149,8 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
+
+	<x-tenant.widgets.dbu-project :id="$project->id"/>
 
 	<div class="row">
 		<div class="col-6">

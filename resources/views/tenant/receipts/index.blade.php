@@ -46,7 +46,7 @@
 						<tbody>
 							@foreach ($receipts as $receipt)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td>{{ $receipts->firstItem() + $loop->index }}</td>
 								<td><a class="text-info" href="{{ route('receipts.show',$receipt->id) }}">{{ $receipt->id }}</a></td>
 								<td>{{ $receipt->receive_date }}</td>
 								<td>{{ $receipt->warehouse->name }}</td>

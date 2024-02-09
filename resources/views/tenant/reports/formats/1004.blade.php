@@ -28,7 +28,7 @@
 			@endphp
 			@foreach ($prls as $prl)
 			<tr>
-				<td class="sl">{{ $loop->iteration }}</td>
+				<td class="sl">{{ $prls->firstItem() + $loop->index }}</td>
 				<td class="desc">{{ $prl->pr_id }}</td>
 				<td class="desc">{{ date('d-M-y', strtotime($prl->pr_date)) }}</td>
 				<td class="sl">{{ $prl->line_num }}</td>

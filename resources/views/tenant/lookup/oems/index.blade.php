@@ -41,7 +41,7 @@
 						<tbody>
 							@foreach ($oems as $oem)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td>{{ $oems->firstItem() + $loop->index }}</td>
 								<td>{{ $oem->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$oem->enable"/></td>
 								<td class="table-action">

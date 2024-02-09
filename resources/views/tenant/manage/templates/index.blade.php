@@ -53,7 +53,7 @@
 						<tbody>
 							@foreach ($templates as $template)
 							<tr>
-								<td class="">{{ ++$i }}</td>
+								<td class="">{{ $templates->firstItem() + $loop->index }}</td>
 								<td class=""><a class="text-info" href="{{ route('templates.show',$template->id) }}">{{ $template->name }}</a></td>
 
 								<td class="">{{ $template->phone }}</td>

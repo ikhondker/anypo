@@ -45,7 +45,7 @@ class WfController extends Controller
 		if (request('term')) {
 			$wfs->where('article_id', 'Like', '%' . request('term') . '%');
 		}
-		$wfs = $wfs->orderBy('id', 'DESC')->paginate(10);
+		$wfs = $wfs->with("relHierarchy")->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.workflow.wfs.index', compact('wfs'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
@@ -151,7 +151,7 @@ class WfController extends Controller
 	public function wfResetPr(StoreWfRequest $request)
 	{
 		$this->authorize('reset',Wf::class);
-		// $this->authorize('resetpr',Wf::class);
+
 		// check if pr status only in-process
 
 		// update PR header
@@ -208,7 +208,7 @@ class WfController extends Controller
 	 */
 	public function wfResetPo(StoreWfRequest $request)
 	{
-		//$this->authorize('reset',Wf::class);
+		$this->authorize('reset',Wf::class);
 
 		// update PR header
 		// $pr	= Pr::where('id', $request->input('pr_id'))->firstOrFail();
@@ -230,10 +230,10 @@ class WfController extends Controller
 			}
 
 			// reverse Booking
-			$retcode = CheckBudget::reverseBookingPr($po->id);
+			$retcode = CheckBudget::poBudgetBookReverse($po->id);
 			Log::debug("retcode = ".$retcode);
 
-			//reset pr wf_id and status
+			//reset po wf_id and status
 			$po->wf_id = 0;
 			$po->auth_status = AuthStatusEnum::DRAFT->value;
 			$po->submission_date = null;

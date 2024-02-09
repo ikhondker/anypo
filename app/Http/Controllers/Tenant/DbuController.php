@@ -23,7 +23,8 @@ class DbuController extends Controller
 		if (request('term')) {
 			$dbus->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$dbus = $dbus->orderBy('id', 'DESC')->paginate(10);
+
+		$dbus = $dbus->with('dept')->with('deptBudget.budget')->with('project')->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.dbus.index', compact('dbus'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 

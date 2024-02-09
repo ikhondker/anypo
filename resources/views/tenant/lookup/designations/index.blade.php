@@ -40,7 +40,7 @@
 						<tbody>
 							@foreach ($designations as $designation)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td>{{ $designations->firstItem() + $loop->index }}</td>
 								<td>{{ $designation->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$designation->enable"/></td>
 								<td class="table-action">

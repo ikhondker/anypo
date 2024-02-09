@@ -51,7 +51,7 @@
 						<tbody>
 							@foreach ($dept_budgets as $dept_budget)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td>{{ $dept_budgets->firstItem() + $loop->index }}</td>
 								<td><a class="text-info" href="{{ route('dept-budgets.show',$dept_budget->id) }}">{{ $dept_budget->dept->name  }}</a></td>
 								<td>{{ $dept_budget->budget->fy }}</td>
 								<td><x-tenant.list.my-date :value="$dept_budget->budget->start_date"/> - <x-tenant.list.my-date :value="$dept_budget->budget->end_date"/></td>

@@ -33,7 +33,7 @@
 							
 							@foreach ($reports as $report)
 								<tr>
-									<td>{{ $loop->iteration }}</td>
+									<td>{{ $reports->firstItem() + $loop->index }}</td>
 									<td>{{ $report->name }}</td>
 									<td>{{ $report->summary }}</td>
 									<td class="table-action">

@@ -136,7 +136,7 @@
 						<tbody>
 							@foreach ($projects as $project)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td>{{ $projects->firstItem() + $loop->index }}</td>
 								<td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->name }}</a></td>
 								<td>{{ $project->pm->name }}</td>
 								<td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>

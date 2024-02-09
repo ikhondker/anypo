@@ -35,7 +35,7 @@
 						<tbody>
 							@foreach ($hierarchyls as $hierarchyl)
 							<tr>
-								<td><span class="badge bg-primary-light">{{ $loop->iteration }}</span></td>
+								<td><span class="badge bg-primary-light">{{ $hierarchyls->firstItem() + $loop->index }}</span></td>
 								<td>{{ $hierarchyl->approver->name }}</td>
 								<td>{{ $hierarchyl->approver->designation_name->name }} </td>
 								<td>{{ $hierarchyl->approver->dept_name->name }} </td>

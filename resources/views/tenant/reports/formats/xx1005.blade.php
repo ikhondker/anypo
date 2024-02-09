@@ -28,7 +28,7 @@
 			@endphp
 			@foreach ($pols as $pol)
 			<tr>
-				<td class="desc">{{ $loop->iteration }}</td>
+				<td class="desc">{{ $pols->firstItem() + $loop->index }}</td>
 				<td class="desc">{{ $pol->po_id }}</td>
 				<td class="desc">{{ $pol->line_num }}</td>
 				<td class="desc" width="40%">{{ $pol->summary }}</td>

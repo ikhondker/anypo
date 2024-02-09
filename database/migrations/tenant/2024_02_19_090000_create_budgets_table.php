@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('budgets', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('fy')->unique();
+			$table->string('fy')->unique()->index();
 			$table->string('name');
 			$table->dateTime('start_date', $precision = 0)->nullable()->useCurrent();
 			$table->dateTime('end_date', $precision = 0)->nullable()->useCurrent();

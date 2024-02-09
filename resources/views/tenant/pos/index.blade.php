@@ -53,7 +53,7 @@
 								<td>{{ $po->id }}</td>
 								<td><a class="text-info" href="{{ route('pos.show',$po->id) }}">{{ $po->summary }}</a></td>
 								<td><x-tenant.list.my-date :value="$po->po_date"/></td>
-								<td>{{ $po->relDept->name }}</td>
+								<td>{{ $po->dept->name }}</td>
 								<td>{{ $po->currency }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$po->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_grs"/></td>

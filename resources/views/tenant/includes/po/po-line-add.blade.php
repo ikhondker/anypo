@@ -48,7 +48,8 @@
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
-	<td class="text-end">N/A
+	<td class="text-end">
+		N/A
 	</td>
 	<td class="text-end">
 		<input type="number" step='0.01' min="1" class="form-control @error('price') is-invalid @enderror"

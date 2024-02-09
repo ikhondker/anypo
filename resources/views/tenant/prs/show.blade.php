@@ -70,7 +70,7 @@
 	@include('tenant.includes.pr.view-pr-header')
 
 	<!-- widget-pr-lines -->
-	<x-tenant.widgets.pr-lines id="{{ $pr->id }}" :show="true"/>
+	<x-tenant.widgets.pr.lines id="{{ $pr->id }}" :show="true"/>
 		
 	<!-- /.widget-pr-lines -->
 

@@ -60,7 +60,7 @@
 	@include('tenant.includes.po.view-po-header')
 
 	<!-- widget-po-lines -->
-	<x-tenant.widgets.po-lines :id="$po->id" :show="true"/>
+	<x-tenant.widgets.po.lines :id="$po->id" :show="true"/>
 		
 	<!-- /.widget-po-lines -->
 

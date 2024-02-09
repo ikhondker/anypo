@@ -14,6 +14,9 @@ class DbuSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Dbu::factory()->count(15)->create();
+		Dbu::factory()->count(25)->create();
 	}
+
+
+	
 }

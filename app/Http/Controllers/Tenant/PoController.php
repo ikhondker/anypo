@@ -85,7 +85,7 @@ class PoController extends Controller
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$pos = $pos->orderBy('id', 'DESC')->paginate(10);
+				$pos = $pos->with('dept')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
 				$pos = $pos->ByUserAll()->paginate(10);
@@ -102,11 +102,11 @@ class PoController extends Controller
 	{
 		$this->authorize('create', Po::class);
 
-		$depts = Dept::getAll();
-		$items = Item::getAll();
+		$depts = Dept::primary()->get();
+		$items = Item::primary()->get();
+		$suppliers = Supplier::primary()->get();
+		$projects = Project::primary()->get();
 		$uoms = Uom::primary()->get();
-		$suppliers = Supplier::getAll1();
-		$projects = Project::getAll();
 
 		return view('tenant.pos.create', compact('suppliers', 'depts', 'items','uoms', 'projects'));
 	}
@@ -118,7 +118,7 @@ class PoController extends Controller
 	{
 		$this->authorize('create', Po::class);
 		$setup = Setup::first();
-		//dd($request);
+
 		// don't set dept_budget_id . It will be save during submissions
 		//$request->merge(['requestor_id'	=> 	auth()->id() ]);
 		$request->merge(['po_date'		=> date('Y-m-d H:i:s')]);
@@ -131,8 +131,6 @@ class PoController extends Controller
 		$request->merge(['tax'			=> $request->input('tax')]);
 		$request->merge(['gst'			=> $request->input('gst')]);
 		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
-
-		
 
 		// User and HoD Can create only own department PO
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
@@ -176,7 +174,7 @@ class PoController extends Controller
 				return redirect()->route('pos.show', $po->id)->with('success', 'Po#'. $po->id.' created successfully.');
 				break;
 			case 'save_add':
-				return redirect()->route('pols.add-line', $po->id)->with('success', 'Po#'. $po->id.' created successfully. Please add more line.');
+				return redirect()->route('pols.createline', $po->id)->with('success', 'Po#'. $po->id.' created successfully. Please add more line.');
 				break;
 		}
 	}
@@ -371,7 +369,7 @@ class PoController extends Controller
 
 	public function submit(Po $po)
 	{
-		//$this->authorize('submit', $po);
+		$this->authorize('submit', $po);
 
 		if ($po->auth_status->value <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.index')->with('error', 'You can only submit if the status is '. AuthStatusEnum::DRAFT->value .' !');
@@ -415,7 +413,7 @@ class PoController extends Controller
 		} 
 
 		//  Check and book Budget
-		$retcode = CheckBudget::checkAndBookPo($po->id);
+		$retcode = CheckBudget::poBudgetBook($po->id);
 		Log::debug("retcode = ".$retcode );
 
 		switch ($retcode) {

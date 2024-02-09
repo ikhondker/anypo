@@ -42,7 +42,7 @@
 						<tbody>
 							@foreach ($suppliers as $supplier)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td>{{ $suppliers->firstItem() + $loop->index }}</td>
 								<td><a class="text-info" href="{{ route('suppliers.show',$supplier->id) }}">{{ $supplier->name }}</a></td>
 								<td>{{ $supplier->contact_person }}</td>
 								<td>{{ $supplier->cell }}</td>

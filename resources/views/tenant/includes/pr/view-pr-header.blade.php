@@ -9,7 +9,8 @@
 					<x-tenant.show.my-amount-currency	value="{{ $pr->amount }}" currency="{{ $pr->currency }}" />
 					<x-tenant.show.my-date		value="{{ $pr->pr_date }}"/>
 					<x-tenant.show.my-text		value="{{ $pr->requestor->name }}" label="Requestor"/>
-					<x-tenant.show.my-text		value="{{ $pr->relSupplier->name }}" label="Supplier"/>
+					<x-tenant.show.my-text		value="{{ $pr->supplier->name }}" label="Supplier"/>
+
 					<x-tenant.show.my-date		value="{{ $pr->need_by_date }}" label="Need by Date"/>
 					<div class="row">
 						<div class="col-sm-3 text-end">
@@ -43,8 +44,8 @@
 					<x-tenant.show.my-badge		value="{{ $pr->auth_status }}" label="Auth Status"/>
 					<x-tenant.show.my-date-time	value="{{$pr->auth_date }}" label="Auth Date"/>
 					<x-tenant.show.my-badge		value="{{ $pr->status }}" label="Status"/>
-					<x-tenant.show.my-text		value="{{ $pr->relDept->name }}" label="Dept"/>
-					<x-tenant.show.my-text		value="{{ $pr->relProject->name }}" label="Project"/>
+					<x-tenant.show.my-text		value="{{ $pr->dept->name }}" label="Dept"/>
+					<x-tenant.show.my-text		value="{{ $pr->project->name }}" label="Project"/>
 					<x-tenant.show.my-text		value="{{ $pr->notes }}" label="Notes"/>
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">

@@ -259,18 +259,20 @@ class Po extends Model
 
 
 	/* ----------------- Functions ---------------------- */
+
+	
 	/* ----------------- HasMany ------------------------ */
 	public function pols() {
 		return $this->hasMany(Pol::class);
 	}
 
 	/* ---------------- belongsTo ---------------------- */
-	public function relDept(){
+	public function dept(){
 		return $this->belongsTo(Dept::class,'dept_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}
-	public function relCurrency(){
+	public function xxrelCurrency(){
 		return $this->belongsTo(Currency::class,'currency')->withDefault([
 			'name' => '[ Empty ]',
 		]);
@@ -286,12 +288,12 @@ class Po extends Model
 		]);
 	}
 
-	public function relSupplier(){
+	public function supplier(){
 		return $this->belongsTo(Supplier::class,'supplier_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}
-	public function relProject(){
+	public function project(){
 		return $this->belongsTo(Project::class,'project_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);

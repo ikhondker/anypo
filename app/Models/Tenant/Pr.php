@@ -268,12 +268,12 @@ class Pr extends Model
 	}
 
 	/* ---------------- belongsTo ---------------------- */
-	public function relDept(){
+	public function dept(){
 		return $this->belongsTo(Dept::class,'dept_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}
-	public function relCurrency(){
+	public function xxrelCurrency(){
 		return $this->belongsTo(Currency::class,'currency')->withDefault([
 			'name' => '[ Empty ]',
 		]);
@@ -283,12 +283,12 @@ class Pr extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
-	public function relSupplier(){
+	public function supplier(){
 		return $this->belongsTo(Supplier::class,'supplier_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}
-	public function relProject(){
+	public function project(){
 		return $this->belongsTo(Project::class,'project_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);

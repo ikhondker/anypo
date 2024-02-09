@@ -46,7 +46,7 @@
 						<tbody>
 							@foreach ($payments as $payment)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td>{{ $payments->firstItem() + $loop->index }}</td>
 								<td><x-tenant.list.my-date :value="$payment->pay_date"/></td>
 								<td>{{ $payment->po_id }}</td>
 								<td>{{ $payment->bank_account->ac_name }}</td>

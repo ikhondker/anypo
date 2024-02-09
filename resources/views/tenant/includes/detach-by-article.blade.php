@@ -22,7 +22,7 @@
 				<tbody>
 					@foreach ($attachments as $attachment)
 					<tr>
-						<td class="">{{ $loop->iteration }}</td>
+						<td class="">{{ $attachments->firstItem() + $loop->index }}</td>
 						<td class="">{{ $attachment->owner->name }}</td>
 						<td class="">{{ $attachment->org_file_name }}</td>
 						<td class="">{{ $attachment->file_size }}</td>

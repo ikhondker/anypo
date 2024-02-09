@@ -40,7 +40,7 @@ class DeptController extends Controller
 		if (request('term')) {
 			$depts->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$depts = $depts->orderBy('id', 'DESC')->paginate(10);
+		$depts = $depts->with("prHierarchy")->with("poHierarchy")->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.lookup.depts.index', compact('depts'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 

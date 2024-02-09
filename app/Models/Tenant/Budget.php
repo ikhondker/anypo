@@ -87,6 +87,6 @@ class Budget extends Model
 	/* ----------------- HasMany ------------------------ */
 	public function deptBudgets(): HasMany
 	{
-		return $this->hasMany(DeptBudget::class, 'dept_id');
+		return $this->hasMany(DeptBudget::class, 'budget_id');
 	}
 }

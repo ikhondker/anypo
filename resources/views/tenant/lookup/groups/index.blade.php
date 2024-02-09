@@ -32,7 +32,7 @@
 						<tbody>
 							@foreach ($groups as $group)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td>{{ $groups->firstItem() + $loop->index }}</td>
 								<td>{{ $group->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$group->enable"/></td>
 								<td class="table-action">
