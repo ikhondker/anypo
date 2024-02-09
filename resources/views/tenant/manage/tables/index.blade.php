@@ -20,6 +20,7 @@
 			<div class="card">
 				<div class="card-header">
 				<h5 class="card-title">Tables Lists</h5>
+				<h6 class="card-subtitle text-muted">DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]</h6>
 				</div>
 				<div class="card-body">
 					<table class="table table-striped table-sm">

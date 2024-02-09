@@ -6,11 +6,9 @@
 
 
 @section('content')
-
-
 	<x-tenant.page-header>
 		@slot('title')
-			Routes Lists
+			Header Comments
 		@endslot
 		@slot('buttons')
 			<x-tenant.table-links/>
@@ -20,7 +18,8 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-				<h5 class="card-title">Header Comments</h5>
+					<h5 class="card-title">Header Comments</h5>
+					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_CLASS') }}</h6>
 				</div>
 				<div class="card-body">
 					@foreach($filesInFolder as $row) 

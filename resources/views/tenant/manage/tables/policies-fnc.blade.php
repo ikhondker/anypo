@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Controllers List')
+@section('title', 'Functions in Models')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE') }}@[{{ base_path() }}]
 @endsection
@@ -8,7 +8,7 @@
 @section('content')
 	<x-tenant.page-header>
 		@slot('title')
-			Functions in Controller
+			Functions in Policies
 		@endslot
 		@slot('buttons')
 			<x-tenant.table-links />
@@ -19,8 +19,8 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Functions in Controller </h5>
-					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_CLASS') }}</h6>
+					<h5 class="card-title">Functions in Policies</h5>
+					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_POLICY') }}</h6>
 				</div>
 				<div class="card-body">
 					<table class="table table-striped table-sm">
@@ -39,13 +39,10 @@
 
 							@foreach ($filesInFolder as $row)
 								@php
-								//$methods = (new ReflectionClass('\App\Blog'))->getMethods();
-								//dd($methods); 
-								$exclude = array("middleware", "getMiddleware", "callAction", "__call", "authorize",'authorizeForUser','authorizeResource','validateWith','validate','validateWithBag');
+								$exclude = array('__call',	);
 								//$class = new ReflectionClass('App\Http\Controllers\Tenant\HomeController');
-								//$class = new ReflectionClass('App\Http\Controllers\Tenant\\'. $row["f"]);
-								$class = new ReflectionClass(config('akk.DOC_DIR_CLASS') .'\\'. $row["f"]);
-
+								//$class = new ReflectionClass('App\Models\Tenant\\'. $row["f"]);
+								$class = new ReflectionClass(config('akk.DOC_DIR_POLICY') .'\\'. $row["f"]);
 								$methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
 								@endphp
 								@foreach ($methods as $method)
@@ -61,7 +58,7 @@
 											<td class="text-start"></td>
 										</tr>
 										@php
-									}
+										}
 										@endphp
 
 								@endforeach

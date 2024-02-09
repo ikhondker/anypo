@@ -20,6 +20,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Functions in Helpers</h5>
+					<h6 class="card-subtitle text-muted">Hardcoded: \app\Helpers</h6>
 				</div>
 				<div class="card-body">
 					<table class="table table-striped table-sm">

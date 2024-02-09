@@ -21,7 +21,8 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-				<h5 class="card-title">All Routes</h5>
+					<h5 class="card-title">All Routes</h5>
+					<h6 class="card-subtitle text-muted">Route::getRoutes()->getRoutesByName();</h6>
 				</div>
 				<div class="card-body">
 					<table class="table table-striped table-sm">

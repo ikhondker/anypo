@@ -29,10 +29,12 @@ class Docs
 	{
 		return DB::select('SHOW TABLES');
 	}
+
 	public static function columns($table)
 	{
-		return DB::SELECT('describe ' . $table);;
+		return DB::SELECT('describe ' . $table);
 	}
+
 	public static function getFiles($folder)
 	{
 		//$filesInFolder = \File::files(base_path() . '\app\Models\Landlord');

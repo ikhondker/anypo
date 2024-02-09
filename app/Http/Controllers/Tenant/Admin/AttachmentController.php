@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Tenant\Admin;
 use App\Http\Controllers\Controller;
 
-
 use App\Models\Tenant\Admin\Attachment;
 use App\Http\Requests\Tenant\Admin\StoreAttachmentRequest;
 use App\Http\Requests\Tenant\Admin\UpdateAttachmentRequest;

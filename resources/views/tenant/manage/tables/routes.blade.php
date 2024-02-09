@@ -9,7 +9,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Routes Lists
+			Routes Code
 		@endslot
 		@slot('buttons')
 			<x-tenant.table-links/>
@@ -20,7 +20,8 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Routes Lists</h5>
+					<h5 class="card-title">Routes Code</h5>
+					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_MODEL') }}</h6>
 				</div>
 				<div class="card-body">
 					@foreach($filesInFolder as $row) 

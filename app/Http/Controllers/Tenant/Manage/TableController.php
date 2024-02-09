@@ -194,6 +194,17 @@ class TableController extends Controller
 		return view('tenant.manage.tables.controllers-fnc', compact('filesInFolder'))->with('i', 0);
 	}
 
+	public function helpers()
+	{
+		$this->authorize('controllers', Table::class);
+		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
+		$filesInFolder = Docs::getFiles('\app\Helpers');
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		
+		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
+		return view('tenant.manage.tables.helpers', compact('filesInFolder'))->with('i', 0);
+	}
+
 	public function fncHelpers()
 	{
 		$this->authorize('controllers', Table::class);
@@ -229,7 +240,7 @@ class TableController extends Controller
 		$this->authorize('routes', Table::class);
 		// https://laravel.com/api/6.x/Illuminate/Routing/RouteCollection.html
 		$routes = Route::getRoutes()->getRoutesByName();
-		return view('tenant.manage.tables.all-routes', compact('routes'))->with('i', 0);
+		return view('tenant.manage.tables.routes-all', compact('routes'))->with('i', 0);
 	}
 
 	public function routeCode()
@@ -243,8 +254,16 @@ class TableController extends Controller
 	public function policies()
 	{
 		$this->authorize('policies', Table::class);
-		$filesInFolder = Docs::getFiles('\app\Models\Tenant');	// <<============= Models
+		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');	// <<============= Models
+		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
 		return view('tenant.manage.tables.policies', compact('filesInFolder'))->with('i', 0);
+	}
+
+	public function fncPolicies()
+	{
+		$this->authorize('models', Table::class);
+		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_POLICY'));
+		return view('tenant.manage.tables.policies-fnc', compact('filesInFolder'))->with('i', 0);
 	}
 
 	public function comments()
@@ -269,7 +288,8 @@ class TableController extends Controller
 		$this->authorize('messages', Table::class);
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers');
 		//$filesInFolder = Docs::messages('\app\Http\Controllers');
-		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		$filesInFolder = Docs::messages(config('akk.DOC_DIR_CLASS'));
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
 	}
 
 
@@ -306,7 +326,6 @@ class TableController extends Controller
 			'Supplier',
 			'Project',
 			'Budget',
-
 			'Item',
 			'UploadItem',
 			'Wf',

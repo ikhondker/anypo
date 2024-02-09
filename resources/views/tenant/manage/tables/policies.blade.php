@@ -9,7 +9,7 @@
  
 	<x-tenant.page-header>
 		@slot('title')
-			Routes Lists
+			Policies Lists
 		@endslot
 		@slot('buttons')
 			<x-tenant.table-links/>
@@ -21,6 +21,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Policies Lists</h5>
+					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_MODEL') }}</h6>
 				</div>
 				<div class="card-body">
 					<h5>App\Provider\AuthServiceProvider.php</h5>

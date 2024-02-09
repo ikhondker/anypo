@@ -8,7 +8,7 @@
 @section('content')
 	<x-tenant.page-header>
 		@slot('title')
-			Controllers Lists
+			Helpers List (Common)
 		@endslot
 		@slot('buttons')
 			<x-tenant.table-links />
@@ -19,8 +19,8 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Controllers List</h5>
-					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_CLASS') }}</h6>
+					<h5 class="card-title">Helpers List (Common)</h5>
+					<h6 class="card-subtitle text-muted">Hardcoded: \app\Helpers</h6>
 				</div>
 				<div class="card-body">
 					<table class="table table-striped table-sm">
@@ -43,11 +43,9 @@
 								<tr>
 									<th scope="row">{{ $loop->iteration }}</th>
 									<td class="">{{ $row['f'] }}</td>
-									<td class="">{{ $row['removed'] }}</td>
-									<td class="">{{ $row['route'] }}</td>
-									<td class="table-action"><a class="text-info"
-										href="http://localhost:8000/{{ $row['route'] }}">Functions</a>
-									</td>
+									<td class="">&nbsp;</td>
+									<td class="">&nbsp;</td>
+									<td class="">&nbsp;</td>
 									<td class="text-start">
 										@if ($row['days'] < 7)
 											<span class="text-danger"> {{ $row['last_modified_human'] }} <span>
@@ -56,9 +54,7 @@
 										@endif
 									</td>
 									<td class="text-start">{{ $row['days'] }}</td>
-									<td class="table-action"><a class="text-info"
-											href="http://localhost:8000/{{ $row['route'] }}">Jump</a>
-									</td>
+									<td class="">&nbsp;</td>
 								</tr>
 							@endforeach
 						</tbody>
