@@ -22,7 +22,7 @@ namespace App\Enum;
 enum EventEnum: string{
 	case CREATE		= 'create';
 	case UPDATE		= 'update';
-		case SUBMIT		= 'submit';
+	case SUBMIT		= 'submit';
 	//case FORWARD	= 'forward';
 	case BOOK		= 'book';
 	case REJECT		= 'reject';
