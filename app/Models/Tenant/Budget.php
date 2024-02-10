@@ -21,8 +21,7 @@ class Budget extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'fy', 'name', 'start_date', 'end_date', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'notes', 'text_color', 'bg_color', 'icon', 'closed', 'updated_by', 'updated_at',
-
+		'fy', 'name', 'start_date', 'end_date', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_invoice', 'amount_payment', 'notes', 'text_color', 'bg_color', 'icon', 'closed', 'updated_by', 'updated_at',
 	];
 
 	/* ----------------- Scopes ------------------------- */

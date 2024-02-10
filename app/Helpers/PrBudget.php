@@ -101,7 +101,7 @@ class PrBudget
 
 
 			// run job to Sync Budget
-			RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::BOOK->value);
+			RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::BOOK->value,$pr->fc_amount);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 		}
 		return 'E000';
@@ -124,7 +124,7 @@ class PrBudget
 		$project->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, $event);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, $event,$pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		Log::debug("PrBudget.prBudgetBookReject Inside");
@@ -148,7 +148,7 @@ class PrBudget
 		$project->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::APPROVE->value);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::APPROVE->value,$pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		return 'E000';
@@ -169,7 +169,7 @@ class PrBudget
 		$project->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::CANCEL->value);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::CANCEL->value,$pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		Log::debug("PrBudget.prBudgetApproveCancel Inside");

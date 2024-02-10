@@ -11,10 +11,14 @@ use App\Http\Requests\Tenant\UpdateInvoiceRequest;
 
 
 use App\Models\Tenant\Po;
+use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Payment;
+use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Admin\Setup;
 
 # Enums
 use App\Enum\EntityEnum;
+use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\InvoiceStatusEnum;
 use App\Enum\PaymentStatusEnum;
@@ -22,11 +26,17 @@ use App\Enum\PaymentStatusEnum;
 use App\Helpers\EventLog;
 use App\Helpers\Export;
 use App\Helpers\FileUpload;
+use App\Helpers\ExchangeRate;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use Illuminate\Support\Facades\Log;
 
+#Jobs
+use App\Jobs\Tenant\ConsolidateBudget;
+use App\Jobs\Tenant\RecordDeptBudgetUsage;
+
+use DB;
 
 class InvoiceController extends Controller
 {
@@ -82,13 +92,22 @@ class InvoiceController extends Controller
 	{
 		$this->authorize('create', Invoice::class);
 		
-		//Log::debug('inside invoice .store');
-
+		// $request->merge(['invoice_date'		=> date('Y-m-d H:i:s')]);
+		// Log::debug('inside invoice .store');
 		$invoice = Invoice::create($request->all());
+		
+		Log::debug('I AM HERE 0');
+		// 	Populate functional currency values
+		$result = self::updateInvoiceFcValues($invoice->id);
+		if (! $result) {
+			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		}
+		// Reupload 
+		$invoice = Invoice::where('id', $invoice->id)->first();
 
 		// update PO header
 		$po 					= Po::where('id', $invoice->po_id)->firstOrFail();
-		$po->amount_invoiced	= $po->amount_invoiced + $invoice->amount;
+		$po->amount_invoice			= $po->amount_invoice - $invoice->amount;
 		$po->save();
 
 		if ($file = $request->file('file_to_upload')) {
@@ -97,9 +116,27 @@ class InvoiceController extends Controller
 			$attid = FileUpload::upload($request);
 		}
 
+		// update budget and project level summary 
+		$po = Po::where('id', $invoice->po_id)->first();
+		// Po dept budget grs amount update
+		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->amount_invoice = $dept_budget->amount_invoice + $invoice->fc_amount;
+		$dept_budget->save();
+
+		// Po project budget used
+		$project = Project::where('id', $po->project_id)->firstOrFail();
+		$project->amount_invoice = $project->amount_invoice + $invoice->fc_amount;
+		$project->save();
+
+		
+		Log::debug('I AM HERE 1');
+		// run job to Sync Budget
+		RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::CREATE->value,$invoice->fc_amount);
+		ConsolidateBudget::dispatch($dept_budget->budget_id);
+
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'create');
-		return redirect()->route('pos.create',$po->id)->with('success', 'Invoice created successfully.');
+		return redirect()->route('pos.show',$po->id)->with('success', 'Invoice created successfully.');
 	}
 
 	/**
@@ -155,7 +192,6 @@ class InvoiceController extends Controller
 		$this->authorize('cancel', Invoice::class);
 		
 		$invoice_id = $invoice->id;
-		
 
 		try {
 			$invoice = Invoice::where('id', $invoice_id)->firstOrFail();
@@ -171,8 +207,25 @@ class InvoiceController extends Controller
 
 			//  Reverse PO Invoiced amount
 			$po 				= Po::where('id', $invoice->po_id)->firstOrFail();
-			$po->amount_invoiced			= $po->amount_invoiced - $invoice->amount;
+			$po->amount_invoice			= $po->amount_invoice - $invoice->amount;
 			$po->save();
+
+
+			// update budget and project level summary 
+			$po = Po::where('id', $invoice->po_id)->first();
+			// Po dept budget grs amount update
+			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+			$dept_budget->amount_invoice = $dept_budget->amount_invoice - $invoice->fc_amount;
+			$dept_budget->save();
+
+			// Po project budget used
+			$project = Project::where('id', $po->project_id)->firstOrFail();
+			$project->amount_invoice = $project->amount_invoice - $invoice->fc_amount;
+			$project->save();
+
+			// run job to Sync Budget
+			RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::CANCEL->value, $invoice->fc_amount);
+			ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 			// cancel Invoice
 			Invoice::where('id', $invoice->id)
@@ -181,6 +234,10 @@ class InvoiceController extends Controller
 					'tax' 			=> 0,
 					'gst' 			=> 0,
 					'amount' 		=> 0,
+					'fc_sub_total' 	=> 0,
+					'fc_tax' 		=> 0,
+					'fc_gst' 		=> 0,
+					'fc_amount' 	=> 0,
 					'paid_amount' 	=> 0,
 					'status' 		=> InvoiceStatusEnum::CANCELED->value
 				]);
@@ -194,6 +251,44 @@ class InvoiceController extends Controller
 			// Error handling code
 			return back()->withError("Invoice #".$invoice_id." not Found!")->withInput();
 		}
+	}
+
+	// populate functions currency columns in PO header nad lines
+	public static function updateInvoiceFcValues($receipt_id)
+	{
+
+		$setup 			= Setup::first();
+		$invoice		= Invoice::with('po')->where('id', $receipt_id)->firstOrFail();
+		Log::debug('updateReceiptFcValues =' . $invoice->currency.$setup->currency);
+
+		// populate fc columns for receipt lines
+		if ($invoice->currency == $setup->currency){
+			$rate = 1;
+			DB::statement("UPDATE invoices SET 
+				fc_sub_total	= sub_total,
+				fc_tax			= tax,
+				fc_gst			= gst,
+				fc_amount		= amount
+				WHERE id = ".$invoice->id."");
+		} else {
+			$rate = round(ExchangeRate::getRate($invoice->currency, $setup->currency),6);
+			// update all pols fc columns
+			// update pr fc columns
+			// ERROR rate not found 
+			if ($rate == 0){
+				Log::error('receipt.updateInvoiceFcValues rate not found currency=' . $invoice->currency.' fc_currency='.$setup->currency);
+				return false;
+			}
+
+			DB::statement("UPDATE invoices SET 
+				fc_sub_total	= round(sub_total * ". $rate .",2),
+				fc_tax			= round(tax * ". $rate .",2),
+				fc_gst			= round(gst * ". $rate .",2),
+				fc_amount		= round(amount * ". $rate .",2)
+				WHERE id = ".$invoice->id."");
+		}
+
+		return true;
 	}
 
 }

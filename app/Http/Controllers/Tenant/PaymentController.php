@@ -78,7 +78,8 @@ class PaymentController extends Controller
 	public function store(StorePaymentRequest $request)
 	{
 		$this->authorize('create', Payment::class);
-
+		
+		$request->merge(['payment_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['payee_id'	=> 	auth()->user()->id ]);
 		$payment = Payment::create($request->all());
 

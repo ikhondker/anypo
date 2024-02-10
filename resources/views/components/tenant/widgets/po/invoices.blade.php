@@ -29,6 +29,7 @@
 						<th class="">Currency</th>
 						<th class="text-end">Amount</th>
 						<th class="text-end">Paid Amount</th>
+						<th class="">Status</th>
 						<th class="">Action</th>
 					</tr>
 				</thead>
@@ -43,6 +44,7 @@
 							<td class="">{{ $invoice->currency }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
 							<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount_paid"/></td>
+							<td><x-tenant.list.my-badge :value="$invoice->status"/></td>
 							<td class="table-action">
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="align-middle" data-feather="eye"></i></a>

@@ -43,8 +43,8 @@ return new class extends Migration
 			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
 			$table->float('amount_grs')->default(0);
 			$table->float('fc_amount_grs')->default(0);
-			$table->float('amount_invoiced')->default(0);
-			$table->float('fc_amount_invoiced')->default(0);
+			$table->float('amount_invoice')->default(0);
+			$table->float('fc_amount_invoice')->default(0);
 			$table->float('amount_paid')->default(0);
 			$table->float('fc_amount_paid')->default(0);
 			/** ENUM */

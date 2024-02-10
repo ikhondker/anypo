@@ -44,6 +44,7 @@
 								<th class="text-end">PO (Approved)</th>
 								<th class="text-end">PO <br>(Available)</th>
 								<th class="text-end">GRS</th>
+								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
 								
 								<th class="text-end">Closed</th>
@@ -67,6 +68,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_grs"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_payment"/></td>
 								<td><x-tenant.list.my-closed :value="$dept_budget->closed"/></td>
 								<td class="table-action">

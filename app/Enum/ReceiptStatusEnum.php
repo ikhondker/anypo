@@ -21,8 +21,8 @@ namespace App\Enum;
 
 enum ReceiptStatusEnum:string{
 	case RECEIVED	= 'received';
-	case RETURNED	= 'returned';
 	case CANCELED	= 'canceled';
 	case ERROR		= 'error';
+	//case RETURNED	= 'returned';
 }
 

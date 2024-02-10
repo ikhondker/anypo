@@ -19,7 +19,7 @@
 					<a class="dropdown-item" href="{{ route('invoices.edit', $invoice->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item modal-boolean-advance"  href="{{ route('invoices.cancel', $invoice->id) }}"
-						data-entity="" data-name="Invoice #{{ $invoice->invoice_no }}" data-status="Cancel"
+						data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Cancel"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
 						<i class="align-middle me-1" data-feather="copy"></i> Cancel Invoice</a>
 				</div>

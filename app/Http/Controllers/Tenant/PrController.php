@@ -333,7 +333,18 @@ class PrController extends Controller
 	
 			// Cancel All PR Lines
 			Prl::where('pr_id', $pr_id)
-				  ->update(['closure_status' => ClosureStatusEnum::CANCELED->value]);
+				  ->update([
+					'price' 			=> 0,
+					'sub_total' 		=> 0,
+					'tax' 				=> 0,
+					'gst' 				=> 0,
+					'amount' 			=> 0,
+					'fc_sub_total' 		=> 0,
+					'fc_tax' 			=> 0,
+					'price' 			=> 0,
+					'fc_amount' 		=> 0,
+					'closure_status'	=> ClosureStatusEnum::CANCELED->value
+					]);
 	
 			// cancel PR
 			Pr::where('id', $pr_id)
@@ -342,6 +353,10 @@ class PrController extends Controller
 					'tax' 			=> 0,
 					'gst' 			=> 0,
 					'amount' 		=> 0,
+					'fc_sub_total' 	=> 0,
+					'fc_tax' 		=> 0,
+					'fc_gst' 		=> 0,
+					'fc_amount' 	=> 0,
 					'status' 		=> ClosureStatusEnum::CANCELED->value
 				]);
 	

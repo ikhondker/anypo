@@ -24,24 +24,24 @@ class HierarchylSeeder extends Seeder
 		$hierarchyls =  [
 			[
 				'hid'			=> 1001,
-				'approver_id'	=> '1008',
+				'approver_id'	=> '1001',
 			],
-			[
-				'hid'			=> 1001,
-				'approver_id'	=> '1009',
-			],
+			// [
+			// 	'hid'			=> 1001,
+			// 	'approver_id'	=> '1009',
+			// ],
 			// [
 			//		'hid'		=> 1001,
 			//		'approver_id'   => '1003',
 			// ],
 			[
 				'hid'			=> 1002,
-				'approver_id'	=> '1008',
+				'approver_id'	=> '1001',
 			],
-			[
-				'hid'			=> 1002,
-				'approver_id'	=> '1009',
-			],
+			// [
+			// 	'hid'			=> 1002,
+			// 	'approver_id'	=> '1009',
+			// ],
 			// [
 			//		'hid'		=> 1002,
 			//		'approver_id'   => '1003',

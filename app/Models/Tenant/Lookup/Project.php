@@ -16,7 +16,7 @@ class Project extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'pm_id', 'start_date', 'end_date', 'budget_control', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'notes', 'text_color', 'bg_color', 'icon', 'closed', 'updated_by', 'updated_at',
+		'name', 'code', 'pm_id', 'start_date', 'end_date', 'budget_control', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_invoice', 'amount_payment', 'notes', 'text_color', 'bg_color', 'icon', 'closed', 'updated_by', 'updated_at',
 	];
 
 	/* ----------------- Scopes ------------------------- */

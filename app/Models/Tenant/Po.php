@@ -34,7 +34,7 @@ class Po extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'summary', 'buyer_id', 'po_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'submission_date', 'fc_currency', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'amount_grs', 'fc_amount_grs', 'amount_invoiced', 'fc_amount_invoiced', 'amount_paid', 'fc_amount_paid', 'status', 'payment_status', 'auth_status', 'auth_date', 'auth_user_id', 'wf_key', 'hierarchy_id', 'pr_id', 'wf_id', 'updated_by', 'updated_at',
+		'summary', 'buyer_id', 'po_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'submission_date', 'fc_currency', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'amount_grs', 'fc_amount_grs', 'amount_invoice', 'fc_amount_invoice', 'amount_paid', 'fc_amount_paid', 'status', 'payment_status', 'auth_status', 'auth_date', 'auth_user_id', 'wf_key', 'hierarchy_id', 'pr_id', 'wf_id', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -60,7 +60,7 @@ class Po extends Model
 		$setup 	= Setup::first();
 		$po		= Po::where('id', $po_id)->firstOrFail();
 
-		Log::debug('updatePoFcValues =' . $po->currency.$setup->currency);
+		//Log::debug('updatePoFcValues =' . $po->currency.$setup->currency);
 
 		// populate fc columns for all pol lines
 		if ($po->currency == $setup->currency){
@@ -78,7 +78,7 @@ class Po extends Model
 			// ERROR rate not found 
 			if ($rate == 0){
 				Log::error('pr.updatePrFcValues rate not found currency=' . $po->currency.' fc_currency='.$setup->currency);
-				return 0;
+				return false;
 			}
 
 			DB::statement("UPDATE pols SET 
@@ -111,7 +111,7 @@ class Po extends Model
 	
 		$po->save();
 
-		return 1;
+		return true;
 	}
 
 	// populate PO headed amount columns based on child rows

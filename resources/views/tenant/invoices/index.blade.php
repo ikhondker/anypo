@@ -50,7 +50,7 @@
 							@foreach ($invoices as $invoice)
 							<tr>
 								<td>{{ $invoices->firstItem() + $loop->index }}</td>
-								<td><x-tenant.list.my-date :value="$invoice->inv_date"/></td>
+								<td><x-tenant.list.my-date :value="$invoice->invoice_date"/></td>
 								<td>{{ $invoice->po_id }}</td>
 								<td>{{ $invoice->invoice_no }}</td>
 								<td>{{ $invoice->summary }}</td>

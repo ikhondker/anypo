@@ -17,7 +17,7 @@
 
 	@include('tenant.includes.po.view-po-header')
 	
-	<x-tenant.widgets.po-invoices :id="$po->id" />
+	<x-tenant.widgets.po.invoices :id="$po->id" />
 
 	<!-- form start -->
 	<form id="myform" action="{{ route('invoices.store') }}" method="POST" enctype="multipart/form-data">

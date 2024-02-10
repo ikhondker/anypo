@@ -11,16 +11,24 @@ use App\Http\Requests\Tenant\UpdateReceiptRequest;
 # Models
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
+use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Lookup\Warehouse;
+use App\Models\Tenant\Lookup\Project;
+
+use App\Models\Tenant\Admin\Setup;
 
 # Enums
 use App\Enum\EntityEnum;
+use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\ReceiptStatusEnum;
+use App\Enum\ClosureStatusEnum;
+
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
 use App\Helpers\FileUpload;
+use App\Helpers\ExchangeRate;
 # Notifications
 # Mails
 # Packages
@@ -30,6 +38,10 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 # Exceptions
 # Events
+
+#Jobs
+use App\Jobs\Tenant\ConsolidateBudget;
+use App\Jobs\Tenant\RecordDeptBudgetUsage;
 
 
 class ReceiptController extends Controller
@@ -67,18 +79,18 @@ class ReceiptController extends Controller
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:
 				// buyer can see all payment of all his po's
-				$receipts = $receipts->ByPoBuyer(auth()->user()->id)->paginate(10);
+				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->ByPoBuyer(auth()->user()->id)->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$receipts = $receipts->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->ByPoDept(auth()->user()->dept_id)->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$receipts = $receipts->orderBy('id', 'DESC')->paginate(10);
+				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$receipts = $receipts->ByUserAll()->paginate(10);
+				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->ByUserAll()->paginate(10);
 				Log::debug("payment.index Other roles!");
 		}
 
@@ -108,19 +120,54 @@ class ReceiptController extends Controller
 	{
 		$this->authorize('create', Receipt::class);
 
+		$pol_id =$request->input('pol_id');
+		$pol = Pol::where('id', $pol_id)->first();
+
+		$request->merge(['receive_date'	=> date('Y-m-d H:i:s')]);
 		$request->merge(['receiver_id'	=> 	auth()->user()->id ]);
+		$request->merge(['price'	=> 	$pol->price ]);
+		$request->merge(['amount'	=> 	$request->input('qty') *$pol->price ]);
+
+		// save receipt
 		$receipt = Receipt::create($request->all());
 
-		// update POl rcv quantity
+		// 	Populate functional currency values
+		$result = self::updateReceiptFcValues($receipt->id);
+		if (! $result) {
+			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		}
+		// Reupload 
+		$receipt = Receipt::where('id', $receipt->id)->first();
+
+		// update pol rcv quantity
 		$pol 				= Pol::where('id', $receipt->pol_id)->firstOrFail();
 		$pol->received_qty	= $pol->received_qty + $receipt->qty;
+		if ($pol->qty == $pol->received_qty){
+			$pol->closure_status = ClosureStatusEnum::CLOSED->value;
+		}
 		$pol->save();
 
 		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'	=> $payment->id ]);
+			$request->merge(['article_id'	=> $receipt->id ]);
 			$request->merge(['entity'		=> EntityEnum::RECEIPT->value ]);
 			$attid = FileUpload::upload($request);
 		}
+
+		// update budget and project level summary 
+		$po = Po::where('id', $pol->po_id)->first();
+		// Po dept budget grs amount update
+		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->amount_grs = $dept_budget->amount_grs + $receipt->fc_amount;
+		$dept_budget->save();
+
+		// Po project budget used
+		$project = Project::where('id', $po->project_id)->firstOrFail();
+		$project->amount_grs = $project->amount_grs + $receipt->fc_amount;
+		$project->save();
+
+		// run job to Sync Budget
+		RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CREATE->value);
+		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		// Write to Log
 		EventLog::event('receipt', $receipt->id, 'create');
@@ -181,47 +228,61 @@ class ReceiptController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function xxgetCancelGrnNum()
-	{
-
-		$this->authorize('cancel',Receipt::class);
-		
-		return view('tenant.receipts.cancel');
-	}
-
-	/**
 	 * Remove the specified resource from storage.
 	 */
 	public function cancel(Receipt $receipt)
 	{
 		$this->authorize('cancel', Receipt::class);
 		
-		$receipt_id=$receipt->id;
+		$receipt_id = $receipt->id;
 
 		Log::debug('Value of receipt_id=' . $receipt_id);
 
 		try {
 			$receipt = Receipt::where('id', $receipt_id)->firstOrFail();
 
-			Log::debug('Value of receipt_id 22222=' . $receipt_id);
+			//Log::debug('Value of receipt_id 22222=' . $receipt_id);
+
 			if ($receipt->status->value <> ReceiptStatusEnum::RECEIVED->value) {
 				return back()->withError("You can only cancel Receipt with status received!")->withInput();
 			}
 	
-			// update POL rcv quantity
+			// update pol rcv quantity
 			$pol 				= Pol::where('id', $receipt->pol_id)->firstOrFail();
 			$pol->received_qty	= $pol->received_qty - $receipt->qty;
 			$pol->save();
 			
+			//  Reverse Approve Budget
+			//$retcode = self::grsBudgetCancel($receipt->id); 
+			//Log::debug("retcode = ".$retcode);
+
+			// update budget and project level summary 
+			$po = Po::where('id', $pol->po_id)->first();
+			// Po dept budget grs amount update
+			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+			$dept_budget->amount_grs = $dept_budget->amount_grs - $receipt->fc_amount;
+			$dept_budget->save();
+
+			// Po project budget used
+			$project = Project::where('id', $po->project_id)->firstOrFail();
+			$project->amount_grs = $project->amount_grs - $receipt->fc_amount;
+			$project->save();
+
+			// run job to Sync Budget
+			RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CANCEL->value, $receipt->fc_amount);
+			ConsolidateBudget::dispatch($dept_budget->budget_id);
+
 			// Cancel Receipt
 			Receipt::where('id', $receipt_id)
 				->update([
-					'qty' => 0,
-					'status' => ReceiptStatusEnum::CANCELED->value
+					'qty' 				=> 0,
+					'price' 			=> 0,
+					'amount'			=> 0,
+					'fc_exchange_rate'	=> 0,
+					'fc_amount'			=> 0,
+					'status' 			=> ReceiptStatusEnum::CANCELED->value
 					]);
-		
+
 			// Write to Log
 			EventLog::event('receipt', $receipt_id, 'cancel', 'id', $receipt_id);
 	
@@ -232,5 +293,43 @@ class ReceiptController extends Controller
 			return back()->withError("Receipt #".$receipt_id." not Found!")->withInput();
 		}
 	}
+
+	// populate functions currency columns in PO header nad lines
+	public static function updateReceiptFcValues($receipt_id)
+	{
+
+		$setup 			= Setup::first();
+		$receipt		= Receipt::with('pol.po')->where('id', $receipt_id)->firstOrFail();
+		$po_currency 	= $receipt->pol->po->currency;
+
+		Log::debug('updateReceiptFcValues =' . $po_currency.$setup->currency);
+
+		// populate fc columns for receipt lines
+		if ($po_currency == $setup->currency){
+			$rate = 1;
+			DB::statement("UPDATE receipts SET 
+				-- fc_sub_total	= sub_total,
+				-- fc_tax			= tax,
+				-- fc_gst			= gst,
+				fc_amount		= amount
+				WHERE id = ".$receipt->id."");
+		} else {
+			$rate = round(ExchangeRate::getRate($po_currency, $setup->currency),6);
+			// update all pols fc columns
+			// update pr fc columns
+			// ERROR rate not found 
+			if ($rate == 0){
+				Log::error('receipt.updateReceiptFcValues rate not found currency=' . $po_currency.' fc_currency='.$setup->currency);
+				return false;
+			}
+
+			DB::statement("UPDATE receipts SET 
+				fc_amount		= round(amount * ". $rate .",2)
+				WHERE id = ".$receipt->id."");
+		}
+
+		return true;
+	}
+
 
 }

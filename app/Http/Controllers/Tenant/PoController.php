@@ -342,7 +342,18 @@ class PoController extends Controller
 	
 			// Cancel All PO Lines
 			Pol::where('po_id',$po_id)
-				  ->update(['closure_status' => ClosureStatusEnum::CANCELED->value]);
+				  ->update([
+					'price' 			=> 0,
+					'sub_total' 		=> 0,
+					'tax' 				=> 0,
+					'gst' 				=> 0,
+					'amount' 			=> 0,
+					'fc_sub_total' 		=> 0,
+					'fc_tax' 			=> 0,
+					'price' 			=> 0,
+					'fc_amount' 		=> 0,
+					'closure_status' => ClosureStatusEnum::CANCELED->value
+				]);
 	
 			// Cancel PO
 			Po::where('id', $po->id)
@@ -351,6 +362,10 @@ class PoController extends Controller
 					'tax' 			=> 0,
 					'gst' 			=> 0,
 					'amount' 		=> 0,
+					'fc_sub_total' 	=> 0,
+					'fc_tax' 			=> 0,
+					'fc_gst' 			=> 0,
+					'fc_amount' 		=> 0,
 					'status' 		=> ClosureStatusEnum::CANCELED->value
 				]);
 	
@@ -408,7 +423,7 @@ class PoController extends Controller
 		// 	Populate functional currency values
 		$result = Po::updatePoFcValues($po->id);
 
-		if ($result == 0) {
+		if (!$result) {
 			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		} 
 

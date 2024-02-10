@@ -111,7 +111,7 @@ class PoBudget
 	
 
 			// run job to Sync Budget
-			RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::BOOK->value);
+			RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::BOOK->value,$po->fc_amount);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 		}
 
@@ -162,7 +162,7 @@ class PoBudget
 
 		// run job to Sync Budget
 
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::APPROVE->value);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::APPROVE->value,$po->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		return 'E000';
@@ -184,7 +184,7 @@ class PoBudget
 		$project->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::CANCEL->value);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::CANCEL->value,$po->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		Log::debug("PoBudget.poBudgetApproveCancel Inside");

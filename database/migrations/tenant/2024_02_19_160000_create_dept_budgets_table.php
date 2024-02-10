@@ -21,6 +21,7 @@ return new class extends Migration
 			$table->float('amount_po_booked', 15, 2)->default(0);
 			$table->float('amount_po_issued', 15, 2)->default(0);
 			$table->float('amount_grs', 15, 2)->default(0);
+			$table->float('amount_invoice', 15, 2)->default(0);
 			$table->float('amount_payment', 15, 2)->default(0);
 			$table->dateTime('end_date', $precision = 0)->nullable();
 			//$table->boolean('revision')->default(false); 

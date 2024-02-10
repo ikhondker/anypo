@@ -65,6 +65,12 @@ class EntitySeeder extends Seeder
 				'subdir'		=> 'receipts',
 			],
 			[
+				'entity'		=> 'INVOICE',
+				'name'		  	=> 'Invoice',
+				'route'		 	=> 'Invoice',
+				'subdir'		=> 'Invoice',
+			],
+			[
 				'entity'		=> 'PAYMENT',
 				'name'		  	=> 'Payments',
 				'route'		 	=> 'payments',
@@ -76,8 +82,6 @@ class EntitySeeder extends Seeder
 				'route'		 	=> 'comments',
 				'subdir'		=> 'comment',
 			],
-
-
 		  ];
 
 		

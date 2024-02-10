@@ -9,7 +9,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Receipt"/>
-			{{-- <x-tenant.buttons.header.create object="Receipt"/> --}}
+			
 			<x-tenant.buttons.header.edit object="Receipt" :id="$receipt->id"/>
 
 				<div class="dropdown me-2 d-inline-block position-relative">
@@ -22,7 +22,7 @@
 						
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item modal-boolean-advance"  href="{{ route('receipts.cancel', $receipt->id) }}"
-							data-entity="" data-name="PO #{{ $receipt->id }}" data-status="Cancel"
+							data-entity="" data-name="GRN #{{ $receipt->id }}" data-status="Cancel"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Receipt">
 							<i class="align-middle me-1" data-feather="copy"></i> Cancel Receipt</a>
 					</div>

@@ -48,11 +48,11 @@
 								<th class="text-end">PO (Booked)</th>
 								<th class="text-end">PO (Approved)</th>
 								<th class="text-end">GRS</th>
+								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
 								<th>Action</th>
 							</tr>
 						</thead>
-
 						<tbody>
 							@foreach ($dbus as $dbu)
 							<tr>
