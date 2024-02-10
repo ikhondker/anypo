@@ -21,7 +21,7 @@ class DbuProject extends Component
 		$this->id	= $id;
 		//$dbus = $dbus->orderBy('id', 'DESC')->paginate(10);
 		//$this->dbus = Dbu::where('project_id',$this->id)->get()->all();
-		$this->dbus = Dbu::with('dept')->with('deptBudget.budget')->with('project')->where('project_id',$this->id)->paginate(10);
+		$this->dbus = Dbu::with('dept')->with('deptBudget.budget')->with('project')->where('project_id',$this->id)->orderBy('id', 'DESC')->paginate(10);
 	}
 
 	/**

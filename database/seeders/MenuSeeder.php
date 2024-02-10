@@ -159,8 +159,6 @@ class MenuSeeder extends Seeder
 
 			[ 'raw_route_name' => 'wfs.index','route_name' => 'wfs.index', 'node_name' => 'workflow'],
 			[ 'raw_route_name' => 'wfs.show','route_name' => 'wfs.index', 'node_name' => 'workflow'],
-			[ 'raw_route_name' => 'wfs.get-reset-pr-num','route_name' => 'wfs.get-reset-pr-num', 'node_name' => 'workflow'],
-			[ 'raw_route_name' => 'wfs.get-reset-po-num','route_name' => 'wfs.get-reset-po-num', 'node_name' => 'workflow'],
 
 		  ];
 		//

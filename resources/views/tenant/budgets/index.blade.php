@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-10">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -35,10 +35,14 @@
 								<th>Name</th>
 								<th>Start-End</th>
 								<th class="text-end">Budget</th>
-								<th class="text-end">PR</th>
-								<th class="text-end">Available (PR)</th>
-								<th class="text-end">PO</th>
-								<th class="text-end">Available (PO)</th>
+								
+								<th class="text-end">PR (Booked)</th>
+								<th class="text-end">PR (Approved)</th>
+								<th class="text-end">PR (Available)</th>
+								<th class="text-end">PO (Booked)</th>
+								<th class="text-end">PO (Approved)</th>
+								<th class="text-end">PO <br>(Available)</th>
+
 								<th class="text-end">GRS</th>
 								<th class="text-end">Payment</th>
 								<th>Closed?</th>
@@ -53,9 +57,11 @@
 								<td><a class="text-info" href="{{ route('budgets.show',$budget->id) }}">{{ $budget->name }}</a></td>
 								<td><x-tenant.list.my-date :value="$budget->start_date"/> - <x-tenant.list.my-date :value="$budget->end_date"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr_booked + $budget->amount_pr_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr_booked"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount - $budget->amount_pr_booked - $budget->amount_pr_issued "/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_po_booked + $budget->amount_po_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_po_booked"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount - $budget->amount_po_booked - $budget->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_payment"/></td>

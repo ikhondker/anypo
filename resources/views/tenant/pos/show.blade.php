@@ -44,7 +44,14 @@
 						{{-- <a class="dropdown-item" href="{{ route('payments.create-for-po', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> View Payments</a> --}}
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Run PO Detail Report*</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item modal-boolean-advance"  href="{{ route('pos.cancel', $po->id) }}"
+
+						<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('wfs.wf-reset-po', $po->id) }}"
+							data-entity="" data-name="PO #{{ $po->id }}" data-status="Reset"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PO"> 
+							<i class="align-middle me-1" data-feather="copy"></i> Reset Workflow**</a>
+
+							
+						<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('pos.cancel', $po->id) }}"
 							data-entity="" data-name="PO#{{ $po->id }}" data-status="Cancel"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel PO">
 							<i class="align-middle me-1" data-feather="copy"></i> Cancel PO</a>

@@ -119,7 +119,7 @@ class HierarchyController extends Controller
 	{
 		//$this->authorize('view', $user);
 
-		$hierarchyls = Hierarchyl::where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
+		$hierarchyls = Hierarchyl::with('approver.dept')->with('approver.designation')->where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
 		return view('tenant.workflow.hierarchies.show', compact('hierarchy', 'hierarchyls'));
 	}
 

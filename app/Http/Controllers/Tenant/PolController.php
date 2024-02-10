@@ -97,19 +97,19 @@ class PolController extends Controller
 
 		$pol = Pol::create($request->all());
 
-		Log::debug('I AM HERE 1');
+		
 
 		// Write to Log
 		EventLog::event('Pol', $pol->id, 'create');
 
 		// update PO Header value
 		$result = Po::updatePoHeaderValue($pol->po_id);
-		Log::debug('I AM HERE 2');
+		
 
 		// $pol_sum 			= Pol::where('po_id', '=', $po->id)->sum('amount');
 		// $po->amount			= $pol_sum;
 		// $po->save();
-		Log::debug('I AM HERE 3');
+		
 		return redirect()->route('pos.show', $pol->po_id)->with('success', 'Purchase Order line added successfully');
 
 	}

@@ -28,6 +28,7 @@ enum EventEnum: string{
 	case REJECT		= 'reject';
 	case APPROVE	= 'approve';
 	case CANCEL		= 'cancel';
+	case RESET		= 'reset';
 	//case ADJUST	= 'adjust';
 	//case PAYMENT	= 'payment';
 }

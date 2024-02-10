@@ -63,7 +63,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		
 				$pr 			= Pr::where('id', $this->article_id)->firstOrFail();
 		
-				Log::debug("dept_budget_id=". $pr->dept_budget_id);
+				//Log::debug("dept_budget_id=". $pr->dept_budget_id);
 				$dept_budget 	= DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
 				$dbu->dept_budget_id	= $pr->dept_budget_id;
 				$dbu->dept_id			= $pr->dept_id;
@@ -73,6 +73,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 					case EventEnum::BOOK->value:
 						$dbu->amount_pr_booked	= $pr->fc_amount;
 						break;
+					case EventEnum::RESET->value:
 					case EventEnum::REJECT->value:
 						$dbu->amount_pr_booked	= - $pr->fc_amount;
 						break;
@@ -90,20 +91,23 @@ class RecordDeptBudgetUsage implements ShouldQueue
 			case EntityEnum::PO->value:
 				$po 			= Po::where('id', $this->article_id)->firstOrFail();
 		
-				Log::debug("dept_budget_id=". $po->dept_budget_id);
+				//Log::debug("dept_budget_id=". $po->dept_budget_id);
 				$dept_budget 			= DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 				$dbu->dept_budget_id	= $po->dept_budget_id;
 				$dbu->dept_id			= $po->dept_id;
 				$dbu->project_id		= $po->project_id;
+				
 
 				switch ($this->event) {
 					case EventEnum::BOOK->value:
 						$dbu->amount_po_booked	= $po->fc_amount;
 						break;
+					case EventEnum::RESET->value:
 					case EventEnum::REJECT->value:
 						$dbu->amount_po_booked	= - $po->fc_amount;
 						break;
 					case EventEnum::APPROVE->value:
+				
 						$dbu->amount_po_booked	= - $po->fc_amount;
 						$dbu->amount_po_issued	= $po->fc_amount;
 						break;
@@ -118,6 +122,5 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				Log::debug("job.RecordDeptBudgetUsage Other Entity!");
 		}
 		$dbu->save();
-
 	}
 }

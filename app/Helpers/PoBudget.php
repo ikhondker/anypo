@@ -64,8 +64,8 @@ class PoBudget
 		}
 
 		// check if dept_budget for this year exists
-		Log::debug("po->dept_id=".$po->dept_id);
-		Log::debug("po->dept_budget_id=".$po->dept_budget_id);
+		//Log::debug("po->dept_id=".$po->dept_id);
+		//Log::debug("po->dept_budget_id=".$po->dept_budget_id);
 
 		try {
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
@@ -90,7 +90,6 @@ class PoBudget
 			return 'E003';
 		}
 
-
 		// check if project budget available
 		$project_budget_available =false;
 		$project = Project::primary()->where('id', $po->project_id)->firstOrFail();
@@ -112,7 +111,7 @@ class PoBudget
 	
 
 			// run job to Sync Budget
-			RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::BOOK->value);
+			RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::BOOK->value);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 		}
 
@@ -120,23 +119,23 @@ class PoBudget
 	}
 
 	// Called from wfl->reject and po->cancel
-	public static function poBudgetBookReject($po_id)
+	public static function poBudgetBookReverse($event,$po_id)
 	{
 
-		$po = Po::where('id', $pr_id)->first();
+		$po = Po::where('id', $po_id)->first();
 
 		// reverse Po dept budget booking 
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_po_booked = $dept_budget->amount_po_booked - $po->fc_amount;
 		$dept_budget->save();
 
-		// reverse Pr project booking 
-		$project = Project::where('id', $pr->project_id)->firstOrFail();
+		// reverse Po project booking 
+		$project = Project::where('id', $po->project_id)->firstOrFail();
 		$project->amount_po_booked = $project->amount_po_booked - $po->fc_amount;
 		$project->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::REJECT->value);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, $event);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		Log::debug("PoBudget.poBudgetBookReject Inside");
@@ -146,7 +145,9 @@ class PoBudget
 
 	public static function poBudgetApprove($po_id)
 	{
-		$po = Po::where('id', $pr_id)->first();
+
+
+		$po = Po::where('id', $po_id)->first();
 		// Po dept budget approved
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_po_issued = $dept_budget->amount_po_issued + $po->fc_amount;
@@ -160,6 +161,7 @@ class PoBudget
 		$project->save();
 
 		// run job to Sync Budget
+
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::APPROVE->value);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 

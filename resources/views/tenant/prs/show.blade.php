@@ -51,11 +51,12 @@
 					<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 					<div class="dropdown-divider"></div>
 
-					<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.cancel', $pr->id) }}"
-						data-entity="" data-name="PR#{{ $pr->id }}" data-status="Cancel"
-						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel PR">
+					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('wfs.wf-reset-pr', $pr->id) }}"
+						data-entity="" data-name="PR#{{ $pr->id }}" data-status="Reset"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PR"> 
 						<i class="align-middle me-1" data-feather="copy"></i> Reset Workflow**</a>
-					<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.cancel', $pr->id) }}"
+
+					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('prs.cancel', $pr->id) }}"
 						data-entity="" data-name="PR#{{ $pr->id }}" data-status="Cancel"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel PR">
 						<i class="align-middle me-1" data-feather="copy"></i> Cancel PR</a>

@@ -15,7 +15,8 @@ use App\Models\Tenant\Po;
 # Enums
 use App\Enum\AuthStatusEnum;
 use App\Enum\WfStatusEnum;
-use App\Enum\WflActionEnum;
+//use App\Enum\WflActionEnum;
+use App\Enum\EventEnum;
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -75,7 +76,7 @@ class WfController extends Controller
 	{
 		$this->authorize('view', $wf);
 
-		$wfls = Wfl::where('wf_id', $wf->id)->orderBy('id', 'asc')->get();
+		$wfls = Wfl::with('performer')->where('wf_id', $wf->id)->orderBy('id', 'asc')->get();
 		return view('tenant.workflow.wfs.show', compact('wf', 'wfls'));
 	}
 
@@ -129,7 +130,7 @@ class WfController extends Controller
 		$data = DB::select("SELECT wf.id, wf.entity, wf.article_id, wf.hierarchy_id, wf.wf_status, wf.auth_status, wf.auth_user_id, wf.auth_date,
 		wfl.id line_id, p.name performer_name,wfl.assign_date, wfl.action_date, wfl.action, wfl.notes
 		FROM wfs wf,wfls wfl, users p
-		WHERE wf.id=wfl.wf_id 
+		WHERE wf.id=wfl.wf_id
 		AND wfl.performer_id=p.id
 			");
 		$dataArray = json_decode(json_encode($data), true);
@@ -140,7 +141,7 @@ class WfController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function getResetPrNum()
+	public function xxgetResetPrNum()
 	{
 		$this->authorize('reset',Wf::class);
 		return view('tenant.workflow.wfs.reset-pr');
@@ -149,21 +150,16 @@ class WfController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function wfResetPr(StoreWfRequest $request)
+	public function wfResetPr(Pr $pr)
 	{
 		$this->authorize('reset',Wf::class);
 
 		// check if pr status only in-process
-
-		// update PR header
-		// $pr	= Pr::where('id', $request->input('pr_id'))->firstOrFail();
-		// if ($pr->auth_status->value <> AuthStatusEnum::INPROCESS->value){
-		//		return back()->withError("PR#".$request->input('pr_id')." is not in IN-PROCESS status!")->withInput();
-		// }
+		if ($pr->auth_status->value <> AuthStatusEnum::INPROCESS->value){
+				return back()->withError("PR#".$pr->id." is not in IN-PROCESS status!");
+		}
 
 		try {
-			$pr = Pr::where('id', $request->input('pr_id'))->where('auth_status', AuthStatusEnum::INPROCESS->value)->firstOrFail();
-
 			// mark wf as RESET
 			try {
 				$wf = Wf::findOrFail($pr->wf_id);
@@ -175,7 +171,7 @@ class WfController extends Controller
 			}
 
 			// reverse Booking
-			$retcode = PrBudget::prBudgetBookReject($pr->id);
+			$retcode = PrBudget::prBudgetBookReverse(EventEnum::RESET->value, $pr->id);
 			Log::debug("retcode = ".$retcode);
 
 			//reset pr wf_id and status
@@ -187,18 +183,18 @@ class WfController extends Controller
 			EventLog::event('pr', $pr->id, 'reset');	// Write to Log
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
-			Log::debug("PR#".$request->input('pr_id')." not Found or PR is not in 'IN-PROCESS' status!");
+			Log::debug("PR#".$pr->id." not Found or PR is not in 'IN-PROCESS' status!");
 			//return back()->withError($exception->getMessage())->withInput();
-			return back()->withError("PR#".$request->input('pr_id')." not Found or PR is not in IN-PROCESS status!")->withInput();
+			return back()->withError("PR#".$pr->id." not Found or PR is not in IN-PROCESS status!");
 		}
-		return redirect()->route('prs.show', $request->input('pr_id'))->with('success', 'Requisition status reset successfully');
+		return redirect()->route('prs.show', $pr->id)->with('success', 'Requisition status reset successfully');
 	}
 
 
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function getResetPoNum()
+	public function xxgetResetPoNum()
 	{
 		$this->authorize('reset',Wf::class);
 		return view('tenant.workflow.wfs.reset-po');
@@ -207,18 +203,19 @@ class WfController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function wfResetPo(StoreWfRequest $request)
+	public function wfResetPo(Po $po)
 	{
 		$this->authorize('reset',Wf::class);
 
 		// update PR header
-		// $pr	= Pr::where('id', $request->input('pr_id'))->firstOrFail();
-		// if ($pr->auth_status->value <> AuthStatusEnum::INPROCESS->value){
-		//		return back()->withError("PR#".$request->input('pr_id')." is not in IN-PROCESS status!")->withInput();
-		// }
+		//$pr	= Pr::where('id', $request->input('pr_id'))->firstOrFail();
+		if ($po->auth_status->value <> AuthStatusEnum::INPROCESS->value){
+				return back()->withError("PR#".$po->id." is not in IN-PROCESS status!")->withInput();
+		}
 
 		try {
-			$po = Po::where('id', $request->input('po_id'))->where('auth_status', AuthStatusEnum::INPROCESS->value)->firstOrFail();
+
+			//$po = Po::where('id',  $po->id)->where('auth_status', AuthStatusEnum::INPROCESS->value)->firstOrFail();
 
 			// mark wf as RESET
 			try {
@@ -231,7 +228,7 @@ class WfController extends Controller
 			}
 
 			// reverse Booking
-			$retcode = PoBudget::poBudgetBookReject($po->id);
+			$retcode = PoBudget::poBudgetBookReverse(EventEnum::RESET->value,$po->id);
 			Log::debug("retcode = ".$retcode);
 
 			//reset po wf_id and status
@@ -243,10 +240,10 @@ class WfController extends Controller
 			EventLog::event('po', $po->id, 'reset');	// Write to Log
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
-			Log::debug("PO#".$request->input('po_id')." not Found or PO is not in 'IN-PROCESS' status!");
+			Log::debug("PO #".$po->id." not Found or PO is not in 'IN-PROCESS' status!");
 			//return back()->withError($exception->getMessage())->withInput();
-			return back()->withError("PO#".$request->input('po_id')." not Found or PO is not in IN-PROCESS status!")->withInput();
+			return back()->withError("PO#".$po->id." not Found or PO is not in IN-PROCESS status!")->withInput();
 		}
-		return redirect()->route('pos.show', $request->input('po_id'))->with('success', 'Purchase Order status reset successfully');
+		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Order status reset successfully');
 	}
 }

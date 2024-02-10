@@ -333,7 +333,7 @@ class PrController extends Controller
 	
 			// Cancel All PR Lines
 			Prl::where('pr_id', $pr_id)
-				  ->update(['status' => ClosureStatusEnum::CANCELED->value]);
+				  ->update(['closure_status' => ClosureStatusEnum::CANCELED->value]);
 	
 			// cancel PR
 			Pr::where('id', $pr_id)

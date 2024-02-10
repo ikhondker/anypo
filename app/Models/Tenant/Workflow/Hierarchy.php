@@ -26,7 +26,6 @@ class Hierarchy extends Model
 			 ->orderBy('id', 'asc')
 			 ->get();
 	 }
-
 	 
 	/* ----------------- HasMany ------------------------ */
 	public function lines() {

@@ -108,7 +108,7 @@ class PrBudget
 	}
 
 	// Called from wfl->reject and pr->cancel
-	public static function prBudgetBookReject($pr_id)
+	public static function prBudgetBookReverse($event,$pr_id)
 	{
 
 		$pr = Pr::where('id', $pr_id)->first();
@@ -124,7 +124,7 @@ class PrBudget
 		$project->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::REJECT->value);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, $event);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		Log::debug("PrBudget.prBudgetBookReject Inside");

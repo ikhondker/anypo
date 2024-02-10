@@ -19,7 +19,8 @@ use App\Models\User;
 use App\Enum\AuthStatusEnum;
 use App\Enum\WfStatusEnum;
 use App\Enum\WflActionEnum;
-use App\Enum\EntityEnum;
+//use App\Enum\EntityEnum;
+use App\Enum\EventEnum;
 
 # Helpers
 use App\Helpers\PrBudget;
@@ -125,14 +126,14 @@ class WflController extends Controller
 				} else {
 					// document is approved
 					//Log::debug("This was the top approver ");
-					self::approved($wf);
+					self::approved($wf); 
 					//$booEndWf = true;
 				}
 				break;
 			default:
 				// TODO
 				// Exit from here?
-				Log::warning("Error! Invalid action in wfl.update");
+				Log::warning("Error! Invalid action in wfl.update" .$request->input('action'));
 		}
 
 		// // this is the last step, update wf and pr/po else notify next approver
@@ -180,7 +181,7 @@ class WflController extends Controller
 			case('PR'):
 				//  reverse Booking
 				$pr = Pr::where('id', $wf->article_id)->first();
-				$retcode = PrBudget::prBudgetBookReject($pr->id);
+				$retcode = PrBudget::prBudgetBookReverse(EventEnum::REJECT->value,$pr->id);
 				Log::debug("retcode = ".$retcode);
 
 				$pr->auth_status	= AuthStatusEnum::REJECTED->value;
@@ -197,7 +198,7 @@ class WflController extends Controller
 			case('PO'):
 				//  reverse Booking
 				$po = Po::where('id', $wf->article_id)->first();
-				$retcode = PoBudget::prBudgetBookReject($po->id);
+				$retcode = PoBudget::poBudgetBookReverse(EventEnum::REJECT->value,$po->id);
 				Log::debug("retcode = ".$retcode);
 
 				$po->auth_status	= AuthStatusEnum::REJECTED->value;
@@ -212,7 +213,7 @@ class WflController extends Controller
 				$requestor->notify(new PoActions($requestor, $po, $action, $actionURL));
 				break;
 			default:
-				Log::debug("Error!. Invalid Entity in wfl.update rejected");
+				Log::debug("Error!. Invalid Entity in wfl.rejected".$wf->entity);
 		}
 		return true;
 	}
@@ -244,7 +245,7 @@ class WflController extends Controller
 				$requestor = User::where('id', $pr->requestor_id)->first();
 				$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 				break;
-			case('PO '):
+			case('PO'):
 
 				$po = Po::where('id', $wf->article_id)->first();
 				$po->auth_status	=  AuthStatusEnum::APPROVED->value;
@@ -264,7 +265,7 @@ class WflController extends Controller
 
 				break;
 			default:
-				Log::debug("Error!. Invalid Entity in wfl.update");
+				Log::debug("Error!. Invalid Entity in wfl.approved ".$wf->entity);
 		}
 
 		return true;
@@ -278,23 +279,33 @@ class WflController extends Controller
 		// next approver exists	
 		//Log::debug("notifying next approver ");
 		$auth_status = AuthStatusEnum::APPROVED->value;
+		$next_approver_id = Workflow::getNextApproverId($wf->id);
+		Log::debug("wfl.moveToNext next_approver_id = ". $next_approver_id);
+		if ($next_approver_id == 0) {
+			Log::debug("wfl.moveToNext next_approver_id not found!");
+			return false;
+		} 
+
 		switch($wf->entity) {
 			case('PR'):
 				// Send notification to Next Approver
 				$action = WflActionEnum::PENDING->value;
+				$pr = Pr::where('id', $wf->article_id)->first();
 				$actionURL = route('prs.show', $pr->id);
-				Log::debug("next_approver_id = ". $next_approver_id);
-				if ($next_approver_id <> 0) {
-					$approver = User::where('id', $next_approver_id)->first();
-					$approver->notify(new PrActions($approver, $pr, $action, $actionURL));
-				} else {
-					Log::debug("next_approver_id not found!");
-				}
+				$approver = User::where('id', $next_approver_id)->first();
+				$approver->notify(new PrActions($approver, $pr, $action, $actionURL));
 				break;
 			case('PO '):
+				// Send notification to Next Approver
+				$action = WflActionEnum::PENDING->value;
+				$po = Po::where('id', $wf->article_id)->first();
+				$actionURL = route('pos.show', $po->id);
+				$approver = User::where('id', $next_approver_id)->first();
+				$approver->notify(new PoActions($approver, $po, $action, $actionURL));
+
 				break;
 			default:
-				Log::debug("Error!. Invalid Entity in wfl.update");
+				Log::debug("Error!. Invalid Entity in wfl.moveToNext");
 		}
 
 		return true;

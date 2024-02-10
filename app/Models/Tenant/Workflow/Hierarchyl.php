@@ -20,6 +20,7 @@ class Hierarchyl extends Model
 
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */
+	
 	/* ---------------- belongsTo ---------------------- */
 	public function hierarchy() { 
 		return $this->belongsTo(Hierarchy::class); 

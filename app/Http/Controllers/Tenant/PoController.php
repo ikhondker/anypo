@@ -342,7 +342,7 @@ class PoController extends Controller
 	
 			// Cancel All PO Lines
 			Pol::where('po_id',$po_id)
-				  ->update(['status' => ClosureStatusEnum::CANCELED->value]);
+				  ->update(['closure_status' => ClosureStatusEnum::CANCELED->value]);
 	
 			// Cancel PO
 			Po::where('id', $po->id)
@@ -351,7 +351,7 @@ class PoController extends Controller
 					'tax' 			=> 0,
 					'gst' 			=> 0,
 					'amount' 		=> 0,
-					'status' => ClosureStatusEnum::CANCELED->value
+					'status' 		=> ClosureStatusEnum::CANCELED->value
 				]);
 	
 			// TODO open the PR

@@ -520,7 +520,7 @@ class User extends Authenticatable implements MustVerifyEmail
 		]);
 	}
 
-	public function dept_name()
+	public function dept()
 	{
 		return $this->belongsTo(Dept::class, 'dept_id')->withDefault([
 			'name' => '[ Empty ]',
