@@ -73,8 +73,8 @@ class Payment extends Model
 
 
 	/* ---------------- belongsTo ---------------------- */
-	public function po(){
-		return $this->belongsTo(Po::class,'po_id')->withDefault([
+	public function invoice(){
+		return $this->belongsTo(Invoice::class,'invoice_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

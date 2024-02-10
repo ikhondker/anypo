@@ -27,8 +27,8 @@
 					<x-tenant.show.my-text		value="{{ $user->name }}"/>
 					<x-tenant.show.my-email		value="{{ $user->email }}"/>
 					<x-tenant.show.my-text		value="{{ $user->cell }}" label="Cell"/>
-					<x-tenant.show.my-text		value="{{ $user->designation_name->name }}" label="Title"/>
-					<x-tenant.show.my-text		value="{{ $user->dept_name->name }}" label="Dept"/>
+					<x-tenant.show.my-text		value="{{ $user->designation->name }}" label="Title"/>
+					<x-tenant.show.my-text		value="{{ $user->dept->name }}" label="Dept"/>
 					<x-tenant.show.my-badge		value="{{ $user->role }}" label="Role"/>
 					<x-tenant.show.my-boolean	value="{{ $user->enable }}"/>
 					<x-tenant.show.my-badge	value="{{ $user->id }}"/>

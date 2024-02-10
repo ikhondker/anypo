@@ -16,7 +16,10 @@
 					<i class="align-middle mt-n1" data-feather="folder"></i> Actions
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
+					
+
 					<a class="dropdown-item" href="{{ route('invoices.edit', $invoice->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
+					<a class="dropdown-item" href="{{ route('payments.create',$invoice->id) }}"><i class="align-middle me-1" data-feather="user"></i> Make Payment</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item modal-boolean-advance"  href="{{ route('invoices.cancel', $invoice->id) }}"
 						data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Cancel"

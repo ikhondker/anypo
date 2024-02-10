@@ -48,6 +48,7 @@
 								<th class="text-end">PO (Booked)</th>
 								<th class="text-end">PO (Approved)</th>
 								<th class="text-end">GRS</th>
+							
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
 								<th>Action</th>
@@ -71,8 +72,8 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_po_booked"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_grs"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_payment"/></td>
-
 								<td class="table-action">
 									<x-tenant.list.actions object="Dbu" :id="$dbu->id"/>
 								</td>

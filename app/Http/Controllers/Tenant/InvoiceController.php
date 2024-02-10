@@ -96,7 +96,19 @@ class InvoiceController extends Controller
 		// Log::debug('inside invoice .store');
 		$invoice = Invoice::create($request->all());
 		
-		Log::debug('I AM HERE 0');
+		
+		
+		// update PO header
+		$po 					= Po::where('id', $invoice->po_id)->firstOrFail();
+		$po->amount_invoice			= $po->amount_invoice - $invoice->amount;
+		$po->save();
+		
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $invoice->id ]);
+			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
+			$attid = FileUpload::upload($request);
+		}
+		
 		// 	Populate functional currency values
 		$result = self::updateInvoiceFcValues($invoice->id);
 		if (! $result) {
@@ -104,17 +116,6 @@ class InvoiceController extends Controller
 		}
 		// Reupload 
 		$invoice = Invoice::where('id', $invoice->id)->first();
-
-		// update PO header
-		$po 					= Po::where('id', $invoice->po_id)->firstOrFail();
-		$po->amount_invoice			= $po->amount_invoice - $invoice->amount;
-		$po->save();
-
-		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'	=> $invoice->id ]);
-			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
-			$attid = FileUpload::upload($request);
-		}
 
 		// update budget and project level summary 
 		$po = Po::where('id', $invoice->po_id)->first();
@@ -129,7 +130,7 @@ class InvoiceController extends Controller
 		$project->save();
 
 		
-		Log::debug('I AM HERE 1');
+		
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::CREATE->value,$invoice->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);

@@ -61,7 +61,8 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		$dbu->article_id		= $this->article_id;
 		$dbu->event		= $this->event;
 
-		Log::debug('I AM HERE 2');
+		Log::debug('fc_amount='.$this->fc_amount);
+		
 		switch ($this->entity) {
 			case EntityEnum::PR->value:
 				$pr 			= Pr::where('id', $this->article_id)->firstOrFail();
@@ -157,6 +158,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 							$dbu->amount_invoice	= $this->fc_amount;
 							break;
 						case EventEnum::CANCEL->value:
+							Log::debug('I AM HERE 4a');
 							$dbu->amount_invoice	= - $this->fc_amount;
 							break;
 						default:
@@ -188,9 +190,6 @@ class RecordDeptBudgetUsage implements ShouldQueue
 			default:
 				Log::debug("job.RecordDeptBudgetUsage Other Entity!");
 		}
-		Log::debug('I AM HERE 5');
-
-		Log::debug('Value of entity=' . $dbu->entity->value);
 		
 		$dbu->save();
 		Log::debug('I AM HERE 6 DONE');

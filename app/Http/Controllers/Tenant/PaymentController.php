@@ -7,22 +7,38 @@ use App\Http\Controllers\Controller;
 use App\Models\Tenant\Payment;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\DeptBudget;
 
+use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\BankAccount;
+
+use App\Models\Tenant\Admin\Setup;
+
 use App\Http\Requests\Tenant\StorePaymentRequest;
 use App\Http\Requests\Tenant\UpdatePaymentRequest;
+
 # Enums
 use App\Enum\EntityEnum;
+use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\PaymentStatusEnum;
+
+
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
 use App\Helpers\FileUpload;
+use App\Helpers\ExchangeRate;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use Illuminate\Support\Facades\Log;
+
+#Jobs
+use App\Jobs\Tenant\ConsolidateBudget;
+use App\Jobs\Tenant\RecordDeptBudgetUsage;
+
+use DB;
 
 class PaymentController extends Controller
 {
@@ -41,18 +57,18 @@ class PaymentController extends Controller
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:
 				// buyer can see all payment of all his po's
-				$payments = $payments->ByPoBuyer(auth()->user()->id)->paginate(10);
+				$payments = $payments->with('bank_account')->with('payee')->ByPoBuyer(auth()->user()->id)->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$payments = $payments->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				$payments = $payments->with('bank_account')->with('payee')->ByPoDept(auth()->user()->dept_id)->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$payments = $payments->orderBy('id', 'DESC')->paginate(10);
+				$payments = $payments->with('bank_account')->with('payee')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$payments = $payments->ByUserAll()->paginate(10);
+				$payments = $payments->with('bank_account')->with('payee')->ByUserAll()->paginate(10);
 				Log::debug("payment.index Other roles!");
 		}
 		return view('tenant.payments.index', compact('payments'))->with('i', (request()->input('page', 1) - 1) * 10);
@@ -69,7 +85,7 @@ class PaymentController extends Controller
 			
 		$bank_accounts = BankAccount::primary()->get();
 
-		return view('tenant.payments.create-for-po', with(compact('po','invoice','bank_accounts')));
+		return view('tenant.payments.create-for-invoice', with(compact('po','invoice','bank_accounts')));
 	}
 
 	/**
@@ -93,6 +109,31 @@ class PaymentController extends Controller
 			$request->merge(['entity'		=> EntityEnum::PAYMENT->value ]);
 			$attid = FileUpload::upload($request);
 		}
+
+
+		// 	Populate functional currency values
+		$result = self::updatePaymentFcValues($payment->id);
+		if (! $result) {
+			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		}
+		// Reupload 
+		$payment = Payment::with('invoice')->where('id', $payment->id)->firstOrFail();
+
+		// update budget and project level summary 
+		$po = Po::where('id', $payment->invoice->po_id)->first();
+		// Po dept budget grs amount update
+		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->amount_payment = $dept_budget->amount_payment + $payment->fc_amount;
+		$dept_budget->save();
+
+		// Po project budget used
+		$project = Project::where('id', $po->project_id)->firstOrFail();
+		$project->amount_payment = $project->amount_payment + $payment->fc_amount;
+		$project->save();
+
+		// run job to Sync Budget
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PAYMENT->value, $payment->id, EventEnum::CREATE->value, $payment->fc_amount);
+		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		// Write to Log
 		EventLog::event('payment', $payment->id, 'create');
@@ -160,8 +201,8 @@ class PaymentController extends Controller
 	// public function cancel(StorePaymentRequest $request)
 	public function cancel(Payment $payment)
 	{
-	
 		$this->authorize('cancel',Payment::class);
+
 		$payment_id = $payment->id;
 
 		try {
@@ -176,10 +217,28 @@ class PaymentController extends Controller
 			$invoice->paid_amount	= $invoice->paid_amount - $payment->amount;
 			$invoice->save();
 
+
+			// update budget and project level summary 
+			$po = Po::where('id', $invoice->po_id)->first();
+			// Po dept budget grs amount update
+			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+			$dept_budget->amount_payment = $dept_budget->amount_payment - $payment->fc_amount;
+			$dept_budget->save();
+
+			// Po project budget used
+			$project = Project::where('id', $po->project_id)->firstOrFail();
+			$project->amount_payment = $project->amount_payment - $payment->fc_amount;
+			$project->save();
+
+			// run job to Sync Budget
+			RecordDeptBudgetUsage::dispatch(EntityEnum::PAYMENT->value, $payment->id, EventEnum::CANCEL->value, $payment->fc_amount);
+			ConsolidateBudget::dispatch($dept_budget->budget_id);
+
 			// cancel Payment
 			Payment::where('id', $payment->id)
 				->update([
 					'amount' => 0,
+					'fc_amount' => 0,
 					'status' => PaymentStatusEnum::VOID->value
 				]);
 	
@@ -194,5 +253,34 @@ class PaymentController extends Controller
 		}
 	}
 
+	// populate functions currency columns in PO header nad lines
+	public static function updatePaymentFcValues($payment_id)
+	{
+		$setup 			= Setup::first();
+		$payment		= Payment::where('id', $payment_id)->firstOrFail();
+		Log::debug('updateReceiptFcValues =' . $payment->currency.$setup->currency);
+
+		// populate fc columns for receipt lines
+		if ($payment->currency == $setup->currency){
+			$rate = 1;
+			DB::statement("UPDATE payments SET 
+				fc_amount		= amount
+				WHERE id = ".$payment->id."");
+		} else {
+			$rate = round(ExchangeRate::getRate($payment->currency, $setup->currency),6);
+			// update all pols fc columns
+			// update pr fc columns
+			// ERROR rate not found 
+			if ($rate == 0){
+				Log::error('receipt.updatePaymentFcValues rate not found currency=' . $payment->currency.' fc_currency='.$setup->currency);
+				return false;
+			}
+
+			DB::statement("UPDATE payments SET 
+				fc_amount		= round(amount * ". $rate .",2)
+				WHERE id = ".$payment->id."");
+		}
+		return true;
+	}
 
 }

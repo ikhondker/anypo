@@ -36,12 +36,13 @@
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-date		value="{{ $payment->pay_date }}"/>
-					<x-tenant.show.my-badge		value="{{ $payment->po_id }}" label="PO#"/>
-					<x-tenant.show.my-text		value="{{ $payment->bank_account->ac_name }}"/>
+					<x-tenant.show.my-badge		value="{{ $payment->id }}" label="Pay ID#"/>
+					<x-tenant.show.my-text		value="{{ $payment->invoice->invoice_no }}" label="Invoice #"/>	
+					<x-tenant.show.my-text		value="{{ $payment->bank_account->ac_name }}" label="Bank Ac"/>
 					<x-tenant.show.my-number	value="{{ $payment->amount }}"/>
-					<x-tenant.show.my-text		value="{{ $payment->currency }}"/>
+					<x-tenant.show.my-text		value="{{ $payment->currency }}" label="Currency"/>
 					<x-tenant.show.my-text		value="{{ $payment->cheque_no }}" label="Ref/Cheque No"/>
-					<x-tenant.show.my-text		value="{{ $payment->payee->name }}" label="Ref/Cheque No"/>
+					<x-tenant.show.my-text		value="{{ $payment->payee->name }}" label="Payee"/>
 					<x-tenant.show.my-badge		value="{{ $payment->status }}" label="Status"/>
 					<x-tenant.show.my-text		value="{{ $payment->notes }}"/>
 				</div>

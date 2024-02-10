@@ -89,17 +89,6 @@
 		</ul>
 	</li>
 	{{-- @if (auth()->user()->role->value == UserRoleEnum::ADMIN->value) --}}
-		<li class="sidebar-item {{ ($_node_name == 'workflow' ? 'active' : '') }}">
-			<a data-bs-target="#workflow" data-bs-toggle="collapse" class="sidebar-link collapsed">
-				<i class="align-middle" data-feather="grid"></i> 
-				<span class="align-middle">Workflow</span>
-			</a>
-			<ul id="workflow" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'workflow' ? 'show' : '') }}" data-bs-parent="#sidebar">
-				<li class="sidebar-item {{ ($_route_name == 'hierarchies.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('hierarchies.index') }}"><i class="align-middle" data-feather="circle"></i>Hierarchy</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'wfs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('wfs.index') }}"><i class="align-middle" data-feather="circle"></i>Workflow</a></li>
-			</ul>
-		</li>
-
 		<li class="sidebar-item {{ ($_node_name == 'admin' ? 'active' : '') }}">
 			<a data-bs-target="#admin" data-bs-toggle="collapse" class="sidebar-link collapsed">
 				<i class="align-middle" data-feather="grid"></i> 
@@ -107,10 +96,12 @@
 			</a>
 			<ul id="admin" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'admin' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.index') }}"><i class="align-middle" data-feather="circle"></i>User</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'setups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('setups.index') }}"><i class="align-middle" data-feather="circle"></i>Setup</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'activities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('activities.index') }}"><i class="align-middle" data-feather="circle"></i>Activity Log</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'attachments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('attachments.index') }}"><i class="align-middle" data-feather="circle"></i>Attachments*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'hierarchies.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('hierarchies.index') }}"><i class="align-middle" data-feather="circle"></i>Hierarchy</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'wfs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('wfs.index') }}"><i class="align-middle" data-feather="circle"></i>Workflow</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'wfs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('wfs.index') }}"><i class="align-middle" data-feather="circle"></i>Force Close PO *</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'setups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('setups.index') }}"><i class="align-middle" data-feather="circle"></i>Setup</a></li>
 			</ul>
 		</li>
 	{{-- @endif --}}

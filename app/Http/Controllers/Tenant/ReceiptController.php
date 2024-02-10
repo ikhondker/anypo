@@ -140,7 +140,7 @@ class ReceiptController extends Controller
 		$receipt = Receipt::where('id', $receipt->id)->first();
 
 		// update pol rcv quantity
-		$pol 				= Pol::where('id', $receipt->pol_id)->firstOrFail();
+		$pol 	= Pol::where('id', $receipt->pol_id)->firstOrFail();
 		$pol->received_qty	= $pol->received_qty + $receipt->qty;
 		if ($pol->qty == $pol->received_qty){
 			$pol->closure_status = ClosureStatusEnum::CLOSED->value;
@@ -166,7 +166,7 @@ class ReceiptController extends Controller
 		$project->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CREATE->value);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CREATE->value,$receipt->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		// Write to Log
@@ -252,10 +252,7 @@ class ReceiptController extends Controller
 			$pol->received_qty	= $pol->received_qty - $receipt->qty;
 			$pol->save();
 			
-			//  Reverse Approve Budget
-			//$retcode = self::grsBudgetCancel($receipt->id); 
-			//Log::debug("retcode = ".$retcode);
-
+		
 			// update budget and project level summary 
 			$po = Po::where('id', $pol->po_id)->first();
 			// Po dept budget grs amount update

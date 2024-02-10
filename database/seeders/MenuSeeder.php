@@ -64,10 +64,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'entities.index','route_name' => 'entities.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'groups.index','route_name' => 'groups.index', 'node_name' => 'system'],
 			
-			[ 'raw_route_name' => 'hierarchies.index','route_name' => 'hierarchies.index', 'node_name' => 'workflow'],
-			[ 'raw_route_name' => 'hierarchies.show','route_name' => 'hierarchies.index', 'node_name' => 'workflow'],
-			[ 'raw_route_name' => 'hierarchies.edit','route_name' => 'hierarchies.index', 'node_name' => 'workflow'],
-			[ 'raw_route_name' => 'hierarchies.create','route_name' => 'hierarchies.index', 'node_name' => 'workflow'],
+			
 
 			[ 'raw_route_name' => 'items.index','route_name' => 'items.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'items.show','route_name' => 'items.index', 'node_name' => 'items'],
@@ -117,6 +114,14 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'setups.show','route_name' => 'setups.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'setups.notice','route_name' => 'setups.index', 'node_name' => 'admin'],
 
+			[ 'raw_route_name' => 'hierarchies.index','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.show','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.edit','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.create','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
+
+			[ 'raw_route_name' => 'wfs.index','route_name' => 'wfs.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'wfs.show','route_name' => 'wfs.index', 'node_name' => 'admin'],
+
 			[ 'raw_route_name' => 'suppliers.index','route_name' => 'suppliers.index', 'node_name' => 'master'],
 			[ 'raw_route_name' => 'suppliers.show','route_name' => 'suppliers.index', 'node_name' => 'master'],
 			[ 'raw_route_name' => 'suppliers.edit','route_name' => 'suppliers.index', 'node_name' => 'master'],
@@ -157,8 +162,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'bank-accounts.edit','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.create','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'wfs.index','route_name' => 'wfs.index', 'node_name' => 'workflow'],
-			[ 'raw_route_name' => 'wfs.show','route_name' => 'wfs.index', 'node_name' => 'workflow'],
+			
 
 		  ];
 		//
