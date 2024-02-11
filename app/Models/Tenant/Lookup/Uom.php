@@ -58,6 +58,8 @@ class Uom extends Model
 
 	/* ---------------- belongsTo ---------------------- */
 	public function uom_class(){
-		return $this->belongsTo(UomClass::class,'uom_class_id');
+		return $this->belongsTo(UomClass::class,'uom_class_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 }

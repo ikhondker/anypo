@@ -35,7 +35,7 @@ class ActivityController extends Controller
 		if (request('term')) {
 			$activities->where('object_name', 'Like', '%' . request('term') . '%');
 		}
-		$activities = $activities->orderBy('id', 'DESC')->paginate(50);
+		$activities = $activities->with('user')->orderBy('id', 'DESC')->paginate(50);
 		return view('tenant.admin.activities.index', compact('activities'))->with('i', (request()->input('page', 1) - 1) * 50);
 	}
 

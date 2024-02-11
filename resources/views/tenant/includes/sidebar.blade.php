@@ -100,7 +100,6 @@
 				<li class="sidebar-item {{ ($_route_name == 'attachments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('attachments.index') }}"><i class="align-middle" data-feather="circle"></i>Attachments*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'hierarchies.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('hierarchies.index') }}"><i class="align-middle" data-feather="circle"></i>Hierarchy</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'wfs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('wfs.index') }}"><i class="align-middle" data-feather="circle"></i>Workflow</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'wfs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('wfs.index') }}"><i class="align-middle" data-feather="circle"></i>Force Close PO *</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'setups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('setups.index') }}"><i class="align-middle" data-feather="circle"></i>Setup</a></li>
 			</ul>
 		</li>
@@ -136,14 +135,14 @@
 
 	<li class="sidebar-item {{ ($_route_name == 'help' ? 'active' : '') }}">
 		<a class="sidebar-link" href="{{ route('help') }}">
-			<i class="align-middle" data-feather="help-circle"></i><span class="align-middle">Help</span>
+			<i class="align-middle" data-feather="help-circle"></i><span class="align-middle">Help & Support</span>
 		</a>
 	</li>
-	<li class="sidebar-item {{ ($_route_name == 'tickets.create' ? 'active' : '') }}">
+	{{-- <li class="sidebar-item {{ ($_route_name == 'tickets.create' ? 'active' : '') }}">
 		<a class="sidebar-link" href="{{ route('tickets.create') }}">
 			<i class="align-middle" data-feather="message-square"></i><span class="align-middle"> Support</span>
 		</a>
-	</li>
+	</li> --}}
 	<li class="sidebar-item }}">
 		<a class="sidebar-link" href="{{ route('logout') }}">
 			<i class="align-middle text-danger" data-feather="power"></i><span class="align-middle"> Logout</span>

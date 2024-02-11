@@ -259,7 +259,7 @@ Route::middleware([
 	Route::get('/designation/export',[DesignationController::class, 'export'])->name('designations.export');
 	Route::get('/designations/delete/{designation}',[DesignationController::class, 'destroy'])->name('designations.destroy');
 
-	/* ======================== Group ======================================== */
+	/* ======================== TODO Group ======================================== */
 	Route::resource('groups', GroupController::class)->middleware(['auth', 'verified']);
 	Route::get('/group/export',[GroupController::class,'export'])->name('groups.export');
 	Route::get('/groups/delete/{group}',[GroupController::class,'destroy'])->name('groups.destroy');

@@ -132,7 +132,7 @@
 
 	<!-- Copyright -->
 	<div class="w-md-85 text-lg-center mx-lg-auto">
-		<p class="text-white-50 small">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved. Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</p>
+		<p class="text-white-50 small">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved. Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})</p>
 		
 
 		<p class="text-white-50 small">When you visit or interact with our sites, services or tools, we or our authorized service providers may use cookies for storing information to help provide you with a better, 

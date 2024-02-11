@@ -372,6 +372,7 @@
 						</div>
 						<div class="col-4 text-end">
 							<p class="mb-0">
+								Laravel v{{ app()->version() }} (PHP v{{ phpversion() }}) 
 								{{-- &copy; 2023 - <a href="index.html" class="text-muted">AppStack</a> --}}
 								<script>document.write(new Date().getFullYear())</script> © <a href="https://hawarIT.com/" target="_blank" class="text-reset">HawarIT Limited</a>.</p>
 							</p>

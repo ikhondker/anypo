@@ -50,9 +50,13 @@
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PO"> 
 							<i class="align-middle me-1" data-feather="copy"></i> Reset Workflow**</a>
 
-							
+						<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('pos.show', $po->id) }}"
+							data-entity="" data-name="PO #{{ $po->id }}" data-status="Force Close"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
+							<i class="align-middle me-1" data-feather="copy"></i> Force Close PO *</a>
+	
 						<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('pos.cancel', $po->id) }}"
-							data-entity="" data-name="PO#{{ $po->id }}" data-status="Cancel"
+							data-entity="" data-name="PO #{{ $po->id }}" data-status="Cancel"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel PO">
 							<i class="align-middle me-1" data-feather="copy"></i> Cancel PO</a>
 

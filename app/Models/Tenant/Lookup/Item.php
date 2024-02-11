@@ -54,22 +54,32 @@ class Item extends Model
 
 	/* ---------------- belongsTo ---------------------- */
 	public function category(){
-		return $this->belongsTo(Category::class,'category_id');
+		return $this->belongsTo(Category::class,'category_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 
 	public function oem(){
-		return $this->belongsTo(Oem::class,'oem_id');
+		return $this->belongsTo(Oem::class,'oem_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 
 	public function uom_class(){
-		return $this->belongsTo(UomClass::class,'uom_class_id');
+		return $this->belongsTo(UomClass::class,'uom_class_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 	public function uom(){
-		return $this->belongsTo(Uom::class,'uom_id');
+		return $this->belongsTo(Uom::class,'uom_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 
-	public function relGlType(){
-		return $this->belongsTo(GlType::class,'gl_type');
+	public function glType(){
+		return $this->belongsTo(GlType::class,'gl_type')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 
 }

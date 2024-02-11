@@ -24,7 +24,8 @@
 							</div>
 						</div>
 						<div class="col-6 align-self-end text-end">
-							<img src="{{asset('img/illustrations/customer-support.png')}}" width="100px" height="100px" alt="Social" class="img-fluid illustration-img">
+							{{-- <img src="{{asset('img/illustrations/customer-support.png')}}" width="100px" height="100px" alt="Social" class="img-fluid illustration-img"> --}}
+							<img src="{{ Storage::disk('s3t')->url('img/illustrations/customer-support.png') }}" width="100px" height="100px" alt="Social" class="img-fluid illustration-img">
 						</div>
 					</div>
 				</div>
@@ -136,7 +137,7 @@
 								<td>{{ $item->category->name }}</td>
 								<td>{{ $item->uom->name }}</td>
 								<td>{{ $item->oem->name }}</td>
-								<td>{{ $item->relGlType->name }}</td>
+								<td>{{ $item->glType->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$item->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Item" :id="$item->id"/>
