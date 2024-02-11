@@ -34,14 +34,7 @@ class Item extends Model
 	}
 
 	/* ----------------- Functions ---------------------- */
-	public static function tbdgetAll() {
-		return Item::select('id', 'name')
-			->where('enable', true)
-			->orderBy('id', 'asc')
-			->get();
-	}
-
-	
+		
 	
 	/* ----------------- HasMany ------------------------ */
 	public function prl() {

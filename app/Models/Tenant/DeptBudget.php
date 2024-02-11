@@ -42,14 +42,7 @@ class DeptBudget extends Model
 
 
 	/* ----------------- Functions ---------------------- */
-	public static function tbdgetAll() {
-		return User::select('id','name')
-			->where('enable', true)
-			->orderBy('id','asc')
-			->get();
-	}
-
-
+	
 
 	/* ---------------- belongsTo ---------------------- */
 	public function budget(){

@@ -18,7 +18,7 @@ use App\Enum\UserRoleEnum;
 # Notifications
 # Mails
 #Jobs
-use App\Jobs\ImportAllRate;
+use App\Jobs\Tenant\ImportAllRate;
 # Packages
 # Seeded
 use DB;

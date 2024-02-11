@@ -25,16 +25,11 @@ class Oem extends Model
 	 */
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('enable', true);
+		$query->where('enable', true)->orderBy('name', 'asc'); 
 	}
 
 	/* ----------------- Functions ---------------------- */
-	public static function tbdgetAll() {
-		return Oem::select('id','name')
-			->where('enable', true)
-			->orderBy('id','asc')
-			->get();
-	}
+
 	/* ----------------- HasMany ------------------------ */
 	public function item(): HasMany
 	{

@@ -16,6 +16,7 @@ class TenantSeeder extends Seeder
 		$this->call(\Database\Seeders\SetupSeeder::class);
 
 		$this->call(\Database\Seeders\EntitySeeder::class);
+		$this->call(\Database\Seeders\StatusSeeder::class);
 		$this->call(\Database\Seeders\MenuSeeder::class);
 		$this->call(\Database\Seeders\TemplateSeeder::class);
 

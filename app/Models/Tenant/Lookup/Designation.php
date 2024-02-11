@@ -19,12 +19,6 @@ class Designation extends Model
 	];
 
 	/* ----------------- Functions ---------------------- */
-	public static function tbdgetAll() {
-		return Designation::select('id','name')
-			->where('enable', true)
-			->orderBy('id','asc')
-			->get();
-	}
 
 	/* ----------------- Scopes ------------------------- */
 	/**
@@ -32,7 +26,7 @@ class Designation extends Model
 	 */
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('enable', true);
+		$query->where('enable', true)->orderBy('name', 'asc'); 
 	}
 
 	/* ----------------- HasMany ------------------------ */

@@ -84,7 +84,9 @@ class PrController extends Controller
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$prs = $prs->with("requestor")->with("dept")->orderBy('id', 'DESC')->paginate(10);
+				//->with('status_badge')
+				//->with('auth_status_badge')
+				$prs = $prs->with("requestor")->with("dept")->with('status_badge')->with('auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
 				$prs = $prs->ByUserAll()->paginate(10);

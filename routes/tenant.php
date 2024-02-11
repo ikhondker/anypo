@@ -35,6 +35,7 @@ use App\Http\Controllers\Tenant\Lookup\WarehouseController;
 use App\Http\Controllers\Tenant\Lookup\BankAccountController;
 
 use App\Http\Controllers\Tenant\Manage\EntityController;
+use App\Http\Controllers\Tenant\Manage\StatusController;
 use App\Http\Controllers\Tenant\Manage\MenuController;
 use App\Http\Controllers\Tenant\Manage\TableController;
 use App\Http\Controllers\Tenant\Manage\TemplateController;
@@ -237,6 +238,11 @@ Route::middleware([
 	Route::resource('entities', EntityController::class)->middleware(['auth', 'verified']);
 	Route::get('/entities/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
 	
+	/* ======================== Status ======================================== */
+	Route::resource('statuses', StatusController::class)->middleware(['auth', 'verified']);
+	Route::get('/status/export',[StatusController::class,'export'])->name('statuses.export');
+	Route::get('/statuses/delete/{status}',[StatusController::class,'destroy'])->name('statuses.destroy');
+
 	/* ======================== Setup ======================================== */
 	Route::resource('setups', SetupController::class)->middleware(['auth', 'verified']);
 	Route::get('setups/image/{filename}',[SetupController::class, 'image'])->name('setups.image');

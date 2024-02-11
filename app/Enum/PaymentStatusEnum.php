@@ -24,6 +24,6 @@ enum PaymentStatusEnum:string{
 	case UNPAID		= 'unpaid';
 	case PAID		= 'paid';
 	case PARTIAL	= 'partial';
-	case VOID		= 'void';
+	case CANCELED	= 'canceled';
 	case ERROR		= 'error';
 }

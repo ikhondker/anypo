@@ -239,7 +239,7 @@ class PaymentController extends Controller
 				->update([
 					'amount' => 0,
 					'fc_amount' => 0,
-					'status' => PaymentStatusEnum::VOID->value
+					'status' => PaymentStatusEnum::CANCELED->value
 				]);
 	
 			// Write to Log

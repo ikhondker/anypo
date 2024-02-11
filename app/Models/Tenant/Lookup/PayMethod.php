@@ -29,13 +29,7 @@ class PayMethod extends Model
 		'created_at'	=> 'datetime',
 	];
 
-	 /* ----------------- Functions ---------------------- */
-	 public static function tbdgetAll() {
-		return PayMethod::select('id','name')
-			->where('enable', true)
-			->orderBy('id','asc')
-			->get();
-	}
+	/* ----------------- Functions ---------------------- */
 
 	 /* ----------------- Scopes ------------------------- */
 	/**

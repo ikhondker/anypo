@@ -32,13 +32,7 @@ class Country extends Model
 		'created_at'	=> 'datetime',
 	];
 
-	
-	public static function tbdgetAll() {
-		return Country::select('country','name')
-			->orderBy('name','asc')
-			->get();
-	}
-
+	/* ----------------- Functions ---------------------- */
 	public function scopePrimary(Builder $query): void
 	{
 		$query->where('enable', true);

@@ -25,15 +25,11 @@ class Project extends Model
 	 */
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('closed', false);
+		$query->where('closed', false)->orderBy('name', 'asc'); 
 	}
 
 	/* ----------------- Functions ---------------------- */
-	public static function tbdgetAll() {
-		return Project::select('id', 'name')
-			->orderBy('id', 'asc')
-			->get();
-	}
+
 	/* ----------------- HasMany ------------------------ */
 	public function prs(): HasMany
 	{

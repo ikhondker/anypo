@@ -88,6 +88,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Lookup\BankAccount'	=> 'App\Policies\Tenant\Lookup\BankAccountPolicy',
 
 		'App\Models\Tenant\Manage\Entity'		=> 'App\Policies\Tenant\Manage\EntityPolicy',
+		'App\Models\Tenant\Manage\Status' 		=> 'App\Policies\Tenant\Manage\StatusPolicy',
 		'App\Models\Tenant\Manage\Menu'			=> 'App\Policies\Tenant\Manage\MenuPolicy',
 		'App\Models\Tenant\Manage\Table'		=> 'App\Policies\Tenant\Manage\TablePolicy',
 		'App\Models\Tenant\Manage\Template'		=> 'App\Policies\Tenant\Manage\TemplatePolicy',

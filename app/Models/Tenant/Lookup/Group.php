@@ -18,13 +18,6 @@ class Group extends Model
 	];
 	/* ----------------- Functions ---------------------- */
 
-	public static function tbdgetAll() {
-		return Group::select('id','name')
-			->where('enable', true)
-			->orderBy('id','asc')
-			->get();
-	}
-
 	/* ----------------- HasMany ------------------------ */
 	/* ---------------- belongsTo ---------------------- */
 

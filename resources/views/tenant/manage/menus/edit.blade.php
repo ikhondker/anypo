@@ -38,7 +38,7 @@
 									name="raw_route_name" id="raw_route_name" placeholder="Raw Route Name"
 									value="{{ old('raw_route_name', $menu->raw_route_name ) }}"
 									required/>
-								@error('route_name')
+								@error('raw_route_name')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>

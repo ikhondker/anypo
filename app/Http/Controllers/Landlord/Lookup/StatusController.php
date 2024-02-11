@@ -66,7 +66,7 @@ class StatusController extends Controller
 	 */
 	public function show(Status $status)
 	{
-		$this->authorize('view', $tenant);
+		$this->authorize('view', $status);
 		return view('landlord.lookup.statuses.show', compact('status'));
 	}
 

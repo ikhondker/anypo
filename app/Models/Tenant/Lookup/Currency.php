@@ -24,12 +24,6 @@ class Currency extends Model
 	];
 
 	/* ----------------- Functions ---------------------- */
-	public static function tbdgetAll() {
-		return Currency::select('currency','name','country')
-			->orderBy('currency','asc')
-			->get();
-	}
-
 	public static function getActives() {
 		return Currency::select('currency','name','country')
 			->where('enable',true)

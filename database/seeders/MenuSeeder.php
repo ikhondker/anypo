@@ -50,8 +50,6 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'currencies.edit','route_name' => 'currencies.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'currencies.create','route_name' => 'currencies.index', 'node_name' => 'lookups'],
 
-
-
 			[ 'raw_route_name' => 'depts.index','route_name' => 'depts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'depts.show','route_name' => 'depts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'depts.edit','route_name' => 'depts.index', 'node_name' => 'lookups'],
@@ -61,17 +59,30 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'designations.edit','route_name' => 'designations.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'designations.create','route_name' => 'designations.index', 'node_name' => 'lookups'],
 
+
+			[ 'raw_route_name' => 'templates.index','route_name' => 'templates.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'templates.show','route_name' => 'templates.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'templates.edit','route_name' => 'templates.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'templates.create','route_name' => 'templates.index', 'node_name' => 'system'],
+
+			[ 'raw_route_name' => 'tables.index','route_name' => 'tables.index', 'node_name' => 'system'],
+
 			[ 'raw_route_name' => 'entities.index','route_name' => 'entities.index', 'node_name' => 'system'],
+
+			[ 'raw_route_name' => 'statuses.index','route_name' => 'statuses.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'statuses.show','route_name' => 'statuses.show', 'node_name' => 'system'],
+
 			[ 'raw_route_name' => 'groups.index','route_name' => 'groups.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'menus.index','route_name' => 'menus.index', 'node_name' => 'system'],
 			
-			
+			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],
+
 
 			[ 'raw_route_name' => 'items.index','route_name' => 'items.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'items.show','route_name' => 'items.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'items.edit','route_name' => 'items.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'items.create','route_name' => 'items.index', 'node_name' => 'items'],
 
-			[ 'raw_route_name' => 'menus.index','route_name' => 'menus.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'oems.index','route_name' => 'oems.index', 'node_name' => 'lookups'],
 		   
 			[ 'raw_route_name' => 'prs.index','route_name' => 'prs.index', 'node_name' => 'purchase'],
@@ -98,9 +109,6 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'payments.show','route_name' => 'payments.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'payments.create','route_name' => 'payments.index', 'node_name' => 'purchase'],
 			
-			
-			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],
-
 			[ 'raw_route_name' => 'projects.index','route_name' => 'projects.index', 'node_name' => 'master'],
 			[ 'raw_route_name' => 'projects.show','route_name' => 'projects.index', 'node_name' => 'master'],
 			[ 'raw_route_name' => 'projects.edit','route_name' => 'projects.index', 'node_name' => 'master'],
@@ -127,14 +135,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'suppliers.edit','route_name' => 'suppliers.index', 'node_name' => 'master'],
 			[ 'raw_route_name' => 'suppliers.create','route_name' => 'suppliers.index', 'node_name' => 'master'],
 			
-			[ 'raw_route_name' => 'templates.index','route_name' => 'templates.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'templates.show','route_name' => 'templates.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'templates.edit','route_name' => 'templates.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'templates.create','route_name' => 'templates.index', 'node_name' => 'system'],
-
-			[ 'raw_route_name' => 'tables.index','route_name' => 'tables.index', 'node_name' => 'system'],
+			
 			// TODO
-
 			[ 'raw_route_name' => 'uoms.index','route_name' => 'uoms.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'uoms.create','route_name' => 'uoms.index', 'node_name' => 'items'],
 

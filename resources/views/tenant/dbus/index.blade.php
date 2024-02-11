@@ -57,7 +57,7 @@
 						<tbody>
 							@foreach ($dbus as $dbu)
 							<tr>
-								<td>{{ $dbus->firstItem() + $loop->index}}</td>
+								<td>{{ $dbus->firstItem() + $loop->index }}</td>
 								<td><a class="text-info" href="{{ route('dbus.show',$dbu->id) }}">{{ $dbu->id  }}</a></td>
 								<td>{{ $dbu->dept->name }}</td>
 								<td>{{ $dbu->deptBudget->budget->fy }}</td>

@@ -32,13 +32,6 @@ class Category extends Model
 
 
 	/* ----------------- Functions ---------------------- */
-	public static function tbdgetAll()
-	{
-		return Category::select('id', 'name')
-			->where('enable', true)
-			->orderBy('id', 'asc')
-			->get();
-	}
 	
 	/* ----------------- HasMany ------------------------ */
 	public function item(): HasMany

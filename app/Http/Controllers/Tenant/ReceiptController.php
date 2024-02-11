@@ -22,6 +22,7 @@ use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\ReceiptStatusEnum;
+
 use App\Enum\ClosureStatusEnum;
 
 # Helpers
@@ -46,24 +47,6 @@ use App\Jobs\Tenant\RecordDeptBudgetUsage;
 
 class ReceiptController extends Controller
 {
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @param  \App\Models\Pol  $pol
-	 * @return \Illuminate\Http\Response
-	 */
-	public function xxcreateForPol($pol_id)
-	{
-		$this->authorize('create', Receipt::class);
-
-		$pol = Pol::where('id', $pol_id)->first();
-		$po = Po::where('id', $pol->po_id)->first();
-		$warehouses = Warehouse::primary()->get();
-
-		return view('tenant.receipts.create-for-pol', with(compact('po','pol','warehouses')));
-	}
-
-
 	/**
 	 * Display a listing of the resource.
 	 */

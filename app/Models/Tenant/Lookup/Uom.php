@@ -40,12 +40,6 @@ class Uom extends Model
 	}
 
 	/* ----------------- Functions ---------------------- */
-	public static function tbdgetAll() {
-		returnUom::select('id','name')
-			->where('enable', true)
-			->orderBy('id','asc')
-			->get();
-	}
 
 	
 	/* ----------------- HasMany ------------------------ */

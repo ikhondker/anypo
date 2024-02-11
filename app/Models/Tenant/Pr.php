@@ -19,6 +19,8 @@ use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Currency;
 
+use App\Models\Tenant\Manage\Status;
+
 use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
 use Illuminate\Database\Eloquent\Builder;
@@ -45,8 +47,9 @@ class Pr extends Model
 		'updated_at'		=> 'datetime',
 		'created_at'		=> 'datetime',
 		'pr_date'			=> 'date',
-		'closure_status'	=> ClosureStatusEnum::class,
-		'auth_status'		=> AuthStatusEnum::class,
+		// show error while showing
+		//'status'			=> ClosureStatusEnum::class,
+		//'auth_status'		=> AuthStatusEnum::class,
 	];
 
 
@@ -268,13 +271,19 @@ class Pr extends Model
 	}
 
 	/* ---------------- belongsTo ---------------------- */
-	public function dept(){
-		return $this->belongsTo(Dept::class,'dept_id')->withDefault([
+	public function status_badge(){
+		return $this->belongsTo(Status::class,'status')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}
-	public function xxrelCurrency(){
-		return $this->belongsTo(Currency::class,'currency')->withDefault([
+	public function auth_status_badge(){
+		return $this->belongsTo(Status::class,'auth_status')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+	public function dept(){
+		return $this->belongsTo(Dept::class,'dept_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

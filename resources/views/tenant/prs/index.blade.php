@@ -55,8 +55,8 @@
 								<td>{{ $pr->dept->name }}</td>
 								<td>{{ $pr->currency }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$pr->amount"/></td>
-								<td><x-tenant.list.my-badge :value="$pr->auth_status"/></td>
-								<td><x-tenant.list.my-badge :value="$pr->status"/></td>
+								<td><span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span></td>
+								<td><span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Pr" :id="$pr->id"/>
 									<a href="{{ route('prs.destroy', $pr->id) }}" class="me-2 modal-boolean-advance"

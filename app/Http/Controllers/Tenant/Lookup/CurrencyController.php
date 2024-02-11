@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Tenant\Lookup;
 
 use App\Http\Controllers\Controller;
 
-
-
 use App\Models\Tenant\Lookup\Currency;
 use App\Http\Requests\Tenant\Lookup\StoreCurrencyRequest;
 use App\Http\Requests\Tenant\Lookup\UpdateCurrencyRequest;
@@ -24,7 +22,7 @@ use Illuminate\Support\Facades\Log;
 # Exceptions
 # Events
 #Jobs
-use App\Jobs\ImportAllRate;
+use App\Jobs\Tenant\ImportAllRate;
 
 class CurrencyController extends Controller
 {

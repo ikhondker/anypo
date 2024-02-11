@@ -18,14 +18,19 @@ class Hierarchy extends Model
 		'name','enable','updated_at','updated_by'
 	];
 	
-	/* ----------------- Functions ---------------------- */
-	public static function tbdgetAll()
+
+	/* ----------------- Scopes ------------------------- */
+	/**
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopePrimary(Builder $query): void
 	{
-		 return Hierarchy::select('id', 'name')
-			 ->where('enable', true)
-			 ->orderBy('id', 'asc')
-			 ->get();
-	 }
+		$query->where('enable',true)->orderBy('name', 'asc'); 
+	}
+
+
+	/* ----------------- Functions ---------------------- */
+	
 	 
 	/* ----------------- HasMany ------------------------ */
 	public function lines() {

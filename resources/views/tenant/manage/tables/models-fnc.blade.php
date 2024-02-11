@@ -321,6 +321,7 @@
 'withoutTimestampsOn',
 'withoutTouching',
 'withoutTouchingOn',
+'addGlobalScopes',
 								);
 								//$class = new ReflectionClass('App\Http\Controllers\Tenant\HomeController');
 								//$class = new ReflectionClass('App\Models\Tenant\\'. $row["f"]);

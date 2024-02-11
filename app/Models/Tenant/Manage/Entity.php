@@ -15,6 +15,7 @@ class Entity extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 	
 	protected $primaryKey	= 'entity';
+	public $incrementing = false;
 	protected $keyType		= 'string';
 
 	protected $fillable = [
