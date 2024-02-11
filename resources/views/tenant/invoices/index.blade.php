@@ -43,7 +43,7 @@
 								<th>Paid</th>
 								<th>Status</th>
 								<th>Pay Status</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

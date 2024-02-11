@@ -115,7 +115,7 @@
 							</div>
 							<div class="mb-3 row">
 								<div class="col-sm-10 ml-sm-auto">
-									<x-tenant.widgets.submit/>
+									<x-tenant.buttons.show.save/>
 
 								</div>
 							</div>

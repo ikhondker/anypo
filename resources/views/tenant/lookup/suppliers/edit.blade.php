@@ -31,7 +31,7 @@
 						<x-tenant.edit.name :value="$supplier->name"/>
 						<x-tenant.edit.contact-person value="{{ $supplier->contact_person }}"/>
 						<x-tenant.edit.cell :value="$supplier->cell"/>
-						<x-tenant.widgets.submit/>
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>

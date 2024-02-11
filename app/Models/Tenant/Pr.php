@@ -47,7 +47,7 @@ class Pr extends Model
 		'updated_at'		=> 'datetime',
 		'created_at'		=> 'datetime',
 		'pr_date'			=> 'date',
-		// show error while showing
+		// DO NOT CAST. eager loading shows error
 		//'status'			=> ClosureStatusEnum::class,
 		//'auth_status'		=> AuthStatusEnum::class,
 	];

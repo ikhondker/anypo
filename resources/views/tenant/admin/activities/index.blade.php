@@ -41,7 +41,7 @@
 							<th>Old Value</th>
 							<th>Performed By</th>
 							<th>Performer Role</th>
-							<th>Action</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>

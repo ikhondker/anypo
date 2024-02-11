@@ -52,7 +52,7 @@
 								<th>Timestamp</th>
 								<th>Uploaded By</th>
 								<th>Status</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

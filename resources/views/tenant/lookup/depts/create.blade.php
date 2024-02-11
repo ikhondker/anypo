@@ -19,10 +19,11 @@
 		@csrf
 
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Dept Info</h5>
+						<h5 class="card-title">Department Info</h5>
+						<h6 class="card-subtitle text-muted">Create new department with Requisition and Purchase Order Approval Hierarchy</h6>
 					</div>
 					<div class="card-body">
 
@@ -37,15 +38,37 @@
 							@enderror
 						</div>
 
-						<x-tenant.widgets.submit/>
+						<div class="mb-3">
+							<label class="form-label">PR Hierarchy</label>
+							<select class="form-control" name="pr_hierarchy_id" required>
+								<option value=""><< Hierarchy >> </option>
+								@foreach ($hierarchies as $hierarchy)
+									<option value="{{ $hierarchy->id }}" {{ $hierarchy->id == old('pr_hierarchy_id') ? 'selected' : '' }} >{{ $hierarchy->name }} </option>
+								@endforeach
+							</select>
+							@error('pr_hierarchy_id')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+						<div class="mb-3">
+							<label class="form-label">PO Hierarchy</label>
+							<select class="form-control" name="po_hierarchy_id" required>
+								<option value=""><< Hierarchy >> </option>
+								@foreach ($hierarchies as $hierarchy)
+									<option value="{{ $hierarchy->id }}" {{ $hierarchy->id == old('pr_hierarchy_id') ? 'selected' : '' }} >{{ $hierarchy->name }} </option>
+								@endforeach
+							</select>
+							@error('po_hierarchy_id')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>
 			<!-- end col-6 -->
-			<div class="col-6">
-
-			</div>
-			<!-- end col-6 -->
+		
 		</div>
 		<!-- end row -->
 

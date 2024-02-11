@@ -46,7 +46,7 @@ class WarehouseController extends Controller
 	{
 		$this->authorize('create', Warehouse::class);
 
-		$countries = Country::getAll();
+		$countries = Country::All();
 
 		return view('tenant.lookup.warehouses.create', compact('countries'));
 	}
@@ -82,7 +82,7 @@ class WarehouseController extends Controller
 	public function edit(Warehouse $warehouse)
 	{
 		$this->authorize('update', $warehouse);
-		$countries = Country::getAll();
+		$countries = Country::primary()->get();
 		return view('tenant.lookup.warehouses.edit', compact('warehouse', 'countries'));
 	}
 

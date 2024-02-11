@@ -15,36 +15,30 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-6">
+		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Dept Info</h5>
-					<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+					<h5 class="card-title">Department Detail</h5>
+					<h6 class="card-subtitle text-muted">Department details with Requisition and Purchase Order Approval Hierarchy
+						.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $dept->name }}"/>
 					<x-tenant.show.my-text		value="{{ $dept->prHierarchy->name }}" label="PR Hierarchy"/>
 					<x-tenant.show.my-text		value="{{ $dept->poHierarchy->name }}" label="PO Hierarchy"/>
-					<x-tenant.show.my-badge		value="{{ $dept->id }}" label="ID"/>
 					<x-tenant.show.my-boolean	value="{{ $dept->enable }}"/>
+					<x-tenant.show.my-date-time value="{{$dept->updated_at }}" label="Updated At"/>
+					<x-tenant.show.my-date-time value="{{$dept->created_at }}" label="Created At"/>
+					<x-tenant.buttons.show.edit object="Dept" :id="$dept->id"/>
 				</div>
 			</div>
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Supporting Info</h5>
-				</div>
-				<div class="card-body">
-					<x-tenant.show.my-date-time value="{{$dept->created_at }}" label="Created At"/>
-					<x-tenant.show.my-date-time value="{{$dept->updated_at }}" label="Updated At"/>
-				</div>
-			</div>
+			
 		</div>
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-
 @endsection
 

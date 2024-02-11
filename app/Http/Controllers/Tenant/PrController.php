@@ -21,6 +21,8 @@ use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Admin\Attachment;
 
+use App\Models\Tenant\Manage\Status;
+
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
@@ -86,7 +88,9 @@ class PrController extends Controller
 			case UserRoleEnum::SYSTEM->value:
 				//->with('status_badge')
 				//->with('auth_status_badge')
-				$prs = $prs->with("requestor")->with("dept")->with('status_badge')->with('auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				//$prs = $prs->with("requestor")->with("dept")->with('status_badge')->with('auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				
 				break;
 			default:
 				$prs = $prs->ByUserAll()->paginate(10);
@@ -122,6 +126,9 @@ class PrController extends Controller
 		$setup = Setup::first();
 		// create PR with zero value and then update
 		// don't set dept_budget_id . It will be save during submissions
+		
+		$request->merge(['status'		=> ClosureStatusEnum::OPEN->value ]);
+		$request->merge(['auth_status'	=> AuthStatusEnum::DRAFT->value]);
 		$request->merge(['requestor_id'	=> 	auth()->user()->id ]);
 		$request->merge(['pr_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['fc_currency'	=> $setup->currency]);

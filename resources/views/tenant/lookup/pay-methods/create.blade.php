@@ -79,7 +79,7 @@
 						<x-tenant.create.start-date/>
 						<x-tenant.create.end-date/>
 
-						<x-tenant.widgets.submit/>
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>

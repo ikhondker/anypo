@@ -13,7 +13,7 @@
 		@enderror
 	</td>
 	<td class="">
-		{{-- <x-tenant.widgets.submit/> --}}
+		{{-- <x-tenant.buttons.show.save/> --}}
 	</td>
 </tr>
 <tr class="">

@@ -40,7 +40,7 @@
 								<th>Qty</th>
 								<th>Receiver</th>
 								<th>Status</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

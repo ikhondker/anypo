@@ -37,7 +37,7 @@
 								<th>Bank Name</th>
 								<th>Currency</th>
 								<th>Enable</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

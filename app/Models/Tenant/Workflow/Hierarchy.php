@@ -10,6 +10,8 @@ use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Tenant\Workflow\Hierarchyl;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class Hierarchy extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
@@ -25,7 +27,7 @@ class Hierarchy extends Model
 	*/
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('enable',true)->orderBy('name', 'asc'); 
+		$query->where('enable',true); 
 	}
 
 

@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Oem
+			OEM
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Oem"/>
@@ -13,11 +13,13 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
+					
 					<x-tenant.cards.header-search-export-bar object="Oem"/>
+
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -25,7 +27,7 @@
 							OEM Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of OEM's</h6>
 				</div>
 
 				<div class="card-body">
@@ -35,7 +37,7 @@
 								<th>#</th>
 								<th>Name</th>
 								<th>Enable</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -47,7 +49,7 @@
 								<td class="table-action">
 									<x-tenant.list.actions object="Oem" :id="$oem->id" :show="false"/>
 									<a href="{{ route('oems.destroy',$oem->id) }}" class="me-2 modal-boolean-advance"
-										data-entity="Oem" data-name="{{ $oem->name }}" data-status="{{ ($oem->enable ? 'Disable' : 'Enable') }}"
+										data-entity="OEM" data-name="{{ $oem->name }}" data-status="{{ ($oem->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($oem->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($oem->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>

@@ -32,6 +32,8 @@
 					<x-tenant.show.my-number	value="{{ $item->price }}" label="Price"/>
 					<x-tenant.show.my-badge		value="{{ $item->id }}" label="ID"/>
 					<x-tenant.show.my-boolean	value="{{ $item->enable }}"/>
+					<x-tenant.show.my-date-time value="{{$item->created_at }}" label="Created At"/>
+					<x-tenant.show.my-date-time value="{{$item->updated_at }}" label="Updated At"/>
 				</div>
 			</div>
 		</div>
@@ -42,8 +44,7 @@
 					<h5 class="card-title">Supporting Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-date-time value="{{$item->created_at }}" label="Created At"/>
-					<x-tenant.show.my-date-time value="{{$item->updated_at }}" label="Updated At"/>
+					
 				</div>
 			</div>
 		</div>

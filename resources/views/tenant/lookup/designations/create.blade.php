@@ -18,10 +18,11 @@
 		@csrf
 
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Designation Info</h5>
+						<h5 class="card-title">Create Designation</h5>
+						<h6 class="card-subtitle text-muted">Create a new designations</h6>
 					</div>
 					<div class="card-body">
 
@@ -37,14 +38,11 @@
 							@enderror
 						</div>
 
-						<x-tenant.widgets.submit/>
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>
-			<!-- end col-6 -->
-			<div class="col-6">
-
-			</div>
+			
 			<!-- end col-6 -->
 		</div>
 		<!-- end row -->

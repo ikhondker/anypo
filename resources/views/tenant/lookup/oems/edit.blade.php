@@ -6,7 +6,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Edit Oem
+			Edit OEM
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.save/>
@@ -21,18 +21,14 @@
 		@method('PUT')
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Oem Info</h5>
+							<h5 class="card-title">Edit OEM</h5>
+							<h6 class="card-subtitle text-muted">Edit an OEM</h6>
 						</div>
 						<div class="card-body">
-
-							<div class="mb-3">
-								<label class="form-label">ID</label>
-								<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $oem->id ) }}" readonly>
-							</div>
-
+							<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $oem->id ) }}" hidden>
 							<div class="mb-3">
 								<label class="form-label">Oem Name</label>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -44,16 +40,9 @@
 								@enderror
 							</div>
 
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
 
 						</div>
-					</div>
-				</div>
-				<!-- end col-6 -->
-
-				<div class="col-6">
-					<div class="card">
-
 					</div>
 				</div>
 				<!-- end col-6 -->

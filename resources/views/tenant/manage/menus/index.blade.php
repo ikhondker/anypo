@@ -38,7 +38,7 @@
 								<th>Route Name</th>
 								<th>Node Name</th>
 								<th>Enable</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

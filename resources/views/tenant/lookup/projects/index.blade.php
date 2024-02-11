@@ -130,7 +130,7 @@
 								<th class="text-end">Payment</th>
 
 								<th>Closed</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

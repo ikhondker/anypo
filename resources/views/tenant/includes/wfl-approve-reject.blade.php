@@ -58,7 +58,7 @@
 							<label class="col-form-label col-sm-2 text-sm-right">&nbsp;</label>
 							<div class="col-sm-10 ml-sm-auto">
 								{{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
-								<x-tenant.widgets.submit/>
+								<x-tenant.buttons.show.save/>
 							</div>
 						</div>
 					</form>

@@ -38,7 +38,7 @@
 								<th>Owner</th>
 								<th>File Name</th>
 								<th>View/Download</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

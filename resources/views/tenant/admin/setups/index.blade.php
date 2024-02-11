@@ -32,7 +32,7 @@
 								<th>Website</th>
 								<th>Primary Admin</th>
 								<th>Notice?</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

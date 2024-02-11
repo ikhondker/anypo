@@ -58,7 +58,7 @@
 								@enderror
 							</div>
 							<x-tenant.edit.price :value="$uploadItem->price"/>
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
 						</div>
 					</div>
 				</div>

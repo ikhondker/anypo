@@ -54,7 +54,7 @@
 						<x-tenant.create.amount/>
 						<x-tenant.create.notes/>
 
-						<x-tenant.widgets.submit/>
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>

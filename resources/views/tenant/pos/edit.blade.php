@@ -69,7 +69,7 @@
 
 							<x-tenant.edit.currency :value="$po->currency"/>
 
-							{{-- <x-tenant.widgets.submit/> --}}
+							{{-- <x-tenant.buttons.show.save/> --}}
 
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 
 							<x-tenant.edit.notes :value="$po->notes"/>
 
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
 
 						</div>
 					</div>

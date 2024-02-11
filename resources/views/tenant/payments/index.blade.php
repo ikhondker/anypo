@@ -40,7 +40,7 @@
 								<th>Currency</th>
 								<th>Paid By</th>
 								<th>Status</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

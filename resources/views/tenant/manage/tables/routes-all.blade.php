@@ -32,7 +32,7 @@
 								<th>Method</th>
 								<th>URI</th>
 								<th>Name</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 							
 						</thead>

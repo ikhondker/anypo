@@ -125,7 +125,7 @@
 								<th>OEM</th>
 								<th>GL Type</th>
 								<th>Enable</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

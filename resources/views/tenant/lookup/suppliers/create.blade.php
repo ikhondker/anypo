@@ -28,7 +28,7 @@
 						<x-tenant.create.name/>
 						<x-tenant.create.contact-person/>
 						<x-tenant.create.cell/>
-						<x-tenant.widgets.submit/>
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 							<x-tenant.create.zip/>
 						</div>
 						<x-tenant.create.country/>
-						<x-tenant.widgets.submit/>
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>

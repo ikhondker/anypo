@@ -36,7 +36,7 @@
 								<th>Name</th>
 								<th>Date Created</th>
 								<th>Enable</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

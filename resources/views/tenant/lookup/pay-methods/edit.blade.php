@@ -70,7 +70,7 @@
 							<x-tenant.edit.start-date :value="date('Y-m-d',strtotime($payMethod->start_date))"/>
 							<x-tenant.edit.end-date :value="date('Y-m-d',strtotime($payMethod->end_date))"/>
 
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
 
 						</div>
 					</div>

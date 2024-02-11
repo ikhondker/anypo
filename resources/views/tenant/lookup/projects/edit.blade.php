@@ -41,7 +41,7 @@
 								</select>
 							</div>
 
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
  
 						</div>
 					</div>
@@ -64,7 +64,7 @@
 
 							<x-tenant.edit.amount :value="$project->amount"/>
 
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
  
 						</div>
 					</div>

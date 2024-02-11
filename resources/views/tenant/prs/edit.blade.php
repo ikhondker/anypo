@@ -69,7 +69,7 @@
 
 							<x-tenant.edit.currency :value="$pr->currency"/>
 
-							{{-- <x-tenant.widgets.submit/> --}}
+							{{-- <x-tenant.buttons.show.save/> --}}
 
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 
 							<x-tenant.edit.notes :value="$pr->notes"/>
 
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
 
 						</div>
 					</div>
@@ -122,7 +122,7 @@
 			</div>
 
 			<!-- widget-pr-lines -->
-			<x-tenant.widgets.pr-lines id="{{ $pr->id }}" :show="true"/>
+			<x-tenant.widgets.pr.lines id="{{ $pr->id }}" :show="true"/>
 
 	</form>
 	<!-- /.form end -->

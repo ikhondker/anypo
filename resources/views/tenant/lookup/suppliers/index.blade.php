@@ -36,7 +36,7 @@
 								<th>Contact Person</th>
 								<th>Cell</th>
 								<th>Enable</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

@@ -42,7 +42,7 @@
 								<th class="text-end">Amount</th>
 								<th>Approval</th>
 								<th>Status</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

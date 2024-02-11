@@ -38,7 +38,7 @@
 								<th>Currency</th>
 								<th>Start-End</th>
 								<th>Enable</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

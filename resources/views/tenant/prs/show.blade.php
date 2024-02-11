@@ -35,14 +35,14 @@
 					<a class="dropdown-item" href="{{ route('prs.edit', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
 					<a class="dropdown-item" href="{{ route('prls.createline', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Add Line</a>
 					<a class="dropdown-item" href="{{ route('reports.pr', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Print PR</a>
-					<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.convert', $pr->id) }}"
-						data-entity="" data-name="PR#{{ $pr->id }}" data-status="Covert to PO"
-						data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
-						<i class="align-middle me-1" data-feather="copy"></i> Covert to PO*</a>
 					<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.copy', $pr->id) }}"
 						data-entity="" data-name="PO#{{ $pr->id }}" data-status="Duplicate"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PR">
 						<i class="align-middle me-1" data-feather="copy"></i> Duplicate</a>
+					<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.convert', $pr->id) }}"
+						data-entity="" data-name="PR#{{ $pr->id }}" data-status="Covert to PO"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
+						<i class="align-middle me-1" data-feather="copy"></i> Covert to PO*</a>
 					<a class="dropdown-item" href="{{ route('prs.detach',$pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachments</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> View Receipt</a>

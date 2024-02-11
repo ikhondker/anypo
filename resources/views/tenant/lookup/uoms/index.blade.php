@@ -38,7 +38,7 @@
 								<th>Conversion</th>
 								<th>UoM Class</th>
 								<th>Enable</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

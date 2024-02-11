@@ -61,7 +61,7 @@
 								<th>#</th>
 								<th>Approver Name</th>
 								<th>Assign Date</th>
-								<th>Action</th>
+								<th>Actions</th>
 								<th>Action Date</th>
 								<th>Notes</th>
 							</tr>

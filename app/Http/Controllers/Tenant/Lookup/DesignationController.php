@@ -33,13 +33,14 @@ class DesignationController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Designation::class);
 
 		$designations = Designation::query();
 		if (request('term')) {
 			$designations->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$designations = $designations->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.designations.index', compact('designations'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.lookup.designations.index', compact('designations'));
 
 	}
 

@@ -20,17 +20,17 @@
 		@method('PUT')
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Designation Info</h5>
+							<h5 class="card-title">Edit Designation</h5>
+							<h6 class="card-subtitle text-muted">Edit a designations</h6>
 						</div>
 						<div class="card-body">
 
-							<div class="mb-3">
-								<label class="form-label">ID</label>
-								<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $designation->id ) }}" readonly>
-							</div>
+							
+							<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $designation->id ) }}" hidden>
+							
 
 							<div class="mb-3">
 								<label class="form-label">Designation Name</label>
@@ -43,19 +43,13 @@
 								@enderror
 							</div>
 
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
 
 						</div>
 					</div>
 				</div>
 				<!-- end col-6 -->
 
-				<div class="col-6">
-					<div class="card">
-
-					</div>
-				</div>
-				<!-- end col-6 -->
 			</div>
 
 

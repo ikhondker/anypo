@@ -15,6 +15,8 @@ use App\Models\Tenant\Lookup\Project;
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class Dbu extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;

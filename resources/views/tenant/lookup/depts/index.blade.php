@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Dept
+			Department Lists
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Dept"/>
@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -25,7 +25,7 @@
 							Department Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of departments with Requisition and Purchase Order Approval Hierarchy</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
@@ -35,8 +35,8 @@
 								<th>Name</th>
 								<th>PR Hierarchy</th>
 								<th>PO Hierarchy</th>
-								<th>Enable</th>
-								<th>Action</th>
+								<th>Enable?</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

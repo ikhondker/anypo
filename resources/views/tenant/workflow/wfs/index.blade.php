@@ -38,7 +38,7 @@
 								<th>WF Status</th>
 								<th>Auth Status</th>
 								<th>Date</th>
-								<th>Action</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>

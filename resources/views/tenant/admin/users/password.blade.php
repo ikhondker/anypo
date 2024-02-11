@@ -50,7 +50,7 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 						</div>
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>

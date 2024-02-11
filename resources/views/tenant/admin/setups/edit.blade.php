@@ -256,7 +256,7 @@
 								@enderror
 							</div>
 
-							<x-tenant.widgets.submit/>
+							<x-tenant.buttons.show.save/>
 						</div>
 					</div>
 				</div>

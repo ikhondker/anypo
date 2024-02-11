@@ -41,7 +41,7 @@ class DeptController extends Controller
 			$depts->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$depts = $depts->with("prHierarchy")->with("poHierarchy")->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.depts.index', compact('depts'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.lookup.depts.index', compact('depts'));
 	}
 
 	/**
@@ -50,7 +50,10 @@ class DeptController extends Controller
 	public function create()
 	{
 		$this->authorize('create', Dept::class);
-		return view('tenant.lookup.depts.create');
+
+		$hierarchies = Hierarchy::primary()->get();
+
+		return view('tenant.lookup.depts.create', compact('hierarchies'));
 	}
 
 	/**
@@ -60,6 +63,8 @@ class DeptController extends Controller
 	{
 		
 		$this->authorize('create', Dept::class);
+
+		
 		$dept = Dept::create($request->all());
 		// Write to Log
 		EventLog::event('dept', $dept->id, 'create');
@@ -84,7 +89,7 @@ class DeptController extends Controller
 	{
 		$this->authorize('update', $dept);
 
-		$hierarchies = Hierarchy::getAll();
+		$hierarchies = Hierarchy::primary()->get();
 
 
 		return view('tenant.lookup.depts.edit', compact('dept', 'hierarchies'));
