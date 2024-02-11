@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Widgets;
+namespace App\View\Components\Tenant\Widgets\Po;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 
 use App\Models\Tenant\Payment;
 
-class InvPayments extends Component
+class Payments extends Component
 {
 	public $payments;
 
@@ -25,6 +25,6 @@ class InvPayments extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.inv-payments');
+		return view('components.tenant.widgets.po.payments');
 	}
 }

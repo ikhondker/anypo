@@ -15,7 +15,7 @@ class UploadItem extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 	
 	protected $fillable = [
-		'owner_id', 'name', 'notes', 'code', 'category', 'oem', 'uom', 'price', 'account_type', 'status', 'remark', 'category_id', 'oem_id', 'uom_id', 'updated_at',
+		'owner_id', 'name', 'code', 'category', 'oem', 'uom', 'gl_type_name', 'price', 'status', 'notes', 'category_id', 'oem_id', 'uom_class_id', 'uom_id', 'gl_type', 'updated_by', 'updated_at',
 	];
 
 	/* ----------------- HasMany ------------------------ */

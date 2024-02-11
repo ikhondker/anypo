@@ -39,7 +39,7 @@ class UploadItemController extends Controller
 		if (request('term')) {
 			$upload_items->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$upload_items = $upload_items->orderBy('id', 'DESC')->paginate(25);
+		$upload_items = $upload_items->with('owner')->orderBy('id', 'DESC')->paginate(25);
 		return view('tenant.lookup.upload-items.index', compact('upload_items'))->with('i', (request()->input('page', 1) - 1) * 25);
 	}
 
@@ -81,6 +81,7 @@ class UploadItemController extends Controller
 		DB::table('upload_items')
 			->where('status', '<>', InterfaceStatusEnum::UPLOADED->value)
 			->delete();
+		Log::debug('Interface data deleted.');
 
 		try {
 			$spreadsheet	= IOFactory::load($the_file->getRealPath());
@@ -91,8 +92,12 @@ class UploadItemController extends Controller
 			$column_range	= range('H', $column_limit);
 			$startcount		= 1;
 
+			
+
 			$created_at 	= now();
 			$updated_at 	= now();
+			//$created_at 	= date('Y-m-d H:i:s');
+			//$updated_at 	= date('Y-m-d H:i:s');
 			$owner_id		= auth()->user()->id;
 
 			$data = array();
@@ -213,8 +218,10 @@ class UploadItemController extends Controller
 
 				$uom = Uom::firstWhere('name', $upload_item->uom);
 				if(is_null($uom)) {
+					$uom_class_id= '';
 					$uom_id = '';
 				} else {
+					$uom_class_id = $uom->uom_class_id;
 					$uom_id = $uom->id;
 				}
 
@@ -231,7 +238,7 @@ class UploadItemController extends Controller
 
 				Log::debug('Result => id='.$upload_item->id.' category_id='.$category_id.' oem_id='.$oem_id.' uom_id='.$uom_id.' gl_type='.$gl_type);
 
-				if ($category_id == '' || $oem_id == '' || $uom_id == '' || $gl_type == '') {
+				if ($category_id == '' || $oem_id == '' || $uom_class_id == '' || $uom_id == '' || $gl_type == '') {
 					UploadItem::where('id', $upload_item->id)
 						->update(['status' => InterfaceStatusEnum::ERROR->value]);
 				} else {
@@ -239,6 +246,7 @@ class UploadItemController extends Controller
 						->update([
 							'category_id'	=> $category_id,
 							'oem_id'		=> $oem_id,
+							'uom_class_id'	=> $uom_class_id,
 							'uom_id'		=> $uom_id,
 							'gl_type'		=> $gl_type,
 							'status'		=> InterfaceStatusEnum::VALIDATED->value,
@@ -275,6 +283,7 @@ class UploadItemController extends Controller
 				'notes'			=> $upload_item->notes,
 				'category_id'	=> $upload_item->category_id,
 				'oem_id'		=> $upload_item->oem_id,
+				'uom_class_id'		=> $upload_item->uom_class_id,
 				'uom_id'		=> $upload_item->uom_id,
 				'price'			=> $upload_item->price,
 				'gl_type'		=> $upload_item->gl_type,

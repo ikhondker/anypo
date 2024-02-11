@@ -29,6 +29,7 @@ return new class extends Migration
 			$table->text('notes')->nullable();
 			$table->integer('category_id')->nullable();
 			$table->integer('oem_id')->nullable();
+			$table->string('uom_class_id')->nullable();
 			$table->integer('uom_id')->nullable();
 			$table->enum('gl_type', ['E','A','I'])->nullable();
 			$table->biginteger('created_by')->default(1001);
