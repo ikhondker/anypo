@@ -8,14 +8,19 @@ use Illuminate\View\Component;
 
 class ContactPerson extends Component
 {
+	public string $value;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $value='')
+	public function __construct($value)
 	{
-		//
+		if (is_null($value)){
+			$this->value = '';
+		} else {
+			$this->value = $value;
+		}
 	}
-
+	
 	/**
 	 * Get the view / contents that represent the component.
 	 */

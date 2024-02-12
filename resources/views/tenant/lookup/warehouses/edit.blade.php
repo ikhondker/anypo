@@ -9,7 +9,6 @@
 			Edit Warehouse
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="Warehouse"/>
 			<x-tenant.buttons.header.create object="Warehouse"/>
 		@endslot
@@ -21,28 +20,16 @@
 		@method('PUT')
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Warehouse Info</h5>
+							<h5 class="card-title">Edit Warehouse</h5>
+							<h6 class="card-subtitle text-muted">Edit Warehouse detail and contact person</h6>
 						</div>
 						<div class="card-body">
-							<x-tenant.edit.id-read-only :value="$warehouse->id"/>
 							<x-tenant.edit.name :value="$warehouse->name"/>
 							<x-tenant.edit.contact-person value="{{ $warehouse->contact_person }}"/>
 							<x-tenant.edit.cell value=" {{ $warehouse->cell }}"/>
-							<x-tenant.buttons.show.save/>
-						</div>
-					</div>
-				</div>
-				<!-- end col-6 -->
-
-				<div class="col-6">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Warehouse Info</h5>
-						</div>
-						<div class="card-body">
 							<x-tenant.edit.address1 :value="$warehouse->address1"/>
 							<x-tenant.edit.address2 :value="$warehouse->address2"/>
 							<div class="row">
@@ -51,10 +38,12 @@
 								<x-tenant.edit.zip :value="$warehouse->zip"/>
 							</div>
 							<x-tenant.edit.country :value="$warehouse->country"/>
+							<x-tenant.buttons.show.save/>
 						</div>
 					</div>
 				</div>
 				<!-- end col-6 -->
+
 			</div>
 
 

@@ -45,6 +45,7 @@ class BankAccountController extends Controller
 	public function create()
 	{	
 		//$this->authorize('create', BankAccount::class);
+		
 		return view('tenant.lookup.bank-accounts.create');
 		
 	}
@@ -118,7 +119,7 @@ class BankAccountController extends Controller
 	public function export()
 	{
 		$data = DB::select("
-		SELECT id, ac_name, ac_number, bank_name, branch_name, start_date, end_date, currency, contact_person, cell, address1, address2, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at, FROM bank_accounts
+		SELECT id, ac_name, ac_number, bank_name, branch_name, start_date, end_date, currency, contact_person, cell, address1, address2, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at FROM bank_accounts
 			");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

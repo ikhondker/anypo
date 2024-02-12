@@ -6,14 +6,21 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+
+
 class Address1 extends Component
 {
+	public string $value;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $value)
+	public function __construct($value)
 	{
-		//
+		if (is_null($value)){
+			$this->value = '';
+		} else {
+			$this->value = $value;
+		}
 	}
 
 	/**

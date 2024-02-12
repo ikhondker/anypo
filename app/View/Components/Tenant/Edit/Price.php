@@ -8,12 +8,17 @@ use Illuminate\View\Component;
 
 class Price extends Component
 {
+	public string $value;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $value)
+	public function __construct($value)
 	{
-		//
+		if (is_null($value)){
+			$this->value = 1.0;
+		} else {
+			$this->value = $value;
+		}
 	}
 
 	/**

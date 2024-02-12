@@ -28,9 +28,6 @@
 						</div>
 						<div class="card-body">
 
-							
-							<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $designation->id ) }}" hidden>
-							
 
 							<div class="mb-3">
 								<label class="form-label">Designation Name</label>

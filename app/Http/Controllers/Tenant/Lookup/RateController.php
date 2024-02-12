@@ -35,7 +35,7 @@ class RateController extends Controller
 			$rates->where('to_currency', 'Like', '%' . request('term') . '%');
 		}
 		$rates = $rates->orderBy('rate_date', 'DESC')->paginate(25);
-		return view('tenant.lookup.rates.index', compact('rates'))->with('i', (request()->input('page', 1) - 1) * 25);
+		return view('tenant.lookup.rates.index', compact('rates'));
 	}
 
 	/**
@@ -93,9 +93,9 @@ class RateController extends Controller
 	{
 		$this->authorize('export', Rate::class);
 		//$data = Uom::all()->toArray();
-		$data = DB::select('SELECT id, rate_date, base_currency, to_currency, from_date, to_date, rate, inverse_rate
-			FROM rates
-		');
+		$data = DB::select('
+		SELECT id, rate_date, currency, fc_currency, from_date, to_date, rate, inverse_rate FROM rates
+			');
 
 		$dataArray = json_decode(json_encode($data), true);
 

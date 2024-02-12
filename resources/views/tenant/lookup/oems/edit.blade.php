@@ -9,7 +9,6 @@
 			Edit OEM
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="Oem"/>
 			<x-tenant.buttons.header.create object="Oem"/>
 		@endslot
@@ -28,7 +27,6 @@
 							<h6 class="card-subtitle text-muted">Edit an OEM</h6>
 						</div>
 						<div class="card-body">
-							<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $oem->id ) }}" hidden>
 							<div class="mb-3">
 								<label class="form-label">Oem Name</label>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"

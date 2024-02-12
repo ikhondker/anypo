@@ -24,7 +24,8 @@ use DB;
 
 # Exceptions
 # Events
-
+# TODO
+# 1. Disable all country by default, enable only USA and based on active user will be able to select country in Any Address
 
 class CountryController extends Controller
 {

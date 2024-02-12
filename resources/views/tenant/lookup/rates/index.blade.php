@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
 					<x-tenant.cards.header-search-export-bar object="Rate" :export="true"/>
@@ -24,26 +24,26 @@
 							Exchange Rates
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">Exchange rates.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Rate</th>
+								<th>SL#</th>
 								<th>Date</th>
 								<th>Currency</th>
 								<th>Base Currency</th>
 								<th>From Date</th>
 								<th>To Date</th>
-								<th class="text-end">Rate</th>
+								<th class="text-end">Exchange Rate</th>
 								<th class="text-end">Inverse Rate</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($rates as $rate)
 							<tr>
-								<td>{{ ++$i }}</td>
+								<td>{{ $rates->firstItem() + $loop->index}}</td>
 								<td><x-tenant.list.my-date :value="$rate->rate_date"/></td>
 								<td>{{ $rate->currency }}</td>
 								<td>{{ $rate->fc_currency }}</td>

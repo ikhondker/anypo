@@ -10,24 +10,21 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Project"/>
 			<x-tenant.buttons.header.create object="Project"/>
-			<x-tenant.buttons.header.edit object="Project" :id="$project->id"/>
-
+			
 				<div class="dropdown me-2 d-inline-block position-relative">
 					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
 						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
 					</a>
 					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
+						<a class="dropdown-item" href="{{ route('projects.edit', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
+						<a class="dropdown-item" href="{{ route('projects.edit', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Budget Usage</a>
+						
 						<div class="dropdown-divider"></div>
+						<a class="dropdown-item text-danger" href="{{ route('projects.detach', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachment</a>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 					</div>
 				</div>
-
-				
 		@endslot
 	</x-tenant.page-header>
 
@@ -36,24 +33,23 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Project Info</h5>
-					<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+					<h5 class="card-title">Project Basic Info</h5>
+					<h6 class="card-subtitle text-muted">Project Basic Information.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge		value="{{ $project->id }}"/>
 					<x-tenant.show.my-text		value="{{ $project->name }}"/>
 					<x-tenant.show.my-date		value="{{ $project->start_date  }}"/>
 					<x-tenant.show.my-date		value="{{ $project->end_date  }}"/>
 					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
-					<x-tenant.show.my-text		value="{{ $project->notes }}" label="Notes"/>
 					<x-tenant.show.my-boolean	value="{{ $project->closed }}" label="Closed?"/>
-					<x-tenant.show.my-badge		value="{{ $project->id }}"/>
+					<x-tenant.show.my-text		value="{{ $project->notes }}" label="Notes"/>
 				</div>
 			</div>
 
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Project PO</h5>
+					<h5 class="card-title">Project Purchase Orders Budget</h5>
+					<h6 class="card-subtitle text-muted">Project Purchase Orders Budget.</h6>
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
@@ -78,6 +74,7 @@
 						</div>
 					</div>
 					<h5 class="card-title">Attachments</h5>
+					<h6 class="card-subtitle text-muted">Project Purchase Orders Budget.</h6>
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
@@ -113,7 +110,9 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Project PR</h5>
+					<h5 class="card-title">Project Purchase Requisition Budget</h5>
+					<h6 class="card-subtitle text-muted">Project Requisition Orders Budget.</h6>
+
 				</div>
 				<div class="card-body">
 				<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
@@ -125,7 +124,8 @@
 
 			<div class="card">
 				<div class="card-header">
-				<h5 class="card-title">GRS</h5>
+					<h5 class="card-title">Project Goods Receipt Amount</h5>
+					<h6 class="card-subtitle text-muted">Project Goods Receipt Amount.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
@@ -136,7 +136,8 @@
 
 			<div class="card">
 				<div class="card-header">
-				<h5 class="card-title">Payment Details</h5>
+					<h5 class="card-title">Project Payment Amount</h5>
+					<h6 class="card-subtitle text-muted">Project Payment Amount.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>

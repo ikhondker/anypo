@@ -122,7 +122,7 @@ class WarehouseController extends Controller
 
 	public function export()
 	{
-		$data = DB::select("SELECT id, name, contact_person, cell, address1, address2, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as enable
+		$data = DB::select("SELECT id, name, contact_person, cell, address1, address2, city, zip, state, country, IF(enable, 'Yes', 'No') as enable
 		FROM warehouses");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

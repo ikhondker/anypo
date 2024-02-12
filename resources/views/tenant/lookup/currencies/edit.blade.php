@@ -9,7 +9,6 @@
 			Edit Currency
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="Currency"/>
 			<x-tenant.buttons.header.create object="Currency"/>
 		@endslot
@@ -24,12 +23,13 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Currency Info</h5>
+							<h5 class="card-title">Currency Edit</h5>
+							<h6 class="card-subtitle text-muted">Edit a currency.</h6>
 						</div>
 						<div class="card-body">
 
 							<div class="mb-3">
-								<label class="form-label">Code</label>
+								<label class="form-label">Code</label> <x-tenant.info info="Note: You wont be able to change the currency."/>
 								<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('currency', $currency->currency ) }}" readonly>
 							</div>
 

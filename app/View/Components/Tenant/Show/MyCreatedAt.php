@@ -1,31 +1,28 @@
 <?php
 
-namespace App\View\Components\Tenant\Edit;
+namespace App\View\Components\Tenant\Show;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class City extends Component
+class MyCreatedAt extends Component
 {
-	
-	public string $value;
+	public $value;
+
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct($value)
 	{
-		if (is_null($value)){
-			$this->value = '';
-		} else {
-			$this->value = $value;
-		}
+		$this->value = $value;
 	}
+
 	/**
 	 * Get the view / contents that represent the component.
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.edit.city');
+		return view('components.tenant.show.my-created-at');
 	}
 }

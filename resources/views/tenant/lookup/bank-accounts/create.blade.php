@@ -9,7 +9,6 @@
 			Create Bank Account
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="BankAccount"/>
 		@endslot
 	</x-tenant.page-header>
@@ -19,10 +18,11 @@
 		@csrf
 
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Bank Account Info</h5>
+						<h5 class="card-title">Create new Bank Account </h5>
+						<h6 class="card-subtitle text-muted">Create new  Bank Account with details.</h6>
 					</div>
 					<div class="card-body">
 
@@ -71,15 +71,21 @@
 						</div>
 
 						<x-tenant.create.currency/>
-						
+
+						<x-tenant.create.address1/>
+						<x-tenant.create.address2/>
+						<div class="row">
+							<x-tenant.create.city/>
+							<x-tenant.create.state/>
+							<x-tenant.create.zip/>
+						</div>
+						<x-tenant.create.country/>
+
 						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>
-			<!-- end col-6 -->
-			<div class="col-6">
-
-			</div>
+			
 			<!-- end col-6 -->
 		</div>
 		<!-- end row -->

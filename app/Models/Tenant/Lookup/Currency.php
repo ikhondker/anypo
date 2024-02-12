@@ -24,7 +24,7 @@ class Currency extends Model
 	];
 
 	/* ----------------- Functions ---------------------- */
-	public static function getActives() {
+	public static function xxgetActives() {
 		return Currency::select('currency','name','country')
 			->where('enable',true)
 			->orderBy('name','asc')
@@ -34,7 +34,7 @@ class Currency extends Model
 	/* ----------------- Scopes ------------------------- */
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('enable', true);
+		$query->where('enable', true)->orderBy('name','asc');
 	}
 
 	/* ----------------- HasMany ------------------------ */

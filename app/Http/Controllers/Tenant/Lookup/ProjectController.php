@@ -27,7 +27,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 # Exceptions
 # Events
-
+# TODO 
+# 1. Dashboard chart
+# 2. Project Actions
 
 class ProjectController extends Controller
 {
@@ -144,7 +146,8 @@ class ProjectController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Project::class);
-		$data = DB::select("SELECT id, name, u.name pm_name, start_date, end_date, budget_control, amount, amount_pr_booked, amount_pr_issued, amount_po_booked, amount_po_issued, amount_grs, amount_payment, notes, 
+		$data = DB::select("SELECT p.id, p.name, u.name pm_name, p.start_date, end_date, 
+			amount budget, amount_pr_booked, amount_pr_issued, amount_po_booked, amount_po_issued, amount_grs, amount_payment, p.notes, 
 			IF(enable, 'Yes', 'No') as Enable 
 			FROM projects p, users u
 			WHERE p.pm_id=u.id");
@@ -170,7 +173,7 @@ class ProjectController extends Controller
 		//$this->authorize('view', $pr);
 
 		$project = Project::where('id', $project->id)->get()->firstOrFail();
-		$attachments = Attachment::where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->get()->all();
+		$attachments = Attachment::with('owner')->where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->paginate(10);
 		return view('tenant.lookup.projects.detach', compact('project', 'attachments'));
 	}
 }

@@ -19,10 +19,11 @@
 		@csrf
 
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Project Info</h5>
+						<h5 class="card-title">Create new Project</h5>
+						<h6 class="card-subtitle text-muted">Create new Project and allocate budget.</h6>
 					</div>
 					<div class="card-body">
 						<x-tenant.create.name/>
@@ -41,31 +42,22 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-				
-						<x-tenant.buttons.show.save/>
-					</div>
-				</div>
-			</div>
-			<!-- end col-6 -->
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header">
-					<h5 class="card-title">Budget Info</h5>
-					</div>
-					<div class="card-body">
 						<div class="mb-3">
-							<label class="form-check m-0">
-							<input type="checkbox" class="form-check-input"
-								name="budget_control" id="budget_control"  checked=""/>
-								<span class="form-check-label text-danger"> Control Budget?</span>
-							</label>
+							<label class="form-label">Budget Amount ({{ $_setup->currency }})</label>
+							<input type="number" class="form-control @error('amount') is-invalid @enderror"
+								name="amount" id="amount" placeholder="99,99,999.99"
+								step='0.01' min="1" value="{{ old('amount', '1.00' ) }}"
+								required/>
+							@error('amount')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
 						</div>
-						<x-tenant.create.amount/>
-						
+
 						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>
+			
 			<!-- end col-6 -->
 		</div>
 		<!-- end row -->

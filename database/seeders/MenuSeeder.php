@@ -42,9 +42,6 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'categories.edit','route_name' => 'categories.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'categories.create','route_name' => 'categories.index', 'node_name' => 'items'],
 
-			[ 'raw_route_name' => 'countries.index','route_name' => 'countries.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'countries.edit','route_name' => 'countries.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'countries.create','route_name' => 'countries.index', 'node_name' => 'lookups'],
 			
 			[ 'raw_route_name' => 'currencies.index','route_name' => 'currencies.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'currencies.edit','route_name' => 'currencies.index', 'node_name' => 'lookups'],
@@ -77,7 +74,10 @@ class MenuSeeder extends Seeder
 			
 			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],
 
-
+			[ 'raw_route_name' => 'countries.index','route_name' => 'countries.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'countries.edit','route_name' => 'countries.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'countries.create','route_name' => 'countries.index', 'node_name' => 'system'],
+			
 			[ 'raw_route_name' => 'items.index','route_name' => 'items.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'items.show','route_name' => 'items.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'items.edit','route_name' => 'items.index', 'node_name' => 'items'],

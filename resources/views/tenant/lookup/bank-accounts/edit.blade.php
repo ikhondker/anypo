@@ -9,7 +9,6 @@
 			Edit Bank Account
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="BankAccount"/>
 			<x-tenant.buttons.header.create object="BankAccount"/>
 		@endslot
@@ -21,10 +20,11 @@
 		@method('PUT')
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Bank Account Info</h5>
+							<h5 class="card-title">Edit Bank Account Detail</h5>
+							<h6 class="card-subtitle text-muted">Edit Bank Account and other details.</h6>
 						</div>
 						<div class="card-body">
 
@@ -39,7 +39,6 @@
 								@enderror
 							</div>
 
-							
 							<div class="mb-3">
 								<label class="form-label">Ac Number</label>
 								<input type="text" class="form-control @error('ac_number') is-invalid @enderror"
@@ -51,6 +50,13 @@
 								@enderror
 							</div>
 
+							<div class="mb-3">
+								<label class="form-label">Currency</label> <x-tenant.info info="Note: You wont be able to change the currency."/>
+								<input type="text" class="form-control @error('currency') is-invalid @enderror"
+									name="currency" id="currency" placeholder="Currency"
+									value="{{ old('currency', $bankAccount->currency ) }}"
+									readonly/>
+							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Bank Name</label>
@@ -74,16 +80,18 @@
 								@enderror
 							</div>
 
+							<x-tenant.edit.address1 :value="$bankAccount->address1"/>
+								<x-tenant.edit.address2 :value="$bankAccount->address2"/>
+								<div class="row">
+									<x-tenant.edit.city :value="$bankAccount->city"/>
+									<x-tenant.edit.state value="{{ $bankAccount->state }}"/>
+									<x-tenant.edit.zip :value="$bankAccount->zip"/>
+								</div>
+							<x-tenant.edit.country :value="$bankAccount->country"/>
+
 							<x-tenant.buttons.show.save/>
 
 						</div>
-					</div>
-				</div>
-				<!-- end col-6 -->
-
-				<div class="col-6">
-					<div class="card">
-
 					</div>
 				</div>
 				<!-- end col-6 -->

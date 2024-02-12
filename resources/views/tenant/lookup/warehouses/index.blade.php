@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Warehouse')
+@section('title','Warehouse Lists')
 
 @section('content')
 
@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -22,10 +22,10 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Activity Lists
+							Warehouses Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List Warehouses and their contact person</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">

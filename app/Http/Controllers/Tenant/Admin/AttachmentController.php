@@ -48,8 +48,8 @@ class AttachmentController extends Controller
 		if (request('term')) {
 			$attachments->where('entity', 'Like', '%' . Str::upper(request('term')) . '%');
 		}
-		$attachments = $attachments->orderBy('id', 'DESC')->paginate(50);
-		return view('tenant.admin.attachments.index', compact('attachments'))->with('i', (request()->input('page', 1) - 1) * 50);
+		$attachments = $attachments->with('owner')->orderBy('id', 'DESC')->paginate(50);
+		return view('tenant.admin.attachments.index', compact('attachments'));
 
 
 		//$attachments = Attachment::latest()->orderBy('id', 'desc')->paginate(25);

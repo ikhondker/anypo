@@ -17,7 +17,7 @@ class BankAccount extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'ac_name', 'ac_number', 'bank_name', 'branch_name', 'start_date', 'end_date', 'currency', 'contact_person', 'cell', 'address1', 'address2', 'city', 'zip', 'state', 'country', 'website', 'email', 'enable', 'updated_by', 'updated_at',
+		'ac_name', 'ac_number', 'bank_name', 'branch_name', 'start_date', 'end_date', 'currency', 'contact_person', 'cell', 'address1', 'address2', 'city', 'zip', 'state', 'country', 'website', 'email', 'enable', 'updated_by', 'updated_at'
 	];
 
 
