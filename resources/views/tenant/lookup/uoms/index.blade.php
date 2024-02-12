@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -25,18 +25,18 @@
 							UOM Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Unit of Measure (UOM).</h6>
 				</div>
 
 				<div class="card-body">
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>Name</th>
-								<th>Default</th>
+								<th>#</th>
+								<th>UoM Name</th>
 								<th>Conversion</th>
 								<th>UoM Class</th>
+								<th>Class Default</th>
 								<th>Enable</th>
 								<th>Actions</th>
 							</tr>
@@ -44,12 +44,11 @@
 						<tbody>
 							@foreach ($uoms as $uom)
 							<tr>
-								<td>{{ $uom->id }}</td>
+								<td>{{ $uoms->firstItem() + $loop->index}}</td>
 								<td>{{ $uom->name }}</td>
-								<td><x-tenant.list.my-boolean :value="$uom->default"/></td>
 								<td>{{ number_format($uom->conversion, 4)  }}</td>
 								<td>{{ $uom->uom_class->name }}</td>
-
+								<td><x-tenant.list.my-boolean :value="$uom->default"/></td>
 								<td><x-tenant.list.my-boolean :value="$uom->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Uom" :id="$uom->id" :show="false"/>

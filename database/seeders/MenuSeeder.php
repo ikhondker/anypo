@@ -136,10 +136,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'suppliers.edit','route_name' => 'suppliers.index', 'node_name' => 'master'],
 			[ 'raw_route_name' => 'suppliers.create','route_name' => 'suppliers.index', 'node_name' => 'master'],
 			
-			
 			// TODO
 			[ 'raw_route_name' => 'uoms.index','route_name' => 'uoms.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'uoms.create','route_name' => 'uoms.index', 'node_name' => 'items'],
+			[ 'raw_route_name' => 'uoms.edit','route_name' => 'uoms.index', 'node_name' => 'items'],
 
 			[ 'raw_route_name' => 'upload-items.index','route_name' => 'upload-items.index', 'node_name' => 'items'],
 			[ 'raw_route_name' => 'upload-items.show','route_name' => 'upload-items.index', 'node_name' => 'items'],

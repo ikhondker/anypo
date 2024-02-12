@@ -283,7 +283,7 @@ class UploadItemController extends Controller
 				'notes'			=> $upload_item->notes,
 				'category_id'	=> $upload_item->category_id,
 				'oem_id'		=> $upload_item->oem_id,
-				'uom_class_id'		=> $upload_item->uom_class_id,
+				'uom_class_id'	=> $upload_item->uom_class_id,
 				'uom_id'		=> $upload_item->uom_id,
 				'price'			=> $upload_item->price,
 				'gl_type'		=> $upload_item->gl_type,
@@ -300,7 +300,7 @@ class UploadItemController extends Controller
 
 	public function export()
 	{
-		$data = DB::select("SELECT i.id, u.name owner_name, i.name, i.code, i.notes, i.category, i.oem, i.uom, i.price, i.account_type, i.status
+		$data = DB::select("SELECT i.id, u.name owner_name, i.name, i.code, i.notes, i.category, i.oem, i.uom, i.price, i.gl_type_name, i.status
 			FROM upload_items i,users u
 			WHERE i.owner_id=u.id");
 		$dataArray = json_decode(json_encode($data), true);

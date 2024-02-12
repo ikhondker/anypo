@@ -10,6 +10,7 @@ use App\Http\Requests\Tenant\Lookup\StoreUomRequest;
 use App\Http\Requests\Tenant\Lookup\UpdateUomRequest;
 
 # Models
+use App\Models\Tenant\Manage\UomClass;
 # Enums
 # Helpers
 use App\Helpers\EventLog;
@@ -36,7 +37,7 @@ class UomController extends Controller
 			$uoms->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$uoms = $uoms->with('uom_class')->orderBy('id', 'DESC')->paginate(20);
-		return view('tenant.lookup.uoms.index', compact('uoms'))->with('i', (request()->input('page', 1) - 1) * 20);
+		return view('tenant.lookup.uoms.index', compact('uoms'));
 	}
 
 	/**
@@ -45,7 +46,9 @@ class UomController extends Controller
 	public function create()
 	{
 		$this->authorize('create', Uom::class);
-		return view('tenant.lookup.uoms.create');
+
+		$uomClasses = UomClass::All();
+		return view('tenant.lookup.uoms.create', compact('uomClasses'));
 	}
 
 	/**
@@ -66,7 +69,7 @@ class UomController extends Controller
 	 */
 	public function show(Uom $uom)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -86,10 +89,6 @@ class UomController extends Controller
 	{
 		$this->authorize('update', $uom);
 
-		//$request->validate();
-		$request->validate([
-
-		]);
 		$uom->update($request->all());
 
 		// Write to Log
@@ -115,8 +114,11 @@ class UomController extends Controller
 
 	public function export()
 	{
-		$data = DB::select("SELECT id, name, IF(enable, 'Yes', 'No') as Enable
-		FROM uoms");
+		$data = DB::select("
+		SELECT u.id, u.name uom, uc.name uom_class, u.conversion, IF(u.enable, 'Yes', 'No') as Enable
+		FROM uoms u, uom_classes uc
+		WHERE u.uom_class_id = uc.id
+		");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('uoms', $dataArray);

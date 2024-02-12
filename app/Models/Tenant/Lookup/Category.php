@@ -33,6 +33,7 @@ class Category extends Model
 
 	/* ----------------- Functions ---------------------- */
 	
+	
 	/* ----------------- HasMany ------------------------ */
 	public function item(): HasMany
 	{

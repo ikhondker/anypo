@@ -14,28 +14,8 @@
 			<a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Project</a>
 		@endslot
 	</x-tenant.page-header>
-	
-	<div class="row">
-		<div class="col-8">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Project Info</h5>
-				</div>
-				<div class="card-body">
-					<x-tenant.show.my-badge		value="{{ $project->id }}"/>
-					<x-tenant.show.my-text		value="{{ $project->name }}"/>
-					<x-tenant.show.my-date		value="{{ $project->start_date  }}"/>
-					<x-tenant.show.my-date		value="{{ $project->end_date  }}"/>
-					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
-					<x-tenant.show.my-text		value="{{ $project->notes }}" label="Notes"/>
-					<x-tenant.show.my-boolean	value="{{ $project->closed }}"/>
-					<x-tenant.show.my-badge		value="{{ $project->id }}"/>
-				</div>
-			</div>
 
-		</div>
-	</div>
-	<!-- end row -->
+	<x-tenant.widgets.project-info id="{{ $project->id }}"/>
 
 	
 	@include('tenant.includes.detach-by-article')

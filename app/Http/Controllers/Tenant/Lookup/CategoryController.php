@@ -55,6 +55,7 @@ class CategoryController extends Controller
 	public function store(StoreCategoryRequest $request)
 	{
 		$this->authorize('create', Category::class);
+
 		$category = Category::create($request->all());
 		// Write to Log
 		EventLog::event('category', $category->id, 'create');
@@ -85,12 +86,9 @@ class CategoryController extends Controller
 	 */
 	public function update(UpdateCategoryRequest $request, Category $category)
 	{
-		$this->authorize('update', $category);
+		//$this->authorize('update', $category);
 
-		//$request->validate();
-		$request->validate([
-
-		]);
+		//dd($category);
 		$category->update($request->all());
 
 		// Write to Log

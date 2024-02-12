@@ -15,6 +15,8 @@ use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Lookup\Oem;
 use App\Models\Tenant\Lookup\GlType;
 
+use App\Models\Tenant\Manage\UomClass;
+
 # Enums
 # Helpers
 use App\Helpers\EventLog;
@@ -28,6 +30,8 @@ use Str;
 
 # Exceptions
 # Events
+# TODO
+# 1. dependent dropdown for uom
 
 class ItemController extends Controller
 {
@@ -52,11 +56,16 @@ class ItemController extends Controller
 		$this->authorize('create', Item::class);
 
 		$categories = Category::primary()->get();
+
+		$uomClasses = UomClass::All();
+
 		$uoms = Uom::primary()->get();
+
 		$oems = Oem::primary()->get();
+
 		$gl_types = GlType::primary()->get();
 
-		return view('tenant.lookup.items.create', compact('categories', 'uoms', 'oems', 'gl_types'));
+		return view('tenant.lookup.items.create', compact('categories','uomClasses','uoms', 'oems', 'gl_types'));
 	}
 
 	/**
@@ -149,7 +158,8 @@ class ItemController extends Controller
 
 	public function export()
 	{
-		$data = DB::select("SELECT i.id, i.name, i.notes, c.name category_name, o.name oem_name, u.name uom_name, i.price, i.stock, i.account_type,
+		$data = DB::select("
+			SELECT i.id, i.name, i.notes, c.name category_name, o.name oem_name, u.name uom_name, i.price, i.stock, i.gl_type,
 			IF(i.enable, 'Yes', 'No') as Enable 
 			FROM items i, categories c, oems o, uoms u
 			WHERE i.category_id = c.id

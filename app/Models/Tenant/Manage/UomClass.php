@@ -23,7 +23,7 @@ class UomClass extends Model
 	/* ----------------- HasMany ------------------------ */
 	public function uom(): HasMany
 	{
-		return $this->hasMany(Uom::class, 'uom_id');
+		return $this->hasMany(Uom::class,'uom_class_id');
 	}
 
 	/* ---------------- belongsTo ---------------------- */

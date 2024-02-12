@@ -9,7 +9,7 @@
 			Edit Item
 		@endslot
 		@slot('buttons')
-		<x-tenant.buttons.header.save/>
+		
 			<x-tenant.buttons.header.lists object="Item"/>
 			<x-tenant.buttons.header.create object="Item"/>
 		@endslot
@@ -21,38 +21,45 @@
 		@method('PUT')
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Item Info</h5>
 						</div>
 						<div class="card-body">
 
-							<x-tenant.edit.id-read-only :value="$item->id"/>
+							
 							<x-tenant.edit.name :value="$item->name"/>
-							<x-tenant.edit.price :value="$item->price"/>
-
-
-								<div class="mb-3 col-md-6">
-									<label for="code" class="form-label">Code</label>
-									<input type="text" class="form-control @error('code') is-invalid @enderror"
-										name="code" id="code" placeholder="XXXX" maxlength="10"
-										style="text-transform: uppercase"
-										value="{{ old('code', $item->code ) }}"
-										required/>
-									@error('code')
-										<div class="text-danger text-xs">{{ $message }}</div>
-									@enderror
-								</div>
-
+							
+							<div class="mb-3 col-md-6">
+								<label for="code" class="form-label">Code</label>
+								<input type="text" class="form-control @error('code') is-invalid @enderror"
+									name="code" id="code" placeholder="XXXX" maxlength="10"
+									style="text-transform: uppercase"
+									value="{{ old('code', $item->code ) }}"
+									required/>
+								@error('code')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
 
 							<div class="mb-3">
-								<label class="form-label">Category</label>
+								<label class="form-label">Item Category</label>
 								<select class="form-control" name="category_id">
 									@foreach ($categories as $category)
 										<option {{ $category->id == old('pm_id',$item->category_id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }} </option>
 									@endforeach
 								</select>
+							</div>
+
+							<x-tenant.edit.price :value="$item->price"/>
+
+							<div class="mb-3">
+								<label class="form-label">UoM Class</label> <x-tenant.info info="Note: You wont be able to change the UoM Class."/>
+								<input type="text" class="form-control @error('uom_class_name') is-invalid @enderror"
+									name="uom_class_name" id="uom_class_name" placeholder="uom_class_name"
+									value="{{ old('uom_class_name', $item->uom_class->name ) }}"
+									readonly/>
 							</div>
 
 							<div class="mb-3">
@@ -63,7 +70,6 @@
 									@endforeach
 								</select>
 							</div>
-
 
 							<div class="mb-3">
 								<label class="form-label">OEM</label>
@@ -83,6 +89,7 @@
 								</select>
 							</div>
 
+							<x-tenant.edit.notes :value="$item->notes"/>
 							<x-tenant.buttons.show.save/>
 
 						</div>

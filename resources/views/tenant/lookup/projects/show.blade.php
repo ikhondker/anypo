@@ -17,7 +17,7 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-end">
 						<a class="dropdown-item" href="{{ route('projects.edit', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
-						<a class="dropdown-item" href="{{ route('projects.edit', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Budget Usage</a>
+						<a class="dropdown-item" href="{{ route('projects.budget', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Budget Usage</a>
 						
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item text-danger" href="{{ route('projects.detach', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachment</a>
@@ -38,8 +38,8 @@
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $project->name }}"/>
-					<x-tenant.show.my-date		value="{{ $project->start_date  }}"/>
-					<x-tenant.show.my-date		value="{{ $project->end_date  }}"/>
+					<x-tenant.show.my-date		value="{{ $project->start_date  }}" label="Start Date"/>
+					<x-tenant.show.my-date		value="{{ $project->end_date  }}" label="End Date"/>
 					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
 					<x-tenant.show.my-boolean	value="{{ $project->closed }}" label="Closed?"/>
 					<x-tenant.show.my-text		value="{{ $project->notes }}" label="Notes"/>
@@ -150,26 +150,5 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-
-	<x-tenant.widgets.dbu-project :id="$project->id"/>
-
-	<div class="row">
-		<div class="col-6">
-			
-		</div>
-		<!-- end col-6 -->
-		<div class="col-6">
-			
-		</div>
-		<!-- end col-6 -->
-	</div>
-	<!-- end row -->
-
-	<script type="text/javascript">
-		function mySubmit() {
-			document.getElementById('frm1').submit();
-		}
-	</script>
-
 @endsection
 

@@ -305,70 +305,70 @@ class User extends Authenticatable implements MustVerifyEmail
 		$query->where('id', auth()->user()->id);
 	}
 
-		/* ---------------- HasMany ---------------------- */
-		public function contacts(): HasMany {
-			return $this->hasMany(Contact::class,'user_id');
-		}
+	/* ---------------- HasMany ---------------------- */
+	public function contacts(): HasMany {
+		return $this->hasMany(Contact::class,'user_id');
+	}
+
+	public function templates(): HasMany {
+		return $this->hasMany(Template::class,'user_id');
+	}
+
+	// Get the activities for user a user.
+	public function activity(): HasMany {
+		return $this->hasMany(Activity::class,'user_id');
+	}
+
+	public function attachments(): HasMany {
+		return $this->hasMany(Attachment::class,'owner_id');
+	}
+
+	public function checkouts(): HasMany {
+		return $this->hasMany(Checkout::class,'owner_id');
+	}
+
+	public function accounts(): HasMany {
+		return $this->hasMany(Account::class,'owner_id');
+	}
+
+	public function services(): HasMany {
+		return $this->hasMany(Service::class,'owner_id');
+	}
+
+	public function tickets(): HasMany {
+		return $this->hasMany(Ticket::class,'owner_id');
+	}
+
+	public function agents(): HasMany {
+		return $this->hasMany(Ticket::class,'agent_id');
+	}
+
+	// SAMPLE Get the comments for the blog post.
+	public function comments(): HasMany {
+		return $this->hasMany(Comment::class);
+	}
+
+	public function invoices(): HasMany {
+		return $this->hasMany(Invoice::class,'owner_id');
+	}
+
+
+	public function payments(): HasMany {
+		return $this->hasMany(Payment::class,'owner_id');
+	}
 	
-		public function templates(): HasMany {
-			return $this->hasMany(Template::class,'user_id');
-		}
-	
-		// Get the activities for user a user.
-		public function activity(): HasMany {
-			return $this->hasMany(Activity::class,'user_id');
-		}
-	
-		public function attachments(): HasMany {
-			return $this->hasMany(Attachment::class,'owner_id');
-		}
-	
-		public function checkouts(): HasMany {
-			return $this->hasMany(Checkout::class,'owner_id');
-		}
-	
-		public function accounts(): HasMany {
-			return $this->hasMany(Account::class,'owner_id');
-		}
-	
-		public function services(): HasMany {
-			return $this->hasMany(Service::class,'owner_id');
-		}
-	
-		public function tickets(): HasMany {
-			return $this->hasMany(Ticket::class,'owner_id');
-		}
-	
-		public function agents(): HasMany {
-			return $this->hasMany(Ticket::class,'agent_id');
-		}
-	
-		// SAMPLE Get the comments for the blog post.
-		public function comments(): HasMany {
-			return $this->hasMany(Comment::class);
-		}
-	
-		public function invoices(): HasMany {
-			return $this->hasMany(Invoice::class,'owner_id');
-		}
-	
-	
-		public function payments(): HasMany {
-			return $this->hasMany(Payment::class,'owner_id');
-		}
-	
-		/* ---------------- belongsTo ---------------------- */
-		public function user_account() {
-			return $this->belongsTo(Account::class,'account_id')->withDefault([
-				'name' => '[ Empty ]',
-			]);
-		}
-	
-		public function user_country() {
-			return $this->belongsTo(Country::class,'country')->withDefault([
-				'name' => '[ Empty ]',
-			]);
-		}
+	/* ---------------- belongsTo ---------------------- */
+	public function user_account() {
+		return $this->belongsTo(Account::class,'account_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+	public function user_country() {
+		return $this->belongsTo(Country::class,'country')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
 
 	/*
 	|-----------------------------------------------------------------------------
@@ -377,25 +377,6 @@ class User extends Authenticatable implements MustVerifyEmail
 	*/
 
 	/* ----------------- Functions ---------------------- */
-	public static function xxgetAdmins()
-	{
-		return User::select('id', 'name')
-			->where('role', 'admin')
-			->where('enable', true)
-			->where('seeded', false)
-			->orderBy('name', 'asc')
-			->get();
-	}
-
-	public static function xxgetAll()
-	{
-		return User::select('id', 'name')
-			->where('enable', true)
-			->where('seeded', false)
-			->orderBy('id', 'asc')
-			->get();
-	}
-
 
 	/* ----------------- Scopes ------------------------- */
 	/**

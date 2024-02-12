@@ -18,8 +18,8 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Warehouse Info</h5>
-					<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+					<h5 class="card-title">Warehouse detail</h5>
+					<h6 class="card-subtitle text-muted">Warehouse detail information.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $warehouse->name }}"/>

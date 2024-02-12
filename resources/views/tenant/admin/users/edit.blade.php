@@ -9,7 +9,6 @@
 			Edit User
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="User"/>
 			<x-tenant.buttons.header.create object="User"/>
 			<x-tenant.buttons.header.password :id="$user->id"/>
@@ -28,12 +27,6 @@
 							<h5 class="card-title">User Info</h5>
 						</div>
 						<div class="card-body">
-
-							<div class="mb-3">
-								<label class="form-label">ID</label>
-								<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $user->id ) }}" readonly>
-							</div>
-
 							<div class="mb-3">
 								<label class="form-label">Full Name</label>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -44,11 +37,8 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
-
-
-
 							<div class="mb-3">
-								<label class="form-label">Email</label>
+								<label class="form-label">Email</label>  <x-tenant.info info="Note: You wont be able to change the email."/>
 								<input type="email" class="form-control @error('email') is-invalid @enderror"
 									name="email" id="email" placeholder="name@company.com"
 									value="{{ old('email', $user->email ) }}"
@@ -63,6 +53,14 @@
 								<select class="form-control" name="designation_id">
 									@foreach ($designations as $designation)
 										<option {{ $designation->id == old('designation_id',$user->designation_id) ? 'selected' : '' }} value="{{ $designation->id }}">{{ $designation->name }} </option>
+									@endforeach
+								</select>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Department</label>
+								<select class="form-control" name="dept_id">
+									@foreach ($depts as $dept)
+										<option {{ $dept->id == old('dept_id',$user->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
 									@endforeach
 								</select>
 							</div>

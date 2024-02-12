@@ -28,7 +28,6 @@
 						</div>
 						<div class="card-body">
 
-
 							<div class="mb-3">
 								<label class="form-label">Designation Name</label>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"

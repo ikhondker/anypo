@@ -18,7 +18,8 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Bank Account Info</h5>
+					<h5 class="card-title">Bank Account Detail</h5>
+					<h6 class="card-subtitle text-muted">Bank Account detail information.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $bankAccount->ac_name }}"  label="AC Name"/>

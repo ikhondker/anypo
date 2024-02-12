@@ -19,16 +19,15 @@
 		@csrf
 
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Item Info</h5>
+						<h5 class="card-title">Create and Item</h5>
+						<h6 class="card-subtitle text-muted">Create and Item.</h6>
 					</div>
 					<div class="card-body">
-
 						<x-tenant.create.name/>
 						<x-tenant.create.price/>
-
 						<div class="mb-3 col-md-6">
 							<label for="code" class="form-label">Code</label>
 							<input type="text" class="form-control @error('code') is-invalid @enderror"
@@ -54,6 +53,18 @@
 							@enderror
 						</div>
 
+						<div class="mb-3">
+							<label class="form-label">UoM Class</label>
+							<select class="form-control" name="uom_class_id" required>
+								<option value=""><< UoM  Class>> </option>
+								@foreach ($uomClasses as $uomClass)
+									<option value="{{ $uomClass->id }}" {{ $uomClass->id == old('uom_class_id') ? 'selected' : '' }} >{{ $uomClass->name }} </option>
+								@endforeach
+							</select>
+							@error('uom_class_id')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
 
 						<div class="mb-3">
 							<label class="form-label">UoM</label>
@@ -93,6 +104,8 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
+
+						<x-tenant.create.notes/>
 						<x-tenant.buttons.show.save/>
 					</div>
 				</div>

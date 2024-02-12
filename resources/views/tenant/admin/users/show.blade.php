@@ -20,8 +20,8 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">User Info</h5>
-					<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+					<h5 class="card-title">User Key Informations</h5>
+					<h6 class="card-subtitle text-muted">User's Key Information.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $user->name }}"/>
@@ -31,13 +31,14 @@
 					<x-tenant.show.my-text		value="{{ $user->dept->name }}" label="Dept"/>
 					<x-tenant.show.my-badge		value="{{ $user->role }}" label="Role"/>
 					<x-tenant.show.my-boolean	value="{{ $user->enable }}"/>
-					<x-tenant.show.my-badge	value="{{ $user->id }}"/>
+					<x-tenant.buttons.show.edit object="User" :id="$user->id"/>
 				</div>
 			</div>
 
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">User Avatar</h5>
+					<h6 class="card-subtitle text-muted">User's Avatar.</h6>
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
@@ -58,6 +59,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">User Address</h5>
+					<h6 class="card-subtitle text-muted">User's Address.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text value="{{ $user->address1 }}" label="Address1"/>
@@ -69,7 +71,8 @@
 
 			<div class="card">
 				<div class="card-header">
-				<h5 class="card-title">Other Details</h5>
+					<h5 class="card-title">Other Details</h5>
+					<h6 class="card-subtitle text-muted">User's Other Details.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-date-time	value="{{ $user->email_verified_at }}" label="Verified"/>

@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title','Edit Category')
+@section('title','Edit Item Category')
 @section('breadcrumb','Edit Category')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Edit Category
+			Edit Item Category
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Category"/>
@@ -20,28 +20,15 @@
 		@method('PUT')
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Category Info</h5>
+							<h5 class="card-title">Edit Item Category</h5>
+							<h6 class="card-subtitle text-muted">Edit an Item Category.</h6>
 						</div>
 						<div class="card-body">
-
-							<div class="mb-3">
-								<label class="form-label">ID</label>
-								<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $category->id ) }}" readonly>
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">Category Name</label>
-								<input type="text" class="form-control @error('name') is-invalid @enderror"
-									name="name" id="name" placeholder="Category Name"
-									value="{{ old('name', $category->name ) }}"
-									/>
-								@error('name')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
+						
+							<x-tenant.edit.name :value="$category->name"/>
 
 							<x-tenant.buttons.show.save/>
 

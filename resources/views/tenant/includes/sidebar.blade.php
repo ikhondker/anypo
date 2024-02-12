@@ -52,11 +52,11 @@
 			<span class="align-middle">Items</span>
 		</a>
 		<ul id="items" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'items' ? 'show' : '') }}" data-bs-parent="#sidebar">
-			<li class="sidebar-item {{ ($_route_name == 'items.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('items.index') }}"><i class="align-middle" data-feather="circle"></i>Items*</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'categories.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('categories.index') }}"><i class="align-middle" data-feather="circle"></i>Category*</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'items.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('items.index') }}"><i class="align-middle" data-feather="circle"></i>Items</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'categories.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('categories.index') }}"><i class="align-middle" data-feather="circle"></i>Category</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'uoms.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('uoms.index') }}"><i class="align-middle" data-feather="circle"></i>UOM</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'upload-items.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('upload-items.index') }}"><i class="align-middle" data-feather="circle"></i>Interface *</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'upload-items.create' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('upload-items.create') }}"><i class="align-middle" data-feather="circle"></i>Item Upload *</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'upload-items.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('upload-items.index') }}"><i class="align-middle" data-feather="circle"></i>Interface</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'upload-items.create' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('upload-items.create') }}"><i class="align-middle" data-feather="circle"></i>Item Upload</a></li>
 		</ul>
 	</li>
 	
@@ -66,8 +66,8 @@
 			<span class="align-middle">Master Data</span>
 		</a>
 		<ul id="master" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'master' ? 'show' : '') }}" data-bs-parent="#sidebar">
-			<li class="sidebar-item {{ ($_route_name == 'projects.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('projects.index') }}"><i class="align-middle" data-feather="circle"></i>Projects*</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'suppliers.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('suppliers.index') }}"><i class="align-middle" data-feather="circle"></i>Supplier**</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'projects.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('projects.index') }}"><i class="align-middle" data-feather="circle"></i>Projects</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'suppliers.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('suppliers.index') }}"><i class="align-middle" data-feather="circle"></i>Supplier</a></li>
 		</ul>
 	</li>
 

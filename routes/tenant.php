@@ -267,8 +267,8 @@ Route::middleware([
 
 	/* ======================== TODO Group ======================================== */
 	Route::resource('groups', GroupController::class)->middleware(['auth', 'verified']);
-	Route::get('/group/export',[GroupController::class,'export'])->name('groups.export');
-	Route::get('/groups/delete/{group}',[GroupController::class,'destroy'])->name('groups.destroy');
+	//Route::get('/group/export',[GroupController::class,'export'])->name('groups.export');
+	//Route::get('/groups/delete/{group}',[GroupController::class,'destroy'])->name('groups.destroy');
 
 	/* ======================== Warehouse ======================================== */
 	Route::resource('warehouses', WarehouseController::class)->middleware(['auth', 'verified']);
@@ -308,6 +308,7 @@ Route::middleware([
 	Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 	Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
 	Route::get('/projects/detach/{project}',[ProjectController::class,'detach'])->name('projects.detach');
+	Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
 
 	/* ======================== Budget ======================================== */
 	Route::resource('budgets', BudgetController::class)->middleware(['auth', 'verified']);

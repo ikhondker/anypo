@@ -9,7 +9,6 @@
 			Edit Supplier
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="Supplier"/>
 			<x-tenant.buttons.header.create object="Supplier"/>
 		@endslot
@@ -21,36 +20,27 @@
 		@method('PUT')
 
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Supplier Info</h5>
+						<h5 class="card-title">Edit Supplier</h5>
+						<h6 class="card-subtitle text-muted">Edit Suppliers Information.</h6>
 					</div>
 					<div class="card-body">
-						<x-tenant.edit.id-read-only :value="$supplier->id"/>
+						
 						<x-tenant.edit.name :value="$supplier->name"/>
 						<x-tenant.edit.contact-person value="{{ $supplier->contact_person }}"/>
 						<x-tenant.edit.cell :value="$supplier->cell"/>
-						<x-tenant.buttons.show.save/>
-					</div>
-				</div>
-			</div>
-			<!-- end col-6 -->
+							<x-tenant.edit.address1 :value="$supplier->address1"/>
+								<x-tenant.edit.address2 :value="$supplier->address2"/>
+								<div class="row">
+									<x-tenant.edit.city :value="$supplier->city"/>
+									<x-tenant.edit.state value="{{ $supplier->state }}"/>
+									<x-tenant.edit.zip :value="$supplier->zip"/>
+								</div>
+								<x-tenant.edit.country :value="$supplier->country"/>
 
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header">
-						<h5 class="card-title">Warehouse Info</h5>
-					</div>
-					<div class="card-body">
-						<x-tenant.edit.address1 :value="$supplier->address1"/>
-						<x-tenant.edit.address2 :value="$supplier->address2"/>
-						<div class="row">
-							<x-tenant.edit.city :value="$supplier->city"/>
-							<x-tenant.edit.state value="{{ $supplier->state }}"/>
-							<x-tenant.edit.zip :value="$supplier->zip"/>
-						</div>
-						<x-tenant.edit.country :value="$supplier->country"/>
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>

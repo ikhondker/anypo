@@ -43,6 +43,7 @@ use App\Http\Requests\Tenant\Admin\UpdateUserRequest;
 # Models
 use App\Models\Tenant\Lookup\Country;
 use App\Models\Tenant\Lookup\Designation;
+use App\Models\Tenant\Lookup\Dept;
 # Enums
 use App\Enum\UserRoleEnum;
 # Helpers
@@ -90,9 +91,9 @@ class UserController extends Controller
 
 		//$users = User::latest()->orderBy('id','desc')->paginate(10);
 		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
-			$users = $users->orderBy('id', 'DESC')->paginate(10);
+			$users = $users->with('dept')->with('designation')->orderBy('id', 'DESC')->paginate(10);
 		} else {
-			$users = $users->TenantAll()->orderBy('id', 'DESC')->paginate(10);
+			$users = $users->with('dept')->with('designation')->TenantAll()->orderBy('id', 'DESC')->paginate(10);
 		}
 
 		//$users = $users->orderBy('id', 'DESC')->paginate(10);
@@ -187,10 +188,11 @@ class UserController extends Controller
 	{
 		$this->authorize('update', $user);
 
-		$countries = Country::getAll();
-		$designations = Designation::getAll();
+		$countries = Country::All();
+		$designations = Designation::primary()->get();
+		$depts = Dept::primary()->get();
 
-		return view('tenant.admin.users.edit', compact('user', 'countries', 'designations'));
+		return view('tenant.admin.users.edit', compact('user', 'countries', 'designations','depts'));
 	}
  
 	/**
@@ -339,8 +341,12 @@ class UserController extends Controller
 
 	public function export()
 	{
-		$data = DB::select("SELECT id, name, email, cell, role, enable 
-			FROM users");
+		$data = DB::select("
+		SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable  
+			FROM users u, depts dp, designations d
+			WHERE u.dept_id=dp.id
+			AND u.designation_id=d.id
+			");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('users', $dataArray);

@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Category
+			Item Category
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Category"/>
@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-6">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -22,16 +22,16 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Category Lists
+							Item Category Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Item Category.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Enable</th>
 								<th>Actions</th>
@@ -40,7 +40,7 @@
 						<tbody>
 							@foreach ($categories as $category)
 							<tr>
-								<td>{{ $category->id }}</td>
+								<td>{{ $categories->firstItem() + $loop->index  }}</td>
 								<td>{{ $category->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$category->enable"/></td>
 								<td class="table-action">

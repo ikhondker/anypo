@@ -110,7 +110,7 @@
 							User Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Users.</h6>
 				</div>
 
 				<div class="card-body">
@@ -140,9 +140,9 @@
 									@endif
 								</td>
 								<td>{{ $user->email }}</td>
-								<td>{{ $user->designation_name->name }}</td>
+								<td>{{ $user->designation->name }}</td>
 								<td>{{ $user->cell }}</td>
-								<td>{{ $user->dept_name->name }}</td>
+								<td>{{ $user->dept->name }}</td>
 								<td><x-tenant.list.my-badge :value="$user->role"/></td>
 								<td><x-tenant.list.my-boolean :value="$user->enable"/></td>
 								<td class="table-action">

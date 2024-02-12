@@ -30,6 +30,7 @@ use Illuminate\Foundation\Http\FormRequest;
 # TODO 
 # 1. Dashboard chart
 # 2. Project Actions
+# 3. code enable /visible
 
 class ProjectController extends Controller
 {
@@ -87,6 +88,16 @@ class ProjectController extends Controller
 		$this->authorize('view', $project);
 
 		return view('tenant.lookup.projects.show', compact('project'));
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function budget(Project $project)
+	{
+		$this->authorize('view', $project);
+
+		return view('tenant.lookup.projects.budget', compact('project'));
 	}
 
 	/**

@@ -1,10 +1,10 @@
 {{-- ================================================================== --}}
 <div class="row">
-	<div class="col-8 col-xl-8">
+	<div class="col-12 col-xl-12">
 		<div class="card">
 			<div class="card-header">
-				<h5 class="card-title">Attachment</h5>
-				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+				<h5 class="card-title">Attachments</h5>
+				<h6 class="card-subtitle text-muted">List of Attachments for current document.</h6>
 			</div>
 
 			<table class="table table-striped table-sm">
