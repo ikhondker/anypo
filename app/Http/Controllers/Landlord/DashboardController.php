@@ -75,7 +75,7 @@ class DashboardController extends Controller
 				break;
 			default:
 				return self::userDashboard();
-				Log::debug('dashbaord.index Other roles= '. auth()->user()->role->value);
+				Log::debug('landlord.dashbaord.index Other roles= '. auth()->user()->role->value);
 		}
 	}
 

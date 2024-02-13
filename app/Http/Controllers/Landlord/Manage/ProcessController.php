@@ -124,7 +124,7 @@ class ProcessController extends Controller
 	{
 
 		// Run process
-		Log::debug('Running process to generate all invoices.');
+		Log::debug('landlord.process.genInvoiceAll Running process to generate all invoices.');
 		GenerateAllSubscriptionInvoice::dispatch();
 		
 		return redirect()->route('processes.index')->with('success','Invoice Generation Process submitted successfully.');
@@ -134,7 +134,7 @@ class ProcessController extends Controller
 	{
 
 		// Run process
-		Log::debug('Running process to generate all invoices.');
+		Log::debug('landlord.process.accountsArchive Running process to generate all invoices.');
 		AccountsArchive::dispatch();
 		
 		return redirect()->route('processes.index')->with('success','Accounts Archive Process submitted successfully.');

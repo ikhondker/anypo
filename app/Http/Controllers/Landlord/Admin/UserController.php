@@ -77,7 +77,7 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		//Log::debug("role=".auth()->user()->role->value);
+		Log::debug("landlord.users.index role=".auth()->user()->role->value);
 
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::ADMIN->value:
@@ -85,7 +85,7 @@ class UserController extends Controller
 				break;
 			default:
 				$users= $users->byUser()->orderBy('id', 'DESC')->paginate(10);
-				Log::debug("Other roles!");
+				Log::warning("landlord.users.index Other roles!");
 		}
 		return view('landlord.admin.users.index',compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
@@ -266,8 +266,7 @@ class UserController extends Controller
 	{
 		$this->authorize('changepass',$user);
 
-		Log::debug('Inside userPassword!');
-		Log::debug('Role='. auth()->user()->role->value);
+		Log::debug('landlord.users.changePassword Role='. auth()->user()->role->value);
 
 		return view('landlord.admin.users.password-change',compact('user'));
 	}

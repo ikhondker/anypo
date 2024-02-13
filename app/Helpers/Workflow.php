@@ -76,7 +76,7 @@ class Workflow
 				} catch (ModelNotFoundException $exception) {
 					$hierarchy_id =  0;
 					Log::debug("Hierarchy not Found for entity=".$entity." article_id=".$article_id." emp_id=".$emp_id." dept_id=".$dept_id);
-		   		}
+				}
 				break;
 			default:
 				Log::debug("Workflow.submitWf Other Entity!");

@@ -171,7 +171,6 @@ class PrlController extends Controller
 
 		$this->authorize('delete', $prl);
 
-		Log::debug("prl_id = ".$prl->id);
 
 		// update PR header
 		$pr = Pr::where('id', $prl->pr_id)->firstOrFail();

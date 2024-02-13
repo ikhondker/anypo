@@ -94,7 +94,7 @@ class PrController extends Controller
 				break;
 			default:
 				$prs = $prs->ByUserAll()->paginate(10);
-				Log::debug("Other roles!");
+				Log::warning("tenant.or.index Other roles!");
 		}
 
 		return view('tenant.prs.index', compact('prs'))->with('i', (request()->input('page', 1) - 1) * 10);
@@ -172,7 +172,6 @@ class PrController extends Controller
 
 		$prl->save();
 		$prl_id			= $prl->id;
-		//Log::debug("wf_id = ".$wf_id );
 	
 		// 	update PR Header value
 		$result = Pr::updatePrHeaderValue($prl->pr_id);
@@ -226,7 +225,7 @@ class PrController extends Controller
 				$wfl = Wfl::where('wf_id', $pr->wf_id)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
 				$wfl = "";
-				Log::debug("pr.show: Okay. Not pending with current user.");
+				Log::debug("tenant.pr.show: Okay. Not pending with current user.");
 			}
 		} else {
 			$wfl = "";
@@ -293,7 +292,7 @@ class PrController extends Controller
 	{
 		$this->authorize('delete', $pr);
 
-		//Log::debug('pr_id='.$pr->id. ' authe_status='.$pr->auth_status->value );
+		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status->value );
 
 		if ($pr->auth_status->value <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
@@ -338,7 +337,7 @@ class PrController extends Controller
 	
 			//  Reverse Booking TODO
 			$retcode = PrBudget::prBudgetApproveCancel($pr_id); 
-			Log::debug("pr.cancel retcode = ".$retcode);
+			Log::debug("tenant.pr.cancel retcode = ".$retcode);
 	
 			// Cancel All PR Lines
 			Prl::where('pr_id', $pr_id)
@@ -376,7 +375,7 @@ class PrController extends Controller
 		
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
-			//Log::debug("PR#".$request->input('pr_id')." not Found!");
+			Log::warning("tenant.prs.cancel PR#".$request->input('pr_id')." not Found!");
 			return back()->withError("PR #".$pr_id." not Found!")->withInput();
 		}
 	}
@@ -422,7 +421,7 @@ class PrController extends Controller
 			$pr->save();
 			
 		} catch (ModelNotFoundException $exception) {
-			//Log::debug("Inside ModelNotFoundException");
+			//Log::warning("tenant.prs.submit Inside ModelNotFoundException");
 			return redirect()->route('prs.index')->with('error', 'Department Budget is not defined for FY'.$fy.'. Please add budget and try again');
 		}
 
@@ -439,7 +438,7 @@ class PrController extends Controller
 
 		//  Check and book Dept Budget
 		$retcode = PrBudget::prBudgetBook($pr->id);
-		//Log::debug("retcode = ".$retcode );
+		//Log::debug("tenant.pr.submit retcode = ".$retcode );
 		switch ($retcode) {
 			case 'E001':
 				return redirect()->back()->with('error', config('akk.MSG_E001'));
@@ -480,12 +479,12 @@ class PrController extends Controller
 		$action = WflActionEnum::PENDING->value;
 		$actionURL = route('prs.show', $pr->id);
 		$next_approver_id = Workflow::getNextApproverId($pr->wf_id);
-		Log::debug("next_approver_id = ". $next_approver_id);
+		Log::debug("tenant.pr.submit next_approver_id = ". $next_approver_id);
 		if ($next_approver_id <> 0) {
 			$approver = User::where('id', $next_approver_id)->first();
 			$approver->notify(new PrActions($approver, $pr, $action, $actionURL));
 		} else {
-			Log::debug("next_approver_id not found!");
+			Log::debug("tenant.pr.submit next_approver_id not found!");
 		}
 
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition submitted for approval successfully.');
@@ -535,10 +534,8 @@ class PrController extends Controller
 		SELECT ".$pr->id.",line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, '".ClosureStatusEnum::OPEN->value."'  
 		FROM prls WHERE 
 		pr_id= ".$sourcePr->id." ;";
-		//Log::debug('sql=' . $sql);
 		DB::INSERT($sql);
 
-		Log::debug('New PR created =' . $pr->id);
 		EventLog::event('pr-copy', $pr->id, 'copied');	// Write to Log
 
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition #'.$pr_id.' created.');
@@ -592,14 +589,12 @@ class PrController extends Controller
 		FROM prls prl,prs pr
 		WHERE pr.id=prl.pr_id
 		AND pr_id= ".$pr->id." ;";
-		//Log::debug('sql=' . $sql);
 		DB::INSERT($sql);
 
 		// update source PR 
 		$pr->po_id		= $po_id;
 		$pr->save();
 
-		Log::debug('New PR created =' . $pr->id);
 		EventLog::event('pr-convert', $pr->id, 'converted');	// Write to Log
 
 		return redirect()->route('pos.show', $po_id)->with('success', 'Purchase Order #'.$po_id.' created.');

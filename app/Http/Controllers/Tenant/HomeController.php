@@ -93,14 +93,12 @@ class HomeController extends Controller
 	{
 		$ENTITY	= 'CONTACT';
 
-		//Log::debug("I AM HERE INSIDE STORE");
 
 		//$request->merge(['ip'		=> Request::ip()]);
 		//$request->merge(['ip'		=> '127.0.01']);
 
 		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 
-		//Log::debug("I AM HERE INSIDE STORE");
 
 		$request->merge(['user_id'	=> $user_id]);
 		$request->merge(['ip'		=> $request->ip()]);

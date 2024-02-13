@@ -29,6 +29,8 @@ use App\Jobs\Tenant\ConsolidateBudget;
 
 # Exceptions
 # Events
+# TODO
+#1. Create and save revision history
 
 
 class DeptBudgetController extends Controller
@@ -57,7 +59,6 @@ class DeptBudgetController extends Controller
 	*/
 	public function xxrevision(DeptBudget $deptBudget)
 	{
-		Log::debug("deptBudget->id=".$deptBudget->id);
 		$dept_budgets = DeptBudget::where('budget_id', $deptBudget->budget_id)->where('dept_id', $deptBudget->dept_id)->orderBy('id', 'ASC')->paginate(10);
 		return view('tenant.dept-budgets.revision', compact('deptBudget', 'dept_budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
@@ -123,10 +124,7 @@ class DeptBudgetController extends Controller
 			return redirect()->route('budgets.index')->with('error', 'Budget '.$budget->name.'is closed. Your admin need to unfreeze it, before update!');
 		}
 
-		// create revision row
-		//Log::debug("Input=".$request->input('amount'));
-		//Log::debug("amount=".$deptBudget->amount);
-
+		
 		// upload file as record
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $deptBudget->id ]);
@@ -135,9 +133,6 @@ class DeptBudgetController extends Controller
 		}
 
 		// budget has been modified
-		//Log::debug('Value of $deptBudget->amount=' . $deptBudget->amount);
-		//Log::debug('Value of $request->input(amount)=' . $request->input('amount'));
-		
 		$old_dept_budget_amount =$deptBudget->amount;
 		$deptBudget->update($request->all());
 

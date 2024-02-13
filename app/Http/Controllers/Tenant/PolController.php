@@ -75,9 +75,7 @@ class PolController extends Controller
 	public function store(StorePolRequest $request)
 	{
 		$this->authorize('create', Pol::class);
-
 		
-		Log::debug('po_id= ' . $request->input('po_id'));
 		// get Po detail 
 		$po 				= Po::where('id', $request->input('po_id'))->firstOrFail();
 

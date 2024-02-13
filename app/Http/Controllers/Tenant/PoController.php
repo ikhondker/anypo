@@ -89,7 +89,7 @@ class PoController extends Controller
 				break;
 			default:
 				$pos = $pos->ByUserAll()->paginate(10);
-				Log::debug("po.index Other roles!");
+				Log::warning("tenant.po.index Other roles!");
 		}
 
 		return view('tenant.pos.index', compact('pos'))->with('i', (request()->input('page', 1) - 1) * 10);
@@ -167,7 +167,6 @@ class PoController extends Controller
 		
 		$pol->save();
 		$pol_id			= $pol->id;
-		//Log::debug("pol_id = ".$pol_id );
 	
 		switch ($request->input('action')) {
 			case 'save':
@@ -216,7 +215,7 @@ class PoController extends Controller
 				$wfl = Wfl::where('wf_id', $po->wf_id)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
 				$wfl = "";
-				Log::debug("po.show: Okay. Not pending with current user.");
+				Log::debug("tenant.po.show: Okay. Not pending with current user.");
 			}
 		} else {
 			$wfl = "";
@@ -338,7 +337,7 @@ class PoController extends Controller
 			
 			//  Reverse Approve Budget
 			$retcode = PoBudget::poBudgetApproveCancel($po_id); 
-			Log::debug("retcode = ".$retcode);
+			Log::debug("tenant.po.cancel retcode = ".$retcode);
 	
 			// Cancel All PO Lines
 			Pol::where('po_id',$po_id)
@@ -429,7 +428,7 @@ class PoController extends Controller
 
 		//  Check and book Budget
 		$retcode = PoBudget::poBudgetBook($po->id);
-		Log::debug("retcode = ".$retcode );
+		Log::debug("tenant.po.submit  retcode = ".$retcode );
 
 		switch ($retcode) {
 			case 'E001':
@@ -471,12 +470,12 @@ class PoController extends Controller
 		$action = WflActionEnum::PENDING->value;
 		$actionURL = route('pos.show', $po->id);
 		$next_approver_id = Workflow::getNextApproverId($po->wf_id);
-		Log::debug("next_approver_id = ". $next_approver_id);
+		Log::debug("tenant.po.submit next_approver_id = ". $next_approver_id);
 		if ($next_approver_id <> 0) {
 			$approver = User::where('id', $next_approver_id)->first();
 			$approver->notify(new PoActions($approver, $po, $action, $actionURL));
 		} else {
-			Log::debug("next_approver_id not found!");
+			Log::debug("tenant.po.submit  next_approver_id not found!");
 		}
 
 		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Order submitted for approval successfully.');
@@ -526,10 +525,9 @@ class PoController extends Controller
 		SELECT ".$po->id.",line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, '".ClosureStatusEnum::OPEN->value."'  
 		FROM pols WHERE 
 		po_id= ".$sourcePo->id." ;";
-		//Log::debug('sql=' . $sql);
 		DB::INSERT($sql);
 
-		Log::debug('New PO created =' . $po->id);
+		Log::debug('tenant.po.copy New PO created =' . $po->id);
 		EventLog::event('po-copy', $po->id, 'copied');	// Write to Log
 
 		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Requisition #'.$po_id.' created.');

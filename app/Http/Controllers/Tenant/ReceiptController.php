@@ -74,7 +74,7 @@ class ReceiptController extends Controller
 				break;
 			default:
 				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->ByUserAll()->paginate(10);
-				Log::debug("payment.index Other roles!");
+				Log::warning("tenant.receipt.index Other roles!");
 		}
 
 		//$receipts = $receipts->orderBy('id', 'DESC')->paginate(10);

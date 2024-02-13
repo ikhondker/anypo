@@ -99,7 +99,7 @@ class InvoiceController extends Controller
 
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		if ($account->next_bill_generated) {
-			Log::debug('invoice.create Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
+			Log::debug('landlord.invoice.create Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id=' . $account->id . '! Can not create more Invoices.');
 		}
 
@@ -129,17 +129,17 @@ class InvoiceController extends Controller
 
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		if ($account->next_bill_generated) {
-			Log::debug('invoice.store Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
+			Log::debug('landlord.invoice.store Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for this Account! Can not create more Invoices.');
 		}
 
 		try {
 			// Create invoice
-			Log::channel('bo')->info('Generating Invoice for Account id=' . $account_id);
+			Log::channel('bo')->info('landlord.invoice.store Generating Invoice for Account id=' . $account_id);
 			$invoice_id = self::createSubscriptionInvoice($account_id, $period);
 		} catch (Exception $e) {
 			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
-			Log::error('invoice.store '. $e->getMessage());
+			Log::error('landlord.invoice.store '. $e->getMessage());
 			$invoice_id = 0;
 		}
 
@@ -155,12 +155,12 @@ class InvoiceController extends Controller
 	public function createSubscriptionInvoice($account_id, $period)
 	{
 		$setup = Setup::first();
-		Log::debug('Generating Invoice for account_id= ' . $account_id .'for period='. $period);
+		Log::debug('landlord.invoices.createSubscriptionInvoice Generating Invoice for account_id= ' . $account_id .'for period='. $period);
 		$account = Account::where('id', $account_id)->first();
 
 		// Don't create invoice if unpaid invoice exists
 		if ($account->next_bill_generated) {
-			Log::debug('Unpaid invoice exists for Account id=' . $account_id . ' Invoice not created.');
+			Log::debug('landlord.invoices.createSubscriptionInvoice Unpaid invoice exists for Account id=' . $account_id . ' Invoice not created.');
 			return 0;
 		}
 
@@ -200,7 +200,7 @@ class InvoiceController extends Controller
 				$discount_pc =0 ;
 		}
 
-		Log::debug('invoice.createSubscriptionInvoice Discount_pc= ' . $discount_pc);
+		Log::debug('landlord.invoice.createSubscriptionInvoice Discount_pc= ' . $discount_pc);
 		$invoice->price		= round($period * $account->price * (100 - $discount_pc)/100,2) ;
 		$invoice->subtotal	= $invoice->price;
 		$invoice->amount	= $invoice->price;
@@ -212,7 +212,7 @@ class InvoiceController extends Controller
 		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
 		$invoice->save();
 
-		Log::debug('invoice.createSubscriptionInvoice Invoice Generated id=' . $invoice->id);
+		Log::debug('landlord.invoice.createSubscriptionInvoice Invoice Generated id=' . $invoice->id);
 		LandlordEventLog::event('invoice', $invoice->id, 'create');
 
 		// update account billing info

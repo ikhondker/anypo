@@ -337,12 +337,7 @@ class AccountController extends Controller
 		// update account with user+GB+service name
 		$account		= Account::where('id', $account_id)->first();
 
-		// Log::debug('account->user =' . $account->user);
-		// Log::debug('account->gb =' . $account->gb);
-		// Log::debug('account->price =' . $account->price);
-
-
-		$account->user		= $account->user + $addon->user;
+			$account->user		= $account->user + $addon->user;
 		$account->gb		= $account->gb + $addon->gb;
 		$account->price		= $account->price + $addon->price;
 		$account->save();

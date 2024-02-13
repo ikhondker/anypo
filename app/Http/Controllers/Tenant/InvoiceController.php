@@ -67,7 +67,7 @@ class InvoiceController extends Controller
 				break;
 			default:
 				$invoices = $invoices->ByUserAll()->paginate(10);
-				Log::debug("invoice.index Other roles!");
+				Log::warning("tenant.invoice.index Other roles!");
 		}
 		return view('tenant.invoices.index', compact('invoices'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
@@ -78,7 +78,7 @@ class InvoiceController extends Controller
 	public function create(Po $po)
 	{
 		$this->authorize('create', Invoice::class);
-		Log::debug('Value of PO id in create=' . $po->id);		
+		Log::debug('tenant.invoices.create Value of PO id in create=' . $po->id);		
 		//$po = Po::where('id', $po_id)->first();
 		$pocs	= User::Tenant()->get();
 
@@ -93,10 +93,7 @@ class InvoiceController extends Controller
 		$this->authorize('create', Invoice::class);
 		
 		// $request->merge(['invoice_date'		=> date('Y-m-d H:i:s')]);
-		// Log::debug('inside invoice .store');
 		$invoice = Invoice::create($request->all());
-		
-		
 		
 		// update PO header
 		$po 					= Po::where('id', $invoice->po_id)->firstOrFail();

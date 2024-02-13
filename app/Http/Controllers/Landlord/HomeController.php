@@ -188,8 +188,6 @@ class HomeController extends Controller
 			'metadata' 	=> ['trx_type' => 'CHECKOUT'],
 		]);
 
-		//Log::debug(' session created Id ='.$session->id );
-
 		// create checkout row
 		$checkout					= new Checkout;
 		$checkout->session_id		= $session->id;
@@ -304,9 +302,8 @@ class HomeController extends Controller
 				throw new NotFoundHttpException;
 			}
 			
-			//Log::debug($session);
 			$trx_type	=  $session->metadata->trx_type;
-			Log::debug('metadata trx_type='. $session->metadata->trx_type);
+			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
 
 			switch ($trx_type) {
 				case "CHECKOUT":
@@ -315,7 +312,7 @@ class HomeController extends Controller
 						throw new NotFoundHttpException();
 					}
 					if ($checkout->status_code->value == LandlordCheckoutStatusEnum::DRAFT->value) {
-						Log::debug('checkpout.success checkout_id='. $checkout->id);
+						Log::debug('landlord.home.success checkout_id='. $checkout->id);
 						// CreateTenant::dispatch($checkout->id);
 					}
 					return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
@@ -329,15 +326,16 @@ class HomeController extends Controller
 					if (!$payment) {
 						throw new NotFoundHttpException();
 					}
+					// TODO
 					if ($payment->status_code->value == LandlordPaymentStatusEnum::DRAFT->value) {
-						Log::debug("SubscriptionInvoicePaid payment_id= ".$payment->id);
+						Log::debug("landlord.home.success SubscriptionInvoicePaid payment_id= ".$payment->id);
 						// SubscriptionInvoicePaid::dispatch($trx_id);
 					}
 					return view('landlord.pages.info')->with('title','Payment Successful')
 						->with('msg','Thank you for your payment. We have received your payment.');
 					break;
 				default:
-					Log::Error("home.success Invalid transaction type!");
+					Log::Error("landlord.home.success Invalid transaction type!");
 			}
 
 		} catch (\Exception $e) {
@@ -359,7 +357,7 @@ class HomeController extends Controller
 			}
 
 			$trx_type	=  $session->metadata->trx_type;
-			//Log::debug('metadata trx_type='. $session->metadata->trx_type);
+			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
 
 			switch ($trx_type) {
 				case "CHECKOUT":
@@ -371,7 +369,7 @@ class HomeController extends Controller
 					if ($checkout->status_code->value == LandlordCheckoutStatusEnum::DRAFT->value) {
 						$checkout->status_code = LandlordCheckoutStatusEnum::CANCELED->value;
 						$checkout->update();
-						Log::debug('checkout Canceled');
+						Log::debug('landlord.home.success checkout Canceled');
 					}
 					return view('landlord.pages.info')->with('title','Checkout Canceled!')->with('msg','Checkout canceled by user request!');
 					break;
@@ -385,12 +383,12 @@ class HomeController extends Controller
 						$payment->status_code = LandlordPaymentStatusEnum::CANCELED->value;
 						$payment->amount = 0;
 						$payment->update();
-						Log::debug('Payment Canceled');
+						Log::debug('landlord.home.success Payment Canceled');
 					}
 					return view('landlord.pages.info')->with('title','Payment Canceled!')->with('msg','Payment canceled by user request!');
 					break;
 				default:
-					Log::Error("home.success Invalid transaction type!");
+					Log::Error("landlord.home.success Invalid transaction type!");
 			}
 		} catch (\Exception $e) {
 			throw new NotFoundHttpException();
@@ -404,7 +402,7 @@ class HomeController extends Controller
 	public function webhook()
 	{
 		
-		Log::debug('Inside Webhook');
+		Log::debug('landlord.home.webhook Inside Webhook');
 		// This is your Stripe CLI webhook secret for testing your endpoint locally.
 		$endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
 
@@ -542,14 +540,12 @@ class HomeController extends Controller
 	{
 		$ENTITY	= 'CONTACT';
 
-		//Log::debug("I AM HERE INSIDE STORE");
 
 		//$request->merge(['ip' => Request::ip()]);
 		//$request->merge(['ip' => '127.0.01']);
 
 		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 
-		//Log::debug("I AM HERE INSIDE STORE");
 		$request->merge(['tenant'	=> tenant('id)')]);
 		$request->merge(['user_id'	=> $user_id]);
 		$request->merge(['ip'		=> $request->ip()]);

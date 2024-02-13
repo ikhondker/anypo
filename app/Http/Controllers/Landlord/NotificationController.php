@@ -124,7 +124,7 @@ class NotificationController extends Controller
 
 	public function read(Notification $notification)
 	{
-		//Log::debug("notification=".$notification->id );
+		// Log::debug("landlord.notification.read. notification=".$notification->id );
 
 		$notif = auth()->user()->notifications()->where('id', $notification->id)->first();
 		if ($notif) {

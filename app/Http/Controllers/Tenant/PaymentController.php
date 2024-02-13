@@ -69,7 +69,7 @@ class PaymentController extends Controller
 				break;
 			default:
 				$payments = $payments->with('bank_account')->with('payee')->ByUserAll()->paginate(10);
-				Log::debug("payment.index Other roles!");
+				Log::warning("tenant.payment.index Other roles!");
 		}
 		return view('tenant.payments.index', compact('payments'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
@@ -258,7 +258,7 @@ class PaymentController extends Controller
 	{
 		$setup 			= Setup::first();
 		$payment		= Payment::where('id', $payment_id)->firstOrFail();
-		Log::debug('updateReceiptFcValues =' . $payment->currency.$setup->currency);
+		Log::debug('tenant.payment.updateReceiptFcValues =' . $payment->currency.$setup->currency);
 
 		// populate fc columns for receipt lines
 		if ($payment->currency == $setup->currency){

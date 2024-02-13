@@ -117,7 +117,7 @@ class CurrencyController extends Controller
 		if ($currency->enable) {
 			//dispatch(new App\Jobs\ImportAllRate());
 			ImportAllRate::dispatch();
-			Log::debug("Rates importing for ".$currency->currency);
+			Log::debug("tenant.currency.destroy Rates importing for ".$currency->currency);
 		}
 
 		return redirect()->route('currencies.index')->with('success', 'Currency status updated successfully.');

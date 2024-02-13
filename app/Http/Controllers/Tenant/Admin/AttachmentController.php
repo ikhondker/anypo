@@ -227,7 +227,6 @@ class AttachmentController extends Controller
 		//$path = storage_path('app/private/pr/'. $filename);
 		//$path = storage_path('app/private/adv/'. $filename);
 		$path = storage_path('app/private/'.$subdir.'/'. $filename);
-		//Log::debug('path1= '. $path);
 
 		if (!File::exists($path)) {
 			abort(404);

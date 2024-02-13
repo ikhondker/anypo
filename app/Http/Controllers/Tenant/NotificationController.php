@@ -86,8 +86,6 @@ class NotificationController extends Controller
 
 	public function read(Notification $notification)
 	{
-		//Log::debug("INSIDE notification");
-		//Log::debug("notification=".$notification->id );
 		//$notification->markAsRead();
 		//return back()->withMessage('Notification marked as read.');
 
@@ -102,12 +100,11 @@ class NotificationController extends Controller
 	}
 	public function purge()
 	{
-		//Log::debug("INSIDE notification purge");
-		//Log::debug("notification=".$notification->id );
+		//Log::debug("tenant.notification.purge notification=".$notification->id );
 
 		$notifications = auth()->user()->readNotifications;
 		foreach ($notifications as $notification) {
-			Log::debug("Deleting id= ".$notification->id);
+			Log::debug("tenant.notification.purge Deleting id= ".$notification->id);
 			DB::table('notifications')->where('id', $notification->id)->delete();
 		}
 		return redirect()->route('notifications.index')->with('success', 'Notifications purged.');

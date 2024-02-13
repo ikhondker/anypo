@@ -195,11 +195,10 @@ class SetupController extends Controller
 
 	public function image($filename)
 	{
-		Log::debug('fileName='.$filename);
+		Log::debug('tenant.setup.image fileName='.$filename);
 
 		//shown as: http://geda.localhost:8000/setups/image/logo.png
 		$path = storage_path('app/logo/'. $filename);
-		//Log::debug('path= '. $path);
 
 		if (!File::exists($path)) {
 			abort(404);
@@ -258,23 +257,14 @@ class SetupController extends Controller
 
 		$base = $request->input('currency');
 
-		Log::debug('setup->currency='.$setup->currency);
-		Log::debug('request input='.$request->input('currency'));
+		Log::debug('tenant.setup.freeze setup->currency='.$setup->currency);
+		Log::debug('tenant.setup.freeze request input='.$request->input('currency'));
 
 		// enable that base currency
 		$currency = Currency::where('currency', $base)->first();
 		$currency->enable = true;
 		$currency->save();
-
-		// NO longer needed as currency removed form budget table
-		// $budget = Budget::where('currency', '<>', $base)->first();
-		// if(! is_null($budget)) {
-		// 	Log::debug('Budget->currency='.$budget->currency);
-		// 	Log::debug('Budget->id='.$budget->id);
-		// 	$budget->currency = $setup->currency;
-		// 	$budget->save();
-		// }
-
+		
 		// update setup. 
 		$request->merge(['freezed'	=> true ]);
 		$setup->update($request->all());

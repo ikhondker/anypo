@@ -122,7 +122,6 @@ class ReportController extends Controller
 	 */
 	public function update(UpdateReportRequest $request, Report $report)
 	{
-		//Log::debug('I am here 1');
 
 		//$report_id	= $request->input('report_id');
 		$start_date			= $request->input('start_date');
@@ -134,11 +133,10 @@ class ReportController extends Controller
 		$bank_account_id	= $request->input('bank_account_id');
 		$pm_id				= $request->input('pm_id');
 
-		Log::debug('I am here 2');
-		Log::debug('report_id='.$report->id);
-		Log::debug('start_date='.$start_date);
-		Log::debug('end_date='.$end_date);
-		Log::debug('pm_id='.$pm_id);
+		Log::debug('tenant.report.update report_id='.$report->id);
+		Log::debug('tenant.report.update start_date='.$start_date);
+		Log::debug('tenant.report.update end_date='.$end_date);
+		Log::debug('tenant.report.update pm_id='.$pm_id);
 
 		switch ($report->id) {
 			case '1001':
@@ -162,9 +160,8 @@ class ReportController extends Controller
 			case '1008':
 				return self::r1008($start_date, $end_date, $dept_id);
 				break;
-		
-				default:
-				Log::debug("Report ID not found!");
+			default:
+				Log::warning("tenant.report.update report ID not found!");
 		}
 	}
 
@@ -213,9 +210,7 @@ class ReportController extends Controller
 		
 		$report 	= Report::where('id', '1004')->firstOrFail();
 
-		// Log::debug('start_date='.$start_date);
-		// Log::debug('end_date='.$end_date);
-		// Log::debug('dept_id='.$dept_id);
+		
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
@@ -239,7 +234,6 @@ class ReportController extends Controller
 			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
 			AND p.pr_date BETWEEN '".$start_date."' AND '".$end_date."'
 		";
-		//Log::debug('sql='.$sql);
 		$prls = DB::select($sql);
 
 		$data = [
@@ -264,9 +258,6 @@ class ReportController extends Controller
 		
 		$report 	= Report::where('id', '1005')->firstOrFail();
 
-		// Log::debug('start_date='.$start_date);
-		// Log::debug('end_date='.$end_date);
-		// Log::debug('dept_id='.$dept_id);
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
@@ -290,7 +281,6 @@ class ReportController extends Controller
 			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
 			AND p.po_date BETWEEN '".$start_date."' AND '".$end_date."'
 		";
-		//Log::debug('sql='.$sql);
 		$pols = DB::select($sql);
 
 		$data = [
@@ -315,10 +305,6 @@ class ReportController extends Controller
 		
 		$report 	= Report::where('id', '1006')->firstOrFail();
 
-		// Log::debug('start_date='.$start_date);
-		// Log::debug('end_date='.$end_date);
-		// Log::debug('dept_id='.$dept_id);
-
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
@@ -342,7 +328,6 @@ class ReportController extends Controller
 			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
 			AND r.receive_date BETWEEN '".$start_date."' AND '".$end_date."'
 		";
-		//Log::debug('sql='.$sql);
 		$receipts = DB::select($sql);
 
 		$data = [
@@ -367,10 +352,6 @@ class ReportController extends Controller
 		
 		$report 	= Report::where('id', '1007')->firstOrFail();
 
-		// Log::debug('start_date='.$start_date);
-		// Log::debug('end_date='.$end_date);
-		// Log::debug('dept_id='.$dept_id);
-
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
@@ -393,9 +374,6 @@ class ReportController extends Controller
 			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
 			AND p.po_date BETWEEN '".$start_date."' AND '".$end_date."'
 		";
-
-
-		//Log::debug('sql='.$sql);
 		$invoices = DB::select($sql);
 
 		$data = [
@@ -420,9 +398,6 @@ class ReportController extends Controller
 		
 		$report 	= Report::where('id', '1008')->firstOrFail();
 
-		// Log::debug('start_date='.$start_date);
-		// Log::debug('end_date='.$end_date);
-		// Log::debug('dept_id='.$dept_id);
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
@@ -448,8 +423,6 @@ class ReportController extends Controller
 			AND pay.pay_date BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
-
-		//Log::debug('sql='.$sql);
 		$payments = DB::select($sql);
 
 		$data = [
@@ -469,11 +442,10 @@ class ReportController extends Controller
 
 	public function pr($id)
 	{
-		//todo auth check
-		//todo if pr exists
-		//Log::debug('storage_path()='.storage_path());
+		//TODO auth check
+		//TODO if pr exists
+		//Log::debug('tenant.report.pr storage_path()='.storage_path());
 		
-		//Log::debug('Value of id=' . $id);
 		// NOTE: Uses InvoicePolicy
 		// $this->authorize('pdfInvoice', $invoice);
 
@@ -530,8 +502,6 @@ class ReportController extends Controller
 	public function prv1($id)
 	{
 
-		Log::debug('storage_path()='.storage_path());
-		//storage_path()=D:\laravel\anypo\storage/tenantdemo1  
 
 		//todo auth check
 		//todo if pr exists

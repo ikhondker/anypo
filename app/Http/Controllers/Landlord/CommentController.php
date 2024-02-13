@@ -183,7 +183,7 @@ class CommentController extends Controller
 				
 			}
 		} else {
-			Log::debug("Not an Front Office or Back Office! role=". auth()->user()->role->value ." Ticket=". $request->input('ticket_id') );
+			Log::debug("landlord.comment.store Not an Front Office or Back Office! role=". auth()->user()->role->value ." Ticket=". $request->input('ticket_id') );
 		}
 
 		// Write to Log

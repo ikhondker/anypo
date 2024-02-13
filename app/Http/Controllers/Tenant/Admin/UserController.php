@@ -18,22 +18,22 @@
  * ==================================================================================
 */
 
-// templates 
-# 1. Enums
-# 2. Helpers
-# 3. Models
+// Templates 
+# 0. Auto Generated
+# 1. Models
+# 2. Enums
+# 3. Helpers
 # 4. Notifications
 # 5. Jobs
-# 6. Mails
-# 7. Packages
-# 8. Exceptions
-# 9. Events
-# 10 Seeded
+# 6. Seeded
+# 7. Exceptions
+# 8. Packages
+# 9. Mails
+# 10.Events
 # TODO
 # 1. create a new role PM for projects
 
 namespace App\Http\Controllers\Tenant\Admin;
-
 use App\Http\Controllers\Controller;
 
 use App\Models\User;
@@ -87,7 +87,7 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		//Log::debug("role=".auth()->user()->role->value);
+		//Log::debug("tenant.user.index role=".auth()->user()->role->value);
 
 		//$users = User::latest()->orderBy('id','desc')->paginate(10);
 		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
@@ -96,18 +96,6 @@ class UserController extends Controller
 			$users = $users->with('dept')->with('designation')->TenantAll()->orderBy('id', 'DESC')->paginate(10);
 		}
 
-		//$users = $users->orderBy('id', 'DESC')->paginate(10);
-		// switch (auth()->user()->role->value) {
-		//     case UserRoleEnum::USER->value:
-		//         $users= $users->byuser()->orderBy('id', 'DESC')->paginate(10);
-		//         break;
-		//     case UserRoleEnum::ADMIN->value:
-		//         $users= $users->byaccount()->orderBy('id', 'DESC')->paginate(10);
-		//         break;
-		//     default:
-		//         $users= $users->orderBy('id', 'DESC')->paginate(10);
-		//         Log::debug("Other roles!");
-		// }
 		return view('tenant.admin.users.index', compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
 	}
 
@@ -204,17 +192,12 @@ class UserController extends Controller
 
 		// for non admin role field is not shown TODO
 		if ($request->has('role')) {
-			Log::debug('Role Found!');
+			Log::debug('tenant.user.update Role Found! Do nothing.');
 		} else {
 			$request->merge(['role'	=> $user->role->value ]);
-			Log::debug('Role hidden for system users!');
+			Log::debug('tenant.user.update Role hidden for system users!');
 		}
-
-		//$request->validate();
-		$request->validate([
-
-		]);
-
+		
 		if ($image = $request->file('file_to_upload')) {
 			// $request->validate([
 			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -358,11 +341,10 @@ class UserController extends Controller
 		//shown as: http://geda.localhost:8000/image/4.jpg
 		//$path = storage_path('uploads/' . $filename);
 		$path = storage_path('app/public/profile/'. $filename);
-		Log::debug('path= '. $path);
 
 		if (!File::exists($path)) {
 			abort(404);
-			Log::debug('FILE does not exists! '. $filename);
+			Log::warning('FILE does not exists! '. $filename);
 		}
 
 		$file = File::get($path);

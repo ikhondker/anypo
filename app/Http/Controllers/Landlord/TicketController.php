@@ -78,7 +78,7 @@ class TicketController extends Controller
 				break;
 			default:
 				$tickets = $tickets->byUser()->orderBy('id', 'DESC')->paginate(10);
-				Log::debug("Inside Ticket Index. Ignore. Other roles!");
+				Log::warning("landlord.tickets.index Ignore. Other roles!");
 		}
 
 		return view('landlord.tickets.index', compact('tickets'))->with('i', (request()->input('page', 1) - 1) * 10);
@@ -295,7 +295,7 @@ class TicketController extends Controller
 			WHERE  owner_id =".auth()->user()->id);
 		}
 
-		//Log::debug('Role= '. auth()->user()->role->value);
+		//Log::debug('landlord.ticket.export Role= '. auth()->user()->role->value);
 		//$data = DB::select("SELECT id, name, email, cell, role, enable FROM users");
 
 		$dataArray = json_decode(json_encode($data), true);

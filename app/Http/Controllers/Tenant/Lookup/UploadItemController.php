@@ -81,7 +81,7 @@ class UploadItemController extends Controller
 		DB::table('upload_items')
 			->where('status', '<>', InterfaceStatusEnum::UPLOADED->value)
 			->delete();
-		Log::debug('Interface data deleted.');
+		Log::debug('tenant.upload0item.destroy  Interface data deleted.');
 
 		try {
 			$spreadsheet	= IOFactory::load($the_file->getRealPath());
@@ -182,7 +182,6 @@ class UploadItemController extends Controller
 
 		$this->authorize('create', UploadItem::class);
 
-		//echo "I AM HERE!";
 		$upload_items = UploadItem::where('status', '<>', InterfaceStatusEnum::UPLOADED->value)
 				->orderBy('id', 'DESC')
 				->get();
