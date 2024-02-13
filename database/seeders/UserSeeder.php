@@ -40,10 +40,8 @@ class UserSeeder extends Seeder
 				'id'				=> '1001',
 				'name'				=> 'System Owner',
 				'email'				=> 'system@example.com',
-				
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
-
 				'role'				=> 'system',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password

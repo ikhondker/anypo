@@ -5,7 +5,7 @@
 
 <x-tenant.page-header>
 	@slot('title')
-	Activities
+		Activities
 	@endslot
 	@slot('buttons')
 
@@ -14,19 +14,19 @@
 
 <div class="row">
 
-	<div class="col-10">
+	<div class="col-12">
 
 		<div class="card">
 			<div class="card-header">
 				<x-tenant.cards.header-search-export-bar object="Activity" />
 				<h5 class="card-title">
 					@if (request('term'))
-					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+						Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 					@else
-					Activity Lists
+						Activity Lists
 					@endif
 				</h5>
-				<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+				<h6 class="card-subtitle text-muted">Log of all user activities.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm">

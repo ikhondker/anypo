@@ -63,6 +63,11 @@ class AttachmentPolicy
 		return false;
 	}
 
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
+	}
+
 	/**
 	 * Determine whether the user can restore the model.
 	 */

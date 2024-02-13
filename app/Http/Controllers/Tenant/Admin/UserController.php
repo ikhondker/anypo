@@ -32,6 +32,7 @@
 # 10.Events
 # TODO
 # 1. create a new role PM for projects
+# 2. layout chang for edit user page role change
 
 namespace App\Http\Controllers\Tenant\Admin;
 use App\Http\Controllers\Controller;
@@ -96,7 +97,7 @@ class UserController extends Controller
 			$users = $users->with('dept')->with('designation')->TenantAll()->orderBy('id', 'DESC')->paginate(10);
 		}
 
-		return view('tenant.admin.users.index', compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.admin.users.index', compact('users'));
 	}
 
 	/**

@@ -7,6 +7,8 @@ use App\Traits\AddCreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Builder;
+
 use App\Models\User;
 
 class Activity extends Model
@@ -30,6 +32,15 @@ class Activity extends Model
 
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- Scopes ------------------------- */
+	/**
+	 * Scope a query to only  non-seeded users.
+	 */
+	public function scopePrimary(Builder $query): void
+	{
+		$query->where('user_id','>=', 1003);
+	}
+
+
 	/* ----------------- HasMany ------------------------ */
 	/* ----------------- belongsTo ---------------------- */
 	public function user()

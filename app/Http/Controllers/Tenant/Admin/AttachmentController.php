@@ -81,25 +81,28 @@ class AttachmentController extends Controller
 
 		switch ($attachment->entity) {
 			case EntityEnum::BUDGET->value:
-				return redirect()->route('tenant.budgets.show', $attachment->article_id);
+				return redirect()->route('budgets.show', $attachment->article_id);
 				break;
 			case EntityEnum::DEPTBUDGET->value:
-				return redirect()->route('tenant.dept-budgets.show', $attachment->article_id);
+				return redirect()->route('dept-budgets.show', $attachment->article_id);
 				break;
 			case EntityEnum::PR->value:
-				return redirect()->route('tenant.prs.show', $attachment->article_id);
+				return redirect()->route('prs.show', $attachment->article_id);
 				break;
 			case EntityEnum::PO->value:
-				return redirect()->route('tenant.pos.show', $attachment->article_id);
+				return redirect()->route('pos.show', $attachment->article_id);
 				break;
 			case EntityEnum::PROJECT->value:
-				return redirect()->route('tenant.projects.show', $attachment->article_id);
+				return redirect()->route('projects.show', $attachment->article_id);
 				break;
 			case EntityEnum::RECEIPT->value:
-				return redirect()->route('tenant.receipts.show', $attachment->article_id);
+				return redirect()->route('receipts.show', $attachment->article_id);
+				break;
+			case EntityEnum::INVOICE->value:
+				return redirect()->route('invoices.show', $attachment->article_id);
 				break;
 			case EntityEnum::PAYMENT->value:
-				return redirect()->route('tenant.payments.show', $attachment->article_id);
+				return redirect()->route('payments.show', $attachment->article_id);
 				break;
 			default:
 				return redirect()->route('tenant.attachments.index');
@@ -129,6 +132,7 @@ class AttachmentController extends Controller
 	 */
 	public function destroy(Attachment $attachment)
 	{
+		abort(403);
 		// TODO 
 		// add authorize
 		switch ($attachment->entity) {
@@ -245,9 +249,9 @@ class AttachmentController extends Controller
 	 */
 	public function export()
 	{
-		$this->authorize('export', Activity::class);
+		$this->authorize('export', Attachment::class);
 		//$data = Uom::all()->toArray();
-		$data = DB::select('SELECT a.id, a.entity, a.article_id, u.name, a.org_file_name, upload_date
+		$data = DB::select('SELECT a.id, a.entity, a.article_id, u.name owner_name, a.org_file_name, upload_date
 			FROM attachments a, users u
 			WHERE a.owner_id = u.id
 			');

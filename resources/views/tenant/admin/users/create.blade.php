@@ -23,11 +23,12 @@
 				<div class="card">
 					<div class="card-header">
 					<h5 class="card-title">Create User</h5>
+					<h6 class="card-subtitle text-muted">Create a New User.</h6>
 					</div>
 					<div class="card-body">
 
 						<div class="mb-3">
-							<label class="form-label">Email</label>
+							<label class="form-label">Email</label>  <x-tenant.info info="Note: You wont be able to change the email."/>
 							<input type="email" class="form-control @error('email') is-invalid @enderror"
 								name="email" id="email" placeholder="name@company.com"
 								value="{{ old('email', 'email@example.com' ) }}"

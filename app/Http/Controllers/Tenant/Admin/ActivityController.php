@@ -9,6 +9,8 @@ use App\Http\Requests\Tenant\Admin\UpdateActivityRequest;
 
 # Models
 # Enums
+use App\Enum\UserRoleEnum;
+
 # Helpers
 use App\Helpers\Export;
 # Notifications
@@ -35,8 +37,14 @@ class ActivityController extends Controller
 		if (request('term')) {
 			$activities->where('object_name', 'Like', '%' . request('term') . '%');
 		}
-		$activities = $activities->with('user')->orderBy('id', 'DESC')->paginate(50);
-		return view('tenant.admin.activities.index', compact('activities'))->with('i', (request()->input('page', 1) - 1) * 50);
+		
+		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
+			$activities = $activities->with('user')->orderBy('id', 'DESC')->paginate(50);
+		} else {
+			$activities = $activities->primary()->with('user')->orderBy('id', 'DESC')->paginate(50);
+		}
+
+		return view('tenant.admin.activities.index', compact('activities'));
 	}
 
 	/**
@@ -100,6 +108,7 @@ class ActivityController extends Controller
 		$data = DB::select('SELECT a.id, a.object_name, a.object_id, a.event_name, a.column_name, a.prior_value, u.name,a.role, a.created_at
 			FROM activities a, users u
 			WHERE a.user_id = u.id
+			AND a.user_id >= 1003  
 			');
 
 		$dataArray = json_decode(json_encode($data), true);

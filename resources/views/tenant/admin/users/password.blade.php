@@ -25,6 +25,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Change Password</h5>
+						<h6 class="card-subtitle text-muted">Change User's Password.</h6>
 					</div>
 					<div class="card-body">
 						<div class="mb-3">
@@ -57,7 +58,8 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">User Info:</h5>
+						<h5 class="card-title">User Info</h5>
+						<h6 class="card-subtitle text-muted">User's Basic Information.</h6>
 					</div>
 					<div class="card-body">
 						

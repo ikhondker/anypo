@@ -24,7 +24,8 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">User Info</h5>
+							<h5 class="card-title">User Key Informations</h5>
+							<h6 class="card-subtitle text-muted">User's Key Information.</h6>
 						</div>
 						<div class="card-body">
 							<div class="mb-3">
@@ -38,7 +39,7 @@
 								@enderror
 							</div>
 							<div class="mb-3">
-								<label class="form-label">Email</label>  <x-tenant.info info="Note: You wont be able to change the email."/>
+								<label class="form-label">Email</label> <x-tenant.info info="Note: You wont be able to change the email."/>
 								<input type="email" class="form-control @error('email') is-invalid @enderror"
 									name="email" id="email" placeholder="name@company.com"
 									value="{{ old('email', $user->email ) }}"
@@ -76,18 +77,6 @@
 								@enderror
 							</div>
 
-							@if ( auth()->user()->isAdmin() && (auth()->user()->id <> $user->id) )
-								<div class="mb-3">
-									<label class="form-label text-danger">Modify Role:</label>
-									<select class="form-control" name="role">
-										<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }}  value="user">User</option>
-										<option {{ 'buyer' == old('role',$user->role->value) ? 'selected' : '' }} value="buyer">Buyer</option>
-										<option {{ 'hod' == old('role',$user->role->value) ? 'selected' : '' }} value="hod">HoD</option>
-										<option {{ 'cxo' == old('role',$user->role->value) ? 'selected' : '' }} value="cxo">CxO</option>
-										<option {{ 'admin' == old('role',$user->role->value) ? 'selected' : '' }} value="admin">Admin</option>
-									</select>
-								</div>
-							@endif
 						</div>
 					</div>
 				</div>
@@ -96,7 +85,8 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Address</h5>
+							<h5 class="card-title">User Address</h5>
+							<h6 class="card-subtitle text-muted">User's Address.</h6>
 						</div>
 						<div class="card-body">
 							<div class="mb-3">
@@ -167,6 +157,30 @@
 
 						</div>
 					</div>
+
+
+					@if ( auth()->user()->isAdmin() && (auth()->user()->id <> $user->id) )
+
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">Role Modify</h5>
+							<h6 class="card-subtitle text-muted">Change User's Role.</h6>
+						</div>
+						<div class="card-body">
+							<div class="mb-3">
+								<label class="form-label text-danger">Modify Role To:</label>
+								<select class="form-control" name="role">
+									<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }}  value="user">User</option>
+									<option {{ 'buyer' == old('role',$user->role->value) ? 'selected' : '' }} value="buyer">Buyer</option>
+									<option {{ 'hod' == old('role',$user->role->value) ? 'selected' : '' }} value="hod">HoD</option>
+									<option {{ 'cxo' == old('role',$user->role->value) ? 'selected' : '' }} value="cxo">CxO</option>
+									<option {{ 'admin' == old('role',$user->role->value) ? 'selected' : '' }} value="admin">Admin</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					@endif
+
 				</div>
 				<!-- end col-6 -->
 			</div>
@@ -175,7 +189,8 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Avatar</h5>
+							<h5 class="card-title">User Avatar</h5>
+							<h6 class="card-subtitle text-muted">User's Avatar.</h6>
 						</div>
 						<div class="card-body">
 							<div class="mb-3">
@@ -191,7 +206,8 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Social</h5>
+							<h5 class="card-title">Other Detail</h5>
+							<h6 class="card-subtitle text-muted">User's Other Details.</h6>
 						</div>
 						<div class="card-body">
 
