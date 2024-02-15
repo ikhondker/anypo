@@ -41,6 +41,8 @@ use DB;
 use PDF;
 use Str;
 use Illuminate\Support\Facades\Log;
+# TODO
+# 1 . Add entity column in reports.index
 
 class ReportController extends Controller
 {
@@ -56,10 +58,10 @@ class ReportController extends Controller
 		}
 		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
 			$reports = $reports->orderBy('id', 'ASC')->paginate(100);
-			return view('tenant.reports.all', compact('reports'))->with('i', (request()->input('page', 1) - 1) * 10);
+			return view('tenant.reports.all', compact('reports'));
 		} else {
 			$reports = $reports->where('enable', true)->orderBy('id', 'ASC')->paginate(100);
-			return view('tenant.reports.index', compact('reports'))->with('i', (request()->input('page', 1) - 1) * 10);
+			return view('tenant.reports.index', compact('reports'));
 		}
 	}
 

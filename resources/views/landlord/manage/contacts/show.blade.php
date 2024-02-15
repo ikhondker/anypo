@@ -30,7 +30,7 @@
 			</div>
 		</div>
 
-		<x-landlord.show.my-date-time	value="{{$contact->created_at }}" label="Date"/>
+		<x-landlord.show.my-date-time	value="{{ $contact->created_at }}" label="Date"/>
 		<x-landlord.show.my-badge		value="{{ $contact->id }}" label="ID"/>
 		<x-landlord.show.my-text		value="{{ $contact->ip }}" label="IP"/>
 

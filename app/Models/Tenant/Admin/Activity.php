@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Tenant\Admin;;
+namespace App\Models\Tenant\Admin;
 
 /* IQBAL 21-OCT-22 */
 use App\Traits\AddCreatedUpdatedBy;

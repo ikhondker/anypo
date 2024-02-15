@@ -22,7 +22,7 @@ class StoreDeptBudgetRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'budget_id'		=> 'required|integer|exists:budgets,id',
+			'budget_id'		=> 'required|integer|exists:budgets,id|unique:dept_budgets,budget_id,dept_id',
 			'dept_id'		=> 'required|unique:dept_budgets,budget_id,dept_id',
 			'amount'		=> 'required|numeric|min:1.00|max:9999999999.99',
 		];
@@ -35,6 +35,7 @@ class StoreDeptBudgetRequest extends FormRequest
 	 */
 	public function messages() {
 		return [
+			'budget_id.unique'=> 'Budget for this Department already exists. Please update budget if needed.',
 			'dept_id.unique'=> 'Budget for this Department already exists. Please update budget if needed.',
 		];
 	}

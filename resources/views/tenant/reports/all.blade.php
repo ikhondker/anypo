@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Reports
+			Reports List (SYSTEM)
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Report"/>
@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-10">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -22,10 +22,10 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Department Lists
+							Reports List (SYSTEM)
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">Lists of available reports and brief description.</h6>
 				</div>
 				
 				<div class="card-body">
@@ -80,7 +80,7 @@
 
 							@foreach ($reports as $report)
 							<tr>
-								<td>{{ $report->id }}</td>
+								<td>{{ $reports->firstItem() + $loop->index  }}</td>
 								<td><a class="text-info" href="{{ route('reports.show',$report->id) }}">{{ $report->name }}</a></td>
 								<td>{{ $report->summary }}</td>
 								<td>{{ $report->access }}</td>

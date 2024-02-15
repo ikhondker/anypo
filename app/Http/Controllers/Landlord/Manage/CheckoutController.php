@@ -50,7 +50,7 @@ class CheckoutController extends Controller
 	{
 		$this->authorize('viewAll',Checkout::class);
 		$checkouts = Checkout::orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.manage.checkouts.all', compact('checkouts'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.manage.checkouts.all', compact('checkouts'));
 	}
 
 	/**

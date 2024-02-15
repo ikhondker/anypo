@@ -69,7 +69,7 @@ class InvoiceController extends Controller
 				$invoices = $invoices->ByUserAll()->paginate(10);
 				Log::warning("tenant.invoice.index Other roles!");
 		}
-		return view('tenant.invoices.index', compact('invoices'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.invoices.index', compact('invoices'));
 	}
 
 	/**

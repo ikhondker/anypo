@@ -133,7 +133,7 @@ class TableController extends Controller
 	{
 		$this->authorize('controllers', Table::class);
 		$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord');
-		return view('landlord.manage.tables.controllers', compact('filesInFolder'))->with('i', 0);
+		return view('landlord.manage.tables.controllers', compact('filesInFolder'));
 		
 	}
 
@@ -142,7 +142,7 @@ class TableController extends Controller
 	{
 		$this->authorize('models', Table::class);
 		$filesInFolder = Docs::getFiles('\app\Models\Landlord');
-		return view('landlord.manage.tables.models', compact('filesInFolder'))->with('i', 0);
+		return view('landlord.manage.tables.models', compact('filesInFolder'));
 	}
 
 	public function routes()
@@ -150,14 +150,14 @@ class TableController extends Controller
 		$this->authorize('routes', Table::class);
 		// https://laravel.com/api/6.x/Illuminate/Routing/RouteCollection.html
 		$routes = Route::getRoutes()->getRoutesByName();
-		return view('landlord.manage.tables.all-routes', compact('routes'))->with('i', 0);
+		return view('landlord.manage.tables.all-routes', compact('routes'));
 	}
 
 	public function routeCode()
 	{
 		$this->authorize('routeCode', Table::class);
 		$filesInFolder = Docs::getFiles('\app\Models\Landlord');
-		return view('landlord.manage.tables.routes', compact('filesInFolder'))->with('i', 0);
+		return view('landlord.manage.tables.routes', compact('filesInFolder'));
 	}
 
 	public function policies()
@@ -165,7 +165,7 @@ class TableController extends Controller
 
 		$this->authorize('policies', Table::class);
 		$filesInFolder = Docs::getFiles('\app\Models\Landlord');	// <<============= Models
-		return view('landlord.manage.tables.policies', compact('filesInFolder'))->with('i', 0);
+		return view('landlord.manage.tables.policies', compact('filesInFolder'));
 	}
 
 	public function comments()
@@ -180,7 +180,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Notifications');
 		
 		$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord\Manage');
-		return view('landlord.manage.tables.comments', compact('filesInFolder'))->with('i', 0);
+		return view('landlord.manage.tables.comments', compact('filesInFolder'));
 	}
 
 	public function messages()

@@ -81,7 +81,7 @@ class TicketController extends Controller
 				Log::warning("landlord.tickets.index Ignore. Other roles!");
 		}
 
-		return view('landlord.tickets.index', compact('tickets'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.tickets.index', compact('tickets'));
 	}
 
 	/**
@@ -96,7 +96,7 @@ class TicketController extends Controller
 
 		$tickets = Ticket::orderBy('id', 'DESC')->paginate(10);
 
-		return view('landlord.tickets.all', compact('tickets'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.tickets.all', compact('tickets'));
 	}
 
 	/**

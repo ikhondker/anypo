@@ -97,7 +97,7 @@ class PrController extends Controller
 				Log::warning("tenant.or.index Other roles!");
 		}
 
-		return view('tenant.prs.index', compact('prs'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.prs.index', compact('prs'));
 	}
  
 	/**
@@ -220,7 +220,7 @@ class PrController extends Controller
 		$prls = Prl::with("item")->with("uom")->where('pr_id', $pr->id)->get()->all();
 
 		// approve-reject form
-		if ($pr->auth_status->value == AuthStatusEnum::INPROCESS->value) {
+		if ($pr->auth_status == AuthStatusEnum::INPROCESS->value) {
 			try {
 				$wfl = Wfl::where('wf_id', $pr->wf_id)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
@@ -292,9 +292,9 @@ class PrController extends Controller
 	{
 		$this->authorize('delete', $pr);
 
-		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status->value );
+		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status );
 
-		if ($pr->auth_status->value <> AuthStatusEnum::DRAFT->value) {
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
 		}
 
@@ -320,12 +320,12 @@ class PrController extends Controller
 		try {
 			$pr = Pr::where('id', $pr_id)->firstOrFail();
 
-			if ($pr->auth_status->value == AuthStatusEnum::DRAFT->value) {
+			if ($pr->auth_status == AuthStatusEnum::DRAFT->value) {
 				return back()->withError("Please delete DRAFT Requisition if needed!")->withInput();
 				//return redirect()->route('prs.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
 			}
 	
-			if ($pr->auth_status->value <> AuthStatusEnum::APPROVED->value) {
+			if ($pr->auth_status <> AuthStatusEnum::APPROVED->value) {
 				return back()->withError("Only APPROVED Purchase Requisition can be canceled!")->withInput();
 				//return redirect()->route('prs.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
 			}
@@ -394,7 +394,7 @@ class PrController extends Controller
 		
 		$this->authorize('submit', $pr);
 
-		if ($pr->auth_status->value <> AuthStatusEnum::DRAFT->value) {
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.index')->with('error', 'You can only submit if the status is '. AuthStatusEnum::DRAFT->value .' !');
 		}
 
@@ -536,7 +536,7 @@ class PrController extends Controller
 		pr_id= ".$sourcePr->id." ;";
 		DB::INSERT($sql);
 
-		EventLog::event('pr-copy', $pr->id, 'copied');	// Write to Log
+		EventLog::event('pr', $pr->id, 'copied');	// Write to Log
 
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition #'.$pr_id.' created.');
 	}
@@ -545,7 +545,7 @@ class PrController extends Controller
 	{
 		$this->authorize('convert', $pr);
 		
-		if ($pr->auth_status->value <> AuthStatusEnum::APPROVED->value) {
+		if ($pr->auth_status <> AuthStatusEnum::APPROVED->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only convert to PO if Requisition status is '. AuthStatusEnum::DRAFT->value .' !');
 		}
 

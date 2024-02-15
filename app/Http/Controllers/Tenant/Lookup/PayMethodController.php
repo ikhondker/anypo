@@ -36,7 +36,7 @@ class PayMethodController extends Controller
 			$pay_methods->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$pay_methods = $pay_methods->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.pay-methods.index', compact('pay_methods'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.lookup.pay-methods.index', compact('pay_methods'));
 	}
 
 	/**

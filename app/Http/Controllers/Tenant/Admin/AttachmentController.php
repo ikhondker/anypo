@@ -53,7 +53,7 @@ class AttachmentController extends Controller
 
 
 		//$attachments = Attachment::latest()->orderBy('id', 'desc')->paginate(25);
-		//return view('attachments.index',compact('attachments'))->with('i', (request()->input('page', 1) - 1) * 10);
+		//return view('attachments.index',compact('attachments'));
 	}
 
 	/**
@@ -79,35 +79,37 @@ class AttachmentController extends Controller
 	{
 		$this->authorize('view', $attachment);
 
-		switch ($attachment->entity) {
-			case EntityEnum::BUDGET->value:
-				return redirect()->route('budgets.show', $attachment->article_id);
-				break;
-			case EntityEnum::DEPTBUDGET->value:
-				return redirect()->route('dept-budgets.show', $attachment->article_id);
-				break;
-			case EntityEnum::PR->value:
-				return redirect()->route('prs.show', $attachment->article_id);
-				break;
-			case EntityEnum::PO->value:
-				return redirect()->route('pos.show', $attachment->article_id);
-				break;
-			case EntityEnum::PROJECT->value:
-				return redirect()->route('projects.show', $attachment->article_id);
-				break;
-			case EntityEnum::RECEIPT->value:
-				return redirect()->route('receipts.show', $attachment->article_id);
-				break;
-			case EntityEnum::INVOICE->value:
-				return redirect()->route('invoices.show', $attachment->article_id);
-				break;
-			case EntityEnum::PAYMENT->value:
-				return redirect()->route('payments.show', $attachment->article_id);
-				break;
-			default:
-				return redirect()->route('tenant.attachments.index');
-				// Success
-		}
+		return view('tenant.admin.attachments.show', compact('attachment'));
+
+		// switch ($attachment->entity) {
+		// 	case EntityEnum::BUDGET->value:
+		// 		return redirect()->route('budgets.show', $attachment->article_id);
+		// 		break;
+		// 	case EntityEnum::DEPTBUDGET->value:
+		// 		return redirect()->route('dept-budgets.show', $attachment->article_id);
+		// 		break;
+		// 	case EntityEnum::PR->value:
+		// 		return redirect()->route('prs.show', $attachment->article_id);
+		// 		break;
+		// 	case EntityEnum::PO->value:
+		// 		return redirect()->route('pos.show', $attachment->article_id);
+		// 		break;
+		// 	case EntityEnum::PROJECT->value:
+		// 		return redirect()->route('projects.show', $attachment->article_id);
+		// 		break;
+		// 	case EntityEnum::RECEIPT->value:
+		// 		return redirect()->route('receipts.show', $attachment->article_id);
+		// 		break;
+		// 	case EntityEnum::INVOICE->value:
+		// 		return redirect()->route('invoices.show', $attachment->article_id);
+		// 		break;
+		// 	case EntityEnum::PAYMENT->value:
+		// 		return redirect()->route('payments.show', $attachment->article_id);
+		// 		break;
+		// 	default:
+		// 		return redirect()->route('tenant.attachments.index');
+		// 		// Success
+		// }
 
 	}
 

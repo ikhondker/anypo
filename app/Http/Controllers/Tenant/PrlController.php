@@ -65,7 +65,7 @@ class PrlController extends Controller
 		}
 		$prls = $prls->orderBy('id', 'DESC')->paginate(10);
 
-		return view('tenant.prls.index', compact('prls'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.prls.index', compact('prls'));
 	}
 
 	/**

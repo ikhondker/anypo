@@ -24,7 +24,7 @@
 
 	<x-tenant.dashboards.pr-counts/>
 	
-	<x-tenant.widgets.pr-lists/>
+	<x-tenant.widgets.pr.lists/>
 	
 	<div class="row">
 		<div class="col-12">

@@ -17,8 +17,8 @@
 
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Setup Lists</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h5 class="card-title">Setup Information of : {{ $_setup->name }}</h5>
+					<h6 class="card-subtitle text-muted">Configuration Information of current application.</h6>
 				</div>
 
 				<div class="card-body">
@@ -31,7 +31,7 @@
 								<th>Email</th>
 								<th>Website</th>
 								<th>Primary Admin</th>
-								<th>Notice?</th>
+								<th>Announcement?</th>
 								<th>Actions</th>
 							</tr>
 						</thead>

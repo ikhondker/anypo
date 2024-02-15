@@ -25,6 +25,8 @@ use DB;
 
 # Exceptions
 # Events
+# TODO
+# 1. Change design of show blade to user show blade with avatar
 
 class HierarchyController extends Controller
 {
@@ -40,7 +42,7 @@ class HierarchyController extends Controller
 			$hierarchies->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$hierarchies = $hierarchies->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.workflow.hierarchies.index', compact('hierarchies'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.workflow.hierarchies.index', compact('hierarchies'));
 	}
 
 	/**

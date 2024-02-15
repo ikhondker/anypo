@@ -13,6 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('reports', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
+			$table->string('entity')->nullable();
 			$table->string('name');
 			$table->string('summary')->nullable();
 			$table->string('access')->default('all'); 

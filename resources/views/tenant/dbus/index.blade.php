@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Department Budget Usages [{{ ($_setup->currency ) }}]
+			Budget Usages [{{ ($_setup->currency ) }}]
 		@endslot
 		@slot('buttons')
 			{{-- <x-tenant.buttons.header.create object="Dbu"/> --}}
@@ -17,15 +17,15 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="DeptBudget"/>
+					<x-tenant.cards.header-search-export-bar object="Dbu"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Department Budget Usages
+							Budget Usages
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">Budget Usages Record for all Departments.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
@@ -40,7 +40,7 @@
 								<th>FY</th>
 								<th>Date</th>
 								<th>Entity</th>
-								<th>Article</th>
+								<th>Document#</th>
 								<th>Event</th>
 								<th>Project</th>
 								<th class="text-end">PR (Booked)</th>
@@ -64,7 +64,7 @@
 								{{-- <td>aa</td> --}}
 								<td><x-tenant.list.my-date :value="$dbu->created_at"/></td>
 								<td>{{ $dbu->entity }}</td>
-								<td>{{ $dbu->article_id}}</td>
+								<td><x-tenant.list.article-link entity="{{ $dbu->entity }}" :id="$dbu->article_id"/></td>
 								<td>{{ $dbu->event }}</td>
 								<td>{{ $dbu->project->name }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr_booked"/></td>

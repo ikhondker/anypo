@@ -45,7 +45,7 @@ class ItemController extends Controller
 			$items->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$items = $items->with('category')->with('uom')->with('oem')->with('glType')->orderBy('id', 'DESC')->paginate(25);
-		return view('tenant.lookup.items.index', compact('items'))->with('i', (request()->input('page', 1) - 1) * 25);
+		return view('tenant.lookup.items.index', compact('items'));
 	}
 
 	/**

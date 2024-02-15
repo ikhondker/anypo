@@ -9,6 +9,13 @@ use App\Http\Requests\Tenant\Manage\StoreStatusRequest;
 use App\Http\Requests\Tenant\Manage\UpdateStatusRequest;
 
 use Illuminate\Support\Facades\Log;
+
+// 2. Helpers
+use App\Helpers\EventLog;
+use App\Helpers\Export;
+
+use DB;
+
 class StatusController extends Controller
 {
 	/**
@@ -29,7 +36,7 @@ class StatusController extends Controller
 		$statuses = Status::latest()->orderBy('name', 'asc')->paginate(15);
 		return view('tenant.manage.statuses.index', compact('statuses'));
 
-		//return view('tenant.manage.statuses.index', compact('statuses'))->with('i', (request()->input('page', 1) - 1) * 4);
+		//return view('tenant.manage.statuses.index', compact('statuses'));
 	}
 
 	/**
@@ -94,13 +101,23 @@ class StatusController extends Controller
 	 */
 	public function destroy(Status $status)
 	{
-		$this->authorize('delete', $menu);
+		$this->authorize('delete', $status);
 
-		$menu->fill(['enable' => ! $menu->enable]);
-		$menu->update();
+		$status->fill(['enable' => ! $status->enable]);
+		$status->update();
 		// Write to Log
-		EventLog::event('menu', $menu->id, 'status', 'enable', $menu->enable);
+		EventLog::event('status', $status->code, 'status', 'enable', $status->enable);
 
 		return redirect()->route('statuses.index')->with('success', 'Status status Updated successfully');
 	}
+	public function export()
+	{
+		$data = DB::select("
+			SELECT code, name, badge, icon, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at FROM statuses
+			");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('statuses', $dataArray);
+	}
+
 }

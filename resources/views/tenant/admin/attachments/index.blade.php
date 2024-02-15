@@ -32,8 +32,8 @@
 						<thead>
 							<tr>
 								<th>ID#</th>
-								<th>Article ID</th>
 								<th>Entity</th>
+								<th>Document ID</th>
 								<th>Date</th>
 								<th>Owner</th>
 								<th>File Name</th>
@@ -45,11 +45,11 @@
 							@foreach ($attachments as $attachment)
 							<tr>
 								<td>{{ $attachment->id }}</td>
-								<td>{{ $attachment->article_id }}</td>
 								<td>{{ $attachment->entity }}</td>
+								<td><x-tenant.list.article-link entity="{{ $attachment->entity }}" :id="$attachment->article_id"/></td>
 								<td><x-tenant.list.my-date-time :value="$attachment->upload_date"/></td>
 								<td>{{ $attachment->owner->name }}</td>
-								<td>{{ $attachment->org_file_name }}</td>
+								<td>{{  Str::limit($attachment->org_file_name,35) }}</td>
 								<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 								<td class="table-action">
 									<a href="{{ route('attachments.show',$attachment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">

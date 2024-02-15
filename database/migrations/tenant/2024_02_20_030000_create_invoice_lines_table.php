@@ -32,7 +32,8 @@ return new class extends Migration
 			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
 			$table->text('notes')->nullable();
 			/** ENUM */
-			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);;
+			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);
+			$table->foreign('closure_status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);

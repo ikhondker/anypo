@@ -18,7 +18,8 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Dept Info</h5>
+					<h5 class="card-title">Menu Detail</h5>
+					<h6 class="card-subtitle text-muted">Show Menu Details.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $dept->name }}"/>
@@ -34,8 +35,8 @@
 					<h5 class="card-title">Supporting Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-date-time value="{{$dept->created_at }}" label="Created At"/>
-					<x-tenant.show.my-date-time value="{{$dept->updated_at }}" label="Updated At"/>
+					<x-tenant.show.my-date-time value="{{ $dept->created_at }}" label="Created At"/>
+					<x-tenant.show.my-date-time value="{{ $dept->updated_at }}" label="Updated At"/>
 				</div>
 			</div>
 		</div>

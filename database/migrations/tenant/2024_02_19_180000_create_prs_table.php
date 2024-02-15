@@ -40,13 +40,11 @@ return new class extends Migration
 			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
 			$table->dateTime('submission_date')->nullable();
 			/** ENUM */
-			//$table->string('status')->default(ClosureStatusEnum::OPEN->value);
-			$table->string('status');
+			$table->string('status')->default(ClosureStatusEnum::OPEN->value);
 			$table->foreign('status')->references('code')->on('statuses');
 			/** end ENUM */
 			/** ENUM */
-			//$table->string('auth_status')->default(AuthStatusEnum::DRAFT->value);
-			$table->string('auth_status');
+			$table->string('auth_status')->default(AuthStatusEnum::DRAFT->value);
 			$table->foreign('auth_status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->dateTime('auth_date',)->nullable();

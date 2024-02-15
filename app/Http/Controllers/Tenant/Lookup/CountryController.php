@@ -40,7 +40,7 @@ class CountryController extends Controller
 		}
 		$countries = $countries->orderBy('enable', 'DESC')->orderBy('country', 'ASC')->paginate(25);
 
-		return view('tenant.lookup.countries.index', compact('countries'))->with('i', (request()->input('page', 1) - 1) * 25);
+		return view('tenant.lookup.countries.index', compact('countries'));
 	}
 
 	/**

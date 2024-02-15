@@ -50,7 +50,7 @@ class DeptBudgetController extends Controller
 		}
 
 		$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.dept-budgets.index', compact('dept_budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.dept-budgets.index', compact('dept_budgets'));
 	}
 
 
@@ -60,7 +60,7 @@ class DeptBudgetController extends Controller
 	public function xxrevision(DeptBudget $deptBudget)
 	{
 		$dept_budgets = DeptBudget::where('budget_id', $deptBudget->budget_id)->where('dept_id', $deptBudget->dept_id)->orderBy('id', 'ASC')->paginate(10);
-		return view('tenant.dept-budgets.revision', compact('deptBudget', 'dept_budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.dept-budgets.revision', compact('deptBudget', 'dept_budgets'));
 	}
 
 	/**

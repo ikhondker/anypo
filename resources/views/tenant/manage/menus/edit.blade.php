@@ -23,7 +23,8 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Menu Info</h5>
+							<h5 class="card-title">Edit Menu</h5>
+							<h6 class="card-subtitle text-muted">Edit Menu Details.</h6>
 						</div>
 						<div class="card-body">
 

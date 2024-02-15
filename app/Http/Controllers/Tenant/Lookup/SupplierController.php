@@ -35,7 +35,7 @@ class SupplierController extends Controller
 			$suppliers->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$suppliers = $suppliers->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.suppliers.index', compact('suppliers'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.lookup.suppliers.index', compact('suppliers'));
 	}
 
 	/**

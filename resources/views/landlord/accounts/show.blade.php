@@ -60,7 +60,7 @@
 		{{-- <x-landlord.show.my-integer value="{{ $account->user_count }}" label="User Count:" />
 		<x-landlord.show.my-integer value="{{ $account->service_count }}" label="Service Count" /> --}}
 
-		<x-landlord.show.my-date-time value="{{$account->created_at }}" label="Created At" />
+		<x-landlord.show.my-date-time value="{{ $account->created_at }}" label="Created At" />
 		<x-landlord.show.my-text value="{{ $account->address1 }}" label="Address1" />
 		<x-landlord.show.my-text value="{{ $account->address2 }}" label="Address2" />
 		<x-landlord.show.my-text value="{{ $account->city.', '.$account->state.', '.$account->zip  }}" label="City-State-Zip" />

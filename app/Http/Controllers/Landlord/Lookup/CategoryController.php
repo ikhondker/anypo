@@ -43,7 +43,7 @@ class CategoryController extends Controller
 		 }
 		 $categories = $categories->orderBy('name', 'ASC')->paginate(40);
  
-		 return view('landlord.lookup.categories.index', compact('categories'))->with('i', (request()->input('page', 1) - 1) * 40);
+		 return view('landlord.lookup.categories.index', compact('categories'));
 	}
 
 	/**

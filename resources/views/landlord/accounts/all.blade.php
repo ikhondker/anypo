@@ -35,7 +35,7 @@
 
 							<div class="flex-grow-1 ms-3">
 								<a class="d-inline-block link-dark" href="{{ route('accounts.show',$account->id) }}">
-									<h6 class="text-hover-primary mb-0">{{ $account->name }} [{{$account->site }}]</h6>
+									<h6 class="text-hover-primary mb-0">{{ $account->name }} [{{ $account->site }}]</h6>
 								</a>
 								<small class="d-block">Owner: {{ $account->owner->name }} </small>
 							</div>

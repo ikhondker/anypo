@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			menu
+			Menu
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="menu"/>
@@ -18,7 +18,7 @@
 			<div class="card">
 
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Menu" :export="false"/>
+					<x-tenant.cards.header-search-export-bar object="Menu" :export="true"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -26,7 +26,7 @@
 							Menu Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Menus.</h6>
 				</div>
 
 				<div class="card-body">

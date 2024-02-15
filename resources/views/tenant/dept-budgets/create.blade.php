@@ -19,15 +19,16 @@
 		@csrf
 
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">DeptBudget Info</h5>
+						<h5 class="card-title">Create Departmental Budget</h5>
+						<h6 class="card-subtitle text-muted">Create Departmental Budget.</h6>
 					</div>
 					<div class="card-body">
 						
 						<div class="mb-3">
-							<label class="form-label">Budget</label>
+							<label class="form-label">Budget Year/Name</label>
 							<select class="form-control" name="budget_id" required>
 								<option value=""><< Budget >> </option>
 								@foreach ($budgets as $budget)

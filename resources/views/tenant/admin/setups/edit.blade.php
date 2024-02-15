@@ -23,7 +23,8 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Basic Info</h5>
+							<h5 class="card-title">Edit Basic Information</h5>
+							<h6 class="card-subtitle text-muted">Basic Configuration details.</h6>
 						</div>
 						<div class="card-body">
 							<div class="mb-3">
@@ -57,53 +58,14 @@
 								</select>
 							</div>
 
+							<x-tenant.buttons.show.save/>
 						</div>
 					</div>
-				</div>
-				<div class="col-6">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Financial</h5>
-						</div>
-						<div class="card-body">
 
-							<div class="mb-3">
-								<label class="form-label">Currency</label>
-								<input type="text" name="currency" id="currency" class="form-control" placeholder="USD" value="{{ old('currency', $setup->currency ) }}" readonly>
-							</div>
-
-
-							<div class="mb-3">
-								<label class="form-label">Tax %</label>
-								<input type="text" class="form-control @error('tax') is-invalid @enderror"
-									name="tax" id="tax" placeholder="0.00"
-									value="{{ old('tax', $setup->tax ) }}"
-									/>
-								@error('currency')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-							<div class="mb-3">
-								<label class="form-label">GST %</label>
-								<input type="text" class="form-control @error('gst') is-invalid @enderror"
-									name="gst" id="gst" placeholder="0.00"
-									value="{{ old('gst', $setup->gst ) }}"
-									/>
-								@error('gst')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Web Presence</h5>
+							<h6 class="card-subtitle text-muted">Edit Web Presence details.</h6>
 						</div>
 						<div class="card-body">
 							 <div class="mb-3">
@@ -150,9 +112,44 @@
 					</div>
 				</div>
 				<div class="col-6">
+
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Address</h5>
+							<h5 class="card-title">Logo (90x90)</h5>
+							<h6 class="card-subtitle text-muted">Edit Company Logo (90x90).</h6>
+						</div>
+						<div class="card-body">
+							<div class="mb-3">
+								<img src="{{ Storage::disk('s3tl')->url($setup->logo) }}" alt="{{ $setup->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $setup->name }}" width="120px">
+								{{-- <x-tenant.show.logo logo="{{ $setup->logo }}"/> --}}
+								<x-tenant.attachment.create  />
+							</div>
+						</div>
+					</div>
+
+
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">Currency</h5>
+							<h6 class="card-subtitle text-muted">Default Functional Currency.</h6>
+						</div>
+						<div class="card-body">
+
+							<div class="mb-3">
+								<label class="form-label">Currency</label>  <x-tenant.info info="Note: You wont be able to change the Currency."/>
+								<input type="text" name="currency" id="currency" class="form-control" placeholder="USD" value="{{ old('currency', $setup->currency ) }}" readonly>
+							</div>
+
+
+							
+
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">Edit Address</h5>
+							<h6 class="card-subtitle text-muted">Edit Company Address details.</h6>
 						</div>
 						<div class="card-body">
 							<div class="mb-3">
@@ -223,48 +220,6 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-6">
-					<div class="card">
-						<div class="card-header">
-						<h5 class="card-title">Logo (90x90)</h5>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								<img src="{{ Storage::disk('s3tl')->url($setup->logo) }}" alt="{{ $setup->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $setup->name }}" width="120px">
-								{{-- <x-tenant.show.logo logo="{{ $setup->logo }}"/> --}}
-								<x-tenant.attachment.create  />
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- end col-6 -->
-				<div class="col-6">
-					<div class="card">
-						<div class="card-header">
-						<h5 class="card-title">Contact</h5>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								<label class="form-label">Cell</label>
-								<input type="text" class="form-control @error('cell') is-invalid @enderror"
-									name="cell" id="cell" placeholder="01911310509"
-									value="{{ old('cell', $setup->cell ) }}"
-									required/>
-								@error('cell')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<x-tenant.buttons.show.save/>
-						</div>
-					</div>
-				</div>
-				<!-- end col-6 -->
-
-
-			</div>
-			<!-- end row -->
 	</form>
 	<!-- /.form end -->
 @endsection

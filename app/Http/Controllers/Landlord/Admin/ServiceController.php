@@ -65,8 +65,7 @@ class ServiceController extends Controller
 			 return redirect()->route('dashboards.index')->with('error', 'No Service found!');
 		}
 
-		return view('landlord.admin.services.index', compact('services', 'addons','account'))
-			->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.admin.services.index', compact('services', 'addons','account'));
 		//->with('cur_account_id',$services->account_id)
 	}
 
@@ -84,9 +83,8 @@ class ServiceController extends Controller
 		$services = Service::orderBy('id', 'ASC')->paginate(10);
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 		$account = Account::where('id', auth()->user()->account_id)->first();
-
-		return view('landlord.admin.services.all', compact('services', 'addons','account'))
-			->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.admin.services.all', compact('services', 'addons','account'));
+	
 	}
 
 	/**

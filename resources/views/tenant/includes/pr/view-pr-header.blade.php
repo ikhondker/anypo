@@ -42,7 +42,7 @@
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-badge		value="{{ $pr->auth_status }}" label="Auth Status"/>
-					<x-tenant.show.my-date-time	value="{{$pr->auth_date }}" label="Auth Date"/>
+					<x-tenant.show.my-date-time	value="{{ $pr->auth_date }}" label="Auth Date"/>
 					<x-tenant.show.my-badge		value="{{ $pr->status }}" label="Status"/>
 					<x-tenant.show.my-text		value="{{ $pr->dept->name }}" label="Dept"/>
 					<x-tenant.show.my-text		value="{{ $pr->project->name }}" label="Project"/>

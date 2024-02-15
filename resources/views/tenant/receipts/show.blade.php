@@ -58,8 +58,8 @@
 					<h5 class="card-title">Supporting Info</h5>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-date-time value="{{$receipt->created_at }}" label="Created At"/>
-					<x-tenant.show.my-date-time value="{{$receipt->updated_at }}" label="Updated At"/>
+					<x-tenant.show.my-date-time value="{{ $receipt->created_at }}" label="Created At"/>
+					<x-tenant.show.my-date-time value="{{ $receipt->updated_at }}" label="Updated At"/>
 				</div>
 			</div>
 		</div>

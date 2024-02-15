@@ -31,8 +31,9 @@ class Invoice extends Model
 		'updated_at'		=> 'datetime',
 		'created_at'		=> 'datetime',
 		'po_date'			=> 'date',
-		'status'			=> InvoiceStatusEnum::class,
-		'payment_status'	=> PaymentStatusEnum::class,
+		// DO NOT CAST. eager loading shows error
+		//'status'			=> InvoiceStatusEnum::class,
+		//'payment_status'	=> PaymentStatusEnum::class,
 	];
 
 	/* ----------------- Scopes ------------------------- */

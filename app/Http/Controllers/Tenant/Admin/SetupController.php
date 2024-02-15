@@ -78,7 +78,7 @@ class SetupController extends Controller
 		$this->authorize('viewAny', Setup::class);
 
 		$setups = Setup::latest()->orderBy('id', 'desc')->paginate(10);
-		return view('tenant.admin.setups.index', compact('setups'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.admin.setups.index', compact('setups'));
 	}
 
 	/**
@@ -125,8 +125,8 @@ class SetupController extends Controller
 		$this->authorize('update', $setup);
 
 		//$currencies = Currency::getAll();
-		$countries = Country::getAll();
-		$admins = User::getAdmins();
+		$countries = Country::All();
+		$admins = User::tenantadmin()->get();
 
 		return view('tenant.admin.setups.edit', compact('setup', 'admins', 'countries'));
 	}

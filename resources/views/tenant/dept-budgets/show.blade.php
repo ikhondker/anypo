@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-		Department Budget 
+			Department Budget - {{ $deptBudget->dept->name }} - {{ $deptBudget->budget->fy }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="DeptBudget"/>
@@ -33,8 +33,8 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">DeptBudget Info</h5>
-					<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+					<h5 class="card-title">Budget Period</h5>
+					<h6 class="card-subtitle text-muted">Budget Period detail.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-badge value="{{ $deptBudget->budget->fy }}" label="FY"/>
@@ -64,7 +64,8 @@
 
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">DeptBudget PO</h5>
+					<h5 class="card-title">Departmental Budget for Purchase Order</h5>
+					<h6 class="card-subtitle text-muted">Allocated and utilized annual budget for this period for Purchase Order.</h6>
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
@@ -89,6 +90,7 @@
 						</div>
 					</div>
 					<h5 class="card-title">Attachments</h5>
+					<h6 class="card-subtitle text-muted">List of document attached with this budget.</h6>
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
@@ -125,7 +127,8 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">DeptBudget PR</h5>
+					<h5 class="card-title">Budget for Purchase Requisition</h5>
+					<h6 class="card-subtitle text-muted">Allocated and utilized annual budget for this period for Purchase Requisition.</h6>
 				</div>
 				<div class="card-body">
 				<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
@@ -137,7 +140,8 @@
 
 			<div class="card">
 				<div class="card-header">
-				<h5 class="card-title">GRS</h5>
+					<h5 class="card-title">Annual Good Receive Amount</h5>
+					<h6 class="card-subtitle text-muted">Allocated budget vs Good Receive Amount for this period.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
@@ -148,7 +152,8 @@
 
 			<div class="card">
 				<div class="card-header">
-				<h5 class="card-title">Payment Details</h5>
+					<h5 class="card-title">Annual Payment</h5>
+					<h6 class="card-subtitle text-muted">Allocated budget vs Payment made for this period.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>

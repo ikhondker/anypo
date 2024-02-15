@@ -37,7 +37,7 @@ class CurrencyController extends Controller
 			$currencies->where('currency', 'Like', '%' . request('term') . '%');
 		}
 		$currencies = $currencies->orderBy('enable', 'DESC')->orderBy('currency', 'ASC')->paginate(25);
-		return view('tenant.lookup.currencies.index', compact('currencies'))->with('i', (request()->input('page', 1) - 1) * 25);
+		return view('tenant.lookup.currencies.index', compact('currencies'));
 
 	}
 

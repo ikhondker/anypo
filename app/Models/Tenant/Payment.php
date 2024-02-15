@@ -34,7 +34,8 @@ class Payment extends Model
 		'updated_at'		=> 'datetime',
 		'created_at'		=> 'datetime',
 		'pay_date'			=> 'date',
-		'status'			=> PaymentStatusEnum::class
+		// DO NOT CAST. eager loading shows error
+		//'status'			=> PaymentStatusEnum::class
 	];
 
 	/* ----------------- Scopes ------------------------- */

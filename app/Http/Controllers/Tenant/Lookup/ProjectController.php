@@ -44,7 +44,7 @@ class ProjectController extends Controller
 			$projects->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$projects = $projects->with("pm")->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.projects.index', compact('projects'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.lookup.projects.index', compact('projects'));
 	}
 
 	/**

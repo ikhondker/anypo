@@ -27,8 +27,8 @@
 					<x-tenant.show.my-text		value="{{ $dept->prHierarchy->name }}" label="PR Hierarchy"/>
 					<x-tenant.show.my-text		value="{{ $dept->poHierarchy->name }}" label="PO Hierarchy"/>
 					<x-tenant.show.my-boolean	value="{{ $dept->enable }}"/>
-					<x-tenant.show.my-date-time value="{{$dept->updated_at }}" label="Updated At"/>
-					<x-tenant.show.my-date-time value="{{$dept->created_at }}" label="Created At"/>
+					<x-tenant.show.my-date-time value="{{ $dept->updated_at }}" label="Updated At"/>
+					<x-tenant.show.my-date-time value="{{ $dept->created_at }}" label="Created At"/>
 					<x-tenant.buttons.show.edit object="Dept" :id="$dept->id"/>
 				</div>
 			</div>

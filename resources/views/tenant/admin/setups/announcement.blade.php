@@ -23,6 +23,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Announcement </h5>
+							<h6 class="card-subtitle text-muted">General Announcement to all user.</h6>
 						</div>
 						<div class="card-body">
 							<div class="mb-3">

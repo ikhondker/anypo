@@ -133,7 +133,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Mr Buyer 1',
 				'email'				=> 'buyer1@example.com',
 				'designation_id'	=> '1002',
-				'dept_id'			=> '1009',
+				'dept_id'			=> '1002',
 				'role'				=> 'buyer',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -151,7 +151,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Mr Buyer 2',
 				'email'				=> 'buyer2@example.com',
 				'designation_id'	=> '1002',
-				'dept_id'			=> '1009',
+				'dept_id'			=> '1002',
 				'role'				=> 'buyer',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password

@@ -57,7 +57,7 @@ class ProductController extends Controller
 	public function index()
 	{
 		$products = Product::orderBy('id', 'ASC')->paginate(10);
-		return view('landlord.lookup.products.index', compact('products'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.lookup.products.index', compact('products'));
 	}
 
 	/**

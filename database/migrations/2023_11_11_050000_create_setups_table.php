@@ -36,7 +36,7 @@ return new class extends Migration
 			$table->string('build')->nullable()->default('1001');
 			$table->biginteger('days_gen_bill')->default(7);
 			$table->biginteger('days_due')->default(7);
-			$table->biginteger('days_pastdue')->default(14);
+			$table->biginteger('days_past_due')->default(14);
 			$table->biginteger('days_archive')->default(60);
 			//$table->biginteger('days_pay_for_addon')->default(35);
 			$table->float('discount_pc_3', 15, 2)->default(5);

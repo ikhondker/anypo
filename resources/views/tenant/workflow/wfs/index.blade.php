@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Wf
+			Workflows
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Wf"/>
@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -25,15 +25,15 @@
 							Workflow Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of workflows both open and closed.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Article ID</th>
 								<th>Entity</th>
+								<th>Document#</th>
 								<th>Hierarchy</th>
 								<th>WF Status</th>
 								<th>Auth Status</th>
@@ -45,8 +45,8 @@
 							@foreach ($wfs as $wf)
 							<tr>
 								<td>{{ $wf->id }}</td>
-								<td>{{ $wf->article_id }}</td>
 								<td>{{ $wf->entity }}</td>
+								<td><x-tenant.list.article-link entity="{{ $wf->entity }}" :id="$wf->article_id"/></td>
 								<td>{{ $wf->relHierarchy->name }}</td>
 								<td><x-tenant.list.my-badge :value="$wf->wf_status"/></td>
 								<td><x-tenant.list.my-badge :value="$wf->auth_status"/></td>

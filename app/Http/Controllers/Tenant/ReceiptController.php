@@ -78,7 +78,7 @@ class ReceiptController extends Controller
 		}
 
 		//$receipts = $receipts->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.receipts.index', compact('receipts'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.receipts.index', compact('receipts'));
 	}
 
 	/**

@@ -21,6 +21,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'activities.show','route_name' => 'activities.index', 'node_name' => 'admin'],
 
 			[ 'raw_route_name' => 'attachments.index','route_name' => 'attachments.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'attachments.show','route_name' => 'attachments.index', 'node_name' => 'admin'],
 
 			[ 'raw_route_name' => 'budgets.index','route_name' => 'budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'budgets.show','route_name' => 'budgets.index', 'node_name' => 'budget'],

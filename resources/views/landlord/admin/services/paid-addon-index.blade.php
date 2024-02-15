@@ -92,7 +92,7 @@
 		<div class="container content-space-2">
 			<!-- Heading -->
 			<div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
-				<span class="text-cap">Add-ons {{$account->id }} </span>
+				<span class="text-cap">Add-ons {{ $account->id }} </span>
 				<h2 class="h1">Need More? Buy Addon </h2>
 			</div>
 			<!-- End Heading -->

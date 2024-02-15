@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-6">
+		<div class="col-10">
 			<div class="card">
 				{{-- <div class="card-header">
 					<h5 class="card-title">Notification Info</h5>

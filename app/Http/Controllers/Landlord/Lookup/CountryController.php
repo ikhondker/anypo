@@ -45,7 +45,7 @@ class CountryController extends Controller
 		}
 		$countries = $countries->orderBy('name', 'ASC')->paginate(40);
  
-		 return view('landlord.lookup.countries.index', compact('countries'))->with('i', (request()->input('page', 1) - 1) * 40);
+		 return view('landlord.lookup.countries.index', compact('countries'));
 	}
 
 	/**

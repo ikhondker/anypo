@@ -396,7 +396,7 @@ class User extends Authenticatable implements MustVerifyEmail
 		$query->where('seeded', false);
 	}
 
-	public function scopeAdmins(Builder $query): void
+	public function scopeTenantAdmins(Builder $query): void
 	{
 		$query->where('role', UserRoleEnum::ADMIN->value)
 			->where('enable', true)

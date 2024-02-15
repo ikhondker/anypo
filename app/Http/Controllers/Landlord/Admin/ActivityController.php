@@ -52,7 +52,7 @@ class ActivityController extends Controller
 			default:
 				$activities = Activity::byUser()->orderBy('id', 'desc')->paginate(25);
 		}
-		return view('landlord.admin.activities.index', compact('activities'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.admin.activities.index', compact('activities'));
 	}
 
 
@@ -65,7 +65,7 @@ class ActivityController extends Controller
 	{
 		$this->authorize('viewAll',Activity::class);
 		$activities = Activity::latest()->orderBy('id', 'desc')->paginate(25);
-		return view('landlord.admin.activities.all', compact('activities'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.admin.activities.all', compact('activities'));
 	}
 
 

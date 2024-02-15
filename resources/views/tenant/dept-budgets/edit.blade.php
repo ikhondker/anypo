@@ -6,7 +6,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Edit DeptBudget
+			Edit Department Budget - {{ $deptBudget->dept->name }} - {{ $deptBudget->budget->fy }}
 		@endslot
 		@slot('buttons')
 		<x-tenant.buttons.header.save/>
@@ -21,17 +21,16 @@
 		@method('PUT')
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">DeptBudget Info</h5>
+							<h5 class="card-title">Edit Departmental Budget</h5>
+							<h6 class="card-subtitle text-muted">Edit Departmental Budget.</h6>
 						</div>
 						<div class="card-body">
 
-							<x-tenant.edit.id-read-only :value="$deptBudget->id"/>
-
 							<div class="mb-3">
-								<label class="form-label">FY</label>
+								<label class="form-label">FY</label> <x-tenant.info info="Note: You wont be able to change the Fiscal Year (FY)."/>
 								<input type="text" name="budget_fy" id="budget_fy" class="form-control" placeholder="" value="{{ $deptBudget->budget->fy }}" readonly>
 							</div>
 							<div class="mb-3">

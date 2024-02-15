@@ -268,7 +268,7 @@ class UserController extends Controller
 	{
 		//$users = User::whereIn('role',['emp','user','supervisor','owner'])->orderBy('id','desc')->paginate(20);
 		$users = User::latest()->orderBy('id', 'desc')->paginate(10);
-		return view('tenant.admin.users.role', compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.admin.users.role', compact('users'));
 	}
 
 	// TODO bottom footer

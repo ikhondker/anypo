@@ -13,17 +13,18 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-10">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Reports Lists</h5>
+					<h6 class="card-subtitle text-muted">Lists of available reports and brief description.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
+								<th>#</th>
 								<th>Name</th>
 								<th>Description</th>
 								<th>Actions</th>
@@ -37,7 +38,7 @@
 									<td>{{ $report->name }}</td>
 									<td>{{ $report->summary }}</td>
 									<td class="table-action">
-										<a class="btn btn-primary text-white" href="{{ route('reports.run',$report->id) }}">Run</a>
+										<a class="btn btn-primary text-white" href="{{ route('reports.run',$report->id) }}"><i data-feather="printer"></i> Run Report</a>
 									</td>
 								</tr>
 							@endforeach
@@ -47,7 +48,7 @@
 					</table>
 
 					<div class="row pt-3">
-						aa
+							{{ $reports->links() }}
 					</div>
 					<!-- end pagination -->
 					

@@ -36,7 +36,7 @@
 				</div>
 			</div>
 
-			<x-landlord.show.my-text  value="{{$attachment->user_created_by->name }}" label="Crated By"/>
+			<x-landlord.show.my-text  value="{{ $attachment->user_created_by->name }}" label="Crated By"/>
 			<x-landlord.show.my-date-time  value="{{ $attachment->created_at }}"/>
 			<x-landlord.show.my-text  value="{{ $attachment->user_updated_by->name }}"  label="Updated By"/>
 			<x-landlord.show.my-date-time  value="{{ $attachment->updated_at }}"/>

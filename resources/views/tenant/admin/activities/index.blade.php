@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title','Activities')
+@section('title','Activity Log')
 
 @section('content')
 
 <x-tenant.page-header>
 	@slot('title')
-		Activities
+		Activity Log
 	@endslot
 	@slot('buttons')
 
@@ -48,11 +48,9 @@
 						@foreach ($activities as $activity)
 						<tr>
 							<td>{{ $activity->id }}</td>
-							<td>
-								<x-tenant.list.my-date-time :value="$activity->created_at" />
-							</td>
+							<td><x-tenant.list.my-date-time :value="$activity->created_at" /></td>
 							<td>{{ $activity->object_name }}</td>
-							<td>{{ $activity->object_id }}</td>
+							<td><x-tenant.list.article-link entity="{{ $activity->object_name }}" :id="$activity->object_id"/></td>
 							<td>{{ $activity->event_name }}</td>
 							<td>{{ $activity->column_name }}</td>
 							<td>{{ $activity->prior_value }}</td>

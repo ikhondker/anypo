@@ -76,7 +76,7 @@ class AccountController extends Controller
 	public function index()
 	{
 		$accounts = Account::byAccount()->orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.accounts.index', compact('accounts'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.accounts.index', compact('accounts'));
 	}
 
 	/**
@@ -88,7 +88,7 @@ class AccountController extends Controller
 	{
 		$this->authorize('viewAll', Account::class);
 		$accounts = Account::orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.accounts.all', compact('accounts'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.accounts.all', compact('accounts'));
 	}
 
 	/**
@@ -288,7 +288,7 @@ class AccountController extends Controller
 		$accountService->gb				= $service->gb;
 		$accountService->price			= $service->price;
 		$accountService->start_date		= now();
-		//$accountService->end_date		= now()->addMonth($service->mnth);;
+		//$accountService->end_date		= now()->addMonth($service->mnth);
 		$accountService->save();
 
 		//$account_service_id			= $accountService->id;

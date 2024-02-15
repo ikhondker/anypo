@@ -35,7 +35,8 @@ class Receipt extends Model
 		'updated_at'		=> 'datetime',
 		'created_at'		=> 'datetime',
 		'receive_date'		=> 'date',
-		'status'			=> ReceiptStatusEnum::class
+		// DO NOT CAST. eager loading shows error
+		//'status'			=> ReceiptStatusEnum::class
 	];
 
 	/* ----------------- Scopes ------------------------- */

@@ -49,9 +49,11 @@ return new class extends Migration
 			$table->float('fc_amount_paid')->default(0);
 			/** ENUM */
 			$table->string('status')->default(ClosureStatusEnum::OPEN->value);;
+			$table->foreign('status')->references('code')->on('statuses');
 			/** end ENUM */
 			/** ENUM */
 			$table->string('payment_status')->default(PaymentStatusEnum::DUE->value);;
+			$table->foreign('payment_status')->references('code')->on('statuses');
 			/** end ENUM */
 			/** ENUM */
 			$table->string('auth_status')->default(AuthStatusEnum::DRAFT->value);

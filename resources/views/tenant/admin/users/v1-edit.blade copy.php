@@ -79,48 +79,10 @@
 
 						</div>
 					</div>
-
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">User Avatar</h5>
-							<h6 class="card-subtitle text-muted">User's Avatar.</h6>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								{{-- <x-tenant.show.avatar avatar="{{ $user->avatar }}"/> --}}
-								<img src="{{ Storage::disk('s3ta')->url($user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
-
-								<x-tenant.attachment.create  />
-							</div>
-						</div>
-					</div>
-	
 				</div>
 				<!-- end col-6 -->
 
 				<div class="col-6">
-
-					@if ( auth()->user()->isAdmin() && (auth()->user()->id <> $user->id) )
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Role Modify</h5>
-							<h6 class="card-subtitle text-muted">Change User's Role.</h6>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								<label class="form-label text-danger">Modify Role To:</label>
-								<select class="form-control" name="role">
-									<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }}  value="user">User</option>
-									<option {{ 'buyer' == old('role',$user->role->value) ? 'selected' : '' }} value="buyer">Buyer</option>
-									<option {{ 'hod' == old('role',$user->role->value) ? 'selected' : '' }} value="hod">HoD</option>
-									<option {{ 'cxo' == old('role',$user->role->value) ? 'selected' : '' }} value="cxo">CxO</option>
-									<option {{ 'admin' == old('role',$user->role->value) ? 'selected' : '' }} value="admin">Admin</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					@endif
-
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">User Address</h5>
@@ -196,6 +158,52 @@
 						</div>
 					</div>
 
+
+					@if ( auth()->user()->isAdmin() && (auth()->user()->id <> $user->id) )
+
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">Role Modify</h5>
+							<h6 class="card-subtitle text-muted">Change User's Role.</h6>
+						</div>
+						<div class="card-body">
+							<div class="mb-3">
+								<label class="form-label text-danger">Modify Role To:</label>
+								<select class="form-control" name="role">
+									<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }}  value="user">User</option>
+									<option {{ 'buyer' == old('role',$user->role->value) ? 'selected' : '' }} value="buyer">Buyer</option>
+									<option {{ 'hod' == old('role',$user->role->value) ? 'selected' : '' }} value="hod">HoD</option>
+									<option {{ 'cxo' == old('role',$user->role->value) ? 'selected' : '' }} value="cxo">CxO</option>
+									<option {{ 'admin' == old('role',$user->role->value) ? 'selected' : '' }} value="admin">Admin</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					@endif
+
+				</div>
+				<!-- end col-6 -->
+			</div>
+
+			<div class="row">
+				<div class="col-6">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">User Avatar</h5>
+							<h6 class="card-subtitle text-muted">User's Avatar.</h6>
+						</div>
+						<div class="card-body">
+							<div class="mb-3">
+								{{-- <x-tenant.show.avatar avatar="{{ $user->avatar }}"/> --}}
+								<img src="{{ Storage::disk('s3ta')->url($user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
+
+								<x-tenant.attachment.create  />
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end col-6 -->
+				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Other Detail</h5>
@@ -227,16 +235,6 @@
 							<x-tenant.buttons.show.save/>
 						</div>
 					</div>
-				</div>
-				<!-- end col-6 -->
-			</div>
-
-			<div class="row">
-				<div class="col-6">
-				</div>
-				<!-- end col-6 -->
-				<div class="col-6">
-					
 				</div>
 				<!-- end col-6 -->
 

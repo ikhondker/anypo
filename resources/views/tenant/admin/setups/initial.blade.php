@@ -26,6 +26,8 @@ $setup = Setup::first();
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Currency Setup </h5>
+							<h6 class="card-subtitle text-muted">Default Functional Currency setup.</h6>
+
 						</div>
 						<div class="card-body">
 							<div class="mb-3">

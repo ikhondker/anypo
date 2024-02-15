@@ -66,7 +66,7 @@ class InvoiceController extends Controller
 	{
 		// front end invoice list
 		$invoices = Invoice::byAccount()->orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.admin.invoices.index', compact('invoices'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.admin.invoices.index', compact('invoices'));
 	}
 
 
@@ -80,7 +80,7 @@ class InvoiceController extends Controller
 		// backend invoice list
 		$this->authorize('viewAll',Invoice::class);
 		$invoices = Invoice::orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.admin.invoices.all', compact('invoices'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.admin.invoices.all', compact('invoices');
 	}
 
 	/**

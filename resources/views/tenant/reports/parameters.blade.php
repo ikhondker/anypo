@@ -23,7 +23,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title"> {{ $report->name }}</h5>
-						<h6 class="card-subtitle text-muted">Please enter reports parameter and clink on run.</h6>
+						<h6 class="card-subtitle text-muted">Please enter reports parameter and click on 'Run Report'.</h6>
 					</div>
 					<div class="card-body">
 							{{-- <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id',$report->id ) }}"> --}}

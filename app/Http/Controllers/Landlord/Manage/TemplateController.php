@@ -80,7 +80,7 @@ class TemplateController extends Controller
 		$templates = $templates->orderBy('id', 'DESC')->paginate(10);
 		//$templates = Template::latest()->orderBy('id','desc')->paginate(10);
 
-		return view('landlord.manage.templates.index', compact('templates'))->with('i', (request()->input('page', 1) - 1) * 20);
+		return view('landlord.manage.templates.index', compact('templates'));
 	}
 
 	/**

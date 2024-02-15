@@ -36,7 +36,7 @@ class BankAccountController extends Controller
 			$bankAccounts->where('ac_name', 'Like', '%' . request('term') . '%');
 		}
 		$bank_accounts = $bank_accounts->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.bank-accounts.index', compact('bank_accounts'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.lookup.bank-accounts.index', compact('bank_accounts'));
 	}
 
 	/**

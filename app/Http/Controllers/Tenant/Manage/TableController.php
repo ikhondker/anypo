@@ -179,7 +179,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
-		return view('tenant.manage.tables.controllers', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.controllers', compact('filesInFolder'));
 	}
 	
 	public function fncControllers()
@@ -191,7 +191,7 @@ class TableController extends Controller
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
 		
 		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
-		return view('tenant.manage.tables.controllers-fnc', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.controllers-fnc', compact('filesInFolder'));
 	}
 
 	public function helpers()
@@ -202,7 +202,7 @@ class TableController extends Controller
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
 		
 		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
-		return view('tenant.manage.tables.helpers', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.helpers', compact('filesInFolder'));
 	}
 
 	public function fncHelpers()
@@ -213,7 +213,7 @@ class TableController extends Controller
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
 		
 		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
-		return view('tenant.manage.tables.helpers-fnc', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.helpers-fnc', compact('filesInFolder'));
 	}
 
 
@@ -223,7 +223,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
-		return view('tenant.manage.tables.models', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.models', compact('filesInFolder'));
 	}
 
 	public function fncModels()
@@ -232,7 +232,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
-		return view('tenant.manage.tables.models-fnc', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.models-fnc', compact('filesInFolder'));
 	}
 
 	public function routes()
@@ -240,7 +240,7 @@ class TableController extends Controller
 		$this->authorize('routes', Table::class);
 		// https://laravel.com/api/6.x/Illuminate/Routing/RouteCollection.html
 		$routes = Route::getRoutes()->getRoutesByName();
-		return view('tenant.manage.tables.routes-all', compact('routes'))->with('i', 0);
+		return view('tenant.manage.tables.routes-all', compact('routes'));
 	}
 
 	public function routeCode()
@@ -248,7 +248,7 @@ class TableController extends Controller
 		$this->authorize('routeCode', Table::class);
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
-		return view('tenant.manage.tables.routes', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.routes', compact('filesInFolder'));
 	}
 
 	public function policies()
@@ -256,14 +256,14 @@ class TableController extends Controller
 		$this->authorize('policies', Table::class);
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');	// <<============= Models
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
-		return view('tenant.manage.tables.policies', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.policies', compact('filesInFolder'));
 	}
 
 	public function fncPolicies()
 	{
 		$this->authorize('models', Table::class);
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_POLICY'));
-		return view('tenant.manage.tables.policies-fnc', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.policies-fnc', compact('filesInFolder'));
 	}
 
 	public function comments()
@@ -279,7 +279,7 @@ class TableController extends Controller
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant\Admin');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
 
-		return view('tenant.manage.tables.comments', compact('filesInFolder'))->with('i', 0);
+		return view('tenant.manage.tables.comments', compact('filesInFolder'));
 
 	}
 

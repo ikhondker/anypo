@@ -26,7 +26,7 @@
 		<x-tenant.charts.budget-by-dept-bar/>
 	</div>
 
-	<x-tenant.widgets.pr-lists/>
+	<x-tenant.widgets.pr.lists/>
 	
 
 	<div class="row">

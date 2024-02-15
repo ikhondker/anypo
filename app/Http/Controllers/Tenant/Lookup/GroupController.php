@@ -39,7 +39,7 @@ class GroupController extends Controller
 			$groups->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$groups = $groups->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.groups.index', compact('groups'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.lookup.groups.index', compact('groups'));
 	}
 
 	/**

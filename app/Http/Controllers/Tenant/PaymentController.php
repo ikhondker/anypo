@@ -71,7 +71,7 @@ class PaymentController extends Controller
 				$payments = $payments->with('bank_account')->with('payee')->ByUserAll()->paginate(10);
 				Log::warning("tenant.payment.index Other roles!");
 		}
-		return view('tenant.payments.index', compact('payments'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.payments.index', compact('payments'));
 	}
 
 	/**

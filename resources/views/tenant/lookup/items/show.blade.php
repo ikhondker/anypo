@@ -31,8 +31,8 @@
 					<x-tenant.show.my-number	value="{{ $item->price }}" label="Price"/>
 					
 					<x-tenant.show.my-boolean	value="{{ $item->enable }}"/>
-					<x-tenant.show.my-created_at value="{{$item->created_at }}"/>
-					<x-tenant.show.my-updated_at value="{{$item->updated_at }}"/>
+					<x-tenant.show.my-created_at value="{{ $item->created_at }}"/>
+					<x-tenant.show.my-updated_at value="{{ $item->updated_at }}"/>
 					
 					<x-tenant.buttons.show.edit object="Item" :id="$item->id"/>
 				</div>

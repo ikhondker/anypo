@@ -39,6 +39,7 @@ return new class extends Migration
 			$table->text('notes')->nullable();
 			/** ENUM */
 			$table->string('status')->default(ReceiptStatusEnum::RECEIVED->value);;
+			$table->foreign('status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

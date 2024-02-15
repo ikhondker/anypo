@@ -48,7 +48,7 @@ class WfController extends Controller
 			$wfs->where('article_id', 'Like', '%' . request('term') . '%');
 		}
 		$wfs = $wfs->with("relHierarchy")->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.workflow.wfs.index', compact('wfs'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.workflow.wfs.index', compact('wfs'));
 	}
 
 	/**

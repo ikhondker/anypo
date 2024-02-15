@@ -35,7 +35,7 @@ class EntityController extends Controller
 		$this->authorize('viewAny', Entity::class);
 
 		$entities = Entity::latest()->orderBy('entity', 'asc')->paginate(20);
-		return view('tenant.manage.entities.index', compact('entities'))->with('i', (request()->input('page', 1) - 1) * 20);
+		return view('tenant.manage.entities.index', compact('entities'));
 	}
 
 	/**

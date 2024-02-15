@@ -16,7 +16,7 @@
 	@include('tenant.includes.notification-stat')
 	
 	<div class="row">
-		<div class="col-10">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -28,7 +28,7 @@
 							Notification Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Notifications.</h6>
 				</div>
 
 				<div class="card-body">

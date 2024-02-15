@@ -47,8 +47,9 @@ class Po extends Model
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
 		'po_date'			=> 'date',
-		'closure_status'		=> ClosureStatusEnum::class,
-		'auth_status'	=> AuthStatusEnum::class,
+		// DO NOT CAST. eager loading shows error
+		// 'closure_status'		=> ClosureStatusEnum::class,
+		// 'auth_status'	=> AuthStatusEnum::class,
 	];
 
 

@@ -33,8 +33,8 @@
 					<x-tenant.show.my-text		value="{{ $uploadItem->category_id }}" label="Category ID"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->uom_id }}" label="UoM ID"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->oem_id }}" label="OEM ID"/>
-					<x-tenant.show.my-created_at	value="{{$uploadItem->created_at }}"/>
-					<x-tenant.show.my-updated_at	value="{{$uploadItem->updated_at }}"/>
+					<x-tenant.show.my-created_at	value="{{ $uploadItem->created_at }}"/>
+					<x-tenant.show.my-updated_at	value="{{ $uploadItem->updated_at }}"/>
 						<x-tenant.buttons.show.edit object="UploadItem" :id="$uploadItem->id"/>
 
 				</div>

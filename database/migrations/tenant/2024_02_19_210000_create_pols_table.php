@@ -42,6 +42,7 @@ return new class extends Migration
 			$table->float('received_qty')->default(0);
 			/** ENUM */
 			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);;
+			$table->foreign('closure_status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->boolean('asset_created')->default(false); 
 			$table->date('asset_date')->nullable();

@@ -92,7 +92,7 @@ class PoController extends Controller
 				Log::warning("tenant.po.index Other roles!");
 		}
 
-		return view('tenant.pos.index', compact('pos'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.pos.index', compact('pos'));
 	}
 
 	/**

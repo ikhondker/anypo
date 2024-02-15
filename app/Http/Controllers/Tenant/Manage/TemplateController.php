@@ -64,7 +64,7 @@ class TemplateController extends Controller
 		$templates = $templates->with('user')->orderBy('id', 'DESC')->paginate(10);
 		//$templates = Template::latest()->orderBy('id','desc')->paginate(10);
 
-		return view('tenant.manage.templates.index', compact('templates'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.manage.templates.index', compact('templates'));
 	}
 
 	/**

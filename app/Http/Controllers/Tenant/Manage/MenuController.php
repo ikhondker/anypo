@@ -37,7 +37,7 @@ class MenuController extends Controller
 		}
 		$menus = $menus->orderBy('node_name', 'ASC')->paginate(40);
 
-		return view('tenant.manage.menus.index', compact('menus'))->with('i', (request()->input('page', 1) - 1) * 40);
+		return view('tenant.manage.menus.index', compact('menus'));
 	}
 
 	/**
@@ -114,4 +114,15 @@ class MenuController extends Controller
 
 		return redirect()->route('menus.index')->with('success', 'Menu status Updated successfully');
 	}
+
+	public function export()
+	{
+		$data = DB::select("
+			SELECT id, raw_route_name, route_name, node_name, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at FROM menus
+			");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('menus', $dataArray);
+	}
+
 }

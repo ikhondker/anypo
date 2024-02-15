@@ -43,7 +43,7 @@ class BudgetController extends Controller
 		}
 		$budgets = $budgets->orderBy('id', 'DESC')->paginate(10);
 
-		return view('tenant.budgets.index', compact('budgets'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.budgets.index', compact('budgets'));
 	}
 
 	/**

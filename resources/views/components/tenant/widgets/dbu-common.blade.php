@@ -26,7 +26,7 @@
 							<th>FY</th>
 							<th>Date</th>
 							<th>Entity</th>
-							<th>Article</th>
+							<th>Document#</th>
 							<th>Event</th>
 							<th>Project</th>
 							<th class="text-end">PR (Booked)</th>
@@ -48,7 +48,7 @@
 							<td>{{ $dbu->deptBudget->budget->fy }}</td>
 							<td><x-tenant.list.my-date :value="$dbu->created_at"/></td>
 							<td>{{ $dbu->entity }}</td>
-							<td>{{ $dbu->article_id}}</td>
+							<td><x-tenant.list.article-link entity="{{ $dbu->entity }}" :id="$dbu->article_id"/></td>
 							<td>{{ $dbu->event }}</td>
 							<td>{{ $dbu->project->name }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr_booked"/></td>

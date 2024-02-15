@@ -36,7 +36,7 @@
 							@foreach ($tables as $table)
 									@foreach ($table as $key => $value)
 									<tr>
-										<td class=""> {{ ++$i }}</td>
+										<td class="">{{ ++$i }}</td>
 										<td class=""><a href="{{ route('tables.structure', ['table'=>$value]) }}"><span class="text-info">{{ $value }}</span></a></td>
 										<td class="table-action">
 											{{-- <a class="btn btn-success" href="{{ route('tables.structure', ['table'=>$value]) }}">View</a> --}}

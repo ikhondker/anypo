@@ -53,7 +53,7 @@ class MenuController extends Controller
 		}
 		$menus = $menus->orderBy('route_name', 'ASC')->paginate(40);
 
-		return view('landlord.manage.menus.index', compact('menus'))->with('i', (request()->input('page', 1) - 1) * 40);
+		return view('landlord.manage.menus.index', compact('menus'));
 	}
 
 	/**

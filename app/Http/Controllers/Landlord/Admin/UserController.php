@@ -87,7 +87,7 @@ class UserController extends Controller
 				$users= $users->byUser()->orderBy('id', 'DESC')->paginate(10);
 				Log::warning("landlord.users.index Other roles!");
 		}
-		return view('landlord.admin.users.index',compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('landlord.admin.users.index',compact('users'));
 	}
 
 
@@ -106,7 +106,7 @@ class UserController extends Controller
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$users= $users->orderBy('id', 'DESC')->paginate(20);
-		return view('landlord.admin.users.all',compact('users'))->with('i', (request()->input('page', 1) - 1) * 20);
+		return view('landlord.admin.users.all',compact('users'));
 	}
 
 
@@ -248,7 +248,7 @@ class UserController extends Controller
 	public function role()
 	{
 		$users = User::latest()->orderBy('id','desc')->paginate(10);
-		return view('users.role',compact('users'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('users.role',compact('users'));
 	}
 
 	public function updaterole(User $user, $role)

@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title','Wf')
+@section('title','Workflow Details')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Wf
+			Workflow Details
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Wf"/>
@@ -15,32 +15,22 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-6">
+		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Wf Info</h5>
+					<h5 class="card-title">Wf Details</h5>
+					<h6 class="card-subtitle text-muted">Details of workflow.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge		value="{{ $wf->id }}" label="ID"/>
 					<x-tenant.show.my-text		value="{{ $wf->entity }}" label="Entity"/>
-					<x-tenant.show.my-text		value="{{ $wf->article_id }}" label="Article"/>
+					<x-tenant.show.article-link entity="{{ $wf->entity }}" :id="$wf->article_id"/>
 					<x-tenant.show.my-text		value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
-				</div>
-			</div>
-		</div>
-		<!-- end col-6 -->
-		<div class="col-6">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Supporting Info</h5>
-				</div>
-				<div class="card-body">
+					<x-tenant.show.my-date-time		value="{{ $wf->created_at }}" label="Date"/>
 					<x-tenant.show.my-badge		value="{{ $wf->wf_status }}" label="WF Status"/>
 					<x-tenant.show.my-badge		value="{{ $wf->auth_status }}" label="Auth Status"/>
 					<x-tenant.show.my-text		value="{{ $wf->last_performer->name }}" label="Final Approver"/>
 					<x-tenant.show.my-date-time	value="{{ $wf->auth_date }}" label="Auth Date"/>
-					{{-- <x-tenant.show.my-date-time value="{{$wf->created_at }}" label="Created At"/>
-					<x-tenant.show.my-date-time value="{{$wf->updated_at }}" label="Updated At"/> --}}
+				
 				</div>
 			</div>
 		</div>
@@ -49,10 +39,11 @@
 	<!-- end row -->
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Wf Details</h5>
+					<h5 class="card-title">Workflow History</h5>
+					<h6 class="card-subtitle text-muted">Workflow History with performer and actions.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table table-bordered table-striped">

@@ -36,7 +36,7 @@ class CategoryController extends Controller
 		}
 		$categories = $categories->orderBy('id', 'DESC')->paginate(10);
 
-		return view('tenant.lookup.categories.index', compact('categories'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.lookup.categories.index', compact('categories'));
 	}
 
 	/**

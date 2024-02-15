@@ -36,7 +36,7 @@ class WarehouseController extends Controller
 			$warehouses->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$warehouses = $warehouses->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.warehouses.index', compact('warehouses'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.lookup.warehouses.index', compact('warehouses'));
 	}
 
 	/**

@@ -40,7 +40,7 @@ class UploadItemController extends Controller
 			$upload_items->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$upload_items = $upload_items->with('owner')->orderBy('id', 'DESC')->paginate(25);
-		return view('tenant.lookup.upload-items.index', compact('upload_items'))->with('i', (request()->input('page', 1) - 1) * 25);
+		return view('tenant.lookup.upload-items.index', compact('upload_items'));
 	}
 
 	/**

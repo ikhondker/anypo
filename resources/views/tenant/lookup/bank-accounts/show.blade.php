@@ -28,8 +28,8 @@
 					<x-tenant.show.my-text		value="{{ $bankAccount->bank_name }}" label="Bank Name"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->branch_name }}" label="Branch Name"/>
 					<x-tenant.show.my-boolean	value="{{ $bankAccount->enable }}"/>
-					<x-tenant.show.my-created_at value="{{$bankAccount->created_at }}"/>
-					<x-tenant.show.my-updated_at value="{{$bankAccount->updated_at }}"/>
+					<x-tenant.show.my-created_at value="{{ $bankAccount->created_at }}"/>
+					<x-tenant.show.my-updated_at value="{{ $bankAccount->updated_at }}"/>
 					<x-tenant.buttons.show.edit object="BankAccount" :id="$bankAccount->id"/>
 		
 				</div>

@@ -31,7 +31,8 @@ class Prl extends Model
 	protected $casts = [
 		'updated_at'		=> 'datetime',
 		'created_at'		=> 'datetime',
-		'closure_status'	=> ClosureStatusEnum::class,
+		// DO NOT CAST. eager loading shows error
+		// 'closure_status'	=> ClosureStatusEnum::class,
 	];
 
 	/**

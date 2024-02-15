@@ -24,13 +24,13 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Budget Info</h5>
+							<h5 class="card-title">Edit Budget Detail</h5>
 							<h6 class="card-subtitle text-muted">Note: To edit budget amount, edit the Department budget. It will be automatically reflected in company budget.</h6>
 						</div>
 						<div class="card-body">
 
 							<div class="mb-3">
-								<label class="form-label">FY</label>
+								<label class="form-label">FY</label> <x-tenant.info info="Note: You wont be able to change the Fiscal Year (FY)."/>
 								<input type="text" name="fy" id="fy" class="form-control" placeholder="ID" value="{{ $budget->fy }}" readonly>
 							</div>
 							<div class="mb-3">

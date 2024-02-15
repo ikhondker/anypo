@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title','Prl')
+@section('title','Requisition Lines Lists')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-		Prl
+			Requisition Lines Lists
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Prl"/>
@@ -13,7 +13,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-10">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -22,10 +22,10 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Requisition  Lines Lists
+							Requisition Lines Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of  Requisition Lines.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
@@ -35,9 +35,13 @@
 								<th>PO</th>
 								<th>Item</th>
 								<th>Summary</th>
-								<th>Qty</th>
-								<th>Price</th>
-								<th>Amount</th>
+								<th class="text-end">Qty</th>
+								<th class="text-end">Price</th>
+								<th class="text-end">Sub Total</th>
+								<th class="text-end">Tax</th>
+								<th class="text-end">GST</th>
+								<th class="text-end">Amount</th>
+	
 								<th>Enable</th>
 								<th>Actions</th>
 							</tr>
@@ -49,9 +53,12 @@
 								<td>{{ $prl->pr_id }}</td>
 								<td>{{ $prl->item_id }}</td>
 								<td>{{ $prl->summary }}</td>
-								<td>{{ $prl->qty }}</td>
-								<td>{{ $prl->price }}</td>
-								<td>{{ $prl->amount }}</td>
+								<td class="text-end"><x-tenant.list.my-number :value="$prl->qty"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$prl->price"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$prl->sub_total"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$prl->tax"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$prl->gst"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>
 								<td><x-tenant.list.my-boolean :value="$prl->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Prl" :id="$prl->id" :show="false"/>

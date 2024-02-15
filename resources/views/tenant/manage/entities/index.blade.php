@@ -18,7 +18,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Entity List</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Entities.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">

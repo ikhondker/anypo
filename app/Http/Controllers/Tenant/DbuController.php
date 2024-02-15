@@ -25,7 +25,7 @@ class DbuController extends Controller
 		}
 
 		$dbus = $dbus->with('dept')->with('deptBudget.budget')->with('project')->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.dbus.index', compact('dbus'))->with('i', (request()->input('page', 1) - 1) * 10);
+		return view('tenant.dbus.index', compact('dbus'));
 	}
 
 	/**
@@ -77,4 +77,25 @@ class DbuController extends Controller
 	{
 		//
 	}
+
+	public function export()
+	{
+		$this->authorize('export', Budget::class);
+		$data = DB::select("
+		SELECT u.id, u.entity, u.article_id, u.event, o.name user_name, d.name dept_name, p.name project_name, 
+		u.amount_pr_booked, u.amount_pr_issued, u.amount_po_booked, u.amount_po_issued, u.amount_grs, u.amount_invoice, u.amount_payment, 
+		u.created_at
+		FROM dbus u,dept_budgets db,budgets b,depts d, projects p, users o
+		WHERE u.dept_budget_id = db.id
+		AND db.budget_id = b.id
+		AND db.dept_id=d.id
+		AND u.project_id=p.id
+		AND u.user_id=o.id
+
+		");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('dbus', $dataArray);
+	}
+
 }

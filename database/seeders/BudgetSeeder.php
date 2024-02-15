@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
+use Faker\Generator;
+
 use App\Models\Tenant\Budget;
 use Carbon\Carbon;
 
@@ -20,6 +22,8 @@ class BudgetSeeder extends Seeder
 		//Schema::disableForeignKeyConstraints();
 		//Budget::truncate();
 		//Schema::enableForeignKeyConstraints();
+		$faker = app(Generator::class);
+
 
 		$budgets =  [
 			// [
@@ -35,6 +39,7 @@ class BudgetSeeder extends Seeder
 				'start_date'	=> Carbon::parse('2024-01-01'),
 				'end_date'		=> Carbon::parse('2024-12-31'),
 				'amount'		=> 700000,  //TODO remove
+				'notes'			=> $faker->paragraph,
 			],
 			// [
 			//	 'fy'			=> '2025',

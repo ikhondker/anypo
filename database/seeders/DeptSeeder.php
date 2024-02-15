@@ -10,7 +10,7 @@ use Faker\Generator;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Workflow\Hierarchy;
 
-class DeptSeeder extends Seeder
+class DeptSeeder extends Seeder 
 {
 	/**
 	 * Run the database seeds.

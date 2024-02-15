@@ -43,7 +43,7 @@ class EntityController extends Controller
 	public function index()
 	{
 		$entities = Entity::latest()->orderBy('entity', 'asc')->paginate(20);
-		return view('landlord.manage.entities.index', compact('entities'))->with('i', (request()->input('page', 1) - 1) * 20);
+		return view('landlord.manage.entities.index', compact('entities'));
 	}
 
 	/**
