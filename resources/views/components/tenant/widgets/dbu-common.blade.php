@@ -50,7 +50,7 @@
 							<td>{{ $dbu->entity }}</td>
 							<td><x-tenant.list.article-link entity="{{ $dbu->entity }}" :id="$dbu->article_id"/></td>
 							<td>{{ $dbu->event }}</td>
-							<td>{{ $dbu->project->name }}</td>
+							<td><x-tenant.list.project-link id="{{ $dbu->project_id }}" :label="$dbu->project->name"/></td>
 							<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr_booked"/></td>
 							<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr_issued"/></td>
 							<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_po_booked"/></td>
@@ -59,7 +59,7 @@
 							<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_payment"/></td>
 
 							<td class="table-action">
-								<x-tenant.list.actions object="Dbu" :id="$dbu->id"/>
+								<x-tenant.list.actions object="Dbu" :id="$dbu->id" :edit="false"/>
 							</td>
 						</tr>
 						@endforeach

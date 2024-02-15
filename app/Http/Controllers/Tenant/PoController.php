@@ -210,7 +210,7 @@ class PoController extends Controller
 		$pols = Pol::where('po_id', $po->id)->get()->all();
 
 		// approve-reject form
-		if ($po->auth_status->value == AuthStatusEnum::INPROCESS->value) {
+		if ($po->auth_status == AuthStatusEnum::INPROCESS->value) {
 			try {
 				$wfl = Wfl::where('wf_id', $po->wf_id)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
@@ -385,7 +385,7 @@ class PoController extends Controller
 	{
 		$this->authorize('submit', $po);
 
-		if ($po->auth_status->value <> AuthStatusEnum::DRAFT->value) {
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.index')->with('error', 'You can only submit if the status is '. AuthStatusEnum::DRAFT->value .' !');
 		}
 

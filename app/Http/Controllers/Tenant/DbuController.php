@@ -59,7 +59,7 @@ class DbuController extends Controller
 	 */
 	public function edit(Dbu $dbu)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -67,7 +67,7 @@ class DbuController extends Controller
 	 */
 	public function update(UpdateDbuRequest $request, Dbu $dbu)
 	{
-		//
+		abort(403);
 	}
 
 	/**

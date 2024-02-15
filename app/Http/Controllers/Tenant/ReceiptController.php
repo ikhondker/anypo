@@ -106,6 +106,8 @@ class ReceiptController extends Controller
 		$pol_id =$request->input('pol_id');
 		$pol = Pol::where('id', $pol_id)->first();
 
+		//TODO check if PO is approved
+
 		$request->merge(['receive_date'	=> date('Y-m-d H:i:s')]);
 		$request->merge(['receiver_id'	=> 	auth()->user()->id ]);
 		$request->merge(['price'	=> 	$pol->price ]);
