@@ -8,7 +8,7 @@
 				<h5 class="card-title">
 					{{ $card_header }}
 				</h5>
-				<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+				<h6 class="card-subtitle text-muted">List of Requisitions.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table">
@@ -24,7 +24,7 @@
 							<th class="text-end">Amount</th>
 							<th>Approval</th> 
 							<th>Status</th>
-							<th>Action</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,7 +34,7 @@
 							<td><a class="text-info" href="{{ route('prs.show',$pr->id) }}">{{ $pr->summary }}</a></td>
 							<td><x-tenant.list.my-date :value="$pr->pr_date"/></td>
 							<td>{{ $pr->requestor->name }}</td>
-							<td>{{ $pr->relDept->name }}</td>
+							<td>{{ $pr->dept->name }}</td>
 							<td>{{ $pr->currency }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$pr->amount"/></td>
 							<td><x-tenant.list.my-badge :value="$pr->auth_status"/></td>

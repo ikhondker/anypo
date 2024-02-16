@@ -13,6 +13,7 @@
 		@endslot
 	</x-tenant.page-header>
 
+	<x-tenant.dashboards.budget-stat :id="$budget->id"/>
 
 	<div class="row">
 		<div class="col-6">

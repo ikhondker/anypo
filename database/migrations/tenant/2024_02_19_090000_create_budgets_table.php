@@ -26,6 +26,11 @@ return new class extends Migration
 			$table->float('amount_grs', 15, 2)->default(0);
 			$table->float('amount_invoice', 15, 2)->default(0);
 			$table->float('amount_payment', 15, 2)->default(0);
+			$table->biginteger('count_pr')->default(0);
+			$table->biginteger('count_po')->default(0);
+			$table->biginteger('count_grs')->default(0);
+			$table->biginteger('count_invoice')->default(0);
+			$table->biginteger('count_payment')->default(0);
 			$table->text('notes')->nullable();
 			//$table->boolean('revision')->default(false); 
 			$table->string('text_color')->nullable();

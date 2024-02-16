@@ -386,7 +386,10 @@ class PoController extends Controller
 		$this->authorize('submit', $po);
 
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.index')->with('error', 'You can only submit if the status is '. AuthStatusEnum::DRAFT->value .' !');
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+		}
+		if ($po->amount == 0) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You cannot submit zero value Purchase Order');
 		}
 
 		// check if budget created and set dept_budget_id

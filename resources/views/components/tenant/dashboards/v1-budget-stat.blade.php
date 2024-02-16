@@ -5,7 +5,7 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col mt-0">
-						<h5 class="card-title">Budget {{ $budget->fy}} ({{ $_setup->currency}})</h5>
+						<h5 class="card-title">Budget Utilization (YTD)</h5>
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
@@ -13,10 +13,10 @@
 						</div>
 					</div>
 				</div>
-				<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($budget->amount) }}</span>
+				<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($budget_used_pc,2) }}%</span>
 				<div class="mb-0">
-					<span class="badge badge-soft-success me-2">FY{{ $budget->fy }}</span>
-					<span class="text-muted"> {{ $budget->name }}</span>
+					<span class="badge badge-soft-success me-2">{{ number_format($budget_amount,2) }}</span>
+					<span class="text-muted"> total budget for FY{{ date('Y') }}. Utilized {{ $budget_po_issued }}</span>
 				</div>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col mt-0">
-						<h5 class="card-title">PO Issued</h5>
+						<h5 class="card-title">PO Issued USD (YTD) (TODO)</h5>
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
@@ -34,10 +34,10 @@
 						</div>
 					</div>
 				</div>
-				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $budget->amount_po_issued) }}</span>
+				<span class="h1 d-inline-block mt-1 mb-3">$ {{ number_format($po_sum,2) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-soft-success me-2">{{ $budget->amount_po_issued / $budget->amount * 100 }}%</span>
-					<span class="text-muted"> budget Utilized</span>
+					<span class="badge badge-soft-success me-2">{{ $po_count }}</span>
+					<span class="text-muted"> PO issued in FY23</span>
 				</div>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col mt-0">
-						<h5 class="card-title">Invoice Received</h5>
+						<h5 class="card-title">PR Approved (USD) (YTD)</h5>
 					</div>
 
 					<div class="col-auto">
@@ -57,10 +57,10 @@
 						</div>
 					</div>
 				</div>
-				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $budget->amount_invoice) }}</span>
+				<span class="h1 d-inline-block mt-1 mb-3">$ {{ number_format($pr_sum,2) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-soft-success me-2">{{ $budget->amount_invoice / $budget->amount * 100 }}%</span>
-					<span class="text-muted"> budget Utilized</span>
+					<span class="badge badge-soft-success me-2">{{ $pr_count }}</span>
+					<span class="text-muted"> PR issued in FY23</span>
 				</div>
 			</div>
 		</div>
@@ -71,7 +71,7 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col mt-0">
-						<h5 class="card-title">Payment</h5>
+						<h5 class="card-title">Payment (YTD) TODO</h5>
 					</div>
 
 					<div class="col-auto">
@@ -80,12 +80,10 @@
 						</div>
 					</div>
 				</div>
-				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $budget->amount_payment) }}</span>
+				<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($po_sum,2) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-soft-success me-2">{{ $budget->amount_payment / $budget->amount * 100 }}%</span>
-					<span class="text-muted"> budget Utilized</span>
+					<span class="text-muted">In Last 30 Days</span>
 				</div>
-
 			</div>
 		</div>
 	</div>

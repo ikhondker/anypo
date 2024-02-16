@@ -89,6 +89,7 @@ class MenuSeeder extends Seeder
 		   
 			[ 'raw_route_name' => 'prs.index','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.show','route_name' => 'prs.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'prs.history','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.edit','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.create','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.createline','route_name' => 'prs.index', 'node_name' => 'purchase'],

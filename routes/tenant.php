@@ -353,7 +353,8 @@ Route::middleware([
 	//Route::get('/dept-budgets/revision/{deptBudget}',[DeptBudgetController::class,'revision'])->name('dept-budgets.revision');
 	Route::post('/dept-budget/attach',[DeptBudgetController::class,'attach'])->name('dept-budgets.attach');
 	Route::get('/dept-budgets/detach/{deptBudget}',[DeptBudgetController::class,'detach'])->name('dept-budgets.detach');
-   
+	Route::get('/dept-budgets/budget/{deptBudget}',[DeptBudgetController::class,'budget'])->name('dept-budgets.budget');
+
 	/* ======================== Dbu ======================================== */
 	Route::resource('dbus', DbuController::class)->middleware(['auth', 'verified']);
 	Route::get('/dbu/export',[DbuController::class,'export'])->name('dbus.export');
@@ -366,12 +367,12 @@ Route::middleware([
 
 	/* ======================== Pr ======================================== */
 	Route::resource('prs', PrController::class)->middleware(['auth', 'verified']);
+	Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
+	Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
 	Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
 	Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
 	Route::get('/prs/cancel/{pr}',[PrController::class,'cancel'])->name('prs.cancel');
-	Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
-
-	Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
+	Route::get('/prs/history/{pr}',[PrController::class,'history'])->name('prs.history');
 	Route::get('/prs/detach/{pr}',[PrController::class,'detach'])->name('prs.detach');
 	Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
 	Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');

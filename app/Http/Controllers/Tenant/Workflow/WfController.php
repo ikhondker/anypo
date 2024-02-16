@@ -155,8 +155,8 @@ class WfController extends Controller
 		$this->authorize('reset',Wf::class);
 
 		// check if pr status only in-process
-		if ($pr->auth_status->value <> AuthStatusEnum::INPROCESS->value){
-				return back()->withError("PR#".$pr->id." is not in IN-PROCESS status!");
+		if ($pr->auth_status <> AuthStatusEnum::INPROCESS->value){
+				return back()->withError("Only Requisition with approval status INPROCESS can be reset!");
 		}
 
 		try {

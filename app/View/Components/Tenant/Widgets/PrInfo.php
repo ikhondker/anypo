@@ -1,0 +1,31 @@
+<?php
+
+namespace App\View\Components\Tenant\Widgets;
+
+use Closure;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
+
+use App\Models\Tenant\Pr;
+
+class PrInfo extends Component
+{
+    public $id;
+	public $pr;
+
+    /**
+     * Create a new component instance.
+     */
+    public function __construct($id)
+    {
+         $this->pr = Pr::with("requestor")->with("dept")->with('status_badge','auth_status_badge')->where('id', $id)->get()->first();
+    }
+
+    /**
+     * Get the view / contents that represent the component.
+     */
+    public function render(): View|Closure|string
+    {
+        return view('components.tenant.widgets.pr-info');
+    }
+}

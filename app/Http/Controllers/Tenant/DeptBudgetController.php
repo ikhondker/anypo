@@ -197,8 +197,18 @@ class DeptBudgetController extends Controller
 		//$this->authorize('view', $pr);
 
 		$deptBudget = DeptBudget::where('id', $deptBudget->id)->get()->firstOrFail();
-		$attachments = Attachment::where('entity', EntityEnum::DEPTBUDGET->value)->where('article_id', $deptBudget->id)->get()->all();
+		$attachments = Attachment::with('owner')->where('entity', EntityEnum::DEPTBUDGET->value)->where('article_id', $deptBudget->id)->get()->all();
 		return view('tenant.dept-budgets.detach', compact('deptBudget', 'attachments'));
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function budget(DeptBudget $deptBudget)
+	{
+		$this->authorize('view', $deptBudget);
+
+		return view('tenant.dept-budgets.budget', compact('deptBudget'));
 	}
 
 }

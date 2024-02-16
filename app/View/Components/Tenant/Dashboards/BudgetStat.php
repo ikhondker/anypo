@@ -11,73 +11,32 @@ use App\Enum\UserRoleEnum;
 use App\Enum\AuthStatusEnum;
 
 use App\Models\Tenant\Budget;
-use App\Models\Tenant\DeptBudget;
-use Illuminate\Database\Eloquent\ModelNotFoundException; 
+
+//use Illuminate\Database\Eloquent\ModelNotFoundException; 
 
 
-use Carbon\Carbon;
+//use Carbon\Carbon;
 
 
 class BudgetStat extends Component
 {
-
-	public $budget_used_pc =0 ;
-	public $budget_amount = 0 ;
-	public $budget_po_issued  = 0;
-
-	public $pr_sum=0;
-	public $pr_count=0;
-
-	public $po_sum=0;
-	public $po_count=0;
+	public $id;
+	public $budget;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct()
+	public function __construct($id='0000')
 	{
-		$fy = Carbon::now()->format('Y');
+		$this->id = $id;
 
-		switch (auth()->user()->role->value) {
-			case UserRoleEnum::HOD->value:
-				$this->budget_amount	= DeptBudget::ByDeptFy()->sum('amount');
-				$this->budget_po_issued	= DeptBudget::ByDeptFy()->sum('amount_po_issued');
-				// Avoid Division by zero
-				if ( $this->budget_amount == 0){
-					$this->budget_used_pc	= 0;
-				} else{ 
-					$this->budget_used_pc	= $this->budget_po_issued / $this->budget_amount * 100;
-				}
-
-				$this->po_sum= Pr::whereYear('auth_date', '=', $fy)->sum('amount');
-				$this->po_count= Pr::whereYear('auth_date', '=', $fy)->count();
-
-				$this->pr_sum= Pr::whereYear('auth_date', '=', $fy)->sum('amount');
-				$this->pr_count= Pr::whereYear('auth_date', '=', $fy)->count();
-
-				break;
-			case UserRoleEnum::BUYER->value:
-			case UserRoleEnum::CXO->value:
-			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
-				$this->budget_amount	= Budget::ByFy()->sum('amount');
-				$this->budget_po_issued	= Budget::ByFy()->sum('amount_po_issued');
-				// Avoid Division by zero
-				if ( $this->budget_amount == 0){
-					$this->budget_used_pc	= 0;
-				} else{ 
-					$this->budget_used_pc	= $this->budget_po_issued / $this->budget_amount * 100;
-				}
-				
-				$this->po_sum= Pr::whereYear('auth_date', '=', $fy)->sum('amount');
-				$this->po_count= Pr::whereYear('auth_date', '=', $fy)->count();
-
-				$this->pr_sum= Pr::whereYear('auth_date', '=', $fy)->sum('amount');
-				$this->pr_count= Pr::whereYear('auth_date', '=', $fy)->count();
-				break;
-			default:
-			Log::debug('Role Not Found!');
+		if ($this->id == '0000'){
+			// Get latest budget
+			$this->budget				= Budget::orderBy('id', 'DESC')->firstOrFail();
+		} else {
+			$this->budget				= Budget::where('id', $id)->firstOrFail();
 		}
+			
 	}
 
 	/**

@@ -5,7 +5,7 @@
 			<th class="">Subject</th>
 			<th class="">Date</th>
 			<th class="">Read At</th>
-			<th class="text-center">Action</th>
+			<th class="text-center">Actions</th>
 		</tr>
 	</thead>
 	<tbody>

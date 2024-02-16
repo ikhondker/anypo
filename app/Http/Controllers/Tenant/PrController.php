@@ -178,10 +178,10 @@ class PrController extends Controller
 
 		switch ($request->input('action')) {
 			case 'save':
-				return redirect()->route('prs.show', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully.');
+				return redirect()->route('prs.show', $pr->id)->with('success', 'PR #'. $pr->id.' created successfully.');
 				break;
 			case 'save_add':
-				return redirect()->route('prls.createline', $pr->id)->with('success', 'Pr#'. $pr->id.' created successfully. Please add more line.');
+				return redirect()->route('prls.createline', $pr->id)->with('success', 'PR #'. $pr->id.' created successfully. Please add more line.');
 				break;
 		}
 	}
@@ -205,10 +205,23 @@ class PrController extends Controller
 	{
 		//$this->authorize('view', $pr);
 
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only delete attachment if the Requisition status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+		}
+
 		$pr = Pr::where('id', $pr->id)->get()->firstOrFail();
-		$attachments = Attachment::where('entity', EntityEnum::PR->value)->where('article_id', $pr->id)->get()->all();
+		$attachments = Attachment::with('owner')->where('entity', EntityEnum::PR->value)->where('article_id', $pr->id)->get();
 		return view('tenant.prs.detach', compact('pr', 'attachments'));
 	}
+
+	public function history(Pr $pr)
+	{
+		//$this->authorize('view', $pr);
+
+		$pr = Pr::where('id', $pr->id)->get()->firstOrFail();
+		return view('tenant.prs.history', compact('pr'));
+	}
+
 
 	/**
 	 * Display the specified resource.
@@ -239,6 +252,10 @@ class PrController extends Controller
 	public function edit(Pr $pr)
 	{
 		$this->authorize('update', $pr);
+
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can not edit a Requisition with status '. strtoupper($pr->auth_status) .' !');
+		}
 
 		$depts = Dept::primary()->get();
 		
@@ -382,11 +399,20 @@ class PrController extends Controller
 
 	public function export()
 	{
-		$data = DB::select("SELECT id, name, email, cell, role, enable 
-			FROM users");
+		$data = DB::select("
+		SELECT pr.id, pr.summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		pr.notes, pr.currency, pr.sub_total, pr.tax, pr.gst, pr.amount, pr.status, pr.auth_status, pr.auth_date 
+		FROM prs pr,depts d, projects p, suppliers s, users u 
+		WHERE pr.dept_id=d.id 
+		AND pr.project_id=p.id 
+		AND pr.supplier_id=s.id 
+		AND pr.requestor_id=u.id
+		ORDER BY pr.id DESC
+		");
+
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
-		return Export::csv('users', $dataArray);
+		return Export::csv('prs', $dataArray);
 	}
 
 	public function submit(Pr $pr)
@@ -395,7 +421,10 @@ class PrController extends Controller
 		$this->authorize('submit', $pr);
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.index')->with('error', 'You can only submit if the status is '. AuthStatusEnum::DRAFT->value .' !');
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+		}
+		if ($pr->amount == 0) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You cannot submit zero value Requisition');
 		}
 
 		// generate fc_currency value and check budget	
@@ -582,13 +611,15 @@ class PrController extends Controller
 		$po_id				= $po->id;
 		
 		// copy prls into pols
-		$sql= "INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes,
+		$sql= "
+		INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes,
 		requestor_id, dept_id, unit_id, closure_status ) 
 		SELECT ".$po_id.",prl.line_num, prl.summary, prl.item_id, prl.uom_id,  prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
 		pr.requestor_id, pr.dept_id, pr.unit_id,'".ClosureStatusEnum::OPEN->value."'  
 		FROM prls prl,prs pr
 		WHERE pr.id=prl.pr_id
-		AND pr_id= ".$pr->id." ;";
+		AND pr_id= ".$pr->id.
+		" ;";
 		DB::INSERT($sql);
 
 		// update source PR 

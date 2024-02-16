@@ -12,6 +12,8 @@
 		@endslot
 	</x-tenant.page-header>
 
+	<x-tenant.dashboards.budget-stat/>
+	
 	<div class="row">
 		<div class="col-12">
 

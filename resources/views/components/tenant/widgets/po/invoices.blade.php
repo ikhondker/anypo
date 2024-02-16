@@ -30,7 +30,7 @@
 						<th class="text-end">Amount</th>
 						<th class="text-end">Paid Amount</th>
 						<th class="">Status</th>
-						<th class="">Action</th>
+						<th class="">Actions</th>
 					</tr>
 				</thead>
 				<tbody>

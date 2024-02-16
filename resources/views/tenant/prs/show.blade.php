@@ -22,34 +22,34 @@
 				<i data-feather="printer"></i> Covert to PO*</a> --}}
 			{{-- <a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="credit-card"></i> Payment</a> --}}
 			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
-			<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
-				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
-				data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
-				<i data-feather="external-link"></i> Submit</a>
+			@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+				<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
+					data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
+					data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
+					<i data-feather="external-link"></i> Submit</a>
+			@endif
 
 			<div class="dropdown me-2 d-inline-block position-relative">
 				<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
 					<i class="align-middle mt-n1" data-feather="folder"></i> Actions
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
-					<a class="dropdown-item" href="{{ route('prs.edit', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
-					<a class="dropdown-item" href="{{ route('prls.createline', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Add Line</a>
-					<a class="dropdown-item" href="{{ route('reports.pr', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Print PR</a>
+					<a class="dropdown-item" href="{{ route('reports.pr', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Print Requisition</a>
+					<a class="dropdown-item" href="{{ route('prs.history', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> View Approval History</a>
+					<a class="dropdown-item" href="{{ route('prs.edit', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit Requisition</a>
+					<a class="dropdown-item" href="{{ route('prls.createline', $pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Add Requisition Line</a>
 					<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.copy', $pr->id) }}"
 						data-entity="" data-name="PO#{{ $pr->id }}" data-status="Duplicate"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PR">
-						<i class="align-middle me-1" data-feather="copy"></i> Duplicate</a>
+						<i class="align-middle me-1" data-feather="copy"></i> Copy Requisition</a>
 					<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.convert', $pr->id) }}"
 						data-entity="" data-name="PR#{{ $pr->id }}" data-status="Covert to PO"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
-						<i class="align-middle me-1" data-feather="copy"></i> Covert to PO*</a>
-					<a class="dropdown-item" href="{{ route('prs.detach',$pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachments</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> View Receipt</a>
-					<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> View Approval History*</a>
-					{{-- <a class="dropdown-item" href="{{ route('payments.create-for-po', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> View Payments</a> --}}
-					<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-					<div class="dropdown-divider"></div>
+						<i class="align-middle me-1" data-feather="copy"></i> Covert to PO</a>
+					
+						<div class="dropdown-divider"></div>
+
+					<a class="dropdown-item text-danger" href="{{ route('prs.detach',$pr->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachment</a>
 
 					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('wfs.wf-reset-pr', $pr->id) }}"
 						data-entity="" data-name="PR#{{ $pr->id }}" data-status="Reset"
@@ -58,9 +58,14 @@
 
 					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('prs.cancel', $pr->id) }}"
 						data-entity="" data-name="PR#{{ $pr->id }}" data-status="Cancel"
-						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel PR">
-						<i class="align-middle me-1" data-feather="copy"></i> Cancel PR</a>
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Requisition">
+						<i class="align-middle me-1" data-feather="copy"></i> Cancel Requisition</a>
 
+					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('prs.destroy', $pr->id) }}"
+						data-entity="" data-name="PR#{{ $pr->id }}" data-status="Delete"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Requisition">
+						<i class="align-middle me-1" data-feather="copy"></i> Delete Requisition*</a>
+	
 				</div>
 			</div>
 
@@ -81,10 +86,6 @@
 	@endif 
 
 
-	<!-- Approval History -->
-	@if ($pr->wf_id <> 0)
-		<x-tenant.wf.approval-history id="{{ $pr->wf_id }}"/>
-	@endif
 	
 	@include('tenant.includes.modal-boolean-advance')
 	  

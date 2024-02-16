@@ -3,20 +3,8 @@
 	<div class="col-12 col-xl-12">
 		<div class="card">
 			<div class="card-header">
-				<div class="card-actions float-end">
-					<div class="dropdown position-relative">
-						<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
-						</a>
-						<div class="dropdown-menu dropdown-menu-end">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>
-					</div>
-				</div>
 				<h5 class="card-title">Requisition Lines</h5>
-				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+				<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
 			</div>
 			<table class="table">
 				<thead>
@@ -31,7 +19,7 @@
 						<th class="text-end">Tax</th>
 						<th class="text-end">GST</th>
 						<th class="text-end">Amount</th>
-						<th class="">Action</th>
+						<th class="">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,12 +40,17 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->gst"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>
 								<td class="">
-								
-									<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top"title="Edit"><i class="align-middle" data-feather="edit"></i>
-									</a>
-									<a href="{{ route('prls.destroy',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
-										<i class="align-middle" data-feather="trash-2"></i>
-									</a>
+									@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+										<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top"title="Edit"><i class="align-middle" data-feather="edit"></i>
+										</a>
+										<a href="{{ route('prls.destroy',$prl->id) }}" class="text-muted modal-boolean-advance" 
+											data-entity="LINE" data-name="LINE #{{ $prl->line_num }}" data-status="Delete"
+											data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+											<i class="align-middle" data-feather="trash-2"></i>
+										</a>
+
+
+									@endif
 								</td>
 							</tr>
 						@endif
@@ -74,8 +67,13 @@
 					@endif
 					@if ($show)
 						<tr>
-							<td class="" colspan="5" scope="col">&nbsp;</td>
-							<td class="text-end" scope="col"><strong>TOTAL:</strong></td>
+							<td class="" colspan="2" scope="col"> 
+								@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+									<a href="{{ route('prls.createline', $pr->id) }}" class="text-warning d-inline-block"><i data-feather="plus-square"></i> Add Lines</a>
+								@endif
+							</td>
+							<td class="" colspan="3" scope="col">&nbsp;</td>
+							<td class="text-end" scope="col"><strong>TOTAL ({{ $pr->currency }}) :</strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->sub_total"/></strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->tax"/></strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->gst"/></strong></td>

@@ -1,10 +1,10 @@
 <div class="row">
-	<div class="col-xl-8">
+	<div class="col-xl-12">
 		<div class="card">
 			<div class="card-body">
 				<div class="row g-0">
 					<div class="col-sm-3 col-xl-12 col-xxl-3 text-center">
-						<img src="{{ asset('/social.png')}}" width="180" height="180" class="mt-2" alt="Project">
+						<img src="{{ asset('/img3.jpg')}}" width="180" height="180" class="mt-2" alt="Project">
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
 						<h4>{{ $project->name }}</h4>
@@ -32,8 +32,8 @@
 									<td><span class="badge {{ ($project->closed ? 'bg-danger' : 'bg-success') }}">{{ ($project->closed ? 'Yes' : 'No') }}</span></td>
 								</tr>
 								<tr>
-									<td><a href="{{ route('projects.show',$project->id) }}" class="text-warning d-inline-block">View Detail ...</a></td>
 									<td>&nbsp;</td>
+									<td><a href="{{ route('projects.show',$project->id) }}" class="text-warning d-inline-block">View Project Detail ...</a></td>
 								</tr>
 							</tbody>
 						</table>

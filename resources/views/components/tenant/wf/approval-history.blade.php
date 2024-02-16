@@ -4,7 +4,7 @@
 		<div class="card">
 			<div class="card-header">
 				<h5 class="card-title">Approval History</h5>
-				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+				<h6 class="card-subtitle text-muted">Approval History with Performer and Action.</h6>
 			</div>
 			<table class="table table-striped table-sm">
 				<thead>

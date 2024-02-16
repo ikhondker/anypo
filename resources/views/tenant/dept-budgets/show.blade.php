@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Department Budget - {{ $deptBudget->dept->name }} - {{ $deptBudget->budget->fy }}
+			Department Budget - {{ $deptBudget->dept->name }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="DeptBudget"/>
@@ -16,9 +16,10 @@
 						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
 					</a>
 					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> TODO Action</a>
+						<a class="dropdown-item" href="{{ route('dept-budgets.budget', $deptBudget->id) }}"><i class="align-middle me-1" data-feather="user"></i> Budget Usage</a>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 						<div class="dropdown-divider"></div>
+						<a class="dropdown-item text-danger" href="{{ route('dept-budgets.detach',$deptBudget->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachment *</a>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 						<div class="dropdown-divider"></div>
@@ -28,6 +29,10 @@
 
 		@endslot
 	</x-tenant.page-header>
+
+
+	<x-tenant.dashboards.dept-budget-stat :id="$deptBudget->id"/>
+
 
 	<div class="row">
 		<div class="col-6">

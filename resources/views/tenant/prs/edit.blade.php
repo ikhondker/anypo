@@ -25,6 +25,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Edit PR#{{ $pr->id }}</h5>
+							<h6 class="card-subtitle text-muted">Edit key Information of a Requisition.</h6>
 						</div>
 						<div class="card-body">
 
@@ -79,7 +80,8 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Pr Info</h5>
+							<h5 class="card-title">Edit Requisition Other Information</h5>
+							<h6 class="card-subtitle text-muted">Edit Requisition Other Information.</h6>
 						</div>
 						<div class="card-body">
 

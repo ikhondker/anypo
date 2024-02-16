@@ -132,7 +132,7 @@ class PrActions extends Notification implements ShouldQueue
 			//'body'		=> '[FYI] PR#'.$this->pr->id.' '. $this->pr->summary .' for '. $this->pr->amount. ' has been '.Str::lower($this->action).'.',
 			'body'			=> $this->line,
 			'thanks'		=> 'Thank you for using '. config('app.name').'!',
-			'actionText'	=> 'View PR',
+			'actionText'	=> 'View Requisition',
 			//'actionURL'	=> route('advances.show', ['advance' => $wf->article_id]),
 			'actionURL'		=> $this->actionURL,
 		];

@@ -108,7 +108,17 @@ class PolController extends Controller
 		// $po->amount			= $pol_sum;
 		// $po->save();
 		
-		return redirect()->route('pos.show', $pol->po_id)->with('success', 'Purchase Order line added successfully');
+		switch ($request->input('action')) {
+			case 'save':
+				return redirect()->route('pos.show', $po->id)->with('success', 'PO #'. $po->id.' created successfully.');
+				break;
+			case 'save_add':
+				return redirect()->route('pols.createline', $po->id)->with('success', 'PO #'. $po->id.' created successfully. Please add more line.');
+				break;
+		}
+
+
+		//return redirect()->route('pos.show', $pol->po_id)->with('success', 'Purchase Order line added successfully');
 
 	}
 

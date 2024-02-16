@@ -5,11 +5,11 @@
 
 
 	<div class="row">
-		<div class="col-6">
+		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Approval of: </h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout.</h6>
+					<h5 class="card-title">Approval Actions: </h5>
+					<h6 class="card-subtitle text-muted">Please enter Approval Actions Approve or Reject.</h6>
 				</div>
 				<div class="card-body">
 					<form>

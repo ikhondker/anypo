@@ -32,7 +32,7 @@
 						<th class="text-end">Tax</th>
 						<th class="text-end">GST</th>
 						<th class="text-end">Amount</th>
-						<th class="">Action</th>
+						<th class="">Actions</th>
 					</tr>
 				</thead>
 				<tbody>

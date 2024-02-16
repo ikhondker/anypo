@@ -15,6 +15,8 @@ use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
 
 # Enums
+use App\Enum\AuthStatusEnum;
+
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -43,6 +45,10 @@ class PrlController extends Controller
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 
 		$pr = Pr::where('id', $pr_id)->first();
+
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only add line to Requisition with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+		}
 
 		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
@@ -95,14 +101,22 @@ class PrlController extends Controller
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
 		$prl = Prl::create($request->all());
 
-
 		// Write to Log
 		EventLog::event('Prl', $prl->id, 'create');
 
 		// 	update PR Header value
 		$result = Pr::updatePrHeaderValue($prl->pr_id);
 
-		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'Requisition line added successfully');
+		switch ($request->input('action')) {
+			case 'save':
+				return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR #'. $prl->pr_id.' created successfully.');
+				break;
+			case 'save_add':
+				return redirect()->route('prls.createline', $prl->pr_id)->with('success', 'PR #'. $prl->pr_id.' created successfully. Please add more line.');
+				break;
+		}
+
+		//return redirect()->route('prs.show', $prl->pr_id)->with('success', 'Requisition line added successfully');
 	}
 
 	/**
@@ -139,20 +153,16 @@ class PrlController extends Controller
 
 		//$request->merge(['sub_total'	=> $request->input('prl_amount')]);
 		//$request->merge(['amount'		=> $request->input('sub_total')+$request->input('tax')+$request->input('gst')]);
-
-		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
-		$request->merge(['tax'			=> $request->input('tax')]);
-		$request->merge(['gst'			=> $request->input('gst')]);
-		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
-
+		//$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
+		//$request->merge(['tax'			=> $request->input('tax')]);
+		//$request->merge(['gst'			=> $request->input('gst')]);
+		//$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
+		
 		//$request->validate();
 		$request->validate([
 
 		]);
 		$prl->update($request->all());
-
-		// Write to Log
-		EventLog::event('Prl', $prl->id, 'edit');
 
 		// 	update PR Header value
 		$result = Pr::updatePrHeaderValue($prl->pr_id);
@@ -171,18 +181,26 @@ class PrlController extends Controller
 
 		$this->authorize('delete', $prl);
 
+		$pr = Pr::where('id', $prl->pr_id)->first();
 
-		// update PR header
-		$pr = Pr::where('id', $prl->pr_id)->firstOrFail();
-		$pr->sub_total		= $pr->sub_total- $prl->sub_total;
-		$pr->tax			= $pr->tax 		- $prl->tax;
-		$pr->gst			= $pr->gst 		- $prl->gst;
-		$pr->amount			= $pr->amount 	- $prl->amount;
-		$pr->save();
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can delete line in Requisition with only status '. strtoupper($pr->auth_status) .' !');
+		}
+
+		$prl->delete();
+
+		// 	update PR Header value
+		$result = Pr::updatePrHeaderValue($prl->pr_id);
+
+		//$pr = Pr::where('id', $prl->pr_id)->firstOrFail();
+		//$pr->sub_total		= $pr->sub_total- $prl->sub_total;
+		//$pr->tax			= $pr->tax 		- $prl->tax;
+		//$pr->gst			= $pr->gst 		- $prl->gst;
+		//$pr->amount			= $pr->amount 	- $prl->amount;
+		//$pr->save();
 
 		// Write to Log
 		EventLog::event('prl', $prl->id, 'delete', 'id', $prl->id);
-		$prl->delete();
 
 		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR Line deleted successfully');
 	}

@@ -100,18 +100,26 @@ class Pr extends Model
 		//Log::debug('Value of id=' . $rs);
 		//Log::debug('Value of tax=' . $r->tax);
 
+
 		// update PR header
+		// No row in child table 
+		$pr->fc_exchange_rate	= $rate;
 		foreach($result as $row) {
-			$pr->fc_exchange_rate	= $rate;
-			$pr->fc_sub_total		= $row['fc_sub_total'] ;
-			$pr->fc_tax				= $row['fc_tax'] ;
-			$pr->fc_gst				= $row['fc_gst'] ;
-			$pr->fc_amount			= $row['fc_amount'];
+			if ( is_null($row['sub_total'])  ) { 
+				$pr->fc_sub_total		= 0 ;
+				$pr->fc_tax				= 0 ;
+				$pr->fc_gst				= 0 ;
+				$pr->fc_amount			= 0;
+			} else {
+				$pr->fc_sub_total		= $row['fc_sub_total'] ;
+				$pr->fc_tax				= $row['fc_tax'] ;
+				$pr->fc_gst				= $row['fc_gst'] ;
+				$pr->fc_amount			= $row['fc_amount'];
+			}
 		}
-	
 		$pr->save();
 
-		return 1;
+		return true;
 	}
 
 	// populate PR headed amount columns based on child rows
@@ -120,23 +128,31 @@ class Pr extends Model
 
 		// update PR header
 		$pr				= Pr::where('id', $id)->firstOrFail();
-		$result= Prl::where('pr_id', $pr->id)->get( array(
+		$result = Prl::where('pr_id', $pr->id)->get( array(
 			DB::raw('SUM(sub_total) as sub_total'),
 			DB::raw('SUM(tax) as tax'),
 			DB::raw('SUM(gst) as gst'),
 			DB::raw('SUM(amount) as amount'),
 		));
-		
+
+		// No row in child table 
 		foreach($result as $row) {
-			$pr->sub_total	= $row['sub_total'] ;
-			$pr->tax		= $row['tax'] ;
-			$pr->gst		= $row['gst'] ;
-			$pr->amount		= $row['amount'];
+			if ( is_null($row['sub_total'])  ) { 
+				$pr->sub_total		= 0;
+				$pr->tax			= 0 ;
+				$pr->gst			= 0 ;
+				$pr->amount			= 0;
+			} else {
+				$pr->sub_total	= $row['sub_total'] ;
+				$pr->tax		= $row['tax'] ;
+				$pr->gst		= $row['gst'] ;
+				$pr->amount		= $row['amount'];
+
+			}
 		}
-	
 		$pr->save();
 
-		return 0;
+		return true;
 	}
 
 	/* ----------------- Scopes ------------------------- */

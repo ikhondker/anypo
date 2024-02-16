@@ -21,7 +21,8 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Requisition Info</h5>
+						<h5 class="card-title">Requisition Basic Information</h5>
+						<h6 class="card-subtitle text-muted">Requisition Basic Information.</h6>
 					</div>
 					<div class="card-body">
 
@@ -94,7 +95,8 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Additional Info</h5>
+						<h5 class="card-title">Requisition Additional Info</h5>
+						<h6 class="card-subtitle text-muted">Requisition Additional Information.</h6>
 					</div>
 					<div class="card-body">
 						<div class="mb-3">
@@ -119,7 +121,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Requisition Lines</h5>
-						<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+						<h6 class="card-subtitle text-muted">Requisition Lines.</h6>
 					</div>
 					<table class="table">
 						<thead>
