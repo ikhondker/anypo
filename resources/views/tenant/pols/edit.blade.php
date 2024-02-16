@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-		Edit Purchase Order Line
+			Edit Purchase Order Line
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po"/>

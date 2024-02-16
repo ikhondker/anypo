@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Widgets;
+namespace App\View\Components\Tenant\Info;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -25,6 +25,6 @@ class ProjectInfo extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.tenant.widgets.project-info');
+        return view('components.tenant.info.project-info');
     }
 }

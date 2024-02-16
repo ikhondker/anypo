@@ -16,7 +16,7 @@
 					</div>
 				</div>
 				<h5 class="card-title">Purchase Order Lines</h5>
-				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+				<h6 class="card-subtitle text-muted">List of Purchase Order Lines.</h6>
 			</div>
 			<table class="table">
 				<thead>
@@ -26,7 +26,7 @@
 						<th class="">Summary</th>
 						<th class="">UOM</th>
 						<th class="text-end">Qty</th>
-						<th class="text-end">Received1</th>
+						<th class="text-end">Received</th>
 						<th class="text-end">Price</th>
 						<th class="text-end">Sub Total</th>
 						<th class="text-end">Tax</th>
@@ -55,16 +55,22 @@
 								<td class="table-action">
 									<a href="{{ route('pols.show',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i></a>
-
-									<a href="{{ route('pols.edit',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-										<i class="align-middle" data-feather="edit"></i></a>
-
 									<a href="{{ route('receipts.create',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
-										<i class="align-middle" data-feather="check-circle"></i></a>
+											<i class="align-middle" data-feather="check-circle"></i></a>
+	
+									
+									@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 
-									<a href="{{ route('pols.destroy',$pol->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
-										<i class="align-middle" data-feather="trash-2"></i>
-									</a>
+										<a href="{{ route('pols.edit',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+											<i class="align-middle" data-feather="edit"></i></a>
+									
+										<a href="{{ route('pols.destroy',$pol->id) }}" class="text-muted modal-boolean-advance" 
+											data-entity="LINE" data-name="LINE #{{ $pol->line_num }}" data-status="Delete"
+											data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+											<i class="align-middle" data-feather="trash-2"></i>
+										</a>
+
+									@endif	
 								</td>
 							</tr>
 						@endif
@@ -80,8 +86,13 @@
 					@endif
 					@if ($show)
 						<tr>
-							<td class="" colspan="6" scope="col">&nbsp;</td>
-							<td class="text-end" scope="col"><strong>TOTAL:</strong></td>
+							<td class="" colspan="2" scope="col"> 
+								@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+									<a href="{{ route('pols.createline', $po->id) }}" class="text-warning d-inline-block"><i data-feather="plus-square"></i> Add Lines</a>
+								@endif
+							</td>
+							<td class="" colspan="4" scope="col">&nbsp;</td>
+							<td class="text-end" scope="col"><strong>TOTAL ({{ $po->currency }}):</strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->sub_total"/></strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->tax"/></strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->gst"/></strong></td>

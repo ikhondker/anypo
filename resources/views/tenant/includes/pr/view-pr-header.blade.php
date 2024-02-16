@@ -2,8 +2,8 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Key Information PR# {{ $pr->id }}</h5>
-					<h6 class="card-subtitle text-muted">Key information of a Purchase Requisitions.</h6>
+					<h5 class="card-title">Basic Informations PR# {{ $pr->id }}</h5>
+					<h6 class="card-subtitle text-muted">Key information of a Purchase Requisitions</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $pr->summary }}"/>
@@ -32,7 +32,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Approval Status</h5>
-					<h6 class="card-subtitle text-muted">Approval information of a Purchase Requisition.</h6>
+					<h6 class="card-subtitle text-muted">Approval information of Purchase Requisition.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-badge		value="{{ $pr->auth_status }}" label="Auth Status"/>

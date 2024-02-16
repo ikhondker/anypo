@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title','Pr')
+@section('title','Purchase Requisitions')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Pr
+			Purchase Requisitions
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Pr"/>

@@ -48,8 +48,6 @@
 											data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 											<i class="align-middle" data-feather="trash-2"></i>
 										</a>
-
-
 									@endif
 								</td>
 							</tr>

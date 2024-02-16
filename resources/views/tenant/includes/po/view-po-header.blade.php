@@ -2,7 +2,8 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">PO# {{ $po->id }}</h5>
+					<h5 class="card-title">Basic Informations PO #{{ $po->id }}</h5>
+					<h6 class="card-subtitle text-muted">Key information of a Purchase Order.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $po->summary }}"/>
@@ -17,7 +18,9 @@
 							
 						</div>
 						<div class="col-sm-9 text-end">
-							<x-tenant.show.my-edit-link object="Po" :id="$po->id"/>
+							@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+								<x-tenant.show.my-edit-link object="Po" :id="$po->id"/>
+							@endif 
 						</div>
 					</div>
 					
@@ -38,7 +41,9 @@
 							</div>
 						</div>
 					</div>
-					<h5 class="card-title">Supporting Info</h5>
+					<h5 class="card-title">Approval Status</h5>
+					<h6 class="card-subtitle text-muted">Approval information of Purchase Order.</h6>
+
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-badge		value="{{ $po->auth_status }}" label="Auth Status"/>
@@ -55,26 +60,26 @@
 							<x-tenant.attachment.all entity="PO" aid="{{ $po->id }}"/>
 						</div>
 					</div>
-
-					<form action="{{ route('pos.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
-						@csrf
-						{{-- <x-tenant.attachment.create  /> --}}
-						<input type="text" name="attach_po_id" id="attach_po_id" class="form-control" placeholder="ID" value="{{ old('id', $po->id ) }}" hidden>
-						<div class="row">
-							<div class="col-sm-3 text-end">
-							
+					@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+						<form action="{{ route('pos.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
+							@csrf
+							{{-- <x-tenant.attachment.create  /> --}}
+							<input type="text" name="attach_po_id" id="attach_po_id" class="form-control" placeholder="ID" value="{{ old('id', $po->id ) }}" hidden>
+							<div class="row">
+								<div class="col-sm-3 text-end">
+								
+								</div>
+								<div class="col-sm-9 text-end">
+									<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
+									<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
+									{{-- <x-show.my-edit-link object="Po" :id="$po->id"/> --}}
+								</div>
 							</div>
-							<div class="col-sm-9 text-end">
-								<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
-								<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
-								{{-- <x-show.my-edit-link object="Po" :id="$po->id"/> --}}
-							</div>
-						</div>
 
-						{{-- <x-buttons.submit/> --}}
-					</form>
-					<!-- /.form end -->
-				
+							{{-- <x-buttons.submit/> --}}
+						</form>
+						<!-- /.form end -->
+					@endif
 				</div>
 			</div>
 		</div>

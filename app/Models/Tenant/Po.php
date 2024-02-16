@@ -19,6 +19,8 @@ use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Currency;
 
+use App\Models\Tenant\Manage\Status;
+
 use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
 
@@ -268,6 +270,19 @@ class Po extends Model
 	}
 
 	/* ---------------- belongsTo ---------------------- */
+
+	public function status_badge(){
+		return $this->belongsTo(Status::class,'status')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+	public function auth_status_badge(){
+		return $this->belongsTo(Status::class,'auth_status')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+
 	public function dept(){
 		return $this->belongsTo(Dept::class,'dept_id')->withDefault([
 			'name' => '[ Empty ]',

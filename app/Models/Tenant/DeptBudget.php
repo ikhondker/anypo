@@ -32,7 +32,7 @@ class DeptBudget extends Model
 	/**
 	 * Scope a query to only All PR for current user dept.
 	*/
-	public function scopeByDeptFy(Builder $query): void
+	public function chkscopeByDeptFy(Builder $query): void
 	{
 			$query->whereHas('budget', function ($q) {
                 $q->where('fy',  date('Y'));

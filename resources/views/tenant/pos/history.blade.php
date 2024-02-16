@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Approval History PR #{{ $pr->id }}
+			Approval History PO #{{ $po->id }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr"/>
@@ -14,12 +14,12 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	<x-tenant.info.pr-info id="{{ $pr->id }}"/>
+	<x-tenant.info.po-info id="{{ $po->id }}"/>
 
 	{{-- @include('tenant.includes.pr.view-pr-header-basic') --}}
 
 	<!-- Approval History -->
-	<x-tenant.wf.approval-history id="{{ $pr->wf_id }}"/>
+	<x-tenant.wf.approval-history id="{{ $po->wf_id }}"/>
 
 @endsection
 

@@ -49,7 +49,7 @@
 	<!-- end row -->
 
 
-	<x-tenant.widgets.po-line-receipts :id="$pol->id" />
+	<x-tenant.widgets.pol-receipts :id="$pol->id" />
 
 @endsection
 

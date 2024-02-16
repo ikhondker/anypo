@@ -388,11 +388,11 @@ Route::middleware([
 	/* ======================== Po ======================================== */
 	Route::resource('pos', PoController::class)->middleware(['auth', 'verified']);
 	Route::get('/pos/pdf/{po}',[PoController::class,'pdf'])->name('pos.pdf');
+	Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
+	Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
 	Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
 	Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
-	Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
-
-	Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
+	Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');
 	Route::get('/pos/detach/{po}',[PoController::class,'detach'])->name('pos.detach');
 	Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
 	Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');

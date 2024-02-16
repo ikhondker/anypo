@@ -535,4 +535,13 @@ class PoController extends Controller
 
 		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Requisition #'.$po_id.' created.');
 	}
+
+	public function history(Po $po)
+	{
+		//$this->authorize('view', $po);
+
+		$po = Po::where('id', $po->id)->get()->firstOrFail();
+		return view('tenant.pos.history', compact('po'));
+	}
+
 }

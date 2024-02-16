@@ -19,7 +19,7 @@
                                 <tr>
 									<th>Date</th>
 									<td>
-										{{ ($po->pr_date <> "") ? strtoupper(date('d-M-y', strtotime($po->po_date))) : "" }}
+										{{ ($po->po_date <> "") ? strtoupper(date('d-M-y', strtotime($po->po_date))) : "" }}
 									</td>
 								</tr>
                                 <tr>

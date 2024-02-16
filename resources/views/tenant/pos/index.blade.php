@@ -27,7 +27,7 @@
 							Purchase Order Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Purchase Orders.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
@@ -60,8 +60,8 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_invoiced"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_paid"/></td>
 
-								<td><x-tenant.list.my-badge :value="$po->auth_status"/></td>
-								<td><x-tenant.list.my-badge :value="$po->status"/></td>
+								<td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
+								<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Po" :id="$po->id"/>
 									<a href="{{ route('invoices.create',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice">

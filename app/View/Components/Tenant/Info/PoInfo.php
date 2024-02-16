@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Tenant\Widgets;
+namespace App\View\Components\Tenant\Info;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Models\Tenant\Pr;
+use App\Models\Tenant\Po;
 
 class PoInfo extends Component
 {
@@ -28,6 +28,6 @@ class PoInfo extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.tenant.widgets.po-info');
+        return view('components.tenant.info.po-info');
     }
 }

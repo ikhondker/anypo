@@ -6,7 +6,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Edit PO#{{ $po->id }}
+			Edit PO #{{ $po->id }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po"/>
@@ -24,7 +24,9 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Edit PO#{{ $po->id }}</h5>
+							<h5 class="card-title">Basic Information PO #{{ $po->id }}</h5>
+							<h6 class="card-subtitle text-muted">Edit Basic Information of Requisition.</h6>
+
 						</div>
 						<div class="card-body">
 
@@ -79,7 +81,8 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Po Info</h5>
+							<h5 class="card-title">Edit Purchase Order Other Information</h5>
+							<h6 class="card-subtitle text-muted">Edit Purchase Order Other Information.</h6>
 						</div>
 						<div class="card-body">
 
@@ -122,7 +125,7 @@
 			</div>
 
 			<!-- widget-po-lines -->
-			<x-tenant.widgets.po-lines id="{{ $po->id }}" :show="true"/>
+			<x-tenant.widgets.po.lines id="{{ $po->id }}" :show="true"/>
 
 	</form>
 	<!-- /.form end -->

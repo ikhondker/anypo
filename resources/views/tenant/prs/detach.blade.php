@@ -15,7 +15,7 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	<x-tenant.widgets.pr-info id="{{ $pr->id }}"/>
+	<x-tenant.info.pr-info id="{{ $pr->id }}"/>
 
 	{{-- @include('tenant.includes.pr.view-pr-header-basic') --}}
 

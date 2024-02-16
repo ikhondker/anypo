@@ -24,8 +24,8 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Edit PR#{{ $pr->id }}</h5>
-							<h6 class="card-subtitle text-muted">Edit key Information of a Requisition.</h6>
+							<h5 class="card-title">Basic Information PR #{{ $pr->id }}</h5>
+							<h6 class="card-subtitle text-muted">Edit Basic Information of Requisition.</h6>
 						</div>
 						<div class="card-body">
 

@@ -25,7 +25,7 @@ class ReportSeeder extends Seeder
 			],
 			[
 				'id' 	=> 1003,
-				'name' => 'Printed PO pdf',
+				'name' => '*Printed PO pdf',
 			],
 			[
 				'id' 	=> 1004,

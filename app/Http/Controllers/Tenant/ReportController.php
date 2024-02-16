@@ -15,6 +15,10 @@ use App\Models\User;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
 
+use App\Models\Tenant\Po;
+use App\Models\Tenant\Pol;
+
+
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Warehouse;
@@ -211,8 +215,6 @@ class ReportController extends Controller
 		$this->authorize('run',Report::class);
 		
 		$report 	= Report::where('id', '1004')->firstOrFail();
-
-		
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
@@ -499,6 +501,65 @@ class ReportController extends Controller
 		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
 
 		return $pdf->stream('Pr'.$pr->id.'.pdf');
+	}
+
+
+	public function po($id)
+	{
+		//TODO auth check
+		//TODO if pr exists
+		//Log::debug('tenant.report.pr storage_path()='.storage_path());
+		
+		// NOTE: Uses InvoicePolicy
+		// $this->authorize('pdfInvoice', $invoice);
+
+		$setup 		= Setup::first();
+		$report 	= Report::where('id', '1003')->firstOrFail();
+		$po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
+		$pols 		= Pol::with('item')->where('po_id', $po->id)->get()->all();
+		
+		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'po' 		=> $po,
+			'pols' 		=> $pols,
+		];
+		
+		$pdf = PDF::loadView('tenant.reports.formats.po', $data);
+			// ->setOption('fontDir', public_path('/fonts/lato'));
+
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'portrait');
+		$pdf->output();
+	
+
+		// Get height and width of page
+		$canvas = $pdf->getDomPDF()->getCanvas();
+		$height = $canvas->get_height();
+		$width = $canvas->get_width();
+		
+		// Specify watermark text
+		$text = Str::upper($pr->auth_status->name);
+
+		// Get height and width of text
+		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");
+		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
+		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
+		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
+		
+		// Specify horizontal and vertical position
+		$x = (($width - $textWidth) / 1.6);
+		$y = (($height - $txtHeight) / 2);
+
+		$color = array(255,0,0);
+		//$canvas->set_opacity(.2,"Multiply");
+		$canvas->set_opacity(.2);
+
+		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
+
+		return $pdf->stream('PO'.$po->id.'.pdf');
 	}
 
 	public function prv1($id)

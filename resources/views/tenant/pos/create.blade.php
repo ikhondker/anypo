@@ -129,7 +129,7 @@
 								<th class="">Summary</th>
 								<th class="">UOM</th>
 								<th class="text-end">Qty</th>
-								<th class="text-end">Rcv2</th>
+								<th class="text-end">Received</th>
 								<th class="text-end">Price</th>
 								<th class="text-end">Subtotal</th>
 								<th class="text-end">Tax</th>
