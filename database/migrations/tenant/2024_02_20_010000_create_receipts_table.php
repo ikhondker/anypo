@@ -15,7 +15,7 @@ return new class extends Migration
 	{
 		Schema::create('receipts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->dateTime('receive_date', $precision = 0)->nullable()->useCurrent();
+			$table->dateTime('receive_date')->nullable()->useCurrent();
 			$table->enum('rcv_type', ['RECEIVE','ADJUSTMENT','MISCELLANEOUS'])->default('RECEIVE'); 
 			//$table->string('summary')->nullable();
 			$table->foreignId('pol_id')->constrained('pols');

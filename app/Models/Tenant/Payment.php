@@ -80,8 +80,6 @@ class Payment extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
-
-
 	public function invoice(){
 		return $this->belongsTo(Invoice::class,'invoice_id')->withDefault([
 			'name' => '[ Empty ]',

@@ -16,18 +16,18 @@
 					</div>
 				</div>
 				<h5 class="card-title">Purchase Order Receipts</h5>
-				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+				<h6 class="card-subtitle text-muted">List of Good Receipts for a Purchase Order Line.</h6>
 			</div>
 			<table class="table">
 				<thead>
 					<tr>
 						<th class="">SL#</th>
 						<th class="">Date</th>
-						<th class="">Receiver</th>
-						<th class="">Warehouse</th>
 						<th class="text-end">Item</th>
 						<th class="text-end">Qty</th>
-						<th class="text-end">PO#</th>
+						<th class="text-end">Amount</th>
+						<th class="">Receiver</th>
+						<th class="">Warehouse</th>
 						<th class="">Action</th>
 					</tr>
 				</thead>
@@ -36,16 +36,14 @@
 						<tr class="">
 							<td class="">{{ $loop->iteration }}</td>
 							<td class="">{{ $receipt->receive_date }}</td>
-							<td class="">{{ $receipt->receiver_id }}</td>
-							<td class="">{{ $receipt->warehouse_id }}</td>
-							<td class="text-end">{{ $receipt->pol_id }}</td>
+							<td class="text-end">{{ $receipt->pol->summary }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$receipt->qty"/></td>
-							<td class="text-end">{{ $receipt->po_no }}</td>
+							<td class="text-end"><x-tenant.list.my-number :value="$receipt->amount"/></td>
+							<td class="">{{ $receipt->receiver->name }}</td>
+							<td class="">{{ $receipt->warehouse->name }}</td>
 							<td class="table-action">
-								<a href="{{ route('prls.edit',$receipt->id) }}" class="text-muted d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">Edit</a> |
-								<a href="{{ route('prls.destroy',$receipt->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
-									<i class="align-middle" data-feather="trash-2"></i>
-								</a>
+								<a href="{{ route('receipts.show',$receipt->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+									<i class="align-middle" data-feather="eye"></i></a>
 							</td>
 						</tr>
 					@endforeach

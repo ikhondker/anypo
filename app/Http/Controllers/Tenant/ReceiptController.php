@@ -91,7 +91,7 @@ class ReceiptController extends Controller
 		//$pol = Pol::where('id', $pol_id)->first();
 		$po = Po::where('id', $pol->po_id)->first();
 		if ($po->status <> ClosureStatusEnum::OPEN->value) {
-			return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
+			return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for OPEN Purchase Order!');
 		}
 		$warehouses = Warehouse::primary()->get();
 

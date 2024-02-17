@@ -21,12 +21,12 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="">SL#</th>
+						<th class="">ID</th>
 						<th class="">Date</th>
 						<th class="">Bank Ac</th>
 						<th class="text-end">Ref/Cheque No</th>
 						<th class="text-end">Amount</th>
-						<th class="text-end">PO#</th>
+						<th class="text-end">Currency</th>
 						<th class="">Actions</th>
 					</tr>
 				</thead>
@@ -34,17 +34,14 @@
 					@foreach ($payments as $payment)
 						<tr class="">
 							<td class="">{{ $payment->id }}</td>
-							<td class="">{{ $payment->pay_date }}</td>
+							<td class=""><x-tenant.list.my-date :value="$payment->pay_date"/></td>
 							<td class="">{{ $payment->bank_account->ac_name }}</td>
 							<td class="text-end">{{ $payment->cheque_no }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/></td>
-							<td class="text-end">{{ $payment->po_no }}</td>
+							<td class="text-end">{{ $payment->currency }}</td>
 							<td class="table-action">
 								<a href="{{ route('payments.show',$payment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="align-middle" data-feather="eye"></i></a>
-								<a href="{{ route('payments.destroy',$payment->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
-									<i class="align-middle" data-feather="trash-2"></i>
-								</a>
 							</td>
 						</tr>
 					@endforeach

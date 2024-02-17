@@ -19,7 +19,7 @@ use App\Models\User;
 use App\Enum\AuthStatusEnum;
 use App\Enum\WfStatusEnum;
 use App\Enum\WflActionEnum;
-//use App\Enum\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 
 # Helpers
@@ -94,69 +94,32 @@ class WflController extends Controller
 		
 		// get the wf and article details
 		$wf = Wf::where('id', $wfl->wf_id)->first();
-		// switch($wf->entity) {
-		// 	case(EntityEnum::PR->value):
-		// 		$pr = Pr::where('id', $wf->article_id)->first();
-		// 	case(EntityEnum::PR->value):
-		// 		$po = Po::where('id', $wf->article_id)->first();
-		// 		break;
-		// 	default:
-		// 		Log::debug("Error!. Invalid Entity in wfl.update rejected");
-		// }
-
-		// $booEndWf = false;
-		// $auth_status = '';
-		
-		// First check if approved or rejected
-		// and map wfl.action to wf.auth_status, pr.auth_status, po.auth_status
-		//$next_approver_id = 0;
-
 		switch($request->input('action')) {
 			case(WflActionEnum::REJECTED->value):
 				self::rejected($wf);
 				break;
 			case(WflActionEnum::APPROVED->value):
-				//$auth_status = AuthStatusEnum::APPROVED->value;
 				$next_approver_id = Workflow::getNextApproverId($wfl->wf_id);
-				
 				if ($next_approver_id <> 0) {
-					//Log::debug("next approver found! = ");
-					//$booEndWf = false;
 					self::moveToNext($wf);
 				} else {
-					// document is approved
-					//Log::debug("This was the top approver ");
 					self::approved($wf); 
-					//$booEndWf = true;
 				}
 				break;
 			default:
-				// TODO
-				// Exit from here?
 				Log::warning("Error! Invalid action in wfl.update" .$request->input('action'));
 		}
 
-		// // this is the last step, update wf and pr/po else notify next approver
-		// if ($booEndWf) {
-			
-		// } else {
-			
-		// }
-
-		// // next approver exists
-		// if (\App\Helpers\Workflow::getApprover( $wfl->wf_id)){
-		//		do nothing just find and notify next approver
-		//		Workflow::notifyApprover($wfl->wf_id);
-		// } else {
-		//	this is the last step
-		// }
-		//return redirect()->route('dashboards.index')->with('success','Done');
-
-		//LogEvent('wfl',$wfl->id,'update','action',$wfl->action_code);
-		//return redirect()->route('dashboards.index')->with('success','Wf Details updated successfully');
-		//return back()->withMessage('Workflow updated.');
-
-		return redirect()->route('prs.index')->with('success', 'Workflow has been updated accordingly.');
+		switch($wf->entity) {
+			case(EntityEnum::PR->value):
+				return redirect()->route('prs.show',$wf->article_id)->with('error', 'Workflow has been updated accordingly');
+				break;
+			case(EntityEnum::PO->value):
+				return redirect()->route('pos.show',$wf->article_id)->with('error', 'Workflow has been updated accordingly');
+				break;
+			default:
+				return redirect()->route('home')->with('success', 'Workflow has been updated accordingly.');
+		}
 
 	}
 

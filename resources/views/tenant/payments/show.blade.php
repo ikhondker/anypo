@@ -28,7 +28,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.invoice-info id="{{ $payment->invoice_id }}"/>
+	{{-- <x-tenant.info.invoice-info id="{{ $payment->invoice_id }}"/> --}}
 
 	<div class="row">
 		<div class="col-12">

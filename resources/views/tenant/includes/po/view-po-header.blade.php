@@ -2,11 +2,11 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Basic Informations PO #{{ $po->id }}</h5>
-					<h6 class="card-subtitle text-muted">Key information of a Purchase Order.</h6>
+					<h5 class="card-title">Basic Information</h5>
+					<h6 class="card-subtitle text-muted">Basic information of a Purchase Order.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $po->summary }}"/>
+					<x-tenant.show.my-text		value="{{ $po->summary }}" label="Summary"/>
 					<x-tenant.show.my-amount-currency	value="{{ $po->amount }}" currency="{{ $po->currency }}" />
 					<x-tenant.show.my-date		value="{{ $po->po_date }}"/>
 					<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>

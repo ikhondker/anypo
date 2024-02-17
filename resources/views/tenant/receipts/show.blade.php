@@ -28,7 +28,7 @@
 	</x-tenant.page-header>
 
 
-	<x-tenant.info.pol-info id="{{ $receipt->pol_id }}"/>
+	{{-- <x-tenant.info.pol-info id="{{ $receipt->pol_id }}"/> --}}
 
 	<div class="row">
 		<div class="col-12">
@@ -41,7 +41,7 @@
 					<x-tenant.show.my-text		value="{{ $receipt->id }}" label="GRN#"/>
 					<x-tenant.show.my-date		value="{{ $receipt->receive_date }}"/>
 					<x-tenant.show.my-text		value="{{ $receipt->warehouse->name }}" label="Warehouse"/>	
-					<x-tenant.show.my-badge		value="{{ $receipt->pol->po_id }}" label="PO#"/>
+					{{-- <x-tenant.show.my-badge		value="{{ $receipt->pol->po_id }}" label="PO#"/> --}}
 					<x-tenant.show.my-badge		value="{{ $receipt->pol->line_num }}" label="Line#"/>
 					<x-tenant.show.my-text		value="{{ $receipt->pol->summary }}" label="Item"/>	
 					<x-tenant.show.my-number	value="{{ $receipt->pol->qty }}" label="Ord Qty" />	

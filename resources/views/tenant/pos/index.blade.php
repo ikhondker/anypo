@@ -64,12 +64,8 @@
 								<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Po" :id="$po->id"/>
-									<a href="{{ route('pos.invoice',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice">
+									<a href="{{ route('pos.invoice',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoices">
 										<i class="align-middle" data-feather="layout"></i></a>
-									<a href="{{ route('pos.destroy', $po->id) }}" class="me-2 modal-boolean-advance"
-										data-entity="Po" data-name="{{ $po->id }}" data-status="Delete"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-										<i class="align-middle text-muted" data-feather="trash-2"></i>
 									</a>
 								</td>
 							</tr>

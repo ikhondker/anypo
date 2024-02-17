@@ -55,12 +55,8 @@
 								<td class="table-action">
 									<a href="{{ route('pols.show',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i></a>
-									<a href="{{ route('pols.receipt',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
-											<i class="align-middle" data-feather="check-circle"></i></a>
-	
 									
 									@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-
 										<a href="{{ route('pols.edit',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 											<i class="align-middle" data-feather="edit"></i></a>
 									
@@ -69,8 +65,10 @@
 											data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 											<i class="align-middle" data-feather="trash-2"></i>
 										</a>
-
 									@endif	
+									<a href="{{ route('pols.receipt',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Goods Receipt">
+										<i class="align-middle" data-feather="corner-right-down"></i></a>
+							
 								</td>
 							</tr>
 						@endif

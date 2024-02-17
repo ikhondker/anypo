@@ -33,11 +33,12 @@
 							<tr>
 								<th>#</th>
 								<th>Date</th>
-								<th>PO#</th>
-								<th>Bank</th>
+								<th>Supplier</th>
+								<th>Inv Num</th>
 								<th>Ref/Cheque</th>
 								<th>Amount</th>
 								<th>Currency</th>
+								<th>Bank</th>
 								<th>Paid By</th>
 								<th>Status</th>
 								<th>Actions</th>
@@ -48,11 +49,12 @@
 							<tr>
 								<td>{{ $payments->firstItem() + $loop->index }}</td>
 								<td><x-tenant.list.my-date :value="$payment->pay_date"/></td>
-								<td>{{ $payment->po_id }}</td>
-								<td>{{ $payment->bank_account->ac_name }}</td>
+								<td>{{ $payment->invoice->supplier->name }}</td>
+								<td>{{ $payment->invoice->invoice_no }}</td>
 								<td>{{ $payment->cheque_no }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/></td>
 								<td>{{ $payment->currency }}</td>
+								<td>{{ $payment->bank_account->ac_name }}</td>
 								<td>{{ $payment->payee->name }}</td>
 								<td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
 

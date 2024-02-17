@@ -138,15 +138,7 @@ class WfController extends Controller
 		return Export::csv('users', $dataArray);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function xxgetResetPrNum()
-	{
-		$this->authorize('reset',Wf::class);
-		return view('tenant.workflow.wfs.reset-pr');
-	}
-
+	
 	/**
 	 * Store a newly created resource in storage.
 	 */

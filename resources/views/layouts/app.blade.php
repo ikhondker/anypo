@@ -123,16 +123,16 @@
 				<ul class="navbar-nav">
 					<li class="nav-item px-2 dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Menu
+						Quick Menu
 						</a>
 						<div class="dropdown-menu dropdown-menu-start dropdown-mega" aria-labelledby="servicesDropdown">
 							<div class="d-md-flex align-items-start justify-content-start">
 								<div class="dropdown-mega-list">
 									<div class="dropdown-header">Summary</div>
-									<a class="dropdown-item" href="{{ route('prs.create') }}">Create PR</a>
-									<a class="dropdown-item" href="{{ route('pos.create') }}">Create PO</a>
-									<a class="dropdown-item" href="{{ route('items.create') }}">Create Item</a>
-									<a class="dropdown-item" href="{{ route('users.index') }}">User List</a>
+									<a class="dropdown-item" href="{{ route('items.create') }}">Create GRS*</a>
+									<a class="dropdown-item" href="{{ route('prs.create') }}">Create Invoice*</a>
+									<a class="dropdown-item" href="{{ route('pos.create') }}">Create Payment*</a>
+									<a class="dropdown-item" href="{{ route('users.index') }}">User List*</a>
 								</div>
 								<div class="dropdown-mega-list">
 									<div class="dropdown-header">Transaction</div>

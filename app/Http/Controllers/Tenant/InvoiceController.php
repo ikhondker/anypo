@@ -53,7 +53,7 @@ class InvoiceController extends Controller
 
 		$invoices = Invoice::query();
 		if (request('term')) {
-			$invoices->where('name', 'Like', '%' . request('term') . '%');
+			$invoices->where('invoice_no', 'Like', '%' . request('term') . '%');
 		}
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:

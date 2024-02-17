@@ -36,7 +36,7 @@ class Receipt extends Model
 	protected $casts = [
 		'updated_at'		=> 'datetime',
 		'created_at'		=> 'datetime',
-		'receive_date'		=> 'date',
+		'receive_date'		=> 'datetime',
 		// DO NOT CAST. eager loading shows error
 		//'status'			=> ReceiptStatusEnum::class
 	];
