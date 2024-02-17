@@ -23,6 +23,7 @@ use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\PaymentStatusEnum;
 use App\Enum\InvoiceStatusEnum;
+use App\Enum\ClosureStatusEnum;
 
 # Helpers
 use App\Helpers\EventLog;
@@ -87,7 +88,10 @@ class PaymentController extends Controller
 		}
 
 		$po = Po::where('id', $invoice->po_id)->first();
-			
+		if ($po->status <> ClosureStatusEnum::OPEN->value) {
+			return redirect()->route('pos.show', $po->id)->with('error', 'You can make Payment only for OPEN Purchase Orders!');
+		}
+
 		$bank_accounts = BankAccount::primary()->get();
 
 		return view('tenant.payments.create-for-invoice', with(compact('po','invoice','bank_accounts')));
@@ -224,14 +228,19 @@ class PaymentController extends Controller
 				return back()->withError("You can only cancel payment with status paid!")->withInput();
 			}
 	
-			//  Reverse Invoice Payment
+			//  Get Invoice 
 			$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
-			$invoice->paid_amount	= $invoice->paid_amount - $payment->amount;
-			$invoice->save();
-
 
 			// update budget and project level summary 
 			$po = Po::where('id', $invoice->po_id)->first();
+			if ($po->status <> ClosureStatusEnum::OPEN->value) {
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
+			}
+
+			//  Reverse Invoice Payment
+			$invoice->paid_amount	= $invoice->paid_amount - $payment->amount;
+			$invoice->save();
+
 			// Po dept budget grs amount update
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 			$dept_budget->amount_payment = $dept_budget->amount_payment - $payment->fc_amount;

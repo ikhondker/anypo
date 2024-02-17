@@ -19,6 +19,7 @@ return new class extends Migration
 			$table->string('invoice_no');
 			$table->dateTime('invoice_date')->useCurrent(); 
 			$table->foreignId('po_id')->constrained('pos');
+			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->string('summary');
 			$table->foreignId('poc_id')->constrained('users');
 			$table->string('currency',3);

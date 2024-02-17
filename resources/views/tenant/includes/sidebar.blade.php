@@ -117,6 +117,7 @@
 				<li class="sidebar-item {{ ($_route_name == 'templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('templates.index') }}"><i class="align-middle" data-feather="circle"></i>Templates</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'entities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('entities.index') }}"><i class="align-middle" data-feather="circle"></i>Entity</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-feather="circle"></i>Country</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'prls.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prls.index') }}"><i class="align-middle" data-feather="circle"></i>Open Closed PO **</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'prls.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prls.index') }}"><i class="align-middle" data-feather="circle"></i>Prl*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'groups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('groups.index') }}"><i class="align-middle" data-feather="circle"></i>Group (?)</a></li>
 			</ul>

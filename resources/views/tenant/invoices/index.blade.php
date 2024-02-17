@@ -63,13 +63,8 @@
 									<a href="{{ route('invoices.show',$invoice->id) }}" class="me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i>
 									</a>
-									<a href="{{ route('payments.create',$invoice->id) }}" class="me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Payment">
+									<a href="{{ route('payments.create',$invoice->id) }}" class="me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Make Payment">
 										<i class="align-middle" data-feather="dollar-sign"></i></a>
-									<a href="{{ route('depts.destroy', $invoice->id) }}" class="me-1 modal-boolean-advance" 
-										data-entity="Invoice" data-name="{{ $invoice->name }}" data-status="{{ ($invoice->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($invoice->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($invoice->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
 								</td>
 							</tr>
 							@endforeach

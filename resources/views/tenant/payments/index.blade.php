@@ -60,11 +60,6 @@
 									<a href="{{ route('payments.show',$payment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i>
 									</a>
-									<a href="{{ route('depts.destroy', $payment->id) }}" class="me-2 modal-boolean-advance" 
-										data-entity="Payment" data-name="{{ $payment->name }}" data-status="{{ ($payment->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($payment->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($payment->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
 								</td>
 							</tr>
 							@endforeach

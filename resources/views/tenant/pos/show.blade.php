@@ -39,7 +39,7 @@
 					<a class="dropdown-item" href="{{ route('pos.edit', $po->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Purchase Order</a>
 					<a class="dropdown-item" href="{{ route('pols.createline', $po->id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Add Purchase Order Line</a>
 					<a class="dropdown-item" href="{{ route('pos.invoice', $po->id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Invoices</a>
-					<a class="dropdown-item" href="{{ route('invoices.create', $po->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Create Invoice</a>
+					<a class="dropdown-item" href="{{ route('invoices.create', $po->id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Create Invoice</a>
 
 					<a class="dropdown-item modal-boolean-advance"  href="{{ route('pos.copy', $po->id) }}"
 						data-entity="" data-name="PO#{{ $po->id }}" data-status="Duplicate"
@@ -48,10 +48,11 @@
 					
 					<div class="dropdown-divider"></div>
 
-					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('pos.show', $po->id) }}"
+					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('pos.close', $po->id) }}"
 						data-entity="" data-name="PO #{{ $po->id }}" data-status="Force Close"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
 						<i class="align-middle me-1" data-feather="x"></i> Force Close PO *</a>
+
 					<a class="dropdown-item text-danger" href="{{ route('pos.detach',$po->id) }}"><i class="align-middle me-1" data-feather="trash-2"></i> Delete Attachment</a>
 
 					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('wfs.wf-reset-po', $po->id) }}"

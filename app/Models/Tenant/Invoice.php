@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 /* IQBAL 21-OCT-22 */
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
+
+use App\Models\Tenant\Lookup\Supplier;
+
 use App\Models\Tenant\Manage\Status;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -26,7 +29,7 @@ class Invoice extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'invoice_no', 'invoice_date', 'po_id', 'summary', 'poc_id', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'paid_amount', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'fc_paid_amount', 'dr_account', 'cr_account', 'notes', 'status', 'payment_status', 'updated_by', 'updated_at',
+		'invoice_no', 'invoice_date', 'po_id', 'supplier_id','summary', 'poc_id', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'paid_amount', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'fc_paid_amount', 'dr_account', 'cr_account', 'notes', 'status', 'payment_status', 'updated_by', 'updated_at',
 	];
 
 
@@ -95,6 +98,13 @@ class Invoice extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
+
+	public function supplier(){
+		return $this->belongsTo(Supplier::class,'supplier_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
 	public function poc(){
 		return $this->belongsTo(User::class,'poc_id')->withDefault([
 			'name' => '[ Empty ]',

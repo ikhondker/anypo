@@ -28,8 +28,8 @@
 									<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>
 								</tr>
 								<tr>
-									<th>PoC Name</th>
-									<td>{{ $invoice->poc->name  }}</td>
+									<th>Supplier</th>
+									<td>{{ $invoice->supplier->name  }}</td>
 								</tr>
 								<tr>
 									<th>PO</th>

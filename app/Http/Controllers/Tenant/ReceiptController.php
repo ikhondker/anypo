@@ -90,6 +90,9 @@ class ReceiptController extends Controller
 
 		//$pol = Pol::where('id', $pol_id)->first();
 		$po = Po::where('id', $pol->po_id)->first();
+		if ($po->status <> ClosureStatusEnum::OPEN->value) {
+			return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
+		}
 		$warehouses = Warehouse::primary()->get();
 
 		return view('tenant.receipts.create-for-pol', with(compact('po','pol','warehouses')));
@@ -222,26 +225,29 @@ class ReceiptController extends Controller
 		
 		$receipt_id = $receipt->id;
 
-		Log::debug('Value of receipt_id=' . $receipt_id);
+		//Log::debug('Value of receipt_id=' . $receipt_id);
 
 		try {
 			$receipt = Receipt::where('id', $receipt_id)->firstOrFail();
-
 			//Log::debug('Value of receipt_id 22222=' . $receipt_id);
-
 			if ($receipt->status <> ReceiptStatusEnum::RECEIVED->value) {
 				return back()->withError("You can only cancel Receipt with status received!")->withInput();
 			}
-	
+
 			// update pol rcv quantity
 			$pol 				= Pol::where('id', $receipt->pol_id)->firstOrFail();
+			
+			// update budget and project level summary 
+			$po = Po::where('id', $pol->po_id)->first();
+			if ($po->status <> ClosureStatusEnum::OPEN->value) {
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
+			}
+
 			$pol->received_qty	= $pol->received_qty - $receipt->qty;
 			$pol->save();
 			
 		
-			// update budget and project level summary 
-			$po = Po::where('id', $pol->po_id)->first();
-
+			
 			// PO header update
 			$po->amount_grs = $po->amount_grs - $receipt->amount;
 			$po->fc_amount_grs = $po->fc_amount_grs - $receipt->fc_amount;

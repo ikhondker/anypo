@@ -21,6 +21,7 @@ use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\InvoiceStatusEnum;
+use App\Enum\ClosureStatusEnum;
 use App\Enum\PaymentStatusEnum;
 use App\Enum\AuthStatusEnum;
 
@@ -79,11 +80,17 @@ class InvoiceController extends Controller
 	 */
 	public function create(Po $po)
 	{
+		
 		$this->authorize('create', Invoice::class);
 
 		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for APPROVED Purchase Order!');
 		}
+
+		if ($po->status <> ClosureStatusEnum::OPEN->value) {
+			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for OPEN Purchase Order!');
+		}
+
 
 		Log::debug('tenant.invoices.create Value of PO id in create=' . $po->id);		
 		//$po = Po::where('id', $po_id)->first();
@@ -99,6 +106,10 @@ class InvoiceController extends Controller
 	{
 		$this->authorize('create', Invoice::class);
 		
+		// get PO 
+		$po = Po::where('id', $request->input('po_id'))->first();
+		$request->merge(['supplier_id'	=> 	$po->supplier_id ]);
+
 		// $request->merge(['invoice_date'		=> date('Y-m-d H:i:s')]);
 		$invoice = Invoice::create($request->all());
 		
@@ -153,6 +164,12 @@ class InvoiceController extends Controller
 			return back()->withError("You can only post DRAFT Invoices!")->withInput();
 		}
 
+		// update budget and project level summary 
+		$po = Po::where('id', $invoice->po_id)->first();
+		if ($po->status <> ClosureStatusEnum::OPEN->value) {
+			return redirect()->route('pos.show', $po->id)->with('error', 'You can post Invoices only for OPEN Purchase Order!');
+		}
+
 		$invoice->fill(['status' => InvoiceStatusEnum::POSTED->value]);
 		$invoice->update();
 
@@ -164,9 +181,6 @@ class InvoiceController extends Controller
 
 		// Reupload 
 		$invoice = Invoice::where('id', $invoice->id)->first();
-
-		// update budget and project level summary 
-		$po = Po::where('id', $invoice->po_id)->first();
 		
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
@@ -240,6 +254,13 @@ class InvoiceController extends Controller
 
 			// update budget and project level summary 
 			$po = Po::where('id', $invoice->po_id)->first();
+
+			// update budget and project level summary 
+			$po = Po::where('id', $invoice->po_id)->first();
+			if ($po->status <> ClosureStatusEnum::OPEN->value) {
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
+			}
+
 			// Po dept budget grs amount update
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 			$dept_budget->amount_invoice = $dept_budget->amount_invoice - $invoice->fc_amount;

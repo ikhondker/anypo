@@ -154,11 +154,11 @@ class RecordDeptBudgetUsage implements ShouldQueue
 					//Log::debug('I AM HERE 3b');
 					switch ($this->event) {
 						case EventEnum::POST->value:
-							Log::debug('I AM HERE 4');
+							//Log::debug('I AM HERE 4');
 							$dbu->amount_invoice	= $this->fc_amount;
 							break;
 						case EventEnum::CANCEL->value:
-							Log::debug('I AM HERE 4a');
+							//Log::debug('I AM HERE 4a');
 							$dbu->amount_invoice	= - $this->fc_amount;
 							break;
 						default:
@@ -192,6 +192,6 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		}
 		
 		$dbu->save();
-		Log::debug('I AM HERE 6 DONE');
+		//Log::debug('I AM HERE 6 DONE');
 	}
 }

@@ -328,6 +328,32 @@ class PoController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
+	public function close(Po $po)
+	{
+		
+		//$this->authorize('close',Po::class);
+		//$po_id= $request->input('po_id');
+
+		
+		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+			return back()->withError("Only APPROVED Purchase Order can be closed!")->withInput();
+		}
+
+		if ($po->status <> ClosureStatusEnum::OPEN->value) {
+			return back()->withError("Only OPEN Purchased Order can be closed!")->withInput();
+		}
+
+		// PO status update
+		$po->status = ClosureStatusEnum::FORCED->value;
+		$po->save();
+		
+		return redirect()->route('pos.index')->with('success', 'Purchase Order Force Closed successfully');
+
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
 	public function cancel(Po $po)
 	{
 		

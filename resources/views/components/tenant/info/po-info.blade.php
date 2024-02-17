@@ -7,7 +7,7 @@
 						<img src="{{ asset('/img3.jpg')}}" width="180" height="180" class="mt-2" alt="Project">
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
-						<h4>PO #{{ $po->id }} {{ $po->summary }}</h4>
+						<h4>PO #{{ $po->id }} : {{ $po->summary }}</h4>
 						<p>{{ $po->notes }}</p>
 						<table class="table table-sm my-2">
 					
@@ -23,6 +23,15 @@
 									</td>
 								</tr>
                                 <tr>
+									<th>Department</th>
+                                    <td>{{ $po->dept->name  }}</td>
+								</tr>
+                                <tr>
+									<th>Project</th>
+                                    <td>{{ $po->project->name  }}</td>
+								</tr>
+
+								<tr>
 									<th>Auth Status</th>
                                     <td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
 								</tr>

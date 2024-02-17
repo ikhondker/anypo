@@ -104,6 +104,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'pos.invoice','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.detach','route_name' => 'pos.index', 'node_name' => 'purchase'],
 
+			[ 'raw_route_name' => 'pols.show','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pols.receipt','route_name' => 'pos.index', 'node_name' => 'purchase'],
 
 

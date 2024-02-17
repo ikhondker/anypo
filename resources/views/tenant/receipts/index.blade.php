@@ -58,11 +58,6 @@
 								<td class="table-action">
 									<a href="{{ route('receipts.show',$receipt->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i></a>
-									<a href="{{ route('receipts.destroy', $receipt->id) }}" class="me-2 modal-boolean-advance" 
-										data-entity="Payment" data-name="{{ $receipt->id }}" data-status="{{ ($receipt->status ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($receipt->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($receipt->status ? 'bell-off' : 'bell') }}"></i>
-									</a>
 								</td>
 							</tr>
 							@endforeach

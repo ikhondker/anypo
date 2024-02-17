@@ -36,7 +36,7 @@
 				</div>
 				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $deptBudget->amount_po_issued) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-soft-success me-2">{{ $deptBudget->amount_po_issued / $deptBudget->amount * 100 }}%</span>
+					<span class="badge badge-soft-success me-2">{{ number_format($deptBudget->amount_po_issued / $deptBudget->amount * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 				</div>
 				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $deptBudget->amount_invoice) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-soft-success me-2">{{ $deptBudget->amount_invoice / $deptBudget->amount * 100 }}%</span>
+					<span class="badge badge-soft-success me-2">{{ number_format($deptBudget->amount_invoice / $deptBudget->amount * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
 				</div>
 			</div>
@@ -82,7 +82,7 @@
 				</div>
 				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $deptBudget->amount_payment) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-soft-success me-2">{{ $deptBudget->amount_payment / $deptBudget->amount * 100 }}%</span>
+					<span class="badge badge-soft-success me-2">{{ number_format($deptBudget->amount_payment / $deptBudget->amount * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
 				</div>
 
