@@ -142,18 +142,18 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				}
 				break;
 				case EntityEnum::INVOICE->value:
-					Log::debug('I AM HERE 3');
+					//Log::debug('I AM HERE 3');
 					$invoice				= Invoice::with('po')->where('id', $this->article_id)->firstOrFail();
 					$invoice_dept_budget_id = $invoice->po->dept_budget_id;
-					Log::debug('I AM HERE 3a');
+					//Log::debug('I AM HERE 3a');
 					//Log::debug("dept_budget_id=". $pr->dept_budget_id);
 					$dept_budget 			= DeptBudget::primary()->where('id', $invoice_dept_budget_id)->firstOrFail();
 					$dbu->dept_budget_id	= $invoice_dept_budget_id;
 					$dbu->dept_id			= $invoice->po->dept_id;
 					$dbu->project_id		= $invoice->po->project_id;
-					Log::debug('I AM HERE 3b');
+					//Log::debug('I AM HERE 3b');
 					switch ($this->event) {
-						case EventEnum::CREATE->value:
+						case EventEnum::POST->value:
 							Log::debug('I AM HERE 4');
 							$dbu->amount_invoice	= $this->fc_amount;
 							break;

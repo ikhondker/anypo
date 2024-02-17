@@ -36,22 +36,15 @@
 					<x-tenant.show.my-boolean	value="{{ $report->Report_id }}" label="Report?"/>
 					<x-tenant.show.my-boolean	value="{{ $report->warehouse_id }}" label="warehouse_id?"/>
 					<x-tenant.show.my-boolean	value="{{ $report->enable }}"/>
+					<x-tenant.show.my-created-at value="{{ $report->updated_at }}"/>
+					<x-tenant.show.my-updated-at value="{{ $report->created_at }}"/>
+					
+		
 				</div>
 			</div>
 		</div>
 		<!-- end col-6 -->
-		<div class="col-6">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Supporting Info</h5>
-				</div>
-				<div class="card-body">
-					<x-tenant.show.my-date-time value="{{ $report->created_at }}" label="Created At"/>
-					<x-tenant.show.my-date-time value="{{ $report->updated_at }}" label="Updated At"/>
-				</div>
-			</div>
-		</div>
-		<!-- end col-6 -->
+		
 	</div>
 	<!-- end row -->
 

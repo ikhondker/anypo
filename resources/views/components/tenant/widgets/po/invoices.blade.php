@@ -16,7 +16,7 @@
 					</div>
 				</div>
 				<h5 class="card-title">Purchase Order Invoices</h5>
-				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+				<h6 class="card-subtitle text-muted">List of Purchase Order Invoices.</h6>
 			</div>
 			<table class="table">
 				<thead>
@@ -39,7 +39,7 @@
 							<td class="">{{ $invoice->id }}</td>
 							<td class="">{{ $invoice->po_id }}</td>
 							<td class="">{{ $invoice->invoice_no }}</td>
-							<td class="">{{ $invoice->inv_date }}</td>
+							<td class=""><x-tenant.list.my-date :value="$invoice->invoice_date"/></td>
 							<td class="">{{ $invoice->summary }}</td>
 							<td class="">{{ $invoice->currency }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
@@ -48,11 +48,11 @@
 							<td class="table-action">
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="align-middle" data-feather="eye"></i></a>
-								<a href="{{ route('payments.create',$invoice->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice">
+								<a href="{{ route('payments.create',$invoice->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments">
 										<i class="align-middle" data-feather="dollar-sign"></i></a>
 								<a href="{{ route('prls.edit',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 									<i class="align-middle" data-feather="edit"></i></a>
-									<a href="{{ route('prls.destroy',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
+								<a href="{{ route('prls.destroy',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
 									<i class="align-middle" data-feather="trash-2"></i>
 								</a>
 							</td>

@@ -108,7 +108,6 @@ class PoBudget
 			// book project budget
 			$project->amount_po_booked = $project->amount_po_booked + $po->fc_amount;
 			$project->save();
-	
 
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::BOOK->value,$po->fc_amount);

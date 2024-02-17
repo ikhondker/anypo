@@ -25,6 +25,7 @@ enum EventEnum: string{
 	case SUBMIT		= 'submit';
 	//case FORWARD	= 'forward';
 	case BOOK		= 'book';
+	case POST		= 'post';	// Invoice
 	case REJECT		= 'reject';
 	case APPROVE	= 'approve';
 	case CANCEL		= 'cancel';

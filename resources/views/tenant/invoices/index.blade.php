@@ -26,7 +26,7 @@
 							Invoice Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Invoices.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
@@ -57,13 +57,13 @@
 								<td>{{ $invoice->currency }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$invoice->paid_amount"/></td>
-								<td><x-tenant.list.my-badge :value="$invoice->status"/></td>
-								<td><x-tenant.list.my-badge :value="$invoice->payment_status"/></td>
+									<td><span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span></td>
+									<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>
 								<td class="table-action">
 									<a href="{{ route('invoices.show',$invoice->id) }}" class="me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i>
 									</a>
-									<a href="{{ route('payments.create',$invoice->id) }}" class="me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice">
+									<a href="{{ route('payments.create',$invoice->id) }}" class="me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Payment">
 										<i class="align-middle" data-feather="dollar-sign"></i></a>
 									<a href="{{ route('depts.destroy', $invoice->id) }}" class="me-1 modal-boolean-advance" 
 										data-entity="Invoice" data-name="{{ $invoice->name }}" data-status="{{ ($invoice->enable ? 'Disable' : 'Enable') }}"

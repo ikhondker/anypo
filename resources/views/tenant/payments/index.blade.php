@@ -25,7 +25,7 @@
 							Payment Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Payments.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
@@ -54,7 +54,8 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/></td>
 								<td>{{ $payment->currency }}</td>
 								<td>{{ $payment->payee->name }}</td>
-								<td><x-tenant.list.my-badge :value="$payment->status"/></td>
+								<td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
+
 								<td class="table-action">
 									<a href="{{ route('payments.show',$payment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i>

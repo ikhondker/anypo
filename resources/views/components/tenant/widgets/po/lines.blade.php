@@ -55,7 +55,7 @@
 								<td class="table-action">
 									<a href="{{ route('pols.show',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i></a>
-									<a href="{{ route('receipts.create',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
+									<a href="{{ route('pols.receipt',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
 											<i class="align-middle" data-feather="check-circle"></i></a>
 	
 									

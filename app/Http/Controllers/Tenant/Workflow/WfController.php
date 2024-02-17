@@ -191,15 +191,7 @@ class WfController extends Controller
 	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function xxgetResetPoNum()
-	{
-		$this->authorize('reset',Wf::class);
-		return view('tenant.workflow.wfs.reset-po');
-	}
-
+	
 	/**
 	 * Show the form for creating a new resource.
 	 */
@@ -209,7 +201,7 @@ class WfController extends Controller
 
 		// update PR header
 		//$pr	= Pr::where('id', $request->input('pr_id'))->firstOrFail();
-		if ($po->auth_status->value <> AuthStatusEnum::INPROCESS->value){
+		if ($po->auth_status <> AuthStatusEnum::INPROCESS->value){
 				return back()->withError("PR#".$po->id." is not in IN-PROCESS status!")->withInput();
 		}
 

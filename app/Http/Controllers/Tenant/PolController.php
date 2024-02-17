@@ -15,7 +15,8 @@ use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 # Enums
-use App\Enum\EntityEnum;
+use App\Enum\AuthStatusEnum;
+
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -40,16 +41,19 @@ class PolController extends Controller
 	public function addLine($po_id)
 	{
 		//$this->authorize('update',$pr);
-		// Write Event Log
-		//LogEvent('template',$template->id,'edit','template',$template->id);
 
 		$po = Po::where('id', $po_id)->first();
+
+
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
+		 	return redirect()->route('pos.show',$po->id)->with('error', 'You can only add line to Purchase Order with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+		}
 
 		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
 		$uoms = Uom::primary()->get();
 
-		return view('tenant.pols.create', with(compact('po','items','uoms')));
+		return view('tenant.pols.create', with(compact('po','items')));
 	}
 
 
@@ -188,5 +192,13 @@ class PolController extends Controller
 	public function destroy(Pol $pol)
 	{
 		//
+	}
+
+	public function receipt(Pol $pol)
+	{
+		//$this->authorize('view', $pol);
+
+		//$po = Po::where('id', $po->id)->get()->firstOrFail();
+		return view('tenant.pols.receipt', compact('pol'));
 	}
 }

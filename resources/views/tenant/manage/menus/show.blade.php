@@ -10,7 +10,7 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Dept"/>
 			<x-tenant.buttons.header.create object="Dept"/>
-			<x-tenant.buttons.header.edit object="Dept" :id="$dept->id"/>
+			<x-tenant.buttons.header.edit object="Dept" :id="$menu->id"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -22,25 +22,17 @@
 					<h6 class="card-subtitle text-muted">Show Menu Details.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $dept->name }}"/>
-					<x-tenant.show.my-badge		value="{{ $dept->id }}" label="ID"/>
-					<x-tenant.show.my-boolean	value="{{ $dept->enable }}"/>
+					<x-tenant.show.my-text		value="{{ $menu->name }}"/>
+					<x-tenant.show.my-badge		value="{{ $menu->id }}" label="ID"/>
+					<x-tenant.show.my-boolean	value="{{ $menu->enable }}"/>
+					<x-tenant.show.my-created-at value="{{ $menu->updated_at }}"/>
+					<x-tenant.show.my-updated-at value="{{ $menu->created_at }}"/>
+
+								
 				</div>
 			</div>
 		</div>
-		<!-- end col-6 -->
-		<div class="col-6">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Supporting Info</h5>
-				</div>
-				<div class="card-body">
-					<x-tenant.show.my-date-time value="{{ $dept->created_at }}" label="Created At"/>
-					<x-tenant.show.my-date-time value="{{ $dept->updated_at }}" label="Updated At"/>
-				</div>
-			</div>
-		</div>
-		<!-- end col-6 -->
+		
 	</div>
 	<!-- end row -->
 

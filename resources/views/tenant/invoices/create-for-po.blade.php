@@ -15,9 +15,11 @@
 	</x-tenant.page-header> 
 
 
-	@include('tenant.includes.po.view-po-header')
+	{{-- @include('tenant.includes.po.view-po-header') --}}
 	
-	<x-tenant.widgets.po.invoices :id="$po->id" />
+	<x-tenant.info.po-info id="{{ $po->id }}"/>
+
+	{{-- <x-tenant.widgets.po.invoices :id="$po->id" /> --}}
 
 	<!-- form start -->
 	<form id="myform" action="{{ route('invoices.store') }}" method="POST" enctype="multipart/form-data">
@@ -28,7 +30,8 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Invoice Info</h5>
+						<h5 class="card-title">Invoice Basic Information</h5>
+						<h6 class="card-subtitle text-muted">Invoice Basic Information.</h6>
 					</div>
 					<div class="card-body">
 
@@ -87,7 +90,8 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Invoice Info</h5>
+						<h5 class="card-title">Invoice Amount</h5>
+						<h6 class="card-subtitle text-muted">Invoice Amount Information.</h6>
 					</div>
 					<div class="card-body">
 

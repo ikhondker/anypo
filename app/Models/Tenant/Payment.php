@@ -11,6 +11,7 @@ use App\Models\User;
 
 
 use App\Enum\PaymentStatusEnum;
+use App\Models\Tenant\Manage\Status;
 
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Lookup\BankAccount;
@@ -74,6 +75,13 @@ class Payment extends Model
 
 
 	/* ---------------- belongsTo ---------------------- */
+	public function status_badge(){
+		return $this->belongsTo(Status::class,'status')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+
 	public function invoice(){
 		return $this->belongsTo(Invoice::class,'invoice_id')->withDefault([
 			'name' => '[ Empty ]',

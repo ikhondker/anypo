@@ -13,6 +13,7 @@ use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Po;
 use Illuminate\Database\Eloquent\Builder;
 
+use App\Models\Tenant\Manage\Status;
 use App\Enum\ClosureStatusEnum;
 
 class Pol extends Model
@@ -39,6 +40,14 @@ class Pol extends Model
 	/* ----------------- HasMany ------------------------ */
 	/* ---------------- belongsTo ---------------------- */
 	/* ---------------- belongsTo ---------------------- */
+
+	public function closure_status_badge(){
+		return $this->belongsTo(Status::class,'auth_status')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+
 	public function po(){
 		return $this->belongsTo(Po::class,'po_id');
 	}

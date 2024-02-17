@@ -15,6 +15,8 @@ use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 use App\Models\Tenant\Lookup\Warehouse;
 
+use App\Models\Tenant\Manage\Status;
+
 use Illuminate\Database\Eloquent\Builder;
 
 class Receipt extends Model
@@ -65,6 +67,13 @@ class Receipt extends Model
 	/* ----------------- HasMany ------------------------ */
 	
 	/* ---------------- belongsTo ---------------------- */
+
+	public function status_badge(){
+		return $this->belongsTo(Status::class,'status')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
 	public function pol(){
 		return $this->belongsTo(Pol::class,'pol_id')->withDefault([
 			'name' => '[ Empty ]',

@@ -38,7 +38,7 @@ return new class extends Migration
 			$table->string('cr_account')->default('100001')->nullable();
 			$table->text('notes')->nullable();
 			/** ENUM */
-			$table->string('status')->default(InvoiceStatusEnum::DRAFT->value);;
+			$table->string('status')->default(InvoiceStatusEnum::DRAFT->value);
 			$table->foreign('status')->references('code')->on('statuses');
 			/** end ENUM */
 			/** ENUM */

@@ -16,7 +16,7 @@
 					</div>
 				</div>
 				<h5 class="card-title">Invoice Payments</h5>
-				<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+				<h6 class="card-subtitle text-muted">List of Invoice Payments.</h6>
 			</div>
 			<table class="table">
 				<thead>
@@ -40,8 +40,9 @@
 							<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/></td>
 							<td class="text-end">{{ $payment->po_no }}</td>
 							<td class="table-action">
-								<a href="{{ route('prls.edit',$payment->id) }}" class="text-muted d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">Edit</a> |
-								<a href="{{ route('prls.destroy',$payment->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
+								<a href="{{ route('payments.show',$payment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+									<i class="align-middle" data-feather="eye"></i></a>
+								<a href="{{ route('payments.destroy',$payment->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
 									<i class="align-middle" data-feather="trash-2"></i>
 								</a>
 							</td>

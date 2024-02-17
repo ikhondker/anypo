@@ -102,11 +102,11 @@ class PoController extends Controller
 	{
 		$this->authorize('create', Po::class);
 
-		$depts = Dept::primary()->get();
-		$items = Item::primary()->get();
-		$suppliers = Supplier::primary()->get();
-		$projects = Project::primary()->get();
-		$uoms = Uom::primary()->get();
+		$depts 		= Dept::primary()->get();
+		$items 		= Item::primary()->get();
+		$suppliers 	= Supplier::primary()->get();
+		$projects 	= Project::primary()->get();
+		$uoms 	= Uom::primary()->get();
 
 		return view('tenant.pos.create', compact('suppliers', 'depts', 'items','uoms', 'projects'));
 	}
@@ -126,7 +126,7 @@ class PoController extends Controller
 		$request->merge(['requestor_id'	=> auth()->user()->id]);
 		$request->merge(['fc_currency'	=> $setup->currency]);
 		
-		// as this is the first line pr value will be same as pol values
+		// as this is the first line po value will be same as pol values
 		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
 		$request->merge(['tax'			=> $request->input('tax')]);
 		$request->merge(['gst'			=> $request->input('gst')]);
@@ -195,10 +195,35 @@ class PoController extends Controller
 	{
 		//$this->authorize('view', $po);
 
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'You can only delete attachment if the Purchase Order status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+		}
+
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
 		$attachments = Attachment::where('entity', EntityEnum::PO->value)->where('article_id', $po->id)->get()->all();
 		return view('tenant.pos.detach', compact('po', 'attachments'));
 	}
+
+	public function history(Po $po)
+	{
+		//$this->authorize('view', $po);
+
+		if ($po->auth_status == AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'No Approval History! Purchase Order will have Approval History only after Submission.');
+		}
+
+		$po = Po::where('id', $po->id)->get()->firstOrFail();
+		return view('tenant.pos.history', compact('po'));
+	}
+
+	public function invoice(Po $po)
+	{
+		//$this->authorize('view', $po);
+
+		$po = Po::where('id', $po->id)->get()->firstOrFail();
+		return view('tenant.pos.invoice', compact('po'));
+	}
+
 
 	/**
 	 * Display the specified resource.
@@ -230,6 +255,11 @@ class PoController extends Controller
 	{
 		$this->authorize('update', $po);
 
+
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'You can not edit a Purchase Order with status '. strtoupper($po->auth_status) .' !');
+		}
+
 		$depts = Dept::primary()->get();
 		
 		$suppliers = Supplier::primary()->get();
@@ -255,13 +285,13 @@ class PoController extends Controller
 
 		// Write to Log
 		EventLog::event('po', $po->id, 'update', 'summary', $po->summary);
-		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Requisition  updated successfully.');
+		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Purchase Order updated successfully.');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function pdf(Po $po)
+	public function xxpdf(Po $po)
 	{
 		$this->authorize('delete', $po);
 
@@ -271,7 +301,7 @@ class PoController extends Controller
 		// Write to Log
 		EventLog::event('po', $po->id, 'status', 'enable', $po->enable);
 
-		return redirect()->route('pos.index')->with('success', 'Po status Updated successfully');
+		return redirect()->route('pos.index')->with('success', 'Purchase Order status Updated successfully');
 	}
 
 	/**
@@ -279,24 +309,20 @@ class PoController extends Controller
 	 */
 	public function destroy(Po $po)
 	{
-		$this->authorize('delete', $dept);
+		$this->authorize('delete', $po);
 
-		$dept->fill(['enable' => !$dept->enable]);
-		$dept->update();
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('pos.show', $po->id)->with('error', 'Only DRAFT Purchase Order can be deleted!');
+		}
 
 		// Write to Log
-		EventLog::event('dept', $dept->id, 'status', 'enable', $dept->enable);
+		EventLog::event('Po', $po->id, 'delete', 'id', $po->id);
+		// delete from pol
+		DB::table('pols')->where('po_id', $po->id)->delete();
+		$po->delete();
 
-		return redirect()->route('depts.index')->with('success', 'Dept status Updated successfully');
-	}
-
-	public function export()
-	{
-		$data = DB::select("SELECT id, name, email, cell, role, enable 
-			FROM users");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('users', $dataArray);
+		
+		return redirect()->route('pos.index')->with('success', 'Purchase Order status Updated successfully');
 	}
 
 	/**
@@ -307,24 +333,31 @@ class PoController extends Controller
 		
 		$this->authorize('cancel',Po::class);
 		//$po_id= $request->input('po_id');
+
 		$po_id = $po->id;
 
 		try {
 			$po = Po::where('id',$po_id )->firstOrFail();
 
-			if ($po->auth_status->value == AuthStatusEnum::DRAFT->value) {
+			if ($po->auth_status == AuthStatusEnum::DRAFT->value) {
 				//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
-				return back()->withError("Please delete DRAFT Requisition if needed!")->withInput();
+				return back()->withError("Please delete DRAFT Purchase Order if needed!")->withInput();
 			}
 	
-			if ($po->auth_status->value <> AuthStatusEnum::APPROVED->value) {
+			if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
 				return back()->withError("Only APPROVED Purchase Order can be canceled!!")->withInput();
 				//return redirect()->route('pos.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
 			}
 	
 			// Check payment exists
+			if ($po->amount_invoice <> 0 ) {
+				return back()->withError("Invoice exists for this PO. Can not cancel!!")->withInput();
+				//return redirect()->route('pos.cancel')->with('error', 'Payment exists for this PO. Can not cancel!');
+			}
+
+			// Check payment exists
 			if ($po->amount_paid <> 0 ) {
-				return back()->withError("PPayment exists for this PO. Can not cancel!!")->withInput();
+				return back()->withError("Payment exists for this PO. Can not cancel!!")->withInput();
 				//return redirect()->route('pos.cancel')->with('error', 'Payment exists for this PO. Can not cancel!');
 			}
 
@@ -342,6 +375,7 @@ class PoController extends Controller
 			// Cancel All PO Lines
 			Pol::where('po_id',$po_id)
 				  ->update([
+					'prl_id' 			=> NULL,
 					'price' 			=> 0,
 					'sub_total' 		=> 0,
 					'tax' 				=> 0,
@@ -351,7 +385,7 @@ class PoController extends Controller
 					'fc_tax' 			=> 0,
 					'price' 			=> 0,
 					'fc_amount' 		=> 0,
-					'closure_status' => ClosureStatusEnum::CANCELED->value
+					'closure_status' 	=> ClosureStatusEnum::CANCELED->value
 				]);
 	
 			// Cancel PO
@@ -362,14 +396,19 @@ class PoController extends Controller
 					'gst' 			=> 0,
 					'amount' 		=> 0,
 					'fc_sub_total' 	=> 0,
-					'fc_tax' 			=> 0,
-					'fc_gst' 			=> 0,
-					'fc_amount' 		=> 0,
+					'fc_tax' 		=> 0,
+					'fc_gst' 		=> 0,
+					'fc_amount' 	=> 0,
 					'status' 		=> ClosureStatusEnum::CANCELED->value
 				]);
 	
-			// TODO open the PR
-				
+			// open the source PR
+			// TODO P2 
+			Pr::where('po_id', $po->id)
+				->update([
+					'po_id' 	=> null,
+				]);
+
 			// Write to Log
 			EventLog::event('Po', $po->id, 'cancel', 'id', $po->id);
 	
@@ -381,15 +420,32 @@ class PoController extends Controller
 		}
 	}
 
+		
+	public function export()
+	{
+		$data = DB::select("
+		SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date 
+		FROM pos po,depts d, projects p, suppliers s, users u 
+		WHERE po.dept_id=d.id 
+		AND po.project_id=p.id 
+		AND po.supplier_id=s.id 
+		AND po.requestor_id=u.id
+		ORDER BY po.id DESC			");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('users', $dataArray);
+	}
+
 	public function submit(Po $po)
 	{
 		$this->authorize('submit', $po);
 
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+			return redirect()->route('prs.show',$po->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
 		if ($po->amount == 0) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You cannot submit zero value Purchase Order');
+			return redirect()->route('prs.show',$po->id)->with('error', 'You cannot submit zero value Purchase Order');
 		}
 
 		// check if budget created and set dept_budget_id
@@ -531,17 +587,10 @@ class PoController extends Controller
 		DB::INSERT($sql);
 
 		Log::debug('tenant.po.copy New PO created =' . $po->id);
-		EventLog::event('po-copy', $po->id, 'copied');	// Write to Log
+		EventLog::event('po', $po->id, 'copied','id', $sourcePo->id);	// Write to Log
 
-		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Requisition #'.$po_id.' created.');
+		return redirect()->route('pos.show', $po->id)->with('success', 'New Purchase Order #'.$po_id.' created.');
 	}
 
-	public function history(Po $po)
-	{
-		//$this->authorize('view', $po);
-
-		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		return view('tenant.pos.history', compact('po'));
-	}
 
 }

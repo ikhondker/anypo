@@ -22,6 +22,8 @@ use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\InvoiceStatusEnum;
 use App\Enum\PaymentStatusEnum;
+use App\Enum\AuthStatusEnum;
+
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -55,18 +57,18 @@ class InvoiceController extends Controller
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:
 				// buyer can see all invoice of all his po's
-				$invoices = $invoices->ByPoBuyer(auth()->user()->id)->paginate(10);
+				$invoices = $invoices->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$invoices = $invoices->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				$invoices = $invoices->with('status_badge')->with('pay_status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$invoices = $invoices->orderBy('id', 'DESC')->paginate(10);
+				$invoices = $invoices->with('status_badge')->with('pay_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$invoices = $invoices->ByUserAll()->paginate(10);
+				$invoices = $invoices->with('status_badge')->with('pay_status_badge')->ByUserAll()->paginate(10);
 				Log::warning("tenant.invoice.index Other roles!");
 		}
 		return view('tenant.invoices.index', compact('invoices'));
@@ -78,6 +80,11 @@ class InvoiceController extends Controller
 	public function create(Po $po)
 	{
 		$this->authorize('create', Invoice::class);
+
+		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for APPROVED Purchase Order!');
+		}
+
 		Log::debug('tenant.invoices.create Value of PO id in create=' . $po->id);		
 		//$po = Po::where('id', $po_id)->first();
 		$pocs	= User::Tenant()->get();
@@ -95,54 +102,25 @@ class InvoiceController extends Controller
 		// $request->merge(['invoice_date'		=> date('Y-m-d H:i:s')]);
 		$invoice = Invoice::create($request->all());
 		
-		// update PO header
-		$po 					= Po::where('id', $invoice->po_id)->firstOrFail();
-		$po->amount_invoice			= $po->amount_invoice - $invoice->amount;
-		$po->save();
-		
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $invoice->id ]);
 			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
 			$attid = FileUpload::upload($request);
 		}
 		
-		// 	Populate functional currency values
-		$result = self::updateInvoiceFcValues($invoice->id);
-		if (! $result) {
-			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
-		}
-		// Reupload 
-		$invoice = Invoice::where('id', $invoice->id)->first();
-
-		// update budget and project level summary 
-		$po = Po::where('id', $invoice->po_id)->first();
-		// Po dept budget grs amount update
-		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
-		$dept_budget->amount_invoice = $dept_budget->amount_invoice + $invoice->fc_amount;
-		$dept_budget->save();
-
-		// Po project budget used
-		$project = Project::where('id', $po->project_id)->firstOrFail();
-		$project->amount_invoice = $project->amount_invoice + $invoice->fc_amount;
-		$project->save();
-
-		
-		
-		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::CREATE->value,$invoice->fc_amount);
-		ConsolidateBudget::dispatch($dept_budget->budget_id);
-
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'create');
-		return redirect()->route('pos.show',$po->id)->with('success', 'Invoice created successfully.');
+		return redirect()->route('invoices.show',$invoice->id)->with('success', 'Invoice created successfully. Please POST the invoice.');
 	}
 
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(Invoice $invoice)
+	public function show(Invoice $invoice) 
 	{
-		$this->authorize('view', $invoice);
+		
+		// $this->authorize('view', $invoice);
+	
 		return view('tenant.invoices.show', compact('invoice'));
 	}
 
@@ -162,6 +140,59 @@ class InvoiceController extends Controller
 		//
 	}
 
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function post(Invoice $invoice)
+	{
+		$this->authorize('delete', $invoice);
+
+		if ($invoice->status <> InvoiceStatusEnum::DRAFT->value) {
+			//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
+			return back()->withError("You can only post DRAFT Invoices!")->withInput();
+		}
+
+		$invoice->fill(['status' => InvoiceStatusEnum::POSTED->value]);
+		$invoice->update();
+
+		// 	Populate functional currency values
+		$result = self::updateInvoiceFcValues($invoice->id);
+		if (! $result) {
+			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		}
+
+		// Reupload 
+		$invoice = Invoice::where('id', $invoice->id)->first();
+
+		// update budget and project level summary 
+		$po = Po::where('id', $invoice->po_id)->first();
+		
+		// Po dept budget grs amount update
+		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->amount_invoice = $dept_budget->amount_invoice + $invoice->fc_amount;
+		$dept_budget->save();
+
+		// Po project budget used
+		$project = Project::where('id', $po->project_id)->firstOrFail();
+		$project->amount_invoice = $project->amount_invoice + $invoice->fc_amount;
+		$project->save();
+
+		// PO header update
+		$po->amount_invoice = $po->amount_invoice + $invoice->amount;
+		$po->fc_amount_invoice = $po->fc_amount_invoice + $invoice->fc_amount;
+		$po->save();
+				
+		// run job to Sync Budget
+		RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::POST->value, $invoice->fc_amount);
+		ConsolidateBudget::dispatch($dept_budget->budget_id);
+					
+		// Write to Log
+		EventLog::event('invoice', $invoice->id, 'post');
+
+		return redirect()->route('invoices.index')->with('success', 'Invoice Posted successfully');
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 */
@@ -174,7 +205,10 @@ class InvoiceController extends Controller
 	{
 		$this->authorize('export', Invoice::class);
 
-		$data = DB::select("SELECT id, pay_date, payee_id, po_id, bank_account_id, cheque_no, currency, amount, fc_currency, fc_exchange_rate, fc_amount, for_entity, notes, status, created_by, created_at, updated_by, updated_at, FROM invoices
+		$data = DB::select("
+		SELECT id, pay_date, payee_id, po_id, bank_account_id, cheque_no, currency, amount, 
+		fc_currency, fc_exchange_rate, fc_amount, for_entity, notes, status, created_by, created_at, updated_by, updated_at 
+		FROM invoices
 		");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
@@ -194,7 +228,7 @@ class InvoiceController extends Controller
 		try {
 			$invoice = Invoice::where('id', $invoice_id)->firstOrFail();
 			
-			if ($invoice->payment_status->value <> PaymentStatusEnum::UNPAID->value) {
+			if ($invoice->payment_status <> PaymentStatusEnum::UNPAID->value) {
 				return back()->withError("You can not cancel a paid Invoice! Please void Payments first!")->withInput();
 			}
 
@@ -202,12 +236,7 @@ class InvoiceController extends Controller
 			if ($sum_payments <> 0) {
 				return back()->withError("Payment Exists! Please void Payments first!")->withInput();
 			}
-
-			//  Reverse PO Invoiced amount
-			$po 				= Po::where('id', $invoice->po_id)->firstOrFail();
-			$po->amount_invoice			= $po->amount_invoice - $invoice->amount;
-			$po->save();
-
+		
 
 			// update budget and project level summary 
 			$po = Po::where('id', $invoice->po_id)->first();
@@ -220,6 +249,12 @@ class InvoiceController extends Controller
 			$project = Project::where('id', $po->project_id)->firstOrFail();
 			$project->amount_invoice = $project->amount_invoice - $invoice->fc_amount;
 			$project->save();
+
+			//  Reverse PO Invoiced amount
+			$po 				= Po::where('id', $invoice->po_id)->firstOrFail();
+			$po->amount_invoice			= $po->amount_invoice - $invoice->amount;
+			$po->fc_amount_invoice			= $po->fc_amount_invoice - $invoice->fc_amount;
+			$po->save();
 
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::CANCEL->value, $invoice->fc_amount);
@@ -257,7 +292,7 @@ class InvoiceController extends Controller
 
 		$setup 			= Setup::first();
 		$invoice		= Invoice::with('po')->where('id', $receipt_id)->firstOrFail();
-		Log::debug('updateReceiptFcValues =' . $invoice->currency.$setup->currency);
+		Log::debug('updateInvoiceFcValues =' . $invoice->currency.$setup->currency);
 
 		// populate fc columns for receipt lines
 		if ($invoice->currency == $setup->currency){

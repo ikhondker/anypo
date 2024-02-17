@@ -25,7 +25,7 @@
 							Receipt Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+					<h6 class="card-subtitle text-muted">List of Goods Receipts.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
@@ -54,7 +54,7 @@
 								<td>{{ $receipt->pol->summary }}</td>
 								<td>{{ $receipt->qty }}</td>
 								<td>{{ $receipt->receiver->name }}</td>
-								<td><x-tenant.list.my-badge :value="$receipt->status"/></td>
+								<td><span class="badge {{ $receipt->status_badge->badge }}">{{ $receipt->status_badge->name}}</span></td>
 								<td class="table-action">
 									<a href="{{ route('receipts.show',$receipt->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i></a>

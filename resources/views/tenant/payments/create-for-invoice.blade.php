@@ -14,9 +14,7 @@
 		@endslot
 	</x-tenant.page-header> 
 
-	@include('tenant.includes.po.view-po-header')
-	
-	<x-tenant.widgets.po.payments :id="$invoice->id" />
+	<x-tenant.info.invoice-info id="{{ $invoice->id }}"/>
 
 	<!-- form start -->
 	<form id="myform" action="{{ route('payments.store') }}" method="POST" enctype="multipart/form-data">
@@ -24,10 +22,11 @@
 		<input type="text" name="invoice_id" id="invoice_id" class="form-control" placeholder="ID" value="{{ old('invoice_id', $invoice->id ) }}" hidden>
 		
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Payment Info</h5>
+						<h5 class="card-title">Payment Details</h5>
+						<h6 class="card-subtitle text-muted">Payment Detail Information.</h6>
 					</div>
 					<div class="card-body">
 

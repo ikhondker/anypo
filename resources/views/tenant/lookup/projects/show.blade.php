@@ -112,7 +112,6 @@
 				<div class="card-header">
 					<h5 class="card-title">Project Purchase Requisition Budget</h5>
 					<h6 class="card-subtitle text-muted">Project Requisition Orders Budget.</h6>
-
 				</div>
 				<div class="card-body">
 				<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
@@ -131,6 +130,18 @@
 					<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
 					<x-tenant.show.my-amount	value="{{ $project->amount_grs }}" label="GRS Issued"/>
 					<x-tenant.show.my-amount	value="{{ $project->amount- $project->amount_grs }}" label="Available"/>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">Project Invoice Amount</h5>
+					<h6 class="card-subtitle text-muted">Project Invoice Amount.</h6>
+				</div>
+				<div class="card-body">
+					<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount_invoice }}" label="Invoice Received"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount- $project->amount_invoice }}" label="Available"/>
 				</div>
 			</div>
 

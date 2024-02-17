@@ -8,9 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 /* IQBAL 21-OCT-22 */
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
+use App\Models\Tenant\Manage\Status;
+
+use Illuminate\Database\Eloquent\Builder;
+
+use App\Helpers\ExchangeRate;
 
 use App\Enum\InvoiceStatusEnum;
 use App\Enum\PaymentStatusEnum;
+
+use App\Models\Tenant\Admin\Setup;
+
+use DB;
 
 class Invoice extends Model
 {
@@ -63,13 +72,24 @@ class Invoice extends Model
 	}
 
 	/* ----------------- Functions ---------------------- */
-
-
+	
 	/* ---------------- belongsTo ---------------------- */
 	/* ----------------- HasMany ------------------------ */
 
 
 	/* ---------------- belongsTo ---------------------- */
+
+	public function status_badge(){
+		return $this->belongsTo(Status::class,'status')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+	public function pay_status_badge(){
+		return $this->belongsTo(Status::class,'payment_status')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
 	public function po(){
 		return $this->belongsTo(Po::class,'po_id')->withDefault([
 			'name' => '[ Empty ]',

@@ -22,7 +22,7 @@ use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\PaymentStatusEnum;
-
+use App\Enum\InvoiceStatusEnum;
 
 # Helpers
 use App\Helpers\EventLog;
@@ -57,18 +57,18 @@ class PaymentController extends Controller
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:
 				// buyer can see all payment of all his po's
-				$payments = $payments->with('bank_account')->with('payee')->ByPoBuyer(auth()->user()->id)->paginate(10);
+				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$payments = $payments->with('bank_account')->with('payee')->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$payments = $payments->with('bank_account')->with('payee')->orderBy('id', 'DESC')->paginate(10);
+				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$payments = $payments->with('bank_account')->with('payee')->ByUserAll()->paginate(10);
+				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByUserAll()->paginate(10);
 				Log::warning("tenant.payment.index Other roles!");
 		}
 		return view('tenant.payments.index', compact('payments'));
@@ -80,7 +80,12 @@ class PaymentController extends Controller
 	public function create(Invoice $invoice)
 	{
 		$this->authorize('create', Payment::class);
-				
+
+		if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
+			//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
+			return back()->withError("You can only Pay POSTED Invoices!")->withInput();
+		}
+
 		$po = Po::where('id', $invoice->po_id)->first();
 			
 		$bank_accounts = BankAccount::primary()->get();
@@ -99,17 +104,12 @@ class PaymentController extends Controller
 		$request->merge(['payee_id'	=> 	auth()->user()->id ]);
 		$payment = Payment::create($request->all());
 
-		// update Invoice  header
-		$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
-		$invoice->paid_amount	= $invoice->paid_amount + $payment->amount;
-		$invoice->save();
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $payment->id ]);
 			$request->merge(['entity'		=> EntityEnum::PAYMENT->value ]);
 			$attid = FileUpload::upload($request);
 		}
-
 
 		// 	Populate functional currency values
 		$result = self::updatePaymentFcValues($payment->id);
@@ -119,8 +119,20 @@ class PaymentController extends Controller
 		// Reupload 
 		$payment = Payment::with('invoice')->where('id', $payment->id)->firstOrFail();
 
+		// update Invoice  header
+		$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
+		$invoice->paid_amount	= $invoice->paid_amount + $payment->amount;
+		$invoice->fc_paid_amount= $invoice->fc_paid_amount + $payment->fc_amount;
+		$invoice->save();
+
 		// update budget and project level summary 
 		$po = Po::where('id', $payment->invoice->po_id)->first();
+
+		// PO header update
+		$po->amount_paid 	= $po->amount_paid + $payment->amount;
+		$po->fc_amount_paid = $po->fc_amount_paid + $payment->fc_amount;
+		$po->save();
+
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_payment = $dept_budget->amount_payment + $payment->fc_amount;
@@ -137,7 +149,7 @@ class PaymentController extends Controller
 
 		// Write to Log
 		EventLog::event('payment', $payment->id, 'create');
-		return redirect()->route('payments.create',$invoice->id)->with('success', 'Payment created successfully.');
+		return redirect()->route('payments.show',$payment->id)->with('success', 'Payment created successfully.');
 	}
 
 	/**
@@ -208,7 +220,7 @@ class PaymentController extends Controller
 		try {
 			$payment = Payment::where('id', $payment_id)->firstOrFail();
 
-			if ($payment->status->value <> PaymentStatusEnum::PAID->value) {
+			if ($payment->status <> PaymentStatusEnum::PAID->value) {
 				return back()->withError("You can only cancel payment with status paid!")->withInput();
 			}
 	

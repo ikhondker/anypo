@@ -55,7 +55,7 @@ class Po extends Model
 	];
 
 
-/* ----------------- Functions ---------------------- */
+	/* ----------------- Functions ---------------------- */
 	// populate functions currency columns in PO header nad lines
 	public static function updatePoFcValues($po_id)
 	{

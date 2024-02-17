@@ -38,7 +38,9 @@
 					<a class="dropdown-item" href="{{ route('pos.history', $po->id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Approval History</a>
 					<a class="dropdown-item" href="{{ route('pos.edit', $po->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Purchase Order</a>
 					<a class="dropdown-item" href="{{ route('pols.createline', $po->id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Add Purchase Order Line</a>
-					<a class="dropdown-item" href="{{ route('invoices.create', $po->id) }}"><i class="align-middle me-1" data-feather="layout"></i> View/Create Invoice</a>
+					<a class="dropdown-item" href="{{ route('pos.invoice', $po->id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Invoices</a>
+					<a class="dropdown-item" href="{{ route('invoices.create', $po->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Create Invoice</a>
+
 					<a class="dropdown-item modal-boolean-advance"  href="{{ route('pos.copy', $po->id) }}"
 						data-entity="" data-name="PO#{{ $po->id }}" data-status="Duplicate"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PO">

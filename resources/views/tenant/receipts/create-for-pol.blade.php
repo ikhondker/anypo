@@ -14,14 +14,15 @@
 		@endslot
 	</x-tenant.page-header> 
 
+	<x-tenant.info.pol-info id="{{ $pol->id }}"/>
+		
 	<!-- form start -->
 	<form id="myform" action="{{ route('receipts.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		<input type="text" name="pol_id" id="pol_id" class="form-control" placeholder="ID" value="{{ old('pol_id', $pol->id ) }}" hidden>
 		
-
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Receipt Info</h5>
@@ -83,6 +84,6 @@
 	</form>
 	<!-- /.form end -->
 	
-	<x-tenant.widgets.pol-receipts :id="$pol->id" />
+	<x-tenant.widgets.pol.pol-receipts :id="$pol->id" />
 
 @endsection

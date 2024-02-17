@@ -57,15 +57,15 @@
 								<td>{{ $po->currency }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$po->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_grs"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_invoiced"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$po->amount_paid"/></td>
 
 								<td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
 								<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Po" :id="$po->id"/>
-									<a href="{{ route('invoices.create',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice">
-										<i class="align-middle" data-feather="dollar-sign"></i></a>
+									<a href="{{ route('pos.invoice',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice">
+										<i class="align-middle" data-feather="layout"></i></a>
 									<a href="{{ route('pos.destroy', $po->id) }}" class="me-2 modal-boolean-advance"
 										data-entity="Po" data-name="{{ $po->id }}" data-status="Delete"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">

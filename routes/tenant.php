@@ -393,17 +393,17 @@ Route::middleware([
 	Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
 	Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
 	Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');
+	Route::get('/pos/invoice/{po}',[PoController::class,'invoice'])->name('pos.invoice');
 	Route::get('/pos/detach/{po}',[PoController::class,'detach'])->name('pos.detach');
 	Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
 	Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
-
 
 	/* ======================== Pol ======================================== */
 	Route::resource('pols', PolController::class)->middleware(['auth', 'verified']);
 	Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
 	Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
 	Route::get('/pols/createline/{id}',[PolController::class, 'addLine'])->name('pols.createline');
-	
+	Route::get('/pols/receipt/{pol}',[PolController::class,'receipt'])->name('pols.receipt');
 
 	/* ======================== Receipt ======================================== */
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);
@@ -418,6 +418,7 @@ Route::middleware([
 	//Route::get('/invoice/get-cancel-inv-num',[InvoiceController::class,'getCancelInvNum'])->name('invoices.get-cancel-inv-num');
 	Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
 	Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
+	Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
 	Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
 
 	/* ======================== InvoiceLines ======================================== */

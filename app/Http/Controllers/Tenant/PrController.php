@@ -190,6 +190,7 @@ class PrController extends Controller
 	public function attach(StorePrRequest $request)
 	{
 		$this->authorize('create', Pr::class);
+		// TODO check if approved 
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_pr_id') ]);
@@ -288,7 +289,7 @@ class PrController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function pdf(Pr $pr)
+	public function xxpdf(Pr $pr)
 	{
 		$this->authorize('delete', $pr);
 
@@ -565,9 +566,9 @@ class PrController extends Controller
 		pr_id= ".$sourcePr->id." ;";
 		DB::INSERT($sql);
 
-		EventLog::event('pr', $pr->id, 'copied');	// Write to Log
+		EventLog::event('pr', $pr->id, 'copied','id', $sourcePr->id);	// Write to Log
 
-		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition #'.$pr_id.' created.');
+		return redirect()->route('prs.show', $pr->id)->with('success', 'New Purchase Requisition #'.$pr_id.' created.');
 	}
 
 	public function convertPo(Pr $pr)

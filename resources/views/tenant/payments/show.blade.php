@@ -22,17 +22,20 @@
 					<a class="dropdown-item modal-boolean-advance"  href="{{ route('payments.cancel', $payment->id) }}"
 						data-entity="" data-name="PO #{{ $payment->id }}" data-status="Cancel"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
-						<i class="align-middle me-1" data-feather="copy"></i> Cancel Payment</a>
+						<i class="align-middle me-1" data-feather="copy"></i> Cancel Payment *</a>
 				</div>
 			</div>
 		@endslot
 	</x-tenant.page-header>
 
+	<x-tenant.info.invoice-info id="{{ $payment->invoice_id }}"/>
+
 	<div class="row">
-		<div class="col-6">
+		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Payment Info</h5>
+					<h5 class="card-title">Payment Information</h5>
+					<h6 class="card-subtitle text-muted">Payment Information Details.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-date		value="{{ $payment->pay_date }}"/>
@@ -45,18 +48,9 @@
 					<x-tenant.show.my-text		value="{{ $payment->payee->name }}" label="Payee"/>
 					<x-tenant.show.my-badge		value="{{ $payment->status }}" label="Status"/>
 					<x-tenant.show.my-text		value="{{ $payment->notes }}"/>
-				</div>
-			</div>
-		</div>
-		<!-- end col-6 -->
-		<div class="col-6">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Supporting Info</h5>
-				</div>
-				<div class="card-body">
-					<x-tenant.show.my-date-time value="{{ $payment->created_at }}" label="Created At"/>
-					<x-tenant.show.my-date-time value="{{ $payment->updated_at }}" label="Updated At"/>
+					<x-tenant.show.my-created-at value="{{ $payment->updated_at }}"/>
+					<x-tenant.show.my-updated-at value="{{ $payment->created_at }}"/>
+		
 				</div>
 			</div>
 		</div>

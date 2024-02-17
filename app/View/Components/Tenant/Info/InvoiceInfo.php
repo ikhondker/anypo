@@ -1,24 +1,24 @@
 <?php
 
-namespace App\View\Components\Tenant\Widgets;
+namespace App\View\Components\Tenant\Info;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-//use App\Models\Tenant\Po;
-use App\Models\Tenant\Receipt;
+use App\Models\Tenant\Invoice;
 
-class PolReceipts extends Component
+class InvoiceInfo extends Component
 {
-	public $receipts;
+	public $id;
+	public $invoice;
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct($id)
 	{
-		$this->receipts 	= Receipt::where('pol_id', $id)->get()->all();
+		 $this->invoice = Invoice::with('po')->where('id', $id)->get()->first();
 	}
 
 	/**
@@ -26,6 +26,6 @@ class PolReceipts extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.pol-receipts');
+		return view('components.tenant.info.invoice-info');
 	}
 }

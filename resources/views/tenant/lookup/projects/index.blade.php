@@ -127,6 +127,7 @@
 								<th class="text-end">PO</th>
 								<th class="text-end">Available (PO)</th>
 								<th class="text-end">GRS</th>
+								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
 
 								<th>Closed</th>
@@ -146,6 +147,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_po_booked + $project->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_po_booked - $project->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_grs"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_payment"/></td>
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
 								<td class="table-action">

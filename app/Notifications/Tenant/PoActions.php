@@ -44,7 +44,7 @@ class PoActions extends Notification implements ShouldQueue
 				$this->line		= 'Purchase Order #'.$this->po->id.' for '.$this->po->summary .' has been '.Str::lower($this->action).'.';
 				break;
 			case WflActionEnum::PENDING->value:
-				$this->subject	= '[Action Required] PR #'.$this->po->id.' '. $this->po->summary .' for '. number_format($this->po->amount, 2).$this->po->currency.' requires your approval.';
+				$this->subject	= '[Action Required] PO #'.$this->po->id.' '. $this->po->summary .' for '. number_format($this->po->amount, 2).$this->po->currency.' requires your approval.';
 				$this->line		= 'Purchase Order #'.$this->po->id.' for '.$this->po->summary .' requires your approval.';
 				break;
 			case WflActionEnum::REJECTED->value:
