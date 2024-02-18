@@ -114,6 +114,7 @@ class MenuSeeder extends Seeder
 
 			[ 'raw_route_name' => 'invoices.index','route_name' => 'invoices.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'invoices.show','route_name' => 'invoices.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'invoices.edit','route_name' => 'invoices.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'invoices.create','route_name' => 'invoices.index', 'node_name' => 'purchase'],
 			
 			[ 'raw_route_name' => 'payments.index','route_name' => 'payments.index', 'node_name' => 'purchase'],

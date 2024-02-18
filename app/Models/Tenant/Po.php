@@ -89,6 +89,7 @@ class Po extends Model
 				fc_tax			= round(tax * ". $rate .",2),
 				fc_gst			= round(gst * ". $rate .",2),
 				fc_amount		= round(amount * ". $rate .",2)
+				fc_grs_price	= round(grs_price * ". $rate .",2)
 				WHERE po_id = ". $po_id);
 		}
 

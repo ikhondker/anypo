@@ -127,10 +127,14 @@ class PoController extends Controller
 		$request->merge(['fc_currency'	=> $setup->currency]);
 		
 		// as this is the first line po value will be same as pol values
-		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
+		$sub_total	= $request->input('qty') * $request->input('price');
+		$amount		= $sub_total + $request->input('tax')+ $request->input('gst') ;
+
+		$request->merge(['sub_total'	=> $sub_total]);
 		$request->merge(['tax'			=> $request->input('tax')]);
 		$request->merge(['gst'			=> $request->input('gst')]);
-		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
+		$request->merge(['amount'		=> $amount ]);
+		$request->merge(['grs_price'	=> round($amount/$request->input('qty'),4) ]);
 
 		// User and HoD Can create only own department PO
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
@@ -409,8 +413,9 @@ class PoController extends Controller
 					'amount' 			=> 0,
 					'fc_sub_total' 		=> 0,
 					'fc_tax' 			=> 0,
-					'price' 			=> 0,
+					'fc_price' 			=> 0,
 					'fc_amount' 		=> 0,
+					'fc_grs_price' 		=> 0,
 					'closure_status' 	=> ClosureStatusEnum::CANCELED->value
 				]);
 	

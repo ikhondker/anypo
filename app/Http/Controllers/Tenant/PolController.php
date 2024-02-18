@@ -87,19 +87,21 @@ class PolController extends Controller
 		// get max line num for the
 		$line_num 						= Pol::where('po_id', '=',$po->id)->max('line_num');
 		$request->merge(['line_num'		=> $line_num +1]);
-		
-		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
-		$request->merge(['tax'			=> $request->input('tax')]);
-		$request->merge(['gst'			=> $request->input('gst')]);
-		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
-
 		$request->merge(['dept_id'		=> $po->dept_id]);
 		$request->merge(['requestor_id'	=> $po->requestor_id]);
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
 
-		$pol = Pol::create($request->all());
 
-		
+		$sub_total	= $request->input('qty') * $request->input('price');
+		$amount		= $sub_total + $request->input('tax')+ $request->input('gst') ;
+
+		$request->merge(['sub_total'	=> $sub_total]);
+		$request->merge(['tax'			=> $request->input('tax')]);
+		$request->merge(['gst'			=> $request->input('gst')]);
+		$request->merge(['amount'		=> $amount ]);
+		$request->merge(['grs_price'	=> round($amount/$request->input('qty'),4) ]);
+
+		$pol = Pol::create($request->all());
 
 		// Write to Log
 		EventLog::event('Pol', $pol->id, 'create');

@@ -39,6 +39,7 @@ return new class extends Migration
 			$table->float('fc_gst',15,2)->default(0);					// Functional Currency
 			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
 			$table->dateTime('submission_date')->nullable();
+			$table->integer('po_id')->default(0);
 			/** ENUM */
 			$table->string('status')->default(ClosureStatusEnum::OPEN->value);
 			$table->foreign('status')->references('code')->on('statuses');
@@ -53,7 +54,7 @@ return new class extends Migration
 			//$table->enum('auth_status', ['DRAFT','SUBMITTED','IN-PROCESS','APPROVED','REJECTED','ERROR'])->default('DRAFT');
 			$table->string('wf_key',10)->default('WFPR');
 			$table->integer('hierarchy_id')->default(0);
-			$table->integer('po_id')->default(0);
+			
 			$table->integer('wf_id')->default(0);
 			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);

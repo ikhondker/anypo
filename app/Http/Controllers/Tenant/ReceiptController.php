@@ -113,8 +113,8 @@ class ReceiptController extends Controller
 
 		$request->merge(['receive_date'	=> date('Y-m-d H:i:s')]);
 		$request->merge(['receiver_id'	=> 	auth()->user()->id ]);
-		$request->merge(['price'	=> 	$pol->price ]);
-		$request->merge(['amount'	=> 	$request->input('qty') *$pol->price ]);
+		$request->merge(['price'		=> 	$pol->grs_price ]);		// <=============== NOTE
+		$request->merge(['amount'		=> 	$request->input('qty') *$pol->price ]);
 
 		// save receipt
 		$receipt = Receipt::create($request->all());
@@ -124,7 +124,6 @@ class ReceiptController extends Controller
 			$request->merge(['entity'		=> EntityEnum::RECEIPT->value ]);
 			$attid = FileUpload::upload($request);
 		}
-
 
 		// 	Populate functional currency values
 		$result = self::updateReceiptFcValues($receipt->id);
@@ -321,7 +320,7 @@ class ReceiptController extends Controller
 			}
 
 			DB::statement("UPDATE receipts SET 
-				fc_amount		= round(amount * ". $rate .",2)
+				fc_amount		= round(amount * ". $rate .",2),
 				WHERE id = ".$receipt->id."");
 		}
 
