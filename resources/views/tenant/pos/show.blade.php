@@ -69,8 +69,13 @@
 						data-entity="" data-name="PR#{{ $po->id }}" data-status="Delete"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Purchase Order">
 						<i class="align-middle me-1" data-feather="trash-2"></i> Delete Purchase Order*</a>
-				
 
+					@if (  auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
+						<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('pos.open', $po->id) }}"
+							data-entity="" data-name="PR#{{ $po->id }}" data-status="Re-Open"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Re-Open">
+							<i class="align-middle me-1" data-feather="trash-2"></i> Re-Open PO (SYSTEM)</a>
+					@endif
 
 					</div>
 				</div>

@@ -112,10 +112,10 @@ class WflController extends Controller
 
 		switch($wf->entity) {
 			case(EntityEnum::PR->value):
-				return redirect()->route('prs.show',$wf->article_id)->with('error', 'Workflow has been updated accordingly');
+				return redirect()->route('prs.show',$wf->article_id)->with('success', 'Workflow has been updated accordingly.');
 				break;
 			case(EntityEnum::PO->value):
-				return redirect()->route('pos.show',$wf->article_id)->with('error', 'Workflow has been updated accordingly');
+				return redirect()->route('pos.show',$wf->article_id)->with('success', 'Workflow has been updated accordingly.');
 				break;
 			default:
 				return redirect()->route('home')->with('success', 'Workflow has been updated accordingly.');

@@ -58,7 +58,7 @@ class PrBudget
 		try {
 			$budget = Budget::primary()->where('fy', $fy)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
-			Log::debug("Inside ModelNotFoundException");
+			Log::warning("tenant.helper.PrBudget.prBudgetBook Budget ModelNotFoundException");
 			return 'E001';
 		}
 
@@ -68,7 +68,7 @@ class PrBudget
 		try {
 			$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
-			//Log::debug("Inside ModelNotFoundException");
+			Log::warning("tenant.helper.PrBudget.prBudgetBook DeptBudget ModelNotFoundException");
 			return 'E002';
 		}
 
@@ -76,6 +76,7 @@ class PrBudget
 		$dept_budget_available =false;
 		if (($dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr_issued) > $pr->fc_amount) {
 			$dept_budget_available =true;
+			Log::debug("tenant.helper.PrBudget.prBudgetBook dept_budget_available true.");
 		} else {
 			return 'E003';
 		}
@@ -85,6 +86,7 @@ class PrBudget
 		$project = Project::primary()->where('id', $pr->project_id)->firstOrFail();
 			if (($project->amount - $project->amount_pr_booked - $project->amount_pr_issued) > $pr->fc_amount) {
 			$project_budget_available =true;
+			Log::debug("tenant.helper.PrBudget.prBudgetBook project_budget_available true.");
 		} else {
 			return 'E004';
 		}
@@ -92,13 +94,17 @@ class PrBudget
 		// both budget is available 
 		if ($project_budget_available && $dept_budget_available ) {
 			// book pr dept budget
+			Log::debug("tenant.helper.PrBudget.prBudgetBook updating dept_budget->amount_pr_booked.");
+			Log::debug("tenant.helper.PrBudget.prBudgetBook before dept_budget->amount_pr_booked=".$dept_budget->amount_pr_booked );
+			Log::debug("tenant.helper.PrBudget.prBudgetBook updating pr->fc_amount=".$pr->fc_amount);
 			$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked + $pr->fc_amount;
 			$dept_budget->save();
+			Log::debug("tenant.helper.PrBudget.prBudgetBook dept_budget->amount_pr_booked=".$dept_budget->amount_pr_booked );
 
 			// book project budget
 			$project->amount_pr_booked = $project->amount_pr_booked + $pr->fc_amount;
 			$project->save();
-
+			Log::debug("tenant.helper.PrBudget.prBudgetBook AFTER project->amount_pr_booked=".$project->amount_pr_booked );
 
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::BOOK->value,$pr->fc_amount);

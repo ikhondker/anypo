@@ -15,7 +15,7 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	@include('tenant.includes.po.view-po-header-basic')
+	<x-tenant.info.po-info id="{{ $po->id }}"/>
 
 	@include('tenant.includes.detach-by-article')
  

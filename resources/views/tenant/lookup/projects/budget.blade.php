@@ -14,7 +14,7 @@
 	</x-tenant.page-header>
 
 
-	<x-tenant.widgets.project-info id="{{ $project->id }}"/>
+	<x-tenant.info.project-info id="{{ $project->id }}"/>
 
 
 	<x-tenant.widgets.dbu-project :id="$project->id"/>

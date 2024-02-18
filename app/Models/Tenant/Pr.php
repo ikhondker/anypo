@@ -33,7 +33,7 @@ class Pr extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'summary', 'pr_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'submission_date', 'status', 'auth_status', 'auth_date', 'auth_user_id', 'wf_key', 'hierarchy_id', 'po_id', 'wf_id', 'updated_by', 'updated_at',
+		'summary', 'pr_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'submission_date', 'po_id', 'status', 'auth_status', 'auth_date', 'auth_user_id', 'wf_key', 'hierarchy_id', 'wf_id', 'updated_by', 'updated_at',
 	];
 
 
@@ -62,6 +62,7 @@ class Pr extends Model
 		$pr		= Pr::where('id', $pr_id)->firstOrFail();
 
 		//Log::debug('Pr.updatePrFcValues Value of currency=' . $pr->currency.$setup->currency);
+		Log::debug('tenant.model.pr.updatePrFcValues PR currency =' . $pr->currency.' fc_currency='.$setup->currency);
 
 		if ($pr->currency == $setup->currency){
 			$rate = 1;
@@ -72,15 +73,17 @@ class Pr extends Model
 				fc_amount		= amount
 				WHERE pr_id = ".$pr_id."");
 		} else {
+			
 			$rate = round(ExchangeRate::getRate($pr->currency, $setup->currency),6);
 			// update all prls fc columns
 			// update pr fc columns
 			// ERROR rate not found 
 			if ($rate == 0){
-				Log::error('pr.updatePrFcValues rate not found currency=' . $pr->currency.' fc_currency='.$setup->currency);
-				return 0;
+				Log::error('tenant.model.pr.updatePrFcValues rate not found PR currency=' . $pr->currency.' fc_currency='.$setup->currency);
+				return false;
 			}
 
+			Log::debug('tenant.model.pr.updatePrFcValues populating FC prls table.');
 			DB::statement("UPDATE prls SET 
 				fc_sub_total	= round(sub_total * ".$rate.",2),
 				fc_tax			= round(tax * ".$rate.",2),
@@ -102,15 +105,19 @@ class Pr extends Model
 
 
 		// update PR header
-		// No row in child table 
+		// handle No row in child table 
+		// TODO handle in better way
+		Log::debug('tenenat.model.pr.updatePrFcValues updating header FC column PR=' . $pr->id);
 		$pr->fc_exchange_rate	= $rate;
 		foreach($result as $row) {
-			if ( is_null($row['sub_total'])  ) { 
+			if ( is_null($row['fc_sub_total'])  ) { 
+				Log::debug('tenant.model.pr.updatePrFcValues NO row in prls table .');
 				$pr->fc_sub_total		= 0 ;
 				$pr->fc_tax				= 0 ;
 				$pr->fc_gst				= 0 ;
 				$pr->fc_amount			= 0;
 			} else {
+				Log::debug('tenant.model.pr.updatePrFcValues updating pr header FC columns.');
 				$pr->fc_sub_total		= $row['fc_sub_total'] ;
 				$pr->fc_tax				= $row['fc_tax'] ;
 				$pr->fc_gst				= $row['fc_gst'] ;
@@ -118,6 +125,7 @@ class Pr extends Model
 			}
 		}
 		$pr->save();
+		Log::debug('tenant.model.pr.updatePrFcValues pr->fc_amount='.$pr->fc_amount);
 
 		return true;
 	}

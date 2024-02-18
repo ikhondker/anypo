@@ -91,15 +91,12 @@ class PolController extends Controller
 		$request->merge(['requestor_id'	=> $po->requestor_id]);
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
 
-
-		$sub_total	= $request->input('qty') * $request->input('price');
-		$amount		= $sub_total + $request->input('tax')+ $request->input('gst') ;
-
-		$request->merge(['sub_total'	=> $sub_total]);
+		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
 		$request->merge(['tax'			=> $request->input('tax')]);
 		$request->merge(['gst'			=> $request->input('gst')]);
-		$request->merge(['amount'		=> $amount ]);
-		$request->merge(['grs_price'	=> round($amount/$request->input('qty'),4) ]);
+		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
+
+
 
 		$pol = Pol::create($request->all());
 
@@ -162,9 +159,6 @@ class PolController extends Controller
 	{
 		$this->authorize('update', $pol);
 
-		//$request->merge(['sub_total'	=> $request->input('prl_amount')]);
-		//$request->merge(['amount'		=> $request->input('amount')]);
-		//$request->merge(['amount'		=> $request->input('sub_total')+$request->input('tax')+$request->input('gst')]);
 		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
 		$request->merge(['tax'			=> $request->input('tax')]);
 		$request->merge(['gst'			=> $request->input('gst')]);

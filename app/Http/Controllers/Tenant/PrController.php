@@ -449,9 +449,10 @@ class PrController extends Controller
 				->firstOrFail();
 			$pr->dept_budget_id = $dept_budget->id;
 			$pr->save();
+			Log::debug('tenant.po.submit dept_budget=' . $dept_budget->id);
 			
 		} catch (ModelNotFoundException $exception) {
-			//Log::warning("tenant.prs.submit Inside ModelNotFoundException");
+			Log::warning("tenant.prs.submit ModelNotFoundException. DeptBudget not found for budget_id= ". $budget->id);
 			return redirect()->route('prs.index')->with('error', 'Department Budget is not defined for FY'.$fy.'. Please add budget and try again');
 		}
 
@@ -461,13 +462,15 @@ class PrController extends Controller
 
 		// 	Populate functional currency values
 		$result = Pr::updatePrFcValues($pr->id);
-		
-		if ($result == 0) {
+		if (! $result ) {
 			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
-		} 
+		} else {
+			Log::debug('tenant.po.submit updatePrFcValues completed.');
+		}
 
 		//  Check and book Dept Budget
 		$retcode = PrBudget::prBudgetBook($pr->id);
+
 		//Log::debug("tenant.pr.submit retcode = ".$retcode );
 		switch ($retcode) {
 			case 'E001':
@@ -483,6 +486,7 @@ class PrController extends Controller
 				return redirect()->back()->with('error', config('akk.MSG_E999')) ;
 				break;
 			default:
+				Log::debug('tenant.po.submit prBudgetBook completed successfully.');
 				// Success
 		}
 

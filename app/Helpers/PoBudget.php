@@ -59,7 +59,7 @@ class PoBudget
 		try {
 			$budget = Budget::primary()->where('fy', $fy)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
-			Log::debug("Inside checkAndBookPo ModelNotFoundException");
+			Log::warning("tenant.helper.PoBudget.poBudgetBook Budget ModelNotFoundException");
 			return 'E001';
 		}
 
@@ -70,6 +70,7 @@ class PoBudget
 		try {
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
+			Log::warning("tenant.helper.PoBudget.poBudgetBook DeptBudget ModelNotFoundException");
 			//Log::debug("Inside ModelNotFoundException");
 			return 'E002';
 		}
@@ -80,12 +81,7 @@ class PoBudget
 		$dept_budget_available =false;
 		if (($dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po_issued) > $po->fc_amount) {
 			$dept_budget_available =true;
-			// book po budget
-			// $dept_budget->amount_po_booked = $dept_budget->amount_po_booked + $po->fc_amount;
-			// $dept_budget->save();
-
-			// $budget->amount_po_booked = $budget->amount_po_booked + $po->fc_amount;
-			// $budget->save();
+			Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget_available true.");
 		} else {
 			return 'E003';
 		}
@@ -95,6 +91,7 @@ class PoBudget
 		$project = Project::primary()->where('id', $po->project_id)->firstOrFail();
 			if (($project->amount - $project->amount_po_booked - $project->amount_po_issued) > $po->fc_amount) {
 			$project_budget_available =true;
+			Log::debug("tenant.helper.PoBudget.poBudgetBook project_budget_available true.");
 		} else {
 			return 'E004';
 		}
@@ -102,12 +99,18 @@ class PoBudget
 		// both budget is available 
 		if ($project_budget_available && $dept_budget_available ) {
 			// book pr dept budget
+			Log::debug("tenant.helper.PoBudget.poBudgetBook updating dept_budget->amount_po_booked.");
+			Log::debug("tenant.helper.PoBudget.poBudgetBook before dept_budget->amount_po_booked=".$dept_budget->amount_po_booked );
+			Log::debug("tenant.helper.PoBudget.poBudgetBook updating po->fc_amount=".$po->fc_amount);
+
 			$dept_budget->amount_po_booked = $dept_budget->amount_po_booked + $po->fc_amount;
 			$dept_budget->save();
+			Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount_pr_booked=".$dept_budget->amount_po_booked );
 
 			// book project budget
 			$project->amount_po_booked = $project->amount_po_booked + $po->fc_amount;
 			$project->save();
+			Log::debug("tenant.helper.PoBudget.poBudgetBook AFTER project->amount_po_booked=".$project->amount_po_booked );
 
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::BOOK->value,$po->fc_amount);

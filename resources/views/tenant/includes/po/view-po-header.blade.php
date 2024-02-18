@@ -9,10 +9,11 @@
 					<x-tenant.show.my-text		value="{{ $po->summary }}" label="Summary"/>
 					<x-tenant.show.my-amount-currency	value="{{ $po->amount }}" currency="{{ $po->currency }}" />
 					<x-tenant.show.my-date		value="{{ $po->po_date }}"/>
+					<x-tenant.show.my-text		value="{{ $po->dept->name }}" label="Dept"/>
+					<x-tenant.show.my-text		value="{{ $po->project->name }}" label="Project"/>
 					<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
-					<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
 					<x-tenant.show.my-text		value="{{ $po->supplier->name }}" label="Supplier"/>
-					<x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>
+					
 					<div class="row">
 						<div class="col-sm-3 text-end">
 							
@@ -46,11 +47,28 @@
 
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge		value="{{ $po->auth_status }}" label="Auth Status"/>
+
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">Auth Status:</span>
+						</div>
+						<div class="col-sm-9">
+							<span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span>
+						</div>
+					</div>
+					
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">Closure Status:</span>
+						</div>
+						<div class="col-sm-9">
+							<span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span>
+						</div>
+					</div>
+
 					<x-tenant.show.my-date-time	value="{{ $po->auth_date }}" label="Auth Date"/>
-					<x-tenant.show.my-badge		value="{{ $po->status }}" label="Status"/>
-					<x-tenant.show.my-text		value="{{ $po->dept->name }}" label="Dept"/>
-					<x-tenant.show.my-text		value="{{ $po->project->name }}" label="Project"/>
+					<x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>
+					<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
 					<x-tenant.show.my-text		value="{{ $po->notes }}" label="Notes"/>
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">

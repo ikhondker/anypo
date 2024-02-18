@@ -148,7 +148,7 @@ class WfController extends Controller
 
 		// check if pr status only in-process
 		if ($pr->auth_status <> AuthStatusEnum::INPROCESS->value){
-				return back()->withError("Only Requisition with approval status INPROCESS can be reset!");
+			return back()->withError("Workflow can be reset only for Requisitions with approval status IN-PROCESS!");
 		}
 
 		try {
@@ -194,7 +194,7 @@ class WfController extends Controller
 		// update PR header
 		//$pr	= Pr::where('id', $request->input('pr_id'))->firstOrFail();
 		if ($po->auth_status <> AuthStatusEnum::INPROCESS->value){
-				return back()->withError("PR#".$po->id." is not in IN-PROCESS status!")->withInput();
+			return back()->withError("Workflow can be reset only for Purchase Order with approval status IN-PROCESS!");
 		}
 
 		try {

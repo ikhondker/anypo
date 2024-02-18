@@ -393,6 +393,7 @@ Route::middleware([
 	Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
 	Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
 	Route::get('/pos/close/{po}',[PoController::class,'close'])->name('pos.close');
+	Route::get('/pos/open/{po}',[PoController::class,'open'])->name('pos.open');
 	Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');
 	Route::get('/pos/invoice/{po}',[PoController::class,'invoice'])->name('pos.invoice');
 	Route::get('/pos/detach/{po}',[PoController::class,'detach'])->name('pos.detach');

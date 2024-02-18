@@ -9,10 +9,11 @@
 					<x-tenant.show.my-text		value="{{ $pr->summary }}"/>
 					<x-tenant.show.my-amount-currency	value="{{ $pr->amount }}" currency="{{ $pr->currency }}" />
 					<x-tenant.show.my-date		value="{{ $pr->pr_date }}"/>
-					<x-tenant.show.my-text		value="{{ $pr->requestor->name }}" label="Requestor"/>
+					<x-tenant.show.my-text		value="{{ $pr->dept->name }}" label="Dept"/>
+					<x-tenant.show.my-text		value="{{ $pr->project->name }}" label="Project"/>
 					<x-tenant.show.my-text		value="{{ $pr->supplier->name }}" label="Supplier"/>
-
-					<x-tenant.show.my-date		value="{{ $pr->need_by_date }}" label="Need by Date"/>
+					<x-tenant.show.my-text		value="{{ $pr->requestor->name }}" label="Requestor"/>
+				
 					<div class="row">
 						<div class="col-sm-3 text-end">
 							
@@ -35,12 +36,40 @@
 					<h6 class="card-subtitle text-muted">Approval information of Purchase Requisition.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge		value="{{ $pr->auth_status }}" label="Auth Status"/>
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">Auth Status:</span>
+						</div>
+						<div class="col-sm-9">
+							<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
+						</div>
+					</div>
+					
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">Closure Status:</span>
+						</div>
+						<div class="col-sm-9">
+							<span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span>
+						</div>
+					</div>
 					<x-tenant.show.my-date-time	value="{{ $pr->auth_date }}" label="Auth Date"/>
-					<x-tenant.show.my-badge		value="{{ $pr->status }}" label="Status"/>
-					<x-tenant.show.my-text		value="{{ $pr->dept->name }}" label="Dept"/>
-					<x-tenant.show.my-text		value="{{ $pr->project->name }}" label="Project"/>
+					<x-tenant.show.my-date		value="{{ $pr->need_by_date }}" label="Need by Date"/>
 					<x-tenant.show.my-text		value="{{ $pr->notes }}" label="Notes"/>
+
+					<div class="row mb-3">
+							<div class="col-sm-3 text-end">
+								<span class="h6 text-secondary">PO# :</span>
+							</div>
+							<div class="col-sm-9">
+								@if ( $pr->po_id <> 0)
+									<a href="{{ route('pos.show',$pr->po_id) }}" class="text-warning d-inline-block">{{ $pr->po_id }}</a>
+								@else
+									&nbsp; 		
+								@endif
+							</div>
+					</div>
+	
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
 							<span class="h6 text-secondary">Attachments:</span>

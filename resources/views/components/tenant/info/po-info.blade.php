@@ -30,13 +30,12 @@
 									<th>Project</th>
                                     <td>{{ $po->project->name  }}</td>
 								</tr>
-
 								<tr>
 									<th>Auth Status</th>
                                     <td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
 								</tr>
 								<tr>
-									<th>Status</th>
+									<th>Closure Status</th>
                                     <td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								</tr>
                                 <tr>

@@ -127,14 +127,11 @@ class PoController extends Controller
 		$request->merge(['fc_currency'	=> $setup->currency]);
 		
 		// as this is the first line po value will be same as pol values
-		$sub_total	= $request->input('qty') * $request->input('price');
-		$amount		= $sub_total + $request->input('tax')+ $request->input('gst') ;
-
-		$request->merge(['sub_total'	=> $sub_total]);
+		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
 		$request->merge(['tax'			=> $request->input('tax')]);
 		$request->merge(['gst'			=> $request->input('gst')]);
-		$request->merge(['amount'		=> $amount ]);
-		$request->merge(['grs_price'	=> round($amount/$request->input('qty'),4) ]);
+		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
+
 
 		// User and HoD Can create only own department PO
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
@@ -164,10 +161,10 @@ class PoController extends Controller
 		$pol->qty			= $request->input('qty');
 		$pol->price			= $request->input('price');
 		
-		$pol->sub_total	= $request->input('qty') * $request->input('price');
-		$pol->tax		= $request->input('tax');
-		$pol->gst		= $request->input('gst');
-		$pol->amount	= ($request->input('qty') * $request->input('price')) +$request->input('tax')+$request->input('gst');
+		$pol->sub_total		= $request->input('qty') * $request->input('price');
+		$pol->tax			= $request->input('tax');
+		$pol->gst			= $request->input('gst');
+		$pol->amount		= ($request->input('qty') * $request->input('price')) +$request->input('tax')+$request->input('gst');
 		
 		$pol->save();
 		$pol_id			= $pol->id;
@@ -213,7 +210,7 @@ class PoController extends Controller
 		//$this->authorize('view', $po);
 
 		if ($po->auth_status == AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('pos.show',$po->id)->with('error', 'No Approval History! Purchase Order will have Approval History only after Submission.');
+			return redirect()->route('pos.show',$po->id)->with('error', 'Draft Purchase Order can not have any Approval History.');
 		}
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
@@ -223,6 +220,11 @@ class PoController extends Controller
 	public function invoice(Po $po)
 	{
 		//$this->authorize('view', $po);
+
+		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'Only APPROVED Purchase Order can have Invoices.');
+		}
+
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
 		return view('tenant.pos.invoice', compact('po'));
@@ -352,6 +354,31 @@ class PoController extends Controller
 		$po->save();
 		
 		return redirect()->route('pos.index')->with('success', 'Purchase Order Force Closed successfully');
+
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function open(Po $po)
+	{
+		
+		//$this->authorize('close',Po::class);
+		//$po_id= $request->input('po_id');
+		
+		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+			return back()->withError("Only APPROVED Purchase Order can be Opened!")->withInput();
+		}
+
+		if ($po->status <> ClosureStatusEnum::FORCED->value) {
+			return back()->withError("Only Force Closed Purchased Order can be Opened!")->withInput();
+		}
+
+		// PO status update
+		$po->status = ClosureStatusEnum::OPEN->value;
+		$po->save();
+		
+		return redirect()->route('pos.index')->with('success', 'Purchase Order Opened successfully');
 
 	}
 
