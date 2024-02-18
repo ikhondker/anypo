@@ -152,6 +152,7 @@ class ReceiptController extends Controller
 		
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->count_grs = $dept_budget->count_grs + 1;
 		$dept_budget->amount_grs = $dept_budget->amount_grs + $receipt->fc_amount;
 		$dept_budget->save();
 
@@ -255,6 +256,7 @@ class ReceiptController extends Controller
 
 			// Po dept budget grs amount update
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+			$dept_budget->count_grs = $dept_budget->count_grs -1;
 			$dept_budget->amount_grs = $dept_budget->amount_grs - $receipt->fc_amount;
 			$dept_budget->save();
 

@@ -40,6 +40,7 @@ use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
 
 use DB;
+use Str;
 
 class InvoiceController extends Controller
 {
@@ -58,18 +59,18 @@ class InvoiceController extends Controller
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:
 				// buyer can see all invoice of all his po's
-				$invoices = $invoices->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$invoices = $invoices->with('status_badge')->with('pay_status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$invoices = $invoices->with('status_badge')->with('pay_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$invoices = $invoices->with('status_badge')->with('pay_status_badge')->ByUserAll()->paginate(10);
+				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByUserAll()->paginate(10);
 				Log::warning("tenant.invoice.index Other roles!");
 		}
 		return view('tenant.invoices.index', compact('invoices'));
@@ -108,7 +109,13 @@ class InvoiceController extends Controller
 		
 		// get PO 
 		$po = Po::where('id', $request->input('po_id'))->first();
-		$request->merge(['supplier_id'	=> 	$po->supplier_id ]);
+		
+
+		$request->merge([
+			'invoice_no' => Str::upper($request['invoice_no']),
+			'supplier_id'	=> 	$po->supplier_id 
+		]);
+
 
 		// $request->merge(['invoice_date'		=> date('Y-m-d H:i:s')]);
 		$invoice = Invoice::create($request->all());
@@ -140,7 +147,22 @@ class InvoiceController extends Controller
 	 */
 	public function edit(Invoice $invoice)
 	{
-		//
+		$this->authorize('update', $invoice);
+
+		if ($invoice->status <> InvoiceStatusEnum::DRAFT->value) {
+			return redirect()->route('invoices.show',$invoice->id)->with('error', 'You can not edit a Invoice with status '. strtoupper($invoice->status) .' !');
+		}
+
+		//$depts = Dept::primary()->get();
+		
+		//$suppliers = Supplier::primary()->get();
+		//$projects = Project::primary()->get();
+		//$users = User::tenant()->get();
+		$po = Po::where('id', $invoice->po_id)->first();
+		$pocs	= User::Tenant()->get();
+
+		return view('tenant.invoices.edit', compact('invoice', 'po', 'pocs'));
+	
 	}
 
 	/**
@@ -148,7 +170,21 @@ class InvoiceController extends Controller
 	 */
 	public function update(UpdateInvoiceRequest $request, Invoice $invoice)
 	{
-		//
+		$this->authorize('update', $invoice);
+
+		// User and HoD Can not edit department PR
+		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
+			$request->merge(['dept_id'		=> auth()->user()->dept_id]);
+		} 
+
+		$request->merge([
+			'invoice_no' => Str::upper($request['invoice_no']),
+		]);
+		$invoice->update($request->all());
+
+		// Write to Log
+		EventLog::event('invoice', $invoice->id, 'update', 'summary', $invoice->summary);
+		return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoices  updated successfully.');
 	}
 
 
@@ -184,6 +220,7 @@ class InvoiceController extends Controller
 		
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->count_invoice = $dept_budget->count_invoice + 1;
 		$dept_budget->amount_invoice = $dept_budget->amount_invoice + $invoice->fc_amount;
 		$dept_budget->save();
 
@@ -263,6 +300,7 @@ class InvoiceController extends Controller
 
 			// Po dept budget grs amount update
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+			$dept_budget->count_invoice = $dept_budget->count_invoice -1;
 			$dept_budget->amount_invoice = $dept_budget->amount_invoice - $invoice->fc_amount;
 			$dept_budget->save();
 
@@ -327,7 +365,7 @@ class InvoiceController extends Controller
 		} else {
 			$rate = round(ExchangeRate::getRate($invoice->currency, $setup->currency),6);
 			// update all pols fc columns
-			// update pr fc columns
+			// update invoice fc columns
 			// ERROR rate not found 
 			if ($rate == 0){
 				Log::error('receipt.updateInvoiceFcValues rate not found currency=' . $invoice->currency.' fc_currency='.$setup->currency);

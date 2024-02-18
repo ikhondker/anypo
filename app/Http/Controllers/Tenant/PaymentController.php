@@ -58,7 +58,7 @@ class PaymentController extends Controller
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:
 				// buyer can see all payment of all his po's
-				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+				$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
 				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
@@ -66,7 +66,7 @@ class PaymentController extends Controller
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
 				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByUserAll()->paginate(10);
@@ -139,6 +139,7 @@ class PaymentController extends Controller
 
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->count_payment = $dept_budget->count_payment + 1 ;
 		$dept_budget->amount_payment = $dept_budget->amount_payment + $payment->fc_amount;
 		$dept_budget->save();
 
@@ -243,6 +244,7 @@ class PaymentController extends Controller
 
 			// Po dept budget grs amount update
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+			$dept_budget->count_payment = $dept_budget->count_payment - 1 ;
 			$dept_budget->amount_payment = $dept_budget->amount_payment - $payment->fc_amount;
 			$dept_budget->save();
 

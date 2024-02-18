@@ -16,13 +16,19 @@
 					<i class="align-middle mt-n1" data-feather="folder"></i> Actions
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
-					<a class="dropdown-item" href="{{ route('invoices.edit', $invoice->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
-					<a class="dropdown-item" href="{{ route('payments.create',$invoice->id) }}"><i class="align-middle me-1" data-feather="user"></i> Make Payment</a>
+					<a class="dropdown-item" href="{{ route('invoices.edit', $invoice->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Invoice</a>
+					<a class="dropdown-item modal-boolean-advance"  href="{{ route('invoices.post', $invoice->id) }}"
+						data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Post"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
+						<i class="align-middle me-1" data-feather="copy"></i> Post Invoice *</a>
+					<a class="dropdown-item" href="{{ route('invoices.create', $invoice->po_id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Create Another Invoice</a>
+					<a class="dropdown-item" href="{{ route('payments.create',$invoice->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Pay this Invoice</a>
+					<a class="dropdown-item" href="{{ route('pos.show',  $invoice->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item modal-boolean-advance"  href="{{ route('invoices.cancel', $invoice->id) }}"
+					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('invoices.cancel', $invoice->id) }}"
 						data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Cancel"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
-						<i class="align-middle me-1" data-feather="copy"></i> Cancel Invoice</a>
+						<i class="align-middle me-1" data-feather="x-circle"></i> Cancel Invoice</a>
 				</div>
 			</div>
 	
@@ -39,23 +45,35 @@
 					<h6 class="card-subtitle text-muted">Invoice Detail Information.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-date		value="{{ $invoice->inv_date }}"/>
-					<x-tenant.show.my-badge		value="{{ $invoice->po_id }}" label="PO#"/>
-					<x-tenant.show.my-text		value="{{ $invoice->invoice_no }}"/>
-					<x-tenant.show.my-text		value="{{ $invoice->summary }}"/>
-					<x-tenant.show.my-text		value="{{ $invoice->currency }}"/>
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">PO #:</span>
+						</div>
+						<div class="col-sm-9">
+							{{ "#". $invoice->po_id. " - ". $invoice->po->summary }}
+						</div>
+					</div>
+					<x-tenant.show.my-text		value="{{ $invoice->supplier->name }}" label="Supplier"/>
+					<x-tenant.show.my-text		value="{{ $invoice->invoice_no }}" label="Invoice Num"/>
+					<x-tenant.show.my-amount-currency	value="{{ $invoice->amount }}" currency="{{ $invoice->currency }}" label="Invoice Amount"/>
+					<x-tenant.show.my-date		value="{{ $invoice->invoice_date }}" label="Invoice Date"/>
+					<x-tenant.show.my-text		value="{{ $invoice->summary }}" label="Narration"/>
 					<x-tenant.show.my-number	value="{{ $invoice->sub_total }}"/>
 					<x-tenant.show.my-number	value="{{ $invoice->tax }}"/>
 					<x-tenant.show.my-number	value="{{ $invoice->gst }}"/>			
-					<x-tenant.show.my-number	value="{{ $invoice->amount }}"/>
-					<x-tenant.show.my-number	value="{{ $invoice->paid_amount }}"/>
-					<x-tenant.show.my-text		value="{{ $invoice->poc->name }}"/>
+					<x-tenant.show.my-text		value="{{ $invoice->poc->name }}" label="PoC Name"/>
+					<x-tenant.show.my-amount-currency	value="{{ $invoice->paid_amount }}" currency="{{ $invoice->currency }}" label="Paid Amount"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->status }}" label="Status"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->payment_status }}" label="Payment Status"/>
 					<x-tenant.show.my-text		value="{{ $invoice->notes }}"/>
-					<x-tenant.show.my-created-at value="{{ $invoice->created_at }}"/>
-					<x-tenant.show.my-updated-at value="{{ $invoice->updated_at }}"/>
-	
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">Attachments:</span>
+						</div>
+						<div class="col-sm-9">
+							<x-tenant.attachment.all entity="PR" aid="{{ $invoice->id }}"/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1,46 +1,53 @@
 @extends('layouts.app')
-@section('title','Create Invoice')
-@section('breadcrumb','Create Invoice')
+@section('title','Edit Invoice')
+@section('breadcrumb','Edit Invoice')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Invoices for PO #{{ $po->id }}
+			Edit Invoice
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="Invoice"/>
+			{{-- <x-tenant.buttons.header.create object="Invoice"/> --}}
+			<a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Invoice</a>
 		@endslot
-	</x-tenant.page-header> 
-
-
-	{{-- @include('tenant.includes.po.view-po-header') --}}
-	
-	<x-tenant.info.po-info id="{{ $po->id }}"/>
-
-	{{-- <x-tenant.widgets.po.invoices :id="$po->id" /> --}}
+	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form id="myform" action="{{ route('invoices.store') }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('invoices.update',$invoice->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
-		<input type="text" name="po_id" id="po_id" class="form-control" placeholder="ID" value="{{ old('po_id', $po->id ) }}" hidden>
-		
+		@method('PUT')
+
+
 		<div class="row">
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Invoice Basic Information</h5>
-						<h6 class="card-subtitle text-muted">Invoice Basic Information.</h6>
+						<h5 class="card-title">Edit Invoice Basic Information</h5>
+						<h6 class="card-subtitle text-muted">Edit Invoice Basic Information.</h6>
 					</div>
 					<div class="card-body">
+
+						<div class="mb-3">
+							<label class="form-label">PO # {{ $invoice->po_id }}</label>
+							<input type="text" class="form-control @error('po_summary') is-invalid @enderror"
+								name="po_summary" id="po_summary" placeholder="Summary"
+								value="{{ $invoice->po->summary }}"
+								readonly/>
+							@error('po_summary')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+
 
 						<div class="mb-3">
 							<label class="form-label">Invoice No</label>
 							<input type="text" class="form-control @error('invoice_no') is-invalid @enderror"
 								name="invoice_no" id="invoice_no" placeholder="XXXXX"
 								style="text-transform: uppercase"
-								value="{{ old('invoice_no', '' ) }}"
+								value="{{ old('invoice_no', $invoice->invoice_no ) }}"
 								required/>
 							@error('invoice_no')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -51,7 +58,7 @@
 							<label class="form-label">Invoice Date</label>
 							<input type="date" class="form-control @error('invoice_date') is-invalid @enderror"
 								name="invoice_date" id="invoice_date" placeholder=""
-								value="{{ old('invoice_date', date('Y-m-d') ) }}"
+								value="{{ old('invoice_date', date('Y-m-d',strtotime($invoice->invoice_date)) ) }}"
 								required/>
 							@error('invoice_date')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -62,7 +69,7 @@
 							<label class="form-label">Particulars</label>
 							<input type="text" class="form-control @error('summary') is-invalid @enderror"
 								name="summary" id="summary" placeholder="Summary"
-								value="{{ old('summary', '' ) }}"
+								value="{{ old('summary', $invoice->summary ) }}"
 								required/>
 							@error('summary')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -74,7 +81,7 @@
 							<select class="form-control" name="poc_id" required>
 								<option value=""><< PoC Name >> </option>
 								@foreach ($pocs as $user)
-									<option value="{{ $user->id }}" {{ $user->id == old('poc_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+									<option {{ $user->id == old('poc_id',$invoice->poc_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 								@endforeach
 							</select>
 							@error('poc_id')
@@ -91,27 +98,16 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Invoice Amount</h5>
-						<h6 class="card-subtitle text-muted">Invoice Amount Information.</h6>
+						<h5 class="card-title">Edit Invoice Amount</h5>
+						<h6 class="card-subtitle text-muted">Edit Invoice Amount Information.</h6>
 					</div>
 					<div class="card-body">
 
 						<div class="mb-3">
-							<label class="form-label">Currency</label>
-							<input type="text" class="form-control @error('currency') is-invalid @enderror"
-								name="currency" id="currency" placeholder="Summary"
-								value="{{ $po->currency }}"
-								readonly/>
-							@error('currency')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<div class="mb-3">
-							<label class="form-label">Amount</label>
+							<label class="form-label">Amount {{ $invoice->currency }}</label>
 							<input type="number" class="form-control @error('amount') is-invalid @enderror"
 								name="amount" id="amount" placeholder="99,999.99"
-								value="{{ old('amount', '1.00' ) }}"
+								value="{{ old('amount', $invoice->amount ) }}"
 								step='0.01' min="1" required/>
 							@error('amount')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -131,7 +127,5 @@
 
 	</form>
 	<!-- /.form end -->
-	
-	
-
 @endsection
+

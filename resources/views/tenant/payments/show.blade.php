@@ -15,14 +15,14 @@
 					<i class="align-middle mt-n1" data-feather="folder"></i> Actions
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
-					<a class="dropdown-item" href="{{ route('payments.edit', $payment->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
-					<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Duplicate</a>
-					
+					<a class="dropdown-item" href="{{ route('payments.create',  $payment->invoice_id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Make Another Payment</a>
+					<a class="dropdown-item" href="{{ route('invoices.show',$payment->invoice_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Invoice</a>
+					<a class="dropdown-item" href="{{ route('pos.show',  $payment->invoice->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item modal-boolean-advance"  href="{{ route('payments.cancel', $payment->id) }}"
+					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('payments.cancel', $payment->id) }}"
 						data-entity="" data-name="PO #{{ $payment->id }}" data-status="Cancel"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
-						<i class="align-middle me-1" data-feather="copy"></i> Cancel Payment *</a>
+						<i class="align-middle me-1" data-feather="x-circle"></i> Cancel Payment *</a>
 				</div>
 			</div>
 		@endslot
@@ -38,19 +38,31 @@
 					<h6 class="card-subtitle text-muted">Payment Information Details.</h6>
 				</div>
 				<div class="card-body">
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">PO #:</span>
+						</div>
+						<div class="col-sm-9">
+							{{ "#". $payment->invoice->po_id. " - ". $payment->invoice->po->summary }}
+						</div>
+					</div>
+					<x-tenant.show.my-text		value="{{ $payment->invoice->supplier->name }}" label="Supplier"/>
 					<x-tenant.show.my-date		value="{{ $payment->pay_date }}"/>
-					<x-tenant.show.my-badge		value="{{ $payment->id }}" label="Pay ID#"/>
-					<x-tenant.show.my-text		value="{{ $payment->invoice->invoice_no }}" label="Invoice #"/>	
 					<x-tenant.show.my-text		value="{{ $payment->bank_account->ac_name }}" label="Bank Ac"/>
-					<x-tenant.show.my-number	value="{{ $payment->amount }}"/>
-					<x-tenant.show.my-text		value="{{ $payment->currency }}" label="Currency"/>
-					<x-tenant.show.my-text		value="{{ $payment->cheque_no }}" label="Ref/Cheque No"/>
+					<x-tenant.show.my-text		value="{{ $payment->cheque_no }}" label="Ref/Cheque#"/>
+					<x-tenant.show.my-amount-currency	value="{{ $payment->amount }}" currency="{{ $payment->currency }}" label="Payment Amount"/>
+					<x-tenant.show.my-text		value="{{ $payment->invoice->invoice_no }}" label="Invoice #"/>	
 					<x-tenant.show.my-text		value="{{ $payment->payee->name }}" label="Payee"/>
 					<x-tenant.show.my-badge		value="{{ $payment->status }}" label="Status"/>
-					<x-tenant.show.my-text		value="{{ $payment->notes }}"/>
-					<x-tenant.show.my-created-at value="{{ $payment->updated_at }}"/>
-					<x-tenant.show.my-updated-at value="{{ $payment->created_at }}"/>
-		
+					<x-tenant.show.my-text		value="{{ $payment->notes }}" label="Notes"/>
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">Attachments:</span>
+						</div>
+						<div class="col-sm-9">
+							<x-tenant.attachment.all entity="PR" aid="{{ $payment->id }}"/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

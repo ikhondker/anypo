@@ -149,6 +149,7 @@ class PoBudget
 		$po = Po::where('id', $po_id)->first();
 		// Po dept budget approved
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->count_po = $dept_budget->count_po + 1;
 		$dept_budget->amount_po_issued = $dept_budget->amount_po_issued + $po->fc_amount;
 		$dept_budget->amount_po_booked = $dept_budget->amount_po_booked - $po->fc_amount;
 		$dept_budget->save();
@@ -174,6 +175,7 @@ class PoBudget
 
 		// Cancel Po dept budget booking 
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+		$dept_budget->count_po = $dept_budget->count_po - 1;
 		$dept_budget->amount_po_issued = $dept_budget->amount_po_issued - $po->fc_amount;
 		$dept_budget->save();
 		

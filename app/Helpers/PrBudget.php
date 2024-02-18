@@ -137,8 +137,10 @@ class PrBudget
 		$pr = Pr::where('id', $pr_id)->first();
 		// Pr dept budget approved
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
+		$dept_budget->count_pr = $dept_budget->count_pr + 1;
 		$dept_budget->amount_pr_issued = $dept_budget->amount_pr_issued + $pr->fc_amount;
 		$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked - $pr->fc_amount;
+		
 		$dept_budget->save();
 
 		// Pr project budget used
@@ -160,6 +162,7 @@ class PrBudget
 
 		// reverse Pr dept budget booking 
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
+		$dept_budget->count_pr = $dept_budget->count_pr - 1;
 		$dept_budget->amount_pr_issued = $dept_budget->amount_pr_issued - $pr->fc_amount;
 		$dept_budget->save();
 		

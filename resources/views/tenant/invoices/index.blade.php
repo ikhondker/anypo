@@ -35,12 +35,13 @@
 
 								<th>#</th>
 								<th>Date</th>
-								<th>PO#</th>
+								<th>Supplier</th>
 								<th>INV NO#</th>
 								<th>Summary</th>
 								<th>Currency</th>
-								<th>Amount</th>
-								<th>Paid</th>
+								<th class="text-end">Amount</th>
+								<th class="text-end">Paid</th>
+								<th>PO#</th>
 								<th>Status</th>
 								<th>Pay Status</th>
 								<th>Actions</th>
@@ -51,18 +52,17 @@
 							<tr>
 								<td>{{ $invoices->firstItem() + $loop->index }}</td>
 								<td><x-tenant.list.my-date :value="$invoice->invoice_date"/></td>
-								<td>{{ $invoice->po_id }}</td>
+								<td>{{ $invoice->supplier->name }}</td>
 								<td>{{ $invoice->invoice_no }}</td>
 								<td>{{ $invoice->summary }}</td>
 								<td>{{ $invoice->currency }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$invoice->paid_amount"/></td>
-									<td><span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span></td>
-									<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>
+								<td><x-tenant.common.link-po id="{{ $invoice->po_id }}"/></td>
+								<td><span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span></td>
+								<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>
 								<td class="table-action">
-									<a href="{{ route('invoices.show',$invoice->id) }}" class="me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-feather="eye"></i>
-									</a>
+									<x-tenant.list.actions object="Invoices" :id="$invoice->id"/>
 								</td>
 							</tr>
 							@endforeach
