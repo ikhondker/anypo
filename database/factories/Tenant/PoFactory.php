@@ -30,6 +30,7 @@ class PoFactory extends Factory
 
 		return [
 			'summary'			=> $this->faker->sentence,
+			'currency'			=> $this->faker->randomElement(['BDT', 'USD']),
 			'requestor_id'		=> User::inRandomOrder()->first()->id,
 			'buyer_id'			=> User::inRandomOrder()->first()->id,
 			'dept_id'			=> Dept::inRandomOrder()->first()->id,

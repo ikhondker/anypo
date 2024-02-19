@@ -99,7 +99,7 @@
 				<li class="sidebar-item {{ ($_route_name == 'attachments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('attachments.index') }}"><i class="align-middle" data-feather="circle"></i>Attachments*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'hierarchies.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('hierarchies.index') }}"><i class="align-middle" data-feather="circle"></i>Hierarchy</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'wfs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('wfs.index') }}"><i class="align-middle" data-feather="circle"></i>Workflow</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'setups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('setups.index') }}"><i class="align-middle" data-feather="circle"></i>Setup</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'setups.show' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('setups.show',1001) }}"><i class="align-middle" data-feather="circle"></i>Setup</a></li>
 			</ul>
 		</li>
 	{{-- @endif --}}

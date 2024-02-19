@@ -27,10 +27,11 @@ class PrFactory extends Factory
 		$sub_total			= $this->faker->numberBetween(1000,20000);
 		$tax				= $this->faker->numberBetween(100,500);
 		$gst				= $this->faker->numberBetween(200,1000);
-		$fc_exchange_rate	= 125.20;
+		$fc_exchange_rate	= 109.20;
 
 		return [
 			'summary'			=> $this->faker->sentence,
+			'currency'			=> $this->faker->randomElement(['BDT', 'USD']),
 			'requestor_id'		=> User::inRandomOrder()->first()->id,
 			'dept_id'			=> Dept::inRandomOrder()->first()->id,
 			'dept_budget_id'	=> DeptBudget::inRandomOrder()->first()->id,

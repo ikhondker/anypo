@@ -11,6 +11,7 @@ use Str;
 class Lists extends Component
 {
 	public $object;
+	public $label;
 	public $id;
 
 	public $route;
@@ -19,12 +20,14 @@ class Lists extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($object)
+	public function __construct($object,$label="")
 	{
 		 $this->object	= $object;
+		 $this->label	= $label;
 
 		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
-		$this->title = $object. ' List';
+		//$this->title = $object. ' List';
+		$this->title =  ($this->label=="" ? $this->object : $this->label) .' List';
 	}
 
 	/**

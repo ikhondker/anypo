@@ -14,6 +14,9 @@ class PrSeeder extends Seeder
 	 */
 	public function run(): void
 	{
+
+		//$faker = app(Generator::class);
+	
 		Pr::factory()->count(10)->create();
 	}
 }

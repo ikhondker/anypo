@@ -8,7 +8,7 @@
 			Purchase Requisitions
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Pr"/>
+			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
 		@endslot
 	</x-tenant.page-header>
 

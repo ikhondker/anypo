@@ -30,7 +30,7 @@ class PolFactory extends Factory
 		$sub_total			= $qty*$price;
 		$tax				= $this->faker->numberBetween(20,40);
 		$gst				= $this->faker->numberBetween(20,40);
-		$fc_exchange_rate	= 125.20;
+		$fc_exchange_rate	= 108.20;
 
 		return [
 			'po_id'				=> Po::inRandomOrder()->first()->id,

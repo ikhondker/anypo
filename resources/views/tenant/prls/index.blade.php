@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Requisition Lines Lists
+			Requisition Lines Lists (SYSTEM)
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Prl"/>
