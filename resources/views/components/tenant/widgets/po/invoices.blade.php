@@ -30,6 +30,7 @@
 						<th class="text-end">Amount</th>
 						<th class="text-end">Paid Amount</th>
 						<th class="">Status</th>
+						<th class="">Pay Status</th>
 						<th class="">Actions</th>
 					</tr>
 				</thead>
@@ -44,17 +45,17 @@
 							<td class="">{{ $invoice->currency }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
 							<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount_paid"/></td>
-							<td><x-tenant.list.my-badge :value="$invoice->status"/></td>
+							<td><span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span></td>
+							<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>
+
+
 							<td class="table-action">
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="align-middle" data-feather="eye"></i></a>
-								<a href="{{ route('payments.create',$invoice->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments">
-										<i class="align-middle" data-feather="dollar-sign"></i></a>
-								<a href="{{ route('prls.edit',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+								<a href="{{ route('invoices.edit',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 									<i class="align-middle" data-feather="edit"></i></a>
-								<a href="{{ route('prls.destroy',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" onclick="return confirm('Do you want to delete this line? Are you sure?')" title="Delete">
-									<i class="align-middle" data-feather="trash-2"></i>
-								</a>
+								<a href="{{ route('payments.create',$invoice->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments">
+									<i class="align-middle" data-feather="dollar-sign"></i></a>
 							</td>
 						</tr>
 					@endforeach

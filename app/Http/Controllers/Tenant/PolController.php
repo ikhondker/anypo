@@ -145,6 +145,10 @@ class PolController extends Controller
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 
 		$po = Po::where('id', $pol->po_id)->first();
+
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'You can not edit a Purchase Order with status '. strtoupper($po->auth_status) .' !');
+		}
 		
 		$items = Item::primary()->get();
 		$uoms = Uom::primary()->get();

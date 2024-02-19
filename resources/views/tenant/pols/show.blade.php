@@ -17,8 +17,9 @@
 						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
 					</a>
 					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="{{ route('invoices.edit', $pol->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
-						<a class="dropdown-item" href="{{ route('receipts.create',$pol->id) }}"><i class="align-middle me-1" data-feather="user"></i> Create Receipts</a>
+						<a class="dropdown-item" href="{{ route('pols.edit', $pol->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit PO Line</a>
+						<a class="dropdown-item" href="{{ route('pos.show',  $pol->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
+						<a class="dropdown-item" href="{{ route('receipts.create',$pol->id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Create Receipts</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item modal-boolean-advance"  href="{{ route('invoices.cancel', $pol->id) }}"
 							data-entity="" data-name="Invoice #{{ $pol->id }}" data-status="Cancel"
@@ -26,7 +27,6 @@
 							<i class="align-middle me-1" data-feather="copy"></i> Cancel pol</a>
 					</div>
 				</div>
-
 		@endslot
 	</x-tenant.page-header>
 

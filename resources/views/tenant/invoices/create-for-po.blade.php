@@ -6,11 +6,20 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Invoices for PO #{{ $po->id }}
+			Create Invoice for PO #{{ $po->id }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
+			
 			<x-tenant.buttons.header.lists object="Invoice"/>
+			<div class="dropdown me-2 d-inline-block position-relative">
+				<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
+					<i class="align-middle mt-n1" data-feather="folder"></i> Actions
+				</a>
+				<div class="dropdown-menu dropdown-menu-end">
+					<a class="dropdown-item" href="{{ route('pos.show',  $po->id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
+					<div class="dropdown-divider"></div>
+				</div>
+			</div>
 		@endslot
 	</x-tenant.page-header> 
 
@@ -27,11 +36,11 @@
 		<input type="text" name="po_id" id="po_id" class="form-control" placeholder="ID" value="{{ old('po_id', $po->id ) }}" hidden>
 		
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Invoice Basic Information</h5>
-						<h6 class="card-subtitle text-muted">Invoice Basic Information.</h6>
+						<h5 class="card-title">Create Invoice For a Purchase Order</h5>
+						<h6 class="card-subtitle text-muted">Create Invoice For a Purchase Order.</h6>
 					</div>
 					<div class="card-body">
 
@@ -82,33 +91,8 @@
 							@enderror
 						</div>
 				
-
-						
-					</div>
-				</div>
-			</div>
-			<!-- end col-6 -->
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header">
-						<h5 class="card-title">Invoice Amount</h5>
-						<h6 class="card-subtitle text-muted">Invoice Amount Information.</h6>
-					</div>
-					<div class="card-body">
-
 						<div class="mb-3">
-							<label class="form-label">Currency</label>
-							<input type="text" class="form-control @error('currency') is-invalid @enderror"
-								name="currency" id="currency" placeholder="Summary"
-								value="{{ $po->currency }}"
-								readonly/>
-							@error('currency')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<div class="mb-3">
-							<label class="form-label">Amount</label>
+							<label class="form-label">Amount ({{ $po->currency }})</label>
 							<input type="number" class="form-control @error('amount') is-invalid @enderror"
 								name="amount" id="amount" placeholder="99,999.99"
 								value="{{ old('amount', '1.00' ) }}"
@@ -122,9 +106,11 @@
 						<x-tenant.attachment.create/>
 						
 						<x-tenant.buttons.show.save/>
+						
 					</div>
 				</div>
 			</div>
+			
 			<!-- end col-6 -->
 		</div>
 		<!-- end row -->

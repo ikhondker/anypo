@@ -23,6 +23,7 @@ class StoreInvoiceRequest extends FormRequest
     {
         return [
             //
+            'amount'         => 'required|numeric|min:1.00|max:9999999.99',
         ];
     }
 }

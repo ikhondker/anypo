@@ -112,15 +112,39 @@ class InvoiceController extends Controller
 	{
 		$this->authorize('create', Invoice::class);
 
+
 		// get PO 
 		$po = Po::where('id', $request->input('po_id'))->first();
 		
-		// Check over invoice
+		// check over invoiced
+		//$un_invoiced_amount= $po->amount - $po->amount_invoice;
+		// Validator::extend('over_invoice', function ($attribute, $value, $parameters, $validator) {
+		// 	if ( $value > $parameters[0] ){
+		// 		return false;
+		// 	} else {
+		// 		return true;
+		// 	}
+		// });
+		// $request->validate([
+		// 	'amount'				=> 'over_invoice:'.$un_invoiced_amount,
+		// ],[
+		// 	'amount.over_invoice' 	=> 'You can not create Invoice larger than the remaining un-invoiced amount i.e. '. number_format($un_invoiced_amount,2). ' '. $po->currency,
+		// ]);
+
+		// $request->validate([
+		// 	'amount' => [new TestRule ($un_invoiced_amount)],
+		// ]);
+
 		$request->validate([
 			'amount' => [new OverInvoiceRule ($po->id)],
 		]);
 
-		
+		// // TODO Check over invoice
+		// $un_invoiced_amount= $po->amount - $po->amount_invoice;
+		// if ( $request->input('amount') > $un_invoiced_amount ){
+		// 	return redirect()->back()->with(['error' => 'You can not create Invoice larger than the remaining un-invoiced amount i.e. '. number_format($un_invoiced_amount,2). ' '. $po->currency ]);
+		// }
+
 		$request->merge([
 			'currency' 		=> $po->currency, 
 			'invoice_no' 	=> Str::upper($request['invoice_no']),
@@ -182,14 +206,27 @@ class InvoiceController extends Controller
 	public function update(UpdateInvoiceRequest $request, Invoice $invoice)
 	{
 		$this->authorize('update', $invoice);
+
+		// TODO Check over invoice
 		
 		// get PO 
 		$po = Po::where('id', $invoice->po_id)->first();
 
 		// check over invoiced
+		$un_invoiced_amount= $po->amount - $po->amount_invoice;
+		Validator::extend('over_invoice', function ($attribute, $value, $parameters, $validator) {
+			if ( $value > $parameters[0] ){
+				return false;
+			} else {
+				return true;
+			}
+		});
 		$request->validate([
-			'amount' => [new OverInvoiceRule ($po->id)],
+			'amount'				=> 'over_invoice:'.$un_invoiced_amount,
+		],[
+			'amount.over_invoice' 	=> 'You can not create Invoice larger than the remaining un-invoiced amount i.e. '. number_format($un_invoiced_amount,2). ' '. $po->currency,
 		]);
+
 
 		// User and HoD Can not edit department PR
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
@@ -225,11 +262,8 @@ class InvoiceController extends Controller
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can post Invoices only for OPEN Purchase Order!');
 		}
 
-		// Check over invoice
-		$un_invoiced_amount = $po->amount - $po->amount_invoice;
-		if ( $invoice->amount > ($un_invoiced_amount) ){
-			return redirect()->route('invoices.show', $invoice->id)->with('error', 'You can not create Invoice larger than the remaining un-invoiced amount i.e. '. number_format($un_invoiced_amount,2).' '. $po->currency);
-		} 
+		// TODO Check over invoice
+
 		
 		$invoice->fill(['status' => InvoiceStatusEnum::POSTED->value]);
 		$invoice->update();

@@ -93,12 +93,12 @@ class Pr extends Model
 		}
 
 		// get prl summary
-		$result= Prl::where('pr_id', $pr_id)->get( array(
-			DB::raw('SUM(fc_sub_total) as fc_sub_total'),
-			DB::raw('SUM(fc_tax) as fc_tax'),
-			DB::raw('SUM(fc_gst) as fc_gst'),
-			DB::raw('SUM(fc_amount) as fc_amount'),
-		));
+		// $result= Prl::where('pr_id', $pr_id)->get( array(
+		// 	DB::raw('SUM(fc_sub_total) as fc_sub_total'),
+		// 	DB::raw('SUM(fc_tax) as fc_tax'),
+		// 	DB::raw('SUM(fc_gst) as fc_gst'),
+		// 	DB::raw('SUM(fc_amount) as fc_amount'),
+		// ));
 		
 		//Log::debug('Value of id=' . $rs);
 		//Log::debug('Value of tax=' . $r->tax);
@@ -107,23 +107,49 @@ class Pr extends Model
 		// update PR header
 		// handle No row in child table 
 		// TODO handle in better way
-		Log::debug('tenenat.model.pr.updatePrFcValues updating header FC column PR=' . $pr->id);
-		$pr->fc_exchange_rate	= $rate;
-		foreach($result as $row) {
-			if ( is_null($row['fc_sub_total'])  ) { 
-				Log::debug('tenant.model.pr.updatePrFcValues NO row in prls table .');
-				$pr->fc_sub_total		= 0 ;
-				$pr->fc_tax				= 0 ;
-				$pr->fc_gst				= 0 ;
-				$pr->fc_amount			= 0;
-			} else {
-				Log::debug('tenant.model.pr.updatePrFcValues updating pr header FC columns.');
+		Log::debug('tenant.model.pr.updatePrFcValues updating header FC column PR=' . $pr->id);
+
+		// check if rows exists in prl
+		$count_prl		= Prl::where('pr_id',$pr->id)->count();
+		if ($count_prl == 0 ){
+			Log::debug('tenant.model.pr.updatePrFcValues NO row in prls table .');
+			$pr->fc_sub_total		= 0 ;
+			$pr->fc_tax				= 0 ;
+			$pr->fc_gst				= 0 ;
+			$pr->fc_amount			= 0;
+		} else {
+			Log::debug('tenant.model.pr.updatePrFcValues updating pr header FC columns.');
+			// get prl summary
+			$result= Prl::where('pr_id', $pr_id)->get( array(
+				DB::raw('SUM(fc_sub_total) as fc_sub_total'),
+				DB::raw('SUM(fc_tax) as fc_tax'),
+				DB::raw('SUM(fc_gst) as fc_gst'),
+				DB::raw('SUM(fc_amount) as fc_amount'),
+			));
+			foreach($result as $row) {
 				$pr->fc_sub_total		= $row['fc_sub_total'] ;
 				$pr->fc_tax				= $row['fc_tax'] ;
 				$pr->fc_gst				= $row['fc_gst'] ;
 				$pr->fc_amount			= $row['fc_amount'];
 			}
 		}
+		$pr->fc_exchange_rate	= $rate;
+
+		// foreach($result as $row) {
+		// 	if ( is_null($row['fc_sub_total'])  ) { 
+		// 		Log::debug('tenant.model.pr.updatePrFcValues NO row in prls table .');
+		// 		$pr->fc_sub_total		= 0 ;
+		// 		$pr->fc_tax				= 0 ;
+		// 		$pr->fc_gst				= 0 ;
+		// 		$pr->fc_amount			= 0;
+		// 	} else {
+		// 		Log::debug('tenant.model.pr.updatePrFcValues updating pr header FC columns.');
+		// 		$pr->fc_sub_total		= $row['fc_sub_total'] ;
+		// 		$pr->fc_tax				= $row['fc_tax'] ;
+		// 		$pr->fc_gst				= $row['fc_gst'] ;
+		// 		$pr->fc_amount			= $row['fc_amount'];
+		// 	}
+		// }
 		$pr->save();
 		Log::debug('tenant.model.pr.updatePrFcValues pr->fc_amount='.$pr->fc_amount);
 

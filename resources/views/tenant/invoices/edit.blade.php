@@ -76,21 +76,8 @@
 							@enderror
 						</div>
 
-						<div class="mb-3">
-							<label class="form-label">Invoice PoC</label>
-							<select class="form-control" name="poc_id" required>
-								<option value=""><< PoC Name >> </option>
-								@foreach ($pocs as $user)
-									<option {{ $user->id == old('poc_id',$invoice->poc_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
-								@endforeach
-							</select>
-							@error('poc_id')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-				
-
 						
+					
 					</div>
 				</div>
 			</div>
@@ -104,7 +91,7 @@
 					<div class="card-body">
 
 						<div class="mb-3">
-							<label class="form-label">Amount {{ $invoice->currency }}</label>
+							<label class="form-label">Amount ({{ $invoice->currency }})</label>
 							<input type="number" class="form-control @error('amount') is-invalid @enderror"
 								name="amount" id="amount" placeholder="99,999.99"
 								value="{{ old('amount', $invoice->amount ) }}"
@@ -114,7 +101,18 @@
 							@enderror
 						</div>
 						<x-tenant.create.notes/>
-						
+						<div class="mb-3">
+							<label class="form-label">Invoice PoC</label>
+							<select class="form-control" name="poc_id" required>
+								<option value=""><< PoC Name >> </option>
+								@foreach ($pocs as $user)
+									<option {{ $user->id == old('poc_id',$invoice->poc_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+								@endforeach
+							</select>
+							@error('poc_id')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
 						<x-tenant.attachment.create/>
 						
 						<x-tenant.buttons.show.save/>

@@ -22,7 +22,7 @@ class StorePrlRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			//
+			'price'         => 'required|numeric|min:1.00|max:9999999.99',
 		];
 	}
 }

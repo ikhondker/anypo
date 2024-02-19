@@ -44,6 +44,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
 
+use App\Rules\Tenant\OverReceiptRule;
+
 
 class ReceiptController extends Controller
 {
@@ -106,15 +108,23 @@ class ReceiptController extends Controller
 	{
 		$this->authorize('create', Receipt::class);
 
+
+		
 		$pol_id =$request->input('pol_id');
 		$pol = Pol::where('id', $pol_id)->first();
+		
+		
+		// Check over Receipt
+		$request->validate([
+			'qty' => [new OverReceiptRule ( $pol->id)],
+		]);
 
 		//TODO check if PO is approved
 
 		$request->merge(['receive_date'	=> date('Y-m-d H:i:s')]);
 		$request->merge(['receiver_id'	=> 	auth()->user()->id ]);
-		$request->merge(['price'		=> 	$pol->grs_price ]);		// <=============== NOTE
-		$request->merge(['amount'		=> 	$request->input('qty') *$pol->price ]);
+		$request->merge(['price'		=> 	$pol->grs_price ]);								// <=============== NOTE
+		$request->merge(['amount'		=> 	$request->input('qty') * $pol->grs_price ]);		// <=============== NOTE
 
 		// save receipt
 		$receipt = Receipt::create($request->all());

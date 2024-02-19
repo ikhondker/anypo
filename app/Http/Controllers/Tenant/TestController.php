@@ -9,6 +9,7 @@ use App\Http\Controllers\Landlord\ProvisionController;
 // Models
 use App\Models\User;
 use App\Models\Tenant\Prl;
+use App\Models\Tenant\Pol;
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
 
@@ -48,6 +49,12 @@ class TestController extends Controller
 
 	public function run()
 	{
+
+		$cnt		= Pol::where('po_id','1004')->count();
+		
+		Log::debug('count cnt=' . $cnt);
+		exit;
+
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, 1001, EventEnum::BOOK->value);
 		exit;

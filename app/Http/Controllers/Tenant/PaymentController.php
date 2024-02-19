@@ -39,6 +39,9 @@ use Illuminate\Support\Facades\Log;
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
 
+
+use App\Rules\Tenant\OverPaymentRule;
+
 use DB;
 
 class PaymentController extends Controller
@@ -104,8 +107,16 @@ class PaymentController extends Controller
 	{
 		$this->authorize('create', Payment::class);
 		
+		//$po = Po::where('id', $request->input('po_id'))->first();
+
+		// Check over Payment
+		$request->validate([
+			'amount' => [new OverPaymentRule ( $request->input('invoice_id'))],
+		]);
+
+
 		$request->merge(['payment_date'		=> date('Y-m-d H:i:s')]);
-		$request->merge(['payee_id'	=> 	auth()->user()->id ]);
+		$request->merge(['payee_id'			=> 	auth()->user()->id ]);
 		$payment = Payment::create($request->all());
 
 

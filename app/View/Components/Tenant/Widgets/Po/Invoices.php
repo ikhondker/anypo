@@ -16,7 +16,7 @@ class Invoices extends Component
 	 */
 	public function __construct($id)
 	{
-		$this->invoices 	= Invoice::where('po_id', $id)->get()->all();
+		$this->invoices 	= Invoice::with('supplier')->with('status_badge')->with('pay_status_badge')->where('po_id', $id)->get()->all();
 	}
 
     /**

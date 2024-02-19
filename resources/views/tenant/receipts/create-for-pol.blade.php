@@ -41,7 +41,30 @@
 						</div> --}}
 
 						<div class="mb-3">
-							<label class="form-label">Warehouse</label>
+							<label class="form-label">Item</label>
+							<input type="text" class="form-control @error('pol_summary') is-invalid @enderror"
+								name="pol_summary" id="pol_summary" placeholder=""
+								value="{{ old('pol_summary',  $pol->summary ) }}"
+								readonly/>
+							@error('pol_summary')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+
+
+						<div class="mb-3">
+							<label class="form-label">Qty ({{ $pol->uom->name  }})</label>
+							<input type="number" class="form-control @error('qty') is-invalid @enderror"
+								name="qty" id="qty" placeholder="99,999.99"
+								value="{{ old('qty', '1.00' ) }}"
+								step='0.01' min="1" required/>
+							@error('qty')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label">Warehouse </label>
 							<select class="form-control" name="warehouse_id" required>
 								<option value=""><< Warehouse >> </option>
 								@foreach ($warehouses as $warehouse)
@@ -49,18 +72,6 @@
 								@endforeach
 							</select>
 							@error('warehouse_id')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-
-
-						<div class="mb-3">
-							<label class="form-label">Qty</label>
-							<input type="number" class="form-control @error('qty') is-invalid @enderror"
-								name="qty" id="qty" placeholder="99,999.99"
-								value="{{ old('qty', '1.00' ) }}"
-								step='0.01' min="1" required/>
-							@error('qty')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
