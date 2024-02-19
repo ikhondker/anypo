@@ -248,6 +248,17 @@ class PrController extends Controller
 	}
 
 	/**
+	 * Display the specified resource.
+	 */
+	public function extra(Pr $pr)
+	{
+		$this->authorize('view', $pr);
+
+		return view('tenant.prs.extra', compact('pr'));
+	}
+
+
+	/**
 	 * Show the form for editing the specified resource.
 	 */
 	public function edit(Pr $pr)

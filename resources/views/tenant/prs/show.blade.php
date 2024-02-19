@@ -28,6 +28,7 @@
 					<a class="dropdown-item" href="{{ route('prs.history', $pr->id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Approval History</a>
 					<a class="dropdown-item" href="{{ route('prs.edit', $pr->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Requisition</a>
 					<a class="dropdown-item" href="{{ route('prls.createline', $pr->id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Add Requisition Line</a>
+					<a class="dropdown-item" href="{{ route('prs.extra', $pr->id) }}"><i class="align-middle me-1" data-feather="eye"></i> Additional Information</a>
 					<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.copy', $pr->id) }}"
 						data-entity="" data-name="PR #{{ $pr->id }}" data-status="Duplicate"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PR">

@@ -7,25 +7,25 @@
 	<div id="details" class="clearfix">
 		<div id="client">
 			<div class="to">REQUESTOR:</div>
-			<h2 class="name">{{ $pr->requestor->name }}</h2>
-			{{-- <div class="address">{{ $pr->requestor->name }}</div> --}}
-			{{-- <div class="address">{{ $pr->requestor->designation_name->name }}, {{ $pr->requestor->dept_name->name }}</div> --}}
-			<div class="address">Project: {{ $pr->project_id }}</div>
-			<div class="address">Summary: {{ $pr->summary }}</div>
-			<div class="address">Vendor: {{ $pr->supplier->name }}</div>
-			{{-- <div class="address">Amount {{ number_format($pr->amount,2) }} {{ $pr->currency }}</div> --}}
+			<h2 class="name">{{ $po->requestor->name }}</h2>
+			{{-- <div class="address">{{ $po->requestor->name }}</div> --}}
+			{{-- <div class="address">{{ $po->requestor->designation_name->name }}, {{ $po->requestor->dept_name->name }}</div> --}}
+			<div class="address">Project: {{ $po->project_id }}</div>
+			<div class="address">Summary: {{ $po->summary }}</div>
+			<div class="address">Vendor: {{ $po->supplier->name }}</div>
+			{{-- <div class="address">Amount {{ number_format($po->amount,2) }} {{ $po->currency }}</div> --}}
 			{{-- <div class="address">796 Silver Harbour, TX 79273, US</div>
 			<div class="email">john@example.com</div> --}}
 		</div>
 		<div id="invoice">
-			<h1>REQUISITION #{{ $pr->id}}</h1>
+			<h1>REQUISITION #{{ $po->id}}</h1>
 			
-			{{-- <div class="name">AMOUNT {{ number_format($pr->amount,2) }} {{ $pr->currency }}</div> --}}
-			<div class="date">DATE: {{ strtoupper(date('d-M-Y', strtotime($pr->pr_date))) }}</div>
-			{{-- <div class="date">APPROVAL: {{ strtoupper($pr->auth_status->value) }}</div> --}}
-			<h2 class="name">AMOUNT {{ number_format($pr->amount,2) }} {{ $pr->currency }}</h2>
-			<div class="name">APPROVAL: {{ strtoupper($pr->auth_status) }}</div>
-			{{-- <h2 class="name">APPROVAL {{strtoupper($pr->auth_status->value) }}</h2> --}}
+			{{-- <div class="name">AMOUNT {{ number_format($po->amount,2) }} {{ $po->currency }}</div> --}}
+			<div class="date">DATE: {{ strtoupper(date('d-M-Y', strtotime($po->pr_date))) }}</div>
+			{{-- <div class="date">APPROVAL: {{ strtoupper($po->auth_status->value) }}</div> --}}
+			<h2 class="name">AMOUNT {{ number_format($po->amount,2) }} {{ $po->currency }}</h2>
+			<div class="name">APPROVAL: {{ strtoupper($po->auth_status->value) }}</div>
+			{{-- <h2 class="name">APPROVAL {{strtoupper($po->auth_status->value) }}</h2> --}}
 			{{-- <div class="date">PROPOSED VENDOR: Apollo Painting & Wallcovering</div> --}}
 
 			{{-- <div class="date">Due Date: 30/06/2014</div> --}}
@@ -75,7 +75,7 @@
 			<tr>
 				<td colspan="4"></td>
 				<td colspan="1">SUBTOTAL</td>
-				<td>  {{ $pr->currency }} {{ number_format($pr->amount,2) }}</td>
+				<td>  {{ $po->currency }} {{ number_format($po->amount,2) }}</td>
 			</tr>
 			{{-- <tr>
 				<td colspan="2"></td>
@@ -85,7 +85,7 @@
 			<tr>
 				<td colspan="4"></td>
 				<td colspan="1">GRAND TOTAL</td>
-				<td> {{ $pr->currency }} {{ number_format($pr->amount,2) }}</td>
+				<td> {{ $po->currency }} {{ number_format($po->amount,2) }}</td>
 			</tr>
 		</tfoot>
 	</table>

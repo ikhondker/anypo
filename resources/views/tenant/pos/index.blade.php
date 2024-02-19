@@ -64,6 +64,9 @@
 								<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Po" :id="$po->id"/>
+									<a href="{{ route('reports.po',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Print">
+											<i class="align-middle" data-feather="printer"></i></a>
+
 									<a href="{{ route('pos.invoice',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoices">
 										<i class="align-middle" data-feather="layout"></i></a>
 									</a>

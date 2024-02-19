@@ -21,6 +21,8 @@ use App\Models\Tenant\Lookup\Currency;
 
 use App\Models\Tenant\Manage\Status;
 
+use App\Models\Tenant\Workflow\Hierarchy;
+
 use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
 use Illuminate\Database\Eloquent\Builder;
@@ -349,6 +351,12 @@ class Pr extends Model
 	}
 	public function project(){
 		return $this->belongsTo(Project::class,'project_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+	public function hierarchy(){
+		return $this->belongsTo(Hierarchy::class,'hierarchy_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

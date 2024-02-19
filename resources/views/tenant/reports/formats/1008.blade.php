@@ -26,7 +26,7 @@
 			@endphp
 			@foreach ($payments as $payment)
 			<tr>
-				<td class="sl">{{ $payments->firstItem() + $loop->index }}</td>
+				<td class="sl">{{  $loop->iteration }}</td>
 				<td class="desc">{{ $payment->id }} </td>
 				<td class="desc">{{ date('d-M-y', strtotime($payment->pay_date)) }}</td>
 				<td class="sl">{{ $payment->ac_name }}</td>

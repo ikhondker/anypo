@@ -59,6 +59,9 @@
 								<td><span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Pr" :id="$pr->id"/>
+									<a href="{{ route('reports.pr',$pr->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Print">
+											<i class="align-middle" data-feather="printer"></i></a>
+
 									<a href="{{ route('prs.destroy', $pr->id) }}" class="me-2 modal-boolean-advance"
 										data-entity="Pr" data-name="{{ $pr->id }}" data-status="Delete"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">

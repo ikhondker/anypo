@@ -90,6 +90,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'prs.index','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.show','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.history','route_name' => 'prs.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'prs.extra','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.edit','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.create','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.createline','route_name' => 'prs.index', 'node_name' => 'purchase'],
@@ -101,6 +102,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'pos.edit','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.create','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.history','route_name' => 'pos.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'pos.extra','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.invoice','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.detach','route_name' => 'pos.index', 'node_name' => 'purchase'],
 

@@ -26,7 +26,7 @@
 			@endphp
 			@foreach ($invoices as $invoice)
 			<tr>
-				<td class="sl">{{ $invoices->firstItem() + $loop->index }}</td>
+				<td class="sl">{{  $loop->iteration }}</td>
 				<td class="desc">{{ $invoice->id }} </td>
 				<td class="desc">{{ date('d-M-y', strtotime($invoice->invoice_date)) }}</td>
 				<td class="desc">{{ $invoice->po_id }}</td>

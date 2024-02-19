@@ -254,6 +254,19 @@ class PoController extends Controller
 		return view('tenant.pos.show', compact('po', 'pols', 'wfl'));
 	}
 
+
+		/**
+	 * Display the specified resource.
+	 */
+	public function extra(Po $po)
+	{
+		$this->authorize('view', $po);
+
+		return view('tenant.pos.extra', compact('po'));
+	}
+
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */

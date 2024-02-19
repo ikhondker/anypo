@@ -27,7 +27,7 @@
 			@endphp
 			@foreach ($receipts as $receipt)
 			<tr>
-				<td class="sl">{{ $receipts->firstItem() + $loop->index }}</td>
+				<td class="sl">{{  $loop->iteration }}</td>
 				<td class="desc">{{ $receipt->id }} </td>
 				<td class="desc">{{ date('d-M-y', strtotime($receipt->receive_date)) }}</td>
 				<td class="qty">{{ $receipt->warehouse_name }}</td>

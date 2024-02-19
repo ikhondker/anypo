@@ -327,7 +327,7 @@ class ReceiptController extends Controller
 			}
 
 			DB::statement("UPDATE receipts SET 
-				fc_amount		= round(amount * ". $rate .",2),
+				fc_amount		= round(amount * ". $rate .",2)
 				WHERE id = ".$receipt->id."");
 		}
 

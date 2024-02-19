@@ -28,7 +28,7 @@
 			@endphp
 			@foreach ($pols as $pol)
 			<tr>
-				<td class="sl">{{ $pols->firstItem() + $loop->index }}</td>
+				<td class="sl">{{  $loop->iteration}}</td>
 				<td class="desc">{{ $pol->po_id }}</td>
 				<td class="desc">{{ date('d-M-y', strtotime($pol->po_date)) }}</td>
 				<td class="sl">{{ $pol->line_num }}</td>

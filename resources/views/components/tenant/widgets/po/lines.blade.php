@@ -69,7 +69,7 @@
 										</a>
 									@endif	
 									<a href="{{ route('pols.receipt',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Goods Receipt">
-										<i class="align-middle" data-feather="corner-right-down"></i></a>
+										<i class="align-middle" data-feather="file-text"></i></a>
 							
 								</td>
 							</tr>

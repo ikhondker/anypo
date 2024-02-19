@@ -81,7 +81,7 @@
 							@foreach ($reports as $report)
 							<tr>
 								<td>{{ $reports->firstItem() + $loop->index  }}</td>
-								<td><a class="text-info" href="{{ route('reports.show',$report->id) }}">{{ $report->name }}</a></td>
+								<td><a class="text-info" href="{{ route('reports.show',$report->id) }}">{{ $report->name }} [r{{ $report->id }}] </a></td>
 								<td>{{ $report->summary }}</td>
 								<td>{{ $report->access }}</td>
 								<td><x-tenant.list.my-boolean :value="$report->start_date"/></td>
@@ -95,7 +95,7 @@
 										<i class="align-middle text-muted" data-feather="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 									<a href="{{ route('reports.run',$report->id)  }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Run">
-										<i class="align-middle" data-feather="layout"></i>
+										<i class="align-middle" data-feather="printer"></i>
 									</a>
 								</td>
 							</tr>

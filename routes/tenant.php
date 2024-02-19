@@ -373,6 +373,7 @@ Route::middleware([
 	Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
 	Route::get('/prs/cancel/{pr}',[PrController::class,'cancel'])->name('prs.cancel');
 	Route::get('/prs/history/{pr}',[PrController::class,'history'])->name('prs.history');
+	Route::get('/prs/extra/{pr}',[PrController::class,'extra'])->name('prs.extra');
 	Route::get('/prs/detach/{pr}',[PrController::class,'detach'])->name('prs.detach');
 	Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
 	Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
@@ -392,6 +393,7 @@ Route::middleware([
 	Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
 	Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
 	Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
+	Route::get('/pos/extra/{po}',[PoController::class,'extra'])->name('pos.extra');
 	Route::get('/pos/close/{po}',[PoController::class,'close'])->name('pos.close');
 	Route::get('/pos/open/{po}',[PoController::class,'open'])->name('pos.open');
 	Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');

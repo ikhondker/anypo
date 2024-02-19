@@ -236,8 +236,10 @@ class ReportController extends Controller
 			AND l.uom_id=u.id
 			AND p.id =l.pr_id
 			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-			AND p.pr_date BETWEEN '".$start_date."' AND '".$end_date."'
+			AND DATE(p.pr_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
+
+		Log::debug('tenant.reports.r1004 sql=' . $sql);
 		$prls = DB::select($sql);
 
 		$data = [
@@ -283,7 +285,7 @@ class ReportController extends Controller
 			AND l.uom_id=u.id
 			AND p.id =l.po_id
 			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-			AND p.po_date BETWEEN '".$start_date."' AND '".$end_date."'
+			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pols = DB::select($sql);
 
@@ -330,7 +332,7 @@ class ReportController extends Controller
 			AND l.uom_id=u.id
 			AND r.warehouse_id = w.id
 			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-			AND r.receive_date BETWEEN '".$start_date."' AND '".$end_date."'
+			AND DATE(r.receive_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$receipts = DB::select($sql);
 
@@ -376,7 +378,7 @@ class ReportController extends Controller
 			AND i.status = '".InvoiceStatusEnum::POSTED->value."'
 			AND p.dept_id =d.id 
 			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-			AND p.po_date BETWEEN '".$start_date."' AND '".$end_date."'
+			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$invoices = DB::select($sql);
 
@@ -424,7 +426,7 @@ class ReportController extends Controller
 			AND p.dept_id =d.id 
 
 			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-			AND pay.pay_date BETWEEN '".$start_date."' AND '".$end_date."'
+			AND DATE(pay.pay_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
 		$payments = DB::select($sql);
@@ -482,7 +484,7 @@ class ReportController extends Controller
 		$width = $canvas->get_width();
 		
 		// Specify watermark text
-		$text = Str::upper($pr->auth_status->name);
+		$text = Str::upper($pr->auth_status);
 
 		// Get height and width of text
 		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");
@@ -541,7 +543,7 @@ class ReportController extends Controller
 		$width = $canvas->get_width();
 		
 		// Specify watermark text
-		$text = Str::upper($pr->auth_status->name);
+		$text = Str::upper($po->auth_status);
 
 		// Get height and width of text
 		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");

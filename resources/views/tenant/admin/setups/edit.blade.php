@@ -57,92 +57,7 @@
 									@endforeach
 								</select>
 							</div>
-
 							<x-tenant.buttons.show.save/>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Web Presence</h5>
-							<h6 class="card-subtitle text-muted">Edit Web Presence details.</h6>
-						</div>
-						<div class="card-body">
-							 <div class="mb-3">
-								<label class="form-label">Email</label>
-								<input type="email" class="form-control @error('email') is-invalid @enderror"
-									name="email" id="email" placeholder="name@company.com"
-									value="{{ old('email', $setup->email ) }}"
-									required/>
-								@error('email')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Website</label>
-								<input type="text" class="form-control @error('website') is-invalid @enderror"
-									name="website" id="website" placeholder="https://www.example.com"
-									value="{{ old('website', $setup->website ) }}"
-									required/>
-								@error('website')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Facebook</label>
-								<input type="text" class="form-control @error('facebook') is-invalid @enderror"
-									name="facebook" id="facebook" placeholder="https://www.facebook.com/username"
-									value="{{ old('facebook', $setup->facebook ) }}"
-									required/>
-								@error('facebook')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-							<div class="mb-3">
-								<label class="form-label">LinkedIn</label>
-								<input type="text" class="form-control @error('linkedin') is-invalid @enderror"
-									name="linkedin" id="linkedin" placeholder="https://www.linkedin.com/username"
-									value="{{ old('linkedin', $setup->linkedin ) }}"
-									required/>
-								@error('linkedin')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-6">
-
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Logo (90x90)</h5>
-							<h6 class="card-subtitle text-muted">Edit Company Logo (90x90).</h6>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								<img src="{{ Storage::disk('s3tl')->url($setup->logo) }}" alt="{{ $setup->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $setup->name }}" width="120px">
-								{{-- <x-tenant.show.logo logo="{{ $setup->logo }}"/> --}}
-								<x-tenant.attachment.create  />
-							</div>
-						</div>
-					</div>
-
-
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Currency</h5>
-							<h6 class="card-subtitle text-muted">Default Functional Currency.</h6>
-						</div>
-						<div class="card-body">
-
-							<div class="mb-3">
-								<label class="form-label">Currency</label>  <x-tenant.info info="Note: You wont be able to change the Currency."/>
-								<input type="text" name="currency" id="currency" class="form-control" placeholder="USD" value="{{ old('currency', $setup->currency ) }}" readonly>
-							</div>
-
-
-							
-
 						</div>
 					</div>
 
@@ -217,6 +132,90 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="col-6">
+
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">Logo (90x90)</h5>
+							<h6 class="card-subtitle text-muted">Edit Company Logo (90x90).</h6>
+						</div>
+						<div class="card-body">
+							<div class="mb-3">
+								<img src="{{ Storage::disk('s3tl')->url($setup->logo) }}" alt="{{ $setup->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $setup->name }}" width="120px">
+								{{-- <x-tenant.show.logo logo="{{ $setup->logo }}"/> --}}
+								<x-tenant.attachment.create  />
+							</div>
+						</div>
+					</div>
+
+
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">Currency</h5>
+							<h6 class="card-subtitle text-muted">Default Functional Currency.</h6>
+						</div>
+						<div class="card-body">
+
+							<div class="mb-3">
+								<label class="form-label">Currency</label>  <x-tenant.info info="Note: You wont be able to change the Currency."/>
+								<input type="text" name="currency" id="currency" class="form-control" placeholder="USD" value="{{ old('currency', $setup->currency ) }}" readonly>
+							</div>
+					
+
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">Web Presence</h5>
+							<h6 class="card-subtitle text-muted">Edit Web Presence details.</h6>
+						</div>
+						<div class="card-body">
+							 <div class="mb-3">
+								<label class="form-label">Email</label>
+								<input type="email" class="form-control @error('email') is-invalid @enderror"
+									name="email" id="email" placeholder="name@company.com"
+									value="{{ old('email', $setup->email ) }}"
+									required/>
+								@error('email')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Website</label>
+								<input type="text" class="form-control @error('website') is-invalid @enderror"
+									name="website" id="website" placeholder="https://www.example.com"
+									value="{{ old('website', $setup->website ) }}"
+									required/>
+								@error('website')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Facebook</label>
+								<input type="text" class="form-control @error('facebook') is-invalid @enderror"
+									name="facebook" id="facebook" placeholder="https://www.facebook.com/username"
+									value="{{ old('facebook', $setup->facebook ) }}"
+									required/>
+								@error('facebook')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+							<div class="mb-3">
+								<label class="form-label">LinkedIn</label>
+								<input type="text" class="form-control @error('linkedin') is-invalid @enderror"
+									name="linkedin" id="linkedin" placeholder="https://www.linkedin.com/username"
+									value="{{ old('linkedin', $setup->linkedin ) }}"
+									required/>
+								@error('linkedin')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+						</div>
+					</div>
+
+					
 				</div>
 			</div>
 
