@@ -18,10 +18,9 @@ class Create extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($object ,$label="")
+	public function __construct($object, $label="")
 	{
 		 $this->object	= $object;
-		 
 		 $this->label	= $label;
 
 		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
