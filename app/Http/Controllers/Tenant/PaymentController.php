@@ -114,11 +114,9 @@ class PaymentController extends Controller
 			'amount' => [new OverPaymentRule ( $request->input('invoice_id'))],
 		]);
 
-
 		$request->merge(['payment_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['payee_id'			=> 	auth()->user()->id ]);
 		$payment = Payment::create($request->all());
-
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $payment->id ]);
@@ -138,6 +136,13 @@ class PaymentController extends Controller
 		$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
 		$invoice->paid_amount	= $invoice->paid_amount + $payment->amount;
 		$invoice->fc_paid_amount= $invoice->fc_paid_amount + $payment->fc_amount;
+
+		if ($invoice->paid_amount == $invoice->amount){
+			$invoice->payment_status 	= PaymentStatusEnum::PAID->value;
+		} else {
+			$invoice->payment_status	= PaymentStatusEnum::PARTIAL->value;
+		}
+
 		$invoice->save();
 
 		// update budget and project level summary 

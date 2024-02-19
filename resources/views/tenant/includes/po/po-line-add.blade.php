@@ -102,7 +102,10 @@
 		@enderror
 	</td>
 	<td class="">
-		{{-- <x-tenant.buttons.show.save/> --}}
+		*
+	</td>
+	<td class="">
+		*
 	</td>
 </tr>
 

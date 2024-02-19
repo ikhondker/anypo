@@ -23,6 +23,11 @@ class StatusSeeder extends Seeder
 				'name' 				=> 'Draft',
 				'badge' 			=> 'bg-info',
 		  	],
+			  [
+				'code' 				=> 'partial',
+				'name' 				=> 'Partial',
+				'badge' 			=> 'bg-info',
+		  	],
 			[
 				'code' 				=> 'approved',
 				'name' 				=> 'Approved',
@@ -68,6 +73,7 @@ class StatusSeeder extends Seeder
 				'name' 				=> 'Due',
 				'badge' 			=> 'bg-warning',
 		  	],
+
 			[
 				'code' 				=> 'unpaid',
 				'name' 				=> 'Unpaid',

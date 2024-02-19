@@ -13,7 +13,10 @@
 		@enderror
 	</td>
 	<td class="">
-		{{-- <x-tenant.buttons.show.save/> --}}
+		##
+	</td>
+	<td class="">
+		##
 	</td>
 </tr>
 <tr class="">
@@ -25,4 +28,11 @@
 		<button type="submit" id="submit" name="action" value="save" class="btn btn-primary"><i data-feather="save"></i> Save</button>
 		<button type="submit" id="submit" name="action" value="save_add" class="btn btn-primary"><i data-feather="save"></i> Save and Add Line</button>
 	</td>
+	<td class="">
+		***
+	</td>
+	<td class="">
+		***
+	</td>
 </tr> 
+

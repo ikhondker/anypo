@@ -22,8 +22,8 @@ namespace App\Enum;
 enum PaymentStatusEnum:string{
 	case DUE		= 'due';
 	case UNPAID		= 'unpaid';
-	case PAID		= 'paid';
 	case PARTIAL	= 'partial';
+	case PAID		= 'paid';
 	case CANCELED	= 'canceled';
 	case ERROR		= 'error';
 }

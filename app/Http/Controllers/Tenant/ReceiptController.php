@@ -107,12 +107,9 @@ class ReceiptController extends Controller
 	public function store(StoreReceiptRequest $request)
 	{
 		$this->authorize('create', Receipt::class);
-
-
 		
 		$pol_id =$request->input('pol_id');
 		$pol = Pol::where('id', $pol_id)->first();
-		
 		
 		// Check over Receipt
 		$request->validate([
@@ -123,7 +120,7 @@ class ReceiptController extends Controller
 
 		$request->merge(['receive_date'	=> date('Y-m-d H:i:s')]);
 		$request->merge(['receiver_id'	=> 	auth()->user()->id ]);
-		$request->merge(['price'		=> 	$pol->grs_price ]);								// <=============== NOTE
+		$request->merge(['price'		=> 	$pol->grs_price ]);									// <=============== NOTE
 		$request->merge(['amount'		=> 	$request->input('qty') * $pol->grs_price ]);		// <=============== NOTE
 
 		// save receipt
@@ -143,8 +140,8 @@ class ReceiptController extends Controller
 		// Reupload 
 		$receipt = Receipt::where('id', $receipt->id)->first();
 
-		// update pol rcv quantity
-		$pol 	= Pol::where('id', $receipt->pol_id)->firstOrFail();
+		// update pol rcv quantity and Close pol line
+		//$pol 	= Pol::where('id', $receipt->pol_id)->firstOrFail();
 		$pol->received_qty	= $pol->received_qty + $receipt->qty;
 		if ($pol->qty == $pol->received_qty){
 			$pol->closure_status = ClosureStatusEnum::CLOSED->value;

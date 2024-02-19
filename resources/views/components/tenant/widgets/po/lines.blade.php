@@ -32,6 +32,7 @@
 						<th class="text-end">Tax</th>
 						<th class="text-end">GST</th>
 						<th class="text-end">Amount</th>
+						<th class="text-end">Status</th>
 						<th class="">Actions</th>
 					</tr>
 				</thead>
@@ -52,6 +53,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$pol->tax"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$pol->gst"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$pol->amount"/></td>
+								<td class="text-end"><span class="badge {{ $pol->close_status_badge->badge }}">{{ $pol->close_status_badge->name}}</span></td>
 								<td class="table-action">
 									<a href="{{ route('pols.show',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i></a>
@@ -95,7 +97,8 @@
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->tax"/></strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->gst"/></strong></td>
 							<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->amount"/></strong></td>
-							<td class="" scope="col">&nbsp</td>
+							<td class="" scope="col">#</td>
+							<td class="" scope="col">#</td>
 						</tr>
 					@endif
 				</tbody>

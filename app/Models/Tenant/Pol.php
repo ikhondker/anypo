@@ -41,8 +41,8 @@ class Pol extends Model
 	/* ---------------- belongsTo ---------------------- */
 	/* ---------------- belongsTo ---------------------- */
 
-	public function closure_status_badge(){
-		return $this->belongsTo(Status::class,'auth_status')->withDefault([
+	public function close_status_badge(){
+		return $this->belongsTo(Status::class,'closure_status')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

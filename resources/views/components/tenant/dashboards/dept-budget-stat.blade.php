@@ -38,6 +38,8 @@
 				<div class="mb-0">
 					<span class="badge badge-soft-success me-2">{{ number_format($deptBudget->amount_po_issued / $deptBudget->amount * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
+					<span class="badge badge-soft-success me-2"> {{ $deptBudget->count_po }} </span>
+					<span class="text-muted"> PO Issued</span>
 				</div>
 			</div>
 		</div>
@@ -61,6 +63,8 @@
 				<div class="mb-0">
 					<span class="badge badge-soft-success me-2">{{ number_format($deptBudget->amount_invoice / $deptBudget->amount * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
+					<span class="badge badge-soft-success me-2"> {{ $deptBudget->count_invoice }} </span>
+					<span class="text-muted"> Invoice Posted</span>
 				</div>
 			</div>
 		</div>
@@ -84,6 +88,9 @@
 				<div class="mb-0">
 					<span class="badge badge-soft-success me-2">{{ number_format($deptBudget->amount_payment / $deptBudget->amount * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
+					<span class="badge badge-soft-success me-2"> {{ $deptBudget->count_payment }} </span>
+					<span class="text-muted"> Payment Made</span>
+
 				</div>
 
 			</div>

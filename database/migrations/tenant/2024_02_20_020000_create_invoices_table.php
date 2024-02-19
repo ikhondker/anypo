@@ -43,7 +43,7 @@ return new class extends Migration
 			$table->foreign('status')->references('code')->on('statuses');
 			/** end ENUM */
 			/** ENUM */
-			$table->string('payment_status')->default(PaymentStatusEnum::UNPAID->value);;
+			$table->string('payment_status')->default(PaymentStatusEnum::DUE->value);;
 			$table->foreign('payment_status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->biginteger('created_by')->default(1001);

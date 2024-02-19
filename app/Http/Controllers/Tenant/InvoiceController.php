@@ -232,8 +232,12 @@ class InvoiceController extends Controller
 		} 
 		
 		$invoice->fill(['status' => InvoiceStatusEnum::POSTED->value]);
+		
+		// Close po TODO 
+
 		$invoice->update();
 
+		
 		// 	Populate functional currency values
 		$result = self::updateInvoiceFcValues($invoice->id);
 		if (! $result) {
