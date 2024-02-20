@@ -283,12 +283,21 @@ class InvoiceController extends Controller
 
 	public function export()
 	{
-		$this->authorize('export', Invoice::class);
+		//$this->authorize('export', Invoice::class);
 
 		$data = DB::select("
-		SELECT id, pay_date, payee_id, po_id, bank_account_id, cheque_no, currency, amount, 
-		fc_currency, fc_exchange_rate, fc_amount, for_entity, notes, status, created_by, created_at, updated_by, updated_at 
-		FROM invoices
+		SELECT i.id, i.invoice_no, i.invoice_date, 
+			p.id po_id, 
+			s.name supplier_name, 
+			i.summary, u.name poc_name, 
+			i.currency, i.sub_total, i.tax, i.gst, i.amount, i.paid_amount, 
+			i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_paid_amount,
+			i.notes, i.status, i.payment_status
+		FROM invoices i, pos p, suppliers s, users u
+		WHERE i.po_id =p.id
+		AND i.supplier_id= s.id
+		AND i.poc_id = u.id
+
 		");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

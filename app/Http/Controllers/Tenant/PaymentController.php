@@ -210,7 +210,14 @@ class PaymentController extends Controller
 	{
 		$this->authorize('export', Payment::class);
 
-		$data = DB::select("SELECT id, pay_date, payee_id, po_id, bank_account_id, cheque_no, currency, amount, fc_currency, fc_exchange_rate, fc_amount, for_entity, notes, status, created_by, created_at, updated_by, updated_at, FROM payments
+		$data = DB::select("
+		SELECT p.id, p.invoice_id, p.pay_date, u.name payee_name, i.po_id,
+			b.ac_name , p.cheque_no, p.currency, p.amount, p.notes, p.status
+		FROM payments p, invoices i, users u, bank_accounts b
+		WHERE p.invoice_id = i.id 
+		AND p.bank_account_id=b.id 
+		AND p.payee_id = u.id
+
 		");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

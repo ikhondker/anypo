@@ -71,7 +71,7 @@
 						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
 						<h6 class="text-danger">Guest!</h6>
 					@endguest
-
+					{{ $_node_name }}	{{ $_route_name }}
 					{{-- <img src="/logo/{{ $_setup->logo }}" width="70px" height="70px" class="" alt="{{ $_setup->name }}"/><br> --}}
 					{{-- <span class="text-sm align-middle text-primary">{{ $_setup->name}}</span> --}}
 					{{-- <span class="text-sm align-middle text-muted"><small>CONTROL EXPENSES</small></span><br> --}}
@@ -150,7 +150,7 @@
 									<a class="dropdown-item" href="#">Responsive Table</a>
 									<a class="dropdown-item" href="#">Table with Buttons</a>
 									<a class="dropdown-item" href="#">Column Search</a>
-									<a class="dropdown-item" href="#">Muulti Selection</a>
+									<a class="dropdown-item" href="#">Multi Selection</a>
 
 								</div>
 							</div>
@@ -226,7 +226,7 @@
 										<img src="{{ url($_avatar_dir . 'avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
 									@else --}}
 										{{-- <img src="{{ url($_avatar_dir . auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/> --}}
-								{{-- @endif --}}
+									{{-- @endif --}}
 								@endauth
 									@guest
 									{{-- <img src="{{asset('img/avatar.png')}}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />  --}}

@@ -216,7 +216,17 @@ class ReceiptController extends Controller
 	{
 		$this->authorize('export', Receipt::class);
 
-		$data = DB::select("SELECT id, receive_date, rcv_type, pol_id, warehouse_id, receiver_id, qty, notes, status, created_by, created_at, updated_by, updated_at, FROM receipts
+		$data = DB::select("
+			SELECT r.id, r.receive_date, r.rcv_type, 
+				po.id po_num, po.summary, pol.line_num, pol.summary,
+				w.name warehouse_name,
+				u.name receiver_name,
+				r.qty, r.notes, r.status
+			FROM receipts r, pols pol, pos po , warehouses w, users u
+			WHERE r.pol_id=pol.id
+			AND pol.po_id =po.id
+			AND r.warehouse_id= w.id
+			AND r.receiver_id = u.id
 		");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

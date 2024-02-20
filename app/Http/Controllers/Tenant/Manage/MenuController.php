@@ -35,7 +35,7 @@ class MenuController extends Controller
 		if (request('term')) {
 			$menus->where('raw_route_name', 'Like', '%'.request('term').'%');
 		}
-		$menus = $menus->orderBy('node_name', 'ASC')->paginate(40);
+		$menus = $menus->orderBy('raw_route_name', 'ASC')->paginate(40);
 
 		return view('tenant.manage.menus.index', compact('menus'));
 	}
