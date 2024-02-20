@@ -165,7 +165,7 @@ class DeptBudgetController extends Controller
 
 	public function export()
 	{
-		$this->authorize('export', Budget::class);
+		$this->authorize('export', DeptBudget::class);
 		$data = DB::select("SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr_issued, db.amount_po_booked, db.amount_po_issued, db.amount_grs, db.amount_payment, 
 		db.notes, 	IF(db.closed, 'Yes', 'No') as Closed
 		FROM dept_budgets db,budgets b,depts d
@@ -180,7 +180,7 @@ class DeptBudgetController extends Controller
 	// add attachments
 	public function attach(FormRequest $request)
 	{
-		//$this->authorize('create', DeptBudget::class);
+		$this->authorize('create', DeptBudget::class);
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_dept_budget_id') ]);
@@ -194,7 +194,7 @@ class DeptBudgetController extends Controller
 
 	public function detach(DeptBudget $deptBudget)
 	{
-		//$this->authorize('view', $pr);
+		$this->authorize('view', $pr);
 
 		$deptBudget = DeptBudget::where('id', $deptBudget->id)->get()->firstOrFail();
 		$attachments = Attachment::with('owner')->where('entity', EntityEnum::DEPTBUDGET->value)->where('article_id', $deptBudget->id)->get()->all();

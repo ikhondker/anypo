@@ -88,7 +88,8 @@ class WflController extends Controller
 	 */
 	public function update(UpdateWflRequest $request, Wfl $wfl)
 	{
-		//$this->authorize('update',$wfl);
+		$this->authorize('update',$wfl);
+
 		$request->merge(['action_date' => date('Y-m-d H:i:s')]);
 		$wfl->update($request->all());
 		
@@ -128,7 +129,7 @@ class WflController extends Controller
 	 */
 	public function destroy(Wfl $wfl)
 	{
-		//
+		abort(403);
 	}
 
 	public function rejected(Wf $wf)

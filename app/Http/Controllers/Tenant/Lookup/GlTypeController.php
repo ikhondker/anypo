@@ -14,7 +14,7 @@ class GlTypeController extends Controller
 	 */
 	public function index()
 	{
-		//
+		abort(403);
 	}
 
 	/**

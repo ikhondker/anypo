@@ -108,7 +108,7 @@ class ReportController extends Controller
 	 */
 	public function show(Report $report)
 	{
-		//$this->authorize('view', $report);
+		$this->authorize('view', $report);
 
 		return view('tenant.reports.show', compact('report'));
 	}
@@ -190,7 +190,7 @@ class ReportController extends Controller
 
 	public function export()
 	{
-		$this->authorize('export', Budget::class);
+		$this->authorize('export', Report::class);
 		$data = DB::select("SELECT id, name, title, access, article_id, start_date, end_date, user_id, item_id, supplier_id, project_id, category_id, dept_id, warehouse_id, order_by, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at, 
 		FROM reports");
 		$dataArray = json_decode(json_encode($data), true);

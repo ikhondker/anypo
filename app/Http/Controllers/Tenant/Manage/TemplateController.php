@@ -92,6 +92,7 @@ class TemplateController extends Controller
 	{
 
 		$this->authorize('create', Template::class);
+
 		if($request->has('my_bool')) {
 			//Checkbox checked
 			$request->merge(['my_bool' => 1,]);
@@ -100,7 +101,6 @@ class TemplateController extends Controller
 			$request->merge([ 'my_bool' => 0,]);
 		}
 
-		//$this->authorize('create',Entity::class);
 		$request->merge([
 			 'code' => Str::upper($request['code']),
 		]);
@@ -222,7 +222,7 @@ class TemplateController extends Controller
 	public function submit(Template $template)
 	{
 
-		//$this->authorize('delete', $template);
+		$this->authorize('delete', $template);
 
 		// Write to Log
 		//EventLog::event('template',$template->id,'enable','status',$template->enable);
@@ -237,6 +237,7 @@ class TemplateController extends Controller
 	*/
 	public function export()
 	{
+		$this->authorize('export', Template::class);
 
 		$data = DB::select("SELECT id, code, name, summary, user_id, address1, address2, city, state, zip, country, email, phone, qty, amount, notes, 
 				enable, my_date, my_date_time, my_enum, my_url, logo, avatar, attachment, fbpage, deleted_at, created_by, created_at, updated_by, updated_at 

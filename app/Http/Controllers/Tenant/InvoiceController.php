@@ -148,7 +148,7 @@ class InvoiceController extends Controller
 	public function show(Invoice $invoice) 
 	{
 		
-		// $this->authorize('view', $invoice);
+		$this->authorize('view', $invoice);
 	
 		return view('tenant.invoices.show', compact('invoice'));
 	}
@@ -283,7 +283,7 @@ class InvoiceController extends Controller
 
 	public function export()
 	{
-		//$this->authorize('export', Invoice::class);
+		$this->authorize('export', Invoice::class);
 
 		$data = DB::select("
 		SELECT i.id, i.invoice_no, i.invoice_date, 

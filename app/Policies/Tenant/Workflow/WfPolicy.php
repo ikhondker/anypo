@@ -62,13 +62,7 @@ class WfPolicy
 		return false;
 	}
 
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function reset(User $user, Wf $wf): bool
-	{
-		return $user->isAdmin();
-	}
+	
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -83,5 +77,22 @@ class WfPolicy
 	public function forceDelete(User $user, Wf $wf): bool
 	{
 		//
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function reset(User $user, Wf $wf): bool
+	{
+		return $user->isAdmin();
+	}
+
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
 	}
 }

@@ -31,6 +31,9 @@ class PayMethodController extends Controller
 	 */
 	public function index()
 	{
+
+		$this->authorize('viewAny',PayMethod::class);
+
 		$pay_methods = PayMethod::query();
 		if (request('term')) {
 			$pay_methods->where('name', 'Like', '%' . request('term') . '%');
@@ -69,7 +72,7 @@ class PayMethodController extends Controller
 	 */
 	public function show(PayMethod $payMethod)
 	{
-		//$this->authorize('view', $payMethod);
+		$this->authorize('view', $payMethod);
 		return view('tenant.lookup.pay-methods.show', compact('payMethod'));
 
 	}
@@ -117,6 +120,8 @@ class PayMethodController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', PayMethod::class);
+
 		$data = DB::select("SELECT id, name, pay_method_number, bank_name, branch_name, start_date, end_date, currency, 
 			notes, IF(enable, 'Yes', 'No') as Enable
 			FROM pay_methods");

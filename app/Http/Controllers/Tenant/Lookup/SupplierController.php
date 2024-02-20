@@ -30,6 +30,8 @@ class SupplierController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Supplier::class);
+
 		$suppliers = Supplier::query();
 		if (request('term')) {
 			$suppliers->where('name', 'Like', '%' . request('term') . '%');
@@ -113,6 +115,8 @@ class SupplierController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Supplier::class);
+
 		$data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable 
 			FROM suppliers");
 		$dataArray = json_decode(json_encode($data), true);

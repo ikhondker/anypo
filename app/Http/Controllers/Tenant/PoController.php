@@ -194,9 +194,7 @@ class PoController extends Controller
 
 	public function detach(Po $po)
 	{
-		//$this->authorize('view', $po);
-
-		
+		$this->authorize('view', $po);
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
 		$attachments = Attachment::where('entity', EntityEnum::PO->value)->where('article_id', $po->id)->get()->all();
@@ -205,7 +203,7 @@ class PoController extends Controller
 
 	public function history(Po $po)
 	{
-		//$this->authorize('view', $po);
+		$this->authorize('view', $po);
 	
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
 		return view('tenant.pos.history', compact('po'));
@@ -213,12 +211,11 @@ class PoController extends Controller
 
 	public function invoice(Po $po)
 	{
-		//$this->authorize('view', $po);
+		$this->authorize('view', $po);
 
 		// if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
 		// 	return redirect()->route('pos.show',$po->id)->with('error', 'Only APPROVED Purchase Order can have Invoices.');
 		// }
-
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
 		return view('tenant.pos.invoice', compact('po'));
@@ -344,10 +341,10 @@ class PoController extends Controller
 	public function close(Po $po)
 	{
 		
-		//$this->authorize('close',Po::class);
+		$this->authorize('close',Po::class);
 		//$po_id= $request->input('po_id');
 
-		
+
 		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
 			return back()->withError("Only APPROVED Purchase Order can be closed!")->withInput();
 		}
@@ -370,7 +367,7 @@ class PoController extends Controller
 	public function open(Po $po)
 	{
 		
-		//$this->authorize('close',Po::class);
+		$this->authorize('close',Po::class);
 		//$po_id= $request->input('po_id');
 		
 		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
@@ -488,6 +485,8 @@ class PoController extends Controller
 		
 	public function export()
 	{
+		$this->authorize('export', Po::class);
+
 		$data = DB::select("
 		SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
 		po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date 

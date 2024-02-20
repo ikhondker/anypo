@@ -26,7 +26,7 @@ class CountryPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -34,7 +34,7 @@ class CountryPolicy
 	 */
 	public function view(User $user, Country $country): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -62,6 +62,15 @@ class CountryPolicy
 	}
 
 	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
+	}
+
+
+	/**
 	 * Determine whether the user can restore the model.
 	 */
 	public function restore(User $user, Country $country): bool
@@ -75,10 +84,5 @@ class CountryPolicy
 	public function forceDelete(User $user, Country $country): bool
 	{
 		//
-	}
-
-	public function export(User $user): bool
-	{
-		return true;
 	}
 }

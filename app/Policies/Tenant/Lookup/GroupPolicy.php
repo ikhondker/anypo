@@ -58,8 +58,17 @@ class GroupPolicy
 	 */
 	public function delete(User $user, Group $group): bool
 	{
-		return $user->isAdmin();
+		return false;
 	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return false;
+	}
+
 
 	/**
 	 * Determine whether the user can restore the model.

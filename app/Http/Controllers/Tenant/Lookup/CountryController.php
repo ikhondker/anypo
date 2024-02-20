@@ -34,6 +34,8 @@ class CountryController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Country::class);
+
 		$countries = Country::query();
 		if (request('term')) {
 			$countries->where('name', 'Like', '%'.request('term').'%');
@@ -108,7 +110,7 @@ class CountryController extends Controller
 	public function destroy(Country $country)
 	{
 
-		//$this->authorize('delete', $color);
+		$this->authorize('delete', $color);
 		$country->fill(['enable' => ! $country->enable]);
 		$country->update();
 

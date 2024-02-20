@@ -114,6 +114,8 @@ class WfController extends Controller
 	 */
 	public function destroy(Wf $wf)
 	{
+
+		abort(403);
 		$this->authorize('delete', $wf);
 
 		$wf->fill(['enable' => !$wf->enable]);
@@ -127,6 +129,8 @@ class WfController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Wf::class);
+
 		$data = DB::select("SELECT wf.id, wf.entity, wf.article_id, wf.hierarchy_id, wf.wf_status, wf.auth_status, wf.auth_user_id, wf.auth_date,
 		wfl.id line_id, p.name performer_name,wfl.assign_date, wfl.action_date, wfl.action, wfl.notes
 		FROM wfs wf,wfls wfl, users p

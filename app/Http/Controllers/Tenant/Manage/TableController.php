@@ -93,6 +93,7 @@ class TableController extends Controller
 	public function index()
 	{
 		$this->authorize('viewAny', Table::class);
+
 		$tables = Docs::tables();
 		return view('tenant.manage.tables.index', compact('tables'))->with('i', 0);
 	}
@@ -126,6 +127,7 @@ class TableController extends Controller
 	 */
 	public function show(Table $table)
 	{
+		abort(403);
 		//dd($table);
 		//$columns = DB::select('describe '.$table);
 		//return view('tenant.manage.tables.show', with(compact('table', 'columns')));
@@ -169,6 +171,7 @@ class TableController extends Controller
 	{
 
 		$this->authorize('structure', Table::class);
+
 		$columns = Docs::columns($table);
 		return view('tenant.manage.tables.structure', with(compact('columns', 'table')));
 	}
@@ -176,6 +179,7 @@ class TableController extends Controller
 	public function controllers()
 	{
 		$this->authorize('controllers', Table::class);
+
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
@@ -186,6 +190,7 @@ class TableController extends Controller
 	{
 		// Ref: https://www.php.net/manual/en/class.reflectionclass.php
 		$this->authorize('controllers', Table::class);
+
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
@@ -197,6 +202,7 @@ class TableController extends Controller
 	public function helpers()
 	{
 		$this->authorize('controllers', Table::class);
+
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		$filesInFolder = Docs::getFiles('\app\Helpers');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
@@ -208,6 +214,7 @@ class TableController extends Controller
 	public function fncHelpers()
 	{
 		$this->authorize('controllers', Table::class);
+
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		$filesInFolder = Docs::getFiles('\app\Helpers');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
@@ -220,6 +227,7 @@ class TableController extends Controller
 	public function models()
 	{
 		$this->authorize('models', Table::class);
+
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
@@ -229,6 +237,7 @@ class TableController extends Controller
 	public function fncModels()
 	{
 		$this->authorize('models', Table::class);
+
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
@@ -238,6 +247,7 @@ class TableController extends Controller
 	public function routes()
 	{
 		$this->authorize('routes', Table::class);
+
 		// https://laravel.com/api/6.x/Illuminate/Routing/RouteCollection.html
 		$routes = Route::getRoutes()->getRoutesByName();
 		return view('tenant.manage.tables.routes-all', compact('routes'));
@@ -246,6 +256,7 @@ class TableController extends Controller
 	public function routeCode()
 	{
 		$this->authorize('routeCode', Table::class);
+
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
 		return view('tenant.manage.tables.routes', compact('filesInFolder'));
@@ -254,6 +265,7 @@ class TableController extends Controller
 	public function policies()
 	{
 		$this->authorize('policies', Table::class);
+
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');	// <<============= Models
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
 		return view('tenant.manage.tables.policies', compact('filesInFolder'));
@@ -262,6 +274,7 @@ class TableController extends Controller
 	public function fncPolicies()
 	{
 		$this->authorize('models', Table::class);
+
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_POLICY'));
 		return view('tenant.manage.tables.policies-fnc', compact('filesInFolder'));
 	}
@@ -286,6 +299,7 @@ class TableController extends Controller
 	public function messages()
 	{
 		$this->authorize('messages', Table::class);
+		
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers');
 		//$filesInFolder = Docs::messages('\app\Http\Controllers');
 		$filesInFolder = Docs::messages(config('akk.DOC_DIR_CLASS'));

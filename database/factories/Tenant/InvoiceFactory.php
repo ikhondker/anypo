@@ -19,9 +19,9 @@ class InvoiceFactory extends Factory
 	 */
 	public function definition(): array
 	{
-		$sub_total			= $this->faker->numberBetween(1000,20000);
-		$tax				= $this->faker->numberBetween(100,500);
-		$gst				= $this->faker->numberBetween(200,1000);
+		$sub_total			= $this->faker->numberBetween(100,1000);
+		$tax				= $this->faker->numberBetween(100,200);
+		$gst				= $this->faker->numberBetween(30,100);
 		$fc_exchange_rate	= 125.20;
 
 		return

@@ -28,7 +28,7 @@ class WarehousePolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -36,7 +36,7 @@ class WarehousePolicy
 	 */
 	public function view(User $user, Warehouse $warehouse): bool
 	{
-		return true;
+		return $user->isAdmin();
 	}
 
 	/**
@@ -63,6 +63,17 @@ class WarehousePolicy
 		return $user->isAdmin();
 	}
 
+	
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
+	}
+
+
+	
 	/**
 	 * Determine whether the user can restore the model.
 	 */

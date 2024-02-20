@@ -47,7 +47,7 @@ class BankAccountPolicy
 	 */
 	public function update(User $user, BankAccount $bankAccount): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -58,6 +58,15 @@ class BankAccountPolicy
 		return $user->isAdmin();
 	}
 
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
+	}
+
+	
 	/**
 	 * Determine whether the user can restore the model.
 	 */

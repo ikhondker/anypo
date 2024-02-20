@@ -64,7 +64,6 @@ class DeptController extends Controller
 		
 		$this->authorize('create', Dept::class);
 
-		
 		$dept = Dept::create($request->all());
 		// Write to Log
 		EventLog::event('dept', $dept->id, 'create');
@@ -90,7 +89,6 @@ class DeptController extends Controller
 		$this->authorize('update', $dept);
 
 		$hierarchies = Hierarchy::primary()->get();
-
 
 		return view('tenant.lookup.depts.edit', compact('dept', 'hierarchies'));
 	}
@@ -130,6 +128,8 @@ class DeptController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Dept::class);
+
 		$data = DB::select("
 			SELECT d.id, d.name, IF(d.enable, 'Yes', 'No') enable, hpr.name pr_hierarchy_name, hpo.name po_hierarchy_name
 			FROM depts d, hierarchies hpr, hierarchies hpo

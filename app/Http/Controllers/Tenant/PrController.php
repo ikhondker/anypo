@@ -204,7 +204,7 @@ class PrController extends Controller
 
 	public function detach(Pr $pr)
 	{
-		//$this->authorize('view', $pr);
+		$this->authorize('view', $pr);
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only delete attachment if the Requisition status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
@@ -217,7 +217,7 @@ class PrController extends Controller
 
 	public function history(Pr $pr)
 	{
-		//$this->authorize('view', $pr);
+		$this->authorize('view', $pr);
 
 		$pr = Pr::where('id', $pr->id)->get()->firstOrFail();
 		return view('tenant.prs.history', compact('pr'));
@@ -336,6 +336,23 @@ class PrController extends Controller
 		return redirect()->route('prs.index')->with('success', 'Purchase Requisition deleted successfully');
 	}
 
+	public function recalculate(Pr $pr)
+	{
+
+		$this->authorize('recalculate', Pr::class);
+		// 	update PR Header value
+		DB::statement("set @sequenceNumber=0");
+
+		DB::statement("UPDATE prls SET 
+				line_num	= (@sequenceNumber:=@sequenceNumber+1),
+				sub_total	= qty*price,
+				amount		= qty * price + tax +gst
+				WHERE pr_id = ".$pr->id."");
+
+		$result = Pr::updatePrHeaderValue($pr->id);
+		return redirect()->route('prs.show', $pr->id)->with('success', 'Amount Recalculated!');
+
+	}
 	/**
 	 * Remove the specified resource from storage.
 	 */
@@ -411,6 +428,7 @@ class PrController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Pr::class);
 		$data = DB::select("
 		SELECT pr.id, pr.summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
 		pr.notes, pr.currency, pr.sub_total, pr.tax, pr.gst, pr.amount, pr.status, pr.auth_status, pr.auth_date 

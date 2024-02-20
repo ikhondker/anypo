@@ -51,7 +51,7 @@ class WflPolicy
 	 */
 	public function update(User $user, Wfl $wfl): bool
 	{
-		return false;
+		return true;
 	}
 
 	/**

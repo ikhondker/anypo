@@ -71,7 +71,7 @@
 						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
 						<h6 class="text-danger">Guest!</h6>
 					@endguest
-					{{ $_node_name }}	{{ $_route_name }}
+					{{-- {{ $_node_name }}	{{ $_route_name }} --}}
 					{{-- <img src="/logo/{{ $_setup->logo }}" width="70px" height="70px" class="" alt="{{ $_setup->name }}"/><br> --}}
 					{{-- <span class="text-sm align-middle text-primary">{{ $_setup->name}}</span> --}}
 					{{-- <span class="text-sm align-middle text-muted"><small>CONTROL EXPENSES</small></span><br> --}}

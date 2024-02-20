@@ -80,7 +80,9 @@ class DbuController extends Controller
 
 	public function export()
 	{
-		$this->authorize('export', Budget::class);
+		
+		$this->authorize('export', Dbu::class);
+
 		$data = DB::select("
 		SELECT u.id, u.entity, u.article_id, u.event, o.name user_name, d.name dept_name, p.name project_name, 
 		u.amount_pr_booked, u.amount_pr_issued, u.amount_po_booked, u.amount_po_issued, u.amount_grs, u.amount_invoice, u.amount_payment, 

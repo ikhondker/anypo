@@ -372,6 +372,7 @@ Route::middleware([
 	Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
 	Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
 	Route::get('/prs/cancel/{pr}',[PrController::class,'cancel'])->name('prs.cancel');
+	Route::get('/prs/recalculate/{pr}',[PrController::class,'recalculate'])->name('prs.recalculate');
 	Route::get('/prs/history/{pr}',[PrController::class,'history'])->name('prs.history');
 	Route::get('/prs/extra/{pr}',[PrController::class,'extra'])->name('prs.extra');
 	Route::get('/prs/detach/{pr}',[PrController::class,'detach'])->name('prs.detach');

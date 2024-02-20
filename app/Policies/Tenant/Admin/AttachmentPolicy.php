@@ -60,7 +60,7 @@ class AttachmentPolicy
 	 */
 	public function delete(User $user, Attachment $attachment): bool
 	{
-		return false;
+		return $user->isAdmin();
 	}
 
 	public function export(User $user): bool
@@ -83,4 +83,13 @@ class AttachmentPolicy
 	{
 		//
 	}
+
+	/**
+	 * Determine whether the user can update the model.
+	 */
+	public function download(User $user): bool
+	{
+		return true;
+	}
+
 }

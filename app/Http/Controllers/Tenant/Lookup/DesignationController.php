@@ -122,6 +122,8 @@ class DesignationController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Designation::class);
+
 		$data = DB::select("SELECT id, name, IF(enable, 'Yes', 'No') as enable
 		FROM designations");
 		$dataArray = json_decode(json_encode($data), true);

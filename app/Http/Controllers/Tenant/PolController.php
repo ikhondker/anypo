@@ -43,7 +43,7 @@ class PolController extends Controller
 	 */
 	public function addLine($po_id)
 	{
-		//$this->authorize('update',$pr);
+		$this->authorize('update',$pr);
 
 		$po = Po::where('id', $po_id)->first();
 
@@ -133,8 +133,7 @@ class PolController extends Controller
 	 */
 	public function show(Pol $pol)
 	{
-		//$this->authorize('view', $pol);
-
+		$this->authorize('view', $pol);
 		return view('tenant.pols.show', compact('pol'));
 	}
 
@@ -199,7 +198,7 @@ class PolController extends Controller
 
 	public function receipt(Pol $pol)
 	{
-		//$this->authorize('view', $pol);
+		$this->authorize('view', $pol);
 
 		//$po = Po::where('id', $po->id)->get()->firstOrFail();
 		return view('tenant.pols.receipt', compact('pol'));

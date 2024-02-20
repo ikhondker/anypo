@@ -37,7 +37,6 @@ class PoFactory extends Factory
 			'dept_budget_id'	=> DeptBudget::inRandomOrder()->first()->id,
 			'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 			'project_id'		=> Project::inRandomOrder()->first()->id,
-			'currency'			=> 'USD',
 			'po_date'			=> $this->faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now', $timezone = null),
 			'notes'			  	=> $this->faker->paragraph,
 			'sub_total'			=> $sub_total,

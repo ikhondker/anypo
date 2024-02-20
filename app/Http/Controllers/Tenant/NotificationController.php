@@ -76,7 +76,7 @@ class NotificationController extends Controller
 	 */
 	public function destroy(Notification $notification)
 	{
-		//$this->authorize('delete', $notification);
+		$this->authorize('delete', $notification);
 
 		$notif = auth()->user()->notifications()->where('id', $notification->id)->first();
 		$notif->delete();

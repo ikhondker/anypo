@@ -28,7 +28,7 @@ class RatePolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -36,7 +36,7 @@ class RatePolicy
 	 */
 	public function view(User $user, Rate $rate): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -44,7 +44,7 @@ class RatePolicy
 	 */
 	public function create(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -52,7 +52,7 @@ class RatePolicy
 	 */
 	public function update(User $user, Rate $rate): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -60,14 +60,16 @@ class RatePolicy
 	 */
 	public function delete(User $user, Rate $rate): bool
 	{
-		//
+		return false;
 	}
 
-	public function export(User $user): Response
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
 	{
-		return ( true )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**

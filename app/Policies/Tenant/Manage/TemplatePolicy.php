@@ -30,41 +30,33 @@ class TemplatePolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Template $template): Response
+	public function view(User $user, Template $template): bool
 	{
-		return ( $user->role->value == UserRoleEnum::SYSTEM->value )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return ( $user->role->value == UserRoleEnum::SYSTEM->value )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Template $template): Response
+	public function update(User $user, Template $template): bool
 	{
-		return ( $user->role->value == UserRoleEnum::SYSTEM->value )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
-
+	
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, Template $template): Response
+	public function delete(User $user, Template $template): bool
 	{
-		return ( $user->role->value == UserRoleEnum::SYSTEM->value )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return false;
 	}
 
 	/**
@@ -81,5 +73,13 @@ class TemplatePolicy
 	public function forceDelete(User $user, Template $template): bool
 	{
 		//
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return false;
 	}
 }

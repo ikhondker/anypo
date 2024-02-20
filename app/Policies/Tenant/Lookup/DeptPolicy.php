@@ -61,6 +61,8 @@ class DeptPolicy
 		return $user->isAdmin();
 	}
 
+	
+
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -77,5 +79,12 @@ class DeptPolicy
 		//
 	}
 
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
+	}
 	
 }

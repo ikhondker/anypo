@@ -31,6 +31,7 @@ class CurrencyController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Currency::class);
 
 		$currencies = Currency::query();
 		if (request('term')) {
@@ -106,7 +107,7 @@ class CurrencyController extends Controller
 	 */
 	public function destroy(Currency $currency)
 	{
-		//$this->authorize('delete', $color);
+		$this->authorize('delete', $color);
 		$currency->fill(['enable' => !$currency->enable]);
 		$currency->update();
 

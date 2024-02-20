@@ -90,7 +90,7 @@ class TablePolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function controllers(User $user): Response 
+	public function controllers(User $user): bool 
 	{
 		return false;
 

@@ -299,6 +299,8 @@ class UploadItemController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', UploadItem::class);
+
 		$data = DB::select("SELECT i.id, u.name owner_name, i.name, i.code, i.notes, i.category, i.oem, i.uom, i.price, i.gl_type_name, i.status
 			FROM upload_items i,users u
 			WHERE i.owner_id=u.id");

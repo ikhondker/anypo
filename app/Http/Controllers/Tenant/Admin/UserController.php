@@ -325,6 +325,7 @@ class UserController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', User::class);
 		$data = DB::select("
 		SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable  
 			FROM users u, depts dp, designations d

@@ -57,15 +57,6 @@ use Str;
 
 class SetupController extends Controller
 {
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
 
 	/**
 	 * Display a listing of the resource.
@@ -184,16 +175,12 @@ class SetupController extends Controller
 	 */
 	public function destroy(Setup $setup)
 	{
-		$setup->fill(['show_message' => !$setup->show_message]);
-		$setup->update();
 
-		// Write to Log
-		EventLog::event('setup', $setup->id, 'status', 'show_message', $setup->show_message);
-		return redirect()->route('setups.index')->with('success', 'Message Status Updated successfully');
-
+		abort(403);
+		//$this->authorize('delete', $setup);
 	}
 
-	public function image($filename)
+	public function xximage($filename)
 	{
 		Log::debug('tenant.setup.image fileName='.$filename);
 
@@ -229,11 +216,7 @@ class SetupController extends Controller
 	{
 		$this->authorize('update', $setup);
 
-		// $request->validate([
-
-		// ]);
-
-		// check box
+			// check box
 		if($request->has('show_banner')) {
 			//Checkbox checked
 			$request->merge(['show_banner' => 1]);
@@ -241,7 +224,6 @@ class SetupController extends Controller
 			//Checkbox not checked
 			$request->merge([ 'show_banner' => 0]);
 		}
-
 
 		$setup->update($request->all());
 

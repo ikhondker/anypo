@@ -39,6 +39,8 @@ class ProjectController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Project::class);
+
 		$projects = Project::query();
 		if (request('term')) {
 			$projects->where('name', 'Like', '%' . request('term') . '%');
@@ -170,7 +172,7 @@ class ProjectController extends Controller
 	// add attachments
 	public function attach(FormRequest $request)
 	{
-		//$this->authorize('create', Budget::class);
+		$this->authorize('create', Budget::class);
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_project_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PROJECT->value ]);
@@ -181,7 +183,7 @@ class ProjectController extends Controller
 
 	public function detach(Project $project)
 	{
-		//$this->authorize('view', $pr);
+		$this->authorize('view', $pr);
 
 		$project = Project::where('id', $project->id)->get()->firstOrFail();
 		$attachments = Attachment::with('owner')->where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->paginate(10);

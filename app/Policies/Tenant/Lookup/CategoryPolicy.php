@@ -26,7 +26,7 @@ class CategoryPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -34,7 +34,7 @@ class CategoryPolicy
 	 */
 	public function view(User $user, Category $category): bool
 	{
-		return true;
+		return $user->isAdmin();
 	}
 
 	/**
@@ -61,6 +61,9 @@ class CategoryPolicy
 		$user->isAdmin();
 	}
 
+	
+
+	
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -75,5 +78,13 @@ class CategoryPolicy
 	public function forceDelete(User $user, Category $category): bool
 	{
 		$user->isAdmin();
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
 	}
 }

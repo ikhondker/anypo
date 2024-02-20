@@ -27,7 +27,7 @@ class SupplierPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return true; 
+		return $user->isAdmin();
 	}
 
 	/**
@@ -35,40 +35,45 @@ class SupplierPolicy
 	 */
 	public function view(User $user, Supplier $supplier): bool
 	{
-		return true; 
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return ( $user->isAdmin()  )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Supplier $supplier): Response
+	public function update(User $user, Supplier $supplier): bool
 	{
-		// admin user only
-		return ( $user->isAdmin()  )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, Supplier $supplier): Response
+	public function delete(User $user, Supplier $supplier): bool
 	{
-		return ( $user->isAdmin()  )
-			 ? Response::allow()
-			 : Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
+	
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
+	}
+
+
+	
 	/**
 	 * Determine whether the user can restore the model.
 	 */

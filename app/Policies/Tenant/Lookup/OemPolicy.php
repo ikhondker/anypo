@@ -28,7 +28,7 @@ class OemPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -36,7 +36,7 @@ class OemPolicy
 	 */
 	public function view(User $user, Oem $oem): bool
 	{
-		return true;
+		return $user->isAdmin();
 	}
 
 	/**
@@ -62,6 +62,15 @@ class OemPolicy
 	{
 		return $user->isAdmin();
 	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
+	}
+
 
 	/**
 	 * Determine whether the user can restore the model.

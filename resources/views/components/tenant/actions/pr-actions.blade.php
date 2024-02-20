@@ -40,5 +40,12 @@
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Requisition">
 			<i class="align-middle me-1 text-danger" data-feather="trash-2"></i> Delete Requisition*</a>
 
+		@if (  auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
+			<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.recalculate', $id) }}"
+				data-entity="" data-name="PR #{{ $id }}" data-status="Recalculate"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Recalculate">
+				<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Recalculate (SYSTEM)</a>
+		@endif
+
 	</div>
 </div>

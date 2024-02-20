@@ -26,7 +26,7 @@ class ReceiptFactory extends Factory
 			'pol_id'		=> Pol::inRandomOrder()->first()->id,
 			'warehouse_id'	=> Warehouse::inRandomOrder()->first()->id,
 			'receiver_id'	=> User::inRandomOrder()->first()->id,
-			'qty'			=> $this->faker->numberBetween(1,50),
+			'qty'			=> $this->faker->numberBetween(1,6),
 			'notes'			=> $this->faker->paragraph,
 		];
 

@@ -83,7 +83,8 @@ class EntityController extends Controller
 	 */
 	public function destroy(Entity $entity)
 	{
-		//$this->authorize('delete', $color);
+		$this->authorize('delete', $entity);
+
 		$entity->fill(['enable' => !$entity->enable]);
 		$entity->update();
 

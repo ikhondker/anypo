@@ -15,7 +15,7 @@ class HierarchylController extends Controller
 	 */
 	public function index()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -23,7 +23,7 @@ class HierarchylController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -31,7 +31,7 @@ class HierarchylController extends Controller
 	 */
 	public function store(StoreHierarchylRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -39,7 +39,7 @@ class HierarchylController extends Controller
 	 */
 	public function show(Hierarchyl $hierarchyl)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -47,7 +47,7 @@ class HierarchylController extends Controller
 	 */
 	public function edit(Hierarchyl $hierarchyl)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class HierarchylController extends Controller
 	 */
 	public function update(UpdateHierarchylRequest $request, Hierarchyl $hierarchyl)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -63,6 +63,6 @@ class HierarchylController extends Controller
 	 */
 	public function destroy(Hierarchyl $hierarchyl)
 	{
-		//
+		abort(403);
 	}
 }

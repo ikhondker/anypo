@@ -26,7 +26,7 @@ class HierarchyPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -34,7 +34,7 @@ class HierarchyPolicy
 	 */
 	public function view(User $user, Hierarchy $hierarchy): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -75,5 +75,13 @@ class HierarchyPolicy
 	public function forceDelete(User $user, Hierarchy $hierarchy): bool
 	{
 		//
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
 	}
 }

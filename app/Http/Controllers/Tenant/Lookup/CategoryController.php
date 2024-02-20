@@ -30,6 +30,8 @@ class CategoryController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Category::class);
+
 		$categories = Category::query();
 		if (request('term')) {
 			$categories->where('name', 'Like', '%'.request('term').'%');
@@ -86,7 +88,7 @@ class CategoryController extends Controller
 	 */
 	public function update(UpdateCategoryRequest $request, Category $category)
 	{
-		//$this->authorize('update', $category);
+		$this->authorize('update', $category);
 
 		//dd($category);
 		$category->update($request->all());
@@ -115,6 +117,8 @@ class CategoryController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Category::class);
+
 		$data = DB::select("SELECT id, name, IF(enable, 'Yes', 'No') as Enable
 			FROM categories");
 		$dataArray = json_decode(json_encode($data), true);

@@ -31,6 +31,8 @@ class WarehouseController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Warehouse::class);
+
 		$warehouses = Warehouse::query();
 		if (request('term')) {
 			$warehouses->where('name', 'Like', '%' . request('term') . '%');
@@ -122,6 +124,8 @@ class WarehouseController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Warehouse::class);
+
 		$data = DB::select("SELECT id, name, contact_person, cell, address1, address2, city, zip, state, country, IF(enable, 'Yes', 'No') as enable
 		FROM warehouses");
 		$dataArray = json_decode(json_encode($data), true);

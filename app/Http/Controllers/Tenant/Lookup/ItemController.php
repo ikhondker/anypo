@@ -40,6 +40,8 @@ class ItemController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Item::class);
+
 		$items = Item::query();
 		if (request('term')) {
 			$items->where('name', 'Like', '%' . request('term') . '%');
@@ -158,6 +160,8 @@ class ItemController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Item::class);
+
 		$data = DB::select("
 			SELECT i.id, i.name, i.notes, c.name category_name, o.name oem_name, u.name uom_name, i.price, i.stock, i.gl_type,
 			IF(i.enable, 'Yes', 'No') as Enable 

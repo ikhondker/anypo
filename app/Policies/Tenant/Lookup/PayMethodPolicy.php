@@ -29,7 +29,7 @@ class PayMethodPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -37,7 +37,7 @@ class PayMethodPolicy
 	 */
 	public function view(User $user, PayMethod $payMethod): bool
 	{
-		return true;
+		return false;
 	}
 
 	/**
@@ -45,7 +45,7 @@ class PayMethodPolicy
 	 */
 	public function create(User $user): bool
 	{
-		$user->isAdmin();
+		return false;
 	}
 
 	/**
@@ -53,7 +53,7 @@ class PayMethodPolicy
 	 */
 	public function update(User $user, PayMethod $payMethod): bool
 	{
-		$user->isAdmin();
+		return false;
 	}
 
 	/**
@@ -61,8 +61,17 @@ class PayMethodPolicy
 	 */
 	public function delete(User $user, PayMethod $payMethod): bool
 	{
-		$user->isAdmin();
+		return false;
 	}
+	
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return false;
+	}
+
 
 	/**
 	 * Determine whether the user can restore the model.

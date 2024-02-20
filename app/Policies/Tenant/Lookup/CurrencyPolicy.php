@@ -62,11 +62,14 @@ class CurrencyPolicy
 		return $user->isAdmin();
 	}
 
-
+	/**
+	 * Determine whether the user can delete the model.
+	 */
 	public function export(User $user): bool
 	{
-		return true;
+		return $user->isAdmin();
 	}
+
 
 	/**
 	 * Determine whether the user can restore the model.

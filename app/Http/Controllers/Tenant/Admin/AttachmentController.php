@@ -37,7 +37,8 @@ use Illuminate\Support\Facades\Response;
 # Exceptions
 # Events
 # TODO
-# 1. allow Edit attachment summary
+# 1. Allow Edit attachment summary
+# 2. 
 
 class AttachmentController extends Controller
 {
@@ -138,10 +139,9 @@ class AttachmentController extends Controller
 	 */
 	public function destroy(Attachment $attachment)
 	{
-		//abort(403);
+		
+		$this->authorize('delete', $attachment);
 
-		// TODO 
-		// add authorize
 		switch ($attachment->entity) {
 			case EntityEnum::BUDGET->value:
 				$budget = Budget::where('id', $attachment->article_id)->get()->firstOrFail();
@@ -182,8 +182,6 @@ class AttachmentController extends Controller
 					$attachment->delete();
 					return redirect()->back()->with('success', 'Attachment deleted!');
 				}
-
-				return redirect()->route('pos.show', $attachment->article_id);
 				break;
 			case EntityEnum::PROJECT->value:
 				$project = Project::where('id', $attachment->article_id)->get()->firstOrFail();
@@ -196,7 +194,7 @@ class AttachmentController extends Controller
 				}
 				break;
 			case EntityEnum::RECEIPT->value:
-				return redirect()->route('receipts.show', $attachment->article_id);
+				return redirect()->back()->with('error', 'Attachment can not be deleted from receipts!');
 				break;
 			case EntityEnum::INVOICE->value:
 				$invoice = Invoice::where('id', $attachment->article_id)->get()->firstOrFail();
@@ -207,34 +205,23 @@ class AttachmentController extends Controller
 					$attachment->delete();
 					return redirect()->back()->with('success', 'Attachment deleted!');
 				}
-				return redirect()->route('invoices.show', $attachment->article_id);
 				break;
 			case EntityEnum::PAYMENT->value:
-				return redirect()->route('payments.show', $attachment->article_id);
+				return redirect()->back()->with('error', 'Attachment can not be deleted from Payment!');
 				break;
 			default:
-				return redirect()->route('attachments.index');
-				// Success
+				Log::error('tenant.attachment.destroy un-matched entity id=' . $attachment->id);
+				return redirect()->back()->with('error', 'Unknown Error!');
 		}
 
 
-		if ($pr->auth_status->value <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
-		}
-
-		// Write to Log
-		EventLog::event('Pr', $pr->id, 'delete', 'id', $pr->id);
-		// delete from prl
-		DB::table('prls')->where('pr_id', $pr->id)->delete();
-		$pr->delete();
-
-
-		$attachment->delete();
-		return redirect()->back()->with(['success' => 'File Deleted successfully.']);
 	}
 
 	public function download($filename)
 	{
+
+		$this->authorize('download', Attachment::class);
+
 		// TODO simplify
 		// get entity -> subdir from filename
 		$att = Attachment::where('file_name', $filename)->first();
@@ -266,6 +253,7 @@ class AttachmentController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Attachment::class);
+
 		//$data = Uom::all()->toArray();
 		$data = DB::select('SELECT a.id, a.entity, a.article_id, u.name owner_name, a.org_file_name, upload_date
 			FROM attachments a, users u

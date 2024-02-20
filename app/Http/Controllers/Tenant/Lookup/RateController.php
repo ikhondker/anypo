@@ -30,6 +30,8 @@ class RateController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Rate::class);
+
 		$rates = Rate::query();
 		if (request('term')) {
 			$rates->where('to_currency', 'Like', '%' . request('term') . '%');
@@ -92,6 +94,7 @@ class RateController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Rate::class);
+		
 		//$data = Uom::all()->toArray();
 		$data = DB::select('
 		SELECT id, rate_date, currency, fc_currency, from_date, to_date, rate, inverse_rate FROM rates

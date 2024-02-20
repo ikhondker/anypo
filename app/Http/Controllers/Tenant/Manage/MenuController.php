@@ -117,6 +117,8 @@ class MenuController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Menu::class);
+
 		$data = DB::select("
 			SELECT id, raw_route_name, route_name, node_name, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at FROM menus
 			");

@@ -40,7 +40,8 @@ class PrlController extends Controller
 	 */
 	public function createLine($pr_id)
 	{
-		//$this->authorize('update',$pr);
+		$this->authorize('update',$pr);
+		
 		// Write Event Log
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 

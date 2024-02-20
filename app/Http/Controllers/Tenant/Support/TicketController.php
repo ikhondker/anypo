@@ -28,7 +28,7 @@ class TicketController extends Controller
 	 */
 	public function create()
 	{
-		// $this->authorize('create',Ticket::class);
+		$this->authorize('create',Ticket::class);
 
 		//$depts = Dept::getAll();
 		//$priorities = Priority::getAll(); 
@@ -42,7 +42,7 @@ class TicketController extends Controller
 	 */
 	public function store(StoreTicketRequest $request)
 	{
-		//$this->authorize('create',Ticket::class);
+		$this->authorize('create',Ticket::class);
 		// $request->merge([
 		// 	//'ticket_number' => Str::uuid()->toString(),
 		// 	'ticket_date'	=> date('Y-m-d H:i:s'),

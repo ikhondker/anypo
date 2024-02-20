@@ -55,9 +55,10 @@ class StatusController extends Controller
 	public function store(StoreStatusRequest $request)
 	{
 		$this->authorize('create', Status::class);
-		$menu = Status::create($request->all());
+
+		$status = Status::create($request->all());
 		// Write to Log
-		EventLog::event('menu', $menu->id, 'create');
+		EventLog::event('status', $status->id, 'create');
 
 		return redirect()->route('statuses.index')->with('success', 'Status created successfully.');
 	}
@@ -67,7 +68,7 @@ class StatusController extends Controller
 	 */
 	public function show(Status $status)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -75,7 +76,7 @@ class StatusController extends Controller
 	 */
 	public function edit(Status $status)
 	{
-		//$this->authorize('update', $status);
+		$this->authorize('update', $status);
 
 		return view('tenant.manage.statuses.edit', compact('status'));
 	}
@@ -91,7 +92,7 @@ class StatusController extends Controller
 		$status->update($request->all());
 
 		// Write to Log
-		EventLog::event('statusmenu', $status->code, 'update', 'name', $request->name);
+		EventLog::event('status', $status->code, 'update', 'name', $request->name);
 
 		return redirect()->route('statuses.index')->with('success', 'Status updated successfully');
 	}
@@ -112,6 +113,8 @@ class StatusController extends Controller
 	}
 	public function export()
 	{
+		$this->authorize('export', Status::class);
+
 		$data = DB::select("
 			SELECT code, name, badge, icon, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at FROM statuses
 			");

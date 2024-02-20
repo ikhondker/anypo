@@ -26,7 +26,7 @@ class ItemPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -34,38 +34,40 @@ class ItemPolicy
 	 */
 	public function view(User $user, Item $item): bool
 	{
-		return true;
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		return ( $user->isAdmin()  )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Item $item): Response
+	public function update(User $user, Item $item): bool
 	{
-		return ( $user->isAdmin()  )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function delete(User $user, Item $item): bool
+	{
+		return $user->isAdmin();
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, Item $item): Response
+	public function export(User $user): bool
 	{
-		return ( $user->isAdmin()  )
-			? Response::allow()
-			: Response::deny(config('akk.MSG_DENY'));
+		return $user->isAdmin();
 	}
+
 
 	/**
 	 * Determine whether the user can restore the model.

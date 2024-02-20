@@ -32,6 +32,8 @@ class UomController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Uom::class);
+
 		$uoms = Uom::query();
 		if (request('term')) {
 			$uoms->where('name', 'Like', '%' . request('term') . '%');
@@ -114,6 +116,8 @@ class UomController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Uom::class);
+
 		$data = DB::select("
 		SELECT u.id, u.name uom, uc.name uom_class, u.conversion, IF(u.enable, 'Yes', 'No') as Enable
 		FROM uoms u, uom_classes uc

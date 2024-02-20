@@ -119,7 +119,7 @@ class HierarchyController extends Controller
 	 */
 	public function show(Hierarchy $hierarchy)
 	{
-		//$this->authorize('view', $user);
+		$this->authorize('view', $user);
 
 		$hierarchyls = Hierarchyl::with('approver.dept')->with('approver.designation')->where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
 		return view('tenant.workflow.hierarchies.show', compact('hierarchy', 'hierarchyls'));
@@ -268,6 +268,8 @@ class HierarchyController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Hierarchy::class);
+
 		$data = DB::select("SELECT h.id, h.name, IF(h.enable, 'Yes', 'No') AS enable, 
 			hl.id sequence, u.name user_name
 			FROM hierarchies h,hierarchyls hl, users u

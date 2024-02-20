@@ -33,7 +33,7 @@ class BankAccountController extends Controller
 
 		$bank_accounts = BankAccount::query();
 		if (request('term')) {
-			$bankAccounts->where('ac_name', 'Like', '%' . request('term') . '%');
+			$bank_accounts->where('ac_name', 'Like', '%' . request('term') . '%');
 		}
 		$bank_accounts = $bank_accounts->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.lookup.bank-accounts.index', compact('bank_accounts'));
@@ -44,7 +44,7 @@ class BankAccountController extends Controller
 	 */
 	public function create()
 	{	
-		//$this->authorize('create', BankAccount::class);
+		$this->authorize('create', BankAccount::class);
 		
 		return view('tenant.lookup.bank-accounts.create');
 		
@@ -55,7 +55,8 @@ class BankAccountController extends Controller
 	 */
 	public function store(StoreBankAccountRequest $request)
 	{
-		//$this->authorize('create', BankAccount::class);
+		$this->authorize('create', BankAccount::class);
+		
 		$bankAccount = BankAccount::create($request->all());
 		// Write to Log
 		EventLog::event('bankAccount', $bankAccount->id, 'create');
@@ -68,7 +69,7 @@ class BankAccountController extends Controller
 	 */
 	public function show(BankAccount $bankAccount)
 	{
-		//$this->authorize('view', $bankAccount);
+		$this->authorize('view', $bankAccount);
 
 		return view('tenant.lookup.bank-accounts.show', compact('bankAccount'));
 	}
@@ -78,7 +79,7 @@ class BankAccountController extends Controller
 	 */
 	public function edit(BankAccount $bankAccount)
 	{
-		//$this->authorize('update', $bankAccount);
+		$this->authorize('update', $bankAccount);
 
 		return view('tenant.lookup.bank-accounts.edit', compact('bankAccount'));
 	}
@@ -118,6 +119,9 @@ class BankAccountController extends Controller
 
 	public function export()
 	{
+
+		$this->authorize('export', BankAccount::class);
+
 		$data = DB::select("
 		SELECT id, ac_name, ac_number, bank_name, branch_name, start_date, end_date, currency, contact_person, cell, address1, address2, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at FROM bank_accounts
 			");

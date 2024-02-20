@@ -28,7 +28,7 @@ class UomPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return $user->isAdmin();
 	}
 
 	/**
@@ -36,7 +36,7 @@ class UomPolicy
 	 */
 	public function view(User $user, Uom $uom): bool
 	{
-		return true;
+		return $user->isAdmin();
 	}
 
 	/**
@@ -63,6 +63,17 @@ class UomPolicy
 		return $user->isAdmin();
 	}
 
+	
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
+	}
+
+
+	
 	/**
 	 * Determine whether the user can restore the model.
 	 */

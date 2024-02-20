@@ -31,6 +31,8 @@ class OemController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAny',Oem::class);
+
 		$oems = Oem::query();
 		if (request('term')) {
 			$oems->where('name', 'Like', '%' . request('term') . '%');
@@ -116,6 +118,7 @@ class OemController extends Controller
 
 	public function export()
 	{
+		$this->authorize('export', Oem::class);
 		$data = DB::select("SELECT id, name, IF(enable, 'Yes', 'No') as Enable
 			FROM oems");
 		$dataArray = json_decode(json_encode($data), true);

@@ -225,17 +225,6 @@ class PaymentController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function getCancelPayNum()
-	{
-
-		//$this->authorize('cancel',Payment::class);
-		
-		return view('tenant.payments.cancel');
-	}
-
-	/**
 	 * Remove the specified resource from storage.
 	 */
 	// public function cancel(StorePaymentRequest $request)
