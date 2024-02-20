@@ -8,9 +8,9 @@
 			Approval History PR #{{ $pr->id }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pr"/>
-			<x-tenant.buttons.header.create object="Pr"/>
-			{{-- <a href="{{ route('prs.show', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Pr</a> --}}
+			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
+			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
+			<x-tenant.actions.pr-actions id="{{ $pr->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
 	

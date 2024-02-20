@@ -8,25 +8,10 @@
 			View Purchase Order Lines
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pol"/>
-			<x-tenant.buttons.header.create object="Pol"/>
-			<x-tenant.buttons.header.edit object="Pol" :id="$pol->id"/>
 
-				<div class="dropdown me-2 d-inline-block position-relative">
-					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
-					</a>
-					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="{{ route('pols.edit', $pol->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit PO Line</a>
-						<a class="dropdown-item" href="{{ route('pos.show',  $pol->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
-						<a class="dropdown-item" href="{{ route('receipts.create',$pol->id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Create Receipts</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item modal-boolean-advance"  href="{{ route('invoices.cancel', $pol->id) }}"
-							data-entity="" data-name="Invoice #{{ $pol->id }}" data-status="Cancel"
-							data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
-							<i class="align-middle me-1" data-feather="copy"></i> Cancel pol</a>
-					</div>
-				</div>
+		<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+		<x-tenant.actions.pol-actions id="{{ $pol->id }}"/>
+			
 		@endslot
 	</x-tenant.page-header>
 

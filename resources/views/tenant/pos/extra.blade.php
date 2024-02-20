@@ -8,23 +8,9 @@
 			Additional Information for Purchase Order
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pr"/>
-			<x-tenant.buttons.header.create object="Pr"/>
-			
-				<div class="dropdown me-2 d-inline-block position-relative">
-					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
-					</a>
-					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="{{ route('projects.edit', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
-						<a class="dropdown-item" href="{{ route('projects.budget', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> Budget Usage</a>
-						
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item text-danger" href="{{ route('projects.detach', $po->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachment</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-					</div>
-				</div>
+			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
+			<x-tenant.actions.po-actions id="{{ $po->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
 

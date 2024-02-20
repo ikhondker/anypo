@@ -67,10 +67,11 @@
 											data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 											<i class="align-middle" data-feather="trash-2"></i>
 										</a>
+									@elseif ($po->auth_status == App\Enum\AuthStatusEnum::APPROVED->value)
+										<a href="{{ route('pols.receipt',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Goods Receipt">
+											<i class="align-middle" data-feather="file-text"></i></a>
 									@endif	
-									<a href="{{ route('pols.receipt',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Goods Receipt">
-										<i class="align-middle" data-feather="file-text"></i></a>
-							
+						
 								</td>
 							</tr>
 						@endif

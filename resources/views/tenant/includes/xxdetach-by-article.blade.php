@@ -25,7 +25,7 @@
 						<td class="">{{ $loop->iteration }}</td>
 						<td class="">{{ $attachment->owner->name }}</td>
 						<td class="">{{ $attachment->org_file_name }}</td>
-						<td class="text-end">{{ number_format($attachment->file_size) }}  </td>
+						<td class="text-end">{{ number_format($attachment->file_size) }}</td>
 						<td><x-tenant.list.my-date-time :value="$attachment->upload_date"/></td>
 						<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 						<td class="table-action">
@@ -34,7 +34,6 @@
 								data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 								<i class="align-middle text-muted" data-feather="trash-2"></i>
 							</a>
-
 						</td>
 					</tr>
 					@endforeach

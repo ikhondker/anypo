@@ -8,9 +8,10 @@
 			Add PO Line
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Po"/>
-			<x-tenant.buttons.header.edit object="Po" :id="$po->id"/>
-			<a href="{{ route('pos.show', $po->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-plus"></i> View PO</a>
+			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
+			<x-tenant.actions.pol-actions id="{{ $po->id }}" show="true"/>
+		
 		@endslot
 	</x-tenant.page-header>
 	

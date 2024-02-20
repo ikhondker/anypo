@@ -16,10 +16,12 @@ use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
+use App\Models\Tenant\Invoice;
 
 # Enums
 use App\Enum\EntityEnum;
 use App\Enum\AuthStatusEnum;
+use App\Enum\InvoiceStatusEnum;
 # Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -34,6 +36,8 @@ use Illuminate\Support\Facades\Response;
 
 # Exceptions
 # Events
+# TODO
+# 1. allow Edit attachment summary
 
 class AttachmentController extends Controller
 {
@@ -134,7 +138,8 @@ class AttachmentController extends Controller
 	 */
 	public function destroy(Attachment $attachment)
 	{
-		abort(403);
+		//abort(403);
+
 		// TODO 
 		// add authorize
 		switch ($attachment->entity) {
@@ -160,7 +165,7 @@ class AttachmentController extends Controller
 				break;
 			case EntityEnum::PR->value:
 				$pr = Pr::where('id', $attachment->article_id)->get()->firstOrFail();
-				if ($pr->auth_status->value <> AuthStatusEnum::DRAFT->value) {
+				if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 					return redirect()->back()->with('error', 'Attachment can be deleted only from DRAFT documents!');
 				} else {
 					EventLog::event('Pr', $pr->id, 'detach', 'id', $attachment->id);
@@ -170,7 +175,7 @@ class AttachmentController extends Controller
 				break;
 			case EntityEnum::PO->value:
 				$po = PO::where('id', $attachment->article_id)->get()->firstOrFail();
-				if ($po->auth_status->value <> AuthStatusEnum::DRAFT->value) {
+				if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 					return redirect()->back()->with('error', 'Attachment can be deleted only from DRAFT documents!');
 				} else {
 					EventLog::event('Po', $po->id, 'detach', 'id', $attachment->id);
@@ -193,6 +198,17 @@ class AttachmentController extends Controller
 			case EntityEnum::RECEIPT->value:
 				return redirect()->route('receipts.show', $attachment->article_id);
 				break;
+			case EntityEnum::INVOICE->value:
+				$invoice = Invoice::where('id', $attachment->article_id)->get()->firstOrFail();
+				if ($invoice->status <> InvoiceStatusEnum::DRAFT->value) {
+					return redirect()->back()->with('error', 'Attachment can not be deleted from closed project!');
+				} else {
+					EventLog::event('invoice', $invoice->id, 'detach', 'id', $attachment->id);
+					$attachment->delete();
+					return redirect()->back()->with('success', 'Attachment deleted!');
+				}
+				return redirect()->route('invoices.show', $attachment->article_id);
+				break;
 			case EntityEnum::PAYMENT->value:
 				return redirect()->route('payments.show', $attachment->article_id);
 				break;
@@ -211,8 +227,6 @@ class AttachmentController extends Controller
 		// delete from prl
 		DB::table('prls')->where('pr_id', $pr->id)->delete();
 		$pr->delete();
-
-
 
 
 		$attachment->delete();

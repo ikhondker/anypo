@@ -8,23 +8,11 @@
 			View Payment
 		@endslot
 		@slot('buttons')
+
 			<x-tenant.buttons.header.lists object="Payment"/>
-			<x-tenant.buttons.header.edit object="Payment" :id="$payment->id"/>
-			<div class="dropdown me-2 d-inline-block position-relative">
-				<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-					<i class="align-middle mt-n1" data-feather="folder"></i> Actions
-				</a>
-				<div class="dropdown-menu dropdown-menu-end">
-					<a class="dropdown-item" href="{{ route('payments.create',  $payment->invoice_id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Make Another Payment</a>
-					<a class="dropdown-item" href="{{ route('invoices.show',$payment->invoice_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Invoice</a>
-					<a class="dropdown-item" href="{{ route('pos.show',  $payment->invoice->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item modal-boolean-advance text-danger"  href="{{ route('payments.cancel', $payment->id) }}"
-						data-entity="" data-name="PO #{{ $payment->id }}" data-status="Cancel"
-						data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
-						<i class="align-middle me-1" data-feather="x-circle"></i> Cancel Payment *</a>
-				</div>
-			</div>
+			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.actions.payment-actions id="{{ $payment->id }}"/>
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -47,11 +35,11 @@
 						</div>
 					</div>
 					<x-tenant.show.my-text		value="{{ $payment->invoice->supplier->name }}" label="Supplier"/>
+					<x-tenant.show.my-text		value="{{ $payment->invoice->invoice_no }}" label="Invoice #"/>	
 					<x-tenant.show.my-date		value="{{ $payment->pay_date }}"/>
 					<x-tenant.show.my-text		value="{{ $payment->bank_account->ac_name }}" label="Bank Ac"/>
 					<x-tenant.show.my-text		value="{{ $payment->cheque_no }}" label="Ref/Cheque#"/>
 					<x-tenant.show.my-amount-currency	value="{{ $payment->amount }}" currency="{{ $payment->currency }}" label="Payment Amount"/>
-					<x-tenant.show.my-text		value="{{ $payment->invoice->invoice_no }}" label="Invoice #"/>	
 					<x-tenant.show.my-text		value="{{ $payment->payee->name }}" label="Payee"/>
 					<x-tenant.show.my-badge		value="{{ $payment->status }}" label="Status"/>
 					<x-tenant.show.my-text		value="{{ $payment->notes }}" label="Notes"/>

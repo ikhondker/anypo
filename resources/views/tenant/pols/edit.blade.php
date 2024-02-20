@@ -8,11 +8,10 @@
 			Edit Purchase Order Line
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Po"/>
-			<x-tenant.buttons.header.create object="Po"/>
-			<x-tenant.buttons.header.edit object="Po" :id="$po->id"/>
-			<x-tenant.buttons.header.pdf object="Po" :id="$po->id"/>
-			<x-tenant.buttons.header.add-line object="Pol" :id="$po->id"/>
+
+			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.actions.pol-actions id="{{ $pol->id }}"/>
+		
 		@endslot
 	</x-tenant.page-header>
 	

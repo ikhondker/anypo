@@ -196,9 +196,7 @@ class PoController extends Controller
 	{
 		//$this->authorize('view', $po);
 
-		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('pos.show',$po->id)->with('error', 'You can only delete attachment if the Purchase Order status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
-		}
+		
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
 		$attachments = Attachment::where('entity', EntityEnum::PO->value)->where('article_id', $po->id)->get()->all();
@@ -208,11 +206,7 @@ class PoController extends Controller
 	public function history(Po $po)
 	{
 		//$this->authorize('view', $po);
-
-		if ($po->auth_status == AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('pos.show',$po->id)->with('error', 'Draft Purchase Order can not have any Approval History.');
-		}
-
+	
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
 		return view('tenant.pos.history', compact('po'));
 	}
@@ -221,9 +215,9 @@ class PoController extends Controller
 	{
 		//$this->authorize('view', $po);
 
-		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
-			return redirect()->route('pos.show',$po->id)->with('error', 'Only APPROVED Purchase Order can have Invoices.');
-		}
+		// if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+		// 	return redirect()->route('pos.show',$po->id)->with('error', 'Only APPROVED Purchase Order can have Invoices.');
+		// }
 
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();

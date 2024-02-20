@@ -9,8 +9,11 @@
 			Create Receipt for a Purchase Order Line
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
+
 			<x-tenant.buttons.header.lists object="Receipt"/>
+			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.actions.pol-actions id="{{ $pol->id }}"/>
+
 		@endslot
 	</x-tenant.page-header> 
 

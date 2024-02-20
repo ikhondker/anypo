@@ -9,7 +9,7 @@
 			Create Purchase Order
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pr"/>
+			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -113,7 +113,7 @@
 		</div>
 		<!-- end row -->
 
-		{{-- =================PR lines create================================================= --}}
+		{{-- =================PO lines create================================================= --}}
 		<div class="row">
 			<div class="col-12 col-xl-12">
 				<div class="card">
@@ -135,6 +135,7 @@
 								<th class="text-end">Tax</th>
 								<th class="text-end">GST</th>
 								<th class="text-end">Amount</th>
+								<th class="text-end">Status</th>
 								<th class="">Action</th>
 							</tr>
 						</thead>
@@ -142,7 +143,7 @@
 							@include('tenant.includes.po.po-line-add')
 
 							<tr class="">
-								<td colspan="9" class="text-end">
+								<td colspan="10" class="text-end">
 									<strong>TOTAL:</strong>
 								</td>
 								<td class="text-end">
@@ -155,12 +156,11 @@
 											<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror
 								</td>
-								<td class="">
-									{{-- <x-tenant.buttons.show.save/> --}}
-								</td>
+								<td class="">* 	</td>
+								<td class="">* 	</td>
 							</tr>
 							<tr class="">
-								<td colspan="8" class="">
+								<td colspan="9" class="">
 
 								</td>
 								<td colspan="2" class="">
@@ -170,6 +170,8 @@
 										<button type="submit" id="submit" name="action" value="save_add" class="btn btn-primary"><i data-feather="save"></i> Save and Add Line</button>
 									</div>
 								</td>
+								<td class="">* 	</td>
+								<td class="">* 	</td>
 							</tr>
 							
 						</tbody>

@@ -29,6 +29,9 @@ use Illuminate\Support\Facades\Log;
 
 # Exceptions
 # Events
+# TODO
+# 1. cancel pol
+
 
 class PolController extends Controller
 {

@@ -59,11 +59,10 @@ class ExchangeRate
 		} catch (\Exception $exception) {
 			// General Exception class which is the parent of all Exceptions
 			//Log::debug('ExchangeRate.getRate Still rate not found after importing data');
-			Log::error('ExchangeRate.getRate rate not found currency=' . $pr->currency.' fc_currency='.$setup->currency);
+			Log::error('ExchangeRate.getRate rate not found currency=' . $currency.' fc_currency='.$fc_currency);
 			return 0;
 		}
 	}
-
 
 	public static function importRates()
 	{

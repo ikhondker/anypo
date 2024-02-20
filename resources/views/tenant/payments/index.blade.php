@@ -55,9 +55,9 @@
 									<td>{{ $payment->currency }}</td>
 									<td>{{ $payment->bank_account->ac_name }}</td>
 								<td>{{ $payment->invoice->supplier->name }}</td>
-								<td>{{ $payment->invoice->invoice_no }}</td>
+								<td><a class="text-info" href="{{ route('invoices.show',$payment->invoice_id) }}">{{ $payment->invoice->invoice_no }} </a> </td>
 								<td><x-tenant.common.link-po id="{{ $payment->invoice->po_id }}"/></td>
-								<td>{{ $payment->payee->name }}</td>
+								<td>{{ $payment->payee->name }} </td>
 								<td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
 
 								<td class="table-action">

@@ -9,9 +9,10 @@
 			Edit PO #{{ $po->id }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Po"/>
-			<x-tenant.buttons.header.create object="Po"/>
-			<a href="{{ route('pos.show', $po->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Po</a>
+			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
+			<x-tenant.actions.po-actions id="{{ $po->id }}" show="true"/>
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -25,7 +26,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Basic Information PO #{{ $po->id }}</h5>
-							<h6 class="card-subtitle text-muted">Edit Basic Information of Requisition.</h6>
+							<h6 class="card-subtitle text-muted">Edit Basic Information of Purchase Order.</h6>
 
 						</div>
 						<div class="card-body">

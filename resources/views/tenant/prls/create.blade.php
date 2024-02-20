@@ -1,16 +1,16 @@
 @extends('layouts.app')
-@section('title','Add PR Line')
+@section('title','Add Requisition Line')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Add PR Line
+			Add Requisition Line
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pr"/>
-			<x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
-			<a href="{{ route('prs.show', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-plus"></i> View Pr</a>
+			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
+			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
+			<x-tenant.actions.pr-actions id="{{ $pr->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
 	

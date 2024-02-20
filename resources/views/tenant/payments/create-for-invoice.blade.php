@@ -9,8 +9,11 @@
 			Create Payments
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
+
 			<x-tenant.buttons.header.lists object="Payment"/>
+			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}"/>
+			
 		@endslot
 	</x-tenant.page-header> 
 
