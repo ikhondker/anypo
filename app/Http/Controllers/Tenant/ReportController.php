@@ -203,7 +203,7 @@ class ReportController extends Controller
 	 */
 	public function r1001()
 	{
-		Log::debug("Inside r1001!");
+		Log::debug("tenant.report.r1001 inside !");
 	}
 
 	/**

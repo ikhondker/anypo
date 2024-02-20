@@ -242,11 +242,10 @@ class ReceiptController extends Controller
 		
 		$receipt_id = $receipt->id;
 
-		//Log::debug('Value of receipt_id=' . $receipt_id);
+		Log::debug('tenant.receipt.cancel Value of receipt_id=' . $receipt_id);
 
 		try {
 			$receipt = Receipt::where('id', $receipt_id)->firstOrFail();
-			//Log::debug('Value of receipt_id 22222=' . $receipt_id);
 			if ($receipt->status <> ReceiptStatusEnum::RECEIVED->value) {
 				return back()->withError("You can only cancel Receipt with status received!")->withInput();
 			}
