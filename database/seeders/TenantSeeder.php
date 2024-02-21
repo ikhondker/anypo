@@ -51,8 +51,8 @@ class TenantSeeder extends Seeder
 		$this->call(\Database\Seeders\ReportSeeder::class);
 
 		//TODO Remove
-		// $this->call(\Database\Seeders\PrSeeder::class);
-		// $this->call(\Database\Seeders\PrlSeeder::class);
+		$this->call(\Database\Seeders\PrSeeder::class);
+		$this->call(\Database\Seeders\PrlSeeder::class);
 		// $this->call(\Database\Seeders\PoSeeder::class);
 		// $this->call(\Database\Seeders\PolSeeder::class);
 		// $this->call(\Database\Seeders\ReceiptSeeder::class);

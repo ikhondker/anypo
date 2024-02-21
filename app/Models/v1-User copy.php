@@ -140,57 +140,56 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Policy Related Functions  Common (both Landlord and Tenant) 				+  
+	| Access Related Both Landlord and Tenant 									 +  
 	|-----------------------------------------------------------------------------
 	*/
 
-	// usages auth()->user()->isAdmin()
-	public function isAdmin()
+	public function isFrontOffice()
 	{
-		if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::ADMIN->value)) {
-			return true;
+		if ($this->enable == 1) {
+			switch ($this->role->value) {
+				case (UserRoleEnum::USER->value):
+					return true;
+					break;
+				case (UserRoleEnum::ADMIN->value):
+					return true;
+					break;
+				case (UserRoleEnum::BUYER->value):
+					return true;
+					break;
+				case (UserRoleEnum::HOD->value):
+					return true;
+					break;
+				case (UserRoleEnum::CXO->value):
+					return true;
+					break;
+				default:
+					return false;
+			}
 		} else {
 			return false;
 		}	
 	}
 
-	public function isSupport()
-	{
-		if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::SUPPORT->value)) {
-			return true;
-		} else {
-			return false;
-		}	
-	}
 	
-	public function isSystem()
-	{
-		if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::SYSTEM->value)) {
-			return true;
-		} else {
-			return false;
-		}	
-	}
 
-	/*
-	|-----------------------------------------------------------------------------
-	| Policy Related Functions (Landlord)		 									+  
-	|-----------------------------------------------------------------------------
-	*/
-
-
-
-
-	/*
-	|-----------------------------------------------------------------------------
-	| Policy Related Functions (Tenant)		 									+  
-	|-----------------------------------------------------------------------------
-	*/
 	// usages auth()->user()->isBuyer()
 	public function isBuyer()
 	{
-		if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::BUYER->value)) {
-			return true;
+		if ($this->enable == 1) {
+			switch ($this->role->value) {
+				case (UserRoleEnum::ADMIN->value):
+					return true;
+					break;
+				case (UserRoleEnum::BUYER->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPPORT->value):
+					return true;
+					break;
+				default:
+					return false;
+			}
 		} else {
 			return false;
 		}	
@@ -198,8 +197,26 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	public function isHoD()
 	{
-		if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::HOD->value)) {
-			return true;
+		if ($this->enable == 1) {
+			switch ($this->role->value) {
+				case (UserRoleEnum::HOD->value):
+					return true;
+					break;
+				case (UserRoleEnum::CXO->value):
+					return true;
+					break;
+				case (UserRoleEnum::ADMIN->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPPORT->value):
+					return true;
+					break;
+				case (UserRoleEnum::SYSTEM->value):
+					return true;
+					break;
+				default:
+					return false;
+			}
 		} else {
 			return false;
 		}
@@ -207,13 +224,57 @@ class User extends Authenticatable implements MustVerifyEmail
 	
 	public function isCxO()
 	{
-		if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::CXO->value)) {
-			return true;
+		if ($this->enable == 1) {
+			switch ($this->role->value) {
+				case (UserRoleEnum::CXO->value):
+					return true;
+					break;
+				case (UserRoleEnum::ADMIN->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPPORT->value):
+					return true;
+					break;
+				case (UserRoleEnum::SYSTEM->value):
+					return true;
+					break;
+				default:
+					return false;
+			}
 		} else {
 			return false;
 		}
 	}
 
+	
+
+	// usages auth()->user()->isAdmin()
+	public function isAdmin()
+	{
+		if ($this->enable == 1) {
+			switch ($this->role->value) {
+				case (UserRoleEnum::ADMIN->value):
+					return true;
+					break;
+				case (UserRoleEnum::DEVELOPER->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPPORT->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPERVISOR->value):
+					return true;
+					break;
+				case (UserRoleEnum::SYSTEM->value):
+					return true;
+					break;
+				default:
+					return false;
+			}
+		} else {
+			return false;
+		}	
+	}
 
 	// usages auth()->user()->isisManagement()
 	public function xxisManagement()
@@ -243,7 +304,7 @@ class User extends Authenticatable implements MustVerifyEmail
 		}	
 	}
 
-	public function xxisBackOffice()
+	public function isBackOffice()
 	{
 		if ($this->enable == 1) {
 			switch ($this->role->value) {
@@ -267,25 +328,15 @@ class User extends Authenticatable implements MustVerifyEmail
 		}	
 	}
 
-	public function xxisFrontOffice()
+	
+
+	public function isSystem()
 	{
 		if ($this->enable == 1) {
 			switch ($this->role->value) {
-				case (UserRoleEnum::USER->value):
+				case (UserRoleEnum::SYSTEM->value):
 					return true;
 					break;
-				case (UserRoleEnum::BUYER->value):
-					return true;
-					break;
-				case (UserRoleEnum::HOD->value):
-					return true;
-					break;
-				case (UserRoleEnum::CXO->value):
-					return true;
-					break;
-				case (UserRoleEnum::ADMIN->value):
-						return true;
-						break;
 				default:
 					return false;
 			}
@@ -293,8 +344,6 @@ class User extends Authenticatable implements MustVerifyEmail
 			return false;
 		}	
 	}
-
-
 
 	/* ----------------- Scopes ------------------------- */
 	/**

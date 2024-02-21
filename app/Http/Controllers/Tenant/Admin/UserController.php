@@ -167,6 +167,7 @@ class UserController extends Controller
 	public function show(User $user)
 	{
 		$this->authorize('view', $user);
+
 		return view('tenant.admin.users.show', compact('user'));
 	}
 
@@ -295,6 +296,7 @@ class UserController extends Controller
 	public function password(User $user)
 	{
 		$this->authorize('changepass', $user);
+		
 		return view('tenant.admin.users.password', compact('user'));
 	}
 
@@ -367,7 +369,6 @@ class UserController extends Controller
 		}
 		EventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
 		return redirect('/home');
-
 	}
 
 	public function leaveImpersonate()
@@ -376,7 +377,9 @@ class UserController extends Controller
 		auth()->loginUsingId(session()->get('original_user'));
 		session()->forget('original_user');
 
-		return redirect('/home');
+		//return redirect('/home');
+		return redirect()->route('users.index')->with('success', 'Logout from impersonate successfully');
+
 	}
 
 }

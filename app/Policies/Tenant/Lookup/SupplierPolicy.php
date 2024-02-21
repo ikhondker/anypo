@@ -27,7 +27,8 @@ class SupplierPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return true;
+		//return $user->isAdmin();
 	}
 
 	/**
@@ -35,7 +36,8 @@ class SupplierPolicy
 	 */
 	public function view(User $user, Supplier $supplier): bool
 	{
-		return $user->isAdmin();
+		return true;
+		//return $user->isAdmin();
 	}
 
 	/**

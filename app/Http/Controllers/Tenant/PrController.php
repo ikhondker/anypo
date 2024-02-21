@@ -77,10 +77,10 @@ class PrController extends Controller
 		}
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
-				$prs = $prs->ByUserAll()->paginate(10);
+				$prs = $prs->ByUserAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$prs = $prs->ByDeptAll()->paginate(10);
+				$prs = $prs->ByDeptAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:

@@ -27,7 +27,7 @@ class BudgetPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isManagement();
+		return $user->isCxO();
 	}
 
 	/**
@@ -35,7 +35,7 @@ class BudgetPolicy
 	 */
 	public function view(User $user, Budget $budget): bool
 	{
-		return $user->isManagement();
+		return $user->isCxO();
 	}
 
 	/**

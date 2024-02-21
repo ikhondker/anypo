@@ -9,7 +9,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Dashboard [TODO]
+			Dashboard [TODO - BUYER]
 		@endslot
 		@slot('buttons')
 			{{-- <x-tenant.buttons.header.create object="User"/> --}}
@@ -32,13 +32,5 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-	
-
-	
-
 	
 @endsection

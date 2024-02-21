@@ -82,4 +82,54 @@ class MenuPolicy
 	{
 		return false;
 	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewPurchaseMenu(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewBudgetMenu(User $user): bool
+	{
+		return ($user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() );
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewItemMenu(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewMasterDataMenu(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewLookupMenu(User $user): bool
+	{
+		return ($user->isAdmin() || $user->isSupport());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewAdminMenu(User $user): bool
+	{
+		return ($user->isAdmin() || $user->isSupport());
+	}
+
+
 }

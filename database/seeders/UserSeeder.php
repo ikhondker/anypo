@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
 		$faker = app(Generator::class);
 		// TODO $faker->city,
 
-		$users =  [
+		$usersSeeded =  [
 			[
 				'id'				=> '1001',
 				'name'				=> 'System Owner',
@@ -53,6 +53,9 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'seeded'			=> true,
+				'avatar'			=> 'system.png',
 			],
 			[
 				'id'				=> '1002',
@@ -71,11 +74,16 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'seeded'			=> true,
+				'avatar'			=> 'support.png',
 			],
-			// TODO Must Remove 
+		];
+
+		$usersDummy =  [
 			[
 				'id'				=> '1003',
-				'name'				=> 'Admin User (Remove)',
+				'name'				=> 'Admin User (Dummy)',
 				'email'				=> 'admin@example.com',
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
@@ -90,12 +98,53 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'admin.png',
 			],
-
 			[
 				'id'				=> '1004',
-				'name'				=> 'Mr. User 1',
-				'email'				=> 'user1@example.com',
+				'name'				=> 'Mr. User 1 (IT)',
+				'email'				=> 'user1it@example.com',
+				'designation_id'	=> '1007',
+				'dept_id'			=> '1001',
+				'role'				=> 'user',
+				'email_verified_at' => now(),
+				'password'			=> bcrypt('password') , // password
+				'remember_token'	=> Str::random(10),
+				'cell'				=> $faker->PhoneNumber(),
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'zip'				=> $faker->postcode,
+				'facebook'			=> $faker->url,
+				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'u1-it.png',
+			],
+			[
+				'id'				=> '1005',
+				'name'				=> 'Mr User 2 (IT)',
+				'email'				=> 'user2it@example.com',
+				'designation_id'	=> '1007',
+				'dept_id'			=> '1001',
+				'role'				=> 'user',
+				'email_verified_at' => now(),
+				'password'			=> bcrypt('password') , // password
+				'remember_token'	=> Str::random(10),
+				'cell'				=> $faker->PhoneNumber(),
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'zip'				=> $faker->postcode,
+				'facebook'			=> $faker->url,
+				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'u2-it.png',
+			],
+			[
+				'id'				=> '1006',
+				'name'				=> 'Mr. User 1 (Sales)',
+				'email'				=> 'user1sales@example.com',
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1003',
 				'role'				=> 'user',
@@ -109,13 +158,15 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'u1-sales.png',
 			],
 			[
-				'id'				=> '1005',
-				'name'				=> 'Mr User 2',
-				'email'				=> 'user2@example.com',
+				'id'				=> '1007',
+				'name'				=> 'Mr User 2 (Sales)',
+				'email'				=> 'user2sales@example.com',
 				'designation_id'	=> '1007',
-				'dept_id'			=> '1004',
+				'dept_id'			=> '1003',
 				'role'				=> 'user',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -127,47 +178,74 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'u2-sales.png',
 			],
-			[
-				'id'				=> '1006',
-				'name'				=> 'Mr Buyer 1',
-				'email'				=> 'buyer1@example.com',
-				'designation_id'	=> '1002',
-				'dept_id'			=> '1002',
-				'role'				=> 'buyer',
-				'email_verified_at' => now(),
-				'password'			=> bcrypt('password') , // password
-				'remember_token'	=> Str::random(10),
-				'cell'				=> $faker->PhoneNumber(),
-				'address1'			=> $faker->address,
-				'address2'			=> $faker->address,
-				'city'				=> $faker->city,
-				'zip'				 => $faker->postcode,
-				'facebook'			=> $faker->url,
-				'linkedin'			=> $faker->url,
-			],
-			[
-				'id'				=> '1007',
-				'name'				=> 'Mr Buyer 2',
-				'email'				=> 'buyer2@example.com',
-				'designation_id'	=> '1002',
-				'dept_id'			=> '1002',
-				'role'				=> 'buyer',
-				'email_verified_at' => now(),
-				'password'			=> bcrypt('password') , // password
-				'remember_token'	=> Str::random(10),
-				'cell'				=> $faker->PhoneNumber(),
-				'address1'			=> $faker->address,
-				'address2'			=> $faker->address,
-				'city'				=> $faker->city,
-				'zip'				 => $faker->postcode,
-				'facebook'			=> $faker->url,
-				'linkedin'			=> $faker->url,
-			],
+
 			[
 				'id'				=> '1008',
-				'name'				=> 'Mr HoD',
-				'email'				=> 'hod@example.com',
+				'name'				=> 'Mr Buyer 1',
+				'email'				=> 'buyer1@example.com',
+				'designation_id'	=> '1009',
+				'dept_id'			=> '1002',
+				'role'				=> 'buyer',
+				'email_verified_at' => now(),
+				'password'			=> bcrypt('password') , // password
+				'remember_token'	=> Str::random(10),
+				'cell'				=> $faker->PhoneNumber(),
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'zip'				 => $faker->postcode,
+				'facebook'			=> $faker->url,
+				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'buyer1.png',
+			],
+			[
+				'id'				=> '1009',
+				'name'				=> 'Mr Buyer 2',
+				'email'				=> 'buyer2@example.com',
+				'designation_id'	=> '1009',
+				'dept_id'			=> '1002',
+				'role'				=> 'buyer',
+				'email_verified_at' => now(),
+				'password'			=> bcrypt('password') , // password
+				'remember_token'	=> Str::random(10),
+				'cell'				=> $faker->PhoneNumber(),
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'zip'				 => $faker->postcode,
+				'facebook'			=> $faker->url,
+				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'buyer2.png',
+			],
+			[
+				'id'				=> '1010',
+				'name'				=> 'Mr HoD (IT)',
+				'email'				=> 'hodit@example.com',
+				'designation_id'	=> '1004',
+				'dept_id'			=> '1001',
+				'role'				=> 'hod',
+				'email_verified_at' => now(),
+				'password'			=> bcrypt('password') , // password
+				'remember_token'	=> Str::random(10),
+				'cell'				=> $faker->PhoneNumber(),
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'zip'				=> $faker->postcode,
+				'facebook'			=> $faker->url,
+				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'hod-it.png',
+			],
+			[
+				'id'				=> '1011',
+				'name'				=> 'Mr HoD (Sales)',
+				'email'				=> 'hodsales@example.com',
 				'designation_id'	=> '1004',
 				'dept_id'			=> '1003',
 				'role'				=> 'hod',
@@ -181,9 +259,11 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'hod-sales.png',
 			],
 			[
-				'id'				=> '1009',
+				'id'				=> '1012',
 				'name'				=> 'Mr CxO',
 				'email'				=> 'cxo@example.com',
 				'designation_id'	=> '1003',
@@ -199,23 +279,32 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'enable'			=> true,
+				'avatar'			=> 'cxo.png',
 			],
 			
 		];
 
-		User::insert($users);
+		User::insert($usersSeeded);
+		// TODO Must comment in Production
+		User::insert($usersDummy);
+
 		
 		// Mask as seeded user and Activate	// TODO 
-		User::where('id', 1001)->update(['enable' => true,'seeded' => false]);	// SYSTEM must make it true
-		User::where('id', 1002)->update(['enable' => true,'seeded' => true]);
-		User::where('id', 1003)->update(['enable' => true,'seeded' => false]);	// ADMIN must make it true
+		// User::where('id', 1001)->update(['enable' => true,'seeded' => false]);	// SYSTEM must make it true
+		// User::where('id', 1002)->update(['enable' => true,'seeded' => true]);
+		// User::where('id', 1003)->update(['enable' => true,'seeded' => false]);	// ADMIN must make it true
 		
 		// TODO Mark as enable for testing 
-		User::where('id', 1004)->update(['enable' => true]);
-		User::where('id', 1005)->update(['enable' => true]);
-		User::where('id', 1006)->update(['enable' => true]);
-		User::where('id', 1007)->update(['enable' => true]);
-		User::where('id', 1008)->update(['enable' => true]);
-		User::where('id', 1009)->update(['enable' => true]);
+		// User::where('id', 1004)->update(['enable' => true]);
+		// User::where('id', 1005)->update(['enable' => true]);
+		// User::where('id', 1006)->update(['enable' => true]);
+		// User::where('id', 1007)->update(['enable' => true]);
+		// User::where('id', 1008)->update(['enable' => true]);
+		// User::where('id', 1009)->update(['enable' => true]);
+		// User::where('id', 1010)->update(['enable' => true]);
+		// User::where('id', 1011)->update(['enable' => true]);
+		// User::where('id', 1012)->update(['enable' => true]);
+
 	}
 }

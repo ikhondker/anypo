@@ -78,7 +78,46 @@
 					{{-- <span class="text-sm align-middle text-muted"><small>[{{ $_node_name }}][ {{ $_route_name }}]</small></span> --}}
 				</a>
 
-				@include('tenant.includes.sidebar')
+
+
+				{{-- @include('tenant.includes.sidebar') --}}
+				{{-- case GUEST		= 'guest';		// was used in EventLog. TODO
+				case USER		= 'user';		// Landlord + Tenant
+				 case BUYER		= 'buyer';
+				// TODO Deletes
+				case MANAGER	= 'manager';	// for Future in Tenant when unit within Dept is enabled
+				case HOD		= 'hod';
+				case CXO		= 'cxo';
+				case ADMIN		= 'admin';		// Landlord + Tenant, customer admin, 
+				
+				// Bellow back office roles. They have by default customer admin access
+				case SUPPORT	= 'support';	// Landlord + Tenant
+				case SUPERVISOR	= 'supervisor';	// Landlord +
+				 case DEVELOPER	= 'developer';	// Landlord
+				case ACCOUNTS	= 'accounts';	// Landlord
+				case SYSTEM		= 'system';		// Landlord + Tenant, ack-office --}}
+
+
+				@if ( auth()->user()->role->value == UserRoleEnum::GUEST->value )
+					@include('tenant.includes.sidebar.user')
+				@elseif (( auth()->user()->role->value == UserRoleEnum::USER->value ))
+					@include('tenant.includes.sidebar.user')
+				@elseif (( auth()->user()->role->value == UserRoleEnum::BUYER->value ))
+					@include('tenant.includes.sidebar.system')
+				@elseif (( auth()->user()->role->value == UserRoleEnum::HOD->value ))
+					@include('tenant.includes.sidebar.system')
+				@elseif (( auth()->user()->role->value == UserRoleEnum::CXO->value ))
+					@include('tenant.includes.sidebar.system')
+				@elseif (( auth()->user()->role->value == UserRoleEnum::ADMIN->value ))
+					@include('tenant.includes.sidebar.system')
+				@elseif (( auth()->user()->role->value == UserRoleEnum::SUPPORT->value ))
+					@include('tenant.includes.sidebar.system')
+				@elseif (( auth()->user()->role->value == UserRoleEnum::SYSTEM->value ))
+					@include('tenant.includes.sidebar.system')
+				@else
+					@include('tenant.includes.sidebar.user')
+				@endif
+
 
 				{{-- <div class="sidebar-cta">
 					<div class="sidebar-cta-content">
