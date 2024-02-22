@@ -13,7 +13,7 @@ use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Lookup\Warehouse;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 
 use App\Models\Tenant\Admin\Setup;
 

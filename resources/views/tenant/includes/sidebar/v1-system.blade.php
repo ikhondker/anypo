@@ -40,6 +40,7 @@
 					<li class="sidebar-item {{ ($_route_name == 'budgets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Budget*</a></li>
 				@endcan
 				<li class="sidebar-item {{ ($_route_name == 'dept-budgets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dept-budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Dept Budgets*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'projects.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('projects.index') }}"><i class="align-middle" data-feather="layout"></i>Project Budget</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'dbus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dbus.index') }}"><i class="align-middle" data-feather="layout"></i>Budget Usage*</a></li>
 			</ul>
 		</li>
@@ -74,7 +75,7 @@
 				<span class="align-middle">Master Data</span>
 			</a>
 			<ul id="master" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'master' ? 'show' : '') }}" data-bs-parent="#sidebar">
-				<li class="sidebar-item {{ ($_route_name == 'projects.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('projects.index') }}"><i class="align-middle" data-feather="circle"></i>Projects</a></li>
+				
 				<li class="sidebar-item {{ ($_route_name == 'suppliers.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('suppliers.index') }}"><i class="align-middle" data-feather="circle"></i>Supplier</a></li>
 			</ul>
 		</li>

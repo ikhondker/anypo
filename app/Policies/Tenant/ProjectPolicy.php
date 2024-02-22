@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies\Tenant\Lookup;
+namespace App\Policies\Tenant;
 
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

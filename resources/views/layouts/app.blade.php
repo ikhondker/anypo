@@ -97,8 +97,10 @@
 				case ACCOUNTS	= 'accounts';	// Landlord
 				case SYSTEM		= 'system';		// Landlord + Tenant, ack-office --}}
 
+				@include('tenant.includes.sidebar')
 
-				@if ( auth()->user()->role->value == UserRoleEnum::GUEST->value )
+
+				{{-- @if ( auth()->user()->role->value == UserRoleEnum::GUEST->value )
 					@include('tenant.includes.sidebar.user')
 				@elseif (( auth()->user()->role->value == UserRoleEnum::USER->value ))
 					@include('tenant.includes.sidebar.user')
@@ -116,7 +118,7 @@
 					@include('tenant.includes.sidebar.system')
 				@else
 					@include('tenant.includes.sidebar.user')
-				@endif
+				@endif --}}
 
 
 				{{-- <div class="sidebar-cta">

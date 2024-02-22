@@ -10,7 +10,7 @@ use App\Http\Requests\Tenant\Admin\UpdateAttachmentRequest;
 # Models
 
 use App\Models\Tenant\Manage\Entity;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;

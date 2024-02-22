@@ -1,5 +1,5 @@
 <li class="sidebar-item {{ ($_node_name == 'profile' ? 'active' : '') }}">
-    <a data-bs-target="#profile" data-bs-toggle="collapse" class="sidebar-link">
+    <a data-bs-target="#profile" data-bs-toggle="collapse" class="sidebar-link collapsed">
         <i class="align-middle" data-feather="grid"></i> 
         <span class="align-middle">My Account</span>
     </a>

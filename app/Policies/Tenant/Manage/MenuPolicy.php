@@ -102,7 +102,7 @@ class MenuPolicy
 	/**
 	 * Determine whether the user can view any models.
 	 */
-	public function viewItemMenu(User $user): bool
+	public function viewReportMenu(User $user): bool
 	{
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
@@ -112,7 +112,7 @@ class MenuPolicy
 	 */
 	public function viewMasterDataMenu(User $user): bool
 	{
-		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+		return ( $user->isUser() || $user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**

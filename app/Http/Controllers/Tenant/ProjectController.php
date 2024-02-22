@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Tenant\Lookup;
+namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
 
 
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 use App\Http\Requests\Tenant\Lookup\StoreProjectRequest;
 use App\Http\Requests\Tenant\Lookup\UpdateProjectRequest;
 
@@ -46,7 +46,7 @@ class ProjectController extends Controller
 			$projects->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$projects = $projects->with("pm")->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.projects.index', compact('projects'));
+		return view('tenant.projects.index', compact('projects'));
 	}
 
 	/**
@@ -57,7 +57,7 @@ class ProjectController extends Controller
 		$this->authorize('create', Project::class);
 		$pms = User::Tenant()->get();
 
-		return view('tenant.lookup.projects.create', compact('pms'));
+		return view('tenant.projects.create', compact('pms'));
 	}
 
 	/**
@@ -89,7 +89,7 @@ class ProjectController extends Controller
 	{
 		$this->authorize('view', $project);
 
-		return view('tenant.lookup.projects.show', compact('project'));
+		return view('tenant.projects.show', compact('project'));
 	}
 
 	/**
@@ -99,7 +99,7 @@ class ProjectController extends Controller
 	{
 		$this->authorize('view', $project);
 
-		return view('tenant.lookup.projects.budget', compact('project'));
+		return view('tenant.projects.budget', compact('project'));
 	}
 
 	/**
@@ -110,7 +110,7 @@ class ProjectController extends Controller
 		$this->authorize('update', $project);
 
 		$pms = User::Tenant()->get();
-		return view('tenant.lookup.projects.edit', compact('project', 'pms'));
+		return view('tenant.projects.edit', compact('project', 'pms'));
 	}
 
 	/**
@@ -187,6 +187,6 @@ class ProjectController extends Controller
 
 		$project = Project::where('id', $project->id)->get()->firstOrFail();
 		$attachments = Attachment::with('owner')->where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->paginate(10);
-		return view('tenant.lookup.projects.detach', compact('project', 'attachments'));
+		return view('tenant.projects.detach', compact('project', 'attachments'));
 	}
 }

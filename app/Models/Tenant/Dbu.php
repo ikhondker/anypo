@@ -10,7 +10,7 @@ use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Dept;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;

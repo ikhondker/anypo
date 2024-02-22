@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 
 use Faker\Generator;
 

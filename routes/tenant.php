@@ -26,7 +26,7 @@ use App\Http\Controllers\Tenant\Lookup\DesignationController;
 use App\Http\Controllers\Tenant\Lookup\ItemController;
 use App\Http\Controllers\Tenant\Lookup\OemController;
 use App\Http\Controllers\Tenant\Lookup\PayMethodController;
-use App\Http\Controllers\Tenant\Lookup\ProjectController;
+
 use App\Http\Controllers\Tenant\Lookup\RateController;
 use App\Http\Controllers\Tenant\Lookup\SupplierController;
 use App\Http\Controllers\Tenant\Lookup\UomController;
@@ -58,6 +58,7 @@ use App\Http\Controllers\Tenant\PrController;
 use App\Http\Controllers\Tenant\PrlController;
 use App\Http\Controllers\Tenant\PoController;
 use App\Http\Controllers\Tenant\PolController;
+use App\Http\Controllers\Tenant\ProjectController;
 use App\Http\Controllers\Tenant\ReceiptController;
 use App\Http\Controllers\Tenant\InvoiceController;
 use App\Http\Controllers\Tenant\InvoiceLinesController;

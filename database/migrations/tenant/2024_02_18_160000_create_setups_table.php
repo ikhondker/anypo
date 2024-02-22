@@ -30,6 +30,10 @@ return new class extends Migration
 			$table->string('website')->nullable();
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
+			$table->float('tolerance_invoice', 15, 2)->default(1);		// Future
+			$table->float('tolerance_receipt', 15, 2)->default(1);		// Future
+			$table->float('tolerance_payment', 15, 2)->default(1);		// Future
+			$table->boolean('user_master_data_entry')->default(false); 		// Future. Allow user to create master data
 			$table->string('ac_liability')->default('200001');
 			$table->string('ac_accrual')->default('200002');
 			$table->string('ac_clearing')->default('200003');
@@ -40,13 +44,13 @@ return new class extends Migration
 			$table->string('build')->nullable()->default('1001');
 			//$table->boolean('show_notice')->default(false);
 			//$table->text('notice')->nullable();
-			$table->biginteger('admin_id')->nullable(); // No foreign key intentional TODO
+			$table->biginteger('admin_id')->nullable(); 				// No foreign key intentional TODO
 			$table->biginteger('landlord_account_id')->nullable();
 			$table->dateTime('last_rate_date')->nullable();
 			$table->boolean('maintenance')->default(false); 
 			$table->boolean('debug')->default(false); 
-			$table->boolean('enable')->default(true);
 			$table->boolean('readonly')->default(false);
+			$table->boolean('enable')->default(true);
 			//$table->boolean('purge')->default(true);
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

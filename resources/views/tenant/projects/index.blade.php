@@ -45,7 +45,7 @@
 						</div>
 					</div>
 					@php
-						use App\Models\Tenant\Lookup\Project;
+						use App\Models\Tenant\Project;
 						$count_total	= Project::count();
 						$count_open		= Project::where('closed',false )->count();
 						$count_closed	= Project::where('closed',true )->count();
