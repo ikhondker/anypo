@@ -487,6 +487,18 @@ class PoController extends Controller
 	{
 		$this->authorize('export', Po::class);
 
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+		
 		$data = DB::select("
 		SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
 		po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date 
@@ -495,7 +507,10 @@ class PoController extends Controller
 		AND po.project_id=p.id 
 		AND po.supplier_id=s.id 
 		AND po.requestor_id=u.id
-		ORDER BY po.id DESC			");
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+
+		ORDER BY po.id DESC	");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('users', $dataArray);

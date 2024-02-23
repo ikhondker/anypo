@@ -16,8 +16,6 @@
 		@endslot
 	</x-tenant.page-header>
 
-	
-
 	<div class="row">
 		<div class="col-12">
 			<div class="card">

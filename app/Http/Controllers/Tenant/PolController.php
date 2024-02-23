@@ -16,6 +16,7 @@ use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 # Enums
 use App\Enum\AuthStatusEnum;
+use App\Enum\UserRoleEnum;
 
 # Helpers
 use App\Helpers\EventLog;
@@ -203,4 +204,46 @@ class PolController extends Controller
 		//$po = Po::where('id', $po->id)->get()->firstOrFail();
 		return view('tenant.pols.receipt', compact('pol'));
 	}
+
+
+	public function export()
+	{
+
+		$this->authorize('export', Pol::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+
+		$data = DB::select("
+		SELECT po.id, po.summary po_summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		po.notes, po.currency, po.amount, po.status, po.auth_status, po.auth_date,
+		pol.line_num, pol.summary line_summary, i.code item_code, uom.name uom, pol.qty, pol.price, pol.sub_total, pol.tax, pol.gst, pol.amount,
+		pol.price, pol.sub_total, pol.amount,pol.notes, pol.closure_status
+		FROM pos po,depts d, projects p, suppliers s, users u , , items i, uoms uom
+		WHERE po.dept_id=d.id 
+		AND po.project_id=p.id 
+		AND po.supplier_id=s.id 
+		AND po.requestor_id=u.id
+		AND po.id = pol.pr_id 
+		AND pol.item_id = i.id
+		AND pol.uom_id = uom.id
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		");
+
+		
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('pos', $dataArray);
+	}
+
 }

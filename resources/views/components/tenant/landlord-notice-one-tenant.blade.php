@@ -1,0 +1,12 @@
+<!-- Show Tenant Notice -->
+@if ($anyNotice )
+	<div class="alert alert-danger alert-outline alert-dismissible" role="alert">
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		<div class="alert-icon">
+			<i class="far fa-fw fa-bell"></i>
+		</div>
+		<div class="alert-message text-danger">
+			<strong class="text-danger">ANNOUNCEMENT FROM ADMIN : </strong> {{ $notice }}
+		</div>
+	</div>
+@endif

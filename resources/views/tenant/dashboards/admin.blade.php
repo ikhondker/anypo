@@ -15,6 +15,9 @@
 			{{-- <x-tenant.buttons.header.create object="User"/> --}}
 		@endslot
 	</x-tenant.page-header>
+	
+	<x-tenant.landlord-notice-all-tenants/>
+	<x-tenant.landlord-notice-one-tenant/>
 
 	<x-tenant.dashboards.budget-stat/>
 	

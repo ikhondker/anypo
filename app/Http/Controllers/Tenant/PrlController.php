@@ -16,6 +16,7 @@ use App\Models\Tenant\Prl;
 
 # Enums
 use App\Enum\AuthStatusEnum;
+use App\Enum\UserRoleEnum;
 
 # Helpers
 use App\Helpers\EventLog;
@@ -205,4 +206,48 @@ class PrlController extends Controller
 
 		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR Line deleted successfully');
 	}
+
+	public function export()
+	{
+
+		$this->authorize('export', Prl::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+
+		$data = DB::select("
+		SELECT pr.id, pr.summary pr_summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		pr.notes, pr.currency, pr.amount pr_amount, pr.status, pr.auth_status, pr.auth_date ,
+		prl.line_num, prl.summary line_summary, i.code item_code, uom.name uom, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount,
+		prl.price, prl.sub_total, prl.amount,prl.notes, prl.closure_status
+		FROM prs pr, prls prl, depts d, projects p, suppliers s, users u , items i, uoms uom
+		WHERE pr.dept_id=d.id 
+		AND pr.project_id=p.id 
+		AND pr.supplier_id=s.id 
+		AND pr.requestor_id=u.id
+		AND pr.id = prl.pr_id 
+		AND prl.item_id = i.id
+		AND prl.uom_id = uom.id
+		AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		ORDER BY pr.id DESC
+		");
+
+		
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('prs', $dataArray);
+	}
+
+
+
 }

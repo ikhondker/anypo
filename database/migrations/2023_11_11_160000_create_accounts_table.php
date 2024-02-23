@@ -50,6 +50,9 @@ return new class extends Migration
 			//$table->date('last_bill_from_date')->nullable();
 			//$table->date('last_bill_to_date')->nullable();
 			$table->date('expired_at')->nullable();
+			$table->boolean('banner_show')->default(false);	// Show account specific message from landlord
+			$table->text('banner_message')->nullable();		// Show account specific message from landlord
+
 			$table->integer('count_user')->default(1);
 			$table->integer('count_product')->default(0);
 			$table->integer('used_gb')->default(0);

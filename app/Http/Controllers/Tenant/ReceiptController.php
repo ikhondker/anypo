@@ -214,6 +214,8 @@ class ReceiptController extends Controller
 
 	public function export()
 	{
+
+		// TODO filter by HoD
 		$this->authorize('export', Receipt::class);
 
 		$data = DB::select("

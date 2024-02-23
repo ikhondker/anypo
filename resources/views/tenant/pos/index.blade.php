@@ -9,6 +9,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
+			<x-tenant.actions.po-actions-index/>
 		@endslot
 	</x-tenant.page-header>
 

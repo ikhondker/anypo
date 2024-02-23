@@ -428,7 +428,21 @@ class PrController extends Controller
 
 	public function export()
 	{
+
 		$this->authorize('export', Pr::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+
 		$data = DB::select("
 		SELECT pr.id, pr.summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
 		pr.notes, pr.currency, pr.sub_total, pr.tax, pr.gst, pr.amount, pr.status, pr.auth_status, pr.auth_date 
@@ -437,6 +451,8 @@ class PrController extends Controller
 		AND pr.project_id=p.id 
 		AND pr.supplier_id=s.id 
 		AND pr.requestor_id=u.id
+		AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
 		ORDER BY pr.id DESC
 		");
 
@@ -644,6 +660,7 @@ class PrController extends Controller
 		$po->save();
 		$po_id				= $po->id;
 		
+
 		// copy prls into pols
 		$sql= "
 		INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes,

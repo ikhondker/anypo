@@ -50,6 +50,15 @@ class TestController extends Controller
 	public function run()
 	{
 
+
+		$landlordSetup = tenancy()->central(function ($tenant) {
+			return \App\Models\Landlord\Manage\Setup::where('id', 1)->first();
+		});
+		//dd($landlordSetup);
+		Log::debug('count cnt=' . $landlordSetup->name);
+		exit;
+
+
 		$cnt		= Pol::where('po_id','1004')->count();
 		
 		Log::debug('count cnt=' . $cnt);

@@ -38,7 +38,7 @@ return new class extends Migration
 			$table->string('ac_accrual')->default('200002');
 			$table->string('ac_clearing')->default('200003');
 			$table->string('logo')->nullable()->default('logo.png');
-			$table->boolean('show_banner')->default(false); 
+			$table->boolean('banner_show')->default(false); 
 			$table->text('banner_message')->nullable();
 			$table->string('version')->nullable()->default('1.0');
 			$table->string('build')->nullable()->default('1001');

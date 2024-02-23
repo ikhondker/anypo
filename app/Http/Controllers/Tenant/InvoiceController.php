@@ -421,4 +421,21 @@ class InvoiceController extends Controller
 		return true;
 	}
 
+	public function export()
+	{
+		// TODO filter by HOD
+		$this->authorize('export', Dept::class);
+
+		$data = DB::select("
+			SELECT d.id, d.name, IF(d.enable, 'Yes', 'No') enable, hpr.name pr_hierarchy_name, hpo.name po_hierarchy_name
+			FROM depts d, hierarchies hpr, hierarchies hpo
+			WHERE d.pr_hierarchy_id=hpr.id
+			AND d.po_hierarchy_id=hpo.id
+			");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('depts', $dataArray);
+	}
+}
+
 }

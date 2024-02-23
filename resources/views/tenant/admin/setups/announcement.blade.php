@@ -49,7 +49,7 @@
 							<div class="mb-3">
 								<label class="form-check m-0">
 								<input type="checkbox" class="form-check-input"
-									name="show_banner" id="show_banner"  @checked($setup->show_banner)/>
+									name="banner_show" id="banner_show"  @checked($setup->banner_show)/>
 								<span class="form-check-label text-danger">Display above Announcement?</span>
 								</label>
 							</div>

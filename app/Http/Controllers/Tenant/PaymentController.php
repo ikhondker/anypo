@@ -208,6 +208,9 @@ class PaymentController extends Controller
 
 	public function export()
 	{
+
+		// TODO filter by HOD
+
 		$this->authorize('export', Payment::class);
 
 		$data = DB::select("
@@ -317,5 +320,6 @@ class PaymentController extends Controller
 		}
 		return true;
 	}
+
 
 }

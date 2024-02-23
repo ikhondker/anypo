@@ -191,7 +191,8 @@ class ReportController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Report::class);
-		$data = DB::select("SELECT id, name, title, access, article_id, start_date, end_date, user_id, item_id, supplier_id, project_id, category_id, dept_id, warehouse_id, order_by, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at, 
+		$data = DB::select("SELECT id, name, title, access, article_id, start_date, end_date, 
+		user_id, item_id, supplier_id, project_id, category_id, dept_id, warehouse_id, order_by, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at, 
 		FROM reports");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
@@ -217,7 +218,7 @@ class ReportController extends Controller
 		$report 	= Report::where('id', '1004')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		//$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
 			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
 			$param2 	= 'Dept: '. $dept->name;
