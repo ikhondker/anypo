@@ -35,8 +35,8 @@ class DeptBudget extends Model
 	public function chkscopeByDeptFy(Builder $query): void
 	{
 			$query->whereHas('budget', function ($q) {
-                $q->where('fy',  date('Y'));
-            })
+				$q->where('fy',  date('Y'));
+			})
 			->where('dept_id', auth()->user()->dept_id ); 
 	}
 

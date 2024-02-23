@@ -19,7 +19,7 @@ class PaymentActions extends Component
 	 */
 	public function __construct($id, $show = false)
 	{
-		$this->id       = $id;
+		$this->id		= $id;
 		$this->show		= $show; 
 		$this->payment  = Payment::where('id', $this->id)->get()->firstOrFail();
 	}

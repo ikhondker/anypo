@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class Lines extends Component
 {
-    public $id;
+	public $id;
 	public $selected_pol_id;
 	public $po;
 	public $pols;
@@ -44,11 +44,11 @@ class Lines extends Component
 		$this->show = $show;
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.po.lines');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.po.lines');
+	}
 }

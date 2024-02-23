@@ -120,7 +120,7 @@ class MenuPolicy
 	 */
 	public function viewLookupMenu(User $user): bool
 	{
-		return ($user->isAdmin() || $user->isSupport());
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**

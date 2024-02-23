@@ -22,7 +22,7 @@ class UpdateInvoiceRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'amount'         => 'required|numeric|min:1.00|max:9999999.99',
+			'amount'		=> 'required|numeric|min:1.00|max:9999999.99',
 		];
 	}
 }

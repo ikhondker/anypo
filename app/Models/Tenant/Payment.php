@@ -50,7 +50,7 @@ class Payment extends Model
 
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('buyer_id', $id);
-        });
+		});
 
 	}
 
@@ -61,7 +61,7 @@ class Payment extends Model
 	{
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('dept_id', $id);
-        });
+		});
 
 	}
 

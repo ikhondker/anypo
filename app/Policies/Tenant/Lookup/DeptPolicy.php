@@ -26,7 +26,7 @@ class DeptPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -34,7 +34,7 @@ class DeptPolicy
 	 */
 	public function view(User $user, Dept $dept): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -42,7 +42,7 @@ class DeptPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	} 
 
 	/**
@@ -50,7 +50,7 @@ class DeptPolicy
 	 */
 	public function update(User $user, Dept $dept): bool
 	{
-		return $user->isAdmin();	
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -58,7 +58,7 @@ class DeptPolicy
 	 */
 	public function delete(User $user, Dept $dept): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	
@@ -84,7 +84,7 @@ class DeptPolicy
 	 */
 	public function export(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 	
 }
