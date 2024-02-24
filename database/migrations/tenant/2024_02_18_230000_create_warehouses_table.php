@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('warehouses', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('name');
+			$table->string('name')->unique();
 			$table->string('contact_person')->nullable();
 			$table->string('cell')->nullable();
 			$table->string('address1');

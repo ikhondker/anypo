@@ -22,7 +22,7 @@ class UpdateCurrencyRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'name'	=> 'required|min:2|max:100',
+			'currency'	=> 'required|min:2|max:3|unique:countries,currency,'. $this->currencies->currency,
 		];
 	}
 }

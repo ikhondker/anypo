@@ -28,7 +28,7 @@ class OemPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -36,7 +36,7 @@ class OemPolicy
 	 */
 	public function view(User $user, Oem $oem): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -44,7 +44,7 @@ class OemPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -52,7 +52,7 @@ class OemPolicy
 	 */
 	public function update(User $user, Oem $oem): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -60,17 +60,8 @@ class OemPolicy
 	 */
 	public function delete(User $user, Oem $oem): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
-
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -86,5 +77,12 @@ class OemPolicy
 	public function forceDelete(User $user, Oem $oem): bool
 	{
 		//
+	}
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 }

@@ -26,7 +26,7 @@ class CategoryPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -34,7 +34,7 @@ class CategoryPolicy
 	 */
 	public function view(User $user, Category $category): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -61,9 +61,6 @@ class CategoryPolicy
 		$user->isAdmin();
 	}
 
-	
-
-	
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -85,6 +82,6 @@ class CategoryPolicy
 	 */
 	public function export(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 }

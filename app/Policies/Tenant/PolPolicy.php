@@ -35,7 +35,7 @@ class PolPolicy
 	 */
 	public function view(User $user, Pol $pol): bool
 	{
-		return $user->isAdmin() || $user->isBuyer() || $user->isManagement();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -77,4 +77,10 @@ class PolPolicy
 	{
 		//
 	}
+
+	public function export(User $user): bool
+	{
+		return true;
+	}
+
 }

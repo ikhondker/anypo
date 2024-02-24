@@ -27,7 +27,7 @@ class WfPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -35,7 +35,7 @@ class WfPolicy
 	 */
 	public function view(User $user, Wf $wf): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -84,7 +84,7 @@ class WfPolicy
 	 */
 	public function reset(User $user, Wf $wf): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 
@@ -93,6 +93,6 @@ class WfPolicy
 	 */
 	public function export(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 }

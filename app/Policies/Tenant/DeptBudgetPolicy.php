@@ -27,7 +27,7 @@ class DeptBudgetPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isManagement();
+		return ( $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -35,7 +35,15 @@ class DeptBudgetPolicy
 	 */
 	public function view(User $user, DeptBudget $deptBudget): bool
 	{
-		return $user->isManagement();
+
+		// hod can view own dept budget
+		if ( $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+			return true;
+		} elseif ($user->role->value == UserRoleEnum::HOD->value) {
+			return ($user->dept_id == $deptBudget->dept_id);
+		} else {
+			return ( false ) ;
+		}
 	}
 
 	/**
@@ -43,7 +51,7 @@ class DeptBudgetPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isManagement();
+		return ( $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -51,7 +59,14 @@ class DeptBudgetPolicy
 	 */
 	public function update(User $user, DeptBudget $deptBudget): bool
 	{
-		return ( $user->isManagement() && !$deptBudget->freeze );
+		// hod can edit own dept budget
+		if ( ($user->isCxO() || $user->isAdmin() || $user->isSupport())  && !$deptBudget->freeze ) {
+			return true;
+		} elseif (($user->role->value == UserRoleEnum::HOD->value)  && !$deptBudget->freeze) {
+			return ($user->dept_id == $deptBudget->dept_id);
+		} else {
+			return ( false ) ;
+		}
 	}
 
 	/**
@@ -59,15 +74,9 @@ class DeptBudgetPolicy
 	 */
 	public function delete(User $user, DeptBudget $deptBudget): bool
 	{
-		return $user->isManagement();
+		return ( $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
-	public function export(User $user): bool
-	{
-		return $user->isManagement();
-	}
-	
-	
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -83,4 +92,10 @@ class DeptBudgetPolicy
 	{
 		//
 	}
+
+	public function export(User $user): bool
+	{
+		return ( $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
 }

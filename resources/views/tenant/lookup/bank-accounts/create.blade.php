@@ -49,6 +49,17 @@
 						</div>
 
 						<div class="mb-3">
+							<label class="form-label">Routing Number</label>
+							<input type="text" class="form-control @error('routing_number') is-invalid @enderror"
+								name="routing_number" id="routing_number" placeholder="99999999"
+								value="{{ old('routing_number', '' ) }}"
+								required/>
+							@error('routing_number')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+
+						<div class="mb-3">
 							<label class="form-label">Bank Name</label>
 							<input type="text" class="form-control @error('bank_name') is-invalid @enderror"
 								name="bank_name" id="bank_name" placeholder="Bank Name"

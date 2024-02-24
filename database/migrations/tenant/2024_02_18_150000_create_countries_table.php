@@ -15,7 +15,7 @@ return new class extends Migration
 			//$table->id()->startingValue(1001);
 			$table->string('country',2);
 			//$table->string('code');
-			$table->string('name');
+			$table->string('name')->unique();
 			$table->boolean('enable')->default(false); 
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

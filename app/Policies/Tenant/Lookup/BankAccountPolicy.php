@@ -23,7 +23,7 @@ class BankAccountPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -31,7 +31,7 @@ class BankAccountPolicy
 	 */
 	public function view(User $user, BankAccount $bankAccount): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -39,7 +39,7 @@ class BankAccountPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -47,7 +47,7 @@ class BankAccountPolicy
 	 */
 	public function update(User $user, BankAccount $bankAccount): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -55,17 +55,8 @@ class BankAccountPolicy
 	 */
 	public function delete(User $user, BankAccount $bankAccount): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
-
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
 	
 	/**
 	 * Determine whether the user can restore the model.
@@ -82,4 +73,12 @@ class BankAccountPolicy
 	{
 		//
 	}
+
+/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+	}	
 }

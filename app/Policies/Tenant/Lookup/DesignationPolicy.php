@@ -26,7 +26,7 @@ class DesignationPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -34,7 +34,7 @@ class DesignationPolicy
 	 */
 	public function view(User $user, Designation $designation): bool
 	{
-		return true;
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -42,7 +42,7 @@ class DesignationPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -50,7 +50,7 @@ class DesignationPolicy
 	 */
 	public function update(User $user, Designation $designation): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -58,17 +58,8 @@ class DesignationPolicy
 	 */
 	public function delete(User $user, Designation $designation): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
-
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -84,5 +75,13 @@ class DesignationPolicy
 	public function forceDelete(User $user, Designation $designation): bool
 	{
 		//
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 }

@@ -27,7 +27,7 @@ class CurrencyPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -35,7 +35,7 @@ class CurrencyPolicy
 	 */
 	public function view(User $user, Currency $currency): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -59,17 +59,10 @@ class CurrencyPolicy
 	 */
 	public function delete(User $user, Currency $currency): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
+	
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -86,4 +79,13 @@ class CurrencyPolicy
 	{
 		//
 	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+	}
+
 }

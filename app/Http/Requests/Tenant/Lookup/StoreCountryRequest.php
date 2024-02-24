@@ -23,7 +23,7 @@ class StoreCountryRequest extends FormRequest
 	{
 		return [
 			'country'		=> 'required|min:2|max:2|unique:countries,country',
-			'name'			=> 'required|min:2|max:100',
+			'name'			=> 'required|min:2|max:100|unique:countries,name',
 		];
 	}
 

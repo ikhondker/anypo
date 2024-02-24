@@ -51,6 +51,17 @@
 							</div>
 
 							<div class="mb-3">
+								<label class="form-label">Routing Number</label>
+								<input type="text" class="form-control @error('routing_number') is-invalid @enderror"
+									name="routing_number" id="routing_number" placeholder="Routing Number"
+									value="{{ old('routing_number', $bankAccount->routing_number ) }}"
+									/>
+								@error('routing_number')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
+							<div class="mb-3">
 								<label class="form-label">Currency</label> <x-tenant.info info="Note: You wont be able to change the currency."/>
 								<input type="text" class="form-control @error('currency') is-invalid @enderror"
 									name="currency" id="currency" placeholder="Currency"

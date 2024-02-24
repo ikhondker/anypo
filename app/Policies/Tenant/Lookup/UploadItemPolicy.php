@@ -27,7 +27,7 @@ class UploadItemPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -35,7 +35,7 @@ class UploadItemPolicy
 	 */
 	public function view(User $user, UploadItem $uploadItem): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -43,7 +43,7 @@ class UploadItemPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -51,7 +51,7 @@ class UploadItemPolicy
 	 */
 	public function update(User $user, UploadItem $uploadItem): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -59,19 +59,8 @@ class UploadItemPolicy
 	 */
 	public function delete(User $user, UploadItem $uploadItem): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
-
-	
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
-
 	
 	/**
 	 * Determine whether the user can restore the model.
@@ -87,5 +76,13 @@ class UploadItemPolicy
 	public function forceDelete(User $user, UploadItem $uploadItem): bool
 	{
 		//
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 }

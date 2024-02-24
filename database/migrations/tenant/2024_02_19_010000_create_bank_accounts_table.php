@@ -15,6 +15,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('ac_name')->unique();
 			$table->string('ac_number')->unique();
+			$table->string('routing_number')->nullable();
 			$table->string('bank_name')->nullable();
 			$table->string('branch_name')->nullable();
 			$table->dateTime('start_date', $precision = 0)->useCurrent();

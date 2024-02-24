@@ -29,7 +29,7 @@ class SetupPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -37,7 +37,7 @@ class SetupPolicy
 	 */
 	public function view(User $user, Setup $setup): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -53,7 +53,7 @@ class SetupPolicy
 	 */
 	public function update(User $user, Setup $setup): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**

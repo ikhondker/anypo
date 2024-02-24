@@ -24,6 +24,7 @@
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $bankAccount->ac_name }}"  label="AC Name"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->ac_number }}" label="AC Number"/>
+					<x-tenant.show.my-text		value="{{ $bankAccount->routing_number }}" label="Routing Number"/>
 					<x-tenant.show.my-currency	value="{{ $bankAccount->currency }}" label="Currency"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->bank_name }}" label="Bank Name"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->branch_name }}" label="Branch Name"/>

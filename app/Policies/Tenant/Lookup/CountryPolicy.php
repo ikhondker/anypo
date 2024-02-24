@@ -26,7 +26,7 @@ class CountryPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -34,9 +34,8 @@ class CountryPolicy
 	 */
 	public function view(User $user, Country $country): bool
 	{
-		return $user->isAdmin();
+		return false;
 	}
-
 	/**
 	 * Determine whether the user can create models.
 	 */
@@ -58,17 +57,10 @@ class CountryPolicy
 	 */
 	public function delete(User $user, Country $country): bool
 	{
-		return $user->isAdmin();	
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
+	
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -85,4 +77,13 @@ class CountryPolicy
 	{
 		//
 	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+	}
+
 }

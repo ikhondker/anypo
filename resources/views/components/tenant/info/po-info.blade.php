@@ -11,36 +11,36 @@
 						<p>{{ $po->notes }}</p>
 						<table class="table table-sm my-2">
 					
-                            <tbody>
+							<tbody>
 								<tr>
 									<th>Amount</th>
-                                    <td>{{ number_format($po->amount , 2) }} {{ $po->currency }}</td>
+									<td>{{ number_format($po->amount , 2) }} {{ $po->currency }}</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>Date</th>
 									<td>
 										{{ ($po->po_date <> "") ? strtoupper(date('d-M-y', strtotime($po->po_date))) : "" }}
 									</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>Department</th>
-                                    <td>{{ $po->dept->name  }}</td>
+									<td>{{ $po->dept->name  }}</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>Project</th>
-                                    <td>{{ $po->project->name  }}</td>
+									<td>{{ $po->project->name  }}</td>
 								</tr>
 								<tr>
 									<th>Auth Status</th>
-                                    <td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
+									<td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
 								</tr>
 								<tr>
 									<th>Closure Status</th>
-                                    <td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
+									<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>Requestor</th>
-                                    <td>{{ $po->requestor->name  }}</td>
+									<td>{{ $po->requestor->name  }}</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>

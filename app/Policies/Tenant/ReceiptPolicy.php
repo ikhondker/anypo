@@ -27,7 +27,7 @@ class ReceiptPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isBuyer() || $user->isManagement();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -35,7 +35,7 @@ class ReceiptPolicy
 	 */
 	public function view(User $user, Receipt $receipt): bool
 	{
-		return $user->isBuyer() || $user->isManagement();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -43,7 +43,7 @@ class ReceiptPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isBuyer();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -51,7 +51,7 @@ class ReceiptPolicy
 	 */
 	public function update(User $user, Receipt $receipt): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -67,7 +67,7 @@ class ReceiptPolicy
 	 */
 	public function cancel(User $user): bool
 	{
-		return $user->isAdmin() ;
+		return ($user->isBuyer() || $user->isAdmin());
 	}
 	
 	/**
@@ -91,6 +91,6 @@ class ReceiptPolicy
 	 */
 	public function export(User $user): bool
 	{
-		return $user->isBuyer();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 }

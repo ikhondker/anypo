@@ -15,19 +15,19 @@
 									<th>Budget</th>
 									<td>{{number_format($deptBudget->amount, 2)}} {{ $_setup->currency }}</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>PO Issued</th>
 									<td>{{number_format($deptBudget->amount_po_issued, 2)}} {{ $_setup->currency }}</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>GRS Amount</th>
 									<td>{{number_format($deptBudget->amount_grs, 2)}} {{ $_setup->currency }}</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>Invoice Amount</th>
 									<td>{{number_format($deptBudget->amount_invoice, 2)}} {{ $_setup->currency }}</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>Payment Amount</th>
 									<td>{{number_format($deptBudget->amount_payment, 2)}} {{ $_setup->currency }}</td>
 								</tr>
