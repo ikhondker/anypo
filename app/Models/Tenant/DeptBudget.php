@@ -32,6 +32,14 @@ class DeptBudget extends Model
 	/**
 	 * Scope a query to only All PR for current user dept.
 	*/
+	public function scopeByDeptAll(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id ); 
+	}
+	
+	/**
+	 * Scope a query to only All PR for current user dept.
+	*/
 	public function chkscopeByDeptFy(Builder $query): void
 	{
 			$query->whereHas('budget', function ($q) {

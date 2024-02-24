@@ -53,7 +53,7 @@ class PrPolicy
 	 */
 	public function submit(User $user, Pr $pr): bool
 	{
-		return ($pr->auth_status->value == AuthStatusEnum::DRAFT->value); 
+		return ($pr->auth_status == AuthStatusEnum::DRAFT->value); 
 	}
 
 

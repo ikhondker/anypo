@@ -56,6 +56,8 @@ class ReportController extends Controller
 	public function index()
 	{
 
+		$this->authorize('viewAny',Report::class);
+
 		$reports = Report::query(); 
 		if (request('term')) {
 			$reports->where('name', 'Like', '%'.request('term').'%');

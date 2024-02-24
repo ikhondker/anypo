@@ -37,7 +37,7 @@ use App\Enum\EventEnum;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 
 use Carbon\Carbon;
 

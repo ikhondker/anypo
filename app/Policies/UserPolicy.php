@@ -114,7 +114,7 @@ class UserPolicy
 			|-----------------------------------------------------------------------------
 			*/
 			 // Admin role user only
-			 return ( $user->isAdmin() || $user->isBackOffice() );
+			 return ( $user->isAdmin() || $user->isSupport() );
 		}
 	}
 
@@ -149,10 +149,10 @@ class UserPolicy
 			*/
 			// only back-office can edit seeded users
 			if ($model->seeded) {
-				return $user->isBackOffice();
+				return $user->isSupport();
 			} else {
 				// admin can edit all and others can edit only own
-				return ( $user->isBackOffice() || ($user->id === $model->id) );
+				return ( $user->isAdmin() ||$user->isSupport() || ($user->id === $model->id) );
 			}
 		}
 

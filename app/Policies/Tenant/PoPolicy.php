@@ -51,7 +51,7 @@ class PoPolicy
 	 */
 	public function submit(User $user, Po $po): bool
 	{
-		return ($po->auth_status->value == AuthStatusEnum::DRAFT->value); 
+		return ($po->auth_status == AuthStatusEnum::DRAFT->value); 
 	}
 
 	/**

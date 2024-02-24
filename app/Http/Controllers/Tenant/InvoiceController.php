@@ -75,8 +75,9 @@ class InvoiceController extends Controller
 				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByUserAll()->paginate(10);
+				//$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByUserAll()->paginate(10);
 				Log::warning("tenant.invoice.index Other roles!");
+				abort(403);
 		}
 		return view('tenant.invoices.index', compact('invoices'));
 	}
@@ -281,28 +282,7 @@ class InvoiceController extends Controller
 		//
 	}
 
-	public function export()
-	{
-		$this->authorize('export', Invoice::class);
-
-		$data = DB::select("
-		SELECT i.id, i.invoice_no, i.invoice_date, 
-			p.id po_id, 
-			s.name supplier_name, 
-			i.summary, u.name poc_name, 
-			i.currency, i.sub_total, i.tax, i.gst, i.amount, i.paid_amount, 
-			i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_paid_amount,
-			i.notes, i.status, i.payment_status
-		FROM invoices i, pos p, suppliers s, users u
-		WHERE i.po_id =p.id
-		AND i.supplier_id= s.id
-		AND i.poc_id = u.id
-
-		");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('invoices', $dataArray);
-	}
+	
 
 	/**
 	 * Remove the specified resource from storage.
@@ -426,16 +406,37 @@ class InvoiceController extends Controller
 		// TODO filter by HOD
 		$this->authorize('export', Dept::class);
 
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+
 		$data = DB::select("
-			SELECT d.id, d.name, IF(d.enable, 'Yes', 'No') enable, hpr.name pr_hierarchy_name, hpo.name po_hierarchy_name
-			FROM depts d, hierarchies hpr, hierarchies hpo
-			WHERE d.pr_hierarchy_id=hpr.id
-			AND d.po_hierarchy_id=hpo.id
+		SELECT i.id, i.invoice_no, i.invoice_date, 
+				i.po_id po_id, 
+				s.name supplier_name, 
+				i.summary, u.name poc_name, 
+				i.currency, i.sub_total, i.tax, i.gst, i.amount, i.paid_amount, 
+				i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_paid_amount,
+				i.notes, i.status, i.payment_status
+			FROM invoices i, pos po, suppliers s, users u
+			WHERE i.po_id =p.id
+			AND i.supplier_id= s.id
+			AND i.poc_id = u.id
+			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
 			");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('depts', $dataArray);
 	}
-}
 
 }

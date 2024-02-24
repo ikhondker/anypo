@@ -13,6 +13,7 @@ use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Admin\Attachment;
 # Enums
 use App\Enum\EntityEnum;
+use App\Enum\UserRoleEnum;
 # Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -49,7 +50,23 @@ class DeptBudgetController extends Controller
 			});
 		}
 
-		$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::HOD->value:
+				$dept_budgets = $dept_budgets->ByDeptAll()->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
+				break;
+			case UserRoleEnum::BUYER->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
+				$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
+				break;
+			default:
+				//$dept_budgets = $dept_budgets->ByUserAll()->with('dept')->with('budget')->paginate(10);
+				Log::warning("tenant.DeptBudget.index Other roles!");
+				abort(403);
+		}
+
+		//$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.dept-budgets.index', compact('dept_budgets'));
 	}
 

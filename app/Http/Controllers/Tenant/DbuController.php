@@ -7,6 +7,8 @@ use App\Models\Tenant\Dbu;
 use App\Http\Requests\StoreDbuRequest;
 use App\Http\Requests\UpdateDbuRequest;
 
+use App\Enum\UserRoleEnum;
+
 class DbuController extends Controller
 {
 	/**
@@ -24,7 +26,24 @@ class DbuController extends Controller
 			$dbus->where('name', 'Like', '%' . request('term') . '%');
 		}
 
-		$dbus = $dbus->with('dept')->with('deptBudget.budget')->with('project')->orderBy('id', 'DESC')->paginate(10);
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::HOD->value:
+				$dbus = $dbus->ByDeptAll()->with('dept')->with('deptBudget.budget')->with('project')->orderBy('id', 'DESC')->paginate(10);
+				break;
+			case UserRoleEnum::BUYER->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
+				$dbus = $dbus->with('dept')->with('deptBudget.budget')->with('project')->orderBy('id', 'DESC')->paginate(10);
+				break;
+			default:
+				//$dbus = $dbus->ByUserAll()->with('dept')->with('deptBudget.budget')->with('project')->paginate(10);
+				Log::warning("tenant.DeptBudget.index Other roles!");
+				abort(403);
+		}
+
+
+		//$dbus = $dbus->with('dept')->with('deptBudget.budget')->with('project')->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.dbus.index', compact('dbus'));
 	}
 

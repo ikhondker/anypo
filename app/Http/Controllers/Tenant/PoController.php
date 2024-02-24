@@ -88,8 +88,9 @@ class PoController extends Controller
 				$pos = $pos->with('dept')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$pos = $pos->ByUserAll()->paginate(10);
+				//$pos = $pos->ByUserAll()->paginate(10);
 				Log::warning("tenant.po.index Other roles!");
+				abort(403);
 		}
 
 		return view('tenant.pos.index', compact('pos'));
@@ -483,38 +484,7 @@ class PoController extends Controller
 	}
 
 		
-	public function export()
-	{
-		$this->authorize('export', Po::class);
-
-		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-			$requestor_id 	= auth()->user()->id;
-		} else {
-			$requestor_id 	= '';
-		}
-
-		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$dept_id 	= auth()->user()->dept_id;
-		} else {
-			$dept_id 	= '';
-		}
-		
-		$data = DB::select("
-		SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
-		po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date 
-		FROM pos po,depts d, projects p, suppliers s, users u 
-		WHERE po.dept_id=d.id 
-		AND po.project_id=p.id 
-		AND po.supplier_id=s.id 
-		AND po.requestor_id=u.id
-		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
-
-		ORDER BY po.id DESC	");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('users', $dataArray);
-	}
+	
 
 	public function submit(Po $po)
 	{
@@ -671,5 +641,36 @@ class PoController extends Controller
 		return redirect()->route('pos.show', $po->id)->with('success', 'New Purchase Order #'.$po_id.' created.');
 	}
 
+	public function export()
+	{
+		$this->authorize('export', Po::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+		
+		$data = DB::select("
+		SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date 
+		FROM pos po,depts d, projects p, suppliers s, users u 
+		WHERE po.dept_id=d.id 
+		AND po.project_id=p.id 
+		AND po.supplier_id=s.id 
+		AND po.requestor_id=u.id
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		ORDER BY po.id DESC	");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('pos', $dataArray);
+	}
 
 }

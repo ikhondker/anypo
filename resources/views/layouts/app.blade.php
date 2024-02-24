@@ -99,28 +99,6 @@
 
 				@include('tenant.includes.sidebar')
 
-
-				{{-- @if ( auth()->user()->role->value == UserRoleEnum::GUEST->value )
-					@include('tenant.includes.sidebar.user')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::USER->value ))
-					@include('tenant.includes.sidebar.user')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::BUYER->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::HOD->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::CXO->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::ADMIN->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::SUPPORT->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::SYSTEM->value ))
-					@include('tenant.includes.sidebar.system')
-				@else
-					@include('tenant.includes.sidebar.user')
-				@endif --}}
-
-
 				{{-- <div class="sidebar-cta">
 					<div class="sidebar-cta-content">
 						<strong class="d-inline-block mb-2">Monthly Sales Report</strong>

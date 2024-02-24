@@ -119,7 +119,7 @@
 		</li>
 	@endcan
 
-	@if (auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
+	@can('viewSystemMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_node_name == 'system' ? 'active' : '') }}">
 			<a data-bs-target="#system" data-bs-toggle="collapse" class="sidebar-link collapsed">
 				<i class="align-middle" data-feather="grid"></i> 
@@ -136,7 +136,7 @@
 				<li class="sidebar-item {{ ($_route_name == 'groups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('groups.index') }}"><i class="align-middle" data-feather="circle"></i>Group (?)</a></li>
 			</ul>
 		</li>
-	@endif
+	@endcan
 
 	@include('tenant.includes.sidebar-my-account')
 	

@@ -72,8 +72,9 @@ class PaymentController extends Controller
 				$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByUserAll()->paginate(10);
+				//$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByUserAll()->paginate(10);
 				Log::warning("tenant.payment.index Other roles!");
+				abort(403);
 		}
 		return view('tenant.payments.index', compact('payments'));
 	}
@@ -206,26 +207,7 @@ class PaymentController extends Controller
 		//
 	}
 
-	public function export()
-	{
-
-		// TODO filter by HOD
-
-		$this->authorize('export', Payment::class);
-
-		$data = DB::select("
-		SELECT p.id, p.invoice_id, p.pay_date, u.name payee_name, i.po_id,
-			b.ac_name , p.cheque_no, p.currency, p.amount, p.notes, p.status
-		FROM payments p, invoices i, users u, bank_accounts b
-		WHERE p.invoice_id = i.id 
-		AND p.bank_account_id=b.id 
-		AND p.payee_id = u.id
-
-		");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('payments', $dataArray);
-	}
+	
 
 	/**
 	 * Remove the specified resource from storage.
@@ -321,5 +303,40 @@ class PaymentController extends Controller
 		return true;
 	}
 
+	public function export()
+	{
+
+		// TODO filter by HOD
+
+		$this->authorize('export', Payment::class);
+
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+		
+		$data = DB::select("
+		SELECT p.id, p.invoice_id, p.pay_date, u.name payee_name, i.po_id,
+			b.ac_name , p.cheque_no, p.currency, p.amount, p.notes, p.status
+		FROM payments p, invoices i, pos po, users u, bank_accounts b
+		WHERE p.invoice_id = i.id 
+		AND p.bank_account_id=b.id 
+		AND p.payee_id = u.id
+		AND i.po_id=po.id
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('payments', $dataArray);
+	}
 
 }

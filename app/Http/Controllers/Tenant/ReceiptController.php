@@ -212,28 +212,7 @@ class ReceiptController extends Controller
 		abort(403);
 	}
 
-	public function export()
-	{
-
-		// TODO filter by HoD
-		$this->authorize('export', Receipt::class);
-
-		$data = DB::select("
-			SELECT r.id, r.receive_date, r.rcv_type, 
-				po.id po_num, po.summary, pol.line_num, pol.summary,
-				w.name warehouse_name,
-				u.name receiver_name,
-				r.qty, r.notes, r.status
-			FROM receipts r, pols pol, pos po , warehouses w, users u
-			WHERE r.pol_id=pol.id
-			AND pol.po_id =po.id
-			AND r.warehouse_id= w.id
-			AND r.receiver_id = u.id
-		");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('receipts', $dataArray);
-	}
+	
 
 	/**
 	 * Remove the specified resource from storage.
@@ -345,5 +324,41 @@ class ReceiptController extends Controller
 		return true;
 	}
 
+	public function export()
+	{
+
+		// TODO filter by HoD
+		$this->authorize('export', Receipt::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+		
+		$data = DB::select("
+			SELECT r.id, r.receive_date, r.rcv_type, 
+				po.id po_num, po.summary, pol.line_num, pol.summary,
+				w.name warehouse_name,
+				u.name receiver_name,
+				r.qty, r.notes, r.status
+			FROM receipts r, pols pol, pos po , warehouses w, users u
+			WHERE r.pol_id=pol.id
+			AND pol.po_id =po.id
+			AND r.warehouse_id= w.id
+			AND r.receiver_id = u.id
+			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('receipts', $dataArray);
+	}
 
 }

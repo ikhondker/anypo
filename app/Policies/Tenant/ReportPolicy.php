@@ -28,7 +28,7 @@ class ReportPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return true;
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
