@@ -209,13 +209,13 @@ class DeptBudgetController extends Controller
 		return redirect()->route('dept-budgets.show', $request->input('attach_dept_budget_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(DeptBudget $deptBudget)
+	public function attachments(DeptBudget $deptBudget)
 	{
-		$this->authorize('view', $pr);
+		$this->authorize('view', $deptBudget);
 
 		$deptBudget = DeptBudget::where('id', $deptBudget->id)->get()->firstOrFail();
-		$attachments = Attachment::with('owner')->where('entity', EntityEnum::DEPTBUDGET->value)->where('article_id', $deptBudget->id)->get()->all();
-		return view('tenant.dept-budgets.detach', compact('deptBudget', 'attachments'));
+		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::DEPTBUDGET->value)->where('article_id', $deptBudget->id)->get()->all();
+		return view('tenant.dept-budgets.attachments', compact('deptBudget'));
 	}
 
 	/**

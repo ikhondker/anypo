@@ -18,8 +18,9 @@
 	<x-tenant.widgets.project-info id="{{ $project->id }}"/>
 
 	
-	@include('tenant.includes.detach-by-article')
- 
+	
+	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PROJECT->value }}" aid="{{ $project->id }}"/>
+
 
 @endsection
 

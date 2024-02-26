@@ -185,13 +185,13 @@ class BudgetController extends Controller
 		return redirect()->route('budgets.show', $request->input('attach_budget_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(Budget $budget)
+	public function attachments(Budget $budget)
 	{
-		//$this->authorize('view', $pr);
+		$this->authorize('view', $budget);
 
 		$budget = Budget::where('id', $budget->id)->get()->firstOrFail();
-		$attachments = Attachment::where('entity', EntityEnum::BUDGET->value)->where('article_id', $budget->id)->get()->all();
-		return view('tenant.budgets.detach', compact('budget', 'attachments'));
+		//$attachments = Attachment::where('entity', EntityEnum::BUDGET->value)->where('article_id', $budget->id)->get()->all();
+		return view('tenant.budgets.attachments', compact('budget'));
 	}
 
 }

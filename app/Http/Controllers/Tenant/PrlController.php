@@ -39,18 +39,19 @@ class PrlController extends Controller
 	 * @param  \App\Models\Prl  $prl
 	 * @return \Illuminate\Http\Response
 	 */
-	public function createLine($pr_id)
+	public function addLine(Pr $pr)
 	{
-		$this->authorize('update',$pr);
-		
+		//$pr = Pr::where('id', $pr_id)->first();
+
+		//dd($pr);
 		// Write Event Log
 		//LogEvent('template',$template->id,'edit','template',$template->id);
-
-		$pr = Pr::where('id', $pr_id)->first();
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only add line to Requisition with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
+
+		$this->authorize('update',$pr);	// << =============
 
 		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
@@ -181,25 +182,18 @@ class PrlController extends Controller
 	public function destroy(Prl $prl)
 	{
 
-		$this->authorize('delete', $prl);
-
 		$pr = Pr::where('id', $prl->pr_id)->first();
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can delete line in Requisition with only status '. strtoupper($pr->auth_status) .' !');
 		}
 
+		$this->authorize('delete', $prl);
+
 		$prl->delete();
 
 		// 	update PR Header value
 		$result = Pr::updatePrHeaderValue($prl->pr_id);
-
-		//$pr = Pr::where('id', $prl->pr_id)->firstOrFail();
-		//$pr->sub_total		= $pr->sub_total- $prl->sub_total;
-		//$pr->tax			= $pr->tax 		- $prl->tax;
-		//$pr->gst			= $pr->gst 		- $prl->gst;
-		//$pr->amount			= $pr->amount 	- $prl->amount;
-		//$pr->save();
 
 		// Write to Log
 		EventLog::event('prl', $prl->id, 'delete', 'id', $prl->id);

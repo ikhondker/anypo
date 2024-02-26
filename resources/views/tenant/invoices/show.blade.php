@@ -9,10 +9,15 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Invoice"/>
-			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			@if ($invoice->status == App\Enum\InvoiceStatusEnum::DRAFT->value)
+				<a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
+					data-entity="INVOICE #" data-name="{{ $invoice->id }}" data-status="Post"
+					data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
+					<i data-feather="external-link"></i> Post Invoice</a>
+			@endif
+			{{-- <x-tenant.buttons.header.lists object="Po" label="Purchase Order"/> --}}
 			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}"/>
-	
-	
+		
 		@endslot
 	</x-tenant.page-header>
 
@@ -57,6 +62,26 @@
 						<x-tenant.buttons.show.edit object="Invoice" :id="$invoice->id"/>
 					@endif
 					
+					@if ($invoice->status == App\Enum\InvoiceStatusEnum::DRAFT->value)
+						<form action="{{ route('invoices.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
+							@csrf
+							{{-- <x-tenant.attachment.create  /> --}}
+							<input type="text" name="attach_invoice_id" id="attach_invoice_id" class="form-control" placeholder="ID" value="{{ old('attach_invoice_id', $invoice->id ) }}" hidden>
+							<div class="row">
+								<div class="col-sm-3 text-end">
+								
+								</div>
+								<div class="col-sm-9 text-end">
+									<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
+									<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
+									{{-- <x-show.my-edit-link object="Pr" :id="$pr->id"/> --}}
+								</div>
+							</div>
+							{{-- <x-buttons.submit/> --}}
+						</form>
+						<!-- /.form end -->
+					@endif
+
 				</div>
 			</div>
 		</div>
@@ -67,5 +92,13 @@
 	<x-tenant.widgets.po.payments :id="$invoice->id" />
 
 	@include('tenant.includes.modal-boolean-advance')
+
+	<script type="text/javascript">
+		function mySubmit() {
+			//alert('I am inside 2');
+			//document.getElementById('upload').click();
+			document.getElementById('frm1').submit();
+		}
+	</script>
 @endsection
 

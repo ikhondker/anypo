@@ -42,16 +42,14 @@ class PolController extends Controller
 	 * @param  \App\Models\Pol  $pol
 	 * @return \Illuminate\Http\Response
 	 */
-	public function addLine($po_id)
+	public function addLine(Po $po)
 	{
-		$this->authorize('update',$pr);
-
-		$po = Po::where('id', $po_id)->first();
-
 
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 		 	return redirect()->route('pos.show',$po->id)->with('error', 'You can only add line to Purchase Order with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
+
+		$this->authorize('update',$po);	// << =============
 
 		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
@@ -194,7 +192,23 @@ class PolController extends Controller
 	 */
 	public function destroy(Pol $pol)
 	{
-		//
+		$po = Po::where('id', $pol->po_id)->first();
+
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'You can delete line in PO with only status '. strtoupper($pr->auth_status) .' !');
+		}
+
+		$this->authorize('delete', $pol);
+
+		$pol->delete();
+
+		// 	update PR Header value
+		$result = Po::updatePoHeaderValue($pol->po_id);
+
+		// Write to Log
+		EventLog::event('pol', $pol->id, 'delete', 'id', $pol->id);
+
+		return redirect()->route('pos.show', $pol->po_id)->with('success', 'PO Line deleted successfully');
 	}
 
 	public function receipt(Pol $pol)

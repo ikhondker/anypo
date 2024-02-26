@@ -27,19 +27,19 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'budgets.show','route_name' => 'budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'budgets.edit','route_name' => 'budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'budgets.create','route_name' => 'budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'budgets.detach','route_name' => 'budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'budgets.attachments','route_name' => 'budgets.index', 'node_name' => 'budget'],
 
 			[ 'raw_route_name' => 'dept-budgets.index','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.show','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.edit','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.create','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.detach','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.attachments','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
 
 			[ 'raw_route_name' => 'projects.index','route_name' => 'projects.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'projects.show','route_name' => 'projects.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'projects.edit','route_name' => 'projects.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'projects.create','route_name' => 'projects.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'projects.detach','route_name' => 'projects.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'projects.attachments','route_name' => 'projects.index', 'node_name' => 'budget'],
 
 
 			[ 'raw_route_name' => 'dbus.index','route_name' => 'dbus.index', 'node_name' => 'budget'],
@@ -78,6 +78,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'menus.index','route_name' => 'menus.index', 'node_name' => 'system'],
 			
 			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'prls.add-line','route_name' => 'prs.index', 'node_name' => 'purchase'],
 
 			[ 'raw_route_name' => 'countries.index','route_name' => 'countries.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'countries.edit','route_name' => 'countries.index', 'node_name' => 'system'],
@@ -93,8 +94,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'prs.extra','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.edit','route_name' => 'prs.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'prs.create','route_name' => 'prs.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'prs.createline','route_name' => 'prs.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'prs.detach','route_name' => 'prs.index', 'node_name' => 'purchase'],
+
+			[ 'raw_route_name' => 'prs.attachments','route_name' => 'prs.index', 'node_name' => 'purchase'],
 
 			
 			[ 'raw_route_name' => 'pos.index','route_name' => 'pos.index', 'node_name' => 'purchase'],
@@ -104,11 +105,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'pos.history','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.extra','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pos.invoice','route_name' => 'pos.index', 'node_name' => 'purchase'],
-			[ 'raw_route_name' => 'pos.detach','route_name' => 'pos.index', 'node_name' => 'purchase'],
+			[ 'raw_route_name' => 'pos.attachments','route_name' => 'pos.index', 'node_name' => 'purchase'],
 
 			[ 'raw_route_name' => 'pols.show','route_name' => 'pos.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'pols.receipt','route_name' => 'pos.index', 'node_name' => 'purchase'],
-
+			[ 'raw_route_name' => 'pols.add-line','route_name' => 'pos.index', 'node_name' => 'purchase'],
 
 			[ 'raw_route_name' => 'receipts.index','route_name' => 'receipts.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'receipts.show','route_name' => 'receipts.index', 'node_name' => 'purchase'],

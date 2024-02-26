@@ -20,7 +20,7 @@
 						<a class="dropdown-item" href="{{ route('projects.budget', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Budget Usage</a>
 						
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item text-danger" href="{{ route('projects.detach', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachment</a>
+						<a class="dropdown-item text-danger" href="{{ route('projects.attachments', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Attachments</a>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 					</div>

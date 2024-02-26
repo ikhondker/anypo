@@ -22,7 +22,7 @@
 
 	<x-tenant.dashboards.po-counts/>
 
-	<x-tenant.widgets.pr-lists-po-pending/>
+	<x-tenant.widgets.pr.pr-lists-po-pending/>
 	
 	<div class="row">
 		<div class="col-12">

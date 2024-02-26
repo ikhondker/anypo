@@ -42,10 +42,11 @@ use App\Jobs\Tenant\RecordDeptBudgetUsage;
 use Validator;
 use App\Rules\Tenant\OverInvoiceRule;
 
-
-
 use DB;
 use Str;
+//use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
+
 
 class InvoiceController extends Controller
 {
@@ -207,6 +208,31 @@ class InvoiceController extends Controller
 		return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoices  updated successfully.');
 	}
 
+	// add attachments
+	//public function attach(StoreInvoiceRequest $request)
+	public function attach(FormRequest $request)
+	{
+		$this->authorize('create', Invoice::class);
+		
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $request->input('attach_invoice_id') ]);
+			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
+			$attid = FileUpload::upload($request);
+			//$request->merge(['logo'	=> $fileName ]);
+		}
+		
+		return redirect()->route('invoices.show', $request->input('attach_invoice_id'))->with('success', 'File Uploaded successfully.');
+	}
+
+	public function attachments(Invoice $invoice)
+	{
+		$this->authorize('view', $invoice);
+
+		$invoice = Invoice::where('id', $invoice->id)->get()->firstOrFail();
+		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PR->value)->where('article_id', $invoice->id)->get();
+		//return view('tenant.invoices.attachments', compact('invoice', 'attachments'));
+		return view('tenant.invoices.attachments',compact('invoice'));
+	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -404,7 +430,7 @@ class InvoiceController extends Controller
 	public function export()
 	{
 		// TODO filter by HOD
-		$this->authorize('export', Dept::class);
+		$this->authorize('export', Invoice::class);
 
 
 		if (auth()->user()->role->value == UserRoleEnum::USER->value ){

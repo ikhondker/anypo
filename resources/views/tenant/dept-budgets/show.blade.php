@@ -19,7 +19,7 @@
 						<a class="dropdown-item" href="{{ route('dept-budgets.budget', $deptBudget->id) }}"><i class="align-middle me-1" data-feather="user"></i> Budget Usage</a>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item text-danger" href="{{ route('dept-budgets.detach',$deptBudget->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachment *</a>
+						<a class="dropdown-item" href="{{ route('dept-budgets.attachments',$deptBudget->id) }}"><i class="align-middle me-1" data-feather="user"></i> Attachments *</a>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
 						<div class="dropdown-divider"></div>
@@ -84,16 +84,6 @@
 
 			<div class="card">
 				<div class="card-header">
-					<div class="card-actions float-end">
-						<div class="dropdown position-relative">
-							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-								<i class="align-middle" data-feather="more-horizontal"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="{{ route('dept-budgets.detach',$deptBudget->id) }}">Delete Attachment</a>
-							</div>
-						</div>
-					</div>
 					<h5 class="card-title">Attachments</h5>
 					<h6 class="card-subtitle text-muted">List of document attached with this budget.</h6>
 				</div>

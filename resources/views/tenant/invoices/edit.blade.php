@@ -114,7 +114,6 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						<x-tenant.attachment.create/>
 						
 						<x-tenant.buttons.show.save/>
 					</div>

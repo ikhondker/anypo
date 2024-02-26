@@ -11,14 +11,13 @@
 			data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Post"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 			<i class="align-middle me-1" data-feather="copy"></i> Post Invoice *</a>
-		<a class="dropdown-item" href="{{ route('invoices.create', $invoice->po_id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Create Another Invoice</a>
+		<a class="dropdown-item" href="{{ route('invoices.create', $invoice->po_id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Create Invoice</a>
 		<a class="dropdown-item" href="{{ route('payments.create',$invoice->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Pay this Invoice</a>
 		<div class="dropdown-divider"></div>
 
 		<a class="dropdown-item" href="{{ route('pos.show', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Purchase Order</a>
 		<a class="dropdown-item" href="{{ route('reports.po', $id) }}" target="_blank"><i class="align-middle me-1" data-feather="printer"></i> Print Purchase Order</a>
-		<a class="dropdown-item" href="{{ route('pos.extra', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> Additional Information</a>
-		
+		<a class="dropdown-item" href="{{ route('invoices.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> Attachments</a>
 
 		<div class="dropdown-divider"></div>
 
@@ -26,7 +25,5 @@
 			data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
 			<i class="align-middle me-1  text-danger" data-feather="x-circle"></i> Cancel Invoice</a>
-	
-		
 	</div>
 </div>

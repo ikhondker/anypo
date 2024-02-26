@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Widgets;
+namespace App\View\Components\Tenant\Widgets\Pr;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -8,12 +8,10 @@ use Illuminate\View\Component;
 
 use App\Models\Tenant\Pr;
 
-
-
 class PrListsPoPending extends Component
 {
 		public $prs;
-		public $card_header ='Approved Requisitions';
+		public $card_header ='Approved PR Pending for PO';
 
 		/**
 		 * Create a new component instance.

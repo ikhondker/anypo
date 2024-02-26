@@ -281,7 +281,7 @@ Route::middleware([
 	Route::get('/bank-account/export',[BankAccountController::class,'export'])->name('bank-accounts.export');
 	Route::get('/bank-accounts/delete/{bankAccount}',[BankAccountController::class,'destroy'])->name('bank-accounts.destroy');
 	Route::post('/bank-account/attach',[BankAccountController::class,'attach'])->name('bank-accounts.attach');
-	Route::get('/bank-accounts/detach/{bankAccount}',[BankAccountController::class,'detach'])->name('bank-accounts.detach');
+	//Route::get('/bank-accounts/attachments/{bankAccount}',[BankAccountController::class,'attachments'])->name('bank-accounts.detach');
 
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class)->middleware(['auth', 'verified']);
@@ -308,7 +308,7 @@ Route::middleware([
 	Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
 	Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 	Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
-	Route::get('/projects/detach/{project}',[ProjectController::class,'detach'])->name('projects.detach');
+	Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
 	Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
 
 	/* ======================== Budget ======================================== */
@@ -316,7 +316,7 @@ Route::middleware([
 	Route::get('/budget/export',[BudgetController::class,'export'])->name('budgets.export');
 	Route::get('/budgets/delete/{budget}',[BudgetController::class,'destroy'])->name('budgets.destroy');
 	Route::post('/budget/attach',[BudgetController::class,'attach'])->name('budgets.attach');
-	Route::get('/budgets/detach/{budget}',[BudgetController::class,'detach'])->name('budgets.detach');
+	Route::get('/budgets/attachments/{budget}',[BudgetController::class,'attachments'])->name('budgets.attachments');
 	
 	/* ======================== Item ======================================== */
 	Route::resource('items', ItemController::class)->middleware(['auth', 'verified']);
@@ -353,7 +353,7 @@ Route::middleware([
 	Route::get('/dept-budgets/delete/{deptBudget}',[DeptBudgetController::class,'destroy'])->name('dept-budgets.destroy');
 	//Route::get('/dept-budgets/revision/{deptBudget}',[DeptBudgetController::class,'revision'])->name('dept-budgets.revision');
 	Route::post('/dept-budget/attach',[DeptBudgetController::class,'attach'])->name('dept-budgets.attach');
-	Route::get('/dept-budgets/detach/{deptBudget}',[DeptBudgetController::class,'detach'])->name('dept-budgets.detach');
+	Route::get('/dept-budgets/attachments/{deptBudget}',[DeptBudgetController::class,'attachments'])->name('dept-budgets.attachments');
 	Route::get('/dept-budgets/budget/{deptBudget}',[DeptBudgetController::class,'budget'])->name('dept-budgets.budget');
 
 	/* ======================== Dbu ======================================== */
@@ -368,7 +368,9 @@ Route::middleware([
 
 	/* ======================== Pr ======================================== */
 	Route::resource('prs', PrController::class)->middleware(['auth', 'verified']);
+	Route::get('/prs/attachments/{pr}',[PrController::class,'attachments'])->name('prs.attachments');
 	Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
+
 	Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
 	Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
 	Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
@@ -376,7 +378,7 @@ Route::middleware([
 	Route::get('/prs/recalculate/{pr}',[PrController::class,'recalculate'])->name('prs.recalculate');
 	Route::get('/prs/history/{pr}',[PrController::class,'history'])->name('prs.history');
 	Route::get('/prs/extra/{pr}',[PrController::class,'extra'])->name('prs.extra');
-	Route::get('/prs/detach/{pr}',[PrController::class,'detach'])->name('prs.detach');
+	
 	Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
 	Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
 	Route::get('/prs/convert-to-po/{pr}',[PrController::class, 'convertPo'])->name('prs.convert');
@@ -385,12 +387,13 @@ Route::middleware([
 	Route::resource('prls', PrlController::class)->middleware(['auth', 'verified']);
 	Route::get('/prl/export',[PrlController::class,'export'])->name('prls.export');
 	Route::get('/prls/delete/{prl}',[PrlController::class,'destroy'])->name('prls.destroy');
-	Route::get('/prls/createline/{id}',[PrlController::class, 'createLine'])->name('prls.createline');
+	Route::get('/prls/add-line/{pr}',[PrlController::class, 'addLine'])->name('prls.add-line');
 	// TODO pol cancel here
 
 	/* ======================== Po ======================================== */
 	Route::resource('pos', PoController::class)->middleware(['auth', 'verified']);
 	Route::get('/pos/pdf/{po}',[PoController::class,'pdf'])->name('pos.pdf');
+	Route::get('/pos/attachments/{po}',[PoController::class,'attachments'])->name('pos.attachments');
 	Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
 	Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
 	Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
@@ -400,8 +403,7 @@ Route::middleware([
 	Route::get('/pos/open/{po}',[PoController::class,'open'])->name('pos.open');
 	Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');
 	Route::get('/pos/invoice/{po}',[PoController::class,'invoice'])->name('pos.invoice');
-	Route::get('/pos/detach/{po}',[PoController::class,'detach'])->name('pos.detach');
-
+	
 	Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
 	Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
 
@@ -409,7 +411,7 @@ Route::middleware([
 	Route::resource('pols', PolController::class)->middleware(['auth', 'verified']);
 	Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
 	Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
-	Route::get('/pols/createline/{id}',[PolController::class, 'addLine'])->name('pols.createline');
+	Route::get('/pols/add-line/{po}',[PolController::class, 'addLine'])->name('pols.add-line');
 	Route::get('/pols/receipt/{pol}',[PolController::class,'receipt'])->name('pols.receipt');
 
 	/* ======================== Receipt ======================================== */
@@ -421,6 +423,8 @@ Route::middleware([
 	
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class)->middleware(['auth', 'verified']);
+	Route::post('/invoice/attach',[InvoiceController::class,'attach'])->name('invoices.attach');
+	Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
 	Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
 	//Route::get('/invoice/get-cancel-inv-num',[InvoiceController::class,'getCancelInvNum'])->name('invoices.get-cancel-inv-num');
 	Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');

@@ -16,7 +16,7 @@
 	@if (auth()->user()->role->value == UserRoleEnum::USER->value)
 		<li class="sidebar-item {{ ($_route_name == 'prs.index' ? 'active' : '') }}">
 			<a class="sidebar-link" href="{{ route('prs.index') }}">
-				<i class="align-middle" data-feather="layout"></i><span class="align-middle">Requisition*</span>
+				<i class="align-middle" data-feather="layout"></i><span class="align-middle">Requisitions*</span>
 			</a>
 		</li>
 	@endif
@@ -28,8 +28,8 @@
 				<span class="align-middle">Purchasing</span>
 			</a>
 			<ul id="purchase" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'purchase' ? 'show' : '') }}" data-bs-parent="#sidebar">
-				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="layout"></i>PR*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'pos.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('pos.index') }}"><i class="align-middle" data-feather="layout"></i>PO*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="layout"></i>Requisitions*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'pos.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('pos.index') }}"><i class="align-middle" data-feather="layout"></i>Purchase Orders*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'receipts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('receipts.index') }}"><i class="align-middle" data-feather="layout"></i>Receipts*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'invoices.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('invoices.index') }}"><i class="align-middle" data-feather="layout"></i>Invoices*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'payments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('payments.index') }}"><i class="align-middle" data-feather="layout"></i>Payments*</a></li>

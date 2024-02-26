@@ -6,7 +6,7 @@
 		@if ($show)
 			<a class="dropdown-item" href="{{ route('receipts.show', $receipt->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Receipt</a>
 		@endif
-		<a class="dropdown-item" href="{{ route('receipts.create',  $receipt->pol->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Create Another Receipt</a>
+		<a class="dropdown-item" href="{{ route('receipts.create',  $receipt->pol->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Create Receipt</a>
 		<a class="dropdown-item" href="{{ route('pos.show',  $receipt->pol_id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Purchase Order Line</a>
 		<a class="dropdown-item" href="{{ route('pos.show',  $receipt->pol->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
 	   

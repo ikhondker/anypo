@@ -59,7 +59,7 @@ use Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Foundation\Http\FormRequest;
 # Exceptions
 # Events
 
@@ -72,7 +72,6 @@ class PrController extends Controller
 	public function index()
 	{
 
-		
 		$prs = Pr::query();
 		if (request('term')) {
 			$prs->where('summary', 'LIKE', '%' . request('term') . '%');
@@ -82,11 +81,15 @@ class PrController extends Controller
 				$prs = $prs->ByUserAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$prs = $prs->ByDeptAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->ByDeptApproved()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
+				$prs = $prs->AllApproved()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
+				$prs = $prs->AllApproved()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				break;
 			case UserRoleEnum::SYSTEM->value:
 				//->with('status_badge')
 				//->with('auth_status_badge')
@@ -189,7 +192,7 @@ class PrController extends Controller
 	}
 
 	// add attachments
-	public function attach(StorePrRequest $request)
+	public function attach(FormRequest $request)
 	{
 		$this->authorize('create', Pr::class);
 		// TODO check if approved 
@@ -204,17 +207,13 @@ class PrController extends Controller
 		return redirect()->route('prs.show', $request->input('attach_pr_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(Pr $pr)
+	public function attachments(Pr $pr)
 	{
 		$this->authorize('view', $pr);
 
-		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only delete attachment if the Requisition status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
-		}
-
 		$pr = Pr::where('id', $pr->id)->get()->firstOrFail();
-		$attachments = Attachment::with('owner')->where('entity', EntityEnum::PR->value)->where('article_id', $pr->id)->get();
-		return view('tenant.prs.detach', compact('pr', 'attachments'));
+		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PR->value)->where('article_id', $pr->id)->get();
+		return view('tenant.prs.attachments', compact('pr'));
 	}
 
 	public function history(Pr $pr)
@@ -265,11 +264,12 @@ class PrController extends Controller
 	 */
 	public function edit(Pr $pr)
 	{
-		$this->authorize('update', $pr);
-
+		
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can not edit a Requisition with status '. strtoupper($pr->auth_status) .' !');
 		}
+
+		$this->authorize('update', $pr);
 
 		$depts = Dept::primary()->get();
 		
@@ -321,13 +321,14 @@ class PrController extends Controller
 	 */
 	public function destroy(Pr $pr)
 	{
-		$this->authorize('delete', $pr);
 
 		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status );
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
 		}
+
+		$this->authorize('delete', $pr);
 
 		// Write to Log
 		EventLog::event('Pr', $pr->id, 'delete', 'id', $pr->id);

@@ -181,12 +181,12 @@ class ProjectController extends Controller
 		return redirect()->route('projects.show', $request->input('attach_project_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(Project $project)
+	public function attachments(Project $project)
 	{
-		$this->authorize('view', $pr);
+		$this->authorize('view', $project);
 
 		$project = Project::where('id', $project->id)->get()->firstOrFail();
-		$attachments = Attachment::with('owner')->where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->paginate(10);
-		return view('tenant.projects.detach', compact('project', 'attachments'));
+		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->paginate(10);
+		return view('tenant.projects.attachments', compact('project'));
 	}
 }

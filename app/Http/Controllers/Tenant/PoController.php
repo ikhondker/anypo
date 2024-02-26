@@ -56,7 +56,7 @@ use Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Foundation\Http\FormRequest;
 # Exceptions
 # Events
 
@@ -181,7 +181,7 @@ class PoController extends Controller
 	}
 
 	// add attachments
-	public function attach(StorePoRequest $request)
+	public function attach(FormRequest $request)
 	{
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
@@ -193,13 +193,13 @@ class PoController extends Controller
 		return redirect()->route('pos.show', $request->input('attach_po_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(Po $po)
+	public function attachments(Po $po)
 	{
 		$this->authorize('view', $po);
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		$attachments = Attachment::where('entity', EntityEnum::PO->value)->where('article_id', $po->id)->get()->all();
-		return view('tenant.pos.detach', compact('po', 'attachments'));
+		//$attachments = Attachment::where('entity', EntityEnum::PO->value)->where('article_id', $po->id)->get()->all();
+		return view('tenant.pos.attachments', compact('po'));
 	}
 
 	public function history(Po $po)

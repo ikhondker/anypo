@@ -8,7 +8,7 @@
 				<h5 class="card-title">
 					{{ $card_header }}
 				</h5>
-				<h6 class="card-subtitle text-muted">List of Requisitions.</h6>
+				<h6 class="card-subtitle text-muted">{{ $card_header }}</h6>
 			</div>
 			<div class="card-body">
 				<table class="table">
@@ -41,6 +41,9 @@
 							<td><x-tenant.list.my-badge :value="$pr->status"/></td>
 							<td class="table-action">
 								<x-tenant.list.actions object="Pr" :id="$pr->id"/>
+								<a href="{{ route('reports.pr',$pr->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Print">
+									<i class="align-middle" data-feather="printer"></i></a>
+
 								<a href="{{ route('prs.destroy', $pr->id) }}" class="me-2 modal-boolean-advance" 
 									data-entity="Pr" data-name="{{ $pr->id }}" data-status="Delete"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
@@ -66,3 +69,5 @@
 	 <!-- end col -->
 </div>
  <!-- end row -->
+
+ @include('tenant.includes.modal-boolean-advance')

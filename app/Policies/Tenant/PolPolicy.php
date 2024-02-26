@@ -2,9 +2,12 @@
 
 namespace App\Policies\Tenant;
 
+use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+
+use App\Enum\AuthStatusEnum;
 
 use App\Enum\UserRoleEnum;
 
@@ -59,7 +62,9 @@ class PolPolicy
 	 */
 	public function delete(User $user, Pol $pol): bool
 	{
-		//
+		$po = Po::where('id', $pol->po_id)->first();
+		return ( $user->isAdmin() || $user->isSupport() || ($user->id === $po->buyer_id) ) && ($po->auth_status == AuthStatusEnum::DRAFT->value) ;
+
 	}
 
 	/**
