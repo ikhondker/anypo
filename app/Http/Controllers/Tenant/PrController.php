@@ -646,7 +646,7 @@ class PrController extends Controller
 		$pr->po_id		= $po_id;
 		$pr->save();
 
-		EventLog::event('pr-convert', $pr->id, 'converted');	// Write to Log
+		EventLog::event('po', $po->id, 'converted','id',$pr->id);	// Write to Log
 
 		return redirect()->route('pos.show', $po_id)->with('success', 'Purchase Order #'.$po_id.' created.');
 	}

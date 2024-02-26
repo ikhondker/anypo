@@ -7,10 +7,11 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 # use App\Models\Tenant\Manage\Entity;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
+
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Invoice;
@@ -22,6 +23,7 @@ use App\Enum\EntityEnum;
 use App\Enum\AuthStatusEnum;
 use App\Enum\InvoiceStatusEnum;
 
+use Illuminate\Support\Facades\Log;
 
 class ListAllByArticle extends Component
 {
@@ -42,12 +44,16 @@ class ListAllByArticle extends Component
 		switch ($this->entity) {
 
 			case EntityEnum::BUDGET->value:
-				//$budget = Budget::where('id', $this->aid)->get()->firstOrFail();
-				$this->delete		=   false;
+				$budget = Budget::where('id', $this->aid)->get()->firstOrFail();
+				if (!$budget->closed) {
+					$this->delete		=   true;
+				} 
 				break;
 			case EntityEnum::DEPTBUDGET->value:
-				//$deptBudget = DeptBudget::where('id', $this->aid)->get()->firstOrFail();
-				$this->delete		=   false;
+				$deptBudget = DeptBudget::where('id', $this->aid)->get()->firstOrFail();
+				if (!$deptBudget->closed) {
+					$this->delete		=   true;
+				} 
 				break;
 			case EntityEnum::PR->value:
 				$pr = Pr::where('id', $this->aid)->get()->firstOrFail();
@@ -62,10 +68,11 @@ class ListAllByArticle extends Component
 				}
 				break;
 			case EntityEnum::PROJECT->value:
-				//$project = Project::where('id', $this->aid)->get()->firstOrFail();
-				$this->delete		=   false;
+				$project = Project::where('id', $this->aid)->get()->firstOrFail();
+				if (!$project->closed) {
+					$this->delete		=   true;
+				} 
 				break;
-			
 			case EntityEnum::RECEIPT->value:
 				$this->delete		=   false;
 				break;
@@ -79,6 +86,7 @@ class ListAllByArticle extends Component
 				$this->delete		=   false;
 				break;
 			default:
+				Log::errror('tenenat.ListAllByArticle Invalid entity=' . $this->entity);
 				return redirect()->route('attachments.index');
 				// Success
 		}

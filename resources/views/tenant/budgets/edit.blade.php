@@ -55,17 +55,8 @@
 
 					<div class="card">
 						<div class="card-header">
-							<div class="card-actions float-end">
-								<div class="dropdown position-relative">
-									<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-										<i class="align-middle" data-feather="more-horizontal"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-end">
-										<a class="dropdown-item" href="{{ route('budgets.detach',$budget->id) }}">Delete Attachment</a>
-									</div>
-								</div>
-							</div>
 							<h5 class="card-title">Attachments</h5>
+							<h6 class="card-subtitle text-muted">Budget Attachments.</h6>
 						</div>
 						<div class="card-body">
 							<div class="row mb-3">

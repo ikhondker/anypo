@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 
 
 use App\Models\Tenant\Project;
-use App\Http\Requests\Tenant\Lookup\StoreProjectRequest;
-use App\Http\Requests\Tenant\Lookup\UpdateProjectRequest;
+use App\Http\Requests\Tenant\StoreProjectRequest;
+use App\Http\Requests\Tenant\UpdateProjectRequest;
 
 # Models
 use App\Models\User;
@@ -172,7 +172,8 @@ class ProjectController extends Controller
 	// add attachments
 	public function attach(FormRequest $request)
 	{
-		$this->authorize('create', Budget::class);
+		$this->authorize('create', Project::class);
+
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_project_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PROJECT->value ]);
@@ -185,7 +186,8 @@ class ProjectController extends Controller
 	{
 		$this->authorize('view', $project);
 
-		$project = Project::where('id', $project->id)->get()->firstOrFail();
+		//$project = Project::where('id', $project->id)->get()->firstOrFail();
+
 		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->paginate(10);
 		return view('tenant.projects.attachments', compact('project'));
 	}

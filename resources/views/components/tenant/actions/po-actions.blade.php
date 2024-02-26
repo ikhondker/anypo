@@ -32,7 +32,7 @@
 		<a class="dropdown-item modal-boolean-advance"  href="{{ route('pos.close', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Force Close"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
-			<i class="align-middle me-1 text-danger" data-feather="x"></i> Force Close PO *</a>
+			<i class="align-middle me-1 text-danger" data-feather="lock"></i> Force Close PO *</a>
 
 		<a class="dropdown-item modal-boolean-advance"  href="{{ route('wfs.wf-reset-po', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Reset"

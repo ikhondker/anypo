@@ -14,12 +14,11 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	<x-tenant.info.pr-info id="{{ $invoice->id }}"/>
+	<x-tenant.info.invoice-info id="{{ $invoice->id }}"/>
 
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::INVOICE->value }}" aid="{{ $invoice->id }}"/>
 				
 	@include('tenant.includes.modal-boolean-advance')
 
- 
 @endsection
 

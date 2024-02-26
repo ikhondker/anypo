@@ -18,18 +18,20 @@
  * ==================================================================================
 */
 
-// Templates 
-# 0. Auto Generated
-# 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Seeded
-# 7. Exceptions
-# 8. Packages
-# 9. Mails
-# 10.Events
+# Models
+# Enums
+# Helpers
+# Notifications
+# Jobs
+# Mails
+# Rules
+# Packages
+# Seeded
+# Exceptions
+# Events
+# TODO 
+
+
 # TODO
 # 1. create a new role PM for projects
 # 2. layout chang for edit user page role change

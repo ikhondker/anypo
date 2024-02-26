@@ -136,6 +136,16 @@ class MenuPolicy
 	/**
 	 * Determine whether the user can view any models.
 	 */
+	public function viewInterfaceMenu(User $user): bool
+	{
+		// TODO MUST 
+		return true;
+		return ($user->isAdmin() || $user->isSupport());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
 	public function viewAdminMenu(User $user): bool
 	{
 		// TODO MUST 

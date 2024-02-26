@@ -124,49 +124,9 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'payments.show','route_name' => 'payments.index', 'node_name' => 'purchase'],
 			[ 'raw_route_name' => 'payments.create','route_name' => 'payments.index', 'node_name' => 'purchase'],
 			
-			
+
 			[ 'raw_route_name' => 'rates.index','route_name' => 'rates.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'setups.index','route_name' => 'setups.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'setups.edit','route_name' => 'setups.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'setups.show','route_name' => 'setups.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'setups.notice','route_name' => 'setups.index', 'node_name' => 'admin'],
-
-			[ 'raw_route_name' => 'hierarchies.index','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'hierarchies.show','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'hierarchies.edit','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'hierarchies.create','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
-
-			[ 'raw_route_name' => 'wfs.index','route_name' => 'wfs.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'wfs.show','route_name' => 'wfs.index', 'node_name' => 'admin'],
-
-			[ 'raw_route_name' => 'upload-items.index','route_name' => 'upload-items.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'upload-items.show','route_name' => 'upload-items.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'upload-items.edit','route_name' => 'upload-items.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'upload-items.create','route_name' => 'upload-items.create', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'upload-items.check','route_name' => 'upload-items.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'upload-items.import','route_name' => 'upload-items.index', 'node_name' => 'admin'],
-
-			[ 'raw_route_name' => 'items.index','route_name' => 'items.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'items.show','route_name' => 'items.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'items.edit','route_name' => 'items.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'items.create','route_name' => 'items.index', 'node_name' => 'master'],
-
-
-			[ 'raw_route_name' => 'suppliers.index','route_name' => 'suppliers.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'suppliers.show','route_name' => 'suppliers.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'suppliers.edit','route_name' => 'suppliers.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'suppliers.create','route_name' => 'suppliers.index', 'node_name' => 'master'],
-			
-			
-			
-			
-			[ 'raw_route_name' => 'users.index','route_name' => 'users.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'users.show','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
-			[ 'raw_route_name' => 'users.edit','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
-			[ 'raw_route_name' => 'users.create','route_name' => 'users.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'users.password','route_name' => 'users.index', 'node_name' => 'profile'],	// <==============
-			
 			[ 'raw_route_name' => 'warehouses.index','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.show','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.edit','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
@@ -186,6 +146,52 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'bank-accounts.show','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.edit','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.create','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
+			
+
+			
+			[ 'raw_route_name' => 'items.index','route_name' => 'items.index', 'node_name' => 'master'],
+			[ 'raw_route_name' => 'items.show','route_name' => 'items.index', 'node_name' => 'master'],
+			[ 'raw_route_name' => 'items.edit','route_name' => 'items.index', 'node_name' => 'master'],
+			[ 'raw_route_name' => 'items.create','route_name' => 'items.index', 'node_name' => 'master'],
+
+
+			[ 'raw_route_name' => 'suppliers.index','route_name' => 'suppliers.index', 'node_name' => 'master'],
+			[ 'raw_route_name' => 'suppliers.show','route_name' => 'suppliers.index', 'node_name' => 'master'],
+			[ 'raw_route_name' => 'suppliers.edit','route_name' => 'suppliers.index', 'node_name' => 'master'],
+			[ 'raw_route_name' => 'suppliers.create','route_name' => 'suppliers.index', 'node_name' => 'master'],
+			
+			
+			[ 'raw_route_name' => 'upload-items.index','route_name' => 'upload-items.index', 'node_name' => 'interface'],
+			[ 'raw_route_name' => 'upload-items.show','route_name' => 'upload-items.index', 'node_name' => 'interface'],
+			[ 'raw_route_name' => 'upload-items.edit','route_name' => 'upload-items.index', 'node_name' => 'interface'],
+			[ 'raw_route_name' => 'upload-items.create','route_name' => 'upload-items.create', 'node_name' => 'interface'],
+			[ 'raw_route_name' => 'upload-items.check','route_name' => 'upload-items.index', 'node_name' => 'interface'],
+			[ 'raw_route_name' => 'upload-items.import','route_name' => 'upload-items.index', 'node_name' => 'interface'],
+
+
+
+			[ 'raw_route_name' => 'setups.index','route_name' => 'setups.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.edit','route_name' => 'setups.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.show','route_name' => 'setups.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.notice','route_name' => 'setups.index', 'node_name' => 'admin'],
+
+			[ 'raw_route_name' => 'hierarchies.index','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.show','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.edit','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.create','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
+
+			[ 'raw_route_name' => 'wfs.index','route_name' => 'wfs.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'wfs.show','route_name' => 'wfs.index', 'node_name' => 'admin'],
+
+			
+			[ 'raw_route_name' => 'users.index','route_name' => 'users.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'users.show','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
+			[ 'raw_route_name' => 'users.edit','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
+			[ 'raw_route_name' => 'users.create','route_name' => 'users.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'users.password','route_name' => 'users.index', 'node_name' => 'profile'],	// <==============
+			
+
+			
 
 			
 

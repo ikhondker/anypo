@@ -305,10 +305,10 @@ Route::middleware([
 
 	/* ======================== Project ======================================== */
 	Route::resource('projects', ProjectController::class)->middleware(['auth', 'verified']);
-	Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
-	Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 	Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
 	Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
+	Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
+	Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 	Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
 
 	/* ======================== Budget ======================================== */

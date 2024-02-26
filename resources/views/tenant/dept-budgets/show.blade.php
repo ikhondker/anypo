@@ -10,23 +10,7 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="DeptBudget"/>
 			<x-tenant.buttons.header.create object="DeptBudget"/>
-			<x-tenant.buttons.header.edit object="DeptBudget" :id="$deptBudget->id"/>
-				<div class="dropdown me-2 d-inline-block position-relative">
-					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
-					</a>
-					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="{{ route('dept-budgets.budget', $deptBudget->id) }}"><i class="align-middle me-1" data-feather="user"></i> Budget Usage</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{{ route('dept-budgets.attachments',$deptBudget->id) }}"><i class="align-middle me-1" data-feather="user"></i> Attachments *</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-					</div>
-				</div>
-
+			<x-tenant.actions.dept-budget-actions id="{{ $deptBudget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

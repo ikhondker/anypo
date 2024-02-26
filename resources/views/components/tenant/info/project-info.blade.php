@@ -7,7 +7,7 @@
 						<img src="{{ asset('/img3.jpg')}}" width="180" height="180" class="mt-2" alt="Project">
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
-						<h4>{{ $project->name }}</h4>
+						<h4>PROJECT: {{ $project->name }}</h4>
 						<p>{{ $project->notes }}</p>
 						<table class="table table-sm my-2">
 							<tbody>

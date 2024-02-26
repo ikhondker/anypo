@@ -96,6 +96,18 @@
 		</li>
 	@endcan
 
+	@can('viewInterfaceMenu', App\Models\Tenant\Manage\Menu::class)
+		<li class="sidebar-item {{ ($_node_name == 'interface' ? 'active' : '') }}">
+			<a data-bs-target="#interface" data-bs-toggle="collapse" class="sidebar-link collapsed">
+				<i class="align-middle" data-feather="grid"></i> 
+				<span class="align-middle">Interface</span>
+			</a>
+			<ul id="interface" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'interface' ? 'show' : '') }}" data-bs-parent="#sidebar">
+				<li class="sidebar-item {{ ($_route_name == 'upload-items.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('upload-items.index') }}"><i class="align-middle" data-feather="circle"></i>Item Interface</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'upload-items.create' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('upload-items.create') }}"><i class="align-middle" data-feather="circle"></i>Item Upload</a></li>
+			</ul>
+		</li>
+	@endcan
 	
 	@can('viewAdminMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_node_name == 'admin' ? 'active' : '') }}">
@@ -110,11 +122,6 @@
 				<li class="sidebar-item {{ ($_route_name == 'activities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('activities.index') }}"><i class="align-middle" data-feather="circle"></i>Activity Log</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'attachments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('attachments.index') }}"><i class="align-middle" data-feather="circle"></i>Attachments*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'setups.show' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('setups.show',1001) }}"><i class="align-middle" data-feather="circle"></i>Setup</a></li>
-				
-				<li class="sidebar-item {{ ($_route_name == 'upload-items.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('upload-items.index') }}"><i class="align-middle" data-feather="stop-circle"></i>Item Interface</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'upload-items.create' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('upload-items.create') }}"><i class="align-middle" data-feather="stop-circle"></i>Item Upload</a></li>
-
-
 			</ul>
 		</li>
 	@endcan

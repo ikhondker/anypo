@@ -1,23 +1,27 @@
 <?php
 
-namespace App\View\Components\Tenant\Info;
+namespace App\View\Components\Tenant\Actions;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+
 use App\Models\Tenant\Project;
 
-class ProjectInfo extends Component
+class ProjectActions extends Component
 {
 	public $id;
+	public $show;
 	public $project;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct($id, $show = false)
 	{
-		$this->project = Project::where('id', $id)->get()->first();
+		$this->id 		= $id;
+		$this->show		= $show; 
+		$this->project  = Project::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**
@@ -25,6 +29,6 @@ class ProjectInfo extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.info.project-info');
+		return view('components.tenant.actions.project-actions');
 	}
 }
