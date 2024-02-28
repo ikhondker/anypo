@@ -2,7 +2,7 @@
 
 /**
  * ==================================================================================
- * @version v1.0.1
+ * @version v1.0
  * ==================================================================================
  * @file		   HomeController.php
  * @brief		  This file contains the implementation of the HomeController class.
@@ -20,6 +20,20 @@
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
+
+# 1. Models
+# 2. Enums
+# 3. Helpers
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Seeded
+# 12. TODO 
+
 
 // Models
 use App\Models\User;

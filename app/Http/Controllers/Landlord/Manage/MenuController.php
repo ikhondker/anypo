@@ -27,6 +27,21 @@ use App\Models\Landlord\Manage\Menu;
 use App\Http\Requests\Landlord\Manage\StoreMenuRequest;
 use App\Http\Requests\Landlord\Manage\UpdateMenuRequest;
 
+# 1. Models
+# 2. Enums
+# 3. Helpers
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
+# 13. TODO 
+
+
 //use Illuminate\Http\RedirectResponse;
 
 // Helpers
