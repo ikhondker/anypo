@@ -22,28 +22,13 @@ namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
 use App\Models\Tenant\Pr;
-use App\Models\Tenant\Po;
 use App\Http\Requests\Tenant\StorePrRequest;
 use App\Http\Requests\Tenant\UpdatePrRequest;
 
 
-use App\Http\Controllers\Tenant\DeptBudgetControllers;
 
 # 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
+use App\Models\Tenant\Po;
 use App\Models\User;
 
 use App\Models\Tenant\Prl;
@@ -62,38 +47,38 @@ use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
 
 use App\Models\Tenant\Workflow\Wfl;
-
-# Enums
+# 2. Enums
 use App\Enum\UserRoleEnum;
 use App\Enum\EntityEnum;
 use App\Enum\WflActionEnum;
 use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
-
-//use App\Enum\ActionEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\EventLog;
 use App\Helpers\Workflow;
 use App\Helpers\FileUpload;
 use App\Helpers\PrBudget;
 use App\Helpers\ExchangeRate;
-# Notifications
+# 4. Notifications
 use Notification;
-//use App\Notifications\PrCreated;
 use App\Notifications\Tenant\PrActions;
-# Mails
-# Packages
-# Seeded
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+use App\Http\Controllers\Tenant\DeptBudgetControllers;
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
 use Str;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Http\FormRequest;
-# Exceptions
-# Events
+# 13. TODO 
 
 
 class PrController extends Controller

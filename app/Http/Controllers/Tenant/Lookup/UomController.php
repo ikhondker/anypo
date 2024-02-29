@@ -28,8 +28,11 @@ use App\Http\Requests\Tenant\Lookup\StoreUomRequest;
 use App\Http\Requests\Tenant\Lookup\UpdateUomRequest;
 
 # 1. Models
+use App\Models\Tenant\Manage\UomClass;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\EventLog;
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -38,23 +41,10 @@ use App\Http\Requests\Tenant\Lookup\UpdateUomRequest;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
+use DB;
 # 12. TODO 
 
 
-# Models
-use App\Models\Tenant\Manage\UomClass;
-# Enums
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use DB;
-
-# Exceptions
-# Events
 
 
 class UomController extends Controller

@@ -27,8 +27,17 @@ use App\Http\Requests\Tenant\Lookup\StoreItemRequest;
 use App\Http\Requests\Tenant\Lookup\UpdateItemRequest;
 
 # 1. Models
+use App\Models\Tenant\Lookup\Item;
+use App\Models\Tenant\Lookup\Category;
+use App\Models\Tenant\Lookup\Uom;
+use App\Models\Tenant\Lookup\Oem;
+use App\Models\Tenant\Lookup\GlType;
+
+use App\Models\Tenant\Manage\UomClass;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\EventLog;
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -37,32 +46,9 @@ use App\Http\Requests\Tenant\Lookup\UpdateItemRequest;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
-# 12. TODO 
-
-
-# Models
-use App\Models\Tenant\Lookup\Item;
-use App\Models\Tenant\Lookup\Category;
-use App\Models\Tenant\Lookup\Uom;
-use App\Models\Tenant\Lookup\Oem;
-use App\Models\Tenant\Lookup\GlType;
-
-use App\Models\Tenant\Manage\UomClass;
-
-# Enums
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use DB;
 use Str;
-
-# Exceptions
-# Events
-# TODO
+# 12. TODO 
 # 1. dependent dropdown for uom
 
 class ItemController extends Controller

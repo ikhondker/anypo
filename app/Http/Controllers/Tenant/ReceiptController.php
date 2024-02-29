@@ -27,20 +27,6 @@ use App\Http\Requests\Tenant\StoreReceiptRequest;
 use App\Http\Requests\Tenant\UpdateReceiptRequest;
 
 # 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Controller
-# 12. Seeded
-# 12. TODO 
-
-# Models
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 use App\Models\Tenant\DeptBudget;
@@ -48,35 +34,34 @@ use App\Models\Tenant\Lookup\Warehouse;
 use App\Models\Tenant\Project;
 
 use App\Models\Tenant\Admin\Setup;
-
-# Enums
+# 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\ReceiptStatusEnum;
 
 use App\Enum\ClosureStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\EventLog;
 use App\Helpers\FileUpload;
 use App\Helpers\ExchangeRate;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-# Exceptions
-# Events
-
-#Jobs
+# 4. Notifications
+# 5. Jobs
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
-
+# 6. Mails
+# 7. Rules
 use App\Rules\Tenant\OverReceiptRule;
+# 8. Packages
+# 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+# 10. Events
+# 11. Controller
+# 12. Seeded
+use DB;
+use Illuminate\Support\Facades\Log;
+# 13. TODO 
 
 
 class ReceiptController extends Controller

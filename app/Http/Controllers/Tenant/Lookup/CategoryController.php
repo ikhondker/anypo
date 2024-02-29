@@ -19,9 +19,7 @@
 */
 
 namespace App\Http\Controllers\Tenant\Lookup;
-
 use App\Http\Controllers\Controller;
-
 
 use App\Models\Tenant\Lookup\Category;
 use App\Http\Requests\Tenant\Lookup\StoreCategoryRequest;
@@ -30,6 +28,8 @@ use App\Http\Requests\Tenant\Lookup\UpdateCategoryRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -38,22 +38,8 @@ use App\Http\Requests\Tenant\Lookup\UpdateCategoryRequest;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
-# 12. TODO 
-
-
-# Models
-# Enums
-# Helpers
-use App\Helpers\Export;
-use App\Helpers\EventLog;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use DB;
-
-# Exceptions
-# Events
+# 12. TODO 
 
 class CategoryController extends Controller
 {

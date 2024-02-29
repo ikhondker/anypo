@@ -27,7 +27,9 @@ use App\Http\Requests\Tenant\Admin\UpdateActivityRequest;
 
 # 1. Models
 # 2. Enums
+use App\Enum\UserRoleEnum;
 # 3. Helpers
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -36,24 +38,8 @@ use App\Http\Requests\Tenant\Admin\UpdateActivityRequest;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
-# 12. TODO 
-
-
-# Models
-# Enums
-use App\Enum\UserRoleEnum;
-
-# Helpers
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use DB;
-
-# Exceptions
-# Events
-
+# 12. TODO 
 
 class ActivityController extends Controller
 {

@@ -26,8 +26,17 @@ use App\Http\Requests\Tenant\StorePolRequest;
 use App\Http\Requests\Tenant\UpdatePolRequest;
 
 # 1. Models
+use App\Models\Tenant\Lookup\Item;
+use App\Models\Tenant\Lookup\Uom;
+
+use App\Models\Tenant\Po;
+use App\Models\Tenant\Pol;
 # 2. Enums
+use App\Enum\AuthStatusEnum;
+use App\Enum\UserRoleEnum;
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -35,34 +44,11 @@ use App\Http\Requests\Tenant\UpdatePolRequest;
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
-# Models
-use App\Models\Tenant\Lookup\Item;
-use App\Models\Tenant\Lookup\Uom;
-
-use App\Models\Tenant\Po;
-use App\Models\Tenant\Pol;
-# Enums
-use App\Enum\AuthStatusEnum;
-use App\Enum\UserRoleEnum;
-
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 11. Controller
+# 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-
-# Exceptions
-# Events
-# TODO
+# 13. TODO 
 # 1. cancel pol
 
 

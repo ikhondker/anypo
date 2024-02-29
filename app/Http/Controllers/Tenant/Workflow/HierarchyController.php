@@ -27,8 +27,12 @@ use App\Http\Requests\Tenant\Workflow\StoreHierarchyRequest;
 use App\Http\Requests\Tenant\Workflow\UpdateHierarchyRequest;
 
 # 1. Models
+use App\Models\User;
+use App\Models\Tenant\Workflow\Hierarchyl;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -36,27 +40,11 @@ use App\Http\Requests\Tenant\Workflow\UpdateHierarchyRequest;
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
-use App\Models\User;
-use App\Models\Tenant\Workflow\Hierarchyl;
-# Enums
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use Illuminate\Support\Facades\Log;
+# 11. Controller
+# 12. Seeded
 use DB;
-
-# Exceptions
-# Events
-# TODO
+use Illuminate\Support\Facades\Log;
+# 13. TODO 
 # 1. Change design of show blade to user show blade with avatar
 
 class HierarchyController extends Controller

@@ -28,8 +28,14 @@ use App\Http\Requests\Tenant\StoreProjectRequest;
 use App\Http\Requests\Tenant\UpdateProjectRequest;
 
 # 1. Models
+use App\Models\User;
+use App\Models\Tenant\Admin\Attachment;
 # 2. Enums
+use App\Enum\EntityEnum;
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+use App\Helpers\FileUpload;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -39,27 +45,10 @@ use App\Http\Requests\Tenant\UpdateProjectRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 12. TODO 
-
-# Models
-use App\Models\User;
-use App\Models\Tenant\Admin\Attachment;
-# Enums
-use App\Enum\EntityEnum;
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-use App\Helpers\FileUpload;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
-
-# Exceptions
-# Events
-# TODO 
+# 13. TODO 
 # 1. Dashboard chart
 # 2. Project Actions
 # 3. code enable /visible

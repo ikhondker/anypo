@@ -29,32 +29,20 @@ use App\Http\Requests\Tenant\Lookup\UpdateCurrencyRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\EventLog;
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
+use App\Jobs\Tenant\ImportAllRate;
 # 6. Mails
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
-# 12. TODO 
-
-
-# Models
-# Enums
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# Exceptions
-# Events
-#Jobs
-use App\Jobs\Tenant\ImportAllRate;
+# 12. TODO 
 
 class CurrencyController extends Controller
 {

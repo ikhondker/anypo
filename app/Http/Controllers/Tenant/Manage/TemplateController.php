@@ -26,13 +26,15 @@ use App\Http\Requests\Tenant\Manage\StoreTemplateRequest;
 use App\Http\Requests\Tenant\Manage\UpdateTemplateRequest;
 
 
-//
-// Version 1.2 2-feb-23 Project: bo04
-//
-
 # 1. Models
+use App\Models\User;
+use App\Models\Tenant\Lookup\Country;
 # 2. Enums
+use App\Enum\EntityEnum;
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+use App\Helpers\FileUpload;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -40,29 +42,12 @@ use App\Http\Requests\Tenant\Manage\UpdateTemplateRequest;
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
-use App\Models\User;
-use App\Models\Tenant\Lookup\Country;
-# Enums
-use App\Enum\EntityEnum;
-# Helpers
-use App\Helpers\FileUpload;
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use Illuminate\Support\Facades\Log;
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
 use Str;
-
-# Exceptions
-# Events
+# 13. TODO 
 
 class TemplateController extends Controller
 {

@@ -26,8 +26,17 @@ use App\Http\Requests\Tenant\StorePrlRequest;
 use App\Http\Requests\Tenant\UpdatePrlRequest;
 
 # 1. Models
+use App\Models\Tenant\Lookup\Item;
+use App\Models\Tenant\Lookup\Uom;
+
+use App\Models\Tenant\Pr;
+use App\Models\Tenant\Prl;
 # 2. Enums
+use App\Enum\AuthStatusEnum;
+use App\Enum\UserRoleEnum;
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -37,30 +46,9 @@ use App\Http\Requests\Tenant\UpdatePrlRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 12. TODO 
-
-# Models
-use App\Models\Tenant\Lookup\Item;
-use App\Models\Tenant\Lookup\Uom;
-
-use App\Models\Tenant\Pr;
-use App\Models\Tenant\Prl;
-
-# Enums
-use App\Enum\AuthStatusEnum;
-use App\Enum\UserRoleEnum;
-
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# Exceptions
-# Events
+# 13. TODO 
 
 
 class PrlController extends Controller

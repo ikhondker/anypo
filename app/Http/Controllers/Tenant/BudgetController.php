@@ -25,9 +25,17 @@ use App\Models\Tenant\Budget;
 use App\Http\Requests\Tenant\StoreBudgetRequest;
 use App\Http\Requests\Tenant\UpdateBudgetRequest;
 
+
 # 1. Models
+use App\Models\Tenant\Admin\Setup;
+use App\Models\Tenant\Admin\Attachment;
+
 # 2. Enums
+use App\Enum\EntityEnum;
 # 3. Helpers
+use App\Helpers\FileUpload;
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -35,30 +43,13 @@ use App\Http\Requests\Tenant\UpdateBudgetRequest;
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
-use App\Models\Tenant\Admin\Setup;
-use App\Models\Tenant\Admin\Attachment;
-# Enums
-use App\Enum\EntityEnum;
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-use App\Helpers\FileUpload;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use Carbon\Carbon;
+# 11. Controller
+# 12. Seeded
 use DB;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
-
-# Exceptions
-# Events
+use Illuminate\Foundation\Http\FormRequest;
+use Carbon\Carbon;
+# 13. TODO 
 
 class BudgetController extends Controller
 {

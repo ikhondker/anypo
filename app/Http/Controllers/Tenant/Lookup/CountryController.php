@@ -31,6 +31,8 @@ use App\Http\Requests\Tenant\Lookup\UpdateCountryRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -39,24 +41,9 @@ use App\Http\Requests\Tenant\Lookup\UpdateCountryRequest;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
-# 12. TODO 
-
-
-# Models
-# Enums
-# Helpers
-use App\Helpers\Export;
-use App\Helpers\EventLog;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use Illuminate\Support\Facades\Log;
 use DB;
-
-# Exceptions
-# Events
-# TODO
+# 12. TODO 
 # 1. Disable all country by default, enable only USA and based on active user will be able to select country in Any Address
 
 class CountryController extends Controller

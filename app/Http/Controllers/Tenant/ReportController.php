@@ -28,21 +28,6 @@ use App\Http\Requests\Tenant\StoreReportRequest;
 use App\Http\Requests\Tenant\UpdateReportRequest;
 
 # 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Controller
-# 12. Seeded
-# 13. TODO 
-
-# Models
-
 use App\Models\User;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
@@ -58,26 +43,27 @@ use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\BankAccount;
 
 use App\Models\Tenant\Admin\Setup;
-# Enums
+# 2. Enums
 use App\Enum\UserRoleEnum;
 use App\Enum\AuthStatusEnum;
 use App\Enum\InvoiceStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use DB;
-# Exceptions
-# Events
-# Package
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
 use PDF;
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
+use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# TODO
+# 13. TODO 
 # 1 . Add entity column in reports.index
 
 class ReportController extends Controller

@@ -25,44 +25,32 @@ use App\Http\Requests\Tenant\Workflow\StoreWfRequest;
 use App\Http\Requests\Tenant\Workflow\UpdateWfRequest;
 
 # 1. Models
+use App\Models\Tenant\Workflow\Wf;
+use App\Models\Tenant\Workflow\Wfl;
+use App\Models\Tenant\Pr;
+use App\Models\Tenant\Po;
 # 2. Enums
+use App\Enum\AuthStatusEnum;
+use App\Enum\WfStatusEnum;
+use App\Enum\EventEnum;
 # 3. Helpers
+use App\Helpers\PrBudget;
+use App\Helpers\PoBudget;
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
-use App\Models\Tenant\Workflow\Wf;
-use App\Models\Tenant\Workflow\Wfl;
-use App\Models\Tenant\Pr;
-use App\Models\Tenant\Po;
-# Enums
-use App\Enum\AuthStatusEnum;
-use App\Enum\WfStatusEnum;
-//use App\Enum\WflActionEnum;
-use App\Enum\EventEnum;
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-use App\Helpers\PrBudget;
-use App\Helpers\PoBudget;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 11. Controller
+# 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-# Exceptions
-# Events
+# 13. TODO 
 
 class WfController extends Controller
 {

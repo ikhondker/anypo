@@ -28,8 +28,12 @@ use App\Http\Requests\Tenant\Lookup\StoreWarehouseRequest;
 use App\Http\Requests\Tenant\Lookup\UpdateWarehouseRequest;
 
 # 1. Models
+use App\Models\Tenant\Lookup\Country;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\EventLog;
+use App\Helpers\Export;
+
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -38,23 +42,8 @@ use App\Http\Requests\Tenant\Lookup\UpdateWarehouseRequest;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
-# 12. TODO 
-
-
-# Models
-use App\Models\Tenant\Lookup\Country;
-# Enums
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use DB;
-
-# Exceptions
-# Events
+# 12. TODO 
 
 
 class WarehouseController extends Controller

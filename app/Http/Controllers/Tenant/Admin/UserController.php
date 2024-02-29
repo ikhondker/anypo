@@ -18,26 +18,6 @@
  * ==================================================================================
 */
 
-
-# 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Controller
-# 12. Seeded
-# 13. TODO 
-
-
-# TODO
-# 1. create a new role PM for projects
-# 2. layout chang for edit user page role change
-
 namespace App\Http\Controllers\Tenant\Admin;
 use App\Http\Controllers\Controller;
 
@@ -45,26 +25,32 @@ use App\Models\User;
 use App\Http\Requests\Tenant\Admin\StoreUserRequest;
 use App\Http\Requests\Tenant\Admin\UpdateUserRequest;
 
-# Models
+
+# 1. Models
 use App\Models\Tenant\Lookup\Country;
 use App\Models\Tenant\Lookup\Designation;
 use App\Models\Tenant\Lookup\Dept;
-# Enums
+
+# 2. Enums
 use App\Enum\UserRoleEnum;
-# Helpers
+# 3. Helpers
 use App\Helpers\FileUpload;
 use App\Helpers\Export;
 use App\Helpers\EventLog;
-# Notifications
+# 4. Notifications
 use Notification;
 use App\Notifications\Tenant\UserCreated;  //TODO
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\Tenant\UserActions;
-# Mails
-# Jobs
-# Packages
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
 use Image;
-# Seeded
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -72,12 +58,11 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
-
 use Str;
 use DB;
-
-# Exceptions
-# Events
+# 13. TODO 
+# 1. create a new role PM for projects
+# 2. layout chang for edit user page role change
 
 class UserController extends Controller
 {

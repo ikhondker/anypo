@@ -28,26 +28,12 @@ use App\Http\Requests\Tenant\StoreInvoiceRequest;
 use App\Http\Requests\Tenant\UpdateInvoiceRequest;
 
 # 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
 use App\Models\Tenant\Po;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Payment;
 use App\Models\Tenant\Project;
 use App\Models\Tenant\Admin\Setup;
-
-# Enums
+# 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
@@ -55,28 +41,31 @@ use App\Enum\InvoiceStatusEnum;
 use App\Enum\ClosureStatusEnum;
 use App\Enum\PaymentStatusEnum;
 use App\Enum\AuthStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\EventLog;
 use App\Helpers\FileUpload;
 use App\Helpers\ExchangeRate;
-
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-use Illuminate\Support\Facades\Log;
-
-#Jobs
+# 4. Notifications
+# 5. Jobs
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
-
-use Validator;
+# 6. Mails
+# 7. Rules
 use App\Rules\Tenant\OverInvoiceRule;
-
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Validator;
 use Str;
-//use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
+# 13. TODO 
+
 
 
 class InvoiceController extends Controller

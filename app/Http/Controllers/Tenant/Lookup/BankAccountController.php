@@ -29,6 +29,8 @@ use App\Http\Requests\Tenant\Lookup\UpdateBankAccountRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -36,23 +38,11 @@ use App\Http\Requests\Tenant\Lookup\UpdateBankAccountRequest;
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
-# Enums
-# Helpers
-use App\Helpers\Export;
-use App\Helpers\EventLog;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 11. Controller
+# 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# Exceptions
-# Events
+# 13. TODO 
 
 class BankAccountController extends Controller
 {

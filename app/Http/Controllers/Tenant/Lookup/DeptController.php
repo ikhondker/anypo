@@ -19,12 +19,20 @@
 */
 
 namespace App\Http\Controllers\Tenant\Lookup;
-
 use App\Http\Controllers\Controller;
 
+use App\Models\Tenant\Lookup\Dept;
+use App\Http\Requests\Tenant\Lookup\StoreDeptRequest;
+use App\Http\Requests\Tenant\Lookup\UpdateDeptRequest;
+
+
 # 1. Models
+use App\Models\Tenant\Workflow\Hierarchy;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\EventLog;
+use App\Helpers\Export;
+
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -33,27 +41,11 @@ use App\Http\Controllers\Controller;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
+use DB;
+use Illuminate\Support\Facades\Log;
 # 12. TODO 
 
 
-// 1. Enums
-// 2. Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-// 3. Notifications
-// 4. Mails
-// 5. Packages
-// 6. Requests
-use App\Http\Requests\Tenant\Lookup\StoreDeptRequest;
-use App\Http\Requests\Tenant\Lookup\UpdateDeptRequest;
-// 7. Exceptions
-// 8. Events
-// 9. Models
-use App\Models\Tenant\Lookup\Dept;
-use App\Models\Tenant\Workflow\Hierarchy;
-// 10. Seeded
-use DB;
-use Illuminate\Support\Facades\Log;
 
 class DeptController extends Controller
 {

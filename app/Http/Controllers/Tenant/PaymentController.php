@@ -21,59 +21,47 @@
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
-# 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
 use App\Models\Tenant\Payment;
-use App\Models\Tenant\Po;
-use App\Models\Tenant\Invoice;
-use App\Models\Tenant\DeptBudget;
-
-use App\Models\Tenant\Project;
-use App\Models\Tenant\Lookup\BankAccount;
-
-use App\Models\Tenant\Admin\Setup;
-
 use App\Http\Requests\Tenant\StorePaymentRequest;
 use App\Http\Requests\Tenant\UpdatePaymentRequest;
 
-# Enums
+
+# 1. Models
+use App\Models\Tenant\Po;
+use App\Models\Tenant\Invoice;
+use App\Models\Tenant\DeptBudget;
+use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\BankAccount;
+use App\Models\Tenant\Admin\Setup;
+# 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\PaymentStatusEnum;
 use App\Enum\InvoiceStatusEnum;
 use App\Enum\ClosureStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
+# 3. Helpers
 use App\Helpers\FileUpload;
 use App\Helpers\ExchangeRate;
-
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-use Illuminate\Support\Facades\Log;
-
-#Jobs
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
-
-
+# 6. Mails
+# 7. Rules
 use App\Rules\Tenant\OverPaymentRule;
-
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+# 13. TODO 
+
 
 class PaymentController extends Controller
 {

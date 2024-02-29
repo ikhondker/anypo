@@ -27,12 +27,11 @@ use App\Models\Tenant\Notification;
 use App\Http\Requests\Tenant\StoreNotificationRequest;
 use App\Http\Requests\Tenant\UpdateNotificationRequest;
 
-use Illuminate\Support\Facades\Log;
-use DB;
-
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -40,8 +39,12 @@ use DB;
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
+# 11. Controller
+# 12. Seeded
+use DB;
+use Illuminate\Support\Facades\Log;
+# 13. TODO 
+
 
 
 class NotificationController extends Controller

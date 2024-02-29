@@ -23,15 +23,17 @@ namespace App\Http\Controllers\Tenant\Manage;
 use App\Http\Controllers\Controller;
 
 use App\Models\Tenant\Manage\Status;
-use App\Models\Tenant\Lookup\Dept;
+
 use App\Http\Requests\Tenant\Manage\StoreStatusRequest;
 use App\Http\Requests\Tenant\Manage\UpdateStatusRequest;
 
-use Illuminate\Support\Facades\Log;
 
 # 1. Models
+//use App\Models\Tenant\Lookup\Dept;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -39,15 +41,13 @@ use Illuminate\Support\Facades\Log;
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-// 2. Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
+# 13. TODO 
+
+
 
 class StatusController extends Controller
 {

@@ -24,40 +24,30 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 # 1. Models
+use App\Models\Tenant\Admin\Setup;
+use App\Models\User;
+use App\Models\Tenant\DeptBudget;
 # 2. Enums
+use App\Enum\UserRoleEnum;
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
+use App\Jobs\Tenant\ImportAllRate;
 # 6. Mails
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
-//use App\Models\Setup;
-use App\Models\Tenant\Admin\Setup;
-use App\Models\User;
-use App\Models\Tenant\DeptBudget;
-
-# Enums
-use App\Enum\UserRoleEnum;
-# Helpers
-# Notifications
-# Mails
-#Jobs
-use App\Jobs\Tenant\ImportAllRate;
-# Packages
-# Seeded
+# 11. Controller
+# 12. Seeded
 use DB;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
-# Exceptions
-# Events
-use Illuminate\Support\Collection;
+use Carbon\Carbon;
+//use Illuminate\Support\Collection;
+# 13. TODO 
+
 
 class DashboardController extends Controller
 {

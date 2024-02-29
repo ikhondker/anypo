@@ -20,57 +20,43 @@
 namespace App\Http\Controllers\Tenant\Workflow;
 use App\Http\Controllers\Controller;
 
-
+use App\Models\Tenant\Workflow\Wfl;
 use App\Http\Requests\Tenant\Workflow\StoreWflRequest;
 use App\Http\Requests\Tenant\Workflow\UpdateWflRequest;
 
 # 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
 use App\Models\Tenant\Workflow\Wf;
-use App\Models\Tenant\Workflow\Wfl;
-
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
-
 use App\Models\User;
-# Enums
+# 2. Enums
 use App\Enum\AuthStatusEnum;
 use App\Enum\WfStatusEnum;
 use App\Enum\WflActionEnum;
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
-
-# Helpers
+# 3. Helpers
 use App\Helpers\PrBudget;
 use App\Helpers\PoBudget;
-use App\Helpers\EventLog;
 use App\Helpers\Workflow;
-# Notifications
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+# 4. Notifications
 use Notification;
 use App\Notifications\Tenant\PrActions;
 use App\Notifications\Tenant\PoActions;
-# Mails
-# Packages
-# Seeded
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-# Exceptions
-# Events
+# 13. TODO 
 
 class WflController extends Controller
 {

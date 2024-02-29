@@ -25,8 +25,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\Support\StoreTicketRequest;
 use App\Http\Requests\Tenant\Support\UpdateTicketRequest;
 
-use Illuminate\Support\Facades\Log;
-
 # 1. Models
 # 2. Enums
 # 3. Helpers
@@ -37,8 +35,11 @@ use Illuminate\Support\Facades\Log;
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
+# 11. Controller
+# 12. Seeded
+use DB;
+use Illuminate\Support\Facades\Log;
+# 13. TODO 
 
 
 class TicketController extends Controller

@@ -26,43 +26,30 @@ use App\Http\Requests\Tenant\StoreDeptBudgetRequest;
 use App\Http\Requests\Tenant\UpdateDeptBudgetRequest;
 
 # 1. Models
+use App\Models\Tenant\Budget;
+use App\Models\Tenant\Lookup\Dept;
+use App\Models\Tenant\Admin\Attachment;
 # 2. Enums
+use App\Enum\EntityEnum;
+use App\Enum\UserRoleEnum;
+use App\Helpers\FileUpload;
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
+use App\Jobs\Tenant\ConsolidateBudget;
 # 6. Mails
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
-use App\Models\Tenant\Budget;
-use App\Models\Tenant\Lookup\Dept;
-use App\Models\Tenant\Admin\Attachment;
-# Enums
-use App\Enum\EntityEnum;
-use App\Enum\UserRoleEnum;
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-use App\Helpers\FileUpload;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 11. Controller
+# 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
-
-use App\Jobs\Tenant\ConsolidateBudget;
-
-# Exceptions
-# Events
-# TODO
+# 13. TODO 
 #1. Create and save revision history
 
 

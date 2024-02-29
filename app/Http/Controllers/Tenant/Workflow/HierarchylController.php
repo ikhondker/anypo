@@ -35,8 +35,9 @@ use App\Http\Requests\Tenant\Workflow\UpdateHierarchylRequest;
 # 8. Packages
 # 9. Exceptions
 # 10. Events
-# 11. Seeded
-# 12. TODO 
+# 11. Controller
+# 12. Seeded
+# 13. TODO 
 
 
 class HierarchylController extends Controller

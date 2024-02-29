@@ -29,6 +29,8 @@ use Illuminate\Http\Request;
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -37,23 +39,9 @@ use Illuminate\Http\Request;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
-# 12. TODO 
-
-
-# Models
-# Enums
-# Helpers
-use App\Helpers\Export;
-use App\Helpers\EventLog;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-
-# Exceptions
-# Events
+# 12. TODO 
 
 class RateController extends Controller
 {

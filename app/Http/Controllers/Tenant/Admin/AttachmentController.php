@@ -27,21 +27,6 @@ use App\Http\Requests\Tenant\Admin\UpdateAttachmentRequest;
 
 
 # 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Seeded
-# 12. TODO 
-
-
-# Models
-
 use App\Models\Tenant\Manage\Entity;
 use App\Models\Tenant\Project;
 
@@ -50,26 +35,26 @@ use App\Models\Tenant\Po;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Invoice;
-
-# Enums
+# 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\AuthStatusEnum;
 use App\Enum\InvoiceStatusEnum;
-# Helpers
+# 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Seeded
 use DB;
 use Str;
 use File;
 use Illuminate\Support\Facades\Response;
-
-# Exceptions
-# Events
-# TODO
+# 12. TODO 
 # 1. Allow Edit attachment summary
 # 2. 
 
