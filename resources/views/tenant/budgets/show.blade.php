@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Budgets
+			FY {{ $budget->fy }} Budgets 
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Budget"/>
@@ -14,7 +14,13 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.dashboards.budget-stat :id="$budget->id"/>
+	<div class="row">
+		<x-tenant.charts.budget-po-pie :bid="$budget->id"/>
+		<x-tenant.charts.budget-by-dept-pie :bid="$budget->id"/>
+		<x-tenant.charts.budget-by-dept-po-bar :bid="$budget->id"/>
+	</div>
+
+	<x-tenant.dashboards.budget-stat :bid="$budget->id"/>
 
 	<div class="row">
 		<div class="col-6">

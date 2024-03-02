@@ -1,4 +1,4 @@
-<div class="col-12 col-xl-4 d-none d-xl-flex">
+<div class="col-12 col-lg-6 col-xl-4 d-flex">
 	<div class="card flex-fill w-100">
 		<div class="card-header">
 			<div class="card-actions float-end">
@@ -6,6 +6,7 @@
 					<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
 						<i class="align-middle" data-feather="more-horizontal"></i>
 					</a>
+
 					<div class="dropdown-menu dropdown-menu-end">
 						<a class="dropdown-item" href="#">Action</a>
 						<a class="dropdown-item" href="#">Another action</a>
@@ -13,13 +14,13 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">FY {{ $budget->fy }}- {{  $budget->name  }} : Budget By Department</h5>
+            <h5 class="card-title">FY {{ $budget->fy }}- {{  $budget->name  }} : Purchase Order</h5>
 		</div>
 		<div class="card-body d-flex">
 			<div class="align-self-center w-100">
 				<div class="py-3">
 					<div class="chart chart-xs">
-						<canvas id="chartjs-dept-budget-pie"></canvas>
+						<canvas id="chartjs-budget-po-pie"></canvas>
 					</div>
 				</div>
 			</div>
@@ -30,13 +31,13 @@
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 		// Pie chart
-		new Chart(document.getElementById("chartjs-dept-budget-pie"), {
+		new Chart(document.getElementById("chartjs-budget-po-pie"), {
 			type: "pie",
 			data: {
-				labels: {!! json_encode($depb_labels) !!},
+				labels: {!! json_encode($budget_labels) !!},
 				datasets: [{
-					data: {!! json_encode($depb_data) !!},
-					backgroundColor: {!! json_encode($depb_colors) !!},
+					data: {!! json_encode($budget_data) !!},
+					backgroundColor: {!! json_encode($budget_colors) !!},
 					// backgroundColor: [
 					// 	window.theme.primary,
 					// 	window.theme.warning,

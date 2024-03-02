@@ -6,9 +6,8 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-//use App\Enum\UserRoleEnum;
+
 use App\Models\Tenant\DeptBudget;
-//use DB;
 use Illuminate\Support\Facades\Log;
 
 class DeptBudgetPoPie extends Component
@@ -21,16 +20,18 @@ class DeptBudgetPoPie extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($dept_budget_id="0000")
+	public function __construct(
+		public string $dbid ='0000'
+	)
 	{
 
-		Log::debug('components.tenant.charts.DeptBudgetPoPie Value of dept_budget_id=' . $dept_budget_id);
+		Log::debug('components.tenant.charts.DeptBudgetPoPie Value of dept_budget_id=' . $dbid);
 	
-		if ($dept_budget_id == '0000'){
+		if ($dbid == '0000'){
 			// No dept budge id is specified. Show current user last dept budget
 			$this->deptBudget = DeptBudget::where('dept_id', auth()->user()->dept_id )->with('dept')->with('budget')->orderBy('id', 'DESC')->get()->firstOrFail();
 		} else {
-		 	$this->deptBudget	= DeptBudget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $dept_budget_id)->firstOrFail();
+		 	$this->deptBudget	= DeptBudget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $dbid)->firstOrFail();
 		}
 
 		Log::debug('components.tenant.charts.DeptBudgetPoPie Value of dept_id=' . $this->deptBudget->id);

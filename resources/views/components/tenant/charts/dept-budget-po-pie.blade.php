@@ -15,6 +15,7 @@
 				</div>
 			</div>
 			<h5 class="card-title">{{  $deptBudget->dept->name  }} Budget {{ $deptBudget->budget->fy }} : Purchase Order</h5>
+			{{-- <h5 class="card-title">Purchase Order {{ $deptBudget->id }}  {{ $dbid}}</h5> --}}
 		</div>
 		<div class="card-body d-flex">
 			<div class="align-self-center w-100">

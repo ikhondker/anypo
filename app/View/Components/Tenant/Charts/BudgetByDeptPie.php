@@ -6,33 +6,47 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+use App\Models\Tenant\Budget;
+use App\Models\Tenant\DeptBudget;
+use Illuminate\Support\Facades\Log;
 use DB;
 
 class BudgetByDeptPie extends Component
 {
 
-	public 	$depb_labels = [];
-	public $depb_data = [];
-	public $depb_colors = [];
+	public	$depb_labels = [];
+	public	$depb_data = [];
+	public	$depb_colors = [];
+
+	public 	$budget;
+	public 	$deptBudgets;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct()
+	public function __construct(public string $bid ='0000')
 	{
-		// ====================== Dept Allocated Budget Pie====================================
-		$records = DB::select("SELECT d.name, db.amount
-			FROM dept_budgets db, budgets b, depts d
-			WHERE db.budget_id=b.id
-			and b.fy = date('Y')
-			and db.dept_id=d.id");
-		
-		foreach($records as $row) {
-			$this->depb_labels[] = $row->name;
-			$this->depb_data[] = (int) $row->amount;
+		Log::debug('components.tenant.charts.BudgetByDeptPie Value of bid=' . $bid);
+
+		if ($bid == '0000'){
+			// No dept budge id is specified. Show current user last dept budget
+			$this->budget		= Budget::orderBy('id', 'DESC')->firstOrFail();
+			$this->deptBudgets 	= DeptBudget::where('budget_id',$this->budget->id)->with('dept')->with('budget')->orderBy('id', 'DESC')->get();
+		} else {
+			$this->budget		= Budget::where('id', $bid)->orderBy('id', 'DESC')->firstOrFail();
+		 	$this->deptBudgets	= DeptBudget::where('budget_id', $bid)->with('budget')->with('dept')->orderBy('id', 'DESC')->get();
 		}
-		// Generate random colours for the groups
-		for ($i = 0; $i <= count($records); $i++) {
+		
+		// Log::debug('dept count=' . $this->deptBudgets->count());
+
+		foreach ($this->deptBudgets as $deptBudget){
+			//Log::debug('Value of id=' . $deptBudget->dept->name);
+			$this->depb_labels[] = $deptBudget->dept->name;
+			$this->depb_data[] = (int) $deptBudget->amount;
+		}
+		
+		// Generate random colors for the groups
+		for ($i = 0; $i <=  $this->deptBudgets->count(); $i++) {
 			$this->depb_colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
 		}
 	}

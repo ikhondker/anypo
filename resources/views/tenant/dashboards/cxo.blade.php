@@ -19,17 +19,17 @@
 	<x-tenant.landlord-notice-all-tenants/>
 	<x-tenant.landlord-notice-one-tenant/>
 
+	<div class="row">
+		<x-tenant.charts.budget-po-pie/>
+		<x-tenant.charts.budget-by-dept-pie/>
+		<x-tenant.charts.budget-by-dept-po-bar/>
+	</div>
 	
 	<x-tenant.dashboards.budget-stat/>
 	
 	<x-tenant.dashboards.pr-counts/>
 	
-	<div class="row">
-		<x-tenant.charts.budget-pie/>
-		<x-tenant.charts.budget-by-dept-pie/>
-		<x-tenant.charts.budget-by-dept-bar/>
-	</div>
-
+	
 	<x-tenant.widgets.pr.lists/>
 	
 

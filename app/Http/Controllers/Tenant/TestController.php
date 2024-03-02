@@ -68,6 +68,8 @@ class TestController extends Controller
 	public function run()
 	{
 
+		return view('tenant.manage.test');
+		exit;
 
 		$landlordSetup = tenancy()->central(function ($tenant) {
 			return \App\Models\Landlord\Manage\Setup::where('id', 1)->first();
