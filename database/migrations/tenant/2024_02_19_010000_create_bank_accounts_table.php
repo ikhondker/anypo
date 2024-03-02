@@ -13,8 +13,9 @@ return new class extends Migration
 	{
 		Schema::create('bank_accounts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('ac_name');
-			$table->string('ac_number');
+			$table->string('ac_name')->unique();
+			$table->string('ac_number')->unique();
+			$table->string('routing_number')->nullable();
 			$table->string('bank_name')->nullable();
 			$table->string('branch_name')->nullable();
 			$table->dateTime('start_date', $precision = 0)->useCurrent();

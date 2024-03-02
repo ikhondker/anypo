@@ -1,20 +1,53 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			StatusController.php
+* @brief		This file contains the implementation of the StatusController
+* @path			\App\Http\Controllers\Tenant\Manage
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
+
 namespace App\Http\Controllers\Tenant\Manage;
 
 use App\Http\Controllers\Controller;
 
 use App\Models\Tenant\Manage\Status;
-use App\Models\Tenant\Lookup\Dept;
+
 use App\Http\Requests\Tenant\Manage\StoreStatusRequest;
 use App\Http\Requests\Tenant\Manage\UpdateStatusRequest;
 
-use Illuminate\Support\Facades\Log;
 
-// 2. Helpers
-use App\Helpers\EventLog;
+# 1. Models
+//use App\Models\Tenant\Lookup\Dept;
+# 2. Enums
+# 3. Helpers
 use App\Helpers\Export;
-
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
+# 13. TODO 
+
+
 
 class StatusController extends Controller
 {

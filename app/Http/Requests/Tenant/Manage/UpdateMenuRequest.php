@@ -23,6 +23,7 @@ class UpdateMenuRequest extends FormRequest
 	{
 		return [
 			'raw_route_name'	=> 'required|min:2|max:100|unique:menus,raw_route_name,'. $this->menu->id,
+			'route_name'		=> 'required|min:2|max:100|',
 		];
 	}
 }

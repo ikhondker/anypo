@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			DeptBudgetController.php
+* @brief		This file contains the implementation of the DeptBudgetController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
@@ -7,29 +25,31 @@ use App\Models\Tenant\DeptBudget;
 use App\Http\Requests\Tenant\StoreDeptBudgetRequest;
 use App\Http\Requests\Tenant\UpdateDeptBudgetRequest;
 
-# Models
+# 1. Models
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Admin\Attachment;
-# Enums
+# 2. Enums
 use App\Enum\EntityEnum;
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
+use App\Enum\UserRoleEnum;
 use App\Helpers\FileUpload;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+use App\Jobs\Tenant\ConsolidateBudget;
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
-
-use App\Jobs\Tenant\ConsolidateBudget;
-
-# Exceptions
-# Events
-# TODO
+# 13. TODO 
 #1. Create and save revision history
 
 
@@ -49,7 +69,23 @@ class DeptBudgetController extends Controller
 			});
 		}
 
-		$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::HOD->value:
+				$dept_budgets = $dept_budgets->ByDeptAll()->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
+				break;
+			case UserRoleEnum::BUYER->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
+				$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
+				break;
+			default:
+				//$dept_budgets = $dept_budgets->ByUserAll()->with('dept')->with('budget')->paginate(10);
+				Log::warning("tenant.DeptBudget.index Other roles!");
+				abort(403);
+		}
+
+		//$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.dept-budgets.index', compact('dept_budgets'));
 	}
 
@@ -192,13 +228,13 @@ class DeptBudgetController extends Controller
 		return redirect()->route('dept-budgets.show', $request->input('attach_dept_budget_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(DeptBudget $deptBudget)
+	public function attachments(DeptBudget $deptBudget)
 	{
-		$this->authorize('view', $pr);
+		$this->authorize('view', $deptBudget);
 
 		$deptBudget = DeptBudget::where('id', $deptBudget->id)->get()->firstOrFail();
-		$attachments = Attachment::with('owner')->where('entity', EntityEnum::DEPTBUDGET->value)->where('article_id', $deptBudget->id)->get()->all();
-		return view('tenant.dept-budgets.detach', compact('deptBudget', 'attachments'));
+		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::DEPTBUDGET->value)->where('article_id', $deptBudget->id)->get()->all();
+		return view('tenant.dept-budgets.attachments', compact('deptBudget'));
 	}
 
 	/**

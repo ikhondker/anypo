@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			CountryController.php
+* @brief		This file contains the implementation of the CountryController
+* @path			\App\Http\Controllers\Tenant\Lookup
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant\Lookup;
 
@@ -10,21 +28,22 @@ use App\Models\Tenant\Lookup\Country;
 use App\Http\Requests\Tenant\Lookup\StoreCountryRequest;
 use App\Http\Requests\Tenant\Lookup\UpdateCountryRequest;
 
-# Models
-# Enums
-# Helpers
+# 1. Models
+# 2. Enums
+# 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Seeded
 use Illuminate\Support\Facades\Log;
 use DB;
-
-# Exceptions
-# Events
-# TODO
+# 12. TODO 
 # 1. Disable all country by default, enable only USA and based on active user will be able to select country in Any Address
 
 class CountryController extends Controller

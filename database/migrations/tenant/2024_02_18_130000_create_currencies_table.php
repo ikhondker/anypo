@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('currencies', function (Blueprint $table) {
 			$table->string('currency',3);
-			$table->string('name');
+			$table->string('name');					// Don't put unique
 			$table->string('country')->nullable();
 			$table->string('symbol')->nullable();
 			$table->boolean('enable')->default(false); 

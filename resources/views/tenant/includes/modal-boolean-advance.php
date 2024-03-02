@@ -9,7 +9,8 @@
 	$('.modal-boolean-advance').on('click', function (e) {
 		e.preventDefault();
 		const url = $(this).attr('href');
-		var entity = $(this).data("entity").toLowerCase();
+		//var entity = $(this).data("entity").toLowerCase();
+		var entity = $(this).data("entity");
 		var name = $(this).data("name");
 		var status = $(this).data("status").toLowerCase();
 

@@ -11,7 +11,7 @@
 						Budget Usages
 					@endif
 				</h5>
-				<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>
+				<h6 class="card-subtitle text-muted">Budget Usages Detail.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table">

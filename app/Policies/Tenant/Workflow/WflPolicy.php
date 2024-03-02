@@ -34,8 +34,7 @@ class WflPolicy
 	 */
 	public function view(User $user, Wfl $wfl): bool
 	{
-		$user->isAdmin();
-
+		return false;
 	}
 
 	/**

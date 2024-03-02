@@ -32,19 +32,8 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<div class="card-actions float-end">
-						<div class="dropdown position-relative">
-							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-								<i class="align-middle" data-feather="more-horizontal"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="{{ route('pos.detach',$po->id) }}">Delete Attachment</a>
-							</div>
-						</div>
-					</div>
 					<h5 class="card-title">Approval Status</h5>
 					<h6 class="card-subtitle text-muted">Approval information of Purchase Order.</h6>
-
 				</div>
 				<div class="card-body">
 

@@ -44,7 +44,7 @@
 										<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top"title="Edit"><i class="align-middle" data-feather="edit"></i>
 										</a>
 										<a href="{{ route('prls.destroy',$prl->id) }}" class="text-muted modal-boolean-advance" 
-											data-entity="LINE" data-name="LINE #{{ $prl->line_num }}" data-status="Delete"
+											data-entity="LINE #" data-name="{{ $prl->line_num }}" data-status="Delete"
 											data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 											<i class="align-middle" data-feather="trash-2"></i>
 										</a>
@@ -67,7 +67,7 @@
 						<tr>
 							<td class="" colspan="2" scope="col"> 
 								@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-									<a href="{{ route('prls.createline', $pr->id) }}" class="text-warning d-inline-block"><i data-feather="plus-square"></i> Add Lines</a>
+									<a href="{{ route('prls.add-line', $pr->id) }}" class="text-warning d-inline-block"><i data-feather="plus-square"></i> Add Lines</a>
 								@endif
 							</td>
 							<td class="" colspan="3" scope="col">&nbsp;</td>

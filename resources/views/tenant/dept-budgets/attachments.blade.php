@@ -18,9 +18,7 @@
 	<x-tenant.info.dept-budget-info :id="$deptBudget->id"/>
 
 	
-
-	@include('tenant.includes.detach-by-article')
- 
+	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::DEPTBUDGET->value }}" aid="{{ $deptBudget->id }}"/>
 
 @endsection
 

@@ -29,6 +29,9 @@ enum EntityEnum: string{
 	case INVOICE	= 'INVOICE';
 	case PAYMENT	= 'PAYMENT';
 	case TEMPLATE	= 'TEMPLATE';
+	case TICKET		= 'TICKET';		// Support Ticket raise from Tenant
+	case CONTACT	= 'CONTACT';	// Home Controlled 
+	
 }
 
 

@@ -26,7 +26,6 @@ class ItemPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//return $user->isAdmin();
 		return true;
 
 	}
@@ -36,7 +35,6 @@ class ItemPolicy
 	 */
 	public function view(User $user, Item $item): bool
 	{
-		//return $user->isAdmin();
 		return true;
 	}
 
@@ -45,7 +43,7 @@ class ItemPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -53,25 +51,17 @@ class ItemPolicy
 	 */
 	public function update(User $user, Item $item): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function delete(User $user, Item $item): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
-
+	
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -86,5 +76,13 @@ class ItemPolicy
 	public function forceDelete(User $user, Item $item): bool
 	{
 		//
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return true;
 	}
 }

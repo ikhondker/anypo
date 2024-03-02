@@ -28,7 +28,7 @@ class WarehousePolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -36,7 +36,7 @@ class WarehousePolicy
 	 */
 	public function view(User $user, Warehouse $warehouse): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -44,7 +44,7 @@ class WarehousePolicy
 	 */
 	public function create(User $user): Response
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -52,7 +52,7 @@ class WarehousePolicy
 	 */
 	public function update(User $user, Warehouse $warehouse): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -60,20 +60,9 @@ class WarehousePolicy
 	 */
 	public function delete(User $user, Warehouse $warehouse): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
-	
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
-
-	
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -88,5 +77,12 @@ class WarehousePolicy
 	public function forceDelete(User $user, Warehouse $warehouse): bool
 	{
 		//
+	}
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 }

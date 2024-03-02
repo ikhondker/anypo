@@ -27,8 +27,7 @@ class UpdateItemRequest extends FormRequest
 			'category_id'	=> 'required|integer|exists:categories,id',
 			'uom_id'		=> 'required|integer|exists:uoms,id',
 			'oem_id'		=> 'required|integer|exists:oems,id',
-			
-			'price'			=> 'required|numeric|min:1.00|max:999999.99',
+			'price'			=> 'required|numeric|min:0.1|max:9999999.99',
 		];
 	}
 }

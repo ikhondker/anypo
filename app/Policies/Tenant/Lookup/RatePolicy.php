@@ -28,7 +28,7 @@ class RatePolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -36,7 +36,7 @@ class RatePolicy
 	 */
 	public function view(User $user, Rate $rate): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -65,14 +65,6 @@ class RatePolicy
 
 
 	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
-	/**
 	 * Determine whether the user can restore the model.
 	 */
 	public function restore(User $user, Rate $rate): bool
@@ -87,4 +79,13 @@ class RatePolicy
 	{
 		//
 	}
+	
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+	}
+
 }

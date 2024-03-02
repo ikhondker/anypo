@@ -10,7 +10,7 @@ use App\Models\Tenant\Invoice;
 
 class Invoices extends Component
 {
-    public $invoices;
+	public $invoices;
 	/**
 	 * Create a new component instance.
 	 */
@@ -19,11 +19,11 @@ class Invoices extends Component
 		$this->invoices 	= Invoice::with('supplier')->with('status_badge')->with('pay_status_badge')->where('po_id', $id)->get()->all();
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.po.invoices');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.po.invoices');
+	}
 }

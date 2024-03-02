@@ -15,10 +15,14 @@
 			{{-- <x-tenant.buttons.header.create object="User"/> --}}
 		@endslot
 	</x-tenant.page-header>
+	
+	<x-tenant.landlord-notice-all-tenants/>
+	<x-tenant.landlord-notice-one-tenant/>
+
 
 	<x-tenant.dashboards.po-counts/>
 
-	<x-tenant.widgets.pr-lists-po-pending/>
+	<x-tenant.widgets.pr.pr-lists-po-pending/>
 	
 	<div class="row">
 		<div class="col-12">

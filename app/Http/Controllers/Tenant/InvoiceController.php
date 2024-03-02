@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			InvoiceController.php
+* @brief		This file contains the implementation of the InvoiceController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
@@ -9,14 +27,13 @@ use App\Models\Tenant\Invoice;
 use App\Http\Requests\Tenant\StoreInvoiceRequest;
 use App\Http\Requests\Tenant\UpdateInvoiceRequest;
 
-
+# 1. Models
 use App\Models\Tenant\Po;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Payment;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 use App\Models\Tenant\Admin\Setup;
-
-# Enums
+# 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
@@ -24,28 +41,32 @@ use App\Enum\InvoiceStatusEnum;
 use App\Enum\ClosureStatusEnum;
 use App\Enum\PaymentStatusEnum;
 use App\Enum\AuthStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\EventLog;
 use App\Helpers\FileUpload;
 use App\Helpers\ExchangeRate;
-
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-use Illuminate\Support\Facades\Log;
-
-#Jobs
+# 4. Notifications
+# 5. Jobs
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
-
-use Validator;
+# 6. Mails
+# 7. Rules
 use App\Rules\Tenant\OverInvoiceRule;
-
-
-
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Validator;
 use Str;
+use Illuminate\Foundation\Http\FormRequest;
+# 13. TODO 
+
+
 
 class InvoiceController extends Controller
 {
@@ -75,8 +96,9 @@ class InvoiceController extends Controller
 				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByUserAll()->paginate(10);
+				//$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByUserAll()->paginate(10);
 				Log::warning("tenant.invoice.index Other roles!");
+				abort(403);
 		}
 		return view('tenant.invoices.index', compact('invoices'));
 	}
@@ -206,6 +228,31 @@ class InvoiceController extends Controller
 		return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoices  updated successfully.');
 	}
 
+	// add attachments
+	//public function attach(StoreInvoiceRequest $request)
+	public function attach(FormRequest $request)
+	{
+		$this->authorize('create', Invoice::class);
+		
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $request->input('attach_invoice_id') ]);
+			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
+			$attid = FileUpload::upload($request);
+			//$request->merge(['logo'	=> $fileName ]);
+		}
+		
+		return redirect()->route('invoices.show', $request->input('attach_invoice_id'))->with('success', 'File Uploaded successfully.');
+	}
+
+	public function attachments(Invoice $invoice)
+	{
+		$this->authorize('view', $invoice);
+
+		$invoice = Invoice::where('id', $invoice->id)->get()->firstOrFail();
+		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PR->value)->where('article_id', $invoice->id)->get();
+		//return view('tenant.invoices.attachments', compact('invoice', 'attachments'));
+		return view('tenant.invoices.attachments',compact('invoice'));
+	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -281,28 +328,7 @@ class InvoiceController extends Controller
 		//
 	}
 
-	public function export()
-	{
-		$this->authorize('export', Invoice::class);
-
-		$data = DB::select("
-		SELECT i.id, i.invoice_no, i.invoice_date, 
-			p.id po_id, 
-			s.name supplier_name, 
-			i.summary, u.name poc_name, 
-			i.currency, i.sub_total, i.tax, i.gst, i.amount, i.paid_amount, 
-			i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_paid_amount,
-			i.notes, i.status, i.payment_status
-		FROM invoices i, pos p, suppliers s, users u
-		WHERE i.po_id =p.id
-		AND i.supplier_id= s.id
-		AND i.poc_id = u.id
-
-		");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('invoices', $dataArray);
-	}
+	
 
 	/**
 	 * Remove the specified resource from storage.
@@ -419,6 +445,44 @@ class InvoiceController extends Controller
 		}
 
 		return true;
+	}
+
+	public function export()
+	{
+		// TODO filter by HOD
+		$this->authorize('export', Invoice::class);
+
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+
+		$data = DB::select("
+		SELECT i.id, i.invoice_no, i.invoice_date, 
+				i.po_id po_id, 
+				s.name supplier_name, 
+				i.summary, u.name poc_name, 
+				i.currency, i.sub_total, i.tax, i.gst, i.amount, i.paid_amount, 
+				i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_paid_amount,
+				i.notes, i.status, i.payment_status
+			FROM invoices i, pos po, suppliers s, users u
+			WHERE i.po_id =p.id
+			AND i.supplier_id= s.id
+			AND i.poc_id = u.id
+			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+			");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('depts', $dataArray);
 	}
 
 }

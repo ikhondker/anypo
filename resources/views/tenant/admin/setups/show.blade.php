@@ -105,7 +105,7 @@
 					<h6 class="card-subtitle text-muted">General Announcement configuration.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-boolean	value="{{ $setup->show_banner }}" label="Show Announcement?"/>
+					<x-tenant.show.my-boolean	value="{{ $setup->banner_show }}" label="Show Announcement?"/>
 					<x-tenant.show.my-text value="{{ $setup->banner_message }}" label="Announcement"/>
 					<x-tenant.show.my-text value="{{ $setup->cell }}" label="Cell"/>
 					<x-tenant.buttons.show.edit object="Setup" :id="$setup->id"/>

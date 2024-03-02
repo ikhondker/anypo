@@ -28,6 +28,20 @@ use App\Http\Requests\Landlord\Lookup\UpdateCategoryRequest;
 
 use App\Helpers\LandlordEventLog;
 
+# 1. Models
+# 2. Enums
+# 3. Helpers
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
+# 13. TODO 
+
 
 class CategoryController extends Controller
 {

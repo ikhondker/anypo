@@ -2,7 +2,7 @@
 
 /**
  * ==================================================================================
- * @version v1.0.1
+ * @version v1.0
  * ==================================================================================
  * @file		   HomeController.php
  * @brief		  This file contains the implementation of the HomeController class.
@@ -21,46 +21,33 @@
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
-// Models
+# 1. Models
 use App\Models\User;
 use App\Models\Tenant\Pr;
-// use App\Models\Landlord\Contact;
-// use App\Models\Landlord\Service;
-// use App\Models\Landlord\Account;
-// use App\Models\Landlord\Checkout;
-// use App\Models\Landlord\Invoice;
-// use App\Models\Landlord\AccountService;
-
-// Enums
-//use App\Enum\PackageEnum;
+# 2. Enums
 use App\Enum\WflActionEnum;
-
-
-// Helpers
+# 3. Helpers
 use App\Helpers\FileUpload;
+use App\Helpers\Export;
 use App\Helpers\EventLog;
-
-// Notification
+# 4. Notifications
 use Notification;
 use App\Notifications\Tenant\Test;
 use App\Notifications\PrActions;
-// use App\Notifications\Landlord\UserRegistered;
-// use App\Notifications\Landlord\InvoiceCreated;
-// use App\Notifications\Landlord\ServiceUpgraded;
-// use App\Notifications\Landlord\AddonPurchased;
-// use App\Notifications\Landlord\Contacted;
-
-// Mail
-use Mail;
-//use App\Mail\Landlord\DemoMail;
-
-// Seeded
-//use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
-//use Illuminate\Foundation\Http\FormRequest;
-use Str;
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
+use Mail;
+use Illuminate\Support\Facades\Auth;
+use Str;
+# 13. TODO 
 
 class HomeController extends Controller
 {

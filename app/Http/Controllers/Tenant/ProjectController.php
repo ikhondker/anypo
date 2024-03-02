@@ -1,33 +1,54 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			ProjectController.php
+* @brief		This file contains the implementation of the ProjectController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
-namespace App\Http\Controllers\Tenant\Lookup;
+namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
 
 
-use App\Models\Tenant\Lookup\Project;
-use App\Http\Requests\Tenant\Lookup\StoreProjectRequest;
-use App\Http\Requests\Tenant\Lookup\UpdateProjectRequest;
+use App\Models\Tenant\Project;
+use App\Http\Requests\Tenant\StoreProjectRequest;
+use App\Http\Requests\Tenant\UpdateProjectRequest;
 
-# Models
+# 1. Models
 use App\Models\User;
 use App\Models\Tenant\Admin\Attachment;
-# Enums
+# 2. Enums
 use App\Enum\EntityEnum;
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\EventLog;
 use App\Helpers\FileUpload;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
-
-# Exceptions
-# Events
-# TODO 
+# 13. TODO 
 # 1. Dashboard chart
 # 2. Project Actions
 # 3. code enable /visible
@@ -46,7 +67,7 @@ class ProjectController extends Controller
 			$projects->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$projects = $projects->with("pm")->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.projects.index', compact('projects'));
+		return view('tenant.projects.index', compact('projects'));
 	}
 
 	/**
@@ -57,7 +78,7 @@ class ProjectController extends Controller
 		$this->authorize('create', Project::class);
 		$pms = User::Tenant()->get();
 
-		return view('tenant.lookup.projects.create', compact('pms'));
+		return view('tenant.projects.create', compact('pms'));
 	}
 
 	/**
@@ -89,7 +110,7 @@ class ProjectController extends Controller
 	{
 		$this->authorize('view', $project);
 
-		return view('tenant.lookup.projects.show', compact('project'));
+		return view('tenant.projects.show', compact('project'));
 	}
 
 	/**
@@ -99,7 +120,7 @@ class ProjectController extends Controller
 	{
 		$this->authorize('view', $project);
 
-		return view('tenant.lookup.projects.budget', compact('project'));
+		return view('tenant.projects.budget', compact('project'));
 	}
 
 	/**
@@ -110,7 +131,7 @@ class ProjectController extends Controller
 		$this->authorize('update', $project);
 
 		$pms = User::Tenant()->get();
-		return view('tenant.lookup.projects.edit', compact('project', 'pms'));
+		return view('tenant.projects.edit', compact('project', 'pms'));
 	}
 
 	/**
@@ -172,7 +193,8 @@ class ProjectController extends Controller
 	// add attachments
 	public function attach(FormRequest $request)
 	{
-		$this->authorize('create', Budget::class);
+		$this->authorize('create', Project::class);
+
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_project_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PROJECT->value ]);
@@ -181,12 +203,13 @@ class ProjectController extends Controller
 		return redirect()->route('projects.show', $request->input('attach_project_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(Project $project)
+	public function attachments(Project $project)
 	{
-		$this->authorize('view', $pr);
+		$this->authorize('view', $project);
 
-		$project = Project::where('id', $project->id)->get()->firstOrFail();
-		$attachments = Attachment::with('owner')->where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->paginate(10);
-		return view('tenant.lookup.projects.detach', compact('project', 'attachments'));
+		//$project = Project::where('id', $project->id)->get()->firstOrFail();
+
+		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->paginate(10);
+		return view('tenant.projects.attachments', compact('project'));
 	}
 }

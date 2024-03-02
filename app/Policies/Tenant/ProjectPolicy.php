@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies\Tenant\Lookup;
+namespace App\Policies\Tenant;
 
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -28,7 +28,7 @@ class ProjectPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -36,7 +36,7 @@ class ProjectPolicy
 	 */
 	public function view(User $user, Project $project): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -44,7 +44,7 @@ class ProjectPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin());
 	}
 
 	/**
@@ -52,7 +52,7 @@ class ProjectPolicy
 	 */
 	public function update(User $user, Project $project): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin());
 	}
 
 	/**
@@ -62,15 +62,6 @@ class ProjectPolicy
 	{
 		return $user->isAdmin();
 	}
-
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -86,5 +77,14 @@ class ProjectPolicy
 	public function forceDelete(User $user, Project $project): bool
 	{
 		//
+
 	}
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return $user->isAdmin();
+	}
+
 }

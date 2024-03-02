@@ -1,32 +1,53 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			DashboardController.php
+* @brief		This file contains the implementation of the DashboardController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-
-# Models
-//use App\Models\Setup;
+# 1. Models
 use App\Models\Tenant\Admin\Setup;
 use App\Models\User;
 use App\Models\Tenant\DeptBudget;
-
-# Enums
+# 2. Enums
 use App\Enum\UserRoleEnum;
-# Helpers
-# Notifications
-# Mails
-#Jobs
+# 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
 use App\Jobs\Tenant\ImportAllRate;
-# Packages
-# Seeded
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
-# Exceptions
-# Events
-use Illuminate\Support\Collection;
+use Carbon\Carbon;
+//use Illuminate\Support\Collection;
+# 13. TODO 
+
 
 class DashboardController extends Controller
 {

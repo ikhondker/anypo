@@ -3,18 +3,6 @@
 	<div class="col-12 col-xl-12">
 		<div class="card">
 			<div class="card-header">
-				<div class="card-actions float-end">
-					<div class="dropdown position-relative">
-						<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
-						</a>
-						<div class="dropdown-menu dropdown-menu-end">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>
-					</div>
-				</div>
 				<h5 class="card-title">Purchase Order Lines</h5>
 				<h6 class="card-subtitle text-muted">List of Purchase Order Lines.</h6>
 			</div>
@@ -63,7 +51,7 @@
 											<i class="align-middle" data-feather="edit"></i></a>
 									
 										<a href="{{ route('pols.destroy',$pol->id) }}" class="text-muted modal-boolean-advance" 
-											data-entity="LINE" data-name="LINE #{{ $pol->line_num }}" data-status="Delete"
+											data-entity="Line #" data-name="{{ $pol->line_num }}" data-status="Delete"
 											data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 											<i class="align-middle" data-feather="trash-2"></i>
 										</a>
@@ -89,7 +77,7 @@
 						<tr>
 							<td class="" colspan="2" scope="col"> 
 								@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-									<a href="{{ route('pols.createline', $po->id) }}" class="text-warning d-inline-block"><i data-feather="plus-square"></i> Add Lines</a>
+									<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-feather="plus-square"></i> Add Lines</a>
 								@endif
 							</td>
 							<td class="" colspan="4" scope="col">&nbsp;</td>

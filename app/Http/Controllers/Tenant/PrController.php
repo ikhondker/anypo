@@ -1,17 +1,34 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			PrController.php
+* @brief		This file contains the implementation of the PrController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
 use App\Models\Tenant\Pr;
-use App\Models\Tenant\Po;
 use App\Http\Requests\Tenant\StorePrRequest;
 use App\Http\Requests\Tenant\UpdatePrRequest;
 
 
-use App\Http\Controllers\Tenant\DeptBudgetControllers;
 
-# Models
+# 1. Models
+use App\Models\Tenant\Po;
 use App\Models\User;
 
 use App\Models\Tenant\Prl;
@@ -25,43 +42,43 @@ use App\Models\Tenant\Manage\Status;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
 
 use App\Models\Tenant\Workflow\Wfl;
-
-# Enums
+# 2. Enums
 use App\Enum\UserRoleEnum;
 use App\Enum\EntityEnum;
 use App\Enum\WflActionEnum;
 use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
-
-//use App\Enum\ActionEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\EventLog;
 use App\Helpers\Workflow;
 use App\Helpers\FileUpload;
 use App\Helpers\PrBudget;
 use App\Helpers\ExchangeRate;
-# Notifications
+# 4. Notifications
 use Notification;
-//use App\Notifications\PrCreated;
 use App\Notifications\Tenant\PrActions;
-# Mails
-# Packages
-# Seeded
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+use App\Http\Controllers\Tenant\DeptBudgetControllers;
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
 use Str;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-# Exceptions
-# Events
+use Illuminate\Foundation\Http\FormRequest;
+# 13. TODO 
 
 
 class PrController extends Controller
@@ -71,6 +88,7 @@ class PrController extends Controller
 	 */
 	public function index()
 	{
+
 		$prs = Pr::query();
 		if (request('term')) {
 			$prs->where('summary', 'LIKE', '%' . request('term') . '%');
@@ -80,11 +98,15 @@ class PrController extends Controller
 				$prs = $prs->ByUserAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$prs = $prs->ByDeptAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->ByDeptApproved()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
+				$prs = $prs->AllApproved()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
+				$prs = $prs->AllApproved()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				break;
 			case UserRoleEnum::SYSTEM->value:
 				//->with('status_badge')
 				//->with('auth_status_badge')
@@ -94,7 +116,7 @@ class PrController extends Controller
 				break;
 			default:
 				$prs = $prs->ByUserAll()->paginate(10);
-				Log::warning("tenant.or.index Other roles!");
+				Log::warning("tenant.pr.index Other roles!");
 		}
 
 		return view('tenant.prs.index', compact('prs'));
@@ -187,7 +209,7 @@ class PrController extends Controller
 	}
 
 	// add attachments
-	public function attach(StorePrRequest $request)
+	public function attach(FormRequest $request)
 	{
 		$this->authorize('create', Pr::class);
 		// TODO check if approved 
@@ -202,17 +224,13 @@ class PrController extends Controller
 		return redirect()->route('prs.show', $request->input('attach_pr_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(Pr $pr)
+	public function attachments(Pr $pr)
 	{
 		$this->authorize('view', $pr);
 
-		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only delete attachment if the Requisition status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
-		}
-
 		$pr = Pr::where('id', $pr->id)->get()->firstOrFail();
-		$attachments = Attachment::with('owner')->where('entity', EntityEnum::PR->value)->where('article_id', $pr->id)->get();
-		return view('tenant.prs.detach', compact('pr', 'attachments'));
+		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PR->value)->where('article_id', $pr->id)->get();
+		return view('tenant.prs.attachments', compact('pr'));
 	}
 
 	public function history(Pr $pr)
@@ -263,11 +281,12 @@ class PrController extends Controller
 	 */
 	public function edit(Pr $pr)
 	{
-		$this->authorize('update', $pr);
-
+		
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can not edit a Requisition with status '. strtoupper($pr->auth_status) .' !');
 		}
+
+		$this->authorize('update', $pr);
 
 		$depts = Dept::primary()->get();
 		
@@ -319,13 +338,14 @@ class PrController extends Controller
 	 */
 	public function destroy(Pr $pr)
 	{
-		$this->authorize('delete', $pr);
 
 		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status );
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
 		}
+
+		$this->authorize('delete', $pr);
 
 		// Write to Log
 		EventLog::event('Pr', $pr->id, 'delete', 'id', $pr->id);
@@ -426,25 +446,7 @@ class PrController extends Controller
 		}
 	}
 
-	public function export()
-	{
-		$this->authorize('export', Pr::class);
-		$data = DB::select("
-		SELECT pr.id, pr.summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
-		pr.notes, pr.currency, pr.sub_total, pr.tax, pr.gst, pr.amount, pr.status, pr.auth_status, pr.auth_date 
-		FROM prs pr,depts d, projects p, suppliers s, users u 
-		WHERE pr.dept_id=d.id 
-		AND pr.project_id=p.id 
-		AND pr.supplier_id=s.id 
-		AND pr.requestor_id=u.id
-		ORDER BY pr.id DESC
-		");
-
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('prs', $dataArray);
-	}
-
+	
 	public function submit(Pr $pr)
 	{
 		
@@ -644,6 +646,7 @@ class PrController extends Controller
 		$po->save();
 		$po_id				= $po->id;
 		
+
 		// copy prls into pols
 		$sql= "
 		INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes,
@@ -660,9 +663,45 @@ class PrController extends Controller
 		$pr->po_id		= $po_id;
 		$pr->save();
 
-		EventLog::event('pr-convert', $pr->id, 'converted');	// Write to Log
+		EventLog::event('po', $po->id, 'converted','id',$pr->id);	// Write to Log
 
 		return redirect()->route('pos.show', $po_id)->with('success', 'Purchase Order #'.$po_id.' created.');
 	}
 
+	public function export()
+	{
+
+		$this->authorize('export', Pr::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+
+		$data = DB::select("
+		SELECT pr.id, pr.summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		pr.notes, pr.currency, pr.sub_total, pr.tax, pr.gst, pr.amount, pr.status, pr.auth_status, pr.auth_date 
+		FROM prs pr,depts d, projects p, suppliers s, users u 
+		WHERE pr.dept_id=d.id 
+		AND pr.project_id=p.id 
+		AND pr.supplier_id=s.id 
+		AND pr.requestor_id=u.id
+		AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		ORDER BY pr.id DESC
+		");
+
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('prs', $dataArray);
+	}
+
+	
 }

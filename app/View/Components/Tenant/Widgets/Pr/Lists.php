@@ -8,8 +8,8 @@ use Illuminate\View\Component;
 
 use App\Models\Tenant\Pr;
 use App\Enum\UserRoleEnum;
-
-
+ use Illuminate\Support\Facades\Log;
+ 
 class Lists extends Component
 {
 	public $prs;
@@ -23,20 +23,20 @@ class Lists extends Component
 		//
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
-				$this->prs = Pr::ByUserAll()->orderBy('id', 'DESC')->limit(5)->get();
+				$this->prs = Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
 				break;
 			case UserRoleEnum::HOD->value:
-				$this->prs =  Pr::ByDeptAll()->orderBy('id', 'DESC')->limit(5)->get();
+				$this->prs =  Pr::ByDeptAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
 				break;
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$this->prs =  Pr::orderBy('id', 'DESC')->orderBy('id', 'DESC')->limit(5)->get();
+				$this->prs =  Pr::with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
 				break;
 			default:
-				$this->prs =  Pr::ByUserAll()->orderBy('id', 'DESC')->limit(5)->get();
-				Log::debug("Other roles!");
+				$this->prs =  Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
+				Log::error("widget.pr.lists Other roles!");
 		}
 
 	}

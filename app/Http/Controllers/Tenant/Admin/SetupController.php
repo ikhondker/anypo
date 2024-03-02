@@ -1,7 +1,7 @@
 <?php
 /**
  * ==================================================================================
- * @version v1.0.0
+ * @version v1.0
  * ==================================================================================
  * @file        SetupController.php
  * @brief       This file contains the implementation of the SetupController class.
@@ -26,34 +26,35 @@ use App\Models\Tenant\Admin\Setup;
 use App\Http\Requests\Tenant\Admin\StoreSetupRequest;
 use App\Http\Requests\Tenant\Admin\UpdateSetupRequest;
 
-# Models
+# 1. Models
 use App\Models\User;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Country;
 use App\Models\Tenant\Lookup\Currency;
-# Enums
-# Helpers
+# 2. Enums
 use App\Helpers\EventLog;
 use App\Helpers\FileUpload;
-use App\Helpers\Export;
-
-# Notifications
-# Mails
-# Packages
+//use App\Helpers\Export;
+# 3. Helpers
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
 use Image;
-# Seeded
+# 9. Exceptions
+# 10. Events
+# 11. Seeded
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
-
-
-# Exceptions
-# Events
-
 use Str;
+# 12. TODO 
+
+
 
 class SetupController extends Controller
 {

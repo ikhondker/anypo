@@ -21,13 +21,12 @@ class BudgetPolicy
 		return null;
 	}
 
-
 	/**
 	 * Determine whether the user can view any models.
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isCxO();
+		return ( $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -35,7 +34,7 @@ class BudgetPolicy
 	 */
 	public function view(User $user, Budget $budget): bool
 	{
-		return $user->isCxO();
+		return ( $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -51,7 +50,7 @@ class BudgetPolicy
 	 */
 	public function update(User $user, Budget $budget): bool
 	{
-		return ( $user->isManagement() && !$budget->freeze );
+		return (( $user->isCxO() || $user->isAdmin() || $user->isSupport() ) && !$budget->freeze );
 	}
 
 	/**
@@ -59,14 +58,9 @@ class BudgetPolicy
 	 */
 	public function delete(User $user, Budget $budget): bool
 	{
-		return $user->isManagement();
+		return ( $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
-	public function export(User $user): bool
-	{
-		return $user->isManagement();
-	}
-	
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -81,5 +75,10 @@ class BudgetPolicy
 	public function forceDelete(User $user, Budget $budget): bool
 	{
 		//
+	}
+
+	public function export(User $user): bool
+	{
+		return ( $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 }

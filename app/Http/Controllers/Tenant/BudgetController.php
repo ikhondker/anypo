@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			BudgetController.php
+* @brief		This file contains the implementation of the BudgetController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
@@ -7,26 +25,31 @@ use App\Models\Tenant\Budget;
 use App\Http\Requests\Tenant\StoreBudgetRequest;
 use App\Http\Requests\Tenant\UpdateBudgetRequest;
 
-# Models
+
+# 1. Models
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Admin\Attachment;
-# Enums
-use App\Enum\EntityEnum;
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-use App\Helpers\FileUpload;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use Carbon\Carbon;
-use DB;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Log;
 
-# Exceptions
-# Events
+# 2. Enums
+use App\Enum\EntityEnum;
+# 3. Helpers
+use App\Helpers\FileUpload;
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
+use DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Http\FormRequest;
+use Carbon\Carbon;
+# 13. TODO 
 
 class BudgetController extends Controller
 {
@@ -185,13 +208,13 @@ class BudgetController extends Controller
 		return redirect()->route('budgets.show', $request->input('attach_budget_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(Budget $budget)
+	public function attachments(Budget $budget)
 	{
-		//$this->authorize('view', $pr);
+		$this->authorize('view', $budget);
 
 		$budget = Budget::where('id', $budget->id)->get()->firstOrFail();
-		$attachments = Attachment::where('entity', EntityEnum::BUDGET->value)->where('article_id', $budget->id)->get()->all();
-		return view('tenant.budgets.detach', compact('budget', 'attachments'));
+		//$attachments = Attachment::where('entity', EntityEnum::BUDGET->value)->where('article_id', $budget->id)->get()->all();
+		return view('tenant.budgets.attachments', compact('budget'));
 	}
 
 }

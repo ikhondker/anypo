@@ -10,7 +10,7 @@ use App\Models\Tenant\Pol;
 
 class PolInfo extends Component
 {
-    public $id;
+	public $id;
 	public $pol;
 
 	/**
@@ -21,11 +21,11 @@ class PolInfo extends Component
 
 		 $this->pol = Pol::with('po')->where('id', $id)->get()->first();
 	}
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.info.pol-info');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.info.pol-info');
+	}
 }

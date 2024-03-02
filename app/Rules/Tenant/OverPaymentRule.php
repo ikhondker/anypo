@@ -11,23 +11,23 @@ use App\Models\Tenant\Invoice;
 
 class OverPaymentRule implements ValidationRule
 {
-    private $invoice;
+	private $invoice;
 
 	public function __construct($invoice_id)
 	{
 	   $this->invoice = Invoice::where('id', $invoice_id)->first();
 	}
 
-    /**
-     * Run the validation rule.
-     *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
-     */
-    public function validate(string $attribute, mixed $value, Closure $fail): void
-    {
-        $un_paid_amount = $this->invoice->amount - $this->invoice->paid_amount;
+	/**
+	 * Run the validation rule.
+	 *
+	 * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+	 */
+	public function validate(string $attribute, mixed $value, Closure $fail): void
+	{
+		$un_paid_amount = $this->invoice->amount - $this->invoice->paid_amount;
 		if ( $value > $un_paid_amount ){
 			$fail('You can not Pay higher than the remaining un-paid amount i.e. '. number_format($un_paid_amount,2).' '. $this->invoice->currency);
 		} 
-    }
+	}
 }

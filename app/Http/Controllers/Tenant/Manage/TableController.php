@@ -61,26 +61,29 @@
  * @since      File available since Release: 0.1
  */
 
-
  namespace App\Http\Controllers\Tenant\Manage;
 
- use App\Http\Controllers\Controller;
-
-// Models
-//use App\Models\Table;
-// Enums
-// Helpers
-use App\Helpers\Docs;
-// Seeded
-
+use App\Http\Controllers\Controller;
 use App\Models\Tenant\Manage\Table;
 
-//use File;
-//use DB;
-//use Str;
-//use Carbon\Carbon;
+# 1. Models
+# 2. Enums
+# 3. Helpers
+use App\Helpers\Docs;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
+use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+# 13. TODO 
+
 
 class TableController extends Controller
 {

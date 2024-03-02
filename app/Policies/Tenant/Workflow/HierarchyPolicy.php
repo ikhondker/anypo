@@ -26,7 +26,7 @@ class HierarchyPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -34,7 +34,7 @@ class HierarchyPolicy
 	 */
 	public function view(User $user, Hierarchy $hierarchy): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -42,7 +42,7 @@ class HierarchyPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -50,7 +50,7 @@ class HierarchyPolicy
 	 */
 	public function update(User $user, Hierarchy $hierarchy): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -58,7 +58,7 @@ class HierarchyPolicy
 	 */
 	public function delete(User $user, Hierarchy $hierarchy): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -82,6 +82,6 @@ class HierarchyPolicy
 	 */
 	public function export(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 }

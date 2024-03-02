@@ -1,48 +1,67 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			PaymentController.php
+* @brief		This file contains the implementation of the PaymentController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
-
 use App\Models\Tenant\Payment;
-use App\Models\Tenant\Po;
-use App\Models\Tenant\Invoice;
-use App\Models\Tenant\DeptBudget;
-
-use App\Models\Tenant\Lookup\Project;
-use App\Models\Tenant\Lookup\BankAccount;
-
-use App\Models\Tenant\Admin\Setup;
-
 use App\Http\Requests\Tenant\StorePaymentRequest;
 use App\Http\Requests\Tenant\UpdatePaymentRequest;
 
-# Enums
+
+# 1. Models
+use App\Models\Tenant\Po;
+use App\Models\Tenant\Invoice;
+use App\Models\Tenant\DeptBudget;
+use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\BankAccount;
+use App\Models\Tenant\Admin\Setup;
+# 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\PaymentStatusEnum;
 use App\Enum\InvoiceStatusEnum;
 use App\Enum\ClosureStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
+# 3. Helpers
 use App\Helpers\FileUpload;
 use App\Helpers\ExchangeRate;
-
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-use Illuminate\Support\Facades\Log;
-
-#Jobs
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
-
-
+# 6. Mails
+# 7. Rules
 use App\Rules\Tenant\OverPaymentRule;
-
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+# 13. TODO 
+
 
 class PaymentController extends Controller
 {
@@ -72,8 +91,9 @@ class PaymentController extends Controller
 				$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByUserAll()->paginate(10);
+				//$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByUserAll()->paginate(10);
 				Log::warning("tenant.payment.index Other roles!");
+				abort(403);
 		}
 		return view('tenant.payments.index', compact('payments'));
 	}
@@ -206,23 +226,7 @@ class PaymentController extends Controller
 		//
 	}
 
-	public function export()
-	{
-		$this->authorize('export', Payment::class);
-
-		$data = DB::select("
-		SELECT p.id, p.invoice_id, p.pay_date, u.name payee_name, i.po_id,
-			b.ac_name , p.cheque_no, p.currency, p.amount, p.notes, p.status
-		FROM payments p, invoices i, users u, bank_accounts b
-		WHERE p.invoice_id = i.id 
-		AND p.bank_account_id=b.id 
-		AND p.payee_id = u.id
-
-		");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('payments', $dataArray);
-	}
+	
 
 	/**
 	 * Remove the specified resource from storage.
@@ -316,6 +320,42 @@ class PaymentController extends Controller
 				WHERE id = ".$payment->id."");
 		}
 		return true;
+	}
+
+	public function export()
+	{
+
+		// TODO filter by HOD
+
+		$this->authorize('export', Payment::class);
+
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+		
+		$data = DB::select("
+		SELECT p.id, p.invoice_id, p.pay_date, u.name payee_name, i.po_id,
+			b.ac_name , p.cheque_no, p.currency, p.amount, p.notes, p.status
+		FROM payments p, invoices i, pos po, users u, bank_accounts b
+		WHERE p.invoice_id = i.id 
+		AND p.bank_account_id=b.id 
+		AND p.payee_id = u.id
+		AND i.po_id=po.id
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('payments', $dataArray);
 	}
 
 }

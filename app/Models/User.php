@@ -145,6 +145,16 @@ class User extends Authenticatable implements MustVerifyEmail
 	*/
 
 	// usages auth()->user()->isAdmin()
+	public function isUser()
+	{
+		if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::USER->value)) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
+
+
 	public function isAdmin()
 	{
 		if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::ADMIN->value)) {

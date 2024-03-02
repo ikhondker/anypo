@@ -10,7 +10,7 @@ use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Dept;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
@@ -38,6 +38,17 @@ class Dbu extends Model
 		'event'			=> EventEnum::class,
 	];
 
+
+	/* ----------------- Scopes ------------------------- */
+
+	/**
+	 * Scope a query to only All PR for current user dept.
+	*/
+	public function scopeByDeptAll(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id ); 
+	}
+	
 	/* ---------------- belongsTo ---------------------- */
 	public function deptBudget(){
 		return $this->belongsTo(DeptBudget::class,'dept_budget_id')->withDefault([

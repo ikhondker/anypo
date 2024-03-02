@@ -22,11 +22,10 @@ namespace App\Enum;
 // user->isAdmin() cover admin and back office for both Landlord and Tenant
 
 enum UserRoleEnum: string{
-	case GUEST		= 'guest';		// was used in EventLog. TODO
+	case GUEST		= 'guest';		// was used in EventLog.
 	case USER		= 'user';		// Landlord + Tenant
  	case BUYER		= 'buyer';
-	// TODO Deletes
-	case MANAGER	= 'manager';	// for Future in Tenant when unit within Dept is enabled
+	//case MANAGER	= 'manager';	// for Future in Tenant when unit within Dept is enabled
 	case HOD		= 'hod';
 	case CXO		= 'cxo';
 	case ADMIN		= 'admin';		// Landlord + Tenant, customer admin, 

@@ -48,7 +48,7 @@
 							<span class="h6 text-secondary">Attachments:</span>
 						</div>
 						<div class="col-sm-9">
-							<x-tenant.attachment.all entity="PR" aid="{{ $payment->id }}"/>
+							<x-tenant.attachment.all entity="PAYMENT" aid="{{ $payment->id }}"/>
 						</div>
 					</div>
 				</div>

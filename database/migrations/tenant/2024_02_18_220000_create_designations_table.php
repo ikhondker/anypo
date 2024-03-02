@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('designations', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('name');
+			$table->string('name')->unique();
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();

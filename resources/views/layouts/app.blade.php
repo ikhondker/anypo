@@ -97,27 +97,7 @@
 				case ACCOUNTS	= 'accounts';	// Landlord
 				case SYSTEM		= 'system';		// Landlord + Tenant, ack-office --}}
 
-
-				@if ( auth()->user()->role->value == UserRoleEnum::GUEST->value )
-					@include('tenant.includes.sidebar.user')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::USER->value ))
-					@include('tenant.includes.sidebar.user')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::BUYER->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::HOD->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::CXO->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::ADMIN->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::SUPPORT->value ))
-					@include('tenant.includes.sidebar.system')
-				@elseif (( auth()->user()->role->value == UserRoleEnum::SYSTEM->value ))
-					@include('tenant.includes.sidebar.system')
-				@else
-					@include('tenant.includes.sidebar.user')
-				@endif
-
+				@include('tenant.includes.sidebar')
 
 				{{-- <div class="sidebar-cta">
 					<div class="sidebar-cta-content">
@@ -295,8 +275,9 @@
 				<div class="container-fluid p-0">
 
 					<div class="row justify-start">
-						<div class="col-lg-6">
-							<!-- Show Notice -->
+						<div class="col-12">
+
+							<!-- Show Tenant Notice -->
 							@if ($_setup->show_banner && ($_setup->banner_message <> '') )
 
 								<div class="alert alert-danger alert-outline alert-dismissible" role="alert">

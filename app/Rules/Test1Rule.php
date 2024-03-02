@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Log;
 
 class Test1Rule implements ValidationRule
 {
-    /**
-     * Run the validation rule.
-     *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
-     */
-    public function validate(string $attribute, mixed $value, Closure $fail): void
-    {
-        Log::debug(print_r($attribute, true));
-        Log::debug(print_r($value,true));
-        //return false;
-        $fail('The :attribute must be uuu uppercase.');
+	/**
+	 * Run the validation rule.
+	 *
+	 * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+	 */
+	public function validate(string $attribute, mixed $value, Closure $fail): void
+	{
+		Log::debug(print_r($attribute, true));
+		Log::debug(print_r($value,true));
+		//return false;
+		$fail('The :attribute must be uuu uppercase.');
 
-     // Log::debug('Value of id=' . $id->id);   //
-    }
+	 // Log::debug('Value of id=' . $id->id);   //
+	}
 }

@@ -20,7 +20,7 @@ return new class extends Migration
 			//$table->string('entity')->default(EntityEnum::PR->value);
 			/** end ENUM */
 			//$table->id()->startingValue(1001);
-			$table->string('name');
+			$table->string('name')->unique();
 			//$table->string('message')->nullable();
 			$table->string('badge')->nullable();
 			$table->string('icon')->nullable();

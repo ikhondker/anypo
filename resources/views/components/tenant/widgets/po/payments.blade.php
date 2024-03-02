@@ -26,6 +26,7 @@
 						<th class="">Bank Ac</th>
 						<th class="text-end">Ref/Cheque No</th>
 						<th class="text-end">Amount</th>
+						
 						<th class="text-end">Currency</th>
 						<th class="">Actions</th>
 					</tr>

@@ -28,7 +28,7 @@ class AttachmentPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -36,7 +36,7 @@ class AttachmentPolicy
 	 */
 	public function view(User $user, Attachment $attachment): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -60,13 +60,9 @@ class AttachmentPolicy
 	 */
 	public function delete(User $user, Attachment $attachment): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -91,5 +87,11 @@ class AttachmentPolicy
 	{
 		return true;
 	}
+
+	public function export(User $user): bool
+	{
+		return ($user->isAdmin() || $user->isSupport());
+	}
+
 
 }

@@ -1,5 +1,24 @@
 <?php
 
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			ReportController.php
+* @brief		This file contains the implementation of the ReportController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
+
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
@@ -8,9 +27,7 @@ use App\Models\Tenant\Report;
 use App\Http\Requests\Tenant\StoreReportRequest;
 use App\Http\Requests\Tenant\UpdateReportRequest;
 
-
-# Models
-
+# 1. Models
 use App\Models\User;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
@@ -20,32 +37,33 @@ use App\Models\Tenant\Pol;
 
 
 use App\Models\Tenant\Lookup\Dept;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 use App\Models\Tenant\Lookup\Warehouse;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\BankAccount;
 
 use App\Models\Tenant\Admin\Setup;
-# Enums
+# 2. Enums
 use App\Enum\UserRoleEnum;
 use App\Enum\AuthStatusEnum;
 use App\Enum\InvoiceStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use DB;
-# Exceptions
-# Events
-# Package
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
 use PDF;
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
+use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# TODO
+# 13. TODO 
 # 1 . Add entity column in reports.index
 
 class ReportController extends Controller
@@ -55,6 +73,8 @@ class ReportController extends Controller
 	 */
 	public function index()
 	{
+
+		$this->authorize('viewAny',Report::class);
 
 		$reports = Report::query(); 
 		if (request('term')) {
@@ -191,7 +211,8 @@ class ReportController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Report::class);
-		$data = DB::select("SELECT id, name, title, access, article_id, start_date, end_date, user_id, item_id, supplier_id, project_id, category_id, dept_id, warehouse_id, order_by, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at, 
+		$data = DB::select("SELECT id, name, title, access, article_id, start_date, end_date, 
+		user_id, item_id, supplier_id, project_id, category_id, dept_id, warehouse_id, order_by, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at, 
 		FROM reports");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
@@ -217,7 +238,7 @@ class ReportController extends Controller
 		$report 	= Report::where('id', '1004')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		//$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
 			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
 			$param2 	= 'Dept: '. $dept->name;

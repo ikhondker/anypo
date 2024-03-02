@@ -49,7 +49,7 @@ class Receipt extends Model
 	{
 		$query->with('pol')->whereHas('pol.po', function ($q) use ($id) {
 			$q->where('buyer_id', $id);
-        });
+		});
 	}
 
 	/**
@@ -59,7 +59,7 @@ class Receipt extends Model
 	{
 		$query->with('pol')->whereHas('pol.po', function ($q) use ($id) {
 			$q->where('dept_id', $id);
-        });
+		});
 
 	}
 	

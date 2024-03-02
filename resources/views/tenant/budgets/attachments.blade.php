@@ -38,8 +38,8 @@
 	</div>
 	<!-- end row -->
 
-	@include('tenant.includes.detach-by-article')
- 
+	
+	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::BUDGET->value }}" aid="{{ $budget->id }}"/>
 
 @endsection
 

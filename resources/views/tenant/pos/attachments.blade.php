@@ -19,7 +19,6 @@
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PO->value }}" aid="{{ $po->id }}"/>
 		
 	@include('tenant.includes.modal-boolean-advance')
-
- 
+	
 @endsection
 

@@ -30,6 +30,21 @@ use App\Http\Requests\Landlord\Manage\UpdateTemplateRequest;
 // Version 1.2 2-feb-23 Project: bo04
 //
 
+# 1. Models
+# 2. Enums
+# 3. Helpers
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
+# 13. TODO 
+
+
 # Models
 use App\Models\User;
 use App\Models\Landlord\Manage\Country;

@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			PoController.php
+* @brief		This file contains the implementation of the PoController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
@@ -8,11 +26,9 @@ use App\Models\Tenant\Po;
 use App\Http\Requests\Tenant\StorePoRequest;
 use App\Http\Requests\Tenant\UpdatePoRequest;
 
-use App\Http\Controllers\Tenant\DeptBudgetControllers;
 
-# Models
+# 1. Models
 use App\Models\User;
-
 use App\Models\Tenant\Pol;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
@@ -22,44 +38,43 @@ use App\Models\Tenant\Admin\Attachment;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
 
 use App\Models\Tenant\Workflow\Wfl;
-
-# Enums
+# 2. Enums
 use App\Enum\UserRoleEnum;
 use App\Enum\EntityEnum;
 use App\Enum\WflActionEnum;
 use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
-
-//use App\Enum\ActionEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\EventLog;
 use App\Helpers\Workflow;
 use App\Helpers\FileUpload;
 use App\Helpers\PoBudget;
 use App\Helpers\ExchangeRate;
-# Notifications
+# 4. Notifications
 use Notification;
-//use App\Notifications\PrCreated;
 use App\Notifications\Tenant\PoActions;
-# Mails
-# Packages
-# Seeded
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+use App\Http\Controllers\Tenant\DeptBudgetControllers;
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
 use Str;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-# Exceptions
-# Events
-
+use Illuminate\Foundation\Http\FormRequest;
+# 13. TODO 
 
 
 class PoController extends Controller
@@ -88,8 +103,9 @@ class PoController extends Controller
 				$pos = $pos->with('dept')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$pos = $pos->ByUserAll()->paginate(10);
+				//$pos = $pos->ByUserAll()->paginate(10);
 				Log::warning("tenant.po.index Other roles!");
+				abort(403);
 		}
 
 		return view('tenant.pos.index', compact('pos'));
@@ -180,7 +196,7 @@ class PoController extends Controller
 	}
 
 	// add attachments
-	public function attach(StorePoRequest $request)
+	public function attach(FormRequest $request)
 	{
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
@@ -192,13 +208,13 @@ class PoController extends Controller
 		return redirect()->route('pos.show', $request->input('attach_po_id'))->with('success', 'File Uploaded successfully.');
 	}
 
-	public function detach(Po $po)
+	public function attachments(Po $po)
 	{
 		$this->authorize('view', $po);
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		$attachments = Attachment::where('entity', EntityEnum::PO->value)->where('article_id', $po->id)->get()->all();
-		return view('tenant.pos.detach', compact('po', 'attachments'));
+		//$attachments = Attachment::where('entity', EntityEnum::PO->value)->where('article_id', $po->id)->get()->all();
+		return view('tenant.pos.attachments', compact('po'));
 	}
 
 	public function history(Po $po)
@@ -483,23 +499,7 @@ class PoController extends Controller
 	}
 
 		
-	public function export()
-	{
-		$this->authorize('export', Po::class);
-
-		$data = DB::select("
-		SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
-		po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date 
-		FROM pos po,depts d, projects p, suppliers s, users u 
-		WHERE po.dept_id=d.id 
-		AND po.project_id=p.id 
-		AND po.supplier_id=s.id 
-		AND po.requestor_id=u.id
-		ORDER BY po.id DESC			");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('users', $dataArray);
-	}
+	
 
 	public function submit(Po $po)
 	{
@@ -656,5 +656,36 @@ class PoController extends Controller
 		return redirect()->route('pos.show', $po->id)->with('success', 'New Purchase Order #'.$po_id.' created.');
 	}
 
+	public function export()
+	{
+		$this->authorize('export', Po::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+		
+		$data = DB::select("
+		SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date 
+		FROM pos po,depts d, projects p, suppliers s, users u 
+		WHERE po.dept_id=d.id 
+		AND po.project_id=p.id 
+		AND po.supplier_id=s.id 
+		AND po.requestor_id=u.id
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		ORDER BY po.id DESC	");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('pos', $dataArray);
+	}
 
 }

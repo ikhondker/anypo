@@ -28,7 +28,7 @@ class PoPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin() || $user->isBuyer() || $user->isManagement();
+		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() );
 	}
 
 	/**
@@ -36,26 +36,22 @@ class PoPolicy
 	 */
 	public function view(User $user, Po $po): bool
 	{
-		if ($user->isAdmin() ) {
+
+		if ($user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
 			return true;
-		} elseif ($user->role->value == UserRoleEnum::BUYER->value) {
-			return ($user->id == $po->buyer_id);
 		} elseif ($user->role->value == UserRoleEnum::HOD->value) {
 			return ($user->dept_id == $po->dept_id);
-		} elseif ($user->role->value == UserRoleEnum::CXO->value) {
-			return true;
 		} else {
 			return ( false ) ;
 		}
 	}
-
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
 	public function submit(User $user, Po $po): bool
 	{
-		return ($po->auth_status->value == AuthStatusEnum::DRAFT->value); 
+		return ($po->auth_status == AuthStatusEnum::DRAFT->value); 
 	}
 
 	/**
@@ -71,7 +67,7 @@ class PoPolicy
 	 */
 	public function update(User $user, Po $po): bool
 	{
-		return $user->isBuyer();
+		return ($user->isBuyer() || $user->isSupport()) ;
 	}
 
 	/**
@@ -79,7 +75,7 @@ class PoPolicy
 	 */
 	public function delete(User $user, Po $po): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport()) ;
 	}
 
 	/**
@@ -87,7 +83,7 @@ class PoPolicy
 	 */
 	public function cancel(User $user): bool
 	{
-		return $user->isAdmin() ;
+		return ($user->isBuyer()  || $user->isAdmin() || $user->isSupport()) ;
 	}
 
 	/**
@@ -105,4 +101,10 @@ class PoPolicy
 	{
 		//
 	}
+
+	public function export(User $user): bool
+	{
+		return true;
+	}
+
 }

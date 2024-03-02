@@ -1,5 +1,22 @@
 <?php
-
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			HierarchyController.php
+* @brief		This file contains the implementation of the HierarchyController
+* @path			\App\Http\Controllers\Tenant\Workflow
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 namespace App\Http\Controllers\Tenant\Workflow;
 
 use App\Http\Controllers\Controller;
@@ -9,23 +26,25 @@ use App\Models\Tenant\Workflow\Hierarchy;
 use App\Http\Requests\Tenant\Workflow\StoreHierarchyRequest;
 use App\Http\Requests\Tenant\Workflow\UpdateHierarchyRequest;
 
-# Models
+# 1. Models
 use App\Models\User;
 use App\Models\Tenant\Workflow\Hierarchyl;
-# Enums
-# Helpers
-use App\Helpers\EventLog;
+# 2. Enums
+# 3. Helpers
 use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use Illuminate\Support\Facades\Log;
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
-
-# Exceptions
-# Events
-# TODO
+use Illuminate\Support\Facades\Log;
+# 13. TODO 
 # 1. Change design of show blade to user show blade with avatar
 
 class HierarchyController extends Controller

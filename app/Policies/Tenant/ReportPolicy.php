@@ -28,7 +28,7 @@ class ReportPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -36,7 +36,7 @@ class ReportPolicy
 	 */
 	public function view(User $user, Report $report): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -44,7 +44,7 @@ class ReportPolicy
 	 */
 	public function run(User $user): bool
 	{
-		return ($user->isBuyer() || $user->isManagement());
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**

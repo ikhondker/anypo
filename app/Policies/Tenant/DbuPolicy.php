@@ -6,6 +6,8 @@ use App\Models\Tenant\Dbu;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
+use App\Enum\UserRoleEnum;
+
 class DbuPolicy
 {
 	/**
@@ -24,7 +26,7 @@ class DbuPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isManagement();
+		return ( $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -32,7 +34,14 @@ class DbuPolicy
 	 */
 	public function view(User $user, Dbu $dbu): bool
 	{
-		return $user->isManagement();
+			// hod can view own dept budget
+			if ( $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+				return true;
+			} elseif ($user->role->value == UserRoleEnum::HOD->value) {
+				return ($user->dept_id == $dbu->dept_id);
+			} else {
+				return ( false ) ;
+			}
 	}
 
 	/**
@@ -73,5 +82,10 @@ class DbuPolicy
 	public function forceDelete(User $user, Dbu $dbu): bool
 	{
 		//
+	}
+
+	public function export(User $user): bool
+	{
+		return ( $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 }

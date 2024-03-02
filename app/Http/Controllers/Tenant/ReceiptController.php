@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			ReceiptController.php
+* @brief		This file contains the implementation of the ReceiptController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
@@ -8,43 +26,42 @@ use App\Models\Tenant\Receipt;
 use App\Http\Requests\Tenant\StoreReceiptRequest;
 use App\Http\Requests\Tenant\UpdateReceiptRequest;
 
-# Models
+# 1. Models
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Lookup\Warehouse;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 
 use App\Models\Tenant\Admin\Setup;
-
-# Enums
+# 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\ReceiptStatusEnum;
 
 use App\Enum\ClosureStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+# 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\EventLog;
 use App\Helpers\FileUpload;
 use App\Helpers\ExchangeRate;
-# Notifications
-# Mails
-# Packages
-# Seeded
-use DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-# Exceptions
-# Events
-
-#Jobs
+# 4. Notifications
+# 5. Jobs
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
-
+# 6. Mails
+# 7. Rules
 use App\Rules\Tenant\OverReceiptRule;
+# 8. Packages
+# 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+# 10. Events
+# 11. Controller
+# 12. Seeded
+use DB;
+use Illuminate\Support\Facades\Log;
+# 13. TODO 
 
 
 class ReceiptController extends Controller
@@ -212,26 +229,7 @@ class ReceiptController extends Controller
 		abort(403);
 	}
 
-	public function export()
-	{
-		$this->authorize('export', Receipt::class);
-
-		$data = DB::select("
-			SELECT r.id, r.receive_date, r.rcv_type, 
-				po.id po_num, po.summary, pol.line_num, pol.summary,
-				w.name warehouse_name,
-				u.name receiver_name,
-				r.qty, r.notes, r.status
-			FROM receipts r, pols pol, pos po , warehouses w, users u
-			WHERE r.pol_id=pol.id
-			AND pol.po_id =po.id
-			AND r.warehouse_id= w.id
-			AND r.receiver_id = u.id
-		");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('receipts', $dataArray);
-	}
+	
 
 	/**
 	 * Remove the specified resource from storage.
@@ -343,5 +341,41 @@ class ReceiptController extends Controller
 		return true;
 	}
 
+	public function export()
+	{
+
+		// TODO filter by HoD
+		$this->authorize('export', Receipt::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+		
+		$data = DB::select("
+			SELECT r.id, r.receive_date, r.rcv_type, 
+				po.id po_num, po.summary, pol.line_num, pol.summary,
+				w.name warehouse_name,
+				u.name receiver_name,
+				r.qty, r.notes, r.status
+			FROM receipts r, pols pol, pos po , warehouses w, users u
+			WHERE r.pol_id=pol.id
+			AND pol.po_id =po.id
+			AND r.warehouse_id= w.id
+			AND r.receiver_id = u.id
+			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		");
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('receipts', $dataArray);
+	}
 
 }

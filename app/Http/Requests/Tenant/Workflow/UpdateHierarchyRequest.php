@@ -22,7 +22,6 @@ class UpdateHierarchyRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			//'name'				=> 'required|min:5|max:120',
 			'name'				=> 'required|min:2|max:100|unique:hierarchies,name,'. $this->hierarchy->id,
 			'approver_id_1'		=> 'required|integer|exists:users,id',
 			//'approver_id_2'		=> 'integer|exists:users,id',

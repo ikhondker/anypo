@@ -28,7 +28,7 @@ class UomPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -36,7 +36,7 @@ class UomPolicy
 	 */
 	public function view(User $user, Uom $uom): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -44,7 +44,7 @@ class UomPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -52,7 +52,7 @@ class UomPolicy
 	 */
 	public function update(User $user, Uom $uom): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -60,20 +60,9 @@ class UomPolicy
 	 */
 	public function delete(User $user, Uom $uom): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
-	
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
-
-	
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -88,5 +77,13 @@ class UomPolicy
 	public function forceDelete(User $user, Uom $uom): bool
 	{
 		//
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 }

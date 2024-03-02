@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			AttachmentController.php
+* @brief		This file contains the implementation of the AttachmentController
+* @path			\App\Http\Controllers\Tenant\Admin
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant\Admin;
 use App\Http\Controllers\Controller;
@@ -7,36 +25,36 @@ use App\Models\Tenant\Admin\Attachment;
 use App\Http\Requests\Tenant\Admin\StoreAttachmentRequest;
 use App\Http\Requests\Tenant\Admin\UpdateAttachmentRequest;
 
-# Models
 
+# 1. Models
 use App\Models\Tenant\Manage\Entity;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Invoice;
-
-# Enums
+# 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\AuthStatusEnum;
 use App\Enum\InvoiceStatusEnum;
-# Helpers
+# 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Seeded
 use DB;
 use Str;
 use File;
 use Illuminate\Support\Facades\Response;
-
-# Exceptions
-# Events
-# TODO
+# 12. TODO 
 # 1. Allow Edit attachment summary
 # 2. 
 

@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title','Remove Attachments')
+@section('title','Attachments')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Remove Attachments
+			Attachments
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Project"/>
@@ -15,11 +15,11 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.widgets.project-info id="{{ $project->id }}"/>
+	<x-tenant.info.project-info id="{{ $project->id }}"/>
 
 	
-	@include('tenant.includes.detach-by-article')
- 
+	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PROJECT->value }}" aid="{{ $project->id }}"/>
+
 
 @endsection
 

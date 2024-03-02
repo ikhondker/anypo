@@ -21,7 +21,7 @@ class ReceiptActions extends Component
 	 */
 	public function __construct($id, $show = false)
 	{
-		$this->id       = $id;
+		$this->id		= $id;
 		$this->show		= $show; 
 		$this->receipt  = Receipt::where('id', $this->id)->get()->firstOrFail();
 	}

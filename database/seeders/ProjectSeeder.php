@@ -6,11 +6,10 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 use App\Models\User;
 
 use Faker\Generator;
-
 
 class ProjectSeeder extends Seeder
 {
@@ -30,37 +29,37 @@ class ProjectSeeder extends Seeder
 					'name'  	=> 'Generic',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
-					'notes'			=> $faker->paragraph
+					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'GB06',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
-					'notes'			=> $faker->paragraph
+					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'GB07',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
-					'notes'			=> $faker->paragraph
+					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'GB08',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
-					'notes'			=> $faker->paragraph
+					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'GB09',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
-					'notes'			=> $faker->paragraph
+					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'GB10',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
-					'notes'			=> $faker->paragraph
+					'notes'		=> $faker->paragraph
 				],
 			];
 			//

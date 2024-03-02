@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			ItemController.php
+* @brief		This file contains the implementation of the ItemController
+* @path			\App\Http\Controllers\Tenant\Lookup
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant\Lookup;
 
@@ -8,7 +26,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\Lookup\StoreItemRequest;
 use App\Http\Requests\Tenant\Lookup\UpdateItemRequest;
 
-# Models
+# 1. Models
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Category;
 use App\Models\Tenant\Lookup\Uom;
@@ -16,21 +34,21 @@ use App\Models\Tenant\Lookup\Oem;
 use App\Models\Tenant\Lookup\GlType;
 
 use App\Models\Tenant\Manage\UomClass;
-
-# Enums
-# Helpers
+# 2. Enums
+# 3. Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Seeded
 use DB;
 use Str;
-
-# Exceptions
-# Events
-# TODO
+# 12. TODO 
 # 1. dependent dropdown for uom
 
 class ItemController extends Controller

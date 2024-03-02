@@ -28,7 +28,7 @@ class PrPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return true;
 	}
 
 	/**
@@ -37,16 +37,12 @@ class PrPolicy
 	public function view(User $user, Pr $pr): bool
 	{
 		// owner, manager, hod, admin and system can view PR
-		if ($user->isAdmin() ) {
+		if ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
 			return true;
 		} elseif ($user->role->value == UserRoleEnum::USER->value) {
 			return ($user->id == $pr->requestor_id);
-		} elseif ($user->role->value == UserRoleEnum::BUYER->value) {
-			return true;
 		} elseif ($user->role->value == UserRoleEnum::HOD->value) {
 			return ($user->dept_id == $pr->dept_id);
-		} elseif ($user->role->value == UserRoleEnum::CXO->value) {
-			return true;
 		} else {
 			return ( false ) ;
 		}
@@ -57,7 +53,7 @@ class PrPolicy
 	 */
 	public function submit(User $user, Pr $pr): bool
 	{
-		return ($pr->auth_status->value == AuthStatusEnum::DRAFT->value); 
+		return ($pr->auth_status == AuthStatusEnum::DRAFT->value); 
 	}
 
 
@@ -74,7 +70,19 @@ class PrPolicy
 	 */
 	public function update(User $user, Pr $pr): bool
 	{
-		return true; 
+		// owner, manager, hod, admin and system can view PR
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value ) {
+			return false;
+		} elseif ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+			return true;
+		} elseif ($user->role->value == UserRoleEnum::USER->value) {
+			return ($user->id == $pr->requestor_id);
+		} elseif ($user->role->value == UserRoleEnum::HOD->value) {
+			return ($user->dept_id == $pr->dept_id);
+		} else {
+			return ( false ) ;
+		}
+
 	}
 
 	/**
@@ -82,31 +90,7 @@ class PrPolicy
 	 */
 	public function delete(User $user, Pr $pr): bool
 	{
-		return ( $user->isAdmin() || ($user->id === $pr->requestor_id) ) && ($pr->auth_status->value == AuthStatusEnum::DRAFT->value) ;
-	}
-
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function convert(User $user): bool
-	{
-		return $user->isBuyer() ;
-	}
-
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function cancel(User $user): bool
-	{
-		return $user->isAdmin() ;
-	}
-
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function recalculate(User $user): bool
-	{
-		return false;
+		return ( $user->isAdmin() || $user->isSupport() || ($user->id === $pr->requestor_id) ) && ($pr->auth_status == AuthStatusEnum::DRAFT->value) ;
 	}
 
 	/**
@@ -124,4 +108,35 @@ class PrPolicy
 	{
 		//
 	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function convert(User $user, Pr $pr): bool
+	{
+		return ( $user->isBuyer() || $user->isSupport()) ;
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function cancel(User $user, Pr $pr): bool
+	{
+		return ( $user->isAdmin() || $user->isSupport() ) && ($pr->auth_status == AuthStatusEnum::APPROVED->value) ;
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function recalculate(User $user): bool
+	{
+		return false;
+	}
+	
+	public function export(User $user): bool
+	{
+		return true;
+	}
+
+
 }

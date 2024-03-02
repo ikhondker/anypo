@@ -23,7 +23,6 @@ class StoreCurrencyRequest extends FormRequest
 	{
 		return [
 			'currency'		=> 'required|min:3|max:3|unique:currencies,currency',
-			'name'			=> 'required|min:2|max:100',
 		];
 	}
 	

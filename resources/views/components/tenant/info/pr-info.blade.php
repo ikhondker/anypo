@@ -11,28 +11,28 @@
 						<p>{{ $pr->notes }}</p>
 						<table class="table table-sm my-2">
 					
-                            <tbody>
+							<tbody>
 								<tr>
 									<th>Amount</th>
-                                    <td>{{ number_format($pr->amount , 2) }} {{ $pr->currency }}</td>
+									<td>{{ number_format($pr->amount , 2) }} {{ $pr->currency }}</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>Date</th>
 									<td>
 										{{ ($pr->pr_date <> "") ? strtoupper(date('d-M-y', strtotime($pr->pr_date))) : "" }}
 									</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>Auth Status</th>
-                                    <td><span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span></td>
+									<td><span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span></td>
 								</tr>
 								<tr>
 									<th>Status</th>
-                                    <td><span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
+									<td><span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>Requestor</th>
-                                    <td>{{ $pr->requestor->name  }}</td>
+									<td>{{ $pr->requestor->name  }}</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>

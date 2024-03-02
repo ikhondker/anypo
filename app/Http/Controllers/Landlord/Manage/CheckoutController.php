@@ -24,6 +24,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Landlord\Manage\StoreCheckoutRequest;
 use App\Http\Requests\Landlord\Manage\UpdateCheckoutRequest;
 
+# 1. Models
+# 2. Enums
+# 3. Helpers
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
+# 13. TODO 
+
 // Models
 use App\Models\Landlord\Manage\Checkout;
 // Enums

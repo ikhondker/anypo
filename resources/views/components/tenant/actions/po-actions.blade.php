@@ -9,11 +9,11 @@
 		<a class="dropdown-item" href="{{ route('reports.po', $id) }}" target="_blank"><i class="align-middle me-1" data-feather="printer"></i> Print Purchase Order</a>
 		<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Run PO Detail Report*</a>
 		<a class="dropdown-item" href="{{ route('pos.edit', $id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Purchase Order</a>
-		<a class="dropdown-item" href="{{ route('pols.createline', $id) }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Add Purchase Order Line</a>
+		<a class="dropdown-item" href="{{ route('pols.add-line', $id) }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Add Purchase Order Line</a>
 		
 		<a class="dropdown-item" href="{{ route('pos.history', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('pos.extra', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> Additional Information</a>
-		<a class="dropdown-item" href="{{ route('pos.detach',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> Attachments</a>
+		<a class="dropdown-item" href="{{ route('pos.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> Attachments</a>
 
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('pos.invoice', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Invoices</a>
@@ -32,7 +32,7 @@
 		<a class="dropdown-item modal-boolean-advance"  href="{{ route('pos.close', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Force Close"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
-			<i class="align-middle me-1 text-danger" data-feather="x"></i> Force Close PO *</a>
+			<i class="align-middle me-1 text-danger" data-feather="lock"></i> Force Close PO *</a>
 
 		<a class="dropdown-item modal-boolean-advance"  href="{{ route('wfs.wf-reset-po', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Reset"

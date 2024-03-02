@@ -41,14 +41,6 @@
 								</select>
 							</div>
 
-							<div class="mb-3">
-								<label class="form-check m-0">
-								<input type="checkbox" class="form-check-input"
-									name="budget_control" id="budget_control" @checked($project->budget_control)/>
-									<span class="form-check-label text-danger"> Control Budget?</span>
-								</label>
-							</div>
-
 							<x-tenant.edit.amount :value="$project->amount"/>
 							<x-tenant.edit.notes :value="$project->notes"/>
 

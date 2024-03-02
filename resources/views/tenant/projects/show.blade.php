@@ -10,21 +10,7 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Project"/>
 			<x-tenant.buttons.header.create object="Project"/>
-			
-				<div class="dropdown me-2 d-inline-block position-relative">
-					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-						<i class="align-middle mt-n1" data-feather="folder"></i> Actions
-					</a>
-					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="{{ route('projects.edit', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Edit</a>
-						<a class="dropdown-item" href="{{ route('projects.budget', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Budget Usage</a>
-						
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item text-danger" href="{{ route('projects.detach', $project->id) }}"><i class="align-middle me-1" data-feather="user"></i> Delete Attachment</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Action</a>
-					</div>
-				</div>
+			<x-tenant.actions.project-actions id="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -63,16 +49,6 @@
 
 			<div class="card">
 				<div class="card-header">
-					<div class="card-actions float-end">
-						<div class="dropdown position-relative">
-							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-								<i class="align-middle" data-feather="more-horizontal"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="{{ route('projects.detach',$project->id) }}">Delete Attachment</a>
-							</div>
-						</div>
-					</div>
 					<h5 class="card-title">Attachments</h5>
 					<h6 class="card-subtitle text-muted">Project Purchase Orders Budget.</h6>
 				</div>
@@ -89,7 +65,7 @@
 					<form action="{{ route('projects.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 						@csrf
 						{{-- <x-tenant.attachment.create  /> --}}
-						<input type="text" name="attach_project_id" id="attach_project_id" class="form-control" placeholder="ID" value="{{ old('id', $project->id ) }}" hidden>
+						<input type="text" name="attach_project_id" id="attach_project_id" class="form-control" placeholder="ID" value="{{ old('attach_project_id', $project->id ) }}" hidden>
 						<div class="row">
 							<div class="col-sm-3 text-end">
 							
@@ -161,5 +137,14 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
+
+	
+	<script type="text/javascript">
+		function mySubmit() {
+			//alert('I am inside 2');
+			//document.getElementById('upload').click();
+			document.getElementById('frm1').submit();
+		}
+	</script>
 @endsection
 

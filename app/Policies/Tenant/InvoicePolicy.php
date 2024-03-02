@@ -24,7 +24,7 @@ class InvoicePolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isBuyer() || $user->isManagement();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -32,7 +32,7 @@ class InvoicePolicy
 	 */
 	public function view(User $user, Invoice $invoice): bool
 	{
-		return $user->isBuyer() || $user->isManagement();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -48,7 +48,7 @@ class InvoicePolicy
 	 */
 	public function update(User $user, Invoice $invoice): bool
 	{
-		//
+		return ($user->isBuyer() || $user->isAdmin());
 	}
 
 	/**
@@ -79,6 +79,26 @@ class InvoicePolicy
 	 */
 	public function cancel(User $user): bool
 	{
-		return $user->isAdmin() ;
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() );
 	}
+
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function post(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isSupport());
+	}
+
+
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
+
+
 }

@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			PrlController.php
+* @brief		This file contains the implementation of the PrlController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
@@ -7,27 +25,30 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\StorePrlRequest;
 use App\Http\Requests\Tenant\UpdatePrlRequest;
 
-# Models
+# 1. Models
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
 
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
-
-# Enums
+# 2. Enums
 use App\Enum\AuthStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+use App\Enum\UserRoleEnum;
+# 3. Helpers
 use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# Exceptions
-# Events
+# 13. TODO 
 
 
 class PrlController extends Controller
@@ -38,18 +59,19 @@ class PrlController extends Controller
 	 * @param  \App\Models\Prl  $prl
 	 * @return \Illuminate\Http\Response
 	 */
-	public function createLine($pr_id)
+	public function addLine(Pr $pr)
 	{
-		$this->authorize('update',$pr);
-		
+		//$pr = Pr::where('id', $pr_id)->first();
+
+		//dd($pr);
 		// Write Event Log
 		//LogEvent('template',$template->id,'edit','template',$template->id);
-
-		$pr = Pr::where('id', $pr_id)->first();
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only add line to Requisition with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
+
+		$this->authorize('update',$pr);	// << =============
 
 		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
@@ -180,29 +202,66 @@ class PrlController extends Controller
 	public function destroy(Prl $prl)
 	{
 
-		$this->authorize('delete', $prl);
-
 		$pr = Pr::where('id', $prl->pr_id)->first();
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can delete line in Requisition with only status '. strtoupper($pr->auth_status) .' !');
 		}
 
+		$this->authorize('delete', $prl);
+
 		$prl->delete();
 
 		// 	update PR Header value
 		$result = Pr::updatePrHeaderValue($prl->pr_id);
-
-		//$pr = Pr::where('id', $prl->pr_id)->firstOrFail();
-		//$pr->sub_total		= $pr->sub_total- $prl->sub_total;
-		//$pr->tax			= $pr->tax 		- $prl->tax;
-		//$pr->gst			= $pr->gst 		- $prl->gst;
-		//$pr->amount			= $pr->amount 	- $prl->amount;
-		//$pr->save();
 
 		// Write to Log
 		EventLog::event('prl', $prl->id, 'delete', 'id', $prl->id);
 
 		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR Line deleted successfully');
 	}
+
+	public function export()
+	{
+
+		$this->authorize('export', Prl::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+
+		$data = DB::select("
+		SELECT pr.id, pr.summary pr_summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		pr.notes, pr.currency, pr.amount pr_amount, pr.status, pr.auth_status, pr.auth_date ,
+		prl.line_num, prl.summary line_summary, i.code item_code, uom.name uom, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount,
+		prl.price, prl.sub_total, prl.amount,prl.notes, prl.closure_status
+		FROM prs pr, prls prl, depts d, projects p, suppliers s, users u , items i, uoms uom
+		WHERE pr.dept_id=d.id 
+		AND pr.project_id=p.id 
+		AND pr.supplier_id=s.id 
+		AND pr.requestor_id=u.id
+		AND pr.id = prl.pr_id 
+		AND prl.item_id = i.id
+		AND prl.uom_id = uom.id
+		AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		ORDER BY pr.id DESC
+		");
+
+		
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('prs', $dataArray);
+	}
+
+
+
 }

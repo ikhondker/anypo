@@ -27,7 +27,7 @@ class ActivityPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -35,7 +35,7 @@ class ActivityPolicy
 	 */
 	public function view(User $user, Activity $activity): bool
 	{
-		return $user->isAdmin();
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -62,11 +62,7 @@ class ActivityPolicy
 		return false;
 	}
 	
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
+	
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -82,4 +78,10 @@ class ActivityPolicy
 	{
 		//
 	}
+
+	public function export(User $user): bool
+	{
+		return ($user->isAdmin() || $user->isSupport());
+	}
+
 }

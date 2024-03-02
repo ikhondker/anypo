@@ -28,7 +28,7 @@ class PaymentPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isBuyer() || $user->isManagement();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -36,7 +36,7 @@ class PaymentPolicy
 	 */
 	public function view(User $user, Payment $payment): bool
 	{
-		return $user->isBuyer() || $user->isManagement();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -44,7 +44,7 @@ class PaymentPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isBuyer();
+		return ($user->isBuyer());
 	}
 
 	/**
@@ -52,7 +52,7 @@ class PaymentPolicy
 	 */
 	public function update(User $user, Payment $payment): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -68,7 +68,7 @@ class PaymentPolicy
 	 */
 	public function cancel(User $user): bool
 	{
-		return $user->isAdmin() ;
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 	
 	/**
@@ -92,6 +92,6 @@ class PaymentPolicy
 	 */
 	public function export(User $user): bool
 	{
-		return $user->isBuyer();
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 }

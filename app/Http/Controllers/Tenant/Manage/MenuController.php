@@ -1,25 +1,47 @@
 <?php
-
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			MenuController.php
+* @brief		This file contains the implementation of the MenuController
+* @path			\App\Http\Controllers\Tenant\Manage
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 namespace App\Http\Controllers\Tenant\Manage;
 
 use App\Http\Controllers\Controller;
-
-// 1. Enums
-// 2. Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
-// 3. Notifications
-// 4. Mails
-// 5. Packages
-// 6. Requests
 use App\Http\Requests\Tenant\Manage\StoreMenuRequest;
 use App\Http\Requests\Tenant\Manage\UpdateMenuRequest;
-// 7. Exceptions
-// 8. Events
-// 9. Models
+
+
+# 1. Models
 use App\Models\Tenant\Manage\Menu;
-// 10. Seeded
+# 2. Enums
+# 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
+# 13. TODO 
 
 class MenuController extends Controller
 {

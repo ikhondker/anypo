@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			UploadItemController.php
+* @brief		This file contains the implementation of the UploadItemController
+* @path			\App\Http\Controllers\Tenant\Lookup
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant\Lookup;
 
@@ -8,22 +26,31 @@ use App\Http\Controllers\Controller;
 use App\Models\Tenant\Lookup\UploadItem;
 use Illuminate\Http\Request;
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Reader\Exception;
-use PhpOffice\PhpSpreadsheet\Writer\Xls;
-use PhpOffice\PhpSpreadsheet\IOFactory;
-
-use Illuminate\Support\Facades\Log;
-use App\Enum\InterfaceStatusEnum;
-
-use DB;
-
+# 1. Models
 use App\Models\Tenant\Lookup\Category;
 use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Lookup\Oem;
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\GlType;
+# 2. Enums
+use App\Enum\InterfaceStatusEnum;
+# 3. Helpers
 use App\Helpers\Export;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+# 9. Exceptions
+# 10. Events
+# 11. Seeded
+use Illuminate\Support\Facades\Log;
+use DB;
+# 12. TODO 
 
 class UploadItemController extends Controller
 {

@@ -28,7 +28,6 @@ class SupplierPolicy
 	public function viewAny(User $user): bool
 	{
 		return true;
-		//return $user->isAdmin();
 	}
 
 	/**
@@ -37,7 +36,6 @@ class SupplierPolicy
 	public function view(User $user, Supplier $supplier): bool
 	{
 		return true;
-		//return $user->isAdmin();
 	}
 
 	/**
@@ -45,7 +43,7 @@ class SupplierPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -54,7 +52,7 @@ class SupplierPolicy
 	public function update(User $user, Supplier $supplier): bool
 	{
 		
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -62,19 +60,8 @@ class SupplierPolicy
 	 */
 	public function delete(User $user, Supplier $supplier): bool
 	{
-		return $user->isAdmin();
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
-
-	
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
-
-
 	
 	/**
 	 * Determine whether the user can restore the model.
@@ -91,4 +78,13 @@ class SupplierPolicy
 	{
 		//
 	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function export(User $user): bool
+	{
+		return true;
+	}
+
 }

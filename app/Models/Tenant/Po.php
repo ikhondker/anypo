@@ -16,7 +16,7 @@ use App\Models\Tenant\Admin\Setup;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
-use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Project;
 use App\Models\Tenant\Lookup\Currency;
 
 use App\Models\Tenant\Manage\Status;

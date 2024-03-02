@@ -27,7 +27,7 @@ class StoreItemRequest extends FormRequest
 			'uom_id'		=> 'required|integer|exists:uoms,id',
 			'oem_id'		=> 'required|integer|exists:oems,id',
 			'code'			=> 'required|max:10|unique:items,code',
-			'price'			=> 'required|numeric|min:1.00|max:999999.99',
+			'price'			=> 'required|numeric|min:0.10|max:9999999.99',
 		];
 	}
 }

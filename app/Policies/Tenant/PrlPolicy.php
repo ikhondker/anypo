@@ -2,11 +2,13 @@
 
 namespace App\Policies\Tenant;
 
+use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
+use App\Enum\AuthStatusEnum;
 
 
 class PrlPolicy
@@ -60,7 +62,8 @@ class PrlPolicy
 	 */
 	public function delete(User $user, Prl $prl): bool
 	{
-		//
+		$pr = Pr::where('id', $prl->pr_id)->first();
+		return ( $user->isAdmin() || $user->isSupport() || ($user->id === $pr->requestor_id) ) && ($pr->auth_status == AuthStatusEnum::DRAFT->value) ;
 	}
 
 	/**
@@ -78,4 +81,10 @@ class PrlPolicy
 	{
 		//
 	}
+
+	public function export(User $user): bool
+	{
+		return true;
+	}
+
 }

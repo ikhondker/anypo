@@ -1,4 +1,24 @@
 <?php
+
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			SupplierController.php
+* @brief		This file contains the implementation of the SupplierController
+* @path			\App\Http\Controllers\Tenant\Lookup
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
+
 namespace App\Http\Controllers\Tenant\Lookup;
 
 use App\Http\Controllers\Controller;
@@ -8,19 +28,21 @@ use App\Models\Tenant\Lookup\Supplier;
 use App\Http\Requests\Tenant\Lookup\StoreSupplierRequest;
 use App\Http\Requests\Tenant\Lookup\UpdateSupplierRequest;
 
-# Models
-# Enums
-# Helpers
+# 1. Models
+# 2. Enums
+# 3. Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Seeded
 use DB;
-
-# Exceptions
-# Events
+# 12. TODO 
 
 
 class SupplierController extends Controller

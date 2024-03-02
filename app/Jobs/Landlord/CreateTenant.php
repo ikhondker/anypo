@@ -423,9 +423,9 @@ class CreateTenant implements ShouldQueue
 		//$product = Product::where('id', $checkout->product_id)->first();
 		Log::debug("checkout_id= ".$this->checkout_id);
 
-		$tenant_id = $checkout->site;
-		$domain = $tenant_id . '.' . config('app.domain');
-		$tenant = Tenant::create([
+		$tenant_id 	= $checkout->site;
+		$domain 	= $tenant_id . '.' . config('app.domain');
+		$tenant 	= Tenant::create([
 			'id' 				=> $tenant_id,
 			// Custom columns inside data
 			//'initial_owner_id' 	=> $checkout->owner_id,

@@ -15,6 +15,9 @@
 			{{-- <x-tenant.buttons.header.create object="User"/> --}}
 		@endslot
 	</x-tenant.page-header>
+	
+	<x-tenant.landlord-notice-all-tenants/>
+	<x-tenant.landlord-notice-one-tenant/>
 
 	<x-tenant.dashboards.budget-stat/>
 	
@@ -26,8 +29,6 @@
 		<x-tenant.charts.budget-by-dept-bar/>
 	</div>
 
-
-	
 	<div class="row">
 		<div class="col-md-6 col-xxl-3 d-flex">
 			<div class="card flex-fill">

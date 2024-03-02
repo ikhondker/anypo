@@ -1,4 +1,22 @@
 <?php
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			PolController.php
+* @brief		This file contains the implementation of the PolController
+* @path			\App\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
@@ -7,29 +25,30 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\StorePolRequest;
 use App\Http\Requests\Tenant\UpdatePolRequest;
 
-# Models
-# Models
+# 1. Models
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
 
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
-# Enums
+# 2. Enums
 use App\Enum\AuthStatusEnum;
-
-# Helpers
-use App\Helpers\EventLog;
+use App\Enum\UserRoleEnum;
+# 3. Helpers
 use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-
-# Exceptions
-# Events
-# TODO
+# 13. TODO 
 # 1. cancel pol
 
 
@@ -41,16 +60,14 @@ class PolController extends Controller
 	 * @param  \App\Models\Pol  $pol
 	 * @return \Illuminate\Http\Response
 	 */
-	public function addLine($po_id)
+	public function addLine(Po $po)
 	{
-		$this->authorize('update',$pr);
-
-		$po = Po::where('id', $po_id)->first();
-
 
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 		 	return redirect()->route('pos.show',$po->id)->with('error', 'You can only add line to Purchase Order with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
+
+		$this->authorize('update',$po);	// << =============
 
 		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
@@ -193,7 +210,23 @@ class PolController extends Controller
 	 */
 	public function destroy(Pol $pol)
 	{
-		//
+		$po = Po::where('id', $pol->po_id)->first();
+
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'You can delete line in PO with only status '. strtoupper($pr->auth_status) .' !');
+		}
+
+		$this->authorize('delete', $pol);
+
+		$pol->delete();
+
+		// 	update PR Header value
+		$result = Po::updatePoHeaderValue($pol->po_id);
+
+		// Write to Log
+		EventLog::event('pol', $pol->id, 'delete', 'id', $pol->id);
+
+		return redirect()->route('pos.show', $pol->po_id)->with('success', 'PO Line deleted successfully');
 	}
 
 	public function receipt(Pol $pol)
@@ -203,4 +236,46 @@ class PolController extends Controller
 		//$po = Po::where('id', $po->id)->get()->firstOrFail();
 		return view('tenant.pols.receipt', compact('pol'));
 	}
+
+
+	public function export()
+	{
+
+		$this->authorize('export', Pol::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+
+		$data = DB::select("
+		SELECT po.id, po.summary po_summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		po.notes, po.currency, po.amount, po.status, po.auth_status, po.auth_date,
+		pol.line_num, pol.summary line_summary, i.code item_code, uom.name uom, pol.qty, pol.price, pol.sub_total, pol.tax, pol.gst, pol.amount,
+		pol.price, pol.sub_total, pol.amount,pol.notes, pol.closure_status
+		FROM pos po,depts d, projects p, suppliers s, users u , , items i, uoms uom
+		WHERE po.dept_id=d.id 
+		AND po.project_id=p.id 
+		AND po.supplier_id=s.id 
+		AND po.requestor_id=u.id
+		AND po.id = pol.pr_id 
+		AND pol.item_id = i.id
+		AND pol.uom_id = uom.id
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		");
+
+		
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('pos', $dataArray);
+	}
+
 }

@@ -34,7 +34,6 @@ class TenantSeeder extends Seeder
 		$this->call(\Database\Seeders\GroupSeeder::class);
 
 		$this->call(\Database\Seeders\OemSeeder::class);
-		$this->call(\Database\Seeders\PayMethodSeeder::class);
 		$this->call(\Database\Seeders\ProjectSeeder::class);
 		$this->call(\Database\Seeders\SupplierSeeder::class);
 		

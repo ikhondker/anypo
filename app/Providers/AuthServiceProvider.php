@@ -79,7 +79,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Lookup\Group'		=> 'App\Policies\Tenant\Lookup\GroupPolicy',
 		'App\Models\Tenant\Lookup\Item'			=> 'App\Policies\Tenant\Lookup\ItemPolicy',
 		'App\Models\Tenant\Lookup\Oem'			=> 'App\Policies\Tenant\Lookup\OemPolicy',
-		'App\Models\Tenant\Lookup\Project'		=> 'App\Policies\Tenant\Lookup\ProjectPolicy',
+		
 		'App\Models\Tenant\Lookup\Rate'			=> 'App\Policies\Tenant\Lookup\RatePolicy',
 		'App\Models\Tenant\Lookup\Supplier'		=> 'App\Policies\Tenant\Lookup\SupplierPolicy',
 		'App\Models\Tenant\Lookup\Uom'			=> 'App\Policies\Tenant\Lookup\UomPolicy',
@@ -107,6 +107,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Pol'					=> 'App\Policies\Tenant\PolPolicy',
 		'App\Models\Tenant\Pr'					=> 'App\Policies\Tenant\PrPolicy',
 		'App\Models\Tenant\Prl'					=> 'App\Policies\Tenant\PrlPolicy',
+		'App\Models\Tenant\Project'				=> 'App\Policies\Tenant\ProjectPolicy',
 		'App\Models\Tenant\Invoice'				=> 'App\Policies\Tenant\InvoicePolicy',
 		'App\Models\Tenant\InvoiceLine'			=> 'App\Policies\Tenant\InvoiceLinePolicy',
 		'App\Models\Tenant\Payment'				=> 'App\Policies\Tenant\PaymentPolicy',

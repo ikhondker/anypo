@@ -1,5 +1,22 @@
 <?php
-
+/**
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			WfController.php
+* @brief		This file contains the implementation of the WfController
+* @path			\App\Http\Controllers\Tenant\Workflow
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
 namespace App\Http\Controllers\Tenant\Workflow;
 use App\Http\Controllers\Controller;
 
@@ -7,31 +24,33 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\Workflow\StoreWfRequest;
 use App\Http\Requests\Tenant\Workflow\UpdateWfRequest;
 
-# Models
+# 1. Models
 use App\Models\Tenant\Workflow\Wf;
 use App\Models\Tenant\Workflow\Wfl;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
-# Enums
+# 2. Enums
 use App\Enum\AuthStatusEnum;
 use App\Enum\WfStatusEnum;
-//use App\Enum\WflActionEnum;
 use App\Enum\EventEnum;
-# Helpers
-use App\Helpers\EventLog;
-use App\Helpers\Export;
+# 3. Helpers
 use App\Helpers\PrBudget;
 use App\Helpers\PoBudget;
-# Notifications
-# Mails
-# Packages
-# Seeded
+use App\Helpers\Export;
+use App\Helpers\EventLog;
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-# Exceptions
-# Events
+# 13. TODO 
 
 class WfController extends Controller
 {

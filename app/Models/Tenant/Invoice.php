@@ -56,10 +56,9 @@ class Invoice extends Model
 	{
 		// TODO
 		//if (! $id) return;
-
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('buyer_id', $id);
-        });
+		});
 
 	}
 
@@ -70,7 +69,7 @@ class Invoice extends Model
 	{
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('dept_id', $id);
-        });
+		});
 
 	}
 
