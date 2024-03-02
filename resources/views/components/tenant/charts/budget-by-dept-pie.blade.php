@@ -19,7 +19,7 @@
 			<div class="align-self-center w-100">
 				<div class="py-3">
 					<div class="chart chart-xs">
-						<canvas id="chartjs-dept-budget-pie"></canvas>
+						<canvas id="chartjs-budget-by-dept-pie"></canvas>
 					</div>
 				</div>
 			</div>
@@ -30,13 +30,13 @@
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 		// Pie chart
-		new Chart(document.getElementById("chartjs-dept-budget-pie"), {
+		new Chart(document.getElementById("chartjs-budget-by-dept-pie"), {
 			type: "pie",
 			data: {
-				labels: {!! json_encode($depb_labels) !!},
+				labels: {!! json_encode($dept_budget_labels) !!},
 				datasets: [{
-					data: {!! json_encode($depb_data) !!},
-					backgroundColor: {!! json_encode($depb_colors) !!},
+					data: {!! json_encode($dept_budget_data) !!},
+					backgroundColor: {!! json_encode($dept_budget_colors) !!},
 					// backgroundColor: [
 					// 	window.theme.primary,
 					// 	window.theme.warning,

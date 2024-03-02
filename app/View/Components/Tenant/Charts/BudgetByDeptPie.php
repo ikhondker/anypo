@@ -14,9 +14,9 @@ use DB;
 class BudgetByDeptPie extends Component
 {
 
-	public	$depb_labels = [];
-	public	$depb_data = [];
-	public	$depb_colors = [];
+	public	$dept_budget_labels = [];
+	public	$dept_budget_data = [];
+	public	$dept_budget_colors = [];
 
 	public 	$budget;
 	public 	$deptBudgets;
@@ -31,23 +31,24 @@ class BudgetByDeptPie extends Component
 		if ($bid == '0000'){
 			// No dept budge id is specified. Show current user last dept budget
 			$this->budget		= Budget::orderBy('id', 'DESC')->firstOrFail();
+			Log::debug('components.tenant.charts.BudgetByDeptPie HERE Value of $this->budget->id=' . $this->budget->id);
 			$this->deptBudgets 	= DeptBudget::where('budget_id',$this->budget->id)->with('dept')->with('budget')->orderBy('id', 'DESC')->get();
 		} else {
 			$this->budget		= Budget::where('id', $bid)->orderBy('id', 'DESC')->firstOrFail();
 		 	$this->deptBudgets	= DeptBudget::where('budget_id', $bid)->with('budget')->with('dept')->orderBy('id', 'DESC')->get();
 		}
 		
-		// Log::debug('dept count=' . $this->deptBudgets->count());
+		Log::debug('components.tenant.charts.BudgetByDeptPie dept count=' . $this->deptBudgets->count());
 
 		foreach ($this->deptBudgets as $deptBudget){
-			//Log::debug('Value of id=' . $deptBudget->dept->name);
-			$this->depb_labels[] = $deptBudget->dept->name;
-			$this->depb_data[] = (int) $deptBudget->amount;
+			Log::debug('Value of dept_name=' . $deptBudget->dept->name);
+			$this->dept_budget_labels[] 	= $deptBudget->dept->name;
+			$this->dept_budget_data[] 		= (int) $deptBudget->amount;
 		}
 		
 		// Generate random colors for the groups
 		for ($i = 0; $i <=  $this->deptBudgets->count(); $i++) {
-			$this->depb_colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+			$this->dept_budget_colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
 		}
 	}
 

@@ -26,7 +26,7 @@ class BudgetPoPie extends Component
 	)
 	{
 
-		Log::debug('components.tenant.charts.BudgetPoPie Value of dept_budget_id=' . $bid);
+		Log::debug('components.tenant.charts.BudgetPoPie Value of budget_id=' . $bid);
 	
 		// if ($bid == '0000'){
 		// 	// No dept budge id is specified. Show current user last dept budget
@@ -42,7 +42,7 @@ class BudgetPoPie extends Component
 			$this->budget				= Budget::where('id', $bid)->firstOrFail();
 		}
 
-		Log::debug('components.tenant.charts.BudgetPoPie Value of dept_id=' . $this->budget->id);
+		Log::debug('components.tenant.charts.BudgetPoPie Value of budget_id=' . $this->budget->id);
 
 		$this->budget_labels[] = "Available";
 		$this->budget_labels[] = "PO Booked";
