@@ -19,13 +19,18 @@
 	<x-tenant.landlord-notice-all-tenants/>
 	<x-tenant.landlord-notice-one-tenant/>
 
-	
-	<x-tenant.dashboards.budget-stat/>
-
 	<div class="row">
-		<x-tenant.charts.budget-pie/>
+		<x-tenant.charts.dept-budget-po-pie/>
+		<x-tenant.charts.dept-budget-pr-pie/>
+		<x-tenant.charts.dept-budget-bar/>
 	</div>
 
+	{{-- <x-tenant.dashboards.dept-budget-stat id="{{ auth()->user()->dept_id }}" /> --}}
+	<x-tenant.dashboards.dept-budget-stat/>
+	
+	{{-- <x-xxxtenant.charts.dept-budget-po-pie" id="{{ auth()->user()->dept_id }}"/> --}}
+
+	
 	<x-tenant.dashboards.pr-counts/>
 	
 	<x-tenant.widgets.pr.lists/>
@@ -42,6 +47,4 @@
 			</div>
 		</div>
 	</div>
-
-	
 @endsection

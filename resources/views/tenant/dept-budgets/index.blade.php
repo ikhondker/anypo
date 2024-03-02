@@ -12,7 +12,8 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.dashboards.dept-budget-stat/>
+	
+	<x-tenant.dashboards.dept-budget-stat id="{{ auth()->user()->dept_id }}" />
 
 	<div class="row">
 		<div class="col-12">

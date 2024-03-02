@@ -26,21 +26,57 @@ class BudgetSeeder extends Seeder
 
 
 		$budgets =  [
-			// [
-			// 	'fy'			=> '2023',
-			// 	'name'			=> 'Budget for 2023',
-			// 	'start_date'	=> Carbon::parse('2023-01-01'),
-			// 	'end_date'		=> Carbon::parse('2023-12-31'),
-			// 	'amount'		=> 6000000,  //TODO remove
-			// ],
 			[
-				'fy'			=> '2024',
-				'name'			=> 'Budget for 2024',
-				'start_date'	=> Carbon::parse('2024-01-01'),
-				'end_date'		=> Carbon::parse('2024-12-31'),
-				'amount'		=> 700000,  //TODO remove
-				'notes'			=> $faker->paragraph,
+				'fy'				=> '2023',
+				'name'				=> 'Budget for 2023',
+				'start_date'		=> Carbon::parse('2023-01-01'),
+				'end_date'			=> Carbon::parse('2023-12-31'),
+				//TODO remove after this
+				'notes'				=> $faker->paragraph,
+				'amount'			=> 1400000,  
+				'amount_pr_booked'	=> $faker->numberBetween(3000,100000),
+				'amount_pr_issued'	=> $faker->numberBetween(3000,100000),
+				'amount_po_booked'	=> $faker->numberBetween(3000,100000),
+				'amount_po_issued'	=> $faker->numberBetween(3000,100000),
+				'amount_grs'		=> $faker->numberBetween(3000,100000),
+				'amount_invoice'	=> $faker->numberBetween(3000,100000),
+				'amount_payment'	=> $faker->numberBetween(3000,100000),
+				'count_pr'			=> $faker->numberBetween(3,30),
+				'count_po'			=> $faker->numberBetween(3,30),
+				'count_grs'			=> $faker->numberBetween(3,30),
+				'count_invoice'		=> $faker->numberBetween(3,30),
+				'count_payment'		=> $faker->numberBetween(3,30),
 			],
+			[
+				'fy'				=> '2024',
+				'name'				=> 'Budget for 2024',
+				'start_date'		=> Carbon::parse('2024-01-01'),
+				'end_date'			=> Carbon::parse('2024-12-31'),
+				//TODO remove after this
+				'notes'				=> $faker->paragraph,
+				'amount'			=> 700000,  
+				'amount_pr_booked'	=> $faker->numberBetween(2000,70000),
+				'amount_pr_issued'	=> $faker->numberBetween(2000,70000),
+				'amount_po_booked'	=> $faker->numberBetween(2000,70000),
+				'amount_po_issued'	=> $faker->numberBetween(2000,70000),
+				'amount_grs'		=> $faker->numberBetween(2000,70000),
+				'amount_invoice'	=> $faker->numberBetween(2000,70000),
+				'amount_payment'	=> $faker->numberBetween(2000,70000),
+				'count_pr'			=> $faker->numberBetween(3,20),
+				'count_po'			=> $faker->numberBetween(3,20),
+				'count_grs'			=> $faker->numberBetween(3,20),
+				'count_invoice'		=> $faker->numberBetween(3,20),
+				'count_payment'		=> $faker->numberBetween(3,20),
+			],
+
+			// [
+			// 	'fy'			=> '2024',
+			// 	'name'			=> 'Budget for 2024',
+			// 	'start_date'	=> Carbon::parse('2024-01-01'),
+			// 	'end_date'		=> Carbon::parse('2024-12-31'),
+			// 	'amount'		=> 700000,  //TODO remove
+			// 	'notes'			=> $faker->paragraph,
+			// ],
 			// [
 			//	 'fy'			=> '2025',
 			//	 'name'			=> 'Budget for 2025',

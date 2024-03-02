@@ -26,6 +26,4 @@ enum AuthStatusEnum:string{
 	case APPROVED	= 'approved';
 	case REJECTED	= 'rejected';
 	case ERROR		= 'error';
-	case YYXXERROR		= 'YYxxerror';
-		
 }

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class BudgetPie extends Component
 {
-	public 	$budget_labels = [];
+	public $budget_labels = [];
 	public $budget_data = [];
 	public $budget_colors = [];
 
@@ -27,7 +27,7 @@ class BudgetPie extends Component
 			case UserRoleEnum::HOD->value:
 				$sql= "SELECT db.amount - db.amount_po_booked - db.amount_po_issued as amount, db.amount_po_booked, db.amount_po_issued
 				FROM budgets b, dept_budgets db
-				WHERE b.id=db.budget_id
+				WHERE b.id = db.budget_id
 				AND b.fy = date('Y')
 				AND db.dept_id= ".auth()->user()->dept_id." ";
 				break;
@@ -44,9 +44,11 @@ class BudgetPie extends Component
 		}
 
 		// ====================== Budget====================================
-		$records = DB::select("SELECT amount - amount_po_booked - amount_po_issued as amount, amount_po_booked, amount_po_issued
-		FROM budgets b
-		WHERE b.fy = date('Y')");
+		$records = DB::select("
+			SELECT amount - amount_po_booked - amount_po_issued as amount, amount_po_booked, amount_po_issued
+			FROM budgets b
+			WHERE b.fy = date('Y')
+		");
 		//$result = $dept_budgets->toArray();
 		//$data = [];
 		
@@ -63,7 +65,7 @@ class BudgetPie extends Component
 			$this->budget_data[] = (int) $row->amount_po_issued;
 		}
 
-		// Generate random colours for the groups
+		// Generate random colors for the groups
 		for ($i = 0; $i <= count($records); $i++) {
 			$this->budget_colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
 		}

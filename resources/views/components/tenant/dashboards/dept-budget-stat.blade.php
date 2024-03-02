@@ -5,7 +5,7 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col mt-0">
-						<h5 class="card-title">Budget {{ $deptBudget->budget->fy}} ({{ $_setup->currency}})</h5>
+						<h5 class="card-title">{{  $deptBudget->dept->name  }} : Budget {{ $deptBudget->budget->fy}}</h5>
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
@@ -13,7 +13,7 @@
 						</div>
 					</div>
 				</div>
-				<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($deptBudget->amount) }}</span>
+				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format($deptBudget->amount) }} </span>
 				<div class="mb-0">
 					<span class="badge badge-soft-success me-2">FY{{ $deptBudget->budget->fy }}</span>
 					<span class="text-muted"> {{ $deptBudget->budget->name }} [{{ strtoupper($deptBudget->dept->name) }}]</span>
