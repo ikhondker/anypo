@@ -229,12 +229,13 @@ class ProjectController extends Controller
 			$request->merge(['article_id'	=> $request->input('attach_project_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PROJECT->value ]);
 			//$attid = FileUpload::upload($request);
-
-			$token			= tenant('id') ."-" . uniqid();
-			$extension		='.'.$file->extension();
-			$uploadedFileName	= $token . "-uploaded" . $extension;
+			$attid = FileUpload::aws($request);
 			
-			$path = Storage::disk('s3tf')->put($uploadedFileName, file_get_contents($file));
+			// works
+			// $token			= tenant('id') ."-" . uniqid();
+			// $extension		='.'.$file->extension();
+			// $uploadedFileName	= $token . "-uploaded" . $extension;
+			// $path = Storage::disk('s3tf')->put($uploadedFileName, file_get_contents($file));
 
 		}
 		return redirect()->route('projects.show', $request->input('attach_project_id'))->with('success', 'File Uploaded successfully.');

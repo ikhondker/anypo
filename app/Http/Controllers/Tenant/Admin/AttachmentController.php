@@ -235,6 +235,36 @@ class AttachmentController extends Controller
 
 	}
 
+	public function downloadaws($filename)
+	{
+
+		$this->authorize('download', Attachment::class);
+
+		// TODO simplify
+		// get entity -> subdir from filename
+		$att = Attachment::where('file_name', $filename)->first();
+		$entity = Entity::where('entity', $att->entity)->first();
+		$subdir = $entity->subdir;
+
+
+		//shown as: http://geda.localhost:8000/image/4.jpg
+		//$path = storage_path('uploads/' . $filename);
+		//$path = storage_path('app/private/pr/'. $filename);
+		//$path = storage_path('app/private/adv/'. $filename);
+		$path = storage_path('app/private/'.$subdir.'/'. $filename);
+
+		if (!File::exists($path)) {
+			abort(404);
+		}
+
+		$file = File::get($path);
+		$type = File::mimeType($path);
+
+		$response = Response::make($file, 200);
+		$response->header("Content-Type", $type);
+		return $response;
+	}
+
 	public function download($filename)
 	{
 
