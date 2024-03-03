@@ -75,7 +75,7 @@ class ReportController extends Controller
 		//Log::debug('storage_path()='.storage_path());
 		
 		//Log::info(json_encode($invoice)); 
-		//$this->authorize('xxInvoice', Invoice::class);
+		
 
 		// NOTE: Uses InvoicePolicy
 		$this->authorize('pdfInvoice', $invoice);

@@ -314,21 +314,6 @@ class PoController extends Controller
 		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Purchase Order updated successfully.');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function xxpdf(Po $po)
-	{
-		$this->authorize('delete', $po);
-
-		$po->fill(['enable' => !$po->enable]);
-		$po->update();
-
-		// Write to Log
-		EventLog::event('po', $po->id, 'status', 'enable', $po->enable);
-
-		return redirect()->route('pos.index')->with('success', 'Purchase Order status Updated successfully');
-	}
 
 	/**
 	 * Remove the specified resource from storage.

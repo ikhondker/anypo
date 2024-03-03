@@ -30,13 +30,7 @@ class Attachment extends Model
 	];
 
 	/* ----------------- Functions ---------------------- */
-	public static function xxgetAll()
-	{
-		return Attachment::select('id', 'name')
-			->where('enable', true)
-			->orderBy('id', 'asc')
-			->get();
-	}
+
 
 	/* ----------------- Scopes ------------------------- */
 

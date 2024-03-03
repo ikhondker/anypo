@@ -176,29 +176,10 @@ class SetupController extends Controller
 	 */
 	public function destroy(Setup $setup)
 	{
-
 		abort(403);
 		//$this->authorize('delete', $setup);
 	}
 
-	public function xximage($filename)
-	{
-		Log::debug('tenant.setup.image fileName='.$filename);
-
-		//shown as: http://geda.localhost:8000/setups/image/logo.png
-		$path = storage_path('app/logo/'. $filename);
-
-		if (!File::exists($path)) {
-			abort(404);
-		}
-
-		$file = File::get($path);
-		$type = File::mimeType($path);
-
-		$response = Response::make($file, 200);
-		$response->header("Content-Type", $type);
-		return $response;
-	}
 
 	/**
 	 * Show the form for editing the specified resource.

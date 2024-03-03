@@ -315,11 +315,6 @@ class Po extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
-	public function xxrelCurrency(){
-		return $this->belongsTo(Currency::class,'currency')->withDefault([
-			'name' => '[ Empty ]',
-		]);
-	}
 	public function requestor(){
 		return $this->belongsTo(User::class,'requestor_id')->withDefault([
 			'name' => '[ Empty ]',

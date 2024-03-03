@@ -153,8 +153,6 @@
 	</div>
 	<!-- end row -->
 
-	<x-tenant.widgets.dbu-dept :id="$deptBudget->dept_id"/>
-
 	<div class="row">
 		<div class="col-6">
 			

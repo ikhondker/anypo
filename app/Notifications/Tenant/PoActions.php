@@ -41,7 +41,7 @@ class PoActions extends Notification implements ShouldQueue
 		switch ($this->action) {
 			case WflActionEnum::SUBMITTED->value:
 				$this->subject	= '[FYI] PO #'.$this->po->id.' '. $this->po->summary .' for '. number_format($this->po->amount, 2).$this->po->currency.' has been '.Str::lower($this->action).'.';
-				$this->line		= 'Purchase Order #'.$this->po->id.' for '.$this->po->summary .' has been '.Str::lower($this->action).'.';
+				$this->line		= 'Purchase Order #'.$this->po->id.' for '.$this->po->summary .' has been '.Str::lower($this->action).'  for approval.';
 				break;
 			case WflActionEnum::PENDING->value:
 				$this->subject	= '[Action Required] PO #'.$this->po->id.' '. $this->po->summary .' for '. number_format($this->po->amount, 2).$this->po->currency.' requires your approval.';
@@ -112,7 +112,8 @@ class PoActions extends Notification implements ShouldQueue
 		$details = [
 			'entity'		=> 'PO',
 			'id'			=> $this->user->id,
-			'from'			=> $this->user->name,
+			//'from'		=> $this->user->name,	// TODO P2
+			'from'			=> 'Workflow',
 			'to'			=> $this->user->name,
 			'subject'		=> $this->subject,
 			'greeting'		=> 'Hi '.$this->user->name.',',

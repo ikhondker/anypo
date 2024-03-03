@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 /* IQBAL 21-OCT-22 */
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
+
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Lookup\PayMethod;
+use App\Models\Tenant\Admin\Setup;
 use Illuminate\Database\Eloquent\Builder;
 
 class Currency extends Model
@@ -24,12 +26,6 @@ class Currency extends Model
 	];
 
 	/* ----------------- Functions ---------------------- */
-	public static function xxgetActives() {
-		return Currency::select('currency','name','country')
-			->where('enable',true)
-			->orderBy('name','asc')
-			->get();
-	}
 
 	/* ----------------- Scopes ------------------------- */
 	public function scopePrimary(Builder $query): void

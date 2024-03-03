@@ -21,8 +21,11 @@
 				<div class="card-body">
 					
 					<h4><i data-feather="bell" class="fea text-secondary"></i>{{ $notification->data['subject'] }}</h4>
-
-					<span class="text-xs">From: {{ $notification->data['from'] }} <br><small>at {{ strtoupper(date('d-M-Y H:i:s', strtotime($notification->created_at))) }}</small></span>
+					<span class="text-xs">
+						From: {{ $notification->data['from'] }} 
+						<br>
+						<small>at {{ strtoupper(date('d-M-Y H:i:s', strtotime($notification->created_at))) }}</small>
+					</span>
 					<hr>
 					{{-- <p>&nbsp;</p> --}}
 					<p><strong>{{ $notification->data['greeting'] }}</strong></p>

@@ -138,7 +138,7 @@ class HierarchyController extends Controller
 	 */
 	public function show(Hierarchy $hierarchy)
 	{
-		$this->authorize('view', $user);
+		$this->authorize('view', $hierarchy);
 
 		$hierarchyls = Hierarchyl::with('approver.dept')->with('approver.designation')->where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
 		return view('tenant.workflow.hierarchies.show', compact('hierarchy', 'hierarchyls'));

@@ -316,22 +316,6 @@ class PrController extends Controller
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition  updated successfully.');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function xxpdf(Pr $pr)
-	{
-		$this->authorize('delete', $pr);
-
-		$pr->fill(['enable' => !$pr->enable]);
-		$pr->update();
-
-		// Write to Log
-		EventLog::event('pr', $pr->id, 'status', 'enable', $pr->enable);
-
-		return redirect()->route('prs.index')->with('success', 'Pr status Updated successfully');
-	}
-
 
 	/**
 	 * Remove the specified resource from storage.
