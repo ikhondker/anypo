@@ -77,7 +77,7 @@ class FileUpload
 			$attachment_id				=$attachment->id;
 		} catch (Exception $e) {
 			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
-			Log::error('FileUpload.upload '.$e->getMessage());
+			Log::error('Helpers.FileUpload.upload '.$e->getMessage());
 			// Either form a friendlier message to display to the user OR redirect them to a failure page
 			$attachment_id = 0;
 		}

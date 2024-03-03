@@ -48,6 +48,7 @@ use App\Helpers\FileUpload;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
 # 13. TODO 
 # 1. Dashboard chart
 # 2. Project Actions
@@ -190,6 +191,35 @@ class ProjectController extends Controller
 		return Export::csv('projects', $dataArray);
 	}
 
+	public function download()
+	{
+		
+		Log::debug('I AM HERE');
+
+		// nokey error
+		//$url = Storage::disk('s3tf')->temporaryUrl("demo1-65e4b5d819dc8-uploaded.pdf", now()->addMinutes(10));
+		//return Storage::disk('s3tf')->download($url);
+
+		// download file content
+		return Storage::disk('s3tf')->download('demo1-65e4b5d819dc8-uploaded.pdf');
+
+		// return Storage::disk('local')->put(
+		// 	'filename.xls', Storage::disk('s3tf')->get('demo1-65e4a55d7950f-uploaded.xlsx')
+		// );
+
+		// return redirect()->to(
+		// 	Storage::disk('s3tf')->temporaryUrl("/demo1-65e4b5d819dc8-uploaded.pdf", now()->addMinutes(20))
+		// );
+
+		// access denied
+		//Storage::disk('s3tf')->url('demo1-65e4a55d7950f-uploaded.xlsx')
+		//demo1-65e4b5d819dc8-uploaded.pdf
+		//demo1-65e4a55d7950f-uploaded.xlsx
+		//Storage::disk('s3tf')->temporaryUrl("demo1-65e4a55d7950f-uploaded.xlsx", now()->addMinutes(20))
+
+
+	}
+
 	// add attachments
 	public function attach(FormRequest $request)
 	{
@@ -198,7 +228,14 @@ class ProjectController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_project_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PROJECT->value ]);
-			$attid = FileUpload::upload($request);
+			//$attid = FileUpload::upload($request);
+
+			$token			= tenant('id') ."-" . uniqid();
+			$extension		='.'.$file->extension();
+			$uploadedFileName	= $token . "-uploaded" . $extension;
+			
+			$path = Storage::disk('s3tf')->put($uploadedFileName, file_get_contents($file));
+
 		}
 		return redirect()->route('projects.show', $request->input('attach_project_id'))->with('success', 'File Uploaded successfully.');
 	}

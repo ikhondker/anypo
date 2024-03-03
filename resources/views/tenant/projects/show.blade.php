@@ -29,6 +29,12 @@
 					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
 					<x-tenant.show.my-boolean	value="{{ $project->closed }}" label="Closed?"/>
 					<x-tenant.show.my-text		value="{{ $project->notes }}" label="Notes"/>
+					<a href="{{ Storage::disk('s3tf')->url('files/demo1-65e4a2b1a0326-uploaded.docx') }}"> Docx </a>
+					<a href="{{ Storage::disk('s3tf')->download('demo1-65e4b5d819dc8-uploaded.pdf') }}"> pdf </a>
+					<a href="{{ Storage::disk('s3tf')->url('tenant/demo1-65e4a55d7950f-uploaded.xlsx') }}"> xlsx </a>
+					<a href="{{ route('projects.download') }}"> xlsx dl </a>
+					
+					{{-- <a href="{{ Storage::disk('s3tf')->download('tenant/demo1-65e4a55d7950f-uploaded.xlsx') }}"> xlsxd </a> --}}
 				</div>
 			</div>
 

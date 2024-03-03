@@ -306,6 +306,8 @@ Route::middleware([
 	/* ======================== Project ======================================== */
 	Route::resource('projects', ProjectController::class)->middleware(['auth', 'verified']);
 	Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
+	// TEMP
+	Route::get('/project/download',[ProjectController::class,'download'])->name('projects.download');
 	Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
 	Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
 	Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
