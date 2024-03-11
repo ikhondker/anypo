@@ -134,8 +134,8 @@ class CommentController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $comment->id ]);
 			$request->merge(['entity'		=> static::ENTITY ]);
-			$attachment_id = LandlordFileUpload::upload($request);
-			//$attachment_id = LandlordFileUpload::aws($request);
+			//$attachment_id = LandlordFileUpload::upload($request);
+			$attachment_id = LandlordFileUpload::aws($request);
 			// update back table with attachment_id
 			$comment->attachment_id = $attachment_id;
 			$comment->save();

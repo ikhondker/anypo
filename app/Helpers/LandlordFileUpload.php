@@ -118,6 +118,7 @@ class LandlordFileUpload
 			// OK. Store File in Storage Private Folder. Auto create folder
 			$request->file_to_upload->storeAs('private/' . $directory . '/', $fileName);
 
+			Log::debug('ll.upload Value of directory=' . $directory);
 			// create Attachment record TODO rewrite
 			$attachment					= new Attachment;
 			$attachment->article_id		= $request->article_id;
@@ -132,6 +133,8 @@ class LandlordFileUpload
 			$attachment->file_type	 	= $request->file('file_to_upload')->getMimeType();
 			$attachment->file_size	 	= $request->file('file_to_upload')->getSize();
 			$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
+
+
 
 			$attachment->save();
 			$attachment_id				=$attachment->id;

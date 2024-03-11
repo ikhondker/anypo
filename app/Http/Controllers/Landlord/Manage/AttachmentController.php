@@ -145,21 +145,25 @@ class AttachmentController extends Controller
 		abort(403);
 	}
 
-	public function downloadaws($fileName)
+	public function download($fileName)
 	{
-		Log::debug('Value of fileName=' . $fileName);
 		//$this->authorize('download', Attachment::class);
+
+		Log::debug('landlord.attachments.download Value of fileName='. $fileName);
 		// get entity -> directory from filename
 		$att 				= Attachment::where('file_name', $fileName)->first();
 		$entity 			= Entity::where('entity', $att->entity)->first();
 		$fileDownloadPath 	= $entity->directory."/". $fileName;
 		Log::debug('landlord.attachments.download Value of fileDownloadPath='. $fileDownloadPath);
-		//return Storage::disk('s3lf')->download($fileDownloadPath);
+		return Storage::disk('s3lf')->download($fileDownloadPath);
 	}
 
-	public function download($filename)
+	public function downloadLocal($filename)
 	{
 		// get entity -> directory from filename
+
+		Log::debug('ll.downalod Value of downalod=' . $filename);
+
 		$att = Attachment::where('file_name', $filename)->first();
 		$entity = Entity::where('entity', $att->entity)->first();
 		$directory = $entity->directory;
