@@ -20,10 +20,17 @@
 namespace App\Enum;
 
 enum LandlordServiceStatusEnum:string{
-	case DRAFT		= '1002';
-	case ACTIVE		= '1003';
-	case PROCESSING	= '1009';
-	case CANCELED	= '1020';
-	case FAILED		= '1021';
-	case ERROR		= '1022';
+	// case DRAFT		= '1002';
+	// case ACTIVE		= '1003';
+	// case PROCESSING	= '1009';
+	// case CANCELED	= '1020';
+	// case FAILED		= '1021';
+	// case ERROR		= '1022';
+
+	case DRAFT		= 'draft';
+	case ACTIVE		= 'active';
+	case PROCESSING	= 'processing';
+	case CANCELED	= 'canceled';
+	case FAILED		= 'failed';
+	case ERROR		= 'error';
 }

@@ -44,7 +44,7 @@ return new class extends Migration
 			//$table->string('status')->default(LandlordInvoiceStatusEnum::DUE->value);
 			/** end ENUM */
 			/** ENUM */
-			$table->string('status_code',4)->default(LandlordInvoiceStatusEnum::DUE->value); 
+			$table->string('status_code')->default(LandlordInvoiceStatusEnum::DUE->value); 
 			$table->foreign('status_code')->references('code')->on('statuses');
 			//$table->foreignId('status_id')->default(LandlordInvoiceStatusEnum::DUE->value)->constrained('statuses');
 			/** end ENUM */

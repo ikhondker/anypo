@@ -35,7 +35,7 @@ return new class extends Migration
 			$table->date('start_date')->useCurrent();
 			$table->date('end_date')->nullable();
 			/** ENUM */
-			$table->string('status_code',4)->default(LandlordServiceStatusEnum::DRAFT->value); 
+			$table->string('status_code')->default(LandlordServiceStatusEnum::DRAFT->value); 
 			$table->foreign('status_code')->references('code')->on('statuses');
 			//$table->foreignId('status_id')->default(LandlordInvoiceStatusEnum::DUE->value)->constrained('statuses');
 			/** end ENUM */

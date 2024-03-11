@@ -144,7 +144,6 @@ Route::get('/home', function () {
 	return view('landlord.home');
 })->name('home');
 
-
 /**
 * ==================================================================================
 * Public Controller Based Routes
@@ -168,14 +167,13 @@ Route::post('/save-contact', [HomeController::class, 'saveContact'])->name('home
 * Public routes for stripe
 * ==================================================================================
 */
-
 Route::post('/checkout-stripe', [HomeController::class, 'checkoutStripe'])->name('checkout-stripe');
 Route::post('/payment-stripe', [HomeController::class, 'paymentStripe'])->name('payment-stripe');
 Route::get('/success', [HomeController::class, 'success'])->name('checkout.success');
+Route::get('/test11', [HomeController::class, 'success'])->name('checkout.test11');
 Route::get('/cancel', [HomeController::class, 'cancel'])->name('checkout.cancel');
 // TODO
 // Route::post('/webhook', [HomeController::class, 'webhook'])->name('checkout.webhook');
-
 
 /* ======================== Provision Controller ======================================== */
 //use App\Http\Controllers\Landlord\ProvisionController; // No authentication <================

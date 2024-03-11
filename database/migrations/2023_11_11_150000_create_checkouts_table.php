@@ -35,11 +35,9 @@ return new class extends Migration
 			$table->integer('user')->default(3);
 			$table->integer('gb')->default(5);
 			/** ENUM */
-			$table->string('status_code',4)->default(LandlordCheckoutStatusEnum::DRAFT->value); 
+			$table->string('status_code')->default(LandlordCheckoutStatusEnum::DRAFT->value); 
 			$table->foreign('status_code')->references('code')->on('statuses');
-			//$table->foreignId('status_id')->default(LandlordCheckoutStatusEnum::NEW->value)->constrained('statuses');
 			/** end ENUM */
-			//$table->enum('status', ['draft','canceled','processing','failed','complete','error'])->default('draft');
 			$table->string('ip')->nullable();
 			$table->string('address1')->nullable();
 			$table->string('address2')->nullable();

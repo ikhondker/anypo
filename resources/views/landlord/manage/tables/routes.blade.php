@@ -17,7 +17,7 @@
 			<x-landlord.table-links/>
 
 			@foreach($filesInFolder as $row)
-				<div class="alert alert-secondary" role="alert">
+				<div class="alert alert-danger" role="alert">
 					<!-- ========== INCLUDE ========== -->
 					@include('shared.includes.tables.routes')
 					<!-- ========== INCLUDE ========== -->

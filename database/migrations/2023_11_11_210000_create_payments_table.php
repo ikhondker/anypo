@@ -33,7 +33,7 @@ return new class extends Migration
 			//$table->string('status')->default(LandlordPaymentStatusEnum::DRAFT->value);
 			/** end ENUM */
 			/** ENUM */
-			$table->string('status_code',4)->default(LandlordPaymentStatusEnum::DRAFT->value); 
+			$table->string('status_code')->default(LandlordPaymentStatusEnum::DRAFT->value); 
 			$table->foreign('status_code')->references('code')->on('statuses');
 			//$table->foreignId('status_id')->default(LandlordPaymentStatusEnum::NEW->value)->constrained('statuses');
 			/** end ENUM */

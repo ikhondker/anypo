@@ -33,8 +33,8 @@ return new class extends Migration
 			$table->boolean('banner_show')->default(false);
 			$table->text('banner_message')->nullable();
 			$table->boolean('banner_for_maintenance')->default(false);
-			$table->dateTime('banner_start_time', $precision = 0);
-			$table->dateTime('banner_end_time', $precision = 0);
+			$table->dateTime('banner_start_time', $precision = 0)->nullable();
+			$table->dateTime('banner_end_time', $precision = 0)->nullable();
 			$table->string('version')->nullable()->default('1.0');
 			$table->string('build')->nullable()->default('1001');
 			$table->biginteger('days_gen_bill')->default(7);

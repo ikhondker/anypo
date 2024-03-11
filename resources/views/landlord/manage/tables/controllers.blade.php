@@ -34,7 +34,7 @@
 				<tbody>
 					@foreach($filesInFolder as $row) 
 						<tr>
-							<th scope="row">{{ ++$i }}</th>
+							<th scope="row">{{ $loop->iteration }}</th>
 							<td class="">{{ $row['f'] }}</td>
 							<td class="">{{ $row['removed'] }}</td>
 							<td class="">{{ $row['route'] }}</td>

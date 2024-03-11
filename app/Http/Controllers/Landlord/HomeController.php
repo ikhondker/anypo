@@ -154,13 +154,13 @@ class HomeController extends Controller
 
 		if (auth()->check()) {
 			$request->validate([
-				'site'			=> 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
-				//'name'		=> 'required|max:100',
-				//'account_name'=> 'required|max:100|',
+				'site'				=> 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
+				//'name'			=> 'required|max:100',
+				//'account_name'	=> 'required|max:100|',
 			],[
-				'site.required' => 'Site Name is Required!',
-				'site.unique'   => 'This site code is already in use. Please try another.',
-				'site.without_spaces' => 'Whitespace not allowed.'
+				'site.required' 		=> 'Site Name is Required!',
+				'site.unique'   		=> 'This site code is already in use. Please try another.',
+				'site.without_spaces'	=> 'Whitespace not allowed.'
 			]);
 		} else {
 			$request->validate([
@@ -169,10 +169,10 @@ class HomeController extends Controller
 				'email'			=> 'required|email|max:100|unique:users,email',
 				'account_name'	=> 'required|max:100|',
 			],[
-				'site.required' => 'Site name is Required!',
-				'site.unique'   => 'This site code is already in use. Please try another.',
-				'site.without_spaces' => 'Whitespace not allowed.',
-				'email.unique'  => 'This email is already registered. Please login first and the try to purchase service.',
+				'site.required' 		=> 'Site name is Required!',
+				'site.unique'   		=> 'This site code is already in use. Please try another.',
+				'site.without_spaces'	=> 'Whitespace not allowed.',
+				'email.unique'  		=> 'This email is already registered. Please login first and the try to purchase service.',
 			]);
 		}
 
@@ -304,7 +304,7 @@ class HomeController extends Controller
 		return redirect($session->url);
 	}
 
-	// landed here both for chekcout and subscription payment
+	// landed here both for cheCkcout and subscription payment
 	public function success(Request $request)
 	{
 
@@ -328,6 +328,7 @@ class HomeController extends Controller
 					}
 					if ($checkout->status_code->value == LandlordCheckoutStatusEnum::DRAFT->value) {
 						Log::debug('landlord.home.success checkout_id='. $checkout->id);
+						// TODO Uncomment
 						// CreateTenant::dispatch($checkout->id);
 					}
 					return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
@@ -584,7 +585,7 @@ class HomeController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $contact->id]);
 			$request->merge(['entity'		=> $ENTITY]);
-			$attachment_id = LandlordFileUpload::upload($request);
+			$attachment_id = LandlordFileUpload::aws($request);
 
 			// update back table with attachment_id
 			$contact->attachment_id = $attachment_id;

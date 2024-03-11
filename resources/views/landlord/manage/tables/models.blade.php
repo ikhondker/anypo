@@ -33,7 +33,7 @@
 				<tbody>
 					@foreach($filesInFolder as $row) 
 						<tr>
-							<th scope="row">{{ ++$i }}</th>
+							<th scope="row">{{ $loop->iteration }}</th>
 							<td>{{ $row['f'] }}</td>
 							<td>{{ Str::lower($row['f']) }}</td>
 							<td>{{ $row['route'] }}</td>

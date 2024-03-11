@@ -16,7 +16,7 @@ class StatusSeeder extends Seeder
 	{
 		$statuses =  [
 				[
-					'code'		=> 'new', //1001,
+					'code'		=> 1001,
 					'name'		=> 'New',
 					'badge'		=> 'info',
 					'accounts'	=> false,
@@ -27,7 +27,7 @@ class StatusSeeder extends Seeder
 					'payments'	=> false,
 				],
 				[
-					'code'		=> 'draft',  //1002,
+					'code'		=> 1002,
 					'name'		=> 'Draft',
 					'badge'		=> 'info',
 					'accounts'	=> false,
@@ -38,7 +38,7 @@ class StatusSeeder extends Seeder
 					'payments'	=> true,
 				],
 				[
-					'code'		=> 'active', //1003,
+					'code'		=> 1003,
 					'name'		=> 'Active',
 					'badge'	  	=> 'success',
 					'accounts'  => true,
@@ -49,7 +49,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'assigned', //1004,
+					'code'		=> 1004,
 					'name'		=> 'Assigned',
 					'badge'	  	=> 'info',
 					'accounts'  => false,
@@ -60,7 +60,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'pending', //1005,
+					'code'		=> 1005,
 					'name'		=> 'Pending',
 					'badge'	  	=> 'danger',
 					'accounts'  => false,
@@ -71,7 +71,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'in-progress', //1006,
+					'code'		=> 1006,
 					'name'		=> 'In-Progress',
 					'badge'	  	=> 'primary',
 					'accounts'  => false,
@@ -82,8 +82,8 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'development', //1007,
-					'name'		=> 'Development',
+					'code'		=> 1007,
+					'name'		=> 'Internal Development',
 					'badge'	  	=> 'primary',
 					'accounts'  => false,
 					'services'  => false,
@@ -94,7 +94,7 @@ class StatusSeeder extends Seeder
 				],
 
 				[
-					'code'		=> 'bug-fixing', //1008,
+					'code'		=> 1008,
 					'name'		=> 'Bug Fixing',
 					'badge'	  	=> 'primary',
 					'accounts'  => false,
@@ -105,7 +105,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'processing', //1009,
+					'code'		=> 1009,
 					'name'		=> 'Processing',
 					'badge'	  	=> 'primary',
 					'accounts'  => false,
@@ -116,7 +116,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'customer-working', //1010,
+					'code'		=> 1010,
 					'name'		=> 'Customer Working',
 					'badge'	  	=> 'info',
 					'accounts'  => false,
@@ -127,7 +127,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'resolved', //1011,
+					'code'		=> 1011,
 					'name'		=> 'Resolved',
 					'badge'	  	=> 'success',
 					'accounts'  => false,
@@ -138,7 +138,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'closed', //1012,
+					'code'		=> 1012,
 					'name'		=> 'Closed',
 					'badge'	  	=> 'success',
 					'accounts'  => false,
@@ -149,7 +149,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'completed', //1013,
+					'code'		=> 1013,
 					'name'		=> 'Completed',
 					'badge'	  	=> 'success',
 					'accounts'  => false,
@@ -160,7 +160,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'paid', //1014,
+					'code'		=> 1014,
 					'name'		=> 'Paid',
 					'badge'	  	=> 'success',
 					'accounts'  => false,
@@ -171,7 +171,7 @@ class StatusSeeder extends Seeder
 					'payments'  => true,
 				],
 				[
-					'code'		=> 'on-hold', //1015,
+					'code'		=> 1015,
 					'name'		=> 'On-Hold',
 					'badge'	  	=> 'warning',
 					'accounts'  => true,
@@ -182,7 +182,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'locked', //1016,
+					'code'		=> 1016,
 					'name'		=> 'Locked',
 					'badge'	  	=> 'warning',
 					'accounts'  => false,
@@ -193,7 +193,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'due', //1017,
+					'code'		=> 1017,
 					'name'		=> 'Due',
 					'badge'	  	=> 'warning',
 					'accounts'  => false,
@@ -204,7 +204,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'past-due', //1018,
+					'code'		=> 1018,
 					'name'		=> 'Past Due',
 					'badge'	  	=> 'warning',
 					'accounts'  => false,
@@ -215,7 +215,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'expired', //1019,
+					'code'		=> 1019,
 					'name'		=> 'Expired',
 					'badge'	  	=> 'warning',
 					'accounts'  => false,
@@ -226,7 +226,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'canceled', //1020,
+					'code'		=> 1020,
 					'name'		=> 'Canceled',
 					'badge'	  	=> 'warning',
 					'accounts'  => true,
@@ -237,7 +237,7 @@ class StatusSeeder extends Seeder
 					'payments'  => true,
 				],
 				[
-					'code'		=> 'failed', //1021,
+					'code'		=> 1021,
 					'name'		=> 'Failed',
 					'badge'	  	=> 'danger',
 					'accounts'  => false,
@@ -248,7 +248,7 @@ class StatusSeeder extends Seeder
 					'payments'  => true,
 				],
 				[
-					'code'		=> 'error', //1022,
+					'code'		=> 1022,
 					'name'		=> 'Error',
 					'badge'	  	=> 'danger',
 					'accounts'  => false,
@@ -259,7 +259,7 @@ class StatusSeeder extends Seeder
 					'payments'  => true,
 				],
 				[
-					'code'		=> 'terminated', //1023,
+					'code'		=> 1023,
 					'name'		=> 'Terminated',
 					'badge'	  	=> 'danger',
 					'accounts'  => false,
@@ -270,7 +270,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'archived', //1024,
+					'code'		=> 1024,
 					'name'		=> 'Archived',
 					'badge'	  	=> 'secondary',
 					'accounts'  => true,

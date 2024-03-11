@@ -29,7 +29,7 @@ return new class extends Migration
 			$table->foreignId('category_id')->nullable()->constrained('categories');
 			/** TODO category */
 			/** ENUM */
-			$table->string('status_code',4)->default(LandlordTicketStatusEnum::NEW->value); 
+			$table->string('status_code')->default(LandlordTicketStatusEnum::NEW->value); 
 			$table->foreign('status_code')->references('code')->on('statuses');
 			//$table->foreignId('status_id')->default(LandlordTicketStatusEnum::NEW->value)->constrained('statuses');
 			/** end ENUM */

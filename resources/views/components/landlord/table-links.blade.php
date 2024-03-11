@@ -27,6 +27,18 @@
 	<li class="nav-item m-1">
 		<span class="badge bg-primary"><a class="text-white" href="{{ route('tables.check') }}">Check Files*</a></span>
 	</li>
-
 </ul>
+
+<!-- Dropdown -->
+<div class="btn-group">
+	<button class="btn  btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonLight" data-bs-toggle="dropdown" aria-expanded="false">
+	  Menu
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
+	  <a class="dropdown-item" href="#">Action</a>
+	  <a class="dropdown-item" href="#">Another action</a>
+	  <a class="dropdown-item" href="#">Something else here</a>
+	</div>
+  </div>
+  <!-- End Dropdown -->
 <!-- End Nav -->
