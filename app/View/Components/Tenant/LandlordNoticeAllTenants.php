@@ -24,7 +24,8 @@ class LandlordNoticeAllTenants extends Component
 		//Log::debug('count cnt=' . $landlordSetup->name);
 
 		$this->anyNotice = false;
-		$this->notice = "Test Notice fomr Landlord ." .$landlordSetup->name ;
+		//$this->anyNotice = $landlordSetup->banner_show; // ? or maintenance
+		$this->notice = "Test Notice from Landlord ." .$landlordSetup->name ;
 	}
 
 	/**

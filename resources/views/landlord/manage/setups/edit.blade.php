@@ -92,7 +92,7 @@
 						<label class="form-check form-switch" for="admin">
 							<input class="form-check-input mt-0" type="checkbox" id="maintenance" name="maintenance" @checked($setup->maintenance)>
 							<span class="d-block"> Enable Maintenance</span>
-							<span class="d-block small text-muted">Be careful! This will Enable Maintenance</span>
+							<span class="d-block small text-danger">Be careful! This will enable Maintenance</span>
 						</label>
 						@error('maintenance')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -106,7 +106,7 @@
 						<label class="form-check form-switch" for="admin">
 							<input class="form-check-input mt-0" type="checkbox" id="show_banner" name="show_banner" @checked($setup->show_banner)>
 							<span class="d-block"> Display Banner?</span>
-							<span class="d-block small text-muted">Be careful! This will Display Banner</span>
+							<span class="d-block small text-danger">Be careful! This will display Banner for ALL tenants.</span>
 						</label>
 						@error('show_banner')
 							<div class="text-danger text-xs">{{ $message }}</div>

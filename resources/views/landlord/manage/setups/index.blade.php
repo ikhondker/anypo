@@ -42,7 +42,7 @@
 								</div>
 							</td>
 							<td><x-landlord.list.my-date :value="$setup->created_at" /></td>
-							<td><x-landlord.list.my-enable :value="$setup->show_banner" /></td>
+							<td><x-landlord.list.my-enable :value="$setup->banner_show" /></td>
 							<td><x-landlord.list.my-badge :value="$setup->id" /></td>
 							<td><x-landlord.list.actions object="setup" :id="$setup->id" :export="false"
 									:enable="false" /></td>

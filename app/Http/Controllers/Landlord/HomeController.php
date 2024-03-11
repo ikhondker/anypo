@@ -304,19 +304,25 @@ class HomeController extends Controller
 		return redirect($session->url);
 	}
 
+	public function successxx(Request $request){
+		return view('landlord.home');
+	}
+
 	// landed here both for cheCkcout and subscription payment
 	public function success(Request $request)
 	{
-
+	
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 		$sessionId = $request->get('session_id');
-		
+
 		try {
+		
 			$session = \Stripe\Checkout\Session::retrieve($sessionId);
+
 			if (!$session) {
 				throw new NotFoundHttpException;
 			}
-			
+
 			$trx_type	=  $session->metadata->trx_type;
 			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
 
@@ -326,7 +332,7 @@ class HomeController extends Controller
 					if (!$checkout) {
 						throw new NotFoundHttpException();
 					}
-					if ($checkout->status_code->value == LandlordCheckoutStatusEnum::DRAFT->value) {
+					if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
 						Log::debug('landlord.home.success checkout_id='. $checkout->id);
 						// TODO Uncomment
 						// CreateTenant::dispatch($checkout->id);
