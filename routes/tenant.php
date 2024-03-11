@@ -223,7 +223,7 @@ Route::middleware([
 	Route::resource('attachments', AttachmentController::class)->middleware(['auth', 'verified']);
 	Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
 	Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
-	Route::get('/attachments/download/{filename}',[AttachmentController::class, 'download'])->name('attachments.download');
+	Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
 	
 	/* ======================== Country ======================================== */
 	Route::resource('countries', CountryController::class)->middleware(['auth', 'verified']);
@@ -306,8 +306,6 @@ Route::middleware([
 	/* ======================== Project ======================================== */
 	Route::resource('projects', ProjectController::class)->middleware(['auth', 'verified']);
 	Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
-	// TEMP
-	Route::get('/project/download',[ProjectController::class,'download'])->name('projects.download');
 	Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
 	Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
 	Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');

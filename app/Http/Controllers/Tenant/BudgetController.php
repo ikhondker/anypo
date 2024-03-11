@@ -158,7 +158,7 @@ class BudgetController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $budget->id ]);
 			$request->merge(['entity'		=> EntityEnum::BUDGET->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 		}
 
 		// Write to Log
@@ -181,7 +181,7 @@ class BudgetController extends Controller
 		// Write to Log
 		EventLog::event('budget', $budget->id, 'status', 'closed', $budget->closed);
 
-		return redirect()->route('budgets.index')->with('success', 'Budget status Updated successfully');
+		return redirect()->route('budgets.show',$budget->id )->with('success', 'Budget status Updated successfully');
 	}
 
 	public function export()
@@ -203,7 +203,7 @@ class BudgetController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_budget_id') ]);
 			$request->merge(['entity'		=> EntityEnum::BUDGET->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 		}
 		return redirect()->route('budgets.show', $request->input('attach_budget_id'))->with('success', 'File Uploaded successfully.');
 	}

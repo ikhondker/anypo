@@ -20,7 +20,7 @@ class Entity extends Model
 	protected $keyType		= 'string';
 
 	protected $fillable = [
-		'entity', 'name', 'route', 'subdir', 'notification', 'enable', 'updated_by', 'updated_at',
+		'entity', 'name', 'model', 'route', 'directory', 'notification', 'enable', 'updated_by', 'updated_at',
 	];
 
 	public static function libraryDocs()

@@ -180,7 +180,7 @@ class TicketController extends Controller
 				if ($file = $request->file('file_to_upload')) {
 					$request->merge(['article_id'	=> $ticket->id]);
 					$request->merge(['entity'		=> static::ENTITY]);
-					$attachment_id = \App\Helpers\LandlordFileUpload::upload($request);
+					$attachment_id = \App\Helpers\LandlordFileUpload::aws($request);
 
 					// update back table with attachment_id
 					$ticket->attachment_id = $attachment_id;

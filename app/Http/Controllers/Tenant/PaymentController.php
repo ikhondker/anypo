@@ -141,7 +141,7 @@ class PaymentController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $payment->id ]);
 			$request->merge(['entity'		=> EntityEnum::PAYMENT->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 		}
 
 		// 	Populate functional currency values

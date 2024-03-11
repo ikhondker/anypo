@@ -34,6 +34,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'dept-budgets.edit','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.create','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.attachments','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.budget','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
 
 			[ 'raw_route_name' => 'projects.index','route_name' => 'projects.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'projects.show','route_name' => 'projects.index', 'node_name' => 'budget'],

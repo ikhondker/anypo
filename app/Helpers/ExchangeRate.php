@@ -99,7 +99,7 @@ class ExchangeRate
 		$url = 'https://openexchangerates.org/api/latest.json?app_id='.$apikey.'&base=USD';
 		$response = Http::get($url);
 
-		// Exclude TOO SMALL TODO
+		// Exclude TOO SMALL 
 		//"BTC": 0.000033653167,
 		$exclude = array("BTC", "XAU", "XPD", "XPT");
 

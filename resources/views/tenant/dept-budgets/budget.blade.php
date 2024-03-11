@@ -10,6 +10,8 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="DeptBudget"/>
 			<x-tenant.buttons.header.create object="DeptBudget"/>
+			<x-tenant.actions.dept-budget-actions id="{{ $deptBudget->id }}"/>
+		
 		@endslot
 	</x-tenant.page-header>
 
@@ -29,6 +31,8 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
+	
+	@include('tenant.includes.modal-boolean-advance')
 
 	<script type="text/javascript">
 		function mySubmit() {

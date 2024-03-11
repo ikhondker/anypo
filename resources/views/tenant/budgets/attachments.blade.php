@@ -9,9 +9,10 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Budget"/>
-			<x-tenant.buttons.header.create object="Budget"/>
 			<x-tenant.buttons.header.edit object="Budget" :id="$budget->id"/>
-			<a href="{{ route('projects.show', $budget->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Pr</a>
+			<x-tenant.buttons.header.create object="Budget"/>
+			<x-tenant.actions.budget-actions id="{{ $budget->id }}"/>
+	
 		@endslot
 	</x-tenant.page-header>
 	
@@ -27,8 +28,8 @@
 					<x-tenant.show.my-date		value="{{ $budget->start_date  }}"/>
 					<x-tenant.show.my-date		value="{{ $budget->end_date  }}"/>
 					<x-tenant.show.my-text		value="{{ $budget->name }}" label="Name"/>
+					<x-tenant.show.my-closed	value="{{ $budget->closed }}"  label="Closed?"/>
 					<x-tenant.show.my-text		value="{{ $budget->notes }}" label="Notes"/>
-					<x-tenant.show.my-boolean	value="{{ $budget->freeze }}"  label="Freeze?"/>
 				</div>
 			</div>
 
@@ -41,5 +42,6 @@
 	
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::BUDGET->value }}" aid="{{ $budget->id }}"/>
 
+	@include('tenant.includes.modal-boolean-advance')
 @endsection
 

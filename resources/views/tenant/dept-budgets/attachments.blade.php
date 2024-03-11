@@ -10,8 +10,7 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="DeptBudget"/>
 			<x-tenant.buttons.header.create object="DeptBudget"/>
-			<x-tenant.buttons.header.edit object="DeptBudget" :id="$deptBudget->id"/>
-			<a href="{{ route('dept-budgets.show', $deptBudget->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Dept Budget</a>
+			<x-tenant.actions.dept-budget-actions id="{{ $deptBudget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 	
@@ -19,6 +18,8 @@
 
 	
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::DEPTBUDGET->value }}" aid="{{ $deptBudget->id }}"/>
+
+	@include('tenant.includes.modal-boolean-advance')
 
 @endsection
 

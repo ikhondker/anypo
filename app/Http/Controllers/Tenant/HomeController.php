@@ -108,7 +108,7 @@ class HomeController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $contact->id ]);
 			$request->merge(['entity'		=> $ENTITY ]);
-			$attachment_id = FileUpload::upload($request);
+			$attachment_id = FileUpload::aws($request);
 
 			// update back table with attachment_id
 			$contact->attachment_id = $attachment_id;

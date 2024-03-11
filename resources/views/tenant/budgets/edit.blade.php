@@ -9,9 +9,9 @@
 			Edit Budget
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="Budget"/>
 			<x-tenant.buttons.header.create object="Budget"/>
+			<x-tenant.actions.budget-actions id="{{ $budget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -83,5 +83,7 @@
 
 	</form>
 	<!-- /.form end -->
+
+	@include('tenant.includes.modal-boolean-advance')
 @endsection
 

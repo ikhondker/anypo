@@ -164,6 +164,8 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
+	
+	@include('tenant.includes.modal-boolean-advance')
 
 	<script type="text/javascript">
 		function mySubmit() {

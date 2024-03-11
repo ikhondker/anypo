@@ -173,7 +173,7 @@ class PrController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $pr->id ]);
 			$request->merge(['entity'		=> EntityEnum::PR->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 			//$request->merge(['logo'		=> $fileName ]);
 		}
 
@@ -217,8 +217,7 @@ class PrController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_pr_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PR->value ]);
-			$attid = FileUpload::upload($request);
-			//$request->merge(['logo'	=> $fileName ]);
+			$attid = FileUpload::aws($request);
 		}
 
 		return redirect()->route('prs.show', $request->input('attach_pr_id'))->with('success', 'File Uploaded successfully.');

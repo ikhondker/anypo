@@ -46,14 +46,14 @@ class LandlordFileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		// get entity and subdir
+		// get entity and directory
 		$entity 		= Entity::where('entity', $request->entity)->first();
-		$subdir 		= $entity->subdir;
+		$directory 		= $entity->directory;
 
 		try {
 			//Code that may throw an Exception
 			// OK. Store File in Storage Private Folder. Auto create folder
-			$request->file_to_upload->storeAs('private/' . $subdir . '/', $fileName);
+			$request->file_to_upload->storeAs('private/' . $directory . '/', $fileName);
 
 			// create Attachment record TODO rewrite
 			$attachment					= new Attachment;
@@ -89,12 +89,12 @@ class LandlordFileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		// get entity and subdir
-		$subdir 		= 'profile';
+		// get entity and directory
+		$directory 		= 'profile';
 
 		try {
 			// OK. Store File in Storage Private Folder. Auto create folder
-			$request->file_to_upload->move(public_path('landlord/' . $subdir), $fileName);
+			$request->file_to_upload->move(public_path('landlord/' . $directory), $fileName);
 		} catch (Exception $e) {
 
 			$message = $e->getMessage();
@@ -121,14 +121,14 @@ class LandlordFileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		// get entity and subdir
-		$subdir 		= 'profile';
+		// get entity and directory
+		$directory 		= 'profile';
 
 		try {
 			// OK. Store File in Storage Private Folder. Auto create folder
 			//$request->file_to_upload->storeAs('private/pr/', $fileName);
-			//$request->file_to_upload->move(public_path('landlord/'.$subdir), $fileName);
-			$request->file_to_upload->storeAs('public/' . $subdir . '/', $fileName);
+			//$request->file_to_upload->move(public_path('landlord/'.$directory), $fileName);
+			$request->file_to_upload->storeAs('public/' . $directory . '/', $fileName);
 
 		} catch (Exception $e) {
 

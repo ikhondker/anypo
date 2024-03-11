@@ -151,5 +151,7 @@
 		}
 	</script>
 
+	@include('tenant.includes.modal-boolean-advance')
+
 @endsection
 

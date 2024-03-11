@@ -165,7 +165,7 @@ class DeptBudgetController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $deptBudget->id ]);
 			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 		}
 
 		// budget has been modified
@@ -180,7 +180,7 @@ class DeptBudgetController extends Controller
 			EventLog::event('deptBudget', $deptBudget->id, 'update', 'amount', $deptBudget->amount);
 		}
 
-		return redirect()->route('dept-budgets.show',$deptBudget->id )->with('success', 'DeptBudget updated successfully');
+		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget updated successfully');
 	}
 
 	/**
@@ -196,7 +196,7 @@ class DeptBudgetController extends Controller
 		// Write to Log
 		EventLog::event('deptBudget', $deptBudget->id, 'status', 'closed', $deptBudget->closed);
 
-		return redirect()->route('dept-budgets.index')->with('success', 'DeptBudget status Updated successfully');
+		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget status Updated successfully');
 	}
 
 	public function export()
@@ -221,7 +221,7 @@ class DeptBudgetController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_dept_budget_id') ]);
 			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 			//$request->merge(['logo'=> $fileName ]);
 		}
 

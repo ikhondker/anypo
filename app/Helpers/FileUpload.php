@@ -44,22 +44,37 @@ class FileUpload
 	{
 
 		// ===> both file_to_upload and fileName is used
-		$file 			= $request->file('file_to_upload');
+		if ($request->hasFile('file_to_upload')) {
+			$file 			= $request->file('file_to_upload');
+		} else {
+			Log::error('Helpers.FileUpload.aws No file uploaded');
+			$attachment_id = 0;
+			return $attachment_id;
+		}
+
+		if (! $file->isValid()) {
+			Log::debug('Helpers.FileUpload.aws file is invalid='. $path);
+			$attachment_id = 0;
+			return $attachment_id;
+		}
+
+
 		$fileName 		= $request->article_id.'-'. uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		// get entity and subdirectory to upload
+		// get tenant, entity and rectory to upload
 		$entity 		= Entity::where('entity', $request->entity)->first();
-		$subdir 		= $entity->subdir;
+		$fileUploadPath = tenant('id')."/".$entity->directory."/". $fileName;
+		Log::debug('Helpers.FileUpload.aws Value of fileUploadPath='. $fileUploadPath);
 
 		try {
 			//Code that may throw an Exception
-			//$request->file_to_upload->storeAs('private/'.$subdir.'/', $fileName);
-		
-			$path= Storage::disk('s3tf')->put($subdir.'/'.$fileName, file_get_contents($file));
+			//$request->file_to_upload->storeAs('private/'.$directory.'/', $fileName);
+
+			$path= Storage::disk('s3tf')->put($fileUploadPath, file_get_contents($file));
 			Log::debug('Helpers.FileUpload.aws Value of path='. $path);
 
-			// create Attachment record TODO rewrite
+			// create Attachment record 
 			$attachment					= new Attachment();
 			$attachment->article_id		= $request->article_id;
 			$attachment->entity			= $request->entity;
@@ -94,9 +109,9 @@ class FileUpload
 		$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
-		// get entity and subdirectory to upload
+		// get entity and directory to upload
 		$entity 		= Entity::where('entity', $request->entity)->first();
-		$subdir 		= $entity->subdir;
+		$directory 		= $entity->directory;
 
 		// OK. Store File in Storage Private Folder. Auto create folder
 		// $request->file_to_upload->storeAs('private/pr/', $fileName);
@@ -104,9 +119,9 @@ class FileUpload
 
 		try {
 			//Code that may throw an Exception
-			$request->file_to_upload->storeAs('private/'.$subdir.'/', $fileName);
+			$request->file_to_upload->storeAs('private/'.$directory.'/', $fileName);
 
-			// create Attachment record TODO rewrite
+			// create Attachment record 
 			$attachment					= new Attachment();
 			$attachment->article_id		= $request->article_id;
 			$attachment->entity			= $request->entity;
@@ -141,12 +156,12 @@ class FileUpload
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
 
-		// get entity and subdir
-		$subdir 		= 'profile';
+		// get entity and directory
+		$directory 		= 'profile';
 
 		try {
 			// OK. Store File in Storage Private Folder. Auto create folder
-			$request->file_to_upload->move(public_path('landlord/'.$subdir), $fileName);
+			$request->file_to_upload->move(public_path('landlord/'.$directory), $fileName);
 
 		} catch (Exception $e) {
 
@@ -176,15 +191,15 @@ class FileUpload
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
 
-		// get entity and subdir
-		$subdir 		= 'logo';
+		// get entity and directory
+		$directory 		= 'logo';
 
 		try {
 			// OK. Store File in Storage Private Folder. Auto create folder
 			//$request->file_to_upload->storeAs('private/pr/', $fileName);
-			//$request->file_to_upload->storeAs('private/'.$subdir.'/', $fileName);
-			//$request->file_to_upload->storeAs($subdir.'/', $fileName);
-			//$request->file_to_upload->move(public_path('landlord/'.$subdir), $fileName);
+			//$request->file_to_upload->storeAs('private/'.$directory.'/', $fileName);
+			//$request->file_to_upload->storeAs($directory.'/', $fileName);
+			//$request->file_to_upload->move(public_path('landlord/'.$directory), $fileName);
 			$request->file_to_upload->storeAs('/', $fileName);
 
 		} catch (Exception $e) {
@@ -213,22 +228,22 @@ class FileUpload
 		// OK. Store File in Storage Private Folder. Auto create folder
 		// both file_to_upload and fileName is used
 		// root: po02\storage\tenantgeda\app
-		// set subdir within default location i.e. po02\storage\tenantgeda\app
-		$subdir 		= 'logo';
+		// set directory within default location i.e. po02\storage\tenantgeda\app
+		$directory 		= 'logo';
 
 		$fileName 		= date("YmdHis")."-".$request->file('file_to_upload')->getClientOriginalName();
 		//Log::debug('fileName='.$fileName);
 
 		try {
 			// OK. Store File in Storage Private Folder. Auto create folder
-			$request->file_to_upload->storeAs($subdir.'/', $fileName);
+			$request->file_to_upload->storeAs($directory.'/', $fileName);
 
 			//resize to thumbnail
 			$thumbImage 	= "logo." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-			$path = storage_path('app/'.$subdir.'/'. $fileName);
+			$path = storage_path('app/'.$directory.'/'. $fileName);
 			$image_resize = Image::make($path);
 			$image_resize->fit(90, 90);
-			$image_resize->save(storage_path('app/'.$subdir.'/'. $thumbImage));
+			$image_resize->save(storage_path('app/'.$directory.'/'. $thumbImage));
 			return $thumbImage;
 
 		} catch (Exception $e) {
@@ -262,22 +277,22 @@ class FileUpload
 		// OK. Store File in Storage Private Folder. Auto create folder
 		// both file_to_upload and fileName is used
 		// root: po02\storage\tenantgeda\app
-		// set subdir within default location i.e. po02\storage\tenantgeda\app
-		$subdir 		= 'avatar';
+		// set directory within default location i.e. po02\storage\tenantgeda\app
+		$directory 		= 'avatar';
 
 		$fileName 		= date("YmdHis")."-".$request->file('file_to_upload')->getClientOriginalName();
 		//Log::debug('fileName='.$fileName);
 
 		try {
 			// OK. Store File in Storage Private Folder. Auto create folder
-			$request->file_to_upload->storeAs($subdir.'/', $fileName);
+			$request->file_to_upload->storeAs($directory.'/', $fileName);
 
 			//resize to thumbnail
 			$thumbImage 	= $request->input('id'). "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-			$path = storage_path('app/'.$subdir.'/'. $fileName);
+			$path = storage_path('app/'.$directory.'/'. $fileName);
 			$image_resize = Image::make($path);
 			$image_resize->fit(90, 90);
-			$image_resize->save(storage_path('app/'.$subdir.'/'. $thumbImage));
+			$image_resize->save(storage_path('app/'.$directory.'/'. $thumbImage));
 			return $thumbImage;
 
 		} catch (Exception $e) {

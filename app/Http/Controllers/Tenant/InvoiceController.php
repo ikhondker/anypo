@@ -156,7 +156,7 @@ class InvoiceController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $invoice->id ]);
 			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 		}
 		
 		// Write to Log
@@ -237,7 +237,7 @@ class InvoiceController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_invoice_id') ]);
 			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 			//$request->merge(['logo'	=> $fileName ]);
 		}
 		
@@ -280,10 +280,9 @@ class InvoiceController extends Controller
 		
 		$invoice->fill(['status' => InvoiceStatusEnum::POSTED->value]);
 		
-		// Close po TODO 
+		// TODO  Close po 
 
 		$invoice->update();
-
 		
 		// 	Populate functional currency values
 		$result = self::updateInvoiceFcValues($invoice->id);
@@ -451,7 +450,6 @@ class InvoiceController extends Controller
 	{
 		// TODO filter by HOD
 		$this->authorize('export', Invoice::class);
-
 
 		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
 			$requestor_id 	= auth()->user()->id;

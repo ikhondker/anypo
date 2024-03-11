@@ -54,6 +54,8 @@ use DB;
 use Str;
 use File;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 # 12. TODO 
 # 1. Allow Edit attachment summary
 # 2. 
@@ -157,7 +159,7 @@ class AttachmentController extends Controller
 	 */
 	public function destroy(Attachment $attachment)
 	{
-		
+		// TODO need to delete actual file form aws
 		$this->authorize('delete', $attachment);
 
 		switch ($attachment->entity) {
@@ -235,65 +237,51 @@ class AttachmentController extends Controller
 
 	}
 
-	public function downloadaws($filename)
+	public function download($fileName)
+	{
+		$this->authorize('download', Attachment::class);
+		// get entity -> directory from filename
+		$att 				= Attachment::where('file_name', $fileName)->first();
+		$entity 			= Entity::where('entity', $att->entity)->first();
+		$fileDownloadPath 	= tenant('id')."/".$entity->directory."/". $fileName;
+		Log::debug('attachments.download Value of fileDownloadPath='. $fileDownloadPath);
+		return Storage::disk('s3tf')->download($fileDownloadPath);
+	}
+
+	public function downloadLocal($filename)
 	{
 
 		$this->authorize('download', Attachment::class);
 
 		// TODO simplify
-		// get entity -> subdir from filename
+		// get entity -> directory from filename
 		$att = Attachment::where('file_name', $filename)->first();
 		$entity = Entity::where('entity', $att->entity)->first();
-		$subdir = $entity->subdir;
+		$directory = $entity->directory;
 
 
 		//shown as: http://geda.localhost:8000/image/4.jpg
 		//$path = storage_path('uploads/' . $filename);
 		//$path = storage_path('app/private/pr/'. $filename);
 		//$path = storage_path('app/private/adv/'. $filename);
-		$path = storage_path('app/private/'.$subdir.'/'. $filename);
+		$path = storage_path('app/private/'.$directory.'/'. $filename);
 
-		if (!File::exists($path)) {
-			abort(404);
-		}
+		// if (!File::exists($path)) {
+		// 	abort(404);
+		// }
 
-		$file = File::get($path);
-		$type = File::mimeType($path);
+		// $file = File::get($path);
+		// $type = File::mimeType($path);
 
-		$response = Response::make($file, 200);
-		$response->header("Content-Type", $type);
-		return $response;
+		// $response = Response::make($file, 200);
+		// $response->header("Content-Type", $type);
+		// return $response;
+
+		return Storage::disk('s3tf')->download('demo1-65e4b5d819dc8-uploaded.pdf');
+		return Storage::disk('s3tf')->download('demo1-65e4b5d819dc8-uploaded.pdf');
 	}
 
-	public function download($filename)
-	{
-
-		$this->authorize('download', Attachment::class);
-
-		// TODO simplify
-		// get entity -> subdir from filename
-		$att = Attachment::where('file_name', $filename)->first();
-		$entity = Entity::where('entity', $att->entity)->first();
-		$subdir = $entity->subdir;
-
-
-		//shown as: http://geda.localhost:8000/image/4.jpg
-		//$path = storage_path('uploads/' . $filename);
-		//$path = storage_path('app/private/pr/'. $filename);
-		//$path = storage_path('app/private/adv/'. $filename);
-		$path = storage_path('app/private/'.$subdir.'/'. $filename);
-
-		if (!File::exists($path)) {
-			abort(404);
-		}
-
-		$file = File::get($path);
-		$type = File::mimeType($path);
-
-		$response = Response::make($file, 200);
-		$response->header("Content-Type", $type);
-		return $response;
-	}
+	
 
 	/**
 	 * Export selected column to csv format

@@ -14,8 +14,9 @@ return new class extends Migration
 		Schema::create('entities', function (Blueprint $table) {
 			$table->string('entity',15);	//  model: protected $primaryKey = 'entity'; // Hardcoded in Workflow Helper only
 			$table->string('name');
+			$table->string('model');
 			$table->string('route')->nullable();
-			$table->string('subdir');
+			$table->string('directory');
 			$table->boolean('notification')->default(false); 
 			$table->boolean('enable')->default(true);
 			$table->softDeletes();

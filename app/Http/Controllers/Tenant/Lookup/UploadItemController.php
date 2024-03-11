@@ -88,7 +88,7 @@ class UploadItemController extends Controller
 
 		$this->authorize('create', UploadItem::class);
 
-		$subdir = 'bulk';
+		$directory = 'bulk';
 
 		$this->validate($request, [
 			'file_to_upload' => 'required|file|mimes:xls,xlsx'
@@ -98,7 +98,7 @@ class UploadItemController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$fileName 		= date("YmdHis") . "-" . $request->file('file_to_upload')->getClientOriginalName();
 			// OK. Store File in Storage Private Folder. Auto create folder
-			$request->file_to_upload->storeAs('private/'.$subdir.'/', $fileName);
+			$request->file_to_upload->storeAs('private/'.$directory.'/', $fileName);
 		}
 
 		// process file

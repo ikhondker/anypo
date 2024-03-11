@@ -161,11 +161,11 @@ class PoController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $po->id ]);
 			$request->merge(['entity'		=> EntityEnum::PO->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 			//$request->merge(['logo'		=> $fileName ]);
 		}
 
-		// create pol lines TODO lin num
+		// create pol lines 
 		$pol				= new Pol();
 		$pol->po_id			= $po->id;
 		$pol->line_num		= 1;	
@@ -201,7 +201,7 @@ class PoController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PO->value ]);
-			$attid = FileUpload::upload($request);
+			$attid = FileUpload::aws($request);
 			//$request->merge(['logo'	=> $fileName ]);
 		}
 
@@ -466,6 +466,7 @@ class PoController extends Controller
 				]);
 	
 			// open the source PR
+
 			// TODO P2 
 			Pr::where('po_id', $po->id)
 				->update([
@@ -473,7 +474,7 @@ class PoController extends Controller
 				]);
 
 			// Write to Log
-			EventLog::event('Po', $po->id, 'cancel', 'id', $po->id);
+			EventLog::event('po', $po->id, 'cancel', 'id', $po->id);
 	
 			return redirect()->route('pos.index')->with('success', 'Purchase Order canceled successfully.');
 		
