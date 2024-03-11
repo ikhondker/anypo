@@ -92,7 +92,7 @@ class TemplateController extends Controller
 			$templates->where('name', 'Like', '%' . request('term') . '%');
 		}
 
-		$templates = $templates->orderBy('id', 'DESC')->paginate(10);
+		$templates = $templates->with('user')->orderBy('id', 'DESC')->paginate(10);
 		//$templates = Template::latest()->orderBy('id','desc')->paginate(10);
 
 		return view('landlord.manage.templates.index', compact('templates'));

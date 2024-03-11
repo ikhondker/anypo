@@ -35,7 +35,7 @@
 					<tbody>
 						@foreach ($templates as $template)
 						<tr>
-							<td class="">{{ ++$i }}</td>
+							<td class="">{{ $loop->iteration  }}</td>
 							<td class=""><a class="text-info" href="{{ route('templates.show',$template->id) }}">{{ $template->name }}</a></td>
 							<td class="">{{ $template->phone }}</td>
 							<td>{{ strtoupper(date('d-M-y', strtotime($template->my_date))) }}</td>

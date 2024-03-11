@@ -24,8 +24,6 @@
 			<i class="bi-ui-checks-grid nav-icon"></i> Accounts
 		</a>
 	</li>
-
-
 </ul>
 <!-- End List -->
 

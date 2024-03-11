@@ -48,7 +48,8 @@ class Account extends Model
 		'expired_at'			=> 'date',
 		'updated_at'			=> 'datetime',
 		'created_at'			=> 'datetime',
-		'status_code'			=> LandlordAccountStatusEnum::class,
+		// DO NOT CAST. eager loading shows error
+		//'status_code'			=> LandlordAccountStatusEnum::class,
 	];
 
 	/* ---------------- Scope ---------------------- */

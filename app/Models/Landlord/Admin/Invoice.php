@@ -47,7 +47,8 @@ class Invoice extends Model
 		'end_date'		=> 'datetime',
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
-		'status_code'	=> LandlordInvoiceStatusEnum::class,
+		// DO NOT CAST. eager loading shows error
+		//'status_code'	=> LandlordInvoiceStatusEnum::class,
 	];
 
 	/* ---------------- Scope ---------------------- */

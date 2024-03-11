@@ -51,7 +51,7 @@
 							@endif
 							
 
-							@if ( auth()->user()->isBackOffice() && ( $ticket->status_code->value <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
+							@if ( auth()->user()->isBackOffice() && ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
 								<a class="btn btn-info btn-sm" href="{{ route('tickets.assign',$ticket->id) }}">
 									<i class="bi bi-person-circle"></i>
 									Assign
@@ -62,7 +62,7 @@
 								</a>
 							@endif
 
-							@if ( $ticket->status_code->value <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
+							@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
 								<a class="btn btn-info btn-sm sweet-alert2-confirm" href="{{ route('tickets.close',$ticket->id) }}">
 									<i class="bi bi-lightbulb-off"></i>
 									Close Ticket
@@ -94,7 +94,7 @@
 	
 	<!--  BEGIN ADD COMMENT  -->
 	{{-- TODO not for closed ticket --}}
-	@if ( $ticket->status_code->value <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
+	@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
 		@include('landlord.includes.ticket-add-comment')
 	@endif 
 	<!--  END ADD COMMENT  -->

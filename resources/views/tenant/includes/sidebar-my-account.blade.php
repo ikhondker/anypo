@@ -26,9 +26,9 @@
 </li>
 
 @if(session('original_user'))
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="{{ route('users.leave-impersonate') }}">
-				<i class="align-middle text-danger" data-feather="power"></i><span class="align-middle text-danger"> Leave Impersonate</span>
-			</a>
-		</li>
-	@endif
+	<li class="sidebar-item">
+		<a class="sidebar-link" href="{{ route('users.leave-impersonate') }}">
+			<i class="align-middle text-danger" data-feather="power"></i><span class="align-middle text-danger"> Leave Impersonate</span>
+		</a>
+	</li>
+@endif

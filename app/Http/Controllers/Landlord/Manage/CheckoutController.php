@@ -63,7 +63,7 @@ class CheckoutController extends Controller
 	public function all()
 	{
 		$this->authorize('viewAll',Checkout::class);
-		$checkouts = Checkout::orderBy('id', 'DESC')->paginate(10);
+		$checkouts = Checkout::with('product')->with('status')->orderBy('id', 'DESC')->paginate(10);
 		return view('landlord.manage.checkouts.all', compact('checkouts'));
 	}
 

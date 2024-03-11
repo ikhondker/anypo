@@ -109,7 +109,7 @@ class TicketController extends Controller
 
 		$this->authorize('viewAll',Ticket::class);
 
-		$tickets = Ticket::orderBy('id', 'DESC')->paginate(10);
+		$tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(10);
 
 		return view('landlord.tickets.all', compact('tickets'));
 	}

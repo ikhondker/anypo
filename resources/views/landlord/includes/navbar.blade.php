@@ -37,14 +37,6 @@
 
 				<ul class="navbar-nav">
 					<!-- Demos -->
-					@if (session('original_user'))
-						<li class="nav-item">
-							<a href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip"
-								data-bs-placement="top" title="Leave Impersonate">
-								<i class="bi bi-box-arrow-left text-danger" style="font-size: 1.3rem;"></i>
-							</a>
-						</li>
-					@endif
 
 					<li class="nav-item">
 						{{-- <a id="demosMegaMenu" class="hs-mega-menu-invoker nav-link active" aria-current="page" href="#" role="button">Demos</a> --}}

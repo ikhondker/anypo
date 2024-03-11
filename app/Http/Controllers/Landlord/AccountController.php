@@ -90,7 +90,7 @@ class AccountController extends Controller
 	 */
 	public function index()
 	{
-		$accounts = Account::byAccount()->orderBy('id', 'DESC')->paginate(10);
+		$accounts = Account::with('status')->byAccount()->orderBy('id', 'DESC')->paginate(10);
 		return view('landlord.accounts.index', compact('accounts'));
 	}
 

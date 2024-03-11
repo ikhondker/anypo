@@ -124,9 +124,3 @@
 @endsection
 
 
-@section('sidebar')
-	<a href="{{ route('invoices.create') }}" class="btn btn-primary btn-sidebar">Invoice List</a>
-	<a href="{{ route('tickets.index') }}" class="btn btn-secondary btn-sidebar">Ticket Lists</a>
-	<a href="{{ route('notifications.index') }}" class="btn btn-success btn-sidebar">Notification Lists</a>
-	<a href="{{ route('dashboards.index') }}" class="btn btn-dark btn-sidebar">Dashboard</a>
-@endsection

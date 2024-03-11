@@ -52,7 +52,8 @@ class Ticket extends Model
 	protected $casts = [
 		'ticket_date'	=> 'datetime',
 		'created_at'	=> 'datetime',
-		'status_code'	=> LandlordTicketStatusEnum::class,
+		// DO NOT CAST. eager loading shows error
+		// 'status_code'	=> LandlordTicketStatusEnum::class,
 	];
 
 

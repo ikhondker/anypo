@@ -110,14 +110,14 @@ class ExchangeRate
 			// Always USD
 			// oe stand for openexchange
 			$oe_base = $json['base'];
-			Log::debug('Openexchangerates Base Currency='. $oe_base);
+			Log::debug('ExchangeRate.importRates Openexchangerates Base Currency='. $oe_base);
 
 			//get all rates data
 			$rates = $json['rates'];
 
 			// USD to tenant fc currency exchange rate
 			$usd_to_fc = (float) $rates[$fc_currency];
-			Log::debug('USD to tenant FC currency '.$setup->currency." =". $usd_to_fc);
+			Log::debug('ExchangeRate.importRates USD to tenant FC currency '.$setup->currency." =". $usd_to_fc);
 
 			//$currencies = Currency::primary()->orderBy('id', 'DESC');
 

@@ -41,7 +41,7 @@ class BudgetByDeptPie extends Component
 		Log::debug('components.tenant.charts.BudgetByDeptPie dept count=' . $this->deptBudgets->count());
 
 		foreach ($this->deptBudgets as $deptBudget){
-			Log::debug('Value of dept_name=' . $deptBudget->dept->name);
+			// Log::debug('components.tenant.charts.BudgetByDeptPie  Value of dept_name=' . $deptBudget->dept->name);
 			$this->dept_budget_labels[] 	= $deptBudget->dept->name;
 			$this->dept_budget_data[] 		= (int) $deptBudget->amount;
 		}

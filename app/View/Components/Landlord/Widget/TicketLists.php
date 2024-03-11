@@ -34,20 +34,20 @@ class TicketLists extends Component
 				switch ($type) {
 					case "LAST5":
 						$this->title = "Recent Tickets (Last 5)";
-						$this->tickets = Ticket::byUser()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byUser()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					case "ALL":
 						$this->title = "All Tickets";
 						//$this->tickets = Ticket::byUser()->orderBy('id', 'DESC')->limit(10)->get();
-						$this->tickets=	Ticket::byUser()->orderBy('id', 'DESC')->paginate(10);
+						$this->tickets=	Ticket::with('owner')->with('dept')->with('priority')->with('status')->byUser()->orderBy('id', 'DESC')->paginate(10);
 						break;
 					case "OPEN":
 						$this->title = "Open Tickets";
-						$this->tickets = Ticket::byUserOpen()->orderBy('id', 'DESC')->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byUserOpen()->orderBy('id', 'DESC')->get();
 						break;
 					case "CLOSED":
 						$this->title = "Recent Closed Tickets (Last 5)";
-						$this->tickets = Ticket::byUserClosed()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byUserClosed()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					default:
 				}
@@ -56,21 +56,21 @@ class TicketLists extends Component
 				switch ($type) {
 					case "LAST5":
 						$this->title = "Recent Tickets (Last 5)";
-						$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byAccount()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					case "ALL":
 						$this->title = "All Tickets";
-						$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->limit(10)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byAccount()->orderBy('id', 'DESC')->limit(10)->get();
 						break;
 					case "OPEN":
 						$this->title = "Open Tickets";
 						//$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->get();
-						$this->tickets = Ticket::byAccountOpen()->orderBy('id', 'DESC')->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byAccountOpen()->orderBy('id', 'DESC')->get();
 						break;
 					case "CLOSED":
 						$this->title = "Recent Closed Tickets (Last 5)";
 						//$this->tickets = Ticket::byAccount()->orderBy('id', 'DESC')->get();
-						$this->tickets = Ticket::byAccountClosed()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byAccountClosed()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					default:
 				}
@@ -79,17 +79,17 @@ class TicketLists extends Component
 				switch ($type) {
 					case "UNASSIGNED":
 						$this->title = "Unassigned Tickets (Last 5)";
-						$this->tickets = Ticket::ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 
 					case "MY":
 						$this->title = "Assigned to Me";
-						$this->tickets = Ticket::byAgentOpen()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byAgentOpen()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					
 					case "OPEN":
 						$this->title = "Open Tickets (Last 5)";
-						$this->tickets = Ticket::byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					
 					default:
@@ -99,11 +99,11 @@ class TicketLists extends Component
 				switch ($type) {
 					case "UNASSIGNED":
 						$this->title = "Unassigned Tickets (Last 5)";
-						$this->tickets = Ticket::ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					case "OPEN":
 						$this->title = "Open Tickets (Last 5)";
-						$this->tickets = Ticket::byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					
 					default:
@@ -113,11 +113,11 @@ class TicketLists extends Component
 				switch ($type) {
 					case "UNASSIGNED":
 						$this->title = "Unassigned Tickets (Last 5)";
-						$this->tickets = Ticket::ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->ByUnassigned()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					case "OPEN":
 						$this->title = "Open Tickets (Last 5)";
-						$this->tickets = Ticket::byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
+						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
 					
 					default:

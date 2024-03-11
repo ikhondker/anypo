@@ -79,13 +79,10 @@
 			<i class="bi-bell nav-icon"></i>
 			Run Process</a>
 	</li>
-
 </ul>
 <!-- End List -->
 
-<!-- ========== Account ========== -->
-@include('landlord.includes.submenu-account')
-<!-- ========== END Account ========== -->
+
 
 @if (auth()->user()->role->value == \UserRoleEnum::SYSTEM->value)
 	<!-- Nav -->
@@ -93,8 +90,6 @@
 
 	<!-- List -->
 	<ul class="nav nav-sm nav-tabs nav-vertical mb-4">
-
-
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'tables.index' ? 'active' : '' }}"
 				href="{{ route('tables.index') }}"><i class="bi-bell nav-icon"></i> Tables</a>
@@ -153,6 +148,9 @@
 	<!-- End List -->
 @endif
 
+<!-- ========== Account ========== -->
+@include('landlord.includes.submenu-account')
+<!-- ========== END Account ========== -->
 
 <div class="d-lg-none">
 	<div class="dropdown-divider"></div>

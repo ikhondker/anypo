@@ -34,7 +34,8 @@ class Checkout extends Model
 		'end_date'		=> 'date',
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
-		'status_code'	=> LandlordCheckoutStatusEnum::class,
+		// DO NOT CAST. eager loading shows error
+		//'status_code'	=> LandlordCheckoutStatusEnum::class,
 	];
 
 	/* ---------------- HasMany ---------------------- */

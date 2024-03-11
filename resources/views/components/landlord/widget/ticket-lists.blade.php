@@ -33,7 +33,7 @@
 									<div class="flex-grow-1 ms-3">
 										<a class="d-inline-block link-dark" href="{{ route('tickets.show',$ticket->id) }}">
 											
-											@if ( $ticket->status_code->value <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
+											@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
 												<h6 class="text-info mb-0">
 											@else 
 												<h6 class="text-secondary mb-0">
@@ -43,7 +43,7 @@
 										</a>
 										<small class="d-block"> 
 											{{ $ticket->owner->name }} | {{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }} | {{ $ticket->dept->name }}
-											@if ( auth()->user()->isBackOffice()  && ($ticket->agent_id <> ''))
+											@if ( auth()->user()->isBackOffice() && ($ticket->agent_id <> ''))
 												| {{ $ticket->agent->name }}
 											@endif
 										</small>

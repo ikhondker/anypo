@@ -248,8 +248,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	//Route::get('/tickets/pdf/{pr}', [TicketController::class,'pdf'])->name('tickets.pdf');
 	Route::get('/ticket/close/{ticket}', [TicketController::class, 'close'])->name('tickets.close');
 
-
-
 	/* ======================== Service ======================================== */
 	Route::resource('services', ServiceController::class);
 	

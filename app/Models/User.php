@@ -140,7 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Policy Related Functions  Common (both Landlord and Tenant) 				+  
+	| Policy Related Functions Common (both Landlord and Tenant) 				+  
 	|-----------------------------------------------------------------------------
 	*/
 
@@ -153,7 +153,6 @@ class User extends Authenticatable implements MustVerifyEmail
 			return false;
 		}	
 	}
-
 
 	public function isAdmin()
 	{
@@ -188,6 +187,29 @@ class User extends Authenticatable implements MustVerifyEmail
 	|-----------------------------------------------------------------------------
 	*/
 
+	public function isBackOffice()
+	{
+		if ($this->enable == 1) {
+			switch ($this->role->value) {
+				case (UserRoleEnum::DEVELOPER->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPPORT->value):
+					return true;
+					break;
+				case (UserRoleEnum::SUPERVISOR->value):
+					return true;
+					break;
+				case (UserRoleEnum::SYSTEM->value):
+					return true;
+					break;
+				default:
+					return false;
+			}
+		} else {
+			return false;
+		}	
+	}
 
 
 

@@ -62,10 +62,10 @@ class ActivityController extends Controller
 	{
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::ADMIN->value:
-				$activities = Activity::byAccount()->orderBy('id', 'desc')->paginate(25);
+				$activities = Activity::with('user')->byAccount()->orderBy('id', 'desc')->paginate(25);
 				break;
 			default:
-				$activities = Activity::byUser()->orderBy('id', 'desc')->paginate(25);
+				$activities = Activity::with('user')->byUser()->orderBy('id', 'desc')->paginate(25);
 		}
 		return view('landlord.admin.activities.index', compact('activities'));
 	}
@@ -79,7 +79,7 @@ class ActivityController extends Controller
 	public function all()
 	{
 		$this->authorize('viewAll',Activity::class);
-		$activities = Activity::latest()->orderBy('id', 'desc')->paginate(25);
+		$activities = Activity::with('user')->latest()->orderBy('id', 'desc')->paginate(25);
 		return view('landlord.admin.activities.all', compact('activities'));
 	}
 

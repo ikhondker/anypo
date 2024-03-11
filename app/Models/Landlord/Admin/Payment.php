@@ -48,7 +48,8 @@ class Payment extends Model
 		'pay_date'		=> 'datetime',
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
-		'status_code'	=> LandlordPaymentStatusEnum::class,
+		// DO NOT CAST. eager loading shows error
+		//'status_code'	=> LandlordPaymentStatusEnum::class,
 	];
 
 	/* ---------------- Scope ---------------------- */

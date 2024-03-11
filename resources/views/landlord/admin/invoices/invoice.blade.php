@@ -22,7 +22,7 @@
 						<div class="col-sm-auto order-1 order-sm-2 text-sm-end mb-3">
 							<div class="mb-3">
 								<h2 class="text-success">{{ strtoupper($invoice->status->name) }}</h2>
-								@if ($invoice->status_code->value == App\Enum\LandlordInvoiceStatusEnum::DUE->value)
+								@if ($invoice->status_code == App\Enum\LandlordInvoiceStatusEnum::DUE->value)
 									<form action="{{ url('/payment-stripe') }}" method="POST" class="needs-validation">
 										<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 										<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">

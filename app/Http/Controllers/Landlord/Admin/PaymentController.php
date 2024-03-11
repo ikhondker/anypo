@@ -66,7 +66,7 @@ class PaymentController extends Controller
 	 */
 	public function index()
 	{
-		$payments = Payment::byAccount()->orderBy('id', 'desc')->paginate(10);
+		$payments = Payment::with('account')->with('status')->byAccount()->orderBy('id', 'desc')->paginate(10);
 		return view('landlord.admin.payments.index', compact('payments'));
 	}
 
@@ -79,7 +79,7 @@ class PaymentController extends Controller
 	public function all()
 	{
 		$this->authorize('viewAll',Payment::class);
-		$payments = Payment::orderBy('id', 'desc')->paginate(10);
+		$payments = Payment::with('account')->with('status')->orderBy('id', 'desc')->paginate(10);
 		return view('landlord.admin.payments.all', compact('payments'));
 	}
 

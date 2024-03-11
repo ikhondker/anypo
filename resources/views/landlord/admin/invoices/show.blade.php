@@ -7,7 +7,7 @@
 	<div class="card">
 			<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 				<h5 class="card-header-title">View Invoice #{{ $invoice->invoice_no }}</h5>
-				@if ($invoice->status_code->value == App\Enum\LandlordInvoiceStatusEnum::DUE->value)
+				@if ($invoice->status_code == App\Enum\LandlordInvoiceStatusEnum::DUE->value)
 					<form action="{{ url('/payment') }}" method="POST" class="needs-validation">
 						<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 						<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
