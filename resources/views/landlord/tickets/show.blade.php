@@ -50,7 +50,6 @@
 								<p class="small text-danger">Assignee: {{ $ticket->agent->name  }}</p>
 							@endif
 							
-
 							@if ( auth()->user()->isBackOffice() && ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
 								<a class="btn btn-info btn-sm" href="{{ route('tickets.assign',$ticket->id) }}">
 									<i class="bi bi-person-circle"></i>

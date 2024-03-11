@@ -71,7 +71,6 @@ class CommentController extends Controller
 	// define entity constant for file upload and workflow
 	const ENTITY	= 'COMMENT';
 
-
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -131,12 +130,12 @@ class CommentController extends Controller
 		// add comment
 		$comment = Comment::create($request->all());
 
-		 // Upload File, if any, insert row in attachment table and get attachments id
-		 if ($file = $request->file('file_to_upload')) {
+		// Upload File, if any, insert row in attachment table and get attachments id
+		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $comment->id ]);
 			$request->merge(['entity'		=> static::ENTITY ]);
 			$attachment_id = LandlordFileUpload::upload($request);
-
+			//$attachment_id = LandlordFileUpload::aws($request);
 			// update back table with attachment_id
 			$comment->attachment_id = $attachment_id;
 			$comment->save();

@@ -89,10 +89,10 @@ class TicketController extends Controller
 
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::ADMIN->value:
-				$tickets = $tickets->byAccount()->orderBy('id', 'DESC')->paginate(10);
+				$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byAccount()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$tickets = $tickets->byUser()->orderBy('id', 'DESC')->paginate(10);
+				$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byUser()->orderBy('id', 'DESC')->paginate(10);
 				Log::warning("landlord.tickets.index Ignore. Other roles!");
 		}
 

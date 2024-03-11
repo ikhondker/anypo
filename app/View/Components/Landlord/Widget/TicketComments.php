@@ -31,10 +31,10 @@ class TicketComments extends Component
 		$this->ENTITY = 'COMMENT';
 		$this->ticket = Ticket::where('id', $id)->first();
 		if (auth()->user()->isBackOffice()) {
-			$this->comments = Comment::where('ticket_id', $id)->orderBy('id', 'desc')->get()->all();
+			$this->comments = Comment::with('owner')->where('ticket_id', $id)->orderBy('id', 'desc')->get()->all();
 		} else {
 			// Hide internal comments form user
-			$this->comments = Comment::where('ticket_id', $id)->where('is_internal', false)->orderBy('id', 'desc')->get()->all();
+			$this->comments = Comment::with('owner')->where('ticket_id', $id)->where('is_internal', false)->orderBy('id', 'desc')->get()->all();
 		}
 
 		//Log::debug("id=".$id." highlight_prl_id=".$this->highlight_prl_id);

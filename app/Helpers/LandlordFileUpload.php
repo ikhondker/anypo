@@ -35,9 +35,72 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class LandlordFileUpload
 {
+
+	public static function aws(FormRequest $request)
+	{
+
+		if ($request->hasFile('file_to_upload')) {
+			$file 			= $request->file('file_to_upload');
+		} else {
+			Log::error('Helpers.LandlordFileUpload.aws No file uploaded!');
+			$attachment_id = 0;
+			return $attachment_id;
+		}
+
+		if (! $file->isValid()) {
+			Log::debug('Helpers.LandlordFileUpload.aws file is invalid!');
+			$attachment_id = 0;
+			return $attachment_id;
+		}
+
+		// ===> both file_to_upload and fileName is used
+		//$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+		$fileName 		= $request->article_id.'-'. uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
+
+		// get tenant, entity and directory to upload
+		$entity 		= Entity::where('entity', $request->entity)->first();
+		$fileUploadPath = $entity->directory."/". $fileName;
+		Log::debug('Helpers.LandlordFileUpload.aws Value of fileUploadPath ='. $fileUploadPath);
+			
+		try {
+			//Code that may throw an Exception
+			// OK. Store File in Storage Private Folder. Auto create folder
+			//$request->file_to_upload->storeAs('private/' . $directory . '/', $fileName);
+
+			$path= Storage::disk('s3lf')->put($fileUploadPath, file_get_contents($file));
+			Log::debug('Helpers.LandlordFileUpload.aws Value of path='. $path);
+
+			// create Attachment record TODO rewrite
+			$attachment					= new Attachment;
+			$attachment->article_id		= $request->article_id;
+			$attachment->entity			= $request->entity;
+			$attachment->file_entity 	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
+
+			$attachment->owner_id		= auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
+
+			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No Details';
+			$attachment->file_name		= $fileName;
+			$attachment->org_file_name	= $org_fileName;
+			$attachment->file_type	 	= $request->file('file_to_upload')->getMimeType();
+			$attachment->file_size	 	= $request->file('file_to_upload')->getSize();
+			$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
+
+			$attachment->save();
+			$attachment_id				=$attachment->id;
+		} catch (Exception $e) {
+			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
+			Log::error('LandlordFileUpload.upload '.$e->getMessage());
+			// Either form a friendlier message to display to the user OR redirect them to a failure page
+			$attachment_id = 0;
+		}
+		
+		return $attachment_id;
+	}
 
 	public static function upload(FormRequest $request)
 	{

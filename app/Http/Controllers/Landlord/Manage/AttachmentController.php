@@ -36,6 +36,7 @@ use App\Http\Requests\Landlord\Manage\UpdateAttachmentRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use Illuminate\Support\Facades\Storage;
 # 13. TODO 
 
 
@@ -53,8 +54,6 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 use File;
-use Illuminate\Support\Facades\Storage;
-
 
 class AttachmentController extends Controller
 {
@@ -66,7 +65,6 @@ class AttachmentController extends Controller
 	 */
 	public function index()
 	{
-
 		$this->authorize('viewAny',Attachment::class);
 		$attachments = Attachment::latest()->with('entity')->orderBy('id','desc')->paginate(10);
 		return view('landlord.manage.attachments.index',compact('attachments'));
@@ -147,14 +145,26 @@ class AttachmentController extends Controller
 		abort(403);
 	}
 
+	public function downloadaws($fileName)
+	{
+		Log::debug('Value of fileName=' . $fileName);
+		//$this->authorize('download', Attachment::class);
+		// get entity -> directory from filename
+		$att 				= Attachment::where('file_name', $fileName)->first();
+		$entity 			= Entity::where('entity', $att->entity)->first();
+		$fileDownloadPath 	= $entity->directory."/". $fileName;
+		Log::debug('landlord.attachments.download Value of fileDownloadPath='. $fileDownloadPath);
+		//return Storage::disk('s3lf')->download($fileDownloadPath);
+	}
+
 	public function download($filename)
 	{
-		// get entity -> subdir from filename
+		// get entity -> directory from filename
 		$att = Attachment::where('file_name', $filename)->first();
 		$entity = Entity::where('entity', $att->entity)->first();
-		$subdir = $entity->subdir;
+		$directory = $entity->directory;
 
-		$path = storage_path('app/private/'.$subdir.'/'. $filename);
+		$path = storage_path('app/private/'.$directory.'/'. $filename);
 
 		if (!File::exists($path)) {
 			abort(404);
@@ -164,6 +174,6 @@ class AttachmentController extends Controller
 		$type = File::mimeType($path);
 		
 		ob_end_clean();
-		return Storage::disk('local')->download('private/'.$subdir.'/'. $filename, $filename,["Content-Type", $type]);
+		return Storage::disk('local')->download('private/'.$directory.'/'. $filename, $filename,["Content-Type", $type]);
 	}
 }

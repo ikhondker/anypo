@@ -69,7 +69,7 @@
 									</div>
 									<div class="flex-grow-1 ms-3">
 										<a class="d-inline-block link-dark" href="{{ route('tickets.show',$ticket->id) }}">
-											@if ( $ticket->status_code->value <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
+											@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
 												<h6 class="text-info mb-0">
 											@else 
 												<h6 class="text-secondary mb-0">
