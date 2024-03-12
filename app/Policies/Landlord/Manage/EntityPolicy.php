@@ -2,7 +2,7 @@
 
 namespace App\Policies\Landlord\Manage;
 
-use App\Models\Landlord\Admin\Entity;
+use App\Models\Landlord\Manage\Entity;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

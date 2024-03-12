@@ -44,12 +44,12 @@ class AuthServiceProvider extends ServiceProvider
 
 		'App\Models\Landlord\Lookup\Category' 		=> 'App\Policies\Landlord\Lookup\CategoryPolicy',
 		'App\Models\Landlord\Lookup\Country' 		=> 'App\Policies\Landlord\Lookup\CountryPolicy',
-		'App\Models\Landlord\Lookup\Dept'			=> 'App\Policies\Landlord\Lookup\DeptPolicy',
-		'App\Models\Landlord\Lookup\PaymentMethod' 	=> 'App\Policies\Landlord\Lookup\PaymentMethodPolicy',
-		'App\Models\Landlord\Lookup\Priority' 		=> 'App\Policies\Landlord\Lookup\PriorityPolicy',
+		//'App\Models\Landlord\Lookup\Dept'			=> 'App\Policies\Landlord\Lookup\DeptPolicy',
+		//'App\Models\Landlord\Lookup\PaymentMethod' 	=> 'App\Policies\Landlord\Lookup\PaymentMethodPolicy',
+		//'App\Models\Landlord\Lookup\Priority' 		=> 'App\Policies\Landlord\Lookup\PriorityPolicy',
 		'App\Models\Landlord\Lookup\Product' 		=> 'App\Policies\Landlord\Lookup\ProductPolicy',
-		'App\Models\Landlord\Lookup\Rating' 		=> 'App\Policies\Landlord\Lookup\RatingPolicy',
-		'App\Models\Landlord\Lookup\Status' 		=> 'App\Policies\Landlord\Lookup\StatusPolicy',
+		//'App\Models\Landlord\Lookup\Rating' 		=> 'App\Policies\Landlord\Lookup\RatingPolicy',
+		
 		
 		'App\Models\Landlord\Manage\Attachment' 	=> 'App\Policies\Landlord\Manage\AttachmentPolicy',
 		'App\Models\Landlord\Manage\Contact' 		=> 'App\Policies\Landlord\Manage\ContactPolicy',
@@ -60,6 +60,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Manage\Setup' 			=> 'App\Policies\Landlord\Manage\SetupPolicy',
 		'App\Models\Landlord\Manage\Table' 			=> 'App\Policies\Landlord\Manage\TablePolicy',
 		'App\Models\Landlord\Manage\Template' 		=> 'App\Policies\Landlord\Manage\TemplatePolicy',
+		'App\Models\Landlord\Manage\Status' 		=> 'App\Policies\Landlord\Manage\StatusPolicy',
 
 		/*
 		|-----------------------------------------------------------------------------

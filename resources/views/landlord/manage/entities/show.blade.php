@@ -46,8 +46,9 @@
 
 			<x-landlord.show.my-badge	value="{{ $entity->entity }}" label="Code"/>
 			<x-landlord.show.my-text	value="{{ $entity->name }}" label="Name"/>
-			<x-landlord.show.my-badge	value="{{ $entity->subdir }}" label="subdir"/>
+			<x-landlord.show.my-text	value="{{ $entity->model }}" label="Model"/>
 			<x-landlord.show.my-text	value="{{ $entity->route }}" label="Route"/>
+			<x-landlord.show.my-badge	value="{{ $entity->directory }}" label="Directory"/>
 			<x-landlord.show.my-text	value="{{ $entity->parent_entity }}" label="Parent"/>
 			<x-landlord.show.my-enable	value="{{ $entity->enable }}"/>
 			<x-landlord.show.my-enable	value="{{ $entity->notification }}" label="Notification"/>

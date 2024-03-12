@@ -5,7 +5,7 @@ namespace Database\Seeders\Landlord;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Landlord\Lookup\Status;
+use App\Models\Landlord\Manage\Status;
 
 class StatusSeeder extends Seeder
 {

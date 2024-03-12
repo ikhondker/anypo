@@ -75,6 +75,9 @@ use App\Notifications\Landlord\AddonPurchased;
 
 use App\Notifications\Landlord\Contacted;
 
+# 5. Jobs
+use App\Jobs\Landlord\CreateTenant;
+
 // Mail
 use Mail;
 use App\Mail\Landlord\DemoMail;
@@ -110,8 +113,6 @@ class HomeController extends Controller
 		//$notifications = auth()->user()->unreadNotifications;
 		return view('home');
 	}
-
-	
 
 	public function pricing()
 	{
@@ -304,11 +305,8 @@ class HomeController extends Controller
 		return redirect($session->url);
 	}
 
-	public function successxx(Request $request){
-		return view('landlord.home');
-	}
 
-	// landed here both for cheCkcout and subscription payment
+	// landed here both for checkout and subscription payment
 	public function success(Request $request)
 	{
 	
@@ -335,7 +333,7 @@ class HomeController extends Controller
 					if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
 						Log::debug('landlord.home.success checkout_id='. $checkout->id);
 						// TODO Uncomment
-						// CreateTenant::dispatch($checkout->id);
+						CreateTenant::dispatch($checkout->id);
 					}
 					return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
 						->with('msg','We have received your payment. We are currently preparing your service instance. 

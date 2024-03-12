@@ -26,8 +26,9 @@
 							<tr>
 								<th>Entity</th>
 								<th>Name</th>
+								<th>Model</th>
 								<th>Route</th>
-								<th>Sub-dir</th>
+								<th>Directory</th>
 								<th>Notification</th>
 								<th>Enable?</th>
 								<th>Actions</th>
@@ -38,8 +39,9 @@
 							<tr>
 								<td>{{ $entity->entity }}</td>
 								<td>{{ $entity->name }}</td>
+								<td>{{ $entity->model }}</td>
 								<td>{{ $entity->route }}</td>
-								<td>{{ $entity->subdir }}</td>
+								<td>{{ $entity->directory }}</td>
 								<td><x-tenant.list.my-boolean :value="$entity->notification"/></td>
 								<td><x-tenant.list.my-boolean :value="$entity->enable"/></td>
 								<td class="table-action">

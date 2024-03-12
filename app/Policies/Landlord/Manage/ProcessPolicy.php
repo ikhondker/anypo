@@ -2,7 +2,7 @@
 
 namespace App\Policies\Landlord\Manage;
 
-use App\Models\Process;
+use App\Models\Landlord\Manage\Process;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

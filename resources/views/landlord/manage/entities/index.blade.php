@@ -17,8 +17,8 @@
 				<thead class="thead-light">
 					<tr>
 						<th>Name</th>
-						<th>Subdir/Route</th>
-						<th>Notifications</th>
+						<th>Model</th>
+						<th>Directory/Route</th>
 						<th>Enable</th>
 						<th style="width: 5%;">Action</th>
 					</tr>
@@ -42,8 +42,8 @@
 									</div>
 								</div>
 							</td>
-							<td>{{ $entity->subdir }} <small class="d-block">{{ $entity->route }}</small></td>
-							<td><x-landlord.list.my-enable :value="$entity->notification" /></td>
+							<td>{{ $entity->model }}</td>
+							<td>{{ $entity->directory }} <small class="d-block">{{ $entity->route }}</small></td>
 							<td><x-landlord.list.my-enable :value="$entity->enable" /></td>
 							<td><x-landlord.list.actions object="Entity" :id="$entity->entity" :edit="true"
 									:enable="true" /></td>

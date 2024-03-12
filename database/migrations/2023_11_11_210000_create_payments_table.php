@@ -23,7 +23,7 @@ return new class extends Migration
 			$table->foreignId('owner_id')->nullable()->constrained('users');
 			$table->foreignId('payment_method_id')->constrained('payment_methods');
 			$table->float('amount',8,2)->default(0);
-			$table->string('currency');
+			$table->string('currency')->default('USD');
 			$table->string('cheque_no')->nullable();
 			$table->string('payment_token')->nullable();
 			$table->string('reference_id')->nullable();

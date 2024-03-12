@@ -18,7 +18,7 @@
 * =====================================================================================
 */
 
-namespace App\Http\Controllers\Landlord\Lookup;
+namespace App\Http\Controllers\Landlord\Manage;
 
 use App\Http\Controllers\Controller;
 
@@ -36,10 +36,10 @@ use App\Http\Controllers\Controller;
 # 12. Seeded
 # 13. TODO 
 
-use App\Models\Landlord\Lookup\Status;
+use App\Models\Landlord\Manage\Status;
 
-use App\Http\Requests\Landlord\Lookup\StoreStatusRequest;
-use App\Http\Requests\Landlord\Lookup\UpdateStatusRequest;
+use App\Http\Requests\Landlord\Manage\StoreStatusRequest;
+use App\Http\Requests\Landlord\Manage\UpdateStatusRequest;
 
 use Illuminate\Support\Facades\Log;
 
@@ -55,7 +55,7 @@ class StatusController extends Controller
 	public function index()
 	{
 		$statuses = Status::latest()->orderBy('code', 'asc')->get();
-		return view('landlord.lookup.statuses.index', compact('statuses'));
+		return view('landlord.manage.statuses.index', compact('statuses'));
 	}
 
 	/**
@@ -80,7 +80,7 @@ class StatusController extends Controller
 	public function show(Status $status)
 	{
 		$this->authorize('view', $status);
-		return view('landlord.lookup.statuses.show', compact('status'));
+		return view('landlord.manage.statuses.show', compact('status'));
 	}
 
 	/**
@@ -89,7 +89,7 @@ class StatusController extends Controller
 	public function edit(Status $status)
 	{
 		$this->authorize('update', $status);
-		return view('landlord.lookup.statuses.edit', compact('status'));
+		return view('landlord.manage.statuses.edit', compact('status'));
 	}
 
 	/**
@@ -111,7 +111,7 @@ class StatusController extends Controller
 	 */
 	public function destroy(Status $status)
 	{
-		$this->authorize('delete', $user);
+		$this->authorize('delete', $status);
 
 		$status->fill(['enable'=>!$status->enable]);
 		$status->update();

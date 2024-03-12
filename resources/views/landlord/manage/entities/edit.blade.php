@@ -57,6 +57,21 @@
 
 			<!-- Form -->
 			<div class="row mb-4">
+				<label for="model" class="col-sm-3 col-form-label form-label">Model Name :</label>
+				<div class="col-sm-9">
+				<input type="text" class="form-control @error('model') is-invalid @enderror"
+						name="model" id="model" placeholder="model"
+						value="{{ old('model', $entity->model ) }}"
+						required/>
+					@error('model')
+						<div class="text-danger text-xs">{{ $message }}</div>
+					@enderror
+				</div>
+			</div>
+			<!-- End Form -->
+
+			<!-- Form -->
+			<div class="row mb-4">
 				<label for="route" class="col-sm-3 col-form-label form-label">Route Name :</label>
 				<div class="col-sm-9">
 				<input type="text" class="form-control @error('route') is-invalid @enderror"
@@ -72,13 +87,13 @@
 
 			<!-- Form -->
 			<div class="row mb-4">
-				<label for="subdir" class="col-sm-3 col-form-label form-label">Route Name :</label>
+				<label for="directory" class="col-sm-3 col-form-label form-label">Directory :</label>
 				<div class="col-sm-9">
-				<input type="text" class="form-control @error('subdir') is-invalid @enderror"
-						name="subdir" id="subdir" placeholder="subdir"
-						value="{{ old('subdir', $entity->subdir ) }}"
+				<input type="text" class="form-control @error('directory') is-invalid @enderror"
+						name="directory" id="directory" placeholder="directory"
+						value="{{ old('directory', $entity->directory ) }}"
 						required/>
-					@error('subdir')
+					@error('directory')
 						<div class="text-danger text-xs">{{ $message }}</div>
 					@enderror
 				</div>
@@ -87,7 +102,7 @@
 
 			<!-- Form -->
 			<div class="row mb-4">
-				<label for="notification" class="col-sm-3 col-form-label form-label">Access :</label>
+				<label for="notification" class="col-sm-3 col-form-label form-label">Notification :</label>
 				<div class="col-sm-9">
 				<input type="text" class="form-control @error('notification') is-invalid @enderror"
 						style="text-transform: uppercase"

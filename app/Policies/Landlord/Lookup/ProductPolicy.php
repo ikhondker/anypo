@@ -2,7 +2,7 @@
 
 namespace App\Policies\Landlord\Lookup;
 
-use App\Models\Landlord\Admin\Product;
+use App\Models\Landlord\Lookup\Product;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

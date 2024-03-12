@@ -41,10 +41,10 @@
 										<a class="d-inline-block link-dark"
 											href="{{ route('statuses.show', $status->code) }}">
 											<h6 class="text-hover-primary mb-0">
-												{{ $status->name }}
+												{{ $status->code }}
 											</h6>
 										</a>
-										<small class="d-block">{{ $status->code }}</small>
+										<small class="d-block">{{ $status->name }}</small>
 									</div>
 								</div>
 							</td>

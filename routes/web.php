@@ -305,7 +305,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 use App\Http\Controllers\Landlord\Lookup\CategoryController;
 use App\Http\Controllers\Landlord\Lookup\CountryController;
 use App\Http\Controllers\Landlord\Lookup\ProductController;
-use App\Http\Controllers\Landlord\Lookup\StatusController;
 
 use App\Http\Controllers\Landlord\Manage\AttachmentController;
 use App\Http\Controllers\Landlord\Manage\CheckoutController;
@@ -315,6 +314,7 @@ use App\Http\Controllers\Landlord\Manage\ProcessController;
 use App\Http\Controllers\Landlord\Manage\SetupController;
 use App\Http\Controllers\Landlord\Manage\TableController;
 use App\Http\Controllers\Landlord\Manage\TemplateController;
+use App\Http\Controllers\Landlord\Manage\StatusController;
 
 // TODO uncomment
 // Ref: app/Providers/AppServiceProvider.php
@@ -375,16 +375,34 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 	
 	/* ======================== Table ========================================  */
 	Route::resource('tables', TableController::class);
-	Route::get('/table/structure/{table}', [TableController::class, 'structure'])->name('tables.structure');
-	Route::get('/table/controllers', [TableController::class, 'controllers'])->name('tables.controllers');
-	Route::get('/table/models', [TableController::class, 'models'])->name('tables.models');
-	Route::get('/table/routes', [TableController::class, 'routes'])->name('tables.routes');
-	Route::get('/table/route-code', [TableController::class, 'routeCode'])->name('tables.route-code');
-	Route::get('/table/policies', [TableController::class, 'policies'])->name('tables.policies');
-	Route::get('/table/comments', [TableController::class, 'comments'])->name('tables.comments');
-	Route::get('/table/check', [TableController::class, 'check'])->name('tables.check');
-	Route::get('/table/messages', [TableController::class, 'messages'])->name('tables.messages');
+	// Route::get('/table/structure/{table}', [TableController::class, 'structure'])->name('tables.structure');
+	// Route::get('/table/controllers', [TableController::class, 'controllers'])->name('tables.controllers');
+	// Route::get('/table/models', [TableController::class, 'models'])->name('tables.models');
+	// Route::get('/table/routes', [TableController::class, 'routes'])->name('tables.routes');
+	// Route::get('/table/route-code', [TableController::class, 'routeCode'])->name('tables.route-code');
+	// Route::get('/table/policies', [TableController::class, 'policies'])->name('tables.policies');
+	// Route::get('/table/comments', [TableController::class, 'comments'])->name('tables.comments');
+	// Route::get('/table/check', [TableController::class, 'check'])->name('tables.check');
+	// Route::get('/table/messages', [TableController::class, 'messages'])->name('tables.messages');
 	
+	Route::get('/table/structure/{table}',[TableController::class, 'structure'])->name('tables.structure');
+	Route::get('/table/controllers',[TableController::class, 'controllers'])->name('tables.controllers');
+	Route::get('/table/controllers-fnc',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
+	Route::get('/table/models',[TableController::class, 'models'])->name('tables.models');
+	Route::get('/table/models-fnc',[TableController::class, 'fncModels'])->name('tables.fnc-models');
+	Route::get('/table/policies',[TableController::class, 'policies'])->name('tables.policies');
+	Route::get('/table/policies-fnc',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
+	Route::get('/table/helpers',[TableController::class, 'helpers'])->name('tables.helpers');
+	Route::get('/table/helpers-fnc',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
+	
+	Route::get('/table/routes',[TableController::class, 'routes'])->name('tables.routes');
+	
+	Route::get('/table/route-code',[TableController::class, 'routeCode'])->name('tables.route-code');
+	Route::get('/table/comments',[TableController::class, 'comments'])->name('tables.comments');
+	Route::get('/table/check',[TableController::class, 'check'])->name('tables.check');
+	Route::get('/table/messages',[TableController::class, 'messages'])->name('tables.messages');
+
+
 	/* ======================== Template ========================================  */
 	Route::resource('templates', TemplateController::class);
 	Route::get('/template/export', [TemplateController::class, 'export'])->name('templates.export');

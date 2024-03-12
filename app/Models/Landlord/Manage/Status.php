@@ -17,7 +17,7 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Models\Landlord\Lookup;
+namespace App\Models\Landlord\Manage;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 // IQBAL 27-SEP-22
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
-use App\Models\Ticket;
+use App\Models\Landlord\Ticket;
 
 class Status extends Model
 {

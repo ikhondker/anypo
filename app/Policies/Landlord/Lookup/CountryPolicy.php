@@ -2,7 +2,7 @@
 
 namespace App\Policies\Landlord\Lookup;
 
-use App\Models\Landlord\Country;
+use App\Models\Landlord\Lookup\Country;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
