@@ -6,10 +6,10 @@ use App\Models\Landlord\Ticket;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-
 use App\Enum\UserRoleEnum;
 
 use App\Enum\LandlordTicketStatusEnum;
+use Illuminate\Support\Facades\Log;
 
 class TicketPolicy
 {
@@ -42,26 +42,17 @@ class TicketPolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Ticket $ticket): Response
+	public function view(User $user, Ticket $ticket): bool
 	{
-
 		// owner, account admin and back office users can view ticket 
 		if ($user->role->value == UserRoleEnum::USER->value) {
-			return ($user->id == $ticket->owner_id)
-				? Response::allow()
-				: Response::deny(config('bo.MSG_DENY'));
+			return ($user->id == $ticket->owner_id);
 		} elseif ($user->isAdmin() ) {
-			return ( $user->account_id == $ticket->account_id)
-				? Response::allow()
-				: Response::deny(config('bo.MSG_DENY'));
+			return ( $user->account_id == $ticket->account_id);
 		} elseif ($user->isBackOffice()) {
-				return ( true)
-					? Response::allow()
-					: Response::deny(config('bo.MSG_DENY'));
+			return ( true);
 		} else {
-			return ( false ) 
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+			return ( false );
 		}
 		
 	
@@ -78,24 +69,19 @@ class TicketPolicy
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Ticket $ticket): Response
+	public function update(User $user, Ticket $ticket): bool
 	{
 		// only back office user can edit non closed ticket 
-		return $user->isBackOffice() && ($ticket->status <> LandlordTicketStatusEnum::CLOSED->value)
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return ($user->isBackOffice() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
 	}
-
 
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function assign(User $user, Ticket $ticket): Response
+	public function assign(User $user, Ticket $ticket): bool
 	{
-		// only back office user can edit non closed ticket 
-		return $user->isBackOffice() && ($ticket->status <> LandlordTicketStatusEnum::CLOSED->value)
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		// only back office user can assign non closed ticket 
+		return ($user->isBackOffice() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
 	}
 
 	public function export(User $user): bool
@@ -109,9 +95,7 @@ class TicketPolicy
 	public function delete(User $user, Ticket $ticket): bool
 	{
 		// only system can delete a ticket 
-		return ($user->role->value == UserRoleEnum::SYSTEM->value)
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return false;
 	}
 
 	/**

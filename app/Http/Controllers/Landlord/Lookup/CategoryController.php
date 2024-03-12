@@ -26,11 +26,11 @@ use App\Models\Landlord\Lookup\Category;
 use App\Http\Requests\Landlord\Lookup\StoreCategoryRequest;
 use App\Http\Requests\Landlord\Lookup\UpdateCategoryRequest;
 
-use App\Helpers\LandlordEventLog;
 
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails

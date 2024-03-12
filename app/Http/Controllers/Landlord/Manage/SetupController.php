@@ -25,8 +25,10 @@ use App\Http\Requests\Landlord\Manage\StoreSetupRequest;
 use App\Http\Requests\Landlord\Manage\UpdateSetupRequest;
 
 # 1. Models
+use App\Models\Landlord\Manage\Setup;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -37,29 +39,6 @@ use App\Http\Requests\Landlord\Manage\UpdateSetupRequest;
 # 11. Controller
 # 12. Seeded
 # 13. TODO 
-
-
-// Models
-use App\Models\Landlord\Manage\Setup;
-
-// Enums
-// Helpers
-use App\Helpers\LandlordEventLog;
-
-// Notification
-// Mail
-// Seeded
-
-
-// --- template
-// Models
-// Enums
-// Helpers
-// Notification
-// Mail
-// Exception
-// Event
-// Seeded
 
 
 class SetupController extends Controller
@@ -142,12 +121,12 @@ class SetupController extends Controller
 			$request->merge(['maintenance' =>  0]);
 		}
 
-		if ($request->has('show_banner')) {
+		if ($request->has('banner')) {
 			//Checkbox checked
-			$request->merge(['show_banner' =>  1]);
+			$request->merge(['banner' =>  1]);
 		} else {
 			//Checkbox not checked
-			$request->merge(['show_banner' =>  0]);
+			$request->merge(['banner' =>  0]);
 		}
 
 		$request->validate([]);

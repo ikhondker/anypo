@@ -31,35 +31,6 @@
 				</div>
 				<!-- End Form -->
 
-				<!-- Form -->
-				<div class="row mb-4">
-					<label for="title" class="col-sm-3 col-form-label form-label">Department:</label>
-					<div class="col-sm-9">
-						<select class="form-control form-control-sm" name="dept_id" required>
-							<option value=""><< Dept >> </option>
-							@foreach ($depts as $dept)
-								<option value="{{ $dept->id }}" {{ $dept->id == old('dept_id') ? 'selected' : '' }} >{{ $dept->name }} </option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-				<!-- End Form -->
-
-				<!-- Form -->
-				<div class="row mb-4">
-					<label for="title" class="col-sm-3 col-form-label form-label">Priority:</label>
-					<div class="col-sm-9">
-						<select class="form-control form-control-sm" name="priority_id" required>
-							<option value=""><< Priority >> </option>
-							@foreach ($priorities as $priority)
-								<option value="{{ $priority->id }}" {{ $priority->id == old('priority_id') ? 'selected' : '' }} >{{ $priority->name }} </option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-				<!-- End Form -->
-
-
 			</div>
 			<!-- End Body -->
 

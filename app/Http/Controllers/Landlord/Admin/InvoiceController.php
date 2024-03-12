@@ -25,45 +25,32 @@ use App\Http\Requests\Landlord\Admin\StoreInvoiceRequest;
 use App\Http\Requests\Landlord\Admin\UpdateInvoiceRequest;
 
 # 1. Models
+use App\Models\User;
+use App\Models\Landlord\Admin\Invoice;
+use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Account;
 # 2. Enums
+use App\Enum\UserRoleEnum;
+use App\Enum\LandlordInvoiceTypeEnum;
+use App\Enum\LandlordInvoiceStatusEnum;
 # 3. Helpers
+use App\Helpers\Bo;
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
+use Notification;
+use App\Notifications\Landlord\InvoiceCreated;
 # 5. Jobs
 # 6. Mails
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-// Models
-
-use App\Models\User;
-use App\Models\Landlord\Admin\Invoice;
-use App\Models\Landlord\Account;
-
-use App\Models\Landlord\Manage\Setup;
-
-// Enums
-use App\Enum\UserRoleEnum;
-use App\Enum\LandlordInvoiceTypeEnum;
-use App\Enum\LandlordInvoiceStatusEnum;
-
-// Helpers
-use App\Helpers\Bo;
-use App\Helpers\LandlordEventLog;
-
-use Notification;
-use App\Notifications\Landlord\InvoiceCreated;
-
-// Seeded
 use Exception;
 use Illuminate\Support\Facades\Log;
-
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+# 13. TODO 
 
 
 class InvoiceController extends Controller

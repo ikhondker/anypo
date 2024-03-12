@@ -23,13 +23,13 @@
 		</div>
 		<!-- End Row -->
 	</div>
-
+	
 	<div class="d-grid gap-1 gap-lg-1">
 		<div class="row">
 			<x-landlord.widget.kpi value="{{ $count_users }}" label="TOTAL USERS" icon="com006" route="users"/>
-			<x-landlord.widget.kpi value="{{ $count_users }}" label="TOTAL ACTIVE" icon="abs029" route="users"/>
-			<x-landlord.widget.kpi value="{{ $count_users }}" label="TOTAL INACTIVE"  icon="abs027" route="users"/>
-			<x-landlord.widget.kpi value="{{ $count_users }}" label="TOTAL NON-VAL" icon="com006" route="users"/>
+			<x-landlord.widget.kpi value="{{ $count_users_active }}" label="TOTAL ACTIVE" icon="abs029" route="users"/>
+			<x-landlord.widget.kpi value="{{ $count_users_inactive }}" label="TOTAL INACTIVE"  icon="abs027" route="users"/>
+			<x-landlord.widget.kpi value="{{ $count_users_non_val }}" label="TOTAL NON-VAL" icon="com006" route="users"/>
 		</div>
 		<!-- End Row -->
 	</div>

@@ -62,11 +62,13 @@
 			
 						<x-landlord.show.my-integer value="{{ $setup->days_gen_bill }}" label="Gen Invoice Before" />
 						<x-landlord.show.my-integer value="{{ $setup->days_due }}" label="Mark account as due after" />
-						<x-landlord.show.my-integer value="{{ $setup->days_pastdue }}" label="Mark account as pastdue after" />
+						<x-landlord.show.my-integer value="{{ $setup->days_pastdue }}" label="Mark account as past due after" />
 						<x-landlord.show.my-integer value="{{ $setup->days_archive }}" label="Mark account for archive after" />
 
-						<x-landlord.show.my-enable	value="{{ $setup->maintenance }}" label="Maintenance Mode?"/>	
-						<x-landlord.show.my-enable	value="{{ $setup->show_banner }}" label="Show Banner?"/>
+						<x-landlord.show.my-enable	value="{{ $setup->maintenance }}" label="Maintenance ?"/>	
+						<x-landlord.show.my-date-time	value="{{ $setup->maintenance_start_time }}" label="Start"/>
+						<x-landlord.show.my-date-time	value="{{ $setup->maintenance_end_time }}" label="End"/>
+						<x-landlord.show.my-enable	value="{{ $setup->banner }}" label="Banner?"/>
 						<x-landlord.show.my-text	value="{{ $setup->banner_message }}" label="Banner"/>
 				</div>
 				<!-- End Body -->

@@ -53,9 +53,9 @@
 				<thead class="thead-light">
 				<tr>
 					<th>&nbsp; &nbsp; Subject</th>
-					<th>Priority</th>
+					<th>Date</th>
 					<th>Status</th>
-					<th style="width: 5%;">Action</th>
+					<th style="width: 5%;">View</th>
 				</tr>
 				</thead>
 
@@ -77,25 +77,17 @@
 												[#{{ $ticket->id }}] {{ Str::limit($ticket->title, 45) }}
 												</h6>
 										</a>
-										<small class="d-block"> {{ $ticket->owner->name }} | {{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }} | {{ $ticket->dept->name }} </small>
+										<small class="d-block"> {{ $ticket->owner->name }}</small>
 									</div>
 								</div>
-
-								{{-- <div class="flex-grow-1 ms-3">
-									<a class="d-inline-block link-dark" href="{{ route('tickets.show',$ticket->id) }}">
-										<h6 class="text-hover-primary mb-0">[#{{ $ticket->id }}] {{ Str::limit($ticket->title, 45) }}</h6>
-									</a>
-									<small class="d-block">{{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }}</small>
-								</div> --}}
+							
 							</td>
-							<td><x-landlord.list.my-badge :value="$ticket->priority->name" badge="{{ $ticket->priority->badge }}"/></td>
+							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
 							<td><x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/></td>
 							<td>
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
 								</a>
-
-								{{-- <x-landlord.list.actions object="Ticket" :id="$ticket->id"/> --}}
 							</td>
 						</tr>
 					@endforeach

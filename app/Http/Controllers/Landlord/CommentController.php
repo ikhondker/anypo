@@ -25,9 +25,19 @@ use App\Http\Requests\Landlord\StoreCommentRequest;
 use App\Http\Requests\Landlord\UpdateCommentRequest;
 
 # 1. Models
+use App\Models\User;
+use App\Models\Landlord\Comment;
+use App\Models\Landlord\Ticket;
 # 2. Enums
+use App\Enum\UserRoleEnum;
+use App\Enum\LandlordTicketStatusEnum;
 # 3. Helpers
+use App\Helpers\LandlordFileUpload;
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
+use Notification;
+use App\Notifications\Landlord\TicketUpdated;
+use App\Notifications\Landlord\TicketClosed;
 # 5. Jobs
 # 6. Mails
 # 7. Rules
@@ -36,33 +46,11 @@ use App\Http\Requests\Landlord\UpdateCommentRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-// Models
-use App\Models\User;
-use App\Models\Landlord\Comment;
-use App\Models\Landlord\Ticket;
-
-// Enums
-use App\Enum\UserRoleEnum;
-use App\Enum\LandlordTicketStatusEnum;
-
-// Helpers
-use App\Helpers\LandlordFileUpload;
-use App\Helpers\LandlordEventLog;
-
-
-// Notification
-use Notification;
-use App\Notifications\Landlord\TicketUpdated;
-use App\Notifications\Landlord\TicketClosed;
-
-// Seeded
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Str;
 use Illuminate\Support\Facades\Request;
+# 13. TODO 
 
 
 
@@ -165,11 +153,11 @@ class CommentController extends Controller
 				$agent = User::where('id',$ticket->agent_id )->first();
 				$agent->notify(new TicketUpdated($agent, $ticket));
 			}
+
 		} elseif (auth()->user()->isBackOffice()) {
 			// change ticket status if back office is updating
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
 			$status_code = $request->input('status_code');
-			//$ticket->status_code = LandlordTicketStatusEnum::CUSTWORKING->value;
 			$ticket->status_code = $status_code;
 			$ticket->update();
 
@@ -177,21 +165,21 @@ class CommentController extends Controller
 				case LandlordTicketStatusEnum::INPROGRESS->value:
 
 					break;
-				case LandlordTicketStatusEnum::CUSTWORKING->value:
+				case LandlordTicketStatusEnum::CWIP->value:
 					if (! $isInternal){
 						// Send notification to Ticket creator if agent updates the tickets
 						$owner = User::where('id', $ticket->owner_id)->first();
 						$owner->notify(new TicketUpdated($owner, $ticket));
 					}
 					break;
-				case LandlordTicketStatusEnum::RESOLVED->value:
-					if (! $isInternal){
-						// Send notification to Ticket creator if agent closes the tickets
-						$owner = User::where('id', $ticket->owner_id)->first();
-						$owner->notify(new TicketClosed($owner, $ticket));
-					}
-					return redirect()->route('tickets.show',$request->input('ticket_id'))->with('success','Ticket Closed successfully');
-					break;
+				// case LandlordTicketStatusEnum::RESOLVED->value:
+				// 	if (! $isInternal){
+				// 		// Send notification to Ticket creator if agent closes the tickets
+				// 		$owner = User::where('id', $ticket->owner_id)->first();
+				// 		$owner->notify(new TicketClosed($owner, $ticket));
+				// 	}
+				// 	return redirect()->route('tickets.show',$request->input('ticket_id'))->with('success','Ticket Closed successfully');
+				// 	break;
 				default:
 					Log::channel('bo')->info('landlord.comment.store Invalid status_code='. $status_code);
 				

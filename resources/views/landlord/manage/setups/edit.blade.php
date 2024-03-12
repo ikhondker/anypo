@@ -26,8 +26,7 @@
 					<div class="d-flex align-items-center">
 						<!-- Avatar -->
 						<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-							<img id="avatarImg" class="avatar-img" src="{{ asset('/assets/img/160x160/img9.jpg') }}"
-								alt="Image Description">
+							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Image Description">
 						</label>
 
 						<div class="d-grid d-sm-flex gap-2 ms-4">
@@ -91,8 +90,9 @@
 				<div class="col-sm-9">
 						<label class="form-check form-switch" for="admin">
 							<input class="form-check-input mt-0" type="checkbox" id="maintenance" name="maintenance" @checked($setup->maintenance)>
-							<span class="d-block"> Enable Maintenance</span>
-							<span class="d-block small text-danger">Be careful! This will enable Maintenance</span>
+							<span class="d-block"> Enable Maintenance?</span>
+							<span class="d-block small text-danger">Caution! Will show Maintenance Banner for ALL tenants. Now: {{ date('d-M-Y H:i:s', strtotime(now())) }}</span>
+							<span class="d-block small text-muted"> </span>
 						</label>
 						@error('maintenance')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -100,15 +100,52 @@
 				</div>
 			</div>
 
+			<!-- Form -->
 			<div class="row mb-4">
-				<label for="show_banner" class="col-sm-3 col-form-label form-label">Display Banner:</label>
+				<label class="col-sm-3 col-form-label form-label"></label>
+				<div class="col-sm-9">
+					<div class="row">
+
+						
+							<!-- Form -->
+							<div class="col-md-5">
+								<label for="maintenance_start_time" class="form-label">Start</label>
+								<input type="datetime-local" class="form-control @error('maintenance_start_time') is-invalid @enderror"
+									name="maintenance_start_time" id="maintenance_start_time" placeholder="maintenance_start_time"
+									value="{{ old('maintenance_start_time', date('d-m-Y h:m:s',strtotime($setup->maintenance_start_time)) ) }}"
+								/>
+								@error('maintenance_start_time')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+							<!-- End Form -->
+
+							<!-- Form -->
+							<div class="col-md-5">
+								<label for="maintenance_end_time" class="form-label">End</label>
+								<input type="datetime-local" class="form-control @error('maintenance_end_time') is-invalid @enderror"
+									name="maintenance_end_time" id="maintenance_end_time" placeholder="maintenance_end_time"
+									value="{{ old('maintenance_end_time', date('Y-m-d',strtotime($setup->maintenance_end_time)) ) }}"
+									/>
+								@error('maintenance_end_time')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+							<!-- End Form -->
+					</div>
+				</div>
+			</div>
+			<!-- End Form -->
+
+			<div class="row mb-4">
+				<label for="banner" class="col-sm-3 col-form-label form-label">Display Banner:</label>
 				<div class="col-sm-9">
 						<label class="form-check form-switch" for="admin">
-							<input class="form-check-input mt-0" type="checkbox" id="show_banner" name="show_banner" @checked($setup->show_banner)>
+							<input class="form-check-input mt-0" type="checkbox" id="banner" name="banner" @checked($setup->banner)>
 							<span class="d-block"> Display Banner?</span>
 							<span class="d-block small text-danger">Be careful! This will display Banner for ALL tenants.</span>
 						</label>
-						@error('show_banner')
+						@error('banner')
 							<div class="text-danger text-xs">{{ $message }}</div>
 						@enderror
 				</div>

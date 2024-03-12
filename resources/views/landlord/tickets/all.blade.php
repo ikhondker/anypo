@@ -56,8 +56,7 @@
 				<thead class="thead-light">
 				<tr>
 					<th>&nbsp; &nbsp; Subject</th>
-
-					<th>Priority/Dept</th>
+					<th>Date</th>
 					<th>Status</th>
 					<th style="width: 5%;">Action</th>
 				</tr>
@@ -79,7 +78,7 @@
 											</h6>
 										</a>
 										<small class="d-block">
-											{{ $ticket->owner->name }} | {{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }} | {{ $ticket->dept->name }}
+											{{ $ticket->owner->name }} | {{ $ticket->dept->name }}
 											@if ( auth()->user()->isBackOffice()  && ($ticket->agent_id <> ''))
 												| {{ $ticket->agent->name }}
 											@endif
@@ -88,10 +87,7 @@
 								</div>
 							</td>
 
-							<td>
-								<x-landlord.list.my-badge :value="$ticket->priority->name" badge="{{ $ticket->priority->badge }}"/>
-								{{-- <x-landlord.list.my-badge :value="$ticket->dept->name"/><br> --}}
-							</td>
+							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
 							<td><x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/></td>
 							<td>
 								<x-landlord.list.actions object="Ticket" :id="$ticket->id"/>

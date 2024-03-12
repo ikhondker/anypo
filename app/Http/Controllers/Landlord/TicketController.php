@@ -25,9 +25,25 @@ use App\Http\Requests\Landlord\StoreTicketRequest;
 use App\Http\Requests\Landlord\UpdateTicketRequest;
 
 # 1. Models
+use App\Models\User;
+use App\Models\Landlord\Ticket;
+
+use App\Models\Landlord\Lookup\Dept;
+
+use App\Models\Landlord\Manage\Priority;
 # 2. Enums
+use App\Enum\UserRoleEnum;
+use App\Enum\LandlordTicketStatusEnum;
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\LandlordFileUpload;
+use App\Helpers\LandlordEventLog;
+
 # 4. Notifications
+use Notification;
+use App\Notifications\Landlord\TicketCreated;
+use App\Notifications\Landlord\TicketAssigned;
+use App\Notifications\Landlord\TicketClosed;
 # 5. Jobs
 # 6. Mails
 # 7. Rules
@@ -36,38 +52,12 @@ use App\Http\Requests\Landlord\UpdateTicketRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-// Models
-use App\Models\User;
-use App\Models\Landlord\Ticket;
-
-use App\Models\Landlord\Lookup\Dept;
-
-use App\Models\Landlord\Manage\Priority;
-
-// Enums
-use App\Enum\UserRoleEnum;
-use App\Enum\LandlordTicketStatusEnum;
-
-// Helpers
-use App\Helpers\Export;
-use App\Helpers\LandlordFileUpload;
-use App\Helpers\LandlordEventLog;
-
-// Notification
-use Notification;
-use App\Notifications\Landlord\TicketCreated;
-use App\Notifications\Landlord\TicketAssigned;
-use App\Notifications\Landlord\TicketClosed;
-
-// Seeded
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Str;
 use DB;
+# 13. TODO 
 
 class TicketController extends Controller
 {
@@ -144,6 +134,8 @@ class TicketController extends Controller
 			'status_code'	=> LandlordTicketStatusEnum::NEW->value,
 			'owner_id'		=> auth()->user()->id,
 			'account_id'	=> auth()->user()->account_id,
+			'dept_id'		=> '1001',
+			'priority_id'	=> '1001',
 			'ip'			=> $request->ip()
 		]);
 
@@ -197,6 +189,7 @@ class TicketController extends Controller
 	public function edit(Ticket $ticket)
 	{
 		$this->authorize('update', $ticket);
+		
 		return view('landlord.tickets.edit', compact('ticket'));
 	}
 

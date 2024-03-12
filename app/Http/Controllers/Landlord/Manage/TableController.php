@@ -23,8 +23,10 @@ namespace App\Http\Controllers\Landlord\Manage;
 use App\Http\Controllers\Controller;
 
 # 1. Models
+use App\Models\Landlord\Manage\Table;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Docs;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -34,25 +36,15 @@ use App\Http\Controllers\Controller;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-// Models
-//use App\Models\Table;
-// Enums
-// Helpers
-// Helpers
-use App\Helpers\Docs;
-// Seeded
-
-use App\Models\Landlord\Manage\Table;
-
 use File;
 use DB;
 use Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+# 13. TODO 
+
+
 
 class TableController extends Controller
 {

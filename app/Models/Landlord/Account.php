@@ -28,7 +28,7 @@ use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
 use App\Models\Landlord\Lookup\Country;
-use App\Models\Landlord\Lookup\Status;
+use App\Models\Landlord\Manage\Status;
 
 use App\Enum\LandlordAccountStatusEnum;
 

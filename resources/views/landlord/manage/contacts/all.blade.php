@@ -37,7 +37,7 @@
 										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" alt="Avatar">
 									</div>
 									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="#">
+										<a class="d-inline-block link-dark" href="{{ route('contacts.show',$contact->id) }}">
 											<h6 class="text-hover-primary mb-0">{{ $contact->first_name.' '.$contact->last_name }} [{{ $contact->user_id}}]
 												{{-- <img class="avatar avatar-xss ms-1" src="{{ asset('/assets/svg/illustrations/top-vendor.svg') }}" alt="Image Description" data-bs-toggle="tooltip" data-bs-placement="top" title="Verified contact"> --}}
 											</h6>

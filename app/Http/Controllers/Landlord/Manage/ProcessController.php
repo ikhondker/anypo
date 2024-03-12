@@ -29,6 +29,9 @@ use App\Http\Requests\Landlord\Manage\UpdateProcessRequest;
 # 3. Helpers
 # 4. Notifications
 # 5. Jobs
+use App\Jobs\Landlord\GenerateAllSubscriptionInvoice;
+use App\Jobs\Landlord\AccountsArchive;
+
 # 6. Mails
 # 7. Rules
 # 8. Packages
@@ -36,16 +39,9 @@ use App\Http\Requests\Landlord\Manage\UpdateProcessRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-#Jobs
-use App\Jobs\Landlord\GenerateAllSubscriptionInvoice;
-use App\Jobs\Landlord\AccountsArchive;
-
-// Seeded
 use Str;
 use Illuminate\Support\Facades\Log;
+# 13. TODO 
 
 class ProcessController extends Controller
 {

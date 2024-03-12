@@ -31,8 +31,13 @@ use App\Http\Requests\Landlord\Manage\UpdateTemplateRequest;
 //
 
 # 1. Models
+use App\Models\User;
+use App\Models\Landlord\Manage\Country;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\FileUpload;
+use App\Helpers\LandlordEventLog;
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -42,27 +47,10 @@ use App\Http\Requests\Landlord\Manage\UpdateTemplateRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-# Models
-use App\Models\User;
-use App\Models\Landlord\Manage\Country;
-# Enums
-# Helpers
-use App\Helpers\FileUpload;
-use App\Helpers\LandlordEventLog;
-use App\Helpers\Export;
-# Notifications
-# Mails
-# Packages
-# Seeded
 use Illuminate\Support\Facades\Log;
 use DB;
 use Str;
-
-# Exceptions
-# Events
+# 13. TODO 
 
 class TemplateController extends Controller
 {

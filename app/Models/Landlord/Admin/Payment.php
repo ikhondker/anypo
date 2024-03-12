@@ -30,7 +30,7 @@ use App\Models\User;
 
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Lookup\PaymentMethod;
-use App\Models\Landlord\Lookup\Status;
+use App\Models\Landlord\Manage\Status;
 
 use App\Models\Landlord\Admin\Invoice;
 

@@ -26,11 +26,11 @@ use App\Models\Landlord\Lookup\Country;
 use App\Http\Requests\Landlord\Lookup\StoreCountryRequest;
 use App\Http\Requests\Landlord\Lookup\UpdateCountryRequest;
 
-use App\Helpers\LandlordEventLog;
 
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails

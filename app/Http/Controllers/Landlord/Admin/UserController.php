@@ -26,55 +26,37 @@ use App\Http\Requests\Landlord\Admin\StoreUserRequest;
 use App\Http\Requests\Landlord\Admin\UpdateUserRequest;
 
 # 1. Models
+use App\Models\User;
+use App\Models\Landlord\Country;
 # 2. Enums
+use App\Enum\UserRoleEnum;
 # 3. Helpers
+use App\Helpers\Export;
+use App\Helpers\LandlordFileUpload;
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
+use Notification;
+use App\Notifications\Landlord\UserCreated;
+use Illuminate\Auth\Events\Registered;
 # 5. Jobs
 # 6. Mails
+use Mail;
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-// Models
-use App\Models\User;
-use App\Models\Landlord\Country;
-
-// Enums
-use App\Enum\UserRoleEnum;
-
-// Helpers
-use App\Helpers\Export;
-use App\Helpers\LandlordFileUpload;
-use App\Helpers\LandlordEventLog;
-
-// Notification
-use Notification;
-use App\Notifications\Landlord\UserCreated;
-use Illuminate\Auth\Events\Registered;
-
-// Mail
-use Mail;
-
-// Seeded
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-
-
-// for profile picture
 use Image;
-
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Str;
 use DB;
-
+# 13. TODO 
 
 class UserController extends Controller
 {
@@ -238,7 +220,7 @@ class UserController extends Controller
 
 		$user->update($request->all());
 		LandlordEventLog::event('user',$user->id,'update','name', $request->name);
-		return redirect()->route('dashboards.index')->with('success','User profile updated successfully.');
+		return redirect()->route('users.show',$user->id)->with('success','User profile updated successfully.');
 	}
 
 	/**

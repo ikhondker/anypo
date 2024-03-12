@@ -23,8 +23,6 @@ use App\Http\Requests\UpdateTenantRequest;
 # 12. Seeded
 # 13. TODO 
 
-
-
 class TenantController extends Controller
 {
 	/**

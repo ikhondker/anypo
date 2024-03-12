@@ -22,21 +22,6 @@ namespace App\Http\Controllers\Landlord;
 use App\Http\Controllers\Controller;
 
 # 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Controller
-# 12. Seeded
-# 13. TODO 
-
-
-// Models
 use App\Models\User;
 use App\Models\Landlord\Dashboard;
 use App\Models\Landlord\Ticket;
@@ -48,14 +33,23 @@ use App\Models\Landlord\Admin\Service;
 
 use App\Models\Landlord\Manage\Setup;
 
-// Enums
+# 2. Enums
 use App\Enum\UserRoleEnum;
-
-// Helpers
-
-// Seeded
+# 3. Helpers
+# 4. Notifications
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use Illuminate\Support\Facades\Log;
 use Request;
+# 13. TODO 
+
+
 
 class DashboardController extends Controller
 {
@@ -90,7 +84,7 @@ class DashboardController extends Controller
 				break;
 			default:
 				return self::userDashboard();
-				Log::debug('landlord.dashbaord.index Other roles= '. auth()->user()->role->value);
+				Log::error('landlord.dashbaord.index Other roles= '. auth()->user()->role->value);
 		}
 	}
 
@@ -269,11 +263,16 @@ class DashboardController extends Controller
 		$count_service	= Service::all()->count();
 		$count_invoices = Invoice::all()->count();
 		$count_payments = Payment::all()->count();
+
 		$count_users	= User::all()->count();
+		$count_users_active	= User::where('enable', true)->count();
+		$count_users_inactive	= User::where('enable', false)->count();
+		$count_users_non_val	= User::where('email_verified_at', null)->count();
+
 		return view('landlord.dashboards.system', with(compact('tickets','setup',
 			'count_tickets','count_all_open_tickets','count_unassigned_tickets','count_all_closed_tickets',
 			'count_accounts','count_service','count_invoices','count_payments',
-			'count_users'
+			'count_users','count_users_active','count_users_inactive','count_users_non_val'
 		)));
 			
 	}

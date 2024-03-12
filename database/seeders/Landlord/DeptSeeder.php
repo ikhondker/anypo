@@ -14,25 +14,24 @@ class DeptSeeder extends Seeder
 		 */
 		public function run(): void
 		{
-				$depts =  [
-						[
-							'id'	=> '1001',
-							'name' 	=> 'General',
-						],
-						[
-							'id'	=> '1002',
-							'name' => 'Sales',
-						],
-						[
-							'id'	=> '1003',
+			$depts =  [
+					[
+						'id'	=> '1001',
+						'name' 	=> 'General',
+					],
+					[
+						'id'	=> '1002',
+						'name' => 'Sales',
+					],
+					[
+						'id'	=> '1003',
 						'name' => 'Billing',
-						],
-						[
-							'id'	=> '1004',
-							'name' => 'Support',
-						],
-					];
-					//
-					Dept::insert($depts);
+					],
+					[
+						'id'	=> '1004',
+						'name' => 'Support',
+					],
+				];
+				Dept::insert($depts);
 		}
 }

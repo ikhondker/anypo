@@ -25,36 +25,27 @@ use App\Http\Requests\Landlord\StoreServiceRequest;
 use App\Http\Requests\Landlord\UpdateServiceRequest;
 
 # 1. Models
+use App\Models\User;
+use App\Models\Landlord\Admin\Service;
+use App\Models\Landlord\Account;
+use App\Models\Landlord\Lookup\Product;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use Illuminate\Support\Facades\Log;
 # 13. TODO 
 
 
-// Models
-use App\Models\User;
-use App\Models\Landlord\Admin\Service;
-use App\Models\Landlord\Account;
-
-use App\Models\Landlord\Lookup\Product;
-
-// Enums
-use App\Enum\UserRoleEnum;
-
-// Helpers
-use App\Helpers\LandlordEventLog;
-
-// Seeded
-use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ServiceController extends Controller
 {

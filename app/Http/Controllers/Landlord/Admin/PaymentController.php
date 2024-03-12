@@ -25,8 +25,12 @@ use App\Http\Requests\Landlord\Admin\StorePaymentRequest;
 use App\Http\Requests\Landlord\Admin\UpdatePaymentRequest;
 
 # 1. Models
+use App\Models\Landlord\Admin\Payment;
 # 2. Enums
+use App\Enum\UserRoleEnum;
 # 3. Helpers
+use App\Helpers\FileUpload;
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -36,22 +40,10 @@ use App\Http\Requests\Landlord\Admin\UpdatePaymentRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-// Models
-use App\Models\Landlord\Admin\Payment;
-
-// Enums
-use App\Enum\UserRoleEnum;
-
-// Helpers
-use App\Helpers\FileUpload;
-use App\Helpers\LandlordEventLog;
-
-// Seeded
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+# 13. TODO 
+
 
 
 class PaymentController extends Controller

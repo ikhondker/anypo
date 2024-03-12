@@ -24,8 +24,11 @@ namespace App\Http\Controllers\Landlord;
 use App\Http\Controllers\Controller;
 
 # 1. Models
+use App\Models\Landlord\Notification;
 # 2. Enums
 # 3. Helpers
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -36,17 +39,6 @@ use App\Http\Controllers\Controller;
 # 11. Controller
 # 12. Seeded
 # 13. TODO 
-
-
-// Models
-use App\Models\Landlord\Notification;
-
-// Enums
-// Helpers
-
-// Seeded
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class NotificationController extends Controller
 {

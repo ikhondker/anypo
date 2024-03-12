@@ -4,25 +4,17 @@
 
 @section('content')
 
-
-
 <div class="d-grid gap-3 gap-lg-5">
 
 	<!-- Card -->
 	<div class="card">
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 			<h4 class="card-header-title">#{{ $ticket->id }}: {{ $ticket->title }}</h4>
-			<div class="h4"><span class="badge bg-{{ $ticket->status->badge }}">{{ $ticket->status->name }}</span></div>
+			<div class="h4"><span class="badge bg-{{ $ticket->status->badge }}"><i class="bi bi-person-gear"></i> {{ $ticket->status->name }}</span></div>
 		</div>
 
 		<!-- Body -->
 		<div class="card-body">
-
-			{{-- <p class="small text-muted">{{ $ticket->owner->name }}</small><small class="text-muted"> on : {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }}</p> --}}
-			{{-- <x-landlord.show.my-badge value="{{ $ticket->status->name }}" label="Status" badge="{{ $ticket->status->badge }}"/> --}}
-			{{-- <x-landlord.show.my-badge value="{{ $ticket->priority->name }}" label="Priority" badge="{{ $ticket->priority->badge }}"/>
-			<x-landlord.show.my-badge value="{{ $ticket->dept->name }}" label="Dept"/> --}}
-			{{-- <x-landlord.show.my-text  value="{{ $ticket->owner->name  }}" label="Owner"/> --}}
 
 			<ul class="list-comment mb-7">
 				<!-- Item -->
@@ -35,20 +27,24 @@
 
 						<div class="flex-grow-1 ms-3">
 							<h5>{{ $ticket->owner->name }}</h5>
-							<div class="d-flex align-items-center mb-3">
-								<span class="d-block small">{{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }} | Department: {{ $ticket->dept->name }} | Priority: {{ $ticket->priority->name }}</span>
-								{{-- <small class="d-block">on November 12, 2020</small> --}}
+							<div class="d-flex align-items-center mb-1">
+								<span class="d-block small">{{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }} 
+									@if (auth()->user()->isBackOffice())
+										| Department: {{ $ticket->dept->name }} | Priority: {{ $ticket->priority->name }}
+										@if ($ticket->agent_id <> '')
+											<p class="text-muted">Assignee: <span class="badge bg-info">{{ $ticket->agent->name  }}</span>  </p>
+										@endif
+									@endif
+								</span>
 							</div>
 
 							{{-- <h5>Fun place to work at</h5> --}}
-							<p class="text-dark pt-4">{{ $ticket->content }}</p>
+							<p class="text-dark">{{ $ticket->content }}</p>
 							
 							@if ($ticket->attachment_id <> '')
 								<p class="small text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $ticket->attachment_id }}"/></p>
 							@endif
-							@if ( auth()->user()->isBackOffice() && ( $ticket->agent_id <> ''))
-								<p class="small text-danger">Assignee: {{ $ticket->agent->name  }}</p>
-							@endif
+							
 							
 							@if ( auth()->user()->isBackOffice() && ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
 								<a class="btn btn-info btn-sm" href="{{ route('tickets.assign',$ticket->id) }}">

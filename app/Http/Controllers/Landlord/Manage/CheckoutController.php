@@ -25,6 +25,7 @@ use App\Http\Requests\Landlord\Manage\StoreCheckoutRequest;
 use App\Http\Requests\Landlord\Manage\UpdateCheckoutRequest;
 
 # 1. Models
+use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
 # 3. Helpers
 # 4. Notifications
@@ -37,12 +38,6 @@ use App\Http\Requests\Landlord\Manage\UpdateCheckoutRequest;
 # 11. Controller
 # 12. Seeded
 # 13. TODO 
-
-// Models
-use App\Models\Landlord\Manage\Checkout;
-// Enums
-// Helpers
-// Seeded
 
 class CheckoutController extends Controller
 {

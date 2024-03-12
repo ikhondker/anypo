@@ -25,8 +25,11 @@ use App\Http\Requests\Landlord\Lookup\StoreProductRequest;
 use App\Http\Requests\Landlord\Lookup\UpdateProductRequest;
 
 # 1. Models
+use App\Models\User;
+use App\Models\Landlord\Lookup\Product;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -36,19 +39,10 @@ use App\Http\Requests\Landlord\Lookup\UpdateProductRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use Illuminate\Support\Facades\Log;
 # 13. TODO 
 
 
-// Models
-use App\Models\User;
-use App\Models\Landlord\Lookup\Product;
-
-// Enums
-// Helpers
-use App\Helpers\LandlordEventLog;
-
-// Seeded
-use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {

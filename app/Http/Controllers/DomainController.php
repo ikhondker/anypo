@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Domain;
-use App\Models\Tenant;
-use App\Models\User;
-
 use App\Http\Requests\StoreDomainRequest;
 use App\Http\Requests\UpdateDomainRequest;
 
 # 1. Models
+use App\Models\Tenant;
+use App\Models\User;
 # 2. Enums
 # 3. Helpers
 # 4. Notifications

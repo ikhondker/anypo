@@ -25,7 +25,7 @@
 			</thead>
 
 			<tbody>
-				@foreach ($accounts as $account)
+				@forelse  ($accounts as $account)
 				<tr>
 					<td>
 						<div class="d-flex align-items-center">
@@ -47,8 +47,13 @@
 					<td><x-landlord.list.my-badge :value="$account->status->name" badge="{{ $account->status->badge }}" /></td>
 					<td><x-landlord.list.actions object="Account" :id="$account->id" :export="false" :enable="false" /></td>
 				</tr>
-
-				@endforeach
+				@empty
+				<tr>
+					<td colspan="5" class="text-center">
+    					<span>No billing account exists! Please <a href="{{ route('home.pricing') }}"> purchase</a> the service first.</span>
+					</td>
+				</tr>
+				@endforelse
 			</tbody>
 		</table>
 	</div>

@@ -25,6 +25,7 @@ use App\Http\Requests\Landlord\Manage\StoreContactRequest;
 use App\Http\Requests\Landlord\Manage\UpdateContactRequest;
 
 # 1. Models
+use App\Models\Landlord\Manage\Contact;
 # 2. Enums
 # 3. Helpers
 # 4. Notifications
@@ -36,17 +37,10 @@ use App\Http\Requests\Landlord\Manage\UpdateContactRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-// Models
-use App\Models\Landlord\Manage\Contact;
-
-// Enums
-// Helpers
-// Seeded
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Log;
+# 13. TODO 
+
 
 class ContactController extends Controller
 {

@@ -15,7 +15,7 @@
 						<img class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" alt="Avatar">
 					</span>
 					<h2 class="h2">Verify Your Email Address </h2>
-					<p>Before proceeding, please check your email for a verification link.</p>
+					<p>We have sent you a mail with email verification link. </br>Before proceeding, please check your email and click on the verification link to verify your email address.</p>
 				</div>
 				<!-- End Heading -->
 

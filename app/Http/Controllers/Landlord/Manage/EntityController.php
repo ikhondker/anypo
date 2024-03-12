@@ -25,8 +25,10 @@ use App\Http\Requests\Landlord\Manage\StoreEntityRequest;
 use App\Http\Requests\Landlord\Manage\UpdateEntityRequest;
 
 # 1. Models
+use App\Models\Landlord\Manage\Entity;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -36,16 +38,9 @@ use App\Http\Requests\Landlord\Manage\UpdateEntityRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use DB;
 # 13. TODO 
 
-
-// Models
-use App\Models\Landlord\Manage\Entity;
-// Enums
-// Helpers
-// Seeded
-use App\Helpers\LandlordEventLog;
-use DB;
 
 class EntityController extends Controller
 {

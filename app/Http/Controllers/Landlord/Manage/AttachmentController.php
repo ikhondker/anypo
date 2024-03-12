@@ -25,8 +25,12 @@ use App\Http\Requests\Landlord\Manage\StoreAttachmentRequest;
 use App\Http\Requests\Landlord\Manage\UpdateAttachmentRequest;
 
 # 1. Models
+use App\Models\Landlord\Manage\Attachment;
+use App\Models\Landlord\Manage\Entity;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\FileUpload;
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -37,23 +41,13 @@ use App\Http\Requests\Landlord\Manage\UpdateAttachmentRequest;
 # 11. Controller
 # 12. Seeded
 use Illuminate\Support\Facades\Storage;
-# 13. TODO 
-
-
-// Models
-use App\Models\Landlord\Manage\Attachment;
-use App\Models\Landlord\Manage\Entity;
-// Enums
-
-// Helpers
-use App\Helpers\FileUpload;
-use App\Helpers\LandlordEventLog;
-
-// Seeded
 use Illuminate\Support\Facades\Response;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 use File;
+# 13. TODO 
+
+
 
 class AttachmentController extends Controller
 {

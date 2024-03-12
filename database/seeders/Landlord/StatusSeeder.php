@@ -116,7 +116,7 @@ class StatusSeeder extends Seeder
 					'payments'  => false,
 				],
 				[
-					'code'		=> 'customer-working', //1010,
+					'code'		=> 'cwip', //1010,
 					'name'		=> 'Customer Working',
 					'badge'	  	=> 'info',
 					'accounts'  => false,

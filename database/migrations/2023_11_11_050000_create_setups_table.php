@@ -30,11 +30,13 @@ return new class extends Migration
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
 			$table->string('logo')->nullable();
-			$table->boolean('banner_show')->default(false);
+			$table->boolean('banner')->default(false);
 			$table->text('banner_message')->nullable();
-			$table->boolean('banner_for_maintenance')->default(false);
-			$table->dateTime('banner_start_time', $precision = 0)->nullable();
-			$table->dateTime('banner_end_time', $precision = 0)->nullable();
+			$table->boolean('maintenance')->default(false);
+			$table->dateTime('maintenance_start_time')->nullable()->useCurrent();
+			$table->dateTime('maintenance_end_time')->nullable()->useCurrent();
+			$table->boolean('debug')->default(false);
+			$table->boolean('disable_payments')->default(false);
 			$table->string('version')->nullable()->default('1.0');
 			$table->string('build')->nullable()->default('1001');
 			$table->biginteger('days_gen_bill')->default(7);
@@ -46,9 +48,6 @@ return new class extends Migration
 			$table->float('discount_pc_6', 15, 2)->default(10);
 			$table->float('discount_pc_12', 15, 2)->default(15);
 			$table->float('discount_pc_24', 15, 2)->default(20);
-			$table->boolean('maintenance_mode')->default(false);
-			$table->boolean('debug_mode')->default(false);
-			$table->boolean('disable_payments')->default(false);
 			$table->boolean('enable')->default(true);
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

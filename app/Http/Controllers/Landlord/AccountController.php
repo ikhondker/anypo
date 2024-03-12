@@ -25,21 +25,6 @@ use App\Http\Requests\Landlord\StoreAccountRequest;
 use App\Http\Requests\Landlord\UpdateAccountRequest;
 
 # 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Controller
-# 12. Seeded
-# 13. TODO 
-
-
-// Models
 use App\Models\User;
 
 use App\Models\Domain;
@@ -58,25 +43,30 @@ use App\Models\Landlord\Admin\Payment;
 use App\Models\Landlord\Admin\Service;
 
 use App\Models\Landlord\Manage\Checkout;
-
-// Enums
+# 2. Enums
 use App\Enum\UserRoleEnum;
-
-
-// Helpers
+# 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\FileUpload;
 use App\Helpers\LandlordEventLog;
-
-// Seeded
+# 4. Notifications
+use Notification;
+use App\Notifications\Landlord\AddonPurchased;
+# 5. Jobs
+# 6. Mails
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use Illuminate\Support\Facades\Log;
 use Image;
 use Str;
 use Illuminate\Support\Facades\Storage;
+# 13. TODO 
 
-// Notification
-use Notification;
-use App\Notifications\Landlord\AddonPurchased;
+
 
 class AccountController extends Controller
 {

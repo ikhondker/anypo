@@ -23,7 +23,6 @@
 											@if (auth()->user()->isFrontOffice())
 												<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/avatarb.png') }}" alt="Support Engineer" title="Support Engineer">
 											@else
-											
 												<img class="avatar avatar-circle" src="{{ Storage::disk('s3la')->url($comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
 											@endif
 										@else
@@ -50,7 +49,9 @@
 
 										{{-- <h5>Fun place to work at</h5> --}}
 										@if ( $comment->is_internal )
-											<p class="text-danger">INTERNAL: {{ $comment->content }}</p>
+											<p>
+												<span class="badge bg-danger">INTERNAL</span> {{ $comment->content }}
+											</p>
 										@else
 											<p>{{ $comment->content }}</p>
 										@endif

@@ -6,7 +6,7 @@
 			<i class="far fa-fw fa-bell"></i>
 		</div>
 		<div class="alert-message text-danger">
-			<strong class="text-danger">ANNOUNCEMENT FROM ADMIN : </strong> {{ $notice }}
+			<strong class="text-danger">ANNOUNCEMENT : </strong> {{ $notice }}
 		</div>
 	</div>
 @endif

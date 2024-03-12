@@ -37,7 +37,7 @@ enum LandlordTicketStatusEnum:string{
 	case INPROGRESS			='in-progress';
 	case DEVELOPMENT		='development';
 	case BUGFIXING			='bug-fixing';
-	case CUSTWORKING		='customer-working';
+	case CWIP				='cwip';
 	case CLOSED				='closed';
 	case ONHOLD				='on-hold';
 }

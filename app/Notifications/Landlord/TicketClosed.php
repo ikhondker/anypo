@@ -57,9 +57,9 @@ class TicketClosed extends Notification implements ShouldQueue
 	public function toMail(object $notifiable): MailMessage
 	{
 		return (new MailMessage)
-			->subject('Support Ticket#'.$this->ticket->id.' has been closed')
-			->greeting('Hello '.$this->user->name.',')
-			->line('Support Ticket#'.$this->ticket->id.' for '.$this->ticket->title .' has been closed.')
+			->subject('Ticket #'.$this->ticket->id.' has been closed')
+			->greeting('Hello, '.$this->user->name.',')
+			->line('Ticket #'.$this->ticket->id.' for '.$this->ticket->title .' has been closed.')
 			->action('View Ticket', url('/tickets/'.$this->ticket->id))
 			->line('Thank you for using our application!');
 	}

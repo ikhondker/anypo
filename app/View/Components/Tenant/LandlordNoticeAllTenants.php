@@ -23,9 +23,15 @@ class LandlordNoticeAllTenants extends Component
 		//dd($landlordSetup);
 		//Log::debug('count cnt=' . $landlordSetup->name);
 
-		$this->anyNotice = false;
-		//$this->anyNotice = $landlordSetup->banner_show; // ? or maintenance
-		$this->notice = "Test Notice from Landlord ." .$landlordSetup->name ;
+		//$this->anyNotice = false;
+		$this->anyNotice = $landlordSetup->maintenance; // ? or maintenance
+		//$this->notice = "Test Notice from Landlord ." .$landlordSetup->maintenance_start_time . " to ". $landlordSetup->maintenance_end_time ;
+		$this->notice = "
+		Please note there will be scheduled server maintenance 
+		from  " .  strtoupper(date('d-M-Y H:i:s', strtotime($landlordSetup->maintenance_start_time))) .
+		" to " . strtoupper(date('d-M-Y H:i:s', strtotime($landlordSetup->maintenance_end_time))) .
+		"This maintenance is essential to ensure the continued performance, reliability, and security of the systems. We appreciate your support and thank you for your patience.
+		";
 	}
 
 	/**

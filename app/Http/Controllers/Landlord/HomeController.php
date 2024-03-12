@@ -23,24 +23,7 @@ namespace App\Http\Controllers\Landlord;
 use App\Http\Controllers\Controller;
  
 # 1. Models
-# 2. Enums
-# 3. Helpers
-# 4. Notifications
-# 5. Jobs
-# 6. Mails
-# 7. Rules
-# 8. Packages
-# 9. Exceptions
-# 10. Events
-# 11. Controller
-# 12. Seeded
-# 13. TODO 
-
-
-// Models
 use App\Models\User;
-
-
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
 
@@ -53,19 +36,15 @@ use App\Models\Landlord\Manage\Setup;
 use App\Models\Landlord\Manage\Contact;
 use App\Models\Landlord\Manage\Checkout;
 
-//use App\Models\Landlord\Manage\Country;
-
-// Enums
+# 2. Enums
 use App\Enum\PaymentMethodEnum;
 use App\Enum\LandlordCheckoutStatusEnum;
 use App\Enum\LandlordInvoiceStatusEnum;
 use App\Enum\LandlordPaymentStatusEnum;
-
-// Helpers
+# 3. Helpers
 use App\Helpers\LandlordFileUpload;
 use App\Helpers\LandlordEventLog;
-
-// Notification
+# 4. Notifications
 use Notification;
 use App\Notifications\Landlord\Test;
 use App\Notifications\Landlord\UserRegistered;
@@ -74,16 +53,17 @@ use App\Notifications\Landlord\ServiceUpgraded;
 use App\Notifications\Landlord\AddonPurchased;
 
 use App\Notifications\Landlord\Contacted;
-
 # 5. Jobs
 use App\Jobs\Landlord\CreateTenant;
-
-// Mail
+# 6. Mails
 use Mail;
 use App\Mail\Landlord\DemoMail;
-
-// Seeded
-//use Illuminate\Http\Request;
+# 7. Rules
+# 8. Packages
+# 9. Exceptions
+# 10. Events
+# 11. Controller
+# 12. Seeded
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -92,8 +72,9 @@ use Str;
 use DB;
 use Validator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
+# 13. TODO 
 use App\Http\Requests\Landlord\Manage\StoreContactRequest;
+
 
 class HomeController extends Controller
 {

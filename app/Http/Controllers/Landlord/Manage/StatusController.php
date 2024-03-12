@@ -21,10 +21,15 @@
 namespace App\Http\Controllers\Landlord\Manage;
 
 use App\Http\Controllers\Controller;
+use App\Models\Landlord\Manage\Status;
+
+use App\Http\Requests\Landlord\Manage\StoreStatusRequest;
+use App\Http\Requests\Landlord\Manage\UpdateStatusRequest;
 
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -34,17 +39,9 @@ use App\Http\Controllers\Controller;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use Illuminate\Support\Facades\Log;
 # 13. TODO 
 
-use App\Models\Landlord\Manage\Status;
-
-use App\Http\Requests\Landlord\Manage\StoreStatusRequest;
-use App\Http\Requests\Landlord\Manage\UpdateStatusRequest;
-
-use Illuminate\Support\Facades\Log;
-
-// Helpers
-use App\Helpers\LandlordEventLog;
 
 
 class StatusController extends Controller

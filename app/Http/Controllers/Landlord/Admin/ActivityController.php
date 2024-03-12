@@ -25,7 +25,9 @@ use App\Http\Requests\Landlord\Admin\StoreActivityRequest;
 use App\Http\Requests\Landlord\Admin\UpdateActivityRequest;
 
 # 1. Models
+use App\Models\Landlord\Admin\Activity;
 # 2. Enums
+use App\Enum\UserRoleEnum;
 # 3. Helpers
 # 4. Notifications
 # 5. Jobs
@@ -36,19 +38,10 @@ use App\Http\Requests\Landlord\Admin\UpdateActivityRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-// Models
-use App\Models\Landlord\Admin\Activity;
-
-// Enums
-use App\Enum\UserRoleEnum;
-
-// Helpers
-// Seeded
 use Illuminate\Support\Facades\Log;
 use DB;
+# 13. TODO 
+
 
 class ActivityController extends Controller
 {

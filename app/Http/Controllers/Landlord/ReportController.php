@@ -23,8 +23,16 @@
 namespace App\Http\Controllers\Landlord;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Landlord\StoreReportRequest;
+use App\Http\Requests\Landlord\UpdateReportRequest;
 
 # 1. Models
+use App\Models\Landlord\Report;
+use App\Models\Landlord\Account;
+
+use App\Models\Landlord\Admin\Payment;
+use App\Models\Landlord\Admin\Invoice;
+use App\Models\Landlord\Manage\Setup;
 # 2. Enums
 # 3. Helpers
 # 4. Notifications
@@ -32,32 +40,16 @@ use App\Http\Controllers\Controller;
 # 6. Mails
 # 7. Rules
 # 8. Packages
+use PDF;
 # 9. Exceptions
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
-
-
-use App\Models\Landlord\Report;
-use App\Models\Landlord\Account;
-
-use App\Models\Landlord\Admin\Payment;
-use App\Models\Landlord\Admin\Invoice;
-
-
-use App\Models\Landlord\Manage\Setup;
-
-use App\Http\Requests\Landlord\StoreReportRequest;
-use App\Http\Requests\Landlord\UpdateReportRequest;
-
-# Seeded
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
+# 13. TODO 
 
-# Package
-use PDF;
 
 class ReportController extends Controller
 {

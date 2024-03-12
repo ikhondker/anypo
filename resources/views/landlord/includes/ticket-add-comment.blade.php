@@ -38,11 +38,11 @@
 					<label for="status_code" class="col-sm-3 col-form-label form-label">Status :</label>
 					<div class="col-sm-9">
 						<select class="form-control" name="status_code">
-							<option value="1006" {{ '1006' == old('status_code') ? 'selected' : '' }}>In-Progress</option>
-							<option value="1007" {{ '1007' == old('status_code') ? 'selected' : '' }}>Development</option>
-							<option value="1008" {{ '1008' == old('status_code') ? 'selected' : '' }}>Bug-Fixing</option>
-							<option value="1010" {{ '1010' == old('status_code') ? 'selected' : '' }}>Customer Working</option>
-							<option value="1015" {{ '1015' == old('status_code') ? 'selected' : '' }}>On-Hold</option>
+							<option value="in-progress" {{ 'in-progress' == old('status_code') 	? 'selected' : '' }}>In Progress</option>
+							<option value="development" {{ 'development' == old('status_code') 	? 'selected' : '' }}>Development</option>
+							<option value="bug-fixing" 	{{ 'bug-fixing' == old('status_code') 	? 'selected' : '' }}>Bug Fixing</option>
+							<option value="cwip" 		{{ 'cwip' == old('status_code') 		? 'selected' : '' }}>Customer Working</option>
+							<option value="on-hold" 	{{ 'on-hold' == old('status_code') 		? 'selected' : '' }}>On-Hold</option>
 						</select>
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 								<label class="form-check form-switch" for="internal">
 									<input class="form-check-input mt-0" type="checkbox" id="internal" name="internal">
 									<span class="d-block"> Internal Update</span>
-									<span class="d-block small text-danger">Be careful! This update will not be visible to user.</span>
+									<span class="d-block small text-danger">Careful! This update will be visible to user.</span>
 								</label>
 							<!-- End Form Switch -->
 							</div>

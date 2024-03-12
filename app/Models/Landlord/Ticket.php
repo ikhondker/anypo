@@ -30,7 +30,7 @@ use App\Models\User;
 use App\Models\Landlord\Lookup\Dept;
 use App\Models\Landlord\Lookup\Priority;
 use App\Models\Landlord\Lookup\Rating;
-use App\Models\Landlord\Lookup\Status;
+use App\Models\Landlord\Manage\Status;
 
 use App\Models\Landlord\Comment;
 
