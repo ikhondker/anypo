@@ -23,36 +23,9 @@
 				<h6 class="card-subtitle text-muted">DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]</h6>
 				</div>
 				<div class="card-body">
-					<table class="table table-striped table-sm">
-						<thead>
-							<tr>
-								<th class="">#</th>
-								<th class="">Name</th>
-								<th class="text-start">Action</th>
-							</tr>
-						</thead>
-			
-						<tbody>
-							@foreach ($tables as $table)
-									@foreach ($table as $key => $value)
-									<tr>
-										<td class="">{{ ++$i }}</td>
-										<td class=""><a href="{{ route('tables.structure', ['table'=>$value]) }}"><span class="text-info">{{ $value }}</span></a></td>
-										<td class="table-action">
-											{{-- <a class="btn btn-success" href="{{ route('tables.structure', ['table'=>$value]) }}">View</a> --}}
-											<a href="{{ route('tables.structure', ['table'=>$value]) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="align-middle" data-feather="eye"></i></a>
-										</td>
-									</tr>
-									@endforeach
-								@endforeach
-						</tbody>
-			
-					</table>
+					@include('shared.includes.tables.tables')
 				</div>
 			</div>
 		</div>
 	</div>
-	  
-
-
 @endsection

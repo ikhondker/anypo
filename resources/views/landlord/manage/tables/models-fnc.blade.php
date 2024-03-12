@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.landlord-app')
 @section('title', 'Functions in Models')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE') }}@[{{ base_path() }}]
@@ -20,9 +20,11 @@
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Functions in Models</h5>
-					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_MODEL') }}</h6>
+					<h6 class="card-subtitle text-muted">{{ config('bo.DOC_DIR_MODEL') }}</h6>
 				</div>
 				<div class="card-body">
+					<x-landlord.table-links/>
+					
 					<table class="table table-striped table-sm">
 						<thead>
 							<tr>
@@ -37,7 +39,6 @@
 					
 						<tbody>
 					
-						
 							@php
 							$exclude = array(
 									'__call',
@@ -328,7 +329,7 @@
 								@php
 								//$class = new ReflectionClass('App\Http\Controllers\Tenant\HomeController');
 								//$class = new ReflectionClass('App\Models\Tenant\\'. $row["f"]);
-								$class = new ReflectionClass(config('akk.DOC_DIR_MODEL') .'\\'. $row["f"]);
+								$class = new ReflectionClass(config('bo.DOC_DIR_MODEL') .'\\'. $row["f"]);
 								$methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
 								@endphp
 								@foreach ($methods as $method)

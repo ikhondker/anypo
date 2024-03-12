@@ -28,7 +28,7 @@
 						<div class="alert alert-primary" role="alert">
 							<div class="alert-message">
 								<!-- ========== INCLUDE ========== -->
-								@include('shared.includes.tables.routes')
+								@include('shared.includes.tables.routes-code')
 								<!-- ========== INCLUDE ========== -->
 							</div>
 						</div>

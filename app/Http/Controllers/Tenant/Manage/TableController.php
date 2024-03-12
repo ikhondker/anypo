@@ -188,7 +188,7 @@ class TableController extends Controller
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
 		return view('tenant.manage.tables.controllers', compact('filesInFolder'));
 	}
-	
+	 
 	public function fncControllers()
 	{
 		// Ref: https://www.php.net/manual/en/class.reflectionclass.php
@@ -262,7 +262,7 @@ class TableController extends Controller
 
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
-		return view('tenant.manage.tables.routes', compact('filesInFolder'));
+		return view('tenant.manage.tables.routes-code', compact('filesInFolder'));
 	}
 
 	public function policies()

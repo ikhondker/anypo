@@ -1,7 +1,7 @@
 @extends('layouts.landlord-app')
-@section('title','Models List')
+@section('title',' All Routes List')
 @section('breadcrumb')
-	DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]
+	All Routes List
 @endsection
 
 
@@ -10,23 +10,20 @@
 	<!-- Card -->
 	<div class="card">
 		<div class="card-header d-flex justify-content-between align-items-center border-bottom">
-			<h5 class="card-header-title">Model Lists</h5>
-
+			<h5 class="card-header-title">All Routes</h5>
 		</div>
 
 		<!-- card-body -->
 		<div class="card-body">
 			<x-landlord.table-links/>
-			
-			@include('shared.includes.tables.models')
 
+			@include('shared.includes.tables.routes-all')
+			
 		</div>
 		<!-- /. card-body -->
 
 	</div>
 	<!-- End Card -->
-
+	
 @endsection
-
-
 

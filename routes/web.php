@@ -402,12 +402,10 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 	Route::get('/table/check',[TableController::class, 'check'])->name('tables.check');
 	Route::get('/table/messages',[TableController::class, 'messages'])->name('tables.messages');
 
-
 	/* ======================== Template ========================================  */
 	Route::resource('templates', TemplateController::class);
 	Route::get('/template/export', [TemplateController::class, 'export'])->name('templates.export');
 	Route::post('/template/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
-
 	
 	/* ======================== Ticket ========================================  */
 	Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');

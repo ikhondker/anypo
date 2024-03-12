@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.landlord-app')
 @section('title', 'Controllers List')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE') }}@[{{ base_path() }}]
@@ -8,7 +8,7 @@
 @section('content')
 	<x-tenant.page-header>
 		@slot('title')
-			Functions in Helpers
+			Functions in Controller
 		@endslot
 		@slot('buttons')
 			<x-tenant.table-links />
@@ -19,12 +19,14 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Functions in Helpers</h5>
-					<h6 class="card-subtitle text-muted">Hardcoded: \app\Helpers</h6>
+					<h5 class="card-title">Functions in Controller </h5>
+					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_CLASS') }}</h6>
 				</div>
 				<div class="card-body">
+					<x-landlord.table-links/>
+					
 					<!-- ========== INCLUDE ========== -->
-					@include('shared.includes.tables.helpers-fnc')
+					@include('shared.includes.tables.controllers-fnc')
 					<!-- ========== INCLUDE ========== -->
 				</div>
 			</div>

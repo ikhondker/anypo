@@ -19,7 +19,7 @@
 			@foreach($filesInFolder as $row)
 				<div class="alert alert-danger" role="alert">
 					<!-- ========== INCLUDE ========== -->
-					@include('shared.includes.tables.routes')
+					@include('shared.includes.tables.routes-code')
 					<!-- ========== INCLUDE ========== -->
 				</div>
 			@endforeach
