@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 
 		// Should return TRUE or FALSE IQBAL 
 		Gate::define('access-back-office', function(User $user) {
-			return $user->isBackOffice();
+			return $user->isSeeded();
 		});
 	}
 }

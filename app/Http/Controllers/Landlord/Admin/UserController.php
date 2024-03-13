@@ -311,11 +311,16 @@ class UserController extends Controller
 	public function impersonate(User $user)
 	{
 		$this->authorize('impersonate', User::class);
+		
+		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
+			return redirect()->route('users.all')->with('error','You can not impersonate system!');
+		}
 
 		if ($user->id !== ($original = auth()->user()->id)) {
 			session()->put('original_user', $original);
 			auth()->login($user);
 		}
+		
 		LandlordEventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
 		return redirect('/dashboards');
 

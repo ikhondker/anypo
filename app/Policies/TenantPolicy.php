@@ -33,7 +33,7 @@ class TenantPolicy
 	 */
 	public function view(User $user, Tenant $tenant): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**

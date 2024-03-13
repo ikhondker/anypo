@@ -194,7 +194,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	|-----------------------------------------------------------------------------
 	*/
 
-	public function isFrontOffice()
+	public function xxFrontOffice()
 	{
 		if ($this->enable == 1) {
 			switch ($this->role->value) {

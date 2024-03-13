@@ -35,7 +35,7 @@ class DomainPolicy
 	 */
 	public function view(User $user, Domain $domain): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**

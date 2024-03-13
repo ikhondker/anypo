@@ -34,21 +34,21 @@ class UserPolicy
 			| Landlord																	 + 
 			|-----------------------------------------------------------------------------
 			*/
-			return $user->isAdmin();
+			return $user->isSeeded();
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
 			| Tenant																	 + 
 			|-----------------------------------------------------------------------------
 			*/
-			return $user->isAdmin();
+			return $user->isSeeded();
 		}
 	}
 
 	// Only back office users can view all accounts
 	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 
@@ -65,11 +65,11 @@ class UserPolicy
 			|-----------------------------------------------------------------------------
 			*/
 			// owner, account admin and back office users can view ticket
-			if ($user->role->value == UserRoleEnum::USER->value) {
+			if ($user->isUser()) {
 				return ($user->id == $model->id);
 			} elseif ($user->isAdmin() ) {
 				return ( $user->account_id == $model->account_id);
-			} elseif ($user->isBackOffice()) {
+			} elseif ($user->isSeeded()) {
 					return (true);
 			} else {
 				return ( false );
@@ -83,7 +83,7 @@ class UserPolicy
 			*/
 			// only back-office can see seeded users view
 			if ($model->seeded) {
-				return $user->isBackOffice();
+				return $user->isSeeded();
 			} else if ($user->isAdmin() && ($user->id === $model->id) ) {
 				return ( true );
 			} else {
@@ -106,7 +106,7 @@ class UserPolicy
 			|-----------------------------------------------------------------------------
 			*/
 			// Admin role user only
-			return ( $user->isAdmin() || $user->isBackOffice() );
+			return ( $user->isAdmin() || $user->isSeeded() );
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
@@ -114,7 +114,7 @@ class UserPolicy
 			|-----------------------------------------------------------------------------
 			*/
 			 // Admin role user only
-			 return ( $user->isAdmin() || $user->isSupport() );
+			 return ( $user->isAdmin() || $user->isSeeded() );
 		}
 	}
 
@@ -136,7 +136,7 @@ class UserPolicy
 				return ($user->id == $model->id);
 			} elseif ($user->isAdmin() & ($user->account_id == $model->account_id) ) {
 				return ( true );
-			} elseif ($user->isBackOffice()) {
+			} elseif ($user->isSeeded()) {
 					return ( true);
 			} else {
 				return ( false );
@@ -178,7 +178,7 @@ class UserPolicy
 			// stop deactivating himself
 			if ($user->isAdmin() && ($user->account_id == $model->account_id)) {
 				return ( $user->id <> $model->id );
-			} elseif ($user->isBackOffice() && ($user->id <> $model->id) ) {
+			} elseif ($user->isSeeded() && ($user->id <> $model->id) ) {
 					return ( true);
 			} else {
 				return ( false );
@@ -195,7 +195,7 @@ class UserPolicy
 				return ( false ) ;
 			} elseif ($model->seeded) {
 				// only back-office can edit seeded users
-				return $user->isBackOffice();
+				return $user->isSeeded();
 			} else {
 				return $user->isAdmin();
 			}
@@ -224,7 +224,7 @@ class UserPolicy
 				return ($user->id == $model->id);
 			} elseif ($user->isAdmin() ) {
 				return ( $user->account_id == $model->account_id);
-			} elseif ($user->isBackOffice()) {
+			} elseif ($user->isSeeded()) {
 					return ( true);
 			} else {
 				return ( false );
@@ -237,7 +237,7 @@ class UserPolicy
 			*/
 			// only back-office can edit seeded users
 			if ($model->seeded) {
-				return $user->isBackOffice();
+				return $user->isSeeded();
 			} else if ($user->isAdmin() && ($user->id === $model->id) ) {
 				return ( true );
 			} else {
@@ -267,6 +267,7 @@ class UserPolicy
 	public function impersonate(User $user): bool
 	{
 		// only back-office impersonate
+		// TODO stop imper to system
 		//Log::debug("user->role->value = ". $user->role->value );
 		if (tenant('id') == ''){
 			/*
@@ -274,14 +275,14 @@ class UserPolicy
 			| Landlord																	 + 
 			|-----------------------------------------------------------------------------
 			*/
-			return $user->isBackOffice();
+			return $user->isSeeded();
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
 			| Tenant																	 + 
 			|-----------------------------------------------------------------------------
 			*/
-			return $user->isBackOffice();
+			return $user->isSeeded();
 		}
 
 	}

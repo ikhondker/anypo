@@ -20,10 +20,10 @@
 								<div class="d-flex mb-3">
 								  	<div class="flex-shrink-0">
 										@if ($comment->by_backoffice)
-											@if (auth()->user()->isFrontOffice())
-												<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/avatarb.png') }}" alt="Support Engineer" title="Support Engineer">
-											@else
+											@if (auth()->user()->isSeeded())
 												<img class="avatar avatar-circle" src="{{ Storage::disk('s3la')->url($comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
+											@else
+												<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/avatarb.png') }}" alt="Support Engineer" title="Support Engineer">
 											@endif
 										@else
 											<img class="avatar avatar-circle" src="{{ Storage::disk('s3la')->url($comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
@@ -31,10 +31,10 @@
 								  	</div>
 									<div class="flex-grow-1 ms-3">
 										@if ($comment->by_backoffice)
-											@if (auth()->user()->isFrontOffice())
-												<h5>Support Engineer</h5>
-											@else
+											@if (auth()->user()->isSeeded())
 												<h5>{{ $comment->owner->name }}</h5>
+											@else
+												<h5>Support Engineer</h5>
 											@endif
 										@else
 											<h5>{{ $comment->owner->name }}</h5>

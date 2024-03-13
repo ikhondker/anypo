@@ -105,7 +105,7 @@ class CommentController extends Controller
 			//Checkbox checked
 			$request->merge(['is_internal'		=> true ]);
 			$isInternal =true;
-		}else{
+		}else{ 
 			//Checkbox not checked
 			$request->merge(['is_internal'		=> false ]);
 			$isInternal =false;
@@ -125,32 +125,8 @@ class CommentController extends Controller
 			$comment->save();
 		}
 
-		// check if ticket is marked as closed
-		// if($request->has('close')){
-		//		//Checkbox checked
-		//		$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
-		//		$ticket->status_code = LandlordTicketStatusEnum::RESOLVED->value;
-		//		$ticket->update();
-
-		//		// Send notification to Ticket creator if agent updates the tickets
-		//		$owner = User::where('id', $ticket->owner_id)->first();
-		//		$owner->notify(new TicketClosed($owner, $ticket));
-
-		//		return redirect()->route('tickets.show',$request->input('ticket_id'))->with('success','Ticket Closed successfully');
-		// }
-
 		// change ticket status PENDING if customer is updating
-		if (auth()->user()->isFrontOffice()) {
-			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
-			$ticket->status_code = LandlordTicketStatusEnum::PENDING->value;
-			$ticket->update();
-			if ($ticket->agent_id <> ''){
-				// Send notification to Assigned Agent if customer updates the ticket
-				$agent = User::where('id',$ticket->agent_id )->first();
-				$agent->notify(new TicketUpdated($agent, $ticket));
-			}
-
-		} elseif (auth()->user()->isSeeded()) {
+		if (auth()->user()->isSeeded()) {
 			// change ticket status if back office is updating
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
 			$status_code = $request->input('status_code');
@@ -181,7 +157,14 @@ class CommentController extends Controller
 				
 			}
 		} else {
-			Log::debug("landlord.comment.store Not an Front Office or Back Office! role=". auth()->user()->role->value ." Ticket=". $request->input('ticket_id') );
+			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
+			$ticket->status_code = LandlordTicketStatusEnum::PENDING->value;
+			$ticket->update();
+			if ($ticket->agent_id <> ''){
+				// Send notification to Assigned Agent if customer updates the ticket
+				$agent = User::where('id',$ticket->agent_id )->first();
+				$agent->notify(new TicketUpdated($agent, $ticket));
+			}
 		}
 
 		// Write to Log
