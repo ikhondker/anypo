@@ -34,7 +34,7 @@ use App\Models\Landlord\Lookup\Product;
 use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
-# 6. Mails
+# 6. Mails 
 # 7. Rules
 # 8. Packages
 # 9. Exceptions

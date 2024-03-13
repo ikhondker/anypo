@@ -153,14 +153,7 @@ class CreateTenant implements ShouldQueue
 		// copy logo and avatar default files Not needed after AWS CDN
 		// Log::debug('7. Calling copyCheckoutFiles');
 		// $service_id = self::copyCheckoutFiles($this->checkout_id);
-
 	}
-
-	public function test()
-	{
-		Log::debug("in side test= ".$this->checkout_id);
-	}
-
 
 	public static function createUpdateCheckoutUser($checkout_id = 0)
 	{

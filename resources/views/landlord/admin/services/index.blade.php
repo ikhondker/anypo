@@ -46,7 +46,7 @@
 								</div>
 							</td>
 							<td><x-landlord.list.my-date :value="$service->start_date" /></td>
-							<td><x-landlord.list.my-date :value="$service->end_date" /></td>
+							<td></td>
 							<td>
 								<span class="badge bg-primary rounded-pill">{{ $service->mnth }}</span>
 								<span class="badge bg-primary rounded-pill">{{ $service->user }}</span>

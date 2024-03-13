@@ -345,6 +345,42 @@ class HomeController extends Controller
 
 	}
 	
+	// landed here for addon payment
+	public function successAddon(Request $request)
+	{
+	
+		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+		$sessionId = $request->get('session_id');
+
+		try {
+		
+			$session = \Stripe\Checkout\Session::retrieve($sessionId);
+
+			if (!$session) {
+				throw new NotFoundHttpException;
+			}
+
+			$trx_type	=  $session->metadata->trx_type;
+			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
+
+			$checkout = Checkout::where('session_id', $session->id)->first();
+			if (!$checkout) {
+				throw new NotFoundHttpException();
+			}
+			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
+				Log::debug('landlord.home.success checkout_id='. $checkout->id);
+				// TODO Uncomment
+				AddAddon::dispatch($checkout->id);
+			}
+			return view('landlord.pages.info')->with('title','Thank you for purchasing add-on!')
+				->with('msg','We have received your payment. Thanks again.');
+
+		} catch (\Exception $e) {
+			throw new NotFoundHttpException();
+		}
+
+	}
+
 	// landed here both for chekcout and subscription payment
 	public function cancel(Request $request)
 	{

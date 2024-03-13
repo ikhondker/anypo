@@ -23,16 +23,16 @@ class ProductSeeder extends Seeder
 
 				'id'			=> '1001',
 				'sku'			=> 'SME',
-				'name'			=> 'Small and Medium Enterprise',
+				'name'			=> 'Small and Medium Enterprise (5 User)',
 				'addon'			=> false,
 				'addon_type'	=> 'na',
 				'mnth'			=> 1,
 				'user'			=> 3,
-				'gb'			=> 5,
-				'list_price'	=> 14.99,
-				'price'			=> 8.99,
+				'gb'			=> 99,
+				'list_price'	=> 29.99,	// per user list price 6$ after discuss 5$ 
+				'price'			=> 24.99,
 				'notes'			=> $faker->paragraph,
-				'enable'	=> true,
+				'enable'		=> true,
 			],
 			[
 				'id'			=> '1002',
@@ -42,11 +42,11 @@ class ProductSeeder extends Seeder
 				'addon_type'	=> 'na',
 				'mnth'			=> 1,
 				'user'			=> 3,
-				'gb'			=> 5,
+				'gb'			=> 0,
 				'list_price'	=> 0,
 				'price'			=> 0,
 				'notes'			=> $faker->paragraph,
-				'enable'	=> false,
+				'enable'		=> false,
 			],
 			[
 				'id'			=> '1003',
@@ -60,7 +60,7 @@ class ProductSeeder extends Seeder
 				'list_price'	=> 0,
 				'price'			=> 0,
 				'notes'			=> $faker->paragraph,
-				'enable'	=> false,
+				'enable'		=> false,
 			],
 			/* ----------------------- ADDON --------------- */
 			[
@@ -72,10 +72,10 @@ class ProductSeeder extends Seeder
 				'mnth'			=> 1,
 				'user'			=> 3,
 				'gb'			=> 0,
-				'list_price'	=> 8.99,
-				'price'			=> 6.99,
+				'list_price'	=> 18.99,
+				'price'			=> 14.99,
 				'notes'			=> $faker->paragraph,
-				'enable'	=> true,
+				'enable'		=> true,
 			],
 			[
 				'id'			=> '1005',
@@ -86,10 +86,10 @@ class ProductSeeder extends Seeder
 				'mnth'			=> 1,
 				'user'			=> 5,
 				'gb'			=> 0,
-				'list_price'	=> 7.99,
-				'price'			=> 4.99,
+				'list_price'	=> 29.99,
+				'price'			=> 24.99,
 				'notes'			=> $faker->paragraph,
-				'enable'	=> false,
+				'enable'		=> true,
 			],
 			[
 				'id'			=> '1006',
@@ -103,7 +103,7 @@ class ProductSeeder extends Seeder
 				'list_price'	=> 6.99,
 				'price'			=> 4.99,
 				'notes'			=> $faker->paragraph,
-				'enable'	=> true,
+				'enable'		=> false,
 			],
 			[
 				'id'			=> '1007',
@@ -117,7 +117,7 @@ class ProductSeeder extends Seeder
 				'list_price'	=> 12.99,
 				'price'			=> 8.99,
 				'notes'			=> $faker->paragraph,
-				'enable'	=> false,
+				'enable'		=> false,
 			],
 		];
 

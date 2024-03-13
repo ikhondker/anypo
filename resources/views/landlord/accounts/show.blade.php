@@ -42,25 +42,23 @@
 		<!-- End Form -->
 
 		{{-- <x-landlord.show.my-badge value="{{ $account->id }}" label="ID" /> --}}
-		<x-landlord.show.my-badge value="{{ $account->site.'.'.config('bo.LANDLORD_DOMAIN') }}" label="Site" />
+		<x-landlord.show.my-badge value="{{ $account->site.'.'.env('APP_DOMAIN') }}" label="Site" />
 		<x-landlord.show.my-text value="{{ $account->name }}" />
 		<x-landlord.show.my-badge value="{{ $account->status->name }}" badge="{{ $account->status->badge }}" label="Status" />
 		<x-landlord.show.my-text value="{{ $account->tagline }}" label="Tagline" />
 		<x-landlord.show.my-text value="{{ $account->email }}" label="E-mail" />
-		<x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
-
-		<x-landlord.show.my-number value="{{ $account->price }}" label="Monthly Subscription ($)" />
+		
 		<x-landlord.show.my-date value="{{ $account->start_date }}" label="Start" />
 		<x-landlord.show.my-date value="{{ $account->end_date }}" label="End" />
+		<x-landlord.show.my-integer value="{{ $account->user }}" label="User License:" />
+		<x-landlord.show.my-number value="{{ $account->price }}" label="Subscription Fee($)" />
 
-		
-		<x-landlord.show.my-integer value="{{ $account->user }}" label="Allowed User:" />
-		<x-landlord.show.my-integer value="{{ $account->gb }}" label="Allowed GB:" />
+		{{-- <x-landlord.show.my-integer value="{{ $account->gb }}" label="Allowed GB:" /> --}}
 		{{-- <x-landlord.show.my-integer value="{{ $account->mnth }}" label="mnth:" /> --}}
 		{{-- <x-landlord.show.my-integer value="{{ $account->user_count }}" label="User Count:" />
 		<x-landlord.show.my-integer value="{{ $account->service_count }}" label="Service Count" /> --}}
-
-		<x-landlord.show.my-date-time value="{{ $account->created_at }}" label="Created At" />
+		
+		<x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
 		<x-landlord.show.my-text value="{{ $account->address1 }}" label="Address1" />
 		<x-landlord.show.my-text value="{{ $account->address2 }}" label="Address2" />
 		<x-landlord.show.my-text value="{{ $account->city.', '.$account->state.', '.$account->zip  }}" label="City-State-Zip" />
@@ -68,6 +66,7 @@
 		<x-landlord.show.my-url value="{{ $account->website }}" label="Website" />
 		<x-landlord.show.my-url value="{{ $account->facebook }}" label="Facebook" />
 		<x-landlord.show.my-url value="{{ $account->linkedin }}" label="LinkedIn" />
+		<x-landlord.show.my-date-time value="{{ $account->created_at }}" label="Created At" />
 		
 
 	</div>

@@ -44,7 +44,8 @@ use App\Models\Landlord\Admin\Service;
 
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
-use App\Enum\UserRoleEnum;
+//use App\Enum\UserRoleEnum;
+use App\Enum\LandlordCheckoutStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\FileUpload;
@@ -81,7 +82,11 @@ class AccountController extends Controller
 	public function index()
 	{
 		$accounts = Account::with('status')->with('owner')->byAccount()->orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.accounts.index', compact('accounts'));
+
+		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
+	
+
+		return view('landlord.accounts.index', compact('accounts','addons'));
 	}
 
 	/**
@@ -328,7 +333,92 @@ class AccountController extends Controller
 	/**
 	 * IQBAL add-addon package when no payment is needed
 	*/
+
 	public function addAddon($account_id, $addon_id)
+	{
+
+		Log::channel('bo')->info('Buying new addon account='. $account_id . ' product_id=' . $addon_id);
+
+		if (auth()->user()->account_id == '') {
+			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
+		}
+
+		// update account with user+GB+service name
+		$account			= Account::where('id', $account_id)->first();
+		if ($account->next_bill_generated) {
+			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
+			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id=' . $account->id . '! Can not create more Invoices.');
+		}
+	
+		// get product
+		$product = Product::where('id', $addon_id)
+			->where('addon', true)
+			->where('enable', true)
+			->first();
+
+		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+		$lineItems = [];
+		$lineItems[] = [
+			'price_data' => [
+				'currency' => 'usd',
+				'product_data' => [
+					'name' => $product->name,
+					// 'images' => [$product->image]
+				],
+				'unit_amount' => $product->price * 100,
+			],
+			'quantity' => 1,
+		];
+
+		$session = \Stripe\Checkout\Session::create([
+			'line_items' => $lineItems,
+			'mode' => 'payment',
+			'success_url' => route('checkout.success-addon', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+			'cancel_url' => route('checkout.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+			'metadata' 	=> ['trx_type' => 'ADDON'],
+		]);
+
+		// create checkout row
+		$checkout					= new Checkout;
+		$checkout->addon			= true;
+		$checkout->session_id		= $session->id;
+		$checkout->checkout_date	= date('Y-m-d H:i:s');
+
+		$checkout->site				= $account->site;
+		$checkout->account_name		= $account->name;
+		$checkout->existing_user	= true;
+		$checkout->owner_id			= auth()->user()->id;
+		$checkout->email			= auth()->user()->email;
+		$checkout->address1			= auth()->user()->address1;
+		$checkout->address2			= auth()->user()->address2;
+		$checkout->city				= auth()->user()->city;
+		$checkout->state			= auth()->user()->state;
+		$checkout->zip				= auth()->user()->zip;
+		$checkout->country			= auth()->user()->country;
+
+		// get product
+		$checkout->product_id		= $product->id;
+		$checkout->product_name		= $product->name;
+		$checkout->tax				= $product->tax;
+		$checkout->vat				= $product->vat;
+		$checkout->price			= $product->price;
+		$checkout->mnth				= $product->mnth;
+		$checkout->user				= $product->user;
+		$checkout->gb				= $product->gb;
+
+		$checkout->start_date		= now();
+		$checkout->end_date			= now()->addMonth($product->mnth);
+
+		$checkout->status_code		= LandlordCheckoutStatusEnum::DRAFT->value;
+		$checkout->ip				= '127.0.0.1';
+
+		$checkout->save();
+
+		return redirect($session->url);
+
+	}	
+	public function oldaddAddon($account_id, $addon_id)
 	{
 
 		Log::channel('bo')->info('Buying new addon account='. $account_id . ' product_id=' . $addon_id);
@@ -340,14 +430,13 @@ class AccountController extends Controller
 			->first();
 
 		// update account with user+GB+service name
-		$account		= Account::where('id', $account_id)->first();
+		$account			= Account::where('id', $account_id)->first();
 
-			$account->user		= $account->user + $addon->user;
+		$account->user		= $account->user + $addon->user;
 		$account->gb		= $account->gb + $addon->gb;
 		$account->price		= $account->price + $addon->price;
 		$account->save();
 		Log::channel('bo')->info('Account qty updated for account_id=' .  $account->id);
-
 
 		LandlordEventLog::event('account', $account->id, 'update', 'user', $account->user);
 		LandlordEventLog::event('account', $account->id, 'update', 'gb', $account->gb);
