@@ -57,6 +57,16 @@ class Ticket extends Model
 	];
 
 
+	/*
+	|-----------------------------------------------------------------------------
+	| Policy Related Functions  				+  
+	|-----------------------------------------------------------------------------
+	*/
+	public function isClosed()
+	{		
+		return $this->status_code == LandlordTicketStatusEnum::CLOSED->value;
+	}
+
 	/* ---------------- Scope ---------------------- */
 	/**
 	 * Scope a query to only include current account users.

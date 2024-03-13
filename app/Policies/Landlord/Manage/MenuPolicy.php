@@ -34,7 +34,7 @@ class MenuPolicy
 	 */
 	public function view(User $user, Menu $menu): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**
@@ -42,7 +42,7 @@ class MenuPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**
@@ -50,7 +50,7 @@ class MenuPolicy
 	 */
 	public function update(User $user, Menu $menu): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**

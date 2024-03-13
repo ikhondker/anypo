@@ -290,10 +290,10 @@ class TicketController extends Controller
 	{
 		$this->authorize('export', Ticket::class);
 
-		if (auth()->user()->isBackOffice()){
+		if (auth()->user()->isSeeded()){
 			$data = DB::select("SELECT id, title, content, ticket_date, owner_id, account_id, status_code, created_at
 				FROM tickets");
-		} else if (auth()->user()->role->value == UserRoleEnum::ADMIN->value){
+		} else if (auth()->user()->isAdmin()){
 			$data = DB::select("SELECT id, title, content, ticket_date, owner_id, account_id, status_code, created_at
 				FROM tickets
 				WHERE account_id=".auth()->user()->account_id);

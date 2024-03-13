@@ -29,7 +29,7 @@
 							<h5>{{ $ticket->owner->name }}</h5>
 							<div class="d-flex align-items-center mb-1">
 								<span class="d-block small">{{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }} 
-									@if (auth()->user()->isBackOffice())
+									@if (auth()->user()->isSeeded())
 										| Department: {{ $ticket->dept->name }} | Priority: {{ $ticket->priority->name }}
 										@if ($ticket->agent_id <> '')
 											<p class="text-muted">Assignee: <span class="badge bg-info">{{ $ticket->agent->name  }}</span>  </p>
@@ -46,7 +46,7 @@
 							@endif
 							
 							
-							@if ( auth()->user()->isBackOffice() && ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
+							@if ( auth()->user()->isSeeded() && ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
 								<a class="btn btn-info btn-sm" href="{{ route('tickets.assign',$ticket->id) }}">
 									<i class="bi bi-person-circle"></i>
 									Assign

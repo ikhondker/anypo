@@ -209,7 +209,7 @@ class Pr extends Model
 	public function scopeApprovedPoPending(Builder $query): void
 	{
 		$query->where('auth_status',AuthStatusEnum::APPROVED->value)
-			->where('po_id',0); 
+			->where('po_id', 0); 
 	}
 
 	/**

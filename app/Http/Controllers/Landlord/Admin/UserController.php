@@ -291,7 +291,7 @@ class UserController extends Controller
 	public function export()
 	{
 
-		if (auth()->user()->isBackOffice()){
+		if (auth()->user()->isSeeded()){
 			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable FROM users");
 		} else if (auth()->user()->isAdmin()){
 			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable

@@ -60,7 +60,7 @@ class AttachmentController extends Controller
 	public function index()
 	{
 		$this->authorize('viewAny',Attachment::class);
-		$attachments = Attachment::latest()->with('entity')->orderBy('id','desc')->paginate(10);
+		$attachments = Attachment::latest()->with('entity')->with('owner')->orderBy('id','desc')->paginate(10);
 		return view('landlord.manage.attachments.index',compact('attachments'));
 	}
 

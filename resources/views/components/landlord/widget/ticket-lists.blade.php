@@ -43,7 +43,7 @@
 										</a>
 										<small class="d-block"> 
 											{{ $ticket->owner->name }} 
-											@if ( auth()->user()->isBackOffice())
+											@if ( auth()->user()->isSeeded())
 												| {{ $ticket->dept->name }}	
 												@if ($ticket->agent_id <> '')
 												| {{ $ticket->agent->name }}

@@ -116,32 +116,25 @@
 										@switch(auth()->user()->role->value)
 											@case(\UserRoleEnum::USER->value)
 												@break
-
 											@case(\UserRoleEnum::ADMIN->value)
 												@break
-
 											@case(\UserRoleEnum::SYSTEM->value)
 												<span class="badge bg-danger">System</span>
-											@break
-
+												@break
 											@default
 												<span class="badge bg-success">Back-office</span>
 										@endswitch
-
-
 									</div>
 									<!-- End Avatar -->
 
 									<!-- ========== SIDEBAR ========== -->
 
-									@if(auth()->user()->isBackOffice()) 
+									@if(auth()->user()->isSeeded()) 
 										@include('landlord.includes.menu-back-office')
 									@else
 										@include('landlord.includes.menu-front-office')
 									@endif 
 									<!-- ========== END SIDEBAR ========== -->
-
-
 								</div>
 							</div>
 							<!-- End Card -->

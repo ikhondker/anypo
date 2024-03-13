@@ -36,11 +36,12 @@ return new class extends Migration
 			$table->string('country',2)->default('US');
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
-			$table->boolean('ban')->default(true); 
-			$table->string('timezone', 255)->default('UTC');
 			$table->string('avatar')->nullable()->default('avatar.png');
 			$table->text('notes')->nullable();
-			$table->boolean('enable')->default(true); 
+			$table->string('timezone', 255)->default('UTC');
+			$table->boolean('seeded')->default(false);
+			$table->boolean('enable')->default(true);
+			$table->boolean('ban')->default(true);
 			$table->datetime('last_login_at')->nullable();
 			$table->string('last_login_ip')->nullable();
 			$table->biginteger('created_by')->default(1);

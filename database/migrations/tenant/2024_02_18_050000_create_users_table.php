@@ -25,7 +25,6 @@ return new class extends Migration
 			/** end ENUM */
 			$table->string('password');
 			$table->timestamp('email_verified_at')->nullable();
-			//TODO dept_id, title id
 			$table->string('cell')->unique()->nullable();
 			$table->string('address1')->nullable();
 			$table->string('address2')->nullable();
@@ -35,12 +34,12 @@ return new class extends Migration
 			$table->string('country',2)->default('US');
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
-			$table->boolean('ban')->default(true); 
-			$table->string('timezone', 255)->default('UTC');
 			$table->string('avatar')->nullable()->default('avatar.png');
 			$table->text('notes')->nullable();
-			$table->boolean('enable')->default(false);  // only make first admin true
+			$table->string('timezone', 255)->default('UTC');
 			$table->boolean('seeded')->default(false); 
+			$table->boolean('enable')->default(false);  // only make first admin true
+			$table->boolean('ban')->default(true); 
 			$table->datetime('last_login_at')->nullable();
 			$table->string('last_login_ip')->nullable();
 			$table->biginteger('created_by')->default(1001);

@@ -36,7 +36,7 @@ class TicketPolicy
 	// Only back office users can view all tickets 
 	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**
@@ -45,17 +45,15 @@ class TicketPolicy
 	public function view(User $user, Ticket $ticket): bool
 	{
 		// owner, account admin and back office users can view ticket 
-		if ($user->role->value == UserRoleEnum::USER->value) {
+		if ($user->isUser() ) {
 			return ($user->id == $ticket->owner_id);
 		} elseif ($user->isAdmin() ) {
-			return ( $user->account_id == $ticket->account_id);
-		} elseif ($user->isBackOffice()) {
-			return ( true);
+			return ($user->account_id == $ticket->account_id);
+		} elseif ($user->isSeeded()) {
+			return (true);
 		} else {
-			return ( false );
+			return (false );
 		}
-		
-	
 	}
 
 	/**
@@ -72,7 +70,8 @@ class TicketPolicy
 	public function update(User $user, Ticket $ticket): bool
 	{
 		// only back office user can edit non closed ticket 
-		return ($user->isBackOffice() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
+		//return ($user->isSeeded() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
+		return ($user->isSeeded() && ! $ticket->isClosed());
 	}
 
 	/**
@@ -81,7 +80,8 @@ class TicketPolicy
 	public function assign(User $user, Ticket $ticket): bool
 	{
 		// only back office user can assign non closed ticket 
-		return ($user->isBackOffice() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
+		//return ($user->isSeeded() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
+		return ($user->isSeeded() && ! $ticket->isClosed());
 	}
 
 	public function export(User $user): bool

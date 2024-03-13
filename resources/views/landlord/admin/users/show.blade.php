@@ -40,20 +40,21 @@
 			<!-- End Form -->
 
 			<x-landlord.show.my-text value="{{ $user->name }}" />
-			<x-landlord.show.my-text value="{{ $user->email }}" label="E-mail" />
-			<x-landlord.show.my-text value="{{ $user->cell }}" label="Cell" />
-			<x-landlord.show.my-badge value="{{ $user->role }}" label="Role" />
+			<x-landlord.show.my-text value="{{ $user->email }}" label="E-mail"/>
+			<x-landlord.show.my-text value="{{ $user->cell }}" label="Cell"/>
+			<x-landlord.show.my-badge value="{{ $user->role }}" label="Role"/>
 			
-			<x-landlord.show.my-text value="{{ $user->user_account->name }}" label="Account" />
+			<x-landlord.show.my-text value="{{ $user->user_account->name }}" label="Account"/>
 
-			<x-landlord.show.my-text value="{{ $user->address1 }}" label="Address1" />
-			<x-landlord.show.my-text value="{{ $user->address2 }}" label="Address2" />
-			<x-landlord.show.my-text value="{{ $user->city . ', ' . $user->state . ', ' . $user->zip }}" label="City-State-Zip" />
+			<x-landlord.show.my-text value="{{ $user->address1 }}" label="Address1"/>
+			<x-landlord.show.my-text value="{{ $user->address2 }}" label="Address2"/>
+			<x-landlord.show.my-text value="{{ $user->city . ', ' . $user->state . ', ' . $user->zip }}" label="City-State-Zip"/>
 			<x-landlord.show.my-text value="{{ $user->user_country->name }}" label="Country" />
 			<x-landlord.show.my-date-time value="{{ $user->email_verified_at }}" label="Email Verified At" />
 			<x-landlord.show.my-enable value="{{ $user->enable }}" />
-
-
+			@if (auth()->user()->isSeeded())
+				<x-landlord.show.my-enable value="{{ $user->seeded }}" label="Seeded" />
+			@endif
 		</div>
 		<!-- End Body -->
 

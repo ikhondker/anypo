@@ -63,7 +63,6 @@ class ActivityController extends Controller
 		return view('landlord.admin.activities.index', compact('activities'));
 	}
 
-
 	/**
 	 * Display a listing of the resource.
 	 *

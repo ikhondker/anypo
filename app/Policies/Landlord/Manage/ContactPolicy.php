@@ -26,13 +26,13 @@ class ContactPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**
@@ -40,7 +40,7 @@ class ContactPolicy
 	 */
 	public function view(User $user, Contact $contact): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**

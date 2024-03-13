@@ -237,7 +237,7 @@ class AccountController extends Controller
 	{
 		$this->authorize('export', Account::class);
 		//$data = Size::all()->toArray();
-		if (auth()->user()->isBackOffice()) {
+		if (auth()->user()->isSeeded()) {
 			$data = DB::select("SELECT id, site, name, currency, tagline, address1, address2, city, state, zip, country, website, facebook, linkedin, email, cell, owner_id, primary_product_id, base_mnth, base_user, base_gb, base_price, mnth, user, gb, price, start_date, end_date, last_bill_from_date, last_bill_to_date, bill_generated, bill_gen_date, expired_at, count_user, count_product, used_gb, maintenance, status_code, logo, created_by, created_at, updated_by, updated_at, FROM accounts");
 		} elseif (auth()->user()->isAdmin()) {
 			$data = DB::select("SELECT id, site, name, currency, tagline, address1, address2, city, state, zip, country, website, facebook, linkedin, email, cell,

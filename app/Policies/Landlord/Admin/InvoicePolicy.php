@@ -32,7 +32,7 @@ class InvoicePolicy
 	// Only back office users can view all tickets 
 	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 	
 	/**
@@ -40,7 +40,7 @@ class InvoicePolicy
 	 */
 	public function view(User $user, Invoice $invoice): bool
 	{
-		return (($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isBackOffice();
+		return (($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isSeeded();
 
 	}
 
@@ -49,7 +49,7 @@ class InvoicePolicy
 	 */
 	public function create(User $user): bool
 	{
-		return ($user->isAdmin()) || $user->isBackOffice();
+		return ($user->isAdmin()) || $user->isSeeded();
 	
 	}
 
@@ -58,7 +58,7 @@ class InvoicePolicy
 	 */
 	public function update(User $user, Invoice $invoice): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**
@@ -93,8 +93,7 @@ class InvoicePolicy
 		//Log::debug("inside pdfInvoice= ". $invoice->id );
 		//Log::info(json_encode($invoice)); 
 		//Log::info(json_encode($user)); 
-
-		return (($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isBackOffice();
+		return (($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isSeeded();
 		
 	}
 }

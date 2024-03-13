@@ -223,7 +223,7 @@ class Po extends Model
 	public function scopeByBuyerApproved(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id )
-		->where('auth_status',AuthStatusEnum::APPROVED->value); 
+			->where('auth_status',AuthStatusEnum::APPROVED->value); 
 	}
 
 	/**
@@ -232,7 +232,7 @@ class Po extends Model
 	public function scopeByBuyerInProcess(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id )
-		->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+			->where('auth_status',AuthStatusEnum::INPROCESS->value);  
 	}
 	/**
 	 * Scope a query to only All Draft PR for current user.
@@ -240,7 +240,7 @@ class Po extends Model
 	public function scopeByBuyerDraft(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id )
-		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+			->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
 	}
 
 
@@ -258,7 +258,7 @@ class Po extends Model
 	public function scopeByDeptApproved(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id)
-		->where('auth_status',AuthStatusEnum::APPROVED->value); 
+			->where('auth_status',AuthStatusEnum::APPROVED->value); 
 	}
 
 	/**
@@ -267,7 +267,7 @@ class Po extends Model
 	public function scopeByDeptInProcess(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id )
-		->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+			->where('auth_status',AuthStatusEnum::INPROCESS->value);  
 	}
 	/**
 	 * Scope a query to only All Draft PR for current dept.
@@ -275,7 +275,7 @@ class Po extends Model
 	public function scopeByDeptDraft(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id)
-		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+			->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
 	}
 
 	/**

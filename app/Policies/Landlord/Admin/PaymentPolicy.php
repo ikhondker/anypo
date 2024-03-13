@@ -32,7 +32,7 @@ class PaymentPolicy
 	// Only back office users can view all tickets 
 	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 	
 	/**
@@ -40,7 +40,7 @@ class PaymentPolicy
 	 */
 	public function view(User $user, Payment $payment): bool
 	{
-		return (($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isBackOffice();
+		return (($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isSeeded();
 		
 	}
 
@@ -57,7 +57,7 @@ class PaymentPolicy
 	 */
 	public function update(User $user, Payment $payment): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**
@@ -93,7 +93,7 @@ class PaymentPolicy
 		//Log::info(json_encode($payment)); 
 		//Log::info(json_encode($user)); 
 
-		return (($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isBackOffice();
+		return (($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isSeeded();
 		
 	}
 }

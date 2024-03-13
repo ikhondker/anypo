@@ -36,7 +36,7 @@ class SetupPolicy
 	 */
 	public function view(User $user, Setup $setup): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**

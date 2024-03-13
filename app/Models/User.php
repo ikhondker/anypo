@@ -66,7 +66,8 @@ class User extends Authenticatable implements MustVerifyEmail
 	 */
 
 	protected $fillable = [
-		'name', 'email', 'role', 'account_id','password','email_verified_at','cell', 'title', 'address1', 'address2','city', 'state', 'zip', 'country', 'facebook', 'linkedin', 'ban', 'timezone', 'avatar', 'notes', 'enable', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at',
+		'name', 'email', 'designation_id', 'dept_id', 'unit_id',
+		'role', 'account_id', 'password', 'email_verified_at', 'remember_token', 'cell', 'title', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'facebook', 'linkedin', 'avatar', 'notes', 'timezone', 'seeded', 'enable', 'ban', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -145,6 +146,12 @@ class User extends Authenticatable implements MustVerifyEmail
 	*/
 
 	// usages auth()->user()->isAdmin()
+	
+	public function isSeeded()
+	{		
+		return $this->seeded;
+	}
+
 	public function isUser()
 	{
 		if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::USER->value)) {
@@ -205,8 +212,7 @@ class User extends Authenticatable implements MustVerifyEmail
 		}	
 	}
 
-
-	public function isBackOffice()
+	public function xxBackOffice()
 	{
 		if ($this->enable == 1) {
 			switch ($this->role->value) {

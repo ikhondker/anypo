@@ -33,7 +33,7 @@ class ActivityPolicy
 	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**
@@ -41,7 +41,7 @@ class ActivityPolicy
 	 */
 	public function view(User $user, Activity $activity): bool
 	{
-		return (($user->account_id == $activity->account_id) && $user->isAdmin()) || $user->isBackOffice();
+		return (($user->account_id == $activity->account_id) && $user->isAdmin()) || $user->isSeeded();
 		
 	}
 

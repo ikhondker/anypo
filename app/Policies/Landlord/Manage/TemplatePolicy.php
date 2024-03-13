@@ -2,7 +2,7 @@
 
 namespace App\Policies\Landlord\Manage;
 
-use App\Models\Landlord\Admin\Template;
+use App\Models\Landlord\Manage\Template;
 use App\Models\User;
 
 use App\Enum\UserRoleEnum;

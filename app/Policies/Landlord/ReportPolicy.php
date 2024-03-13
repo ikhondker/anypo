@@ -36,11 +36,9 @@ class ReportPolicy
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Report $report): Response
+	public function view(User $user, Report $report): bool
 	{
-		return $user->isBackOffice()
-			? Response::allow()
-			: Response::deny(config('bo.MSG_DENY'));
+		return $user->isSeeded();
 	}
 
 	/**

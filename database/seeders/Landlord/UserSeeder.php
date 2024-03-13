@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
 		$faker = app(Generator::class);
 		//User::truncate();
 
-		$users =  [
+		$seededUsers =  [
 			[
 				'id'				=> '1001',
 				'name'				=> 'System Admin',
@@ -42,9 +42,10 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
 			],
 			[
 				'id'				=> '1002',
@@ -59,9 +60,10 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
 			],
 			[
 				'id'				=> '1003',
@@ -76,9 +78,10 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
 			],
 			[
 				'id'				=> '1004',
@@ -93,9 +96,10 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
 			],
 			[
 				'id'				=> '1005',
@@ -110,9 +114,10 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
 			],
 			[
 				'id'				=> '1006',
@@ -127,9 +132,10 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
 			],
 			[
 				'id'				=> '1007',
@@ -144,9 +150,10 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
 			],
 			[
 				'id'				=> '1008',
@@ -161,11 +168,14 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
 			],
+		];
 
+		$demoUsers =  [
 		   /*
 			[
 				'id'				=> '1007',
@@ -180,7 +190,7 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
@@ -197,7 +207,7 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
@@ -214,7 +224,7 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
@@ -231,7 +241,7 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
@@ -248,7 +258,7 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
@@ -265,16 +275,14 @@ class UserSeeder extends Seeder
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
 				'state'				=> 'N/A',
-				'zip'				 => $faker->postcode,
+				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
 			*/
-			
 		];
 		
-		User::insert($users);
-
+		User::insert($seededUsers);
 		User::where('id', 1001)->update(['avatar' => 'sys.png']);
 		User::where('id', 1005)->update(['avatar' => 's1.png']);
 		User::where('id', 1006)->update(['avatar' => 's2.png']);

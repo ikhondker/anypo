@@ -32,7 +32,7 @@
 			</div>
 			<!-- End Form -->
 
-			@if (auth()->user()->isBackOffice())
+			@if (auth()->user()->isSeeded())
 				<!-- Form -->
 				<div class="row mb-4">
 					<label for="status_code" class="col-sm-3 col-form-label form-label">Status :</label>

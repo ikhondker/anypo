@@ -52,7 +52,13 @@ class Activity extends Model
 	 */
 	public function scopeByAccount(Builder $query): void
 	{
-		$query->where('account_id', auth()->user()->account_id);
+		//$query->where('account_id', auth()->user()->account_id);
+		// TODO CHECK
+		$query->where('account_id', auth()->user()->account_id)
+			->whereHas('user', function ($q) use ($id) {
+				$q->where('seeded', false);
+			});
+
 	}
 
 	/* ---------------- HasMany ---------------------- */

@@ -33,7 +33,7 @@ class ProductPolicy
 	 */
 	public function view(User $user, Product $product): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**

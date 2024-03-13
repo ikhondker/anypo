@@ -32,7 +32,7 @@ class StatusPolicy
 	 */
 	public function view(User $user, Status $status): bool
 	{
-		return $user->isBackOffice();
+		return $user->isSeeded();
 	}
 
 	/**
