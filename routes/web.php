@@ -36,6 +36,7 @@ Route::get('pdf', [TestController::class, 'generatePDF'])->name('pdf');
 //Route::get('chart', [ChartController::class, 'index']);
 
 
+
 /**
 * ==================================================================================
 * Public Routes related to authentication and  email verification
@@ -219,6 +220,7 @@ use App\Http\Controllers\Landlord\Admin\PaymentController;
 use App\Http\Controllers\Landlord\Admin\ServiceController;
 use App\Http\Controllers\Landlord\Admin\UserController;
 
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
 	/* ======================== Account ======================================== */
@@ -256,8 +258,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	/* ======================== User ========================================  */
 	Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
-	// TODO why remove
-	// Route::get('/users/delete/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+	Route::get('/users/delete/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 	// Route::get('users-password/{user}', [UserController::class, 'userPassword'])->name('users.password');
 	Route::get('/user/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
 	Route::post('/user/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
@@ -278,9 +279,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class);
-	//Route::get('/invoices/pdf/{invoice}', [InvoiceController::class,'pdf'])->name('invoices.pdf');
-	//Route::get('/invoice/preview/{invoice_no}',[InvoiceController::class, 'preview'])->name('invoices.preview');
-
+	Route::get('/invoice/generate',[InvoiceController::class,'generate'])->name('invoices.generate');
+	
 	// Route::controller(InvoiceController::class)->group(function(){
 	//     Route::get('invoices', 'index')->name('invoices.index');
 	//     Route::post('invoices', 'store')->name('invoices.store');

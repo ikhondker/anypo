@@ -56,12 +56,3 @@
 
 	</div>
 @endsection
-
-@section('sidebar')
-	<a href="{{ route('attachments.create') }}" class="btn btn-primary btn-sidebar">Create Attachment</a>
-	<a href="{{ route('attachments.index') }}" class="btn btn-secondary btn-sidebar">Attachment Lists</a>
-	<a href="{{ route('tickets.index') }}" class="btn btn-success btn-sidebar">Ticket Lists</a>
-	<a href="{{ route('dashboards.index') }}" class="btn btn-dark btn-sidebar">Dashboard</a>
-@endsection
-
-

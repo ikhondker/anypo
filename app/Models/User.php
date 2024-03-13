@@ -342,7 +342,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	}
 	
 	/* ---------------- belongsTo ---------------------- */
-	public function user_account() {
+	public function account() {
 		return $this->belongsTo(Account::class,'account_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);

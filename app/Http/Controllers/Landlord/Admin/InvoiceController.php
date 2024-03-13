@@ -90,10 +90,10 @@ class InvoiceController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
+	public function generate()
 	{
 
-		$this->authorize('create', Invoice::class);
+		//$this->authorize('generate', Invoice::class);
 
 		if (auth()->user()->account_id == '') {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
@@ -101,13 +101,13 @@ class InvoiceController extends Controller
 
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		if ($account->next_bill_generated) {
-			Log::debug('landlord.invoice.create Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
+			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id=' . $account->id . '! Can not create more Invoices.');
 		}
 
 		$setup = Setup::with('relCountry')->where('id', config('bo.SETUP_ID'))->first();
 
-		return view('landlord.admin.invoices.create', compact('account', 'setup'));
+		return view('landlord.admin.invoices.generate', compact('account', 'setup'));
 	}
 
 	/**
@@ -177,10 +177,10 @@ class InvoiceController extends Controller
 		$invoice->from_date		= $account->end_date->addDay(1);
 		$invoice->to_date		= $account->end_date->addDay(1)->addMonth($period);
 		//Log::channel('bo')->info('Account id='. $account_id.' SECOND inv start '.$invoice->from_date.' to date '.$invoice->to_date);
-		Log::channel('bo')->info('Account id=' . $account_id . ' SECOND inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date . ' period= ' . $period);
+		Log::channel('bo')->info('landlord.invoice.createSubscriptionInvoice Account #' . $account_id . ' Second inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date . ' period= ' . $period);
 
 		$invoice->due_date		= $account->end_date;
-		$invoice->summary		= 'Invoice for ' . $account->name . ' for site' . $account->site;
+		$invoice->summary		= 'Invoice for Account #' . $account->id . ' for' . $account->site .'.'. env('APP_DOMAIN');
 
 		switch ($period) {
 			case '1':

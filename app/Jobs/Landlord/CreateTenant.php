@@ -184,8 +184,8 @@ class CreateTenant implements ShouldQueue
 			$user->role		= UserRoleEnum::ADMIN->value;
 			$random_password= Str::random(12);
 			$user->password	= bcrypt($random_password);
-			//TODO MUST comment
-			$user->password	= bcrypt('password');
+			// TODO MUST comment
+			// $user->password	= bcrypt('password');
 			$user->save();
 
 			// update owner_id in checkout

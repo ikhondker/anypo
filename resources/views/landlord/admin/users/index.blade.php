@@ -54,8 +54,7 @@
 				<thead class="thead-light">
 				<tr>
 					<th>User Name</th>
-					<th>Cell</th>
-					<th>Account</th>
+					<th>Account Name</th>
 					<th>Role</th>
 					<th>Enable</th>
 					<th style="width: 5%;">Action</th>
@@ -85,8 +84,8 @@
 									</div>
 								</div>
 							</td>
-							<td>{{ $user->cell }} </td>
-							<td>{{ $user->user_account->name }} </td>
+							
+							<td>{{ $user->account->name }} </td>
 							<td>
 								@if ( $user->role ==  UserRoleEnum::USER)
 									<span class="badge bg-info">{{ $user->role }}</span>
@@ -105,7 +104,7 @@
 								</a>
 
 
-								@if(session('original_user'))
+								{{-- @if(session('original_user'))
 									<a href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">
 										<i class="bi bi-box-arrow-left text-danger" style="font-size: 1.3rem;"></i>
 									</a>
@@ -115,7 +114,7 @@
 											<i class="bi bi-box-arrow-right text-success" style="font-size: 1.3rem;"></i>
 										</a>
 									@endcan
-								@endif
+								@endif --}}
 
 								{{-- <a class="text-body" href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" title="Locked">
 									<i class="bi-lock-fill" style="font-size: 1.5rem;"></i>

@@ -80,7 +80,7 @@ class AccountController extends Controller
 	 */
 	public function index()
 	{
-		$accounts = Account::with('status')->byAccount()->orderBy('id', 'DESC')->paginate(10);
+		$accounts = Account::with('status')->with('owner')->byAccount()->orderBy('id', 'DESC')->paginate(10);
 		return view('landlord.accounts.index', compact('accounts'));
 	}
 
@@ -92,7 +92,7 @@ class AccountController extends Controller
 	public function all()
 	{
 		$this->authorize('viewAll', Account::class);
-		$accounts = Account::orderBy('id', 'DESC')->paginate(10);
+		$accounts = Account::with('status')->with('owner')->orderBy('id', 'DESC')->paginate(10);
 		return view('landlord.accounts.all', compact('accounts'));
 	}
 

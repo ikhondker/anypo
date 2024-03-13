@@ -1,9 +1,8 @@
-@extends('landlord.layouts.site-app')
+@extends('layouts.landlord-app')
 @section('title','Edit Service')
 @section('breadcrumb','Edit Service')
 
 @section('content')
-
 	<x-landlord.card.header title="Edit Service"/>
 	<!-- form start -->
 	<form action="{{ route('services.update',$service->id) }}" method="POST">
@@ -12,7 +11,7 @@
 		<!-- my-section-row -->
 		<div class="row my-section-row justify-content-between">
 			<div class="col-xl-7">
-				<h6>Service Info:-</h6>
+					<h6>Service Info:-</h6>
 					<x-landlord.show.my-text	value="{{ $service->summary }}"/>
 					<x-landlord.show.my-text	value="{{  $service->name }}" label="Name"/>
 					<x-landlord.show.my-enable	value="{{ $service->enable }}"/>

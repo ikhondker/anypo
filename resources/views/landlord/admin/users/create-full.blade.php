@@ -215,10 +215,3 @@
 
 @endsection
 
-
-@section('sidebar')
-	<a href="{{ route('users.index') }}" class="btn btn-primary btn-sidebar"> User List</a>
-	<a href="{{ route('users.index') }}" class="btn btn-secondary btn-sidebar">User List</a>
-	<a href="{{ route('users.export') }}" class="btn btn-success btn-sidebar">Download</a>
-	<a href="{{ route('dashboards.index') }}" class="btn btn-dark btn-sidebar">Home</a>
-@endsection

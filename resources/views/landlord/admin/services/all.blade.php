@@ -20,7 +20,7 @@
 					<tr>
 						<th>Name</th>
 						<th>Account</th>
-						<th>User-Mnth-GB</th>
+						<th>Mnth-User-GB</th>
 						<th>Price</th>
 						<th>Addon?</th>
 						<th>Enable</th>
@@ -43,16 +43,14 @@
 										<a class="d-inline-block link-dark" href="#">
 											<h6 class="text-hover-primary mb-0">{{ $service->name }}</h6>
 										</a>
-										<small class="d-block">{{ $service->start_date }} to
-											{{ $service->end_date }}</small>
+										<small class="d-block">{{ $service->start_date }} to {{ $service->end_date }}</small>
 									</div>
 								</div>
 							</td>
 							<td>{{ $service->account_id }}</td>
-
 							<td>
-								<span class="badge bg-primary rounded-pill">{{ $service->user }}</span>
 								<span class="badge bg-primary rounded-pill">{{ $service->mnth }}</span>
+								<span class="badge bg-primary rounded-pill">{{ $service->user }}</span>
 								<span class="badge bg-primary rounded-pill">{{ $service->gb }}</span>
 							</td>
 							<td><x-landlord.list.my-number :value="$service->price" /></td>

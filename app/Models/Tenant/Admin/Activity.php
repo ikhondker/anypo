@@ -37,7 +37,11 @@ class Activity extends Model
 	 */
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('user_id','>=', 1003);
+		//$query->where('user_id','>=', 1003);
+		$query->whereHas('user', function ($q) {
+				$q->where('seeded', false);
+		});
+
 	}
 
 

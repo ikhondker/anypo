@@ -13,49 +13,27 @@
 
 	<!-- Body -->
 	<div class="card-body">
-		<!-- Form -->
-		<div class="row mb-4">
-			<label class="col-sm-3 col-form-label form-label">Profile photo</label>
-
-			<div class="col-sm-9">
-				<!-- Media -->
-				<div class="d-flex align-items-center">
-					<!-- Avatar -->
-					<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-						<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/avatar.png')  }}"
-							alt="Image Description">
-					</label>
-
-					<div class="d-grid d-sm-flex gap-2 ms-4">
-						<div class="form-attachment-btn btn btn-primary btn-sm">Upload photo
-							<input type="file" class="js-file-attach form-attachment-btn-label" id="avatarUploader"
-								data-hs-file-attach-options='{
-																"textTarget": "#avatarImg",
-																"mode": "image",
-																"targetAttr": "src",
-																"resetTarget": ".js-file-attach-reset-img",
-																"resetImg": "./assets/img/160x160/img1.jpg",
-																"allowTypes": [".png", ".jpeg", ".jpg"]
-															}'>
-						</div>
-						<!-- End Avatar -->
-					</div>
-				</div>
-				<!-- End Media -->
-			</div>
-		</div>
-		<!-- End Form -->
 
 		<x-landlord.show.my-badge value="{{ $checkout->id }}" label="ID" />
 		<x-landlord.show.my-date-time value="{{ $checkout->checkout_date }}" />
 		<x-landlord.show.my-text value="{{ $checkout->site }}" label="Site" />
 		<x-landlord.show.my-text value="{{ $checkout->account_name }}" label="Name" />
 		<x-landlord.show.my-text value="{{ $checkout->email }}" label="Email" />
+		
+		<x-landlord.show.my-text value="{{ $checkout->account_id }}" label="Account #" />
+		<x-landlord.show.my-text value="{{ $checkout->account_name }}" label="Account Name" />
+		<x-landlord.show.my-text value="{{ $checkout->invoice_id }}" label="Invoice #" />
+		<x-landlord.show.my-date value="{{ $checkout->start_date }}" abel="Start"/>
+		<x-landlord.show.my-date value="{{ $checkout->end_date }}" abel="End"/>
+
+		<x-landlord.show.my-enable value="{{ $checkout->existing_user }}" label="existing_user" />
+		<x-landlord.show.my-text value="{{ $checkout->owner_id }}" label="Owner #" />
+		<x-landlord.show.my-text value="{{ $checkout->session_id }}" label="Session ID" />
 
 		<x-landlord.show.my-text value="{{ $checkout->product->sku }}" label="Product SKU" />
 		<x-landlord.show.my-number value="{{ $checkout->price }}" label="Price" />
-		<x-landlord.show.my-badge value="{{ $checkout->status->name }}" badge="{{ $checkout->status->badge }}"
-			label="Status" />
+		<x-landlord.show.my-number value="{{ $checkout->mnth }}" label="Mnth" />
+		<x-landlord.show.my-badge value="{{ $checkout->status->name }}" badge="{{ $checkout->status->badge }}" label="Status" />
 
 	</div>
 	<!-- End Body -->

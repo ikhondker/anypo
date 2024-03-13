@@ -114,6 +114,7 @@ Route::middleware([
 	/* ======================== make auth universal ========================================  */
 	 Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
 		Auth::routes(); 
+		
 	});
    
 	// IQBAL 28-feb-23
@@ -426,7 +427,6 @@ Route::middleware([
 	Route::post('/invoice/attach',[InvoiceController::class,'attach'])->name('invoices.attach');
 	Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
 	Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
-	//Route::get('/invoice/get-cancel-inv-num',[InvoiceController::class,'getCancelInvNum'])->name('invoices.get-cancel-inv-num');
 	Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
 	Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
 	Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');

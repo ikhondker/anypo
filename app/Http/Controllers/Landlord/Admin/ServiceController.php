@@ -61,7 +61,7 @@ class ServiceController extends Controller
 	{
 		//$this->authorize('view',Service::class);
 
-		$services = Service::byAccount()->orderBy('id', 'ASC')->paginate(10);
+		$services = Service::with('account')->byAccount()->orderBy('id', 'ASC')->paginate(10);
 
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 		
@@ -86,7 +86,7 @@ class ServiceController extends Controller
 		
 		$this->authorize('viewAll',Service::class);
 
-		$services = Service::orderBy('id', 'ASC')->paginate(10);
+		$services = Service::with('account')->orderBy('id', 'ASC')->paginate(10);
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		return view('landlord.admin.services.all', compact('services', 'addons','account'));

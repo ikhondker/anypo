@@ -191,11 +191,3 @@
 	<!--/. my-pagination -->
 
 @endsection
-
-
-@section('sidebar')
-	<a href="{{ route('tickets.create') }}" class="btn btn-primary btn-sidebar">Create Ticket</a>
-	<a href="{{ route('tickets.index') }}" class="btn btn-secondary btn-sidebar">Ticket Lists</a>
-	<a href="javascript:void(0);" class="btn btn-success btn-sidebar">Download</a>
-	<a href="{{ route('dashboards.index') }}" class="btn btn-dark btn-sidebar">Dashboard</a>
-@endsection

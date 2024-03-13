@@ -10,7 +10,7 @@
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 			<h5 class="card-header-title">Your Invoices</h5>
 			{{-- @if ($invoice->status_code->value == App\Enum\LandlordInvoiceStatusEnum::DUE->value)  --}}
-			<a class="btn btn-primary btn-sm" href="{{ route('invoices.create') }}">
+			<a class="btn btn-primary btn-sm" href="{{ route('invoices.generate') }}">
 				<i class="bi bi-plus-square me-1"></i> Generate Invoice
 			</a>
 			{{-- @endif --}}
@@ -42,7 +42,7 @@
 									</div>
 
 									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="#">
+										<a class="d-inline-block link-dark" href="{{ route('invoices.show',$invoice->id) }}">
 											<h6 class="text-hover-primary mb-0">#{{ Str::limit($invoice->invoice_no, 10) }}
 												{{ Str::limit($invoice->summary, 20) }}</h6>
 										</a>

@@ -53,6 +53,13 @@ class InvoicePolicy
 	
 	}
 
+	public function generate(User $user): bool
+	{
+		return ($user->isAdmin()) || $user->isSeeded();
+	
+	}
+
+
 	/**
 	 * Determine whether the user can update the model.
 	 */

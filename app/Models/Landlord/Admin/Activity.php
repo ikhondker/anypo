@@ -55,9 +55,9 @@ class Activity extends Model
 		//$query->where('account_id', auth()->user()->account_id);
 		// TODO CHECK
 		$query->where('account_id', auth()->user()->account_id)
-			->whereHas('user', function ($q) use ($id) {
+			->whereHas('user', function ($q) {
 				$q->where('seeded', false);
-			});
+		});
 
 	}
 

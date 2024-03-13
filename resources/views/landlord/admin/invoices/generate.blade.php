@@ -35,13 +35,12 @@
 						<div class="form-check mb-3">
 							<input type="radio" id="formRadio1" class="form-check-input" name="period" value="1">
 							<label class="form-check-label" for="formRadio1">1 Months  {{ number_format($account->price,2,'.') }}USD</label>
-							
 						</div>
 						<!-- End Checkbox -->
 
 						<!-- Checkbox -->
 						<div class="form-check mb-3">
-							<input type="radio" id="formRadio1" class="form-check-input" name="period" value="3">
+							<input type="radio" id="formRadio1" class="form-check-input" checked name="period" value="3">
 							<label class="form-check-label" for="formRadio1">
 								3 Months 
 								<del class="text-danger">{{ number_format($account->price * 3, 2,'.') }}USD</del>  
@@ -53,7 +52,7 @@
 						
 						<!-- Checkbox -->
 						<div class="form-check mb-3">
-							<input type="radio" id="formRadio2" class="form-check-input" checked name="period" value="6">
+							<input type="radio" id="formRadio2" class="form-check-input" name="period" value="6">
 							<label class="form-check-label" for="formRadio2">
 								6 Months 
 								<del class="text-danger">{{ number_format($account->price * 6, 2,'.') }}USD</del>  

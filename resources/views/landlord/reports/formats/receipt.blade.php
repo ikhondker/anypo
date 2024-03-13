@@ -34,14 +34,12 @@
 		</thead> --}}
 		<tbody>
 			<tr>
-				
 				<td colspan="5" class="desc"><h3>PAYMENT DETAILS</h3>
 					<div class="date">PAYMENT #{{ $payment->id }}</div>
 					<div class="date">Payment Date: {{ strtoupper(date('d-M-y', strtotime($payment->pay_date))) }}</div>
 					<div class="date">Payment Amount: ${{ number_format($payment->amount,2) }}</div>
 					<div class="date">Payment Status: {{ Str::upper($payment->status->name) }}</div>
 				</td>
-				
 			</tr>
 			{{-- <tr>
 				<td class="no">02</td>

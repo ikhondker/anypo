@@ -78,11 +78,11 @@ class UserController extends Controller
 
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::ADMIN->value:
-				$users= $users->byAccount()->orderBy('id', 'DESC')->paginate(10);
+				$users= $users->with('account')->byAccount()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
-				$users= $users->byUser()->orderBy('id', 'DESC')->paginate(10);
-				Log::warning("landlord.users.index Other roles!");
+				$users= $users->with('account')->byUser()->orderBy('id', 'DESC')->paginate(10);
+				//Log::warning("landlord.users.index Other roles!");
 		}
 		return view('landlord.admin.users.index',compact('users'));
 	}
@@ -102,7 +102,7 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$users= $users->orderBy('id', 'DESC')->paginate(20);
+		$users= $users->with('account')->orderBy('id', 'DESC')->paginate(20);
 		return view('landlord.admin.users.all',compact('users'));
 	}
 
@@ -231,15 +231,17 @@ class UserController extends Controller
 	 */
 	public function destroy(User $user)
 	{
+		
 		$this->authorize('delete', $user);
 
 		$user->fill(['enable'=>!$user->enable]);
+
 		$user->update();
 
 		// Write to Log
 		LandlordEventLog::event('user',$user->id,'status','enable',$user->enable);
 
-		return redirect()->route('users.index')->with('success','User Status Updated successfully');
+		return redirect()->route('dashboards.index')->with('success','User Status Updated successfully');
 	}
 
 	public function role()

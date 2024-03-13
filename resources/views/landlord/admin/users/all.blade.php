@@ -93,7 +93,7 @@
 								</div>
 							</td>
 							<td>{{ $user->cell }} </td>
-							<td>{{ $user->user_account->name }} </td>
+							<td>{{ $user->account->name }} </td>
 							<td>
 								@if ($user->role == UserRoleEnum::USER)
 									<span class="badge bg-info">{{ $user->role }}</span>
