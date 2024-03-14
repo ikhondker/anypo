@@ -38,13 +38,15 @@
 			</div>
 			<!-- End Body -->
 
-			<!-- Footer -->
-			<div class="card-footer pt-0">
+			@if (auth()->user()->isSystem())
+				<!-- Footer -->
+				<div class="card-footer pt-0">
 					<div class="d-flex justify-content-end gap-3">
-						<a class="btn btn-primary" href="{{ route('users.edit',$invoice->id) }}">Edit</a>
+						<a class="btn btn-primary" href="{{ route('invoices.edit',$invoice->id) }}">Edit</a>
 					</div>
-			</div>
-			<!-- End Footer -->
+				</div>
+				<!-- End Footer -->
+			@endif	
 	</div>
 	<!-- End Card -->
 @endsection

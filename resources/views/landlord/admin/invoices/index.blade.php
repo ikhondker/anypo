@@ -43,8 +43,10 @@
 
 									<div class="flex-grow-1 ms-3">
 										<a class="d-inline-block link-dark" href="{{ route('invoices.show',$invoice->id) }}">
-											<h6 class="text-hover-primary mb-0">#{{ Str::limit($invoice->invoice_no, 10) }}
-												{{ Str::limit($invoice->summary, 20) }}</h6>
+											<h6 class="text-hover-primary mb-0">
+												#{{ Str::limit($invoice->invoice_no, 10) }}
+												{{-- {{ Str::limit($invoice->summary, 20) }} --}}
+											</h6>
 										</a>
 										<small
 											class="d-block">{{ date('d-M-y', strtotime($invoice->from_date)) . ' to ' . date('d-M-y', strtotime($invoice->to_date)) }}
@@ -54,7 +56,7 @@
 							</td>
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
 							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
-							<td><x-landlord.list.my-number :value="$invoice->amount" /></td>
+							<td><x-landlord.list.my-number :value="$invoice->amount" /> USD</td>
 							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
 							<td>
 								{{-- <a href="{{ route('invoices.show', $invoice->id) }}" class="text-body"

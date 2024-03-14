@@ -20,10 +20,10 @@
 						<th>Name</th>
 						<th>From</th>
 						<th>To</th>
-						<th>Mnth-User-GB</th>
+						<th>User</th>
 						<th>Price</th>
 						<th>Enable</th>
-						<th style="width: 5%;">Action</th>
+						<th style="width: 5%;">View</th>
 					</tr>
 				</thead>
 
@@ -46,11 +46,11 @@
 								</div>
 							</td>
 							<td><x-landlord.list.my-date :value="$service->start_date" /></td>
-							<td></td>
+							<td><x-landlord.list.my-date :value="$service->end_date" /></td>
 							<td>
-								<span class="badge bg-primary rounded-pill">{{ $service->mnth }}</span>
+								{{-- <span class="badge bg-primary rounded-pill">{{ $service->mnth }}</span> --}}
 								<span class="badge bg-primary rounded-pill">{{ $service->user }}</span>
-								<span class="badge bg-primary rounded-pill">{{ $service->gb }}</span>
+								{{-- <span class="badge bg-primary rounded-pill">{{ $service->gb }}</span> --}}
 							</td>
 							<td><x-landlord.list.my-number :value="$service->price" /></td>
 							<td><x-landlord.list.my-enable value="{{ $service->enable }}" /></td>

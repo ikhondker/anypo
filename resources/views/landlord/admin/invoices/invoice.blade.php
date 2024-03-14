@@ -49,7 +49,7 @@
 
 					<div class="row justify-content-md-between mb-3">
 						<div class="col-md">
-							<h4>Bill to: {{ $account->id }}</h4>
+							<h4>Bill to:</h4>
 							<h4>{{ $account->name }}</h4>
 
 							<address>

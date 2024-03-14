@@ -43,18 +43,19 @@ use App\Enum\LandlordInvoiceStatusEnum;
 use App\Enum\LandlordPaymentStatusEnum;
 # 3. Helpers
 use App\Helpers\LandlordFileUpload;
-use App\Helpers\LandlordEventLog;
+//use App\Helpers\LandlordEventLog;
 # 4. Notifications
 use Notification;
 use App\Notifications\Landlord\Test;
-use App\Notifications\Landlord\UserRegistered;
-use App\Notifications\Landlord\InvoiceCreated;
-use App\Notifications\Landlord\ServiceUpgraded;
-use App\Notifications\Landlord\AddonPurchased;
+//use App\Notifications\Landlord\UserRegistered;
+//use App\Notifications\Landlord\InvoiceCreated;
+//use App\Notifications\Landlord\ServiceUpgraded;
+//use App\Notifications\Landlord\AddonPurchased;
 
 use App\Notifications\Landlord\Contacted;
 # 5. Jobs
 use App\Jobs\Landlord\CreateTenant;
+use App\Jobs\Landlord\AddAddon;
 # 6. Mails
 use Mail;
 use App\Mail\Landlord\DemoMail;
@@ -209,6 +210,7 @@ class HomeController extends Controller
 
 		// get product
 		$product = Product::where('id', config('bo.DEFAULT_PRODUCT_ID') )->first();
+		
 		$checkout->product_id		= $product->id;
 		$checkout->product_name		= $product->name;
 		$checkout->tax				= $product->tax;
@@ -369,7 +371,6 @@ class HomeController extends Controller
 			}
 			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
 				Log::debug('landlord.home.success checkout_id='. $checkout->id);
-				// TODO Uncomment
 				AddAddon::dispatch($checkout->id);
 			}
 			return view('landlord.pages.info')->with('title','Thank you for purchasing add-on!')

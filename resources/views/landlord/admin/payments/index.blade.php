@@ -43,8 +43,10 @@
 								</div>
 							</td>
 							<td><x-landlord.list.my-date :value="$payment->pay_date" /></td>
-							<td>{{ $payment->invoice_id }}</td>
-							<td><x-landlord.list.my-number :value="$payment->amount" /></td>
+							<td>
+								<a class="d-inline-block link-dark" href="{{ route('invoices.show',$payment->invoice_id) }}">{{ $payment->invoice->invoice_no }}</a>
+							</td>
+							<td><x-landlord.list.my-number :value="$payment->amount" /> USD</td>
 							<td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>
 							<td>
 								<a href="{{ route('payments.show', $payment->id) }}" class="text-body"
