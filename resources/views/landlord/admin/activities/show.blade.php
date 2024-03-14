@@ -35,7 +35,7 @@
 				<!-- Footer -->
 				<div class="card-footer pt-0">
 					<div class="d-flex justify-content-end gap-3">
-					<a class="btn btn-primary" href="{{ route('activities.edit',$activity->id) }}">Edit</a>
+						<a class="btn btn-danger" href="{{ route('activities.edit',$activity->id) }}"><i class="bi bi-pencil-square me-1"></i> Edit</a>
 					</div>
 				</div>
 				<!-- End Footer -->

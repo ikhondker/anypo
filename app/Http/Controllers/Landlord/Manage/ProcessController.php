@@ -29,9 +29,8 @@ use App\Http\Requests\Landlord\Manage\UpdateProcessRequest;
 # 3. Helpers
 # 4. Notifications
 # 5. Jobs
-use App\Jobs\Landlord\GenerateAllSubscriptionInvoice;
+use App\Jobs\Landlord\Billing;
 use App\Jobs\Landlord\AccountsArchive;
-
 # 6. Mails
 # 7. Rules
 # 8. Packages
@@ -45,8 +44,6 @@ use Illuminate\Support\Facades\Log;
 
 class ProcessController extends Controller
 {
-	
-
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -135,7 +132,7 @@ class ProcessController extends Controller
 
 		// Run process
 		Log::debug('landlord.process.genInvoiceAll Running process to generate all invoices.');
-		GenerateAllSubscriptionInvoice::dispatch();
+		Billing::dispatch();
 		
 		return redirect()->route('processes.index')->with('success','Invoice Generation Process submitted successfully.');
 	}

@@ -31,7 +31,7 @@ use App\Models\Domain;
 use App\Models\Tenant;
 
 use App\Models\Landlord\Ticket;
-use App\Models\Landlord\Comment;
+//use App\Models\Landlord\Comment;
 use App\Models\Landlord\Account;
 
 
@@ -83,10 +83,10 @@ class AccountController extends Controller
 	{
 		$accounts = Account::with('status')->with('owner')->byAccount()->orderBy('id', 'DESC')->paginate(10);
 
-		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
+		//$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 	
 
-		return view('landlord.accounts.index', compact('accounts','addons'));
+		return view('landlord.accounts.index', compact('accounts'));
 	}
 
 	/**

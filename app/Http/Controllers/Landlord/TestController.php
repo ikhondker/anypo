@@ -52,7 +52,7 @@ use App\Jobs\Landlord\CreateTenant;
 
 # Package
 use PDF;
-
+use App\Jobs\Landlord\SubscriptionInvoicePaid;
 
 //use Storage;
 
@@ -62,6 +62,8 @@ class TestController extends Controller
 
 	public function run()
 	{
+
+		SubscriptionInvoicePaid::dispatch('1006');
 
 		exit;
 

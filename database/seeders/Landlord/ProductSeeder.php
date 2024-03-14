@@ -27,7 +27,7 @@ class ProductSeeder extends Seeder
 				'addon'			=> false,
 				'addon_type'	=> 'na',
 				'mnth'			=> 1,
-				'user'			=> 3,
+				'user'			=> 5,
 				'gb'			=> 99,
 				'list_price'	=> 29.99,	// per user list price 6$ after discuss 5$ 
 				'price'			=> 24.99,

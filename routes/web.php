@@ -172,6 +172,7 @@ Route::post('/checkout-stripe', [HomeController::class, 'checkoutStripe'])->name
 Route::post('/payment-stripe', [HomeController::class, 'paymentStripe'])->name('payment-stripe');
 Route::get('/success', [HomeController::class, 'success'])->name('checkout.success');
 Route::get('/success-addon', [HomeController::class, 'successAddon'])->name('checkout.success-addon');
+Route::get('/success-payment', [HomeController::class, 'successPayment'])->name('checkout.success-payment');
 
 //Route::get('/test11', [HomeController::class, 'success'])->name('checkout.test11');
 Route::get('/cancel', [HomeController::class, 'cancel'])->name('checkout.cancel');

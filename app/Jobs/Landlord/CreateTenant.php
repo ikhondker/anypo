@@ -51,8 +51,7 @@ use Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
-
+//use Illuminate\Support\Facades\Auth;
 
 class CreateTenant implements ShouldQueue
 {

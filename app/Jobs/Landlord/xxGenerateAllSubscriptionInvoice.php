@@ -17,9 +17,10 @@ use App\Http\Controllers\Landlord\InvoiceController;
 // Models
 use App\Models\User;
 use App\Models\Landlord\Account;
-use App\Models\Landlord\Invoice;
-use App\Models\Landlord\Admin\Process;
-use App\Models\Landlord\Admin\Setup;
+use App\Models\Landlord\Admin\Invoice;
+
+use App\Models\Landlord\Manage\Process;
+use App\Models\Landlord\Manage\Setup;
 
 // Enums
 use App\Enum\InvoiceStatusEnum;
@@ -52,7 +53,7 @@ class GenerateAllSubscriptionInvoice implements ShouldQueue
 	{
 		$setup = Setup::first();
 
-		// Create a blank invoice . Not model but Controller
+		// Create a blank invoice. Not model but Controller
 		$invoice = new InvoiceController();
 
 		// end_date is approaching now()
@@ -73,10 +74,10 @@ class GenerateAllSubscriptionInvoice implements ShouldQueue
 			->get();
 
 		foreach ($accounts as $account) {
-			// generate invoice 3 days before expire
+			// Generate invoice 5 days before expire
 			$diff = now()->diffInDays($account->end_date);
 			if ($diff <= $setup->days_gen_bill) {
-				Log::debug('Generating Invoice for Account id=' . $account->id);
+				Log::debug('Jobs.GenerateAllSubscriptionInvoice.handle Invoice for Account id=' . $account->id);
 				$invoice_id = $invoice->createSubscriptionInvoice($account->id, 1);
 				if ($invoice_id <> 0) {
 					Log::channel('bo')->info('Account id=' . $account->id . ' Invoice#' . $invoice_id . ' generated.');

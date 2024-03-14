@@ -50,28 +50,29 @@ class SubscriptionInvoicePaid implements ShouldQueue
 	{
 		$payment = Payment::where('id', $this->payment_id)->first();
 
+		// mark payment as paid
+		$payment->status_code = LandlordPaymentStatusEnum::PAID->value;
+		$payment->update();
+		LandlordEventLog::event('payment', $payment->id, 'create');
+				
 		// mark invoice as paid
 		$invoice = Invoice::where('id', $payment->invoice_id)->first();
 		$invoice->amount_paid = $payment->amount;
 		$invoice->status_code = LandlordInvoiceStatusEnum::PAID->value ;
 		$invoice->update();
+		Log::debug('jobs.SubscriptionInvoicePaid invoice end_date =' . $invoice->to_date);
 
-		// mark payment as paid
-		$payment->status_code = LandlordPaymentStatusEnum::PAID->value;
-		$payment->update();
-		LandlordEventLog::event('payment', $payment->id, 'create');
+		//extend account validity end_date
+		$account = Account::where('id', $invoice->account_id)->first();
+		Log::debug('jobs.SubscriptionInvoicePaid Account validity extending =' . $account->id);
+		$account->next_bill_generated	= false;
+		$account->next_invoice_no		= 0;
+		$account->end_date				= $invoice->to_date;	// << ===============
+		$account->save();
+		Log::debug('jobs.SubscriptionInvoicePaid Account validity extended for Account #' . $account->id .' till '. $invoice->to_date);
 
 		// Invoice Paid Notification
 		$user = User::where('id', $invoice->owner_id)->first();
 		$user->notify(new InvoicePaid($user, $invoice, $payment));
-
-		//extend account validity end_date
-		$account = Account::where('id', $invoice->account_id)->first();
-		$account->next_bill_generated	= false;
-		$account->next_invoice_no		= 0;
-		$account->end_date				= $invoice->end_date;
-
-		$account->save();
-		Log::debug('jobs.SubscriptionInvoicePaid Account validity extended =' . $account->id);
 	}
 }

@@ -25,17 +25,26 @@ use App\Http\Requests\Landlord\Admin\StoreInvoiceRequest;
 use App\Http\Requests\Landlord\Admin\UpdateInvoiceRequest;
 
 # 1. Models
+use App\Models\User;
 use App\Models\Landlord\Admin\Invoice;
 use App\Models\Landlord\Manage\Setup;
 use App\Models\Landlord\Account;
 # 2. Enums
+use App\Enum\UserRoleEnum;
+use App\Enum\LandlordInvoiceTypeEnum;
+use App\Enum\LandlordInvoiceStatusEnum;
 # 3. Helpers
+use App\Helpers\Bo;
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
+use Notification;
+use App\Notifications\Landlord\InvoiceCreated;
 # 5. Jobs
 # 6. Mails
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 10. Events
 # 11. Controller
 # 12. Seeded
@@ -143,6 +152,91 @@ class InvoiceController extends Controller
 			return redirect()->route('invoices.index')->with('error', 'Invoice creation Failed!');
 		}
 	}
+
+
+	public function createSubscriptionInvoice($account_id, $period)
+	{
+	
+		$setup = Setup::first();
+		Log::debug('landlord.invoices.createSubscriptionInvoice Generating Invoice for account_id= ' . $account_id .'for period='. $period);
+		$account = Account::where('id', $account_id)->first();
+
+		// Don't create invoice if unpaid invoice exists
+		if ($account->next_bill_generated) {
+			Log::debug('landlord.invoices.createSubscriptionInvoice Unpaid invoice exists for Account id=' . $account_id . '. Invoice not created.');
+			return 0;
+		}
+
+		// Create new Invoice
+		// logic: create invoice from the account.end_date+1, after current billed date
+		$invoice				= new Invoice();
+		// get unique invoice_no
+		$invoice->invoice_no	= Bo::getInvoiceNo();
+		$invoice->invoice_date	= now();
+		//Log::channel('bo')->info('Account id='. $account_id.' last_bill_from_date '.$account->last_bill_from_date);
+		$invoice->invoice_type	= LandlordInvoiceTypeEnum::SUBSCRIPTION->value;
+		$invoice->from_date		= $account->end_date->addDay(1);
+		$invoice->to_date		= $account->end_date->addDay(1)->addMonth($period);
+		//Log::channel('bo')->info('Account id='. $account_id.' SECOND inv start '.$invoice->from_date.' to date '.$invoice->to_date);
+		Log::channel('bo')->info('landlord.invoice.createSubscriptionInvoice Account #' . $account_id . ' Second inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date . ' period= ' . $period);
+
+		$invoice->due_date		= $account->end_date;
+		$invoice->summary		= 'Subscription Invoice for Account #' . $account->id . ' for' . $account->site .'.'. env('APP_DOMAIN');
+
+		switch ($period) {
+			case '1':
+				$discount_pc =0 ;
+				break;
+			case '3':
+				$discount_pc = $setup->discount_pc_3 ;
+				break;
+			case '6':
+				$discount_pc = $setup->discount_pc_6 ;
+				break;
+			case '12':
+				$discount_pc = $setup->discount_pc_12 ;
+			 	break;
+			case '24':
+				$discount_pc = $setup->discount_pc_24 ;
+				break;
+			default:
+				$discount_pc =0 ;
+		}
+
+		Log::debug('landlord.invoice.createSubscriptionInvoice discount_pc= ' . $discount_pc);
+
+		$invoice->price		= round($period * $account->price * (100 - $discount_pc)/100,2) ;
+		$invoice->subtotal	= $invoice->price;
+		$invoice->amount	= $invoice->price;
+		$invoice->account_id= $account->id;
+		$invoice->owner_id	= $account->owner_id;
+
+		// Save invoice
+		$invoice->currency		= 'USD';
+		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
+		$invoice->save();
+
+		Log::debug('landlord.invoice.createSubscriptionInvoice Invoice Generated id=' . $invoice->id);
+		LandlordEventLog::event('invoice', $invoice->id, 'create');
+
+		// update account billing info
+		// $account->last_bill_from_date	= $invoice->from_date;
+		// $account->last_bill_to_date	= $invoice->to_date;
+		$account->next_bill_generated	= true;
+		$account->next_invoice_no		= $invoice->invoice_no;
+		$account->last_bill_date		= now();
+		$account->save();
+
+		// identify user to notify
+		$user = User::where('id', $account->owner_id)->first();
+
+		// Invoice Created Notification
+		$user->notify(new InvoiceCreated($user, $invoice));
+		return $invoice->id;
+
+		//return view('landlord.invoices.show', compact('invoice', 'entity'));
+	}
+
 
 	/**
 	 * Display the specified resource.

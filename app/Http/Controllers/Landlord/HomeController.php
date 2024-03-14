@@ -56,6 +56,7 @@ use App\Notifications\Landlord\Contacted;
 # 5. Jobs
 use App\Jobs\Landlord\CreateTenant;
 use App\Jobs\Landlord\AddAddon;
+use App\Jobs\Landlord\SubscriptionInvoicePaid;
 # 6. Mails
 use Mail;
 use App\Mail\Landlord\DemoMail;
@@ -167,23 +168,23 @@ class HomeController extends Controller
 		$lineItems = [];
 		$lineItems[] = [
 			'price_data' => [
-				'currency' => 'usd',
-				'product_data' => [
+				'currency' 		=> 'usd',
+				'product_data' 	=> [
 					'name' => $product->name,
 					// 'images' => [$product->image]
 				],
-				'unit_amount' => $product->price * 100,
+				'unit_amount' 	=> $product->price * 100,
 			],
-			'quantity' => 1,
+			'quantity' 	=> 1,
 		];
 
 		
 		$session = \Stripe\Checkout\Session::create([
-			'line_items' => $lineItems,
-			'mode' => 'payment',
-			'success_url' => route('checkout.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-			'cancel_url' => route('checkout.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-			'metadata' 	=> ['trx_type' => 'CHECKOUT'],
+			'line_items' 	=> $lineItems,
+			'mode' 			=> 'payment',
+			'success_url' 	=> route('checkout.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+			'cancel_url' 	=> route('checkout.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+			'metadata' 		=> ['trx_type' => 'CHECKOUT'],
 		]);
 
 		// create checkout row
@@ -239,7 +240,7 @@ class HomeController extends Controller
 		$invoice = Invoice::where('id', $request->input('invoice_id') )->first();
 
 		// check if invoice is already paid
-		if ($invoice->status_code->value <> LandlordInvoiceStatusEnum::DUE->value) {
+		if ($invoice->status_code <> LandlordInvoiceStatusEnum::DUE->value) {
 			return redirect()->route('invoices.index')->with('error','Invoice #'.$invoice->invoice_no.' can not be paid!');
 		}
 
@@ -247,23 +248,23 @@ class HomeController extends Controller
 
 		$lineItems = [];
 		$lineItems[] = [
-			'price_data' => [
-				'currency' => 'usd',
-				'product_data' => [
-					'name' => 'Subscription fee as per Invoice #'.$invoice->id,
-					// 'images' => [$product->image]
+			'price_data'	=> [
+				'currency' 		=> 'usd',
+				'product_data' 	=> [
+					'name' 			=> 'Subscription fee as per Invoice #'.$invoice->id,
+					// 'images' 	=> [$product->image]
 				],
-				'unit_amount' => $invoice->amount * 100,
+				'unit_amount' 	=> $invoice->amount * 100,
 			],
-			'quantity' => 1,
+			'quantity' 		=> 1,
 		];
 
 		$session = \Stripe\Checkout\Session::create([
-			'line_items' => $lineItems,
-			'mode' => 'payment',
-			'success_url' => route('checkout.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-			'cancel_url' => route('checkout.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-			'metadata' => ['trx_type' => 'PAYMENT'],
+			'line_items' 	=> $lineItems,
+			'mode' 			=> 'payment',
+			'success_url' 	=> route('checkout.success-payment', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+			'cancel_url' 	=> route('checkout.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+			'metadata' 		=> ['trx_type' => 'PAYMENT'],
 		]);
 
 		 // create payment
@@ -283,7 +284,7 @@ class HomeController extends Controller
 		}
 		$payment->status_code			= LandlordPaymentStatusEnum::DRAFT->value;
 		$payment->save();
-		//$payment_id						= $payment->id;
+		//$payment_id					= $payment->id;
 		
 		return redirect($session->url);
 	}
@@ -306,40 +307,20 @@ class HomeController extends Controller
 
 			$trx_type	=  $session->metadata->trx_type;
 			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
-
-			switch ($trx_type) {
-				case "CHECKOUT":
-					$checkout = Checkout::where('session_id', $session->id)->first();
-					if (!$checkout) {
-						throw new NotFoundHttpException();
-					}
-					if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
-						Log::debug('landlord.home.success checkout_id='. $checkout->id);
-						// TODO Uncomment
-						CreateTenant::dispatch($checkout->id);
-					}
-					return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
-						->with('msg','We have received your payment. We are currently preparing your service instance. 
-						It’s an automated process and generally take 5-10 minutes. You will receive email notification with service instance login credential and other details shortly.
-						Please check your email after few minutes. Thanks again.');
-					break;
-				case "PAYMENT":
-					// Mark invoice as paid
-					$payment = Payment::where('session_id', $session->id)->first();
-					if (!$payment) {
-						throw new NotFoundHttpException();
-					}
-					// TODO
-					if ($payment->status_code->value == LandlordPaymentStatusEnum::DRAFT->value) {
-						Log::debug("landlord.home.success SubscriptionInvoicePaid payment_id= ".$payment->id);
-						// SubscriptionInvoicePaid::dispatch($trx_id);
-					}
-					return view('landlord.pages.info')->with('title','Payment Successful')
-						->with('msg','Thank you for your payment. We have received your payment.');
-					break;
-				default:
-					Log::Error("landlord.home.success Invalid transaction type!");
+			
+			$checkout = Checkout::where('session_id', $session->id)->first();
+			if (!$checkout) {
+				throw new NotFoundHttpException();
 			}
+			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
+				Log::debug('landlord.home.success checkout_id='. $checkout->id);
+				// TODO Uncomment
+				CreateTenant::dispatch($checkout->id);
+			}
+			return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
+				->with('msg','We have received your payment. We are currently preparing your service instance. 
+				It’s an automated process and generally take 5-10 minutes. You will receive email notification with service instance login credential and other details shortly.
+				Please check your email after few minutes. Thanks again.');
 
 		} catch (\Exception $e) {
 			throw new NotFoundHttpException();
@@ -347,7 +328,46 @@ class HomeController extends Controller
 
 	}
 	
-	// landed here for addon payment
+
+	// landed after successful subscription payment
+	public function successPayment(Request $request)
+	{
+	
+		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+		$sessionId = $request->get('session_id');
+
+		try {
+		
+			$session = \Stripe\Checkout\Session::retrieve($sessionId);
+
+			if (!$session) {
+				throw new NotFoundHttpException;
+			}
+
+			$trx_type	=  $session->metadata->trx_type;
+			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
+
+			// Mark invoice as paid
+			$payment = Payment::where('session_id', $session->id)->first();
+			if (!$payment) {
+				throw new NotFoundHttpException();
+			}
+
+			if ($payment->status_code == LandlordPaymentStatusEnum::DRAFT->value) {
+				Log::debug("landlord.home.success SubscriptionInvoicePaid payment_id= ".$payment->id);
+				SubscriptionInvoicePaid::dispatch($payment->id);
+			}
+			return view('landlord.pages.info')->with('title','Payment Successful')
+				->with('msg','Thank you for your payment. We have received your payment.');
+			
+
+		} catch (\Exception $e) {
+			throw new NotFoundHttpException();
+		}
+
+	}
+
+	// landed here for successful addon payment
 	public function successAddon(Request $request)
 	{
 	
@@ -404,7 +424,7 @@ class HomeController extends Controller
 						throw new NotFoundHttpException();
 					}
 
-					if ($checkout->status_code->value == LandlordCheckoutStatusEnum::DRAFT->value) {
+					if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
 						$checkout->status_code = LandlordCheckoutStatusEnum::CANCELED->value;
 						$checkout->update();
 						Log::debug('landlord.home.success checkout Canceled');
@@ -417,7 +437,7 @@ class HomeController extends Controller
 						throw new NotFoundHttpException();
 					}
 
-					if ($payment->status_code->value == LandlordPaymentStatusEnum::DRAFT->value) {
+					if ($payment->status_code == LandlordPaymentStatusEnum::DRAFT->value) {
 						$payment->status_code = LandlordPaymentStatusEnum::CANCELED->value;
 						$payment->amount = 0;
 						$payment->update();

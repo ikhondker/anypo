@@ -13,7 +13,6 @@
 			<i class="bi bi-pencil-square me-1"></i> Edit Account
 		</a>
 	</div>
-
 	
 	<!-- Body -->
 	<div class="card-body">
@@ -94,6 +93,8 @@
 	<!-- End Footer -->
 </div>
 <!-- End Card -->
+
+
 
 @include('landlord.includes.sweet-alert2-confirm-advance')
 
