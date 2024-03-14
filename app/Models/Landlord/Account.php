@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-/* IQBAL 12-FEB-23 */
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 

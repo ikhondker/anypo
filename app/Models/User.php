@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Enum\UserRoleEnum;
 
-// needed for scope IQBAL
 use App\Enum\TicketStatusEnum;
 
 /*

@@ -2,7 +2,7 @@
 
 namespace App\Models\Tenant\Lookup;
 
-/* IQBAL 21-OCT-22 */
+
 use App\Traits\AddCreatedUpdatedBy;
 //use App\Models\User;
 use App\Models\Tenant\Workflow\Hierarchy;

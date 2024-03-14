@@ -5,7 +5,7 @@ namespace App\Models\Tenant\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/* IQBAL 21-OCT-22 */
+
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Tenant\Manage\Entity;

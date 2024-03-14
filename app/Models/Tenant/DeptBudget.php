@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-/* IQBAL 21-OCT-22 */
+
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Tenant\Budget;

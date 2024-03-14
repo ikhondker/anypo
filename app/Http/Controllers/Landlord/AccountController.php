@@ -262,7 +262,7 @@ class AccountController extends Controller
 	/**
 	 * IQBAL Upgrade package. Applicable only for logged-in user
 	 */
-	public function upgrade($new_service_id)
+	public function p2upgrade($new_service_id)
 	{
 		// NOTE: current user is logged in and have existing account_id
 		// Log::debug("Upgrading account=". $account_id." service_id=".$new_service_id);
@@ -331,7 +331,7 @@ class AccountController extends Controller
 	}
 
 	/**
-	 * IQBAL add-addon package when no payment is needed
+	 * buy new add-addon 
 	*/
 
 	public function addAddon($account_id, $addon_id)
