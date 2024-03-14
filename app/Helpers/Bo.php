@@ -130,7 +130,7 @@ class Bo
 
 		$invoice->from_date		= $checkout->start_date;
 		$invoice->to_date		= $checkout->end_date;
-		Log::channel('bo')->info('Account id=' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
+		Log::channel('bo')->info('Helpers.bo.createCheckoutInvoice Account id=' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
 		//Log::channel('bo')->info('password='.$random_password);
 
 		$invoice->due_date		= $checkout->end_date;

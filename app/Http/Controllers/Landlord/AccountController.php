@@ -337,7 +337,7 @@ class AccountController extends Controller
 	public function addAddon($account_id, $addon_id)
 	{
 
-		Log::channel('bo')->info('Buying new addon account='. $account_id . ' product_id=' . $addon_id);
+		Log::channel('bo')->info('landlord.account.addAddon buying new addon account='. $account_id . ' product_id=' . $addon_id);
 
 		if (auth()->user()->account_id == '') {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
@@ -420,54 +420,4 @@ class AccountController extends Controller
 		return redirect($session->url);
 
 	}	
-	public function oldaddAddon($account_id, $addon_id)
-	{
-
-		Log::channel('bo')->info('Buying new addon account='. $account_id . ' product_id=' . $addon_id);
-
-		// add addon to Service
-		$addon = Product::where('id', $addon_id)
-			->where('addon', true)
-			->where('enable', true)
-			->first();
-
-		// update account with user+GB+service name
-		$account			= Account::where('id', $account_id)->first();
-
-		$account->user		= $account->user + $addon->user;
-		$account->gb		= $account->gb + $addon->gb;
-		$account->price		= $account->price + $addon->price;
-		$account->save();
-		Log::channel('bo')->info('Account qty updated for account_id=' .  $account->id);
-
-		LandlordEventLog::event('account', $account->id, 'update', 'user', $account->user);
-		LandlordEventLog::event('account', $account->id, 'update', 'gb', $account->gb);
-		LandlordEventLog::event('account', $account->id, 'update', 'price', $account->price);
-
-		// add service row
-		$service				= new Service();
-		$service->addon			= true;
-		$service->product_id	= $addon->id;
-		$service->name			= $addon->name;
-		$service->name			= $addon->name;
-		$service->account_id	= $account->id;
-		$service->owner_id		= $account->owner_id;
-		$service->mnth			= $addon->mnth;
-		$service->user			= $addon->user;
-		$service->gb			= $addon->gb;
-		$service->price			= $addon->price;
-
-		$service->start_date	= now();
-		$service->save();
-
-		Log::channel('bo')->info('New Service added=' .  $service->id);
-
-		LandlordEventLog::event('service', $service->id, 'created');
-
-		// Send notification on add-on bought
-		$user = User::where('id', auth()->user()->id)->first();
-		$user->notify(new AddonPurchased($user, $account));
-
-		return redirect()->route('services.index')->with('success', 'Addon added to account successfully.');
-	}
 }

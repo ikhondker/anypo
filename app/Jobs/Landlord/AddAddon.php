@@ -68,9 +68,7 @@ class AddAddon implements ShouldQueue
 		Log::debug('Jobs.Landlord.AddAddon 3. Calling payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
 
-		// update account
-
-		// update addon sold_qty column
+		// update product addon sold_qty column
 		$addon			= Product::where('id', $checkout->product_id )->first();
 		$addon->sold_qty	= $addon->sold_qty+1;
 		$addon->save();
@@ -81,7 +79,7 @@ class AddAddon implements ShouldQueue
 		$account->gb		= $account->gb + $addon->gb;
 		$account->price		= $account->price + $addon->price;
 		$account->save();
-		Log::channel('bo')->info('Account qty updated for account_id=' .  $account->id);
+		Log::channel('bo')->info('obs.Landlord.AddAddon Account qty updated for account_id=' .  $account->id);
 
 		// mark checkout as complete
 		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
