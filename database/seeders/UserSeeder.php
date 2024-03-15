@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1001',
 				'name'				=> 'System Owner',
-				'email'				=> 'system@example.com',
+				'email'				=> 'system@anypo.net',
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
 				'role'				=> 'system',
@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1002',
 				'name'				=> 'Mr Support User',
-				'email'				=> 'support@example.com',
+				'email'				=> 'support@anypo.net',
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
 				'role'				=> 'support',
@@ -84,7 +84,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1003',
 				'name'				=> 'Admin User (Dummy)',
-				'email'				=> 'admin@example.com',
+				'email'				=> 'admin@anypo.net',
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
 				'role'				=> 'admin',
@@ -104,7 +104,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1004',
 				'name'				=> 'Mr. User 1 (IT)',
-				'email'				=> 'user1it@example.com',
+				'email'				=> 'user1it@anypo.net',
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1001',
 				'role'				=> 'user',
@@ -124,7 +124,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1005',
 				'name'				=> 'Mr User 2 (IT)',
-				'email'				=> 'user2it@example.com',
+				'email'				=> 'user2it@anypo.net',
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1001',
 				'role'				=> 'user',
@@ -144,7 +144,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1006',
 				'name'				=> 'Mr. User 1 (Sales)',
-				'email'				=> 'user1sales@example.com',
+				'email'				=> 'user1sales@anypo.net',
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1003',
 				'role'				=> 'user',
@@ -164,7 +164,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1007',
 				'name'				=> 'Mr User 2 (Sales)',
-				'email'				=> 'user2sales@example.com',
+				'email'				=> 'user2sales@anypo.net',
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1003',
 				'role'				=> 'user',
@@ -185,7 +185,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1008',
 				'name'				=> 'Mr Buyer 1',
-				'email'				=> 'buyer1@example.com',
+				'email'				=> 'buyer1@anypo.net',
 				'designation_id'	=> '1009',
 				'dept_id'			=> '1002',
 				'role'				=> 'buyer',
@@ -205,7 +205,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1009',
 				'name'				=> 'Mr Buyer 2',
-				'email'				=> 'buyer2@example.com',
+				'email'				=> 'buyer2@anypo.net',
 				'designation_id'	=> '1009',
 				'dept_id'			=> '1002',
 				'role'				=> 'buyer',
@@ -225,7 +225,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1010',
 				'name'				=> 'Mr HoD (IT)',
-				'email'				=> 'hodit@example.com',
+				'email'				=> 'hodit@anypo.net',
 				'designation_id'	=> '1004',
 				'dept_id'			=> '1001',
 				'role'				=> 'hod',
@@ -245,7 +245,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1011',
 				'name'				=> 'Mr HoD (Sales)',
-				'email'				=> 'hodsales@example.com',
+				'email'				=> 'hodsales@anypo.net',
 				'designation_id'	=> '1004',
 				'dept_id'			=> '1003',
 				'role'				=> 'hod',
@@ -265,7 +265,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1012',
 				'name'				=> 'Mr CxO',
-				'email'				=> 'cxo@example.com',
+				'email'				=> 'cxo@anypo.net',
 				'designation_id'	=> '1003',
 				'dept_id'			=> '1007',
 				'role'				=> 'cxo',

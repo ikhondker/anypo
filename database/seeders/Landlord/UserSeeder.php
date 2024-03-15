@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1001',
 				'name'				=> 'System Admin',
-				'email'				=> 'system@example.com',
+				'email'				=> 'system@anypo.net',
 				'role'				=> 'system',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1002',
 				'name'				=> 'Guest',
-				'email'				=> 'guest@example.com',
+				'email'				=> 'guest@anypo.net',
 				'role'				=> 'guest',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1003',
 				'name'				=> 'Support Supervisor',
-				'email'				=> 'supervisor@example.com',
+				'email'				=> 'supervisor@anypo.net',
 				'role'				=> 'supervisor',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -86,7 +86,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1004',
 				'name'				=> 'Accounts Manager',
-				'email'				=> 'accounts@example.com',
+				'email'				=> 'accounts@anypo.net',
 				'role'				=> 'accounts',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -104,7 +104,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1005',
 				'name'				=> 'Support Agent 1',
-				'email'				=> 'agent1@example.com',
+				'email'				=> 'agent1@anypo.net',
 				'role'				=> 'support',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -122,7 +122,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1006',
 				'name'				=> 'Support Agent 2',
-				'email'				=> 'agent2@example.com',
+				'email'				=> 'agent2@anypo.net',
 				'role'				=> 'support',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -140,7 +140,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1007',
 				'name'				=> 'Developer 1',
-				'email'				=> 'dev1@example.com',
+				'email'				=> 'dev1@anypo.net',
 				'role'				=> 'developer',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
@@ -158,7 +158,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1008',
 				'name'				=> 'Developer 2',
-				'email'				=> 'dev2@example.com',
+				'email'				=> 'dev2@anypo.net',
 				'role'				=> 'developer',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
