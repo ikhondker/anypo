@@ -56,12 +56,7 @@ class ViewServiceProvider extends ServiceProvider
 			$view->with('_route_name', $menu->route_name)->with('_access', $menu->access);
 			//$view->with('_xx_name', 'abc');
 		});
-
-
-		view()->composer('layouts.landlord', function ($view) {
-			$view->with('_xx_name', 'abc');
-		});
-
+		
 		Facades\View::composer(['layouts.landlord-app','layouts.landlord'], \App\View\Composers\LandlordSetupComposer::class);
 		Facades\View::composer(['layouts.landlord-app','layouts.landlord'], \App\View\Composers\LandlordUserComposer::class);
 
