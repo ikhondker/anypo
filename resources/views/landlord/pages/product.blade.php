@@ -8,17 +8,21 @@
 		<div class="col-lg-5 mb-5 mb-lg-0">
 			<div class="pe-lg-6">
 			<div class="mb-4">
-				<h2 class="h1">All-in-one</h2>
+				<h2 class="h1">Purchasing and Expense control solution</h2>
 			</div>
 
 			<div class="d-flex gap-3 mb-4">
-				<img class="avatar avatar-xss avatar-4x3" src="../assets/svg/brands/slack-icon.svg" alt="Logo">
-				<img class="avatar avatar-xss avatar-4x3" src="../assets/svg/brands/jira-icon.svg" alt="Logo">
-				<img class="avatar avatar-xss avatar-4x3" src="../assets/svg/brands/gitlab-icon.svg" alt="Logo">
+				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="Logo">
+				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="Logo">
+				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="Logo">
+				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="Logo">
+				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="Logo">
+				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="Logo">
+				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="Logo">
 			</div>
 
 			<div class="mb-4">
-				<p>Front is a collaboration hub for work, no matter what work you do. It's a place where conversations happen, decisions are made, and information is always at your fingertips. With Front, your team is better connected.</p>
+				<p>Struggling with managing expenses and staying within budget? We offer a seamless purchasing and budget control solution that streamlines workflows, automates tasks, and gives you real-time spending insights.</p>
 			</div>
 
 			<a class="link" href="#">Get started <i class="bi-chevron-right small ms-1"></i></a>
@@ -55,12 +59,12 @@
 		<div class="row justify-content-lg-between align-items-lg-center">
 		<div class="col-lg-5 mb-9 mb-lg-0">
 			<div class="mb-3">
-			<h2 class="h1">Whatever work you do, use our design</h2>
+			<h2 class="h1">Streamline Your Purchasing. Supercharge Your Growth.</h2>
 			</div>
 
-			<p>After brainstorming about insights, get the power to create something real. Bring your ideas to life and share your vision with concrete elements. Make collaboration and communication easier with your team or your client.</p>
+			<p>Take control of your spending and empower your business with our SAAS-based Purchasing and Budget Control Solution. Designed for small and medium-sized companies and startups, our platform ensures financial stability and strategic spending.</p>
 
-			<p>Use our tools to explore your ideas and make your vision come true. Then share your work easily.</p>
+			{{-- <p>Use our tools to explore your ideas and make your vision come true. Then share your work easily.</p> --}}
 
 			<div class="mt-4">
 			<a class="btn btn-primary btn-transition px-5" href="#">Start Now</a>
@@ -105,7 +109,7 @@
 					<use xlink:href="#circleImgID4"/>
 					</clipPath>
 					<g clip-path="url(#circleImgID3)">
-					<image width="515" height="515" xlink:href="../assets/img/515x515/img1.jpg" transform="matrix(1 0 0 1 1.639390e-02 2.880859e-02)"></image>
+					<image width="515" height="515" xlink:href="{{ Storage::disk('s3l')->url('img/515x515/img1.jpg') }}" transform="matrix(1 0 0 1 1.639390e-02 2.880859e-02)"></image>
 					</g>
 				</g>
 				</svg>
@@ -134,7 +138,7 @@
 					<use xlink:href="#circleImgID6"/>
 					</clipPath>
 					<g clip-path="url(#circleImgID5)">
-					<image width="900" height="900" xlink:href="../assets/img/900x900/img2.jpg" transform="matrix(1 0 0 1 -64.8123 -64.8055)"></image>
+					<image width="900" height="900" xlink:href="{{ Storage::disk('s3l')->url('img/900x900/img2.jpg') }}" transform="matrix(1 0 0 1 -64.8123 -64.8055)"></image>
 					</g>
 				</g>
 				</svg>
@@ -151,95 +155,107 @@
 	<!-- Features -->
 	<div class="position-relative bg-light rounded-2 mx-3 mx-lg-10">
 		<div class="container content-space-2 content-space-lg-3">
-		<!-- Heading -->
-		<div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5">
-			<h2>Wow your audience from the first second</h2>
-			<p>The powerful and flexible theme for all kinds of businesses</p>
-		</div>
-		<!-- End Heading -->
-
-		<div class="text-center mb-10">
-			<!-- List Checked -->
-			<ul class="list-inline list-checked list-checked-primary">
-			<li class="list-inline-item list-checked-item">Responsive</li>
-			<li class="list-inline-item list-checked-item">5-star support</li>
-			<li class="list-inline-item list-checked-item">Constant updates</li>
-			</ul>
-			<!-- End List Checked -->
-		</div>
-
-		<div class="row">
-			<div class="col-lg-7 mb-9 mb-lg-0">
-			<div class="pe-lg-6">
-				<!-- Browser Device -->
-				<figure class="device-browser">
-				<div class="device-browser-header">
-					<div class="device-browser-header-btn-list">
-					<span class="device-browser-header-btn-list-btn"></span>
-					<span class="device-browser-header-btn-list-btn"></span>
-					<span class="device-browser-header-btn-list-btn"></span>
-					</div>
-					<div class="device-browser-header-browser-bar">www.htmlstream.com/front/</div>
-				</div>
-
-				<div class="device-browser-frame">
-					<img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img6.jpg') }}" alt="Image Description">
-				</div>
-				</figure>
-				<!-- End Browser Device -->
-			</div>
-			</div>
-			<!-- End Col -->
-
-			<div class="col-lg-5">
 			<!-- Heading -->
-			<div class="mb-4">
-				<h2>Collaborative tools to design user experience</h2>
-				<p>We help businesses bring ideas to life in the digital world, by designing and implementing the technology tools that they need to win.</p>
+			<div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5">
+				<h2>Stop Overspending</h2>
+				<p>Gain real-time insights into your spending. See exactly where your money is going and identify areas where you can save.</p>
 			</div>
 			<!-- End Heading -->
 
-			<!-- List Checked -->
-			<ul class="list-checked list-checked-primary mb-5">
-				<li class="list-checked-item">Less routine – more creativity</li>
-				<li class="list-checked-item">Hundreds of thousands saved</li>
-				<li class="list-checked-item">Scale budgets efficiently</li>
-			</ul>
-			<!-- End List Checked -->
+			<div class="text-center mb-10">
+				<!-- List Checked -->
 
-			<a class="btn btn-primary" href="#">Get started</a>
-
-			<hr class="my-5">
-
-			<span class="d-block">Trusted by leading companies</span>
+				<ul class="list-inline list-checked list-checked-primary">
+					<li class="list-inline-item list-checked-item">Streamline Procurement</li>
+					<li class="list-inline-item list-checked-item">Cost control</li>
+					<li class="list-inline-item list-checked-item">Procurement Automation</li>
+					<li class="list-inline-item list-checked-item">Spending insights</li>
+				</ul>
+				<!-- End List Checked -->
+			</div>
 
 			<div class="row">
-				<div class="col py-3">
-				<img class="avatar avatar-4x3" src="../assets/svg/brands/fitbit-dark.svg" alt="Logo">
+				<div class="col-lg-7 mb-9 mb-lg-0">
+				<div class="pe-lg-6">
+					<!-- Browser Device -->
+					<figure class="device-browser">
+					<div class="device-browser-header">
+						<div class="device-browser-header-btn-list">
+						<span class="device-browser-header-btn-list-btn"></span>
+						<span class="device-browser-header-btn-list-btn"></span>
+						<span class="device-browser-header-btn-list-btn"></span>
+						</div>
+						<div class="device-browser-header-browser-bar">www.htmlstream.com/front/</div>
+					</div>
+
+					<div class="device-browser-frame">
+						<img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img6.jpg') }}" alt="Image Description">
+					</div>
+					</figure>
+					<!-- End Browser Device -->
+				</div>
 				</div>
 				<!-- End Col -->
 
-				<div class="col py-3">
-				<img class="avatar avatar-4x3" src="../assets/svg/brands/forbes-dark.svg" alt="Logo">
+				<div class="col-lg-5">
+				<!-- Heading -->
+				<div class="mb-4">
+					<h2>Small Business? Big Dreams.	</h2>
+					<p>Simplify Purchasing & Budgeting with Our Powerful SaaS Platform.</p>
 				</div>
-				<!-- End Col -->
+				<!-- End Heading -->
 
-				<div class="col py-3">
-				<img class="avatar avatar-4x3" src="../assets/svg/brands/mailchimp-dark.svg" alt="Logo">
+				<!-- List Checked -->
+				<ul class="list-checked list-checked-primary mb-5">
+					<li class="list-checked-item">Streamline Procurement</li>
+					<li class="list-checked-item">Cost control and Stay on Budget</li>
+					<li class="list-checked-item">Real-Time Spending insights</li>
+					<li class="list-checked-item">Enhanced Efficiency</li>
+					<li class="list-checked-item">Save Time and Effort</li>
+					<li class="list-checked-item">Approval Workflows</li>
+					<li class="list-checked-item">Peace of Mind</li>
+					<li class="list-checked-item">Customer Support</li>
+				</ul>
+				<!-- End List Checked -->
+
+				<a class="btn btn-primary" href="#">Get started</a>
+
+				<hr class="my-5">
+
+				<span class="d-block">Support most currencies of the world</span>
+				<div class="row">
+					<div class="col py-3">
+						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="Logo">
+						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="Logo">
+						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="Logo">
+						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="Logo">
+						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="Logo">
+						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="Logo">
+						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="Logo">
+					</div>
+					<!-- End Col -->
+				
 				</div>
-				<!-- End Col -->
-
-				<div class="col py-3">
-				<img class="avatar avatar-4x3" src="../assets/svg/brands/layar-dark.svg" alt="Logo">
+				<!-- End Row -->
 				</div>
 				<!-- End Col -->
 			</div>
 			<!-- End Row -->
-			</div>
-			<!-- End Col -->
-		</div>
-		<!-- End Row -->
 		</div>
 	</div>
 	<!-- End Features -->
+
+	
+		<!-- CTA -->
+	<div class="container content-space-b-2">
+		<div class="text-center bg-img-start py-6" style="background: url(../assets/svg/components/shape-6.svg) center no-repeat;">
+			<div class="mb-5">
+			<h2>Find the right learning path for you</h2>
+			<p>Answer a few questions and match your goals to our programs.</p>
+			</div>
+
+			<a class="btn btn-primary btn-transition" href="#">Get started</a>
+		</div>
+	</div>
+	<!-- End CTA -->
 @endsection

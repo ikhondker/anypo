@@ -42,13 +42,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'projects.create','route_name' => 'projects.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'projects.attachments','route_name' => 'projects.index', 'node_name' => 'budget'],
 
-
 			[ 'raw_route_name' => 'dbus.index','route_name' => 'dbus.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dbus.show','route_name' => 'dbus.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dbus.edit','route_name' => 'dbus.index', 'node_name' => 'budget'],
 
-		
-			
 			[ 'raw_route_name' => 'currencies.index','route_name' => 'currencies.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'currencies.edit','route_name' => 'currencies.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'currencies.create','route_name' => 'currencies.index', 'node_name' => 'lookups'],

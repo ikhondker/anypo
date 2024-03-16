@@ -27,7 +27,6 @@ class ViewServiceProvider extends ServiceProvider
 	 */
 	public function boot(): void
 	{
-
 		/*
 		|-----------------------------------------------------------------------------
 		| Landlord																	 + 
@@ -40,10 +39,10 @@ class ViewServiceProvider extends ServiceProvider
 		// 	//$view->with('_logo_dir',config('bo.DIR_LOGO'));
 		// });
 
-		view()->composer('layouts.landlord-app', function ($view) {
+		view()->composer(['layouts.landlord-app','layouts.landlord'], function ($view) {
 			$raw_route_name = \Request::route()->getName();
-			$menu	= new Menu;
-			//Log::debug("current_route_name =".$raw_route_name);
+			$menu			= new Menu;
+			//Log::debug("raw_route_name = ".$raw_route_name);
 			try {
 				$menu = Menu::where('raw_route_name',$raw_route_name)
 					->where('enable',true)
@@ -55,6 +54,12 @@ class ViewServiceProvider extends ServiceProvider
 				//$menu->node_name		= '';
 			}
 			$view->with('_route_name', $menu->route_name)->with('_access', $menu->access);
+			//$view->with('_xx_name', 'abc');
+		});
+
+
+		view()->composer('layouts.landlord', function ($view) {
+			$view->with('_xx_name', 'abc');
 		});
 
 		Facades\View::composer(['layouts.landlord-app','layouts.landlord'], \App\View\Composers\LandlordSetupComposer::class);
@@ -69,7 +74,6 @@ class ViewServiceProvider extends ServiceProvider
 		// 	$view->with('_avatar_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR')."\\");
 		// 	$view->with('_logo_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\");	
 		// });
-
 
 		view()->composer('layouts.app', function ($view) {
 			$raw_route_name = \Request::route()->getName();

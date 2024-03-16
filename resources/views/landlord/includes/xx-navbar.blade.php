@@ -150,36 +150,10 @@
 
 					<!-- Pages -->
 					<li class="nav-item">
-						<a id="aboutMegaMenu" class="hs-mega-menu-invoker nav-link" href="{{ route('about') }}"
-							role="button" aria-expanded="false">About Us</a>
-					</li>
-					<!-- End Pages -->
-
-					<!-- Pages -->
-					<li class="nav-item">
 						<a id="contactMegaMenu" class="hs-mega-menu-invoker nav-link"
 							href="{{ route('contact-us') }}" role="button" aria-expanded="false">Contact Us</a>
 					</li>
 					<!-- End Pages -->
-
-					<!-- Blog -->
-					<li class="hs-has-sub-menu nav-item">
-						<a id="blogMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#"
-							role="button" aria-expanded="false">Blog</a>
-
-						<!-- Mega Menu -->
-						<div class="hs-sub-menu dropdown-menu" aria-labelledby="blogMegaMenu"
-							style="min-width: 14rem;">
-							<a class="dropdown-item " href="./blog-journal.html">Journal</a>
-							<a class="dropdown-item " href="./blog-metro.html">Metro</a>
-							<a class="dropdown-item " href="./blog-newsroom.html">Newsroom</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item " href="./blog-article.html">Article</a>
-							<a class="dropdown-item " href="./blog-author-profile.html">Author Profile</a>
-						</div>
-						<!-- End Mega Menu -->
-					</li>
-					<!-- End Blog -->
 
 					<!-- Button -->
 					<li class="nav-item">

@@ -1,3 +1,160 @@
+
+	<!-- ========== FOOTER ========== -->
+	<footer class="bg-dark">
+		<div class="container content-space-t-2 content-space-b-1">
+		<div class="row mb-9">
+			<div class="col-lg-3 mb-5 mb-lg-0">
+
+			<!-- Logo -->
+			<div class="mb-3">
+				<a class="navbar-brand" href="./index.html" aria-label="Space">
+				<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-white.svg') }}" alt="Logo">
+				</a>
+			</div>
+			<!-- End Logo -->
+	
+			<!-- List -->
+			<ul class="list-unstyled list-py-1">
+				<li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_landlord_setup->address1.' '. $_landlord_setup->city }}</a></li>
+				<li><a class="link-sm link-light" href="#">{{ $_landlord_setup->state.' '. $_landlord_setup->zip }}, Canada</a></li>
+				<li><a class="link-sm link-light" href="tel:1-062-109-9222"><i class="bi-telephone-inbound-fill me-1"></i> +1 (062) 109-9222</a></li>
+			</ul>
+			<!-- End List -->
+			
+			</div>
+			<!-- End Col -->
+
+				
+			<div class="col-6 col-md-3 col-lg-2 mb-5 mb-md-0">
+				<h5 class="text-white">Resources</h5>
+					<!-- Nav Links -->
+				<ul class="list-unstyled list-py-1 mb-0">
+					<li><a class="link-sm link-light" href="#"><i class="bi-question-circle-fill me-1"></i> FAQ</a></li>
+					<li><a class="link-sm link-light" href="#"><i class="bi-person-circle me-1"></i> Your Account</a></li>
+				</ul>
+				<!-- End Nav Links -->
+			</div>
+			<!-- End Col -->
+
+
+			<div class="col-6 col-md-3 col-lg-2 mb-5 mb-md-0">
+				<h5 class="text-white">Legal & Privacy</h5>
+					<!-- Links -->
+				<ul class="list-unstyled list-py-1 mb-0">
+					<li><a class="link-sm link-light" href="#">Privacy &amp; Policy</a></li>
+					<li><a class="link-sm link-light" href="#">Terms of Services</a></li>
+					<li><a class="link-sm link-light" href="#">Contact us</a></li>
+				</ul>
+				<!-- End Links -->
+			</div>
+			<!-- End Col -->
+	
+			<div class="col-md-6 col-lg-5">
+			<!-- Form -->
+			<form>
+				<h5 class="text-white">Stay up to date</h5>
+	
+				<!-- Input Card -->
+				<div class="input-card mt-3">
+				<div class="input-card-form">
+					<input type="text" class="form-control" placeholder="Enter email" aria-label="Enter email">
+				</div>
+				<button type="button" class="btn btn-primary">Submit</button>
+				</div>
+				<!-- End Input Card -->
+			</form>
+			<!-- End Form -->
+	
+			<p class="form-text text-white-70">New UI kits or big discounts. Never spam.</p>
+			</div>
+			<!-- End Col -->
+		</div>
+		<!-- End Row -->
+	
+		<div class="row align-items-center">
+			<div class="col">
+				<p class="text-white-50 small mb-0">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved. Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})</p>
+				@auth
+					<p class="text-white-50 small">
+					<span class="text-muted">{{ auth()->user()->name }} {{ '| '.auth()->user()->id .' |' }}  {{ auth()->user()->email .' |' }} </span>
+
+					@if ( auth()->user()->role->value == UserRoleEnum::USER->value )
+						<span class="badge bg-primary-light">user </span>|
+					@else
+						<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'user']) }}">user</a> |
+					@endif
+
+					@if ( auth()->user()->role->value == UserRoleEnum::ADMIN->value)
+						<span class="badge bg-primary-light">admin </span>|
+					@else
+						<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'admin']) }}">admin</a> |
+					@endif
+
+					@if ( auth()->user()->role->value == UserRoleEnum::SUPPORT->value)
+						<span class="badge bg-primary-light">support </span>|
+					@else
+						<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'support']) }}">support</a> |
+					@endif
+
+					@if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
+						<span class="badge bg-light text-primary">system </span>
+					@else
+						<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'system']) }}">system</a>
+					@endif
+					</p>
+				@endauth
+				@guest
+					<p class="text-white-50 small">
+						Welcome Guest. Please  <a class="list-inline-item" href="{{ route('login') }}" class="text-light">Login</a> here.
+					</p>
+				@endguest
+			</div>
+			<!-- End Col -->
+	
+			<div class="col-auto">
+			<!-- Socials -->
+			<ul class="list-inline mb-0">
+				<li class="list-inline-item">
+				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
+					<i class="bi-facebook"></i>
+				</a>
+				</li>
+	
+				<li class="list-inline-item">
+				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
+					<i class="bi-google"></i>
+				</a>
+				</li>
+	
+				<li class="list-inline-item">
+				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
+					<i class="bi-twitter"></i>
+				</a>
+				</li>
+	
+				<li class="list-inline-item">
+				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
+					<i class="bi-github"></i>
+				</a>
+				</li>
+	
+				<li class="list-inline-item">
+				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
+					<i class="bi-linkedin"></i>
+				</a>
+				</li>
+			</ul>
+			<!-- End Socials -->
+			</div>
+			<!-- End Col -->
+		</div>
+		<!-- End Row -->
+		</div>
+  	</footer>
+  	<!-- ========== END FOOTER ========== -->
+
+  <br><br>
+
 <footer class="bg-dark">
   <div class="container pb-1 pb-lg-5">
 	<div class="row content-space-t-2">
@@ -165,7 +322,7 @@
 				<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'system']) }}">system</a>
 			  @endif
 			</p>
-				@endauth
+		@endauth
 		@guest
 			<p class="text-white-50 small">
 				Welcome Guest. Please  <a class="list-inline-item" href="{{ route('login') }}" class="text-light">Login</a> here.

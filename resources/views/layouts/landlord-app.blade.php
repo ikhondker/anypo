@@ -124,6 +124,7 @@
 											@default
 												<span class="badge bg-success">Back-office</span>
 										@endswitch
+										
 									</div>
 									<!-- End Avatar -->
 

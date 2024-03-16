@@ -11,7 +11,7 @@
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'users.show' ? 'active' : '' }}"
 			href="{{ route('users.show', auth()->user()->id) }}">
-			<i class="bi-person-circle nav-icon"></i> View Profile
+			<i class="bi-person-circle nav-icon"></i> View Profile 
 		</a>
 	</li>
 	<li class="nav-item">
