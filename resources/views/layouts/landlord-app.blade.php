@@ -6,16 +6,16 @@
 </head>
 
 <body>
-	<!-- ========== HEADER ========== -->
-	@include('landlord.includes.navbar')
-	<!-- ========== END HEADER ========== -->
 
+	<x-landlord.nav-bar />
+	
 	<!-- ========== MAIN CONTENT ========== -->
 	<main id="content" role="main" class="bg-light">
 
 		<!-- Breadcrumb -->
 		<div class="navbar-dark bg-dark"
-			style="background-image: url({{ Storage::disk('s3l')->url('svg/components/wave-pattern-light.svg') }});">
+			{{-- style="background-image: url({{ Storage::disk('s3l')->url('svg/components/wave-pattern-light.svg') }});"> --}}
+			style="background-image: url(landlord/background/wave-pattern-light.svg);">
 
 			<div class="container content-space-1 content-space-b-lg-3">
 				<div class="row align-items-center">

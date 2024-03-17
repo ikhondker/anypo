@@ -39,7 +39,7 @@ class ViewServiceProvider extends ServiceProvider
 		// 	//$view->with('_logo_dir',config('bo.DIR_LOGO'));
 		// });
 
-		view()->composer(['layouts.landlord-app','layouts.landlord'], function ($view) {
+		view()->composer(['layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu			= new Menu;
 			//Log::debug("raw_route_name = ".$raw_route_name);
@@ -58,7 +58,7 @@ class ViewServiceProvider extends ServiceProvider
 		});
 		
 		Facades\View::composer(['layouts.landlord-app','layouts.landlord'], \App\View\Composers\LandlordSetupComposer::class);
-		Facades\View::composer(['layouts.landlord-app','layouts.landlord'], \App\View\Composers\LandlordUserComposer::class);
+		Facades\View::composer(['layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], \App\View\Composers\LandlordUserComposer::class);
 
 		/*
 		|-----------------------------------------------------------------------------

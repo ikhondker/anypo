@@ -16,6 +16,8 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 
+use App\Models\Landlord\Manage\Setup;
+
 /**
 * ==================================================================================
 * Route for Testing purpose
@@ -130,7 +132,8 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/contact-us', function () {
-	return view('landlord.pages.contact-us');
+	$setup = Setup::with('relCountry')->first();
+	return view('landlord.pages.contact-us', compact('setup'));
 })->name('contact-us');
 
 /**

@@ -52,6 +52,8 @@
 						<x-landlord.show.my-text value="{{ $setup->address2 }}" label="Address2" />
 						<x-landlord.show.my-text value="{{ $setup->city.', '.$setup->state.', '.$setup->zip  }}" label="City-State-Zip" />
 						<x-landlord.show.my-text value="{{ $setup->relCountry->name }}" label="Country" />
+						<x-landlord.show.my-text value="{{ $setup->cell }}" label="Cell" />
+						<x-landlord.show.my-text value="{{ $setup->email }}" label="Email" />
 						<x-landlord.show.my-url value="{{ $setup->website }}" label="Website" />
 						<x-landlord.show.my-url value="{{ $setup->facebook }}" label="Facebook" />
 						<x-landlord.show.my-url value="{{ $setup->linkedin }}" label="LinkedIn" />

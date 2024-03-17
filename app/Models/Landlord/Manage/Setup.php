@@ -30,10 +30,10 @@ class Setup extends Model
 
 	/* ---------------- HasMany ---------------------- */
 
-
 	/* ---------------- belongsTo ---------------------- */
 	public function relCountry()
 	{
+		// don change the relation name from relCountry to country
 		return $this->belongsTo(Country::class, 'country');
 	}
 

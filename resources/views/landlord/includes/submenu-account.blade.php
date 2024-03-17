@@ -21,14 +21,14 @@
 		</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'users.index' ? 'active' : '' }}" href="{{ route('logout') }}">
-			<i class="bi bi-power nav-icon text-danger"></i> Logout
+		<a class="nav-link" href="{{ route('logout') }}">
+			<i class="bi bi-power nav-icon text-danger text-strong"></i> Logout
 		</a>
 	</li>
 
 	@if(session('original_user'))
 		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'users.index' ? 'active' : '' }}" href="{{ route('users.leave-impersonate') }}">
+			<a class="nav-link" href="{{ route('users.leave-impersonate') }}">
 				<i class="bi bi-power nav-icon text-danger"></i> Leave Impersonate
 			</a>
 		</li>

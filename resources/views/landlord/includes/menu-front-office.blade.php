@@ -16,7 +16,7 @@
 	</li> --}}
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'tickets.index' ? 'active' : '' }}" href="{{ route('tickets.index') }}">
-			<i class="bi-question-square nav-icon"></i> Tickets
+			<i class="bi-ticket nav-icon"></i> Tickets
 		</a>
 	</li>
 	<li class="nav-item">
@@ -41,14 +41,14 @@
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'invoices.index' ? 'active' : '' }}"
 				href="{{ route('invoices.index') }}">
-				<i class="bi-bell nav-icon"></i> Invoices
+				<i class="bi-file-ruled nav-icon"></i> Invoices
 			</a>
 		</li>
 
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'payments.index' ? 'active' : '' }}"
 				href="{{ route('payments.index') }}">
-				<i class="bi-bell nav-icon"></i> Payments
+				<i class="bi-currency-dollar nav-icon"></i> Payments
 			</a>
 		</li>
 
@@ -60,7 +60,7 @@
 
 		<li class="nav-item">
 			<a class="nav-link " href="{{ route('activities.index') }}">
-				<i class="bi-bell nav-icon"></i> Activity Log</a>
+				<i class="bi-activity nav-icon"></i> Activity Log</a>
 		</li>
 
 	</ul>

@@ -25,7 +25,8 @@
 					{
 					"coords": [37.4040344, -122.0289704],
 					"icon": {
-						"iconUrl": "../assets/svg/components/map-pin.svg",
+						"iconUrl": "landlord/background/map-pin.svg",
+						{{-- "iconUrl": "{{ Storage::disk('s3l')->url('svg/components/map-pin.svg') }}", --}}
 						"iconSize": [50, 45]
 					},
 					"popup": {
@@ -40,19 +41,22 @@
 			<div class="row">
 			<div class="col-sm-6">
 				<h5 class="mb-1">Call us:</h5>
-				<p>+1 (062) 109-9222</p>
+				<p>{{ $setup->cell }} </p>
 			</div>
 			<!-- End Col -->
 
 			<div class="col-sm-6">
 				<h5 class="mb-1">Email us:</h5>
-				<p>hello@example.com</p>
+				<p>{{ $setup->email }}</p>
 			</div>
 			<!-- End Col -->
 
 			<div class="col-sm-6">
 				<h5 class="mb-1">Address:</h5>
-				<p>153 Williamson Plaza, Maggieberg</p>
+				<p>{{ $setup->address1 }} {{ $setup->city.' '.$setup->state.' '. $setup->zip.' ,'. $setup->relCountry->name }}.</p>
+				<span class="avatar avatar-xs avatar-circle">
+					<img class="avatar-img" src="{{ Storage::disk('s3l')->url('flag/ca.png') }}" alt="Image Description">
+				</span>
 			</div>
 			<!-- End Col -->
 			</div>

@@ -5,22 +5,22 @@
 		<div class="row mb-9">
 			<div class="col-lg-3 mb-5 mb-lg-0">
 
-			<!-- Logo -->
-			<div class="mb-3">
-				<a class="navbar-brand" href="./index.html" aria-label="Space">
-				<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-white.svg') }}" alt="Logo">
-				</a>
-			</div>
-			<!-- End Logo -->
-	
-			<!-- List -->
-			<ul class="list-unstyled list-py-1">
-				<li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_landlord_setup->address1 }}</a></li>
-				<li><a class="link-sm link-light" href="#">{{ $_landlord_setup->city.' '.$_landlord_setup->state.' '. $_landlord_setup->zip }}, Canada</a></li>
-				<li><a class="link-sm link-light" href="tel:1-062-109-9222"><i class="bi-telephone-inbound-fill me-1"></i> +1 (062) 109-9222</a></li>
-			</ul>
-			<!-- End List -->
-			
+				<!-- Logo -->
+				<div class="mb-3">
+					<a class="navbar-brand" href="./index.html" aria-label="Space">
+					<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-white.svg') }}" alt="Logo">
+					</a>
+				</div>
+				<!-- End Logo -->
+		
+				<!-- List -->
+				<ul class="list-unstyled list-py-1">
+					<li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_landlord_setup->address1 }}</a></li>
+					<li><a class="link-sm link-light" href="#">{{ $_landlord_setup->city.' '.$_landlord_setup->state.' '. $_landlord_setup->zip. ', '. $_landlord_setup->relCountry->name }}</a></li>
+					<li><a class="link-sm link-light" href="tel:{{$_landlord_setup->cell}}"><i class="bi-telephone-inbound-fill me-1"></i> {{ $_landlord_setup->cell }}</a></li>
+				</ul>
+				<!-- End List --> 
+				
 			</div>
 			<!-- End Col -->
 
@@ -29,8 +29,8 @@
 				<h5 class="text-white">Resources</h5>
 					<!-- Nav Links -->
 				<ul class="list-unstyled list-py-1 mb-0">
-					<li><a class="link-sm link-light" href="#"><i class="bi-question-circle-fill me-1"></i> FAQ</a></li>
-					<li><a class="link-sm link-light" href="#"><i class="bi-person-circle me-1"></i> Your Account</a></li>
+					<li><a class="link-sm link-light" href="{{ route('faq') }}"><i class="bi-question-circle-fill me-1"></i> FAQ</a></li>
+					<li><a class="link-sm link-light" href="{{ route('login') }}"><i class="bi-person-circle me-1"></i> Your Account</a></li>
 				</ul>
 				<!-- End Nav Links -->
 			</div>
@@ -41,9 +41,9 @@
 				<h5 class="text-white">Legal & Privacy</h5>
 					<!-- Links -->
 				<ul class="list-unstyled list-py-1 mb-0">
-					<li><a class="link-sm link-light" href="#">Privacy &amp; Policy</a></li>
-					<li><a class="link-sm link-light" href="#">Terms of Services</a></li>
-					<li><a class="link-sm link-light" href="#">Contact us</a></li>
+					<li><a class="link-sm link-light" href="{{ route('privacy') }}">Privacy &amp; Policy</a></li>
+					<li><a class="link-sm link-light" href="{{ route('tos') }}">Terms of Services</a></li>
+					<li><a class="link-sm link-light" href="{{ route('contact-us') }}">Contact us</a></li>
 				</ul>
 				<!-- End Links -->
 			</div>
@@ -72,7 +72,7 @@
 				</form>
 				<!-- End Form -->
 	
-			<p class="form-text text-white-70">New UI kits or big discounts. Never spam.</p>
+			<p class="form-text text-white-70">Product new features or or big discounts. We never spam.</p>
 			</div>
 			<!-- End Col -->
 		</div>
@@ -80,7 +80,12 @@
 	
 		<div class="row align-items-center">
 			<div class="col">
-				<p class="text-white-50 small mb-0">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved. Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})</p>
+				<p class="text-white-50 small mb-0">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved. 
+					@auth
+						@if (auth()->user()->isSystem())
+							Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})</p>
+						@endif	
+					@endauth
 			</div>
 			<!-- End Col -->
 	

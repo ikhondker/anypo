@@ -28,7 +28,7 @@ class SetupSeeder extends Seeder
 							'zip'			=> 'M1G1R9',
 							'country'		=> 'CA',
 							'email'		  	=> 'info@anypo.net',
-							'cell'			=> '+880 191310509',
+							'cell'			=> '+0012262804920',
 							'website'		=> 'https://www.anypo.net',
 							'banner_message'=> 'This is a test public message. Will be shown only in all dashboards, when enabled.',
 							'facebook'		=> 'https://www.facebook.com/HawarIT',
