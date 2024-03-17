@@ -154,13 +154,14 @@ Route::get('/home', function () {
 /* ======================== Home Controller ======================================== */
 use App\Http\Controllers\Landlord\HomeController;
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/pricing', [HomeController::class, 'pricing'])->name('home.pricing');
+Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
 
 Route::get('/online/{invoice_no}', [HomeController::class, 'onlineInvoice'])->name('home.invoice');
 Route::get('/send', [HomeController::class, 'testNotification'])->name('send');
 Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
 Route::post('/save-contact', [HomeController::class, 'saveContact'])->name('home.savecontact');
+Route::post('/join-mail-list', [HomeController::class, 'joinMailList'])->name('home.join-mail-list');
 //Route::get('/payment/{invoice_no}',[App\Http\Controllers\HomeController::class, 'payment'])->name('home.payment');
 
 /**
@@ -312,6 +313,7 @@ use App\Http\Controllers\Landlord\Lookup\ProductController;
 use App\Http\Controllers\Landlord\Manage\AttachmentController;
 use App\Http\Controllers\Landlord\Manage\CheckoutController;
 use App\Http\Controllers\Landlord\Manage\EntityController;
+use App\Http\Controllers\Landlord\Manage\MailListController;
 use App\Http\Controllers\Landlord\Manage\MenuController;
 use App\Http\Controllers\Landlord\Manage\ProcessController;
 use App\Http\Controllers\Landlord\Manage\SetupController;
@@ -361,6 +363,11 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 	Route::resource('entities', EntityController::class);
 	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
 	Route::get('/entity/export', [EntityController::class, 'export'])->name('entities.export');
+
+	/* ======================== MailList ======================================== */
+	Route::resource('mail-lists', MailListController::class)->middleware(['auth', 'verified']);
+	//Route::get('/maillist/export',[MailListController::class,'export'])->name('maillists.export');
+	Route::get('/mail-lists/delete/{mailList}',[MailListController::class,'destroy'])->name('mail-lists.destroy');
 
 	/* ======================== Menu ======================================== */
 	Route::resource('menus', MenuController::class);

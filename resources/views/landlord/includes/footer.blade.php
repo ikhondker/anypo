@@ -15,8 +15,8 @@
 	
 			<!-- List -->
 			<ul class="list-unstyled list-py-1">
-				<li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_landlord_setup->address1.' '. $_landlord_setup->city }}</a></li>
-				<li><a class="link-sm link-light" href="#">{{ $_landlord_setup->state.' '. $_landlord_setup->zip }}, Canada</a></li>
+				<li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_landlord_setup->address1 }}</a></li>
+				<li><a class="link-sm link-light" href="#">{{ $_landlord_setup->city.' '.$_landlord_setup->state.' '. $_landlord_setup->zip }}, Canada</a></li>
 				<li><a class="link-sm link-light" href="tel:1-062-109-9222"><i class="bi-telephone-inbound-fill me-1"></i> +1 (062) 109-9222</a></li>
 			</ul>
 			<!-- End List -->
@@ -50,20 +50,27 @@
 			<!-- End Col -->
 	
 			<div class="col-md-6 col-lg-5">
-			<!-- Form -->
-			<form>
-				<h5 class="text-white">Stay up to date</h5>
-	
-				<!-- Input Card -->
-				<div class="input-card mt-3">
-				<div class="input-card-form">
-					<input type="text" class="form-control" placeholder="Enter email" aria-label="Enter email">
-				</div>
-				<button type="button" class="btn btn-primary">Submit</button>
-				</div>
-				<!-- End Input Card -->
-			</form>
-			<!-- End Form -->
+				<!-- Form -->
+				<form action="{{ route('home.join-mail-list') }}" method="POST">
+					@csrf
+					<h5 class="text-white">Stay up to date</h5>
+		
+					<!-- Input Card -->
+					<div class="input-card mt-3">
+						<div class="input-card-form">
+							{{-- <input type="text" class="form-control" placeholder="Enter email" aria-label="Enter email"> --}}
+							<input id="email" type="email" placeholder="you@example.com" aria-label="Enter email"
+								class="form-control @error('email') is-invalid @enderror" name="email"
+								value="{{ old('email') }}" required>
+							@error('email')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+					<!-- End Input Card -->
+				</form>
+				<!-- End Form -->
 	
 			<p class="form-text text-white-70">New UI kits or big discounts. Never spam.</p>
 			</div>
@@ -74,77 +81,37 @@
 		<div class="row align-items-center">
 			<div class="col">
 				<p class="text-white-50 small mb-0">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved. Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})</p>
-				@auth
-					<p class="text-white-50 small">
-					<span class="text-muted">{{ auth()->user()->name }} {{ '| '.auth()->user()->id .' |' }}  {{ auth()->user()->email .' |' }} </span>
-
-					@if ( auth()->user()->role->value == UserRoleEnum::USER->value )
-						<span class="badge bg-primary-light">user </span>|
-					@else
-						<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'user']) }}">user</a> |
-					@endif
-
-					@if ( auth()->user()->role->value == UserRoleEnum::ADMIN->value)
-						<span class="badge bg-primary-light">admin </span>|
-					@else
-						<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'admin']) }}">admin</a> |
-					@endif
-
-					@if ( auth()->user()->role->value == UserRoleEnum::SUPPORT->value)
-						<span class="badge bg-primary-light">support </span>|
-					@else
-						<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'support']) }}">support</a> |
-					@endif
-
-					@if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
-						<span class="badge bg-light text-primary">system </span>
-					@else
-						<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'system']) }}">system</a>
-					@endif
-					</p>
-				@endauth
-				@guest
-					<p class="text-white-50 small">
-						Welcome Guest. Please  <a class="list-inline-item" href="{{ route('login') }}" class="text-light">Login</a> here.
-					</p>
-				@endguest
 			</div>
 			<!-- End Col -->
 	
 			<div class="col-auto">
-			<!-- Socials -->
-			<ul class="list-inline mb-0">
-				<li class="list-inline-item">
-				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
-					<i class="bi-facebook"></i>
-				</a>
-				</li>
-	
-				<li class="list-inline-item">
-				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
-					<i class="bi-google"></i>
-				</a>
-				</li>
-	
-				<li class="list-inline-item">
-				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
-					<i class="bi-twitter"></i>
-				</a>
-				</li>
-	
-				<li class="list-inline-item">
-				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
-					<i class="bi-github"></i>
-				</a>
-				</li>
-	
-				<li class="list-inline-item">
-				<a class="btn btn-ghost-light btn-sm btn-icon" href="#">
-					<i class="bi-linkedin"></i>
-				</a>
-				</li>
-			</ul>
-			<!-- End Socials -->
+				<!-- Socials -->
+				<ul class="list-inline mb-0">
+					<li class="list-inline-item">
+					<a class="btn btn-soft-light btn-xs btn-icon" href="#">
+						<i class="bi-facebook"></i>
+					</a>
+					</li>
+		
+					<li class="list-inline-item">
+					<a class="btn btn-soft-light btn-xs btn-icon" href="#">
+						<i class="bi-google"></i>
+					</a>
+					</li>
+		
+					<li class="list-inline-item">
+					<a class="btn btn-soft-light btn-xs btn-icon" href="#">
+						<i class="bi-twitter"></i>
+					</a>
+					</li>
+		
+					<li class="list-inline-item">
+					<a class="btn btn-soft-light btn-xs btn-icon" href="#">
+						<i class="bi-github"></i>
+					</a>
+					</li>
+				</ul>
+				<!-- End Socials -->
 			</div>
 			<!-- End Col -->
 		</div>
@@ -152,189 +119,6 @@
 		</div>
   	</footer>
   	<!-- ========== END FOOTER ========== -->
-
-  <br><br>
-
-<footer class="bg-dark">
-  <div class="container pb-1 pb-lg-5">
-	<div class="row content-space-t-2">
-	  <div class="col-lg-3 mb-7 mb-lg-0">
-		<!-- Logo -->
-		<div class="mb-3">
-		  <a class="navbar-brand" href="./index.html" aria-label="Space">
-			<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-white.svg') }}" alt="Logo">
-		  </a>
-		</div>
-		<!-- End Logo -->
-
-		<!-- List -->
-		<ul class="list-unstyled list-py-1">
-		  <li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_landlord_setup->address1.' '. $_landlord_setup->city }}</a></li>
-		  <li><a class="link-sm link-light" href="#">{{ $_landlord_setup->state.' '. $_landlord_setup->zip }}, Canada</a></li>
-		  <li><a class="link-sm link-light" href="tel:1-062-109-9222"><i class="bi-telephone-inbound-fill me-1"></i> +1 (062) 109-9222</a></li>
-		</ul>
-		<!-- End List -->
-
-	  </div>
-	  <!-- End Col -->
-
-	  <div class="col-sm mb-7 mb-sm-0">
-		<h5 class="text-white mb-3">Company</h5>
-
-		<!-- List -->
-		<ul class="list-unstyled list-py-1 mb-0">
-		  <li><a class="link-sm link-light" href="#">About</a></li>
-		  <li><a class="link-sm link-light" href="#">Careers <span class="badge bg-warning text-dark rounded-pill ms-1">We're hiring</span></a></li>
-		  <li><a class="link-sm link-light" href="#">Blog</a></li>
-		  <li><a class="link-sm link-light" href="#">Customers <i class="bi-box-arrow-up-right small ms-1"></i></a></li>
-		  <li><a class="link-sm link-light" href="#">Hire us</a></li>
-		</ul>
-		<!-- End List -->
-	  </div>
-	  <!-- End Col -->
-
-	  <div class="col-sm mb-7 mb-sm-0">
-		<h5 class="text-white mb-3">Features</h5>
-
-		<!-- List -->
-		<ul class="list-unstyled list-py-1 mb-0">
-		  <li><a class="link-sm link-light" href="#">Press <i class="bi-box-arrow-up-right small ms-1"></i></a></li>
-		  <li><a class="link-sm link-light" href="#">Release Notes</a></li>
-		  <li><a class="link-sm link-light" href="#">Integrations</a></li>
-		  <li><a class="link-sm link-light" href="#">Pricing</a></li>
-		</ul>
-		<!-- End List -->
-	  </div>
-	  <!-- End Col -->
-
-	  <div class="col-sm mb-7 mb-sm-0">
-		<h5 class="text-white mb-3">Documentation</h5>
-
-		<!-- List -->
-		<ul class="list-unstyled list-py-1 mb-0">
-		  <li><a class="link-sm link-light" href="#">Support</a></li>
-		  <li><a class="link-sm link-light" href="#">Docs</a></li>
-		  <li><a class="link-sm link-light" href="#">Status</a></li>
-		  <li><a class="link-sm link-light" href="#">API Reference</a></li>
-		  <li><a class="link-sm link-light" href="#">Tech Requirements</a></li>
-		</ul>
-		<!-- End List -->
-	  </div>
-	  <!-- End Col -->
-
-	  <div class="col-sm">
-		<h5 class="text-white mb-3">Resources</h5>
-
-		<!-- List -->
-		<ul class="list-unstyled list-py-1 mb-5">
-		  <li><a class="link-sm link-light" href="#"><i class="bi-question-circle-fill me-1"></i> Help</a></li>
-		  <li><a class="link-sm link-light" href="#"><i class="bi-person-circle me-1"></i> Your Account</a></li>
-		</ul>
-		<!-- End List -->
-	  </div>
-	  <!-- End Col -->
-	</div>
-	<!-- End Row -->
-
-	<div class="border-top border-white-10 my-7"></div>
-
-	<div class="row mb-7">
-	  <div class="col-sm mb-3 mb-sm-0">
-		<!-- Socials -->
-		<ul class="list-inline list-separator list-separator-light mb-0">
-		  <li class="list-inline-item">
-			<a class="link-sm link-light" href="{{ route('privacy') }}">Privacy &amp; Policy</a>
-		  </li>
-		  <li class="list-inline-item">
-			<a class="link-sm link-light" href="{{ route('tos') }}">Terms</a>
-		  </li>
-		  <li class="list-inline-item">
-			<a class="link-sm link-light" href="#">Site Map</a>
-		  </li>
-		</ul>
-		<!-- End Socials -->
-	  </div>
-
-	  <div class="col-sm-auto">
-		<!-- Socials -->
-		<ul class="list-inline mb-0">
-		  <li class="list-inline-item">
-			<a class="btn btn-soft-light btn-xs btn-icon" href="#">
-			  <i class="bi-facebook"></i>
-			</a>
-		  </li>
-
-		  <li class="list-inline-item">
-			<a class="btn btn-soft-light btn-xs btn-icon" href="#">
-			  <i class="bi-google"></i>
-			</a>
-		  </li>
-
-		  <li class="list-inline-item">
-			<a class="btn btn-soft-light btn-xs btn-icon" href="#">
-			  <i class="bi-twitter"></i>
-			</a>
-		  </li>
-
-		  <li class="list-inline-item">
-			<a class="btn btn-soft-light btn-xs btn-icon" href="#">
-			  <i class="bi-github"></i>
-			</a>
-		  </li>
-
-		</ul>
-		<!-- End Socials -->
-	  </div>
-	</div>
-
-	<!-- Copyright -->
-	<div class="w-md-85 text-lg-center mx-lg-auto">
-		<p class="text-white-50 small">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved. Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})</p>
-		
-
-		<p class="text-white-50 small">When you visit or interact with our sites, services or tools, we or our authorized service providers may use cookies for storing information to help provide you with a better, 
-			<br>faster and safer experience and for marketing purposes.</p>
-		@auth
-			<p class="text-white-50 small">
-			  <span class="text-muted">{{ auth()->user()->name }} {{ '| '.auth()->user()->id .' |' }}  {{ auth()->user()->email .' |' }} </span>
-
-			  @if ( auth()->user()->role->value == UserRoleEnum::USER->value )
-				<span class="badge bg-primary-light">user </span>|
-			  @else
-				<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'user']) }}">user</a> |
-			  @endif
-
-			  @if ( auth()->user()->role->value == UserRoleEnum::ADMIN->value)
-				<span class="badge bg-primary-light">admin </span>|
-			  @else
-				<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'admin']) }}">admin</a> |
-			  @endif
-
-			  @if ( auth()->user()->role->value == UserRoleEnum::SUPPORT->value)
-				<span class="badge bg-primary-light">support </span>|
-			  @else
-				<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'support']) }}">support</a> |
-			  @endif
-
-			  @if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
-				  <span class="badge bg-light text-primary">system </span>
-			  @else
-				<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'system']) }}">system</a>
-			  @endif
-			</p>
-		@endauth
-		@guest
-			<p class="text-white-50 small">
-				Welcome Guest. Please  <a class="list-inline-item" href="{{ route('login') }}" class="text-light">Login</a> here.
-			</p>
-		@endguest
-
-
-	</div>
-	<!-- End Copyright -->
-  </div>
-</footer>
-
 
 <!-- JS Global Compulsory  -->
 {{-- <script src="{{ asset('/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script> --}}

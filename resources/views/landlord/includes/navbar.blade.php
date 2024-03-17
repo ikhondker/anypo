@@ -137,7 +137,7 @@
 					<!-- Account -->
 					<li class="nav-item">
 						<a id="accountMegaMenu" class="hs-mega-menu-invoker nav-link active"
-							href="{{ route('home.pricing') }}" role="button" aria-expanded="false">Pricing</a>
+							href="{{ route('pricing') }}" role="button" aria-expanded="false">Pricing</a>
 					</li>
 					<!-- End Account -->
 
@@ -157,7 +157,7 @@
 
 					<!-- Button -->
 					<li class="nav-item">
-						<a class="btn btn-primary btn-transition"	href="{{ route('home.pricing') }}">Buy now</a>
+						<a class="btn btn-primary btn-transition"	href="{{ route('pricing') }}">Buy now</a>
 					</li>
 					<!-- End Button -->
 					

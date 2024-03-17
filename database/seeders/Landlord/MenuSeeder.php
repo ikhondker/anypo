@@ -68,6 +68,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'entities.edit',	 'route_name' => 'entities.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'entities.create',	'route_name' => 'entities.index',	  'access' => 'B'],
 
+			[ 'raw_route_name' => 'mail-lists.index',	'route_name' => 'mail-lists.index',	  'access' => 'S'],
+
 			[ 'raw_route_name' => 'invoices.index',	'route_name' => 'invoices.index',	  'access' => 'F'],
 			[ 'raw_route_name' => 'invoices.show',	 'route_name' => 'invoices.index',	  'access' => 'F'],
 			[ 'raw_route_name' => 'invoices.update',	'route_name' => 'invoices.index',	  'access' => 'B'],

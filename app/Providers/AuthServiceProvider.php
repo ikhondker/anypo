@@ -30,16 +30,14 @@ class AuthServiceProvider extends ServiceProvider
 		*/
 		'App\Models\Landlord\Account'				=> 'App\Policies\Landlord\AccountPolicy',
 		'App\Models\Landlord\Comment' 				=> 'App\Policies\Landlord\CommentPolicy',
-		
 		'App\Models\Landlord\Dashboard' 			=> 'App\Policies\Landlord\DashboardPolicy',
 		//'App\Models\Landlord\Notification' 		=> 'App\Policies\Landlord\NotificationPolicy',
 		'App\Models\Landlord\Report' 				=> 'App\Policies\Landlord\ReportPolicy',
-		
 		'App\Models\Landlord\Ticket' 				=> 'App\Policies\Landlord\TicketPolicy',
 		
 		'App\Models\Landlord\Admin\Activity'		=> 'App\Policies\Landlord\Admin\ActivityPolicy',
-		'App\Models\Landlord\Admin\Payment' 		=> 'App\Policies\Landlord\Admin\PaymentPolicy',
 		'App\Models\Landlord\Admin\Invoice' 		=> 'App\Policies\Landlord\Admin\InvoicePolicy',
+		'App\Models\Landlord\Admin\Payment' 		=> 'App\Policies\Landlord\Admin\PaymentPolicy',
 		'App\Models\Landlord\Admin\Service' 		=> 'App\Policies\Landlord\Admin\ServicePolicy',
 
 		'App\Models\Landlord\Lookup\Category' 		=> 'App\Policies\Landlord\Lookup\CategoryPolicy',
@@ -49,18 +47,18 @@ class AuthServiceProvider extends ServiceProvider
 		//'App\Models\Landlord\Lookup\Priority' 		=> 'App\Policies\Landlord\Lookup\PriorityPolicy',
 		'App\Models\Landlord\Lookup\Product' 		=> 'App\Policies\Landlord\Lookup\ProductPolicy',
 		//'App\Models\Landlord\Lookup\Rating' 		=> 'App\Policies\Landlord\Lookup\RatingPolicy',
-		
-		
+				
 		'App\Models\Landlord\Manage\Attachment' 	=> 'App\Policies\Landlord\Manage\AttachmentPolicy',
-		'App\Models\Landlord\Manage\Contact' 		=> 'App\Policies\Landlord\Manage\ContactPolicy',
 		'App\Models\Landlord\Manage\Checkout' 		=> 'App\Policies\Landlord\Manage\CheckoutPolicy',
+		'App\Models\Landlord\Manage\Contact' 		=> 'App\Policies\Landlord\Manage\ContactPolicy',
 		'App\Models\Landlord\Manage\Entity' 		=> 'App\Policies\Landlord\Manage\EntityPolicy',
+		'App\Models\Landlord\Manage\MailList' 		=> 'App\Policies\Landlord\Manage\MailListPolicy',
 		'App\Models\Landlord\Manage\Menu' 			=> 'App\Policies\Landlord\Manage\MenuPolicy',
 		'App\Models\Landlord\Manage\Process' 		=> 'App\Policies\Landlord\Manage\ProcessPolicy',
 		'App\Models\Landlord\Manage\Setup' 			=> 'App\Policies\Landlord\Manage\SetupPolicy',
+		'App\Models\Landlord\Manage\Status' 		=> 'App\Policies\Landlord\Manage\StatusPolicy',
 		'App\Models\Landlord\Manage\Table' 			=> 'App\Policies\Landlord\Manage\TablePolicy',
 		'App\Models\Landlord\Manage\Template' 		=> 'App\Policies\Landlord\Manage\TemplatePolicy',
-		'App\Models\Landlord\Manage\Status' 		=> 'App\Policies\Landlord\Manage\StatusPolicy',
 
 		/*
 		|-----------------------------------------------------------------------------

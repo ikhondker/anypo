@@ -132,6 +132,12 @@
 			<a class="nav-link {{ $_route_name == 'entities.index' ? 'active' : '' }}"
 				href="{{ route('entities.index') }}"><i class="bi-bell nav-icon"></i> Entity</a>
 		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link {{ $_route_name == 'mail-lists.index' ? 'active' : '' }}"
+				href="{{ route('mail-lists.index') }}"><i class="bi-bell nav-icon"></i> Mail List</a>
+		</li>
+
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'statuses.index' ? 'active' : '' }}"
 				href="{{ route('statuses.index') }}"><i class="bi-bell nav-icon"></i> Status</a>

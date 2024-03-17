@@ -32,6 +32,7 @@ use App\Models\Landlord\Admin\Payment;
 
 use App\Models\Landlord\Lookup\Product;
 
+use App\Models\Landlord\Manage\MailList;
 use App\Models\Landlord\Manage\Setup;
 use App\Models\Landlord\Manage\Contact;
 use App\Models\Landlord\Manage\Checkout;
@@ -644,5 +645,27 @@ class HomeController extends Controller
 		return redirect()->route('home')->with('success', 'Thank you for contacting us. We will contact you shortly.');
 
 		//return redirect()->back()->with(['success' => 'Thank you for contacting us. We will contact you shortly.']);
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function joinMailList(StoreContactRequest $request)
+	{
+		
+		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
+		$request->merge(['user_id'	=> $user_id]);
+		$request->merge(['ip'		=> $request->ip()]);
+		$request->validate([
+			'email'				=> 'required|email',
+		], [
+			'email.required'		=> 'Email is required.',
+		]);
+
+		// create MailList
+		$contact = MailList::create($request->all());
+		
+		return redirect()->route('home')->with('success', 'Thank you for joining our mailing list.');
+		
 	}
 }
