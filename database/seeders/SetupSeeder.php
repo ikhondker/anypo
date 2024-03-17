@@ -19,8 +19,8 @@ class SetupSeeder extends Seeder
 		$setups =  [
 			[
 				'id'			=> '1001',
-				'name'			=> 'HawarIT Limited',
-				'tagline'		=> 'Working Together...',
+				'name'			=> 'ANYPO.NET',
+				'tagline'		=> 'Control Expenses',
 				'currency'		=> 'USD',
 				'admin_id'		=> 1001, // TODO 
 				'address1'		=> '3939 Lawrence Ave, E#108,',
@@ -30,11 +30,11 @@ class SetupSeeder extends Seeder
 				'zip'			=> 'M1G1R9',
 				'country'		=> 'CA',
 				'email'			=> 'info@anypo.net',
-				'cell'			=> '+880191310509',
+				'cell'			=> '+0012262804920',
 				'website'		=> 'https://www.anypo.net',
-				'banner_message'=> 'This is a test public message. This is a test public message. This is a test public message.',
-				'facebook'		=> 'https://www.facebook.com/yourcompany',
-				'linkedin'		=> 'https://www.linkedin.com/company/1666430/',
+				'banner_message'=> 'This is a test public message. Will be shown only in all dashboards, when enabled.',
+				'facebook'		=> 'https://www.facebook.com/my.anyponet',
+				'linkedin'		=> 'https://www.linkedin.com/company/anypo-net',
 				'created_by'	=> 1001,
 				'updated_by'	=> 1001
 			],

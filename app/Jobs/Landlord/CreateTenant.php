@@ -16,12 +16,13 @@ use App\Models\Domain;
 
 use App\Models\Landlord\Account;
 
-use App\Models\Landlord\Admin\Invoice;
-use App\Models\Landlord\Admin\Payment;
-use App\Models\Landlord\Admin\Service;
+//use App\Models\Landlord\Admin\Invoice;
+//use App\Models\Landlord\Admin\Payment;
+//use App\Models\Landlord\Admin\Service;
 
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Manage\Checkout;
+use App\Models\Landlord\Manage\Setup;
 
 // Enums
 use App\Enum\UserRoleEnum;
@@ -157,6 +158,7 @@ class CreateTenant implements ShouldQueue
 	public static function createUpdateCheckoutUser($checkout_id = 0)
 	{
 		$checkout = Checkout::where('id', $checkout_id)->first();
+		$setup = Setup::first();
 
 		// make existing user admin if not admin
 		if ($checkout->existing_user) {
@@ -178,6 +180,18 @@ class CreateTenant implements ShouldQueue
 			$user->password	= bcrypt($random_password);
 			// TODO MUST comment
 			// $user->password	= bcrypt('password');
+			
+			// default address
+			$user->address1			= $setup->address1;
+			$user->address2			= $setup->address2;
+			$user->city				= $setup->city;
+			$user->state			= $setup->state;
+			$user->zip				= $setup->zip;
+			$user->country			= $setup->country;
+			$user->website			= $setup->website;
+			$user->facebook			= $setup->facebook;
+			$user->linkedin			= $setup->linkedin;
+			
 			$user->save();
 
 			// update owner_id in checkout
@@ -233,6 +247,7 @@ class CreateTenant implements ShouldQueue
 		// id name sku is_addon addon_type base_mnth base_user base_gb base_price mnth user gb price price_3 price_6 price_12 price_24 tax_pc vat_pc
 		// subtotal tax vat amount notes sold_qty photo enable created_by created_at updated_by updated_at
 		$checkout = Checkout::where('id', $checkout_id)->first();
+		$setup = Setup::first();
 		//$product = Product::where('id', $checkout->product_id)->first();
 
 		// create new Account
@@ -254,6 +269,17 @@ class CreateTenant implements ShouldQueue
 		$account->user				= $checkout->user;
 		$account->gb				= $checkout->gb;
 		$account->price				= $checkout->price;
+
+		// default address
+		$account->address1			= $setup->address1;
+		$account->address2			= $setup->address2;
+		$account->city				= $setup->city;
+		$account->state				= $setup->state;
+		$account->zip				= $setup->zip;
+		$account->country			= $setup->country;
+		$account->website			= $setup->website;
+		$account->facebook			= $setup->facebook;
+		$account->linkedin			= $setup->linkedin;
 
 		//Log::debug('$checkout->mnth=' . $checkout->mnth);
 		//Log::debug('$end date=' . now()->addMonth($checkout->mnth));
@@ -295,13 +321,16 @@ class CreateTenant implements ShouldQueue
 			'domain' => $domain
 		]);
 
+		
 		// run seeders in tenant
 		$tenant->run(function () {
 			$seeder = new \Database\Seeders\TenantSeeder();
 			$seeder->run();
 		});
+		
+
 		// Write event log
-		//Log::debug('Tenant Created id=' . $tenant->id);
+		Log::debug('Lobs.landlord.createTenant.createTenantDb Tenant Created tenant_id=' . $tenant->id);
 		LandlordEventLog::event('tenant', $tenant->id, 'create');
 
 		// create first tenant admin for tenant
@@ -311,10 +340,10 @@ class CreateTenant implements ShouldQueue
 
 		$tenant = Tenant::find($tenant_id);
 
-		$tenant->run(function($tenant) use ($account_name, $email,$random_password){
-			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb  Tenant id =' . $tenant->id);
+		$tenant->run(function($tenant) use ($account_name, $email, $random_password){
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant id =' . $tenant->id);
 
-			// create admin user in newly created tenant
+			// create first and admin user in newly created tenant
 			$user = User::create([
 				'name'				=> $account_name,
 				'email'				=> $email,
@@ -323,11 +352,16 @@ class CreateTenant implements ShouldQueue
 				'password'			=> Hash::make($random_password),
 				'designation_id'	=> 1001,	// System/IT Administrator
 				'dept_id'			=> 1001,	// IT
-				'enable'	=> true,
+				'enable'			=> true,
 				//'password' 	=> bcrypt($random_password),
-
 			]);
-			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb  Tenant Admin User Created id=' . $user->id);
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb  Tenant Admin User created user_id=' . $user->id);
+
+			// Update tenant setup->name in the tenant database
+			$tenantSetup =  \App\Models\Tenant\Admin\Setup::first();
+			$tenantSetup->name =  $account_name;
+			$tenantSetup->update();
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb  Tenant Setup Name Updated setup_id=' . $tenantSetup->id);
 
 			// TODO Send Verification Email from tenant context
 			// event(new Registered($user));

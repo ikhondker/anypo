@@ -132,6 +132,7 @@ class ProcessController extends Controller
 
 		// Run process
 		Log::debug('landlord.process.genInvoiceAll Running process to generate all invoices.');
+		Log::debug('landlord.process.genInvoiceAll Dispatch job Billing.');
 		Billing::dispatch();
 		
 		return redirect()->route('processes.index')->with('success','Invoice Generation Process submitted successfully.');

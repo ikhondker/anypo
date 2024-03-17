@@ -40,7 +40,7 @@
 						<!-- Demos -->
 						<span class="avatar avatar-xs avatar-circle">
 							<img class="avatar-img" src="{{ Storage::disk('s3l')->url('flag/ca.png') }}" alt="Image Description">
-						 </span>
+						</span>
 						<li class="nav-item">
 							{{-- <a id="demosMegaMenu" class="hs-mega-menu-invoker nav-link active" aria-current="page" href="#" role="button">Demos</a> --}}
 							@auth

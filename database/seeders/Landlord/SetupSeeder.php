@@ -31,8 +31,8 @@ class SetupSeeder extends Seeder
 							'cell'			=> '+0012262804920',
 							'website'		=> 'https://www.anypo.net',
 							'banner_message'=> 'This is a test public message. Will be shown only in all dashboards, when enabled.',
-							'facebook'		=> 'https://www.facebook.com/HawarIT',
-							'linkedin'		=> 'https://www.linkedin.com/company/1666430/',
+							'facebook'		=> 'https://www.facebook.com/my.anyponet',
+							'linkedin'		=> 'https://www.linkedin.com/company/anypo-net',
 							'created_by'	=> 1001,
 							'updated_by'	=> 1001
 						],

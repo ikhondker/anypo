@@ -63,6 +63,22 @@ class TestController extends Controller
 	public function run()
 	{
 
+		$tenant = Tenant::find('demo1');
+		$account_name = 'aaaaaaaaaaaaaaaaa';
+		$tenant->run(function($tenant) use ($account_name){
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant id =' . $tenant->id);
+
+			$tenantSetup =  \App\Models\Tenant\Admin\Setup::first();
+			$tenantSetup->name =  $account_name;
+			$tenantSetup->update();
+
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb  Tenant account updated=' . $account_name);
+
+		}
+		);
+		exit;
+			
+			
 		SubscriptionInvoicePaid::dispatch('1006');
 
 		exit;

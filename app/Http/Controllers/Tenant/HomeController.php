@@ -80,7 +80,6 @@ class HomeController extends Controller
 	{
 		$ENTITY	= 'CONTACT';
 
-
 		//$request->merge(['ip'		=> Request::ip()]);
 		//$request->merge(['ip'		=> '127.0.01']);
 

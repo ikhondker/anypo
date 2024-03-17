@@ -330,7 +330,7 @@ class HomeController extends Controller
 	}
 	
 
-	// landed after successful subscription payment
+	// landed after successful subscription payment  payment-stripe
 	public function successPayment(Request $request)
 	{
 	
@@ -346,7 +346,7 @@ class HomeController extends Controller
 			}
 
 			$trx_type	=  $session->metadata->trx_type;
-			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
+			Log::debug('landlord.home.successPayment metadata trx_type='. $session->metadata->trx_type);
 
 			// Mark invoice as paid
 			$payment = Payment::where('session_id', $session->id)->first();
@@ -355,7 +355,7 @@ class HomeController extends Controller
 			}
 
 			if ($payment->status_code == LandlordPaymentStatusEnum::DRAFT->value) {
-				Log::debug("landlord.home.success SubscriptionInvoicePaid payment_id= ".$payment->id);
+				Log::debug("landlord.home.successPayment SubscriptionInvoicePaid payment_id= ".$payment->id);
 				SubscriptionInvoicePaid::dispatch($payment->id);
 			}
 			return view('landlord.pages.info')->with('title','Payment Successful')
@@ -384,14 +384,14 @@ class HomeController extends Controller
 			}
 
 			$trx_type	=  $session->metadata->trx_type;
-			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
+			Log::debug('landlord.home.successAddon metadata trx_type='. $session->metadata->trx_type);
 
 			$checkout = Checkout::where('session_id', $session->id)->first();
 			if (!$checkout) {
 				throw new NotFoundHttpException();
 			}
 			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
-				Log::debug('landlord.home.success checkout_id='. $checkout->id);
+				Log::debug('landlord.home.successAddon checkout_id='. $checkout->id);
 				AddAddon::dispatch($checkout->id);
 			}
 			return view('landlord.pages.info')->with('title','Thank you for purchasing add-on!')
@@ -608,7 +608,6 @@ class HomeController extends Controller
 		$request->merge(['user_id'	=> $user_id]);
 		$request->merge(['ip'		=> $request->ip()]);
 		
-
 		$request->validate([
 			'first_name'	=> 'required',
 			'email'			=> 'required|email',
