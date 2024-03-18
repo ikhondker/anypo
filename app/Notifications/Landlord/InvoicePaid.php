@@ -62,7 +62,7 @@ class InvoicePaid extends Notification implements ShouldQueue
 					->subject(config('app.name'). ' Invoice #'.$this->invoice->invoice_no.' has been paid')
 					->greeting('Hello '.$this->user->name.',')
 					->line('This is a notice that Invoice#'.$this->invoice->invoice_no.' has been paid.')
-					->line(' Payment ID# '.$this->payment->id)
+					->line(' Payment ID #'.$this->payment->id)
 					->line('Please use following link to View Payment:')
 					->action('View Payment', url('/payments/'.$this->payment->id))
 					->line('NOTE: You may download the receipt after logging into your account.')

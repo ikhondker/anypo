@@ -32,6 +32,7 @@ use App\Models\Tenant\Pol;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Lookup\Warehouse;
 use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\Supplier;
 
 use App\Models\Tenant\Admin\Setup;
 # 2. Enums
@@ -165,27 +166,32 @@ class ReceiptController extends Controller
 		}
 		$pol->save();
 
-		// update budget and project level summary 
+		// update budget, project and supplier level summary 
 		$po = Po::where('id', $pol->po_id)->first();
 
 		// PO header update
-		$po->amount_grs = $po->amount_grs + $receipt->amount;
-		$po->fc_amount_grs = $po->fc_amount_grs + $receipt->fc_amount;
+		$po->amount_grs 	= $po->amount_grs + $receipt->amount;
+		$po->fc_amount_grs 	= $po->fc_amount_grs + $receipt->fc_amount;
 		$po->save();
 		
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
-		$dept_budget->count_grs = $dept_budget->count_grs + 1;
-		$dept_budget->amount_grs = $dept_budget->amount_grs + $receipt->fc_amount;
+		$dept_budget->amount_grs 	= $dept_budget->amount_grs + $receipt->fc_amount;
+		$dept_budget->count_grs 	= $dept_budget->count_grs + 1;
 		$dept_budget->save();
 
-		// Po project budget used
+		// Po project amount_grs
 		$project = Project::where('id', $po->project_id)->firstOrFail();
 		$project->amount_grs = $project->amount_grs + $receipt->fc_amount;
+		$project->count_grs 	= $project->count_grs + 1;
 		$project->save();
 
+		// Supplier update amount_grs
+		$supplier = Supplier::where('id', $po->supplier_id)->firstOrFail();
+		$supplier->amount_grs = $supplier->amount_grs + $receipt->fc_amount;
+		$supplier->count_grs 	= $supplier->count_grs + 1;
+		$supplier->save();
 
-				
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CREATE->value,$receipt->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
@@ -260,23 +266,28 @@ class ReceiptController extends Controller
 			$pol->received_qty	= $pol->received_qty - $receipt->qty;
 			$pol->save();
 			
-		
-			
-			// PO header update
-			$po->amount_grs = $po->amount_grs - $receipt->amount;
-			$po->fc_amount_grs = $po->fc_amount_grs - $receipt->fc_amount;
+			// reduce PO budget, project and supplier level summary 
+			$po->amount_grs 	= $po->amount_grs - $receipt->amount;
+			$po->fc_amount_grs 	= $po->fc_amount_grs - $receipt->fc_amount;
 			$po->save();
 
-			// Po dept budget grs amount update
+			// Po dept budget grs count and amount update
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
-			$dept_budget->count_grs = $dept_budget->count_grs -1;
 			$dept_budget->amount_grs = $dept_budget->amount_grs - $receipt->fc_amount;
+			$dept_budget->count_grs = $dept_budget->count_grs -1;
 			$dept_budget->save();
 
-			// Po project budget used
+			// Reduce project reduce amount_grs 
 			$project = Project::where('id', $po->project_id)->firstOrFail();
 			$project->amount_grs = $project->amount_grs - $receipt->fc_amount;
+			$project->count_grs = $project->count_grs -1;
 			$project->save();
+
+			// Reduce Supplier reduce amount_grs
+			$supplier = Supplier::where('id', $po->supplier_id)->firstOrFail();
+			$supplier->amount_grs = $supplier->amount_grs - $receipt->fc_amount;
+			$supplier->count_grs = $supplier->count_grs -1;
+			$supplier->save();
 
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CANCEL->value, $receipt->fc_amount);

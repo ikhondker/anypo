@@ -29,6 +29,7 @@ return new class extends Migration
 			$table->foreignId('dept_id')->nullable()->constrained('depts');
 			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
+			$table->foreignId('supplier_id')->nullable()->constrained('suppliers');	// NEW
 			$table->float('amount_pr_booked', 15, 2)->default(0);
 			$table->float('amount_pr_issued', 15, 2)->default(0);
 			$table->float('amount_po_booked', 15, 2)->default(0);

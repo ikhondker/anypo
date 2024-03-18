@@ -17,7 +17,8 @@ class Supplier extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'address1', 'address2', 'contact_person', 'cell', 'city', 'zip', 'state', 'country', 'website', 'email', 'enable', 'updated_by', 'updated_at',
+		'name', 'address1', 'address2', 'contact_person', 'cell', 'city', 'zip', 'state', 'country', 'website', 'email', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_invoice', 'amount_payment', 'count_pr', 'count_po', 'count_grs', 'count_invoice', 'count_payment', 'enable', 'updated_by', 'updated_at',
+
 	];
 
 	/* ----------------- Scopes ------------------------- */

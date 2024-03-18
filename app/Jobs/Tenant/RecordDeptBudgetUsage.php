@@ -56,10 +56,10 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		//Log::debug("article_id=".$this->article_id);
 
 		// insert row in DeptBudgetUsages table
-		$dbu					= new Dbu();
+		$dbu				= new Dbu();
 		$dbu->entity		= $this->entity;
-		$dbu->article_id		= $this->article_id;
-		$dbu->event		= $this->event;
+		$dbu->article_id	= $this->article_id;
+		$dbu->event			= $this->event;
 
 		Log::debug('jobs.RecordDeptBudgetUsage.handel fc_amount='.$this->fc_amount);
 		
@@ -67,10 +67,11 @@ class RecordDeptBudgetUsage implements ShouldQueue
 			case EntityEnum::PR->value:
 				$pr 			= Pr::where('id', $this->article_id)->firstOrFail();
 				//Log::debug("dept_budget_id=". $pr->dept_budget_id);
-				$dept_budget 	= DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
+				$dept_budget 			= DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
 				$dbu->dept_budget_id	= $pr->dept_budget_id;
 				$dbu->dept_id			= $pr->dept_id;
 				$dbu->project_id		= $pr->project_id;
+				$dbu->supplier_id		= $pr->supplier_id;
 
 				switch ($this->event) {
 					case EventEnum::BOOK->value:
@@ -100,6 +101,8 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				$dbu->dept_budget_id	= $po->dept_budget_id;
 				$dbu->dept_id			= $po->dept_id;
 				$dbu->project_id		= $po->project_id;
+				$dbu->supplier_id		= $po->supplier_id;
+
 				switch ($this->event) {
 					case EventEnum::BOOK->value:
 						$dbu->amount_po_booked	= $this->fc_amount;
@@ -129,6 +132,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				$dbu->dept_budget_id	= $receipt_dept_budget_id;
 				$dbu->dept_id			= $receipt->pol->po->dept_id;
 				$dbu->project_id		= $receipt->pol->po->project_id;
+				$dbu->supplier_id		= $receipt->pol->po->supplier_id;
 
 				switch ($this->event) {
 					case EventEnum::CREATE->value:
@@ -151,6 +155,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 					$dbu->dept_budget_id	= $invoice_dept_budget_id;
 					$dbu->dept_id			= $invoice->po->dept_id;
 					$dbu->project_id		= $invoice->po->project_id;
+					$dbu->supplier_id		= $invoice->po->supplier_id;
 					//Log::debug('I AM HERE 3b');
 					switch ($this->event) {
 						case EventEnum::POST->value:
@@ -174,6 +179,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 						$dbu->dept_budget_id	= $payment_dept_budget_id;
 						$dbu->dept_id			= $payment->invoice->po->dept_id;
 						$dbu->project_id		= $payment->invoice->po->project_id;
+						$dbu->supplier_id		= $payment->invoice->po->supplier_id;
 
 						switch ($this->event) {
 							case EventEnum::CREATE->value:

@@ -38,6 +38,8 @@ use App\Models\Tenant\Pr;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\Supplier;
+
 
 use Carbon\Carbon;
 
@@ -143,18 +145,24 @@ class PrBudget
 		$pr = Pr::where('id', $pr_id)->first();
 		// Pr dept budget approved
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-		$dept_budget->count_pr = $dept_budget->count_pr + 1;
 		$dept_budget->amount_pr_issued = $dept_budget->amount_pr_issued + $pr->fc_amount;
 		$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked - $pr->fc_amount;
-		
+		$dept_budget->count_pr = $dept_budget->count_pr + 1;
 		$dept_budget->save();
 
 		// Pr project budget used
 		$project = Project::where('id', $pr->project_id)->firstOrFail();
-		$project->amount_pr_issued = $project->amount_pr_issued + $pr->fc_amount;
-		$project->amount_pr_booked = $project->amount_pr_booked - $pr->fc_amount;
+		$project->amount_pr_issued 	= $project->amount_pr_issued + $pr->fc_amount;
+		$project->amount_pr_booked 	= $project->amount_pr_booked - $pr->fc_amount;
+		$project->count_pr 			= $project->count_pr + 1;
 		$project->save();
 
+		// Pr supplier pr issues amount
+		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
+		$supplier->amount_pr_issued = $supplier->amount_pr_issued + $pr->fc_amount;
+		$supplier->count_pr 		= $supplier->count_pr + 1;
+		$supplier->save();
+				
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::APPROVE->value,$pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
@@ -168,15 +176,24 @@ class PrBudget
 
 		// reverse Pr dept budget booking 
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-		$dept_budget->count_pr = $dept_budget->count_pr - 1;
 		$dept_budget->amount_pr_issued = $dept_budget->amount_pr_issued - $pr->fc_amount;
+		$dept_budget->count_pr = $dept_budget->count_pr - 1;
 		$dept_budget->save();
 		
 		// reverse Pr project booking 
 		$project = Project::where('id', $pr->project_id)->firstOrFail();
 		$project->amount_pr_issued = $project->amount_pr_issued - $pr->fc_amount;
+		$project->count_pr 			= $project->count_pr - 1;
 		$project->save();
 
+
+		// Pr supplier pr issues reduce
+		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
+		$supplier->amount_pr_issued = $supplier->amount_pr_issued - $pr->fc_amount;
+		$supplier->count_pr 		= $supplier->count_pr - 1;
+		$supplier->save();
+
+				
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::CANCEL->value,$pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);

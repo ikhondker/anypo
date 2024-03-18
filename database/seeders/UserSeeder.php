@@ -80,10 +80,10 @@ class UserSeeder extends Seeder
 			],
 		];
 
-		$usersDummy =  [
+		$usersDemo =  [
 			[
 				'id'				=> '1003',
-				'name'				=> 'Admin User (Dummy)',
+				'name'				=> 'Admin User (Demo)',
 				'email'				=> 'admin@anypo.net',
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
@@ -287,7 +287,7 @@ class UserSeeder extends Seeder
 
 		User::insert($usersSeeded);
 		// TODO Must comment in Production
-		User::insert($usersDummy);
+		User::insert($usersDemo);
 
 		
 		// Mask as seeded user and Activate	// TODO 

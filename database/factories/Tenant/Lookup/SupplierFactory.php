@@ -17,15 +17,16 @@ class SupplierFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'name'			=> $this->faker->company,
-			'address1'		=> $this->faker->address,
-			'address2'		=> $this->faker->address,
-			'city'			=> $this->faker->city,
-			'state'			=> $this->faker->stateAbbr,
-			'zip'			=> $this->faker->postcode,
-			'website'		=> $this->faker->domainName,
-			'cell'			=> $this->faker->PhoneNumber,
-			'email'		   	=> $this->faker->email,
+			'name'				=> $this->faker->company,
+			'contact_person'	=> $this->faker->name,
+			'address1'			=> $this->faker->address,
+			'address2'			=> $this->faker->address,
+			'city'				=> $this->faker->city,
+			'state'				=> $this->faker->stateAbbr,
+			'zip'				=> $this->faker->postcode,
+			'website'			=> $this->faker->domainName,
+			'cell'				=> $this->faker->PhoneNumber,
+			'email'		   		=> $this->faker->email,
 		];
 	}
 }

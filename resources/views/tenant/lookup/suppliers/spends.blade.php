@@ -1,16 +1,18 @@
 @extends('layouts.app')
-@section('title','Project')
+@section('title','Supplier Spends')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Project
+			Supplier Spends
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Project"/>
+			<x-tenant.buttons.header.create object="Supplier"/>
 		@endslot
 	</x-tenant.page-header>
+
+
 
 	<div class="row">
 		<div class="col-md-6 col-xxl-3 d-flex">
@@ -20,7 +22,7 @@
 						<div class="col-6">
 							<div class="illustration-text p-3 m-1">
 								<h4 class="illustration-text">Welcome Back, {{ auth()->user()->name }}!</h4>
-								<p class="mb-0">Projects Listing</p>
+								<p class="mb-0">Supplier Spends</p>
 							</div>
 						</div>
 						<div class="col-6 align-self-end text-end">
@@ -35,7 +37,7 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col mt-0">
-							<h5 class="card-title">Total Projects</h5>
+							<h5 class="card-title">Total Suppliers</h5>
 						</div>
 
 						<div class="col-auto">
@@ -45,10 +47,10 @@
 						</div>
 					</div>
 					@php
-						use App\Models\Tenant\Project;
-						$count_total	= Project::count();
-						$count_open		= Project::where('closed',false )->count();
-						$count_closed	= Project::where('closed',true )->count();
+						use App\Models\Tenant\Lookup\Supplier;
+						$count_total	= Supplier::count();
+						$count_open		= Supplier::where('enable',true )->count();
+						$count_closed	= Supplier::where('enable',false )->count();
 						//$count_draft	= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 					@endphp
 					<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
@@ -61,7 +63,7 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col mt-0">
-							<h5 class="card-title">Open Projects</h5>
+							<h5 class="card-title">Active Suppliers</h5>
 						</div>
 						<div class="col-auto">
 							<div class="stat stat-sm">
@@ -80,7 +82,7 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col mt-0">
-							<h5 class="card-title">Closed Projects</h5>
+							<h5 class="card-title">In-Active Suppliers</h5>
 						</div>
 
 						<div class="col-auto">
@@ -97,8 +99,7 @@
 	</div>
 
 	<div class="row">
-		<x-tenant.charts.spends-by-project-bar/>
-		<x-tenant.charts.spends-by-project-count-bar/>
+		<x-tenant.charts.spends-by-supplier-bar/>
 	</div>
 
 
@@ -112,10 +113,10 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Project Lists
+							Supplier Spends
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">List of projects and budget usages.</h6>
+					<h6 class="card-subtitle text-muted">List of suppliers and budget usages.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
@@ -123,8 +124,8 @@
 							<tr>
 								<th>#</th>
 								<th>Name</th>
-								<th>PM</th>
-								<th>Start-End</th>
+								<th>Contact Person</th>
+								<th>Cell</th>
 							
 								<th class="text-end">Budget</th>
 								<th class="text-end">PR</th>
@@ -140,27 +141,27 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($projects as $project)
+							@foreach ($suppliers as $supplier)
 							<tr>
-								<td>{{ $projects->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->name }}</a></td>
-								<td>{{ $project->pm->name }}</td>
-								<td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_pr_booked + $project->amount_pr_issued"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_pr_booked - $project->amount_pr_issued "/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_po_booked + $project->amount_po_issued"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_po_booked - $project->amount_po_issued"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_grs"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_invoice"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_payment"/></td>
-								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
+								<td>{{ $suppliers->firstItem() + $loop->index }}</td>
+								<td><a class="text-info" href="{{ route('suppliers.show',$supplier->id) }}">{{ $supplier->name }}</a></td>
+								<td>{{ $supplier->contact_person }}</td>
+								<td>{{ $supplier->cell }}</td>
+								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_pr_booked + $supplier->amount_pr_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount - $supplier->amount_pr_booked - $supplier->amount_pr_issued "/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_po_booked + $supplier->amount_po_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount - $supplier->amount_po_booked - $supplier->amount_po_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_grs"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_invoice"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_payment"/></td>
+								<td><x-tenant.list.my-closed :value="$supplier->closed"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Project" :id="$project->id" :show="true"/>
-									<a href="{{ route('projects.destroy',$project->id) }}" class="me-2 modal-boolean-advance"
-										data-entity="Project" data-name="{{ $project->name }}" data-status="{{ ($project->closed ? 'Open' : 'Close') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($project->closed ? 'Open' : 'Close') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($project->enable ? 'bell-off' : 'bell') }}"></i>
+									<x-tenant.list.actions object="Project" :id="$supplier->id" :show="true"/>
+									<a href="{{ route('suppliers.destroy',$supplier->id) }}" class="me-2 modal-boolean-advance"
+										data-entity="Project" data-name="{{ $supplier->name }}" data-status="{{ ($supplier->closed ? 'Open' : 'Close') }}"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($supplier->closed ? 'Open' : 'Close') }}">
+										<i class="align-middle text-muted" data-feather="{{ ($supplier->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>
@@ -169,7 +170,7 @@
 					</table>
 
 					<div class="row pt-3">
-						{{ $projects->links() }}
+						{{ $suppliers->links() }}
 					</div>
 					<!-- end pagination -->
 

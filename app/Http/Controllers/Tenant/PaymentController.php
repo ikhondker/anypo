@@ -25,7 +25,6 @@ use App\Models\Tenant\Payment;
 use App\Http\Requests\Tenant\StorePaymentRequest;
 use App\Http\Requests\Tenant\UpdatePaymentRequest;
 
-
 # 1. Models
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Invoice;
@@ -33,6 +32,7 @@ use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Project;
 use App\Models\Tenant\Lookup\BankAccount;
 use App\Models\Tenant\Admin\Setup;
+use App\Models\Tenant\Lookup\Supplier;
 # 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
@@ -175,14 +175,22 @@ class PaymentController extends Controller
 
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
-		$dept_budget->count_payment = $dept_budget->count_payment + 1 ;
 		$dept_budget->amount_payment = $dept_budget->amount_payment + $payment->fc_amount;
+		$dept_budget->count_payment = $dept_budget->count_payment + 1 ;
 		$dept_budget->save();
 
 		// Po project budget used
 		$project = Project::where('id', $po->project_id)->firstOrFail();
 		$project->amount_payment = $project->amount_payment + $payment->fc_amount;
+		$project->count_payment = $project->count_payment + 1 ;
 		$project->save();
+
+		// Supplier update amount_payment
+		$supplier = Supplier::where('id', $po->supplier_id)->firstOrFail();
+		$supplier->amount_payment = $supplier->amount_payment + $payment->fc_amount;
+		$supplier->count_payment 	= $supplier->count_payment + 1;
+		$supplier->save();
+
 
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PAYMENT->value, $payment->id, EventEnum::CREATE->value, $payment->fc_amount);
@@ -260,14 +268,21 @@ class PaymentController extends Controller
 
 			// Po dept budget grs amount update
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
-			$dept_budget->count_payment = $dept_budget->count_payment - 1 ;
 			$dept_budget->amount_payment = $dept_budget->amount_payment - $payment->fc_amount;
+			$dept_budget->count_payment = $dept_budget->count_payment - 1 ;
 			$dept_budget->save();
 
 			// Po project budget used
 			$project = Project::where('id', $po->project_id)->firstOrFail();
 			$project->amount_payment = $project->amount_payment - $payment->fc_amount;
+			$project->count_payment = $project->count_payment - 1 ;
 			$project->save();
+
+			// Reduce Supplier amount_payment
+			$supplier = Supplier::where('id', $po->supplier_id)->firstOrFail();
+			$supplier->amount_payment = $supplier->amount_payment - $payment->fc_amount;
+			$supplier->count_payment = $supplier->count_payment -1;
+			$supplier->save();
 
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::PAYMENT->value, $payment->id, EventEnum::CANCEL->value, $payment->fc_amount);

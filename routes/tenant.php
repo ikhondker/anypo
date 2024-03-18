@@ -301,6 +301,7 @@ Route::middleware([
 
 	/* ======================== Supplier ======================================== */
 	Route::resource('suppliers', SupplierController::class)->middleware(['auth', 'verified']);
+	Route::get('/supplier/spends',[SupplierController::class,'spends'])->name('suppliers.spends');
 	Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
 	Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
 

@@ -33,6 +33,7 @@ use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Payment;
 use App\Models\Tenant\Project;
 use App\Models\Tenant\Admin\Setup;
+use App\Models\Tenant\Lookup\Supplier;
 # 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
@@ -295,14 +296,21 @@ class InvoiceController extends Controller
 		
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
-		$dept_budget->count_invoice = $dept_budget->count_invoice + 1;
 		$dept_budget->amount_invoice = $dept_budget->amount_invoice + $invoice->fc_amount;
+		$dept_budget->count_invoice = $dept_budget->count_invoice + 1;
 		$dept_budget->save();
 
-		// Po project budget used
+		// Project update amount_invoice
 		$project = Project::where('id', $po->project_id)->firstOrFail();
 		$project->amount_invoice = $project->amount_invoice + $invoice->fc_amount;
+		$project->count_invoice = $project->count_invoice + 1;
 		$project->save();
+
+		// Supplier update amount_invoice
+		$supplier = Supplier::where('id', $po->supplier_id)->firstOrFail();
+		$supplier->amount_invoice = $supplier->amount_invoice + $invoice->fc_amount;
+		$supplier->count_invoice 	= $supplier->count_invoice + 1;
+		$supplier->save();
 
 		// PO header update
 		$po->amount_invoice = $po->amount_invoice + $invoice->amount;
@@ -363,14 +371,21 @@ class InvoiceController extends Controller
 
 			// Po dept budget grs amount update
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
-			$dept_budget->count_invoice = $dept_budget->count_invoice -1;
 			$dept_budget->amount_invoice = $dept_budget->amount_invoice - $invoice->fc_amount;
+			$dept_budget->count_invoice = $dept_budget->count_invoice -1;
 			$dept_budget->save();
 
-			// Po project budget used
+			// Reduce project amount_invoice
 			$project = Project::where('id', $po->project_id)->firstOrFail();
 			$project->amount_invoice = $project->amount_invoice - $invoice->fc_amount;
+			$project->count_invoice = $project->count_invoice -1;
 			$project->save();
+
+			// Reduce Supplier amount_invoice
+			$supplier = Supplier::where('id', $po->supplier_id)->firstOrFail();
+			$supplier->amount_invoice = $supplier->amount_invoice - $invoice->fc_amount;
+			$supplier->count_invoice = $supplier->count_invoice -1;
+			$supplier->save();
 
 			//  Reverse PO Invoiced amount
 			$po 				= Po::where('id', $invoice->po_id)->firstOrFail();

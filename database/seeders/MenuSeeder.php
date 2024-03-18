@@ -42,6 +42,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'projects.create','route_name' => 'projects.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'projects.attachments','route_name' => 'projects.index', 'node_name' => 'budget'],
 
+			[ 'raw_route_name' => 'suppliers.spends','route_name' => 'suppliers.spends', 'node_name' => 'budget'],
+
 			[ 'raw_route_name' => 'dbus.index','route_name' => 'dbus.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dbus.show','route_name' => 'dbus.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dbus.edit','route_name' => 'dbus.index', 'node_name' => 'budget'],
@@ -181,16 +183,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'wfs.index','route_name' => 'wfs.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'wfs.show','route_name' => 'wfs.index', 'node_name' => 'admin'],
 
-			
 			[ 'raw_route_name' => 'users.index','route_name' => 'users.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'users.show','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
 			[ 'raw_route_name' => 'users.edit','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
 			[ 'raw_route_name' => 'users.create','route_name' => 'users.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'users.password','route_name' => 'users.index', 'node_name' => 'profile'],	// <==============
-			
-
-			
-
 			
 
 		  ];

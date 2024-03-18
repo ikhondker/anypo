@@ -24,6 +24,18 @@ return new class extends Migration
 			$table->string('country',2)->default('US');
 			$table->string('website')->nullable();
 			$table->string('email')->nullable();
+			$table->float('amount_pr_booked', 15, 2)->default(0); // NEW
+			$table->float('amount_pr_issued', 15, 2)->default(0);
+			$table->float('amount_po_booked', 15, 2)->default(0);
+			$table->float('amount_po_issued', 15, 2)->default(0);
+			$table->float('amount_grs', 15, 2)->default(0);
+			$table->float('amount_invoice', 15, 2)->default(0);
+			$table->float('amount_payment', 15, 2)->default(0);
+			$table->biginteger('count_pr')->default(0);
+			$table->biginteger('count_po')->default(0);
+			$table->biginteger('count_grs')->default(0);
+			$table->biginteger('count_invoice')->default(0);
+			$table->biginteger('count_payment')->default(0);
 			$table->boolean('enable')->default(true); 
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
