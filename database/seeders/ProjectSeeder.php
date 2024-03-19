@@ -27,36 +27,85 @@ class ProjectSeeder extends Seeder
 			$projects =  [
 				[
 					'name'  	=> 'Generic',
+					'code'  	=> 'Generic',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
+					'name' 		=> 'AA01',
+					'code'  	=> 'AA01',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
+					'notes'		=> $faker->paragraph
+				],
+				[
+					'name' 		=> 'AF01',
+					'code'  	=> 'AF01',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
+					'notes'		=> $faker->paragraph
+				],
+				[
+					'name' 		=> 'AH01',
+					'code'  	=> 'AH01',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
+					'notes'		=> $faker->paragraph
+				],
+				[
+					'name' 		=> 'AS01',
+					'code'  	=> 'AS01',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
+					'notes'		=> $faker->paragraph
+				],
+				[
+					'name' 		=> 'BG01',
+					'code'  	=> 'BG01',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
+					'notes'		=> $faker->paragraph
+				],
+				[
+					'name' 		=> 'BH07',
+					'code'  	=> 'BH07',
+					'pm_id' 	=> User::inRandomOrder()->first()->id,
+					'amount'	=> 100000,
+					'notes'		=> $faker->paragraph
+				],
+
+				[
 					'name' 		=> 'GB06',
+					'code'  	=> 'GB06',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'GB07',
+					'code'  	=> 'GB07',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'GB08',
+					'code'  	=> 'GB08',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'GB09',
+					'code'  	=> 'GB09',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'GB10',
+					'code'  	=> 'GB10',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph

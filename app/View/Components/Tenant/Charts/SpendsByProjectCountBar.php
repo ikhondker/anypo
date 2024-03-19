@@ -27,16 +27,16 @@ class SpendsByProjectCountBar extends Component
      */
     public function __construct()
     {
-        $this->projects = Project::with("pm")->where('closed', false)->orderBy('id', 'DESC')->get();
+        $this->projects = Project::with("pm")->where('closed', false)->orderBy('id', 'DESC')->limit(10)->get();
 
 		foreach ($this->projects as $project){
 			//Log::debug('Value of id=' . $project->name . ' -> '.$project->amount);
 			$this->project_labels[] 	= $project->name;
 			$this->count_pr[] 			= (int) $project->count_pr_issued + $project->count_pr_booked;
 			$this->count_po[] 			= (int) $project->count_po_issued + $project->count_po_booked;
-			$this->count_grs[] 		= (int) $project->count_grs;
-			$this->count_invoice[] 	= (int) $project->count_invoice;
-			$this->count_payment[] 	= (int) $project->count_payment;
+			$this->count_grs[] 			= (int) $project->count_grs;
+			$this->count_invoice[] 		= (int) $project->count_invoice;
+			$this->count_payment[] 		= (int) $project->count_payment;
 		}
     }
 

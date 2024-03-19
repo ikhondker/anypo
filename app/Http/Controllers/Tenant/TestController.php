@@ -53,6 +53,7 @@ use Illuminate\Support\Facades\Http;
 
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
+use App\Helpers\ChartData;
 
 #Jobs
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
@@ -67,6 +68,13 @@ class TestController extends Controller
 
 	public function run()
 	{
+
+		//ChartData::budget();
+		//ChartData::deptBudget();
+		//ChartData::project();
+		ChartData::supplier();
+		echo "Done";
+		exit;
 
 		return view('tenant.manage.test');
 		exit;

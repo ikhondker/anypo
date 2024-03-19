@@ -100,8 +100,10 @@
 
 	<div class="row">
 		<x-tenant.charts.spends-by-supplier-bar/>
+		<x-tenant.charts.spends-by-supplier-count-bar/>
 	</div>
 
+	
 
 	<div class="row">
 		<div class="col-12">
@@ -126,12 +128,8 @@
 								<th>Name</th>
 								<th>Contact Person</th>
 								<th>Cell</th>
-							
-								<th class="text-end">Budget</th>
 								<th class="text-end">PR</th>
-								<th class="text-end">Available (PR)</th>
 								<th class="text-end">PO</th>
-								<th class="text-end">Available (PO)</th>
 								<th class="text-end">GRS</th>
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
@@ -147,11 +145,8 @@
 								<td><a class="text-info" href="{{ route('suppliers.show',$supplier->id) }}">{{ $supplier->name }}</a></td>
 								<td>{{ $supplier->contact_person }}</td>
 								<td>{{ $supplier->cell }}</td>
-								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_pr_booked + $supplier->amount_pr_issued"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount - $supplier->amount_pr_booked - $supplier->amount_pr_issued "/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_po_booked + $supplier->amount_po_issued"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount - $supplier->amount_po_booked - $supplier->amount_po_issued"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_payment"/></td>

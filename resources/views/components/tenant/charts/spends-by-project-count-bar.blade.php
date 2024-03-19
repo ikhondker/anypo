@@ -14,8 +14,8 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">Project Spends</h5>
-			<h6 class="card-subtitle text-muted">Top 10 Active Project Spends.</h6>
+			<h5 class="card-title">Project Spends Count</h5>
+			<h6 class="card-subtitle text-muted">Document Count for Top 10 Active Project Spends.</h6>
 		</div>
 		<div class="card-body d-flex w-100">
 			<div class="align-self-center chart">

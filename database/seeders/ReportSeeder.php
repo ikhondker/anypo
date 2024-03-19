@@ -51,6 +51,17 @@ class ReportSeeder extends Seeder
 				'id' 	=> 1009,
 				'name' => 'Dept Budget Utilization Report',
 			],
+			[
+				'id' 	=> 1010,
+				'name' => 'Project Spend Report (**)',
+			],
+			[
+				'id' 	=> 1011,
+				'name' => 'Supplier Spend Report (**)',
+			],
+
+
+
 	  	];
 	  
 		  $reports =  [

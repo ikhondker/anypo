@@ -39,8 +39,8 @@
 	{{-- sweetalert2 v11.7.3 --}}
 	{{-- <script	src="{{asset('js/sweetalert2.min.js')}}"></script>
 	<link href="{{asset('css/sweetalert2.css')}}" rel="stylesheet"> --}}
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" >
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" >
 	{{-- or --}}
 	{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
