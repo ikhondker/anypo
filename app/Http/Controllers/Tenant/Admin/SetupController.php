@@ -198,7 +198,7 @@ class SetupController extends Controller
 	{
 		$this->authorize('update', $setup);
 
-			// check box
+		// check box
 		if($request->has('show_banner')) {
 			//Checkbox checked
 			$request->merge(['show_banner' => 1]);

@@ -13,7 +13,7 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">FY {{ $budget->fy }}- {{  $budget->name  }} : Budget By Department</h5>
+			<h5 class="card-title">FY {{ $budget->fy }}- {{ $budget->name }} : Budget By Department</h5>
 		</div>
 		<div class="card-body d-flex">
 			<div class="align-self-center w-100">

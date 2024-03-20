@@ -4,7 +4,7 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col mt-0">
-						<h5 class="card-title">{{  $deptBudget->dept->name  }} : Budget {{ $deptBudget->budget->fy}}</h5>
+						<h5 class="card-title">{{ $deptBudget->dept->name }} : Budget {{ $deptBudget->budget->fy}}</h5>
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">

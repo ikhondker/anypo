@@ -10,7 +10,7 @@
 	</thead>
 	<tbody>
 		@if(auth()->user())
-	  
+	 
 			@forelse($notifications as $notification)
 				<tr>
 					<td class="text-center">
@@ -18,9 +18,9 @@
 					</td>
 					<td class="">
 						@if ($notification->read_at == null)
-							<a href="{{ route('notifications.show', $notification->id) }}"><span class="text-warning">{{ $notification->data['subject']  }}</span></a>
+							<a href="{{ route('notifications.show', $notification->id) }}"><span class="text-warning">{{ $notification->data['subject'] }}</span></a>
 						@else
-							<a href="{{ route('notifications.show', $notification->id) }}"><span class="text-muted">#{{ $notification->data['subject']  }}</span></a>
+							<a href="{{ route('notifications.show', $notification->id) }}"><span class="text-muted">#{{ $notification->data['subject'] }}</span></a>
 						@endif
 					</td>
 					<td>

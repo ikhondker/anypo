@@ -8,7 +8,7 @@
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
 						<h4>{{ $deptBudget->dept->name }}</h4>
-						<p>FY{{ $deptBudget->budget->fy }}:{{ $deptBudget->budget->name  }}</p>
+						<p>FY{{ $deptBudget->budget->fy }}:{{ $deptBudget->budget->name }}</p>
 						<table class="table table-sm my-2">
 							<tbody>
 								<tr>

@@ -94,7 +94,7 @@
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($report->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
-									<a href="{{ route('reports.run',$report->id)  }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Run">
+									<a href="{{ route('reports.parameter',$report->id)  }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Run">
 										<i class="align-middle" data-feather="printer"></i>
 									</a>
 								</td>

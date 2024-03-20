@@ -14,7 +14,7 @@
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form id="myform" action="{{ route('reports.update', $report->id) }}" method="POST">
+	<form id="myform" action="{{ route('reports.run', $report->id) }}" method="POST">
 		@csrf
 		@method('PUT')
 
@@ -184,7 +184,7 @@
 								<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">&nbsp;</label>
 								<div class="col-sm-10 ml-sm-auto">
 									<a class="btn btn-secondary" href="{{ url()->previous() }}"><i data-feather="x-circle"></i> Cancel</a>
-									<button type="submit" id="submit" name="submit" class="btn btn-primary"><i data-feather="printer"></i> Run</button>
+									<button type="submit" id="submit" name="submit" class="btn btn-primary"><i data-feather="printer"></i> Run Report</button>
 								</div>
 							</div>
 					</div>

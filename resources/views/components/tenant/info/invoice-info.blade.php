@@ -7,13 +7,13 @@
 						<img src="{{ asset('/img3.jpg')}}" width="180" height="180" class="mt-2" alt="Project">
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
-						<h4>INVOICE #{{ $invoice->invoice_no  }} : {{ $invoice->summary }}</h4>
+						<h4>INVOICE #{{ $invoice->invoice_no }} : {{ $invoice->summary }}</h4>
 						<p>{{ $invoice->notes }}</p>
 						<table class="table table-sm my-2">
 							<tbody>
 								<tr>
 									<th>Supplier</th>
-									<td>{{ $invoice->supplier->name  }}</td>
+									<td>{{ $invoice->supplier->name }}</td>
 								</tr>
 								<tr>
 									<th>Invoice Date</th>
@@ -32,7 +32,7 @@
 									<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>
 								</tr>
 								<tr>
-									<th>PO <a href="{{ route('pos.show',$invoice->po_id) }}" class="text-warning d-inline-block">#{{ $invoice->po_id }}</a>  </th>
+									<th>PO <a href="{{ route('pos.show',$invoice->po_id) }}" class="text-warning d-inline-block">#{{ $invoice->po_id }}</a> </th>
 									<td>{{ $invoice->po->summary }} </td>
 								</tr>
 								<tr>

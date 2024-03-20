@@ -92,7 +92,7 @@ class ReportController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 */
-	public function run(Report $report)
+	public function parameter(Report $report)
 	{
 		$depts 			= Dept::Primary()->get();
 		$suppliers 		= Supplier::Primary()->get();
@@ -138,15 +138,18 @@ class ReportController extends Controller
 	 */
 	public function edit(Report $report)
 	{
-		$pms = User::Tenant()->get();
+		$this->authorize('update', $report);
+
+		return view('tenant.reports.edit', compact('report'));
+		//$pms = User::Tenant()->get();
 		//$report_id='1003';
-		return view('tenant.reports.parameters', compact('report','pms'));
+		//return view('tenant.reports.parameters', compact('report','pms'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(UpdateReportRequest $request, Report $report)
+	public function run(UpdateReportRequest $request, Report $report)
 	{
 
 		//$report_id	= $request->input('report_id');
@@ -186,11 +189,66 @@ class ReportController extends Controller
 			case '1008':
 				return self::r1008($start_date, $end_date, $dept_id);
 				break;
-			default:
+			case '1009':
+				return self::r1009($start_date, $end_date);
+				break;
+			case '1010':
+				return self::r1010($start_date, $end_date);
+				break;
+			case '1011':
+				return self::r1011($start_date, $end_date);
+				break;
+						
+				default:
 				Log::warning("tenant.report.update report ID not found!");
 		}
 	}
+/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateReportRequest $request, Report $report)
+	{
+		$this->authorize('update', $report);
 
+		// check box
+		$request->merge(['article_id' => ($request->has('article_id') ? 1 : 0) ]);
+		$request->merge(['article_id_required' => ($request->has('article_id_required') ? 1 : 0) ]);
+
+		$request->merge(['start_date' => ($request->has('start_date') ? 1 : 0) ]);
+		$request->merge(['start_date_required' => ($request->has('start_date_required') ? 1 : 0) ]);
+
+		$request->merge(['end_date' => ($request->has('end_date') ? 1 : 0) ]);
+		$request->merge(['end_date_required' => ($request->has('end_date_required') ? 1 : 0) ]);
+
+		$request->merge(['user_id' => ($request->has('user_id') ? 1 : 0) ]);
+		$request->merge(['user_id_required' => ($request->has('user_id_required') ? 1 : 0) ]);
+
+		$request->merge(['item_id' => ($request->has('item_id') ? 1 : 0) ]);
+		$request->merge(['item_id_required' => ($request->has('item_id_required') ? 1 : 0) ]);
+
+		$request->merge(['supplier_id' => ($request->has('supplier_id') ? 1 : 0) ]);
+		$request->merge(['supplier_id_required' => ($request->has('supplier_id_required') ? 1 : 0) ]);
+
+		$request->merge(['project_id' => ($request->has('project_id') ? 1 : 0) ]);
+		$request->merge(['project_id_required' => ($request->has('project_id_required') ? 1 : 0) ]);
+
+		$request->merge(['category_id' => ($request->has('category_id') ? 1 : 0) ]);
+		$request->merge(['category_id_required' => ($request->has('category_id_required') ? 1 : 0) ]);
+
+		$request->merge(['dept_id' => ($request->has('dept_id') ? 1 : 0) ]);
+		$request->merge(['dept_id_required' => ($request->has('dept_id_required') ? 1 : 0) ]);
+
+		$request->merge(['warehouse_id' => ($request->has('warehouse_id') ? 1 : 0) ]);
+		$request->merge(['warehouse_id_required' => ($request->has('warehouse_id_required') ? 1 : 0) ]);
+
+		$report->update($request->all());
+
+		// Write to Log
+		EventLog::event('report', $report->id, 'update', 'name', $report->name);
+
+		return redirect()->route('reports.index')->with('success', 'Report updated successfully');
+		
+	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -465,6 +523,128 @@ class ReportController extends Controller
 		$pdf->output();
 
 		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
+	}
+
+
+	public function r1009($start_date, $end_date)
+	{
+		
+		$this->authorize('run',Report::class);
+		
+		$report 	= Report::where('id', '1009')->firstOrFail();
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= "";
+
+		$sql = "
+			SELECT pay.id, pay.invoice_id, pay.pay_date, b.ac_name, pay.cheque_no, pay.currency, pay.amount,pay.fc_amount,
+			i.invoice_no, i.invoice_date,
+			p.id po_id, d.name dept_name
+			FROM payments pay, invoices i, pos p, depts d, bank_accounts b
+			WHERE 1=1
+			AND pay.invoice_id =i.id 
+			AND pay.bank_account_id =b.id 
+			AND i.po_id =p.id 
+			AND p.dept_id =d.id 
+			AND DATE(pay.pay_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+		$taxes = DB::select($sql);
+
+		$data = [
+			'report' 	=> $report,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'taxes'		=> $taxes,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.1009', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('tax-'.strtotime("now").'.pdf');
+	}
+
+	public function r1010($start_date, $end_date)
+	{
+		
+		$this->authorize('run',Report::class);
+		
+		$report 	= Report::where('id', '1010')->firstOrFail();
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= "";
+
+		$sql = "
+			SELECT pay.id, pay.invoice_id, pay.pay_date, b.ac_name, pay.cheque_no, pay.currency, pay.amount,pay.fc_amount,
+			i.invoice_no, i.invoice_date,
+			p.id po_id, d.name dept_name
+			FROM payments pay, invoices i, pos p, depts d, bank_accounts b
+			WHERE 1=1
+			AND pay.invoice_id =i.id 
+			AND pay.bank_account_id =b.id 
+			AND i.po_id =p.id 
+			AND p.dept_id =d.id 
+			AND DATE(pay.pay_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+		$taxes = DB::select($sql);
+
+		$data = [
+			'report' 	=> $report,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'taxes'		=> $taxes,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.1010', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('project-spend--'.strtotime("now").'.pdf');
+	}
+
+
+	public function r1011($start_date, $end_date)
+	{
+		
+		$this->authorize('run',Report::class);
+		
+		$report 	= Report::where('id', '1011')->firstOrFail();
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= "";
+
+		$sql = "
+			SELECT pay.id, pay.invoice_id, pay.pay_date, b.ac_name, pay.cheque_no, pay.currency, pay.amount,pay.fc_amount,
+			i.invoice_no, i.invoice_date,
+			p.id po_id, d.name dept_name
+			FROM payments pay, invoices i, pos p, depts d, bank_accounts b
+			WHERE 1=1
+			AND pay.invoice_id =i.id 
+			AND pay.bank_account_id =b.id 
+			AND i.po_id =p.id 
+			AND p.dept_id =d.id 
+			AND DATE(pay.pay_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+		$taxes = DB::select($sql);
+
+		$data = [
+			'report' 	=> $report,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'taxes'		=> $taxes,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.1011', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('supplier-spend-'.strtotime("now").'.pdf');
 	}
 
 	public function pr($id)

@@ -34,38 +34,38 @@
 				labels: {!! json_encode($project_labels) !!},
 				datasets: [{
 					label: "PR",
-					backgroundColor: "#22a7f0",
-					borderColor: "#22a7f0",
-					hoverBackgroundColor: "#22a7f0",
-					hoverBorderColor: "#22a7f0",
+					backgroundColor: "#dc0ab4",
+					borderColor: "#dc0ab4",
+					hoverBackgroundColor: "#dc0ab4",
+					hoverBorderColor: "#dc0ab4",
 					data: {!! json_encode($count_pr) !!},
 				}, {
 					label: "PO",
-					backgroundColor: "#63bff0",
-					borderColor: "#63bff0",
-					hoverBackgroundColor: "#63bff0",
-					hoverBorderColor: "#63bff0",
+					backgroundColor: "#0bb4ff",
+					borderColor: "#0bb4ff",
+					hoverBackgroundColor: "#0bb4ff",
+					hoverBorderColor: "#0bb4ff",
 					data: {!! json_encode($count_po) !!},
 				}, {
 					label: "GRS",
-					backgroundColor:   "#a7d5ed",
-					borderColor:   "#a7d5ed",
-					hoverBackgroundColor:   "#a7d5ed",
-					hoverBorderColor:   "#a7d5ed",
+					backgroundColor: "#50e991",
+					borderColor: "#50e991",
+					hoverBackgroundColor: "#50e991",
+					hoverBorderColor: "#50e991",
 					data: {!! json_encode($count_grs) !!},
 				}, {
 					label: "Invoice",
-					backgroundColor: "#e1a692",
-					borderColor: "#e1a692",
-					hoverBackgroundColor: "#e1a692",
-					hoverBorderColor: "#e1a692",
+					backgroundColor: "#9b19f5",
+					borderColor: "#9b19f5",
+					hoverBackgroundColor: "#9b19f5",
+					hoverBorderColor: "#9b19f5",
 					data: {!! json_encode($count_invoice) !!},
 				}, {
 					label: "Payment",
-					backgroundColor:  "#de6e56",
-					borderColor:  "#de6e56",
-					hoverBackgroundColor:  "#de6e56",
-					hoverBorderColor:  "#de6e56",
+					backgroundColor: "#00bfa0",
+					borderColor: "#00bfa0",
+					hoverBackgroundColor: "#00bfa0",
+					hoverBorderColor: "#00bfa0",
 					data: {!! json_encode($count_payment) !!},
 				}]
 			},
@@ -84,7 +84,7 @@
 							stepSize: 20000
 						},
 						stacked: false,
-                        min: 1,
+						min: 1,
 					}],
 					xAxes: [{
 						gridLines: {
@@ -92,7 +92,7 @@
 						},
 						stacked: false,
 						categoryPercentage: .9,
-            			barPercentage: .9
+						barPercentage: .9
 					}]
 				}
 			}

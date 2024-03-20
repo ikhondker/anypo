@@ -23,7 +23,7 @@
 				<div class="card-body">
 					<x-tenant.show.my-badge		value="{{ $report->id }}" label="ID"/>
 					<x-tenant.show.my-text		value="{{ $report->name }}"/>
-					<x-tenant.show.my-text		value="{{ $report->title }}" label="Title"/>
+					<x-tenant.show.my-text		value="{{ $report->summary }}" label="Summary"/>
 					<x-tenant.show.my-badge		value="{{ $report->access }}" label="Access"/>
 					<x-tenant.show.my-boolean	value="{{ $report->article_id }}" label="Article ID?"/>
 					<x-tenant.show.my-boolean	value="{{ $report->start_date }}" label="Start Date"/>
@@ -38,9 +38,18 @@
 					<x-tenant.show.my-boolean	value="{{ $report->enable }}"/>
 					<x-tenant.show.my-created-at value="{{ $report->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $report->created_at }}"/>
-					
-		
 				</div>
+
+				<!-- Footer -->
+				@if ( auth()->user()->isSystem() )
+				<div class="card-footer pt-0">
+					<div class="d-flex justify-content-end gap-3">
+						<a class="btn btn-danger" href="{{ route('reports.edit',$report->id) }}"><i data-feather="edit"></i> Edit</a>
+					</div>
+				</div>
+				<!-- End Footer -->
+				@endif
+
 			</div>
 		</div>
 		<!-- end col-6 -->

@@ -24,11 +24,11 @@
 								</tr>
 								<tr>
 									<th>Department</th>
-									<td>{{ $po->dept->name  }}</td>
+									<td>{{ $po->dept->name }}</td>
 								</tr>
 								<tr>
 									<th>Project</th>
-									<td>{{ $po->project->name  }}</td>
+									<td>{{ $po->project->name }}</td>
 								</tr>
 								<tr>
 									<th>Auth Status</th>
@@ -40,7 +40,7 @@
 								</tr>
 								<tr>
 									<th>Requestor</th>
-									<td>{{ $po->requestor->name  }}</td>
+									<td>{{ $po->requestor->name }}</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>

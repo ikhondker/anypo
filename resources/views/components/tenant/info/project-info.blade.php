@@ -13,11 +13,11 @@
 							<tbody>
 								<tr>
 									<th>Start</th>
-									<td>{{ ($project->start_date  <> "") ? strtoupper(date('d-M-Y', strtotime($project->start_date ))) : "" }}</td>
+									<td>{{ ($project->start_date <> "") ? strtoupper(date('d-M-Y', strtotime($project->start_date ))) : "" }}</td>
 								</tr>
 								<tr>
 									<th>End</th>
-									<td>{{ ($project->end_date  <> "") ? strtoupper(date('d-M-Y', strtotime($project->end_date ))) : "" }}</td>
+									<td>{{ ($project->end_date <> "") ? strtoupper(date('d-M-Y', strtotime($project->end_date ))) : "" }}</td>
 								</tr>
 								<tr>
 									<th>Project Manager</th>

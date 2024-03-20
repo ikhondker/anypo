@@ -14,7 +14,7 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">{{  $deptBudget->dept->name  }} Budget {{ $deptBudget->budget->fy }} : Status Comparison</h5>
+			<h5 class="card-title">{{ $deptBudget->dept->name }} Budget {{ $deptBudget->budget->fy }} : Status Comparison</h5>
 		</div>
 		<div class="card-body d-flex w-100">
 			<div class="align-self-center chart">

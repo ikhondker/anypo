@@ -188,7 +188,6 @@ class CreateTenant implements ShouldQueue
 			$user->state			= $setup->state;
 			$user->zip				= $setup->zip;
 			$user->country			= $setup->country;
-			$user->website			= $setup->website;
 			$user->facebook			= $setup->facebook;
 			$user->linkedin			= $setup->linkedin;
 			

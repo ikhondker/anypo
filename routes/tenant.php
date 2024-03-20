@@ -454,7 +454,8 @@ Route::middleware([
 	Route::get('/report/templatepr',[ReportController::class, 'templatepr'])->name('reports.templatepr');
 	Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
 	Route::get('/report/stocks',[ReportController::class, 'stocks'])->name('reports.stocks');
-	Route::get('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
+	Route::get('/reports/parameter/{report}',[ReportController::class,'parameter'])->name('reports.parameter');
+	Route::put('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
 
 	/* ======================== UploadItem ======================================== */
 	Route::resource('upload-items', UploadItemController::class)->middleware(['auth', 'verified']);

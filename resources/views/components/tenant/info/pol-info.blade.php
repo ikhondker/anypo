@@ -26,7 +26,7 @@
 								</tr>
 								<tr>
 									<th>Rcv Qty</th>
-									<td>{{ number_format($pol->received_qty,2)  }}</td>
+									<td>{{ number_format($pol->received_qty,2) }}</td>
 								</tr>
 								<tr>
 									<th>Unit Price</th>

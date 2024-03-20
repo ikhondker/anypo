@@ -13,35 +13,35 @@
 		<a class="dropdown-item" href="{{ route('prs.history', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('prs.extra', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> Additional Information</a>
 		<a class="dropdown-item" href="{{ route('prs.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> Attachments</a>
-		<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.copy', $id) }}"
+		<a class="dropdown-item modal-boolean-advance" href="{{ route('prs.copy', $id) }}"
 			data-entity="" data-name="PR #{{ $id }}" data-status="Duplicate"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PR">
 			<i class="align-middle me-1" data-feather="copy"></i> Copy Requisition</a>
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.convert', $id) }}"
+		<a class="dropdown-item modal-boolean-advance" href="{{ route('prs.convert', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Covert to PO"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
 			<i class="align-middle me-1 text-primary" data-feather="copy"></i> Covert to PO</a>
 		
 		<div class="dropdown-divider"></div>
 
-		<a class="dropdown-item modal-boolean-advance"  href="{{ route('wfs.wf-reset-pr', $id) }}"
+		<a class="dropdown-item modal-boolean-advance" href="{{ route('wfs.wf-reset-pr', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Reset"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PR"> 
-			<i class="align-middle me-1  text-danger" data-feather="refresh-cw"></i> Reset Workflow**</a>
+			<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Reset Workflow**</a>
 
-		<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.cancel', $id) }}"
+		<a class="dropdown-item modal-boolean-advance" href="{{ route('prs.cancel', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Requisition">
 			<i class="align-middle me-1 text-danger" data-feather="x-circle"></i> Cancel Requisition</a>
 
-		<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.destroy', $id) }}"
+		<a class="dropdown-item modal-boolean-advance" href="{{ route('prs.destroy', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Delete"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Requisition">
 			<i class="align-middle me-1 text-danger" data-feather="trash-2"></i> Delete Requisition*</a>
 
 		@if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
-			<a class="dropdown-item modal-boolean-advance"  href="{{ route('prs.recalculate', $id) }}"
+			<a class="dropdown-item modal-boolean-advance" href="{{ route('prs.recalculate', $id) }}"
 				data-entity="" data-name="PR #{{ $id }}" data-status="Recalculate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Recalculate">
 				<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Recalculate (SYSTEM)</a>

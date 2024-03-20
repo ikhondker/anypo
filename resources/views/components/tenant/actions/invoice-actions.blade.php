@@ -7,7 +7,7 @@
 		<a class="dropdown-item" href="{{ route('invoices.show', $invoice->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Invoices</a>
 		@endif
 		<a class="dropdown-item" href="{{ route('invoices.edit', $invoice->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Invoice</a>
-		<a class="dropdown-item modal-boolean-advance"  href="{{ route('invoices.post', $invoice->id) }}"
+		<a class="dropdown-item modal-boolean-advance" href="{{ route('invoices.post', $invoice->id) }}"
 			data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Post"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 			<i class="align-middle me-1" data-feather="copy"></i> Post Invoice *</a>
@@ -21,9 +21,9 @@
 
 		<div class="dropdown-divider"></div>
 
-		<a class="dropdown-item modal-boolean-advance"  href="{{ route('invoices.cancel', $invoice->id) }}"
+		<a class="dropdown-item modal-boolean-advance" href="{{ route('invoices.cancel', $invoice->id) }}"
 			data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
-			<i class="align-middle me-1  text-danger" data-feather="x-circle"></i> Cancel Invoice</a>
+			<i class="align-middle me-1 text-danger" data-feather="x-circle"></i> Cancel Invoice</a>
 	</div>
 </div>

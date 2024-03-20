@@ -1,5 +1,5 @@
 {{-- // TODO
-@if ($user->role ==  UserRoleEnum::USER)
+@if ($user->role == UserRoleEnum::USER)
 	<span class="badge bg-soft-primary">{{ $user->role }}</span>
 @else
 	<span class="badge bg-soft-danger">{{ $user->role }}</span>

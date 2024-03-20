@@ -80,7 +80,7 @@
 					data-name="{{ $account->name }}"
 					data-status="DELETE" data-bs-toggle="tooltip"
 					data-bs-placement="top" title="DELETE">
-					DELETE
+					** DELETE ACCOUNT **
 				</a>
 			 @endif
 			

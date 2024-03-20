@@ -29,9 +29,9 @@ class SpendsByProjectBar extends Component
 	public function __construct()
 	{
 		// color: https://www.heavy.ai/blog/12-color-palettes-for-telling-better-stories-with-your-data
-		//9. Blue to Red (Default)
-		//["#1984c5", "#22a7f0", "#63bff0", "#a7d5ed", "#e2e2e2", "#e1a692", "#de6e56", "#e14b31", "#c23728"]
-
+		// 2. Dutch Field final
+		// "#dc0ab4" "#0bb4ff", "#50e991", "#e6d800", "#9b19f5","00bfa0"
+		 
 		$this->projects = Project::with("pm")->where('closed', false)->orderBy('id', 'DESC')->limit(10)->get();
 
 		foreach ($this->projects as $project){

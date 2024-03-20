@@ -42,7 +42,7 @@ div class="row">
 						@foreach ($dbus as $dbu)
 						<tr>
 							<td>{{ $dbus->firstItem() + $loop->index}}</td>
-							<td><a class="text-info" href="{{ route('dbus.show',$dbu->id) }}">{{ $dbu->id  }}</a></td>
+							<td><a class="text-info" href="{{ route('dbus.show',$dbu->id) }}">{{ $dbu->id }}</a></td>
 							<td>{{ $dbu->dept->name }}</td>
 							<td>{{ $dbu->deptBudget->budget->fy }}</td>
 							<td><x-tenant.list.my-date :value="$dbu->created_at"/></td>

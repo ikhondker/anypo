@@ -32,7 +32,7 @@
 								</tr>
 								<tr>
 									<th>Requestor</th>
-									<td>{{ $pr->requestor->name  }}</td>
+									<td>{{ $pr->requestor->name }}</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
