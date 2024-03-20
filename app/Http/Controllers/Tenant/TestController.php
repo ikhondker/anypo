@@ -69,9 +69,9 @@ class TestController extends Controller
 	public function run()
 	{
 
-		//ChartData::budget();
-		//ChartData::deptBudget();
-		//ChartData::project();
+		ChartData::budget();
+		ChartData::deptBudget();
+		ChartData::project();
 		ChartData::supplier();
 		echo "Done";
 		exit;

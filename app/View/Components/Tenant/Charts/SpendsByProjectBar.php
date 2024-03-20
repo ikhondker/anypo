@@ -38,8 +38,8 @@ class SpendsByProjectBar extends Component
 			//Log::debug('Value of id=' . $project->name . ' -> '.$project->amount);
 			$this->project_labels[] 	= $project->name;
 			$this->budget[] 			= (int) $project->amount;
-			$this->amount_pr[] 			= (int) $project->amount_pr_issued + $project->amount_pr_booked;
-			$this->amount_po[] 			= (int) $project->amount_po_issued + $project->amount_po_booked;
+			$this->amount_pr[] 			= (int) $project->amount_pr + $project->amount_pr_booked;
+			$this->amount_po[] 			= (int) $project->amount_po + $project->amount_po_booked;
 			$this->amount_grs[] 		= (int) $project->amount_grs;
 			$this->amount_invoice[] 	= (int) $project->amount_invoice;
 			$this->amount_payment[] 	= (int) $project->amount_payment;

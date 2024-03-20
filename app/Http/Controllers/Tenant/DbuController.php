@@ -142,7 +142,7 @@ class DbuController extends Controller
 
 		$data = DB::select("
 		SELECT u.id, u.entity, u.article_id, u.event, o.name user_name, d.name dept_name, p.name project_name, 
-		u.amount_pr_booked, u.amount_pr_issued, u.amount_po_booked, u.amount_po_issued, u.amount_grs, u.amount_invoice, u.amount_payment, 
+		u.amount_pr_booked, u.amount_pr, u.amount_po_booked, u.amount_po, u.amount_grs, u.amount_invoice, u.amount_payment, 
 		u.created_at
 		FROM dbus u,dept_budgets db,budgets b,depts d, projects p, users o
 		WHERE u.dept_budget_id = db.id

@@ -53,24 +53,24 @@
 							if ( $budget->amount ==0 ){
 								$budget_used_pc = 0;
 								$budget_amount = 0 ;
-								$budget_po_issued  = 0;
+								$budget_po  = 0;
 							} else {
-								$budget_used_pc		= $budget->amount_po_issued / $budget->amount * 100;
+								$budget_used_pc		= $budget->amount_po / $budget->amount * 100;
 								$budget_amount		= $budget->amount ;
-								$budget_po_issued	= $budget->amount_po_issued ;
+								$budget_po	= $budget->amount_po ;
 							}
 						} catch (\Exception $ex) {
 							// Error handling code
 							$budget_used_pc = 0;
 							$budget_amount = 0 ;
-							$budget_po_issued  = 0;
+							$budget_po  = 0;
 							
 						}
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($budget_used_pc,2) }}%</span>
 					<div class="mb-0">
 						<span class="badge badge-soft-success me-2">{{ $budget_amount }}</span>
-						<span class="text-muted"> total budget for FY{{ date('Y') }}. Utilized {{ $budget_po_issued }}</span>
+						<span class="text-muted"> total budget for FY{{ date('Y') }}. Utilized {{ $budget_po }}</span>
 					</div>
 				</div>
 			</div>
@@ -740,7 +740,7 @@
 						borderColor: window.theme["primary-light"],
 						hoverBackgroundColor: window.theme["primary-light"],
 						hoverBorderColor: window.theme["primary-light"],
-						data: {!! json_encode($depb_budget_po_issued) !!},
+						data: {!! json_encode($depb_budget_po) !!},
 						barPercentage: .5,
 						categoryPercentage: .5
 					}]

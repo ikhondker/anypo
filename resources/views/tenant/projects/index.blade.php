@@ -147,10 +147,10 @@
 								<td>{{ $project->pm->name }}</td>
 								<td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_pr_booked + $project->amount_pr_issued"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_pr_booked - $project->amount_pr_issued "/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_po_booked + $project->amount_po_issued"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_po_booked - $project->amount_po_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_pr_booked + $project->amount_pr"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_pr_booked - $project->amount_pr "/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_po_booked + $project->amount_po"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_po_booked - $project->amount_po"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_payment"/></td>

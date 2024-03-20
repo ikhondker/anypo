@@ -130,7 +130,7 @@ class DashboardController extends Controller
 	{
 
 		// ====================== Budget====================================
-		$records = DB::select("SELECT amount-amount_po_booked-amount_po_issued as amount, amount_po_booked, amount_po_issued
+		$records = DB::select("SELECT amount-amount_po_booked-amount_po as amount, amount_po_booked, amount_po
 		FROM budgets b
 		WHERE b.fy = date('Y')");
 		//$result = $dept_budgets->toArray();
@@ -144,7 +144,7 @@ class DashboardController extends Controller
 		foreach($records as $row) {
 			$budget_data[] = (int) $row->amount;
 			$budget_data[] = (int) $row->amount_po_booked;
-			$budget_data[] = (int) $row->amount_po_issued;
+			$budget_data[] = (int) $row->amount_po;
 		}
 
 		// Generate random colours for the groups
@@ -170,27 +170,27 @@ class DashboardController extends Controller
 		}
 
 		// ====================== Dept Allocated vs used Budget====================================
-		$records = DB::select("SELECT d.name, db.amount, db.amount_po_issued
+		$records = DB::select("SELECT d.name, db.amount, db.amount_po
 		FROM dept_budgets db, budgets b, depts d
 		WHERE db.budget_id=b.id
 		and b.fy = date('Y')
 		and db.dept_id=d.id");
 		$depb_budget_labels = [];
 		$depb_budget_amount = [];
-		$depb_budget_po_issued = [];
+		$depb_budget_po = [];
 		$depb_budget_colors = [];
 
 		foreach($records as $row) {
 			$depb_budget_labels[] = $row->name;
 			$depb_budget_amount[] = (int) $row->amount;
-			$depb_budget_po_issued[] = (int) $row->amount_po_issued;
+			$depb_budget_po[] = (int) $row->amount_po;
 
 		}
 		// Generate random colours for the groups
 		for ($i = 0; $i <= count($records); $i++) {
 			$depb_budget_colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
 		}
-		//dd($depb_budget_labels,$depb_budget_amount,$depb_budget_po_issued);
+		//dd($depb_budget_labels,$depb_budget_amount,$depb_budget_po);
 
 
 		// ====================== View ====================================
@@ -203,7 +203,7 @@ class DashboardController extends Controller
 			'depb_colors',
 			'depb_budget_labels',
 			'depb_budget_amount',
-			'depb_budget_po_issued',
+			'depb_budget_po',
 			'depb_budget_colors'
 		));
 

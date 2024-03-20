@@ -39,9 +39,9 @@ class DeptBudgetPrPie extends Component
 		$this->budget_labels[] = "PR Booked";
 		$this->budget_labels[] = "PR Issued";
 
-		$this->budget_data[] = (int) $this->deptBudget->amount - $this->deptBudget->amount_pr_booked -$this->deptBudget->amount_pr_issued;
+		$this->budget_data[] = (int) $this->deptBudget->amount - $this->deptBudget->amount_pr_booked -$this->deptBudget->amount_pr;
 		$this->budget_data[] = (int) $this->deptBudget->amount_pr_booked;
-		$this->budget_data[] = (int) $this->deptBudget->amount_pr_issued;
+		$this->budget_data[] = (int) $this->deptBudget->amount_pr;
 
 		// Generate random colors for the groups
 		for ($i = 0; $i <= 3 ; $i++) {

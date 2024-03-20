@@ -15,7 +15,7 @@ class BudgetByDeptPoBar extends Component
 {
 	public $dept_budget_labels = [];
 	public $dept_budget_amount = [];
-	public $dept_budget_po_issued = [];
+	public $dept_budget_po = [];
 	public $depb_budget_colors = [];
 	
 	public 	$budget;
@@ -44,7 +44,7 @@ class BudgetByDeptPoBar extends Component
 
 			$this->dept_budget_labels[] 	= $deptBudget->dept->name;
 			$this->dept_budget_amount[] 	= (int) $deptBudget->amount;
-			$this->dept_budget_po_issued[] 	= (int) $deptBudget->amount_po_issued + $deptBudget->amount_po_booked ;
+			$this->dept_budget_po[] 	= (int) $deptBudget->amount_po + $deptBudget->amount_po_booked ;
 		}
 		
 		// Generate random colours for the groups

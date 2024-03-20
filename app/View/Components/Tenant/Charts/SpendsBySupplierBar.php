@@ -36,8 +36,8 @@ class SpendsBySupplierBar extends Component
 			//Log::debug('Value of id=' . $supplier->name . ' -> '.$supplier->amount);
 			$this->supplier_labels[] 	= Str::limit($supplier->name, 5,'...');
 			$this->budget[] 			= (int) $supplier->amount;
-			$this->amount_pr[] 			= (int) $supplier->amount_pr_issued + $supplier->amount_pr_booked;
-			$this->amount_po[] 			= (int) $supplier->amount_po_issued + $supplier->amount_po_booked;
+			$this->amount_pr[] 			= (int) $supplier->amount_pr + $supplier->amount_pr_booked;
+			$this->amount_po[] 			= (int) $supplier->amount_po + $supplier->amount_po_booked;
 			$this->amount_grs[] 		= (int) $supplier->amount_grs;
 			$this->amount_invoice[] 	= (int) $supplier->amount_invoice;
 			$this->amount_payment[] 	= (int) $supplier->amount_payment;

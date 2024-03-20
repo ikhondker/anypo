@@ -34,9 +34,9 @@
 						</div>
 					</div>
 				</div>
-				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $budget->amount_po_issued) }}</span>
+				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $budget->amount_po) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-soft-success me-2">{{ number_format($budget->amount_po_issued / $budget->amount * 100,2) }}%</span>
+					<span class="badge badge-soft-success me-2">{{ number_format($budget->amount_po / $budget->amount * 100,2) }}%</span>
 					<span class="text-muted">budget Utilized  </span>
 					<span class="badge badge-soft-success me-2">{{ $budget->count_po }}</span>
 					<span class="text-muted">PO Issued</span>

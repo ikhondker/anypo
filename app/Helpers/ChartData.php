@@ -45,15 +45,15 @@ class ChartData
 
 		$amount 			= random_int(80000, 99999);
 
-		$amount_pr 			= random_int(70000, $amount);
-		$amount_pr_booked 	= $amount_pr *.1;
-		$amount_pr_issued 	= $amount_pr *.9;
+		$pr_total_amount 			= random_int(70000, $amount);
+		$amount_pr_booked 	= $pr_total_amount *.1;
+		$amount_pr 			= $pr_total_amount *.9;
 
-		$amount_po 			= random_int(40000, $amount_pr_issued);
-		$amount_po_booked 	= $amount_po *.1;
-		$amount_po_issued 	= $amount_po *.9;
+		$po_total_amount 			= random_int(40000, $amount_pr);
+		$amount_po_booked 	= $po_total_amount *.1;
+		$amount_po 	= $po_total_amount *.9;
 
-		$amount_grs 		= random_int(35000, $amount_po_issued);
+		$amount_grs 		= random_int(35000, $amount_po);
 		$amount_invoice 	= random_int(30000, $amount_grs);
 		$amount_payment 	= random_int(25000, $amount_invoice);
 
@@ -67,9 +67,9 @@ class ChartData
 		return [
 			'amount' 			=> $amount,
 			'amount_pr_booked' 	=> $amount_pr_booked,
-			'amount_pr_issued' 	=> $amount_pr_issued,
+			'amount_pr' 		=> $amount_pr,
 			'amount_po_booked' 	=> $amount_po_booked,
-			'amount_po_issued' 	=> $amount_po_issued,
+			'amount_po' 		=> $amount_po,
 			'amount_grs' 		=> $amount_grs,
 			'amount_invoice' 	=> $amount_invoice,
 			'amount_payment' 	=> $amount_payment,
@@ -91,10 +91,10 @@ class ChartData
 
 		$budget->amount 			= $data['amount'];
 		$budget->amount_pr_booked 	= $data['amount_pr_booked'];
-		$budget->amount_pr_issued 	= $data['amount_pr_issued'];
+		$budget->amount_pr 			= $data['amount_pr'];
 
 		$budget->amount_po_booked 	= $data['amount_po_booked'];
-		$budget->amount_po_issued 	= $data['amount_po_issued'];
+		$budget->amount_po 			= $data['amount_po'];
 
 		$budget->amount_grs 		= $data['amount_grs'];
 		$budget->amount_invoice 	= $data['amount_invoice'];
@@ -127,10 +127,10 @@ class ChartData
 			// 	Log::debug('Checking for archival for Account id=' . $account->id);
 			Log::debug('amount 				='. $data['amount']);
 			Log::debug('amount_pr_booked 	='. $data['amount_pr_booked']);
-			Log::debug('amount_pr_issued 	='. $data['amount_pr_issued']);
+			Log::debug('amount_pr 	='. $data['amount_pr']);
 
 			Log::debug('amount_po_booked 	='. $data['amount_po_booked']);
-			Log::debug('amount_po_issued 	='. $data['amount_po_issued']);
+			Log::debug('amount_po 	='. $data['amount_po']);
 
 			Log::debug('amount_grs 			='. $data['amount_grs']);
 			Log::debug('amount_invoice 		='. $data['amount_invoice']);
@@ -144,10 +144,10 @@ class ChartData
 
 			$rowDeptBudget->amount 				= $data['amount'];
 			$rowDeptBudget->amount_pr_booked 	= $data['amount_pr_booked'];
-			$rowDeptBudget->amount_pr_issued 	= $data['amount_pr_issued'];
+			$rowDeptBudget->amount_pr 			= $data['amount_pr'];
 
 			$rowDeptBudget->amount_po_booked 	= $data['amount_po_booked'];
-			$rowDeptBudget->amount_po_issued 	= $data['amount_po_issued'];
+			$rowDeptBudget->amount_po 			= $data['amount_po'];
 
 			$rowDeptBudget->amount_grs 			= $data['amount_grs'];
 			$rowDeptBudget->amount_invoice 		= $data['amount_invoice'];
@@ -174,14 +174,14 @@ class ChartData
 
 			$rowProject->amount 				= $data['amount'];
 			$rowProject->amount_pr_booked 	= $data['amount_pr_booked'];
-			$rowProject->amount_pr_issued 	= $data['amount_pr_issued'];
+			$rowProject->amount_pr 			= $data['amount_pr'];
 
 			$rowProject->amount_po_booked 	= $data['amount_po_booked'];
-			$rowProject->amount_po_issued 	= $data['amount_po_issued'];
+			$rowProject->amount_po 			= $data['amount_po'];
 
-			$rowProject->amount_grs 			= $data['amount_grs'];
-			$rowProject->amount_invoice 		= $data['amount_invoice'];
-			$rowProject->amount_payment 		= $data['amount_payment'];
+			$rowProject->amount_grs 		= $data['amount_grs'];
+			$rowProject->amount_invoice 	= $data['amount_invoice'];
+			$rowProject->amount_payment 	= $data['amount_payment'];
 
 			$rowProject->count_pr 			= $data['count_pr'];
 			$rowProject->count_po 			= $data['count_po'];
@@ -205,10 +205,10 @@ class ChartData
 			$data = self::getRandomData();
 
 			$rowSupplier->amount_pr_booked 	= $data['amount_pr_booked'];
-			$rowSupplier->amount_pr_issued 	= $data['amount_pr_issued'];
+			$rowSupplier->amount_pr 		= $data['amount_pr'];
 
 			$rowSupplier->amount_po_booked 	= $data['amount_po_booked'];
-			$rowSupplier->amount_po_issued 	= $data['amount_po_issued'];
+			$rowSupplier->amount_po 		= $data['amount_po'];
 
 			$rowSupplier->amount_grs 			= $data['amount_grs'];
 			$rowSupplier->amount_invoice 		= $data['amount_invoice'];

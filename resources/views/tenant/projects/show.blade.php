@@ -41,8 +41,8 @@
 					<div class="row mb-3">
 						<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
 						<x-tenant.show.my-amount	value="{{ $project->amount_po_booked }}" label="PO Booked"/>
-						<x-tenant.show.my-amount	value="{{ $project->amount_po_issued }}" label="PO Issued"/>
-						<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_po_booked - $project->amount_po_issued }}" label="Available"/>
+						<x-tenant.show.my-amount	value="{{ $project->amount_po }}" label="PO Issued"/>
+						<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_po_booked - $project->amount_po }}" label="Available"/>
 					</div>
 				</div>
 			</div>
@@ -92,8 +92,8 @@
 				<div class="card-body">
 				<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
 				<x-tenant.show.my-amount	value="{{ $project->amount_pr_booked }}" label="PR Booked"/>
-				<x-tenant.show.my-amount	value="{{ $project->amount_pr_issued }}" label="PR Issued"/>
-				<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_pr_booked - $project->amount_pr_issued }}" label="Available"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount_pr }}" label="PR Issued"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_pr_booked - $project->amount_pr }}" label="Available"/>
 				</div>
 			</div>
 

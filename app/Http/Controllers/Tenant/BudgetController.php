@@ -187,7 +187,7 @@ class BudgetController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Budget::class);
-		$data = DB::select("SELECT id, fy, name, start_date, end_date, amount, amount_pr_booked, amount_pr_issued, amount_po_booked, amount_po_issued, amount_grs, amount_payment, notes, 
+		$data = DB::select("SELECT id, fy, name, start_date, end_date, amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_payment, notes, 
 				IF(closed, 'Yes', 'No') as closed
 			FROM budgets");
 		$dataArray = json_decode(json_encode($data), true);

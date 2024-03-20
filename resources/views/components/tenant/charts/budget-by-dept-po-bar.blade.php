@@ -46,7 +46,7 @@
 					borderColor: window.theme["primary-light"],
 					hoverBackgroundColor: window.theme["primary-light"],
 					hoverBorderColor: window.theme["primary-light"],
-					data: {!! json_encode($dept_budget_po_issued) !!},
+					data: {!! json_encode($dept_budget_po) !!},
 					barPercentage: .5,
 					categoryPercentage: .5
 				}]

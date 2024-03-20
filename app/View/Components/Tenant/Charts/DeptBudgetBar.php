@@ -39,10 +39,10 @@ class DeptBudgetBar extends Component
 		$this->dept_amount[] = (int) $this->deptBudget->amount;
 
 		$this->dept_budget_labels[] = 'PO';
-		$this->dept_amount[] = (int)$this->deptBudget->amount_po_booked +$this->deptBudget->amount_po_issued;
+		$this->dept_amount[] = (int)$this->deptBudget->amount_po_booked +$this->deptBudget->amount_po;
 
 		$this->dept_budget_labels[] = 'PR';
-		$this->dept_amount[] = (int)$this->deptBudget->amount_pr_booked +$this->deptBudget->amount_pr_issued;
+		$this->dept_amount[] = (int)$this->deptBudget->amount_pr_booked +$this->deptBudget->amount_pr;
 
 		$this->dept_budget_labels[] = 'GRS';
 		$this->dept_amount[] = (int)$this->deptBudget->amount_grs;

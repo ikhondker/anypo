@@ -17,13 +17,15 @@ return new class extends Migration
 			$table->foreignId('dept_id')->constrained('depts');
 			$table->float('amount', 15, 2)->default(0);
 			$table->float('amount_pr_booked', 15, 2)->default(0);
-			$table->float('amount_pr_issued', 15, 2)->default(0);
+			$table->float('amount_pr', 15, 2)->default(0);
 			$table->float('amount_po_booked', 15, 2)->default(0);
-			$table->float('amount_po_issued', 15, 2)->default(0);
+			$table->float('amount_po', 15, 2)->default(0);
 			$table->float('amount_grs', 15, 2)->default(0);
 			$table->float('amount_invoice', 15, 2)->default(0);
 			$table->float('amount_payment', 15, 2)->default(0);
+			$table->biginteger('count_pr_booked')->default(0);
 			$table->biginteger('count_pr')->default(0);
+			$table->biginteger('count_po_booked')->default(0);
 			$table->biginteger('count_po')->default(0);
 			$table->biginteger('count_grs')->default(0);
 			$table->biginteger('count_invoice')->default(0);

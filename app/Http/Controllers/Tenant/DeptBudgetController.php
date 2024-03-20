@@ -202,7 +202,7 @@ class DeptBudgetController extends Controller
 	public function export()
 	{
 		$this->authorize('export', DeptBudget::class);
-		$data = DB::select("SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr_issued, db.amount_po_booked, db.amount_po_issued, db.amount_grs, db.amount_payment, 
+		$data = DB::select("SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr, db.amount_po_booked, db.amount_po, db.amount_grs, db.amount_payment, 
 		db.notes, 	IF(db.closed, 'Yes', 'No') as Closed
 		FROM dept_budgets db,budgets b,depts d
 		WHERE db.budget_id = b.id

@@ -59,9 +59,6 @@ class ReportSeeder extends Seeder
 				'id' 	=> 1011,
 				'name' => 'Supplier Spend Report (**)',
 			],
-
-
-
 	  	];
 	  
 		  $reports =  [
@@ -142,6 +139,29 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> true,
 				'dept_id_required' 		=> false,
 			],
+			[
+				'id' 					=> 1009,
+				'name' 					=> 'Project Spend Report (**)',
+				'summary' 				=> 'Payment Register (For a Date range, by Department)',
+				'start_date' 			=> true,
+				'start_date_required' 	=> true,
+				'end_date' 				=> true,
+				'end_date_required' 	=> true,
+				'dept_id' 				=> false,
+				'dept_id_required' 		=> false,
+			],
+			[
+				'id' 					=> 1010,
+				'name' 					=> 'Supplier Spend Report (**)',
+				'summary' 				=> 'Payment Register (For a Date range, by Department)',
+				'start_date' 			=> true,
+				'start_date_required' 	=> true,
+				'end_date' 				=> true,
+				'end_date_required' 	=> true,
+				'dept_id' 				=> false,
+				'dept_id_required' 		=> false,
+			],
+
 
 	  	];
 	  Report::insert($reports);

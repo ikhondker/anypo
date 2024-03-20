@@ -65,11 +65,11 @@
 
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr_booked"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr_issued"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr_issued "/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr "/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_po_booked"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_po_issued"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_po"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_payment"/></td>

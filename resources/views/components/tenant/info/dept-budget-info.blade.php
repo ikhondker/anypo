@@ -17,7 +17,7 @@
 								</tr>
 								<tr>
 									<th>PO Issued</th>
-									<td>{{number_format($deptBudget->amount_po_issued, 2)}} {{ $_setup->currency }}</td>
+									<td>{{number_format($deptBudget->amount_po, 2)}} {{ $_setup->currency }}</td>
 								</tr>
 								<tr>
 									<th>GRS Amount</th>

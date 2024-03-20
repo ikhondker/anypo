@@ -76,7 +76,7 @@ class PrBudget
 
 		// only check if budget is available 
 		$dept_budget_available =false;
-		if (($dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr_issued) > $pr->fc_amount) {
+		if (($dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr) > $pr->fc_amount) {
 			$dept_budget_available =true;
 			Log::debug("tenant.helper.PrBudget.prBudgetBook dept_budget_available true.");
 		} else {
@@ -86,7 +86,7 @@ class PrBudget
 		// check if project budget available
 		$project_budget_available =false;
 		$project = Project::primary()->where('id', $pr->project_id)->firstOrFail();
-			if (($project->amount - $project->amount_pr_booked - $project->amount_pr_issued) > $pr->fc_amount) {
+		if (($project->amount - $project->amount_pr_booked - $project->amount_pr) > $pr->fc_amount) {
 			$project_budget_available =true;
 			Log::debug("tenant.helper.PrBudget.prBudgetBook project_budget_available true.");
 		} else {
@@ -100,13 +100,23 @@ class PrBudget
 			Log::debug("tenant.helper.PrBudget.prBudgetBook before dept_budget->amount_pr_booked=".$dept_budget->amount_pr_booked );
 			Log::debug("tenant.helper.PrBudget.prBudgetBook updating pr->fc_amount=".$pr->fc_amount);
 			$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked + $pr->fc_amount;
+			$dept_budget->count_pr_booked = $dept_budget->count_pr_booked + 1;
 			$dept_budget->save();
 			Log::debug("tenant.helper.PrBudget.prBudgetBook dept_budget->amount_pr_booked=".$dept_budget->amount_pr_booked );
 
 			// book project budget
 			$project->amount_pr_booked = $project->amount_pr_booked + $pr->fc_amount;
+			$project->count_pr_booked = $project->count_pr_booked + 1;
 			$project->save();
 			Log::debug("tenant.helper.PrBudget.prBudgetBook AFTER project->amount_pr_booked=".$project->amount_pr_booked );
+
+			// Pr supplier pr issues amount
+			$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
+			$supplier->amount_pr_booked = $supplier->amount_pr_booked + $pr->fc_amount;
+			$supplier->count_pr_booked 		= $supplier->count_pr_booked + 1;
+			$supplier->save();
+			
+			Log::debug("tenant.helper.PrBudget.poBudgetBook AFTER project->amount_po_booked=".$project->amount_pr_booked );
 
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::BOOK->value,$pr->fc_amount);
@@ -124,12 +134,20 @@ class PrBudget
 		// reverse Pr dept budget booking 
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked - $pr->fc_amount;
+		$dept_budget->count_pr_booked = $dept_budget->count_pr_booked - 1;
 		$dept_budget->save();
 		
 		// reverse Pr project booking 
 		$project = Project::where('id', $pr->project_id)->firstOrFail();
 		$project->amount_pr_booked = $project->amount_pr_booked - $pr->fc_amount;
+		$project->count_pr_booked = $project->count_pr_booked - 1;
 		$project->save();
+
+		// Pr supplier pr issues amount
+		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
+		$supplier->amount_pr_booked = $supplier->amount_pr_booked - $pr->fc_amount;
+		$supplier->count_pr_booked 		= $supplier->count_pr_booked + 1;
+		$supplier->save();
 
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, $event,$pr->fc_amount);
@@ -145,21 +163,29 @@ class PrBudget
 		$pr = Pr::where('id', $pr_id)->first();
 		// Pr dept budget approved
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-		$dept_budget->amount_pr_issued = $dept_budget->amount_pr_issued + $pr->fc_amount;
 		$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked - $pr->fc_amount;
+		$dept_budget->count_pr_booked = $dept_budget->count_pr_count - 1;
+
+		$dept_budget->amount_pr = $dept_budget->amount_pr + $pr->fc_amount;
 		$dept_budget->count_pr = $dept_budget->count_pr + 1;
+
 		$dept_budget->save();
 
 		// Pr project budget used
 		$project = Project::where('id', $pr->project_id)->firstOrFail();
-		$project->amount_pr_issued 	= $project->amount_pr_issued + $pr->fc_amount;
 		$project->amount_pr_booked 	= $project->amount_pr_booked - $pr->fc_amount;
-		$project->count_pr 			= $project->count_pr + 1;
+		$project->count_pr_booked 			= $project->count_pr_booked - 1;
+
+		$project->amount_pr 	= $project->amount_pr + $pr->fc_amount;
+		$project->count_pr 		= $project->count_pr + 1;
 		$project->save();
 
 		// Pr supplier pr issues amount
 		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
-		$supplier->amount_pr_issued = $supplier->amount_pr_issued + $pr->fc_amount;
+		$project->amount_pr_booked 	= $project->amount_pr_booked - $pr->fc_amount;
+		$project->count_pr_booked 			= $project->count_pr_booked - 1;
+
+		$supplier->amount_pr = $supplier->amount_pr + $pr->fc_amount;
 		$supplier->count_pr 		= $supplier->count_pr + 1;
 		$supplier->save();
 				
@@ -176,24 +202,22 @@ class PrBudget
 
 		// reverse Pr dept budget booking 
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-		$dept_budget->amount_pr_issued = $dept_budget->amount_pr_issued - $pr->fc_amount;
+		$dept_budget->amount_pr = $dept_budget->amount_pr - $pr->fc_amount;
 		$dept_budget->count_pr = $dept_budget->count_pr - 1;
 		$dept_budget->save();
 		
 		// reverse Pr project booking 
 		$project = Project::where('id', $pr->project_id)->firstOrFail();
-		$project->amount_pr_issued = $project->amount_pr_issued - $pr->fc_amount;
-		$project->count_pr 			= $project->count_pr - 1;
+		$project->amount_pr = $project->amount_pr - $pr->fc_amount;
+		$project->count_pr 	= $project->count_pr - 1;
 		$project->save();
-
 
 		// Pr supplier pr issues reduce
 		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
-		$supplier->amount_pr_issued = $supplier->amount_pr_issued - $pr->fc_amount;
+		$supplier->amount_pr = $supplier->amount_pr - $pr->fc_amount;
 		$supplier->count_pr 		= $supplier->count_pr - 1;
 		$supplier->save();
 
-				
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::CANCEL->value,$pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);

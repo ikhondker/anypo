@@ -40,9 +40,9 @@ class DeptBudgetPoPie extends Component
 		$this->budget_labels[] = "PO Booked";
 		$this->budget_labels[] = "PO Issued";
 
-		$this->budget_data[] = (int) $this->deptBudget->amount - $this->deptBudget->amount_po_booked -$this->deptBudget->amount_po_issued;
+		$this->budget_data[] = (int) $this->deptBudget->amount - $this->deptBudget->amount_po_booked -$this->deptBudget->amount_po;
 		$this->budget_data[] = (int) $this->deptBudget->amount_po_booked;
-		$this->budget_data[] = (int) $this->deptBudget->amount_po_issued;
+		$this->budget_data[] = (int) $this->deptBudget->amount_po;
 
 		// Generate random colors for the groups
 		for ($i = 0; $i <= 3 ; $i++) {

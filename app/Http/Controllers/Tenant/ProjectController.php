@@ -182,7 +182,7 @@ class ProjectController extends Controller
 	{
 		$this->authorize('export', Project::class);
 		$data = DB::select("SELECT p.id, p.name, u.name pm_name, p.start_date, end_date, 
-			amount budget, amount_pr_booked, amount_pr_issued, amount_po_booked, amount_po_issued, amount_grs, amount_payment, p.notes, 
+			amount budget, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_payment, p.notes, 
 			IF(enable, 'Yes', 'No') as Enable 
 			FROM projects p, users u
 			WHERE p.pm_id=u.id");

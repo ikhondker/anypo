@@ -15,6 +15,7 @@ class InvoiceLines extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr_issued', 'amount_po_booked', 'amount_po_issued', 'amount_grs', 'amount_payment', 'end_date', 'notes', 'freeze', 'updated_by', 'updated_at',
+		'inv_id', 'line_num', 'summary', 'item_id', 'uom_id', 'qty', 'price', 'sub_total', 'tax', 'gst', 'amount', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'notes', 'closure_status', 'updated_by', 'updated_at',
+
 	];
 }

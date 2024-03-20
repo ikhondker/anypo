@@ -31,9 +31,9 @@ return new class extends Migration
 			$table->foreignId('project_id')->nullable()->constrained('projects');
 			$table->foreignId('supplier_id')->nullable()->constrained('suppliers');	// NEW
 			$table->float('amount_pr_booked', 15, 2)->default(0);
-			$table->float('amount_pr_issued', 15, 2)->default(0);
+			$table->float('amount_pr', 15, 2)->default(0);
 			$table->float('amount_po_booked', 15, 2)->default(0);
-			$table->float('amount_po_issued', 15, 2)->default(0);
+			$table->float('amount_po', 15, 2)->default(0);
 			$table->float('amount_grs', 15, 2)->default(0);
 			$table->float('amount_invoice', 15, 2)->default(0);
 			$table->float('amount_payment', 15, 2)->default(0);

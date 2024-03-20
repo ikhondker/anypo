@@ -30,8 +30,6 @@
 				<div class="card-body">
 					<table class="table">
 						<thead>
-							{{-- id dept_budget_id entity article_id event amount amount_pr_booked amount_pr_issued amount_po_booked amount_po_issued amount_grs amount_payment notes deleted_at created_by created_at updated_by updated_at --}}
-
 							<tr>
 								<th>#</th>
 								<th>ID</th>
@@ -68,9 +66,9 @@
 								<td>{{ $dbu->event }}</td>
 								<td><x-tenant.list.project-link id="{{ $dbu->project_id }}" :label="$dbu->project->name"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr_booked"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_po_booked"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_po_issued"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_po"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_payment"/></td>

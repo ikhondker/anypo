@@ -31,9 +31,9 @@
 					<x-tenant.show.my-text		value="{{ $dbu->event }}" label="Event"/>
 					<x-tenant.show.project-link id="{{ $dbu->project_id }}" :label="$dbu->project->name"/>
 					<x-tenant.show.my-amount	value="{{ $dbu->amount_pr_booked }}" label="PR Booked"/>
-					<x-tenant.show.my-amount	value="{{ $dbu->amount_pr_issued }}" label="PR Approved"/>
+					<x-tenant.show.my-amount	value="{{ $dbu->amount_pr }}" label="PR Approved"/>
 					<x-tenant.show.my-amount	value="{{ $dbu->amount_po_booked }}" label="PO Booked"/>
-					<x-tenant.show.my-amount	value="{{ $dbu->amount_po_issued }}" label="PO Issued"/>
+					<x-tenant.show.my-amount	value="{{ $dbu->amount_po }}" label="PO Issued"/>
 					<x-tenant.show.my-amount	value="{{ $dbu->amount_grs }}" label="GRS Amount"/>
 					<x-tenant.show.my-amount	value="{{ $dbu->amount_payment }}" label="Payment Amount"/>
 					<x-tenant.show.my-text		value="{{ $dbu->id }}" label="Transaction ID"/>			
