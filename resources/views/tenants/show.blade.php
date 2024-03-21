@@ -6,7 +6,7 @@
 <!-- Card -->
 <div class="card">
 	<div class="card-header border-bottom">
-		<h4 class="card-header-title">Tenant Info (TODO)</h4>
+		<h4 class="card-header-title">Tenant Info (TODO P2)</h4>
 	</div>
 
 	<!-- Body -->

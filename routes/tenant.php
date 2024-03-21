@@ -106,15 +106,19 @@ Route::middleware([
 	* ==================================================================================
 	*/
 	Route::get('testrun/',[TestController::class, 'run'])->name('test.run');
+	// Route::get('/test', function () {
+	// 	dd('done at ' .date('Y'));
+	// })->name('test');
+	//Route::view('/test', 'tenant.pages.test');
 	Route::get('/test', function () {
-		dd('done at ' .date('Y'));
-	})->name('test');
-	
+		return view('tenant.pages.test');
+	})->name('tos');
+
+
 	
 	/* ======================== make auth universal ========================================  */
 	 Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
 		Auth::routes(); 
-		
 	});
    
 	// IQBAL 28-feb-23
@@ -324,6 +328,7 @@ Route::middleware([
 	Route::resource('items', ItemController::class)->middleware(['auth', 'verified']);
 	Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
 	Route::get('/items/delete/{item}',[ItemController::class,'destroy'])->name('items.destroy');
+    Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
 
 	/* ======================== Hierarchy ======================================== */
 	Route::resource('hierarchies', HierarchyController::class)->middleware(['auth', 'verified']);

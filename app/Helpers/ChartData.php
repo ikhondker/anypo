@@ -85,7 +85,7 @@ class ChartData
 	{
 
 		$data = self::getRandomData();
-		Log::debug($data['amount']);
+		//Log::debug($data['amount']);
 
 		$budget = Budget::where('id', 1001 )->orderBy('id', 'ASC')->first();
 
@@ -122,25 +122,25 @@ class ChartData
 			$rowDeptBudget = DeptBudget::where('id', $deptBudget->id )->orderBy('id', 'ASC')->first();
 
 			$data = self::getRandomData();
-			Log::debug('rowDeptBudget_id=' . $rowDeptBudget->id);
-			Log::debug('---------------------------------');
+			//Log::debug('rowDeptBudget_id=' . $rowDeptBudget->id);
+			//Log::debug('---------------------------------');
 			// 	Log::debug('Checking for archival for Account id=' . $account->id);
-			Log::debug('amount 				='. $data['amount']);
-			Log::debug('amount_pr_booked 	='. $data['amount_pr_booked']);
-			Log::debug('amount_pr 	='. $data['amount_pr']);
+			// Log::debug('amount 				='. $data['amount']);
+			// Log::debug('amount_pr_booked 	='. $data['amount_pr_booked']);
+			// Log::debug('amount_pr 			='. $data['amount_pr']);
 
-			Log::debug('amount_po_booked 	='. $data['amount_po_booked']);
-			Log::debug('amount_po 	='. $data['amount_po']);
+			// Log::debug('amount_po_booked 	='. $data['amount_po_booked']);
+			// Log::debug('amount_po 			='. $data['amount_po']);
 
-			Log::debug('amount_grs 			='. $data['amount_grs']);
-			Log::debug('amount_invoice 		='. $data['amount_invoice']);
-			Log::debug('amount_payment 		='. $data['amount_payment']);
+			// Log::debug('amount_grs 			='. $data['amount_grs']);
+			// Log::debug('amount_invoice 		='. $data['amount_invoice']);
+			// Log::debug('amount_payment 		='. $data['amount_payment']);
 
-			Log::debug('count_pr 			='. $data['count_pr']);
-			Log::debug('count_po 			='. $data['count_po']);
-			Log::debug('count_grs 			='. $data['count_grs']);
-			Log::debug('count_invoice 		='. $data['count_invoice']);
-			Log::debug('count_payment 		='. $data['count_payment']);
+			// Log::debug('count_pr 			='. $data['count_pr']);
+			// Log::debug('count_po 			='. $data['count_po']);
+			// Log::debug('count_grs 			='. $data['count_grs']);
+			// Log::debug('count_invoice 		='. $data['count_invoice']);
+			// Log::debug('count_payment 		='. $data['count_payment']);
 
 			$rowDeptBudget->amount 				= $data['amount'];
 			$rowDeptBudget->amount_pr_booked 	= $data['amount_pr_booked'];
@@ -168,8 +168,8 @@ class ChartData
 		$projects = Project::orderBy('id', 'ASC')->get();
 		foreach ($projects as $project) {
 			$rowProject = Project::where('id', $project->id )->orderBy('id', 'ASC')->first();
-			Log::debug('rowProject_id=' . $rowProject->id);
-			Log::debug('---------------------------------');
+			//Log::debug('rowProject_id=' . $rowProject->id);
+			//Log::debug('---------------------------------');
 			$data = self::getRandomData();
 
 			$rowProject->amount 				= $data['amount'];
@@ -199,9 +199,9 @@ class ChartData
 		$suppliers = Supplier::orderBy('id', 'ASC')->get();
 		foreach ($suppliers as $supplier) {
 			$rowSupplier = Supplier::where('id', $supplier->id )->orderBy('id', 'ASC')->first();
-			Log::debug('rowSupplier_id=' . $rowSupplier->id);
+			//Log::debug('rowSupplier_id=' . $rowSupplier->id);
 
-			Log::debug('---------------------------------');
+			//Log::debug('---------------------------------');
 			$data = self::getRandomData();
 
 			$rowSupplier->amount_pr_booked 	= $data['amount_pr_booked'];

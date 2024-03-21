@@ -48,6 +48,7 @@ use App\Helpers\Export;
 # 11. Seeded
 use DB;
 use Str;
+use Illuminate\Support\Facades\Log;
 # 12. TODO 
 # 1. dependent dropdown for uom
 
@@ -190,5 +191,21 @@ class ItemController extends Controller
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('users', $dataArray);
+	}
+
+	public function getItem($id = 0)
+	{
+		//http://demo1.localhost:8000/items/get-item/1005
+		$data = [];
+		//Log::info('id='.$id);
+		//$data = Category::where('id', $id)->first();
+		//{"id":3,"name":"Category -3","slug":"Neque non.","enable":1,"limit":30,"created_at":"2022-07-04T07:08:42.000000Z","updated_at":"2022-07-04T07:08:42.000000Z"}
+		$data = Item::select('name','uom_class_id','price')->where('id', $id)->first();
+		// {"limit":30,"slug":"Neque non."}  
+		//Log::info( $data);
+		
+		Log::debug('Value of data=' . $data);
+		return response()->json($data);
+
 	}
 }

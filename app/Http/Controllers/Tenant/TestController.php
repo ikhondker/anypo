@@ -69,6 +69,9 @@ class TestController extends Controller
 	public function run()
 	{
 
+		echo "Done";
+		exit;
+
 		ChartData::budget();
 		ChartData::deptBudget();
 		ChartData::project();
@@ -144,19 +147,19 @@ class TestController extends Controller
 
 		// https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_rjxI0w322t8Mgu1ReRztUcoqwqCYEQwyRAnKCpCZ&currencies=EUR%2CUSD&base_currency=CAD
 		// {
-		//     "data": {
-		//       "EUR": 0.6794070148,
-		//       "USD": 0.7479654271
-		//     }
+		//		"data": {
+		//		"EUR": 0.6794070148,
+		//		"USD": 0.7479654271
+		//		}
 		// }
 
 		// https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_rjxI0w322t8Mgu1ReRztUcoqwqCYEQwyRAnKCpCZ&currencies=EUR%2CUSD%2CCAD
 		// {
-		//     "data": {
-		//       "CAD": 1.3369601907,
-		//       "EUR": 0.9083401321,
-		//       "USD": 1
-		//     }
+		//		"data": {
+		//			"CAD": 1.3369601907,
+		//			"EUR": 0.9083401321,
+		//			"USD": 1
+		//		}
 		// }
 
 		//https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_rjxI0w322t8Mgu1ReRztUcoqwqCYEQwyRAnKCpCZ&currencies=EUR&base_currency=CAD

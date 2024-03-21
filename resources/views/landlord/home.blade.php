@@ -520,7 +520,7 @@
 					<div class="col-md-6 col-lg-5">
 						<!-- Heading -->
 						<div class="mb-5">
-							<h1>TODO Streamline Your Purchasing. Supercharge Your Growth.</h1>
+							<h1>Streamline Your Purchasing. Supercharge Your Growth.</h1>
 							<p>Take control of your spending and empower your business with our SAAS-based Purchasing and Budget Control Solution. Designed for small and medium-sized companies and startups, our platform ensures financial stability and strategic spending.</p>
 						</div>
 						<!-- End Title & Description -->

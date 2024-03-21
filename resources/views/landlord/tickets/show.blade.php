@@ -88,7 +88,6 @@
 	
 	
 	<!--  BEGIN ADD COMMENT  -->
-	{{-- TODO not for closed ticket --}}
 	@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
 		@include('landlord.includes.ticket-add-comment')
 	@endif 

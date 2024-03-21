@@ -222,8 +222,8 @@
 				<div class="form-group row mb-4">
 					<label for="my_date_time" class="col-sm-2 col-form-label text-end text-secondary">Date Time:</label>
 					<div class="col-sm-10">
-						Enum:TODO my_enum
-						Image: TODO image
+						Enum:TODO P2 my_enum
+						Image: TODO P2 image
 					</div>
 				</div>
 

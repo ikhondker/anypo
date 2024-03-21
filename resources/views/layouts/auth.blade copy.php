@@ -10,8 +10,6 @@
 
 	<title>@yield('title', 'anypo.net')</title>
 
-	{{-- <link rel="canonical" href="https://appstack.bootlab.io/pages-sign-in.html" /> --}}
-	{{-- TODO --}}
 	<link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +18,7 @@
 
 	<!-- Choose your prefered color scheme -->
 	{{-- <link href="{{asset('css/light.css')}}" rel="stylesheet"> --}}
-	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}">
+	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}
 
 </head>
 <!--
@@ -51,7 +49,7 @@
 	</div>
 
 	{{-- <script src="{{asset('js/app.js')}}"></script> --}}
-	<script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script>
+	{{-- <script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
 
 </body>
 

@@ -27,7 +27,6 @@
 						@if ( $selected_prl_id == $prl->id )
 							@include('tenant.includes.pr.pr-line-edit')
 						@else
-
 							<tr class="">
 								<td class="">{{ $prl->line_num }}</td>
 								<td class="">{{ $prl->item->name }}</td>
@@ -84,4 +83,5 @@
 		</div>
 	</div>
 </div>
+
 {{-- ============================================================== --}}

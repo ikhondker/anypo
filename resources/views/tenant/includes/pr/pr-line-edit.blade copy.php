@@ -4,7 +4,7 @@
 		<a href="#" class="btn btn-primary float-start"><i class="fas fa-edit"></i></a>
 	</td>
 	<td class="">11
-		<select class="form-control" name="item_id" id="item_id">
+		<select class="form-control" name="item_id">
 			@foreach ($items as $item)
 				<option {{ $item->id == old('item_id',$prl->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }} </option>
 			@endforeach
@@ -94,14 +94,10 @@
 	<td class="">
 		{{-- <x-tenant.buttons.show.save/> --}}
 	</td>
-	<script type="text/javascript">
-		console.log("Hello world 1!");
-	</script>
 </tr>
+
 <script type="text/javascript">
-	console.log("Hello world 1!");
-	$('#item_id').change(function() {
-		console.log("Hello world!");
+	$('#xxitem_id').change(function() {
 		let id = $(this).val();
 		let url = '{{ route("items.get-item", ":id") }}';
 		url = url.replace(':id', id);

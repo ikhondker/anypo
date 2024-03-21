@@ -16,41 +16,41 @@
 	</li> --}}
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'tickets.index' ? 'active' : '' }}" href="{{ route('tickets.all') }}">
-			<i class="bi-question-square nav-icon"></i>All Tickets
+			<i class="bi-ticket nav-icon"></i>All Tickets
 		</a>
 	</li>
 
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'checkouts.index' ? 'active' : '' }}" href="{{ route('checkouts.all') }}">
-			<i class="bi-bell nav-icon"></i>
+			<i class="bi-cart-plus nav-icon"></i>
 			All Checkouts</a>
 	</li>
 
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'accounts.index' ? 'active' : '' }}" href="{{ route('accounts.all') }}">
-			<i class="bi-person-square nav-icon"></i> All Accounts</a>
+			<i class="bi-ui-checks-grid nav-icon"></i> All Accounts</a>
 	</li>
 
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'services.index' ? 'active' : '' }}" href="{{ route('services.all') }}">
-			<i class="bi-boxes nav-icon"></i> All Services</a>
+			<i class="bi-columns nav-icon"></i> All Services</a>
 	</li>
 
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'invoices.index' ? 'active' : '' }}" href="{{ route('invoices.all') }}">
-			<i class="bi-bell nav-icon"></i> All Invoices
+			<i class="bi-file-ruled nav-icon"></i> All Invoices
 		</a>
 	</li>
 
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'payments.index' ? 'active' : '' }}" href="{{ route('payments.all') }}">
-			<i class="bi-bell nav-icon"></i> All Payments
+			<i class="bi-currency-dollar nav-icon"></i> All Payments
 		</a>
 	</li>
 
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'contacts.index' ? 'active' : '' }}" href="{{ route('contacts.all') }}">
-			<i class="bi-bell nav-icon"></i> All Contacts</a>
+			<i class="bi-person-lines-fill nav-icon"></i> All Contacts</a>
 	</li>
 </ul>
 <!-- End List -->
@@ -61,22 +61,22 @@
 <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'users.index' ? 'active' : '' }}" href="{{ route('users.all') }}">
-			<i class="bi-bell nav-icon"></i> All Users</a>
+			<i class="bi-people nav-icon"></i> All Users</a>
 	</li>
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'activities.index' ? 'active' : '' }}"
 			href="{{ route('activities.all') }}">
-			<i class="bi-bell nav-icon"></i> All Activity</a>
+			<i class="bi-activity nav-icon"></i> All Activity</a>
 	</li>
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'attachments.index' ? 'active' : '' }}"
 			href="{{ route('attachments.index') }}">
-			<i class="bi-bell nav-icon"></i>
+			<i class="bi-paperclip nav-icon"></i>
 			All Attachments</a>
 	</li>
 	<li class="nav-item"><a class="nav-link {{ $_route_name == 'processes.index' ? 'active' : '' }}"
 			href="{{ route('processes.index') }}">
-			<i class="bi-bell nav-icon"></i>
+			<i class="bi-cpu nav-icon"></i>
 			Run Process</a>
 	</li>
 </ul>
