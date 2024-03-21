@@ -129,6 +129,11 @@ class PrController extends Controller
 	{
 		$this->authorize('create', Pr::class);
 
+		$setup 	= Setup::first();
+		if ($setup->readonly ){
+			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
+		}
+
 		$depts = Dept::primary()->get();
 		$items = Item::primary()->get();
 		$suppliers = Supplier::primary()->get();

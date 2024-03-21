@@ -33,8 +33,8 @@
 					<x-tenant.show.my-boolean	value="{{ $report->supplier_id }}" label="Supplier?"/>
 					<x-tenant.show.my-boolean	value="{{ $report->project_id }}" label="Project?"/>
 					<x-tenant.show.my-boolean	value="{{ $report->category_id }}" label="Category?"/>
-					<x-tenant.show.my-boolean	value="{{ $report->Report_id }}" label="Report?"/>
-					<x-tenant.show.my-boolean	value="{{ $report->warehouse_id }}" label="warehouse_id?"/>
+					<x-tenant.show.my-boolean	value="{{ $report->dept_id }}" label="Dept?"/>
+					<x-tenant.show.my-boolean	value="{{ $report->warehouse_id }}" label="Warehouse?"/>
 					<x-tenant.show.my-boolean	value="{{ $report->enable }}"/>
 					<x-tenant.show.my-created-at value="{{ $report->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $report->created_at }}"/>

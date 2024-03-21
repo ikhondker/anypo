@@ -105,6 +105,11 @@ class PaymentController extends Controller
 	{
 		$this->authorize('create', Payment::class);
 
+		$setup 	= Setup::first();
+		if ($setup->readonly ){
+			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
+		}
+
 		if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
 			//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
 			return back()->withError("You can only Pay POSTED Invoices!")->withInput();

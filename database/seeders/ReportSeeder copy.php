@@ -63,23 +63,21 @@ class ReportSeeder extends Seeder
 	  
 		  	$reports =  [
 				[
-					'id' 					=> 1010,
+					'id' 					=> 1002,
 					'name' 					=> '*Printed PR pdf',
 					'summary' 				=> '*Printed PR pdf',
-					'enable' 				=> false,
 				],
 				[
-					'id' 					=> 1015,
+					'id' 					=> 1003,
 					'name' 					=> '*Printed PO pdf',
 					'summary' 				=> 'Approved Purchase Requisition Detail Report (For a Date range, by Department)',
-					'enable' 				=> false,
 				],
 			];
 			Report::insert($reports);
 
 		  	$reports =  [
 				[
-					'id' 					=> 1020,
+					'id' 					=> x1004,
 					'name' 					=> 'Requisition Listing',
 					'summary' 				=> 'List of Approved Purchase Requisitions (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -90,7 +88,7 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1025,
+					'id' 					=> x1005,
 					'name' 					=> 'Purchase Order Listing',
 					'summary' 				=> 'List of Approved Purchase Orders (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -101,7 +99,7 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1030,
+					'id' 					=> 1004,
 					'name' 					=> 'Requisition Detail Report',
 					'summary' 				=> 'Approved Purchase Requisition Detail Report (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -112,7 +110,7 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1035,
+					'id' 					=> 1005,
 					'name' 					=> 'Purchase Order Detail Report',
 					'summary' 				=> 'Approved Purchase Order Detail Report (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -123,7 +121,7 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1040,
+					'id' 					=> 1006,
 					'name' 					=> 'Goods Receipt Register',
 					'summary' 				=> 'Goods Receipt Detail Report (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -134,7 +132,7 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1045,
+					'id' 					=> 1007,
 					'name' 					=> 'Invoice Register',
 					'summary' 				=> 'Invoice Register (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -145,20 +143,9 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1050,
+					'id' 					=> 1008,
 					'name' 					=> 'Payment Register',
 					'summary' 				=> 'Payment Register (For a Date range, by Department)',
-					'start_date' 			=> true,
-					'start_date_required' 	=> true,
-					'end_date' 				=> true,
-					'end_date_required' 	=> true,
-					'dept_id' 				=> true,
-					'dept_id_required' 		=> false,
-				],
-				[
-					'id' 					=> 1055,
-					'name' 					=> 'Tax/GST Register(**)',
-					'summary' 				=> 'Tax/GST Register (For a Date range)',
 					'start_date' 			=> true,
 					'start_date_required' 	=> true,
 					'end_date' 				=> true,
@@ -169,38 +156,36 @@ class ReportSeeder extends Seeder
 			];
 		Report::insert($reports);
 
+
 		$reports =  [
 			[
-				'id' 					=> 1060,
+				'id' 					=> 1009,
+				'name' 					=> 'Tax/GST Register(**)',
+				'summary' 				=> 'Tax/GST Register (For a Date range)',
+				'start_date' 			=> true,
+				'start_date_required' 	=> true,
+				'end_date' 				=> true,
+				'end_date_required' 	=> true,
+			],
+			[
+				'id' 					=> 1010,
 				'name' 					=> 'Project Spend Report (**)',
 				'summary' 				=> 'Payment Register (For a Date range)',
 				'start_date' 			=> true,
 				'start_date_required' 	=> true,
 				'end_date' 				=> true,
 				'end_date_required' 	=> true,
-				'project_id' 			=> true,
-				'project_id_required'	=> true,
-
 			],
-	  	];
-	  	Report::insert($reports);
-
-
-		$reports =  [
 			[
-				'id' 					=> 1065,
+				'id' 					=> 1011,
 				'name' 					=> 'Supplier Spend Report (**)',
 				'summary' 				=> 'Payment Register (For a Date range)',
 				'start_date' 			=> true,
 				'start_date_required' 	=> true,
 				'end_date' 				=> true,
 				'end_date_required' 	=> true,
-				'supplier_id' 			=> true,
-				'supplier_id_required'	=> true,
 			],
 	  	];
 	  	Report::insert($reports);
-
-
 	}
 }

@@ -112,6 +112,11 @@ class InvoiceController extends Controller
 		
 		$this->authorize('create', Invoice::class);
 
+		$setup 	= Setup::first();
+		if ($setup->readonly ){
+			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
+		}
+
 		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for APPROVED Purchase Order!');
 		}
@@ -119,7 +124,6 @@ class InvoiceController extends Controller
 		if ($po->status <> ClosureStatusEnum::OPEN->value) {
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for OPEN Purchase Order!');
 		}
-
 
 		Log::debug('tenant.invoices.create Value of PO id in create=' . $po->id);		
 		//$po = Po::where('id', $po_id)->first();

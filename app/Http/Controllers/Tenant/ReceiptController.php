@@ -108,6 +108,11 @@ class ReceiptController extends Controller
 	{
 		$this->authorize('create', Receipt::class);
 
+		$setup 	= Setup::first();
+		if ($setup->readonly ){
+			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
+		}
+
 		//$pol = Pol::where('id', $pol_id)->first();
 		$po = Po::where('id', $pol->po_id)->first();
 		if ($po->status <> ClosureStatusEnum::OPEN->value) {

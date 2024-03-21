@@ -10,14 +10,13 @@
 			<tr>
 				<th class="unit">SL</th>
 				<th class="unit">PR#</th>
-				<th class="unit">REQ. DATE</th>
-				<th class="unit">LN#</th>
-				<th class="unit">DESCRIPTION</th>
+				<th class="unit">DATE</th>
+				<th class="unit">SUMMARY</th>
+				<th class="unit">REQUESTOR</th>
 				<th class="unit">DEPT</th>
-				<th class="unit">UOM</th>
-				<th class="unit">UNIT<br> PRICE</th>
+				<th class="unit">SUPPLIER</th>
+				<th class="unit">PROJECT</th>
 				<th class="unit">CUR.</th>
-				<th class="unit">QTY</th>
 				<th class="unit">AMOUNT</th>
 				<th class="unit">AMOUNT <br>({{ $_setup->currency }})</th>
 			</tr>
@@ -26,25 +25,24 @@
 			@php 
 				$sum = 0
 			@endphp
-			@foreach ($prls as $prl)
+			@foreach ($prs as $pr)
 			<tr>
 				<td class="sl">{{ $loop->iteration }}</td>
-				<td class="desc">{{ $prl->pr_id }}</td>
-				<td class="desc">{{ date('d-M-y', strtotime($prl->pr_date)) }}</td>
-				<td class="sl">{{ $prl->line_num }}</td>
-				<td class="desc">{{ $prl->summary }}</td>
-				<td class="desc">{{ $prl->dept_name }}</td>
-				<td class="desc">{{ $prl->uom_name }} </td>
-				<td class="qty">{{ number_format($prl->price,2) }}</td>
-				<td class="desc">{{ $prl->currency }} </td>
-				<td class="qty">{{ $prl->qty }}</td>
-				<td class="qty">{{ number_format($prl->amount,2) }}</td>
-				<td class="qty">{{ number_format($prl->fc_amount,2) }}</td>	
+				<td class="desc">{{ $pr->pr_id }}</td>
+				<td class="desc">{{ date('d-M-y', strtotime($pr->pr_date)) }}</td>
+				<td class="desc">{{ $pr->summary }}</td>
+				<td class="desc">{{ $pr->requestor }}</td>
+				<td class="desc">{{ $pr->dept }}</td>
+				<td class="desc">{{ $pr->supplier }} </td>
+				<td class="desc">{{ $pr->project }}</td>
+				<td class="desc">{{ $pr->currency }} </td>
+				<td class="qty">{{ number_format($pr->amount,2) }}</td>
+				<td class="qty">{{ number_format($pr->fc_amount,2) }}</td>	
 			</tr>
 			{{-- @empty
 				<td olspan="7" class="desc">No Data Found!</td> --}}
 				@php 
-					$sum = $sum + $prl->fc_amount;
+					$sum = $sum + $pr->fc_amount;
 				@endphp
 			@endforeach
 		</tbody>

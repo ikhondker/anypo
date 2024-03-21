@@ -118,11 +118,17 @@ class PoController extends Controller
 	{
 		$this->authorize('create', Po::class);
 
+		$setup 	= Setup::first();
+		if ($setup->readonly ){
+			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
+		}
+
+
 		$depts 		= Dept::primary()->get();
 		$items 		= Item::primary()->get();
 		$suppliers 	= Supplier::primary()->get();
 		$projects 	= Project::primary()->get();
-		$uoms 	= Uom::primary()->get();
+		$uoms 		= Uom::primary()->get();
 
 		return view('tenant.pos.create', compact('suppliers', 'depts', 'items','uoms', 'projects'));
 	}
