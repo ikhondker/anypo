@@ -39,7 +39,7 @@ use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 use Notification;
-use App\Notifications\Tenant\UserCreated;  //TODO
+use App\Notifications\Tenant\UserCreated;  //P2
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\Tenant\UserActions;
 # 5. Jobs
@@ -181,13 +181,6 @@ class UserController extends Controller
 	{
 		$this->authorize('update', $user);
 
-		// for non admin role field is not shown TODO
-		if ($request->has('role')) {
-			Log::debug('tenant.user.update Role Found! Do nothing.');
-		} else {
-			$request->merge(['role'	=> $user->role->value ]);
-			Log::debug('tenant.user.update Role hidden for system users!');
-		}
 		
 		if ($image = $request->file('file_to_upload')) {
 			// $request->validate([
@@ -214,17 +207,26 @@ class UserController extends Controller
 			$request->merge(['avatar' => $thumbImage ]);
 		}
 
-		// TODO add Role update
+		// for non admin role field is not shown
+		if ($request->has('role')) {
+			Log::debug('tenant.user.update Role Found! Do nothing.');
+		} else {
+			$request->merge(['role'	=> $user->role->value ]);
+			Log::debug('tenant.user.update Role hidden for system users!');
+		}
+		// P2 add Role update
 		if (auth()->user()->role->value <> UserRoleEnum::ADMIN->value) {
+
+		} else {
 
 		}
 
+		
+		$user->update($request->all());
+		EventLog::event('user', $user->id, 'update', 'name', $request->name);
 		if ($request->input('role') <> $user->role) {
 			EventLog::event('user', $user->id, 'update', 'role', $user->role);
 		}
-
-		$user->update($request->all());
-		EventLog::event('user', $user->id, 'update', 'name', $request->name);
 
 		return redirect()->route('users.index')->with('success', 'User profile updated successfully.');
 	}
@@ -261,7 +263,7 @@ class UserController extends Controller
 		return view('tenant.admin.users.role', compact('users'));
 	}
 
-	// TODO bottom footer
+	// TODO where it is used in tenant?
 	public function updaterole(User $user, $role)
 	{
 		$this->authorize('updaterole', $user);
@@ -352,6 +354,7 @@ class UserController extends Controller
 	{
 		$this->authorize('impersonate', User::class);
 
+		// stop impersonate to system
 		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
 			return redirect()->route('users.all')->with('error','You can not impersonate system!');
 		}

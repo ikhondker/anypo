@@ -252,7 +252,7 @@ class UserController extends Controller
 
 	public function updaterole(User $user, $role)
 	{
-		//TODO Check $this->authorize('updaterole',$user);
+		$this->authorize('updaterole',$user);
 		$user->role = $role;
 		$user->update();
 

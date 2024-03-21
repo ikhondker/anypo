@@ -41,7 +41,7 @@ class UserPolicy
 			| Tenant																	 + 
 			|-----------------------------------------------------------------------------
 			*/
-			return $user->isSeeded();
+			return ( $user->isAdmin() || $user->isSeeded() );
 		}
 	}
 
@@ -267,7 +267,6 @@ class UserPolicy
 	public function impersonate(User $user): bool
 	{
 		// only back-office impersonate
-		// TODO stop imper to system
 		//Log::debug("user->role->value = ". $user->role->value );
 		if (tenant('id') == ''){
 			/*

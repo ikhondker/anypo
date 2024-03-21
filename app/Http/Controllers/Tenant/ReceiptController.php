@@ -40,6 +40,7 @@ use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\ReceiptStatusEnum;
+use App\Enum\AuthStatusEnum;
 
 use App\Enum\ClosureStatusEnum;
 # 3. Helpers
@@ -113,8 +114,11 @@ class ReceiptController extends Controller
 			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
 		}
 
-		//$pol = Pol::where('id', $pol_id)->first();
+		//check if PO is approved and open
 		$po = Po::where('id', $pol->po_id)->first();
+		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+			return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for APPROVED Purchase Order!');
+		}
 		if ($po->status <> ClosureStatusEnum::OPEN->value) {
 			return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for OPEN Purchase Order!');
 		}
@@ -131,6 +135,8 @@ class ReceiptController extends Controller
 	{
 		$this->authorize('create', Receipt::class);
 		
+		
+
 		$pol_id =$request->input('pol_id');
 		$pol = Pol::where('id', $pol_id)->first();
 		
@@ -138,8 +144,6 @@ class ReceiptController extends Controller
 		$request->validate([
 			'qty' => [new OverReceiptRule ( $pol->id)],
 		]);
-
-		//TODO check if PO is approved
 
 		$request->merge(['receive_date'	=> date('Y-m-d H:i:s')]);
 		$request->merge(['receiver_id'	=> 	auth()->user()->id ]);

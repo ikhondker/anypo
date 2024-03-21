@@ -53,7 +53,6 @@ trait AddCreatedUpdatedBy
 				if (auth()->check()){
 					$model->updated_by = auth()->user()->id;
 				} else {
-					// TODO
 					$model->created_by = config('bo.GUEST_USER_ID');
 				}
 				//$model->updated_by = auth()->user()->id;

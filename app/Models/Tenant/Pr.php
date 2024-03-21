@@ -108,7 +108,7 @@ class Pr extends Model
 
 		// update PR header
 		// handle No row in child table 
-		// TODO handle in better way
+		// P2 handle in better way
 		Log::debug('tenant.model.pr.updatePrFcValues updating header FC column PR=' . $pr->id);
 
 		// check if rows exists in prl

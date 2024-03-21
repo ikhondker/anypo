@@ -8,7 +8,7 @@
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -39,6 +39,7 @@ use Illuminate\Support\Str;
 use App\Enum\EntityEnum;
 use App\Enum\WflActionEnum;
 use App\Enum\AuthStatusEnum;
+use Exception;
 
 use DB;
 use Notification;
@@ -51,7 +52,7 @@ class Workflow
 		// dont need exception as can not save dept with hierarchy
 		switch ($entity) {
 			case EntityEnum::PR->value:
-				// TODO try catch exception handing
+				// try catch exception handing
 				$pr = Pr::where('id', $article_id)->first();
 				$requestor_id = $pr->requestor_id;
 				//$dept_id = $pr->dept_id;
@@ -61,11 +62,14 @@ class Workflow
 					$hierarchy_id =	$hierarchy->id;
 				} catch (ModelNotFoundException $exception) {
 				 	$hierarchy_id =  0;
-				 	Log::debug("Hierarchy not Found for entity=".$entity." article_id=".$article_id." emp_id=".$emp_id." dept_id=".$dept_id);
+				 	Log::error("Workflow.submitWf Hierarchy not Found for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
+				} catch (Exception $e) {
+					$hierarchy_id =  0;
+				 	Log::error("Workflow.submitWf Unknown Error for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
 				}
 				break;
 			case EntityEnum::PO->value:
-				// TODO try catch exception handing
+				// try catch exception handing
 				$po = Po::where('id', $article_id)->first();
 				$requestor_id = $po->buyer_id;
 				//$dept_id = $pr->dept_id;
@@ -75,7 +79,10 @@ class Workflow
 					$hierarchy_id =	$hierarchy->id;
 				} catch (ModelNotFoundException $exception) {
 					$hierarchy_id =  0;
-					Log::debug("Hierarchy not Found for entity=".$entity." article_id=".$article_id." emp_id=".$emp_id." dept_id=".$dept_id);
+					Log::error("Workflow.submitWf Hierarchy not Found for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
+				} catch (Exception $e) {
+					$hierarchy_id =  0;
+					Log::error("Workflow.submitWf Unknown Error for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
 				}
 				break;
 			default:
@@ -95,13 +102,17 @@ class Workflow
 			$wf->save();
 			$wf_id				= $wf->id;
 
-			// Insert submission row first TODO
-			DB::INSERT("INSERT INTO wfls(wf_id, performer_id, action_date, action, notes) 
-			SELECT ".$wf_id.",".$requestor_id." ,now(),'". WflActionEnum::SUBMITTED->value ."','Submitted for Review and Approval';");
+			// Insert submission row first 
+			DB::INSERT("
+				INSERT INTO wfls(wf_id, performer_id, action_date, action, notes)
+				SELECT ".$wf_id.",".$requestor_id." ,now(),'". WflActionEnum::SUBMITTED->value ."','Submitted for Review and Approval';
+			");
 
-			DB::INSERT("INSERT INTO wfls(wf_id, performer_id) 
-				SELECT ".$wf_id.",approver_id 
-				FROM hierarchyls WHERE hid= ".$hierarchy_id.";");
+			DB::INSERT("
+					INSERT INTO wfls(wf_id, performer_id)
+					SELECT ".$wf_id.",approver_id
+					FROM hierarchyls WHERE hid= ".$hierarchy_id.";
+				");
 		} else {
 			$wf_id = 0;
 		}

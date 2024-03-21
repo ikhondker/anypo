@@ -13,10 +13,10 @@ use App\Models\Tenant\Lookup\Uom;
 
 class UomClass extends Model
 {
-    use HasFactory;
+	use HasFactory;
 	use AddCreatedUpdatedBy;
 
-    protected $fillable = [
+	protected $fillable = [
 		'name','enable','updated_at','updated_by'
 	];
 

@@ -305,7 +305,6 @@ class ReportController extends Controller
 			$param2 	= '';
 		}
 		
-		//TODO AND p.auth_status='".AuthStatusEnum::APPROVED->value."'
 		$sql = "
 			SELECT pr.id pr_id, pr.pr_date,pr.summary, pr.auth_status,d.name dept, 
 			u.name requestor, p.name project,s.name supplier,
@@ -355,7 +354,6 @@ class ReportController extends Controller
 			$param2 	= '';
 		}
 
-		//TODO AND p.auth_status='".AuthStatusEnum::APPROVED->value."'
 		$sql = "
 			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept, 
 			u.name requestor, p.name project,s.name supplier,
@@ -407,7 +405,6 @@ class ReportController extends Controller
 			$param2 	= '';
 		}
 
-		//TODO AND p.auth_status='".AuthStatusEnum::APPROVED->value."'
 		$sql = "
 			SELECT p.id pr_id, p.currency, d.name dept_name, p.pr_date,p.auth_status, 
 			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
@@ -456,7 +453,6 @@ class ReportController extends Controller
 			$param2 	= '';
 		}
 
-		//TODO AND p.auth_status='".AuthStatusEnum::APPROVED->value."'
 		$sql = "
 			SELECT p.id po_id, p.currency, d.name dept_name, p.po_date,p.auth_status, 
 			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
@@ -644,7 +640,6 @@ class ReportController extends Controller
 			$param2 	= '';
 		}
 
-		//TODO AND p.auth_status='".AuthStatusEnum::APPROVED->value."'
 		$sql = "
 			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept, 
 			u.name requestor, p.name project,s.name supplier,

@@ -49,6 +49,7 @@ use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 use Carbon\Carbon;
+use Exception;
 # 13. TODO 
 
 class BudgetController extends Controller
@@ -137,6 +138,10 @@ class BudgetController extends Controller
 	{
 		$this->authorize('update', $budget);
 
+		if ($budget->closed){
+			return redirect()->route('budgets.show', $budget->id)->with('error',  'Can not edit a closed Budget.');
+		}
+
 		return view('tenant.budgets.edit', compact('budget'));
 	}
 
@@ -152,10 +157,7 @@ class BudgetController extends Controller
 
 		]);
 		
-
-
 		$budget->update($request->all());
-
 
 		// upload file as record
 		if ($file = $request->file('file_to_upload')) {
@@ -201,7 +203,20 @@ class BudgetController extends Controller
 	// add attachments
 	public function attach(FormRequest $request)
 	{
-		//$this->authorize('create', Budget::class);
+		
+		$this->authorize('create', Budget::class);
+		
+		// allow add attachment only if budget is open
+		try {
+			$budget = Budget::where('id', $request->input('attach_budget_id'))->get()->firstOrFail();
+		} catch (Exception $e) {
+			Log::error('tenant.budget.attach '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Unknown Error!']);
+		}
+		if ($budget->closed){
+			return redirect()->route('budgets.show', $budget->id)->with('error',  'Add attachment is only allowed for open Budget.');
+		}
+	
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_budget_id') ]);

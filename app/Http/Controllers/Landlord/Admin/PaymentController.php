@@ -120,7 +120,6 @@ class PaymentController extends Controller
 	public function edit(Payment $payment)
 	{
 		$this->authorize('update', $payment);
-		// TODO only for backend
 		abort(403);
 	}
 

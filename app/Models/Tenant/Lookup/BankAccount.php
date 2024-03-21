@@ -13,7 +13,7 @@ use App\Models\Tenant\Payments;
 
 class BankAccount extends Model
 {
-    use HasFactory;
+	use HasFactory;
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [

@@ -315,7 +315,6 @@ class HomeController extends Controller
 			}
 			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
 				Log::debug('landlord.home.success checkout_id='. $checkout->id);
-				// TODO Uncomment
 				CreateTenant::dispatch($checkout->id);
 			}
 			return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
@@ -457,7 +456,7 @@ class HomeController extends Controller
 	}
 
 
-	// TODO Please use session_id to troublehsot in stripe dashboard
+	// P2 Please use session_id to troublehsot in stripe dashboard
 	public function webhook()
 	{
 		

@@ -53,6 +53,7 @@ use App\Enum\EntityEnum;
 use App\Enum\WflActionEnum;
 use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
+
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -78,6 +79,7 @@ use Str;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Http\FormRequest;
+use Exception;
 # 13. TODO 
 
 
@@ -216,15 +218,25 @@ class PrController extends Controller
 	public function attach(FormRequest $request)
 	{
 		$this->authorize('create', Pr::class);
-		// TODO check if approved 
-
+		
+		// allow add attachment only if status is draft
+		try {
+			$pr = Pr::where('id', $request->input('attach_pr_id'))->get()->firstOrFail();
+		} catch (Exception $e) {
+			Log::error('tenant.pr.attach '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Unknown Error!']);
+		}
+		if ($pr->auth_status <>  AuthStatusEnum::DRAFT->value){
+			return redirect()->route('prs.show', $pr->id)->with('error',  'Add attachment is only allowed for DRAFT requisition.');
+		}
+	
 		// $request->validate([
 
-			// ]);
+		// ]);
 		//$request->validate(['file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512']);
 
 		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'	=> $request->input('attach_pr_id') ]);
+			$request->merge(['article_id'	=> $request->input('attach_pr_id')]);
 			$request->merge(['entity'		=> EntityEnum::PR->value ]);
 			$attid = FileUpload::aws($request);
 		}
@@ -393,7 +405,7 @@ class PrController extends Controller
 				//return redirect()->route('prs.cancel')->with('error', 'This Requisition is already converted to PO#'.$pr->po_id.'. Requisition can not be canceled.');
 			}
 	
-			//  Reverse Booking TODO
+			//  Reverse Booking 
 			$retcode = PrBudget::prBudgetApproveCancel($pr_id); 
 			Log::debug("tenant.pr.cancel retcode = ".$retcode);
 	

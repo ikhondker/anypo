@@ -18,8 +18,8 @@ class Notification extends Model
 
 	// NOTES: https://stackoverflow.com/questions/61844701/laravel-how-to-get-id-of-database-notification
 	// protected $casts = [
-	//     'data' => 'array',
-	//     'id' => 'string'
+	//	'data' => 'array',
+	//	'id' => 'string'
 	// ];
 
 	protected $casts = [

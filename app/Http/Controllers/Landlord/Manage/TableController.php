@@ -257,7 +257,7 @@ class TableController extends Controller
 		$filesInFolder = Docs::messages('\app\Http\Controllers');
 	}
 
-	// TODO
+	// P2
 	public function check()
 	{
 

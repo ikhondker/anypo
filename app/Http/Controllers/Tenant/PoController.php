@@ -29,7 +29,9 @@ use App\Http\Requests\Tenant\UpdatePoRequest;
 
 # 1. Models
 use App\Models\User;
+use App\Models\Tenant\Pr;
 use App\Models\Tenant\Pol;
+
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 
@@ -74,6 +76,7 @@ use Str;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Http\FormRequest;
+use Exception;
 # 13. TODO 
 
 
@@ -204,6 +207,22 @@ class PoController extends Controller
 	// add attachments
 	public function attach(FormRequest $request)
 	{
+
+		$this->authorize('create', Po::class);
+
+		// allow add attachment only if status is draft
+		try {
+			$po = Po::where('id', $request->input('attach_po_id'))->get()->firstOrFail();
+		} catch (Exception $e) {
+			Log::error('tenant.po.attach '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Unknown Error!']);
+		}
+		if ($po->auth_status <>  AuthStatusEnum::DRAFT->value){
+			return redirect()->route('pos.show', $po->id)->with('error',  'Add attachment is only allowed for DRAFT requisition.');
+		}
+	
+
+
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PO->value ]);
@@ -471,9 +490,7 @@ class PoController extends Controller
 					'status' 		=> ClosureStatusEnum::CANCELED->value
 				]);
 	
-			// open the source PR
-
-			// TODO P2 
+			// mark all source PR as non converted to PO
 			Pr::where('po_id', $po->id)
 				->update([
 					'po_id' 	=> null,

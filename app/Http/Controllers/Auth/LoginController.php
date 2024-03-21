@@ -103,11 +103,7 @@ class LoginController extends Controller
 		} else {
 			EventLog::event('user', $user->id, 'sign-in');
 		}
-		// TODO
-		// $user->update([
-		//     'last_login_at' => Now(),
-		//     'last_login_ip' => $request->getClientIp()
-		// ]);
+		
 	}
 
 	// IQBAL 16-FEB-23
@@ -136,7 +132,7 @@ class LoginController extends Controller
 			'email'		=> request()->email,
 			'password'	=> request()->password,
 			'enable'	=> true,  // do not allow disabled user to login
-			// TODO Check if we need to uncoment it
+			// TODO Check if we need to uncomment it
 			// is_null('email_verified_at')
 		];
 	}

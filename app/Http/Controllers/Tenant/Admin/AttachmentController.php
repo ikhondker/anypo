@@ -253,12 +253,11 @@ class AttachmentController extends Controller
 
 		$this->authorize('download', Attachment::class);
 
-		// TODO simplify
+		// P2 simplify
 		// get entity -> directory from filename
 		$att = Attachment::where('file_name', $filename)->first();
 		$entity = Entity::where('entity', $att->entity)->first();
 		$directory = $entity->directory;
-
 
 		//shown as: http://geda.localhost:8000/image/4.jpg
 		//$path = storage_path('uploads/' . $filename);

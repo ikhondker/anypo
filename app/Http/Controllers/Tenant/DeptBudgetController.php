@@ -49,6 +49,7 @@ use App\Jobs\Tenant\ConsolidateBudget;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
+use Exception;
 # 13. TODO 
 #1. Create and save revision history
 
@@ -144,6 +145,10 @@ class DeptBudgetController extends Controller
 	{
 		$this->authorize('update', $deptBudget);
 
+		if ($deptBudget->closed){
+			return redirect()->route('budgets.show', $deptBudget->id)->with('error',  'Can not edit a closed Budget.');
+		}
+
 		return view('tenant.dept-budgets.edit', compact('deptBudget'));
 	}
 
@@ -216,16 +221,27 @@ class DeptBudgetController extends Controller
 	// add attachments
 	public function attach(FormRequest $request)
 	{
+		
 		$this->authorize('create', DeptBudget::class);
+		// allow add attachment only if budget is open
+		try {
+			$deptBudget = DeptBudget::where('id', $request->input('attach_dept_budget_id'))->get()->firstOrFail();
+		} catch (Exception $e) {
+			Log::error('tenant.dept-budget.attach '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Unknown Error!']);
+		}
+	
+		if ($deptBudget->closed){
+			return redirect()->route('dept-budgets.show', $deptBudget->id)->with('error',  'Add attachment is only allowed for open Budget.');
+		}
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_dept_budget_id') ]);
 			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
 			$attid = FileUpload::aws($request);
-			//$request->merge(['logo'=> $fileName ]);
 		}
 
-		return redirect()->route('dept-budgets.show', $request->input('attach_dept_budget_id'))->with('success', 'File Uploaded successfully.');
+		return redirect()->route('dept-budgets.show', $deptBudget->id)->with('success', 'File Uploaded successfully.');
 	}
 
 	public function attachments(DeptBudget $deptBudget)

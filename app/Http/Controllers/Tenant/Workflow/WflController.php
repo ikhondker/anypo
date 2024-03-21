@@ -206,7 +206,7 @@ class WflController extends Controller
 		$wf->wf_status		= WfStatusEnum::CLOSED->value;
 		$wf->save();
 
-		// send approved mail  TODO
+		// send approved mail
 		// update related entity status
 		switch($wf->entity) {
 			case('PR'):
@@ -227,7 +227,6 @@ class WflController extends Controller
 				$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 				break;
 			case('PO'):
-
 				$po = Po::where('id', $wf->article_id)->first();
 				$po->auth_status	=  AuthStatusEnum::APPROVED->value;
 				$po->auth_date		= date('Y-m-d H:i:s');
@@ -254,8 +253,7 @@ class WflController extends Controller
 	public function moveToNext(Wf $wf)
 	{
 		// do nothing just find and notify next approver
-		// send approval mail  to next approver TODO
-		// TODO Workflow::notifyApprover($wfl->wf_id);
+		// send approval mail  to next approver
 
 		// next approver exists	
 		//Log::debug("notifying next approver ");

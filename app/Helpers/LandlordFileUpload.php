@@ -77,7 +77,7 @@ class LandlordFileUpload
 			$path= Storage::disk('s3lf')->put($fileUploadPath, file_get_contents($file));
 			Log::debug('Helpers.LandlordFileUpload.aws Value of path='. $path);
 
-			// create Attachment record TODO rewrite
+			// create Attachment record rewrite
 			$attachment					= new Attachment;
 			$attachment->article_id		= $request->article_id;
 			$attachment->entity			= $request->entity;
@@ -121,7 +121,7 @@ class LandlordFileUpload
 			$request->file_to_upload->storeAs('private/' . $directory . '/', $fileName);
 
 			Log::debug('ll.upload Value of directory=' . $directory);
-			// create Attachment record TODO rewrite
+			// create Attachment record rewrite
 			$attachment					= new Attachment;
 			$attachment->article_id		= $request->article_id;
 			$attachment->entity			= $request->entity;

@@ -54,7 +54,7 @@ class Invoice extends Model
 	*/
 	public function scopeByPoBuyer(Builder $query, $id): void
 	{
-		// TODO
+		// P2
 		//if (! $id) return;
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('buyer_id', $id);

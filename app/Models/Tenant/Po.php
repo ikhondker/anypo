@@ -110,7 +110,7 @@ class Po extends Model
 
 		// update PO header
 		// handle No row in child table 
-		// TODO handle in better way
+		// P2 handle in better way
 		Log::debug('tenenat.model.po.updatePoFcValues updating header FC column PO=' . $po->id);
 		
 		// check if rows exists in pol

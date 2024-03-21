@@ -65,6 +65,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Validator;
 use Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Exception;
 # 13. TODO 
 
 
@@ -116,7 +117,7 @@ class InvoiceController extends Controller
 		if ($setup->readonly ){
 			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
 		}
-
+		// check if po is approved and open
 		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for APPROVED Purchase Order!');
 		}
@@ -234,16 +235,25 @@ class InvoiceController extends Controller
 	}
 
 	// add attachments
-	//public function attach(StoreInvoiceRequest $request)
 	public function attach(FormRequest $request)
 	{
 		$this->authorize('create', Invoice::class);
 		
+		// allow add attachment only if status is draft
+		try {
+			$invoice = Invoice::where('id', $request->input('attach_invoice_id'))->get()->firstOrFail();
+		} catch (Exception $e) {
+			Log::error('tenant.invoice.attach '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Unknown Error!']);
+		}
+		if ($invoice->status <>  InvoiceStatusEnum::DRAFT->value){
+			return redirect()->route('invoices.show', $invoice->id)->with('error',  'Add attachment is only allowed for DRAFT requisition.');
+		}
+
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_invoice_id') ]);
 			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
 			$attid = FileUpload::aws($request);
-			//$request->merge(['logo'	=> $fileName ]);
 		}
 		
 		return redirect()->route('invoices.show', $request->input('attach_invoice_id'))->with('success', 'File Uploaded successfully.');
@@ -285,10 +295,11 @@ class InvoiceController extends Controller
 		
 		$invoice->fill(['status' => InvoiceStatusEnum::POSTED->value]);
 		
-		// TODO  Close po 
+		
 
 		$invoice->update();
-		
+		// P2 if final invoice  Close po 
+
 		// 	Populate functional currency values
 		$result = self::updateInvoiceFcValues($invoice->id);
 		if (! $result) {
@@ -467,7 +478,7 @@ class InvoiceController extends Controller
 
 	public function export()
 	{
-		// TODO filter by HOD
+
 		$this->authorize('export', Invoice::class);
 
 		if (auth()->user()->role->value == UserRoleEnum::USER->value ){

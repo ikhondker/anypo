@@ -110,6 +110,7 @@ class PaymentController extends Controller
 			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
 		}
 
+		// check if invoice is posted
 		if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
 			//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
 			return back()->withError("You can only Pay POSTED Invoices!")->withInput();
@@ -345,10 +346,7 @@ class PaymentController extends Controller
 	public function export()
 	{
 
-		// TODO filter by HOD
-
 		$this->authorize('export', Payment::class);
-
 
 		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
 			$requestor_id 	= auth()->user()->id;

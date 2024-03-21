@@ -146,14 +146,6 @@ class SetupController extends Controller
 	 */
 	public function destroy(Setup $setup)
 	{
-		// TODO Check
 		abort(403);
-
-		$setup->fill(['show_message' => !$setup->show_message]);
-		$setup->update();
-
-		// Write to Log
-		LandlordEventLog::event('setup', $setup->id, 'status', 'show_message', $setup->show_message);
-		return redirect()->route('setups.index')->with('success', 'Message Status Updated successfully');
 	}
 }
