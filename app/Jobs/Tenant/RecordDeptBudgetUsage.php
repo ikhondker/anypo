@@ -78,6 +78,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 						$dbu->amount_pr_booked	= $this->fc_amount;
 						break;
 					case EventEnum::RESET->value:
+						
 					case EventEnum::REJECT->value:
 						$dbu->amount_pr_booked	= - $this->fc_amount;
 						break;

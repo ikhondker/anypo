@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
 			//'role'		=> 'required',
 			'facebook'		=> 'nullable|url' ,
 			'linkedin'		=> 'nullable|url',
-			'file_to_upload'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024'
+			'file_to_upload'=> 'nullable|image|mimes:jpeg,png,jpg,svg|max:1024'
 		];
 	}
 }

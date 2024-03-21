@@ -151,6 +151,9 @@ class BudgetController extends Controller
 		$request->validate([
 
 		]);
+		
+
+
 		$budget->update($request->all());
 
 

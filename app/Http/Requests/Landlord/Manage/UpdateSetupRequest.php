@@ -22,7 +22,7 @@ class UpdateSetupRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			//
+			'file_to_upload'	=> 'nullable|image|mimes:jpeg,png,jpg,svg|max:1024'
 		];
 	}
 }

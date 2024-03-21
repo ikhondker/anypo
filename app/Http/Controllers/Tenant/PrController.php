@@ -179,7 +179,6 @@ class PrController extends Controller
 			$request->merge(['article_id'	=> $pr->id ]);
 			$request->merge(['entity'		=> EntityEnum::PR->value ]);
 			$attid = FileUpload::aws($request);
-			//$request->merge(['logo'		=> $fileName ]);
 		}
 
 		// create prl lines line with line number
@@ -218,6 +217,11 @@ class PrController extends Controller
 	{
 		$this->authorize('create', Pr::class);
 		// TODO check if approved 
+
+		// $request->validate([
+
+			// ]);
+		//$request->validate(['file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512']);
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_pr_id') ]);

@@ -22,7 +22,9 @@ class StorePrRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			//
+			'summary'			=> 'required|min:2|max:255',
+			//'file_to_upload'	=> 'nullable|file|mimes:zip,rar,doc,docx,xls|max:512'
+			//'file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512'
 		];
 	}
 }

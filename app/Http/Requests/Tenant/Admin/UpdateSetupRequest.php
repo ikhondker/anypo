@@ -23,7 +23,7 @@ class UpdateSetupRequest extends FormRequest
 	{
 		return [
 			'name'				=> 'required|min:2|max:150',
-			'file_to_upload'	=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024'
+			'file_to_upload'	=> 'nullable|image|mimes:jpeg,png,jpg,svg|max:1024'
 		];
 	}
 }
