@@ -3,7 +3,7 @@
 		<input type="text" name="pr_id" id="pr_id" class="form-control" placeholder="ID" value="{{ old('pr_id', $pr->id ) }}" hidden>
 		<a href="#" class="btn btn-primary float-start"><i class="fas fa-edit"></i></a>
 	</td>
-	<td class="">11
+	<td class="">
 		<select class="form-control" name="item_id" id="item_id">
 			@foreach ($items as $item)
 				<option {{ $item->id == old('item_id',$prl->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }} </option>
@@ -23,7 +23,7 @@
 		@enderror
 	</td>
 	<td class="">
-		<select class="form-control" name="uom_id">
+		<select class="form-control" name="uom_id" id="uom_id">
 			@foreach ($uoms as $uom)
 				<option {{ $uom->id == old('uom_id',$prl->uom_id) ? 'selected' : '' }} value="{{ $uom->id }}">{{ $uom->name }} </option>
 			@endforeach
@@ -94,47 +94,112 @@
 	<td class="">
 		{{-- <x-tenant.buttons.show.save/> --}}
 	</td>
-	<script type="text/javascript">
+	{{-- <script type="text/javascript">
 		console.log("Hello world 1!");
-	</script>
+	</script> --}}
 </tr>
 <script type="text/javascript">
-	console.log("Hello world 1!");
-	$('#item_id').change(function() {
-		console.log("Hello world!");
-		let id = $(this).val();
-		let url = '{{ route("items.get-item", ":id") }}';
-		url = url.replace(':id', id);
- 
-		$.ajax({
-			url: url,
-			type: 'get',
-			dataType: 'json',
-			// delay: 250,
-			success: function(response) {
-				if (response != null) {
-					var qty = $("#qty").val();
-					var price = response.price;
-					var amount = price * qty;
-					$('#summary').val(response.summary);
-					$('#price').val(price.toFixed(2));
-					$('#amount').val(amount.toFixed(2));
+	$(document).ready(function () {
+		
+		// console.log("Hello world 1!");
+		$('#item_id').change(function() {
+			let id = $(this).val();
+			let url = '{{ route("items.get-item", ":id") }}';
+			url = url.replace(':id', id);
+			$.ajax({
+				url: url,
+				type: 'get',
+				dataType: 'json',
+				// delay: 250,
+				success: function(response) {
+					if (response != null) {
+						var qty = $("#qty").val();
+						var uom_class_id = response.uom_class_id;
+
+						$('#summary').val(response.summary);
+						var price = response.price;
+						$('#price').val(price.toFixed(2));
+						
+						var sub_total = price * qty;
+						$('#sub_total').val(sub_total.toFixed(2));
+
+						var tax = $("#tax").val();
+						var gst = $("#gst").val();
+						
+						var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
+						$('#amount').val(amount.toFixed(2));
+						console.log("amount = " + amount);
+					}
 				}
-			}
+
+			});
+
+			let url2 = '{{ route("uoms.get-uoms-by-class", ":id") }}';
+			url2 = url2.replace(':id', '1001');
+			$("#uom_id").html('');
+			$.ajax({
+				url: url2,
+				type: 'get',
+				dataType: 'json',
+				success: function (res) {
+					// $('#uom_id').html('<option value="">-- Select UoM --</option>');
+					$.each(res.uoms, function (key, value) {
+						$("#uom_id").append('<option value="' + value
+							.id + '">' + value.name + '</option>');
+					});
+				}
+			});
 		});
-	});
 
-	$('#qty').change(function() {
-		var qty = $("#qty").val();
-		var price = $("#price").val();
-		var amount = price * qty;
-		$("#amount").val(amount.toFixed(2));
-	});
+			
+		$('#qty').change(function() {
+			var qty = $("#qty").val();
+			var price = $("#price").val();
 
-	$('#price').change(function() {
-		var price = $("#price").val();
-		var qty = $("#qty").val();
-		var amount = price * qty;
-		$("#amount").val(amount.toFixed(2));
+			var sub_total = price * qty;
+			$('#sub_total').val(sub_total.toFixed(2));
+
+			var tax = $("#tax").val();
+			var gst = $("#gst").val();
+						
+			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
+			$('#amount').val(amount.toFixed(2));
+			console.log("amount = " + amount);
+		});
+
+		$('#price').change(function() {
+			var qty = $("#qty").val();
+			var price = $("#price").val();
+
+			var sub_total = price * qty;
+			$('#sub_total').val(sub_total.toFixed(2));
+
+			var tax = $("#tax").val();
+			var gst = $("#gst").val();
+						
+			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
+			$('#amount').val(amount.toFixed(2));
+			console.log("amount = " + amount);
+		});
+
+		$('#tax').change(function() {
+			var sub_total = $("#sub_total").val();
+			var tax = $("#tax").val();
+			var gst = $("#gst").val();
+		
+			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
+			$('#amount').val(amount.toFixed(2));
+			console.log("amount = " + amount);
+		});
+
+		$('#gst').change(function() {
+			var sub_total = $("#sub_total").val();
+			var tax = $("#tax").val();
+			var gst = $("#gst").val();
+		
+			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
+			$('#amount').val(amount.toFixed(2));
+			console.log("amount = " + amount);
+		});
 	});
 </script>

@@ -161,6 +161,10 @@ Route::middleware([
 
 	/* ======================== Home Controller ======================================== */
 	Route::get('/help', [HomeController::class, 'help'])->name('help');
+	//Route::get('/get-started', [HomeController::class, 'getStarted'])->name('get-started');
+	Route::get('/get-started', function () {
+		return view('tenant.pages.get-started');
+	})->name('get-started');
 	Route::get('/send', [HomeController::class, 'testNotification'])->name('send');
 	Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
 	Route::get('/home', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
@@ -297,6 +301,7 @@ Route::middleware([
 	Route::resource('uoms', UomController::class)->middleware(['auth', 'verified']);
 	Route::get('/uom/export',[UomController::class,'export'])->name('uoms.export');
 	Route::get('/uoms/delete/{uom}',[UomController::class,'destroy'])->name('uoms.destroy');
+    Route::get('/uoms/get-uoms-by-class/{uom_class_id}',[UomController::class, 'getUomsByClass'])->name('uoms.get-uoms-by-class');
 
 	/* ======================== Oem ======================================== */
 	Route::resource('oems', OemController::class)->middleware(['auth', 'verified']);

@@ -42,6 +42,7 @@ use App\Helpers\Export;
 # 10. Events
 # 11. Seeded
 use DB;
+use Illuminate\Support\Facades\Log;
 # 12. TODO 
 
 
@@ -149,4 +150,21 @@ class UomController extends Controller
 		// used Export Helper
 		return Export::csv('uoms', $dataArray);
 	}
+
+	public function getUomsByClass($id = 0)
+	{
+		//http://demo1.localhost:8000/items/get-item/1005
+		$data = [];
+		//Log::info('id='.$id);
+		//$data = Category::where('id', $id)->first();
+		//{"id":3,"name":"Category -3","slug":"Neque non.","enable":1,"limit":30,"created_at":"2022-07-04T07:08:42.000000Z","updated_at":"2022-07-04T07:08:42.000000Z"}
+		$data['uoms'] = Uom::select('id','name')->where('uom_class_id', $id)->get();
+		// {"limit":30,"slug":"Neque non."}  
+		//Log::info( $data);
+		
+		Log::debug('Value of data[uom]=' . $data['uoms']);
+		return response()->json($data);
+
+	}
+
 }
