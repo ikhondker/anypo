@@ -24,18 +24,22 @@
 		@endslot
 	</x-tenant.page-header>
 		
-
-	@include('tenant.includes.pr.view-pr-header')
+	<x-tenant.widgets.pr.show-pr-header id="{{ $pr->id }}"/>
+	
 
 	<!-- widget-pr-lines -->
-	<x-tenant.widgets.pr.lines id="{{ $pr->id }}" :show="true"/>
-		
+	<x-tenant.widgets.prl.show-all-pr-lines id="{{ $pr->id }}">
+		@include('tenant.includes.pr.pr-footer-show')
+	</x-tenant.widgets.prl.show-all-pr-lines>
+	{{-- <x-tenant.widgets.pr.lines id="{{ $pr->id }}" :show="true"/> --}}
 	<!-- /.widget-pr-lines -->
 
+	<x-tenant.widgets.wfl.get-approval wfid="{{ $pr->wf_id }}" />
+
 	<!-- approval form, show only if pending to current auth user -->
-	@if (\App\Helpers\Workflow::allowApprove($pr->wf_id))
+	{{-- @if (\App\Helpers\Workflow::allowApprove($pr->wf_id))
 		@include('tenant.includes.wfl-approve-reject')
-	@endif 
+	@endif  --}}
 	
 	@include('tenant.includes.modal-boolean-advance')
 	  

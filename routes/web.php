@@ -30,6 +30,16 @@ Route::get('/testrun', [TestController::class, 'run'])->name('test.run');
 Route::get('/test', function () {
 	return view('landlord.test');
 })->name('test');
+Route::get('/sweet2', function () {
+	return view('landlord.pages.sweet2');
+})->name('sweet2');
+Route::get('/jq', function () {
+	return view('landlord.pages.jquery');
+})->name('jq');
+Route::get('/jql', function () {
+	return view('landlord.pages.jqueryl');
+})->name('jql');
+
 
 Route::get('pdf', [TestController::class, 'generatePDF'])->name('pdf');
 

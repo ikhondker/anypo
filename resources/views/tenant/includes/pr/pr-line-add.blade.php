@@ -8,8 +8,8 @@
 		<a href="#" class="btn btn-primary float-start"><i class="fas fa-plus"></i></a>
 	</td>
 	<td class="">
-		<select class="form-control" name="item_id" required>
-			<option value=""><< Item >> </option>
+		<select class="form-control select2" data-toggle="select2" name="item_id" required>
+			<option value=""><< Item1 >> </option>
 			@foreach ($items as $item)
 				<option value="{{ $item->id }}" {{ $item->id == old('item_id') ? 'selected' : '' }} >{{ $item->name }} </option>
 			@endforeach

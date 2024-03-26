@@ -15,19 +15,34 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" >
 
-	<!-- Scripts -->
-	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
 	<!-- Choose your preferred color scheme -->
-	<link href="{{ asset('css/light.css') }}" rel="stylesheet">
-	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}
+	{{-- <link href="{{asset('css/light.css')}}" rel="stylesheet"> --}}
+	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}">
+
+	<!-- <link href="css/dark.css" rel="stylesheet"> -->
 
 	<!-- Custom style -->
-	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/custom.css') }}"> --}}
+	{{-- <link href="{{asset('css/custom.css')}}" rel="stylesheet"> --}}
+	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/custom.css') }}">
 	<script src="{{ asset('js/custom.js') }} "></script>
-	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('js/custom.js') }}"> --}}
 
+	{{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+  			integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+  			crossorigin="anonymous">
+	</script> --}}
+
+	{{-- sweetalert2 v11.7.3 --}}
+	{{-- <script	src="{{asset('js/sweetalert2.min.js')}}"></script>
+	<link href="{{asset('css/sweetalert2.css')}}" rel="stylesheet"> --}}
+
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" >
+	
+	{{-- or --}}
+	{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+
+	{{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
 	{{-- @livewireStyles --}}
 
 </head>
@@ -386,10 +401,9 @@
 		</div>
 	</div>
 
-	<script src="{{ asset('js/app.js') }}"></script>
-	{{-- <script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
+	{{-- <script src="{{asset('js/app.js')}}"></script> --}}
+	<script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script>
 
-	
 	{{-- @livewireScripts --}}
 </body>
 

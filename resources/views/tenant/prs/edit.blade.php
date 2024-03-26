@@ -124,7 +124,9 @@
 			</div>
 
 			<!-- widget-pr-lines -->
-			<x-tenant.widgets.pr.lines id="{{ $pr->id }}" :show="true"/>
+			<x-tenant.widgets.prl.show-all-pr-lines id="{{ $pr->id }}">
+				@include('tenant.includes.pr.pr-footer-show')
+			</x-tenant.widgets.prl.show-all-pr-lines>
 
 	</form>
 	<!-- /.form end -->

@@ -32,14 +32,18 @@
 <link rel="stylesheet" href="{{ Storage::disk('s3l')->url('css/theme.css') }}">
 <link rel="stylesheet" href="{{ Storage::disk('s3l')->url('css/landlord.css') }}">
 
-{{-- <script	src="https://code.jquery.com/jquery-3.7.0.min.js"
+<script	src="https://code.jquery.com/jquery-3.7.0.min.js"
 	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
 	crossorigin="anonymous">
-</script> --}}
+</script>
 
 {{-- jquery v3.7.1 --}}
 {{-- <script	src="{{ asset('/assets/js/jquery-3.7.1.min.js') }}"></script> --}}
-<script	src="{{ Storage::disk('s3l')->url('js/jquery-3.7.1.min.js') }}"></script>
+{{-- <script	src="{{ Storage::disk('s3l')->url('js/jquery-3.7.1.min.js') }}"></script> --}}
+
+<!-- Scripts -->
+{{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+
 
 {{-- sweetalert2 v11.7.27 --}}
 {{-- <script	src="{{asset('/assets/js/sweetalert2.min.js')}}"></script> --}}

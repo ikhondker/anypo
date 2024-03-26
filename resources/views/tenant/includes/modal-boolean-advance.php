@@ -5,7 +5,7 @@
 	<i class="align-middle {{ ($dept->enable ? 'text-muted' : 'text-success') }}" data-feather="{{ ($dept->enable ? 'bell-off' : 'bell') }}"></i>
 </a> -->
 
-<script type="text/javascript">
+<script type="module">
 	$('.modal-boolean-advance').on('click', function (e) {
 		e.preventDefault();
 		const url = $(this).attr('href');

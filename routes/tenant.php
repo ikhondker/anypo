@@ -112,8 +112,16 @@ Route::middleware([
 	//Route::view('/test', 'tenant.pages.test');
 	Route::get('/test', function () {
 		return view('tenant.pages.test');
-	})->name('tos');
-
+	})->name('test');
+	Route::get('/sweet2', function () {
+		return view('tenant.pages.sweet2');
+	})->name('sweet2');
+	Route::get('/jq', function () {
+		return view('tenant.pages.jquery');
+	})->name('jq');
+	Route::get('/jql', function () {
+		return view('tenant.pages.jqueryl');
+	})->name('jql');
 
 	
 	/* ======================== make auth universal ========================================  */

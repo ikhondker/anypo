@@ -72,6 +72,7 @@
 	 <!-- end row -->
 
 	 @include('tenant.includes.modal-boolean-advance')
-
+	
 @endsection
+
 

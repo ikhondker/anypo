@@ -2,6 +2,7 @@
 <html lang="en" dir="">
 <head>
 		@include('landlord.includes.head')
+		
 </head>
 
 <body>

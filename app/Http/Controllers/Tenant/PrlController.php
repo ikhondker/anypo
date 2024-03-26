@@ -77,7 +77,7 @@ class PrlController extends Controller
 		//$uoms = Uom::getAllClient();
 		$uoms = Uom::primary()->get();
 
-		return view('tenant.prls.create', with(compact('pr','items','uoms')));
+		return view('tenant.prls.create', with(compact('pr','items','uoms'))); 
 	}
 
 

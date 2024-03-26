@@ -166,7 +166,7 @@
 
 	// INITIALIZATION OF SHOW ANIMATIONS
 	// =======================================================
-	new HSShowAnimation('.js-animation-link')
+	// new HSShowAnimation('.js-animation-link')
 
 
 	// INITIALIZATION OF BOOTSTRAP VALIDATION

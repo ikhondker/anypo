@@ -1,34 +1,35 @@
 @extends('layouts.app')
-@section('title','Create Purchase Order')
-@section('breadcrumb','Create Purchase Order')
+@section('title','Requisition')
+@section('breadcrumb','Create Requisition')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Create Purchase Order
+			Create Requisition
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.buttons.header.lists object="Pr"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form action="{{ route('pos.store') }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('prs.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
 		<div class="row">
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Purchase Order Info</h5>
+						<h5 class="card-title">Requisition Basic Information</h5>
+						<h6 class="card-subtitle text-muted">Requisition Basic Information.</h6>
 					</div>
 					<div class="card-body">
 
 						<div class="mb-3">
-							<label class="form-label">PO Summary</label>
+							<label class="form-label">Pr Summary</label>
 							<input type="text" class="form-control @error('summary') is-invalid @enderror"
-								name="summary" id="summary" placeholder="PO summary"
+								name="summary" id="summary" placeholder="PR summary"
 								value="{{ old('summary', '' ) }}"
 								required/>
 							@error('summary')
@@ -36,16 +37,6 @@
 							@enderror
 						</div>
 
-						<div class="mb-3 row">
-							<label class="col-form-label col-sm-2 text-sm-right">PR Date</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control"
-								name="dsp_date" id="dsp_date" value="{{ now() }}"
-								readonly/>
-							</div>
-						</div>
-
-						
 						@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
 							<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 						@else
@@ -104,7 +95,8 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Additional Info</h5>
+						<h5 class="card-title">Requisition Additional Info</h5>
+						<h6 class="card-subtitle text-muted">Requisition Additional Information.</h6>
 					</div>
 					<div class="card-body">
 						<div class="mb-3">
@@ -123,13 +115,20 @@
 		</div>
 		<!-- end row -->
 
-		{{-- =================PO lines create================================================= --}}
+
+		<x-tenant.widgets.prl.show-all-pr-lines>
+			@include('tenant.includes.pr.pr-line-add')
+		</x-tenant.widgets.prl.show-all-pr-lines>
+
+
+
+		{{-- =================PR lines create================================================= --}}
 		<div class="row">
 			<div class="col-12 col-xl-12">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Purchase Order Lines</h5>
-						<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
+						<h5 class="card-title">Requisition Lines</h5>
+						<h6 class="card-subtitle text-muted">Requisition Lines.</h6>
 					</div>
 					<table class="table">
 						<thead>
@@ -139,38 +138,37 @@
 								<th class="">Summary</th>
 								<th class="">UOM</th>
 								<th class="text-end">Qty</th>
-								<th class="text-end">Received</th>
 								<th class="text-end">Price</th>
 								<th class="text-end">Subtotal</th>
 								<th class="text-end">Tax</th>
 								<th class="text-end">GST</th>
 								<th class="text-end">Amount</th>
-								<th class="text-end">Status</th>
 								<th class="">Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							@include('tenant.includes.po.po-line-add')
+							@include('tenant.includes.pr.pr-line-add')
 
 							<tr class="">
-								<td colspan="10" class="text-end">
+								<td colspan="9" class="text-end">
 									<strong>TOTAL:</strong>
 								</td>
 								<td class="text-end">
-									<input type="number" step='0.01' min="1" class="form-control @error('po_amount') is-invalid @enderror"
+									<input type="number" step='0.01' min="1" class="form-control @error('pr_amount') is-invalid @enderror"
 										style="text-align: right;"
-										name="po_amount" id="po_amount" placeholder="1.00"
-										value="{{ old('po_amount','1.00') }}"
+										name="pr_amount" id="pr_amount" placeholder="1.00"
+										value="{{ old('pr_amount','1.00') }}"
 										required readonly>
-									@error('po_amount')
+									@error('pr_amount')
 											<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror
 								</td>
-								<td class="">* 	</td>
-								<td class="">* 	</td>
+								<td class="">
+									{{-- <x-tenant.buttons.show.save/> --}}
+								</td>
 							</tr>
 							<tr class="">
-								<td colspan="9" class="">
+								<td colspan="8" class="">
 
 								</td>
 								<td colspan="2" class="">
@@ -180,8 +178,6 @@
 										<button type="submit" id="submit" name="action" value="save_add" class="btn btn-primary"><i data-feather="save"></i> Save and Add Line</button>
 									</div>
 								</td>
-								<td class="">* 	</td>
-								<td class="">* 	</td>
 							</tr>
 							
 						</tbody>

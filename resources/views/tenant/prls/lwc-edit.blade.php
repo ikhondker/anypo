@@ -16,8 +16,7 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	{{-- @include('tenant.includes.pr.view-pr-header') --}}
-	<x-tenant.widgets.pr.show-pr-header id="{{ $pr->id }}"/>
+	@include('tenant.includes.pr.view-pr-header')
 
 	<!-- form start -->
 	<form action="{{ route('prls.update',$prl->id) }}" method="POST" enctype="multipart/form-data">
@@ -25,9 +24,8 @@
 		@method('PUT')
 
 		<!-- widget-pr-lines -->
-		{{-- <x-tenant.widgets.pr.lines id="{{ $pr->id }}" :edit="true" pid="{{ $prl->id }}"/> --}}
+		<x-tenant.widgets.pr.lines id="{{ $pr->id }}" :edit="true" pid="{{ $prl->id }}"/>
 		<!-- /.widget-pr-lines -->
-		<x-tenant.widgets.prl.edit-pr-line prid="{{ $pr->id }}" prlid="{{ $prl->id }}"/>
 
 	</form>
 	<!-- /.form end -->
