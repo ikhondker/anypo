@@ -200,11 +200,11 @@ class ItemController extends Controller
 		//Log::info('id='.$id);
 		//$data = Category::where('id', $id)->first();
 		//{"id":3,"name":"Category -3","slug":"Neque non.","enable":1,"limit":30,"created_at":"2022-07-04T07:08:42.000000Z","updated_at":"2022-07-04T07:08:42.000000Z"}
-		$data = Item::select('name','uom_class_id','price')->where('id', $id)->first();
+		$data = Item::select('code','name','uom_class_id','price')->where('id', $id)->first();
 		// {"limit":30,"slug":"Neque non."}  
 		//Log::info( $data);
 		
-		Log::debug('Value of data=' . $data);
+		//Log::debug('Value of data=' . $data);
 		return response()->json($data);
 
 	}

@@ -1,6 +1,5 @@
-@if ($show)
 	<!-- form start -->
-	<form action="{{ route('wfls.update',$wfl->id) }}" method="POST">
+	<form action="{{ route('wfls.update',$wfid) }}" method="POST">
 		@csrf
 		@method('PUT')
 
@@ -69,4 +68,3 @@
 
 	</form>
 	<!-- /.form end -->
-@endif	

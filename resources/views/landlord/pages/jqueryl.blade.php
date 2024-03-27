@@ -29,7 +29,6 @@
 </p>
 </div>
 
-
 <div class="mb-3 row">
 	<label class="col-form-label col-sm-2 text-sm-right">Dept Name</label>
 	<div class="col-sm-10">
@@ -40,11 +39,29 @@
 				<option value="2" >21111</option>
 				<option value="3" >31111</option>
 				<option value="4" >41111</option>
-
-			
+		
 		</select>
 	</div>
 </div>
+
+<div class="col-auto ms-auto text-end mt-n1">
+	<div class="dropdown me-2 d-inline-block position-relative">
+		<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
+		<i class="align-middle mt-n1" data-feather="calendar"></i> Today
+		</a>
+
+		<div class="dropdown-menu dropdown-menu-end">
+			<h6 class="dropdown-header">Settings</h6>
+			<a class="dropdown-item" href="#">Action</a>
+			<a class="dropdown-item" href="#">Another action</a>
+			<a class="dropdown-item" href="#">Something else here</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#">Separated link</a>
+		</div>
+	</div>
+</div>
+
+
 
 <script type="module">
 	$(document).ready(function(){

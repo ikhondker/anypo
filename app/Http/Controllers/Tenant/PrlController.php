@@ -130,14 +130,22 @@ class PrlController extends Controller
 		// 	update PR Header value
 		$result = Pr::updatePrHeaderValue($prl->pr_id);
 
-		switch ($request->input('action')) {
-			case 'save':
-				return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR #'. $prl->pr_id.' created successfully.');
-				break;
-			case 'save_add':
-				return redirect()->route('prls.createline', $prl->pr_id)->with('success', 'PR #'. $prl->pr_id.' created successfully. Please add more line.');
-				break;
+		if($request->has('add_row')) {
+			//Checkbox checked
+			return redirect()->route('prls.add-line', $prl->pr_id)->with('success', 'Lined added to PR #'. $prl->pr_id.' successfully.');
+		} else {
+			//Checkbox not checked
+			return redirect()->route('prs.show', $prl->pr_id)->with('success', 'Lined added to PR #'. $prl->pr_id.' successfully.');
 		}
+
+		// switch ($request->input('action')) {
+		// 	case 'save':
+		// 		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR #'. $prl->pr_id.' created successfully.');
+		// 		break;
+		// 	case 'save_add':
+		// 		return redirect()->route('prls.add-line', $prl->pr_id)->with('success', 'PR #'. $prl->pr_id.' created successfully. Please add more line.');
+		// 		break;
+		// }
 
 		//return redirect()->route('prs.show', $prl->pr_id)->with('success', 'Requisition line added successfully');
 	}

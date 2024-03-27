@@ -13,10 +13,10 @@ return new class extends Migration
 	{
 		Schema::create('items', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
+			$table->string('code')->unique();
 			$table->string('name')->unique();
 			$table->text('notes')->nullable();
-			$table->string('code')->unique()->nullable();
-			$table->string('sku')->unique()->nullable();
+			//$table->string('sku')->unique()->nullable();
 			$table->foreignId('category_id')->constrained('categories');
 			$table->foreignId('oem_id')->constrained('oems');
 			$table->foreignId('uom_class_id')->constrained('uom_classes');

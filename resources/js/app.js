@@ -1,3 +1,5 @@
+
+
 import './bootstrap';
 
 // IQBAL 24-MAR-2024
@@ -15,3 +17,4 @@ select2(); // <-- select2 must be called
 // IQBAL 26-MAR-2024
 import Chart from 'chart.js/auto';
 window.Chart = Chart;
+

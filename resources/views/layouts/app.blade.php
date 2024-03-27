@@ -15,9 +15,11 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" >
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+	
 	<!-- Scripts -->
 	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+	
 	<!-- Choose your preferred color scheme -->
 	<link href="{{ asset('css/light.css') }}" rel="stylesheet">
 	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}
@@ -25,7 +27,7 @@
 	<!-- Custom style -->
 	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/custom.css') }}"> --}}
-	<script src="{{ asset('js/custom.js') }} "></script>
+	{{-- <script src="{{ asset('js/custom.js') }} "></script> --}}
 	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('js/custom.js') }}"> --}}
 
 	{{-- @livewireStyles --}}

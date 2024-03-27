@@ -26,8 +26,6 @@
 						<h6 class="card-subtitle text-muted">Create and Item.</h6>
 					</div>
 					<div class="card-body">
-						<x-tenant.create.name/>
-						<x-tenant.create.price/>
 						<div class="mb-3 col-md-6">
 							<label for="code" class="form-label">Code</label>
 							<input type="text" class="form-control @error('code') is-invalid @enderror"
@@ -39,6 +37,11 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
+						
+						<x-tenant.create.name/>
+						
+						<x-tenant.create.price/>
+
 
 						<div class="mb-3">
 							<label class="form-label">Category</label>

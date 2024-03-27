@@ -189,7 +189,7 @@ class PrController extends Controller
 		$prl->line_num	= 1;	
 		$prl->item_id	= $request->input('item_id');
 		$prl->uom_id	= $request->input('uom_id');
-		$prl->summary	= $request->input('summary');
+		$prl->item_description	= $request->input('item_description');
 		$prl->qty		= $request->input('qty');
 		$prl->price		= $request->input('price');
 
@@ -203,15 +203,24 @@ class PrController extends Controller
 	
 		// 	update PR Header value
 		$result = Pr::updatePrHeaderValue($prl->pr_id);
-
-		switch ($request->input('action')) {
-			case 'save':
-				return redirect()->route('prs.show', $pr->id)->with('success', 'PR #'. $pr->id.' created successfully.');
-				break;
-			case 'save_add':
-				return redirect()->route('prls.createline', $pr->id)->with('success', 'PR #'. $pr->id.' created successfully. Please add more line.');
-				break;
+	
+		
+		if($request->has('add_row')) {
+			//Checkbox checked
+			return redirect()->route('prls.add-line', $pr->id)->with('success', 'PR #'. $pr->id.' created successfully. Please add more line.');
+		} else {
+			//Checkbox not checked
+			return redirect()->route('prs.show', $pr->id)->with('success', 'PR #'. $pr->id.' created successfully.');
 		}
+
+		// switch ($request->input('action')) {
+		// 	case 'save':
+		// 		return redirect()->route('prs.show', $pr->id)->with('success', 'PR #'. $pr->id.' created successfully.');
+		// 		break;
+		// 	case 'save_add':
+		// 		return redirect()->route('prls.add-line', $pr->id)->with('success', 'PR #'. $pr->id.' created successfully. Please add more line.');
+		// 		break;
+		// }
 	}
 
 	// add attachments

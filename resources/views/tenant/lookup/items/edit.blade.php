@@ -34,7 +34,7 @@
 							<div class="mb-3 col-md-6">
 								<label for="code" class="form-label">Code</label>
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
-									name="code" id="code" placeholder="XXXX" maxlength="10"
+									name="code" id="code" placeholder="XXXX" maxlength="25"
 									style="text-transform: uppercase"
 									value="{{ old('code', $item->code ) }}"
 									required/>

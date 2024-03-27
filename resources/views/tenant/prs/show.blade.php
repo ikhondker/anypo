@@ -34,12 +34,13 @@
 	{{-- <x-tenant.widgets.pr.lines id="{{ $pr->id }}" :show="true"/> --}}
 	<!-- /.widget-pr-lines -->
 
-	<x-tenant.widgets.wfl.get-approval wfid="{{ $pr->wf_id }}" />
+	{{-- <x-tenant.widgets.wfl.get-approval wfid="{{ $pr->wf_id }}" /> --}}
 
 	<!-- approval form, show only if pending to current auth user -->
-	{{-- @if (\App\Helpers\Workflow::allowApprove($pr->wf_id))
-		@include('tenant.includes.wfl-approve-reject')
-	@endif  --}}
+	@if (\App\Helpers\Workflow::allowApprove($pr->wf_id))
+		{{-- @include('tenant.includes.wfl-approve-reject') --}}
+		<x-tenant.widgets.wfl.get-approval wfid="{{ $pr->wf_id }}" />
+	@endif
 	
 	@include('tenant.includes.modal-boolean-advance')
 	  

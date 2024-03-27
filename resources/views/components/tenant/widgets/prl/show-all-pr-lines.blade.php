@@ -10,8 +10,8 @@
 				<thead>
 					<tr>
 						<th class="">LINE#</th>
-						<th class="">Item</th>
-						<th class="">Summary</th>
+						<th class="">CODE</th>
+						<th class="">Description</th>
 						<th class="">UOM</th>
 						<th class="text-end">Qty</th>
 						<th class="text-end">Price</th>
@@ -26,8 +26,8 @@
 					@forelse  ($prls as $prl)
 						<tr class="">
 							<td class="">{{ $prl->line_num }}</td>
-							<td class="">{{ $prl->item->name }}</td>
-							<td class="">{{ $prl->summary }}</td>
+							<td class="">{{ $prl->item->code }}</td>
+							<td class="">{{ $prl->item_description }}</td>
 							<td class="">{{ $prl->uom->name }}</td>
 							<td class="text-end">{{ $prl->qty }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$prl->price"/></td>
@@ -77,4 +77,5 @@
 	</div>
 </div>
 
+@include('tenant.includes.modal-boolean-advance')
 {{-- ============================================================== --}}

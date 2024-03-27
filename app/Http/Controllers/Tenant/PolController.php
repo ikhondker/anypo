@@ -258,7 +258,7 @@ class PolController extends Controller
 		$data = DB::select("
 		SELECT po.id, po.summary po_summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
 		po.notes, po.currency, po.amount, po.status, po.auth_status, po.auth_date,
-		pol.line_num, pol.summary line_summary, i.code item_code, uom.name uom, pol.qty, pol.price, pol.sub_total, pol.tax, pol.gst, pol.amount,
+		pol.line_num, pol.item_description, i.code item_code, uom.name uom, pol.qty, pol.price, pol.sub_total, pol.tax, pol.gst, pol.amount,
 		pol.price, pol.sub_total, pol.amount,pol.notes, pol.closure_status
 		FROM pos po,depts d, projects p, suppliers s, users u , , items i, uoms uom
 		WHERE po.dept_id=d.id 

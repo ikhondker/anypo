@@ -22,12 +22,24 @@ class StoreItemRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
+			'code'			=> 'required|max:25|alpha_dash|unique:items,code',
 			'name'			=> 'required|min:5|max:120|unique:items,name',
 			'category_id'	=> 'required|integer|exists:categories,id',
 			'uom_id'		=> 'required|integer|exists:uoms,id',
 			'oem_id'		=> 'required|integer|exists:oems,id',
-			'code'			=> 'required|max:10|unique:items,code',
 			'price'			=> 'required|numeric|min:0.10|max:9999999.99',
 		];
 	}
+
+	/**
+	 * Get the error messages for the defined validation rules.
+	 *
+	 * @return array
+	 */
+	public function messages() {
+		return [
+			'code.alpha_dash'	=> 'Item code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+		];
+	}
+
 }

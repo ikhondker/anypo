@@ -162,7 +162,7 @@ class UomController extends Controller
 		// {"limit":30,"slug":"Neque non."}  
 		//Log::info( $data);
 		
-		Log::debug('Value of data[uom]=' . $data['uoms']);
+		//Log::debug('Value of data[uom]=' . $data['uoms']);
 		return response()->json($data);
 
 	}

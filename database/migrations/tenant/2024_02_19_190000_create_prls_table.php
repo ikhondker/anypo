@@ -19,8 +19,8 @@ return new class extends Migration
 			$table->foreignId('pr_id')->constrained('prs');
 			$table->biginteger('line_num')->default(0);
 			//$table->foreignId('project_id')->nullable()->constrained('projects');
-			$table->string('summary');
 			$table->foreignId('item_id')->constrained('items');
+			$table->string('item_description');
 			$table->foreignId('uom_id')->constrained('uoms');
 			$table->float('qty')->default(1);
 			$table->float('price', 15, 2)->default(0);

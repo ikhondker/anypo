@@ -30,8 +30,8 @@ class PrlFactory extends Factory
 
 		return [
 			'pr_id'				=> Pr::inRandomOrder()->first()->id,
-			'summary'			=> $this->faker->randomElement(['Laptop (Lenovo)', 'Laptop (ASUS)','MacBook Air Laptop','Laptop (Dell)','iPhone 12']),
 			'item_id'			=> Item::inRandomOrder()->first()->id,
+			'item_description'	=> $this->faker->randomElement(['Laptop (Lenovo)', 'Laptop (ASUS)','MacBook Air Laptop','Laptop (Dell)','iPhone 12']),
 			'notes'				=> $this->faker->paragraph,
 			'qty'				=> $qty,
 			'uom_id'			=> Uom::inRandomOrder()->first()->id,

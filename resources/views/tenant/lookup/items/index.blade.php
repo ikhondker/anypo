@@ -118,8 +118,8 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Name</th>
 								<th>Code</th>
+								<th>Name</th>
 								<th>Category</th>
 								<th>UOM</th>
 								<th>OEM</th>
@@ -132,8 +132,8 @@
 							@foreach ($items as $item)
 							<tr>
 								<td>{{ $item->id }}</td>
-								<td><a class="text-info" href="{{ route('items.show',$item->id) }}">{{ $item->name }}</a></td>
 								<td>{{ $item->code }}</td>
+								<td><a class="text-info" href="{{ route('items.show',$item->id) }}">{{ $item->name }}</a></td>
 								<td>{{ $item->category->name }}</td>
 								<td>{{ $item->uom->name }}</td>
 								<td>{{ $item->oem->name }}</td>

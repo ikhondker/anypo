@@ -42,10 +42,7 @@
 
 {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" > --}}
-{{-- <script type="module">
-	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-</script> --}}
+		
 
 {{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"
   			integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
@@ -61,7 +58,7 @@
 {{--  popper.js CSS example  --}}
 <style>
 	#tooltip {
-		background: #333333;
+		background: #333;
 		color: white;
 		font-weight: bold;
 		padding: 4px 8px;
@@ -86,11 +83,23 @@
 		
 	</main>
 	<!-- ========== END MAIN CONTENT ========== -->
-	<script src="{{asset('js/app.js')}}"></script>
+	{{-- <script src="{{asset('js/app.js')}}"></script> --}}
 	{{-- <script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
-	
+	{{-- <script type="module">
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script> --}}
 	<script type="module">
-	
+		
+		// var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		// return new bootstrap.Tooltip(tooltipTriggerEl)
+		// })
+
+		// const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+		// const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 	</script>
 
 </body>

@@ -40,6 +40,43 @@
 		</select>
 	</div>
 </div>
+<div class="col-auto ms-auto text-end mt-n1">
+	<div class="dropdown me-2 d-inline-block position-relative">
+		<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
+		<i class="align-middle mt-n1" data-feather="calendar"></i> Today
+		</a>
+
+		<div class="dropdown-menu dropdown-menu-end">
+			<h6 class="dropdown-header">Settings</h6>
+			<a class="dropdown-item" href="#">Action</a>
+			<a class="dropdown-item" href="#">Another action</a>
+			<a class="dropdown-item" href="#">Something else here</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#">Separated link</a>
+		</div>
+	</div>
+</div>
+
+{{--  Test Bootstrap css  --}}
+<div class="alert alert-success mt-5" role="alert">
+    Boostrap 5 is working using laravel 8 mix!
+</div>
+
+{{--  popper.js HTML example  --}}
+<button id="button" aria-describedby="tooltip">My button</button>
+
+<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">
+	Tooltip on top
+  </button>
+  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Tooltip on right">
+	Tooltip on right
+  </button>
+  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
+	Tooltip on bottom
+  </button>
+  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Tooltip on left">
+	Tooltip on left
+  </button>
 
 
 <div style="width: 600px; margin: auto;">
@@ -50,58 +87,32 @@
 <script type="module">
 		
 		document.addEventListener("DOMContentLoaded", function() {
-			// Bar chart
+
 			new Chart(document.getElementById("chartjs-bar"), {
-				type: "bar",
+				type: 'bar',
 				data: {
-					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-					datasets: [{
-						label: "Last year",
-						backgroundColor: window.theme.primary,
-						borderColor: window.theme.primary,
-						hoverBackgroundColor: window.theme.primary,
-						hoverBorderColor: window.theme.primary,
-						data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
-						barPercentage: .75,
-						categoryPercentage: .5
-					}, {
-						label: "This year",
-						backgroundColor: "#E8EAED",
-						borderColor: "#E8EAED",
-						hoverBackgroundColor: "#E8EAED",
-						hoverBorderColor: "#E8EAED",
-						data: [69, 66, 24, 48, 52, 51, 44, 53, 62, 79, 51, 68],
-						barPercentage: .75,
-						categoryPercentage: .5
-					}]
+				labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+				datasets: [
+					{
+					label: "Population (millions)",
+					backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+					data: [2478,5267,734,784,433]
+					}
+				]
 				},
 				options: {
-					maintainAspectRatio: false,
-					legend: {
-						display: false
-					},
-					scales: {
-						yAxes: [{
-							gridLines: {
-								display: false
-							},
-							stacked: false,
-							ticks: {
-								stepSize: 20
-							}
-						}],
-						xAxes: [{
-							stacked: false,
-							gridLines: {
-								color: "transparent"
-							}
-						}]
-					}
+				legend: { display: false },
+				title: {
+					display: true,
+					text: 'Predicted world population (millions) in 2050'
+				}
 				}
 			});
+
+			// Bar chart
+			
 		});
 </script>
-
 
 <script type="module">
 	$(document).ready(function(){

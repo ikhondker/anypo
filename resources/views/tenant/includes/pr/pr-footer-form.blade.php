@@ -22,9 +22,18 @@
 	</td>
 	<td colspan="4" class="text-end">
 		<div class="mb-3 float-end">
-			<a class="btn btn-secondary" href="{{ url()->previous() }}"><i data-feather="x-circle"></i> Cancel</a>
-			<button type="submit" id="submit" name="action" value="save" class="btn btn-primary"><i data-feather="save"></i> Save</button>
-			<button type="submit" id="submit" name="action" value="save_add" class="btn btn-primary"><i data-feather="save"></i> Save and Add Line</button>
+			{{-- <label class="form-check m-0">
+				<input type="checkbox" class="form-check-input" name="banner_show" id="banner_show" />
+				<span class="form-check-label text-danger">Display above Announcement?</span>
+			</label> --}}
+			<div class="form-check form-switch">
+				<input class="form-check-input m-2" type="checkbox" id="add_row" name="add_row" checked>
+				<label class="form-check-label" for="add_row">... and add another row.</label>
+				<a class="btn btn-secondary" href="{{ url()->previous() }}"><i data-feather="x-circle"></i> Cancel</a>
+				<button type="submit" id="submit" name="action" value="save" class="btn btn-primary"><i data-feather="save"></i> Save</button>
+			</div>
+			
+			{{-- <button type="submit" id="submit" name="action" value="save_add" class="btn btn-primary"><i data-feather="save"></i> Save and Add Line</button> --}}
 		</div>
 	</td>
 </tr>

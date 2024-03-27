@@ -13,7 +13,8 @@ use App\Enum\WflActionEnum;
 class GetApproval extends Component
 {
 	
-	public $show = false;
+	//public $show = false;
+	public $wfl;
 
 	/**
 	 * Create a new component instance.
@@ -21,13 +22,14 @@ class GetApproval extends Component
 	public function __construct(public string $wfid)
 	{
 		if ( $wfid <> ''){
-			$count 	= Wfl::where('wf_id', $wfid)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->count();
+			//$count 	= Wfl::where('wf_id', $wfid)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->count();
+			$this->wfl 	= Wfl::where('wf_id', $wfid)->first();
 		}
-		if ( $count <> 0){
-			$this->show = true;
-		} else {
-			$this->show = false;
-		}
+		// if ( $count <> 0){
+		// 	$this->show = true;
+		// } else {
+		// 	$this->show = false;
+		// }
 	}
 
 	/**

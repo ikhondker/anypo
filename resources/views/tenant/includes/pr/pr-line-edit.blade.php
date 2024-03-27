@@ -4,9 +4,9 @@
 		<a href="#" class="btn btn-primary float-start"><i class="fas fa-edit"></i></a>
 	</td>
 	<td class="">
-		<select class="form-control" name="item_id" id="item_id">
+		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id">
 			@foreach ($items as $item)
-				<option {{ $item->id == old('item_id',$prl->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }} </option>
+				<option {{ $item->id == old('item_id',$prl->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->code }} </option>
 			@endforeach
 		</select>
 		@error('item_id')
@@ -98,7 +98,7 @@
 		console.log("Hello world 1!");
 	</script> --}}
 </tr>
-<script type="text/javascript">
+<script type="module">
 	$(document).ready(function () {
 		
 		// console.log("Hello world 1!");

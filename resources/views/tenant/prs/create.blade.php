@@ -43,7 +43,7 @@
 							<label class="col-form-label col-sm-2 text-sm-right">PR Date</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control"
-								name="dsp_date" id="dsp_date" value="{{ now() }}"
+								name="dsp_date" id="dsp_date" value="{{ date_format(now(),"d-M-Y H:i:s");  }}"
 								readonly/>
 							</div>
 						</div>
