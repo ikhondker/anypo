@@ -18,3 +18,20 @@ select2(); // <-- select2 must be called
 import Chart from 'chart.js/auto';
 window.Chart = Chart;
 
+// IQBAL 28-MAR-2024
+import feather from "feather-icons";
+document.addEventListener("DOMContentLoaded", () => {
+    feather.replace();
+});
+window.feather = feather;
+
+//jquery-datetimepicker
+//import 'jquery-ui/dist/jquery-ui.min.js'
+//$('.datepicker').datepicker();
+
+// import "node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker";
+
+//import moment from 'moment';
+//window.moment = moment;
+
+//import "./feather";

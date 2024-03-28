@@ -20,6 +20,7 @@
 	<!-- Scripts -->
 	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
 	
+	
 	<!-- Choose your preferred color scheme -->
 	<link href="{{ asset('css/light.css') }}" rel="stylesheet">
 	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}

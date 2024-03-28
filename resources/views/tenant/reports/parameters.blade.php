@@ -32,7 +32,7 @@
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Start Date </label>
 									<div class="col-sm-10">
-											<input type="date" class="form-control @error('start_date') is-invalid @enderror"
+											<input type="date" class="datepicker form-control @error('start_date') is-invalid @enderror"
 												name="start_date" id="start_date" placeholder=""
 												value="{{ old('start_date', date('Y-m-01') ) }}"
 												required/>
@@ -202,5 +202,23 @@
 
 	</form>
 	<!-- /.form end -->
+	
+	
+	{{-- <script type="module">
+		$( "#datepicker" ).datepicker();
+	</script> --}}
+
+	    
+	{{-- <script type="module">  
+		$('.date').datepicker({    
+		format: dd-mm-yyyy'  
+		});    
+	</script>    --}}
+
+	{{-- <script type="module">
+        $(function() {
+           $('#datetimepicker').datetimepicker();
+        });
+    </script>   --}}
 
 @endsection
