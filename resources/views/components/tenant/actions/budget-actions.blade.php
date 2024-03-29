@@ -5,7 +5,7 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		<a class="dropdown-item" href="{{ route('budgets.show', $id) }}"><i class="align-middle me-1" data-feather="edit"></i> View Budget</a>
 		<a class="dropdown-item" href="{{ route('budgets.edit', $id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Budget</a>
-		<a class="dropdown-item modal-boolean-advance" href="{{ route('budgets.destroy',$budget->id) }}" 
+		<a class="dropdown-item sweet-alert2-advance" href="{{ route('budgets.destroy',$budget->id) }}" 
 			data-entity="Budget" data-name="{{ $budget->name }}" data-status="{{ ($budget->closed ? 'Open' : 'Close') }}"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($budget->closed ? 'Open' : 'Close') }}">
 			<i class="align-middle me-1" data-feather="{{ ($budget->closed ? 'unlock' : 'lock') }}"></i>

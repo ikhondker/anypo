@@ -1,6 +1,6 @@
 <div class="mb-3">
-	<label class="form-label">Currency</label>
-	<select class="form-control" name="currency">
+	<label for="currency" class="form-label">Currency</label>
+	<select class="form-control" name="currency" id="currency">
 		@foreach ($currencies as $currency)
 			<option {{ $currency->currency == old('currency',$value) ? 'selected' : '' }} value="{{ $currency->currency }}">{{ $currency->currency." -".$currency->name." (".$currency->country.")" }} </option>
 		@endforeach

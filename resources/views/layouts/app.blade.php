@@ -15,11 +15,11 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" >
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-	
+	<!-- CSRF Token TODO CHECK-->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
 	<!-- Scripts -->
 	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
-	
 	
 	<!-- Choose your preferred color scheme -->
 	<link href="{{ asset('css/light.css') }}" rel="stylesheet">
@@ -198,7 +198,7 @@
 											<a href="{{ route('notifications.show', $notification->id) }}" class="list-group-item">
 												<div class="row g-0 align-items-center">
 													<div class="col-2">
-														<img src="{{ Storage::disk('s3t')->url('avatar/avatarb.png') }}" class="avatar img-fluid rounded-circle" alt="{{ $notification->data['from'] }}">
+														<img src="{{ Storage::disk('s3ta')->url('avatarb.png') }}" class="avatar img-fluid rounded-circle" alt="{{ $notification->data['from'] }}">
 													</div>
 													<div class="col-10 ps-2">
 														<div class="text-dark">{{ $notification->data['from'] }}</div>
@@ -379,8 +379,7 @@
 						<div class="col-4 text-end">
 							<p class="mb-0">
 								Laravel v{{ app()->version() }} (PHP v{{ phpversion() }}) 
-								{{-- &copy; 2023 - <a href="index.html" class="text-muted">AppStack</a> --}}
-								<script>document.write(new Date().getFullYear())</script> © <a href="https://hawarIT.com/" target="_blank" class="text-reset">HawarIT Limited</a>.</p>
+								<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a>.</p>
 							</p>
 						</div>
 					</div>
@@ -391,7 +390,6 @@
 
 	<script src="{{ asset('js/app.js') }}"></script>
 	{{-- <script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
-
 	
 	{{-- @livewireScripts --}}
 </body>

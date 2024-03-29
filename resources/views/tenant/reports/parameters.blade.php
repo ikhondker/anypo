@@ -208,7 +208,7 @@
 		$( "#datepicker" ).datepicker();
 	</script> --}}
 
-	    
+		
 	{{-- <script type="module">  
 		$('.date').datepicker({    
 		format: dd-mm-yyyy'  
@@ -216,9 +216,16 @@
 	</script>    --}}
 
 	{{-- <script type="module">
-        $(function() {
-           $('#datetimepicker').datetimepicker();
-        });
-    </script>   --}}
+		$(function() {
+		   $('#datetimepicker').datetimepicker();
+		});
+	</script>   --}}
+
+	{{-- <script type="module">
+		$( function() {
+			$(".datepicker" ).datepicker();
+		});
+	</script> --}}
+
 
 @endsection

@@ -21,7 +21,7 @@
 
 		<div class="dropdown-divider"></div>
 
-		<a class="dropdown-item modal-boolean-advance" href="{{ route('pos.copy', $id) }}"
+		<a class="dropdown-item sweet-alert2-advance" href="{{ route('pos.copy', $id) }}"
 			data-entity="" data-name="PO#{{ $id }}" data-status="Duplicate"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PO">
 			<i class="align-middle me-1 text-primary" data-feather="copy"></i> Copy Purchase Order</a>
@@ -29,28 +29,28 @@
 
 		<div class="dropdown-divider"></div>
 
-		<a class="dropdown-item modal-boolean-advance" href="{{ route('pos.close', $id) }}"
+		<a class="dropdown-item sweet-alert2-advance" href="{{ route('pos.close', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Force Close"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
 			<i class="align-middle me-1 text-danger" data-feather="lock"></i> Force Close PO *</a>
 
-		<a class="dropdown-item modal-boolean-advance" href="{{ route('wfs.wf-reset-po', $id) }}"
+		<a class="dropdown-item sweet-alert2-advance" href="{{ route('wfs.wf-reset-po', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Reset"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PO"> 
 			<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Reset Workflow**</a>
 
-		<a class="dropdown-item modal-boolean-advance" href="{{ route('pos.cancel', $id) }}"
+		<a class="dropdown-item sweet-alert2-advance" href="{{ route('pos.cancel', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Purchase Order">
 			<i class="align-middle me-1 text-danger" data-feather="x-circle"></i> Cancel Purchase Order</a>
 
-		<a class="dropdown-item modal-boolean-advance" href="{{ route('pos.destroy', $id) }}"
+		<a class="dropdown-item sweet-alert2-advance" href="{{ route('pos.destroy', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Delete"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Purchase Order">
 			<i class="align-middle me-1 text-danger" data-feather="trash-2"></i> Delete Purchase Order*</a>
 
 		@if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
-			<a class="dropdown-item modal-boolean-advance" href="{{ route('pos.open', $id) }}"
+			<a class="dropdown-item sweet-alert2-advance" href="{{ route('pos.open', $id) }}"
 				data-entity="" data-name="PR#{{ $id }}" data-status="Re-Open"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Re-Open">
 				<i class="align-middle me-1 text-danger" data-feather="trash-2"></i> Re-Open PO (SYSTEM)</a>

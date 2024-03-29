@@ -6,7 +6,7 @@
 		<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror"
 			style="text-align: right;"
 			name="pr_amount" id="pr_amount" placeholder="1.00"
-			value="{{ old('amount', isset($pr->amount) ? $pr->amount : "1.00") }}"
+			value="{{ old('pr_amount', isset($pr->amount) ? number_format($pr->amount,2) : "1.00") }}"
 			required readonly>
 		@error('amount')
 				<div class="text-danger text-xs">{{ $message }}</div>

@@ -18,7 +18,7 @@
 	<!-- form start -->
 	<form action="{{ route('prs.update',$pr->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
-		@method('PUT')
+		{{-- @method('PUT') --}}
 
 			<div class="row">
 				<div class="col-6">
@@ -35,7 +35,7 @@
 							</div> --}}
 
 							<div class="mb-3">
-								<label class="form-label">PR Summary</label>
+								<label for="summary" class="form-label">PR Summary</label>
 								<input type="text" class="form-control @error('summary') is-invalid @enderror"
 									name="summary" id="summary" placeholder="PR Summary"
 									value="{{ old('summary', $pr->summary ) }}"
@@ -46,8 +46,8 @@
 							</div>
 
 							<div class="mb-3">
-								<label class="form-label">Requestor</label>
-								<select class="form-control" name="requestor_id">
+								<label for="requestor_id" class="form-label">Requestor</label>
+								<select class="form-control select2" data-toggle="select2" name="requestor_id" id="requestor_id">
 									@foreach ($users as $user)
 										<option {{ $user->id == old('requestor_id',$pr->requestor_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 									@endforeach
@@ -57,8 +57,8 @@
 								@enderror
 							</div>
 							<div class="mb-3">
-								<label class="form-label">Supplier</label>
-								<select class="form-control" name="supplier_id">
+								<label for="supplier_id" class="form-label">Supplier</label>
+								<select class="form-control select2" data-toggle="select2" name="supplier_id" id="supplier_id">
 									@foreach ($suppliers as $supplier)
 										<option {{ $supplier->id == old('supplier_id',$pr->supplier_id) ? 'selected' : '' }} value="{{ $supplier->id }}">{{ $supplier->name }} </option>
 									@endforeach
@@ -89,8 +89,8 @@
 								<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 							@else
 								<div class="mb-3">
-									<label class="form-label">Dept</label>
-									<select class="form-control" name="dept_id">
+									<label for="dept_id" class="form-label">Dept</label>
+									<select class="form-control select2" data-toggle="select2" name="dept_id" id="dept_id">
 										@foreach ($depts as $dept)
 											<option {{ $dept->id == old('dept_id',$pr->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
 										@endforeach
@@ -102,8 +102,8 @@
 							@endif
 
 							<div class="mb-3">
-								<label class="form-label">Project</label>
-								<select class="form-control" name="project_id">
+								<label for="project_id" class="form-label">Project</label>
+								<select class="form-control select2" data-toggle="select2" name="project_id" id="project_id">
 									@foreach ($projects as $project)
 										<option {{ $project->id == old('project_id',$pr->project_id) ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->name }} </option>
 									@endforeach
@@ -130,5 +130,9 @@
 
 	</form>
 	<!-- /.form end -->
+
+	@include('tenant.includes.js.select2')
+
+	
 @endsection
 

@@ -49,7 +49,7 @@
 								<td><x-tenant.list.my-boolean :value="$dept->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Dept" :id="$dept->id"/>
-									<a href="{{ route('depts.destroy', $dept->id) }}" class="me-2 modal-boolean-advance" 
+									<a href="{{ route('depts.destroy', $dept->id) }}" class="me-2 sweet-alert2-advance" 
 										data-entity="Dept" data-name="{{ $dept->name }}" data-status="{{ ($dept->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($dept->enable ? 'bell-off' : 'bell') }}"></i>
@@ -75,7 +75,7 @@
 	</div>
 	 <!-- end row -->
 
-	@include('tenant.includes.modal-boolean-advance')
+	@include('tenant.includes.js.sweet-alert2-advance')
 	
 @endsection
 

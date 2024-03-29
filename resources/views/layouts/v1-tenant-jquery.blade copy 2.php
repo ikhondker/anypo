@@ -7,7 +7,7 @@
 
 <!-- Title -->
 {{-- <title>Account: 11 Preferences | Front - Multipurpose Responsive Template</title> --}}
-<title>@yield('title', 'AnyPO.com')</title>
+<title>@yield('title', 'TENANT')</title>
 
 <!-- Favicon -->
 {{-- <link rel="shortcut icon" href="./favicon.ico"> --}}
@@ -30,9 +30,8 @@
 <!-- Scripts -->
 @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> --}}
-{{-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> --}}
-{{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> --}}
+<link href="{{asset('css/light.css')}}" rel="stylesheet">
+{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}
 
 
 {{-- sweetalert2 v11.7.27 --}}
@@ -43,6 +42,33 @@
 
 {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" > --}}
+{{-- <script type="module">
+	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script> --}}
+
+{{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+  			integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+  			crossorigin="anonymous">
+</script> --}}
+{{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> --}}
+
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script> --}}
+
+{{--  popper.js CSS example  --}}
+<style>
+	#tooltip {
+		background: #333333;
+		color: white;
+		font-weight: bold;
+		padding: 4px 8px;
+		font-size: 13px;
+		border-radius: 4px;
+	}
+</style>
 
 </head>
 
@@ -54,14 +80,18 @@
 		 @yield('content')
 		 <!-- /.content -->
 
-		 <script type="module">
+		<script type="module">
 			@yield('javascript')
 		</script>
 		
 	</main>
 	<!-- ========== END MAIN CONTENT ========== -->
-
-
+	<script src="{{asset( 'js/app.js' )}}"></script>
+	{{-- <script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
+	
+	<script type="module">
+	
+	</script>
 
 </body>
 </html>

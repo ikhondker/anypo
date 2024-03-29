@@ -46,6 +46,13 @@
 		</li>
 
 		<li class="nav-item">
+			<a class="nav-link {{ $_route_name == 'invoices.index' ? 'active' : '' }}"
+				href="{{ route('invoices.index') }}">
+				<i class="bi-file-ruled nav-icon"></i> Advance [???]
+			</a>
+		</li>
+
+		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'payments.index' ? 'active' : '' }}"
 				href="{{ route('payments.index') }}">
 				<i class="bi-currency-dollar nav-icon"></i> Payments

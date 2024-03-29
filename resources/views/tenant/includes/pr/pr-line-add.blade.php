@@ -137,6 +137,7 @@
 						
 						var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 						$('#amount').val(amount.toFixed(2));
+						$('#pr_amount').val(amount.toFixed(2));
 						//console.log("amount = " + amount);
 					}
 				}
@@ -173,6 +174,7 @@
 						
 			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 			$('#amount').val(amount.toFixed(2));
+			$('#pr_amount').val(amount.toFixed(2));
 			console.log("amount = " + amount);
 		});
 
@@ -188,6 +190,7 @@
 						
 			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 			$('#amount').val(amount.toFixed(2));
+			$('#pr_amount').val(amount.toFixed(2));
 			console.log("amount = " + amount);
 		});
 
@@ -198,6 +201,7 @@
 		
 			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 			$('#amount').val(amount.toFixed(2));
+			$('#pr_amount').val(amount.toFixed(2));
 			console.log("amount = " + amount);
 		});
 
@@ -208,6 +212,7 @@
 		
 			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 			$('#amount').val(amount.toFixed(2));
+			$('#pr_amount').val(amount.toFixed(2));
 			console.log("amount = " + amount);
 		});
 	});

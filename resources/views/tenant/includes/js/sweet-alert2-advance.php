@@ -6,7 +6,7 @@
 </a> -->
 
 <script type="module">
-	$('.modal-boolean-advance').on('click', function (e) {
+	$('.sweet-alert2-advance').on('click', function (e) {
 		e.preventDefault();
 		const url = $(this).attr('href');
 		//var entity = $(this).data("entity").toLowerCase();

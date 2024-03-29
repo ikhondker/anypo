@@ -14,11 +14,11 @@
 		@enderror
 	</td>
 	<td class="">
-		<input type="summary" class="form-control @error('summary') is-invalid @enderror"
-			name="summary" id="summary" placeholder="name@company.com"
-			value="{{ old('summary', $prl->summary ) }}"
+		<input type="item_description" class="form-control @error('item_description') is-invalid @enderror"
+			name="item_description" id="item_description" placeholder="Item Description"
+			value="{{ old('item_description', $prl->item_description ) }}"
 			required/>
-		@error('summary')
+		@error('item_description')
 			<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
@@ -85,7 +85,7 @@
 		<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror"
 			style="text-align: right;"
 			name="amount" id="amount" placeholder="1.00"
-			value="{{ old('amount',$prl->amount) }}"
+			value="{{ old('amount',number_format($prl->amount,2)) }}"
 			readonly>
 		@error('amount')
 				<div class="text-danger text-xs">{{ $message }}</div>
@@ -98,11 +98,13 @@
 		console.log("Hello world 1!");
 	</script> --}}
 </tr>
+
 <script type="module">
 	$(document).ready(function () {
 		
-		// console.log("Hello world 1!");
+		//console.log("Hello world 1!");
 		$('#item_id').change(function() {
+			//console.log("Item changed Hello world !");
 			let id = $(this).val();
 			let url = '{{ route("items.get-item", ":id") }}';
 			url = url.replace(':id', id);
@@ -113,10 +115,13 @@
 				// delay: 250,
 				success: function(response) {
 					if (response != null) {
-						var qty = $("#qty").val();
-						var uom_class_id = response.uom_class_id;
 
-						$('#summary').val(response.summary);
+						//console.log("response.name = " + response.name );
+						$('#item_description').val(response.name);
+
+						var uom_class_id = response.uom_class_id;
+						var qty = $("#qty").val();
+
 						var price = response.price;
 						$('#price').val(price.toFixed(2));
 						
@@ -128,7 +133,8 @@
 						
 						var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 						$('#amount').val(amount.toFixed(2));
-						console.log("amount = " + amount);
+						$('#pr_amount').val(amount.toFixed(2));
+						//console.log("amount = " + amount);
 					}
 				}
 
@@ -164,6 +170,7 @@
 						
 			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 			$('#amount').val(amount.toFixed(2));
+			$('#pr_amount').val(amount.toFixed(2));
 			console.log("amount = " + amount);
 		});
 
@@ -179,6 +186,7 @@
 						
 			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 			$('#amount').val(amount.toFixed(2));
+			$('#pr_amount').val(amount.toFixed(2));
 			console.log("amount = " + amount);
 		});
 
@@ -189,6 +197,7 @@
 		
 			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 			$('#amount').val(amount.toFixed(2));
+			$('#pr_amount').val(amount.toFixed(2));
 			console.log("amount = " + amount);
 		});
 
@@ -199,6 +208,7 @@
 		
 			var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
 			$('#amount').val(amount.toFixed(2));
+			$('#pr_amount').val(amount.toFixed(2));
 			console.log("amount = " + amount);
 		});
 	});

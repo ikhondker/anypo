@@ -61,6 +61,14 @@
 	</div>
 </div>
 
+<div id="app">
+	<main class="container">
+		<h1> How to Install JQuery UI in Laravel? - ItSolutionstuiff.com</h1>
+		<input type="text" class="datepicker" name="date">
+		<input type="text" class="datepicker" name="date" autocomplete="false">
+	</main>
+</div>
+
 
 
 <script type="module">
@@ -123,6 +131,12 @@
 					dropdownParent: $(this).parent()
 				});
 		})
+	});
+</script>
+
+<script type="module">
+	$( function() {
+		$(".datepicker" ).datepicker();
 	});
 </script>
 

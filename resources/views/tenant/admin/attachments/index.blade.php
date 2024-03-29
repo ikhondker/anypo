@@ -75,7 +75,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')
+	 @include('tenant.includes.js.sweet-alert2-advance')
 
 @endsection
 

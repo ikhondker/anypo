@@ -157,7 +157,7 @@
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Project" :id="$project->id" :show="true"/>
-									<a href="{{ route('projects.destroy',$project->id) }}" class="me-2 modal-boolean-advance"
+									<a href="{{ route('projects.destroy',$project->id) }}" class="me-2 sweet-alert2-advance"
 										data-entity="Project" data-name="{{ $project->name }}" data-status="{{ ($project->closed ? 'Open' : 'Close') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($project->closed ? 'Open' : 'Close') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($project->enable ? 'bell-off' : 'bell') }}"></i>
@@ -183,7 +183,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')
+	 @include('tenant.includes.js.sweet-alert2-advance')
 
 @endsection
 

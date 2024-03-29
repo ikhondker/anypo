@@ -18,7 +18,7 @@
 
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PR->value }}" aid="{{ $pr->id }}"/>
 				
-	@include('tenant.includes.modal-boolean-advance')
+	@include('tenant.includes.js.sweet-alert2-advance')
 
  
 @endsection

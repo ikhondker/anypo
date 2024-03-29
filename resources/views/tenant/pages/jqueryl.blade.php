@@ -1,4 +1,5 @@
 @extends('layouts.tenant-jquery')
+{{-- @extends('layouts.app') --}}
 @section('title','JQuery in Laravel 10 | TENANT')
 
 @section('content')
@@ -44,7 +45,7 @@
 	<div class="dropdown me-2 d-inline-block position-relative">
 		<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
 		<i class="align-middle mt-n1" data-feather="calendar"></i> Today
-		</a>
+		</a> 
 
 		<div class="dropdown-menu dropdown-menu-end">
 			<h6 class="dropdown-header">Settings</h6>
@@ -62,6 +63,8 @@
     Boostrap 5 is working using laravel 8 mix!
 </div>
 
+
+
 {{--  popper.js HTML example  --}}
 <button id="button" aria-describedby="tooltip">My button</button>
 
@@ -77,6 +80,14 @@
   <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Tooltip on left">
 	Tooltip on left
   </button>
+
+<div id="app">
+	<main class="container">
+		<h1> How to Install JQuery UI in Laravel? - ItSolutionstuiff.com</h1>
+
+		<input type="text" class="datepicker" name="date">
+	</main>
+</div>
 
 
 <div style="width: 600px; margin: auto;">

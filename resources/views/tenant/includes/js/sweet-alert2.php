@@ -1,10 +1,10 @@
-<!-- <a href="{{ route('notifications.destroy',$notification->id) }}" class="me-2 modal-boolean" 
+<!-- <a href="{{ route('notifications.destroy',$notification->id) }}" class="me-2 js.sweet-alert2" 
 	data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 	<i class="align-middle" data-feather="trash-2"></i>
 </a> -->
 
-<script type="text/javascript">
-	$('.modal-boolean').on('click', function (e) {
+<script type="module">
+	$('.sweet-alert2').on('click', function (e) {
 		e.preventDefault();
 		const url = $(this).attr('href');
 

@@ -1,9 +1,19 @@
+
+
 // ORIGINAL
 //import 'bootstrap';
 
 // IQBAL 26-MAR-24
 // ---------------------------------------
 import * as bootstrap from "bootstrap";
+
+// Popovers
+// Note: Disable this if you're not using Bootstrap's Popovers
+const popoverTriggerList = [].slice.call(document.querySelectorAll("[data-bs-toggle=\"popover\"]"))
+popoverTriggerList.map((popoverTriggerEl) => {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
+
 
 // Tooltips
 // Note: Disable this if you're not using Bootstrap's Tooltips
@@ -17,6 +27,7 @@ tooltipTriggerList.map((tooltipTriggerEl) => {
 window.bootstrap = bootstrap;
 // ---------------------------------------
 
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -27,7 +38,6 @@ import axios from 'axios';
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 
 
 /**

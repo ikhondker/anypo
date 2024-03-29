@@ -8,12 +8,12 @@
 			Upload Items
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('upload-items.import') }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
+			<a href="{{ route('upload-items.import') }}" class="btn btn-primary float-end me-2 sweet-alert2-advance"
 				data-entity="" data-name="Import Process" data-status="Run"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Validate">
 				<i class="fas fa-plus"></i> 4. Import</a>
 
-			<a href="{{ route('upload-items.check') }}" class="btn btn-primary float-end me-2 modal-boolean-advance"
+			<a href="{{ route('upload-items.check') }}" class="btn btn-primary float-end me-2 sweet-alert2-advance"
 				data-entity="" data-name="Validation Process" data-status="Run"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Validate">
 				<i class="fas fa-plus"></i> 3. Validate</a>
@@ -107,7 +107,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.modal-boolean-advance')
+	 @include('tenant.includes.js.sweet-alert2-advance')
 
 @endsection
 

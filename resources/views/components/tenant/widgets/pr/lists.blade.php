@@ -1,4 +1,4 @@
-<div class="row">
+.<div class="row">
 	<div class="col-12">
 
 		<div class="card">
@@ -44,7 +44,7 @@
 								<a href="{{ route('reports.pr',$pr->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Print">
 									<i class="align-middle" data-feather="printer"></i></a>
 
-								<a href="{{ route('prs.destroy', $pr->id) }}" class="me-2 modal-boolean-advance" 
+								<a href="{{ route('prs.destroy', $pr->id) }}" class="me-2 sweet-alert2-advance" 
 									data-entity="Pr" data-name="{{ $pr->id }}" data-status="Delete"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 									<i class="align-middle text-muted" data-feather="trash-2"></i>
@@ -70,4 +70,4 @@
 </div>
  <!-- end row -->
 
- @include('tenant.includes.modal-boolean-advance')
+ @include('tenant.includes.js.sweet-alert2-advance')
