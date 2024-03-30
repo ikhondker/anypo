@@ -124,7 +124,7 @@
 
 						<div class="mb-3">
 							<label class="form-label">Requestor</label>
-							<input type="text" class="form-control
+							<input type="text" class="form-control"
 								name="requestor" id="requestor"
 								value="{{  auth()->user()->name  }}"
 								readonly/>

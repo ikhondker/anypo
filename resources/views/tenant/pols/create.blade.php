@@ -10,23 +10,28 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
 			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
-			<x-tenant.actions.pol-actions id="{{ $po->id }}" show="true"/>
+			<x-tenant.actions.po-actions id="{{ $po->id }}" show="true"/>
 		
 		@endslot
 	</x-tenant.page-header>
 	
-	@include('tenant.includes.po.view-po-header')
+	<x-tenant.widgets.po.show-po-header id="{{ $po->id }}"/>
 
 	<!-- form start -->
 	<form action="{{ route('pols.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-		<!-- widget-pr-lines -->
-		<x-tenant.widgets.po.lines id="{{ $po->id }}" :add="true"/>
-		<!-- /.widget-pr-lines -->
+		<!-- widget-po-lines -->
+		<x-tenant.widgets.pol.show-po-lines id="{{ $po->id }}">
+			@include('tenant.includes.po.po-line-add')
+			@include('tenant.includes.po.po-footer-form')
+		</x-tenant.widgets.pol.show-po-lines>
+		<!-- /.widget-po-lines -->
 
 	</form>
 	<!-- /.form end -->
-		
+
+	@include('tenant.includes.js.select2')
+
 @endsection
 

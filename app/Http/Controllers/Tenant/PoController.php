@@ -182,7 +182,8 @@ class PoController extends Controller
 		$pol->dept_id		= $po->dept_id;
 		$pol->requestor_id	= $po->requestor_id;
 		$pol->uom_id		= $request->input('uom_id');
-		$pol->summary		= $request->input('summary');
+		//$pol->summary		= $request->input('summary');
+		$pol->item_description	= $request->input('item_description');
 		$pol->qty			= $request->input('qty');
 		$pol->price			= $request->input('price');
 		
@@ -194,14 +195,16 @@ class PoController extends Controller
 		$pol->save();
 		$pol_id			= $pol->id;
 	
-		switch ($request->input('action')) {
-			case 'save':
-				return redirect()->route('pos.show', $po->id)->with('success', 'Po#'. $po->id.' created successfully.');
-				break;
-			case 'save_add':
-				return redirect()->route('pols.createline', $po->id)->with('success', 'Po#'. $po->id.' created successfully. Please add more line.');
-				break;
+		if($request->has('add_row')) {
+			//Checkbox checked
+			return redirect()->route('pols.add-line', $pol->po_id)->with('success', 'Line added to PO #'. $pol->po_id.' successfully.');
+			//return redirect()->route('pols.createline', $po->id)->with('success', 'PO #'. $po->id.' created successfully. Please add more line.');
+		} else {
+			//Checkbox not checked
+			return redirect()->route('pos.show', $pol->po_id)->with('success', 'Lined added to PO #'. $pol->po_id.' successfully.');
+			//return redirect()->route('pos.show', $po->id)->with('success', 'PO #'. $po->id.' created successfully.');
 		}
+	
 	}
 
 	// add attachments
@@ -221,8 +224,6 @@ class PoController extends Controller
 			return redirect()->route('pos.show', $po->id)->with('error',  'Add attachment is only allowed for DRAFT requisition.');
 		}
 	
-
-
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
 			$request->merge(['entity'		=> EntityEnum::PO->value ]);
@@ -334,6 +335,13 @@ class PoController extends Controller
 
 		$po->update($request->all());
 
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
+			$request->merge(['entity'		=> EntityEnum::PO->value ]);
+			$attid = FileUpload::aws($request);
+			//$request->merge(['logo'	=> $fileName ]);
+		}
+		
 		// Write to Log
 		EventLog::event('po', $po->id, 'update', 'summary', $po->summary);
 		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Purchase Order updated successfully.');

@@ -4,7 +4,7 @@
 		<a href="#" class="btn btn-primary float-start"><i class="fas fa-edit"></i></a>
 	</td>
 	<td class="">
-		<select class="form-control" name="item_id">
+		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id">
 			@foreach ($items as $item)
 				<option {{ $item->id == old('item_id',$pol->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }} </option>
 			@endforeach
@@ -14,11 +14,11 @@
 		@enderror
 	</td>
 	<td class="">
-		<input type="summary" class="form-control @error('summary') is-invalid @enderror"
-			name="summary" id="summary" placeholder="name@company.com"
-			value="{{ old('summary', $pol->summary ) }}"
+		<input type="item_description" class="form-control @error('item_description') is-invalid @enderror"
+			name="item_description" id="item_description" placeholder="Item Description"
+			value="{{ old('item_description', $pol->item_description ) }}"
 			required/>
-		@error('summary')
+		@error('item_description')
 			<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
@@ -115,4 +115,5 @@
 	</td>
 </tr>
 
+@include('tenant.includes.js.calculate-po-amount')
 @include('tenant.includes.js.sweet-alert2-advance')

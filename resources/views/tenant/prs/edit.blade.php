@@ -120,7 +120,8 @@
 						</div>
 						<div class="card-body">
 							<x-tenant.edit.notes :value="$pr->notes"/>
-								<x-tenant.attachment.create />
+							
+							<x-tenant.attachment.create />
 							
 							<div class="mb-3">
 								<label for="requestor_id" class="form-label">Requestor</label>
@@ -144,7 +145,7 @@
 			<!-- widget-pr-lines -->
 			<x-tenant.widgets.prl.show-pr-lines id="{{ $pr->id }}">
 				@include('tenant.includes.pr.pr-footer-show')
-			</x-tenant.widgets.prl.show-all-pr-lines>
+			</x-tenant.widgets.prl.show-pr-lines>
 
 	</form>
 	<!-- /.form end -->

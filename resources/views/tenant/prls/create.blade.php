@@ -25,10 +25,10 @@
 		{{-- <x-tenant.widgets.pr.lines id="{{ $pr->id }}" :add="true"/> --}}
 		<!-- /.widget-pr-lines -->
 
-		<x-tenant.widgets.prl.show-all-pr-lines id="{{ $pr->id }}">
+		<x-tenant.widgets.prl.show-pr-lines id="{{ $pr->id }}">
 			@include('tenant.includes.pr.pr-line-add')
 			@include('tenant.includes.pr.pr-footer-form')
-		</x-tenant.widgets.prl.show-all-pr-lines>
+		</x-tenant.widgets.prl.show-pr-lines>
 
 	</form>
 	<!-- /.form end -->

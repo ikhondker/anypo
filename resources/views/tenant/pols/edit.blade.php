@@ -15,24 +15,26 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	@include('tenant.includes.po.view-po-header')
+
+	<x-tenant.widgets.po.show-po-header id="{{ $po->id }}"/>
 
 	<!-- form start -->
 	<form action="{{ route('pols.update',$pol->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
 
+		
 		<!-- widget-po-lines -->
-		<x-tenant.widgets.po.lines id="{{ $po->id }}" :edit="true" pid="{{ $pol->id }}"/>
+		<x-tenant.widgets.pol.edit-po-line poid="{{ $po->id }}" polid="{{ $pol->id }}"/>
 		<!-- /.widget-pr-lines -->
 
 	</form>
 	<!-- /.form end -->
 
 	<!-- Approval History -->
-	@if ($po->wf_id <> 0)
+	{{-- @if ($po->wf_id <> 0)
 		<x-tenant.wf.approval-history id="{{ $po->wf_id }}"/>
-	@endif
+	@endif --}}
 	
 
 	<!-- approval form, show only if pending to current auth user -->
@@ -40,6 +42,7 @@
 	@include('tenant.includes.wfd-approve-reject')
 	@endif  --}}
 
-	  
+	 @include('tenant.includes.js.select2')
+
 @endsection
 

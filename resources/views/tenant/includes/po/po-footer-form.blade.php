@@ -1,14 +1,14 @@
 <tr class="">
-	<td colspan="9" class="text-end">
+	<td colspan="10" class="text-end">
 		<strong>TOTAL:</strong>
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('pr_amount') is-invalid @enderror"
+		<input type="number" step='0.01' min="1" class="form-control @error('po_amount') is-invalid @enderror"
 			style="text-align: right;"
-			name="pr_amount" id="pr_amount" placeholder="1.00"
-			value="{{ old('pr_amount', isset($pr->amount) ? number_format($pr->amount,2) : "0.00") }}"
+			name="po_amount" id="po_amount" placeholder="1.00"
+			value="{{ old('po_amount', isset($po->amount) ? number_format($po->amount,2) : "0.00") }}"
 			required readonly>
-		@error('pr_amount')
+		@error('po_amount')
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
@@ -17,7 +17,7 @@
 	</td>
 </tr>
 <tr class="">
-	<td colspan="6" class="">
+	<td colspan="7" class="">
 
 	</td>
 	<td colspan="4" class="text-end">

@@ -132,7 +132,7 @@ class PrlController extends Controller
 
 		if($request->has('add_row')) {
 			//Checkbox checked
-			return redirect()->route('prls.add-line', $prl->pr_id)->with('success', 'Lined added to PR #'. $prl->pr_id.' successfully.');
+			return redirect()->route('prls.add-line', $prl->pr_id)->with('success', 'Line added to PR #'. $prl->pr_id.' successfully.');
 		} else {
 			//Checkbox not checked
 			return redirect()->route('prs.show', $prl->pr_id)->with('success', 'Lined added to PR #'. $prl->pr_id.' successfully.');

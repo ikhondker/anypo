@@ -63,6 +63,7 @@ class PolController extends Controller
 	public function addLine(Po $po)
 	{
 
+		Log::debug('Value of PO_ID=' . $po->id);
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 		 	return redirect()->route('pos.show',$po->id)->with('error', 'You can only add line to Purchase Order with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
@@ -70,10 +71,9 @@ class PolController extends Controller
 		$this->authorize('update',$po);	// << =============
 
 		$items = Item::primary()->get();
-		//$uoms = Uom::getAllClient();
 		$uoms = Uom::primary()->get();
 
-		return view('tenant.pols.create', with(compact('po','items')));
+		return view('tenant.pols.create', with(compact('po','items','uoms')));
 	}
 
 
@@ -131,6 +131,17 @@ class PolController extends Controller
 		// $po->amount			= $pol_sum;
 		// $po->save();
 		
+		if($request->has('add_row')) {
+			//Checkbox checked
+			return redirect()->route('pols.add-line', $pol->po_id)->with('success', 'Line added to PO #'. $pol->po_id.' successfully.');
+			//return redirect()->route('pols.createline', $po->id)->with('success', 'PO #'. $po->id.' created successfully. Please add more line.');
+		} else {
+			//Checkbox not checked
+			return redirect()->route('pos.show', $pol->po_id)->with('success', 'Lined added to PO #'. $pol->po_id.' successfully.');
+			//return redirect()->route('pos.show', $po->id)->with('success', 'PO #'. $po->id.' created successfully.');
+		}
+
+
 		switch ($request->input('action')) {
 			case 'save':
 				return redirect()->route('pos.show', $po->id)->with('success', 'PO #'. $po->id.' created successfully.');

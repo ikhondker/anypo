@@ -51,7 +51,6 @@ class PoBudget
 	public static function poBudgetBook($po_id)
 	{
 
-		Log::debug("Inside poBudgetBook");
 
 		$po = Po::where('id', $po_id)->first();
 
@@ -61,6 +60,7 @@ class PoBudget
 			$budget = Budget::primary()->where('fy', $fy)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
 			Log::warning("tenant.helper.PoBudget.poBudgetBook Budget ModelNotFoundException");
+			Log::warning("tenant.helper.PoBudget.poBudgetBook : E001");
 			return 'E001';
 		}
 
@@ -73,17 +73,23 @@ class PoBudget
 		} catch (ModelNotFoundException $exception) {
 			Log::warning("tenant.helper.PoBudget.poBudgetBook DeptBudget ModelNotFoundException");
 			//Log::debug("Inside ModelNotFoundException");
+			Log::warning("tenant.helper.PoBudget.poBudgetBook : E002");
 			return 'E002';
 		}
 
 		//Log::info(print_r($dept_budget, true));
-
 		// only check if budget is available 
+		Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount = ". $dept_budget->amount );
+		Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount_po_booked = ". $dept_budget->amount_po_booked );
+		Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount_po = ". $dept_budget->amount_po );
+		Log::debug("tenant.helper.PoBudget.poBudgetBook po->fc_amount = ". $po->fc_amount );
+
 		$dept_budget_available =false;
 		if (($dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po) > $po->fc_amount) {
 			$dept_budget_available =true;
 			Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget_available true.");
 		} else {
+			Log::warning("tenant.helper.PoBudget.poBudgetBook : E003");
 			return 'E003';
 		}
 
@@ -94,6 +100,7 @@ class PoBudget
 			$project_budget_available =true;
 			Log::debug("tenant.helper.PoBudget.poBudgetBook project_budget_available true.");
 		} else {
+			Log::warning("tenant.helper.PoBudget.poBudgetBook : E004");
 			return 'E004';
 		}
 

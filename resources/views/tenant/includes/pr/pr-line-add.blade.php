@@ -104,5 +104,3 @@
 </tr>
 
 @include('tenant.includes.js.calculate-pr-amount')
-
-
