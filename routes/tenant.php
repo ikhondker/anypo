@@ -35,10 +35,11 @@ use App\Http\Controllers\Tenant\Lookup\WarehouseController;
 use App\Http\Controllers\Tenant\Lookup\BankAccountController;
 
 use App\Http\Controllers\Tenant\Manage\EntityController;
-use App\Http\Controllers\Tenant\Manage\StatusController;
 use App\Http\Controllers\Tenant\Manage\MenuController;
 use App\Http\Controllers\Tenant\Manage\TableController;
 use App\Http\Controllers\Tenant\Manage\TemplateController;
+use App\Http\Controllers\Tenant\Manage\StatusController;
+use App\Http\Controllers\Tenant\Manage\CustomErrorController;
 
 use App\Http\Controllers\Tenant\Workflow\HierarchyController;
 use App\Http\Controllers\Tenant\Workflow\HierarchylController;
@@ -261,6 +262,12 @@ Route::middleware([
 	Route::get('/status/export',[StatusController::class,'export'])->name('statuses.export');
 	Route::get('/statuses/delete/{status}',[StatusController::class,'destroy'])->name('statuses.destroy');
 
+	/* ======================== CustomError ======================================== */
+	Route::resource('custom-errors', CustomErrorController::class)->middleware(['auth', 'verified']);
+	Route::get('/custom-error/export',[CustomErrorController::class,'export'])->name('custom-errors.export');
+	Route::get('/custom-errors/delete/{customError}',[CustomErrorController::class,'destroy'])->name('custom-errors.destroy');
+
+	
 	/* ======================== Setup ======================================== */
 	Route::resource('setups', SetupController::class)->middleware(['auth', 'verified']);
 	Route::get('setups/image/{filename}',[SetupController::class, 'image'])->name('setups.image');

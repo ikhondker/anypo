@@ -142,6 +142,7 @@
 				<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-feather="circle"></i>Country</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'prls.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prls.index') }}"><i class="align-middle" data-feather="circle"></i>Prl*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'groups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('groups.index') }}"><i class="align-middle" data-feather="circle"></i>Group (?)</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'custom-errors.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('custom-errors.index') }}"><i class="align-middle" data-feather="circle"></i>Custom Errors (?)</a></li>
 			</ul>
 		</li>
 	@endcan

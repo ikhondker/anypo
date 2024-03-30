@@ -18,7 +18,7 @@ class Item extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'notes', 'code', 'sku', 'category_id', 'oem_id', 'uom_class_id', 'uom_id', 'gl_type', 'price', 'stock', 'reorder', 'photo', 'enable', 'updated_by', 'updated_at',
+		'code', 'name', 'notes', 'category_id', 'oem_id', 'uom_class_id', 'uom_id', 'gl_type_code', 'dr_account', 'cr_account', 'price', 'stock', 'reorder', 'photo', 'enable', 'updated_by', 'updated_at',
 	];
 
 
@@ -70,7 +70,7 @@ class Item extends Model
 	}
 
 	public function glType(){
-		return $this->belongsTo(GlType::class,'gl_type')->withDefault([
+		return $this->belongsTo(GlType::class,'gl_type_code')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

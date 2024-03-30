@@ -45,13 +45,13 @@ class ChartData
 
 		$amount 			= random_int(80000, 99999);
 
-		$pr_total_amount 			= random_int(70000, $amount);
+		$pr_total_amount 	= random_int(70000, $amount);
 		$amount_pr_booked 	= $pr_total_amount *.1;
 		$amount_pr 			= $pr_total_amount *.9;
 
-		$po_total_amount 			= random_int(40000, $amount_pr);
+		$po_total_amount 	= random_int(40000, $amount_pr);
 		$amount_po_booked 	= $po_total_amount *.1;
-		$amount_po 	= $po_total_amount *.9;
+		$amount_po 			= $po_total_amount *.9;
 
 		$amount_grs 		= random_int(35000, $amount_po);
 		$amount_invoice 	= random_int(30000, $amount_grs);

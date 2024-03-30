@@ -224,8 +224,8 @@ class ReceiptController extends Controller
 	 */
 	public function edit(Receipt $receipt)
 	{
-		//$this->authorize('update', $dept);
-		//return view('tenant.depts.edit', compact('dept'));
+		//$this->authorize('update', $receipt);
+		//return view('tenant.depts.edit', compact('receipt'));
 	}
 
 	/**

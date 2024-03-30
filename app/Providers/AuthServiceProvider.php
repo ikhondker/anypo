@@ -91,6 +91,8 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Manage\Menu'			=> 'App\Policies\Tenant\Manage\MenuPolicy',
 		'App\Models\Tenant\Manage\Table'		=> 'App\Policies\Tenant\Manage\TablePolicy',
 		'App\Models\Tenant\Manage\Template'		=> 'App\Policies\Tenant\Manage\TemplatePolicy',
+		'App\Models\Tenant\Manage\CustomError'	=> 'App\Policies\Tenant\Manage\CustomErrorPolicy',
+		
 
 		'App\Models\Tenant\Workflow\Hierarchy'	=> 'App\Policies\Tenant\Workflow\HierarchyPolicy',
 		'App\Models\Tenant\Workflow\Hierarchyl'	=> 'App\Policies\Tenant\Workflow\HierarchylPolicy',

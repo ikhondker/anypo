@@ -41,7 +41,7 @@ class ItemSeeder extends Seeder
 			// 	'uom_id'		=> 1001,
 			// ],
 			[
-				'code'			=> 'SHIPPING',
+				'code'			=> 'AP0001',
 				'name'			=> 'Shipping',
 				'notes'			=> 'Shipping',
 				'price'			=> 10,
@@ -54,7 +54,7 @@ class ItemSeeder extends Seeder
 			],
 			
 			[
-				'code'			=> 'LAPTOP-LENOVO',
+				'code'			=> 'AP0002',
 				'name'			=> 'Laptop (Lenovo)',
 				'notes'			=> 'Laptop (Lenovo)',
 				'price'			=> 789,
@@ -66,7 +66,7 @@ class ItemSeeder extends Seeder
 				'uom_id'		=> 1001,
 			],
 			[
-				'code'			=> 'LAPTOP-ASUS',
+				'code'			=> 'AP0003',
 				'name'			=> 'Laptop (ASUS)',
 				'notes'			=> 'Laptop (ASUS)',
 				'price'			=> 799,
@@ -79,7 +79,7 @@ class ItemSeeder extends Seeder
 			],
 			
 			[
-				'code'			=> 'LAPTOP-DELL',
+				'code'			=> 'AP0004',
 				'name'			=> 'Laptop (Dell)',
 				'notes'			=> 'Laptop (Dell)',
 				'price'			=> 915,
@@ -91,7 +91,7 @@ class ItemSeeder extends Seeder
 				'uom_id'		=> 1001,
 			],
 			[
-				'code'			=> 'MACBOOK-AIR',
+				'code'			=> 'AP0005',
 				'name'			=> 'MacBook Air Laptop',
 				'notes'			=> 'MacBook Air Laptop',
 				'price'			=> 1049,

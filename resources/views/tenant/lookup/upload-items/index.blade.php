@@ -18,7 +18,7 @@
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Validate">
 				<i class="fas fa-plus"></i> 3. Validate</a>
 			<a href="{{ route('upload-items.create') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-circle-up"></i> 2. Upload File</a>
-			<a href="{{asset('downloads/anypo-bulk-item-upload-template-20230818.xlsx')}}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-circle-down"></i> 1. Download Template</a>
+			<a href="{{ asset('downloads/anypo-bulk-item-upload-template-20230818.xlsx') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-circle-down"></i> 1. Download Template</a>
 		@endslot
 	</x-tenant.page-header>
 
@@ -42,13 +42,14 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Name</th>
 								<th>Code</th>
+								<th>Name</th>
 								<th>Category</th>
 								<th>OEM</th>
 								<th>UOM</th>
 								<th>Price</th>
-								<th>AC Type</th>
+								<th>GL Type</th>
+								<th>Error Code</th>
 								<th>Timestamp</th>
 								<th>Uploaded By</th>
 								<th>Status</th>
@@ -59,13 +60,14 @@
 							@foreach ($upload_items as $upload_item)
 							<tr>
 								<td>{{ $upload_item->id }}</td>
-								<td><a class="text-info" href="{{ route('upload-items.show',$upload_item->id) }}">{{ $upload_item->name }}</a></td>
-								<td>{{ $upload_item->code }}</td>
-								<td>{{ $upload_item->category }}</td>
-								<td>{{ $upload_item->oem }}</td>
-								<td>{{ $upload_item->uom }}</td>
+								<td>{{ $upload_item->item_code }}</td>
+								<td><a class="text-info" href="{{ route('upload-items.show',$upload_item->id) }}">{{ $upload_item->item_name }}</a></td>
+								<td>{{ $upload_item->category_name }}</td>
+								<td>{{ $upload_item->oem_name }}</td>
+								<td>{{ $upload_item->uom_name }}</td>
 								<td>{{ $upload_item->price }}</td>
 								<td>{{ $upload_item->gl_type_name }}</td>
+								<td><x-tenant.list.my-badge :value="$upload_item->error_code"/></td>
 								<td><x-tenant.list.my-date-time :value="$upload_item->created_at"/></td>
 								<td>{{ $upload_item->owner->name }}</td>
 								<td>

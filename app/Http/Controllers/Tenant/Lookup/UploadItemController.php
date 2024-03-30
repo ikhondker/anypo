@@ -50,6 +50,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 # 11. Seeded
 use Illuminate\Support\Facades\Log;
 use DB;
+use Str;
 # 12. TODO 
 
 class UploadItemController extends Controller
@@ -66,7 +67,7 @@ class UploadItemController extends Controller
 		if (request('term')) {
 			$upload_items->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$upload_items = $upload_items->with('owner')->orderBy('id', 'DESC')->paginate(25);
+		$upload_items = $upload_items->with('owner')->with('customError')->orderBy('id', 'DESC')->paginate(25);
 		return view('tenant.lookup.upload-items.index', compact('upload_items'));
 	}
 
@@ -119,8 +120,6 @@ class UploadItemController extends Controller
 			$column_range	= range('H', $column_limit);
 			$startcount		= 1;
 
-			
-
 			$created_at 	= now();
 			$updated_at 	= now();
 			//$created_at 	= date('Y-m-d H:i:s');
@@ -131,12 +130,12 @@ class UploadItemController extends Controller
 			foreach ($row_range as $row) {
 				$data[] = [
 					'owner_id'		=> $owner_id,
-					'name'			=> $sheet->getCell('A' . $row)->getValue(),
-					'code'			=> $sheet->getCell('B' . $row)->getValue(),
+					'item_code'		=> Str::upper($sheet->getCell('A' . $row)->getValue()),
+					'item_name'		=> $sheet->getCell('B' . $row)->getValue(),
 					'notes'			=> $sheet->getCell('C' . $row)->getValue(),
-					'category'		=> $sheet->getCell('D' . $row)->getValue(),
-					'oem'			=> $sheet->getCell('E' . $row)->getValue(),
-					'uom'			=> $sheet->getCell('F' . $row)->getValue(),
+					'category_name'	=> $sheet->getCell('D' . $row)->getValue(),
+					'oem_name'		=> $sheet->getCell('E' . $row)->getValue(),
+					'uom_name'		=> $sheet->getCell('F' . $row)->getValue(),
 					'price'			=> $sheet->getCell('G' . $row)->getValue(),
 					'gl_type_name'	=> $sheet->getCell('H' . $row)->getValue(),
 					'created_at'	=> $created_at,
@@ -144,6 +143,8 @@ class UploadItemController extends Controller
 				];
 				$startcount++;
 			}
+
+		
 
 			// insert into table
 			DB::table('upload_items')->insert($data);
@@ -184,7 +185,10 @@ class UploadItemController extends Controller
 	{
 		$this->authorize('update', $uploadItem);
 
-		$request->merge(['status'	=> InterfaceStatusEnum::DRAFT->value ]);
+		$request->merge([
+			'item_code' => Str::upper($request['item_code']),
+			'status'	=> InterfaceStatusEnum::DRAFT->value 
+		]);
 
 		//$request->validate();
 		$request->validate([
@@ -224,38 +228,55 @@ class UploadItemController extends Controller
 		//$os = array("E", "A", "I");
 
 		foreach ($upload_items as $upload_item) {
-
+			$error_code = '';
 			//Log::debug('For id='.$upload_item->id);
 			try {
 
-				$category = Category::firstWhere('name', $upload_item->category);
+				$item = Item::firstWhere('code', $upload_item->item_code);
+				if(is_null($item)) {
+					$code = '';
+				} else {
+					$code = $item->code;
+					$error_code = 'E006';
+					Log::debug('tenant.Lookup.UploadItemController.check code=' . $code. ' exists!');
+				}
+
+				$category = Category::firstWhere('name', $upload_item->category_name);
 				if(is_null($category)) {
 					$category_id = '';
+					$error_code = 'E007';
+					Log::debug('tenant.Lookup.UploadItemController.check category=' . $upload_item->category_name. ' not found!');
 				} else {
 					$category_id = $category->id;
 				}
 
-				$oem = OEM::firstWhere('name', $upload_item->oem);
+				$oem = OEM::firstWhere('name', $upload_item->oem_name);
 				if(is_null($oem)) {
 					$oem_id = '';
+					$error_code = 'E008';
+					Log::debug('tenant.Lookup.UploadItemController.check oem=' . $upload_item->oem_name. ' not found!');
 				} else {
 					$oem_id = $oem->id;
 				}
 
-				$uom = Uom::firstWhere('name', $upload_item->uom);
+				$uom = Uom::firstWhere('name', $upload_item->uom_name);
 				if(is_null($uom)) {
 					$uom_class_id= '';
 					$uom_id = '';
+					$error_code = 'E009';
+					Log::debug('tenant.Lookup.UploadItemController.check uom=' . $upload_item->uom_name. ' not found!');
 				} else {
-					$uom_class_id = $uom->uom_class_id;
-					$uom_id = $uom->id;
+					$uom_class_id 	= $uom->uom_class_id;
+					$uom_id 		= $uom->id;
 				}
 
 				$gl_type = GLType::firstWhere('name', $upload_item->gl_type_name);
 				if(is_null($gl_type)) {
 					$gl_type = '';
+					$error_code = 'E010';
+					Log::debug('tenant.Lookup.UploadItemController.check gl_type=' . $upload_item->gl_type_name. ' not found!');
 				} else {
-					$gl_type = $gl_type->gl_type;
+					$gl_type = $gl_type->code;
 				}
 
 				// $category = Category::where('name', $upload_item->category)->firstOrFail();
@@ -264,9 +285,13 @@ class UploadItemController extends Controller
 
 				Log::debug('Result => id='.$upload_item->id.' category_id='.$category_id.' oem_id='.$oem_id.' uom_id='.$uom_id.' gl_type='.$gl_type);
 
-				if ($category_id == '' || $oem_id == '' || $uom_class_id == '' || $uom_id == '' || $gl_type == '') {
+				if ( $error_code <> '') {
+					// Any error identified
 					UploadItem::where('id', $upload_item->id)
-						->update(['status' => InterfaceStatusEnum::ERROR->value]);
+						->update([
+							'error_code'	=> $error_code,
+							'status' 		=> InterfaceStatusEnum::ERROR->value
+						]);
 				} else {
 					UploadItem::where('id', $upload_item->id)
 						->update([
@@ -276,6 +301,7 @@ class UploadItemController extends Controller
 							'uom_id'		=> $uom_id,
 							'gl_type'		=> $gl_type,
 							'status'		=> InterfaceStatusEnum::VALIDATED->value,
+							'error_code'	=> NULL,
 						]);
 				}
 
@@ -283,7 +309,6 @@ class UploadItemController extends Controller
 				$error_code = $e->errorInfo[1];
 				return back()->withErrors('There was a problem validating the data!');
 			}
-
 		}
 
 		return redirect()->route('upload-items.index')->with('success', 'Validation process completed. Please review result.');
@@ -304,8 +329,8 @@ class UploadItemController extends Controller
 			//id name notes code category_id oem_id uom_id price stock reorder account_type photo enable created_by created_at updated_by updated_at
 
 			$item = [
-				'name'			=> $upload_item->name,
-				'code'			=> $upload_item->code,
+				'code'			=> $upload_item->item_code,
+				'name'			=> $upload_item->item_name,
 				'notes'			=> $upload_item->notes,
 				'category_id'	=> $upload_item->category_id,
 				'oem_id'		=> $upload_item->oem_id,

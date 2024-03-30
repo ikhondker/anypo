@@ -18,7 +18,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Item Detail</h5>
-					<h6 class="card-subtitle text-muted"><h6 class="card-subtitle text-muted">Detail Information of an Items.</h6>.</h6>
+					<h6 class="card-subtitle text-muted"><h6 class="card-subtitle text-muted">Detail Information of an Item.</h6>.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $item->name }}"/>

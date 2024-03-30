@@ -4,8 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\EntityEnum;
-
 return new class extends Migration
 {
 	/**
@@ -13,26 +11,21 @@ return new class extends Migration
 	 */
 	public function up(): void
 	{
-		// aravel does not support Composite Primary Key
-		Schema::create('statuses', function (Blueprint $table) {
-			$table->string('code', 15);	//  model: protected $primaryKey = 'entity'; 
+		Schema::create('custom_errors', function (Blueprint $table) {
+			$table->string('code', 15);	//  model: protected $primaryKey = 'code'; 
+			$table->string('entity',15); 
 			/** ENUM */
 			//$table->string('entity')->default(EntityEnum::PR->value);
 			/** end ENUM */
-			//$table->id()->startingValue(1001);
-			$table->string('name')->unique();
-			//$table->string('message')->nullable();
-			$table->string('badge')->nullable();
-			$table->string('icon')->nullable();
+			$table->string('message')->nullable();
 			$table->boolean('enable')->default(true); 
-			//$table->softDeletes();
+			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent();
 			$table->primary('code');
-			//$table->unique(['entity','code']);
-			//$table->foreign('entity')->references('entity')->on('entities');
+			$table->foreign('entity')->references('entity')->on('entities');
 		});
 	}
 
@@ -41,6 +34,6 @@ return new class extends Migration
 	 */
 	public function down(): void
 	{
-		Schema::dropIfExists('statuses');
+		Schema::dropIfExists('custom_errors');
 	}
 };

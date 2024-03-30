@@ -16,11 +16,11 @@ return new class extends Migration
 		Schema::create('upload_items', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->integer('owner_id')->default(1);
-			$table->string('name')->nullable();
-			$table->string('code')->nullable();
-			$table->string('category')->nullable();
-			$table->string('oem')->nullable();
-			$table->string('uom')->nullable();
+			$table->string('item_code')->nullable();
+			$table->string('item_name')->nullable();
+			$table->string('category_name')->nullable();
+			$table->string('oem_name')->nullable();
+			$table->string('uom_name')->nullable();
 			$table->string('gl_type_name')->nullable();
 			$table->float('price', 8, 2)->default(0);
 			 /** ENUM */
@@ -31,11 +31,14 @@ return new class extends Migration
 			$table->integer('oem_id')->nullable();
 			$table->string('uom_class_id')->nullable();
 			$table->integer('uom_id')->nullable();
-			$table->enum('gl_type', ['E','A','I'])->nullable();
+			$table->string('gl_type')->nullable();
+			$table->string('error_code',15)->nullable();
+			//$table->enum('gl_type', ['E','A','I'])->nullable();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent();
+			$table->foreign('error_code')->references('code')->on('custom_errors');
 		});
 	}
 

@@ -21,7 +21,7 @@ return new class extends Migration
 			$table->foreignId('oem_id')->constrained('oems');
 			$table->foreignId('uom_class_id')->constrained('uom_classes');
 			$table->foreignId('uom_id')->constrained('uoms');
-			$table->string('gl_type',1)->default('E'); 
+			$table->string('gl_type_code',1)->default('E'); 
 			$table->string('dr_account')->default('100001')->nullable();
 			$table->string('cr_account')->default('100001')->nullable();
 			//$table->foreignId('uom')->constrained('uoms')->references('uom');
@@ -35,7 +35,7 @@ return new class extends Migration
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent(); 
-			$table->foreign('gl_type')->references('gl_type')->on('gl_types');
+			$table->foreign('gl_type_code')->references('code')->on('gl_types');
 		});
 	}
 

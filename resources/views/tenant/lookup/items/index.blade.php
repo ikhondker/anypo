@@ -123,6 +123,7 @@
 								<th>Category</th>
 								<th>UOM</th>
 								<th>OEM</th>
+								<th class="text-end">Price</th>
 								<th>GL Type</th>
 								<th>Enable</th>
 								<th>Actions</th>
@@ -137,6 +138,7 @@
 								<td>{{ $item->category->name }}</td>
 								<td>{{ $item->uom->name }}</td>
 								<td>{{ $item->oem->name }}</td>
+								<td class="text-end"><x-tenant.list.my-number :value="$item->price"/></td>
 								<td>{{ $item->glType->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$item->enable"/></td>
 								<td class="table-action">

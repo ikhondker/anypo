@@ -134,7 +134,7 @@ class BankAccountController extends Controller
 		$bankAccount->fill(['enable' => ! $bankAccount->enable]);
 		$bankAccount->update();
 		// Write to Log
-		EventLog::event('dept', $bankAccount->id, 'status', 'enable', $bankAccount->enable);
+		EventLog::event('bankAccount', $bankAccount->id, 'status', 'enable', $bankAccount->enable);
 
 		return redirect()->route('bank-accounts.index')->with('success', 'Dept status changed successfully');
 	}

@@ -22,6 +22,13 @@ class EntitySeeder extends Seeder
 
 		$entities =  [
 			[
+				'entity'		=> 'CORE',
+				'name'			=> 'Core',
+				'model'			=> 'Core',
+				'route'			=> 'cores',
+				'directory'		=> 'core',
+			],
+			[
 				'entity'		=> 'TEMPLATE',
 				'name'			=> 'Template',
 				'model'			=> 'Template',
@@ -41,6 +48,13 @@ class EntitySeeder extends Seeder
 				'model'			=> 'DeptBudget',
 				'route'		 	=> 'dept-budgets',
 				'directory'		=> 'dept-budget',
+			],
+			[
+				'entity'		=> 'ITEM',
+				'name'		  	=> 'Items',
+				'model'			=> 'Items',
+				'route'		 	=> 'items',
+				'directory'		=> 'item',
 			],
 			[
 				'entity'		=> 'PROJECT',

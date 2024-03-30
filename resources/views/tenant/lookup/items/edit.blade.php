@@ -28,9 +28,7 @@
 						</div>
 						<div class="card-body">
 
-							
-							<x-tenant.edit.name :value="$item->name"/>
-							
+						
 							<div class="mb-3 col-md-6">
 								<label for="code" class="form-label">Code</label>
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
@@ -42,6 +40,8 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
+							
+							<x-tenant.edit.name :value="$item->name"/>
 
 							<div class="mb-3">
 								<label class="form-label">Item Category</label>

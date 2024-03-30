@@ -22,12 +22,15 @@
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-badge		value="{{ $uploadItem->id }}" label="ID"/>
-					<x-tenant.show.my-text		value="{{ $uploadItem->name }}"/>
-					<x-tenant.show.my-text		value="{{ $uploadItem->code }}" label="Code"/>	
-					<x-tenant.show.my-text		value="{{ $uploadItem->category }}" label="Category"/>
-					<x-tenant.show.my-text		value="{{ $uploadItem->oem }}" label="OEM"/>
-					<x-tenant.show.my-text		value="{{ $uploadItem->uom }}" label="UoM"/>
+					<x-tenant.show.my-text		value="{{ $uploadItem->item_code }}" label="Code"/>	
+					<x-tenant.show.my-text		value="{{ $uploadItem->item_name }}"/>
+					<x-tenant.show.my-text		value="{{ $uploadItem->category_name }}" label="Category"/>
+					<x-tenant.show.my-text		value="{{ $uploadItem->oem_name }}" label="OEM"/>
+					<x-tenant.show.my-text		value="{{ $uploadItem->uom_name }}" label="UoM"/>
 					<x-tenant.show.my-number	value="{{ $uploadItem->price }}" label="Price"/>
+					<x-tenant.show.my-text		value="{{ $uploadItem->gl_type_name }}" label="GL Type"/>
+					<x-tenant.show.my-badge		value="{{ $uploadItem->error_code }}" label="Error Code"/>
+					<x-tenant.show.my-text		value="{{ $uploadItem->customError->message }}" label="Error Message"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->owner->name }}" label="Upload By"/>
 					<x-tenant.show.my-badge		value="{{ $uploadItem->status }}" label="Status"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->category_id }}" label="Category ID"/>

@@ -17,8 +17,10 @@ class TenantSeeder extends Seeder
 
 		$this->call(\Database\Seeders\EntitySeeder::class);
 		$this->call(\Database\Seeders\StatusSeeder::class);
+		$this->call(\Database\Seeders\CustomErrorSeeder::class);
 		$this->call(\Database\Seeders\MenuSeeder::class);
 		$this->call(\Database\Seeders\TemplateSeeder::class);
+		
 
 		$this->call(\Database\Seeders\CategorySeeder::class);
 		$this->call(\Database\Seeders\CountrySeeder::class);

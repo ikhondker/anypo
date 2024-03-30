@@ -20,11 +20,13 @@
 namespace App\Enum;
 
 enum EntityEnum: string{
+	case CORE		= 'CORE';
 	case BUDGET		= 'BUDGET';
 	case DEPTBUDGET	= 'DEPTBUDGET';
 	case PR			= 'PR';
 	case PO			= 'PO';
 	case PROJECT	= 'PROJECT';
+	case ITEM		= 'ITEM';
 	case RECEIPT	= 'RECEIPT';
 	case INVOICE	= 'INVOICE';
 	case PAYMENT	= 'PAYMENT';

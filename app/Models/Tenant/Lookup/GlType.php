@@ -14,11 +14,11 @@ use Illuminate\Database\Eloquent\Builder;
 class GlType extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
-	protected $primaryKey	= 'gl_type';
+	protected $primaryKey	= 'code';
 	protected $keyType		= 'string';
 
 	protected $fillable = [
-		'gl_type', 'name', 'enable', 'updated_by', 'updated_at',
+		'code', 'name', 'enable', 'updated_by', 'updated_at',
 	];
 
 	/**

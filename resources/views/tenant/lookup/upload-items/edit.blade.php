@@ -27,49 +27,76 @@
 						<div class="card-body">
 
 							<x-tenant.edit.id-read-only :value="$uploadItem->id"/>
-							<x-tenant.edit.name :value="$uploadItem->name"/>
+							
 
 							<div class="mb-3">
-								<label class="form-label">CODE</label>
-								<input type="text" class="form-control @error('code') is-invalid @enderror"
-									name="code" id="code" placeholder="XXXXX"
-									value="{{ old('code', $uploadItem->code ) }}"
+								<label class="form-label">item_code</label>
+								<input type="text" class="form-control @error('item_code') is-invalid @enderror"
+									name="item_code" id="item_code" placeholder="XXXXX"
+									style="text-transform: uppercase"
+									value="{{ old('item_code', $uploadItem->item_code ) }}"
 									required/>
-								@error('code')
+								@error('item_code')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
+
+							<div class="mb-3">
+								<label class="form-label">Item</label>
+								<input type="text" class="form-control @error('item_name') is-invalid @enderror"
+									name="item_name" id="item_name" placeholder="Category"
+									value="{{ old('item_name', $uploadItem->item_name ) }}"
+									required/>
+								@error('item_name')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
 
 							<div class="mb-3">
 								<label class="form-label">Category</label>
-								<input type="text" class="form-control @error('category') is-invalid @enderror"
-									name="category" id="category" placeholder="Category"
-									value="{{ old('category', $uploadItem->category ) }}"
+								<input type="text" class="form-control @error('category_name') is-invalid @enderror"
+									name="category_name" id="category_name" placeholder="Category"
+									value="{{ old('category_name', $uploadItem->category_name ) }}"
 									required/>
-								@error('category')
+								@error('category_name')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
-							<div class="mb-3">
-								<label class="form-label">UOM</label>
-								<input type="text" class="form-control @error('uom') is-invalid @enderror"
-									name="uom" id="uom" placeholder="UOM"
-									value="{{ old('uom', $uploadItem->uom ) }}"
-									required/>
-								@error('uom')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
+							
 							<div class="mb-3">
 								<label class="form-label">OEM</label>
-								<input type="text" class="form-control @error('oem') is-invalid @enderror"
-									name="oem" id="oem" placeholder="OEM"
-									value="{{ old('oem', $uploadItem->oem ) }}"
+								<input type="text" class="form-control @error('oem_name') is-invalid @enderror"
+									name="oem_name" id="oem_name" placeholder="OEM"
+									value="{{ old('oem_name', $uploadItem->oem_name ) }}"
 									required/>
-								@error('oem')
+								@error('oem_name')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
+
+							<div class="mb-3">
+								<label class="form-label">UOM</label>
+								<input type="text" class="form-control @error('uom_name') is-invalid @enderror"
+									name="uom_name" id="uom_name" placeholder="UOM"
+									value="{{ old('uom_name', $uploadItem->uom_name ) }}"
+									required/>
+								@error('uom_name')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
+							<div class="mb-3">
+								<label class="form-label">GL Type</label>
+								<input type="text" class="form-control @error('gl_type_name') is-invalid @enderror"
+									name="gl_type_name" id="gl_type_name" placeholder="UOM"
+									value="{{ old('gl_type_name', $uploadItem->gl_type_name ) }}"
+									required/> {{ $uploadItem->price }}
+								@error('gl_type_name')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
 							<x-tenant.edit.price :value="$uploadItem->price"/>
 							<x-tenant.buttons.show.save/>
 						</div>

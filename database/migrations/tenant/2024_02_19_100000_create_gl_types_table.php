@@ -12,14 +12,14 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('gl_types', function (Blueprint $table) {
-			$table->string('gl_type',1);
+			$table->string('code',1);
 			$table->string('name');
 			$table->boolean('enable')->default(true); 
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent();
-			$table->primary('gl_type');
+			$table->primary('code');
 		});
 	}
 

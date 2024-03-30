@@ -61,7 +61,6 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'designations.edit','route_name' => 'designations.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'designations.create','route_name' => 'designations.index', 'node_name' => 'lookups'],
 
-
 			[ 'raw_route_name' => 'templates.index','route_name' => 'templates.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'templates.show','route_name' => 'templates.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'templates.edit','route_name' => 'templates.index', 'node_name' => 'system'],
@@ -74,6 +73,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'statuses.index','route_name' => 'statuses.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'statuses.show','route_name' => 'statuses.show', 'node_name' => 'system'],
 
+			[ 'raw_route_name' => 'custom-errors.index','route_name' => 'custom-errors.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'custom-errors.show','route_name' => 'custom-errors.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'custom-errors.edit','route_name' => 'custom-errors.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'custom-errors.create','route_name' => 'custom-errors.index', 'node_name' => 'system'],
+			
 			[ 'raw_route_name' => 'groups.index','route_name' => 'groups.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'menus.index','route_name' => 'menus.index', 'node_name' => 'system'],
 			
