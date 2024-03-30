@@ -340,6 +340,12 @@ class PrController extends Controller
 
 		$pr->update($request->all());
 
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $pr->id ]);
+			$request->merge(['entity'		=> EntityEnum::PR->value ]);
+			$attid = FileUpload::aws($request);
+		}
+		
 		// Write to Log
 		EventLog::event('pr', $pr->id, 'update', 'summary', $pr->summary);
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition  updated successfully.');

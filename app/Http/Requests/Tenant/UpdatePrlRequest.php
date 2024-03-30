@@ -22,7 +22,9 @@ class UpdatePrlRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'summary'	=> 'required|min:2|max:150',
+			'item_description'	=> 'required|min:2|max:150',
+			'qty'				=> 'required|numeric|min:1.00|max:9999999.99',
+			'price'				=> 'required|numeric|min:1.00|max:9999999.99',
 		];
 	}
 }

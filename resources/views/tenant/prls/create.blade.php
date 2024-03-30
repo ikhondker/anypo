@@ -32,7 +32,8 @@
 
 	</form>
 	<!-- /.form end -->
-
+	
+	@include('tenant.includes.js.select2')
 		
 @endsection
 

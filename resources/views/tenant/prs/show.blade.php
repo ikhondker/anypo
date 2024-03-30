@@ -28,9 +28,9 @@
 	
 
 	<!-- widget-pr-lines -->
-	<x-tenant.widgets.prl.show-all-pr-lines id="{{ $pr->id }}">
+	<x-tenant.widgets.prl.show-pr-lines id="{{ $pr->id }}">
 		@include('tenant.includes.pr.pr-footer-show')
-	</x-tenant.widgets.prl.show-all-pr-lines>
+	</x-tenant.widgets.prl.show-pr-lines>
 	{{-- <x-tenant.widgets.pr.lines id="{{ $pr->id }}" :show="true"/> --}}
 	<!-- /.widget-pr-lines -->
 

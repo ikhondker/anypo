@@ -24,7 +24,7 @@
 						<h5 class="card-title">Requisition Basic Information</h5>
 						<h6 class="card-subtitle text-muted">Requisition Basic Information.</h6>
 					</div>
-					<div class="card-body">
+					<div class="card-body"> 
 
 						<div class="mb-3 row">
 							<label class="col-form-label col-sm-2 text-sm-right">PR Summary</label>
@@ -120,7 +120,7 @@
 							@enderror
 						</div>
 
-						<x-tenant.attachment.create  />
+						<x-tenant.attachment.create />
 
 						<div class="mb-3">
 							<label class="form-label">Requestor</label>
