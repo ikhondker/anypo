@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('title',' General Notice')
-@section('breadcrumb',' General Notice')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}">Setup</a></li>
+	<li class="breadcrumb-item active">Announcement</li>
+@endsection
 @section('content')
 
 	<x-tenant.page-header>

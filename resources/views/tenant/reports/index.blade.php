@@ -1,8 +1,11 @@
 @extends('layouts.app')
 @section('title','Reports')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Reports</li>
+@endsection
+
 
 @section('content')
-
 	<x-tenant.page-header>
 		@slot('title')
 			Reports

@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Create Invoice')
-@section('breadcrumb','Create Invoice')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts TODO</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li>
+	<li class="breadcrumb-item active">Receipt</li>
+@endsection
 
 @section('content')
 

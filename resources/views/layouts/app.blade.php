@@ -293,7 +293,20 @@
 					{{-- <h1 class="h3 mb-3">Blank Page</h1> --}}
 
 					@if ($_setup->freezed)
-						<!-- content -->
+						<!-- breadcrumb -->	
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><i class="align-top text-muted" data-feather="home"></i><a href="{{ route('home') }}"> Home</a></li>
+								@yield('breadcrumb')
+								{{-- 
+									<li class="breadcrumb-item"><a href="#">Library</a></li>
+									<li class="breadcrumb-item active">Data</li> 
+									--}}
+							</ol>
+						</nav>
+						<!-- /.breadcrumb -->
+					<!-- content -->
+				
 						@yield('content')
 						<!-- /.content -->
 					@else

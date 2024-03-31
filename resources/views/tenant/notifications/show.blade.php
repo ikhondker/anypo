@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title','View Notification')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('notifications.index') }}">Notification</a></li>
+	<li class="breadcrumb-item active">{{ $notification->data['subject'] }}</li>
+@endsection
+
 @section('content')
 
 	<x-tenant.page-header>

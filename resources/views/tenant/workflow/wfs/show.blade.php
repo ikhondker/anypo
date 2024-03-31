@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('title','Workflow Details')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('wfs.index') }}">Workflows</a></li>
+	<li class="breadcrumb-item active">{{ $wf->id }}</li>
+@endsection
 
 @section('content')
 
@@ -9,7 +13,6 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Wf"/>
-			<x-tenant.buttons.header.create object="Wf"/>
 			<x-tenant.buttons.header.edit object="Wf" :id="$wf->id"/>
 		@endslot
 	</x-tenant.page-header>
@@ -30,7 +33,16 @@
 					<x-tenant.show.my-badge		value="{{ $wf->auth_status }}" label="Auth Status"/>
 					<x-tenant.show.my-text		value="{{ $wf->last_performer->name }}" label="Final Approver"/>
 					<x-tenant.show.my-date-time	value="{{ $wf->auth_date }}" label="Auth Date"/>
-				
+					<div class="row">
+						<div class="col-sm-3 text-end">
+							
+						</div>
+						<div class="col-sm-9 text-end">
+							@if (auth()->user()->isSystem())
+								<a href="{{ route('wfs.edit',$wf->id) }}" class="text-warning d-inline-block">Edit</a>
+							@endif
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

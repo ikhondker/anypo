@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title','Bank Accounts')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Bank Accounts</li>
+@endsection
 @section('content')
 
 	<x-tenant.page-header>

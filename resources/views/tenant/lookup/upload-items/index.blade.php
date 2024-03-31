@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title','Upload Items')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Interface Items</li>
+@endsection
 
 @section('content')
 
@@ -18,7 +21,7 @@
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Validate">
 				<i class="fas fa-plus"></i> 3. Validate</a>
 			<a href="{{ route('upload-items.create') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-circle-up"></i> 2. Upload File</a>
-			<a href="{{ asset('downloads/anypo-bulk-item-upload-template-20230818.xlsx') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-circle-down"></i> 1. Download Template</a>
+			<a href="{{ asset('downloads/anypo-bulk-item-upload-template-v1.xlsx') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-circle-down"></i> 1. Download Template</a>
 		@endslot
 	</x-tenant.page-header>
 

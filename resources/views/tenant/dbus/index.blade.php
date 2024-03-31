@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Dept Budget Usages')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Budget Usages</li>
+@endsection
+
 @section('content')
 
 	<x-tenant.page-header>

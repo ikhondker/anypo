@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('title','Budgets')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('budgets.show', $deptBudget->budget->id ) }}">{{ $deptBudget->budget->fy }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('dept-budgets.index') }}">Dept Budgets</a></li>
+	<li class="breadcrumb-item active">{{ $deptBudget->dept->name }}</li>
+@endsection
+
 @section('content')
 
 	<x-tenant.page-header>

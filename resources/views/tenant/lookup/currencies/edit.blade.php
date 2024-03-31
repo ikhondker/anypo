@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title','Edit Currency')
-@section('breadcrumb','Edit Currency')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('currencies.index') }}">Currencies</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('currencies.show',$currency->currency) }}">{{ $currency->name }}</a></li>
+	<li class="breadcrumb-item active">Edit</li>
+@endsection
+
 
 @section('content')
 

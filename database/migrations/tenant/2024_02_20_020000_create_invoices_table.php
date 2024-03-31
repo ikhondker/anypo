@@ -46,6 +46,8 @@ return new class extends Migration
 			$table->string('payment_status')->default(PaymentStatusEnum::DUE->value);;
 			$table->foreign('payment_status')->references('code')->on('statuses');
 			/** end ENUM */
+			$table->string('error_code',15)->nullable();
+			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);

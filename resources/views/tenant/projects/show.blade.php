@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('title','Projects')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Projects</a></li>
+	<li class="breadcrumb-item active">{{ $project->name }}</li>
+@endsection
 
 @section('content')
 
@@ -23,6 +27,7 @@
 					<h6 class="card-subtitle text-muted">Project Basic Information.</h6>
 				</div>
 				<div class="card-body">
+					<x-tenant.show.my-text		value="{{ $project->code  }}" label="Code"/>
 					<x-tenant.show.my-text		value="{{ $project->name }}"/>
 					<x-tenant.show.my-date		value="{{ $project->start_date  }}" label="Start Date"/>
 					<x-tenant.show.my-date		value="{{ $project->end_date  }}" label="End Date"/>

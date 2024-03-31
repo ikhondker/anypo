@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title','DeptBudget')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Dept. Budget</li>
+@endsection
+
+
 @section('content')
 
 	<x-tenant.page-header>
@@ -35,8 +40,8 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Dept</th>
 								<th>FY</th>
+								<th>Dept</th>
 								<th>Budget Period</th>
 
 								<th class="text-end">Budget</th>
@@ -59,8 +64,8 @@
 							@foreach ($dept_budgets as $dept_budget)
 							<tr>
 								<td>{{ $dept_budgets->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('dept-budgets.show',$dept_budget->id) }}">{{ $dept_budget->dept->name  }}</a></td>
 								<td>{{ $dept_budget->budget->fy }}</td>
+								<td><a class="text-info" href="{{ route('dept-budgets.show',$dept_budget->id) }}">{{ $dept_budget->dept->name  }}</a></td>
 								<td><x-tenant.list.my-date :value="$dept_budget->budget->start_date"/> - <x-tenant.list.my-date :value="$dept_budget->budget->end_date"/></td>
 
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
@@ -76,7 +81,7 @@
 								<td><x-tenant.list.my-closed :value="$dept_budget->closed"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="DeptBudget" :id="$dept_budget->id"/>
-									<a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 js.sweet-alert2-advance"
+									<a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 sweet-alert2-advance"
 										data-entity="DeptBudget" data-name="{{ $dept_budget->budget->name }}" data-status="{{ ($dept_budget->closed ? 'Open' : 'Close') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept_budget->closed ? 'Open' : 'Close') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($dept_budget->closed ? 'bell-off' : 'bell') }}"></i>

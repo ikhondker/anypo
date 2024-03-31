@@ -150,9 +150,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'bank-accounts.show','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.edit','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.create','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
-			
-
-			
+						
 			[ 'raw_route_name' => 'items.index','route_name' => 'items.index', 'node_name' => 'master'],
 			[ 'raw_route_name' => 'items.show','route_name' => 'items.index', 'node_name' => 'master'],
 			[ 'raw_route_name' => 'items.edit','route_name' => 'items.index', 'node_name' => 'master'],
@@ -172,7 +170,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'upload-items.check','route_name' => 'upload-items.index', 'node_name' => 'interface'],
 			[ 'raw_route_name' => 'upload-items.import','route_name' => 'upload-items.index', 'node_name' => 'interface'],
 
-
+			[ 'raw_route_name' => 'reports.index','route_name' => 'reports.index', 'node_name' => ''],
+			[ 'raw_route_name' => 'reports.parameter','route_name' => 'reports.index', 'node_name' => ''],
 
 			[ 'raw_route_name' => 'setups.index','route_name' => 'setups.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'setups.edit','route_name' => 'setups.index', 'node_name' => 'admin'],

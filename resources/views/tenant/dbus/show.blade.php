@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('title','Budget Usages')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('dbus.index') }}">Budget Usages</a></li>
+	<li class="breadcrumb-item active">{{ $dbu->id }}</li>
+@endsection
+
+
 @section('content')
 
 	<x-tenant.page-header>
@@ -22,6 +28,7 @@
 					<h6 class="card-subtitle text-muted">Basic information about this Budget Usages.</h6>
 				</div>
 				<div class="card-body">
+					<x-tenant.show.my-text		value="{{ $dbu->id }}" label="ID"/>
 					<x-tenant.show.my-text		value="{{ $dbu->deptBudget->budget->name }}" label="Budget Name"/>
 					<x-tenant.show.my-text		value="{{ $dbu->deptBudget->budget->fy }}" label="FY"/>
 					<x-tenant.show.my-text		value="{{ $dbu->dept->name }}" label="Dept"/>
@@ -36,7 +43,19 @@
 					<x-tenant.show.my-amount	value="{{ $dbu->amount_po }}" label="PO Issued"/>
 					<x-tenant.show.my-amount	value="{{ $dbu->amount_grs }}" label="GRS Amount"/>
 					<x-tenant.show.my-amount	value="{{ $dbu->amount_payment }}" label="Payment Amount"/>
-					<x-tenant.show.my-text		value="{{ $dbu->id }}" label="Transaction ID"/>			
+					<x-tenant.show.my-text		value="{{ $dbu->id }}" label="Transaction ID"/>		
+						
+					<div class="row">
+						<div class="col-sm-3 text-end">
+							
+						</div>
+						<div class="col-sm-9 text-end">
+							@if (auth()->user()->isSystem())
+								<a href="{{ route('dbus.edit',$dbu->id) }}" class="text-warning d-inline-block">Edit</a>
+							@endif
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','Wf')
-@section('breadcrumb','Create Wf')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('wfs.index') }}">Workflows</a></li>
+	<li class="breadcrumb-item active">Create</li>
+@endsection
 
 @section('content')
 

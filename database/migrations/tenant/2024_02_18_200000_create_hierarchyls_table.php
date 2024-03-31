@@ -17,6 +17,7 @@ return new class extends Migration
 			$table->integer('sequence')->default(10);   // TODO P2
 			$table->foreignId('approver_id')->constrained('users');
 			$table->boolean('enable')->default(true); // Not Used
+			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);

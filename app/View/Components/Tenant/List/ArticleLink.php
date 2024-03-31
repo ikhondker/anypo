@@ -1,4 +1,5 @@
 <?php
+// TODO YES
 
 namespace App\View\Components\Tenant\List;
 
@@ -19,10 +20,16 @@ class ArticleLink extends Component
 	 */
 	public function __construct($entity, $id=1001)
 	{
-		$this->entity =$entity;
-		$this->id =$id;
-		$this->route = Str::plural(Str::snake(Str::lower($entity), '-'));
-
+	
+		if ($entity =='customError'){
+			$this->entity =$entity;
+			$this->id =$id;
+			$this->route = "pos";
+		} else {
+			$this->entity =$entity;
+			$this->id =$id;
+			$this->route = Str::plural(Str::snake(Str::lower($entity), '-'));
+		}
 		//Log::debug('route=' . $this->route);
 	}
 

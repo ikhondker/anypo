@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Edit Setup')
-@section('breadcrumb','Edit Setup')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}">Setup</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('setups.show',$setup->id) }}">{{ $setup->name }}</a></li>
+	<li class="breadcrumb-item active">Edit</li>
+@endsection
 
 @section('content')
 

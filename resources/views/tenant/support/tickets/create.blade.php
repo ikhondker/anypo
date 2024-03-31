@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','User')
-@section('breadcrumb','Create Support Ticket')
+
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Create Support Ticket</li>
+@endsection
 
 @section('content')
 

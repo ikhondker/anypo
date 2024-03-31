@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('title','Change Password')
-@section('breadcrumb','Change Password')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('users.index') }}">Users</a></li>
+	<li class="breadcrumb-item active">Change Password</li>
+@endsection
 
 @section('content')
 

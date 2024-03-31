@@ -22,8 +22,8 @@ namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
 use App\Models\Tenant\Dbu;
-use App\Http\Requests\StoreDbuRequest;
-use App\Http\Requests\UpdateDbuRequest;
+use App\Http\Requests\Tenant\StoreDbuRequest;
+use App\Http\Requests\Tenant\UpdateDbuRequest;
 
 use App\Enum\UserRoleEnum;
 
@@ -116,7 +116,9 @@ class DbuController extends Controller
 	 */
 	public function edit(Dbu $dbu)
 	{
-		abort(403);
+		$this->authorize('update', $dbu);
+
+		return view('tenant.dbus.edit', compact('dbu'));
 	}
 
 	/**
@@ -124,7 +126,15 @@ class DbuController extends Controller
 	 */
 	public function update(UpdateDbuRequest $request, Dbu $dbu)
 	{
-		abort(403);
+		$this->authorize('update', $dbu);
+
+		//dd($category);
+		$dbu->update($request->all());
+
+		// Write to Log
+		EventLog::event('dbu', $dbu->id, 'update', 'name', $dbu->id);
+
+		return redirect()->route('dbus.index')->with('success', 'Dbu updated successfully');
 	}
 
 	/**

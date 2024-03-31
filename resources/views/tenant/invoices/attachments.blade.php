@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Attachments')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts TODO</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li>
+	<li class="breadcrumb-item active">Attachments</li>
+@endsection
 @section('content')
 
 	<x-tenant.page-header>

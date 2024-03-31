@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','View Purchase Requisition')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
+	<li class="breadcrumb-item active">{{ $pr->id  }}</li>
+@endsection
 @section('content')
 
 	<x-tenant.page-header>

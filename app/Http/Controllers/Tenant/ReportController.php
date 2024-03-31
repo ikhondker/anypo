@@ -152,7 +152,7 @@ class ReportController extends Controller
 	public function run(UpdateReportRequest $request, Report $report)
 	{
 
-		//$report_id	= $request->input('report_id');
+		//$report_id		= $request->input('report_id');
 		$start_date			= $request->input('start_date');
 		$end_date			= $request->input('end_date');
 		$dept_id			= $request->input('dept_id');
@@ -162,10 +162,15 @@ class ReportController extends Controller
 		$bank_account_id	= $request->input('bank_account_id');
 		$pm_id				= $request->input('pm_id');
 
-		Log::debug('tenant.report.update report_id='.$report->id);
-		Log::debug('tenant.report.update start_date='.$start_date);
-		Log::debug('tenant.report.update end_date='.$end_date);
-		Log::debug('tenant.report.update pm_id='.$pm_id);
+		Log::debug('tenant.report.run report_id='.$report->id);
+		Log::debug('tenant.report.run start_date='.$start_date);
+		Log::debug('tenant.report.run end_date='.$end_date);
+		Log::debug('tenant.report.run pm_id='.$pm_id);
+
+		// Increse reports run_count -------------------------
+		DB::statement("UPDATE reports SET 
+				run_count	= run_count + 1 
+				WHERE id 	= ".$report->id."");
 
 		switch ($report->id) {
 			case '1001':
@@ -779,6 +784,11 @@ class ReportController extends Controller
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 		
+		// Increase reports run_count 
+		DB::statement("UPDATE reports SET 
+		run_count	= run_count + 1 
+		WHERE id 	= ".$report->id."");
+
 		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
 
 		$data = [
@@ -840,6 +850,10 @@ class ReportController extends Controller
 		$pols 		= Pol::with('item')->where('po_id', $po->id)->get()->all();
 		
 		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
+		// Increase reports run_count 
+		DB::statement("UPDATE reports SET 
+		run_count	= run_count + 1 
+		WHERE id 	= ".$report->id."");
 
 		$data = [
 			'setup' 	=> $setup,

@@ -21,7 +21,7 @@ namespace App\Http\Controllers\Tenant\Support;
 
 use App\Http\Controllers\Controller;
 
-//use App\Models\Tenant\Support\Ticket;
+use App\Models\Tenant\Support\Ticket;
 use App\Http\Requests\Tenant\Support\StoreTicketRequest;
 use App\Http\Requests\Tenant\Support\UpdateTicketRequest;
 
@@ -60,7 +60,8 @@ class TicketController extends Controller
 	 */
 	public function create()
 	{
-		$this->authorize('create',Ticket::class);
+		// TODO CHECK THIS	
+		//$this->authorize('create',Ticket::class);
 
 		//$depts = Dept::getAll();
 		//$priorities = Priority::getAll(); 

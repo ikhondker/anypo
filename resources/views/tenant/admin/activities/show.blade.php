@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','View Activity Log')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('activities.index') }}">Activity Logs</a></li>
+	<li class="breadcrumb-item active">{{ $activity->id }}</li>
+@endsection
 @section('content')
 
 <x-tenant.page-header>

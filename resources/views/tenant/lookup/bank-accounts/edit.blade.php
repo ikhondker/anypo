@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Edit Bank Account')
-@section('breadcrumb','Edit Bank Account')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.index') }}">Bank Accounts</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.show',$bankAccount->id) }}">{{ $bankAccount->name }}</a></li>
+	<li class="breadcrumb-item active">Edit</li>
+@endsection
 
 @section('content')
 

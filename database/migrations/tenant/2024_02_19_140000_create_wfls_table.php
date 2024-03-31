@@ -25,6 +25,7 @@ return new class extends Migration
 			$table->string('action')->default(WflActionEnum::PENDING->value);
 			/** end ENUM */
 			$table->text('notes')->nullable();
+			$table->string('error_code',15)->nullable();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);

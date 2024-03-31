@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title','Edit Uom')
-@section('breadcrumb','Edit Uom')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('uoms.index') }}">UoM's</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('uoms.show',$uoms->id) }}">{{ $uoms->name }}</a></li>
+	<li class="breadcrumb-item active">Edit</li>
+@endsection
+
 
 @section('content')
 

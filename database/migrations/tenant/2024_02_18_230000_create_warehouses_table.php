@@ -25,6 +25,7 @@ return new class extends Migration
 			$table->string('website')->nullable();
 			$table->string('email')->nullable();
 			$table->boolean('enable')->default(true); 
+			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);

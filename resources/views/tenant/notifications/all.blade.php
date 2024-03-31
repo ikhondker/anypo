@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title','All Notifications')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Notification</li>
+@endsection
 
 @section('content')
 

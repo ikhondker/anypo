@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','View Item')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('items.index') }}">Items</a></li>
+	<li class="breadcrumb-item active">{{ $item->code }}</li>
+@endsection
 @section('content')
 
 	<x-tenant.page-header>

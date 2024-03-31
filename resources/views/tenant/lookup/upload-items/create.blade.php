@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','Upload Items')
-@section('breadcrumb','Upload Items')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('upload-items.index') }}">Interface Items</a></li>
+	<li class="breadcrumb-item active">Upload</li>
+@endsection
 
 @section('content')
 

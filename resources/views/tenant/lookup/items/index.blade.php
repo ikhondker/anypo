@@ -1,11 +1,15 @@
 @extends('layouts.app')
 @section('title','Item')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Items</li>
+@endsection
+
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Item
+			Items
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Item"/>

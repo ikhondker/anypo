@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title','Activity Log')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Activity Logs</li>
+@endsection
 
 @section('content')
 
@@ -50,7 +53,9 @@
 							<td>{{ $activity->id }}</td>
 							<td><x-tenant.list.my-date-time :value="$activity->created_at" /></td>
 							<td>{{ $activity->object_name }}</td>
-							<td><x-tenant.list.article-link entity="{{ $activity->object_name }}" :id="$activity->object_id"/></td>
+							<td>{{ $activity->object_id }} 
+								{{-- <x-tenant.list.article-link entity="{{ $activity->object_name }}" :id="$activity->object_id"/> --}}
+							</td>
 							{{-- <td>{{ $activity->object_name }}</td> --}}
 							<td>{{ $activity->event_name }}</td>
 							<td>{{ $activity->column_name }}</td>

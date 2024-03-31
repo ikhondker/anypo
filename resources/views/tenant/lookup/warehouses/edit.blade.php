@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Edit Warehouse')
-@section('breadcrumb','Edit Warehouse')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('warehouses.index') }}">Warehouses</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('warehouses.show',$warehouse->id) }}">{{ $warehouse->name }}</a></li>
+	<li class="breadcrumb-item active">Edit</li>
+@endsection
 
 @section('content')
 

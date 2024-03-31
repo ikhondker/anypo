@@ -13,8 +13,8 @@ return new class extends Migration
 	{
 		Schema::create('projects', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('name')->unique();
 			$table->string('code')->unique();
+			$table->string('name')->unique();
 			$table->foreignId('pm_id')->constrained('users')->nullable();
 			$table->dateTime('start_date', $precision = 0)->nullable()->useCurrent();
 			$table->dateTime('end_date', $precision = 0)->nullable()->useCurrent();
@@ -39,6 +39,7 @@ return new class extends Migration
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();
 			$table->boolean('closed')->default(false); 
+			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);

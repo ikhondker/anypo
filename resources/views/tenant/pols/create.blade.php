@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('title','Add PO Line')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">{{ $po->id }}</a></li>
+	<li class="breadcrumb-item active">Add PO Line</li>
+@endsection
 
 @section('content')
 

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title','Reports')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Reports</li>
+@endsection
+
+
 @section('content')
 
 	<x-tenant.page-header>
@@ -34,7 +39,8 @@
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
-								<th>summary</th>
+								<th>Summary</th>
+								<th>Run Count</th>
 								<th>Access</th>
 								<th>Start Date</th>
 								<th>End Date</th>
@@ -47,7 +53,7 @@
 
 							<tr>
 								<td>1</td>
-								<td>Parameter Testing 1</td>
+								<td colspan="6">Parameter Testing 1</td>
 								<td>run</td>
 								<td class="table-action">
 									<a class="btn btn-primary text-white" href="{{ route('reports.edit','1004') }}">Run</a>
@@ -55,7 +61,7 @@
 							</tr>
 							<tr>
 								<td>2</td>
-								<td>Create PDF</td>
+								<td colspan="6">Create PDF</td>
 								<td>run</td>
 								<td class="table-action">
 									<a class="btn btn-primary text-white" href="{{ route('reports.createPDF') }}">Create PDF</a>
@@ -63,7 +69,7 @@
 							</tr>
 							<tr>
 								<td>3</td>
-								<td>Template PR</td>
+								<td colspan="6">Template PR</td>
 								<td>run</td>
 								<td class="table-action">
 									<a class="btn btn-primary text-white" href="{{ route('reports.templatepr') }}">Template PR</a>
@@ -71,7 +77,7 @@
 							</tr>
 							<tr>
 								<td>4</td>
-								<td>Template PO</td>
+								<td colspan="6">Template PO</td>
 								<td>run</td>
 								<td class="table-action">
 									<a class="btn btn-primary text-white" href="{{ route('reports.templatepo') }}">Template PO</a>
@@ -83,6 +89,7 @@
 								<td>{{ $reports->firstItem() + $loop->index  }}</td>
 								<td><a class="text-info" href="{{ route('reports.show',$report->id) }}">{{ $report->name }} [r{{ $report->id }}] </a></td>
 								<td>{{ $report->summary }}</td>
+								<td>{{ $report->run_count }}</td>
 								<td>{{ $report->access }}</td>
 								<td><x-tenant.list.my-boolean :value="$report->start_date"/></td>
 								<td><x-tenant.list.my-boolean :value="$report->end_date"/></td>

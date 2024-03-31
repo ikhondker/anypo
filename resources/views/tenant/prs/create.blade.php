@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Requisition')
-@section('breadcrumb','Create Requisition')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
+	<li class="breadcrumb-item active">Create</li>
+@endsection
+
 
 @section('content')
 

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title','Edit Interface Item')
-@section('breadcrumb','Edit InterfaceItem')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('upload-items.index') }}">Interface Items</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('upload-items.show',$uploadItem->id) }}">{{ $uploadItem->item_code }}</a></li>
+	<li class="breadcrumb-item active">Edit</li>
+@endsection
+
 
 @section('content')
 

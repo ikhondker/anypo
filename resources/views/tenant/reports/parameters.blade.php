@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title','Report Parameter')
-@section('breadcrumb','Report Parameter')
+
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('reports.index') }}">Reports</a></li>
+	<li class="breadcrumb-item active">{{ $report->name }}</li>
+@endsection
+
 
 @section('content')
 

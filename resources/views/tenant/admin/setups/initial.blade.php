@@ -1,10 +1,10 @@
 
 @php
-use App\Models\Tenant\Admin\Setup;
-use App\Models\Tenant\Lookup\Currency;
-$currencies = Currency::All();
-$setup = Setup::first();
-
+	use App\Models\Tenant\Admin\Setup;
+	use App\Models\Tenant\Lookup\Currency;
+	$currencies = Currency::All();
+	$setup = Setup::first();
+	// TODO Check breadcrumb
 @endphp
 
 <x-tenant.page-header>

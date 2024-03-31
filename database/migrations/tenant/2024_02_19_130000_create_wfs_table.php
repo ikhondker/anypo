@@ -27,6 +27,7 @@ return new class extends Migration
 			/** end ENUM */
 			$table->integer('auth_user_id')->nullable();
 			$table->dateTime('auth_date',)->nullable();
+			$table->string('error_code',15)->nullable();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','Create Bank Account')
-@section('breadcrumb','Create Bank Account')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.index') }}">Bank Accounts</a></li>
+	<li class="breadcrumb-item active">Create</li>
+@endsection
 
 @section('content')
 

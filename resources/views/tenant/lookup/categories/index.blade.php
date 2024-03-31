@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('title','Category')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Categories</li>
+@endsection
+
 
 @section('content')
 

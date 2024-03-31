@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title','Hierarchy')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Approval Hierarchies</li>
+@endsection
 
 @section('content')
 

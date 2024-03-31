@@ -5,6 +5,10 @@
 	<!-- Null -->
 @endsection
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Dashboard</li>
+@endsection
+
 @section('content')
 
 	<x-tenant.page-header>

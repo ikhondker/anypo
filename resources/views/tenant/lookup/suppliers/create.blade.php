@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','Supplier')
-@section('breadcrumb','Create Supplier')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('suppliers.index') }}">Suppliers</a></li>
+	<li class="breadcrumb-item active">Create</li>
+@endsection
 
 @section('content')
 

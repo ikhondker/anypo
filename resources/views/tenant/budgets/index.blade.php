@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Budget')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Budget</li>
+@endsection
+
 @section('content')
 
 	<x-tenant.page-header>
@@ -8,7 +12,7 @@
 			Company Budgets [{{ ($_setup->currency ) }}]
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('budgets.create') }}" class="btn btn-primary float-end js.sweet-alert2"><i data-feather="folder-plus"></i> Open Next FY Budget*</a>
+			<a href="{{ route('budgets.create') }}" class="btn btn-primary float-end sweet-alert2"><i data-feather="folder-plus"></i> Open Next FY Budget*</a>
 		@endslot
 	</x-tenant.page-header>
 
@@ -71,7 +75,7 @@
 								<td class="text-start"><x-tenant.list.my-closed :value="$budget->closed"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Budget" :id="$budget->id" :show="true"/>
-									<a href="{{ route('budgets.destroy',$budget->id) }}" class="me-2 js.sweet-alert2-advance" 
+									<a href="{{ route('budgets.destroy',$budget->id) }}" class="me-2 sweet-alert2-advance" 
 										data-entity="Budget" data-name="{{ $budget->name }}" data-status="{{ ($budget->closed ? 'Open' : 'Close') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($budget->closed ? 'Open' : 'Close') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($budget->closed ? 'bell-off' : 'bell') }}"></i>

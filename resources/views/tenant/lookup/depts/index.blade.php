@@ -1,7 +1,19 @@
 @extends('layouts.app')
 @section('title','Dept')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Department</li>
+@endsection
+
 @section('content')
+
+	{{-- <nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="dashboard-default.html">Home</a></li>
+			<li class="breadcrumb-item"><a href="#">Library</a></li>
+			<li class="breadcrumb-item active">Data</li>
+		</ol>
+	</nav> --}}
 
 	<x-tenant.page-header>
 		@slot('title')
@@ -12,8 +24,10 @@
 		@endslot
 	</x-tenant.page-header>
 
+
 	<div class="row">
 		<div class="col-12">
+		
 
 			<div class="card">
 				<div class="card-header">

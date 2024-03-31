@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('title','Hierarchy')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('hierarchies.index') }}">Approval Hierarchies</a></li>
+	<li class="breadcrumb-item active">{{ $hierarchy->name }}</li>
+@endsection
 
 @section('content')
 

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title','Attachment')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Attachments</li>
+@endsection
 
 @section('content')
 

@@ -42,7 +42,7 @@ class ViewServiceProvider extends ServiceProvider
 		view()->composer(['layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu			= new Menu;
-			//Log::debug("raw_route_name = ".$raw_route_name);
+			//Log::debug("ViewServiceProvider.boot raw_route_name = ".$raw_route_name);
 			try {
 				$menu = Menu::where('raw_route_name',$raw_route_name)
 					->where('enable',true)
@@ -73,7 +73,7 @@ class ViewServiceProvider extends ServiceProvider
 		view()->composer('layouts.app', function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu	= new Menu;
-			//Log::debug("current_route_name =".$current_route_name);
+			Log::debug("ViewServiceProvider.boot.tenant raw_route_name = ".$raw_route_name);
 			try {
 				$menu = Menu::where('raw_route_name',$raw_route_name)
 					->where('enable',true)

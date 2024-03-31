@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','View Bank Account')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.index') }}">Bank Accounts</a></li>
+	<li class="breadcrumb-item active">{{ $project->name }}</li>
+@endsection
 @section('content')
 
 	<x-tenant.page-header>

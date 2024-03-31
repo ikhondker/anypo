@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title','Edit Budget')
-@section('breadcrumb','Edit Budget')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('budgets.index') }}">Budgets</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('budgets.show',$budget->id) }}">{{ $budget->name }}</a></li>
+	<li class="breadcrumb-item active"> Edit</li>
+@endsection
+
 
 @section('content')
 

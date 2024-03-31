@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title','Project')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Projects</li>
+@endsection
+
+
 @section('content')
 
 	<x-tenant.page-header>
@@ -122,7 +127,7 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Name</th>
+								<th>Code</th>
 								<th>PM</th>
 								<th>Start-End</th>
 							
@@ -143,7 +148,7 @@
 							@foreach ($projects as $project)
 							<tr>
 								<td>{{ $projects->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->name }}</a></td>
+								<td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->code }}</a></td>
 								<td>{{ $project->pm->name }}</td>
 								<td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount"/></td>
