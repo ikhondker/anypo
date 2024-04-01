@@ -6,7 +6,7 @@
 		<!-- Heading -->
 		<div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
 			<h2 class="h1">Pricing</h2>
-			<p>One simple pricing model. All you need to start. No additional costs.</p>
+			<p>One simple pricing model. All you need to start. No hidden costs.</p>
 		</div>
 		<!-- End Heading -->
 

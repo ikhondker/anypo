@@ -10,7 +10,7 @@
 			@csrf
 
 			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
-				<h5 class="card-header-title">Generate Invoice</h5>
+				<h5 class="card-header-title">Generate & Pay Advance Invoice</h5>
 				<button class="btn btn-primary btn-sm" type="submit" id="submit" name="submit"><i class="bi bi-save"></i> Generate</button>
 			</div>
 

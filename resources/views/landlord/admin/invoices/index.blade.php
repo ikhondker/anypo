@@ -9,9 +9,9 @@
 
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 			<h5 class="card-header-title">Your Invoices</h5>
-			@if (auth()->user()->isSystem())
-				<a class="btn btn-danger btn-sm" href="{{ route('invoices.generate') }}">
-					<i class="bi bi-plus-square me-1"></i> P2 Generate Invoice
+			@if (auth()->user()->isAdmin())
+				<a class="btn btn-primary btn-sm" href="{{ route('invoices.generate') }}">
+					<i class="bi bi-plus-square me-1"></i> Generate & Pay Advance Invoice
 				</a>
 			@endif
 		</div>
