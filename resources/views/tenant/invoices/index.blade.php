@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','Invoice Lists')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Receipts</li>
+	<li class="breadcrumb-item active">Invoices</li>
 @endsection
 
 @section('content')

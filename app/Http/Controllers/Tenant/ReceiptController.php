@@ -334,6 +334,10 @@ class ReceiptController extends Controller
 
 		Log::debug('updateReceiptFcValues =' . $po_currency.$setup->currency);
 
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues receipt_id=' . $receipt_id);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues po->currency =' . $po_currency);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues setup->currency =' . $setup->currency);
+
 		// populate fc columns for receipt lines
 		if ($po_currency == $setup->currency){
 			$rate = 1;

@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('title','Create Receipt')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts TODO</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li>
-	<li class="breadcrumb-item active">Create Receipt</li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$pol->po_id) }}">PO #{{ $pol->po_id }}</a></li>
+	{{-- <li class="breadcrumb-item"><a href="{{ route('pos.show',$pol->po_id) }}">PO #{{ $pol->po_id }}</a></li> --}}
+	<li class="breadcrumb-item active">Line #{{ $pol->line_num }}</li>
 @endsection
 
 @section('content')
@@ -51,7 +52,7 @@
 							<label class="form-label">Item</label>
 							<input type="text" class="form-control @error('pol_summary') is-invalid @enderror"
 								name="pol_summary" id="pol_summary" placeholder=""
-								value="{{ old('pol_summary',  $pol->summary ) }}"
+								value="{{ old('pol_summary',  $pol->item_description ) }}"
 								readonly/>
 							@error('pol_summary')
 								<div class="text-danger text-xs">{{ $message }}</div>

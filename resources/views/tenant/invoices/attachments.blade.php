@@ -1,15 +1,17 @@
 @extends('layouts.app')
 @section('title','Attachments')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts TODO</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li>
-	<li class="breadcrumb-item active">Attachments</li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$invoice->po_id) }}">PO #{{ $invoice->po_id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.invoice', $invoice->po_id) }}">PO Invoices</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('invoices.show', $invoice->id) }}">Invoice #{{ $invoice->invoice_no }}</a></li>
+	<li class="breadcrumb-item active">Edit</li>
 @endsection
+
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Attachments Invoice #{{ $invoice->id }}
+			Attachments Invoice #{{ $invoice->invoice_no }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Invoice" label="Requisition"/>

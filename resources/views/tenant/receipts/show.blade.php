@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title','View Receipt')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts TODO</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li>
-	<li class="breadcrumb-item active">Receipt</li>
+	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts</a></li>
+	{{-- <li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li> --}}
+	<li class="breadcrumb-item active">GRN#{{ $receipt->id }}</li>
 @endsection
 
 @section('content')
@@ -36,7 +36,11 @@
 							<span class="h6 text-secondary">PO #:</span>
 						</div>
 						<div class="col-sm-9">
-							{{ "#". $receipt->pol->po_id. " - ". $receipt->pol->po->summary }}
+							<a class="text-info" href="{{ route('pos.show',$receipt->pol->po_id) }}">
+								{{ "#". $receipt->pol->po_id. " - ". $receipt->pol->po->summary }}
+							</a>
+
+							
 						</div>
 					</div>
 					<div class="row mb-3">
@@ -44,7 +48,7 @@
 							<span class="h6 text-secondary">Line #:</span>
 						</div>
 						<div class="col-sm-9">
-							{{ "#". $receipt->pol->line_num. " - ". $receipt->pol->summary }}
+							{{ "#". $receipt->pol->line_num. " - ". $receipt->pol->item_description }}
 						</div>
 					</div>
 					<x-tenant.show.my-number	value="{{ $receipt->pol->qty }}" label="Ord Qty" />	

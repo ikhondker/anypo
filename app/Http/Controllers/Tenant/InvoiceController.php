@@ -126,7 +126,7 @@ class InvoiceController extends Controller
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for OPEN Purchase Order!');
 		}
 
-		Log::debug('tenant.invoices.create Value of PO id in create=' . $po->id);		
+		Log::debug('tenant.invoices.create creating invoice for po_id=' . $po->id);		
 		//$po = Po::where('id', $po_id)->first();
 		$pocs	= User::Tenant()->get();
 
@@ -444,7 +444,10 @@ class InvoiceController extends Controller
 
 		$setup 			= Setup::first();
 		$invoice		= Invoice::with('po')->where('id', $receipt_id)->firstOrFail();
-		Log::debug('updateInvoiceFcValues =' . $invoice->currency.$setup->currency);
+		Log::debug('tenant.InvoiceController.updateInvoiceFcValues receipt_id=' . $receipt_id);
+		Log::debug('tenant.InvoiceController.updateInvoiceFcValues invoice_id=' . $invoice->id);
+		Log::debug('tenant.InvoiceController.updateInvoiceFcValues invoice->currency =' . $invoice->currency);
+		Log::debug('tenant.InvoiceController.updateInvoiceFcValues setup->currency =' . $setup->currency);
 
 		// populate fc columns for receipt lines
 		if ($invoice->currency == $setup->currency){

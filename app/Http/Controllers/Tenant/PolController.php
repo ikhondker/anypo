@@ -63,7 +63,8 @@ class PolController extends Controller
 	public function addLine(Po $po)
 	{
 
-		Log::debug('Value of PO_ID=' . $po->id);
+		Log::debug('tenant.PolController.addLine po_id=' . $po->id);
+
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 		 	return redirect()->route('pos.show',$po->id)->with('error', 'You can only add line to Purchase Order with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
@@ -116,8 +117,6 @@ class PolController extends Controller
 		$request->merge(['gst'			=> $request->input('gst')]);
 		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
 
-
-
 		$pol = Pol::create($request->all());
 
 		// Write to Log
@@ -141,18 +140,14 @@ class PolController extends Controller
 			//return redirect()->route('pos.show', $po->id)->with('success', 'PO #'. $po->id.' created successfully.');
 		}
 
-
-		switch ($request->input('action')) {
-			case 'save':
-				return redirect()->route('pos.show', $po->id)->with('success', 'PO #'. $po->id.' created successfully.');
-				break;
-			case 'save_add':
-				return redirect()->route('pols.createline', $po->id)->with('success', 'PO #'. $po->id.' created successfully. Please add more line.');
-				break;
+		if($request->has('add_row')) {
+			//Checkbox checked
+			return redirect()->route('pols.add-line', $pol->po_id)->with('success', 'Line added to PO #'. $pol->po_id.' successfully.');
+			
+		} else {
+			//Checkbox not checked
+			return redirect()->route('pos.show', $pol->po_id)->with('success', 'Lined added to PO #'. $pol->pr_id.' successfully.');
 		}
-
-
-		//return redirect()->route('pos.show', $pol->po_id)->with('success', 'Purchase Order line added successfully');
 
 	}
 

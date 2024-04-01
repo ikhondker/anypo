@@ -521,6 +521,7 @@ class PrController extends Controller
 		//  Check and book Dept Budget
 		$retcode = PrBudget::prBudgetBook($pr->id);
 
+		// TODO use db table
 		//Log::debug("tenant.pr.submit retcode = ".$retcode );
 		switch ($retcode) {
 			case 'E001':

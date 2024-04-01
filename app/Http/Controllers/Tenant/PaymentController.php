@@ -213,6 +213,9 @@ class PaymentController extends Controller
 	public function show(Payment $payment)
 	{
 		$this->authorize('view', $payment);
+		//$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
+
+		//return view('tenant.payments.show', compact('payment','invoice'));
 		return view('tenant.payments.show', compact('payment'));
 	}
 
@@ -318,7 +321,11 @@ class PaymentController extends Controller
 	{
 		$setup 			= Setup::first();
 		$payment		= Payment::where('id', $payment_id)->firstOrFail();
-		Log::debug('tenant.payment.updateReceiptFcValues =' . $payment->currency.$setup->currency);
+
+		Log::debug('tenant.PaymentController.updatePaymentFcValues payment_id=' . $payment_id);
+		Log::debug('tenant.PaymentController.updatePaymentFcValues payment->currency =' . $payment->currency);
+		Log::debug('tenant.PaymentController.updatePaymentFcValues setup->currency =' . $setup->currency);
+
 
 		// populate fc columns for receipt lines
 		if ($payment->currency == $setup->currency){

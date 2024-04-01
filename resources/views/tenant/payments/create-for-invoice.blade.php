@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('title','Create Payment')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts TODO</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li>
-	<li class="breadcrumb-item active">Create Payment</li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$invoice->po_id) }}">PO #{{ $invoice->po_id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.invoice', $invoice->po_id) }}">PO Invoices</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('invoices.show', $invoice->id) }}">Invoice #{{ $invoice->invoice_no }}</a></li>
+	<li class="breadcrumb-item active">Payment</li>
 @endsection
 
 @section('content')

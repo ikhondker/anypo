@@ -2,7 +2,7 @@
 @section('title','Additional Information for Requisition')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">{{ $po->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO #{{ $po->id }}</a></li>
 	<li class="breadcrumb-item active">Additional Information</li>
 @endsection
 

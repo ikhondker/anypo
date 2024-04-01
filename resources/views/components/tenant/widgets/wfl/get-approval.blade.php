@@ -1,5 +1,5 @@
 	<!-- form start -->
-	<form action="{{ route('wfls.update',$wfid) }}" method="POST">
+	<form action="{{ route('wfls.update',$wfl->id) }}" method="POST">
 		@csrf
 		@method('PUT')
 

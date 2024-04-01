@@ -130,7 +130,7 @@ class PoBudget
 			Log::debug("tenant.helper.PoBudget.poBudgetBook AFTER project->amount_po_booked=".$project->amount_po_booked );
 
 			// run job to Sync Budget
-			RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::BOOK->value,$po->fc_amount);
+			RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::BOOK->value, $po->fc_amount);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 		}
 
@@ -138,12 +138,15 @@ class PoBudget
 	}
 
 	// Called from wfl->reject and po->cancel
-	public static function poBudgetBookReverse($event,$po_id)
+	public static function poBudgetBookReverse($event, $po_id)
 	{
 
 		$po = Po::where('id', $po_id)->first();
 
-		// reverse Po dept budget booking 
+		Log::debug("Helpers.PoBudget.poBudgetBookReject event=".$event);
+		Log::debug("Helpers.PoBudget.poBudgetBookReject po_id=".$po->id);
+		
+	// reverse Po dept budget booking 
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_po_booked = $dept_budget->amount_po_booked - $po->fc_amount;
 		$dept_budget->count_po_booked = $dept_budget->count_po_booked - 1;
@@ -162,10 +165,10 @@ class PoBudget
 		$supplier->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, $event);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, $event, $po->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-		Log::debug("PoBudget.poBudgetBookReject Inside");
+
 
 		return 'E000';
 	}

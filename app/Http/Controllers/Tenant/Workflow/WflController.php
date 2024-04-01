@@ -106,10 +106,15 @@ class WflController extends Controller
 	public function update(UpdateWflRequest $request, Wfl $wfl)
 	{
 		$this->authorize('update',$wfl);
+		Log::debug("tenant.wfl.update Processing wf_id=" .$wfl->wf_id);
+		Log::debug("tenant.wfl.update Processing wfl_id=" .$wfl->id);
+		Log::debug("tenant.wfl.update Processing action=" .$request->input('action'));
 
 		$request->merge(['action_date' => date('Y-m-d H:i:s')]);
+		// update wfl row
 		$wfl->update($request->all());
-		
+		Log::debug("tenant.wfl.update After updating current action=" .$wfl->action->value);
+
 		// get the wf and article details
 		$wf = Wf::where('id', $wfl->wf_id)->first();
 		switch($request->input('action')) {
@@ -117,10 +122,14 @@ class WflController extends Controller
 				self::rejected($wf);
 				break;
 			case(WflActionEnum::APPROVED->value):
+				Log::debug('tenant.wfl.update Checking if next_approver_id exists.');
 				$next_approver_id = Workflow::getNextApproverId($wfl->wf_id);
 				if ($next_approver_id <> 0) {
+					Log::debug('tenant.wfl.update next_approver exists with user_id='.$next_approver_id);
+					Log::debug('tenant.wfl.update Forward Wf. Executing tenant.wfl.moveToNext.');
 					self::moveToNext($wf);
 				} else {
+					Log::debug('tenant.wfl.update Wf has been approved. Executing tenant.wfl.approved.');
 					self::approved($wf); 
 				}
 				break;
@@ -252,39 +261,41 @@ class WflController extends Controller
 	}
 	public function moveToNext(Wf $wf)
 	{
+		Log::debug("tenant.wfl.moveToNext processing wf_id = ". $wf->id);
+		//Log::debug("tenant.wfl.moveToNext processing entity = ". $wf->entity);
 		// do nothing just find and notify next approver
 		// send approval mail  to next approver
 
-		// next approver exists	
+		// get next approver exists	
 		//Log::debug("notifying next approver ");
 		$auth_status = AuthStatusEnum::APPROVED->value;
 		$next_approver_id = Workflow::getNextApproverId($wf->id);
-		Log::debug("wfl.moveToNext next_approver_id = ". $next_approver_id);
+		Log::debug("tenant.wfl.moveToNext next_approver_id = ". $next_approver_id);
 		if ($next_approver_id == 0) {
-			Log::debug("wfl.moveToNext next_approver_id not found!");
+			Log::debug("tenant.wfl.moveToNext next_approver_id not found!");
 			return false;
 		} 
 
 		switch($wf->entity) {
 			case('PR'):
 				// Send notification to Next Approver
-				$action = WflActionEnum::PENDING->value;
-				$pr = Pr::where('id', $wf->article_id)->first();
-				$actionURL = route('prs.show', $pr->id);
-				$approver = User::where('id', $next_approver_id)->first();
+				$action 	= WflActionEnum::PENDING->value;
+				$pr 		= Pr::where('id', $wf->article_id)->first();
+				$actionURL 	= route('prs.show', $pr->id);
+				$approver 	= User::where('id', $next_approver_id)->first();
 				$approver->notify(new PrActions($approver, $pr, $action, $actionURL));
 				break;
-			case('PO '):
+			case('PO'):
 				// Send notification to Next Approver
-				$action = WflActionEnum::PENDING->value;
-				$po = Po::where('id', $wf->article_id)->first();
-				$actionURL = route('pos.show', $po->id);
-				$approver = User::where('id', $next_approver_id)->first();
-				$approver->notify(new PoActions($approver, $po, $action, $actionURL));
 
+				$action 	= WflActionEnum::PENDING->value;
+				$po 		= Po::where('id', $wf->article_id)->first();
+				$actionURL 	= route('pos.show', $po->id);
+				$approver 	= User::where('id', $next_approver_id)->first();
+				$approver->notify(new PoActions($approver, $po, $action, $actionURL));
 				break;
 			default:
-				Log::debug("Error!. Invalid Entity in wfl.moveToNext");
+				Log::error("tenant.wfl.moveToNext Error!. Invalid Entity!");
 		}
 
 		return true;

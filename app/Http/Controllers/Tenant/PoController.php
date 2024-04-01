@@ -568,8 +568,9 @@ class PoController extends Controller
 
 		//  Check and book Budget
 		$retcode = PoBudget::poBudgetBook($po->id);
-		Log::debug("tenant.po.submit  retcode = ".$retcode );
+		Log::debug("tenant.po.submit retcode = ".$retcode );
 
+		// TODO use db table
 		switch ($retcode) {
 			case 'E001':
 				return redirect()->back()->with('error', config('akk.MSG_E001'));
@@ -588,12 +589,15 @@ class PoController extends Controller
 		}
 
 		//  Submit for approval
+		Log::debug("tenant.po.submit creating new workflow for po_id=".$po->id);
 		$wf_id = Workflow::submitWf(EntityEnum::PO->value, $po->id);
 		if ($wf_id == 0) {
+			Log::error("tenant.po.submit Error creating new workflow!");
 			return redirect()->route('pos.index')->with('error', 'Workflow can not be created! Failed to Submit.');
 		}
 
 		//Update back po WF id and status
+		Log::debug("tenant.po.submit updating back po wf_id and status for po_id=".$po->id);
 		$po->wf_id = $wf_id;
 		$po->auth_status = AuthStatusEnum::INPROCESS->value;
 		$po->submission_date = Carbon::now();
@@ -618,7 +622,7 @@ class PoController extends Controller
 			Log::debug("tenant.po.submit  next_approver_id not found!");
 		}
 
-		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Order submitted for approval successfully.');
+		return redirect()->route('pos.show', $po->id)->with('success', 'Workflow #'.$wf_id.' created. Purchase Order submitted for approval successfully.');
 	}
 
 	public function copy(Po $po)
@@ -661,8 +665,8 @@ class PoController extends Controller
 		$po_id					= $po->id;
 
 		// copy lines into prls
-		$sql= "INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, closure_status ) 
-		SELECT ".$po->id.",line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, '".ClosureStatusEnum::OPEN->value."'  
+		$sql= "INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, closure_status ) 
+		SELECT ".$po->id.",line_num, item_description, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, '".ClosureStatusEnum::OPEN->value."'  
 		FROM pols WHERE 
 		po_id= ".$sourcePo->id." ;";
 		DB::INSERT($sql);

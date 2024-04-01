@@ -61,7 +61,10 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		$dbu->article_id	= $this->article_id;
 		$dbu->event			= $this->event;
 
-		Log::debug('jobs.RecordDeptBudgetUsage.handel fc_amount='.$this->fc_amount);
+		Log::debug('jobs.RecordDeptBudgetUsage.handle entity='.$this->entity);
+		Log::debug('jobs.RecordDeptBudgetUsage.handle article_id='.$this->article_id);
+		Log::debug('jobs.RecordDeptBudgetUsage.handle event='.$this->event);
+		Log::debug('jobs.RecordDeptBudgetUsage.handle fc_amount='.$this->fc_amount);
 		
 		switch ($this->entity) {
 			case EntityEnum::PR->value:

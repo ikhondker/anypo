@@ -38,6 +38,7 @@
 								<th>GRN#</th>
 								<th>Date</th>
 								<th>PO#</th>
+								<th>LINE#</th>
 								<th>Item</th>
 								<th>Qty</th>
 								<th>Receiver</th>
@@ -53,7 +54,8 @@
 								<td><a class="text-info" href="{{ route('receipts.show',$receipt->id) }}">{{ $receipt->id }}</a></td>
 								<td>{{ $receipt->receive_date }}</td>
 								<td><x-tenant.common.link-po id="{{ $receipt->pol->po_id }}"/></td>
-								<td>{{ $receipt->pol->summary }}</td>
+								<td>{{ $receipt->pol->line_num }}</td>
+								<td>{{ $receipt->pol->item_description }}</td>
 								<td>{{ $receipt->qty }}</td>
 								<td>{{ $receipt->receiver->name }}</td>
 								<td>{{ $receipt->warehouse->name }}</td>

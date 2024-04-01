@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('title','View Invoice')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts TODO</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li>
-	<li class="breadcrumb-item active">Receipt</li>
+	<li class="breadcrumb-item"><a href="{{ route('invoices.index') }}">Invoices</a></li>
+	<li class="breadcrumb-item active">Invoice #{{ $invoice->id}}</li>
 @endsection
 @section('content')
 
@@ -38,7 +37,9 @@
 							<span class="h6 text-secondary">PO #:</span>
 						</div>
 						<div class="col-sm-9">
-							{{ "#". $invoice->po_id. " - ". $invoice->po->summary }}
+							<a class="text-info" href="{{ route('pos.show',$invoice->po_id) }}">
+								{{ "#". $invoice->po_id. " - ". $invoice->po->summary }}
+							</a>
 						</div>
 					</div>
 					<x-tenant.show.my-text		value="{{ $invoice->supplier->name }}" label="Supplier"/>

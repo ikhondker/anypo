@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('title','Edit Invoice')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts TODO</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li>
-	<li class="breadcrumb-item active">Receipt</li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$invoice->po_id) }}">PO #{{ $invoice->po_id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.invoice', $invoice->po_id) }}">PO Invoices</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('invoices.show', $invoice->id) }}">Invoice #{{ $invoice->invoice_no }}</a></li>
+	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
 @section('content')
@@ -16,7 +17,6 @@
 			<x-tenant.buttons.header.lists object="Invoice"/>
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
 			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}" show="true"/>
-		
 		@endslot
 	</x-tenant.page-header>
 

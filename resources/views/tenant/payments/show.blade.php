@@ -1,10 +1,13 @@
 @extends('layouts.app')
 @section('title','View Payment')
+
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts TODO</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li>
-	<li class="breadcrumb-item active">Payments</li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$payment->invoice->po_id) }}">PO #{{ $payment->invoice->po_id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.invoice', $payment->invoice->po_id) }}">PO Invoices</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('invoices.show', $payment->invoice->id) }}">Invoice #{{ $payment->invoice->invoice_no }}</a></li>
+	<li class="breadcrumb-item active">Pay #{{ $payment->id }}</li>
 @endsection
+
 @section('content')
 
 	<x-tenant.page-header>
@@ -35,11 +38,24 @@
 							<span class="h6 text-secondary">PO #:</span>
 						</div>
 						<div class="col-sm-9">
-							{{ "#". $payment->invoice->po_id. " - ". $payment->invoice->po->summary }}
+							<a class="text-info" href="{{ route('pos.show',$payment->invoice->po_id) }}">
+								{{ "#". $payment->invoice->po_id. " - ". $payment->invoice->po->summary }}
+							</a>
 						</div>
 					</div>
 					<x-tenant.show.my-text		value="{{ $payment->invoice->supplier->name }}" label="Supplier"/>
-					<x-tenant.show.my-text		value="{{ $payment->invoice->invoice_no }}" label="Invoice #"/>	
+					
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">Invoice #:</span>
+						</div>
+						<div class="col-sm-9">
+							<a class="text-info" href="{{ route('invoices.show',$payment->invoice_id) }}">
+								{{ $payment->invoice->invoice_no }}
+							</a>
+						</div>
+					</div>
+					<x-tenant.show.my-amount-currency	value="{{ $payment->invoice->amount }}" currency="{{ $payment->currency }}" label="Invoice Amount"/>
 					<x-tenant.show.my-date		value="{{ $payment->pay_date }}"/>
 					<x-tenant.show.my-text		value="{{ $payment->bank_account->ac_name }}" label="Bank Ac"/>
 					<x-tenant.show.my-text		value="{{ $payment->cheque_no }}" label="Ref/Cheque#"/>

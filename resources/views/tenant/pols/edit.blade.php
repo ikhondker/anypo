@@ -2,8 +2,8 @@
 @section('title','Edit Purchase Order Line')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">{{ $po->id }}</a></li>
-	<li class="breadcrumb-item active">Edit PO Line</li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO#{{ $po->id }}</a></li>
+	<li class="breadcrumb-item active">Edit PO Line # {{ $pol->line_num }}</li>
 @endsection
 @section('content')
 

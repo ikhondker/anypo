@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('title','View Purchase Order Lines')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$pol->po_id) }}">PO #{{ $pol->po_id }}</a></li>
+	<li class="breadcrumb-item active">Line #{{ $pol->line_num }}</li>
+@endsection
+
+
 @section('content')
 
 	<x-tenant.page-header>

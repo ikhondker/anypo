@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','Purchase Orders')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">'Purchase Orders</li>
+	<li class="breadcrumb-item active">Purchase Orders</li>
 @endsection
 @section('content')
 

@@ -119,7 +119,7 @@ class PrBudget
 			Log::debug("tenant.helper.PrBudget.poBudgetBook AFTER project->amount_po_booked=".$project->amount_pr_booked );
 
 			// run job to Sync Budget
-			RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::BOOK->value,$pr->fc_amount);
+			RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::BOOK->value, $pr->fc_amount);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 		}
 		return 'E000';
@@ -150,7 +150,7 @@ class PrBudget
 		$supplier->save();
 
 		// run job to Sync Budget
-		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, $event,$pr->fc_amount);
+		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, $event, $pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 		Log::debug("PrBudget.prBudgetBookReject Inside");
