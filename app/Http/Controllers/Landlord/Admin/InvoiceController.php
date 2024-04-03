@@ -223,13 +223,13 @@ class InvoiceController extends Controller
 		$checkout->product_name		= $product->name;
 		$checkout->tax				= $product->tax;
 		$checkout->vat				= $product->vat;
-		$checkout->price			= $price;						// < ===============
-		$checkout->mnth				= $period;						// < ===============
+		$checkout->price			= $price;									// < ===============
+		$checkout->mnth				= $period;									// < ===============
 		$checkout->user				= $product->user;
 		$checkout->gb				= $product->gb;
 
-		$checkout->start_date		= now();
-		$checkout->end_date			= now()->addMonth($period);		// < ===============
+		$checkout->start_date		= $account->end_date;						// < ===============
+		$checkout->end_date			= $account->end_date->addMonth($period);	// < ===============
 
 		$checkout->status_code		= LandlordCheckoutStatusEnum::DRAFT->value;
 		$checkout->ip				= '127.0.0.1';
