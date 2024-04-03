@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Enum\LandlordInvoiceTypeEnum;
 use App\Enum\LandlordCheckoutStatusEnum;
 
 return new class extends Migration
@@ -16,7 +17,9 @@ return new class extends Migration
 		Schema::create('checkouts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->dateTime('checkout_date')->useCurrent();
-			$table->boolean('addon')->default(false); 
+			/** ENUM */
+			$table->string('invoice_type')->default(LandlordInvoiceTypeEnum::CHECKOUT->value);
+			/** end ENUM */
 			$table->string('session_id');
 			$table->string('site');
 			$table->string('email');

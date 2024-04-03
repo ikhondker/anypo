@@ -5,18 +5,7 @@
 @section('content')
 	<!-- Card -->
 	<div class="card">
-			<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-				<h5 class="card-header-title">View Invoice #{{ $invoice->invoice_no }}</h5>
-				@if ($invoice->status_code == App\Enum\LandlordInvoiceStatusEnum::DUE->value)
-					<form action="{{ url('/payment') }}" method="POST" class="needs-validation">
-						<input type="hidden" value="{{ csrf_token() }}" name="_token" />
-						<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-						<button class="btn btn-primary btn-sm" type="submit">
-							<i class="bi bi-plus-square me-1"></i>Pay Invoice (Hosted)
-						</button>
-					</form>
-				@endif
-			</div>
+			
 
 			<!-- Body -->
 			<div class="card-body">

@@ -21,8 +21,8 @@
 			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
 				<thead class="thead-light">
 					<tr>
-						<th>Name</th>
-						<th>Date</th>
+						<th>Invoice #</th>
+						<th>Invoice Date</th>
 						<th>Type</th>
 						<th>Amount</th>
 						<th>Status</th>
@@ -48,9 +48,8 @@
 												{{-- {{ Str::limit($invoice->summary, 20) }} --}}
 											</h6>
 										</a>
-										<small
-											class="d-block">{{ date('d-M-y', strtotime($invoice->from_date)) . ' to ' . date('d-M-y', strtotime($invoice->to_date)) }}
-											Account: {{ $invoice->account_id }}</small>
+										<small class="d-block">Account: #{{ $invoice->account_id }} : {{ $invoice->account->name }}</small>
+										<small class="d-block">{{ date('d-M-y', strtotime($invoice->from_date)) . ' to ' . date('d-M-y', strtotime($invoice->to_date)) }}</small>
 									</div>
 								</div>
 							</td>

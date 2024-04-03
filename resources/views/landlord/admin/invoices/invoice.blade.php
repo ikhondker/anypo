@@ -33,8 +33,8 @@
 								@endif
 							</div>
 							<div class="mb-3">
-								<h3>Invoice #</h3>
-								<span class="d-block">{{ $invoice->invoice_no }}</span>
+								<h3>Invoice #{{ $invoice->invoice_no }}</h3>
+								{{-- <span class="d-block">{{ $invoice->invoice_no }}</span> --}}
 							</div>
 							<address class="text-dark">
 								{{ $setup->address1 }}<br>
@@ -91,7 +91,7 @@
 								<tr>
 									<th>{{ $invoice->summary }}</th>
 									<td>1</td>
-									<td>{{ number_format($invoice->amount,2) }}</td>
+									<td>${{ number_format($invoice->amount,2) }}</td>
 									<td class="table-text-end">${{ number_format($invoice->amount,2) }}</td>
 								</tr>
 

@@ -109,16 +109,16 @@ class CreateTenant implements ShouldQueue
 		$user = User::where('id', $user_id)->first();
 		$user->account_id	= $account_id;
 		$user->save();
-		Log::debug('Jobs.Landlord.CreateTenant User account_id update uid=' . $user->id);
+		Log::debug('Jobs.Landlord.CreateTenant User account_id update user_id=' . $user->id);
 		LandlordEventLog::event('user', $user->id, 'update', $account_id);
 		
 		// create service	
-		Log::debug('Jobs.Landlord.CreateTenant 3. Calling createCheckoutService');
-		$service_id = bo::createCheckoutService($this->checkout_id);
+		Log::debug('Jobs.Landlord.CreateTenant 3. Calling createServiceForCheckout');
+		$service_id = bo::createServiceForCheckout($this->checkout_id);
 
 		// generate first invoice for this account and notify
-		Log::debug('Jobs.Landlord.CreateTenant 4. Calling createCheckoutInvoice');
-		$invoice_id = bo::createCheckoutInvoice($this->checkout_id);
+		Log::debug('Jobs.Landlord.CreateTenant 4. Calling createInvoiceForCheckout');
+		$invoice_id = bo::createInvoiceForCheckout($this->checkout_id);
 		$checkout->invoice_id	= $invoice_id;
 		$checkout->save();
 
@@ -292,7 +292,7 @@ class CreateTenant implements ShouldQueue
 		$account->save();
 
 		//$account_id		= $account->id;
-		Log::debug('Jobs.Landlord.CreateTenant.createCheckoutAccount Account Created id=' . $account->id);
+		Log::debug('Jobs.Landlord.CreateTenant.createCheckoutAccount account created account_id=' . $account->id);
 		// Write event log
 		LandlordEventLog::event('account', $account->id, 'create');
 
@@ -340,7 +340,7 @@ class CreateTenant implements ShouldQueue
 		$tenant = Tenant::find($tenant_id);
 
 		$tenant->run(function($tenant) use ($account_name, $email, $random_password){
-			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant id =' . $tenant->id);
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb tenant_id =' . $tenant->id);
 
 			// create first and admin user in newly created tenant
 			$user = User::create([

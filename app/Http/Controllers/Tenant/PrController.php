@@ -36,6 +36,7 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 
 use App\Models\Tenant\Admin\Setup;
+use App\Models\Tenant\Manage\CustomError;
 use App\Models\Tenant\Admin\Attachment;
 
 use App\Models\Tenant\Manage\Status;
@@ -520,26 +521,21 @@ class PrController extends Controller
 
 		//  Check and book Dept Budget
 		$retcode = PrBudget::prBudgetBook($pr->id);
-
-		// TODO use db table
-		//Log::debug("tenant.pr.submit retcode = ".$retcode );
-		switch ($retcode) {
-			case 'E001':
-				return redirect()->back()->with('error', config('akk.MSG_E001'));
-				break;
-			case 'E002':
-				return redirect()->back()->with('error', config('akk.MSG_E002'));
-				break;
-			case 'E003':
-				return redirect()->back()->with('error', config('akk.MSG_E003'));
-				break;
-			case 'E999':
-				return redirect()->back()->with('error', config('akk.MSG_E999')) ;
-				break;
-			default:
-				Log::debug('tenant.po.submit prBudgetBook completed successfully.');
-				// Success
+		if ( $retcode <> '' ){
+			try {
+				$customError = CustomError::where('code', $retcode)->firstOrFail();
+				Log::warning("tenant.prs.submit Error during Submission error_code = ". $retcode);
+				return redirect()->back()->with('error', $customError->message);
+			} catch (ModelNotFoundException $exception) {
+				// Error code not found!
+				Log::Error("tenant.prs.submit ModelNotFoundException. Error code not found error_code = ". $retcode);
+				return redirect()->back()->with('error', 'Error-E000');
+			}
+		} else {
+			// Submission Success
+			Log::warning("tenant.prs.submit Submission okay for pr_id= ". $pr->id);
 		}
+		
 
 		//  Submit for approval
 		$wf_id = Workflow::submitWf(EntityEnum::PR->value, $pr->id);

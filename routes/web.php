@@ -185,8 +185,9 @@ Route::post('/join-mail-list', [HomeController::class, 'joinMailList'])->name('h
 Route::post('/checkout-stripe', [HomeController::class, 'checkoutStripe'])->name('checkout-stripe');
 Route::post('/payment-stripe', [HomeController::class, 'paymentStripe'])->name('payment-stripe');
 Route::get('/success', [HomeController::class, 'success'])->name('checkout.success');
-Route::get('/success-addon', [HomeController::class, 'successAddon'])->name('checkout.success-addon');
 Route::get('/success-payment', [HomeController::class, 'successPayment'])->name('checkout.success-payment');
+Route::get('/success-addon', [HomeController::class, 'successAddon'])->name('checkout.success-addon');
+Route::get('/success-advance', [HomeController::class, 'successAdvance'])->name('checkout.success-advance');
 
 //Route::get('/test11', [HomeController::class, 'success'])->name('checkout.test11');
 Route::get('/cancel', [HomeController::class, 'cancel'])->name('checkout.cancel');

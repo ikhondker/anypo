@@ -13,14 +13,15 @@ use App\Models\User;
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Manage\Status;
 
-use App\Enum\LandlordCheckoutStatusEnum;
+use App\Enum\LandlordInvoiceTypeEnum;
 
 class Checkout extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'checkout_date', 'site', 'email', 'account_name', 'session_id', 'existing_user', 'owner_id', 'account_id', 'invoice_id', 'start_date', 'end_date', 'product_id', 'product_name', 'tax', 'vat', 'price', 'mnth', 'user', 'gb', 'status_code', 'ip', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'updated_by', 'updated_at',
+		'checkout_date', 'invoice_type', 'session_id', 'site', 'email', 'account_name', 'existing_user', 'owner_id', 'account_id', 'invoice_id', 'start_date', 'end_date', 'product_id', 'product_name', 'tax', 'vat', 'price', 'mnth', 'user', 'gb', 'status_code', 'ip', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'updated_by', 'updated_at',
+
 	];
 
 	/**
@@ -34,6 +35,7 @@ class Checkout extends Model
 		'end_date'		=> 'date',
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
+		'invoice_type'	=> LandlordInvoiceTypeEnum::class,
 		// DO NOT CAST. eager loading shows error
 		//'status_code'	=> LandlordCheckoutStatusEnum::class,
 	];

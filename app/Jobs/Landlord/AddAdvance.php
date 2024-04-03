@@ -21,7 +21,7 @@ use App\Helpers\LandlordEventLog;
 
 use Illuminate\Support\Facades\Log;
 
-class AddAddon implements ShouldQueue
+class AddAdvance implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 	public $timeout = 1200;
@@ -46,17 +46,13 @@ class AddAddon implements ShouldQueue
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
 		$checkout->status_code = LandlordCheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
-		Log::debug('Jobs.Landlord.AddAddon 0. Processing Site='.$checkout->site);
-
-		// create add service	
-		Log::debug('Jobs.Landlord.AddAddon 1. Calling createServiceForCheckout');
-		$service_id = bo::createServiceForCheckout($this->checkout_id);
+		Log::debug('Jobs.Landlord.AddAdvance 0. Processing Site='.$checkout->site);
 
 		// generate first invoice for this account and notify
-		Log::debug('Jobs.Landlord.AddAddon 2. Calling createInvoiceForCheckout');
+		Log::debug('Jobs.Landlord.AddAdvance 1. Calling createInvoiceForCheckout');
 		$invoice_id = bo::createInvoiceForCheckout($this->checkout_id);
 		if ($invoice_id == 0){
-			Log::error('Jobs.Landlord.AddAddon.createCheckoutInvoice ERROR  Invoice Could not generated!');
+			Log::error('Jobs.Landlord.AddAdvance.createCheckoutInvoice ERROR. Invoice Could not generated!');
 			exit;
 		} else {
 			$checkout->invoice_id	= $invoice_id;
@@ -64,32 +60,16 @@ class AddAddon implements ShouldQueue
 		}
 
 		// pay this first invoice and notify
-		//$payment_id = self::payInvoice($invoice_id);
-		Log::debug('Jobs.Landlord.AddAddon 3. Calling payCheckoutInvoice');
+		Log::debug('Jobs.Landlord.AddAdvance 3. Calling payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
+		// TODO check if payment is successful
 
-		// update product addon sold_qty column
-		$addon			= Product::where('id', $checkout->product_id )->first();
-		$addon->sold_qty	= $addon->sold_qty+1;
-		$addon->save();
-
-		// update account with user+GB+service name
-		$account			= Account::where('id', $checkout->account_id)->first();
-		$account->user		= $account->user + $addon->user;
-		$account->gb		= $account->gb + $addon->gb;
-		$account->price		= $account->price + $addon->price;
-		$account->save();
-		Log::channel('bo')->info('Jobs.Landlord.AddAddon Account qty updated for account_id=' .  $account->id);
-
-		// create addon as service	 TODO
-		//Log::debug('Jobs.Landlord.AddAddon 4. Calling createServiceForCheckout');
-		//$service_id = bo::createServiceForCheckout($checkout->id);
-
+		//extend account validity and end_date
+		$account_id= bo::extendAccountValidity($invoice_id);
+		
 		// mark checkout as complete
 		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
-		Log::debug('Jobs.Landlord.AddAddon 4. Done');
-
-		// TODO Where do we add new addon service
+		Log::debug('Jobs.Landlord.AddAdvance 4. Done');
 	}
 }

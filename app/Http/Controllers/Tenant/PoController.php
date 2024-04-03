@@ -36,6 +36,7 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 
 use App\Models\Tenant\Admin\Setup;
+use App\Models\Tenant\Manage\CustomError;
 use App\Models\Tenant\Admin\Attachment;
 
 use App\Models\Tenant\Lookup\Dept;
@@ -568,24 +569,19 @@ class PoController extends Controller
 
 		//  Check and book Budget
 		$retcode = PoBudget::poBudgetBook($po->id);
-		Log::debug("tenant.po.submit retcode = ".$retcode );
-
-		// TODO use db table
-		switch ($retcode) {
-			case 'E001':
-				return redirect()->back()->with('error', config('akk.MSG_E001'));
-				break;
-			case 'E002':
-				return redirect()->back()->with('error', config('akk.MSG_E002'));
-				break;
-			case 'E003':
-				return redirect()->back()->with('error', config('akk.MSG_E003'));
-				break;
-			case 'E999':
-				return redirect()->back()->with('error', config('akk.MSG_E999')) ;
-				break;
-			default:
-				// Success
+		if ( $retcode <> '' ){
+			try {
+				$customError = CustomError::where('code', $retcode)->firstOrFail();
+				Log::warning("tenant.prs.submit Error during Submission error_code = ". $retcode);
+				return redirect()->back()->with('error', $customError->message);
+			} catch (ModelNotFoundException $exception) {
+				// Error code not found!
+				Log::Error("tenant.prs.submit ModelNotFoundException. Error code not found error_code = ". $retcode);
+				return redirect()->back()->with('error', 'Error-E000');
+			}
+		} else {
+			// Submission Success
+			Log::warning("tenant.prs.submit Submission okay for pr_id= ". $po->id);
 		}
 
 		//  Submit for approval

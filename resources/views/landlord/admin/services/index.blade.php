@@ -40,7 +40,7 @@
 										<a class="d-inline-block link-dark" href="#">
 											<h6 class="text-hover-primary mb-0">{{ $service->name }}</h6>
 										</a>
-										<small class="d-block"> Account #{{ $service->account_id }}  to {{ $service->end_date }}</small>
+										<small class="d-block"> Account #{{ $service->account_id }} : {{ $service->account->name }}  </small>
 									</div>
 								</div>
 							</td>

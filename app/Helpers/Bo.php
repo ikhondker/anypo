@@ -20,11 +20,14 @@
 
 namespace App\Helpers;
 
+use App\Models\User;
+use App\Models\Landlord\Account;
+
 use App\Models\Landlord\Admin\Invoice;
-use App\Models\Landlord\Manage\Checkout;
 use App\Models\Landlord\Admin\Service;
 use App\Models\Landlord\Admin\Payment;
-use App\Models\User;
+
+use App\Models\Landlord\Manage\Checkout;
 
 // Enums
 use App\Enum\LandlordInvoiceTypeEnum;
@@ -63,7 +66,7 @@ class Bo
 		return $invoice_no;
 	}
 
-	public static function createCheckoutService($checkout_id = 0)
+	public static function createServiceForCheckout($checkout_id = 0)
 	{
 
 		$checkout		= Checkout::where('id', $checkout_id)->first();
@@ -78,7 +81,14 @@ class Bo
 
 		$service->product_id	= $checkout->product_id;
 		$service->name			= $checkout->product_name;
-		$service->addon			= $checkout->addon;
+
+		if ($checkout->invoice_type == LandlordInvoiceTypeEnum::ADDON->value ){
+			$service->addon			= true;
+		} else {
+			$service->addon			= false;
+		}
+		// $service->addon			= $checkout->addon;
+		// $service->addon			= false;	// Check
 
 		$service->account_id	= $checkout->account_id;
 		$service->owner_id		= $checkout->owner_id;
@@ -98,7 +108,85 @@ class Bo
 		return $service->id;
 	}
 
-	public static function createCheckoutInvoice($checkout_id = 0)
+	public static function createInvoiceForCheckout($checkout_id = 0)
+	{
+		$checkout		= Checkout::where('id', $checkout_id)->first();
+
+		Log::debug('Helpers.bo.createCheckoutInvoice Generating Invoice for checkout_id= ' . $checkout_id );
+		Log::debug('Helpers.bo.createCheckoutInvoice Generating Invoice for account_id= ' . $checkout->account_id );
+
+		if ($checkout->account_id == 0) {
+			//return redirect()->back()->with(['error' => 'Could you find account.']);
+			return 0;
+		}
+		
+		//$account = Account::where('id', $account_id)->first();
+
+		// create new Invoice
+		// logic: create invoice from the next date, after current billed date
+		$invoice				= new Invoice();
+
+		// get unique invoice_no
+		$invoice->invoice_no	= Bo::getInvoiceNo();
+
+		$invoice->invoice_date = now();
+		//Log::channel('bo')->info('Account id='. $account_id.' last_bill_from_date '.$account->last_bill_from_date);
+
+		// This is the first bill for initial purchase
+		$invoice->invoice_type	= $checkout->invoice_type;
+
+		// if ($checkout->addon){
+		// 	$invoice->invoice_type	= LandlordInvoiceTypeEnum::ADDON->value;
+		// } else {
+		// 	$invoice->invoice_type	= LandlordInvoiceTypeEnum::CHECKOUT->value;
+		// }
+
+		// invoice_type specific treatment
+		switch ($invoice->invoice_type) {
+			case LandlordInvoiceTypeEnum::CHECKOUT->value:
+				break;
+			case LandlordInvoiceTypeEnum::SUBSCRIPTION->value:
+				break;
+			case LandlordInvoiceTypeEnum::ADDON->value:
+				break;
+			case LandlordInvoiceTypeEnum::ADVANCE->value:
+				break;
+		}		
+		
+		$invoice->from_date		= $checkout->start_date;
+		$invoice->to_date		= $checkout->end_date;
+		Log::channel('bo')->info('Helpers.bo.createCheckoutInvoice Account id=' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
+		//Log::channel('bo')->info('password='.$random_password);
+
+		$invoice->due_date		= $checkout->end_date;
+		$invoice->summary		= 'Invoice for ' . $checkout->product_name . ' for site' . $checkout->site;
+		$invoice->price			= $checkout->price;
+		$invoice->subtotal		= $checkout->price;
+		$invoice->amount		= $checkout->price; 
+		$invoice->account_id	= $checkout->account_id;
+		$invoice->owner_id		= $checkout->owner_id;
+
+		// create invoice
+		$invoice->currency		= 'USD';
+		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
+		$invoice->save();
+
+		Log::debug('Helpers.bo.createCheckoutInvoice Invoice Generated id=' . $invoice->id);
+		LandlordEventLog::event('invoice', $invoice->id, 'create');
+
+		// post invoice creation update
+		$user		= User::where('id', $checkout->owner_id)->first();
+
+		// Invoice Created Notification
+		$user->notify(new InvoiceCreated($user, $invoice));
+
+		//Log::debug('Account Created id='. $account->id);
+		//return redirect()->route('processes.index')->with('success','Invoice Generation Process completed successfully.');
+		return $invoice->id;
+	}	
+
+
+	public static function old_createCheckoutInvoice($checkout_id = 0)
 	{
 		$checkout		= Checkout::where('id', $checkout_id)->first();
 
@@ -160,13 +248,28 @@ class Bo
 		return $invoice->id;
 	}	
 
+	public static function extendAccountValidity($invoice_id = 0)
+	{
+		Log::debug('Helpers.bo.extendAccountValidity extending validity by invoice_id = ' . $invoice_id);
+		
+		$invoice = Invoice::where('id', $invoice_id)->first();
+		$account = Account::where('id', $invoice->account_id)->first();
+		Log::debug('Helpers.bo.extendAccountValidity extending validity for account_id = ' . $account->id);
+
+		$account->next_bill_generated	= false;
+		$account->next_invoice_no		= 0;
+		$account->end_date				= $invoice->to_date;	// << ===============
+		$account->save();
+		Log::debug('Helpers.bo.extendAccountValidity Account validity extended till '. $invoice->to_date);
+		return $account->id;
+	}
 
 	public static function payCheckoutInvoice($invoice_id = 0)
 	{
 
 		$invoice = Invoice::where('id', $invoice_id)->first();
-		Log::debug('Helpers.bo.payCheckoutInvoice Invoice id=' . $invoice->id);
-		Log::debug('Helpers.bo.payCheckoutInvoice Invoice account_id=' . $invoice->account_id);
+		Log::debug('Helpers.bo.payCheckoutInvoice Paying invoice_id = ' . $invoice->id);
+		Log::debug('Helpers.bo.payCheckoutInvoice Invoice for account_id = ' . $invoice->account_id);
 		// summary pay_date invoice_id account_id owner_id payment_method_id amount cheque_no payment_token reference_id notes status ip created_by created_at updated_by updated_at
 
 		// create payment
@@ -182,8 +285,8 @@ class Bo
 		//$payment->ip				= $request->ip(); // ERROR
 		$payment->save();
 
-		Log::debug('Jobs.Landlord.CreateTenant.payCheckoutInvoice payment account id =' . $payment->account_id);
-		Log::debug('Jobs.Landlord.CreateTenant.payCheckoutInvoice Invoice Payment ID=' . $payment->id);
+		Log::debug('Jobs.Landlord.CreateTenant.payCheckoutInvoice payment account_id = ' . $payment->account_id);
+		Log::debug('Jobs.Landlord.CreateTenant.payCheckoutInvoice Invoice payment_id = ' . $payment->id);
 		LandlordEventLog::event('payment', $payment->id, 'create');
 
 		// update paid amount in invoice as paid

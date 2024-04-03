@@ -134,7 +134,7 @@ class PoBudget
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 		}
 
-		return 'E000';
+		return '';
 	}
 
 	// Called from wfl->reject and po->cancel
@@ -168,9 +168,7 @@ class PoBudget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, $event, $po->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-
-
-		return 'E000';
+		return '';
 	}
 
 	public static function poBudgetApprove($po_id)
@@ -210,7 +208,7 @@ class PoBudget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::APPROVE->value,$po->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-		return 'E000';
+		return '';
 	}
 	
 
@@ -242,7 +240,7 @@ class PoBudget
 
 		Log::debug("PoBudget.poBudgetApproveCancel Inside");
 
-		return 'E000';
+		return '';
 	}
 
 }

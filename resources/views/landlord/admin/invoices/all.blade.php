@@ -19,8 +19,8 @@
 			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
 				<thead class="thead-light">
 					<tr>
-						<th>Name</th>
-						<th>Date</th>
+						<th>Invoice #</th>
+						<th>Invoice Date</th>
 						<th>Type</th>
 						<th>Amount</th>
 						<th>Status</th>

@@ -21,7 +21,7 @@ class CustomErrorSeeder extends Seeder
 			[
 				'code'   	=> 'E000',
 				'entity'	=> EntityEnum::CORE->value,
-				'message'	=> 'No Error. Can proceed.',
+				'message'	=> 'Un-handled Error!',
 			],
 			[
 				'code'   	=> 'E999',

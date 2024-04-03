@@ -23,5 +23,6 @@ enum LandlordInvoiceTypeEnum:string{
 	case CHECKOUT		='checkout';
 	case SUBSCRIPTION	='subscription';
 	case ADDON			='addon';
+	case ADVANCE		='advance';
 	case ARCHIVE		='archive';
 }

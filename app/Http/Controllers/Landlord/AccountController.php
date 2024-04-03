@@ -45,6 +45,7 @@ use App\Models\Landlord\Admin\Service;
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
 //use App\Enum\UserRoleEnum;
+use App\Enum\LandlordInvoiceTypeEnum;
 use App\Enum\LandlordCheckoutStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
@@ -381,7 +382,7 @@ class AccountController extends Controller
 
 		// create checkout row
 		$checkout					= new Checkout;
-		$checkout->addon			= true;
+		$checkout->invoice_type		= LandlordInvoiceTypeEnum::ADDON->value;
 		$checkout->session_id		= $session->id;
 		$checkout->checkout_date	= date('Y-m-d H:i:s');
 

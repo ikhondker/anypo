@@ -57,6 +57,7 @@ use App\Notifications\Landlord\Contacted;
 # 5. Jobs
 use App\Jobs\Landlord\CreateTenant;
 use App\Jobs\Landlord\AddAddon;
+use App\Jobs\Landlord\AddAdvance;
 use App\Jobs\Landlord\SubscriptionInvoicePaid;
 # 6. Mails
 use Mail;
@@ -393,7 +394,42 @@ class HomeController extends Controller
 				Log::debug('landlord.home.successAddon checkout_id='. $checkout->id);
 				AddAddon::dispatch($checkout->id);
 			}
-			return view('landlord.pages.info')->with('title','Thank you for purchasing add-on!')
+			return view('landlord.pages.info')->with('title','Thank you for purchasing Add-on!')
+				->with('msg','We have received your payment. Thanks again.');
+
+		} catch (\Exception $e) {
+			throw new NotFoundHttpException();
+		}
+
+	}
+
+	// landed here for successful addon payment
+	public function successAdvance(Request $request)
+	{
+	
+		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+		$sessionId = $request->get('session_id');
+
+		try {
+		
+			$session = \Stripe\Checkout\Session::retrieve($sessionId);
+
+			if (!$session) {
+				throw new NotFoundHttpException;
+			}
+
+			$trx_type	=  $session->metadata->trx_type;
+			Log::debug('landlord.home.successAdvance metadata trx_type='. $session->metadata->trx_type);
+
+			$checkout = Checkout::where('session_id', $session->id)->first();
+			if (!$checkout) {
+				throw new NotFoundHttpException();
+			}
+			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
+				Log::debug('landlord.home.successAdvance checkout_id='. $checkout->id);
+				AddAdvance::dispatch($checkout->id);
+			}
+			return view('landlord.pages.info')->with('title','Thank you for paying advance invoices!')
 				->with('msg','We have received your payment. Thanks again.');
 
 		} catch (\Exception $e) {

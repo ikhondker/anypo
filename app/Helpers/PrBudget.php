@@ -122,7 +122,7 @@ class PrBudget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::BOOK->value, $pr->fc_amount);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 		}
-		return 'E000';
+		return '';
 	}
 
 	// Called from wfl->reject and pr->cancel
@@ -155,7 +155,7 @@ class PrBudget
 
 		Log::debug("PrBudget.prBudgetBookReject Inside");
 
-		return 'E000';
+		return '';
 	}
 
 	public static function prBudgetApprove($pr_id)
@@ -193,7 +193,7 @@ class PrBudget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::APPROVE->value,$pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-		return 'E000';
+		return '';
 	}
 
 	public static function prBudgetApproveCancel($pr_id)
@@ -224,6 +224,6 @@ class PrBudget
 
 		Log::debug("PrBudget.prBudgetApproveCancel Inside");
 
-		return 'E000';
+		return '';
 	}
 }
