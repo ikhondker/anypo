@@ -116,7 +116,7 @@ class LandlordFileUpload
 		$directory 		= $entity->directory;
 
 		try {
-			//Code that may throw an Exception
+			// Code that may throw an Exception
 			// OK. Store File in Storage Private Folder. Auto create folder
 			$request->file_to_upload->storeAs('private/' . $directory . '/', $fileName);
 
@@ -135,8 +135,6 @@ class LandlordFileUpload
 			$attachment->file_type	 	= $request->file('file_to_upload')->getMimeType();
 			$attachment->file_size	 	= $request->file('file_to_upload')->getSize();
 			$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
-
-
 
 			$attachment->save();
 			$attachment_id				=$attachment->id;

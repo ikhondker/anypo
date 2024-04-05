@@ -1,16 +1,16 @@
-<!-- <a href="{{ route('notifications.destroy',$notification->id) }}" class="me-2 js.sweet-alert2" 
-	data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-	<i class="align-middle" data-feather="trash-2"></i>
-</a> -->
 
 <script type="module">
-	$('.sweet-alert2').on('click', function (e) {
+	$('.sw2-advance').on('click', function (e) {
 		e.preventDefault();
 		const url = $(this).attr('href');
+		//var entity = $(this).data("entity").toLowerCase();
+		var entity = $(this).data("entity");
+		var name = $(this).data("name");
+		var status = $(this).data("status").toLowerCase();
 
 		Swal.fire({
 			title: 'Confirmation?',
-			text: "Are you sure, you want to this?",
+			text: "Are you sure, you want to " +status +" "+ entity + " '"+ name +"'?",
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3F80EA',

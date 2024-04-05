@@ -66,7 +66,7 @@ class Billing implements ShouldQueue
 		// $diff = now()->diffInDays($model->created_at);
 		//$accounts= Account::where('bill_generated', false)->where('enable', true)->orderBy('id', 'ASC')->get();
 
-		// all account where end_date is earlier than now()-7 days
+		// all account where end_date is earlier than now()-7 dayss
 		// 			->where('end_date', '<', now()->subDays(7))
 
 		$accounts = Account::where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
@@ -79,14 +79,8 @@ class Billing implements ShouldQueue
 			// Generate invoice 5 days before expire
 			$diff = now()->diffInDays($account->end_date);
 			if ($diff <= $setup->days_gen_bill) {
-				Log::debug('Jobs.Billing.handle Generating Invoice for Account id=' . $account->id);
-				//$invoice_id = $invoice->createSubscriptionInvoice($account->id, 1);
+				Log::debug('Jobs.Billing.handle Generating Invoice for account_id=' . $account->id);
 				CreateInvoice::dispatch($account->id, 1);
-				// if ($invoice_id <> 0) {
-				// 	Log::channel('bo')->info('Account id=' . $account->id . ' Invoice#' . $invoice_id . ' generated.');
-				// } else {
-				// 	Log::channel('bo')->info('Account id=' . $account->id . ' Invoice creation failed.');
-				// }
 			} else {
 				Log::debug('Jobs.Billing.handle skipping Account id=' . $account->id. ". Days remains ". $diff );
 			}

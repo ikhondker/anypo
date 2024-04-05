@@ -33,8 +33,19 @@
 							<h6 class="card-subtitle text-muted">Edit Project detail and other information.</h6>
 						</div>
 						<div class="card-body">
-
 							
+							<div class="mb-3 col-md-6">
+								<label for="code" class="form-label">Code</label>
+								<input type="text" class="form-control @error('code') is-invalid @enderror"
+									name="code" id="code" placeholder="XXXX" maxlength="25"
+									style="text-transform: uppercase"
+									value="{{ old('code', $project->code ) }}"
+									required/>
+								@error('code')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
 							<x-tenant.edit.name :value="$project->name"/>
 							<x-tenant.edit.start-date :value="date('Y-m-d',strtotime($project->start_date))"/>
 							<x-tenant.edit.end-date :value="date('Y-m-d',strtotime($project->end_date))"/>

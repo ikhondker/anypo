@@ -30,6 +30,18 @@
 						<h6 class="card-subtitle text-muted">Create new Project and allocate budget.</h6>
 					</div>
 					<div class="card-body">
+						<div class="mb-3 col-md-6">
+							<label for="code" class="form-label">Code</label>
+							<input type="text" class="form-control @error('code') is-invalid @enderror"
+								name="code" id="code" placeholder="XXXX" maxlength="10"
+								style="text-transform: uppercase"
+								value="{{ old('code', '' ) }}"
+								required/>
+							@error('code')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+						
 						<x-tenant.create.name/>
 						<x-tenant.create.start-date/>
 						<x-tenant.create.end-date/>

@@ -64,7 +64,6 @@ class AddAddon implements ShouldQueue
 		}
 
 		// pay this first invoice and notify
-		//$payment_id = self::payInvoice($invoice_id);
 		Log::debug('Jobs.Landlord.AddAddon 3. Calling payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
 
@@ -81,15 +80,10 @@ class AddAddon implements ShouldQueue
 		$account->save();
 		Log::channel('bo')->info('Jobs.Landlord.AddAddon Account qty updated for account_id=' .  $account->id);
 
-		// create addon as service	 TODO
-		//Log::debug('Jobs.Landlord.AddAddon 4. Calling createServiceForCheckout');
-		//$service_id = bo::createServiceForCheckout($checkout->id);
-
 		// mark checkout as complete
 		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
 		Log::debug('Jobs.Landlord.AddAddon 4. Done');
 
-		// TODO Where do we add new addon service
 	}
 }

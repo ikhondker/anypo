@@ -22,8 +22,15 @@ class StoreProjectRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
+			'code'		=> 'required|max:25|alpha_dash|unique:projects,code',
 			'name'		=> 'required|min:2|max:100|unique:projects,name',
-			//'code'		=> 'min:2|max:100|unique:projects,code',
 		];
 	}
+
+	public function messages() {
+		return [
+			'code.alpha_dash'	=> 'Item code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+		];
+	}
+
 }

@@ -40,7 +40,6 @@ use DB;
 
 // called from Pr.submit and Po.submit and Dashboard.index
 // $rate = ExchangeRate::getRate($pr->currency, $setup->currency);
-// 
 
 class ExchangeRate
 {
@@ -72,32 +71,13 @@ class ExchangeRate
 		$fc_currency  = $setup->currency;
 		Log::debug("ExchangeRate.importRates fc_currency=".$fc_currency);
 
-		// check if current months import rates imported
-
-		// if ($setup->last_rate_date <> '') {
-		//     $last_rate_month    	= $setup->last_rate_date->startOfMonth();
-		// } else {
-		//     $last_rate_month    	= '';
-		// }
-		// Log::debug("last_rate_month=".$last_rate_month);
-
-		// $current_rate_month    	= Carbon::now()->startOfMonth();
-		// Log::debug("current_rate_month=".$current_rate_month);
-		// if ($last_rate_month == $current_rate_month){
-		//     // dont import . retunr
-		//     Log::debug("Rates already imported for ".$current_rate_month);
-		//     return true;
-		// }
-
-		//$rate = 0;
-
 		$apikey			= 'be73b7dba663446bb6214e87048df5e0';
 		$fc_currency	= urlencode($fc_currency);
 
 		// Note: openexchangerates always return USD as base currency
 		// https://openexchangerates.org/api/latest.json?app_id=be73b7dba663446bb6214e87048df5e0&base=USD
-		$url = 'https://openexchangerates.org/api/latest.json?app_id='.$apikey.'&base=USD';
-		$response = Http::get($url);
+		$url		= 'https://openexchangerates.org/api/latest.json?app_id='.$apikey.'&base=USD';
+		$response 	= Http::get($url);
 
 		// Exclude TOO SMALL 
 		//"BTC": 0.000033653167,
@@ -110,7 +90,7 @@ class ExchangeRate
 			// Always USD
 			// oe stand for openexchange
 			$oe_base = $json['base'];
-			Log::debug('ExchangeRate.importRates Openexchangerates Base Currency='. $oe_base);
+			Log::debug('Helpers.ExchangeRate.importRates Openexchangerates Base Currency='. $oe_base);
 
 			//get all rates data
 			$rates = $json['rates'];
@@ -163,7 +143,7 @@ class ExchangeRate
 
 			return true;
 		} else {
-			Log::warning("ExchangeRate.importRates Http::get Response ERROR. Please Try again.");
+			Log::warning("Helpers.ExchangeRate.importRates Http::get Response ERROR. Please Try again.");
 			return false;
 		}
 	}

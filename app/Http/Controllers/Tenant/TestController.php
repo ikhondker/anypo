@@ -63,12 +63,20 @@ class TestController extends Controller
 
 	public function addTodo($id, $name)
 	{
-		Log::debug("INSIDE addTODO");
+		Log::debug("INSIDE add-todo");
 	}
 
 	public function run()
 	{
 
+		Log::debug('Value of config(app.domain)=' . config('app.domain'));
+		Log::debug('Value of env(APP_DOMAIN)=' . env('APP_DOMAIN'));
+
+		Log::debug('Value of config(app.url)=' . config('app.url'));
+		Log::debug('Value of env(APP_URL)=' . env('APP_URL'));
+
+		Log::debug('Value of env(ASSET_URL)=' . env('ASSET_URL'));
+		
 		echo "Done";
 		exit;
 

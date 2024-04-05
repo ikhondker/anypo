@@ -22,8 +22,15 @@ class UpdateProjectRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
+			'code'		=> 'required|max:25|alpha_dash|unique:projects,code,'. $this->project->id,
 			'name'		=> 'required|min:2|max:100|unique:projects,name,'. $this->project->id,
-			//'code'		=> 'min:2|max:100|unique:projects,code,'. $this->project->id,
 		];
 	}
+
+	public function messages() {
+		return [
+			'code.alpha_dash'	=> 'Item code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+		];
+	}
+
 }

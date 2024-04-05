@@ -23,14 +23,14 @@ namespace App\Helpers;
 use File;
 
 use Request;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Foundation\Http\FormRequest;
+//use Illuminate\Support\Facades\Response;
+//use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 
 // Enums
-use App\Enum\UserRoleEnum;
+//use App\Enum\UserRoleEnum;
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 
@@ -51,7 +51,6 @@ class PoBudget
 	public static function poBudgetBook($po_id)
 	{
 
-
 		$po = Po::where('id', $po_id)->first();
 
 		// check if dept_budget for this year exists
@@ -65,9 +64,6 @@ class PoBudget
 		}
 
 		// check if dept_budget for this year exists
-		//Log::debug("po->dept_id=".$po->dept_id);
-		//Log::debug("po->dept_budget_id=".$po->dept_budget_id);
-
 		try {
 			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
@@ -77,7 +73,6 @@ class PoBudget
 			return 'E002';
 		}
 
-		//Log::info(print_r($dept_budget, true));
 		// only check if budget is available 
 		Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount = ". $dept_budget->amount );
 		Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount_po_booked = ". $dept_budget->amount_po_booked );
@@ -140,13 +135,12 @@ class PoBudget
 	// Called from wfl->reject and po->cancel
 	public static function poBudgetBookReverse($event, $po_id)
 	{
-
 		$po = Po::where('id', $po_id)->first();
 
 		Log::debug("Helpers.PoBudget.poBudgetBookReject event=".$event);
 		Log::debug("Helpers.PoBudget.poBudgetBookReject po_id=".$po->id);
 		
-	// reverse Po dept budget booking 
+		// reverse Po dept budget booking 
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_po_booked = $dept_budget->amount_po_booked - $po->fc_amount;
 		$dept_budget->count_po_booked = $dept_budget->count_po_booked - 1;
@@ -173,8 +167,6 @@ class PoBudget
 
 	public static function poBudgetApprove($po_id)
 	{
-
-
 		$po = Po::where('id', $po_id)->first();
 		// Po dept budget approved
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
@@ -204,7 +196,6 @@ class PoBudget
 		$supplier->save();
 
 		// run job to Sync Budget
-
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::APPROVE->value,$po->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 

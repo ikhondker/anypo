@@ -35,12 +35,8 @@ class CreateInvoice implements ShouldQueue
 	 */
 	public function __construct($account_id, $period)
 	{
-
 		$this->account_id = $account_id;
 		$this->period = $period;
-
-
-		
 	}
 
 	/**
@@ -55,7 +51,7 @@ class CreateInvoice implements ShouldQueue
 
 		// Don't create invoice if unpaid invoice exists
 		if ($account->next_bill_generated) {
-			Log::debug('jobs.landlord.CreateInvoice Unpaid invoice exists for Account id=' . $this->account_id . '. Invoice not created.');
+			Log::debug('jobs.landlord.CreateInvoice Unpaid invoice exists for account_id=' . $this->account_id . '. Invoice not created.');
 			return;
 		}
 

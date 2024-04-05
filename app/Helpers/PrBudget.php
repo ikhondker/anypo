@@ -23,14 +23,14 @@ namespace App\Helpers;
 use File;
 
 use Request;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Foundation\Http\FormRequest;
+//use Illuminate\Support\Facades\Response;
+//use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 
 // Enums
-use App\Enum\UserRoleEnum;
+//use App\Enum\UserRoleEnum;
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 
@@ -65,8 +65,6 @@ class PrBudget
 		}
 
 		// check if dept_budget for this year exists
-		//Log::debug("pr->dept_id=".$pr->dept_id);
-		//Log::debug("pr->dept_budget_id=".$pr->dept_budget_id);
 		try {
 			$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
