@@ -27,7 +27,7 @@
 					<!-- Avatar -->
 					<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
 							{{-- <img id="avatarImg" class="avatar-img" src="{{ url($_logo_dir.$account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}"> --}}
-							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3ll')->url($account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
+							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
 
 					</label>
 					<div class="d-grid d-sm-flex gap-2 ms-4">
@@ -76,7 +76,7 @@
 		<div class="d-flex justify-content-end gap-3">
 			@if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
 				<a href="{{ route('accounts.delete', $account->id) }}"
-					class="btn btn-danger btn-sm sweet-alert2-confirm-advance" data-entity="Account"
+					class="btn btn-danger btn-sm sw2-advance" data-entity="Account"
 					data-name="{{ $account->name }}"
 					data-status="DELETE" data-bs-toggle="tooltip"
 					data-bs-placement="top" title="DELETE">
@@ -96,6 +96,6 @@
 
 
 
-@include('landlord.includes.sweet-alert2-confirm-advance')
+@include('shared.includes.js.sw2-advance')
 
 @endsection

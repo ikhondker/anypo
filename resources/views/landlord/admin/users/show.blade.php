@@ -26,7 +26,7 @@
 					<div class="d-flex align-items-center">
 						<!-- Avatar -->
 						<label class="avatar avatar-xxl avatar-circle" for="avatarUploader">
-							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3la')->url($user->avatar) }}" alt="{{ $user->name }}" title="{{ $user->name }}">
+							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" title="{{ $user->name }}">
 						</label>
 						<div class="d-grid d-sm-flex gap-2 ms-4">
 

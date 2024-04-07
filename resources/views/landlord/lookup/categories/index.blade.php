@@ -52,7 +52,7 @@
 
 								<x-landlord.list.actions object="Category" :id="$category->id" />
 								<a href="{{ route('categories.destroy', $category->id) }}"
-									class="text-body sweet-alert2-confirm-advance" data-entity="Category"
+									class="text-body sw2-advance" data-entity="Category"
 									data-name="{{ $category->name }}"
 									data-status="{{ $category->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $category->enable ? 'Disable' : 'Enable' }}">
@@ -86,6 +86,6 @@
 	</div>
 	<!-- End Card -->
 
-	@include('landlord.includes.sweet-alert2-confirm-advance')
+	@include('shared.includes.js.sw2-advance')
 
 @endsection

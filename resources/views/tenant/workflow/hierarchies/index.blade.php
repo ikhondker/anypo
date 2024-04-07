@@ -51,7 +51,7 @@
 								<td><x-tenant.list.my-boolean :value="$hierarchy->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Hierarchy" :id="$hierarchy->id"/>
-									<a href="{{ route('hierarchies.destroy',$hierarchy->id) }}" class="me-2 sweet-alert2-advance"
+									<a href="{{ route('hierarchies.destroy',$hierarchy->id) }}" class="me-2 sw2-advance"
 										data-entity="Hierarchy" data-name="{{ $hierarchy->name }}" data-status="{{ ($hierarchy->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($hierarchy->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($hierarchy->enable ? 'bell-off' : 'bell') }}"></i>
@@ -77,7 +77,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.js.sweet-alert2-advance')
+	 @include('shared.includes.js.sw2-advance')
 
 @endsection
 

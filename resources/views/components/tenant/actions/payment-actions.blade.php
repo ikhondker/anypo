@@ -12,7 +12,7 @@
 
 		<div class="dropdown-divider"></div>
 
-		<a class="dropdown-item sweet-alert2-advance" href="{{ route('payments.cancel', $payment->id) }}"
+		<a class="dropdown-item sw2-advance" href="{{ route('payments.cancel', $payment->id) }}"
 			data-entity="" data-name="PO #{{ $payment->id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
 			<i class="align-middle me-1 text-danger" data-feather="x-circle"></i> Cancel Payment *</a>

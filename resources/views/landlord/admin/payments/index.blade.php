@@ -30,7 +30,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3ll')->url($payment->account->logo) }}" 
+											src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}" 
 											alt="{{ $payment->account->name }}" title="{{ $payment->account->name }}">
 									</div>
 

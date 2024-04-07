@@ -208,12 +208,12 @@ class UserController extends Controller
 			$thumbImage		= $token. $extension;
 
 			// upload uploaded image
-			$path = Storage::disk('s3la')->put($uploadedImage, file_get_contents($image));
+			$path = Storage::disk('s3l')->put('avatar/'.$uploadedImage, file_get_contents($image));
 
 			//resize to thumbnail and upload
 			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
-			$path =Storage::disk('s3la')->put($thumbImage, $image_resize->stream()->__toString());
+			$path =Storage::disk('s3l')->put('avatar/'.$thumbImage, $image_resize->stream()->__toString());
 
 			$request->merge(['avatar' => $thumbImage ]);
 		}

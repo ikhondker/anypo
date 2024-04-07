@@ -53,7 +53,7 @@
 								<td class="table-action">
 									<x-tenant.list.actions object="Warehouse" :id="$warehouse->id"/>
 
-									<a href="{{ route('warehouses.destroy',$warehouse->id) }}" class="me-2 sweet-alert2-advance"
+									<a href="{{ route('warehouses.destroy',$warehouse->id) }}" class="me-2 sw2-advance"
 										data-entity="Warehouse" data-name="{{ $warehouse->name }}" data-status="{{ ($warehouse->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($warehouse->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($warehouse->enable ? 'bell-off' : 'bell') }}"></i>
@@ -79,7 +79,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.js.sweet-alert2-advance')
+	 @include('shared.includes.js.sw2-advance')
 
 @endsection
 

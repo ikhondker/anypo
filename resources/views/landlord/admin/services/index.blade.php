@@ -32,7 +32,7 @@
 							<td>
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3ll')->url($service->account->logo) }}"
+										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}"
 											alt="Image Description">
 									</div>
 
@@ -67,6 +67,6 @@
 	
 	<x-landlord.widget.add-addon/>
 	
-	@include('landlord.includes.sweet-alert2-confirm-advance')
+	@include('shared.includes.js.sw2-advance')
 
 @endsection

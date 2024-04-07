@@ -6,7 +6,7 @@
 </a> -->
 
 <script type="text/javascript">
-	$('.sweet-alert2-confirm').on('click', function (e) {
+	$('.sw2').on('click', function (e) {
 		e.preventDefault();
 		const url = $(this).attr('href');
 		//var entity = $(this).data("entity").toLowerCase();

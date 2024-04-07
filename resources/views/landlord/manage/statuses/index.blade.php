@@ -73,7 +73,7 @@
 							<td>
 								<x-landlord.list.actions object="Status" :id="$status->code" />
 								<a href="{{ route('statuses.delete', $status->code) }}"
-									class="text-body sweet-alert2-confirm-advance" data-entity="Status"
+									class="text-body sw2-advance" data-entity="Status"
 									data-name="{{ $status->name }}"
 									data-status="{{ $status->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $status->enable ? 'Disable' : 'Enable' }}">
@@ -94,6 +94,6 @@
 	</div>
 	<!-- End Card -->
 
-	@include('landlord.includes.sweet-alert2-confirm-advance')
+	@include('shared.includes.js.sw2-advance')
 
 @endsection

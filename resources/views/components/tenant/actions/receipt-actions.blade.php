@@ -12,7 +12,7 @@
 
 		<div class="dropdown-divider"></div>
 		
-		<a class="dropdown-item sweet-alert2-advance" href="{{ route('receipts.cancel', $receipt->id) }}"
+		<a class="dropdown-item sw2-advance" href="{{ route('receipts.cancel', $receipt->id) }}"
 			data-entity="" data-name="GRN #{{ $receipt->id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Receipt">
 			<i class="align-middle me-1 text-danger" data-feather="x-circle"></i> Cancel Receipt</a>

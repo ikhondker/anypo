@@ -77,7 +77,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.js.sweet-alert2-advance')
+	 @include('shared.includes.js.sw2-advance')
 
 @endsection
 

@@ -5,7 +5,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-		Get Started
+		Get Started  
 		@endslot
 		@slot('buttons')
 			<a href="tel:{{ config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-primary float-end me-2"><i data-feather="phone-outgoing"></i> Call support {{config('akk.SUPPORT_PHONE_NO')}}</a>
@@ -46,7 +46,7 @@
 			
 			<div class="row">
 				<div class="mx-auto col-lg-10 col-xl-8">
-					<h1 class="h3">Get Started TODO</h1>
+					<h1 class="h3">Get Started TODO1s <i class="bi bi-eye" style="font-size: 1.3rem;"></i></h1>
 					<hr class="my-4">
 					<div id="introduction" class="mb-5">
 						<h3>Introduction</h3>

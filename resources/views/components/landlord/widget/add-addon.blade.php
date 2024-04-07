@@ -36,7 +36,7 @@
 								</div>
 								<div class="card-footer pt-0">
 										<a href="{{ route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id]) }}"
-											class="btn btn-primary sweet-alert2-confirm-advance"
+											class="btn btn-primary sw2-advance"
 											data-entity="Add-On" data-name="{{ $addon->name }}"
 											data-status="BUY" data-bs-toggle="tooltip"
 											data-bs-placement="top" title="Add-on">

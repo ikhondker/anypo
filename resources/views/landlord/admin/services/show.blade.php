@@ -23,8 +23,7 @@
 							<div class="d-flex align-items-center">
 								<!-- Avatar -->
 								<label class="avatar avatar-xxl avatar-circle" for="avatarUploader">
-									{{-- <img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3la')->url($user->avatar) }}" alt="{{ $user->name }}" title="{{ $user->name }}"> --}}
-									<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3ll')->url($service->account->logo) }}" alt="{{ $service->account->name }}" title="{{ $service->account->name }}">
+									<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}" alt="{{ $service->account->name }}" title="{{ $service->account->name }}">
 								</label>
 								<div class="d-grid d-sm-flex gap-2 ms-4">
 

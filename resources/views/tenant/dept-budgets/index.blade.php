@@ -81,7 +81,7 @@
 								<td><x-tenant.list.my-closed :value="$dept_budget->closed"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="DeptBudget" :id="$dept_budget->id"/>
-									<a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 sweet-alert2-advance"
+									<a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 sw2-advance"
 										data-entity="DeptBudget" data-name="{{ $dept_budget->budget->name }}" data-status="{{ ($dept_budget->closed ? 'Open' : 'Close') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept_budget->closed ? 'Open' : 'Close') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($dept_budget->closed ? 'bell-off' : 'bell') }}"></i>
@@ -107,7 +107,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.js.sweet-alert2-advance')
+	 @include('shared.includes.js.sw2-advance')
 
 @endsection
 

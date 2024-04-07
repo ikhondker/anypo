@@ -103,7 +103,7 @@
 			<a href="{{ route('pols.edit',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 				<i class="align-middle" data-feather="edit"></i></a>
 		
-			<a href="{{ route('pols.destroy',$pol->id) }}" class="text-muted sweet-alert2-advance" 
+			<a href="{{ route('pols.destroy',$pol->id) }}" class="text-muted sw2-advance" 
 				data-entity="Line #" data-name="{{ $pol->line_num }}" data-status="Delete"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 				<i class="align-middle" data-feather="trash-2"></i>
@@ -116,4 +116,4 @@
 </tr>
 
 @include('tenant.includes.js.calculate-po-amount')
-@include('tenant.includes.js.sweet-alert2-advance')
+@include('shared.includes.js.sw2-advance')

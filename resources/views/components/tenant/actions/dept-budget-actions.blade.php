@@ -5,7 +5,7 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		<a class="dropdown-item" href="{{ route('dept-budgets.edit', $id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Dept Budget</a>
 		<a class="dropdown-item" href="{{ route('dept-budgets.budget', $id) }}"><i class="align-middle me-1" data-feather="dollar-sign"></i> Budget Usage</a>
-		<a class="dropdown-item sweet-alert2-advance" href="{{ route('dept-budgets.destroy',$deptBudget->id) }}" 
+		<a class="dropdown-item sw2-advance" href="{{ route('dept-budgets.destroy',$deptBudget->id) }}" 
 			data-entity="Dept Budget" data-name="{{ $deptBudget->name }}" data-status="{{ ($deptBudget->closed ? 'Open' : 'Close') }}"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($deptBudget->closed ? 'Open' : 'Close') }}">
 			<i class="align-middle me-1" data-feather="{{ ($deptBudget->closed ? 'unlock' : 'lock') }}"></i>

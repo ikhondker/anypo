@@ -35,7 +35,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{  Storage::disk('s3ll')->url($service->account->logo) }}"
+											src="{{  Storage::disk('s3l')->url('logo/'.$service->account->logo) }}"
 											alt="{{ $service->account->name }}" title="{{ $service->account->name }}">
 									</div>
 
@@ -61,7 +61,7 @@
 								<x-landlord.list.actions object="Service" :id="$service->id" :edit="false"
 									:enable="true" />
 								<a href="{{ route('services.destroy', $service->id) }}"
-									class="text-body sweet-alert2-confirm-advance" data-entity="Service"
+									class="text-body sw2-advance" data-entity="Service"
 									data-name="{{ $service->name }}"
 									data-status="{{ $service->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $service->enable ? 'Disable' : 'Enable' }}">
@@ -83,6 +83,6 @@
 
 
 
-	@include('landlord.includes.sweet-alert2-confirm-advance')
+	@include('shared.includes.js.sw2-advance')
 
 @endsection

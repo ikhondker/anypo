@@ -21,13 +21,15 @@
 	<!-- Scripts -->
 	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
 	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 	<!-- Choose your preferred color scheme -->
-	{{-- <link href="{{ asset('css/light.css') }}" rel="stylesheet"> --}}
-	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}">
+	<link href="{{ asset('css/light.css') }}" rel="stylesheet">
+	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}
 
 	<!-- Custom style -->
-	{{-- <link href="{{ asset('css/custom.css') }}" rel="stylesheet"> --}}
-	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/custom.css') }}">
+	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/custom.css') }}"> --}}
 	{{-- <script src="{{ asset('js/custom.js') }} "></script> --}}
 	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('js/custom.js') }}"> --}}
 
@@ -401,8 +403,8 @@
 		</div>
 	</div>
 
-	{{-- <script src="{{ asset('js/app.js') }}"></script> --}}
-	<script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script>
+	<script src="{{ asset('js/app.js') }}"></script>
+	{{-- <script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
 	
 	{{-- @livewireScripts --}}
 </body>

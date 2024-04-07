@@ -691,9 +691,9 @@ class HomeController extends Controller
 		$request->merge(['user_id'	=> $user_id]);
 		$request->merge(['ip'		=> $request->ip()]);
 		$request->validate([
-			'email'				=> 'required|email',
+			'join_email'				=> 'required|email',
 		], [
-			'email.required'		=> 'Email is required.',
+			'join_email.required'		=> 'Email is required.',
 		]);
 
 		// create MailList

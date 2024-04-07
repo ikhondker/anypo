@@ -39,7 +39,7 @@
 								@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 									<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top"title="Edit">
 										<i class="align-middle" data-feather="edit"></i></a>
-									<a href="{{ route('prls.destroy',$prl->id) }}" class="text-muted sweet-alert2-advance" 
+									<a href="{{ route('prls.destroy',$prl->id) }}" class="text-muted sw2-advance" 
 										data-entity="LINE #" data-name="{{ $prl->line_num }}" data-status="Delete"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 										<i class="align-middle" data-feather="trash-2"></i>
@@ -77,5 +77,5 @@
 	</div>
 </div>
 
-@include('tenant.includes.js.sweet-alert2-advance')
+@include('shared.includes.js.sw2-advance')
 {{-- ============================================================== --}}

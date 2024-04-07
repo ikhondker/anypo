@@ -13,7 +13,7 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Invoice"/>
 			@if ($invoice->status == App\Enum\InvoiceStatusEnum::DRAFT->value)
-				<a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-primary float-end me-2 sweet-alert2-advance"
+				<a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-primary float-end me-2 sw2-advance"
 					data-entity="INVOICE #" data-name="{{ $invoice->id }}" data-status="Post"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 					<i data-feather="external-link"></i> Post Invoice</a>
@@ -96,7 +96,7 @@
 
 	<x-tenant.widgets.po.payments :id="$invoice->id" />
 
-	@include('tenant.includes.js.sweet-alert2-advance')
+	@include('shared.includes.js.sw2-advance')
 
 	<script type="text/javascript">
 		function mySubmit() {

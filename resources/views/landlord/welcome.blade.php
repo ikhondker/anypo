@@ -3,7 +3,7 @@
 
 @section('content')
 	 <!-- Hero Start -->
-	 <section class="bg-half-170 bg-light pb-0 d-table w-100" style="background: url('{{asset('/site/images/bg/corporate01.png')}}') center center;">
+	 <section class="bg-half-170 bg-light pb-0 d-table w-100" style="background: url('{{ asset('/site/images/bg/corporate01.png') }} ') center center;">
 		<div class="container">
 			<div class="row mt-5 align-items-center">
 				<div class="col-lg-7 col-md-6">

@@ -26,7 +26,7 @@
 					<div class="d-flex align-items-center">
 						<!-- Avatar -->
 						<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3ll')->url($account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
+							<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
 						</label>
 						<div class="d-grid d-sm-flex gap-2 ms-4">
 							<input type="file" class="form-control form-control-sm" name="file_to_upload"

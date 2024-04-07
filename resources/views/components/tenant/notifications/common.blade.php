@@ -46,4 +46,4 @@
 		@endif
 	</tbody>
 </table>
-@include('tenant.includes.js.sweet-alert2')
+ @include('shared.includes.js.sw2')

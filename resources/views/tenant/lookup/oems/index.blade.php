@@ -51,7 +51,7 @@
 								<td><x-tenant.list.my-boolean :value="$oem->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Oem" :id="$oem->id" :show="false"/>
-									<a href="{{ route('oems.destroy',$oem->id) }}" class="me-2 sweet-alert2-advance"
+									<a href="{{ route('oems.destroy',$oem->id) }}" class="me-2 sw2-advance"
 										data-entity="OEM" data-name="{{ $oem->name }}" data-status="{{ ($oem->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($oem->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($oem->enable ? 'bell-off' : 'bell') }}"></i>
@@ -77,7 +77,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('tenant.includes.js.sweet-alert2-advance')
+	 @include('shared.includes.js.sw2-advance')
 
 @endsection
 

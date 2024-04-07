@@ -16,7 +16,7 @@
 		<a class="dropdown-item" href="{{ route('pos.invoice', $pol->po_id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Invoices</a>
 		<div class="dropdown-divider"></div>
 
-		<a class="dropdown-item sweet-alert2-advance" href="{{ route('pos.cancel', $id) }}"
+		<a class="dropdown-item sw2-advance" href="{{ route('pos.cancel', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Purchase Order">
 			<i class="align-middle me-1 text-danger" data-feather="x-circle"></i> Cancel Purchase Order lINE **</a>

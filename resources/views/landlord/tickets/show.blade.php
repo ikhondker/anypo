@@ -22,7 +22,7 @@
 					<!-- Media -->
 					<div class="d-flex mb-3">
 						<div class="flex-shrink-0">
-							<img class="avatar avatar-circle" src="{{ Storage::disk('s3la')->url($ticket->owner->avatar) }}" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
+							<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
 						</div>
 
 						<div class="flex-grow-1 ms-3">
@@ -58,7 +58,7 @@
 							@endif
 
 							@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
-								<a class="btn btn-info btn-sm sweet-alert2-confirm" href="{{ route('tickets.close',$ticket->id) }}">
+								<a class="btn btn-info btn-sm sw2" href="{{ route('tickets.close',$ticket->id) }}">
 									<i class="bi bi-lightbulb-off"></i>
 									Close Ticket
 								</a>
@@ -83,7 +83,7 @@
 		<!-- End Footer -->
 
 	</div>
-	<!-- End Card -->
+	<!-- End Card --> 
 
 	
 	
@@ -98,7 +98,7 @@
 	<x-landlord.widget.ticket-comments id="{{ $ticket->id }}"/>
 	<!-- /.card-ticket-comments -->
 
-	@include('landlord.includes.sweet-alert2-confirm')
+	@include('shared.includes.js.sw2')
 	
 </div>
 

@@ -29,7 +29,7 @@
 						<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 						<td class="table-action">
 							@if ($delete)
-								<a href="{{ route('attachments.destroy', $attachment->id) }}" class="me-2 sweet-alert2-advance"
+								<a href="{{ route('attachments.destroy', $attachment->id) }}" class="me-2 sw2-advance"
 									data-entity="Attachment" data-name="{{ $attachment->org_file_name }}" data-status="Delete"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 									<i class="align-middle text-muted" data-feather="trash-2"></i>

@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- Hero -->
-<div class="bg-img-start" style="background-image: url(landlord/background/card-11.svg);">
+<div class="bg-img-start" style="background-image: url({{asset('/assets/card-11.svg')}});">
 	<div class="container content-space-t-3 content-space-t-lg-5 content-space-b-2">
 		<div class="w-md-75 w-lg-50 text-center mx-md-auto">
 			<h1>FAQ</h1>

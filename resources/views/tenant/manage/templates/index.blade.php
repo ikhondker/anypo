@@ -66,7 +66,7 @@
 								</td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Template" :id="$template->id"/>
-									<a href="{{ route('templates.destroy',$template->id) }}" class="me-2 sweet-alert2-advance"
+									<a href="{{ route('templates.destroy',$template->id) }}" class="me-2 sw2-advance"
 										data-entity="Template" data-name="{{ $template->name }}" data-status="{{ ($template->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($template->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($template->enable ? 'bell-off' : 'bell') }}"></i>
@@ -90,6 +90,6 @@
 		</div>
 	</div>
 
-	@include('tenant.includes.js.sweet-alert2-advance')
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

@@ -59,10 +59,10 @@
 					<div class="input-card mt-3">
 						<div class="input-card-form">
 							{{-- <input type="text" class="form-control" placeholder="Enter email" aria-label="Enter email"> --}}
-							<input id="email" type="email" placeholder="you@example.com" aria-label="Enter email"
-								class="form-control @error('email') is-invalid @enderror" name="email"
-								value="{{ old('email') }}" required>
-							@error('email')
+							<input name="join_email" id="join_email" type="email" placeholder="you@example.com" aria-label="Enter email"
+								class="form-control @error('email') is-invalid @enderror"
+								value="{{ old('join_email') }}" required>
+							@error('join_email')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>

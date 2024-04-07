@@ -16,7 +16,7 @@
 			
 			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
 			@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-				<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 sweet-alert2-advance"
+				<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 sw2-advance"
 					data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
 					<i data-feather="external-link"></i> Submit</a>
@@ -45,7 +45,7 @@
 		<x-tenant.widgets.wfl.get-approval wfid="{{ $pr->wf_id }}" />
 	@endif
 	
-	@include('tenant.includes.js.sweet-alert2-advance')
+	@include('shared.includes.js.sw2-advance')
 	  
 @endsection
 

@@ -71,7 +71,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										{{-- <img class="avatar avatar-sm avatar-circle" src="{{ url($_avatar_dir.$user->avatar) }}"  alt="{{ $user->name }}" title="{{ $user->name }}"> --}}
-										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3la')->url($user->avatar) }}"  alt="{{ $user->name }}" title="{{ $user->name }}">
+										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}"  alt="{{ $user->name }}" title="{{ $user->name }}">
 									</div>
 									<div class="flex-grow-1 ms-3">
 										<a class="d-inline-block link-dark" href="{{ route('users.show', $user->id) }}">
@@ -106,7 +106,7 @@
 
 								<x-landlord.list.actions object="User" :id="$user->id" />
 								<a href="{{ route('users.destroy', $user->id) }}"
-									class="text-body sweet-alert2-confirm-advance" data-entity="User"
+									class="text-body sw2-advance" data-entity="User"
 									data-name="{{ $user->name }}"
 									data-status="{{ $user->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $user->enable ? 'Disable' : 'Enable' }}">
@@ -154,6 +154,6 @@
 	</div>
 	<!-- End Card -->
 
-	@include('landlord.includes.sweet-alert2-confirm-advance')
+	@include('shared.includes.js.sw2-advance')
 
 @endsection

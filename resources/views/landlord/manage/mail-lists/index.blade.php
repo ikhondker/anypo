@@ -54,7 +54,7 @@
 							<td>
 
 								<a href="{{ route('mail-lists.destroy', $mailList->id) }}"
-									class="text-body sweet-alert2-confirm-advance" data-entity="Email"
+									class="text-body sw2-advance" data-entity="Email"
 									data-name="{{ $mailList->email }}"
 									data-status="{{ $mailList->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $mailList->enable ? 'Disable' : 'Enable' }}">
@@ -88,6 +88,6 @@
 	</div>
 	<!-- End Card -->
 
-	@include('landlord.includes.sweet-alert2-confirm-advance')
+	@include('shared.includes.js.sw2-advance')
 
 @endsection
