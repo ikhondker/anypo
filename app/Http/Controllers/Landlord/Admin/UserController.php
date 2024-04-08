@@ -56,7 +56,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Str;
 use DB;
-# 13. TODO 
+# 13. FUTURE 
 
 class UserController extends Controller
 {
@@ -314,6 +314,12 @@ class UserController extends Controller
 	{
 		$this->authorize('impersonate', User::class);
 		
+		Log::debug('Landlord.user.impersonate  loggedin_user_id=' . auth()->user()->id);
+		Log::debug('Landlord.user.impersonate  to_impersonated_user_id=' . $user->id);
+
+		// log before impersonate
+		LandlordEventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
+
 		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
 			return redirect()->route('users.all')->with('error','You can not impersonate system!');
 		}
@@ -323,16 +329,23 @@ class UserController extends Controller
 			auth()->login($user);
 		}
 		
-		LandlordEventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
 		return redirect('/dashboards');
 
 	}
 
 	public function leaveImpersonate()
 	{
-		LandlordEventLog::event('user', session()->get('original_user'), 'leave-impersonate', 'id', auth()->user()->id);
+		$impersonated_user_id = auth()->user()->id;
+
 		auth()->loginUsingId(session()->get('original_user'));
 		session()->forget('original_user');
+		
+		Log::debug('Landlord.user.leaveImpersonate  loggedin_user_id=' . auth()->user()->id);
+		Log::debug('Landlord.user.leaveImpersonate  impersonated_user_id=' . $impersonated_user_id);
+
+		// log after leave Impersonate
+		LandlordEventLog::event('user', $impersonated_user_id, 'leave-impersonate', 'id', auth()->user()->id);
+
 
 		return redirect('/dashboards');
 	}

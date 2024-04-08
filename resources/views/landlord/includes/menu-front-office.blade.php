@@ -20,10 +20,13 @@
 		</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'accounts.index' ? 'active' : '' }}" href="{{ route('accounts.index') }}">
-			<i class="bi-ui-checks-grid nav-icon"></i> Accounts
+		<a class="nav-link {{ $_route_name == 'tickets.create' ? 'active' : '' }}" href="{{ route('tickets.create') }}">
+			<i class="bi-ticket nav-icon"></i> Create Ticket *
 		</a>
 	</li>
+
+	
+
 </ul>
 <!-- End List -->
 
@@ -32,12 +35,13 @@
 	<span class="text-cap">ADMIN</span>
 	<!-- List -->
 	<ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+		
 		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'services.index' ? 'active' : '' }}" href="{{ route('services.index') }}">
-				<i class="bi-columns nav-icon"></i> Services
+			<a class="nav-link {{ $_route_name == 'accounts.show' ? 'active' : '' }}" href="{{ route('accounts.show',auth()->user()->account_id) }}">
+				<i class="bi-ui-checks-grid nav-icon"></i> Accounts
 			</a>
 		</li>
-		
+
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'invoices.index' ? 'active' : '' }}"
 				href="{{ route('invoices.index') }}">
@@ -45,12 +49,6 @@
 			</a>
 		</li>
 
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'invoices.index' ? 'active' : '' }}"
-				href="{{ route('invoices.index') }}">
-				<i class="bi-file-ruled nav-icon"></i> Advance [???]
-			</a>
-		</li>
 
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'payments.index' ? 'active' : '' }}"
@@ -65,6 +63,18 @@
 			</a>
 		</li>
 
+		<li class="nav-item">
+			<a class="nav-link {{ $_route_name == 'invoices.index' ? 'active' : '' }}"
+				href="{{ route('invoices.generate') }}">
+				<i class="bi-file-ruled nav-icon"></i> Generate Invoice
+			</a>
+		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link {{ $_route_name == 'services.index' ? 'active' : '' }}" href="{{ route('services.index') }}">
+				<i class="bi-people nav-icon"></i> Buy Users
+			</a>
+		</li>
 		<li class="nav-item">
 			<a class="nav-link " href="{{ route('activities.index') }}">
 				<i class="bi-activity nav-icon"></i> Activity Log</a>

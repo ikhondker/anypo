@@ -10,8 +10,8 @@
 			@csrf
 
 			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
-				<h5 class="card-header-title">Generate & Pay Advance Invoice</h5>
-				<button class="btn btn-primary btn-sm" type="submit" id="submit" name="submit"><i class="bi bi-save"></i> Generate</button>
+				<h5 class="card-header-title">Generate Invoice & Pay </h5>
+				<button class="btn btn-primary btn-sm" type="submit" id="submit" name="submit"><i class="bi bi-gear"></i> Generate</button>
 			</div>
 
 			<!-- Body -->
@@ -84,7 +84,7 @@
 			<div class="card-footer pt-0">
 				<div class="d-flex justify-content-end gap-3">
 				<a class="btn btn-secondary" href="{{ url()->previous() }}">Cancel</a>
-				<button type="submit" id="submit" name="submit" class="btn btn-primary"><i class="bi bi-save"></i> Generate</button>
+				<button type="submit" id="submit" name="submit" class="btn btn-primary"><i class="bi bi-gear"></i> Generate</button>
 				</div>
 			</div>
 			<!-- End Footer -->

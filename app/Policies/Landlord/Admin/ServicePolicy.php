@@ -35,7 +35,9 @@ class ServicePolicy
 	 */
 	public function view(User $user, Service $service): bool
 	{
-		return (($user->account_id == $service->account_id) && $user->isAdmin()) || $user->isSeeded();
+		//return (($user->account_id == $service->account_id) && $user->isAdmin()) || $user->isSeeded();
+
+		return $user->isSeeded();
 	}
 
 	// Only back office users can view all tickets 

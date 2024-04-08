@@ -44,7 +44,7 @@
 			</div>
 			<!-- End Form -->
 
-			<x-landlord.edit.id-read-only :value="$account->id" />
+			{{-- <x-landlord.edit.id-read-only :value="$account->id" /> --}}
 
 			<!-- Form -->
 			<div class="row mb-4">

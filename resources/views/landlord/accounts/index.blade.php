@@ -43,7 +43,8 @@
 								<a class="d-inline-block link-dark" href="{{ route('accounts.show',$account->id) }}">
 									<h6 class="text-hover-primary mb-0">{{ $account->name }} [{{ $account->site }}]</h6>
 								</a>
-								<small class="d-block">Owner: {{ $account->owner->name }} </small>
+								<small class="d-block">ID: #{{ $account->id }} </small>
+								{{-- <small class="d-block">Owner: {{ $account->owner->name }} </small> --}}
 							</div>
 						</div>
 					</td>
@@ -70,4 +71,7 @@
 
 </div>
 <!-- End Card -->
+
+@include('shared.includes.js.sw2-advance')
+
 @endsection

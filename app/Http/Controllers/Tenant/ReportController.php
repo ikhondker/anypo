@@ -63,7 +63,7 @@ use PDF;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# 13. TODO 
+# 13. FUTURE 
 # 1 . Add entity column in reports.index
 
 class ReportController extends Controller

@@ -60,7 +60,7 @@ use App\Rules\Tenant\OverPaymentRule;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-# 13. TODO 
+# 13. FUTURE 
 
 
 class PaymentController extends Controller

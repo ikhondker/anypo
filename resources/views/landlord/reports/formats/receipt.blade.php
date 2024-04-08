@@ -18,7 +18,7 @@
 			
 			<h1>PAYMENT RECEIPT</h1>
 			<div class="date">PAYMENT #{{ $payment->id }}</div>
-			<div class="date">DATE: {{ strtoupper(date('d-M-y', strtotime($payment->pay_date))) }}</div>
+			<div class="date">DATE: {{ strtoupper(date('d-M-Y', strtotime($payment->pay_date))) }}</div>
 			{{-- <div class="date">STATUS: {{Str::upper($invoice->status->name)}} </div> --}}
 			{{-- <div class="date">Due Date: 30/06/2014</div> --}}
 		</div>
@@ -36,8 +36,9 @@
 			<tr>
 				<td colspan="5" class="desc"><h3>PAYMENT DETAILS</h3>
 					<div class="date">PAYMENT #{{ $payment->id }}</div>
+					<div class="date">Narration: {{ $payment->summary }}</div>
 					<div class="date">Payment Date: {{ strtoupper(date('d-M-y', strtotime($payment->pay_date))) }}</div>
-					<div class="date">Payment Amount: ${{ number_format($payment->amount,2) }}</div>
+					<div class="date">Payment Amount: ${{ number_format($payment->amount,2) }} USD</div>
 					<div class="date">Payment Status: {{ Str::upper($payment->status->name) }}</div>
 				</td>
 			</tr>

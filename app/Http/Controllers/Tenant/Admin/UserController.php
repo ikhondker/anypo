@@ -30,7 +30,6 @@ use App\Http\Requests\Tenant\Admin\UpdateUserRequest;
 use App\Models\Tenant\Lookup\Country;
 use App\Models\Tenant\Lookup\Designation;
 use App\Models\Tenant\Lookup\Dept;
-
 # 2. Enums
 use App\Enum\UserRoleEnum;
 # 3. Helpers
@@ -60,7 +59,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Str;
 use DB;
-# 13. TODO 
+# 13. FUTURE 
 # 1. create a new role PM for projects
 # 2. layout chang for edit user page role change
 
@@ -197,12 +196,12 @@ class UserController extends Controller
 			$thumbImage		= $token. $extension;
 
 			// upload uploaded image
-			$path = Storage::disk('s3ta')->put($uploadedImage, file_get_contents($image));
+			$path = Storage::disk('s3t')->put('avatar/'.$uploadedImage, file_get_contents($image));
 			
 			//resize to thumbnail and upload
 			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
-			$path =Storage::disk('s3ta')->put($thumbImage, $image_resize->stream()->__toString());
+			$path =Storage::disk('s3t')->put('avatar/'.$thumbImage, $image_resize->stream()->__toString());
 
 			$request->merge(['avatar' => $thumbImage ]);
 		}
@@ -358,21 +357,39 @@ class UserController extends Controller
 		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
 			return redirect()->route('users.all')->with('error','You can not impersonate system!');
 		}
-		
+				
+		Log::debug('Tenant.user.impersonate  loggedin_user_id=' . auth()->user()->id);
+		Log::debug('Tenant.user.impersonate  to_impersonated_user_id=' . $user->id);
+
+		// log before impersonate
+		EventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
+	
+		//Log::debug('Landlord.user.impersonate userr=' . $user->id);
 		if ($user->id !== ($original = auth()->user()->id)) {
 			session()->put('original_user', $original);
 			auth()->login($user);
 		}
-		EventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
+	
 		return redirect('/home');
 	}
 
 	public function leaveImpersonate()
 	{
+		
+		$impersonated_user_id = auth()->user()->id;
+
+		// log with original user
 		EventLog::event('user', session()->get('original_user'), 'leave-impersonate', 'id', auth()->user()->id);
+	
 		auth()->loginUsingId(session()->get('original_user'));
 		session()->forget('original_user');
 
+		Log::debug('Landlord.user.leaveImpersonate  loggedin_user_id=' . auth()->user()->id);
+		Log::debug('Landlord.user.leaveImpersonate  impersonated_user_id=' . $impersonated_user_id);
+
+		// log after leave Impersonate
+		EventLog::event('user', $impersonated_user_id, 'leave-impersonate', 'id', auth()->user()->id);
+		
 		//return redirect('/home');
 		return redirect()->route('users.index')->with('success', 'Logout from impersonate successfully');
 

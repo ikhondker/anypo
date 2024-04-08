@@ -14,7 +14,7 @@ use App\Models\Tenant\Lookup\Uom;
 
 class ShowPrLines extends Component
 {
-    public $id;
+	public $id;
 	public $pr;
 	public $prls;
 	public $items;
@@ -36,11 +36,11 @@ class ShowPrLines extends Component
 		}
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.prl.show-pr-lines');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.prl.show-pr-lines');
+	}
 }

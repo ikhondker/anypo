@@ -290,7 +290,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
 	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
-	
 	/* ======================== Activity ========================================  */
 	Route::resource('activities', ActivityController::class);
 	Route::get('/activity/export', [ActivityController::class, 'export'])->name('activities.export');

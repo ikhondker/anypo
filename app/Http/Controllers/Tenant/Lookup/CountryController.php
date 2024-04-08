@@ -43,7 +43,7 @@ use App\Helpers\EventLog;
 # 11. Seeded
 use Illuminate\Support\Facades\Log;
 use DB;
-# 12. TODO 
+# 12. FUTURE 
 # 1. Disable all country by default, enable only USA and based on active user will be able to select country in Any Address
 
 class CountryController extends Controller

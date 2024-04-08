@@ -14,12 +14,12 @@
 			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
 				<thead class="thead-light">
 					<tr>
-						<th>Name</th>
+						<th>Narration</th>
 						<th>Date</th>
 						<th>Invoice #</th>
 						<th>Amount</th>
 						<th>Status</th>
-						<th style="width: 5%;">Action</th>
+						<th style="width: 5%;">Download</th>
 					</tr>
 				</thead>
 
@@ -35,10 +35,10 @@
 									</div>
 
 									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="{{ route('payments.show',$payment->id) }}">
-											<h6 class="text-hover-primary mb-0">{{ Str::limit($payment->summary, 15) }}</h6>
+										<a class="d-inline-block link-dark" href="{{ route('reports.pdf-payment', $payment->id) }}">
+											<h6 class="text-hover-primary mb-0">{{ Str::limit($payment->summary, 25) }}</h6>
 										</a>
-										<small class="d-block">ID: {{ $payment->id }}</small>
+										<small class="d-block">Ref: #{{ $payment->id }}</small>
 									</div>
 								</div>
 							</td>
@@ -49,14 +49,13 @@
 							<td><x-landlord.list.my-number :value="$payment->amount" /> USD</td>
 							<td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>
 							<td>
-								<a href="{{ route('payments.show', $payment->id) }}" class="text-body"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
-								</a> 
-
+								{{-- <a href="{{ route('payments.show', $payment->id) }}" class="text-body"
+									data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+									<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
+								</a>  --}}
 								<a href="{{ route('reports.pdf-payment', $payment->id) }}" class="text-body"
-									data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
-									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>
+									data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt PDF">
+									<i class="bi bi-file-earmark-pdf" style="font-size: 1.3rem;"></i>
 								</a>
 							</td>
 						</tr>

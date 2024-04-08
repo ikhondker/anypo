@@ -11,7 +11,7 @@
 			<h5 class="card-header-title">Your Invoices</h5>
 			@if (auth()->user()->isAdmin())
 				<a class="btn btn-primary btn-sm" href="{{ route('invoices.generate') }}">
-					<i class="bi bi-plus-square me-1"></i> Generate & Pay Advance Invoice
+					<i class="bi bi-gear me-1"></i> Generate & Pay Advance Invoice
 				</a>
 			@endif
 		</div>
@@ -67,8 +67,8 @@
 									<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
 								</a>
 								<a href="{{ route('reports.pdf-invoice', $invoice->id) }}" class="text-body"
-									data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>
+									data-bs-toggle="tooltip" data-bs-placement="top" title="Download PDF">
+									<i class="bi bi-file-earmark-pdf" style="font-size: 1.3rem;"></i>
 								</a>
 								{{-- <a href="{{ route('invoices.pdf', $invoice->id) }}" class="text-body"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Download">

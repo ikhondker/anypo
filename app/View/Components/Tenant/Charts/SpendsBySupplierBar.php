@@ -13,7 +13,7 @@ use Str;
 
 class SpendsBySupplierBar extends Component
 {
-    public 	$suppliers;
+	public 	$suppliers;
 
 	public $supplier_labels 	= [];
 	//public $project_colors 	= [];
@@ -25,12 +25,12 @@ class SpendsBySupplierBar extends Component
 	public $amount_invoice 	= [];
 	public $amount_payment 	= [];
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
-    {
-        $this->suppliers = Supplier::where('enable', true)->orderBy('id', 'DESC')->limit(10)->get();
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct()
+	{
+		$this->suppliers = Supplier::where('enable', true)->orderBy('id', 'DESC')->limit(10)->get();
 
 		foreach ($this->suppliers as $supplier){
 			//Log::debug('Value of id=' . $supplier->name . ' -> '.$supplier->amount);
@@ -42,13 +42,13 @@ class SpendsBySupplierBar extends Component
 			$this->amount_invoice[] 	= (int) $supplier->amount_invoice;
 			$this->amount_payment[] 	= (int) $supplier->amount_payment;
 		}
-    }
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.charts.spends-by-supplier-bar');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.charts.spends-by-supplier-bar');
+	}
 }

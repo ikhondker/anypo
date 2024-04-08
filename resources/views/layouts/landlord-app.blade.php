@@ -16,7 +16,7 @@
 		<div class="navbar-dark bg-dark"
 			{{-- style="background-image: url({{ Storage::disk('s3l')->url('svg/components/wave-pattern-light.svg') }});"> --}}
 			{{-- style="background-image: url(landlord/background/wave-pattern-light.svg);"> --}}
-			style="background-image: url('{{asset('/assets/wave-pattern-light.svg')}}');">
+			style="background-image: url('{{asset('/assets/bg/wave-pattern-light.svg')}}');">
 
 			
 			<div class="container content-space-1 content-space-b-lg-3">
@@ -81,7 +81,7 @@
 											{{-- <img class="avatar-img" src="{{ url($_avatar_dir.$_landlord_user->avatar) }}" alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}"> --}}
 											<img class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/'.$_landlord_user->avatar) }}" alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}">
 											<img class="avatar-status avatar-lg-status"
-												src="{{ Storage::disk('s3')->url('svg/illustrations/top-vendor.svg') }}"
+												src="{{ Storage::disk('s3l')->url('svg/illustrations/top-vendor.svg') }}"
 												alt="Image Description" data-bs-toggle="tooltip" data-bs-placement="top"
 												title="Verified user">
 										</div>

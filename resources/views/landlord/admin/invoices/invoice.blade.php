@@ -38,7 +38,9 @@
 							</div>
 							<address class="text-dark">
 								{{ $setup->address1 }}<br>
-								{{ $setup->address2 }}<br>
+								@if ($setup->address2 <> '' ) 
+									{{ $setup->address2 }}<br>
+								@endif 
 								{{ $setup->city . ', ' . $setup->state . ', ' . $setup->zip }}<br>
 								{{ $setup->relCountry->name }}
 							</address>
@@ -49,12 +51,13 @@
 
 					<div class="row justify-content-md-between mb-3">
 						<div class="col-md">
-							<h4>Bill to:</h4>
+							<h4>BILL TO:</h4>
 							<h4>{{ $account->name }}</h4>
-
 							<address>
 								{{ $account->address1 }}<br>
-								{{ $account->address2 }}<br>
+								@if ($account->address2 <> '' ) 
+									{{ $account->address2 }}<br>
+								@endif 
 								{{ $account->city . ', ' . $account->state . ', ' . $account->zip }}<br>
 								{{ $account->relCountry->name }}
 							</address>
@@ -64,11 +67,11 @@
 						<div class="col-md text-md-end">
 							<dl class="row">
 								<dt class="col-sm-8">Invoice date:</dt>
-								<dd class="col-sm-4">{{ date('d-M-y', strtotime($invoice->invoice_date)) }}</dd>
+								<dd class="col-sm-4">{{ date('d-M-Y', strtotime($invoice->invoice_date)) }}</dd>
 							</dl>
 							<dl class="row">
 								<dt class="col-sm-8">Due date:</dt>
-								<dd class="col-sm-4">{{ date('d-M-y', strtotime($invoice->due_date)) }} </dd>
+								<dd class="col-sm-4">{{ date('d-M-Y', strtotime($invoice->due_date)) }} </dd>
 							</dl>
 						</div>
 						<!-- End Col -->

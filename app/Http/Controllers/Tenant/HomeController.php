@@ -47,7 +47,7 @@ use Illuminate\Support\Facades\Log;
 use Mail;
 use Illuminate\Support\Facades\Auth;
 use Str;
-# 13. TODO 
+# 13. FUTURE 
 
 class HomeController extends Controller
 {

@@ -39,7 +39,7 @@ use App\Helpers\LandlordEventLog;
 # 11. Controller
 # 12. Seeded
 use DB;
-# 13. TODO 
+# 13. FUTURE 
 
 
 class EntityController extends Controller

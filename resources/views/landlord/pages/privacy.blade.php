@@ -9,8 +9,8 @@
 		<div class="card card-lg">
 			<!-- Header -->
 			<div class="card-header bg-dark py-sm-10">
-			<h1 class="card-title h2 text-white">Privacy &amp; Policy</h1>
-			<p class="card-text text-white">Last modified: March 27, 2018 (view archived versions)</p>
+				<h1 class="card-title h2 text-white">Privacy &amp; Policy</h1>
+				<p class="card-text text-white">Last modified: March 27, 2018 (view archived versions)</p>
 			</div>
 			<!-- End Header -->
 

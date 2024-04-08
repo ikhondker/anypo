@@ -12,19 +12,19 @@ use Illuminate\Support\Facades\Log;
 
 class DeptBudgetPrPie extends Component
 {
-    public $budget_labels = [];
+	public $budget_labels = [];
 	public $budget_data = [];
 	public $budget_colors = [];
 	public $deptBudget;
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct(
 		public string $dbid ='0000',
 		)
-    {
-        Log::debug('components.tenant.charts.DeptBudgetPrPie Value of dept_budget_id=' . $dbid);
+	{
+		Log::debug('components.tenant.charts.DeptBudgetPrPie Value of dept_budget_id=' . $dbid);
 	
 		if ($dbid == '0000'){
 			// No dept budge id is specified. Show current user last dept budget
@@ -47,13 +47,13 @@ class DeptBudgetPrPie extends Component
 		for ($i = 0; $i <= 3 ; $i++) {
 			$this->budget_colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
 		}
-    }
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.charts.dept-budget-pr-pie');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.charts.dept-budget-pr-pie');
+	}
 }

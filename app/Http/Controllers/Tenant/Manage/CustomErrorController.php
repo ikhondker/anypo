@@ -26,7 +26,7 @@ use App\Helpers\EventLog;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# 13. TODO 
+# 13. FUTURE 
 
 
 class CustomErrorController extends Controller

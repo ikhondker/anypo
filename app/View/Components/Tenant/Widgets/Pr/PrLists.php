@@ -13,13 +13,13 @@ use App\Enum\UserRoleEnum;
  
 class PrLists extends Component
 {
-    public $prs;
+	public $prs;
 	public $card_header ='Requisition Lists (Last 5)';
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct()
 	{
 		//
 		switch (auth()->user()->role->value) {
@@ -42,11 +42,11 @@ class PrLists extends Component
 
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.pr.pr-lists');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.pr.pr-lists');
+	}
 }

@@ -51,7 +51,7 @@
 						</div>
 						<div class="col-sm-9">
 								{{-- <x-tenant.show.avatar avatar="{{ $user->avatar }}"/> --}}
-								<img src="{{ Storage::disk('s3ta')->url($user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
+								<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
 						</div>
 					</div>
 				</div>

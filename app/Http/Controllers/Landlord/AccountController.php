@@ -66,7 +66,8 @@ use Illuminate\Support\Facades\Log;
 use Image;
 use Str;
 use Illuminate\Support\Facades\Storage;
-# 13. TODO 
+# 13. FUTURE 
+
 
 
 
@@ -82,10 +83,10 @@ class AccountController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAll', Account::class);
+		
 		$accounts = Account::with('status')->with('owner')->byAccount()->orderBy('id', 'DESC')->paginate(10);
-
 		//$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
-	
 
 		return view('landlord.accounts.index', compact('accounts'));
 	}
@@ -133,7 +134,10 @@ class AccountController extends Controller
 	{
 		$this->authorize('view', $account);
 		$entity = static::ENTITY;
-		return view('landlord.accounts.show', compact('account', 'entity'));
+
+		$services = Service::with('account')->byAccount()->orderBy('id', 'ASC')->paginate(10);
+
+		return view('landlord.accounts.show', compact('account', 'services', 'entity'));
 	}
 
 	/**

@@ -39,7 +39,11 @@ class LandlordEventLog
 	public static function event($object_name, $object_id = 0, $event_name = null, $column_name = null, $prior_value = null, $object_type = "C")
 	{
 		$log				= [];
-		$log['account_id']	= auth()->check() ? auth()->user()->account_id : '1000';
+		if (auth()->check()){
+			$log['account_id']	= (auth()->user()->account_id <> '')  ? auth()->user()->account_id : '1000';
+		} else {
+			$log['account_id']	= config('bo.GUEST_ACCOUNT_ID');
+		}
 		$log['object_name'] = $object_name;
 		$log['object_id']	= $object_id;
 		$log['event_name']	= $event_name;

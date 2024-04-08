@@ -18,7 +18,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-	<!-- Choose your prefered color scheme -->
+	<!-- Choose your preferred color scheme -->
 	{{-- <link href="{{asset('css/light.css')}}" rel="stylesheet"> --}}
 	<link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}">
 

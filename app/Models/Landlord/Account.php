@@ -28,6 +28,7 @@ use App\Models\User;
 
 use App\Models\Landlord\Lookup\Country;
 use App\Models\Landlord\Manage\Status;
+use App\Models\Landlord\Lookup\Product;
 
 use App\Enum\LandlordAccountStatusEnum;
 
@@ -66,10 +67,10 @@ class Account extends Model
 	}
 
 	/* ---------------- HasMany ---------------------- */
-	public function accountservicess(): HasMany
-	{
-		return $this->hasMany(AccountService::class);
-	}
+	// public function accountservicess(): HasMany
+	// {
+	// 	return $this->hasMany(AccountService::class);
+	// }
 
 
 	/* ---------------- belongsTo ---------------------- */
@@ -82,10 +83,18 @@ class Account extends Model
 	{
 		return $this->belongsTo(User::class, 'owner_id');
 	}
-	public function service()
+
+	public function primaryProduct()
 	{
-		return $this->belongsTo(Service::class, 'service_id');
+		return $this->belongsTo(Product::class,'primary_product_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
+	
+	// public function service()
+	// {
+	// 	return $this->belongsTo(Service::class, 'service_id');
+	// }
 	public function status()
 	{
 		return $this->belongsTo(Status::class, 'status_code');

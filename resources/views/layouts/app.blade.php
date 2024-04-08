@@ -21,8 +21,6 @@
 	<!-- Scripts -->
 	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
 	
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
 	<!-- Choose your preferred color scheme -->
 	<link href="{{ asset('css/light.css') }}" rel="stylesheet">
 	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}
@@ -50,7 +48,7 @@
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="{{ route('home') }}">
 					@auth
-						<img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
+						<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
 						<h4 class="text-info">{{ $_setup->name}}</h4>
 						<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>
 					@endauth
@@ -227,7 +225,7 @@
 							</a>
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								@auth
-									<img src="{{ Storage::disk('s3ta')->url(auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
+									<img src="{{ Storage::disk('s3t')->url('avatar/'.auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
 									<span class="text-dark">{{ Str::limit(auth()->user()->name, 25, '...') }}</span>
 									{{-- @if ( auth()->user()->avatar == "")
 										<img src="{{ url($_avatar_dir . 'avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
@@ -237,7 +235,7 @@
 								@endauth
 									@guest
 									{{-- <img src="{{asset('img/avatar.png')}}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />  --}}
-									<img src="{{ Storage::disk('s3ta')->url('avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />
+									<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />
 									<span class="text-dark">Guest</span>
 								@endguest
 							</a>
@@ -402,9 +400,10 @@
 			</footer>
 		</div>
 	</div>
-
+	
+	{{-- Dont Switch --}}
 	<script src="{{ asset('js/app.js') }}"></script>
-	{{-- <script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
+	{{-- <script src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
 	
 	{{-- @livewireScripts --}}
 </body>

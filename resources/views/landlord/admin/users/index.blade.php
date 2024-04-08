@@ -95,14 +95,12 @@
 							</td>
 							<td><x-landlord.list.my-enable :value="$user->enable"/></td>
 							<td>
-
 								<x-landlord.list.actions object="User" :id="$user->id"/>
 								<a href="{{ route('users.destroy',$user->id) }}" class="text-body sw2-advance"
 									data-entity="User" data-name="{{ $user->name }}" data-status="{{ ($user->enable ? 'Disable' : 'Enable') }}"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($user->enable ? 'Disable' : 'Enable') }}">
 									<i class="bi {{ ($user->enable ? 'bi-bell-slash' : 'bi-bell') }} " style="font-size: 1.3rem;"></i>
 								</a>
-
 
 								{{-- @if(session('original_user'))
 									<a href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">

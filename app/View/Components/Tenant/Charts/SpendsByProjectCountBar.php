@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class SpendsByProjectCountBar extends Component
 {
-    public 	$projects;
+	public 	$projects;
 
 	public $project_labels 	= [];
 	public $project_colors 	= [];
@@ -22,12 +22,12 @@ class SpendsByProjectCountBar extends Component
 	public $count_invoice 	= [];
 	public $count_payment 	= [];
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
-    {
-        $this->projects = Project::with("pm")->where('closed', false)->orderBy('id', 'DESC')->limit(10)->get();
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct()
+	{
+		$this->projects = Project::with("pm")->where('closed', false)->orderBy('id', 'DESC')->limit(10)->get();
 
 		foreach ($this->projects as $project){
 			//Log::debug('Value of id=' . $project->name . ' -> '.$project->amount);
@@ -38,13 +38,13 @@ class SpendsByProjectCountBar extends Component
 			$this->count_invoice[] 		= (int) $project->count_invoice;
 			$this->count_payment[] 		= (int) $project->count_payment;
 		}
-    }
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.charts.spends-by-project-count-bar');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.charts.spends-by-project-count-bar');
+	}
 }

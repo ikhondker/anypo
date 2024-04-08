@@ -10,21 +10,21 @@ use App\Models\Tenant\Pr;
 
 class ShowPrHeader extends Component
 {
-    public $id;
-    public $pr;
-    /**
-     * Create a new component instance.
-     */
-    public function __construct($id)
-    {
-        $this->pr = Pr::where('id', $id)->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->get()->first();
-    }
+	public $id;
+	public $pr;
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct($id)
+	{
+		$this->pr = Pr::where('id', $id)->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->get()->first();
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.pr.show-pr-header');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.pr.show-pr-header');
+	}
 }

@@ -76,7 +76,7 @@ use Str;
 use DB;
 use Validator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-# 13. TODO 
+# 13. FUTURE 
 use App\Http\Requests\Landlord\Manage\StoreContactRequest;
 
 

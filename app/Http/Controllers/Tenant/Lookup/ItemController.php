@@ -49,7 +49,7 @@ use App\Helpers\Export;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# 12. TODO 
+# 12. FUTURE 
 # 1. dependent dropdown for uom
 
 class ItemController extends Controller

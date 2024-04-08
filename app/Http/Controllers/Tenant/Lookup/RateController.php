@@ -41,7 +41,7 @@ use App\Helpers\EventLog;
 # 11. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 12. TODO 
+# 12. FUTURE 
 
 class RateController extends Controller
 {

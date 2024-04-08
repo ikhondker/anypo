@@ -13,15 +13,15 @@ use App\Models\Tenant\Budget;
 
 class BudgetPoPie extends Component
 {
-    public $budget_labels = [];
+	public $budget_labels = [];
 	public $budget_data = [];
 	public $budget_colors = [];
-    public $budget;
+	public $budget;
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct(
 		public string $bid ='0000'
 	)
 	{
@@ -35,7 +35,7 @@ class BudgetPoPie extends Component
 		//  	$this->budget	= Budget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $dbid)->firstOrFail();
 		// }
 
-        if ($bid == '0000'){
+		if ($bid == '0000'){
 			// Get latest budget
 			$this->budget				= Budget::orderBy('id', 'DESC')->firstOrFail();
 		} else {
@@ -59,11 +59,11 @@ class BudgetPoPie extends Component
 
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.charts.budget-po-pie');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.charts.budget-po-pie');
+	}
 }
