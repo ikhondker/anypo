@@ -22,8 +22,9 @@ return new class extends Migration
 			$table->foreignId('uom_class_id')->constrained('uom_classes');
 			$table->foreignId('uom_id')->constrained('uoms');
 			$table->string('gl_type_code',1)->default('E'); 
-			$table->string('dr_account')->default('100001')->nullable();
-			$table->string('cr_account')->default('100001')->nullable();
+			$table->string('ac_expense')->default('A600001');
+			//$table->string('dr_account')->default('100001')->nullable();
+			//$table->string('cr_account')->default('100001')->nullable();
 			//$table->foreignId('uom')->constrained('uoms')->references('uom');
 			$table->float('price', 15, 2)->default(0);
 			$table->unsignedinteger('stock')->default(0);

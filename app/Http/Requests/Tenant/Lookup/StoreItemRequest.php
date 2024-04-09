@@ -28,6 +28,7 @@ class StoreItemRequest extends FormRequest
 			'uom_id'		=> 'required|integer|exists:uoms,id',
 			'oem_id'		=> 'required|integer|exists:oems,id',
 			'price'			=> 'required|numeric|min:0.10|max:9999999.99',
+			'ac_expense'	=> 'required|min:2|max:255|alpha_dash',
 		];
 	}
 

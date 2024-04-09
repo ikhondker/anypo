@@ -79,6 +79,11 @@ class BankAccountController extends Controller
 	{
 		$this->authorize('create', BankAccount::class);
 		
+		$request->merge([
+			'ac_cash' => Str::upper($request['ac_cash']),
+		]);
+
+
 		$bankAccount = BankAccount::create($request->all());
 		// Write to Log
 		EventLog::event('bankAccount', $bankAccount->id, 'create');
@@ -113,6 +118,11 @@ class BankAccountController extends Controller
 	{
 		$this->authorize('update', $bankAccount);
 
+		$request->merge([
+			'ac_cash' => Str::upper($request['ac_cash']),
+		]);
+
+		
 		//$request->validate();
 		$request->validate([
 		]);

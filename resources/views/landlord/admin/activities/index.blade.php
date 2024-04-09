@@ -20,7 +20,7 @@
 					<th>Object</th>
 					<th>Date</th>
 					<th>Event</th>
-					<th>User</th>
+					<th>Performer</th>
 					<th style="width: 5%;">Action</th>
 				</tr>
 				</thead>

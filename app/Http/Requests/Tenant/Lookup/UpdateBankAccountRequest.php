@@ -24,6 +24,7 @@ class UpdateBankAccountRequest extends FormRequest
 		return [
 			'ac_name'	=> 'required|min:2|max:100|unique:bank_accounts,ac_name,'. $this->bank_accounts->id,
 			'ac_number'	=> 'required|min:2|max:100|unique:bank_accounts,ac_number,'. $this->bank_accounts->id,
+			'ac_cash'	=> 'required|min:2|max:255|alpha_dash',
 		];
 	}
 }

@@ -100,8 +100,9 @@ class ItemController extends Controller
 		$uom = Uom::where('id', $request->input('uom_id') )->first();
 
 		$request->merge([
-			'code' => Str::upper($request['code']),
-			'uom_class_id' => $uom->uom_class_id,
+			'code' 			=> Str::upper($request['code']),
+			'uom_class_id' 	=> $uom->uom_class_id,
+			'ac_expense' 	=> Str::upper($request['ac_expense']),
 		]);
 
 
@@ -147,7 +148,8 @@ class ItemController extends Controller
 		$this->authorize('update', $item);
 
 		$request->merge([
-			'code' => Str::upper($request['code']),
+			'code' 			=> Str::upper($request['code']),
+			'ac_expense' 	=> Str::upper($request['ac_expense']),
 		]);
 
 		//$request->validate();

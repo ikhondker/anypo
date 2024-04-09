@@ -102,6 +102,18 @@
 								@enderror
 							</div>
 
+							<div class="mb-3 col-md-6">
+								<label for="ac_expense" class="form-label">Expense GL Code</label>
+								<input type="text" class="form-control @error('ac_expense') is-invalid @enderror"
+									name="ac_expense" id="ac_expense" placeholder="A600001" maxlength="255"
+									style="text-transform: uppercase"
+									value="{{ old('ac_expense', $uploadItem->ac_expense ) }}"
+									required/>
+								@error('ac_expense')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
 							<x-tenant.edit.price :value="$uploadItem->price"/>
 							<x-tenant.buttons.show.save/>
 						</div>

@@ -32,7 +32,7 @@
 						<div class="mb-3 col-md-6">
 							<label for="code" class="form-label">Code</label>
 							<input type="text" class="form-control @error('code') is-invalid @enderror"
-								name="code" id="code" placeholder="XXXX" maxlength="10"
+								name="code" id="code" placeholder="XXXX" maxlength="25"
 								style="text-transform: uppercase"
 								value="{{ old('code', '' ) }}"
 								required/>
@@ -110,6 +110,19 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
+
+						<div class="mb-3 col-md-6">
+							<label for="ac_expense" class="form-label">Expense GL Code</label>
+							<input type="text" class="form-control @error('ac_expense') is-invalid @enderror"
+								name="ac_expense" id="ac_expense" placeholder="A600001" maxlength="25"
+								style="text-transform: uppercase"
+								value="{{ old('ac_expense', 'A600001' ) }}"
+								required/>
+							@error('ac_expense')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+
 
 						<x-tenant.create.notes/>
 						<x-tenant.buttons.show.save/>

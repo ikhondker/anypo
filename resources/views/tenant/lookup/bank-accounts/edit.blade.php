@@ -95,6 +95,18 @@
 								@enderror
 							</div>
 
+							<div class="mb-3 col-md-6">
+								<label for="ac_cash" class="form-label">Expense GL Code</label>
+								<input type="text" class="form-control @error('ac_cash') is-invalid @enderror"
+									name="ac_cash" id="ac_cash" placeholder="A400001" maxlength="255"
+									style="text-transform: uppercase"
+									value="{{ old('ac_cash', $bankAccount->ac_cash ) }}"
+									required/>
+								@error('ac_cash')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
 							<x-tenant.edit.address1 :value="$bankAccount->address1"/>
 								<x-tenant.edit.address2 :value="$bankAccount->address2"/>
 								<div class="row">

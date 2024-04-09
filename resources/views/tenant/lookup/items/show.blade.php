@@ -32,7 +32,8 @@
 					<x-tenant.show.my-text		value="{{ $item->uom_class->name }}" label="UoM Class"/>	
 					<x-tenant.show.my-text		value="{{ $item->uom->name }}" label="UoM"/>
 					<x-tenant.show.my-number	value="{{ $item->price }}" label="Price"/>
-					
+					<x-tenant.show.my-text		value="{{ $item->ac_expense }}" label="Expense Account"/>
+
 					<x-tenant.show.my-boolean	value="{{ $item->enable }}"/>
 					<x-tenant.show.my-created_at value="{{ $item->created_at }}"/>
 					<x-tenant.show.my-updated_at value="{{ $item->updated_at }}"/>

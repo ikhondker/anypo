@@ -33,10 +33,10 @@ return new class extends Migration
 			$table->float('tolerance_invoice', 15, 2)->default(1);		// Future
 			$table->float('tolerance_receipt', 15, 2)->default(1);		// Future
 			$table->float('tolerance_payment', 15, 2)->default(1);		// Future
-			$table->boolean('user_master_data_entry')->default(false); 		// Future. Allow user to create master data
-			$table->string('ac_liability')->default('200001');
-			$table->string('ac_accrual')->default('200002');
-			$table->string('ac_clearing')->default('200003');
+			$table->boolean('user_master_data_entry')->default(false); 	// Future. Allow user to create master data
+			$table->string('ac_accrual')->default('A200001');
+			$table->string('ac_liability')->default('A200001');
+			$table->string('ac_clearing')->default('A200003');			// Future user
 			$table->string('logo')->nullable()->default('logo.png');
 			$table->boolean('banner_show')->default(false); 
 			$table->text('banner_message')->nullable();

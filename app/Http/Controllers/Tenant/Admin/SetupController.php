@@ -134,6 +134,11 @@ class SetupController extends Controller
 	{
 		$this->authorize('update', $setup);
 
+		$request->merge([
+			'ac_accrual' => Str::upper($request['ac_accrual']),
+			'ac_liability' => Str::upper($request['ac_liability']),
+		]);
+
 		if ($image = $request->file('file_to_upload')) {
 			// $request->validate([
 			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

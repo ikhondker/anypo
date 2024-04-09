@@ -21,6 +21,7 @@ return new class extends Migration
 			$table->dateTime('start_date', $precision = 0)->useCurrent();
 			$table->dateTime('end_date', $precision = 0)->nullable();
 			$table->string('currency',3)->default('USD'); 
+			$table->string('ac_cash')->default('A400001');
 			$table->string('contact_person')->nullable();
 			$table->string('cell')->nullable();
 			$table->string('address1')->nullable();

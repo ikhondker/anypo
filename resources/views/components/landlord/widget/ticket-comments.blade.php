@@ -21,12 +21,12 @@
 								  	<div class="flex-shrink-0">
 										@if ($comment->by_backoffice)
 											@if (auth()->user()->isSeeded())
-												<img class="avatar avatar-circle" src="{{ Storage::disk('s3la')->url($comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
+												<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
 											@else
 												<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/avatarb.png') }}" alt="Support Engineer" title="Support Engineer">
 											@endif
 										@else
-											<img class="avatar avatar-circle" src="{{ Storage::disk('s3la')->url($comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
+											<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
 										@endif
 								  	</div>
 									<div class="flex-grow-1 ms-3">

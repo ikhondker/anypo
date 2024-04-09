@@ -138,13 +138,12 @@ class UploadItemController extends Controller
 					'uom_name'		=> $sheet->getCell('F' . $row)->getValue(),
 					'price'			=> $sheet->getCell('G' . $row)->getValue(),
 					'gl_type_name'	=> $sheet->getCell('H' . $row)->getValue(),
+					'ac_expense'	=> $sheet->getCell('I' . $row)->getValue(),
 					'created_at'	=> $created_at,
 					'updated_at'	=> $updated_at,
 				];
 				$startcount++;
 			}
-
-		
 
 			// insert into table
 			DB::table('upload_items')->insert($data);
@@ -300,6 +299,7 @@ class UploadItemController extends Controller
 							'uom_class_id'	=> $uom_class_id,
 							'uom_id'		=> $uom_id,
 							'gl_type'		=> $gl_type,
+							'ac_expense'	=> Str::upper('ac_expense'),
 							'status'		=> InterfaceStatusEnum::VALIDATED->value,
 							'error_code'	=> NULL,
 						]);
@@ -338,6 +338,7 @@ class UploadItemController extends Controller
 				'uom_id'		=> $upload_item->uom_id,
 				'price'			=> $upload_item->price,
 				'gl_type'		=> $upload_item->gl_type,
+				'ac_expense'	=> ($upload_item->ac_expense <> '') ? $upload_item->ac_expense  : 'A600001' ,
 			];
 
 			Item::create($item); // don't forget to fill $fillable in Model

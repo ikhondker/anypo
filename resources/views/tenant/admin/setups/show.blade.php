@@ -65,6 +65,19 @@
 					<x-tenant.show.my-text value="{{ $setup->country_name->name }}" label="Country"/>
 				</div>
 			</div>
+
+
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">Integration</h5>
+					<h6 class="card-subtitle text-muted">GL Integration.</h6>
+				</div>
+				<div class="card-body">
+					<x-tenant.show.my-text value="{{ $setup->ac_accrual }}" label="Accrual Account"/>
+					<x-tenant.show.my-text value="{{ $setup->ac_liability }}" label="Supplier Liability Account"/>
+				</div>
+			</div>
+
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">

@@ -24,6 +24,7 @@ class StoreBankAccountRequest extends FormRequest
 		return [
 			'ac_name'	=> 'required|min:2|max:100|unique:bank_accounts,ac_name',
 			'ac_number'	=> 'required|min:2|max:100|unique:bank_accounts,ac_number',
+			'ac_cash'	=> 'required|min:2|max:255|alpha_dash',
 		];
 	}
 }

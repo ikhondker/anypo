@@ -124,16 +124,52 @@
 										<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror
 								</div>
-
-								<div class="mb-3">
-									<label class="form-label">Country</label>
-									<select class="form-control" name="country">
-										@foreach ($countries as $country)
-											<option {{ $country->country == old('country',$setup->country) ? 'selected' : '' }} value="{{ $country->country }}">{{ $country->name }} </option>
-										@endforeach
-									</select>
-								</div>
 							</div>
+							<div class="mb-3">
+								<label class="form-label">Country</label>
+								<select class="form-control" name="country">
+									@foreach ($countries as $country)
+										<option {{ $country->country == old('country',$setup->country) ? 'selected' : '' }} value="{{ $country->country }}">{{ $country->name }} </option>
+									@endforeach
+								</select>
+							</div>
+
+						</div>
+					</div>
+
+
+
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">Edit GL Account</h5>
+							<h6 class="card-subtitle text-muted">Edit GL Accounts.</h6>
+						</div>
+						<div class="card-body">
+							<div class="mb-3">
+								<label class="form-label">Accrual Account</label>
+								<input type="text" class="form-control @error('ac_accrual') is-invalid @enderror"
+									name="ac_accrual" id="ac_accrual" placeholder="Accrual Account"
+									style="text-transform: uppercase"
+									value="{{ old('ac_accrual', $setup->ac_accrual ) }}"
+									required/>
+								@error('ac_accrual')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
+							<div class="mb-3">
+								<label class="form-label">Supplier Liability Account</label>
+								<input type="text" class="form-control @error('ac_liability') is-invalid @enderror"
+									name="ac_liability" id="ac_liability" placeholder="Supplier Liability Account"
+									style="text-transform: uppercase"
+									value="{{ old('ac_liability', $setup->ac_liability ) }}"
+									/>
+								@error('ac_liability')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</div>
+
+							
 						</div>
 					</div>
 				</div>

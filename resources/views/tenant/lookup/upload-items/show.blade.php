@@ -32,6 +32,7 @@
 					<x-tenant.show.my-text		value="{{ $uploadItem->uom_name }}" label="UoM"/>
 					<x-tenant.show.my-number	value="{{ $uploadItem->price }}" label="Price"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->gl_type_name }}" label="GL Type"/>
+					<x-tenant.show.my-text		value="{{ $uploadItem->ac_expense }}" label="Expense GL Code"/>
 					<x-tenant.show.my-badge		value="{{ $uploadItem->error_code }}" label="Error Code"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->customError->message }}" label="Error Message"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->owner->name }}" label="Upload By"/>

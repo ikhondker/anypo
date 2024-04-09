@@ -163,7 +163,7 @@
 					</li>
 				</ul>
 				@auth
-					{{-- <img src="{{ Storage::disk('s3tl')->url($_setup->logo) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $_setup->name }}" />
+					{{-- <img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $_setup->name }}" />
 					<span class="h3 text-info m-2">{{ $_setup->name}}</span> --}}
 					{{-- <span class="text-dark">{{ $_setup->name}},{{ $_setup->address1 }}, {{ $_setup->city.', '.$_setup->state.', '.$_setup->zip  }} {{ $_setup->country }}</span> --}}
 				@endauth
@@ -198,7 +198,7 @@
 											<a href="{{ route('notifications.show', $notification->id) }}" class="list-group-item">
 												<div class="row g-0 align-items-center">
 													<div class="col-2">
-														<img src="{{ Storage::disk('s3ta')->url('avatarb.png') }}" class="avatar img-fluid rounded-circle" alt="{{ $notification->data['from'] }}">
+														<img src="{{ Storage::disk('s3t')->url('avatar/avatarb.png') }}" class="avatar img-fluid rounded-circle" alt="{{ $notification->data['from'] }}">
 													</div>
 													<div class="col-10 ps-2">
 														<div class="text-dark">{{ $notification->data['from'] }}</div>

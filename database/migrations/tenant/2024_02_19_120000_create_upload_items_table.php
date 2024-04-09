@@ -22,6 +22,7 @@ return new class extends Migration
 			$table->string('oem_name')->nullable();
 			$table->string('uom_name')->nullable();
 			$table->string('gl_type_name')->nullable();
+			$table->string('ac_expense')->nullable();
 			$table->float('price', 8, 2)->default(0);
 			 /** ENUM */
 			 $table->string('status')->default(InterfaceStatusEnum::DRAFT->value);

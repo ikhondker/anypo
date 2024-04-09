@@ -86,6 +86,18 @@
 
 						<x-tenant.create.currency/>
 
+						<div class="mb-3 col-md-6">
+							<label for="ac_cash" class="form-label">Cash GL Code</label>
+							<input type="text" class="form-control @error('ac_cash') is-invalid @enderror"
+								name="ac_cash" id="ac_cash" placeholder="A400001" maxlength="25"
+								style="text-transform: uppercase"
+								value="{{ old('ac_cash', 'A400001' ) }}"
+								required/>
+							@error('ac_cash')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+
 						<x-tenant.create.address1/>
 						<x-tenant.create.address2/>
 						<div class="row">

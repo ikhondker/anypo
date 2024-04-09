@@ -2,7 +2,7 @@
 @section('title','View Bank Account')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.index') }}">Bank Accounts</a></li>
-	<li class="breadcrumb-item active">{{ $project->name }}</li>
+	<li class="breadcrumb-item active">{{ $bankAccount->name }}</li>
 @endsection
 @section('content')
 
@@ -31,6 +31,7 @@
 					<x-tenant.show.my-currency	value="{{ $bankAccount->currency }}" label="Currency"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->bank_name }}" label="Bank Name"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->branch_name }}" label="Branch Name"/>
+					<x-tenant.show.my-text		value="{{ $bankAccount->ac_cash }}" label="Cash GL Account"/>
 					<x-tenant.show.my-boolean	value="{{ $bankAccount->enable }}"/>
 					<x-tenant.show.my-created_at value="{{ $bankAccount->created_at }}"/>
 					<x-tenant.show.my-updated_at value="{{ $bankAccount->updated_at }}"/>
