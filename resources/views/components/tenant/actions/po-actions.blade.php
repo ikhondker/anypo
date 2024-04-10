@@ -16,6 +16,8 @@
 		<a class="dropdown-item" href="{{ route('pos.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> Attachments</a>
 
 		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('pos.invoice', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Payment **</a>
+		<a class="dropdown-item" href="{{ route('pos.accounting', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> Full Accounting **</a>
 		<a class="dropdown-item" href="{{ route('pos.invoice', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Invoices</a>
 		<a class="dropdown-item" href="{{ route('invoices.create', $id) }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Invoice</a>
 

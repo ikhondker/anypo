@@ -243,6 +243,13 @@ class PolController extends Controller
 		return view('tenant.pols.receipt', compact('pol'));
 	}
 
+	public function accounting(Pol $pol)
+	{
+		$this->authorize('view', $pol);
+	
+		$po = Po::where('id', $pol->po_id)->get()->firstOrFail();
+		return view('tenant.pols.accounting', compact('po','pol'));
+	}
 
 	public function export()
 	{

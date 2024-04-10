@@ -64,6 +64,7 @@ use App\Http\Controllers\Tenant\ReceiptController;
 use App\Http\Controllers\Tenant\InvoiceController;
 use App\Http\Controllers\Tenant\InvoiceLinesController;
 use App\Http\Controllers\Tenant\PaymentController;
+use App\Http\Controllers\Tenant\AccountingController;
 use App\Http\Controllers\Tenant\ReportController;
 
 
@@ -430,7 +431,8 @@ Route::middleware([
 	Route::get('/pos/open/{po}',[PoController::class,'open'])->name('pos.open');
 	Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');
 	Route::get('/pos/invoice/{po}',[PoController::class,'invoice'])->name('pos.invoice');
-	
+	Route::get('/pos/accounting/{po}',[PoController::class,'accounting'])->name('pos.accounting');
+
 	Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
 	Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
 
@@ -440,23 +442,26 @@ Route::middleware([
 	Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
 	Route::get('/pols/add-line/{po}',[PolController::class, 'addLine'])->name('pols.add-line');
 	Route::get('/pols/receipt/{pol}',[PolController::class,'receipt'])->name('pols.receipt');
+	Route::get('/pols/accounting/{pol}',[PolController::class,'accounting'])->name('pols.accounting');
 
 	/* ======================== Receipt ======================================== */
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);
 	Route::get('/receipts/create/{pol}',[ReceiptController::class,'create'])->name('receipts.create');
+	Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
 	Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
 	Route::get('/receipts/cancel/{receipt}',[ReceiptController::class,'cancel'])->name('receipts.cancel');
-	Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
-	
+	Route::get('/receipts/accounting/{receipt}',[ReceiptController::class,'accounting'])->name('receipts.accounting');
+
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class)->middleware(['auth', 'verified']);
 	Route::post('/invoice/attach',[InvoiceController::class,'attach'])->name('invoices.attach');
+	Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
 	Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
 	Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
 	Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
 	Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
 	Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
-	Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
+	Route::get('/invoices/accounting/{invoice}',[InvoiceController::class,'accounting'])->name('invoices.accounting');
 
 	/* ======================== InvoiceLines ======================================== */
 	//Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
@@ -465,11 +470,18 @@ Route::middleware([
 	
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class)->middleware(['auth', 'verified']);
+	Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
+	Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
 	Route::get('/payments/create/{invoice}',[PaymentController::class,'create'])->name('payments.create');
 	Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
-	Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
-	Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
-	
+	Route::get('/payments/accounting/{payment}',[PaymentController::class,'accounting'])->name('payments.accounting');
+
+	/* ======================== Accounting ======================================== */
+	Route::resource('accountings', AccountingController::class)->middleware(['auth', 'verified']);
+	Route::get('/accounting/export',[AccountingController::class,'export'])->name('accountings.export');
+	Route::get('/accounting/export-for-po/{id}',[AccountingController::class,'exportForPo'])->name('accountings.export-for-po');
+
+
 	/* ======================== Report ========================================  */
 	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);
 	Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');

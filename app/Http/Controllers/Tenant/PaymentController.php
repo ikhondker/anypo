@@ -47,6 +47,8 @@ use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
+use App\Jobs\Tenant\AccountingPayment;
+
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
 # 6. Mails
@@ -157,6 +159,9 @@ class PaymentController extends Controller
 		}
 		// Reupload 
 		$payment = Payment::with('invoice')->where('id', $payment->id)->firstOrFail();
+		// Create Accounting for this Payment
+		AccountingPayment::dispatch($payment->id, $payment->fc_amount);
+
 
 		// update Invoice  header
 		$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
@@ -170,6 +175,7 @@ class PaymentController extends Controller
 		}
 
 		$invoice->save();
+
 
 		// update budget and project level summary 
 		$po = Po::where('id', $payment->invoice->po_id)->first();
@@ -218,6 +224,17 @@ class PaymentController extends Controller
 		//return view('tenant.payments.show', compact('payment','invoice'));
 		return view('tenant.payments.show', compact('payment'));
 	}
+
+
+	public function accounting(Payment $payment)
+	{
+		$this->authorize('view', $payment);
+		//$po = Po::where('id', $payment->invoice_id->po_id)->get()->firstOrFail();
+		$po = Po::where('id', '1001')->get()->firstOrFail();
+		return view('tenant.payments.accounting', compact('po','payment'));
+	}
+
+
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -296,6 +313,9 @@ class PaymentController extends Controller
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::PAYMENT->value, $payment->id, EventEnum::CANCEL->value, $payment->fc_amount);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
+
+			// Create Reverse Accounting for this Receipt
+			AccountingPayment::dispatch($payment->id, $payment->fc_amount, true);
 
 			// cancel Payment
 			Payment::where('id', $payment->id)

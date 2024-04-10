@@ -9,7 +9,7 @@
 		<a class="dropdown-item" href="{{ route('payments.create', $payment->invoice_id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Make Another Payment</a>
 		<a class="dropdown-item" href="{{ route('invoices.show',$payment->invoice_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Invoice</a>
 		<a class="dropdown-item" href="{{ route('pos.show', $payment->invoice->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
-
+		<a class="dropdown-item" href="{{ route('payments.accounting', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Accounting **</a>
 		<div class="dropdown-divider"></div>
 
 		<a class="dropdown-item sw2-advance" href="{{ route('payments.cancel', $payment->id) }}"

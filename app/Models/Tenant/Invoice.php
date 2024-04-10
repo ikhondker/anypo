@@ -15,10 +15,10 @@ use App\Models\Tenant\Manage\Status;
 
 use Illuminate\Database\Eloquent\Builder;
 
-use App\Helpers\ExchangeRate;
+//use App\Helpers\ExchangeRate;
 
-use App\Enum\InvoiceStatusEnum;
-use App\Enum\PaymentStatusEnum;
+//use App\Enum\InvoiceStatusEnum;
+//use App\Enum\PaymentStatusEnum;
 
 use App\Models\Tenant\Admin\Setup;
 
@@ -75,7 +75,8 @@ class Invoice extends Model
 
 	/* ----------------- Functions ---------------------- */
 	
-	/* ---------------- belongsTo ---------------------- */
+	
+
 	/* ----------------- HasMany ------------------------ */
 
 

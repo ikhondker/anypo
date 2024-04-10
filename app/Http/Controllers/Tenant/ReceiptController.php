@@ -50,6 +50,8 @@ use App\Helpers\FileUpload;
 use App\Helpers\ExchangeRate;
 # 4. Notifications
 # 5. Jobs
+use App\Jobs\Tenant\AccountingReceipt;
+
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
 # 6. Mails
@@ -135,8 +137,6 @@ class ReceiptController extends Controller
 	{
 		$this->authorize('create', Receipt::class);
 		
-		
-
 		$pol_id =$request->input('pol_id');
 		$pol = Pol::where('id', $pol_id)->first();
 		
@@ -152,6 +152,9 @@ class ReceiptController extends Controller
 
 		// save receipt
 		$receipt = Receipt::create($request->all());
+
+		// Create Accounting for this Receipt
+		AccountingReceipt::dispatch($receipt->id, $receipt->amount);
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $receipt->id ]);
@@ -204,6 +207,8 @@ class ReceiptController extends Controller
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CREATE->value,$receipt->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
+
+		
 
 		// Write to Log
 		EventLog::event('receipt', $receipt->id, 'create');
@@ -301,6 +306,9 @@ class ReceiptController extends Controller
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CANCEL->value, $receipt->fc_amount);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
+
+			// Create Reverse Accounting for this Receipt
+			AccountingReceipt::dispatch($receipt->id, $receipt->amount, true);
 
 			// Cancel Receipt
 			Receipt::where('id', $receipt_id)

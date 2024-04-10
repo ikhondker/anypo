@@ -51,6 +51,8 @@ use App\Helpers\ExchangeRate;
 # 5. Jobs
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
+use App\Jobs\Tenant\AccountingInvoice;
+
 # 6. Mails
 # 7. Rules
 use App\Rules\Tenant\OverInvoiceRule;
@@ -67,8 +69,6 @@ use Str;
 use Illuminate\Foundation\Http\FormRequest;
 use Exception;
 # 13. FUTURE 
-
-
 
 class InvoiceController extends Controller
 {
@@ -164,6 +164,9 @@ class InvoiceController extends Controller
 			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
 			$attid = FileUpload::aws($request);
 		}
+
+		
+
 		
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'create');
@@ -294,8 +297,7 @@ class InvoiceController extends Controller
 		} 
 		
 		$invoice->fill(['status' => InvoiceStatusEnum::POSTED->value]);
-		
-		
+			
 
 		$invoice->update();
 		// P2 if final invoice  Close po 
@@ -335,7 +337,10 @@ class InvoiceController extends Controller
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::POST->value, $invoice->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
-					
+		
+		// Create Accounting for this Invoice 
+		AccountingInvoice::dispatch($invoice->id, $invoice->fc_amount);
+
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'post');
 
@@ -365,7 +370,7 @@ class InvoiceController extends Controller
 		try {
 			$invoice = Invoice::where('id', $invoice_id)->firstOrFail();
 			
-			if ($invoice->payment_status <> PaymentStatusEnum::UNPAID->value) {
+			if ($invoice->payment_status <> PaymentStatusEnum::DUE->value) {
 				return back()->withError("You can not cancel a paid Invoice! Please void Payments first!")->withInput();
 			}
 
@@ -374,7 +379,6 @@ class InvoiceController extends Controller
 				return back()->withError("Payment Exists! Please void Payments first!")->withInput();
 			}
 		
-
 			// update budget and project level summary 
 			$po = Po::where('id', $invoice->po_id)->first();
 
@@ -385,32 +389,35 @@ class InvoiceController extends Controller
 			}
 
 			// Po dept budget grs amount update
-			$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
-			$dept_budget->amount_invoice = $dept_budget->amount_invoice - $invoice->fc_amount;
-			$dept_budget->count_invoice = $dept_budget->count_invoice -1;
+			$dept_budget 					= DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
+			$dept_budget->amount_invoice 	= $dept_budget->amount_invoice - $invoice->fc_amount;
+			$dept_budget->count_invoice 	= $dept_budget->count_invoice -1;
 			$dept_budget->save();
 
 			// Reduce project amount_invoice
-			$project = Project::where('id', $po->project_id)->firstOrFail();
-			$project->amount_invoice = $project->amount_invoice - $invoice->fc_amount;
-			$project->count_invoice = $project->count_invoice -1;
+			$project 					= Project::where('id', $po->project_id)->firstOrFail();
+			$project->amount_invoice 	= $project->amount_invoice - $invoice->fc_amount;
+			$project->count_invoice 	= $project->count_invoice -1;
 			$project->save();
 
 			// Reduce Supplier amount_invoice
-			$supplier = Supplier::where('id', $po->supplier_id)->firstOrFail();
-			$supplier->amount_invoice = $supplier->amount_invoice - $invoice->fc_amount;
-			$supplier->count_invoice = $supplier->count_invoice -1;
+			$supplier 					= Supplier::where('id', $po->supplier_id)->firstOrFail();
+			$supplier->amount_invoice 	= $supplier->amount_invoice - $invoice->fc_amount;
+			$supplier->count_invoice 	= $supplier->count_invoice -1;
 			$supplier->save();
 
 			//  Reverse PO Invoiced amount
-			$po 				= Po::where('id', $invoice->po_id)->firstOrFail();
+			$po 						= Po::where('id', $invoice->po_id)->firstOrFail();
 			$po->amount_invoice			= $po->amount_invoice - $invoice->amount;
-			$po->fc_amount_invoice			= $po->fc_amount_invoice - $invoice->fc_amount;
+			$po->fc_amount_invoice		= $po->fc_amount_invoice - $invoice->fc_amount;
 			$po->save();
 
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::CANCEL->value, $invoice->fc_amount);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
+
+			// Create Reverse Accounting for this Invoice 
+			AccountingInvoice::dispatch($invoice->id, $invoice->fc_amount, true);
 
 			// cancel Invoice
 			Invoice::where('id', $invoice->id)
@@ -478,6 +485,14 @@ class InvoiceController extends Controller
 
 		return true;
 	}
+
+	public function accounting(Invoice $invoice)
+	{
+		$this->authorize('view', $invoice);
+		$po = Po::where('id', $invoice->po_id)->get()->firstOrFail();
+		return view('tenant.invoices.accounting', compact('po','invoice'));
+	}
+
 
 	public function export()
 	{

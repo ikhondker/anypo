@@ -9,6 +9,7 @@
 		<a class="dropdown-item" href="{{ route('receipts.create',$pol->id) }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Receipts</a>
 
 		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('pols.accounting', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Accounting **</a>
 		<a class="dropdown-item" href="{{ route('pos.show', $pol->po_id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Purchase Order</a>
 		<a class="dropdown-item" href="{{ route('reports.po', $pol->po_id) }}" target="_blank"><i class="align-middle me-1" data-feather="printer"></i> Print Purchase Order</a>
 		<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Run PO Detail Report*</a>

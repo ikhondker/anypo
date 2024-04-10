@@ -61,10 +61,10 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		$dbu->article_id	= $this->article_id;
 		$dbu->event			= $this->event;
 
-		Log::debug('jobs.RecordDeptBudgetUsage.handle entity='.$this->entity);
-		Log::debug('jobs.RecordDeptBudgetUsage.handle article_id='.$this->article_id);
-		Log::debug('jobs.RecordDeptBudgetUsage.handle event='.$this->event);
-		Log::debug('jobs.RecordDeptBudgetUsage.handle fc_amount='.$this->fc_amount);
+		Log::debug('jobs.Tenant.RecordDeptBudgetUsage.handle entity = '.$this->entity);
+		Log::debug('jobs.Tenant.RecordDeptBudgetUsage.handle article_id = '.$this->article_id);
+		Log::debug('jobs.Tenant.RecordDeptBudgetUsage.handle event = '.$this->event);
+		Log::debug('jobs.Tenant.RecordDeptBudgetUsage.handle fc_amount = '.$this->fc_amount);
 		
 		switch ($this->entity) {
 			case EntityEnum::PR->value:
@@ -94,7 +94,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 						$dbu->amount_pr	= - $this->fc_amount;
 						break;
 					default:
-						Log::debug("job.RecordDeptBudgetUsage-PR Other Event!");
+						Log::warning("job.Tenant.RecordDeptBudgetUsage-PR Other Event!");
 				}
 				break;
 			case EntityEnum::PO->value:
@@ -124,7 +124,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 						$dbu->amount_po	= - $this->fc_amount;
 						break;
 					default:
-						Log::debug("job.RecordDeptBudgetUsage-PO Other Event!");
+						Log::warning("job.Tenant.RecordDeptBudgetUsage-PO Other Event!");
 				}
 				break;
 			case EntityEnum::RECEIPT->value:
@@ -146,7 +146,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 						$dbu->amount_grs	= - $this->fc_amount;
 						break;
 					default:
-						Log::debug("job.RecordDeptBudgetUsage-RECEIPT Other Event!");
+						Log::warning("job.Tenant.RecordDeptBudgetUsage-RECEIPT Other Event!");
 				}
 				break;
 				case EntityEnum::INVOICE->value:
@@ -171,7 +171,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 							$dbu->amount_invoice	= - $this->fc_amount;
 							break;
 						default:
-							Log::debug("job.RecordDeptBudgetUsage-INVOICE Other Event!");
+							Log::warning("job.Tenant.RecordDeptBudgetUsage-INVOICE Other Event!");
 					}
 					break;
 				case EntityEnum::PAYMENT->value:
@@ -193,15 +193,14 @@ class RecordDeptBudgetUsage implements ShouldQueue
 								$dbu->amount_payment	= - $this->fc_amount;
 								break;
 							default:
-								Log::debug("job.RecordDeptBudgetUsage-PAYMENT Other Event!");
+								Log::warning("job.Tenant.RecordDeptBudgetUsage-PAYMENT Other Event!");
 						}
 						break;
 
 			default:
-				Log::debug("job.RecordDeptBudgetUsage Other Entity!");
+				Log::error("job.Tenant.RecordDeptBudgetUsage Other Entity!");
 		}
 		
 		$dbu->save();
-		//Log::debug('I AM HERE 6 DONE');
 	}
 }
