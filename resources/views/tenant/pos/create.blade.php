@@ -116,7 +116,6 @@
 					</div>
 					<div class="card-body">
 						<div class="mb-3">
-								
 	
 							<label class="form-label">Terms and Conditions</label>
 							<textarea class="form-control" name="notes"  placeholder="Enter ..." rows="4">{{ old('notes', 'Enter ...') }}</textarea>
@@ -124,8 +123,8 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 							<div class="form-check form-switch">
-								<input class="form-check-input mt-2" type="checkbox" id="clause" name="clause">
-								<label class="form-check-label mt-1" for="clause">... include  standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
+								<input class="form-check-input mt-2" type="checkbox" id="tc" name="tc">
+								<label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
 							</div>	
 						</div>
 

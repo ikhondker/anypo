@@ -340,9 +340,10 @@ class ReceiptController extends Controller
 		$receipt		= Receipt::with('pol.po')->where('id', $receipt_id)->firstOrFail();
 		$po_currency 	= $receipt->pol->po->currency;
 
-		Log::debug('updateReceiptFcValues =' . $po_currency.$setup->currency);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues po->currency =' . $po_currency);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues setup->currency =' . $setup->currency);
 
-		Log::debug('tenant.ReceiptController.updateReceiptFcValues receipt_id=' . $receipt_id);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues receipt_id =' . $receipt_id);
 		Log::debug('tenant.ReceiptController.updateReceiptFcValues po->currency =' . $po_currency);
 		Log::debug('tenant.ReceiptController.updateReceiptFcValues setup->currency =' . $setup->currency);
 

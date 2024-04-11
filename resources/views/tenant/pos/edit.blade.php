@@ -130,8 +130,18 @@
 						</div>
 						<div class="card-body">
 						
-							<x-tenant.edit.notes :value="$po->notes"/>
-							
+							<div class="mb-3">
+								<label name="notes" class="form-label">Notes:</label>
+								<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', $po->notes) }}</textarea>
+								@error('notes')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+								<div class="form-check form-switch">
+									<input class="form-check-input mt-2" type="checkbox" id="tc" name="tc" @checked($po->tc)>
+									<label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
+								</div>	
+							</div>
+
 							<x-tenant.attachment.create />
 
 							<div class="mb-3">

@@ -164,6 +164,14 @@ class PoController extends Controller
 			$request->merge(['dept_id'		=> auth()->user()->dept_id]);
 		} 
 
+		if($request->has('tc')) {
+			//Checkbox checked
+			$request->merge(['tc' => 1]);
+		} else {
+			//Checkbox not checked
+			$request->merge([ 'tc' => 0]);
+		}
+
 		$po = Po::create($request->all());
 		// Write to Log
 		EventLog::event('po', $po->id, 'create');
@@ -342,6 +350,14 @@ class PoController extends Controller
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
 			$request->merge(['dept_id'		=> auth()->user()->dept_id]);
 		} 
+
+		if($request->has('tc')) {
+			//Checkbox checked
+			$request->merge(['tc' => 1]);
+		} else {
+			//Checkbox not checked
+			$request->merge([ 'tc' => 0]);
+		}
 
 		$po->update($request->all());
 

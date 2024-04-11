@@ -49,9 +49,9 @@
 			@foreach ($pols as $pol)
 			<tr>
 				<td class="desc">{{ $pol->line_num }}</td>
-				<td class="desc">{{ $pol->summary }}</td>
+				<td class="desc">{{ $pol->item_description }}</td>
 				<td class="desc">{{ $pol->item->uom->name }} </td>
-				<td class="unit">${{ number_format($pol->amount,2) }}</td>
+				<td class="unit">{{ number_format($pol->amount,2) }}</td>
 				<td class="qty">{{ $pol->qty }}</td>
 				<td class="total">{{ number_format($pol->amount,2) }}</td>
 			</tr>
@@ -89,6 +89,15 @@
 			</tr>
 		</tfoot>
 	</table>
+
+	<div id="notices">
+		<div>TERMS & CONDITIONS:</div>
+		<div class="notice">{{ $po->notes }}</div>
+		@if ($po->tc)
+		<div class="notice">{{ $setup->tc }}</div>
+		@endif
+	</div>
+
 @endsection
 
 		

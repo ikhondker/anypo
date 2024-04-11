@@ -780,7 +780,7 @@ class ReportController extends Controller
 		// $this->authorize('pdfInvoice', $invoice);
 
 		$setup 		= Setup::first();
-		$report 	= Report::where('id', '1002')->firstOrFail();
+		$report 	= Report::where('id', '1010')->firstOrFail();
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 		
@@ -844,8 +844,11 @@ class ReportController extends Controller
 		// NOTE: Uses InvoicePolicy
 		// $this->authorize('pdfInvoice', $invoice);
 
+
+		Log::debug('ReportController.po Value of id=' . $id);
+
 		$setup 		= Setup::first();
-		$report 	= Report::where('id', '1003')->firstOrFail();
+		$report 	= Report::where('id', '1015')->firstOrFail();
 		$po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
 		$pols 		= Pol::with('item')->where('po_id', $po->id)->get()->all();
 		
@@ -854,7 +857,7 @@ class ReportController extends Controller
 		DB::statement("UPDATE reports SET 
 		run_count	= run_count + 1 
 		WHERE id 	= ".$report->id."");
-
+		
 		$data = [
 			'setup' 	=> $setup,
 			'report' 	=> $report,
@@ -862,6 +865,7 @@ class ReportController extends Controller
 			'pols' 		=> $pols,
 		];
 		
+
 		$pdf = PDF::loadView('tenant.reports.formats.po', $data);
 			// ->setOption('fontDir', public_path('/fonts/lato'));
 
@@ -874,7 +878,7 @@ class ReportController extends Controller
 		$canvas = $pdf->getDomPDF()->getCanvas();
 		$height = $canvas->get_height();
 		$width = $canvas->get_width();
-		
+
 		// Specify watermark text
 		$text = Str::upper($po->auth_status);
 
@@ -899,8 +903,6 @@ class ReportController extends Controller
 
 	public function prv1($id)
 	{
-
-
 		//todo auth check
 		//todo if pr exists
 		$setup = Setup::first();
@@ -1046,20 +1048,5 @@ class ReportController extends Controller
 		return $pdf->stream('templatepo.pdf');
 	}
 
-
-	// onhand stock report
-	public function stocks()
-	{
-		$data = [
-			'title'		=> 'On-Hand Stock Report',
-			'date'		=> date('m/d/Y'),
-			'items'		=> Item::all(),
-			'total'		=> Item::all()->sum('price'),
-			//'settings'  => Setting::first()
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.stocks', $data);
-		return $pdf->stream('stocks.pdf');
-	}
 
 }
