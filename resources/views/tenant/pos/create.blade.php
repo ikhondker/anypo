@@ -116,11 +116,17 @@
 					</div>
 					<div class="card-body">
 						<div class="mb-3">
-							<label class="form-label">Notes</label>
-							<textarea class="form-control" name="notes"  placeholder="Enter ..." rows="3">{{ old('notes', 'Enter ...') }}</textarea>
+								
+	
+							<label class="form-label">Terms and Conditions</label>
+							<textarea class="form-control" name="notes"  placeholder="Enter ..." rows="4">{{ old('notes', 'Enter ...') }}</textarea>
 							@error('notes')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
+							<div class="form-check form-switch">
+								<input class="form-check-input mt-2" type="checkbox" id="clause" name="clause">
+								<label class="form-check-label mt-1" for="clause">... include  standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
+							</div>	
 						</div>
 
 						<x-tenant.attachment.create  />
@@ -179,6 +185,24 @@
 
 	</form>
 	<!-- /.form end -->
+
+	<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Standard PO Terms and Conditions</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			aaaaaaaaaaaaaaa
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		</div>
+		</div>
+	</div>
+	</div>
 
 	@include('tenant.includes.js.select2')
 	

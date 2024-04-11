@@ -14,7 +14,7 @@
 
 								<tr>
 									<th>PO #</th>
-									<td>{{ $payment->invoice->po_id }} : {{ $payment->invoice->po->summary }}
+									<td>
 										<a class="text-info" href="{{ route('pos.show',$payment->invoice->po_id) }}">
 											{{ "#". $payment->invoice->po_id. " - ". $payment->invoice->po->summary }}
 										</a>
@@ -26,7 +26,7 @@
 								</tr>
 								<tr>
 									<th>Invoice</th>
-									<td>{{ $payment->invoice->invoice_no }} : {{ $payment->invoice->summary }}
+									<td>
 										<a class="text-info" href="{{ route('invoices.show',$payment->invoice_id) }}">
 											{{ $payment->invoice->invoice_no }}
 										</a>
@@ -50,6 +50,10 @@
 									<td>{{ $payment->cheque_no }}</td>
 								</tr>
 								<tr>
+									<th>Payment Date</th>
+									<td>{{ ($payment->pay_date <> "") ? strtoupper(date('d-M-y', strtotime($payment->pay_date))) : "" }}</td>
+								</tr>
+								<tr>
 									<th>Payment Amount</th>
 									<td>{{ number_format($payment->amount , 2) }} {{ $payment->currency }}</td>
 								</tr>
@@ -67,7 +71,7 @@
 								</tr> --}}
 								<tr>
 									<td>&nbsp;</td>
-									<td><a href="{{ route('payments.show',$payment->id) }}" class="text-warning d-inline-block">xx View Invoice ...</a></td>
+									<td><a href="{{ route('payments.show',$payment->id) }}" class="text-warning d-inline-block">xx View Payment ...</a></td>
 								</tr>
 							</tbody>
 						</table>

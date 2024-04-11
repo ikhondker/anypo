@@ -16,7 +16,7 @@ use App\Models\Tenant\Accounting;
 use App\Models\Tenant\Admin\Setup;
 
 use Illuminate\Support\Facades\Log;
-
+use Str;
 
 class AccountingReceipt implements ShouldQueue
 {
@@ -54,7 +54,7 @@ class AccountingReceipt implements ShouldQueue
 		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d H:i:s');
 		$ael_dr->line_description	= $ael_cr->line_description = $receipt->pol->item_description;
 		$ael_dr->fc_currency		= $ael_cr->fc_currency 		= $setup->currency;
-		$ael_dr->reference_no		= $ael_cr->reference_no 	= $receipt->id;
+		$ael_dr->reference			= $ael_cr->reference 		= Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;
 		$ael_dr->po_id				= $ael_cr->po_id 			= $receipt->pol->po_id;
 		$ael_dr->article_id			= $ael_cr->article_id 		= $receipt->id;
 

@@ -24,7 +24,7 @@ return new class extends Migration
 			$table->float('fc_cr_amount', 15, 2)->default(0);
 			$table->biginteger('po_id')->default(0);
 			$table->biginteger('article_id')->default(0);
-			$table->string('reference_no')->nullable();
+			$table->string('reference')->nullable();
 			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

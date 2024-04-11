@@ -12,6 +12,7 @@
 			View Setup
 		@endslot
 		@slot('buttons')
+			<a href="{{ route('setups.tc',$setup->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-edit"></i> PO T&C</a>
 			<a href="{{ route('setups.announcement',$setup->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-edit"></i> Announcement</a>
 			<x-tenant.buttons.header.edit object="Setup" :id="$setup->id"/>
 		@endslot

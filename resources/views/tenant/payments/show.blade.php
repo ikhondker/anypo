@@ -5,7 +5,7 @@
 	<li class="breadcrumb-item"><a href="{{ route('pos.show',$payment->invoice->po_id) }}">PO #{{ $payment->invoice->po_id }}</a></li>
 	<li class="breadcrumb-item"><a href="{{ route('pos.invoice', $payment->invoice->po_id) }}">PO Invoices</a></li>
 	<li class="breadcrumb-item"><a href="{{ route('invoices.show', $payment->invoice->id) }}">Invoice #{{ $payment->invoice->invoice_no }}</a></li>
-	<li class="breadcrumb-item active">Pay #{{ $payment->id }}</li>
+	<li class="breadcrumb-item active">Payment #{{ $payment->id }}</li>
 @endsection
 
 @section('content')

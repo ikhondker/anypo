@@ -16,9 +16,8 @@
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form action="{{ route('setups.updatenotice',$setup->id) }}" method="POST">
+	<form action="{{ route('setups.update-notice',$setup->id) }}" method="POST">
 		@csrf
-		
 
 			<div class="row">
 				<div class="col-6">

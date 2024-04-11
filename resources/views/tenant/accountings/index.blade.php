@@ -55,6 +55,7 @@
 								<th class="text-end">Cr</th>
 								<th>Currency</th>
 								<th>PO#</th>
+								<th>Reference</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -71,6 +72,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$accounting->fc_cr_amount"/></td>
 								<td>{{ $accounting->fc_currency }}</td>
 								<td><x-tenant.common.link-po id="{{ $accounting->po_id }}"/></td>
+								<td>{{ $accounting->reference_no }}</td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Accounting" :id="$accounting->id" :edit="false"/>
 								</td>

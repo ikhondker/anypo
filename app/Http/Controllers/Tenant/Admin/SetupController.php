@@ -185,6 +185,23 @@ class SetupController extends Controller
 		//$this->authorize('delete', $setup);
 	}
 
+	public function tc(Setup $setup)
+	{
+		$this->authorize('update', $setup);
+
+		return view('tenant.admin.setups.tc', compact('setup'));
+	}
+	public function updateTc(Request $request, Setup $setup)
+	{
+		$this->authorize('update', $setup);
+
+		$setup->update($request->all());
+
+		// Write to Log
+		EventLog::event('setup', $setup->id, 'update', 'tc', 'Terms and Conditions');
+
+		return redirect()->route('setups.show', $setup->id)->with('success', 'Terms and Conditions updated.');
+	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -199,7 +216,7 @@ class SetupController extends Controller
 		return view('tenant.admin.setups.announcement', compact('setup'));
 	}
 
-	public function updatenotice(Request $request, Setup $setup)
+	public function updateNotice(Request $request, Setup $setup)
 	{
 		$this->authorize('update', $setup);
 

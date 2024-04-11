@@ -19,6 +19,8 @@ use App\Models\Tenant\Admin\Setup;
 
 use Illuminate\Support\Facades\Log;
 
+use Str;
+
 class AccountingPayment implements ShouldQueue
 {
 
@@ -58,7 +60,7 @@ class AccountingPayment implements ShouldQueue
 		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d H:i:s');
 		$ael_dr->line_description	= $ael_cr->line_description = $payment->invoice->summary;	// <- --------------
 		$ael_dr->fc_currency		= $ael_cr->fc_currency 		= $setup->currency;
-		$ael_dr->reference_no		= $ael_cr->reference_no 	= $payment->id;
+		$ael_dr->reference			= $ael_cr->reference 		= Str::upper(EntityEnum::PAYMENT->value) .' #'. $payment->id;
 		$ael_dr->po_id				= $ael_cr->po_id 			= $payment->invoice->po_id;		//>
 		$ael_dr->article_id			= $ael_cr->article_id 		= $payment->id;
 

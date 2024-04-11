@@ -273,7 +273,9 @@ Route::middleware([
 	Route::resource('setups', SetupController::class)->middleware(['auth', 'verified']);
 	Route::get('setups/image/{filename}',[SetupController::class, 'image'])->name('setups.image');
 	Route::get('setups/announcement/{setup}', [SetupController::class, 'notice'])->name('setups.announcement');
-	Route::post('setups/updatenotice/{setup}', [SetupController::class, 'updatenotice'])->name('setups.updatenotice');
+	Route::post('setups/update-notice/{setup}', [SetupController::class, 'updateNotice'])->name('setups.update-notice');
+	Route::get('setups/tc/{setup}', [SetupController::class, 'tc'])->name('setups.tc');
+	Route::post('setups/update-tc/{setup}', [SetupController::class, 'updateTc'])->name('setups.update-tc');
 	Route::post('setups/freeze/{setup}', [SetupController::class, 'freeze'])->name('setups.freeze');
 	
 

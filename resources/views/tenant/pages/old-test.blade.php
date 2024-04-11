@@ -7,7 +7,6 @@
 		@slot('title')
 		Get Started  
 		@endslot
-
 		@slot('buttons')
 			<a href="tel:{{ config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-primary float-end me-2"><i data-feather="phone-outgoing"></i> Call support {{config('akk.SUPPORT_PHONE_NO')}}</a>
 			<a  href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-2"><i data-feather="message-square"></i> Create Ticket</a>
@@ -43,32 +42,6 @@
 
 	<main class="content">
 		<div class="container-fluid p-0">
-
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-	Launch demo modal
-  </button>
-
-<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Launch demo modal</a>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-	<div class="modal-content">
-	<div class="modal-header">
-		<h5 class="modal-title" id="exampleModalLabel">Standard PO Clause</h5>
-		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	</div>
-	<div class="modal-body">
-		aaaaaaaaaaaaaaa
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-	</div>
-	</div>
-</div>
-</div>
-
 			<div id="ex1" class="modal">
 				<p>Thanks for clicking. That felt good.</p>
 				<a href="#" rel="modal:close">Close</a>

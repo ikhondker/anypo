@@ -14,8 +14,11 @@
 {{-- <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"> --}}
 <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
 
+
+
 <!-- Scripts -->
 @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 
 <link href="{{asset('css/light.css')}}" rel="stylesheet">
 {{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}
