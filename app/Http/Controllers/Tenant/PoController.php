@@ -252,12 +252,12 @@ class PoController extends Controller
 		return view('tenant.pos.history', compact('po'));
 	}
 
-	public function accounting(Po $po)
+	public function ael(Po $po)
 	{
 		$this->authorize('view', $po);
 	
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		return view('tenant.pos.accounting', compact('po'));
+		return view('tenant.pos.ael', compact('po'));
 	}
 
 

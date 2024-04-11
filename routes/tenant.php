@@ -42,7 +42,7 @@ use App\Http\Controllers\Tenant\Manage\StatusController;
 use App\Http\Controllers\Tenant\Manage\CustomErrorController;
 
 use App\Http\Controllers\Tenant\Workflow\HierarchyController;
-use App\Http\Controllers\Tenant\Workflow\HierarchylController;
+//use App\Http\Controllers\Tenant\Workflow\HierarchylController;
 use App\Http\Controllers\Tenant\Workflow\WfController;
 use App\Http\Controllers\Tenant\Workflow\WflController;
 
@@ -62,9 +62,9 @@ use App\Http\Controllers\Tenant\PolController;
 use App\Http\Controllers\Tenant\ProjectController;
 use App\Http\Controllers\Tenant\ReceiptController;
 use App\Http\Controllers\Tenant\InvoiceController;
-use App\Http\Controllers\Tenant\InvoiceLinesController;
+//use App\Http\Controllers\Tenant\InvoiceLinesController;
 use App\Http\Controllers\Tenant\PaymentController;
-use App\Http\Controllers\Tenant\AccountingController;
+use App\Http\Controllers\Tenant\AelController;
 use App\Http\Controllers\Tenant\ReportController;
 
 
@@ -433,7 +433,7 @@ Route::middleware([
 	Route::get('/pos/open/{po}',[PoController::class,'open'])->name('pos.open');
 	Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');
 	Route::get('/pos/invoice/{po}',[PoController::class,'invoice'])->name('pos.invoice');
-	Route::get('/pos/accounting/{po}',[PoController::class,'accounting'])->name('pos.accounting');
+	Route::get('/pos/ael/{po}',[PoController::class,'ael'])->name('pos.ael');
 
 	Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
 	Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
@@ -444,7 +444,7 @@ Route::middleware([
 	Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
 	Route::get('/pols/add-line/{po}',[PolController::class, 'addLine'])->name('pols.add-line');
 	Route::get('/pols/receipt/{pol}',[PolController::class,'receipt'])->name('pols.receipt');
-	Route::get('/pols/accounting/{pol}',[PolController::class,'accounting'])->name('pols.accounting');
+	Route::get('/pols/ael/{pol}',[PolController::class,'ael'])->name('pols.ael');
 
 	/* ======================== Receipt ======================================== */
 	Route::resource('receipts', ReceiptController::class)->middleware(['auth', 'verified']);
@@ -452,7 +452,7 @@ Route::middleware([
 	Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
 	Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
 	Route::get('/receipts/cancel/{receipt}',[ReceiptController::class,'cancel'])->name('receipts.cancel');
-	Route::get('/receipts/accounting/{receipt}',[ReceiptController::class,'accounting'])->name('receipts.accounting');
+	Route::get('/receipts/ael/{receipt}',[ReceiptController::class,'ael'])->name('receipts.ael');
 
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class)->middleware(['auth', 'verified']);
@@ -463,7 +463,7 @@ Route::middleware([
 	Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
 	Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
 	Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
-	Route::get('/invoices/accounting/{invoice}',[InvoiceController::class,'accounting'])->name('invoices.accounting');
+	Route::get('/invoices/ael/{invoice}',[InvoiceController::class,'ael'])->name('invoices.ael');
 
 	/* ======================== InvoiceLines ======================================== */
 	//Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
@@ -476,12 +476,12 @@ Route::middleware([
 	Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
 	Route::get('/payments/create/{invoice}',[PaymentController::class,'create'])->name('payments.create');
 	Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
-	Route::get('/payments/accounting/{payment}',[PaymentController::class,'accounting'])->name('payments.accounting');
+	Route::get('/payments/ael/{payment}',[PaymentController::class,'ael'])->name('payments.ael');
 
 	/* ======================== Accounting ======================================== */
-	Route::resource('accountings', AccountingController::class)->middleware(['auth', 'verified']);
-	Route::get('/accounting/export',[AccountingController::class,'export'])->name('accountings.export');
-	Route::get('/accounting/export-for-po/{id}',[AccountingController::class,'exportForPo'])->name('accountings.export-for-po');
+	Route::resource('aels', AelController::class)->middleware(['auth', 'verified']);
+	Route::get('/ael/export',[AelController::class,'export'])->name('aels.export');
+	Route::get('/ael/export-for-po/{id}',[AelController::class,'exportForPo'])->name('aels.export-for-po');
 
 
 	/* ======================== Report ========================================  */

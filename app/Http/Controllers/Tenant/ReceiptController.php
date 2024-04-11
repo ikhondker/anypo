@@ -50,7 +50,7 @@ use App\Helpers\FileUpload;
 use App\Helpers\ExchangeRate;
 # 4. Notifications
 # 5. Jobs
-use App\Jobs\Tenant\AccountingReceipt;
+use App\Jobs\Tenant\AelReceipt;
 
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
@@ -154,7 +154,7 @@ class ReceiptController extends Controller
 		$receipt = Receipt::create($request->all());
 
 		// Create Accounting for this Receipt
-		AccountingReceipt::dispatch($receipt->id, $receipt->amount);
+		AelReceipt::dispatch($receipt->id, $receipt->amount);
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $receipt->id ]);
@@ -308,7 +308,7 @@ class ReceiptController extends Controller
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 			// Create Reverse Accounting for this Receipt
-			AccountingReceipt::dispatch($receipt->id, $receipt->amount, true);
+			AelReceipt::dispatch($receipt->id, $receipt->amount, true);
 
 			// Cancel Receipt
 			Receipt::where('id', $receipt_id)

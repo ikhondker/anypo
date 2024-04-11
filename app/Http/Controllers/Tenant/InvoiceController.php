@@ -51,7 +51,7 @@ use App\Helpers\ExchangeRate;
 # 5. Jobs
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
-use App\Jobs\Tenant\AccountingInvoice;
+use App\Jobs\Tenant\AelInvoice;
 
 # 6. Mails
 # 7. Rules
@@ -339,7 +339,7 @@ class InvoiceController extends Controller
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 		
 		// Create Accounting for this Invoice 
-		AccountingInvoice::dispatch($invoice->id, $invoice->fc_amount);
+		AelInvoice::dispatch($invoice->id, $invoice->fc_amount);
 
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'post');
@@ -417,7 +417,7 @@ class InvoiceController extends Controller
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 			// Create Reverse Accounting for this Invoice 
-			AccountingInvoice::dispatch($invoice->id, $invoice->fc_amount, true);
+			AelInvoice::dispatch($invoice->id, $invoice->fc_amount, true);
 
 			// cancel Invoice
 			Invoice::where('id', $invoice->id)

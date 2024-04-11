@@ -21,7 +21,7 @@
 	
 	<x-tenant.info.po-info id="{{ $po->id }}"/>
 
-	<x-tenant.accounting.for-po id="{{ $po->id }}"/>
+	<x-tenant.ael.ael-for-po id="{{ $po->id }}"/>
 
 @endsection
 

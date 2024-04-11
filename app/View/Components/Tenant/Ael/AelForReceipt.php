@@ -1,24 +1,22 @@
 <?php
 
-namespace App\View\Components\Tenant\Accounting;
+namespace App\View\Components\Tenant\Ael;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-
-use App\Models\Tenant\Accounting;
-
-class ForPo extends Component
+use App\Models\Tenant\Ael;
+class AelForReceipt extends Component
 {
 	public $id;
-	public $accountings;
+	public $aels;
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct($id)
 	{
-		$this->accountings = Accounting::where('po_id', $id)->get();
+		$this->aels = Ael::where('po_id', $id)->get();
 		$this->id = $id;
 	}
 
@@ -27,6 +25,6 @@ class ForPo extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.accounting.for-po');
+		return view('components.tenant.ael.ael-common');
 	}
 }

@@ -24,7 +24,7 @@ return new class extends Migration
 			$table->string('country',2)->default('US');
 			$table->string('website')->nullable();
 			$table->string('email')->nullable();
-ccccccccccccccccccccccccc			$table->float('amount_pr_booked', 15, 2)->default(0); // NEW
+			$table->float('amount_pr_booked', 15, 2)->default(0); // NEW
 			$table->float('amount_pr', 15, 2)->default(0);
 			$table->float('amount_po_booked', 15, 2)->default(0);
 			$table->float('amount_po', 15, 2)->default(0);

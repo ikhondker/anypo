@@ -17,10 +17,10 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Accounting Entries
+		Accounting Entries
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Accounting"/>
+			<x-tenant.buttons.header.create object="Ael"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -31,15 +31,15 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Accounting"/>
+					<x-tenant.cards.header-search-export-bar object="Ael"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Accounting  Entries
+						Accounting  Entries
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">List of Generated Accounting Entries</h6>
+					<h6 class="card-subtitle text-muted">List of Generated Ael Entries</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">
@@ -60,21 +60,21 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($accountings as $accounting)
+							@foreach ($aels as $ael)
 							<tr>
-								<td><a class="text-info" href="{{ route('accountings.show',$accounting->id) }}">{{ $accounting->id }}</a></td>
-								<td>{{ $accounting->entity }}</td>
-								<td>{{ $accounting->event }}</td>
-								<td><x-tenant.list.my-date :value="$accounting->accounting_date"/></td>
-								<td>{{ $accounting->ac_code }}</td>
-								<td>{{ $accounting->line_description }}</td>
-								<td class="text-end"><x-tenant.list.my-number :value="$accounting->fc_dr_amount"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$accounting->fc_cr_amount"/></td>
-								<td>{{ $accounting->fc_currency }}</td>
-								<td><x-tenant.common.link-po id="{{ $accounting->po_id }}"/></td>
-								<td>{{ $accounting->reference_no }}</td>
+								<td><a class="text-info" href="{{ route('aels.show',$ael->id) }}">{{ $ael->id }}</a></td>
+								<td>{{ $ael->entity }}</td>
+								<td>{{ $ael->event }}</td>
+								<td><x-tenant.list.my-date :value="$ael->accounting_date"/></td>
+								<td>{{ $ael->ac_code }}</td>
+								<td>{{ $ael->line_description }}</td>
+								<td class="text-end"><x-tenant.list.my-number :value="$ael->fc_dr_amount"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$ael->fc_cr_amount"/></td>
+								<td>{{ $ael->fc_currency }}</td>
+								<td><x-tenant.common.link-po id="{{ $ael->po_id }}"/></td>
+								<td>{{ $ael->reference }}</td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Accounting" :id="$accounting->id" :edit="false"/>
+									<x-tenant.list.actions object="Ael" :id="$ael->id" :edit="false"/>
 								</td>
 							</tr>
 							@endforeach
@@ -82,7 +82,7 @@
 					</table>
 
 					<div class="row pt-3">
-						{{ $accountings->links() }}
+						{{ $aels->links() }}
 					</div>
 					<!-- end pagination -->
 					

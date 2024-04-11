@@ -9,11 +9,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 use App\Enum\EntityEnum;
-use App\Enum\AccountingEvent;
+use App\Enum\AelEvent;
 
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\Payment;
-use App\Models\Tenant\Accounting;
+use App\Models\Tenant\Ael;
 use App\Models\Tenant\Lookup\BankAccount;
 use App\Models\Tenant\Admin\Setup;
 
@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Log;
 
 use Str;
 
-class AccountingPayment implements ShouldQueue
+class AelPayment implements ShouldQueue
 {
 
 	protected $payment_id;
@@ -50,11 +50,11 @@ class AccountingPayment implements ShouldQueue
 		$bankAccount= BankAccount::where('id', $payment->bank_account_id)->firstOrFail();
 		//$invoice 	= Invoice::where('id', $payment->invoice_id)->firstOrFail();
 
-		Log::debug('Jobs.Tenant.AccountingPayment creating accounting for payment_id =' . $payment->id);
+		Log::debug('Jobs.Tenant.AelPayment creating accounting for payment_id =' . $payment->id);
 		
 		// create two accounting  row
-		$ael_dr						= new Accounting;
-		$ael_cr 					= new Accounting;
+		$ael_dr						= new Ael;
+		$ael_cr 					= new Ael;
 
 		$ael_dr->entity				= $ael_cr->entity 			= EntityEnum::PAYMENT->value;
 		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d H:i:s');
@@ -68,7 +68,7 @@ class AccountingPayment implements ShouldQueue
 		$ael_cr->ac_code			= $bankAccount->ac_cash;
 
 		if ($this->cancel){
-			$ael_dr->event			= $ael_cr->event 			= AccountingEvent::CANCEL->value;
+			$ael_dr->event			= $ael_cr->event 			= AelEvent::CANCEL->value;
 
 			$ael_dr->fc_dr_amount	= 0;
 			$ael_dr->fc_cr_amount	= $this->fc_amount;;
@@ -76,7 +76,7 @@ class AccountingPayment implements ShouldQueue
 			$ael_cr->fc_dr_amount	= $this->fc_amount;;
 			$ael_cr->fc_cr_amount	= 0; 
 		} else {
-			$ael_dr->event			= $ael_cr->event 			= AccountingEvent::POST->value;
+			$ael_dr->event			= $ael_cr->event 			= AelEvent::POST->value;
 
 			$ael_dr->fc_dr_amount	= $this->fc_amount;
 			$ael_dr->fc_cr_amount	= 0;
@@ -86,9 +86,9 @@ class AccountingPayment implements ShouldQueue
 		}
 		
 		$ael_dr->save();
-		Log::debug('Jobs.Tenant.AccountingPayment saving dr line ael_dr_id ='. $ael_dr->id);
+		Log::debug('Jobs.Tenant.AelPayment saving dr line ael_dr_id ='. $ael_dr->id);
 		
 		$ael_cr->save();
-		Log::debug('Jobs.Tenant.AccountingPayment saving cr line ael_dr_id ='. $ael_cr->id);
+		Log::debug('Jobs.Tenant.AelPayment saving cr line ael_dr_id ='. $ael_cr->id);
 	}
 }
