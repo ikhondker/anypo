@@ -373,6 +373,14 @@ class ReceiptController extends Controller
 		return true;
 	}
 
+	public function ael(Receipt $receipt)
+	{
+		$this->authorize('view', $receipt);
+		$po = Po::where('id', $receipt->pol->po_id)->get()->firstOrFail();
+		return view('tenant.receipts.ael', compact('po','receipt'));
+	}
+
+
 	public function export()
 	{
 

@@ -226,14 +226,14 @@ class PaymentController extends Controller
 	}
 
 
-	public function accounting(Payment $payment)
+	public function ael(Payment $payment)
 	{
 		$this->authorize('view', $payment);
 		// TODO single query
 		$invoice = Invoice::where('id', $payment->invoice_id)->get()->firstOrFail();
 		//$po = Po::where('id', $payment->invoice_id->po_id)->get()->firstOrFail();
 		$po = Po::where('id', $invoice->po_id)->get()->firstOrFail();
-		return view('tenant.payments.accounting', compact('po','payment'));
+		return view('tenant.payments.ael', compact('po','payment'));
 	}
 
 

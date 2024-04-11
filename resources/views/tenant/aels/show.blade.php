@@ -2,8 +2,8 @@
 @section('title','View Accounting')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('accountings.index') }}">Accounting</a></li>
-	<li class="breadcrumb-item active">{{ $accounting->name }}</li>
+	<li class="breadcrumb-item"><a href="{{ route('aels.index') }}">Accounting</a></li>
+	<li class="breadcrumb-item active">{{ $ael->id }}</li>
 @endsection
 
 
@@ -14,7 +14,7 @@
 			View Accounting
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Accounting"/>
+			<x-tenant.buttons.header.lists object="Ael"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -27,25 +27,25 @@
 				</div>
 
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $accounting->id }}" label="ID#"/>
-					<x-tenant.show.my-text		value="{{ $accounting->source }}" label="Source"/>
-					<x-tenant.show.my-text		value="{{ $accounting->entity }}" label="Entity"/>
-					<x-tenant.show.my-text		value="{{ $accounting->event }}" label="Event"/>
-					<x-tenant.show.my-date		value="{{ $accounting->accounting_date }}"/>
-					<x-tenant.show.my-text		value="{{ $accounting->ac_code }}" label="AC Code"/>
-					<x-tenant.show.my-text		value="{{ $accounting->line_description }}" label="Line Description"/>
-					<x-tenant.show.my-text		value="{{ $accounting->fc_currency }}" label="Currency"/>
-					<x-tenant.show.my-number	value="{{ $accounting->fc_dr_amount }}" label="Dr"/>
-					<x-tenant.show.my-number	value="{{ $accounting->fc_cr_amount }}" label="Cr"/>
-					<x-tenant.show.my-created-at value="{{ $accounting->updated_at }}"/>
-					<x-tenant.show.my-updated-at value="{{ $accounting->created_at }}"/>
+					<x-tenant.show.my-text		value="{{ $ael->id }}" label="ID#"/>
+					<x-tenant.show.my-text		value="{{ $ael->source }}" label="Source"/>
+					<x-tenant.show.my-text		value="{{ $ael->entity }}" label="Entity"/>
+					<x-tenant.show.my-text		value="{{ $ael->event }}" label="Event"/>
+					<x-tenant.show.my-date		value="{{ $ael->accounting_date }}"/>
+					<x-tenant.show.my-text		value="{{ $ael->ac_code }}" label="AC Code"/>
+					<x-tenant.show.my-text		value="{{ $ael->line_description }}" label="Line Description"/>
+					<x-tenant.show.my-text		value="{{ $ael->fc_currency }}" label="Currency"/>
+					<x-tenant.show.my-number	value="{{ $ael->fc_dr_amount }}" label="Dr"/>
+					<x-tenant.show.my-number	value="{{ $ael->fc_cr_amount }}" label="Cr"/>
+					<x-tenant.show.my-created-at value="{{ $ael->updated_at }}"/>
+					<x-tenant.show.my-updated-at value="{{ $ael->created_at }}"/>
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
 							<span class="h6 text-secondary">PO #:</span>
 						</div>
 						<div class="col-sm-9">
-							<a class="text-info" href="{{ route('pos.show',$accounting->po_id) }}">
-								{{ "#". $accounting->po_id. " - ". $accounting->po->summary }}
+							<a class="text-info" href="{{ route('pos.show',$ael->po_id) }}">
+								{{ "#". $ael->po_id. " - ". $ael->po->summary }}
 							</a>
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 						</div>
 						<div class="col-sm-9">
 							@if (auth()->user()->isSystem())
-								<a href="{{ route('accountings.edit',$accounting->id) }}" class="text-warning d-inline-block">Edit</a>
+								<a href="{{ route('aels.edit',$ael->id) }}" class="text-warning d-inline-block">Edit</a>
 							@endif
 						</div>
 					</div>

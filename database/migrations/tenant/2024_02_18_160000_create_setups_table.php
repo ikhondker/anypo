@@ -35,8 +35,8 @@ return new class extends Migration
 			$table->float('tolerance_payment', 15, 2)->default(1);		// Future
 			$table->boolean('user_master_data_entry')->default(false); 	// Future. Allow user to create master data
 			$table->string('ac_accrual')->default('A200001');
-			$table->string('ac_liability')->default('A200001');
-			$table->string('ac_clearing')->default('A200003');			// Future user
+			$table->string('ac_liability')->default('A200004');
+			$table->string('ac_clearing')->default('A200006');			// Future user
 			$table->text('tc')->nullable();
 			$table->string('logo')->nullable()->default('logo.png');
 			$table->boolean('banner_show')->default(false); 
@@ -46,6 +46,7 @@ return new class extends Migration
 			//$table->boolean('show_notice')->default(false);
 			//$table->text('notice')->nullable();
 			$table->biginteger('admin_id')->nullable(); 				// No foreign key intentional TODO
+			$table->biginteger('kam_id')->nullable(); 					// Future
 			$table->biginteger('landlord_account_id')->nullable();
 			$table->dateTime('last_rate_date')->nullable();
 			$table->boolean('maintenance')->default(false); 

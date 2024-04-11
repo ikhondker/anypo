@@ -486,11 +486,11 @@ class InvoiceController extends Controller
 		return true;
 	}
 
-	public function accounting(Invoice $invoice)
+	public function ael(Invoice $invoice)
 	{
 		$this->authorize('view', $invoice);
 		$po = Po::where('id', $invoice->po_id)->get()->firstOrFail();
-		return view('tenant.invoices.accounting', compact('po','invoice'));
+		return view('tenant.invoices.ael', compact('po','invoice'));
 	}
 
 

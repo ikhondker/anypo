@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Tenant\Ael;
+use App\Enum\EntityEnum;
+
 class AelForReceipt extends Component
 {
 	public $id;
@@ -17,6 +19,7 @@ class AelForReceipt extends Component
 	public function __construct($id)
 	{
 		$this->aels = Ael::where('po_id', $id)->get();
+		$this->aels = Ael::where('entity',EntityEnum::RECEIPT->value)->where('article_id', $id)->get();
 		$this->id = $id;
 	}
 

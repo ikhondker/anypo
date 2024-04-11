@@ -62,7 +62,7 @@ class AelReceipt implements ShouldQueue
 		$ael_cr->ac_code			= $setup->ac_accrual;
 		
 		if ($this->cancel){
-			$ael_dr->event			= $ael_cr->event 			= AccountingEvent::CANCEL->value;
+			$ael_dr->event			= $ael_cr->event 			= AelEvent::CANCEL->value;
 
 			$ael_dr->fc_dr_amount	= 0;
 			$ael_dr->fc_cr_amount	= $this->fc_amount;;
@@ -70,7 +70,7 @@ class AelReceipt implements ShouldQueue
 			$ael_cr->fc_dr_amount	= $this->fc_amount;;
 			$ael_cr->fc_cr_amount	= 0; 
 		} else {
-			$ael_dr->event			= $ael_cr->event 			= AccountingEvent::POST->value;
+			$ael_dr->event			= $ael_cr->event 			= AelEvent::POST->value;
 
 			$ael_dr->fc_dr_amount	= $this->fc_amount;
 			$ael_dr->fc_cr_amount	= 0;

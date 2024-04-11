@@ -37,6 +37,7 @@ return new class extends Migration
 			// $table->float('base_amount')->default(0);
 			//$table->string('attachment')->nullable();
 			$table->text('notes')->nullable();
+			$table->boolean('accounted')->default(false);
 			/** ENUM */
 			$table->string('status')->default(ReceiptStatusEnum::RECEIVED->value);;
 			$table->foreign('status')->references('code')->on('statuses');

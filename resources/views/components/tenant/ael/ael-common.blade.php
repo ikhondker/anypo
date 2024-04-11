@@ -6,9 +6,9 @@
 			</a>
 		</div>
 		<h5 class="card-title">
-			Ael  Entries
+			Accounting Entries
 		</h5>
-		<h6 class="card-subtitle text-muted">List of Generated Ael Entries</h6>
+		<h6 class="card-subtitle text-muted">List of Generated Accounting Entries</h6>
 	</div>
 	<div class="card-body">
 		<table class="table">
@@ -19,7 +19,7 @@
 					<th>Event</th>
 					<th>Date</th>
 					<th>Account</th>
-					<th>Line</th>
+					<th>Line Description</th>
 					<th class="text-end">Dr</th>
 					<th class="text-end">Cr</th>
 					<th>Currency</th>

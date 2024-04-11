@@ -25,7 +25,7 @@
 		<li class="sidebar-item {{ ($_node_name == 'purchase' ? 'active' : '') }}">
 			<a data-bs-target="#purchase"s data-bs-toggle="collapse" class="sidebar-link collapsed">
 				<i class="align-middle" data-feather="grid"></i> 
-				<span class="align-middle">Purchasing</span>
+				<span class="align-middle">Workbench</span>
 			</a>
 			<ul id="purchase" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'purchase' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="layout"></i>Requisitions*</a></li>
