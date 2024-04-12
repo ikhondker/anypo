@@ -1,7 +1,6 @@
 @extends('layouts.landscape')
 
 @section('title','Purchase Order Listing')
-{{-- @section('breadcrumb','Create Pr') --}}
 
 @section('content')
 

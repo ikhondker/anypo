@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Enum\EntityEnum;
 use App\Enum\AelEvent;
 
-use App\Models\Tenant\Invoice;
+
 use App\Models\Tenant\Payment;
 use App\Models\Tenant\Ael;
 use App\Models\Tenant\Lookup\BankAccount;
@@ -20,6 +20,7 @@ use App\Models\Tenant\Admin\Setup;
 use Illuminate\Support\Facades\Log;
 
 use Str;
+use DB;
 
 class AelPayment implements ShouldQueue
 {
@@ -52,6 +53,12 @@ class AelPayment implements ShouldQueue
 
 		Log::debug('Jobs.Tenant.AelPayment creating accounting for payment_id =' . $payment->id);
 		
+		// check if invoice already accounted
+		if ($payment->accounted && !$this->cancel){
+			Log::error('Jobs.Tenant.AelPayment Invoice already accounted payment_id =' . $payment->id);
+			return;
+		}
+
 		// create two accounting  row
 		$ael_dr						= new Ael;
 		$ael_cr 					= new Ael;
@@ -90,5 +97,10 @@ class AelPayment implements ShouldQueue
 		
 		$ael_cr->save();
 		Log::debug('Jobs.Tenant.AelPayment saving cr line ael_dr_id ='. $ael_cr->id);
+
+		// Update accounted flag
+		DB::statement("UPDATE payments SET 
+		accounted		= true
+		WHERE id = ".$payment->id."");
 	}
 }

@@ -138,7 +138,7 @@ class AelController extends Controller
 		$data = DB::select("
 			SELECT id, source, entity, event, accounting_date, ac_code, line_description, 
 			fc_currency, fc_dr_amount, fc_cr_amount, 
-			po_id, reference_no
+			po_id, reference
 			FROM aels 
 			WHERE po_id = ".$id."");
 		$dataArray = json_decode(json_encode($data), true);

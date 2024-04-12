@@ -206,8 +206,11 @@ class ReportController extends Controller
 			case '1065':
 				return self::r1065($start_date, $end_date, $supplier_id);
 				break;
-						
-				default:
+			case '1070':
+				return self::r1070($start_date, $end_date);
+				break;
+							
+			default:
 				Log::warning("tenant.report.update report ID not found!");
 		}
 	}
@@ -768,6 +771,42 @@ class ReportController extends Controller
 		$pdf->output();
 
 		return $pdf->stream('supplier-spend-'.strtotime("now").'.pdf');
+	}
+
+	public function r1070($start_date, $end_date)
+	{
+		
+		$this->authorize('run',Report::class);
+		
+		$report 	= Report::where('id', '1070')->firstOrFail();
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= "";
+		//$supplier 	= Supplier::where('id', $supplier_id )->firstOrFail();
+		$param2 	= "";
+		
+		$sql = "
+			SELECT id, source, entity, event, accounting_date, ac_code, line_description, 
+			fc_currency, fc_dr_amount, fc_cr_amount, 
+			po_id, reference
+			FROM aels 
+			WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+		$aels = DB::select($sql);
+
+		$data = [
+			'report' 	=> $report,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'aels'		=> $aels,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.1070', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('aels-'.strtotime("now").'.pdf');
 	}
 
 	public function pr($id)

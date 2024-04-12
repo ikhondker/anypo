@@ -24,7 +24,7 @@
 		</thead>
 		<tbody>
 			@php 
-				$sum = 0
+				$sum = 0;
 			@endphp
 			@foreach ($pos as $po)
 			<tr>

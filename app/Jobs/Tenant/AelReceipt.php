@@ -17,7 +17,7 @@ use App\Models\Tenant\Admin\Setup;
 
 use Illuminate\Support\Facades\Log;
 use Str;
-
+use DB;
 class AelReceipt implements ShouldQueue
 {
 	protected $receipt_id;
@@ -44,8 +44,13 @@ class AelReceipt implements ShouldQueue
 		$setup = Setup::firstOrFail();
 		$receipt 	= Receipt::with('pol.item')->where('id', $this->receipt_id)->firstOrFail();
 
-		Log::debug('Jobs.Tenant.AelReceipt creating accounting for invoice_id =' . $receipt->id);
-		
+		Log::debug('Jobs.Tenant.AelReceipt creating accounting for receipt_id =' . $receipt->id);
+		// check if invoice already accounted
+		if ($receipt->accounted && !$this->cancel){
+			Log::error('Jobs.Tenant.AelReceipt Invoice already accounted receipt_id =' . $receipt->id);
+			return;
+		}
+
 		// create two accounting  row
 		$ael_dr						= new Ael;
 		$ael_cr 					= new Ael;
@@ -84,5 +89,10 @@ class AelReceipt implements ShouldQueue
 		
 		$ael_cr->save();
 		Log::debug('Jobs.Tenant.AelReceipt saving cr line ael_cr_id ='. $ael_cr->id);
+
+		// Update accounted flag
+		DB::statement("UPDATE receipts SET 
+		accounted		= true
+		WHERE id = ".$receipt->id."");
 	}
 }

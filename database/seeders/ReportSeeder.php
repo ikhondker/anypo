@@ -198,9 +198,23 @@ class ReportSeeder extends Seeder
 				'supplier_id' 			=> true,
 				'supplier_id_required'	=> true,
 			],
-	  	];
+	  	];	
 	  	Report::insert($reports);
 
+		$reports =  [
+			[
+				'id' 					=> 1070,
+				'name' 					=> 'Accounting Reports (**)',
+				'summary' 				=> 'Accounting Reports (For a Date range)',
+				'start_date' 			=> true,
+				'start_date_required' 	=> true,
+				'end_date' 				=> true,
+				'end_date_required' 	=> true,
+				'supplier_id' 			=> false,
+				'supplier_id_required'	=> false,
+			],
+	  	];
+	  	Report::insert($reports);
 
 	}
 }

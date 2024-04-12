@@ -299,7 +299,7 @@
 							<div class="mb-3">
 								<label class="form-check m-0">
 								<input type="checkbox" class="form-check-input"
-								name="my_bool" id="my_bool"  @checked($template->my_bool)/>
+								name="my_bool" id="my_bool" @checked($template->my_bool)/>
 								<span class="form-check-label"> Active?</span>
 								</label>
 							</div>

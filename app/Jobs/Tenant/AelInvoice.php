@@ -18,6 +18,8 @@ use App\Models\Tenant\Admin\Setup;
 use Illuminate\Support\Facades\Log;
 
 use Str;
+use DB;
+
 class AelInvoice implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -46,6 +48,12 @@ class AelInvoice implements ShouldQueue
 
 		Log::debug('Jobs.Tenant.AelInvoice creating accounting for invoice_id =' . $invoice->id);
 		
+		// check if invoice already accounted
+		if ($invoice->accounted && !$this->cancel){
+			Log::error('Jobs.Tenant.AelInvoice Invoice already accounted invoice_id =' . $invoice->id);
+			return;
+		}
+
 		// create two accounting  row
 		$ael_dr						= new Ael;
 		$ael_cr 					= new Ael;
@@ -84,5 +92,10 @@ class AelInvoice implements ShouldQueue
 		
 		$ael_cr->save();
 		Log::debug('Jobs.Tenant.AelInvoice saving cr line ael_cr_id ='. $ael_cr->id);
+
+		// Update accounted flag
+		DB::statement("UPDATE invoices SET 
+		accounted		= true
+		WHERE id = ".$invoice->id."");
 	}
 }
