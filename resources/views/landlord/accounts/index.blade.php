@@ -58,7 +58,7 @@
 				@empty
 				<tr>
 					<td colspan="5" class="text-center">
-    					<span>No billing account exists! Please <a href="{{ route('home.pricing') }}"> purchase</a> the service first.</span>
+						<span>No billing account exists! Please <a href="{{ route('home.pricing') }}"> purchase</a> the service first.</span>
 					</td>
 				</tr>
 				@endforelse

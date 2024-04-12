@@ -14,15 +14,15 @@ use App\Enum\AelEvent;
 
 class Ael extends Model
 {
-    use HasFactory;
-    
+	use HasFactory;
+	
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
 		'source', 'entity', 'event', 'accounting_date', 'ac_code', 'line_description', 'fc_currency', 'fc_dr_amount', 'fc_cr_amount', 'po_id', 'article_id', 'reference', 'updated_by', 'updated_at',
 	];
 
-    /**
+	/**
 	 * The attributes that should be cast.
 	 *
 	 * @var array<string, string>
@@ -35,7 +35,7 @@ class Ael extends Model
 		'event'			=> AelEvent::class,
 	];
 
-    /* ----------------- Scopes ------------------------- */
+	/* ----------------- Scopes ------------------------- */
 	/**
 	 * Scope a query to return all payment of PO's where he is the buyer.
 	*/
@@ -46,7 +46,7 @@ class Ael extends Model
 		});
 	}
 
-    /* ----------------- HasMany ------------------------ */
+	/* ----------------- HasMany ------------------------ */
 
 
 	/* ---------------- belongsTo ---------------------- */

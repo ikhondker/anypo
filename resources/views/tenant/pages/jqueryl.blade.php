@@ -69,7 +69,7 @@
 
 {{--  Test Bootstrap css  --}}
 <div class="alert alert-success mt-5" role="alert">
-    Boostrap 5 is working using laravel 8 mix!
+	Boostrap 5 is working using laravel 8 mix!
 </div>
 
 
@@ -100,7 +100,7 @@
 
 
 <div style="width: 600px; margin: auto;">
-    <canvas id="chartjs-bar"></canvas>
+	<canvas id="chartjs-bar"></canvas>
 </div>
 
 

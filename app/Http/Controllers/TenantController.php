@@ -21,7 +21,7 @@ use App\Http\Requests\UpdateTenantRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. TODO 
+# 13. FUTURE 
 
 class TenantController extends Controller
 {

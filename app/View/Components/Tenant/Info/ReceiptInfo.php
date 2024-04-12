@@ -10,22 +10,22 @@ use App\Models\Tenant\Receipt;
 
 class ReceiptInfo extends Component
 {
-    public $id;
+	public $id;
 	public $receipt;
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct($id)
-    {
-        $this->receipt = Receipt::with('pol.po')->where('id', $id)->get()->first();
-    }
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct($id)
+	{
+		$this->receipt = Receipt::with('pol.po')->where('id', $id)->get()->first();
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.info.receipt-info');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.info.receipt-info');
+	}
 }

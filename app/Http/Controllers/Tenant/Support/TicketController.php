@@ -60,13 +60,11 @@ class TicketController extends Controller
 	 */
 	public function create()
 	{
-		// TODO CHECK THIS	
-		//$this->authorize('create',Ticket::class);
-
+		
+		$this->authorize('create',Ticket::class);
 		//$depts = Dept::getAll();
 		//$priorities = Priority::getAll(); 
 
-		//return view('tenant.support.tickets.create', compact('depts', 'priorities'));
 		return view('tenant.support.tickets.create');
 	}
 
