@@ -25,7 +25,7 @@
 				<div class="card">
 					<div class="card-header">
 					<h5 class="card-title">Purchase Order Basic Information</h5>
-					<h6 class="card-subtitle text-muted">Requisition Basic Information.</h6>
+					<h6 class="card-subtitle text-muted">Purchase Order Basic Information.</h6>
 					</div>
 					<div class="card-body">
 

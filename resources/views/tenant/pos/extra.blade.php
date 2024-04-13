@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Additional Information for Requisition')
+@section('title','Additional Information for Purchase Orders')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
 	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO #{{ $po->id }}</a></li>
@@ -48,7 +48,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Currency Conversion Information</h5>
-					<h6 class="card-subtitle text-muted">Requisitions Amounts in Functional Currency.</h6>
+					<h6 class="card-subtitle text-muted">Purchase Order Amounts in Functional Currency.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $po->fc_currency }}" label="Functional Currency"/>

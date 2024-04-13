@@ -11,11 +11,11 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Edit Dept
+			Edit Accounting
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Dept"/>
-			<x-tenant.buttons.header.create object="Dept"/>
+			<x-tenant.buttons.header.lists object="Ael"/>
+			<x-tenant.buttons.header.create object="Ael"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -29,7 +29,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Dept Info</h5>
-							<h6 class="card-subtitle text-muted">Edit department and  Requisition and Purchase Order Approval Hierarchy</h6>
+							<h6 class="card-subtitle text-muted">Edit Accounting Lines</h6>
 						</div>
 						<div class="card-body">
 

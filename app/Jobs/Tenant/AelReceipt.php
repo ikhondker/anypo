@@ -56,7 +56,7 @@ class AelReceipt implements ShouldQueue
 		$ael_cr 					= new Ael;
 
 		$ael_dr->entity				= $ael_cr->entity 			= EntityEnum::RECEIPT->value;
-		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d H:i:s');
+		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d');
 		$ael_dr->line_description	= $ael_cr->line_description = $receipt->pol->item_description;
 		$ael_dr->fc_currency		= $ael_cr->fc_currency 		= $setup->currency;
 		$ael_dr->reference			= $ael_cr->reference 		= Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;

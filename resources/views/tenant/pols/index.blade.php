@@ -22,7 +22,7 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Requisition  Lines Lists
+							Requisition Lines Lists
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">Horizontal Bootstrap layout header-with-simple-search.</h6>

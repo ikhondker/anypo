@@ -4,7 +4,7 @@
 			<div class="card-body">
 				<div class="row g-0">
 					<div class="col-sm-3 col-xl-12 col-xxl-3 text-center">
-						<img src="{{ asset('/img3.jpg')}}" width="180" height="180" class="mt-2" alt="Project">
+						<img src="{{ asset('flow/invoice.jpg')}}" width="240" height="321" class="mt-2" alt="Invoice">
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
 						<h4>INVOICE #{{ $invoice->invoice_no }} : {{ $invoice->summary }}</h4>

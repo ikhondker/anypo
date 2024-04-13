@@ -40,6 +40,7 @@ use App\Helpers\FileUpload;
 # 5. Jobs
 # 6. Mails
 # 7. Rules
+//use App\Rules\Tenant\GlCode;
 # 8. Packages
 use Image;
 # 9. Exceptions

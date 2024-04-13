@@ -480,9 +480,7 @@ Route::middleware([
 
 	/* ======================== Accounting ======================================== */
 	Route::resource('aels', AelController::class)->middleware(['auth', 'verified']);
-	Route::get('/ael/export',[AelController::class,'export'])->name('aels.export');
 	Route::get('/ael/export-for-po/{id}',[AelController::class,'exportForPo'])->name('aels.export-for-po');
-
 
 	/* ======================== Report ========================================  */
 	Route::resource('reports', ReportController::class)->middleware(['auth', 'verified']);

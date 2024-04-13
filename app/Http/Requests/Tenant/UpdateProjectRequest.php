@@ -29,7 +29,7 @@ class UpdateProjectRequest extends FormRequest
 
 	public function messages() {
 		return [
-			'code.alpha_dash'	=> 'Item code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+			'code.alpha_dash'	=> 'Project code must only contain letters, numbers, dashes, and underscores. No space allowed.',
 		];
 	}
 

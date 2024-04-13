@@ -13,7 +13,6 @@ class AelForPayment extends Component
 	public $id;
 	public $aels;
 
-
 	/**
 	 * Create a new component instance.
 	 */

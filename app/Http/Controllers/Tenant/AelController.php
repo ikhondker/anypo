@@ -47,6 +47,7 @@ use DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
 # 13. FUTURE 
+use Illuminate\Http\Request;
 
 class AelController extends Controller
 {
@@ -56,11 +57,44 @@ class AelController extends Controller
 	public function index()
 	{
 		$this->authorize('viewAny',Ael::class);
-
 		$aels = Ael::query();
-		if (request('term')) {
-			$aels->where('po_id', 'Like', '%' . request('term') . '%');
+
+		Log::debug('tenant.ael.index Value of action=' . request('action'));
+
+		if (request('start_date') && request('end_date') ) {
+			$start_date=request('start_date');
+			$end_date=request('end_date');
+			Log::debug('tenant.ael.index Value of start_date=' . request('start_date'));
+			Log::debug('tenant.ael.index  Value of end_date=' . request('end_date'));
 		}
+
+		switch (request('action')) {
+			case 'search':
+				// Search model
+				$aels->whereBetween('accounting_date', [$start_date, $end_date ]);
+				break;
+			case 'export':
+				// Export model
+				$sql = "
+					SELECT id, source, entity, event, accounting_date, ac_code, line_description, 
+					fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount, 
+					po_id, reference
+					FROM aels 
+					WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
+				";
+				//Log::debug('tenant.ael.export'.$sql);
+
+				$data = DB::select($sql);
+				$dataArray = json_decode(json_encode($data), true);
+				// used Export Helper
+				return Export::csv('aels', $dataArray);
+				break;
+		}
+	
+		// if (request('term')) {
+		// 	$aels->where('po_id', 'Like', '%' . request('term') . '%');
+		// }
+
 		$aels = $aels->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.aels.index', compact('aels'));
 	}
@@ -118,26 +152,46 @@ class AelController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Ael::class);
+
+		if (request('start_date') && request('end_date') ) {
+			$start_date=request('start_date');
+			$end_date=request('end_date');
+			Log::debug('tenant.ael.export Value of start_date=' . request('start_date'));
+			Log::debug('tenant.ael.export  Value of end_date=' . request('end_date'));
+		} else {
+			Log::debug('tenant.ael.export  EMPTY');
+		}
+
+		
+		if (request('start_date')) {
+			Log::debug('ee Value of start_date=' . request('start_date'));
+		}
+		if (request('end_date')) {
+			Log::debug('ee Value of end_date=' . request('end_date'));
+		}
+
+		//AND DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
+
 		// TODO 
-		$data = DB::select("
-			SELECT d.id, d.name, IF(d.enable, 'Yes', 'No') enable, hpr.name pr_hierarchy_name, hpo.name po_hierarchy_name
-			FROM depts d, hierarchies hpr, hierarchies hpo
-			WHERE d.pr_hierarchy_id=hpr.id
-			AND d.po_hierarchy_id=hpo.id
-			");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('depts', $dataArray);
+		// $data = DB::select("
+		// 	SELECT id, source, entity, event, accounting_date, ac_code, line_description, 
+		// 	fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount, 
+		// 	po_id, reference
+		// 	FROM aels 
+			
+		// ");
+		// $dataArray = json_decode(json_encode($data), true);
+		// // used Export Helper
+		// return Export::csv('aels', $dataArray);
 	}
 
 	public function exportForPo($id)
 	{
 		$this->authorize('export', Ael::class);
-		//Log::debug('Value of po_id=' . $id);
 
 		$data = DB::select("
 			SELECT id, source, entity, event, accounting_date, ac_code, line_description, 
-			fc_currency, fc_dr_amount, fc_cr_amount, 
+			fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount, 
 			po_id, reference
 			FROM aels 
 			WHERE po_id = ".$id."");

@@ -14,8 +14,7 @@
 			Attachments Invoice #{{ $invoice->invoice_no }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Invoice" label="Requisition"/>
-			{{-- <x-tenant.buttons.header.create object="Invoice" label="Requisition"/> --}}
+			<x-tenant.buttons.header.lists object="Invoice" label="Invoice"/>
 			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>

@@ -24,7 +24,18 @@ class StoreBankAccountRequest extends FormRequest
 		return [
 			'ac_name'	=> 'required|min:2|max:100|unique:bank_accounts,ac_name',
 			'ac_number'	=> 'required|min:2|max:100|unique:bank_accounts,ac_number',
-			'ac_cash'	=> 'required|min:2|max:255|alpha_dash',
+			//'ac_cash'	=> 'required|min:2|max:255|alpha_dash',
+			'ac_cash'	=> 'required|min:2|max:255|regex:/^[0-9A-Za-z.\-]+$/u',
+		];
+	}
+	/**
+	 * Get the error messages for the defined validation rules.
+	 *
+	 * @return array
+	 */
+	public function messages() {
+		return [
+			'ac_cash.regex'	=> 'Bank GL Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
 		];
 	}
 }

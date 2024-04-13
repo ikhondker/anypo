@@ -22,7 +22,8 @@ class StoreItemRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'code'			=> 'required|max:25|alpha_dash|unique:items,code',
+			//'code'			=> 'required|max:25|alpha_dash|unique:items,code',
+			'code'			=> 'required|max:25|regex:/^[0-9A-Za-z.\-]+$/u|unique:items,code',
 			'name'			=> 'required|min:5|max:120|unique:items,name',
 			'category_id'	=> 'required|integer|exists:categories,id',
 			'uom_id'		=> 'required|integer|exists:uoms,id',
@@ -39,7 +40,7 @@ class StoreItemRequest extends FormRequest
 	 */
 	public function messages() {
 		return [
-			'code.alpha_dash'	=> 'Item code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+			'code.regex'	=> 'Item code must only contain letters, numbers, dashes, and underscores. No space allowed.',
 		];
 	}
 

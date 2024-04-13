@@ -4,6 +4,9 @@ namespace App\Http\Requests\Tenant\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+//use App\Rules\Tenant\GlCode;
+
+
 class UpdateSetupRequest extends FormRequest
 {
 	/**
@@ -23,9 +26,19 @@ class UpdateSetupRequest extends FormRequest
 	{
 		return [
 			'name'				=> 'required|min:2|max:150',
-			'ac_accrual'		=> 'required|min:2|max:255|alpha_dash',
-			'ac_liability'		=> 'required|min:2|max:255|alpha_dash',
+			//'ac_accrual'		=> 'required|min:2|max:255|alpha_dash',
+			//NO 'ac_accrual'		=> 'required|min:2|max:255',[new GlCode()],
+			'ac_accrual'		=> 'required|min:2|max:255|regex:/^[0-9A-Za-z.\-]+$/u',
+			'ac_liability'		=> 'required|min:2|max:255|regex:/^[0-9A-Za-z.\-]+$/u',
 			'file_to_upload'	=> 'nullable|image|mimes:jpeg,png,jpg,svg|max:1024'
 		];
 	}
+
+	public function messages() {
+		return [
+			'ac_accrual.regex'	=> 'Gl Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+			'ac_liability.regex'	=> 'GL Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+		];
+	}
+
 }

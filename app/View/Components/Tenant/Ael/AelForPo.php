@@ -27,6 +27,6 @@ class AelForPo extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.ael.ael-common');
+		return view('components.tenant.ael.ael-for-po');
 	}
 }

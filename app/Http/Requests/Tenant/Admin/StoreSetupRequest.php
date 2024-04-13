@@ -22,7 +22,14 @@ class StoreSetupRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			//
+			'ac_accrual'		=> 'required|min:2|max:255|regex:/^[0-9A-Za-z.\-]+$/u',
+			'ac_liability'		=> 'required|min:2|max:255|regex:/^[0-9A-Za-z.\-]+$/u',
+		];
+	}
+	public function messages() {
+		return [
+			'ac_accrual.regex'	=> 'Gl Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+			'ac_liability.regex'	=> 'GL Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
 		];
 	}
 }

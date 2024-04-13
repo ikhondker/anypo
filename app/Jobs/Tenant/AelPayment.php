@@ -64,7 +64,7 @@ class AelPayment implements ShouldQueue
 		$ael_cr 					= new Ael;
 
 		$ael_dr->entity				= $ael_cr->entity 			= EntityEnum::PAYMENT->value;
-		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d H:i:s');
+		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d');
 		$ael_dr->line_description	= $ael_cr->line_description = $payment->invoice->summary;	// <- --------------
 		$ael_dr->fc_currency		= $ael_cr->fc_currency 		= $setup->currency;
 		$ael_dr->reference			= $ael_cr->reference 		= Str::upper(EntityEnum::PAYMENT->value) .' #'. $payment->id;
