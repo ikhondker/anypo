@@ -7,15 +7,15 @@
 	<div class="w-lg-50 mx-lg-auto">
 
 		<!-- Card -->
-		<div class="card card-lg mb-5">
+		<div class="card card-lg mt-5">
 			<div class="card-body">
 				<!-- Heading -->
 				<div class="text-center mb-5 mb-md-7">
 					<span class="avatar avatar-xxl avatar-circle">
 						<img class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" alt="Avatar">
 					</span>
-					<h2 class="h2">Verify Your Email Address </h2>
-					<p>We have sent you a mail with email verification link. </br>Before proceeding, please check your email and click on the verification link to verify your email address.</p>
+					<h2 class="h2 text-info">Verify Your Email Address </h2>
+					<p>We have sent you a mail with email verification link. Before proceeding, please check your email and click on the verification link to verify your email address.</p>
 				</div>
 				<!-- End Heading -->
 

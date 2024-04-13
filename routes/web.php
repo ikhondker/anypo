@@ -173,7 +173,7 @@ Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkou
 Route::get('/online/{invoice_no}', [HomeController::class, 'onlineInvoice'])->name('home.invoice');
 Route::get('/send', [HomeController::class, 'testNotification'])->name('send');
 Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
-Route::post('/save-contact', [HomeController::class, 'saveContact'])->name('home.savecontact');
+Route::post('/save-contact', [HomeController::class, 'saveLandlordContact'])->name('home.save-contact');
 Route::post('/join-mail-list', [HomeController::class, 'joinMailList'])->name('home.join-mail-list');
 //Route::get('/payment/{invoice_no}',[App\Http\Controllers\HomeController::class, 'payment'])->name('home.payment');
 

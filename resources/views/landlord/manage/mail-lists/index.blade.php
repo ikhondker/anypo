@@ -9,10 +9,7 @@
 	<div class="card">
 
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-			<h5 class="card-header-title">Category List</h5>
-			<a class="btn btn-primary btn-sm" href="{{ route('categories.create') }}">
-				<i class="bi bi-plus-square me-1"></i> Create Category
-			</a>
+			<h5 class="card-header-title">Mailing Lists</h5>
 		</div>
 
 		<!-- Table -->

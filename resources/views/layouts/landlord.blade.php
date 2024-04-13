@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" dir="">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 		@include('landlord.includes.head')
-		
 </head>
 
 <body>
@@ -21,9 +20,9 @@
 			<x-landlord.alert-error message="{{ session('error') }}" />
 		@endif
 
-		 <!-- content -->
-		 @yield('content')
-		 <!-- /.content -->
+		<!-- content -->
+		@yield('content')
+		<!-- /.content -->
 
 	</main>
 	<!-- ========== END MAIN CONTENT ========== -->

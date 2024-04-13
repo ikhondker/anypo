@@ -113,8 +113,8 @@ class ContactController extends Controller
 	 */
 	public function edit(Contact $contact)
 	{
-		$this->authorize('update', $contact);
 		abort(403);
+		//$this->authorize('update', $contact);
 	}
 
 	/**

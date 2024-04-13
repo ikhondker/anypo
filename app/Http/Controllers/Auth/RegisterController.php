@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Enum\UserRoleEnum;
 use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 
 use Notification;
 use App\Notifications\Landlord\UserRegistered;

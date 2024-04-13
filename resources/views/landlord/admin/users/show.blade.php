@@ -1,6 +1,6 @@
 @extends('layouts.landlord-app')
 @section('title', 'Users')
-@section('breadcrumb', 'View Users')
+@section('breadcrumb', 'User Profile')
 
 @section('content')
 	<!-- Card -->

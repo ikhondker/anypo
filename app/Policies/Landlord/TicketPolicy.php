@@ -86,7 +86,7 @@ class TicketPolicy
 
 	public function export(User $user): bool
 	{
-		return $user->isAdmin();
+		return true; 
 	}
 
 	/**

@@ -60,7 +60,7 @@
 						<div class="input-card-form">
 							{{-- <input type="text" class="form-control" placeholder="Enter email" aria-label="Enter email"> --}}
 							<input name="join_email" id="join_email" type="email" placeholder="you@example.com" aria-label="Enter email"
-								class="form-control @error('email') is-invalid @enderror"
+								class="form-control @error('join_email') is-invalid @enderror"
 								value="{{ old('join_email') }}" required>
 							@error('join_email')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -72,7 +72,7 @@
 				</form>
 				<!-- End Form -->
 	
-			<p class="form-text text-white-70">Product new features or or big discounts. We never spam.</p>
+			<p class="form-text text-white-70">Product new features or big discounts. We never spam.</p>
 			</div>
 			<!-- End Col -->
 		</div>

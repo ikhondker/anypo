@@ -15,7 +15,7 @@
 					<div class="row justify-content-lg-between">
 						<div class="col-sm order-2 order-sm-1 mb-3">
 							<div class="mb-2">
-								<img class="avatar" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
+								<img class="avatar avatar-lg" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
 							</div>
 						</div>
 						<!-- End Col -->
@@ -25,7 +25,7 @@
 								<h2 class="text-danger">Woops!</h2>
 							</div>
 							<div class="mb-3">
-								<h3 class="text-info">404: Page Not Found.</h2>
+								<h3 class="text-info">404: PAGE NOT FOUND!</h2>
 							</div>
 						</div>
 						<!-- End Col -->
@@ -45,7 +45,7 @@
 								<p class="fs-4">If you think this is a problem with us, please <a class="link" href="{{ route('contact-us') }}">tell us</a>.</p>
 							</div>
 
-							<a class="btn btn-primary" href="{{ route('home') }}">Go back home</a>
+							<a class="btn btn-primary" href="{{ route('home') }}">	<i class="bi bi-house-door"></i> Go back Home</a>
 						</div>
 
 					</div>
@@ -53,7 +53,7 @@
 
 					<hr class="my-5">
 
-					<p class="small mb-0">&copy; {{ date('Y').' '. env('APP_NAME') }}</p>
+					<p class="small mb-0">&copy;{{ date('Y').' '. env('APP_NAME') }}</p>
 				</div>
 			</div>
 			<!-- End Card -->

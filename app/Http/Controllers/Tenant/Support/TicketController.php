@@ -74,6 +74,7 @@ class TicketController extends Controller
 	public function store(StoreTicketRequest $request)
 	{
 		$this->authorize('create',Ticket::class);
+		
 		// $request->merge([
 		// 	//'ticket_number' => Str::uuid()->toString(),
 		// 	'ticket_date'	=> date('Y-m-d H:i:s'),

@@ -172,7 +172,7 @@ class ChartData
 			//Log::debug('---------------------------------');
 			$data = self::getRandomData();
 
-			$rowProject->amount 				= $data['amount'];
+			$rowProject->amount 			= $data['amount'];
 			$rowProject->amount_pr_booked 	= $data['amount_pr_booked'];
 			$rowProject->amount_pr 			= $data['amount_pr'];
 
@@ -210,15 +210,15 @@ class ChartData
 			$rowSupplier->amount_po_booked 	= $data['amount_po_booked'];
 			$rowSupplier->amount_po 		= $data['amount_po'];
 
-			$rowSupplier->amount_grs 			= $data['amount_grs'];
-			$rowSupplier->amount_invoice 		= $data['amount_invoice'];
-			$rowSupplier->amount_payment 		= $data['amount_payment'];
+			$rowSupplier->amount_grs 		= $data['amount_grs'];
+			$rowSupplier->amount_invoice 	= $data['amount_invoice'];
+			$rowSupplier->amount_payment 	= $data['amount_payment'];
 
 			$rowSupplier->count_pr 			= $data['count_pr'];
 			$rowSupplier->count_po 			= $data['count_po'];
-			$rowSupplier->count_grs 			= $data['count_grs'];
-			$rowSupplier->count_invoice 		= $data['count_invoice'];
-			$rowSupplier->count_payment 		= $data['count_payment'];
+			$rowSupplier->count_grs 		= $data['count_grs'];
+			$rowSupplier->count_invoice 	= $data['count_invoice'];
+			$rowSupplier->count_payment 	= $data['count_payment'];
 			$rowSupplier->save();
 
 

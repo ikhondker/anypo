@@ -37,12 +37,16 @@
 					</div>
 	
 					<ul class="navbar-nav">
-						<!-- Demos -->
+						<!-- Navbar -->
 						<span class="avatar avatar-xs avatar-circle">
-							<img class="avatar-img" src="{{ Storage::disk('s3l')->url('flag/ca.png') }}" alt="Image Description">
+							@auth
+								<img class="avatar-img" src="{{ Storage::disk('s3l')->url('flags/'. Str::lower($_landlord_user->country).'.png') }}" alt="{{ $_landlord_user->country }}" />
+							@endauth
+							@guest
+								<img class="avatar-img" src="{{ Storage::disk('s3l')->url('flags/ca.png') }}" alt="CA">
+							@endguest
 						</span>
 						<li class="nav-item">
-							{{-- <a id="demosMegaMenu" class="hs-mega-menu-invoker nav-link active" aria-current="page" href="#" role="button">Demos</a> --}}
 							@auth
 								<a href="{{ route('dashboards.index') }}" class="nav-link text-muted">
 									<i class="bi bi-speedometer2 nav-icon"></i>
@@ -51,49 +55,36 @@
 							@endauth
 							@guest
 								<a href="{{ route('register') }}" class="nav-link text-muted">
-									<i class="bi bi-plus-circle text-primary"></i>
+									<i class="bi bi-person-circle text-primary"></i>
 									Register
 								</a>
 							@endguest
 						</li>
-						<!-- End Demos -->
-	
-						<!-- Docs -->
-						{{-- <li class="nav-item">
-						<a id="docsMegaMenu" class="hs-mega-menu-invoker nav-link" href="#" role="button">Docs</a>
-					  </li> --}}
+						<!-- End Navbar -->
 	
 						@auth
 							<li class="nav-item">
 								<a href="{{ route('users.show', auth()->user()->id) }}" class="nav-link text-muted">
-									{{-- <i class="bi-person-circle  nav-icon"></i> --}}
 									<span class="avatar avatar-xs avatar-circle">
-										{{-- <img class="avatar-img" src="{{ url($_avatar_dir.$_landlord_user->avatar) }}"  alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}"> --}}
 										<img class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/'.$_landlord_user->avatar)  }}"  alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}">
 									</span>
 									{{ Str::limit(auth()->user()->name, 15, '...') }}
 								</a>
-	
-								{{-- <img class="avatar avatar-xs avatar-circle" src="{{ url($_avatar_dir.$_landlord_user->avatar) }}"
-									alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}"> --}}
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('logout') }}" class="nav-link text-muted">
-									<i class="bi bi-power nav-icon text-danger"></i>
-									Logout
+									<i class="bi bi-power nav-icon text-danger"></i> Logout
 								</a>
 							</li>
 						@endauth
 						@guest
 							<li class="nav-item">
 								<a href="{{ route('login') }}" class="nav-link text-muted">
-									<i class="bi bi-power text-primary"></i>
-									Login
+									<i class="bi bi-power text-primary"></i> Login
 								</a>
 							</li>
 						@endguest
 	
-						<!-- End Docs -->
 					</ul>
 				</div>
 			</nav>
@@ -130,33 +121,33 @@
 						</li>
 						<!-- End Landings -->
 	
-						<!-- Company --> 
+						<!-- Product --> 
 						<li class="nav-item">
 							<a id="companyMegaMenu" class="hs-mega-menu-invoker nav-link {{ $_route_name == 'product' ? 'active' : '' }}" 
 								href="{{ route('product') }}" role="button" aria-expanded="false">Product</a>
 						</li>
-						<!-- End Company -->
+						<!-- End Product -->
 	
-						<!-- Account -->
+						<!-- Pricing -->
 						<li class="nav-item">
 							<a id="accountMegaMenu" class="hs-mega-menu-invoker nav-link {{ $_route_name == 'pricing' ? 'active' : '' }}"
 								href="{{ route('pricing') }}" role="button" aria-expanded="false">Pricing</a>
 						</li>
-						<!-- End Account -->
+						<!-- End Pricing -->
 	
-						<!-- Pages -->
+						<!-- FAQ -->
 						<li class="nav-item">
 							<a id="faqMegaMenu" class="hs-mega-menu-invoker nav-link {{ $_route_name == 'faq' ? 'active' : '' }}" 
 								href="{{ route('faq') }}" role="button" aria-expanded="false">FAQ</a>
 						</li>
-						<!-- End Pages -->
+						<!-- End FAQ -->
 	
-						<!-- Pages -->
+						<!-- Contact -->
 						<li class="nav-item">
 							<a id="contactMegaMenu" class="hs-mega-menu-invoker nav-link {{ $_route_name == 'contact-us' ? 'active' : '' }}"
 								href="{{ route('contact-us') }}" role="button" aria-expanded="false">Contact Us</a>
 						</li>
-						<!-- End Pages -->
+						<!-- End Contact -->
 	
 						<!-- Button -->
 						<li class="nav-item">

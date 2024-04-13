@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> '1003',
 				'name'				=> 'Support Supervisor',
-				'email'				=> 'supervisor@anypo.net',
+				'email'				=> 'support@anypo.net',
 				'role'				=> 'supervisor',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password

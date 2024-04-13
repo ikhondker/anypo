@@ -53,17 +53,20 @@ class Contacted extends Notification implements ShouldQueue
 	 */
 	public function toMail(object $notifiable): MailMessage
 	{
+		//->line('Subject: '.$this->contact->subject)
+		//->line('Hi: '.$this->contact->first_name)
+		
 		return (new MailMessage)
-				->subject('Website Contact: '.$this->contact->subject)
-				->line('Hi: '.$this->contact->name)
-				->line('Thanks. We have received the following:')
-				->line('From: '.$this->contact->name)
-				->line('Subject: '.$this->contact->subject)
-				->line('Email: '.$this->contact->email)
-				->line('Message : '.$this->contact->message)
-				->line('Timestamp: '.now().'.')
-				->line('We will connect soon.')
-				->line('Thank you for using our application!');
+			->subject($this->contact->subject)
+			->greeting('Hello, '.$this->contact->first_name)
+			->line('Thanks. We have received the following:')
+			->line('From: '.$this->contact->first_name.' '.$this->contact->last_name)
+			->line('Email: '.$this->contact->email)
+			->line('Cell: '.$this->contact->cell)
+			->line('Message : '.$this->contact->message)
+			->line('Timestamp: '.now().'.')
+			->line('We will connect soon.')
+			->line('Thank you for using our application!');
 	}
 
 	/**

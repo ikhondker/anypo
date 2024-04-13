@@ -5,7 +5,7 @@
 <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'dashboards.index' ? 'active' : '' }}" href="{{ route('dashboards.index') }}">
-			<i class="bi-person-badge nav-icon"></i> Dashboard
+			<i class="bi bi-house-door nav-icon"></i> Home
 		</a>
 	</li>
 	{{-- <li class="nav-item">

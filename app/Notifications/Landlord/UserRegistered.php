@@ -55,13 +55,15 @@ class UserRegistered extends Notification implements ShouldQueue
 	public function toMail(object $notifiable): MailMessage
 	{
 		return (new MailMessage)
-			->subject('Welcome to '. config('app.name').' - Client Area')
+			->subject('Welcome to '. config('app.name'))
 			->greeting('Hello '. $this->user->name . ',')
-			->line('Welcome to '. config('app.name') .'. Please review this email in its entirety as it contains important information.')
-			->line('Please use following link to login:')
+			->line('Welcome to '.config('app.name').'.')
+			->line('Thank you for the registration.')
+			->line('You will be receiving another email shortly to verify your email with link.')
+			->line('Please click on that link to verify email Address. ')
+			->line('After verifying your email, you may use the following link to login:')
 			->action('Login', url('/login'))
-			->line('NOTE: We have sent a separate email for your email address verification. Please verify your email address before login.')
-			->line('Thank you for using our application!');
+			->line('Thank you for using '.config('app.name').' application!');
 	}
 	
 	/**

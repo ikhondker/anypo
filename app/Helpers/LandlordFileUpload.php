@@ -43,7 +43,7 @@ class LandlordFileUpload
 	public static function aws(FormRequest $request)
 	{
 
-		$request->validate(['file_to_upload'	=> 'required|file|mimes:csv,eml,msg,zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:1024']);
+		$request->validate(['file_to_upload'	=> 'required|file|mimes:csv,eml,msg,zip,rar,doc,docx,xls,xlsx,pdf,jpg,png|max:1024']);
 
 		if ($request->hasFile('file_to_upload')) {
 			$file 			= $request->file('file_to_upload');

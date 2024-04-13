@@ -50,7 +50,11 @@
 							<td><x-landlord.list.my-date :value="$contact->created_at"/></td>
 							<td>{{ Str::limit($contact->subject,15) }}</td>
 							<td><x-landlord.attachment.show-by-id id="{{ $contact->attachment_id }}"/></td>
-							<td><x-landlord.list.actions object="Contact" :id="$contact->id" :export="false" :enable="false"/></td>
+							<td>
+								<a href="{{ route('contacts.show',$contact->id) }}" class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+									<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
+								</a>
+							</td>
 						</tr>
 					@endforeach
 

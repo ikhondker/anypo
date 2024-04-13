@@ -5,7 +5,7 @@
 <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'dashboards.index' ? 'active' : '' }}" href="{{ route('dashboards.index') }}">
-			<i class="bi bi-speedometer2 nav-icon"></i> Dashboard
+			<i class="bi bi-house-door nav-icon"></i> Home
 		</a>
 	</li>
 	{{-- <li class="nav-item">
@@ -15,17 +15,15 @@
 		</a>
 	</li> --}}
 	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'tickets.index' ? 'active' : '' }}" href="{{ route('tickets.index') }}">
-			<i class="bi-ticket nav-icon"></i> Tickets
+		<a class="nav-link {{ $_route_name == 'tickets.create' ? 'active' : '' }}" href="{{ route('tickets.create') }}">
+			<i class="bi bi-ticket nav-icon"></i> Create Ticket *
 		</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'tickets.create' ? 'active' : '' }}" href="{{ route('tickets.create') }}">
-			<i class="bi-ticket nav-icon"></i> Create Ticket *
+		<a class="nav-link {{ $_route_name == 'tickets.index' ? 'active' : '' }}" href="{{ route('tickets.index') }}">
+			<i class="bi bi-list-task nav-icon"></i> My Tickets
 		</a>
 	</li>
-
-	
 
 </ul>
 <!-- End List -->

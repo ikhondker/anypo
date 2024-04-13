@@ -15,7 +15,7 @@
 					</div>
 
 					<div class="d-flex align-items-center gap-2 mb-8">
-						<a class="btn btn-primary btn-transition me-2" href="https://anypo.net/">
+						<a class="btn btn-primary btn-transition me-2" href="{{ route('pricing') }}">
 							Get Started <i class="bi-chevron-right small ms-1"></i>
 						</a>
 
@@ -107,7 +107,7 @@
 		<!-- Heading -->
 		<div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
 			<span class="text-cap">What's ANYPO.NET?</span>
-			<h2>The All-in-One Purchasing and Budgeting Solution Built for Small Businesses and Startups.</h2>
+			<h2>The All-in-One Purchasing and Expense Control Solution Built for Small Businesses and Startups.</h2>
 		</div>
 		<!-- End Heading -->
 
@@ -456,10 +456,10 @@
 
 		<div class="text-center">
 			<div class="d-grid d-sm-flex justify-content-center gap-2 mb-3">
-				<a class="btn btn-primary btn-transition" href="#">Sign up and Start Building</a>
-				<a class="btn btn-link" href="#">Let's Talk <i class="bi-chevron-right small ms-1"></i></a>
+				<a class="btn btn-primary btn-transition" href="{{ route('pricing') }}">Sign up and Start Building</a>
+				<a class="btn btn-link" href="{{ route('contact-us') }}">Let's Talk <i class="bi-chevron-right small ms-1"></i></a>
 			</div>
-			<p class="small">Start free trial. * No credit card required.</p>
+			{{-- <p class="small">Start free trial. * No credit card required.</p> --}}
 		</div>
 	</div>
 	<!-- End Icon Blocks -->
@@ -474,7 +474,7 @@
 							<h2>Small Business? Big Dreams. </br>Simplify Purchasing & Budgeting with Our Powerful SaaS Platform.</h2>
 						</div>
 
-						<a class="btn btn-outline-primary" href="./page-login.html">Sign up today</a>
+						<a class="btn btn-outline-primary" href="{{ route('pricing') }}">Sign up today</a>
 					</div>
 					<!-- End Col -->
 
@@ -526,11 +526,11 @@
 						<!-- End Title & Description -->
 
 						<div class="d-grid d-sm-flex gap-3">
-							<a class="btn btn-primary btn-transition" href="#">Get started</a>
-							<a class="btn btn-link" href="#">Let's Talk <i class="bi-chevron-right small ms-1"></i></a>
+							<a class="btn btn-primary btn-transition" href="{{ route('pricing') }}">Get started</a>
+							<a class="btn btn-link" href="{{ route('contact-us') }}">Let's Talk <i class="bi-chevron-right small ms-1"></i></a>
 						</div>
 
-						<p class="form-text small">Start free trial. * No credit card required.</p>
+						{{-- <p class="form-text small">Start free trial. * No credit card required.</p> --}}
 					</div>
 					<!-- End Col -->
 

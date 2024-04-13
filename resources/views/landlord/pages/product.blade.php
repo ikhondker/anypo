@@ -25,7 +25,7 @@
 				<p>Struggling with managing expenses and staying within budget? We offer a seamless purchasing and budget control solution that streamlines workflows, automates tasks, and gives you real-time spending insights.</p>
 			</div>
 
-			<a class="link" href="#">Get started <i class="bi-chevron-right small ms-1"></i></a>
+			<a class="link" href="{{ route('pricing') }}">Get started <i class="bi-chevron-right small ms-1"></i></a>
 			</div>
 		</div>
 		<!-- End Col -->
@@ -67,7 +67,7 @@
 			{{-- <p>Use our tools to explore your ideas and make your vision come true. Then share your work easily.</p> --}}
 
 			<div class="mt-4">
-			<a class="btn btn-primary btn-transition px-5" href="#">Start Now</a>
+			<a class="btn btn-primary btn-transition px-5" href="{{ route('pricing') }}">Start Now</a>
 			</div>
 		</div>
 		<!-- End Col -->
@@ -218,7 +218,7 @@
 				</ul>
 				<!-- End List Checked -->
 
-				<a class="btn btn-primary" href="#">Get started</a>
+				<a class="btn btn-primary" href="{{ route('pricing') }}">Get started</a>
 
 				<hr class="my-5">
 
@@ -254,7 +254,7 @@
 			<p>Answer a few questions and match your goals to our programs.</p>
 			</div>
 
-			<a class="btn btn-primary btn-transition" href="#">Get started</a>
+			<a class="btn btn-primary btn-transition" href="{{ route('pricing') }}">Get started</a>
 		</div>
 	</div>
 	<!-- End CTA -->

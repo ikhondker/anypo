@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" dir="">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 	@include('landlord.includes.head')
 </head>
-
 <body>
 
 	<x-landlord.nav-bar />
@@ -13,12 +11,8 @@
 	<main id="content" role="main" class="bg-light">
 
 		<!-- Breadcrumb -->
-		<div class="navbar-dark bg-dark"
-			{{-- style="background-image: url({{ Storage::disk('s3l')->url('svg/components/wave-pattern-light.svg') }});"> --}}
-			{{-- style="background-image: url(landlord/background/wave-pattern-light.svg);"> --}}
-			style="background-image: url('{{asset('/assets/bg/wave-pattern-light.svg')}}');">
-
-			
+		<div class="navbar-dark bg-dark" style="background-image: url('{{asset('/assets/bg/wave-pattern-light.svg')}}');">
+		
 			<div class="container content-space-1 content-space-b-lg-3">
 				<div class="row align-items-center">
 					<div class="col">
@@ -40,7 +34,7 @@
 
 					<div class="col-auto">
 						<div class="d-none d-lg-block">
-							<a class="btn btn-soft-light btn-sm" href="{{ route('logout') }}">Log out</a>
+							<a class="btn btn-soft-light btn-sm" href="{{ route('logout') }}"><i class="bi bi-power text-danger"></i> Logout</a>
 						</div>
 
 						<!-- Responsive Toggle Button -->
@@ -76,9 +70,7 @@
 
 									<!-- Avatar -->
 									<div class="d-none d-lg-block text-center mb-5">
-
 										<div class="avatar avatar-xxl avatar-circle mb-3">
-											{{-- <img class="avatar-img" src="{{ url($_avatar_dir.$_landlord_user->avatar) }}" alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}"> --}}
 											<img class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/'.$_landlord_user->avatar) }}" alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}">
 											<img class="avatar-status avatar-lg-status"
 												src="{{ Storage::disk('s3l')->url('svg/illustrations/top-vendor.svg') }}"
@@ -87,55 +79,43 @@
 										</div>
 
 										@auth
-											<h4 class="card-title mb-0">{{ auth()->user()->name }}
-												[{{ auth()->user()->id }}]</h4>
-											<p class="card-text small">{{ auth()->user()->email }}
-												[{{ auth()->user()->role->value }}]</p>
+											<h4 class="card-title mb-0">{{ auth()->user()->name }}</h4>
+											<p class="card-text small">{{ auth()->user()->email }}</p>
 										@endauth
 										@guest
 											<h4 class="card-title mb-0">Guest</h4>
 											<p class="card-text small">you@example.com</p>
 										@endguest
-										@switch($_access)
-											@case('F')
-											@break
 
-											@case('C')
-											@break
-
-											@case('B')
-												<span class="badge bg-success">Backoffice</span>
-											@break
-
-											@case('S')
+										@if (auth()->user()->isSeeded())
+											@switch($_access)
+												@case('F')
+													@break
+												@case('C')
+													@break
+												@case('B')
+													<span class="badge bg-success">Back Office</span>
+													@break
+												@case('S')
+													<span class="badge bg-danger">System</span>
+													@break
+												@default
+													<span class="badge bg-info">Unknown</span>
+											@endswitch
+											@if (auth()->user()->isSystem())
 												<span class="badge bg-danger">System</span>
-											@break
-
-											@default
-												<span class="badge bg-info">Unknown</span>
-										@endswitch
-
-										@switch(auth()->user()->role->value)
-											@case(\UserRoleEnum::USER->value)
-												@break
-											@case(\UserRoleEnum::ADMIN->value)
-												@break
-											@case(\UserRoleEnum::SYSTEM->value)
-												<span class="badge bg-danger">System</span>
-												@break
-											@default
+											@else
 												<span class="badge bg-success">Back-office</span>
-										@endswitch
-										
+											@endif 
+										@endif
 									</div>
 									<!-- End Avatar -->
 
 									<!-- ========== SIDEBAR ========== -->
-
 									@if(auth()->user()->isSeeded()) 
-										@include('landlord.includes.menu-back-office')
+										@include('landlord.includes.sidebar-back-office')
 									@else
-										@include('landlord.includes.menu-front-office')
+										@include('landlord.includes.sidebar-front-office')
 									@endif 
 									<!-- ========== END SIDEBAR ========== -->
 								</div>
@@ -148,8 +128,6 @@
 				<!-- End Col -->
 
 				<div class="col-lg-9">
-
-
 					<!-- Form Success Message Box -->
 					@if (session('success'))
 						<x-landlord.app-alert-success message="{{ session('success') }}" />

@@ -76,7 +76,7 @@ class HomeController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function saveContact(StoreContactRequest $request)
+	public function chksaveContact(StoreContactRequest $request)
 	{
 		$ENTITY	= 'CONTACT';
 

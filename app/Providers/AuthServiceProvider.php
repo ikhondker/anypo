@@ -99,6 +99,8 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Workflow\Wf'			=> 'App\Policies\Tenant\Workflow\WfPolicy',
 		'App\Models\Tenant\Workflow\Wfl'		=> 'App\Policies\Tenant\Workflow\WflPolicy',
 
+		'App\Models\Tenant\Support\Ticket' 		=> 'App\Policies\Tenant\Support\TicketPolicy',
+
 		'App\Models\Tenant\Budget'				=> 'App\Policies\Tenant\BudgetPolicy',
 		'App\Models\Tenant\DeptBudget'			=> 'App\Policies\Tenant\DeptBudgetPolicy',
 		'App\Models\Tenant\Dbu'					=> 'App\Policies\Tenant\DbuPolicy',

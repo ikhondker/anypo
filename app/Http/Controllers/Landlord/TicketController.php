@@ -163,7 +163,7 @@ class TicketController extends Controller
 		$mgr = User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
 		$mgr->notify(new TicketCreated($mgr, $ticket));
 
-		return redirect()->route('tickets.index')->with('success', 'A New Ticket No ' . $ticket->id . ' is created. We will come back to you soon. Thanks.');
+		return redirect()->route('tickets.index')->with('success', 'A New Ticket #' . $ticket->id . ' is created. We will come back to you soon. Thanks.');
 	}
 
 	/**
@@ -291,20 +291,23 @@ class TicketController extends Controller
 		$this->authorize('export', Ticket::class);
 
 		if (auth()->user()->isSeeded()){
-			$data = DB::select("SELECT id, title, content, ticket_date, owner_id, account_id, status_code, created_at
-				FROM tickets");
-		} else if (auth()->user()->isAdmin()){
-			$data = DB::select("SELECT id, title, content, ticket_date, owner_id, account_id, status_code, created_at
+			$data = DB::select("
+				SELECT id, title subject, content, ticket_date, owner_id, account_id, status_code, created_at
 				FROM tickets
-				WHERE account_id=".auth()->user()->account_id);
+				");
+		} else if (auth()->user()->isAdmin()){
+			$data = DB::select("
+				SELECT id, title subject, content, ticket_date, owner_id, account_id, status_code, created_at
+				FROM tickets
+				WHERE account_id=".auth()->user()->account_id
+				);
 		} else {
-			$data = DB::select("SELECT id, title, content, ticket_date, owner_id, account_id, status_code, created_at
-			FROM tickets
-			WHERE  owner_id =".auth()->user()->id);
+			$data = DB::select("
+				SELECT id, title subject, content, ticket_date, owner_id, account_id, status_code, created_at
+				FROM tickets
+				WHERE owner_id =".auth()->user()->id
+				);
 		}
-
-		//Log::debug('landlord.ticket.export Role= '. auth()->user()->role->value);
-		//$data = DB::select("SELECT id, name, email, cell, role, enable FROM users");
 
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

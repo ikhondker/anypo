@@ -25,7 +25,6 @@ use Illuminate\Notifications\Notification;
 
 use App\Models\User;
 
-
 class UserRegistered extends Notification implements ShouldQueue
 {
 	protected $user;

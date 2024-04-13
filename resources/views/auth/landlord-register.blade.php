@@ -12,7 +12,7 @@
 					<span class="avatar avatar-xxl avatar-circle">
 						<img class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" alt="Avatar">
 					</span>
-					<h2 class="h2">Welcome to {{ config('app.name') }}</h2>
+					<h2 class="h2 text-info">Welcome to {{ config('app.name') }}</h2>
 					<p>Fill out the form to get started.</p>
 				</div>
 				<!-- End Heading -->

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 	<!-- Required Meta Tags Always Come First -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Title -->
-	<title>@yield('title', 'AnyPO.com')</title>
+	<title>@yield('title', 'ANYPO.NETs')</title>
 
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">

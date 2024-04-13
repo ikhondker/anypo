@@ -11,7 +11,6 @@
 {{-- <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"> --}}
 <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
 
-
 <!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 

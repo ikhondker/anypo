@@ -630,7 +630,7 @@ class HomeController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function saveContact(StoreContactRequest $request)
+	public function saveLandlordContact(StoreContactRequest $request)
 	{
 		$ENTITY	= 'CONTACT';
 
@@ -639,7 +639,7 @@ class HomeController extends Controller
 
 		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 
-		$request->merge(['tenant'	=> tenant('id)')]);
+		//$request->merge(['tenant'	=> tenant('id)')]);
 		$request->merge(['user_id'	=> $user_id]);
 		$request->merge(['ip'		=> $request->ip()]);
 		
@@ -655,7 +655,7 @@ class HomeController extends Controller
 		]);
 
 		// create contact with subject
-		$request->merge(['subject'		=> 'Website Contact from '. $request->input('first_name')]);
+		$request->merge(['subject'		=> 'ANYPO.NET Query : '. $request->input('first_name')]);
 		$contact = Contact::create($request->all());
 
 		// Upload File, if any, insert row in attachment table and get attachments id
@@ -672,13 +672,12 @@ class HomeController extends Controller
 		// Send notification to the contact
 		$contact->notify(new Contacted($contact));
 
-		// Send notification to manager
-		$mgr = User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
-		$mgr->notify(new Contacted($contact));
+		// Send notification to support/manager
+		$support = User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
+		$support->notify(new Contacted($contact));
 
 		return redirect()->route('home')->with('success', 'Thank you for contacting us. We will contact you shortly.');
 
-		//return redirect()->back()->with(['success' => 'Thank you for contacting us. We will contact you shortly.']);
 	}
 
 	/**
@@ -691,10 +690,11 @@ class HomeController extends Controller
 		$request->merge(['user_id'	=> $user_id]);
 		$request->merge(['ip'		=> $request->ip()]);
 		$request->validate([
-			'join_email'				=> 'required|email',
+			'join_email'			=> 'required|email',
 		], [
-			'join_email.required'		=> 'Email is required.',
+			'join_email.required'	=> 'Email is required.',
 		]);
+		$request->merge(['email'	=> $request->input('join_email')]);
 
 		// create MailList
 		$contact = MailList::create($request->all());
