@@ -1,7 +1,7 @@
 <!-- Card -->
 <div class="card">
 	<div class="card-header border-bottom">
-		<h4 class="card-header-title">Add Update on Ticket #{{ $ticket->id }}</h4>
+		<h4 class="card-header-title text-info">Add Update #{{ $ticket->id }}: {{ $ticket->title }}</h4>
 	</div>
 
 	<!-- Body -->

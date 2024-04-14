@@ -3,7 +3,7 @@
 	<!-- Card -->
 	<div class="card">
 		<div class="card-header border-bottom">
-			<h4 class="card-header-title">Ticket History #{{ $ticket->id }}</h4>
+			<h4 class="card-header-title text-info">History #{{ $ticket->id }}: {{ $ticket->title }}</h4>
 		</div>
 
 		<!-- Body -->
@@ -53,7 +53,7 @@
 												<span class="badge bg-danger">INTERNAL</span> {{ $comment->content }}
 											</p>
 										@else
-											<p>{{ $comment->content }}</p>
+											<p>{!! nl2br($comment->content) !!}</p>
 										@endif
 										@if ($comment->attachment_id <> '')
 											<p class="small text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $comment->attachment_id }}"/></p>

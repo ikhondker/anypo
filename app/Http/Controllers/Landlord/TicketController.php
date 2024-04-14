@@ -141,6 +141,7 @@ class TicketController extends Controller
 
 		// Create Ticket
 		$ticket = Ticket::create($request->all());
+		
 		// Write to Log
 		LandlordEventLog::event('ticket', $ticket->id, 'create');
 

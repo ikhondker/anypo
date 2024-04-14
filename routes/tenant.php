@@ -127,7 +127,7 @@ Route::middleware([
 
 	
 	/* ======================== make auth universal ========================================  */
-	 Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
+	Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
 		Auth::routes(); 
 	});
    
@@ -239,10 +239,10 @@ Route::middleware([
 	Route::get('/activity/export',[ActivityController::class, 'export'])->name('activities.export');
 
 	/* ======================== Attachment ======================================== */
-	Route::resource('attachments', AttachmentController::class)->middleware(['auth', 'verified']);
-	Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
-	Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
-	Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
+	//Route::resource('attachments', AttachmentController::class)->middleware(['auth', 'verified']);
+	//Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
+	//Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
+	//Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
 	
 	/* ======================== Country ======================================== */
 	Route::resource('countries', CountryController::class)->middleware(['auth', 'verified']);

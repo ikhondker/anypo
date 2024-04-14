@@ -101,7 +101,7 @@ class RegisterController extends Controller
 		$user = User::create([
 			'name'		=> $data['name'],
 			'email'		=> $data['email'],
-			//'email_verified_at'  => NOW(),	// Keep commnet. DO not auto verify email 
+			//'email_verified_at'  => NOW(),	// Keep comment. DO not auto verify email 
 			'role'		=> UserRoleEnum::USER->value,
 			'password'	=> Hash::make($data['password']),
 		]);

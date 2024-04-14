@@ -240,12 +240,16 @@ class AttachmentController extends Controller
 
 	public function download($fileName)
 	{
+
+		Log::debug('tenant.attachments.download Value of fileName=' . $fileName);
+
 		$this->authorize('download', Attachment::class);
+		
 		// get entity -> directory from filename
 		$att 				= Attachment::where('file_name', $fileName)->first();
 		$entity 			= Entity::where('entity', $att->entity)->first();
 		$fileDownloadPath 	= tenant('id')."/".$entity->directory."/". $fileName;
-		Log::debug('attachments.download Value of fileDownloadPath='. $fileDownloadPath);
+		Log::debug('tenant.attachments.download Value of fileDownloadPath='. $fileDownloadPath);
 		return Storage::disk('s3tf')->download($fileDownloadPath);
 	}
 

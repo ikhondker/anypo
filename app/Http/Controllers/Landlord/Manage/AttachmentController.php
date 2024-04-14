@@ -141,6 +141,8 @@ class AttachmentController extends Controller
 
 	public function download($fileName)
 	{
+		
+		Log::debug('landlord.attachments.download Value of fileName=' . $fileName);
 		//$this->authorize('download', Attachment::class);
 
 		Log::debug('landlord.attachments.download Value of fileName='. $fileName);
@@ -150,6 +152,7 @@ class AttachmentController extends Controller
 		$fileDownloadPath 	= $entity->directory."/". $fileName;
 		Log::debug('landlord.attachments.download Value of fileDownloadPath='. $fileDownloadPath);
 		return Storage::disk('s3lf')->download($fileDownloadPath);
+
 	}
 
 	public function downloadLocal($filename)

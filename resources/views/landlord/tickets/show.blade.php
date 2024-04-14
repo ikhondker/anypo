@@ -9,8 +9,8 @@
 	<!-- Card -->
 	<div class="card">
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-			<h4 class="card-header-title">#{{ $ticket->id }}: {{ $ticket->title }}</h4>
-			<div class="h4"><span class="badge bg-{{ $ticket->status->badge }}"><i class="bi bi-person-gear"></i> {{ $ticket->status->name }}</span></div>
+			<h4 class="card-header-title text-info">#{{ $ticket->id }}: {{ $ticket->title }}</h4>
+			<div class="h3"><span class="badge bg-{{ $ticket->status->badge }}"><i class="bi bi-gear"></i> {{ $ticket->status->name }}</span></div>
 		</div>
 
 		<!-- Body -->
@@ -26,25 +26,30 @@
 						</div>
 
 						<div class="flex-grow-1 ms-3">
-							<h5>{{ $ticket->owner->name }}</h5>
+							<h5 class="text-info">{{ $ticket->owner->name }}</h5>
 							<div class="d-flex align-items-center mb-1">
-								<span class="d-block small">{{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }} 
+								<span class="d-block small">
+									Date: {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }} <br>
+									Account: {{ $ticket->owner->account->name }} <br>
 									@if (auth()->user()->isSeeded())
-										| Department: {{ $ticket->dept->name }} | Priority: {{ $ticket->priority->name }}
+										Department: {{ $ticket->dept->name }} | Priority: {{ $ticket->priority->name }} | 
 										@if ($ticket->agent_id <> '')
-											<p class="text-muted">Assignee: <span class="badge bg-info">{{ $ticket->agent->name  }}</span>  </p>
+											Agent: <span class="badge bg-secondary">{{ $ticket->agent->name  }}</span>
 										@endif
 									@endif
 								</span>
 							</div>
 
-							{{-- <h5>Fun place to work at</h5> --}}
-							<p class="text-dark">{{ $ticket->content }}</p>
+							<h5 class="text-muted mt-4">TICKET SUMMARY:</h5>
+							<p class="text-dark">
+								<hr class="text-muted" />
+								{!! nl2br($ticket->content) !!}
+							</p>
 							
 							@if ($ticket->attachment_id <> '')
+								<hr class="text-muted" />
 								<p class="small text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $ticket->attachment_id }}"/></p>
 							@endif
-							
 							
 							@if ( auth()->user()->isSeeded() && ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
 								<a class="btn btn-info btn-sm" href="{{ route('tickets.assign',$ticket->id) }}">

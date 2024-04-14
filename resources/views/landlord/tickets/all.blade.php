@@ -13,7 +13,7 @@
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 				@else
-					All Tickets
+					All Tickets (Backoffice)
 				@endif
 			</h5>
 			{{-- <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">

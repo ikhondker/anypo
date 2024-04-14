@@ -366,7 +366,7 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 
 	/* ======================== Attachment ======================================== */
 	Route::resource('attachments', AttachmentController::class);
-	Route::get('/attachments/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
+	Route::get('/attachment/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
 
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
