@@ -16,7 +16,7 @@
 	</li> --}}
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'tickets.create' ? 'active' : '' }}" href="{{ route('tickets.create') }}">
-			<i class="bi bi-ticket nav-icon"></i> Create Ticket *
+			<i class="bi bi-ticket nav-icon"></i> Create Ticket
 		</a>
 	</li>
 	<li class="nav-item">

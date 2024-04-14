@@ -541,7 +541,7 @@ class HomeController extends Controller
 	public function onlineInvoice($invoice_no)
 	{
 		//$entity = static::ENTITY ;
-		$config 		= Config::with('relCountry')->where('id', config('bo.CONFIG_ID'))->first();
+		$config 	= Config::with('relCountry')->where('id', config('bo.CONFIG_ID'))->first();
 		$invoice 	= Invoice::where('invoice_no', $invoice_no)->first();
 		$account 	= Account::with('relCountry')->where('id', $invoice->account_id)->first();
 

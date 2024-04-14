@@ -225,11 +225,11 @@
 			</div>
 			<div id="company">
 				<h2 class="name">{{ env('APP_NAME')}}</h2>
-				<div>{{ $setup->address1.', '. $setup->address2 }}</div>
-				<div>{{ $setup->city.', '.$setup->state.', '.$setup->zip. ', '.$setup->country  }}</div>
-				<div>{{ $setup->cell }}</div>	
-				<div>{{ $setup->email }}</div>	
-				{{-- <div>{{ $setup->website }}</div> --}}
+				<div>{{ $config->address1.', '. $config->address2 }}</div>
+				<div>{{ $config->city.', '.$config->state.', '.$config->zip. ', '.$config->country  }}</div>
+				<div>{{ $config->cell }}</div>	
+				<div>{{ $config->email }}</div>	
+				{{-- <div>{{ $config->website }}</div> --}}
 				{{-- <div>(602) 519-0450</div>
 				<div>company@example1.com</div> --}}
 			</div>

@@ -8,7 +8,7 @@
 		<div id="client">
 			<div class="to">ACCOUNT:</div>
 			<h2 class="name">{{ $account->name }}</h2>
-			<div class="address">ACCOUNT ID#{{ $account->id }}</div>
+			<div class="address">ACCOUNT #{{ $account->id }}</div>
 			<div class="address">{{ $account->address1.', '. $account->address2 }}</div>
 			<div class="address">{{ $account->city.', '.$account->state.', '.$account->zip. ', '.$account->country  }}</div>
 			{{-- <div class="address">796 Silver Harbour, TX 79273, US</div>
@@ -37,7 +37,7 @@
 				<td colspan="5" class="desc"><h3>PAYMENT DETAILS</h3>
 					<div class="date">PAYMENT #{{ $payment->id }}</div>
 					<div class="date">Narration: {{ $payment->summary }}</div>
-					<div class="date">Payment Date: {{ strtoupper(date('d-M-y', strtotime($payment->pay_date))) }}</div>
+					<div class="date">Payment Date: {{ strtoupper(date('d-M-Y', strtotime($payment->pay_date))) }}</div>
 					<div class="date">Payment Amount: ${{ number_format($payment->amount,2) }} USD</div>
 					<div class="date">Payment Status: {{ Str::upper($payment->status->name) }}</div>
 				</td>

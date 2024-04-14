@@ -63,7 +63,6 @@ class TestController extends Controller
 	public function run()
 	{
 
-		
 		Log::debug('Value of config(app.domain)=' . config('app.domain'));
 		Log::debug('Value of env(APP_DOMAIN)=' . env('APP_DOMAIN'));
 

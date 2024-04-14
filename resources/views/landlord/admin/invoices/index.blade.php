@@ -48,8 +48,8 @@
 												{{-- {{ Str::limit($invoice->summary, 20) }} --}}
 											</h6>
 										</a>
-										<small class="d-block">Account: #{{ $invoice->account_id }} : {{ $invoice->account->name }}</small>
-										<small class="d-block">{{ date('d-M-y', strtotime($invoice->from_date)) . ' to ' . date('d-M-y', strtotime($invoice->to_date)) }}</small>
+										<small class="d-block">{{ $invoice->account->name }}</small>
+										<small class="d-block">{{ date('d-M-Y', strtotime($invoice->from_date)) . ' to ' . date('d-M-Y', strtotime($invoice->to_date)) }}</small>
 									</div>
 								</div>
 							</td>

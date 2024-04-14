@@ -143,7 +143,7 @@ class Bo
 		//Log::channel('bo')->info('password='.$random_password);
 
 		$invoice->due_date		= $checkout->end_date;
-		$invoice->summary		= 'Invoice for ' . $checkout->product_name . ' for site' . $checkout->site;
+		$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain');
 		$invoice->price			= $checkout->price;
 		$invoice->subtotal		= $checkout->price;
 		$invoice->amount		= $checkout->price; 
