@@ -12,7 +12,6 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('activities', function (Blueprint $table) {
-			
 			$table->id()->startingValue(1001);
 			$table->foreignId('account_id')->nullable();
 			$table->string('object_name')->nullable();

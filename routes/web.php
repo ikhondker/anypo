@@ -296,7 +296,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	/* ======================== Activity ========================================  */
 	Route::resource('activities', ActivityController::class);
-	Route::get('/activity/export', [ActivityController::class, 'export'])->name('activities.export');
+	
 
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class);

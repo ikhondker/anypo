@@ -59,8 +59,6 @@
 			<x-landlord.edit.name :value="$account->name" />
 			<x-landlord.edit.tagline value="{{ $account->tagline }}"/>
 
-
-
 			<x-landlord.edit.email :value="$account->email" />
 			<x-landlord.edit.cell value="{{ $account->cell }}" />
 			<x-landlord.edit.address1 value="{{ $account->address1 }}" />

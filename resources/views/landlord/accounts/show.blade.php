@@ -112,11 +112,10 @@
 			
 			<!-- Body -->
 			<div class="card-body">
-				
+				<x-landlord.show.my-text value="{{ $account->name }}" label="Account Name" />				
 				<x-landlord.show.my-text value="{{ $account->tagline }}" label="Tagline" />
 				<x-landlord.show.my-text value="{{ $account->email }}" label="E-mail" />
 
-				
 				<x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
 				<x-landlord.show.my-text value="{{ $account->address1 }}" label="Address1" />
 				<x-landlord.show.my-text value="{{ $account->address2 }}" label="Address2" />

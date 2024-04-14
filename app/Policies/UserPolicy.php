@@ -286,7 +286,6 @@ class UserPolicy
 
 	}
 
-
 	/**
 	 * Determine whether the user can update the model.
 	 *
@@ -300,5 +299,9 @@ class UserPolicy
 		return false;
 	}
 
+	public function export(User $user): bool
+	{
+		return ($user->isAdmin() || $user->isSeeded());
+	}
 
 }

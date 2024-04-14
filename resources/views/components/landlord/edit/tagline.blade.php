@@ -5,7 +5,7 @@
 	  <input type="text" class="form-control @error('tagline') is-invalid @enderror"
 			name="tagline" id="tagline" placeholder="Tagline 1"
 			value="{{ old('tagline', $value ) }}"
-			required/>
+			/>
 		@error('tagline')
 			<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror

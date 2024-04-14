@@ -193,7 +193,7 @@ class AccountController extends Controller
 			LandlordEventLog::event('account', $account->id, 'update', 'name', $account->dept_id);
 		}
 
-		return redirect()->route('accounts.index')->with('success', 'Account updated successfully');
+		return redirect()->route('dashboards.index')->with('success', 'Account updated successfully');
 	}
 
 	/**

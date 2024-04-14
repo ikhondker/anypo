@@ -29,6 +29,7 @@ use App\Models\Landlord\Admin\Activity;
 # 2. Enums
 use App\Enum\UserRoleEnum;
 # 3. Helpers
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -53,14 +54,53 @@ class ActivityController extends Controller
 	 */
 	public function index()
 	{
-		switch (auth()->user()->role->value) {
-			case UserRoleEnum::ADMIN->value:
-				$activities = Activity::with('user')->byAccount()->orderBy('id', 'desc')->paginate(25);
+
+
+		$this->authorize('viewAll',Activity::class);
+		$activities = Activity::query();
+		$activities  = $activities->with('user')->byAccount();
+		Log::debug('landlord.Activity.index Value of action=' . request('action'));
+
+		if (request('start_date') && request('end_date') ) {
+			$start_date=request('start_date');
+			$end_date=request('end_date');
+			Log::debug('landlord.activity.index Value of start_date=' . request('start_date'));
+			Log::debug('landlord.activity.index  Value of end_date=' . request('end_date'));
+		} 
+
+		switch (request('action')) {
+			case 'search':
+				// Search model
+				$activities  = $activities->whereBetween('created_at', [$start_date, $end_date ]);
 				break;
-			default:
-				$activities = Activity::with('user')->byUser()->orderBy('id', 'desc')->paginate(25);
+			case 'export':
+				// Export model
+				$sql = "
+					SELECT a.id, a.object_name, a.object_id, a.event_name ,a.column_name, a.prior_value, a.url,a.role, a.user_id, a.created_at
+					FROM activities a
+					WHERE a.account_id=".auth()->user()->account_id."
+					AND DATE(a.created_at) BETWEEN '".$start_date."' AND '".$end_date."'
+				";
+				Log::debug('landlord.activity.export'.$sql);
+
+				$data = DB::select($sql);
+				$dataArray = json_decode(json_encode($data), true);
+				// used Export Helper
+				return Export::csv('aels', $dataArray);
+				break;
 		}
+
+		$activities = $activities->orderBy('id', 'DESC')->paginate(25);
 		return view('landlord.admin.activities.index', compact('activities'));
+
+		// switch (auth()->user()->role->value) {
+		// 	case UserRoleEnum::ADMIN->value:
+		// 		$activities = Activity::with('user')->byAccount()->orderBy('id', 'desc')->paginate(25);
+		// 		break;
+		// 	default:
+		// 		$activities = Activity::with('user')->byUser()->orderBy('id', 'desc')->paginate(25);
+		// }
+		// return view('landlord.admin.activities.index', compact('activities'));
 	}
 
 	/**
@@ -143,22 +183,4 @@ class ActivityController extends Controller
 		abort(403);
 	}
 
-	/**
-	 *
-	 * Export selected column to csv format
-	 *
-	 */
-	public function export()
-	{
-		$this->authorize('export', Activity::class);
-		
-		$data = DB::select("SELECT a.id, a.object_name, a.object_id, a.event_name ,a.column_name, a.prior_value, a.url,a.role, a.user_id, a.created_at
-			FROM activities a
-			");
-
-		$dataArray = json_decode(json_encode($data), true);
-
-		// export to CSV
-		return exportCSV('activities', $dataArray);
-	}
 }

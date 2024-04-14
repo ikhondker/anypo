@@ -21,7 +21,7 @@
 	</li>
 	<li class="nav-item">
 		<a class="nav-link {{ $_route_name == 'tickets.index' ? 'active' : '' }}" href="{{ route('tickets.index') }}">
-			<i class="bi bi-list-task nav-icon"></i> My Tickets
+			<i class="bi bi-list-task nav-icon"></i> All Tickets
 		</a>
 	</li>
 

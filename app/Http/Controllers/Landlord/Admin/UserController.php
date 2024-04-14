@@ -292,15 +292,17 @@ class UserController extends Controller
 
 	public function export()
 	{
-
+		$this->authorize('export', User::class);
+		
 		if (auth()->user()->isSeeded()){
-			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable FROM users");
+			$data = DB::select("SELECT id, name, email, cell, role,account_id,IF(enable, 'Yes', 'No') as Enable 
+				FROM users");
 		} else if (auth()->user()->isAdmin()){
-			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable
+			$data = DB::select("SELECT id, name, email, cell, role,account_id, IF(enable, 'Yes', 'No') as Enable
 				FROM users
 				WHERE account_id=".auth()->user()->account_id);
 		} else {
-			$data = DB::select("SELECT id, name, email, cell, role,account_id, enable
+			$data = DB::select("SELECT id, name, email, cell, role,account_id, IF(enable, 'Yes', 'No') as Enable
 				FROM users
 				WHERE id =".auth()->user()->id);
 		}

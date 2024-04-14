@@ -23,15 +23,14 @@
 			<x-landlord.show.my-text		value="{{ $activity->column_name  }}" label="Column"/>
 			<x-landlord.show.my-text		value="{{ $activity->prior_value  }}" label="Prior Value"/>
 			
-			<x-landlord.show.my-text		value="{{ $activity->role }}" label="Role"/>
 			<x-landlord.show.my-text		value="{{ $activity->user->name }}" label="Performer"/>
+			<x-landlord.show.my-badge		value="{{ $activity->role }}" label="Role"/>
 			@if (auth()->user()->isSeeded())
 				<x-landlord.show.my-text		value="{{ $activity->object_type }}" label="Type"/>
 				<x-landlord.show.my-text		value="{{ $activity->ip }}" label="IP"/>
 				<x-landlord.show.my-text		value="{{ $activity->URL}}" label="URL"/>
 				<x-landlord.show.my-text		value="{{ $activity->method }}" label="Method"/>
 			@endif 
-
 
 		</div>
 		<!-- End Body -->

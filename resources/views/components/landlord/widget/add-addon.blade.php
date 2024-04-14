@@ -31,9 +31,9 @@
 										@endif		
 									</div>
 									<h3 class="card-title">{{ $addon->name }}</h3>
-									<h4 class="card-title text-info"> <del class="text-danger">{{ $addon->list_price }}</del> {{ $addon->price }}$/mo</h4>
+									<h4 class="card-title text-info"> <del class="text-danger">{{ $addon->price }}</del> {{ $addon->list_price }}$/mo</h4>
 									{{-- <p class="card-text text-body"></p> --}}
-									<p class="card-text text-body small">Next billing date {{ strtoupper(date('d-M-Y', strtotime($account->end_date))) }}.</p>
+									<p class="card-text text-body small">Next billing date {{ strtoupper(date('d-M-Y', strtotime($account->end_date))) }}</p>
 								</div>
 								<div class="card-footer pt-0">
 										<a href="{{ route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id]) }}"
