@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 
 use App\Models\User;
 use App\Models\Landlord\Admin\Invoice;
-use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Config;
 use App\Models\Landlord\Account;
 
 use App\Enum\LandlordInvoiceTypeEnum;
@@ -45,7 +45,7 @@ class CreateInvoice implements ShouldQueue
 	public function handle(): void
 	{
 
-		$setup = Setup::first();
+		$config = Config::first();
 		Log::debug('jobs.landlord.CreateInvoice Generating Invoice for account_id = ' . $this->account_id .'for period ='. $this->period);
 		$account = Account::where('id', $this->account_id)->first();
 
@@ -76,16 +76,16 @@ class CreateInvoice implements ShouldQueue
 				$discount_pc =0 ;
 				break;
 			case '3':
-				$discount_pc = $setup->discount_pc_3 ;
+				$discount_pc = $config->discount_pc_3 ;
 				break;
 			case '6':
-				$discount_pc = $setup->discount_pc_6 ;
+				$discount_pc = $config->discount_pc_6 ;
 				break;
 			case '12':
-				$discount_pc = $setup->discount_pc_12 ;
+				$discount_pc = $config->discount_pc_12 ;
 			 	break;
 			case '24':
-				$discount_pc = $setup->discount_pc_24 ;
+				$discount_pc = $config->discount_pc_24 ;
 				break;
 			default:
 				$discount_pc =0 ;

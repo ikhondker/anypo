@@ -89,7 +89,7 @@
 									<li><a class="sub-menu-item" href="{{ route('invoices.create') }}">Create Invoice</a></li>
 									<li><a class="sub-menu-item" href="{{ route('processes.index') }}">Process</a></li>
 									<li><a class="sub-menu-item" href="{{ route('entities.index') }}">Entity</a></li>
-									<li><a class="sub-menu-item" href="{{ route('setups.index') }}">Setup</a></li>
+									<li><a class="sub-menu-item" href="{{ route('configs.index') }}">Setup</a></li>
 								</ul>
 							</li>
 							@break

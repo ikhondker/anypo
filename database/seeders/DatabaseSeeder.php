@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 		$this->call(\Database\Seeders\Landlord\StatusSeeder::class);
 		$this->call(\Database\Seeders\Landlord\TemplateSeeder::class);
 		$this->call(\Database\Seeders\Landlord\EntitySeeder::class);
-		$this->call(\Database\Seeders\Landlord\SetupSeeder::class);
+		$this->call(\Database\Seeders\Landlord\ConfigSeeder::class);
 		$this->call(\Database\Seeders\Landlord\ContactSeeder::class);
 		$this->call(\Database\Seeders\Landlord\CategorySeeder::class);
 

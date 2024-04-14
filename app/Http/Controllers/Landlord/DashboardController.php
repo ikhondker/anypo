@@ -31,7 +31,7 @@ use App\Models\Landlord\Admin\Invoice;
 use App\Models\Landlord\Admin\Payment;
 use App\Models\Landlord\Admin\Service;
 
-use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Config;
 
 # 2. Enums
 use App\Enum\UserRoleEnum;
@@ -92,7 +92,7 @@ class DashboardController extends Controller
 	private function userDashboard()
 	{
 
-		$setup = Setup::first();
+		$config = Config::first();
 
 		// show only open notifications
 		$notifications = auth()->user()->unreadNotifications;
@@ -110,7 +110,7 @@ class DashboardController extends Controller
 		$count_payments = Payment::byaccount()->count();
 		$count_users	= User::byuser()->count();
 
-		return view('landlord.dashboards.index', with(compact('notifications','setup','count_notif',
+		return view('landlord.dashboards.index', with(compact('notifications','config','count_notif',
 			'count_tickets_open', 'count_tickets_total',
 			'count_accounts', 'count_service',
 			'count_invoices', 'count_payments','count_users',
@@ -122,7 +122,7 @@ class DashboardController extends Controller
 	private function adminDashboard()
 	{
 
-		$setup = Setup::first();
+		$config = Config::first();
 
 		// unpaid invoice notification
 		$account = Account::where('id', auth()->user()->account_id)->first();
@@ -144,7 +144,7 @@ class DashboardController extends Controller
 		$count_payments = Payment::byAccount()->count();
 		$count_users	= User::byAccount()->count();
 
-		return view('landlord.dashboards.admin', with(compact('notifications','setup','count_notif','account',
+		return view('landlord.dashboards.admin', with(compact('notifications','config','count_notif','account',
 			'count_tickets_open', 'count_tickets_total',
 			'count_accounts', 'count_service',
 			'count_invoices', 'count_payments','count_users',
@@ -160,7 +160,7 @@ class DashboardController extends Controller
 	 */
 	public function supportDashboard()
 	{
-		$setup = Setup::first();
+		$config = Config::first();
 
 		// show only open notifications
 		$notifications 	= auth()->user()->unreadNotifications;
@@ -178,7 +178,7 @@ class DashboardController extends Controller
 
 		//$count_service = Service::all()->count();
 		//$count_users		= User::all()->count();
-		return view('landlord.dashboards.backoffice', with(compact('notifications','setup','count_notif',
+		return view('landlord.dashboards.backoffice', with(compact('notifications','config','count_notif',
 			'count_agent_open_tickets', 'count_unassigned_tickets',
 			'count_all_open_tickets', 'count_agent_closed_tickets', 
 			'tickets', 
@@ -195,7 +195,7 @@ class DashboardController extends Controller
 	 */
 	public function supervisorDashboard()
 	{
-		$setup = Setup::first();
+		$config = Config::first();
 
 		// show only open notifications
 		$notifications 	= auth()->user()->unreadNotifications;
@@ -214,7 +214,7 @@ class DashboardController extends Controller
 		//$count_all_closed_tickets = Ticket::byallclosed()->count();
 		$count_service	= Service::all()->count();
 		$count_users	= User::all()->count();
-		return view('landlord.dashboards.supervisor', with(compact('tickets','setup',
+		return view('landlord.dashboards.supervisor', with(compact('tickets','config',
 			'count_tickets','count_all_open_tickets','count_unassigned_tickets','count_all_closed_tickets'
 		)));
 	}
@@ -227,7 +227,7 @@ class DashboardController extends Controller
 	 */
 	public function systemDashboard()
 	{
-		$setup = Setup::first();
+		$config = Config::first();
 
 		// show only open notifications
 		$notifications 	= auth()->user()->unreadNotifications;
@@ -269,7 +269,7 @@ class DashboardController extends Controller
 		$count_users_inactive	= User::where('enable', false)->count();
 		$count_users_non_val	= User::where('email_verified_at', null)->count();
 
-		return view('landlord.dashboards.system', with(compact('tickets','setup',
+		return view('landlord.dashboards.system', with(compact('tickets','config',
 			'count_tickets','count_all_open_tickets','count_unassigned_tickets','count_all_closed_tickets',
 			'count_accounts','count_service','count_invoices','count_payments',
 			'count_users','count_users_active','count_users_inactive','count_users_non_val'

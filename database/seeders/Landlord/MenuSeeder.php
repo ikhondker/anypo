@@ -25,7 +25,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'accounts.index',		'route_name' => 'accounts.index',	  'access' => 'F'],
 			[ 'raw_route_name' => 'accounts.show',		'route_name' => 'accounts.index',	  'access' => 'F'],
 			[ 'raw_route_name' => 'accounts.update',	'route_name' => 'accounts.index',	  'access' => 'F'],
-			[ 'raw_route_name' => 'accounts.edit',	 'route_name' => 'accounts.index',	  'access' => 'F'],
+			[ 'raw_route_name' => 'accounts.edit',	 	'route_name' => 'accounts.index',	  'access' => 'F'],
 			[ 'raw_route_name' => 'accounts.create',	'route_name' => 'accounts.index',	  'access' => 'X'],
 			[ 'raw_route_name' => 'accounts.all',	  'route_name' => 'accounts.index',	  'access' => 'B'],
 
@@ -34,7 +34,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'activities.update',  'route_name' => 'activities.index',	'access' => 'X'],
 			[ 'raw_route_name' => 'activities.edit',	'route_name' => 'activities.index',	'access' => 'X'],
 			[ 'raw_route_name' => 'activities.create',  'route_name' => 'activities.index',	'access' => 'X'],
-			[ 'raw_route_name' => 'activities.all',	'route_name' => 'activities.index',	'access' => 'B'],
+			[ 'raw_route_name' => 'activities.all',		'route_name' => 'activities.index',	'access' => 'B'],
 
 			[ 'raw_route_name' => 'attachments.index',  'route_name' => 'attachments.index',	'access' => 'B'], 
 			[ 'raw_route_name' => 'attachments.show',   'route_name' => 'attachments.index',	'access' => 'B'],
@@ -45,7 +45,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'contacts.all',	  'route_name' => 'contacts.index',	  'access' => 'B'],
 
 			[ 'raw_route_name' => 'categories.index',	'route_name' => 'categories.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'categories.show',	 'route_name' => 'categories.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'categories.show',	'route_name' => 'categories.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'categories.update',	'route_name' => 'categories.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'categories.edit',	 'route_name' => 'categories.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'categories.create',	'route_name' => 'categories.index',	  'access' => 'B'],
@@ -56,11 +56,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'dashboards.edit',	'route_name' => 'dashboards.index',	'access' => 'X'],
 			[ 'raw_route_name' => 'dashboards.create',  'route_name' => 'dashboards.index',	'access' => 'X'],
 
-			[ 'raw_route_name' => 'domains.index',	 'route_name' => 'domains.index',	   'access' => 'B'],
-			[ 'raw_route_name' => 'domains.show',	  'route_name' => 'domains.index',	   'access' => 'B'],
-			[ 'raw_route_name' => 'domains.update',	'route_name' => 'domains.index',	   'access' => 'B'],
-			[ 'raw_route_name' => 'domains.edit',	  'route_name' => 'domains.index',	   'access' => 'B'],
-			[ 'raw_route_name' => 'domains.create',	'route_name' => 'domains.index',	   'access' => 'B'],
+			[ 'raw_route_name' => 'domains.index',	 	'route_name' => 'domains.index',	   'access' => 'B'],
+			[ 'raw_route_name' => 'domains.show',	  	'route_name' => 'domains.index',	   'access' => 'B'],
+			[ 'raw_route_name' => 'domains.update',		'route_name' => 'domains.index',	   'access' => 'B'],
+			[ 'raw_route_name' => 'domains.edit',	  	'route_name' => 'domains.index',	   'access' => 'B'],
+			[ 'raw_route_name' => 'domains.create',		'route_name' => 'domains.index',	   'access' => 'B'],
 
 			[ 'raw_route_name' => 'entities.index',	'route_name' => 'entities.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'entities.show',	 'route_name' => 'entities.index',	  'access' => 'B'],
@@ -115,11 +115,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'services.create',	'route_name' => 'services.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'services.all',	  'route_name' => 'services.index',	  'access' => 'B'],
 
-			[ 'raw_route_name' => 'setups.index',	  'route_name' => 'setups.index',		'access' => 'S'],
-			[ 'raw_route_name' => 'setups.show',	   'route_name' => 'setups.index',		'access' => 'S'],
-			[ 'raw_route_name' => 'setups.update',	 'route_name' => 'setups.index',		'access' => 'S'],
-			[ 'raw_route_name' => 'setups.edit',	   'route_name' => 'setups.index',		'access' => 'S'],
-			[ 'raw_route_name' => 'setups.create',	 'route_name' => 'setups.index',		'access' => 'X'],
+			[ 'raw_route_name' => 'configs.index',	  'route_name' => 'configs.index',		'access' => 'S'],
+			[ 'raw_route_name' => 'configs.show',	   'route_name' => 'configs.index',		'access' => 'S'],
+			[ 'raw_route_name' => 'configs.update',	 'route_name' => 'configs.index',		'access' => 'S'],
+			[ 'raw_route_name' => 'configs.edit',	   'route_name' => 'configs.index',		'access' => 'S'],
+			[ 'raw_route_name' => 'configs.create',	 'route_name' => 'configs.index',		'access' => 'X'],
 
 			[ 'raw_route_name' => 'checkouts.index',	'route_name' => 'checkouts.index',	 'access' => 'B'],
 			[ 'raw_route_name' => 'checkouts.show',	'route_name' => 'checkouts.index',	 'access' => 'B'],

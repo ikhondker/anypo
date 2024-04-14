@@ -33,7 +33,7 @@ use App\Models\Landlord\Admin\Payment;
 use App\Models\Landlord\Lookup\Product;
 
 use App\Models\Landlord\Manage\MailList;
-use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Config;
 use App\Models\Landlord\Manage\Contact;
 use App\Models\Landlord\Manage\Checkout;
 
@@ -541,11 +541,11 @@ class HomeController extends Controller
 	public function onlineInvoice($invoice_no)
 	{
 		//$entity = static::ENTITY ;
-		$setup 		= Setup::with('relCountry')->where('id', config('bo.SETUP_ID'))->first();
+		$config 		= Config::with('relCountry')->where('id', config('bo.CONFIG_ID'))->first();
 		$invoice 	= Invoice::where('invoice_no', $invoice_no)->first();
 		$account 	= Account::with('relCountry')->where('id', $invoice->account_id)->first();
 
-		return view('landlord.admin.invoices.invoice', compact('invoice', 'account', 'setup'));
+		return view('landlord.admin.invoices.invoice', compact('invoice', 'account', 'config'));
 	}
 
 

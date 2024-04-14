@@ -98,7 +98,7 @@
 								@if ($user->role == UserRoleEnum::USER)
 									<span class="badge bg-info">{{ $user->role }}</span>
 								@else
-									<span class="badge bg-danger">{{ $user->role }}</span>
+									<span class="badge bg-warning">{{ $user->role }}</span>
 								@endif
 							</td>
 							<td><x-landlord.list.my-enable :value="$user->enable" /></td>

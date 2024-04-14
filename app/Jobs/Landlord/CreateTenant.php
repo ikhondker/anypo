@@ -22,7 +22,7 @@ use App\Models\Landlord\Account;
 
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Manage\Checkout;
-use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Config;
 
 // Enums
 use App\Enum\UserRoleEnum;
@@ -93,11 +93,11 @@ class CreateTenant implements ShouldQueue
 		Log::debug('Jobs.Landlord.CreateTenant 0. Processing Site='.$checkout->site);
 
 		// create or update user
-		Log::debug('Jobs.Landlord.CreateTenant 1. Calling createUpdateCheckoutUser');
+		Log::debug('Jobs.Landlord.CreateTenant 1. Calling self::createUpdateCheckoutUser');
 		$user_id= self::createUpdateCheckoutUser($this->checkout_id);
 		
 		// Create account 
-		Log::debug('Jobs.Landlord.CreateTenant 2. Calling createCheckoutAccount');
+		Log::debug('Jobs.Landlord.CreateTenant 2. Calling self::createCheckoutAccount');
 		$account_id		= self::createCheckoutAccount($this->checkout_id);
 
 		// update account_id in checkout
@@ -107,31 +107,30 @@ class CreateTenant implements ShouldQueue
 
 		// update user account_id
 		$user = User::where('id', $user_id)->first();
-		$user->account_id	= $account_id;
+		$user->account_id = $account_id;
 		$user->save();
-		Log::debug('Jobs.Landlord.CreateTenant User account_id update user_id=' . $user->id);
+		Log::debug('Jobs.Landlord.CreateTenant User account_id update user_id =' . $user->id);
 		LandlordEventLog::event('user', $user->id, 'update', $account_id);
 		
 		// create service	
-		Log::debug('Jobs.Landlord.CreateTenant 3. Calling createServiceForCheckout');
+		Log::debug('Jobs.Landlord.CreateTenant 3. Calling bo.createServiceForCheckout');
 		$service_id = bo::createServiceForCheckout($this->checkout_id);
 
 		// generate first invoice for this account and notify
-		Log::debug('Jobs.Landlord.CreateTenant 4. Calling createInvoiceForCheckout');
+		Log::debug('Jobs.Landlord.CreateTenant 4. Calling bo.createInvoiceForCheckout');
 		$invoice_id = bo::createInvoiceForCheckout($this->checkout_id);
 		$checkout->invoice_id	= $invoice_id;
 		$checkout->save();
 
 		// pay this first invoice and notify
 		//$payment_id = self::payInvoice($invoice_id);
-		Log::debug('Jobs.Landlord.CreateTenant 5. Calling payCheckoutInvoice');
+		Log::debug('Jobs.Landlord.CreateTenant 5. Calling bo.payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
 
 		// update account with billed date
 		//$account = Account::where('id', $account_id)->first();
 		//$invoice = Invoice::where('id', $invoice_id)->first();
 		
-
 		// TODO Send notification on new purchase
 		// Do we need this notification
 		// $user->notify(new ServicePurchased($user, $account));
@@ -143,7 +142,7 @@ class CreateTenant implements ShouldQueue
 
 		// Create new tenant TODO
 		Log::debug("Jobs.Landlord.CreateTenant Creating Tenant for checkout ID= ".$this->checkout_id);
-		Log::debug('Jobs.Landlord.CreateTenant 6. Calling createTenantDb');
+		Log::debug('Jobs.Landlord.CreateTenant 6. Calling self::createTenantDb');
 		$tenant_id= self::createTenantDb();
 
 		// mark checkout as complete
@@ -158,7 +157,7 @@ class CreateTenant implements ShouldQueue
 	public static function createUpdateCheckoutUser($checkout_id = 0)
 	{
 		$checkout = Checkout::where('id', $checkout_id)->first();
-		$setup = Setup::first();
+		$config = Config::first();
 
 		// make existing user admin if not admin
 		if ($checkout->existing_user) {
@@ -182,14 +181,14 @@ class CreateTenant implements ShouldQueue
 			// $user->password	= bcrypt('password');
 			
 			// default address
-			$user->address1			= $setup->address1;
-			$user->address2			= $setup->address2;
-			$user->city				= $setup->city;
-			$user->state			= $setup->state;
-			$user->zip				= $setup->zip;
-			$user->country			= $setup->country;
-			$user->facebook			= $setup->facebook;
-			$user->linkedin			= $setup->linkedin;
+			$user->address1			= $config->address1;
+			$user->address2			= $config->address2;
+			$user->city				= $config->city;
+			$user->state			= $config->state;
+			$user->zip				= $config->zip;
+			$user->country			= $config->country;
+			$user->facebook			= $config->facebook;
+			$user->linkedin			= $config->linkedin;
 			
 			$user->save();
 
@@ -246,7 +245,7 @@ class CreateTenant implements ShouldQueue
 		// id name sku is_addon addon_type base_mnth base_user base_gb base_price mnth user gb price price_3 price_6 price_12 price_24 tax_pc vat_pc
 		// subtotal tax vat amount notes sold_qty photo enable created_by created_at updated_by updated_at
 		$checkout = Checkout::where('id', $checkout_id)->first();
-		$setup = Setup::first();
+		$config = Config::first();
 		//$product = Product::where('id', $checkout->product_id)->first();
 
 		// create new Account
@@ -270,15 +269,15 @@ class CreateTenant implements ShouldQueue
 		$account->price				= $checkout->price;
 
 		// default address
-		$account->address1			= $setup->address1;
-		$account->address2			= $setup->address2;
-		$account->city				= $setup->city;
-		$account->state				= $setup->state;
-		$account->zip				= $setup->zip;
-		$account->country			= $setup->country;
-		$account->website			= $setup->website;
-		$account->facebook			= $setup->facebook;
-		$account->linkedin			= $setup->linkedin;
+		$account->address1			= $config->address1;
+		$account->address2			= $config->address2;
+		$account->city				= $config->city;
+		$account->state				= $config->state;
+		$account->zip				= $config->zip;
+		$account->country			= $config->country;
+		$account->website			= $config->website;
+		$account->facebook			= $config->facebook;
+		$account->linkedin			= $config->linkedin;
 
 		//Log::debug('$checkout->mnth=' . $checkout->mnth);
 		//Log::debug('$end date=' . now()->addMonth($checkout->mnth));
@@ -354,13 +353,13 @@ class CreateTenant implements ShouldQueue
 				'enable'			=> true,
 				//'password' 	=> bcrypt($random_password),
 			]);
-			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb  Tenant Admin User created user_id=' . $user->id);
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Admin User created user_id =' . $user->id);
 
-			// Update tenant setup->name in the tenant database
+			// Update tenant config->name in the tenant database
 			$tenantSetup =  \App\Models\Tenant\Admin\Setup::first();
 			$tenantSetup->name =  $account_name;
 			$tenantSetup->update();
-			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb  Tenant Setup Name Updated setup_id=' . $tenantSetup->id);
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Config Name Updated setup_id =' . $tenantSetup->id);
 
 			// TODO Send Verification Email from tenant context
 			// event(new Registered($user));
@@ -373,7 +372,7 @@ class CreateTenant implements ShouldQueue
 		$user = User::where('id', $checkout->owner_id)->first();
 		$domain = \App\Models\Domain::where('tenant_id', $tenant->id)->first();
 		$user->notify(new FirstTenantAdminCreated($user, $random_password, $domain));
-		Log::debug('Jobs.Landlord.CreateTenant.createTenantDb  Admin User Notified '.$user->name);
+		Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Admin User Notified '.$user->name);
 
 		return $tenant->id;
 

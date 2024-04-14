@@ -15,9 +15,9 @@
 		
 				<!-- List -->
 				<ul class="list-unstyled list-py-1">
-					<li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_landlord_setup->address1 }}</a></li>
-					<li><a class="link-sm link-light" href="#">{{ $_landlord_setup->city.' '.$_landlord_setup->state.' '. $_landlord_setup->zip. ', '. $_landlord_setup->relCountry->name }}</a></li>
-					<li><a class="link-sm link-light" href="tel:{{$_landlord_setup->cell}}"><i class="bi-telephone-inbound-fill me-1"></i> {{ $_landlord_setup->cell }}</a></li>
+					<li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_config->address1 }}</a></li>
+					<li><a class="link-sm link-light" href="#">{{ $_config->city.' '.$_config->state.' '. $_config->zip. ', '. $_config->relCountry->name }}</a></li>
+					<li><a class="link-sm link-light" href="tel:{{$_config->cell}}"><i class="bi-telephone-inbound-fill me-1"></i> {{ $_config->cell }}</a></li>
 				</ul>
 				<!-- End List --> 
 				

@@ -286,7 +286,7 @@ class TableController extends Controller
 			'Process',
 			'Rating',
 			'Service',
-			'Setup',
+			'Config',
 			'Table',
 			'Template',
 			'Ticket',

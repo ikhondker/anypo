@@ -31,7 +31,7 @@
 												<input type="text" class="form-control form-control-sm" name="site"
 													id="site" placeholder="sitename" value="{{ old('site', 'XYZ') }}"
 													class="@error('site') is-invalid @enderror" required>
-												<span class="input-group-text">.anypo.net</span>
+												<span class="input-group-text">.ANYPO.NET</span>
 											</div>
 											@error('site')
 												<div class="text-danger text-xs">{{ $message }}</div>
@@ -125,7 +125,7 @@
 											<div class="col-sm-8">
 												<p class="h4">{{ $product->sku }}</p>
 												<span class="small">{{ $product->name }}</span><br>
-												<span class="small">All Functionalities.<span>
+												<span class="small">ALL FUNCTIONALITIES.<span>
 											</div>
 											<div class="col-sm-4 text-end h3">
 												${{ $product->price }}

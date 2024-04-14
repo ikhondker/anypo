@@ -48,13 +48,13 @@
 						</span>
 						<li class="nav-item">
 							@auth
-								<a href="{{ route('dashboards.index') }}" class="nav-link text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Dashboard">
+								<a href="{{ route('dashboards.index') }}" class="nav-link text-muted">
 									<i class="bi bi-speedometer2 nav-icon"></i>
 									Dashboard
 								</a>
 							@endauth
 							@guest
-								<a href="{{ route('register') }}" class="nav-link text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Register">
+								<a href="{{ route('register') }}" class="nav-link text-muted">
 									<i class="bi bi-person-circle text-primary"></i>
 									Register
 								</a>
@@ -64,7 +64,7 @@
 	
 						@auth
 							<li class="nav-item">
-								<a href="{{ route('users.show', auth()->user()->id) }}" class="nav-link text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Profile">
+								<a href="{{ route('users.show', auth()->user()->id) }}" class="nav-link text-muted">
 									<span class="avatar avatar-xs avatar-circle">
 										<img class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/'.$_landlord_user->avatar)  }}"  alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}">
 									</span>
@@ -72,14 +72,14 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ route('logout') }}" class="nav-link text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">
+								<a href="{{ route('logout') }}" class="nav-link text-muted">
 									<i class="bi bi-power nav-icon text-danger"></i> Logout
 								</a>
 							</li>
 						@endauth
 						@guest
 							<li class="nav-item">
-								<a href="{{ route('login') }}" class="nav-link text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Login">
+								<a href="{{ route('login') }}" class="nav-link text-muted">
 									<i class="bi bi-power text-primary"></i> Login
 								</a>
 							</li>

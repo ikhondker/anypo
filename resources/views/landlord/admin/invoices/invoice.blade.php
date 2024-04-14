@@ -15,7 +15,7 @@
 								<img class="avatar-xl" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
 							</div>
 
-							{{-- <h1 class="h2 text-primary">{{ $setup->name }}</h1> --}}
+							{{-- <h1 class="h2 text-primary">{{ $config->name }}</h1> --}}
 						</div>
 						<!-- End Col -->
 
@@ -37,12 +37,12 @@
 								{{-- <span class="d-block">{{ $invoice->invoice_no }}</span> --}}
 							</div>
 							<address class="text-dark">
-								{{ $setup->address1 }}<br>
-								@if ($setup->address2 <> '' ) 
-									{{ $setup->address2 }}<br>
+								{{ $config->address1 }}<br>
+								@if ($config->address2 <> '' ) 
+									{{ $config->address2 }}<br>
 								@endif 
-								{{ $setup->city . ', ' . $setup->state . ', ' . $setup->zip }}<br>
-								{{ $setup->relCountry->name }}
+								{{ $config->city . ', ' . $config->state . ', ' . $config->zip }}<br>
+								{{ $config->relCountry->name }}
 							</address>
 						</div>
 						<!-- End Col -->

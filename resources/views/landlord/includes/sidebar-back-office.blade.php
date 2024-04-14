@@ -147,8 +147,8 @@
 				href="{{ route('menus.index') }}"><i class="bi-bell nav-icon"></i> Menu</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'setups.index' ? 'active' : '' }}"
-				href="{{ route('setups.index') }}"><i class="bi-bell nav-icon"></i> Setup</a>
+			<a class="nav-link {{ $_route_name == 'configs.index' ? 'active' : '' }}"
+				href="{{ route('configs.index') }}"><i class="bi-bell nav-icon"></i> Config</a>
 		</li>
 	</ul>
 	<!-- End List -->

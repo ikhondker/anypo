@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 // Models
 use App\Models\User;
 use App\Models\Landlord\Account;
-use App\Models\Landlord\Admin\Setup;
+use App\Models\Landlord\Admin\Config;
 
 // Seeded
 use Str;
@@ -37,12 +37,12 @@ class AccountsArchive implements ShouldQueue
 	public function handle(): void
 	{
 		Log::debug('Inside Accounts Archive. Write your code here');
-		$setup = Setup::first();
+		$Config = Config::first();
 		
 		$accounts = Account::
 			where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
 			->where('next_bill_generated', true )
-			->where('end_date', '>', now()->subDays($setup->days_archive))
+			->where('end_date', '>', now()->subDays($Config->days_archive))
 			->orderBy('id', 'ASC')
 			->get();
 			

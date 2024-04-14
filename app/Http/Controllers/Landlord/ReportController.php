@@ -32,7 +32,7 @@ use App\Models\Landlord\Account;
 
 use App\Models\Landlord\Admin\Payment;
 use App\Models\Landlord\Admin\Invoice;
-use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Config;
 # 2. Enums
 # 3. Helpers
 # 4. Notifications
@@ -72,14 +72,14 @@ class ReportController extends Controller
 		// NOTE: Uses InvoicePolicy
 		$this->authorize('pdfInvoice', $invoice);
 
-		$setup = Setup::first();
+		$config = Config::first();
 		
 		//dd($invoice);
 		//$invoice = Invoice::with('status','owner')->where('id', $id)->firstOrFail();
 
 		$account = Account::where('id', $invoice->account_id)->firstOrFail();
 		//dd($payment);
-		//$setup = Setup::where('id', config('akk.SETUP_ID'))->firstOrFail();
+		//$config = Config::where('id', config('akk.SETUP_ID'))->firstOrFail();
 		//$pr = Pr::with('requestor')->where('id', $id)->firstOrFail();
 		//$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
 		//$prls = Prl::with('item')->where('pr_id', $pr->id)->get()->all();
@@ -94,7 +94,7 @@ class ReportController extends Controller
 			//'title' 	=> 'Company XYZ',
 			'id' 		=> $invoice->id,
 			'date' 		=> date('m/d/Y'),
-			'setup' 	=> $setup,
+			'config' 	=> $config,
 			'invoice' 	=> $invoice,
 			'account' 	=> $account,
 		];
@@ -102,7 +102,7 @@ class ReportController extends Controller
 		$pdf = PDF::loadView('landlord.reports.formats.invoice', $data);
 			// ->setOption('fontDir', public_path('/fonts/lato'));
 
-		// (Optional) Setup the paper size and orientation
+		// (Optional) Config the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
 		$pdf->output();
 
@@ -140,12 +140,12 @@ class ReportController extends Controller
 		// NOTE: Uses InvoicePolicy
 		$this->authorize('pdfPayment', $payment);
 
-		$setup = Setup::first();
+		$config = Config::first();
 		//$payment = Payment::where('id', $id)->firstOrFail();
 		$invoice = Invoice::where('id', $payment->invoice_id)->firstOrFail();
 		$account = Account::where('id', $payment->account_id)->firstOrFail();
 		//dd($payment);
-		//$setup = Setup::where('id', config('akk.SETUP_ID'))->firstOrFail();
+		//$config = Config::where('id', config('akk.SETUP_ID'))->firstOrFail();
 		//$pr = Pr::with('requestor')->where('id', $id)->firstOrFail();
 		//$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
 		//$prls = Prl::with('item')->where('pr_id', $pr->id)->get()->all();
@@ -160,7 +160,7 @@ class ReportController extends Controller
 			'title' => 'Company XYZ',
 			'id' => $payment->id,
 			'date' => date('m/d/Y'),
-			'setup' => $setup,
+			'config' => $config,
 			'payment' => $payment,
 			'invoice' => $invoice,
 			'account' => $account,
@@ -168,7 +168,7 @@ class ReportController extends Controller
 
 		
 		$pdf = PDF::loadView('landlord.reports.formats.receipt', $data);
-		// (Optional) Setup the paper size and orientation
+		// (Optional) Config the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
 	
 		// Get height and width of page

@@ -27,7 +27,7 @@ use App\Http\Requests\Landlord\Admin\UpdateInvoiceRequest;
 # 1. Models
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Admin\Invoice;
-use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Config;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
@@ -101,9 +101,9 @@ class InvoiceController extends Controller
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account #=' . $account->id . '! Can not create more Invoices.');
 		}
 
-		$setup = Setup::with('relCountry')->where('id', config('bo.SETUP_ID'))->first();
+		$config = Config::with('relCountry')->where('id', config('bo.CONFIG_ID'))->first();
 
-		return view('landlord.admin.invoices.generate', compact('account', 'setup'));
+		return view('landlord.admin.invoices.generate', compact('account', 'config'));
 	}
 
 	/**
@@ -154,7 +154,7 @@ class InvoiceController extends Controller
 		$product = Product::where('id', $account->primary_product_id)
 			->first();
 
-		$setup = Setup::where('id', config('bo.SETUP_ID'))->first();
+		$config = Config::where('id', config('bo.CONFIG_ID'))->first();
 
 		
 		switch ($period) {
@@ -162,13 +162,13 @@ class InvoiceController extends Controller
 				$price = $account->price;
 				break;
 			case '3':
-				$price =round(3 * $account->price * (100-$setup->discount_pc_3)/100,2);
+				$price =round(3 * $account->price * (100-$config->discount_pc_3)/100,2);
 				break;
 			case '6':
-				$price =round (6 * $account->price * (100-$setup->discount_pc_6)/100,2);
+				$price =round (6 * $account->price * (100-$config->discount_pc_6)/100,2);
 				break;
 			case '12':
-				$price =round( 12 * $account->price * (100 - $setup->discount_pc_12)/100,2);
+				$price =round( 12 * $account->price * (100 - $config->discount_pc_12)/100,2);
 				break;
 			default:
 				$price =$account->price;

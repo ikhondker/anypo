@@ -44,9 +44,9 @@
 							<label class="form-check-label" for="formRadio1">
 								3 Months 
 								<del class="text-danger">{{ number_format($account->price * 3, 2,'.') }}USD</del>  
-								{{ number_format(3 * $account->price * (100-$setup->discount_pc_3)/100, 2,'.') }}USD
+								{{ number_format(3 * $account->price * (100-$config->discount_pc_3)/100, 2,'.') }}USD
 							</label>
-							<div class="small text-muted">{{ $setup->discount_pc_3 }}% discount .</div>
+							<div class="small text-muted">{{ $config->discount_pc_3 }}% discount .</div>
 						</div>
 						<!-- End Checkbox -->
 						
@@ -56,9 +56,9 @@
 							<label class="form-check-label" for="formRadio2">
 								6 Months 
 								<del class="text-danger">{{ number_format($account->price * 6, 2,'.') }}USD</del>  
-								{{ number_format(6 * $account->price * (100-$setup->discount_pc_6)/100, 2,'.') }}USD
+								{{ number_format(6 * $account->price * (100-$config->discount_pc_6)/100, 2,'.') }}USD
 							</label>
-							<div class="small text-muted">{{ $setup->discount_pc_6 }}% discount .</div>
+							<div class="small text-muted">{{ $config->discount_pc_6 }}% discount .</div>
 						</div>
 						<!-- End Checkbox -->
 						
@@ -68,9 +68,9 @@
 							<label class="form-check-label" for="formRadio4">
 								12 Months 
 								<del class="text-danger">{{ number_format($account->price * 12, 2,'.') }}USD</del>  
-								{{ number_format(12 * $account->price * (100 - $setup->discount_pc_12)/100, 2,'.') }}USD
+								{{ number_format(12 * $account->price * (100 - $config->discount_pc_12)/100, 2,'.') }}USD
 							</label>
-							<div class="small text-muted">{{ $setup->discount_pc_12 }}% discount .</div>
+							<div class="small text-muted">{{ $config->discount_pc_12 }}% discount .</div>
 
 						</div>
 					</div>

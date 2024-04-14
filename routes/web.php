@@ -332,7 +332,7 @@ use App\Http\Controllers\Landlord\Manage\EntityController;
 use App\Http\Controllers\Landlord\Manage\MailListController;
 use App\Http\Controllers\Landlord\Manage\MenuController;
 use App\Http\Controllers\Landlord\Manage\ProcessController;
-use App\Http\Controllers\Landlord\Manage\SetupController;
+use App\Http\Controllers\Landlord\Manage\ConfigController;
 use App\Http\Controllers\Landlord\Manage\TableController;
 use App\Http\Controllers\Landlord\Manage\TemplateController;
 use App\Http\Controllers\Landlord\Manage\StatusController;
@@ -391,10 +391,9 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 	Route::get('/process/gen-invoice-all', [ProcessController::class, 'genInvoiceAll'])->name('processes.gen-invoice-all');
 	Route::get('/process/accounts-archive', [ProcessController::class, 'accountsArchive'])->name('processes.accounts-archive');
 
-	/* ======================== Setup ======================================== */
-	Route::resource('setups', SetupController::class);
-	//Route::get('/setups1', [SetupController::class,'index'])->name('setups.index');
-	
+	/* ======================== Config ======================================== */
+	Route::resource('configs', ConfigController::class);
+		
 	/* ======================== Table ========================================  */
 	Route::resource('tables', TableController::class);
 	// Route::get('/table/structure/{table}', [TableController::class, 'structure'])->name('tables.structure');

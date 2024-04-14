@@ -20,19 +20,19 @@
 			<div class="row mt-4">
 				<div class="col-sm-6">
 					<h5 class="mb-1">Call us:</h5>
-					<p>{{ $setup->cell }} </p>
+					<p>{{ $config->cell }} </p>
 				</div>
 				<!-- End Col -->
 
 				<div class="col-sm-6">
 					<h5 class="mb-1">Email us:</h5>
-					<p>{{ $setup->email }}</p>
+					<p>{{ $config->email }}</p>
 				</div>
 				<!-- End Col -->
 
 				<div class="col-sm-6">
 					<h5 class="mb-1">Address:</h5>
-					<p>{{ $setup->address1 }} {{ $setup->city.' '.$setup->state.' '. $setup->zip.' ,'. $setup->relCountry->name }}.</p>
+					<p>{{ $config->address1 }} {{ $config->city.' '.$config->state.' '. $config->zip.' ,'. $config->relCountry->name }}.</p>
 					<span class="avatar avatar-xs avatar-circle">
 						<img class="avatar-img" src="{{ Storage::disk('s3l')->url('flag/ca.png') }}" alt="Image Description">
 					</span>

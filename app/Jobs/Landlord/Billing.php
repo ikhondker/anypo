@@ -20,7 +20,7 @@ use App\Models\Landlord\Account;
 use App\Models\Landlord\Admin\Invoice;
 
 use App\Models\Landlord\Manage\Process;
-use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Config;
 
 // Enums
 use App\Enum\InvoiceStatusEnum;
@@ -53,7 +53,7 @@ class Billing implements ShouldQueue
 	 */
 	public function handle(): void
 	{
-		$setup = Setup::first();
+		$config = Config::first();
 
 		// Create a blank invoice. Not model but Controller
 		//$invoice = new InvoiceController();
@@ -78,7 +78,7 @@ class Billing implements ShouldQueue
 		foreach ($accounts as $account) {
 			// Generate invoice 5 days before expire
 			$diff = now()->diffInDays($account->end_date);
-			if ($diff <= $setup->days_gen_bill) {
+			if ($diff <= $config->days_gen_bill) {
 				Log::debug('Jobs.Billing.handle Generating Invoice for account_id=' . $account->id);
 				CreateInvoice::dispatch($account->id, 1);
 			} else {

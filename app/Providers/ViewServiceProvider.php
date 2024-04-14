@@ -57,7 +57,7 @@ class ViewServiceProvider extends ServiceProvider
 			//$view->with('_xx_name', 'abc');
 		});
 		
-		Facades\View::composer(['layouts.landlord-app','layouts.landlord'], \App\View\Composers\LandlordSetupComposer::class);
+		Facades\View::composer(['layouts.landlord-app','layouts.landlord'], \App\View\Composers\ConfigComposer::class);
 		Facades\View::composer(['layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], \App\View\Composers\LandlordUserComposer::class);
 
 		/*
@@ -94,6 +94,5 @@ class ViewServiceProvider extends ServiceProvider
 				], 
 				\App\View\Composers\TenantSetupComposer::class);
 		Facades\View::composer('layouts.app', \App\View\Composers\NotificationComposer::class);
-		// view()->composer(['landlord.*','layouts.landlord-app','components.landlord.widget.ticket-comments','components.landlord.widget.ticket-lists'], function ($view) {
 	}
 }

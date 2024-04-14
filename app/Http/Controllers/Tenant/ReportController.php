@@ -940,7 +940,7 @@ class ReportController extends Controller
 		return $pdf->stream('PO'.$po->id.'.pdf');
 	}
 
-	public function prv1($id)
+	public function chk_prv1($id)
 	{
 		//todo auth check
 		//todo if pr exists

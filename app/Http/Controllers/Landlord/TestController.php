@@ -81,7 +81,7 @@ class TestController extends Controller
 		$tenant->run(function($tenant) use ($account_name){
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant id =' . $tenant->id);
 
-			$tenantSetup =  \App\Models\Tenant\Admin\Setup::first();
+			$tenantSetup =  \App\Models\Tenant\Admin\Config::first();
 			$tenantSetup->name =  $account_name;
 			$tenantSetup->update();
 

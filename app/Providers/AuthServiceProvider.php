@@ -55,7 +55,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Manage\MailList' 		=> 'App\Policies\Landlord\Manage\MailListPolicy',
 		'App\Models\Landlord\Manage\Menu' 			=> 'App\Policies\Landlord\Manage\MenuPolicy',
 		'App\Models\Landlord\Manage\Process' 		=> 'App\Policies\Landlord\Manage\ProcessPolicy',
-		'App\Models\Landlord\Manage\Setup' 			=> 'App\Policies\Landlord\Manage\SetupPolicy',
+		'App\Models\Landlord\Manage\Config' 		=> 'App\Policies\Landlord\Manage\ConfigPolicy',
 		'App\Models\Landlord\Manage\Status' 		=> 'App\Policies\Landlord\Manage\StatusPolicy',
 		'App\Models\Landlord\Manage\Table' 			=> 'App\Policies\Landlord\Manage\TablePolicy',
 		'App\Models\Landlord\Manage\Template' 		=> 'App\Policies\Landlord\Manage\TemplatePolicy',
