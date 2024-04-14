@@ -99,7 +99,12 @@ class TicketController extends Controller
 
 		$this->authorize('viewAll',Ticket::class);
 
-		$tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(10);
+		$tickets = Ticket::query();
+		if (request('term')) {
+			$tickets->where('title', 'Like', '%' . request('term') . '%');
+		}
+
+		$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(10);
 
 		return view('landlord.tickets.all', compact('tickets'));
 	}
@@ -273,9 +278,12 @@ class TicketController extends Controller
 
 	public function close(Ticket $ticket)
 	{
-		$this->authorize('update',$ticket);
+		$this->authorize('update', $ticket);
 
 		$ticket->status_code	= LandlordTicketStatusEnum::CLOSED->value;
+		$ticket->closed	= true;
+		$ticket->closed_at	= Now();
+
 		$ticket->save();
 		LandlordEventLog::event('ticket', $ticket->id, 'update', 'status_code', $ticket->status_code);
 
@@ -293,20 +301,32 @@ class TicketController extends Controller
 
 		if (auth()->user()->isSeeded()){
 			$data = DB::select("
-				SELECT id, title subject, content, ticket_date, owner_id, account_id, status_code, created_at
-				FROM tickets
+				SELECT t.id, t.title subject, t.content, t.ticket_date, u.name owner, a.name account, t.status_code, t.created_at
+				FROM tickets as t
+				INNER JOIN users as u
+				ON t.owner_id=u.id
+				LEFT JOIN accounts as a
+				ON t.account_id=a.id
 				");
 		} else if (auth()->user()->isAdmin()){
 			$data = DB::select("
-				SELECT id, title subject, content, ticket_date, owner_id, account_id, status_code, created_at
-				FROM tickets
-				WHERE account_id=".auth()->user()->account_id
+				SELECT t.id, t.title subject, t.content, t.ticket_date, u.name owner, a.name account, t.status_code, t.created_at
+				FROM tickets as t
+				INNER JOIN users as u
+				ON t.owner_id=u.id
+				LEFT JOIN accounts as a
+				ON t.account_id=a.id
+				WHERE t.account_id=".auth()->user()->account_id
 				);
 		} else {
 			$data = DB::select("
-				SELECT id, title subject, content, ticket_date, owner_id, account_id, status_code, created_at
-				FROM tickets
-				WHERE owner_id =".auth()->user()->id
+				SELECT t.id, t.title subject, t.content, t.ticket_date, u.name owner, a.name account, t.status_code, t.created_at
+				FROM tickets as t
+				INNER JOIN users as u
+				ON t.owner_id=u.id
+				LEFT JOIN accounts as a
+				ON t.account_id=a.id
+				WHERE t.owner_id =".auth()->user()->id
 				);
 		}
 

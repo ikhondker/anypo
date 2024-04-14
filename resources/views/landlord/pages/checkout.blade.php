@@ -9,7 +9,7 @@
 			<div class="col-lg-8 mb-7 mb-lg-0">
 				<!-- Heading -->
 				<div class="d-flex justify-content-between align-items-end border-bottom pb-3 mb-7">
-					<h1 class="h3 mb-0">Checkout</h1>
+					<h1 class="h3 mb-0 text-info">CHECKOUT</h1>
 					<span>1 item</span>
 				</div>
 				<!-- End Heading -->
@@ -18,14 +18,10 @@
 				<div class="container">
 					<main>
 						<div class="row g-5">
-
 							<div class="col-md-7 col-lg-8">
-								<h4 class="mb-3">Product Detail</h4>
+								<h4 class="mb-3">Service Detail</h4>
 								<form action="{{ route('checkout-stripe') }}" method="POST" class="needs-validation">
-
-									{{-- <form method="POST" class="needs-validation" novalidate> --}}
 									<input type="hidden" value="{{ csrf_token() }}" name="_token" />
-									{{-- <input type="hidden" name="product_id" value="{{ $id }}"> --}}
 
 									<div class="row g-3">
 										<div class="col-12">
@@ -99,17 +95,8 @@
 										secured with ssl certificate</span>
 									<hr class="my-4">
 
-									<button class="w-100 btn btn-primary btn-lg" type="submit">Continue to
-										checkout</button>
+									<button class="w-100 btn btn-primary btn-lg" type="submit"><i class="bi bi-cart-check"></i> Continue to	Checkout</button>
 
-									{{-- <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
-									token="if you have any token validation"
-									postdata="your javascript arrays or objects which requires in backend"
-									order="If you already have the transaction generated for current order"
-									endpoint="{{ url('/pay-via-ajax') }}"> Pay Now
-								</button>
-
-								<button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout (*Hosted*)</button> --}}
 
 								</form>
 							</div>
@@ -127,7 +114,7 @@
 					<div class="card card-sm shadow-sm mb-4">
 						<div class="card-body">
 							<div class="border-bottom pb-4 mb-4">
-								<h3 class="card-header-title">Order summary</h3>
+								<h3 class="card-header-title text-info">ORDER SUMMARY</h3>
 							</div>
 
 							<form>
@@ -138,9 +125,7 @@
 											<div class="col-sm-8">
 												<p class="h4">{{ $product->sku }}</p>
 												<span class="small">{{ $product->name }}</span><br>
-												<span class="small">{{ $product->user }} User {{ $product->gb }} GB
-													Space.<span><br>
-														<span class="small">All Functionalities.<span>
+												<span class="small">All Functionalities.<span>
 											</div>
 											<div class="col-sm-4 text-end h3">
 												${{ $product->price }}
@@ -155,13 +140,13 @@
 								</div>
 								<div class="d-grid gap-3 mb-4">
 									<dl class="row">
-										<dt class="col-sm-6">Total</dt>
-										<dd class="col-sm-6 text-sm-end mb-0">${{ $product->price }}</dd>
+										<dt class="col-sm-6">TOTAL</dt>
+										<dd class="col-sm-6 text-sm-end mb-0 h3">${{ $product->price }}</dd>
 									</dl>
 									<!-- End Row -->
 								</div>
 								<div class="d-grid">
-									<a class="btn btn-primary btn-lg" href="../demo-shop/checkout.html">Checkout</a>
+									{{-- <a class="btn btn-primary btn-lg" href="../demo-shop/checkout.html"><i class="bi bi-cart-check"></i> Checkout</a> --}}
 								</div>
 							</form>
 						</div>

@@ -1,8 +1,7 @@
-<p></p>
 <!-- Comment -->
 	<!-- Card -->
 	<div class="card">
-		<div class="card-header border-bottom">
+		<div class="card-header border-bottom bg-secondary-subtle">
 			<h4 class="card-header-title text-info">History #{{ $ticket->id }}: {{ $ticket->title }}</h4>
 		</div>
 

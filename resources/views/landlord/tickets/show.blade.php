@@ -16,7 +16,7 @@
 		<!-- Body -->
 		<div class="card-body">
 
-			<ul class="list-comment mb-7">
+			<ul class="list-comment mb-3">
 				<!-- Item -->
 				<li class="list-comment-item">
 					<!-- Media -->
@@ -32,9 +32,9 @@
 									Date: {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }} <br>
 									Account: {{ $ticket->owner->account->name }} <br>
 									@if (auth()->user()->isSeeded())
-										Department: {{ $ticket->dept->name }} | Priority: {{ $ticket->priority->name }} | 
+										Department: {{ $ticket->dept->name }} | Priority: {{ $ticket->priority->name }}
 										@if ($ticket->agent_id <> '')
-											Agent: <span class="badge bg-secondary">{{ $ticket->agent->name  }}</span>
+											| Agent: <span class="badge bg-secondary">{{ $ticket->agent->name  }}</span>
 										@endif
 									@endif
 								</span>
@@ -47,10 +47,14 @@
 							</p>
 							
 							@if ($ticket->attachment_id <> '')
-								<hr class="text-muted" />
 								<p class="small text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $ticket->attachment_id }}"/></p>
 							@endif
 							
+							<hr class="text-muted" />
+							@if ($ticket->closed)
+								<p class="small text-muted">Closed at: {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->closed_at ))) }} </p>
+							@endif
+
 							@if ( auth()->user()->isSeeded() && ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
 								<a class="btn btn-info btn-sm" href="{{ route('tickets.assign',$ticket->id) }}">
 									<i class="bi bi-person-circle"></i>
@@ -90,14 +94,11 @@
 	</div>
 	<!-- End Card --> 
 
-	
-	
 	<!--  BEGIN ADD COMMENT  -->
 	@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
 		@include('landlord.includes.ticket-add-comment')
 	@endif 
 	<!--  END ADD COMMENT  -->
-
 	
 	<!-- card-ticket-comments -->
 	<x-landlord.widget.ticket-comments id="{{ $ticket->id }}"/>

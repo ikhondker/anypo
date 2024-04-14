@@ -58,7 +58,7 @@ class TicketClosed extends Notification implements ShouldQueue
 	{
 		return (new MailMessage)
 			->subject('Ticket #'.$this->ticket->id.' has been closed')
-			->greeting('Hello, '.$this->user->name.',')
+			->greeting('Hello '.$this->user->name.',')
 			->line('Ticket #'.$this->ticket->id.' for '.$this->ticket->title .' has been closed.')
 			->action('View Ticket', url('/tickets/'.$this->ticket->id))
 			->line('Thank you for using our application!');

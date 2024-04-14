@@ -23,7 +23,7 @@ use App\Models\Landlord\Lookup\Country;
 
 use App\Models\Landlord\Manage\Activity;
 use App\Models\Landlord\Manage\Template;
-use App\Models\Landlord\Manage\Attachment;
+use App\Models\Landlord\Admin\Attachment;
 
 /*
 |-----------------------------------------------------------------------------

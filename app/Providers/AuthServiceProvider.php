@@ -39,6 +39,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Admin\Invoice' 		=> 'App\Policies\Landlord\Admin\InvoicePolicy',
 		'App\Models\Landlord\Admin\Payment' 		=> 'App\Policies\Landlord\Admin\PaymentPolicy',
 		'App\Models\Landlord\Admin\Service' 		=> 'App\Policies\Landlord\Admin\ServicePolicy',
+		'App\Models\Landlord\Admin\Attachment' 		=> 'App\Policies\Landlord\Admin\AttachmentPolicy',
 
 		'App\Models\Landlord\Lookup\Category' 		=> 'App\Policies\Landlord\Lookup\CategoryPolicy',
 		'App\Models\Landlord\Lookup\Country' 		=> 'App\Policies\Landlord\Lookup\CountryPolicy',
@@ -48,7 +49,6 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Lookup\Product' 		=> 'App\Policies\Landlord\Lookup\ProductPolicy',
 		//'App\Models\Landlord\Lookup\Rating' 		=> 'App\Policies\Landlord\Lookup\RatingPolicy',
 				
-		'App\Models\Landlord\Manage\Attachment' 	=> 'App\Policies\Landlord\Manage\AttachmentPolicy',
 		'App\Models\Landlord\Manage\Checkout' 		=> 'App\Policies\Landlord\Manage\CheckoutPolicy',
 		'App\Models\Landlord\Manage\Contact' 		=> 'App\Policies\Landlord\Manage\ContactPolicy',
 		'App\Models\Landlord\Manage\Entity' 		=> 'App\Policies\Landlord\Manage\EntityPolicy',

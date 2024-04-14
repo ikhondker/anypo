@@ -237,7 +237,7 @@ use App\Http\Controllers\Landlord\Admin\InvoiceController;
 use App\Http\Controllers\Landlord\Admin\PaymentController;
 use App\Http\Controllers\Landlord\Admin\ServiceController;
 use App\Http\Controllers\Landlord\Admin\UserController;
-
+use App\Http\Controllers\Landlord\Admin\AttachmentController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -246,6 +246,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	//Route::get('/account/export', [AccountController::class, 'export'])->name('accounts.export');
 	//Route::get('/upgrade/{service_id}', [AccountController::class, 'upgrade'])->name('accounts.upgrade');
 	Route::get('/add-addon/{account_id}/{addon_id}', [AccountController::class, 'addAddon'])->name('accounts.add-addon');
+
+	/* ======================== Attachment ======================================== */
+	Route::resource('attachments', AttachmentController::class);
+	Route::get('/attachment/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
 
 	/* ======================== Comments ========================================  */
 	Route::resource('comments', CommentController::class);
@@ -323,7 +327,6 @@ use App\Http\Controllers\Landlord\Lookup\CategoryController;
 use App\Http\Controllers\Landlord\Lookup\CountryController;
 use App\Http\Controllers\Landlord\Lookup\ProductController;
 
-use App\Http\Controllers\Landlord\Manage\AttachmentController;
 use App\Http\Controllers\Landlord\Manage\CheckoutController;
 use App\Http\Controllers\Landlord\Manage\EntityController;
 use App\Http\Controllers\Landlord\Manage\MailListController;
@@ -363,10 +366,6 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 	Route::resource('statuses', StatusController::class);
 	Route::get('/status/export', [StatusController::class, 'export'])->name('statuses.export');
 	Route::get('/statuses/delete/{status}', [StatusController::class, 'destroy'])->name('statuses.delete');
-
-	/* ======================== Attachment ======================================== */
-	Route::resource('attachments', AttachmentController::class);
-	Route::get('/attachment/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
 
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
@@ -472,7 +471,7 @@ Route::get('/clear', function () {
 	return "Cache is cleared at " . now();
 });
 	
-/* ======================== Error ======================================== */
+/* ======================== Check Error ======================================== */
 Route::get('/account-missing', function () {
 	return view('landlord.errors.account-missing');
 })->name('account-missing');
@@ -494,38 +493,3 @@ Route::get('/account-linked', function () {
 //     });
 // });
 	
-/**
-* ==================================================================================
-* Route for aws
-* ==================================================================================
-*/
-	
-#http://anypo.s3-website-us-east-1.amazonaws.com/avatars\1
-#object url: https://anypo.s3.amazonaws.com/avatars/img4.jpg
-Route::get('buckets', function(){
-	// OK
-	//$disk = 'avatars';
-	//$heroImage = Storage::get('img5.jpg');
-	//$uploadedPath = Storage::disk($disk)->put('img5.jpg', $heroImage);
-	
-	$disk = 's3-landlord-avatars';
-	$heroImage = Storage::get('img5.jpg');
-	$uploadedPath = Storage::disk($disk)->put('img5.jpg', $heroImage);
-
-	#Object URL
-	#https://anypo.s3.amazonaws.com/avatars/img5.jpg
-
-	// return whole image Ok
-	//return Storage::disk('s3')->response('avatars/' . 'img5.jpg');
-	
-	// OK
-	return Redirect::to('https://anypo.s3.amazonaws.com/avatars/img5.jpg');
-
-});
-
-// Route::get('buckets', function(){
-//     $disk = 'invoices';
-//     $heroImage = Storage::get('img4.jpg');
-//     $uploadedPath = Storage::disk($disk)->put('img4.jpg', $heroImage);
-//     return Storage::disk($disk)->url($uploadedPath);
-// });

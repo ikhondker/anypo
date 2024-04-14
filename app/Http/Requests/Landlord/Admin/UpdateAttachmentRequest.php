@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Landlord\Manage;
+namespace App\Http\Requests\Landlord\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 

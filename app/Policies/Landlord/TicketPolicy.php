@@ -71,7 +71,9 @@ class TicketPolicy
 	{
 		// only back office user can edit non closed ticket 
 		//return ($user->isSeeded() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
-		return ($user->isSeeded() && ! $ticket->isClosed());
+		//return ($user->isSeeded() && ! $ticket->isClosed());
+		// anyone can close a ticket
+		return  (! $ticket->isClosed());
 	}
 
 	/**

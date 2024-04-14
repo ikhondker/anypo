@@ -18,14 +18,14 @@
 * =====================================================================================
 */
 
-namespace App\Http\Controllers\Landlord\Manage;
+namespace App\Http\Controllers\Landlord\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Landlord\Manage\StoreAttachmentRequest;
-use App\Http\Requests\Landlord\Manage\UpdateAttachmentRequest;
+use App\Http\Requests\Landlord\Admin\StoreAttachmentRequest;
+use App\Http\Requests\Landlord\Admin\UpdateAttachmentRequest;
 
 # 1. Models
-use App\Models\Landlord\Manage\Attachment;
+use App\Models\Landlord\Admin\Attachment;
 use App\Models\Landlord\Manage\Entity;
 # 2. Enums
 # 3. Helpers
@@ -61,7 +61,7 @@ class AttachmentController extends Controller
 	{
 		$this->authorize('viewAny',Attachment::class);
 		$attachments = Attachment::latest()->with('entity')->with('owner')->orderBy('id','desc')->paginate(10);
-		return view('landlord.manage.attachments.index',compact('attachments'));
+		return view('landlord.admin.attachments.index',compact('attachments'));
 	}
 
 	/**
@@ -74,7 +74,7 @@ class AttachmentController extends Controller
 		abort(500, 'Can not create attachments Manually!');
 		//abort( response('Can not create attachments manually!', 401) );
 		//$this->authorize('create',Attachment::class);
-		//return view('landlord.manage.attachments.create');
+		//return view('landlord.admin.attachments.create');
 	}
 
 	/**
@@ -101,7 +101,7 @@ class AttachmentController extends Controller
 	public function show(Attachment $attachment)
 	{
 		$this->authorize('view', $attachment);
-		return view('landlord.manage.attachments.show',compact('attachment'));
+		return view('landlord.admin.attachments.show',compact('attachment'));
 	}
 
 	/**
@@ -141,9 +141,10 @@ class AttachmentController extends Controller
 
 	public function download($fileName)
 	{
-		
-		Log::debug('landlord.attachments.download Value of fileName=' . $fileName);
+		// TODO write logic
 		//$this->authorize('download', Attachment::class);
+
+		Log::debug('landlord.attachments.download Value of fileName=' . $fileName);
 
 		Log::debug('landlord.attachments.download Value of fileName='. $fileName);
 		// get entity -> directory from filename
@@ -159,7 +160,7 @@ class AttachmentController extends Controller
 	{
 		// get entity -> directory from filename
 
-		Log::debug('ll.downalod Value of downalod=' . $filename);
+		Log::debug('ll.download Value of download=' . $filename);
 
 		$att = Attachment::where('file_name', $filename)->first();
 		$entity = Entity::where('entity', $att->entity)->first();

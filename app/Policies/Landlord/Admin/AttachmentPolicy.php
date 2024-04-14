@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies\Landlord\Manage;
+namespace App\Policies\Landlord\Admin;
 
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Models\Landlord\Manage\Attachment;
+use App\Models\Landlord\Admin\Attachment;
 
 use App\Enum\UserRoleEnum;
 
@@ -78,4 +78,14 @@ class AttachmentPolicy
 	{
 		//
 	}
+
+	/**
+	 * Determine whether the user can update the model.
+	 */
+	public function download(User $user): bool
+	{
+		// TODO
+		return true;
+	}
+
 }
