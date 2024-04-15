@@ -60,7 +60,6 @@ class UserRegistered extends Notification implements ShouldQueue
 			->line('Welcome to '.config('app.name').'.')
 			->line('Thank you for the registration.')
 			->line('You will be receiving another email shortly to verify your email with link.')
-			->line('Please click on that link to verify email Address. ')
 			->line('After verifying your email, you may use the following link to login:')
 			->action('Login', url('/login'))
 			->line('Thank you for using '.config('app.name').' application!');

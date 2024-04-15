@@ -38,7 +38,7 @@ class Invoice extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'summary', 'invoice_no', 'invoice_type', 'account_id', 'owner_id', 'invoice_date', 'from_date', 'to_date', 'org_from_date', 'due_date', 'currency', 'price', 'discount', 'subtotal', 'tax', 'vat', 'amount', 'amount_paid', 'pay_date', 'notes', 'adjusted', 'adjustment_date', 'adjustment_ref', 'status_code', 'updated_by', 'updated_at',
+		'summary', 'invoice_no', 'invoice_type', 'account_id', 'owner_id', 'invoice_date', 'from_date', 'to_date', 'org_from_date', 'due_date', 'currency', 'price', 'discount', 'subtotal', 'tax', 'vat', 'amount', 'amount_paid', 'pay_date', 'notes', 'adjusted', 'adjustment_date', 'adjustment_ref', 'status_code', 'process_id', 'updated_by', 'updated_at',
 	];
 
 	protected $casts = [

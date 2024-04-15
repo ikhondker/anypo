@@ -52,8 +52,8 @@ class Billing implements ShouldQueue
 	public function handle(): void
 	{
 
-		//Log::channel('bo')->info('Jobs.Landlord.Billing.handle bo Cron Job running at '. now());
-		Log::debug('Jobs.Landlord.Billing.handle bo Cron Job running at '. now());
+		Log::channel('bo')->info('Jobs.Landlord.Billing.handle running at '. now());
+		//Log::debug('Jobs.Landlord.Billing.handle Scheduled Cron Job running at '. now());
 
 		$config = Config::first();
 
@@ -77,6 +77,7 @@ class Billing implements ShouldQueue
 		$process			= new Process();
 		$process->job_code	= 'BILLING';
 		$process->save();
+		Log::channel('bo')->info('Jobs.Landlord.Billing.handle process_id = '. $process->id);
 
 		$accounts = Account::where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
 			->where('next_bill_generated', false)
@@ -85,13 +86,14 @@ class Billing implements ShouldQueue
 			->get();
 
 		foreach ($accounts as $account) {
+			// Log::debug('Jobs.Landlord.Billing.handleInvoice account_id=' . $account->id);
 			// Generate invoice 5 days before expire
 			$diff = now()->diffInDays($account->end_date);
 			if ($diff <= $config->days_gen_bill) {
 				Log::channel('bo')->info('Jobs.Billing.handle Generating Invoice for account_id = ' . $account->id);
 				CreateInvoice::dispatch($account->id, 1, $process->id);
 			} else {
-				Log::channel('bo')->info('Jobs.Billing.handle skipping account_id = ' . $account->id. ". Days remains ". $diff);
+				Log::channel('bo')->info('Jobs.Billing.handle Skipping account_id = ' . $account->id. ". Days remains ". $diff);
 			}
 		}
 	}

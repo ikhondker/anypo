@@ -98,7 +98,7 @@ class InvoiceController extends Controller
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		if ($account->next_bill_generated) {
 			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
-			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account #=' . $account->id . '! Can not create more Invoices.');
+			return redirect()->route('invoices.index')->with('error', 'An unpaid Invoice exists for Account: ' . $account->name . '! Unable to create new Invoice!');
 		}
 
 		$config = Config::with('relCountry')->where('id', config('bo.CONFIG_ID'))->first();

@@ -42,7 +42,7 @@ class FileUpload
 
 	public static function aws(FormRequest $request)
 	{
-		$request->validate(['file_to_upload'	=> 'required|file|mimes:csv,eml,msg,zip,rar,doc,docx,xls,xlsx,pdf,jpg,png|max:1024']);
+		$request->validate(['file_to_upload'	=> 'required|file|mimes:csv,eml,msg,zip,rar,doc,docx,xls,xlsx,pdf,jpg,png|max:2048']);
 		
 		// ===> both file_to_upload and fileName is used
 		if ($request->hasFile('file_to_upload')) {

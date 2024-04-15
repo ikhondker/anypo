@@ -50,7 +50,7 @@ class CreateInvoice implements ShouldQueue
 	{
 
 		$config = Config::first();
-		Log::debug('jobs.landlord.CreateInvoice Generating Invoice for account_id = ' . $this->account_id .'for period ='. $this->period);
+		Log::debug('jobs.landlord.CreateInvoice Generating Invoice for account_id = ' . $this->account_id .' for period ='. $this->period);
 		$account = Account::where('id', $this->account_id)->first();
 
 		// Don't create invoice if unpaid invoice exists
@@ -96,7 +96,7 @@ class CreateInvoice implements ShouldQueue
 				$discount_pc =0 ;
 		}
 
-		Log::debug('jobs.landlord.CreateInvoice discount_pc= ' . $discount_pc);
+		Log::channel('bo')->info('jobs.landlord.CreateInvoice discount_pc = ' . $discount_pc);
 
 		$invoice->price			= round($this->period * $account->price * (100 - $discount_pc)/100, 2) ;
 		$invoice->subtotal		= $invoice->price;
@@ -110,7 +110,7 @@ class CreateInvoice implements ShouldQueue
 		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
 		$invoice->save();
 
-		Log::debug('jobs.landlord.CreateInvoice Invoice Generated id=' . $invoice->id);
+		Log::channel('bo')->info('jobs.landlord.CreateInvoice Invoice Generated invoice_id = ' . $invoice->id);
 		LandlordEventLog::event('invoice', $invoice->id, 'create');
 
 		// update account billing info

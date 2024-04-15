@@ -15,18 +15,16 @@ class Kernel extends ConsoleKernel
 	protected function schedule(Schedule $schedule): void
 	{
 		// $schedule->command('inspire')->hourly();
-
+		
+		//->appendOutputTo('scheduler-output.log')
 		//->everyFiveMinutes()
-		$schedule->job(new Billing)
-			->everyMinute()	
-			->appendOutputTo("scheduler-output.log")
-			->withoutOverlapping();
+		//->appendOutputTo(storage_path('logs/scheduler-output.log'))
+		//->everyMinute();
+		//->dailyAt('13:00')
 
-		// ->runInBackground();
-		// $schedule->command('billing:cron')
-		// 	->everyFiveMinutes()
-		// 	->appendOutputTo("scheduler-output.log")
-		// 	->runInBackground();	
+		$schedule->job(new Billing)
+			->everyMinute()
+			->withoutOverlapping();
 	}
 
 	/**

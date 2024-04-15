@@ -37,7 +37,7 @@ class Account extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'site', 'name', 'currency', 'tagline', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'website', 'facebook', 'linkedin', 'email', 'cell', 'owner_id', 'primary_product_id', 'base_mnth', 'base_user', 'base_gb', 'base_price', 'mnth', 'user', 'gb', 'price', 'start_date', 'end_date', 'next_bill_generated', 'next_invoice_no', 'last_bill_date', 'expired_at', 'count_user', 'count_product', 'used_gb', 'maintenance', 'status_code', 'logo', 'updated_by', 'updated_at',
+		'site', 'name', 'currency', 'tagline', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'website', 'facebook', 'linkedin', 'email', 'cell', 'owner_id', 'primary_product_id', 'base_mnth', 'base_user', 'base_gb', 'base_price', 'mnth', 'user', 'gb', 'price', 'start_date', 'end_date', 'next_bill_generated', 'next_invoice_no', 'last_bill_date', 'expired_at', 'banner_show', 'banner_message', 'count_user', 'count_product', 'used_gb', 'maintenance', 'status_code', 'logo', 'updated_by', 'updated_at',
 	];
 
 	protected $casts = [

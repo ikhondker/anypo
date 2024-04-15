@@ -32,7 +32,7 @@ class Activity extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'account_id','object_name', 'object_id', 'event_name', 'column_name', 'prior_value', 'object_type', 'url', 'method', 'ip', 'role', 'message', 'user_id', 'updated_by', 'updated_at',
+		'account_id', 'object_name', 'object_id', 'event_name', 'column_name', 'prior_value', 'object_type', 'url', 'method', 'ip', 'role', 'message', 'user_id', 'updated_by', 'updated_at',
 	];
 
 	/**

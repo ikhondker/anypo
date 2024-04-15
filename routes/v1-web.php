@@ -18,89 +18,40 @@ use Illuminate\Http\Request;
 
 use App\Models\Landlord\Manage\Setup;
 
-/*
-|--------------------------------------------------------------------------
-| Sequence of Web Routes for ANYPO.NET
-|--------------------------------------------------------------------------
-|  1. Seeded Override Routes
-|  2. Public Routes
-|  3. Public Controller Based Routes
-|  4. Public Routes related to authentication and email verification
-|  5. Public Routes related to Email verification
-|  6. Public routes for stripe
-|  7. Tenancy Related Routes which need auth and email verification ['auth', 'verified']
-|  8. Routes need auth and email verification ['auth', 'verified']
-|  9. Routes allowed to back office only ['auth', 'verified','can:access-back-office']
-| 10. Route for Purging Cache
-| 11. Route for Testing purpose
+/**
+* ==================================================================================
+* Route for Testing purpose
+* ==================================================================================
 */
+use App\Http\Controllers\Landlord\TestController;
+//TODO php artisan route:cache error
+Route::get('/testrun', [TestController::class, 'run'])->name('test.run');
+
+Route::get('/test', function () {
+	return view('landlord.test');
+})->name('test');
+Route::get('/sweet2', function () {
+	return view('landlord.pages.sweet2');
+})->name('sweet2');
+Route::get('/jq', function () {
+	return view('landlord.pages.jquery');
+})->name('jq');
+Route::get('/jql', function () {
+	return view('landlord.pages.jqueryl');
+})->name('jql');
+
+
+Route::get('pdf', [TestController::class, 'generatePDF'])->name('pdf');
+
+
+//use App\Http\Controllers\ChartController;
+//Route::get('chart', [ChartController::class, 'index']);
+
 
 
 /**
 * ==================================================================================
-* 1. Seeded Override Routes
-* ==================================================================================
-*/
-Route::get('/', function () {
-	return view('landlord.home');
-})->name('root');
-Route::get('/home', function () {
-	return view('landlord.home');
-})->name('home');
-
-
-/**
-* ==================================================================================
-* 2. Public Page Routes
-* ==================================================================================
-*/
-Route::get('/product', function () {
-	return view('landlord.pages.product');
-})->name('product');
-
-Route::get('/faq', function () {
-	return view('landlord.pages.faq');
-})->name('faq');
-
-Route::get('/tos', function () {
-	return view('landlord.pages.tos');
-})->name('tos');
-
-Route::get('/privacy', function () {
-	return view('landlord.pages.privacy');
-})->name('privacy');
-
-Route::get('/about', function () {
-	return view('landlord.pages.about-us');
-})->name('about');
-
-Route::get('/contact-us', function () {
-	$setup = Setup::with('relCountry')->first();
-	return view('landlord.pages.contact-us', compact('setup'));
-})->name('contact-us');
-
-/**
-* ==================================================================================
-* 3. Public Controller Based Routes
-* ==================================================================================
-*/
-// Home Controller 
-use App\Http\Controllers\Landlord\HomeController;
-//Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
-Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
-
-Route::get('/online/{invoice_no}', [HomeController::class, 'onlineInvoice'])->name('home.invoice');
-Route::get('/send', [HomeController::class, 'testNotification'])->name('send');
-Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
-Route::post('/save-contact', [HomeController::class, 'saveLandlordContact'])->name('home.save-contact');
-Route::post('/join-mail-list', [HomeController::class, 'joinMailList'])->name('home.join-mail-list');
-//Route::get('/payment/{invoice_no}',[App\Http\Controllers\HomeController::class, 'payment'])->name('home.payment');
-
-
-/**
-* ==================================================================================
-* 4. Public Routes related to authentication and email verification
+* Public Routes related to authentication and  email verification
 * ==================================================================================
 */
 // Login Routes...
@@ -111,6 +62,7 @@ Route::post('/login', [LoginController::class, 'login']);
 // IQBAL 28-feb-23
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
+
 
 // Registration Routes...
 use App\Http\Controllers\Auth\RegisterController;
@@ -132,9 +84,10 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 
 /**
 * ==================================================================================
-* 5. Public Routes related to Email verification
+* Public Routes related to Email verification
 * ==================================================================================
 */
+
 Route::get('/email/verify', function () {
 	if (tenant('id') == '') {
 		return view('auth.landlord-verify-email');
@@ -162,11 +115,71 @@ Route::post('/email/verification-notification', function (Request $request) {
 	return back()->with('success', 'Verification link sent! Please check your mail and clink on "Verify Email Address" link.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+/**
+* ==================================================================================
+* Public Page Routes
+* ==================================================================================
+*/
 
+Route::get('/product', function () {
+	return view('landlord.pages.product');
+})->name('product');
+
+Route::get('/faq', function () {
+	return view('landlord.pages.faq');
+})->name('faq');
+
+Route::get('/tos', function () {
+	return view('landlord.pages.tos');
+})->name('tos');
+
+Route::get('/privacy', function () {
+	return view('landlord.pages.privacy');
+})->name('privacy');
+
+Route::get('/about', function () {
+	return view('landlord.pages.about-us');
+})->name('about');
+
+Route::get('/contact-us', function () {
+	$setup = Setup::with('relCountry')->first();
+	return view('landlord.pages.contact-us', compact('setup'));
+})->name('contact-us');
 
 /**
 * ==================================================================================
-* 6. Public routes for stripe
+* Custom/Override Routes
+* ==================================================================================
+*/
+Route::get('/', function () {
+	return view('landlord.home');
+})->name('root');
+Route::get('/home', function () {
+	return view('landlord.home');
+})->name('home');
+
+/**
+* ==================================================================================
+* Public Controller Based Routes
+* ==================================================================================
+*/
+
+/* ======================== Home Controller ======================================== */
+use App\Http\Controllers\Landlord\HomeController;
+//Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
+Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
+
+Route::get('/online/{invoice_no}', [HomeController::class, 'onlineInvoice'])->name('home.invoice');
+Route::get('/send', [HomeController::class, 'testNotification'])->name('send');
+Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
+Route::post('/save-contact', [HomeController::class, 'saveLandlordContact'])->name('home.save-contact');
+Route::post('/join-mail-list', [HomeController::class, 'joinMailList'])->name('home.join-mail-list');
+//Route::get('/payment/{invoice_no}',[App\Http\Controllers\HomeController::class, 'payment'])->name('home.payment');
+
+/**
+* ==================================================================================
+* Public routes for stripe
 * ==================================================================================
 */
 Route::post('/checkout-stripe', [HomeController::class, 'checkoutStripe'])->name('checkout-stripe');
@@ -175,27 +188,40 @@ Route::get('/success', [HomeController::class, 'success'])->name('checkout.succe
 Route::get('/success-payment', [HomeController::class, 'successPayment'])->name('checkout.success-payment');
 Route::get('/success-addon', [HomeController::class, 'successAddon'])->name('checkout.success-addon');
 Route::get('/success-advance', [HomeController::class, 'successAdvance'])->name('checkout.success-advance');
+
+//Route::get('/test11', [HomeController::class, 'success'])->name('checkout.test11');
 Route::get('/cancel', [HomeController::class, 'cancel'])->name('checkout.cancel');
 // TODO
 // Route::post('/webhook', [HomeController::class, 'webhook'])->name('checkout.webhook');
 
-/**
-* ==================================================================================
-* 7. Tenancy Related Routes which need auth and email verification ['auth', 'verified']
-* ==================================================================================
-*/
-use App\Http\Controllers\DomainController;
-use App\Http\Controllers\TenantController;
-Route::middleware(['auth', 'verified'])->group(function () {
-	/* ======================== Domain ========================================  */
-	Route::resource('domains', DomainController::class);
-	/* ======================== Tenant ========================================  */
-	Route::resource('tenants', TenantController::class);
-});
+/* ======================== Provision Controller ======================================== */
+//use App\Http\Controllers\Landlord\ProvisionController; // No authentication <================
+//Route::get('/pricing', [ProvisionController::class, 'pricing'])->name('provision.pricing');
+//Route::get('/checkout/{id}', [ProvisionController::class, 'checkout'])->name('provision.checkout');
+//Route::get('/checkout', [ProvisionController::class, 'checkout'])->name('provision.checkout');
+//Route::get('/online/{invoice_no}', [ProvisionController::class, 'onlineInvoice'])->name('provision.web');
+
+/* ======================== Contact ======================================== */
+use App\Http\Controllers\Landlord\Manage\ContactController;
+Route::resource('contacts', ContactController::class);
 
 /**
 * ==================================================================================
-* 8. Routes need auth and email verification ['auth', 'verified']
+* Tenancy Related Routes which need auth and email verification ['auth', 'verified']
+* ==================================================================================
+*/
+/* ======================== Domain ========================================  */
+use App\Http\Controllers\DomainController;
+Route::resource('domains', DomainController::class)->middleware(['auth', 'verified']);
+
+/* ======================== Tenant ========================================  */
+use App\Http\Controllers\TenantController;
+Route::resource('tenants', TenantController::class)->middleware(['auth', 'verified']);
+
+
+/**
+* ==================================================================================
+* Routes need auth and email verification ['auth', 'verified']
 * ==================================================================================
 */
 use App\Http\Controllers\Landlord\AccountController;
@@ -218,6 +244,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== Account ======================================== */
 	Route::resource('accounts', AccountController::class);
 	//Route::get('/account/export', [AccountController::class, 'export'])->name('accounts.export');
+	//Route::get('/upgrade/{service_id}', [AccountController::class, 'upgrade'])->name('accounts.upgrade');
 	Route::get('/add-addon/{account_id}/{addon_id}', [AccountController::class, 'addAddon'])->name('accounts.add-addon');
 
 	/* ======================== Attachment ======================================== */
@@ -229,7 +256,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	//Route::get('/comment/createline/{id}',[CommentController::class, 'createline'])->name('comment.createline');
 
 	/* ======================== Dashboard ========================================  */
-	Route::resource('dashboards', DashboardController::class);
+	//TODO enable verify middleware for all route
+	Route::resource('dashboards', DashboardController::class)->middleware(['auth', 'verified']);
 
 	/* ======================== Notification ======================================== */
 	Route::resource('notifications', NotificationController::class);
@@ -238,8 +266,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== Ticket ======================================== */
 	Route::resource('tickets', TicketController::class);
 	//Route::get('/ticket/support', [TicketController::class, 'support'])->name('tickets.support');
-	//Route::get('/tickets/pdf/{pr}', [TicketController::class,'pdf'])->name('tickets.pdf');
 	Route::get('/ticket/export', [TicketController::class, 'export'])->name('tickets.export');
+	//Route::get('/tickets/pdf/{pr}', [TicketController::class,'pdf'])->name('tickets.pdf');
 	Route::get('/ticket/close/{ticket}', [TicketController::class, 'close'])->name('tickets.close');
 
 	/* ======================== Service ======================================== */
@@ -253,14 +281,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== User ========================================  */
 	Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
 	Route::get('/users/delete/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+	// Route::get('users-password/{user}', [UserController::class, 'userPassword'])->name('users.password');
 	Route::get('/user/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
 	Route::post('/user/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
 	Route::get('/user/export', [UserController::class, 'export'])->name('users.export');
-	Route::get('/user/image/{filename}', [UserController::class, 'image'])->name('users.image');
-	// Route::get('users-password/{user}', [UserController::class, 'userPassword'])->name('users.password');
-	// Route::get('/user/role', [UserController::class, 'role'])->name('users.role');
-	// Route::get('/user/updaterole/{user}/{role}', [UserController::class, 'updaterole'])->name('users.updaterole');
+	Route::get('/user/role', [UserController::class, 'role'])->name('users.role');
+	Route::get('/user/updaterole/{user}/{role}', [UserController::class, 'updaterole'])->name('users.updaterole');
 	// Route::get('/user/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
+	Route::get('/user/image/{filename}', [UserController::class, 'image'])->name('users.image');
 	// TODO
 	// Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
 	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
@@ -269,10 +297,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== Activity ========================================  */
 	Route::resource('activities', ActivityController::class);
 	
+
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class);
 	Route::get('/invoice/generate',[InvoiceController::class,'generate'])->name('invoices.generate');
 	
+	// Route::controller(InvoiceController::class)->group(function(){
+	//     Route::get('invoices', 'index')->name('invoices.index');
+	//     Route::post('invoices', 'store')->name('invoices.store');
+	//     Route::get('invoices/create', 'create')->name('invoices.create');
+	//     Route::get('invoices/{invoice}', 'show')->name('invoices.show');
+	//     Route::put('invoices/{invoice}', 'update')->name('invoices.update');
+	//     Route::delete('invoices/{invoice}', 'destroy')->name('invoices.destroy');
+	//     Route::get('invoices/{invoice}/edit', 'edit')->name('invoices.edit');
+	// });
+
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class);
 	//Route::get('/payments/pdf/{pr}', [PaymentController::class,'pdf'])->name('payments.pdf');
@@ -281,11 +320,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 /**
  * ==================================================================================
- * 9. Routes allowed to back office only ['auth', 'verified','can:access-back-office']
+ * Routes allowed to back office only ['auth', 'verified','can:access-back-office']
  * ==================================================================================
 */
-
-use App\Http\Controllers\Landlord\Manage\ContactController;
 use App\Http\Controllers\Landlord\Lookup\CategoryController;
 use App\Http\Controllers\Landlord\Lookup\CountryController;
 use App\Http\Controllers\Landlord\Lookup\ProductController;
@@ -310,9 +347,6 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 	// 	return "This is from admin route from admin.route file at after auth " . now();
 	// });
 	
-	/* ======================== Contact ======================================== */
-	Route::resource('contacts', ContactController::class);
-
 	/* ======================== Account ======================================== */
 	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.delete');
 
@@ -362,6 +396,16 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 		
 	/* ======================== Table ========================================  */
 	Route::resource('tables', TableController::class);
+	// Route::get('/table/structure/{table}', [TableController::class, 'structure'])->name('tables.structure');
+	// Route::get('/table/controllers', [TableController::class, 'controllers'])->name('tables.controllers');
+	// Route::get('/table/models', [TableController::class, 'models'])->name('tables.models');
+	// Route::get('/table/routes', [TableController::class, 'routes'])->name('tables.routes');
+	// Route::get('/table/route-code', [TableController::class, 'routeCode'])->name('tables.route-code');
+	// Route::get('/table/policies', [TableController::class, 'policies'])->name('tables.policies');
+	// Route::get('/table/comments', [TableController::class, 'comments'])->name('tables.comments');
+	// Route::get('/table/check', [TableController::class, 'check'])->name('tables.check');
+	// Route::get('/table/messages', [TableController::class, 'messages'])->name('tables.messages');
+	
 	Route::get('/table/structure/{table}',[TableController::class, 'structure'])->name('tables.structure');
 	Route::get('/table/controllers',[TableController::class, 'controllers'])->name('tables.controllers');
 	Route::get('/table/controllers-fnc',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
@@ -371,7 +415,9 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 	Route::get('/table/policies-fnc',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
 	Route::get('/table/helpers',[TableController::class, 'helpers'])->name('tables.helpers');
 	Route::get('/table/helpers-fnc',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
+	
 	Route::get('/table/routes',[TableController::class, 'routes'])->name('tables.routes');
+	
 	Route::get('/table/route-code',[TableController::class, 'routeCode'])->name('tables.route-code');
 	Route::get('/table/comments',[TableController::class, 'comments'])->name('tables.comments');
 	Route::get('/table/check',[TableController::class, 'check'])->name('tables.check');
@@ -412,7 +458,7 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 
 /**
 * ==================================================================================
-* 10. Route for Purging Cache
+* Route for Purging Cache
 * ==================================================================================
 */
 Route::get('/clear', function () {
@@ -424,28 +470,25 @@ Route::get('/clear', function () {
 	return "Cache is cleared at " . now();
 });
 	
-/**
-* ==================================================================================
-* 11. Route for Testing purpose
-* ==================================================================================
-*/
-use App\Http\Controllers\Landlord\TestController;
-Route::middleware(['auth', 'verified','can:access-back-office'])->group(function () {
+/* ======================== Check Error ======================================== */
+Route::get('/account-missing', function () {
+	return view('landlord.errors.account-missing');
+})->name('account-missing');
+	
+Route::get('/account-linked', function () {
+	return view('landlord.errors.account-linked');
+})->name('account-linked');
+	
+// /* ======================== Addon ======================================== */
+// use App\Http\Controllers\AddonController;
+// Route::resource('addons', AddonController::class);
+// Route::get('/addon/buy/{service}/{product_id}',[AddonController::class, 'buy'])->name('addons.buy');
 
-	//TODO php artisan route:cache error
-	Route::get('/testrun', [TestController::class, 'run'])->name('test.run');
-
-	Route::get('/test', function () {
-		return view('landlord.test');
-	})->name('test');
-	Route::get('/sweet2', function () {
-		return view('landlord.pages.sweet2');
-	})->name('sweet2');
-	Route::get('/jq', function () {
-		return view('landlord.pages.jquery');
-	})->name('jq');
-	Route::get('/jql', function () {
-		return view('landlord.pages.jqueryl');
-	})->name('jql');
-	Route::get('pdf', [TestController::class, 'generatePDF'])->name('pdf');
-});
+// works
+// Route::prefix('admin')->group(function () {
+//     Route::get('dashboard', function () {
+//         // Matches The "/admin/dashboard" URL
+//         return "This is from admin route" . now();
+//     });
+// });
+	

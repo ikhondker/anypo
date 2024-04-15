@@ -21,7 +21,6 @@ class Checkout extends Model
 
 	protected $fillable = [
 		'checkout_date', 'invoice_type', 'session_id', 'site', 'email', 'account_name', 'existing_user', 'owner_id', 'account_id', 'invoice_id', 'start_date', 'end_date', 'product_id', 'product_name', 'tax', 'vat', 'price', 'mnth', 'user', 'gb', 'status_code', 'ip', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'updated_by', 'updated_at',
-
 	];
 
 	/**

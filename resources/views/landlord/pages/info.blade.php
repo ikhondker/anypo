@@ -17,9 +17,9 @@
 
 						{{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
 						{{-- <p class="card-text">Please contact support at support@HawarIT.com</p> --}}
+						<a href="{{ route('home') }}" class="btn btn-primary mt-4"><i class="bi bi-house-door"></i> Go to Home</a>
 						<p>&nbsp;</p>
-						<p class="card-text">We are available 24 hours a day to assist you via our <a href="{{ config('app.url') }}">support ticket system </a> or via email at support{{ '@'.config('app.domain') }}</p>
-						<a href="{{ route('home') }}" class="btn btn-primary">Go to Home</a>
+						<p class="card-text small">We are available 24 hours a day to assist you via our <a href="{{ config('app.url') }}">support ticket system </a> or via email at support{{ '@'.config('app.domain') }}</p>
 					</div>
 					<!-- End Heading -->
 			</div>

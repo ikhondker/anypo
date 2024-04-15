@@ -106,23 +106,6 @@ class LoginController extends Controller
 		
 	}
 
-	// IQBAL 16-FEB-23
-	// logout if account error for user/admin/agent/manager
-	public function xxredirectTo()
-	{
-		// redirect to error page if account_id is not set
-		if (((auth()->user()->role->value === 'user') || (auth()->user()->role->value === 'admin')) && (is_null(auth()->user()->account_id))) {
-			Session::flush();
-			Auth::logout();
-			return 'account-missing/';
-		} elseif ((auth()->user()->role->value === 'agent') && (auth()->user()->account_id <> '')) {
-			Session::flush();
-			Auth::logout();
-			return 'account-linked/';
-		} else {
-			return 'dashboards/';
-		}
-	}
 
 	// IQBAL 9-sep-2022
 	// Added to overwrite the login credentials

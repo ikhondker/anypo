@@ -56,7 +56,6 @@
 				<thead class="thead-light">
 					<tr>
 						<th>User Name</th>
-						<th>Cell</th>
 						<th>Account</th>
 						<th>Role</th>
 						<th>Enable</th>
@@ -92,7 +91,6 @@
 									</div>
 								</div>
 							</td>
-							<td>{{ $user->cell }} </td>
 							<td>{{ $user->account->name }} </td>
 							<td>
 								@if ($user->role == UserRoleEnum::USER)

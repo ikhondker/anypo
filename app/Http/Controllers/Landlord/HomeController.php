@@ -243,7 +243,7 @@ class HomeController extends Controller
 
 		// check if invoice is already paid
 		if ($invoice->status_code <> LandlordInvoiceStatusEnum::DUE->value) {
-			return redirect()->route('invoices.index')->with('error','Invoice #'.$invoice->invoice_no.' can not be paid!');
+			return redirect()->route('invoices.index')->with('error','Invoice #'.$invoice->invoice_no.' is already paid!');
 		}
 
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
@@ -319,9 +319,8 @@ class HomeController extends Controller
 				CreateTenant::dispatch($checkout->id);
 			}
 			return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
-				->with('msg','We have received your payment. We are currently preparing your service instance. 
-				It’s an automated process and generally take 5-10 minutes. You will receive email notification with service instance login credential and other details shortly.
-				Please check your email after few minutes. Thanks again.');
+				->with('msg','You will shorty receive an email, with service instance login credential and URL detail.
+					Please check your email at '. $checkout->email. ' .');
 
 		} catch (\Exception $e) {
 			throw new NotFoundHttpException();
@@ -359,7 +358,7 @@ class HomeController extends Controller
 				SubscriptionInvoicePaid::dispatch($payment->id);
 			}
 			return view('landlord.pages.info')->with('title','Payment Successful')
-				->with('msg','Thank you for your payment. We have received your payment.');
+				->with('msg','Please check you Account for purchased add-ons.');
 			
 
 		} catch (\Exception $e) {
@@ -395,7 +394,7 @@ class HomeController extends Controller
 				AddAddon::dispatch($checkout->id);
 			}
 			return view('landlord.pages.info')->with('title','Thank you for purchasing Add-on!')
-				->with('msg','We have received your payment. Thanks again.');
+				->with('msg','Please check your Account for this Invoices.');
 
 		} catch (\Exception $e) {
 			throw new NotFoundHttpException();

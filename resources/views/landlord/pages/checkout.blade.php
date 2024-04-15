@@ -128,7 +128,7 @@
 												<span class="small">ALL FUNCTIONALITIES.<span>
 											</div>
 											<div class="col-sm-4 text-end h3">
-												${{ $product->price }}
+												${{ number_format($product->price,2) }}
 											</div>
 										</div>
 										<div class="row">
@@ -141,7 +141,7 @@
 								<div class="d-grid gap-3 mb-4">
 									<dl class="row">
 										<dt class="col-sm-6">TOTAL</dt>
-										<dd class="col-sm-6 text-sm-end mb-0 h3">${{ $product->price }}</dd>
+										<dd class="col-sm-6 text-sm-end mb-0 h3">${{ number_format($product->price,2) }}</dd>
 									</dl>
 									<!-- End Row -->
 								</div>

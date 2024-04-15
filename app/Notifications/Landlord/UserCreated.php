@@ -55,12 +55,12 @@ class UserCreated extends Notification implements ShouldQueue
 	 */
 	public function toMail(object $notifiable): MailMessage
 	{
+		//->line('Please click on that link to verify email Address. ')
 		return (new MailMessage)
 			->subject('Welcome to '. config('app.name'))
 			->greeting('Hello '. $this->user->name . ',')
-			->line('Thank you for the registration.')
+			->line('You user account has been created.')
 			->line('You will be receiving another email shortly to verify your email with link.')
-			->line('Please click on that link to verify email Address. ')
 			->line('After verifying your email, you may use the following credentials to login:')
 			->line('Email: '.$this->user->email)
 			->line('Password: '.$this->random_password)

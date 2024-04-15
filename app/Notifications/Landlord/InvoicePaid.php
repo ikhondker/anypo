@@ -58,14 +58,14 @@ class InvoicePaid extends Notification implements ShouldQueue
 	 */
 	public function toMail(object $notifiable): MailMessage
 	{
+		//->line('You may also download the PDf receipt after logging into your account.')
 		return (new MailMessage)
 			->subject(config('app.name'). ' Invoice #'.$this->invoice->invoice_no.' has been paid')
 			->greeting('Hello '.$this->user->name.',')
 			->line('This is a notice that your Invoice #'.$this->invoice->invoice_no.' has been paid.')
-			->line('Payment ID #'.$this->payment->id)
+			->line('Payment Ref #'.$this->payment->id)
 			->line('Please use following link to View Payment:')
 			->action('View Payment', url('/payments/'.$this->payment->id))
-			->line('NOTE: You may download the receipt after logging into your account.')
 			->line('Thank you for using '.config('app.name').' application!');
 	}
 

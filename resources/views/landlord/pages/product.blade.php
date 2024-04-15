@@ -213,8 +213,9 @@
 					<li class="list-checked-item">Enhanced Efficiency</li>
 					<li class="list-checked-item">Save Time and Effort</li>
 					<li class="list-checked-item">Approval Workflows</li>
-					<li class="list-checked-item">Peace of Mind</li>
+					<li class="list-checked-item">Easy Integration (with Core Accounting System)</li>
 					<li class="list-checked-item">Customer Support</li>
+					<li class="list-checked-item">Peace of Mind</li>
 				</ul>
 				<!-- End List Checked -->
 
