@@ -141,12 +141,11 @@ class AttachmentController extends Controller
 
 	public function download($fileName)
 	{
-		// TODO write logic
-		//$this->authorize('download', Attachment::class);
+		
+		$this->authorize('download', Attachment::class);
 
 		Log::debug('landlord.attachments.download Value of fileName=' . $fileName);
 
-		Log::debug('landlord.attachments.download Value of fileName='. $fileName);
 		// get entity -> directory from filename
 		$att 				= Attachment::where('file_name', $fileName)->first();
 		$entity 			= Entity::where('entity', $att->entity)->first();

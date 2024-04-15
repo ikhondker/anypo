@@ -71,8 +71,6 @@ class Billing implements ShouldQueue
 		// all account where end_date is earlier than now()-7 dayss
 		// 			->where('end_date', '<', now()->subDays(7))
 
-		// TODO write to process table
-
 		// save lines into processes and pass to invoice creation
 		$process			= new Process();
 		$process->job_code	= 'BILLING';

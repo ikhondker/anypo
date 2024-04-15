@@ -149,7 +149,7 @@ class AelController extends Controller
 		//
 	}
 
-	public function export()
+	public function xxexport()
 	{
 		$this->authorize('export', Ael::class);
 
@@ -169,20 +169,6 @@ class AelController extends Controller
 		if (request('end_date')) {
 			Log::debug('ee Value of end_date=' . request('end_date'));
 		}
-
-		//AND DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
-
-		// TODO 
-		// $data = DB::select("
-		// 	SELECT id, source, entity, event, accounting_date, ac_code, line_description, 
-		// 	fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount, 
-		// 	po_id, reference
-		// 	FROM aels 
-			
-		// ");
-		// $dataArray = json_decode(json_encode($data), true);
-		// // used Export Helper
-		// return Export::csv('aels', $dataArray);
 	}
 
 	public function exportForPo($id)

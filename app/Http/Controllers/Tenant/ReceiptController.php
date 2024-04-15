@@ -385,7 +385,6 @@ class ReceiptController extends Controller
 	public function export()
 	{
 
-		// TODO filter by HoD
 		$this->authorize('export', Receipt::class);
 
 		if (auth()->user()->role->value == UserRoleEnum::USER->value ){

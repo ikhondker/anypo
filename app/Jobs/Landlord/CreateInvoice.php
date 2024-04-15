@@ -23,8 +23,6 @@ use App\Notifications\Landlord\InvoiceCreated;
 
 use Illuminate\Support\Facades\Log;
 
-
-// TODO add process_id here
 class CreateInvoice implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;

@@ -59,10 +59,10 @@ class AddAdvance implements ShouldQueue
 			$checkout->save();
 		}
 
-		// pay this first invoice and notify
+		// pay this invoice and notify
+		// TODO check if payment is successful
 		Log::debug('Jobs.Landlord.AddAdvance 3. Calling payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
-		// TODO check if payment is successful
 
 		//extend account validity and end_date
 		$account_id= bo::extendAccountValidity($invoice_id);

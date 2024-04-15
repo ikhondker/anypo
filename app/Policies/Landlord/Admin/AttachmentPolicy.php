@@ -84,7 +84,7 @@ class AttachmentPolicy
 	 */
 	public function download(User $user): bool
 	{
-		// TODO
+		// TODO write logic here
 		return true;
 	}
 

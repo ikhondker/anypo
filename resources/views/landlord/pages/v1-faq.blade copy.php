@@ -8,10 +8,6 @@
 		<div class="w-md-75 w-lg-50 text-center mx-md-auto">
 			<h1>FAQ</h1>
 			<p>Search our FAQ for answers to anything you might ask.</p>
-
-			<p class="small">For anything we haven't covered, please create a <a href="{{ route('tickets.create') }}">support ticket</a>. We're here to help.</p>
-
-
 		</div>
 	</div>
 </div>
@@ -95,8 +91,7 @@
 							</div>
 							<div id="collapseBasicsFive" class="accordion-collapse collapse" aria-labelledby="headingBasicsFive" data-bs-parent="#accordionFAQBasics">
 								<div class="accordion-body">
-									Pricing models vary among providers and may be based on factors such as the number of users, features required, and transaction volume. We offer subscription-based pricing plans. One simple <a href="{{ route('pricing') }}">pricing model</a>. All you need to start. No hidden costs.
-
+									Pricing models vary among providers and may be based on factors such as the number of users, features required, and transaction volume. Some providers offer subscription-based pricing plans..
 								</div>
 							</div>
 						</div>
@@ -106,7 +101,7 @@
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingBasicsSix">
 								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsSix" aria-expanded="false" aria-controls="collapseBasicsSix">
-									What kind of customer support is available ?
+									What kind of customer support is available for a cloud-based SAAS service for purchasing and spend control?
 								</a>
 							</div>
 							<div id="collapseBasicsSix" class="accordion-collapse collapse" aria-labelledby="headingBasicsSix" data-bs-parent="#accordionFAQBasics">
@@ -125,7 +120,7 @@
 							</div>
 							<div id="collapseBasicsSeven" class="accordion-collapse collapse" aria-labelledby="headingBasicsSeven" data-bs-parent="#accordionFAQBasics">
 								<div class="accordion-body">
-									Some of the key benefits include increased efficiency in the purchasing process, better control and visibility over spending, cost savings through improved negotiation and budgeting, and reduced risk of errors.
+									Some of the key benefits include increased efficiency in the purchasing process, better control and visibility over spending, cost savings through improved negotiation and budgeting, and reduced risk of errors or fraud.
 								</div>
 							</div>
 						</div>
@@ -139,7 +134,7 @@
 							</div>
 							<div id="collapseBasicsEight" class="accordion-collapse collapse" aria-labelledby="headingBasicsEight" data-bs-parent="#accordionFAQBasics">
 								<div class="accordion-body">
-									Yes, this service is suitable for businesses of Small and Medium Businesses and Startups. It can be customized to fit the specific needs and budget of each business.
+									Yes, this service is suitable for businesses of all sizes, from small startups to large corporations. It can be customized to fit the specific needs and budget of each business.
 								</div>
 							</div>
 						</div>
@@ -153,7 +148,7 @@
 							</div>
 							<div id="collapseBasicsNine" class="accordion-collapse collapse" aria-labelledby="headingBasicsNine" data-bs-parent="#accordionFAQBasics">
 								<div class="accordion-body">
-									Yes, we can provide  you access to a demo instance. Please <a href="{{ route('contact-us') }}">Contact us</a>. Many providers of cloud-based SAAS services for purchasing and spend control offer free trials or demos for businesses to test out the software before committing to a subscription. This allows businesses to see the features and benefits firsthand and determine if it is the right solution for their needs.
+									Many providers of cloud-based SAAS services for purchasing and spend control offer free trials or demos for businesses to test out the software before committing to a subscription. This allows businesses to see the features and benefits firsthand and determine if it is the right solution for their needs.
 								</div>
 							</div>
 						</div>
@@ -167,7 +162,7 @@
 							</div>
 							<div id="collapseBasicsTen" class="accordion-collapse collapse" aria-labelledby="headingBasicsTen" data-bs-parent="#accordionFAQBasics">
 								<div class="accordion-body">
-									Yes, implementing a cloud-based SAAS solution is typically quick and easy. Since the software is hosted in the cloud, there is no need for complex installations or hardware upgrades. Businesses can simply sign up for the service, perfoom the very basic configuration as per their needs, and start using it right away to streamline their purchasing processes and improve spend control.
+									Yes, implementing a cloud-based SAAS solution is typically quick and easy. Since the software is hosted in the cloud, there is no need for complex installations or hardware upgrades. Businesses can simply sign up for the service, customize it to their needs, and start using it right away to streamline their purchasing processes and improve spend control.
 								</div>
 							</div>
 						</div>
@@ -200,13 +195,17 @@
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingSupportOne">
 								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportOne" aria-expanded="false" aria-controls="collapseSupportOne">
-									How do I get help with this SAAS Service?
+									How do I get help with the theme I purchased?
 								</a>
 							</div>
 							<div id="collapseSupportOne" class="accordion-collapse collapse" aria-labelledby="headingSupportOne" data-bs-parent="#accordionFAQSupport">
 								<div class="accordion-body">
-									Technical support typically include email, phone, and chat support, as well as online knowledge bases to assist users with any questions or issues they may encounter. 
-								
+									Technical support for each theme is given directly by the creator of the theme. You'll be given a link to contact their support in a couple places:
+	
+									<ul>
+										<li>Your confirmation email: Each theme in your confirmation email will have both the download link for your theme, and a "support" link which will connect you directly with the sellers support system or email.</li>
+										<li>While logged in to your account go to Purchases > Click the Order # > Get Support</li>
+									</ul>
 								</div>
 							</div>
 						</div>
@@ -236,7 +235,7 @@
 							</div>
 							<div id="collapseSupportThree" class="accordion-collapse collapse" aria-labelledby="headingSupportThree" data-bs-parent="#accordionFAQSupport">
 								<div class="accordion-body">
-									For anything we haven't covered, feel free to reach out <a href="{{ route('contact-us') }}">reach out</a> to the team or create a <a href="{{ route('tickets.create') }}">support ticket</a>. We're here to help.
+									For anything we haven't covered feel free to reach out to the Bootstrap Themes team at <a href="#">themes@getbootstrap.com</a> !We're here to help.
 								</div>
 							</div>
 						</div>
@@ -246,12 +245,12 @@
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingSupportFour">
 								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportFour" aria-expanded="false" aria-controls="collapseSupportFour">
-									How do I get access to the application?
+									How do I get access to a theme I purchased?
 								</a>
 							</div>
 							<div id="collapseSupportFour" class="accordion-collapse collapse" aria-labelledby="headingSupportFour" data-bs-parent="#accordionFAQSupport">
 								<div class="accordion-body">
-									Once you have purchased our servicer and your application is provisioned, we will e-mail you all details. The URL will be like https://yourcompany.anypo.net. just remember to use the same email you originally made your purchases with.
+									If you lose the link for a theme you purchased, don't panic! We've got you covered. You can login to your account, tap your avatar in the upper right corner, and tap Purchases. If you didn't create a login or can't remember the information, you can use our handy Redownload page, just remember to use the same email you originally made your purchases with.
 								</div>
 							</div>
 						</div>
@@ -274,7 +273,7 @@
 							</div>
 							<div id="collapsePaymentsOne" class="accordion-collapse collapse" aria-labelledby="headingPaymentsOne" data-bs-parent="#accordionFAQPayments">
 								<div class="accordion-body">
-									You can purchase the service directly from https://anypo.net website  via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing at this time.
+									You can purchase the themes on Bootstrap Themes via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing at this time.
 								</div>
 							</div>
 						</div>
@@ -289,7 +288,7 @@
 							</div>
 							<div id="collapsePaymentsTwo" class="accordion-collapse collapse" aria-labelledby="headingPaymentsTwo" data-bs-parent="#accordionFAQPayments">
 								<div class="accordion-body">
-									You'll receive an email from ANYPO.NET once your purchase is complete. Also you will be able to download all payment receipt (in pdf format) for your record keeping purpose.
+									You'll receive an email from Bootstrap themes once your purchase is complete.
 								</div>
 							</div>
 						</div>
@@ -304,7 +303,7 @@
 							</div>
 							<div id="collapsePaymentsThree" class="accordion-collapse collapse" aria-labelledby="headingPaymentsThree" data-bs-parent="#accordionFAQPayments">
 								<div class="accordion-body">
-									We have one simple plan and one license types and pricing model. 'Small and Medium Enterprise (5 User)'. All you need to start.
+									There are three license types - Standard, Multisite, and Extended. We've provided the table below for a quick look at the difference between the them, as well as a few examples of ways each license could be used. If you'd like more of the nitty-gritty details you can find them below and always feel free to reach out with any questions you have at themes@getbootstrap.com.
 								</div>
 							</div>
 						</div>

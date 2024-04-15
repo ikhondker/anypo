@@ -3,7 +3,7 @@
 @section('breadcrumb','Generate Invoice')
 
 @section('content')
-
+ 
 	<!-- Card -->
 	<div class="card">
 		<form name="myForm" id="myForm" action="{{ route('invoices.store') }}" method="POST" enctype="multipart/form-data">
@@ -18,18 +18,26 @@
 			<div class="card-body">
 				
 				<!-- Form -->
-				<div class="row mb-4">
-					<label for="id" class="col-sm-3 col-form-label form-label">Current Subscription Fee:</label>
+				<div class="row">
+					<label for="plan" class="col-sm-3 col-form-label form-label">Current Plan:</label>
 					<div class="col-sm-9">
-						<span class="badge bg-primary">{{ $account->price }}$/Month</span> 
-						{{-- <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ $account->price }}" readonly> --}}
+						<p class="h4 text-info mt-2">{{ $account->primaryProduct->name }}</p> 
+					</div>
+				</div>
+				<!-- End Form -->
+
+				<!-- Form -->
+				<div class="row">
+					<label for="price" class="col-sm-3 col-form-label form-label">Current Subscription:</label>
+					<div class="col-sm-9">
+						<p class="mt-2">{{ number_format($account->price,2) }} USD/Month</p> 
 					</div>
 				</div>
 				<!-- End Form -->
 
 				<!-- Form -->
 				<div class="row mb-4">
-					<label for="title" class="col-sm-3 col-form-label form-label">Select Period to Generate Invoice:</label>
+					<label for="title" class="col-sm-3 col-form-label form-label">Period to Generate Invoice:</label>
 					<div class="col-sm-9">
 						<!-- Checkbox -->
 						<div class="form-check mb-3">
@@ -73,7 +81,6 @@
 								{{ number_format(12 * $account->price * (100 - $config->discount_pc_12)/100, 2) }} USD
 							</label>
 							<div class="small text-muted">{{ $config->discount_pc_12 }}% Discount .</div>
-
 						</div>
 					</div>
 				</div>
@@ -91,8 +98,7 @@
 				</div>
 			</div>
 			<!-- End Footer -->
-			
-	
+
 		</form>
 	</div>
 	<!-- End Card -->

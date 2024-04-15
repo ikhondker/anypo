@@ -41,7 +41,7 @@ use Notification;
 use App\Notifications\Landlord\UserCreated;
 use App\Notifications\Landlord\InvoiceCreated;
 use App\Notifications\Landlord\InvoicePaid;
-//use App\Notifications\Landlord\ServicePurchased;
+use App\Notifications\Landlord\ServicePurchased;
 use App\Notifications\Landlord\FirstTenantAdminCreated;
 
 // Event
@@ -128,13 +128,8 @@ class CreateTenant implements ShouldQueue
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
 
 		// update account with billed date
-		//$account = Account::where('id', $account_id)->first();
 		//$invoice = Invoice::where('id', $invoice_id)->first();
 		
-		// TODO Send notification on new purchase
-		// Do we need this notification
-		// $user->notify(new ServicePurchased($user, $account));
-
 		// update product sold_qty column
 		$product			= Product::where('id', $checkout->product_id )->first();
 		$product->sold_qty	= $product->sold_qty+1;
@@ -149,6 +144,11 @@ class CreateTenant implements ShouldQueue
 		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
 		
+		// Send notification to system on new purchase
+		$account = Account::where('id', $account_id)->first();
+		$system = User::where('id', config('bo.SYSTEM_USER_ID'))->first();
+		$system->notify(new ServicePurchased($user, $account));
+
 		// copy logo and avatar default files Not needed after AWS CDN
 		// Log::debug('7. Calling copyCheckoutFiles');
 		// $service_id = self::copyCheckoutFiles($this->checkout_id);

@@ -88,25 +88,7 @@
 										@endguest
 
 										@if (auth()->user()->isSeeded())
-											@switch($_access)
-												@case('F')
-													@break
-												@case('C')
-													@break
-												@case('B')
-													<span class="badge bg-success">Back Office</span>
-													@break
-												@case('S')
-													<span class="badge bg-danger">System</span>
-													@break
-												@default
-													<span class="badge bg-info">Unknown</span>
-											@endswitch
-											@if (auth()->user()->isSystem())
-												<span class="badge bg-danger">System</span>
-											@else
-												<span class="badge bg-success">Back-office</span>
-											@endif 
+											<span class="badge bg-danger">BACK OFFICE</span>
 										@endif
 									</div>
 									<!-- End Avatar -->

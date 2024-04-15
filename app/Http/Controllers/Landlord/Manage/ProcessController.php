@@ -141,9 +141,8 @@ class ProcessController extends Controller
 
 	public function accountsArchive()
 	{
-
 		abort(403);
-		// Run process TODO
+		// P2 
 		//Log::debug('landlord.process.accountsArchive Running process to generate all invoices.');
 		//AccountsArchive::dispatch();
 		//return redirect()->route('processes.index')->with('success','Accounts Archive Process submitted successfully.');
