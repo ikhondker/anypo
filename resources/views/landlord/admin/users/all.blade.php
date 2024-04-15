@@ -97,6 +97,8 @@
 							<td>
 								@if ($user->role == UserRoleEnum::USER)
 									<span class="badge bg-info">{{ $user->role }}</span>
+								@elseif ($user->role == UserRoleEnum::ADMIN)
+									<span class="badge bg-danger">{{ $user->role }}</span>
 								@else
 									<span class="badge bg-warning">{{ $user->role }}</span>
 								@endif

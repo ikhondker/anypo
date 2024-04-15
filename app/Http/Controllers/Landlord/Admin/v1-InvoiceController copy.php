@@ -155,25 +155,30 @@ class InvoiceController extends Controller
 		// }
 
 
+		// ===================== old code ==========================
+
 		// get product
-		$product = Product::where('id', $account->primary_product_id)->first();
+		$product = Product::where('id', $account->primary_product_id)
+			->first();
+
 		$config = Config::where('id', config('bo.CONFIG_ID'))->first();
 
+		
 		switch ($period) {
 			case '1':
 				$price = $account->price;
 				break;
 			case '3':
-				$price = round(3 * $account->price * (100 - $config->discount_pc_3)/100,2);
+				$price =round(3 * $account->price * (100-$config->discount_pc_3)/100,2);
 				break;
 			case '6':
-				$price = round (6 * $account->price * (100 - $config->discount_pc_6)/100,2);
+				$price =round (6 * $account->price * (100-$config->discount_pc_6)/100,2);
 				break;
 			case '12':
-				$price = round( 12 * $account->price * (100 - $config->discount_pc_12)/100,2);
+				$price =round( 12 * $account->price * (100 - $config->discount_pc_12)/100,2);
 				break;
 			default:
-				$price = $account->price;
+				$price =$account->price;
 		}
 
 

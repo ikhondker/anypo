@@ -23,20 +23,24 @@ use App\Notifications\Landlord\InvoiceCreated;
 
 use Illuminate\Support\Facades\Log;
 
+
+// TODO add process_id here
 class CreateInvoice implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
 	protected $account_id;
 	protected $period;
+	protected $process_id;
 	
 	/**
 	 * Create a new job instance.
 	 */
-	public function __construct($account_id, $period)
+	public function __construct($account_id, $period, $process_id=0)
 	{
-		$this->account_id = $account_id;
-		$this->period = $period;
+		$this->account_id 	= $account_id;
+		$this->period 		= $period;
+		$this->process_id 	= $process_id;
 	}
 
 	/**
@@ -61,6 +65,7 @@ class CreateInvoice implements ShouldQueue
 		// get unique invoice_no
 		$invoice->invoice_no	= Bo::getInvoiceNo();
 		$invoice->invoice_date	= now();
+		
 		//Log::channel('bo')->info('Account id='. $account_id.' last_bill_from_date '.$account->last_bill_from_date);
 		$invoice->invoice_type	= LandlordInvoiceTypeEnum::SUBSCRIPTION->value;
 		$invoice->from_date		= $account->end_date->addDay(1);
@@ -93,11 +98,12 @@ class CreateInvoice implements ShouldQueue
 
 		Log::debug('jobs.landlord.CreateInvoice discount_pc= ' . $discount_pc);
 
-		$invoice->price		= round($this->period * $account->price * (100 - $discount_pc)/100,2) ;
-		$invoice->subtotal	= $invoice->price;
-		$invoice->amount	= $invoice->price;
-		$invoice->account_id= $account->id;
-		$invoice->owner_id	= $account->owner_id;
+		$invoice->price			= round($this->period * $account->price * (100 - $discount_pc)/100, 2) ;
+		$invoice->subtotal		= $invoice->price;
+		$invoice->amount		= $invoice->price;
+		$invoice->account_id	= $account->id;
+		$invoice->owner_id		= $account->owner_id;
+		$invoice->process_id	= $this->process_id;
 
 		// Save invoice
 		$invoice->currency		= 'USD';

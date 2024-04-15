@@ -12,8 +12,10 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('processes', function (Blueprint $table) {
-			$table->id();
-			$table->timestamps();
+			$table->id()->startingValue(1001);
+			$table->string('job_code')->nullable();
+			$table->timestamp('created_at')->useCurrent();
+			$table->timestamp('updated_at')->useCurrent();
 		});
 	}
 

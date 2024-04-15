@@ -13,7 +13,6 @@ use Illuminate\Queue\SerializesModels;
 // Controller
 use App\Http\Controllers\Landlord\InvoiceController;
 
-
 // Models
 use App\Models\User;
 use App\Models\Landlord\Account;
@@ -35,7 +34,6 @@ use App\Jobs\Landlord\CreateInvoice;
 use Str;
 use Illuminate\Support\Facades\Log;
 
-
 class Billing implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -53,6 +51,10 @@ class Billing implements ShouldQueue
 	 */
 	public function handle(): void
 	{
+
+		//Log::channel('bo')->info('Jobs.Landlord.Billing.handle bo Cron Job running at '. now());
+		Log::debug('Jobs.Landlord.Billing.handle bo Cron Job running at '. now());
+
 		$config = Config::first();
 
 		// Create a blank invoice. Not model but Controller
@@ -69,6 +71,13 @@ class Billing implements ShouldQueue
 		// all account where end_date is earlier than now()-7 dayss
 		// 			->where('end_date', '<', now()->subDays(7))
 
+		// TODO write to process table
+
+		// save lines into processes and pass to invoice creation
+		$process			= new Process();
+		$process->job_code	= 'BILLING';
+		$process->save();
+
 		$accounts = Account::where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
 			->where('next_bill_generated', false)
 			//->where('id', 1005 )
@@ -79,10 +88,10 @@ class Billing implements ShouldQueue
 			// Generate invoice 5 days before expire
 			$diff = now()->diffInDays($account->end_date);
 			if ($diff <= $config->days_gen_bill) {
-				Log::debug('Jobs.Billing.handle Generating Invoice for account_id=' . $account->id);
-				CreateInvoice::dispatch($account->id, 1);
+				Log::channel('bo')->info('Jobs.Billing.handle Generating Invoice for account_id = ' . $account->id);
+				CreateInvoice::dispatch($account->id, 1, $process->id);
 			} else {
-				Log::debug('Jobs.Billing.handle skipping Account id=' . $account->id. ". Days remains ". $diff );
+				Log::channel('bo')->info('Jobs.Billing.handle skipping account_id = ' . $account->id. ". Days remains ". $diff);
 			}
 		}
 	}

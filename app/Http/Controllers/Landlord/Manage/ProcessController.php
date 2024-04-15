@@ -21,6 +21,8 @@
 namespace App\Http\Controllers\Landlord\Manage;
 
 use App\Http\Controllers\Controller;
+
+use App\Models\Landlord\Manage\Process;
 use App\Http\Requests\Landlord\Manage\StoreProcessRequest;
 use App\Http\Requests\Landlord\Manage\UpdateProcessRequest;
 
@@ -62,7 +64,7 @@ class ProcessController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -73,7 +75,7 @@ class ProcessController extends Controller
 	 */
 	public function store(StoreProcessRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -84,7 +86,7 @@ class ProcessController extends Controller
 	 */
 	public function show(Process $process)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -95,7 +97,7 @@ class ProcessController extends Controller
 	 */
 	public function edit(Process $process)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -124,27 +126,26 @@ class ProcessController extends Controller
 
 	public function updateService()
 	{
-		return redirect()->route('processes.index')->with('success', 'Process run successfully.');
+		abort(403);
+		//return redirect()->route('processes.index')->with('success', 'Process run successfully.');
 	}
 
 	public function genInvoiceAll()
 	{
-
 		// Run process
 		Log::debug('landlord.process.genInvoiceAll Running process to generate all invoices.');
 		Log::debug('landlord.process.genInvoiceAll Dispatch job Billing.');
 		Billing::dispatch();
-		
 		return redirect()->route('processes.index')->with('success','Invoice Generation Process submitted successfully.');
 	}
 
 	public function accountsArchive()
 	{
 
-		// Run process
-		Log::debug('landlord.process.accountsArchive Running process to generate all invoices.');
-		AccountsArchive::dispatch();
-		
-		return redirect()->route('processes.index')->with('success','Accounts Archive Process submitted successfully.');
+		abort(403);
+		// Run process TODO
+		//Log::debug('landlord.process.accountsArchive Running process to generate all invoices.');
+		//AccountsArchive::dispatch();
+		//return redirect()->route('processes.index')->with('success','Accounts Archive Process submitted successfully.');
 	}
 }

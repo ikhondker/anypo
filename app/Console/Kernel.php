@@ -5,6 +5,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+use App\Jobs\Landlord\Billing;
+
 class Kernel extends ConsoleKernel
 {
 	/**
@@ -13,6 +15,18 @@ class Kernel extends ConsoleKernel
 	protected function schedule(Schedule $schedule): void
 	{
 		// $schedule->command('inspire')->hourly();
+
+		//->everyFiveMinutes()
+		$schedule->job(new Billing)
+			->everyMinute()	
+			->appendOutputTo("scheduler-output.log")
+			->withoutOverlapping();
+
+		// ->runInBackground();
+		// $schedule->command('billing:cron')
+		// 	->everyFiveMinutes()
+		// 	->appendOutputTo("scheduler-output.log")
+		// 	->runInBackground();	
 	}
 
 	/**

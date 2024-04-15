@@ -29,7 +29,7 @@
 							<td class="">Accounts Archive</td>
 							<td class="">Accounts Archive</td>
 							<td class="text-end">
-								<a class="btn btn-danger" onclick="return confirm('Do you want to run Accounts Archive Process? ')" href="{{ route('processes.accounts-archive') }}">Run Process</a>
+								<a class="btn btn-danger" onclick="return confirm('Do you want to run Accounts Archive Process? ')" href="{{ route('processes.accounts-archive') }}">Run Process **</a>
 							</td>
 					</tr>
 			
