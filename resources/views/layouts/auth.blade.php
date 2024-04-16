@@ -12,7 +12,7 @@
 
 	{{-- <link rel="canonical" href="https://appstack.bootlab.io/pages-sign-in.html" /> --}}
 	{{-- TODO --}}
-	<link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
+	<link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

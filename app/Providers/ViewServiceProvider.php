@@ -92,7 +92,7 @@ class ViewServiceProvider extends ServiceProvider
 				'components.tenant.edit.price',
 				'components.tenant.dashboards.*','components.tenant.widgets.*','components.tenant.info.*'
 				], 
-				\App\View\Composers\TenantSetupComposer::class);
+				\App\View\Composers\SetupComposer::class);
 		Facades\View::composer('layouts.app', \App\View\Composers\NotificationComposer::class);
 	}
 }

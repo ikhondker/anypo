@@ -9,25 +9,6 @@ use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
-/*
-|--------------------------------------------------------------------------
-| Sequence of Web Routes for ANYPO.NET
-|--------------------------------------------------------------------------
-|  1. Seeded Override Routes
-|  2. Public Routes
-|  3. Public Controller Based Routes
-|  4. Public Routes related to authentication and email verification
-|  5. Public Routes related to Email verification
-|  6. Public routes for stripe
-|  7. Tenancy Related Routes which need auth and email verification ['auth', 'verified']
-|  8. Routes need auth and email verification ['auth', 'verified']
-|  9. Routes allowed to back office only ['auth', 'verified','can:access-back-office']
-| 10. Route for Purging Cache
-| 11. Route for Testing purpose
-*/
-
-
-
 use App\Http\Controllers\Tenant\TestController;
 //use App\Http\Controllers\ImpersonateController;
 
@@ -109,7 +90,6 @@ use Illuminate\Support\Facades\Log;
 | Feel free to customize them however you want. Good luck!
 |
 */
-// 'auth', 'verified','can:access-back-office'
 
 Route::middleware([
 	'web',

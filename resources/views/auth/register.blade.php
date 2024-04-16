@@ -3,35 +3,24 @@
 
 @section('content')
 
-	<div class="text-center mt-4">
-		<h1 class="h2">Get started [tenant]</h1>
-		<p class="lead">
-			Start creating the best possible user experience for you customers.
-		</p>
-	</div>
-
 	<div class="card">
 		<div class="card-body">
 			<div class="m-sm-4">
 				<div class="text-center">
 					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png')  }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
 				</div>
-
+				<div class="text-center mt-4">
+					<h1 class="h2">Get started with {{ tenant('id') }}.{{ env('APP_DOMAIN') }}</h1>
+					<p class="lead">
+						Fill out the form to get started.
+					</p>
+				</div>
 				<form method="POST" action="{{ route('register') }}">
 					@csrf
-					<div class="mb-3">
-						<label class="form-label">Email</label>
-						<input class="form-control form-control-lg @error('email') is-invalid @enderror" 
-							id="email" type="email" name="email" value="{{ old('email') }}" 
-							placeholder="Enter your email" 
-							required autocomplete="email" autofocus/>
-							@error('email')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-					</div>
+					
 					
 					<div class="mb-3">
-						<label class="form-label">Name</label>
+						<label class="form-label">Your Name</label>
 						<input class="form-control form-control-lg  @error('name') is-invalid @enderror" 
 							type="text" name="name" value="{{ old('name') }}"
 							placeholder="Enter your name" 
@@ -40,6 +29,17 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 					</div>
+					<div class="mb-3">
+						<label class="form-label">Your Email</label>
+						<input class="form-control form-control-lg @error('email') is-invalid @enderror" 
+							id="email" type="email" name="email" value="{{ old('email') }}" 
+							placeholder="Enter your email" 
+							required autocomplete="email" autofocus/>
+							@error('email')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+					</div>
+
 					<div class="mb-3">
 						<label class="form-label">Password</label>
 						<input class="form-control form-control-lg  @error('password') is-invalid @enderror" 

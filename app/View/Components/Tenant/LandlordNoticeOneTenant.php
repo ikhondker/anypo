@@ -10,7 +10,6 @@ class LandlordNoticeOneTenant extends Component
 {
 	public $anyNotice;
 	public $notice;
-	
 
 	/**
 	 * Create a new component instance.
@@ -18,14 +17,14 @@ class LandlordNoticeOneTenant extends Component
 	public function __construct()
 	{
 	   //
-		$landlordSetup = tenancy()->central(function ($tenant) {
-			return \App\Models\Landlord\Manage\Setup::where('id', 1)->first();
+		$landlordConfig = tenancy()->central(function ($tenant) {
+			return \App\Models\Landlord\Manage\Config::where('id', 1)->first();
 		});
-		//dd($landlordSetup);
-		//Log::debug('count cnt=' . $landlordSetup->name);
+		//dd($landlordConfig);
+		//Log::debug('count cnt=' . $landlordConfig->name);
 
 		$this->anyNotice = false;
-		$this->notice = "Test Notice ONE Tenant TODO Landlord ." .$landlordSetup->name ;
+		$this->notice = "Test Notice ONE Tenant TODO Landlord ." .$landlordConfig->name ;
 	}
 
 	/**

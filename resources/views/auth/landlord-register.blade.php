@@ -25,7 +25,7 @@
 						<label class="form-label" for="name">Your Name</label>
 						<input id="name" type="text"
 							class="form-control form-control-lg @error('name') is-invalid @enderror" name="name"
-							value="{{ old('name') }}" placeholder="Done joe" required autocomplete="name" autofocus>
+							value="{{ old('name') }}" placeholder="Enter your name" required autocomplete="name" autofocus>
 						@error('name')
 						<div class="text-danger text-xs">{{ $message }}</div>
 						@enderror
@@ -36,7 +36,7 @@
 					<div class="mb-3">
 						<label class="form-label" for="email">Your email</label>
 						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-							name="email" value="{{ old('email') }}" placeholder="email@example.com"
+							name="email" value="{{ old('email') }}" placeholder="Enter your email"
 							aria-label="email@example.com" required autocomplete="email">
 						@error('email')
 						<div class="text-danger text-xs">{{ $message }}</div>

@@ -7,7 +7,7 @@ use Illuminate\View\View;
  
 use App\Models\Tenant\Admin\Setup;
 //use App\Models\Setup;
-class TenantSetupComposer
+class SetupComposer
 {
 	/**
 	 * Create a new profile composer.
@@ -19,7 +19,6 @@ class TenantSetupComposer
 	 */
 	public function compose(View $view): void
 	{
-
 		$setup = Setup::first();
 		$view->with(['_setup' => $setup]);
 		//$view->with('count', $this->users->count());

@@ -8,7 +8,7 @@
 	<meta name="description" content="ANYPO.NET - Control Expenses ">
 	<meta name="author" content="Iqbal H Khondker">
 
-	<title>@yield('title', 'AnyPO.com')</title>
+	<title>@yield('title', 'ANYPO.NET')</title>
 	<link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">

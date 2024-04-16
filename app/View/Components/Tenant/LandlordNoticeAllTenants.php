@@ -17,19 +17,19 @@ class LandlordNoticeAllTenants extends Component
 	public function __construct()
 	{
 	  //
-		$landlordSetup = tenancy()->central(function ($tenant) {
-			return \App\Models\Landlord\Manage\Setup::where('id', 1)->first();
+		$landlordConfig = tenancy()->central(function ($tenant) {
+			return \App\Models\Landlord\Manage\Config::where('id', 1)->first();
 		});
-		//dd($landlordSetup);
-		//Log::debug('count cnt=' . $landlordSetup->name);
+		//dd($landlordConfig);
+		//Log::debug('count cnt=' . $landlordConfig->name);
 
 		//$this->anyNotice = false;
-		$this->anyNotice = $landlordSetup->maintenance; // ? or maintenance
-		//$this->notice = "Test Notice from Landlord ." .$landlordSetup->maintenance_start_time . " to ". $landlordSetup->maintenance_end_time ;
+		$this->anyNotice = $landlordConfig->maintenance; // ? or maintenance
+		//$this->notice = "Test Notice from Landlord ." .$landlordConfig->maintenance_start_time . " to ". $landlordConfig->maintenance_end_time ;
 		$this->notice = "
 		Please note there will be scheduled server maintenance 
-		from  " .  strtoupper(date('d-M-Y H:i:s', strtotime($landlordSetup->maintenance_start_time))) .
-		" to " . strtoupper(date('d-M-Y H:i:s', strtotime($landlordSetup->maintenance_end_time))) .
+		from  " .  strtoupper(date('d-M-Y H:i:s', strtotime($landlordConfig->maintenance_start_time))) .
+		" to " . strtoupper(date('d-M-Y H:i:s', strtotime($landlordConfig->maintenance_end_time))) .
 		"This maintenance is essential to ensure the continued performance, reliability, and security of the systems. We appreciate your support and thank you for your patience.
 		";
 	}
