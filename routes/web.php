@@ -263,9 +263,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	// Route::get('/user/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
 	// TODO
 	// Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
-	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
-	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
-
+	
 	/* ======================== Activity ========================================  */
 	Route::resource('activities', ActivityController::class);
 	
@@ -310,6 +308,10 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 	// 	return "This is from admin route from admin.route file at after auth " . now();
 	// });
 	
+	/* ======================== User ========================================  */
+	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
+	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+
 	/* ======================== Contact ======================================== */
 	Route::resource('contacts', ContactController::class);
 
@@ -407,22 +409,24 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 
 	/* ======================== Contact ======================================== */
 	Route::get('/contact/all', [ContactController::class, 'all'])->name('contacts.all');
+
+	/**
+	* ==================================================================================
+	* 10. Route for Purging Cache
+	* ==================================================================================
+	*/
+	Route::get('/clear', function () {
+		Artisan::call('cache:clear');
+		Artisan::call('cache:clear');
+		Artisan::call('route:clear');
+		Artisan::call('config:clear');
+		Artisan::call('view:clear');
+		return "Cache is cleared at " . now();
+	});
+
 });
 	
 
-/**
-* ==================================================================================
-* 10. Route for Purging Cache
-* ==================================================================================
-*/
-Route::get('/clear', function () {
-	Artisan::call('cache:clear');
-	Artisan::call('cache:clear');
-	Artisan::call('route:clear');
-	Artisan::call('config:clear');
-	Artisan::call('view:clear');
-	return "Cache is cleared at " . now();
-});
 	
 /**
 * ==================================================================================

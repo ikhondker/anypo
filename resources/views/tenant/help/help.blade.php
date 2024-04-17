@@ -27,6 +27,7 @@
 				</div>
 				<div class="list-group list-group-flush" role="tablist">
 					<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#helpstart" role="tab">Getting Started</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpfaq" role="tab">FAQ</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpsetup" role="tab">Setups</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppr" role="tab">Requisition</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppo" role="tab">Purchase Orders</a>
@@ -48,6 +49,12 @@
 				@include('tenant.help.includes.helpstart')
 				<!-- ========== INCLUDE ========== -->
 
+				
+				<!-- ========== INCLUDE ========== -->
+				// TODO 
+				//@include('tenant.help.includes.helpfaq')
+				<!-- ========== INCLUDE ========== -->
+				
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpsetup')
 				<!-- ========== INCLUDE ========== -->
