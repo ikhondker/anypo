@@ -111,12 +111,11 @@ class LoginController extends Controller
 	// Added to overwrite the login credentials
 	protected function credentials(Request $request)
 	{
+		// middleware verified is used to check if email_verified_at
 		return [
 			'email'		=> request()->email,
 			'password'	=> request()->password,
-			'enable'	=> true,  // do not allow disabled user to login
-			// TODO Check if we need to uncomment it
-			// is_null('email_verified_at')
+			'enable'	=> true,  			// do not allow disabled user to login
 		];
 	}
 

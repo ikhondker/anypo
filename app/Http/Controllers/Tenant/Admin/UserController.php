@@ -330,7 +330,7 @@ class UserController extends Controller
 
 	}
 
-	public function image($filename)
+	public function chk_image($filename)
 	{
 		//shown as: http://geda.localhost:8000/image/4.jpg
 		//$path = storage_path('uploads/' . $filename);

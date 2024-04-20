@@ -150,7 +150,7 @@
 								<td><x-tenant.list.my-boolean :value="$user->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="User" :id="$user->id"/>
-									<a href="{{ route('users.destroy',$user->id) }}" class="me-2 js.sw2-advance"
+									<a href="{{ route('users.destroy',$user->id) }}" class="me-2 sw2-advance"
 										data-entity="User" data-name="{{ $user->name }}" data-status="{{ ($user->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($user->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($user->enable ? 'bell-off' : 'bell') }}"></i></a>

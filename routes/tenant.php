@@ -120,6 +120,7 @@ Route::middleware([
 		/* ======================== make auth universal ========================================  */
 		Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
 			Auth::routes(); 
+			//Auth::routes(['verify' => true]);
 		});
 	
 		// IQBAL 28-feb-23
@@ -132,7 +133,9 @@ Route::middleware([
 
 		Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
 			$request->fulfill();
-			return redirect('/home');
+			//return redirect('/home');
+			Auth::logout();
+			return redirect('/login');
 		})->middleware(['auth', 'signed'])->name('verification.verify');
 
 		Route::post('/email/verification-notification', function (Request $request) {
@@ -144,7 +147,7 @@ Route::middleware([
 
 		})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-		// TODO Check
+		// Copy content from landlord
 		Route::get('/tos', function () {
 			return view('tenant.pages.tos');
 		})->name('tos');
@@ -179,30 +182,6 @@ Route::middleware([
 		//Route::get('/home', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 		//Route::resource('dashboards', DashboardController::class);
 
-		/* ======================== User ========================================  */
-		Route::resource('users', UserController::class);
-		Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
-		// TOTO check ->middleware(['auth', 'verified']) for the rest
-		Route::get('users.password/{user}',[UserController::class, 'password'])->name('users.password');
-		Route::post('users/changepass/{user}',[UserController::class, 'changepass'])->name('users.changepass');
-		Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
-		//TODO remove next two used in footer
-		Route::get('/user/role',[UserController::class, 'role'])->name('users.role');
-		Route::get('/user/updaterole/{user}/{role}',[UserController::class, 'updaterole'])->name('users.updaterole');
-		//Route::get('/user/image/{filename}',[UserController::class, 'image'])->name('users.image');
-		// TODO
-		//Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
-
-		/* ======================== Activity ======================================== */
-		Route::resource('activities', ActivityController::class);
-		Route::get('/activity/export',[ActivityController::class, 'export'])->name('activities.export');
-
-		/* ======================== Attachment ======================================== */
-		Route::resource('attachments', AttachmentController::class);
-		Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
-		Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
-		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
-
 		/* ======================== Notification ======================================== */
 		Route::resource('notifications', NotificationController::class);
 		Route::get('/notification/all',[NotificationController::class, 'all'])->name('notifications.all');
@@ -220,16 +199,7 @@ Route::middleware([
 		Route::get('/currency/export',[CurrencyController::class,'export'])->name('currencies.export');
 		Route::get('/currencies/delete/{currency}',[CurrencyController::class, 'destroy'])->name('currencies.destroy');
 
-		/* ======================== Setup ======================================== */
-		Route::resource('setups', SetupController::class);
-		// CHECK
-		Route::get('setups/image/{filename}',[SetupController::class, 'image'])->name('setups.image');
-		Route::get('setups/announcement/{setup}', [SetupController::class, 'notice'])->name('setups.announcement');
-		Route::post('setups/update-notice/{setup}', [SetupController::class, 'updateNotice'])->name('setups.update-notice');
-		Route::get('setups/tc/{setup}', [SetupController::class, 'tc'])->name('setups.tc');
-		Route::post('setups/update-tc/{setup}', [SetupController::class, 'updateTc'])->name('setups.update-tc');
-		Route::post('setups/freeze/{setup}', [SetupController::class, 'freeze'])->name('setups.freeze');
-		
+	
 		/* ======================== Dept (template)======================================== */
 		Route::resource('depts', DeptController::class);
 		Route::get('/dept/export',[DeptController::class, 'export'])->name('depts.export');
@@ -273,12 +243,7 @@ Route::middleware([
 		Route::get('/oem/export',[OemController::class,'export'])->name('oems.export');
 		Route::get('/oems/delete/{oem}',[OemController::class,'destroy'])->name('oems.destroy');
 
-		/* ======================== Supplier ======================================== */
-		Route::resource('suppliers', SupplierController::class);
-		Route::get('/supplier/spends',[SupplierController::class,'spends'])->name('suppliers.spends');
-		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
-		Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
-
+		
 		/* ======================== Project ======================================== */
 		Route::resource('projects', ProjectController::class);
 		Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
@@ -294,30 +259,6 @@ Route::middleware([
 		Route::post('/budget/attach',[BudgetController::class,'attach'])->name('budgets.attach');
 		Route::get('/budgets/attachments/{budget}',[BudgetController::class,'attachments'])->name('budgets.attachments');
 		
-		/* ======================== Item ======================================== */
-		Route::resource('items', ItemController::class);
-		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
-		Route::get('/items/delete/{item}',[ItemController::class,'destroy'])->name('items.destroy');
-		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
-
-		/* ======================== Hierarchy ======================================== */
-		Route::resource('hierarchies', HierarchyController::class);
-		Route::get('/hierarchy/export',[HierarchyController::class,'export'])->name('hierarchies.export');
-		Route::get('/hierarchies/delete/{hierarchy}',[HierarchyController::class,'destroy'])->name('hierarchies.destroy');
-
-		/* ======================== Wf ======================================== */
-		Route::resource('wfs', WfController::class);
-		Route::get('/wf/export',[WfController::class,'export'])->name('wfs.export');
-		//Route::get('/wf/get-reset-pr-num',[WfController::class,'getResetPrNum'])->name('wfs.get-reset-pr-num');
-		Route::get('/wfs/wf-reset-pr/{pr}',[WfController::class,'wfResetPr'])->name('wfs.wf-reset-pr');
-		//Route::get('/wf/get-reset-po-num',[WfController::class,'getResetPoNum'])->name('wfs.get-reset-po-num');
-		Route::get('/wfs/wf-reset-po/{po}',[WfController::class,'wfResetPo'])->name('wfs.wf-reset-po');
-
-		/* ======================== Wfl ======================================== */
-		Route::resource('wfls', WflController::class);
-		Route::get('/wfl/export',[WflController::class,'export'])->name('wfls.export');
-		Route::get('/wfls/delete/{wfl}',[WflController::class,'destroy'])->name('wfls.destroy');
-
 		/* ======================== DeptBudget ======================================== */
 		Route::resource('dept-budgets', DeptBudgetController::class);
 		Route::get('/dept-budget/export',[DeptBudgetController::class,'export'])->name('dept-budgets.export');
@@ -423,12 +364,7 @@ Route::middleware([
 		Route::get('/reports/parameter/{report}',[ReportController::class,'parameter'])->name('reports.parameter');
 		Route::put('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
 
-		/* ======================== UploadItem ======================================== */
-		Route::resource('upload-items', UploadItemController::class);
-		Route::get('/upload-item/export',[UploadItemController::class, 'export'])->name('upload-items.export');
-		Route::get('/upload-item/check',[UploadItemController::class, 'check'])->name('upload-items.check');
-		Route::get('/upload-item/import',[UploadItemController::class, 'import'])->name('upload-items.import');
-
+		
 		/* ======================== Rate ======================================== */
 		Route::resource('rates', RateController::class);
 		Route::get('/rate/export',[RateController::class,'export'])->name('rates.export');
@@ -437,8 +373,109 @@ Route::middleware([
 		/* ======================== Ticket ======================================== */
 		Route::resource('tickets', TicketController::class);
 
+		/* ======================== User ========================================  */
+		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+
+				
 	});
 
+/**
+* ==================================================================================
+* 3. Buyer Routes (Need Auth+ Email Verification + can:admin)
+* ==================================================================================
+*/
+
+Route::middleware([
+	'web','auth', 'verified','can:buyer',
+	InitializeTenancyByDomain::class,
+	PreventAccessFromCentralDomains::class,
+	])->group(function () {
+
+		/* ======================== Supplier ======================================== */
+		Route::resource('suppliers', SupplierController::class);
+		Route::get('/supplier/spends',[SupplierController::class,'spends'])->name('suppliers.spends');
+		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
+		Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
+
+		/* ======================== Item ======================================== */
+		Route::resource('items', ItemController::class);
+		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
+		Route::get('/items/delete/{item}',[ItemController::class,'destroy'])->name('items.destroy');
+		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
+
+		/* ======================== UploadItem ======================================== */
+		Route::resource('upload-items', UploadItemController::class);
+		Route::get('/upload-item/export',[UploadItemController::class, 'export'])->name('upload-items.export');
+		Route::get('/upload-item/check',[UploadItemController::class, 'check'])->name('upload-items.check');
+		Route::get('/upload-item/import',[UploadItemController::class, 'import'])->name('upload-items.import');
+
+	});
+
+/**
+* ==================================================================================
+* 3. Admin Routes (Need Auth+ Email Verification + can:admin)
+* ==================================================================================
+*/
+
+	Route::middleware([
+		'web','auth', 'verified','can:admin',
+		InitializeTenancyByDomain::class,
+		PreventAccessFromCentralDomains::class,
+		])->group(function () {
+
+			/* ======================== Setup ======================================== */
+		Route::resource('setups', SetupController::class);
+		// CHECK
+		Route::get('setups/image/{filename}',[SetupController::class, 'image'])->name('setups.image');
+		Route::get('setups/announcement/{setup}', [SetupController::class, 'notice'])->name('setups.announcement');
+		Route::post('setups/update-notice/{setup}', [SetupController::class, 'updateNotice'])->name('setups.update-notice');
+		Route::get('setups/tc/{setup}', [SetupController::class, 'tc'])->name('setups.tc');
+		Route::post('setups/update-tc/{setup}', [SetupController::class, 'updateTc'])->name('setups.update-tc');
+		Route::post('setups/freeze/{setup}', [SetupController::class, 'freeze'])->name('setups.freeze');
+		
+		/* ======================== User ========================================  */
+		Route::resource('users', UserController::class);
+		Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
+		// TOTO check ->middleware(['auth', 'verified']) for the rest
+		Route::get('users.password/{user}',[UserController::class, 'password'])->name('users.password');
+		Route::post('users/changepass/{user}',[UserController::class, 'changepass'])->name('users.changepass');
+		Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
+		//TODO remove next two used in footer
+		Route::get('/user/role',[UserController::class, 'role'])->name('users.role');
+		Route::get('/user/updaterole/{user}/{role}',[UserController::class, 'updaterole'])->name('users.updaterole');
+		//Route::get('/user/image/{filename}',[UserController::class, 'image'])->name('users.image');
+		// TODO
+		//Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
+
+		/* ======================== Activity ======================================== */
+		Route::resource('activities', ActivityController::class);
+		Route::get('/activity/export',[ActivityController::class, 'export'])->name('activities.export');
+
+		/* ======================== Attachment ======================================== */
+		Route::resource('attachments', AttachmentController::class);
+		Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
+		Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
+		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
+
+			/* ======================== Hierarchy ======================================== */
+		Route::resource('hierarchies', HierarchyController::class);
+		Route::get('/hierarchy/export',[HierarchyController::class,'export'])->name('hierarchies.export');
+		Route::get('/hierarchies/delete/{hierarchy}',[HierarchyController::class,'destroy'])->name('hierarchies.destroy');
+
+		/* ======================== Wf ======================================== */
+		Route::resource('wfs', WfController::class);
+		Route::get('/wf/export',[WfController::class,'export'])->name('wfs.export');
+		//Route::get('/wf/get-reset-pr-num',[WfController::class,'getResetPrNum'])->name('wfs.get-reset-pr-num');
+		Route::get('/wfs/wf-reset-pr/{pr}',[WfController::class,'wfResetPr'])->name('wfs.wf-reset-pr');
+		//Route::get('/wf/get-reset-po-num',[WfController::class,'getResetPoNum'])->name('wfs.get-reset-po-num');
+		Route::get('/wfs/wf-reset-po/{po}',[WfController::class,'wfResetPo'])->name('wfs.wf-reset-po');
+
+		/* ======================== Wfl ======================================== */
+		Route::resource('wfls', WflController::class);
+		Route::get('/wfl/export',[WflController::class,'export'])->name('wfls.export');
+		Route::get('/wfls/delete/{wfl}',[WflController::class,'destroy'])->name('wfls.destroy');
+			
+	});
 
 /**
 * ==================================================================================
@@ -446,30 +483,30 @@ Route::middleware([
 * ==================================================================================
 */
 Route::middleware([
-	'web','auth', 'verified','can:access-back-office',
+	'web','auth', 'verified','can:support',
 	InitializeTenancyByDomain::class,
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
 		/* ======================== User ========================================  */
 		Route::get('/users/impersonate/{user}/',[UserController::class, 'impersonate'])->name('users.impersonate');
-		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 		/* ======================== Table ========================================  */
 		Route::resource('tables', TableController::class);
 		Route::get('/table/structure/{table}',[TableController::class, 'structure'])->name('tables.structure');
-		Route::get('/table/controllers',[TableController::class, 'controllers'])->name('tables.controllers');
-		Route::get('/table/controllers-fnc',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
-		Route::get('/table/models',[TableController::class, 'models'])->name('tables.models');
-		Route::get('/table/models-fnc',[TableController::class, 'fncModels'])->name('tables.fnc-models');
-		Route::get('/table/policies',[TableController::class, 'policies'])->name('tables.policies');
-		Route::get('/table/policies-fnc',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
+		Route::get('/table/controllers/{dir?}',[TableController::class, 'controllers'])->name('tables.controllers');
+		Route::get('/table/controllers-fnc/{dir?}',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
+		Route::get('/table/models/{dir?}',[TableController::class, 'models'])->name('tables.models');
+		Route::get('/table/models-fnc/{dir?}',[TableController::class, 'fncModels'])->name('tables.fnc-models');
+		Route::get('/table/policies/{dir?}',[TableController::class, 'policies'])->name('tables.policies');
+		Route::get('/table/policies-fnc/{dir?}',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
 		Route::get('/table/helpers',[TableController::class, 'helpers'])->name('tables.helpers');
 		Route::get('/table/helpers-fnc',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
 		
 		Route::get('/table/routes',[TableController::class, 'routes'])->name('tables.routes');
 		
-		Route::get('/table/route-code',[TableController::class, 'routeCode'])->name('tables.route-code');
+		//Route::get('/table/route-code',[TableController::class, 'routeCode'])->name('tables.route-code');
+		Route::get('/table/route-code/{dir?}',[TableController::class, 'routeCode'])->name('tables.route-code');
 		Route::get('/table/comments',[TableController::class, 'comments'])->name('tables.comments');
 		Route::get('/table/check',[TableController::class, 'check'])->name('tables.check');
 		Route::get('/table/messages',[TableController::class, 'messages'])->name('tables.messages');
@@ -576,7 +613,7 @@ Route::middleware([
 * ==================================================================================
 */
 Route::middleware([
-	'web','auth', 'verified','can:access-back-office',
+	'web','auth', 'verified','can:system',
 	InitializeTenancyByDomain::class,
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {

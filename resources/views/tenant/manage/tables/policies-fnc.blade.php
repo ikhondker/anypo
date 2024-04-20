@@ -19,8 +19,15 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Functions in Policies</h5>
-					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_POLICY') }}</h6>
+					{{-- <h5 class="card-title">Functions in Policies</h5>
+					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_POLICY') }}</h6> --}}
+					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6><br>
+					<a class="" href="{{ route('tables.fnc-policies') }}"><i class="align-middle me-1" data-feather="folder"></i>Root</a>
+					<a class="" href="{{ route('tables.fnc-policies','Admin') }}"><i class="align-middle me-1" data-feather="folder"></i>Admin</a>
+					<a class="" href="{{ route('tables.fnc-policies','Lookup') }}"><i class="align-middle me-1" data-feather="folder"></i>Lookup</a>
+					<a class="" href="{{ route('tables.fnc-policies','Manage') }}"><i class="align-middle me-1" data-feather="folder"></i>Manage</a>
+					<a class="" href="{{ route('tables.fnc-policies','Workflow') }}"><i class="align-middle me-1" data-feather="folder"></i>Workflow</a>
+					<a class="" href="{{ route('tables.fnc-policies','Support') }}"><i class="align-middle me-1" data-feather="folder"></i>Support</a>
 				</div>
 				<div class="card-body">
 					<table class="table table-striped table-sm">
@@ -42,7 +49,17 @@
 								$exclude = array('__call',	);
 								//$class = new ReflectionClass('App\Http\Controllers\Tenant\HomeController');
 								//$class = new ReflectionClass('App\Models\Tenant\\'. $row["f"]);
-								$class = new ReflectionClass(config('akk.DOC_DIR_POLICY') .'\\'. $row["f"]);
+								//$class = new ReflectionClass(config('akk.DOC_DIR_POLICY') .'\\'. $row["f"]);
+								//$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
+
+								if ($dir == "") {
+									Log::debug('NULL Value of $target_dir-> row[f]=' . $target_dir . $row["f"]);
+									$class = new ReflectionClass( $target_dir .$row["f"]);
+								} else  {
+									Log::debug('NOT NOT Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
+									$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
+								}
+
 								$methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
 								@endphp
 								@foreach ($methods as $method)

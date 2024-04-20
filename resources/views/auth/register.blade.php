@@ -64,7 +64,7 @@
 
 					<div>
 						<div class="form-check align-items-center">
-							<input id="terms" type="checkbox" class="form-check-input" name="terms">
+							<input id="terms" type="checkbox" class="form-check-input" name="terms" required>
 							<label class="form-check-label text-small" for="terms">
 								<span class="text-danger">*</span>I agree the <a href="{{ route('tos') }}" target="_blank" class="text-primary">Terms and Conditions</a>
 							</label>

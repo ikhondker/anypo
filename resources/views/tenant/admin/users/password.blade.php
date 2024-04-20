@@ -77,6 +77,7 @@
 						</div>
 
 						<x-tenant.show.my-text	value="{{ $user->name }}"/>
+						<x-tenant.show.my-text	value="{{ $user->email }}" label="Email"/>
 						<x-tenant.show.my-badge	value="{{ $user->role }}" label="Role"/>
 						{{-- <x-tenant.show.my-badge	value="{{ $user->id }}" label="ID"/> --}}
 					</div>

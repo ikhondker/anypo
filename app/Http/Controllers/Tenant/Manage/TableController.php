@@ -87,6 +87,11 @@ use Illuminate\Support\Facades\Route;
 
 class TableController extends Controller
 {
+
+	// define entity constant for file upload and workflow
+	public const BASE_DIR		= "\App\Http\\";
+
+	
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -179,27 +184,44 @@ class TableController extends Controller
 		return view('tenant.manage.tables.structure', with(compact('columns', 'table')));
 	}
 
-	public function controllers()
+	public function controllers($dir = null)
 	{
 		$this->authorize('controllers', Table::class);
 
+		$BASE_DIR	= "\app\Http\Controllers\Tenant\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.controllers dir=' . $dir);
+		Log::debug('tenant.TableController.controllers target_dir=' . $target_dir);
+
+
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant');
-		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		$filesInFolder = Docs::getFiles( $target_dir );
+
+
 		return view('tenant.manage.tables.controllers', compact('filesInFolder'));
 	}
 	 
-	public function fncControllers()
+	public function fncControllers($dir = null)
 	{
 		// Ref: https://www.php.net/manual/en/class.reflectionclass.php
 		$this->authorize('controllers', Table::class);
 
+		// NOTE: App not app but App <===========
+		$BASE_DIR	= "\App\Http\Controllers\Tenant\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.fncControllers dir=' . $dir);
+		Log::debug('tenant.TableController.fncControllers target_dir=' . $target_dir);
+		//Log::debug('tenant.TableController.fncControllers DOC_DIR_CLASS=' . config('akk.DOC_DIR_CLASS'));
+
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant');
-		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
-		
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		$filesInFolder = Docs::getFiles( $target_dir );
+
 		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
-		return view('tenant.manage.tables.controllers-fnc', compact('filesInFolder'));
+		return view('tenant.manage.tables.controllers-fnc', compact('filesInFolder','dir','target_dir'));
 	}
 
 	public function helpers()
@@ -227,24 +249,39 @@ class TableController extends Controller
 	}
 
 
-	public function models()
+	public function models($dir = null)
 	{
 		$this->authorize('models', Table::class);
 
+		$BASE_DIR	= "\app\Models\Tenant\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.routeCode dir=' . $dir);
+		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+
+
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
-		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
+		$filesInFolder = Docs::getFiles($target_dir);
+
 		return view('tenant.manage.tables.models', compact('filesInFolder'));
 	}
 
-	public function fncModels()
+	public function fncModels($dir = null)
 	{
 		$this->authorize('models', Table::class);
 
+		$BASE_DIR	= "\App\Models\Tenant\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.routeCode dir=' . $dir);
+		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
-		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
-		return view('tenant.manage.tables.models-fnc', compact('filesInFolder'));
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
+		$filesInFolder = Docs::getFiles($target_dir);
+
+		return view('tenant.manage.tables.models-fnc', compact('filesInFolder','dir','target_dir'));
 	}
 
 	public function routes()
@@ -256,30 +293,49 @@ class TableController extends Controller
 		return view('tenant.manage.tables.routes-all', compact('routes'));
 	}
 
-	public function routeCode()
+	public function routeCode($dir = null)
 	{
 		$this->authorize('routeCode', Table::class);
 
+		$BASE_DIR	= "\app\Models\Tenant\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.routeCode dir=' . $dir);
+		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');
-		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
+		$filesInFolder = Docs::getFiles($target_dir);
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
 		return view('tenant.manage.tables.routes-code', compact('filesInFolder'));
 	}
 
-	public function policies()
+	public function policies($dir = null)
 	{
 		$this->authorize('policies', Table::class);
 
+		$BASE_DIR	= "\app\Models\Tenant\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.routeCode dir=' . $dir);
+		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');	// <<============= Models
-		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
-		return view('tenant.manage.tables.policies', compact('filesInFolder'));
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
+		$filesInFolder = Docs::getFiles($target_dir);
+
+		return view('tenant.manage.tables.policies', compact('filesInFolder','dir'));
 	}
 
-	public function fncPolicies()
+	public function fncPolicies($dir = null)
 	{
 		$this->authorize('models', Table::class);
 
-		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_POLICY'));
-		return view('tenant.manage.tables.policies-fnc', compact('filesInFolder'));
+		$BASE_DIR	= "\App\Policies\Tenant\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.routeCode dir=' . $dir);
+		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_POLICY'));
+		$filesInFolder = Docs::getFiles($target_dir);
+		return view('tenant.manage.tables.policies-fnc', compact('filesInFolder','dir','target_dir'));
 	}
 
 	public function comments()

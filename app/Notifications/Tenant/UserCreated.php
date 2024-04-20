@@ -57,16 +57,15 @@ class UserCreated extends Notification implements ShouldQueue
 	public function toMail(object $notifiable): MailMessage
 	{
 		return (new MailMessage)
-
-					->subject('Welcome, your '.config('app.name').' account at has been created.')
-					->greeting('Hello, '.$this->user->name)
-					->line('Welcome to '.config('app.name').'.')
-					->line('Your account has been created as follows: ')
-					->line('Login Email: '.$this->user->email.'.')
-					->line('Login Password: '.$this->random_password)
-					->line('Please use following link to login.')
-					->action('Login', url('/login'))
-					->line('Thank you for using '.config('app.name').' application!');
+			->subject('Welcome, your '.config('app.name').' account at has been created.')
+			->greeting('Hello, '.$this->user->name)
+			->line('Welcome to '.config('app.name').'.')
+			->line('Your account has been created as follows: ')
+			->line('Login Email: '.$this->user->email.'.')
+			->line('Login Password: '.$this->random_password)
+			->line('Please use following link to login.')
+			->action('Login', url('/login'))
+			->line('Thank you for using '.config('app.name').' application!');
 	}
 
 	/**

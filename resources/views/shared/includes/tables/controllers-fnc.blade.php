@@ -19,7 +19,19 @@
 			$exclude = array("middleware", "getMiddleware", "callAction", "__call", "authorize",'authorizeForUser','authorizeResource','validateWith','validate','validateWithBag');
 			//$class = new ReflectionClass('App\Http\Controllers\Tenant\HomeController');
 			//$class = new ReflectionClass('App\Http\Controllers\Tenant\\'. $row["f"]);
-			$class = new ReflectionClass(config('akk.DOC_DIR_CLASS') .'\\'. $row["f"]);
+			//$class = new ReflectionClass(config('akk.DOC_DIR_CLASS') .'\\'. $row["f"]);
+			
+			//Log::debug('Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
+			//$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
+			//Log::debug('Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
+
+			if ($dir == "") {
+				Log::debug('NULL Value of $target_dir-> row[f]=' . $target_dir . $row["f"]);
+				$class = new ReflectionClass( $target_dir .$row["f"]);
+			} else  {
+				Log::debug('NOT NOT Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
+				$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
+			}
 
 			$methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
 			@endphp

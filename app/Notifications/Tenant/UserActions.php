@@ -33,8 +33,8 @@ class UserActions extends Notification implements ShouldQueue
 
 		switch ($this->action) {
 			case 'ACTIVATED':
-				$this->subject = '[FYA] Your '.config('app.name').' account at has been '.Str::lower($this->action).'.';
-				$this->line1	= 'Please note, your '.config('app.name').' account at has been '.Str::lower($this->action).'.';
+				$this->subject = '[FYA] Your '.tenant('id').'.'.config('app.name').' account at has been '.Str::lower($this->action).'.';
+				$this->line1	= 'Please note, your '.tenant('id').'.' .config('app.name').' account at has been '.Str::lower($this->action).'.';
 				$this->line2	= 'Please use this as login email: '.$this->user->email;
 				break;
 			default:
@@ -63,6 +63,7 @@ class UserActions extends Notification implements ShouldQueue
 			->greeting('Hello, '.$this->user->name)
 			->line($this->line1)
 			->line($this->line2)
+			->line('Please use following link to login.')
 			->action('Login', $this->actionURL)
 			->line('Thank you for using '.config('app.name').' application!');
 

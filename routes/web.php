@@ -146,6 +146,9 @@ Route::get('/email/verify', function () {
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
 	$request->fulfill();
+	// not needed in landlord as user created is enabled by default.
+	//Auth::logout();
+	//return redirect('/login');
 	return redirect('/home');
 	})->middleware(['auth', 'signed'])->name('verification.verify');
 
@@ -274,6 +277,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class);
 	//Route::get('/payments/pdf/{pr}', [PaymentController::class,'pdf'])->name('payments.pdf');
+
+	/* ======================== User ========================================  */
+	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+
+
 });
 
 
@@ -300,7 +308,7 @@ use App\Http\Controllers\Landlord\Manage\StatusController;
 
 // TODO uncomment
 // Ref: app/Providers/AppServiceProvider.php
-Route::middleware(['auth', 'verified','can:access-back-office'])->group(function () {
+Route::middleware(['auth', 'verified','can:seeded'])->group(function () {
 //Route::middleware(['auth', 'verified'])->group(function () {
 
 	// Route::get('dashboard', function () {
@@ -310,7 +318,7 @@ Route::middleware(['auth', 'verified','can:access-back-office'])->group(function
 	
 	/* ======================== User ========================================  */
 	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
-	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+	//Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 	/* ======================== Contact ======================================== */
 	Route::resource('contacts', ContactController::class);

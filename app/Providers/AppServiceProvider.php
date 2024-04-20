@@ -33,9 +33,46 @@ class AppServiceProvider extends ServiceProvider
 		// 	$this->app['request']->server->set('HTTPS', true);
 		// }
 
-		// Should return TRUE or FALSE IQBAL 
-		Gate::define('access-back-office', function(User $user) {
+		/**
+	 	* ==================================================================================
+ 		* Landlord
+ 		* ==================================================================================
+		*/
+		Gate::define('seeded', function(User $user) {
 			return $user->isSeeded();
 		});
+
+		/**
+	 	* ==================================================================================
+ 		* Tenant
+ 		* ==================================================================================
+		*/
+		// Should return TRUE or FALSE IQBAL 
+		Gate::define('buyer', function(User $user) {
+			return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
+		});
+
+		Gate::define('cxo', function(User $user) {
+			return ($user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
+		});
+
+		/**
+	 	* ==================================================================================
+ 		* Common
+ 		* ==================================================================================
+		*/
+		// Should return TRUE or FALSE IQBAL 
+		Gate::define('admin', function(User $user) {
+			return ($user->isAdmin() || $user->isSupport() || $user->isSystem());
+		});
+
+		Gate::define('support', function(User $user) {
+			return ($user->isSupport() || $user->isSystem());
+		});
+
+		Gate::define('system', function(User $user) {
+			return $user->isSystem();
+		});
+
 	}
 }
