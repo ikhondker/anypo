@@ -30,7 +30,15 @@
 						{{ $row['last_modified_human'] }}
 					@endif
 				</td>
-				<td class="text-start">{{ $row['days'] }}</td>
+				<td class="text-start">
+					@if ($row['days'] < 7)
+						<span class="badge bg-danger"> {{ $row['days'] }} <span>
+					@else
+						{{ $row['days'] }}
+					@endif
+
+					
+				</td>
 				<td class="table-action"><a class="text-info"
 						href="http://localhost:8000/{{ $row['route'] }}">Jump</a>
 				</td>

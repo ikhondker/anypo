@@ -194,48 +194,6 @@ class User extends Authenticatable implements MustVerifyEmail
 	|-----------------------------------------------------------------------------
 	*/
 
-	public function xxFrontOffice()
-	{
-		if ($this->enable == 1) {
-			switch ($this->role->value) {
-				case (UserRoleEnum::USER->value):
-					return true;
-					break;
-				case (UserRoleEnum::ADMIN->value):
-					return true;
-					break;
-				default:
-					return false;
-			}
-		} else {
-			return false;
-		}	
-	}
-
-	public function xxBackOffice()
-	{
-		if ($this->enable == 1) {
-			switch ($this->role->value) {
-				case (UserRoleEnum::DEVELOPER->value):
-					return true;
-					break;
-				case (UserRoleEnum::SUPPORT->value):
-					return true;
-					break;
-				case (UserRoleEnum::SUPERVISOR->value):
-					return true;
-					break;
-				case (UserRoleEnum::SYSTEM->value):
-					return true;
-					break;
-				default:
-					return false;
-			}
-		} else {
-			return false;
-		}	
-	}
-
 
 
 	/*

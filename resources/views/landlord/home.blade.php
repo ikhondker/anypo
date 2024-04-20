@@ -4,7 +4,7 @@
 
 	<!-- Hero -->
 	{{-- <div class="position-relative bg-img-start" style="background-image: url({{ Storage::disk('s3l')->url('svg/components/card-11.svg') }});"> --}}
-	<div class="position-relative bg-img-start" style="background-image: url(landlord/background/card-11.svg);">
+	<div class="position-relative bg-img-start" style="background-image: url({{asset('/assets/bg/card-11.svg')}});">
 		<div class="container content-space-t-3 content-space-t-lg-5 content-space-b-2 content-space-b-lg-3 position-relative zi-2">
 			<div class="row justify-content-lg-between align-items-md-center">
 				<div class="col-md-6 col-lg-5 mb-10 mb-md-0">

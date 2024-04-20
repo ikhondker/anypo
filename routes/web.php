@@ -91,11 +91,10 @@ Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
 
 Route::get('/online/{invoice_no}', [HomeController::class, 'onlineInvoice'])->name('home.invoice');
-Route::get('/send', [HomeController::class, 'testNotification'])->name('send');
-Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
 Route::post('/save-contact', [HomeController::class, 'saveLandlordContact'])->name('home.save-contact');
 Route::post('/join-mail-list', [HomeController::class, 'joinMailList'])->name('home.join-mail-list');
 //Route::get('/payment/{invoice_no}',[App\Http\Controllers\HomeController::class, 'payment'])->name('home.payment');
+
 
 
 /**
@@ -165,8 +164,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 	return back()->with('success', 'Verification link sent! Please check your mail and clink on "Verify Email Address" link.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-
-
 /**
 * ==================================================================================
 * 6. Public routes for stripe
@@ -182,57 +179,27 @@ Route::get('/cancel', [HomeController::class, 'cancel'])->name('checkout.cancel'
 // TODO
 // Route::post('/webhook', [HomeController::class, 'webhook'])->name('checkout.webhook');
 
-/**
-* ==================================================================================
-* 7. Tenancy Related Routes which need auth and email verification ['auth', 'verified']
-* ==================================================================================
-*/
-use App\Http\Controllers\DomainController;
-use App\Http\Controllers\TenantController;
-Route::middleware(['auth', 'verified'])->group(function () {
-	/* ======================== Domain ========================================  */
-	Route::resource('domains', DomainController::class);
-	/* ======================== Tenant ========================================  */
-	Route::resource('tenants', TenantController::class);
-});
 
 /**
 * ==================================================================================
-* 8. Routes need auth and email verification ['auth', 'verified']
+* 8. Routes for Regular user ['auth', 'verified']
 * ==================================================================================
 */
-use App\Http\Controllers\Landlord\AccountController;
 use App\Http\Controllers\Landlord\CommentController;
 use App\Http\Controllers\Landlord\DashboardController;
 use App\Http\Controllers\Landlord\NotificationController;
 use App\Http\Controllers\Landlord\TicketController;
-
 use App\Http\Controllers\Landlord\ReportController;
-
-use App\Http\Controllers\Landlord\Admin\ActivityController;
-use App\Http\Controllers\Landlord\Admin\InvoiceController;
-use App\Http\Controllers\Landlord\Admin\PaymentController;
-use App\Http\Controllers\Landlord\Admin\ServiceController;
 use App\Http\Controllers\Landlord\Admin\UserController;
-use App\Http\Controllers\Landlord\Admin\AttachmentController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-	/* ======================== Account ======================================== */
-	Route::resource('accounts', AccountController::class);
-	//Route::get('/account/export', [AccountController::class, 'export'])->name('accounts.export');
-	Route::get('/add-addon/{account_id}/{addon_id}', [AccountController::class, 'addAddon'])->name('accounts.add-addon');
-
-	/* ======================== Attachment ======================================== */
-	Route::resource('attachments', AttachmentController::class);
-	Route::get('/attachment/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
+	/* ======================== Dashboard ========================================  */
+	Route::resource('dashboards', DashboardController::class);
 
 	/* ======================== Comments ========================================  */
 	Route::resource('comments', CommentController::class);
 	//Route::get('/comment/createline/{id}',[CommentController::class, 'createline'])->name('comment.createline');
-
-	/* ======================== Dashboard ========================================  */
-	Route::resource('dashboards', DashboardController::class);
 
 	/* ======================== Notification ======================================== */
 	Route::resource('notifications', NotificationController::class);
@@ -244,9 +211,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	//Route::get('/tickets/pdf/{pr}', [TicketController::class,'pdf'])->name('tickets.pdf');
 	Route::get('/ticket/export', [TicketController::class, 'export'])->name('tickets.export');
 	Route::get('/ticket/close/{ticket}', [TicketController::class, 'close'])->name('tickets.close');
-
-	/* ======================== Service ======================================== */
-	Route::resource('services', ServiceController::class);
 	
 	/* ======================== Report ========================================  */
 	Route::resource('reports', ReportController::class);
@@ -259,35 +223,57 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/user/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
 	Route::post('/user/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
 	Route::get('/user/export', [UserController::class, 'export'])->name('users.export');
-	Route::get('/user/image/{filename}', [UserController::class, 'image'])->name('users.image');
-	// Route::get('users-password/{user}', [UserController::class, 'userPassword'])->name('users.password');
-	// Route::get('/user/role', [UserController::class, 'role'])->name('users.role');
-	// Route::get('/user/updaterole/{user}/{role}', [UserController::class, 'updaterole'])->name('users.updaterole');
-	// Route::get('/user/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
-	// TODO
-	// Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
+	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 	
+});
+
+
+/**
+* ==================================================================================
+* 8. Routes for Regular user ['auth', 'verified']
+* ==================================================================================
+*/
+use App\Http\Controllers\Landlord\AccountController;
+
+use App\Http\Controllers\Landlord\Admin\ActivityController;
+use App\Http\Controllers\Landlord\Admin\InvoiceController;
+use App\Http\Controllers\Landlord\Admin\PaymentController;
+use App\Http\Controllers\Landlord\Admin\ServiceController;
+use App\Http\Controllers\Landlord\Admin\AttachmentController;
+
+Route::middleware(['auth', 'verified','can:admin'])->group(function () {
+
+	/* ======================== Account ======================================== */
+	Route::resource('accounts', AccountController::class);
+	//Route::get('/account/export', [AccountController::class, 'export'])->name('accounts.export');
+	Route::get('/add-addon/{account_id}/{addon_id}', [AccountController::class, 'addAddon'])->name('accounts.add-addon');
+	
+
+	/* ======================== Attachment ======================================== */
+	Route::resource('attachments', AttachmentController::class);
+	Route::get('/attachment/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
+
+
+	/* ======================== Service ======================================== */
+	Route::resource('services', ServiceController::class);
+	
+
 	/* ======================== Activity ========================================  */
 	Route::resource('activities', ActivityController::class);
-	
+		
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class);
 	Route::get('/invoice/generate',[InvoiceController::class,'generate'])->name('invoices.generate');
-	
+
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class);
 	//Route::get('/payments/pdf/{pr}', [PaymentController::class,'pdf'])->name('payments.pdf');
-
-	/* ======================== User ========================================  */
-	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
-
-
 });
 
 
 /**
  * ==================================================================================
- * 9. Routes allowed to back office only ['auth', 'verified','can:access-back-office']
+ * 9. Routes allowed to back office only ['auth', 'verified','can:support']
  * ==================================================================================
 */
 
@@ -297,34 +283,21 @@ use App\Http\Controllers\Landlord\Lookup\CountryController;
 use App\Http\Controllers\Landlord\Lookup\ProductController;
 
 use App\Http\Controllers\Landlord\Manage\CheckoutController;
-use App\Http\Controllers\Landlord\Manage\EntityController;
+
 use App\Http\Controllers\Landlord\Manage\MailListController;
-use App\Http\Controllers\Landlord\Manage\MenuController;
-use App\Http\Controllers\Landlord\Manage\ProcessController;
-use App\Http\Controllers\Landlord\Manage\ConfigController;
-use App\Http\Controllers\Landlord\Manage\TableController;
-use App\Http\Controllers\Landlord\Manage\TemplateController;
-use App\Http\Controllers\Landlord\Manage\StatusController;
+use App\Http\Controllers\DomainController;
+use App\Http\Controllers\TenantController;
 
-// TODO uncomment
+
 // Ref: app/Providers/AppServiceProvider.php
-Route::middleware(['auth', 'verified','can:seeded'])->group(function () {
-//Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified','can:support'])->group(function () {
 
-	// Route::get('dashboard', function () {
-	// 	// Matches The "/admin/dashboard" URL
-	// 	return "This is from admin route from admin.route file at after auth " . now();
-	// });
-	
 	/* ======================== User ========================================  */
 	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
 	//Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 	/* ======================== Contact ======================================== */
 	Route::resource('contacts', ContactController::class);
-
-	/* ======================== Account ======================================== */
-	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.delete');
 
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
@@ -338,60 +311,15 @@ Route::middleware(['auth', 'verified','can:seeded'])->group(function () {
 	/* ======================== Product ======================================== */
 	Route::resource('products', ProductController::class);
 
-	/* ======================== Status ======================================== */
-	Route::resource('statuses', StatusController::class);
-	Route::get('/status/export', [StatusController::class, 'export'])->name('statuses.export');
-	Route::get('/statuses/delete/{status}', [StatusController::class, 'destroy'])->name('statuses.delete');
-
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
 	Route::get('/checkout/all', [CheckoutController::class, 'all'])->name('checkouts.all');
 					
-	/* ======================== Entity ======================================== */
-	Route::resource('entities', EntityController::class);
-	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
-	Route::get('/entity/export', [EntityController::class, 'export'])->name('entities.export');
-
 	/* ======================== MailList ======================================== */
 	Route::resource('mail-lists', MailListController::class)->middleware(['auth', 'verified']);
 	//Route::get('/maillist/export',[MailListController::class,'export'])->name('maillists.export');
 	Route::get('/mail-lists/delete/{mailList}',[MailListController::class,'destroy'])->name('mail-lists.destroy');
 
-	/* ======================== Menu ======================================== */
-	Route::resource('menus', MenuController::class);
-	Route::get('/menu/export', [MenuController::class,'export'])->name('menus.export');
-	Route::get('/menus/delete/{menu}', [MenuController::class,'destroy'])->name('menus.delete');
-
-	/* ======================== Process ======================================== */
-	Route::resource('processes', ProcessController::class);
-	Route::get('/process/gen-invoice-all', [ProcessController::class, 'genInvoiceAll'])->name('processes.gen-invoice-all');
-	Route::get('/process/accounts-archive', [ProcessController::class, 'accountsArchive'])->name('processes.accounts-archive');
-
-	/* ======================== Config ======================================== */
-	Route::resource('configs', ConfigController::class);
-		
-	/* ======================== Table ========================================  */
-	Route::resource('tables', TableController::class);
-	Route::get('/table/structure/{table}',[TableController::class, 'structure'])->name('tables.structure');
-	Route::get('/table/controllers/{dir?}',[TableController::class, 'controllers'])->name('tables.controllers');
-	Route::get('/table/controllers-fnc/{dir?}',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
-	Route::get('/table/models/{dir?}',[TableController::class, 'models'])->name('tables.models');
-	Route::get('/table/models-fnc/{dir?}',[TableController::class, 'fncModels'])->name('tables.fnc-models');
-	Route::get('/table/policies/{dir?}',[TableController::class, 'policies'])->name('tables.policies');
-	Route::get('/table/policies-fnc/{dir?}',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
-	Route::get('/table/helpers',[TableController::class, 'helpers'])->name('tables.helpers');
-	Route::get('/table/helpers-fnc',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
-	Route::get('/table/routes',[TableController::class, 'routes'])->name('tables.routes');
-	Route::get('/table/route-code/{dir?}',[TableController::class, 'routeCode'])->name('tables.route-code');
-	Route::get('/table/comments/{dir?}',[TableController::class, 'comments'])->name('tables.comments');
-	Route::get('/table/messages/{dir?}',[TableController::class, 'messages'])->name('tables.messages');
-	Route::get('/table/check',[TableController::class, 'check'])->name('tables.check');
-
-	/* ======================== Template ========================================  */
-	Route::resource('templates', TemplateController::class);
-	Route::get('/template/export', [TemplateController::class, 'export'])->name('templates.export');
-	Route::post('/template/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
-	
 	/* ======================== Ticket ========================================  */
 	Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
 	Route::get('/ticket/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
@@ -420,6 +348,82 @@ Route::middleware(['auth', 'verified','can:seeded'])->group(function () {
 
 	/**
 	* ==================================================================================
+	* 7. Tenancy Related Routes which need auth and email verification ['auth', 'verified']
+	* ==================================================================================
+	*/
+	/* ======================== Domain ========================================  */
+	Route::resource('domains', DomainController::class);
+	/* ======================== Tenant ========================================  */
+	Route::resource('tenants', TenantController::class);
+});
+	
+
+	
+/**
+* ==================================================================================
+* 11. Route only system can access
+* ==================================================================================
+*/
+use App\Http\Controllers\Landlord\Manage\EntityController;
+use App\Http\Controllers\Landlord\Manage\MenuController;
+use App\Http\Controllers\Landlord\Manage\ConfigController;
+use App\Http\Controllers\Landlord\Manage\TableController;
+use App\Http\Controllers\Landlord\Manage\TemplateController;
+use App\Http\Controllers\Landlord\Manage\StatusController;
+use App\Http\Controllers\Landlord\Manage\ProcessController;
+
+Route::middleware(['auth', 'verified','can:system'])->group(function () {
+
+	/* ======================== Process ======================================== */
+	Route::resource('processes', ProcessController::class);
+	Route::get('/process/gen-invoice-all', [ProcessController::class, 'genInvoiceAll'])->name('processes.gen-invoice-all');
+	Route::get('/process/accounts-archive', [ProcessController::class, 'accountsArchive'])->name('processes.accounts-archive');
+
+	/* ======================== Account ======================================== */
+	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.delete');
+
+	/* ======================== Config ======================================== */
+	Route::resource('configs', ConfigController::class);
+
+	/* ======================== Status ======================================== */
+	Route::resource('statuses', StatusController::class);
+	Route::get('/status/export', [StatusController::class, 'export'])->name('statuses.export');
+	Route::get('/statuses/delete/{status}', [StatusController::class, 'destroy'])->name('statuses.delete');
+		
+	/* ======================== Entity ======================================== */
+	Route::resource('entities', EntityController::class);
+	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
+	Route::get('/entity/export', [EntityController::class, 'export'])->name('entities.export');
+	
+	/* ======================== Menu ======================================== */
+	Route::resource('menus', MenuController::class);
+	Route::get('/menu/export', [MenuController::class,'export'])->name('menus.export');
+	Route::get('/menus/delete/{menu}', [MenuController::class,'destroy'])->name('menus.delete');
+
+	/* ======================== Table ========================================  */
+	Route::resource('tables', TableController::class);
+	Route::get('/table/structure/{table}',[TableController::class, 'structure'])->name('tables.structure');
+	Route::get('/table/controllers/{dir?}',[TableController::class, 'controllers'])->name('tables.controllers');
+	Route::get('/table/controllers-fnc/{dir?}',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
+	Route::get('/table/models/{dir?}',[TableController::class, 'models'])->name('tables.models');
+	Route::get('/table/models-fnc/{dir?}',[TableController::class, 'fncModels'])->name('tables.fnc-models');
+	Route::get('/table/policies/{dir?}',[TableController::class, 'policies'])->name('tables.policies');
+	Route::get('/table/policies-fnc/{dir?}',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
+	Route::get('/table/helpers',[TableController::class, 'helpers'])->name('tables.helpers');
+	Route::get('/table/helpers-fnc',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
+	Route::get('/table/routes',[TableController::class, 'routes'])->name('tables.routes');
+	Route::get('/table/route-code/{dir?}',[TableController::class, 'routeCode'])->name('tables.route-code');
+	Route::get('/table/comments/{dir?}',[TableController::class, 'comments'])->name('tables.comments');
+	Route::get('/table/messages/{dir?}',[TableController::class, 'messages'])->name('tables.messages');
+	Route::get('/table/check',[TableController::class, 'check'])->name('tables.check');
+
+	/* ======================== Template ========================================  */
+	Route::resource('templates', TemplateController::class);
+	Route::get('/template/export', [TemplateController::class, 'export'])->name('templates.export');
+	Route::post('/template/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
+
+	/**
+	* ==================================================================================
 	* 10. Route for Purging Cache
 	* ==================================================================================
 	*/
@@ -433,19 +437,20 @@ Route::middleware(['auth', 'verified','can:seeded'])->group(function () {
 	});
 
 });
-	
 
 	
 /**
 * ==================================================================================
-* 11. Route for Testing purpose
+* 11. Route for Testing purpose system only
 * ==================================================================================
 */
 use App\Http\Controllers\Landlord\TestController;
-Route::middleware(['auth', 'verified','can:seeded'])->group(function () {
+Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	//TODO php artisan route:cache error
 	Route::get('/testrun', [TestController::class, 'run'])->name('test.run');
+	Route::get('/send', [HomeController::class, 'testNotification'])->name('send');
+	Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
 
 	Route::get('/test', function () {
 		return view('landlord.test');
