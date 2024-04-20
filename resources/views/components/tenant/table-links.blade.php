@@ -32,7 +32,7 @@
 		<a class="dropdown-item" href="{{ route('tables.routes') }}"><i class="align-middle me-1" data-feather="user"></i> All Routes</a>
 		<a class="dropdown-item" href="{{ route('tables.route-code') }}"><i class="align-middle me-1" data-feather="user"></i>Route Code</a>
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('tables.comments') }}"><i class="align-middle me-1" data-feather="user"></i> Comments</a>
+		<a class="dropdown-item" href="{{ route('tables.comments') }}"><i class="align-middle me-1" data-feather="user"></i> Header Comments</a>
 		<a class="dropdown-item" href="{{ route('tables.messages') }}"><i class="align-middle me-1" data-feather="user"></i> Msg in Class</a>
 		<a class="dropdown-item" href="{{ route('tables.index') }}"><i class="align-middle me-1" data-feather="user"></i> Del Class *</a>
 		<a class="dropdown-item" href="{{ route('tables.check') }}"><i class="align-middle me-1" data-feather="user"></i> Check Files*</a>

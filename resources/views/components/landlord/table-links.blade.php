@@ -44,7 +44,7 @@
 	  <a class="dropdown-item" href="{{ route('tables.helpers') }}">Helpers</a>
 	  <a class="dropdown-item" href="{{ route('tables.routes') }}">All Routes</a>
 	  <a class="dropdown-item" href="{{ route('tables.route-code') }}">Route Code</a>
-	  <a class="dropdown-item" href="{{ route('tables.comments') }}">Comments</a>
+	  <a class="dropdown-item" href="{{ route('tables.comments') }}">Header Comments</a>
 	  <a class="dropdown-item" href="{{ route('tables.messages') }}">Msg in Class</a>
 	  <a class="dropdown-item" href="{{ route('tables.check') }}">Check Files*</a>
 	</div>

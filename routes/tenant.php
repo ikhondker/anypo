@@ -502,14 +502,11 @@ Route::middleware([
 		Route::get('/table/policies-fnc/{dir?}',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
 		Route::get('/table/helpers',[TableController::class, 'helpers'])->name('tables.helpers');
 		Route::get('/table/helpers-fnc',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
-		
 		Route::get('/table/routes',[TableController::class, 'routes'])->name('tables.routes');
-		
-		//Route::get('/table/route-code',[TableController::class, 'routeCode'])->name('tables.route-code');
 		Route::get('/table/route-code/{dir?}',[TableController::class, 'routeCode'])->name('tables.route-code');
-		Route::get('/table/comments',[TableController::class, 'comments'])->name('tables.comments');
+		Route::get('/table/comments/{dir?}',[TableController::class, 'comments'])->name('tables.comments');
+		Route::get('/table/messages/{dir?}',[TableController::class, 'messages'])->name('tables.messages');
 		Route::get('/table/check',[TableController::class, 'check'])->name('tables.check');
-		Route::get('/table/messages',[TableController::class, 'messages'])->name('tables.messages');
 
 		/* ======================== Template ========================================  */
 		Route::resource('templates', TemplateController::class);

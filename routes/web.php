@@ -16,7 +16,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 
-use App\Models\Landlord\Manage\Setup;
+use App\Models\Landlord\Manage\Config;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,8 +75,8 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/contact-us', function () {
-	$setup = Setup::with('relCountry')->first();
-	return view('landlord.pages.contact-us', compact('setup'));
+	$config = Config::with('relCountry')->first();
+	return view('landlord.pages.contact-us', compact('config'));
 })->name('contact-us');
 
 /**
@@ -373,19 +373,19 @@ Route::middleware(['auth', 'verified','can:seeded'])->group(function () {
 	/* ======================== Table ========================================  */
 	Route::resource('tables', TableController::class);
 	Route::get('/table/structure/{table}',[TableController::class, 'structure'])->name('tables.structure');
-	Route::get('/table/controllers',[TableController::class, 'controllers'])->name('tables.controllers');
-	Route::get('/table/controllers-fnc',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
-	Route::get('/table/models',[TableController::class, 'models'])->name('tables.models');
-	Route::get('/table/models-fnc',[TableController::class, 'fncModels'])->name('tables.fnc-models');
-	Route::get('/table/policies',[TableController::class, 'policies'])->name('tables.policies');
-	Route::get('/table/policies-fnc',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
+	Route::get('/table/controllers/{dir?}',[TableController::class, 'controllers'])->name('tables.controllers');
+	Route::get('/table/controllers-fnc/{dir?}',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
+	Route::get('/table/models/{dir?}',[TableController::class, 'models'])->name('tables.models');
+	Route::get('/table/models-fnc/{dir?}',[TableController::class, 'fncModels'])->name('tables.fnc-models');
+	Route::get('/table/policies/{dir?}',[TableController::class, 'policies'])->name('tables.policies');
+	Route::get('/table/policies-fnc/{dir?}',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
 	Route::get('/table/helpers',[TableController::class, 'helpers'])->name('tables.helpers');
 	Route::get('/table/helpers-fnc',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
 	Route::get('/table/routes',[TableController::class, 'routes'])->name('tables.routes');
-	Route::get('/table/route-code',[TableController::class, 'routeCode'])->name('tables.route-code');
-	Route::get('/table/comments',[TableController::class, 'comments'])->name('tables.comments');
+	Route::get('/table/route-code/{dir?}',[TableController::class, 'routeCode'])->name('tables.route-code');
+	Route::get('/table/comments/{dir?}',[TableController::class, 'comments'])->name('tables.comments');
+	Route::get('/table/messages/{dir?}',[TableController::class, 'messages'])->name('tables.messages');
 	Route::get('/table/check',[TableController::class, 'check'])->name('tables.check');
-	Route::get('/table/messages',[TableController::class, 'messages'])->name('tables.messages');
 
 	/* ======================== Template ========================================  */
 	Route::resource('templates', TemplateController::class);
@@ -442,7 +442,7 @@ Route::middleware(['auth', 'verified','can:seeded'])->group(function () {
 * ==================================================================================
 */
 use App\Http\Controllers\Landlord\TestController;
-Route::middleware(['auth', 'verified','can:access-back-office'])->group(function () {
+Route::middleware(['auth', 'verified','can:seeded'])->group(function () {
 
 	//TODO php artisan route:cache error
 	Route::get('/testrun', [TestController::class, 'run'])->name('test.run');

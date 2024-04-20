@@ -255,8 +255,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\app\Models\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.routeCode dir=' . $dir);
-		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.models dir=' . $dir);
+		Log::debug('tenant.TableController.models target_dir=' . $target_dir);
 
 
 		//$filesInFolder = \File::files(base_path().'\app\Models');
@@ -273,8 +273,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\App\Models\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.routeCode dir=' . $dir);
-		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.fncModels dir=' . $dir);
+		Log::debug('tenant.TableController.fncModels target_dir=' . $target_dir);
 
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
@@ -314,8 +314,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\app\Models\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.routeCode dir=' . $dir);
-		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.policies dir=' . $dir);
+		Log::debug('tenant.TableController.policies target_dir=' . $target_dir);
 
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');	// <<============= Models
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
@@ -330,17 +330,23 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\App\Policies\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.routeCode dir=' . $dir);
-		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.fncPolicies dir=' . $dir);
+		Log::debug('tenant.TableController.fncPolicies target_dir=' . $target_dir);
 
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_POLICY'));
 		$filesInFolder = Docs::getFiles($target_dir);
 		return view('tenant.manage.tables.policies-fnc', compact('filesInFolder','dir','target_dir'));
 	}
 
-	public function comments()
+	public function comments($dir = null)
 	{
 		$this->authorize('comments', Table::class);
+
+
+		$BASE_DIR	= "\app\Models\Tenant\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.policies dir=' . $dir);
+		Log::debug('tenant.TableController.policies target_dir=' . $target_dir);
 
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Landlord');
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Auth');
@@ -349,20 +355,31 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Notifications');
 
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant\Admin');
-		$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		$filesInFolder = Docs::getFiles($target_dir);
 
-		return view('tenant.manage.tables.comments', compact('filesInFolder'));
+		return view('tenant.manage.tables.comments', compact('filesInFolder','dir'));
 
 	}
 
-	public function messages()
+	public function messages($dir = null)
 	{
 		$this->authorize('messages', Table::class);
 		
+		$BASE_DIR	= "\App\Http\Controllers\Tenant\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.routeCode dir=' . $dir);
+		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+
+
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers');
 		//$filesInFolder = Docs::messages('\app\Http\Controllers');
-		$filesInFolder = Docs::messages(config('akk.DOC_DIR_CLASS'));
+
+		//$filesInFolder = Docs::messages(config('akk.DOC_DIR_CLASS'));
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		$filesInFolder = Docs::getFiles($target_dir);
+
+		return view('tenant.manage.tables.messages', compact('filesInFolder','target_dir'));
 	}
 
 

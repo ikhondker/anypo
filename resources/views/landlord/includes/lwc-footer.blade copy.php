@@ -125,3 +125,80 @@
   	</footer>
   	<!-- ========== END FOOTER ========== -->
 
+<!-- JS Global Compulsory  -->
+{{-- <script src="{{ asset('/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script> --}}
+<script	src="{{ Storage::disk('s3l')->url('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- JS Implementing Plugins -->
+{{-- <script src="{{ asset('/assets/vendor/hs-header/dist/hs-header.min.js') }}"></script>
+<script src="{{ asset('/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js') }}"></script>
+<script src="{{ asset('/assets/vendor/hs-show-animation/dist/hs-show-animation.min.js') }}"></script>
+<script src="{{ asset('/assets/vendor/hs-go-to/dist/hs-go-to.min.js') }}"></script>
+<script src="{{ asset('/assets/vendor/tom-select/dist/js/tom-select.complete.min.js') }}"></script> --}}
+
+<script	src="{{ Storage::disk('s3l')->url('vendor/hs-header/dist/hs-header.min.js') }}"></script>
+<script	src="{{ Storage::disk('s3l')->url('vendor/hs-mega-menu/dist/hs-mega-menu.min.js') }}"></script>
+<script	src="{{ Storage::disk('s3l')->url('hs-show-animation/dist/hs-show-animation.min.js') }}"></script>
+<script	src="{{ Storage::disk('s3l')->url('vendor/hs-go-to/dist/hs-go-to.min.js') }}"></script>
+<script	src="{{ Storage::disk('s3l')->url('vendor/tom-select/dist/js/tom-select.complete.min.js') }}"></script>
+
+
+<!-- JS Front -->
+{{-- <script src="{{ asset('/assets/js/theme.min.js') }}"></script> --}}
+<script	src="{{ Storage::disk('s3l')->url('js/theme.min.js') }}"></script>
+
+<!-- JS Plugins Init. -->
+<script>
+  (function() {
+	// INITIALIZATION OF HEADER
+	// =======================================================
+	new HSHeader('#header').init()
+
+	// INITIALIZATION OF MEGA MENU
+	// =======================================================
+	new HSMegaMenu('.js-mega-menu', {
+		desktop: {
+		  position: 'left'
+		}
+	  })
+
+
+	// INITIALIZATION OF SHOW ANIMATIONS
+	// =======================================================
+	// new HSShowAnimation('.js-animation-link')
+
+
+	// INITIALIZATION OF BOOTSTRAP VALIDATION
+	// =======================================================
+	HSBsValidation.init('.js-validate', {
+	  onSubmit: data => {
+		data.event.preventDefault()
+		alert('Submited')
+	  }
+	})
+
+
+	// INITIALIZATION OF BOOTSTRAP DROPDOWN
+	// =======================================================
+	HSBsDropdown.init()
+
+
+	// INITIALIZATION OF GO TO
+	// =======================================================
+	new HSGoTo('.js-go-to')
+
+
+	// INITIALIZATION OF SELECT
+	// =======================================================
+	HSCore.components.HSTomSelect.init('.js-select', {
+	  render: {
+		'option': function(data, escape) {
+		  return data.optionTemplate
+		},
+		'item': function(data, escape) {
+		  return data.optionTemplate
+		}
+	  }
+	})
+  })()
+</script>

@@ -19,8 +19,8 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Functions in Models</h5>
-					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_MODEL') }}</h6>
+					{{-- <h5 class="card-title">Functions in Models</h5>
+					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_MODEL') }}</h6> --}}
 					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6><br>
 					<a class="" href="{{ route('tables.fnc-models') }}"><i class="align-middle me-1" data-feather="folder"></i>Root</a>
 					<a class="" href="{{ route('tables.fnc-models','Admin') }}"><i class="align-middle me-1" data-feather="folder"></i>Admin</a>
@@ -340,10 +340,8 @@
 								
 								//$class = new ReflectionClass($target_dir .'\\'. $row["f"]);
 								if ($dir == "") {
-									Log::debug('NULL Value of $target_dir-> row[f]=' . $target_dir . $row["f"]);
 									$class = new ReflectionClass( $target_dir .$row["f"]);
 								} else  {
-									Log::debug('NOT NOT Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
 									$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
 								}
 

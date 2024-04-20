@@ -28,7 +28,6 @@
 					<a class="" href="{{ route('tables.controllers','Manage') }}"><i class="align-middle me-1" data-feather="folder"></i>Manage</a>
 					<a class="" href="{{ route('tables.controllers','Workflow') }}"><i class="align-middle me-1" data-feather="folder"></i>Workflow</a>
 					<a class="" href="{{ route('tables.controllers','Support') }}"><i class="align-middle me-1" data-feather="folder"></i>Support</a>
-
 				</div>
 				<div class="card-body">
 					

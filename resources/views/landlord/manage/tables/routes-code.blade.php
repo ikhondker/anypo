@@ -14,7 +14,25 @@
 
 		<!-- card-body -->
 		<div class="card-body">
-			<x-landlord.table-links/>
+			<!-- Breadcrumb -->
+			<div class="container">
+				<div class="row align-items-lg-center pb-3">
+					<div class="col-lg mb-2 mb-lg-0">
+						<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6>
+						<a class="" href="{{ route('tables.route-code') }}"><i class="align-middle me-1" data-feather="folder"></i>Root</a>
+						<a class="" href="{{ route('tables.route-code','Admin') }}"><i class="align-middle me-1" data-feather="folder"></i>Admin</a>
+						<a class="" href="{{ route('tables.route-code','Lookup') }}"><i class="align-middle me-1" data-feather="folder"></i>Lookup</a>
+						<a class="" href="{{ route('tables.route-code','Manage') }}"><i class="align-middle me-1" data-feather="folder"></i>Manage</a>
+					</div>
+					<!-- End Col -->
+					<div class="col-lg-auto">
+						<x-landlord.table-links/>
+					</div>
+					<!-- End Col -->
+					</div>
+					<!-- End Row -->
+			</div>
+			<!-- End Breadcrumb -->
 
 			@foreach($filesInFolder as $row)
 				<div class="alert alert-danger" role="alert">

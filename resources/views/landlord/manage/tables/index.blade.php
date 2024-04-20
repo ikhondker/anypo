@@ -15,7 +15,22 @@
 
 		<!-- card-body -->
 		<div class="card-body">
-			<x-landlord.table-links/>
+			
+			<!-- Breadcrumb -->
+			<div class="container">
+				<div class="row align-items-lg-center pb-3">
+					<div class="col-lg mb-2 mb-lg-0">
+						<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6>
+					</div>
+					<!-- End Col -->
+					<div class="col-lg-auto">
+						<x-landlord.table-links/>
+					</div>
+					<!-- End Col -->
+					</div>
+					<!-- End Row -->
+			</div>
+			<!-- End Breadcrumb -->
 
 			@include('shared.includes.tables.tables')
 

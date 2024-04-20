@@ -1,4 +1,5 @@
 @extends('layouts.landlord-jquery')
+
 @section('title','JQuery in Laravel 10 | anyPO.com')
 
 @section('content')
@@ -135,9 +136,9 @@
 </script>
 
 <script type="module">
-	$( function() {
-		$(".datepicker" ).datepicker();
-	});
+	// $( function() {
+	// 	$(".datepicker" ).datepicker();
+	// });
 </script>
 
 @endsection

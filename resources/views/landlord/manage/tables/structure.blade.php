@@ -12,13 +12,27 @@
 			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 				<h5 class="card-header-title">Table: [{{ $table }}]</h5>
 				<a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">
-					<i class="bi bi-plus-square me-1"></i> Create User
+					<i class="bi bi-plus-square me-1"></i> Future
 				</a>
 			</div>
 
 			<!-- card-body -->
 			<div class="card-body">
-				<x-landlord.table-links/>
+				<!-- Breadcrumb -->
+				<div class="container">
+					<div class="row align-items-lg-center pb-3">
+						<div class="col-lg mb-2 mb-lg-0">
+							<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6>
+						</div>
+						<!-- End Col -->
+						<div class="col-lg-auto">
+							<x-landlord.table-links/>
+						</div>
+						<!-- End Col -->
+						</div>
+						<!-- End Row -->
+				</div>
+				<!-- End Breadcrumb -->
 				
 				<div class="form-group row">
 					<label for="name" class="col-sm-2 col-form-label col-form-label-sm text-end text-muted h6">COLUMN LIST:</label>
@@ -65,7 +79,7 @@
 			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 				<h5 class="card-header-title">COLUMN LIST: Table [{{ $table }}]</h5>
 				<a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">
-					<i class="bi bi-plus-square me-1"></i> Create User
+					<i class="bi bi-plus-square me-1"></i> Future
 				</a>
 			</div>
 

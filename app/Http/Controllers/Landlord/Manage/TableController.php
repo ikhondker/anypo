@@ -136,26 +136,35 @@ class TableController extends Controller
 		return view('landlord.manage.tables.structure', with(compact('columns', 'table')));
 	}
 
-	public function controllers()
+	public function controllers($dir = null)
 	{
 		$this->authorize('controllers', Table::class);
+
+		$BASE_DIR	= "\app\Http\Controllers\Landlord\\";
+		$target_dir = $BASE_DIR . $dir;
+
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord');
-		$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_CLASS'));
+		//$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_CLASS'));
+		$filesInFolder = Docs::getFiles( $target_dir );
 		return view('landlord.manage.tables.controllers', compact('filesInFolder'));
 		
 	}
 
-	public function fncControllers()
+	public function fncControllers($dir = null)
 	{
 		// Ref: https://www.php.net/manual/en/class.reflectionclass.php
 		$this->authorize('controllers', Table::class);
 
+		$BASE_DIR	= "\App\Http\Controllers\Landlord\\";
+		$target_dir = $BASE_DIR . $dir;
+
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant');
-		$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_CLASS'));
-		
+		//$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_CLASS'));
+		$filesInFolder = Docs::getFiles( $target_dir );
+
 		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
-		return view('landlord.manage.tables.controllers-fnc', compact('filesInFolder'));
+		return view('landlord.manage.tables.controllers-fnc', compact('filesInFolder','dir','target_dir'));
 	}
 
 	public function helpers()
@@ -183,22 +192,30 @@ class TableController extends Controller
 	}
 
 
-	public function models()
+	public function models($dir = null)
 	{
 		$this->authorize('models', Table::class);
-		$filesInFolder = Docs::getFiles('\app\Models\Landlord');
-		$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_MODEL'));
+		$BASE_DIR	= "\app\Models\Landlord\\";
+		$target_dir = $BASE_DIR . $dir;
+		$filesInFolder = Docs::getFiles($target_dir);
+
+		//$filesInFolder = Docs::getFiles('\app\Models\Landlord');
+		//$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_MODEL'));
 		return view('landlord.manage.tables.models', compact('filesInFolder'));
 	}
 
-	public function fncModels()
+	public function fncModels($dir = null)
 	{
 		$this->authorize('models', Table::class);
 
+		$BASE_DIR	= "\App\Models\Landlord\\";
+		$target_dir = $BASE_DIR . $dir;
+		$filesInFolder = Docs::getFiles($target_dir);
+
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
-		$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_MODEL'));
-		return view('landlord.manage.tables.models-fnc', compact('filesInFolder'));
+		//$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_MODEL'));
+		return view('landlord.manage.tables.models-fnc', compact('filesInFolder','dir','target_dir'));
 	}
 
 
@@ -210,35 +227,51 @@ class TableController extends Controller
 		return view('landlord.manage.tables.routes-all', compact('routes'));
 	}
 
-	public function routeCode()
+	public function routeCode($dir = null)
 	{
 		$this->authorize('routeCode', Table::class);
+
+		$BASE_DIR	= "\app\Models\Landlord\\";
+		$target_dir = $BASE_DIR . $dir;
+		$filesInFolder = Docs::getFiles($target_dir);
+
 		//$filesInFolder = Docs::getFiles('\app\Models\Landlord');
-		$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_MODEL'));
+		//$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_MODEL'));
 		return view('landlord.manage.tables.routes-code', compact('filesInFolder'));
 	}
 
-	public function policies()
+	public function policies($dir = null)
 	{
 
 		$this->authorize('policies', Table::class);
+		$BASE_DIR	= "\app\Models\Landlord\\";
+		$target_dir = $BASE_DIR . $dir;
+
 		//$filesInFolder = Docs::getFiles('\app\Models\Landlord');	// <<============= Models
-		$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_MODEL'));
+		//$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_MODEL'));
+		$filesInFolder = Docs::getFiles($target_dir);
 		return view('landlord.manage.tables.policies', compact('filesInFolder'));
 	}
 
-	public function fncPolicies()
+	public function fncPolicies($dir = null)
 	{
 		$this->authorize('models', Table::class);
 
-		$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_POLICY'));
+		$BASE_DIR	= "\App\Policies\Landlord\\";
+		$target_dir = $BASE_DIR . $dir;
+
+		//$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_POLICY'));
+		$filesInFolder = Docs::getFiles($target_dir);
 		return view('landlord.manage.tables.policies-fnc', compact('filesInFolder'));
 	}
 
 
-	public function comments()
+	public function comments($dir = null)
 	{
 		$this->authorize('comments', Table::class);
+
+		$BASE_DIR	= "\app\Models\Landlord\\";
+		$target_dir = $BASE_DIR . $dir;
 
 		//$filesInFolder = \File::files(base_path() . '\app\Http\Controllers\Landlord\Admin');
 		//$filesInFolder = \File::files(base_path() . '\app\Models\Landlord\Lookup');
@@ -247,14 +280,21 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Helpers');
 		//$filesInFolder = \File::files(base_path().'\app\Notifications');
 		
-		$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord\Manage');
-		return view('landlord.manage.tables.comments', compact('filesInFolder'));
+		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord\Manage');
+		$filesInFolder = Docs::getFiles($target_dir);
+		return view('landlord.manage.tables.comments', compact('filesInFolder','dir'));
 	}
 
-	public function messages()
+	public function messages($dir = null)
 	{
 		$this->authorize('messages', Table::class);
-		$filesInFolder = Docs::messages('\app\Http\Controllers');
+		$BASE_DIR	= "\App\Http\Controllers\Landlord\\";
+		$target_dir = $BASE_DIR . $dir;
+
+		//$filesInFolder = Docs::messages('\app\Http\Controllers');
+
+		$filesInFolder = Docs::getFiles($target_dir);
+		return view('landlord.manage.tables.messages', compact('filesInFolder','target_dir'));
 	}
 
 	// P2

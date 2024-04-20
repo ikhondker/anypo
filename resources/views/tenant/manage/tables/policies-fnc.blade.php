@@ -53,10 +53,10 @@
 								//$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
 
 								if ($dir == "") {
-									Log::debug('NULL Value of $target_dir-> row[f]=' . $target_dir . $row["f"]);
+									//Log::debug('NULL Value of $target_dir-> row[f]=' . $target_dir . $row["f"]);
 									$class = new ReflectionClass( $target_dir .$row["f"]);
 								} else  {
-									Log::debug('NOT NOT Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
+									//Log::debug('NOT NOT Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
 									$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
 								}
 
