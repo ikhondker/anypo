@@ -1,18 +1,18 @@
-<div class="tab-pane fade" id="helpsetup" role="tabpanel">
+<div class="tab-pane fade" id="helpfaq" role="tabpanel">
 	<div class="card">
 		<div class="card-header">
-			<h5 class="card-title">Setup</h5>
+			<h5 class="card-title">FAQ</h5>
 		</div>
 		<div class="card-body">
-			<div class="accordion" id="accordionSetup">
+			<div class="accordion" id="accordionFAQ">
 
 				<div class="card">
-					<div class="card-header" id="headingSetup1">
+					<div class="card-header" id="headingFAQ1">
 						<h5 class="card-title my-2">
-							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseSetup1" aria-expanded="true" aria-controls="collapseSetup1">Accordion</a>
+							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseFAQ1" aria-expanded="true" aria-controls="collapseFAQ1">Accordion</a>
 						</h5>
 					</div>
-					<div id="collapseSetup1" class="collapse show" aria-labelledby="headingSetup1" data-bs-parent="#accordionSetup">
+					<div id="collapseFAQ1" class="collapse show" aria-labelledby="headingFAQ1" data-bs-parent="#accordionFAQ">
 						<div class="card-body">
 							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
 							Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
@@ -23,12 +23,12 @@
 				</div>
 				
 				<div class="card">
-					<div class="card-header" id="headingSetup2">
+					<div class="card-header" id="headingFAQ2">
 						<h5 class="card-title my-2">
-							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseSetup2" aria-expanded="true" aria-controls="collapseSetup1">Another Po1</a>
+							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseFAQ2" aria-expanded="true" aria-controls="collapseFAQ1">Another Po1</a>
 						</h5>
 					</div>
-					<div id="collapseSetup2" class="collapse" aria-labelledby="headingSetup2" data-bs-parent="#accordionSetup">
+					<div id="collapseFAQ2" class="collapse" aria-labelledby="headingFAQ2" data-bs-parent="#accordionFAQ">
 						<div class="card-body">
 							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
 							Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
@@ -39,12 +39,12 @@
 				</div>
 				
 				<div class="card">
-					<div class="card-header" id="headingSetup3">
+					<div class="card-header" id="headingFAQ3">
 						<h5 class="card-title my-2">
-							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseSetup3" aria-expanded="true" aria-controls="collapseSetup1">Something else</a>
+							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseFAQ3" aria-expanded="true" aria-controls="collapseFAQ1">Something else</a>
 						</h5>
 					</div>
-					<div id="collapseSetup3" class="collapse" aria-labelledby="headingSetup3" data-bs-parent="#accordionSetup">
+					<div id="collapseFAQ3" class="collapse" aria-labelledby="headingFAQ3" data-bs-parent="#accordionFAQ">
 						<div class="card-body">
 							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
 							Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch

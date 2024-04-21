@@ -17,8 +17,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-
-	@include('tenant.includes.notification-stat')
+	<x-tenant.dashboards.notification-stat/>
 
 	<div class="row">
 		<div class="col-12">

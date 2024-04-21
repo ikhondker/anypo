@@ -15,8 +15,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Dept"/>
-			<x-tenant.buttons.header.create object="Dept"/>
-			<x-tenant.buttons.header.edit object="Dept" :id="$dept->id"/>
+			<x-tenant.actions.dept-actions id="{{ $dept->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -35,7 +34,6 @@
 					<x-tenant.show.my-boolean	value="{{ $dept->enable }}"/>
 					<x-tenant.show.my-created-at value="{{ $dept->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $dept->created_at }}"/>
-					<x-tenant.buttons.show.edit object="Dept" :id="$dept->id"/>
 				</div>
 			</div>
 		</div>
@@ -46,5 +44,6 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

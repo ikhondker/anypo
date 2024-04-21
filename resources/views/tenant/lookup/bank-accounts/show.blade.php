@@ -12,8 +12,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="BankAccount"/>
-			<x-tenant.buttons.header.create object="BankAccount"/>
-			<x-tenant.buttons.header.edit object="BankAccount" :id="$bankAccount->id"/>
+			<x-tenant.actions.bank-account-actions id="{{ $bankAccount->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -35,14 +34,13 @@
 					<x-tenant.show.my-boolean	value="{{ $bankAccount->enable }}"/>
 					<x-tenant.show.my-created_at value="{{ $bankAccount->created_at }}"/>
 					<x-tenant.show.my-updated_at value="{{ $bankAccount->updated_at }}"/>
-					<x-tenant.buttons.show.edit object="BankAccount" :id="$bankAccount->id"/>
-		
+	
 				</div>
 			</div>
 		</div>
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

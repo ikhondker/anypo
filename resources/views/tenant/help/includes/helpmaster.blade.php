@@ -1,7 +1,7 @@
 <div class="tab-pane fade" id="helpmaster" role="tabpanel">
 	<div class="card">
 		<div class="card-header">
-			<h5 class="card-title">Master Data Managment</h5>
+			<h5 class="card-title">Master Data Management</h5>
 		</div>
 		<div class="card-body">
 			<div class="accordion" id="accordionMaster">

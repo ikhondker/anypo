@@ -31,7 +31,7 @@
 					</div>
 				</div>
 				@php
-					use App\Models\Item;
+					
 					$count_unread	= auth()->user()->unreadNotifications->count();
 					$count_total	= auth()->user()->Notifications->count();
 					$count_read		= auth()->user()->readNotifications->count();

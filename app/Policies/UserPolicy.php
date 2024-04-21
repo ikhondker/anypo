@@ -81,10 +81,10 @@ class UserPolicy
 			| Tenant																	 + 
 			|-----------------------------------------------------------------------------
 			*/
-			// only back-office can see seeded users view
+			// only back-office can see/edit/ seeded users view
 			if ($model->seeded) {
 				return $user->isSeeded();
-			} else if ($user->isAdmin() && ($user->id === $model->id) ) {
+			} else if ($user->isAdmin() & (! $model->seeded) ) {
 				return ( true );
 			} else {
 				// allow to change only own password
@@ -147,13 +147,23 @@ class UserPolicy
 			| Tenant																	 + 
 			|-----------------------------------------------------------------------------
 			*/
-			// only back-office can edit seeded users
+			// only back-office can see/edit/ seeded users view
 			if ($model->seeded) {
-				return $user->isSupport();
+				return $user->isSeeded();
+			} else if ($user->isAdmin() & (! $model->seeded) ) {
+				return ( true );
 			} else {
-				// admin can edit all and others can edit only own
-				return ( $user->isAdmin() ||$user->isSupport() || ($user->id === $model->id) );
+				// allow to change only own password
+				return ( $user->id === $model->id );
 			}
+
+			// only back-office can edit seeded users
+			// if ($model->seeded) {
+			// 	return $user->isSupport();
+			// } else {
+			// 	// admin can edit all and others can edit only own
+			// 	return ( $user->isAdmin() ||$user->isSupport() || ($user->id === $model->id) );
+			// }
 		}
 
 	}
@@ -238,7 +248,7 @@ class UserPolicy
 			// only back-office can edit seeded users
 			if ($model->seeded) {
 				return $user->isSeeded();
-			} else if ($user->isAdmin() && ($user->id === $model->id) ) {
+			} else if ($user->isAdmin() & (! $model->seeded) ) {
 				return ( true );
 			} else {
 				// allow to change only own password

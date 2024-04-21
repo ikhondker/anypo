@@ -26,12 +26,12 @@ class BudgetByDeptPie extends Component
 	 */
 	public function __construct(public string $bid ='0000')
 	{
-		Log::debug('components.tenant.charts.BudgetByDeptPie Value of bid=' . $bid);
+		Log::debug('components.tenant.charts.BudgetByDeptPie Value of budget_id = ' . $bid);
 
 		if ($bid == '0000'){
 			// No dept budge id is specified. Show current user last dept budget
 			$this->budget		= Budget::orderBy('id', 'DESC')->firstOrFail();
-			Log::debug('components.tenant.charts.BudgetByDeptPie HERE Value of $this->budget->id=' . $this->budget->id);
+			Log::debug('components.tenant.charts.BudgetByDeptPie Value of this->budget->id = ' . $this->budget->id);
 			$this->deptBudgets 	= DeptBudget::where('budget_id',$this->budget->id)->with('dept')->with('budget')->orderBy('id', 'DESC')->get();
 		} else {
 			$this->budget		= Budget::where('id', $bid)->orderBy('id', 'DESC')->firstOrFail();

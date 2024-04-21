@@ -12,7 +12,8 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Item"/>
-			<x-tenant.buttons.header.create object="Item"/>
+			<x-tenant.actions.item-actions id="{{ $item->id }}"/>
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -38,13 +39,12 @@
 					<x-tenant.show.my-created_at value="{{ $item->created_at }}"/>
 					<x-tenant.show.my-updated_at value="{{ $item->updated_at }}"/>
 					
-					<x-tenant.buttons.show.edit object="Item" :id="$item->id"/>
 				</div>
 			</div>
 		</div>
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

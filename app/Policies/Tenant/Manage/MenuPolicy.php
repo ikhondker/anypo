@@ -86,10 +86,10 @@ class MenuPolicy
 	/**
 	 * Determine whether the user can view any models.
 	 */
-	public function viewPurchaseMenu(User $user): bool
+	public function viewWorkbenchMenu(User $user): bool
 	{
 		// TODO MUST 
-		return true;
+		//return true;
 		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
@@ -99,7 +99,7 @@ class MenuPolicy
 	public function viewBudgetMenu(User $user): bool
 	{
 		// TODO MUST 
-		return true;
+		//return true;
 		return ($user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() );
 	}
 
@@ -109,7 +109,7 @@ class MenuPolicy
 	public function viewReportMenu(User $user): bool
 	{
 		// TODO MUST 
-		return true;
+		//return true;
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
@@ -119,7 +119,7 @@ class MenuPolicy
 	public function viewMasterDataMenu(User $user): bool
 	{
 		// TODO MUST 
-		return true;
+		//return true;
 		return ( $user->isUser() || $user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
@@ -129,7 +129,7 @@ class MenuPolicy
 	public function viewLookupMenu(User $user): bool
 	{
 		// TODO MUST 
-		return true;
+		//return true;
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
@@ -139,7 +139,7 @@ class MenuPolicy
 	public function viewInterfaceMenu(User $user): bool
 	{
 		// TODO MUST 
-		return true;
+		//return true;
 		return ($user->isAdmin() || $user->isSupport());
 	}
 
@@ -149,7 +149,7 @@ class MenuPolicy
 	public function viewAdminMenu(User $user): bool
 	{
 		// TODO MUST 
-		return true;
+		//return true;
 		return ($user->isAdmin() || $user->isSupport());
 	}
 
@@ -159,7 +159,7 @@ class MenuPolicy
 	public function viewSystemMenu(User $user): bool
 	{
 		// TODO MUST 
-		return true;
+		//return true;
 		return ($user->isSystem());
 	}
 

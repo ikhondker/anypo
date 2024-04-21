@@ -404,6 +404,7 @@
 	{{-- Dont Switch --}}
 	<script src="{{ asset('js/app.js') }}"></script>
 	{{-- <script src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
+	<!-- Only call `feather.replace` once on each page -->
 	
 	{{-- @livewireScripts --}}
 </body>

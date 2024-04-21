@@ -19,8 +19,8 @@ class DeptBudgetActions extends Component
 	 */
 	public function __construct($id, $show = false)
 	{
-		$this->id = $id;
-		$this->show		= $show; 
+		$this->id 			= $id;
+		$this->show			= $show; 
 		$this->deptBudget  = DeptBudget::where('id', $this->id)->get()->firstOrFail();
 	}
 

@@ -39,7 +39,7 @@
 								<th>Contact Person</th>
 								<th>Cell</th>
 								<th>Enable</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -51,13 +51,8 @@
 								<td>{{ $warehouse->cell }}</td>
 								<td><x-tenant.list.my-boolean :value="$warehouse->enable"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Warehouse" :id="$warehouse->id"/>
-
-									<a href="{{ route('warehouses.destroy',$warehouse->id) }}" class="me-2 sw2-advance"
-										data-entity="Warehouse" data-name="{{ $warehouse->name }}" data-status="{{ ($warehouse->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($warehouse->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($warehouse->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
+									<a href="{{ route('warehouses.show',$warehouse->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach

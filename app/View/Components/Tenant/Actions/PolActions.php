@@ -20,9 +20,9 @@ class PolActions extends Component
 	 */
 	public function __construct($id, $show = false)
 	{
-		$this->id = $id;
+		$this->id 		= $id;
 		$this->show		= $show; 
-		$this->pol = Pol::where('id', $this->id)->get()->firstOrFail();
+		$this->pol 		= Pol::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**

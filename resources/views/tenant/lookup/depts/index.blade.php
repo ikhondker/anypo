@@ -50,7 +50,7 @@
 								<th>PR Hierarchy</th>
 								<th>PO Hierarchy</th>
 								<th>Enable?</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -62,12 +62,8 @@
 								<td><a class="text-info" href="{{ route('hierarchies.show',$dept->po_hierarchy_id) }}">{{ $dept->poHierarchy->name }}</a></td>
 								<td><x-tenant.list.my-boolean :value="$dept->enable"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Dept" :id="$dept->id"/>
-									<a href="{{ route('depts.destroy', $dept->id) }}" class="me-2 sw2-advance" 
-										data-entity="Dept" data-name="{{ $dept->name }}" data-status="{{ ($dept->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($dept->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
+									<a href="{{ route('depts.show',$dept->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach

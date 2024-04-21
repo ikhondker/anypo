@@ -12,8 +12,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Warehouse"/>
-			<x-tenant.buttons.header.create object="Warehouse"/>
-			<x-tenant.buttons.header.edit object="Warehouse" :id="$warehouse->id"/>
+			<x-tenant.actions.warehouse-actions id="{{ $warehouse->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -29,11 +28,11 @@
 					<x-tenant.show.my-email		value="{{ $warehouse->contact_person }}" label="Contact Person"/>
 					<x-tenant.show.my-text		value="{{ $warehouse->cell }}" label="Cell"/>
 					<x-tenant.show.my-boolean	value="{{ $warehouse->enable }}"/>
-					<x-tenant.show.my-text value="{{ $warehouse->address1 }}" label="Address1"/>
-					<x-tenant.show.my-text value="{{ $warehouse->address2 }}" label="Address1"/>
-					<x-tenant.show.my-text value="{{ $warehouse->city.', '.$warehouse->state.', '.$warehouse->zip  }}" label="City"/>
-					<x-tenant.show.my-text value="{{ $warehouse->relCountry->name }}" label="Country"/>
-					<x-tenant.buttons.show.edit object="Warehouse" :id="$warehouse->id"/>
+					<x-tenant.show.my-text 		value="{{ $warehouse->address1 }}" label="Address1"/>
+					<x-tenant.show.my-text 		value="{{ $warehouse->address2 }}" label="Address1"/>
+					<x-tenant.show.my-text 		value="{{ $warehouse->city.', '.$warehouse->state.', '.$warehouse->zip  }}" label="City"/>
+					<x-tenant.show.my-text 		value="{{ $warehouse->relCountry->name }}" label="Country"/>
+					
 				</div>
 			</div>
 		</div>
@@ -42,6 +41,6 @@
 	</div>
 	<!-- end row -->
 
-
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

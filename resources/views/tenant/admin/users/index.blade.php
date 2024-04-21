@@ -34,7 +34,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="activity"></i>
+								<i class="align-middle" data-feather="database"></i>
 							</div>
 						</div>
 					</div>
@@ -51,7 +51,7 @@
 						</div>
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="shopping-bag"></i>
+								<i class="align-middle" data-feather="bell"></i>
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="shopping-cart"></i>
+								<i class="align-middle" data-feather="bell-off"></i>
 							</div>
 						</div>
 					</div>
@@ -127,7 +127,7 @@
 								<th>Dept</th>
 								<th>Role</th>
 								<th>Enable</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -146,24 +146,28 @@
 								<td>{{ $user->designation->name }}</td>
 								<td>{{ $user->cell }}</td>
 								<td>{{ $user->dept->name }}</td>
-								<td><x-tenant.list.my-badge :value="$user->role"/></td>
+								<td>
+									@if ($user->isAdmin())
+										<span class="badge bg-danger">{{ $user->role }}</span>
+									@else 
+										<span class="badge bg-success">{{ $user->role }}</span>
+									@endif
+								</td>
 								<td><x-tenant.list.my-boolean :value="$user->enable"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="User" :id="$user->id"/>
-									<a href="{{ route('users.destroy',$user->id) }}" class="me-2 sw2-advance"
-										data-entity="User" data-name="{{ $user->name }}" data-status="{{ ($user->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($user->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($user->enable ? 'bell-off' : 'bell') }}"></i></a>
-
+									<a href="{{ route('users.show',$user->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
 									@if(session('original_user'))
-										<a wire:ignore href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">
+										{{-- <a wire:ignore href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">
 											<i class="align-middle text-success" data-feather="log-in"></i>
-										</a>
+										</a> --}}
 									@else
 										@can('impersonate',$user)
-											<a wire:ignore href="{{ route('users.impersonate',$user->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
-												<i class="align-middle text-danger" data-feather="log-out"></i>
-											</a>
+											@if ($user->id > 1002 )
+												<a wire:ignore href="{{ route('users.impersonate',$user->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
+													<i class="align-middle text-danger" data-feather="log-out"></i>
+												</a>
+											@endif 
 										@endcan
 									@endif
 

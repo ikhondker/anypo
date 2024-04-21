@@ -53,12 +53,12 @@ class BankAccountController extends Controller
 	{
 		$this->authorize('viewAny',BankAccount::class);
 
-		$bank_accounts = BankAccount::query();
+		$bankAccounts = BankAccount::query();
 		if (request('term')) {
-			$bank_accounts->where('ac_name', 'Like', '%' . request('term') . '%');
+			$bankAccounts->where('ac_name', 'Like', '%' . request('term') . '%');
 		}
-		$bank_accounts = $bank_accounts->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.bank-accounts.index', compact('bank_accounts'));
+		$bankAccounts = $bankAccounts->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.lookup.bank-accounts.index', compact('bankAccounts'));
 	}
 
 	/**

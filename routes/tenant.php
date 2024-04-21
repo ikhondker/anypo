@@ -117,6 +117,17 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
+		/* ======================== Purging Cache ========================================  */
+		Route::get('/clear', function() {
+			Artisan::call('cache:clear');
+			Artisan::call('cache:clear');
+			Artisan::call('route:clear');
+			Artisan::call('config:clear');
+			Artisan::call('view:clear');
+			return "Cache is cleared at ".now();
+		});
+
+		
 		/* ======================== make auth universal ========================================  */
 		Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
 			Auth::routes(); 
@@ -182,6 +193,22 @@ Route::middleware([
 		//Route::get('/home', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 		//Route::resource('dashboards', DashboardController::class);
 
+		/* ======================== User ========================================  */
+		Route::resource('users', UserController::class);
+		Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
+		// TOTO check ->middleware(['auth', 'verified']) for the rest
+		Route::get('users.password/{user}',[UserController::class, 'password'])->name('users.password');
+		Route::post('users/changepass/{user}',[UserController::class, 'changepass'])->name('users.changepass');
+		Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
+		//TODO remove next two used in footer
+		Route::get('/user/role',[UserController::class, 'role'])->name('users.role');
+		Route::get('/user/updaterole/{user}/{role}',[UserController::class, 'updaterole'])->name('users.updaterole');
+		//Route::get('/user/image/{filename}',[UserController::class, 'image'])->name('users.image');
+		// TODO
+		//Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
+		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+
+
 		/* ======================== Notification ======================================== */
 		Route::resource('notifications', NotificationController::class);
 		Route::get('/notification/all',[NotificationController::class, 'all'])->name('notifications.all');
@@ -243,7 +270,6 @@ Route::middleware([
 		Route::get('/oem/export',[OemController::class,'export'])->name('oems.export');
 		Route::get('/oems/delete/{oem}',[OemController::class,'destroy'])->name('oems.destroy');
 
-		
 		/* ======================== Project ======================================== */
 		Route::resource('projects', ProjectController::class);
 		Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
@@ -363,7 +389,18 @@ Route::middleware([
 		
 		Route::get('/reports/parameter/{report}',[ReportController::class,'parameter'])->name('reports.parameter');
 		Route::put('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
+		
+		/* ======================== Supplier ======================================== */
+		Route::resource('suppliers', SupplierController::class);
+		Route::get('/supplier/spends',[SupplierController::class,'spends'])->name('suppliers.spends');
+		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
+		Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
 
+		/* ======================== Item ======================================== */
+		Route::resource('items', ItemController::class);
+		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
+		Route::get('/items/delete/{item}',[ItemController::class,'destroy'])->name('items.destroy');
+		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
 		
 		/* ======================== Rate ======================================== */
 		Route::resource('rates', RateController::class);
@@ -373,8 +410,6 @@ Route::middleware([
 		/* ======================== Ticket ======================================== */
 		Route::resource('tickets', TicketController::class);
 
-		/* ======================== User ========================================  */
-		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 				
 	});
@@ -391,17 +426,7 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
-		/* ======================== Supplier ======================================== */
-		Route::resource('suppliers', SupplierController::class);
-		Route::get('/supplier/spends',[SupplierController::class,'spends'])->name('suppliers.spends');
-		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
-		Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
-
-		/* ======================== Item ======================================== */
-		Route::resource('items', ItemController::class);
-		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
-		Route::get('/items/delete/{item}',[ItemController::class,'destroy'])->name('items.destroy');
-		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
+		
 
 		/* ======================== UploadItem ======================================== */
 		Route::resource('upload-items', UploadItemController::class);
@@ -433,20 +458,6 @@ Route::middleware([
 		Route::post('setups/update-tc/{setup}', [SetupController::class, 'updateTc'])->name('setups.update-tc');
 		Route::post('setups/freeze/{setup}', [SetupController::class, 'freeze'])->name('setups.freeze');
 		
-		/* ======================== User ========================================  */
-		Route::resource('users', UserController::class);
-		Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
-		// TOTO check ->middleware(['auth', 'verified']) for the rest
-		Route::get('users.password/{user}',[UserController::class, 'password'])->name('users.password');
-		Route::post('users/changepass/{user}',[UserController::class, 'changepass'])->name('users.changepass');
-		Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
-		//TODO remove next two used in footer
-		Route::get('/user/role',[UserController::class, 'role'])->name('users.role');
-		Route::get('/user/updaterole/{user}/{role}',[UserController::class, 'updaterole'])->name('users.updaterole');
-		//Route::get('/user/image/{filename}',[UserController::class, 'image'])->name('users.image');
-		// TODO
-		//Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
-
 		/* ======================== Activity ======================================== */
 		Route::resource('activities', ActivityController::class);
 		Route::get('/activity/export',[ActivityController::class, 'export'])->name('activities.export');
@@ -490,6 +501,22 @@ Route::middleware([
 
 		/* ======================== User ========================================  */
 		Route::get('/users/impersonate/{user}/',[UserController::class, 'impersonate'])->name('users.impersonate');
+
+
+	});
+
+
+/**
+* ==================================================================================
+* 3. System 
+* ==================================================================================
+*/
+Route::middleware([
+	'web','auth', 'verified','can:system',
+	InitializeTenancyByDomain::class,
+	PreventAccessFromCentralDomains::class,
+	])->group(function () {
+	
 
 		/* ======================== Table ========================================  */
 		Route::resource('tables', TableController::class);
@@ -539,70 +566,18 @@ Route::middleware([
 		Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
 		Route::get('/report/stocks',[ReportController::class, 'stocks'])->name('reports.stocks');
 		
-		Route::get('/clear', function() {
-			Artisan::call('cache:clear');
-			Artisan::call('cache:clear');
-			Artisan::call('route:clear');
-			Artisan::call('config:clear');
-			Artisan::call('view:clear');
-			return "Cache is cleared at ".now();
-		});
+		
+		/* ======================== Purging Cache ========================================  */
+		// Route::get('/clear', function() {
+		// 	Artisan::call('cache:clear');
+		// 	Artisan::call('cache:clear');
+		// 	Artisan::call('route:clear');
+		// 	Artisan::call('config:clear');
+		// 	Artisan::call('view:clear');
+		// 	return "Cache is cleared at ".now();
+		// });
 
 	});
-
-/**
-* ==================================================================================
-* 4. Tenant Old Public+Auth Routes (Need to Check)
-* ==================================================================================
-*/
-Route::middleware([
-	'web',
-	InitializeTenancyByDomain::class,
-	PreventAccessFromCentralDomains::class,
-	])->group(function () {
-	
-	// Route::get('/', function () {
-	//     return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
-	// });
-
-	
-	/* ======================== FileAccess ======================================== */
-	//Route::get('/logo/{file}', [FileAccessController::class, 'logo'])->name('logo');
-	//Route::get('/avatar/{file}', [FileAccessController::class, 'avatar'])->name('avatar');
-
-	/* ======================== Hierarchyl ======================================== */
-	//Route::resource('hierarchyls', HierarchylController::class)->middleware(['auth', 'verified']);
-	//Route::get('/hierarchyl/export',[HierarchylController::class,'export'])->name('hierarchyls.export');
-	//Route::get('/hierarchyls/delete/{hierarchyl}',[HierarchylController::class,'destroy'])->name('hierarchyls.destroy');
-
-	/* ======================== PayMethod ======================================== */
-	//Route::resource('pay-methods', PayMethodController::class)->middleware(['auth', 'verified']);
-	//Route::get('/pay-method/export',[PayMethodController::class,'export'])->name('pay-methods.export');
-	//Route::get('/pay-methods/delete/{payMethod}',[PayMethodController::class,'destroy'])->name('pay-methods.destroy');
-
-	/* ======================== InvoiceLines ======================================== */
-	//Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
-	//Route::get('/invoicelines/export',[InvoiceLinesController::class,'export'])->name('invoicelines.export');
-	//Route::get('/invoicelines/delete/{invoicelines}',[InvoiceLinesController::class,'destroy'])->name('invoicelines.destroy');
-	
-	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
-	//Route::get('/entity/export',[EntityController::class, 'export'])->name('entities.export');
-	
-	/* ======================== Pages ======================================== */
-	// Route::get('/faq', function () {
-	// 	return view('pages.faq');
-	// })->name('faq');
-
-	// Route::get('/about', function () {
-	// 	return view('pages.about-us');
-	// })->name('about');
-
-	// Route::get('/contact-us', function () {
-	// 	return view('pages.contact-us');
-	// })->name('contact-us');
-
-});
-
 
 /**
 * ==================================================================================
@@ -659,3 +634,56 @@ Route::middleware([
 		})->name('jql');
 
 	});
+
+	/**
+* ==================================================================================
+* 4. Tenant Old Public+Auth Routes (Need to Check)
+* ==================================================================================
+*/
+Route::middleware([
+	'web',
+	InitializeTenancyByDomain::class,
+	PreventAccessFromCentralDomains::class,
+	])->group(function () {
+	
+	// Route::get('/', function () {
+	//     return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
+	// });
+
+	
+	/* ======================== FileAccess ======================================== */
+	//Route::get('/logo/{file}', [FileAccessController::class, 'logo'])->name('logo');
+	//Route::get('/avatar/{file}', [FileAccessController::class, 'avatar'])->name('avatar');
+
+	/* ======================== Hierarchyl ======================================== */
+	//Route::resource('hierarchyls', HierarchylController::class)->middleware(['auth', 'verified']);
+	//Route::get('/hierarchyl/export',[HierarchylController::class,'export'])->name('hierarchyls.export');
+	//Route::get('/hierarchyls/delete/{hierarchyl}',[HierarchylController::class,'destroy'])->name('hierarchyls.destroy');
+
+	/* ======================== PayMethod ======================================== */
+	//Route::resource('pay-methods', PayMethodController::class)->middleware(['auth', 'verified']);
+	//Route::get('/pay-method/export',[PayMethodController::class,'export'])->name('pay-methods.export');
+	//Route::get('/pay-methods/delete/{payMethod}',[PayMethodController::class,'destroy'])->name('pay-methods.destroy');
+
+	/* ======================== InvoiceLines ======================================== */
+	//Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
+	//Route::get('/invoicelines/export',[InvoiceLinesController::class,'export'])->name('invoicelines.export');
+	//Route::get('/invoicelines/delete/{invoicelines}',[InvoiceLinesController::class,'destroy'])->name('invoicelines.destroy');
+	
+	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
+	//Route::get('/entity/export',[EntityController::class, 'export'])->name('entities.export');
+	
+	/* ======================== Pages ======================================== */
+	// Route::get('/faq', function () {
+	// 	return view('pages.faq');
+	// })->name('faq');
+
+	// Route::get('/about', function () {
+	// 	return view('pages.about-us');
+	// })->name('about');
+
+	// Route::get('/contact-us', function () {
+	// 	return view('pages.contact-us');
+	// })->name('contact-us');
+
+});

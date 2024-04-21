@@ -40,26 +40,22 @@
 								<th>Bank Name</th>
 								<th>Currency</th>
 								<th>Enable</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($bank_accounts as $bank_account)
+							@foreach ($bankAccounts as $bankAccount)
 							<tr>
-								<td>{{ $bank_accounts->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('bank-accounts.show',$bank_account->id) }}">{{ $bank_account->ac_name }}</a></td>
-								<td>{{ $bank_account->ac_number }}</td>
-								<td>{{ $bank_account->routing_number }}</td>
-								<td>{{ $bank_account->bank_name }}</td>
-								<td>{{ $bank_account->currency }}</td>
-								<td><x-tenant.list.my-boolean :value="$bank_account->enable"/></td>
+								<td>{{ $bankAccounts->firstItem() + $loop->index }}</td>
+								<td><a class="text-info" href="{{ route('bank-accounts.show',$bankAccount->id) }}">{{ $bankAccount->ac_name }}</a></td>
+								<td>{{ $bankAccount->ac_number }}</td>
+								<td>{{ $bankAccount->routing_number }}</td>
+								<td>{{ $bankAccount->bank_name }}</td>
+								<td>{{ $bankAccount->currency }}</td>
+								<td><x-tenant.list.my-boolean :value="$bankAccount->enable"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="BankAccount" :id="$bank_account->id"/>
-									<a href="{{ route('bank-accounts.destroy', $bank_account->id) }}" class="me-2 sw2-advance" 
-										data-entity="BankAccount" data-name="{{ $bank_account->ac_name }}" data-status="{{ ($bank_account->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($bank_account->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($bank_account->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
+									<a href="{{ route('bank-accounts.show',$bankAccount->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach
@@ -67,7 +63,7 @@
 					</table>
 
 					<div class="row pt-3">
-						{{ $bank_accounts->links() }}
+						{{ $bankAccounts->links() }}
 					</div>
 					<!-- end pagination -->
 					

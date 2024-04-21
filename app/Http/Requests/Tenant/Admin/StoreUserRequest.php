@@ -24,7 +24,7 @@ class StoreUserRequest extends FormRequest
 		return [
 			'name'		=> 'required|max:100',
 			'email'		=> 'required|email|max:100|unique:users,email',
-			'cell'		=> 'required|max:20|unique:users,cell',
+			//'cell'		=> 'required|max:20|unique:users,cell',
 			'role'		=> 'required',
 			//'password'=> 'required|confirmed|min:6',
 			//'fbpage'	=> 'nullable|url' ,

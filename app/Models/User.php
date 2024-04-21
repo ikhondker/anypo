@@ -175,7 +175,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function isSupport()
 	{
 		//if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::SUPPORT->value)) {
-		if ($this->role->value ==UserRoleEnum::SUPPORT->value) {
+		if ($this->role->value == UserRoleEnum::SUPPORT->value) {
 			return true;
 		} else {
 			return false;
@@ -185,7 +185,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function isSystem()
 	{
 		//if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::SYSTEM->value)) {
-		if ($this->role->value ==UserRoleEnum::SYSTEM->value) {
+		if ($this->role->value == UserRoleEnum::SYSTEM->value) {
 			return true;
 		} else {
 			return false;

@@ -16,7 +16,7 @@ class PoActions extends Component
 	 */
 	public function __construct($id, $show = false)
 	{
-		$this->id = $id;
+		$this->id 		= $id;
 		$this->show		= $show; 
 		// $this->po = Po::where('id', $id)->get()->first();
 	}

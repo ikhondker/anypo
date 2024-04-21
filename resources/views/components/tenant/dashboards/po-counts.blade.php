@@ -14,7 +14,7 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="dollar-sign"></i>
+							<i class="align-middle text-success" data-feather="database"></i>
 						</div>
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="shopping-bag"></i>
+							<i class="align-middle text-success" data-feather="check-circle"></i>
 						</div>
 					</div>
 				</div>
@@ -80,7 +80,7 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="shopping-cart"></i>
+							<i class="align-middle text-success" data-feather="clock"></i>
 						</div>
 					</div>
 				</div>
@@ -141,7 +141,7 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="activity"></i>
+							<i class="align-middle text-success" data-feather="edit"></i>
 						</div>
 					</div>
 				</div>

@@ -227,7 +227,7 @@ class UserController extends Controller
 			EventLog::event('user', $user->id, 'update', 'role', $user->role);
 		}
 
-		return redirect()->route('users.index')->with('success', 'User profile updated successfully.');
+		return redirect()->route('users.show',$user->id)->with('success', 'User profile updated successfully.');
 	}
 
 	/**
@@ -244,8 +244,8 @@ class UserController extends Controller
 		if($user->enable) {
 			$action = 'ACTIVATED';
 			$actionURL = route('login');
-			$account = User::where('id', $user->id)->first();
-			$account->notify(new UserActions($account, $action, $actionURL));
+			$activatedUser = User::where('id', $user->id)->first();
+			$activatedUser->notify(new UserActions($activatedUser, $action, $actionURL));
 		}
 		// Write to Log
 		EventLog::event('user', $user->id, 'status', 'enable', $user->enable);

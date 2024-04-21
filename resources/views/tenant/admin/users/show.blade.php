@@ -13,9 +13,8 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="User"/>
-			<x-tenant.buttons.header.create object="User"/>
-			<x-tenant.buttons.header.edit object="User" :id="$user->id"/>
-			<x-tenant.buttons.header.password :id="$user->id"/>
+			<x-tenant.actions.user-actions id="{{ $user->id }}"/>
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -24,7 +23,7 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">User Key Informations</h5>
+					<h5 class="card-title">User Information</h5>
 					<h6 class="card-subtitle text-muted">User's Key Information.</h6>
 				</div>
 				<div class="card-body">
@@ -35,7 +34,6 @@
 					<x-tenant.show.my-text		value="{{ $user->dept->name }}" label="Dept"/>
 					<x-tenant.show.my-badge		value="{{ $user->role }}" label="Role"/>
 					<x-tenant.show.my-boolean	value="{{ $user->enable }}"/>
-					<x-tenant.buttons.show.edit object="User" :id="$user->id"/>
 				</div>
 			</div>
 
@@ -104,5 +102,6 @@
 	</div>
 	<!-- end row -->
 
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

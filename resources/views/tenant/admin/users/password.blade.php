@@ -13,8 +13,8 @@
 			Change Password
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="User"/>
 			<x-tenant.buttons.header.lists object="User"/>
+			<x-tenant.actions.user-actions id="{{ $user->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

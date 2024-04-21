@@ -32,8 +32,10 @@ use App\Helpers\LandlordEventLog;
 use App\Helpers\EventLog;
 
 use Notification;
-use App\Notifications\Landlord\UserRegistered;
+use App\Models\Tenant\Admin\Setup;
+//use App\Notifications\Landlord\UserRegistered;
 use Illuminate\Auth\Events\Registered;
+use App\Notifications\Tenant\NotifyAdmin;
 
 //use Illuminate\Support\Facades\Log;
 
@@ -106,13 +108,22 @@ class RegisterController extends Controller
 			'password'	=> Hash::make($data['password']),
 		]);
 
+		//$user->notify(new UserRegistered($user));
+		
 		// Send notification on new user registration
-		$user->notify(new UserRegistered($user));
-
 		// Write to Log
 		if (tenant('id') == '') {
+			$user->notify(new \App\Notifications\Landlord\UserRegistered($user));
 			LandlordEventLog::event('user', $user->id, 'register');
 		} else {
+			
+			$user->notify(new \App\Notifications\Tenant\UserRegistered($user));
+			
+			// for tenant notify admin
+			$setup = Setup::first();
+			$tenantAdmin = User::where('id', $setup->admin_id)->first();
+			$tenantAdmin->notify(new NotifyAdmin($tenantAdmin, 'USER-REGISTERED', $user->id));
+			
 			EventLog::event('user', $user->id, 'register');
 		}
 		return $user;

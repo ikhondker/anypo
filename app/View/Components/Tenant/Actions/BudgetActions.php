@@ -19,9 +19,9 @@ class BudgetActions extends Component
 	 */
 	public function __construct($id, $show = false)
 	{
-		$this->id = $id;
+		$this->id 		= $id;
 		$this->show		= $show; 
-		$this->budget  = Budget::where('id', $this->id)->get()->firstOrFail();
+		$this->budget  	= Budget::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**

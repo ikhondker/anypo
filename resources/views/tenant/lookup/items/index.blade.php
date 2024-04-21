@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title','Item')
+@section('title','Item Master')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Items</li>
+	<li class="breadcrumb-item active">Item Master</li>
 @endsection
 
 @section('content')
@@ -45,7 +45,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="activity"></i>
+								<i class="align-middle" data-feather="database"></i>
 							</div>
 						</div>
 					</div>
@@ -70,7 +70,7 @@
 						</div>
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="shopping-bag"></i>
+								<i class="align-middle" data-feather="bell"></i>
 							</div>
 						</div>
 					</div>
@@ -90,7 +90,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="shopping-cart"></i>
+								<i class="align-middle text-danger" data-feather="bell-off"></i>
 							</div>
 						</div>
 					</div>
@@ -130,7 +130,7 @@
 								<th class="text-end">Price</th>
 								<th>GL Type</th>
 								<th>Enable</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -146,12 +146,8 @@
 								<td>{{ $item->glType->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$item->enable"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Item" :id="$item->id"/>
-									<a href="{{ route('items.destroy',$item->id) }}" class="me-2 sw2-advance"
-										data-entity="Item" data-name="{{ $item->name }}" data-status="{{ ($item->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($item->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($item->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
+									<a href="{{ route('items.show',$item->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach
@@ -174,6 +170,5 @@
 	 <!-- end row -->
 
 	 @include('shared.includes.js.sw2-advance')
-
 @endsection
 

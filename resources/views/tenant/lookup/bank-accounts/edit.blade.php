@@ -2,7 +2,7 @@
 @section('title','Edit Bank Account')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.index') }}">Bank Accounts</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.show',$bankAccount->id) }}">{{ $bankAccount->name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.show',$bankAccount->id) }}">{{ $bankAccount->ac_name }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -14,7 +14,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="BankAccount"/>
-			<x-tenant.buttons.header.create object="BankAccount"/>
+			<x-tenant.actions.bank-account-actions id="{{ $bankAccount->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -127,5 +127,6 @@
 
 	</form>
 	<!-- /.form end -->
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

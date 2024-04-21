@@ -13,8 +13,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Supplier"/>
-			<x-tenant.buttons.header.create object="Supplier"/>
-			<x-tenant.buttons.header.edit object="Supplier" :id="$supplier->id"/>
+			<x-tenant.actions.supplier-actions id="{{ $supplier->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -37,7 +36,7 @@
 					<x-tenant.show.my-text value="{{ $supplier->city.', '.$supplier->state.', '.$supplier->zip  }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $supplier->relCountry->name }}" label="Country"/>
 					<x-tenant.show.my-boolean	value="{{ $supplier->enable }}"/>
-					<x-tenant.buttons.show.edit object="Supplier" :id="$supplier->id"/>
+					
 				</div>
 			</div>
 		</div>
@@ -46,6 +45,6 @@
 	</div>
 	<!-- end row -->
 
-
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

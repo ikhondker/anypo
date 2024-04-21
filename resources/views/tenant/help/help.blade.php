@@ -51,8 +51,7 @@
 
 				
 				<!-- ========== INCLUDE ========== -->
-				// TODO 
-				//@include('tenant.help.includes.helpfaq')
+				@include('tenant.help.includes.helpfaq')
 				<!-- ========== INCLUDE ========== -->
 				
 				<!-- ========== INCLUDE ========== -->

@@ -6,19 +6,20 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PrActions extends Component
+
+use App\Models\Tenant\Lookup\Item;
+
+class ItemActions extends Component
 {
-	public $id;
-	public $show;
+	public $item;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id, $show = false)
+	public function __construct(public $id)
 	{
 		$this->id 		= $id;
-		$this->show		= $show; 
-		// $this->po = Po::where('id', $id)->get()->first();
+		$this->item 	= Item::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**
@@ -26,6 +27,6 @@ class PrActions extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.actions.pr-actions');
+		return view('components.tenant.actions.item-actions');
 	}
 }

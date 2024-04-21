@@ -15,7 +15,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Dept"/>
-			<x-tenant.buttons.header.create object="Dept"/>
+			<x-tenant.actions.dept-actions id="{{ $dept->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -76,5 +76,6 @@
 			</div>
 	</form>
 	<!-- /.form end -->
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

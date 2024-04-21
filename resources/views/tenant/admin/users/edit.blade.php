@@ -14,8 +14,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="User"/>
-			<x-tenant.buttons.header.create object="User"/>
-			<x-tenant.buttons.header.password :id="$user->id"/>
+			<x-tenant.actions.user-actions id="{{ $user->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -249,5 +248,7 @@
 
 	</form>
 	<!-- /.form end -->
+
+	@include('shared.includes.js.sw2-advance')
 @endsection
 

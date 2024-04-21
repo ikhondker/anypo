@@ -8,7 +8,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="activity"></i>
+							<i class="align-middle" data-feather="database"></i>
 						</div>
 					</div>
 				</div>
@@ -29,7 +29,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="shopping-bag"></i>
+							<i class="align-middle" data-feather="check-circle"></i>
 						</div>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="shopping-cart"></i>
+							<i class="align-middle" data-feather="file"></i>
 						</div>
 					</div>
 				</div>
@@ -80,7 +80,7 @@
 
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="activity"></i>
+							<i class="align-middle" data-feather="dollar-sign"></i>
 						</div>
 					</div>
 				</div>
