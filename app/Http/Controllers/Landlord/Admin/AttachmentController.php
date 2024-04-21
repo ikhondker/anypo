@@ -37,6 +37,7 @@ use App\Helpers\LandlordEventLog;
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 10. Events
 # 11. Controller
 # 12. Seeded
@@ -141,21 +142,25 @@ class AttachmentController extends Controller
 
 	public function download($fileName)
 	{
-		
-		$this->authorize('download', Attachment::class);
 
 		Log::debug('landlord.attachments.download Value of fileName=' . $fileName);
+		try {
+			$attachment 				= Attachment::where('file_name', $fileName)->firstOrFail();
+		} catch (ModelNotFoundException $exception) {
+			 return redirect()->route('dashboards.index')->with('error', 'Attachment Not Found!');
+		}
 
-		// get entity -> directory from filename
-		$att 				= Attachment::where('file_name', $fileName)->first();
-		$entity 			= Entity::where('entity', $att->entity)->first();
+		// TODO  check
+		$this->authorize('download', $attachment);
+
+		$entity 			= Entity::where('entity', $attachment->entity)->first();
 		$fileDownloadPath 	= $entity->directory."/". $fileName;
 		Log::debug('landlord.attachments.download Value of fileDownloadPath='. $fileDownloadPath);
 		return Storage::disk('s3lf')->download($fileDownloadPath);
 
 	}
 
-	public function downloadLocal($filename)
+	public function chkdownloadLocal($filename)
 	{
 		// get entity -> directory from filename
 

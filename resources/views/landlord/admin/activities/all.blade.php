@@ -37,7 +37,7 @@
 									</div>
 
 									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="#">
+										<a class="d-inline-block link-dark" href="{{ route('activities.show', $activity->id) }}">
 											<h6 class="text-hover-primary mb-0">{{ $activity->object_name }}</h6>
 										</a>
 										<small class="d-block">ID: {{ $activity->object_id }}</small>

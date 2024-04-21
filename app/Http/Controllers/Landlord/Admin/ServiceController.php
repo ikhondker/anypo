@@ -59,7 +59,7 @@ class ServiceController extends Controller
 	 */
 	public function index()
 	{
-		//$this->authorize('view',Service::class);
+		$this->authorize('viewAny',Service::class);
 
 		$services = Service::with('account')->byAccount()->orderBy('id', 'ASC')->paginate(10);
 

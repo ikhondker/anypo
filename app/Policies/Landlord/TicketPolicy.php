@@ -44,6 +44,9 @@ class TicketPolicy
 	 */
 	public function view(User $user, Ticket $ticket): bool
 	{
+		//Log::debug('POLICY value of user_id=' . $user->id);
+		//Log::debug('POLICY value of owner_id=' . $ticket->owner_id);
+
 		// owner, account admin and back office users can view ticket 
 		if ($user->isUser() ) {
 			return ($user->id == $ticket->owner_id);
@@ -52,7 +55,7 @@ class TicketPolicy
 		} elseif ($user->isSeeded()) {
 			return (true);
 		} else {
-			return (false );
+			return (false);
 		}
 	}
 

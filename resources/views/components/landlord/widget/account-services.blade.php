@@ -33,9 +33,7 @@
 								</div>
 
 								<div class="flex-grow-1 ms-3">
-									<a class="d-inline-block link-dark" href="#">
 										<h6 class="text-hover-primary mb-0">{{ $service->name }}</h6>
-									</a>
 									<small class="d-block">Account : {{ $service->account->name }} [#{{ $service->account_id }}]</small>
 								</div>
 							</div>

@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\Response;
 use App\Models\Landlord\Admin\Attachment;
 
 use App\Enum\UserRoleEnum;
+use Illuminate\Support\Facades\Log;
 
 class AttachmentPolicy
 {
@@ -28,7 +29,7 @@ class AttachmentPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return true;
 	}
 
 	/**
@@ -82,9 +83,10 @@ class AttachmentPolicy
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function download(User $user): bool
+	public function download(User $user, Attachment $attachment): bool
 	{
-		// TODO write logic here
+		// TODO write logic here does not work
+		//Log::debug('POLICY Value of id=' . $attachment->id);
 		return true;
 	}
 

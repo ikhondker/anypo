@@ -40,7 +40,7 @@
 									</div>
 
 									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="#">
+										<a class="d-inline-block link-dark" href="{{ route('services.show', $service->id) }}">
 											<h6 class="text-hover-primary mb-0">{{ $service->name }}</h6>
 										</a>
 										{{-- <small class="d-block">{{ $service->start_date }} to {{ $service->end_date }}</small> --}}
@@ -58,8 +58,7 @@
 							<td><x-landlord.list.my-enable :value="$service->addon" /></td>
 							<td><x-landlord.list.my-enable value="{{ $service->enable }}" /></td>
 							<td>
-								<x-landlord.list.actions object="Service" :id="$service->id" :edit="false"
-									:enable="true" />
+								<x-landlord.list.actions object="Service" :id="$service->id" :edit="false"	:enable="true" />
 								<a href="{{ route('services.destroy', $service->id) }}"
 									class="text-body sw2-advance" data-entity="Service"
 									data-name="{{ $service->name }}"

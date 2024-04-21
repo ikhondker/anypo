@@ -7,7 +7,6 @@
 
 	<x-landlord.widget.account-services/>
 	
-	
 	<x-landlord.widget.add-addon/>
 	
 	@include('shared.includes.js.sw2-advance')

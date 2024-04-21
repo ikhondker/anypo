@@ -122,10 +122,12 @@
 									</a>
 								@else
 									@can('impersonate', $user)
-										<a href="{{ route('users.impersonate', $user->id) }}" class="me-2"
-											data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
-											<i class="bi bi-box-arrow-right text-success" style="font-size: 1.3rem;"></i>
-										</a>
+										@if ($user->id > 1008 )
+											<a href="{{ route('users.impersonate', $user->id) }}" class="me-2"
+												data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
+												<i class="bi bi-box-arrow-right text-success" style="font-size: 1.3rem;"></i>
+											</a>
+										@endif
 									@endcan
 								@endif
 

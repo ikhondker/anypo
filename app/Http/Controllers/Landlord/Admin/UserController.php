@@ -322,6 +322,11 @@ class UserController extends Controller
 		// log before impersonate
 		LandlordEventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
 
+		if ($user->id <= 1008 ) {
+			return redirect()->route('users.all')->with('error','You can not impersonate any seeded users!');
+		}
+
+
 		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
 			return redirect()->route('users.all')->with('error','You can not impersonate system!');
 		}

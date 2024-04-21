@@ -9,7 +9,7 @@
 		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
 			<h4 class="card-header-title">User Profile</h4>
 			<a class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}">
-				<i class="bi bi-pencil-square me-1"></i> Edit User
+				<i class="bi bi-pencil-square me-1"></i> Edit Profile
 			</a>
 		</div>
 
@@ -62,7 +62,7 @@
 		<div class="card-footer pt-0">
 			<div class="d-flex justify-content-end gap-3">
 				<a class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}">
-					<i class="bi bi-pencil-square me-1"></i> Edit User
+					<i class="bi bi-pencil-square me-1"></i> Edit Profile
 				</a>
 			</div>
 		</div>

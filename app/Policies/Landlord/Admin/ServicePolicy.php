@@ -27,7 +27,7 @@ class ServicePolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->isSeeded();
+		return $user->isAdmin();
 	}
 
 	/**
@@ -36,7 +36,6 @@ class ServicePolicy
 	public function view(User $user, Service $service): bool
 	{
 		//return (($user->account_id == $service->account_id) && $user->isAdmin()) || $user->isSeeded();
-
 		return $user->isSeeded();
 	}
 

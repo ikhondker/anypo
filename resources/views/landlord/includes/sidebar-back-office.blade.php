@@ -74,11 +74,7 @@
 			<i class="bi-paperclip nav-icon"></i>
 			All Attachments</a>
 	</li>
-	<li class="nav-item"><a class="nav-link {{ $_route_name == 'processes.index' ? 'active' : '' }}"
-			href="{{ route('processes.index') }}">
-			<i class="bi-cpu nav-icon"></i>
-			Run Process</a>
-	</li>
+	
 </ul>
 <!-- End List -->
 
@@ -121,6 +117,11 @@
 			<a class="nav-link {{ $_route_name == 'tenants.index' ? 'active' : '' }}"
 				href="{{ route('tenants.index') }}">
 				<i class="bi-bell nav-icon"></i> Tenant</a>
+		</li>
+		<li class="nav-item"><a class="nav-link {{ $_route_name == 'processes.index' ? 'active' : '' }}"
+			href="{{ route('processes.index') }}">
+			<i class="bi-cpu nav-icon"></i>
+			Run Process</a>
 		</li>
 
 		<li class="nav-item">
