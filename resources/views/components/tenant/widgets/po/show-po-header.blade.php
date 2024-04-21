@@ -58,7 +58,7 @@
 				<x-tenant.show.my-date-time	value="{{ $po->auth_date }}" label="Auth Date"/>
 				<x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>
 				<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
-				<x-tenant.show.my-text		value="{{ $po->notes }}" label="Notes"/>
+				<x-tenant.show.my-text-area		value="{{ $po->notes }}" label="Notes"/>
 				<div class="row mb-3">
 					<div class="col-sm-3 text-end">
 						<span class="h6 text-secondary">Attachments:</span>

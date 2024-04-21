@@ -32,47 +32,47 @@ class PoCounts extends Component
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::BUYER->value:
 				$this->count_total		= Po::ByBuyerAll()->count();
-				$this->sum_total		= Po::ByBuyerAll()->sum('amount');
+				$this->sum_total		= Po::ByBuyerAll()->sum('fc_amount');
 
 				$this->count_approved	= Po::ByBuyerApproved()->count();
-				$this->sum_approved		= Po::ByBuyerApproved()->sum('amount');
+				$this->sum_approved		= Po::ByBuyerApproved()->sum('fc_amount');
 
 				$this->count_inprocess	= Po::ByBuyerInProcess()->count();
-				$this->sum_inprocess	= Po::ByBuyerInProcess()->sum('amount');
+				$this->sum_inprocess	= Po::ByBuyerInProcess()->sum('fc_amount');
 
 				$this->count_draft		= Po::ByBuyerDraft()->count();
-				$this->sum_draft		= Po::ByBuyerDraft()->sum('amount');
+				$this->sum_draft		= Po::ByBuyerDraft()->sum('fc_amount');
 				break;
 			case UserRoleEnum::HOD->value:
 				$this->count_total		= Po::ByDeptAll()->count();
-				$this->sum_total		= Po::ByDeptAll()->sum('amount');
+				$this->sum_total		= Po::ByDeptAll()->sum('fc_amount');
 
 				$this->count_approved	= Po::ByDeptApproved()->count();
-				$this->sum_approved		= Po::ByDeptApproved()->sum('amount');
+				$this->sum_approved		= Po::ByDeptApproved()->sum('fc_amount');
 
 				$this->count_inprocess	= Po::ByDeptInProcess()->count();
-				$this->sum_inprocess	= Po::ByDeptInProcess()->sum('amount');
+				$this->sum_inprocess	= Po::ByDeptInProcess()->sum('fc_amount');
 
 				$this->count_draft		= Po::ByDeptDraft()->count();
-				$this->sum_draft		= Po::ByDeptDraft()->sum('amount');
+				$this->sum_draft		= Po::ByDeptDraft()->sum('fc_amount');
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
 				$this->count_total		= Po::All()->count();
-				$this->sum_draft		= Po::All()->sum('amount');
+				$this->sum_draft		= Po::All()->sum('fc_amount');
 
 				$this->count_approved	= Po::AllApproved()->count();
-				$this->sum_approved		= Po::AllApproved()->sum('amount');
+				$this->sum_approved		= Po::AllApproved()->sum('fc_amount');
 
 				$this->count_inprocess	= Po::AllInProcess()->count();
-				$this->sum_inprocess		= Po::AllInProcess()->sum('amount');
+				$this->sum_inprocess		= Po::AllInProcess()->sum('fc_amount');
 
 				$this->count_draft		= Po::AllDraft()->count();
-				$this->sum_draft		= Po::AllDraft()->sum('amount');
+				$this->sum_draft		= Po::AllDraft()->sum('fc_amount');
 				break;
 			default:
-			Log::debug('po-counts. Role Not Found!');
+			Log::debug('tenant.component.dashboard.po-counts. Role Not Found!');
 		}
 	}
 

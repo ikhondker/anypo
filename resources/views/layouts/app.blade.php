@@ -182,7 +182,7 @@
 						<li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
 								<div class="position-relative">
-										<i class="align-middle" data-feather="bell-off"></i>
+										<i class="align-middle" data-feather="bell"></i>
 									<span class="indicator"> {{ $_count_unread_notifications }} </span>
 								</div>
 							</a>

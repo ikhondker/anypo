@@ -202,9 +202,13 @@ class PrController extends Controller
 		$prl->save();
 		$prl_id			= $prl->id;
 	
-		// 	update PR Header value
-		$result = Pr::updatePrHeaderValue($prl->pr_id);
-	
+		// 	Update PR Header value and Populate functional currency values
+		$result = Pr::syncPrValues($pr->id);
+		if (! $result ) {
+			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		} else {
+			Log::debug('tenant.pr.store syncPrValues completed.');
+		}
 		
 		if($request->has('add_row')) {
 			//Checkbox checked
@@ -347,6 +351,14 @@ class PrController extends Controller
 			$attid = FileUpload::aws($request);
 		}
 		
+		// 	Update PR Header value and Populate functional currency values. Currency Might change
+		$result = Pr::syncPrValues($pr->id);
+		if (! $result ) {
+			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		} else {
+			Log::debug('tenant.pr.update syncPrValues completed.');
+		}
+
 		// Write to Log
 		EventLog::event('pr', $pr->id, 'update', 'summary', $pr->summary);
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition  updated successfully.');
@@ -500,7 +512,7 @@ class PrController extends Controller
 				->firstOrFail();
 			$pr->dept_budget_id = $dept_budget->id;
 			$pr->save();
-			Log::debug('tenant.po.submit dept_budget=' . $dept_budget->id);
+			Log::debug('tenant.pr.submit dept_budget=' . $dept_budget->id);
 			
 		} catch (ModelNotFoundException $exception) {
 			Log::warning("tenant.prs.submit ModelNotFoundException. DeptBudget not found for budget_id= ". $budget->id);
@@ -516,7 +528,7 @@ class PrController extends Controller
 		if (! $result ) {
 			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		} else {
-			Log::debug('tenant.po.submit updatePrFcValues completed.');
+			Log::debug('tenant.pr.submit updatePrFcValues completed.');
 		}
 
 		//  Check and book Dept Budget

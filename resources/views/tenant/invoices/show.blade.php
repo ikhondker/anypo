@@ -54,7 +54,7 @@
 					<x-tenant.show.my-amount-currency	value="{{ $invoice->paid_amount }}" currency="{{ $invoice->currency }}" label="Paid Amount"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->status }}" label="Status"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->payment_status }}" label="Payment Status"/>
-					<x-tenant.show.my-text		value="{{ $invoice->notes }}"/>
+					<x-tenant.show.my-text-area		value="{{ $invoice->notes }}"/>
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
 							<span class="h6 text-secondary">Attachments:</span>

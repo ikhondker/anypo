@@ -2,7 +2,7 @@
 	<div class="col-6">
 		<div class="card">
 			<div class="card-header">
-				<h5 class="card-title">Basic Information for PR# {{ $pr->id }}</h5>
+				<h5 class="card-title">Basic Information for PR #{{ $pr->id }}</h5>
 				<h6 class="card-subtitle text-muted">Key information of a Purchase Requisitions</h6>
 			</div>
 			<div class="card-body">
@@ -12,7 +12,7 @@
 				<x-tenant.show.my-text		value="{{ $pr->dept->name }}" label="Dept"/>
 				<x-tenant.show.my-text		value="{{ $pr->project->name }}" label="Project"/>
 				<x-tenant.show.my-text		value="{{ $pr->supplier->name }}" label="Supplier"/>
-				<x-tenant.show.my-text		value="{{ $pr->notes }}" label="Notes"/>
+				<x-tenant.show.my-text-area		value="{{ $pr->notes }}" label="Notes"/>
 			
 				<div class="row">
 					<div class="col-sm-3 text-end">

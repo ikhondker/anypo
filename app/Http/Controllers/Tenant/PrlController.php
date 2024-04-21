@@ -127,8 +127,13 @@ class PrlController extends Controller
 		// Write to Log
 		EventLog::event('Prl', $prl->id, 'create');
 
-		// 	update PR Header value
-		$result = Pr::updatePrHeaderValue($prl->pr_id);
+		// 	Update PR Header value and Populate functional currency values
+		$result = Pr::syncPrValues($prl->id);
+		if (! $result ) {
+			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		} else {
+			Log::debug('tenant.prl.store syncPrValues completed.');
+		}
 
 		if($request->has('add_row')) {
 			//Checkbox checked
@@ -195,8 +200,14 @@ class PrlController extends Controller
 		]);
 		$prl->update($request->all());
 
-		// 	update PR Header value
-		$result = Pr::updatePrHeaderValue($prl->pr_id);
+		// 	Update PR Header value and Populate functional currency values
+		$result = Pr::syncPrValues($prl->id);
+		if (! $result ) {
+			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		} else {
+			Log::debug('tenant.prl.update syncPrValues completed.');
+		}
+
 
 		// Write to Log
 		EventLog::event('prl', $prl->id, 'update', 'summary', $prl->summary);

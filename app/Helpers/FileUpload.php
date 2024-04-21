@@ -65,14 +65,14 @@ class FileUpload
 		// get tenant, entity and rectory to upload
 		$entity 		= Entity::where('entity', $request->entity)->first();
 		$fileUploadPath = tenant('id')."/".$entity->directory."/". $fileName;
-		Log::debug('Helpers.FileUpload.aws Value of fileUploadPath='. $fileUploadPath);
+		Log::debug('Helpers.FileUpload.aws Value of fileUploadPath = '. $fileUploadPath);
 
 		try {
 			//Code that may throw an Exception
 			//$request->file_to_upload->storeAs('private/'.$directory.'/', $fileName);
 
 			$path= Storage::disk('s3tf')->put($fileUploadPath, file_get_contents($file));
-			Log::debug('Helpers.FileUpload.aws Value of path='. $path);
+			//Log::debug('Helpers.FileUpload.aws Value of path='. $path);
 
 			// create Attachment record 
 			$attachment					= new Attachment();

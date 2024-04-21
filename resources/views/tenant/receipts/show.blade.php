@@ -58,7 +58,7 @@
 					<x-tenant.show.my-text		value="{{ $receipt->warehouse->name }}" label="Warehouse"/>	
 					<x-tenant.show.my-text		value="{{ $receipt->receiver->name }}" label="Receiver"/>	
 					<x-tenant.show.my-badge		value="{{ $receipt->status }}" label="Status"/>
-					<x-tenant.show.my-text		value="{{ $receipt->notes }}" label="Notes"/>
+					<x-tenant.show.my-text-area		value="{{ $receipt->notes }}" label="Notes"/>
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
 							<span class="h6 text-secondary">Attachments:</span>

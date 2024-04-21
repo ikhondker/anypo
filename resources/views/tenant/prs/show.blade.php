@@ -2,7 +2,7 @@
 @section('title','View Purchase Requisition')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
-	<li class="breadcrumb-item active">{{ $pr->id  }}</li>
+	<li class="breadcrumb-item active">PR #{{ $pr->id  }}</li>
 @endsection
 @section('content')
 

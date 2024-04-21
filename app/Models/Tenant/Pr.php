@@ -56,8 +56,108 @@ class Pr extends Model
 
 
 	/* ----------------- Functions ---------------------- */
-	// populate functions currency columns in PR header nad lines
-	public static function updatePrFcValues($pr_id)
+
+	// sync header and FC values PR header and lines
+	public static function syncPrValues($pr_id)
+	{
+		$setup 	= Setup::first();
+		//$pr		= Pr::where('id', $pr_id)->firstOrFail();
+
+		// update PR header
+		$pr				= Pr::where('id', $pr_id)->firstOrFail();
+		$result = Prl::where('pr_id', $pr->id)->get( array(
+			DB::raw('SUM(sub_total) as sub_total'),
+			DB::raw('SUM(tax) as tax'),
+			DB::raw('SUM(gst) as gst'),
+			DB::raw('SUM(amount) as amount'),
+		));
+
+		// No row in child table 
+		foreach($result as $row) {
+			if ( is_null($row['sub_total'])  ) { 
+				$pr->sub_total		= 0;
+				$pr->tax			= 0 ;
+				$pr->gst			= 0 ;
+				$pr->amount			= 0;
+			} else {
+				$pr->sub_total	= $row['sub_total'] ;
+				$pr->tax		= $row['tax'] ;
+				$pr->gst		= $row['gst'] ;
+				$pr->amount		= $row['amount'];
+
+			}
+		}
+		$pr->save();
+
+		// get updated PR header
+		$pr				= Pr::where('id', $pr_id)->firstOrFail();
+		Log::debug('tenant.model.pr.syncPrValues PR currency =' . $pr->currency.' fc_currency='.$setup->currency);
+
+		if ($pr->currency == $setup->currency){
+			$rate = 1;
+			DB::statement("UPDATE prls SET 
+				fc_sub_total	= sub_total,
+				fc_tax			= tax,
+				fc_gst			= gst,
+				fc_amount		= amount
+				WHERE pr_id = ".$pr_id."");
+		} else {
+			
+			$rate = round(ExchangeRate::getRate($pr->currency, $setup->currency),6);
+			// Show error if rate not found 
+			if ($rate == 0){
+				Log::error('tenant.model.pr.syncPrValues rate not found PR currency=' . $pr->currency.' fc_currency='.$setup->currency);
+				return false;
+			}
+
+			// update all prls fc columns
+			Log::debug('tenant.model.pr.syncPrValues populating FC prls table.');
+			DB::statement("UPDATE prls SET 
+				fc_sub_total	= round(sub_total * ".$rate.",2),
+				fc_tax			= round(tax * ".$rate.",2),
+				fc_gst			= round(gst * ".$rate.",2),
+				fc_amount		= round(amount * ".$rate.",2)
+				WHERE pr_id = ".$pr_id."");
+		}
+
+		// P2 handle in better way
+		Log::debug('tenant.model.pr.syncPrValues updating header FC column PR=' . $pr->id);
+
+		// check if rows exists in prl
+		$count_prl		= Prl::where('pr_id',$pr->id)->count();
+		if ($count_prl == 0 ){
+			Log::debug('tenant.model.pr.syncPrValues NO row in prls table .');
+			$pr->fc_sub_total		= 0 ;
+			$pr->fc_tax				= 0 ;
+			$pr->fc_gst				= 0 ;
+			$pr->fc_amount			= 0;
+		} else {
+			Log::debug('tenant.model.pr.syncPrValues updating pr header FC columns.');
+			// get prl summary
+			$result= Prl::where('pr_id', $pr_id)->get( array(
+				DB::raw('SUM(fc_sub_total) as fc_sub_total'),
+				DB::raw('SUM(fc_tax) as fc_tax'),
+				DB::raw('SUM(fc_gst) as fc_gst'),
+				DB::raw('SUM(fc_amount) as fc_amount'),
+			));
+			foreach($result as $row) {
+				$pr->fc_sub_total		= $row['fc_sub_total'] ;
+				$pr->fc_tax				= $row['fc_tax'] ;
+				$pr->fc_gst				= $row['fc_gst'] ;
+				$pr->fc_amount			= $row['fc_amount'];
+			}
+		}
+		$pr->fc_exchange_rate	= $rate;
+
+		$pr->save();
+		Log::debug('tenant.model.pr.syncPrValues pr->fc_amount='.$pr->fc_amount);
+
+		return true;
+	}
+
+
+	// populate functions currency columns in PR header and lines
+	public static function xxupdatePrFcValues($pr_id)
 	{
 
 		$setup 	= Setup::first();
@@ -159,7 +259,7 @@ class Pr extends Model
 	}
 
 	// populate PR headed amount columns based on child rows
-	public static function updatePrHeaderValue($id)
+	public static function xxupdatePrHeaderValue($id)
 	{
 
 		// update PR header
