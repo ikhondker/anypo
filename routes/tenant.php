@@ -409,9 +409,7 @@ Route::middleware([
 
 		/* ======================== Ticket ======================================== */
 		Route::resource('tickets', TicketController::class);
-
-
-				
+		
 	});
 
 /**
@@ -425,8 +423,6 @@ Route::middleware([
 	InitializeTenancyByDomain::class,
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
-
-		
 
 		/* ======================== UploadItem ======================================== */
 		Route::resource('upload-items', UploadItemController::class);
@@ -517,7 +513,6 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 	
-
 		/* ======================== Table ========================================  */
 		Route::resource('tables', TableController::class);
 		Route::get('/table/structure/{table}',[TableController::class, 'structure'])->name('tables.structure');
