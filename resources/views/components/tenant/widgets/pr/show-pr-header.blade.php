@@ -6,13 +6,32 @@
 				<h6 class="card-subtitle text-muted">Key information of a Purchase Requisitions</h6>
 			</div>
 			<div class="card-body">
-				<x-tenant.show.my-text		value="{{ $pr->summary }}"/>
-				<x-tenant.show.my-amount-currency	value="{{ $pr->amount }}" currency="{{ $pr->currency }}" />
+				<div class="row mb-3">
+					<div class="col-sm-3 text-end">
+						<span class="h6 text-secondary">Summary:</span>
+					</div>
+					<div class="col-sm-9">
+						<strong>{{ $pr->summary }}</strong>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<div class="col-sm-3 text-end">
+						<span class="h6 text-secondary">PR Value :</span>
+					</div>
+					<div class="col-sm-9">
+						{{number_format($pr->amount, 2)}} <span class="badge bg-primary">{{ $pr->currency }}</span> 
+
+						@if ($pr->currency <> $_setup->currency)
+							{{number_format($pr->fc_amount, 2)}} <span class="badge bg-success">{{ $pr->fc_currency }}</span> 
+						@endif
+					</div>
+				</div>
 				<x-tenant.show.my-date		value="{{ $pr->pr_date }}"/>
 				<x-tenant.show.my-text		value="{{ $pr->dept->name }}" label="Dept"/>
 				<x-tenant.show.my-text		value="{{ $pr->project->name }}" label="Project"/>
 				<x-tenant.show.my-text		value="{{ $pr->supplier->name }}" label="Supplier"/>
-				<x-tenant.show.my-text-area		value="{{ $pr->notes }}" label="Notes"/>
+				<x-tenant.show.my-text-area	value="{{ $pr->notes }}" label="Notes"/>
 			
 				<div class="row">
 					<div class="col-sm-3 text-end">

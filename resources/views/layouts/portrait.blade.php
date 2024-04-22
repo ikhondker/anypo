@@ -264,10 +264,10 @@
 
 			<!-- ========== THANKS ========== -->
 			{{-- <div id="thanks">Thank you!</div> --}}
-			<div id="notices">
+			{{-- <div id="notices">
 				<div>SPECIAL INSTRUCTIONS:</div>
 				<div class="notice">This document was created on a computer and is valid without the signature and seal.</div>
-			</div>
+			</div> --}}
 			<!-- ========== THANKS ========== -->
 			
 		</main>

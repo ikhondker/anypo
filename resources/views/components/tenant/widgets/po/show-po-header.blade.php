@@ -7,7 +7,19 @@
 			</div>
 			<div class="card-body">
 				<x-tenant.show.my-text		value="{{ $po->summary }}" label="Summary"/>
-				<x-tenant.show.my-amount-currency	value="{{ $po->amount }}" currency="{{ $po->currency }}" />
+				<div class="row mb-3">
+					<div class="col-sm-3 text-end">
+						<span class="h6 text-secondary">PO Value :</span>
+					</div>
+					<div class="col-sm-9">
+						{{number_format($po->amount, 2)}} <span class="badge bg-primary">{{ $po->currency }}</span> 
+
+						@if ($po->currency <> $_setup->currency)
+							{{number_format($po->fc_amount, 2)}} <span class="badge bg-success">{{ $po->fc_currency }}</span> 
+						@endif
+					</div>
+				</div>
+	
 				<x-tenant.show.my-date		value="{{ $po->po_date }}"/>
 				<x-tenant.show.my-text		value="{{ $po->dept->name }}" label="Dept"/>
 				<x-tenant.show.my-text		value="{{ $po->project->name }}" label="Project"/>

@@ -35,7 +35,7 @@
 								<th>Website</th>
 								<th>Primary Admin</th>
 								<th>Announcement?</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,7 +57,10 @@
 								<td>{{ $setup->website }}</td>
 								<td>{{ $setup->admin_user->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$setup->show_notice"/></td>
-								<td class="table-action"><x-tenant.list.actions object="Setup" :id="$setup->id"/></td>
+								<td class="table-action">
+									<a href="{{ route('setups.show',$setup->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>

@@ -13,6 +13,7 @@
 		<a class="dropdown-item" href="{{ route('prs.history', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('prs.extra', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> Additional Information</a>
 		<a class="dropdown-item" href="{{ route('prs.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> Attachments</a>
+
 		<a class="dropdown-item sw2-advance" href="{{ route('prs.copy', $id) }}"
 			data-entity="" data-name="PR #{{ $id }}" data-status="Duplicate"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PR">
@@ -22,7 +23,7 @@
 			data-entity="" data-name="PR#{{ $id }}" data-status="Covert to PO"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
 			<i class="align-middle me-1 text-primary" data-feather="copy"></i> Covert to PO</a>
-		
+		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Requisition</a>
 		<div class="dropdown-divider"></div>
 
 		<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-pr', $id) }}"
@@ -40,12 +41,12 @@
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Requisition">
 			<i class="align-middle me-1 text-danger" data-feather="trash-2"></i> Delete Requisition*</a>
 
-		@if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
+		@can('recalculate', App\Models\Tenant\Pr::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('prs.recalculate', $id) }}"
 				data-entity="" data-name="PR #{{ $id }}" data-status="Recalculate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Recalculate">
-				<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Recalculate (SYSTEM)</a>
-		@endif
+				<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Recalculate (Support)</a>
+		@endcan
 
 	</div>
 </div>

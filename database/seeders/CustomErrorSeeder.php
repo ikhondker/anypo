@@ -74,7 +74,16 @@ class CustomErrorSeeder extends Seeder
 				'entity'	=> EntityEnum::ITEM->value,
 				'message'	=> 'Invalid GL_TYPE Name!',
 			],
-
+			[
+				'code'   	=> 'E015',	// Not used Yet
+				'entity'	=> EntityEnum::PR->value,
+				'message'	=> 'Current Exchange rate not found for this currency! Try after sometime.',
+			],
+			[
+				'code'   	=> 'E020',	// Not used Yet
+				'entity'	=> EntityEnum::PO->value,
+				'message'	=> 'Current Exchange rate not found for this currency! Try after sometime.',
+			],
 
 		];
 		//

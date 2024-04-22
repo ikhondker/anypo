@@ -12,9 +12,7 @@
 			View Setup
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('setups.tc',$setup->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-edit"></i> PO T&C</a>
-			<a href="{{ route('setups.announcement',$setup->id) }}" class="btn btn-primary float-end me-2"><i class="fas fa-edit"></i> Announcement</a>
-			<x-tenant.buttons.header.edit object="Setup" :id="$setup->id"/>
+			<x-tenant.actions.setup-actions id="{{ $setup->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -124,9 +122,8 @@
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-boolean	value="{{ $setup->banner_show }}" label="Show Announcement?"/>
-					<x-tenant.show.my-text value="{{ $setup->banner_message }}" label="Announcement"/>
+					<x-tenant.show.my-text-area value="{{ $setup->banner_message }}" label="Announcement"/>
 					<x-tenant.show.my-text value="{{ $setup->cell }}" label="Cell"/>
-					<x-tenant.buttons.show.edit object="Setup" :id="$setup->id"/>
 				</div>
 			</div>
 

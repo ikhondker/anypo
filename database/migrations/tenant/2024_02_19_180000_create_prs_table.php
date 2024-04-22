@@ -52,6 +52,7 @@ return new class extends Migration
 			$table->integer('auth_user_id')->nullable();
 			//$table->enum('status', ['OPEN','CANCELED','CLOSED'])->default('OPEN');
 			//$table->enum('auth_status', ['DRAFT','SUBMITTED','IN-PROCESS','APPROVED','REJECTED','ERROR'])->default('DRAFT');
+			$table->string('error_code',15)->nullable();
 			$table->string('wf_key',10)->default('WFPR');
 			$table->integer('hierarchy_id')->default(0);
 			

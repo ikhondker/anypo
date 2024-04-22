@@ -48,6 +48,7 @@ use App\Helpers\EventLog;
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 10. Events
 # 11. Controller
 # 12. Seeded
@@ -242,12 +243,18 @@ class AttachmentController extends Controller
 	{
 
 		Log::debug('tenant.attachments.download Value of fileName=' . $fileName);
+		try {
+			$attachment 				= Attachment::where('file_name', $fileName)->firstOrFail();
+		} catch (ModelNotFoundException $exception) {
+			 return redirect()->route('dashboards.index')->with('error', 'Attachment Not Found!');
+		}
+
 
 		$this->authorize('download', Attachment::class);
 		
 		// get entity -> directory from filename
-		$att 				= Attachment::where('file_name', $fileName)->first();
-		$entity 			= Entity::where('entity', $att->entity)->first();
+		//$att 				= Attachment::where('file_name', $fileName)->first();
+		$entity 			= Entity::where('entity', $attachment->entity)->first();
 		$fileDownloadPath 	= tenant('id')."/".$entity->directory."/". $fileName;
 		Log::debug('tenant.attachments.download Value of fileDownloadPath='. $fileDownloadPath);
 		return Storage::disk('s3tf')->download($fileDownloadPath);

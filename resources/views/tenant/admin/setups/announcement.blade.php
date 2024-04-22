@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',' General Notice')
+@section('title',' General Announcement')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}">Setup</a></li>
 	<li class="breadcrumb-item active">Announcement</li>
@@ -11,7 +11,7 @@
 			Announcement
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
+			<x-tenant.actions.setup-actions id="{{ $setup->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -28,18 +28,17 @@
 						</div>
 						<div class="card-body">
 							<div class="mb-3">
-							
-								<div class="alert alert-warning alert-outline" role="alert">
+								<div class="alert alert-warning" role="alert">
 									<div class="alert-icon">
-										<i class="far fa-fw fa-bell"></i>
+										<i data-feather="info" class="text-danger"></i>
 									</div>
-									<div class="alert-message text-warning">
-										<strong class="text-warning">WARNING!</strong> Once enabled, this message will be displayed to every user after login, in their dashboard!
+									<div class="alert-message">
+										<strong class="">WARNING!</strong> Once enabled, every user will see this message, after login, in their dashboard!
 									</div>
 								</div>
 							</div>
 
-							<div class="mb-3">
+							<div class="mb-3 mt-4">
 								<label class="form-label">Announcement Text:</label>
 								<textarea class="form-control" name="banner_message"  placeholder="Enter Announcement ..." rows="3">{{ old('banner_message', $setup->banner_message) }}</textarea>
 								@error('banner_message')
@@ -51,7 +50,7 @@
 								<label class="form-check m-0">
 								<input type="checkbox" class="form-check-input"
 									name="banner_show" id="banner_show"  @checked($setup->banner_show)/>
-								<span class="form-check-label text-danger">Display above Announcement?</span>
+								<span class="form-check-label">Display above Announcement?</span>
 								</label>
 							</div>
 

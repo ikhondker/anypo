@@ -12,8 +12,6 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
-			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
-			
 			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-feather="printer"></i> Print</a>
 			@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 				<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 sw2-advance"

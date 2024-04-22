@@ -32,6 +32,7 @@ return new class extends Migration
 			//$table->biginteger('for_doc_type_id')->constrained('doc_types');
 			$table->string('for_entity',15)->default(EntityEnum::PO->value); 
 			$table->text('notes')->nullable();
+			$table->string('error_code',15)->nullable();
 			$table->boolean('accounted')->default(false);
 			/** ENUM */
 			$table->string('status')->default(PaymentStatusEnum::PAID->value);;

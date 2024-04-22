@@ -115,7 +115,7 @@
 		<li class="sidebar-item {{ ($_node_name == 'admin' ? 'active' : '') }}">
 			<a data-bs-target="#admin" data-bs-toggle="collapse" class="sidebar-link collapsed">
 				<i class="align-middle" data-feather="grid"></i> 
-				<span class="align-middle">Administration</span>
+				<span class="align-middle">Admin</span>
 			</a>
 			<ul id="admin" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'admin' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.index') }}"><i class="align-middle" data-feather="circle"></i>Users</a></li>

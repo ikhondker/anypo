@@ -38,6 +38,7 @@ return new class extends Migration
 			$table->string('dr_account')->default('100001')->nullable();
 			$table->string('cr_account')->default('100001')->nullable();
 			$table->text('notes')->nullable();
+			$table->string('error_code',15)->nullable();
 			$table->boolean('accounted')->default(false);
 			/** ENUM */
 			$table->string('status')->default(InvoiceStatusEnum::DRAFT->value);

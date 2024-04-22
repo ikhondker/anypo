@@ -392,17 +392,22 @@ class PrController extends Controller
 	{
 
 		$this->authorize('recalculate', Pr::class);
+
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be recalculated!');
+		}
+
 		// 	update PR Header value
 		DB::statement("set @sequenceNumber=0");
 
 		DB::statement("UPDATE prls SET 
-				line_num	= (@sequenceNumber:=@sequenceNumber+1),
-				sub_total	= qty*price,
+				line_num	= (@sequenceNumber:=@sequenceNumber + 1),
+				sub_total	= qty * price,
 				amount		= qty * price + tax +gst
 				WHERE pr_id = ".$pr->id."");
 
-		$result = Pr::updatePrHeaderValue($pr->id);
-		return redirect()->route('prs.show', $pr->id)->with('success', 'Amount Recalculated!');
+		$result = Pr::syncPrValues($pr->id);
+		return redirect()->route('prs.show', $pr->id)->with('success', 'Line Number updated and Amount Recalculated!');
 
 	}
 	/**
@@ -524,11 +529,11 @@ class PrController extends Controller
 		} 
 
 		// 	Populate functional currency values
-		$result = Pr::updatePrFcValues($pr->id);
+		$result = Pr::syncPrValues($pr->id);
 		if (! $result ) {
 			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		} else {
-			Log::debug('tenant.pr.submit updatePrFcValues completed.');
+			Log::debug('tenant.pr.submit syncPrValues completed.');
 		}
 
 		//  Check and book Dept Budget

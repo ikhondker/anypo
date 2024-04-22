@@ -14,9 +14,8 @@
 			Edit Hierarchy
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="Hierarchy"/>
-			<x-tenant.buttons.header.create object="Hierarchy"/>
+			<x-tenant.actions.hierarchy-actions id="{{ $hierarchy->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

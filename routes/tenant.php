@@ -410,6 +410,9 @@ Route::middleware([
 		/* ======================== Ticket ======================================== */
 		Route::resource('tickets', TicketController::class);
 		
+		/* ======================== Attachment ======================================== */
+		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
+
 	});
 
 /**
@@ -462,8 +465,7 @@ Route::middleware([
 		Route::resource('attachments', AttachmentController::class);
 		Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
 		Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
-		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
-
+		
 			/* ======================== Hierarchy ======================================== */
 		Route::resource('hierarchies', HierarchyController::class);
 		Route::get('/hierarchy/export',[HierarchyController::class,'export'])->name('hierarchies.export');

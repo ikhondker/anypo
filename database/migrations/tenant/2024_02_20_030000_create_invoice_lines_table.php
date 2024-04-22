@@ -31,6 +31,7 @@ return new class extends Migration
 			$table->float('fc_gst',15,2)->default(0);					// Functional Currency
 			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
 			$table->text('notes')->nullable();
+			$table->string('error_code',15)->nullable();
 			/** ENUM */
 			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);
 			$table->foreign('closure_status')->references('code')->on('statuses');

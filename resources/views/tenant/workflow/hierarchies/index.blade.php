@@ -39,7 +39,7 @@
 								<th>Name</th>
 								<th>Date Created</th>
 								<th>Enable</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -50,12 +50,8 @@
 								<td><x-tenant.list.my-date-time :value="$hierarchy->created_at"/></td>
 								<td><x-tenant.list.my-boolean :value="$hierarchy->enable"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Hierarchy" :id="$hierarchy->id"/>
-									<a href="{{ route('hierarchies.destroy',$hierarchy->id) }}" class="me-2 sw2-advance"
-										data-entity="Hierarchy" data-name="{{ $hierarchy->name }}" data-status="{{ ($hierarchy->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($hierarchy->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($hierarchy->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
+									<a href="{{ route('hierarchies.show',$hierarchy->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach

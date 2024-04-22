@@ -7,7 +7,7 @@
 		<a class="dropdown-item" href="{{ route('bank-accounts.show', $bankAccount->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View BankAccount</a>
 		<a class="dropdown-item" href="{{ route('bank-accounts.edit', $bankAccount->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit BankAccount</a>
 
-		@can('create', App\Models\BankAccount::class)
+		@can('create', App\Models\Tenant\Lookup\BankAccount::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('bank-accounts.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create BankAccount</a>
 		@endcan

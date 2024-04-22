@@ -7,7 +7,7 @@
 		<a class="dropdown-item" href="{{ route('warehouses.show', $warehouse->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Warehouse</a>
 		<a class="dropdown-item" href="{{ route('warehouses.edit', $warehouse->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Warehouse</a>
 
-		@can('create', App\Models\Warehouse::class)
+		@can('create', App\Models\Tenant\Lookup\Warehouse::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('warehouses.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Warehouse</a>
 		@endcan

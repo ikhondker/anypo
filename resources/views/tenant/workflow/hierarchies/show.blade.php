@@ -13,13 +13,12 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Hierarchy"/>
-			<x-tenant.buttons.header.create object="Hierarchy"/>
-			<x-tenant.buttons.header.edit object="Hierarchy" :id="$hierarchy->id"/>
+			<x-tenant.actions.hierarchy-actions id="{{ $hierarchy->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-12">
+		<div class="col-8">
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Hierarchy Name:  {{ $hierarchy->name }}</h5>
@@ -34,7 +33,6 @@
 								<th>Title</th>
 								<th>Dept</th>
 								<th>Email</th>
-								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -45,10 +43,6 @@
 								<td>{{ $hierarchyl->approver->designation->name }} </td>
 								<td>{{ $hierarchyl->approver->dept->name }} </td>
 								<td>{{ $hierarchyl->approver->email }} </td>
-								<td class="table-action">
-									{{-- <a class="btn btn-info" href="{{ route('hierarchy_details.edit',$hierarchy_detail->id) }}">Edit (TBD)</a>
-									<a class="btn btn-danger" href="{{ route('hierarchy_details.show',$hierarchy_detail->id) }}">Enable (TBD)</a> --}}
-								</td>
 							</tr>
 							@endforeach
 						</tbody>

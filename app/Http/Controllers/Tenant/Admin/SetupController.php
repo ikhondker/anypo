@@ -68,8 +68,8 @@ class SetupController extends Controller
 	public function index()
 	{
 
+		abort(403);
 		$this->authorize('viewAny', Setup::class);
-
 		$setups = Setup::latest()->orderBy('id', 'desc')->paginate(10);
 		return view('tenant.admin.setups.index', compact('setups'));
 	}

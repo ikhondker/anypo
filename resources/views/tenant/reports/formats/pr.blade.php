@@ -75,7 +75,7 @@
 			<tr>
 				<td colspan="4"></td>
 				<td colspan="1">SUBTOTAL</td>
-				<td>  {{ $pr->currency }} {{ number_format($pr->amount,2) }}</td>
+				<td> {{ $pr->currency }} {{ number_format($pr->amount,2) }}</td>
 			</tr>
 			{{-- <tr>
 				<td colspan="2"></td>
@@ -89,6 +89,14 @@
 			</tr>
 		</tfoot>
 	</table>
+
+	<!-- ========== THANKS ========== -->
+	<div id="notices">
+		<div>NOTES:</div>
+		<div class="notice">  {!! nl2br( $pr->notes ) !!}</div>
+	</div>
+	<!-- ========== THANKS ========== -->
+
 @endsection
 
 		

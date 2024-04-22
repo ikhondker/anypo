@@ -126,11 +126,11 @@ class PrPolicy
 	}
 
 	/**
-	 * Determine whether the user can delete the model.
+	 * Determine whether the user can recalculate models.
 	 */
 	public function recalculate(User $user): bool
 	{
-		return false;
+		return $user->isSupport();
 	}
 	
 	public function export(User $user): bool

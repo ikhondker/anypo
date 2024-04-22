@@ -91,10 +91,11 @@
 	</table>
 
 	<div id="notices">
-		<div>TERMS & CONDITIONS:</div>
-		<div class="notice">{{ $po->notes }}</div>
+		<div>NOTES:</div>
+		<div class="notice">{!! nl2br( $po->notes ) !!}</div>
 		@if ($po->tc)
-		<div class="notice">{{ $setup->tc }}</div>
+			<div>TERMS & CONDITIONS:</div>
+			<div class="notice">{!! nl2br( $setup->tc ) !!}</div>
 		@endif
 	</div>
 

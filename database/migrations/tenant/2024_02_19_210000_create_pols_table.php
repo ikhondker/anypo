@@ -36,6 +36,7 @@ return new class extends Migration
 			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
 			$table->float('fc_grs_price', 15, 2)->default(0);
 			$table->text('notes')->nullable();
+			$table->string('error_code',15)->nullable();
 			$table->foreignId('requestor_id')->constrained('users')->nullable();
 			$table->foreignId('dept_id')->constrained('depts')->nullable();			// Future User. Covert to PO
 			$table->biginteger('unit_id')->nullable()->default(1001);				// Future User. Covert to PO

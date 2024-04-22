@@ -13,8 +13,7 @@
 			Edit Setup
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
-			<x-tenant.buttons.header.lists object="Setup"/>
+			<x-tenant.actions.setup-actions id="{{ $setup->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

@@ -7,7 +7,7 @@
 		<a class="dropdown-item" href="{{ route('suppliers.show', $supplier->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Supplier</a>
 		<a class="dropdown-item" href="{{ route('suppliers.edit', $supplier->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Supplier</a>
 
-		@can('create', App\Models\Supplier::class)
+		@can('create', App\Models\Tenant\Lookup\Supplier::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Supplier</a>
 		@endcan

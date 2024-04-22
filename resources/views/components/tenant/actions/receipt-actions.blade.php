@@ -16,9 +16,6 @@
 			data-entity="" data-name="GRN #{{ $receipt->id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Receipt">
 			<i class="align-middle me-1 text-danger" data-feather="x-circle"></i> Cancel Receipt</a>
-
-
-		
 	
 	</div>
 </div>
