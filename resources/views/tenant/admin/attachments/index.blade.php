@@ -36,12 +36,11 @@
 							<tr>
 								<th>ID#</th>
 								<th>Entity</th>
-								<th>Document ID</th>
-								<th>Date</th>
+								<th>Upload Date</th>
 								<th>Owner</th>
 								<th>File Name</th>
-								<th>View/Download</th>
-								<th>Actions</th>
+								<th>Attached File</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>

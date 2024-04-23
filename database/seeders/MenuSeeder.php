@@ -239,16 +239,17 @@ class MenuSeeder extends Seeder
 	
 			/**
 			* ==================================================================================
-			* 8. Special
+			* 8. Special (My Account)
 			* ==================================================================================
 			*/
 			[ 'raw_route_name' => 'users.index','route_name' => 'users.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'users.create','route_name' => 'users.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'users.show','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
+			[ 'raw_route_name' => 'users.show','route_name' => 'users.index', 'node_name' => 'admin'],		// <==============
+
+			[ 'raw_route_name' => 'users.profile','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
 			[ 'raw_route_name' => 'users.edit','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
 			[ 'raw_route_name' => 'users.password','route_name' => 'users.index', 'node_name' => 'profile'],	// <==============
 			
-
 		  ];
 		//
 		Menu::insert($menus);

@@ -199,6 +199,7 @@ Route::middleware([
 		// TOTO check ->middleware(['auth', 'verified']) for the rest
 		Route::get('users.password/{user}',[UserController::class, 'password'])->name('users.password');
 		Route::post('users/changepass/{user}',[UserController::class, 'changepass'])->name('users.changepass');
+		Route::get('/user/my-profile',[UserController::class, 'profile'])->name('users.profile');
 		Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
 		//TODO remove next two used in footer
 		Route::get('/user/role',[UserController::class, 'role'])->name('users.role');

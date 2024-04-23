@@ -4,8 +4,9 @@
 		<span class="align-middle">My Account</span>
 	</a>
 	<ul id="profile" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'profile' ? 'show' : '') }}" data-bs-parent="#sidebar">
-		<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.show',auth()->user()->id) }}"><i class="align-middle" data-feather="circle"></i>View Profile</a></li>
-		<li class="sidebar-item {{ ($_route_name == 'suppliers.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.password',Auth::user()->id) }}"><i class="align-middle" data-feather="circle"></i>Change Password</a></li>
+		<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.show',auth()->user()->id) }}"><i class="align-middle" data-feather="circle"></i>XX View Profile</a></li>
+		<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.profile') }}"><i class="align-middle" data-feather="circle"></i>View Profile</a></li>
+		<li class="sidebar-item {{ ($_route_name == 'suppliers.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.password',auth()->user()->id) }}"><i class="align-middle" data-feather="circle"></i>Change Password</a></li>
 	</ul>
 </li>
 

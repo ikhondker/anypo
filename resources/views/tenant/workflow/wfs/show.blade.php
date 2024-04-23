@@ -13,7 +13,9 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Wf"/>
-			<x-tenant.buttons.header.edit object="Wf" :id="$wf->id"/>
+			@can('edit', $wf)
+				<x-tenant.buttons.header.edit object="Wf" :id="$wf->id"/>
+			@endcan
 		@endslot
 	</x-tenant.page-header>
 
@@ -25,14 +27,14 @@
 					<h6 class="card-subtitle text-muted">Details of workflow.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $wf->entity }}" label="Entity"/>
-					<x-tenant.show.article-link entity="{{ $wf->entity }}" :id="$wf->article_id"/>
-					<x-tenant.show.my-text		value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
+					<x-tenant.show.my-text			value="{{ $wf->entity }}" label="Entity"/>
+					<x-tenant.show.article-link 	entity="{{ $wf->entity }}" :id="$wf->article_id"/>
+					<x-tenant.show.my-text			value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
 					<x-tenant.show.my-date-time		value="{{ $wf->created_at }}" label="Date"/>
-					<x-tenant.show.my-badge		value="{{ $wf->wf_status }}" label="WF Status"/>
-					<x-tenant.show.my-badge		value="{{ $wf->auth_status }}" label="Auth Status"/>
-					<x-tenant.show.my-text		value="{{ $wf->last_performer->name }}" label="Final Approver"/>
-					<x-tenant.show.my-date-time	value="{{ $wf->auth_date }}" label="Auth Date"/>
+					<x-tenant.show.my-badge			value="{{ $wf->wf_status }}" label="WF Status"/>
+					<x-tenant.show.my-badge			value="{{ $wf->auth_status }}" label="Auth Status"/>
+					<x-tenant.show.my-text			value="{{ $wf->last_performer->name }}" label="Final Approver"/>
+					<x-tenant.show.my-date-time		value="{{ $wf->auth_date }}" label="Auth Date"/>
 					<div class="row">
 						<div class="col-sm-3 text-end">
 							
@@ -61,7 +63,7 @@
 					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>#</th>
+								<th>ID#</th>
 								<th>Approver Name</th>
 								<th>Assign Date</th>
 								<th>Actions</th>

@@ -119,6 +119,13 @@ class DeptBudgetController extends Controller
 	{
 		$this->authorize('create', DeptBudget::class);
 
+		// check
+		// $validatedData = $request->validate([
+		// 	'budget_id' => 'required|unique:dept_budgets,dept_id',
+		// 	'dept_id' => 'required|unique:dept_budgets,budget_id',
+		// ]);
+
+
 		$dept_budget = DeptBudget::create($request->all());
 		// Write to Log
 		EventLog::event('deptBudget', $dept_budget->id, 'create');
@@ -126,7 +133,7 @@ class DeptBudgetController extends Controller
 		//update company budget for that year
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-		return redirect()->route('tenant.dept-budgets.index')->with('success', 'DeptBudget created successfully.');
+		return redirect()->route('dept-budgets.index')->with('success', 'DeptBudget created successfully.');
 	}
 
 	/**

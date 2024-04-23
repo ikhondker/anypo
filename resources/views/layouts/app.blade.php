@@ -241,7 +241,7 @@
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								@auth
-									<a class="dropdown-item" href="{{ route('users.show',auth()->user()->id) }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+									<a class="dropdown-item" href="{{ route('users.profile') }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 									<a class="dropdown-item" href="{{ route('users.password',Auth::user()->id) }}"><i class="align-middle me-1" data-feather="key"></i> Change Password</a>
 								@endauth
 

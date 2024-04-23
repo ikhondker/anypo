@@ -205,7 +205,7 @@
 							<h6 class="card-subtitle text-muted">User's Other Details.</h6>
 						</div>
 						<div class="card-body">
-
+							<x-tenant.edit.notes :value="$user->notes"/>
 							<div class="mb-3">
 								<label class="form-label">Facebook</label>
 								<input type="text" class="form-control @error('facebook') is-invalid @enderror"

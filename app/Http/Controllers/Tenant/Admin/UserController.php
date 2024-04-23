@@ -159,6 +159,24 @@ class UserController extends Controller
 		return view('tenant.admin.users.show', compact('user'));
 	}
 
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function profile()
+	{
+		///$this->authorize('create', User::class);
+
+		// $emps = Emp::select('id','name')
+		//     ->where('status', 'active')
+		//     ->orderBy('id','asc')
+		//     ->get();
+		//$emps = Emp::getAll();
+		$user = User::where('id', auth()->user()->id)->first();
+
+		return view('tenant.admin.users.profile',compact('user'));
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */
@@ -179,7 +197,7 @@ class UserController extends Controller
 	public function update(UpdateUserRequest $request, User $user)
 	{
 		$this->authorize('update', $user);
-
+		$request->merge(['state'	=> Str::upper($request->input('state')) ]);
 		
 		if ($image = $request->file('file_to_upload')) {
 			// $request->validate([
