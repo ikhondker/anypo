@@ -37,7 +37,6 @@ return new class extends Migration
 			/** ENUM */
 			$table->string('status')->default(PaymentStatusEnum::PAID->value);;
 			/** end ENUM */
-			$table->string('error_code',15)->nullable();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);

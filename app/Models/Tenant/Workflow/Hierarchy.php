@@ -17,7 +17,7 @@ class Hierarchy extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name','enable','updated_at','updated_by'
+		'name', 'enable', 'seeded', 'updated_by', 'updated_at',
 	];
 	
 

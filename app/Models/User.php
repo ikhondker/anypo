@@ -66,8 +66,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	 // This will be merger of two seperete User table in tenant and Landlord
 	protected $fillable = [
-		'name', 'email', 'designation_id', 'dept_id', 'unit_id',
-		'role', 'account_id', 'password', 'email_verified_at', 'remember_token', 'cell', 'title', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'facebook', 'linkedin', 'avatar', 'notes', 'timezone', 'seeded', 'enable', 'ban', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at',
+		'name', 'email', 'designation_id', 'dept_id', 'unit_id', 'role', 'password', 'email_verified_at', 'cell', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'facebook', 'linkedin', 'avatar', 'notes', 'timezone', 'seeded', 'enable', 'ban', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at', 'remember_token',
 	];
 
 	/**

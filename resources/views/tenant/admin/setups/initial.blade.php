@@ -33,28 +33,18 @@
 							<div class="mb-3">
 								<div class="alert alert-warning" role="alert">
 									<div class="alert-icon">
-										<i data-feather="info" class="text-danger"></i>
-									</div>
-									<div class="alert-message">
-										<strong>Note: </strong> Please note you wont be able to change this currency setting once Freezed! 
-										Your budget and all financial summary reporting will be in this currency.
-									</div>
-								</div>
-
-								<div class="alert alert-warning alert-dismissible" role="alert">
-									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-									<div class="alert-icon">
 										<i data-feather="alert-triangle" class="text-danger"></i>
 									</div>
 									<div class="alert-message">
-										<strong>Note: </strong> Please note you wont be able to change this currency setting once you have saved! 
+										<strong>Note: </strong> Please note you wont be able to change this currency setting once Setup is Freezed! </br>
 										Your budget and all financial summary reporting will be in this currency.
 									</div>
 								</div>
 
+
 							</div>
 
-							<div class="mb-3">
+							<div class="mb-3 mt-5">
 								<label class="form-label">Currency</label>
 								<select class="form-control" name="currency">
 									@foreach ($currencies as $currency)

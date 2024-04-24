@@ -36,7 +36,6 @@ return new class extends Migration
 			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);
 			$table->foreign('closure_status')->references('code')->on('statuses');
 			/** end ENUM */
-			$table->string('error_code',15)->nullable();
 			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
