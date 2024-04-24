@@ -145,7 +145,7 @@ class HomeController extends Controller
 				//'account_name'	=> 'required|max:100|',
 			],[
 				'site.required' 		=> 'Site Name is Required!',
-				'site.unique'   		=> 'This site code is already in use. Please try another.',
+				'site.unique'			=> 'This site code is already in use. Please try another.',
 				'site.without_spaces'	=> 'Whitespace not allowed.'
 			]);
 		} else {
@@ -156,7 +156,7 @@ class HomeController extends Controller
 				'account_name'	=> 'required|max:100|',
 			],[
 				'site.required' 		=> 'Site name is Required!',
-				'site.unique'   		=> 'This site code is already in use. Please try another.',
+				'site.unique'			=> 'This site code is already in use. Please try another.',
 				'site.without_spaces'	=> 'Whitespace not allowed.',
 				'email.unique'  		=> 'This email is already registered. Please login first and the try to purchase service.',
 			]);

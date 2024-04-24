@@ -15,7 +15,7 @@ class OverPaymentRule implements ValidationRule
 
 	public function __construct($invoice_id)
 	{
-	   $this->invoice = Invoice::where('id', $invoice_id)->first();
+		$this->invoice = Invoice::where('id', $invoice_id)->first();
 	}
 
 	/**

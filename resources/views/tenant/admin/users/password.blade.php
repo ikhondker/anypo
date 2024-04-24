@@ -19,7 +19,7 @@
 	</x-tenant.page-header>
 
 	 <!-- form start -->
-	 <form action="{{ route('users.changepass',['user'=>$user->id]) }}" method="POST">
+	 <form action="{{ route('users.password-update',['user'=>$user->id]) }}" method="POST">
 		@csrf
 		
 

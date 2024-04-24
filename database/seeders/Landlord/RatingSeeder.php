@@ -17,7 +17,7 @@ class RatingSeeder extends Seeder
 		//Rating::truncate();
 		$ratings =  [
 			[
-			   'name' => '*',
+				'name' => '*',
 			],
 			[
 				'name' => '**',

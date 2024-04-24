@@ -1,67 +1,24 @@
 <?php
-
-//=============================================================================
-// @version v1.0.1
-//=============================================================================
-// @file            TableController.php
-// @description     This file contains the implementation of the TableController class.
-// @author          Iqbal H Khondker <ihk@khondker.com>
-// @created         23-APR-2023
-// @copyright       (c) Copyright by Iqbal H Khondker
-//=============================================================================
-// Revision History:
-// Date			Version	Author    		Comments
-// ---------------------------------------------------------------------------
-// 23-APR-2023	v1.0.0	Iqbal H Khondker		Created.
-// 23-APR-2023	v1.0.0	Iqbal H Khondker		Added function to return something.
-//=============================================================================
-
 /**
- * =============================================================================
- * @version v1.0.0
- * =============================================================================
- * @file        TableController.php
- * @brief       This file contains the implementation of the TableController class.
- * @author      Iqbal H. Khondker <ihk@khondker.com>
- * @created     27-Apr-2023
- * @copyright   (c) Copyright by Iqbal H. Khondker
- * =============================================================================
- * Revision History:
- * Date			Version	Author    		        Comments
- * ---------------------------------------------------------------------------
- * 27-Apr-2023	v1.0.0	Iqbal H Khondker		Created.
- * 07-May-2023	v1.0.1	Iqbal H Khondker		Modification for po02.
- * =============================================================================
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			TemplateController.php
+* @brief		This file contains the implementation of the TemplateController
+* @path			\app\Http\Controllers\Tenant\Manage
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
 */
 
-/**
- * Author:    Iqbal H Khondker <ihk@khondker.com>
- * Created:   23-APR-2023
- *
- * (c) Copyright by Blub Corp.
-**/
-//Using comment headers in your source code files
-
-/**
- * File: myfile.cpp
- * Author: John Doe
- * Description: This file contains the implementation of the MyClass class.
- * Date: 2022-03-15
- *
- * @file            TableController.php
- * @description     This file contains the implementation of the TableController class.
- * @author          Iqbal H Khondker <ihk@khondker.com>
- * @created         23-APR-2023
- * @copyright       Iqbal H Khondker
- *
-* @license    http://www.submit2contest.com Proprietary
- * @version    0.1
- * @link       http://www.submit2contest.com
- * @see        http://www.khondker.com
- * @since      File available since Release: 0.1
- */
-
- namespace App\Http\Controllers\Tenant\Manage;
+namespace App\Http\Controllers\Tenant\Manage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\Manage\Table;
@@ -342,8 +299,7 @@ class TableController extends Controller
 	{
 		$this->authorize('comments', Table::class);
 
-
-		$BASE_DIR	= "\app\Models\Tenant\\";
+		$BASE_DIR	= "\app\Http\Controllers\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
 		Log::debug('tenant.TableController.policies dir=' . $dir);
 		Log::debug('tenant.TableController.policies target_dir=' . $target_dir);

@@ -233,21 +233,21 @@ class TestController extends Controller
 		//return redirect('/dashboard')->with('status', 'Profile updated!');
 
 		// return redirect()->route('index.index')
-		//     ->with('warning', 'warning message')
-		//     ->with('success', 'success message');
+		//		->with('warning', 'warning message')
+		//		->with('success', 'success message');
 
 		// return redirect()->route('accounts.index')
-		//     ->with('success','Account updated successfully');
+		//		->with('success','Account updated successfully');
 
 		return redirect('/login')
 			->with('error','Account updated successfully');
 
 
 		// return redirect()->route('pages.success')
-		//      ->with('success','Account updated successfully');
+		//		->with('success','Account updated successfully');
 
 		// return view('pages.success')
-		//     ->with('success','Account updated successfully');
+		//		->with('success','Account updated successfully');
 
 		//$role = UserRoleEnum::MANAGER;
 		// https://www.scratchcode.io/laravel-notification-tutorial-with-example/

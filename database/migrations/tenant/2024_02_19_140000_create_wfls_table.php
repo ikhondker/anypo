@@ -17,7 +17,7 @@ return new class extends Migration
 		Schema::create('wfls', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->foreignId('wf_id')->constrained('wfs');
-			$table->integer('sequence')->default(10);   // TODO P2
+			$table->integer('sequence')->default(10);	// TODO P2
 			$table->integer('performer_id');
 			$table->dateTime('assign_date',)->useCurrent(); // TODO make sure it is not nullable
 			$table->dateTime('action_date',)->nullable();

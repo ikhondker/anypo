@@ -1,22 +1,24 @@
 <?php
 
 /**
- * ==================================================================================
- * @version v1.0.0
- * ==================================================================================
- * @file        RegisterController.php
- * @brief       This file contains the implementation of the RegisterController class.
- * @author      Iqbal H. Khondker
- * @created     27-Apr-2023
- * @copyright   (c) Copyright by Iqbal H. Khondker
- * ==================================================================================
- * Revision History:
- * Date			Version	Author    		        Comments
- * ----------------------------------------------------------------------------------
- * 27-Apr-2023	v1.0.0	Iqbal H Khondker		Created.
- * 13-Sep-2023	v1.0.1	Iqbal H Khondker		Modified for Front theme.
- * ==================================================================================
- */
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			RegisterController.php
+* @brief		This file contains the implementation of the RegisterController
+* @path			\app\Http\Controllers\Tenant
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
+*/
+
 
 namespace App\Http\Controllers\Auth;
 

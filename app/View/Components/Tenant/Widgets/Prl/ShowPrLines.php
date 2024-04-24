@@ -28,10 +28,10 @@ class ShowPrLines extends Component
 		$this->items = Item::primary()->get();
 		$this->uoms = Uom::primary()->get();
 		if ($id <> ''){
-			$this->pr   = Pr::where('id', $id)->get()->first();
+			$this->pr	= Pr::where('id', $id)->get()->first();
 			$this->prls = Prl::with('item')->with('uom')->where('pr_id', $id)->get()->all();
 		} else {
-			$this->pr   = new Pr();
+			$this->pr	= new Pr();
 			$this->prls = new Prl();
 		}
 	}

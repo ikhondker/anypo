@@ -25,9 +25,9 @@
 			if (result.isConfirmed) {
 				window.location.href = url;
 				// Swal.fire(
-				//   'Deleted!',
-				//   'Your file has been deleted.',
-				//   'success'
+				//	'Deleted!',
+				//	'Your file has been deleted.',
+				//	'success'
 				// )
 			}
 		})

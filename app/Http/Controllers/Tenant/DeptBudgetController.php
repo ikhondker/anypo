@@ -172,6 +172,15 @@ class DeptBudgetController extends Controller
 			return redirect()->route('budgets.index')->with('error', 'Budget '.$budget->name.'is closed. Your admin need to unfreeze it, before update!');
 		}
 
+		// Check if enter amount is below already isseud + Booked amount
+		if ( $request->input('amount') < $deptBudget->amount_pr_booked +  $deptBudget->amount_pr)	{
+			return redirect()->route('dept-budgets.edit', $deptBudget->id)->with('error', 'Unable to reduce Dept Budget below already Booked and Issued PR amount!');
+		}
+
+		if ( $request->input('amount') < $deptBudget->amount_po_booked +  $deptBudget->amount_po)	{
+			return redirect()->route('dept-budgets.edit', $deptBudget->id)->with('error', 'Unable to reduce Dept Budget below already Booked and Issued PO amount!');
+		}
+
 		
 		// upload file as record
 		if ($file = $request->file('file_to_upload')) {

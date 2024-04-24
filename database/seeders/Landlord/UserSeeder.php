@@ -176,7 +176,7 @@ class UserSeeder extends Seeder
 		];
 
 		$demoUsers =  [
-		   /*
+		/*
 			[
 				'id'				=> '1007',
 				'name'				=> 'User 1 Account 1',

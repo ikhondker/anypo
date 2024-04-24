@@ -26,7 +26,7 @@ class SupplierFactory extends Factory
 			'zip'				=> $this->faker->postcode,
 			'website'			=> $this->faker->domainName,
 			'cell'				=> $this->faker->PhoneNumber,
-			'email'		   		=> $this->faker->email,
+			'email'		 		=> $this->faker->email,
 		];
 	}
 }

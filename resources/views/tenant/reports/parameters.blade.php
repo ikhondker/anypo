@@ -222,9 +222,9 @@
 
 	{{-- <script type="module">
 		$(function() {
-		   $('#datetimepicker').datetimepicker();
+			$('#datetimepicker').datetimepicker();
 		});
-	</script>   --}}
+	</script>	--}}
 
 	{{-- <script type="module">
 		$( function() {

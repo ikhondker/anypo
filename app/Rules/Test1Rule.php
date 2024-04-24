@@ -21,6 +21,6 @@ class Test1Rule implements ValidationRule
 		//return false;
 		$fail('The :attribute must be uuu uppercase.');
 
-	 // Log::debug('Value of id=' . $id->id);   //
+	 // Log::debug('Value of id=' . $id->id);	//
 	}
 }

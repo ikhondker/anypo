@@ -14,7 +14,7 @@ class OverInvoiceRule implements ValidationRule
 
 	public function __construct($po_id)
 	{
-	   $this->po = Po::where('id', $po_id)->first();
+		$this->po = Po::where('id', $po_id)->first();
 	}
 
 	/**

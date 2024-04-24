@@ -22,8 +22,8 @@ class GlCode implements ValidationRule
 		} 
 
 		// if (! is_string($value) && ! is_numeric($value)) {
-        //     return false;
-        // }
+			//	return false;
+		// }
 
 	}
 }

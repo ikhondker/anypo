@@ -237,20 +237,20 @@ class DashboardController extends Controller
 			->where ('agent_id','=', null )
 			->limit(5)->get();
 
-		// $orders_weeks   = Dashboard::CountOrdersWeek();
+		// $orders_weeks		= Dashboard::CountOrdersWeek();
 		// Log::debug('orders_weeks: '.$orders_weeks);
-		// $sales_today		= Dashboard::SalesToday();
+		// $sales_today			= Dashboard::SalesToday();
 		// Log::debug('sales_today'.$sales_today);
-		// $sales_week		 = Dashboard::SalesWeek();
+		// $sales_week		 	= Dashboard::SalesWeek();
 		// Log::debug('sales_week'.$sales_week);
-		// $sales_month		= Dashboard::SalesMonth();
+		// $sales_month			= Dashboard::SalesMonth();
 		// Log::debug('sales_month'.$sales_month);
-		// $count_products  = Product::all()->count();
+		// $count_products  	= Product::all()->count();
 		// $count_orders		= Order::all()->count();
-		// $count_users		 = User::all()->count();
-		// $sum_sales		   = Order::all()->sum('amount');
-		// $orders		= Order::all()->take(5);
-		// $products		   = Product::all()->take(5);
+		// $count_users		 	= User::all()->count();
+		// $sum_sales			= Order::all()->sum('amount');
+		// $orders				= Order::all()->take(5);
+		// $products			= Product::all()->take(5);
 		//return view('tenant.dashboard',compact('orders','products','settings','orders_weeks','sales_today','sales_week','sales_month','count_products','count_orders', 'count_users','sum_sales'));
 
 		

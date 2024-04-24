@@ -374,7 +374,7 @@ class InvoiceController extends Controller
 				return back()->withError("You can not cancel a paid Invoice! Please void Payments first!")->withInput();
 			}
 
-			$sum_payments		   = Payment::where('invoice_id',$invoice_id)->sum('amount');
+			$sum_payments			= Payment::where('invoice_id',$invoice_id)->sum('amount');
 			if ($sum_payments <> 0) {
 				return back()->withError("Payment Exists! Please void Payments first!")->withInput();
 			}

@@ -24,8 +24,6 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-
-	   
 			[ 'raw_route_name' => 'prs.index','route_name' => 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.show','route_name' => 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.history','route_name' => 'prs.index', 'node_name' => 'workbench'],
@@ -244,7 +242,7 @@ class MenuSeeder extends Seeder
 			*/
 			[ 'raw_route_name' => 'users.index','route_name' => 'users.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'users.create','route_name' => 'users.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'users.show','route_name' => 'users.index', 'node_name' => 'admin'],		// <==============
+			[ 'raw_route_name' => 'users.show','route_name' => 'users.index', 'node_name' => 'admin'],			// <==============
 
 			[ 'raw_route_name' => 'users.profile','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
 			[ 'raw_route_name' => 'users.edit','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============

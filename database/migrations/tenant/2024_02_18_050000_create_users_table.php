@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->string('name');
 			$table->string('email')->unique();
 			$table->biginteger('designation_id')->nullable()->default(1001); 	// No foreign key to avoid circular FK dependency
-			$table->biginteger('dept_id')->nullable()->default(1001);   		// No foreign key to avoid circular FK dependency
+			$table->biginteger('dept_id')->nullable()->default(1001);	 		// No foreign key to avoid circular FK dependency
 			$table->biginteger('unit_id')->nullable()->default(1001);			// Future Use
 			/** ENUM */
 			$table->string('role')->default(UserRoleEnum::USER->value);
@@ -37,17 +37,17 @@ return new class extends Migration
 			$table->string('avatar')->nullable()->default('avatar.png');
 			$table->text('notes')->nullable();
 			$table->string('timezone', 255)->default('UTC');
-			$table->boolean('seeded')->default(false); 
+			$table->boolean('seeded')->default(false);
 			$table->boolean('enable')->default(false);  // only make first admin true
-			$table->boolean('ban')->default(true); 
+			$table->boolean('ban')->default(true);
 			$table->datetime('last_login_at')->nullable();
 			$table->string('last_login_ip')->nullable();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent();
-			$table->rememberToken(); 
-		   
+			$table->rememberToken();
+
 		});
 	}
 

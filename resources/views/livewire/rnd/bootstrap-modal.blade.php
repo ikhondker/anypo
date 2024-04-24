@@ -18,7 +18,7 @@
 										 <span aria-hidden="true close-btn">×</span>
 									</button>
 								</div>
-							   <div class="modal-body">
+								<div class="modal-body">
 									Laravel Livewire Bootstrap Modal Example - NiceSnippets.com
 								</div>
 								<div class="modal-footer">

@@ -6,7 +6,7 @@
 		
 		<a class="dropdown-item" href="{{ route('users.show', $user->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Profile</a>
 		<a class="dropdown-item" href="{{ route('users.edit', $user->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit User</a>
-		<a class="dropdown-item" href="{{ route('users.password', $user->id) }}"><i class="align-middle me-1" data-feather="key"></i> Change Password</a>
+		<a class="dropdown-item" href="{{ route('users.password-change', $user->id) }}"><i class="align-middle me-1" data-feather="key"></i> Change Password</a>
 
 		@can('create', App\Models\User::class)
 			<div class="dropdown-divider"></div>

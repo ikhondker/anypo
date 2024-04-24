@@ -18,6 +18,7 @@
 		@endslot
 	</x-tenant.page-header>
 
+	<x-tenant.widgets.user-profile  id="{{ $user->id }}"/>
 
 	<div class="row">
 		<div class="col-6">

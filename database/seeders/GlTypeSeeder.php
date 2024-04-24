@@ -19,15 +19,15 @@ class GlTypeSeeder extends Seeder
 
 		$gl_types =  [
 			[
-				'code'   	=> 'E',
+				'code'		=> 'E',
 				'name'		=> 'Expense',
 			],
 			[
-				'code'   	=> 'A',
+				'code'		=> 'A',
 				'name'		=> 'Assets',
 			],
 			[
-				'code'   	=> 'I',
+				'code'		=> 'I',
 				'name'		=> 'Inventory',
 			],
 		];

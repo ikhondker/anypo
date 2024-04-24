@@ -303,7 +303,7 @@
 			<td>100.00</td>
 			<td style="text-align:right">100.00</td>
 		</tr>
-	   
+
 	</table>
 	<table id="my-table">
 		<tr>

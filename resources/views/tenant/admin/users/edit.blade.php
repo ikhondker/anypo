@@ -13,7 +13,9 @@
 			Edit User
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="User"/>
+			@can('viewAny', $user)
+				<x-tenant.buttons.header.lists object="User"/>
+			@endcan
 			<x-tenant.actions.user-actions id="{{ $user->id }}"/>
 		@endslot
 	</x-tenant.page-header>

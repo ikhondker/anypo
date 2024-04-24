@@ -1,21 +1,22 @@
 <?php
 
 /**
- * ==================================================================================
- * @version v1.0.0
- * ==================================================================================
- * @file        UserController.php
- * @brief       This file contains the implementation of the UserController class.
- * @author      Iqbal H. Khondker
- * @created     27-Apr-2023
- * @copyright   (c) Copyright by Iqbal H. Khondker
- * ==================================================================================
- * Revision History:
- * Date			Version	Author    		        Comments
- * ----------------------------------------------------------------------------------
- * 27-Apr-2023	v1.0.0	Iqbal H Khondker		Created.
- * DD-Mon-YYYY	v1.0.0	Iqbal H Khondker		Modification brief.
- * ==================================================================================
+* =====================================================================================
+* @version v1.0
+* =====================================================================================
+* @file			UserController.php
+* @brief		This file contains the implementation of the UserController
+* @path			\app\Http\Controllers\Tenant\Admin
+* @author		Iqbal H. Khondker <ihk@khondker.com>
+* @created		4-JAN-2024
+* @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
+* =====================================================================================
+* Revision History:
+* Date			Version	Author				Comments
+* -------------------------------------------------------------------------------------
+* 4-JAN-2024	v1.0	Iqbal H Khondker	Created
+* DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
+* =====================================================================================
 */
 
 namespace App\Http\Controllers\Tenant\Admin;
@@ -96,9 +97,9 @@ class UserController extends Controller
 		$this->authorize('create', User::class);
 
 		// $emps = Emp::select('id','name')
-		//     ->where('status', 'active')
-		//     ->orderBy('id','asc')
-		//     ->get();
+		//		->where('status', 'active')
+		//		->orderBy('id','asc')
+		//		->get();
 		//$emps = Emp::getAll();
 
 		return view('tenant.admin.users.create');
@@ -117,11 +118,11 @@ class UserController extends Controller
 		$request->merge(['seeded'	=> false]);
 
 		// if($request->has('admin')){
-		//     //Checkbox checked
-		//     $request->merge(['role'     => UserRoleEnum::ADMIN->value ]);
+		// // Checkbox checked
+		//		$request->merge(['role'	=> UserRoleEnum::ADMIN->value ]);
 		// }else{
-		//     //Checkbox not checked
-		//     $request->merge(['role'     => UserRoleEnum::USER->value ]);
+		//		//Checkbox not checked
+		//		$request->merge(['role'	=> UserRoleEnum::USER->value ]);
 		// }
 
 		$random_password			= Str::random(12);
@@ -168,9 +169,9 @@ class UserController extends Controller
 		///$this->authorize('create', User::class);
 
 		// $emps = Emp::select('id','name')
-		//     ->where('status', 'active')
-		//     ->orderBy('id','asc')
-		//     ->get();
+		//		->where('status', 'active')
+		//		->orderBy('id','asc')
+		//		->get();
 		//$emps = Emp::getAll();
 		$user = User::where('id', auth()->user()->id)->first();
 
@@ -301,14 +302,14 @@ class UserController extends Controller
 		//return redirect()->route('users.index')->with('success', 'User '.$user->name.' role to ['.$role.'] updated successfully');
 	}
 
-	public function password(User $user)
+	public function changePassword(User $user)
 	{
 		$this->authorize('changepass', $user);
 		
 		return view('tenant.admin.users.password', compact('user'));
 	}
 
-	public function changepass(Request $request, User $user)
+	public function updatePassword(Request $request, User $user)
 	{
 
 		$this->authorize('changepass', $user);
@@ -329,7 +330,7 @@ class UserController extends Controller
 
 		// Write to Log
 		EventLog::event('user', $user->id, 'update', 'password', $request->id);
-		return redirect()->route('users.index')->with('success', 'User password updated successfully');
+		return redirect()->route('users.show',$user->id)->with('success', 'User password updated successfully.');
 	}
 
 

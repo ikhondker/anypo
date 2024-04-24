@@ -16,7 +16,7 @@ class LandlordNoticeOneTenant extends Component
 	 */
 	public function __construct()
 	{
-	   //
+		//
 		$landlordConfig = tenancy()->central(function ($tenant) {
 			return \App\Models\Landlord\Manage\Config::where('id', 1)->first();
 		});

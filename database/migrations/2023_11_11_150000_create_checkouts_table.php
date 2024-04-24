@@ -39,7 +39,7 @@ return new class extends Migration
 			$table->integer('user')->default(3);
 			$table->integer('gb')->default(5);
 			/** ENUM */
-			$table->string('status_code')->default(LandlordCheckoutStatusEnum::DRAFT->value); 
+			$table->string('status_code')->default(LandlordCheckoutStatusEnum::DRAFT->value);
 			$table->foreign('status_code')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->string('ip')->nullable();
@@ -52,7 +52,7 @@ return new class extends Migration
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
-			$table->timestamp('updated_at')->useCurrent();   
+			$table->timestamp('updated_at')->useCurrent();
 		});
 	}
 

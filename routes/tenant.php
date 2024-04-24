@@ -197,9 +197,12 @@ Route::middleware([
 		Route::resource('users', UserController::class);
 		Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
 		// TOTO check ->middleware(['auth', 'verified']) for the rest
-		Route::get('users.password/{user}',[UserController::class, 'password'])->name('users.password');
-		Route::post('users/changepass/{user}',[UserController::class, 'changepass'])->name('users.changepass');
-		Route::get('/user/my-profile',[UserController::class, 'profile'])->name('users.profile');
+		Route::get('/users/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
+		Route::post('/users/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
+
+		// Route::get('/users/password/{user}',[UserController::class, 'password'])->name('users.password');
+		// Route::post('/users/change-pass/{user}',[UserController::class, 'changepass'])->name('users.change-pass');
+		Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
 		Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
 		//TODO remove next two used in footer
 		Route::get('/user/role',[UserController::class, 'role'])->name('users.role');
@@ -645,7 +648,7 @@ Route::middleware([
 	])->group(function () {
 	
 	// Route::get('/', function () {
-	//     return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
+	//	return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
 	// });
 
 	

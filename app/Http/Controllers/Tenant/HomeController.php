@@ -4,14 +4,14 @@
  * ==================================================================================
  * @version v1.0
  * ==================================================================================
- * @file		   HomeController.php
- * @brief		  This file contains the implementation of the HomeController class.
- * @author		 Iqbal H. Khondker
+ * @file		HomeController.php
+ * @brief		This file contains the implementation of the HomeController class.
+ * @author		Iqbal H. Khondker
  * @created		27-Apr-2023
- * @copyright   (c) Copyright by Iqbal H. Khondker
+ * @copyright	(c) Copyright by Iqbal H. Khondker
  * ==================================================================================
  * Revision History:
- * Date			Version	Author    				   Comments
+ * Date			Version	Author					Comments
  * ----------------------------------------------------------------------------------
  * 27-Apr-2023	v1.0.1	Iqbal H Khondker		Copied from bo and modified for removing landlord
  * DD-Mon-YYYY	v1.0.0	Iqbal H Khondker		Modification brief.
@@ -183,7 +183,7 @@ class HomeController extends Controller
 		// if (Mail::failures()) {
 		//		return response()->Fail('Sorry! Please try again latter');
 		// }else{
-		//    return response()->success('Great! Successfully send in your mail');
+		//		return response()->success('Great! Successfully send in your mail');
 		// }
 
 		// send via notification

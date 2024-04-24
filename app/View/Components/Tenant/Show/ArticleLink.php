@@ -17,7 +17,7 @@ class ArticleLink extends Component
 	/**
 	 * Create a new component instance.
 	 */
-   public function __construct($entity, $id=1001)
+	public function __construct($entity, $id=1001)
 	{
 		$this->entity =$entity;
 		$this->id =$id;

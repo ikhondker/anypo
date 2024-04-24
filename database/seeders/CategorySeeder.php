@@ -18,7 +18,7 @@ class CategorySeeder extends Seeder
 
 		//Schema::disableForeignKeyConstraints();
 		//Category::truncate();
-	   // Schema::enableForeignKeyConstraints();
+		// Schema::enableForeignKeyConstraints();
 
 		$categories =  [
 			[

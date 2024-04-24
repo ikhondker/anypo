@@ -34,10 +34,10 @@ class TemplateFactory extends Factory
 			'my_date'		=> now(),
 			'my_date_time'  => now(),
 			//'my_image'	=> $this->faker->image('public/storage/images',640,480),
-			/* 'my_image'   => $this->faker->image( storage_path('images'),640,480), */
+			/* 'my_image'	=> $this->faker->image( storage_path('images'),640,480), */
 			/*'my_image'	=> $this->faker->image( storage_path('app'),640,480), */
-			/* 'my_image'   => $this->faker->image('images',400,300, null, false), */
-			/* 'my_image'   => $this->faker->image($dir = null, $width = 640, $height = 480, $category = null, $fullPath = true, $randomize = true, $word = null, $gray = false), */
+			/* 'my_image'	=> $this->faker->image('images',400,300, null, false), */
+			/* 'my_image'	=> $this->faker->image($dir = null, $width = 640, $height = 480, $category = null, $fullPath = true, $randomize = true, $word = null, $gray = false), */
 			/* 'my_date'	=> $this->faker->date($format = 'Y-m-d', $max = 'now'),*/
 			/* 'my_date_time'  => $this->faker->dateTime($max = 'now', $timezone = null),*/
 			'created_by'	=> User::inRandomOrder()->first()->id,

@@ -44,7 +44,7 @@ class ConsolidateBudget implements ShouldQueue, ShouldBeUnique
 			DB::raw('SUM(amount_po_booked) 	as amount_po_booked'),
 			DB::raw('SUM(amount_po) 		as amount_po'),
 			DB::raw('SUM(amount_grs) 		as amount_grs'),
-			DB::raw('SUM(amount_invoice)   	as amount_invoice'),
+			DB::raw('SUM(amount_invoice)	as amount_invoice'),
 			DB::raw('SUM(amount_payment) 	as amount_payment'),
 			DB::raw('SUM(count_pr) 			as count_pr'),
 			DB::raw('SUM(count_po) 			as count_po'),

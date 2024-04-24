@@ -17,7 +17,6 @@
 * DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 

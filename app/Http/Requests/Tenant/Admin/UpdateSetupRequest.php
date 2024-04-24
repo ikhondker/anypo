@@ -36,7 +36,7 @@ class UpdateSetupRequest extends FormRequest
 
 	public function messages() {
 		return [
-			'ac_accrual.regex'	=> 'Gl Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+			'ac_accrual.regex'		=> 'GL Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
 			'ac_liability.regex'	=> 'GL Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
 		];
 	}

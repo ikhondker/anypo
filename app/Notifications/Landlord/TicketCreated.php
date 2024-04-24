@@ -1,21 +1,5 @@
 <?php
-/**
- * ==================================================================================
- * @version v1.0.0
- * ==================================================================================
- * @file        TicketCreated.php
- * @brief       This file contains the implementation of the TicketCreated Notification.
- * @author      Iqbal H. Khondker 
- * @created     27-Apr-2023
- * @copyright   (c) Copyright by Iqbal H. Khondker
- * ==================================================================================
- * Revision History:
- * Date			Version	Author    		        Comments
- * ----------------------------------------------------------------------------------
- * 27-Apr-2023	v1.0.0	Iqbal H Khondker		Created.
- * DD-Mon-YYYY	v1.0.0	Iqbal H Khondker		Modification brief.
- * ==================================================================================
-*/
+
 namespace App\Notifications\Landlord;
 
 use Illuminate\Bus\Queueable;
@@ -46,19 +30,7 @@ class TicketCreated extends Notification implements ShouldQueue
 		// find owner to notify
 		//$owner = User::where('id', $ticket->owner_id)->first();
 
-		// $details = [
-		// 	'entity'   		=> 'TICKET',
-		// 	'id'            => $ticket_id,
-		// 	'from'          => $owner->name,
-		// 	'to'            => $owner->name,
-		// 	'subject'       => 'FYI. Support Ticket #'. $ticket_id.' has been '.Str::lower($action).'.',
-		// 	'greeting'      => 'Hi '.$owner->name.',',
-		// 	'body'          => 'FYI, Support Ticket #'.$ticket_id.' has been '.Str::lower($action).'.',
-		// 	'thanks'        => 'Thank you for using '. config('app.name').'!',
-		// 	'actionText'    => 'View Document',
-		// 	//'actionURL'   => route('advances.show', ['advance' => $wf->article_id]),
-		// 	'actionURL'     => route('tickets.show',$ticket_id),
-		// ];
+	
 	}
 
 	/**

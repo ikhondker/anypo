@@ -46,44 +46,44 @@ class ListAllByArticle extends Component
 			case EntityEnum::BUDGET->value:
 				$budget = Budget::where('id', $this->aid)->get()->firstOrFail();
 				if (!$budget->closed) {
-					$this->delete		=   true;
+					$this->delete		= true;
 				} 
 				break;
 			case EntityEnum::DEPTBUDGET->value:
 				$deptBudget = DeptBudget::where('id', $this->aid)->get()->firstOrFail();
 				if (!$deptBudget->closed) {
-					$this->delete		=   true;
+					$this->delete		= true;
 				} 
 				break;
 			case EntityEnum::PR->value:
 				$pr = Pr::where('id', $this->aid)->get()->firstOrFail();
 				if ($pr->auth_status == AuthStatusEnum::DRAFT->value) {
-					$this->delete		=   true;
+					$this->delete		= true;
 				}
 				break;
 			case EntityEnum::PO->value:
 				$po = PO::where('id', $this->aid)->get()->firstOrFail();
 				if ($po->auth_status == AuthStatusEnum::DRAFT->value) {
-					$this->delete		=   true;
+					$this->delete		= true;
 				}
 				break;
 			case EntityEnum::PROJECT->value:
 				$project = Project::where('id', $this->aid)->get()->firstOrFail();
 				if (!$project->closed) {
-					$this->delete		=   true;
+					$this->delete		= true;
 				} 
 				break;
 			case EntityEnum::RECEIPT->value:
-				$this->delete		=   false;
+				$this->delete			= false;
 				break;
 			case EntityEnum::INVOICE->value:
 				$invoice = Invoice::where('id', $this->aid)->get()->firstOrFail();
 				if ($invoice->status == InvoiceStatusEnum::DRAFT->value) {
-					$this->delete		=   true;
+					$this->delete		= true;
 				}
 				break;
 			case EntityEnum::PAYMENT->value:
-				$this->delete		=   false;
+				$this->delete			= false;
 				break;
 			default:
 				Log::errror('tenenat.ListAllByArticle Invalid entity=' . $this->entity);

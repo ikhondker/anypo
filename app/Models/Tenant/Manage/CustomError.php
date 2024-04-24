@@ -11,7 +11,7 @@ use App\Models\User;
 
 class CustomError extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 	
 	protected $primaryKey	= 'code';
 	public $incrementing 	= false;

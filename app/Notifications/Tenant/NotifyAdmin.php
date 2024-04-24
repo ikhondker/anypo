@@ -28,9 +28,9 @@ class NotifyAdmin extends Notification implements ShouldQueue
 	 */
 	public function __construct(User $user, $action, $id)
 	{
-		$this->user		= $user;
-		$this->action	= $action;
-		$this->article_id       = $id;
+		$this->user			= $user;
+		$this->action		= $action;
+		$this->article_id	= $id;
 
 		switch ($this->action) {
 			case 'USER-REGISTERED':

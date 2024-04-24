@@ -16,7 +16,7 @@ class OverReceiptRule implements ValidationRule
 
 	public function __construct($pol_id)
 	{
-	   $this->pol = Pol::where('id', $pol_id)->first();
+		$this->pol = Pol::where('id', $pol_id)->first();
 	}
 
 

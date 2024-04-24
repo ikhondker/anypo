@@ -95,7 +95,7 @@ class MenuController extends Controller
 	 */
 	public function show(Menu $menu)
 	{
-	   $this->authorize('view', $menu);
+		$this->authorize('view', $menu);
 		return view('landlord.manage.menus.show', compact('menu'));
 	}
 

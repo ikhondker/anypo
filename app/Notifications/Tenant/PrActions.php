@@ -82,13 +82,6 @@ class PrActions extends Notification implements ShouldQueue
 	public function toMail(object $notifiable): MailMessage
 	{
 
-		// return (new MailMessage)
-		//     ->subject('[FYI] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. $this->pr->amount.$this->pr->currency.' has been '.Str::lower($this->action).'.')
-		//     ->greeting('Hello, '.$this->user->name)
-		//     ->line('Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been submitted for approval.')
-		//     ->action('View PR', url('/prs/'.$this->pr->id))
-		//     ->line('Thank you for using our application!');
-
 		return (new MailMessage)
 			->subject($this->subject)
 			->greeting('Hello, '.$this->user->name)

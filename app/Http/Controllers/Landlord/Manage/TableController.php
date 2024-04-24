@@ -270,7 +270,7 @@ class TableController extends Controller
 	{
 		$this->authorize('comments', Table::class);
 
-		$BASE_DIR	= "\app\Models\Landlord\\";
+		$BASE_DIR	= "\app\Http\Controllers\Landlord\\";
 		$target_dir = $BASE_DIR . $dir;
 
 		//$filesInFolder = \File::files(base_path() . '\app\Http\Controllers\Landlord\Admin');

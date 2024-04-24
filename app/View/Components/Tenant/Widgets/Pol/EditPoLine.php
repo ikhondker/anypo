@@ -29,7 +29,7 @@ class EditPoLine extends Component
 		$this->items = Item::primary()->get();
 		$this->uoms = Uom::primary()->get();
 		
-		$this->po   = Po::where('id', $poid)->get()->first();
+		$this->po	= Po::where('id', $poid)->get()->first();
 		$this->pols = Pol::with('item')->with('uom')->where('po_id', $this->po->id)->get()->all();
 		//$this->prl = Prl::with('item')->with('uom')->where('id', $prlid)->get()->first();
 		
