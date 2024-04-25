@@ -184,12 +184,13 @@ class ItemController extends Controller
 		$this->authorize('export', Item::class);
 
 		$data = DB::select("
-			SELECT i.id, i.name, i.notes, c.name category_name, o.name oem_name, u.name uom_name, i.price, i.stock, i.gl_type,
+			SELECT i.id, i.name, i.notes, c.name category_name, o.name oem_name, u.name uom_name, i.price, glt.name gl_type,
 			IF(i.enable, 'Yes', 'No') as Enable 
-			FROM items i, categories c, oems o, uoms u
+			FROM items i, categories c, oems o, uoms u, gl_types glt
 			WHERE i.category_id = c.id
 			AND i.oem_id=o.id
-			AND i.uom_id=u.id ");
+			AND i.uom_id=u.id 
+			AND i.gl_type_code=glt.code ");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('users', $dataArray);

@@ -6,22 +6,8 @@
 				<h5 class="card-title">Requisition Lines</h5>
 				<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
 			</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="">LINE#</th>
-						<th class="">Item</th>
-						<th class="">Summary</th>
-						<th class="">UOM</th>
-						<th class="text-end">Qty</th>
-						<th class="text-end">Price</th>
-						<th class="text-end">Sub Total</th>
-						<th class="text-end">Tax</th>
-						<th class="text-end">GST</th>
-						<th class="text-end">Amount</th>
-						<th class="">Actions</th>
-					</tr>
-				</thead>
+			<table class="table table-striped table-hover">
+				<x-tenant.widgets.prl.pr-lines-table-header/>
 				<tbody>
 					@foreach ($prls as $prl)
 						@if ( $prlid == $prl->id )
@@ -29,8 +15,8 @@
 						@else
 							<tr class="">
 								<td class="">{{ $prl->line_num }}</td>
-								<td class="">{{ $prl->item->name }}</td>
-								<td class="">{{ $prl->summary }}</td>
+								<td class="">{{ $prl->item->code }}</td>
+								<td class="">{{ $prl->item_description }}</td>
 								<td class="">{{ $prl->uom->name }}</td>
 								<td class="text-end">{{ $prl->qty }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->price"/></td>

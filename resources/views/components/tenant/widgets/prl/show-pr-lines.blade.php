@@ -3,25 +3,23 @@
 	<div class="col-12 col-xl-12">
 		<div class="card">
 			<div class="card-header">
+				
+				<div class="card-actions float-end">
+					<div class="dropdown position-relative">
+						@if ($showAddMore)
+							<div class="form-check form-switch">
+								<input class="form-check-input m-1" type="checkbox" id="add_row" name="add_row" checked>
+								<label class="form-check-label" for="add_row">... add another row</label>
+							</div>
+						@endif 
+					</div>
+				</div>
 				<h5 class="card-title">Requisition Lines</h5>
 				<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
+
 			</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="">LINE#</th>
-						<th class="">CODE</th>
-						<th class="">Description</th>
-						<th class="">UOM</th>
-						<th class="text-end">Qty</th>
-						<th class="text-end">Price</th>
-						<th class="text-end">Sub Total</th>
-						<th class="text-end">Tax</th>
-						<th class="text-end">GST</th>
-						<th class="text-end">Amount</th>
-						<th class="">Actions</th>
-					</tr>
-				</thead>
+			<table class="table table-striped table-hover">
+				<x-tenant.widgets.prl.pr-lines-table-header/>
 				<tbody>
 					@forelse  ($prls as $prl)
 						<tr class="">

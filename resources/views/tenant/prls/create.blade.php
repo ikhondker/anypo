@@ -13,7 +13,6 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
-			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
 			<x-tenant.actions.pr-actions id="{{ $pr->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
@@ -29,7 +28,7 @@
 		{{-- <x-tenant.widgets.pr.lines id="{{ $pr->id }}" :add="true"/> --}}
 		<!-- /.widget-pr-lines -->
 
-		<x-tenant.widgets.prl.show-pr-lines id="{{ $pr->id }}">
+		<x-tenant.widgets.prl.show-pr-lines id="{{ $pr->id }}" :showAddMore="true">
 			@include('tenant.includes.pr.pr-line-add')
 			@include('tenant.includes.pr.pr-footer-form')
 		</x-tenant.widgets.prl.show-pr-lines>

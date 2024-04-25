@@ -1,11 +1,10 @@
-<tr class="">
+<tr class="table-primary">
 	<td class="">
-			{{-- First PR line of New PR --}}
-			@isset($pr)
-				<input type="text" name="pr_id" id="pr_id" class="form-control" placeholder="ID" value="{{ old('pr_id', $pr->id ) }}" hidden>
-			@endisset
-
-		<a href="#" class="btn btn-primary float-start"><i class="fas fa-plus"></i></a>
+		{{-- First PR line of New PR --}}
+		@isset($pr)
+			<input type="text" name="pr_id" id="pr_id" class="form-control" placeholder="ID" value="{{ old('pr_id', $pr->id ) }}" hidden>
+		@endisset
+		<i class="align-middle me-1" data-feather="plus"></i>
 	</td>
 	<td class="">
 		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id" required>
@@ -49,7 +48,10 @@
 		@enderror
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('price') is-invalid @enderror"
+		{{-- <input type="text" class="form-control" data-mask="0,000.00" data-reverse="false"> --}}
+		<input type="text" class="form-control @error('price') is-invalid @enderror"
+			{{-- data-mask="000,000,000.00" data-reverse="true" --}}
+			{{-- data-inputmask="'mask': '9,999,999.99'" --}}
 			style="text-align: right;"
 			name="price" id="price" placeholder="0.00"
 			value="{{ old('price','0.00') }}"
@@ -99,8 +101,20 @@
 		@enderror
 	</td>
 	<td class="">
+		<button type="submit" id="submit" name="action" value="save" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-feather="save"></i></button>
+		<a class="btn btn-secondary" href="{{ url()->previous() }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i data-feather="x-circle"></i></a>
 		{{-- <x-tenant.buttons.show.save/> --}}
 	</td>
 </tr>
+
+<script type="module">
+	var selector = document.getElementById("price");
+
+	$(document).ready(function(){
+		$(selector).inputmask("99-9999999");  //static mask
+		//$(price).inputmask('€ 999.999.999,99', { numericInput: true });    //123456  =>  € ___.__1.234,56
+		//$("#price").inputmask('€ 999.999.999,99', { numericInput: true });    //123456  =>  € ___.__1.234,56
+	});
+</script>
 
 @include('tenant.includes.js.calculate-pr-amount')

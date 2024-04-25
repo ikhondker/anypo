@@ -42,7 +42,7 @@ class UserRegistered extends Notification implements ShouldQueue
 			->greeting('Hello '. $this->user->name . ',')
 			->line('Welcome to '.tenant('id').'.'.config('app.name').' and thank you for the registration.' )
 			->line('You have registered with email: '.$this->user->email )
-			->line('You will be receiving another email shortly to verify your email with link. Please verify your email.')
+			->line('You will be receiving another email shortly to verify your email with link. Please verify your email address.')
 			->line('We have also notified Admin about your registration. Once Admin approve your registration, you may use the following link to login:')
 			->action('Login', url('/login'))
 			->line('Thank you for using '.config('app.name').' application!');

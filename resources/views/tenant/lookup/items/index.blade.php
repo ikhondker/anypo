@@ -12,7 +12,9 @@
 			Items
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Item"/>
+			@can('create', App\Models\Tenant\Lookup\Item::class)
+				<x-tenant.buttons.header.create object="Item"/>
+			@endcan	
 		@endslot
 	</x-tenant.page-header>
 

@@ -1,7 +1,7 @@
-<tr class="">
+<tr class="table-primary">
 	<td class="">
 		<input type="text" name="pr_id" id="pr_id" class="form-control" placeholder="ID" value="{{ old('pr_id', $pr->id ) }}" hidden>
-		<a href="#" class="btn btn-primary float-start"><i class="fas fa-edit"></i></a>
+		{{ $prl->line_num }}
 	</td>
 	<td class="">
 		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id">
@@ -61,7 +61,7 @@
 		@enderror
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('tax') is-invalid @enderror"
+		<input type="number" step='0.01' min="0" class="form-control @error('tax') is-invalid @enderror"
 			style="text-align: right;"
 			name="tax" id="tax" placeholder="0.00"
 			value="{{ old('tax', $prl->tax ) }}"
@@ -71,7 +71,7 @@
 		@enderror
 	</td>
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('gst') is-invalid @enderror"
+		<input type="number" step='0.01' min="0" class="form-control @error('gst') is-invalid @enderror"
 			style="text-align: right;"
 			name="gst" id="gst" placeholder="0.00"
 			value="{{ old('gst', $prl->gst ) }}"
@@ -85,14 +85,16 @@
 		<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror"
 			style="text-align: right;"
 			name="amount" id="amount" placeholder="0.00"
-			value="{{ old('amount',number_format($prl->amount,2)) }}"
+			value="{{ old('amount',number_format($prl->amount, 2)) }}"
 			readonly>
 		@error('amount')
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="">
+		<button type="submit" id="submit" name="action" value="save" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-feather="save"></i></button>
 		{{-- <x-tenant.buttons.show.save/> --}}
+		<a class="btn btn-secondary" href="{{ url()->previous() }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i data-feather="x-circle"></i></a>
 	</td>
 </tr>
 

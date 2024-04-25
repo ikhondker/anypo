@@ -18,6 +18,12 @@
 						var old_amount = $("#amount").val();
 						var old_pr_amount = $("#pr_amount").val();
 
+						//console.log("old_amount=" + old_amount);
+						//console.log("old_pr_amount=" + old_pr_amount);
+						//console.log("number old_pr_amount=" + Number(old_pr_amount.replace(',','')));
+						//console.log("parseFloat old_pr_amount=" + parseFloat(old_pr_amount.replace(',','')));
+						//console.log("parseInt old_pr_amount=" + parseInt(old_pr_amount.replace(',',''),2));
+
 						//console.log("response.name = " + response.name );
 						$('#item_description').val(response.name);
 
@@ -34,9 +40,13 @@
 						var gst = $("#gst").val();
 						
 						var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
+						//console.log("amount=" + amount);
+
 						$('#amount').val(amount.toFixed(2));
 						
-						var pr_amount = parseInt(old_pr_amount) - parseInt(old_amount) + parseInt(amount);;
+						var pr_amount = parseFloat(old_pr_amount.replace(',','')) - parseInt(old_amount) + parseInt(amount);
+						//console.log("pr_amount=" + pr_amount);
+
 						$('#pr_amount').val(pr_amount.toFixed(2));
 						//console.log("amount = " + amount);
 

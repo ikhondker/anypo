@@ -84,7 +84,7 @@ class PrActions extends Notification implements ShouldQueue
 
 		return (new MailMessage)
 			->subject($this->subject)
-			->greeting('Hello, '.$this->user->name)
+			->greeting('Hello '.$this->user->name.',')
 			->line($this->line)
 			->action('View Requisition', $this->actionURL)
 			//->action('View Requisition', url('prs', [ $this->pr->id ]))

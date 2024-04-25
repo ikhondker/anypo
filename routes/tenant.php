@@ -117,6 +117,26 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
+
+		/* ======================== Test Tenant Routes  ========================================  */
+		Route::get('testrun/',[TestController::class, 'run'])->name('test.run');
+		// Route::get('/test', function () {
+		// 	dd('done at ' .date('Y'));
+		// })->name('test');
+		//Route::view('/test', 'tenant.pages.test');
+		Route::get('/test', function () {
+			return view('tenant.pages.test');
+		})->name('test');
+		Route::get('/sweet2', function () {
+			return view('tenant.pages.sweet2');
+		})->name('sweet2');
+		Route::get('/jq', function () {
+			return view('tenant.pages.jquery');
+		})->name('jq');
+		Route::get('/jql', function () {
+			return view('tenant.pages.jqueryl');
+		})->name('jql');
+		
 		/* ======================== Purging Cache ========================================  */
 		Route::get('/clear', function() {
 			Artisan::call('cache:clear');
@@ -615,24 +635,7 @@ Route::middleware([
 			return view('design');
 		})->name('design');
 
-		/* ======================== Test Tenant Routes  ========================================  */
-		Route::get('testrun/',[TestController::class, 'run'])->name('test.run');
-		// Route::get('/test', function () {
-		// 	dd('done at ' .date('Y'));
-		// })->name('test');
-		//Route::view('/test', 'tenant.pages.test');
-		Route::get('/test', function () {
-			return view('tenant.pages.test');
-		})->name('test');
-		Route::get('/sweet2', function () {
-			return view('tenant.pages.sweet2');
-		})->name('sweet2');
-		Route::get('/jq', function () {
-			return view('tenant.pages.jquery');
-		})->name('jq');
-		Route::get('/jql', function () {
-			return view('tenant.pages.jqueryl');
-		})->name('jql');
+		
 
 	});
 

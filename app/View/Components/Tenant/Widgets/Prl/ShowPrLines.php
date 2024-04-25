@@ -14,17 +14,18 @@ use App\Models\Tenant\Lookup\Uom;
 
 class ShowPrLines extends Component
 {
-	public $id;
+	
 	public $pr;
 	public $prls;
 	public $items;
 	public $uoms;
-
+	
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public $id, public $showAddMore = false)
 	{
+
 		$this->items = Item::primary()->get();
 		$this->uoms = Uom::primary()->get();
 		if ($id <> ''){

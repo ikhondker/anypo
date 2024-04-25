@@ -13,7 +13,7 @@
 			View Notification
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Notification"/>
+			<x-tenant.actions.notification-actions :id="$notification->id"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -68,6 +68,6 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-
+	@include('shared.includes.js.sw2')
 @endsection
 

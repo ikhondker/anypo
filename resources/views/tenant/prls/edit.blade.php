@@ -12,11 +12,8 @@
 			Edit PR Line
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pr"/>
-			<x-tenant.buttons.header.create object="Pr"/>
-			<x-tenant.buttons.header.edit object="Pr" :id="$pr->id"/>
-			<x-tenant.buttons.header.pdf object="Pr" :id="$pr->id"/>
-			<x-tenant.buttons.header.add-line object="Prl" :id="$pr->id"/>
+			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
+			<x-tenant.actions.pr-actions id="{{ $pr->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 	

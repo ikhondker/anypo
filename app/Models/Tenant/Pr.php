@@ -60,18 +60,20 @@ class Pr extends Model
 	// sync header and FC values PR header and lines
 	public static function syncPrValues($pr_id)
 	{
+
+		Log::debug('tenant.model.pr.syncPrValues pr_id= '. $pr_id);
 		$setup 	= Setup::first();
 		//$pr		= Pr::where('id', $pr_id)->firstOrFail();
-
+		Log::debug('tenant.model.pr.syncPrValues 1a');
 		// update PR header
-		$pr				= Pr::where('id', $pr_id)->firstOrFail();
+		$pr		= Pr::where('id', $pr_id)->firstOrFail();
 		$result = Prl::where('pr_id', $pr->id)->get( array(
 			DB::raw('SUM(sub_total) as sub_total'),
 			DB::raw('SUM(tax) as tax'),
 			DB::raw('SUM(gst) as gst'),
 			DB::raw('SUM(amount) as amount'),
 		));
-
+		Log::debug('tenant.model.pr.syncPrValues 2');
 		// No row in child table 
 		foreach($result as $row) {
 			if ( is_null($row['sub_total'])  ) { 
@@ -88,7 +90,7 @@ class Pr extends Model
 			}
 		}
 		$pr->save();
-
+		Log::debug('tenant.model.pr.syncPrValues 3');
 		// get updated PR header
 		$pr				= Pr::where('id', $pr_id)->firstOrFail();
 		Log::debug('tenant.model.pr.syncPrValues PR currency =' . $pr->currency.' fc_currency='.$setup->currency);

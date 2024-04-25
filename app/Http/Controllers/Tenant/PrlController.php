@@ -111,6 +111,7 @@ class PrlController extends Controller
 	public function store(StorePrlRequest $request)
 	{
 		$this->authorize('create', Prl::class);
+
 		// get max line num for the
 		$line_num 						= Prl::where('pr_id', '=',$request->input('pr_id'))->max('line_num');
 		$request->merge(['line_num'		=> $line_num +1]);
@@ -123,18 +124,21 @@ class PrlController extends Controller
 		//$request->merge(['sub_total'	=> $request->input('sub_total')]);
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
 		$prl = Prl::create($request->all());
-
+		
 		// Write to Log
 		EventLog::event('Prl', $prl->id, 'create');
-
+		
 		// 	Update PR Header value and Populate functional currency values
-		$result = Pr::syncPrValues($prl->id);
+		$result = Pr::syncPrValues($prl->pr_id);
+		
 		if (! $result ) {
+			Log::error('tenant.prl.store Exchange Rate not found!');
 			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		} else {
 			Log::debug('tenant.prl.store syncPrValues completed.');
 		}
 
+		
 		if($request->has('add_row')) {
 			//Checkbox checked
 			return redirect()->route('prls.add-line', $prl->pr_id)->with('success', 'Line added to PR #'. $prl->pr_id.' successfully.');
@@ -201,7 +205,7 @@ class PrlController extends Controller
 		$prl->update($request->all());
 
 		// 	Update PR Header value and Populate functional currency values
-		$result = Pr::syncPrValues($prl->id);
+		$result = Pr::syncPrValues($prl->pr_id);
 		if (! $result ) {
 			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		} else {
@@ -232,7 +236,7 @@ class PrlController extends Controller
 		$prl->delete();
 
 		// 	update PR Header value
-		$result = Pr::updatePrHeaderValue($prl->pr_id);
+		$result = Pr::syncPrValues($prl->pr_id);
 
 		// Write to Log
 		EventLog::event('prl', $prl->id, 'delete', 'id', $prl->id);
@@ -256,11 +260,11 @@ class PrlController extends Controller
 		} else {
 			$dept_id 	= '';
 		}
-
+		
 		$data = DB::select("
 		SELECT pr.id, pr.summary pr_summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
 		pr.notes, pr.currency, pr.amount pr_amount, pr.status, pr.auth_status, pr.auth_date ,
-		prl.line_num, prl.summary line_summary, i.code item_code, uom.name uom, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount,
+		prl.line_num, prl.item_description , i.code item_code, uom.name uom, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount,
 		prl.price, prl.sub_total, prl.amount,prl.notes, prl.closure_status
 		FROM prs pr, prls prl, depts d, projects p, suppliers s, users u , items i, uoms uom
 		WHERE pr.dept_id=d.id 
@@ -274,7 +278,6 @@ class PrlController extends Controller
 		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
 		ORDER BY pr.id DESC
 		");
-
 		
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

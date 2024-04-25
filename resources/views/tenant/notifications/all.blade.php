@@ -11,9 +11,7 @@
 			All Notifications
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('notifications.purge') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-trash-can"></i> Purge Read Notification</a>
-			<a href="{{ route('notifications.index') }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-message"></i> Unread Notification</a>
-			{{-- <x-tenant.buttons.header.create object="Dept"/> --}}
+			<x-tenant.actions.notification-actions/>
 		@endslot
 	</x-tenant.page-header>
 

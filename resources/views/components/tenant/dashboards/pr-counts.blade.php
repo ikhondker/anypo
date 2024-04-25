@@ -1,26 +1,6 @@
 <div class="row">
 
-	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
-		<div class="card flex-fill">
-			<div class="card-body py-4">
-				<div class="d-flex align-items-start">
-					<div class="flex-grow-1">
-						<h3 class="mb-2">{{ $count_total }} </h3>
-						<p class="mb-2">Total Requisition</p>
-						<div class="mb-0">
-							<span class="badge badge-soft-success me-2"> {{ $_setup->currency }} </span>
-							<span class="text-muted"> {{ number_format($sum_total, 2, '.', ',') }}</span>
-						</div>
-					</div>
-					<div class="d-inline-block ms-3">
-						<div class="stat">
-							<i class="align-middle text-success" data-feather="database"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	
 
 	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
@@ -142,6 +122,28 @@
 					<div class="d-inline-block ms-3">
 						<div class="stat">
 							<i class="align-middle text-success" data-feather="edit"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
+		<div class="card flex-fill">
+			<div class="card-body py-4">
+				<div class="d-flex align-items-start">
+					<div class="flex-grow-1">
+						<h3 class="mb-2">{{ $count_total }} </h3>
+						<p class="mb-2">Total Requisition</p>
+						<div class="mb-0">
+							<span class="badge badge-soft-success me-2"> {{ $_setup->currency }} </span>
+							<span class="text-muted"> {{ number_format($sum_total, 2, '.', ',') }}</span>
+						</div>
+					</div>
+					<div class="d-inline-block ms-3">
+						<div class="stat">
+							<i class="align-middle text-success" data-feather="database"></i>
 						</div>
 					</div>
 				</div>

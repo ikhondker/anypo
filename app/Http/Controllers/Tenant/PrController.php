@@ -373,7 +373,7 @@ class PrController extends Controller
 
 		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status );
 
-		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
+		if (($pr->auth_status <> AuthStatusEnum::DRAFT->value) || ($pr->auth_status <> AuthStatusEnum::REJECTED->value) )  {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
 		}
 
@@ -628,8 +628,8 @@ class PrController extends Controller
 		$pr_id					= $pr->id;
 
 		// copy lines into prls
-		$sql= "INSERT INTO prls( pr_id, line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, closure_status ) 
-		SELECT ".$pr->id.",line_num, summary, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, '".ClosureStatusEnum::OPEN->value."'  
+		$sql= "INSERT INTO prls( pr_id, line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, closure_status ) 
+		SELECT ".$pr->id.",line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, '".ClosureStatusEnum::OPEN->value."'  
 		FROM prls WHERE 
 		pr_id= ".$sourcePr->id." ;";
 		DB::INSERT($sql);

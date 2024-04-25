@@ -4,26 +4,27 @@
 	</a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
-		@if ($show)
-			<a class="dropdown-item" href="{{ route('prs.show', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Requisition</a>
-		@endif
+		<a class="dropdown-item" href="{{ route('prs.show', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Requisition</a>
+		<a class="dropdown-item" href="{{ route('prs.extra', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Extra Information</a>
+		<a class="dropdown-item" href="{{ route('prs.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> View Attachments</a>
+		<a class="dropdown-item" href="{{ route('prs.history', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('reports.pr', $id) }}" target="_blank"><i class="align-middle me-1" data-feather="printer"></i> Print Requisition</a>
+		
+		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('prs.edit', $id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Requisition</a>
 		<a class="dropdown-item" href="{{ route('prls.add-line', $id) }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Add Requisition Line</a>
-		<a class="dropdown-item" href="{{ route('prs.history', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Approval History</a>
-		<a class="dropdown-item" href="{{ route('prs.extra', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> Additional Information</a>
-		<a class="dropdown-item" href="{{ route('prs.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> Attachments</a>
-
+		
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Requisition</a>
 		<a class="dropdown-item sw2-advance" href="{{ route('prs.copy', $id) }}"
 			data-entity="" data-name="PR #{{ $id }}" data-status="Duplicate"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PR">
 			<i class="align-middle me-1" data-feather="copy"></i> Copy Requisition</a>
-		<div class="dropdown-divider"></div>
+		
 		<a class="dropdown-item sw2-advance" href="{{ route('prs.convert', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Covert to PO"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
-			<i class="align-middle me-1 text-primary" data-feather="copy"></i> Covert to PO</a>
-		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Requisition</a>
+			<i class="align-middle me-1" data-feather="copy"></i> Covert to PO</a>
 		<div class="dropdown-divider"></div>
 
 		<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-pr', $id) }}"

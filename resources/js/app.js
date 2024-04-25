@@ -16,6 +16,16 @@ select2(); // <-- select2 must be called
 import Chart from 'chart.js/auto';
 window.Chart = Chart;
 
+//import "jquery-mask-plugin/dist/jquery.mask.min";
+
+//import 'inputmask';
+//import InputMask from 'inputmask';
+
+//import InputMask from "jquery-mask-plugin/dist/jquery.mask.min";
+import Inputmask from "inputmask";
+window.inputmask = Inputmask;
+//var Inputmask = require('inputmask');
+
 // IQBAL 28-MAR-2024
 import feather from "feather-icons";
 document.addEventListener("DOMContentLoaded", () => {

@@ -110,7 +110,7 @@
 
 							<x-tenant.edit.currency :value="$pr->currency"/>
 
-							{{-- <x-tenant.buttons.show.save/> --}}
+							<x-tenant.buttons.show.save/>
 
 						</div>
 					</div>
@@ -129,16 +129,14 @@
 							<x-tenant.attachment.create />
 							
 							<div class="mb-3">
-								<label for="requestor_id" class="form-label">Requestor</label>
-								<select class="form-control select2" data-toggle="select2" name="requestor_id" id="requestor_id">
-									@foreach ($users as $user)
-										<option {{ $user->id == old('requestor_id',$pr->requestor_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
-									@endforeach
-								</select>
-								@error('requestor_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
+								<label class="form-label">Requestor</label>
+								<input type="text" class="form-control"
+									name="requestor" id="requestor"
+									value="{{ $pr->requestor->name }}"
+									readonly/>
 							</div>
+
+						
 							<x-tenant.buttons.show.save/>
 
 						</div>

@@ -19,7 +19,6 @@
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
 					<i data-feather="external-link"></i> Submit</a>
 			@endif
-
 			<x-tenant.actions.pr-actions id="{{ $pr->id }}"/>
 
 		@endslot

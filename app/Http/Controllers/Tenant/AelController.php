@@ -61,9 +61,10 @@ class AelController extends Controller
 
 		Log::debug('tenant.ael.index Value of action=' . request('action'));
 
-		if (request('start_date') && request('end_date') ) {
-			$start_date=request('start_date');
-			$end_date=request('end_date');
+		// TODO CHECK 
+		if (request('start_date') && tenant()) {
+			$start_date = 	request('start_date');
+			$end_date	=	request('end_date');
 			Log::debug('tenant.ael.index Value of start_date=' . request('start_date'));
 			Log::debug('tenant.ael.index  Value of end_date=' . request('end_date'));
 		}

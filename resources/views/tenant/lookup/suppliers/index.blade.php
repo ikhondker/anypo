@@ -10,7 +10,9 @@
 		Supplier
 		@endslot
 		@slot('buttons')
+			@can('create', App\Models\Tenant\Lookup\Supplier::class)
 			<x-tenant.buttons.header.create object="Supplier"/>
+			@endcan
 		@endslot
 	</x-tenant.page-header>
 

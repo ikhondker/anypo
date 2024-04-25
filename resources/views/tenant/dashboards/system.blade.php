@@ -66,7 +66,7 @@
 							
 						}
 					@endphp
-					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($budget_used_pc,2) }}%</span>
+					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($budget_used_pc, 2) }}%</span>
 					<div class="mb-0">
 						<span class="badge badge-soft-success me-2">{{ $budget_amount }}</span>
 						<span class="text-muted"> total budget for FY{{ date('Y') }}. Utilized {{ $budget_po }}</span>

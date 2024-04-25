@@ -24,8 +24,8 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Purchase Order Basic Information</h5>
-					<h6 class="card-subtitle text-muted">Purchase Order Basic Information.</h6>
+						<h5 class="card-title">Purchase Order Basic Information</h5>
+						<h6 class="card-subtitle text-muted">Purchase Order Basic Information.</h6>
 					</div>
 					<div class="card-body">
 
@@ -138,9 +138,8 @@
 								readonly/>
 						</div>
 
-
-
 					</div>
+				</div>
 			</div>
 			<!-- end col-6 -->
 		</div>
@@ -201,7 +200,7 @@
 		</div>
 		</div>
 	</div>
-	</div>
+</div>
 
 	@include('tenant.includes.js.select2')
 	

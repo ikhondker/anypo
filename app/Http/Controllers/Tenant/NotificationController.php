@@ -88,7 +88,9 @@ class NotificationController extends Controller
 	 */
 	public function show(Notification $notification)
 	{
-		return view('tenant.notifications.show', compact('notification'));
+		$id = $notification->id;
+		
+		return view('tenant.notifications.show', compact('notification','id'));
 	}
 
 	/**
