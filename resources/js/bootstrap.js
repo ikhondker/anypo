@@ -14,7 +14,6 @@ popoverTriggerList.map((popoverTriggerEl) => {
   return new bootstrap.Popover(popoverTriggerEl)
 })
 
-
 // Tooltips
 // Note: Disable this if you're not using Bootstrap's Tooltips
 const tooltipTriggerList = [].slice.call(document.querySelectorAll("[data-bs-toggle=\"tooltip\"]"))
@@ -26,7 +25,6 @@ tooltipTriggerList.map((tooltipTriggerEl) => {
 // Note: If you want to make bootstrap globally available, e.g. for using `bootstrap.modal`
 window.bootstrap = bootstrap;
 // ---------------------------------------
-
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

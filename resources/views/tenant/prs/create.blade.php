@@ -104,8 +104,11 @@
 
 						<x-tenant.create.currency/>
 
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
+
+				
 			</div>
 			<!-- end col-6 -->
 			<div class="col-6">
@@ -133,6 +136,8 @@
 								value="{{ auth()->user()->name }}"
 								readonly/>
 						</div>
+
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>		
 			</div>

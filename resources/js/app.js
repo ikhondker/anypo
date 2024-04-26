@@ -16,16 +16,6 @@ select2(); // <-- select2 must be called
 import Chart from 'chart.js/auto';
 window.Chart = Chart;
 
-//import "jquery-mask-plugin/dist/jquery.mask.min";
-
-//import 'inputmask';
-//import InputMask from 'inputmask';
-
-//import InputMask from "jquery-mask-plugin/dist/jquery.mask.min";
-import Inputmask from "inputmask";
-window.inputmask = Inputmask;
-//var Inputmask = require('inputmask');
-
 // IQBAL 28-MAR-2024
 import feather from "feather-icons";
 document.addEventListener("DOMContentLoaded", () => {
@@ -35,17 +25,12 @@ window.feather = feather;
 
 //import moment from "moment";
 //window.moment = moment();
-
 //import moment from 'moment';
 //window.moment = moment;
 
 // import 'jquery-ui/dist/jquery-ui.min.js'
 // import 'jquery-ui/ui/widgets/datepicker.js';
-
 // import 'jquery-ui/ui/widgets/autocomplete.js';
-//import 'jquery-ui/ui/widgets/datepicker.js';
+// import 'jquery-ui/ui/widgets/datepicker.js';
 // import 'jquery-ui/themes/base/all.css';
-//$('.datepicker').datepicker();
-
-
-
+// $('.datepicker').datepicker();

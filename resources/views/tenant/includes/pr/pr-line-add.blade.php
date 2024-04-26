@@ -28,7 +28,7 @@
 	</td>
 	<td class="">
 			<select class="form-control" name="uom_id" id="uom_id" required>
-				<option value=""><< UoM >> </option>
+				<option value="">&lt;UoM&gt;</option>
 				@foreach ($uoms as $uom)
 					<option value="{{ $uom->id }}" {{ $uom->id == old('uom_id') ? 'selected' : '' }} >{{ $uom->name }} </option>
 				@endforeach
@@ -49,7 +49,7 @@
 	</td>
 	<td class="text-end">
 		{{-- <input type="text" class="form-control" data-mask="0,000.00" data-reverse="false"> --}}
-		<input type="text" class="form-control @error('price') is-invalid @enderror"
+		<input type="number" class="form-control @error('price') is-invalid @enderror"
 			{{-- data-mask="000,000,000.00" data-reverse="true" --}}
 			{{-- data-inputmask="'mask': '9,999,999.99'" --}}
 			style="text-align: right;"
@@ -106,15 +106,5 @@
 		{{-- <x-tenant.buttons.show.save/> --}}
 	</td>
 </tr>
-
-<script type="module">
-	var selector = document.getElementById("price");
-
-	$(document).ready(function(){
-		$(selector).inputmask("99-9999999");  //static mask
-		//$(price).inputmask('€ 999.999.999,99', { numericInput: true });    //123456  =>  € ___.__1.234,56
-		//$("#price").inputmask('€ 999.999.999,99', { numericInput: true });    //123456  =>  € ___.__1.234,56
-	});
-</script>
 
 @include('tenant.includes.js.calculate-pr-amount')
