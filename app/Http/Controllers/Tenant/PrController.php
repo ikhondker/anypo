@@ -328,7 +328,9 @@ class PrController extends Controller
 		$projects = Project::primary()->get();
 		$users = User::tenant()->get();
 
-		return view('tenant.prs.edit', compact('pr', 'suppliers', 'depts', 'projects', 'users'));
+		$prls = Prl::with('item')->with('uom')->where('pr_id', $pr->id)->get()->all();
+
+		return view('tenant.prs.edit', compact('pr','prls', 'suppliers', 'depts', 'projects', 'users'));
 	}
 
 	/**

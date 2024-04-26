@@ -147,7 +147,7 @@
 
 
 		<!-- widget-pr-lines -->
-		<x-tenant.widgets.prl.card :readOnly="false" :addMore="true">
+		<x-tenant.widgets.prl.card :addMore="true">
 			@slot('lines')
 				<tbody>
 					@include('tenant.includes.pr.pr-line-add')

@@ -75,9 +75,12 @@ class PrlController extends Controller
 
 		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
-		$uoms = Uom::primary()->get();
+		$uoms = Uom::primary()->get(); 
 
-		return view('tenant.prls.create', with(compact('pr','items','uoms'))); 
+		
+		$prls = Prl::with('item')->with('uom')->where('pr_id', $pr->id)->get()->all();
+		
+		return view('tenant.prls.create', with(compact('pr','prls','items','uoms'))); 
 	}
 
 
@@ -180,8 +183,10 @@ class PrlController extends Controller
 		$pr = Pr::where('id', $prl->pr_id)->first();
 		$items = Item::primary()->get();
 		$uoms = Uom::primary()->get();
+		
+		$prls = Prl::with('item')->with('uom')->where('pr_id', $prl->pr_id)->get()->all();
 
-		return view('tenant.prls.edit', with(compact('pr', 'prl', 'items','uoms')));
+		return view('tenant.prls.edit', with(compact('pr', 'prls','prl', 'items','uoms')));
 	}
 
 	/**

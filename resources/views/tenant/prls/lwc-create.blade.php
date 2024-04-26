@@ -38,6 +38,7 @@
 
 					@endforelse
 					@include('tenant.includes.pr.pr-line-add')
+					@include('tenant.includes.pr.pr-footer-form')
 				</tbody>
 
 				{{-- @include('tenant.includes.pr.pr-footer-show') --}}

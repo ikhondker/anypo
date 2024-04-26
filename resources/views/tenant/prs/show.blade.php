@@ -28,6 +28,20 @@
 	
 
 	<!-- widget-pr-lines -->
+	<x-tenant.widgets.prl.card :pr="$pr">
+		@slot('lines')
+			<tbody>
+				@forelse  ($prls as $prl)
+					<x-tenant.widgets.prl.show-one-line :line="$prl" :status="$pr->auth_status"/>
+				@empty
+
+				@endforelse
+			</tbody>
+		@endslot
+	</x-tenant.widgets.prl.card>
+	<!-- /.widget-pr-lines -->
+
+	<!-- widget-pr-lines -->
 	<x-tenant.widgets.prl.show-pr-lines id="{{ $pr->id }}">
 		@include('tenant.includes.pr.pr-footer-show')
 	</x-tenant.widgets.prl.show-pr-lines>
