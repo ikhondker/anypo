@@ -6,7 +6,7 @@
 	<td class="">
 		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id">
 			@foreach ($items as $item)
-				<option {{ $item->id == old('item_id',$prl->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->code }} </option>
+				<option {{ $item->id == old('item_id',$prl->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->code .' - '.$item->name }} </option>
 			@endforeach
 		</select>
 		@error('item_id')

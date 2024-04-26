@@ -155,8 +155,6 @@
 
 						@endforelse
 					</tbody>
-
-					{{-- @include('tenant.includes.pr.pr-footer-show') --}}
 				@endslot
 			</x-tenant.widgets.prl.card>
 			<!-- /.widget-pr-lines -->

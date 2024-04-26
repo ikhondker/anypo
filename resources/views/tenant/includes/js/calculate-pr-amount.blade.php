@@ -39,12 +39,13 @@
 						var tax = $("#tax").val();
 						var gst = $("#gst").val();
 						
-						var amount = parseInt(sub_total) + parseInt(tax) + parseInt(gst);
+						var amount = parseInt(sub_total) + parseFloat(tax) + parseFloat(gst);
 						//console.log("amount=" + amount);
 
 						$('#amount').val(amount.toFixed(2));
 						
-						var pr_amount = parseFloat(old_pr_amount.replace(',','')) - parseInt(old_amount) + parseInt(amount);
+						//var pr_amount = parseFloat(old_pr_amount.replace(',','')) - parseInt(old_amount) + parseInt(amount);
+						var pr_amount = parseFloat(old_pr_amount) - parseFloat(old_amount) + parseFloat(amount);
 						//console.log("pr_amount=" + pr_amount);
 
 						$('#pr_amount').val(pr_amount.toFixed(2));

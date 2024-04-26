@@ -25,11 +25,7 @@
 		@csrf
 
 		<!-- widget-pr-lines -->
-		{{-- <x-tenant.widgets.pr.lines id="{{ $pr->id }}" :add="true"/> --}}
-		<!-- /.widget-pr-lines -->
-
-		<!-- widget-pr-lines -->
-		<x-tenant.widgets.prl.card :pr="$pr" :addMore="true">
+		<x-tenant.widgets.prl.card :pr="$pr" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
 					@forelse  ($prls as $prl)
@@ -44,12 +40,7 @@
 			@endslot
 		</x-tenant.widgets.prl.card>
 		<!-- /.widget-pr-lines -->
-
-		<x-tenant.widgets.prl.show-pr-lines id="{{ $pr->id }}" :showAddMore="true">
-			@include('tenant.includes.pr.pr-line-add')
-			@include('tenant.includes.pr.pr-footer-form')
-		</x-tenant.widgets.prl.show-pr-lines>
-
+	
 	</form>
 	<!-- /.form end -->
 	

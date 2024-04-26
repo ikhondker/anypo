@@ -56,7 +56,7 @@
 							@enderror
 						</td>
 						<td class="">
-							{{-- <x-tenant.buttons.show.save/> --}}
+							{{-- <x-tenant.buttons.show.save/> --}} 
 						</td>
 					</tr>
 				@endif

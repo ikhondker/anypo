@@ -9,24 +9,22 @@ use Illuminate\View\Component;
 use Illuminate\Support\Facades\Log;
 class ShowOneLine extends Component
 {
-    public $prl;
-    public $status;
-    /**
-     * Create a new component instance.
-     */
-    public function __construct($line, $status)
-    {
-        $this->prl      = $line;
-        $this->status   = $status;
-        //
-        Log::debug('Value of id=' . $line);
-    }
+	public $prl;
+	public $status;
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct($line, $status)
+	{
+		$this->prl		= $line;
+		$this->status	= $status;
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.prl.show-one-line');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.prl.show-one-line');
+	}
 }

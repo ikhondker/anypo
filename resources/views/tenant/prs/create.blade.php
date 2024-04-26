@@ -145,49 +145,14 @@
 		</div>
 		<!-- end row -->
 
-
 		<!-- widget-pr-lines -->
 		<x-tenant.widgets.prl.card :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
 					@include('tenant.includes.pr.pr-line-add')
 				</tbody>
-
-				{{-- @include('tenant.includes.pr.pr-footer-show') --}}
 			@endslot
 		</x-tenant.widgets.prl.card>
-
-		{{-- =================PR lines create ================================================= --}}
-		<div class="row">
-			<div class="col-12 col-xl-12">
-				<div class="card">
-					<div class="card-header">
-						<div class="card-actions float-end">
-							<div class="dropdown position-relative">
-									<div class="form-check form-switch">
-										<input class="form-check-input m-1" type="checkbox" id="add_row" name="add_row" checked>
-										<label class="form-check-label" for="add_row">... add another row</label>
-									</div>
-							</div>
-						</div>
-						<h5 class="card-title">Requisition Lines</h5>
-						<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
-					</div>
-					
-					<table class="table table-striped table-hover">
-						<x-tenant.widgets.prl.pr-lines-table-header/>
-						<tbody>
-							@include('tenant.includes.pr.pr-line-add')
-							@include('tenant.includes.pr.pr-footer-form')
-						</tbody>
-					</table>
-					
-				</div>
-			</div>
-		</div>
-		{{-- ============================================================== --}}
-	
-		
 
 	</form>
 	<!-- /.form end -->

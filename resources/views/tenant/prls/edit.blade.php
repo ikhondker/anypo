@@ -26,7 +26,7 @@
 		@method('PUT')
 
 		<!-- widget-pr-lines -->
-		<x-tenant.widgets.prl.card :pr="$pr" :addMore="true">
+		<x-tenant.widgets.prl.card :pr="$pr" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
 					@forelse  ($prls as $prln)
@@ -43,28 +43,10 @@
 		</x-tenant.widgets.prl.card>
 		<!-- /.widget-pr-lines -->
 
-
-		<!-- widget-pr-lines -->
-		{{-- <x-tenant.widgets.pr.lines id="{{ $pr->id }}" :edit="true" pid="{{ $prl->id }}"/> --}}
-		<!-- /.widget-pr-lines -->
-		<x-tenant.widgets.prl.edit-pr-line prid="{{ $pr->id }}" prlid="{{ $prl->id }}"/>
-
 	</form>
 	<!-- /.form end -->
 
-	<!-- Approval History -->
-	{{-- @if ($pr->wf_id <> 0)
-		<x-tenant.wf.approval-history id="{{ $pr->wf_id }}"/>
-	@endif
-	 --}}
-
-	<!-- approval form, show only if pending to current auth user -->
-	{{-- @if (\App\Helpers\Workflow::allowApprove($pr->wf_id))
-		@include('tenant.includes.wfd-approve-reject')
-	@endif  --}}
-
 	@include('tenant.includes.js.select2')
-
 	@include('tenant.includes.js.calculate-pr-amount')
 @endsection
 

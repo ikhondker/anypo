@@ -11,7 +11,6 @@ class Card extends Component
 	public $pr;
 	public $readOnly;
 	public $addMore;
-	//public $editPrlId;
 
 	/**
 	 * Create a new component instance.
@@ -19,9 +18,8 @@ class Card extends Component
 	public function __construct($pr = '', $readOnly = true, $addMore = false)
 	{
 		$this->pr 			= $pr;
-		$this->readOnly 		= $readOnly;
+		$this->readOnly 	= $readOnly;
 		$this->addMore 		= $addMore;
-		//$this->editPrlId 	= $editPrlId;
 	}
 
 	/**

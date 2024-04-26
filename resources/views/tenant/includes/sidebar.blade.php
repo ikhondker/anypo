@@ -22,12 +22,12 @@
 	@endif
 
 	@can('viewWorkbenchMenu', App\Models\Tenant\Manage\Menu::class)
-		<li class="sidebar-item {{ ($_node_name == 'purchase' ? 'active' : '') }}">
-			<a data-bs-target="#purchase"s data-bs-toggle="collapse" class="sidebar-link collapsed">
+		<li class="sidebar-item {{ ($_node_name == 'workbench' ? 'active' : '') }}">
+			<a data-bs-target="#workbench"s data-bs-toggle="collapse" class="sidebar-link collapsed">
 				<i class="align-middle" data-feather="grid"></i> 
-				<span class="align-middle">Workbench [TODO]</span>
+				<span class="align-middle">Workbench *</span>
 			</a>
-			<ul id="purchase" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'purchase' ? 'show' : '') }}" data-bs-parent="#sidebar">
+			<ul id="workbench" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'workbench' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="layout"></i>Requisitions*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'pos.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('pos.index') }}"><i class="align-middle" data-feather="layout"></i>Purchase Orders*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'receipts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('receipts.index') }}"><i class="align-middle" data-feather="layout"></i>Receipts*</a></li>

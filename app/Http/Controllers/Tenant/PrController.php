@@ -409,7 +409,14 @@ class PrController extends Controller
 				WHERE pr_id = ".$pr->id."");
 
 		$result = Pr::syncPrValues($pr->id);
-		return redirect()->route('prs.show', $pr->id)->with('success', 'Line Number updated and Amount Recalculated!');
+		Log::debug('tenant.PrController.recalculate Return value of Pr->syncPrValues = ' . $result);	
+
+		if ($result == '') {
+			return redirect()->route('prs.show', $pr->id)->with('success', 'Pr Line Numbers updated and Amount Recalculated!');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			return redirect()->route('prs.show', $pr->id)->with('error', $customError->message.' Please Try later.');
+		}
 
 	}
 	/**

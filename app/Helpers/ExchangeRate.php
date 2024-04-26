@@ -53,12 +53,12 @@ class ExchangeRate
 				->where('currency', $currency)
 				->where('fc_currency', $fc_currency)
 				->firstOrFail();
-			Log::debug("ExchangeRate.getRate Rate Found =".$rate->rate);
+			Log::debug("Helpers.ExchangeRate.getRate Rate Found =".$rate->rate);
 			return $rate->rate;
 		} catch (\Exception $exception) {
 			// General Exception class which is the parent of all Exceptions
 			//Log::debug('ExchangeRate.getRate Still rate not found after importing data');
-			Log::error('ExchangeRate.getRate rate not found currency=' . $currency.' fc_currency='.$fc_currency);
+			Log::error('Helpers.ExchangeRate.getRate rate not found currency=' . $currency.' fc_currency='.$fc_currency);
 			return 0;
 		}
 	}
@@ -69,7 +69,7 @@ class ExchangeRate
 	
 		$setup = Setup::first();
 		$fc_currency  = $setup->currency;
-		Log::debug("ExchangeRate.importRates fc_currency=".$fc_currency);
+		Log::debug("Helpers.ExchangeRate.importRates fc_currency=".$fc_currency);
 
 		$apikey			= 'be73b7dba663446bb6214e87048df5e0';
 		$fc_currency	= urlencode($fc_currency);
@@ -97,7 +97,7 @@ class ExchangeRate
 
 			// USD to tenant fc currency exchange rate
 			$usd_to_fc = (float) $rates[$fc_currency];
-			Log::debug('ExchangeRate.importRates USD to tenant FC currency '.$setup->currency." =". $usd_to_fc);
+			Log::debug('Helpers.ExchangeRate.importRates USD to tenant FC currency '.$setup->currency." =". $usd_to_fc);
 
 			//$currencies = Currency::primary()->orderBy('id', 'DESC');
 
