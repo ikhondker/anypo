@@ -25,7 +25,7 @@
 		@csrf
 		@method('PUT')
 
-		<!-- widget-pr-lines -->
+		<!-- widget-prl-cards -->
 		<x-tenant.widgets.prl.card :pr="$pr" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
@@ -41,7 +41,7 @@
 				</tbody>
 			@endslot
 		</x-tenant.widgets.prl.card>
-		<!-- /.widget-pr-lines -->
+		<!-- /.widget-prl-cards -->
 
 	</form>
 	<!-- /.form end -->

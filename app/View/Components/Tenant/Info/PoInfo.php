@@ -13,13 +13,15 @@ class PoInfo extends Component
 	
 	public $id;
 	public $po;
+	public $photo;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct($id, $photo='po')
 	{
-		 $this->po = Po::where('id', $id)->get()->first();
+		$this->photo 	= 'flow/'.$photo.'.jpg';
+		 $this->po 		= Po::where('id', $id)->get()->first();
 	}
 
 

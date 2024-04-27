@@ -1,7 +1,7 @@
-<tr class="">
+<tr class="table-primary">
 	<td class="">
 		<input type="text" name="po_id" id="po_id" class="form-control" placeholder="ID" value="{{ old('po_id', $po->id ) }}" hidden>
-		<a href="#" class="btn btn-primary float-start"><i class="fas fa-edit"></i></a>
+		{{ $pol->line_num }}
 	</td>
 	<td class="">
 		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id">

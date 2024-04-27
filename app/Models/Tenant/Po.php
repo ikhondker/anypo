@@ -59,8 +59,118 @@ class Po extends Model
 
 
 	/* ----------------- Functions ---------------------- */
+
+	// sync header and FC values PR header and lines
+	public static function syncPoValues($po_id)
+	{
+
+		Log::debug('tenant.model.po.syncPoValues po_id= '. $po_id);
+		$setup 	= Setup::first();
+		$po		= Po::where('id', $po_id)->firstOrFail();
+		$result= Pol::where('po_id', $po->id)->get( array(
+			DB::raw('SUM(sub_total) as sub_total'),
+			DB::raw('SUM(tax) as tax'),
+			DB::raw('SUM(gst) as gst'),
+			DB::raw('SUM(amount) as amount'),
+		));
+
+		foreach($result as $row) {
+			if ( is_null($row['sub_total']) ) { 
+				$po->sub_total		= 0;
+				$po->tax			= 0 ;
+				$po->gst			= 0 ;
+				$po->amount			= 0;
+			} else {
+				$po->sub_total	= $row['sub_total'] ;
+				$po->tax		= $row['tax'] ;
+				$po->gst		= $row['gst'] ;
+				$po->amount		= $row['amount'];
+			}
+		}
+		$po->save();
+
+		// populate all grs_price
+		DB::statement("UPDATE pols SET
+		grs_price		= ROUND(amount/qty,4)
+		WHERE po_id = ".$po_id."");
+
+		//Log::debug('updatePoFcValues =' . $po->currency.$setup->currency);
+		Log::debug('tenant.model.po.updatePoFcValues PO currency =' . $po->currency.' fc_currency='.$setup->currency);
+		// populate fc columns for all pol lines
+		if ($po->currency == $setup->currency){
+			$rate = 1;
+			DB::statement("UPDATE pols SET
+			fc_sub_total	= sub_total,
+			fc_tax			= tax,
+			fc_gst			= gst,
+			fc_amount		= amount,
+			fc_grs_price	= grs_price
+			WHERE po_id = ".$po_id."");
+		} else {
+			$rate = round(ExchangeRate::getRate($po->currency, $setup->currency),6);
+			// update all pols fc columns
+			// update pr fc columns
+			// ERROR rate not found
+			
+			if ($rate == 0){
+				Log::error('tenant.model.po.syncPoValues Exchange rate not found for PR currency = ' . $po->currency.' fc_currency = '.$setup->currency);
+				return 'E015';
+			}
+
+			Log::debug('tenant.model.po.syncPoValues populating FC pols table.');
+			DB::statement("UPDATE pols SET
+			fc_sub_total	= round(sub_total * ". $rate .",2),
+			fc_tax			= round(tax * ". $rate .",2),
+			fc_gst			= round(gst * ". $rate .",2),
+			fc_amount		= round(amount * ". $rate .",2),
+			fc_grs_price	= round(grs_price * ". $rate .",4)
+			WHERE po_id = ". $po_id);
+		}
+
+
+
+		//Log::debug('Value of id=' . $rs);
+		//Log::debug('Value of tax=' . $r->tax);
+
+		// update PO header
+		// handle No row in child table
+		// P2 handle in better way
+		Log::debug('tenant.model.po.syncPoValues updating header FC column PO=' . $po->id);
+
+		// check if rows exists in pol
+		$count_pol		= Pol::where('po_id',$po->id)->count();
+		if ($count_pol == 0 ){
+			Log::debug('tenant.model.po.syncPoValues NO row in pols table!');
+			$po->fc_sub_total		= 0 ;
+			$po->fc_tax				= 0 ;
+			$po->fc_gst				= 0 ;
+			$po->fc_amount			= 0;
+		} else {
+			Log::debug('tenant.model.po.syncPoValues updating po header FC columns.');
+			// get pol summary
+			$result= Pol::where('po_id', $po_id)->get( array(
+				DB::raw('SUM(fc_sub_total) as fc_sub_total'),
+				DB::raw('SUM(fc_tax) as fc_tax'),
+				DB::raw('SUM(fc_gst) as fc_gst'),
+				DB::raw('SUM(fc_amount) as fc_amount'),
+			));
+			foreach($result as $row) {
+				$po->fc_sub_total		= $row['fc_sub_total'] ;
+				$po->fc_tax				= $row['fc_tax'] ;
+				$po->fc_gst				= $row['fc_gst'] ;
+				$po->fc_amount			= $row['fc_amount'];
+			}
+		}
+		$po->fc_exchange_rate	= $rate;
+		$po->save();
+		Log::debug('tenant.model.po.syncPoValues po->fc_amount='.$po->fc_amount);
+		return '';
+	}
+
+
+
 	// populate functions currency columns in PO header nad lines
-	public static function updatePoFcValues($po_id)
+	public static function xxupdatePoFcValues($po_id)
 	{
 
 		$setup 	= Setup::first();
@@ -145,27 +255,12 @@ class Po extends Model
 	}
 
 	// populate PO headed amount columns based on child rows
-	public static function updatePoHeaderValue($id)
+	public static function xxupdatePoHeaderValue($id)
 	{
 
 		//Log::debug('updatePoHeaderValue id=' . $id);
 		// update PR header
-		$po				= Po::where('id', $id)->firstOrFail();
-		$result= Pol::where('po_id', $po->id)->get( array(
-			DB::raw('SUM(sub_total) as sub_total'),
-			DB::raw('SUM(tax) as tax'),
-			DB::raw('SUM(gst) as gst'),
-			DB::raw('SUM(amount) as amount'),
-		));
-
-		foreach($result as $row) {
-			$po->sub_total	= $row['sub_total'] ;
-			$po->tax		= $row['tax'] ;
-			$po->gst		= $row['gst'] ;
-			$po->amount		= $row['amount'];
-		}
-
-		$po->save();
+		
 
 		return 0;
 	}

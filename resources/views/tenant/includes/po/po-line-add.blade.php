@@ -1,11 +1,10 @@
-<tr class="">
+<tr class="table-primary">
 	<td class="text-center">
 		{{-- First PO line of New PO --}}
 		@isset($po)
 			<input type="text" name="po_id" id="po_id" class="form-control" placeholder="ID" value="{{ old('po_id', $po->id ) }}" hidden>
 		@endisset
-
-		<i class="align-center me-1" data-feather="plus"></i>
+		<i class="align-middle me-1" data-feather="plus"></i>
 	</td>
 	<td class="">
 		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id" required>

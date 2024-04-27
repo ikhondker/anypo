@@ -24,7 +24,7 @@
 	<form action="{{ route('prls.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-		<!-- widget-pr-lines -->
+		<!-- widget-prl-cards -->
 		<x-tenant.widgets.prl.card :pr="$pr" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
@@ -39,7 +39,7 @@
 				{{-- @include('tenant.includes.pr.pr-footer-show') --}}
 			@endslot
 		</x-tenant.widgets.prl.card>
-		<!-- /.widget-pr-lines -->
+		<!-- /.widget-prl-cards -->
 	
 	</form>
 	<!-- /.form end -->

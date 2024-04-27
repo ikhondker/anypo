@@ -23,7 +23,7 @@
 						<td class="">{{ $wfl->performer->name }}({{ $wfl->performer->designation->name }})</td>
 						<td class=""><x-tenant.list.my-date-time :value="$wfl->action_date"/></td>
 						<td class=""><span class="badge bg-success">{{ $wfl->action }}</span></td>
-						<td class="">{{ $wfl->notes }}</td>
+						<td class="">{!! nl2br($wfl->notes) !!}</td>
 					</tr>
 					@endforeach
 

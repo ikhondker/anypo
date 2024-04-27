@@ -54,12 +54,6 @@
 	<!-- /.widget-pol-card -->
 
 
-	<!-- widget-po-lines -->
-	<x-tenant.widgets.pol.show-po-lines id="{{ $po->id }}">
-		@include('tenant.includes.po.po-footer-show')
-	</x-tenant.widgets.pol.show-po-lines>
-	<!-- /.widget-po-lines -->
-
 	<!-- approval form, show only if pending to current auth user -->
 	@if (\App\Helpers\Workflow::allowApprove($po->wf_id))
 		{{-- @include('tenant.includes.wfl-approve-reject') --}}

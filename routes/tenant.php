@@ -356,6 +356,7 @@ Route::middleware([
 		Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
 		Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
 		Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
+		Route::get('/pos/recalculate/{po}',[PoController::class,'recalculate'])->name('pos.recalculate');
 		Route::get('/pos/extra/{po}',[PoController::class,'extra'])->name('pos.extra');
 		Route::get('/pos/close/{po}',[PoController::class,'close'])->name('pos.close');
 		Route::get('/pos/open/{po}',[PoController::class,'open'])->name('pos.open');

@@ -16,22 +16,22 @@
 				<h5 class="card-title">Purchase Order Lines</h5>
 				<h6 class="card-subtitle text-muted">List of Purchase Order Lines.</h6>
 			</div>
-			<table class="table">
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th class="">LINE#</th>
-						<th class="">Item</th>
-						<th class="">Description</th>
-						<th class="">UOM</th>
-						<th class="text-end">Qty</th>
-						<th class="text-end">Received</th>
-						<th class="text-end">Price</th>
-						<th class="text-end">Sub Total</th>
-						<th class="text-end">Tax</th>
-						<th class="text-end">GST</th>
-						<th class="text-end">Amount</th>
+						<th class="" style="width:2%">LINE#</th>
+						<th class="" style="width:5%" >Item</th>
+						<th class="" style="width:23%">Description</th>
+						<th class="" style="width:7%">UOM</th>
+						<th class="text-end" style="width:5%">Qty</th>
+						<th class="text-end" style="width:5%">Received</th>
+						<th class="text-end" style="width:9%">Price</th>
+						<th class="text-end" style="width:8%">Subtotal</th>
+						<th class="text-end" style="width:8%">Tax</th>
+						<th class="text-end" style="width:8%">GST</th>
+						<th class="text-end" style="width:8%">Amount</th>
 						<th class="text-end">Status</th>
-						<th class="">Actions</th>
+						<th class="" style="width:10%">Actions</th>
 					</tr>
 				</thead>
 				{{ $lines }}

@@ -6,14 +6,21 @@
 				<h6 class="card-subtitle text-muted">Basic information of a Purchase Order.</h6>
 			</div>
 			<div class="card-body">
-				<x-tenant.show.my-text		value="{{ $po->summary }}" label="Summary"/>
+				<div class="row mb-3">
+					<div class="col-sm-3 text-end">
+						<span class="h6 text-secondary">Summary:</span>
+					</div>
+					<div class="col-sm-9">
+						<strong>{{ $po->summary }}</strong>
+					</div>
+				</div>
+
 				<div class="row mb-3">
 					<div class="col-sm-3 text-end">
 						<span class="h6 text-secondary">PO Value :</span>
 					</div>
 					<div class="col-sm-9">
 						{{number_format($po->amount, 2)}} <span class="badge bg-primary">{{ $po->currency }}</span> 
-
 						@if ($po->currency <> $_setup->currency)
 							{{number_format($po->fc_amount, 2)}} <span class="badge bg-success">{{ $po->fc_currency }}</span> 
 						@endif
@@ -23,8 +30,8 @@
 				<x-tenant.show.my-date		value="{{ $po->po_date }}"/>
 				<x-tenant.show.my-text		value="{{ $po->dept->name }}" label="Dept"/>
 				<x-tenant.show.my-text		value="{{ $po->project->name }}" label="Project"/>
-				<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
 				<x-tenant.show.my-text		value="{{ $po->supplier->name }}" label="Supplier"/>
+				<x-tenant.show.my-text-area		value="{{ $po->notes }}" label="Notes"/>
 				
 				<div class="row">
 					<div class="col-sm-3 text-end">
@@ -67,10 +74,11 @@
 					</div>
 				</div>
 
+				<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
 				<x-tenant.show.my-date-time	value="{{ $po->auth_date }}" label="Auth Date"/>
 				<x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>
 				<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
-				<x-tenant.show.my-text-area		value="{{ $po->notes }}" label="Notes"/>
+
 				<div class="row mb-3">
 					<div class="col-sm-3 text-end">
 						<span class="h6 text-secondary">Attachments:</span>

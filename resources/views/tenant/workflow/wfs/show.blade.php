@@ -79,7 +79,7 @@
 								<td>{{ $wfl->assign_date }} </td>
 								<td>{{ $wfl->action }} </td>
 								<td>{{ $wfl->action_date }} </td>
-								<td>{{ $wfl->notes }} </td>
+								<td>{!! nl2br($wfl->notes) !!}</td>
 							</tr>
 							@endforeach
 						</tbody>

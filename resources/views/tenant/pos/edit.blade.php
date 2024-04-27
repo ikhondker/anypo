@@ -110,9 +110,6 @@
 								</div>
 							</div>
 							
-
-							
-
 							<x-tenant.edit.currency :value="$po->currency"/>
 
 							{{-- <x-tenant.buttons.show.save/> --}}
@@ -177,17 +174,8 @@
 					</tbody>
 				@endslot
 			</x-tenant.widgets.pol.card>
-				<!-- /.widget-pol-card -->
+			<!-- /.widget-pol-card -->
 
-
-			<!-- widget-po-lines -->
-			<x-tenant.widgets.pol.show-po-lines id="{{ $po->id }}">
-				@include('tenant.includes.po.po-footer-show')
-			</x-tenant.widgets.pol.show-po-lines>
-
-					
-			<!-- widget-po-lines -->
-			{{-- <x-tenant.widgets.po.lines id="{{ $po->id }}" :show="true"/> --}}
 
 	</form>
 	<!-- /.form end -->

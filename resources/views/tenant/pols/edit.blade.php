@@ -27,7 +27,7 @@
 		@csrf
 		@method('PUT')
 
-		<!-- widget-pr-lines -->
+		<!-- widget-pol-card -->
 		<x-tenant.widgets.pol.card :po="$po" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
@@ -43,25 +43,10 @@
 				</tbody>
 			@endslot
 		</x-tenant.widgets.pol.card>
-		<!-- /.widget-pr-lines -->
-		
-		<!-- widget-po-lines -->
-		<x-tenant.widgets.pol.edit-po-line poid="{{ $po->id }}" polid="{{ $pol->id }}"/>
-		<!-- /.widget-pr-lines -->
-
+		<!-- /.widget-pol-card -->
+	
 	</form>
 	<!-- /.form end -->
-
-	<!-- Approval History -->
-	{{-- @if ($po->wf_id <> 0)
-		<x-tenant.wf.approval-history id="{{ $po->wf_id }}"/>
-	@endif --}}
-	
-
-	<!-- approval form, show only if pending to current auth user -->
-	{{-- @if (\App\Helpers\Workflow::allowApprove($pr->wf_id))
-	@include('tenant.includes.wfd-approve-reject')
-	@endif  --}}
 
 	 @include('tenant.includes.js.select2')
 

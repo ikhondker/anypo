@@ -8,7 +8,7 @@
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
 						<h4>PO #{{ $pol->po->id }} {{ $pol->po->summary }}</h4>
-						<p>{{ $pol->notes }}</p>
+						<p>{!! nl2br($pol->notes) !!}</p>
 						<table class="table table-sm my-2">
 					
 							<tbody>

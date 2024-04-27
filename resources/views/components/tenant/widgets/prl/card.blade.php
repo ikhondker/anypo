@@ -22,7 +22,7 @@
 				<thead>
 					<tr>
 						<th class="" style="width:2%">LN#</th>
-						<th class="" style="width:13%">Item</th>
+						<th class="" style="width:3%">Item</th>
 						<th class="" style="width:23%">Description</th>
 						<th class="" style="width:7%">UOM</th>
 						<th class="text-end" style="width:5%">Qty</th>

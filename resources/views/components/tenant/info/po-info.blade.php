@@ -4,11 +4,11 @@
 			<div class="card-body">
 				<div class="row g-0">
 					<div class="col-sm-3 col-xl-12 col-xxl-3 text-center">
-						<img src="{{ asset('flow/po.jpg')}}" width="240" height="321" class="mt-2" alt="Po">
+						<img src="{{ asset( $photo )}}" width="240" height="321" class="mt-2" alt="Po">
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
 						<h4>PO #{{ $po->id }} : {{ $po->summary }}</h4>
-						<p>{{ $po->notes }}</p>
+						<p>{!! nl2br($po->notes) !!}</p>
 						<table class="table table-sm my-2">
 					
 							<tbody>

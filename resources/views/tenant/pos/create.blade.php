@@ -154,63 +154,8 @@
 		</x-tenant.widgets.pol.card>
 		<!-- /.widget-pol-cards -->
 
-
-		{{-- =================PO lines create================================================= --}}
-		<div class="row">
-			<div class="col-12 col-xl-12">
-				<div class="card">
-					<div class="card-header">
-						<h5 class="card-title">Purchase Order Lines</h5>
-						<h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
-					</div>
-					<table class="table  table-bordered">
-						<thead>
-							<tr>
-								<th class="">LINE#</th>
-								<th class="">Item</th>
-								<th class="">Summary</th>
-								<th class="">UOM</th>
-								<th class="text-end">Qty</th>
-								<th class="text-end">Received</th>
-								<th class="text-end">Price</th>
-								<th class="text-end">Subtotal</th>
-								<th class="text-end">Tax</th>
-								<th class="text-end">GST</th>
-								<th class="text-end">Amount</th>
-								<th class="text-end">Status</th>
-								<th class="">Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							@include('tenant.includes.po.po-line-add')
-							@include('tenant.includes.po.po-footer-form')
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		{{-- ============================================================== --}}
-
 	</form>
 	<!-- /.form end -->
-
-	<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">Standard PO Terms and Conditions</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			aaaaaaaaaaaaaaa
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		</div>
-		</div>
-	</div>
-</div>
 
 	@include('tenant.includes.js.select2')
 	

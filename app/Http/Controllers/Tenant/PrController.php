@@ -373,13 +373,13 @@ class PrController extends Controller
 	public function destroy(Pr $pr)
 	{
 
-		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status );
+		$this->authorize('delete', $pr);
 
-		if (($pr->auth_status <> AuthStatusEnum::DRAFT->value) || ($pr->auth_status <> AuthStatusEnum::REJECTED->value) ) {
+		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status );
+		// dont allow REJECTED to delete as it has dbu rows
+		if (($pr->auth_status <> AuthStatusEnum::DRAFT->value) ) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
 		}
-
-		$this->authorize('delete', $pr);
 
 		// Write to Log
 		EventLog::event('Pr', $pr->id, 'delete', 'id', $pr->id);
@@ -392,7 +392,6 @@ class PrController extends Controller
 
 	public function recalculate(Pr $pr)
 	{
-
 		$this->authorize('recalculate', Pr::class);
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
@@ -417,8 +416,8 @@ class PrController extends Controller
 			$customError = CustomError::where('code', $result)->first();
 			return redirect()->route('prs.show', $pr->id)->with('error', $customError->message.' Please Try later.');
 		}
-
 	}
+	
 	/**
 	 * Remove the specified resource from storage.
 	 */

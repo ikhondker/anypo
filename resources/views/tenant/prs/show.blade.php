@@ -27,7 +27,7 @@
 	<x-tenant.widgets.pr.show-pr-header id="{{ $pr->id }}"/>
 	
 
-	<!-- widget-pr-lines -->
+	<!-- widget-prl-cards -->
 	<x-tenant.widgets.prl.card :pr="$pr">
 		@slot('lines')
 			<tbody>
@@ -39,7 +39,7 @@
 			</tbody>
 		@endslot
 	</x-tenant.widgets.prl.card>
-	<!-- /.widget-pr-lines -->
+	<!-- /.widget-prl-cards -->
 
 	<!-- approval form, show only if pending to current auth user -->
 	@if (\App\Helpers\Workflow::allowApprove($pr->wf_id))

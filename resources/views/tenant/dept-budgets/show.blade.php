@@ -59,7 +59,7 @@
 					<x-tenant.show.my-date		value="{{ $deptBudget->budget->end_date }}" label="End Date"/>
 					<x-tenant.show.my-closed	value="{{ $deptBudget->closed }}"/>
 					<x-tenant.show.my-badge		value="{{ $deptBudget->id }}"/>
-					<x-tenant.show.my-text		value="{{ $deptBudget->notes }}" label="Notes"/>
+					<x-tenant.show.my-text-area		value="{{ $deptBudget->notes }}" label="Notes"/>
 				</div>
 			</div>
 

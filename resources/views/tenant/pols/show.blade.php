@@ -7,6 +7,8 @@
 	<li class="breadcrumb-item active">Line #{{ $pol->line_num }}</li>
 @endsection
 
+01711-946969 - raja ava khala husband
+
 
 @section('content')
 
@@ -23,7 +25,7 @@
 	</x-tenant.page-header>
 
 
-	<x-tenant.info.po-info id="{{ $pol->po_id }}"/>
+	<x-tenant.info.po-info id="{{ $pol->po_id }}" photo='pol'/>
 
 	<div class="row">
 		<div class="col-12">

@@ -3,26 +3,23 @@
 		<i class="align-middle mt-n1" data-feather="folder"></i> PO Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-		@if ($show)
-			<a class="dropdown-item" href="{{ route('pos.show', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Purchase Order</a>
-		@endif
+		
+		<a class="dropdown-item" href="{{ route('pos.show', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Purchase Order</a>
+		<a class="dropdown-item" href="{{ route('pos.extra', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Extra Information</a>
+		<a class="dropdown-item" href="{{ route('pos.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> View Attachments</a>
+		<a class="dropdown-item" href="{{ route('pos.history', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Approval History</a>
+		<a class="dropdown-item" href="{{ route('pos.invoice', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Invoices</a>
+		<a class="dropdown-item" href="{{ route('pos.invoice', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Payment **</a>
+		<a class="dropdown-item" href="{{ route('pos.ael', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Accounting **</a>
 		<a class="dropdown-item" href="{{ route('reports.po', $id) }}" target="_blank"><i class="align-middle me-1" data-feather="printer"></i> Print Purchase Order</a>
-		<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Run PO Detail Report*</a>
+		<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="printer"></i> Run PO Detail Report*</a>
+
+		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('pos.edit', $id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Purchase Order</a>
 		<a class="dropdown-item" href="{{ route('pols.add-line', $id) }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Add Purchase Order Line</a>
 		
-		<a class="dropdown-item" href="{{ route('pos.history', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Approval History</a>
-		<a class="dropdown-item" href="{{ route('pos.extra', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> Additional Information</a>
-		<a class="dropdown-item" href="{{ route('pos.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> Attachments</a>
-
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('pos.invoice', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Payment **</a>
-		<a class="dropdown-item" href="{{ route('pos.ael', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> Full Accounting **</a>
-		<a class="dropdown-item" href="{{ route('pos.invoice', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Invoices</a>
 		<a class="dropdown-item" href="{{ route('invoices.create', $id) }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Invoice</a>
-
-		<div class="dropdown-divider"></div>
-
 		<a class="dropdown-item sw2-advance" href="{{ route('pos.copy', $id) }}"
 			data-entity="" data-name="PO#{{ $id }}" data-status="Duplicate"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PO">
@@ -30,7 +27,6 @@
 		
 
 		<div class="dropdown-divider"></div>
-
 		<a class="dropdown-item sw2-advance" href="{{ route('pos.close', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Force Close"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
@@ -51,7 +47,14 @@
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Purchase Order">
 			<i class="align-middle me-1 text-danger" data-feather="trash-2"></i> Delete Purchase Order*</a>
 
-		@if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
+		@can('recalculate', App\Models\Tenant\Po::class)
+			<a class="dropdown-item sw2-advance" href="{{ route('pos.recalculate', $id) }}"
+				data-entity="" data-name="PO #{{ $id }}" data-status="Recalculate"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Recalculate">
+				<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Recalculate (Support)</a>
+		@endcan
+
+		@can('open', App\Models\Tenant\Po::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('pos.open', $id) }}"
 				data-entity="" data-name="PR#{{ $id }}" data-status="Re-Open"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Re-Open">

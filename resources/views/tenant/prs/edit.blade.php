@@ -145,7 +145,7 @@
 				<!-- end col-6 -->
 			</div>
 
-			<!-- widget-pr-lines -->
+			<!-- widget-prl-cards -->
 			<x-tenant.widgets.prl.card :pr="$pr">
 				@slot('lines')
 					<tbody>
@@ -157,7 +157,7 @@
 					</tbody>
 				@endslot
 			</x-tenant.widgets.prl.card>
-			<!-- /.widget-pr-lines -->
+			<!-- /.widget-prl-cards -->
 			
 
 	</form>

@@ -21,7 +21,6 @@
 					</div>
 					<div class="col-sm-9">
 						{{number_format($pr->amount, 2)}} <span class="badge bg-primary">{{ $pr->currency }}</span> 
-
 						@if ($pr->currency <> $_setup->currency)
 							{{number_format($pr->fc_amount, 2)}} <span class="badge bg-success">{{ $pr->fc_currency }}</span> 
 						@endif

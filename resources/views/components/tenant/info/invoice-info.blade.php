@@ -8,7 +8,7 @@
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
 						<h4>INVOICE #{{ $invoice->invoice_no }} : {{ $invoice->summary }}</h4>
-						<p>{{ $invoice->notes }}</p>
+						<p>24. {!! nl2br($invoice->notes) !!}</p>
 						<table class="table table-sm my-2">
 							<tbody>
 								<tr>

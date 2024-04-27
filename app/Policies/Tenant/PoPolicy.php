@@ -101,6 +101,21 @@ class PoPolicy
 	{
 		//
 	}
+	/**
+	 * Determine whether the user can recalculate models.
+	 */
+	public function recalculate(User $user): bool
+	{
+		return $user->isSupport();
+	}
+
+	/**
+	 * Determine whether the user can recalculate models.
+	 */
+	public function open(User $user): bool
+	{
+		return $user->isSupport();
+	}
 
 	public function export(User $user): bool
 	{

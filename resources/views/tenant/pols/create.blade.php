@@ -27,7 +27,7 @@
 		@csrf
 
 
-		<!-- widget-pr-lines -->
+		<!-- widget-pol-card -->
 		<x-tenant.widgets.pol.card :po="$po" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
@@ -38,19 +38,10 @@
 					@endforelse
 					@include('tenant.includes.po.po-line-add')
 				</tbody>
-
-				{{-- @include('tenant.includes.pr.pr-footer-show') --}}
 			@endslot
 		</x-tenant.widgets.pol.card>
-		<!-- /.widget-pr-lines -->
+		<!-- /.widget-pol-card -->
 
-
-		<!-- widget-po-lines -->
-		<x-tenant.widgets.pol.show-po-lines id="{{ $po->id }}">
-			@include('tenant.includes.po.po-line-add')
-			@include('tenant.includes.po.po-footer-form')
-		</x-tenant.widgets.pol.show-po-lines>
-		<!-- /.widget-po-lines -->
 
 	</form>
 	<!-- /.form end -->

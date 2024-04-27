@@ -25,8 +25,8 @@
 			data-entity="" data-name="PR#{{ $id }}" data-status="Covert to PO"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
 			<i class="align-middle me-1" data-feather="copy"></i> Covert to PO</a>
-		<div class="dropdown-divider"></div>
 
+		<div class="dropdown-divider"></div>
 		<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-pr', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Reset"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PR"> 

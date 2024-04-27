@@ -443,6 +443,9 @@ class PoController extends Controller
 		$po->status = ClosureStatusEnum::OPEN->value;
 		$po->save();
 		
+		// Write to Log
+		EventLog::event('po', $po->id, 'open', 'id', $po->id);
+
 		return redirect()->route('pos.index')->with('success', 'Purchase Order Opened successfully');
 
 	}
@@ -697,6 +700,36 @@ class PoController extends Controller
 		EventLog::event('po', $po->id, 'copied','id', $sourcePo->id);	// Write to Log
 
 		return redirect()->route('pos.show', $po->id)->with('success', 'New Purchase Order #'.$po_id.' created.');
+	}
+
+	public function recalculate(Po $po)
+	{
+
+		$this->authorize('recalculate', Po::class);
+
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('pos.show', $po->id)->with('error', 'Only DRAFT Purchase Order can be recalculated!');
+		}
+
+		// 	update PP Header value
+		DB::statement("set @sequenceNumber=0");
+
+		DB::statement("UPDATE pols SET 
+				line_num	= (@sequenceNumber:=@sequenceNumber + 1),
+				sub_total	= qty * price,
+				amount		= qty * price + tax +gst
+				WHERE po_id = ".$po->id."");
+
+		$result = Po::syncPoValues($po->id);
+		Log::debug('tenant.PoController.recalculate Return value of Po->syncPoValues = ' . $result);	
+
+		if ($result == '') {
+			return redirect()->route('pos.show', $po->id)->with('success', 'PO Line Numbers updated and Amount Recalculated!');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			return redirect()->route('pos.show', $po->id)->with('error', $customError->message.' Please Try later.');
+		}
+
 	}
 
 	public function export()
