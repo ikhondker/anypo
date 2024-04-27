@@ -21,7 +21,7 @@ class InvoiceActions extends Component
 	{
 		$this->id		= $id;
 		$this->show		= $show; 
-		$this->invoice  = Invoice::where('id', $this->id)->get()->firstOrFail();
+		$this->invoice = Invoice::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**

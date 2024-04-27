@@ -125,7 +125,7 @@ class TestController extends Controller
 			Log::debug('results amount ='. $r['amount']);
 			}
 
-		$sql = "SELECT SUM(sub_total) as sub_total, SUM(tax) as tax  FROM prls WHERE id = :ID";
+		$sql = "SELECT SUM(sub_total) as sub_total, SUM(tax) as tax FROM prls WHERE id = :ID";
 		$results = DB::select($sql,['ID'=>1001]);
 
 		Log::debug('Value of results=' . print_r($results));

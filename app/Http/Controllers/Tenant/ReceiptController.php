@@ -410,8 +410,8 @@ class ReceiptController extends Controller
 			AND pol.po_id =po.id
 			AND r.warehouse_id= w.id
 			AND r.receiver_id = u.id
-			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
 		");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

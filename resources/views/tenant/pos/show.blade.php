@@ -38,11 +38,26 @@
 		
 	<x-tenant.widgets.po.show-po-header id="{{ $po->id }}"/>
 
+
+	<!-- widget-pol-card -->
+	<x-tenant.widgets.pol.card :po="$po">
+		@slot('lines')
+			<tbody>
+				@forelse  ($pols as $pol)
+					<x-tenant.widgets.pol.card-table-row :line="$pol" :status="$po->auth_status"/>
+				@empty
+
+				@endforelse
+			</tbody>
+		@endslot
+	</x-tenant.widgets.pol.card>
+	<!-- /.widget-pol-card -->
+
+
 	<!-- widget-po-lines -->
 	<x-tenant.widgets.pol.show-po-lines id="{{ $po->id }}">
 		@include('tenant.includes.po.po-footer-show')
 	</x-tenant.widgets.pol.show-po-lines>
-
 	<!-- /.widget-po-lines -->
 
 	<!-- approval form, show only if pending to current auth user -->

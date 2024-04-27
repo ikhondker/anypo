@@ -198,7 +198,7 @@ class TicketController extends Controller
 				
 		});
 
-		return redirect()->route('dashboards.index')->with('success', 'A New Ticket No ' .  $landlordTicket->id  . ' is created. We will come back to you soon. Thanks.');
+		return redirect()->route('dashboards.index')->with('success', 'A New Ticket No ' .$landlordTicket->id . ' is created. We will come back to you soon. Thanks.');
 
 	}
 

@@ -59,7 +59,7 @@ class Ticket extends Model
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Policy Related Functions  				+  
+	| Policy Related Functions													+
 	|-----------------------------------------------------------------------------
 	*/
 	public function isClosed()

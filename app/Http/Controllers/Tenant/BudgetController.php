@@ -138,7 +138,7 @@ class BudgetController extends Controller
 		$this->authorize('update', $budget);
 
 		if ($budget->closed){
-			return redirect()->route('budgets.show', $budget->id)->with('error',  'Can not edit a closed Budget.');
+			return redirect()->route('budgets.show', $budget->id)->with('error', 'Can not edit a closed Budget.');
 		}
 
 		return view('tenant.budgets.edit', compact('budget'));
@@ -213,7 +213,7 @@ class BudgetController extends Controller
 			return redirect()->back()->with(['error' => 'Unknown Error!']);
 		}
 		if ($budget->closed){
-			return redirect()->route('budgets.show', $budget->id)->with('error',  'Add attachment is only allowed for open Budget.');
+			return redirect()->route('budgets.show', $budget->id)->with('error', 'Add attachment is only allowed for open Budget.');
 		}
 	
 

@@ -33,7 +33,7 @@
 						@if ( $prln->id == $prl->id )
 							@include('tenant.includes.pr.pr-line-edit')
 						@else
-							<x-tenant.widgets.prl.show-one-line :line="$prln" :status="$pr->auth_status"/>
+							<x-tenant.widgets.prl.card-table-row :line="$prln" :status="$pr->auth_status"/>
 						@endif 
 					@empty
 

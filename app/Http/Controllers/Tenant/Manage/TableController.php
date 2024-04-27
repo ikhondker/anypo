@@ -76,7 +76,7 @@ class TableController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param  \App\Http\Requests\StoreTableRequest  $request
+	 * @param \App\Http\Requests\StoreTableRequest $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(StoreTableRequest $request)
@@ -87,7 +87,7 @@ class TableController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\Models\Table  $table
+	 * @param \App\Models\Table $table
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Table $table)
@@ -101,7 +101,7 @@ class TableController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\Models\Table  $table
+	 * @param \App\Models\Table $table
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Table $table)
@@ -112,8 +112,8 @@ class TableController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  \App\Http\Requests\UpdateTableRequest  $request
-	 * @param  \App\Models\Table  $table
+	 * @param \App\Http\Requests\UpdateTableRequest $request
+	 * @param \App\Models\Table $table
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(UpdateTableRequest $request, Table $table)
@@ -124,7 +124,7 @@ class TableController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\Models\Table  $table
+	 * @param \App\Models\Table $table
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Table $table)
@@ -399,7 +399,7 @@ class TableController extends Controller
 		foreach($filesInFolder as $path) {
 			$file = pathinfo($path);
 			//echo $file['filename'] .'<br>' ;
-			//$search =  $file['filename'];
+			//$search = $file['filename'];
 			$result = array_search(str_replace("Controller", "", $file['filename']), $objects, true);
 			if ($result == "") {
 				//not found
@@ -413,7 +413,7 @@ class TableController extends Controller
 		foreach($filesInFolder as $path) {
 			$file = pathinfo($path);
 			//echo $file['filename'] .'<br>' ;
-			//$search =  $file['filename'];
+			//$search = $file['filename'];
 			$result = array_search($file['filename'], $objects, true);
 			if ($result == "") {
 				//not found
@@ -427,7 +427,7 @@ class TableController extends Controller
 		foreach($filesInFolder as $path) {
 			$file = pathinfo($path);
 			//echo $file['filename'] .'<br>' ;
-			//$search =  $file['filename'];
+			//$search = $file['filename'];
 			//$result = array_search($file['filename'],$objects,true);
 			$result = array_search(str_replace("Policy", "", $file['filename']), $objects, true);
 			if ($result == "") {
@@ -444,7 +444,7 @@ class TableController extends Controller
 
 			if (substr($file['filename'], 0, 5) == "Store") {
 				//echo $file['filename'] .'<br>' ;
-				//$search =  $file['filename'];
+				//$search = $file['filename'];
 				//$result = array_search($file['filename'],$objects,true);
 				$result = array_search(
 					str_replace(
@@ -482,7 +482,7 @@ class TableController extends Controller
 
 		// check if orphan model exists
 
-		// check if orphan  policy exists
+		// check if orphan policy exists
 
 		// check if orphan request exists
 

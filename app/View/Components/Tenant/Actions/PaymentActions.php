@@ -21,7 +21,7 @@ class PaymentActions extends Component
 	{
 		$this->id		= $id;
 		$this->show		= $show; 
-		$this->payment  = Payment::where('id', $this->id)->get()->firstOrFail();
+		$this->payment = Payment::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**

@@ -22,7 +22,7 @@ class EditPrLine extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $prid, public string  $prlid)
+	public function __construct(public string $prid, public string $prlid)
 	{
 		$this->items	= Item::primary()->get();
 		$this->uoms 	= Uom::primary()->get();

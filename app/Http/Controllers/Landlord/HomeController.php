@@ -140,9 +140,9 @@ class HomeController extends Controller
 
 		if (auth()->check()) {
 			$request->validate([
-				'site'				=> 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
-				//'name'			=> 'required|max:100',
-				//'account_name'	=> 'required|max:100|',
+				'site'					=> 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
+				//'name'				=> 'required|max:100',
+				//'account_name'		=> 'required|max:100|',
 			],[
 				'site.required' 		=> 'Site Name is Required!',
 				'site.unique'			=> 'This site code is already in use. Please try another.',
@@ -150,15 +150,15 @@ class HomeController extends Controller
 			]);
 		} else {
 			$request->validate([
-				'site'			=> 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
-				//'name'		=> 'required|max:100',
-				'email'			=> 'required|email|max:100|unique:users,email',
-				'account_name'	=> 'required|max:100|',
+				'site'					=> 'required|alpha_num:ascii|without_spaces|max:10|unique:accounts,site',
+				//'name'				=> 'required|max:100',
+				'email'					=> 'required|email|max:100|unique:users,email',
+				'account_name'			=> 'required|max:100|',
 			],[
 				'site.required' 		=> 'Site name is Required!',
 				'site.unique'			=> 'This site code is already in use. Please try another.',
 				'site.without_spaces'	=> 'Whitespace not allowed.',
-				'email.unique'  		=> 'This email is already registered. Please login first and the try to purchase service.',
+				'email.unique'			=> 'This email is already registered. Please login first and the try to purchase service.',
 			]);
 		}
 
@@ -307,7 +307,7 @@ class HomeController extends Controller
 				throw new NotFoundHttpException;
 			}
 
-			$trx_type	=  $session->metadata->trx_type;
+			$trx_type	= $session->metadata->trx_type;
 			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
 			
 			$checkout = Checkout::where('session_id', $session->id)->first();
@@ -329,7 +329,7 @@ class HomeController extends Controller
 	}
 	
 
-	// landed after successful subscription payment  payment-stripe
+	// landed after successful subscription payment payment-stripe
 	public function successPayment(Request $request)
 	{
 	
@@ -344,7 +344,7 @@ class HomeController extends Controller
 				throw new NotFoundHttpException;
 			}
 
-			$trx_type	=  $session->metadata->trx_type;
+			$trx_type	= $session->metadata->trx_type;
 			Log::debug('landlord.home.successPayment metadata trx_type='. $session->metadata->trx_type);
 
 			// Mark invoice as paid
@@ -382,7 +382,7 @@ class HomeController extends Controller
 				throw new NotFoundHttpException;
 			}
 
-			$trx_type	=  $session->metadata->trx_type;
+			$trx_type	= $session->metadata->trx_type;
 			Log::debug('landlord.home.successAddon metadata trx_type='. $session->metadata->trx_type);
 
 			$checkout = Checkout::where('session_id', $session->id)->first();
@@ -417,7 +417,7 @@ class HomeController extends Controller
 				throw new NotFoundHttpException;
 			}
 
-			$trx_type	=  $session->metadata->trx_type;
+			$trx_type	= $session->metadata->trx_type;
 			Log::debug('landlord.home.successAdvance metadata trx_type='. $session->metadata->trx_type);
 
 			$checkout = Checkout::where('session_id', $session->id)->first();
@@ -449,7 +449,7 @@ class HomeController extends Controller
 				throw new NotFoundHttpException;
 			}
 
-			$trx_type	=  $session->metadata->trx_type;
+			$trx_type	= $session->metadata->trx_type;
 			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
 
 			switch ($trx_type) {

@@ -222,7 +222,7 @@ class WfController extends Controller
 
 		try {
 
-			//$po = Po::where('id',  $po->id)->where('auth_status', AuthStatusEnum::INPROCESS->value)->firstOrFail();
+			//$po = Po::where('id', $po->id)->where('auth_status', AuthStatusEnum::INPROCESS->value)->firstOrFail();
 
 			// mark wf as RESET
 			try {

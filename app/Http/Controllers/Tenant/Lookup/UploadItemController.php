@@ -109,7 +109,7 @@ class UploadItemController extends Controller
 		DB::table('upload_items')
 			->where('status', '<>', InterfaceStatusEnum::UPLOADED->value)
 			->delete();
-		Log::debug('tenant.upload0item.destroy  Interface data deleted.');
+		Log::debug('tenant.upload0item.destroy Interface data deleted.');
 
 		try {
 			$spreadsheet	= IOFactory::load($the_file->getRealPath());
@@ -338,7 +338,7 @@ class UploadItemController extends Controller
 				'uom_id'		=> $upload_item->uom_id,
 				'price'			=> $upload_item->price,
 				'gl_type'		=> $upload_item->gl_type,
-				'ac_expense'	=> ($upload_item->ac_expense <> '') ? $upload_item->ac_expense  : 'A600001' ,
+				'ac_expense'	=> ($upload_item->ac_expense <> '') ? $upload_item->ac_expense : 'A600001' ,
 			];
 
 			Item::create($item); // don't forget to fill $fillable in Model

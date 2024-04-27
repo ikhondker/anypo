@@ -32,7 +32,7 @@ class ShowPoLines extends Component
 		$this->items 	= Item::All();
 		$this->uoms 	= Uom::primary()->get();
 
-		//$this->selected_prl_id = ($selected_prl_id == 0) ? 0 : $selected_prl_id  ;
+		//$this->selected_prl_id = ($selected_prl_id == 0) ? 0 : $selected_prl_id ;
 		$this->selected_pol_id = $pid;
 		
 		$this->po 	= Po::where('id', $id)->get()->first();

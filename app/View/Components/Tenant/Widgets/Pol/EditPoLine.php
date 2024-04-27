@@ -24,7 +24,7 @@ class EditPoLine extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $poid, public string  $polid)
+	public function __construct(public string $poid, public string $polid)
 	{
 		$this->items = Item::primary()->get();
 		$this->uoms = Uom::primary()->get();

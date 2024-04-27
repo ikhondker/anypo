@@ -60,10 +60,10 @@ class Workflow
 					$hierarchy = Hierarchy::where('id', $dept->pr_hierarchy_id)->firstOrFail();
 					$hierarchy_id =	$hierarchy->id;
 				} catch (ModelNotFoundException $exception) {
-				 	$hierarchy_id =  0;
+				 	$hierarchy_id = 0;
 				 	Log::error("Workflow.submitWf Hierarchy not Found for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
 				} catch (Exception $e) {
-					$hierarchy_id =  0;
+					$hierarchy_id = 0;
 				 	Log::error("Workflow.submitWf Unknown Error for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
 				}
 				break;
@@ -77,10 +77,10 @@ class Workflow
 					$hierarchy = Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
 					$hierarchy_id =	$hierarchy->id;
 				} catch (ModelNotFoundException $exception) {
-					$hierarchy_id =  0;
+					$hierarchy_id = 0;
 					Log::error("Workflow.submitWf Hierarchy not Found for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
 				} catch (Exception $e) {
-					$hierarchy_id =  0;
+					$hierarchy_id = 0;
 					Log::error("Workflow.submitWf Unknown Error for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
 				}
 				break;

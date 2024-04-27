@@ -32,6 +32,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'prs.create','route_name' => 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.attachments','route_name' => 'prs.index', 'node_name' => 'workbench'],
 
+			[ 'raw_route_name' => 'prls.edit','route_name' => 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prls.add-line','route_name' => 'prs.index', 'node_name' => 'workbench'],
 
 			
@@ -45,8 +46,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'pos.attachments','route_name' => 'pos.index', 'node_name' => 'workbench'],
 
 			[ 'raw_route_name' => 'pols.show','route_name' => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.edit','route_name' => 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pols.receipt','route_name' => 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pols.add-line','route_name' => 'pos.index', 'node_name' => 'workbench'],
+
 
 			[ 'raw_route_name' => 'receipts.index','route_name' => 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.show','route_name' => 'receipts.index', 'node_name' => 'workbench'],

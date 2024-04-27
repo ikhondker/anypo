@@ -316,8 +316,8 @@ class UserController extends Controller
 	{
 		$this->authorize('impersonate', User::class);
 		
-		Log::debug('Landlord.user.impersonate  loggedin_user_id=' . auth()->user()->id);
-		Log::debug('Landlord.user.impersonate  to_impersonated_user_id=' . $user->id);
+		Log::debug('Landlord.user.impersonate loggedin_user_id=' . auth()->user()->id);
+		Log::debug('Landlord.user.impersonate to_impersonated_user_id=' . $user->id);
 
 		// log before impersonate
 		LandlordEventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
@@ -347,8 +347,8 @@ class UserController extends Controller
 		auth()->loginUsingId(session()->get('original_user'));
 		session()->forget('original_user');
 		
-		Log::debug('Landlord.user.leaveImpersonate  loggedin_user_id=' . auth()->user()->id);
-		Log::debug('Landlord.user.leaveImpersonate  impersonated_user_id=' . $impersonated_user_id);
+		Log::debug('Landlord.user.leaveImpersonate loggedin_user_id=' . auth()->user()->id);
+		Log::debug('Landlord.user.leaveImpersonate impersonated_user_id=' . $impersonated_user_id);
 
 		// log after leave Impersonate
 		LandlordEventLog::event('user', $impersonated_user_id, 'leave-impersonate', 'id', auth()->user()->id);

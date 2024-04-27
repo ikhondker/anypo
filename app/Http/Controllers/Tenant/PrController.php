@@ -137,11 +137,11 @@ class PrController extends Controller
 			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
 		}
 
-		$depts = Dept::primary()->get();
-		$items = Item::primary()->get();
-		$suppliers = Supplier::primary()->get();
-		$projects = Project::primary()->get();
-		$uoms = Uom::primary()->get();
+		$depts		= Dept::primary()->get();
+		$items 		= Item::primary()->get();
+		$suppliers 	= Supplier::primary()->get();
+		$projects 	= Project::primary()->get();
+		$uoms 		= Uom::primary()->get();
 		
 		return view('tenant.prs.create', compact('suppliers', 'depts', 'items','uoms', 'projects'));
 
@@ -240,8 +240,8 @@ class PrController extends Controller
 			Log::error('tenant.pr.attach '. $e->getMessage());
 			return redirect()->back()->with(['error' => 'Unknown Error!']);
 		}
-		if ($pr->auth_status <>  AuthStatusEnum::DRAFT->value){
-			return redirect()->route('prs.show', $pr->id)->with('error',  'Add attachment is only allowed for DRAFT requisition.');
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value){
+			return redirect()->route('prs.show', $pr->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');
 		}
 	
 		// $request->validate([
@@ -363,7 +363,7 @@ class PrController extends Controller
 
 		// Write to Log
 		EventLog::event('pr', $pr->id, 'update', 'summary', $pr->summary);
-		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition  updated successfully.');
+		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition updated successfully.');
 	}
 
 
@@ -375,7 +375,7 @@ class PrController extends Controller
 
 		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status );
 
-		if (($pr->auth_status <> AuthStatusEnum::DRAFT->value) || ($pr->auth_status <> AuthStatusEnum::REJECTED->value) )  {
+		if (($pr->auth_status <> AuthStatusEnum::DRAFT->value) || ($pr->auth_status <> AuthStatusEnum::REJECTED->value) ) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
 		}
 
@@ -442,18 +442,18 @@ class PrController extends Controller
 				//return redirect()->route('prs.cancel')->with('error', 'Only APPROVED Purchase Requisition can be canceled!');
 			}
 	
-			if ($pr->po_id  <> 0 ) {
+			if ($pr->po_id <> 0 ) {
 				return back()->withError('This Requisition is already converted to PO #'.$pr->po_id.'. Requisition can not be canceled.')->withInput();
 				//return redirect()->route('prs.cancel')->with('error', 'This Requisition is already converted to PO#'.$pr->po_id.'. Requisition can not be canceled.');
 			}
 	
-			//  Reverse Booking 
+			// Reverse Booking 
 			$retcode = PrBudget::prBudgetApproveCancel($pr_id); 
 			Log::debug("tenant.pr.cancel retcode = ".$retcode);
 	
 			// Cancel All PR Lines
 			Prl::where('pr_id', $pr_id)
-				  ->update([
+				->update([
 					'price' 			=> 0,
 					'sub_total' 		=> 0,
 					'tax' 				=> 0,
@@ -545,7 +545,7 @@ class PrController extends Controller
 			Log::debug('tenant.pr.submit syncPrValues completed.');
 		}
 
-		//  Check and book Dept Budget
+		// Check and book Dept Budget
 		$retcode = PrBudget::prBudgetBook($pr->id);
 		if ( $retcode <> '' ){
 			try {
@@ -563,7 +563,7 @@ class PrController extends Controller
 		}
 		
 
-		//  Submit for approval
+		// Submit for approval
 		$wf_id = Workflow::submitWf(EntityEnum::PR->value, $pr->id);
 		if ($wf_id == 0) {
 			return redirect()->route('prs.index')->with('error', 'Workflow can not be created! Failed to Submit.');
@@ -604,8 +604,8 @@ class PrController extends Controller
 		$sourcePr = Pr::where('id', $pr->id)->first();
 		$pr				= new Pr;
 		
-		//  don't set dept_budget_id . It will be save during submissions
-		//  Populate Function currency amounts during submit
+		// don't set dept_budget_id . It will be save during submissions
+		// Populate Function currency amounts during submit
 		$pr->summary			= $sourcePr->summary;
 		$pr->pr_date			= now();
 		
@@ -638,7 +638,7 @@ class PrController extends Controller
 
 		// copy lines into prls
 		$sql= "INSERT INTO prls( pr_id, line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, closure_status ) 
-		SELECT ".$pr->id.",line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, '".ClosureStatusEnum::OPEN->value."'  
+		SELECT ".$pr->id.",line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, '".ClosureStatusEnum::OPEN->value."' 
 		FROM prls WHERE 
 		pr_id= ".$sourcePr->id." ;";
 		DB::INSERT($sql);
@@ -661,8 +661,8 @@ class PrController extends Controller
 		}
 
 		$pr = Pr::where('id', $pr->id)->first();
-		//  don't set dept_budget_id . It will be save during submissions
-		//  Populate Function currency amounts during submit
+		// don't set dept_budget_id . It will be save during submissions
+		// Populate Function currency amounts during submit
 		$po					= new Po;
 		$po->summary		= $pr->summary;
 		$po->buyer_id		= auth()->user()->id;
@@ -693,8 +693,8 @@ class PrController extends Controller
 		$sql= "
 		INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes,
 		requestor_id, dept_id, unit_id, closure_status ) 
-		SELECT ".$po_id.",prl.line_num, prl.summary, prl.item_id, prl.uom_id,  prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
-		pr.requestor_id, pr.dept_id, pr.unit_id,'".ClosureStatusEnum::OPEN->value."'  
+		SELECT ".$po_id.",prl.line_num, prl.summary, prl.item_id, prl.uom_id, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
+		pr.requestor_id, pr.dept_id, pr.unit_id,'".ClosureStatusEnum::OPEN->value."' 
 		FROM prls prl,prs pr
 		WHERE pr.id=prl.pr_id
 		AND pr_id= ".$pr->id.
@@ -735,8 +735,8 @@ class PrController extends Controller
 		AND pr.project_id=p.id 
 		AND pr.supplier_id=s.id 
 		AND pr.requestor_id=u.id
-		AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
 		ORDER BY pr.id DESC
 		");
 

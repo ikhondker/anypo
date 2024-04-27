@@ -15,7 +15,7 @@ class Agent extends Component
 	 */
 	public function __construct(public string $value='')
 	{
-		$this->agents = \App\Models\User::getAllAgent();;
+		$this->agents = \App\Models\User::getAllAgent();
 	}
 
 	/**

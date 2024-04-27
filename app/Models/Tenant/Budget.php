@@ -38,7 +38,7 @@ class Budget extends Model
 	*/
 	public function chkscopeByFy(Builder $query): void
 	{
-		$query->where('fy',  date('Y'));
+		$query->where('fy', date('Y'));
 	}
 
 

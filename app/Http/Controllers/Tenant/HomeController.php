@@ -103,7 +103,7 @@ class HomeController extends Controller
 		// create contact
 		$contact = Contact::create($request->all());
 
-		// Upload File, if any, insert row in attachment table  and get attachments id
+		// Upload File, if any, insert row in attachment table and get attachments id
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $contact->id ]);
 			$request->merge(['entity'		=> $ENTITY ]);

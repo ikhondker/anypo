@@ -21,7 +21,7 @@ class ProjectActions extends Component
 	{
 		$this->id 		= $id;
 		$this->show		= $show; 
-		$this->project  = Project::where('id', $this->id)->get()->firstOrFail();
+		$this->project = Project::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**

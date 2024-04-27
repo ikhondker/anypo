@@ -153,7 +153,7 @@ class DeptBudgetController extends Controller
 		$this->authorize('update', $deptBudget);
 
 		if ($deptBudget->closed){
-			return redirect()->route('budgets.show', $deptBudget->id)->with('error',  'Can not edit a closed Budget.');
+			return redirect()->route('budgets.show', $deptBudget->id)->with('error', 'Can not edit a closed Budget.');
 		}
 
 		return view('tenant.dept-budgets.edit', compact('deptBudget'));
@@ -173,11 +173,11 @@ class DeptBudgetController extends Controller
 		}
 
 		// Check if enter amount is below already isseud + Booked amount
-		if ( $request->input('amount') < $deptBudget->amount_pr_booked +  $deptBudget->amount_pr)	{
+		if ( $request->input('amount') < $deptBudget->amount_pr_booked + $deptBudget->amount_pr)	{
 			return redirect()->route('dept-budgets.edit', $deptBudget->id)->with('error', 'Unable to reduce Dept Budget below already Booked and Issued PR amount!');
 		}
 
-		if ( $request->input('amount') < $deptBudget->amount_po_booked +  $deptBudget->amount_po)	{
+		if ( $request->input('amount') < $deptBudget->amount_po_booked + $deptBudget->amount_po)	{
 			return redirect()->route('dept-budgets.edit', $deptBudget->id)->with('error', 'Unable to reduce Dept Budget below already Booked and Issued PO amount!');
 		}
 
@@ -248,7 +248,7 @@ class DeptBudgetController extends Controller
 		}
 	
 		if ($deptBudget->closed){
-			return redirect()->route('dept-budgets.show', $deptBudget->id)->with('error',  'Add attachment is only allowed for open Budget.');
+			return redirect()->route('dept-budgets.show', $deptBudget->id)->with('error', 'Add attachment is only allowed for open Budget.');
 		}
 
 		if ($file = $request->file('file_to_upload')) {

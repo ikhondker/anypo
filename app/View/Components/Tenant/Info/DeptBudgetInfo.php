@@ -19,7 +19,7 @@ class DeptBudgetInfo extends Component
 	public function __construct($id)
 	{
 		$this->id= $id;
-		  $this->deptBudget = DeptBudget::with('budget')->with('dept')->where('id', $this->id)->get()->first();
+		$this->deptBudget = DeptBudget::with('budget')->with('dept')->where('id', $this->id)->get()->first();
 	}
 
 	/**

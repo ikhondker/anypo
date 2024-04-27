@@ -59,7 +59,7 @@ class AelPayment implements ShouldQueue
 			return;
 		}
 
-		// create two accounting  row
+		// create two accounting row
 		$ael_dr						= new Ael;
 		$ael_cr 					= new Ael;
 
@@ -78,9 +78,9 @@ class AelPayment implements ShouldQueue
 			$ael_dr->event			= $ael_cr->event 			= AelEvent::CANCEL->value;
 
 			$ael_dr->fc_dr_amount	= 0;
-			$ael_dr->fc_cr_amount	= $this->fc_amount;;
+			$ael_dr->fc_cr_amount	= $this->fc_amount;
 
-			$ael_cr->fc_dr_amount	= $this->fc_amount;;
+			$ael_cr->fc_dr_amount	= $this->fc_amount;
 			$ael_cr->fc_cr_amount	= 0; 
 		} else {
 			$ael_dr->event			= $ael_cr->event 			= AelEvent::POST->value;

@@ -186,7 +186,7 @@ class PrlController extends Controller
 		
 		$prls = Prl::with('item')->with('uom')->where('pr_id', $prl->pr_id)->get()->all();
 
-		return view('tenant.prls.edit', with(compact('pr', 'prls','prl', 'items','uoms')));
+		return view('tenant.prls.edit', with(compact('pr', 'prls', 'prl', 'items','uoms')));
 	}
 
 	/**
@@ -279,8 +279,8 @@ class PrlController extends Controller
 		AND pr.id = prl.pr_id 
 		AND prl.item_id = i.id
 		AND prl.uom_id = uom.id
-		AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
 		ORDER BY pr.id DESC
 		");
 		

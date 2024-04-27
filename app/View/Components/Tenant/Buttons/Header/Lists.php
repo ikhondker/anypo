@@ -27,7 +27,7 @@ class Lists extends Component
 
 		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
 		//$this->title = $object. ' List';
-		$this->title =  ($this->label=="" ? $this->object : $this->label) .' List';
+		$this->title = ($this->label=="" ? $this->object : $this->label) .' List';
 	}
 
 	/**

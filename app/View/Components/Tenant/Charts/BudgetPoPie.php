@@ -32,7 +32,7 @@ class BudgetPoPie extends Component
 		// 	// No dept budge id is specified. Show current user last dept budget
 		// 	$this->budget = Budget::where('dept_id', auth()->user()->dept_id )->with('dept')->with('budget')->orderBy('id', 'DESC')->get()->firstOrFail();
 		// } else {
-		//  	$this->budget	= Budget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $dbid)->firstOrFail();
+		// 	$this->budget	= Budget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $dbid)->firstOrFail();
 		// }
 
 		if ($bid == '0000'){

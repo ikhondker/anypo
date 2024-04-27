@@ -66,7 +66,7 @@ class AelController extends Controller
 			$start_date = 	request('start_date');
 			$end_date	=	request('end_date');
 			Log::debug('tenant.ael.index Value of start_date=' . request('start_date'));
-			Log::debug('tenant.ael.index  Value of end_date=' . request('end_date'));
+			Log::debug('tenant.ael.index Value of end_date=' . request('end_date'));
 		}
 
 		switch (request('action')) {
@@ -158,9 +158,9 @@ class AelController extends Controller
 			$start_date=request('start_date');
 			$end_date=request('end_date');
 			Log::debug('tenant.ael.export Value of start_date=' . request('start_date'));
-			Log::debug('tenant.ael.export  Value of end_date=' . request('end_date'));
+			Log::debug('tenant.ael.export Value of end_date=' . request('end_date'));
 		} else {
-			Log::debug('tenant.ael.export  EMPTY');
+			Log::debug('tenant.ael.export EMPTY');
 		}
 
 		

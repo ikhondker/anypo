@@ -163,7 +163,7 @@ class PaymentController extends Controller
 		AelPayment::dispatch($payment->id, $payment->fc_amount);
 
 
-		// update Invoice  header
+		// update Invoice header
 		$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
 		$invoice->paid_amount	= $invoice->paid_amount + $payment->amount;
 		$invoice->fc_paid_amount= $invoice->fc_paid_amount + $payment->fc_amount;
@@ -280,7 +280,7 @@ class PaymentController extends Controller
 				return back()->withError("You can only cancel payment with status paid!")->withInput();
 			}
 	
-			//  Get Invoice 
+			// Get Invoice 
 			$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
 
 			// update budget and project level summary 
@@ -289,7 +289,7 @@ class PaymentController extends Controller
 				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
 			}
 
-			//  Reverse Invoice Payment
+			// Reverse Invoice Payment
 			$invoice->paid_amount	= $invoice->paid_amount - $payment->amount;
 			$invoice->save();
 
@@ -396,8 +396,8 @@ class PaymentController extends Controller
 		AND p.bank_account_id=b.id 
 		AND p.payee_id = u.id
 		AND i.po_id=po.id
-		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
 		");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

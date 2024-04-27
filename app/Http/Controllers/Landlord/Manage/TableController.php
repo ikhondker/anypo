@@ -345,7 +345,7 @@ class TableController extends Controller
 		foreach ($filesInFolder as $path) {
 			$file = pathinfo($path);
 			//echo $file['filename'] .'<br>' ;
-			//$search =  $file['filename'];
+			//$search = $file['filename'];
 			$result = array_search(str_replace("Controller", "", $file['filename']), $objects, true);
 			if ($result == "") {
 				//not found
@@ -359,7 +359,7 @@ class TableController extends Controller
 		foreach ($filesInFolder as $path) {
 			$file = pathinfo($path);
 			//echo $file['filename'] .'<br>' ;
-			//$search =  $file['filename'];
+			//$search = $file['filename'];
 			$result = array_search($file['filename'], $objects, true);
 			if ($result == "") {
 				//not found
@@ -373,7 +373,7 @@ class TableController extends Controller
 		foreach ($filesInFolder as $path) {
 			$file = pathinfo($path);
 			//echo $file['filename'] .'<br>' ;
-			//$search =  $file['filename'];
+			//$search = $file['filename'];
 			//$result = array_search($file['filename'],$objects,true);
 			$result = array_search(str_replace("Policy", "", $file['filename']), $objects, true);
 			if ($result == "") {
@@ -383,14 +383,14 @@ class TableController extends Controller
 		}
 
 		// check if requests exists
-		echo "============================ Additional Store+Update Requests :  app\Http\Requests =====================" . '<br>';
+		echo "============================ Additional Store+Update Requests : app\Http\Requests =====================" . '<br>';
 		$filesInFolder = \File::files(base_path() . '\app\Http\Requests\Landlord');
 		foreach ($filesInFolder as $path) {
 			$file = pathinfo($path);
 
 			if (substr($file['filename'], 0, 5) == "Store") {
 				//echo $file['filename'] .'<br>' ;
-				//$search =  $file['filename'];
+				//$search = $file['filename'];
 				//$result = array_search($file['filename'],$objects,true);
 				$result = array_search(
 					str_replace(
@@ -426,7 +426,7 @@ class TableController extends Controller
 
 		// check if orphan model exists
 
-		// check if orphan  policy exists
+		// check if orphan policy exists
 
 		// check if orphan request exists
 

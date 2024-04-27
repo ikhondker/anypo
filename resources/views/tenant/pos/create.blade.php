@@ -50,7 +50,6 @@
 								readonly/>
 							</div>
 						</div>
-
 						
 						@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
 							<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
@@ -144,6 +143,17 @@
 			<!-- end col-6 -->
 		</div>
 		<!-- end row -->
+
+		<!-- widget-pol-cards -->
+		<x-tenant.widgets.pol.card :readOnly="false" :addMore="true">
+			@slot('lines')
+				<tbody>
+					@include('tenant.includes.po.po-line-add')
+				</tbody>
+			@endslot
+		</x-tenant.widgets.pol.card>
+		<!-- /.widget-pol-cards -->
+
 
 		{{-- =================PO lines create================================================= --}}
 		<div class="row">

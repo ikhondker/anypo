@@ -161,7 +161,7 @@ class CreateTenant implements ShouldQueue
 
 		// make existing user admin if not admin
 		if ($checkout->existing_user) {
-			// for existing user  owner_id is already set in checkout for existing user SslCommerzPaymentController.index
+			// for existing user owner_id is already set in checkout for existing user SslCommerzPaymentController.index
 			$user			= User::where('id', $checkout->owner_id)->first();
 			$user->role		= UserRoleEnum::ADMIN->value;
 			$user->save();
@@ -286,7 +286,7 @@ class CreateTenant implements ShouldQueue
 		// defaulted
 		$account->next_bill_generated	= false;
 		$account->next_invoice_no		= 0;
-		$account->last_bill_date		= now();;
+		$account->last_bill_date		= now();
 
 		$account->save();
 
@@ -356,8 +356,8 @@ class CreateTenant implements ShouldQueue
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Admin User created user_id =' . $user->id);
 
 			// Update tenant config->name in the tenant database
-			$tenantSetup =  \App\Models\Tenant\Admin\Setup::first();
-			$tenantSetup->name =  $account_name;
+			$tenantSetup = \App\Models\Tenant\Admin\Setup::first();
+			$tenantSetup->name = $account_name;
 			$tenantSetup->update();
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Config Name Updated setup_id =' . $tenantSetup->id);
 

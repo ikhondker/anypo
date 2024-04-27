@@ -56,7 +56,7 @@ class AddAddon implements ShouldQueue
 		Log::debug('Jobs.Landlord.AddAddon 2. Calling createInvoiceForCheckout');
 		$invoice_id = bo::createInvoiceForCheckout($this->checkout_id);
 		if ($invoice_id == 0){
-			Log::error('Jobs.Landlord.AddAddon.createCheckoutInvoice ERROR  Invoice Could not generated!');
+			Log::error('Jobs.Landlord.AddAddon.createCheckoutInvoice ERROR Invoice Could not generated!');
 			exit;
 		} else {
 			$checkout->invoice_id	= $invoice_id;
@@ -78,7 +78,7 @@ class AddAddon implements ShouldQueue
 		$account->gb		= $account->gb + $addon->gb;
 		$account->price		= $account->price + $addon->price;
 		$account->save();
-		Log::channel('bo')->info('Jobs.Landlord.AddAddon Account qty updated for account_id=' .  $account->id);
+		Log::channel('bo')->info('Jobs.Landlord.AddAddon Account qty updated for account_id=' . $account->id);
 
 		// mark checkout as complete
 		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;

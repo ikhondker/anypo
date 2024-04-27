@@ -201,10 +201,10 @@ class TemplateController extends Controller
 		// check box
 		if ($request->has('my_bool')) {
 			//Checkbox checked
-			$request->merge(['my_bool' =>  1]);
+			$request->merge(['my_bool' => 1]);
 		} else {
 			//Checkbox not checked
-			$request->merge(['my_bool' =>  0]);
+			$request->merge(['my_bool' => 0]);
 		}
 
 		//$request->validate();

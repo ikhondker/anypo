@@ -66,7 +66,7 @@
 								<td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
 								<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								<td class="table-action">
-									<a href="{{ route('pos.show',$or->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+									<a href="{{ route('pos.show',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i></a>
 
 									<a href="{{ route('reports.po',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Print">

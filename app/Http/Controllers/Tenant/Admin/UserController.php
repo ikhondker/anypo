@@ -39,7 +39,7 @@ use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 use Notification;
-use App\Notifications\Tenant\UserCreated;  //P2
+use App\Notifications\Tenant\UserCreated; //P2
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\Tenant\UserActions;
 # 5. Jobs
@@ -338,7 +338,7 @@ class UserController extends Controller
 	{
 		$this->authorize('export', User::class);
 		$data = DB::select("
-		SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable  
+		SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable 
 			FROM users u, depts dp, designations d
 			WHERE u.dept_id=dp.id
 			AND u.designation_id=d.id
@@ -377,8 +377,8 @@ class UserController extends Controller
 			return redirect()->route('users.all')->with('error','You can not impersonate system!');
 		}
 				
-		Log::debug('Tenant.user.impersonate  loggedin_user_id=' . auth()->user()->id);
-		Log::debug('Tenant.user.impersonate  to_impersonated_user_id=' . $user->id);
+		Log::debug('Tenant.user.impersonate loggedin_user_id=' . auth()->user()->id);
+		Log::debug('Tenant.user.impersonate to_impersonated_user_id=' . $user->id);
 
 		// log before impersonate
 		EventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
@@ -403,8 +403,8 @@ class UserController extends Controller
 		auth()->loginUsingId(session()->get('original_user'));
 		session()->forget('original_user');
 
-		Log::debug('Landlord.user.leaveImpersonate  loggedin_user_id=' . auth()->user()->id);
-		Log::debug('Landlord.user.leaveImpersonate  impersonated_user_id=' . $impersonated_user_id);
+		Log::debug('Landlord.user.leaveImpersonate loggedin_user_id=' . auth()->user()->id);
+		Log::debug('Landlord.user.leaveImpersonate impersonated_user_id=' . $impersonated_user_id);
 
 		// log after leave Impersonate
 		EventLog::event('user', $impersonated_user_id, 'leave-impersonate', 'id', auth()->user()->id);

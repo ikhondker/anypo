@@ -150,7 +150,7 @@ class AttachmentController extends Controller
 			 return redirect()->route('dashboards.index')->with('error', 'Attachment Not Found!');
 		}
 
-		// TODO  check
+		// TODO check
 		$this->authorize('download', $attachment);
 
 		$entity 			= Entity::where('entity', $attachment->entity)->first();

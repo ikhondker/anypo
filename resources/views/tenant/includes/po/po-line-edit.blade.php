@@ -96,7 +96,11 @@
 		<span class="badge {{ $pol->close_status_badge->badge }}">{{ $pol->close_status_badge->name}}</span>
 	</td>
 	<td class="table-action">
-		<a href="{{ route('pols.show',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+		<button type="submit" id="submit" name="action" value="save" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-feather="save"></i></button>
+		<a class="btn btn-secondary" href="{{ url()->previous() }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i data-feather="x-circle"></i></a>
+
+
+		{{-- <a href="{{ route('pols.show',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 			<i class="align-middle" data-feather="eye"></i></a>
 		
 		@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
@@ -111,7 +115,7 @@
 		@elseif ($po->auth_status == App\Enum\AuthStatusEnum::APPROVED->value)
 			<a href="{{ route('pols.receipt',$pol->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Goods Receipt">
 				<i class="align-middle" data-feather="file-text"></i></a>
-		@endif	
+		@endif	 --}}
 	</td>
 </tr>
 

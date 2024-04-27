@@ -23,7 +23,7 @@ class ReceiptActions extends Component
 	{
 		$this->id		= $id;
 		$this->show		= $show; 
-		$this->receipt  = Receipt::where('id', $this->id)->get()->firstOrFail();
+		$this->receipt = Receipt::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**

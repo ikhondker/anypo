@@ -60,9 +60,9 @@ class DeptBudgetPolicy
 	public function update(User $user, DeptBudget $deptBudget): bool
 	{
 		// hod can edit own dept budget
-		if ( ($user->isCxO() || $user->isAdmin() || $user->isSupport())  && !$deptBudget->freeze ) {
+		if ( ($user->isCxO() || $user->isAdmin() || $user->isSupport()) && !$deptBudget->freeze ) {
 			return true;
-		} elseif (($user->role->value == UserRoleEnum::HOD->value)  && !$deptBudget->freeze) {
+		} elseif (($user->role->value == UserRoleEnum::HOD->value) && !$deptBudget->freeze) {
 			return ($user->dept_id == $deptBudget->dept_id);
 		} else {
 			return ( false ) ;

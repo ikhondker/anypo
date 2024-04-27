@@ -21,7 +21,7 @@ class DeptBudgetActions extends Component
 	{
 		$this->id 			= $id;
 		$this->show			= $show; 
-		$this->deptBudget  = DeptBudget::where('id', $this->id)->get()->firstOrFail();
+		$this->deptBudget = DeptBudget::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**

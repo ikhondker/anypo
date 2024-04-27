@@ -325,7 +325,7 @@ class ReportController extends Controller
 			AND pr.requestor_id=u.id
 			AND pr.project_id=p.id
 			AND pr.supplier_id=s.id
-			AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(pr.pr_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
@@ -374,7 +374,7 @@ class ReportController extends Controller
 			AND po.requestor_id=u.id
 			AND po.project_id=p.id
 			AND po.supplier_id=s.id
-			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pos = DB::select($sql);
@@ -422,7 +422,7 @@ class ReportController extends Controller
 			AND p.dept_id =d.id 
 			AND l.uom_id=u.id
 			AND p.id =l.pr_id
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(p.pr_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
@@ -470,7 +470,7 @@ class ReportController extends Controller
 			AND p.dept_id =d.id 
 			AND l.uom_id=u.id
 			AND p.id =l.po_id
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pols = DB::select($sql);
@@ -517,7 +517,7 @@ class ReportController extends Controller
 			AND p.dept_id =d.id 
 			AND l.uom_id=u.id
 			AND r.warehouse_id = w.id
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(r.receive_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$receipts = DB::select($sql);
@@ -563,7 +563,7 @@ class ReportController extends Controller
 			AND p.supplier_id = s.id
 			AND i.status = '".InvoiceStatusEnum::POSTED->value."'
 			AND p.dept_id =d.id 
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$invoices = DB::select($sql);
@@ -611,7 +611,7 @@ class ReportController extends Controller
 			AND i.po_id =p.id 
 			AND p.dept_id =d.id 
 
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(pay.pay_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
@@ -660,7 +660,7 @@ class ReportController extends Controller
 			AND po.requestor_id=u.id
 			AND po.project_id=p.id
 			AND po.supplier_id=s.id
-			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pos = DB::select($sql);
@@ -706,7 +706,7 @@ class ReportController extends Controller
 			AND po.requestor_id=u.id
 			AND po.project_id=p.id
 			AND po.supplier_id=s.id
-			AND ". ($project_id <> '' ? 'po.project_id='.$project_id.' ' : ' 1=1 ')  ."
+			AND ". ($project_id <> '' ? 'po.project_id='.$project_id.' ' : ' 1=1 ') ."
 			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pos = DB::select($sql);
@@ -753,7 +753,7 @@ class ReportController extends Controller
 			AND po.requestor_id=u.id
 			AND po.project_id=p.id
 			AND po.supplier_id=s.id
-			AND ". ($supplier_id <> '' ? 'po.supplier_id='.$supplier_id.' ' : ' 1=1 ')  ."
+			AND ". ($supplier_id <> '' ? 'po.supplier_id='.$supplier_id.' ' : ' 1=1 ') ."
 			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pos = DB::select($sql);
@@ -992,7 +992,7 @@ class ReportController extends Controller
 
 		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
 		//$canvas->page_text($width/5, $height/2, $text, $font, 55, array(125,0,0),2,2,-30);
-		//$canvas->page_text($width/5, $height/2, 'ANYPO.NET', $font, 55,  array(255,153,153), 2, 2, -30);
+		//$canvas->page_text($width/5, $height/2, 'ANYPO.NET', $font, 55,array(255,153,153), 2, 2, -30);
 
 		return $pdf->stream('templatepr.pdf');
 	}
@@ -1071,7 +1071,7 @@ class ReportController extends Controller
 
 		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
 		//$canvas->page_text($width/5, $height/2, $text, $font, 55, array(125,0,0),2,2,-30);
-		//$canvas->page_text($width/5, $height/2, 'ANYPO.NET', $font, 55,  array(255,153,153), 2, 2, -30);
+		//$canvas->page_text($width/5, $height/2, 'ANYPO.NET', $font, 55, array(255,153,153), 2, 2, -30);
 
 		return $pdf->stream('templatepr.pdf');
 	}

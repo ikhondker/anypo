@@ -127,7 +127,6 @@ class PoController extends Controller
 			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
 		}
 
-
 		$depts 		= Dept::primary()->get();
 		$items 		= Item::primary()->get();
 		$suppliers 	= Supplier::primary()->get();
@@ -229,8 +228,8 @@ class PoController extends Controller
 			Log::error('tenant.po.attach '. $e->getMessage());
 			return redirect()->back()->with(['error' => 'Unknown Error!']);
 		}
-		if ($po->auth_status <>  AuthStatusEnum::DRAFT->value){
-			return redirect()->route('pos.show', $po->id)->with('error',  'Add attachment is only allowed for DRAFT requisition.');
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value){
+			return redirect()->route('pos.show', $po->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');
 		}
 	
 		if ($file = $request->file('file_to_upload')) {
@@ -336,7 +335,9 @@ class PoController extends Controller
 		$projects = Project::primary()->get();
 		$users = User::tenant()->get();
 
-		return view('tenant.pos.edit', compact('po', 'suppliers', 'depts', 'projects', 'users'));
+		$pols = Pol::with('item')->with('uom')->where('po_id', $po->id)->get()->all();
+
+		return view('tenant.pos.edit', compact('po','pols', 'suppliers', 'depts', 'projects', 'users'));
 	}
 
 	/**
@@ -489,13 +490,13 @@ class PoController extends Controller
 				//return redirect()->route('pos.cancel')->with('error', 'Receipt exists for this PO. Can not cancel!');
 			}
 			
-			//  Reverse Approve Budget
+			// Reverse Approve Budget
 			$retcode = PoBudget::poBudgetApproveCancel($po_id); 
 			Log::debug("tenant.po.cancel retcode = ".$retcode);
 	
 			// Cancel All PO Lines
 			Pol::where('po_id',$po_id)
-				  ->update([
+				->update([
 					'prl_id' 			=> NULL,
 					'price' 			=> 0,
 					'sub_total' 		=> 0,
@@ -592,7 +593,7 @@ class PoController extends Controller
 			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		} 
 
-		//  Check and book Budget
+		// Check and book Budget
 		$retcode = PoBudget::poBudgetBook($po->id);
 		if ( $retcode <> '' ){
 			try {
@@ -609,7 +610,7 @@ class PoController extends Controller
 			Log::warning("tenant.prs.submit Submission okay for pr_id= ". $po->id);
 		}
 
-		//  Submit for approval
+		// Submit for approval
 		Log::debug("tenant.po.submit creating new workflow for po_id=".$po->id);
 		$wf_id = Workflow::submitWf(EntityEnum::PO->value, $po->id);
 		if ($wf_id == 0) {
@@ -640,7 +641,7 @@ class PoController extends Controller
 			$approver = User::where('id', $next_approver_id)->first();
 			$approver->notify(new PoActions($approver, $po, $action, $actionURL));
 		} else {
-			Log::debug("tenant.po.submit  next_approver_id not found!");
+			Log::debug("tenant.po.submit next_approver_id not found!");
 		}
 
 		return redirect()->route('pos.show', $po->id)->with('success', 'Workflow #'.$wf_id.' created. Purchase Order submitted for approval successfully.');
@@ -653,8 +654,8 @@ class PoController extends Controller
 		$sourcePo = Po::where('id', $po->id)->first();
 		$po				= new Po;
 		
-		//  don't set dept_budget_id . It will be save during submissions
-		//  Populate Function currency amounts during submit
+		// don't set dept_budget_id . It will be save during submissions
+		// Populate Function currency amounts during submit
 		$po->summary			= $sourcePo->summary;
 		$po->po_date			= now();
 		$po->buyer_id			= auth()->user()->id;
@@ -687,7 +688,7 @@ class PoController extends Controller
 
 		// copy lines into prls
 		$sql= "INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, closure_status ) 
-		SELECT ".$po->id.",line_num, item_description, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, '".ClosureStatusEnum::OPEN->value."'  
+		SELECT ".$po->id.",line_num, item_description, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, '".ClosureStatusEnum::OPEN->value."' 
 		FROM pols WHERE 
 		po_id= ".$sourcePo->id." ;";
 		DB::INSERT($sql);
@@ -722,8 +723,8 @@ class PoController extends Controller
 		AND po.project_id=p.id 
 		AND po.supplier_id=s.id 
 		AND po.requestor_id=u.id
-		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
 		ORDER BY po.id DESC	");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

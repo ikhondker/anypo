@@ -74,7 +74,9 @@ class PolController extends Controller
 		$items = Item::primary()->get();
 		$uoms = Uom::primary()->get();
 
-		return view('tenant.pols.create', with(compact('po','items','uoms')));
+		$pols = Pol::with('item')->with('uom')->where('po_id', $po->id)->get()->all();
+
+		return view('tenant.pols.create', with(compact('po','pols','items','uoms')));
 	}
 
 
@@ -178,7 +180,9 @@ class PolController extends Controller
 		$items = Item::primary()->get();
 		$uoms = Uom::primary()->get();
 
-		return view('tenant.pols.edit', with(compact('po', 'pol', 'items','uoms')));
+		$pols = Pol::with('item')->with('uom')->where('po_id', $pol->po_id)->get()->all();
+
+		return view('tenant.pols.edit', with(compact('po','pols', 'pol', 'items','uoms')));
 	}
 
 	/**
@@ -281,8 +285,8 @@ class PolController extends Controller
 		AND po.id = pol.pr_id 
 		AND pol.item_id = i.id
 		AND pol.uom_id = uom.id
-		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
 		");
 
 		

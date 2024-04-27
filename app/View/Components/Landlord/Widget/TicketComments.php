@@ -26,7 +26,7 @@ class TicketComments extends Component
 	public function __construct(public string $id)
 	{
 		
-		//$this->highlight_prl_id = ($highlight_prl_id == 0) ? 0 : $highlight_prl_id  ;
+		//$this->highlight_prl_id = ($highlight_prl_id == 0) ? 0 : $highlight_prl_id ;
 		$this->id = $id;
 		$this->ENTITY = 'COMMENT';
 		$this->ticket = Ticket::where('id', $id)->first();

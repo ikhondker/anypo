@@ -140,7 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Policy Related Functions Common (both Landlord and Tenant) 				+  
+	| Policy Related Functions Common (both Landlord and Tenant) 				+
 	|-----------------------------------------------------------------------------
 	*/
 
@@ -153,7 +153,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	public function isUser()
 	{
-		//if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::USER->value)) {
+		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::USER->value)) {
 		if ($this->role->value ==UserRoleEnum::USER->value) {
 			return true;
 		} else {
@@ -163,7 +163,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	public function isAdmin()
 	{
-		//if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::ADMIN->value)) {
+		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::ADMIN->value)) {
 		if ($this->role->value ==UserRoleEnum::ADMIN->value) {
 			return true;
 		} else {
@@ -173,7 +173,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	public function isSupport()
 	{
-		//if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::SUPPORT->value)) {
+		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::SUPPORT->value)) {
 		if ($this->role->value == UserRoleEnum::SUPPORT->value) {
 			return true;
 		} else {
@@ -183,7 +183,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	
 	public function isSystem()
 	{
-		//if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::SYSTEM->value)) {
+		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::SYSTEM->value)) {
 		if ($this->role->value == UserRoleEnum::SYSTEM->value) {
 			return true;
 		} else {
@@ -193,7 +193,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Policy Related Functions (Landlord)		 									+  
+	| Policy Related Functions (Landlord)		 									+ 
 	|-----------------------------------------------------------------------------
 	*/
 
@@ -201,13 +201,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Policy Related Functions (Tenant)		 									+  
+	| Policy Related Functions (Tenant)		 									+ 
 	|-----------------------------------------------------------------------------
 	*/
 	// usages auth()->user()->isBuyer()
 	public function isBuyer()
 	{
-		//if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::BUYER->value)) {
+		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::BUYER->value)) {
 		if ($this->role->value ==UserRoleEnum::BUYER->value) {
 			return true;
 		} else {
@@ -217,7 +217,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	public function isHoD()
 	{
-		//if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::HOD->value)) {
+		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::HOD->value)) {
 		if ($this->role->value ==UserRoleEnum::HOD->value) {
 			return true;
 		} else {
@@ -227,7 +227,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	
 	public function isCxO()
 	{
-		//if (($this->enable == 1) &&  ($this->role->value ==UserRoleEnum::CXO->value)) {
+		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::CXO->value)) {
 		if ($this->role->value ==UserRoleEnum::CXO->value) {
 			return true;
 		} else {
@@ -354,7 +354,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
 	/**
-	 * Scope a query to only  non-seeded users.
+	 * Scope a query to only non-seeded users.
 	*/
 	// public function scopeNonSeeded(Builder $query): void
 	// {
@@ -362,7 +362,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	// }
 
 	/**
-	 * Scope a query to only  non-seeded users.
+	 * Scope a query to only non-seeded users.
 	*/
 	public function scopeTenantInactive(Builder $query): void
 	{
@@ -371,7 +371,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	}
 
 	/**
-	 * Scope a query to only  non-seeded users.
+	 * Scope a query to only non-seeded users.
 	*/
 	public function scopeTenantAdmin(Builder $query): void
 	{

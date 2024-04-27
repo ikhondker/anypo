@@ -80,18 +80,18 @@ class ConfigController extends Controller
 		// check box
 		if ($request->has('maintenance')) {
 			//Checkbox checked
-			$request->merge(['maintenance' =>  1]);
+			$request->merge(['maintenance' => 1]);
 		} else {
 			//Checkbox not checked
-			$request->merge(['maintenance' =>  0]);
+			$request->merge(['maintenance' => 0]);
 		}
 
 		if ($request->has('banner')) {
 			//Checkbox checked
-			$request->merge(['banner' =>  1]);
+			$request->merge(['banner' => 1]);
 		} else {
 			//Checkbox not checked
-			$request->merge(['banner' =>  0]);
+			$request->merge(['banner' => 0]);
 		}
 
 		$request->validate([]);

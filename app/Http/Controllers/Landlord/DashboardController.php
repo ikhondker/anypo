@@ -245,7 +245,7 @@ class DashboardController extends Controller
 		// Log::debug('sales_week'.$sales_week);
 		// $sales_month			= Dashboard::SalesMonth();
 		// Log::debug('sales_month'.$sales_month);
-		// $count_products  	= Product::all()->count();
+		// $count_products		= Product::all()->count();
 		// $count_orders		= Order::all()->count();
 		// $count_users		 	= User::all()->count();
 		// $sum_sales			= Order::all()->sum('amount');

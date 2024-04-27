@@ -40,7 +40,7 @@ class LandlordEventLog
 	{
 		$log				= [];
 		if (auth()->check()){
-			$log['account_id']	= (auth()->user()->account_id <> '')  ? auth()->user()->account_id : '1000';
+			$log['account_id']	= (auth()->user()->account_id <> '') ? auth()->user()->account_id : '1000';
 		} else {
 			$log['account_id']	= config('bo.GUEST_ACCOUNT_ID');
 		}

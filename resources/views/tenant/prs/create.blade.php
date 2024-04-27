@@ -52,7 +52,6 @@
 							</div>
 						</div>
 
-
 						@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
 							<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 						@else
@@ -145,7 +144,7 @@
 		</div>
 		<!-- end row -->
 
-		<!-- widget-pr-lines -->
+		<!-- widget-prl-cards -->
 		<x-tenant.widgets.prl.card :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
@@ -153,11 +152,11 @@
 				</tbody>
 			@endslot
 		</x-tenant.widgets.prl.card>
+		<!-- /.widget-prl-cards -->
 
 	</form>
 	<!-- /.form end -->
 
 	@include('tenant.includes.js.select2')
 	
-
 @endsection

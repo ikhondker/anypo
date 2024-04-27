@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class TestComponent extends Component
 {
-	//public  $dept_budget_id;
+	//public $dept_budget_id;
 	//public string $type,
 	//public string $message = 'aaaaaaaa',
 	/**

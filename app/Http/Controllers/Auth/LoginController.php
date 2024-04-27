@@ -117,7 +117,7 @@ class LoginController extends Controller
 		return [
 			'email'		=> request()->email,
 			'password'	=> request()->password,
-			'enable'	=> true,  			// do not allow disabled user to login
+			'enable'	=> true,			// do not allow disabled user to login
 		];
 	}
 

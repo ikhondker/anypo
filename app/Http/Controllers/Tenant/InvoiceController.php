@@ -234,7 +234,7 @@ class InvoiceController extends Controller
 
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'update', 'summary', $invoice->summary);
-		return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoices  updated successfully.');
+		return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoices updated successfully.');
 	}
 
 	// add attachments
@@ -249,8 +249,8 @@ class InvoiceController extends Controller
 			Log::error('tenant.invoice.attach '. $e->getMessage());
 			return redirect()->back()->with(['error' => 'Unknown Error!']);
 		}
-		if ($invoice->status <>  InvoiceStatusEnum::DRAFT->value){
-			return redirect()->route('invoices.show', $invoice->id)->with('error',  'Add attachment is only allowed for DRAFT requisition.');
+		if ($invoice->status <> InvoiceStatusEnum::DRAFT->value){
+			return redirect()->route('invoices.show', $invoice->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');
 		}
 
 		if ($file = $request->file('file_to_upload')) {
@@ -300,7 +300,7 @@ class InvoiceController extends Controller
 			
 
 		$invoice->update();
-		// P2 if final invoice  Close po 
+		// P2 if final invoice Close po 
 
 		// 	Populate functional currency values
 		$result = self::updateInvoiceFcValues($invoice->id);
@@ -406,7 +406,7 @@ class InvoiceController extends Controller
 			$supplier->count_invoice 	= $supplier->count_invoice -1;
 			$supplier->save();
 
-			//  Reverse PO Invoiced amount
+			// Reverse PO Invoiced amount
 			$po 						= Po::where('id', $invoice->po_id)->firstOrFail();
 			$po->amount_invoice			= $po->amount_invoice - $invoice->amount;
 			$po->fc_amount_invoice		= $po->fc_amount_invoice - $invoice->fc_amount;
@@ -523,8 +523,8 @@ class InvoiceController extends Controller
 			WHERE i.po_id =p.id
 			AND i.supplier_id= s.id
 			AND i.poc_id = u.id
-			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ')  ."
-			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ')  ."
+			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
 			");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

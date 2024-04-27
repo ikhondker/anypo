@@ -169,7 +169,7 @@ class WflController extends Controller
 		// update related entity+article status 
 		switch($wf->entity) {
 			case('PR'):
-				//  reverse Booking
+				// reverse Booking
 				$pr = Pr::where('id', $wf->article_id)->first();
 				$retcode = PrBudget::prBudgetBookReverse(EventEnum::REJECT->value,$pr->id);
 				Log::debug("retcode = ".$retcode);
@@ -186,7 +186,7 @@ class WflController extends Controller
 				$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 				break;
 			case('PO'):
-				//  reverse Booking
+				// reverse Booking
 				$po = Po::where('id', $wf->article_id)->first();
 				$retcode = PoBudget::poBudgetBookReverse(EventEnum::REJECT->value,$po->id);
 				Log::debug("retcode = ".$retcode);
@@ -220,7 +220,7 @@ class WflController extends Controller
 		switch($wf->entity) {
 			case('PR'):
 				$pr = Pr::where('id', $wf->article_id)->first();
-				$pr->auth_status	=  AuthStatusEnum::APPROVED->value;
+				$pr->auth_status	= AuthStatusEnum::APPROVED->value;
 				$pr->auth_date		= date('Y-m-d H:i:s');
 				$pr->auth_user_id	= auth()->user()->id;
 				$pr->save();
@@ -237,7 +237,7 @@ class WflController extends Controller
 				break;
 			case('PO'):
 				$po = Po::where('id', $wf->article_id)->first();
-				$po->auth_status	=  AuthStatusEnum::APPROVED->value;
+				$po->auth_status	= AuthStatusEnum::APPROVED->value;
 				$po->auth_date		= date('Y-m-d H:i:s');
 				$po->auth_user_id	= auth()->user()->id;
 				$po->save();
@@ -264,7 +264,7 @@ class WflController extends Controller
 		Log::debug("tenant.wfl.moveToNext processing wf_id = ". $wf->id);
 		//Log::debug("tenant.wfl.moveToNext processing entity = ". $wf->entity);
 		// do nothing just find and notify next approver
-		// send approval mail  to next approver
+		// send approval mail to next approver
 
 		// get next approver exists	
 		//Log::debug("notifying next approver ");

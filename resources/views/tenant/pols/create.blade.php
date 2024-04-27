@@ -26,6 +26,25 @@
 	<form action="{{ route('pols.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
+
+		<!-- widget-pr-lines -->
+		<x-tenant.widgets.pol.card :po="$po" :readOnly="false" :addMore="true">
+			@slot('lines')
+				<tbody>
+					@forelse  ($pols as $pol)
+						<x-tenant.widgets.pol.card-table-row :line="$pol" :status="$po->auth_status"/>
+					@empty
+
+					@endforelse
+					@include('tenant.includes.po.po-line-add')
+				</tbody>
+
+				{{-- @include('tenant.includes.pr.pr-footer-show') --}}
+			@endslot
+		</x-tenant.widgets.pol.card>
+		<!-- /.widget-pr-lines -->
+
+
 		<!-- widget-po-lines -->
 		<x-tenant.widgets.pol.show-po-lines id="{{ $po->id }}">
 			@include('tenant.includes.po.po-line-add')

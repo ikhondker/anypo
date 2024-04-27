@@ -159,7 +159,7 @@ class UomController extends Controller
 		//$data = Category::where('id', $id)->first();
 		//{"id":3,"name":"Category -3","slug":"Neque non.","enable":1,"limit":30,"created_at":"2022-07-04T07:08:42.000000Z","updated_at":"2022-07-04T07:08:42.000000Z"}
 		$data['uoms'] = Uom::select('id','name')->where('uom_class_id', $id)->get();
-		// {"limit":30,"slug":"Neque non."}  
+		// {"limit":30,"slug":"Neque non."} 
 		//Log::info( $data);
 		
 		//Log::debug('Value of data[uom]=' . $data['uoms']);

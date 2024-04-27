@@ -29,7 +29,7 @@
 			@slot('lines')
 				<tbody>
 					@forelse  ($prls as $prl)
-						<x-tenant.widgets.prl.show-one-line :line="$prl" :status="$pr->auth_status"/>
+						<x-tenant.widgets.prl.card-table-row :line="$prl" :status="$pr->auth_status"/>
 					@empty
 
 					@endforelse

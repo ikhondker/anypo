@@ -25,7 +25,7 @@ use App\Enum\ClosureStatusEnum;
 use App\Enum\AuthStatusEnum;
 
 use Illuminate\Database\Eloquent\Builder;
- 
+
 use Illuminate\Support\Facades\Log;
 
 use App\Models\Tenant\Workflow\Hierarchy;
@@ -66,8 +66,8 @@ class Po extends Model
 		$setup 	= Setup::first();
 		$po		= Po::where('id', $po_id)->firstOrFail();
 
-		// populate all grs_price 
-		DB::statement("UPDATE pols SET 
+		// populate all grs_price
+		DB::statement("UPDATE pols SET
 				grs_price		= ROUND(amount/qty,4)
 				WHERE po_id = ".$po_id."");
 
@@ -76,7 +76,7 @@ class Po extends Model
 		// populate fc columns for all pol lines
 		if ($po->currency == $setup->currency){
 			$rate = 1;
-			DB::statement("UPDATE pols SET 
+			DB::statement("UPDATE pols SET
 				fc_sub_total	= sub_total,
 				fc_tax			= tax,
 				fc_gst			= gst,
@@ -87,14 +87,14 @@ class Po extends Model
 			$rate = round(ExchangeRate::getRate($po->currency, $setup->currency),6);
 			// update all pols fc columns
 			// update pr fc columns
-			// ERROR rate not found 
+			// ERROR rate not found
 			if ($rate == 0){
 				Log::error('tenant.model.po.updatePoFcValues rate not found PO currency=' . $po->currency.' fc_currency='.$setup->currency);
 				return false;
 			}
 
 			Log::debug('tenant.model.po.updatePoFcValues populating FC pols table.');
-			DB::statement("UPDATE pols SET 
+			DB::statement("UPDATE pols SET
 				fc_sub_total	= round(sub_total * ". $rate .",2),
 				fc_tax			= round(tax * ". $rate .",2),
 				fc_gst			= round(gst * ". $rate .",2),
@@ -103,16 +103,16 @@ class Po extends Model
 				WHERE po_id = ". $po_id);
 		}
 
-		
-		
+
+
 		//Log::debug('Value of id=' . $rs);
 		//Log::debug('Value of tax=' . $r->tax);
 
 		// update PO header
-		// handle No row in child table 
+		// handle No row in child table
 		// P2 handle in better way
 		Log::debug('tenenat.model.po.updatePoFcValues updating header FC column PO=' . $po->id);
-		
+
 		// check if rows exists in pol
 		$count_pol		= Pol::where('po_id',$po->id)->count();
 		if ($count_pol == 0 ){
@@ -157,14 +157,14 @@ class Po extends Model
 			DB::raw('SUM(gst) as gst'),
 			DB::raw('SUM(amount) as amount'),
 		));
-		
+
 		foreach($result as $row) {
 			$po->sub_total	= $row['sub_total'] ;
 			$po->tax		= $row['tax'] ;
 			$po->gst		= $row['gst'] ;
 			$po->amount		= $row['amount'];
 		}
-	
+
 		$po->save();
 
 		return 0;
@@ -182,15 +182,15 @@ class Po extends Model
 	*/
 	public function scopeAll(Builder $query): void
 	{
-		$query; 
+		$query;
 	}
-	
+
 	/**
 	 * Scope a query to only All Approved PR for tenant.
 	*/
 	public function scopeAllApproved(Builder $query): void
 	{
-		$query->where('auth_status',AuthStatusEnum::APPROVED->value); 
+		$query->where('auth_status',AuthStatusEnum::APPROVED->value);
 	}
 
 	/**
@@ -198,14 +198,14 @@ class Po extends Model
 	*/
 	public function scopeAllInProcess(Builder $query): void
 	{
-		$query->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+		$query->where('auth_status',AuthStatusEnum::INPROCESS->value);
 	}
 	/**
 	 * Scope a query to only All Draft PR for current tenant.
 	*/
-	public function scopeAllDraft(Builder $query): void
+	public function scopeAllRejected(Builder $query): void
 	{
-		$query->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+		$query->where('auth_status',AuthStatusEnum::REJECTED->value);
 	}
 
 
@@ -214,7 +214,7 @@ class Po extends Model
 	*/
 	public function scopeByBuyerAll(Builder $query): void
 	{
-		$query->where('buyer_id', auth()->user()->id ); 
+		$query->where('buyer_id', auth()->user()->id );
 	}
 
 	/**
@@ -223,7 +223,7 @@ class Po extends Model
 	public function scopeByBuyerApproved(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id )
-			->where('auth_status',AuthStatusEnum::APPROVED->value); 
+			->where('auth_status',AuthStatusEnum::APPROVED->value);
 	}
 
 	/**
@@ -232,15 +232,15 @@ class Po extends Model
 	public function scopeByBuyerInProcess(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id )
-			->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+			->where('auth_status',AuthStatusEnum::INPROCESS->value);
 	}
 	/**
 	 * Scope a query to only All Draft PR for current user.
 	*/
-	public function scopeByBuyerDraft(Builder $query): void
+	public function scopeByBuyerRejected(Builder $query): void
 	{
 		$query->where('buyer_id', auth()->user()->id )
-			->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+			->where('auth_status',AuthStatusEnum::REJECTED->value);
 	}
 
 
@@ -249,7 +249,7 @@ class Po extends Model
 	*/
 	public function scopeByDeptAll(Builder $query): void
 	{
-		$query->where('dept_id', auth()->user()->dept_id ); 
+		$query->where('dept_id', auth()->user()->dept_id );
 	}
 
 	/**
@@ -258,7 +258,7 @@ class Po extends Model
 	public function scopeByDeptApproved(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id)
-			->where('auth_status',AuthStatusEnum::APPROVED->value); 
+			->where('auth_status',AuthStatusEnum::APPROVED->value);
 	}
 
 	/**
@@ -267,15 +267,15 @@ class Po extends Model
 	public function scopeByDeptInProcess(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id )
-			->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+			->where('auth_status',AuthStatusEnum::INPROCESS->value);
 	}
 	/**
 	 * Scope a query to only All Draft PR for current dept.
 	*/
-	public function scopeByDeptDraft(Builder $query): void
+	public function scopeByDeptRejected(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id)
-			->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+			->where('auth_status',AuthStatusEnum::REJECTED->value);
 	}
 
 	/**
@@ -290,7 +290,7 @@ class Po extends Model
 
 	/* ----------------- Functions ---------------------- */
 
-	
+
 	/* ----------------- HasMany ------------------------ */
 	public function pols() {
 		return $this->hasMany(Pol::class);

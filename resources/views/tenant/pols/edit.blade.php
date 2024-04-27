@@ -27,6 +27,23 @@
 		@csrf
 		@method('PUT')
 
+		<!-- widget-pr-lines -->
+		<x-tenant.widgets.pol.card :po="$po" :readOnly="false" :addMore="true">
+			@slot('lines')
+				<tbody>
+					@forelse  ($pols as $poln)
+						@if ( $poln->id == $pol->id )
+							@include('tenant.includes.po.po-line-edit')
+						@else
+							<x-tenant.widgets.pol.card-table-row :line="$poln" :status="$po->auth_status"/>
+						@endif 
+					@empty
+
+					@endforelse
+				</tbody>
+			@endslot
+		</x-tenant.widgets.pol.card>
+		<!-- /.widget-pr-lines -->
 		
 		<!-- widget-po-lines -->
 		<x-tenant.widgets.pol.edit-po-line poid="{{ $po->id }}" polid="{{ $pol->id }}"/>

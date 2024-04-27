@@ -58,20 +58,20 @@ class ActivityController extends Controller
 
 		$this->authorize('viewAll',Activity::class);
 		$activities = Activity::query();
-		$activities  = $activities->with('user')->byAccount();
+		$activities = $activities->with('user')->byAccount();
 		Log::debug('landlord.Activity.index Value of action=' . request('action'));
 
 		if (request('start_date') && request('end_date') ) {
 			$start_date=request('start_date');
 			$end_date=request('end_date');
 			Log::debug('landlord.activity.index Value of start_date=' . request('start_date'));
-			Log::debug('landlord.activity.index  Value of end_date=' . request('end_date'));
+			Log::debug('landlord.activity.index Value of end_date=' . request('end_date'));
 		} 
 
 		switch (request('action')) {
 			case 'search':
 				// Search model
-				$activities  = $activities->whereBetween('created_at', [$start_date, $end_date ]);
+				$activities = $activities->whereBetween('created_at', [$start_date, $end_date ]);
 				break;
 			case 'export':
 				// Export model

@@ -76,7 +76,7 @@ class Pr extends Model
 		
 		// No row in child table 
 		foreach($result as $row) {
-			if ( is_null($row['sub_total'])  ) { 
+			if ( is_null($row['sub_total']) ) { 
 				$pr->sub_total		= 0;
 				$pr->tax			= 0 ;
 				$pr->gst			= 0 ;
@@ -240,7 +240,7 @@ class Pr extends Model
 		$pr->fc_exchange_rate	= $rate;
 
 		// foreach($result as $row) {
-		// 	if ( is_null($row['fc_sub_total'])  ) { 
+		// 	if ( is_null($row['fc_sub_total']) ) { 
 		// 		Log::debug('tenant.model.pr.updatePrFcValues NO row in prls table .');
 		// 		$pr->fc_sub_total		= 0 ;
 		// 		$pr->fc_tax				= 0 ;
@@ -275,7 +275,7 @@ class Pr extends Model
 
 		// No row in child table 
 		foreach($result as $row) {
-			if ( is_null($row['sub_total'])  ) { 
+			if ( is_null($row['sub_total']) ) { 
 				$pr->sub_total		= 0;
 				$pr->tax			= 0 ;
 				$pr->gst			= 0 ;
@@ -327,14 +327,14 @@ class Pr extends Model
 	*/
 	public function scopeAllInProcess(Builder $query): void
 	{
-		$query->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+		$query->where('auth_status',AuthStatusEnum::INPROCESS->value); 
 	}
 	/**
 	 * Scope a query to only All Draft PR for current tenant.
 	*/
-	public function scopeAllDraft(Builder $query): void
+	public function scopeAllRejected(Builder $query): void
 	{
-		$query->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+		$query->where('auth_status',AuthStatusEnum::REJECTED->value);
 	}
 
 
@@ -361,15 +361,15 @@ class Pr extends Model
 	public function scopeByUserInProcess(Builder $query): void
 	{
 		$query->where('requestor_id', auth()->user()->id )
-		->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+		->where('auth_status',AuthStatusEnum::INPROCESS->value); 
 	}
 	/**
 	 * Scope a query to only All Draft PR for current user.
 	*/
-	public function scopeByUserDraft(Builder $query): void
+	public function scopeByUserRejected(Builder $query): void
 	{
 		$query->where('requestor_id', auth()->user()->id )
-		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+			->where('auth_status',AuthStatusEnum::REJECTED->value); 
 	}
 
 
@@ -396,15 +396,15 @@ class Pr extends Model
 	public function scopeByDeptInProcess(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id )
-		->where('auth_status',AuthStatusEnum::INPROCESS->value);  
+		->where('auth_status',AuthStatusEnum::INPROCESS->value); 
 	}
 	/**
 	 * Scope a query to only All Draft PR for current dept.
 	*/
-	public function scopeByDeptDraft(Builder $query): void
+	public function scopeByDeptRejected(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id)
-		->where('auth_status',AuthStatusEnum::DRAFT->value);  ; 
+		->where('auth_status',AuthStatusEnum::REJECTED->value);
 	}
 
 	/**
