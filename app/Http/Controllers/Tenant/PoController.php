@@ -224,72 +224,6 @@ class PoController extends Controller
 	
 	}
 
-	// add attachments
-	public function attach(FormRequest $request)
-	{
-
-		$this->authorize('create', Po::class);
-
-		// allow add attachment only if status is draft
-		try {
-			$po = Po::where('id', $request->input('attach_po_id'))->get()->firstOrFail();
-		} catch (Exception $e) {
-			Log::error('tenant.po.attach '. $e->getMessage());
-			return redirect()->back()->with(['error' => 'Unknown Error!']);
-		}
-		if ($po->auth_status <> AuthStatusEnum::DRAFT->value){
-			return redirect()->route('pos.show', $po->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');
-		}
-	
-		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
-			$request->merge(['entity'		=> EntityEnum::PO->value ]);
-			$attid = FileUpload::aws($request);
-			//$request->merge(['logo'	=> $fileName ]);
-		}
-
-		return redirect()->route('pos.show', $request->input('attach_po_id'))->with('success', 'File Uploaded successfully.');
-	}
-
-	public function attachments(Po $po)
-	{
-		$this->authorize('view', $po);
-
-		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		//$attachments = Attachment::where('entity', EntityEnum::PO->value)->where('article_id', $po->id)->get()->all();
-		return view('tenant.pos.attachments', compact('po'));
-	}
-
-	public function history(Po $po)
-	{
-		$this->authorize('view', $po);
-	
-		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		return view('tenant.pos.history', compact('po'));
-	}
-
-	public function ael(Po $po)
-	{
-		$this->authorize('view', $po);
-	
-		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		return view('tenant.pos.ael', compact('po'));
-	}
-
-
-	public function invoice(Po $po)
-	{
-		$this->authorize('view', $po);
-
-		// if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
-		// 	return redirect()->route('pos.show',$po->id)->with('error', 'Only APPROVED Purchase Order can have Invoices.');
-		// }
-
-		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		return view('tenant.pos.invoice', compact('po'));
-	}
-
-
 	/**
 	 * Display the specified resource.
 	 */
@@ -312,18 +246,6 @@ class PoController extends Controller
 		}
 		return view('tenant.pos.show', compact('po', 'pols', 'wfl'));
 	}
-
-
-		/**
-	 * Display the specified resource.
-	 */
-	public function extra(Po $po)
-	{
-		$this->authorize('view', $po);
-
-		return view('tenant.pos.extra', compact('po'));
-	}
-
 
 
 	/**
@@ -788,4 +710,78 @@ class PoController extends Controller
 		return Export::csv('pos', $dataArray);
 	}
 
+	// add attachments
+	public function attach(FormRequest $request)
+	{
+
+		$this->authorize('create', Po::class);
+
+		// allow add attachment only if status is draft
+		try {
+			$po = Po::where('id', $request->input('attach_po_id'))->get()->firstOrFail();
+		} catch (Exception $e) {
+			Log::error('tenant.po.attach '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Unknown Error!']);
+		}
+		if ($po->auth_status <> AuthStatusEnum::DRAFT->value){
+			return redirect()->route('pos.show', $po->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');
+		}
+	
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $request->input('attach_po_id') ]);
+			$request->merge(['entity'		=> EntityEnum::PO->value ]);
+			$attid = FileUpload::aws($request);
+			//$request->merge(['logo'	=> $fileName ]);
+		}
+
+		return redirect()->route('pos.show', $request->input('attach_po_id'))->with('success', 'File Uploaded successfully.');
+	}
+
+	public function attachments(Po $po)
+	{
+		$this->authorize('view', $po);
+
+		$po = Po::where('id', $po->id)->get()->firstOrFail();
+		//$attachments = Attachment::where('entity', EntityEnum::PO->value)->where('article_id', $po->id)->get()->all();
+		return view('tenant.pos.attachments', compact('po'));
+	}
+
+	public function history(Po $po)
+	{
+		$this->authorize('view', $po);
+	
+		$po = Po::where('id', $po->id)->get()->firstOrFail();
+		return view('tenant.pos.history', compact('po'));
+	}
+
+	public function ael(Po $po)
+	{
+		$this->authorize('view', $po);
+	
+		$po = Po::where('id', $po->id)->get()->firstOrFail();
+		return view('tenant.pos.ael', compact('po'));
+	}
+
+
+	public function invoice(Po $po)
+	{
+		$this->authorize('view', $po);
+
+		// if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+		// 	return redirect()->route('pos.show',$po->id)->with('error', 'Only APPROVED Purchase Order can have Invoices.');
+		// }
+
+		$po = Po::where('id', $po->id)->get()->firstOrFail();
+		return view('tenant.pos.invoice', compact('po'));
+	}
+
+/**
+	 * Display the specified resource.
+	 */
+	public function extra(Po $po)
+	{
+		$this->authorize('view', $po);
+
+		return view('tenant.pos.extra', compact('po'));
+	}
 }

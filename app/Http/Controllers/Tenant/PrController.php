@@ -25,8 +25,6 @@ use App\Models\Tenant\Pr;
 use App\Http\Requests\Tenant\StorePrRequest;
 use App\Http\Requests\Tenant\UpdatePrRequest;
 
-
-
 # 1. Models
 use App\Models\Tenant\Po;
 use App\Models\User;
@@ -125,22 +123,7 @@ class PrController extends Controller
 		return view('tenant.prs.index', compact('prs'));
 	}
  
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function myPr()
-	{
-
-		$prs = Pr::query();
-		if (request('term')) {
-			$prs->where('summary', 'LIKE', '%' . request('term') . '%');
-		}
-		$prs = $prs->ByUserAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
-
-		return view('tenant.prs.my-prs', compact('prs'));
-	}
- 
-
+	
 	/**
 	 * Show the form for creating a new resource.
 	 */
@@ -245,52 +228,7 @@ class PrController extends Controller
 		// }
 	}
 
-	// add attachments
-	public function attach(FormRequest $request)
-	{
-		$this->authorize('create', Pr::class);
-		
-		// allow add attachment only if status is draft
-		try {
-			$pr = Pr::where('id', $request->input('attach_pr_id'))->get()->firstOrFail();
-		} catch (Exception $e) {
-			Log::error('tenant.pr.attach '. $e->getMessage());
-			return redirect()->back()->with(['error' => 'Unknown Error!']);
-		}
-		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value){
-			return redirect()->route('prs.show', $pr->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');
-		}
 	
-		// $request->validate([
-
-		// ]);
-		//$request->validate(['file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512']);
-
-		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'	=> $request->input('attach_pr_id')]);
-			$request->merge(['entity'		=> EntityEnum::PR->value ]);
-			$attid = FileUpload::aws($request);
-		}
-
-		return redirect()->route('prs.show', $request->input('attach_pr_id'))->with('success', 'File Uploaded successfully.');
-	}
-
-	public function attachments(Pr $pr)
-	{
-		$this->authorize('view', $pr);
-
-		$pr = Pr::where('id', $pr->id)->get()->firstOrFail();
-		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PR->value)->where('article_id', $pr->id)->get();
-		return view('tenant.prs.attachments', compact('pr'));
-	}
-
-	public function history(Pr $pr)
-	{
-		$this->authorize('view', $pr);
-
-		$pr = Pr::where('id', $pr->id)->get()->firstOrFail();
-		return view('tenant.prs.history', compact('pr'));
-	}
 
 
 	/**
@@ -316,15 +254,7 @@ class PrController extends Controller
 		return view('tenant.prs.show', compact('pr', 'prls', 'wfl'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function extra(Pr $pr)
-	{
-		$this->authorize('view', $pr);
-
-		return view('tenant.prs.extra', compact('pr'));
-	}
+	
 
 
 	/**
@@ -764,5 +694,76 @@ class PrController extends Controller
 		return Export::csv('prs', $dataArray);
 	}
 
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function myPr()
+	{
+
+		$prs = Pr::query();
+		if (request('term')) {
+			$prs->where('summary', 'LIKE', '%' . request('term') . '%');
+		}
+		$prs = $prs->ByUserAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+
+		return view('tenant.prs.my-prs', compact('prs'));
+	}
+
+	// add attachments
+	public function attach(FormRequest $request)
+	{
+		$this->authorize('create', Pr::class);
+		
+		// allow add attachment only if status is draft
+		try {
+			$pr = Pr::where('id', $request->input('attach_pr_id'))->get()->firstOrFail();
+		} catch (Exception $e) {
+			Log::error('tenant.pr.attach '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Unknown Error!']);
+		}
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value){
+			return redirect()->route('prs.show', $pr->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');
+		}
 	
+		// $request->validate([
+
+		// ]);
+		//$request->validate(['file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512']);
+
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $request->input('attach_pr_id')]);
+			$request->merge(['entity'		=> EntityEnum::PR->value ]);
+			$attid = FileUpload::aws($request);
+		}
+
+		return redirect()->route('prs.show', $request->input('attach_pr_id'))->with('success', 'File Uploaded successfully.');
+	}
+
+	public function attachments(Pr $pr)
+	{
+		$this->authorize('view', $pr);
+
+		$pr = Pr::where('id', $pr->id)->get()->firstOrFail();
+		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PR->value)->where('article_id', $pr->id)->get();
+		return view('tenant.prs.attachments', compact('pr'));
+	}
+
+	public function history(Pr $pr)
+	{
+		$this->authorize('view', $pr);
+
+		$pr = Pr::where('id', $pr->id)->get()->firstOrFail();
+		return view('tenant.prs.history', compact('pr'));
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function extra(Pr $pr)
+	{
+		$this->authorize('view', $pr);
+
+		return view('tenant.prs.extra', compact('pr'));
+	}
 }
