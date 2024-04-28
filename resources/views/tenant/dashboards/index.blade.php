@@ -16,7 +16,7 @@
 			Dashboard
 		@endslot
 		@slot('buttons')
-			{{-- <x-tenant.buttons.header.create object="User"/> --}}
+			<x-tenant.actions.dashboard-actions/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -24,7 +24,5 @@
 	<x-tenant.landlord-notice-one-tenant/>
 
 	<x-tenant.dashboards.pr-counts/>
-	
 	<x-tenant.widgets.pr.pr-lists/>
-	
 @endsection

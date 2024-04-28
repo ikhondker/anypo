@@ -27,7 +27,7 @@ class PrLists extends Component
 				$this->prs = Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
 				break;
 			case UserRoleEnum::HOD->value:
-				$this->prs = Pr::ByDeptAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
+				$this->prs = Pr::ByDeptApproved()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
 				break;
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
@@ -37,7 +37,7 @@ class PrLists extends Component
 				break;
 			default:
 				$this->prs = Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
-				Log::error("widget.pr.lists Other roles!");
+				Log::error("widget.pr.pr-lists Other roles!");
 		}
 
 	}

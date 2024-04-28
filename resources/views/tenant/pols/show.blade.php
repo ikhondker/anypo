@@ -7,9 +7,6 @@
 	<li class="breadcrumb-item active">Line #{{ $pol->line_num }}</li>
 @endsection
 
-01711-946969 - raja ava khala husband
-
-
 @section('content')
 
 	<x-tenant.page-header>

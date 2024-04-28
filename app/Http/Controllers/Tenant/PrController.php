@@ -126,6 +126,22 @@ class PrController extends Controller
 	}
  
 	/**
+	 * Display a listing of the resource.
+	 */
+	public function myPr()
+	{
+
+		$prs = Pr::query();
+		if (request('term')) {
+			$prs->where('summary', 'LIKE', '%' . request('term') . '%');
+		}
+		$prs = $prs->ByUserAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+
+		return view('tenant.prs.my-prs', compact('prs'));
+	}
+ 
+
+	/**
 	 * Show the form for creating a new resource.
 	 */
 	public function create()
@@ -204,10 +220,11 @@ class PrController extends Controller
 	
 		// 	Update PR Header value and Populate functional currency values
 		$result = Pr::syncPrValues($pr->id);
-		if (! $result ) {
-			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
-		} else {
+		if ($result == '') {
 			Log::debug('tenant.pr.store syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error('tenant.pr.store syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 		
 		if($request->has('add_row')) {
@@ -355,10 +372,11 @@ class PrController extends Controller
 		
 		// 	Update PR Header value and Populate functional currency values. Currency Might change
 		$result = Pr::syncPrValues($pr->id);
-		if (! $result ) {
-			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
-		} else {
+		if ($result == '') {
 			Log::debug('tenant.pr.update syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error('tenant.pr.store syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
 		// Write to Log
@@ -392,6 +410,7 @@ class PrController extends Controller
 
 	public function recalculate(Pr $pr)
 	{
+		// Update pr.line_num
 		$this->authorize('recalculate', Pr::class);
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
@@ -432,7 +451,7 @@ class PrController extends Controller
 			$pr = Pr::where('id', $pr_id)->firstOrFail();
 
 			if ($pr->auth_status == AuthStatusEnum::DRAFT->value) {
-				return back()->withError("Please delete DRAFT Requisition if needed!")->withInput();
+				return back()->withError("Can not cancel a DRAFT Requisition. Please delete this DRAFT Requisitions, if needed!")->withInput();
 				//return redirect()->route('prs.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
 			}
 	
@@ -538,13 +557,14 @@ class PrController extends Controller
 
 		// 	Populate functional currency values
 		$result = Pr::syncPrValues($pr->id);
-		if (! $result ) {
-			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
-		} else {
+		if ($result == '') {
 			Log::debug('tenant.pr.submit syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			return redirect()->route('prs.show', $pr->id)->with('error', $customError->message.' Please Try later.');
 		}
 
-		// Check and book Dept Budget
+		// Check and book Dept Budget TODO use error_code
 		$retcode = PrBudget::prBudgetBook($pr->id);
 		if ( $retcode <> '' ){
 			try {
@@ -727,16 +747,16 @@ class PrController extends Controller
 		}
 
 		$data = DB::select("
-		SELECT pr.id, pr.summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
-		pr.notes, pr.currency, pr.sub_total, pr.tax, pr.gst, pr.amount, pr.status, pr.auth_status, pr.auth_date 
-		FROM prs pr,depts d, projects p, suppliers s, users u 
-		WHERE pr.dept_id=d.id 
-		AND pr.project_id=p.id 
-		AND pr.supplier_id=s.id 
-		AND pr.requestor_id=u.id
-		AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ') ."
-		AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
-		ORDER BY pr.id DESC
+			SELECT pr.id, pr.summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+			pr.notes, pr.currency, pr.sub_total, pr.tax, pr.gst, pr.amount, pr.status, pr.auth_status, pr.auth_date 
+			FROM prs pr,depts d, projects p, suppliers s, users u 
+			WHERE pr.dept_id=d.id 
+			AND pr.project_id=p.id 
+			AND pr.supplier_id=s.id 
+			AND pr.requestor_id=u.id
+			AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
+			ORDER BY pr.id DESC
 		");
 
 		$dataArray = json_decode(json_encode($data), true);

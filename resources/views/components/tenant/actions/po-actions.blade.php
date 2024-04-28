@@ -32,15 +32,16 @@
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
 			<i class="align-middle me-1 text-danger" data-feather="lock"></i> Force Close PO *</a>
 
-		<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-po', $id) }}"
-			data-entity="" data-name="PO #{{ $id }}" data-status="Reset"
-			data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PO"> 
-			<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Reset Workflow**</a>
-
+		@can('reset', App\Models\Tenant\Wf::class)
+			<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-po', $id) }}"
+				data-entity="" data-name="PO #{{ $id }}" data-status="Reset"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PO"> 
+				<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Reset Workflow**</a>
+		@endcan
 		<a class="dropdown-item sw2-advance" href="{{ route('pos.cancel', $id) }}"
 			data-entity="" data-name="PO #{{ $id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Purchase Order">
-			<i class="align-middle me-1 text-danger" data-feather="x-circle"></i> Cancel Purchase Order</a>
+			<i class="align-middle me-1 text-danger" data-feather="x-circle"></i> Cancel Purchase Order*</a>
 
 		<a class="dropdown-item sw2-advance" href="{{ route('pos.destroy', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Delete"
@@ -59,7 +60,7 @@
 				data-entity="" data-name="PR#{{ $id }}" data-status="Re-Open"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Re-Open">
 				<i class="align-middle me-1 text-danger" data-feather="trash-2"></i> Re-Open PO (SYSTEM)</a>
-		@endif
+		@endcan
 
 	</div>
 </div>

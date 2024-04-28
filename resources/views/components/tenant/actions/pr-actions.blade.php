@@ -27,10 +27,13 @@
 			<i class="align-middle me-1" data-feather="copy"></i> Covert to PO</a>
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-pr', $id) }}"
-			data-entity="" data-name="PR#{{ $id }}" data-status="Reset"
-			data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PR"> 
-			<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Reset Workflow**</a>
+		@can('reset', App\Models\Tenant\Wf::class)
+			<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-pr', $id) }}"
+				data-entity="" data-name="PR#{{ $id }}" data-status="Reset"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PR"> 
+				<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Reset Workflow**</a>
+		@endcan
+
 
 		<a class="dropdown-item sw2-advance" href="{{ route('prs.cancel', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Cancel"

@@ -1,4 +1,4 @@
-.<div class="row">
+<div class="row">
 	<div class="col-12">
 
 		<div class="card">
@@ -8,7 +8,7 @@
 				<h5 class="card-title">
 					{{ $card_header }}
 				</h5>
-				<h6 class="card-subtitle text-muted">{{ $card_header }}</h6>
+				<h6 class="card-subtitle text-muted">List of Purchase Requisitions.	</h6>
 			</div>
 			<div class="card-body">
 				<table class="table">
@@ -20,7 +20,6 @@
 							<th>Requestor</th>
 							<th>Dept</th>
 							<th>Currency</th>
-							
 							<th class="text-end">Amount</th>
 							<th>Approval</th> 
 							<th>Status</th>

@@ -203,6 +203,15 @@ class PoController extends Controller
 		$pol->save();
 		$pol_id			= $pol->id;
 	
+		$result = Po::syncPoValues($po->id);
+		Log::debug('tenant.PoController.update Return value of Po->syncPoValues = ' . $result);	
+		if ($result == '') {
+			Log::debug('tenant.po.update syncPoValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error('tenant.po.store syncPoValues po_id = '.$po->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+		}
+
 		if($request->has('add_row')) {
 			//Checkbox checked
 			return redirect()->route('pols.add-line', $pol->po_id)->with('success', 'Line added to PO #'. $pol->po_id.' successfully.');
@@ -368,6 +377,16 @@ class PoController extends Controller
 			$attid = FileUpload::aws($request);
 			//$request->merge(['logo'	=> $fileName ]);
 		}
+
+		$result = Po::syncPoValues($po->id);
+		Log::debug('tenant.PoController.update Return value of Po->syncPoValues = ' . $result);	
+		if ($result == '') {
+			Log::debug('tenant.po.update syncPoValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error('tenant.po.store syncPoValues po_id = '.$po->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+		}
+
 		
 		// Write to Log
 		EventLog::event('po', $po->id, 'update', 'summary', $po->summary);
@@ -590,7 +609,13 @@ class PoController extends Controller
 		} 
 		
 		// 	Populate functional currency values
-		$result = Po::updatePoFcValues($po->id);
+		$result = Po::syncPoValues($po->id);
+		if ($result == '') {
+			Log::debug('tenant.po.submit syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			return redirect()->route('pos.show', $po->id)->with('error', $customError->message.' Please Try later.');
+		}
 
 		if (!$result) {
 			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
@@ -722,7 +747,6 @@ class PoController extends Controller
 
 		$result = Po::syncPoValues($po->id);
 		Log::debug('tenant.PoController.recalculate Return value of Po->syncPoValues = ' . $result);	
-
 		if ($result == '') {
 			return redirect()->route('pos.show', $po->id)->with('success', 'PO Line Numbers updated and Amount Recalculated!');
 		} else {

@@ -12,7 +12,7 @@
 			Dashboard [TODO - BUYER]
 		@endslot
 		@slot('buttons')
-			{{-- <x-tenant.buttons.header.create object="User"/> --}}
+			<x-tenant.actions.dashboard-actions/>
 		@endslot
 	</x-tenant.page-header>
 	

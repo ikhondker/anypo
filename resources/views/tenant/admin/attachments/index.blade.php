@@ -11,7 +11,7 @@
 			Attachment
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Attachment"/>
+			
 		@endslot
 	</x-tenant.page-header>
 

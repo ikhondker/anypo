@@ -326,6 +326,7 @@ Route::middleware([
 
 		/* ======================== Pr ======================================== */
 		Route::resource('prs', PrController::class);
+		Route::get('/pr/my-prs',[PrController::class,'myPr'])->name('prs.my-prs');
 		Route::get('/prs/attachments/{pr}',[PrController::class,'attachments'])->name('prs.attachments');
 		Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
 

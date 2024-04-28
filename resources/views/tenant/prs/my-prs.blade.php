@@ -1,14 +1,14 @@
 @extends('layouts.app')
-@section('title','Purchase Requisitions')
+@section('title','My Purchase Requisitions')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Requisitions</li>
+	<li class="breadcrumb-item active">My Requisitions</li>
 @endsection
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Purchase Requisitions
+			My Purchase Requisitions
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
@@ -29,7 +29,7 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Requisition Lists
+							Requisition  Lists
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">List of Purchase Requisitions.</h6>
