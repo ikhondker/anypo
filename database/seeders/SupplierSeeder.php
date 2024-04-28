@@ -14,6 +14,30 @@ class SupplierSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Supplier::factory()->count(10)->create();
+
+		//$faker = app(Generator::class);
+
+		$suppliers =  [
+		 	[
+				'id' 				=> 1001,
+				'name'				=> 'Seeded Supplier',
+				'contact_person'	=> 'Support Engineer',
+				'address1'			=> '3939 Lawrence Ave, E#108,',
+				'address2'			=> '',
+				'city'				=> 'Scarborough',  
+				'state'				=> 'ON',  
+				'zip'				=> 'M1G1R9',
+				'country'			=> 'CA',
+				'email'				=> 'info@anypo.net',
+				'cell'				=> '+0012262804920',
+				'website'			=> 'https://www.anypo.net',
+
+				
+			],
+		];
+		
+		Supplier::insert($suppliers);
+
+		//Supplier::factory()->count(10)->create();
 	}
 }

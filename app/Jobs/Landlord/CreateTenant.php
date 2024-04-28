@@ -118,7 +118,7 @@ class CreateTenant implements ShouldQueue
 
 		// generate first invoice for this account and notify
 		Log::debug('Jobs.Landlord.CreateTenant 4. Calling bo.createInvoiceForCheckout');
-		$invoice_id = bo::createInvoiceForCheckout($this->checkout_id);
+		$invoice_id 			= bo::createInvoiceForCheckout($this->checkout_id);
 		$checkout->invoice_id	= $invoice_id;
 		$checkout->save();
 
@@ -145,8 +145,8 @@ class CreateTenant implements ShouldQueue
 		$checkout->update();
 		
 		// Send notification to system on new purchase
-		$account = Account::where('id', $account_id)->first();
-		$system = User::where('id', config('bo.SYSTEM_USER_ID'))->first();
+		$account 	= Account::where('id', $account_id)->first();
+		$system 	= User::where('id', config('bo.SYSTEM_USER_ID'))->first();
 		$system->notify(new ServicePurchased($user, $account));
 
 		// copy logo and avatar default files Not needed after AWS CDN
@@ -165,6 +165,7 @@ class CreateTenant implements ShouldQueue
 			$user			= User::where('id', $checkout->owner_id)->first();
 			$user->role		= UserRoleEnum::ADMIN->value;
 			$user->save();
+			
 			Log::debug('Jobs.Landlord.CreateTenant Existing User Role updated for id=' . $user->id);
 			// Write event log
 			LandlordEventLog::event('user', $user->id, 'update', UserRoleEnum::ADMIN->value);
@@ -356,10 +357,24 @@ class CreateTenant implements ShouldQueue
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Admin User created user_id =' . $user->id);
 
 			// Update tenant config->name in the tenant database
-			$tenantSetup = \App\Models\Tenant\Admin\Setup::first();
-			$tenantSetup->name = $account_name;
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Updating Tenant Setup for account_name and admin_id');
+			$tenantSetup 			= \App\Models\Tenant\Admin\Setup::first();
+			$tenantSetup->name 		= $account_name; 
+			$tenantSetup->admin_id 	= $user->id; 
 			$tenantSetup->update();
-			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Config Name Updated setup_id =' . $tenantSetup->id);
+
+			// Insert Rows in Hierarchyl Table
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Inserting two Rows for Seeded Approval Workflow Hierarchy.');
+			$pr=\App\Models\Tenant\Workflow\Hierarchyl::create([
+				'hid'			=> 1001,
+				'approver_id'	=> $user->id,
+			]);
+			$po=\App\Models\Tenant\Workflow\Hierarchyl::create([
+				'hid'			=> 1002,
+				'approver_id'	=> $user->id,
+			]);
+
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Setup Name Updated setup_id =' . $tenantSetup->id);
 
 			// TODO Send Verification Email from tenant context
 			// event(new Registered($user));

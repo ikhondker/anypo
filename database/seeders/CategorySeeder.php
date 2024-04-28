@@ -23,7 +23,7 @@ class CategorySeeder extends Seeder
 		$categories =  [
 			[
 				'id' 	=> 1001,
-				'name' 	=> 'General',
+				'name' 	=> 'Seeded Category',
 			],
 			[
 				'id' 	=> 1002,

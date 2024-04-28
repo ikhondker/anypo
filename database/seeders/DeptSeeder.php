@@ -25,9 +25,10 @@ class DeptSeeder extends Seeder
 		$faker = app(Generator::class);
 
 		$depts =  [
+
 			[
 				'id' 				=> 1001,
-				'name' 				=> 'IT',
+				'name' 				=> 'Seeded Dept',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 		  	],
@@ -61,8 +62,14 @@ class DeptSeeder extends Seeder
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 		  	],
-			[
+		  	[
 				'id' 				=> 1007,
+				'name' 				=> 'IT',
+				'pr_hierarchy_id' 	=> 1001,
+				'po_hierarchy_id' 	=> 1002,
+		  	],
+			[
+				'id' 				=> 1008,
 				'name' 				=> 'Management',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,

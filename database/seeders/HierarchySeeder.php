@@ -21,14 +21,13 @@ class HierarchySeeder extends Seeder
 		//Schema::enableForeignKeyConstraints();
 
 		$hierarchies =  [
-			
 			[
 				'id' 	=> 1001,
-				'name'			=> 'All PR Approval',
+				'name'	=> 'All PR Approval (Seeded)',
 			],
 			[
 				'id' 	=> 1002,
-				'name'			=> 'All PO Approval',
+				'name'	=> 'All PO Approval (Seeded)',
 			],
 			// [
 		  

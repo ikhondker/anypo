@@ -31,6 +31,8 @@ use App\Models\User;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Country;
 use App\Models\Tenant\Lookup\Currency;
+use App\Models\Tenant\Lookup\BankAccount;
+
 # 2. Enums
 use App\Helpers\EventLog;
 use App\Helpers\FileUpload;
@@ -247,7 +249,7 @@ class SetupController extends Controller
 		Log::debug('tenant.setup.freeze setup->currency='.$setup->currency);
 		Log::debug('tenant.setup.freeze request input='.$request->input('currency'));
 
-		// enable that base currency
+		// Enable that base currency
 		$currency = Currency::where('currency', $base)->first();
 		$currency->enable = true;
 		$currency->save();
@@ -256,6 +258,12 @@ class SetupController extends Controller
 		$request->merge(['freezed'	=> true ]);
 		$setup->update($request->all());
 		
+		// Update currency of seeded bank account
+		$bankAccount  = BankAccount ::where('id', 1001)->first();
+		$bankAccount->ac_name = 'STD-SEEDED-'.$base;
+		$bankAccount->currency = $base;
+		$bankAccount->save();
+
 		// Write to Log
 		EventLog::event('setup', $setup->id, 'update', 'name', $request->name);
 

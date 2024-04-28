@@ -19,7 +19,7 @@ class BankAccountFactory extends Factory
 	public function definition(): array
 	{
 
-		$ac_number		= $this->faker->bankAccountNumber;
+		$ac_number				= $this->faker->bankAccountNumber;
 
 		return [
 			'ac_name'			=> 'STD-'.$ac_number,

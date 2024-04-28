@@ -18,9 +18,10 @@ class DesignationSeeder extends Seeder
 	  Designation::truncate();
 
 		$designations =  [
+
 			[
 				'id'	=> '1001',
-				'name'	=> 'System/IT Administrator',
+				'name'	=> 'Seeded Title',
 			],
 			[
 				'id'	=> '1002',
@@ -49,6 +50,10 @@ class DesignationSeeder extends Seeder
 			[
 				'id'	=> '1009',
 				'name'	=> 'Accountant',
+			],
+			[
+				'id'	=> '1010',
+				'name'	=> 'System/IT Administrator',
 			],
 		];
 		//
