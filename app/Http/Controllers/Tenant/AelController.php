@@ -150,6 +150,23 @@ class AelController extends Controller
 		//
 	}
 
+
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function manual()
+	{
+		abort(403);
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function manualAel()
+	{
+		abort(403);
+	}
+
 	public function xxexport()
 	{
 		$this->authorize('export', Ael::class);

@@ -1,16 +1,20 @@
 @extends('layouts.app')
-@section('title','View Dept')
+@section('title','View Menus')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('menus.index') }}">Menus</a></li>
+	<li class="breadcrumb-item active">{{ $menu->name }}</li>
+@endsection
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			View Dept
+			View Menu
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Dept"/>
-			<x-tenant.buttons.header.create object="Dept"/>
-			<x-tenant.buttons.header.edit object="Dept" :id="$menu->id"/>
+			<x-tenant.buttons.header.lists object="Menu"/>
+			<x-tenant.buttons.header.create object="Menu"/>
+			<x-tenant.buttons.header.edit object="Menu" :id="$menu->id"/>
 		@endslot
 	</x-tenant.page-header>
 

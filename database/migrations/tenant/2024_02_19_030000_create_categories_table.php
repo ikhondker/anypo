@@ -14,6 +14,8 @@ return new class extends Migration
 		Schema::create('categories', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('name')->unique();
+			//$table->integer('group_id')->nullable()->default(1001); 
+			$table->foreignId('group_id')->default(1001)->constrained('groups');
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();
@@ -23,6 +25,7 @@ return new class extends Migration
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent();
+			//$table->foreign('group_id')->references('id')->on('groups');
 		});
 	}
 

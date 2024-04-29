@@ -1,27 +1,30 @@
 @extends('layouts.app')
-@section('title','Menu')
-@section('breadcrumb','Create Menu')
-
+@section('title','Status')
+@section('breadcrumb','Create Status')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('statuses.index') }}">Statuses</a></li>
+	<li class="breadcrumb-item active">Create Status</li>
+@endsection
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Create Menu
+			Create Status
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Menu"/>
+			<x-tenant.buttons.header.lists object="Status"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form action="{{ route('menus.store') }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('statues.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
 		<div class="row">
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-					<h5 class="card-title">Menu Info</h5>
+					<h5 class="card-title">Status Info</h5>
 					</div>
 					<div class="card-body">
 

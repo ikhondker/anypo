@@ -1,11 +1,14 @@
 @extends('layouts.app')
 @section('title','Group')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Item Groups</li>
+@endsection
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Group
+			Item Groups
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Group"/>

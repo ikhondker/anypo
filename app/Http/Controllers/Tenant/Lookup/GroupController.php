@@ -52,7 +52,7 @@ class GroupController extends Controller
 	 */
 	public function index()
 	{
-		abort(403);
+		
 		$this->authorize('viewAny', Group::class);
 
 		$groups = Group::query();
@@ -68,7 +68,7 @@ class GroupController extends Controller
 	 */
 	public function create()
 	{
-		abort(403);
+		
 		$this->authorize('create', Group::class);
 		return view('tenant.lookup.groups.create');
 	}
@@ -78,7 +78,7 @@ class GroupController extends Controller
 	 */
 	public function store(StoreGroupRequest $request)
 	{
-		abort(403);
+		
 		$this->authorize('create', Group::class);
 		$group = Group::create($request->all());
 		// Write to Log
@@ -100,7 +100,7 @@ class GroupController extends Controller
 	 */
 	public function edit(Group $group)
 	{
-		abort(403);
+	
 		$this->authorize('update', $group);
 		return view('tenant.lookup.groups.edit', compact('group'));
 	}
@@ -110,7 +110,7 @@ class GroupController extends Controller
 	 */
 	public function update(UpdateGroupRequest $request, Group $group)
 	{
-		abort(403);
+		
 		$this->authorize('update', $group);
 
 		//$request->validate();
@@ -129,7 +129,7 @@ class GroupController extends Controller
 	 */
 	public function destroy(Group $group)
 	{
-		abort(403);
+		
 		$this->authorize('delete', $group);
 
 		$group->fill(['enable' => !$group->enable]);
@@ -143,7 +143,7 @@ class GroupController extends Controller
 
 	public function export()
 	{
-		abort(403);
+		
 		$this->authorize('export', Group::class);
 
 		$data = DB::select("SELECT id, name, email, cell, role, enable 

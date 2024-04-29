@@ -79,4 +79,8 @@ class AelPolicy
 		return ( $user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
+	public function manual(User $user): bool
+	{
+		return ( $user->isSupport());
+	}
 }

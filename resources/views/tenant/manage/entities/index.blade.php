@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title','Entity List')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Entities</li>
+@endsection
 @section('content')
 
 	<x-tenant.page-header>

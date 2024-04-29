@@ -14,7 +14,6 @@ return new class extends Migration
 		Schema::create('groups', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('name')->unique();
-			$table->enum('base', ['length','mass','temperature','time'])->default('length');	
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();

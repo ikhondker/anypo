@@ -14,38 +14,13 @@ class GroupSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Group::truncate();
+		//Group::truncate();
 
 		$groups =  [
 			[
 				'id'	=> '1001',
-				'name'  => "Women's Fashion",
+				'name'  => "Seeded Item Group",
 			],
-			[
-				'id'	=> '1002',
-				'name'  => 'Health & Beauty',
-			],
-			[
-				'id'	=> '1003',
-				'name'  => 'Watches, Bags, Jewellery',
-			],
-			[
-				'id'	=> '1004',
-				'name'  => "Men's Fashion",
-			],
-			[
-				'id'	=> '1005',
-				'name'  => 'Groceries & Pets',
-			],
-			[
-				'id'	=> '1006',
-				'name'  => 'Electronic Devices',
-			],
-			[
-				'id'	=> '1007',
-				'name'  => 'TV & Home Appliances',
-			],
-
 		  ];
 
 		  Group::insert($groups);

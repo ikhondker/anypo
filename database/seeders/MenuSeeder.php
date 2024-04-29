@@ -215,20 +215,26 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'templates.edit','route_name' => 'templates.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'templates.create','route_name' => 'templates.index', 'node_name' => 'system'],
 
+
 			[ 'raw_route_name' => 'tables.index','route_name' => 'tables.index', 'node_name' => 'system'],
 
 			[ 'raw_route_name' => 'entities.index','route_name' => 'entities.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'entities.edit','route_name' => 'entities.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'entities.create','route_name' => 'entities.index', 'node_name' => 'system'],
 
 			[ 'raw_route_name' => 'statuses.index','route_name' => 'statuses.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'statuses.show','route_name' => 'statuses.show', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'statuses.edit','route_name' => 'statuses.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'statuses.create','route_name' => 'statuses.index', 'node_name' => 'system'],
 
 			[ 'raw_route_name' => 'custom-errors.index','route_name' => 'custom-errors.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'custom-errors.show','route_name' => 'custom-errors.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'custom-errors.edit','route_name' => 'custom-errors.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'custom-errors.create','route_name' => 'custom-errors.index', 'node_name' => 'system'],
 			
-			[ 'raw_route_name' => 'groups.index','route_name' => 'groups.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'menus.index','route_name' => 'menus.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'menus.edit','route_name' => 'menus.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'menus.create','route_name' => 'menus.index', 'node_name' => 'system'],
+			
 			
 			// Special
 			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],
@@ -237,7 +243,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'countries.edit','route_name' => 'countries.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'countries.create','route_name' => 'countries.index', 'node_name' => 'system'],
 			
-	
+			[ 'raw_route_name' => 'groups.index','route_name' => 'groups.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'groups.edit','route_name' => 'groups.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'groups.create','route_name' => 'groups.index', 'node_name' => 'system'],
+			
 			/**
 			* ==================================================================================
 			* 8. Special (My Account)

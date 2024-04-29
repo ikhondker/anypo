@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','Menu')
-@section('breadcrumb','Create Menu')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('menus.index') }}">Menus</a></li>
+	<li class="breadcrumb-item active">Create Menu</li>
+@endsection
 
 @section('content')
 

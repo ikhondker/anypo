@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','Custom Errors')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Custom Errors</li>
+@endsection
 @section('content')
 
 	<x-tenant.page-header>

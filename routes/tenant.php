@@ -35,7 +35,7 @@ use App\Http\Controllers\Tenant\Lookup\CountryController;
 use App\Http\Controllers\Tenant\Lookup\CurrencyController;
 use App\Http\Controllers\Tenant\Lookup\DeptController;
 use App\Http\Controllers\Tenant\Lookup\DesignationController;
-//use App\Http\Controllers\Tenant\Lookup\GroupController;
+use App\Http\Controllers\Tenant\Lookup\GroupController;
 use App\Http\Controllers\Tenant\Lookup\ItemController;
 use App\Http\Controllers\Tenant\Lookup\OemController;
 use App\Http\Controllers\Tenant\Lookup\PayMethodController;
@@ -240,11 +240,6 @@ Route::middleware([
 		Route::get('/notification/purge',[NotificationController::class, 'purge'])->name('notifications.purge');
 		Route::get('/notifications/delete/{notification}',[NotificationController::class, 'destroy'])->name('notifications.destroy');
 
-		/* ======================== Country ======================================== */
-		Route::resource('countries', CountryController::class);
-		Route::get('/country/export',[CountryController::class,'export'])->name('countries.export');
-		Route::get('/countries/delete/{country}',[CountryController::class, 'destroy'])->name('countries.destroy');
-
 		/* ======================== Currency ======================================== */
 		Route::resource('currencies', CurrencyController::class);
 		Route::get('/currency/export',[CurrencyController::class,'export'])->name('currencies.export');
@@ -263,8 +258,8 @@ Route::middleware([
 
 		/* ======================== TODO Group ======================================== */
 		Route::resource('groups', GroupController::class);
-		//Route::get('/group/export',[GroupController::class,'export'])->name('groups.export');
-		//Route::get('/groups/delete/{group}',[GroupController::class,'destroy'])->name('groups.destroy');
+		Route::get('/group/export',[GroupController::class,'export'])->name('groups.export');
+		Route::get('/groups/delete/{group}',[GroupController::class,'destroy'])->name('groups.destroy');
 
 		/* ======================== Warehouse ======================================== */
 		Route::resource('warehouses', WarehouseController::class);
@@ -523,10 +518,20 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
+		/* ======================== Ael ========================================  */
+		Route::get('/ael/manual',[AelController::class,'manual'])->name('aels.manual');
+		Route::post('/ael/manual-ael',[AelController::class,'manualAel'])->name('aels.manual-ael');
+
 		/* ======================== User ========================================  */
 		Route::get('/users/impersonate/{user}/',[UserController::class, 'impersonate'])->name('users.impersonate');
 
+		/* ======================== Country ======================================== */
+		Route::resource('countries', CountryController::class);
+		Route::get('/country/export',[CountryController::class,'export'])->name('countries.export');
+		Route::get('/countries/delete/{country}',[CountryController::class, 'destroy'])->name('countries.destroy');
 
+
+		
 	});
 
 

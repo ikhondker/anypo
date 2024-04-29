@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Edit Country')
-@section('breadcrumb','Edit Country')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('countries.index') }}">Countries</a></li>
+	<li class="breadcrumb-item active">{{ $country->name }}</li>
+@endsection
+
 
 @section('content')
 

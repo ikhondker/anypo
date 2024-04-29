@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Countries')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Countries</li>
+@endsection
+
 @section('content')
 
 	<x-tenant.page-header>

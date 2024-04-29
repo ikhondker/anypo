@@ -1,16 +1,20 @@
 @extends('layouts.app')
-@section('title','View Dept')
+@section('title','View Status')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('statuses.index') }}">Statuses</a></li>
+	<li class="breadcrumb-item active">{{ $status->name }}</li>
+@endsection
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			View Dept
+			View Status
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Dept"/>
-			<x-tenant.buttons.header.create object="Dept"/>
-			<x-tenant.buttons.header.edit object="Dept" :id="$status->id"/>
+			<x-tenant.buttons.header.lists object="Status"/>
+			<x-tenant.buttons.header.create object="Status"/>
+			<x-tenant.buttons.header.edit object="Status" :id="$status->id"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -18,7 +22,7 @@
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Dept Info</h5>
+					<h5 class="card-title">Status Info</h5>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $status->name }}"/>

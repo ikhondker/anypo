@@ -13,7 +13,6 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.actions.notification-actions/>
-			{{-- <x-tenant.buttons.header.create object="Dept"/> --}}
 		@endslot
 	</x-tenant.page-header>
 	
