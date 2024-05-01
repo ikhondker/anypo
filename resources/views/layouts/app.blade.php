@@ -133,30 +133,20 @@
 						<div class="dropdown-menu dropdown-menu-start dropdown-mega" aria-labelledby="servicesDropdown">
 							<div class="d-md-flex align-items-start justify-content-start">
 								<div class="dropdown-mega-list">
-									<div class="dropdown-header">Summary</div>
-									<a class="dropdown-item" href="{{ route('items.create') }}">Create GRS*</a>
-									<a class="dropdown-item" href="{{ route('prs.create') }}">Create Invoice*</a>
-									<a class="dropdown-item" href="{{ route('pos.create') }}">Create Payment*</a>
-									<a class="dropdown-item" href="{{ route('users.index') }}">User List*</a>
-								</div>
-								<div class="dropdown-mega-list">
 									<div class="dropdown-header">Transaction</div>
-									<a class="dropdown-item" href="#">Layouts</a>
-									<a class="dropdown-item" href="#">Basic Inputs</a>
-									<a class="dropdown-item" href="#">Input Groups</a>
-									<a class="dropdown-item" href="#">Advanced Inputs</a>
-									<a class="dropdown-item" href="#">Editors</a>
-									<a class="dropdown-item" href="#">Validation</a>
-
+									<a class="dropdown-item" href="{{ route('prs.create') }}">Create Requisitions*</a>
+									<a class="dropdown-item" href="{{ route('pos.create') }}">Create Purchase Orders*</a>
+									<a class="dropdown-item" href="{{ route('items.create') }}">Create Item*</a>
+									<a class="dropdown-item" href="{{ route('suppliers.create') }}">Create Supplier*</a>
+									<a class="dropdown-item" href="{{ route('users.create') }}">Create User*</a>
 								</div>
 								<div class="dropdown-mega-list">
-									<div class="dropdown-header">Reports</div>
-									<a class="dropdown-item" href="#">Basic Tables</a>
-									<a class="dropdown-item" href="#">Responsive Table</a>
-									<a class="dropdown-item" href="#">Table with Buttons</a>
-									<a class="dropdown-item" href="#">Column Search</a>
-									<a class="dropdown-item" href="#">Multi Selection</a>
-
+									<div class="dropdown-header">Listing</div>
+									<a class="dropdown-item" href="{{ route('prs.index') }}">View Requisitions*</a>
+									<a class="dropdown-item" href="{{ route('pos.index') }}">View Purchase Orders*</a>
+									<a class="dropdown-item" href="{{ route('receipts.index') }}">View Receipts*</a>
+									<a class="dropdown-item" href="{{ route('invoices.index') }}">View Invoices*</a>
+									<a class="dropdown-item" href="{{ route('payments.index') }}">View Payments*</a>
 								</div>
 							</div>
 						</div>

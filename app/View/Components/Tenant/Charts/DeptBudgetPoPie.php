@@ -20,9 +20,7 @@ class DeptBudgetPoPie extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(
-		public string $dbid ='0000'
-	)
+	public function __construct(public string $dbid ='0000'	)
 	{
 
 		Log::debug('components.tenant.charts.DeptBudgetPoPie Value of dept_budget_id=' . $dbid);

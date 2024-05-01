@@ -37,7 +37,6 @@ class SupplierSeeder extends Seeder
 		];
 		
 		Supplier::insert($suppliers);
-
-		//Supplier::factory()->count(10)->create();
+		Supplier::factory()->count(6)->create();
 	}
 }

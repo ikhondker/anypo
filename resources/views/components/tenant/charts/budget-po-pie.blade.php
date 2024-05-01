@@ -8,13 +8,15 @@
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
+						<a class="dropdown-item" href="{{ route('budgets.index') }}"><i class="align-middle me-1" data-feather="eye"></i>View Company Budgets</a>
+						<a class="dropdown-item" href="{{ route('dept-budgets.index') }}"><i class="align-middle me-1" data-feather="eye"></i>View Dept Budgets</a>
+						<a class="dropdown-item" href="{{ route('projects.index') }}"><i class="align-middle me-1" data-feather="eye"></i>View Project Spends</a>
+						<a class="dropdown-item" href="{{ route('suppliers.index') }}"><i class="align-middle me-1" data-feather="eye"></i>View Supplier Spends</a>
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">FY {{ $budget->fy }}- {{ $budget->name }} : Purchase Order</h5>
+			<h5 class="card-title">FY {{ $budget->fy }} : Purchase Order Budget Status</h5>
+			<h6 class="card-subtitle text-muted">Utilized and Available Budget for Purchase Order for a Fiscal year.</h6>
 		</div>
 		<div class="card-body d-flex">
 			<div class="align-self-center w-100">
@@ -48,15 +50,29 @@
 					borderColor: window.theme.white
 				}]
 			},
+
 			options: {
-				responsive: !window.MSInputMethodContext,
-				maintainAspectRatio: true,
-				cutoutPercentage: 50,
-				legend: {
-					position: "bottom",
-					display: true
+				responsive: true,
+				plugins: {
+					legend: {
+						position: 'bottom',
+					},
+					title: {
+						display: false,
+						text: 'Chart.js Pie Chart'
+					}
 				}
-			}
+			},
+			
+			// options: {
+			// 	responsive: !window.MSInputMethodContext,
+			// 	maintainAspectRatio: true,
+			// 	cutoutPercentage: 50,
+			// 	legend: {
+			// 		position: "bottom",
+			// 		display: true
+			// 	}
+			// }
 		});
 	});
 </script>

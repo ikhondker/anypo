@@ -19,10 +19,6 @@ class UserProfile extends Component
 	public function __construct($id)
 	{
 		$this->id	= $id;
-		//$dbus = $dbus->orderBy('id', 'DESC')->paginate(10);
-		//$this->dbus = Dbu::where('project_id',$this->id)->get()->all();
-		//$this->user = User::with('dept')->with('deptBudget.budget')->with('project')->where('dept_id',$this->id)->orderBy('id', 'DESC')->paginate(10);
-		//$this->user = User::with('dept')->with('deptBudget.budget')->with('project')->where('dept_id',$this->id)->orderBy('id', 'DESC')->paginate(10);
 		$this->user = User::where('id', $id)->with("user_country")->get()->first();
 	}
 

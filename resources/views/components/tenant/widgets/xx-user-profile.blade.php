@@ -64,7 +64,6 @@
 				<x-tenant.show.my-text		value="{{ $user->dept->name }}" label="Dept"/>
 				<x-tenant.show.my-badge		value="{{ $user->role }}" label="Role"/>
 				<x-tenant.show.my-boolean	value="{{ $user->enable }}"/>
-
 					
 				<hr />
 				<x-tenant.show.my-url		value="{{ $user->facebook }}" label="Facebook"/>

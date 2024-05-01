@@ -1,21 +1,8 @@
 <div class="col-12 col-lg-6 d-flex">
 	<div class="card flex-fill w-100">
 		<div class="card-header">
-			<div class="card-actions float-end">
-				<div class="dropdown position-relative">
-					<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-						<i class="align-middle" data-feather="more-horizontal"></i>
-					</a>
-
-					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div>
-				</div>
-			</div>
 			<h5 class="card-title">Project Spends Count</h5>
-			<h6 class="card-subtitle text-muted">Document Count for Top 10 Active Project Spends.</h6>
+			<h6 class="card-subtitle text-muted">Created Different Document Count for Top 10 Active Projects.</h6>
 		</div>
 		<div class="card-body d-flex w-100">
 			<div class="align-self-center chart">
@@ -71,29 +58,28 @@
 			},
 			options: {
 				maintainAspectRatio: false,
+				responsive: true,
 				cornerRadius: 15,
-				legend: {
-					display: true
-				},
+				borderRadius: 3,
 				scales: {
-					yAxes: [{
-						gridLines: {
-							display: false
-						},
-						ticks: {
-							stepSize: 20000
-						},
-						stacked: false,
-						min: 1,
-					}],
-					xAxes: [{
-						gridLines: {
-							color: "transparent"
-						},
-						stacked: false,
-						categoryPercentage: .9,
-						barPercentage: .9
-					}]
+					x: {
+						grid: {
+							offset: true,
+							stacked: true,
+						}
+					},
+					y: {
+						beginAtZero: true,
+					}
+				},
+				plugins: {
+					legend: {
+						position: 'bottom',
+					},
+					title: {
+						display: false,
+						text: 'Chart.js Pie Chart'
+					}
 				}
 			}
 		});

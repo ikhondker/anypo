@@ -232,7 +232,6 @@ Route::middleware([
 		//Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
 		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
-
 		/* ======================== Notification ======================================== */
 		Route::resource('notifications', NotificationController::class);
 		Route::get('/notification/all',[NotificationController::class, 'all'])->name('notifications.all');
@@ -244,7 +243,6 @@ Route::middleware([
 		Route::resource('currencies', CurrencyController::class);
 		Route::get('/currency/export',[CurrencyController::class,'export'])->name('currencies.export');
 		Route::get('/currencies/delete/{currency}',[CurrencyController::class, 'destroy'])->name('currencies.destroy');
-
 	
 		/* ======================== Dept (template)======================================== */
 		Route::resource('depts', DeptController::class);

@@ -24,7 +24,11 @@
 		
 
 		<div class="row">
-			<div class="col-6">
+			<div class="col-md-4 col-xl-3">
+				<x-tenant.widgets.user.user-profile  id="{{ $user->id }}"/>	
+			</div>
+		
+			<div class="col-md-8 col-xl-9">
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Change Password</h5>
@@ -57,35 +61,11 @@
 							<x-tenant.buttons.show.save/>
 					</div>
 				</div>
-			</div>
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header">
-						<h5 class="card-title">User Info</h5>
-						<h6 class="card-subtitle text-muted">User's Basic Information.</h6>
-					</div>
-					<div class="card-body">
-						
-						<div class="row mb-3">
-							<div class="col-sm-3 text-end">
-								<span class="h6 text-secondary">Avatar:</span>
-							</div>
-							<div class="col-sm-9">
-								<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
-								{{-- <x-tenant.show.avatar avatar="{{ $user->avatar }}"/> --}}
-							</div>
-						</div>
 
-						<x-tenant.show.my-text	value="{{ $user->name }}"/>
-						<x-tenant.show.my-text	value="{{ $user->email }}" label="Email"/>
-						<x-tenant.show.my-badge	value="{{ $user->role }}" label="Role"/>
-						{{-- <x-tenant.show.my-badge	value="{{ $user->id }}" label="ID"/> --}}
-					</div>
-				</div>
 			</div>
 		</div>
 
-		
+	
 	</form>
 	<!-- /.form end -->
 @endsection

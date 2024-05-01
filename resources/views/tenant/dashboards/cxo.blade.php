@@ -20,8 +20,8 @@
 	<x-tenant.landlord-notice-one-tenant/>
 
 	<div class="row">
-		<x-tenant.charts.budget-po-pie/>
 		<x-tenant.charts.budget-by-dept-pie/>
+		<x-tenant.charts.budget-po-pie/>
 		<x-tenant.charts.budget-by-dept-po-bar/>
 	</div>
 	

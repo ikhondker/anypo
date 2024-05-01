@@ -24,54 +24,85 @@ class DeptBudgetSeeder extends Seeder
 
 		$faker = app(Generator::class);
 
-		$deptBudget =  [
+		$deptBudget24 =  [
 			[
-				'budget_id'			=> Budget::inRandomOrder()->first()->id,
-				'dept_id'			=> '1001',
-				'amount'			=> 100000,
-				'notes'				=> $faker->paragraph,
-			],
-			[
-				'budget_id'			=> Budget::inRandomOrder()->first()->id,
+				'budget_id'			=> '1001',
 				'dept_id'			=> '1002',
 				'amount'			=> 100000,
 				'notes'				=> $faker->paragraph,
 			],
 			[
-				'budget_id'			=> Budget::inRandomOrder()->first()->id,
+				'budget_id'			=> '1001',
 				'dept_id'			=> '1003',
 				'amount'			=> 100000,
 				'notes'				=> $faker->paragraph,
 			],
 			[
-				'budget_id'			=> Budget::inRandomOrder()->first()->id,
+				'budget_id'			=> '1001',
 				'dept_id'			=> '1004',
 				'amount'			=> 100000,
 				'notes'				=> $faker->paragraph,
 			],
 			[
-				'budget_id'			=> Budget::inRandomOrder()->first()->id,
+				'budget_id'			=> '1001',
 				'dept_id'			=> '1005',
 				'amount'			=> 100000,
 				'notes'				=> $faker->paragraph,
 			],
 			[
-				'budget_id'			=> Budget::inRandomOrder()->first()->id,
+				'budget_id'			=> '1001',
 				'dept_id'			=> '1006',
 				'amount'			=> 100000,
 				'notes'				=> $faker->paragraph,
 			],
 			[
-				'budget_id'			=> Budget::inRandomOrder()->first()->id,
+				'budget_id'			=> '1001',
 				'dept_id'			=> '1007',
 				'amount'			=> 100000,
 				'notes'				=> $faker->paragraph,
 			],
 		  ];
 		
-		 //
+		  $deptBudget23 =  [
+			[
+				'budget_id'			=> '1002',
+				'dept_id'			=> '1002',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1002',
+				'dept_id'			=> '1003',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1002',
+				'dept_id'			=> '1004',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1002',
+				'dept_id'			=> '1005',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1002',
+				'dept_id'			=> '1006',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1002',
+				'dept_id'			=> '1007',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+		  ];
 				
-		$deptBudget23 =  [
+		$deptBudget23Dummy =  [
 			[
 				'budget_id'			=> '1001',
 				'dept_id'			=> '1001',
@@ -200,7 +231,7 @@ class DeptBudgetSeeder extends Seeder
 			],
 		  ];
 
-		  $deptBudget24 =  [
+		  $deptBudget24Dummy =  [
 			[
 				'budget_id'			=> '1002',
 				'dept_id'			=> '1001',
@@ -330,9 +361,10 @@ class DeptBudgetSeeder extends Seeder
 		  ];
 
 		
-		//DeptBudget::insert($deptBudget);
 		DeptBudget::insert($deptBudget23);
 		DeptBudget::insert($deptBudget24);
+		//DeptBudget::insert($deptBudget23Dummy);
+		//DeptBudget::insert($deptBudget24Dummy);
 
 	}
 }

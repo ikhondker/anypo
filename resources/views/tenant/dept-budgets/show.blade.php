@@ -22,9 +22,9 @@
 
 
 	<div class="row">
+		<x-tenant.charts.dept-budget-bar :dbid="$deptBudget->id"/>
 		<x-tenant.charts.dept-budget-po-pie :dbid="$deptBudget->id"/>
 		<x-tenant.charts.dept-budget-pr-pie :dbid="$deptBudget->id"/>
-		<x-tenant.charts.dept-budget-bar :dbid="$deptBudget->id"/>
 	</div>
 
 	<x-tenant.dashboards.dept-budget-stat :dbid="$deptBudget->id"/> 

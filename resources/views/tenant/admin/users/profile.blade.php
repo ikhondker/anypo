@@ -9,15 +9,26 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Profile
+			My Profile
 		@endslot
 		@slot('buttons')
 			<x-tenant.actions.user-actions id="{{ $user->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.widgets.user-profile  id="{{ $user->id }}"/>
+	
 
+	<div class="row">
+		<div class="col-md-4 col-xl-3">
+			<x-tenant.widgets.user.user-profile  id="{{ $user->id }}"/>	
+		</div>
+	
+		<div class="col-md-8 col-xl-9">
+			<x-tenant.widgets.user.user-detail  id="{{ $user->id }}"/>	
+		</div>
+	</div>
+
+		
 	@include('shared.includes.js.sw2-advance')
 @endsection
 

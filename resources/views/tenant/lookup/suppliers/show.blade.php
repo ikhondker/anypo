@@ -22,7 +22,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Supplier Detail</h5>
-					<h6 class="card-subtitle text-muted">Supplier detail information.</h6>
+					<h6 class="card-subtitle text-muted">Supplier detail Information.</h6>
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text		value="{{ $supplier->name }}"/>
@@ -35,6 +35,7 @@
 					<x-tenant.show.my-text value="{{ $supplier->address2 }}" label="Address2"/>
 					<x-tenant.show.my-text value="{{ $supplier->city.', '.$supplier->state.', '.$supplier->zip  }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $supplier->relCountry->name }}" label="Country"/>
+					<x-tenant.show.my-date-time value="{{ $supplier->created_at }}" label="Created At" />
 					<x-tenant.show.my-boolean	value="{{ $supplier->enable }}"/>
 					
 				</div>
