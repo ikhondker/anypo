@@ -4,8 +4,8 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		@can('manual', $ael)
-		<a class="dropdown-item" href="{{ route('aels.manual') }}"><i class="align-middle me-1" data-feather="eye"></i> Manual Accounting (*)</a>
-		<a class="dropdown-item" href="{{ route('aels.index') }}"><i class="align-middle me-1" data-feather="eye"></i> Manual Accounting (*)</a>
+			<a class="dropdown-item" href="{{ route('aels.manual') }}"><i class="align-middle me-1" data-feather="eye"></i> Manual Accounting (*)</a>
+			<a class="dropdown-item" href="{{ route('aels.index') }}"><i class="align-middle me-1" data-feather="eye"></i> Manual Accounting (*)</a>
 		@endcan
 	</div>
 </div>

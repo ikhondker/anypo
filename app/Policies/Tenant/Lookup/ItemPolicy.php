@@ -43,7 +43,7 @@ class ItemPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+		return ( $user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**

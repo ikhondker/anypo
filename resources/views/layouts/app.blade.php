@@ -134,16 +134,30 @@
 							<div class="d-md-flex align-items-start justify-content-start">
 								<div class="dropdown-mega-list">
 									<div class="dropdown-header">Transaction</div>
-									<a class="dropdown-item" href="{{ route('prs.create') }}">Create Requisitions*</a>
-									<a class="dropdown-item" href="{{ route('pos.create') }}">Create Purchase Orders*</a>
-									<a class="dropdown-item" href="{{ route('items.create') }}">Create Item*</a>
-									<a class="dropdown-item" href="{{ route('suppliers.create') }}">Create Supplier*</a>
-									<a class="dropdown-item" href="{{ route('users.create') }}">Create User*</a>
+									<a class="dropdown-item" href="{{ route('prs.create') }}">Create Requisitions</a>
+
+									@can('create', App\Models\Tenant\Po::class)
+										<a class="dropdown-item" href="{{ route('pos.create') }}">Create Purchase Orders</a>
+									@endcan
+									@can('create', App\Models\Tenant\Lookup\Items::class)
+										<a class="dropdown-item" href="{{ route('items.create') }}">Create Item</a>
+									@endcan
+									@can('create', App\Models\Tenant\Lookup\Supplier::class)
+										<a class="dropdown-item" href="{{ route('suppliers.create') }}">Create Supplier</a>
+									@endcan
+									@can('create', App\Models\Tenant\Project::class)
+										<a class="dropdown-item" href="{{ route('projects.create') }}">Create Project</a>
+									@endcan
+									@can('create', App\Models\Tenant\Admin\User::class)
+										<a class="dropdown-item" href="{{ route('users.create') }}">Create User</a>
+									@endcan
 								</div>
 								<div class="dropdown-mega-list">
 									<div class="dropdown-header">Listing</div>
-									<a class="dropdown-item" href="{{ route('prs.index') }}">View Requisitions*</a>
-									<a class="dropdown-item" href="{{ route('pos.index') }}">View Purchase Orders*</a>
+									<a class="dropdown-item" href="{{ route('prs.index') }}">View Requisitions</a>
+									@can('viewAny', App\Models\Tenant\Po::class)
+										<a class="dropdown-item" href="{{ route('pos.index') }}">View Purchase Orders</a>
+									@endcan
 									<a class="dropdown-item" href="{{ route('receipts.index') }}">View Receipts*</a>
 									<a class="dropdown-item" href="{{ route('invoices.index') }}">View Invoices*</a>
 									<a class="dropdown-item" href="{{ route('payments.index') }}">View Payments*</a>

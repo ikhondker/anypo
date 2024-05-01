@@ -4,21 +4,21 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
-        <a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Requisition</a>
-        @can('create', App\Models\Tenant\Lookup\Supplier::class)
-            <a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create PO</a>
-        @endcan
+		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Requisition</a>
+		@can('create', App\Models\Tenant\Po::class)
+			<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create PO</a>
+		@endcan
 		@can('create', App\Models\Tenant\Lookup\Supplier::class)
 			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Supplier</a>
 		@endcan
-        @can('create', App\Models\Tenant\Lookup\Items::class)
+		@can('create', App\Models\Tenant\Lookup\Items::class)
 			<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Item</a>
 		@endcan
 		<div class="dropdown-divider"></div>
-		@can('create', App\Models\Tenant\Lookup\User::class)
+		@can('create', App\Models\Tenant\Admin\User::class)
 			<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create User</a>
 		@endcan
-		@can('create', App\Models\Tenant\Lookup\Project::class)
+		@can('create', App\Models\Tenant\Project::class)
 			<a class="dropdown-item" href="{{ route('projects.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Project</a>
 		@endcan
 
