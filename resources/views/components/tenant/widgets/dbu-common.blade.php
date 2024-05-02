@@ -1,4 +1,4 @@
-div class="row">
+<div class="row">
 	<div class="col-12">
 
 		<div class="card">
@@ -21,7 +21,6 @@ div class="row">
 							<th>#</th>
 							<th>ID</th>
 							<th>Dept</th>
-
 							<th>FY</th>
 							<th>Date</th>
 							<th>Entity</th>

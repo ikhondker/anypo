@@ -17,8 +17,10 @@
 		@endslot
 	</x-tenant.page-header>
 
-	
-	<x-tenant.dashboards.dept-budget-stat id="{{ auth()->user()->dept_id }}" />
+	@if ( \App\Helpers\Akk::userAnyDeptBudgetExists() )
+		<x-tenant.dashboards.dept-budget-stat/>
+	@endif 	
+
 
 	<div class="row">
 		<div class="col-12">

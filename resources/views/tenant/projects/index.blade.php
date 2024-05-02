@@ -102,12 +102,6 @@
 	</div>
 
 	<div class="row">
-		<x-tenant.charts.spends-by-project-bar/>
-		<x-tenant.charts.spends-by-project-count-bar/>
-	</div>
-
-
-	<div class="row">
 		<div class="col-12">
 
 			<div class="card">

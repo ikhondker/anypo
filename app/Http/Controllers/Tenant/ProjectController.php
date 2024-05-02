@@ -214,4 +214,19 @@ class ProjectController extends Controller
 		//$attachments = Attachment::with('owner')->where('entity', EntityEnum::PROJECT->value)->where('article_id', $project->id)->paginate(10);
 		return view('tenant.projects.attachments', compact('project'));
 	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function spends()
+	{
+		$this->authorize('viewAny',Project::class);
+
+		$projects = Project::query();
+		if (request('term')) {
+			$projects->where('name', 'Like', '%' . request('term') . '%');
+		}
+		$projects = $projects->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.projects.spends', compact('projects'));
+	}
 }

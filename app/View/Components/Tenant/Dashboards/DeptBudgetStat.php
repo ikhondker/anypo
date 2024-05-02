@@ -14,32 +14,23 @@ class DeptBudgetStat extends Component
 {
 	
 	public $deptBudget;
-	
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(
-		public string $dbid = '0000',
-	)
+	public function __construct(public string $dbid = '0000')
 	{
 		//$this->dept_budget_id = $dept_budget_id;
-		
 
 		Log::debug('components.tenant.dashboards.DeptBudgetStat Value of dept_budget_id=' . $dbid);
-		//Log::debug('components.tenant.dashboards.DeptBudgetStat Value of dept_budget_id=' . $this->dept_budget_id);
 
-		//Log::debug('Value of dept_id=' . $id);
-		//$this->deptBudget				= DeptBudget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $id)->firstOrFail();
-		if ($dbid == '0000'){	
-			// no dept budge id is specified. HSow current user last dept budget
+		if ($dbid == '0000'){ // Must get at least one dept budget as already checked before calling this component with empty dbid
 			// Get latest dept budget of the current user
-			$this->deptBudget				= DeptBudget::with('budget')->with('dept')->where('dept_id', auth()->user()->dept_id)->orderBy('id', 'DESC')->firstOrFail();
+			$this->deptBudget				= DeptBudget::with('budget')->with('dept')->where('dept_id', auth()->user()->dept_id)->orderBy('id', 'DESC')->firstOrFail();			  
 		} else {
 			//$this->deptBudget				= DeptBudget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $this->dept_id)->firstOrFail();
 			$this->deptBudget				= DeptBudget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $dbid)->firstOrFail();
 		}
-
 		Log::debug('components.tenant.dashboards.DeptBudgetStat Value of this->deptBudget->id=' . $this->deptBudget->id);
 	}
 

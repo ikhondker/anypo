@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Dept;
 
+
 class DeptBudget extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
@@ -20,6 +21,13 @@ class DeptBudget extends Model
 		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr', 'amount_po_booked', 'amount_po', 'amount_grs', 'amount_invoice', 'amount_payment', 'count_pr_booked', 'count_pr', 'count_po_booked', 'count_po', 'count_grs', 'count_invoice', 'count_payment', 'end_date', 'notes', 'closed', 'updated_by', 'updated_at',
 
 	];
+/*
+	|-----------------------------------------------------------------------------
+	| Functions 
+	|-----------------------------------------------------------------------------
+	*/
+
+	
 
 	/* ----------------- Scopes ------------------------- */
 	/**

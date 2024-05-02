@@ -110,7 +110,7 @@ class MenuPolicy
 	{
 		// TODO MUST 
 		//return true;
-		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -130,7 +130,7 @@ class MenuPolicy
 	{
 		// TODO MUST 
 		//return true;
-		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+		return ($user->isAdmin() || $user->isSupport());
 	}
 
 	/**

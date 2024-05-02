@@ -339,53 +339,6 @@
 									<a class="text-muted" href="{{ route('tos') }}">Terms of Service</a>
 								</li>
 
-								@auth
-									<span class="badge bg-primary-light">{{ tenant('id') }}</span>
-									<span class="text-muted">{{ auth()->user()->name }} {{ '| '.auth()->user()->id .' |' }}  {{ auth()->user()->email .' |' }} </span>
-
-									@if ( auth()->user()->role->value == UserRoleEnum::USER->value )
-										<span class="badge bg-primary-light">user </span>|
-									@else
-										<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'user']) }}">user</a> |
-									@endif
-
-									@if ( auth()->user()->role->value == UserRoleEnum::BUYER->value )
-										<span class="badge bg-primary-light">buyer </span>|
-									@else
-										<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'buyer']) }}">buyer</a> |
-									@endif
-									@if ( auth()->user()->role->value == UserRoleEnum::HOD->value )
-										<span class="badge bg-primary-light">hod </span>|
-									@else
-										<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'hod']) }}">hod</a> |
-									@endif
-
-									@if ( auth()->user()->role->value == UserRoleEnum::CXO->value )
-										<span class="badge bg-primary-light">cxo </span>|
-									@else
-										<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'cxo']) }}">cxo</a> |
-									@endif
-
-
-									@if ( auth()->user()->role->value == UserRoleEnum::ADMIN->value)
-										<span class="badge bg-primary-light">admin </span>|
-									@else
-										<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'admin']) }}">admin</a> |
-									@endif
-
-									@if ( auth()->user()->role->value == UserRoleEnum::SUPPORT->value)
-										<span class="badge bg-primary-light">support </span>|
-									@else
-										<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'support']) }}">support</a> |
-									@endif
-
-									@if ( auth()->user()->role->value == UserRoleEnum::SYSTEM->value)
-										<span class="badge bg-primary-light">system </span>
-									@else
-										<a class="text-primary" href="{{ route('users.updaterole',['user'=>auth()->user()->id,'role'=>'system']) }}">system</a>
-									@endif
-
-								@endauth
 								@guest
 									Welcome Guest. Please  <a class="list-inline-item" href="{{ route('login') }}" class="text-primary">Login</a> here.
 								@endguest

@@ -47,9 +47,19 @@ class AppServiceProvider extends ServiceProvider
  		* Tenant
  		* ==================================================================================
 		*/
+
+		// Should return TRUE or FALSE IQBAL 
+		Gate::define('superior', function(User $user) {
+			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() ||  $user->isAdmin() || $user->isSupport() || $user->isSystem());
+		});
+
 		// Should return TRUE or FALSE IQBAL 
 		Gate::define('buyer', function(User $user) {
 			return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
+		});
+		
+		Gate::define('hod', function(User $user) {
+			return ($user->isHoD() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
 		});
 
 		Gate::define('cxo', function(User $user) {

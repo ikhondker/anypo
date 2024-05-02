@@ -9,6 +9,7 @@ use DB;
 
 use App\Models\Tenant\DeptBudget;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class DeptBudgetBar extends Component
 {
@@ -17,6 +18,7 @@ class DeptBudgetBar extends Component
 	//public $dept_amount = [];
 	public $dept_budget_colors = [];
 	public $deptBudget;
+	
 
 	/**
 	 * Create a new component instance.
@@ -26,8 +28,8 @@ class DeptBudgetBar extends Component
 
 		Log::debug('components.tenant.charts.DeptBudgetBar Value of dept_budget_id=' . $dbid);
 	
-		if ($dbid == '0000'){
-			// No dept budge id is specified. Show current user last dept budget
+		if ($dbid == '0000'){ // Must get at least one dept budget as already checked before calling this component with empty dbid
+			// Get latest dept budget of the current user
 			$this->deptBudget = DeptBudget::where('dept_id', auth()->user()->dept_id )->with('dept')->with('budget')->orderBy('id', 'DESC')->get()->firstOrFail();
 		} else {
 		 	$this->deptBudget	= DeptBudget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $dbid)->firstOrFail();

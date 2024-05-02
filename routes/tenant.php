@@ -209,29 +209,14 @@ Route::middleware([
 		/* ======================== Dashboard ========================================  */
 		Route::resource('dashboards', DashboardController::class);
 		Route::get('/', [DashboardController::class, 'index'])->name('home');
-		//TODO enable verify middleware for all route
-		//Route::get('/home', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-		//Route::resource('dashboards', DashboardController::class);
 
 		/* ======================== User ========================================  */
-		Route::resource('users', UserController::class);
-		Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
-		// TOTO check ->middleware(['auth', 'verified']) for the rest
+		Route::resource('users', UserController::class);	// needed for edit
+		Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
 		Route::get('/users/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
 		Route::post('/users/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
-
-		// Route::get('/users/password/{user}',[UserController::class, 'password'])->name('users.password');
-		// Route::post('/users/change-pass/{user}',[UserController::class, 'changepass'])->name('users.change-pass');
-		Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
-		Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
-		//TODO remove next two used in footer
-		Route::get('/user/role',[UserController::class, 'role'])->name('users.role');
-		Route::get('/user/updaterole/{user}/{role}',[UserController::class, 'updaterole'])->name('users.updaterole');
-		//Route::get('/user/image/{filename}',[UserController::class, 'image'])->name('users.image');
-		// TODO
-		//Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
 		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
-
+		
 		/* ======================== Notification ======================================== */
 		Route::resource('notifications', NotificationController::class);
 		Route::get('/notification/all',[NotificationController::class, 'all'])->name('notifications.all');
@@ -239,11 +224,255 @@ Route::middleware([
 		Route::get('/notification/purge',[NotificationController::class, 'purge'])->name('notifications.purge');
 		Route::get('/notifications/delete/{notification}',[NotificationController::class, 'destroy'])->name('notifications.destroy');
 
+		/* ======================== Supplier ======================================== */
+		Route::resource('suppliers', SupplierController::class);
+		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
+		
+		/* ======================== Item ======================================== */
+		Route::resource('items', ItemController::class);
+		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
+		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
+		
+		/* ======================== Pr ======================================== */
+		Route::resource('prs', PrController::class);
+		Route::get('/pr/my-prs',[PrController::class,'myPr'])->name('prs.my-prs');
+		Route::get('/prs/attachments/{pr}',[PrController::class,'attachments'])->name('prs.attachments');
+		Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
+		Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
+		Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
+		Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
+		Route::get('/prs/cancel/{pr}',[PrController::class,'cancel'])->name('prs.cancel');
+		Route::get('/prs/history/{pr}',[PrController::class,'history'])->name('prs.history');
+		Route::get('/prs/extra/{pr}',[PrController::class,'extra'])->name('prs.extra');
+		Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
+		Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
+		Route::get('/prs/convert-to-po/{pr}',[PrController::class, 'convertPo'])->name('prs.convert');
+		
+		/* ======================== Prl ======================================== */
+		Route::resource('prls', PrlController::class);
+		Route::get('/prl/export',[PrlController::class,'export'])->name('prls.export');
+		Route::get('/prls/delete/{prl}',[PrlController::class,'destroy'])->name('prls.destroy');
+		Route::get('/prls/add-line/{pr}',[PrlController::class, 'addLine'])->name('prls.add-line');
+		// TODO prl cancel here
+
+		/* ======================== Ticket ======================================== */
+		Route::resource('tickets', TicketController::class);
+		
+		/* ======================== Attachment ======================================== */
+		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
+
+		/* ======================== Report ========================================  */
+		Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
+						
+	});
+
+
+
+/**
+* ==================================================================================
+* 3. Superior Routes excl User (Need Auth+ Email Verification + can:superior)
+* ==================================================================================
+*/
+Route::middleware([
+	'web','auth', 'verified','can:superior',
+	InitializeTenancyByDomain::class,
+	PreventAccessFromCentralDomains::class,
+	])->group(function () {
+
+				/* ======================== Supplier ======================================== */
+				Route::get('/supplier/spends',[SupplierController::class,'spends'])->name('suppliers.spends');
+				
+				/* ======================== Item ======================================== */
+				Route::get('/items/delete/{item}',[ItemController::class,'destroy'])->name('items.destroy');
+
+				/* ======================== Project ======================================== */
+				Route::resource('projects', ProjectController::class);
+				Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
+				Route::get('/project/spends',[ProjectController::class,'spends'])->name('projects.spends');
+				Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
+				Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
+				Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
+				Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
+			
+				/* ======================== Dbu ======================================== */
+				Route::resource('dbus', DbuController::class);
+				Route::get('/dbu/export',[DbuController::class,'export'])->name('dbus.export');
+				Route::get('/dbus/delete/{dbu}',[DbuController::class,'destroy'])->name('dbus.destroy');
+		
+				/* ======================== Po ======================================== */
+				Route::resource('pos', PoController::class);
+				//Route::get('/pos/pdf/{po}',[PoController::class,'pdf'])->name('pos.pdf');
+				Route::get('/pos/attachments/{po}',[PoController::class,'attachments'])->name('pos.attachments');
+				Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
+				Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
+				Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
+				Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
+				Route::get('/pos/recalculate/{po}',[PoController::class,'recalculate'])->name('pos.recalculate');
+				Route::get('/pos/extra/{po}',[PoController::class,'extra'])->name('pos.extra');
+				Route::get('/pos/close/{po}',[PoController::class,'close'])->name('pos.close');
+				Route::get('/pos/open/{po}',[PoController::class,'open'])->name('pos.open');
+				Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');
+				Route::get('/pos/invoice/{po}',[PoController::class,'invoice'])->name('pos.invoice');
+				Route::get('/pos/ael/{po}',[PoController::class,'ael'])->name('pos.ael');
+		
+				Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
+				Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
+		
+				/* ======================== Pol ======================================== */
+				Route::resource('pols', PolController::class);
+				Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
+				Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
+				Route::get('/pols/add-line/{po}',[PolController::class, 'addLine'])->name('pols.add-line');
+				Route::get('/pols/receipt/{pol}',[PolController::class,'receipt'])->name('pols.receipt');
+				Route::get('/pols/ael/{pol}',[PolController::class,'ael'])->name('pols.ael');
+		
+				/* ======================== Receipt ======================================== */
+				Route::resource('receipts', ReceiptController::class);
+				Route::get('/receipts/create/{pol}',[ReceiptController::class,'create'])->name('receipts.create');
+				Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
+				Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
+				Route::get('/receipts/cancel/{receipt}',[ReceiptController::class,'cancel'])->name('receipts.cancel');
+				Route::get('/receipts/ael/{receipt}',[ReceiptController::class,'ael'])->name('receipts.ael');
+		
+				/* ======================== Invoice ======================================== */
+				Route::resource('invoices', InvoiceController::class);
+				Route::post('/invoice/attach',[InvoiceController::class,'attach'])->name('invoices.attach');
+				Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
+				Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
+				Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
+				Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
+				Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
+				Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
+				Route::get('/invoices/ael/{invoice}',[InvoiceController::class,'ael'])->name('invoices.ael');
+		
+				/* ======================== Payment ======================================== */
+				Route::resource('payments', PaymentController::class);
+				Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
+				Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
+				Route::get('/payments/create/{invoice}',[PaymentController::class,'create'])->name('payments.create');
+				Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
+				Route::get('/payments/ael/{payment}',[PaymentController::class,'ael'])->name('payments.ael');
+		
+				/* ======================== Accounting ======================================== */
+				Route::resource('aels', AelController::class);
+				Route::get('/ael/export-for-po/{id}',[AelController::class,'exportForPo'])->name('aels.export-for-po');
+		
+				/* ======================== Report ========================================  */
+				Route::resource('reports', ReportController::class);
+				Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
+				Route::get('/report/po/{id}',[ReportController::class, 'po'])->name('reports.po');
+				Route::get('/reports/parameter/{report}',[ReportController::class,'parameter'])->name('reports.parameter');
+				Route::put('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
+				
+				/* ======================== Rate ======================================== */
+				Route::resource('rates', RateController::class);
+				Route::get('/rate/export',[RateController::class,'export'])->name('rates.export');
+				Route::get('/rates/delete/{rate}',[RateController::class,'destroy'])->name('rates.destroy');
+
+
+	});
+
+	/**
+* ==================================================================================
+* 3. HoD + Admin  (Need Auth+ Email Verification + can:hod)
+* ==================================================================================
+*/
+Route::middleware([
+	'web','auth', 'verified','can:hod',
+	InitializeTenancyByDomain::class,
+	PreventAccessFromCentralDomains::class,
+	])->group(function () {
+
+		/* ======================== DeptBudget ======================================== */
+		Route::resource('dept-budgets', DeptBudgetController::class);
+		Route::get('/dept-budget/export',[DeptBudgetController::class,'export'])->name('dept-budgets.export');
+		//TODO
+		Route::get('/dept-budgets/delete/{deptBudget}',[DeptBudgetController::class,'destroy'])->name('dept-budgets.destroy');
+		//Route::get('/dept-budgets/revision/{deptBudget}',[DeptBudgetController::class,'revision'])->name('dept-budgets.revision');
+		Route::post('/dept-budget/attach',[DeptBudgetController::class,'attach'])->name('dept-budgets.attach');
+		Route::get('/dept-budgets/attachments/{deptBudget}',[DeptBudgetController::class,'attachments'])->name('dept-budgets.attachments');
+		Route::get('/dept-budgets/budget/{deptBudget}',[DeptBudgetController::class,'budget'])->name('dept-budgets.budget');
+
+
+	});
+
+
+/**
+* ==================================================================================
+* 3. CxO + Admin  (Need Auth+ Email Verification + can:cxo)
+* ==================================================================================
+*/
+Route::middleware([
+	'web','auth', 'verified','can:cxo',
+	InitializeTenancyByDomain::class,
+	PreventAccessFromCentralDomains::class,
+	])->group(function () {
+		/* ======================== Budget ======================================== */
+		Route::resource('budgets', BudgetController::class);
+		Route::get('/budget/export',[BudgetController::class,'export'])->name('budgets.export');
+		Route::get('/budgets/delete/{budget}',[BudgetController::class,'destroy'])->name('budgets.destroy');
+		Route::post('/budget/attach',[BudgetController::class,'attach'])->name('budgets.attach');
+		Route::get('/budgets/attachments/{budget}',[BudgetController::class,'attachments'])->name('budgets.attachments');
+
+	});
+
+	
+/**
+* ==================================================================================
+* 3. Buyer Routes (Need Auth+ Email Verification + can:buyer)
+* ==================================================================================
+*/
+
+Route::middleware([
+	'web','auth', 'verified','can:buyer',
+	InitializeTenancyByDomain::class,
+	PreventAccessFromCentralDomains::class,
+	])->group(function () {
+
+
+		/* ======================== Supplier ======================================== */
+		Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
+
+
+				
+
+		/* ======================== UploadItem ======================================== */
+		Route::resource('upload-items', UploadItemController::class);
+		Route::get('/upload-item/export',[UploadItemController::class, 'export'])->name('upload-items.export');
+		Route::get('/upload-item/check',[UploadItemController::class, 'check'])->name('upload-items.check');
+		Route::get('/upload-item/import',[UploadItemController::class, 'import'])->name('upload-items.import');
+
+	});
+
+/**
+* ==================================================================================
+* 3. Admin Routes (Need Auth+ Email Verification + can:admin)
+* ==================================================================================
+*/
+
+	Route::middleware([
+		'web','auth', 'verified','can:admin',
+		InitializeTenancyByDomain::class,
+		PreventAccessFromCentralDomains::class,
+		])->group(function () {
+
+		/* ======================== User ========================================  */
+		Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
+		Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
+		// Route::get('/users/password/{user}',[UserController::class, 'password'])->name('users.password');
+		// Route::post('/users/change-pass/{user}',[UserController::class, 'changepass'])->name('users.change-pass');
+		//TODO remove next two used in footer
+		//Route::get('/user/role',[UserController::class, 'role'])->name('users.role');
+		//Route::get('/user/updaterole/{user}/{role}',[UserController::class, 'updaterole'])->name('users.updaterole');
+		//Route::get('/user/image/{filename}',[UserController::class, 'image'])->name('users.image');
+		// TODO
+		//Route::get('/user/enable/{user}',[UserController::class, 'enable'])->name('users.enable');
+
 		/* ======================== Currency ======================================== */
 		Route::resource('currencies', CurrencyController::class);
 		Route::get('/currency/export',[CurrencyController::class,'export'])->name('currencies.export');
 		Route::get('/currencies/delete/{currency}',[CurrencyController::class, 'destroy'])->name('currencies.destroy');
-	
+
 		/* ======================== Dept (template)======================================== */
 		Route::resource('depts', DeptController::class);
 		Route::get('/dept/export',[DeptController::class, 'export'])->name('depts.export');
@@ -254,7 +483,7 @@ Route::middleware([
 		Route::get('/designation/export',[DesignationController::class, 'export'])->name('designations.export');
 		Route::get('/designations/delete/{designation}',[DesignationController::class, 'destroy'])->name('designations.destroy');
 
-		/* ======================== TODO Group ======================================== */
+		/* ======================== Group ======================================== */
 		Route::resource('groups', GroupController::class);
 		Route::get('/group/export',[GroupController::class,'export'])->name('groups.export');
 		Route::get('/groups/delete/{group}',[GroupController::class,'destroy'])->name('groups.destroy');
@@ -287,186 +516,9 @@ Route::middleware([
 		Route::get('/oem/export',[OemController::class,'export'])->name('oems.export');
 		Route::get('/oems/delete/{oem}',[OemController::class,'destroy'])->name('oems.destroy');
 
-		/* ======================== Project ======================================== */
-		Route::resource('projects', ProjectController::class);
-		Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
-		Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
-		Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
-		Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
-		Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
 
-		/* ======================== Budget ======================================== */
-		Route::resource('budgets', BudgetController::class);
-		Route::get('/budget/export',[BudgetController::class,'export'])->name('budgets.export');
-		Route::get('/budgets/delete/{budget}',[BudgetController::class,'destroy'])->name('budgets.destroy');
-		Route::post('/budget/attach',[BudgetController::class,'attach'])->name('budgets.attach');
-		Route::get('/budgets/attachments/{budget}',[BudgetController::class,'attachments'])->name('budgets.attachments');
-		
-		/* ======================== DeptBudget ======================================== */
-		Route::resource('dept-budgets', DeptBudgetController::class);
-		Route::get('/dept-budget/export',[DeptBudgetController::class,'export'])->name('dept-budgets.export');
-		//TODO
-		Route::get('/dept-budgets/delete/{deptBudget}',[DeptBudgetController::class,'destroy'])->name('dept-budgets.destroy');
-		//Route::get('/dept-budgets/revision/{deptBudget}',[DeptBudgetController::class,'revision'])->name('dept-budgets.revision');
-		Route::post('/dept-budget/attach',[DeptBudgetController::class,'attach'])->name('dept-budgets.attach');
-		Route::get('/dept-budgets/attachments/{deptBudget}',[DeptBudgetController::class,'attachments'])->name('dept-budgets.attachments');
-		Route::get('/dept-budgets/budget/{deptBudget}',[DeptBudgetController::class,'budget'])->name('dept-budgets.budget');
 
-		/* ======================== Dbu ======================================== */
-		Route::resource('dbus', DbuController::class);
-		Route::get('/dbu/export',[DbuController::class,'export'])->name('dbus.export');
-		Route::get('/dbus/delete/{dbu}',[DbuController::class,'destroy'])->name('dbus.destroy');
-
-		/* ======================== Pr ======================================== */
-		Route::resource('prs', PrController::class);
-		Route::get('/pr/my-prs',[PrController::class,'myPr'])->name('prs.my-prs');
-		Route::get('/prs/attachments/{pr}',[PrController::class,'attachments'])->name('prs.attachments');
-		Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
-
-		Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
-		Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
-		Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
-		Route::get('/prs/cancel/{pr}',[PrController::class,'cancel'])->name('prs.cancel');
-		Route::get('/prs/recalculate/{pr}',[PrController::class,'recalculate'])->name('prs.recalculate');
-		Route::get('/prs/history/{pr}',[PrController::class,'history'])->name('prs.history');
-		Route::get('/prs/extra/{pr}',[PrController::class,'extra'])->name('prs.extra');
-		
-		Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
-		Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
-		Route::get('/prs/convert-to-po/{pr}',[PrController::class, 'convertPo'])->name('prs.convert');
-			
-		/* ======================== Prl ======================================== */
-		Route::resource('prls', PrlController::class);
-		Route::get('/prl/export',[PrlController::class,'export'])->name('prls.export');
-		Route::get('/prls/delete/{prl}',[PrlController::class,'destroy'])->name('prls.destroy');
-		Route::get('/prls/add-line/{pr}',[PrlController::class, 'addLine'])->name('prls.add-line');
-		// TODO pol cancel here
-
-		/* ======================== Po ======================================== */
-		Route::resource('pos', PoController::class);
-		//Route::get('/pos/pdf/{po}',[PoController::class,'pdf'])->name('pos.pdf');
-		Route::get('/pos/attachments/{po}',[PoController::class,'attachments'])->name('pos.attachments');
-		Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
-		Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
-		Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
-		Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
-		Route::get('/pos/recalculate/{po}',[PoController::class,'recalculate'])->name('pos.recalculate');
-		Route::get('/pos/extra/{po}',[PoController::class,'extra'])->name('pos.extra');
-		Route::get('/pos/close/{po}',[PoController::class,'close'])->name('pos.close');
-		Route::get('/pos/open/{po}',[PoController::class,'open'])->name('pos.open');
-		Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');
-		Route::get('/pos/invoice/{po}',[PoController::class,'invoice'])->name('pos.invoice');
-		Route::get('/pos/ael/{po}',[PoController::class,'ael'])->name('pos.ael');
-
-		Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
-		Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
-
-		/* ======================== Pol ======================================== */
-		Route::resource('pols', PolController::class);
-		Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
-		Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
-		Route::get('/pols/add-line/{po}',[PolController::class, 'addLine'])->name('pols.add-line');
-		Route::get('/pols/receipt/{pol}',[PolController::class,'receipt'])->name('pols.receipt');
-		Route::get('/pols/ael/{pol}',[PolController::class,'ael'])->name('pols.ael');
-
-		/* ======================== Receipt ======================================== */
-		Route::resource('receipts', ReceiptController::class);
-		Route::get('/receipts/create/{pol}',[ReceiptController::class,'create'])->name('receipts.create');
-		Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
-		Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
-		Route::get('/receipts/cancel/{receipt}',[ReceiptController::class,'cancel'])->name('receipts.cancel');
-		Route::get('/receipts/ael/{receipt}',[ReceiptController::class,'ael'])->name('receipts.ael');
-
-		/* ======================== Invoice ======================================== */
-		Route::resource('invoices', InvoiceController::class);
-		Route::post('/invoice/attach',[InvoiceController::class,'attach'])->name('invoices.attach');
-		Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
-		Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
-		Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
-		Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
-		Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
-		Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
-		Route::get('/invoices/ael/{invoice}',[InvoiceController::class,'ael'])->name('invoices.ael');
-
-		/* ======================== Payment ======================================== */
-		Route::resource('payments', PaymentController::class);
-		Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
-		Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
-		Route::get('/payments/create/{invoice}',[PaymentController::class,'create'])->name('payments.create');
-		Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
-		Route::get('/payments/ael/{payment}',[PaymentController::class,'ael'])->name('payments.ael');
-
-		/* ======================== Accounting ======================================== */
-		Route::resource('aels', AelController::class);
-		Route::get('/ael/export-for-po/{id}',[AelController::class,'exportForPo'])->name('aels.export-for-po');
-
-		/* ======================== Report ========================================  */
-		Route::resource('reports', ReportController::class);
-		Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
-		Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
-		Route::get('/report/po/{id}',[ReportController::class, 'po'])->name('reports.po');
-		
-		Route::get('/reports/parameter/{report}',[ReportController::class,'parameter'])->name('reports.parameter');
-		Route::put('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
-		
-		/* ======================== Supplier ======================================== */
-		Route::resource('suppliers', SupplierController::class);
-		Route::get('/supplier/spends',[SupplierController::class,'spends'])->name('suppliers.spends');
-		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
-		Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
-
-		/* ======================== Item ======================================== */
-		Route::resource('items', ItemController::class);
-		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
-		Route::get('/items/delete/{item}',[ItemController::class,'destroy'])->name('items.destroy');
-		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
-		
-		/* ======================== Rate ======================================== */
-		Route::resource('rates', RateController::class);
-		Route::get('/rate/export',[RateController::class,'export'])->name('rates.export');
-		Route::get('/rates/delete/{rate}',[RateController::class,'destroy'])->name('rates.destroy');
-
-		/* ======================== Ticket ======================================== */
-		Route::resource('tickets', TicketController::class);
-		
-		/* ======================== Attachment ======================================== */
-		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
-
-	});
-
-/**
-* ==================================================================================
-* 3. Buyer Routes (Need Auth+ Email Verification + can:admin)
-* ==================================================================================
-*/
-
-Route::middleware([
-	'web','auth', 'verified','can:buyer',
-	InitializeTenancyByDomain::class,
-	PreventAccessFromCentralDomains::class,
-	])->group(function () {
-
-		/* ======================== UploadItem ======================================== */
-		Route::resource('upload-items', UploadItemController::class);
-		Route::get('/upload-item/export',[UploadItemController::class, 'export'])->name('upload-items.export');
-		Route::get('/upload-item/check',[UploadItemController::class, 'check'])->name('upload-items.check');
-		Route::get('/upload-item/import',[UploadItemController::class, 'import'])->name('upload-items.import');
-
-	});
-
-/**
-* ==================================================================================
-* 3. Admin Routes (Need Auth+ Email Verification + can:admin)
-* ==================================================================================
-*/
-
-	Route::middleware([
-		'web','auth', 'verified','can:admin',
-		InitializeTenancyByDomain::class,
-		PreventAccessFromCentralDomains::class,
-		])->group(function () {
-
-			/* ======================== Setup ======================================== */
+		/* ======================== Setup ======================================== */
 		Route::resource('setups', SetupController::class);
 		// CHECK
 		Route::get('setups/image/{filename}',[SetupController::class, 'image'])->name('setups.image');
@@ -516,19 +568,20 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
+		/* ======================== User ========================================  */
+		Route::get('/users/impersonate/{user}/',[UserController::class, 'impersonate'])->name('users.impersonate');
+
+		/* ======================== Pr ======================================== */
+		Route::get('/prs/recalculate/{pr}',[PrController::class,'recalculate'])->name('prs.recalculate');
+
 		/* ======================== Ael ========================================  */
 		Route::get('/ael/manual',[AelController::class,'manual'])->name('aels.manual');
 		Route::post('/ael/manual-ael',[AelController::class,'manualAel'])->name('aels.manual-ael');
-
-		/* ======================== User ========================================  */
-		Route::get('/users/impersonate/{user}/',[UserController::class, 'impersonate'])->name('users.impersonate');
 
 		/* ======================== Country ======================================== */
 		Route::resource('countries', CountryController::class);
 		Route::get('/country/export',[CountryController::class,'export'])->name('countries.export');
 		Route::get('/countries/delete/{country}',[CountryController::class, 'destroy'])->name('countries.destroy');
-
-
 		
 	});
 

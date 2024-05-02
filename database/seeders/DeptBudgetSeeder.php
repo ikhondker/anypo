@@ -49,18 +49,18 @@ class DeptBudgetSeeder extends Seeder
 				'amount'			=> 100000,
 				'notes'				=> $faker->paragraph,
 			],
-			[
-				'budget_id'			=> '1001',
-				'dept_id'			=> '1006',
-				'amount'			=> 100000,
-				'notes'				=> $faker->paragraph,
-			],
-			[
-				'budget_id'			=> '1001',
-				'dept_id'			=> '1007',
-				'amount'			=> 100000,
-				'notes'				=> $faker->paragraph,
-			],
+			// [
+			// 	'budget_id'			=> '1001',
+			// 	'dept_id'			=> '1006',
+			// 	'amount'			=> 100000,
+			// 	'notes'				=> $faker->paragraph,
+			// ],
+			// [
+			// 	'budget_id'			=> '1001',
+			// 	'dept_id'			=> '1007',
+			// 	'amount'			=> 100000,
+			// 	'notes'				=> $faker->paragraph,
+			// ],
 		  ];
 		
 		  $deptBudget23 =  [
@@ -88,39 +88,21 @@ class DeptBudgetSeeder extends Seeder
 				'amount'			=> 100000,
 				'notes'				=> $faker->paragraph,
 			],
-			[
-				'budget_id'			=> '1002',
-				'dept_id'			=> '1006',
-				'amount'			=> 100000,
-				'notes'				=> $faker->paragraph,
-			],
-			[
-				'budget_id'			=> '1002',
-				'dept_id'			=> '1007',
-				'amount'			=> 100000,
-				'notes'				=> $faker->paragraph,
-			],
+			// [
+			// 	'budget_id'			=> '1002',
+			// 	'dept_id'			=> '1006',
+			// 	'amount'			=> 100000,
+			// 	'notes'				=> $faker->paragraph,
+			// ],
+			// [
+			// 	'budget_id'			=> '1002',
+			// 	'dept_id'			=> '1007',
+			// 	'amount'			=> 100000,
+			// 	'notes'				=> $faker->paragraph,
+			// ],
 		  ];
 				
 		$deptBudget23Dummy =  [
-			[
-				'budget_id'			=> '1001',
-				'dept_id'			=> '1001',
-				'amount'			=> 200000,
-				'notes'				=> $faker->paragraph,
-				'amount_pr_booked'	=> $faker->numberBetween(3000,100000),
-				'amount_pr'			=> $faker->numberBetween(3000,100000),
-				'amount_po_booked'	=> $faker->numberBetween(3000,100000),
-				'amount_po'			=> $faker->numberBetween(3000,100000),
-				'amount_grs'		=> $faker->numberBetween(3000,100000),
-				'amount_invoice'	=> $faker->numberBetween(3000,100000),
-				'amount_payment'	=> $faker->numberBetween(3000,100000),
-				'count_pr'			=> $faker->numberBetween(3,30),
-				'count_po'			=> $faker->numberBetween(3,30),
-				'count_grs'			=> $faker->numberBetween(3,30),
-				'count_invoice'		=> $faker->numberBetween(3,30),
-				'count_payment'		=> $faker->numberBetween(3,30),
-			],
 			[
 				'budget_id'			=> '1001',
 				'dept_id'			=> '1002',
