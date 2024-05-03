@@ -9,7 +9,7 @@
 	<meta name="author" content="Bootlab">
 
 
-	<title>@yield('title', 'AnyPO.com')</title>
+	<title>@yield('title', 'ANYPO.NET')</title>
 
 	<link rel="canonical" href="https://appstack.bootlab.io/index.html" />
 	<link rel="shortcut icon" href="img/favicon.ico">

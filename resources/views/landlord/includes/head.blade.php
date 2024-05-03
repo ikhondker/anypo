@@ -4,7 +4,7 @@
 
 <!-- Title -->
 {{-- <title>Account: 11 Preferences | Front - Multipurpose Responsive Template</title> --}}
-<title>@yield('title', 'AnyPO.com')</title>
+<title>@yield('title', 'ANYPO.NET')</title>
 
 <!-- Favicon -->
 {{-- <link rel="shortcut icon" href="./favicon.ico"> --}}

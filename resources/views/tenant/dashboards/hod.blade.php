@@ -1,9 +1,9 @@
 @extends('layouts.app')
-
-@section('title','Dashboards | anypo.com')
-@section('content-header')
-	<!-- Null -->
+@section('title','Dashboard')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Dashboard</li>
 @endsection
+
 
 @section('content')
 

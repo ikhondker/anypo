@@ -1,5 +1,6 @@
 @extends('layouts.page')
-@section('title','Privacy Policy | anyPO.com')
+@section('title','Privacy Policy')
+
 
 @section('content')
 
