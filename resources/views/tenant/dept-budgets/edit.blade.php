@@ -40,7 +40,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Budget</label>
-								<input type="text" name="budget_name" id="budget_name" class="form-control" placeholder="" value="{{ $deptBudget->budget->name  }}" readonly>
+								<input type="text" name="budget_name" id="budget_name" class="form-control" placeholder="" value="{{ $deptBudget->budget->name }}" readonly>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Dept</label>

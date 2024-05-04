@@ -51,8 +51,8 @@
 								<td>{{ $rate->fc_currency }}</td>
 								<td><x-tenant.list.my-date :value="$rate->from_date"/></td>
 								<td><x-tenant.list.my-date :value="$rate->to_date"/></td>
-								<td class="text-end">{{ number_format($rate->rate, 6)  }}</td>
-								<td class="text-end">{{ number_format($rate->inverse_rate, 6)  }}</td>
+								<td class="text-end">{{ number_format($rate->rate, 6) }}</td>
+								<td class="text-end">{{ number_format($rate->inverse_rate, 6) }}</td>
 							</tr>
 							@endforeach
 						</tbody>

@@ -23,7 +23,7 @@
 {{-- <link rel="stylesheet" href="{{ asset('/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css') }}"> --}}
 {{-- <link rel="stylesheet" href="{{ asset('/assets/vendor/tom-select/dist/css/tom-select.bootstrap5.css') }}"> --}}
 
-{{-- bootstrap icons v1.11.3  --}}
+{{-- bootstrap icons v1.11.3 --}}
 {{-- <link rel="stylesheet" href="{{ Storage::disk('s3l')->url('vendor/bootstrap-icons/font/bootstrap-icons.css') }}"> --}}
 {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous"> --}}
 

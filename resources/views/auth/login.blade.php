@@ -12,15 +12,15 @@
 		<div class="card-body">
 			<div class="m-sm-4">
 				<div class="text-center">
-					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png')  }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
+					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
 				</div>
 				<form action="{{ route('login') }}" method="post">
 
 					@csrf
 					<div class="mb-3">
 						<label class="form-label">Email</label>
-						<input class="form-control form-control-lg  @error('email') is-invalid @enderror" 
-							type="email" name="email"  value="{{ old('email') }}"
+						<input class="form-control form-control-lg @error('email') is-invalid @enderror" 
+							type="email" name="email" value="{{ old('email') }}"
 							placeholder="email@example.com" 
 							required autocomplete="email" autofocus/>
 							@error('email')

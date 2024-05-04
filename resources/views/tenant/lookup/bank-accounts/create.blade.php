@@ -25,7 +25,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Create new Bank Account </h5>
-						<h6 class="card-subtitle text-muted">Create new  Bank Account with details.</h6>
+						<h6 class="card-subtitle text-muted">Create newBank Account with details.</h6>
 					</div>
 					<div class="card-body">
 

@@ -32,7 +32,7 @@
 
 							<div class="mb-3">
 								<label class="form-label">Terms and Conditions Text:</label>
-								<textarea class="form-control" name="tc"  placeholder="Enter Terms and Conditions ..." rows="6">{{ old('tc', $setup->tc) }}</textarea>
+								<textarea class="form-control" name="tc" placeholder="Enter Terms and Conditions ..." rows="6">{{ old('tc', $setup->tc) }}</textarea>
 								@error('banner_message')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror

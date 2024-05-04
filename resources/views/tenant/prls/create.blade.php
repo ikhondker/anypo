@@ -2,7 +2,7 @@
 @section('title','Add Requisition Line')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->id  }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->id }}</a></li>
 	<li class="breadcrumb-item active">Add New Line</li>
 @endsection
 @section('content')
@@ -28,7 +28,7 @@
 		<x-tenant.widgets.prl.card :pr="$pr" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
-					@forelse  ($prls as $prl)
+					@forelse ($prls as $prl)
 						<x-tenant.widgets.prl.card-table-row :line="$prl" :status="$pr->auth_status"/>
 					@empty
 

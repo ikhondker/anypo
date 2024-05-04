@@ -31,7 +31,7 @@
 		<x-tenant.widgets.pol.card :po="$po" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
-					@forelse  ($pols as $pol)
+					@forelse($pols as $pol)
 						<x-tenant.widgets.pol.card-table-row :line="$pol" :status="$po->auth_status"/>
 					@empty
 

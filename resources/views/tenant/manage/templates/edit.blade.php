@@ -191,7 +191,7 @@
 								<div class="mb-3">
 									<label class="form-label">Role</label>
 									<select class="form-control" name="my_enum" placeholder="Enum" value="user">
-										<option {{ 'user' == old('my_enum',$template->my_enum) ? 'selected' : '' }}  value="user"  >User</option>
+										<option {{ 'user' == old('my_enum',$template->my_enum) ? 'selected' : '' }} value="user" >User</option>
 										<option {{ 'agent' == old('my_enum',$template->my_enum) ? 'selected' : '' }} value="agent">Agent</option>
 										<option {{ 'admin' == old('my_enum',$template->my_enum) ? 'selected' : '' }} value="admin">Admin</option>
 										<option {{ 'system' == old('my_enum',$template->my_enum) ? 'selected' : '' }} value="system">System</option>
@@ -233,7 +233,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Notes:</label>
-								<textarea class="form-control" name="notes"  placeholder="Enter ..." rows="3">{{ old('notes', $template->notes) }}</textarea>
+								<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', $template->notes) }}</textarea>
 								@error('notes')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
@@ -256,12 +256,12 @@
 						<div class="card-body">
 
 							<div class="mb-3">
-								<x-tenant.attachment.create  />
+								<x-tenant.attachment.create />
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Notes</label>
-								<textarea class="form-control" name="notes"  placeholder="Enter ..." rows="3">{{ old('notes', $template->notes) }}</textarea>
+								<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', $template->notes) }}</textarea>
 							</div>
 						</div>
 					</div>

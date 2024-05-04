@@ -2,7 +2,7 @@
 @section('title','Edit PR Line')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->id  }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->id }}</a></li>
 	<li class="breadcrumb-item active">Edit PR Line</li>
 @endsection
 @section('content')
@@ -29,7 +29,7 @@
 		<x-tenant.widgets.prl.card :pr="$pr" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
-					@forelse  ($prls as $prln)
+					@forelse ($prls as $prln)
 						@if ( $prln->id == $prl->id )
 							@include('tenant.includes.pr.pr-line-edit')
 						@else

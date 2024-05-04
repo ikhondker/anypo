@@ -22,7 +22,7 @@
 			@endphp
 			@foreach ($methods as $method)
 				@php
-					if  (!in_array($method->name, $people)) {
+					if (!in_array($method->name, $people)) {
 				@endphp
 					<tr>
 						<th scope="row">{{ $loop->iteration }}</th>

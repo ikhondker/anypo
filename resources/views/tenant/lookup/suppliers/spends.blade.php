@@ -16,11 +16,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<x-tenant.charts.spends-by-supplier-bar/>
-		<x-tenant.charts.spends-by-supplier-count-bar/>
-	</div>
-
+	
 	
 	<div class="row">
 		<div class="col-md-6 col-xxl-3 d-flex">
@@ -104,6 +100,11 @@
 			</div>
 		</div>
 
+	</div>
+
+	<div class="row">
+		<x-tenant.charts.spends-by-supplier-bar/>
+		<x-tenant.charts.spends-by-supplier-count-bar/>
 	</div>
 
 	<div class="row">

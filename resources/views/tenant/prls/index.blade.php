@@ -25,7 +25,7 @@
 							Requisition Lines Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">List of  Requisition Lines.</h6>
+					<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table">

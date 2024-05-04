@@ -29,7 +29,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Dept Info</h5>
-							<h6 class="card-subtitle text-muted">Edit department and  Requisition and Purchase Order Approval Hierarchy</h6>
+							<h6 class="card-subtitle text-muted">Edit department and Requisition and Purchase Order Approval Hierarchy</h6>
 						</div>
 						<div class="card-body">
 

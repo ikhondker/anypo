@@ -26,7 +26,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Create OEM</h5>
-						<h6 class="card-subtitle text-muted">Create a new  OEM</h6>
+						<h6 class="card-subtitle text-muted">Create a new OEM</h6>
 					</div>
 					<div class="card-body">
 

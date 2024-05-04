@@ -49,7 +49,7 @@
 				<x-landlord.show.my-text	value="{{ $template->name }}"/>
 				<x-landlord.show.my-text	value="{{ $template->email }}" label="E-mail"/>
 				<x-landlord.show.my-text	value="{{ $template->phone }}" label="Phone"/>
-				<x-landlord.show.my-badge	value="{{ $template->user->name  }}" label="User Name"/>
+				<x-landlord.show.my-badge	value="{{ $template->user->name }}" label="User Name"/>
 				<x-landlord.show.my-badge	value="{{ $template->my_enum }}" label="Enum/Role:"/>
 				<x-landlord.show.my-enable	value="{{ $template->enable }}"/>
 				<x-landlord.show.my-badge	value="{{ $template->id }}" label="ID"/>

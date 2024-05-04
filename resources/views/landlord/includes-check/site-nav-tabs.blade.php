@@ -6,11 +6,8 @@
 		<div class="row mt-5 align-items-center">
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
-				  <a class="nav-link {{ (request()->segment(1) == 'dashboards') ? 'text-primary active' : 'text-muted' }}" href="{{ route('dashboards.index') }}">Dashboard</a>
+					<a class="nav-link {{ (request()->segment(1) == 'dashboards') ? 'text-primary active' : 'text-muted' }}" href="{{ route('dashboards.index') }}">Dashboard</a>
 				</li>
-				{{-- <li class="nav-item"> 
-				  <a class="nav-link {{ (request()->segment(1) == 'notifications') ? 'text-primary active' : 'text-muted' }}" href="{{ route('notifications.index') }}">Notification</a>
-				</li> --}}
 				<li class="nav-item">
 					<a class="nav-link {{ (request()->segment(1) == 'tickets') ? 'text-primary active' : 'text-muted' }}" href="{{ route('tickets.index') }}">Tickets</a>
 				</li>

@@ -14,7 +14,7 @@
 			<div class="col-xl-7">
 				<h6>Service Info:-</h6>
 					<x-landlord.show.my-text	value="{{ $service->summary }}"/>
-					<x-landlord.show.my-text	value="{{  $service->name }}" label="Name"/>
+					<x-landlord.show.my-text	value="{{ $service->name }}" label="Name"/>
 					<x-landlord.show.my-enable	value="{{ $service->enable }}"/>
 					<x-landlord.show.my-badge	value="{{ $service->id }}" label="ID"/>
 			</div>
@@ -23,7 +23,7 @@
 				<x-landlord.show.my-date value="{{ $service->created_at }}" label="Created At:"/>
 				<x-landlord.show.my-date value="{{ $service->start_date }}" label="Start Date"/>
 				<x-landlord.show.my-date value="{{ $service->end_date }}" label="End Date"/>
-				<x-landlord.show.my-number value="{{  $service->price }}" label="Price"/>
+				<x-landlord.show.my-number value="{{ $service->price }}" label="Price"/>
 			</div>
 		</div>
 		<!-- /.my-section-row -->

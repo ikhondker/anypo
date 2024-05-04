@@ -17,7 +17,7 @@
 			<div class="container">
 				<div class="row align-items-lg-center pb-3">
 					<div class="col-lg mb-2 mb-lg-0">
-						<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6>
+						<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}</h6>
 					</div>
 					<!-- End Col -->
 					<div class="col-lg-auto">

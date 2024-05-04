@@ -245,12 +245,12 @@
 				<div class="card-body">
 
 					<div class="mb-3">
-						<x-tenant.attachment.create  />
+						<x-tenant.attachment.create />
 					</div>
 
 					<div class="mb-3">
 						<label class="form-label">Notes</label>
-						<textarea class="form-control" name="notes"  placeholder="Enter ..." rows="3">{{ old('notes', 'Enter ...') }}</textarea>
+						<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', 'Enter ...') }}</textarea>
 					</div>
 				</div>
 			</div>
@@ -288,7 +288,7 @@
 					<div class="mb-3">
 						<label class="form-check m-0">
 						<input type="checkbox" class="form-check-input"
-						name="my_bool" id="my_bool"  checked=""/>
+						name="my_bool" id="my_bool" checked=""/>
 
 						<span class="form-check-label"> Active?</span>
 						</label>

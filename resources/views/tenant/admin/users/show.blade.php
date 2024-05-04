@@ -20,11 +20,11 @@
 	
 	<div class="row">
 		<div class="col-md-4 col-xl-3">
-			<x-tenant.widgets.user.user-profile  id="{{ $user->id }}"/>	
+			<x-tenant.widgets.user.user-profile id="{{ $user->id }}"/>	
 		</div>
 	
 		<div class="col-md-8 col-xl-9">
-			<x-tenant.widgets.user.user-detail  id="{{ $user->id }}"/>	
+			<x-tenant.widgets.user.user-detail id="{{ $user->id }}"/>	
 		</div>
 	</div>
 

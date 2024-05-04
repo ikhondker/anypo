@@ -40,7 +40,7 @@
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right">Notes</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" name="notes"  placeholder="Enter ..." rows="3">{{ old('notes', $wfl->notes) }}</textarea>
+									<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', $wfl->notes) }}</textarea>
 									@error('notes')
 										<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror

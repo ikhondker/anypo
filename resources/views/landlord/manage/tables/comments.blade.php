@@ -20,7 +20,7 @@
 			<div class="container">
 				<div class="row align-items-lg-center pb-3">
 					<div class="col-lg mb-2 mb-lg-0">
-						<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6>
+						<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}</h6>
 						<a class="" href="{{ route('tables.comments') }}"><i class="align-middle me-1" data-feather="folder"></i>Root</a>
 						<a class="" href="{{ route('tables.comments','Admin') }}"><i class="align-middle me-1" data-feather="folder"></i>Admin</a>
 						<a class="" href="{{ route('tables.comments','Lookup') }}"><i class="align-middle me-1" data-feather="folder"></i>Lookup</a>

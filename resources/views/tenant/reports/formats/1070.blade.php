@@ -49,8 +49,8 @@
 			<tr>
 				<td colspan="4"></td>
 				<td colspan="2">TOTAL:</td>
-				<td class="qty">{{ $_setup->currency }} {{  number_format($sum_dr,2) }}</td>
-				<td class="qty">{{ $_setup->currency }} {{  number_format($sum_cr,2) }}</td>
+				<td class="qty">{{ $_setup->currency }} {{ number_format($sum_dr,2) }}</td>
+				<td class="qty">{{ $_setup->currency }} {{ number_format($sum_cr,2) }}</td>
 				<td colspan="3"></td>
 			</tr>
 		</tfoot>

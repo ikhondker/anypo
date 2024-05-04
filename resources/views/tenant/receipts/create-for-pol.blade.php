@@ -52,7 +52,7 @@
 							<label class="form-label">Item</label>
 							<input type="text" class="form-control @error('pol_summary') is-invalid @enderror"
 								name="pol_summary" id="pol_summary" placeholder=""
-								value="{{ old('pol_summary',  $pol->item_description ) }}"
+								value="{{ old('pol_summary', $pol->item_description ) }}"
 								readonly/>
 							@error('pol_summary')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -61,7 +61,7 @@
 
 
 						<div class="mb-3">
-							<label class="form-label">Qty ({{ $pol->uom->name  }})</label>
+							<label class="form-label">Qty ({{ $pol->uom->name }})</label>
 							<input type="number" class="form-control @error('qty') is-invalid @enderror"
 								name="qty" id="qty" placeholder="99,999.99"
 								value="{{ old('qty', '1.00' ) }}"

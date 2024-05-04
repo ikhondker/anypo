@@ -2,7 +2,7 @@
 @section('title','Edit Pr')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->summary  }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->summary }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -56,7 +56,7 @@
 								<label class="col-form-label col-sm-2 text-sm-right">PR Date</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control"
-									name="dsp_date" id="dsp_date" value="{{ date_format($pr->pr_date,"d-M-Y H:i:s");  }}"
+									name="dsp_date" id="dsp_date" value="{{ date_format($pr->pr_date,"d-M-Y H:i:s"); }}"
 									readonly/>
 								</div>
 							</div>
@@ -149,7 +149,7 @@
 			<x-tenant.widgets.prl.card :pr="$pr">
 				@slot('lines')
 					<tbody>
-						@forelse  ($prls as $prl)
+						@forelse ($prls as $prl)
 							<x-tenant.widgets.prl.card-table-row :line="$prl" :status="$pr->auth_status"/>
 						@empty
 

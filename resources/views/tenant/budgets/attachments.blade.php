@@ -25,10 +25,10 @@
 				<div class="card-body">
 					<x-tenant.show.my-badge		value="{{ $budget->id }}"/>
 					<x-tenant.show.my-text		value="{{ $budget->name }}"/>
-					<x-tenant.show.my-date		value="{{ $budget->start_date  }}"/>
-					<x-tenant.show.my-date		value="{{ $budget->end_date  }}"/>
+					<x-tenant.show.my-date		value="{{ $budget->start_date }}"/>
+					<x-tenant.show.my-date		value="{{ $budget->end_date }}"/>
 					<x-tenant.show.my-text		value="{{ $budget->name }}" label="Name"/>
-					<x-tenant.show.my-closed	value="{{ $budget->closed }}"  label="Closed?"/>
+					<x-tenant.show.my-closed	value="{{ $budget->closed }}" label="Closed?"/>
 					<x-tenant.show.my-text-area		value="{{ $budget->notes }}" label="Notes"/>
 				</div>
 			</div>

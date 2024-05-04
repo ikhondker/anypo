@@ -33,7 +33,7 @@
 
 					<x-tenant.show.my-text value="{{ $supplier->address1 }}" label="Address1"/>
 					<x-tenant.show.my-text value="{{ $supplier->address2 }}" label="Address2"/>
-					<x-tenant.show.my-text value="{{ $supplier->city.', '.$supplier->state.', '.$supplier->zip  }}" label="City"/>
+					<x-tenant.show.my-text value="{{ $supplier->city.', '.$supplier->state.', '.$supplier->zip }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $supplier->relCountry->name }}" label="Country"/>
 					<x-tenant.show.my-date-time value="{{ $supplier->created_at }}" label="Created At" />
 					<x-tenant.show.my-boolean	value="{{ $supplier->enable }}"/>

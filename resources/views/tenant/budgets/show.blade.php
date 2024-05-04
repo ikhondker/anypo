@@ -41,7 +41,7 @@
 					<x-tenant.show.my-date		value="{{ $budget->start_date }}" label="Start Date"/>
 					<x-tenant.show.my-date		value="{{ $budget->end_date }}" label="End Date"/>
 					<x-tenant.show.my-text		value="{{ $budget->notes }}" label="Notes"/>
-					<x-tenant.show.my-closed	value="{{ $budget->closed }}"  label="Closed?"/>
+					<x-tenant.show.my-closed	value="{{ $budget->closed }}" label="Closed?"/>
 					<x-tenant.buttons.show.edit object="Budget" :id="$budget->id"/>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 					@if (! $budget->closed)
 						<form action="{{ route('budgets.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 							@csrf
-							{{-- <x-tenant.attachment.create  /> --}}
+							{{-- <x-tenant.attachment.create /> --}}
 							<input type="text" name="attach_budget_id" id="attach_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $budget->id ) }}" hidden>
 							<div class="row">
 								<div class="col-sm-3 text-end">

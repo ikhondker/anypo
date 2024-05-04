@@ -17,7 +17,7 @@
 							<li class="list-comment-item">
 								<!-- Media -->
 								<div class="d-flex mb-3">
-								  	<div class="flex-shrink-0">
+									<div class="flex-shrink-0">
 										@if ($comment->by_backoffice)
 											@if (auth()->user()->isSeeded())
 												<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
@@ -27,7 +27,7 @@
 										@else
 											<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$comment->owner->avatar) }}" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
 										@endif
-								  	</div>
+									</div>
 									<div class="flex-grow-1 ms-3">
 										@if ($comment->by_backoffice)
 											@if (auth()->user()->isSeeded())
@@ -61,8 +61,8 @@
 									</div>
 								</div>
 								<!-- End Media -->
-							  </li>
-							  <!-- End Item -->
+							</li>
+							<!-- End Item -->
 
 						@endforeach
 

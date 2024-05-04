@@ -21,7 +21,7 @@
 		<div class="col-8">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Hierarchy Name:  {{ $hierarchy->name }}</h5>
+					<h5 class="card-title">Hierarchy Name: {{ $hierarchy->name }}</h5>
 					<h6 class="card-subtitle text-muted">Details of a approval hierarchy.</h6>
 				</div>
 				<div class="card-body">

@@ -22,7 +22,7 @@
 								</tr>
 								<tr>
 									<th>Supplier</th>
-									<td>{{  $receipt->pol->po->supplier->name }}</td>
+									<td>{{ $receipt->pol->po->supplier->name }}</td>
 								</tr>
 								<tr>
 									<th>Po Line</th>
@@ -34,7 +34,7 @@
 								</tr>
 								<tr>
 									<th>Receive Qty</th>
-									<td>{{  $receipt->qty }} {{ $receipt->pol->uom->name }}</td>
+									<td>{{ $receipt->qty }} {{ $receipt->pol->uom->name }}</td>
 								</tr>
 								<tr>
 									<th>Receipt Date</th>

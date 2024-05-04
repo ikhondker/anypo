@@ -35,10 +35,10 @@
 					<x-tenant.show.my-text		value="{{ $pol->line_num }}" label="Line #"/>
 					<x-tenant.show.my-text		value="{{ $pol->item->name }}" label="Item"/>
 					<x-tenant.show.my-text		value="{{ $pol->uom->name }}" label="UoM"/>
-					<x-tenant.show.my-amount	value="{{  $pol->qty}}" label="Qty"/>
-					<x-tenant.show.my-amount	value="{{  $pol->price}}" label="price"/>
-					<x-tenant.show.my-amount	value="{{  $pol->amount}}" label="Qty"/>
-					<x-tenant.show.my-amount	value="{{  $pol->received_qty}}" label="Received"/>
+					<x-tenant.show.my-amount	value="{{ $pol->qty}}" label="Qty"/>
+					<x-tenant.show.my-amount	value="{{ $pol->price}}" label="price"/>
+					<x-tenant.show.my-amount	value="{{ $pol->amount}}" label="Qty"/>
+					<x-tenant.show.my-amount	value="{{ $pol->received_qty}}" label="Received"/>
 					<x-tenant.show.my-created-at value="{{ $pol->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $pol->created_at }}"/>
 	

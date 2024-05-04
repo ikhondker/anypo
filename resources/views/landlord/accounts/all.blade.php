@@ -31,7 +31,7 @@
 					<td>
 						<div class="d-flex align-items-center">
 							<div class="flex-shrink-0">
-								<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}"  alt="{{ $account->name }}" title="{{ $account->name }}">
+								<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
 							</div>
 
 							<div class="flex-grow-1 ms-3">

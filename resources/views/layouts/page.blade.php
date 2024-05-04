@@ -103,7 +103,7 @@
 					</div>
 				</div>
 				<div class="col-xl-3 col-lg-3 col-md-6">
-				  <div>
+					<div>
 					<h4 class="text-light">Service</h4>
 					<ul class="list-unstyled">
 						<li><a href="{{ route('home') }}" class="text-light">Home</a></li>
@@ -111,7 +111,7 @@
 						<li><a href="#" class="text-light">Service</a></li>
 						<li><a href="#" class="text-light">Contact</a></li>
 					</ul>
-				  </div>
+					</div>
 				</div>
 				<div class="col-xl-3 col-lg-3 col-md-6">
 					<div>
@@ -126,7 +126,7 @@
 			</div>
 			<div class="d-flex justify-content-center py-2">
 				<div class="copyright">
-				  <p class="small text-light">anypo.com is developed and maintained by <a href="#" target="_blank">HawarIT Limited</a></p>
+					<p class="small text-light">anypo.com is developed and maintained by <a href="#" target="_blank">HawarIT Limited</a></p>
 				</div>
 			</div>
 		</div>

@@ -4,8 +4,8 @@
 
 @section('content')
 
-  <!-- Card -->
-  <div class="card">
+<!-- Card -->
+<div class="card">
 	<div class="card-header border-bottom">
 		<h4 class="card-header-title">View Visitor Contact</h4>
 	</div>
@@ -34,15 +34,13 @@
 		<x-landlord.show.my-badge		value="{{ $contact->id }}" label="ID"/>
 		<x-landlord.show.my-text		value="{{ $contact->ip }}" label="IP"/>
 
-
-
 	</div>
 	<!-- End Body -->
 
 	<!-- Footer -->
 	<div class="card-footer pt-0">
 		<div class="d-flex justify-content-end gap-3">
-		  <a class="btn btn-primary" href="{{ route('contacts.edit',$contact->id) }}">Edit</a>
+			<a class="btn btn-primary" href="{{ route('contacts.edit',$contact->id) }}">Edit</a>
 		</div>
 	</div>
 	<!-- End Footer -->

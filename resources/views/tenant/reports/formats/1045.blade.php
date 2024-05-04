@@ -26,7 +26,7 @@
 			@endphp
 			@foreach ($invoices as $invoice)
 			<tr>
-				<td class="sl">{{  $loop->iteration }}</td>
+				<td class="sl">{{ $loop->iteration }}</td>
 				<td class="desc">{{ $invoice->id }} </td>
 				<td class="desc">{{ date('d-M-y', strtotime($invoice->invoice_date)) }}</td>
 				<td class="desc">{{ $invoice->po_id }}</td>
@@ -48,7 +48,7 @@
 			<tr>
 				<td colspan="6"></td>
 				<td colspan="2">TOTAL:</td>
-				<td class="qty" colspan="2">{{ $_setup->currency }} {{  number_format($sum,2) }}</td>
+				<td class="qty" colspan="2">{{ $_setup->currency }} {{ number_format($sum,2) }}</td>
 			</tr>
 		</tfoot>
 	</table>

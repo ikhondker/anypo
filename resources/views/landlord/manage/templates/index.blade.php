@@ -35,13 +35,13 @@
 					<tbody>
 						@foreach ($templates as $template)
 						<tr>
-							<td class="">{{ $loop->iteration  }}</td>
+							<td class="">{{ $loop->iteration }}</td>
 							<td class=""><a class="text-info" href="{{ route('templates.show',$template->id) }}">{{ $template->name }}</a></td>
 							<td class="">{{ $template->phone }}</td>
 							<td>{{ strtoupper(date('d-M-y', strtotime($template->my_date))) }}</td>
 							<td class="text-end">{{number_format($template->amount, 2)}} </td>
-							<td class="">{{  $template->user->name}}</td>
-							<td class=""><span class="badge bg-primary">{{  $template->my_enum}}</span> </td>
+							<td class="">{{ $template->user->name}}</td>
+							<td class=""><span class="badge bg-primary">{{ $template->my_enum}}</span> </td>
 							<td class="text-center">
 								<span class="badge {{ ($template->enable ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger') }}">{{ ($template->enable ? 'Yes' : 'No') }}</span>
 							</td>

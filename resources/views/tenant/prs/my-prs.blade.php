@@ -29,7 +29,7 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Requisition  Lists
+							Requisition Lists
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">List of Purchase Requisitions.</h6>

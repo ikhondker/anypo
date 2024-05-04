@@ -4,8 +4,8 @@
 
 @section('content')
 
-  <!-- Card -->
-  <div class="card">
+<!-- Card -->
+<div class="card">
 	<form action="{{ route('users.password-update',['user'=>$user->id]) }}" method="POST">
 		@csrf
 		{{-- @method('PUT') --}}
@@ -67,7 +67,7 @@
 				<div class="col-sm-9">
 					<input type="password" class="form-control form-control-sm @error('password1') is-invalid @enderror"
 							name="password1" id="password1" placeholder="New Password"
-							value="{{ old('password1', $user->password1  ) }}"
+							value="{{ old('password1', $user->password1 ) }}"
 							required/>
 						@error('password1')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -82,7 +82,7 @@
 				<div class="col-sm-9">
 					<input type="password" class="form-control form-control-sm @error('password2') is-invalid @enderror"
 							name="password2" id="password2" placeholder="Re-enter Password"
-							value="{{ old('password2', $user->password2  ) }}"
+							value="{{ old('password2', $user->password2 ) }}"
 							required/>
 						@error('password2')
 							<div class="text-danger text-xs">{{ $message }}</div>
@@ -98,9 +98,6 @@
 	</form>
 </div>
 <!-- End Card -->
-
-
-
 
 
 @endsection

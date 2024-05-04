@@ -44,7 +44,7 @@
 						<tbody>
 							@foreach ($categories as $category)
 							<tr>
-								<td>{{ $categories->firstItem() + $loop->index  }}</td>
+								<td>{{ $categories->firstItem() + $loop->index }}</td>
 								<td>{{ $category->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$category->enable"/></td>
 								<td class="table-action">

@@ -112,7 +112,7 @@
 							<label class="form-label" for="cell">Cell <span class="form-label-secondary">(Optional)</span></label>
 							<input type="text" class="form-control form-control-lg @error('cell') is-invalid @enderror"
 								name="cell" id="cell" placeholder="+x(xxx)xxx-xx-xx"
-								value="{{ old('cell', auth()->check() ? auth()->user()->cell : ''  ) }}"/>
+								value="{{ old('cell', auth()->check() ? auth()->user()->cell : '' ) }}"/>
 							@error('cell')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror

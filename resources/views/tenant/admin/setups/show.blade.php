@@ -60,7 +60,7 @@
 				<div class="card-body">
 					<x-tenant.show.my-text value="{{ $setup->address1 }}" label="Address1"/>
 					<x-tenant.show.my-text value="{{ $setup->address2 }}" label="Address2"/>
-					<x-tenant.show.my-text value="{{ $setup->city.', '.$setup->state.', '.$setup->zip  }}" label="City"/>
+					<x-tenant.show.my-text value="{{ $setup->city.', '.$setup->state.', '.$setup->zip }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $setup->country_name->name }}" label="Country"/>
 				</div>
 			</div>
@@ -109,9 +109,9 @@
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-text value="{{ $setup->email }}" label="E-mail"/>
-					<x-tenant.show.my-url  value="{{ $setup->website }}" label="Website"/>
-					<x-tenant.show.my-url  value="{{ $setup->facebook }}" label="Facebook"/>
-					<x-tenant.show.my-url  value="{{ $setup->linkedin }}" label="LinkedIn"/>
+					<x-tenant.show.my-url value="{{ $setup->website }}" label="Website"/>
+					<x-tenant.show.my-url value="{{ $setup->facebook }}" label="Facebook"/>
+					<x-tenant.show.my-url value="{{ $setup->linkedin }}" label="LinkedIn"/>
 				</div>
 			</div>
 

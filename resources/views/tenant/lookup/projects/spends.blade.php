@@ -2,6 +2,7 @@
 @section('title','Project Spends')
 
 @section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Projects</a></li>
 	<li class="breadcrumb-item active">Project Spends</li>
 @endsection
 
@@ -16,13 +17,6 @@
 			<x-tenant.buttons.header.create object="Project"/>
 		@endslot
 	</x-tenant.page-header>
-
-
-	<div class="row">
-		<x-tenant.charts.spends-by-project-bar/>
-		<x-tenant.charts.spends-by-project-count-bar/>
-	</div>
-
 
 	<div class="row">
 		<div class="col-md-6 col-xxl-3 d-flex">
@@ -108,6 +102,10 @@
 
 	</div>
 
+	<div class="row">
+		<x-tenant.charts.spends-by-project-bar/>
+		<x-tenant.charts.spends-by-project-count-bar/>
+	</div>
 
 
 	<div class="row">

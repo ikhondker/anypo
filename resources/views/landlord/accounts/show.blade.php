@@ -42,7 +42,7 @@
 						<div class="d-grid d-md-flex gap-3">
 							<span class="avatar avatar-xxl avatar-circle">
 								<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" alt="{{ $account->name }}" title="{{ $account->name }}">
-							  </span>
+							</span>
 						</div>
 						{{ $account->site.'.'.env('APP_DOMAIN') }}
 					</div>
@@ -68,7 +68,7 @@
 					<!-- End Col -->
 				</div>
 				<!-- End Row -->
-				  
+				
 				<!-- Progress -->
 				<div class="progress rounded-pill mb-3">
 					<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
@@ -82,11 +82,11 @@
 						<span class="legend-indicator bg-primary"></span>Validity : <x-landlord.list.my-date :value="$account->start_date" /> to <x-landlord.list.my-date :value="$account->end_date" />
 					</div>
 					<div class="list-inline-item">
-						<span class="legend-indicator bg-primary"></span>Last Billed:  <x-landlord.list.my-date :value="$account->last_bill_date" />
+						<span class="legend-indicator bg-primary"></span>Last Billed: <x-landlord.list.my-date :value="$account->last_bill_date" />
 					</div>
 					<div class="list-inline-item">
 						<span class="legend-indicator bg-primary"></span>Status: 
-						<span class="badge bg-{{ $account->status->badge }}">{{  $account->status->name  }}</span>
+						<span class="badge bg-{{ $account->status->badge }}">{{ $account->status->name }}</span>
 					</div>
 				</div>
 				<!-- End Legend Indicators -->
@@ -119,7 +119,7 @@
 				<x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
 				<x-landlord.show.my-text value="{{ $account->address1 }}" label="Address1" />
 				<x-landlord.show.my-text value="{{ $account->address2 }}" label="Address2" />
-				<x-landlord.show.my-text value="{{ $account->city.', '.$account->state.', '.$account->zip  }}" label="City-State-Zip" />
+				<x-landlord.show.my-text value="{{ $account->city.', '.$account->state.', '.$account->zip }}" label="City-State-Zip" />
 				<x-landlord.show.my-text value="{{ $account->relCountry->name }}" label="Country" />
 				<x-landlord.show.my-url value="{{ $account->website }}" label="Website" />
 				<x-landlord.show.my-url value="{{ $account->facebook }}" label="Facebook" />

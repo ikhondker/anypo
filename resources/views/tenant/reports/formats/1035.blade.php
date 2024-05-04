@@ -28,7 +28,7 @@
 			@endphp
 			@foreach ($pols as $pol)
 			<tr>
-				<td class="sl">{{  $loop->iteration}}</td>
+				<td class="sl">{{ $loop->iteration}}</td>
 				<td class="desc">{{ $pol->po_id }}</td>
 				<td class="desc">{{ date('d-M-y', strtotime($pol->po_date)) }}</td>
 				<td class="sl">{{ $pol->line_num }}</td>
@@ -52,7 +52,7 @@
 			<tr>
 				<td colspan="8"></td>
 				<td colspan="2">TOTAL:</td>
-				<td class="qty" colspan="2">{{ $_setup->currency }} {{  number_format($sum,2) }}</td>
+				<td class="qty" colspan="2">{{ $_setup->currency }} {{ number_format($sum,2) }}</td>
 			</tr>
 		</tfoot>
 	</table>

@@ -50,7 +50,7 @@
 						<x-landlord.show.my-text value="{{ $config->currency }}" label="Current" />
 						<x-landlord.show.my-text value="{{ $config->address1 }}" label="Address1" />
 						<x-landlord.show.my-text value="{{ $config->address2 }}" label="Address2" />
-						<x-landlord.show.my-text value="{{ $config->city.', '.$config->state.', '.$config->zip  }}" label="City-State-Zip" />
+						<x-landlord.show.my-text value="{{ $config->city.', '.$config->state.', '.$config->zip }}" label="City-State-Zip" />
 						<x-landlord.show.my-text value="{{ $config->relCountry->name }}" label="Country" />
 						<x-landlord.show.my-text value="{{ $config->cell }}" label="Cell" />
 						<x-landlord.show.my-text value="{{ $config->email }}" label="Email" />

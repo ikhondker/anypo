@@ -62,7 +62,7 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Accounting  Entries
+							Accounting Entries
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">List of Generated Ael Entries</h6>

@@ -122,6 +122,6 @@
 		</div>
 		<!-- End Row -->
 		</div>
-  	</footer>
-  	<!-- ========== END FOOTER ========== -->
+	</footer>
+	<!-- ========== END FOOTER ========== -->
 

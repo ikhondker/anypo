@@ -76,7 +76,7 @@
 					<button type="submit" class="btn btn-info btn-sm mt-3">
 						<i class="bi bi-pencil-square ms-1"></i>
 						Update
-					  </button>
+					</button>
 				</div>
 			</div>
 			<!-- End Form -->

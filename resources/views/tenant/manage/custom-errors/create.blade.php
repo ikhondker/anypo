@@ -26,7 +26,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Create new Custom Error </h5>
-						<h6 class="card-subtitle text-muted">Create new  Custom Error with details.</h6>
+						<h6 class="card-subtitle text-muted">Create new Custom Error with details.</h6>
 					</div>
 					<div class="card-body">
 

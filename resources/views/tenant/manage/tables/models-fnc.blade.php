@@ -21,7 +21,7 @@
 				<div class="card-header">
 					{{-- <h5 class="card-title">Functions in Models</h5>
 					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_MODEL') }}</h6> --}}
-					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6><br>
+					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}</h6><br>
 					<a class="" href="{{ route('tables.fnc-models') }}"><i class="align-middle me-1" data-feather="folder"></i>Root</a>
 					<a class="" href="{{ route('tables.fnc-models','Admin') }}"><i class="align-middle me-1" data-feather="folder"></i>Admin</a>
 					<a class="" href="{{ route('tables.fnc-models','Lookup') }}"><i class="align-middle me-1" data-feather="folder"></i>Lookup</a>
@@ -341,7 +341,7 @@
 								//$class = new ReflectionClass($target_dir .'\\'. $row["f"]);
 								if ($dir == "") {
 									$class = new ReflectionClass( $target_dir .$row["f"]);
-								} else  {
+								} else {
 									$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
 								}
 
@@ -349,7 +349,7 @@
 								$methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
 								@endphp
 								@foreach ($methods as $method)
-									@if  (!in_array($method->name, $exclude))
+									@if (!in_array($method->name, $exclude))
 										<tr>
 											<th scope="row">{{ $loop->iteration }}</th>
 											<td class="">{{ $row['f'] }}</td>

@@ -30,7 +30,7 @@
 					<x-tenant.show.my-boolean	value="{{ $warehouse->enable }}"/>
 					<x-tenant.show.my-text 		value="{{ $warehouse->address1 }}" label="Address1"/>
 					<x-tenant.show.my-text 		value="{{ $warehouse->address2 }}" label="Address1"/>
-					<x-tenant.show.my-text 		value="{{ $warehouse->city.', '.$warehouse->state.', '.$warehouse->zip  }}" label="City"/>
+					<x-tenant.show.my-text 		value="{{ $warehouse->city.', '.$warehouse->state.', '.$warehouse->zip }}" label="City"/>
 					<x-tenant.show.my-text 		value="{{ $warehouse->relCountry->name }}" label="Country"/>
 					
 				</div>

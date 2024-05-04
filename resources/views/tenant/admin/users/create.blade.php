@@ -31,7 +31,7 @@
 					<div class="card-body">
 
 						<div class="mb-3">
-							<label class="form-label">Email</label>  <x-tenant.info info="Note: You wont be able to change the email."/>
+							<label class="form-label">Email</label> <x-tenant.info info="Note: You wont be able to change the email."/>
 							<input type="email" class="form-control @error('email') is-invalid @enderror"
 								name="email" id="email" placeholder="name@company.com"
 								value="{{ old('email', 'email@example.com' ) }}"

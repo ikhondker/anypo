@@ -183,7 +183,7 @@
 							<div class="mb-3">
 								<img src="{{ Storage::disk('s3t')->url('logo/'.$setup->logo) }}" alt="{{ $setup->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $setup->name }}" width="120px">
 								{{-- <x-tenant.show.logo logo="{{ $setup->logo }}"/> --}}
-								<x-tenant.attachment.create  />
+								<x-tenant.attachment.create />
 							</div>
 						</div>
 					</div>
@@ -197,7 +197,7 @@
 						<div class="card-body">
 
 							<div class="mb-3">
-								<label class="form-label">Currency</label>  <x-tenant.info info="Note: You wont be able to change the Currency."/>
+								<label class="form-label">Currency</label> <x-tenant.info info="Note: You wont be able to change the Currency."/>
 								<input type="text" name="currency" id="currency" class="form-control" placeholder="USD" value="{{ old('currency', $setup->currency ) }}" readonly>
 							</div>
 					

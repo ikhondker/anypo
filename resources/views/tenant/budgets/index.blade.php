@@ -102,8 +102,8 @@
 	</div>
 	 <!-- end row -->
 
-	  @include('shared.includes.js.sw2')
-	 @include('shared.includes.js.sw2-advance')
+	@include('shared.includes.js.sw2')
+	@include('shared.includes.js.sw2-advance')
 
 @endsection
 

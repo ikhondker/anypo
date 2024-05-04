@@ -70,7 +70,7 @@
 					@if ($invoice->status == App\Enum\InvoiceStatusEnum::DRAFT->value)
 						<form action="{{ route('invoices.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 							@csrf
-							{{-- <x-tenant.attachment.create  /> --}}
+							{{-- <x-tenant.attachment.create /> --}}
 							<input type="text" name="attach_invoice_id" id="attach_invoice_id" class="form-control" placeholder="ID" value="{{ old('attach_invoice_id', $invoice->id ) }}" hidden>
 							<div class="row">
 								<div class="col-sm-3 text-end">

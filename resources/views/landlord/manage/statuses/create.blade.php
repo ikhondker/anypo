@@ -29,7 +29,7 @@
 							<span class="d-block"> Make this person an Admin</span>
 							<span class="d-block small text-muted">Be careful! This user will be able to perform all admin activities</span>
 						</label>
-					  <!-- End Form Switch -->
+						<!-- End Form Switch -->
 					</div>
 					<!-- End Item -->
 				</div>

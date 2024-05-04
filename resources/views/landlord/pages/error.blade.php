@@ -10,9 +10,9 @@
 				<div class="card-body">
 					<!-- Heading -->
 					<div class="text-center mb-5 mb-md-7">
-						<h1 class="h2 text-danger"><i class="bi bi-x-circle-fill"></i> {{ !isset($title) ? "An Error Occurred!" : $title  }}</h1>
+						<h1 class="h2 text-danger"><i class="bi bi-x-circle-fill"></i> {{ !isset($title) ? "An Error Occurred!" : $title }}</h1>
 						<p>&nbsp;</p>
-						<p class="card-text">{{ !isset($msg) ? "An Error Occurred!" : $msg  }}</p>
+						<p class="card-text">{{ !isset($msg) ? "An Error Occurred!" : $msg }}</p>
 
 						<a href="{{ route('home') }}" class="btn btn-primary mt-4"> <i class="bi bi-house-door"></i> Go to Home</a>
 						<p>&nbsp;</p>

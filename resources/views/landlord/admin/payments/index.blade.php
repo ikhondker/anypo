@@ -52,7 +52,7 @@
 								{{-- <a href="{{ route('payments.show', $payment->id) }}" class="text-body"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
-								</a>  --}}
+								</a> --}}
 								<a href="{{ route('reports.pdf-payment', $payment->id) }}" class="text-body"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt PDF">
 									<i class="bi bi-file-earmark-pdf" style="font-size: 1.3rem;"></i>

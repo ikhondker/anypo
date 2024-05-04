@@ -36,8 +36,8 @@
 					<x-tenant.show.my-amount-currency	value="{{ $po->tax }}" currency="{{ $po->currency }}" label="Tax"/>
 					<x-tenant.show.my-amount-currency	value="{{ $po->gst }}" currency="{{ $po->currency }}" label="GST"/>
 					<x-tenant.show.my-amount-currency	value="{{ $po->amount }}" currency="{{ $po->currency }}" label="PR Amount" />
-					<x-tenant.show.my-date		value="{{ $po->submission_date  }}" label="Submission Date"/>
-					<x-tenant.show.my-date		value="{{ $po->auth_date  }}" label="Auth Date"/>
+					<x-tenant.show.my-date		value="{{ $po->submission_date }}" label="Submission Date"/>
+					<x-tenant.show.my-date		value="{{ $po->auth_date }}" label="Auth Date"/>
 					<x-tenant.show.my-text		value="{{ $po->hierarchy->name }}" label="Hierarchy Name"/>
 				</div>
 			</div>

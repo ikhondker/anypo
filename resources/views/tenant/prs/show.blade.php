@@ -2,7 +2,7 @@
 @section('title','View Purchase Requisition')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
-	<li class="breadcrumb-item active">PR #{{ $pr->id  }}</li>
+	<li class="breadcrumb-item active">PR #{{ $pr->id }}</li>
 @endsection
 @section('content')
 
@@ -31,7 +31,7 @@
 	<x-tenant.widgets.prl.card :pr="$pr">
 		@slot('lines')
 			<tbody>
-				@forelse  ($prls as $prl)
+				@forelse ($prls as $prl)
 					<x-tenant.widgets.prl.card-table-row :line="$prl" :status="$pr->auth_status"/>
 				@empty
 
@@ -48,6 +48,6 @@
 	@endif
 	
 	@include('shared.includes.js.sw2-advance')
-	  
+	
 @endsection
 

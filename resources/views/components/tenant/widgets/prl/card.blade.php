@@ -53,7 +53,7 @@
 				{{ $lines }}
 				
 				@if ( $readOnly )
-					<!-- Table footer i.e. Totals  -->
+					<!-- Table footer i.e. Totals -->
 					<tr>
 						<td class="" colspan="2" scope="col"> 
 							@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
@@ -68,7 +68,7 @@
 						<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->amount"/></strong></td>
 						<td class="" scope="col">&nbsp</td>
 					</tr>
-				<!-- End Table footer i.e. Totals  -->
+				<!-- End Table footer i.e. Totals -->
 				@else
 					<tr class="">
 						<td colspan="9" class="text-end">

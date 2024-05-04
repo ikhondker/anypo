@@ -62,7 +62,7 @@
 						<div class="mb-3">
 							<label class="form-label">UoM Class</label>
 							<select class="form-control" name="uom_class_id" required>
-								<option value=""><< UoM  Class>> </option>
+								<option value=""><< UoM Class>> </option>
 								@foreach ($uomClasses as $uomClass)
 									<option value="{{ $uomClass->id }}" {{ $uomClass->id == old('uom_class_id') ? 'selected' : '' }} >{{ $uomClass->name }} </option>
 								@endforeach

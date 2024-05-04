@@ -13,7 +13,7 @@
 			<div class="m-sm-4">
 
 				<div class="text-center">
-					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png')  }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
+					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
 				</div>
 				
 				@if (session('status'))

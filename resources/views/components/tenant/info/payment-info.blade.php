@@ -22,7 +22,7 @@
 								</tr>
 								<tr>
 									<th>Supplier</th>
-									<td>{{  $payment->invoice->supplier->name }}</td>
+									<td>{{$payment->invoice->supplier->name }}</td>
 								</tr>
 								<tr>
 									<th>Invoice</th>

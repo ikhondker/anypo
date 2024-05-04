@@ -90,7 +90,7 @@
 				@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 					<form action="{{ route('pos.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 						@csrf
-						{{-- <x-tenant.attachment.create  /> --}}
+						{{-- <x-tenant.attachment.create /> --}}
 						<input type="text" name="attach_po_id" id="attach_po_id" class="form-control" placeholder="ID" value="{{ old('id', $po->id ) }}" hidden>
 						<div class="row">
 							<div class="col-sm-3 text-end">

@@ -14,7 +14,7 @@
 	<div class="card-body">
 		<div class="m-sm-4">
 			<div class="text-center">
-				<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png')  }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
+				<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
 			</div>
 
 			<form method="POST" action="{{ route('password.update') }}">
@@ -34,7 +34,7 @@
 				
 				<div class="mb-3">
 					<label class="form-label">Password</label>
-					<input class="form-control form-control-lg  @error('password') is-invalid @enderror" 
+					<input class="form-control form-control-lg @error('password') is-invalid @enderror" 
 						id="password" type="password" name="password" 
 						placeholder="Enter password" 
 						required autocomplete="new-password"/>
@@ -45,7 +45,7 @@
 
 				<div class="mb-3">
 					<label class="form-label">Confirm Password</label>
-					<input class="form-control form-control-lg  @error('password') is-invalid @enderror" 
+					<input class="form-control form-control-lg @error('password') is-invalid @enderror" 
 						id="password-confirm" type="password" name="password_confirmation" 
 						placeholder="Re-Enter password" 
 						required autocomplete="new-password"/>

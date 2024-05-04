@@ -21,7 +21,7 @@
 				<div class="card-header">
 					{{-- <h5 class="card-title">Functions in Controller </h5>
 					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_CLASS') }}</h6> --}}
-					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6><br>
+					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}</h6><br>
 					<a class="" href="{{ route('tables.fnc-controllers') }}"><i class="align-middle me-1" data-feather="folder"></i>Root</a>
 					<a class="" href="{{ route('tables.fnc-controllers','Admin') }}"><i class="align-middle me-1" data-feather="folder"></i>Admin</a>
 					<a class="" href="{{ route('tables.fnc-controllers','Lookup') }}"><i class="align-middle me-1" data-feather="folder"></i>Lookup</a>

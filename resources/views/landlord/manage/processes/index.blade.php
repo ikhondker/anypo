@@ -8,7 +8,7 @@
 		<!-- Card -->
 		<div class="card">
 		<div class="card-header border-bottom">
-		  <h4 class="card-header-title">Process</h4>
+			<h4 class="card-header-title">Process</h4>
 		</div>
 
 		<!-- Table -->
@@ -38,8 +38,8 @@
 		</div>
 		<!-- End Table -->
 
-	  </div>
-	  <!-- End Card -->
+	</div>
+	<!-- End Card -->
 @endsection
 
 

@@ -49,7 +49,7 @@
 							<tr>
 								<td>{{ $uoms->firstItem() + $loop->index}}</td>
 								<td>{{ $uom->name }}</td>
-								<td>{{ number_format($uom->conversion, 4)  }}</td>
+								<td>{{ number_format($uom->conversion, 4) }}</td>
 								<td>{{ $uom->uom_class->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$uom->default"/></td>
 								<td><x-tenant.list.my-boolean :value="$uom->enable"/></td>

@@ -21,7 +21,7 @@
 				<div class="card-header">
 					{{-- <h5 class="card-title">Functions in Policies</h5>
 					<h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_POLICY') }}</h6> --}}
-					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6><br>
+					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}</h6><br>
 					<a class="" href="{{ route('tables.fnc-policies') }}"><i class="align-middle me-1" data-feather="folder"></i>Root</a>
 					<a class="" href="{{ route('tables.fnc-policies','Admin') }}"><i class="align-middle me-1" data-feather="folder"></i>Admin</a>
 					<a class="" href="{{ route('tables.fnc-policies','Lookup') }}"><i class="align-middle me-1" data-feather="folder"></i>Lookup</a>
@@ -55,7 +55,7 @@
 								if ($dir == "") {
 									//Log::debug('NULL Value of $target_dir-> row[f]=' . $target_dir . $row["f"]);
 									$class = new ReflectionClass( $target_dir .$row["f"]);
-								} else  {
+								} else {
 									//Log::debug('NOT NOT Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
 									$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
 								}
@@ -64,7 +64,7 @@
 								@endphp
 								@foreach ($methods as $method)
 									@php
-										if  (!in_array($method->name, $exclude)) {
+										if (!in_array($method->name, $exclude)) {
 									@endphp
 										<tr>
 											<th scope="row">{{ $loop->iteration }}</th>

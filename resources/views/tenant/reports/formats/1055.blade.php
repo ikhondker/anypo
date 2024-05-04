@@ -50,7 +50,7 @@
 			<tr>
 				<td colspan="8"></td>
 				<td colspan="2">TOTAL:</td>
-				<td class="qty" colspan="2">{{ $_setup->currency }} {{  number_format($sum,2) }}</td>
+				<td class="qty" colspan="2">{{ $_setup->currency }} {{ number_format($sum,2) }}</td>
 			</tr>
 		</tfoot>
 	</table>

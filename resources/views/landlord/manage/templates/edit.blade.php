@@ -118,7 +118,7 @@
 						<label for="my_enum" class="col-sm-3 col-form-label col-form-label-sm">Role</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="my_enum" placeholder="Enum" value="template">
-								<option {{ 'template' == old('my_enum',$template->my_enum) ? 'selected' : '' }}  value="template"  >User</option>
+								<option {{ 'template' == old('my_enum',$template->my_enum) ? 'selected' : '' }} value="template" >User</option>
 								<option {{ 'agent' == old('my_enum',$template->my_enum) ? 'selected' : '' }} value="agent">Agent</option>
 								<option {{ 'admin' == old('my_enum',$template->my_enum) ? 'selected' : '' }} value="admin">Admin</option>
 								<option {{ 'system' == old('my_enum',$template->my_enum) ? 'selected' : '' }} value="system">System</option>
@@ -203,7 +203,7 @@
 					<div class="form-group row">
 						<label for="lnpage" class="col-sm-3 col-form-label col-form-label-sm">Boolean</label>
 						<div class="col-sm-9">
-							<input type="checkbox" name="my_bool" id="my_bool"  @checked($template->my_bool)/>
+							<input type="checkbox" name="my_bool" id="my_bool" @checked($template->my_bool)/>
 							<label class="form-check-label" for="form-check-default-checked">
 								Active
 							</label>

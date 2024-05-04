@@ -21,11 +21,11 @@
 				<x-landlord.show.my-date	value="{{ $invoice->from_date }}" label="From Date"/>
 				<x-landlord.show.my-date	value="{{ $invoice->to_date }}" label="To Date"/>
 
-				{{-- <x-landlord.show.my-text 	value="{{  $invoice->account->name }}" label="Account"/>
+				{{-- <x-landlord.show.my-text 	value="{{ $invoice->account->name }}" label="Account"/>
 				<x-landlord.show.my-badge		value="{{ $invoice->id }}" label="ID"/>
 											--}}
-				<x-landlord.show.my-number value="{{  $invoice->price }}" label="Amount"/>
-				<x-landlord.show.my-number value="{{  $invoice->amount_paid }}" label="Amount Paid"/>
+				<x-landlord.show.my-number value="{{ $invoice->price }}" label="Amount"/>
+				<x-landlord.show.my-number value="{{ $invoice->amount_paid }}" label="Amount Paid"/>
 
 				<x-landlord.show.my-date value="{{ $invoice->created_at }}" label="Created At:"/>
 

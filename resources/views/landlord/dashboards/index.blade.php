@@ -6,10 +6,10 @@
 
 	<div class="d-grid gap-1 gap-lg-1">
 		<div class="row">
-			<x-landlord.widget.kpi value="{{ $count_tickets_open }}" route="tickets"  label="OPEN TICKETS" icon="com013"/>
+			<x-landlord.widget.kpi value="{{ $count_tickets_open }}" route="tickets" label="OPEN TICKETS" icon="com013"/>
 			<x-landlord.widget.kpi value="{{ $count_tickets_total }}" route="tickets" label="TOTAL TICKETS" icon="abs027"/>
-			<x-landlord.widget.kpi value="{{ $count_accounts }}" route="accounts" label="ACCOUNTS"  icon="abs029"/>
-			<x-landlord.widget.kpi value="{{ $count_service }}" route="services" label="SERVICES"  icon="com006"/>
+			<x-landlord.widget.kpi value="{{ $count_accounts }}" route="accounts" label="ACCOUNTS" icon="abs029"/>
+			<x-landlord.widget.kpi value="{{ $count_service }}" route="services" label="SERVICES" icon="com006"/>
 		</div>
 		<!-- End Row -->
 	</div>

@@ -29,7 +29,7 @@
 							<td class="">{{ $user->email }}</td>
 							<td class="">{{ $user->cell }}</td>
 							<td class="">
-								@if (  $user->role == UserRoleEnum::USER->value)
+								@if ( $user->role == UserRoleEnum::USER->value)
 									<span class="badge badge-light-success">{{ $user->role }}</span>
 								@else
 									<span class="badge badge-light-error">{{ $user->role }}</span>

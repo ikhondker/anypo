@@ -29,7 +29,7 @@
 					<x-tenant.show.my-text		value="{{ $template->name }}"/>
 					<x-tenant.show.my-text		value="{{ $template->email }}" label="E-mail"/>
 					<x-tenant.show.my-text		value="{{ $template->phone }}" label="Phone"/>
-					<x-tenant.show.my-text		value="{{ $template->user->name  }}" label="User Name"/>
+					<x-tenant.show.my-text		value="{{ $template->user->name }}" label="User Name"/>
 					<x-tenant.show.my-badge		value="{{ $template->my_enum }}" label="Enum/Role:"/>
 					<x-tenant.show.my-boolean	value="{{ $template->enable }}"/>
 					<x-tenant.show.my-badge		value="{{ $template->id }}" label="ID"/>

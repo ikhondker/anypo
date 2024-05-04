@@ -9,7 +9,7 @@
 	<!-- Card -->
 	<div class="card">
 		<div class="card-header">
-			{{-- <h5 class="card-header-title">My Services {{ date('d-M-y', strtotime($account->end_date )) }} i.e. {{  $account->end_date->diffInDays($carbon::now()) }} days</h5> --}}
+			{{-- <h5 class="card-header-title">My Services {{ date('d-M-y', strtotime($account->end_date )) }} i.e. {{ $account->end_date->diffInDays($carbon::now()) }} days</h5> --}}
 			<h5 class="card-header-title">All Services </h5>
 		</div>
 
@@ -35,7 +35,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{  Storage::disk('s3l')->url('logo/'.$service->account->logo) }}"
+											src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}"
 											alt="{{ $service->account->name }}" title="{{ $service->account->name }}">
 									</div>
 
@@ -44,7 +44,7 @@
 											<h6 class="text-hover-primary mb-0">{{ $service->name }}</h6>
 										</a>
 										{{-- <small class="d-block">{{ $service->start_date }} to {{ $service->end_date }}</small> --}}
-										<small class="d-block"> Account #{{ $service->account_id }} : {{ $service->account->name }}  </small>
+										<small class="d-block"> Account #{{ $service->account_id }} : {{ $service->account->name }} </small>
 									</div>
 								</div>
 							</td>

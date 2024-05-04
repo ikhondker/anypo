@@ -153,7 +153,7 @@
 							</div>
 							<div id="collapseBasicsNine" class="accordion-collapse collapse" aria-labelledby="headingBasicsNine" data-bs-parent="#accordionFAQBasics">
 								<div class="accordion-body">
-									Yes, we can provide  you access to a demo instance. Please <a href="{{ route('contact-us') }}">Contact us</a>. Many providers of cloud-based SAAS services for purchasing and spend control offer free trials or demos for businesses to test out the software before committing to a subscription. This allows businesses to see the features and benefits firsthand and determine if it is the right solution for their needs.
+									Yes, we can provide you access to a demo instance. Please <a href="{{ route('contact-us') }}">Contact us</a>. Many providers of cloud-based SAAS services for purchasing and spend control offer free trials or demos for businesses to test out the software before committing to a subscription. This allows businesses to see the features and benefits firsthand and determine if it is the right solution for their needs.
 								</div>
 							</div>
 						</div>
@@ -274,7 +274,7 @@
 							</div>
 							<div id="collapsePaymentsOne" class="accordion-collapse collapse" aria-labelledby="headingPaymentsOne" data-bs-parent="#accordionFAQPayments">
 								<div class="accordion-body">
-									You can purchase the service directly from https://anypo.net website  via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing at this time.
+									You can purchase the service directly from https://anypo.net website via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing at this time.
 								</div>
 							</div>
 						</div>

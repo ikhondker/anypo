@@ -34,11 +34,11 @@
 						</div>
 					</div>
 					
-					<x-tenant.show.my-text		value="{{ $attachment->entity }}"  label="Entity"/>
+					<x-tenant.show.my-text		value="{{ $attachment->entity }}" label="Entity"/>
 					<x-tenant.show.article-link entity="{{ $attachment->entity }}" :id="$attachment->article_id"/>
-					<x-tenant.show.my-text		value="{{ $attachment->file_type }}"  label="File Type"/>
-					<x-tenant.show.my-integer	value="{{ $attachment->file_size }}"  label="File Size"/>
-					<x-tenant.show.my-text		value="{{ $attachment->owner->name }}"  label="Owner Name"/>
+					<x-tenant.show.my-text		value="{{ $attachment->file_type }}" label="File Type"/>
+					<x-tenant.show.my-integer	value="{{ $attachment->file_size }}" label="File Size"/>
+					<x-tenant.show.my-text		value="{{ $attachment->owner->name }}" label="Owner Name"/>
 					
 					<x-tenant.show.my-created-at value="{{ $attachment->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $attachment->created_at }}"/>

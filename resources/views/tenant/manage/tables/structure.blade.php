@@ -35,7 +35,7 @@
 						<label for="name" class="col-sm-2 col-form-label col-form-label-sm text-end text-muted h6">Fillable:</label>
 						<div class="col-sm-9 col-form-label col-form-label-sm">
 							@foreach ($columns as $column)
-								@if ( ($column->Field <> 'id') && ($column->Field <> 'deleted_at') && ($column->Field <> 'created_by') && ($column->Field <> 'created_at')  )
+								@if ( ($column->Field <> 'id') && ($column->Field <> 'deleted_at') && ($column->Field <> 'created_by') && ($column->Field <> 'created_at') )
 									{{ '\''.$column->Field.'\', '}}
 								@endif
 							@endforeach
@@ -45,7 +45,7 @@
 					<div class="form-group row">
 						<label for="name" class="col-sm-2 col-form-label col-form-label-sm text-end text-muted h6">SQL:</label>
 						<div class="col-sm-9 col-form-label col-form-label-sm">
-							{{ __('SELECT ')  }}
+							{{ __('SELECT ') }}
 							@foreach ($columns as $column)
 								@if ($column->Field =='enable')
 									IF(enable, 'Yes', 'No') as Enable,
@@ -54,14 +54,14 @@
 								@endif 
 
 							@endforeach
-							{{ __('FROM '.$table)  }}
+							{{ __('FROM '.$table)}}
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	  
+	
 	<div class="row">
 		<div class="col-12">
 			<div class="card">

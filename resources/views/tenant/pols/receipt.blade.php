@@ -17,8 +17,8 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="{{ route('receipts.create',  $pol->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Create Another Receipt</a>
-					<a class="dropdown-item" href="{{ route('pos.show',  $pol->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
+					<a class="dropdown-item" href="{{ route('receipts.create',$pol->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Create Another Receipt</a>
+					<a class="dropdown-item" href="{{ route('pos.show', $pol->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
 					<div class="dropdown-divider"></div>
 				</div>
 			</div>

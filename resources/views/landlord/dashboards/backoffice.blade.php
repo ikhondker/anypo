@@ -5,10 +5,10 @@
 @section('content')
 	<div class="d-grid gap-1 gap-lg-1">
 		<div class="row">
-			<x-landlord.widget.kpi value="{{ $count_agent_open_tickets }}" route="tickets"  label="ASSIGNED TO ME" icon="com013"/>
+			<x-landlord.widget.kpi value="{{ $count_agent_open_tickets }}" route="tickets" label="ASSIGNED TO ME" icon="com013"/>
 			<x-landlord.widget.kpi value="{{ $count_unassigned_tickets }}" route="tickets" label="TOTAL UNASSIGNED" icon="abs027"/>
-			<x-landlord.widget.kpi value="{{ $count_all_open_tickets }}" route="accounts" label="TOTAL OPEN"  icon="abs029"/>
-			<x-landlord.widget.kpi value="{{ $count_agent_closed_tickets }}" route="services" label="CLOSED BY ME"  icon="com006"/>
+			<x-landlord.widget.kpi value="{{ $count_all_open_tickets }}" route="accounts" label="TOTAL OPEN" icon="abs029"/>
+			<x-landlord.widget.kpi value="{{ $count_agent_closed_tickets }}" route="services" label="CLOSED BY ME" icon="com006"/>
 		</div>
 		<!-- End Row -->
 	</div>

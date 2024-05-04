@@ -2,7 +2,7 @@
 @section('title','Additional Information for Requisition')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->id  }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->id }}</a></li>
 	<li class="breadcrumb-item active">Additional Information</li>
 @endsection
 @section('content')
@@ -34,8 +34,8 @@
 					<x-tenant.show.my-amount-currency	value="{{ $pr->tax }}" currency="{{ $pr->currency }}" label="Tax"/>
 					<x-tenant.show.my-amount-currency	value="{{ $pr->gst }}" currency="{{ $pr->currency }}" label="GST"/>
 					<x-tenant.show.my-amount-currency	value="{{ $pr->amount }}" currency="{{ $pr->currency }}" label="PR Amount" />
-					<x-tenant.show.my-date		value="{{ $pr->submission_date  }}" label="Submission Date"/>
-					<x-tenant.show.my-date		value="{{ $pr->auth_date  }}" label="Auth Date"/>
+					<x-tenant.show.my-date		value="{{ $pr->submission_date }}" label="Submission Date"/>
+					<x-tenant.show.my-date		value="{{ $pr->auth_date }}" label="Auth Date"/>
 					<x-tenant.show.my-text		value="{{ $pr->hierarchy->name }}" label="Hierarchy Name"/>
 				</div>
 			</div>

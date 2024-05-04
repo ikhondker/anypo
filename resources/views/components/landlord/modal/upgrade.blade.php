@@ -12,8 +12,8 @@
 		</div>
 		<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		{{-- <a class="btn btn-primary"  href="{{ route('accounts.upgrade',['account_id'=>'1003','service_id'=>'1003']) }}" class="btn btn-lg btn-light">Upgrade</a> --}}
-		<a class="btn btn-primary"  href="{{ route('accounts.upgrade',['service_id'=>$code]) }}" class="btn btn-lg btn-light">Upgrade</a>
+		{{-- <a class="btn btn-primary" href="{{ route('accounts.upgrade',['account_id'=>'1003','service_id'=>'1003']) }}" class="btn btn-lg btn-light">Upgrade</a> --}}
+		<a class="btn btn-primary" href="{{ route('accounts.upgrade',['service_id'=>$code]) }}" class="btn btn-lg btn-light">Upgrade</a>
 		</div>
 	</div>
 	</div>

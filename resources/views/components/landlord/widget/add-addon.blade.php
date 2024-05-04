@@ -48,7 +48,7 @@
 						
 						<!-- End Card -->
 					</div>
-					<!-- End Col -->  
+					<!-- End Col -->
 				@endforeach
 				<span class="small text-center mt-2">Note: Once added, Add-ons can not be removed or deactivated.</span>
 			</div>

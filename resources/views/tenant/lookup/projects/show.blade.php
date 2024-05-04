@@ -27,10 +27,10 @@
 					<h6 class="card-subtitle text-muted">Project Basic Information.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $project->code  }}" label="Code"/>
+					<x-tenant.show.my-text		value="{{ $project->code }}" label="Code"/>
 					<x-tenant.show.my-text		value="{{ $project->name }}"/>
-					<x-tenant.show.my-date		value="{{ $project->start_date  }}" label="Start Date"/>
-					<x-tenant.show.my-date		value="{{ $project->end_date  }}" label="End Date"/>
+					<x-tenant.show.my-date		value="{{ $project->start_date }}" label="Start Date"/>
+					<x-tenant.show.my-date		value="{{ $project->end_date }}" label="End Date"/>
 					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
 					<x-tenant.show.my-boolean	value="{{ $project->closed }}" label="Closed?"/>
 					<x-tenant.show.my-text-area		value="{{ $project->notes }}" label="Notes"/>
@@ -69,7 +69,7 @@
 
 					<form action="{{ route('projects.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 						@csrf
-						{{-- <x-tenant.attachment.create  /> --}}
+						{{-- <x-tenant.attachment.create /> --}}
 						<input type="text" name="attach_project_id" id="attach_project_id" class="form-control" placeholder="ID" value="{{ old('attach_project_id', $project->id ) }}" hidden>
 						<div class="row">
 							<div class="col-sm-3 text-end">

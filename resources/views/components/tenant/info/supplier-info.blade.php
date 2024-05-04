@@ -21,15 +21,15 @@
 								</tr>
 								<tr>
 									<th>Email | Web</th>
-									<td>{{ $supplier->email  .' | '. $supplier->website}}</td>
+									<td>{{ $supplier->email .' | '. $supplier->website}}</td>
 								</tr>
 								<tr>
 									<th>Address</th>
-									<td>{{ $supplier->address1 .' '.$supplier->address2  }}</td>
+									<td>{{ $supplier->address1 .' '.$supplier->address2 }}</td>
 								</tr>
 								<tr>
 									<th>City-State-Zip-Country</th>
-									<td>{{ $supplier->city .' '.$supplier->state.' '.$supplier->zip .' '.$supplier->country  }}</td>
+									<td>{{ $supplier->city .' '.$supplier->state.' '.$supplier->zip .' '.$supplier->country }}</td>
 								</tr>
 								
 								<tr>

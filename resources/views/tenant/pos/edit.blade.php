@@ -58,7 +58,7 @@
 								<label class="col-form-label col-sm-2 text-sm-right">PO Date</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control"
-									name="dsp_date" id="dsp_date" value="{{ date_format($po->po_date,"d-M-Y H:i:s");  }}"
+									name="dsp_date" id="dsp_date" value="{{ date_format($po->po_date,"d-M-Y H:i:s"); }}"
 									readonly/>
 								</div>
 							</div>
@@ -166,7 +166,7 @@
 			<x-tenant.widgets.pol.card :po="$po">
 				@slot('lines')
 					<tbody>
-						@forelse  ($pols as $pol)
+						@forelse ($pols as $pol)
 							<x-tenant.widgets.pol.card-table-row :line="$pol" :status="$po->auth_status"/>
 						@empty
 

@@ -31,7 +31,7 @@
 		<x-tenant.widgets.pol.card :po="$po" :readOnly="false" :addMore="true">
 			@slot('lines')
 				<tbody>
-					@forelse  ($pols as $poln)
+					@forelse($pols as $poln)
 						@if ( $poln->id == $pol->id )
 							@include('tenant.includes.po.po-line-edit')
 						@else

@@ -26,7 +26,7 @@
 					<h6 class="card-subtitle text-muted">Custom Error detail information.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $customError->code }}"  label="Code"/>
+					<x-tenant.show.my-text		value="{{ $customError->code }}" label="Code"/>
 					<x-tenant.show.my-text		value="{{ $customError->entity }}" label="Entity"/>
 					<x-tenant.show.my-text		value="{{ $customError->message }}" label="Message"/>
 					<x-tenant.show.my-boolean	value="{{ $customError->enable }}"/>

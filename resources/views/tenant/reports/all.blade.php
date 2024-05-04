@@ -86,7 +86,7 @@
 
 							@foreach ($reports as $report)
 							<tr>
-								<td>{{ $reports->firstItem() + $loop->index  }}</td>
+								<td>{{ $reports->firstItem() + $loop->index }}</td>
 								<td><a class="text-info" href="{{ route('reports.show',$report->id) }}">{{ $report->name }} [r{{ $report->id }}] </a></td>
 								<td>{{ $report->summary }}</td>
 								<td>{{ $report->run_count }}</td>
@@ -101,7 +101,7 @@
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($report->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
-									<a href="{{ route('reports.parameter',$report->id)  }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Run">
+									<a href="{{ route('reports.parameter',$report->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Run">
 										<i class="align-middle" data-feather="printer"></i>
 									</a>
 								</td>

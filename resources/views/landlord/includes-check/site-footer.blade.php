@@ -68,7 +68,7 @@
 				<div class="col-sm-8">
 					<div class="text-xs text-start pb-3">
 						@auth
-							Welcome {{ auth()->user()->name }} {{ '| '.auth()->user()->id .' |' }}  {{ auth()->user()->email .' |' }}
+							Welcome {{ auth()->user()->name }} {{ '| '.auth()->user()->id .' |' }} {{ auth()->user()->email .' |' }}
 							@if ( auth()->user()->role->value == UserRoleEnum::USER->value )
 								<span class="text-danger">user </span>|
 							@else
@@ -102,7 +102,7 @@
 							Account: {{ (auth()->user()->account_id == '') ? 'NULL' : auth()->user()->account_id }} 
 						@endauth
 						@guest
-							Welcome Guest. Please  <a class="text-foot" href="{{ route('login') }}" class="text-warning">Login</a> here.
+							Welcome Guest. Please <a class="text-foot" href="{{ route('login') }}" class="text-warning">Login</a> here.
 						@endguest
 						
 					</div>

@@ -10,7 +10,7 @@
 		<div class="col-xl-12">
 			<h4><i data-feather="mail" class="fea text-primary"></i> {{ $notification->data['subject'] }}</h4>
 
-			<p class="text-xs">From: {{ $notification->data['from'] }} at  {{ strtoupper(date('d-M-Y H:i:s', strtotime($notification->created_at))) }}</p>
+			<p class="text-xs">From: {{ $notification->data['from'] }} at {{ strtoupper(date('d-M-Y H:i:s', strtotime($notification->created_at))) }}</p>
 			<p>&nbsp;</p>
 			<p><strong>{{ $notification->data['greeting'] }}</strong></p>
 			<p>&nbsp;</p>
@@ -26,7 +26,7 @@
 
 			{{-- <p class=""><small class="text-muted">{{ $ticket->content }}</small></p>
 			<p class="text-xs"><small class="text-muted">Created By: {{ $ticket->owner->name }}</small><small class="text-muted"> on : {{ $ticket->ticket_date }}</small></p>
-			<p class=""><small class="text-muted">Attachment: <x-landlord.attachment.list-one  entity="{{ $entity }}" aid="{{ $ticket->id }}"/></small></p> --}}
+			<p class=""><small class="text-muted">Attachment: <x-landlord.attachment.list-one entity="{{ $entity }}" aid="{{ $ticket->id }}"/></small></p> --}}
 
 		</div>
 	</div>

@@ -27,7 +27,7 @@
 			@endphp
 			@foreach ($receipts as $receipt)
 			<tr>
-				<td class="sl">{{  $loop->iteration }}</td>
+				<td class="sl">{{ $loop->iteration }}</td>
 				<td class="desc">{{ $receipt->id }} </td>
 				<td class="desc">{{ date('d-M-y', strtotime($receipt->receive_date)) }}</td>
 				<td class="qty">{{ $receipt->warehouse_name }}</td>
@@ -50,7 +50,7 @@
 			<tr>
 				<td colspan="7"></td>
 				<td colspan="2">TOTAL:</td>
-				<td class="qty" colspan="2">{{ $_setup->currency }} {{  number_format($sum,2) }}</td>
+				<td class="qty" colspan="2">{{ $_setup->currency }} {{ number_format($sum,2) }}</td>
 			</tr>
 		</tfoot>
 	</table>

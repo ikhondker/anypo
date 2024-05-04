@@ -95,7 +95,7 @@
 								{{-- <x-tenant.show.avatar avatar="{{ $user->avatar }}"/> --}}
 								<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
 
-								<x-tenant.attachment.create  />
+								<x-tenant.attachment.create />
 							</div>
 						</div>
 					</div>
@@ -115,7 +115,7 @@
 							<div class="mb-3">
 								<label class="form-label text-danger">Modify Role To:</label>
 								<select class="form-control" name="role">
-									<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }}  value="user">User</option>
+									<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }} value="user">User</option>
 									<option {{ 'buyer' == old('role',$user->role->value) ? 'selected' : '' }} value="buyer">Buyer</option>
 									<option {{ 'hod' == old('role',$user->role->value) ? 'selected' : '' }} value="hod">HoD</option>
 									<option {{ 'cxo' == old('role',$user->role->value) ? 'selected' : '' }} value="cxo">CxO</option>

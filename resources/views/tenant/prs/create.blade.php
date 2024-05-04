@@ -47,7 +47,7 @@
 							<label class="col-form-label col-sm-2 text-sm-right">PR Date</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control"
-								name="dsp_date" id="dsp_date" value="{{ date_format(now(),"d-M-Y H:i:s");  }}"
+								name="dsp_date" id="dsp_date" value="{{ date_format(now(),"d-M-Y H:i:s"); }}"
 								readonly/>
 							</div>
 						</div>
@@ -120,7 +120,7 @@
 
 						<div class="mb-3">
 							<label class="form-label">Notes</label>
-							<textarea class="form-control" name="notes"  placeholder="Enter ..." rows="3">{{ old('notes', 'Enter ...') }}</textarea>
+							<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', 'Enter ...') }}</textarea>
 							@error('notes')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror

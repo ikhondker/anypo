@@ -28,7 +28,7 @@
 			if ($dir == "") {
 				Log::debug('NULL Value of $target_dir-> row[f]=' . $target_dir . $row["f"]);
 				$class = new ReflectionClass( $target_dir .$row["f"]);
-			} else  {
+			} else {
 				Log::debug('NOT NOT Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
 				$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
 			}
@@ -37,7 +37,7 @@
 			@endphp
 			@foreach ($methods as $method)
 				@php
-					if  (!in_array($method->name, $exclude)) {
+					if (!in_array($method->name, $exclude)) {
 				@endphp
 					<tr>
 						<th scope="row">{{ $loop->iteration }}</th>

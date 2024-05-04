@@ -50,7 +50,7 @@
 
 					{{-- <p class=""><small class="text-muted">{{ $ticket->content }}</small></p>
 					<p class="text-xs"><small class="text-muted">Created By: {{ $ticket->owner->name }}</small><small class="text-muted"> on : {{ $ticket->ticket_date }}</small></p>
-					<p class=""><small class="text-muted">Attachment: <x-landlord.attachment.list-one  entity="{{ $entity }}" aid="{{ $ticket->id }}"/></small></p> --}}
+					<p class=""><small class="text-muted">Attachment: <x-landlord.attachment.list-oneentity="{{ $entity }}" aid="{{ $ticket->id }}"/></small></p> --}}
 					<hr>
 					<div class="float-end mt-n1">
 						<a class="btn btn-primary" href="{{ route('notifications.index') }}"><i data-feather="list"></i> Notifications List</a>

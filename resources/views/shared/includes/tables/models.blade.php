@@ -20,7 +20,7 @@
 				<td>{{ $row['route'] }}</td>
 				<td class="text-start">
 					@if ($row['days'] < 7)
-					<span class="text-danger">  {{ $row['last_modified_human'] }} <span>
+					<span class="text-danger"> {{ $row['last_modified_human'] }} <span>
 					@else
 					{{ $row['last_modified_human'] }}
 					@endif

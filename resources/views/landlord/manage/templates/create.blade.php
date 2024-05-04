@@ -30,14 +30,14 @@
 							<span class="d-block"> Make this person an Admin</span>
 							<span class="d-block small text-muted">Be careful! This user will be able to perform all admin activities</span>
 						</label>
-					  <!-- End Form Switch -->
+						<!-- End Form Switch -->
 					</div>
 					<!-- End Item -->
 				</div>
 				<!-- End List Group -->
 
 
-				{{-- OLD FORMAT BELLOW  --}}
+				{{-- OLD FORMAT BELLOW --}}
 				<div class="form-group row mb-4">
 					<label for="code" class="col-sm-2 col-form-label text-end text-secondary">CODE:</label>
 					<div class="col-sm-10">

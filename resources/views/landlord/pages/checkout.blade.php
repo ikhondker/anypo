@@ -27,7 +27,7 @@
 										<div class="col-12">
 											<label for="site" class="form-label">Site Name*</label>
 											<div class="input-group has-validation">
-												{{-- <input type="text" class="form-control form-control-sm" id="site"  value="XYZ" placeholder="sitename"> --}}
+												{{-- <input type="text" class="form-control form-control-sm" id="site" value="XYZ" placeholder="sitename"> --}}
 												<input type="text" class="form-control form-control-sm" name="site"
 													id="site" placeholder="sitename" value="{{ old('site', 'XYZ') }}"
 													class="@error('site') is-invalid @enderror" required>

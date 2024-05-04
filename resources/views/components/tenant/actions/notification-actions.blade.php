@@ -14,12 +14,12 @@
 		
 		<div class="dropdown-divider"></div>
 		
-		@if ( $notification->id <> ''  )
+		@if ( $notification->id <> '' )
 			<a class="dropdown-item sw2" href="{{ route('notifications.destroy', $notification->id) }}" title="Delete Notification">
 				<i class="align-middle me-1 text-danger" data-feather="trash"></i> Delete Notification</a>
 		@endif 
 			<a class="dropdown-item sw2" href="{{ route('notifications.purge') }}" title=" Purge Notifications">
-				<i class="align-middle me-1 text-danger" data-feather="trash"></i>  Purge All Notifications</a>
+				<i class="align-middle me-1 text-danger" data-feather="trash"></i> Purge All Notifications</a>
 	
 	</div>
 </div>

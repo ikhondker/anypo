@@ -20,8 +20,8 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					{{-- <h5 class="card-title">Routes Code:  </h5> --}}
-					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir')  }}</h6><br>
+					{{-- <h5 class="card-title">Routes Code: </h5> --}}
+					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}</h6><br>
 					<a class="" href="{{ route('tables.messages') }}"><i class="align-middle me-1" data-feather="folder"></i>Root</a>
 					<a class="" href="{{ route('tables.messages','Admin') }}"><i class="align-middle me-1" data-feather="folder"></i>Admin</a>
 					<a class="" href="{{ route('tables.messages','Lookup') }}"><i class="align-middle me-1" data-feather="folder"></i>Lookup</a>

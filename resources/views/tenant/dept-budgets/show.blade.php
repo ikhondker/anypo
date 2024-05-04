@@ -95,7 +95,6 @@
 					@if (! $deptBudget->closed)
 						<form action="{{ route('dept-budgets.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 							@csrf
-							{{-- <x-tenant.attachment.create  /> --}}
 							<input type="text" name="attach_dept_budget_id" id="attach_dept_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $deptBudget->id ) }}" hidden>
 							<div class="row">
 								<div class="col-sm-3 text-end">

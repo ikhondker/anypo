@@ -7,7 +7,7 @@
 		<div class="card-body">
 			<div class="m-sm-4">
 				<div class="text-center">
-					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png')  }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
+					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
 				</div>
 				<div class="text-center mt-4">
 					<h1 class="h2">Get started with {{ tenant('id') }}.{{ env('APP_DOMAIN') }}</h1>
@@ -21,7 +21,7 @@
 					
 					<div class="mb-3">
 						<label class="form-label">Your Name</label>
-						<input class="form-control form-control-lg  @error('name') is-invalid @enderror" 
+						<input class="form-control form-control-lg @error('name') is-invalid @enderror" 
 							type="text" name="name" value="{{ old('name') }}"
 							placeholder="Enter your name" 
 							required autocomplete="name"/>
@@ -42,8 +42,8 @@
 
 					<div class="mb-3">
 						<label class="form-label">Password</label>
-						<input class="form-control form-control-lg  @error('password') is-invalid @enderror" 
-							id="password"  type="password" name="password" 
+						<input class="form-control form-control-lg @error('password') is-invalid @enderror" 
+							id="password" type="password" name="password" 
 							placeholder="Enter password" 
 							required autocomplete="new-password"/>
 							@error('password')
@@ -53,7 +53,7 @@
 
 					<div class="mb-3">
 						<label class="form-label">Confirm Password</label>
-						<input class="form-control form-control-lg  @error('password') is-invalid @enderror" 
+						<input class="form-control form-control-lg @error('password') is-invalid @enderror" 
 							id="password-confirm" type="password" name="password_confirmation" 
 							placeholder="Enter password" 
 							required autocomplete="new-password"/>
@@ -96,8 +96,8 @@
 
 @section('xxcontent')
 
-	  <!-- ========== signin-section start ========== -->
-	  <section class="signin-section pt-120">
+	 <!-- ========== signin-section start ========== -->
+	 <section class="signin-section pt-120">
 		<div class="container">
 			<div class="row g-0 auth-row">
 				<div class="col-lg-6">
@@ -218,8 +218,8 @@
 			</div>
 			<!-- end row -->
 		</div>
-	  </section>
-	  <!-- ========== signin-section end ========== -->
+	 </section>
+	 <!-- ========== signin-section end ========== -->
 
 
 @endsection

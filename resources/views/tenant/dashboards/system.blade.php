@@ -52,7 +52,7 @@
 							if ( $budget->amount ==0 ){
 								$budget_used_pc = 0;
 								$budget_amount = 0 ;
-								$budget_po  = 0;
+								$budget_po = 0;
 							} else {
 								$budget_used_pc		= $budget->amount_po / $budget->amount * 100;
 								$budget_amount		= $budget->amount ;
@@ -62,7 +62,7 @@
 							// Error handling code
 							$budget_used_pc = 0;
 							$budget_amount = 0 ;
-							$budget_po  = 0;
+							$budget_po = 0;
 							
 						}
 					@endphp

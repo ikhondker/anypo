@@ -75,7 +75,7 @@
 			<tr>
 				<td colspan="4"></td>
 				<td colspan="1">SUBTOTAL</td>
-				<td>  {{ $po->currency }} {{ number_format($po->amount,2) }}</td>
+				<td> {{ $po->currency }} {{ number_format($po->amount,2) }}</td>
 			</tr>
 			{{-- <tr>
 				<td colspan="2"></td>

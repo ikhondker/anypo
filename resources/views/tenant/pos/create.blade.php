@@ -117,7 +117,7 @@
 						<div class="mb-3">
 	
 							<label class="form-label">Terms and Conditions</label>
-							<textarea class="form-control" name="notes"  placeholder="Enter ..." rows="4">{{ old('notes', 'Enter ...') }}</textarea>
+							<textarea class="form-control" name="notes" placeholder="Enter ..." rows="4">{{ old('notes', 'Enter ...') }}</textarea>
 							@error('notes')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
@@ -127,13 +127,13 @@
 							</div>	
 						</div>
 
-						<x-tenant.attachment.create  />
+						<x-tenant.attachment.create />
 
 						<div class="mb-3">
 							<label class="form-label">Buyer</label>
 							<input type="text" class="form-control"
 								name="buyer" id="buyer"
-								value="{{  auth()->user()->name  }}"
+								value="{{ auth()->user()->name }}"
 								readonly/>
 						</div>
 

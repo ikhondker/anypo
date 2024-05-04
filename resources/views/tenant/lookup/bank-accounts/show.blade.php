@@ -24,7 +24,7 @@
 					<h6 class="card-subtitle text-muted">Bank Account detail information.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $bankAccount->ac_name }}"  label="AC Name"/>
+					<x-tenant.show.my-text		value="{{ $bankAccount->ac_name }}" label="AC Name"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->ac_number }}" label="AC Number"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->routing_number }}" label="Routing Number"/>
 					<x-tenant.show.my-currency	value="{{ $bankAccount->currency }}" label="Currency"/>

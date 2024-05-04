@@ -59,8 +59,8 @@
 								<td class="">{{ $template->phone }}</td>
 								<td>{{ strtoupper(date('d-M-y', strtotime($template->my_date))) }}</td>
 								<td class="text-end">{{number_format($template->amount, 2)}} </td>
-								<td class="">{{  $template->user->name}}</td>
-								<td class=""><span class="badge bg-primary-light">{{  $template->my_enum}}</span> </td>
+								<td class="">{{ $template->user->name}}</td>
+								<td class=""><span class="badge bg-primary-light">{{ $template->my_enum}}</span> </td>
 								<td class="text-center">
 									<x-tenant.list.my-boolean :value="$template->enable"/>
 								</td>

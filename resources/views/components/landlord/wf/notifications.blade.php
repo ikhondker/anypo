@@ -15,9 +15,9 @@
 					<tr>
 						<td class="">
 							@if ($notification->read_at == null)
-								<a href="{{ route('notifications.show', $notification->id)  }}"><span class="text-info">{{ $notification->data['subject']  }}</span></a>
+								<a href="{{ route('notifications.show', $notification->id) }}"><span class="text-info">{{ $notification->data['subject'] }}</span></a>
 							@else
-								<a href="{{ route('notifications.show', $notification->id)  }}"><span class="text-muted">#{{ $notification->data['subject']  }}</span></a>
+								<a href="{{ route('notifications.show', $notification->id) }}"><span class="text-muted">#{{ $notification->data['subject'] }}</span></a>
 							@endif
 						</td>
 						<td>

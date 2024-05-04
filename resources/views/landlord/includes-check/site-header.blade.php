@@ -26,6 +26,6 @@
 <link href="{{asset('/site/css/style.min.css')}}" rel="stylesheet" type="text/css" />
 
 
-<!--  BEGIN CUSTOM STYLE FILE  -->
+<!-- BEGIN CUSTOM STYLE FILE -->
 <link rel="stylesheet" href="{{asset('custom.css')}}">
-<!--  END CUSTOM STYLE FILE  -->
+<!-- END CUSTOM STYLE FILE -->

@@ -30,10 +30,10 @@
 						<div class="col-sm-12 col-lg-6 mb-3" data-aos="fade-up" data-aos-delay="150">
 							<span class="svg-icon text-primary mb-3">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								  <path d="M17.302 11.35L12.002 20.55H21.202C21.802 20.55 22.202 19.85 21.902 19.35L17.302 11.35Z" fill="#035A4B" />
-								  <path opacity="0.3" d="M12.002 20.55H2.802C2.202 20.55 1.80202 19.85 2.10202 19.35L6.70203 11.45L12.002 20.55ZM11.302 3.45L6.70203 11.35H17.302L12.702 3.45C12.402 2.85 11.602 2.85 11.302 3.45Z" fill="#035A4B" />
+								<path d="M17.302 11.35L12.002 20.55H21.202C21.802 20.55 22.202 19.85 21.902 19.35L17.302 11.35Z" fill="#035A4B" />
+								<path opacity="0.3" d="M12.002 20.55H2.802C2.202 20.55 1.80202 19.85 2.10202 19.35L6.70203 11.45L12.002 20.55ZM11.302 3.45L6.70203 11.35H17.302L12.702 3.45C12.402 2.85 11.602 2.85 11.302 3.45Z" fill="#035A4B" />
 								</svg>
-						  	</span>
+							</span>
 
 							<h4 class="text-muted">Project Budget Control</h4>
 							<p>Set spending limits for yout project, track your progress effortlessly and analyze if you're at risk of going over budget.</p>
@@ -118,7 +118,7 @@
 							
 						</div>
 
-						<div class="d-grid  mt-6">
+						<div class="d-grid mt-6">
 							@guest
 								<a class="btn btn-primary btn-transition" href="{{ route('home.checkout') }}">Get started</a>
 							@endguest
@@ -129,14 +129,14 @@
 									{{-- <a class="btn btn-primary btn-transition" href="#">You already Have This</a> --}}
 									<div class="alert alert-soft-info" role="alert">
 										<div class="d-flex">
-										  <div class="flex-shrink-0">
+										<div class="flex-shrink-0">
 											<i class="bi bi-check-circle"></i>
-										  </div>
-										  <div class="flex-grow-1 ms-2">
-											You have already Purchased our service! <a  class="text-primary" href="{{ route('accounts.show',auth()->user()->account_id) }}">View Details</a>
-										  </div>
 										</div>
-									  </div>
+										<div class="flex-grow-1 ms-2">
+											You have already Purchased our service! <a class="text-primary" href="{{ route('accounts.show',auth()->user()->account_id) }}">View Details</a>
+										</div>
+										</div>
+									</div>
 								@endif
 							@endauth
 							<p class="small mt-2">All you need to start streamlining your Purchasing. No hidden costs.</p>

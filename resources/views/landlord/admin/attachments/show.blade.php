@@ -20,7 +20,7 @@
 			<x-landlord.show.my-text	value="{{ $attachment->org_file_name }}" label="Org File Name"/>
 
 			<x-landlord.show.my-text	value="{{ $attachment->file_type }}" label="Type"/>
-			<x-landlord.show.my-text	value="{{ number_format($attachment->file_size / 1048576,2)  }}" label="Size (MB)"/>
+			<x-landlord.show.my-text	value="{{ number_format($attachment->file_size / 1048576,2) }}" label="Size (MB)"/>
 			<x-landlord.show.my-text	value="{{ $attachment->owner->name }}" label="Owner"/>
 			<x-landlord.show.my-text	value="{{ $attachment->summary }}" c/>
 			<x-landlord.show.my-badge	value="{{ $attachment->status }}" label="Status"/>
@@ -36,17 +36,17 @@
 				</div>
 			</div>
 
-			<x-landlord.show.my-text  value="{{ $attachment->user_created_by->name }}" label="Crated By"/>
-			<x-landlord.show.my-date-time  value="{{ $attachment->created_at }}"/>
-			<x-landlord.show.my-text  value="{{ $attachment->user_updated_by->name }}"  label="Updated By"/>
-			<x-landlord.show.my-date-time  value="{{ $attachment->updated_at }}"/>
+			<x-landlord.show.my-text value="{{ $attachment->user_created_by->name }}" label="Crated By"/>
+			<x-landlord.show.my-date-time value="{{ $attachment->created_at }}"/>
+			<x-landlord.show.my-text value="{{ $attachment->user_updated_by->name }}" label="Updated By"/>
+			<x-landlord.show.my-date-time value="{{ $attachment->updated_at }}"/>
 		</div>
 		<!-- End Body -->
 
 		<!-- Footer -->
 		<div class="card-footer pt-0">
 			<div class="d-flex justify-content-end gap-3">
-			  <a class="btn btn-primary" href="{{ route('attachments.edit',$attachment->id) }}">Edit</a>
+			 <a class="btn btn-primary" href="{{ route('attachments.edit',$attachment->id) }}">Edit</a>
 			</div>
 		</div>
 		<!-- End Footer -->
