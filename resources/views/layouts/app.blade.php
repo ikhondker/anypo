@@ -145,7 +145,7 @@
 									@can('create', App\Models\Tenant\Lookup\Supplier::class)
 										<a class="dropdown-item" href="{{ route('suppliers.create') }}">Create Supplier</a>
 									@endcan
-									@can('create', App\Models\Tenant\Project::class)
+									@can('create', App\Models\Tenant\Lookup\Project::class)
 										<a class="dropdown-item" href="{{ route('projects.create') }}">Create Project</a>
 									@endcan
 									@can('create', App\Models\Tenant\Admin\User::class)

@@ -143,7 +143,7 @@
 							@foreach ($suppliers as $supplier)
 							<tr>
 								<td>{{ $suppliers->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('suppliers.show',$supplier->id) }}">{{ $supplier->name }}</a></td>
+								<td><a class="text-info" href="{{ route('suppliers.po',$supplier->id) }}">{{ $supplier->name }}</a></td>
 								<td>{{ $supplier->contact_person }}</td>
 								<td>{{ $supplier->cell }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_pr_booked + $supplier->amount_pr"/></td>
@@ -153,12 +153,8 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_payment"/></td>
 								<td><x-tenant.list.my-closed :value="$supplier->closed"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Project" :id="$supplier->id" :show="true"/>
-									<a href="{{ route('suppliers.destroy',$supplier->id) }}" class="me-2 sw2-advance"
-										data-entity="Project" data-name="{{ $supplier->name }}" data-status="{{ ($supplier->closed ? 'Open' : 'Close') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($supplier->closed ? 'Open' : 'Close') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($supplier->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
+									<a href="{{ route('suppliers.show',$supplier->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach

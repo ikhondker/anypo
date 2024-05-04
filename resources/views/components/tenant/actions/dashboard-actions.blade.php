@@ -18,7 +18,7 @@
 		@can('create', App\Models\Tenant\Admin\User::class)
 			<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create User</a>
 		@endcan
-		@can('create', App\Models\Tenant\Project::class)
+		@can('create', App\Models\Tenant\Lookup\Project::class)
 			<a class="dropdown-item" href="{{ route('projects.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Project</a>
 		@endcan
 

@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title','Project')
+@section('title','Project Spends')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Projects</li>
+	<li class="breadcrumb-item active">Project Spends</li>
 @endsection
 
 
@@ -10,12 +10,19 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Project
+			Project Spends
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Project"/>
 		@endslot
 	</x-tenant.page-header>
+
+
+	<div class="row">
+		<x-tenant.charts.spends-by-project-bar/>
+		<x-tenant.charts.spends-by-project-count-bar/>
+	</div>
+
 
 	<div class="row">
 		<div class="col-md-6 col-xxl-3 d-flex">
@@ -50,7 +57,7 @@
 						</div>
 					</div>
 					@php
-						use App\Models\Tenant\Project;
+						use App\Models\Tenant\Lookup\Project;
 						$count_total	= Project::count();
 						$count_open		= Project::where('closed',false )->count();
 						$count_closed	= Project::where('closed',true )->count();
@@ -101,6 +108,8 @@
 
 	</div>
 
+
+
 	<div class="row">
 		<div class="col-12">
 
@@ -142,7 +151,7 @@
 							@foreach ($projects as $project)
 							<tr>
 								<td>{{ $projects->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->code }}</a></td>
+								<td><a class="text-info" href="{{ route('projects.po',$project->id) }}">{{ $project->code }}</a></td>
 								<td>{{ $project->pm->name }}</td>
 								<td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount"/></td>
@@ -155,12 +164,8 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_payment"/></td>
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Project" :id="$project->id" :show="true"/>
-									<a href="{{ route('projects.destroy',$project->id) }}" class="me-2 sw2-advance"
-										data-entity="Project" data-name="{{ $project->name }}" data-status="{{ ($project->closed ? 'Open' : 'Close') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($project->closed ? 'Open' : 'Close') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($project->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
+									<a href="{{ route('projects.show',$project->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+										<i class="align-middle" data-feather="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies\Tenant;
+namespace App\Policies\Tenant\Lookup;
 
-use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\Project;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -85,6 +85,14 @@ class ProjectPolicy
 	public function export(User $user): bool
 	{
 		return $user->isAdmin();
+	}
+
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function spends(User $user): bool
+	{
+		return ($user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 }

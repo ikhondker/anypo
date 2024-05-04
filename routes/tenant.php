@@ -46,6 +46,7 @@ use App\Http\Controllers\Tenant\Lookup\UomController;
 use App\Http\Controllers\Tenant\Lookup\UploadItemController;
 use App\Http\Controllers\Tenant\Lookup\WarehouseController;
 use App\Http\Controllers\Tenant\Lookup\BankAccountController;
+use App\Http\Controllers\Tenant\Lookup\ProjectController;
 
 use App\Http\Controllers\Tenant\Manage\EntityController;
 use App\Http\Controllers\Tenant\Manage\MenuController;
@@ -72,7 +73,7 @@ use App\Http\Controllers\Tenant\PrController;
 use App\Http\Controllers\Tenant\PrlController;
 use App\Http\Controllers\Tenant\PoController;
 use App\Http\Controllers\Tenant\PolController;
-use App\Http\Controllers\Tenant\ProjectController;
+
 use App\Http\Controllers\Tenant\ReceiptController;
 use App\Http\Controllers\Tenant\InvoiceController;
 //use App\Http\Controllers\Tenant\InvoiceLinesController;
@@ -266,8 +267,6 @@ Route::middleware([
 						
 	});
 
-
-
 /**
 * ==================================================================================
 * 3. Superior Routes excl User (Need Auth+ Email Verification + can:superior)
@@ -279,21 +278,19 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
-				/* ======================== Supplier ======================================== */
-				Route::get('/supplier/spends',[SupplierController::class,'spends'])->name('suppliers.spends');
-				
+
 				/* ======================== Item ======================================== */
 				Route::get('/items/delete/{item}',[ItemController::class,'destroy'])->name('items.destroy');
 
 				/* ======================== Project ======================================== */
 				Route::resource('projects', ProjectController::class);
 				Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
-				Route::get('/project/spends',[ProjectController::class,'spends'])->name('projects.spends');
 				Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
 				Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
 				Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 				Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
-			
+				Route::get('/projects/po/{project}',[ProjectController::class,'po'])->name('projects.po');
+
 				/* ======================== Dbu ======================================== */
 				Route::resource('dbus', DbuController::class);
 				Route::get('/dbu/export',[DbuController::class,'export'])->name('dbus.export');
@@ -305,6 +302,9 @@ Route::middleware([
 				Route::get('/pos/attachments/{po}',[PoController::class,'attachments'])->name('pos.attachments');
 				Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
 				Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
+				Route::get('/pos/export-for-supplier/{supplier}',[PoController::class,'exportForSupplier'])->name('pos.export-for-supplier');
+				Route::get('/pos/export-for-project/{project}',[PoController::class,'exportForProject'])->name('pos.export-for-project');
+
 				Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
 				Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
 				Route::get('/pos/recalculate/{po}',[PoController::class,'recalculate'])->name('pos.recalculate');
@@ -407,6 +407,15 @@ Route::middleware([
 	InitializeTenancyByDomain::class,
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
+
+		/* ======================== Supplier ======================================== */
+		Route::get('/supplier/spends',[SupplierController::class,'spends'])->name('suppliers.spends');
+		Route::get('/suppliers/po/{supplier}',[SupplierController::class,'po'])->name('suppliers.po');
+
+		/* ======================== Project ======================================== */
+		Route::get('/project/spends',[ProjectController::class,'spends'])->name('projects.spends');
+
+
 		/* ======================== Budget ======================================== */
 		Route::resource('budgets', BudgetController::class);
 		Route::get('/budget/export',[BudgetController::class,'export'])->name('budgets.export');
@@ -432,9 +441,6 @@ Route::middleware([
 
 		/* ======================== Supplier ======================================== */
 		Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
-
-
-				
 
 		/* ======================== UploadItem ======================================== */
 		Route::resource('upload-items', UploadItemController::class);

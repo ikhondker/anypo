@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title','Project Spends')
+@section('title','Project')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Project Spends</li>
+	<li class="breadcrumb-item active">Projects</li>
 @endsection
 
 
@@ -10,19 +10,12 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Project Spends
+			Project
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Project"/>
 		@endslot
 	</x-tenant.page-header>
-
-
-	<div class="row">
-		<x-tenant.charts.spends-by-project-bar/>
-		<x-tenant.charts.spends-by-project-count-bar/>
-	</div>
-
 
 	<div class="row">
 		<div class="col-md-6 col-xxl-3 d-flex">
@@ -57,7 +50,7 @@
 						</div>
 					</div>
 					@php
-						use App\Models\Tenant\Project;
+						use App\Models\Tenant\Lookup\Project;
 						$count_total	= Project::count();
 						$count_open		= Project::where('closed',false )->count();
 						$count_closed	= Project::where('closed',true )->count();
@@ -107,8 +100,6 @@
 		</div>
 
 	</div>
-
-
 
 	<div class="row">
 		<div class="col-12">

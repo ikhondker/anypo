@@ -87,4 +87,12 @@ class SupplierPolicy
 		return true;
 	}
 
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function spends(User $user): bool
+	{
+		return ($user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
 }

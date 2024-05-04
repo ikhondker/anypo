@@ -41,7 +41,7 @@ use App\Models\Tenant\Admin\Attachment;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
-use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
 
@@ -678,33 +678,77 @@ class PoController extends Controller
 
 	}
 
-	public function export()
+	public function exportForSupplier($supplier_id)
+	{
+		$this->authorize('export', Po::class);
+		return self::export($supplier_id,null);
+
+	}
+	public function exportForProject($project_id)
+	{
+		$this->authorize('export', Po::class);
+		return self::export(null, $project_id);
+
+	}
+	public function export($supplier_id = null, $project_id = null)
 	{
 		$this->authorize('export', Po::class);
 
-		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-			$requestor_id 	= auth()->user()->id;
+		if ($supplier_id <> null) {
+			$whereSupplier = 'po.supplier_id = '. $supplier_id;
 		} else {
-			$requestor_id 	= '';
+			$whereSupplier = '1 = 1';
+		}
+		if ( $project_id <> null ) {
+			$whereProject = 'po.project_id = '. $project_id;
+		} else {
+			$whereProject = '1 = 1';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$whereRequestor = 'po.requestor_id = '. auth()->user()->id;
+		} else {
+			$whereRequestor = '1 = 1';
 		}
 
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
 			$dept_id 	= auth()->user()->dept_id;
+			$whereDept = 'po.dept_id = '. auth()->user()->dept_id;
 		} else {
-			$dept_id 	= '';
+			$whereDept = '1 = 1';
 		}
 		
-		$data = DB::select("
+		$sql = "
 		SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
 		po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date 
-		FROM pos po,depts d, projects p, suppliers s, users u 
+		FROM pos po, depts d, projects p, suppliers s, users u 
 		WHERE po.dept_id=d.id 
 		AND po.project_id=p.id 
 		AND po.supplier_id=s.id 
 		AND po.requestor_id=u.id
-		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
-		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
-		ORDER BY po.id DESC	");
+		AND ". $whereRequestor  ."
+		AND ". $whereDept  ."
+		AND ". $whereSupplier  ."
+		AND ". $whereProject  ."
+		ORDER BY po.id DESC	";
+
+		Log::debug('Value of id=' . $sql);
+		$data = DB::select($sql); 
+
+	
+		
+		// $data = DB::select("
+		// SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		// po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date 
+		// FROM pos po, depts d, projects p, suppliers s, users u 
+		// WHERE po.dept_id=d.id 
+		// AND po.project_id=p.id 
+		// AND po.supplier_id=s.id 
+		// AND po.requestor_id=u.id
+		// AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+		// AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
+		// ORDER BY po.id DESC	");
+
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('pos', $dataArray);

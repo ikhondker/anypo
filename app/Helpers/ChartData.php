@@ -26,7 +26,7 @@ use Str;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Dbu;
-use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Receipt;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\Payment;

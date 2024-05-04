@@ -85,6 +85,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Lookup\UploadItem'	=> 'App\Policies\Tenant\Lookup\UploadItemPolicy',
 		'App\Models\Tenant\Lookup\Warehouse'	=> 'App\Policies\Tenant\Lookup\WarehousePolicy',
 		'App\Models\Tenant\Lookup\BankAccount'	=> 'App\Policies\Tenant\Lookup\BankAccountPolicy',
+		'App\Models\Tenant\Lookup\Project'		=> 'App\Policies\Tenant\Lookup\ProjectPolicy',
 
 		'App\Models\Tenant\Manage\Entity'		=> 'App\Policies\Tenant\Manage\EntityPolicy',
 		'App\Models\Tenant\Manage\Status' 		=> 'App\Policies\Tenant\Manage\StatusPolicy',
@@ -110,7 +111,6 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Pol'					=> 'App\Policies\Tenant\PolPolicy',
 		'App\Models\Tenant\Pr'					=> 'App\Policies\Tenant\PrPolicy',
 		'App\Models\Tenant\Prl'					=> 'App\Policies\Tenant\PrlPolicy',
-		'App\Models\Tenant\Project'				=> 'App\Policies\Tenant\ProjectPolicy',
 		'App\Models\Tenant\Invoice'				=> 'App\Policies\Tenant\InvoicePolicy',
 		'App\Models\Tenant\InvoiceLine'			=> 'App\Policies\Tenant\InvoiceLinePolicy',
 		'App\Models\Tenant\Payment'				=> 'App\Policies\Tenant\PaymentPolicy',

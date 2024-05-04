@@ -31,7 +31,7 @@ use App\Http\Requests\Tenant\UpdateInvoiceRequest;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Payment;
-use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Lookup\Supplier;
 # 2. Enums

@@ -7,6 +7,11 @@
 		<a class="dropdown-item" href="{{ route('projects.budget', $project->id) }}"><i class="align-middle me-1" data-feather="dollar-sign"></i> Budget Usage</a>
 		<a class="dropdown-item" href="{{ route('projects.edit', $id) }}"><i class="align-middle me-1" data-feather="lock"></i> Close Project *</a>
 		<a class="dropdown-item" href="{{ route('projects.attachments',$id) }}"><i class="align-middle me-1" data-feather="paperclip"></i> Attachments</a>
+		@can('spends', App\Models\Tenant\Lookup\Project::class)
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{{ route('projects.po', $project->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Project PO</a>
+		@endcan 
+
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('prs.export') }}"><i class="align-middle me-1" data-feather="download-cloud"></i> Download Requisitions</a>
 		<a class="dropdown-item" href="{{ route('prls.export') }}"><i class="align-middle me-1" data-feather="download-cloud"></i> Download Requisition Lines</a>

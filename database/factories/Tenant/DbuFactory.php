@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Models\Tenant\DeptBudget;
 use App\Models\User;
-use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Pr;
 

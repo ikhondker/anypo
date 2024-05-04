@@ -14,6 +14,7 @@
 		<a class="dropdown-item" href="{{ route('reports.po', $id) }}" target="_blank"><i class="align-middle me-1" data-feather="printer"></i> Print Purchase Order</a>
 		<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="printer"></i> Run PO Detail Report*</a>
 
+		
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('pos.edit', $id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Purchase Order</a>
 		<a class="dropdown-item" href="{{ route('pols.add-line', $id) }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Add Purchase Order Line</a>

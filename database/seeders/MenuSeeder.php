@@ -71,31 +71,33 @@ class MenuSeeder extends Seeder
 			* 2. Budget
 			* ==================================================================================
 			*/
-			[ 'raw_route_name' => 'budgets.index','route_name' => 'budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'budgets.show','route_name' => 'budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'budgets.edit','route_name' => 'budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'budgets.create','route_name' => 'budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'budgets.attachments','route_name' => 'budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'budgets.index','route_name' 		=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.show','route_name' 		=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.edit','route_name' 		=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.create','route_name' 	=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.attachments','route_name'=> 'budgets.index', 'node_name' 		=> 'budget'],
 
-			[ 'raw_route_name' => 'dept-budgets.index','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.show','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.edit','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.create','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.index','route_name' => 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.show','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.edit','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.create','route_name' => 'dept-budgets.index', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.attachments','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.budget','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.budget','route_name'=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 
-			[ 'raw_route_name' => 'projects.index','route_name' => 'projects.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'projects.show','route_name' => 'projects.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'projects.edit','route_name' => 'projects.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'projects.create','route_name' => 'projects.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'projects.attachments','route_name' => 'projects.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'projects.index','route_name' 	=> 'projects.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'projects.show','route_name' 		=> 'projects.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'projects.edit','route_name' 		=> 'projects.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'projects.create','route_name' 	=> 'projects.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'projects.attachments','route_name' => 'projects.index', 'node_name' 		=> 'budget'],
 
-			[ 'raw_route_name' => 'suppliers.spends','route_name' => 'suppliers.spends', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'projects.spends','route_name' => 'projects.spends', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'suppliers.spends','route_name' 	=> 'suppliers.spends', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'suppliers.po','route_name' 		=> 'suppliers.spends', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'projects.spends','route_name' 	=> 'projects.spends', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'projects.po','route_name' 		=> 'projects.spends', 'node_name' 		=> 'budget'],
 
-			[ 'raw_route_name' => 'dbus.index','route_name' => 'dbus.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dbus.show','route_name' => 'dbus.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dbus.edit','route_name' => 'dbus.index', 'node_name' => 'budget'],
+			[ 'raw_route_name' => 'dbus.index','route_name' 		=> 'dbus.index', 'node_name' 			=> 'budget'],
+			[ 'raw_route_name' => 'dbus.show','route_name' 			=> 'dbus.index', 'node_name' 			=> 'budget'],
+			[ 'raw_route_name' => 'dbus.edit','route_name' 			=> 'dbus.index', 'node_name' 			=> 'budget'],
 
 			/**
 			* ==================================================================================

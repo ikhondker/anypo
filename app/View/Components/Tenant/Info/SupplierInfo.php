@@ -5,19 +5,20 @@ namespace App\View\Components\Tenant\Info;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Tenant\Lookup\Project;
 
-class ProjectInfo extends Component
+use App\Models\Tenant\Lookup\Supplier;
+
+class SupplierInfo extends Component
 {
-	public $id;
-	public $project;
+	
+	public $supplier;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $id)
 	{
-		$this->project = Project::where('id', $id)->get()->first();
+		$this->supplier = Supplier::where('id', $id)->get()->first();
 	}
 
 	/**
@@ -25,6 +26,6 @@ class ProjectInfo extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.info.project-info');
+		return view('components.tenant.info.supplier-info');
 	}
 }

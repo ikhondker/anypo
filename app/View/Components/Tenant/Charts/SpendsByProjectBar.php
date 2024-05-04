@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\Project;
 use Illuminate\Support\Facades\Log;
 
 class SpendsByProjectBar extends Component

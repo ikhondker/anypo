@@ -63,22 +63,6 @@ class SupplierController extends Controller
 	}
 
 	/**
-	 * Display a listing of the resource.
-	 */
-	public function spends()
-	{
-		$this->authorize('viewAny',Supplier::class);
-
-		$suppliers = Supplier::query();
-		if (request('term')) {
-			$suppliers->where('name', 'Like', '%' . request('term') . '%');
-		}
-		$suppliers = $suppliers->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.suppliers.spends', compact('suppliers'));
-	}
-
-
-	/**
 	 * Show the form for creating a new resource.
 	 */
 	public function create()
@@ -150,6 +134,31 @@ class SupplierController extends Controller
 
 		return redirect()->route('suppliers.index')->with('success', 'Supplier status Updated successfully');
 	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function spends()
+	{
+		$this->authorize('viewAny',Supplier::class);
+
+		$suppliers = Supplier::query();
+		if (request('term')) {
+			$suppliers->where('name', 'Like', '%' . request('term') . '%');
+		}
+		$suppliers = $suppliers->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.lookup.suppliers.spends', compact('suppliers'));
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function po(Supplier $supplier)
+	{
+		$this->authorize('view', $supplier);
+		return view('tenant.lookup.suppliers.po', compact('supplier'));
+	}
+
 
 	public function export()
 	{

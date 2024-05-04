@@ -9,7 +9,7 @@ use App\Models\Tenant\DeptBudget;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
-use App\Models\Tenant\Project;
+use App\Models\Tenant\Lookup\Project;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Po>
