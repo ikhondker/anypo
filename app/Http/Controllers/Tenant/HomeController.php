@@ -33,7 +33,7 @@ use App\Helpers\EventLog;
 # 4. Notifications
 use Notification;
 use App\Notifications\Tenant\Test;
-use App\Notifications\PrActions;
+use App\Notifications\Tenant\PrActions;
 # 5. Jobs
 # 6. Mails
 # 7. Rules
@@ -73,67 +73,21 @@ class HomeController extends Controller
 		return view('tenant.help.help');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 */
-	public function chksaveContact(StoreContactRequest $request)
-	{
-		$ENTITY	= 'CONTACT';
+	
 
-		//$request->merge(['ip'		=> Request::ip()]);
-		//$request->merge(['ip'		=> '127.0.01']);
-
-		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
-
-
-		$request->merge(['user_id'	=> $user_id]);
-		$request->merge(['ip'		=> $request->ip()]);
-
-		$request->validate([
-			'name'		=> 'required',
-			'email'		=> 'required|email',
-			//'phone'	=> 'required|digits:10|numeric',
-			'subject'	=> 'required',
-			'message'	=> 'required'
-		], [
-			'name.required'	=> 'Name is Required',
-			'email.unique'	=> 'Email is required.',
-		]);
-
-		// create contact
-		$contact = Contact::create($request->all());
-
-		// Upload File, if any, insert row in attachment table and get attachments id
-		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'	=> $contact->id ]);
-			$request->merge(['entity'		=> $ENTITY ]);
-			$attachment_id = FileUpload::aws($request);
-
-			// update back table with attachment_id
-			$contact->attachment_id = $attachment_id;
-			$contact->save();
-		}
-
-		// Send notification to the contact
-		$contact->notify(new Contacted($contact));
-
-		// Send notification to support manager
-		$mgr = User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
-		$mgr->notify(new Contacted($contact));
-
-		return redirect()->back()->with(['success' => 'Thank you for contacting us. We will contact you shortly.']);
-	}
-
-	public function testNotification1()
+	public function testNotification()
 	{
 		// Send notification to Pr creator
 		$pr = PR::where('id', 1001)->first();
-		$to = User::where('id', $pr->requestor_id)->first();
-		$to->notify(new PrActions($to, $pr, WflActionEnum::APPROVED->value));
+		$action = WflActionEnum::SUBMITTED->value;
+		$actionURL = route('prs.show', $pr->id);
+		$requestor = User::where('id',1005)->first();
+		$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
+
 		dd('Done: '. now());
 	}
 
-	public function testNotification()
+	public function testNotification2()
 	{
 		//$user = User::first();
 		$user = User::where('id', 1001)->first();

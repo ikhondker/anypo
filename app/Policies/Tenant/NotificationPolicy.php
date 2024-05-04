@@ -2,7 +2,7 @@
 
 namespace App\Policies\Tenant;
 
-use App\Models\Notification;
+use App\Models\Tenant\Notification;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

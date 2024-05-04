@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','All Notifications')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Notification</li>
+	<li class="breadcrumb-item active">Notifications</li>
 @endsection
 
 @section('content')
@@ -22,13 +22,9 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Notification" :export="false"/>
+				
 					<h5 class="card-title">
-						@if (request('term'))
-							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
-						@else
-							Notification Lists
-						@endif
+						All Notification Lists
 					</h5>
 					<h6 class="card-subtitle text-muted">List of Notifications.</h6>
 				</div>

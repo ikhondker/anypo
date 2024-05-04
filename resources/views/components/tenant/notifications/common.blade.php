@@ -30,9 +30,9 @@
 						<x-tenant.list.my-date-time :value="$notification->read_at"/>
 					</td>
 					<td class="table-action">
-						<a href="{{ route('notifications.show',$notification->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="align-middle" data-feather="eye"></i></a>
-						<a href="{{ route('notifications.read',$notification->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as Read"><i class="align-middle" data-feather="thumbs-up"></i></a>
-						<a href="{{ route('notifications.destroy',$notification->id) }}" class="me-2 modal-boolean" 
+						<a href="{{ route('notifications.show', $notification->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="align-middle" data-feather="eye"></i></a>
+						<a href="{{ route('notifications.read', $notification->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as Read"><i class="align-middle" data-feather="thumbs-up"></i></a>
+						<a href="{{ route('notifications.destroy', $notification->id) }}" class="me-2 modal-boolean sw2" 
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 							<i class="align-middle" data-feather="trash-2"></i>
 						</a>
@@ -46,4 +46,4 @@
 		@endif
 	</tbody>
 </table>
- @include('shared.includes.js.sw2')
+ 

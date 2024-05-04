@@ -9,8 +9,8 @@
 			<div class="dropdown-divider"></div>
 		@endif 
 
-		<a class="dropdown-item" href="{{ route('notifications.all') }}"><i class="align-middle me-1" data-feather="eye"></i> All Notifications</a>
 		<a class="dropdown-item" href="{{ route('notifications.index') }}"><i class="align-middle me-1" data-feather="edit"></i> Unread Notifications</a>
+		<a class="dropdown-item" href="{{ route('notifications.all') }}"><i class="align-middle me-1" data-feather="eye"></i> All Notifications</a>
 		
 		<div class="dropdown-divider"></div>
 		
@@ -18,8 +18,8 @@
 			<a class="dropdown-item sw2" href="{{ route('notifications.destroy', $notification->id) }}" title="Delete Notification">
 				<i class="align-middle me-1 text-danger" data-feather="trash"></i> Delete Notification</a>
 		@endif 
-			<a class="dropdown-item sw2" href="{{ route('notifications.purge') }}" title=" Purge Notifications">
-				<i class="align-middle me-1 text-danger" data-feather="trash"></i> Purge All Notifications</a>
+		<a class="dropdown-item sw2" href="{{ route('notifications.purge') }}" title=" Purge Notifications">
+			<i class="align-middle me-1 text-danger" data-feather="trash"></i> Purge All Notifications</a>
 	
 	</div>
 </div>

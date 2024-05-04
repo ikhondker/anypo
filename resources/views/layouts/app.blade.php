@@ -34,13 +34,6 @@
 	{{-- @livewireStyles --}}
 
 </head>
-<!--
-  HOW TO USE:
-  data-theme: default (default), dark, light
-  data-layout: fluid (default), boxed
-  data-sidebar-position: left (default), right
-  data-sidebar-behavior: sticky (default), fixed, compact
--->
 
 <body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
 	<div class="wrapper">

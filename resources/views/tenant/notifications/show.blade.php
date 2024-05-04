@@ -23,17 +23,23 @@
 				{{-- <div class="card-header">
 					<h5 class="card-title">Notification Info</h5>
 				</div> --}}
+				<div class="card-header">
+					<a href="{{ route('notifications.index') }}" class="btn btn-primary float-end me-2"><i data-feather="list"></i> Notifications List</a>
+					{{-- <h5 class="card-title">{{ $notification->data['subject'] }}</h5> --}}
+					{{-- <h6 class="card-subtitle text-muted">List of Purchase Requisitions.	</h6> --}}
+				</div>
+
 				<div class="card-body">
 					
-					<h4><i data-feather="bell" class="fea text-secondary"></i>{{ $notification->data['subject'] }}</h4>
+					<h4 class="text-info">{{ $notification->data['subject'] }}</h4>
 					<span class="text-xs">
 						From: {{ $notification->data['from'] }} 
-						<br>
+						</br>
 						<small>at {{ strtoupper(date('d-M-Y H:i:s', strtotime($notification->created_at))) }}</small>
 					</span>
 					<hr>
 					{{-- <p>&nbsp;</p> --}}
-					<p><strong>{{ $notification->data['greeting'] }}</strong></p>
+					<p><strong class="">{{ $notification->data['greeting'] }}</strong></p>
 					{{-- <p>&nbsp;</p> --}}
 					<p>{{ $notification->data['body'] }}</p>
 					<a class="btn btn-info" href="{{ $notification->data['actionURL'] }}"><i data-feather="eye"></i> {{ $notification->data['actionText'] }}</a>
@@ -47,16 +53,9 @@
 						<small class="text-muted"> Read At: {{ $notification->read_at }}</small>
 						@endif
 					</span>
-
-					{{-- <p class=""><small class="text-muted">{{ $ticket->content }}</small></p>
-					<p class="text-xs"><small class="text-muted">Created By: {{ $ticket->owner->name }}</small><small class="text-muted"> on : {{ $ticket->ticket_date }}</small></p>
-					<p class=""><small class="text-muted">Attachment: <x-landlord.attachment.list-oneentity="{{ $entity }}" aid="{{ $ticket->id }}"/></small></p> --}}
 					<hr>
-					<div class="float-end mt-n1">
-						<a class="btn btn-primary" href="{{ route('notifications.index') }}"><i data-feather="list"></i> Notifications List</a>
-					</div>
 					@if ( $notification->read_at == "")
-					<a class="btn btn-success" href="{{ route('notifications.read',$notification->id) }}"><i data-feather="check-circle"></i> Mark as Read</a>
+						<a class="btn btn-success" href="{{ route('notifications.read',$notification->id) }}"><i data-feather="check-circle"></i> Mark as Read</a>
 					@endif
 				</div>
 			</div>

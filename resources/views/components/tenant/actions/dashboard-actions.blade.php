@@ -4,6 +4,7 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
+		<a class="dropdown-item" href="{{ route('prs.my-prs') }}"><i class="align-middle me-1" data-feather="user-plus"></i> My Requisitions</a>
 		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Requisition</a>
 		@can('create', App\Models\Tenant\Po::class)
 			<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create PO</a>

@@ -670,7 +670,8 @@ Route::middleware([
 * ==================================================================================
 */
 Route::middleware([
-	'web','auth', 'verified','can:system',
+	// TODO 'web','auth', 'verified','can:system',
+	'web','auth', 'verified',
 	InitializeTenancyByDomain::class,
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
@@ -698,8 +699,6 @@ Route::middleware([
 		Route::get('/design', function () {
 			return view('design');
 		})->name('design');
-
-		
 
 	});
 

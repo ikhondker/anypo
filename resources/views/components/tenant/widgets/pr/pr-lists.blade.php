@@ -4,7 +4,6 @@
 		<div class="card">
 			<div class="card-header">
 				<a href="{{ route('prs.create') }}" class="btn btn-primary float-end me-2"><i data-feather="plus-square"></i> Create Requisition</a>
-				<a href="{{ route('prs.index') }}" class="btn btn-primary float-end me-2"><i data-feather="list"></i> All Requisitions</a>
 				<h5 class="card-title">
 					{{ $card_header }}
 				</h5>
