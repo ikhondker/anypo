@@ -17,7 +17,7 @@ class Category extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'enable', 'updated_at', 'updated_by',
+		'name', 'group_id', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
 	];
 
 

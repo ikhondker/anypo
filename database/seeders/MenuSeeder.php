@@ -84,12 +84,6 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'dept-budgets.attachments','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.budget','route_name'=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 
-			[ 'raw_route_name' => 'projects.index','route_name' 	=> 'projects.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'projects.show','route_name' 		=> 'projects.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'projects.edit','route_name' 		=> 'projects.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'projects.create','route_name' 	=> 'projects.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'projects.attachments','route_name' => 'projects.index', 'node_name' 		=> 'budget'],
-
 			[ 'raw_route_name' => 'suppliers.spends','route_name' 	=> 'suppliers.spends', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'suppliers.po','route_name' 		=> 'suppliers.spends', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'projects.spends','route_name' 	=> 'projects.spends', 'node_name' 		=> 'budget'],
@@ -105,8 +99,8 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'reports.index','route_name' => 'reports.index', 'node_name' => ''],
-			[ 'raw_route_name' => 'reports.parameter','route_name' => 'reports.index', 'node_name' => ''],
+			[ 'raw_route_name' => 'reports.index','route_name' 		=> 'reports.index', 'node_name' 		=> ''],
+			[ 'raw_route_name' => 'reports.parameter','route_name' 	=> 'reports.index', 'node_name' 		=> ''],
 
 
 			/**
@@ -115,21 +109,21 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'items.index','route_name' => 'items.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'items.show','route_name' => 'items.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'items.edit','route_name' => 'items.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'items.create','route_name' => 'items.index', 'node_name' => 'master'],
+			[ 'raw_route_name' => 'items.index','route_name' 		=> 'items.index', 'node_name' 			=> 'master'],
+			[ 'raw_route_name' => 'items.show','route_name' 		=> 'items.index', 'node_name' 			=> 'master'],
+			[ 'raw_route_name' => 'items.edit','route_name' 		=> 'items.index', 'node_name' 			=> 'master'],
+			[ 'raw_route_name' => 'items.create','route_name' 		=> 'items.index', 'node_name' 			=> 'master'],
 
-			[ 'raw_route_name' => 'suppliers.index','route_name' => 'suppliers.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'suppliers.show','route_name' => 'suppliers.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'suppliers.edit','route_name' => 'suppliers.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'suppliers.create','route_name' => 'suppliers.index', 'node_name' => 'master'],
+			[ 'raw_route_name' => 'suppliers.index','route_name' 	=> 'suppliers.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'suppliers.show','route_name' 	=> 'suppliers.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'suppliers.edit','route_name' 	=> 'suppliers.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'suppliers.create','route_name' 	=> 'suppliers.index', 'node_name' 		=> 'master'],
 
-			[ 'raw_route_name' => 'projects.index','route_name' => 'projects.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'projects.show','route_name' => 'projects.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'projects.edit','route_name' => 'projects.index', 'node_name' => 'master'],
-			[ 'raw_route_name' => 'projects.create','route_name' => 'projects.index', 'node_name' => 'master'],
-
+			[ 'raw_route_name' => 'projects.index','route_name' 	=> 'projects.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'projects.show','route_name' 		=> 'projects.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'projects.edit','route_name' 		=> 'projects.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'projects.create','route_name' 	=> 'projects.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'projects.attachments','route_name' => 'projects.index', 'node_name' 		=> 'budget'],
 
 			/**
 			* ==================================================================================
@@ -137,23 +131,23 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'currencies.index','route_name' => 'currencies.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'currencies.edit','route_name' => 'currencies.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'currencies.create','route_name' => 'currencies.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'currencies.index','route_name'	=> 'currencies.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'currencies.edit','route_name' 	=> 'currencies.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'currencies.create','route_name' 	=> 'currencies.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'depts.index','route_name' => 'depts.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'depts.show','route_name' => 'depts.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'depts.edit','route_name' => 'depts.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'depts.create','route_name' => 'depts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'depts.index','route_name' 		=> 'depts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'depts.show','route_name' 		=> 'depts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'depts.edit','route_name' 		=> 'depts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'depts.create','route_name' 		=> 'depts.index', 'node_name' => 'lookups'],
 			
 			[ 'raw_route_name' => 'designations.index','route_name' => 'designations.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'designations.edit','route_name' => 'designations.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'designations.create','route_name' => 'designations.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'designations.edit','route_name' 	=> 'designations.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'designations.create','route_name'=> 'designations.index', 'node_name' => 'lookups'],
 			
-			[ 'raw_route_name' => 'oems.index','route_name' => 'oems.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'oems.edit','route_name' => 'oems.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'oems.index','route_name' 		=> 'oems.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'oems.edit','route_name' 			=> 'oems.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'rates.index','route_name' => 'rates.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'rates.index','route_name' 		=> 'rates.index', 'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'warehouses.index','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.show','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
