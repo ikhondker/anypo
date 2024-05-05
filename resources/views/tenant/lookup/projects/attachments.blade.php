@@ -9,9 +9,8 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Project"/>
-			<x-tenant.buttons.header.create object="Project"/>
-			<x-tenant.buttons.header.edit object="Project" :id="$project->id"/>
-			<a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Project</a>
+			<x-tenant.actions.project-actions id="{{ $project->id }}"/>
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -19,8 +18,6 @@
 
 	
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PROJECT->value }}" aid="{{ $project->id }}"/>
-
-	@include('shared.includes.js.sw2-advance')
 
 @endsection
 

@@ -87,6 +87,6 @@
 	</div>
 	<!-- End Card -->
 
-	@include('shared.includes.js.sw2-advance')
+	
 
 @endsection

@@ -46,7 +46,7 @@ class ProjectPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return ($user->isBuyer() || $user->isAdmin());
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -54,7 +54,7 @@ class ProjectPolicy
 	 */
 	public function update(User $user, Project $project): bool
 	{
-		return ($user->isBuyer() || $user->isAdmin());
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**

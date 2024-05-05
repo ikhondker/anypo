@@ -42,7 +42,7 @@
 								<th>Code</th>
 								<th>PM</th>
 								<th>Start-End</th>
-							
+
 								<th class="text-end">Budget</th>
 								<th class="text-end">PR</th>
 								<th class="text-end">Available (PR)</th>
@@ -96,7 +96,7 @@
 	</div>
 	 <!-- end row -->
 
-	 @include('shared.includes.js.sw2-advance')
+	 
 
 @endsection
 

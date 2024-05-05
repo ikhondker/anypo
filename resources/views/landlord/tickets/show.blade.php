@@ -104,7 +104,7 @@
 	<x-landlord.widget.ticket-comments id="{{ $ticket->id }}"/>
 	<!-- /.card-ticket-comments -->
 
-	@include('shared.includes.js.sw2')
+	
 	
 </div>
 

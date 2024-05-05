@@ -43,7 +43,7 @@
 						
 						<x-tenant.create.name/>
 						
-						<x-tenant.create.price/>
+						<x-tenant.create.price-fc/>
 
 
 						<div class="mb-3">

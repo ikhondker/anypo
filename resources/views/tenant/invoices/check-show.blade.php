@@ -37,6 +37,6 @@
 
 	<x-tenant.widgets.po.payments :id="$invoice->id" />
 
-	@include('shared.includes.js.sw2-advance')
+	
 @endsection
 

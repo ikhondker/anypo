@@ -239,7 +239,8 @@ Route::middleware([
 		/* ======================== Project ======================================== */
 		Route::resource('projects', ProjectController::class);
 		Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
-
+		Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
+		
 		/* ======================== Pr ======================================== */
 		Route::resource('prs', PrController::class);
 		Route::get('/pr/my-prs',[PrController::class,'myPr'])->name('prs.my-prs');
@@ -290,7 +291,7 @@ Route::middleware([
 
 				/* ======================== Project ======================================== */
 				Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
-				Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
+				
 				Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 				Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
 				Route::get('/projects/po/{project}',[ProjectController::class,'po'])->name('projects.po');

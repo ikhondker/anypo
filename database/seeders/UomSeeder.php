@@ -35,13 +35,13 @@ class UomSeeder extends Seeder
 			],
 			[
 				'id' 			=> 1003,
-				'name' 			=> 'kg',
+				'name' 			=> 'Mg',
 				'uom_class_id' 	=> '1003',
 				'default' 		=> true,
 			],
 			[
 				'id' 			=> 1004,
-				'name' 			=> 'litre',
+				'name' 			=> 'Litre',
 				'uom_class_id' 	=> '1004',
 				'default' 		=> true,
 			],

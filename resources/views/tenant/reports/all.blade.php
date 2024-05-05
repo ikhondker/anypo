@@ -125,7 +125,7 @@
 	</div>
 	 <!-- end row -->
 
-	@include('shared.includes.js.sw2-advance')
+	
 	
 @endsection
 

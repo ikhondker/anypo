@@ -9,24 +9,25 @@
 		@can('create', App\Models\Tenant\Po::class)
 			<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create PO</a>
 		@endcan
-		@can('create', App\Models\Tenant\Lookup\Supplier::class)
-			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Supplier</a>
-		@endcan
-		@can('create', App\Models\Tenant\Lookup\Items::class)
+		<div class="dropdown-divider"></div>
+		@can('create', App\Models\Tenant\Lookup\Item::class)
 			<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Item</a>
 		@endcan
-		<div class="dropdown-divider"></div>
-		@can('create', App\Models\Tenant\Admin\User::class)
-			<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create User</a>
+		@can('create', App\Models\Tenant\Lookup\Supplier::class)
+			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Supplier</a>
 		@endcan
 		@can('create', App\Models\Tenant\Lookup\Project::class)
 			<a class="dropdown-item" href="{{ route('projects.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Project</a>
 		@endcan
-
+		@can('create', App\Models\Tenant\Admin\User::class)
+		<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create User</a>
+		@endcan
 		@can('viewAny', App\Models\Tenant\Budget::class)
+			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('budgets.index') }}"><i class="align-middle me-1" data-feather="eye"></i> View Budget</a>
 		@endcan
 		@can('viewAny', App\Models\Tenant\DeptBudget::class)
+			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('dept-budgets.index') }}"><i class="align-middle me-1" data-feather="eye"></i> View Dept Budget</a>
 		@endcan
 

@@ -120,4 +120,3 @@
 </tr>
 
 @include('tenant.includes.js.calculate-po-amount')
-@include('shared.includes.js.sw2-advance')

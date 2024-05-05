@@ -31,8 +31,16 @@
 					<x-tenant.show.my-date		value="{{ $project->start_date }}" label="Start Date"/>
 					<x-tenant.show.my-date		value="{{ $project->end_date }}" label="End Date"/>
 					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
-					<x-tenant.show.my-boolean	value="{{ $project->closed }}" label="Closed?"/>
-					<x-tenant.show.my-text-area		value="{{ $project->notes }}" label="Notes"/>
+					<x-tenant.show.my-closed	value="{{ $project->closed }}"/>
+					<x-tenant.show.my-text-area	value="{{ $project->notes }}" label="Notes"/>
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">Attachments :</span>
+						</div>
+						<div class="col-sm-9">
+							<x-tenant.attachment.all entity="PROJECT" aid="{{ $project->id }}"/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -40,7 +40,7 @@
 		 <!-- end col -->
 	</div>
 	 <!-- end row -->
-	 @include('shared.includes.js.sw2')
+	 
 
 @endsection
 

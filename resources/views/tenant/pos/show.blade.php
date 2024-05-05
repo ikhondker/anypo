@@ -60,7 +60,7 @@
 		<x-tenant.widgets.wfl.get-approval wfid="{{ $po->wf_id }}" />
 	@endif 
 
-	@include('shared.includes.js.sw2-advance')
+	
 	
 @endsection
 

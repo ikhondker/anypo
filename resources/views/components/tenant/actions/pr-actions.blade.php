@@ -34,7 +34,6 @@
 				<i class="align-middle me-1 text-danger" data-feather="refresh-cw"></i> Reset Workflow**</a>
 		@endcan
 
-
 		<a class="dropdown-item sw2-advance" href="{{ route('prs.cancel', $id) }}"
 			data-entity="" data-name="PR#{{ $id }}" data-status="Cancel"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Requisition">

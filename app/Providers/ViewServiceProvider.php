@@ -89,7 +89,7 @@ class ViewServiceProvider extends ServiceProvider
 
 		Facades\View::composer(['layouts.app','tenant.*',
 				'components.tenant.create.amount','components.tenant.edit.amount','components.tenant.show.my-amount',
-				'components.tenant.edit.price',
+				'components.tenant.edit.price','components.tenant.create.price-fc',
 				'components.tenant.dashboards.*','components.tenant.widgets.*','components.tenant.info.*'
 				], 
 				\App\View\Composers\SetupComposer::class);

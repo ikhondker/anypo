@@ -1,6 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+	// Tenant: Activity, Budget, Notification 
+	// Landlord: Ticket
 	$('.sw2').on('click', function (e) {
 		e.preventDefault();
 		const url = $(this).attr('href');

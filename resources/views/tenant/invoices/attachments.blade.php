@@ -23,7 +23,7 @@
 
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::INVOICE->value }}" aid="{{ $invoice->id }}"/>
 				
-	@include('shared.includes.js.sw2-advance')
+	
 
 @endsection
 

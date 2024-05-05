@@ -23,22 +23,13 @@
 					<div class="col mt-0">
 						<h5 class="card-title">Total Projects</h5>
 					</div>
-
 					<div class="col-auto">
 						<div class="stat stat-sm">
 							<i class="align-middle" data-feather="activity"></i>
 						</div>
 					</div>
 				</div>
-				@php
-					use App\Models\Tenant\Lookup\Project;
-					$count_total	= Project::count();
-					$count_open		= Project::where('closed',false )->count();
-					$count_closed	= Project::where('closed',true )->count();
-					//$count_draft	= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
-				@endphp
 				<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
-
 			</div>
 		</div>
 	</div>

@@ -27,6 +27,6 @@
 		</div>
 	</div>
 		
-	@include('shared.includes.js.sw2-advance')
+	
 @endsection
 

@@ -204,6 +204,6 @@
 	</form>
 	<!-- /.form end -->
 
-	@include('shared.includes.js.sw2-advance')
+	
 @endsection
 

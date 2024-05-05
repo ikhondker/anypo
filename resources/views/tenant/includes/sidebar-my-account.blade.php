@@ -12,7 +12,7 @@
 
 <li class="sidebar-item {{ ($_route_name == 'help' ? 'active' : '') }}">
 	<a class="sidebar-link" href="{{ route('help') }}">
-		<i class="align-middle" data-feather="help-circle"></i><span class="align-middle">Help & Support</span>
+		<i class="align-middle" data-feather="help-circle"></i><span class="align-middle">Help</span>
 	</a>
 </li>
 {{-- <li class="sidebar-item {{ ($_route_name == 'tickets.create' ? 'active' : '') }}">

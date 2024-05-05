@@ -5,7 +5,9 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		
 		<a class="dropdown-item" href="{{ route('suppliers.show', $supplier->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Supplier</a>
-		<a class="dropdown-item" href="{{ route('suppliers.edit', $supplier->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Supplier</a>
+		@can('update', $supplier)
+			<a class="dropdown-item" href="{{ route('suppliers.edit', $supplier->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Supplier</a>
+		@endcan
 		<a class="dropdown-item" href="{{ route('suppliers.index') }}"><i class="align-middle me-1" data-feather="list"></i> Supplier List</a>
 		
 		@can('create', App\Models\Tenant\Lookup\Supplier::class)

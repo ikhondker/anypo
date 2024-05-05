@@ -26,6 +26,6 @@
 
 	<x-tenant.accounting.for-po id="{{ $po->id }}"/>
 
-	@include('shared.includes.js.sw2-advance')
+	
 @endsection
 

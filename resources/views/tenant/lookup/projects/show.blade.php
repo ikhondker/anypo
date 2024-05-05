@@ -31,7 +31,7 @@
 					<x-tenant.show.my-date		value="{{ $project->start_date }}" label="Start Date"/>
 					<x-tenant.show.my-date		value="{{ $project->end_date }}" label="End Date"/>
 					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
-					<x-tenant.show.my-boolean	value="{{ $project->closed }}" label="Closed?"/>
+					<x-tenant.show.my-closed	value="{{ $project->closed }}"/>
 					<x-tenant.show.my-text-area		value="{{ $project->notes }}" label="Notes"/>
 				</div>
 			</div>
