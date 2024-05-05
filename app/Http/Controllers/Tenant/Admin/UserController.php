@@ -331,14 +331,25 @@ class UserController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function updateProfile(UpdateUserRequest $request, User $user)
+	public function updateProfile(Request $request)
 	{
 		
-		//$user = User::where('id', auth()->user()->id)->first();
+		$user = User::where('id', auth()->user()->id)->first();
 		//$this->authorize('update', $user);
+		
+		$request->validate([
+			'name'			=> 'required|min:5|max:100',
+			'cell'			=> 'required|max:20|unique:users,cell,'. $user->id,
+			'facebook'		=> 'nullable|url' ,
+			'linkedin'		=> 'nullable|url',
+			'file_to_upload'=> 'nullable|image|mimes:jpeg,png,jpg,svg|max:1024'
+		],[
+			'name.required' 		=> 'Name is Required!',
+			'cell.unique'			=> 'This cell number is already in use!',
+		]);
 
 		$request->merge(['state'	=> Str::upper($request->input('state')) ]);
-		
+
 		if ($image = $request->file('file_to_upload')) {
 			// $request->validate([
 			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

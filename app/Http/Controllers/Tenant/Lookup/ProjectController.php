@@ -32,6 +32,7 @@ use App\Models\User;
 use App\Models\Tenant\Admin\Attachment;
 # 2. Enums
 use App\Enum\EntityEnum;
+use App\Enum\UserRoleEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -68,7 +69,13 @@ class ProjectController extends Controller
 			$projects->where('name', 'Like', '%' . request('term') . '%');
 		}
 		$projects = $projects->with("pm")->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.lookup.projects.index', compact('projects'));
+
+		if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
+			return view('tenant.lookup.projects.index-basic', compact('projects'));
+		} else {
+			return view('tenant.lookup.projects.index', compact('projects'));
+		}
+
 	}
 
 	/**
@@ -111,7 +118,11 @@ class ProjectController extends Controller
 	{
 		$this->authorize('view', $project);
 
-		return view('tenant.lookup.projects.show', compact('project'));
+		if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
+			return view('tenant.lookup.projects.show-basic', compact('project'));
+		} else {
+			return view('tenant.lookup.projects.show', compact('project'));
+		}
 	}
 
 	/**
@@ -181,11 +192,24 @@ class ProjectController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Project::class);
-		$data = DB::select("SELECT p.id, p.name, u.name pm_name, p.start_date, end_date, 
-			amount budget, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_payment, p.notes, 
-			IF(enable, 'Yes', 'No') as Enable 
-			FROM projects p, users u
-			WHERE p.pm_id=u.id");
+
+		if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
+			$sql = "SELECT p.id, p.name, u.name pm_name, p.start_date, end_date, p.notes, 
+				IF(enable, 'Yes', 'No') as Enable 
+				FROM projects p, users u
+				WHERE p.pm_id = u.id
+			";
+			
+		} else {
+			$sql="SELECT p.id, p.name, u.name pm_name, p.start_date, end_date, 
+				amount budget, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_payment, p.notes, 
+				IF(enable, 'Yes', 'No') as Enable 
+				FROM projects p, users u
+				WHERE p.pm_id=u.id
+			";
+		}
+
+		$data = DB::select($sql);
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('projects', $dataArray);

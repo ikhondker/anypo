@@ -12,7 +12,7 @@
 			My Profile 
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.profile-actions"/>
+			<x-tenant.actions.profile-actions/>
 
 		@endslot
 	</x-tenant.page-header>

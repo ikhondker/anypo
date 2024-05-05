@@ -5,6 +5,7 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		<a class="dropdown-item" href="{{ route('users.profile') }}"><i class="align-middle me-1" data-feather="eye"></i> View Profile</a>
 		<a class="dropdown-item" href="{{ route('users.profile-edit') }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Profile</a>
+		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('users.profile-password') }}"><i class="align-middle me-1" data-feather="key"></i> Change Password</a>
 	</div>
 </div>

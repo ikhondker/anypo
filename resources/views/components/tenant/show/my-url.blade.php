@@ -3,7 +3,7 @@
 		<span class="h6 text-secondary">{{ $label }} X:</span>
 	</div>
 	<div class="col-sm-9">
-		<a href="{{ $value }}" target="_blank" class="text-info">{{ $value }}</a>
+		<a href="http://{{ $value }}" target="_blank" class="text-info">{{ $value }}</a>
 	</div>
  </div>
 

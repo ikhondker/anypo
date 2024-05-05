@@ -19,11 +19,6 @@
 		}).then((result) => {
 			if (result.isConfirmed) {
 				window.location.href = url;
-				//	Swal.fire(
-				//	'Deleted!',
-				//	'Your file has been deleted.',
-				//	'success'
-				// )
 			}
 		})
 	});

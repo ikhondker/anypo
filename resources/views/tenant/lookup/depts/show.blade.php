@@ -44,6 +44,6 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-	@include('shared.includes.js.sw2-advance')
+
 @endsection
 

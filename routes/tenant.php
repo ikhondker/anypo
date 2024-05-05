@@ -212,11 +212,11 @@ Route::middleware([
 		Route::get('/', [DashboardController::class, 'index'])->name('home');
 
 		/* ======================== User (Profile) ========================================  */
-		Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
-		Route::get('/users/profile-edit', [UserController::class, 'editProfile'])->name('users.profile-edit');
-		Route::put('/users/profile-update/{user}', [UserController::class, 'updateProfile'])->name('users.profile-update');
-		Route::get('/users/profile-password', [UserController::class, 'profilePassword'])->name('users.profile-password');
-		Route::post('/users/profile-password-update', [UserController::class, 'updateProfilePassword'])->name('users.profile-password-update');
+		Route::get('profile',[UserController::class, 'profile'])->name('users.profile');
+		Route::get('profile-edit', [UserController::class, 'editProfile'])->name('users.profile-edit');
+		Route::put('profile-update', [UserController::class, 'updateProfile'])->name('users.profile-update');
+		Route::get('profile-password', [UserController::class, 'profilePassword'])->name('users.profile-password');
+		Route::post('profile-password-update', [UserController::class, 'updateProfilePassword'])->name('users.profile-password-update');
 		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 		
@@ -236,6 +236,10 @@ Route::middleware([
 		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
 		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
 		
+		/* ======================== Project ======================================== */
+		Route::resource('projects', ProjectController::class);
+		Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
+
 		/* ======================== Pr ======================================== */
 		Route::resource('prs', PrController::class);
 		Route::get('/pr/my-prs',[PrController::class,'myPr'])->name('prs.my-prs');
@@ -285,9 +289,7 @@ Route::middleware([
 				Route::get('/items/delete/{item}',[ItemController::class,'destroy'])->name('items.destroy');
 
 				/* ======================== Project ======================================== */
-				Route::resource('projects', ProjectController::class);
 				Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
-				Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
 				Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
 				Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 				Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');

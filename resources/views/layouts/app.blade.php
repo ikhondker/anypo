@@ -19,8 +19,9 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<!-- Scripts -->
+
 	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
-	
+
 	<!-- Choose your preferred color scheme -->
 	<link href="{{ asset('css/light.css') }}" rel="stylesheet">
 	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}
@@ -335,8 +336,6 @@
 								@guest
 									Welcome Guest. Please  <a class="list-inline-item" href="{{ route('login') }}" class="text-primary">Login</a> here.
 								@endguest
-
-
 							</ul>
 						</div>
 						<div class="col-4 text-end">
@@ -351,8 +350,10 @@
 		</div>
 	</div>
 	
-	{{-- Dont Switch --}}
-	<script src="{{ asset('js/app.js') }}"></script>
+	{{-- @include('shared.includes.js.sw2-advance') --}}
+	{{-- Don't Switch to aws--}}
+	<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+	
 	{{-- <script src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
 	<!-- Only call `feather.replace` once on each page -->
 	

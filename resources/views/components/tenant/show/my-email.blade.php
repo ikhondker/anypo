@@ -3,6 +3,6 @@
 		<span class="h6 text-secondary">{{ $label }} X:</span>
 	</div>
 	<div class="col-sm-9">
-		{{ $value }}
+		<a href="mailto:{{ $value }}" class="text-info">{{ $value }}</a>
 	</div>
 </div>

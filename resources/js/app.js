@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 window.feather = feather;
 
+
+import './custom'
+
 //import moment from "moment";
 //window.moment = moment();
 //import moment from 'moment';

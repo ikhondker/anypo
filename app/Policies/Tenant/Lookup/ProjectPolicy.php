@@ -28,7 +28,8 @@ class ProjectPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+		//return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+		return true;
 	}
 
 	/**
@@ -36,7 +37,8 @@ class ProjectPolicy
 	 */
 	public function view(User $user, Project $project): bool
 	{
-		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+		//return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+		return true;
 	}
 
 	/**
@@ -84,7 +86,7 @@ class ProjectPolicy
 	 */
 	public function export(User $user): bool
 	{
-		return $user->isAdmin();
+		return true;
 	}
 
 	/**

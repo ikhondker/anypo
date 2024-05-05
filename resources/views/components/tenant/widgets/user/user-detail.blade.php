@@ -20,12 +20,12 @@
 		<hr />
 		<x-tenant.show.my-url		value="{{ $user->facebook }}" label="Facebook"/>
 		<x-tenant.show.my-url		value="{{ $user->linkedin }}" label="LinkedIn"/>
+		<x-tenant.show.my-text-area value="{{ $user->notes }}" label="About Myself"/>
+			
+		<hr />
 		<x-tenant.show.my-date-time	value="{{ $user->email_verified_at }}" label="Verified"/>
 		<x-tenant.show.my-date-time	value="{{ $user->last_login_at }}" label="Last Login"/>
 		<x-tenant.show.my-text		value="{{ $user->last_login_ip }}" label="Last Login IP"/>
-
-		<hr />
-		<x-tenant.show.my-text-area value="{{ $user->notes }}" label="About Myself"/>
 	
 	</div>
 </div>

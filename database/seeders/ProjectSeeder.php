@@ -26,49 +26,49 @@ class ProjectSeeder extends Seeder
 	 
 			$projects =  [
 				[
-					'name'  	=> 'Generic',
-					'code'  	=> 'Generic',
+					'name'  	=> 'Seeded Projeect',
+					'code'  	=> 'Seeded',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'AA01',
+					'name' 		=> 'Name is AA01',
 					'code'  	=> 'AA01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'AF01',
+					'name' 		=> 'Name is AF01',
 					'code'  	=> 'AF01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'AH01',
+					'name' 		=> 'Name is AH01',
 					'code'  	=> 'AH01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'AS01',
+					'name' 		=> 'Name is AS01',
 					'code'  	=> 'AS01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'BG01',
+					'name' 		=> 'Name is BG01',
 					'code'  	=> 'BG01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'BH07',
+					'name' 		=> 'Name is BH07',
 					'code'  	=> 'BH07',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
