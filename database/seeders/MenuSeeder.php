@@ -187,6 +187,12 @@ class MenuSeeder extends Seeder
 			* 7. Admin
 			* ==================================================================================
 			*/
+
+			[ 'raw_route_name' => 'users.index','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'users.create','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'users.show','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],		
+			[ 'raw_route_name' => 'users.edit','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],		
+
 			[ 'raw_route_name' => 'activities.index','route_name' => 'activities.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'activities.show','route_name' => 'activities.index', 'node_name' => 'admin'],
 
@@ -251,16 +257,14 @@ class MenuSeeder extends Seeder
 			
 			/**
 			* ==================================================================================
-			* 8. Special (My Account)
+			* 8. My Account
 			* ==================================================================================
 			*/
-			[ 'raw_route_name' => 'users.index','route_name' => 'users.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'users.create','route_name' => 'users.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'users.show','route_name' => 'users.index', 'node_name' => 'admin'],			// <==============
 
-			[ 'raw_route_name' => 'users.profile','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
-			[ 'raw_route_name' => 'users.edit','route_name' => 'users.index', 'node_name' => 'profile'],		// <==============
-			[ 'raw_route_name' => 'users.password','route_name' => 'users.index', 'node_name' => 'profile'],	// <==============
+
+			[ 'raw_route_name' => 'users.profile','route_name' 			=> 'users.profile', 'node_name' 		=> 'profile'],
+			[ 'raw_route_name' => 'users.profile-edit','route_name' 	=> 'users.profile-edit', 'node_name' 		=> 'profile'],
+			[ 'raw_route_name' => 'users.profile-password','route_name' => 'users.profile-password', 'node_name' 		=> 'profile'],
 			
 		  ];
 		//

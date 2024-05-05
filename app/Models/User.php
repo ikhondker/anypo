@@ -8,7 +8,7 @@ use App\Enum\TicketStatusEnum;
 
 /*
 |-----------------------------------------------------------------------------
-| Landlord																	 + 
+| Landlord																	 +
 |-----------------------------------------------------------------------------
 */
 use App\Models\Landlord\Ticket;
@@ -27,7 +27,7 @@ use App\Models\Landlord\Admin\Attachment;
 
 /*
 |-----------------------------------------------------------------------------
-| Tenant																	 + 
+| Tenant																	 +
 |-----------------------------------------------------------------------------
 */
 use App\Models\Tenant\Lookup\Dept;
@@ -64,9 +64,16 @@ class User extends Authenticatable implements MustVerifyEmail
 	 * @var array<int, string>
 	 */
 
-	 // This will be merger of two seperete User table in tenant and Landlord
+	 // This will be merger of two separate User table in tenant and Landlord
 	protected $fillable = [
-		'name', 'email', 'designation_id', 'dept_id', 'unit_id', 'role', 'password', 'email_verified_at', 'cell', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'facebook', 'linkedin', 'avatar', 'notes', 'timezone', 'seeded', 'enable', 'ban', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at', 'remember_token',
+		// common columns
+		'name', 'email', 'role', 'password', 'email_verified_at', 'remember_token', 'cell', 'title', 'address1', 'address2', 'city', 'state', 'zip', 'country',
+		'facebook', 'linkedin', 'avatar', 'notes', 'timezone',
+		'seeded', 'enable', 'ban', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at',
+		// landlord column
+		'account_id',
+		// Tenant column
+		'designation_id', 'dept_id', 'unit_id', 'remember_token',
 	];
 
 	/**
@@ -101,18 +108,18 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Common																	 + 
+	| Common																	 +
 	|-----------------------------------------------------------------------------
 	*/
 
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Landlord																	 + 
+	| Landlord																	 +
 	|-----------------------------------------------------------------------------
 	*/
 
-	
+
 	//TODO change
 	/* ---------------- Functions ---------------------- */
 	public static function getAllLandlord() {
@@ -145,9 +152,9 @@ class User extends Authenticatable implements MustVerifyEmail
 	*/
 
 	// usages auth()->user()->isAdmin()
-	
+
 	public function isSeeded()
-	{		
+	{
 		return $this->seeded;
 	}
 
@@ -158,7 +165,7 @@ class User extends Authenticatable implements MustVerifyEmail
 			return true;
 		} else {
 			return false;
-		}	
+		}
 	}
 
 	public function isAdmin()
@@ -168,7 +175,7 @@ class User extends Authenticatable implements MustVerifyEmail
 			return true;
 		} else {
 			return false;
-		}	
+		}
 	}
 
 	public function isSupport()
@@ -178,9 +185,9 @@ class User extends Authenticatable implements MustVerifyEmail
 			return true;
 		} else {
 			return false;
-		}	
+		}
 	}
-	
+
 	public function isSystem()
 	{
 		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::SYSTEM->value)) {
@@ -188,12 +195,12 @@ class User extends Authenticatable implements MustVerifyEmail
 			return true;
 		} else {
 			return false;
-		}	
+		}
 	}
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Policy Related Functions (Landlord)		 									+ 
+	| Policy Related Functions (Landlord)		 									+
 	|-----------------------------------------------------------------------------
 	*/
 
@@ -201,7 +208,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Policy Related Functions (Tenant)		 									+ 
+	| Policy Related Functions (Tenant)		 									+
 	|-----------------------------------------------------------------------------
 	*/
 	// usages auth()->user()->isBuyer()
@@ -212,7 +219,7 @@ class User extends Authenticatable implements MustVerifyEmail
 			return true;
 		} else {
 			return false;
-		}	
+		}
 	}
 
 	public function isHoD()
@@ -224,7 +231,7 @@ class User extends Authenticatable implements MustVerifyEmail
 			return false;
 		}
 	}
-	
+
 	public function isCxO()
 	{
 		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::CXO->value)) {
@@ -304,7 +311,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function payments(): HasMany {
 		return $this->hasMany(Payment::class,'owner_id');
 	}
-	
+
 	/* ---------------- belongsTo ---------------------- */
 	public function account() {
 		return $this->belongsTo(Account::class,'account_id')->withDefault([
@@ -320,7 +327,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/*
 	|-----------------------------------------------------------------------------
-	| Tenant																	 + 
+	| Tenant																	 +
 	|-----------------------------------------------------------------------------
 	*/
 
@@ -333,7 +340,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function scopeTenant(Builder $query): void
 	{
 		$query->where('enable', true)
-			->where('seeded', false); 
+			->where('seeded', false);
 	}
 
 	/**
@@ -380,7 +387,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	}
 
 	/* ----------------- HasMany ------------------------ */
-	
+
 
 	// public function activity(): HasMany
 	// {

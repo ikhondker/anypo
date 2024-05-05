@@ -161,22 +161,7 @@ class UserController extends Controller
 	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function profile()
-	{
-		///$this->authorize('create', User::class);
-
-		// $emps = Emp::select('id','name')
-		//		->where('status', 'active')
-		//		->orderBy('id','asc')
-		//		->get();
-		//$emps = Emp::getAll();
-		$user = User::where('id', auth()->user()->id)->first();
-
-		return view('tenant.admin.users.profile',compact('user'));
-	}
+	
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -238,7 +223,6 @@ class UserController extends Controller
 		} else {
 
 		}
-
 		
 		$user->update($request->all());
 		EventLog::event('user', $user->id, 'update', 'name', $request->name);
@@ -274,64 +258,6 @@ class UserController extends Controller
 	}
 
 
-	public function role()
-	{
-		//$users = User::whereIn('role',['emp','user','supervisor','owner'])->orderBy('id','desc')->paginate(20);
-		$users = User::latest()->orderBy('id', 'desc')->paginate(10);
-		return view('tenant.admin.users.role', compact('users'));
-	}
-
-	// TODO where it is used in tenant?
-	public function updaterole(User $user, $role)
-	{
-		$this->authorize('updaterole', $user);
-		$user->role = $role;
-		$user->update();
-
-		// update user roles
-		//$data = User::find($id);
-		//$data->role = $role;
-		//dd($user->id);
-		//$data->save();
-		//use App\MyData as MyData;
-		//$myData->where('id', $request->id)->update(['active' => $request->active]);
-
-		// Write to Log
-		EventLog::event('user', $user->id, 'updaterole', 'name', $role);
-		return redirect()->back()->with(['success' => 'User '.$user->name.' role to ['.$role.'] updated successfully']);
-		//return redirect()->route('users.index')->with('success', 'User '.$user->name.' role to ['.$role.'] updated successfully');
-	}
-
-	public function changePassword(User $user)
-	{
-		$this->authorize('changepass', $user);
-		
-		return view('tenant.admin.users.password', compact('user'));
-	}
-
-	public function updatePassword(Request $request, User $user)
-	{
-
-		$this->authorize('changepass', $user);
-
-		//$request->validate();
-		// $request->validate([
-		// ]);
-
-		$request->validate([
-			'password1' => ['required'],
-			'password2' => ['same:password1'],
-		]);
-
-		//dd($request->password1);
-		//$user->password = bcrypt($request->password1);
-		$user->password = Hash::make($request->password1);
-		$user->update();
-
-		// Write to Log
-		EventLog::event('user', $user->id, 'update', 'password', $request->id);
-		return redirect()->route('users.show',$user->id)->with('success', 'User password updated successfully.');
-	}
 
 
 	public function export()
@@ -349,23 +275,127 @@ class UserController extends Controller
 
 	}
 
-	public function chk_image($filename)
+	public function changePassword(User $user)
 	{
-		//shown as: http://geda.localhost:8000/image/4.jpg
-		//$path = storage_path('uploads/' . $filename);
-		$path = storage_path('app/public/profile/'. $filename);
+		$this->authorize('changepass', $user);
+		
+		return view('tenant.admin.users.password', compact('user'));
+	}
 
-		if (!File::exists($path)) {
-			abort(404);
-			Log::warning('FILE does not exists! '. $filename);
+	public function updatePassword(Request $request, User $user)
+	{
+
+		$this->authorize('changepass', $user);
+
+		$request->validate([
+			'password1' => ['required'],
+			'password2' => ['same:password1'],
+		]);
+
+		//dd($request->password1);
+		//$user->password = bcrypt($request->password1);
+		$user->password = Hash::make($request->password1);
+		$user->update();
+
+		// Write to Log
+		EventLog::event('user', $user->id, 'update', 'password', $request->id);
+		return redirect()->route('users.show',$user->id)->with('success', 'User password updated successfully.');
+	}
+
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function profile()
+	{
+		///$this->authorize('create', User::class);
+		$user = User::where('id', auth()->user()->id)->first();
+		return view('tenant.profile.profile',compact('user'));
+	}
+	
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function editProfile()
+	{
+		$user = User::where('id', auth()->user()->id)->first();
+		//$this->authorize('update', $user);
+
+		$countries = Country::All();
+		$designations = Designation::primary()->get();
+		$depts = Dept::primary()->get();
+
+		return view('tenant.profile.edit-profile', compact('user', 'countries', 'designations','depts'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function updateProfile(UpdateUserRequest $request, User $user)
+	{
+		
+		//$user = User::where('id', auth()->user()->id)->first();
+		//$this->authorize('update', $user);
+
+		$request->merge(['state'	=> Str::upper($request->input('state')) ]);
+		
+		if ($image = $request->file('file_to_upload')) {
+			// $request->validate([
+			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			// ]);
+
+			// extract the uploaded file
+			$image 			= $request->file('file_to_upload');
+		
+			$token			= tenant('id') ."-". $user->id . "-" . uniqid();
+			$extension		='.'.$image->extension();
+			
+			$uploadedImage	= $token . "-uploaded" . $extension;
+			$thumbImage		= $token. $extension;
+
+			// upload uploaded image
+			$path = Storage::disk('s3t')->put('avatar/'.$uploadedImage, file_get_contents($image));
+			
+			//resize to thumbnail and upload
+			$image_resize = Image::make($image->getRealPath());
+			$image_resize->fit(160, 160);
+			$path =Storage::disk('s3t')->put('avatar/'.$thumbImage, $image_resize->stream()->__toString());
+
+			$request->merge(['avatar' => $thumbImage ]);
 		}
 
-		$file = File::get($path);
-		$type = File::mimeType($path);
+		$user->update($request->all());
+		EventLog::event('user', $user->id, 'update', 'name', $request->name);
+		return redirect()->route('users.profile')->with('success', 'User profile updated successfully.');
+	}
 
-		$response = Response::make($file, 200);
-		$response->header("Content-Type", $type);
-		return $response;
+	public function profilePassword()
+	{
+		$user = User::where('id', auth()->user()->id)->first();
+		//$this->authorize('changepass', $user);
+		return view('tenant.profile.profile-password', compact('user'));
+	}
+
+	public function updateProfilePassword(Request $request)
+	{
+
+		$user = User::where('id', auth()->user()->id)->first();
+
+		//$this->authorize('changepass', $user);
+
+		$request->validate([
+			'password1' => ['required'],
+			'password2' => ['same:password1'],
+		]);
+
+		//dd($request->password1);
+		//$user->password = bcrypt($request->password1);
+		$user->password = Hash::make($request->password1);
+		$user->update();
+
+		// Write to Log
+		EventLog::event('user', $user->id, 'update', 'password', $request->id);
+		return redirect()->route('users.profile')->with('success', 'User password updated successfully.');
 	}
 
 	public function impersonate(User $user)
@@ -413,5 +443,4 @@ class UserController extends Controller
 		return redirect()->route('users.index')->with('success', 'Logout from impersonate successfully');
 
 	}
-
 }

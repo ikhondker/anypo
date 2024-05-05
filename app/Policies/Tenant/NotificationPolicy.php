@@ -56,7 +56,7 @@ class NotificationPolicy
 	 */
 	public function delete(User $user, Notification $notification): bool
 	{
-		//
+		return $notification->notifiable_id == $user->id;
 	}
 
 	/**

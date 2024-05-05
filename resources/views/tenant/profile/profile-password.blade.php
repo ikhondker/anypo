@@ -13,8 +13,7 @@
 			Change Password
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="User"/>
-			<x-tenant.actions.user-actions id="{{ $user->id }}"/>
+			<x-tenant.actions.profile-actions/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -32,7 +31,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Change Password</h5>
-						<h6 class="card-subtitle text-muted">Change User's Password.</h6>
+						<h6 class="card-subtitle text-muted">Change Your Password.</h6>
 					</div>
 					<div class="card-body">
 						<div class="mb-3">

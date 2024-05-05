@@ -64,7 +64,6 @@ class TicketController extends Controller
 		$this->authorize('create',Ticket::class);
 		//$depts = Dept::getAll();
 		//$priorities = Priority::getAll(); 
-
 		return view('tenant.support.tickets.create');
 	}
 
@@ -93,14 +92,16 @@ class TicketController extends Controller
 		$email=auth()->user()->email;
 		$cell=auth()->user()->cell;
 
-		$name='User 8 by Tenant';
-		$email='user8@example.com';
+		//$name='User 8 by Tenant';
+		//$email='user8@example.com';
 		
 		// create or find user in Landlord if don't exists
 		$landlordUserId = tenancy()->central(function ($tenant) use ($tenant_id, $name, $email, $cell) {
 			
-			Log::debug("tenant_id= ".$tenant_id);
+			Log::debug("tenant.support.Ticket.store tenant_id= ".$tenant_id);
+
 			$account = \App\Models\Landlord\Account::where('site', $tenant_id)->first();
+			Log::debug("tenant.support.Ticket.store account_id= ".$account->id);
 			
 			// check if user need to create
 			$createLandlordUser =false;
@@ -126,7 +127,7 @@ class TicketController extends Controller
 				}
 
 				if ( $createLandlordUser ){
-					Log::debug("create user for mail= ".$email.' cell = '. $cell);
+					Log::debug("tenant.support.Ticket.store creating user in landlord for mail= ".$email.' cell = '. $cell .' for account_id = '.$account->id);
 					$random_password	= \Illuminate\Support\Str::random(12);
 
 					$user = \App\Models\User::create([
@@ -140,17 +141,16 @@ class TicketController extends Controller
 					
 					// Send notification on new user creation with initial password
 					$user->notify(new \App\Notifications\Landlord\UserCreated($user, $random_password));
-					Log::debug('Landlord user Created id=' . $user->id);
+					Log::debug('tenant.support.Ticket.store Landlord user Created id=' . $user->id);
 				}
 
 			} else {
-				Log::debug("user found = ".$email);
+				Log::debug("tenant.support.Ticket.store Landlord user found = ".$email);
 			}
 			return $user->id;
 		});
-
 		
-		Log::debug("landlordUserId = ".$landlordUserId);
+		Log::debug("tenant.support.Ticket.store landlord user_id = ".$landlordUserId);
 		
 		// now create the ticket under that landlord user
 		$landlordTicket = tenancy()->central(function ($tenant) use ($landlordUserId, $request) {
@@ -171,7 +171,7 @@ class TicketController extends Controller
 					'priority_id' 	=> 1002,	// Medium
 					'category_id' 	=> 1005,	// Technical Issue
 				]);
-				Log::debug('Ticket created =' . $ticket->id);
+				Log::debug('tenant.support.Ticket.store Landlord Ticket created =' . $ticket->id);
 
 				//Write to Log
 				\App\Helpers\LandlordEventLog::event('ticket', $ticket->id, 'create');

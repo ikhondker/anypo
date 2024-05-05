@@ -73,7 +73,7 @@ class ViewServiceProvider extends ServiceProvider
 		view()->composer('layouts.app', function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu	= new Menu;
-			// Log::debug("ViewServiceProvider.boot.tenant raw_route_name = ".$raw_route_name);
+			 	//Log::debug("ViewServiceProvider.boot.tenant raw_route_name = ".$raw_route_name);
 			try {
 				$menu = Menu::where('raw_route_name',$raw_route_name)
 					->where('enable',true)

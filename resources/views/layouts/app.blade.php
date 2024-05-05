@@ -195,7 +195,7 @@
 											<a href="{{ route('notifications.show', $notification->id) }}" class="list-group-item">
 												<div class="row g-0 align-items-center">
 													<div class="col-2">
-														<img src="{{ Storage::disk('s3t')->url('avatar/avatarb.png') }}" class="avatar img-fluid rounded-circle" alt="{{ $notification->data['from'] }}">
+														<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" class="avatar img-fluid rounded-circle" alt="{{ $notification->data['from'] }}">
 													</div>
 													<div class="col-10 ps-2">
 														<div class="text-dark">{{ $notification->data['from'] }}</div>
@@ -238,8 +238,8 @@
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								@auth
-									<a class="dropdown-item" href="{{ route('users.profile') }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-									<a class="dropdown-item" href="{{ route('users.password-change',auth()->user()->id) }}"><i class="align-middle me-1" data-feather="key"></i> Change Password</a>
+									<a class="dropdown-item" href="{{ route('users.profile') }}"><i class="align-middle me-1" data-feather="user"></i> {{ Str::limit(auth()->user()->name, 18, '...') }}</a>
+									<a class="dropdown-item" href="{{ route('users.profile-password') }}"><i class="align-middle me-1" data-feather="key"></i> Change Password</a>
 								@endauth
 
 								<div class="dropdown-divider"></div>

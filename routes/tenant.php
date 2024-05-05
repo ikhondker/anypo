@@ -211,12 +211,14 @@ Route::middleware([
 		Route::resource('dashboards', DashboardController::class);
 		Route::get('/', [DashboardController::class, 'index'])->name('home');
 
-		/* ======================== User ========================================  */
-		Route::resource('users', UserController::class);	// needed for edit
+		/* ======================== User (Profile) ========================================  */
 		Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
-		Route::get('/users/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
-		Route::post('/users/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
+		Route::get('/users/profile-edit', [UserController::class, 'editProfile'])->name('users.profile-edit');
+		Route::put('/users/profile-update/{user}', [UserController::class, 'updateProfile'])->name('users.profile-update');
+		Route::get('/users/profile-password', [UserController::class, 'profilePassword'])->name('users.profile-password');
+		Route::post('/users/profile-password-update', [UserController::class, 'updateProfilePassword'])->name('users.profile-password-update');
 		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+
 		
 		/* ======================== Notification ======================================== */
 		Route::resource('notifications', NotificationController::class);
@@ -369,7 +371,6 @@ Route::middleware([
 				Route::get('/rate/export',[RateController::class,'export'])->name('rates.export');
 				Route::get('/rates/delete/{rate}',[RateController::class,'destroy'])->name('rates.destroy');
 
-
 	});
 
 	/**
@@ -383,6 +384,12 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
+		/* ======================== User ========================================  */
+		Route::resource('users', UserController::class);	// needed for edit
+		//Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
+		Route::get('/users/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
+		Route::post('/users/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
+		
 		/* ======================== DeptBudget ======================================== */
 		Route::resource('dept-budgets', DeptBudgetController::class);
 		Route::get('/dept-budget/export',[DeptBudgetController::class,'export'])->name('dept-budgets.export');
