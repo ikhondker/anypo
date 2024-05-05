@@ -35,15 +35,16 @@
 						<x-tenant.edit.name :value="$supplier->name"/>
 						<x-tenant.edit.contact-person value="{{ $supplier->contact_person }}"/>
 						<x-tenant.edit.cell :value="$supplier->cell"/>
-							<x-tenant.edit.address1 :value="$supplier->address1"/>
-								<x-tenant.edit.address2 :value="$supplier->address2"/>
+						<x-tenant.edit.email :value="$supplier->email"/>
+						<x-tenant.edit.website :value="$supplier->website"/>
+						<x-tenant.edit.address1 :value="$supplier->address1"/>
+						<x-tenant.edit.address2 :value="$supplier->address2"/>
 								<div class="row">
 									<x-tenant.edit.city :value="$supplier->city"/>
 									<x-tenant.edit.state value="{{ $supplier->state }}"/>
 									<x-tenant.edit.zip :value="$supplier->zip"/>
 								</div>
 								<x-tenant.edit.country :value="$supplier->country"/>
-
 						<x-tenant.buttons.show.save/>
 					</div>
 				</div>

@@ -5,7 +5,7 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col mt-0">
-						<h5 class="card-title">Budget {{ $budget->fy}} ({{ $_setup->currency}})</h5>
+						<h5 class="card-title">Budget {{ $budget->fy}} ({{ $_setup->currency }})</h5>
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">

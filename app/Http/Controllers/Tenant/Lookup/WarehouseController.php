@@ -82,6 +82,10 @@ class WarehouseController extends Controller
 	{
 		$this->authorize('create', Warehouse::class);
 
+		$request->merge([
+			'state' 			=> Str::upper($request['state']),
+		]);
+
 		$warehouse = Warehouse::create($request->all());
 
 		// Write to Log
@@ -117,6 +121,10 @@ class WarehouseController extends Controller
 	{
 		$this->authorize('update', $warehouse);
 
+		$request->merge([
+			'state' 			=> Str::upper($request['state']),
+		]);
+		
 		//$request->validate();
 		$request->validate([
 

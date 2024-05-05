@@ -231,6 +231,9 @@ Route::middleware([
 		Route::resource('suppliers', SupplierController::class);
 		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
 		
+		/* ======================== Uom ======================================== */
+		Route::get('/uoms/get-uoms-by-class/{uom_class_id}',[UomController::class, 'getUomsByClass'])->name('uoms.get-uoms-by-class');
+		
 		/* ======================== Item ======================================== */
 		Route::resource('items', ItemController::class);
 		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
@@ -240,7 +243,7 @@ Route::middleware([
 		Route::resource('projects', ProjectController::class);
 		Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
 		Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
-		
+
 		/* ======================== Pr ======================================== */
 		Route::resource('prs', PrController::class);
 		Route::get('/pr/my-prs',[PrController::class,'myPr'])->name('prs.my-prs');
@@ -521,11 +524,12 @@ Route::middleware([
 		Route::get('/category/export',[CategoryController::class, 'export'])->name('categories.export');
 		Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
 
+		
 		/* ======================== Uom ======================================== */
 		Route::resource('uoms', UomController::class);
 		Route::get('/uom/export',[UomController::class,'export'])->name('uoms.export');
 		Route::get('/uoms/delete/{uom}',[UomController::class,'destroy'])->name('uoms.destroy');
-		Route::get('/uoms/get-uoms-by-class/{uom_class_id}',[UomController::class, 'getUomsByClass'])->name('uoms.get-uoms-by-class');
+		
 
 		/* ======================== Oem ======================================== */
 		Route::resource('oems', OemController::class);

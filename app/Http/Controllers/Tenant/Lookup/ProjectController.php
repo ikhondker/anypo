@@ -47,6 +47,7 @@ use App\Helpers\FileUpload;
 # 11. Controller
 # 12. Seeded
 use DB;
+use Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
@@ -96,13 +97,10 @@ class ProjectController extends Controller
 	{
 		$this->authorize('create', Project::class);
 
-		if($request->has('budget_control')) {
-			//Checkbox checked
-			$request->merge(['budget_control' => 1]);
-		} else {
-			//Checkbox not checked
-			$request->merge([ 'budget_control' => 0]);
-		}
+		$request->merge([
+			'code' 			=> Str::upper($request['code']),
+		]);
+
 
 		$project = Project::create($request->all());
 		// Write to Log
@@ -153,14 +151,11 @@ class ProjectController extends Controller
 	{
 		$this->authorize('update', $project);
 
-		// check box
-		if($request->has('budget_control')) {
-			//Checkbox checked
-			$request->merge(['budget_control' => 1]);
-		} else {
-			//Checkbox not checked
-			$request->merge(['budget_control' => 0]);
-		}
+		$request->merge([
+			'code' 			=> Str::upper($request['code']),
+		]);
+
+	
 
 		//$request->validate();
 		$request->validate([

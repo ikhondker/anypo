@@ -42,6 +42,7 @@ use App\Helpers\Export;
 # 10. Events
 # 11. Seeded
 use DB;
+use Str;
 # 12. FUTURE 
 
 
@@ -77,6 +78,11 @@ class SupplierController extends Controller
 	public function store(StoreSupplierRequest $request)
 	{
 		$this->authorize('create', Supplier::class);
+
+		$request->merge([
+			'state' 			=> Str::upper($request['state']),
+		]);
+
 		$supplier = Supplier::create($request->all());
 		// Write to Log
 		EventLog::event('supplier', $supplier->id, 'create');
@@ -108,6 +114,10 @@ class SupplierController extends Controller
 	public function update(UpdateSupplierRequest $request, Supplier $supplier)
 	{
 		$this->authorize('update', $supplier);
+		$request->merge([
+			'state' 			=> Str::upper($request['state']),
+		]);
+
 		// $request->validate();
 		$request->validate([
 

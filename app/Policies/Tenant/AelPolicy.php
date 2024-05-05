@@ -23,7 +23,7 @@ class AelPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return ( $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+		return ( $user->isSuperior());
 	}
 
 	/**

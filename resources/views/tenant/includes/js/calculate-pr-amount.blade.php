@@ -57,7 +57,7 @@
 			});
 
 			let url2 = '{{ route("uoms.get-uoms-by-class", ":id") }}';
-			url2 = url2.replace(':id', '1001');
+			url2 = url2.replace(':id', '1001');	// TODO
 			$("#uom_id").html('');
 			$.ajax({
 				url: url2,
@@ -141,7 +141,6 @@
 		$('#gst').change(function() {
 			var old_amount = $("#amount").val();
 			var old_pr_amount = $("#pr_amount").val();
-
 
 			var sub_total = $("#sub_total").val();
 			var tax = $("#tax").val();

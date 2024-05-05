@@ -61,7 +61,7 @@
 
 						<div class="mb-3">
 							<label class="form-label">UoM Class</label>
-							<select class="form-control" name="uom_class_id" required>
+							<select class="form-control" name="uom_class_id" id="uom_class_id" required>
 								<option value=""><< UoM Class>> </option>
 								@foreach ($uomClasses as $uomClass)
 									<option value="{{ $uomClass->id }}" {{ $uomClass->id == old('uom_class_id') ? 'selected' : '' }} >{{ $uomClass->name }} </option>
@@ -74,7 +74,7 @@
 
 						<div class="mb-3">
 							<label class="form-label">UoM</label>
-							<select class="form-control" name="uom_id" required>
+							<select class="form-control" name="uom_id" id="uom_id" required>
 								<option value=""><< UoM >> </option>
 								@foreach ($uoms as $uom)
 									<option value="{{ $uom->id }}" {{ $uom->id == old('uom_id') ? 'selected' : '' }} >{{ $uom->name }} </option>
@@ -140,4 +140,31 @@
 	</form>
 	<!-- /.form end -->
 
+	<script type="module">
+		$(document).ready(function () {
+			$('#uom_class_id').change(function() {
+				//console.log("Item changed Hello world !");
+				let id = $(this).val();
+				let url2 = '{{ route("uoms.get-uoms-by-class", ":id") }}';
+				//url2 = url2.replace(':id', '1001');
+				url2 = url2.replace(':id', id);
+				$("#uom_id").html('');
+				$.ajax({
+					url: url2,
+					type: 'get',
+					dataType: 'json',
+					success: function (res) {
+						// $('#uom_id').html('<option value="">-- Select UoM --</option>');
+						$.each(res.uoms, function (key, value) {
+							$("#uom_id").append('<option value="' + value
+								.id + '">' + value.name + '</option>');
+						});
+					}
+				});
+			});
+		});
+	</script>
+
+
 @endsection
+

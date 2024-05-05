@@ -211,11 +211,29 @@ class User extends Authenticatable implements MustVerifyEmail
 	| Policy Related Functions (Tenant)		 									+
 	|-----------------------------------------------------------------------------
 	*/
+
+
+	// usages auth()->user()->isSuperior()
+	public function isSuperior()
+	{
+		if ($this->role->value == UserRoleEnum::BUYER->value
+			|| $this->role->value == UserRoleEnum::HOD->value
+			|| $this->role->value == UserRoleEnum::CXO->value
+			|| $this->role->value == UserRoleEnum::ADMIN->value
+			|| $this->role->value == UserRoleEnum::SUPPORT->value
+			|| $this->role->value == UserRoleEnum::SYSTEM->value
+			) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	// usages auth()->user()->isBuyer()
 	public function isBuyer()
 	{
 		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::BUYER->value)) {
-		if ($this->role->value ==UserRoleEnum::BUYER->value) {
+		if ($this->role->value == UserRoleEnum::BUYER->value) {
 			return true;
 		} else {
 			return false;
@@ -225,7 +243,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function isHoD()
 	{
 		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::HOD->value)) {
-		if ($this->role->value ==UserRoleEnum::HOD->value) {
+		if ($this->role->value == UserRoleEnum::HOD->value) {
 			return true;
 		} else {
 			return false;
@@ -235,7 +253,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function isCxO()
 	{
 		//if (($this->enable == 1) && ($this->role->value ==UserRoleEnum::CXO->value)) {
-		if ($this->role->value ==UserRoleEnum::CXO->value) {
+		if ($this->role->value == UserRoleEnum::CXO->value) {
 			return true;
 		} else {
 			return false;

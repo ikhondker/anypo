@@ -31,6 +31,8 @@
 						<x-tenant.create.name/>
 						<x-tenant.create.contact-person/>
 						<x-tenant.create.cell/>
+						<x-tenant.create.email/>
+						<x-tenant.create.website/>
 						<x-tenant.create.address1/>
 						<x-tenant.create.address2/>
 						<div class="row">

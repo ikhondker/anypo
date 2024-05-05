@@ -105,8 +105,6 @@ class ItemController extends Controller
 			'ac_expense' 	=> Str::upper($request['ac_expense']),
 		]);
 
-
-
 		$item = Item::create($request->all());
 		// Write to Log
 		EventLog::event('item', $item->id, 'create');
