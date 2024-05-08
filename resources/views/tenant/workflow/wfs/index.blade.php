@@ -11,7 +11,8 @@
 			Workflows
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Wf"/>
+
+		
 		@endslot
 	</x-tenant.page-header>
 

@@ -39,6 +39,8 @@
 								<th>Upload Date</th>
 								<th>Owner</th>
 								<th>File Name</th>
+								<th>Type</th>
+								<th>Size</th>
 								<th>Attached File</th>
 								<th>View</th>
 							</tr>
@@ -52,6 +54,8 @@
 								<td><x-tenant.list.my-date-time :value="$attachment->upload_date"/></td>
 								<td>{{ $attachment->owner->name }}</td>
 								<td>{{ Str::limit($attachment->org_file_name,35) }}</td>
+								<td>{{ $attachment->file_type }}</td>
+								<td><x-tenant.list.my-integer :value="$attachment->file_size"/></td>
 								<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 								<td class="table-action">
 									<a href="{{ route('attachments.show',$attachment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">

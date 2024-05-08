@@ -52,6 +52,11 @@ class AppServiceProvider extends ServiceProvider
 			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() ||  $user->isAdmin() || $user->isSupport() || $user->isSystem());
 		});
 
+		Gate::define('xxall-po', function(User $user) {
+			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() ||  $user->isAdmin() || $user->isSupport() || $user->isSystem());
+		});
+
+
 		// Should return TRUE or FALSE IQBAL 
 		Gate::define('buyer', function(User $user) {
 			return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() || $user->isSystem());

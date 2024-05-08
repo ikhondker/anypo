@@ -6,6 +6,7 @@
 		
 		<a class="dropdown-item" href="{{ route('hierarchies.show', $hierarchy->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Hierarchy</a>
 		<a class="dropdown-item" href="{{ route('hierarchies.edit', $hierarchy->id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Hierarchy</a>
+		<a class="dropdown-item" href="{{ route('hierarchies.index') }}"><i class="align-middle me-1" data-feather="list"></i> Hierarchy List</a>
 
 		@can('create', App\Models\Tenant\Workflow\Hierarchy::class)
 			<div class="dropdown-divider"></div>
