@@ -23,7 +23,6 @@ class PrlSeeder extends Seeder
 
 		//$faker = app(Generator::class);
 
-		
-		Prl::factory()->count(10)->create();
+		Prl::factory()->count(15)->create();
 	}
 }

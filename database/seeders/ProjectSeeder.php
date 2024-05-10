@@ -76,35 +76,35 @@ class ProjectSeeder extends Seeder
 				],
 
 				[
-					'name' 		=> 'GB06',
+					'name' 		=> 'Name is GB06',
 					'code'  	=> 'GB06',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'GB07',
+					'name' 		=> 'Name is GB07',
 					'code'  	=> 'GB07',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'GB08',
+					'name' 		=> 'Name is GB08',
 					'code'  	=> 'GB08',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'GB09',
+					'name' 		=> 'Name is GB09',
 					'code'  	=> 'GB09',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
-					'name' 		=> 'GB10',
+					'name' 		=> 'Name is GB10',
 					'code'  	=> 'GB10',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,

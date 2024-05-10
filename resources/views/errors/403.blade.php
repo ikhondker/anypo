@@ -26,7 +26,7 @@
 								<h3 class="text-info">Woops! Page Forbidden!</h2>
 							</div>
 							<div class="mb-3">
-								<p class="h4 fw-normal mt-3 mb-4">We are sorry, but this action is not allowed by current user.</p>
+								<p class="h4 fw-normal mt-3 mb-4">We are sorry, but you do not have permission </br>to view this page using the credentials that you supplied.</p>
 							</div>
 						</div>
 						<!-- End Col -->

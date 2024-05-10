@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title','Edit Pr')
+@section('title','Edit Requisition')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->summary }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">PR#{{ $pr->id }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -56,13 +56,23 @@
 								<label class="col-form-label col-sm-2 text-sm-right">PR Date</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control"
-									name="dsp_date" id="dsp_date" value="{{ date_format($pr->pr_date,"d-M-Y H:i:s"); }}"
+										name="dsp_date" id="dsp_date" value="{{ date_format($pr->pr_date,"d-M-Y"); }}"
 									readonly/>
 								</div>
 							</div>
 						
 							@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
-								<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
+								<div class="mb-3 row">
+									<label class="col-form-label col-sm-2 text-sm-right">Dept</label>
+									<div class="col-sm-10">
+										<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
+										<input type="text" class="form-control"
+											name="dept_name" id="dept_name" placeholder="dept_name"
+											value="{{  $pr->dept->name }}"
+											readonly/>
+									</div>
+								</div>
+
 							@else
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Dept Name</label>

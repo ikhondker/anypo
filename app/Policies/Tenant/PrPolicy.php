@@ -90,7 +90,7 @@ class PrPolicy
 	 */
 	public function delete(User $user, Pr $pr): bool
 	{
-		return ( $user->isAdmin() || $user->isSupport() || ($user->id === $pr->requestor_id) ) && ($pr->auth_status == AuthStatusEnum::DRAFT->value) ;
+		return ( ($user->id === $pr->requestor_id) ) && ($pr->auth_status == AuthStatusEnum::DRAFT->value) ;
 	}
 
 	/**

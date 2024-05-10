@@ -48,7 +48,7 @@ class Workflow
 	public static function submitWf($entity, $article_id)
 	{
 
-		// dont need exception as can not save dept with hierarchy
+		// don't need exception as can not save dept with hierarchy
 		switch ($entity) {
 			case EntityEnum::PR->value:
 				// try catch exception handing
@@ -124,15 +124,13 @@ class Workflow
 	// check if current logged-in user can approve current document
 	public static function allowApprove($wf_id)
 	{
-		Log::debug('Helpers.Workflow.allowApprove checking if workflow is pending with current user user_id = '.auth()->user()->id);
-		Log::debug('Helpers.Workflow.allowApprove checking if workflow is pending with current user wf_id = '.$wf_id);
+		Log::debug('Helpers.Workflow.allowApprove checking if workflow wf_id = '.$wf_id.' is pending with current user_id = '.auth()->user()->id);
 		try {
 			$wfl = Wfl::where('wf_id', $wf_id)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
 			Log::debug('Helpers.Workflow.allowApprove Yes, found row pending with current user wfl_id = '.$wfl->id);
-			Log::debug('Helpers.Workflow.allowApprove Yes, pending with current user.');
 			return true;
 		} catch (ModelNotFoundException $exception) {
-			Log::debug('Helpers.Workflow.allowApprove No, not pending with current user.');
+			Log::debug('Helpers.Workflow.allowApprove No, not pending with current user wf_id = '.$wf_id);
 			return false;
 		}
 	}
@@ -144,12 +142,12 @@ class Workflow
 		try {
 			// get next approver
 			$wfl = Wfl::where('wf_id', $wf_id)->where('action', WflActionEnum::PENDING->value)->firstOrFail();
-			Log::debug('Helpers.Workflow.getNextApproverId wfl_id = '.$wfl->id);
-			Log::debug('Helpers.Workflow.getNextApproverId wf->action = '.$wfl->action->value);
+			//Log::debug('Helpers.Workflow.getNextApproverId wfl_id = '.$wfl->id);
+			//Log::debug('Helpers.Workflow.getNextApproverId wf->action = '.$wfl->action->value);
 			Log::debug('Helpers.Workflow.getNextApproverId wfl->performer_id = '.$wfl->performer_id);
 			return $wfl->performer_id;
 		} catch (ModelNotFoundException $exception) {
-			Log::debug('Helpers.Workflow.getNextApproverId no next performer_id found. Returning zero.');
+			Log::debug('Helpers.Workflow.getNextApproverId no next performer_id found. This is last approver. Returning zero.');
 			return 0;
 		}
 	}

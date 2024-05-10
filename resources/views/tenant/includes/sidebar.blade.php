@@ -48,14 +48,18 @@
 				@can('viewAny', App\Models\Tenant\Budget::class)
 					<li class="sidebar-item {{ ($_route_name == 'budgets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Budget*</a></li>
 				@endcan
-				<li class="sidebar-item {{ ($_route_name == 'dept-budgets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dept-budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Dept Budgets*</a></li>
-				@can('spends', App\Models\Tenant\Lookup\Project::class)
-					<li class="sidebar-item {{ ($_route_name == 'projects.spends' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('projects.spends') }}"><i class="align-middle" data-feather="layout"></i>Project Spends*</a></li>
+				@can('viewAny', App\Models\Tenant\DeptBudget::class)
+					<li class="sidebar-item {{ ($_route_name == 'dept-budgets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dept-budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Dept Budgets*</a></li>
 				@endcan
 				@can('spends', App\Models\Tenant\Lookup\Supplier::class)
 					<li class="sidebar-item {{ ($_route_name == 'suppliers.spends' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('suppliers.spends') }}"><i class="align-middle" data-feather="layout"></i>Supplier Spends*</a></li>
 				@endcan
-				<li class="sidebar-item {{ ($_route_name == 'dbus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dbus.index') }}"><i class="align-middle" data-feather="layout"></i>Budget Usage*</a></li>
+				@can('spends', App\Models\Tenant\Lookup\Project::class)
+					<li class="sidebar-item {{ ($_route_name == 'projects.spends' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('projects.spends') }}"><i class="align-middle" data-feather="layout"></i>Project Spends*</a></li>
+					@endcan
+				@can('viewAny', App\Models\Tenant\Dbu::class)
+					<li class="sidebar-item {{ ($_route_name == 'dbus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dbus.index') }}"><i class="align-middle" data-feather="layout"></i>Budget Usage*</a></li>
+				@endcan
 			</ul>
 		</li>
 	@endcan
@@ -97,8 +101,6 @@
 				<li class="sidebar-item {{ ($_route_name == 'warehouses.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('warehouses.index') }}"><i class="align-middle" data-feather="circle"></i>Warehouse</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'bank-accounts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('bank-accounts.index') }}"><i class="align-middle" data-feather="circle"></i>Bank Accounts</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'currencies.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('currencies.index') }}"><i class="align-middle" data-feather="circle"></i>Currency</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'rates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('rates.index') }}"><i class="align-middle" data-feather="circle"></i>Exchange Rate</a></li>
-				
 			</ul>
 		</li>
 	@endcan
@@ -125,9 +127,10 @@
 			<ul id="admin" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'admin' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.index') }}"><i class="align-middle" data-feather="circle"></i>Users</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'hierarchies.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('hierarchies.index') }}"><i class="align-middle" data-feather="circle"></i>Hierarchy</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'wfs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('wfs.index') }}"><i class="align-middle" data-feather="circle"></i>Workflow</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'activities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('activities.index') }}"><i class="align-middle" data-feather="circle"></i>Activity Log</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'attachments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('attachments.index') }}"><i class="align-middle" data-feather="circle"></i>Attachments*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'wfs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('wfs.index') }}"><i class="align-middle" data-feather="circle"></i>Workflow</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'rates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('rates.index') }}"><i class="align-middle" data-feather="circle"></i>Exchange Rate</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'setups.show' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('setups.show',1001) }}"><i class="align-middle" data-feather="circle"></i>Setup</a></li>
 			</ul>
 		</li>
@@ -143,13 +146,13 @@
 				<li class="sidebar-item {{ ($_route_name == 'tables.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tables.index') }}"><i class="align-middle" data-feather="circle"></i>Tables</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'menus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('menus.index') }}"><i class="align-middle" data-feather="circle"></i>Menu</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'statuses.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('statuses.index') }}"><i class="align-middle" data-feather="circle"></i>Status</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('templates.index') }}"><i class="align-middle" data-feather="circle"></i>Templates</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'entities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('entities.index') }}"><i class="align-middle" data-feather="circle"></i>Entity</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-feather="circle"></i>Country</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'prls.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prls.index') }}"><i class="align-middle" data-feather="circle"></i>Prl*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'aehs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('aehs.index') }}"><i class="align-middle" data-feather="circle"></i>Aeh*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'groups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('groups.index') }}"><i class="align-middle" data-feather="circle"></i>Item Groups</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'custom-errors.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('custom-errors.index') }}"><i class="align-middle" data-feather="circle"></i>Custom Errors</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'groups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('groups.index') }}"><i class="align-middle" data-feather="circle"></i>Item Groups</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-feather="circle"></i>Country</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('templates.index') }}"><i class="align-middle" data-feather="circle"></i>Templates</a></li>
 			</ul>
 		</li>
 	@endcan

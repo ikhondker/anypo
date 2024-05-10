@@ -244,10 +244,10 @@ class SetupController extends Controller
 	{
 		$this->authorize('update', $setup);
 
-		$base = $request->input('currency');
+		Log::debug('tenant.admin.setup.freeze updating old setup->currency = '.$setup->currency);
 
-		Log::debug('tenant.setup.freeze setup->currency='.$setup->currency);
-		Log::debug('tenant.setup.freeze request input='.$request->input('currency'));
+		Log::debug('tenant.setup.freeze request input  currency = '.$request->input('currency'));
+		$base = $request->input('currency');
 
 		// Enable that base currency
 		$currency = Currency::where('currency', $base)->first();
@@ -255,10 +255,14 @@ class SetupController extends Controller
 		$currency->save();
 		
 		// update setup. 
+		Log::debug('tenant.admin.setup.freeze freezing setup');
 		$request->merge(['freezed'	=> true ]);
 		$setup->update($request->all());
-		
+		Log::debug('tenant.admin.setup.freeze updating setup->currency = '.$setup->currency);
+
+
 		// Update currency of seeded bank account
+		Log::debug('tenant.admin.setup.freeze updating seeded bankAccount currency = '.$setup->currency);
 		$bankAccount  = BankAccount ::where('id', 1001)->first();
 		$bankAccount->ac_name = 'STD-SEEDED-'.$base;
 		$bankAccount->currency = $base;

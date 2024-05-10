@@ -46,7 +46,7 @@ class ExchangeRate
 	// called for pr.submit and po.submit
 	public static function getRate($currency, $fc_currency)
 	{
-		Log::debug('Helpers.ExchangeRate.getRate getting rate for currency=' . $currency.' fc_currency='.$fc_currency);
+		Log::debug('Helpers.ExchangeRate.getRate getting rate for currency = ' . $currency.' fc_currency = '.$fc_currency);
 		// check if rate exists
 		$rate = 0;
 		try {
@@ -59,7 +59,7 @@ class ExchangeRate
 		} catch (\Exception $exception) {
 			// General Exception class which is the parent of all Exceptions
 			//Log::debug('ExchangeRate.getRate Still rate not found after importing data');
-			Log::error('Helpers.ExchangeRate.getRate rate not found currency=' . $currency.' fc_currency='.$fc_currency);
+			Log::error('Helpers.ExchangeRate.getRate rate not found currency = ' . $currency.' fc_currency = '.$fc_currency);
 			return 0;
 		}
 	}
@@ -91,7 +91,7 @@ class ExchangeRate
 			// Always USD
 			// oe stand for openexchange
 			$oe_base = $json['base'];
-			Log::debug('Helpers.ExchangeRate.importRates Openexchangerates Base Currency='. $oe_base);
+			Log::debug('Helpers.ExchangeRate.importRates Openexchangerates Base Currency = '. $oe_base);
 
 			//get all rates data
 			$rates = $json['rates'];

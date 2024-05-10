@@ -21,11 +21,12 @@
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PR">
 			<i class="align-middle me-1" data-feather="copy"></i> Copy Requisition</a>
 		
-		<a class="dropdown-item sw2-advance" href="{{ route('prs.convert', $id) }}"
-			data-entity="" data-name="PR#{{ $id }}" data-status="Covert to PO"
-			data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
-			<i class="align-middle me-1" data-feather="copy"></i> Covert to PO</a>
-
+		@can('covert', App\Models\Tenant\Pr::class)
+			<a class="dropdown-item sw2-advance" href="{{ route('prs.convert', $id) }}"
+				data-entity="" data-name="PR#{{ $id }}" data-status="Covert to PO"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Covert to PO">
+				<i class="align-middle me-1" data-feather="copy"></i> Covert to PO</a>
+			@endcan
 		<div class="dropdown-divider"></div>
 		@can('reset', App\Models\Tenant\Wf::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-pr', $id) }}"

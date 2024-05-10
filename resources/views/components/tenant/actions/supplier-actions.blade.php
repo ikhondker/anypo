@@ -16,7 +16,7 @@
 		@endcan
 		@can('spends', App\Models\Tenant\Lookup\Supplier::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('suppliers.spends', $project->id) }}"><i class="align-middle me-1" data-feather="eye"></i> Supplier Spends</a>
+			<a class="dropdown-item" href="{{ route('suppliers.spends', $supplier->id) }}"><i class="align-middle me-1" data-feather="eye"></i> Supplier Spends</a>
 			<a class="dropdown-item" href="{{ route('suppliers.po', $supplier->id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Supplier PO</a>
 		@endcan 
 

@@ -199,7 +199,6 @@ class ChartData
 		$suppliers = Supplier::orderBy('id', 'ASC')->get();
 		foreach ($suppliers as $supplier) {
 			$rowSupplier = Supplier::where('id', $supplier->id )->orderBy('id', 'ASC')->first();
-			//Log::debug('rowSupplier_id=' . $rowSupplier->id);
 
 			//Log::debug('---------------------------------');
 			$data = self::getRandomData();

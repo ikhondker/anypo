@@ -66,7 +66,7 @@ class Pr extends Model
 		//$pr		= Pr::where('id', $pr_id)->firstOrFail();
 		
 		// update PR header
-		Log::debug('tenant.model.pr.syncPrValues getting PR summary pr_id= '. $pr_id);
+		//Log::debug('tenant.model.pr.syncPrValues retrieving detail for pr_id= '. $pr_id);
 		$pr		= Pr::where('id', $pr_id)->firstOrFail();
 		$result = Prl::where('pr_id', $pr->id)->get( array(
 			DB::raw('SUM(sub_total) as sub_total'),
@@ -85,7 +85,7 @@ class Pr extends Model
 				$pr->gst			= 0 ;
 				$pr->amount			= 0;
 			} else {
-				Log::debug('tenant.model.pr.syncPrValues rows found in prl for pr_id= '. $pr_id);
+				//Log::debug('tenant.model.pr.syncPrValues rows found in prl for pr_id= '. $pr_id);
 				$pr->sub_total	= $row['sub_total'] ;
 				$pr->tax		= $row['tax'] ;
 				$pr->gst		= $row['gst'] ;
@@ -96,8 +96,6 @@ class Pr extends Model
 		
 		// get updated PR header
 		$pr				= Pr::where('id', $pr_id)->firstOrFail();
-		Log::debug('tenant.model.pr.syncPrValues PR currency =' . $pr->currency.' fc_currency ='.$setup->currency);
-
 		if ($pr->currency == $setup->currency){
 			$rate = 1;
 			DB::statement("UPDATE prls SET 
@@ -107,7 +105,8 @@ class Pr extends Model
 				fc_amount		= amount
 				WHERE pr_id = ".$pr_id."");
 		} else {
-			
+			Log::debug('tenant.model.pr.syncPrValues PR currency = ' . $pr->currency.' fc_currency = '.$setup->currency);
+			Log::debug('tenant.model.pr.syncPrValues calling ExchangeRate::getRate ...');
 			$rate = round(ExchangeRate::getRate($pr->currency, $setup->currency),6);
 
 			// Show error if rate not found 
@@ -119,7 +118,7 @@ class Pr extends Model
 			}
 
 			// update all prls fc columns
-			Log::debug('tenant.model.pr.syncPrValues populating FC prls table.');
+			Log::debug('tenant.model.pr.syncPrValues populating FC values prls table.');
 			DB::statement("UPDATE prls SET 
 				fc_sub_total	= round(sub_total * ".$rate.",2),
 				fc_tax			= round(tax * ".$rate.",2),
@@ -134,13 +133,13 @@ class Pr extends Model
 		// check if rows exists in prl
 		$count_prl		= Prl::where('pr_id',$pr->id)->count();
 		if ($count_prl == 0 ){
-			Log::debug('tenant.model.pr.syncPrValues NO row in prls table .');
+			Log::debug('tenant.model.pr.syncPrValues NO row found in prls table .');
 			$pr->fc_sub_total		= 0 ;
 			$pr->fc_tax				= 0 ;
 			$pr->fc_gst				= 0 ;
 			$pr->fc_amount			= 0;
 		} else {
-			Log::debug('tenant.model.pr.syncPrValues updating pr header FC columns.');
+			//Log::debug('tenant.model.pr.syncPrValues updating pr header FC columns.');
 			// get prl summary
 			$result= Prl::where('pr_id', $pr_id)->get( array(
 				DB::raw('SUM(fc_sub_total) as fc_sub_total'),
@@ -158,7 +157,7 @@ class Pr extends Model
 		$pr->fc_exchange_rate	= $rate;
 
 		$pr->save();
-		Log::debug('tenant.model.pr.syncPrValues pr->fc_amount = '.$pr->fc_amount);
+		Log::debug('tenant.model.pr.syncPrValues pr table updated with  pr->fc_amount = '.$pr->fc_amount);
 
 		return '';
 	}

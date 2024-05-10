@@ -92,7 +92,7 @@ class SupplierPolicy
 	 */
 	public function spends(User $user): bool
 	{
-		return ($user->isCxO() || $user->isAdmin() || $user->isSupport());
+		return ($user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 }

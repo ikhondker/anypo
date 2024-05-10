@@ -31,7 +31,7 @@ class SpendsByProjectCountBar extends Component
 
 		foreach ($this->projects as $project){
 			//Log::debug('Value of id=' . $project->name . ' -> '.$project->amount);
-			$this->project_labels[] 	= $project->name;
+			$this->project_labels[] 	= $project->code;
 			$this->count_pr[] 			= (int) $project->count_pr + $project->count_pr_booked;
 			$this->count_po[] 			= (int) $project->count_po + $project->count_po_booked;
 			$this->count_grs[] 			= (int) $project->count_grs;

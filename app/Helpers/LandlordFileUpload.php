@@ -67,7 +67,7 @@ class LandlordFileUpload
 		// get tenant, entity and directory to upload
 		$entity 		= Entity::where('entity', $request->entity)->first();
 		$fileUploadPath = $entity->directory."/". $fileName;
-		Log::debug('Helpers.LandlordFileUpload.aws Value of fileUploadPath ='. $fileUploadPath);
+		Log::debug('Helpers.LandlordFileUpload.aws Value of fileUploadPath = '. $fileUploadPath);
 			
 		try {
 			//Code that may throw an Exception
@@ -75,7 +75,7 @@ class LandlordFileUpload
 			//$request->file_to_upload->storeAs('private/' . $directory . '/', $fileName);
 
 			$path= Storage::disk('s3lf')->put($fileUploadPath, file_get_contents($file));
-			Log::debug('Helpers.LandlordFileUpload.aws Value of path='. $path);
+			Log::debug('Helpers.LandlordFileUpload.aws Value of path = '. $path);
 
 			// create Attachment record rewrite
 			$attachment					= new Attachment;
@@ -96,7 +96,7 @@ class LandlordFileUpload
 			$attachment_id				=$attachment->id;
 		} catch (Exception $e) {
 			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
-			Log::error('LandlordFileUpload.upload '.$e->getMessage());
+			Log::error('Helpers.LandlordFileUpload.aws '.$e->getMessage());
 			// Either form a friendlier message to display to the user OR redirect them to a failure page
 			$attachment_id = 0;
 		}
@@ -120,7 +120,7 @@ class LandlordFileUpload
 			// OK. Store File in Storage Private Folder. Auto create folder
 			$request->file_to_upload->storeAs('private/' . $directory . '/', $fileName);
 
-			Log::debug('ll.upload Value of directory=' . $directory);
+			Log::debug('Helpers.LandlordFileUpload.upload Value of directory = ' . $directory);
 			// create Attachment record rewrite
 			$attachment					= new Attachment;
 			$attachment->article_id		= $request->article_id;
@@ -140,7 +140,7 @@ class LandlordFileUpload
 			$attachment_id				=$attachment->id;
 		} catch (Exception $e) {
 			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
-			Log::error('LandlordFileUpload.upload '.$e->getMessage());
+			Log::error('Helpers.LandlordFileUpload.upload '.$e->getMessage());
 			// Either form a friendlier message to display to the user OR redirect them to a failure page
 			$attachment_id = 0;
 		}

@@ -95,7 +95,7 @@ class Bo
 
 		$service->save();
 
-		Log::debug('Helpers.bo.createCheckoutService Account Service created id=' . $service->id);
+		Log::debug('Helpers.bo.createCheckoutService Account Service created id = ' . $service->id);
 		LandlordEventLog::event('service', $service->id, 'create');
 		return $service->id;
 	}
@@ -104,8 +104,8 @@ class Bo
 	{
 		$checkout		= Checkout::where('id', $checkout_id)->first();
 
-		Log::debug('Helpers.bo.createCheckoutInvoice Generating Invoice for checkout_id= ' . $checkout_id );
-		Log::debug('Helpers.bo.createCheckoutInvoice Generating Invoice for account_id= ' . $checkout->account_id );
+		Log::debug('Helpers.bo.createCheckoutInvoice Generating Invoice for checkout_id = ' . $checkout_id );
+		Log::debug('Helpers.bo.createCheckoutInvoice Generating Invoice for account_id = ' . $checkout->account_id );
 
 		if ($checkout->account_id == 0) {
 			//return redirect()->back()->with(['error' => 'Could you find account.']);
@@ -120,7 +120,7 @@ class Bo
 		$invoice->invoice_no	= Bo::getInvoiceNo();
 
 		$invoice->invoice_date = now();
-		//Log::channel('bo')->info('Account id='. $account_id.' last_bill_from_date '.$account->last_bill_from_date);
+		//Log::channel('bo')->info('Account id = '. $account_id.' last_bill_from_date '.$account->last_bill_from_date);
 
 		// This is the first bill for initial purchase
 		$invoice->invoice_type	= $checkout->invoice_type;
@@ -139,8 +139,8 @@ class Bo
 		
 		$invoice->from_date		= $checkout->start_date;
 		$invoice->to_date		= $checkout->end_date;
-		Log::channel('bo')->info('Helpers.bo.createCheckoutInvoice Account id=' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
-		//Log::channel('bo')->info('password='.$random_password);
+		Log::channel('bo')->info('Helpers.bo.createCheckoutInvoice Account id = ' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
+		
 
 		$invoice->due_date		= $checkout->end_date;
 		$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain');
@@ -155,7 +155,7 @@ class Bo
 		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
 		$invoice->save();
 
-		Log::debug('Helpers.bo.createCheckoutInvoice Invoice Generated id=' . $invoice->id);
+		Log::debug('Helpers.bo.createCheckoutInvoice Invoice Generated id = ' . $invoice->id);
 		LandlordEventLog::event('invoice', $invoice->id, 'create');
 
 		// post invoice creation update
@@ -164,7 +164,6 @@ class Bo
 		// Invoice Created Notification
 		$user->notify(new InvoiceCreated($user, $invoice));
 
-		//Log::debug('Account Created id='. $account->id);
 		//return redirect()->route('processes.index')->with('success','Invoice Generation Process completed successfully.');
 		return $invoice->id;
 	}	

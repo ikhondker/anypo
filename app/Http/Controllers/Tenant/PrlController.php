@@ -237,17 +237,28 @@ class PrlController extends Controller
 	{
 
 		$pr = Pr::where('id', $prl->pr_id)->first();
-
+		
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can delete line in Requisition with only status '. strtoupper($pr->auth_status) .' !');
 		}
-
+		
+		Log::debug('tenant.prl.destroy deleting pr_id = '. $prl->pr_id);
+		// check if allowed by policy
 		$this->authorize('delete', $prl);
 
 		$prl->delete();
 
 		// 	update PR Header value
+		Log::debug('tenant.prl.destroy calling syncPrValues for pr_id = '. $prl->pr_id);
 		$result = Pr::syncPrValues($prl->pr_id);
+		Log::debug('tenant.prl.destroy syncPrValues return value = '. $result);
+
+		if ($result == '') {
+			Log::debug('tenant.prl.destroy syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error('tenant.prl.destroy syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+		}
 
 		// Write to Log
 		EventLog::event('prl', $prl->id, 'delete', 'id', $prl->id);

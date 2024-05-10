@@ -100,7 +100,7 @@ class MenuPolicy
 	{
 		// TODO MUST 
 		//return true;
-		return ($user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() );
+		return ( $user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() );
 	}
 
 	/**

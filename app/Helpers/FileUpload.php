@@ -72,7 +72,7 @@ class FileUpload
 			//$request->file_to_upload->storeAs('private/'.$directory.'/', $fileName);
 
 			$path= Storage::disk('s3tf')->put($fileUploadPath, file_get_contents($file));
-			//Log::debug('Helpers.FileUpload.aws Value of path='. $path);
+			//Log::debug('Helpers.FileUpload.aws Value of path = '. $path);
 
 			// create Attachment record 
 			$attachment					= new Attachment();
