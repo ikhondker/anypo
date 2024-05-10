@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies\Tenant;
+namespace App\Policies\Tenant\Ae;
 
-use App\Models\Tenant\Ael;
+use App\Models\Tenant\Ae\Ael;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

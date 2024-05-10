@@ -28,7 +28,7 @@ use App\Http\Requests\Tenant\UpdatePolRequest;
 # 1. Models
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
-
+use App\Models\Tenant\Manage\CustomError;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 # 2. Enums
@@ -125,8 +125,19 @@ class PolController extends Controller
 		EventLog::event('Pol', $pol->id, 'create');
 
 		// update PO Header value
-		$result = Po::updatePoHeaderValue($pol->po_id);
-		
+		// old $result = Po::updatePoHeaderValue($pol->po_id);
+		// 	Update PR Header value and Populate functional currency values
+		Log::debug('tenant.prl.store calling syncPrValues for pr_id = '. $pol->po_id);
+		$result = Po::syncPoValues($pol->po_id);
+		Log::debug('tenant.prl.store syncPrValues return value = '. $result);
+
+		if ($result == '') {
+			Log::debug('tenant.ppl.store syncPpValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error('tenant.pol.store syncPoValues po_id = '.$pol->po_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			//return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		}
 
 		// $pol_sum 			= Pol::where('po_id', '=', $po->id)->sum('amount');
 		// $po->amount			= $pol_sum;
@@ -140,15 +151,6 @@ class PolController extends Controller
 			//Checkbox not checked
 			return redirect()->route('pos.show', $pol->po_id)->with('success', 'Lined added to PO #'. $pol->po_id.' successfully.');
 			//return redirect()->route('pos.show', $po->id)->with('success', 'PO #'. $po->id.' created successfully.');
-		}
-
-		if($request->has('add_row')) {
-			//Checkbox checked
-			return redirect()->route('pols.add-line', $pol->po_id)->with('success', 'Line added to PO #'. $pol->po_id.' successfully.');
-			
-		} else {
-			//Checkbox not checked
-			return redirect()->route('pos.show', $pol->po_id)->with('success', 'Lined added to PO #'. $pol->pr_id.' successfully.');
 		}
 
 	}
@@ -206,8 +208,17 @@ class PolController extends Controller
 		// Write to Log
 		EventLog::event('Pol', $pol->id, 'edit');
 
-		// 	update PO Header value
-		$result = Po::updatePoHeaderValue($pol->po_id);
+		// 	update PO Header value 
+		// old 	$result = Po::updatePoHeaderValue($pol->po_id);
+
+		$result = Po::syncPoValues($pol->po_id);
+		Log::debug('tenant.PolController.update Return value of Po->syncPoValues = ' . $result);
+		if ($result == '') {
+			Log::debug('tenant.pol.update syncPoValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error('tenant.po.update syncPoValues po_id = '.$pol->po_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+		}
 
 		// Write to Log
 		EventLog::event('pol', $pol->id, 'update', 'summary', $pol->summary);

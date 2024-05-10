@@ -23,17 +23,22 @@ class StatusSeeder extends Seeder
 				'name' 				=> 'Draft',
 				'badge' 			=> 'bg-info',
 		  	],
-			  [
+			[
 				'code' 				=> 'partial',
 				'name' 				=> 'Partial',
 				'badge' 			=> 'bg-info',
+		  	],
+			[
+				'code' 				=> 'accounted',
+				'name' 				=> 'Accounted',
+				'badge' 			=> 'bg-success',
 		  	],
 			[
 				'code' 				=> 'approved',
 				'name' 				=> 'Approved',
 				'badge' 			=> 'bg-success',
 		  	],
-			  [
+			[
 				'code' 				=> 'received',
 				'name' 				=> 'Received',
 				'badge' 			=> 'bg-success',

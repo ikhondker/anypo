@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Models\Tenant\Ael;
+use App\Models\Tenant\Ae\Ael;
 
 class AelActions extends Component
 {

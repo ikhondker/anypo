@@ -46,6 +46,7 @@ class ExchangeRate
 	// called for pr.submit and po.submit
 	public static function getRate($currency, $fc_currency)
 	{
+		Log::debug('Helpers.ExchangeRate.getRate getting rate for currency=' . $currency.' fc_currency='.$fc_currency);
 		// check if rate exists
 		$rate = 0;
 		try {

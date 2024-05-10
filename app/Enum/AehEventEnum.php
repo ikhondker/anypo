@@ -19,7 +19,7 @@
 */
 namespace App\Enum;
 
-enum AelEvent:string{
+enum AehEventEnum:string{
 	case POST		= 'post';
 	case CANCEL		= 'cancel';
 }

@@ -64,6 +64,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'payments.show','route_name' => 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.create','route_name' => 'payments.index', 'node_name' => 'workbench'],
 			
+
 			[ 'raw_route_name' => 'aels.index','route_name' => 'aels.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'aels.show','route_name' => 'aels.index', 'node_name' => 'workbench'],
 			/**
@@ -149,25 +150,24 @@ class MenuSeeder extends Seeder
 
 			[ 'raw_route_name' => 'rates.index','route_name' 		=> 'rates.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'warehouses.index','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'warehouses.show','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'warehouses.edit','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'warehouses.create','route_name' => 'warehouses.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'warehouses.index','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'warehouses.show','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'warehouses.edit','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'warehouses.create','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'categories.index','route_name' => 'categories.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'categories.edit','route_name' => 'categories.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'categories.create','route_name' => 'categories.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'categories.index','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'categories.edit','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'categories.create','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
 
 			// TODO
-			[ 'raw_route_name' => 'uoms.index','route_name' => 'uoms.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'uoms.create','route_name' => 'uoms.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'uoms.edit','route_name' => 'uoms.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'uoms.index','route_name' 		=> 'uoms.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'uoms.create','route_name' 		=> 'uoms.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'uoms.edit','route_name' 			=> 'uoms.index', 'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'bank-accounts.index','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.show','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.edit','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.create','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
-						
 
 			/**
 			* ==================================================================================
@@ -175,11 +175,11 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 			[ 'raw_route_name' => 'upload-items.index','route_name' => 'upload-items.index', 'node_name' => 'interface'],
-			[ 'raw_route_name' => 'upload-items.show','route_name' => 'upload-items.index', 'node_name' => 'interface'],
-			[ 'raw_route_name' => 'upload-items.edit','route_name' => 'upload-items.index', 'node_name' => 'interface'],
-			[ 'raw_route_name' => 'upload-items.create','route_name' => 'upload-items.create', 'node_name' => 'interface'],
+			[ 'raw_route_name' => 'upload-items.show','route_name' 	=> 'upload-items.index', 'node_name' => 'interface'],
+			[ 'raw_route_name' => 'upload-items.edit','route_name' 	=> 'upload-items.index', 'node_name' => 'interface'],
+			[ 'raw_route_name' => 'upload-items.create','route_name'=> 'upload-items.create', 'node_name' => 'interface'],
 			[ 'raw_route_name' => 'upload-items.check','route_name' => 'upload-items.index', 'node_name' => 'interface'],
-			[ 'raw_route_name' => 'upload-items.import','route_name' => 'upload-items.index', 'node_name' => 'interface'],
+			[ 'raw_route_name' => 'upload-items.import','route_name'=> 'upload-items.index', 'node_name' => 'interface'],
 
 
 			/**
@@ -193,24 +193,25 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.show','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],		
 			[ 'raw_route_name' => 'users.edit','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],		
 
-			[ 'raw_route_name' => 'activities.index','route_name' => 'activities.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'activities.show','route_name' => 'activities.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'activities.index','route_name' 		=> 'activities.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'activities.show','route_name' 		=> 'activities.index', 'node_name' => 'admin'],
 
-			[ 'raw_route_name' => 'attachments.index','route_name' => 'attachments.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'attachments.show','route_name' => 'attachments.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'attachments.index','route_name' 		=> 'attachments.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'attachments.show','route_name' 		=> 'attachments.index', 'node_name' => 'admin'],
 
-			[ 'raw_route_name' => 'setups.index','route_name' => 'setups.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'setups.edit','route_name' => 'setups.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'setups.show','route_name' => 'setups.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'setups.notice','route_name' => 'setups.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.index','route_name' 			=> 'setups.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.edit','route_name' 			=> 'setups.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.show','route_name' 			=> 'setups.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.notice','route_name' 			=> 'setups.index', 'node_name' => 'admin'],
 
-			[ 'raw_route_name' => 'hierarchies.index','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'hierarchies.show','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'hierarchies.edit','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'hierarchies.create','route_name' => 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.index','route_name' 		=> 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.show','route_name' 		=> 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.edit','route_name' 		=> 'hierarchies.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'hierarchies.create','route_name' 	=> 'hierarchies.index', 'node_name' => 'admin'],
 
-			[ 'raw_route_name' => 'wfs.index','route_name' => 'wfs.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'wfs.show','route_name' => 'wfs.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'wfs.index','route_name' 				=> 'wfs.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'wfs.show','route_name' 				=> 'wfs.index', 'node_name' => 'admin'],
+
 
 			/**
 			* ==================================================================================
@@ -218,31 +219,34 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'templates.index','route_name' => 'templates.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'templates.show','route_name' => 'templates.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'templates.edit','route_name' => 'templates.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'templates.create','route_name' => 'templates.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'templates.index','route_name' 		=> 'templates.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'templates.show','route_name' 		=> 'templates.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'templates.edit','route_name' 		=> 'templates.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'templates.create','route_name' 		=> 'templates.index', 'node_name' => 'system'],
 
 
-			[ 'raw_route_name' => 'tables.index','route_name' => 'tables.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'tables.index','route_name' 			=> 'tables.index', 'node_name' => 'system'],
 
-			[ 'raw_route_name' => 'entities.index','route_name' => 'entities.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'entities.edit','route_name' => 'entities.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'entities.create','route_name' => 'entities.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'entities.index','route_name' 		=> 'entities.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'entities.edit','route_name' 			=> 'entities.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'entities.create','route_name' 		=> 'entities.index', 'node_name' => 'system'],
 
-			[ 'raw_route_name' => 'statuses.index','route_name' => 'statuses.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'statuses.edit','route_name' => 'statuses.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'statuses.create','route_name' => 'statuses.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'statuses.index','route_name' 		=> 'statuses.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'statuses.edit','route_name' 			=> 'statuses.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'statuses.create','route_name' 		=> 'statuses.index', 'node_name' => 'system'],
 
-			[ 'raw_route_name' => 'custom-errors.index','route_name' => 'custom-errors.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'custom-errors.show','route_name' => 'custom-errors.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'custom-errors.edit','route_name' => 'custom-errors.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'custom-errors.create','route_name' => 'custom-errors.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'custom-errors.index','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'custom-errors.show','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'custom-errors.edit','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'custom-errors.create','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
 			
-			[ 'raw_route_name' => 'menus.index','route_name' => 'menus.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'menus.edit','route_name' => 'menus.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'menus.create','route_name' => 'menus.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'menus.index','route_name' 			=> 'menus.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'menus.edit','route_name' 			=> 'menus.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'menus.create','route_name' 			=> 'menus.index', 'node_name' => 'system'],
 			
+			[ 'raw_route_name' => 'aehs.index','route_name' 			=> 'aehs.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'aehs.show','route_name' 				=> 'aehs.index', 'node_name' => 'system'],
+
 			
 			// Special
 			[ 'raw_route_name' => 'prls.index','route_name' => 'prls.index', 'node_name' => 'system'],

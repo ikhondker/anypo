@@ -100,6 +100,9 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Workflow\Wf'			=> 'App\Policies\Tenant\Workflow\WfPolicy',
 		'App\Models\Tenant\Workflow\Wfl'		=> 'App\Policies\Tenant\Workflow\WflPolicy',
 
+		'App\Models\Tenant\Ae\Aeh' 				=> 'App\Policies\Tenant\Ae\AehPolicy',
+		'App\Models\Tenant\Ae\Ael' 				=> 'App\Policies\Tenant\Ae\AelPolicy',
+
 		'App\Models\Tenant\Support\Ticket' 		=> 'App\Policies\Tenant\Support\TicketPolicy',
 
 		'App\Models\Tenant\Budget'				=> 'App\Policies\Tenant\BudgetPolicy',
@@ -115,7 +118,6 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\InvoiceLine'			=> 'App\Policies\Tenant\InvoiceLinePolicy',
 		'App\Models\Tenant\Payment'				=> 'App\Policies\Tenant\PaymentPolicy',
 		'App\Models\Tenant\Receipt' 			=> 'App\Policies\Tenant\ReceiptPolicy',
-		'App\Models\Tenant\Ael' 				=> 'App\Policies\Tenant\AelPolicy',
 		'App\Models\Tenant\Report' 				=> 'App\Policies\Tenant\ReportPolicy',
 		
 		// 'App\Models\Tenant' => 'App\Policies\TenantPolicy',

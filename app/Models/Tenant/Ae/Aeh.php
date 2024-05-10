@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Tenant;
+namespace App\Models\Tenant\Ae;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,16 +10,18 @@ use Illuminate\Support\Facades\Log;
 use App\Traits\AddCreatedUpdatedBy;
 
 use App\Enum\EntityEnum;
-use App\Enum\AelEvent;
+use App\Enum\AehEventEnum;
 
-class Ael extends Model
+use App\Models\Tenant\Po;
+
+class Aeh extends Model
 {
-	use HasFactory;
+    use HasFactory;
 	
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'source', 'entity', 'event', 'accounting_date', 'ac_code', 'line_description', 'fc_currency', 'fc_dr_amount', 'fc_cr_amount', 'po_id', 'article_id', 'reference', 'updated_by', 'updated_at',
+		'source_app', 'source_entity', 'event', 'accounting_date', 'description', 'fc_currency', 'fc_dr_amount', 'fc_cr_amount', 'po_id', 'article_id', 'reference_no', 'status', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -31,8 +33,8 @@ class Ael extends Model
 		'deleted_at'	=> 'datetime',
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
-		'entity'		=> EntityEnum::class,
-		'event'			=> AelEvent::class,
+		'source_entity'	=> EntityEnum::class,
+		'event'			=> AehEventEnum::class,
 	];
 
 	/* ----------------- Scopes ------------------------- */
@@ -55,5 +57,4 @@ class Ael extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
-
 }

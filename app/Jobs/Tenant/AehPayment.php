@@ -9,11 +9,14 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 use App\Enum\EntityEnum;
-use App\Enum\AelEvent;
+use App\Enum\AehEvent;
 
+
+use App\Models\Tenant\Ael\Aeh;
+use App\Models\Tenant\Ael\Ael;
 
 use App\Models\Tenant\Payment;
-use App\Models\Tenant\Ael;
+
 use App\Models\Tenant\Lookup\BankAccount;
 use App\Models\Tenant\Admin\Setup;
 
@@ -22,7 +25,7 @@ use Illuminate\Support\Facades\Log;
 use Str;
 use DB;
 
-class AelPayment implements ShouldQueue
+class AehPayment implements ShouldQueue
 {
 
 	protected $payment_id;

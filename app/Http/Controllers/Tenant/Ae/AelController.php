@@ -5,7 +5,7 @@
 * =====================================================================================
 * @file			AelController.php
 * @brief		This file contains the implementation of the AelController
-* @path			\app\Http\Controllers\Tenant
+* @path			\app\Http\Controllers\Tenant\Ae
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		4-JAN-2024
 * @copyright	(c) Iqbal H. Khondker <ihk@khondker.com>
@@ -18,12 +18,12 @@
 * =====================================================================================
 */
 
-namespace App\Http\Controllers\Tenant;
+namespace App\Http\Controllers\Tenant\Ae;
 use App\Http\Controllers\Controller;
 
-use App\Models\Tenant\Ael;
-use App\Http\Requests\Tenant\StoreAelRequest;
-use App\Http\Requests\Tenant\UpdateAelRequest;
+use App\Models\Tenant\Ae\Ael;
+use App\Http\Requests\Tenant\Ae\StoreAelRequest;
+use App\Http\Requests\Tenant\Ae\UpdateAelRequest;
 
 # 1. Models
 use App\Models\Tenant\Admin\Setup;
@@ -59,14 +59,14 @@ class AelController extends Controller
 		$this->authorize('viewAny',Ael::class);
 		$aels = Ael::query();
 
-		Log::debug('tenant.ael.index Value of action=' . request('action'));
+		Log::debug('tenant.ae.ael.index Value of action=' . request('action'));
 
 		// TODO CHECK 
 		if (request('start_date') && tenant()) {
 			$start_date = 	request('start_date');
 			$end_date	=	request('end_date');
-			Log::debug('tenant.ael.index Value of start_date=' . request('start_date'));
-			Log::debug('tenant.ael.index Value of end_date=' . request('end_date'));
+			Log::debug('tenant.ae.ael.index Value of start_date=' . request('start_date'));
+			Log::debug('tenant.ae.ael.index Value of end_date=' . request('end_date'));
 		}
 
 		switch (request('action')) {
@@ -83,7 +83,7 @@ class AelController extends Controller
 					FROM aels 
 					WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
 				";
-				//Log::debug('tenant.ael.export'.$sql);
+				//Log::debug('tenant.ae.ael.export'.$sql);
 
 				$data = DB::select($sql);
 				$dataArray = json_decode(json_encode($data), true);
@@ -97,7 +97,7 @@ class AelController extends Controller
 		// }
 
 		$aels = $aels->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.aels.index', compact('aels'));
+		return view('tenant.ae.aels.index', compact('aels'));
 	}
 
 	/**
@@ -123,7 +123,7 @@ class AelController extends Controller
 	{
 		$this->authorize('view', $ael);
 
-		return view('tenant.aels.show', compact('ael'));
+		return view('tenant.ae.aels.show', compact('ael'));
 	}
 
 	/**
@@ -167,27 +167,6 @@ class AelController extends Controller
 		abort(403);
 	}
 
-	public function xxexport()
-	{
-		$this->authorize('export', Ael::class);
-
-		if (request('start_date') && request('end_date') ) {
-			$start_date=request('start_date');
-			$end_date=request('end_date');
-			Log::debug('tenant.ael.export Value of start_date=' . request('start_date'));
-			Log::debug('tenant.ael.export Value of end_date=' . request('end_date'));
-		} else {
-			Log::debug('tenant.ael.export EMPTY');
-		}
-
-		
-		if (request('start_date')) {
-			Log::debug('ee Value of start_date=' . request('start_date'));
-		}
-		if (request('end_date')) {
-			Log::debug('ee Value of end_date=' . request('end_date'));
-		}
-	}
 
 	public function exportForPo($id)
 	{

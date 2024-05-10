@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			EntityEnum.php
-* @brief		This file contains the implementation of the EntityEnum
+* @file			PrStatusEnum.php
+* @brief		This file contains the implementation of the PrStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -19,22 +19,10 @@
 */
 namespace App\Enum;
 
-enum EntityEnum: string{
-	case CORE		= 'CORE';
-	case PROJECT	= 'PROJECT';
-	case ITEM		= 'ITEM';
-	case BUDGET		= 'BUDGET';
-	case DEPTBUDGET	= 'DEPTBUDGET';
-	case PR			= 'PR';
-	case PO			= 'PO';
-	case RECEIPT	= 'RECEIPT';
-	case INVOICE	= 'INVOICE';
-	case PAYMENT	= 'PAYMENT';
-	case AE			= 'AE';
-	case TEMPLATE	= 'TEMPLATE';
-	case TICKET		= 'TICKET';		// Support Ticket raise from Tenant
-	case CONTACT	= 'CONTACT';	// Home Controlled 
-	
+enum AehStatusEnum: string{
+	case DRAFT		= 'draft';
+	case ACCOUNTED	= 'accounted';
+	case CANCELED	= 'canceled';
+	case ERROR		= 'error';
 }
-
 

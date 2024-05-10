@@ -28,7 +28,7 @@ use App\Http\Requests\Tenant\UpdatePrlRequest;
 # 1. Models
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
-
+use App\Models\Tenant\Manage\CustomError;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
 # 2. Enums
@@ -132,13 +132,16 @@ class PrlController extends Controller
 		EventLog::event('Prl', $prl->id, 'create');
 		
 		// 	Update PR Header value and Populate functional currency values
+		Log::debug('tenant.prl.store calling syncPrValues for pr_id = '. $prl->pr_id);
 		$result = Pr::syncPrValues($prl->pr_id);
-		
-		if (! $result ) {
-			Log::error('tenant.prl.store Exchange Rate not found!');
-			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
-		} else {
+		Log::debug('tenant.prl.store syncPrValues return value = '. $result);
+
+		if ($result == '') {
 			Log::debug('tenant.prl.store syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error('tenant.prl.store syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			//return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		}
 
 		
@@ -209,14 +212,17 @@ class PrlController extends Controller
 		]);
 		$prl->update($request->all());
 
-		// 	Update PR Header value and Populate functional currency values
+		// 	Update PR Header value and Populate functional currency values. Currency Might change
+		Log::debug('tenant.prl.update calling syncPrValues for pr_id = '. $prl->pr_id);
 		$result = Pr::syncPrValues($prl->pr_id);
-		if (! $result ) {
-			return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
-		} else {
-			Log::debug('tenant.prl.update syncPrValues completed.');
-		}
+		Log::debug('tenant.prl.update syncPrValues return value = '. $result);
 
+		if ($result == '') {
+			Log::debug('tenant.prl.update syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error('tenant.prl.update syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+		}
 
 		// Write to Log
 		EventLog::event('prl', $prl->id, 'update', 'summary', $prl->summary);

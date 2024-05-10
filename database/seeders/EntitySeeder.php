@@ -77,6 +77,7 @@ class EntitySeeder extends Seeder
 				'route'		 	=> 'pos',
 				'directory'		=> 'po',
 			],
+
 			[
 				'entity'		=> 'RECEIPT',
 				'name'		  	=> 'Receipt',
@@ -97,6 +98,13 @@ class EntitySeeder extends Seeder
 				'model'			=> 'Payment',
 				'route'		 	=> 'payments',
 				'directory'		=> 'payment',
+			],
+			[
+				'entity'		=> 'AE',
+				'name'		  	=> 'Accounting Entry',
+				'model'			=> 'Aeh',
+				'route'		 	=> 'aeh',
+				'directory'		=> 'ae',
 			],
 			[
 				'entity'		=> 'COMMENT',

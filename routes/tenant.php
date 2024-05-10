@@ -60,6 +60,9 @@ use App\Http\Controllers\Tenant\Workflow\HierarchyController;
 use App\Http\Controllers\Tenant\Workflow\WfController;
 use App\Http\Controllers\Tenant\Workflow\WflController;
 
+use App\Http\Controllers\Tenant\Ae\AehController;
+use App\Http\Controllers\Tenant\Ae\AelController;
+
 use App\Http\Controllers\Tenant\Support\TicketController;
 
 use App\Http\Controllers\Tenant\BudgetController;
@@ -78,7 +81,8 @@ use App\Http\Controllers\Tenant\ReceiptController;
 use App\Http\Controllers\Tenant\InvoiceController;
 //use App\Http\Controllers\Tenant\InvoiceLinesController;
 use App\Http\Controllers\Tenant\PaymentController;
-use App\Http\Controllers\Tenant\AelController;
+
+
 use App\Http\Controllers\Tenant\ReportController;
 
 
@@ -361,7 +365,7 @@ Route::middleware([
 				Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
 				Route::get('/payments/ael/{payment}',[PaymentController::class,'ael'])->name('payments.ael');
 		
-				/* ======================== Accounting ======================================== */
+				/* ======================== Ael ======================================== */
 				Route::resource('aels', AelController::class);
 				Route::get('/ael/export-for-po/{id}',[AelController::class,'exportForPo'])->name('aels.export-for-po');
 		
@@ -665,6 +669,8 @@ Route::middleware([
 		Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
 		Route::get('/report/stocks',[ReportController::class, 'stocks'])->name('reports.stocks');
 		
+		/* ======================== Aeh ======================================== */
+		Route::resource('aehs', AehController::class);
 		
 		/* ======================== Purging Cache ========================================  */
 		// Route::get('/clear', function() {

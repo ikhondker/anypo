@@ -301,12 +301,15 @@ class PrController extends Controller
 		}
 		
 		// 	Update PR Header value and Populate functional currency values. Currency Might change
+		Log::debug('tenant.pr.update calling syncPrValues for pr_id = '. $pr->id);
 		$result = Pr::syncPrValues($pr->id);
+		Log::debug('tenant.pr.update syncPrValues return value = '. $result);
+
 		if ($result == '') {
 			Log::debug('tenant.pr.update syncPrValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.pr.store syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error('tenant.pr.update syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
 		// Write to Log
