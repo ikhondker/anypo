@@ -140,7 +140,7 @@ class PrlController extends Controller
 			Log::debug('tenant.prl.store syncPrValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.prl.store syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error(tenant('id'). 'tenant.prl.store syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 			//return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		}
 
@@ -221,7 +221,7 @@ class PrlController extends Controller
 			Log::debug('tenant.prl.update syncPrValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.prl.update syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error(tenant('id'). 'tenant.prl.update syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
 		// Write to Log
@@ -257,7 +257,7 @@ class PrlController extends Controller
 			Log::debug('tenant.prl.destroy syncPrValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.prl.destroy syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error(tenant('id'). 'tenant.prl.destroy syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
 		// Write to Log

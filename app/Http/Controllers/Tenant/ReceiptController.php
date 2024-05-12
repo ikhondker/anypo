@@ -97,7 +97,7 @@ class ReceiptController extends Controller
 				break;
 			default:
 				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByUserAll()->paginate(10);
-				Log::warning("tenant.receipt.index Other roles!");
+				Log::warning(tenant('id'). 'tenant.receipt.index Other role ='. auth()->user()->role->value);
 		}
 
 		//$receipts = $receipts->orderBy('id', 'DESC')->paginate(10);
@@ -362,7 +362,7 @@ class ReceiptController extends Controller
 			// update pr fc columns
 			// ERROR rate not found 
 			if ($rate == 0){
-				Log::error('receipt.updateReceiptFcValues rate not found currency=' . $po_currency.' fc_currency='.$setup->currency);
+				Log::error(tenant('id'). 'receipt.updateReceiptFcValues rate not found currency=' . $po_currency.' fc_currency='.$setup->currency);
 				return false;
 			}
 

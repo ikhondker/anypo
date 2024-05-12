@@ -232,7 +232,7 @@ class AttachmentController extends Controller
 				return redirect()->back()->with('error', 'Attachment can not be deleted from Payment!');
 				break;
 			default:
-				Log::error('tenant.attachment.destroy un-matched entity id=' . $attachment->id);
+				Log::error(tenant('id'). 'tenant.attachment.destroy un-matched entity ='.$attachment->entity.' id=' . $attachment->id);
 				return redirect()->back()->with('error', 'Unknown Error!');
 		}
 

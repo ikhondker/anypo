@@ -108,7 +108,7 @@ class PoController extends Controller
 				break;
 			default:
 				//$pos = $pos->ByUserAll()->paginate(10);
-				Log::warning("tenant.po.index Other roles!");
+				Log::warning(tenant('id'). 'tenant.po.index Other role ='. auth()->user()->role->value);
 				abort(403);
 		}
 
@@ -209,8 +209,10 @@ class PoController extends Controller
 			Log::debug('tenant.po.update syncPoValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.po.store syncPoValues po_id = '.$po->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error(tenant('id'). 'tenant.po.store syncPoValues po_id = '.$po->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
+
+		
 
 		if($request->has('add_row')) {
 			//Checkbox checked
@@ -306,7 +308,7 @@ class PoController extends Controller
 			Log::debug('tenant.po.update syncPoValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.po.store syncPoValues po_id = '.$po->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error(tenant('id'). 'tenant.po.store syncPoValues po_id = '.$po->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
 		
@@ -548,23 +550,23 @@ class PoController extends Controller
 		if ( $retcode <> '' ){
 			try {
 				$customError = CustomError::where('code', $retcode)->firstOrFail();
-				Log::warning("tenant.prs.submit Error during Submission error_code = ". $retcode);
+				Log::warning(tenant('id'). 'tenant.pos.submit Error during Submission error_code = '. $retcode);
 				return redirect()->back()->with('error', $customError->message);
 			} catch (ModelNotFoundException $exception) {
 				// Error code not found!
-				Log::Error("tenant.prs.submit ModelNotFoundException. Error code not found error_code = ". $retcode);
+				Log::error(tenant('id'). 'tenant.pos.submit ModelNotFoundException. Error code not found for po_id = '.$po->id.' error_code = '. $retcode);
 				return redirect()->back()->with('error', 'Error-E000');
 			}
 		} else {
 			// Submission Success
-			Log::warning("tenant.prs.submit Submission okay for pr_id= ". $po->id);
+			Log::debug('tenant.prs.submit Submission okay for pr_id= '. $po->id);
 		}
 
 		// Submit for approval
 		Log::debug("tenant.po.submit creating new workflow for po_id=".$po->id);
 		$wf_id = Workflow::submitWf(EntityEnum::PO->value, $po->id);
 		if ($wf_id == 0) {
-			Log::error("tenant.po.submit Error creating new workflow!");
+			Log::error(tenant('id'). 'tenant.po.submit Error creating new workflow for po_id = !'.$po->id);
 			return redirect()->route('pos.index')->with('error', 'Workflow can not be created! Failed to Submit.');
 		}
 
@@ -764,8 +766,8 @@ class PoController extends Controller
 		try {
 			$po = Po::where('id', $request->input('attach_po_id'))->get()->firstOrFail();
 		} catch (Exception $e) {
-			Log::error('tenant.po.attach '. $e->getMessage());
-			return redirect()->back()->with(['error' => 'Unknown Error!']);
+			Log::error(tenant('id'). ' tenant.po.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Purchase Order not Found!']);
 		}
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value){
 			return redirect()->route('pos.show', $po->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');

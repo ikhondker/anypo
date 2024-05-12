@@ -99,7 +99,7 @@ class InvoiceController extends Controller
 				break;
 			default:
 				//$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByUserAll()->paginate(10);
-				Log::warning("tenant.invoice.index Other roles!");
+				Log::warning(tenant('id'). 'tenant.invoice.index Other role ='. auth()->user()->role->value);
 				abort(403);
 		}
 		return view('tenant.invoices.index', compact('invoices'));
@@ -246,8 +246,8 @@ class InvoiceController extends Controller
 		try {
 			$invoice = Invoice::where('id', $request->input('attach_invoice_id'))->get()->firstOrFail();
 		} catch (Exception $e) {
-			Log::error('tenant.invoice.attach '. $e->getMessage());
-			return redirect()->back()->with(['error' => 'Unknown Error!']);
+			Log::error(tenant('id'). ' tenant.invoice.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Invoice not Found!']);
 		}
 		if ($invoice->status <> InvoiceStatusEnum::DRAFT->value){
 			return redirect()->route('invoices.show', $invoice->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');
@@ -471,7 +471,7 @@ class InvoiceController extends Controller
 			// update invoice fc columns
 			// ERROR rate not found 
 			if ($rate == 0){
-				Log::error('receipt.updateInvoiceFcValues rate not found currency=' . $invoice->currency.' fc_currency='.$setup->currency);
+				Log::error(tenant('id').  'receipt.updateInvoiceFcValues rate not found currency=' . $invoice->currency.' fc_currency='.$setup->currency);
 				return false;
 			}
 

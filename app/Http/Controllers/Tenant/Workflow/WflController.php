@@ -134,7 +134,7 @@ class WflController extends Controller
 				}
 				break;
 			default:
-				Log::warning("Error! Invalid action in wfl.update" .$request->input('action'));
+			Log::warning(tenant('id').' tenant.wfl.update Error! Invalid action = ' .$request->input('action'));
 		}
 
 		switch($wf->entity) {
@@ -295,7 +295,7 @@ class WflController extends Controller
 				$approver->notify(new PoActions($approver, $po, $action, $actionURL));
 				break;
 			default:
-				Log::error("tenant.wfl.moveToNext Error!. Invalid Entity!");
+				Log::error(tenant('id'). 'tenant.wfl.moveToNext Invalid Entity = ' . $wf->entity);
 		}
 
 		return true;

@@ -135,7 +135,7 @@ class PolController extends Controller
 			Log::debug('tenant.ppl.store syncPpValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.pol.store syncPoValues po_id = '.$pol->po_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error(tenant('id'). 'tenant.pol.store syncPoValues po_id = '.$pol->po_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 			//return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		}
 
@@ -217,7 +217,7 @@ class PolController extends Controller
 			Log::debug('tenant.pol.update syncPoValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.po.update syncPoValues po_id = '.$pol->po_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error(tenant('id'). 'tenant.po.update syncPoValues po_id = '.$pol->po_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
 		// Write to Log

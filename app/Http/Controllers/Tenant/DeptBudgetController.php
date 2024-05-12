@@ -82,7 +82,7 @@ class DeptBudgetController extends Controller
 				break;
 			default:
 				//$dept_budgets = $dept_budgets->ByUserAll()->with('dept')->with('budget')->paginate(10);
-				Log::warning("tenant.DeptBudget.index Other roles!");
+				Log::warning(tenant('id'). 'tenant.DeptBudget.index Other role ='. auth()->user()->role->value);
 				abort(403);
 		}
 
@@ -243,8 +243,8 @@ class DeptBudgetController extends Controller
 		try {
 			$deptBudget = DeptBudget::where('id', $request->input('attach_dept_budget_id'))->get()->firstOrFail();
 		} catch (Exception $e) {
-			Log::error('tenant.dept-budget.attach '. $e->getMessage());
-			return redirect()->back()->with(['error' => 'Unknown Error!']);
+			Log::error(tenant('id'). ' tenant.dept-budget.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Dept Budget not Found!']);
 		}
 	
 		if ($deptBudget->closed){

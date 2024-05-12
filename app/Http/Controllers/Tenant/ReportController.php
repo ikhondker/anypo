@@ -211,7 +211,7 @@ class ReportController extends Controller
 				break;
 							
 			default:
-				Log::warning("tenant.report.update report ID not found!");
+				Log::warning(tenant('id').' tenant.report.run report_id = '.$report->id.' not found!');
 		}
 	}
 /**

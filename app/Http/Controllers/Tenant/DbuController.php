@@ -76,7 +76,7 @@ class DbuController extends Controller
 				break;
 			default:
 				//$dbus = $dbus->ByUserAll()->with('dept')->with('deptBudget.budget')->with('project')->paginate(10);
-				Log::warning("tenant.DeptBudget.index Other roles!");
+				Log::warning(tenant('id'). 'tenant.dbu.index Other role ='. auth()->user()->role->value);
 				abort(403);
 		}
 

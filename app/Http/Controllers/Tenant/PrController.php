@@ -117,7 +117,7 @@ class PrController extends Controller
 				break;
 			default:
 				$prs = $prs->ByUserAll()->paginate(10);
-				Log::warning("tenant.pr.index Other roles!");
+				Log::warning(tenant('id'). 'tenant.pr.index Other role ='. auth()->user()->role->value);
 		}
 
 		return view('tenant.prs.index', compact('prs'));
@@ -207,7 +207,7 @@ class PrController extends Controller
 			Log::debug('tenant.pr.store syncPrValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.pr.store syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error(tenant('id'). 'tenant.pr.store syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
 		if($request->has('add_row')) {
@@ -312,7 +312,7 @@ class PrController extends Controller
 			Log::debug('tenant.pr.update syncPrValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
-			Log::error('tenant.pr.update syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			Log::error(tenant('id'). 'tenant.pr.update syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
 		// Write to Log
@@ -373,7 +373,7 @@ class PrController extends Controller
 			Log::debug('tenant.PrController.recalculate Pr->syncPrValues Successful');
 			return redirect()->route('prs.show', $pr->id)->with('success', 'PR Line Numbers updated and Amount Recalculated!');
 		} else {
-			Log::error('tenant.PrController.recalculate Return value of Pr->syncPrValues = ' . $result);
+			Log::error(tenant('id'). 'tenant.PrController.recalculate for pr_id = '.$pr->id.' Return value of Pr->syncPrValues = ' . $result);
 			$customError = CustomError::where('code', $result)->first();
 			return redirect()->route('prs.show', $pr->id)->with('error', $customError->message.' Please Try later.');
 		}
@@ -452,7 +452,8 @@ class PrController extends Controller
 
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
-			Log::warning("tenant.prs.cancel PR#".$request->input('pr_id')." not Found!");
+
+			Log::warning(tenant('id').' tenant.prs.cancel PR#'.$pr->id.' not Found!');
 			return back()->withError("PR #".$pr_id." not Found!")->withInput();
 		}
 	}
@@ -503,7 +504,7 @@ class PrController extends Controller
 			Log::debug('tenant.pr.submit PR dept_budget_id updated with dept_budget = ' . $dept_budget->id);
 
 		} catch (ModelNotFoundException $exception) {
-			Log::warning("tenant.prs.submit ModelNotFoundException. DeptBudget not found for budget_id= ". $budget->id);
+			Log::warning(tenant('id').' tenant.prs.submit ModelNotFoundException. DeptBudget not found for budget_id= '. $budget->id);
 			return redirect()->route('prs.index')->with('error', 'Department Budget is not defined for FY'.$fy.'. Please add budget and try again');
 		}
 
@@ -519,7 +520,7 @@ class PrController extends Controller
 		if ($result == '') {
 			Log::debug('tenant.pr.submit syncPrValues completed.');
 		} else {
-			Log::error('tenant.PrController.submit Return value of Pr->syncPrValues = ' . $result);
+			Log::error(tenant('id'). 'tenant.PrController.submit Return value of pr_id = '.$pr->id.' Pr->syncPrValues = ' . $result);
 			$customError = CustomError::where('code', $result)->first();
 			return redirect()->route('prs.show', $pr->id)->with('error', $customError->message.' Please Try later.');
 		}
@@ -530,12 +531,12 @@ class PrController extends Controller
 
 		if ( $retcode <> '' ){
 			try {
-				Log::warning("tenant.prs.submit Error during prBudgetBook error_code = ". $retcode);
+				Log::warning(tenant('id').' tenant.prs.submit Error for pr_id = '.$pr->id.'during prBudgetBook error_code = '. $retcode);
 				$customError = CustomError::where('code', $retcode)->firstOrFail();
 				return redirect()->back()->with('error', $customError->message);
 			} catch (ModelNotFoundException $exception) {
 				// Error code not found!
-				Log::error('tenant.prs.submit ModelNotFoundException. prBudgetBook Error code not found error_code = '. $retcode);
+				Log::error(tenant('id').' tenant.prs.submit ModelNotFoundException. prBudgetBook Error code pr_id = '.$pr->id.' not found error_code = '. $retcode);
 				return redirect()->back()->with('error', 'Error-E000');
 			}
 		} else {
@@ -547,7 +548,7 @@ class PrController extends Controller
 		Log::debug('tenant.pr.submit submitting in Workflow::submitWf ...');
 		$wf_id = Workflow::submitWf(EntityEnum::PR->value, $pr->id);
 		if ($wf_id == 0) {
-			Log::error('tenant.pr.submit Workflow::submitWf failed!');
+			Log::error(tenant('id').' tenant.prs.submit  Workflow::submitWf failed for pr_id = '.$pr->id);
 			return redirect()->route('prs.index')->with('error', 'Workflow can not be created! Failed to Submit.');
 		}
 
@@ -575,7 +576,7 @@ class PrController extends Controller
 			$approver = User::where('id', $next_approver_id)->first();
 			$approver->notify(new PrActions($approver, $pr, $action, $actionURL));
 		} else {
-			Log::error("tenant.pr.submit next_approver_id not found!");
+			Log::debug("tenant.pr.submit okay. next_approver_id not found!");
 		}
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition submitted for approval successfully.');
 	}
@@ -756,8 +757,8 @@ class PrController extends Controller
 		try {
 			$pr = Pr::where('id', $request->input('attach_pr_id'))->get()->firstOrFail();
 		} catch (Exception $e) {
-			Log::error('tenant.pr.attach '. $e->getMessage());
-			return redirect()->back()->with(['error' => 'Unknown Error!']);
+			Log::error(tenant('id'). ' tenant.pr.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Requisition Not Found!']);
 		}
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value){
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Add attachment is only allowed for DRAFT requisition.');

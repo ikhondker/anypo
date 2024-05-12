@@ -209,14 +209,12 @@ class BudgetController extends Controller
 		try {
 			$budget = Budget::where('id', $request->input('attach_budget_id'))->get()->firstOrFail();
 		} catch (Exception $e) {
-			//Log::error('tenant.budget.attach '. $e->getMessage());
-			Log::error(tenant('id'). ' tenant.budget.attach user_id = '. auth()->user()->id.' class = '.get_class($e). ' Message = '. $e->getMessage());
-
+			Log::error(tenant('id'). ' tenant.budget.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
 			return redirect()->back()->with(['error' => 'Budget not Found!']);
 		}
 
 		if ($budget->closed){
-			return redirect()->route('budgets.show', $budget->id)->with('error', 'Add attachment is only allowed for open Budget.');
+			return redirect()->route('budgets.show', $budget->id)->with('error', 'Add attachment is  allowed only for open Budget.');
 		}
 	
 		if ($file = $request->file('file_to_upload')) {

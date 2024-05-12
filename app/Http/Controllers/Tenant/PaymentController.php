@@ -94,7 +94,7 @@ class PaymentController extends Controller
 				break;
 			default:
 				//$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByUserAll()->paginate(10);
-				Log::warning("tenant.payment.index Other roles!");
+				Log::warning(tenant('id'). 'tenant.payment.index Other role ='. auth()->user()->role->value);
 				abort(403);
 		}
 		return view('tenant.payments.index', compact('payments'));
