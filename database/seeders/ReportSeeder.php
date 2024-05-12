@@ -14,7 +14,7 @@ class ReportSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		$reports =  [
+		$xxreports =  [
 			[
 				'id' 	=> 1001,
 				'name' 	=> 'Test Reports',
@@ -61,17 +61,18 @@ class ReportSeeder extends Seeder
 			],
 	  	];
 	  
+			// Disabled. Not called by Report.run method
 		  	$reports =  [
 				[
 					'id' 					=> 1010,
 					'name' 					=> '*Printed PR pdf',
-					'summary' 				=> '*Printed PR pdf',
+					'summary' 				=> '*Printed Purchase Requisition Report',
 					'enable' 				=> false,
 				],
 				[
 					'id' 					=> 1015,
 					'name' 					=> '*Printed PO pdf',
-					'summary' 				=> 'Approved Purchase Requisition Detail Report (For a Date range, by Department)',
+					'summary' 				=> '*Printed  Purchase Order Report',
 					'enable' 				=> false,
 				],
 			];

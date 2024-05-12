@@ -496,10 +496,10 @@ class PoController extends Controller
 		$this->authorize('submit', $po);
 
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.show',$po->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+			return redirect()->route('pos.show',$po->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
 		if ($po->amount == 0) {
-			return redirect()->route('prs.show',$po->id)->with('error', 'You cannot submit zero value Purchase Order');
+			return redirect()->route('pos.show',$po->id)->with('error', 'You cannot submit zero value Purchase Order');
 		}
 
 		// check if budget created and set dept_budget_id
@@ -508,11 +508,11 @@ class PoController extends Controller
 		try {
 			$budget = Budget::where('fy', $fy)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
-			return redirect()->route('prs.index')->with('error', 'Budget is not defined for '.$fy.'. Please open this years budget and try again.');
+			return redirect()->route('pos.index')->with('error', 'Budget is not defined for '.$fy.'. Please open this years budget and try again.');
 		}
 
 		if ($budget->closed) {
-			return redirect()->route('prs.show', $po->id)->with('error', 'Budget for this period is closed! You can not submit new PO for approval!');
+			return redirect()->route('pos.show', $po->id)->with('error', 'Budget for this period is closed! You can not submit new PO for approval!');
 		}
 
 		// check if dept_budget for this year exists then update dept_budget_id column
@@ -525,11 +525,11 @@ class PoController extends Controller
 			$po->save();
 		} catch (ModelNotFoundException $exception) {
 			//Log::debug("Inside ModelNotFoundException");
-			return redirect()->route('prs.index')->with('error', 'Department Budget is not defined for FY'.$fy.'. Please add budget and try again.');
+			return redirect()->route('pos.index')->with('error', 'Department Budget is not defined for FY'.$fy.'. Please add budget and try again.');
 		}
 
 		if ($dept_budget->closed) {
-			return redirect()->route('prs.index')->with('error', 'Department budget is closed!. Will Need to open it for any transaction.');
+			return redirect()->route('pos.index')->with('error', 'Department budget is closed!. Will Need to open it for any transaction.');
 		} 
 		
 		// 	Populate functional currency values
@@ -559,7 +559,7 @@ class PoController extends Controller
 			}
 		} else {
 			// Submission Success
-			Log::debug('tenant.prs.submit Submission okay for pr_id= '. $po->id);
+			Log::debug('tenant.pos.submit Submission okay for pr_id= '. $po->id);
 		}
 
 		// Submit for approval

@@ -84,13 +84,13 @@
 
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Company Logo (90x90)</h5>
+					<h5 class="card-title">Company Logo</h5>
 					<h6 class="card-subtitle text-muted">Company Logo (90x90).</h6>
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
-							<span class="h6 text-secondary">Logo:</span>
+							<span class="h6 text-secondary">&nbsp;</span>
 						</div>
 						<div class="col-sm-9">
 							{{-- <x-tenant.show.logo logo="{{ $setup->logo }}"/> --}}

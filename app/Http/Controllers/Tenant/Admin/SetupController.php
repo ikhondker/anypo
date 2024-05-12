@@ -223,19 +223,20 @@ class SetupController extends Controller
 	{
 		$this->authorize('update', $setup);
 
+		Log::debug('tenant.admin.setup.updateNotice updating banner_show.');
 		// check box
-		if($request->has('show_banner')) {
+		if($request->has('banner_show')) {
 			//Checkbox checked
-			$request->merge(['show_banner' => 1]);
+			$request->merge(['banner_show' => 1]);
 		} else {
 			//Checkbox not checked
-			$request->merge([ 'show_banner' => 0]);
+			$request->merge([ 'banner_show' => 0]);
 		}
 
 		$setup->update($request->all());
 
 		// Write to Log
-		EventLog::event('setup', $setup->id, 'update', 'show_banner', $request->show_banner);
+		EventLog::event('setup', $setup->id, 'update', 'banner_show', $request->show_banner);
 
 		return redirect()->route('setups.show', $setup->id)->with('success', 'Announcement setting saved.');
 	}

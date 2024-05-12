@@ -136,7 +136,6 @@ class PolController extends Controller
 		} else {
 			$customError = CustomError::where('code', $result)->first();
 			Log::error(tenant('id'). 'tenant.pol.store syncPoValues po_id = '.$pol->po_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
-			//return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		}
 
 		// $pol_sum 			= Pol::where('po_id', '=', $po->id)->sum('amount');

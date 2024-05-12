@@ -10,7 +10,7 @@
 			<h2 class="name">{{ $pr->requestor->name }}</h2>
 			{{-- <div class="address">{{ $pr->requestor->name }}</div> --}}
 			{{-- <div class="address">{{ $pr->requestor->designation_name->name }}, {{ $pr->requestor->dept_name->name }}</div> --}}
-			<div class="address">Project: {{ $pr->project_id }}</div>
+			<div class="address">Project: {{ $pr->project->name }}</div>
 			<div class="address">Summary: {{ $pr->summary }}</div>
 			<div class="address">Vendor: {{ $pr->supplier->name }}</div>
 			{{-- <div class="address">Amount {{ number_format($pr->amount,2) }} {{ $pr->currency }}</div> --}}

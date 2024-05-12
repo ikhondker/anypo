@@ -61,10 +61,10 @@ class Workflow
 					$hierarchy_id =	$hierarchy->id;
 				} catch (ModelNotFoundException $exception) {
 				 	$hierarchy_id = 0;
-				 	Log::error("Workflow.submitWf Hierarchy not Found for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
+				 	Log::error("Workflow.submitWf Hierarchy not Found for entity = ".$entity." article_id = ".$article_id." dept_id = ".$dept->id);
 				} catch (Exception $e) {
 					$hierarchy_id = 0;
-				 	Log::error("Workflow.submitWf Unknown Error for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
+				 	Log::error("Workflow.submitWf Unknown Error for entity = ".$entity." article_id = ".$article_id." dept_id = ".$dept->id);
 				}
 				break;
 			case EntityEnum::PO->value:
@@ -78,10 +78,10 @@ class Workflow
 					$hierarchy_id =	$hierarchy->id;
 				} catch (ModelNotFoundException $exception) {
 					$hierarchy_id = 0;
-					Log::error("Workflow.submitWf Hierarchy not Found for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
+					Log::error("Workflow.submitWf Hierarchy not Found for entity = ".$entity." article_id = ".$article_id." dept_id = ".$dept->id);
 				} catch (Exception $e) {
 					$hierarchy_id = 0;
-					Log::error("Workflow.submitWf Unknown Error for entity=".$entity." article_id=".$article_id." dept_id=".$dept->id);
+					Log::error("Workflow.submitWf Unknown Error for entity = ".$entity." article_id = ".$article_id." dept_id = ".$dept->id);
 				}
 				break;
 			default:
@@ -101,7 +101,7 @@ class Workflow
 			$wf->save();
 			$wf_id				= $wf->id;
 			
-			Log::debug("Helpers.Workflow.submitWf new workflow created with wf_id=".$wf->id);
+			Log::debug("Helpers.Workflow.submitWf new workflow created with wf_id = ".$wf->id);
 
 			// Insert submission row first 
 			DB::INSERT("

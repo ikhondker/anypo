@@ -20,7 +20,7 @@
 		@csrf
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-8">
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Terms and Conditions </h5>
@@ -32,7 +32,7 @@
 
 							<div class="mb-3">
 								<label class="form-label">Terms and Conditions Text:</label>
-								<textarea class="form-control" name="tc" placeholder="Enter Terms and Conditions ..." rows="6">{{ old('tc', $setup->tc) }}</textarea>
+								<textarea class="form-control" name="tc" placeholder="Enter Terms and Conditions ..." rows="10">{{ old('tc', $setup->tc) }}</textarea>
 								@error('banner_message')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror

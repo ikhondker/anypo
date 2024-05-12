@@ -30,6 +30,8 @@ return new class extends Migration
 			$table->string('website')->nullable();
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
+			$table->biginteger('days_payment')->nullable()->default(45);
+			$table->biginteger('days_return')->nullable()->default(30);
 			$table->float('tolerance_invoice', 15, 2)->default(1);		// Future
 			$table->float('tolerance_receipt', 15, 2)->default(1);		// Future
 			$table->float('tolerance_payment', 15, 2)->default(1);		// Future

@@ -36,7 +36,14 @@ class SetupSeeder extends Seeder
 				'facebook'		=> 'https://www.facebook.com/my.anyponet',
 				'linkedin'		=> 'https://www.linkedin.com/company/anypo-net',
 				'created_by'	=> 1001,
-				'updated_by'	=> 1001
+				'updated_by'	=> 1001,
+				'tc'			=> 	'1.	Acceptance: All purchase orders are subject to acceptance by the supplier.
+									2.	Price and Payment: Prices are firm and as stated on the PO. Payment terms are net 30 days from receipt of a correct invoice.
+									3.	Inspection and Acceptance: Buyer reserves the right to inspect goods upon arrival and reject any non-conforming items.
+									4.	Default: Failure to deliver on time or provide conforming goods constitutes a default and allows buyer to terminate the PO and seek damages.
+									5.	Limitation of Liability: Seller\'s liability is limited to the purchase price of the goods.
+									6.	Governing Law: This agreement shall be governed by the laws of Buyer\'s Country.
+									7.	Amendment: Any amendment to this agreement must be made in writing and signed by both parties.'
 			],
 		];
 		Setup::insert($setups);

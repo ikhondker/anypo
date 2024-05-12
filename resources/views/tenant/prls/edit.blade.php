@@ -26,7 +26,7 @@
 		@method('PUT')
 
 		<!-- widget-prl-cards -->
-		<x-tenant.widgets.prl.card :pr="$pr" :readOnly="false" :addMore="true">
+		<x-tenant.widgets.prl.card :pr="$pr" :readOnly="false" :addMore="false">
 			@slot('lines')
 				<tbody>
 					@forelse ($prls as $prln)

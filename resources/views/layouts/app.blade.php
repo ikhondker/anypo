@@ -262,15 +262,15 @@
 						<div class="col-12">
 
 							<!-- Show Tenant Notice -->
-							@if ($_setup->show_banner && ($_setup->banner_message <> '') )
+							@if ($_setup->banner_show && ($_setup->banner_message <> '') )
 
 								<div class="alert alert-danger alert-outline alert-dismissible" role="alert">
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									<div class="alert-icon">
-										<i class="far fa-fw fa-bell"></i>
+										<i data-feather="alert-triangle"></i>
 									</div>
-									<div class="alert-message text-danger">
-										<strong class="text-danger">ANNOUNCEMENT!</strong> {{ $_setup->banner_message}}
+									<div class="alert-message text-danger px-4">
+										<strong class="text-danger">ANNOUNCEMENT!</strong> {!! nl2br($_setup->banner_message) !!}
 									</div>
 								</div>
 							@endif

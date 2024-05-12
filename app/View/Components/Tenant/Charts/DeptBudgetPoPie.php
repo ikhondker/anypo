@@ -23,7 +23,7 @@ class DeptBudgetPoPie extends Component
 	public function __construct(public string $dbid ='0000'	)
 	{
 
-		Log::debug('components.tenant.charts.DeptBudgetPoPie Value of dept_budget_id=' . $dbid);
+		//Log::debug('components.tenant.charts.DeptBudgetPoPie Value of dept_budget_id=' . $dbid);
 	
 		if ($dbid == '0000'){ // Must get at least one dept budget as already checked before calling this component with empty dbid
 			// Get latest dept budget of the current user

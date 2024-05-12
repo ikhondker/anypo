@@ -27,7 +27,7 @@ class BudgetByDeptPoBar extends Component
 	public function __construct(public string $bid ='0000')
 	{
 
-		Log::debug('components.tenant.charts.BudgetByDeptPoBar Value of budget_id=' . $bid);
+		//Log::debug('components.tenant.charts.BudgetByDeptPoBar Value of budget_id=' . $bid);
 
 		if ($bid == '0000'){
 			// No dept budge id is specified. Show current user last dept budget

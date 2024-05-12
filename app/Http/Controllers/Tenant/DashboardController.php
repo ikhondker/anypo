@@ -71,7 +71,7 @@ class DashboardController extends Controller
 		if ($last_rate_month <> $current_rate_month) {
 			// import current rates using queue
 			ImportAllRate::dispatch();
-			Log::debug("tenant.dashboards.index Rates Importing for ".$current_rate_month);
+			Log::debug("tenant.dashboards.index  Importing Exchange Rate for ".$current_rate_month);
 		}
 
 		// Total 4 Dashboard user,admin, backoffice and system
