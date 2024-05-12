@@ -18,7 +18,7 @@
 * =====================================================================================
 */
 
-namespace App\Http\Controllers\Tenant;
+namespace App\Http\Controllers\Tenant\Test;
 use App\Http\Controllers\Controller;
 
 // Controller
@@ -58,6 +58,9 @@ use App\Helpers\ChartData;
 #Jobs
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
 
+use Exception;
+use Illuminate\Support\Facades\Session;
+
 class TestController extends Controller
 {
 
@@ -68,6 +71,30 @@ class TestController extends Controller
 
 	public function run()
 	{
+
+		// Unhandled Exception handing
+		//try {
+			$id='100111';
+			$user = User::where('id', $id )->get()->firstOrFail();
+			Log::info('tenant.test.run '. $user->name);
+		//} catch (Exception $e) {
+			//Log::error(tenant('id'). ' tenant.budget.attach1 user_id ='. $id. ' Message = '. print_r($e->getMessage(),true));
+			//Log::error(tenant('id'). ' tenant.budget.attach1 user_id ='. $id. ' Message = '. $e->getMessage());
+			Log::error(tenant('id'). ' tenant.budget.attach1 user_id = '. $id.' class = '.get_class($e). ' Message = '. $e->getMessage());
+
+			//Log::error(tenant('id'). ' tenant.budget.attach1 user_id ='. $id. ' Message = '. json_encode($e->getMessage(), true));
+
+			//Log::error('class'. get_class($e));
+			//Log::error('class'. substr( get_class($e), strrpos( get_class($e),'\\') +1));
+
+			//$error = sprintf('[%s],[%d] ERROR:[%s]', __METHOD__, __LINE__, json_encode($e->getMessage(), true));
+			//$errors = Session::get('errors');
+			//Log::error($errors);
+		//}
+		//echo $user->name;
+		echo 'Done';
+
+		exit;
 
 		Log::debug('Value of config(app.domain)=' . config('app.domain'));
 		Log::debug('Value of env(APP_DOMAIN)=' . env('APP_DOMAIN'));

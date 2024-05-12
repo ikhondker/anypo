@@ -52,6 +52,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Manage\Checkout' 		=> 'App\Policies\Landlord\Manage\CheckoutPolicy',
 		'App\Models\Landlord\Manage\Contact' 		=> 'App\Policies\Landlord\Manage\ContactPolicy',
 		'App\Models\Landlord\Manage\Entity' 		=> 'App\Policies\Landlord\Manage\EntityPolicy',
+		'App\Models\Landlord\Manage\ErrorLog' 		=> 'App\Policies\Landlord\Manage\ErrorLogPolicy',
 		'App\Models\Landlord\Manage\MailList' 		=> 'App\Policies\Landlord\Manage\MailListPolicy',
 		'App\Models\Landlord\Manage\Menu' 			=> 'App\Policies\Landlord\Manage\MenuPolicy',
 		'App\Models\Landlord\Manage\Process' 		=> 'App\Policies\Landlord\Manage\ProcessPolicy',
@@ -59,7 +60,6 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Manage\Status' 		=> 'App\Policies\Landlord\Manage\StatusPolicy',
 		'App\Models\Landlord\Manage\Table' 			=> 'App\Policies\Landlord\Manage\TablePolicy',
 		'App\Models\Landlord\Manage\Template' 		=> 'App\Policies\Landlord\Manage\TemplatePolicy',
-
 		/*
 		|-----------------------------------------------------------------------------
 		| Tenant																	 + 

@@ -1,4 +1,6 @@
-<div class="row mb-3">
-	<div class="col-sm-2"><p class="text-end text-secondary"><strong>Contents X :</strong></p></div>
-	<div class="col-sm-10"> {{ $value }} </div>
+<div class="row mb-4">
+	<label class="col-sm-3 col-form-label form-label">Contents X : </label>
+	<div class="col-sm-9 col-form-label">
+		{!! nl2br($value) !!}
+	</div>
 </div>

@@ -195,7 +195,6 @@ class TicketController extends Controller
 				$mgr->notify(new \App\Notifications\Landlord\TicketCreated($mgr, $ticket));
 
 				return $ticket;
-				
 		});
 
 		return redirect()->route('dashboards.index')->with('success', 'A New Ticket No ' .$landlordTicket->id . ' is created. We will come back to you soon. Thanks.');

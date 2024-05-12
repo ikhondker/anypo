@@ -22,8 +22,6 @@
 	<x-tenant.info.po-info id="{{ $po->id }}"/>
 
 	
-
-
 	<div class="row">
 		<div class="col-6">
 			<div class="card">

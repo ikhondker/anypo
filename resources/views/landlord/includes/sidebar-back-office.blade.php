@@ -91,6 +91,11 @@
 				href="{{ route('tables.index') }}"><i class="bi-bell nav-icon"></i> Tables</a>
 		</li>
 		<li class="nav-item">
+			<a class="nav-link {{ $_route_name == 'error-logs.index' ? 'active' : '' }}"
+				href="{{ route('error-logs.index') }}"><i class="bi-bell nav-icon"></i> Error Logs</a>
+		</li>
+		
+		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'templates.index' ? 'active' : '' }}"
 				href="{{ route('templates.index') }}"><i class="bi-bell nav-icon"></i> Templates</a>
 		</li>
@@ -100,7 +105,6 @@
 				href="{{ route('products.index') }}">
 				<i class="bi-bell nav-icon"></i> Products </a>
 		</li>
-
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'categories.index' ? 'active' : '' }}"
 				href="{{ route('categories.index') }}">

@@ -267,7 +267,7 @@ class AccountController extends Controller
 	/**
 	 * IQBAL Upgrade package. Applicable only for logged-in user
 	 */
-	public function p2upgrade($new_service_id)
+	public function chk_p2upgrade($new_service_id)
 	{
 		// NOTE: current user is logged in and have existing account_id
 		// Log::debug("Upgrading account=". $account_id." service_id=".$new_service_id);

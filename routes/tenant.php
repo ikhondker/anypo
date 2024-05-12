@@ -22,7 +22,7 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 |  7. 
 */
 
-use App\Http\Controllers\Tenant\TestController;
+use App\Http\Controllers\Tenant\Test\TestController;
 //use App\Http\Controllers\ImpersonateController;
 
 use App\Http\Controllers\Tenant\Admin\ActivityController;
@@ -130,16 +130,16 @@ Route::middleware([
 		// })->name('test');
 		//Route::view('/test', 'tenant.pages.test');
 		Route::get('/test', function () {
-			return view('tenant.pages.test');
+			return view('tenant.tests.pages.test');
 		})->name('test');
 		Route::get('/sweet2', function () {
-			return view('tenant.pages.sweet2');
+			return view('tenant.tests.pages.sweet2');
 		})->name('sweet2');
 		Route::get('/jq', function () {
-			return view('tenant.pages.jquery');
+			return view('tenant.tests.pages.jquery');
 		})->name('jq');
 		Route::get('/jql', function () {
-			return view('tenant.pages.jqueryl');
+			return view('tenant.tests.pages.jqueryl');
 		})->name('jql');
 		
 		/* ======================== Purging Cache ========================================  */

@@ -20,7 +20,7 @@
 								<div class="d-flex align-items-center">
 									<!-- Avatar -->
 									<label class="avatar avatar-xl avatar-circle" for="avatarUploader">
-										<img id="avatarImg" class="avatar-img" src="{{ asset('/assets/img/160x160/img9.jpg') }}" alt="Image Description">
+										<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Image Description">
 									</label>
 
 									<div class="d-grid d-sm-flex gap-2 ms-4">

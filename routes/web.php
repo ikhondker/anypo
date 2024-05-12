@@ -344,6 +344,7 @@ use App\Http\Controllers\Landlord\Manage\TableController;
 use App\Http\Controllers\Landlord\Manage\TemplateController;
 use App\Http\Controllers\Landlord\Manage\StatusController;
 use App\Http\Controllers\Landlord\Manage\ProcessController;
+use App\Http\Controllers\Landlord\Manage\ErrorLogController;
 
 Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
@@ -362,6 +363,9 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	/* ======================== Config ======================================== */
 	Route::resource('configs', ConfigController::class);
 
+	/* ======================== ErrorLog ======================================== */
+	Route::resource('error-logs', ErrorLogController::class);
+	
 	/* ======================== Status ======================================== */
 	Route::resource('statuses', StatusController::class);
 	Route::get('/status/export', [StatusController::class, 'export'])->name('statuses.export');
@@ -406,7 +410,7 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 * 11. Route for Testing system Only ['auth', 'verified','can:system']
 * ==================================================================================
 */
-use App\Http\Controllers\Landlord\TestController;
+use App\Http\Controllers\Landlord\Test\TestController;
 Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	//TODO php artisan route:cache error
@@ -415,16 +419,16 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
 
 	Route::get('/test', function () {
-		return view('landlord.test');
+		return view('landlord.tests.test');
 	})->name('test');
 	Route::get('/sweet2', function () {
-		return view('landlord.pages.sweet2');
+		return view('landlord.tests.sweet2');
 	})->name('sweet2');
 	Route::get('/jq', function () {
-		return view('landlord.pages.jquery');
+		return view('landlord.tests.jquery');
 	})->name('jq');
 	Route::get('/jql', function () {
-		return view('landlord.pages.jqueryl');
+		return view('landlord.tests.jqueryl');
 	})->name('jql');
 	Route::get('pdf', [TestController::class, 'generatePDF'])->name('pdf');
 

@@ -89,12 +89,12 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'notifications.edit', 'route_name' => 'notifications.index',  'access' => 'X'],
 			[ 'raw_route_name' => 'notifications.create','route_name' => 'notifications.index', 'access' => 'X'],
 
-			[ 'raw_route_name' => 'payments.index',	'route_name' => 'payments.index',	  'access' => 'F'],
-			[ 'raw_route_name' => 'payments.show',	 'route_name' => 'payments.index',	  'access' => 'F'],
-			[ 'raw_route_name' => 'payments.update',	'route_name' => 'payments.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'payments.edit',	 'route_name' => 'payments.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'payments.create',	'route_name' => 'payments.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'payments.all',	  'route_name' => 'payments.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'payments.index',	'route_name' 	=> 'payments.index',	  'access' => 'F'],
+			[ 'raw_route_name' => 'payments.show',	 'route_name' 	=> 'payments.index',	  'access' => 'F'],
+			[ 'raw_route_name' => 'payments.update',	'route_name'=> 'payments.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'payments.edit',	 'route_name' 	=> 'payments.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'payments.create',	'route_name'=> 'payments.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'payments.all',	  'route_name' 	=> 'payments.index',	  'access' => 'B'],
 
 			[ 'raw_route_name' => 'processes.index',	'route_name' => 'processes.index',	 'access' => 'B'],
 			[ 'raw_route_name' => 'processes.show',		'route_name' => 'processes.index',	 'access' => 'B'],
@@ -148,6 +148,12 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'templates.edit',		'route_name' => 'templates.index',	 'access' => 'S'],
 			[ 'raw_route_name' => 'templates.create',	'route_name' => 'templates.index',	 'access' => 'S'],
 			
+			[ 'raw_route_name' => 'error-logs.index',	'route_name' => 'error-logs.index',	 'access' => 'S'],
+			[ 'raw_route_name' => 'error-logs.show',		'route_name' => 'error-logs.index',	 'access' => 'S'],
+			[ 'raw_route_name' => 'error-logs.update',	'route_name' => 'error-logs.index',	 'access' => 'S'],
+			[ 'raw_route_name' => 'error-logs.edit',		'route_name' => 'error-logs.index',	 'access' => 'S'],
+			[ 'raw_route_name' => 'error-logs.create',	'route_name' => 'error-logs.index',	 'access' => 'S'],
+
 			[ 'raw_route_name' => 'tenants.index',	 	'route_name' => 'tenants.index',	'access' => 'B'],
 			[ 'raw_route_name' => 'tenants.show',	  	'route_name' => 'tenants.index',	'access' => 'B'],
 			[ 'raw_route_name' => 'tenants.update',		'route_name' => 'tenants.index',	'access' => 'B'],

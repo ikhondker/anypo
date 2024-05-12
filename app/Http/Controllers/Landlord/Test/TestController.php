@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Landlord;
+namespace App\Http\Controllers\Landlord\Test;
 
 use App\Http\Controllers\Controller;
 
@@ -46,6 +46,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Str;
+use Exception;
 
 #Jobs
 use App\Jobs\Landlord\CreateTenant;
@@ -62,6 +63,21 @@ class TestController extends Controller
 
 	public function run()
 	{
+
+		// Unhandled Exception handing
+		//try {
+			$id='100111';
+			$user = User::where('id', $id )->get()->firstOrFail();
+			Log::info('tenant.test.run '. $user->name);
+		//} catch (Exception $e) {
+		//	Log::error(tenant('id'). ' tenant.budget.attach1 user_id ='. $id. ' Message = '. $e->getMessage());
+		//}
+		//echo $user->name;
+		echo 'Done';
+
+		exit;
+
+
 
 		Log::debug('Value of config(app.domain)=' . config('app.domain'));
 		Log::debug('Value of env(APP_DOMAIN)=' . env('APP_DOMAIN'));

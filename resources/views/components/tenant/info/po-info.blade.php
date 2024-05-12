@@ -3,10 +3,13 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="row g-0">
-					<div class="col-sm-3 col-xl-12 col-xxl-3 text-center">
-						<img src="{{ Storage::disk('s3t')->url($photo) }}" width="240" height="321" class="mt-2" alt="Po">
+					<div class="col-sm-3 col-xl-3 col-xxl-3 text-center">
+						<img src="{{ Storage::disk('s3t')->url($photo) }}" width="240" height="320" class="mt-2" alt="PO">
+						{{-- <img src="{{ asset('flow/po.jpg')}}" width="240" height="320" class="mt-2" alt="Po"> --}}
+						{{-- <img src="{{ asset('flow/po.jpg')}}" width="240" height="320" class="mt-2" alt="Po"> --}}
+
 					</div>
-					<div class="col-sm-9 col-xl-12 col-xxl-9">
+					<div class="col-sm-9 col-xl-9 col-xxl-9">
 						<h4>PO #{{ $po->id }} : {{ $po->summary }}</h4>
 						<p>{!! nl2br($po->notes) !!}</p>
 						<table class="table table-sm my-2">
