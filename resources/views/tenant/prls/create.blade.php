@@ -17,7 +17,6 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	{{-- @include('tenant.includes.pr.view-pr-header') --}}
 	<x-tenant.widgets.pr.show-pr-header id="{{ $pr->id }}"/>
 
 	<!-- form start -->
@@ -35,8 +34,6 @@
 					@endforelse
 					@include('tenant.includes.pr.pr-line-add')
 				</tbody>
-
-				{{-- @include('tenant.includes.pr.pr-footer-show') --}}
 			@endslot
 		</x-tenant.widgets.prl.card>
 		<!-- /.widget-prl-cards -->
