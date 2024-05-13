@@ -20,11 +20,8 @@ class PrCounts extends Component
 	public $count_inprocess;
 	public $sum_inprocess;
 	
-	//public $count_rejected;
-	//public $sum_rejected;
-	
-	public $count_converted;
-	public $sum_converted;
+	public $count_rejected;
+	public $sum_rejected;
 
 	//public $count_draft;
 	//public $sum_draft;
@@ -45,11 +42,8 @@ class PrCounts extends Component
 				$this->count_inprocess	= Pr::ByUserInProcess()->count();
 				$this->sum_inprocess	= Pr::ByUserInProcess()->sum('fc_amount');
 
-				//$this->count_rejected	= Pr::ByUserRejected()->count();
-				//$this->sum_rejected		= Pr::ByUserRejected()->sum('fc_amount');
-
-				$this->count_converted	= Pr::ByUserConverted()->count();
-				$this->sum_converted	= Pr::ByUserConverted()->sum('fc_amount');
+				$this->count_rejected	= Pr::ByUserRejected()->count();
+				$this->sum_rejected		= Pr::ByUserRejected()->sum('fc_amount');
 
 				break;
 			case UserRoleEnum::HOD->value:
@@ -60,12 +54,8 @@ class PrCounts extends Component
 				$this->count_inprocess	= Pr::ByDeptInProcess()->count();
 				$this->sum_inprocess	= Pr::ByDeptInProcess()->sum('fc_amount');
 
-				//$this->count_rejected	= Pr::ByDeptRejected()->count();
-				//$this->sum_rejected		= Pr::ByDeptRejected()->sum('fc_amount');
-
-				$this->count_converted	= Pr::ByDeptConverted()->count();
-				$this->sum_converted	= Pr::ByDeptConverted()->sum('fc_amount');
-
+				$this->count_rejected	= Pr::ByDeptRejected()->count();
+				$this->sum_rejected		= Pr::ByDeptRejected()->sum('fc_amount');
 				break;
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
@@ -78,12 +68,8 @@ class PrCounts extends Component
 				$this->count_inprocess	= Pr::AllInProcess()->count();
 				$this->sum_inprocess	= Pr::AllInProcess()->sum('fc_amount');
 
-				//$this->count_rejected	= Pr::AllRejected()->count();
-				//$this->sum_rejected		= Pr::AllRejected()->sum('fc_amount');
-
-				$this->count_converted	= Pr::AllConverted()->count();
-				$this->sum_converted	= Pr::AllConverted()->sum('fc_amount');
-
+				$this->count_rejected	= Pr::AllRejected()->count();
+				$this->sum_rejected		= Pr::AllRejected()->sum('fc_amount');
 				break;
 			default:
 			Log::debug('tenant.component.dashboard.pr-counts Role Not Found!');

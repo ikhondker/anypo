@@ -40,6 +40,7 @@ use App\Helpers\FileUpload;
 # 3. Helpers
 # 4. Notifications
 # 5. Jobs
+use App\Jobs\Tenant\ImportAllRate;
 # 6. Mails
 # 7. Rules
 //use App\Rules\Tenant\GlCode;
@@ -256,7 +257,7 @@ class SetupController extends Controller
 		$currency->save();
 		
 		// update setup. 
-		Log::debug('tenant.admin.setup.freeze freezing setup');
+		Log::debug('tenant.admin.setup.freeze freezing setup_id = ' . $setup->id);
 		$request->merge(['freezed'	=> true ]);
 		$setup->update($request->all());
 		Log::debug('tenant.admin.setup.freeze updating setup->currency = '.$setup->currency);
@@ -271,6 +272,10 @@ class SetupController extends Controller
 
 		// Write to Log
 		EventLog::event('setup', $setup->id, 'update', 'name', $request->name);
+
+		Log::debug('tenant.admin.setup.freeze Setup freezed for setup_id = '.$setup->id);
+		Log::debug('tenant.dashboards.index Submitting ImportAllRate::dispatch() for the first time');
+		ImportAllRate::dispatch();
 
 		return redirect()->route('setups.show', $setup->id)->with('success', 'Setup completed. You may start using this application.');
 	}

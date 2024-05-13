@@ -44,7 +44,7 @@ class ServicePurchased extends Notification implements ShouldQueue
 			->greeting('Hello '.$this->user->name.',')
 			->line('A new purchase has been made as follows: ')
 			->line('Name: '.$this->account->name)
-			->line('ID: '.$this->account->id)
+			->line('Account ID: '.$this->account->id)
 			->action('View Account', url('/accounts'))
 			->line('Thank you for using '.config('app.name').' application!');
 	}

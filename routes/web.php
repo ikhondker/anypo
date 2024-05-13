@@ -431,15 +431,15 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 		return view('landlord.tests.jqueryl');
 	})->name('jql');
 	Route::get('pdf', [TestController::class, 'generatePDF'])->name('pdf');
+});
 
-	/* ======================== Purging Cache ========================================  */
-	Route::get('/clear', function () {
-		Artisan::call('cache:clear');
-		Artisan::call('cache:clear');
-		Artisan::call('route:clear');
-		Artisan::call('config:clear');
-		Artisan::call('view:clear');
-		return "Cache is cleared at " . now();
-	});
 
+/* ======================== Purging Cache ========================================  */
+Route::get('/clear', function () {
+	Artisan::call('cache:clear');
+	Artisan::call('cache:clear');
+	Artisan::call('route:clear');
+	Artisan::call('config:clear');
+	Artisan::call('view:clear');
+	return "Cache is cleared at " . now();
 });

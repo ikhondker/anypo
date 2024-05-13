@@ -14,6 +14,8 @@ return new class extends Migration
 		Schema::create('categories', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('name')->unique();
+			$table->float('tax_pc',15,2)->default(0);				// Future user
+			$table->float('gst_pc',15,2)->default(7.5);				// Future user
 			//$table->integer('group_id')->nullable()->default(1001); 
 			$table->foreignId('group_id')->default(1001)->constrained('groups');
 			$table->string('text_color')->nullable();

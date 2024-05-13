@@ -308,18 +308,18 @@ class HomeController extends Controller
 			}
 
 			$trx_type	= $session->metadata->trx_type;
-			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
+			Log::debug('landlord.home.success metadata trx_type ='. $session->metadata->trx_type);
 			
 			$checkout = Checkout::where('session_id', $session->id)->first();
 			if (!$checkout) {
 				throw new NotFoundHttpException();
 			}
 			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
-				Log::debug('landlord.home.success checkout_id='. $checkout->id);
+				Log::debug('landlord.home.success checkout_id = '. $checkout->id);
 				CreateTenant::dispatch($checkout->id);
 			}
 			return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
-				->with('msg','You will shorty receive an email, with service instance login credential and URL detail.
+				->with('msg','You will shorty receive an email, with service instance login credential.
 					Please check your email at '. $checkout->email. ' .');
 
 		} catch (\Exception $e) {

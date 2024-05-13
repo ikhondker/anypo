@@ -73,8 +73,6 @@ class HomeController extends Controller
 		return view('tenant.help.help');
 	}
 
-	
-
 	public function testNotification()
 	{
 		// Send notification to Pr creator

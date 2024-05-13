@@ -127,7 +127,7 @@ class CurrencyController extends Controller
 	 */
 	public function destroy(Currency $currency)
 	{
-		$this->authorize('delete', $color);
+		$this->authorize('delete', $currency);
 		$currency->fill(['enable' => !$currency->enable]);
 		$currency->update();
 

@@ -24,6 +24,8 @@ return new class extends Migration
 			$table->float('qty')->default(1);
 			$table->float('price', 15, 2)->default(0);
 			$table->float('sub_total', 15, 2)->default(0);
+			$table->float('tax_pc',15,2)->default(0);				// Future user
+			$table->float('gst_pc',15,2)->default(7.5);				// Future user
 			$table->float('tax',15,2)->default(0);
 			$table->float('gst',15,2)->default(0);
 			$table->float('amount', 15, 2)->default(0);

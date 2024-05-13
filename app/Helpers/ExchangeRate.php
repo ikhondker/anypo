@@ -38,8 +38,11 @@ use App\Helpers\EventLog;
 
 use DB;
 
-// called from Pr.submit and Po.submit and Dashboard.index
+// called from Pr.submit and Po.submit 
 // $rate = ExchangeRate::getRate($pr->currency, $setup->currency);
+
+// called form Dashboard.index Setup.freeze
+// ImportAllRate::dispatch();
 
 class ExchangeRate
 {
@@ -98,7 +101,7 @@ class ExchangeRate
 
 			// USD to tenant fc currency exchange rate
 			$usd_to_fc = (float) $rates[$fc_currency];
-			Log::debug('Helpers.ExchangeRate.importRates USD to tenant FC currency '.$setup->currency." =". $usd_to_fc);
+			Log::debug('Helpers.ExchangeRate.importRates USD to tenant FC currency '.$setup->currency." = ". $usd_to_fc);
 
 			//$currencies = Currency::primary()->orderBy('id', 'DESC');
 

@@ -27,6 +27,8 @@ return new class extends Migration
 			//$table->string('cr_account')->default('100001')->nullable();
 			//$table->foreignId('uom')->constrained('uoms')->references('uom');
 			$table->float('price', 15, 2)->default(0);
+			$table->float('tax_pc',15,2)->default(0);				// Future user
+			$table->float('gst_pc',15,2)->default(7.5);				// Future user
 			$table->unsignedinteger('stock')->default(0);
 			$table->unsignedinteger('reorder')->default(5);
 			//$table->enum('account_type', ['E','A','I'])->default('E');

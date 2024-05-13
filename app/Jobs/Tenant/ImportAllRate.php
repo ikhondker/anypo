@@ -16,6 +16,9 @@ class ImportAllRate implements ShouldQueue, ShouldBeUnique
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+	// called form Dashboard.index Setup.freeze
+	// ImportAllRate::dispatch();
+
 	/**
 	 * Create a new job instance.
 	 */

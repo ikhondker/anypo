@@ -60,18 +60,27 @@ class DashboardController extends Controller
 		// if new month starts, import rates
 		// =================================================
 		$setup = Setup::first();
-		// check if current months import rates imported
-		if ($setup->last_rate_date <> '') {
-			$last_rate_month	= $setup->last_rate_date->startOfMonth();
-		} else {
-			$last_rate_month	= '';
-		}
-		$current_rate_month		= Carbon::now()->startOfMonth();
+		// import rate only if setup is freezed
+		if ($setup->freezed) {
+			// check if current months import rates imported
+			if ($setup->last_rate_date <> '') {
+				$last_rate_month	= $setup->last_rate_date->startOfMonth();
+				Log::debug('tenant.dashboards.index Checking Rates. last_rate_month='.$last_rate_month.' Will check if months has been changed since last import.');
+			} else {
+				Log::debug('tenant.dashboards.index Checking Rates. last_rate_month is empty. Will import rate for the first time.');
+				$last_rate_month	= '';
+			}
+			$current_rate_month		= Carbon::now()->startOfMonth();
 
-		if ($last_rate_month <> $current_rate_month) {
-			// import current rates using queue
-			ImportAllRate::dispatch();
-			Log::debug("tenant.dashboards.index  Importing Exchange Rate for ".$current_rate_month);
+			if ($last_rate_month <> $current_rate_month) {
+				// import current rates using queue
+				Log::debug('tenant.dashboards.index Submitting ImportAllRate::dispatch() for '.$current_rate_month);
+				ImportAllRate::dispatch();
+			} else {
+				Log::debug('tenant.dashboards.index Rate Already Imported for current month starting '.$current_rate_month);
+			}
+		} else {
+			Log::debug('tenant.dashboards.index Rate Setup is not freezed. Skipping Rate Import');
 		}
 
 		// Total 4 Dashboard user,admin, backoffice and system
