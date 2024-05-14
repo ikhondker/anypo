@@ -46,6 +46,11 @@
 						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
 						<h6 class="text-danger">Guest!</h6>
 					@endguest
+					{{-- {{ $_node_name }}	{{ $_route_name }} --}}
+					{{-- <img src="/logo/{{ $_setup->logo }}" width="70px" height="70px" class="" alt="{{ $_setup->name }}"/><br> --}}
+					{{-- <span class="text-sm align-middle text-primary">{{ $_setup->name}}</span> --}}
+					{{-- <span class="text-sm align-middle text-muted"><small>CONTROL EXPENSES</small></span><br> --}}
+					{{-- <span class="text-sm align-middle text-muted"><small>[{{ $_node_name }}][ {{ $_route_name }}]</small></span> --}}
 				</a>
 				@include('tenant.includes.sidebar')
 			</div>
@@ -53,8 +58,25 @@
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle">
+					{{-- <i class="hamburger align-self-center"></i> --}}
+					{{-- <i class="align-middle" data-feather="layout"></i>  --}}
+					{{-- <i class="fas fa-plus fa-2xl align-self-center"></i> --}}
+					{{-- <i class="fa-solid fa-bars-staggered"></i> --}}
+					{{-- <i class="fa-solid fa-expand"></i> --}}
+					{{-- <i class="fa-solid fa-arrows-left-right-to-line"></i> --}}
+					{{-- <i class="fa-solid fa-up-right-and-down-left-from-center"></i> --}}
 					<i class="hamburger align-self-center fa-2xl align-self-center text-muted"></i>
 				</a>
+
+				{{-- <form class="d-none d-sm-inline-block">
+					<div class="input-group input-group-navbar">
+						<input type="text" class="form-control" placeholder="Search projects…" aria-label="Search">
+						<button class="btn" type="button">
+							<i class="align-middle" data-feather="search"></i>
+						</button>
+					</div>
+				</form> --}}
+
 				<ul class="navbar-nav">
 					<li class="nav-item px-2 dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,7 +119,9 @@
 					</li>
 				</ul>
 				@auth
-
+					{{-- <img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ $_setup->name }}" />
+					<span class="h3 text-info m-2">{{ $_setup->name}}</span> --}}
+					{{-- <span class="text-dark">{{ $_setup->name}},{{ $_setup->address1 }}, {{ $_setup->city.', '.$_setup->state.', '.$_setup->zip  }} {{ $_setup->country }}</span> --}}
 				@endauth
 				@guest
 					<span class="text-secondary">Welcome, Guest</span>
@@ -159,6 +183,11 @@
 								@auth
 									<img src="{{ Storage::disk('s3t')->url('avatar/'.auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
 									<span class="text-dark">{{ Str::limit(auth()->user()->name, 25, '...') }}</span>
+									{{-- @if ( auth()->user()->avatar == "")
+										<img src="{{ url($_avatar_dir . 'avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/>
+									@else --}}
+										{{-- <img src="{{ url($_avatar_dir . auth()->user()->avatar) }}" class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}"/> --}}
+									{{-- @endif --}}
 								@endauth
 									@guest
 									{{-- <img src="{{asset('img/avatar.png')}}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />  --}}
@@ -211,7 +240,10 @@
 							@if (session('error') || $errors->any())
 								<x-tenant.alert.error message="{{ session('error') }}"/>
 							@endif
-							
+							<!-- Form Validation Error Message Box -->
+							{{-- @if ($errors->any())
+								<x-alert.error/>
+							@endif --}}
 						</div>
 					</div>
 					{{-- <h1 class="h3 mb-3">Blank Page</h1> --}}
@@ -222,11 +254,15 @@
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><i class="align-top text-muted" data-feather="home"></i><a href="{{ route('home') }}"> Home</a></li>
 								@yield('breadcrumb')
+								{{--
+									<li class="breadcrumb-item"><a href="#">Library</a></li>
+									<li class="breadcrumb-item active">Data</li>
+									--}}
 							</ol>
 						</nav>
 						<!-- /.breadcrumb -->
+					<!-- content -->
 
-						<!-- content -->
 						@yield('content')
 						<!-- /.content -->
 					@else

@@ -18,36 +18,33 @@
 	</x-tenant.page-header>
 
 
+	<x-tenant.info.project-info id="{{ $project->id }}"/>
+
 	<div class="row">
 		<div class="col-6">
+
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Project Basic Info</h5>
-					<h6 class="card-subtitle text-muted">Project Basic Information.</h6>
+					<h5 class="card-title">Project Purchase Requisition Budget</h5>
+					<h6 class="card-subtitle text-muted">Project Requisition Orders Budget.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $project->code }}" label="Code"/>
-					<x-tenant.show.my-text		value="{{ $project->name }}"/>
-					<x-tenant.show.my-date		value="{{ $project->start_date }}" label="Start Date"/>
-					<x-tenant.show.my-date		value="{{ $project->end_date }}" label="End Date"/>
-					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
-					<x-tenant.show.my-closed	value="{{ $project->closed }}"/>
-					<x-tenant.show.my-text-area		value="{{ $project->notes }}" label="Notes"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount_pr_booked }}" label="PR Booked"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount_pr }}" label="PR Issued"/>
+				<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_pr_booked - $project->amount_pr }}" label="Available"/>
 				</div>
 			</div>
 
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Project Purchase Orders Budget</h5>
-					<h6 class="card-subtitle text-muted">Project Purchase Orders Budget.</h6>
+					<h5 class="card-title">Project Goods Receipt Amount</h5>
+					<h6 class="card-subtitle text-muted">Project Goods Receipt Amount.</h6>
 				</div>
 				<div class="card-body">
-					<div class="row mb-3">
-						<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
-						<x-tenant.show.my-amount	value="{{ $project->amount_po_booked }}" label="PO Booked"/>
-						<x-tenant.show.my-amount	value="{{ $project->amount_po }}" label="PO Issued"/>
-						<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_po_booked - $project->amount_po }}" label="Available"/>
-					</div>
+					<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount_grs }}" label="GRS Issued"/>
+					<x-tenant.show.my-amount	value="{{ $project->amount- $project->amount_grs }}" label="Available"/>
 				</div>
 			</div>
 
@@ -88,30 +85,22 @@
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
+			
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Project Purchase Requisition Budget</h5>
-					<h6 class="card-subtitle text-muted">Project Requisition Orders Budget.</h6>
+					<h5 class="card-title">Project Purchase Orders Budget</h5>
+					<h6 class="card-subtitle text-muted">Project Purchase Orders Budget.</h6>
 				</div>
 				<div class="card-body">
-				<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
-				<x-tenant.show.my-amount	value="{{ $project->amount_pr_booked }}" label="PR Booked"/>
-				<x-tenant.show.my-amount	value="{{ $project->amount_pr }}" label="PR Issued"/>
-				<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_pr_booked - $project->amount_pr }}" label="Available"/>
+					<div class="row mb-3">
+						<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
+						<x-tenant.show.my-amount	value="{{ $project->amount_po_booked }}" label="PO Booked"/>
+						<x-tenant.show.my-amount	value="{{ $project->amount_po }}" label="PO Issued"/>
+						<x-tenant.show.my-amount	value="{{ $project->amount - $project->amount_po_booked - $project->amount_po }}" label="Available"/>
+					</div>
 				</div>
 			</div>
-
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Project Goods Receipt Amount</h5>
-					<h6 class="card-subtitle text-muted">Project Goods Receipt Amount.</h6>
-				</div>
-				<div class="card-body">
-					<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
-					<x-tenant.show.my-amount	value="{{ $project->amount_grs }}" label="GRS Issued"/>
-					<x-tenant.show.my-amount	value="{{ $project->amount- $project->amount_grs }}" label="Available"/>
-				</div>
-			</div>
+			
 
 			<div class="card">
 				<div class="card-header">

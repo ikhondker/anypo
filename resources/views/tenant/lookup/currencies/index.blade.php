@@ -51,7 +51,6 @@
 								<td><x-tenant.list.my-boolean :value="$currency->enable"/></td>
 								<td><x-tenant.list.my-boolean :value="$currency->rates"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Currency" :id="$currency->currency" :show="false"/>
 									<a href="{{ route('currencies.destroy',$currency->currency) }}" class="me-2 sw2-advance"
 											data-entity="Currency" data-name="{{ $currency->currency }}" data-status="{{ ($currency->enable ? 'Disable' : 'Enable') }}"
 											data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($currency->enable ? 'Disable' : 'Enable') }}">

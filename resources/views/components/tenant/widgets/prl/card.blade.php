@@ -72,7 +72,7 @@
 				@else
 					<tr class="">
 						<td colspan="9" class="text-end">
-							<strong>TOTAL1:</strong>
+							<strong>TOTAL:</strong>
 						</td>
 						<td class="text-end">
 							<input type="text" class="form-control @error('pr_amount') is-invalid @enderror"

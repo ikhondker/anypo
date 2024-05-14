@@ -166,7 +166,7 @@ class CurrencySeeder extends Seeder
 		['currency' =>'TZS' , 'name' => 'Shillings', 'country' => 'Tanzania', 'symbol' => '', 'enable'=>FALSE, 'rates'=>TRUE, 'never'=>TRUE],
 		['currency' =>'UAH' , 'name' => 'Hryvnia', 'country' => 'Ukraine', 'symbol' => 'â‚´', 'enable'=>FALSE, 'rates'=>TRUE, 'never'=>TRUE],
 		['currency' =>'UGX' , 'name' => 'Shillings', 'country' => 'Uganda', 'symbol' => '', 'enable'=>FALSE, 'rates'=>TRUE, 'never'=>TRUE],
-		['currency' =>'USD' , 'name' => 'Dollars', 'country' => 'United States of America', 'symbol' => '$', 'enable'=>TRUE, 'rates'=>TRUE, 'never'=>FALSE],
+		['currency' =>'USD' , 'name' => 'Dollars', 'country' => 'United States of America', 'symbol' => '$', 'enable'=>FALSE, 'rates'=>TRUE, 'never'=>FALSE],
 		['currency' =>'UYU' , 'name' => 'Pesos', 'country' => 'Uruguay', 'symbol' => '$U', 'enable'=>FALSE, 'rates'=>TRUE, 'never'=>TRUE],
 		['currency' =>'UZS' , 'name' => 'Sums', 'country' => 'Uzbekistan', 'symbol' => 'Ð»Ð²', 'enable'=>FALSE, 'rates'=>TRUE, 'never'=>TRUE],
 		['currency' =>'VEF' , 'name' => 'Bolivares Fuertes', 'country' => 'Venezuela', 'symbol' => 'Bs', 'enable'=>FALSE, 'rates'=>FALSE, 'never'=>TRUE],

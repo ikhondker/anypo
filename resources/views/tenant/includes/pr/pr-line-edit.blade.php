@@ -51,7 +51,7 @@
 	</td>
 	
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('sub_total') is-invalid @enderror"
+		<input type="text" class="form-control @error('sub_total') is-invalid @enderror"
 			style="text-align: right;"
 			name="sub_total" id="sub_total" placeholder="0.00"
 			value="{{ old('sub_total', $prl->sub_total ) }}"
@@ -82,7 +82,7 @@
 	</td>
 
 	<td class="text-end">
-		<input type="number" step='0.01' min="1" class="form-control @error('amount') is-invalid @enderror"
+		<input type="text" class="form-control @error('amount') is-invalid @enderror"
 			style="text-align: right;"
 			name="amount" id="amount" placeholder="0.00"
 			value="{{ old('amount',number_format($prl->amount, 2)) }}"

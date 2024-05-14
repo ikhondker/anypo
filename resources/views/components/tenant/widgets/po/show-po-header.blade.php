@@ -7,19 +7,19 @@
 			</div>
 			<div class="card-body">
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">Summary:</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						<strong>{{ $po->summary }}</strong>
 					</div>
 				</div>
 
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">PO Value :</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						{{number_format($po->amount, 2)}} <span class="badge bg-primary">{{ $po->currency }}</span> 
 						@if ($po->currency <> $_setup->currency)
 							{{number_format($po->fc_amount, 2)}} <span class="badge bg-success">{{ $po->fc_currency }}</span> 
@@ -34,10 +34,10 @@
 				<x-tenant.show.my-text-area		value="{{ $po->notes }}" label="Notes"/>
 				
 				<div class="row">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						
 					</div>
-					<div class="col-sm-9 text-end">
+					<div class="col-sm-8 text-end">
 						@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 							<x-tenant.show.my-edit-link object="Po" :id="$po->id"/>
 						@endif 
@@ -57,19 +57,19 @@
 			<div class="card-body">
 
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">Auth Status:</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						<span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span>
 					</div>
 				</div>
 				
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">Closure Status:</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						<span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span>
 					</div>
 				</div>
@@ -80,10 +80,10 @@
 				<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
 
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">Attachments:</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						<x-tenant.attachment.all entity="PO" aid="{{ $po->id }}"/>
 					</div>
 				</div>
@@ -93,10 +93,10 @@
 						{{-- <x-tenant.attachment.create /> --}}
 						<input type="text" name="attach_po_id" id="attach_po_id" class="form-control" placeholder="ID" value="{{ old('id', $po->id ) }}" hidden>
 						<div class="row">
-							<div class="col-sm-3 text-end">
+							<div class="col-sm-4 text-end">
 							
 							</div>
-							<div class="col-sm-9 text-end">
+							<div class="col-sm-8 text-end">
 								<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
 								<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
 								{{-- <x-show.my-edit-link object="Po" :id="$po->id"/> --}}
@@ -116,7 +116,6 @@
 
 <script type="text/javascript">
 	function mySubmit() {
-		//alert('I am inside 2');
 		//document.getElementById('upload').click();
 		document.getElementById('frm1').submit();
 	}

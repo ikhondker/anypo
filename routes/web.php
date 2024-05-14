@@ -205,7 +205,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== User ========================================  */
 	Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
 	Route::get('/users/delete/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-	Route::get('/user/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
+	Route::get('/users/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
 	Route::post('/user/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
 	Route::get('/user/export', [UserController::class, 'export'])->name('users.export');
 	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');

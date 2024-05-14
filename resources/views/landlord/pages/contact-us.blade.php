@@ -34,7 +34,7 @@
 					<h5 class="mb-1">Address:</h5>
 					<p>{{ $config->address1 }} {{ $config->city.' '.$config->state.' '. $config->zip.' ,'. $config->relCountry->name }}.</p>
 					<span class="avatar avatar-xs avatar-circle">
-						<img class="avatar-img" src="{{ Storage::disk('s3l')->url('flag/ca.png') }}" alt="Image Description">
+						<img class="avatar-img" src="{{ Storage::disk('s3l')->url('flags/ca.png') }}" alt="Image Description">
 					</span>
 				</div>
 				<!-- End Col -->

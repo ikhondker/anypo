@@ -7,19 +7,19 @@
 			</div>
 			<div class="card-body">
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">Summary:</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						<strong>{{ $pr->summary }}</strong>
 					</div>
 				</div>
 
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">PR Value :</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						{{number_format($pr->amount, 2)}} <span class="badge bg-primary">{{ $pr->currency }}</span> 
 						@if ($pr->currency <> $_setup->currency)
 							{{number_format($pr->fc_amount, 2)}} <span class="badge bg-success">{{ $pr->fc_currency }}</span> 
@@ -33,10 +33,10 @@
 				<x-tenant.show.my-text-area	value="{{ $pr->notes }}" label="Notes"/>
 			
 				<div class="row">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-8 text-end">
 						
 					</div>
-					<div class="col-sm-9 text-end">
+					<div class="col-sm-8 text-end">
 						@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 							<x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
 						@endif
@@ -55,19 +55,19 @@
 			</div>
 			<div class="card-body">
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">Auth Status:</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
 					</div>
 				</div>
 				
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">Closure Status:</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						<span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span>
 					</div>
 				</div>
@@ -77,10 +77,10 @@
 				<x-tenant.show.my-date		value="{{ $pr->need_by_date }}" label="Need by Date"/>
 
 				<div class="row mb-3">
-						<div class="col-sm-3 text-end">
+						<div class="col-sm-4 text-end">
 							<span class="h6 text-secondary">PO# :</span>
 						</div>
-						<div class="col-sm-9">
+						<div class="col-sm-8">
 							@if ( $pr->po_id <> 0)
 								<a href="{{ route('pos.show',$pr->po_id) }}" class="text-warning d-inline-block">{{ $pr->po_id }}</a>
 							@else
@@ -91,10 +91,10 @@
 				
 
 				<div class="row mb-3">
-					<div class="col-sm-3 text-end">
+					<div class="col-sm-4 text-end">
 						<span class="h6 text-secondary">Attachments:</span>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-sm-8">
 						<x-tenant.attachment.all entity="PR" aid="{{ $pr->id }}"/>
 					</div>
 				</div>

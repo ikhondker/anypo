@@ -7,17 +7,22 @@
 						<img src="{{ Storage::disk('s3t')->url('flow/project.jpg') }}" width="240" height="321" class="mt-2" alt="Project">
 					</div>
 					<div class="col-sm-9 col-xl-12 col-xxl-9">
-						<h4>PROJECT: {{ $project->name }}</h4>
+						<h4>{{ $project->name }}</h4>
 						<p>{!! nl2br($project->notes) !!}</p>
 						<table class="table table-sm my-2">
 							<tbody>
 								<tr>
-									<th>Start</th>
-									<td>{{ ($project->start_date <> "") ? strtoupper(date('d-M-Y', strtotime($project->start_date ))) : "" }}</td>
+									<th>Code</th>
+									<td>{{ $project->code }}</td>
 								</tr>
+
 								<tr>
-									<th>End</th>
-									<td>{{ ($project->end_date <> "") ? strtoupper(date('d-M-Y', strtotime($project->end_date ))) : "" }}</td>
+									<th>Duration</th>
+									<td>
+										{{ ($project->start_date <> "") ? strtoupper(date('d-M-Y', strtotime($project->start_date ))) : "" }}
+										to 
+										{{ ($project->end_date <> "") ? strtoupper(date('d-M-Y', strtotime($project->end_date ))) : "" }}
+									</td>
 								</tr>
 								<tr>
 									<th>Project Manager</th>
