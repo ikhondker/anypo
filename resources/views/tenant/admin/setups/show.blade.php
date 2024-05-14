@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','View Setup')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}">Setup</a></li>
+	{{-- <li class="breadcrumb-item"><a href="{{ route('setups.index') }}">Setup</a></li> --}}
 	<li class="breadcrumb-item active">{{ $setup->name }}</li>
 @endsection
 
@@ -29,7 +29,7 @@
 					<x-tenant.show.my-text		value="{{ $setup->admin_user->name }}" label="Admin"/>
 					<x-tenant.show.my-boolean	value="{{ $setup->freezed }}" label="Setup freezed"/>
 					<x-tenant.show.my-boolean	value="{{ $setup->enable }}"/>
-					
+
 				</div>
 			</div>
 			<div class="card">
@@ -50,7 +50,7 @@
 					<x-tenant.show.my-number value="{{ $setup->vat }}" label="VAT %"/> --}}
 				</div>
 			</div>
-			
+
 
 			<div class="card">
 				<div class="card-header">
@@ -80,7 +80,7 @@
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-			
+
 
 			<div class="card">
 				<div class="card-header">
@@ -100,7 +100,7 @@
 				</div>
 			</div>
 
-			
+
 
 			<div class="card">
 				<div class="card-header">
@@ -121,7 +121,7 @@
 					<h6 class="card-subtitle text-muted">General Announcement configuration.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-boolean	value="{{ $setup->banner_show }}" label="Show Announcement?"/>
+					<x-tenant.show.my-boolean	value="{{ $setup->banner_show }}" label="Announcement?"/>
 					<x-tenant.show.my-text-area value="{{ $setup->banner_message }}" label="Announcement"/>
 					<x-tenant.show.my-text value="{{ $setup->cell }}" label="Cell"/>
 				</div>
@@ -138,7 +138,7 @@
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-			
+
 		</div>
 		<!-- end col-6 -->
 	</div>
@@ -146,7 +146,7 @@
 
 	<div class="row">
 		<div class="col-6">
-			
+
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">

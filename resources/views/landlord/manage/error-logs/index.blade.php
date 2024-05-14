@@ -18,7 +18,6 @@
 						<th>Name</th>
 						<th>Date</th>
 						<th>User</th>
-						<th>Role</th>
 						<th>Status</th>
 						<th style="width: 5%;">Action</th>
 					</tr>
@@ -46,7 +45,6 @@
 								<small class="d-block">{{ $errorLog->url }}<br>{{ $errorLog->e_class }}</small>
 							</td>
 							<td>{{ $errorLog->user_id }}</td>
-							<td>{{ $errorLog->role }}</td>
 							<td>{{ $errorLog->status }}</td>
 							<td><x-landlord.list.actions object="ErrorLog" :id="$errorLog->id" :edit="true" :enable="false" /></td>
 						</tr>

@@ -23,7 +23,6 @@
 				<tr>
 					<th>&nbsp; &nbsp; Subject</th>
 					<th>Date</th>
-					<th>Type</th>
 					<th>Size</th>
 					<th>File</th>
 					<th style="width: 5%;">Action</th>
@@ -42,7 +41,6 @@
 								</div>
 							</td>
 							<td><x-landlord.list.my-date :value="$attachment->upload_date"/></td>
-							<td>{{ Str::limit($attachment->file_type, 15) }}</td>
 							<td>{{ number_format($attachment->file_size / 1048576,2) }}</td>
 							<td><x-landlord.attachment.show-by-id id="{{ $attachment->id }}"/></td>
 							<td><x-landlord.list.actions object="Attachment" :id="$attachment->id"/></td>

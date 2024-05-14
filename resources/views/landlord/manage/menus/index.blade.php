@@ -22,7 +22,7 @@
 					<tr>
 						<th>Menu Name</th>
 						<th>Menu</th>
-						<th>Access</th>
+
 						<th>Enable</th>
 						<th style="width: 5%;">Action</th>
 					</tr>
@@ -48,7 +48,6 @@
 								</div>
 							</td>
 							<td>{{ $menu->route_name }} </td>
-							<td>{{ $menu->access }} </td>
 							<td><x-landlord.list.my-enable :value="$menu->enable" /></td>
 							<td>
 
@@ -102,6 +101,6 @@
 	</div>
 	<!-- End Card -->
 
-	
+
 
 @endsection

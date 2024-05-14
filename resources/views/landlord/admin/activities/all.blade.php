@@ -20,7 +20,6 @@
 						<th>Object</th>
 						<th>Date</th>
 						<th>Event</th>
-						<th>User</th>
 						<th style="width: 5%;">Action</th>
 					</tr>
 				</thead>
@@ -40,13 +39,14 @@
 										<a class="d-inline-block link-dark" href="{{ route('activities.show', $activity->id) }}">
 											<h6 class="text-hover-primary mb-0">{{ $activity->object_name }}</h6>
 										</a>
-										<small class="d-block">ID: {{ $activity->object_id }}</small>
+										<small class="d-block">OBJID: {{ $activity->object_id }}</small>
 									</div>
 								</div>
 							</td>
 							<td><x-landlord.list.my-date :value="$activity->created_at" /></td>
-							<td>{{ $activity->event_name }}</td>
-							<td>{{ $activity->user->name }}</td>
+							<td>{{ $activity->event_name }}
+                                <small class="d-block">By: {{ $activity->user->name }}</small>
+                            </td>
 							<td><x-landlord.list.actions object="Activity" :id="$activity->id" :edit="false"
 									:enable="false" /></td>
 						</tr>

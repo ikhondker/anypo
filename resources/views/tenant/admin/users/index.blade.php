@@ -14,7 +14,7 @@
 			<x-tenant.buttons.header.create object="User"/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	@php
 		use App\Models\User;
 		$count_total	= User::TenantAll()->count();
@@ -122,10 +122,9 @@
 							<tr>
 								<th>Lead</th>
 								<th>Email</th>
-								<th>Title</th>
-								<th>Cell No</th>
-								<th>Dept</th>
 								<th>Role</th>
+								<th>Title</th>
+								<th>Dept</th>
 								<th>Enable</th>
 								<th>View</th>
 							</tr>
@@ -143,16 +142,16 @@
 									@endif
 								</td>
 								<td>{{ $user->email }}</td>
-								<td>{{ $user->designation->name }}</td>
-								<td>{{ $user->cell }}</td>
-								<td>{{ $user->dept->name }}</td>
-								<td>
+                                <td>
 									@if ($user->isAdmin())
 										<span class="badge bg-danger">{{ $user->role }}</span>
-									@else 
+									@else
 										<span class="badge bg-success">{{ $user->role }}</span>
 									@endif
 								</td>
+								<td>{{ $user->designation->name }}</td>
+								<td>{{ $user->dept->name }}</td>
+
 								<td><x-tenant.list.my-boolean :value="$user->enable"/></td>
 								<td class="table-action">
 									<a href="{{ route('users.show',$user->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
@@ -167,7 +166,7 @@
 												<a wire:ignore href="{{ route('users.impersonate',$user->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
 													<i class="align-middle text-danger" data-feather="log-out"></i>
 												</a>
-											@endif 
+											@endif
 										@endcan
 									@endif
 
@@ -196,7 +195,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

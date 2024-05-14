@@ -22,11 +22,11 @@
 		@method('PUT')
 
 		<div class="row">
-			<div class="col-md-4 col-xl-3">
-				<x-tenant.widgets.user.user-profile id="{{ $user->id }}"/>	
+			<div class="col-md-4 col-xl-4">
+				<x-tenant.widgets.user.user-profile id="{{ $user->id }}"/>
 			</div>
-		
-			<div class="col-md-8 col-xl-9">
+
+			<div class="col-md-8 col-xl-8">
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Profile Information</h5>
@@ -47,7 +47,7 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						
+
 						<div class="mb-3">
 							<label class="form-label">Cell</label>
 							<input type="text" class="form-control @error('cell') is-invalid @enderror"
@@ -59,7 +59,7 @@
 							@enderror
 						</div>
 
-						
+
 
 					</div>
 				</div>
@@ -145,7 +145,7 @@
 						<h6 class="card-subtitle text-muted">User's Other Details.</h6>
 					</div>
 					<div class="card-body">
-					
+
 						<div class="mb-3">
 							<label class="form-label">Facebook</label>
 							<input type="text" class="form-control @error('facebook') is-invalid @enderror"
@@ -178,8 +178,8 @@
 			<div class="row">
 				<div class="col-6">
 
-					
-	
+
+
 				</div>
 				<!-- end col-6 -->
 
@@ -194,7 +194,7 @@
 				</div>
 				<!-- end col-6 -->
 				<div class="col-6">
-					
+
 				</div>
 				<!-- end col-6 -->
 
@@ -204,6 +204,6 @@
 	</form>
 	<!-- /.form end -->
 
-	
+
 @endsection
 

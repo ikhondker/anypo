@@ -19,7 +19,7 @@
 
 	@if ( \App\Helpers\Akk::userAnyDeptBudgetExists() )
 		<x-tenant.dashboards.dept-budget-stat/>
-	@endif 	
+	@endif
 
 
 	<div class="row">
@@ -44,7 +44,6 @@
 								<th>#</th>
 								<th>FY</th>
 								<th>Dept</th>
-								<th>Budget Period</th>
 
 								<th class="text-end">Budget</th>
 								<th class="text-end">PR (Booked)</th>
@@ -56,7 +55,7 @@
 								<th class="text-end">GRS</th>
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
-								
+
 								<th class="text-end">Closed</th>
 								<th>Actions</th>
 							</tr>
@@ -68,7 +67,6 @@
 								<td>{{ $dept_budgets->firstItem() + $loop->index }}</td>
 								<td>{{ $dept_budget->budget->fy }}</td>
 								<td><a class="text-info" href="{{ route('dept-budgets.show',$dept_budget->id) }}">{{ $dept_budget->dept->name }}</a></td>
-								<td><x-tenant.list.my-date :value="$dept_budget->budget->start_date"/> - <x-tenant.list.my-date :value="$dept_budget->budget->end_date"/></td>
 
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr_booked"/></td>
@@ -109,7 +107,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

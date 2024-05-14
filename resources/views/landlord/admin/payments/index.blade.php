@@ -14,12 +14,12 @@
 			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
 				<thead class="thead-light">
 					<tr>
-						<th>Narration</th>
+						<th>Payment #</th>
 						<th>Date</th>
 						<th>Invoice #</th>
 						<th>Amount</th>
 						<th>Status</th>
-						<th style="width: 5%;">Download</th>
+						<th style="width: 5%;">View</th>
 					</tr>
 				</thead>
 
@@ -30,15 +30,14 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}" 
+											src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}"
 											alt="{{ $payment->account->name }}" title="{{ $payment->account->name }}">
 									</div>
 
 									<div class="flex-grow-1 ms-3">
 										<a class="d-inline-block link-dark" href="{{ route('reports.pdf-payment', $payment->id) }}">
-											<h6 class="text-hover-primary mb-0">{{ Str::limit($payment->summary, 25) }}</h6>
+											<h6 class="text-hover-primary mb-0">{{ $payment->id }}</h6>
 										</a>
-										<small class="d-block">Ref: #{{ $payment->id }}</small>
 									</div>
 								</div>
 							</td>
@@ -46,7 +45,7 @@
 							<td>
 								<a class="d-inline-block link-dark" href="{{ route('invoices.show',$payment->invoice_id) }}">{{ $payment->invoice->invoice_no }}</a>
 							</td>
-							<td><x-landlord.list.my-number :value="$payment->amount" /> USD</td>
+							<td><x-landlord.list.my-number :value="$payment->amount" />$</td>
 							<td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>
 							<td>
 								{{-- <a href="{{ route('payments.show', $payment->id) }}" class="text-body"

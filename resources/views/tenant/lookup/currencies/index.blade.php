@@ -16,7 +16,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -52,7 +52,7 @@
 								<td><x-tenant.list.my-boolean :value="$currency->rates"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Currency" :id="$currency->currency" :show="false"/>
-									<a href="{{ route('currencies.destroy',$currency->currency) }}" class="me-2 sw2-advance" 
+									<a href="{{ route('currencies.destroy',$currency->currency) }}" class="me-2 sw2-advance"
 											data-entity="Currency" data-name="{{ $currency->currency }}" data-status="{{ ($currency->enable ? 'Disable' : 'Enable') }}"
 											data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($currency->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($currency->enable ? 'bell-off' : 'bell') }}"></i>
@@ -67,7 +67,7 @@
 						{{ $currencies->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -78,7 +78,7 @@
 	</div>
 	 <!-- end row -->
 
-	
+
 
 @endsection
 

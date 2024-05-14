@@ -20,7 +20,7 @@
 		@csrf
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-8">
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Announcement </h5>
@@ -45,7 +45,7 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
-						
+
 							<div class="mb-3">
 								<label class="form-check m-0">
 								<input type="checkbox" class="form-check-input"
@@ -57,7 +57,7 @@
 							<x-tenant.buttons.show.save/>
 						</div>
 					</div>
-					
+
 				</div>
 				<div class="col-6">
 				</div>

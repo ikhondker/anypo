@@ -12,7 +12,7 @@
 			Upload Items
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -21,7 +21,7 @@
 		@csrf
 
 		<div class="row">
-			<div class="col-6">
+			<div class="col-8">
 				<div class="card">
 					<div class="card-header">
 					<h5 class="card-title">Upload Items</h5>
@@ -31,17 +31,17 @@
 
 						<div class="alert alert-danger alert-outline" role="alert">
 							<div class="alert-icon">
-								<i class="far fa-fw fa-bell"></i>
+                                <i data-feather="alert-triangle" class=""></i>
 							</div>
 							<div class="alert-message text-danger">
-								<strong class="text-danger">WARNING!</strong> Uploading new data will purge any non-uploaded data!
+								<strong class="text-danger">WARNING!</strong> Uploading new data will purge any previous non-uploaded data!
 							</div>
 						</div>
 
 						<div class="mb-3">
 							<label class="form-label w-100">Bulk Item Upload</label>
-							<input type="file" 
-							name="file_to_upload" id="file_to_upload" 
+							<input type="file"
+							name="file_to_upload" id="file_to_upload"
 								accept=".xlsx" placeholder="file_to_upload"/>
 								<small class="form-text text-muted">Example block-level help text here.</small>
 							@error('file_to_upload')
@@ -55,7 +55,7 @@
 			</div>
 			<!-- end col-6 -->
 			<div class="col-6">
-				
+
 			</div>
 			<!-- end col-6 -->
 		</div>

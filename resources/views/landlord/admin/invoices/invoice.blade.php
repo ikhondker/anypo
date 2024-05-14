@@ -38,9 +38,9 @@
 							</div>
 							<address class="text-dark">
 								{{ $config->address1 }}<br>
-								@if ($config->address2 <> '' ) 
+								@if ($config->address2 <> '' )
 									{{ $config->address2 }}<br>
-								@endif 
+								@endif
 								{{ $config->city . ', ' . $config->state . ', ' . $config->zip }}<br>
 								{{ $config->relCountry->name }}
 							</address>
@@ -55,9 +55,9 @@
 							<h4>{{ $account->name }}</h4>
 							<address>
 								{{ $account->address1 }}<br>
-								@if ($account->address2 <> '' ) 
+								@if ($account->address2 <> '' )
 									{{ $account->address2 }}<br>
-								@endif 
+								@endif
 								{{ $account->city . ', ' . $account->state . ', ' . $account->zip }}<br>
 								{{ $account->relCountry->name }}
 							</address>
@@ -80,19 +80,18 @@
 
 					<!-- Table -->
 					<div class="table-responsive">
-						<table class="table table-borderless table-nowrap table-align-middle">
+						<table class="table table-borderless table-align-middle">
 							<thead class="thead-light">
 								<tr>
-									<th>DESCRIPTION</th>
+									<th style="width:40%">DESCRIPTION</th>
 									<th class="table-text-end">QTY</th>
 									<th class="table-text-end">UNIT PRICE</th>
 									<th class="table-text-end">AMOUNT</th>
 								</tr>
 							</thead>
-
 							<tbody>
 								<tr>
-									<th>{{ $invoice->summary }}</th>
+									<td>{{ $invoice->summary }}</td>
 									<td class="table-text-end">1</td>
 									<td class="table-text-end">${{ number_format($invoice->amount,2) }}</td>
 									<td class="table-text-end">${{ number_format($invoice->amount,2) }}</td>

@@ -6,9 +6,7 @@
 	@inject('carbon', 'Carbon\Carbon')
 
 	<x-landlord.widget.account-services/>
-	
+
 	<x-landlord.widget.add-addon/>
-	
-	
 
 @endsection

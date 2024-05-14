@@ -51,7 +51,7 @@ use Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
-# 13. FUTURE 
+# 13. FUTURE
 # 1. Dashboard chart
 # 2. Project Actions
 # 3. code enable /visible
@@ -71,11 +71,11 @@ class ProjectController extends Controller
 		}
 		$projects = $projects->with("pm")->orderBy('id', 'DESC')->paginate(10);
 
-		if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
-			return view('tenant.lookup.projects.index-basic', compact('projects'));
-		} else {
-			return view('tenant.lookup.projects.index', compact('projects'));
-		}
+        return view('tenant.lookup.projects.index', compact('projects'));
+		// if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
+		// 	return view('tenant.lookup.projects.index-basic', compact('projects'));
+		// } else {
+		// }
 
 	}
 
@@ -155,7 +155,7 @@ class ProjectController extends Controller
 			'code' 			=> Str::upper($request['code']),
 		]);
 
-	
+
 
 		//$request->validate();
 		$request->validate([
@@ -189,16 +189,16 @@ class ProjectController extends Controller
 		$this->authorize('export', Project::class);
 
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
-			$sql = "SELECT p.id, p.name, u.name pm_name, p.start_date, end_date, p.notes, 
-				IF(enable, 'Yes', 'No') as Enable 
+			$sql = "SELECT p.id, p.name, u.name pm_name, p.start_date, end_date, p.notes,
+				IF(enable, 'Yes', 'No') as Enable
 				FROM projects p, users u
 				WHERE p.pm_id = u.id
 			";
-			
+
 		} else {
-			$sql="SELECT p.id, p.name, u.name pm_name, p.start_date, end_date, 
-				amount budget, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_payment, p.notes, 
-				IF(enable, 'Yes', 'No') as Enable 
+			$sql="SELECT p.id, p.name, u.name pm_name, p.start_date, end_date,
+				amount budget, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_payment, p.notes,
+				IF(enable, 'Yes', 'No') as Enable
 				FROM projects p, users u
 				WHERE p.pm_id=u.id
 			";

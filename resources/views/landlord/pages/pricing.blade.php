@@ -12,7 +12,7 @@
 
 		<div class="row align-items-lg-center">
 
-			<div class="col-sm-4 col-lg-5">
+			<div class="col-sm-6 col-lg-6">
 				<div class="ps-sm-6">
 					<div class="row">
 						<div class="col-sm-12 col-lg-6 mb-3" data-aos="fade-up" data-aos-delay="100">
@@ -102,11 +102,11 @@
 									<span>/mo</span>
 								</span>
 
-								
+
 							</div>
-							
+
 						</div>
-						
+
 						<!-- End Media -->
 						<hr class="my-4 bg-primary-subtle">
 						<div class="mt-4">
@@ -115,7 +115,7 @@
 								{{ $product->name }}
 								<br><span class="small">Including All Functionalities.</span>
 							</p>
-							
+
 						</div>
 
 						<div class="d-grid mt-6">

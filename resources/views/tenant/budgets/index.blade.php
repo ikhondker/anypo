@@ -17,7 +17,7 @@
 	</x-tenant.page-header>
 
 	<x-tenant.dashboards.budget-stat/>
-	
+
 	<div class="row">
 		<div class="col-12">
 
@@ -38,16 +38,14 @@
 						<thead>
 							<tr>
 								<th>FY</th>
-								<th>Name</th>
-								<th>Start-End</th>
 								<th class="text-end">Budget</th>
-								
-								<th class="text-end">PR (Booked)</th>
-								<th class="text-end">PR (Approved)</th>
-								<th class="text-end">PR (Available)</th>
-								<th class="text-end">PO (Booked)</th>
-								<th class="text-end">PO (Approved)</th>
-								<th class="text-end">PO <br>(Available)</th>
+
+								<th class="text-end">PR (Book)</th>
+								<th class="text-end">PR (Appr.)</th>
+								<th class="text-end">PR (Avl.)</th>
+								<th class="text-end">PO (Book)</th>
+								<th class="text-end">PO (Appr.)</th>
+								<th class="text-end">PO (Avl.)</th>
 								<th class="text-end">GRS</th>
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
@@ -59,9 +57,7 @@
 						<tbody>
 							@foreach ($budgets as $budget)
 							<tr>
-								<td>{{ $budget->fy }}</td>
-								<td><a class="text-info" href="{{ route('budgets.show',$budget->id) }}">{{ $budget->name }}</a></td>
-								<td><x-tenant.list.my-date :value="$budget->start_date"/> - <x-tenant.list.my-date :value="$budget->end_date"/></td>
+								<td><a class="text-info" href="{{ route('budgets.show',$budget->id) }}">{{ $budget->fy }}</a></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr_booked"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr"/></td>
@@ -75,7 +71,7 @@
 								<td class="text-start"><x-tenant.list.my-closed :value="$budget->closed"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Budget" :id="$budget->id" :show="true"/>
-									<a href="{{ route('budgets.destroy',$budget->id) }}" class="me-2 sw2-advance" 
+									<a href="{{ route('budgets.destroy',$budget->id) }}" class="me-2 sw2-advance"
 										data-entity="Budget" data-name="{{ $budget->name }}" data-status="{{ ($budget->closed ? 'Open' : 'Close') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($budget->closed ? 'Open' : 'Close') }}">
 										<i class="align-middle text-muted" data-feather="{{ ($budget->closed ? 'bell-off' : 'bell') }}"></i>
@@ -87,11 +83,11 @@
 					</table>
 
 					<div class="row pt-3">
-						
+
 						{{ $budgets->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -102,8 +98,8 @@
 	</div>
 	 <!-- end row -->
 
-	
-	
+
+
 
 @endsection
 

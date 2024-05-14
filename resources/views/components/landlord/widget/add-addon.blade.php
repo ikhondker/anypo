@@ -1,17 +1,17 @@
 @if ($account->id != '' )
 		<!-- Card Grid -->
 		<div class="container content-space-2">
-			
+
 			<div class="row justify-content-center mb-4">
-				<div class="col-8 mb-4 mb-md-5 mb-lg-0">
+				<div class="col-10 mb-4 mb-md-5 mb-lg-0">
 					<!-- Card -->
 						<div class="card card-lg card-transition h-100 text-center">
 							<div class="card-body">
 								<span class="text-cap text-muted">Additional User</span>
 								<h2 class="text-info">Need More User? Buy </h2>
-								<p class="card-text text-body small">Will be added immediately to your Account {{ $account->name }} [#{{ $account_id }}] 
+								<p class="card-text text-body small">Will be added immediately to your Account {{ $account->name }} [#{{ $account_id }}]
 								</p>
-							</div>			
+							</div>
 						</div>
 				</div>
 			</div>
@@ -19,7 +19,7 @@
 			<div class="row justify-content-center">
 
 				@foreach ($addons as $addon)
-					<div class="col-md-6 col-lg-4 mb-4 mb-md-5 mb-lg-0">
+					<div class="col-md-6 col-lg-5 mb-4 mb-md-5 mb-lg-0">
 						<!-- Card -->
 							<div class="card card-lg card-transition h-100 text-center">
 								<div class="card-body">
@@ -28,7 +28,7 @@
 											<i class="bi bi-people text-info" style="font-size: 4.3rem;"></i>
 										@else
 											<i class="bi bi-floppy text-info" style="font-size: 4.3rem;"></i>
-										@endif		
+										@endif
 									</div>
 									<h3 class="card-title">{{ $addon->name }}</h3>
 									<h4 class="card-title text-info"> <del class="text-danger">{{ $addon->price }}</del> {{ $addon->list_price }}$/mo</h4>
@@ -45,7 +45,7 @@
 										</a>
 								</div>
 							</div>
-						
+
 						<!-- End Card -->
 					</div>
 					<!-- End Col -->
@@ -56,4 +56,3 @@
 		</div>
 		<!-- End Card Grid -->
 	@endif
-	

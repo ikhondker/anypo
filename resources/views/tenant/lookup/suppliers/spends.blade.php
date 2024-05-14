@@ -16,8 +16,8 @@
 		@endslot
 	</x-tenant.page-header>
 
-	
-	
+
+
 	<div class="row">
 		<div class="col-md-6 col-xxl-3 d-flex">
 			<div class="card illustration flex-fill">
@@ -128,8 +128,6 @@
 							<tr>
 								<th>#</th>
 								<th>Name</th>
-								<th>Contact Person</th>
-								<th>Cell</th>
 								<th class="text-end">PR</th>
 								<th class="text-end">PO</th>
 								<th class="text-end">GRS</th>
@@ -145,8 +143,6 @@
 							<tr>
 								<td>{{ $suppliers->firstItem() + $loop->index }}</td>
 								<td><a class="text-info" href="{{ route('suppliers.po',$supplier->id) }}">{{ $supplier->name }}</a></td>
-								<td>{{ $supplier->contact_person }}</td>
-								<td>{{ $supplier->cell }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_pr_booked + $supplier->amount_pr"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_po_booked + $supplier->amount_po"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_grs"/></td>
@@ -177,7 +173,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

@@ -29,11 +29,6 @@
 	<!-- Custom style -->
 	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/custom.css') }}"> --}}
-	{{-- <script src="{{ asset('js/custom.js') }} "></script> --}}
-	{{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('js/custom.js') }}"> --}}
-
-	{{-- @livewireStyles --}}
-
 </head>
 
 <body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
@@ -57,44 +52,7 @@
 					{{-- <span class="text-sm align-middle text-muted"><small>CONTROL EXPENSES</small></span><br> --}}
 					{{-- <span class="text-sm align-middle text-muted"><small>[{{ $_node_name }}][ {{ $_route_name }}]</small></span> --}}
 				</a>
-
-
-
-				{{-- @include('tenant.includes.sidebar') --}}
-				{{-- case GUEST		= 'guest';		// was used in EventLog. TODO
-				case USER		= 'user';		// Landlord + Tenant
-				 case BUYER		= 'buyer';
-				// TODO Deletes
-				case MANAGER	= 'manager';	// for Future in Tenant when unit within Dept is enabled
-				case HOD		= 'hod';
-				case CXO		= 'cxo';
-				case ADMIN		= 'admin';		// Landlord + Tenant, customer admin, 
-				
-				// Bellow back office roles. They have by default customer admin access
-				case SUPPORT	= 'support';	// Landlord + Tenant
-				case SUPERVISOR	= 'supervisor';	// Landlord +
-				 case DEVELOPER	= 'developer';	// Landlord
-				case ACCOUNTS	= 'accounts';	// Landlord
-				case SYSTEM		= 'system';		// Landlord + Tenant, ack-office --}}
-
 				@include('tenant.includes.sidebar')
-
-				{{-- <div class="sidebar-cta">
-					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Monthly Sales Report</strong>
-						<div class="mb-3 text-sm">
-							Your monthly sales report is ready for download!
-						</div>
-
-						<div class="d-grid">
-							<a href="https://themes.getbootstrap.com/product/appstack-responsive-admin-template/" class="btn btn-primary" target="_blank">Download</a>
-						</div>
-					</div>
-				</div> --}}
-				<div class="fixed-bottom text-sm pb-2 ps-4" >
-					<span class="text-center">© {{ env('APP_NAME') }} v{{ env('APP_VERSION') }}</span>
-				</div>
-
 			</div>
 		</nav>
 		<div class="main">
@@ -275,7 +233,7 @@
 								</div>
 							@endif
 
-							
+
 							@if (session('success'))
 								<x-tenant.alert.success message="{{ session('success') }}"/>
 							@endif
@@ -291,20 +249,20 @@
 					{{-- <h1 class="h3 mb-3">Blank Page</h1> --}}
 
 					@if ($_setup->freezed)
-						<!-- breadcrumb -->	
+						<!-- breadcrumb -->
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><i class="align-top text-muted" data-feather="home"></i><a href="{{ route('home') }}"> Home</a></li>
 								@yield('breadcrumb')
-								{{-- 
+								{{--
 									<li class="breadcrumb-item"><a href="#">Library</a></li>
-									<li class="breadcrumb-item active">Data</li> 
+									<li class="breadcrumb-item active">Data</li>
 									--}}
 							</ol>
 						</nav>
 						<!-- /.breadcrumb -->
 					<!-- content -->
-				
+
 						@yield('content')
 						<!-- /.content -->
 					@else
@@ -318,7 +276,7 @@
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
-						<div class="col-8 text-start">
+                        <div class="col-6 text-start">
 							<ul class="list-inline">
 								<li class="list-inline-item">
 									<a class="text-muted" href="{{ route('tickets.create') }}">Support</a>
@@ -338,10 +296,12 @@
 								@endguest
 							</ul>
 						</div>
-						<div class="col-4 text-end">
+						<div class="col-6 text-end">
 							<p class="mb-0">
-								Laravel v{{ app()->version() }} (PHP v{{ phpversion() }}) 
-								<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a>.</p>
+                                @if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
+                                       Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
+								@endif
+								<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a></p>
 							</p>
 						</div>
 					</div>
@@ -349,14 +309,14 @@
 			</footer>
 		</div>
 	</div>
-	
+
 	{{-- @include('shared.includes.js.sw2-advance') --}}
 	{{-- Don't Switch to aws--}}
 	<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-	
+
 	{{-- <script src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
 	<!-- Only call `feather.replace` once on each page -->
-	
+
 	{{-- @livewireScripts --}}
 </body>
 

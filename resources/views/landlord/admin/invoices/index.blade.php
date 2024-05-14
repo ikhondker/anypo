@@ -22,8 +22,7 @@
 				<thead class="thead-light">
 					<tr>
 						<th>Invoice #</th>
-						<th>Invoice Date</th>
-						<th>Type</th>
+						<th>Date</th>
 						<th>Amount</th>
 						<th>Status</th>
 						<th style="width: 5%;">Action</th>
@@ -37,7 +36,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3l')->url('logo/'.$invoice->account->logo) }}" 
+											src="{{ Storage::disk('s3l')->url('logo/'.$invoice->account->logo) }}"
 											alt="{{ $invoice->account->name }}" title="{{ $invoice->account->name }}">
 									</div>
 
@@ -49,13 +48,11 @@
 											</h6>
 										</a>
 										<small class="d-block">{{ $invoice->account->name }}</small>
-										<small class="d-block">{{ date('d-M-Y', strtotime($invoice->from_date)) . ' to ' . date('d-M-Y', strtotime($invoice->to_date)) }}</small>
 									</div>
 								</div>
 							</td>
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
-							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
-							<td><x-landlord.list.my-number :value="$invoice->amount" /> USD</td>
+							<td><x-landlord.list.my-number :value="$invoice->amount" />$</td>
 							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
 							<td>
 								{{-- <a href="{{ route('invoices.show', $invoice->id) }}" class="text-body"
@@ -74,7 +71,7 @@
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
 									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>inv
 								</a> --}}
-								
+
 							</td>
 						</tr>
 					@endforeach

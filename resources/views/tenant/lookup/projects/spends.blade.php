@@ -128,9 +128,7 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Name</th>
 								<th>Code</th>
-								<th>PM</th>
 								<th class="text-end">Budget</th>
 								<th class="text-end">PR</th>
 								<th class="text-end">Available (PR)</th>
@@ -148,9 +146,7 @@
 							@foreach ($projects as $project)
 							<tr>
 								<td>{{ $projects->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('projects.po',$project->id) }}">{{ $project->name }}</a></td>
 								<td><a class="text-info" href="{{ route('projects.po',$project->id) }}">{{ $project->code }}</a></td>
-								<td>{{ $project->pm->name }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_pr_booked + $project->amount_pr"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_pr_booked - $project->amount_pr "/></td>
@@ -184,7 +180,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

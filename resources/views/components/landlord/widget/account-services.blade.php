@@ -16,9 +16,8 @@
 					<th>Name</th>
 					<th>From</th>
 					<th>User</th>
-					<th>Price (USD)</th>
-					<th>Enable</th>
-					
+					<th>Price</th>
+
 				</tr>
 			</thead>
 
@@ -44,10 +43,7 @@
 							<span class="badge bg-primary rounded-pill">{{ $service->user }}</span>
 							{{-- <span class="badge bg-primary rounded-pill">{{ $service->gb }}</span> --}}
 						</td>
-						<td><x-landlord.list.my-number :value="$service->price" /></td>
-						<td><x-landlord.list.my-enable value="{{ $service->enable }}" /></td>
-
-						
+						<td><x-landlord.list.my-number :value="$service->price" />$</td>
 						</td>
 					</tr>
 				@endforeach

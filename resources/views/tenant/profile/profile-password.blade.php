@@ -23,11 +23,11 @@
 
 
 		<div class="row">
-			<div class="col-md-4 col-xl-3">
+			<div class="col-md-4 col-xl-4">
 				<x-tenant.widgets.user.user-profile id="{{ $user->id }}"/>
 			</div>
 
-			<div class="col-md-8 col-xl-9">
+			<div class="col-md-8 col-xl-8">
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Change Password</h5>
