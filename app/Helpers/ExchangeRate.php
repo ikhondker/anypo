@@ -73,7 +73,7 @@ class ExchangeRate
 	
 		$setup = Setup::first();
 		$fc_currency = $setup->currency;
-		Log::debug("Helpers.ExchangeRate.importRates fc_currency=".$fc_currency);
+		Log::debug("Helpers.ExchangeRate.importRates fc_currency = ".$fc_currency);
 
 		$apikey			= 'be73b7dba663446bb6214e87048df5e0';
 		$fc_currency	= urlencode($fc_currency);

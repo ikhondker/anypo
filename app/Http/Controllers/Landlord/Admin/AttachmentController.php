@@ -143,7 +143,7 @@ class AttachmentController extends Controller
 	public function download($fileName)
 	{
 
-		Log::debug('landlord.attachments.download Value of fileName=' . $fileName);
+		Log::debug('landlord.attachments.download Value of fileName = ' . $fileName);
 		try {
 			$attachment 				= Attachment::where('file_name', $fileName)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
@@ -155,7 +155,7 @@ class AttachmentController extends Controller
 
 		$entity 			= Entity::where('entity', $attachment->entity)->first();
 		$fileDownloadPath 	= $entity->directory."/". $fileName;
-		Log::debug('landlord.attachments.download Value of fileDownloadPath='. $fileDownloadPath);
+		Log::debug('landlord.attachments.download Value of fileDownloadPath = '. $fileDownloadPath);
 		return Storage::disk('s3lf')->download($fileDownloadPath);
 
 	}
@@ -164,7 +164,7 @@ class AttachmentController extends Controller
 	{
 		// get entity -> directory from filename
 
-		Log::debug('ll.download Value of download=' . $filename);
+		Log::debug('ll.download Value of download = ' . $filename);
 
 		$att = Attachment::where('file_name', $filename)->first();
 		$entity = Entity::where('entity', $att->entity)->first();

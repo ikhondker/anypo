@@ -116,7 +116,7 @@ class InvoiceController extends Controller
 	{
 
 		$period 		= $request->period;
-		Log::debug('landlord.invoice.store of period=' . $period);
+		Log::debug('landlord.invoice.store of period = ' . $period);
 
 		// allowed periods
 		$periods = array("1", "3", "6", "12");
@@ -125,7 +125,7 @@ class InvoiceController extends Controller
 		}
 		
 		$account_id 	= auth()->user()->account_id;
-		Log::channel('bo')->info('landlord.invoice.store generating advance invoice for account_id='. $account_id . ' period=' . $period);
+		Log::channel('bo')->info('landlord.invoice.store generating advance invoice for account_id = '. $account_id . ' period=' . $period);
 
 		if (auth()->user()->account_id == '') {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');

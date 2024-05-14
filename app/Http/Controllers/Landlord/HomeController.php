@@ -308,7 +308,7 @@ class HomeController extends Controller
 			}
 
 			$trx_type	= $session->metadata->trx_type;
-			Log::debug('landlord.home.success metadata trx_type ='. $session->metadata->trx_type);
+			Log::debug('landlord.home.success metadata trx_type = '. $session->metadata->trx_type);
 			
 			$checkout = Checkout::where('session_id', $session->id)->first();
 			if (!$checkout) {
@@ -345,7 +345,7 @@ class HomeController extends Controller
 			}
 
 			$trx_type	= $session->metadata->trx_type;
-			Log::debug('landlord.home.successPayment metadata trx_type='. $session->metadata->trx_type);
+			Log::debug('landlord.home.successPayment metadata trx_type = '. $session->metadata->trx_type);
 
 			// Mark invoice as paid
 			$payment = Payment::where('session_id', $session->id)->first();
@@ -383,14 +383,14 @@ class HomeController extends Controller
 			}
 
 			$trx_type	= $session->metadata->trx_type;
-			Log::debug('landlord.home.successAddon metadata trx_type='. $session->metadata->trx_type);
+			Log::debug('landlord.home.successAddon metadata trx_type = '. $session->metadata->trx_type);
 
 			$checkout = Checkout::where('session_id', $session->id)->first();
 			if (!$checkout) {
 				throw new NotFoundHttpException();
 			}
 			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
-				Log::debug('landlord.home.successAddon checkout_id='. $checkout->id);
+				Log::debug('landlord.home.successAddon checkout_id = '. $checkout->id);
 				AddAddon::dispatch($checkout->id);
 			}
 			return view('landlord.pages.info')->with('title','Thank you for purchasing Add-on!')
@@ -418,14 +418,14 @@ class HomeController extends Controller
 			}
 
 			$trx_type	= $session->metadata->trx_type;
-			Log::debug('landlord.home.successAdvance metadata trx_type='. $session->metadata->trx_type);
+			Log::debug('landlord.home.successAdvance metadata trx_type = '. $session->metadata->trx_type);
 
 			$checkout = Checkout::where('session_id', $session->id)->first();
 			if (!$checkout) {
 				throw new NotFoundHttpException();
 			}
 			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
-				Log::debug('landlord.home.successAdvance checkout_id='. $checkout->id);
+				Log::debug('landlord.home.successAdvance checkout_id = '. $checkout->id);
 				AddAdvance::dispatch($checkout->id);
 			}
 			return view('landlord.pages.info')->with('title','Thank you for paying advance invoices!')
@@ -450,7 +450,7 @@ class HomeController extends Controller
 			}
 
 			$trx_type	= $session->metadata->trx_type;
-			Log::debug('landlord.home.success metadata trx_type='. $session->metadata->trx_type);
+			Log::debug('landlord.home.success metadata trx_type = '. $session->metadata->trx_type);
 
 			switch ($trx_type) {
 				case "CHECKOUT":

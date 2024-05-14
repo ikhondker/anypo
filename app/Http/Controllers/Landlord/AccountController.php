@@ -208,7 +208,7 @@ class AccountController extends Controller
 		$this->authorize('delete', $account);
 
 		$account_id = $account->id;
-		Log::channel('bo')->info('Deleting Account id=' . $account_id);
+		Log::channel('bo')->info('Deleting Account id = ' . $account_id);
 
 		$tickets = Ticket::where('account_id', $account_id)->get();
 		$tickets->each(function ($tickets) {
@@ -217,28 +217,28 @@ class AccountController extends Controller
 		});
 
 		$result = Payment::where('account_id', $account_id)->delete();
-		Log::channel('bo')->info('Payment Deleted =' . $result);
+		Log::channel('bo')->info('Payment Deleted = ' . $result);
 
 		$result = Invoice::where('account_id', $account_id)->delete();
-		Log::channel('bo')->info('Invoice Deleted =' . $result);
+		Log::channel('bo')->info('Invoice Deleted = ' . $result);
 
 		$result = Service::where('account_id', $account_id)->delete();
-		Log::channel('bo')->info('Service Deleted =' . $result);
+		Log::channel('bo')->info('Service Deleted = ' . $result);
 
 		$result = Checkout::where('account_id', $account_id)->delete();
-		Log::channel('bo')->info('Checkout Deleted =' . $result);
+		Log::channel('bo')->info('Checkout Deleted = ' . $result);
 
 		$result = Domain::where('tenant_id', $account->site)->delete();
-		Log::channel('bo')->info('Domain Deleted =' . $result);
+		Log::channel('bo')->info('Domain Deleted = ' . $result);
 
 		$result = Tenant::where('id', $account->site)->delete();
-		Log::channel('bo')->info('Tenant Deleted =' . $result);
+		Log::channel('bo')->info('Tenant Deleted = ' . $result);
 
 		$result = Account::where('id', $account_id)->delete();
-		Log::channel('bo')->info('Account Deleted =' . $result);
+		Log::channel('bo')->info('Account Deleted = ' . $result);
 
 		$result = User::where('account_id', $account->id)->delete();
-		Log::channel('bo')->info('User Deleted =' . $result);
+		Log::channel('bo')->info('User Deleted = ' . $result);
 
 		return redirect()->route('accounts.index')->with('success', 'Account Deleted successfully');
 	}
@@ -307,7 +307,7 @@ class AccountController extends Controller
 		$accountService->save();
 
 		//$account_service_id			= $accountService->id;
-		//Log::debug('Account Service Created id='. $accountService->id);
+		//Log::debug('Account Service Created id = '. $accountService->id);
 		LandlordEventLog::event('accountService', $accountService->id, 'create');
 
 		// Find and update the account with new parameter
@@ -342,7 +342,7 @@ class AccountController extends Controller
 	public function addAddon($account_id, $addon_id)
 	{
 
-		Log::channel('bo')->info('landlord.account.addAddon buying new addon account='. $account_id . ' product_id=' . $addon_id);
+		Log::channel('bo')->info('landlord.account.addAddon buying new addon account = '. $account_id . ' product_id = ' . $addon_id);
 
 		if (auth()->user()->account_id == '') {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
