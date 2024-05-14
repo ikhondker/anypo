@@ -39,7 +39,7 @@ use App\Http\Requests\Tenant\Support\UpdateTicketRequest;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class TicketController extends Controller
@@ -60,10 +60,10 @@ class TicketController extends Controller
 	 */
 	public function create()
 	{
-		
+
 		$this->authorize('create',Ticket::class);
 		//$depts = Dept::getAll();
-		//$priorities = Priority::getAll(); 
+		//$priorities = Priority::getAll();
 		return view('tenant.support.tickets.create');
 	}
 
@@ -73,7 +73,7 @@ class TicketController extends Controller
 	public function store(StoreTicketRequest $request)
 	{
 		$this->authorize('create',Ticket::class);
-		
+
 		// $request->merge([
 		// 	//'ticket_number' => Str::uuid()->toString(),
 		// 	'ticket_date'	=> date('Y-m-d H:i:s'),
@@ -86,23 +86,21 @@ class TicketController extends Controller
 
 		//https://stackoverflow.com/questions/67902063/stancl-tenancy-how-to-fetch-data-from-tenant-db-globally
 		//Stancl\Tenancy\Database\Concerns\CentralConnection
-		
+
 		$tenant_id= tenant('id');
 		$name=auth()->user()->name;
 		$email=auth()->user()->email;
 		$cell=auth()->user()->cell;
 
-		//$name='User 8 by Tenant';
-		//$email='user8@example.com';
-		
+
 		// create or find user in Landlord if don't exists
 		$landlordUserId = tenancy()->central(function ($tenant) use ($tenant_id, $name, $email, $cell) {
-			
+
 			Log::debug("tenant.support.Ticket.store tenant_id= ".$tenant_id);
 
 			$account = \App\Models\Landlord\Account::where('site', $tenant_id)->first();
 			Log::debug("tenant.support.Ticket.store account_id= ".$account->id);
-			
+
 			// check if user need to create
 			$createLandlordUser =false;
 
@@ -123,7 +121,7 @@ class TicketController extends Controller
 						$createLandlordUser =true;
 					} else {
 						$createLandlordUser =false;
-					}	
+					}
 				}
 
 				if ( $createLandlordUser ){
@@ -138,10 +136,10 @@ class TicketController extends Controller
 						'account_id' 		=> $account->id,
 						'password' 			=> bcrypt($random_password),
 					]);
-					
+
 					// Send notification on new user creation with initial password
 					$user->notify(new \App\Notifications\Landlord\UserCreated($user, $random_password));
-					Log::debug('tenant.support.Ticket.store Landlord user Created id=' . $user->id);
+					Log::debug('tenant.support.Ticket.store Landlord user Created id = ' . $user->id);
 				}
 
 			} else {
@@ -149,15 +147,15 @@ class TicketController extends Controller
 			}
 			return $user->id;
 		});
-		
+
 		Log::debug("tenant.support.Ticket.store landlord user_id = ".$landlordUserId);
-		
+
 		// now create the ticket under that landlord user
 		$landlordTicket = tenancy()->central(function ($tenant) use ($landlordUserId, $request) {
 				//Log::debug("email= ".$email);
 				// now must get
 				$user = \App\Models\User::where('id', $landlordUserId)->first();
-				
+
 				//Log::debug("Landlord User id = ".$user->id);
 				// Create Ticket
 				$ticket = \App\Models\Landlord\Ticket::create([
@@ -171,7 +169,7 @@ class TicketController extends Controller
 					'priority_id' 	=> 1002,	// Medium
 					'category_id' 	=> 1005,	// Technical Issue
 				]);
-				Log::debug('tenant.support.Ticket.store Landlord Ticket created =' . $ticket->id);
+				Log::debug('tenant.support.Ticket.store Landlord Ticket created = ' . $ticket->id);
 
 				//Write to Log
 				\App\Helpers\LandlordEventLog::event('ticket', $ticket->id, 'create');

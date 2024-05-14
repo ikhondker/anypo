@@ -21,7 +21,6 @@ class LandlordNoticeOneTenant extends Component
 			return \App\Models\Landlord\Manage\Config::where('id', 1)->first();
 		});
 		//dd($landlordConfig);
-		//Log::debug('count cnt=' . $landlordConfig->name);
 
 		$this->anyNotice = false;
 		$this->notice = "Test Notice ONE Tenant TODO Landlord ." .$landlordConfig->name ;

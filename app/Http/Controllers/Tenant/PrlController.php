@@ -48,7 +48,7 @@ use App\Helpers\EventLog;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class PrlController extends Controller
@@ -75,12 +75,12 @@ class PrlController extends Controller
 
 		$items = Item::primary()->get();
 		//$uoms = Uom::getAllClient();
-		$uoms = Uom::primary()->get(); 
+		$uoms = Uom::primary()->get();
 
-		
+
 		$prls = Prl::with('item')->with('uom')->where('pr_id', $pr->id)->get()->all();
-		
-		return view('tenant.prls.create', with(compact('pr','prls','items','uoms'))); 
+
+		return view('tenant.prls.create', with(compact('pr','prls','items','uoms')));
 	}
 
 
@@ -118,7 +118,7 @@ class PrlController extends Controller
 		// get max line num for the
 		$line_num 						= Prl::where('pr_id', '=',$request->input('pr_id'))->max('line_num');
 		$request->merge(['line_num'		=> $line_num +1]);
-		
+
 		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
 		$request->merge(['tax'			=> $request->input('tax')]);
 		$request->merge(['gst'			=> $request->input('gst')]);
@@ -127,10 +127,10 @@ class PrlController extends Controller
 		//$request->merge(['sub_total'	=> $request->input('sub_total')]);
 		//$request->merge(['pr_date'	=> date('Y-m-d H:i:s')]);
 		$prl = Prl::create($request->all());
-		
+
 		// Write to Log
 		EventLog::event('Prl', $prl->id, 'create');
-		
+
 		// 	Update PR Header value and Populate functional currency values
 		Log::debug('tenant.prl.store calling syncPrValues for pr_id = '. $prl->pr_id);
 		$result = Pr::syncPrValues($prl->pr_id);
@@ -144,7 +144,7 @@ class PrlController extends Controller
 			//return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		}
 
-		
+
 		if($request->has('add_row')) {
 			//Checkbox checked
 			return redirect()->route('prls.add-line', $prl->pr_id)->with('success', 'Line added to PR #'. $prl->pr_id.' successfully.');
@@ -186,7 +186,7 @@ class PrlController extends Controller
 		$pr = Pr::where('id', $prl->pr_id)->first();
 		$items = Item::primary()->get();
 		$uoms = Uom::primary()->get();
-		
+
 		$prls = Prl::with('item')->with('uom')->where('pr_id', $prl->pr_id)->get()->all();
 
 		return view('tenant.prls.edit', with(compact('pr', 'prls', 'prl', 'items','uoms')));
@@ -205,7 +205,7 @@ class PrlController extends Controller
 		//$request->merge(['tax'			=> $request->input('tax')]);
 		//$request->merge(['gst'			=> $request->input('gst')]);
 		//$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
-		
+
 		//$request->validate();
 		$request->validate([
 
@@ -237,11 +237,11 @@ class PrlController extends Controller
 	{
 
 		$pr = Pr::where('id', $prl->pr_id)->first();
-		
+
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can delete line in Requisition with only status '. strtoupper($pr->auth_status) .' !');
 		}
-		
+
 		Log::debug('tenant.prl.destroy deleting pr_id = '. $prl->pr_id);
 		// check if allowed by policy
 		$this->authorize('delete', $prl);
@@ -282,25 +282,25 @@ class PrlController extends Controller
 		} else {
 			$dept_id 	= '';
 		}
-		
+
 		$data = DB::select("
-			SELECT pr.id, pr.summary pr_summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+			SELECT pr.id, pr.summary pr_summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
 			pr.notes, pr.currency, pr.amount pr_amount, pr.status, pr.auth_status, pr.auth_date ,
 			prl.line_num, prl.item_description , i.code item_code, uom.name uom, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount,
 			prl.price, prl.sub_total, prl.amount,prl.notes, prl.closure_status
 			FROM prs pr, prls prl, depts d, projects p, suppliers s, users u , items i, uoms uom
-			WHERE pr.dept_id=d.id 
-			AND pr.project_id=p.id 
-			AND pr.supplier_id=s.id 
+			WHERE pr.dept_id=d.id
+			AND pr.project_id=p.id
+			AND pr.supplier_id=s.id
 			AND pr.requestor_id=u.id
-			AND pr.id = prl.pr_id 
+			AND pr.id = prl.pr_id
 			AND prl.item_id = i.id
 			AND prl.uom_id = uom.id
-			AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ') ."
-			AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'pr.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($requestor_id <> '' ? 'pr.requestor_id = '.$requestor_id.' ' : ' 1=1 ') ."
 			ORDER BY pr.id DESC
 		");
-		
+
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('prs', $dataArray);

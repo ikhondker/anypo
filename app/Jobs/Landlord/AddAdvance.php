@@ -46,7 +46,7 @@ class AddAdvance implements ShouldQueue
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
 		$checkout->status_code = LandlordCheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
-		Log::debug('Jobs.Landlord.AddAdvance 0. Processing Site='.$checkout->site);
+		Log::debug('Jobs.Landlord.AddAdvance 0. Processing Site = '.$checkout->site);
 
 		// generate first invoice for this account and notify
 		Log::debug('Jobs.Landlord.AddAdvance 1. Calling createInvoiceForCheckout');
@@ -66,7 +66,7 @@ class AddAdvance implements ShouldQueue
 
 		//extend account validity and end_date
 		$account_id= bo::extendAccountValidity($invoice_id);
-		
+
 		// mark checkout as complete
 		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();

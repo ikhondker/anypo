@@ -8,7 +8,7 @@
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -73,18 +73,18 @@ class PoBudget
 			return 'E002';
 		}
 
-		// only check if budget is available 
-		Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount = ". $dept_budget->amount );
-		Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount_po_booked = ". $dept_budget->amount_po_booked );
-		Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount_po = ". $dept_budget->amount_po );
-		Log::debug("tenant.helper.PoBudget.poBudgetBook po->fc_amount = ". $po->fc_amount );
+		// only check if budget is available
+		Log::debug('tenant.helper.PoBudget.poBudgetBook dept_budget->amount = '. $dept_budget->amount );
+		Log::debug('tenant.helper.PoBudget.poBudgetBook dept_budget->amount_po_booked = '. $dept_budget->amount_po_booked );
+		Log::debug('tenant.helper.PoBudget.poBudgetBook dept_budget->amount_po = '. $dept_budget->amount_po );
+		Log::debug('tenant.helper.PoBudget.poBudgetBook po->fc_amount = '. $po->fc_amount );
 
 		$dept_budget_available =false;
 		if (($dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po) > $po->fc_amount) {
 			$dept_budget_available =true;
-			Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget_available true.");
+			Log::debug('tenant.helper.PoBudget.poBudgetBook dept_budget_available true.');
 		} else {
-			Log::warning("tenant.helper.PoBudget.poBudgetBook : E003");
+			Log::warning('tenant.helper.PoBudget.poBudgetBook : E003');
 			return 'E003';
 		}
 
@@ -93,23 +93,23 @@ class PoBudget
 		$project = Project::primary()->where('id', $po->project_id)->firstOrFail();
 			if (($project->amount - $project->amount_po_booked - $project->amount_po) > $po->fc_amount) {
 			$project_budget_available =true;
-			Log::debug("tenant.helper.PoBudget.poBudgetBook project_budget_available true.");
+			Log::debug('tenant.helper.PoBudget.poBudgetBook project_budget_available true.');
 		} else {
-			Log::warning("tenant.helper.PoBudget.poBudgetBook : E004");
+			Log::warning('tenant.helper.PoBudget.poBudgetBook : E004');
 			return 'E004';
 		}
 
-		// both budget is available 
+		// both budget is available
 		if ($project_budget_available && $dept_budget_available ) {
 			// book pr dept budget
-			Log::debug("tenant.helper.PoBudget.poBudgetBook updating dept_budget->amount_po_booked.");
-			Log::debug("tenant.helper.PoBudget.poBudgetBook before dept_budget->amount_po_booked=".$dept_budget->amount_po_booked );
-			Log::debug("tenant.helper.PoBudget.poBudgetBook updating po->fc_amount=".$po->fc_amount);
+			Log::debug('tenant.helper.PoBudget.poBudgetBook updating dept_budget->amount_po_booked.');
+			Log::debug('tenant.helper.PoBudget.poBudgetBook before dept_budget->amount_po_booked = '.$dept_budget->amount_po_booked );
+			Log::debug('tenant.helper.PoBudget.poBudgetBook updating po->fc_amount = '.$po->fc_amount);
 
 			$dept_budget->amount_po_booked = $dept_budget->amount_po_booked + $po->fc_amount;
 			$dept_budget->count_po_booked = $dept_budget->count_po_booked + 1;
 			$dept_budget->save();
-			Log::debug("tenant.helper.PoBudget.poBudgetBook dept_budget->amount_pr_booked=".$dept_budget->amount_po_booked );
+			Log::debug('tenant.helper.PoBudget.poBudgetBook dept_budget->amount_pr_booked = '.$dept_budget->amount_po_booked );
 
 			// book project budget
 			$project->amount_po_booked = $project->amount_po_booked + $po->fc_amount;
@@ -122,7 +122,7 @@ class PoBudget
 			$supplier->count_po_booked 		= $supplier->count_po_booked + 1;
 			$supplier->save();
 
-			Log::debug("tenant.helper.PoBudget.poBudgetBook AFTER project->amount_po_booked=".$project->amount_po_booked );
+			Log::debug('tenant.helper.PoBudget.poBudgetBook AFTER project->amount_po_booked = '.$project->amount_po_booked );
 
 			// run job to Sync Budget
 			RecordDeptBudgetUsage::dispatch(EntityEnum::PO->value, $po_id, EventEnum::BOOK->value, $po->fc_amount);
@@ -137,16 +137,16 @@ class PoBudget
 	{
 		$po = Po::where('id', $po_id)->first();
 
-		Log::debug("Helpers.PoBudget.poBudgetBookReject event=".$event);
-		Log::debug("Helpers.PoBudget.poBudgetBookReject po_id=".$po->id);
-		
-		// reverse Po dept budget booking 
+		Log::debug('Helpers.PoBudget.poBudgetBookReject event = '.$event);
+		Log::debug('Helpers.PoBudget.poBudgetBookReject po_id = '.$po->id);
+
+		// reverse Po dept budget booking
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_po_booked = $dept_budget->amount_po_booked - $po->fc_amount;
 		$dept_budget->count_po_booked = $dept_budget->count_po_booked - 1;
 		$dept_budget->save();
 
-		// reverse Po project booking 
+		// reverse Po project booking
 		$project = Project::where('id', $po->project_id)->firstOrFail();
 		$project->amount_po_booked = $project->amount_po_booked - $po->fc_amount;
 		$project->count_po_booked = $project->count_po_booked - 1;
@@ -201,19 +201,19 @@ class PoBudget
 
 		return '';
 	}
-	
+
 
 	public static function poBudgetApproveCancel($po_id)
 	{
 		$po = Po::where('id', $po_id)->first();
 
-		// Cancel Po dept budget booking 
+		// Cancel Po dept budget booking
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_po = $dept_budget->amount_po - $po->fc_amount;
 		$dept_budget->count_po = $dept_budget->count_po - 1;
 		$dept_budget->save();
-		
-		// Cancel Po project booking 
+
+		// Cancel Po project booking
 		$project = Project::where('id', $po->project_id)->firstOrFail();
 		$project->amount_po = $project->amount_po - $po->fc_amount;
 		$project->count_po 			= $project->count_po - 1;

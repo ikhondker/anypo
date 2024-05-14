@@ -44,7 +44,7 @@ use App\Helpers\EventLog;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 # 1. Change design of show blade to user show blade with avatar
 
 class HierarchyController extends Controller
@@ -94,10 +94,10 @@ class HierarchyController extends Controller
 		$hierarchyl->approver_id	= $request->input('approver_id_1');
 		$hierarchyl->save();
 
-		//Log::debug('approver_id_2='.$request->input('approver_id_2'));
-		//Log::debug('approver_id_3='.$request->input('approver_id_3'));
-		//Log::debug('approver_id_4='.$request->input('approver_id_4'));
-		//Log::debug('approver_id_5='.$request->input('approver_id_5'));
+		//Log::debug('approver_id_2 = '.$request->input('approver_id_2'));
+		//Log::debug('approver_id_3 = '.$request->input('approver_id_3'));
+		//Log::debug('approver_id_4 = '.$request->input('approver_id_4'));
+		//Log::debug('approver_id_5 = '.$request->input('approver_id_5'));
 
 		if ($request->input('approver_id_2') <> 0) {
 			$hierarchyl					= new Hierarchyl();
@@ -289,7 +289,7 @@ class HierarchyController extends Controller
 	{
 		$this->authorize('export', Hierarchy::class);
 
-		$data = DB::select("SELECT h.id, h.name, IF(h.enable, 'Yes', 'No') AS enable, 
+		$data = DB::select("SELECT h.id, h.name, IF(h.enable, 'Yes', 'No') AS enable,
 			hl.id sequence, u.name user_name
 			FROM hierarchies h,hierarchyls hl, users u
 			WHERE h.id=hl.hid

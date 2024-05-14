@@ -86,7 +86,6 @@ class AttachmentPolicy
 	public function download(User $user, Attachment $attachment): bool
 	{
 		// TODO write logic here does not work
-		//Log::debug('POLICY Value of id=' . $attachment->id);
 		return true;
 	}
 

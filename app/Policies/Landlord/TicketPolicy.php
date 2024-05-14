@@ -33,7 +33,7 @@ class TicketPolicy
 
 	}
 
-	// Only back office users can view all tickets 
+	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
 		return $user->isSeeded();
@@ -44,10 +44,8 @@ class TicketPolicy
 	 */
 	public function view(User $user, Ticket $ticket): bool
 	{
-		//Log::debug('POLICY value of user_id=' . $user->id);
-		//Log::debug('POLICY value of owner_id=' . $ticket->owner_id);
 
-		// owner, account admin and back office users can view ticket 
+		// owner, account admin and back office users can view ticket
 		if ($user->isUser() ) {
 			return ($user->id == $ticket->owner_id);
 		} elseif ($user->isAdmin() ) {
@@ -72,7 +70,7 @@ class TicketPolicy
 	 */
 	public function update(User $user, Ticket $ticket): bool
 	{
-		// only back office user can edit non closed ticket 
+		// only back office user can edit non closed ticket
 		//return ($user->isSeeded() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
 		//return ($user->isSeeded() && ! $ticket->isClosed());
 		// anyone can close a ticket
@@ -84,14 +82,14 @@ class TicketPolicy
 	 */
 	public function assign(User $user, Ticket $ticket): bool
 	{
-		// only back office user can assign non closed ticket 
+		// only back office user can assign non closed ticket
 		//return ($user->isSeeded() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
 		return ($user->isSeeded() && ! $ticket->isClosed());
 	}
 
 	public function export(User $user): bool
 	{
-		return true; 
+		return true;
 	}
 
 	/**
@@ -99,7 +97,7 @@ class TicketPolicy
 	 */
 	public function delete(User $user, Ticket $ticket): bool
 	{
-		// only system can delete a ticket 
+		// only system can delete a ticket
 		return false;
 	}
 

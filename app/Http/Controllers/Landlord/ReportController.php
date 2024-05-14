@@ -48,7 +48,7 @@ use PDF;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class ReportController extends Controller
@@ -64,16 +64,16 @@ class ReportController extends Controller
 	public function viewPdfInvoice(Invoice $invoice)
 	{
 
-		//Log::debug('storage_path()='.storage_path());
-		
-		//Log::info(json_encode($invoice)); 
-		
+		//Log::debug('storage_path() = '.storage_path());
+
+		//Log::info(json_encode($invoice));
+
 
 		// NOTE: Uses InvoicePolicy
 		$this->authorize('pdfInvoice', $invoice);
 
 		$config = Config::first();
-		
+
 		//dd($invoice);
 		//$invoice = Invoice::with('status','owner')->where('id', $id)->firstOrFail();
 
@@ -98,7 +98,7 @@ class ReportController extends Controller
 			'invoice' 	=> $invoice,
 			'account' 	=> $account,
 		];
-		
+
 		$pdf = PDF::loadView('landlord.reports.formats.invoice', $data);
 			// ->setOption('fontDir', public_path('/fonts/lato'));
 
@@ -119,7 +119,7 @@ class ReportController extends Controller
 		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
 		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
 		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-		
+
 		// Specify horizontal and vertical position
 		$x = (($width - $textWidth) / 1.6);
 		$y = (($height - $txtHeight) / 2);
@@ -166,11 +166,11 @@ class ReportController extends Controller
 			'account' => $account,
 		];
 
-		
+
 		$pdf = PDF::loadView('landlord.reports.formats.receipt', $data);
 		// (Optional) Config the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
-	
+
 		// Get height and width of page
 
 		$canvas = $pdf->getDomPDF()->getCanvas();

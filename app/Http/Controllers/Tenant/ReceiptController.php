@@ -65,7 +65,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class ReceiptController extends Controller
@@ -97,7 +97,7 @@ class ReceiptController extends Controller
 				break;
 			default:
 				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByUserAll()->paginate(10);
-				Log::warning(tenant('id'). 'tenant.receipt.index Other role ='. auth()->user()->role->value);
+				Log::warning(tenant('id'). 'tenant.receipt.index Other role = '. auth()->user()->role->value);
 		}
 
 		//$receipts = $receipts->orderBy('id', 'DESC')->paginate(10);
@@ -136,10 +136,10 @@ class ReceiptController extends Controller
 	public function store(StoreReceiptRequest $request)
 	{
 		$this->authorize('create', Receipt::class);
-		
+
 		$pol_id =$request->input('pol_id');
 		$pol = Pol::where('id', $pol_id)->first();
-		
+
 		// Check over Receipt
 		$request->validate([
 			'qty' => [new OverReceiptRule ( $pol->id)],
@@ -167,7 +167,7 @@ class ReceiptController extends Controller
 		if (! $result) {
 			return redirect()->route('receipts.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		}
-		// Reupload 
+		// Reupload
 		$receipt = Receipt::where('id', $receipt->id)->first();
 
 		// update pol rcv quantity and Close pol line
@@ -178,14 +178,14 @@ class ReceiptController extends Controller
 		}
 		$pol->save();
 
-		// update budget, project and supplier level summary 
+		// update budget, project and supplier level summary
 		$po = Po::where('id', $pol->po_id)->first();
 
 		// PO header update
 		$po->amount_grs 	= $po->amount_grs + $receipt->amount;
 		$po->fc_amount_grs 	= $po->fc_amount_grs + $receipt->fc_amount;
 		$po->save();
-		
+
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_grs 	= $dept_budget->amount_grs + $receipt->fc_amount;
@@ -208,7 +208,7 @@ class ReceiptController extends Controller
 		RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CREATE->value,$receipt->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-		
+
 
 		// Write to Log
 		EventLog::event('receipt', $receipt->id, 'create');
@@ -249,7 +249,7 @@ class ReceiptController extends Controller
 		abort(403);
 	}
 
-	
+
 
 	/**
 	 * Remove the specified resource from storage.
@@ -257,10 +257,10 @@ class ReceiptController extends Controller
 	public function cancel(Receipt $receipt)
 	{
 		$this->authorize('cancel', Receipt::class);
-		
+
 		$receipt_id = $receipt->id;
 
-		Log::debug('tenant.receipt.cancel Value of receipt_id=' . $receipt_id);
+		Log::debug('tenant.receipt.cancel Value of receipt_id = ' . $receipt_id);
 
 		try {
 			$receipt = Receipt::where('id', $receipt_id)->firstOrFail();
@@ -270,8 +270,8 @@ class ReceiptController extends Controller
 
 			// update pol rcv quantity
 			$pol 				= Pol::where('id', $receipt->pol_id)->firstOrFail();
-			
-			// update budget and project level summary 
+
+			// update budget and project level summary
 			$po = Po::where('id', $pol->po_id)->first();
 			if ($po->status <> ClosureStatusEnum::OPEN->value) {
 				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
@@ -279,8 +279,8 @@ class ReceiptController extends Controller
 
 			$pol->received_qty	= $pol->received_qty - $receipt->qty;
 			$pol->save();
-			
-			// reduce PO budget, project and supplier level summary 
+
+			// reduce PO budget, project and supplier level summary
 			$po->amount_grs 	= $po->amount_grs - $receipt->amount;
 			$po->fc_amount_grs 	= $po->fc_amount_grs - $receipt->fc_amount;
 			$po->save();
@@ -291,7 +291,7 @@ class ReceiptController extends Controller
 			$dept_budget->count_grs = $dept_budget->count_grs -1;
 			$dept_budget->save();
 
-			// Reduce project reduce amount_grs 
+			// Reduce project reduce amount_grs
 			$project = Project::where('id', $po->project_id)->firstOrFail();
 			$project->amount_grs = $project->amount_grs - $receipt->fc_amount;
 			$project->count_grs = $project->count_grs -1;
@@ -323,9 +323,9 @@ class ReceiptController extends Controller
 
 			// Write to Log
 			EventLog::event('receipt', $receipt_id, 'cancel', 'id', $receipt_id);
-	
+
 			return redirect()->route('receipts.index')->with('success', 'Receipts canceled successfully.');
-		
+
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
 			return back()->withError("Receipt #".$receipt_id." not Found!")->withInput();
@@ -340,17 +340,17 @@ class ReceiptController extends Controller
 		$receipt		= Receipt::with('pol.po')->where('id', $receipt_id)->firstOrFail();
 		$po_currency 	= $receipt->pol->po->currency;
 
-		Log::debug('tenant.ReceiptController.updateReceiptFcValues po->currency =' . $po_currency);
-		Log::debug('tenant.ReceiptController.updateReceiptFcValues setup->currency =' . $setup->currency);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues po->currency = ' . $po_currency);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues setup->currency = ' . $setup->currency);
 
-		Log::debug('tenant.ReceiptController.updateReceiptFcValues receipt_id =' . $receipt_id);
-		Log::debug('tenant.ReceiptController.updateReceiptFcValues po->currency =' . $po_currency);
-		Log::debug('tenant.ReceiptController.updateReceiptFcValues setup->currency =' . $setup->currency);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues receipt_id = ' . $receipt_id);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues po->currency = ' . $po_currency);
+		Log::debug('tenant.ReceiptController.updateReceiptFcValues setup->currency = ' . $setup->currency);
 
 		// populate fc columns for receipt lines
 		if ($po_currency == $setup->currency){
 			$rate = 1;
-			DB::statement("UPDATE receipts SET 
+			DB::statement("UPDATE receipts SET
 				-- fc_sub_total	= sub_total,
 				-- fc_tax			= tax,
 				-- fc_gst			= gst,
@@ -360,13 +360,13 @@ class ReceiptController extends Controller
 			$rate = round(ExchangeRate::getRate($po_currency, $setup->currency),6);
 			// update all pols fc columns
 			// update pr fc columns
-			// ERROR rate not found 
+			// ERROR rate not found
 			if ($rate == 0){
-				Log::error(tenant('id'). 'receipt.updateReceiptFcValues rate not found currency=' . $po_currency.' fc_currency='.$setup->currency);
+				Log::error(tenant('id'). 'receipt.updateReceiptFcValues rate not found currency = ' . $po_currency.' fc_currency = '.$setup->currency);
 				return false;
 			}
 
-			DB::statement("UPDATE receipts SET 
+			DB::statement("UPDATE receipts SET
 				fc_amount		= round(amount * ". $rate .",2)
 				WHERE id = ".$receipt->id."");
 		}
@@ -398,9 +398,9 @@ class ReceiptController extends Controller
 		} else {
 			$dept_id 	= '';
 		}
-		
+
 		$data = DB::select("
-			SELECT r.id, r.receive_date, r.rcv_type, 
+			SELECT r.id, r.receive_date, r.rcv_type,
 				po.id po_num, po.summary, pol.line_num, pol.summary,
 				w.name warehouse_name,
 				u.name receiver_name,

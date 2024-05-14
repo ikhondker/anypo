@@ -66,7 +66,7 @@ use Illuminate\Support\Facades\Log;
 use Image;
 use Str;
 use Illuminate\Support\Facades\Storage;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 
@@ -84,7 +84,7 @@ class AccountController extends Controller
 	public function index()
 	{
 		$this->authorize('viewAll', Account::class);
-		
+
 		$accounts = Account::with('status')->with('owner')->byAccount()->orderBy('id', 'DESC')->paginate(10);
 		//$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 
@@ -165,7 +165,7 @@ class AccountController extends Controller
 		$this->authorize('update', $account);
 
 		if ($image = $request->file('file_to_upload')) {
-			
+
 			// extract the uploaded file
 			$image = $request->file('file_to_upload');
 
@@ -252,11 +252,11 @@ class AccountController extends Controller
 		} elseif (auth()->user()->isAdmin()) {
 			$data = DB::select("SELECT id, site, name, currency, tagline, address1, address2, city, state, zip, country, website, facebook, linkedin, email, cell,
 				FROM accounts
-				WHERE id=" . auth()->user()->account_id);
+				WHERE id = " . auth()->user()->account_id);
 		} else {
 			$data = DB::select("SELECT id, site, name, currency, tagline, address1, address2, city, state, zip, country, website, facebook, linkedin, email, cell,
 				FROM accounts
-				WHERE id=" . auth()->user()->account_id);
+				WHERE id = " . auth()->user()->account_id);
 		}
 
 		$dataArray = json_decode(json_encode($data), true);
@@ -336,7 +336,7 @@ class AccountController extends Controller
 	}
 
 	/**
-	 * buy new add-addon 
+	 * buy new add-addon
 	*/
 
 	public function addAddon($account_id, $addon_id)
@@ -352,9 +352,9 @@ class AccountController extends Controller
 		$account			= Account::where('id', $account_id)->first();
 		if ($account->next_bill_generated) {
 			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
-			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id=' . $account->id . '! Can not create more Invoices.');
+			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id = ' . $account->id . '! Can not create more Invoices.');
 		}
-	
+
 		// get product
 		$product = Product::where('id', $addon_id)
 			->where('addon', true)
@@ -424,5 +424,5 @@ class AccountController extends Controller
 
 		return redirect($session->url);
 
-	}	
+	}
 }

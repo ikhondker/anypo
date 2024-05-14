@@ -18,7 +18,7 @@ class DeptBudgetBar extends Component
 	//public $dept_amount = [];
 	public $dept_budget_colors = [];
 	public $deptBudget;
-	
+
 
 	/**
 	 * Create a new component instance.
@@ -26,8 +26,8 @@ class DeptBudgetBar extends Component
 	public function __construct(public string $dbid ='0000')
 	{
 
-		//Log::debug('components.tenant.charts.DeptBudgetBar Value of dept_budget_id=' . $dbid);
-	
+		//Log::debug('components.tenant.charts.DeptBudgetBar Value of dept_budget_id = ' . $dbid);
+
 		if ($dbid == '0000'){ // Must get at least one dept budget as already checked before calling this component with empty dbid
 			// Get latest dept budget of the current user
 			$this->deptBudget = DeptBudget::where('dept_id', auth()->user()->dept_id )->with('dept')->with('budget')->orderBy('id', 'DESC')->get()->firstOrFail();
@@ -35,7 +35,7 @@ class DeptBudgetBar extends Component
 		 	$this->deptBudget	= DeptBudget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $dbid)->firstOrFail();
 		}
 
-		//Log::debug('components.tenant.charts.DeptBudgetBar Value of dept_id=' . $this->deptBudget->id);
+		//Log::debug('components.tenant.charts.DeptBudgetBar Value of dept_id = ' . $this->deptBudget->id);
 
 		$this->dept_budget_labels[] = 'Budget';
 		$this->dept_amount[] = (int) $this->deptBudget->amount;

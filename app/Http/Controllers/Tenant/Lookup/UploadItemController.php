@@ -51,7 +51,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Log;
 use DB;
 use Str;
-# 12. FUTURE 
+# 12. FUTURE
 
 class UploadItemController extends Controller
 {
@@ -186,7 +186,7 @@ class UploadItemController extends Controller
 
 		$request->merge([
 			'item_code' => Str::upper($request['item_code']),
-			'status'	=> InterfaceStatusEnum::DRAFT->value 
+			'status'	=> InterfaceStatusEnum::DRAFT->value
 		]);
 
 		//$request->validate();
@@ -228,7 +228,6 @@ class UploadItemController extends Controller
 
 		foreach ($upload_items as $upload_item) {
 			$error_code = '';
-			//Log::debug('For id='.$upload_item->id);
 			try {
 
 				$item = Item::firstWhere('code', $upload_item->item_code);
@@ -237,14 +236,14 @@ class UploadItemController extends Controller
 				} else {
 					$code = $item->code;
 					$error_code = 'E006';
-					Log::debug('tenant.Lookup.UploadItemController.check code=' . $code. ' exists!');
+					Log::debug('tenant.Lookup.UploadItemController.check code = ' . $code. ' exists!');
 				}
 
 				$category = Category::firstWhere('name', $upload_item->category_name);
 				if(is_null($category)) {
 					$category_id = '';
 					$error_code = 'E007';
-					Log::debug('tenant.Lookup.UploadItemController.check category=' . $upload_item->category_name. ' not found!');
+					Log::debug('tenant.Lookup.UploadItemController.check category = ' . $upload_item->category_name. ' not found!');
 				} else {
 					$category_id = $category->id;
 				}
@@ -253,7 +252,7 @@ class UploadItemController extends Controller
 				if(is_null($oem)) {
 					$oem_id = '';
 					$error_code = 'E008';
-					Log::debug('tenant.Lookup.UploadItemController.check oem=' . $upload_item->oem_name. ' not found!');
+					Log::debug('tenant.Lookup.UploadItemController.check oem = ' . $upload_item->oem_name. ' not found!');
 				} else {
 					$oem_id = $oem->id;
 				}
@@ -263,7 +262,7 @@ class UploadItemController extends Controller
 					$uom_class_id= '';
 					$uom_id = '';
 					$error_code = 'E009';
-					Log::debug('tenant.Lookup.UploadItemController.check uom=' . $upload_item->uom_name. ' not found!');
+					Log::debug('tenant.Lookup.UploadItemController.check uom = ' . $upload_item->uom_name. ' not found!');
 				} else {
 					$uom_class_id 	= $uom->uom_class_id;
 					$uom_id 		= $uom->id;
@@ -273,7 +272,7 @@ class UploadItemController extends Controller
 				if(is_null($gl_type)) {
 					$gl_type = '';
 					$error_code = 'E010';
-					Log::debug('tenant.Lookup.UploadItemController.check gl_type=' . $upload_item->gl_type_name. ' not found!');
+					Log::debug('tenant.Lookup.UploadItemController.check gl_type = ' . $upload_item->gl_type_name. ' not found!');
 				} else {
 					$gl_type = $gl_type->code;
 				}
@@ -282,7 +281,7 @@ class UploadItemController extends Controller
 				// $oem = OEM::where('name', $upload_item->oem)->firstOrFail();
 				// $uom = Uom::where('name', $upload_item->uom)->firstOrFail();
 
-				Log::debug('Result => id='.$upload_item->id.' category_id='.$category_id.' oem_id='.$oem_id.' uom_id='.$uom_id.' gl_type='.$gl_type);
+				Log::debug('Result => id = '.$upload_item->id.' category_id = '.$category_id.' oem_id = '.$oem_id.' uom_id = '.$uom_id.' gl_type = '.$gl_type);
 
 				if ( $error_code <> '') {
 					// Any error identified
@@ -325,7 +324,6 @@ class UploadItemController extends Controller
 			->get();
 
 		foreach ($upload_items as $upload_item) {
-			//Log::debug('For id='.$upload_item->id);
 			//id name notes code category_id oem_id uom_id price stock reorder account_type photo enable created_by created_at updated_by updated_at
 
 			$item = [

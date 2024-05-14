@@ -19,9 +19,9 @@ class NotifyAdmin extends Notification implements ShouldQueue
 	protected $action;
 	protected $article_id;
 
-	protected $subject='Subject';
-	protected $line1='Line Description';
-	protected $line2='Line Description';
+	protected $subject  = 'Subject';
+	protected $line1    = 'Line Description';
+	protected $line2    = 'Line Description';
 
 	/**
 	 * Create a new notification instance.
@@ -40,10 +40,10 @@ class NotifyAdmin extends Notification implements ShouldQueue
 				$this->line2	= 'Please review and enable that account, if it is a valid team member.';
 				break;
 			case 'XXACTIVATED':
-				
+
 
 			default:
-				// Success 
+				// Success
 		}
 
 	}

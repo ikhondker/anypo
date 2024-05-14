@@ -56,7 +56,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 class WflController extends Controller
 {
@@ -125,12 +125,12 @@ class WflController extends Controller
 				Log::debug('tenant.wfl.update Checking if next_approver_id exists.');
 				$next_approver_id = Workflow::getNextApproverId($wfl->wf_id);
 				if ($next_approver_id <> 0) {
-					Log::debug('tenant.wfl.update next_approver exists with user_id='.$next_approver_id);
+					Log::debug('tenant.wfl.update next_approver exists with user_i = 'd.$next_approver_id);
 					Log::debug('tenant.wfl.update Forward Wf. Executing tenant.wfl.moveToNext.');
 					self::moveToNext($wf);
 				} else {
 					Log::debug('tenant.wfl.update Wf has been approved. Executing tenant.wfl.approved.');
-					self::approved($wf); 
+					self::approved($wf);
 				}
 				break;
 			default:
@@ -166,7 +166,7 @@ class WflController extends Controller
 		$wf->wf_status		= WfStatusEnum::CLOSED->value;
 		$wf->save();
 
-		// update related entity+article status 
+		// update related entity+article status
 		switch($wf->entity) {
 			case('PR'):
 				// reverse Booking
@@ -266,7 +266,7 @@ class WflController extends Controller
 		// do nothing just find and notify next approver
 		// send approval mail to next approver
 
-		// get next approver exists	
+		// get next approver exists
 		//Log::debug("notifying next approver ");
 		$auth_status = AuthStatusEnum::APPROVED->value;
 		$next_approver_id = Workflow::getNextApproverId($wf->id);
@@ -274,7 +274,7 @@ class WflController extends Controller
 		if ($next_approver_id == 0) {
 			Log::debug("tenant.wfl.moveToNext next_approver_id not found!");
 			return false;
-		} 
+		}
 
 		switch($wf->entity) {
 			case('PR'):

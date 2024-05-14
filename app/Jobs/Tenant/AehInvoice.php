@@ -11,8 +11,8 @@ use Illuminate\Queue\SerializesModels;
 use App\Enum\EntityEnum;
 use App\Enum\AehEvent;
 
-use App\Models\Tenant\Ael\Aeh;
-use App\Models\Tenant\Ael\Ael;
+use App\Models\Tenant\Ae\Aeh;
+use App\Models\Tenant\Ae\Ael;
 
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\Admin\Setup;
@@ -48,11 +48,11 @@ class AehInvoice implements ShouldQueue
 		$setup = Setup::firstOrFail();
 		$invoice = Invoice::where('id', $this->invoice_id)->firstOrFail();
 
-		Log::debug('Jobs.Tenant.AelInvoice creating accounting for invoice_id =' . $invoice->id);
-		
+		Log::debug('Jobs.Tenant.AelInvoice creating accounting for invoice_id = ' . $invoice->id);
+
 		// check if invoice already accounted
 		if ($invoice->accounted && !$this->cancel){
-			Log::error('Jobs.Tenant.AelInvoice Invoice already accounted invoice_id =' . $invoice->id);
+			Log::error('Jobs.Tenant.AelInvoice Invoice already accounted invoice_id = ' . $invoice->id);
 			return;
 		}
 
@@ -70,7 +70,7 @@ class AehInvoice implements ShouldQueue
 
 		$ael_dr->ac_code			= $setup->ac_accrual;
 		$ael_cr->ac_code			= $setup->ac_liability;
-		
+
 		if ($this->cancel){
 			$ael_dr->event			= $ael_cr->event 			= AelEvent::CANCEL->value;
 
@@ -78,7 +78,7 @@ class AehInvoice implements ShouldQueue
 			$ael_dr->fc_cr_amount	= $this->fc_amount;
 
 			$ael_cr->fc_dr_amount	= $this->fc_amount;
-			$ael_cr->fc_cr_amount	= 0; 
+			$ael_cr->fc_cr_amount	= 0;
 		} else {
 			$ael_dr->event			= $ael_cr->event 			= AelEvent::POST->value;
 
@@ -86,17 +86,17 @@ class AehInvoice implements ShouldQueue
 			$ael_dr->fc_cr_amount	= 0;
 
 			$ael_cr->fc_dr_amount	= 0;
-			$ael_cr->fc_cr_amount	= $this->fc_amount; 
+			$ael_cr->fc_cr_amount	= $this->fc_amount;
 		}
-		
+
 		$ael_dr->save();
 		Log::debug('Jobs.Tenant.AelInvoice saving dr line ael_dr_id ='. $ael_dr->id);
-		
+
 		$ael_cr->save();
 		Log::debug('Jobs.Tenant.AelInvoice saving cr line ael_cr_id ='. $ael_cr->id);
 
 		// Update accounted flag
-		DB::statement("UPDATE invoices SET 
+		DB::statement("UPDATE invoices SET
 		accounted		= true
 		WHERE id = ".$invoice->id."");
 	}

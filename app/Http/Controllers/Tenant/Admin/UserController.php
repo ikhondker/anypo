@@ -60,7 +60,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Str;
 use DB;
-# 13. FUTURE 
+# 13. FUTURE
 # 1. create a new role PM for projects
 # 2. layout chang for edit user page role change
 
@@ -127,7 +127,7 @@ class UserController extends Controller
 
 		$random_password			= Str::random(12);
 		$request->merge(['password'	=> Hash::make($random_password) ]);
-		//Log::channel('bo')->info('password='.$random_password);
+		//Log::channel('bo')->info('password = '.$random_password);
 		//$request->merge(['email_verified_at' => now()]);
 
 		// create User
@@ -161,7 +161,7 @@ class UserController extends Controller
 	}
 
 
-	
+
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -176,7 +176,7 @@ class UserController extends Controller
 
 		return view('tenant.admin.users.edit', compact('user', 'countries', 'designations','depts'));
 	}
- 
+
 	/**
 	 * Update the specified resource in storage.
 	 */
@@ -184,7 +184,7 @@ class UserController extends Controller
 	{
 		$this->authorize('update', $user);
 		$request->merge(['state'	=> Str::upper($request->input('state')) ]);
-		
+
 		if ($image = $request->file('file_to_upload')) {
 			// $request->validate([
 			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -192,16 +192,16 @@ class UserController extends Controller
 
 			// extract the uploaded file
 			$image = $request->file('file_to_upload');
-		
+
 			$token			= tenant('id') ."-". $user->id . "-" . uniqid();
-			$extension		='.'.$image->extension();
-			
+			$extension		= '.'.$image->extension();
+
 			$uploadedImage	= $token . "-uploaded" . $extension;
 			$thumbImage		= $token. $extension;
 
 			// upload uploaded image
 			$path = Storage::disk('s3t')->put('avatar/'.$uploadedImage, file_get_contents($image));
-			
+
 			//resize to thumbnail and upload
 			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
@@ -223,7 +223,7 @@ class UserController extends Controller
 		} else {
 
 		}
-		
+
 		$user->update($request->all());
 		EventLog::event('user', $user->id, 'update', 'name', $request->name);
 		if ($request->input('role') <> $user->role) {
@@ -264,7 +264,7 @@ class UserController extends Controller
 	{
 		$this->authorize('export', User::class);
 		$data = DB::select("
-		SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable 
+		SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable
 			FROM users u, depts dp, designations d
 			WHERE u.dept_id=dp.id
 			AND u.designation_id=d.id
@@ -278,7 +278,7 @@ class UserController extends Controller
 	public function changePassword(User $user)
 	{
 		$this->authorize('changepass', $user);
-		
+
 		return view('tenant.admin.users.password', compact('user'));
 	}
 
@@ -312,7 +312,7 @@ class UserController extends Controller
 		$user = User::where('id', auth()->user()->id)->first();
 		return view('tenant.profile.profile',compact('user'));
 	}
-	
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */
@@ -333,10 +333,10 @@ class UserController extends Controller
 	 */
 	public function updateProfile(Request $request)
 	{
-		
+
 		$user = User::where('id', auth()->user()->id)->first();
 		//$this->authorize('update', $user);
-		
+
 		$request->validate([
 			'name'			=> 'required|min:5|max:100',
 			'cell'			=> 'required|max:20|unique:users,cell,'. $user->id,
@@ -357,16 +357,16 @@ class UserController extends Controller
 
 			// extract the uploaded file
 			$image 			= $request->file('file_to_upload');
-		
+
 			$token			= tenant('id') ."-". $user->id . "-" . uniqid();
-			$extension		='.'.$image->extension();
-			
+			$extension		= '.'.$image->extension();
+
 			$uploadedImage	= $token . "-uploaded" . $extension;
 			$thumbImage		= $token. $extension;
 
 			// upload uploaded image
 			$path = Storage::disk('s3t')->put('avatar/'.$uploadedImage, file_get_contents($image));
-			
+
 			//resize to thumbnail and upload
 			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
@@ -417,39 +417,39 @@ class UserController extends Controller
 		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
 			return redirect()->route('users.all')->with('error','You can not impersonate system!');
 		}
-				
-		Log::debug('tenant.admin.user.impersonate loggedin_user_id=' . auth()->user()->id);
-		Log::debug('tenant.admin.user.impersonate to_impersonated_user_id=' . $user->id);
+
+		Log::debug('tenant.admin.user.impersonate loggedin_user_id = ' . auth()->user()->id);
+		Log::debug('tenant.admin.user.impersonate to_impersonated_user_id = ' . $user->id);
 
 		// log before impersonate
 		EventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
-	
-		//Log::debug('Landlord.user.impersonate userr=' . $user->id);
+
+		//Log::debug('Landlord.user.impersonate userr = ' . $user->id);
 		if ($user->id !== ($original = auth()->user()->id)) {
 			session()->put('original_user', $original);
 			auth()->login($user);
 		}
-	
+
 		return redirect('/home');
 	}
 
 	public function leaveImpersonate()
 	{
-		
+
 		$impersonated_user_id = auth()->user()->id;
 
 		// log with original user
 		EventLog::event('user', session()->get('original_user'), 'leave-impersonate', 'id', auth()->user()->id);
-	
+
 		auth()->loginUsingId(session()->get('original_user'));
 		session()->forget('original_user');
 
-		Log::debug('tenant.admin.user.leaveImpersonate loggedin_user_id=' . auth()->user()->id);
-		Log::debug('tenant.admin.leaveImpersonate impersonated_user_id=' . $impersonated_user_id);
+		Log::debug('tenant.admin.user.leaveImpersonate loggedin_user_id = ' . auth()->user()->id);
+		Log::debug('tenant.admin.leaveImpersonate impersonated_user_id = ' . $impersonated_user_id);
 
 		// log after leave Impersonate
 		EventLog::event('user', $impersonated_user_id, 'leave-impersonate', 'id', auth()->user()->id);
-		
+
 		//return redirect('/home');
 		return redirect()->route('users.index')->with('success', 'Logout from impersonate successfully');
 

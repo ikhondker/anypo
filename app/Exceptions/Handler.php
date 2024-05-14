@@ -33,7 +33,7 @@ class Handler extends ExceptionHandler
 		$this->reportable(function (Throwable $e) {
 
 			// NOTE: only log UNHANDLED exceptions in custeom error_log table
-			$tenant_id 	= ( tenant('id') =='' ? 'landlord' : tenant('id'));
+			$tenant_id 	= ( tenant('id') == '' ? 'landlord' : tenant('id'));
 			$url 		= url()->current();
 			$user_id 	= ( auth()->check() ? auth()->user()->id : '0000');
 			$role		= ( auth()->check() ? auth()->user()->role->value : 'guest');
@@ -69,7 +69,7 @@ class Handler extends ExceptionHandler
 			// Log::channel('tenant')->info( '---------------------'.tenant('id').'-----------------------');
 			// Log::channel('tenant')->info( 'URL = '.url()->current());
 			// Log::channel('tenant')->info( 'Logged-in User = '. (auth()->check() ? auth()->user()->id : '0000'));
-			// Log::channel('tenant')->info( 'Message ='.$e->getMessage());
+			// Log::channel('tenant')->info( 'Message = '.$e->getMessage());
 			// //if($e instanceof ModelNotFoundException) {
 			// if($e instanceof ItemNotFoundException) {
 			// 	Log::channel('tenant')->info( 'ItemNotFoundException ModelNotFoundException');

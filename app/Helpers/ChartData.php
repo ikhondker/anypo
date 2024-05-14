@@ -8,7 +8,7 @@
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -108,9 +108,9 @@ class ChartData
 		$budget->save();
 
 		// foreach ($accounts as $account) {
-		// 	Log::debug('Checking for archival for Account id=' . $account->id);
+		// 	Log::debug('Checking for archival for Account id = ' . $account->id);
 		// }
-		
+
 		//Log::info(print_r($aa, true));
 
 	}
@@ -159,7 +159,7 @@ class ChartData
 			$rowDeptBudget->count_invoice 		= $data['count_invoice'];
 			$rowDeptBudget->count_payment 		= $data['count_payment'];
 			$rowDeptBudget->save();
-			
+
 		}
 	}
 
@@ -224,4 +224,4 @@ class ChartData
 		}
 	}
 
-}	
+}

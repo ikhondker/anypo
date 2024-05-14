@@ -64,7 +64,7 @@ class Pr extends Model
 		Log::debug('tenant.model.pr.syncPrValues pr_id= '. $pr_id);
 		$setup 	= Setup::first();
 		//$pr		= Pr::where('id', $pr_id)->firstOrFail();
-		
+
 		// update PR header
 		//Log::debug('tenant.model.pr.syncPrValues retrieving detail for pr_id= '. $pr_id);
 		$pr		= Pr::where('id', $pr_id)->firstOrFail();
@@ -74,11 +74,11 @@ class Pr extends Model
 			DB::raw('SUM(gst) as gst'),
 			DB::raw('SUM(amount) as amount'),
 		));
-		
+
 		Log::debug('tenant.model.pr.syncPrValues updating PR header pr_id= '. $pr_id);
-		// No row in child table 
+		// No row in child table
 		foreach($result as $row) {
-			if ( is_null($row['sub_total']) ) { 
+			if ( is_null($row['sub_total']) ) {
 				Log::debug('tenant.model.pr.syncPrValues no row in prl for pr_id= '. $pr_id);
 				$pr->sub_total		= 0;
 				$pr->tax			= 0 ;
@@ -93,12 +93,12 @@ class Pr extends Model
 			}
 		}
 		$pr->save();
-		
+
 		// get updated PR header
 		$pr				= Pr::where('id', $pr_id)->firstOrFail();
 		if ($pr->currency == $setup->currency){
 			$rate = 1;
-			DB::statement("UPDATE prls SET 
+			DB::statement("UPDATE prls SET
 				fc_sub_total	= sub_total,
 				fc_tax			= tax,
 				fc_gst			= gst,
@@ -109,7 +109,7 @@ class Pr extends Model
 			Log::debug('tenant.model.pr.syncPrValues calling ExchangeRate::getRate ...');
 			$rate = round(ExchangeRate::getRate($pr->currency, $setup->currency),6);
 
-			// Show error if rate not found 
+			// Show error if rate not found
 			if ($rate == 0){
 				Log::error('tenant.model.pr.syncPrValues Exchange rate not found for PR currency = ' . $pr->currency.' fc_currency = '.$setup->currency);
 				return 'E015';
@@ -119,7 +119,7 @@ class Pr extends Model
 
 			// update all prls fc columns
 			Log::debug('tenant.model.pr.syncPrValues populating FC values prls table.');
-			DB::statement("UPDATE prls SET 
+			DB::statement("UPDATE prls SET
 				fc_sub_total	= round(sub_total * ".$rate.",2),
 				fc_tax			= round(tax * ".$rate.",2),
 				fc_gst			= round(gst * ".$rate.",2),
@@ -170,30 +170,29 @@ class Pr extends Model
 		$setup 	= Setup::first();
 		$pr		= Pr::where('id', $pr_id)->firstOrFail();
 
-		//Log::debug('Pr.updatePrFcValues Value of currency=' . $pr->currency.$setup->currency);
-		Log::debug('tenant.model.pr.updatePrFcValues PR currency =' . $pr->currency.' fc_currency='.$setup->currency);
+		Log::debug('tenant.model.pr.updatePrFcValues PR currency = ' . $pr->currency.' fc_currency = '.$setup->currency);
 
 		if ($pr->currency == $setup->currency){
 			$rate = 1;
-			DB::statement("UPDATE prls SET 
+			DB::statement("UPDATE prls SET
 				fc_sub_total	= sub_total,
 				fc_tax			= tax,
 				fc_gst			= gst,
 				fc_amount		= amount
 				WHERE pr_id = ".$pr_id."");
 		} else {
-			
+
 			$rate = round(ExchangeRate::getRate($pr->currency, $setup->currency),6);
 			// update all prls fc columns
 			// update pr fc columns
-			// ERROR rate not found 
+			// ERROR rate not found
 			if ($rate == 0){
-				Log::error('tenant.model.pr.updatePrFcValues rate not found PR currency=' . $pr->currency.' fc_currency='.$setup->currency);
+				Log::error('tenant.model.pr.updatePrFcValues rate not found PR currency = ' . $pr->currency.' fc_currency = '.$setup->currency);
 				return false;
 			}
 
 			Log::debug('tenant.model.pr.updatePrFcValues populating FC prls table.');
-			DB::statement("UPDATE prls SET 
+			DB::statement("UPDATE prls SET
 				fc_sub_total	= round(sub_total * ".$rate.",2),
 				fc_tax			= round(tax * ".$rate.",2),
 				fc_gst			= round(gst * ".$rate.",2),
@@ -208,15 +207,15 @@ class Pr extends Model
 		// 	DB::raw('SUM(fc_gst) as fc_gst'),
 		// 	DB::raw('SUM(fc_amount) as fc_amount'),
 		// ));
-		
+
 		//Log::debug('Value of id=' . $rs);
 		//Log::debug('Value of tax=' . $r->tax);
 
 
 		// update PR header
-		// handle No row in child table 
+		// handle No row in child table
 		// P2 handle in better way
-		Log::debug('tenant.model.pr.updatePrFcValues updating header FC column PR=' . $pr->id);
+		Log::debug('tenant.model.pr.updatePrFcValues updating header FC column PR = ' . $pr->id);
 
 		// check if rows exists in prl
 		$count_prl		= Prl::where('pr_id',$pr->id)->count();
@@ -245,7 +244,7 @@ class Pr extends Model
 		$pr->fc_exchange_rate	= $rate;
 
 		// foreach($result as $row) {
-		// 	if ( is_null($row['fc_sub_total']) ) { 
+		// 	if ( is_null($row['fc_sub_total']) ) {
 		// 		Log::debug('tenant.model.pr.updatePrFcValues NO row in prls table .');
 		// 		$pr->fc_sub_total		= 0 ;
 		// 		$pr->fc_tax				= 0 ;
@@ -278,9 +277,9 @@ class Pr extends Model
 			DB::raw('SUM(amount) as amount'),
 		));
 
-		// No row in child table 
+		// No row in child table
 		foreach($result as $row) {
-			if ( is_null($row['sub_total']) ) { 
+			if ( is_null($row['sub_total']) ) {
 				$pr->sub_total		= 0;
 				$pr->tax			= 0 ;
 				$pr->gst			= 0 ;
@@ -315,13 +314,13 @@ class Pr extends Model
 	*/
 	public function scopeAll(Builder $query): void
 	{
-		$query; 
+		$query;
 	}
-	
+
 	public function scopeApprovedPoPending(Builder $query): void
 	{
 		$query->where('auth_status',AuthStatusEnum::APPROVED->value)
-			->where('po_id', 0); 
+			->where('po_id', 0);
 	}
 
 	/**
@@ -329,7 +328,7 @@ class Pr extends Model
 	*/
 	public function scopeAllApproved(Builder $query): void
 	{
-		$query->where('auth_status',AuthStatusEnum::APPROVED->value); 
+		$query->where('auth_status',AuthStatusEnum::APPROVED->value);
 	}
 
 	/**
@@ -337,7 +336,7 @@ class Pr extends Model
 	*/
 	public function scopeAllInProcess(Builder $query): void
 	{
-		$query->where('auth_status',AuthStatusEnum::INPROCESS->value); 
+		$query->where('auth_status',AuthStatusEnum::INPROCESS->value);
 	}
 	/**
 	 * Scope a query to only All Draft PR for current tenant.
@@ -352,7 +351,7 @@ class Pr extends Model
 	public function scopeAllConverted(Builder $query): void
 	{
 		$query->where('auth_status',AuthStatusEnum::APPROVED->value)
-			->where('po_id', '<>', 0); 
+			->where('po_id', '<>', 0);
 	}
 
 	/**
@@ -365,7 +364,7 @@ class Pr extends Model
 	*/
 	public function scopeByUserAll(Builder $query): void
 	{
-		$query->where('requestor_id', auth()->user()->id ); 
+		$query->where('requestor_id', auth()->user()->id );
 	}
 
 	/**
@@ -374,7 +373,7 @@ class Pr extends Model
 	public function scopeByUserApproved(Builder $query): void
 	{
 		$query->where('requestor_id', auth()->user()->id )
-			->where('auth_status',AuthStatusEnum::APPROVED->value); 
+			->where('auth_status',AuthStatusEnum::APPROVED->value);
 	}
 
 	/**
@@ -383,7 +382,7 @@ class Pr extends Model
 	public function scopeByUserInProcess(Builder $query): void
 	{
 		$query->where('requestor_id', auth()->user()->id )
-			->where('auth_status',AuthStatusEnum::INPROCESS->value); 
+			->where('auth_status',AuthStatusEnum::INPROCESS->value);
 	}
 	/**
 	 * Scope a query to only All Draft PR for current user.
@@ -391,7 +390,7 @@ class Pr extends Model
 	public function scopeByUserRejected(Builder $query): void
 	{
 		$query->where('requestor_id', auth()->user()->id )
-			->where('auth_status',AuthStatusEnum::REJECTED->value); 
+			->where('auth_status',AuthStatusEnum::REJECTED->value);
 	}
 	/**
 	 * Scope a query to only All Draft PR for current user.
@@ -400,7 +399,7 @@ class Pr extends Model
 	{
 		$query->where('requestor_id', auth()->user()->id )
 			->where('auth_status',AuthStatusEnum::APPROVED->value)
-			->where('po_id', '<>', 0); ; 
+			->where('po_id', '<>', 0); ;
 	}
 
 	/**
@@ -413,7 +412,7 @@ class Pr extends Model
 	*/
 	public function scopeByDeptAll(Builder $query): void
 	{
-		$query->where('dept_id', auth()->user()->dept_id ); 
+		$query->where('dept_id', auth()->user()->dept_id );
 	}
 
 	/**
@@ -422,7 +421,7 @@ class Pr extends Model
 	public function scopeByDeptApproved(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id)
-			->where('auth_status',AuthStatusEnum::APPROVED->value); 
+			->where('auth_status',AuthStatusEnum::APPROVED->value);
 	}
 
 	/**
@@ -431,7 +430,7 @@ class Pr extends Model
 	public function scopeByDeptInProcess(Builder $query): void
 	{
 		$query->where('dept_id', auth()->user()->dept_id )
-			->where('auth_status',AuthStatusEnum::INPROCESS->value); 
+			->where('auth_status',AuthStatusEnum::INPROCESS->value);
 	}
 	/**
 	 * Scope a query to only All Draft PR for current dept.
@@ -448,7 +447,7 @@ class Pr extends Model
 	{
 		$query->where('dept_id', auth()->user()->dept_id)
 			->where('auth_status',AuthStatusEnum::APPROVED->value)
-			->where('po_id', '<>', 0); ; 
+			->where('po_id', '<>', 0); ;
 	}
 
 	/**
@@ -469,7 +468,7 @@ class Pr extends Model
 
 
 	/* ----------------- Functions ---------------------- */
-	
+
 	/* ----------------- HasMany ------------------------ */
 	public function prls() {
 		return $this->hasMany(Prl::class);
@@ -513,5 +512,5 @@ class Pr extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
-	
+
 }

@@ -16,9 +16,9 @@ class UserActions extends Notification implements ShouldQueue
 	protected $action;
 	protected $actionURL;
 
-	protected $subject='Subject';
-	protected $line1='Line Description';
-	protected $line2='Line Description';
+	protected $subject  = 'Subject';
+	protected $line1    = 'Line Description';
+	protected $line2    = 'Line Description';
 
 	use Queueable;
 
@@ -38,7 +38,7 @@ class UserActions extends Notification implements ShouldQueue
 				$this->line2	= 'Login email: '.$this->user->email;
 				break;
 			default:
-				// Success 
+				// Success
 		}
 	}
 

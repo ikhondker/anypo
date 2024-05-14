@@ -58,9 +58,9 @@ use File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 # 1. Allow Edit attachment summary
-# 2. 
+# 2.
 
 class AttachmentController extends Controller
 {
@@ -232,7 +232,7 @@ class AttachmentController extends Controller
 				return redirect()->back()->with('error', 'Attachment can not be deleted from Payment!');
 				break;
 			default:
-				Log::error(tenant('id'). 'tenant.attachment.destroy un-matched entity ='.$attachment->entity.' id=' . $attachment->id);
+				Log::error(tenant('id'). 'tenant.attachment.destroy un-matched entity = '.$attachment->entity.' id = ' . $attachment->id);
 				return redirect()->back()->with('error', 'Unknown Error!');
 		}
 
@@ -242,7 +242,7 @@ class AttachmentController extends Controller
 	public function download($fileName)
 	{
 
-		Log::debug('tenant.attachments.download Value of fileName=' . $fileName);
+		Log::debug('tenant.attachments.download Value of fileName = ' . $fileName);
 		try {
 			$attachment 				= Attachment::where('file_name', $fileName)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
@@ -251,12 +251,12 @@ class AttachmentController extends Controller
 
 
 		$this->authorize('download', Attachment::class);
-		
+
 		// get entity -> directory from filename
 		//$att 				= Attachment::where('file_name', $fileName)->first();
 		$entity 			= Entity::where('entity', $attachment->entity)->first();
 		$fileDownloadPath 	= tenant('id')."/".$entity->directory."/". $fileName;
-		Log::debug('tenant.attachments.download Value of fileDownloadPath='. $fileDownloadPath);
+		Log::debug('tenant.attachments.download Value of fileDownloadPath = '. $fileDownloadPath);
 		return Storage::disk('s3tf')->download($fileDownloadPath);
 	}
 
@@ -292,7 +292,7 @@ class AttachmentController extends Controller
 		return Storage::disk('s3tf')->download('demo1-65e4b5d819dc8-uploaded.pdf');
 	}
 
-	
+
 
 	/**
 	 * Export selected column to csv format

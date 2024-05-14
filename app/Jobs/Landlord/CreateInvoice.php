@@ -30,7 +30,7 @@ class CreateInvoice implements ShouldQueue
 	protected $account_id;
 	protected $period;
 	protected $process_id;
-	
+
 	/**
 	 * Create a new job instance.
 	 */
@@ -48,12 +48,12 @@ class CreateInvoice implements ShouldQueue
 	{
 
 		$config = Config::first();
-		Log::debug('jobs.landlord.CreateInvoice Generating Invoice for account_id = ' . $this->account_id .' for period ='. $this->period);
+		Log::debug('jobs.landlord.CreateInvoice Generating Invoice for account_id = ' . $this->account_id .' for period = '. $this->period);
 		$account = Account::where('id', $this->account_id)->first();
 
 		// Don't create invoice if unpaid invoice exists
 		if ($account->next_bill_generated) {
-			Log::debug('jobs.landlord.CreateInvoice Unpaid invoice exists for account_id=' . $this->account_id . '. Invoice not created.');
+			Log::debug('jobs.landlord.CreateInvoice Unpaid invoice exists for account_id = ' . $this->account_id . '. Invoice not created.');
 			return;
 		}
 
@@ -63,8 +63,7 @@ class CreateInvoice implements ShouldQueue
 		// get unique invoice_no
 		$invoice->invoice_no	= Bo::getInvoiceNo();
 		$invoice->invoice_date	= now();
-		
-		//Log::channel('bo')->info('Account id='. $account_id.' last_bill_from_date '.$account->last_bill_from_date);
+
 		$invoice->invoice_type	= LandlordInvoiceTypeEnum::SUBSCRIPTION->value;
 		$invoice->from_date		= $account->end_date->addDay(1);
 		$invoice->to_date		= $account->end_date->addDay(1)->addMonth($this->period);

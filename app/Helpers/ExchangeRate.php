@@ -8,7 +8,7 @@
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -38,7 +38,7 @@ use App\Helpers\EventLog;
 
 use DB;
 
-// called from Pr.submit and Po.submit 
+// called from Pr.submit and Po.submit
 // $rate = ExchangeRate::getRate($pr->currency, $setup->currency);
 
 // called form Dashboard.index Setup.freeze
@@ -57,7 +57,7 @@ class ExchangeRate
 				->where('currency', $currency)
 				->where('fc_currency', $fc_currency)
 				->firstOrFail();
-			Log::debug("Helpers.ExchangeRate.getRate Rate Found =".$rate->rate);
+			Log::debug('Helpers.ExchangeRate.getRate Rate Found = '.$rate->rate);
 			return $rate->rate;
 		} catch (\Exception $exception) {
 			// General Exception class which is the parent of all Exceptions
@@ -70,7 +70,7 @@ class ExchangeRate
 	public static function importRates()
 	{
 		// download rates
-	
+
 		$setup = Setup::first();
 		$fc_currency = $setup->currency;
 		Log::debug("Helpers.ExchangeRate.importRates fc_currency = ".$fc_currency);
@@ -83,7 +83,7 @@ class ExchangeRate
 		$url		= 'https://openexchangerates.org/api/latest.json?app_id='.$apikey.'&base=USD';
 		$response 	= Http::get($url);
 
-		// Exclude TOO SMALL 
+		// Exclude TOO SMALL
 		//"BTC": 0.000033653167,
 		$exclude = array("BTC", "XAU", "XPD", "XPT");
 
@@ -105,22 +105,22 @@ class ExchangeRate
 
 			//$currencies = Currency::primary()->orderBy('id', 'DESC');
 
-			$currencies = DB::select("SELECT currency 
+			$currencies = DB::select("SELECT currency
 				FROM currencies c
-				WHERE c.enable = true 
+				WHERE c.enable = true
 				AND c.currency NOT IN (SELECT r.currency
 					FROM rates r
 					WHERE 1 = 1
-					AND r.fc_currency ='".$setup->currency."'
+					AND r.fc_currency = '".$setup->currency."'
 					AND DATE(now()) NOT BETWEEN DATE(r.from_date) and DATE(r.from_date))
 				");
 
 
 			foreach ($currencies as $currency) {
-				//Log::debug('Inserting rate for Currency='. $currency->currency);
+				//Log::debug('Inserting rate for Currency = '. $currency->currency);
 				$cur_currency 		= $currency->currency;
 				$usd_to_currency 	= (float) $rates[$cur_currency];
-				//Log::debug('usd_to_currency='. $usd_to_currency);
+				//Log::debug('usd_to_currency = '. $usd_to_currency);
 				$base_rate			= (float) $usd_to_currency / $usd_to_fc;
 				//Log::debug('base_rate='. $base_rate);
 

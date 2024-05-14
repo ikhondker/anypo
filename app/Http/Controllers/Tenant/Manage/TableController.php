@@ -39,7 +39,7 @@ use App\Helpers\Docs;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class TableController extends Controller
@@ -48,7 +48,7 @@ class TableController extends Controller
 	// define entity constant for file upload and workflow
 	public const BASE_DIR		= "\App\Http\\";
 
-	
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -147,8 +147,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\app\Http\Controllers\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.controllers dir=' . $dir);
-		Log::debug('tenant.TableController.controllers target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.controllers dir = ' . $dir);
+		Log::debug('tenant.TableController.controllers target_dir = ' . $target_dir);
 
 
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
@@ -159,7 +159,7 @@ class TableController extends Controller
 
 		return view('tenant.manage.tables.controllers', compact('filesInFolder'));
 	}
-	 
+
 	public function fncControllers($dir = null)
 	{
 		// Ref: https://www.php.net/manual/en/class.reflectionclass.php
@@ -168,16 +168,15 @@ class TableController extends Controller
 		// NOTE: App not app but App <===========
 		$BASE_DIR	= "\App\Http\Controllers\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.fncControllers dir=' . $dir);
-		Log::debug('tenant.TableController.fncControllers target_dir=' . $target_dir);
-		//Log::debug('tenant.TableController.fncControllers DOC_DIR_CLASS=' . config('akk.DOC_DIR_CLASS'));
+		Log::debug('tenant.TableController.fncControllers dir = ' . $dir);
+		Log::debug('tenant.TableController.fncControllers target_dir = ' . $target_dir);
+		//Log::debug('tenant.TableController.fncControllers DOC_DIR_CLASS = ' . config('akk.DOC_DIR_CLASS'));
 
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
 		$filesInFolder = Docs::getFiles( $target_dir );
 
-		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
 		return view('tenant.manage.tables.controllers-fnc', compact('filesInFolder','dir','target_dir'));
 	}
 
@@ -188,8 +187,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		$filesInFolder = Docs::getFiles('\app\Helpers');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
-		
-		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
+
 		return view('tenant.manage.tables.helpers', compact('filesInFolder'));
 	}
 
@@ -200,8 +198,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		$filesInFolder = Docs::getFiles('\app\Helpers');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
-		
-		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
+
 		return view('tenant.manage.tables.helpers-fnc', compact('filesInFolder'));
 	}
 
@@ -212,8 +209,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\app\Models\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.models dir=' . $dir);
-		Log::debug('tenant.TableController.models target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.models dir = ' . $dir);
+		Log::debug('tenant.TableController.models target_dir = ' . $target_dir);
 
 
 		//$filesInFolder = \File::files(base_path().'\app\Models');
@@ -230,8 +227,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\App\Models\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.fncModels dir=' . $dir);
-		Log::debug('tenant.TableController.fncModels target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.fncModels dir = ' . $dir);
+		Log::debug('tenant.TableController.fncModels target_dir = ' . $target_dir);
 
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
@@ -256,8 +253,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\app\Models\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.routeCode dir=' . $dir);
-		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.routeCode dir = ' . $dir);
+		Log::debug('tenant.TableController.routeCode target_dir = ' . $target_dir);
 
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		$filesInFolder = Docs::getFiles($target_dir);
@@ -271,8 +268,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\app\Models\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.policies dir=' . $dir);
-		Log::debug('tenant.TableController.policies target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.policies dir = ' . $dir);
+		Log::debug('tenant.TableController.policies target_dir = ' . $target_dir);
 
 		//$filesInFolder = Docs::getFiles('\app\Models\Tenant');	// <<============= Models
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
@@ -287,8 +284,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\App\Policies\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.fncPolicies dir=' . $dir);
-		Log::debug('tenant.TableController.fncPolicies target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.fncPolicies dir = ' . $dir);
+		Log::debug('tenant.TableController.fncPolicies target_dir = ' . $target_dir);
 
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_POLICY'));
 		$filesInFolder = Docs::getFiles($target_dir);
@@ -301,8 +298,8 @@ class TableController extends Controller
 
 		$BASE_DIR	= "\app\Http\Controllers\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.policies dir=' . $dir);
-		Log::debug('tenant.TableController.policies target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.policies dir = ' . $dir);
+		Log::debug('tenant.TableController.policies target_dir = ' . $target_dir);
 
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Landlord');
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Auth');
@@ -321,11 +318,11 @@ class TableController extends Controller
 	public function messages($dir = null)
 	{
 		$this->authorize('messages', Table::class);
-		
+
 		$BASE_DIR	= "\App\Http\Controllers\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
-		Log::debug('tenant.TableController.routeCode dir=' . $dir);
-		Log::debug('tenant.TableController.routeCode target_dir=' . $target_dir);
+		Log::debug('tenant.TableController.routeCode dir = ' . $dir);
+		Log::debug('tenant.TableController.routeCode target_dir = ' . $target_dir);
 
 
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers');

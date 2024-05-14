@@ -75,7 +75,7 @@ class Po extends Model
 		));
 
 		foreach($result as $row) {
-			if ( is_null($row['sub_total']) ) { 
+			if ( is_null($row['sub_total']) ) {
 				$po->sub_total		= 0;
 				$po->tax			= 0 ;
 				$po->gst			= 0 ;
@@ -94,8 +94,7 @@ class Po extends Model
 		grs_price		= ROUND(amount/qty,4)
 		WHERE po_id = ".$po_id."");
 
-		//Log::debug('updatePoFcValues =' . $po->currency.$setup->currency);
-		Log::debug('tenant.model.po.updatePoFcValues PO currency =' . $po->currency.' fc_currency='.$setup->currency);
+		Log::debug('tenant.model.po.updatePoFcValues PO currency = ' . $po->currency.' fc_currency = '.$setup->currency);
 		// populate fc columns for all pol lines
 		if ($po->currency == $setup->currency){
 			$rate = 1;
@@ -111,7 +110,7 @@ class Po extends Model
 			// update all pols fc columns
 			// update pr fc columns
 			// ERROR rate not found
-			
+
 			if ($rate == 0){
 				Log::error('tenant.model.po.syncPoValues Exchange rate not found for PR currency = ' . $po->currency.' fc_currency = '.$setup->currency);
 				return 'E015';
@@ -135,7 +134,7 @@ class Po extends Model
 		// update PO header
 		// handle No row in child table
 		// P2 handle in better way
-		Log::debug('tenant.model.po.syncPoValues updating header FC column PO=' . $po->id);
+		Log::debug('tenant.model.po.syncPoValues updating header FC column PO = ' . $po->id);
 
 		// check if rows exists in pol
 		$count_pol		= Pol::where('po_id',$po->id)->count();
@@ -163,7 +162,7 @@ class Po extends Model
 		}
 		$po->fc_exchange_rate	= $rate;
 		$po->save();
-		Log::debug('tenant.model.po.syncPoValues po->fc_amount='.$po->fc_amount);
+		Log::debug('tenant.model.po.syncPoValues po->fc_amount = '.$po->fc_amount);
 		return '';
 	}
 
@@ -181,8 +180,8 @@ class Po extends Model
 				grs_price		= ROUND(amount/qty,4)
 				WHERE po_id = ".$po_id."");
 
-		//Log::debug('updatePoFcValues =' . $po->currency.$setup->currency);
-		Log::debug('tenant.model.po.updatePoFcValues PO currency =' . $po->currency.' fc_currency='.$setup->currency);
+		//Log::debug('updatePoFcValues = ' . $po->currency.$setup->currency);
+		Log::debug('tenant.model.po.updatePoFcValues PO currency = ' . $po->currency.' fc_currency = '.$setup->currency);
 		// populate fc columns for all pol lines
 		if ($po->currency == $setup->currency){
 			$rate = 1;
@@ -199,7 +198,7 @@ class Po extends Model
 			// update pr fc columns
 			// ERROR rate not found
 			if ($rate == 0){
-				Log::error('tenant.model.po.updatePoFcValues rate not found PO currency=' . $po->currency.' fc_currency='.$setup->currency);
+				Log::error('tenant.model.po.updatePoFcValues rate not found PO currency = ' . $po->currency.' fc_currency = '.$setup->currency);
 				return false;
 			}
 
@@ -221,7 +220,7 @@ class Po extends Model
 		// update PO header
 		// handle No row in child table
 		// P2 handle in better way
-		Log::debug('tenenat.model.po.updatePoFcValues updating header FC column PO=' . $po->id);
+		Log::debug('tenenat.model.po.updatePoFcValues updating header FC column PO = ' . $po->id);
 
 		// check if rows exists in pol
 		$count_pol		= Pol::where('po_id',$po->id)->count();
@@ -249,7 +248,7 @@ class Po extends Model
 		}
 		$po->fc_exchange_rate	= $rate;
 		$po->save();
-		Log::debug('tenant.model.po.updatePoFcValues po->fc_amount='.$po->fc_amount);
+		Log::debug('tenant.model.po.updatePoFcValues po->fc_amount = '.$po->fc_amount);
 
 		return true;
 	}
@@ -258,9 +257,8 @@ class Po extends Model
 	public static function xxupdatePoHeaderValue($id)
 	{
 
-		//Log::debug('updatePoHeaderValue id=' . $id);
 		// update PR header
-		
+
 
 		return 0;
 	}

@@ -46,7 +46,7 @@ use App\Helpers\EventLog;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
-# 13. FUTURE 
+# 13. FUTURE
 use Illuminate\Http\Request;
 
 class AelController extends Controller
@@ -59,14 +59,14 @@ class AelController extends Controller
 		$this->authorize('viewAny',Ael::class);
 		$aels = Ael::query();
 
-		Log::debug('tenant.ae.ael.index Value of action=' . request('action'));
+		Log::debug('tenant.ae.ael.index Value of action = ' . request('action'));
 
-		// TODO CHECK 
+		// TODO CHECK
 		if (request('start_date') && tenant()) {
 			$start_date = 	request('start_date');
 			$end_date	=	request('end_date');
-			Log::debug('tenant.ae.ael.index Value of start_date=' . request('start_date'));
-			Log::debug('tenant.ae.ael.index Value of end_date=' . request('end_date'));
+			Log::debug('tenant.ae.ael.index Value of start_date = ' . request('start_date'));
+			Log::debug('tenant.ae.ael.index Value of end_date = ' . request('end_date'));
 		}
 
 		switch (request('action')) {
@@ -77,10 +77,10 @@ class AelController extends Controller
 			case 'export':
 				// Export model
 				$sql = "
-					SELECT id, source, entity, event, accounting_date, ac_code, line_description, 
-					fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount, 
+					SELECT id, source, entity, event, accounting_date, ac_code, line_description,
+					fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount,
 					po_id, reference
-					FROM aels 
+					FROM aels
 					WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
 				";
 				//Log::debug('tenant.ae.ael.export'.$sql);
@@ -91,7 +91,7 @@ class AelController extends Controller
 				return Export::csv('aels', $dataArray);
 				break;
 		}
-	
+
 		// if (request('term')) {
 		// 	$aels->where('po_id', 'Like', '%' . request('term') . '%');
 		// }
@@ -173,10 +173,10 @@ class AelController extends Controller
 		$this->authorize('export', Ael::class);
 
 		$data = DB::select("
-			SELECT id, source, entity, event, accounting_date, ac_code, line_description, 
-			fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount, 
+			SELECT id, source, entity, event, accounting_date, ac_code, line_description,
+			fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount,
 			po_id, reference
-			FROM aels 
+			FROM aels
 			WHERE po_id = ".$id."");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

@@ -62,7 +62,7 @@ use App\Rules\Tenant\OverPaymentRule;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class PaymentController extends Controller
@@ -94,7 +94,7 @@ class PaymentController extends Controller
 				break;
 			default:
 				//$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByUserAll()->paginate(10);
-				Log::warning(tenant('id'). 'tenant.payment.index Other role ='. auth()->user()->role->value);
+				Log::warning(tenant('id'). 'tenant.payment.index Other role = '. auth()->user()->role->value);
 				abort(403);
 		}
 		return view('tenant.payments.index', compact('payments'));
@@ -134,7 +134,7 @@ class PaymentController extends Controller
 	public function store(StorePaymentRequest $request)
 	{
 		$this->authorize('create', Payment::class);
-		
+
 		//$po = Po::where('id', $request->input('po_id'))->first();
 
 		// Check over Payment
@@ -157,7 +157,7 @@ class PaymentController extends Controller
 		if (! $result) {
 			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		}
-		// Reupload 
+		// Reupload
 		$payment = Payment::with('invoice')->where('id', $payment->id)->firstOrFail();
 		// Create Accounting for this Payment
 		AelPayment::dispatch($payment->id, $payment->fc_amount);
@@ -177,7 +177,7 @@ class PaymentController extends Controller
 		$invoice->save();
 
 
-		// update budget and project level summary 
+		// update budget and project level summary
 		$po = Po::where('id', $payment->invoice->po_id)->first();
 
 		// PO header update
@@ -261,7 +261,7 @@ class PaymentController extends Controller
 		//
 	}
 
-	
+
 
 	/**
 	 * Remove the specified resource from storage.
@@ -279,11 +279,11 @@ class PaymentController extends Controller
 			if ($payment->status <> PaymentStatusEnum::PAID->value) {
 				return back()->withError("You can only cancel payment with status paid!")->withInput();
 			}
-	
-			// Get Invoice 
+
+			// Get Invoice
 			$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
 
-			// update budget and project level summary 
+			// update budget and project level summary
 			$po = Po::where('id', $invoice->po_id)->first();
 			if ($po->status <> ClosureStatusEnum::OPEN->value) {
 				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
@@ -325,12 +325,12 @@ class PaymentController extends Controller
 					'fc_amount' => 0,
 					'status' => PaymentStatusEnum::CANCELED->value
 				]);
-	
+
 			// Write to Log
 			EventLog::event('payment', $payment->id, 'void', 'id', $payment->id);
-	
+
 			return redirect()->route('payments.index')->with('success', 'Payment canceled successfully.');
-		
+
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
 			return back()->withError("Payment #".$payment_id." not Found!")->withInput();
@@ -343,28 +343,28 @@ class PaymentController extends Controller
 		$setup 			= Setup::first();
 		$payment		= Payment::where('id', $payment_id)->firstOrFail();
 
-		Log::debug('tenant.PaymentController.updatePaymentFcValues payment_id=' . $payment_id);
-		Log::debug('tenant.PaymentController.updatePaymentFcValues payment->currency =' . $payment->currency);
-		Log::debug('tenant.PaymentController.updatePaymentFcValues setup->currency =' . $setup->currency);
+		Log::debug('tenant.PaymentController.updatePaymentFcValues payment_id = ' . $payment_id);
+		Log::debug('tenant.PaymentController.updatePaymentFcValues payment->currency = ' . $payment->currency);
+		Log::debug('tenant.PaymentController.updatePaymentFcValues setup->currency = ' . $setup->currency);
 
 
 		// populate fc columns for receipt lines
 		if ($payment->currency == $setup->currency){
 			$rate = 1;
-			DB::statement("UPDATE payments SET 
+			DB::statement("UPDATE payments SET
 				fc_amount		= amount
 				WHERE id = ".$payment->id."");
 		} else {
 			$rate = round(ExchangeRate::getRate($payment->currency, $setup->currency),6);
 			// update all pols fc columns
 			// update pr fc columns
-			// ERROR rate not found 
+			// ERROR rate not found
 			if ($rate == 0){
-				Log::error('receipt.updatePaymentFcValues rate not found currency=' . $payment->currency.' fc_currency='.$setup->currency);
+				Log::error('receipt.updatePaymentFcValues rate not found currency = ' . $payment->currency.' fc_currency = '.$setup->currency);
 				return false;
 			}
 
-			DB::statement("UPDATE payments SET 
+			DB::statement("UPDATE payments SET
 				fc_amount		= round(amount * ". $rate .",2)
 				WHERE id = ".$payment->id."");
 		}
@@ -387,17 +387,17 @@ class PaymentController extends Controller
 		} else {
 			$dept_id 	= '';
 		}
-		
+
 		$data = DB::select("
 		SELECT p.id, p.invoice_id, p.pay_date, u.name payee_name, i.po_id,
 			b.ac_name , p.cheque_no, p.currency, p.amount, p.notes, p.status
 		FROM payments p, invoices i, pos po, users u, bank_accounts b
-		WHERE p.invoice_id = i.id 
-		AND p.bank_account_id=b.id 
+		WHERE p.invoice_id = i.id
+		AND p.bank_account_id=b.id
 		AND p.payee_id = u.id
 		AND i.po_id=po.id
-		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
-		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
+		AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id = '.$requestor_id.' ' : ' 1=1 ') ."
 		");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

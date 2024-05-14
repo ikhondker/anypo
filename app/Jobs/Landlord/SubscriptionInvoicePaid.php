@@ -55,17 +55,17 @@ class SubscriptionInvoicePaid implements ShouldQueue
 		$payment->status_code = LandlordPaymentStatusEnum::PAID->value;
 		$payment->update();
 		LandlordEventLog::event('payment', $payment->id, 'create');
-				
+
 		// mark invoice as paid
 		$invoice = Invoice::where('id', $payment->invoice_id)->first();
 		$invoice->amount_paid = $payment->amount;
 		$invoice->status_code = LandlordInvoiceStatusEnum::PAID->value ;
 		$invoice->update();
-		Log::debug('jobs.SubscriptionInvoicePaid invoice end_date =' . $invoice->to_date);
+		Log::debug('jobs.SubscriptionInvoicePaid invoice end_date = ' . $invoice->to_date);
 
 		//extend account validity and end_date
 		$account_id= bo::extendAccountValidity($invoice->id);
-		
+
 		// Invoice Paid Notification
 		$user = User::where('id', $invoice->owner_id)->first();
 		$user->notify(new InvoicePaid($user, $invoice, $payment));

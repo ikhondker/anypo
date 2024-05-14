@@ -24,8 +24,8 @@ class PrActions extends Notification implements ShouldQueue
 	protected $action;
 	protected $actionURL;
 
-	protected $subject 	='Subject';
-	protected $line 	='Line Description'; 
+	protected $subject 	= 'Subject';
+	protected $line 	= 'Line Description';
 
 	/**
 	 * Create a new notification instance.
@@ -60,7 +60,7 @@ class PrActions extends Notification implements ShouldQueue
 				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
 				break;
 			default:
-				// Success 
+				// Success
 		}
 
 	}

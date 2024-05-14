@@ -63,7 +63,7 @@ use PDF;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 # 1 . Add entity column in reports.index
 
 class ReportController extends Controller
@@ -76,7 +76,7 @@ class ReportController extends Controller
 
 		$this->authorize('viewAny',Report::class);
 
-		$reports = Report::query(); 
+		$reports = Report::query();
 		if (request('term')) {
 			$reports->where('name', 'Like', '%'.request('term').'%');
 		}
@@ -117,11 +117,11 @@ class ReportController extends Controller
 	 */
 	public function store(StoreReportRequest $request)
 	{
-		
+
 
 	}
 
-	
+
 
 	/**
 	 * Display the specified resource.
@@ -162,14 +162,14 @@ class ReportController extends Controller
 		$bank_account_id	= $request->input('bank_account_id');
 		$pm_id				= $request->input('pm_id');
 
-		Log::debug('tenant.report.run report_id='.$report->id);
-		Log::debug('tenant.report.run start_date='.$start_date);
-		Log::debug('tenant.report.run end_date='.$end_date);
-		Log::debug('tenant.report.run pm_id='.$pm_id);
+		Log::debug('tenant.report.run report_id = '.$report->id);
+		Log::debug('tenant.report.run start_date = '.$start_date);
+		Log::debug('tenant.report.run end_date = '.$end_date);
+		Log::debug('tenant.report.run pm_id = '.$pm_id);
 
 		// Increse reports run_count -------------------------
-		DB::statement("UPDATE reports SET 
-				run_count	= run_count + 1 
+		DB::statement("UPDATE reports SET
+				run_count	= run_count + 1
 				WHERE id 	= ".$report->id."");
 
 		switch ($report->id) {
@@ -178,16 +178,16 @@ class ReportController extends Controller
 				break;
 			case '1020':
 				return self::r1020($start_date, $end_date, $dept_id);
-				break;	
+				break;
 			case '1025':
 				return self::r1025($start_date, $end_date, $dept_id);
-				break;	
+				break;
 			case '1030':
 				return self::r1030($start_date, $end_date, $dept_id);
-				break;	
+				break;
 			case '1035':
 				return self::r1035($start_date, $end_date, $dept_id);
-				break;	
+				break;
 			case '1040':
 				return self::r1040($start_date, $end_date, $dept_id);
 				break;
@@ -209,7 +209,7 @@ class ReportController extends Controller
 			case '1070':
 				return self::r1070($start_date, $end_date);
 				break;
-							
+
 			default:
 				Log::warning(tenant('id').' tenant.report.run report_id = '.$report->id.' not found!');
 		}
@@ -258,7 +258,7 @@ class ReportController extends Controller
 		EventLog::event('report', $report->id, 'update', 'name', $report->name);
 
 		return redirect()->route('reports.index')->with('success', 'Report updated successfully');
-		
+
 	}
 
 	/**
@@ -280,8 +280,8 @@ class ReportController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Report::class);
-		$data = DB::select("SELECT id, name, title, access, article_id, start_date, end_date, 
-		user_id, item_id, supplier_id, project_id, category_id, dept_id, warehouse_id, order_by, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at, 
+		$data = DB::select("SELECT id, name, title, access, article_id, start_date, end_date,
+		user_id, item_id, supplier_id, project_id, category_id, dept_id, warehouse_id, order_by, IF(enable, 'Yes', 'No') as Enable, created_by, created_at, updated_by, updated_at,
 		FROM reports");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
@@ -301,9 +301,9 @@ class ReportController extends Controller
 	 */
 	public function r1020($start_date, $end_date, $dept_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1020')->firstOrFail();
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		if ($dept_id <> ''){
@@ -312,24 +312,24 @@ class ReportController extends Controller
 		} else {
 			$param2 	= '';
 		}
-		
+
 		$sql = "
-			SELECT pr.id pr_id, pr.pr_date,pr.summary, pr.auth_status,d.name dept, 
+			SELECT pr.id pr_id, pr.pr_date,pr.summary, pr.auth_status,d.name dept,
 			u.name requestor, p.name project,s.name supplier,
-			pr.currency, 
+			pr.currency,
 			pr.sub_total, pr.tax, pr.gst, pr.amount, pr.fc_exchange_rate, pr.fc_sub_total, pr.fc_tax, pr.fc_gst, pr.fc_amount
 			FROM prs pr, depts d, users u, projects p,suppliers s
 			WHERE 1=1
 			AND pr.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND pr.dept_id =d.id 
+			AND pr.dept_id =d.id
 			AND pr.requestor_id=u.id
 			AND pr.project_id=p.id
 			AND pr.supplier_id=s.id
-			AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'pr.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(pr.pr_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
-		Log::debug('tenant.reports.r1020 sql=' . $sql);
+		//Log::debug('tenant.reports.r1020 sql = ' . $sql);
 		$prs = DB::select($sql);
 
 		$data = [
@@ -349,9 +349,9 @@ class ReportController extends Controller
 
 	public function r1025($start_date, $end_date, $dept_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1025')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
@@ -363,18 +363,18 @@ class ReportController extends Controller
 		}
 
 		$sql = "
-			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept, 
+			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
 			u.name requestor, p.name project,s.name supplier,
-			po.currency, 
+			po.currency,
 			po.sub_total, po.tax, po.gst, po.amount, po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
 			FROM pos po, depts d, users u, projects p,suppliers s
 			WHERE 1=1
 			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND po.dept_id =d.id 
+			AND po.dept_id =d.id
 			AND po.requestor_id=u.id
 			AND po.project_id=p.id
 			AND po.supplier_id=s.id
-			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pos = DB::select($sql);
@@ -399,13 +399,13 @@ class ReportController extends Controller
 	 */
 	public function r1030($start_date, $end_date, $dept_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1030')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		//$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		//$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
 			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
 			$param2 	= 'Dept: '. $dept->name;
@@ -414,19 +414,19 @@ class ReportController extends Controller
 		}
 
 		$sql = "
-			SELECT p.id pr_id, p.currency, d.name dept_name, p.pr_date,p.auth_status, 
+			SELECT p.id pr_id, p.currency, d.name dept_name, p.pr_date,p.auth_status,
 			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
 			FROM prs p , prls l , uoms u, depts d
 			WHERE 1=1
 			AND p.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND p.dept_id =d.id 
+			AND p.dept_id =d.id
 			AND l.uom_id=u.id
 			AND p.id =l.pr_id
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(p.pr_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
-		Log::debug('tenant.reports.r1030 sql=' . $sql);
+		//Log::debug('tenant.reports.r1030 sql = ' . $sql);
 		$prls = DB::select($sql);
 
 		$data = [
@@ -446,14 +446,14 @@ class ReportController extends Controller
 
 	public function r1035($start_date, $end_date, $dept_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1035')->firstOrFail();
 
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
 			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
 			$param2 	= 'Dept: '. $dept->name;
@@ -462,15 +462,15 @@ class ReportController extends Controller
 		}
 
 		$sql = "
-			SELECT p.id po_id, p.currency, d.name dept_name, p.po_date,p.auth_status, 
+			SELECT p.id po_id, p.currency, d.name dept_name, p.po_date,p.auth_status,
 			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
 			FROM pos p , pols l , uoms u, depts d
 			WHERE 1=1
 			AND p.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND p.dept_id =d.id 
+			AND p.dept_id =d.id
 			AND l.uom_id=u.id
 			AND p.id =l.po_id
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pols = DB::select($sql);
@@ -492,13 +492,13 @@ class ReportController extends Controller
 
 	public function r1040($start_date, $end_date, $dept_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1040')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
 			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
 			$param2 	= 'Dept: '. $dept->name;
@@ -507,17 +507,17 @@ class ReportController extends Controller
 		}
 
 		$sql = "
-			SELECT r.id, r.receive_date, r.warehouse_id,w.name warehouse_name, r.receiver_id, r.qty rcv_qty, r.fc_amount, 
+			SELECT r.id, r.receive_date, r.warehouse_id,w.name warehouse_name, r.receiver_id, r.qty rcv_qty, r.fc_amount,
 			l.line_num, l.summary, u.name uom_name,l.qty ord_qty,
 			p.id po_id, p.po_date, d.name dept_name
 			FROM receipts r, pols l,pos p, uoms u, depts d,warehouses w
 			WHERE 1=1
-			AND r.pol_id =l.id 
+			AND r.pol_id =l.id
 			AND p.id =l.po_id
-			AND p.dept_id =d.id 
+			AND p.dept_id =d.id
 			AND l.uom_id=u.id
 			AND r.warehouse_id = w.id
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(r.receive_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$receipts = DB::select($sql);
@@ -539,13 +539,13 @@ class ReportController extends Controller
 
 	public function r1045($start_date, $end_date, $dept_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1045')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
 			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
 			$param2 	= 'Dept: '. $dept->name;
@@ -554,16 +554,16 @@ class ReportController extends Controller
 		}
 
 		$sql = "
-			SELECT i.id, i.po_id, i.summary, i.invoice_no, i.invoice_date, i.currency, 
+			SELECT i.id, i.po_id, i.summary, i.invoice_no, i.invoice_date, i.currency,
 			i.sub_total, i.tax, i.gst, i.amount, i.fc_amount,
 			s.name supplier_name, d.name dept_name
 			FROM invoices i, pos p, depts d, suppliers s
 			WHERE 1=1
-			AND i.po_id =p.id 
+			AND i.po_id =p.id
 			AND p.supplier_id = s.id
 			AND i.status = '".InvoiceStatusEnum::POSTED->value."'
-			AND p.dept_id =d.id 
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND p.dept_id =d.id
+			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$invoices = DB::select($sql);
@@ -585,14 +585,14 @@ class ReportController extends Controller
 
 	public function r1050($start_date, $end_date, $dept_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1050')->firstOrFail();
 
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id='.$dept_id.' ' : ' ');
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
 			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
 			$param2 	= 'Dept: '. $dept->name;
@@ -606,12 +606,12 @@ class ReportController extends Controller
 			p.id po_id, d.name dept_name
 			FROM payments pay, invoices i, pos p, depts d, bank_accounts b
 			WHERE 1=1
-			AND pay.invoice_id =i.id 
-			AND pay.bank_account_id =b.id 
-			AND i.po_id =p.id 
-			AND p.dept_id =d.id 
+			AND pay.invoice_id =i.id
+			AND pay.bank_account_id =b.id
+			AND i.po_id =p.id
+			AND p.dept_id =d.id
 
-			AND ". ($dept_id <> '' ? 'p.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(pay.pay_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
@@ -635,9 +635,9 @@ class ReportController extends Controller
 
 	public function r1055($start_date, $end_date, $dept_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1055')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
@@ -649,18 +649,18 @@ class ReportController extends Controller
 		}
 
 		$sql = "
-			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept, 
+			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
 			u.name requestor, p.name project,s.name supplier,
-			po.currency, 
+			po.currency,
 			po.sub_total, po.tax, po.gst, po.amount, po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
 			FROM pos po, depts d, users u, projects p,suppliers s
 			WHERE 1=1
 			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND po.dept_id =d.id 
+			AND po.dept_id =d.id
 			AND po.requestor_id=u.id
 			AND po.project_id=p.id
 			AND po.supplier_id=s.id
-			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pos = DB::select($sql);
@@ -682,31 +682,31 @@ class ReportController extends Controller
 
 	public function r1060($start_date, $end_date, $project_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1060')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= "";
 		$project 	= Project::where('id', $project_id )->firstOrFail();
 		$param2 	= 'Project: '. $project->name;
-		
+
 		$sql = "
-			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept, 
+			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
 			u.name requestor, p.name project,s.name supplier,
-			po.currency, 
+			po.currency,
 			po.sub_total, po.tax, po.gst, po.amount,
 			po.amount_grs, po.amount_invoice, po.amount_paid,
 			po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
 			FROM pos po, depts d, users u, projects p,suppliers s
 			WHERE 1=1
 			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND po.dept_id =d.id 
+			AND po.dept_id =d.id
 			AND po.requestor_id=u.id
 			AND po.project_id=p.id
 			AND po.supplier_id=s.id
-			AND ". ($project_id <> '' ? 'po.project_id='.$project_id.' ' : ' 1=1 ') ."
+			AND ". ($project_id <> '' ? 'po.project_id = '.$project_id.' ' : ' 1=1 ') ."
 			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pos = DB::select($sql);
@@ -729,31 +729,31 @@ class ReportController extends Controller
 
 	public function r1065($start_date, $end_date, $supplier_id)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1065')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= "";
 		$supplier 	= Supplier::where('id', $supplier_id )->firstOrFail();
 		$param2 	= 'Supplier: '. $supplier->name;
-		
+
 		$sql = "
-			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept, 
+			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
 			u.name requestor, p.name project,s.name supplier,
-			po.currency, 
+			po.currency,
 			po.sub_total, po.tax, po.gst, po.amount,
 			po.amount_grs, po.amount_invoice, po.amount_paid,
 			po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
 			FROM pos po, depts d, users u, projects p,suppliers s
 			WHERE 1=1
 			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND po.dept_id =d.id 
+			AND po.dept_id =d.id
 			AND po.requestor_id=u.id
 			AND po.project_id=p.id
 			AND po.supplier_id=s.id
-			AND ". ($supplier_id <> '' ? 'po.supplier_id='.$supplier_id.' ' : ' 1=1 ') ."
+			AND ". ($supplier_id <> '' ? 'po.supplier_id = '.$supplier_id.' ' : ' 1=1 ') ."
 			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$pos = DB::select($sql);
@@ -775,21 +775,21 @@ class ReportController extends Controller
 
 	public function r1070($start_date, $end_date)
 	{
-		
+
 		$this->authorize('run',Report::class);
-		
+
 		$report 	= Report::where('id', '1070')->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= "";
 		//$supplier 	= Supplier::where('id', $supplier_id )->firstOrFail();
 		$param2 	= "";
-		
+
 		$sql = "
-			SELECT id, source, entity, event, accounting_date, ac_code, line_description, 
-			fc_currency, fc_dr_amount, fc_cr_amount, 
+			SELECT id, source, entity, event, accounting_date, ac_code, line_description,
+			fc_currency, fc_dr_amount, fc_cr_amount,
 			po_id, reference
-			FROM aels 
+			FROM aels
 			WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$aels = DB::select($sql);
@@ -813,8 +813,8 @@ class ReportController extends Controller
 	{
 		//TODO auth check
 		//TODO if pr exists
-		//Log::debug('tenant.report.pr storage_path()='.storage_path());
-		
+		//Log::debug('tenant.report.pr storage_path() = '.storage_path());
+
 		// NOTE: Uses InvoicePolicy
 		// $this->authorize('pdfInvoice', $invoice);
 
@@ -822,10 +822,10 @@ class ReportController extends Controller
 		$report 	= Report::where('id', '1010')->firstOrFail();
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
-		
-		// Increase reports run_count 
-		DB::statement("UPDATE reports SET 
-		run_count	= run_count + 1 
+
+		// Increase reports run_count
+		DB::statement("UPDATE reports SET
+		run_count	= run_count + 1
 		WHERE id 	= ".$report->id."");
 
 		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
@@ -836,7 +836,7 @@ class ReportController extends Controller
 			'pr' 		=> $pr,
 			'prls' 		=> $prls,
 		];
-		
+
 		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
 			// ->setOption('fontDir', public_path('/fonts/lato'));
 
@@ -844,13 +844,13 @@ class ReportController extends Controller
 		$pdf->setPaper('A4', 'portrait');
 		$pdf->output();
 
-		
+
 
 		// Get height and width of page
 		$canvas = $pdf->getDomPDF()->getCanvas();
 		$height = $canvas->get_height();
 		$width = $canvas->get_width();
-		
+
 		// Specify watermark text
 		$text = Str::upper($pr->auth_status);
 
@@ -859,7 +859,7 @@ class ReportController extends Controller
 		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
 		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
 		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-		
+
 		// Specify horizontal and vertical position
 		$x = (($width - $textWidth) / 1.6);
 		$y = (($height - $txtHeight) / 2);
@@ -878,32 +878,32 @@ class ReportController extends Controller
 	{
 		//TODO auth check
 		//TODO if pr exists
-		//Log::debug('tenant.report.pr storage_path()='.storage_path());
-		
+		//Log::debug('tenant.report.pr storage_path() = '.storage_path());
+
 		// NOTE: Uses InvoicePolicy
 		// $this->authorize('pdfInvoice', $invoice);
 
 
-		Log::debug('ReportController.po Value of id=' . $id);
+		Log::debug('tenant.ReportController.po Value of id = ' . $id);
 
 		$setup 		= Setup::first();
 		$report 	= Report::where('id', '1015')->firstOrFail();
 		$po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
 		$pols 		= Pol::with('item')->where('po_id', $po->id)->get()->all();
-		
+
 		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
-		// Increase reports run_count 
-		DB::statement("UPDATE reports SET 
-		run_count	= run_count + 1 
+		// Increase reports run_count
+		DB::statement("UPDATE reports SET
+		run_count	= run_count + 1
 		WHERE id 	= ".$report->id."");
-		
+
 		$data = [
 			'setup' 	=> $setup,
 			'report' 	=> $report,
 			'po' 		=> $po,
 			'pols' 		=> $pols,
 		];
-		
+
 
 		$pdf = PDF::loadView('tenant.reports.formats.po', $data);
 			// ->setOption('fontDir', public_path('/fonts/lato'));
@@ -911,7 +911,7 @@ class ReportController extends Controller
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
 		$pdf->output();
-	
+
 
 		// Get height and width of page
 		$canvas = $pdf->getDomPDF()->getCanvas();
@@ -926,7 +926,7 @@ class ReportController extends Controller
 		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
 		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
 		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-		
+
 		// Specify horizontal and vertical position
 		$x = (($width - $textWidth) / 1.6);
 		$y = (($height - $txtHeight) / 2);

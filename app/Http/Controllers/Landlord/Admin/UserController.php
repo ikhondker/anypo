@@ -56,7 +56,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Str;
 use DB;
-# 13. FUTURE 
+# 13. FUTURE
 
 class UserController extends Controller
 {
@@ -74,7 +74,7 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		Log::debug("landlord.users.index role=".auth()->user()->role->value);
+		Log::debug("landlord.users.index role = ".auth()->user()->role->value);
 
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::ADMIN->value:
@@ -202,7 +202,7 @@ class UserController extends Controller
 			$image = $request->file('file_to_upload');
 
 			$token			= $user->id ."-" . uniqid();
-			$extension		='.'.$image->extension();
+			$extension		= '.'.$image->extension();
 
 			$uploadedImage	= $token . "-uploaded" . $extension;
 			$thumbImage		= $token. $extension;
@@ -231,7 +231,7 @@ class UserController extends Controller
 	 */
 	public function destroy(User $user)
 	{
-		
+
 		$this->authorize('delete', $user);
 
 		$user->fill(['enable'=>!$user->enable]);
@@ -265,7 +265,7 @@ class UserController extends Controller
 	{
 		$this->authorize('changepass',$user);
 
-		Log::debug('landlord.users.changePassword Role='. auth()->user()->role->value);
+		Log::debug('landlord.users.changePassword Role = '. auth()->user()->role->value);
 
 		return view('landlord.admin.users.password-change',compact('user'));
 	}
@@ -293,9 +293,9 @@ class UserController extends Controller
 	public function export()
 	{
 		$this->authorize('export', User::class);
-		
+
 		if (auth()->user()->isSeeded()){
-			$data = DB::select("SELECT id, name, email, cell, role,account_id,IF(enable, 'Yes', 'No') as Enable 
+			$data = DB::select("SELECT id, name, email, cell, role,account_id,IF(enable, 'Yes', 'No') as Enable
 				FROM users");
 		} else if (auth()->user()->isAdmin()){
 			$data = DB::select("SELECT id, name, email, cell, role,account_id, IF(enable, 'Yes', 'No') as Enable
@@ -315,9 +315,9 @@ class UserController extends Controller
 	public function impersonate(User $user)
 	{
 		$this->authorize('impersonate', User::class);
-		
-		Log::debug('Landlord.user.impersonate loggedin_user_id=' . auth()->user()->id);
-		Log::debug('Landlord.user.impersonate to_impersonated_user_id=' . $user->id);
+
+		Log::debug('Landlord.user.impersonate loggedin_user_id = ' . auth()->user()->id);
+		Log::debug('Landlord.user.impersonate to_impersonated_user_id = ' . $user->id);
 
 		// log before impersonate
 		LandlordEventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
@@ -335,7 +335,7 @@ class UserController extends Controller
 			session()->put('original_user', $original);
 			auth()->login($user);
 		}
-		
+
 		return redirect('/dashboards');
 
 	}
@@ -346,9 +346,9 @@ class UserController extends Controller
 
 		auth()->loginUsingId(session()->get('original_user'));
 		session()->forget('original_user');
-		
-		Log::debug('Landlord.user.leaveImpersonate loggedin_user_id=' . auth()->user()->id);
-		Log::debug('Landlord.user.leaveImpersonate impersonated_user_id=' . $impersonated_user_id);
+
+		Log::debug('Landlord.user.leaveImpersonate loggedin_user_id = ' . auth()->user()->id);
+		Log::debug('Landlord.user.leaveImpersonate impersonated_user_id = ' . $impersonated_user_id);
 
 		// log after leave Impersonate
 		LandlordEventLog::event('user', $impersonated_user_id, 'leave-impersonate', 'id', auth()->user()->id);

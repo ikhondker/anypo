@@ -37,15 +37,15 @@ class BudgetByDeptPie extends Component
 			$this->budget		= Budget::where('id', $bid)->orderBy('id', 'DESC')->firstOrFail();
 		 	$this->deptBudgets	= DeptBudget::where('budget_id', $bid)->with('budget')->with('dept')->orderBy('id', 'DESC')->get();
 		}
-		
-		//Log::debug('components.tenant.charts.BudgetByDeptPie dept count=' . $this->deptBudgets->count());
+
+		//Log::debug('components.tenant.charts.BudgetByDeptPie dept count = ' . $this->deptBudgets->count());
 
 		foreach ($this->deptBudgets as $deptBudget){
 			// Log::debug('components.tenant.charts.BudgetByDeptPie Value of dept_name=' . $deptBudget->dept->name);
 			$this->dept_budget_labels[] 	= $deptBudget->dept->name;
 			$this->dept_budget_data[] 		= (int) $deptBudget->amount;
 		}
-		
+
 		// Generate random colors for the groups
 		for ($i = 0; $i <= $this->deptBudgets->count(); $i++) {
 			$this->dept_budget_colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);

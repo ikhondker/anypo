@@ -26,8 +26,7 @@ class BudgetPoPie extends Component
 	)
 	{
 
-		//Log::debug('components.tenant.charts.BudgetPoPie Value of budget_id=' . $bid);
-	
+
 		// if ($bid == '0000'){
 		// 	// No dept budge id is specified. Show current user last dept budget
 		// 	$this->budget = Budget::where('dept_id', auth()->user()->dept_id )->with('dept')->with('budget')->orderBy('id', 'DESC')->get()->firstOrFail();

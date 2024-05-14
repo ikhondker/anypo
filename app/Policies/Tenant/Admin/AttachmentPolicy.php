@@ -22,7 +22,7 @@ class AttachmentPolicy
 		return null;
 	}
 
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -86,7 +86,6 @@ class AttachmentPolicy
 	public function download(User $user): bool
 	{
 		// TODO write logic here does not work
-		//Log::debug('POLICY Value of id=' . $attachment->id);
 		return true;
 	}
 

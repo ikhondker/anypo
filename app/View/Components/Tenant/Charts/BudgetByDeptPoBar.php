@@ -17,7 +17,7 @@ class BudgetByDeptPoBar extends Component
 	public $dept_budget_amount = [];
 	public $dept_budget_po = [];
 	public $depb_budget_colors = [];
-	
+
 	public 	$budget;
 	public 	$deptBudgets;
 
@@ -27,7 +27,7 @@ class BudgetByDeptPoBar extends Component
 	public function __construct(public string $bid ='0000')
 	{
 
-		//Log::debug('components.tenant.charts.BudgetByDeptPoBar Value of budget_id=' . $bid);
+		//Log::debug('components.tenant.charts.BudgetByDeptPoBar Value of budget_id = ' . $bid);
 
 		if ($bid == '0000'){
 			// No dept budge id is specified. Show current user last dept budget
@@ -39,14 +39,12 @@ class BudgetByDeptPoBar extends Component
 		}
 
 		foreach ($this->deptBudgets as $deptBudget){
-			//Log::debug('Value of id=' . $deptBudget->dept->name);
-			//Log::debug('Value of amount=' . $deptBudget->amount);
 
 			$this->dept_budget_labels[] 	= $deptBudget->dept->name;
 			$this->dept_budget_amount[] 	= (int) $deptBudget->amount;
 			$this->dept_budget_po[] 	= (int) $deptBudget->amount_po + $deptBudget->amount_po_booked ;
 		}
-		
+
 		// Generate random colours for the groups
 		for ($i = 0; $i <= $this->deptBudgets->count(); $i++) {
 			$this->depb_budget_colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);

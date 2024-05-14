@@ -84,7 +84,7 @@ class Billing implements ShouldQueue
 			->get();
 
 		foreach ($accounts as $account) {
-			// Log::debug('Jobs.Landlord.Billing.handleInvoice account_id=' . $account->id);
+			// Log::debug('Jobs.Landlord.Billing.handleInvoice account_id = ' . $account->id);
 			// Generate invoice 5 days before expire
 			$diff = now()->diffInDays($account->end_date);
 			if ($diff <= $config->days_gen_bill) {

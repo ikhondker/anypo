@@ -48,7 +48,7 @@ use App\Helpers\EventLog;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 # 1. cancel pol
 
 
@@ -63,7 +63,7 @@ class PolController extends Controller
 	public function addLine(Po $po)
 	{
 
-		Log::debug('tenant.PolController.addLine po_id=' . $po->id);
+		Log::debug('tenant.PolController.addLine po_id = ' . $po->id);
 
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 		 	return redirect()->route('pos.show',$po->id)->with('error', 'You can only add line to Purchase Order with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
@@ -102,8 +102,8 @@ class PolController extends Controller
 	public function store(StorePolRequest $request)
 	{
 		$this->authorize('create', Pol::class);
-		
-		// get Po detail 
+
+		// get Po detail
 		$po 				= Po::where('id', $request->input('po_id'))->firstOrFail();
 
 		//dd($po);
@@ -141,7 +141,7 @@ class PolController extends Controller
 		// $pol_sum 			= Pol::where('po_id', '=', $po->id)->sum('amount');
 		// $po->amount			= $pol_sum;
 		// $po->save();
-		
+
 		if($request->has('add_row')) {
 			//Checkbox checked
 			return redirect()->route('pols.add-line', $pol->po_id)->with('success', 'Line added to PO #'. $pol->po_id.' successfully.');
@@ -177,7 +177,7 @@ class PolController extends Controller
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('pos.show',$po->id)->with('error', 'You can not edit a Purchase Order with status '. strtoupper($po->auth_status) .' !');
 		}
-		
+
 		$items = Item::primary()->get();
 		$uoms = Uom::primary()->get();
 
@@ -207,7 +207,7 @@ class PolController extends Controller
 		// Write to Log
 		EventLog::event('Pol', $pol->id, 'edit');
 
-		// 	update PO Header value 
+		// 	update PO Header value
 		// old 	$result = Po::updatePoHeaderValue($pol->po_id);
 
 		$result = Po::syncPoValues($pol->po_id);
@@ -260,7 +260,7 @@ class PolController extends Controller
 	public function ael(Pol $pol)
 	{
 		$this->authorize('view', $pol);
-	
+
 		$po = Po::where('id', $pol->po_id)->get()->firstOrFail();
 		return view('tenant.pols.ael', compact('po','pol'));
 	}
@@ -283,23 +283,23 @@ class PolController extends Controller
 		}
 
 		$data = DB::select("
-		SELECT po.id, po.summary po_summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name, 
+		SELECT po.id, po.summary po_summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
 		po.notes, po.currency, po.amount, po.status, po.auth_status, po.auth_date,
 		pol.line_num, pol.item_description, i.code item_code, uom.name uom, pol.qty, pol.price, pol.sub_total, pol.tax, pol.gst, pol.amount,
 		pol.price, pol.sub_total, pol.amount,pol.notes, pol.closure_status
 		FROM pos po,depts d, projects p, suppliers s, users u , , items i, uoms uom
-		WHERE po.dept_id=d.id 
-		AND po.project_id=p.id 
-		AND po.supplier_id=s.id 
+		WHERE po.dept_id=d.id
+		AND po.project_id=p.id
+		AND po.supplier_id=s.id
 		AND po.requestor_id=u.id
-		AND po.id = pol.pr_id 
+		AND po.id = pol.pr_id
 		AND pol.item_id = i.id
 		AND pol.uom_id = uom.id
-		AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
-		AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
+		AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+		AND ". ($requestor_id <> '' ? 'po.requestor_id = '.$requestor_id.' ' : ' 1=1 ') ."
 		");
 
-		
+
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('pos', $dataArray);

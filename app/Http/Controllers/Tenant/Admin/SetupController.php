@@ -56,7 +56,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Str;
-# 12. FUTURE 
+# 12. FUTURE
 
 
 
@@ -150,16 +150,16 @@ class SetupController extends Controller
 
 			// extract the uploaded file
 			$image = $request->file('file_to_upload');
-		
+
 			$token			= tenant('id') ."-". $setup->id ."-" . uniqid();
-			$extension		='.'.$image->extension();
-			
+			$extension		= '.'.$image->extension();
+
 			$uploadedImage	= $token . "-uploaded" . $extension;
 			$thumbImage		= $token. $extension;
 
 			// upload uploaded image
 			$path = Storage::disk('s3t')->put('logo/'.$uploadedImage, file_get_contents($image));
-			
+
 			//resize to thumbnail and upload
 			$image_resize = Image::make($image->getRealPath());
 			$image_resize->fit(160, 160);
@@ -255,8 +255,8 @@ class SetupController extends Controller
 		$currency = Currency::where('currency', $base)->first();
 		$currency->enable = true;
 		$currency->save();
-		
-		// update setup. 
+
+		// update setup.
 		Log::debug('tenant.admin.setup.freeze freezing setup_id = ' . $setup->id);
 		$request->merge(['freezed'	=> true ]);
 		$setup->update($request->all());

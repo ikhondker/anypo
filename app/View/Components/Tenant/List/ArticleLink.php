@@ -20,7 +20,7 @@ class ArticleLink extends Component
 	 */
 	public function __construct($entity, $id=1001)
 	{
-	
+
 		if ($entity =='customError'){
 			$this->entity =$entity;
 			$this->id =$id;
@@ -30,7 +30,6 @@ class ArticleLink extends Component
 			$this->id =$id;
 			$this->route = Str::plural(Str::snake(Str::lower($entity), '-'));
 		}
-		//Log::debug('route=' . $this->route);
 	}
 
 	/**

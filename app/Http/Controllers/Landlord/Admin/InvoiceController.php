@@ -46,7 +46,7 @@ use App\Enum\LandlordCheckoutStatusEnum;
 # 12. Seeded
 use Exception;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class InvoiceController extends Controller
@@ -123,9 +123,9 @@ class InvoiceController extends Controller
 		if ( ! in_array($period, $periods)) {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, Allowed period to generate invoice is 1, 3, 6, and 12!');
 		}
-		
+
 		$account_id 	= auth()->user()->account_id;
-		Log::channel('bo')->info('landlord.invoice.store generating advance invoice for account_id = '. $account_id . ' period=' . $period);
+		Log::channel('bo')->info('landlord.invoice.store generating advance invoice for account_id = '. $account_id . ' period = ' . $period);
 
 		if (auth()->user()->account_id == '') {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
@@ -135,12 +135,12 @@ class InvoiceController extends Controller
 		$account	= Account::where('id', $account_id)->first();
 		if ($account->next_bill_generated) {
 			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
-			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id=' . $account->id . '! Can not create more Invoices.');
+			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id = ' . $account->id . '! Can not create more Invoices.');
 		}
 
 		// try {
 		// 	// Create invoice
-		// 	Log::channel('bo')->info('landlord.invoice.store Generating Invoice for Account id=' . $account_id);
+		// 	Log::channel('bo')->info('landlord.invoice.store Generating Invoice for Account id = ' . $account_id);
 		// 	$invoice_id = self::createSubscriptionInvoice($account_id, $period);
 		// } catch (Exception $e) {
 		// 	// Log the message locally OR use a tool like Bugsnag/Flare to log the error
@@ -239,7 +239,7 @@ class InvoiceController extends Controller
 		$checkout->save();
 
 		return redirect($session->url);
-	
+
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -250,7 +250,7 @@ class InvoiceController extends Controller
 	public function org_store(StoreInvoiceRequest $request)
 	{
 
-		// 
+		//
 		abort(404);
 
 
@@ -266,13 +266,13 @@ class InvoiceController extends Controller
 
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		if ($account->next_bill_generated) {
-			Log::debug('landlord.invoice.store Unpaid invoice exists for Account id=' . $account->id . ' Invoice not created.');
+			Log::debug('landlord.invoice.store Unpaid invoice exists for Account id = ' . $account->id . ' Invoice not created.');
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for this Account! Can not create more Invoices.');
 		}
 
 		try {
 			// Create invoice
-			Log::channel('bo')->info('landlord.invoice.store Generating Invoice for Account id=' . $account_id);
+			Log::channel('bo')->info('landlord.invoice.store Generating Invoice for Account id = ' . $account_id);
 			$invoice_id = self::createSubscriptionInvoice($account_id, $period);
 		} catch (Exception $e) {
 			// Log the message locally OR use a tool like Bugsnag/Flare to log the error

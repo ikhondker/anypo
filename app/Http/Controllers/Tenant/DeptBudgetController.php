@@ -50,7 +50,7 @@ use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 use Exception;
-# 13. FUTURE 
+# 13. FUTURE
 #1. Create and save revision history
 
 
@@ -82,7 +82,7 @@ class DeptBudgetController extends Controller
 				break;
 			default:
 				//$dept_budgets = $dept_budgets->ByUserAll()->with('dept')->with('budget')->paginate(10);
-				Log::warning(tenant('id'). 'tenant.DeptBudget.index Other role ='. auth()->user()->role->value);
+				Log::warning(tenant('id'). 'tenant.DeptBudget.index Other role = '. auth()->user()->role->value);
 				abort(403);
 		}
 
@@ -181,7 +181,7 @@ class DeptBudgetController extends Controller
 			return redirect()->route('dept-budgets.edit', $deptBudget->id)->with('error', 'Unable to reduce Dept Budget below already Booked and Issued PO amount!');
 		}
 
-		
+
 		// upload file as record
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $deptBudget->id ]);
@@ -223,7 +223,7 @@ class DeptBudgetController extends Controller
 	public function export()
 	{
 		$this->authorize('export', DeptBudget::class);
-		$data = DB::select("SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr, db.amount_po_booked, db.amount_po, db.amount_grs, db.amount_payment, 
+		$data = DB::select("SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr, db.amount_po_booked, db.amount_po, db.amount_grs, db.amount_payment,
 		db.notes, 	IF(db.closed, 'Yes', 'No') as Closed
 		FROM dept_budgets db,budgets b,depts d
 		WHERE db.budget_id = b.id
@@ -237,7 +237,7 @@ class DeptBudgetController extends Controller
 	// add attachments
 	public function attach(FormRequest $request)
 	{
-		
+
 		$this->authorize('create', DeptBudget::class);
 		// allow add attachment only if budget is open
 		try {
@@ -246,7 +246,7 @@ class DeptBudgetController extends Controller
 			Log::error(tenant('id'). ' tenant.dept-budget.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
 			return redirect()->back()->with(['error' => 'Dept Budget not Found!']);
 		}
-	
+
 		if ($deptBudget->closed){
 			return redirect()->route('dept-budgets.show', $deptBudget->id)->with('error', 'Add attachment is only allowed for open Budget.');
 		}

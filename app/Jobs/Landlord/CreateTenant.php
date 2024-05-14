@@ -57,8 +57,8 @@ use Illuminate\Support\Facades\Log;
 class CreateTenant implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-	
-	//The process "D:\xampp\php\php.exe artisan queue:work --once --name=default --queue=default --backoff=0 --memory=128 --sleep=3 --tries=1" exceeded the timeout of 60 seconds. 
+
+	//The process "D:\xampp\php\php.exe artisan queue:work --once --name=default --queue=default --backoff=0 --memory=128 --sleep=3 --tries=1" exceeded the timeout of 60 seconds.
 	public $timeout = 1200;
 	public $failOnTimeout = true;
 
@@ -90,13 +90,13 @@ class CreateTenant implements ShouldQueue
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
 		$checkout->status_code = LandlordCheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
-		Log::debug('Jobs.Landlord.CreateTenant 0. Processing Site='.$checkout->site);
+		Log::debug('Jobs.Landlord.CreateTenant 0. Processing Site = '.$checkout->site);
 
 		// create or update user
 		Log::debug('Jobs.Landlord.CreateTenant 1. Calling self::createUpdateCheckoutUser');
 		$user_id= self::createUpdateCheckoutUser($this->checkout_id);
-		
-		// Create account 
+
+		// Create account
 		Log::debug('Jobs.Landlord.CreateTenant 2. Calling self::createCheckoutAccount');
 		$account_id		= self::createCheckoutAccount($this->checkout_id);
 
@@ -109,10 +109,10 @@ class CreateTenant implements ShouldQueue
 		$user = User::where('id', $user_id)->first();
 		$user->account_id = $account_id;
 		$user->save();
-		Log::debug('Jobs.Landlord.CreateTenant User account_id update user_id =' . $user->id);
+		Log::debug('Jobs.Landlord.CreateTenant User account_id update user_id = ' . $user->id);
 		LandlordEventLog::event('user', $user->id, 'update', $account_id);
-		
-		// create service	
+
+		// create service
 		Log::debug('Jobs.Landlord.CreateTenant 3. Calling bo.createServiceForCheckout');
 		$service_id = bo::createServiceForCheckout($this->checkout_id);
 
@@ -129,7 +129,7 @@ class CreateTenant implements ShouldQueue
 
 		// update account with billed date
 		//$invoice = Invoice::where('id', $invoice_id)->first();
-		
+
 		// update product sold_qty column
 		$product			= Product::where('id', $checkout->product_id )->first();
 		$product->sold_qty	= $product->sold_qty+1;
@@ -143,7 +143,7 @@ class CreateTenant implements ShouldQueue
 		// mark checkout as complete
 		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
-		
+
 		// Send notification to system on new purchase
 		$account 	= Account::where('id', $account_id)->first();
 		$system 	= User::where('id', config('bo.SYSTEM_USER_ID'))->first();
@@ -165,13 +165,13 @@ class CreateTenant implements ShouldQueue
 			$user			= User::where('id', $checkout->owner_id)->first();
 			$user->role		= UserRoleEnum::ADMIN->value;
 			$user->save();
-			
+
 			Log::debug('Jobs.Landlord.CreateTenant Existing User Role updated for id = ' . $user->id);
 			// Write event log
 			LandlordEventLog::event('user', $user->id, 'update', UserRoleEnum::ADMIN->value);
 			$user_id = $checkout->owner_id;
 		} else {
-			// create new admin user			
+			// create new admin user
 			$user			= new User();
 			$user->name		= $checkout->account_name;
 			$user->email	= $checkout->email;
@@ -180,7 +180,7 @@ class CreateTenant implements ShouldQueue
 			$user->password	= bcrypt($random_password);
 			// TODO MUST comment
 			// $user->password	= bcrypt('password');
-			
+
 			// default address
 			$user->address1			= $config->address1;
 			$user->address2			= $config->address2;
@@ -190,7 +190,7 @@ class CreateTenant implements ShouldQueue
 			$user->country			= $config->country;
 			$user->facebook			= $config->facebook;
 			$user->linkedin			= $config->linkedin;
-			
+
 			$user->save();
 
 			// update owner_id in checkout
@@ -208,7 +208,7 @@ class CreateTenant implements ShouldQueue
 
 			$user_id = $user->id;
 		}
-		
+
 		return $user_id;
 	}
 
@@ -223,7 +223,7 @@ class CreateTenant implements ShouldQueue
 		Log::channel('bo')->info('Create Folder: '.$path);
 		if(!File::isDirectory($path)){
 			File::makeDirectory($path, 0644, true, true);
-		} 
+		}
 		Log::channel('bo')->info('Copying avatar.png to '.$path);
 		File::copy(public_path('assets\avatar\avatar.png'), $path.'\avatar.png');
 
@@ -232,7 +232,7 @@ class CreateTenant implements ShouldQueue
 		Log::channel('bo')->info('Create Folder: '.$path);
 		if(!File::isDirectory($path)){
 			File::makeDirectory($path, 0644, true, true);
-		} 
+		}
 		Log::channel('bo')->info('Copying logo.png to '.$path);
 		File::copy(public_path('assets\logo\logo.png'), $path.'\logo.png');
 
@@ -280,8 +280,8 @@ class CreateTenant implements ShouldQueue
 		$account->facebook			= $config->facebook;
 		$account->linkedin			= $config->linkedin;
 
-		//Log::debug('$checkout->mnth=' . $checkout->mnth);
-		//Log::debug('$end date=' . now()->addMonth($checkout->mnth));
+		//Log::debug('$checkout->mnth = ' . $checkout->mnth);
+		//Log::debug('$end date = ' . now()->addMonth($checkout->mnth));
 		$account->start_date		= now();
 		$account->end_date			= now()->addMonth($checkout->mnth);
 		// defaulted
@@ -299,7 +299,7 @@ class CreateTenant implements ShouldQueue
 		return $account->id;
 	}
 
-	
+
 	public function createTenantDb()
 	{
 		//$checkout_id = $this->checkout_id;
@@ -320,13 +320,13 @@ class CreateTenant implements ShouldQueue
 			'domain' => $domain
 		]);
 
-		
+
 		// run seeders in tenant
 		$tenant->run(function () {
 			$seeder = new \Database\Seeders\TenantSeeder();
 			$seeder->run();
 		});
-		
+
 
 		// Write event log
 		Log::debug('Lobs.landlord.createTenant.createTenantDb Tenant Created tenant_id = ' . $tenant->id);
@@ -354,13 +354,13 @@ class CreateTenant implements ShouldQueue
 				'enable'			=> true,
 				//'password' 	=> bcrypt($random_password),
 			]);
-			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Admin User created user_id =' . $user->id);
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Admin User created user_id = ' . $user->id);
 
 			// Update tenant config->name in the tenant database
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Updating Tenant Setup for account_name and admin_id');
 			$tenantSetup 			= \App\Models\Tenant\Admin\Setup::first();
-			$tenantSetup->name 		= $account_name; 
-			$tenantSetup->admin_id 	= $user->id; 
+			$tenantSetup->name 		= $account_name;
+			$tenantSetup->admin_id 	= $user->id;
 			$tenantSetup->update();
 
 			// Insert Rows in Hierarchyl Table
@@ -374,7 +374,7 @@ class CreateTenant implements ShouldQueue
 				'approver_id'	=> $user->id,
 			]);
 
-			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Setup Name Updated setup_id =' . $tenantSetup->id);
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Setup Name Updated setup_id = ' . $tenantSetup->id);
 
 			// TODO Send Verification Email from tenant context
 			// event(new Registered($user));

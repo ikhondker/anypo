@@ -46,7 +46,7 @@ use DB;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 //use Illuminate\Support\Collection;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class DashboardController extends Controller
@@ -65,7 +65,7 @@ class DashboardController extends Controller
 			// check if current months import rates imported
 			if ($setup->last_rate_date <> '') {
 				$last_rate_month	= $setup->last_rate_date->startOfMonth();
-				Log::debug('tenant.dashboards.index Checking Rates. last_rate_month='.$last_rate_month.' Will check if months has been changed since last import.');
+				Log::debug('tenant.dashboards.index Checking Rates. last_rate_month = '.$last_rate_month.' Will check if months has been changed since last import.');
 			} else {
 				Log::debug('tenant.dashboards.index Checking Rates. last_rate_month is empty. Will import rate for the first time.');
 				$last_rate_month	= '';
@@ -90,7 +90,7 @@ class DashboardController extends Controller
 				break;
 			case UserRoleEnum::BUYER->value:
 				return self::buyerDashboard();
-				break;	
+				break;
 			case UserRoleEnum::HOD->value:
 				return self::hodDashboard();
 				break;

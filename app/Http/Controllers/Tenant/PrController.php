@@ -117,7 +117,7 @@ class PrController extends Controller
 				break;
 			default:
 				$prs = $prs->ByUserAll()->paginate(10);
-				Log::warning(tenant('id'). 'tenant.pr.index Other role ='. auth()->user()->role->value);
+				Log::warning(tenant('id'). 'tenant.pr.index Other role = '. auth()->user()->role->value);
 		}
 
 		return view('tenant.prs.index', compact('prs'));
@@ -327,13 +327,13 @@ class PrController extends Controller
 	public function destroy(Pr $pr)
 	{
 
-		//Log::debug('tenant.prs.destroy pr_id='.$pr->id. ' auth_status='.$pr->auth_status );
+		//Log::debug('tenant.prs.destroy pr_id = '.$pr->id. ' auth_status = '.$pr->auth_status );
 		// don't allow REJECTED to delete as it has dbu rows
 		if (($pr->auth_status <> AuthStatusEnum::DRAFT->value) ) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
 		}
 		Log::debug('tenant.pr.destroy deleting pr_id = ' . $pr->id);
-		
+
 		// check if allowed by policy
 		$this->authorize('delete', $pr);
 
@@ -384,7 +384,7 @@ class PrController extends Controller
 	 */
 	public function cancel(Pr $pr)
 	{
-		
+
 		$pr_id = $pr->id;
 		Log::debug('tenant.pr.cancel cancelling pr_id = ' . $pr_id);
 
@@ -644,7 +644,7 @@ class PrController extends Controller
 			return redirect()->route('prs.show',$pr->id)->with('error', 'Requisition already converted to PO#'. $pr->po_id .' !');
 		}
 
-		Log::debug('tenant.pr.convertPo Converting Requisition to PO pr_id='.$pr->id);
+		Log::debug('tenant.pr.convertPo Converting Requisition to PO pr_id = '.$pr->id);
 		$pr = Pr::where('id', $pr->id)->first();
 		// don't set dept_budget_id . It will be save during submissions
 		// Populate Function currency amounts during submit
@@ -690,7 +690,7 @@ class PrController extends Controller
 		$pr->po_id		= $po_id;
 		$pr->save();
 
-		Log::debug('tenant.pr.convertPo Requisition Converted to po_id='.$po_id);
+		Log::debug('tenant.pr.convertPo Requisition Converted to po_id = '.$po_id);
 
 		EventLog::event('po', $po->id, 'converted','id',$pr->id);	// Write to Log
 
@@ -722,8 +722,8 @@ class PrController extends Controller
 			AND pr.project_id=p.id
 			AND pr.supplier_id=s.id
 			AND pr.requestor_id=u.id
-			AND ". ($dept_id <> '' ? 'pr.dept_id='.$dept_id.' ' : ' 1=1 ') ."
-			AND ". ($requestor_id <> '' ? 'pr.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'pr.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($requestor_id <> '' ? 'pr.requestor_id = '.$requestor_id.' ' : ' 1=1 ') ."
 			ORDER BY pr.id DESC
 		");
 

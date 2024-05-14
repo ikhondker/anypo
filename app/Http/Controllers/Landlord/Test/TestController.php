@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. FUTURE 
+# 13. FUTURE
 
 
 // Models
@@ -70,7 +70,7 @@ class TestController extends Controller
 			$user = User::where('id', $id )->get()->firstOrFail();
 			Log::info('tenant.test.run '. $user->name);
 		//} catch (Exception $e) {
-		//	Log::error(tenant('id'). ' tenant.budget.attach1 user_id ='. $id. ' Message = '. $e->getMessage());
+		//	Log::error(tenant('id'). ' tenant.budget.attach1 user_id = '. $id. ' Message = '. $e->getMessage());
 		//}
 		//echo $user->name;
 		echo 'Done';
@@ -87,7 +87,7 @@ class TestController extends Controller
 
 		Log::debug('Value of env(ASSET_URL)=' . env('ASSET_URL'));
 
-		
+
 
 		exit;
 
@@ -105,8 +105,8 @@ class TestController extends Controller
 		}
 		);
 		exit;
-			
-			
+
+
 		SubscriptionInvoicePaid::dispatch('1006');
 
 		exit;
@@ -374,7 +374,7 @@ class TestController extends Controller
 	{
 		$data = [
 			'title' => 'Welcome to ItSolutionStuff.com',
-		]; 
+		];
 		$pdf = PDF::loadView('landlord.reports.formats.example2', $data);
 		return $pdf->stream('fonts.pdf');
 	}

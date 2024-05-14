@@ -46,9 +46,9 @@ class AddAddon implements ShouldQueue
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
 		$checkout->status_code = LandlordCheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
-		Log::debug('Jobs.Landlord.AddAddon 0. Processing Site='.$checkout->site);
+		Log::debug('Jobs.Landlord.AddAddon 0. Processing Site = '.$checkout->site);
 
-		// create add service	
+		// create add service
 		Log::debug('Jobs.Landlord.AddAddon 1. Calling createServiceForCheckout');
 		$service_id = bo::createServiceForCheckout($this->checkout_id);
 
@@ -78,7 +78,7 @@ class AddAddon implements ShouldQueue
 		$account->gb		= $account->gb + $addon->gb;
 		$account->price		= $account->price + $addon->price;
 		$account->save();
-		Log::channel('bo')->info('Jobs.Landlord.AddAddon Account qty updated for account_id=' . $account->id);
+		Log::channel('bo')->info('Jobs.Landlord.AddAddon Account qty updated for account_id = ' . $account->id);
 
 		// mark checkout as complete
 		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;

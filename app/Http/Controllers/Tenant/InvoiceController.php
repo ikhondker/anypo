@@ -68,11 +68,11 @@ use Validator;
 use Str;
 use Illuminate\Foundation\Http\FormRequest;
 use Exception;
-# 13. FUTURE 
+# 13. FUTURE
 
 class InvoiceController extends Controller
 {
-	
+
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -99,7 +99,7 @@ class InvoiceController extends Controller
 				break;
 			default:
 				//$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByUserAll()->paginate(10);
-				Log::warning(tenant('id'). 'tenant.invoice.index Other role ='. auth()->user()->role->value);
+				Log::warning(tenant('id'). 'tenant.invoice.index Other role = '. auth()->user()->role->value);
 				abort(403);
 		}
 		return view('tenant.invoices.index', compact('invoices'));
@@ -110,7 +110,7 @@ class InvoiceController extends Controller
 	 */
 	public function create(Po $po)
 	{
-		
+
 		$this->authorize('create', Invoice::class);
 
 		$setup 	= Setup::first();
@@ -126,7 +126,7 @@ class InvoiceController extends Controller
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for OPEN Purchase Order!');
 		}
 
-		Log::debug('tenant.invoices.create creating invoice for po_id=' . $po->id);		
+		Log::debug('tenant.invoices.create creating invoice for po_id = ' . $po->id);
 		//$po = Po::where('id', $po_id)->first();
 		$pocs	= User::Tenant()->get();
 
@@ -140,34 +140,34 @@ class InvoiceController extends Controller
 	{
 		$this->authorize('create', Invoice::class);
 
-		// get PO 
+		// get PO
 		$po = Po::where('id', $request->input('po_id'))->first();
-		
+
 		// Check over invoice
 		$request->validate([
 			'amount' => [new OverInvoiceRule ($po->id)],
 		]);
 
-		
+
 		$request->merge([
-			'currency' 		=> $po->currency, 
+			'currency' 		=> $po->currency,
 			'invoice_no' 	=> Str::upper($request['invoice_no']),
-			'supplier_id'	=> 	$po->supplier_id 
+			'supplier_id'	=> 	$po->supplier_id
 		]);
 
 
 		// $request->merge(['invoice_date'		=> date('Y-m-d H:i:s')]);
 		$invoice = Invoice::create($request->all());
-		
+
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $invoice->id ]);
 			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
 			$attid = FileUpload::aws($request);
 		}
 
-		
 
-		
+
+
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'create');
 		return redirect()->route('invoices.show',$invoice->id)->with('success', 'Invoice created successfully. Please POST the invoice.');
@@ -176,11 +176,11 @@ class InvoiceController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(Invoice $invoice) 
+	public function show(Invoice $invoice)
 	{
-		
+
 		$this->authorize('view', $invoice);
-	
+
 		return view('tenant.invoices.show', compact('invoice'));
 	}
 
@@ -196,7 +196,7 @@ class InvoiceController extends Controller
 		}
 
 		//$depts = Dept::primary()->get();
-		
+
 		//$suppliers = Supplier::primary()->get();
 		//$projects = Project::primary()->get();
 		//$users = User::tenant()->get();
@@ -204,7 +204,7 @@ class InvoiceController extends Controller
 		$pocs	= User::Tenant()->get();
 
 		return view('tenant.invoices.edit', compact('invoice', 'po', 'pocs'));
-	
+
 	}
 
 	/**
@@ -213,8 +213,8 @@ class InvoiceController extends Controller
 	public function update(UpdateInvoiceRequest $request, Invoice $invoice)
 	{
 		$this->authorize('update', $invoice);
-		
-		// get PO 
+
+		// get PO
 		$po = Po::where('id', $invoice->po_id)->first();
 
 		// check over invoiced
@@ -225,7 +225,7 @@ class InvoiceController extends Controller
 		// User and HoD Can not edit department PR
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
 			$request->merge(['dept_id'		=> auth()->user()->dept_id]);
-		} 
+		}
 
 		$request->merge([
 			'invoice_no' => Str::upper($request['invoice_no']),
@@ -241,7 +241,7 @@ class InvoiceController extends Controller
 	public function attach(FormRequest $request)
 	{
 		$this->authorize('create', Invoice::class);
-		
+
 		// allow add attachment only if status is draft
 		try {
 			$invoice = Invoice::where('id', $request->input('attach_invoice_id'))->get()->firstOrFail();
@@ -258,7 +258,7 @@ class InvoiceController extends Controller
 			$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
 			$attid = FileUpload::aws($request);
 		}
-		
+
 		return redirect()->route('invoices.show', $request->input('attach_invoice_id'))->with('success', 'File Uploaded successfully.');
 	}
 
@@ -284,7 +284,7 @@ class InvoiceController extends Controller
 			return back()->withError("You can only post DRAFT Invoices!")->withInput();
 		}
 
-		// update budget and project level summary 
+		// update budget and project level summary
 		$po = Po::where('id', $invoice->po_id)->first();
 		if ($po->status <> ClosureStatusEnum::OPEN->value) {
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can post Invoices only for OPEN Purchase Order!');
@@ -294,13 +294,13 @@ class InvoiceController extends Controller
 		$un_invoiced_amount = $po->amount - $po->amount_invoice;
 		if ( $invoice->amount > ($un_invoiced_amount) ){
 			return redirect()->route('invoices.show', $invoice->id)->with('error', 'You can not create Invoice larger than the remaining un-invoiced amount i.e. '. number_format($un_invoiced_amount,2).' '. $po->currency);
-		} 
-		
+		}
+
 		$invoice->fill(['status' => InvoiceStatusEnum::POSTED->value]);
-			
+
 
 		$invoice->update();
-		// P2 if final invoice Close po 
+		// P2 if final invoice Close po
 
 		// 	Populate functional currency values
 		$result = self::updateInvoiceFcValues($invoice->id);
@@ -308,9 +308,9 @@ class InvoiceController extends Controller
 			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		}
 
-		// Reupload 
+		// Reupload
 		$invoice = Invoice::where('id', $invoice->id)->first();
-		
+
 		// Po dept budget grs amount update
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 		$dept_budget->amount_invoice = $dept_budget->amount_invoice + $invoice->fc_amount;
@@ -333,12 +333,12 @@ class InvoiceController extends Controller
 		$po->amount_invoice = $po->amount_invoice + $invoice->amount;
 		$po->fc_amount_invoice = $po->fc_amount_invoice + $invoice->fc_amount;
 		$po->save();
-				
+
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::POST->value, $invoice->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
-		
-		// Create Accounting for this Invoice 
+
+		// Create Accounting for this Invoice
 		AelInvoice::dispatch($invoice->id, $invoice->fc_amount);
 
 		// Write to Log
@@ -355,21 +355,21 @@ class InvoiceController extends Controller
 		//
 	}
 
-	
+
 
 	/**
 	 * Remove the specified resource from storage.
 	 */
 	public function cancel(Invoice $invoice)
 	{
-		
+
 		$this->authorize('cancel', Invoice::class);
-		
+
 		$invoice_id = $invoice->id;
 
 		try {
 			$invoice = Invoice::where('id', $invoice_id)->firstOrFail();
-			
+
 			if ($invoice->payment_status <> PaymentStatusEnum::DUE->value) {
 				return back()->withError("You can not cancel a paid Invoice! Please void Payments first!")->withInput();
 			}
@@ -378,11 +378,11 @@ class InvoiceController extends Controller
 			if ($sum_payments <> 0) {
 				return back()->withError("Payment Exists! Please void Payments first!")->withInput();
 			}
-		
-			// update budget and project level summary 
+
+			// update budget and project level summary
 			$po = Po::where('id', $invoice->po_id)->first();
 
-			// update budget and project level summary 
+			// update budget and project level summary
 			$po = Po::where('id', $invoice->po_id)->first();
 			if ($po->status <> ClosureStatusEnum::OPEN->value) {
 				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
@@ -416,7 +416,7 @@ class InvoiceController extends Controller
 			RecordDeptBudgetUsage::dispatch(EntityEnum::INVOICE->value, $invoice->id, EventEnum::CANCEL->value, $invoice->fc_amount);
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-			// Create Reverse Accounting for this Invoice 
+			// Create Reverse Accounting for this Invoice
 			AelInvoice::dispatch($invoice->id, $invoice->fc_amount, true);
 
 			// cancel Invoice
@@ -433,12 +433,12 @@ class InvoiceController extends Controller
 					'paid_amount' 	=> 0,
 					'status' 		=> InvoiceStatusEnum::CANCELED->value
 				]);
-	
+
 			// Write to Log
 			EventLog::event('invoice', $invoice->id, 'cancel', 'id', $invoice->id);
-	
+
 			return redirect()->route('invoices.index')->with('success', 'Invoice canceled successfully.');
-		
+
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code
 			return back()->withError("Invoice #".$invoice_id." not Found!")->withInput();
@@ -451,15 +451,15 @@ class InvoiceController extends Controller
 
 		$setup 			= Setup::first();
 		$invoice		= Invoice::with('po')->where('id', $receipt_id)->firstOrFail();
-		Log::debug('tenant.InvoiceController.updateInvoiceFcValues receipt_id=' . $receipt_id);
-		Log::debug('tenant.InvoiceController.updateInvoiceFcValues invoice_id=' . $invoice->id);
-		Log::debug('tenant.InvoiceController.updateInvoiceFcValues invoice->currency =' . $invoice->currency);
-		Log::debug('tenant.InvoiceController.updateInvoiceFcValues setup->currency =' . $setup->currency);
+		Log::debug('tenant.InvoiceController.updateInvoiceFcValues receipt_id = ' . $receipt_id);
+		Log::debug('tenant.InvoiceController.updateInvoiceFcValues invoice_id = ' . $invoice->id);
+		Log::debug('tenant.InvoiceController.updateInvoiceFcValues invoice->currency = ' . $invoice->currency);
+		Log::debug('tenant.InvoiceController.updateInvoiceFcValues setup->currency = ' . $setup->currency);
 
 		// populate fc columns for receipt lines
 		if ($invoice->currency == $setup->currency){
 			$rate = 1;
-			DB::statement("UPDATE invoices SET 
+			DB::statement("UPDATE invoices SET
 				fc_sub_total	= sub_total,
 				fc_tax			= tax,
 				fc_gst			= gst,
@@ -469,13 +469,13 @@ class InvoiceController extends Controller
 			$rate = round(ExchangeRate::getRate($invoice->currency, $setup->currency),6);
 			// update all pols fc columns
 			// update invoice fc columns
-			// ERROR rate not found 
+			// ERROR rate not found
 			if ($rate == 0){
-				Log::error(tenant('id').  'receipt.updateInvoiceFcValues rate not found currency=' . $invoice->currency.' fc_currency='.$setup->currency);
+				Log::error(tenant('id').  'receipt.updateInvoiceFcValues rate not found currency = ' . $invoice->currency.' fc_currency = '.$setup->currency);
 				return false;
 			}
 
-			DB::statement("UPDATE invoices SET 
+			DB::statement("UPDATE invoices SET
 				fc_sub_total	= round(sub_total * ". $rate .",2),
 				fc_tax			= round(tax * ". $rate .",2),
 				fc_gst			= round(gst * ". $rate .",2),
@@ -512,18 +512,18 @@ class InvoiceController extends Controller
 		}
 
 		$data = DB::select("
-		SELECT i.id, i.invoice_no, i.invoice_date, 
-				i.po_id po_id, 
-				s.name supplier_name, 
-				i.summary, u.name poc_name, 
-				i.currency, i.sub_total, i.tax, i.gst, i.amount, i.paid_amount, 
+		SELECT i.id, i.invoice_no, i.invoice_date,
+				i.po_id po_id,
+				s.name supplier_name,
+				i.summary, u.name poc_name,
+				i.currency, i.sub_total, i.tax, i.gst, i.amount, i.paid_amount,
 				i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_paid_amount,
 				i.notes, i.status, i.payment_status
 			FROM invoices i, pos po, suppliers s, users u
 			WHERE i.po_id =p.id
 			AND i.supplier_id= s.id
 			AND i.poc_id = u.id
-			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
 			");
 		$dataArray = json_decode(json_encode($data), true);

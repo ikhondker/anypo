@@ -43,7 +43,7 @@ use App\Helpers\EventLog;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 
@@ -76,7 +76,7 @@ class DbuController extends Controller
 				break;
 			default:
 				//$dbus = $dbus->ByUserAll()->with('dept')->with('deptBudget.budget')->with('project')->paginate(10);
-				Log::warning(tenant('id'). 'tenant.dbu.index Other role ='. auth()->user()->role->value);
+				Log::warning(tenant('id'). 'tenant.dbu.index Other role = '. auth()->user()->role->value);
 				abort(403);
 		}
 
@@ -147,12 +147,12 @@ class DbuController extends Controller
 
 	public function export()
 	{
-		
+
 		$this->authorize('export', Dbu::class);
 
 		$data = DB::select("
-		SELECT u.id, u.entity, u.article_id, u.event, o.name user_name, d.name dept_name, p.name project_name, 
-		u.amount_pr_booked, u.amount_pr, u.amount_po_booked, u.amount_po, u.amount_grs, u.amount_invoice, u.amount_payment, 
+		SELECT u.id, u.entity, u.article_id, u.event, o.name user_name, d.name dept_name, p.name project_name,
+		u.amount_pr_booked, u.amount_pr, u.amount_po_booked, u.amount_po, u.amount_grs, u.amount_invoice, u.amount_payment,
 		u.created_at
 		FROM dbus u,dept_budgets db,budgets b,depts d, projects p, users o
 		WHERE u.dept_budget_id = db.id
