@@ -71,7 +71,7 @@ class ProjectController extends Controller
 		}
 		$projects = $projects->with("pm")->orderBy('id', 'DESC')->paginate(10);
 
-        return view('tenant.lookup.projects.index', compact('projects'));
+		return view('tenant.lookup.projects.index', compact('projects'));
 		// if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
 		// 	return view('tenant.lookup.projects.index-basic', compact('projects'));
 		// } else {

@@ -33,13 +33,13 @@ class Akk
 		try {
 			$deptBudget 	= DeptBudget::where('dept_id', auth()->user()->dept_id )->get()->firstOrFail();
 			return true;
-		  } catch (ModelNotFoundException $ex) {
+		} catch (ModelNotFoundException $ex) {
 			//Log::warning('tenant.model.DeptBudget.userDeptBudgetExists dept_budget not found!');
 			return false;
-		  } catch (\Exception $exception) {
-			  // General Exception class which is the parent of all Exceptions 
-			  return false;
-		  }
+		} catch (\Exception $exception) {
+			// General Exception class which is the parent of all Exceptions 
+			return false;
+		}
 	}
 
 	// P2 Use this

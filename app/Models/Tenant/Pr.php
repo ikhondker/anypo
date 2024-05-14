@@ -114,7 +114,7 @@ class Pr extends Model
 				Log::error('tenant.model.pr.syncPrValues Exchange rate not found for PR currency = ' . $pr->currency.' fc_currency = '.$setup->currency);
 				return 'E015';
 			} else {
-				Log::debug('tenant.model.pr.syncPrValues Exchange rate  = ' . $rate);
+				Log::debug('tenant.model.pr.syncPrValues Exchange rate = ' . $rate);
 			}
 
 			// update all prls fc columns
@@ -157,7 +157,7 @@ class Pr extends Model
 		$pr->fc_exchange_rate	= $rate;
 
 		$pr->save();
-		Log::debug('tenant.model.pr.syncPrValues pr table updated with  pr->fc_amount = '.$pr->fc_amount);
+		Log::debug('tenant.model.pr.syncPrValues pr table updated with pr->fc_amount = '.$pr->fc_amount);
 
 		return '';
 	}
@@ -346,7 +346,7 @@ class Pr extends Model
 		$query->where('auth_status',AuthStatusEnum::REJECTED->value);
 	}
 	/**
-	 * Scope a query to only All Converted to PO,  PR for current tenant.
+	 * Scope a query to only All Converted to PO, PR for current tenant.
 	*/
 	public function scopeAllConverted(Builder $query): void
 	{

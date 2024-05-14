@@ -728,10 +728,10 @@ class PoController extends Controller
 		AND po.project_id=p.id
 		AND po.supplier_id=s.id
 		AND po.requestor_id=u.id
-		AND ". $whereRequestor  ."
-		AND ". $whereDept  ."
-		AND ". $whereSupplier  ."
-		AND ". $whereProject  ."
+		AND ". $whereRequestor ."
+		AND ". $whereDept ."
+		AND ". $whereSupplier ."
+		AND ". $whereProject ."
 		ORDER BY po.id DESC	";
 
 		$data = DB::select($sql);

@@ -214,7 +214,7 @@ class BudgetController extends Controller
 		}
 
 		if ($budget->closed){
-			return redirect()->route('budgets.show', $budget->id)->with('error', 'Add attachment is  allowed only for open Budget.');
+			return redirect()->route('budgets.show', $budget->id)->with('error', 'Add attachment is allowed only for open Budget.');
 		}
 	
 		if ($file = $request->file('file_to_upload')) {

@@ -548,7 +548,7 @@ class PrController extends Controller
 		Log::debug('tenant.pr.submit submitting in Workflow::submitWf ...');
 		$wf_id = Workflow::submitWf(EntityEnum::PR->value, $pr->id);
 		if ($wf_id == 0) {
-			Log::error(tenant('id').' tenant.prs.submit  Workflow::submitWf failed for pr_id = '.$pr->id);
+			Log::error(tenant('id').' tenant.prs.submit Workflow::submitWf failed for pr_id = '.$pr->id);
 			return redirect()->route('prs.index')->with('error', 'Workflow can not be created! Failed to Submit.');
 		}
 

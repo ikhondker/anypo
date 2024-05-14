@@ -16,7 +16,7 @@ use App\Models\Tenant\Po;
 
 class Aeh extends Model
 {
-    use HasFactory;
+	use HasFactory;
 	
 	use AddCreatedUpdatedBy;
 

@@ -74,7 +74,7 @@ class TicketPolicy
 		//return ($user->isSeeded() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
 		//return ($user->isSeeded() && ! $ticket->isClosed());
 		// anyone can close a ticket
-		return  (! $ticket->isClosed());
+		return (! $ticket->isClosed());
 	}
 
 	/**

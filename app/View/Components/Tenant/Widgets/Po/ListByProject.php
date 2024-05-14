@@ -10,7 +10,7 @@ use App\Models\Tenant\Po;
 
 class ListByProject extends Component
 {
-    public $pos;
+	public $pos;
 	/**
 	 * Create a new component instance.
 	 */
@@ -20,11 +20,11 @@ class ListByProject extends Component
 	}
 
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.po.list-by-common');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.po.list-by-common');
+	}
 }

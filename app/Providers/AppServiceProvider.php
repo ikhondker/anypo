@@ -49,11 +49,11 @@ class AppServiceProvider extends ServiceProvider
 		*/
 		// Should return TRUE or FALSE IQBAL 
 		Gate::define('superior', function(User $user) {
-			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() ||  $user->isAdmin() || $user->isSupport() || $user->isSystem());
+			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
 		});
 
 		Gate::define('xxall-po', function(User $user) {
-			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() ||  $user->isAdmin() || $user->isSupport() || $user->isSystem());
+			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
 		});
 
 

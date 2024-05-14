@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
 			// landlord Errors
 			if (tenant('id') == '') {
 					$errorLog			= new ErrorLog();
-					$errorLog->tenant  	= $tenant_id;
+					$errorLog->tenant	= $tenant_id;
 					$errorLog->url		= $url;
 					$errorLog->user_id 	= $user_id;
 					$errorLog->role		= $role;
@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler
 				// Tenant Errors now create the log under in landlord
 				$landlordTicket = tenancy()->central(function ($tenant) use ($tenant_id, $url, $user_id, $role, $eClass, $msg) {
 					$errorLog			= new \App\Models\Landlord\Manage\ErrorLog();
-					$errorLog->tenant  	= $tenant_id;
+					$errorLog->tenant	= $tenant_id;
 					$errorLog->url		= $url;
 					$errorLog->user_id 	= $user_id;
 					$errorLog->role		= $role;

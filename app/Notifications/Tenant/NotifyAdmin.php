@@ -19,9 +19,9 @@ class NotifyAdmin extends Notification implements ShouldQueue
 	protected $action;
 	protected $article_id;
 
-	protected $subject  = 'Subject';
-	protected $line1    = 'Line Description';
-	protected $line2    = 'Line Description';
+	protected $subject	= 'Subject';
+	protected $line1	= 'Line Description';
+	protected $line2	= 'Line Description';
 
 	/**
 	 * Create a new notification instance.
@@ -34,9 +34,9 @@ class NotifyAdmin extends Notification implements ShouldQueue
 
 		switch ($this->action) {
 			case 'USER-REGISTERED':
-				$tenantUser = User::where('id', $this->article_id)->first();
-				$this->subject = '[FYA] New User Registration: '. $tenantUser->name;
-				$this->line1	= 'Please note, a new user your '. $tenantUser->name.' has been registered at '.tenant('id').'.' .config('app.name').' with email '.$tenantUser->email;  ;
+				$tenantUser 	= User::where('id', $this->article_id)->first();
+				$this->subject 	= '[FYA] New User Registration: '. $tenantUser->name;
+				$this->line1	= 'Please note, a new user your '. $tenantUser->name.' has been registered at '.tenant('id').'.' .config('app.name').' with email '.$tenantUser->email;
 				$this->line2	= 'Please review and enable that account, if it is a valid team member.';
 				break;
 			case 'XXACTIVATED':

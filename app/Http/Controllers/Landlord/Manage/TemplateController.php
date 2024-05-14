@@ -130,7 +130,7 @@ class TemplateController extends Controller
 		LandlordEventLog::event('template', $template->id, 'create');
 
 
-		// Upload File, if any, insert row in attachment table  and get attachments id
+		// Upload File, if any, insert row in attachment table and get attachments id
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $template->id]);
 			$request->merge(['entity'		=> EntityEnum::TEMPLATE->value]);

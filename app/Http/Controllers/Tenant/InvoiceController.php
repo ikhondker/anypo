@@ -471,7 +471,7 @@ class InvoiceController extends Controller
 			// update invoice fc columns
 			// ERROR rate not found
 			if ($rate == 0){
-				Log::error(tenant('id').  'receipt.updateInvoiceFcValues rate not found currency = ' . $invoice->currency.' fc_currency = '.$setup->currency);
+				Log::error(tenant('id'). 'receipt.updateInvoiceFcValues rate not found currency = ' . $invoice->currency.' fc_currency = '.$setup->currency);
 				return false;
 			}
 
