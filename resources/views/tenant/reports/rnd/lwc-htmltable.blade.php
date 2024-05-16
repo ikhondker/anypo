@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{{-- <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia"> --}}
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" >
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 <style>
 	/* body {
 	  font-family: "Sofia", sans-serif;
@@ -10,17 +10,15 @@
 
 	#my-header-table {
 		font-family: Arial, Helvetica, sans-serif;
-		font-family: "Poppins", sans-serif;
+		/* font-family: "Poppins", sans-serif; */
 		border-collapse: collapse;
 		border: 0px solid white;
 		width: 100%;
 		font-size: 12px;
 		padding-bottom: 8px;
-		color: #3F80EA;
 	}
 	#my-header-table h1,h3 {
 		font-family: Arial, Helvetica, sans-serif;
-		font-family: "Poppins", sans-serif;
 		margin-top: 0px;
 		margin-bottom: 1px;
 	}
@@ -65,11 +63,10 @@
 
 	#my-table {
 		font-family: Arial, Helvetica, sans-serif;
-		font-family: "Poppins", sans-serif;
+		/* font-family: "Poppins", sans-serif; */
 		border-collapse: collapse;
 		width: 100%;
 		font-size: 12px;
-		color: red;
 	}
 
 	#my-table td, #my-table th {

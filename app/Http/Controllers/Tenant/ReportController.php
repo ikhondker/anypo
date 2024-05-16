@@ -823,6 +823,10 @@ class ReportController extends Controller
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 
+		$param1 	= 'From ';
+		$param2 	= 'Supplier: ';
+
+
 		// Increase reports run_count
 		DB::statement("UPDATE reports SET
 		run_count	= run_count + 1
@@ -835,6 +839,8 @@ class ReportController extends Controller
 			'report' 	=> $report,
 			'pr' 		=> $pr,
 			'prls' 		=> $prls,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
 		];
 
 		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
@@ -842,6 +848,7 @@ class ReportController extends Controller
 
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'portrait');
+		//$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
 
 

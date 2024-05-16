@@ -125,7 +125,7 @@ class WflController extends Controller
 				Log::debug('tenant.wfl.update Checking if next_approver_id exists.');
 				$next_approver_id = Workflow::getNextApproverId($wfl->wf_id);
 				if ($next_approver_id <> 0) {
-					Log::debug('tenant.wfl.update next_approver exists with user_i = 'd.$next_approver_id);
+					Log::debug('tenant.wfl.update next_approver exists with user_i = '.$next_approver_id);
 					Log::debug('tenant.wfl.update Forward Wf. Executing tenant.wfl.moveToNext.');
 					self::moveToNext($wf);
 				} else {

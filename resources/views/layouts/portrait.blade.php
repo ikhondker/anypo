@@ -4,12 +4,13 @@
 		<meta charset="utf-8">
 		<title>@yield('title', 'Reports')</title>
 		{{-- <link rel="stylesheet" href="style.css" media="all" /> --}}
-		<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+		{{-- <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" /> --}}
 
 	<!-- ========== STYLE ========== -->
 	<style>
 		@font-face {
 			font-family: 'Lato';
+			font-family: Arial, Helvetica, sans-serif;
 			font-weight: normal;
 			font-style: normal;
 			font-variant: normal;
@@ -38,7 +39,7 @@
 			background: #FFFFFF;
 			font-family: Arial, sans-serif;
 			font-size: 14px;
-			font-family: Lato;	/* Changed */
+			/* font-family: Lato;	Changed */
 		}
 	
 		header {
