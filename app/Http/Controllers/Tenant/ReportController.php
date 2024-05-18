@@ -847,8 +847,8 @@ class ReportController extends Controller
 			// ->setOption('fontDir', public_path('/fonts/lato'));
 
 		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'portrait');
-		//$pdf->setPaper('A4', 'landscape');
+		//$pdf->setPaper('A4', 'portrait');
+		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
 
 
@@ -878,6 +878,11 @@ class ReportController extends Controller
 		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
 
 		return $pdf->stream('Pr'.$pr->id.'.pdf');
+		
+		//return view('tenant.reports.formats.pr', compact('setup','report','pr','prls','param1','param2'));
+
+		
+
 	}
 
 

@@ -16,11 +16,6 @@
 				/* src: url({{ storage_path() . '/fonts/lato/Lato-Regular.ttf' }}) format("truetype"); */
 			}
 		
-			* {
-		    /* Change your font family */
-    			font-family: sans-serif;
-			}
-
 			.clearfix:after {
 				content: "";
 				display: table;
@@ -46,19 +41,18 @@
 			}
 		
 			header {
-				padding: 0px;	/* 10 */
+				padding: 10px 0;
 				margin-bottom: 7px; /* 20px */
-				/* border-bottom: 1px solid #AAAAAA; */
+				border-bottom: 1px solid #AAAAAA;
 			}
 		
 			#logo {
 				float: left;
-				margin-top: 0px;
+				margin-top: 8px;
 			}
 		
 			#logo img {
-				height: 60px;
-				margin: 0 auto; 
+				height: 70px;
 			}
 		
 			#company {
@@ -121,11 +115,7 @@
 		
 			table th {
 				white-space: nowrap;
-				/* font-weight: normal; */
-				background-color: #0087C3;
-				color: #ffffff;
-				text-align: left;
-				font-weight: bold;
+				font-weight: normal;
 			}
 		
 			table td {
@@ -242,9 +232,6 @@
 			.pagenum:before {
 				content: counter(page);
 			}
-
-			
-
 		</style>
 	</head>
 	<body>
@@ -269,10 +256,8 @@
 		<header class="clearfix">
 			<div id="logo">
 				<img src="{{ storage_path('logo.png') }}">
-				{{-- <img src="{{ asset('logo/aa.png') }}"> --}}
 				<h2 class="name">{{ $_setup->name }}</h2>
-				<div>{{ $setup->address1.', '. $setup->address2 }}</div>
-				<div>{{ $setup->address3.', '. $setup->city . $setup->state . $setup->country }}</div>
+				{{-- <div>{{ $setup->address1.', '. $setup->address2 }}</div> --}}
 				{{-- <h1>REQUISITION #{{ $pr->id}}</h1> --}}
 				{{-- <h2 class="name">{{ env('APP_NAME')}}</h2> --}}
 			</div>
@@ -297,13 +282,13 @@
 		<!-- ========== LETTERHEAD ========== -->
 
 		<main>
+
 			<!-- Report main content -->
 				@yield('content')
 			<!-- /.content -->
 			<!-- ========== STYLE ========== -->
 			{{-- @include('tenant.reports.parts.thankyou') --}}
 			<!-- ========== STYLE ========== -->
-		
 		</main>
 		
 	</body>

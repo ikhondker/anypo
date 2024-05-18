@@ -1,4 +1,5 @@
-@extends('layouts.portrait')
+{{-- @extends('layouts.portrait') --}}
+@extends('layouts.landscape')
 
 @section('title','Requisition portrait')
 {{-- @section('breadcrumb','Create Pr') --}}
@@ -40,9 +41,9 @@
 				<th class="desc">#</th>
 				<th class="desc">DESCRIPTION</th>
 				<th class="desc">UOM</th>
-				<th class="unit">UNIT PRICE</th>
-				<th class="qty">QUANTITY</th>
-				<th class="total">AMOUNT</th>
+				<th class="desc">UNIT PRICE</th>
+				<th class="desc">QUANTITY</th>
+				<th class="desc">AMOUNT</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -51,9 +52,9 @@
 				<td class="desc">{{ $prl->line_num }}</td>
 				<td class="desc">{{ $prl->item_description }}</td>
 				<td class="desc">{{ $prl->item->uom->name }} </td>
-				<td class="unit">{{ number_format($prl->amount,2) }}</td>
+				<td class="qty">{{ number_format($prl->amount,2) }}</td>
 				<td class="qty">{{ $prl->qty }}</td>
-				<td class="total">{{ number_format($prl->amount,2) }}</td>
+				<td class="qty">{{ number_format($prl->amount,2) }}</td>
 			</tr>
 			@endforeach
 			{{-- <tr>
