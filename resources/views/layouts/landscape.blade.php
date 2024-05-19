@@ -18,7 +18,7 @@
 		
 			* {
 		    /* Change your font family */
-    			font-family: sans-serif;
+				font-family: Arial, Helvetica, sans-serif;
 			}
 
 			.clearfix:after {
@@ -103,7 +103,7 @@
 				font-size: 1.1em;
 				color: #777777;
 			}
-		
+			/* =============== Table ===================== */
 			table {
 				width: 100%;
 				border-collapse: collapse;
@@ -139,7 +139,7 @@
 				margin: 0 0 0.2em 0;
 			}
 		
-			table .no {
+			xxtable .no {
 				color: #FFFFFF;
 				font-size: 1.6em;
 				background: #57B223;
@@ -153,22 +153,26 @@
 				text-align: left;
 			}
 		
-			table .unit {
+			table .numeric {
+				text-align: right;
+			}
+
+			xxtable .unit {
 				background: #DDDDDD;
 			}
 		
-			table .qty {
+			xxtable .qty {
 				text-align: right;
 			}
 		
-			table .total {
+			xxtable .total {
 				background: #0087C3; /* Changed #57B223; */
 				color: #FFFFFF;
 			}
 		
-			table td.unit,
-			table td.qty,
-			table td.total {
+			xxtable td.unit,
+			xxtable td.qty,
+			xxtable td.total {
 				/* font-size: 1.2em; */
 			}
 		
@@ -202,7 +206,8 @@
 			table tfoot tr td:first-child {
 				border: none;
 			}
-		
+			/* =============== / Table ===================== */
+
 			#thanks {
 				font-size: 2em;
 				margin-bottom: 50px;

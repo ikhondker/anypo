@@ -73,11 +73,11 @@
 			</tr> --}}
 		</tbody>
 		<tfoot>
-			<tr>
+			{{-- <tr>
 				<td colspan="4"></td>
 				<td colspan="1">SUBTOTAL</td>
 				<td> {{ $pr->currency }} {{ number_format($pr->amount,2) }}</td>
-			</tr>
+			</tr> --}}
 			{{-- <tr>
 				<td colspan="2"></td>
 				<td colspan="2">TAX 25%</td>
@@ -85,7 +85,7 @@
 			</tr> --}}
 			<tr>
 				<td colspan="4"></td>
-				<td colspan="1">GRAND TOTAL</td>
+				<td colspan="1">TOTAL</td>
 				<td> {{ $pr->currency }} {{ number_format($pr->amount,2) }}</td>
 			</tr>
 		</tfoot>
