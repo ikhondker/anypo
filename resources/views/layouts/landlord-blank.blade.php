@@ -36,7 +36,7 @@
 	<!-- ========== END MAIN CONTENT ========== -->
 
 
-	<!-- JS Global Compulsory  -->
+	<!-- JS Global Compulsory -->
 	{{-- <script src="{{ asset('/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script> --}}
 	<script	src="{{ Storage::disk('s3l')->url('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 

@@ -363,7 +363,7 @@ class PrController extends Controller
 		DB::statement("UPDATE prls SET
 				line_num	= (@sequenceNumber:=@sequenceNumber + 1),
 				sub_total	= qty * price,
-				amount		= qty * price + tax +gst
+				amount		= qty * price + tax + gst
 				WHERE pr_id = ".$pr->id."");
 
 		Log::debug('tenant.pr.recalculate calling syncPrValues for pr_id = '. $pr->id);

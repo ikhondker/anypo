@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
 		/*
 		|-----------------------------------------------------------------------------
-		| Tenant																	 + 
+		| Tenant																	 +
 		|-----------------------------------------------------------------------------
 		*/
 
@@ -83,7 +83,7 @@ class UserSeeder extends Seeder
 		$usersDemo =  [
 			[
 				'id'				=> '1003',
-				'name'				=> 'Admin User (Demo)',
+				'name'				=> 'Dummy Admin (Temp)',
 				'email'				=> 'admin@anypo.net',
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1002',
@@ -281,20 +281,20 @@ class UserSeeder extends Seeder
 				'enable'			=> true,
 				'avatar'			=> 'cxo.png',
 			],
-			
+
 		];
 
 		User::insert($usersSeeded);
 		// TODO Must comment in Production
 		User::insert($usersDemo);
 
-		
-		// Mask as seeded user and Activate	// TODO 
+
+		// Mask as seeded user and Activate	// TODO
 		// User::where('id', 1001)->update(['enable' => true,'seeded' => false]);	// SYSTEM must make it true
 		// User::where('id', 1002)->update(['enable' => true,'seeded' => true]);
 		// User::where('id', 1003)->update(['enable' => true,'seeded' => false]);	// ADMIN must make it true
-		
-		// TODO Mark as enable for testing 
+
+		// TODO Mark as enable for testing
 		// User::where('id', 1004)->update(['enable' => true]);
 		// User::where('id', 1005)->update(['enable' => true]);
 		// User::where('id', 1006)->update(['enable' => true]);

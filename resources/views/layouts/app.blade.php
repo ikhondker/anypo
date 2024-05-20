@@ -134,7 +134,7 @@
 													</div>
 													<div class="col-10 ps-2">
 														<div class="text-dark">{{ $notification->data['from'] }}</div>
-														<div class="text-muted small mt-1">{{ $notification->data['subject']  }}</div>
+														<div class="text-muted small mt-1">{{ $notification->data['subject'] }}</div>
 														<div class="text-muted small mt-1">{{ $notification->created_at->diffForHumans() }}</div>
 													</div>
 												</div>
@@ -161,7 +161,7 @@
 									<span class="text-dark">{{ Str::limit(auth()->user()->name, 25, '...') }}</span>
 								@endauth
 									@guest
-									{{-- <img src="{{asset('img/avatar.png')}}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />  --}}
+									{{-- <img src="{{asset('img/avatar.png')}}" class="avatar img-fluid rounded-circle me-1" alt="Guest" /> --}}
 									<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" class="avatar img-fluid rounded-circle me-1" alt="Guest" />
 									<span class="text-dark">Guest</span>
 								@endguest
@@ -176,7 +176,7 @@
 								<a class="dropdown-item" href="{{ route('dashboards.index') }}"><i class="align-middle me-1" data-feather="pie-chart"></i> Dashboard</a>
 								<a class="dropdown-item" href="{{ route('notifications.index') }}"><i class="align-middle me-1" data-feather="bell-off"></i> Notifications</a>
 								<a class="dropdown-item" href="{{ route('help') }}"> <i class="align-middle me-1" data-feather="help-circle"></i> Help</a>
-								<a class="dropdown-item" href="{{ route('tickets.create')  }}"><i class="align-middle me-1" data-feather="message-square"></i> Support</a>
+								<a class="dropdown-item" href="{{ route('tickets.create') }}"><i class="align-middle me-1" data-feather="message-square"></i> Support</a>
 								<a class="dropdown-item" href="{{ route('logout') }}"><i class="align-middle text-danger me-1" data-feather="power"></i> Sign out</a>
 							</div>
 						</li>
@@ -211,7 +211,7 @@
 							@if (session('error') || $errors->any())
 								<x-tenant.alert.error message="{{ session('error') }}"/>
 							@endif
-							
+
 						</div>
 					</div>
 					{{-- <h1 class="h3 mb-3">Blank Page</h1> --}}
@@ -240,7 +240,7 @@
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
-                        <div class="col-6 text-start">
+						<div class="col-6 text-start">
 							<ul class="list-inline">
 								<li class="list-inline-item">
 									<a class="text-muted" href="{{ route('tickets.create') }}">Support</a>
@@ -256,14 +256,14 @@
 								</li>
 
 								@guest
-									Welcome Guest. Please  <a class="list-inline-item" href="{{ route('login') }}" class="text-primary">Login</a> here.
+									Welcome Guest. Please <a class="list-inline-item" href="{{ route('login') }}" class="text-primary">Login</a> here.
 								@endguest
 							</ul>
 						</div>
 						<div class="col-6 text-end">
 							<p class="mb-0">
-                                @if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
-                                       Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
+								@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
+									Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
 								@endif
 								<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a></p>
 							</p>

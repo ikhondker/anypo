@@ -17,8 +17,8 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">{{ $deptBudget->dept->name }} Budget {{ $deptBudget->budget->fy }} : Status Comparison</h5>
-			<h6 class="card-subtitle text-muted">Overall Budget Utilization Status of a Department</h6>
+			<h5 class="card-title">[{{ $deptBudget->dept->name }}] FY{{ $deptBudget->budget->fy }} : Budget Status</h5>
+			<h6 class="card-subtitle text-muted">Budget Utilization Status of a Department</h6>
 		</div>
 		<div class="card-body d-flex w-100">
 			<div class="align-self-center chart">

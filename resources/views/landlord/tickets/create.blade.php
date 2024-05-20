@@ -19,7 +19,7 @@
 
 			<!-- Body -->
 			<div class="card-body">
-				
+
 				<!-- Form -->
 				<div class="row mb-4">
 					<label for="title" class="col-sm-3 col-form-label form-label">Subject :</label>
@@ -54,7 +54,6 @@
 		<!-- /.form end -->
 	</div>
 	<!-- End Card -->
-		  
 
 @endsection
 

@@ -9,7 +9,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Projects
+			Project [{{ $project->name }}]
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Project"/>
@@ -69,7 +69,7 @@
 						<input type="text" name="attach_project_id" id="attach_project_id" class="form-control" placeholder="ID" value="{{ old('attach_project_id', $project->id ) }}" hidden>
 						<div class="row">
 							<div class="col-sm-3 text-end">
-							
+
 							</div>
 							<div class="col-sm-9 text-end">
 								<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
@@ -78,14 +78,14 @@
 						</div>
 					</form>
 					<!-- /.form end -->
-				
+
 				</div>
 			</div>
 
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-			
+
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Project Purchase Orders Budget</h5>
@@ -100,7 +100,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 
 			<div class="card">
 				<div class="card-header">
@@ -125,12 +125,12 @@
 					<x-tenant.show.my-amount	value="{{ $project->amount- $project->amount_payment }}" label="Available"/>
 				</div>
 			</div>
-			
+
 		</div>
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-	
+
 	<script type="text/javascript">
 		function mySubmit() {
 			//alert('I am inside 2');

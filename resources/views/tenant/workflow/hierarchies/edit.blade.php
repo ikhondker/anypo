@@ -25,7 +25,7 @@
 		@method('PUT')
 
 			<div class="row">
-				<div class="col-6">
+				<div class="col-8">
 
 					<div class="card">
 						<div class="card-header">
@@ -35,14 +35,9 @@
 						<div class="card-body">
 							<form>
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">ID</label>
-									<div class="col-sm-10">
-										<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $hierarchy->id ) }}" readonly>
-									</div>
-								</div>
-								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">Hierarchy Name</label>
-									<div class="col-sm-10">
+                                    <label class="col-form-label col-sm-3 text-sm-right">Hierarchy Name</label>
+									<div class="col-sm-9">
+                                        <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $hierarchy->id ) }}" hidden>
 										<input type="text" class="form-control @error('name') is-invalid @enderror"
 										name="name" id="name" placeholder="Hierarchy Name"
 										value="{{ old('name', $hierarchy->name ) }}"
@@ -53,8 +48,8 @@
 									</div>
 								</div>
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">First Approver</label>
-									<div class="col-sm-10">
+									<label class="col-form-label col-sm-3 text-sm-right">First Approver</label>
+									<div class="col-sm-9">
 										<select class="form-control" name="approver_id_1" required>
 											@foreach ($users as $user)
 												<option {{ $user->id == old('approver_id_1',$approver_id_1) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
@@ -63,8 +58,8 @@
 									</div>
 								</div>
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">Second Approver</label>
-									<div class="col-sm-10">
+									<label class="col-form-label col-sm-3 text-sm-right">Second Approver</label>
+									<div class="col-sm-9">
 										<select class="form-control" name="approver_id_2">
 											{{-- @if ($approver_id_2 == 0)
 												<option value="0"><< Second Approver >> </option>
@@ -77,8 +72,8 @@
 									</div>
 								</div>
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">Third Approver</label>
-									<div class="col-sm-10">
+									<label class="col-form-label col-sm-3 text-sm-right">Third Approver</label>
+									<div class="col-sm-9">
 										<select class="form-control" name="approver_id_3">
 											@if ($approver_id_3 == 0)
 											@endif
@@ -91,8 +86,8 @@
 								</div>
 
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">Fourth Approver</label>
-									<div class="col-sm-10">
+									<label class="col-form-label col-sm-3 text-sm-right">Fourth Approver</label>
+									<div class="col-sm-9">
 										<select class="form-control" name="approver_id_4">
 											{{-- @if ($approver_id_4 == 0)
 											@endif --}}
@@ -106,8 +101,8 @@
 
 
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">Fifth Approver</label>
-									<div class="col-sm-10">
+									<label class="col-form-label col-sm-3 text-sm-right">Fifth Approver</label>
+									<div class="col-sm-9">
 										<select class="form-control" name="approver_id_5">
 											{{-- @if ($approver_id_5 == 0)
 											@endif --}}
@@ -120,7 +115,7 @@
 								</div>
 
 								<div class="mb-3 row">
-									<div class="col-sm-10 ml-sm-auto">
+									<div class="col-sm-12 ml-sm-auto">
 										<x-tenant.buttons.show.save/>
 									</div>
 								</div>

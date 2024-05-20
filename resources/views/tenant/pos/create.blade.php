@@ -30,8 +30,8 @@
 					<div class="card-body">
 
 						<div class="mb-3 row">
-							<label class="col-form-label col-sm-2 text-sm-right">PO Summary</label>
-							<div class="col-sm-10">
+							<label class="col-form-label col-sm-3 text-sm-right">PO Summary</label>
+							<div class="col-sm-9">
 								<input type="text" class="form-control @error('summary') is-invalid @enderror"
 									name="summary" id="summary" placeholder="PO summary"
 									value="{{ old('summary', '' ) }}"
@@ -39,24 +39,24 @@
 								@error('summary')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>	
+							</div>
 						</div>
 
 						<div class="mb-3 row">
-							<label class="col-form-label col-sm-2 text-sm-right">PR Date</label>
-							<div class="col-sm-10">
+							<label class="col-form-label col-sm-3 text-sm-right">PO Date</label>
+							<div class="col-sm-9">
 								<input type="text" class="form-control"
 								name="dsp_date" id="dsp_date" value="{{ now() }}"
 								readonly/>
 							</div>
 						</div>
-						
+
 						@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
 							<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 						@else
 							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">Dept Name</label>
-								<div class="col-sm-10">
+								<label class="col-form-label col-sm-3 text-sm-right">Dept Name</label>
+								<div class="col-sm-9">
 									<select class="form-control select2" data-toggle="select2" name="dept_id" required>
 										<option value=""><< Dept >> </option>
 										@foreach ($depts as $dept)
@@ -71,8 +71,8 @@
 						@endif
 
 						<div class="mb-3 row">
-							<label class="col-form-label col-sm-2 text-sm-right">Supplier</label>
-							<div class="col-sm-10">
+							<label class="col-form-label col-sm-3 text-sm-right">Supplier</label>
+							<div class="col-sm-9">
 								<select class="form-control select2" data-toggle="select2" name="supplier_id" required>
 									<option value=""><< Supplier >> </option>
 									@foreach ($suppliers as $supplier)
@@ -86,8 +86,8 @@
 						</div>
 
 						<div class="mb-3 row">
-							<label class="col-form-label col-sm-2 text-sm-right">Project</label>
-							<div class="col-sm-10">
+							<label class="col-form-label col-sm-3 text-sm-right">Project</label>
+							<div class="col-sm-9">
 								<select class="form-control select2" data-toggle="select2" name="project_id" required>
 									<option value=""><< Project >> </option>
 									@foreach ($projects as $project)
@@ -101,7 +101,7 @@
 						</div>
 
 						<x-tenant.create.currency/>
-
+                        <x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>
@@ -109,34 +109,53 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						
+
 						<h5 class="card-title">Purchase Order Additional Info</h5>
 						<h6 class="card-subtitle text-muted">Purchase Order Additional Information.</h6>
 					</div>
 					<div class="card-body">
-						<div class="mb-3">
-	
-							<label class="form-label">Terms and Conditions</label>
-							<textarea class="form-control" name="notes" placeholder="Enter ..." rows="4">{{ old('notes', 'Enter ...') }}</textarea>
-							@error('notes')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-							<div class="form-check form-switch">
-								<input class="form-check-input mt-2" type="checkbox" id="tc" name="tc">
-								<label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
-							</div>	
+
+                        <div class="mb-3 row">
+							<label class="col-form-label col-sm-3 text-sm-right">Need By Date</label>
+							<div class="col-sm-9">
+								<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
+                                    name="need_by_date" id="need_by_date" placeholder=""
+                                    value="{{ old('need_by_date', date('Y-m-d') ) }}"
+                                    required/>
+                                @error('need_by_date')
+                                    <div class="text-danger text-xs">{{ $message }}</div>
+                                @enderror
+							</div>
+						</div>
+
+
+                        <div class="mb-3 row">
+							<label class="col-form-label col-sm-3 text-sm-right">Terms and Conditions</label>
+							<div class="col-sm-9">
+								<textarea class="form-control" name="notes" placeholder="Enter ..." rows="4">{{ old('notes', 'Enter ...') }}</textarea>
+                                @error('notes')
+                                    <div class="text-danger text-xs">{{ $message }}</div>
+                                @enderror
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input mt-2" type="checkbox" id="tc" name="tc">
+                                    <label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
+                                </div>
+							</div>
 						</div>
 
 						<x-tenant.attachment.create />
 
-						<div class="mb-3">
-							<label class="form-label">Buyer</label>
-							<input type="text" class="form-control"
-								name="buyer" id="buyer"
+                        <div class="mb-3 row">
+							<label class="col-form-label col-sm-3 text-sm-right">Buyer :</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control"
+								name="requestor" id="requestor"
 								value="{{ auth()->user()->name }}"
 								readonly/>
+							</div>
 						</div>
 
+                        <x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>
@@ -158,5 +177,5 @@
 	<!-- /.form end -->
 
 	@include('tenant.includes.js.select2')
-	
+
 @endsection

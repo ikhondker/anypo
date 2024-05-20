@@ -118,7 +118,7 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Project Lists
+							Project Spends
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">List of projects and budget usages.</h6>
@@ -138,8 +138,8 @@
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
 
-								<th>Closed</th>
-								<th>Actions</th>
+								<th>Closed?</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>

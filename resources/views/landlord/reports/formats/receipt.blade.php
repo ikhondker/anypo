@@ -10,12 +10,12 @@
 			<h2 class="name">{{ $account->name }}</h2>
 			<div class="address">ACCOUNT #{{ $account->id }}</div>
 			<div class="address">{{ $account->address1.', '. $account->address2 }}</div>
-			<div class="address">{{ $account->city.', '.$account->state.', '.$account->zip. ', '.$account->country  }}</div>
+			<div class="address">{{ $account->city.', '.$account->state.', '.$account->zip. ', '.$account->country }}</div>
 			{{-- <div class="address">796 Silver Harbour, TX 79273, US</div>
 			<div class="email">john@example.com</div> --}}
 		</div>
 		<div id="invoice">
-			
+
 			<h1>PAYMENT RECEIPT</h1>
 			<div class="date">PAYMENT #{{ $payment->id }}</div>
 			<div class="date">DATE: {{ strtoupper(date('d-M-Y', strtotime($payment->pay_date))) }}</div>

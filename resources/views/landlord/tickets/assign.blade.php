@@ -18,16 +18,16 @@
 
 			<!-- Body -->
 			<div class="card-body">
-			
+
 				<x-landlord.edit.agent		value="{{ $ticket->agent_id }}"/>
 				<x-landlord.show.my-text	value="{{ $ticket->title }}" label="Title"/>
 				<x-landlord.show.my-text	value="{{ $ticket->content }}" label="Content"/>
 				<x-landlord.show.my-date-time	value="{{ $ticket->ticket_date }}"/>
-				<x-landlord.show.my-text	value="{{ $ticket->owner->name  }}" label="Requester"/>
+				<x-landlord.show.my-text	value="{{ $ticket->owner->name }}" label="Requester"/>
 				<x-landlord.show.my-badge	value="{{ $ticket->priority->name }}" label="Priority"/>
 				<x-landlord.show.my-badge	value="{{ $ticket->dept->name }}" label="Dept"/>
 				<x-landlord.show.my-badge	value="{{ $ticket->status->name }}" label="Status"/>
-				
+
 			</div>
 			<!-- End Body -->
 
@@ -35,5 +35,5 @@
 		</form>
 	</div>
 	<!-- End Card -->
-	
+
 @endsection

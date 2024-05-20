@@ -9,7 +9,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Company Budgets [{{ ($_setup->currency ) }}]
+			{{ $_setup->name }} Budgets [{{ ($_setup->currency ) }}]
 		@endslot
 		@slot('buttons')
 			<a href="{{ route('budgets.create') }}" class="btn btn-primary float-end sw2"><i data-feather="folder-plus"></i> Open Next FY Budget*</a>
@@ -28,7 +28,7 @@
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }} </strong>
 						@else
-							Company Budgets
+							{{ $_setup->name }} Budgets
 						@endif
 					</h5>
 						<h6 class="card-subtitle text-muted">List of annual Budgets.</h6>

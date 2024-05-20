@@ -40,8 +40,8 @@
 							</div> --}}
 
 							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">PR Summary</label>
-								<div class="col-sm-10">
+								<label class="col-form-label col-sm-3 text-sm-right">PR Summary</label>
+								<div class="col-sm-9">
 									<input type="text" class="form-control @error('summary') is-invalid @enderror"
 									name="summary" id="summary" placeholder="PR summary"
 									value="{{ old('summary', $pr->summary ) }}"
@@ -53,18 +53,18 @@
 							</div>
 
 							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">PR Date</label>
-								<div class="col-sm-10">
+								<label class="col-form-label col-sm-3 text-sm-right">PR Date</label>
+								<div class="col-sm-9">
 									<input type="text" class="form-control"
 										name="dsp_date" id="dsp_date" value="{{ date_format($pr->pr_date,"d-M-Y"); }}"
-									readonly/>
+									    readonly/>
 								</div>
 							</div>
-						
+
 							@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">Dept</label>
-									<div class="col-sm-10">
+									<label class="col-form-label col-sm-3 text-sm-right">Dept</label>
+									<div class="col-sm-9">
 										<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 										<input type="text" class="form-control"
 											name="dept_name" id="dept_name" placeholder="dept_name"
@@ -75,8 +75,8 @@
 
 							@else
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">Dept Name</label>
-									<div class="col-sm-10">
+									<label class="col-form-label col-sm-3 text-sm-right">Dept Name</label>
+									<div class="col-sm-9">
 										<select class="form-control select2" data-toggle="select2" name="dept_id" id="dept_id">
 											@foreach ($depts as $dept)
 												<option {{ $dept->id == old('dept_id',$pr->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
@@ -91,8 +91,8 @@
 
 
 							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">Supplier</label>
-								<div class="col-sm-10">
+								<label class="col-form-label col-sm-3 text-sm-right">Supplier</label>
+								<div class="col-sm-9">
 									<select class="form-control select2" data-toggle="select2" name="supplier_id" id="supplier_id">
 										@foreach ($suppliers as $supplier)
 											<option {{ $supplier->id == old('supplier_id',$pr->supplier_id) ? 'selected' : '' }} value="{{ $supplier->id }}">{{ $supplier->name }} </option>
@@ -105,8 +105,8 @@
 							</div>
 
 							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">Project</label>
-								<div class="col-sm-10">
+								<label class="col-form-label col-sm-3 text-sm-right">Project</label>
+								<div class="col-sm-9">
 									<select class="form-control select2" data-toggle="select2" name="project_id" id="project_id">
 										@foreach ($projects as $project)
 											<option {{ $project->id == old('project_id',$pr->project_id) ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->name }} </option>
@@ -134,19 +134,34 @@
 							<h6 class="card-subtitle text-muted">Edit Requisition Additional Info.</h6>
 						</div>
 						<div class="card-body">
-							<x-tenant.edit.notes :value="$pr->notes"/>
-							
-							<x-tenant.attachment.create />
-							
-							<div class="mb-3">
-								<label class="form-label">Requestor</label>
-								<input type="text" class="form-control"
-									name="requestor" id="requestor"
-									value="{{ $pr->requestor->name }}"
-									readonly/>
+
+                            <div class="mb-3 row">
+								<label class="col-form-label col-sm-3 text-sm-right">Need By Date :</label>
+								<div class="col-sm-9">
+									<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
+                                    name="need_by_date" id="need_by_date" placeholder=""
+                                    value="{{ old('need_by_date', date('Y-m-d',strtotime($pr->need_by_date)) ) }}"
+                                    required/>
+                                    @error('need_by_date')
+                                        <div class="text-danger text-xs">{{ $message }}</div>
+                                    @enderror
+								</div>
 							</div>
 
-						
+							<x-tenant.edit.notes :value="$pr->notes"/>
+
+							<x-tenant.attachment.create />
+
+                            <div class="mb-3 row">
+                                <label class="col-form-label col-sm-3 text-sm-right">Requestor :</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control"
+                                    name="requestor" id="requestor"
+                                    value="{{ $pr->requestor->name }}"
+                                    readonly/>
+                                </div>
+                            </div>
+
 							<x-tenant.buttons.show.save/>
 
 						</div>
@@ -168,13 +183,13 @@
 				@endslot
 			</x-tenant.widgets.prl.card>
 			<!-- /.widget-prl-cards -->
-			
+
 
 	</form>
 	<!-- /.form end -->
 
 	@include('tenant.includes.js.select2')
 
-	
+
 @endsection
 

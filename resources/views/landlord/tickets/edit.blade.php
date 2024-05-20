@@ -19,17 +19,17 @@
 
 			<!-- Body -->
 			<div class="card-body">
-			
+
 				<x-landlord.show.my-badge value="{{ $ticket->status->name }}" label="Status"/>
-				<x-landlord.show.my-text value="{{ $ticket->owner->name  }}" label="Requester"/>
+				<x-landlord.show.my-text value="{{ $ticket->owner->name }}" label="Requester"/>
 				<x-landlord.edit.id-read-only :value="$ticket->id"/>
 				<x-landlord.edit.title :value="$ticket->title"/>
 				<x-landlord.edit.content :value="$ticket->content"/>
 				<x-landlord.edit.dept :value="$ticket->dept_id"/>
 				<x-landlord.edit.priority :value="$ticket->priority_id"/>
 				<x-landlord.edit.agent value="{{ $ticket->agent_id }}"/>
-				
-				
+
+
 			</div>
 			<!-- End Body -->
 

@@ -27,7 +27,7 @@
 		<x-tenant.charts.dept-budget-pr-pie :dbid="$deptBudget->id"/>
 	</div>
 
-	<x-tenant.dashboards.dept-budget-stat :dbid="$deptBudget->id"/> 
+	<x-tenant.dashboards.dept-budget-stat :dbid="$deptBudget->id"/>
 
 
 	<div class="row">
@@ -40,18 +40,18 @@
 				<div class="card-body">
 					<x-tenant.show.my-badge value="{{ $deptBudget->budget->fy }}" label="FY"/>
 					<div class="row mb-3">
-						<div class="col-sm-3 text-end">
+						<div class="col-sm-4 text-end">
 							<span class="h6 text-secondary">Budget:</span>
 						</div>
-						<div class="col-sm-9">
+						<div class="col-sm-8">
 							{{ $deptBudget->budget->name }} <x-tenant.info info="Note: You wont be able to edit this."/>
 						</div>
 					</div>
 					<div class="row mb-3">
-						<div class="col-sm-3 text-end">
+						<div class="col-sm-4 text-end">
 							<span class="h6 text-secondary">Dept:</span>
 						</div>
-						<div class="col-sm-9">
+						<div class="col-sm-8">
 							{{ $deptBudget->dept->name }} <x-tenant.info info="Note: You wont be able to edit this Department."/>
 						</div>
 					</div>
@@ -85,10 +85,10 @@
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
-						<div class="col-sm-3 text-end">
+						<div class="col-sm-4 text-end">
 							<span class="h6 text-secondary">Attachments:</span>
 						</div>
-						<div class="col-sm-9">
+						<div class="col-sm-8">
 							<x-tenant.attachment.all entity="DEPTBUDGET" aid="{{ $deptBudget->id }}"/>
 						</div>
 					</div>
@@ -98,7 +98,7 @@
 							<input type="text" name="attach_dept_budget_id" id="attach_dept_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $deptBudget->id ) }}" hidden>
 							<div class="row">
 								<div class="col-sm-3 text-end">
-								
+
 								</div>
 								<div class="col-sm-9 text-end">
 									<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
@@ -107,7 +107,7 @@
 							</div>
 						</form>
 						<!-- /.form end -->
-					@endif	
+					@endif
 				</div>
 			</div>
 
@@ -152,7 +152,7 @@
 				</div>
 			</div>
 
-			
+
 		</div>
 		<!-- end col-6 -->
 	</div>
@@ -160,17 +160,17 @@
 
 	<div class="row">
 		<div class="col-6">
-			
+
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-			
+
 		</div>
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-	
-	
+
+
 
 	<script type="text/javascript">
 		function mySubmit() {

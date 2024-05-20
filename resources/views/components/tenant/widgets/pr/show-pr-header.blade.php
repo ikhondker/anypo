@@ -20,9 +20,9 @@
 						<span class="h6 text-secondary">PR Value :</span>
 					</div>
 					<div class="col-sm-8">
-						{{number_format($pr->amount, 2)}} <span class="badge bg-primary">{{ $pr->currency }}</span> 
+						{{number_format($pr->amount, 2)}} <span class="badge bg-primary">{{ $pr->currency }}</span>
 						@if ($pr->currency <> $_setup->currency)
-							{{number_format($pr->fc_amount, 2)}} <span class="badge bg-success">{{ $pr->fc_currency }}</span> 
+							{{number_format($pr->fc_amount, 2)}} <span class="badge bg-success">{{ $pr->fc_currency }}</span>
 						@endif
 					</div>
 				</div>
@@ -31,10 +31,10 @@
 				<x-tenant.show.my-text		value="{{ $pr->project->name }}" label="Project"/>
 				<x-tenant.show.my-text		value="{{ $pr->supplier->name }}" label="Supplier"/>
 				<x-tenant.show.my-text-area	value="{{ $pr->notes }}" label="Notes"/>
-			
+
 				<div class="row">
-					<div class="col-sm-8 text-end">
-						
+					<div class="col-sm-4 text-end">
+
 					</div>
 					<div class="col-sm-8 text-end">
 						@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
@@ -42,7 +42,7 @@
 						@endif
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
@@ -56,22 +56,22 @@
 			<div class="card-body">
 				<div class="row mb-3">
 					<div class="col-sm-4 text-end">
-						<span class="h6 text-secondary">Auth Status:</span>
+						<span class="h6 text-secondary">Auth Status :</span>
 					</div>
 					<div class="col-sm-8">
 						<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
 					</div>
 				</div>
-				
+
 				<div class="row mb-3">
 					<div class="col-sm-4 text-end">
-						<span class="h6 text-secondary">Closure Status:</span>
+						<span class="h6 text-secondary">Closure Status :</span>
 					</div>
 					<div class="col-sm-8">
 						<span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span>
 					</div>
 				</div>
-	
+
 				<x-tenant.show.my-text		value="{{ $pr->requestor->name }}" label="Requestor"/>
 				<x-tenant.show.my-date-time	value="{{ $pr->auth_date }}" label="Auth Date"/>
 				<x-tenant.show.my-date		value="{{ $pr->need_by_date }}" label="Need by Date"/>
@@ -84,11 +84,11 @@
 							@if ( $pr->po_id <> 0)
 								<a href="{{ route('pos.show',$pr->po_id) }}" class="text-warning d-inline-block">{{ $pr->po_id }}</a>
 							@else
-								&nbsp; 		
+								&nbsp;
 							@endif
 						</div>
 				</div>
-				
+
 
 				<div class="row mb-3">
 					<div class="col-sm-4 text-end">
@@ -99,7 +99,7 @@
 					</div>
 				</div>
 
-				
+
 
 				@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 					<form action="{{ route('prs.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
@@ -108,7 +108,7 @@
 						<input type="text" name="attach_pr_id" id="attach_pr_id" class="form-control" placeholder="ID" value="{{ old('id', $pr->id ) }}" hidden>
 						<div class="row">
 							<div class="col-sm-3 text-end">
-							
+
 							</div>
 							<div class="col-sm-9 text-end">
 								<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />

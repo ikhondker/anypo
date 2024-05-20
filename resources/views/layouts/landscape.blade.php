@@ -15,7 +15,7 @@
 				/* src: url("fonts/lato/Lato-Regular.ttf") format('truetype'); */
 				/* src: url({{ storage_path() . '/fonts/lato/Lato-Regular.ttf' }}) format("truetype"); */
 			}
-		
+
 			* {
 		    /* Change your font family */
 				font-family: Arial, Helvetica, sans-serif;
@@ -26,12 +26,12 @@
 				display: table;
 				clear: both;
 			}
-		
+
 			a {
 				color: #0087C3;
 				text-decoration: none;
 			}
-		
+
 			body {
 				position: relative;
 				/* commented
@@ -44,53 +44,59 @@
 				font-size: 14px;
 				font-family: Lato;	/* Changed */
 			}
-		
+
 			header {
 				padding: 0px;	/* 10 */
 				margin-bottom: 7px; /* 20px */
 				/* border-bottom: 1px solid #AAAAAA; */
 			}
-		
+
 			#logo {
 				float: left;
 				margin-top: 0px;
 			}
-		
+
 			#logo img {
 				height: 60px;
-				margin: 0 auto; 
+				margin: 0 auto;
 			}
-		
+
 			#company {
 				float: right;
 				text-align: right;
 			}
-		
+
 			#details {
 				margin-bottom: 50px;
 			}
-		
+
 			#client {
 				padding-left: 6px;
 				border-left: 6px solid #0087C3;
 				float: left;
 			}
-		
+
 			#client .to {
 				color: #777777;
 			}
-		
+
 			h2.name {
 				font-size: 1.4em;
 				font-weight: normal;
 				margin: 0;
 			}
-		
+
+            h2.report_name {
+				font-size: 1.7em;
+				font-weight: normal;
+				margin: 0;
+			}
+
 			#invoice {
 				float: right;
 				text-align: right;
 			}
-		
+
 			#invoice h1 {
 				color: #0087C3;
 				font-size: 2em;
@@ -98,7 +104,7 @@
 				font-weight: normal;
 				margin: 0 0 3px 0; /* margin: 0 0 10px 0; */
 			}
-		
+
 			#invoice .date {
 				font-size: 1.1em;
 				color: #777777;
@@ -110,7 +116,7 @@
 				border-spacing: 0;
 				margin-bottom: 20px;
 			}
-		
+
 			table th,
 			table td {
 				padding: 10px; /* changed */
@@ -118,7 +124,7 @@
 				text-align: center;
 				border: 1px solid #cccccc;	/* was border-bottom */
 			}
-		
+
 			table th {
 				white-space: nowrap;
 				/* font-weight: normal; */
@@ -127,22 +133,16 @@
 				text-align: left;
 				font-weight: bold;
 			}
-		
-			table td {
+
+			xxtable td {
 				/* text-align: right; */
 			}
-		
-			table td h3 {
+
+			xxtable td h3 {
 				color: #57B223;
 				font-size: 1.2em;
 				font-weight: normal;
 				margin: 0 0 0.2em 0;
-			}
-		
-			xxtable .no {
-				color: #FFFFFF;
-				font-size: 1.6em;
-				background: #57B223;
 			}
 
 			table .sl {
@@ -152,58 +152,34 @@
 			table .desc {
 				text-align: left;
 			}
-		
-			table .numeric {
+
+			table  .numeric {
 				text-align: right;
 			}
 
-			xxtable .unit {
-				background: #DDDDDD;
-			}
-		
-			xxtable .qty {
-				text-align: right;
-			}
-		
-			xxtable .total {
-				background: #0087C3; /* Changed #57B223; */
-				color: #FFFFFF;
-			}
-		
-			xxtable td.unit,
-			xxtable td.qty,
-			xxtable td.total {
-				/* font-size: 1.2em; */
-			}
-		
-			/* table tbody tr:last-child td {
-				border: none;
-			} */
-		
 			table tfoot td {
 				text-align: right;
 				padding: 10px 10px;
-				background: #FFFFFF;
+				/* background: #FFFFFF; */
 				border-left: none;
 				border-right: none;
 				border-bottom: none;
 				font-size: 1em;
 				white-space: nowrap;
-				border-top: 1px solid #AAAAAA;
+				/* border-top: 1px solid #AAAAAA; */
 			}
-		
-			table tfoot tr:first-child td {
+
+			xxtable tfoot tr:first-child td {
 				border-top: none;
 			}
-		
+
 			table tfoot tr:last-child td {
 				color: #0087C3; /* Changed #57B223; */
 				font-size: 1.4em;
 				border-top: 1px solid #0087C3; /* Changed #57B223; */
-		
 			}
-		
-			table tfoot tr td:first-child {
+
+			xxtable tfoot tr td:first-child {
 				border: none;
 			}
 			/* =============== / Table ===================== */
@@ -212,16 +188,16 @@
 				font-size: 2em;
 				margin-bottom: 50px;
 			}
-		
+
 			#notices {
 				padding-left: 6px;
 				border-left: 6px solid #0087C3;
 			}
-		
+
 			#notices .notice {
 				font-size: 1.2em;
 			}
-		
+
 			footer {
 				color: #777777;
 				width: 100%;
@@ -234,12 +210,12 @@
 				padding: 8px 0;	/* 8px 0 */
 				text-align: center;
 			}
-		
+
 			/* custom */
 			#pagenum {
 				float: right;
 				text-align: right;
-		
+
 			}
 			#timestamp {
 				float: left;
@@ -248,7 +224,13 @@
 				content: counter(page);
 			}
 
-			
+            .sub_title {
+                font-size: 1em;
+                margin: 5px 0 0 0;
+            }
+
+            .param { margin: 5px 0 0 0; }
+
 
 		</style>
 	</head>
@@ -269,28 +251,39 @@
 			</div>
 		</footer>
 		<!-- ========== FOOTER ========== -->
-		
+
 		<!-- ========== LETTERHEAD ========== -->
 		<header class="clearfix">
 			<div id="logo">
-				<img src="{{ storage_path('logo.png') }}">
+				{{-- <img src="{{ storage_path('logo.png') }}"> --}}
+                <img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px"/>
+
 				{{-- <img src="{{ asset('logo/aa.png') }}"> --}}
 				<h2 class="name">{{ $_setup->name }}</h2>
 				<div>{{ $setup->address1.', '. $setup->address2 }}</div>
-				<div>{{ $setup->address3.', '. $setup->city . $setup->state . $setup->country }}</div>
-				{{-- <h1>REQUISITION #{{ $pr->id}}</h1> --}}
+				<div>{{ ($setup->address2 == '' ? '' : $setup->address2 .', ') . $setup->city .' '. $setup->state .', '. $setup->country_name->name }}</div>
+                {{-- <h1>REQUISITION #{{ $pr->id}}</h1> --}}
 				{{-- <h2 class="name">{{ env('APP_NAME')}}</h2> --}}
 			</div>
 			<div id="company">
-				<h2 class="name">{{ $report->name }}</h2>
-				<div>Functional Currency: {{ $_setup->currency }}</div>
+				<h2 class="report_name">{{ $title }}</h2>
+				<div class="sub_title">{{ $subTitle }}</div>
 				@if ($param1 <> '')
-					<div>{{ $param1 }}</div>
+					<div class="param">{{ $param1 }}</div>
 				@endif
 				@if ($param2 <> '')
-					<div>{{ $param2 }}</div>
+					<div class="param">{{ $param2 }}</div>
 				@endif
-				{{-- <div><small>Report Date {{ strtoupper(date('d-M-Y H:i:s', strtotime(now()))) }}<small></div> --}}
+                @if ($param3 <> '')
+					<div class="param">{{ $param3 }}</div>
+				@endif
+
+                {{-- <div>
+                    <p class="param">{{ $param1 }}</p>
+                    <p  class="param">{{ $param2 }}</p>
+                    <p  class="param">{{ $param3 }}</p>
+                </div> --}}
+    			{{-- <div><small>Report Date {{ strtoupper(date('d-M-Y H:i:s', strtotime(now()))) }}<small></div> --}}
 				{{-- <div>{{ $setup->cell }} {{ $setup->email }}</div>	 --}}
 				{{-- <div>{{ $setup->email }}</div>	 --}}
 				{{-- <div>{{ $setup->website }}</div> --}}
@@ -302,14 +295,14 @@
 		<!-- ========== LETTERHEAD ========== -->
 
 		<main>
-			<!-- Report main content -->
+        	<!-- Report main content -->
 				@yield('content')
 			<!-- /.content -->
 			<!-- ========== STYLE ========== -->
 			{{-- @include('tenant.reports.parts.thankyou') --}}
 			<!-- ========== STYLE ========== -->
-		
+
 		</main>
-		
+
 	</body>
 </html>

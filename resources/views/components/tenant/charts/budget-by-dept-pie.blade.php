@@ -14,8 +14,8 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">FY {{ $budget->fy }} : Company Budget By Department</h5>
-			<h6 class="card-subtitle text-muted">Allocated Budget By Department for a Fiscal year.</h6>
+			<h5 class="card-title">FY{{ $budget->fy }} : Budget By Department</h5>
+			<h6 class="card-subtitle text-muted">Budget By Department of an year.</h6>
 		</div>
 		<div class="card-body d-flex">
 			<div class="align-self-center w-100">

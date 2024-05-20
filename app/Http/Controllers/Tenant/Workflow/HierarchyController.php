@@ -153,8 +153,7 @@ class HierarchyController extends Controller
 		$hierarchyls = Hierarchyl::where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
 		//$users = User::NonSeeded();
 		//$users = User::getAll();
-		$users = User::Tenant()->get();
-
+		$users = User::TenantAll()->get();
 
 		$approver_id_1 = 0;
 		$approver_id_2 = 0;
@@ -169,7 +168,6 @@ class HierarchyController extends Controller
 			switch ($i) {
 				case 1:
 					$approver_id_1 = $hierarchyl->approver_id;
-
 					break;
 				case 2:
 					$approver_id_2 = $hierarchyl->approver_id;

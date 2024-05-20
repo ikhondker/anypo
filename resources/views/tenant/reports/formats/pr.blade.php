@@ -20,7 +20,7 @@
 		</div>
 		<div id="invoice">
 			<h1>REQUISITION #{{ $pr->id}}</h1>
-			
+
 			{{-- <div class="name">AMOUNT {{ number_format($pr->amount,2) }} {{ $pr->currency }}</div> --}}
 			<div class="date">DATE: {{ strtoupper(date('d-M-Y', strtotime($pr->pr_date))) }}</div>
 			{{-- <div class="date">APPROVAL: {{ strtoupper($pr->auth_status->value) }}</div> --}}
@@ -35,57 +35,62 @@
 @endsection
 
 @section('content')
+
+            <table border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                   <tr>
+                        <td class="xsl">
+                            <div class="desc">Summary:<strong> {{ $pr->summary }}</strong></div>
+			                <div class="desc">Proposed Vendor: {{ $pr->supplier->name }}</div>
+                        </td>
+                        <td class="xsl">
+                            <div class="numeric">Project: {{ $pr->project->name }}</div>
+                            <div class="numeric">Department: {{ $pr->dept->name }}</div>
+                        </td>
+                    </tr>
+                <tbody>
+           	</table>
+
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
 			<tr>
-				<th class="desc">#</th>
+				<th class="sl">#</th>
 				<th class="desc">DESCRIPTION</th>
 				<th class="desc">UOM</th>
-				<th class="desc">UNIT PRICE</th>
-				<th class="desc">QUANTITY</th>
-				<th class="desc">AMOUNT</th>
+				<th class="numeric">UNIT PRICE</th>
+				<th class="numeric">QUANTITY</th>
+
+				<th class="numeric">SUBTOTAL</th>
+                <th class="numeric">TAX</th>
+                <th class="numeric">GST</th>
+
+				<th class="numeric">AMOUNT</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach ($prls as $prl)
 			<tr>
-				<td class="desc">{{ $prl->line_num }}</td>
+				<td class="sl">{{ $prl->line_num }}</td>
 				<td class="desc">{{ $prl->item_description }}</td>
 				<td class="desc">{{ $prl->item->uom->name }} </td>
-				<td class="qty">{{ number_format($prl->amount,2) }}</td>
-				<td class="qty">{{ $prl->qty }}</td>
-				<td class="qty">{{ number_format($prl->amount,2) }}</td>
+				<td class="numeric">{{ number_format($prl->price,2) }}</td>
+				<td class="numeric">{{ $prl->qty }}</td>
+
+                <td class="numeric">{{ number_format($prl->sub_total,2) }}</td>
+                <td class="numeric">{{ number_format($prl->tax,2) }}</td>
+                <td class="numeric">{{ number_format($prl->gst,2) }}</td>
+
+
+                <td class="numeric">{{ number_format($prl->amount,2) }}</td>
+
+
 			</tr>
 			@endforeach
-			{{-- <tr>
-				<td class="no">02</td>
-				<td class="desc"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
-				<td class="unit">$40.00</td>
-				<td class="qty">80</td>
-				<td class="total">$3,200.00</td>
-			</tr>
-			<tr>
-				<td class="no">03</td>
-				<td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-				<td class="unit">$40.00</td>
-				<td class="qty">20</td>
-				<td class="total">$800.00</td>
-			</tr> --}}
 		</tbody>
 		<tfoot>
-			{{-- <tr>
-				<td colspan="4"></td>
-				<td colspan="1">SUBTOTAL</td>
-				<td> {{ $pr->currency }} {{ number_format($pr->amount,2) }}</td>
-			</tr> --}}
-			{{-- <tr>
-				<td colspan="2"></td>
-				<td colspan="2">TAX 25%</td>
-				<td>$1,300.00</td>
-			</tr> --}}
 			<tr>
-				<td colspan="4"></td>
-				<td colspan="1">TOTAL</td>
+				<td colspan="6"></td>
+				<td colspan="2">TOTAL:</td>
 				<td> {{ $pr->currency }} {{ number_format($pr->amount,2) }}</td>
 			</tr>
 		</tfoot>
@@ -100,4 +105,3 @@
 
 @endsection
 
-		

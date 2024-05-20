@@ -50,10 +50,10 @@
 								<th class="text-end">PO (Booked)</th>
 								<th class="text-end">PO (Approved)</th>
 								<th class="text-end">GRS</th>
-							
+
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -68,7 +68,7 @@
 								<td>{{ $dbu->entity }}</td>
 								<td><x-tenant.list.article-link entity="{{ $dbu->entity }}" :id="$dbu->article_id"/></td>
 								<td>{{ $dbu->event }}</td>
-								<td><x-tenant.list.project-link id="{{ $dbu->project_id }}" :label="$dbu->project->name"/></td>
+								<td><x-tenant.list.project-link id="{{ $dbu->project_id }}" :label="$dbu->project->code"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr_booked"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_po_booked"/></td>
@@ -99,7 +99,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

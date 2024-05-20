@@ -34,7 +34,7 @@
 									@if (auth()->user()->isSeeded())
 										Department: {{ $ticket->dept->name }} | Priority: {{ $ticket->priority->name }}
 										@if ($ticket->agent_id <> '')
-											| Agent: <span class="badge bg-secondary">{{ $ticket->agent->name  }}</span>
+											| Agent: <span class="badge bg-secondary">{{ $ticket->agent->name }}</span>
 										@endif
 									@endif
 								</span>
@@ -45,17 +45,17 @@
 								<hr class="text-muted" />
 								{!! nl2br($ticket->content) !!}
 							</p>
-							
+
 							@if ($ticket->attachment_id <> '')
 								<p class="small text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $ticket->attachment_id }}"/></p>
 							@endif
-							
+
 							<hr class="text-muted" />
 							@if ($ticket->closed)
 								<p class="small text-muted">Closed at: {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->closed_at ))) }} </p>
 							@endif
 
-							@if ( auth()->user()->isSeeded() && ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
+							@if ( auth()->user()->isSeeded() && ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
 								<a class="btn btn-info btn-sm" href="{{ route('tickets.assign',$ticket->id) }}">
 									<i class="bi bi-person-circle"></i>
 									Assign
@@ -66,7 +66,7 @@
 								</a>
 							@endif
 
-							@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
+							@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
 								<a class="btn btn-info btn-sm sw2" href="{{ route('tickets.close',$ticket->id) }}">
 									<i class="bi bi-lightbulb-off"></i>
 									Close Ticket
@@ -82,7 +82,7 @@
 
 		</div>
 		<!-- End Body -->
-  
+
 		<!-- Footer -->
 		{{-- <div class="card-footer pt-0">
 			<div class="d-flex justify-content-end gap-3">
@@ -92,20 +92,20 @@
 		<!-- End Footer -->
 
 	</div>
-	<!-- End Card --> 
+	<!-- End Card -->
 
 	<!--  BEGIN ADD COMMENT  -->
-	@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
+	@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
 		@include('landlord.includes.ticket-add-comment')
-	@endif 
+	@endif
 	<!--  END ADD COMMENT  -->
-	
+
 	<!-- card-ticket-comments -->
 	<x-landlord.widget.ticket-comments id="{{ $ticket->id }}"/>
 	<!-- /.card-ticket-comments -->
 
-	
-	
+
+
 </div>
 
 @endsection

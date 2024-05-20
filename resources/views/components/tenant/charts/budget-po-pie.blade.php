@@ -15,8 +15,8 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">FY {{ $budget->fy }} : Purchase Order Budget Status</h5>
-			<h6 class="card-subtitle text-muted">Utilized and Available Budget for Purchase Order for a Fiscal year.</h6>
+			<h5 class="card-title">FY{{ $budget->fy }} : PO Budget Status</h5>
+			<h6 class="card-subtitle text-muted">Utilized and Available Budget of an year.</h6>
 		</div>
 		<div class="card-body d-flex">
 			<div class="align-self-center w-100">
@@ -63,7 +63,7 @@
 					}
 				}
 			},
-			
+
 			// options: {
 			// 	responsive: !window.MSInputMethodContext,
 			// 	maintainAspectRatio: true,

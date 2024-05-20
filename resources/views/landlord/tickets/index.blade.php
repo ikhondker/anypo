@@ -65,22 +65,22 @@
 							<td>
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}"  alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
+										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
 									</div>
 									<div class="flex-grow-1 ms-3">
 										<a class="d-inline-block link-dark" href="{{ route('tickets.show',$ticket->id) }}">
-											@if ( $ticket->status_code <>  App\Enum\LandlordTicketStatusEnum::CLOSED->value) 
+											@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
 												<h6 class="text-info mb-0">
-											@else 
+											@else
 												<h6 class="text-secondary mb-0">
-											@endif 
+											@endif
 												[#{{ $ticket->id }}] {{ Str::limit($ticket->title, 45) }}
 												</h6>
 										</a>
 										<small class="d-block"> {{ $ticket->owner->name }}</small>
 									</div>
 								</div>
-							
+
 							</td>
 							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
 							<td><x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/></td>

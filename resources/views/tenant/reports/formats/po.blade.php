@@ -51,7 +51,7 @@
 				<td class="desc">{{ $pol->line_num }}</td>
 				<td class="desc">{{ $pol->item_description }}</td>
 				<td class="desc">{{ $pol->item->uom->name }} </td>
-				<td class="unit">{{ number_format($pol->amount,2) }}</td>
+				<td class="unit">{{ number_format($pol->price,2) }}</td>
 				<td class="qty">{{ $pol->qty }}</td>
 				<td class="total">{{ number_format($pol->amount,2) }}</td>
 			</tr>
@@ -101,4 +101,3 @@
 
 @endsection
 
-		

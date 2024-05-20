@@ -14,8 +14,8 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">FY {{ $budget->fy }}- {{ $budget->name }} : Dept Wise Purchase Order</h5>
-			<h6 class="card-subtitle text-muted">Utilized and Available Budget for Purchase Order By Department for a Fiscal year.</h6>
+			<h5 class="card-title">FY{{ $budget->fy }} : Dept Wise PO Budget</h5>
+			<h6 class="card-subtitle text-muted">Utilized and Available Budget for PO By Dept.</h6>
 		</div>
 		<div class="card-body d-flex w-100">
 			<div class="align-self-center chart">
@@ -79,7 +79,7 @@
 				}
 			}
 
-			
+
 			// options: {
 			// 	maintainAspectRatio: false,
 			// 	cornerRadius: 15,

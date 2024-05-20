@@ -8,9 +8,11 @@ use Illuminate\View\Component;
 
 use App\Models\Tenant\Pr;
 use App\Enum\UserRoleEnum;
- use Illuminate\Support\Facades\Log;
+use App\Enum\AuthStatusEnum;
 
- 
+use Illuminate\Support\Facades\Log;
+
+
 class PrLists extends Component
 {
 	public $prs;
@@ -33,11 +35,13 @@ class PrLists extends Component
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$this->prs = Pr::with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
+				$this->prs = Pr::with('dept')->with('requestor')->orderBy('id', 'DESC')
+                ->where('auth_status','<>',AuthStatusEnum::DRAFT->value)
+                ->limit(5)->get();
 				break;
 			default:
 				$this->prs = Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
-				Log::error("widget.pr.pr-lists Other roles!");
+				Log::error("tenant.widget.pr.pr-lists Other roles!");
 		}
 
 	}

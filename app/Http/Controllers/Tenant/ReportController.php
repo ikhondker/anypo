@@ -818,14 +818,17 @@ class ReportController extends Controller
 		// NOTE: Uses InvoicePolicy
 		// $this->authorize('pdfInvoice', $invoice);
 
-		$setup 		= Setup::first();
+		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('id', '1010')->firstOrFail();
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 
-		$param1 	= 'From ';
-		$param2 	= 'Supplier: ';
 
+        $title 	    = 'Purchase Requisiton #'. $pr->id;
+		$subTitle 	= 'Approval : '. strtoupper($pr->auth_status);
+		$param1     = 'Amount : '. number_format($pr->amount, 2) .' '. $pr->currency;
+        $param2 	= 'Requestor : '. $pr->requestor->name;
+		$param3 	= 'Date : ' .strtoupper(date('d-M-Y', strtotime($pr->pr_date)));
 
 		// Increase reports run_count
 		DB::statement("UPDATE reports SET
@@ -839,8 +842,12 @@ class ReportController extends Controller
 			'report' 	=> $report,
 			'pr' 		=> $pr,
 			'prls' 		=> $prls,
+            'title' 	=> $title,
+            'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
+            'param3' 	=> $param3,
+
 		];
 
 		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
@@ -878,10 +885,10 @@ class ReportController extends Controller
 		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
 
 		return $pdf->stream('Pr'.$pr->id.'.pdf');
-		
+
 		//return view('tenant.reports.formats.pr', compact('setup','report','pr','prls','param1','param2'));
 
-		
+
 
 	}
 

@@ -133,9 +133,8 @@
 								<th class="text-end">GRS</th>
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
-
-								<th>Closed</th>
-								<th>Actions</th>
+								<th>Active?</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -148,7 +147,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_payment"/></td>
-								<td><x-tenant.list.my-closed :value="$supplier->closed"/></td>
+								<td><x-tenant.list.my-boolean :value="$supplier->enable"/></td>
 								<td class="table-action">
 									<a href="{{ route('suppliers.show',$supplier->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="align-middle" data-feather="eye"></i></a>

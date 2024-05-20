@@ -18,7 +18,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-10">
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Hierarchy Name: {{ $hierarchy->name }}</h5>
@@ -33,6 +33,8 @@
 								<th>Title</th>
 								<th>Dept</th>
 								<th>Email</th>
+                                <th>User Active</th>
+
 							</tr>
 						</thead>
 						<tbody>
@@ -43,6 +45,8 @@
 								<td>{{ $hierarchyl->approver->designation->name }} </td>
 								<td>{{ $hierarchyl->approver->dept->name }} </td>
 								<td>{{ $hierarchyl->approver->email }} </td>
+                                <td><x-tenant.list.my-boolean :value="$hierarchyl->approver->enable"/></td>
+
 							</tr>
 							@endforeach
 						</tbody>
@@ -53,13 +57,13 @@
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-		
+
 		</div>
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
 
-	
+
 
 @endsection
 

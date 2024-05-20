@@ -17,8 +17,8 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="card-title">{{ $deptBudget->dept->name }} Budget {{ $deptBudget->budget->fy }} : Purchase Order</h5>
-			<h6 class="card-subtitle text-muted">Utilized and Available Budget for Purchase Order for a Department.</h6>
+			<h5 class="card-title">[{{ $deptBudget->dept->name }}] FY{{ $deptBudget->budget->fy }} : PO Budget</h5>
+			<h6 class="card-subtitle text-muted">Utilized and Available Budget for PO.</h6>
 		</div>
 		<div class="card-body d-flex">
 			<div class="align-self-center w-100">

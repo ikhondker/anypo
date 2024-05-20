@@ -45,8 +45,8 @@
 							</td>
 							<td><x-landlord.list.my-date :value="$activity->created_at" /></td>
 							<td>{{ $activity->event_name }}
-                                <small class="d-block">By: {{ $activity->user->name }}</small>
-                            </td>
+								<small class="d-block">By: {{ $activity->user->name }}</small>
+							</td>
 							<td><x-landlord.list.actions object="Activity" :id="$activity->id" :edit="false"
 									:enable="false" /></td>
 						</tr>

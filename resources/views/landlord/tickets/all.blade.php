@@ -68,7 +68,7 @@
 							<td>
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}"  alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
+										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
 										{{-- <i class="bi bi-person-circle text-danger" style="font-size: 1.3rem;"></i> --}}
 									</div>
 									<div class="flex-grow-1 ms-3">
@@ -79,7 +79,7 @@
 										</a>
 										<small class="d-block">
 											{{ $ticket->owner->name }} | {{ $ticket->dept->name }}
-											@if ( auth()->user()->isSeeded()  && ($ticket->agent_id <> ''))
+											@if ( auth()->user()->isSeeded() && ($ticket->agent_id <> ''))
 												| {{ $ticket->agent->name }}
 											@endif
 										</small>

@@ -74,7 +74,7 @@
 		.OpenSans {
 			font-family: 'Open Sans';
 		}
-	
+
 		body {
 			/* font-family: 'Croissant One', sans-serif; */
 			/* font-family: 'Atma', sans-serif; */
@@ -85,23 +85,23 @@
 	</style>
 </head>
 <body>
-	None: I want to express my sincere gratitude for the opportunities and experiences I've had during my time at [IT Company Name]. 
-	<p> 
+	None: I want to express my sincere gratitude for the opportunities and experiences I've had during my time at [IT Company Name].
+	<p>
 		Default: I want to express my sincere gratitude for the opportunities and experiences I've had during my time at [IT Company Name].
 	</p>
-	<p class="Lato"> 
+	<p class="Lato">
 		Lato1: I want to express my sincere gratitude for the opportunities and experiences I've had during my time at [IT Company Name].
 	</p>
-	<p class="Montserrat"> 
+	<p class="Montserrat">
 		Montserrat: I want to express my sincere gratitude for the opportunities and experiences I've had during my time at [IT Company Name].
 	</p>
-	<p class="Poppins"> 
+	<p class="Poppins">
 		Poppins: I want to express my sincere gratitude for the opportunities and experiences I've had during my time at [IT Company Name].
 	</p>
-	<p class="Roboto"> 
+	<p class="Roboto">
 		Roboto2: I want to express my sincere gratitude for the opportunities and experiences I've had during my time at [IT Company Name].
 	</p>
-	<p class="OpenSans"> 
+	<p class="OpenSans">
 		Open Sans3: I want to express my sincere gratitude for the opportunities and experiences I've had during my time at [IT Company Name].
 	</p>
 

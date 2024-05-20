@@ -1,7 +1,7 @@
 <table class="table table-striped table-sm">
 	<thead>
 		<tr>
-			<th class="text-center">SL#</th>
+			<th class="text-center">#</th>
 			<th class="">Subject</th>
 			<th class="">Date</th>
 			<th class="">Read At</th>
@@ -10,7 +10,7 @@
 	</thead>
 	<tbody>
 		@if(auth()->user())
-	 
+
 			@forelse($notifications as $notification)
 				<tr>
 					<td class="text-center">
@@ -32,18 +32,18 @@
 					<td class="table-action">
 						<a href="{{ route('notifications.show', $notification->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="align-middle" data-feather="eye"></i></a>
 						<a href="{{ route('notifications.read', $notification->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as Read"><i class="align-middle" data-feather="thumbs-up"></i></a>
-						<a href="{{ route('notifications.destroy', $notification->id) }}" class="me-2 modal-boolean sw2" 
+						<a href="{{ route('notifications.destroy', $notification->id) }}" class="me-2 modal-boolean sw2"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 							<i class="align-middle" data-feather="trash-2"></i>
 						</a>
 					</td>
-				</tr> 
+				</tr>
 			@empty
 				<tr>
 					There are no new notifications!
-				</tr> 
+				</tr>
 			@endforelse
 		@endif
 	</tbody>
 </table>
- 
+

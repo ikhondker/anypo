@@ -2,7 +2,7 @@
 @section('title','Edit Purchase Order')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO #{{ $po->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO#{{ $po->id }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -11,7 +11,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Edit PO #{{ $po->id }}
+			Edit PO#{{ $po->id }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
@@ -30,7 +30,7 @@
 				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h5 class="card-title">Basic Information PO #{{ $po->id }}</h5>
+							<h5 class="card-title">Basic Information PO#{{ $po->id }}</h5>
 							<h6 class="card-subtitle text-muted">Edit Basic Information of Purchase Order.</h6>
 
 						</div>
@@ -42,8 +42,8 @@
 							</div> --}}
 
 							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">PO Summary</label>
-								<div class="col-sm-10">
+								<label class="col-form-label col-sm-3 text-sm-right">PO Summary</label>
+								<div class="col-sm-9">
 									<input type="text" class="form-control @error('summary') is-invalid @enderror"
 									name="summary" id="summary" placeholder="PR summary"
 									value="{{ old('summary', $po->summary ) }}"
@@ -55,8 +55,8 @@
 							</div>
 
 							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">PO Date</label>
-								<div class="col-sm-10">
+								<label class="col-form-label col-sm-3 text-sm-right">PO Date</label>
+								<div class="col-sm-9">
 									<input type="text" class="form-control"
 									name="dsp_date" id="dsp_date" value="{{ date_format($po->po_date,"d-M-Y H:i:s"); }}"
 									readonly/>
@@ -67,8 +67,8 @@
 								<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 							@else
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">Dept Name</label>
-									<div class="col-sm-10">
+									<label class="col-form-label col-sm-3 text-sm-right">Dept Name</label>
+									<div class="col-sm-9">
 										<select class="form-control select2" data-toggle="select2" name="dept_id" id="dept_id">
 											@foreach ($depts as $dept)
 												<option {{ $dept->id == old('dept_id',$po->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
@@ -83,8 +83,8 @@
 
 
 							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">Supplier</label>
-								<div class="col-sm-10">
+								<label class="col-form-label col-sm-3 text-sm-right">Supplier</label>
+								<div class="col-sm-9">
 									<select class="form-control select2" data-toggle="select2" name="supplier_id" id="supplier_id">
 										@foreach ($suppliers as $supplier)
 											<option {{ $supplier->id == old('supplier_id',$po->supplier_id) ? 'selected' : '' }} value="{{ $supplier->id }}">{{ $supplier->name }} </option>
@@ -97,8 +97,8 @@
 							</div>
 
 							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right">Project</label>
-								<div class="col-sm-10">
+								<label class="col-form-label col-sm-3 text-sm-right">Project</label>
+								<div class="col-sm-9">
 									<select class="form-control select2" data-toggle="select2" name="project_id" id="project_id">
 										@foreach ($projects as $project)
 											<option {{ $project->id == old('project_id',$po->project_id) ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->name }} </option>
@@ -109,10 +109,10 @@
 									@enderror
 								</div>
 							</div>
-							
+
 							<x-tenant.edit.currency :value="$po->currency"/>
 
-							{{-- <x-tenant.buttons.show.save/> --}}
+                            <x-tenant.buttons.show.save/>
 
 						</div>
 					</div>
@@ -126,34 +126,60 @@
 							<h6 class="card-subtitle text-muted">Edit Purchase Order Other Information.</h6>
 						</div>
 						<div class="card-body">
-						
-							<div class="mb-3">
-								<label name="notes" class="form-label">Notes:</label>
-								<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', $po->notes) }}</textarea>
-								@error('notes')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-								<div class="form-check form-switch">
-									<input class="form-check-input mt-2" type="checkbox" id="tc" name="tc" @checked($po->tc)>
-									<label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
-								</div>	
+
+                            <div class="mb-3 row">
+                                <label class="col-form-label col-sm-3 text-sm-right">Requestor :</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="requestor_id">
+                                        @foreach ($users as $user)
+                                            <option {{ $user->id == old('requestor_id',$po->requestor_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+                                        @endforeach
+                                    </select>
+                                    @error('requestor_id')
+                                        <div class="text-danger text-xs">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+								<label class="col-form-label col-sm-3 text-sm-right">Need By Date :</label>
+								<div class="col-sm-9">
+									<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
+                                    name="need_by_date" id="need_by_date" placeholder=""
+                                    value="{{ old('need_by_date', date('Y-m-d',strtotime($po->need_by_date)) ) }}"
+                                    required/>
+                                    @error('need_by_date')
+                                        <div class="text-danger text-xs">{{ $message }}</div>
+                                    @enderror
+								</div>
 							</div>
+
+                            <div class="mb-3 row">
+                                <label class="col-form-label col-sm-3 text-sm-right">Terms and Conditions</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', $po->notes) }}</textarea>
+                                    @error('notes')
+                                        <div class="text-danger text-xs">{{ $message }}</div>
+                                    @enderror
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input mt-2" type="checkbox" id="tc" name="tc" @checked($po->tc)>
+                                        <label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
+                                    </div>
+                                </div>
+                            </div>
 
 							<x-tenant.attachment.create />
 
-							<div class="mb-3">
-								<label class="form-label">Requestor</label>
-								<select class="form-control" name="requestor_id">
-									@foreach ($users as $user)
-										<option {{ $user->id == old('requestor_id',$po->requestor_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
-									@endforeach
-								</select>
-								@error('requestor_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-						
-								
+                            <div class="mb-3 row">
+                                <label class="col-form-label col-sm-3 text-sm-right">Buyer :</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control"
+                                    name="requestor" id="requestor"
+                                    value="{{ $po->buyer->name }}"
+                                    readonly/>
+                                </div>
+                            </div>
+
 							<x-tenant.buttons.show.save/>
 
 						</div>

@@ -12,19 +12,19 @@
 					</a>
 				</div>
 				<!-- End Logo -->
-		
+
 				<!-- List -->
 				<ul class="list-unstyled list-py-1">
 					<li><a class="link-sm link-light" href="#"><i class="bi-geo-alt-fill me-1"></i> {{ $_config->address1 }}</a></li>
 					<li><a class="link-sm link-light" href="#">{{ $_config->city.' '.$_config->state.' '. $_config->zip. ', '. $_config->relCountry->name }}</a></li>
 					<li><a class="link-sm link-light" href="tel:{{$_config->cell}}"><i class="bi-telephone-inbound-fill me-1"></i> {{ $_config->cell }}</a></li>
 				</ul>
-				<!-- End List --> 
-				
+				<!-- End List -->
+
 			</div>
 			<!-- End Col -->
 
-				
+
 			<div class="col-6 col-md-3 col-lg-2 mb-5 mb-md-0">
 				<h5 class="text-white">Resources</h5>
 					<!-- Nav Links -->
@@ -48,13 +48,13 @@
 				<!-- End Links -->
 			</div>
 			<!-- End Col -->
-	
+
 			<div class="col-md-6 col-lg-5">
 				<!-- Form -->
 				<form action="{{ route('home.join-mail-list') }}" method="POST">
 					@csrf
 					<h5 class="text-white">Stay up to date</h5>
-		
+
 					<!-- Input Card -->
 					<div class="input-card mt-3">
 						<div class="input-card-form">
@@ -71,24 +71,24 @@
 					<!-- End Input Card -->
 				</form>
 				<!-- End Form -->
-	
+
 			<p class="form-text text-white-70">Product new features or big discounts. We never spam.</p>
 			</div>
 			<!-- End Col -->
 		</div>
 		<!-- End Row -->
-	
+
 		<div class="row align-items-center">
 			<div class="col">
-				<p class="text-white-50 small mb-0">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved. 
+				<p class="text-white-50 small mb-0">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved.
 					@auth
 						@if (auth()->user()->isSystem())
 							Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})</p>
-						@endif	
+						@endif
 					@endauth
 			</div>
 			<!-- End Col -->
-	
+
 			<div class="col-auto">
 				<!-- Socials -->
 				<ul class="list-inline mb-0">
@@ -97,19 +97,19 @@
 						<i class="bi-facebook"></i>
 					</a>
 					</li>
-		
+
 					<li class="list-inline-item">
 					<a class="btn btn-soft-light btn-xs btn-icon" href="#">
 						<i class="bi-google"></i>
 					</a>
 					</li>
-		
+
 					<li class="list-inline-item">
 					<a class="btn btn-soft-light btn-xs btn-icon" href="#">
 						<i class="bi-twitter"></i>
 					</a>
 					</li>
-		
+
 					<li class="list-inline-item">
 					<a class="btn btn-soft-light btn-xs btn-icon" href="#">
 						<i class="bi-github"></i>
@@ -150,7 +150,7 @@
 
 <!-- JS Plugins Init. -->
 <script>
-  (function() {
+	(function() {
 	// INITIALIZATION OF HEADER
 	// =======================================================
 	new HSHeader('#header').init()
@@ -159,9 +159,9 @@
 	// =======================================================
 	new HSMegaMenu('.js-mega-menu', {
 		desktop: {
-		  position: 'left'
+			position: 'left'
 		}
-	  })
+	})
 
 
 	// INITIALIZATION OF SHOW ANIMATIONS

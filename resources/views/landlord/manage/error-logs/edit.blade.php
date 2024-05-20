@@ -5,7 +5,7 @@
 @section('content')
 	<!-- Card -->
 	<div class="card">
-		<form id="myform"  action="{{ route('error-logs.update',$errorLog->id) }}" method="POST">
+		<form id="myform" action="{{ route('error-logs.update',$errorLog->id) }}" method="POST">
 			@csrf
 			@method('PUT')
 
