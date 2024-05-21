@@ -18,8 +18,8 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 |  3. Tenant Back Office Routes (Need Auth+ Email Verification + can:access-back-office)
 |  4. Tenant Old Public+Auth Routes (Need to Check)
 |  5. Tenant Route for Testing purpose and Misc Routes (Ony For back Office)
-|  6. 
-|  7. 
+|  6.
+|  7.
 */
 
 use App\Http\Controllers\Tenant\Test\TestController;
@@ -141,7 +141,7 @@ Route::middleware([
 		Route::get('/jql', function () {
 			return view('tenant.tests.pages.jqueryl');
 		})->name('jql');
-		
+
 		/* ======================== Purging Cache ========================================  */
 		Route::get('/clear', function() {
 			Artisan::call('cache:clear');
@@ -152,13 +152,13 @@ Route::middleware([
 			return "Cache is cleared at ".now();
 		});
 
-		
+
 		/* ======================== make auth universal ========================================  */
-		Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () { 
-			Auth::routes(); 
+		Route::middleware(['universal'])->namespace('App\\Http\\Controllers\\')->group(function () {
+			Auth::routes();
 			//Auth::routes(['verify' => true]);
 		});
-	
+
 		// IQBAL 28-feb-23
 		Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
@@ -223,7 +223,7 @@ Route::middleware([
 		Route::post('profile-password-update', [UserController::class, 'updateProfilePassword'])->name('users.profile-password-update');
 		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
-		
+
 		/* ======================== Notification ======================================== */
 		Route::resource('notifications', NotificationController::class);
 		Route::get('/notification/all',[NotificationController::class, 'all'])->name('notifications.all');
@@ -234,15 +234,15 @@ Route::middleware([
 		/* ======================== Supplier ======================================== */
 		Route::resource('suppliers', SupplierController::class);
 		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
-		
+
 		/* ======================== Uom ======================================== */
 		Route::get('/uoms/get-uoms-by-class/{uom_class_id}',[UomController::class, 'getUomsByClass'])->name('uoms.get-uoms-by-class');
-		
+
 		/* ======================== Item ======================================== */
 		Route::resource('items', ItemController::class);
 		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
 		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
-		
+
 		/* ======================== Project ======================================== */
 		Route::resource('projects', ProjectController::class);
 		Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
@@ -262,7 +262,7 @@ Route::middleware([
 		Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
 		Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
 		Route::get('/prs/convert-to-po/{pr}',[PrController::class, 'convertPo'])->name('prs.convert');
-		
+
 		/* ======================== Prl ======================================== */
 		Route::resource('prls', PrlController::class);
 		Route::get('/prl/export',[PrlController::class,'export'])->name('prls.export');
@@ -272,13 +272,13 @@ Route::middleware([
 
 		/* ======================== Ticket ======================================== */
 		Route::resource('tickets', TicketController::class);
-		
+
 		/* ======================== Attachment ======================================== */
 		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
 
 		/* ======================== Report ========================================  */
 		Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
-						
+
 	});
 
 /**
@@ -298,7 +298,7 @@ Route::middleware([
 
 				/* ======================== Project ======================================== */
 				Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
-				
+
 				Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 				Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
 				Route::get('/projects/po/{project}',[ProjectController::class,'po'])->name('projects.po');
@@ -307,9 +307,10 @@ Route::middleware([
 				Route::resource('dbus', DbuController::class);
 				Route::get('/dbu/export',[DbuController::class,'export'])->name('dbus.export');
 				Route::get('/dbus/delete/{dbu}',[DbuController::class,'destroy'])->name('dbus.destroy');
-		
+
 				/* ======================== Po ======================================== */
 				Route::resource('pos', PoController::class);
+                Route::get('/po/my-pos',[PoController::class,'myPo'])->name('pos.my-pos');
 				//Route::get('/pos/pdf/{po}',[PoController::class,'pdf'])->name('pos.pdf');
 				Route::get('/pos/attachments/{po}',[PoController::class,'attachments'])->name('pos.attachments');
 				Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
@@ -326,10 +327,10 @@ Route::middleware([
 				Route::get('/pos/history/{po}',[PoController::class,'history'])->name('pos.history');
 				Route::get('/pos/invoice/{po}',[PoController::class,'invoice'])->name('pos.invoice');
 				Route::get('/pos/ael/{po}',[PoController::class,'ael'])->name('pos.ael');
-		
+
 				Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
 				Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
-		
+
 				/* ======================== Pol ======================================== */
 				Route::resource('pols', PolController::class);
 				Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
@@ -337,7 +338,7 @@ Route::middleware([
 				Route::get('/pols/add-line/{po}',[PolController::class, 'addLine'])->name('pols.add-line');
 				Route::get('/pols/receipt/{pol}',[PolController::class,'receipt'])->name('pols.receipt');
 				Route::get('/pols/ael/{pol}',[PolController::class,'ael'])->name('pols.ael');
-		
+
 				/* ======================== Receipt ======================================== */
 				Route::resource('receipts', ReceiptController::class);
 				Route::get('/receipts/create/{pol}',[ReceiptController::class,'create'])->name('receipts.create');
@@ -345,7 +346,7 @@ Route::middleware([
 				Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
 				Route::get('/receipts/cancel/{receipt}',[ReceiptController::class,'cancel'])->name('receipts.cancel');
 				Route::get('/receipts/ael/{receipt}',[ReceiptController::class,'ael'])->name('receipts.ael');
-		
+
 				/* ======================== Invoice ======================================== */
 				Route::resource('invoices', InvoiceController::class);
 				Route::post('/invoice/attach',[InvoiceController::class,'attach'])->name('invoices.attach');
@@ -356,7 +357,7 @@ Route::middleware([
 				Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
 				Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
 				Route::get('/invoices/ael/{invoice}',[InvoiceController::class,'ael'])->name('invoices.ael');
-		
+
 				/* ======================== Payment ======================================== */
 				Route::resource('payments', PaymentController::class);
 				Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
@@ -364,18 +365,18 @@ Route::middleware([
 				Route::get('/payments/create/{invoice}',[PaymentController::class,'create'])->name('payments.create');
 				Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
 				Route::get('/payments/ael/{payment}',[PaymentController::class,'ael'])->name('payments.ael');
-		
+
 				/* ======================== Ael ======================================== */
 				Route::resource('aels', AelController::class);
 				Route::get('/ael/export-for-po/{id}',[AelController::class,'exportForPo'])->name('aels.export-for-po');
-		
+
 				/* ======================== Report ========================================  */
 				Route::resource('reports', ReportController::class);
 				Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
 				Route::get('/report/po/{id}',[ReportController::class, 'po'])->name('reports.po');
 				Route::get('/reports/parameter/{report}',[ReportController::class,'parameter'])->name('reports.parameter');
 				Route::put('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
-				
+
 				/* ======================== Rate ======================================== */
 				Route::resource('rates', RateController::class);
 				Route::get('/rate/export',[RateController::class,'export'])->name('rates.export');
@@ -394,8 +395,8 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
-		
-		
+
+
 		/* ======================== DeptBudget ======================================== */
 		Route::resource('dept-budgets', DeptBudgetController::class);
 		Route::get('/dept-budget/export',[DeptBudgetController::class,'export'])->name('dept-budgets.export');
@@ -438,7 +439,7 @@ Route::middleware([
 
 	});
 
-	
+
 /**
 * ==================================================================================
 * 3. Buyer Routes (Need Auth+ Email Verification + can:buyer)
@@ -528,12 +529,12 @@ Route::middleware([
 		Route::get('/category/export',[CategoryController::class, 'export'])->name('categories.export');
 		Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
 
-		
+
 		/* ======================== Uom ======================================== */
 		Route::resource('uoms', UomController::class);
 		Route::get('/uom/export',[UomController::class,'export'])->name('uoms.export');
 		Route::get('/uoms/delete/{uom}',[UomController::class,'destroy'])->name('uoms.destroy');
-		
+
 
 		/* ======================== Oem ======================================== */
 		Route::resource('oems', OemController::class);
@@ -551,7 +552,7 @@ Route::middleware([
 		Route::get('setups/tc/{setup}', [SetupController::class, 'tc'])->name('setups.tc');
 		Route::post('setups/update-tc/{setup}', [SetupController::class, 'updateTc'])->name('setups.update-tc');
 		Route::post('setups/freeze/{setup}', [SetupController::class, 'freeze'])->name('setups.freeze');
-		
+
 		/* ======================== Activity ======================================== */
 		Route::resource('activities', ActivityController::class);
 		Route::get('/activity/export',[ActivityController::class, 'export'])->name('activities.export');
@@ -560,7 +561,7 @@ Route::middleware([
 		Route::resource('attachments', AttachmentController::class);
 		Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
 		Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
-		
+
 			/* ======================== Hierarchy ======================================== */
 		Route::resource('hierarchies', HierarchyController::class);
 		Route::get('/hierarchy/export',[HierarchyController::class,'export'])->name('hierarchies.export');
@@ -578,7 +579,7 @@ Route::middleware([
 		Route::resource('wfls', WflController::class);
 		Route::get('/wfl/export',[WflController::class,'export'])->name('wfls.export');
 		Route::get('/wfls/delete/{wfl}',[WflController::class,'destroy'])->name('wfls.destroy');
-			
+
 	});
 
 /**
@@ -606,13 +607,13 @@ Route::middleware([
 		Route::resource('countries', CountryController::class);
 		Route::get('/country/export',[CountryController::class,'export'])->name('countries.export');
 		Route::get('/countries/delete/{country}',[CountryController::class, 'destroy'])->name('countries.destroy');
-		
+
 	});
 
 
 /**
 * ==================================================================================
-* 3. System 
+* 3. System
 * ==================================================================================
 */
 Route::middleware([
@@ -620,7 +621,7 @@ Route::middleware([
 	InitializeTenancyByDomain::class,
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
-	
+
 		/* ======================== Table ========================================  */
 		Route::resource('tables', TableController::class);
 		Route::get('/table/structure/{table}',[TableController::class, 'structure'])->name('tables.structure');
@@ -652,7 +653,7 @@ Route::middleware([
 		/* ======================== Entity ======================================== */
 		Route::resource('entities', EntityController::class);
 		Route::get('/entities/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
-		
+
 		/* ======================== Status ======================================== */
 		Route::resource('statuses', StatusController::class);
 		Route::get('/status/export',[StatusController::class,'export'])->name('statuses.export');
@@ -668,10 +669,10 @@ Route::middleware([
 		Route::get('/report/templatepr',[ReportController::class, 'templatepr'])->name('reports.templatepr');
 		Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
 		Route::get('/report/stocks',[ReportController::class, 'stocks'])->name('reports.stocks');
-		
+
 		/* ======================== Aeh ======================================== */
 		Route::resource('aehs', AehController::class);
-		
+
 		/* ======================== Purging Cache ========================================  */
 		// Route::get('/clear', function() {
 		// 	Artisan::call('cache:clear');
@@ -715,7 +716,7 @@ Route::middleware([
 		Route::get('/html', function () {
 			return view('blankhtml');
 		})->name('blank');
-		
+
 		Route::get('/design', function () {
 			return view('design');
 		})->name('design');
@@ -732,12 +733,12 @@ Route::middleware([
 	InitializeTenancyByDomain::class,
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
-	
+
 	// Route::get('/', function () {
 	//	return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
 	// });
 
-	
+
 	/* ======================== FileAccess ======================================== */
 	//Route::get('/logo/{file}', [FileAccessController::class, 'logo'])->name('logo');
 	//Route::get('/avatar/{file}', [FileAccessController::class, 'avatar'])->name('avatar');
@@ -756,10 +757,10 @@ Route::middleware([
 	//Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
 	//Route::get('/invoicelines/export',[InvoiceLinesController::class,'export'])->name('invoicelines.export');
 	//Route::get('/invoicelines/delete/{invoicelines}',[InvoiceLinesController::class,'destroy'])->name('invoicelines.destroy');
-	
+
 	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
 	//Route::get('/entity/export',[EntityController::class, 'export'])->name('entities.export');
-	
+
 	/* ======================== Pages ======================================== */
 	// Route::get('/faq', function () {
 	// 	return view('pages.faq');

@@ -47,7 +47,7 @@ use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
-use App\Jobs\Tenant\AelPayment;
+use App\Jobs\Tenant\AehPayment;
 
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
@@ -160,7 +160,7 @@ class PaymentController extends Controller
 		// Reupload
 		$payment = Payment::with('invoice')->where('id', $payment->id)->firstOrFail();
 		// Create Accounting for this Payment
-		AelPayment::dispatch($payment->id, $payment->fc_amount);
+		AehPayment::dispatch($payment->id, $payment->fc_amount);
 
 
 		// update Invoice header

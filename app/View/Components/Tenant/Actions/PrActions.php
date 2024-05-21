@@ -6,9 +6,11 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+use App\Models\Tenant\Pr;
+
 class PrActions extends Component
 {
-	public $id;
+	public $pr;
 	public $show;
 
 	/**
@@ -16,8 +18,9 @@ class PrActions extends Component
 	 */
 	public function __construct($id, $show = false)
 	{
-		$this->id 		= $id;
-		$this->show		= $show; 
+		//$this->id 		= $id;
+		$this->show		= $show;
+        $this->pr 	    = Pr::where('id', $id)->get()->firstOrFail();
 		// $this->po = Po::where('id', $id)->get()->first();
 	}
 

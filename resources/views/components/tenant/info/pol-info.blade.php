@@ -10,15 +10,16 @@
 						<h4>PO #{{ $pol->po->id }} {{ $pol->po->summary }}</h4>
 						<p>{!! nl2br($pol->notes) !!}</p>
 						<table class="table table-sm my-2">
-					
+
 							<tbody>
+
 								<tr>
 									<th>Line #</th>
 									<td>{{ $pol->line_num }}</td>
 								</tr>
 								<tr>
 									<th>Item</th>
-									<td>{{ $pol->summary }}</td>
+									<td>{{ $pol->item_description }}</td>
 								</tr>
 								<tr>
 									<th>Ord Qty</th>
@@ -30,12 +31,16 @@
 								</tr>
 								<tr>
 									<th>Unit Price</th>
-									<td>{{ number_format($pol->price , 2) }} {{ $pol->currency }}</td>
+									<td> {{ $pol->po->currency }} {{ number_format($pol->price+$pol->tax+$pol->gst , 2) }} [ Price {{ number_format($pol->price , 2) }} + Tax {{ number_format($pol->tax , 2) }} +GST {{ number_format($pol->gst , 2) }}]</td>
 								</tr>
-								
+
 								<tr>
 									<th>Line Amount</th>
-									<td>{{ number_format($pol->amount , 2) }} {{ $pol->currency }}</td>
+									<td>{{ $pol->po->currency }} {{ number_format($pol->amount , 2) }} </td>
+								</tr>
+                                <tr>
+									<th>Supplier</th>
+									<td>{{ $pol->po->supplier->name }}</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>

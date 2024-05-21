@@ -11,7 +11,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			FY {{ $budget->fy }} Budgets 
+			FY {{ $budget->fy }} Budgets
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Budget"/>
@@ -42,7 +42,16 @@
 					<x-tenant.show.my-date		value="{{ $budget->end_date }}" label="End Date"/>
 					<x-tenant.show.my-text		value="{{ $budget->notes }}" label="Notes"/>
 					<x-tenant.show.my-closed	value="{{ $budget->closed }}" label="Closed?"/>
-					<x-tenant.buttons.show.edit object="Budget" :id="$budget->id"/>
+					<div class="row">
+						<div class="col-sm-4 text-end">
+
+						</div>
+						<div class="col-sm-8 text-end">
+							@if (! $budget->closed)
+								<x-tenant.show.my-edit-link object="Budget" :id="$budget->id"/>
+							@endif
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -82,7 +91,7 @@
 							<input type="text" name="attach_budget_id" id="attach_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $budget->id ) }}" hidden>
 							<div class="row">
 								<div class="col-sm-3 text-end">
-								
+
 								</div>
 								<div class="col-sm-9 text-end">
 									<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
@@ -91,7 +100,7 @@
 							</div>
 						</form>
 						<!-- /.form end -->
-					@endif	
+					@endif
 				</div>
 			</div>
 		</div>
@@ -105,7 +114,7 @@
 				<div class="card-body">
 				<x-tenant.show.my-amount	value="{{ $budget->amount }}" label="Budget"/>
 				<x-tenant.show.my-amount	value="{{ $budget->amount_pr_booked }}" label="PR Booked"/>
-				<x-tenant.show.my-amount	value="{{ $budget->amount_pr }}" label="PR Issues" />
+				<x-tenant.show.my-amount	value="{{ $budget->amount_pr }}" label="PR Issued" />
 				<x-tenant.show.my-amount	value="{{ $budget->amount - $budget->amount_pr_booked - $budget->amount_pr }}" label="Available"/>
 				</div>
 			</div>
@@ -117,7 +126,7 @@
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-amount	value="{{ $budget->amount }}" label="Budget"/>
-					<x-tenant.show.my-amount	value="{{ $budget->amount_grs }}" label="GRS Booked"/>
+					<x-tenant.show.my-amount	value="{{ $budget->amount_grs }}" label="GRS Issued"/>
 					<x-tenant.show.my-amount	value="{{ $budget->amount- $budget->amount_grs }}" label="Available"/>
 				</div>
 			</div>
@@ -133,7 +142,7 @@
 					<x-tenant.show.my-amount	value="{{ $budget->amount- $budget->amount_payment }}" label="Available"/>
 				</div>
 			</div>
-			
+
 		</div>
 		<!-- end col-6 -->
 	</div>
@@ -141,11 +150,11 @@
 
 	<div class="row">
 		<div class="col-6">
-			
+
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-			
+
 		</div>
 		<!-- end col-6 -->
 	</div>
@@ -157,7 +166,7 @@
 		}
 	</script>
 
-	
+
 
 @endsection
 

@@ -23,7 +23,7 @@
 					<tr>
 						<th class="">SL#</th>
 						<th class="">Date</th>
-						<th class="text-end">Item</th>
+						<th class="">Item</th>
 						<th class="text-end">Qty</th>
 						<th class="text-end">Amount</th>
 						<th class="">Receiver</th>
@@ -36,7 +36,7 @@
 						<tr class="">
 							<td class="">{{ $loop->iteration }}</td>
 							<td class="">{{ $receipt->receive_date }}</td>
-							<td class="text-end">{{ $receipt->pol->summary }}</td>
+							<td class="">{{ $receipt->pol->item_description }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$receipt->qty"/></td>
 							<td class="text-end"><x-tenant.list.my-number :value="$receipt->amount"/></td>
 							<td class="">{{ $receipt->receiver->name }}</td>

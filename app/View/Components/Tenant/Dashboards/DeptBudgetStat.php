@@ -22,7 +22,7 @@ class DeptBudgetStat extends Component
 	{
 		//$this->dept_budget_id = $dept_budget_id;
 
-		Log::debug('components.tenant.dashboards.DeptBudgetStat Value of dept_budget_id=' . $dbid);
+		//Log::debug('components.tenant.dashboards.DeptBudgetStat Value of dept_budget_id=' . $dbid);
 
 		if ($dbid == '0000'){ // Must get at least one dept budget as already checked before calling this component with empty dbid
 			// Get latest dept budget of the current user
@@ -31,7 +31,7 @@ class DeptBudgetStat extends Component
 			//$this->deptBudget				= DeptBudget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $this->dept_id)->firstOrFail();
 			$this->deptBudget				= DeptBudget::with('budget')->with('dept')->orderBy('id', 'DESC')->where('id', $dbid)->firstOrFail();
 		}
-		Log::debug('components.tenant.dashboards.DeptBudgetStat Value of this->deptBudget->id = ' . $this->deptBudget->id);
+		//Log::debug('components.tenant.dashboards.DeptBudgetStat Value of this->deptBudget->id = ' . $this->deptBudget->id);
 	}
 
 	/**

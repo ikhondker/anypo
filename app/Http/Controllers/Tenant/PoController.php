@@ -96,10 +96,10 @@ class PoController extends Controller
 		}
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::HOD->value:
-				$pos = $pos->ByDeptAll()->paginate(10);
+				$pos = $pos->ByDeptAll()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
-				$pos = $pos->ByBuyerAll()->paginate(10);
+				$pos = $pos->ByBuyerAll()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
@@ -108,7 +108,7 @@ class PoController extends Controller
 				break;
 			default:
 				//$pos = $pos->ByUserAll()->paginate(10);
-				Log::warning(tenant('id'). 'tenant.po.index Other role = '. auth()->user()->role->value);
+				Log::warning(tenant('id'). ' tenant.po.index Other role = '. auth()->user()->role->value);
 				abort(403);
 		}
 
@@ -489,7 +489,21 @@ class PoController extends Controller
 	}
 
 
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function myPo()
+	{
 
+		$pos = Po::query();
+		if (request('term')) {
+			$pos->where('summary', 'LIKE', '%' . request('term') . '%');
+		}
+		//$pos = $pos->ByBuyerAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+        $pos = $pos->ByBuyerAll()->with("buyer")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+
+		return view('tenant.pos.my-pos', compact('pos'));
+	}
 
 	public function submit(Po $po)
 	{
@@ -498,9 +512,21 @@ class PoController extends Controller
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('pos.show',$po->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
-		if ($po->amount == 0) {
+
+        // only buyer can submit PO
+        if ( ! auth()->user()->isBuyer() ) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'Only a Buyer Can submit a Purchase Order for Approval!');
+		}
+
+        if ($po->buyer_id <> auth()->user()->id) {
+            return redirect()->route('pos.show',$po->id)->with('error', 'You can only submit Purchase Orders created by you!');
+        }
+
+        if ($po->amount == 0) {
 			return redirect()->route('pos.show',$po->id)->with('error', 'You cannot submit zero value Purchase Order');
 		}
+
+		Log::debug('tenant.po.submit submitting po_id = ' . $po->id);
 
 		// check if budget created and set dept_budget_id
 		// check if budget for this year exists
@@ -534,15 +560,11 @@ class PoController extends Controller
 
 		// 	Populate functional currency values
 		$result = Po::syncPoValues($po->id);
-		if ($result == '') {
-			Log::debug('tenant.po.submit syncPrValues completed.');
+		if ( $result == '' ) {
+			Log::debug('tenant.po.submit syncPoValues completed.');
 		} else {
 			$customError = CustomError::where('code', $result)->first();
 			return redirect()->route('pos.show', $po->id)->with('error', $customError->message.' Please Try later.');
-		}
-
-		if (!$result) {
-			return redirect()->route('pos.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
 		}
 
 		// Check and book Budget
@@ -559,11 +581,11 @@ class PoController extends Controller
 			}
 		} else {
 			// Submission Success
-			Log::debug('tenant.pos.submit Submission okay for pr_id= '. $po->id);
+			Log::debug('tenant.pos.submit Submission okay for pr_id = '. $po->id);
 		}
 
 		// Submit for approval
-		Log::debug("tenant.po.submit creating new workflow for po_id=".$po->id);
+		Log::debug("tenant.po.submit creating new workflow for po_id = ".$po->id);
 		$wf_id = Workflow::submitWf(EntityEnum::PO->value, $po->id);
 		if ($wf_id == 0) {
 			Log::error(tenant('id'). 'tenant.po.submit Error creating new workflow for po_id = !'.$po->id);

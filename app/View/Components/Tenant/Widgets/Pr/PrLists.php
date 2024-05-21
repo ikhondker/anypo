@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Log;
 class PrLists extends Component
 {
 	public $prs;
-	public $card_header ='Requisition Lists (Last 5)';
+	public $card_header ='Requisitions (Recent 5)';
 
 	/**
 	 * Create a new component instance.

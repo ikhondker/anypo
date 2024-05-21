@@ -13,7 +13,7 @@
 						<h4>PO #{{ $po->id }} : {{ $po->summary }}</h4>
 						<p>{!! nl2br($po->notes) !!}</p>
 						<table class="table table-sm my-2">
-					
+
 							<tbody>
 								<tr>
 									<th>Amount</th>
@@ -42,8 +42,8 @@
 									<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								</tr>
 								<tr>
-									<th>Requestor</th>
-									<td>{{ $po->requestor->name }}</td>
+									<th>Buyer</th>
+									<td>{{ $po->buyer->name }}</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>

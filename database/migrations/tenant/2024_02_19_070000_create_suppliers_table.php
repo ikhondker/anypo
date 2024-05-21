@@ -39,7 +39,8 @@ return new class extends Migration
 			$table->biginteger('count_invoice')->default(0);
 			$table->biginteger('count_payment')->default(0);
 			$table->text('notes')->nullable();
-			$table->boolean('enable')->default(true); 
+            $table->float('rating', 15, 2)->default(0);
+			$table->boolean('enable')->default(true);
 			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

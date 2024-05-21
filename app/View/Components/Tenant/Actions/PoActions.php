@@ -6,9 +6,12 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+
+use App\Models\Tenant\Po;
+
 class PoActions extends Component
 {
-	public $id;
+	public $po;
 	public $show;
 
 	/**
@@ -16,9 +19,9 @@ class PoActions extends Component
 	 */
 	public function __construct($id, $show = false)
 	{
-		$this->id 		= $id;
-		$this->show		= $show; 
-		// $this->po = Po::where('id', $id)->get()->first();
+		//$this->id 		= $id;
+		$this->show		= $show;
+        $this->po 	    = Po::where('id', $id)->get()->firstOrFail();
 	}
 
 	/**

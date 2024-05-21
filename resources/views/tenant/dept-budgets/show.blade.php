@@ -60,6 +60,18 @@
 					<x-tenant.show.my-closed	value="{{ $deptBudget->closed }}"/>
 					<x-tenant.show.my-badge		value="{{ $deptBudget->id }}"/>
 					<x-tenant.show.my-text-area		value="{{ $deptBudget->notes }}" label="Notes"/>
+
+                    <div class="row">
+                        <div class="col-sm-4 text-end">
+
+                        </div>
+                        <div class="col-sm-8 text-end">
+                            @if (! $deptBudget->closed)
+                                <x-tenant.show.my-edit-link object="DeptBudget" :id="$deptBudget->id"/>
+                            @endif
+                        </div>
+                    </div>
+
 				</div>
 			</div>
 
@@ -135,7 +147,7 @@
 				</div>
 				<div class="card-body">
 					<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
-					<x-tenant.show.my-amount	value="{{ $deptBudget->amount_grs }}" label="GRS Issues"/>
+					<x-tenant.show.my-amount	value="{{ $deptBudget->amount_grs }}" label="GRS Issued"/>
 					<x-tenant.show.my-amount	value="{{ $deptBudget->amount- $deptBudget->amount_grs }}" label="Available"/>
 				</div>
 			</div>

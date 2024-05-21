@@ -676,9 +676,9 @@ class PrController extends Controller
 
 		// copy prls into pols
 		$sql= "
-		INSERT INTO pols( po_id, line_num, summary, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes,
+		INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes,
 		requestor_id, dept_id, unit_id, closure_status )
-		SELECT ".$po_id.",prl.line_num, prl.summary, prl.item_id, prl.uom_id, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
+		SELECT ".$po_id.",prl.line_num, prl.item_description, prl.item_id, prl.uom_id, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
 		pr.requestor_id, pr.dept_id, pr.unit_id,'".ClosureStatusEnum::OPEN->value."'
 		FROM prls prl,prs pr
 		WHERE pr.id=prl.pr_id

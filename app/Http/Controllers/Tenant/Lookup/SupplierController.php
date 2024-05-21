@@ -43,7 +43,7 @@ use App\Helpers\Export;
 # 11. Seeded
 use DB;
 use Str;
-# 12. FUTURE 
+# 12. FUTURE
 
 
 class SupplierController extends Controller
@@ -156,7 +156,8 @@ class SupplierController extends Controller
 		if (request('term')) {
 			$suppliers->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$suppliers = $suppliers->orderBy('id', 'DESC')->paginate(10);
+		$suppliers = $suppliers->orderBy( DB::raw("(amount_pr_booked + amount_pr + amount_po_booked + amount_po)") , 'DESC')->paginate(10);
+
 		return view('tenant.lookup.suppliers.spends', compact('suppliers'));
 	}
 
@@ -174,7 +175,7 @@ class SupplierController extends Controller
 	{
 		$this->authorize('export', Supplier::class);
 
-		$data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable 
+		$data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable
 			FROM suppliers");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

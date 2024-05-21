@@ -74,14 +74,14 @@
 					</div>
 				</div>
 
-				<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
 				<x-tenant.show.my-date-time	value="{{ $po->auth_date }}" label="Auth Date"/>
-				<x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>
-				<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
+                <x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>
+                <x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
+				<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
 
 				<div class="row mb-3">
 					<div class="col-sm-4 text-end">
-						<span class="h6 text-secondary">Attachments:</span>
+						<span class="h6 text-secondary">Attachments :</span>
 					</div>
 					<div class="col-sm-8">
 						<x-tenant.attachment.all entity="PO" aid="{{ $po->id }}"/>

@@ -16,7 +16,7 @@
 			<x-tenant.buttons.header.lists object="Receipt"/>
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
 			<x-tenant.actions.receipt-actions id="{{ $receipt->id }}"/>
-				
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -40,7 +40,7 @@
 								{{ "#". $receipt->pol->po_id. " - ". $receipt->pol->po->summary }}
 							</a>
 
-							
+
 						</div>
 					</div>
 					<div class="row mb-3">
@@ -51,29 +51,29 @@
 							{{ "#". $receipt->pol->line_num. " - ". $receipt->pol->item_description }}
 						</div>
 					</div>
-					<x-tenant.show.my-number	value="{{ $receipt->pol->qty }}" label="Ord Qty" />	
+					<x-tenant.show.my-number	value="{{ $receipt->pol->qty }}" label="Ord Qty" />
 					<x-tenant.show.my-badge		value="{{ $receipt->id }}" label="GRN#"/>
 					<x-tenant.show.my-date		value="{{ $receipt->receive_date }}"/>
 					<x-tenant.show.my-number	value="{{ $receipt->qty }}" label="Rcv Qty" />
-					<x-tenant.show.my-text		value="{{ $receipt->warehouse->name }}" label="Warehouse"/>	
-					<x-tenant.show.my-text		value="{{ $receipt->receiver->name }}" label="Receiver"/>	
+					<x-tenant.show.my-text		value="{{ $receipt->warehouse->name }}" label="Warehouse"/>
+					<x-tenant.show.my-text		value="{{ $receipt->receiver->name }}" label="Receiver"/>
 					<x-tenant.show.my-badge		value="{{ $receipt->status }}" label="Status"/>
 					<x-tenant.show.my-text-area		value="{{ $receipt->notes }}" label="Notes"/>
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
-							<span class="h6 text-secondary">Attachments:</span>
+							<span class="h6 text-secondary">Attachments :</span>
 						</div>
 						<div class="col-sm-9">
 							<x-tenant.attachment.all entity="RECEIPT" aid="{{ $receipt->id }}"/>
 						</div>
 					</div>
-		
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end row -->
 
-	
+
 @endsection
 

@@ -245,7 +245,9 @@ class ProjectController extends Controller
 		if (request('term')) {
 			$projects->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$projects = $projects->orderBy('id', 'DESC')->paginate(10);
+
+        $projects = $projects->orderBy(DB::raw("(amount_pr_booked + amount_pr + amount_po_booked + amount_po)"), 'DESC')->paginate(10);
+
 		return view('tenant.lookup.projects.spends', compact('projects'));
 	}
 
