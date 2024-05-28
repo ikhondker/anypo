@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\Response;
 
 class AelPolicy
 {
-		/**
+	/**
 	 * Perform pre-authorization checks.
 	*/
 	public function before(User $user, string $ability): bool|null
@@ -71,7 +71,8 @@ class AelPolicy
 	 */
 	public function forceDelete(User $user, Ael $ael): bool
 	{
-		return ( $user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+        return false;
+		//return ( $user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	public function export(User $user): bool
@@ -79,8 +80,4 @@ class AelPolicy
 		return ( $user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
-	public function manual(User $user): bool
-	{
-		return ( $user->isSupport());
-	}
 }

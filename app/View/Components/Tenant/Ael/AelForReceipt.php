@@ -22,9 +22,9 @@ class AelForReceipt extends Component
 	public function __construct($id)
 	{
 		$this->id   = $id;
-		$this->aeh  = Aeh::where('source_entity',EntityEnum::RECEIPT->value)->where('article_id', $this->id);
-        dd($this->aeh);
-		$this->aels = Ael::where('aeh_id', $this->aeh->id)->get();
+		$this->aeh  = Aeh::where('source_entity',EntityEnum::RECEIPT->value)->where('article_id', $this->id)->get()->firstOrFail();;
+        //dd($this->aeh);
+		$this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
 	}
 
 	/**

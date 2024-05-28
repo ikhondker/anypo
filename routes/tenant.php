@@ -366,6 +366,9 @@ Route::middleware([
 				Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
 				Route::get('/payments/ael/{payment}',[PaymentController::class,'ael'])->name('payments.ael');
 
+                /* ======================== Aeh ======================================== */
+				Route::resource('aehs', AehController::class);
+
 				/* ======================== Ael ======================================== */
 				Route::resource('aels', AelController::class);
 				Route::get('/ael/export-for-po/{id}',[AelController::class,'exportForPo'])->name('aels.export-for-po');
@@ -600,8 +603,13 @@ Route::middleware([
 		Route::get('/prs/recalculate/{pr}',[PrController::class,'recalculate'])->name('prs.recalculate');
 
 		/* ======================== Ael ========================================  */
-		Route::get('/ael/manual',[AelController::class,'manual'])->name('aels.manual');
-		Route::post('/ael/manual-ael',[AelController::class,'manualAel'])->name('aels.manual-ael');
+		Route::get('/aeh/manual',[AehController::class,'manual'])->name('aehs.manual');
+		Route::post('/aeh/manual-ael',[AehController::class,'manualAeh'])->name('aehs.manual-aeh');
+
+        /* ======================== Ael ========================================  */
+        // Check
+        //Route::get('/ael/manual',[AelController::class,'manual'])->name('aels.manual');
+		//Route::post('/ael/manual-ael',[AelController::class,'manualAel'])->name('aels.manual-ael');
 
 		/* ======================== Country ======================================== */
 		Route::resource('countries', CountryController::class);

@@ -18,11 +18,9 @@
 			<x-tenant.actions.receipt-actions id="{{ $receipt->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	<x-tenant.info.receipt-info id="{{ $receipt->id }}"/>
 
-
-				
 	<x-tenant.ael.ael-for-receipt id="{{ $receipt->id }}"/>
 
 @endsection

@@ -23,8 +23,8 @@ namespace App\Http\Controllers\Tenant\Ae;
 use App\Http\Controllers\Controller;
 
 use App\Models\Tenant\Ae\Aeh;
-use App\Http\Requests\StoreAehRequest;
-use App\Http\Requests\UpdateAehRequest;
+use App\Http\Requests\Tenant\Ae\StoreAehRequest;
+use App\Http\Requests\Tenant\Ae\UpdateAehRequest;
 
 # 1. Models
 # 2. Enums
@@ -43,7 +43,7 @@ use App\Helpers\EventLog;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class AehController extends Controller
@@ -53,7 +53,48 @@ class AehController extends Controller
 	 */
 	public function index()
 	{
-		//
+		$this->authorize('viewAny',Aeh::class);
+		$aehs = Aeh::query();
+
+		Log::debug('tenant.ae.aeh.index Value of action = ' . request('action'));
+
+		// TODO CHECK
+		if (request('start_date') && tenant()) {
+			$start_date = 	request('start_date');
+			$end_date	=	request('end_date');
+			Log::debug('tenant.ae.aeh.index Value of start_date = ' . request('start_date'));
+			Log::debug('tenant.ae.aeh.index Value of end_date = ' . request('end_date'));
+		}
+
+		switch (request('action')) {
+			case 'search':
+				// Search model
+				$aehs->whereBetween('accounting_date', [$start_date, $end_date ]);
+				break;
+			case 'export':
+				// Export model
+				$sql = "
+					SELECT id, source, entity, event, accounting_date, ac_code, line_description,
+					fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount,
+					po_id, reference
+					FROM aehs
+					WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
+				";
+				//Log::debug('tenant.ae.ael.export'.$sql);
+
+				$data = DB::select($sql);
+				$dataArray = json_decode(json_encode($data), true);
+				// used Export Helper
+				return Export::csv('aehs', $dataArray);
+				break;
+		}
+
+		// if (request('term')) {
+		// 	$aels->where('po_id', 'Like', '%' . request('term') . '%');
+		// }
+
+		$aehs = $aehs->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.ae.aehs.index', compact('aehs'));
 	}
 
 	/**
@@ -77,7 +118,9 @@ class AehController extends Controller
 	 */
 	public function show(Aeh $aeh)
 	{
-		//
+		$this->authorize('view', $aeh);
+
+		return view('tenant.ae.aehs.show', compact('aeh'));
 	}
 
 	/**
@@ -102,5 +145,21 @@ class AehController extends Controller
 	public function destroy(Aeh $aeh)
 	{
 		//
+	}
+
+    /**
+	 * Show the form for editing the specified resource.
+	 */
+	public function manual()
+	{
+		abort(403);
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function manualAeh()
+	{
+		abort(403);
 	}
 }

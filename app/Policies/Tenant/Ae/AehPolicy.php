@@ -8,12 +8,23 @@ use Illuminate\Auth\Access\Response;
 
 class AehPolicy
 {
+    /**
+	 * Perform pre-authorization checks.
+	*/
+	public function before(User $user, string $ability): bool|null
+	{
+		if ($user->isSystem()) {
+			return true;
+		}
+		return null;
+	}
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
 	public function viewAny(User $user): bool
 	{
-		//
+		return ( $user->isSuperior());
 	}
 
 	/**
@@ -61,6 +72,12 @@ class AehPolicy
 	 */
 	public function forceDelete(User $user, Aeh $aeh): bool
 	{
-		//
+		return false;
+		//return ( $user->isSupport());
+	}
+
+	public function manual(User $user): bool
+	{
+		return ( $user->isSupport());
 	}
 }

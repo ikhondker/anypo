@@ -5,7 +5,7 @@ namespace App\View\Components\Tenant\Ael;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Tenant\Ael;
+use App\Models\Tenant\Ae\Ael;
 
 class AelForPo extends Component
 {
@@ -18,7 +18,7 @@ class AelForPo extends Component
 	 */
 	public function __construct($id)
 	{
-		$this->aels = Ael::where('po_id', $id)->get();
+		$this->aels = Ael::where('po_id', $id)->get()->all();
 		$this->id = $id;
 	}
 

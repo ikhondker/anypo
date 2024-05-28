@@ -308,7 +308,7 @@ class ReceiptController extends Controller
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 			// Create Reverse Accounting for this Receipt
-			AelReceipt::dispatch($receipt->id, $receipt->amount, true);
+			AehReceipt::dispatch($receipt->id, $receipt->amount, true);
 
 			// Cancel Receipt
 			Receipt::where('id', $receipt_id)

@@ -4,9 +4,9 @@
 
 		</div>
 		<h5 class="card-title">
-			Accounting Entries
+			Accounting Lines
 		</h5>
-		<h6 class="card-subtitle text-muted">List of Generated Accounting Entries</h6>
+		<h6 class="card-subtitle text-muted">List of Generated Accounting Lines</h6>
 	</div>
 	<div class="card-body">
 		<table class="table">
@@ -30,16 +30,16 @@
 				@foreach ($aels as $ael)
 				<tr>
 					<td><a class="text-info" href="{{ route('aels.show',$ael->id) }}">{{ $ael->id }}</a></td>
-					<td>{{ $ael->entity }}</td>
-					<td>{{ $ael->event }}</td>
+					<td>{{ $aeh->source_entity->value }}</td>
+					<td>{{ $aeh->event }}</td>
 					<td><x-tenant.list.my-date :value="$ael->accounting_date"/></td>
 					<td>{{ $ael->ac_code }}</td>
 					<td>{{ $ael->line_description }}</td>
 					<td class="text-end"><x-tenant.list.my-number :value="$ael->fc_dr_amount"/></td>
 					<td class="text-end"><x-tenant.list.my-number :value="$ael->fc_cr_amount"/></td>
 					<td>{{ $ael->fc_currency }}</td>
-					<td><x-tenant.common.link-po id="{{ $ael->po_id }}"/></td>
-					<td>{{ $ael->reference }}</td>
+					<td><x-tenant.common.link-po id="{{ $aeh->po_id }}"/></td>
+					<td>{{ $ael->reference_no }}</td>
 					<td class="table-action">
 						<x-tenant.list.actions object="Ael" :id="$ael->id" :edit="false"/>
 					</td>

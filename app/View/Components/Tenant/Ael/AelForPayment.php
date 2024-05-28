@@ -5,7 +5,7 @@ namespace App\View\Components\Tenant\Ael;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Tenant\Ael;
+use App\Models\Tenant\Ae\Ael;
 use App\Enum\EntityEnum;
 
 class AelForPayment extends Component
@@ -18,7 +18,7 @@ class AelForPayment extends Component
 	 */
 	public function __construct($id)
 	{
-		$this->aels = Ael::where('entity',EntityEnum::PAYMENT->value)->where('article_id', $id)->get();
+		$this->aels = Ael::where('entity',EntityEnum::PAYMENT->value)->where('article_id', $id)->get()->all();
 		$this->id = $id;
 	}
 

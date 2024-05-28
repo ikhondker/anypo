@@ -30,49 +30,51 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'prs.index','route_name' => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.show','route_name' => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.history','route_name' => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.extra','route_name' => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.edit','route_name' => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.create','route_name' => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.attachments','route_name' => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.index','route_name'              => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.show','route_name'               => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.history','route_name'            => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.extra','route_name'              => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.edit','route_name'               => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.create','route_name'             => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.attachments','route_name'        => 'prs.index', 'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'prls.edit','route_name' => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prls.add-line','route_name' => 'prs.index', 'node_name' => 'workbench'],
-
-			
-			[ 'raw_route_name' => 'pos.index','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.show','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.edit','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.create','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.history','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.extra','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.invoice','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.attachments','route_name' => 'pos.index', 'node_name' => 'workbench'],
-
-			[ 'raw_route_name' => 'pols.show','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pols.edit','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pols.receipt','route_name' => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pols.add-line','route_name' => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prls.edit','route_name'              => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prls.add-line','route_name'          => 'prs.index', 'node_name' => 'workbench'],
 
 
-			[ 'raw_route_name' => 'receipts.index','route_name' => 'receipts.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'receipts.show','route_name' => 'receipts.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'receipts.create','route_name' => 'receipts.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.index','route_name'              => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.show','route_name'               => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.edit','route_name'               => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.create','route_name'             => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.history','route_name'            => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.extra','route_name'              => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.invoice','route_name'            => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.attachments','route_name'        => 'pos.index', 'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'invoices.index','route_name' => 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.show','route_name' => 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.edit','route_name' => 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.create','route_name' => 'invoices.index', 'node_name' => 'workbench'],
-			
-			[ 'raw_route_name' => 'payments.index','route_name' => 'payments.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'payments.show','route_name' => 'payments.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'payments.create','route_name' => 'payments.index', 'node_name' => 'workbench'],
-			
+			[ 'raw_route_name' => 'pols.show','route_name'              => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.edit','route_name'              => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.receipt','route_name'           => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.add-line','route_name'          => 'pos.index', 'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'aels.index','route_name' => 'aels.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'aels.show','route_name' => 'aels.index', 'node_name' => 'workbench'],
+
+			[ 'raw_route_name' => 'receipts.index','route_name'         => 'receipts.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'receipts.show','route_name'          => 'receipts.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'receipts.create','route_name'        => 'receipts.index', 'node_name' => 'workbench'],
+
+			[ 'raw_route_name' => 'invoices.index','route_name'         => 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.show','route_name'          => 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.edit','route_name'          => 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.create','route_name'        => 'invoices.index', 'node_name' => 'workbench'],
+
+			[ 'raw_route_name' => 'payments.index','route_name'         => 'payments.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'payments.show','route_name'          => 'payments.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'payments.create','route_name'        => 'payments.index', 'node_name' => 'workbench'],
+
+            [ 'raw_route_name' => 'aehs.index','route_name'             => 'aehs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'aehs.show','route_name'              => 'aehs.index', 'node_name' => 'workbench'],
+
+			// [ 'raw_route_name' => 'aels.index','route_name' => 'aels.index', 'node_name' => 'workbench'],
+			// [ 'raw_route_name' => 'aels.show','route_name' => 'aels.index', 'node_name' => 'workbench'],
 			/**
 			* ==================================================================================
 			* 2. Budget
@@ -143,7 +145,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'depts.show','route_name' 		=> 'depts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'depts.edit','route_name' 		=> 'depts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'depts.create','route_name' 		=> 'depts.index', 'node_name' => 'lookups'],
-			
+
 			[ 'raw_route_name' => 'categories.index','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'categories.edit','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'categories.create','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
@@ -156,10 +158,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'designations.index','route_name' => 'designations.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'designations.edit','route_name' 	=> 'designations.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'designations.create','route_name'=> 'designations.index', 'node_name' => 'lookups'],
-			
+
 			[ 'raw_route_name' => 'oems.index','route_name' 		=> 'oems.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'oems.edit','route_name' 			=> 'oems.index', 'node_name' => 'lookups'],
-		
+
 			[ 'raw_route_name' => 'warehouses.index','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.show','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.edit','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
@@ -195,8 +197,8 @@ class MenuSeeder extends Seeder
 
 			[ 'raw_route_name' => 'users.index','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],
 			[ 'raw_route_name' => 'users.create','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],
-			[ 'raw_route_name' => 'users.show','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],		
-			[ 'raw_route_name' => 'users.edit','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],		
+			[ 'raw_route_name' => 'users.show','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'users.edit','route_name' 			=> 'users.index', 'node_name' 		=> 'admin'],
 
 			[ 'raw_route_name' => 'hierarchies.index','route_name' 		=> 'hierarchies.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'hierarchies.show','route_name' 		=> 'hierarchies.index', 'node_name' => 'admin'],
@@ -208,7 +210,7 @@ class MenuSeeder extends Seeder
 
 			[ 'raw_route_name' => 'attachments.index','route_name' 		=> 'attachments.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'attachments.show','route_name' 		=> 'attachments.index', 'node_name' => 'admin'],
-			
+
 			[ 'raw_route_name' => 'wfs.index','route_name' 				=> 'wfs.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'wfs.show','route_name' 				=> 'wfs.index', 'node_name' => 'admin'],
 
@@ -230,19 +232,19 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'menus.index','route_name' 			=> 'menus.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'menus.edit','route_name' 			=> 'menus.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'menus.create','route_name' 			=> 'menus.index', 'node_name' => 'system'],
-			
+
 			[ 'raw_route_name' => 'statuses.index','route_name' 		=> 'statuses.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'statuses.edit','route_name' 			=> 'statuses.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'statuses.create','route_name' 		=> 'statuses.index', 'node_name' => 'system'],
-			
-			
+
+
 			[ 'raw_route_name' => 'entities.index','route_name' 		=> 'entities.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'entities.edit','route_name' 			=> 'entities.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'entities.create','route_name' 		=> 'entities.index', 'node_name' => 'system'],
-			
+
 			// Special
 			[ 'raw_route_name' => 'prls.index','route_name' 			=> 'prls.index', 'node_name' => 'system'],
-			
+
 			[ 'raw_route_name' => 'aehs.index','route_name' 			=> 'aehs.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'aehs.show','route_name' 				=> 'aehs.index', 'node_name' => 'system'],
 
@@ -250,21 +252,21 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'custom-errors.show','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'custom-errors.edit','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'custom-errors.create','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
-			
+
 			[ 'raw_route_name' => 'groups.index','route_name' 			=> 'groups.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'groups.edit','route_name' 			=> 'groups.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'groups.create','route_name' 			=> 'groups.index', 'node_name' => 'system'],
-			
+
 			[ 'raw_route_name' => 'countries.index','route_name' 		=> 'countries.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'countries.edit','route_name' 		=> 'countries.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'countries.create','route_name' 		=> 'countries.index', 'node_name' => 'system'],
-			
+
 			[ 'raw_route_name' => 'templates.index','route_name' 		=> 'templates.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'templates.show','route_name' 		=> 'templates.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'templates.edit','route_name' 		=> 'templates.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'templates.create','route_name' 		=> 'templates.index', 'node_name' => 'system'],
-		
-			
+
+
 			/**
 			* ==================================================================================
 			* 8. My Account
@@ -273,7 +275,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.profile','route_name' 			=> 'users.profile', 'node_name' 		=> 'profile'],
 			[ 'raw_route_name' => 'users.profile-edit','route_name' 	=> 'users.profile-edit', 'node_name' 		=> 'profile'],
 			[ 'raw_route_name' => 'users.profile-password','route_name' => 'users.profile-password', 'node_name' 		=> 'profile'],
-			
+
 		  ];
 		//
 		Menu::insert($menus);
