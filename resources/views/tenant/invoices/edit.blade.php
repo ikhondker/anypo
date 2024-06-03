@@ -3,7 +3,7 @@
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('pos.show',$invoice->po_id) }}">PO #{{ $invoice->po_id }}</a></li>
 	<li class="breadcrumb-item"><a href="{{ route('pos.invoice', $invoice->po_id) }}">PO Invoices</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('invoices.show', $invoice->id) }}">Invoice #{{ $invoice->invoice_no }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('invoices.show', $invoice->id) }}">{{ $invoice->invoice_no }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -81,8 +81,8 @@
 							@enderror
 						</div>
 
-						
-					
+
+
 					</div>
 				</div>
 			</div>
@@ -118,7 +118,7 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						
+
 						<x-tenant.buttons.show.save/>
 					</div>
 				</div>

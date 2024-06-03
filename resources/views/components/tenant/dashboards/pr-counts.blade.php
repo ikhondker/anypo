@@ -1,5 +1,5 @@
 <div class="row">
-	
+
 	<div class="col-md-6 col-xxl-3 d-flex">
 		<div class="card illustration flex-fill">
 			<div class="card-body p-0 d-flex flex-fill">
@@ -41,7 +41,7 @@
 		</div>
 	</div>
 
-	
+
 	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
 		<div class="card flex-fill">
 			<div class="card-body py-4">
@@ -86,7 +86,5 @@
 			</div>
 		</div>
 	</div>
-
-	
 
 </div>

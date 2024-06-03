@@ -47,10 +47,9 @@ use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
-use App\Jobs\Tenant\AehPayment;
-
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
+use App\Jobs\Tenant\AehPayment;
 # 6. Mails
 # 7. Rules
 use App\Rules\Tenant\OverPaymentRule;
@@ -80,16 +79,16 @@ class PaymentController extends Controller
 			$payments->where('name', 'Like', '%' . request('term') . '%');
 		}
 		switch (auth()->user()->role->value) {
+            case UserRoleEnum::HOD->value:
+                $payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
+                break;
 			case UserRoleEnum::BUYER->value:
+            case UserRoleEnum::CXO->value:
+            case UserRoleEnum::ADMIN->value:
+            case UserRoleEnum::SYSTEM->value:
 				// buyer can see all payment of all his po's
-				$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
-				break;
-			case UserRoleEnum::HOD->value:
-				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
-				break;
-			case UserRoleEnum::CXO->value:
-			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
+				//$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+				//break;
 				$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
@@ -98,6 +97,22 @@ class PaymentController extends Controller
 				abort(403);
 		}
 		return view('tenant.payments.index', compact('payments'));
+	}
+
+        /**
+	 * Display a listing of the resource.
+	 */
+	public function myPayments()
+	{
+
+		$this->authorize('viewAny', Payment::class);
+
+		$payments = Payment::query();
+		if (request('term')) {
+			$payments->where('name', 'Like', '%' . request('term') . '%');
+		}
+        $payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+		return view('tenant.payments.my-payments', compact('payments'));
 	}
 
 	/**
@@ -207,6 +222,10 @@ class PaymentController extends Controller
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PAYMENT->value, $payment->id, EventEnum::CREATE->value, $payment->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
+
+
+        // Create Accounting for this Invoice
+		AehPayment::dispatch($payment->id, $payment->fc_amount);
 
 		// Write to Log
 		EventLog::event('payment', $payment->id, 'create');

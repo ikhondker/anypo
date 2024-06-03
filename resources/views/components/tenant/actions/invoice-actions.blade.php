@@ -12,7 +12,7 @@
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 			<i class="align-middle me-1" data-feather="copy"></i> Post Invoice *</a>
 		<a class="dropdown-item" href="{{ route('invoices.create', $invoice->po_id) }}"><i class="align-middle me-1" data-feather="plus-square"></i> Create Invoice</a>
-		<a class="dropdown-item" href="{{ route('payments.create',$invoice->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Pay this Invoice</a>
+		<a class="dropdown-item" href="{{ route('payments.create',$invoice->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Make Payment</a>
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('invoices.ael', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Accounting **</a>
 		<a class="dropdown-item" href="{{ route('pos.show', $id) }}"><i class="align-middle me-1" data-feather="eye"></i> View Purchase Order</a>

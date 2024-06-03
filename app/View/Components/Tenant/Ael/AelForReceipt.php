@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Tenant\Ae\Aeh;
 use App\Models\Tenant\Ae\Ael;
-
+use Exception;
 use App\Enum\EntityEnum;
 
 class AelForReceipt extends Component
@@ -22,9 +22,13 @@ class AelForReceipt extends Component
 	public function __construct($id)
 	{
 		$this->id   = $id;
-		$this->aeh  = Aeh::where('source_entity',EntityEnum::RECEIPT->value)->where('article_id', $this->id)->get()->firstOrFail();;
-        //dd($this->aeh);
-		$this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
+        try {
+		    $this->aeh  = Aeh::where('source_entity',EntityEnum::RECEIPT->value)->where('article_id', $this->id)->get()->firstOrFail();
+		    $this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
+        } catch (Exception $e) {
+	        $this->aeh  =  new Aeh();
+            $this->aels = new Ael();
+		}
 	}
 
 	/**

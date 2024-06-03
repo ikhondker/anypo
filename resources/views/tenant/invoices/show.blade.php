@@ -2,7 +2,7 @@
 @section('title','View Invoice')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('invoices.index') }}">Invoices</a></li>
-	<li class="breadcrumb-item active">Invoice #{{ $invoice->id}}</li>
+	<li class="breadcrumb-item active">{{ $invoice->invoice_no}}</li>
 @endsection
 @section('content')
 
@@ -20,7 +20,7 @@
 			@endif
 			{{-- <x-tenant.buttons.header.lists object="Po" label="Purchase Order"/> --}}
 			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}"/>
-		
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -47,14 +47,26 @@
 					<x-tenant.show.my-amount-currency	value="{{ $invoice->amount }}" currency="{{ $invoice->currency }}" label="Invoice Amount"/>
 					<x-tenant.show.my-date		value="{{ $invoice->invoice_date }}" label="Invoice Date"/>
 					<x-tenant.show.my-text		value="{{ $invoice->summary }}" label="Narration"/>
-					<x-tenant.show.my-number	value="{{ $invoice->sub_total }}"/>
-					<x-tenant.show.my-number	value="{{ $invoice->tax }}"/>
-					<x-tenant.show.my-number	value="{{ $invoice->gst }}"/>			
+					<x-tenant.show.my-number	value="{{ $invoice->sub_total }}" label="Sub Total"/>
+					<x-tenant.show.my-number	value="{{ $invoice->tax }}" label="Tax"/>
+					<x-tenant.show.my-number	value="{{ $invoice->gst }}" label="GST"/>
+
 					<x-tenant.show.my-text		value="{{ $invoice->poc->name }}" label="PoC Name"/>
 					<x-tenant.show.my-amount-currency	value="{{ $invoice->paid_amount }}" currency="{{ $invoice->currency }}" label="Paid Amount"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->status }}" label="Status"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->payment_status }}" label="Payment Status"/>
 					<x-tenant.show.my-text-area		value="{{ $invoice->notes }}"/>
+
+
+					<div class="row mb-3">
+						<div class="col-sm-3 text-end">
+							<span class="h6 text-secondary">Created By:</span>
+						</div>
+						<div class="col-sm-9">
+							{{ $invoice->createdBy->name }}
+						</div>
+					</div>
+
 					<div class="row mb-3">
 						<div class="col-sm-3 text-end">
 							<span class="h6 text-secondary">Attachments:</span>
@@ -66,7 +78,7 @@
 					@if ($invoice->status <> App\Enum\InvoiceStatusEnum::POSTED->value)
 						<x-tenant.buttons.show.edit object="Invoice" :id="$invoice->id"/>
 					@endif
-					
+
 					@if ($invoice->status == App\Enum\InvoiceStatusEnum::DRAFT->value)
 						<form action="{{ route('invoices.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 							@csrf
@@ -74,7 +86,7 @@
 							<input type="text" name="attach_invoice_id" id="attach_invoice_id" class="form-control" placeholder="ID" value="{{ old('attach_invoice_id', $invoice->id ) }}" hidden>
 							<div class="row">
 								<div class="col-sm-3 text-end">
-								
+
 								</div>
 								<div class="col-sm-9 text-end">
 									<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
@@ -96,7 +108,7 @@
 
 	<x-tenant.widgets.po.payments :id="$invoice->id" />
 
-	
+
 
 	<script type="text/javascript">
 		function mySubmit() {

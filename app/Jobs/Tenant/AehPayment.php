@@ -9,11 +9,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 use App\Enum\EntityEnum;
-use App\Enum\AehEvent;
+use App\Enum\AehEventEnum;
+use App\Enum\AehStatusEnum;
 
-
-use App\Models\Tenant\Ael\Aeh;
-use App\Models\Tenant\Ael\Ael;
+use App\Models\Tenant\Ae\Aeh;
+use App\Models\Tenant\Ae\Ael;
 
 use App\Models\Tenant\Payment;
 
@@ -55,7 +55,7 @@ class AehPayment implements ShouldQueue
 		//$invoice 	= Invoice::where('id', $payment->invoice_id)->firstOrFail();
 
 		Log::debug('Jobs.Tenant.AelPayment creating accounting for payment_id =' . $payment->id);
-		
+
 		// check if invoice already accounted
 		if ($payment->accounted && !$this->cancel){
 			Log::error('Jobs.Tenant.AelPayment Invoice already accounted payment_id =' . $payment->id);
@@ -84,7 +84,7 @@ class AehPayment implements ShouldQueue
 			$ael_dr->fc_cr_amount	= $this->fc_amount;
 
 			$ael_cr->fc_dr_amount	= $this->fc_amount;
-			$ael_cr->fc_cr_amount	= 0; 
+			$ael_cr->fc_cr_amount	= 0;
 		} else {
 			$ael_dr->event			= $ael_cr->event 			= AelEvent::POST->value;
 
@@ -92,17 +92,17 @@ class AehPayment implements ShouldQueue
 			$ael_dr->fc_cr_amount	= 0;
 
 			$ael_cr->fc_dr_amount	= 0;
-			$ael_cr->fc_cr_amount	= $this->fc_amount; 
+			$ael_cr->fc_cr_amount	= $this->fc_amount;
 		}
-		
+
 		$ael_dr->save();
 		Log::debug('Jobs.Tenant.AelPayment saving dr line ael_dr_id ='. $ael_dr->id);
-		
+
 		$ael_cr->save();
 		Log::debug('Jobs.Tenant.AelPayment saving cr line ael_dr_id ='. $ael_cr->id);
 
 		// Update accounted flag
-		DB::statement("UPDATE payments SET 
+		DB::statement("UPDATE payments SET
 		accounted		= true
 		WHERE id = ".$payment->id."");
 	}

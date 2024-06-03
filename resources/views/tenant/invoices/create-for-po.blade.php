@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','Create Invoice')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO #{{ $po->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO#{{ $po->id }}</a></li>
 	<li class="breadcrumb-item"><a href="{{ route('pos.invoice', $po->id) }}">PO Invoices</a></li>
 	<li class="breadcrumb-item active">Create</li>
 @endsection
@@ -17,11 +17,11 @@
 			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
 			<x-tenant.actions.po-actions id="{{ $po->id }}" show="true"/>
 		@endslot
-	</x-tenant.page-header> 
+	</x-tenant.page-header>
 
 
 	{{-- @include('tenant.includes.po.view-po-header') --}}
-	
+
 	<x-tenant.info.po-info id="{{ $po->id }}"/>
 
 	{{-- <x-tenant.widgets.po.invoices :id="$po->id" /> --}}
@@ -30,7 +30,7 @@
 	<form id="myform" action="{{ route('invoices.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		<input type="text" name="po_id" id="po_id" class="form-control" placeholder="ID" value="{{ old('po_id', $po->id ) }}" hidden>
-		
+
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
@@ -86,7 +86,7 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-				
+
 						<div class="mb-3">
 							<label class="form-label">Amount ({{ $po->currency }})</label>
 							<input type="number" class="form-control @error('amount') is-invalid @enderror"
@@ -98,22 +98,22 @@
 							@enderror
 						</div>
 						<x-tenant.create.notes/>
-						
+
 						<x-tenant.attachment.create/>
-						
+
 						<x-tenant.buttons.show.save/>
-						
+
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- end col-6 -->
 		</div>
 		<!-- end row -->
 
 	</form>
 	<!-- /.form end -->
-	
-	
+
+
 
 @endsection

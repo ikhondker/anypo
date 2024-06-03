@@ -83,16 +83,14 @@ class ReceiptController extends Controller
 		}
 
 		switch (auth()->user()->role->value) {
+            case UserRoleEnum::HOD->value:
+                $receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
+                break;
 			case UserRoleEnum::BUYER->value:
+            case UserRoleEnum::CXO->value:
+            case UserRoleEnum::ADMIN->value:
+            case UserRoleEnum::SYSTEM->value:
 				// buyer can see all payment of all his po's
-				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
-				break;
-			case UserRoleEnum::HOD->value:
-				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
-				break;
-			case UserRoleEnum::CXO->value:
-			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
 				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
@@ -102,6 +100,23 @@ class ReceiptController extends Controller
 
 		//$receipts = $receipts->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.receipts.index', compact('receipts'));
+	}
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function myReceipts()
+	{
+
+        $this->authorize('viewAny',Receipt::class);
+
+		$receipts = Receipt::query();
+		if (request('term')) {
+			$receipts->where('name', 'Like', '%' . request('term') . '%');
+		}
+		$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+
+		return view('tenant.receipts.my-receipts', compact('receipts'));
 	}
 
 	/**

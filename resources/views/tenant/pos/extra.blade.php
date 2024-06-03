@@ -2,7 +2,7 @@
 @section('title','Additional Information for Purchase Orders')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO #{{ $po->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO#{{ $po->id }}</a></li>
 	<li class="breadcrumb-item active">Additional Information</li>
 @endsection
 
@@ -21,7 +21,7 @@
 
 	<x-tenant.info.po-info id="{{ $po->id }}"/>
 
-	
+
 	<div class="row">
 		<div class="col-6">
 			<div class="card">
@@ -58,8 +58,8 @@
 				</div>
 			</div>
 
-			
-			
+
+
 		</div>
 		<!-- end col-6 -->
 	</div>

@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 //use App\Helpers\ExchangeRate;
 
-//use App\Enum\InvoiceStatusEnum;
+use App\Enum\InvoiceStatusEnum;
 //use App\Enum\PaymentStatusEnum;
 
 use App\Models\Tenant\Admin\Setup;
@@ -49,6 +49,20 @@ class Invoice extends Model
 	];
 
 	/* ----------------- Scopes ------------------------- */
+
+    public function scopeAll(Builder $query): void
+	{
+		$query;
+	}
+
+    /**
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopeAllPosted(Builder $query): void
+	{
+		$query->where('status',InvoiceStatusEnum::POSTED->value);
+	}
+
 	/**
 	 * Scope a query to return all payment of PO's where he is the buyer.
 	*/
@@ -74,8 +88,8 @@ class Invoice extends Model
 	}
 
 	/* ----------------- Functions ---------------------- */
-	
-	
+
+
 
 	/* ----------------- HasMany ------------------------ */
 
@@ -110,4 +124,13 @@ class Invoice extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
+
+    /* ---------------- created and updated by ---------------------- */
+	public function createdBy(){
+		return $this->belongsTo(User::class,'created_by');
+	}
+	public function updatedBy(){
+		return $this->belongsTo(User::class,'updated_by');
+	}
+
 }

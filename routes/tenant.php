@@ -341,6 +341,7 @@ Route::middleware([
 
 				/* ======================== Receipt ======================================== */
 				Route::resource('receipts', ReceiptController::class);
+                Route::get('/receipt/my-receiptss',[ReceiptController::class,'myReceipts'])->name('receipts.my-receipts');
 				Route::get('/receipts/create/{pol}',[ReceiptController::class,'create'])->name('receipts.create');
 				Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
 				Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
@@ -349,6 +350,7 @@ Route::middleware([
 
 				/* ======================== Invoice ======================================== */
 				Route::resource('invoices', InvoiceController::class);
+                Route::get('/invoice/my-invoices',[InvoiceController::class,'myInvoices'])->name('invoices.my-invoices');
 				Route::post('/invoice/attach',[InvoiceController::class,'attach'])->name('invoices.attach');
 				Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
 				Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
@@ -360,6 +362,7 @@ Route::middleware([
 
 				/* ======================== Payment ======================================== */
 				Route::resource('payments', PaymentController::class);
+                Route::get('/payment/my-payments',[InvoiceController::class,'myPayments'])->name('payments.my-payments');
 				Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
 				Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
 				Route::get('/payments/create/{invoice}',[PaymentController::class,'create'])->name('payments.create');

@@ -85,13 +85,13 @@ class InvoiceController extends Controller
 			$invoices->where('invoice_no', 'Like', '%' . request('term') . '%');
 		}
 		switch (auth()->user()->role->value) {
+            case UserRoleEnum::HOD->value:
+                $invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
+                break;
 			case UserRoleEnum::BUYER->value:
 				// buyer can see all invoice of all his po's
-				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
-				break;
-			case UserRoleEnum::HOD->value:
-				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
-				break;
+				//$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+				//break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
@@ -103,6 +103,24 @@ class InvoiceController extends Controller
 				abort(403);
 		}
 		return view('tenant.invoices.index', compact('invoices'));
+	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function myInvoices()
+	{
+
+        $this->authorize('viewAny', Invoice::class);
+
+		$invoices = Invoice::query();
+		if (request('term')) {
+			$invoices->where('invoice_no', 'Like', '%' . request('term') . '%');
+		}
+		$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+
+        return view('tenant.pos.my-invoices', compact('invoices'));
 	}
 
 	/**
@@ -277,7 +295,7 @@ class InvoiceController extends Controller
 	 */
 	public function post(Invoice $invoice)
 	{
-		$this->authorize('delete', $invoice);
+		$this->authorize('post', $invoice);
 
 		if ($invoice->status <> InvoiceStatusEnum::DRAFT->value) {
 			//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
@@ -489,7 +507,9 @@ class InvoiceController extends Controller
 	public function ael(Invoice $invoice)
 	{
 		$this->authorize('view', $invoice);
+
 		$po = Po::where('id', $invoice->po_id)->get()->firstOrFail();
+
 		return view('tenant.invoices.ael', compact('po','invoice'));
 	}
 

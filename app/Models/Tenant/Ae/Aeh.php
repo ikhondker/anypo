@@ -17,7 +17,7 @@ use App\Models\Tenant\Po;
 class Aeh extends Model
 {
 	use HasFactory;
-	
+
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
@@ -49,7 +49,9 @@ class Aeh extends Model
 	}
 
 	/* ----------------- HasMany ------------------------ */
-
+    public function aels() {
+		return $this->hasMany(Ael::class);
+	}
 
 	/* ---------------- belongsTo ---------------------- */
 	public function po(){

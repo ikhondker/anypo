@@ -20,7 +20,7 @@ class AelForAeh extends Component
     public function __construct($id)
     {
         $this->id   = $id;
-        $this->aeh = Aeh::where('id', $id)->get()->firstOrFail();
+        $this->aeh  = Aeh::where('id', $id)->get()->firstOrFail();
 		$this->aels = Ael::where('aeh_id', $id)->get()->all();
     }
 

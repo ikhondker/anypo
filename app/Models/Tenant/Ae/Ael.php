@@ -13,7 +13,7 @@ use App\Traits\AddCreatedUpdatedBy;
 class Ael extends Model
 {
 	use HasFactory;
-	
+
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
@@ -31,6 +31,13 @@ class Ael extends Model
 		'created_at'	=> 'datetime',
 	];
 
-	
+
+	/* ----------------- HasMany ------------------------ */
+
+
+	/* ---------------- belongsTo ---------------------- */
+    public function aeh(){
+		return $this->belongsTo(Aeh::class,'aeh_id');
+	}
 
 }

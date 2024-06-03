@@ -264,7 +264,6 @@ class Po extends Model
 	}
 
 	/* ----------------- Scopes ------------------------- */
-
 	//$this->count_total		= Po::count();
 	//$this->count_approved		= Po::where('auth_status',AuthStatusEnum::APPROVED->value )->count();
 	//$this->count_inprocess	= Po::where('auth_status',AuthStatusEnum::INPROCESS->value )->count();

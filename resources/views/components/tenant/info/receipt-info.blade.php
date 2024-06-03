@@ -54,7 +54,7 @@
 								</tr> --}}
 								<tr>
 									<td>&nbsp;</td>
-									<td><a href="{{ route('receipts.show',$receipt->id) }}" class="text-warning d-inline-block">xx View Receipt ...</a></td>
+									<td><a href="{{ route('receipts.show',$receipt->id) }}" class="text-warning d-inline-block">View Receipt ...</a></td>
 								</tr>
 							</tbody>
 						</table>

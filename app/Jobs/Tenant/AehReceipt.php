@@ -93,7 +93,7 @@ class AehReceipt implements ShouldQueue
 
 		$ael_dr->line_description	= $ael_cr->line_description = $receipt->pol->item_description;
 		$ael_dr->fc_currency		= $ael_cr->fc_currency 		= $setup->currency;
-		$ael_dr->reference_no		= $ael_cr->reference_no = Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;
+		$ael_dr->reference_no		= $ael_cr->reference_no     = Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;
 
 		if ($this->cancel){
 			$ael_dr->fc_dr_amount	= 0;

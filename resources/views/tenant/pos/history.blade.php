@@ -2,7 +2,7 @@
 @section('title','Approval History')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO #{{ $po->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO#{{ $po->id }}</a></li>
 	<li class="breadcrumb-item active">Approval History</li>
 @endsection
 
@@ -18,7 +18,7 @@
 			<x-tenant.actions.po-actions id="{{ $po->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	<x-tenant.info.po-info id="{{ $po->id }}"/>
 
 	{{-- @include('tenant.includes.pr.view-pr-header-basic') --}}

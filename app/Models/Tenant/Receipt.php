@@ -42,6 +42,8 @@ class Receipt extends Model
 	];
 
 	/* ----------------- Scopes ------------------------- */
+
+
 	/**
 	 * Scope a query to return all payment of PO's where he is the buyer.
 	*/
@@ -62,10 +64,10 @@ class Receipt extends Model
 		});
 
 	}
-	
+
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */
-	
+
 	/* ---------------- belongsTo ---------------------- */
 
 	public function status_badge(){

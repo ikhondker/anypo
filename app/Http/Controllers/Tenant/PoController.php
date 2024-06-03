@@ -99,10 +99,10 @@ class PoController extends Controller
 				$pos = $pos->ByDeptAll()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
-				$pos = $pos->ByBuyerAll()->orderBy('id', 'DESC')->paginate(10);
+            case UserRoleEnum::CXO->value:
+            case UserRoleEnum::ADMIN->value:
+				$pos = $pos->AllApproved()->orderBy('id', 'DESC')->paginate(10);
 				break;
-			case UserRoleEnum::CXO->value:
-			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
 				$pos = $pos->with('dept')->orderBy('id', 'DESC')->paginate(10);
 				break;

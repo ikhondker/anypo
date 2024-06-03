@@ -12,7 +12,7 @@
 		@endslot
 		@slot('buttons')
 			{{-- <x-tenant.buttons.header.create object="Invoice"/> --}}
-
+            <x-tenant.actions.invoice-actions-index/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -76,7 +76,7 @@
 						{{ $invoices->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -87,7 +87,7 @@
 	</div>
 	 <!-- end row -->
 
-	
-	
+
+
 @endsection
 

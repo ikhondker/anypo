@@ -2,7 +2,7 @@
 	<div class="card-header">
 		<div class="card-actions float-end">
 			<a href="{{ route('aels.export-for-po', $id) }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-				<i class="align-middle" data-feather="download-cloud"></i> 
+				<i class="align-middle" data-feather="download-cloud"></i>
 			</a>
 		</div>
 		<h5 class="card-title">
@@ -25,26 +25,23 @@
 					<th>Currency</th>
 					<th>PO#</th>
 					<th>Reference</th>
-					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($aels as $ael)
 				<tr>
 					<td><a class="text-info" href="{{ route('aels.show',$ael->id) }}">{{ $ael->id }}</a></td>
-					<td>{{ $ael->entity }}</td>
-					<td>{{ $ael->event }}</td>
+					<td>{{ $ael->aeh->source_entity->value }}</td>
+					<td>{{ $ael->aeh->event }}</td>
 					<td><x-tenant.list.my-date :value="$ael->accounting_date"/></td>
 					<td>{{ $ael->ac_code }}</td>
 					<td>{{ $ael->line_description }}</td>
 					<td class="text-end"><x-tenant.list.my-number :value="$ael->fc_dr_amount"/></td>
 					<td class="text-end"><x-tenant.list.my-number :value="$ael->fc_cr_amount"/></td>
 					<td>{{ $ael->fc_currency }}</td>
-					<td><x-tenant.common.link-po id="{{ $ael->po_id }}"/></td>
-					<td>{{ $ael->reference }}</td>
-					<td class="table-action">
-						<x-tenant.list.actions object="Ael" :id="$ael->id" :edit="false"/>
-					</td>
+					<td><x-tenant.common.link-po id="{{ $ael->aeh->po_id }}"/></td>
+					<td>{{ $ael->reference_no }}</td>
+
 				</tr>
 				@endforeach
 			</tbody>
