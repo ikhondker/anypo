@@ -10,7 +10,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Accounting Entries for PO #{{ $po->id }}
+			Accounting Entries for PO#{{ $po->id }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>

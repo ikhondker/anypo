@@ -78,7 +78,6 @@ class AehReceipt implements ShouldQueue
         Log::debug('Jobs.Tenant.AehReceipt created aeh record with aeh_id ='. $aeh_id);
 
 		// create two accounting row
-
         $ael_dr						= new Ael;
 		$ael_cr 					= new Ael;
 

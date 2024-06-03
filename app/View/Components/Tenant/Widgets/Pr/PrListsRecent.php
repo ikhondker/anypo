@@ -13,10 +13,10 @@ use App\Enum\AuthStatusEnum;
 use Illuminate\Support\Facades\Log;
 
 
-class PrLists extends Component
+class PrListsRecent extends Component
 {
 	public $prs;
-	public $card_header ='Requisitions (Recent 5)';
+	//public $card_header ='Requisitions (Recent 5)';
 
 	/**
 	 * Create a new component instance.
@@ -26,10 +26,10 @@ class PrLists extends Component
 		//
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
-				$this->prs = Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
+				$this->prs = Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$this->prs = Pr::ByDeptApproved()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
+				$this->prs = Pr::ByDeptApproved()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
@@ -37,10 +37,10 @@ class PrLists extends Component
 			case UserRoleEnum::SYSTEM->value:
 				$this->prs = Pr::with('dept')->with('requestor')->orderBy('id', 'DESC')
                 ->where('auth_status','<>',AuthStatusEnum::DRAFT->value)
-                ->limit(5)->get();
+                ->limit(5)->paginate(10);
 				break;
 			default:
-				$this->prs = Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->get();
+				$this->prs = Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->paginate(10);
 				Log::error("tenant.widget.pr.pr-lists Other roles!");
 		}
 
@@ -51,6 +51,6 @@ class PrLists extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.pr.pr-lists');
+		return view('components.tenant.widgets.pr.pr-lists-recent');
 	}
 }

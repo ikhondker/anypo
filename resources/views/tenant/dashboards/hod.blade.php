@@ -25,17 +25,17 @@
 			<x-tenant.charts.dept-budget-pr-pie/>
 			<x-tenant.charts.dept-budget-bar/>
 		</div>
-	
+
 		<x-tenant.dashboards.dept-budget-stat/>
-	@endif 
+	@endif
 
 	{{-- <x-tenant.dashboards.dept-budget-stat id="{{ auth()->user()->dept_id }}" /> --}}
-	
-	
+
+
 	<x-tenant.dashboards.pr-counts/>
-	
-	<x-tenant.widgets.pr.pr-lists/>
-	
+
+    <x-tenant.widgets.pr.pr-lists-recent/>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="card">

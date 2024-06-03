@@ -4,5 +4,6 @@
 	</a>
 	<div class="dropdown-menu dropdown-menu-end">
         <a class="dropdown-item" href="{{ route('receipts.my-receipts') }}"><i class="align-middle me-1" data-feather="user-plus"></i> My Receipt's</a>
-	</div>
+        <a class="dropdown-item" href="{{ route('receipts.index') }}"><i class="align-middle me-1" data-feather="list"></i> All Receipts's</a>
+    </div>
 </div>

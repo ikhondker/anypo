@@ -25,6 +25,6 @@ class ListByProject extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.po.list-by-common');
+		return view('components.tenant.widgets.po.list-by-project');
 	}
 }

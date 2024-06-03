@@ -12,6 +12,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="User"/>
+            <x-tenant.actions.user-actions-index/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -105,7 +106,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="User"/>
+					<x-tenant.cards.header-search-bar object="User"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>

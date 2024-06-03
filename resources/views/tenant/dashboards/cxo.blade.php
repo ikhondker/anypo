@@ -24,14 +24,14 @@
 		<x-tenant.charts.budget-po-pie/>
 		<x-tenant.charts.budget-by-dept-po-bar/>
 	</div>
-	
+
 	<x-tenant.dashboards.budget-stat/>
-	
+
 	<x-tenant.dashboards.pr-counts/>
-	
-	
-	<x-tenant.widgets.pr.pr-lists/>
-	
+
+
+    <x-tenant.widgets.pr.pr-lists-recent/>
+
 
 	<div class="row">
 		<div class="col-12">
@@ -47,12 +47,12 @@
 	</div>
 
 
-	
 
 
-	
 
-	
 
-	
+
+
+
+
 @endsection

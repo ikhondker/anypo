@@ -11,7 +11,7 @@ use App\Models\Tenant\Pr;
 class PrListsPoPending extends Component
 {
 		public $prs;
-		public $card_header ='Approved Requistions - Pending for PO';
+		//public $card_header ='Approved Requistions - Pending for PO';
 
 		/**
 		 * Create a new component instance.
@@ -26,6 +26,6 @@ class PrListsPoPending extends Component
 		 */
 		public function render(): View|Closure|string
 		{
-				return view('components.tenant.widgets.pr.pr-lists');
+				return view('components.tenant.widgets.pr.pr-lists-recent');
 		}
 }

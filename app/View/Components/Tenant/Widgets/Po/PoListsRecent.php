@@ -12,7 +12,7 @@ use App\Enum\AuthStatusEnum;
 
 use Illuminate\Support\Facades\Log;
 
-class PoLists extends Component
+class PoListsRecent extends Component
 {
 	public $pos;
 	public $card_header ='Purchase Orders (Recent 5)';
@@ -27,26 +27,25 @@ class PoLists extends Component
 			case UserRoleEnum::HOD->value:
 				$this->pos = Po::ByDeptAll()->orderBy('id', 'DESC')
                 ->where('auth_status', '<>' , AuthStatusEnum::DRAFT->value)
-                ->limit(5)->get();
+                ->limit(5)->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
-				$this->pos = Po::ByBuyerAll()->orderBy('id', 'DESC')
+            case UserRoleEnum::CXO->value:
+            case UserRoleEnum::ADMIN->value:
+				$this->pos = Po::AllApproved()->orderBy('id', 'DESC')
                 ->where('auth_status', '<>', AuthStatusEnum::DRAFT->value)
-                ->limit(5)->get();
+                ->limit(5)->paginate(10);
 				break;
-			case UserRoleEnum::CXO->value:
-			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
 				$this->pos = Po::with('dept')->orderBy('id', 'DESC')
                 ->where('auth_status', '<>', AuthStatusEnum::DRAFT->value)
-                ->limit(5)->get();
+                ->limit(5)->paginate(10);
 				break;
 			default:
 				//$pos = $pos->ByUserAll()->paginate(10);
 				Log::warning(tenant('id'). ' tenant.widget.po.po-lists Other role = '. auth()->user()->role->value);
 				abort(403);
 		}
-
 	}
 
 	/**
@@ -54,6 +53,6 @@ class PoLists extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.po.po-lists');
+		return view('components.tenant.widgets.po.po-lists-recent');
 	}
 }

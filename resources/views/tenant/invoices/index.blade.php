@@ -87,7 +87,5 @@
 	</div>
 	 <!-- end row -->
 
-
-
 @endsection
 

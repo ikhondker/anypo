@@ -5,9 +5,9 @@
 			<div class="card-header">
 				<a href="{{ route('prs.create') }}" class="btn btn-primary float-end me-2"><i data-feather="plus-square"></i> Create Requisition</a>
 				<h5 class="card-title">
-					Approved Requistions - Pending for PO
+					Requisitions (Recent 5)
 				</h5>
-				<h6 class="card-subtitle text-muted">PO Pending Purchase Requisitions.	</h6>
+				<h6 class="card-subtitle text-muted">List of Purchase Requisitions.	</h6>
 			</div>
 			<div class="card-body">
 
