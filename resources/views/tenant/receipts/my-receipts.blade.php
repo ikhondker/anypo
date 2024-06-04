@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','My Receipt Lists')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Receipts</li>
+	<li class="breadcrumb-item active">My Receipts</li>
 @endsection
 
 @section('content')
@@ -21,12 +21,12 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Receipt"/>
+					<x-tenant.cards.header-search-bar object="Receipt"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Receipt Lists
+							My Receipt Lists
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">List of Goods Receipts.</h6>

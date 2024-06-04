@@ -18,7 +18,7 @@ class PrListsPoPending extends Component
 		 */
 		public function __construct()
 		{
-			$this->prs = Pr::ApprovedPoPending()->orderBy('id', 'DESC')->get();
+			$this->prs = Pr::ApprovedPoPending()->orderBy('id', 'DESC')->paginate(10);
 		}
 
 		/**

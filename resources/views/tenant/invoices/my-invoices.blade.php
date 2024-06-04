@@ -21,12 +21,12 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Invoice"/>
+					<x-tenant.cards.header-search-bar object="Invoice"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Invoice Lists
+							My Invoice Lists
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">List of Invoices.</h6>

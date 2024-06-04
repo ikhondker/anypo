@@ -40,13 +40,21 @@ class Payment extends Model
 	];
 
 	/* ----------------- Scopes ------------------------- */
+
+    public function scopeByCreator(Builder $query): void
+	{
+		$query->where('created_by', auth()->user()->id);
+	}
+
+
 	/**
 	 * Scope a query to return all payment of PO's where he is the buyer.
 	*/
-	public function scopeByPoBuyer(Builder $query, $id): void
+	public function chkscopeByPoBuyer(Builder $query, $id): void
 	{
 		// P2
-		// if (! $id) return;
+        // TODO
+        // if (! $id) return;
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('buyer_id', $id);
 		});
@@ -65,7 +73,7 @@ class Payment extends Model
 	}
 
 
-	
+
 	/* ----------------- Functions ---------------------- */
 
 
@@ -94,5 +102,5 @@ class Payment extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
-	
+
 }

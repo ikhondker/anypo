@@ -111,7 +111,7 @@ class PaymentController extends Controller
 		if (request('term')) {
 			$payments->where('name', 'Like', '%' . request('term') . '%');
 		}
-        $payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+        $payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByCreator()->paginate(10);
 		return view('tenant.payments.my-payments', compact('payments'));
 	}
 

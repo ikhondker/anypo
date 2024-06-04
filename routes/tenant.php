@@ -362,7 +362,7 @@ Route::middleware([
 
 				/* ======================== Payment ======================================== */
 				Route::resource('payments', PaymentController::class);
-                Route::get('/payment/my-payments',[InvoiceController::class,'myPayments'])->name('payments.my-payments');
+                Route::get('/payment/my-payments',[PaymentController::class,'myPayments'])->name('payments.my-payments');
 				Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
 				Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
 				Route::get('/payments/create/{invoice}',[PaymentController::class,'create'])->name('payments.create');

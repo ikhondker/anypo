@@ -120,7 +120,7 @@ class InvoiceController extends Controller
 		}
 		$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
 
-        return view('tenant.pos.my-invoices', compact('invoices'));
+        return view('tenant.invoices.my-invoices', compact('invoices'));
 	}
 
 	/**
@@ -540,7 +540,7 @@ class InvoiceController extends Controller
 				i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_paid_amount,
 				i.notes, i.status, i.payment_status
 			FROM invoices i, pos po, suppliers s, users u
-			WHERE i.po_id =p.id
+			WHERE i.po_id =po.id
 			AND i.supplier_id= s.id
 			AND i.poc_id = u.id
 			AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."

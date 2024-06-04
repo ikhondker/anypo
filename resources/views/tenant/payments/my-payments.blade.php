@@ -21,12 +21,12 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Payment"/>
+					<x-tenant.cards.header-search-bar object="Payment"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Payment Lists
+							My Payment Lists
 						@endif
 					</h5>
 					<h6 class="card-subtitle text-muted">List of Payments.</h6>

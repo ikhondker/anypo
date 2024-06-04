@@ -416,7 +416,7 @@ class ReceiptController extends Controller
 
 		$data = DB::select("
 			SELECT r.id, r.receive_date, r.rcv_type,
-				po.id po_num, po.summary, pol.line_num, pol.summary,
+				po.id po_num, po.summary, pol.line_num, pol.item_description,
 				w.name warehouse_name,
 				u.name receiver_name,
 				r.qty, r.notes, r.status
