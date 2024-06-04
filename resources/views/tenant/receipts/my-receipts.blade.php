@@ -1,18 +1,18 @@
 @extends('layouts.app')
-@section('title','Invoice Lists')
+@section('title','My Receipt Lists')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Invoices</li>
+	<li class="breadcrumb-item active">Receipts</li>
 @endsection
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Invoice Lists
+			My Receipt Lists
 		@endslot
 		@slot('buttons')
-			{{-- <x-tenant.buttons.header.create object="Invoice"/> --}}
-            <x-tenant.actions.invoice-actions-index/>
+			{{-- <x-tenant.buttons.header.create object="Receipt"/> --}}
+            <x-tenant.actions.receipt-actions-index/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -21,19 +21,20 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Invoice"/>
+					<x-tenant.cards.header-search-export-bar object="Receipt"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 						@else
-							Invoice Lists
+							Receipt Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">List of Invoices.</h6>
+					<h6 class="card-subtitle text-muted">List of Goods Receipts.</h6>
 				</div>
 				<div class="card-body">
+
                     <!-- ========== INCLUDE ========== -->
-					@include('tenant.includes.invoice.invoice-lists-table')
+					@include('tenant.includes.receipt.receipt-lists-table')
 					<!-- ========== INCLUDE ========== -->
 
 				</div>
@@ -45,6 +46,8 @@
 		 <!-- end col -->
 	</div>
 	 <!-- end row -->
+
+
 
 @endsection
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Invoice Lists')
+@section('title','My Invoice Lists')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Invoices</li>
 @endsection
@@ -8,7 +8,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Invoice Lists
+			My Invoice Lists
 		@endslot
 		@slot('buttons')
 			{{-- <x-tenant.buttons.header.create object="Invoice"/> --}}
