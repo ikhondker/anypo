@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Event Log')
 @section('breadcrumb','Event Log')
 
@@ -18,11 +18,11 @@
 			<x-landlord.show.my-date-time	value="{{ $activity->created_at }}"/>
 			<x-landlord.show.my-text		value="{{ $activity->object_id }}" label="Object ID"/>
 			<x-landlord.show.my-badge		value="{{ $activity->object_name }}" label="Object"/>
-		
+
 			<x-landlord.show.my-text		value="{{ $activity->event_name }}" label="Event"/>
 			<x-landlord.show.my-text		value="{{ $activity->column_name }}" label="Column"/>
 			<x-landlord.show.my-text		value="{{ $activity->prior_value }}" label="Prior Value"/>
-			
+
 			<x-landlord.show.my-text		value="{{ $activity->user->name }}" label="Performer"/>
 			<x-landlord.show.my-badge		value="{{ $activity->role }}" label="Role"/>
 			@if (auth()->user()->isSeeded())
@@ -30,11 +30,11 @@
 				<x-landlord.show.my-text		value="{{ $activity->ip }}" label="IP"/>
 				<x-landlord.show.my-text		value="{{ $activity->URL}}" label="URL"/>
 				<x-landlord.show.my-text		value="{{ $activity->method }}" label="Method"/>
-			@endif 
+			@endif
 
 		</div>
 		<!-- End Body -->
-			
+
 			@if (auth()->user()->isSystem())
 				<!-- Footer -->
 				<div class="card-footer pt-0">
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 				<!-- End Footer -->
-			@endif	
+			@endif
 	</div>
 	<!-- End Card -->
 

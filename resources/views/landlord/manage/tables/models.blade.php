@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Models List')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]
@@ -34,7 +34,7 @@
 					<!-- End Row -->
 			</div>
 			<!-- End Breadcrumb -->
-			
+
 			@include('shared.includes.tables.models')
 
 		</div>

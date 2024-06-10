@@ -55,10 +55,6 @@
                     @endif
                     <!-- ========== END SIDEBAR ========== -->
 
-
-
-
-
 				</ul>
 			</div>
 		</nav>
@@ -71,16 +67,10 @@
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 
-                        <li class="nav-item">
-							<a class="nav-icon" href="#">
-								<div class="position-relative">
-                                    <img src="{{ Storage::disk('s3l')->url('flags/'. Str::lower($_landlord_user->country).'.png') }}"
-                                    class="img-fluid rounded-circle"
-                                    alt="{{ $_landlord_user->country }}" width="32" height="32"
-                                    />
-								</div>
-							</a>
-						</li>
+                        <a class="nav-flag dropdown-toggle" href="#" id="flag" data-bs-toggle="no-dropdown">
+							<img src="{{ Storage::disk('s3l')->url('flags/'. Str::lower($_landlord_user->country).'.png') }}" alt="{{ $_landlord_user->country }}" />
+						</a>
+
 
 						<li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
@@ -106,24 +96,11 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Blank Page</h1>
-
                     <!-- content -->
                     @yield('content')
                     <!-- /.content -->
 
 
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
-								</div>
-								<div class="card-body">
-								</div>
-							</div>
-						</div>
-					</div>
 
 				</div>
 			</main>

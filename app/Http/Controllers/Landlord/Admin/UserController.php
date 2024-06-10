@@ -102,7 +102,7 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$users= $users->with('account')->orderBy('id', 'DESC')->paginate(20);
+		$users= $users->with('account')->orderBy('id', 'DESC')->paginate(5);
 		return view('landlord.admin.users.all',compact('users'));
 	}
 

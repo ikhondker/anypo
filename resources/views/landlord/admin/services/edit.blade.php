@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Edit Service')
 @section('breadcrumb','Edit Service')
 
@@ -17,7 +17,7 @@
 
 			<!-- Body -->
 			<div class="card-body">
-			
+
 
 				<!-- Form -->
 				<div class="row mb-4">
@@ -85,7 +85,7 @@
 					</div>
 				</div>
 				<!-- End Form -->
-				
+
 				<!-- Form -->
 				<div class="row mb-4">
 					<label for="gb" class="col-sm-3 col-form-label form-label">gb:</label>
@@ -101,7 +101,7 @@
 					</div>
 				</div>
 				<!-- End Form -->
-				
+
 				<!-- Form -->
 				<div class="row mb-4">
 					<label for="price" class="col-sm-3 col-form-label form-label">price:</label>

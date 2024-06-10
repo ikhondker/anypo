@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Edit Category')
 @section('breadcrumb','Edit Category')
 
@@ -17,7 +17,7 @@
 
 			<!-- Body -->
 			<div class="card-body">
-			
+
 
 				<!-- Form -->
 				<div class="row mb-4">
@@ -55,8 +55,8 @@
 
 				<x-landlord.edit.id-read-only :value="$category->id"/>
 				<x-landlord.edit.name :value="$category->name"/>
-				
-				
+
+
 			</div>
 			<!-- End Body -->
 

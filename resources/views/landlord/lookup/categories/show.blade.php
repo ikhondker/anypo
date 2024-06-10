@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Users')
 @section('breadcrumb','View Category')
 
@@ -45,7 +45,7 @@
 
 						<x-landlord.show.my-text	value="{{ $category->name }}"/>
 						<x-landlord.show.my-enable	value="{{ $category->enable }}"/>
-					
+
 				</div>
 				<!-- End Body -->
 

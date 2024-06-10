@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','My Account')
 @section('breadcrumb','All Accounts')
 
@@ -44,7 +44,7 @@
 					</td>
 					<td><x-landlord.list.my-date :value="$account->start_date" /></td>
 					<td><x-landlord.list.my-date :value="$account->end_date" /></td>
-					<td><span class="badge bg-primary rounded-pill">{{ $account->user }}</span></td>	
+					<td><span class="badge bg-primary rounded-pill">{{ $account->user }}</span></td>
 					<td><x-landlord.list.my-number :value="$account->price"/>$</td>
 					<td><x-landlord.list.my-badge :value="$account->status->name" badge="{{ $account->status->badge }}" /></td>
 					<td><x-landlord.list.actions object="Account" :id="$account->id" :export="false" :enable="false" /></td>

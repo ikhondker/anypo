@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Header Comments')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]

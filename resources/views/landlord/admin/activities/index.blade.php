@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Event Log')
 @section('breadcrumb','Event Log')
 
@@ -23,7 +23,7 @@
 				<!-- form -->
 				<form action="{{ route('activities.index') }}" method="GET" role="search">
 
-					
+
 					<div class="btn-group" role="group" aria-label="First group">
 						<input type="date" class="datepicker form-control @error('start_date') is-invalid @enderror"
 							name="start_date" id="start_date" placeholder=""
@@ -37,7 +37,7 @@
 						<a href="{{ route( 'activities.index') }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
 							<i class="bi bi-arrow-repeat"></i>
 						</a>
-						<button type="submit" name="action" value="export" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"> 
+						<button type="submit" name="action" value="export" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
 							<i class="bi bi-arrow-down-circle"></i>
 						</button>
 
@@ -55,7 +55,7 @@
 						</a> --}}
 
 					</div>
-					
+
 				</form>
 				<!--/. form -->
 			</div>
@@ -72,7 +72,7 @@
 					<th style="width: 5%;">Action</th>
 				</tr>
 				</thead>
-		
+
 				<tbody>
 					@foreach ($activities as $activity)
 					<tr>
@@ -83,7 +83,7 @@
 											src="{{ Storage::disk('s3l')->url('avatar/'.$activity->user->avatar) }}"
 											alt="{{ $activity->user->name }}" title="{{ $activity->user->name }}">
 								</div>
-				
+
 								<div class="flex-grow-1 ms-3">
 									<a class="d-inline-block link-dark" href="#">
 										<h6 class="text-hover-primary mb-0">{{ $activity->object_name }}</h6>
@@ -97,13 +97,13 @@
 						<td>{{ $activity->user->name }}</td>
 						<td><x-landlord.list.actions object="Activity" :id="$activity->id" :edit="false" :enable="false"/></td>
 					</tr>
-				
+
 				@endforeach
 				</tbody>
 			</table>
 		</div>
 		<!-- End Table -->
-	
+
 
 		<!-- card-body -->
 		<div class="card-body">

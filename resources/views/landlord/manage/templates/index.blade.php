@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Templates')
 @section('breadcrumb','Templates v1.3 (6-MAR-23)')
 
@@ -70,6 +70,6 @@
 	</div>
 	<!-- End Card -->
 
-	
+
 @endsection
 

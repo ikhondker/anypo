@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Tables')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]
@@ -15,7 +15,7 @@
 
 		<!-- card-body -->
 		<div class="card-body">
-			
+
 			<!-- Breadcrumb -->
 			<div class="container">
 				<div class="row align-items-lg-center pb-3">

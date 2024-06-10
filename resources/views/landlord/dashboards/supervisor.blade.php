@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Dashboard')
 @section('breadcrumb','Dashboard')
 
@@ -19,7 +19,7 @@
 
 	<div class="d-grid gap-3 gap-lg-5">
 		<x-landlord.widget.ticket-lists type="UNASSIGNED"/>
-	
+
 		<x-landlord.widget.ticket-lists type="OPEN"/>
 	</div>
 

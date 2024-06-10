@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','config')
 @section('breadcrumb','View Config')
 
@@ -61,13 +61,13 @@
 						<x-landlord.show.my-number value="{{ $config->discount_pc_6 }}" label="6 Months Discount %" />
 						<x-landlord.show.my-number value="{{ $config->discount_pc_12 }}" label="12 Months Discount %" />
 						<x-landlord.show.my-number value="{{ $config->discount_pc_24 }}" label="24 Months Discount %" />
-			
+
 						<x-landlord.show.my-integer value="{{ $config->days_gen_bill }}" label="Gen Invoice Before" />
 						<x-landlord.show.my-integer value="{{ $config->days_due }}" label="Mark account as due after" />
 						<x-landlord.show.my-integer value="{{ $config->days_pastdue }}" label="Mark account as past due after" />
 						<x-landlord.show.my-integer value="{{ $config->days_archive }}" label="Mark account for archive after" />
 
-						<x-landlord.show.my-enable	value="{{ $config->maintenance }}" label="Maintenance ?"/>	
+						<x-landlord.show.my-enable	value="{{ $config->maintenance }}" label="Maintenance ?"/>
 						<x-landlord.show.my-date-time	value="{{ $config->maintenance_start_time }}" label="Start"/>
 						<x-landlord.show.my-date-time	value="{{ $config->maintenance_end_time }}" label="End"/>
 						<x-landlord.show.my-enable	value="{{ $config->banner }}" label="Banner?"/>

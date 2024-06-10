@@ -1,7 +1,7 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Table')
 @section('breadcrumb')
-	Table: {{ $table }} 
+	Table: {{ $table }}
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
 						<!-- End Row -->
 				</div>
 				<!-- End Breadcrumb -->
-				
+
 				<div class="form-group row">
 					<label for="name" class="col-sm-2 col-form-label col-form-label-sm text-end text-muted h6">COLUMN LIST:</label>
 					<div class="col-sm-9 col-form-label col-form-label-sm">
@@ -61,7 +61,7 @@
 								IF(enable, 'Yes', 'No') as Enable,
 							@else
 								{{ $column->Field.', '}}
-							@endif 
+							@endif
 
 						@endforeach
 						{{ __('FROM '.$table)}}
@@ -85,7 +85,7 @@
 
 			<!-- card-body -->
 			<div class="card-body">
-				
+
 
 				<table class="table table-sm table-borderless table-thead-bordered">
 					 <thead class="thead-light">
@@ -99,7 +99,7 @@
 							<th scope="col">Extra</th>
 						</tr>
 					</thead>
-		
+
 					<tbody>
 						@foreach ($columns as $column)
 							<tr>
@@ -113,7 +113,7 @@
 							</tr>
 						@endforeach
 					</tbody>
-		
+
 				</table>
 			</div>
 			<!-- /. card-body -->
@@ -122,6 +122,6 @@
 		<!-- End Card -->
 
 	</div>
-	
+
 @endsection
 

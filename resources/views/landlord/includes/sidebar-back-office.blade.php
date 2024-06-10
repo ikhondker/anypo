@@ -74,7 +74,7 @@
 			<i class="bi-paperclip nav-icon"></i>
 			All Attachments</a>
 	</li>
-	
+
 </ul>
 <!-- End List -->
 
@@ -94,7 +94,7 @@
 			<a class="nav-link {{ $_route_name == 'error-logs.index' ? 'active' : '' }}"
 				href="{{ route('error-logs.index') }}"><i class="bi-bell nav-icon"></i> Error Logs</a>
 		</li>
-		
+
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'templates.index' ? 'active' : '' }}"
 				href="{{ route('templates.index') }}"><i class="bi-bell nav-icon"></i> Templates</a>
@@ -137,7 +137,7 @@
 			<a class="nav-link {{ $_route_name == 'entities.index' ? 'active' : '' }}"
 				href="{{ route('entities.index') }}"><i class="bi-bell nav-icon"></i> Entity</a>
 		</li>
-		
+
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'mail-lists.index' ? 'active' : '' }}"
 				href="{{ route('mail-lists.index') }}"><i class="bi-bell nav-icon"></i> Mail List</a>
@@ -152,6 +152,10 @@
 				href="{{ route('menus.index') }}"><i class="bi-bell nav-icon"></i> Menu</a>
 		</li>
 		<li class="nav-item">
+			<a class="nav-link {{ $_route_name == 'widgets' ? 'active' : '' }}"
+				href="{{ route('widgets') }}"><i class="bi-bell nav-icon"></i> Widgets</a>
+		</li>
+        <li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'configs.index' ? 'active' : '' }}"
 				href="{{ route('configs.index') }}"><i class="bi-bell nav-icon"></i> Config</a>
 		</li>

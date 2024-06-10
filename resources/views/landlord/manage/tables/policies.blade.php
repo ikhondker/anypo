@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Policies List')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]
@@ -35,7 +35,7 @@
 			<!-- End Breadcrumb -->
 
 			<h5>App\Provider\AuthServiceProvider.php</h5>
-			@foreach($filesInFolder as $row) 
+			@foreach($filesInFolder as $row)
 				'App\Models\Landlord\{{ $row['fname'] }}' => 'App\Policies\Landlord\{{ $row['fname'] }}Policy',</br>
 			@endforeach
 		</div>

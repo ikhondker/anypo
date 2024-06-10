@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Statuses')
 @section('breadcrumb','View Statuses')
 
@@ -11,11 +11,11 @@
 
 		<!-- Body -->
 		<div class="card-body">
-			
+
 			<x-landlord.show.my-badge	value="{{ $status->code }}" label="Code"/>
 			<x-landlord.show.my-text	value="{{ $status->name }}"/>
 			<x-landlord.show.my-badge	value="{{ $status->badge }}" label="Badge"/>
-		
+
 			<x-landlord.show.my-enable	value="{{ $status->accounts }}" label="Accounts"/>
 			<x-landlord.show.my-enable	value="{{ $status->accounts }}" label="Services"/>
 			<x-landlord.show.my-enable	value="{{ $status->tickets }}" label="Tickets"/>

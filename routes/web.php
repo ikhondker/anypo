@@ -426,6 +426,11 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::get('/test', function () {
 		return view('landlord.tests.test');
 	})->name('test');
+
+    Route::get('/widgets', function () {
+		return view('landlord.manage.widgets');
+	})->name('widgets');
+
 	Route::get('/sweet2', function () {
 		return view('landlord.tests.sweet2');
 	})->name('sweet2');

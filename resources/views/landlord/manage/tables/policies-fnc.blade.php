@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title', 'Functions in Models')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE') }}@[{{ base_path() }}]
@@ -6,7 +6,7 @@
 
 
 @section('content')
-	
+
 	<div class="card">
 		<div class="card-header">
 			<h5 class="card-title">Functions in Policies</h5>
@@ -32,8 +32,8 @@
 					<!-- End Row -->
 			</div>
 			<!-- End Breadcrumb -->
-			
-			
+
+
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr>

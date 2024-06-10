@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Edit Unhandled Error Log')
 @section('breadcrumb','Edit Unhandled Error Log')
 

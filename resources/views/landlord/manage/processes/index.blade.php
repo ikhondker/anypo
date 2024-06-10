@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Processes')
 @section('breadcrumb','Processes')
 
@@ -14,10 +14,10 @@
 		<!-- Table -->
 		<div class="table-responsive">
 			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-		
+
 				<tbody>
 					<tr>
-						<td class="">1</td> 
+						<td class="">1</td>
 						<td class="">Generate Invoice</td>
 						<td class="">Generate Invoice</td>
 						<td class="text-end">
@@ -32,7 +32,7 @@
 								<a class="btn btn-danger" onclick="return confirm('Do you want to run Accounts Archive Process? ')" href="{{ route('processes.accounts-archive') }}">Run Process **</a>
 							</td>
 					</tr>
-			
+
 				</tbody>
 			</table>
 		</div>

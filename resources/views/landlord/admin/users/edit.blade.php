@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Edit User Profile')
 @section('breadcrumb','Edit User Profile')
 
@@ -35,7 +35,7 @@
 								<input type="file" class="form-control form-control-sm" name="file_to_upload"
 									id="file_to_upload"
 									accept=".jpg,.jpeg,.png,.gif"
-									placeholder="file_to_upload"> 
+									placeholder="file_to_upload">
 							</div>
 							<!-- End Avatar -->
 						</div>

@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Users')
 @section('breadcrumb','Users List')
 
@@ -84,7 +84,7 @@
 									</div>
 								</div>
 							</td>
-							
+
 							<td>{{ $user->account->name }} </td>
 							<td>
 								@if ( $user->role == UserRoleEnum::USER)
@@ -139,7 +139,7 @@
 	</div>
 	<!-- End Card -->
 
-	
+
 
 @endsection
 

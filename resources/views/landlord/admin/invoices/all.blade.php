@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title', 'My Invoices')
 @section('breadcrumb', 'All Invoices')
 
@@ -35,7 +35,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3l')->url('logo/'.$invoice->account->logo) }}" 
+											src="{{ Storage::disk('s3l')->url('logo/'.$invoice->account->logo) }}"
 											alt="{{ $invoice->account->name }}" title="{{ $invoice->account->name }}">
 									</div>
 

@@ -36,12 +36,12 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'activities.create',  'route_name' => 'activities.index',	'access' => 'X'],
 			[ 'raw_route_name' => 'activities.all',		'route_name' => 'activities.index',	'access' => 'B'],
 
-			[ 'raw_route_name' => 'attachments.index',	'route_name' => 'attachments.index',	'access' => 'B'], 
+			[ 'raw_route_name' => 'attachments.index',	'route_name' => 'attachments.index',	'access' => 'B'],
 			[ 'raw_route_name' => 'attachments.show',	'route_name' => 'attachments.index',	'access' => 'B'],
 			[ 'raw_route_name' => 'attachments.update', 'route_name' => 'attachments.index',	'access' => 'B'],
 			[ 'raw_route_name' => 'attachments.edit',	'route_name' => 'attachments.index',	'access' => 'B'],
 			[ 'raw_route_name' => 'attachments.create', 'route_name' => 'attachments.index',	'access' => 'B'],
-			
+
 			[ 'raw_route_name' => 'contacts.all',	  'route_name' => 'contacts.index',	  'access' => 'B'],
 
 			[ 'raw_route_name' => 'categories.index',	'route_name' => 'categories.index',	  'access' => 'B'],
@@ -101,7 +101,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'processes.update',	'route_name' => 'processes.index',	 'access' => 'B'],
 			[ 'raw_route_name' => 'processes.edit',		'route_name' => 'processes.index',	 'access' => 'B'],
 			[ 'raw_route_name' => 'processes.create',	'route_name' => 'processes.index',	 'access' => 'B'],
-			
+
 			[ 'raw_route_name' => 'products.index',		'route_name' => 'products.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'products.show',	 	'route_name' => 'products.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'products.update',	'route_name' => 'products.index',	  'access' => 'B'],
@@ -147,7 +147,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'templates.update',	'route_name' => 'templates.index',	 'access' => 'S'],
 			[ 'raw_route_name' => 'templates.edit',		'route_name' => 'templates.index',	 'access' => 'S'],
 			[ 'raw_route_name' => 'templates.create',	'route_name' => 'templates.index',	 'access' => 'S'],
-			
+
 			[ 'raw_route_name' => 'error-logs.index',	'route_name' => 'error-logs.index',	 'access' => 'S'],
 			[ 'raw_route_name' => 'error-logs.show',		'route_name' => 'error-logs.index',	 'access' => 'S'],
 			[ 'raw_route_name' => 'error-logs.update',	'route_name' => 'error-logs.index',	 'access' => 'S'],
@@ -174,6 +174,9 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.edit',			'route_name' => 'users.show',	 'access' => 'F'],
 			[ 'raw_route_name' => 'users.create',	  	'route_name' => 'users.index',	'access' => 'F'],
 			[ 'raw_route_name' => 'users.all',			'route_name' => 'users.index',	'access' => 'B'],
+
+            // Others
+            [ 'raw_route_name' => 'widgets',			'route_name' => 'widgets',	'access' => 'B'],
 
 		];
 		Menu::insert($menus);

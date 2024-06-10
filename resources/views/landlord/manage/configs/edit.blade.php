@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Edit config')
 @section('breadcrumb','Edit config')
 
@@ -54,7 +54,7 @@
 			<x-landlord.edit.id-read-only :value="$config->id" />
 			<x-landlord.edit.name :value="$config->name" />
 			<x-landlord.edit.tagline :value="$config->tagline" />
-			
+
 
 			<x-landlord.edit.email :value="$config->email" />
 			<x-landlord.edit.cell value="{{ $config->cell }}" />
@@ -106,7 +106,7 @@
 				<div class="col-sm-9">
 					<div class="row">
 
-						
+
 							<!-- Form -->
 							<div class="col-md-5">
 								<label for="maintenance_start_time" class="form-label">Start</label>

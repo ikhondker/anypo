@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','View Payment')
 @section('breadcrumb','View Payment')
 
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				<!-- End Footer -->
-			@endif 
+			@endif
 	</div>
 	<!-- End Card -->
 

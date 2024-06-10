@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Entity')
 @section('breadcrumb','View Entity')
 
@@ -52,7 +52,7 @@
 				<x-landlord.show.my-text	value="{{ $entity->parent_entity }}" label="Parent"/>
 				<x-landlord.show.my-enable	value="{{ $entity->enable }}"/>
 				<x-landlord.show.my-enable	value="{{ $entity->notification }}" label="Notification"/>
-			
+
 		</div>
 		<!-- End Body -->
 

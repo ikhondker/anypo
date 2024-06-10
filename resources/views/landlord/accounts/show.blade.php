@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Account')
 @section('breadcrumb','View Account')
 
@@ -68,7 +68,7 @@
 					<!-- End Col -->
 				</div>
 				<!-- End Row -->
-				
+
 				<!-- Progress -->
 				<div class="progress rounded-pill mb-3">
 					<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
@@ -85,7 +85,7 @@
 						<span class="legend-indicator bg-primary"></span>Last Billed: <x-landlord.list.my-date :value="$account->last_bill_date" />
 					</div>
 					<div class="list-inline-item">
-						<span class="legend-indicator bg-primary"></span>Status: 
+						<span class="legend-indicator bg-primary"></span>Status:
 						<span class="badge bg-{{ $account->status->badge }}">{{ $account->status->name }}</span>
 					</div>
 				</div>
@@ -98,7 +98,7 @@
 
 		<x-landlord.widget.account-services/>
 
-		
+
 
 		<!-- Card -->
 		<div class="card">
@@ -109,10 +109,10 @@
 					<i class="bi bi-pencil-square me-1"></i> Edit Account
 				</a>
 			</div>
-			
+
 			<!-- Body -->
 			<div class="card-body">
-				<x-landlord.show.my-text value="{{ $account->name }}" label="Account Name" />				
+				<x-landlord.show.my-text value="{{ $account->name }}" label="Account Name" />
 				<x-landlord.show.my-text value="{{ $account->tagline }}" label="Tagline" />
 				<x-landlord.show.my-text value="{{ $account->email }}" label="E-mail" />
 
@@ -125,7 +125,7 @@
 				<x-landlord.show.my-url value="{{ $account->facebook }}" label="Facebook" />
 				<x-landlord.show.my-url value="{{ $account->linkedin }}" label="LinkedIn" />
 				<x-landlord.show.my-date-time value="{{ $account->created_at }}" label="Created At" />
-				
+
 
 			</div>
 			<!-- End Body -->
@@ -142,7 +142,7 @@
 							** DELETE ACCOUNT **
 						</a>
 					@endif
-					
+
 					<a class="btn btn-primary btn-sm" href="{{ route('accounts.edit', $account->id) }}">
 						<i class="bi bi-pencil-square me-1"></i> Edit Account
 					</a>

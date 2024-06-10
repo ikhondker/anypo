@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Checkouts')
 @section('breadcrumb','View Checkout')
 
@@ -19,7 +19,7 @@
 		<x-landlord.show.my-text value="{{ $checkout->site }}" label="Site" />
 		<x-landlord.show.my-text value="{{ $checkout->account_name }}" label="Name" />
 		<x-landlord.show.my-text value="{{ $checkout->email }}" label="Email" />
-		
+
 		<x-landlord.show.my-text value="{{ $checkout->account_id }}" label="Account #" />
 		<x-landlord.show.my-text value="{{ $checkout->account_name }}" label="Account Name" />
 		<x-landlord.show.my-text value="{{ $checkout->invoice_id }}" label="Invoice #" />

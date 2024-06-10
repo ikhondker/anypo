@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title', 'Payments')
 @section('breadcrumb', 'All Payments')
 
@@ -30,7 +30,7 @@
 								<div class="d-flex align-items-center">
 									<div class="flex-shrink-0">
 										<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}" 
+											src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}"
 											alt="{{ $payment->account->name }}" title="{{ $payment->account->name }}">
 									</div>
 
@@ -50,7 +50,7 @@
 								<a href="{{ route('payments.show', $payment->id) }}" class="text-body"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 										<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
-								</a> 
+								</a>
 								<a href="{{ route('reports.pdf-payment', $payment->id) }}" class="text-body"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
 									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>

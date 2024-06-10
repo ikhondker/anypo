@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title',' All Routes List')
 @section('breadcrumb')
 	All Routes List
@@ -32,12 +32,12 @@
 			<!-- End Breadcrumb -->
 
 			@include('shared.includes.tables.routes-all')
-			
+
 		</div>
 		<!-- /. card-body -->
 
 	</div>
 	<!-- End Card -->
-	
+
 @endsection
 

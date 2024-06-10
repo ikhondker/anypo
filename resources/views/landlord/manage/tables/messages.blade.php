@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Routes List')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]
@@ -36,9 +36,9 @@
 
 			@php
 				$filesInFolder = \File::files(base_path() . $target_dir);
-			@endphp 	
+			@endphp
 
-			@foreach($filesInFolder as $path) 
+			@foreach($filesInFolder as $path)
 				<div class="alert alert-primary" role="alert">
 					<div class="alert-message">
 						@php

@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title', 'My Services')
 @section('breadcrumb', 'All Services')
 
@@ -82,6 +82,6 @@
 
 
 
-	
+
 
 @endsection

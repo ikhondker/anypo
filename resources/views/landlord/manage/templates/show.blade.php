@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Template')
 @section('breadcrumb','View Templates v1.2 (20-FEB-23)')
 

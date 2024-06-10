@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title', 'Controllers List')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE') }}@[{{ base_path() }}]
@@ -6,7 +6,7 @@
 
 
 @section('content')
-	
+
 	<div class="card">
 		<div class="card-header">
 			<h5 class="card-title">Functions in Controller </h5>
@@ -33,7 +33,7 @@
 					<!-- End Row -->
 			</div>
 			<!-- End Breadcrumb -->
-			
+
 			<!-- ========== INCLUDE ========== -->
 			@include('shared.includes.tables.controllers-fnc')
 			<!-- ========== INCLUDE ========== -->

@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title', 'Mail Lists')
 @section('breadcrumb', 'Mail Lists')
 
@@ -85,6 +85,6 @@
 	</div>
 	<!-- End Card -->
 
-	
+
 
 @endsection

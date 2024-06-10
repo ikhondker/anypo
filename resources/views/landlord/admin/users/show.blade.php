@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title', 'Users')
 @section('breadcrumb', 'User Profile')
 
@@ -15,7 +15,7 @@
 
 		<!-- Body -->
 		<div class="card-body">
-			
+
 			<!-- Form -->
 			<div class="row mb-4">
 				<label class="col-sm-3 col-form-label form-label">Profile Photo :</label>
@@ -43,7 +43,7 @@
 			<x-landlord.show.my-text value="{{ $user->email }}" label="E-mail"/>
 			<x-landlord.show.my-text value="{{ $user->cell }}" label="Cell"/>
 			<x-landlord.show.my-badge value="{{ $user->role }}" label="Role"/>
-			
+
 			<x-landlord.show.my-text value="{{ $user->account->name }}" label="Account"/>
 
 			<x-landlord.show.my-text value="{{ $user->address1 }}" label="Address1"/>

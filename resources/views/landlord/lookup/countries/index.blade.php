@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title', 'Categories')
 @section('breadcrumb', 'Categories List')
 
@@ -21,7 +21,7 @@
 				<thead class="thead-light">
 					<tr>
 						<th>Country Name</th>
-						
+
 						<th>Enable</th>
 						<th style="width: 5%;">Action</th>
 					</tr>
@@ -46,10 +46,10 @@
 									</div>
 								</div>
 							</td>
-							
+
 							<td><x-landlord.list.my-enable :value="$country->enable" /></td>
 							<td>
-								
+
 
 								{{-- <x-landlord.list.actions object="Country" :id="$country->country" /> --}}
 								<a href="{{ route('countries.delete', $country->country) }}"
@@ -87,6 +87,6 @@
 	</div>
 	<!-- End Card -->
 
-	
+
 
 @endsection

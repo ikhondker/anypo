@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Category')
 @section('breadcrumb','Create Category')
 
@@ -16,7 +16,7 @@
 			<!-- Body -->
 			<div class="card-body">
 				<x-landlord.create.name/>
-				
+
 			</div>
 			<!-- End Body -->
 

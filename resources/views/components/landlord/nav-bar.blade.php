@@ -1,31 +1,25 @@
 
 	<!-- ========== HEADER ========== -->
 
-    <!-- ========== TOP NAV BAR ========== -->
+	<!-- ========== TOP NAV BAR ========== -->
 	<nav class="navbar p-2 navbar-expand-md navbar-dark bg-primary landing-navbar">
 		<div class="container">
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item d-none d-md-inline-block">
 					@auth
-                    <img src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}"
-                        class="img-fluid rounded-circle"
-                        alt="Carl Jenkins" width="32" height="32"/>
-
-						<img src="{{ Storage::disk('s3l')->url('flags/'. Str::lower($_landlord_user->country).'.png') }}"
-                            class="img-fluid rounded-circle"
-							alt="{{ $_landlord_user->country }}" width="32" height="32"
-							/>
+						<a class="nav-flag dropdown-toggle" href="#" id="flag" data-bs-toggle="no-dropdown">
+							<img src="{{ Storage::disk('s3l')->url('flags/'. Str::lower($_landlord_user->country).'.png') }}" alt="{{ $_landlord_user->country }}" />
+						</a>
 					@endauth
 					@guest
-                        <img src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" class="img-fluid rounded-circle"
-                            alt="Carl Jenkins" width="32" height="32"/>
-						<img class="rounded-circle" src="{{ Storage::disk('s3l')->url('flags/ca.png') }}"
-						    alt="CA" width="32" height="32"/>
+                        <a class="nav-flag dropdown-toggle" href="#" id="flag" data-bs-toggle="no-dropdown">
+                            <img src="{{ Storage::disk('s3l')->url('flags/ca.png') }}" alt="CA" />
+                        </a>
 					@endguest
 				</li>
 				<li class="nav-item d-none d-md-inline-block">
 					@auth
-						<a href="{{ route('dashboards.index') }}" class="nav-link active text-lg px-lg-3">
+						<a href="{{ route('dashboards.index') }}" class="nav-link active px-lg-3">
 							<i class="align-middle fas fa-fw fa-chart-pie"></i>
 							Dashboard
 						</a>
@@ -40,16 +34,17 @@
 
 				@auth
 				<li class="nav-item d-none d-md-inline-block">
-					<a href="{{ route('users.show', auth()->user()->id) }}" class="nav-link active text-lg px-lg-3">
+
+					<a href="{{ route('users.show', auth()->user()->id) }}" class="nav-link active px-lg-3">
 							<img class="img-fluid rounded-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$_landlord_user->avatar) }}"
-                            alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}"
-                            width="32" height="32"
-                            />
+							alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}"
+							width="24" height="24"
+							/>
 						{{ Str::limit(auth()->user()->name, 15, '...') }}
 					</a>
 				</li>
 				<li class="nav-item d-none d-md-inline-block">
-					<a href="{{ route('logout') }}" class="nav-link active text-lg px-lg-3">
+					<a href="{{ route('logout') }}" class="nav-link active px-lg-3">
 						<i class="align-middle fas fa-fw fa-power-off" style="color:red;"></i>
 						Logout
 					</a>
@@ -69,7 +64,7 @@
 	</nav>
 	<!-- ========== TOP NAV BAR ========== -->
 
-    <!-- ========== MAIN NAV BAR ========== -->
+	<!-- ========== MAIN NAV BAR ========== -->
 	<nav class="navbar navbar-expand-md navbar-dark bg-primary landing-navbar">
 		<div class="container">
 
@@ -85,40 +80,40 @@
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'root' ? 'active' : '' }}" aria-current="page"
 						href="{{ route('home') }}" role="button" aria-expanded="false">Home</a>
 				</li>
-                <!-- End Landings -->
+				<!-- End Landings -->
 
 				<!-- Product -->
 				<li class="nav-item d-none d-md-inline-block">
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'product' ? 'active' : '' }}"
 						href="{{ route('product') }}" role="button" aria-expanded="false">Product</a>
 				</li>
-	            <!-- End Product -->
-                 <!-- Pricing -->
+				<!-- End Product -->
+				 <!-- Pricing -->
 				<li class="nav-item d-none d-md-inline-block">
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'pricing' ? 'active' : '' }}"
 						href="{{ route('pricing') }}" role="button" aria-expanded="false">Pricing</a>
 				</li>
-                <!-- End Pricing -->
+				<!-- End Pricing -->
 
-                <!-- FAQ -->
+				<!-- FAQ -->
 				<li class="nav-item d-none d-md-inline-block">
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'faq' ? 'active' : '' }}"
 						href="{{ route('faq') }}" role="button" aria-expanded="false">FAQ</a>
 				</li>
-                <!-- End FAQ -->
+				<!-- End FAQ -->
 
-                <!-- Contact -->
-                <li class="nav-item d-none d-md-inline-block">
+				<!-- Contact -->
+				<li class="nav-item d-none d-md-inline-block">
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'contact-us' ? 'active' : '' }}"
 						href="{{ route('contact-us') }}" role="button" aria-expanded="false">Contact</a>
 				</li>
-                <!-- End Contact -->
+				<!-- End Contact -->
 
 			</ul>
 			<a href="{{ route('pricing') }}"
-            class="btn btn-lg btn-success btn-pill my-2 my-sm-0 ms-3">Buy now</a>
+			class="btn btn-lg btn-success btn-pill my-2 my-sm-0 ms-3">Buy now</a>
 		</div>
 	</nav>
-    <!-- ========== MAIN NAV BAR ========== -->
+	<!-- ========== MAIN NAV BAR ========== -->
 
 	<!-- ========== END HEADER ========== -->
