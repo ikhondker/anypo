@@ -46,8 +46,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 use File;
-# 13. FUTURE 
-
+# 13. FUTURE
 
 
 class AttachmentController extends Controller
@@ -174,11 +173,11 @@ class AttachmentController extends Controller
 
 		if (!File::exists($path)) {
 			abort(404);
-		} 
+		}
 
 		$file = File::get($path);
 		$type = File::mimeType($path);
-		
+
 		ob_end_clean();
 		return Storage::disk('local')->download('private/'.$directory.'/'. $filename, $filename,["Content-Type", $type]);
 	}

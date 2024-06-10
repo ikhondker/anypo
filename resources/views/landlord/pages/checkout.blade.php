@@ -1,4 +1,4 @@
-@extends('layouts.landlord')
+@extends('layouts.landlord.page')
 @section('title', 'Checkout')
 
 @section('content')

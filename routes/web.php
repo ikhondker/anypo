@@ -46,6 +46,11 @@ Route::get('/home', function () {
 	return view('landlord.home');
 })->name('home');
 
+Route::get('/ap4', function () {
+	return view('landlord.ap4');
+})->name('ap4');
+
+
 
 /**
 * ==================================================================================
@@ -83,7 +88,7 @@ Route::get('/contact-us', function () {
 * 3. Public Controller Based Routes
 * ==================================================================================
 */
-// Home Controller 
+// Home Controller
 use App\Http\Controllers\Landlord\HomeController;
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
@@ -186,14 +191,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	/* ======================== Dashboard ========================================  */
 	Route::resource('dashboards', DashboardController::class);
-	
+
 	/* ======================== Ticket ======================================== */
 	Route::resource('tickets', TicketController::class);
 	//Route::get('/ticket/support', [TicketController::class, 'support'])->name('tickets.support');
 	//Route::get('/tickets/pdf/{pr}', [TicketController::class,'pdf'])->name('tickets.pdf');
 	Route::get('/ticket/export', [TicketController::class, 'export'])->name('tickets.export');
 	Route::get('/ticket/close/{ticket}', [TicketController::class, 'close'])->name('tickets.close');
-	
+
 	/* ======================== Comments ========================================  */
 	Route::resource('comments', CommentController::class);
 
@@ -209,7 +214,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::post('/user/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
 	Route::get('/user/export', [UserController::class, 'export'])->name('users.export');
 	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
-	
+
 	/* ======================== Attachment ======================================== */
 	Route::get('/attachments/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
 
@@ -267,12 +272,12 @@ use App\Http\Controllers\Landlord\Manage\MailListController;
 
 // Ref: app/Providers/AppServiceProvider.php
 Route::middleware(['auth', 'verified','can:support'])->group(function () {
-	
+
 	/* ======================== User ========================================  */
 	Route::get('/user/all', [UserController::class, 'all'])->name('users.all');
 	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
 	//Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
-	
+
 	/* ======================== Ticket ========================================  */
 	Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
 	Route::get('/ticket/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
@@ -296,15 +301,15 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 	/* ======================== Contact ======================================== */
 	Route::resource('contacts', ContactController::class);
 	Route::get('/contact/all', [ContactController::class, 'all'])->name('contacts.all');
-	
+
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
 	//P2 Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.delete');
-	
+
 	/* ======================== Attachment ======================================== */
 	Route::resource('attachments', AttachmentController::class);
 	//Route::get('/attachment/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
-		
+
 	/* ======================== Country ======================================== */
 	Route::resource('countries', CountryController::class);
 	Route::get('/country/export',[CountryController::class,'export'])->name('countries.export');
@@ -316,7 +321,7 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
 	Route::get('/checkout/all', [CheckoutController::class, 'all'])->name('checkouts.all');
-					
+
 	/* ======================== MailList ======================================== */
 	Route::resource('mail-lists', MailListController::class)->middleware(['auth', 'verified']);
 	//Route::get('/maillist/export',[MailListController::class,'export'])->name('maillists.export');
@@ -328,7 +333,7 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 	/* ======================== Tenant ========================================  */
 	Route::resource('tenants', TenantController::class);
 });
-	
+
 
 /**
 * ==================================================================================
@@ -365,17 +370,17 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	/* ======================== ErrorLog ======================================== */
 	Route::resource('error-logs', ErrorLogController::class);
-	
+
 	/* ======================== Status ======================================== */
 	Route::resource('statuses', StatusController::class);
 	Route::get('/status/export', [StatusController::class, 'export'])->name('statuses.export');
 	Route::get('/statuses/delete/{status}', [StatusController::class, 'destroy'])->name('statuses.delete');
-		
+
 	/* ======================== Entity ======================================== */
 	Route::resource('entities', EntityController::class);
 	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
 	Route::get('/entity/export', [EntityController::class, 'export'])->name('entities.export');
-	
+
 	/* ======================== Menu ======================================== */
 	Route::resource('menus', MenuController::class);
 	Route::get('/menu/export', [MenuController::class,'export'])->name('menus.export');
@@ -404,7 +409,7 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::post('/template/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
 });
 
-	
+
 /**
 * ==================================================================================
 * 11. Route for Testing system Only ['auth', 'verified','can:system']

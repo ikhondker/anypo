@@ -64,7 +64,9 @@ class ConfirmPasswordController extends Controller
 	public function showConfirmForm()
 	{
 		if (tenant('id') == '') {
-			return view('auth.passwords.landlord-confirm');
+			//return view('auth.passwords.landlord-confirm');
+			return view('auth.landlord.passwords.confirm');
+
 		} else {
 			return view('auth.passwords.confirm');
 		}

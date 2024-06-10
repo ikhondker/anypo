@@ -1,4 +1,4 @@
-@extends('layouts.landlord')
+@extends('layouts.landlord.page')
 @section('title','FAQ')
 @section('content')
 
@@ -23,7 +23,7 @@
 			<div class="d-grid gap-10">
 				<div class="d-grid gap-3">
 					<h2>Basics</h2>
-	
+
 					<!-- Accordion -->
 					<div class="accordion accordion-flush accordion-lg" id="accordionFAQBasics">
 						<!-- Accordion Item -->
@@ -40,7 +40,7 @@
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingBasicsTwo">
@@ -55,7 +55,7 @@
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingBasicsThree">
@@ -70,7 +70,7 @@
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingBasicsFour">
@@ -85,7 +85,7 @@
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingBasicsFive">
@@ -101,7 +101,7 @@
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingBasicsSix">
@@ -190,10 +190,10 @@
 					</div>
 					<!-- End Accordion -->
 				</div>
-	
+
 				<div class="d-grid gap-3">
 					<h2>Support</h2>
-	
+
 					<!-- Accordion -->
 					<div class="accordion accordion-flush accordion-lg" id="accordionFAQSupport">
 						<!-- Accordion Item -->
@@ -205,13 +205,13 @@
 							</div>
 							<div id="collapseSupportOne" class="accordion-collapse collapse" aria-labelledby="headingSupportOne" data-bs-parent="#accordionFAQSupport">
 								<div class="accordion-body">
-									Technical support typically include email, phone, and chat support, as well as online knowledge bases to assist users with any questions or issues they may encounter. 
-								
+									Technical support typically include email, phone, and chat support, as well as online knowledge bases to assist users with any questions or issues they may encounter.
+
 								</div>
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingSupportTwo">
@@ -226,7 +226,7 @@
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingSupportThree">
@@ -241,7 +241,7 @@
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingSupportFour">
@@ -259,10 +259,10 @@
 					</div>
 					<!-- End Accordion -->
 				</div>
-	
+
 				<div class="d-grid gap-3">
 					<h2>Payments</h2>
-	
+
 					<!-- Accordion -->
 					<div class="accordion accordion-flush accordion-lg" id="accordionFAQPayments">
 						<!-- Accordion Item -->
@@ -279,7 +279,7 @@
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingPaymentsTwo">
@@ -294,7 +294,7 @@
 							</div>
 						</div>
 						<!-- End Accordion Item -->
-	
+
 						<!-- Accordion Item -->
 						<div class="accordion-item">
 							<div class="accordion-header" id="headingPaymentsThree">
@@ -325,7 +325,7 @@
 						</div>
 						<!-- End Accordion Item -->
 
-												
+
 					</div>
 
 					<!-- End Accordion -->

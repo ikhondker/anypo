@@ -1,4 +1,4 @@
-@extends('layouts.landlord')
+@extends('layouts.landlord.page')
 @section('title','Reset Password')
 
 @section('content')
@@ -10,7 +10,7 @@
 				<div class="card-body">
 					<!-- Heading -->
 					<div class="text-center mb-5 mb-md-7">
-						
+
 						<h1 class="h2">Reset Password</h1>
 						<p>Please set your new password.</p>
 					</div>

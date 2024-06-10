@@ -58,7 +58,7 @@ class ResetPasswordController extends Controller
 		$token = $request->route()->parameter('token');
 
 		if (tenant('id') == '') {
-			return view('auth.passwords.landlord-reset')->with(['token' => $token, 'email' => $request->email]);
+			return view('auth.landlord.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
 		} else {
 			return view('auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
 		}

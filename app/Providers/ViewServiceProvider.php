@@ -29,7 +29,7 @@ class ViewServiceProvider extends ServiceProvider
 	{
 		/*
 		|-----------------------------------------------------------------------------
-		| Landlord																	 + 
+		| Landlord																	 +
 		|-----------------------------------------------------------------------------
 		*/
 
@@ -39,7 +39,8 @@ class ViewServiceProvider extends ServiceProvider
 		// 	//$view->with('_logo_dir',config('bo.DIR_LOGO'));
 		// });
 
-		view()->composer(['layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], function ($view) {
+		view()->composer(['layouts.landlord.page','layouts.landlord.app',
+                'layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu			= new Menu;
 			//Log::debug("ViewServiceProvider.boot raw_route_name = ".$raw_route_name);
@@ -56,18 +57,22 @@ class ViewServiceProvider extends ServiceProvider
 			$view->with('_route_name', $menu->route_name)->with('_access', $menu->access);
 			//$view->with('_xx_name', 'abc');
 		});
-		
-		Facades\View::composer(['layouts.landlord-app','layouts.landlord'], \App\View\Composers\ConfigComposer::class);
-		Facades\View::composer(['layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], \App\View\Composers\LandlordUserComposer::class);
+
+		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
+            'layouts.landlord-app','layouts.landlord'],
+            \App\View\Composers\ConfigComposer::class);
+		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
+            'layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'],
+            \App\View\Composers\LandlordUserComposer::class);
 
 		/*
 		|-----------------------------------------------------------------------------
-		| Tenant																	 + 
+		| Tenant																	 +
 		|-----------------------------------------------------------------------------
 		*/
 		// view()->composer(['tenant.*','layouts.app'], function ($view) {
 		// 	$view->with('_avatar_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR')."\\");
-		// 	$view->with('_logo_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\");	
+		// 	$view->with('_logo_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\");
 		// });
 
 		view()->composer('layouts.app', function ($view) {
@@ -91,7 +96,7 @@ class ViewServiceProvider extends ServiceProvider
 				'components.tenant.create.amount','components.tenant.edit.amount','components.tenant.show.my-amount',
 				'components.tenant.edit.price','components.tenant.create.price-fc',
 				'components.tenant.dashboards.*','components.tenant.widgets.*','components.tenant.info.*'
-				], 
+				],
 				\App\View\Composers\SetupComposer::class);
 		Facades\View::composer('layouts.app', \App\View\Composers\NotificationComposer::class);
 	}

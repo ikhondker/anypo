@@ -105,27 +105,27 @@ class RegisterController extends Controller
 		$user = User::create([
 			'name'		=> $data['name'],
 			'email'		=> $data['email'],
-			//'email_verified_at'  => NOW(),	// Keep comment. DO not auto verify email 
+			//'email_verified_at'  => NOW(),	// Keep comment. DO not auto verify email
 			'role'		=> UserRoleEnum::USER->value,
 			'password'	=> Hash::make($data['password']),
 		]);
 
 		//$user->notify(new UserRegistered($user));
-		
+
 		// Send notification on new user registration
 		// Write to Log
 		if (tenant('id') == '') {
 			$user->notify(new \App\Notifications\Landlord\UserRegistered($user));
 			LandlordEventLog::event('user', $user->id, 'register');
 		} else {
-			
+
 			$user->notify(new \App\Notifications\Tenant\UserRegistered($user));
-			
+
 			// for tenant notify admin
 			$setup = Setup::first();
 			$tenantAdmin = User::where('id', $setup->admin_id)->first();
 			$tenantAdmin->notify(new NotifyAdmin($tenantAdmin, 'USER-REGISTERED', $user->id));
-			
+
 			EventLog::event('user', $user->id, 'register');
 		}
 		return $user;
@@ -137,7 +137,7 @@ class RegisterController extends Controller
 	public function showRegistrationForm()
 	{
 		if (tenant('id') == '') {
-			return view('auth.landlord-register');
+			return view('auth.landlord.register');
 		} else {
 			return view('auth.register');
 		}

@@ -1,7 +1,6 @@
 @extends('layouts.landlord-blank')
 @section('title','Verify Your Email Address')
 
-
 @section('content')
 <div class="container content-space-2">
 	<div class="w-lg-50 mx-lg-auto">

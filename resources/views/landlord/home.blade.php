@@ -1,6 +1,44 @@
-@extends('layouts.landlord')
+@extends('layouts.landlord.page')
 @section('title','Control Expenses - anypo.net')
 @section('content')
+
+<section class="landing-intro text-bg-dark pt-5 pt-lg-6 pb-5 pb-lg-7">
+    <div class="landing-intro-content container ">
+        <div class="row align-items-center">
+            <div class="col-lg-5 mx-auto">
+                <span class="badge badge-subtle-primary p-1">Free Trial</span>
+
+                <h1 class="my-4 text-white">AppStack is the perfect Admin Template <span class="text-primary">for your next project</span></h1>
+
+                <p class="text-lg text-white-50">A professional package that comes with hundreds of UI components, forms, tables, charts, dashboards, pages and svg icons.</p>
+
+                <div class="my-4">
+                    <div class="d-inline-block me-3">
+                        <h2 class="text-white">500+</h2>
+                        <span class="text-white-50">UI Components</span>
+                    </div>
+                    <div class="d-inline-block me-3">
+                        <h2 class="text-white">1500+</h2>
+                        <span class="text-white-50">SVG Icons</span>
+                    </div>
+                    <div class="d-inline-block">
+                        <h2 class="text-white">75+</h2>
+                        <span class="text-white-50">HTML Pages</span>
+                    </div>
+                </div>
+                <div class="my-4">
+                    <a href="https://themes.getbootstrap.com/product/appstack-responsive-admin-template/" target="_blank" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+                </div>
+            </div>
+            <div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
+                <div class="landing-intro-screenshot pb-3">
+                    <img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 	<!-- Hero -->
 	{{-- <div class="position-relative bg-img-start" style="background-image: url({{ Storage::disk('s3l')->url('svg/components/card-11.svg') }});"> --}}
@@ -126,7 +164,7 @@
 							<i class="bi-chevron-right"></i>
 						</a>
 					</span>
-					
+
 					<!-- Nav Pills -->
 					<ul class="nav nav-lg nav-pills nav-pills-shadow flex-lg-column gap-lg-1 p-3" id="featuresTab" role="tablist">
 						<li class="nav-item" role="presentation">
@@ -196,7 +234,7 @@
 										  <path opacity="0.3" d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z" fill="#035A4B" />
 										  <path d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z" fill="#035A4B" />
 										</svg>
-						
+
 									  </span>
 									<div class="flex-grow-1 ms-3">
 										<h4 class="mb-1">Easy Integration (with Core Accounting System)</h4>
@@ -535,7 +573,7 @@
 
 	<!-- Hero -->
 	<div class="container content-space-t-4 content-space-t-lg-5 content-space-b-2 content-space-b-lg-3">
-				
+
 			<div class="row justify-content-lg-between align-items-lg-center mb-10">
 					<div class="col-md-6 col-lg-5">
 						<!-- Heading -->
@@ -562,6 +600,6 @@
 			<!-- End Row -->
 	</div>
 	<!-- End Hero -->
-		
+
 
 @endsection

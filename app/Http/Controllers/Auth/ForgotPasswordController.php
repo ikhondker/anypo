@@ -45,7 +45,7 @@ class ForgotPasswordController extends Controller
 	public function showLinkRequestForm()
 	{
 		if (tenant('id') == '') {
-			return view('auth.passwords.landlord-email');
+			return view('auth.landlord.passwords.email');
 		} else {
 			return view('auth.passwords.email');
 		}

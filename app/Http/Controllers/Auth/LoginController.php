@@ -99,13 +99,13 @@ class LoginController extends Controller
 		$user->last_login_ip = $request->getClientIp();
 		$user->save();
 
-		// Write to Log 
+		// Write to Log
 		if (tenant('id') == '') {
 			LandlordEventLog::event('user', $user->id, 'sign-in');
 		} else {
 			EventLog::event('user', $user->id, 'sign-in');
 		}
-		
+
 	}
 
 
@@ -127,7 +127,7 @@ class LoginController extends Controller
 	public function showLoginForm()
 	{
 		if (tenant('id') == '') {
-			return view('auth.landlord-login');
+			return view('auth.landlord.login');
 		} else {
 			return view('auth.login');
 		}
