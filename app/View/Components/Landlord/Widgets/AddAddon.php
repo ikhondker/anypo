@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Landlord\Widget;
+namespace App\View\Components\Landlord\Widgets;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -30,6 +30,6 @@ class AddAddon extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.landlord.widget.add-addon');
+		return view('components.landlord.widgets.add-addon');
 	}
 }

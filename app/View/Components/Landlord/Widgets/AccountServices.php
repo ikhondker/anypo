@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Landlord\Widget;
+namespace App\View\Components\Landlord\Widgets;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -25,6 +25,6 @@ class AccountServices extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.landlord.widget.account-services');
+		return view('components.landlord.widgets.account-services');
 	}
 }

@@ -74,7 +74,7 @@
 @endif
 
 <!-- ========== Account ========== -->
-@include('landlord.includes.submenu-account')
+@include('landlord.includes.sidebar-my-account')
 <!-- ========== END Account ========== -->
 
 <div class="d-lg-none">

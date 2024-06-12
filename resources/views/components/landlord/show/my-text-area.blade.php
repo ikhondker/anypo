@@ -1,4 +1,4 @@
 <tr>
     <th>{{ $label }} X:</th>
-    <td>{{ $value }}</td>
+    <td>{!! nl2br($value) !!}</td>
 </tr>

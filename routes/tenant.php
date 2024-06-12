@@ -484,11 +484,11 @@ Route::middleware([
 
 		/* ======================== User ========================================  */
 		Route::resource('users', UserController::class);	// needed for edit
-		//Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
 		Route::get('/users/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
 		Route::post('/users/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
 		Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
 		Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
+		//Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
 		// Route::get('/users/password/{user}',[UserController::class, 'password'])->name('users.password');
 		// Route::post('/users/change-pass/{user}',[UserController::class, 'changepass'])->name('users.change-pass');
 		//TODO remove next two used in footer

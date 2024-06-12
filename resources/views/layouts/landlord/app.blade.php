@@ -35,7 +35,7 @@
 
 	<!-- CSS Front Template -->
     <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('/assets/css/landlord.css') }}">
 </head>
 
 <body>
@@ -73,6 +73,7 @@
 
 
 						<li class="nav-item dropdown">
+
 							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                                 <i class="align-middle" data-lucide="settings"></i>
                             </a>
@@ -81,12 +82,16 @@
                                 <span>{{ auth()->user()->name }}</span>
                             </a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-lucide="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-lucide="pie-chart"></i> Analytics</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="pages-settings.html">Settings & Privacy</a>
-								<a class="dropdown-item" href="#">Help</a>
-								<a class="dropdown-item" href="#">Sign out</a>
+                                @auth
+                                    <a class="dropdown-item" href="{{ route('users.profile') }}"><i class="align-middle me-1" data-lucide="user"></i> {{ Str::limit(auth()->user()->name, 18, '...') }}</a>
+                                    <a class="dropdown-item" href="{{ route('users.profile-password') }}"><i class="align-middle me-1" data-lucide="key"></i> Change Password</a>
+                                @endauth
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('dashboards.index') }}"><i class="align-middle me-1" data-lucide="pie-chart"></i> Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('tickets.create') }}"><i class="align-middle me-1" data-lucide="message-square"></i> Support</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"><i class="align-middle text-danger me-1" data-lucide="power"></i> Sign out</a>
+
 							</div>
 						</li>
 					</ul>

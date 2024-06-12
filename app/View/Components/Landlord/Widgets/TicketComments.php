@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Landlord\Widget;
+namespace App\View\Components\Landlord\Widgets;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -19,13 +19,13 @@ class TicketComments extends Component
 	public $comments;
 
 	/**
-	 * Create a new component instance. 
+	 * Create a new component instance.
 	 *
 	 * @return void
 	 */
 	public function __construct(public string $id)
 	{
-		
+
 		//$this->highlight_prl_id = ($highlight_prl_id == 0) ? 0 : $highlight_prl_id ;
 		$this->id = $id;
 		$this->ENTITY = 'COMMENT';
@@ -48,6 +48,6 @@ class TicketComments extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.landlord.widget.ticket-comments');
+		return view('components.landlord.widgets.ticket-comments');
 	}
 }

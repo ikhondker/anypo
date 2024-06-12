@@ -7,7 +7,6 @@
 		<img src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="img-fluid rounded-circle mb-2" width="128" height="128" title="{{ $user->name }}">
 
 		<h5 class="card-title mb-0">{{ $user->name }}</h5>
-		<div class="text-muted mb-2">{{ $user->designation->name }}</div>
 
 		{{-- <div>
 			<a class="btn btn-primary btn-sm" href="#">Follow</a>
@@ -20,7 +19,6 @@
 		<ul class="list-unstyled mb-0">
 			<li class="mb-1"><span data-feather="mail" class="feather-sm me-1"></span> Email : {{ $user->email }}</li>
 			<li class="mb-1"><span data-feather="smartphone" class="feather-sm me-1"></span> Cell : {{ $user->cell }}</li>
-			<li class="mb-1"><span data-feather="grid" class="feather-sm me-1"></span> Department : {{ $user->dept->name }}</li>
 		</ul>
 	</div>
 	<hr class="my-0" />

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Landlord\Widget;
+namespace App\View\Components\Landlord\Widgets;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -23,7 +23,7 @@ class Kpi extends Component
 	)
 	{
 		//
-		//$this->route	= $route; 
+		//$this->route	= $route;
 	}
 
 	/**
@@ -31,6 +31,6 @@ class Kpi extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.landlord.widget.kpi');
+		return view('components.landlord.widgets.kpi');
 	}
 }

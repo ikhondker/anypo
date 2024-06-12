@@ -27,7 +27,8 @@ use App\Http\Requests\Landlord\Admin\UpdateUserRequest;
 
 # 1. Models
 use App\Models\User;
-use App\Models\Landlord\Country;
+use App\Models\Landlord\Lookup\Country;
+
 # 2. Enums
 use App\Enum\UserRoleEnum;
 # 3. Helpers
@@ -244,13 +245,13 @@ class UserController extends Controller
 		return redirect()->route('dashboards.index')->with('success','User Status Updated successfully');
 	}
 
-	public function role()
+	public function xxrole()
 	{
 		$users = User::latest()->orderBy('id','desc')->paginate(10);
 		return view('users.role',compact('users'));
 	}
 
-	public function updaterole(User $user, $role)
+	public function xxupdaterole(User $user, $role)
 	{
 		$this->authorize('updaterole',$user);
 		$user->role = $role;
@@ -311,6 +312,114 @@ class UserController extends Controller
 		// used Export Helper
 		return Export::csv('users', $dataArray);
 	}
+
+
+    /**
+	 * Show the form for creating a new resource.
+	 */
+	public function profile()
+	{
+        ///$this->authorize('create', User::class);
+		$user = User::where('id', auth()->user()->id)->first();
+		return view('landlord.profile.profile',compact('user'));
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function editProfile()
+	{
+		$user = User::where('id', auth()->user()->id)->first();
+		//$this->authorize('update', $user);
+
+		$countries = Country::All();
+		//$designations = Designation::primary()->get();
+		//$depts = Dept::primary()->get();
+
+		return view('landlord.profile.edit-profile', compact('user', 'countries'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function updateProfile(Request $request)
+	{
+
+		$user = User::where('id', auth()->user()->id)->first();
+		//$this->authorize('update', $user);
+
+		$request->validate([
+			'name'			=> 'required|min:5|max:100',
+			'cell'			=> 'required|max:20|unique:users,cell,'. $user->id,
+			'facebook'		=> 'nullable|url' ,
+			'linkedin'		=> 'nullable|url',
+			'file_to_upload'=> 'nullable|image|mimes:jpeg,png,jpg,svg|max:1024'
+		],[
+			'name.required' 		=> 'Name is Required!',
+			'cell.unique'			=> 'This cell number is already in use!',
+		]);
+
+		$request->merge(['state'	=> Str::upper($request->input('state')) ]);
+
+		if ($image = $request->file('file_to_upload')) {
+			// $request->validate([
+			// 	'file_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			// ]);
+
+			// extract the uploaded file
+			$image 			= $request->file('file_to_upload');
+
+			$token			= landlord('id') ."-". $user->id . "-" . uniqid();
+			$extension		= '.'.$image->extension();
+
+			$uploadedImage	= $token . "-uploaded" . $extension;
+			$thumbImage		= $token. $extension;
+
+			// upload uploaded image
+			$path = Storage::disk('s3t')->put('avatar/'.$uploadedImage, file_get_contents($image));
+
+			//resize to thumbnail and upload
+			$image_resize = Image::make($image->getRealPath());
+			$image_resize->fit(160, 160);
+			$path =Storage::disk('s3t')->put('avatar/'.$thumbImage, $image_resize->stream()->__toString());
+
+			$request->merge(['avatar' => $thumbImage ]);
+		}
+
+		$user->update($request->all());
+		LandlordEventLog::event('user', $user->id, 'update', 'name', $request->name);
+		return redirect()->route('users.profile')->with('success', 'User profile updated successfully.');
+	}
+
+	public function profilePassword()
+	{
+		$user = User::where('id', auth()->user()->id)->first();
+		//$this->authorize('changepass', $user);
+		return view('landlord.profile.profile-password', compact('user'));
+	}
+
+	public function updateProfilePassword(Request $request)
+	{
+
+		$user = User::where('id', auth()->user()->id)->first();
+
+		//$this->authorize('changepass', $user);
+
+		$request->validate([
+			'password1' => ['required'],
+			'password2' => ['same:password1'],
+		]);
+
+		//dd($request->password1);
+		//$user->password = bcrypt($request->password1);
+		$user->password = Hash::make($request->password1);
+		$user->update();
+
+		// Write to Log
+		EventLog::event('user', $user->id, 'update', 'password', $request->id);
+		return redirect()->route('users.profile')->with('success', 'User password updated successfully.');
+	}
+
 
 	public function impersonate(User $user)
 	{

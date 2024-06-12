@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Landlord\Widget;
+namespace App\View\Components\Landlord\Widgets;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -32,6 +32,6 @@ class ExpireWarning extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.landlord.widget.expire-warning');
+		return view('components.landlord.widgets.expire-warning');
 	}
 }

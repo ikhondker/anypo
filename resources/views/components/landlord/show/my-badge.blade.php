@@ -9,10 +9,15 @@
 		<span class="badge bg-soft-info">{{ $value }}</span>
 	</div>
 </div> --}}
-
+{{--
 <div class="row mb-4">
 	<label class="col-sm-3 col-form-label form-label">{{ $label }} X :</label>
 	<div class="col-sm-9 col-form-label">
 		<span class="badge bg-{{ $badge }}">{{ $value }}</span>
 	</div>
-</div>
+</div> --}}
+
+<tr>
+    <th>{{ $label }} X :</th>
+    <td><span class="badge badge-subtle-{{ $badge }}">{{ $value }}</span></td>
+</tr>

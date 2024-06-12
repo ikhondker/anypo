@@ -3,7 +3,7 @@
 </li>
 
 <li class="sidebar-item {{ $_route_name == 'dashboards.index' ? 'active' : '' }}">
-    <a class="sidebar-link" href="{{ route('home') }}">
+    <a class="sidebar-link" href="{{ route('dashboards.index') }}">
         <i class="align-middle" data-lucide="home"></i> <span class="align-middle">Home</span>
     </a>
 </li>
@@ -161,7 +161,7 @@
 @endif
 
 <!-- ========== Account ========== -->
-@include('landlord.includes.submenu-account')
+@include('landlord.includes.sidebar-my-account')
 <!-- ========== END Account ========== -->
 
 <div class="d-lg-none">

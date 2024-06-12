@@ -149,7 +149,7 @@
             </div>
         </div>
 
-        <h2 class="h4 mb-3">Task List</h1>
+        <h2 class="h4 mb-3">Task List (card-body)</h1>
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -811,20 +811,40 @@
 
 
 
-        <h1 class="h3 mb-3">Empty card</h1>
+        <h1 class="h3 mb-3">Empty card (card-header)</h1>
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-actions float-end">
-                            <button class="btn btn-sm btn-light">View all</button>
+                            <button class="btn btn-sm btn-light"><i class="fas fa-edit"></i> View all</button>
                         </div>
                         <h5 class="card-title">Empty card</h5>
   						<h6 class="card-subtitle text-muted">Heatmap is a visualization tool that employs.</h6>
 
                     </div>
                     <div class="card-body">
-                        Empty Contents
+                        <table class="table table-sm my-2">
+                            <tbody>
+                                <tr>
+                                    <th>Name</th>
+                                    <td>Angelica Ramos</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Company</th>
+                                    <td>The Wiz</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>angelica@ramos.com</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td><span class="badge badge-subtle-success">Active</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

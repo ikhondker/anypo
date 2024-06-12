@@ -207,13 +207,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/reports/pdf-invoice/{invoice}', [ReportController::class, 'viewPdfInvoice'])->name('reports.pdf-invoice');
 	Route::get('/reports/pdf-receipt/{payment}', [ReportController::class, 'viewPdfPayment'])->name('reports.pdf-payment');
 
+    /* ======================== User (Profile) ========================================  */
+	Route::get('profile',[UserController::class, 'profile'])->name('users.profile');
+	Route::get('profile-edit', [UserController::class, 'editProfile'])->name('users.profile-edit');
+	Route::put('profile-update', [UserController::class, 'updateProfile'])->name('users.profile-update');
+	Route::get('profile-password', [UserController::class, 'profilePassword'])->name('users.profile-password');
+	Route::post('profile-password-update', [UserController::class, 'updateProfilePassword'])->name('users.profile-password-update');
+	Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+
 	/* ======================== User ========================================  */
 	Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
-	Route::get('/users/delete/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 	Route::get('/users/password-change/{user}', [UserController::class, 'changePassword'])->name('users.password-change');
 	Route::post('/user/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
+	Route::get('/users/delete/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 	Route::get('/user/export', [UserController::class, 'export'])->name('users.export');
-	Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+	//Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 	/* ======================== Attachment ======================================== */
 	Route::get('/attachments/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');

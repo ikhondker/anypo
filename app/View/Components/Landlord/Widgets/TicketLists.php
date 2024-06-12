@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Landlord\Widget;
+namespace App\View\Components\Landlord\Widgets;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -86,12 +86,12 @@ class TicketLists extends Component
 						$this->title = "Assigned to Me";
 						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->with('agent')->byAgentOpen()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
-					
+
 					case "OPEN":
 						$this->title = "Open Tickets (Last 5)";
 						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->with('agent')->byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
-					
+
 					default:
 				}
 					break;
@@ -105,7 +105,7 @@ class TicketLists extends Component
 						$this->title = "Open Tickets (Last 5)";
 						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->with('agent')->byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
-					
+
 					default:
 				}
 				break;
@@ -119,7 +119,7 @@ class TicketLists extends Component
 						$this->title = "Open Tickets (Last 5)";
 						$this->tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status')->with('agent')->byAllOpen()->orderBy('id', 'DESC')->limit(5)->get();
 						break;
-					
+
 					default:
 				}
 				break;
@@ -135,6 +135,6 @@ class TicketLists extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.landlord.widget.ticket-lists');
+		return view('components.landlord.widgets.ticket-lists');
 	}
 }

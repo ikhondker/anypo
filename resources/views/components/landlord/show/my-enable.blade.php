@@ -1,6 +1,6 @@
-<div class="row mb-4">
-	<label class="col-sm-3 col-form-label form-label">{{ $label }}</label>
-	<div class="col-sm-9 col-form-label">
-		<span class="badge {{ ($value ? 'bg-info' : 'bg-danger') }}">{{ ($value ? 'Yes' : 'No') }}</span>
-	</div>
-</div>
+
+<tr>
+    <th>{{ $label }}</th>
+    <td><span class="badge {{ ($value ? 'badge-subtle-info' : 'badge-subtle-danger') }}">{{ ($value ? 'Yes' : 'No') }}</span></td>
+</tr>
+
