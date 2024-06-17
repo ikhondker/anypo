@@ -9,7 +9,8 @@
 <div class="card">
 
 
-	<x-landlord.widget.expire-warning/>
+	<x-landlord.widgets.expire-warning/>
+
 
 	<div class="card-header">
 		<h5 class="card-header-title">Your Current Subscription</h5>
@@ -67,7 +68,7 @@
 	</div>
 	<!-- End Table -->
 
-	<x-landlord.widget.add-addon/>
+	<x-landlord.widgets.add-addon/>
 
 </div>
 <!-- End Card -->

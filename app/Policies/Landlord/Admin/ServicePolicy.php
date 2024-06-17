@@ -39,13 +39,13 @@ class ServicePolicy
 		return $user->isSeeded();
 	}
 
-	// Only back office users can view all tickets 
+	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
 		return $user->isSeeded();
 	}
 
-	
+
 	/**
 	 * Determine whether the user can create models.
 	 */
@@ -84,5 +84,10 @@ class ServicePolicy
 	public function forceDelete(User $user, Service $service): bool
 	{
 		//
+	}
+
+    public function export(User $user): bool
+	{
+		return ($user->isSeeded());
 	}
 }

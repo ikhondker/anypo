@@ -21,8 +21,8 @@
 namespace App\Http\Controllers\Landlord\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Landlord\StoreServiceRequest;
-use App\Http\Requests\Landlord\UpdateServiceRequest;
+use App\Http\Requests\Landlord\Admin\StoreServiceRequest;
+use App\Http\Requests\Landlord\Admin\UpdateServiceRequest;
 
 # 1. Models
 use App\Models\User;
@@ -32,9 +32,10 @@ use App\Models\Landlord\Lookup\Product;
 # 2. Enums
 # 3. Helpers
 use App\Helpers\LandlordEventLog;
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
-# 6. Mails 
+# 6. Mails
 # 7. Rules
 # 8. Packages
 # 9. Exceptions
@@ -43,7 +44,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 11. Controller
 # 12. Seeded
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+use DB;
+# 13. FUTURE
 
 
 
@@ -64,7 +66,7 @@ class ServiceController extends Controller
 		$services = Service::with('account')->byAccount()->orderBy('id', 'ASC')->paginate(10);
 
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
-		
+
 		try {
 			$account = Account::where('id', auth()->user()->account_id)->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
@@ -83,14 +85,14 @@ class ServiceController extends Controller
 	 */
 	public function all()
 	{
-		
+
 		$this->authorize('viewAll',Service::class);
 
 		$services = Service::with('account')->orderBy('id', 'ASC')->paginate(10);
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 		$account = Account::where('id', auth()->user()->account_id)->first();
 		return view('landlord.admin.services.all', compact('services', 'addons','account'));
-	
+
 	}
 
 	/**
@@ -125,7 +127,8 @@ class ServiceController extends Controller
 		$this->authorize('view', $service);
 
 		$entity = static::ENTITY;
-		return view('landlord.admin.services.show', compact('service', 'entity'));
+        $account = Account::where('id', $service->account_id)->first();
+		return view('landlord.admin.services.show', compact('service', 'entity','account'));
 	}
 
 	/**
@@ -171,4 +174,20 @@ class ServiceController extends Controller
 	{
 		//
 	}
+
+    public function export()
+	{
+		$this->authorize('export', Service::class);
+
+		$data = DB::select("
+			SELECT *
+			FROM services as c
+			");
+
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('services', $dataArray);
+
+	}
+
 }

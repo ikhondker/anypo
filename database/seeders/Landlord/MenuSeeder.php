@@ -126,7 +126,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'checkouts.update',	'route_name' => 'checkouts.index',	 'access' => 'B'],
 			[ 'raw_route_name' => 'checkouts.edit',		'route_name' => 'checkouts.index',	 'access' => 'B'],
 			[ 'raw_route_name' => 'checkouts.create',	'route_name' => 'checkouts.index',	 'access' => 'X'],
-			[ 'raw_route_name' => 'checkouts.all',	 	'route_name' => 'checkouts.index',	 'access' => 'B'],
+			//[ 'raw_route_name' => 'checkouts.all',	 	'route_name' => 'checkouts.index',	 'access' => 'B'],
 
 			[ 'raw_route_name' => 'statuses.index',		'route_name' => 'statuses.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'statuses.show',	 	'route_name' => 'statuses.index',	  'access' => 'B'],

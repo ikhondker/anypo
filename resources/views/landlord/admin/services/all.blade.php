@@ -6,49 +6,68 @@
 	@inject('carbon', 'Carbon\Carbon')
 
 
-	<!-- Card -->
-	<div class="card">
-		<div class="card-header">
-			{{-- <h5 class="card-header-title">My Services {{ date('d-M-y', strtotime($account->end_date )) }} i.e. {{ $account->end_date->diffInDays($carbon::now()) }} days</h5> --}}
-			<h5 class="card-header-title">All Services </h5>
-		</div>
+	<h1 class="h3 mb-3">All Services</h1>
 
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
+	<div class="card">
+		<div class="card-body">
+			<div class="row mb-3">
+				<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+					<!-- form -->
+					<form action="{{ route('services.index') }}" method="GET" role="search">
+						<div class="input-group input-group-search">
+							<input type="text" class="form-control" id="datatables-service-search"
+								minlength=3 name="term"
+								value="{{ old('term', request('term')) }}" id="term"
+								placeholder="Search services…" required>
+							<button class="btn" type="submit">
+								<i class="align-middle" data-lucide="search"></i>
+							</button>
+
+						</div>
+							@if (request('term'))
+								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+							@endif
+					</form>
+					<!--/. form -->
+				</div>
+				<div class="col-md-6 col-xl-8">
+
+					<div class="text-sm-end">
+						<a href="{{ route('services.index') }}" class="btn btn-primary btn-lg"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+							<i data-lucide="refresh-cw"></i></a>
+						<a href="{{ route('services.export') }}" class="btn btn-light btn-lg me-2"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+							<i data-lucide="download"></i> Export</a>
+					</div>
+				</div>
+			</div>
+
+			<table id="datatables-orders" class="table w-100">
+				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Account</th>
-						<th>Mnth-User-GB</th>
-						<th>Price</th>
-						<th>Addon?</th>
-						<th>Enable</th>
-						<th style="width: 5%;">Action</th>
+						<th class="align-middle">#</th>
+						<th class="align-middle">Name</th>
+						<th class="align-middle">Account</th>
+						<th class="align-middle">Mnth-User-GB</th>
+						<th class="align-middle">Price</th>
+						<th class="align-middle">Addon?</th>
+						<th class="align-middle">Enable</th>
+						<th class="align-middle text-end">Actions</th>
 					</tr>
 				</thead>
-
 				<tbody>
 					@foreach ($services as $service)
 						<tr>
 							<td>
-								<div class="d-flex align-items-center">
-									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}"
-											alt="{{ $service->account->name }}" title="{{ $service->account->name }}">
-									</div>
-
-									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="{{ route('services.show', $service->id) }}">
-											<h6 class="text-hover-primary mb-0">{{ $service->name }}</h6>
-										</a>
-										{{-- <small class="d-block">{{ $service->start_date }} to {{ $service->end_date }}</small> --}}
-										<small class="d-block"> Account #{{ $service->account_id }} : {{ $service->account->name }} </small>
-									</div>
-								</div>
+								<img src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $service->account->name }}" title="{{ $service->account->name }}">
 							</td>
-							<td>{{ $service->account_id }}</td>
+							<td>
+								<a class="" href="{{ route('services.show', $service->id) }}">
+									<strong>{{ $service->name }}</strong>
+								</a>
+							</td>
+							<td>{{ $service->account->name }}</td>
 							<td>
 								<span class="badge bg-primary rounded-pill">{{ $service->mnth }}</span>
 								<span class="badge bg-primary rounded-pill">{{ $service->user }}</span>
@@ -57,28 +76,21 @@
 							<td><x-landlord.list.my-number :value="$service->price" /></td>
 							<td><x-landlord.list.my-enable :value="$service->addon" /></td>
 							<td><x-landlord.list.my-enable value="{{ $service->enable }}" /></td>
-							<td>
-								<x-landlord.list.actions object="Service" :id="$service->id" :edit="false"	:enable="true" />
-								<a href="{{ route('services.destroy', $service->id) }}"
-									class="text-body sw2-advance" data-entity="Service"
-									data-name="{{ $service->name }}"
-									data-status="{{ $service->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="{{ $service->enable ? 'Disable' : 'Enable' }}">
-									<i class="bi {{ $service->enable ? 'bi-bell-slash' : 'bi-bell' }} "
-										style="font-size: 1.3rem;"></i>
-								</a>
+							<td class="text-end">
+								<a href="{{ route('services.show',$service->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="View">View</a>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
+
+			<div class="row mb-3">
+				{{ $services->links() }}
+			</div>
+
 		</div>
-		<!-- End Table -->
-
 	</div>
-	<!-- End Card -->
-
-
 
 
 

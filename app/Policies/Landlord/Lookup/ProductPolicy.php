@@ -49,7 +49,7 @@ class ProductPolicy
 	 */
 	public function update(User $user, Product $product): bool
 	{
-		return false;
+		return $user->isSeeded();
 	}
 
 	/**
@@ -57,7 +57,7 @@ class ProductPolicy
 	 */
 	public function delete(User $user, Product $product): bool
 	{
-		return false;
+		return $user->isSeeded();
 	}
 
 	/**

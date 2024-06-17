@@ -28,6 +28,7 @@ use App\Http\Requests\Landlord\Manage\UpdateContactRequest;
 use App\Models\Landlord\Manage\Contact;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -37,16 +38,17 @@ use App\Models\Landlord\Manage\Contact;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class ContactController extends Controller
 {
 	// define entity constant for file upload and workflow
 	const ENTITY	= 'CONTACT';
-	
+
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -61,9 +63,9 @@ class ContactController extends Controller
 	 */
 	public function all()
 	{
-		
+
 		$this->authorize('viewAll',Contact::class);
-		
+
 		$contacts= Contact::orderBy('id', 'DESC')->paginate(10);
 		return view('landlord.manage.contacts.all',compact('contacts'));
 	}
@@ -132,5 +134,20 @@ class ContactController extends Controller
 	public function destroy(Contact $contact)
 	{
 		//
+	}
+
+    public function export()
+	{
+		$this->authorize('export', Contact::class);
+
+		$data = DB::select("
+			SELECT *
+			FROM services as c
+			");
+
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('contacts', $dataArray);
+
 	}
 }

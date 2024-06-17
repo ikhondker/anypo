@@ -41,7 +41,7 @@ use App\Helpers\Export;
 # 12. Seeded
 use Illuminate\Support\Facades\Log;
 use DB;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class ActivityController extends Controller
@@ -66,7 +66,7 @@ class ActivityController extends Controller
 			$end_date=request('end_date');
 			Log::debug('landlord.activity.index Value of start_date = ' . request('start_date'));
 			Log::debug('landlord.activity.index Value of end_date = ' . request('end_date'));
-		} 
+		}
 
 		switch (request('action')) {
 			case 'search':
@@ -182,5 +182,35 @@ class ActivityController extends Controller
 	{
 		abort(403);
 	}
+
+    public function export()
+	{
+		$this->authorize('export', Activity::class);
+
+		if (auth()->user()->isSeeded()){
+			$data = DB::select("
+                SELECT *
+                FROM activities a
+                ");
+		} else if (auth()->user()->isAdmin()){
+			$data = DB::select("
+                SELECT a.id, a.object_name, a.object_id, a.event_name, u.name user_name, a.created_at
+                FROM activities a, users u
+                WHERE a.user_id=u.id
+       		    AND a.account_id = ".auth()->user()->account_id
+				);
+		} else {
+			$data = DB::select("
+				SELECT id, object_name, object_id, event_name, user_id, created_at
+                FROM activities a, users u
+                WHERE a.user_id=u.id
+				AND a.user_id = ".auth()->user()->id
+				);
+		}
+
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('activities', $dataArray);
+    }
 
 }

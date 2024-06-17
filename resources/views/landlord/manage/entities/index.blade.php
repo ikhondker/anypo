@@ -4,58 +4,88 @@
 
 @section('content')
 
+	<a href="{{ route('entities.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Entity</a>
+	<h1 class="h3 mb-3">All Entity</h1>
 
-	<!-- Card -->
 	<div class="card">
-		<div class="card-header">
-			<h5 class="card-header-title">Entity Lists</h5>
-		</div>
+		<div class="card-body">
+			<div class="row mb-3">
+				<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+					<!-- form -->
+					<form action="{{ route('entities.index') }}" method="GET" role="search">
+						<div class="input-group input-group-search">
+							<input type="text" class="form-control" id="datatables-entity-search"
+								minlength=3 name="term"
+								value="{{ old('term', request('term')) }}" id="term"
+								placeholder="Search configs…" required>
+							<button class="btn" type="submit">
+								<i class="align-middle" data-lucide="search"></i>
+							</button>
+						</div>
+						@if (request('term'))
+							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+						@endif
+					</form>
+					<!--/. form -->
+				</div>
+				<div class="col-md-6 col-xl-8">
+					<div class="text-sm-end">
+						<a href="{{ route('entities.index') }}" class="btn btn-primary btn-lg"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+							<i data-lucide="refresh-cw"></i></a>
+						{{-- <a href="{{ route('entities.export') }}" class="btn btn-light btn-lg me-2"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+							<i data-lucide="download"></i> Export</a> --}}
+					</div>
+				</div>
+			</div>
 
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
+			<table id="datatables-orders" class="table w-100">
+				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Model</th>
-						<th>Directory/Route</th>
-						<th>Enable</th>
-						<th style="width: 5%;">Action</th>
+						<th class="align-middle">#</th>
+						<th class="align-middle">Entity</th>
+						<th class="align-middle">Name</th>
+						<th class="align-middle">Model</th>
+						<th class="align-middle">Directory</th>
+						<th class="align-middle">Route</th>
+						<th class="align-middle">Enable</th>
+						<th class="align-middle text-end">Actions</th>
 					</tr>
 				</thead>
-
 				<tbody>
 					@foreach ($entities as $entity)
 						<tr>
 							<td>
-								<div class="d-flex align-items-center">
-									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle"
-										src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
-									</div>
-
-									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="#">
-											<h6 class="text-hover-primary mb-0">{{ $entity->entity }}</h6>
-										</a>
-										<small class="d-block">{{ $entity->name }}</small>
-									</div>
-								</div>
+								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo" title="Logo">
 							</td>
+							<td>{{ $entity->entity }}</td>
+							<td>{{ $entity->name }}</td>
+							<td>{{ $entity->directory }}</td>
 							<td>{{ $entity->model }}</td>
-							<td>{{ $entity->directory }} <small class="d-block">{{ $entity->route }}</small></td>
+							<td>{{ $entity->route }}</td>
 							<td><x-landlord.list.my-enable :value="$entity->enable" /></td>
-							<td><x-landlord.list.actions object="Entity" :id="$entity->entity" :edit="true"
-									:enable="true" /></td>
+							<td class="text-end">
+								<a href="{{ route('entities.edit',$entity->entity) }}" class="text-body" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="View"> <i data-lucide="edit"></i></a>
+							<a href="{{ route('entities.destroy', $entity->entity) }}"
+								class="text-body sw2-advance" data-entity="Menu"
+								data-name="{{ $entity->entity }}"
+								data-status="{{ $entity->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
+								data-bs-placement="top" title="{{ $entity->enable ? 'Disable' : 'Enable' }}">
+								<i data-lucide="{{ $entity->enable ? 'bell-off' : 'bell' }} "></i>
+							</a>
+							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
+
+			<div class="row mb-3">
+				{{ $entities->links() }}
+			</div>
+
 		</div>
-		<!-- End Table -->
-
 	</div>
-	<!-- End Card -->
-
 
 @endsection

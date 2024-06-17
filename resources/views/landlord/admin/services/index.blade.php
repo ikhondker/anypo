@@ -5,8 +5,8 @@
 @section('content')
 	@inject('carbon', 'Carbon\Carbon')
 
-	<x-landlord.widget.account-services/>
+	<x-landlord.widgets.account-services/>
 
-	<x-landlord.widget.add-addon/>
+	<x-landlord.widgets.add-addon/>
 
 @endsection

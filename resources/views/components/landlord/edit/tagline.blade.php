@@ -1,14 +1,12 @@
-<!-- Form -->
-<div class="row mb-4">
-	<label for="tagline" class="col-sm-3 col-form-label form-label">Tagline X:</label>
-	<div class="col-sm-9">
-		<input type="text" class="form-control @error('tagline') is-invalid @enderror"
-			name="tagline" id="tagline" placeholder="Tagline 1"
+<tr>
+	<th>Tagline X:</th>
+	<td>
+		<input type="text" class="form-control @error('name') is-invalid @enderror"
+			name="tagline" id="tagline" placeholder="Tagline"
 			value="{{ old('tagline', $value ) }}"
-			/>
+			required/>
 		@error('tagline')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 		@enderror
-	</div>
-</div>
-<!-- End Form -->
+	</td>
+</tr>

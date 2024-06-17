@@ -4,62 +4,73 @@
 
 @section('content')
 
-		<!-- Card -->
-		<div class="card">
-				<div class="card-header border-bottom">
-						<h4 class="card-header-title">Service Details</h4>
+	<h1 class="h3 mb-3">Service Overview</h1>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-actions float-end">
+						@if (auth()->user()->isSystem())
+						<a href="{{ route('services.edit', $service->id) }}" class="btn btn-sm btn-danger text-white"><i class="fas fa-edit"></i>  Edit Service</a>
+						@endif
+					</div>
+					<h5 class="card-title">Service Overview</h5>
+					<h6 class="card-subtitle text-muted">Detail Information of a Service.</h6>
 				</div>
-
-				<!-- Body -->
 				<div class="card-body">
-
-					<!-- Form -->
-					<div class="row mb-4">
-						<label class="col-sm-3 col-form-label form-label">Logo :</label>
-
-						<div class="col-sm-9">
-
-							<!-- Media -->
-							<div class="d-flex align-items-center">
-								<!-- Avatar -->
-								<label class="avatar avatar-xxl avatar-circle" for="avatarUploader">
-									<img id="avatarImg" class="avatar-img" src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}" alt="{{ $service->account->name }}" title="{{ $service->account->name }}">
-								</label>
-								<div class="d-grid d-sm-flex gap-2 ms-4">
-
-								</div>
-								<!-- End Avatar -->
+					<div class="row g-0">
+						<div class="col-sm-3 col-xl-12 col-xxl-3 text-center">
+							<img src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" width="100" height="100" class="rounded-circle mt-2" alt="{{ $account->name }}" title="{{ $account->name }}">
+						</div>
+						<div class="col-sm-9 col-xl-12 col-xxl-9">
+							{{-- <strong>{{ $account->primaryProduct->name }}</strong> --}}
+							<div class="mb-1">
+								<span class="card-subtitle">Your plan:
+								<strong>{{ $account->primaryProduct->name }}</strong></span>
 							</div>
-							<!-- End Media -->
-
+							<div class="mb-1">
+								<span class="card-subtitle">Subscription:
+								<strong class="text-primary">${{ $account->price }} USD/mo</strong></span>
+							</div>
+							<div class="mb-1">
+								<span class="card-subtitle">Account Name:
+								<strong>{{ $account->name }}</strong></span>
+							</div>
+							<div class="mb-1">
+								<span class="card-subtitle">URL:
+								<strong>{{ $account->site.'.'.env('APP_DOMAIN') }}</strong></span>
+							</div>
 						</div>
 					</div>
-					<!-- End Form -->
+					<div class="row pt-5">
+						<div class="col-md-6">
+							<div class="table-responsive">
+								<table class="table table-sm mb-0">
+									<tbody>
+										<x-landlord.show.my-text	value="{{ $service->name }}" label="Service"/>
+										<x-landlord.show.my-date	value="{{ $service->start_date }}" label="Start Date"/>
+										<x-landlord.show.my-integer	value="{{ $service->user }}" label="User"/>
 
-
-					<x-landlord.show.my-text	value="{{ $service->name }}" label="Service"/>
-					<x-landlord.show.my-text	value="{{ $service->account->name }}" label="Account"/>
-					<x-landlord.show.my-date	value="{{ $service->start_date }}" label="Start Date"/>
-					<x-landlord.show.my-integer	value="{{ $service->user }}" label="User"/>
-					<x-landlord.show.my-number	value="{{ $service->price }}" label="Price/MO (USD)"/>
-					<x-landlord.show.my-enable	value="{{ $service->enable }}"/>
-					<x-landlord.show.my-enable	value="{{ $service->addon }}" label="Addon?"/>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="table-responsive">
+								<table class="table table-sm mb-0">
+									<tbody>
+										<x-landlord.show.my-number	value="{{ $service->price }}" label="Price/MO (USD)"/>
+											<x-landlord.show.my-enable	value="{{ $service->enable }}"/>
+											<x-landlord.show.my-enable	value="{{ $service->addon }}" label="Addon?"/>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 				</div>
-				<!-- End Body -->
-
-
-				@if (auth()->user()->isSystem())
-					<!-- Footer -->
-					<div class="card-footer pt-0">
-						<div class="d-flex justify-content-end gap-3">
-							<a class="btn btn-danger" href="{{ route('services.edit',$service->id) }}"> <i class="bi bi-pencil-square me-1"></i> Edit</a>
-						</div>
-					</div>
-					<!-- End Footer -->
-				@endif
+			</div>
 		</div>
-		<!-- End Card -->
-
+	</div>
 
 @endsection
 

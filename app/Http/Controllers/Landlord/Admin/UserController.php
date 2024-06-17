@@ -58,6 +58,7 @@ use Illuminate\Support\Facades\Response;
 use Str;
 use DB;
 # 13. FUTURE
+use App\Exceptions\CustomException;
 
 class UserController extends Controller
 {
@@ -71,6 +72,8 @@ class UserController extends Controller
 	 */
 	public function index()
 	{
+        //throw new CustomException('An unexpected error has occurred.');
+        //abort(500);
 		$users = User::query();
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
@@ -81,9 +84,10 @@ class UserController extends Controller
 			case UserRoleEnum::ADMIN->value:
 				$users= $users->with('account')->byAccount()->orderBy('id', 'DESC')->paginate(10);
 				break;
+
 			default:
 				$users= $users->with('account')->byUser()->orderBy('id', 'DESC')->paginate(10);
-				//Log::warning("landlord.users.index Other roles!");
+				Log::warning("landlord.users.index Other roles!");
 		}
 		return view('landlord.admin.users.index',compact('users'));
 	}
@@ -103,7 +107,8 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$users= $users->with('account')->orderBy('id', 'DESC')->paginate(5);
+		$users= $users->with('account')->orderBy('id', 'DESC')->paginate(10);
+
 		return view('landlord.admin.users.all',compact('users'));
 	}
 
@@ -301,11 +306,11 @@ class UserController extends Controller
 		} else if (auth()->user()->isAdmin()){
 			$data = DB::select("SELECT id, name, email, cell, role,account_id, IF(enable, 'Yes', 'No') as Enable
 				FROM users
-				WHERE account_id=".auth()->user()->account_id);
+				WHERE account_id = ".auth()->user()->account_id);
 		} else {
 			$data = DB::select("SELECT id, name, email, cell, role,account_id, IF(enable, 'Yes', 'No') as Enable
 				FROM users
-				WHERE id =".auth()->user()->id);
+				WHERE id = ".auth()->user()->id);
 		}
 
 		$dataArray = json_decode(json_encode($data), true);

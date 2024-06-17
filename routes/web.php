@@ -244,7 +244,7 @@ Route::middleware(['auth', 'verified','can:admin'])->group(function () {
 
 	/* ======================== Account ======================================== */
 	Route::resource('accounts', AccountController::class);
-	//Route::get('/account/export', [AccountController::class, 'export'])->name('accounts.export');
+	Route::get('/account/export', [AccountController::class, 'export'])->name('accounts.export');
 	Route::get('/add-addon/{account_id}/{addon_id}', [AccountController::class, 'addAddon'])->name('accounts.add-addon');
 
 	/* ======================== Service ======================================== */
@@ -253,13 +253,17 @@ Route::middleware(['auth', 'verified','can:admin'])->group(function () {
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class);
 	Route::get('/invoice/generate',[InvoiceController::class,'generate'])->name('invoices.generate');
+    Route::get('/invoice/export', [InvoiceController::class, 'export'])->name('invoices.export');
 
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class);
 	//Route::get('/payments/pdf/{pr}', [PaymentController::class,'pdf'])->name('payments.pdf');
+    Route::get('/payment/export', [PaymentController::class, 'export'])->name('payments.export');
 
 	/* ======================== Activity ========================================  */
 	Route::resource('activities', ActivityController::class);
+    Route::get('/activity/export', [ActivityController::class, 'export'])->name('activities.export');
+
 });
 
 
@@ -296,6 +300,7 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 
 	/* ======================== Services ======================================== */
 	Route::get('/service/all', [ServiceController::class, 'all'])->name('services.all');
+    Route::get('/service/export', [ServiceController::class, 'export'])->name('services.export');
 
 		/* ======================== Invoice ======================================== */
 	Route::get('/invoice/all', [InvoiceController::class, 'all'])->name('invoices.all');
@@ -309,6 +314,7 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 	/* ======================== Contact ======================================== */
 	Route::resource('contacts', ContactController::class);
 	Route::get('/contact/all', [ContactController::class, 'all'])->name('contacts.all');
+    Route::get('/contact/export',[ContactController::class,'export'])->name('contacts.export');
 
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
@@ -328,7 +334,8 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
-	Route::get('/checkout/all', [CheckoutController::class, 'all'])->name('checkouts.all');
+	//Route::get('/checkout/all', [CheckoutController::class, 'all'])->name('checkouts.all');
+    Route::get('/checkout/export', [CheckoutController::class, 'export'])->name('checkouts.export');
 
 	/* ======================== MailList ======================================== */
 	Route::resource('mail-lists', MailListController::class)->middleware(['auth', 'verified']);

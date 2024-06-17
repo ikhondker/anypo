@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -63,7 +63,7 @@ class Ticket extends Model
 	|-----------------------------------------------------------------------------
 	*/
 	public function isClosed()
-	{		
+	{
 		return $this->status_code == LandlordTicketStatusEnum::CLOSED->value;
 	}
 
@@ -112,7 +112,7 @@ class Ticket extends Model
 	}
 
 	/**
-	 * Scope a query to only include current users. 
+	 * Scope a query to only include current users.
 	 */
 	public function scopeByUserClosed(Builder $query): void
 	{
@@ -186,7 +186,7 @@ class Ticket extends Model
 		return $this->belongsTo(Priority::class, 'priority_id');
 	}
 
-	public function ating()
+	public function rating()
 	{
 		return $this->belongsTo(Rating::class, 'rating_id');
 	}
@@ -203,7 +203,10 @@ class Ticket extends Model
 
 	public function agent()
 	{
-		return $this->belongsTo(User::class, 'agent_id');
+        return $this->belongsTo(User::class,'agent_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+
 	}
 
 

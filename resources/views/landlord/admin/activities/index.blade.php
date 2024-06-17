@@ -5,27 +5,16 @@
 
 @section('content')
 
+<h1 class="h3 mb-3">All Activities</h1>
 
-	<!-- Card -->
-	<div class="card">
-
-		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-
-			<h5 class="card-header-title">
-				@if (request('start_date'))
-					Search result for: <strong class="text-danger">{{ request('start_date') .' to '.request('end_date') }}</strong>
-				@else
-				Event Log
-				@endif
-			</h5>
-
-			<div class="card-actions float-end">
+<div class="card">
+	<div class="card-body">
+		<div class="row mb-3">
+			<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
 				<!-- form -->
 				<form action="{{ route('activities.index') }}" method="GET" role="search">
-
-
-					<div class="btn-group" role="group" aria-label="First group">
-						<input type="date" class="datepicker form-control @error('start_date') is-invalid @enderror"
+					<div class="input-group input-group-search">
+                        <input type="date" class="datepicker form-control @error('start_date') is-invalid @enderror"
 							name="start_date" id="start_date" placeholder=""
 							value="{{ old('start_date', date('Y-m-01') ) }}"
 							required/>
@@ -33,86 +22,71 @@
 							name="end_date" id="end_date" placeholder=""
 							value="{{ old('end_date', date('Y-m-d') ) }}"
 							required/>
-						<button type="submit" name="action" value="search" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Search..."> <i class="bi bi-search"></i></i></button>
-						<a href="{{ route( 'activities.index') }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
-							<i class="bi bi-arrow-repeat"></i>
-						</a>
-						<button type="submit" name="action" value="export" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-							<i class="bi bi-arrow-down-circle"></i>
+						<button class="btn" type="submit">
+							<i class="align-middle" data-lucide="search"></i>
 						</button>
-
-						{{-- <button type="submit" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top"
-							title="Search..."><i class="bi bi-search"></i></button>
-
-						<a href="{{ route('activities.index') }}" class="btn btn-info me-1" data-bs-toggle="tooltip"
-							data-bs-placement="top" title="Reload">
-							<i class="bi bi-arrow-repeat"></i>
-						</a>
-
-						<a href="{{ route('activities.export') }}" class="btn btn-info me-1" data-bs-toggle="tooltip"
-							data-bs-placement="top" title="Download">
-							<i class="bi bi-arrow-down-circle"></i>
-						</a> --}}
-
 					</div>
-
+                    @if (request('start_date'))
+                        Search result for: <strong class="text-danger">{{ request('start_date') .' to '.request('end_date') }}</strong>
+					@endif
 				</form>
 				<!--/. form -->
 			</div>
-		</div>
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
-				<tr>
-					<th>Object</th>
-					<th>Date</th>
-					<th>Event</th>
-					<th>Performer</th>
-					<th style="width: 5%;">Action</th>
-				</tr>
-				</thead>
+			<div class="col-md-6 col-xl-8">
 
-				<tbody>
-					@foreach ($activities as $activity)
+				<div class="text-sm-end">
+					<a href="{{ route('activities.index') }}" class="btn btn-primary btn-lg"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+						<i data-lucide="refresh-cw"></i></a>
+					<a href="{{ route('activities.export') }}" class="btn btn-light btn-lg me-2"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+						<i data-lucide="download"></i> Export</a>
+				</div>
+			</div>
+		</div>
+
+		<table id="datatables-orders" class="table w-100">
+			<thead>
+				<tr>
+					<th class="align-middle">#</th>
+					<th class="align-middle">Object</th>
+                    <th class="align-middle">Obj ID</th>
+
+					<th class="align-middle">Date</th>
+					<th class="align-middle">Event</th>
+					<th class="align-middle">Performer</th>
+					<th class="align-middle text-end">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($activities as $activity)
 					<tr>
 						<td>
-							<div class="d-flex align-items-center">
-								<div class="flex-shrink-0">
-									<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3l')->url('avatar/'.$activity->user->avatar) }}"
-											alt="{{ $activity->user->name }}" title="{{ $activity->user->name }}">
-								</div>
-
-								<div class="flex-grow-1 ms-3">
-									<a class="d-inline-block link-dark" href="#">
-										<h6 class="text-hover-primary mb-0">{{ $activity->object_name }}</h6>
-									</a>
-								<small class="d-block">ID: {{ $activity->object_id }}</small>
-								</div>
-							</div>
+							<img src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar" title="Avatar">
 						</td>
-						<td><x-landlord.list.my-date :value="$activity->created_at"/></td>
-						<td>{{ $activity->event_name }}</td>
-						<td>{{ $activity->user->name }}</td>
-						<td><x-landlord.list.actions object="Activity" :id="$activity->id" :edit="false" :enable="false"/></td>
+						<td>
+							<a href="{{ route('activities.show', $activity->id) }}">
+							<strong>{{ $activity->object_name }}</strong>
+							</a>
+						</td>
+                        <td>{{ $activity->object_id }}</td>
+                        <td><x-landlord.list.my-date :value="$activity->created_at"/></td>
+                        <td>{{ $activity->event_name }}</td>
+                        <td>{{ $activity->user->name }}</td>
+						<td class="text-end">
+							<a href="{{ route('activities.show',$activity->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+								data-bs-placement="top" title="View">View</a>
+						</td>
 					</tr>
-
 				@endforeach
-				</tbody>
-			</table>
-		</div>
-		<!-- End Table -->
+			</tbody>
+		</table>
 
-
-		<!-- card-body -->
-		<div class="card-body">
-			<!-- pagination -->
+		<div class="row mb-3">
 			{{ $activities->links() }}
-			<!--/. pagination -->
 		</div>
-		<!-- /. card-body -->
 
 	</div>
-	<!-- End Card -->
+</div>
+
 @endsection

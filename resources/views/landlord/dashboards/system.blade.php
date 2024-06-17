@@ -34,8 +34,6 @@
 		<!-- End Row -->
 	</div>
 
-
-
 	<!-- ========== NOTICE ========== -->
 	@include('landlord.includes.notice')
 	<!-- ========== END NOTICE ========== -->

@@ -1,4 +1,4 @@
-@extends('layouts.landlord-app')
+@extends('layouts.landlord.app')
 @section('title','Domain Detail')
 @section('breadcrumb','Domain Detail')
 
@@ -67,7 +67,7 @@
 			<div class="card-header">
 				<h5 class="card-header-title">All Users: {{ $domain->tenant_id }}</h5>
 			</div>
-		
+
 			<!-- Table -->
 			<div class="table-responsive">
 				<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -89,7 +89,7 @@
 								<div class="flex-shrink-0">
 									<img class="avatar avatar-sm avatar-circle" src="{{ asset('/assets/logo/logo.png') }}" alt="Logo">
 								</div>
-				
+
 								<div class="flex-grow-1 ms-3">
 									<a class="d-inline-block link-dark" href="#">
 										<h6 class="text-hover-primary mb-0">{{ $user->name }}</h6>
@@ -104,16 +104,16 @@
 							<td>x</td>
 							<td>x</td>
 						</tr>
-					
+
 						@endforeach
 					</tbody>
-	
-	
+
+
 				</table>
 			</div>
 			<!-- End Table -->
-		
-	
+
+
 		</div>
 		<!-- End Card -->
 	</div>

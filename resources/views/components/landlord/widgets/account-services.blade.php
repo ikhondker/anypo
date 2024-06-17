@@ -1,56 +1,57 @@
-<!-- Card -->
+
+
 <div class="card">
+	<div class="card-body">
+		<div class="row mb-3">
+			<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+                <h5 class="card-title">Services & Add-ons</h5>
+			</div>
+			<div class="col-md-6 col-xl-8">
 
-	<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-		<h5 class="card-header-title">Services & Add-ons </h5>
-		<a class="btn btn-primary btn-sm" href="{{ route('services.index') }}">
-			<i class="bi bi-cart-plus me-1"></i> Buy More User
-		</a>
-	</div>
+				<div class="text-sm-end">
+					<a href="{{ route('services.index') }}" class="btn btn-light btn-lg me-2"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+						<i data-lucide="download"></i> Buy More User</a>
+				</div>
+			</div>
+		</div>
 
-	<!-- Table -->
-	<div class="table-responsive">
-		<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-			<thead class="thead-light">
+		<table id="datatables-orders" class="table w-100">
+			<thead>
 				<tr>
-					<th>Name</th>
-					<th>From</th>
-					<th>User</th>
-					<th>Price</th>
+
+
+					<th class="align-middle">#</th>
+					<th class="align-middle">Servcie Name</th>
+					<th class="align-middle">Account</th>
+					<th class="align-middle">From</th>
+					<th class="align-middle">User</th>
+					<th class="align-middle">Fee/mo</th>
 
 				</tr>
 			</thead>
-
 			<tbody>
 				@foreach ($services as $service)
 					<tr>
 						<td>
-							<div class="d-flex align-items-center">
-								<div class="flex-shrink-0">
-									<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}"
-										alt="Image Description">
-								</div>
-
-								<div class="flex-grow-1 ms-3">
-										<h6 class="text-hover-primary mb-0">{{ $service->name }}</h6>
-									<small class="d-block">Account : {{ $service->account->name }} [#{{ $service->account_id }}]</small>
-								</div>
-							</div>
+						   <img src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $service->name }}" title="{{ $service->name }}">
 						</td>
+						<td>{{ $service->name }}</td>
+						<td>{{ $service->account->name }} </td>
 						<td><x-landlord.list.my-date :value="$service->start_date" /></td>
 						<td>
-							{{-- <span class="badge bg-primary rounded-pill">{{ $service->mnth }}</span> --}}
-							<span class="badge bg-primary rounded-pill">{{ $service->user }}</span>
-							{{-- <span class="badge bg-primary rounded-pill">{{ $service->gb }}</span> --}}
+							<span class="badge badge-subtle-success">{{ $service->user }}</span>
 						</td>
 						<td><x-landlord.list.my-number :value="$service->price" />$</td>
-						</td>
+
+
 					</tr>
 				@endforeach
 			</tbody>
 		</table>
-	</div>
-	<!-- End Table -->
 
+
+
+	</div>
 </div>
-<!-- End Card -->
+

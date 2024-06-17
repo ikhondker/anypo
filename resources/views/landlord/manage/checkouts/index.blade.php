@@ -4,68 +4,83 @@
 
 @section('content')
 
-	<!-- Card -->
+
+	<a href="{{ route('checkouts.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Checkout</a>
+	<h1 class="h3 mb-3">All Checkouts</h1>
+
 	<div class="card">
-		<div class="card-header">
-			<h5 class="card-header-title">Checkouts</h5>
-		</div>
+		<div class="card-body">
+			<div class="row mb-3">
+				<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+					<!-- form -->
+					<form action="{{ route('checkouts.index') }}" method="GET" role="search">
+						<div class="input-group input-group-search">
+							<input type="text" class="form-control" id="datatables-checkout-search"
+								minlength=3 name="term"
+								value="{{ old('term', request('term')) }}" id="term"
+								placeholder="Search checkpouts…" required>
+							<button class="btn" type="submit">
+								<i class="align-middle" data-lucide="search"></i>
+							</button>
 
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
-				<tr>
-					<th>Name</th>
-					<th>Date</th>
-					<th>Service</th>
-					<th>Site</th>
-					<th>Price</th>
-					<th>Status</th>
-					<th style="width: 5%;">Action</th>
-				</tr>
+						</div>
+							@if (request('term'))
+								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+							@endif
+					</form>
+					<!--/. form -->
+				</div>
+				<div class="col-md-6 col-xl-8">
+
+					<div class="text-sm-end">
+						<a href="{{ route('checkouts.index') }}" class="btn btn-primary btn-lg"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+							<i data-lucide="refresh-cw"></i></a>
+						<a href="{{ route('checkouts.export') }}" class="btn btn-light btn-lg me-2"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+							<i data-lucide="download"></i> Export</a>
+					</div>
+				</div>
+			</div>
+
+			<table id="datatables-orders" class="table w-100">
+				<thead>
+					<tr>
+                   		<th class="align-middle">#</th>
+						<th class="align-middle">Name</th>
+						<th class="align-middle">Date</th>
+						<th class="align-middle">Site</th>
+						<th class="align-middle">Price</th>
+						<th class="align-middle">Status</th>
+						<th class="align-middle text-end">Actions</th>
+					</tr>
 				</thead>
-
 				<tbody>
 					@foreach ($checkouts as $checkout)
-					<tr>
-						<td>
-						<div class="d-flex align-items-center">
-							<div class="flex-shrink-0">
-								<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
-							</div>
+						<tr>
+							<td>
+								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo">
+							</td>
+                            <td>{{ $checkout->account_name }}</td>
 
-							<div class="flex-grow-1 ms-3">
-								<a class="d-inline-block link-dark" href="#">
-									<h6 class="text-hover-primary mb-0">{{ $checkout->id }}</h6>
-								</a>
-							<small class="d-block">&nbsp;</small>
-							</div>
-						</div>
-						</td>
-						<td><x-landlord.list.my-date :value="$checkout->checkout_date"/></td>
-						<td>{{ $checkout->product->sku }}</td>
-						<td>{{ $checkout->site }}</td>
-						<td><x-landlord.list.my-number :value="$checkout->price"/></td>
-						<td><x-landlord.list.my-badge :value="$checkout->status->name" badge="{{ $checkout->status->badge }}"/></td>
-						<td><x-landlord.list.actions object="Checkout" :id="$checkout->id" :export="false" :enable="false"/></td>
-					</tr>
-
-				@endforeach
+							<td><x-landlord.list.my-date :value="$checkout->checkout_date"/></td>
+							<td>{{ $checkout->site }}</td>
+                            <td><x-landlord.list.my-number :value="$checkout->price"/></td>
+                            <td><x-landlord.list.my-badge :value="$checkout->status->name" badge="{{ $checkout->status->badge }}"/></td>
+							<td class="text-end">
+								<a href="{{ route('checkouts.show',$checkout->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="View">View</a>
+							</td>
+						</tr>
+					@endforeach
 				</tbody>
 			</table>
-		</div>
-		<!-- End Table -->
 
-		<!-- card-body -->
-		<div class="card-body">
-			<!-- pagination -->
-			{{ $checkouts->links() }}
-			<!--/. pagination -->
-		</div>
-		<!-- /. card-body -->
+			<div class="row mb-3">
+				{{ $checkouts->links() }}
+			</div>
 
+		</div>
 	</div>
-	<!-- End Card -->
-
 
 @endsection

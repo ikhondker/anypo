@@ -50,7 +50,7 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 						</div>
-							<x-landlord.buttons.show.save/>
+							<x-landlord.edit.save/>
 					</div>
 				</div>
 

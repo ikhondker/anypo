@@ -1,4 +1,4 @@
-@extends('landlord.layouts.site-app')
+@extends('landlord.layouts.app')
 @section('title','Edit Account')
 @section('breadcrumb','Edit Account')
 

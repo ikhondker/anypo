@@ -29,19 +29,19 @@ class PaymentPolicy
 		//
 	}
 
-	// Only back office users can view all tickets 
+	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
 		return $user->isSeeded();
 	}
-	
+
 	/**
 	 * Determine whether the user can view the model.
 	 */
 	public function view(User $user, Payment $payment): bool
 	{
 		return (($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isSeeded();
-		
+
 	}
 
 	/**
@@ -90,10 +90,16 @@ class PaymentPolicy
 	public function pdfPayment(User $user, Payment $payment): bool
 	{
 		//Log::debug("inside pdfPayment= ". $payment->id );
-		//Log::info(json_encode($payment)); 
-		//Log::info(json_encode($user)); 
+		//Log::info(json_encode($payment));
+		//Log::info(json_encode($user));
 
 		return (($user->account_id == $payment->account_id) && $user->isAdmin()) || $user->isSeeded();
-		
+
+	}
+
+    public function export(User $user): bool
+	{
+		return ($user->isAdmin()) || $user->isSeeded();
+
 	}
 }

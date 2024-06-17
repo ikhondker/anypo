@@ -101,7 +101,7 @@
 	<!--  END ADD COMMENT  -->
 
 	<!-- card-ticket-comments -->
-	<x-landlord.widget.ticket-comments id="{{ $ticket->id }}"/>
+	<x-landlord.widgets.ticket-comments id="{{ $ticket->id }}"/>
 	<!-- /.card-ticket-comments -->
 
 

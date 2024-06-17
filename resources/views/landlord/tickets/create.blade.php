@@ -5,55 +5,49 @@
 
 @section('content')
 
+<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end mt-n1 "><i class="fas fa-edit"></i> View All</a>
+<h1 class="h3 mb-3">Create Ticket</h1>
 
-	<!-- Card -->
-	<div class="card">
-		<!-- form start -->
+<div class="card">
+	<div class="card-header">
+		<h5 class="card-title">Create Ticket</h5>
+		<h6 class="card-subtitle text-muted">Create New Support Ticket.</h6>
+
+	</div>
+	<div class="card-body">
+
 		<form action="{{ route('tickets.store') }}" method="POST" enctype="multipart/form-data">
 			@csrf
 
-			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
-				<h5 class="card-header-title">Create Ticket</h5>
-				{{-- <button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-floppy"></i> Save</button> --}}
-			</div>
 
-			<!-- Body -->
-			<div class="card-body">
-
-				<!-- Form -->
-				<div class="row mb-4">
-					<label for="title" class="col-sm-3 col-form-label form-label">Subject :</label>
-					<div class="col-sm-9">
-					<input type="text" class="form-control @error('title') is-invalid @enderror"
-							name="title" id="title" placeholder="Subject"
-							value="{{ old('title', '' ) }}"
-							required/>
-						@error('title')
-							<div class="text-danger text-xs">{{ $message }}</div>
-						@enderror
-					</div>
-				</div>
-				<!-- End Form -->
-
-				<x-landlord.create.content/>
-
-				<!-- Form -->
-				<div class="row mb-4">
-					<label for="title" class="col-sm-3 col-form-label form-label">Attachment:</label>
-					<div class="col-sm-9">
-						<x-landlord.attachment.create />
-					</div>
-				</div>
-				<!-- End Form -->
-
-			</div>
-			<!-- End Body -->
-
+			<table class="table table-sm my-2">
+				<tbody>
+					<tr>
+						<th>Subject :</th>
+						<td>
+							<input type="text" class="form-control @error('title') is-invalid @enderror"
+								name="title" id="title" placeholder="Subject"
+								value="{{ old('title', '' ) }}"
+								required/>
+							@error('title')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</td>
+					</tr>
+					<x-landlord.create.content/>
+					<tr>
+						<th>Attachment :</th>
+						<td>
+							<x-landlord.attachment.create />
+						</td>
+					</tr>
+				</tbody>
+			</table>
 			<x-landlord.create.save/>
 		</form>
-		<!-- /.form end -->
 	</div>
-	<!-- End Card -->
+</div>
+
 
 @endsection
 

@@ -35,6 +35,7 @@ use App\Enum\LandlordInvoiceTypeEnum;
 use App\Enum\LandlordCheckoutStatusEnum;
 
 # 3. Helpers
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -44,6 +45,7 @@ use App\Enum\LandlordCheckoutStatusEnum;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
 # 13. FUTURE
@@ -337,5 +339,39 @@ class InvoiceController extends Controller
 		//
 	}
 
+
+	public function export()
+	{
+		$this->authorize('export', Invoice::class);
+
+		if (auth()->user()->isSeeded()){
+			$data = DB::select("
+				SELECT i.invoice_no, i.summary, i.invoice_type, a.name account_name, i.invoice_date,
+				i.from_date, i.to_date,  i.currency,  i.amount
+				FROM invoices i,accounts a
+				WHERE i.account_id=a.id
+				");
+		} else if (auth()->user()->isAdmin()){
+			$data = DB::select("
+				SELECT i.invoice_no, i.summary, i.invoice_type, a.name account_name, i.invoice_date,
+				i.from_date, i.to_date,  i.currency,  i.amount
+				FROM invoices i,accounts a
+				WHERE i.account_id=a.id
+				AND i.account_id = ".auth()->user()->account_id
+				);
+		} else {
+			$data = DB::select("
+								SELECT i.invoice_no, i.summary, i.invoice_type, a.name account_name, i.invoice_date,
+				i.from_date, i.to_date,  i.currency,  i.amount
+				FROM invoices i,accounts a
+				WHERE i.account_id=a.id
+				AND i.owner_id = ".auth()->user()->id
+				);
+		}
+
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('invoices', $dataArray);
+	}
 
 }

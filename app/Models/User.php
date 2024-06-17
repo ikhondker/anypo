@@ -33,12 +33,9 @@ use App\Models\Landlord\Admin\Attachment;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Designation;
 
-
 use App\Traits\AddCreatedUpdatedBy;
 
-
 use Laravel\Sanctum\HasApiTokens;
-
 
 use Illuminate\Database\Eloquent\Model;
 

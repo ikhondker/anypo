@@ -1,12 +1,12 @@
 <tr>
-    <th>Name X:</th>
-    <td>
-        <input type="text" class="form-control @error('name') is-invalid @enderror"
+	<th>Name X:</th>
+	<td>
+		<input type="text" class="form-control @error('name') is-invalid @enderror"
 			name="name" id="name" placeholder="Name"
 			value="{{ old('name', $value ) }}"
 			required/>
 		@error('name')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 		@enderror
-    </td>
+	</td>
 </tr>

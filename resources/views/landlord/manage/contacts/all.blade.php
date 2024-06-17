@@ -4,76 +4,84 @@
 
 @section('content')
 
-	<!-- Card -->
-	<div class="card">
 
-		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-			<h5 class="card-header-title">Visitor Contact</h5>
-			<a class="btn btn-primary btn-sm" href="{{ route('contacts.create') }}">
-				<i class="bi bi-plus-square me-1"></i> Create User
-			</a>
+<a href="{{ route('contacts.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Contact</a>
+<h1 class="h3 mb-3">All Contacts</h1>
+
+<div class="card">
+	<div class="card-body">
+		<div class="row mb-3">
+			<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+				<!-- form -->
+				<form action="{{ route('contacts.all') }}" method="GET" role="search">
+					<div class="input-group input-group-search">
+						<input type="text" class="form-control" id="datatables-contact-search"
+							minlength=3 name="term"
+							value="{{ old('term', request('term')) }}" id="term"
+							placeholder="Search contacts…" required>
+						<button class="btn" type="submit">
+							<i class="align-middle" data-lucide="search"></i>
+						</button>
+					</div>
+						@if (request('term'))
+							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+						@endif
+				</form>
+				<!--/. form -->
+			</div>
+			<div class="col-md-6 col-xl-8">
+
+				<div class="text-sm-end">
+					<a href="{{ route('contacts.all') }}" class="btn btn-primary btn-lg"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+						<i data-lucide="refresh-cw"></i></a>
+					<a href="{{ route('contacts.export') }}" class="btn btn-light btn-lg me-2"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+						<i data-lucide="download"></i> Export</a>
+				</div>
+			</div>
 		</div>
 
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
+		<table id="datatables-orders" class="table w-100">
+			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Date</th>
-					<th>Subject</th>
-					<th>Attachment</th>
-					<th style="width: 5%;">Action</th>
-
+					<th class="align-middle">#</th>
+					<th class="align-middle">Name</th>
+					<th class="align-middle">Date</th>
+					<th class="align-middle">Subject</th>
+					<th class="align-middle">Attachment</th>
+					<th class="align-middle text-end">Actions</th>
 				</tr>
-				</thead>
+			</thead>
+			<tbody>
+				@foreach ($contacts as $contact)
+					<tr>
+						<td>
+							<img src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar" title="Avatar">
+						</td>
+						<td>
+							<a href="{{ route('contacts.show', $contact->id) }}">
+							<strong>{{ $contact->first_name.' '.$contact->last_name }}</strong>
+							</a>
+						</td>
+						<td><x-landlord.list.my-date :value="$contact->created_at"/></td>
+						<td>{{ Str::limit($contact->subject,15) }}</td>
+						<td><x-landlord.attachment.show-by-id id="{{ $contact->attachment_id }}"/></td>
+						<td class="text-end">
+							<a href="{{ route('contacts.show',$contact->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+								data-bs-placement="top" title="View">View</a>
+						</td>
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
 
-				<tbody>
-					@foreach ($contacts as $contact)
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" alt="Avatar">
-									</div>
-									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="{{ route('contacts.show',$contact->id) }}">
-											<h6 class="text-hover-primary mb-0">{{ $contact->first_name.' '.$contact->last_name }} [{{ $contact->user_id}}]
-												{{-- <img class="avatar avatar-xss ms-1" src="{{ asset('/assets/svg/illustrations/top-vendor.svg') }}" alt="Image Description" data-bs-toggle="tooltip" data-bs-placement="top" title="Verified contact"> --}}
-											</h6>
-										</a>
-										<small class="d-block">{{ $contact->email }}</small>
-									</div>
-								</div>
-							</td>
-
-							<td><x-landlord.list.my-date :value="$contact->created_at"/></td>
-							<td>{{ Str::limit($contact->subject,15) }}</td>
-							<td><x-landlord.attachment.show-by-id id="{{ $contact->attachment_id }}"/></td>
-							<td>
-								<a href="{{ route('contacts.show',$contact->id) }}" class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-									<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
-								</a>
-							</td>
-						</tr>
-					@endforeach
-
-
-				</tbody>
-			</table>
-		</div>
-		<!-- End Table -->
-
-		<!-- card-body -->
-		<div class="card-body">
-			<!-- pagination -->
+		<div class="row mb-3">
 			{{ $contacts->links() }}
-			<!--/. pagination -->
 		</div>
-		<!-- /. card-body -->
 
 	</div>
-	<!-- End Card -->
+</div>
 
 @endsection
 

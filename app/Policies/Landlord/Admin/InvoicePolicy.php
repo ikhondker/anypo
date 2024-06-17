@@ -29,12 +29,12 @@ class InvoicePolicy
 		//
 	}
 
-	// Only back office users can view all tickets 
+	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
 		return $user->isSeeded();
 	}
-	
+
 	/**
 	 * Determine whether the user can view the model.
 	 */
@@ -50,13 +50,13 @@ class InvoicePolicy
 	public function create(User $user): bool
 	{
 		return ($user->isAdmin()) || $user->isSeeded();
-	
+
 	}
 
 	public function generate(User $user): bool
 	{
 		return ($user->isAdmin()) || $user->isSeeded();
-	
+
 	}
 
 
@@ -98,9 +98,15 @@ class InvoicePolicy
 	public function pdfInvoice(User $user, Invoice $invoice): bool
 	{
 		//Log::debug("inside pdfInvoice= ". $invoice->id );
-		//Log::info(json_encode($invoice)); 
-		//Log::info(json_encode($user)); 
+		//Log::info(json_encode($invoice));
+		//Log::info(json_encode($user));
 		return (($user->account_id == $invoice->account_id) && $user->isAdmin()) || $user->isSeeded();
-		
+
+	}
+
+    public function export(User $user): bool
+	{
+		return ($user->isAdmin()) || $user->isSeeded();
+
 	}
 }

@@ -2,98 +2,109 @@
 @section('title', 'Statuses')
 @section('breadcrumb', 'Statuses List')
 
-
 @section('content')
 
-	<!-- Card -->
+	<a href="{{ route('statuses.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Status</a>
+	<h1 class="h3 mb-3">All Status</h1>
+
 	<div class="card">
+		<div class="card-body">
+			<div class="row mb-3">
+				<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+					<!-- form -->
+					<form action="{{ route('statuses.index') }}" method="GET" role="search">
+						<div class="input-group input-group-search">
+							<input type="text" class="form-control" id="datatables-status-search"
+								minlength=3 name="term"
+								value="{{ old('term', request('term')) }}" id="term"
+								placeholder="Search menus…" required>
+							<button class="btn" type="submit">
+								<i class="align-middle" data-lucide="search"></i>
+							</button>
+						</div>
+						@if (request('term'))
+							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+						@endif
+					</form>
+					<!--/. form -->
+				</div>
+				<div class="col-md-6 col-xl-8">
+					<div class="text-sm-end">
+						<a href="{{ route('statuses.index') }}" class="btn btn-primary btn-lg"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+							<i data-lucide="refresh-cw"></i></a>
+						{{-- <a href="{{ route('status.export') }}" class="btn btn-light btn-lg me-2"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+							<i data-lucide="download"></i> Export</a> --}}
+					</div>
+				</div>
+			</div>
 
-		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-			<h5 class="card-header-title">Status List</h5>
-			<a class="btn btn-primary btn-sm" href="{{ route('statuses.create') }}">
-				<i class="bi bi-plus-square me-1"></i> Create Status
-			</a>
-		</div>
-
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
+			<table id="datatables-orders" class="table w-100">
+				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Acc-Svc-Tkt-Chk-Inv-Pay</th>
-						<th>Badge</th>
-						<th>Enable</th>
-						<th style="width: 5%;">Action</th>
+						<th class="align-middle">#</th>
+						<th class="align-middle">Code</th>
+						<th class="align-middle">Name</th>
+						<th class="align-middle">Acc-Svc-Tkt-Chk-Inv-Pay</th>
+						<th class="align-middle">Badge</th>
+						<th class="align-middle">Enable</th>
+						<th class="align-middle text-end">Actions</th>
 					</tr>
 				</thead>
-
 				<tbody>
 					@foreach ($statuses as $status)
 						<tr>
 							<td>
-								<div class="d-flex align-items-center">
-									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle"
-										src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
-									</div>
-									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark"
-											href="{{ route('statuses.show', $status->code) }}">
-											<h6 class="text-hover-primary mb-0">
-												{{ $status->code }}
-											</h6>
-										</a>
-										<small class="d-block">{{ $status->name }}</small>
-									</div>
-								</div>
+								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo" title="Logo">
 							</td>
 							<td>
-								<i class="bi bi-circle-fill {{ $status->accounts ? 'text-success' : 'text-secondary' }}"
-									style="font-size: 1rem;" data-bs-toggle="tooltip" data-bs-placement="top"
+								<a href="{{ route('statuses.show', $status->code) }}">
+									<strong>{{ $status->code }}</strong>
+								</a>
+							</td>
+							<td>{{ $status->name }} </td>
+							<td>
+
+								<i data-lucide="check-circle" class="{{ $status->accounts ? 'text-success' : 'text-secondary' }}"
+									data-bs-toggle="tooltip" data-bs-placement="top"
 									title="Accounts"></i>
-								<i class="bi bi-circle-fill {{ $status->services ? 'text-success' : 'text-secondary' }}"
-										style="font-size: 1rem;" data-bs-toggle="tooltip" data-bs-placement="top"
-										title="Services"></i>
-								<i class="bi bi-circle-fill {{ $status->tickets ? 'text-success' : 'text-secondary' }}""
-									style="font-size: 1rem;" data-bs-toggle="tooltip" data-bs-placement="top"
+								<i data-lucide="check-circle" class="{{ $status->services ? 'text-success' : 'text-secondary' }}"
+									data-bs-toggle="tooltip" data-bs-placement="top"
+									title="Services"></i>
+								<i data-lucide="check-circle" class="{{ $status->tickets ? 'text-success' : 'text-secondary' }}"
+									data-bs-toggle="tooltip" data-bs-placement="top"
 									title="tickets"></i>
-								<i class="bi bi-circle-fill {{ $status->checkouts ? 'text-success' : 'text-secondary' }}""
-									style="font-size: 1rem;" data-bs-toggle="tooltip" data-bs-placement="top"
+								<i data-lucide="check-circle" class="{{ $status->checkouts ? 'text-success' : 'text-secondary' }}"
+									data-bs-toggle="tooltip" data-bs-placement="top"
 									title="checkouts"></i>
-								<i class="bi bi-circle-fill {{ $status->invoices ? 'text-success' : 'text-secondary' }}""
-									style="font-size: 1rem;" data-bs-toggle="tooltip" data-bs-placement="top"
+								<i data-lucide="check-circle" class="{{ $status->invoices ? 'text-success' : 'text-secondary' }}"
+									data-bs-toggle="tooltip" data-bs-placement="top"
 									title="invoices"></i>
-								<i class="bi bi-circle-fill {{ $status->payments ? 'text-success' : 'text-secondary' }}""
-									style="font-size: 1rem;" data-bs-toggle="tooltip" data-bs-placement="top"
+								<i data-lucide="check-circle" class="{{ $status->payments ? 'text-success' : 'text-secondary' }}"
+									data-bs-toggle="tooltip" data-bs-placement="top"
 									title="payments"></i>
 							</td>
 							<td><span class="badge bg-{{ $status->badge }}">{{ $status->badge }}</span></td>
 							<td><x-landlord.list.my-enable :value="$status->enable" /></td>
-							<td>
-								<x-landlord.list.actions object="Status" :id="$status->code" />
+							<td class="text-end">
+								<a href="{{ route('statuses.show',$status->code) }}" class="btn btn-light" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="View">View</a>
+								<a href="{{ route('statuses.edit',$status->code) }}" class="text-body" data-bs-toggle="tooltip"
+										data-bs-placement="top" title="View"> <i data-lucide="edit"></i></a>
 								<a href="{{ route('statuses.delete', $status->code) }}"
-									class="text-body sw2-advance" data-entity="Status"
-									data-name="{{ $status->name }}"
+									class="text-body sw2-advance" data-entity="Menu"
+									data-name="{{ $status->route_name }}"
 									data-status="{{ $status->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $status->enable ? 'Disable' : 'Enable' }}">
-									<i class="bi {{ $status->enable ? 'bi-bell-slash' : 'bi-bell' }} "
-										style="font-size: 1.3rem;"></i>
+									<i data-lucide="{{ $status->enable ? 'bell-off' : 'bell' }} "></i>
 								</a>
 							</td>
 						</tr>
 					@endforeach
-
-
 				</tbody>
 			</table>
 		</div>
-		<!-- End Table -->
-
-
 	</div>
-	<!-- End Card -->
-
-
 
 @endsection

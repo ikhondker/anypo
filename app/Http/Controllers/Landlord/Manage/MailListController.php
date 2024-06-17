@@ -40,7 +40,7 @@ use App\Helpers\LandlordEventLog;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class MailListController extends Controller
@@ -65,7 +65,7 @@ class MailListController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -73,7 +73,7 @@ class MailListController extends Controller
 	 */
 	public function store(StoreMailListRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -81,7 +81,7 @@ class MailListController extends Controller
 	 */
 	public function show(MailList $mailList)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -89,7 +89,7 @@ class MailListController extends Controller
 	 */
 	public function edit(MailList $mailList)
 	{
-		//
+		abort(403);
 	}
 
 	/**

@@ -5,86 +5,92 @@
 
 @section('content')
 
-	<!-- Card -->
+	<a href="{{ route('mail-lists.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Mailing List</a>
+	<h1 class="h3 mb-3">Mailing Lists</h1>
+
 	<div class="card">
+		<div class="card-body">
+			<div class="row mb-3">
+				<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+					<!-- form -->
+					<form action="{{ route('mail-lists.index') }}" method="GET" role="search">
+						<div class="input-group input-group-search">
+							<input type="text" class="form-control" id="datatables-mailList-search"
+								minlength=3 name="term"
+								value="{{ old('term', request('term')) }}" id="term"
+								placeholder="Search maillists…" required>
+							<button class="btn" type="submit">
+								<i class="align-middle" data-lucide="search"></i>
+							</button>
+						</div>
+						@if (request('term'))
+							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+						@endif
+					</form>
+					<!--/. form -->
+				</div>
+				<div class="col-md-6 col-xl-8">
+					<div class="text-sm-end">
+						<a href="{{ route('mail-lists.index') }}" class="btn btn-primary btn-lg"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+							<i data-lucide="refresh-cw"></i></a>
+						{{-- <a href="{{ route('mailLists.export') }}" class="btn btn-light btn-lg me-2"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+							<i data-lucide="download"></i> Export</a> --}}
+					</div>
+				</div>
+			</div>
 
-		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-			<h5 class="card-header-title">Mailing Lists</h5>
-		</div>
-
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
+			<table id="datatables-orders" class="table w-100">
+				<thead>
 					<tr>
-						<th>Email</th>
-						<th>Date</th>
-						<th>IP</th>
-						<th>Enable</th>
-						<th style="width: 5%;">Action</th>
+						<th class="align-middle">#</th>
+						<th class="align-middle">Name</th>
+						<th class="align-middle">Email</th>
+						<th class="align-middle">Date</th>
+						<th class="align-middle">IP</th>
+						<th class="align-middle">Enable</th>
+						<th class="align-middle text-end">Actions</th>
 					</tr>
 				</thead>
-
 				<tbody>
 					@foreach ($mailLists as $mailList)
 						<tr>
 							<td>
-								<div class="d-flex align-items-center">
-									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo">
-									</div>
-									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="{{ route('categories.show', $mailList->id) }}">
-											<h6 class="text-hover-primary mb-0">
-												{{ $mailList->email }}
-											</h6>
-										</a>
-										<small class="d-block">{{ $mailList->name }}</small>
-									</div>
-								</div>
+								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo" title="Logo">
 							</td>
+							<td>
+								<a href="{{ route('mail-lists.show', $mailList->id) }}">
+									<strong>{{ $mailList->name }}</strong>
+								</a>
+							</td>
+							<td>{{ $mailList->email }}</td>
 							<td><x-landlord.list.my-date :value="$mailList->created_at" /></td>
 							<td>{{ $mailList->ip }}</td>
 							<td><x-landlord.list.my-enable :value="$mailList->enable" /></td>
+							<td class="text-end">
+								<a href="{{ route('mail-lists.show',$mailList->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="View">View</a>
 
-							<td>
+									<a href="{{ route('mail-lists.destroy', $mailList->id) }}"
+										class="text-body sw2-advance" data-entity="Email"
+										data-name="{{ $mailList->email }}"
+										data-status="{{ $mailList->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
+										data-bs-placement="top" title="{{ $mailList->enable ? 'Disable' : 'Enable' }}">
+										<i data-lucide="{{ $mailList->enable ? 'bell-off' : 'bell' }} "></i>
+									</a>
 
-								<a href="{{ route('mail-lists.destroy', $mailList->id) }}"
-									class="text-body sw2-advance" data-entity="Email"
-									data-name="{{ $mailList->email }}"
-									data-status="{{ $mailList->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="{{ $mailList->enable ? 'Disable' : 'Enable' }}">
-									<i class="bi {{ $mailList->enable ? 'bi-bell-slash' : 'bi-bell' }} "
-										style="font-size: 1.3rem;"></i>
-								</a>
-
-
-								{{-- <a class="text-body" href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" title="Locked">
-									<i class="bi-lock-fill" style="font-size: 1.5rem;"></i>
-									<i class="bi bi-eye" style="font-size: 1.5rem;"></i>
-								</a> --}}
 							</td>
 						</tr>
 					@endforeach
-
-
 				</tbody>
 			</table>
-		</div>
-		<!-- End Table -->
 
-		<!-- card-body -->
-		<div class="card-body">
-			<!-- pagination -->
-			{{ $mailLists->links() }}
-			<!--/. pagination -->
-		</div>
-		<!-- /. card-body -->
+			<div class="row mb-3">
+				{{ $mailLists->links() }}
+			</div>
 
+		</div>
 	</div>
-	<!-- End Card -->
-
-
 
 @endsection

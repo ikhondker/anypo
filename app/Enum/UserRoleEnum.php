@@ -8,7 +8,7 @@
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -25,11 +25,12 @@ enum UserRoleEnum: string{
 	case GUEST		= 'guest';		// was used in EventLog.
 	case USER		= 'user';		// Landlord + Tenant
  	case BUYER		= 'buyer';
+
 	//case MANAGER	= 'manager';	// for Future in Tenant when unit within Dept is enabled
 	case HOD		= 'hod';
 	case CXO		= 'cxo';
-	case ADMIN		= 'admin';		// Landlord + Tenant, customer admin, 
-	
+	case ADMIN		= 'admin';		// Landlord + Tenant, customer admin,
+
 	// Bellow back office roles. They have by default customer admin access
 	case SUPPORT	= 'support';	// Landlord + Tenant
 	case SUPERVISOR	= 'supervisor';	// Landlord +

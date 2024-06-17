@@ -3,77 +3,83 @@
 @section('breadcrumb', 'All Payments')
 
 @section('content')
-	<!-- Card -->
-	<div class="card">
-		<div class="card-header">
-			<h5 class="card-header-title">All Payments</h5>
-		</div>
 
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
-					<tr>
-						<th>Name</th>
-						<th>Date</th>
-						<th>Invoice #</th>
-						<th>Amount</th>
-						<th>Status</th>
-						<th style="width: 5%;">Action</th>
-					</tr>
-				</thead>
+    <h1 class="h3 mb-3">All Payments</h1>
+    <div class="card">
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+                    <!-- form -->
+                    <form action="{{ route('payments.all') }}" method="GET" role="search">
+                        <div class="input-group input-group-search">
+                            <input type="text" class="form-control" id="datatables-payment-search"
+                                minlength=3 name="term"
+                                value="{{ old('term', request('term')) }}" id="term"
+                                placeholder="Search payments…" required>
+                            <button class="btn" type="submit">
+                                <i class="align-middle" data-lucide="search"></i>
+                            </button>
 
-				<tbody>
-					@foreach ($payments as $payment)
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}"
-											alt="{{ $payment->account->name }}" title="{{ $payment->account->name }}">
-									</div>
+                        </div>
+                            @if (request('term'))
+                                Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+                            @endif
+                    </form>
+                    <!--/. form -->
+                </div>
+                <div class="col-md-6 col-xl-8">
 
-									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="{{ route('payments.show',$payment->id) }}">
-											<h6 class="text-hover-primary mb-0">{{ Str::limit($payment->summary, 15) }}</h6>
-										</a>
-										<small class="d-block">ID: {{ $payment->id }}</small>
-									</div>
-								</div>
-							</td>
-							<td><x-landlord.list.my-date :value="$payment->pay_date" /></td>
-							<td>{{ $payment->invoice_id }}</td>
-							<td><x-landlord.list.my-number :value="$payment->amount" /></td>
-							<td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>
-							<td>
-								<a href="{{ route('payments.show', $payment->id) }}" class="text-body"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
-								</a>
-								<a href="{{ route('reports.pdf-payment', $payment->id) }}" class="text-body"
-									data-bs-toggle="tooltip" data-bs-placement="top" title="Receipt">
-									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>
-								</a>
+                    <div class="text-sm-end">
+                        <a href="{{ route('payments.all') }}" class="btn btn-primary btn-lg"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+                            <i data-lucide="refresh-cw"></i></a>
+                        <a href="{{ route('payments.export') }}" class="btn btn-light btn-lg me-2"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+                            <i data-lucide="download"></i> Export</a>
+                    </div>
+                </div>
+            </div>
 
-							</td>
-						</tr>
-					@endforeach
-				</tbody>
-			</table>
-		</div>
-		<!-- End Table -->
+            <table id="datatables-orders" class="table w-100">
+                <thead>
+                    <tr>
+                        <th class="align-middle">#</th>
+                        <th class="align-middle">Summary</th>
+                        <th class="align-middle">Date</th>
+                        <th class="align-middle">Invoice #</th>
+                        <th class="align-middle">Amount $</th>
+                        <th class="align-middle">Status</th>
+                        <th class="align-middle text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($payments as $payment)
+                        <tr>
+                            <td>
+                                <img src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $payment->account->name }}" title="{{ $payment->account->name }}">
+                            </td>
+                            <td>{{ Str::limit($payment->summary, 15) }}</td>
+                            <td><x-landlord.list.my-date :value="$payment->pay_date" /></td>
+                            <td>{{ $payment->invoice->invoice_no }}</td>
+                            <td><x-landlord.list.my-number :value="$payment->amount" /></td>
+                            <td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>
+                            <td class="text-end">
+                                <a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="View">View</a>
 
-		<!-- card-body -->
-		<div class="card-body">
-			<!-- pagination -->
-			{{ $payments->links() }}
-			<!--/. pagination -->
-		</div>
-		<!-- /. card-body -->
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-	</div>
-	<!-- End Card -->
+            <div class="row mb-3">
+                {{ $payments->links() }}
+            </div>
+
+        </div>
+    </div>
+
 @endsection
 
 

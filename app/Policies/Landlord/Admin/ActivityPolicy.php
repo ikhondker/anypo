@@ -42,7 +42,7 @@ class ActivityPolicy
 	public function view(User $user, Activity $activity): bool
 	{
 		return (($user->account_id == $activity->account_id) && $user->isAdmin()) || $user->isSeeded();
-		
+
 	}
 
 	/**
@@ -69,10 +69,6 @@ class ActivityPolicy
 		return false;
 	}
 
-	public function export(User $user): bool
-	{
-		return $user->isAdmin();
-	}
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -89,4 +85,11 @@ class ActivityPolicy
 	{
 		//
 	}
+
+    public function export(User $user): bool
+	{
+		return ($user->isAdmin()) || $user->isSeeded();
+	}
+
+
 }

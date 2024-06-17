@@ -1,10 +1,10 @@
 	<a href="{{ route($route.'.show',$id) }}" class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-		<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
+		<i data-lucide="eye"></i>
 	</a>
-	
+
 	@if ($edit)
 		<a href="{{ route($route.'.edit',$id) }}" class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-			<i class="bi bi-pencil-square" style="font-size: 1.3rem;"></i>
+			<i data-lucide="edit"></i>
 		</a>
 	@endif
 

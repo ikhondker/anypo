@@ -4,91 +4,101 @@
 
 @section('content')
 
-	<!-- Card -->
-	<div class="card">
+	@if (auth()->user()->isAdmin())
+		<a href="{{ route('invoices.generate') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> Generate & Pay Advance Invoice</a>
+	@endif
+	<h1 class="h3 mb-3">Your Invoices</h1>
 
-		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-			<h5 class="card-header-title">Your Invoices</h5>
-			@if (auth()->user()->isAdmin())
-				<a class="btn btn-primary btn-sm" href="{{ route('invoices.generate') }}">
-					<i class="bi bi-gear me-1"></i> Generate & Pay Advance Invoice
-				</a>
-			@endif
+<div class="card">
+	<div class="card-body">
+		<div class="row mb-3">
+			<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+				<!-- form -->
+				<form action="{{ route('invoices.index') }}" method="GET" role="search">
+					<div class="input-group input-group-search">
+						<input type="text" class="form-control" id="datatables-invoice-search"
+							minlength=3 name="term"
+							value="{{ old('term', request('term')) }}" id="term"
+							placeholder="Search invoices…" required>
+						<button class="btn" type="submit">
+							<i class="align-middle" data-lucide="search"></i>
+						</button>
+
+					</div>
+						@if (request('term'))
+							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+						@endif
+				</form>
+				<!--/. form -->
+			</div>
+			<div class="col-md-6 col-xl-8">
+
+				<div class="text-sm-end">
+					<a href="{{ route('invoices.index') }}" class="btn btn-primary btn-lg"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+						<i data-lucide="refresh-cw"></i></a>
+					<a href="{{ route('invoices.export') }}" class="btn btn-light btn-lg me-2"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+						<i data-lucide="download"></i> Export</a>
+				</div>
+			</div>
 		</div>
 
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
+		<table id="datatables-orders" class="table w-100">
+			<thead>
+				<tr>
+					<th class="align-middle">#</th>
+					<th class="align-middle">Invoice #</th>
+					<th class="align-middle">Summary</th>
+					<th class="align-middle">Invoice Date</th>
+					<th class="align-middle">Type</th>
+					<th class="align-middle">Amount $</th>
+					<th class="align-middle">Status</th>
+					<th class="align-middle text-end">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($invoices as $invoice)
 					<tr>
-						<th>Invoice #</th>
-						<th>Date</th>
-						<th>Amount</th>
-						<th>Status</th>
-						<th style="width: 5%;">Action</th>
-					</tr>
-				</thead>
+						<td>
+							<img src="{{ Storage::disk('s3l')->url('logo/'.$invoice->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $invoice->account->name }}" title="{{ $invoice->account->name }}">
+						</td>
+						<td>
+							<a href="{{ route('invoices.show', $invoice->id) }}">
+								<strong>#{{ Str::limit($invoice->invoice_no, 10) }}</strong>
+							</a>
+						</td>
+						<td>{{ Str::limit($invoice->summary, 20) }}</td>
+						<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
+						<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
+						<td><x-landlord.list.my-number :value="$invoice->amount" /></td>
+						<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
 
-				<tbody>
-					@foreach ($invoices as $invoice)
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle"
-											src="{{ Storage::disk('s3l')->url('logo/'.$invoice->account->logo) }}"
-											alt="{{ $invoice->account->name }}" title="{{ $invoice->account->name }}">
-									</div>
+						<td class="text-end">
+							<a href="{{ route('invoices.show',$invoice->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+								data-bs-placement="top" title="View">View</a>
 
-									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="{{ route('invoices.show',$invoice->id) }}">
-											<h6 class="text-hover-primary mb-0">
-												#{{ Str::limit($invoice->invoice_no, 10) }}
-												{{-- {{ Str::limit($invoice->summary, 20) }} --}}
-											</h6>
-										</a>
-										<small class="d-block">{{ $invoice->account->name }}</small>
-									</div>
-								</div>
-							</td>
-							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
-							<td><x-landlord.list.my-number :value="$invoice->amount" />$</td>
-							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
-							<td>
-								{{-- <a href="{{ route('invoices.show', $invoice->id) }}" class="text-body"
-									data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-									<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
-								</a> --}}
 								<a href="{{ route('home.invoice', $invoice->invoice_no) }}" target="_blank"
 									class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="View Online">
-									<i class="bi bi-eye" style="font-size: 1.3rem;"></i>
+									<i class="bi bi-globe" style="font-size: 1.3rem;"></i>a
 								</a>
-								<a href="{{ route('reports.pdf-invoice', $invoice->id) }}" class="text-body"
-									data-bs-toggle="tooltip" data-bs-placement="top" title="Download PDF">
-									<i class="bi bi-file-earmark-pdf" style="font-size: 1.3rem;"></i>
-								</a>
-								{{-- <a href="{{ route('invoices.pdf', $invoice->id) }}" class="text-body"
+								<a href="{{ route('reports.pdf-invoice', $invoice->id) }}" class="text-body" target="_blank"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>inv
-								</a> --}}
+									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>b
+								</a>
+						</td>
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
 
-							</td>
-						</tr>
-					@endforeach
-				</tbody>
-			</table>
-		</div>
-		<!-- End Table -->
-
-		<!-- card-body -->
-		<div class="card-body">
-			<!-- pagination -->
+		<div class="row mb-3">
 			{{ $invoices->links() }}
-			<!--/. pagination -->
 		</div>
-		<!-- /. card-body -->
 
 	</div>
-	<!-- End Card -->
+</div>
+
+
 
 @endsection

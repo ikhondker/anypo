@@ -32,12 +32,12 @@ class CheckoutPolicy
 		//
 	}
 
-	// Only back office users can view all tickets 
+	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
 		return $user->isSeeded();
 	}
-	
+
 	/**
 	 * Determine whether the user can view the model.
 	 */
@@ -85,4 +85,11 @@ class CheckoutPolicy
 	{
 		//
 	}
+
+    public function export(User $user): bool
+	{
+		return ($user->isSeeded());
+	}
+
+
 }

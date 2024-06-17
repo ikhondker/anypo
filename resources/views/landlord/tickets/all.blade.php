@@ -5,189 +5,108 @@
 
 @section('content')
 
-	<!-- Card -->
+
+	<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Ticket</a>
+	<h1 class="h3 mb-3">All Tickets</h1>
+
 	<div class="card">
+		<div class="card-body">
+			<div class="row mb-3">
+				<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
+					<!-- form -->
+					<form action="{{ route('tickets.all') }}" method="GET" role="search">
+						<div class="input-group input-group-search">
+							<input type="text" class="form-control" id="datatables-orders-search"
+								minlength=3 name="term"
+								value="{{ old('term', request('term')) }}" id="term"
+								placeholder="Search tickets…" required>
+							<button class="btn" type="submit">
+								<i class="align-middle" data-lucide="search"></i>
+							</button>
 
-		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-			<h5 class="card-header-title">
-				@if (request('term'))
-					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
-				@else
-					All Tickets (Backoffice)
-				@endif
-			</h5>
-			{{-- <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">
-				<i class="bi bi-plus-square me-1"></i> Create User
-			</a> --}}
-			<div class="card-actions float-end">
-				<!-- form -->
-				<form action="{{ route('tickets.all') }}" method="GET" role="search">
+						</div>
+							@if (request('term'))
+								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+							@endif
+					</form>
+				</div>
+				<div class="col-md-6 col-xl-8">
 
-					<div class="btn-group" role="group" aria-label="First group">
-
-						<input type="text" class="form-control form-control-sm" minlength=3 name="term"
-							placeholder="Search..." value="{{ old('term', request('term')) }}" id="term" required>
-
-						<button type="submit" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top"
-							title="Search..."><i class="bi bi-search"></i></button>
-
-						<a href="{{ route('tickets.all') }}" class="btn btn-info me-1" data-bs-toggle="tooltip"
-							data-bs-placement="top" title="Reload">
-							<i class="bi bi-arrow-repeat"></i>
-						</a>
-
-						<a href="{{ route('tickets.export') }}" class="btn btn-info me-1" data-bs-toggle="tooltip"
-							data-bs-placement="top" title="Download">
-							<i class="bi bi-arrow-down-circle"></i>
-						</a>
-
+					<div class="text-sm-end">
+						<a href="{{ route('tickets.all') }}" class="btn btn-primary btn-lg"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+							<i data-lucide="refresh-cw"></i></a>
+						<a href="{{ route('tickets.export') }}" class="btn btn-light btn-lg me-2"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+							<i data-lucide="download"></i> Export</a>
 					</div>
-					<a class="btn btn-primary" href="{{ route('tickets.create') }}">
-						<i class="bi bi-plus-circle"></i> Create Ticket
-					</a>
-				</form>
-				<!--/. form -->
+				</div>
 			</div>
-		</div>
 
-		<!-- Table -->
-		<div class="table-responsive">
-			<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-				<thead class="thead-light">
-				<tr>
-					<th>&nbsp; &nbsp; Subject</th>
-					<th>Date</th>
-					<th>Status</th>
-					<th style="width: 5%;">Action</th>
-				</tr>
+			<table id="datatables-orders" class="table w-100">
+				<thead>
+					<tr>
+						<th class="align-middle">#</th>
+						<th class="align-middle">Subject</th>
+						<th class="align-middle">Requestor</th>
+						<th class="align-middle">Date</th>
+                        <th class="align-middle">Dept</th>
+                        <th class="align-middle">Agent</th>
+						<th class="align-middle">Status</th>
+						<th class="align-middle text-end">Actions</th>
+					</tr>
 				</thead>
-
 				<tbody>
 					@foreach ($tickets as $ticket)
 						<tr>
 							<td>
-								<div class="d-flex align-items-center">
-									<div class="flex-shrink-0">
-										<img class="avatar avatar-sm avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
-										{{-- <i class="bi bi-person-circle text-danger" style="font-size: 1.3rem;"></i> --}}
-									</div>
-									<div class="flex-grow-1 ms-3">
-										<a class="d-inline-block link-dark" href="{{ route('tickets.show',$ticket->id) }}">
-											<h6 class="text-hover-primary mb-0">
-												[#{{ $ticket->id }}] {{ Str::limit($ticket->title, 45) }}
-											</h6>
-										</a>
-										<small class="d-block">
-											{{ $ticket->owner->name }} | {{ $ticket->dept->name }}
-											@if ( auth()->user()->isSeeded() && ($ticket->agent_id <> ''))
-												| {{ $ticket->agent->name }}
-											@endif
-										</small>
-									</div>
-								</div>
+								<a class="text-info" href="{{ route('tickets.show',$ticket->id) }}">
+								    #{{ $ticket->id }}
+								</a>
+							</td>
+							<td>
+								<a class="" href="{{ route('tickets.show',$ticket->id) }}">
+								@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
+									<strong class="text-info mb-0">
+								@else
+									<strong class="text-secondary mb-0">
+								@endif
+									{{ Str::limit($ticket->title, 45) }}
+									</strong>
+								</a>
+							</td>
+							<td>
+								<img src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
+								{{ $ticket->owner->name }}
+							</a>
 							</td>
 
-							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
-							<td><x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/></td>
+							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }} </td>
+                            <td>{{ $ticket->dept->name }}</td>
+                            <td>{{ $ticket->agent->name }}</td>
 							<td>
-								<x-landlord.list.actions object="Ticket" :id="$ticket->id"/>
-								<a href="{{ route('tickets.assign',$ticket->id) }}" class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
-									@if ( $ticket->agent_id == '')
-										<i class="bi bi-person-circle text-danger" style="font-size: 1.3rem;"></i>
-									@else
-										<i class="bi bi-person-circle" style="font-size: 1.3rem;"></i>
-									@endif
-								</a>
+								<x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/>
+							</td>
+							<td class="text-end">
+								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="View">View</a>
+
+                                    <a href="{{  route('tickets.assign',$ticket->id) }}" class="me-2"
+											data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
+											<i data-lucide="check-circle" class="text-danger"></i>
+										</a>
+
 							</td>
 						</tr>
 					@endforeach
-
 				</tbody>
 			</table>
-		</div>
-		<!-- End Table -->
 
-		 <!-- card-body -->
-		 <div class="card-body">
-			<!-- pagination -->
-			{{ $tickets->links() }}
-			<!--/. pagination -->
-		</div>
-		<!-- /. card-body -->
+			<div class="row mb-3">
+				{{ $tickets->links() }}
+			</div>
 
+		</div>
 	</div>
-	<!-- End Card -->
-
 @endsection
 
-@section('content')
-
-
-	<x-landlord.card.header title="Tickets Lists"/>
-
-	<!-- my-section-table -->
-	<div class="my-section-table">
-		<div class="table-responsive">
-			<table class="table table-no-space table-bordered">
-				<thead>
-					<tr>
-						<th class="">#</th>
-						<th class="">Title</th>
-						{{-- <th class="">Created</th> --}}
-						<th class="">Dept/
-						Priority</th>
-						<th class="">Owner/
-						Agent</th>
-						<th class="text-center">Status</th>
-						<th class="text-center">View</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach ($tickets as $ticket)
-					<tr>
-						<td class=""><x-landlord.list.my-id-link object="Ticket" :id="$ticket->id"/></td>
-						<td class="">
-							<h6 class="mb-0 ms-3">{{ Str::limit($ticket->title, 35) }}<p class="text-xs text-muted p-0 m-0">{{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }}</p></h6>
-						</td>
-						{{-- <td class=""><x-landlord.list.my-date :value="$ticket->ticket_date"/></td> --}}
-						<td class=""><x-landlord.list.my-badge :value="$ticket->dept->name"/><br>
-						<x-landlord.list.my-badge :value="$ticket->priority->name"/></td>
-						<td class="">{{ $ticket->owner->name }}
-							<p class="small text-info">
-								@if ( $ticket->agent_id <> '')
-									{{ $ticket->agent->name }}
-								@else
-									<a href="{{ route('tickets.assign',$ticket->id) }}" class="text-warning d-inline-block">Assign</a>
-								@endif
-							</p>
-						</td>
-						<td class=""><x-landlord.list.my-badge value="{{ $ticket->status->name }}"/></td>
-						<td class="text-center">
-							{{-- <x-landlord.list.actions object="Ticket" :id="$ticket->id" :edit="false" :enable="false"/> --}}
-							<a href="{{ route('tickets.show',$ticket->id) }}" class="action-btn btn-view bs-tooltip me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-								<i data-feather="eye" class="fea text-muted"></i>
-							</a>
-							<a href="{{ route('tickets.edit',$ticket->id) }}" class="action-btn btn-view bs-tooltip me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-								<i data-feather="edit" class="fea text-muted"></i>
-							</a>
-							<a href="{{ route('tickets.assign',$ticket->id) }}" class="action-btn btn-view bs-tooltip me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
-								<i class="bi bi-person-circle"></i>
-							</a>
-						</td>
-					</tr>
-					@endforeach
-
-
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<!--/. my-section-table -->
-
-	<!-- my-pagination -->
-	<div class="row pt-3">
-		{{ $tickets->links() }}
-	</div>
-	<!--/. my-pagination -->
-
-@endsection

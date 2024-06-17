@@ -28,6 +28,7 @@ use App\Http\Requests\Landlord\Manage\UpdateCheckoutRequest;
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -37,7 +38,8 @@ use App\Models\Landlord\Manage\Checkout;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. FUTURE 
+use DB;
+# 13. FUTURE
 
 class CheckoutController extends Controller
 {
@@ -49,17 +51,17 @@ class CheckoutController extends Controller
 	 */
 	public function index()
 	{
-		abort(403);
+		$this->authorize('viewAll',Checkout::class);
+		$checkouts = Checkout::with('product')->with('status')->orderBy('id', 'DESC')->paginate(10);
+		return view('landlord.manage.checkouts.index', compact('checkouts'));
 	}
 
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function all()
+	public function xxall()
 	{
-		$this->authorize('viewAll',Checkout::class);
-		$checkouts = Checkout::with('product')->with('status')->orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.manage.checkouts.all', compact('checkouts'));
+
 	}
 
 	/**
@@ -113,4 +115,20 @@ class CheckoutController extends Controller
 	{
 		abort(403);
 	}
+
+	public function export()
+	{
+		$this->authorize('export', Checkout::class);
+
+		$data = DB::select("
+			SELECT *
+			FROM checkouts as c
+			");
+
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('checkouts', $dataArray);
+
+	}
+
 }

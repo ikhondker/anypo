@@ -29,6 +29,7 @@ use App\Models\Landlord\Admin\Payment;
 # 2. Enums
 use App\Enum\UserRoleEnum;
 # 3. Helpers
+use App\Helpers\Export;
 use App\Helpers\FileUpload;
 use App\Helpers\LandlordEventLog;
 # 4. Notifications
@@ -40,9 +41,10 @@ use App\Helpers\LandlordEventLog;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 
@@ -82,7 +84,7 @@ class PaymentController extends Controller
 	 */
 	public function create()
 	{
-		// Created from home.paymentStripe 
+		// Created from home.paymentStripe
 		abort(403);
 	}
 
@@ -146,6 +148,38 @@ class PaymentController extends Controller
 	{
 		//
 	}
+    public function export()
+	{
+		$this->authorize('export', Payment::class);
 
-	
+		if (auth()->user()->isSeeded()){
+			$data = DB::select("
+                SELECT p.id, p.summary, p.pay_date, i.invoice_no, a.name account_name, p.amount, p.currency
+                FROM payments p, invoices i, accounts a
+                WHERE p.invoice_id = i.id
+                AND p.account_id = a.id
+                ");
+		} else if (auth()->user()->isAdmin()){
+			$data = DB::select("
+				SELECT p.id, p.summary, p.pay_date, i.invoice_no, a.name account_name, p.amount, p.currency
+                FROM payments p, invoices i, accounts a
+                WHERE p.invoice_id = i.id
+                AND p.account_id = a.id
+				AND p.account_id = ".auth()->user()->account_id
+				);
+		} else {
+			$data = DB::select("
+				SELECT p.id, p.summary, p.pay_date, i.invoice_no, a.name account_name, p.amount, p.currency
+                FROM payments p, invoices i, accounts a
+                WHERE p.invoice_id = i.id
+                AND p.account_id = a.id
+				AND p.owner_id = ".auth()->user()->id
+				);
+		}
+
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('payments', $dataArray);
+    }
+
 }

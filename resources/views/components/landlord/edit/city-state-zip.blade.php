@@ -8,7 +8,7 @@
 				value="{{ old('city', $city ) }}"
 				required/>
 				@error('city')
-					<div class="text-danger text-xs">{{ $message }}</div>
+					<div class="small text-danger">{{ $message }}</div>
 				@enderror
 			</div>
 			<div class="col-md-4">
@@ -18,7 +18,7 @@
 					value="{{ old('state', $state ) }}"
 					required/>
 				@error('state')
-					<div class="text-danger text-xs">{{ $message }}</div>
+					<div class="small text-danger">{{ $message }}</div>
 				@enderror
 			</div>
 		<div class="col-md-3">
@@ -27,7 +27,7 @@
 				value="{{ old('zip', $zip ) }}"
 				required/>
 				@error('zip')
-					<div class="text-danger text-xs">{{ $message }}</div>
+					<div class="small text-danger">{{ $message }}</div>
 				@enderror
 		</div>
 	</div>

@@ -57,7 +57,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Str;
 use DB;
-# 13. FUTURE 
+# 13. FUTURE
 
 class TicketController extends Controller
 {
@@ -119,7 +119,7 @@ class TicketController extends Controller
 		$this->authorize('create',Ticket::class);
 
 		$depts = Dept::getAll();
-		$priorities = Priority::getAll(); 
+		$priorities = Priority::getAll();
 
 		return view('landlord.tickets.create', compact('depts', 'priorities'));
 	}
@@ -146,7 +146,7 @@ class TicketController extends Controller
 
 		// Create Ticket
 		$ticket = Ticket::create($request->all());
-		
+
 		// Write to Log
 		LandlordEventLog::event('ticket', $ticket->id, 'create');
 
@@ -180,7 +180,7 @@ class TicketController extends Controller
 	 */
 	public function show(Ticket $ticket)
 	{
-		
+
 		$this->authorize('view', $ticket);
 
 		$entity = static::ENTITY;
@@ -196,7 +196,7 @@ class TicketController extends Controller
 	public function edit(Ticket $ticket)
 	{
 		$this->authorize('update', $ticket);
-		
+
 		return view('landlord.tickets.edit', compact('ticket'));
 	}
 
@@ -248,7 +248,7 @@ class TicketController extends Controller
 		//
 	}
 
-	
+
 	public function assign(Ticket $ticket)
 	{
 
@@ -260,17 +260,17 @@ class TicketController extends Controller
 
 	public function doAssign(Request $request, Ticket $ticket)
 	{
-		
+
 		$this->authorize('assign', $ticket);
 		$ticket->agent_id	= $request->input('agent_id');
 		$ticket->save();
-		
+
 		LandlordEventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
 
 		// Send notification to Assigned Agent
 		$agent = User::where('id', $request->input('agent_id'))->first();
 		$agent->notify(new TicketAssigned($agent, $ticket));
-		
+
 		LandlordEventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
 
 		return redirect()->route('tickets.show', $ticket->id)->with('success', 'Ticket #' . $ticket->id . ' assigned to agent and notified.');
@@ -317,7 +317,7 @@ class TicketController extends Controller
 				ON t.owner_id=u.id
 				LEFT JOIN accounts as a
 				ON t.account_id=a.id
-				WHERE t.account_id=".auth()->user()->account_id
+				WHERE t.account_id = ".auth()->user()->account_id
 				);
 		} else {
 			$data = DB::select("
@@ -327,7 +327,7 @@ class TicketController extends Controller
 				ON t.owner_id=u.id
 				LEFT JOIN accounts as a
 				ON t.account_id=a.id
-				WHERE t.owner_id =".auth()->user()->id
+				WHERE t.owner_id = ".auth()->user()->id
 				);
 		}
 

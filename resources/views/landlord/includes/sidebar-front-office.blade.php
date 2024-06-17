@@ -33,7 +33,7 @@
 	<span class="text-cap">ADMIN</span>
 	<!-- List -->
 	<ul class="nav nav-sm nav-tabs nav-vertical mb-4">
-		
+
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'accounts.show' ? 'active' : '' }}" href="{{ route('accounts.show',auth()->user()->account_id) }}">
 				<i class="bi-ui-checks-grid nav-icon"></i> Accounts
@@ -67,7 +67,7 @@
 				<i class="bi-file-ruled nav-icon"></i> Generate Invoice
 			</a>
 		</li>
-		
+
 		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'services.index' ? 'active' : '' }}" href="{{ route('services.index') }}">
 				<i class="bi-people nav-icon"></i> Buy Users
@@ -83,7 +83,7 @@
 @endif
 
 <!-- ========== Account ========== -->
-@include('landlord.includes.submenu-account')
+{{-- @include('landlord.includes.sidebar-my-account') --}}
 <!-- ========== END Account ========== -->
 
 <div class="d-lg-none">
