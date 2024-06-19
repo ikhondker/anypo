@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -36,7 +36,7 @@ class Contact extends Model
 	use HasFactory, Notifiable;
 
 	public $fillable = [
-		'type', 'first_name', 'last_name', 'email', 'cell', 'subject', 'message', 'contact_date', 'tenant', 'user_id', 'attachment_id', 'ip', 'country', 'updated_at',
+		'type', 'first_name', 'last_name', 'email', 'cell', 'subject', 'notes', 'contact_date', 'tenant', 'user_id', 'attachment_id', 'ip', 'country', 'updated_at',
 	];
 
 	/**

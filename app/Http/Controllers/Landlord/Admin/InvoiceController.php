@@ -36,6 +36,7 @@ use App\Enum\LandlordCheckoutStatusEnum;
 
 # 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -314,6 +315,7 @@ class InvoiceController extends Controller
 	public function edit(Invoice $invoice)
 	{
 		$this->authorize('update', $invoice);
+		return view('landlord.admin.invoices.edit',compact('invoice'));
 	}
 
 	/**
@@ -326,6 +328,10 @@ class InvoiceController extends Controller
 	public function update(UpdateInvoiceRequest $request, Invoice $invoice)
 	{
 		$this->authorize('update', $invoice);
+        $invoice->update($request->all());
+		LandlordEventLog::event('invoice',$invoice->id,'update','summary', $request->summary);
+		return redirect()->route('invoices.show',$invoice->id)->with('success','Invoice updated successfully.');
+
 	}
 
 	/**

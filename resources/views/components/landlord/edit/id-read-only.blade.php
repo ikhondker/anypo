@@ -1,8 +1,7 @@
-<!-- Form -->
-<div class="row mb-4">
-		<label for="id" class="col-sm-3 col-form-label form-label">ID</label>
-		<div class="col-sm-9">
-			<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ $value }}" readonly>
-		</div>
-</div>
-<!-- End Form -->
+<tr>
+	<th>ID X:</th>
+	<td>
+		<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ $value }}" readonly>
+	</td>
+</tr>
+

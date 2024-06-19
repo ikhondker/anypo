@@ -17,7 +17,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('summary');
 			$table->string('session_id')->nullable();
-			$table->dateTime('pay_date')->useCurrent();
+			$table->date('pay_date')->useCurrent();
 			$table->foreignId('invoice_id')->constrained('invoices');
 			$table->foreignId('account_id')->nullable()->constrained('accounts');
 			$table->foreignId('owner_id')->nullable()->constrained('users');
@@ -33,7 +33,7 @@ return new class extends Migration
 			//$table->string('status')->default(LandlordPaymentStatusEnum::DRAFT->value);
 			/** end ENUM */
 			/** ENUM */
-			$table->string('status_code')->default(LandlordPaymentStatusEnum::DRAFT->value); 
+			$table->string('status_code')->default(LandlordPaymentStatusEnum::DRAFT->value);
 			$table->foreign('status_code')->references('code')->on('statuses');
 			//$table->foreignId('status_id')->default(LandlordPaymentStatusEnum::NEW->value)->constrained('statuses');
 			/** end ENUM */

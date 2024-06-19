@@ -122,7 +122,7 @@ class PaymentController extends Controller
 	public function edit(Payment $payment)
 	{
 		$this->authorize('update', $payment);
-		abort(403);
+        return view('landlord.admin.payments.edit', compact('payment'));
 	}
 
 	/**
@@ -135,7 +135,13 @@ class PaymentController extends Controller
 	public function update(UpdatePaymentRequest $request, Payment $payment)
 	{
 		$this->authorize('update', $payment);
-		abort(403);
+
+		$request->validate([]);
+		$payment->update($request->all());
+
+		return redirect()->route('payments.index')->with('success', 'Payment updated successfully');
+
+
 	}
 
 	/**

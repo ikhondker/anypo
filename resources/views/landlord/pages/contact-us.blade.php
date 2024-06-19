@@ -125,10 +125,10 @@
 
 					<!-- Form -->
 					<div class="mb-3">
-						<label class="form-label" for="message">Details</label>
-						<textarea class="form-control form-control-lg @error('message') is-invalid @enderror"
-							name="message" placeholder="Tell us about your ..." rows="4" required>{{ old('message', 'Tell us about your ...') }}</textarea>
-						@error('message')
+						<label class="form-label" for="notes">Details</label>
+						<textarea class="form-control form-control-lg @error('notes') is-invalid @enderror"
+							name="notes" placeholder="Tell us about your ..." rows="4" required>{{ old('notes', 'Tell us about your ...') }}</textarea>
+						@error('notes')
 							<div class="text-danger text-xs">{{ $message }}</div>
 						@enderror
 					</div>

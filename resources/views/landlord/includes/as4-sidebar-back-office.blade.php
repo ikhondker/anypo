@@ -34,7 +34,7 @@
 </li>
 <li class="sidebar-item {{ $_route_name == 'invoices.index' ? 'active' : '' }}">
 	<a class="sidebar-link" href="{{ route('invoices.all') }}">
-		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Invoices</span>
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Invoices *</span>
 	</a>
 </li>
 <li class="sidebar-item {{ $_route_name == 'payments.index' ? 'active' : '' }}">
