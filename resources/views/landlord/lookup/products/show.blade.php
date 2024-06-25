@@ -4,35 +4,36 @@
 
 @section('content')
 
-	<!-- Card -->
-	<div class="card">
-		<div class="card-header border-bottom">
-		<h4 class="card-header-title">Product Info</h4>
-		</div>
+	<h1 class="h3 mb-3">View Product</h1>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-actions float-end">
+						<a href="{{ route('products.index') }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  View all</a>
+						@if (auth()->user()->isSystem())
+						<a class="btn btn-sm btn-danger text-white" href="{{ route('products.edit', $product->id) }}"><i class="fas fa-edit"></i> Edit</a>
 
-		<!-- Body -->
-		<div class="card-body">
-			<x-landlord.show.my-text	value="{{ $product->name }}" label="Product"/>
-			<x-landlord.show.my-enable	value="{{ $product->enable }}"/>
-			<x-landlord.show.my-badge	value="{{ $product->id }}" label="ID"/>
-			<x-landlord.show.my-date	value="{{ $product->created_at }}" label="Created At:"/>
-			<x-landlord.show.my-date	value="{{ $product->start_date }}" label="Start Date"/>
-			<x-landlord.show.my-date	value="{{ $product->end_date }}" label="End Date"/>
-			<x-landlord.show.my-number	value="{{ $product->price }}" label="Price"/>
-
+						@endif
+					</div>
+					<h5 class="card-title">View Product</h5>
+					<h6 class="card-subtitle text-muted">View details of a Product.</h6>
+				</div>
+				<div class="card-body">
+					<table class="table table-sm my-2">
+						<tbody>
+							<x-landlord.show.my-text	value="{{ $product->name }}" label="Product"/>
+								<x-landlord.show.my-enable	value="{{ $product->enable }}"/>
+								<x-landlord.show.my-badge	value="{{ $product->id }}" label="ID"/>
+								<x-landlord.show.my-date	value="{{ $product->created_at }}" label="Created At:"/>
+								<x-landlord.show.my-number	value="{{ $product->price }}" label="Price"/>
+								<x-landlord.show.my-content	value="{{ $product->notes }}" label="Notes"/>
+								<x-landlord.show.my-integer	value="{{ $product->sold_qty }}" label="sold_qty"/>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-		<!-- End Body -->
-
-		<!-- Footer -->
-		<div class="card-footer pt-0">
-		<div class="d-flex justify-content-end gap-3">
-			<a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
-		</div>
-		</div>
-		<!-- End Footer -->
 	</div>
-	<!-- End Card -->
-
-
 
 @endsection

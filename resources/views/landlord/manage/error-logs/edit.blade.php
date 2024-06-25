@@ -3,32 +3,54 @@
 @section('breadcrumb','Edit Unhandled Error Log')
 
 @section('content')
-	<!-- Card -->
+
+	<h1 class="h3 mb-3">Edit Error Log</h1>
+
 	<div class="card">
-		<form id="myform" action="{{ route('error-logs.update',$errorLog->id) }}" method="POST">
-			@csrf
-			@method('PUT')
+		<div class="card-header">
 
-			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
-				<h5 class="card-header-title">Edit Unhandled Error Log</h5>
-				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
-			</div>
+			<h5 class="card-title">Edit Error Log (Admin Only)</h5>
+			<h6 class="card-subtitle text-muted">Edit Error Log Details.</h6>
+		</div>
+		<div class="card-body">
+			<form id="myform" action="{{ route('error-logs.update',$errorLog->id) }}" method="POST" enctype="multipart/form-data">
+				@csrf
+				@method('PUT')
 
-			<!-- Body -->
-			<div class="card-body">
-				<x-landlord.edit.id-read-only :value="$errorLog->id"/>
-				<x-landlord.show.my-text	value="{{ $errorLog->tenant }}"/>
-				<x-landlord.show.my-text	value="{{ $errorLog->user_id }}" label="User"/>
-				<x-landlord.show.my-text	value="{{ $errorLog->role }}" label="Role"/>
-				<x-landlord.show.my-date value="{{ $errorLog->created_at }}" label="Created At:"/>
+				<table class="table table-sm my-2">
+					<tbody>
 
-			</div>
-			<!-- End Body -->
 
-			<x-landlord.edit.save/>
-		</form>
+						<x-landlord.edit.id-read-only :value="$errorLog->id"/>
+						<x-landlord.show.my-text	value="{{ $errorLog->tenant }}"/>
+						<x-landlord.show.my-text	value="{{ $errorLog->user_id }}" label="User"/>
+						<x-landlord.show.my-text	value="{{ $errorLog->role }}" label="Role"/>
+						<x-landlord.show.my-text	value="{{ $errorLog->e_class }}" label="e_class"/>
+						<x-landlord.show.my-text-area	value="{{ $errorLog->message }}" label="message"/>
+						<x-landlord.show.my-date value="{{ $errorLog->created_at }}" label="Created At:"/>
+
+
+							<tr>
+								<th>status :</th>
+								<td>
+									<input type="text" class="form-control @error('status') is-invalid @enderror"
+										name="status" id="status" placeholder="status"
+										value="{{ old('status', $errorLog->status  ) }}"
+										required/>
+									@error('status')
+										<div class="small text-danger">{{ $message }}</div>
+									@enderror
+								</td>
+							</tr>
+
+					</tbody>
+				</table>
+
+				<x-landlord.edit.save/>
+			</form>
+		</div>
 	</div>
-	<!-- End Card -->
+
 @endsection
 
 

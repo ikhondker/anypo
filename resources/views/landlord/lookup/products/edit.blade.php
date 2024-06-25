@@ -1,41 +1,86 @@
-@extends('landlord.layouts.site-app')
-@section('title','Edit Service')
-@section('breadcrumb','Edit Service')
+@extends('layouts.landlord.app')
+@section('title','Edit Product')
+@section('breadcrumb','Edit Product')
 
 @section('content')
 
-	<x-landlord.card.header title="Edit Service"/>
-	<!-- form start -->
-	<form action="{{ route('services.update',$service->id) }}" method="POST">
-	@csrf
-	@method('PUT')
-		<!-- my-section-row -->
-		<div class="row my-section-row justify-content-between">
-			<div class="col-xl-7">
-				<h6>Service Info:-</h6>
-					<x-landlord.show.my-text	value="{{ $service->summary }}"/>
-					<x-landlord.show.my-text	value="{{ $service->name }}" label="Name"/>
-					<x-landlord.show.my-enable	value="{{ $service->enable }}"/>
-					<x-landlord.show.my-badge	value="{{ $service->id }}" label="ID"/>
-			</div>
-			<div class="col-xl-5">
-				<h6>Dates and Price:-</h6>
-				<x-landlord.show.my-date value="{{ $service->created_at }}" label="Created At:"/>
-				<x-landlord.show.my-date value="{{ $service->start_date }}" label="Start Date"/>
-				<x-landlord.show.my-date value="{{ $service->end_date }}" label="End Date"/>
-				<x-landlord.show.my-number value="{{ $service->price }}" label="Price"/>
-			</div>
-		</div>
-		<!-- /.my-section-row -->
+    <h1 class="h3 mb-3">Edit Product</h1>
 
-		<div class="my-section-buttons">
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<a class="btn btn-dark" href="{{ route('users.index') }}">Cancel</a>
-				<button type="submit" class="btn btn-info">Save</button>
-			</div>
-		</div>
+    <div class="card">
+        <div class="card-header">
 
-	</form>
-	<!-- /.form end -->
+            <h5 class="card-title">Edit Product (Admin Only)</h5>
+            <h6 class="card-subtitle text-muted">Edit Product Details.</h6>
+        </div>
+        <div class="card-body">
+            <form id="myform" action="{{ route('products.update',$product->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <table class="table table-sm my-2">
+                    <tbody>
+
+                        <x-landlord.edit.id-read-only :value="$product->id"/>
+                        <x-landlord.edit.name :value="$product->name"/>
+
+                        <tr>
+                            <th>Mnth :</th>
+                            <td>
+                                <input type="number" class="form-control @error('mnth') is-invalid @enderror"
+                                name="mnth" id="mnth" placeholder="Name"
+                                value="{{ old('mnth', $product->mnth ) }}"
+                                required/>
+                            @error('mnth')
+                                <div class="text-danger text-xs">{{ $message }}</div>
+                            @enderror
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Users :</th>
+                            <td>
+                                <input type="number" class="form-control @error('mnth') is-invalid @enderror"
+                                        name="user" id="user" placeholder="Name"
+                                        value="{{ old('user', $product->user ) }}"
+                                        required/>
+                                    @error('user')
+                                        <div class="text-danger text-xs">{{ $message }}</div>
+                                    @enderror
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>GB :</th>
+                            <td>
+                                <input type="number" class="form-control @error('gb') is-invalid @enderror"
+                                        name="gb" id="gb" placeholder="Name"
+                                        value="{{ old('gb', $product->gb ) }}"
+                                        required/>
+                                    @error('gb')
+                                        <div class="text-danger text-xs">{{ $message }}</div>
+                                    @enderror
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Price :</th>
+                            <td>
+                                <input type="text" class="form-control @error('price') is-invalid @enderror"
+                                        name="price" id="price" placeholder="Name"
+                                        value="{{ old('price', $product->price ) }}"
+                                        required/>
+                                    @error('price')
+                                        <div class="text-danger text-xs">{{ $message }}</div>
+                                    @enderror
+                            </td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+
+                <x-landlord.edit.save/>
+            </form>
+        </div>
+    </div>
 
 @endsection

@@ -6,13 +6,13 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Models\Landlord\Admin\Attachment;
+use App\Models\Landlord\Manage\Attachment;
 
 class ShowById extends Component
 {
 	public $id;
 	public $attachment;
-	
+
 	/**
 	 * Create a new component instance.
 	 */

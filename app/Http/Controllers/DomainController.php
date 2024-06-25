@@ -20,7 +20,7 @@ use App\Models\User;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. FUTURE 
+# 13. FUTURE
 
 class DomainController extends Controller
 {
@@ -55,7 +55,7 @@ class DomainController extends Controller
 	public function show(Domain $domain)
 	{
 
-		
+
 		$this->authorize('view', $domain);
 
 		//Tenancy::setTenant($tenant);
@@ -67,10 +67,12 @@ class DomainController extends Controller
 		$tenant = Tenant::find( $domain->tenant_id);
 		$users = $tenant->run(function(){
 			return User::all();
-		}	
+		    }
 		);
 
-		return view('domains.show',compact('domain','users'));
+		//return view('domains.show',compact('domain','users'));
+        return view('domains.show',compact('domain'));
+
 	}
 
 	/**

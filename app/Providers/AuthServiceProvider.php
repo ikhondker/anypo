@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
 
 		/*
 		|-----------------------------------------------------------------------------
-		| Common																	 + 
+		| Common																	 +
 		|-----------------------------------------------------------------------------
 		*/
 		'App\Models\User' 							=> 'App\Policies\UserPolicy',
@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
 
 		/*
 		|-----------------------------------------------------------------------------
-		| Landlord																	 + 
+		| Landlord																	 +
 		|-----------------------------------------------------------------------------
 		*/
 		'App\Models\Landlord\Account'				=> 'App\Policies\Landlord\AccountPolicy',
@@ -34,12 +34,10 @@ class AuthServiceProvider extends ServiceProvider
 		//'App\Models\Landlord\Notification' 		=> 'App\Policies\Landlord\NotificationPolicy',
 		'App\Models\Landlord\Report' 				=> 'App\Policies\Landlord\ReportPolicy',
 		'App\Models\Landlord\Ticket' 				=> 'App\Policies\Landlord\TicketPolicy',
-		
-		'App\Models\Landlord\Admin\Activity'		=> 'App\Policies\Landlord\Admin\ActivityPolicy',
+
 		'App\Models\Landlord\Admin\Invoice' 		=> 'App\Policies\Landlord\Admin\InvoicePolicy',
 		'App\Models\Landlord\Admin\Payment' 		=> 'App\Policies\Landlord\Admin\PaymentPolicy',
 		'App\Models\Landlord\Admin\Service' 		=> 'App\Policies\Landlord\Admin\ServicePolicy',
-		'App\Models\Landlord\Admin\Attachment' 		=> 'App\Policies\Landlord\Admin\AttachmentPolicy',
 
 		'App\Models\Landlord\Lookup\Category' 		=> 'App\Policies\Landlord\Lookup\CategoryPolicy',
 		'App\Models\Landlord\Lookup\Country' 		=> 'App\Policies\Landlord\Lookup\CountryPolicy',
@@ -48,7 +46,9 @@ class AuthServiceProvider extends ServiceProvider
 		//'App\Models\Landlord\Lookup\Priority' 		=> 'App\Policies\Landlord\Lookup\PriorityPolicy',
 		'App\Models\Landlord\Lookup\Product' 		=> 'App\Policies\Landlord\Lookup\ProductPolicy',
 		//'App\Models\Landlord\Lookup\Rating' 		=> 'App\Policies\Landlord\Lookup\RatingPolicy',
-				
+
+        'App\Models\Landlord\Manage\Activity'		=> 'App\Policies\Landlord\Manage\ActivityPolicy',
+		'App\Models\Landlord\Manage\Attachment' 		=> 'App\Policies\Landlord\Manage\AttachmentPolicy',
 		'App\Models\Landlord\Manage\Checkout' 		=> 'App\Policies\Landlord\Manage\CheckoutPolicy',
 		'App\Models\Landlord\Manage\Contact' 		=> 'App\Policies\Landlord\Manage\ContactPolicy',
 		'App\Models\Landlord\Manage\Entity' 		=> 'App\Policies\Landlord\Manage\EntityPolicy',
@@ -62,7 +62,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Manage\Template' 		=> 'App\Policies\Landlord\Manage\TemplatePolicy',
 		/*
 		|-----------------------------------------------------------------------------
-		| Tenant																	 + 
+		| Tenant																	 +
 		|-----------------------------------------------------------------------------
 		*/
 
@@ -78,7 +78,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Lookup\Group'		=> 'App\Policies\Tenant\Lookup\GroupPolicy',
 		'App\Models\Tenant\Lookup\Item'			=> 'App\Policies\Tenant\Lookup\ItemPolicy',
 		'App\Models\Tenant\Lookup\Oem'			=> 'App\Policies\Tenant\Lookup\OemPolicy',
-		
+
 		'App\Models\Tenant\Lookup\Rate'			=> 'App\Policies\Tenant\Lookup\RatePolicy',
 		'App\Models\Tenant\Lookup\Supplier'		=> 'App\Policies\Tenant\Lookup\SupplierPolicy',
 		'App\Models\Tenant\Lookup\Uom'			=> 'App\Policies\Tenant\Lookup\UomPolicy',
@@ -93,7 +93,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Manage\Table'		=> 'App\Policies\Tenant\Manage\TablePolicy',
 		'App\Models\Tenant\Manage\Template'		=> 'App\Policies\Tenant\Manage\TemplatePolicy',
 		'App\Models\Tenant\Manage\CustomError'	=> 'App\Policies\Tenant\Manage\CustomErrorPolicy',
-		
+
 
 		'App\Models\Tenant\Workflow\Hierarchy'	=> 'App\Policies\Tenant\Workflow\HierarchyPolicy',
 		'App\Models\Tenant\Workflow\Hierarchyl'	=> 'App\Policies\Tenant\Workflow\HierarchylPolicy',
@@ -109,7 +109,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\DeptBudget'			=> 'App\Policies\Tenant\DeptBudgetPolicy',
 		'App\Models\Tenant\Dbu'					=> 'App\Policies\Tenant\DbuPolicy',
 		'App\Models\Tenant\Notification'		=> 'App\Policies\Tenant\NotificationPolicy',
-		
+
 		'App\Models\Tenant\Po'					=> 'App\Policies\Tenant\PoPolicy',
 		'App\Models\Tenant\Pol'					=> 'App\Policies\Tenant\PolPolicy',
 		'App\Models\Tenant\Pr'					=> 'App\Policies\Tenant\PrPolicy',
@@ -119,7 +119,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Payment'				=> 'App\Policies\Tenant\PaymentPolicy',
 		'App\Models\Tenant\Receipt' 			=> 'App\Policies\Tenant\ReceiptPolicy',
 		'App\Models\Tenant\Report' 				=> 'App\Policies\Tenant\ReportPolicy',
-		
+
 		// 'App\Models\Tenant' => 'App\Policies\TenantPolicy',
 		// 'App\Models\User' => 'App\Policies\UserPolicy',
 

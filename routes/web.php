@@ -185,7 +185,9 @@ use App\Http\Controllers\Landlord\TicketController;
 use App\Http\Controllers\Landlord\CommentController;
 use App\Http\Controllers\Landlord\ReportController;
 use App\Http\Controllers\Landlord\Admin\UserController;
-use App\Http\Controllers\Landlord\Admin\AttachmentController;
+
+
+use App\Http\Controllers\Landlord\Manage\AttachmentController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -207,7 +209,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/reports/pdf-invoice/{invoice}', [ReportController::class, 'viewPdfInvoice'])->name('reports.pdf-invoice');
 	Route::get('/reports/pdf-receipt/{payment}', [ReportController::class, 'viewPdfPayment'])->name('reports.pdf-payment');
 
-    /* ======================== User (Profile) ========================================  */
+	/* ======================== User (Profile) ========================================  */
 	Route::get('profile',[UserController::class, 'profile'])->name('users.profile');
 	Route::get('profile-edit', [UserController::class, 'editProfile'])->name('users.profile-edit');
 	Route::put('profile-update', [UserController::class, 'updateProfile'])->name('users.profile-update');
@@ -238,7 +240,7 @@ use App\Http\Controllers\Landlord\AccountController;
 use App\Http\Controllers\Landlord\Admin\ServiceController;
 use App\Http\Controllers\Landlord\Admin\InvoiceController;
 use App\Http\Controllers\Landlord\Admin\PaymentController;
-use App\Http\Controllers\Landlord\Admin\ActivityController;
+
 
 Route::middleware(['auth', 'verified','can:admin'])->group(function () {
 
@@ -253,16 +255,12 @@ Route::middleware(['auth', 'verified','can:admin'])->group(function () {
 	/* ======================== Invoice ======================================== */
 	Route::resource('invoices', InvoiceController::class);
 	Route::get('/invoice/generate',[InvoiceController::class,'generate'])->name('invoices.generate');
-    Route::get('/invoice/export', [InvoiceController::class, 'export'])->name('invoices.export');
+	Route::get('/invoice/export', [InvoiceController::class, 'export'])->name('invoices.export');
 
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class);
 	//Route::get('/payments/pdf/{pr}', [PaymentController::class,'pdf'])->name('payments.pdf');
-    Route::get('/payment/export', [PaymentController::class, 'export'])->name('payments.export');
-
-	/* ======================== Activity ========================================  */
-	Route::resource('activities', ActivityController::class);
-    Route::get('/activity/export', [ActivityController::class, 'export'])->name('activities.export');
+	Route::get('/payment/export', [PaymentController::class, 'export'])->name('payments.export');
 
 });
 
@@ -281,6 +279,8 @@ use App\Http\Controllers\Landlord\Lookup\CountryController;
 use App\Http\Controllers\Landlord\Lookup\ProductController;
 use App\Http\Controllers\Landlord\Manage\CheckoutController;
 use App\Http\Controllers\Landlord\Manage\MailListController;
+use App\Http\Controllers\Landlord\Manage\ActivityController;
+
 
 // Ref: app/Providers/AppServiceProvider.php
 Route::middleware(['auth', 'verified','can:support'])->group(function () {
@@ -300,7 +300,7 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 
 	/* ======================== Services ======================================== */
 	Route::get('/service/all', [ServiceController::class, 'all'])->name('services.all');
-    Route::get('/service/export', [ServiceController::class, 'export'])->name('services.export');
+	Route::get('/service/export', [ServiceController::class, 'export'])->name('services.export');
 
 		/* ======================== Invoice ======================================== */
 	Route::get('/invoice/all', [InvoiceController::class, 'all'])->name('invoices.all');
@@ -309,12 +309,14 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 	Route::get('/payment/all', [PaymentController::class, 'all'])->name('payments.all');
 
 	/* ======================== Activity ======================================== */
+	Route::resource('activities', ActivityController::class);
+	Route::get('/activity/export', [ActivityController::class, 'export'])->name('activities.export');
 	Route::get('/activity/all', [ActivityController::class, 'all'])->name('activities.all');
 
 	/* ======================== Contact ======================================== */
 	Route::resource('contacts', ContactController::class);
 	Route::get('/contact/all', [ContactController::class, 'all'])->name('contacts.all');
-    Route::get('/contact/export',[ContactController::class,'export'])->name('contacts.export');
+	Route::get('/contact/export',[ContactController::class,'export'])->name('contacts.export');
 
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
@@ -335,7 +337,7 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
 	//Route::get('/checkout/all', [CheckoutController::class, 'all'])->name('checkouts.all');
-    Route::get('/checkout/export', [CheckoutController::class, 'export'])->name('checkouts.export');
+	Route::get('/checkout/export', [CheckoutController::class, 'export'])->name('checkouts.export');
 
 	/* ======================== MailList ======================================== */
 	Route::resource('mail-lists', MailListController::class)->middleware(['auth', 'verified']);
@@ -442,7 +444,7 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 		return view('landlord.tests.test');
 	})->name('test');
 
-    Route::get('/widgets', function () {
+	Route::get('/widgets', function () {
 		return view('landlord.manage.widgets');
 	})->name('widgets');
 

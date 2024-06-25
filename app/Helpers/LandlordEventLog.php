@@ -9,7 +9,7 @@
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -23,7 +23,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Request;
 
-use App\Models\Landlord\Admin\Activity;
+use App\Models\Landlord\Manage\Activity;
 use Illuminate\Support\Facades\Log;
 
 use App\Enum\UserRoleEnum;
@@ -35,7 +35,7 @@ use App\Enum\UserRoleEnum;
 
 class LandlordEventLog
 {
-	
+
 	public static function event($object_name, $object_id = 0, $event_name = null, $column_name = null, $prior_value = null, $object_type = "C")
 	{
 		$log				= [];

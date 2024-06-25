@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies\Landlord\Admin;
+namespace App\Policies\Landlord\Manage;
 
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Models\Landlord\Admin\Attachment;
+use App\Models\Landlord\Manage\Attachment;
 
 use App\Enum\UserRoleEnum;
 use Illuminate\Support\Facades\Log;
@@ -53,7 +53,7 @@ class AttachmentPolicy
 	 */
 	public function update(User $user, Attachment $attachment): bool
 	{
-		return false;
+		return $user->isSeeded();
 	}
 
 	/**

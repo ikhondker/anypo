@@ -12,6 +12,7 @@ use App\Http\Requests\UpdateTenantRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -21,7 +22,7 @@ use App\Http\Requests\UpdateTenantRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. FUTURE 
+# 13. FUTURE
 
 class TenantController extends Controller
 {
@@ -55,9 +56,7 @@ class TenantController extends Controller
 	 */
 	public function show(Tenant $tenant)
 	{
-		//$this->authorize('view', $tenant);
-
-		
+		$this->authorize('view', $tenant);
 		return view('tenants.show', compact('tenant'));
 	}
 
@@ -66,7 +65,8 @@ class TenantController extends Controller
 	 */
 	public function edit(Tenant $tenant)
 	{
-		//
+		$this->authorize('update', $tenant);
+		return view('tenants.edit', compact('tenant'));
 	}
 
 	/**
@@ -74,7 +74,15 @@ class TenantController extends Controller
 	 */
 	public function update(UpdateTenantRequest $request, Tenant $tenant)
 	{
-		//
+		$this->authorize('update', $tenant);
+
+
+		$tenant->update($request->all());
+
+		// Write to Log
+		LandlordEventLog::event('tenant', $tenant->id, 'update', 'name', $request->name);
+
+		return redirect()->route('tenants.index')->with('success', 'Tenant updated successfully');
 	}
 
 	/**

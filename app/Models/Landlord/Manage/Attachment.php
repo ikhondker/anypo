@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Landlord\Admin;
+namespace App\Models\Landlord\Manage;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

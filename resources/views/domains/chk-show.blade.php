@@ -38,7 +38,7 @@
 		<!-- Card -->
 		<div class="card">
 			<div class="card-header border-bottom">
-					<h4 class="card-header-title">Domain User List (TODO P2)</h4>
+					<h4 class="card-header-title">Domain Info (TODO P2)</h4>
 			</div>
 
 			<!-- Body -->
@@ -93,7 +93,60 @@
 		<!-- End Card -->
 
 
+		<!-- Card -->
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-header-title">All Users: {{ $domain->tenant_id }}</h5>
+			</div>
 
+			<!-- Table -->
+			<div class="table-responsive">
+				<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+					<thead class="thead-light">
+						<tr>
+							<th>User</th>
+							<th>ID</th>
+							<th>Domain</th>
+							<th>Date</th>
+							<th>Status</th>
+							<th style="width: 5%;">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach ($users as $user)
+						<tr>
+							<td>
+							<div class="d-flex align-items-center">
+								<div class="flex-shrink-0">
+									<img class="avatar avatar-sm avatar-circle" src="{{ asset('/assets/logo/logo.png') }}" alt="Logo">
+								</div>
+
+								<div class="flex-grow-1 ms-3">
+									<a class="d-inline-block link-dark" href="#">
+										<h6 class="text-hover-primary mb-0">{{ $user->name }}</h6>
+									</a>
+								<small class="d-block">{{ $user->email }}</small>
+								</div>
+							</div>
+							</td>
+							<td>{{ $user->id }} </td>
+							<td>{{ $user->role }}</td>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+						</tr>
+
+						@endforeach
+					</tbody>
+
+
+				</table>
+			</div>
+			<!-- End Table -->
+
+
+		</div>
+		<!-- End Card -->
 	</div>
 @endsection
 

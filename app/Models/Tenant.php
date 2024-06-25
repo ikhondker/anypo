@@ -18,5 +18,8 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 	// 	'start_date', 'end_date', 'initial_owner_id', 'initial_owner_name', 'initial_owner_email', 'initial_owner_tenant_password', 'user', 'gb', 'count_user', 'count_gb', 'count_pr', 'count_po', 'rank', 'status', 'updated_at', 'data',
 	// ];
 
+    protected $fillable = [
+        'start_date', 'end_date', 'user', 'gb', 'count_user', 'count_gb', 'count_pr', 'count_po', 'rank', 'status', 'updated_at', 'data',
+    ];
 
 }

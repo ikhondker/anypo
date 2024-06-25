@@ -40,7 +40,7 @@ use App\Helpers\LandlordEventLog;
 # 11. Controller
 # 12. Seeded
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 
@@ -91,7 +91,7 @@ class ProductController extends Controller
 	public function show(Product $product)
 	{
 		$this->authorize('view', $product);
-		abort(403);
+        return view('landlord.lookup.products.show', compact('product'));
 	}
 
 	/**

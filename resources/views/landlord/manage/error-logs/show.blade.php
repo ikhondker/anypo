@@ -28,7 +28,7 @@
                             <x-landlord.show.my-text		value="{{ $errorLog->user_id }}" label="User ID"/>
                             <x-landlord.show.my-text		value="{{ $errorLog->role }}" label="Role"/>
                             <x-landlord.show.my-date-time	value="{{ $errorLog->created_at }}" label="Created At:"/>
-                            <x-landlord.show.my-content		value="{{ $errorLog->msg }}" label="Message"/>
+                            <x-landlord.show.my-content		value="{{ $errorLog->message }}" label="Message"/>
                         </tbody>
                     </table>
                 </div>

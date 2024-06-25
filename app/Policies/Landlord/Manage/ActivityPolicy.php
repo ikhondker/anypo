@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies\Landlord\Admin;
+namespace App\Policies\Landlord\Manage;
 
-use App\Models\Landlord\Admin\Activity;
+use App\Models\Landlord\Manage\Activity;
 use App\Models\User;
 
 use App\Enum\UserRoleEnum;

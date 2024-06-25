@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Landlord\Admin;
+namespace App\Http\Requests\Landlord\Lookup;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAttachmentRequest extends FormRequest
+class StoreCategoryRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -17,7 +17,7 @@ class UpdateAttachmentRequest extends FormRequest
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
-	 * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+	 * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
 	 */
 	public function rules(): array
 	{

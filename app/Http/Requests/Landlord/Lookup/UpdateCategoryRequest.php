@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Landlord\Manage;
+namespace App\Http\Requests\Landlord\Lookup;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCategoryRequest extends FormRequest
+class UpdateCategoryRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.

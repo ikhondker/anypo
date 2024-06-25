@@ -18,14 +18,14 @@
 * =====================================================================================
 */
 
-namespace App\Http\Controllers\Landlord\Admin;
+namespace App\Http\Controllers\Landlord\Manage;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Landlord\Admin\StoreActivityRequest;
-use App\Http\Requests\Landlord\Admin\UpdateActivityRequest;
+use App\Http\Requests\Landlord\Manage\StoreActivityRequest;
+use App\Http\Requests\Landlord\Manage\UpdateActivityRequest;
 
 # 1. Models
-use App\Models\Landlord\Admin\Activity;
+use App\Models\Landlord\Manage\Activity;
 # 2. Enums
 use App\Enum\UserRoleEnum;
 # 3. Helpers
@@ -91,7 +91,7 @@ class ActivityController extends Controller
 		}
 
 		$activities = $activities->orderBy('id', 'DESC')->paginate(25);
-		return view('landlord.admin.activities.index', compact('activities'));
+		return view('landlord.manage.activities.index', compact('activities'));
 
 		// switch (auth()->user()->role->value) {
 		// 	case UserRoleEnum::ADMIN->value:
@@ -100,7 +100,7 @@ class ActivityController extends Controller
 		// 	default:
 		// 		$activities = Activity::with('user')->byUser()->orderBy('id', 'desc')->paginate(25);
 		// }
-		// return view('landlord.admin.activities.index', compact('activities'));
+		// return view('landlord.manage.activities.index', compact('activities'));
 	}
 
 	/**
@@ -112,7 +112,7 @@ class ActivityController extends Controller
 	{
 		$this->authorize('viewAll',Activity::class);
 		$activities = Activity::with('user')->latest()->orderBy('id', 'desc')->paginate(25);
-		return view('landlord.admin.activities.all', compact('activities'));
+		return view('landlord.manage.activities.all', compact('activities'));
 	}
 
 
@@ -146,7 +146,7 @@ class ActivityController extends Controller
 	public function show(Activity $activity)
 	{
 		$this->authorize('view', $activity);
-		return view('landlord.admin.activities.show', compact('activity'));
+		return view('landlord.manage.activities.show', compact('activity'));
 	}
 
 	/**
@@ -157,7 +157,8 @@ class ActivityController extends Controller
 	 */
 	public function edit(Activity $activity)
 	{
-		abort(403);
+		$this->authorize('update', $activity);
+        return view('landlord.manage.activities.edit', compact('activity'));
 	}
 
 	/**
@@ -169,7 +170,12 @@ class ActivityController extends Controller
 	 */
 	public function update(UpdateActivityRequest $request, Activity $activity)
 	{
-		abort(403);
+		$this->authorize('update', $activity);
+
+		$request->validate([]);
+		$activity->update($request->all());
+
+		return redirect()->route('activities.index')->with('success', 'Activity updated successfully');
 	}
 
 	/**
