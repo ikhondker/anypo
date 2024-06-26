@@ -3,44 +3,46 @@
 @section('breadcrumb','Edit Status')
 
 @section('content')
-	<!-- Card -->
+
+	<h1 class="h3 mb-3">Edit Status</h1>
+
 	<div class="card">
+		<div class="card-header">
 
-		<form id="myform" action="{{ route('statuses.update',$status->code) }}" method="POST" enctype="multipart/form-data">
-			@csrf
-			@method('PUT')
+			<h5 class="card-title">Edit Status (Admin Only)</h5>
+			<h6 class="card-subtitle text-muted">Edit Status Details.</h6>
+		</div>
+		<div class="card-body">
+			<form id="myform" action="{{ route('statuses.update',$status->code) }}" method="POST" enctype="multipart/form-data">
+				@csrf
+				@method('PUT')
 
-			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
-				<h5 class="card-header-title">Edit Status</h5>
-				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
-			</div>
+				<table class="table table-sm my-2">
+					<tbody>
 
-			<!-- Body -->
-			<div class="card-body">
+						<x-landlord.edit.id-read-only :value="$status->code"/>
+						<x-landlord.edit.name :value="$status->name"/>
 
-				<x-landlord.edit.id-read-only :value="$status->code"/>
-				<x-landlord.edit.name :value="$status->name"/>
-				<!-- Form -->
-				<div class="row mb-4">
-					<label for="badge" class="col-sm-3 col-form-label form-label">Badge :</label>
-					<div class="col-sm-9">
-					<input type="text" class="form-control @error('badge') is-invalid @enderror"
-							name="badge" id="badge" placeholder="badge"
-							value="{{ old('badge', $status->badge ) }}"
-							required/>
-						@error('badge')
-							<div class="text-danger text-xs">{{ $message }}</div>
-						@enderror
-					</div>
-				</div>
-				<!-- End Form -->
+							<tr>
+								<th>Badge :</th>
+								<td>
+									<input type="text" class="form-control @error('badge') is-invalid @enderror"
+										name="badge" id="badge" placeholder="badge"
+										value="{{ old('badge', $status->badge  ) }}"
+										required/>
+									@error('badge')
+										<div class="small text-danger">{{ $message }}</div>
+									@enderror
+								</td>
+							</tr>
+							
+					</tbody>
+				</table>
 
-
-			</div>
-			<!-- End Body -->
-
-			<x-landlord.edit.save/>
-		</form>
+				<x-landlord.edit.save/>
+			</form>
+		</div>
 	</div>
-	<!-- End Card -->
+
+
 @endsection

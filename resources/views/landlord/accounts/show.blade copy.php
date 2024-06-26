@@ -13,7 +13,7 @@
 						<a href="{{ route('accounts.edit', $account->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  Edit Account</a>
 					</div>
 					<h5 class="card-title">Account Overview</h5>
-					<h6 class="card-subtitle text-muted">Heatmap is a visualization tool that employs.</h6>
+					<h6 class="card-subtitle text-muted">View Account Details.</h6>
 				</div>
 				<div class="card-body">
 					<div class="row g-0">

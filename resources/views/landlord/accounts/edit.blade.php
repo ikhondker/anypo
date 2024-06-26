@@ -4,8 +4,7 @@
 
 @section('content')
 
-    <h1 class="h3 mb-3">Edit Billing Account</h1>
-
+	<h1 class="h3 mb-3">Edit Billing Account</h1>
 
 	<div class="card">
 		<div class="card-header">

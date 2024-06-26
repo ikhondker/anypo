@@ -14,7 +14,7 @@
 
 					</div>
 					<h5 class="card-title">View Visitor Contact</h5>
-					<h6 class="card-subtitle text-muted">Heatmap is a visualization tool that employs.</h6>
+					<h6 class="card-subtitle text-muted">View Visitor Contact Detail.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table table-sm my-2">

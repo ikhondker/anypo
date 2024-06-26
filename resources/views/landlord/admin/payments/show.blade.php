@@ -17,7 +17,7 @@
 						@endif
 					</div>
 					<h5 class="card-title">View Payment</h5>
-					<h6 class="card-subtitle text-muted">Heatmap is a visualization tool that employs.</h6>
+					<h6 class="card-subtitle text-muted">View Payment Detail.</h6>
 				</div>
 				<div class="card-body">
 					<table class="table table-sm my-2">

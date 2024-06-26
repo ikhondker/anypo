@@ -21,7 +21,7 @@
 					<div class="small text-danger">{{ $message }}</div>
 				@enderror
 			</div>
-		<div class="col-md-3">
+			<div class="col-md-3">
 			<input type="text" class="form-control @error('zip') is-invalid @enderror"
 				name="zip" id="zip" placeholder="1234"
 				value="{{ old('zip', $zip ) }}"
@@ -29,7 +29,7 @@
 				@error('zip')
 					<div class="small text-danger">{{ $message }}</div>
 				@enderror
+			</div>
 		</div>
-	</div>
 	</td>
 </tr>

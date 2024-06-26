@@ -4,36 +4,36 @@
 
 @section('content')
 
-    <h1 class="h3 mb-3">View Unhandled Error Log</h1>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-actions float-end">
-                        <a href="{{ route('error-logs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  View all</a>
-                        @if (auth()->user()->isSystem())
-                        <a class="btn btn-sm btn-danger text-white" href="{{ route('error-logs.edit', $errorLog->id) }}"><i class="fas fa-edit"></i> Edit</a>
-                        @endif
-                    </div>
-                    <h5 class="card-title">View Unhandled Error Log</h5>
-                    <h6 class="card-subtitle text-muted">Heatmap is a visualization tool that employs.</h6>
-                </div>
-                <div class="card-body">
-                    <table class="table table-sm my-2">
-                        <tbody>
-                            <x-landlord.show.my-badge		value="{{ $errorLog->id }}" label="ID"/>
-                            <x-landlord.show.my-text		value="{{ $errorLog->tenant }}" label="Tenant"/>
-                            <x-landlord.show.my-url			value="{{ $errorLog->url }}"/>
-                            <x-landlord.show.my-text		value="{{ $errorLog->e_class }}" label="Class"/>
-                            <x-landlord.show.my-text		value="{{ $errorLog->user_id }}" label="User ID"/>
-                            <x-landlord.show.my-text		value="{{ $errorLog->role }}" label="Role"/>
-                            <x-landlord.show.my-date-time	value="{{ $errorLog->created_at }}" label="Created At:"/>
-                            <x-landlord.show.my-content		value="{{ $errorLog->message }}" label="Message"/>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+	<h1 class="h3 mb-3">View Unhandled Error Log</h1>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-actions float-end">
+						<a href="{{ route('error-logs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  View all</a>
+						@if (auth()->user()->isSystem())
+						<a class="btn btn-sm btn-danger text-white" href="{{ route('error-logs.edit', $errorLog->id) }}"><i class="fas fa-edit"></i> Edit</a>
+						@endif
+					</div>
+					<h5 class="card-title">View Unhandled Error Log</h5>
+					<h6 class="card-subtitle text-muted">View Unhandled Error Log Details.</h6>
+				</div>
+				<div class="card-body">
+					<table class="table table-sm my-2">
+						<tbody>
+							<x-landlord.show.my-badge		value="{{ $errorLog->id }}" label="ID"/>
+							<x-landlord.show.my-text		value="{{ $errorLog->tenant }}" label="Tenant"/>
+							<x-landlord.show.my-url			value="{{ $errorLog->url }}"/>
+							<x-landlord.show.my-text		value="{{ $errorLog->e_class }}" label="Class"/>
+							<x-landlord.show.my-text		value="{{ $errorLog->user_id }}" label="User ID"/>
+							<x-landlord.show.my-text		value="{{ $errorLog->role }}" label="Role"/>
+							<x-landlord.show.my-date-time	value="{{ $errorLog->created_at }}" label="Created At:"/>
+							<x-landlord.show.my-content		value="{{ $errorLog->message }}" label="Message"/>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 
 @endsection
