@@ -37,8 +37,8 @@ class Handler extends ExceptionHandler
 			$url 		= url()->current();
 			$user_id 	= ( auth()->check() ? auth()->user()->id : '0000');
 			$role		= ( auth()->check() ? auth()->user()->role->value : 'guest');
-			//$eClass		= get_class($e);
-			$eClass		= substr( get_class($e), strrpos( get_class($e),'\\') +1);
+			//$eClass	= get_class($e);
+			$eClass		= substr( get_class($e), strrpos( get_class($e),'\\') + 1);
 			$msg		= $e->getMessage();
 
 			// landlord Errors

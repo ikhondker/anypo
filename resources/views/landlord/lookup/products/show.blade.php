@@ -23,12 +23,12 @@
 					<table class="table table-sm my-2">
 						<tbody>
 							<x-landlord.show.my-text	value="{{ $product->name }}" label="Product"/>
-								<x-landlord.show.my-enable	value="{{ $product->enable }}"/>
-								<x-landlord.show.my-badge	value="{{ $product->id }}" label="ID"/>
-								<x-landlord.show.my-date	value="{{ $product->created_at }}" label="Created At:"/>
-								<x-landlord.show.my-number	value="{{ $product->price }}" label="Price"/>
-								<x-landlord.show.my-content	value="{{ $product->notes }}" label="Notes"/>
-								<x-landlord.show.my-integer	value="{{ $product->sold_qty }}" label="sold_qty"/>
+							<x-landlord.show.my-enable	value="{{ $product->enable }}"/>
+							<x-landlord.show.my-badge	value="{{ $product->id }}" label="ID"/>
+							<x-landlord.show.my-date	value="{{ $product->created_at }}" label="Created At"/>
+							<x-landlord.show.my-number	value="{{ $product->price }}" label="Price"/>
+							<x-landlord.show.my-content	value="{{ $product->notes }}" label="Notes"/>
+							<x-landlord.show.my-integer	value="{{ $product->sold_qty }}" label="Sold Qty"/>
 						</tbody>
 					</table>
 				</div>

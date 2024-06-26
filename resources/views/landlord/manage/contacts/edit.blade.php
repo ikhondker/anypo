@@ -19,9 +19,6 @@
 
 				<table class="table table-sm my-2">
 					<tbody>
-                        id
-                         first_name last_name email cell subject message contact_date
-
 
 						<x-landlord.edit.id-read-only :value="$contact->id"/>
 

@@ -3,6 +3,8 @@
 @section('breadcrumb','Edit Category')
 
 @section('content')
+
+
 	<h1 class="h3 mb-3">Edit Category</h1>
 
 	<div class="card">

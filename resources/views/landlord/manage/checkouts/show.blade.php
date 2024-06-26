@@ -4,49 +4,50 @@
 
 @section('content')
 
+<h1 class="h3 mb-3">View Checkout</h1>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-actions float-end">
+						<a href="{{ route('checkouts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  View all</a>
+						@if (auth()->user()->isSystem())
+						<a class="btn btn-sm btn-danger text-white" href="{{ route('checkouts.edit', $checkout->id) }}"><i class="fas fa-edit"></i> Edit(*)</a>
 
-<!-- Card -->
-<div class="card">
-	<div class="card-header border-bottom">
-		<h4 class="card-header-title">Checkout info</h4>
-	</div>
-
-	<!-- Body -->
-	<div class="card-body">
-
-		<x-landlord.show.my-badge value="{{ $checkout->id }}" label="ID" />
-		<x-landlord.show.my-date-time value="{{ $checkout->checkout_date }}" />
-		<x-landlord.show.my-text value="{{ $checkout->site }}" label="Site" />
-		<x-landlord.show.my-text value="{{ $checkout->account_name }}" label="Name" />
-		<x-landlord.show.my-text value="{{ $checkout->email }}" label="Email" />
-
-		<x-landlord.show.my-text value="{{ $checkout->account_id }}" label="Account #" />
-		<x-landlord.show.my-text value="{{ $checkout->account_name }}" label="Account Name" />
-		<x-landlord.show.my-text value="{{ $checkout->invoice_id }}" label="Invoice #" />
-		<x-landlord.show.my-date value="{{ $checkout->start_date }}" abel="Start"/>
-		<x-landlord.show.my-date value="{{ $checkout->end_date }}" abel="End"/>
-
-		<x-landlord.show.my-enable value="{{ $checkout->existing_user }}" label="existing_user" />
-		<x-landlord.show.my-text value="{{ $checkout->owner_id }}" label="Owner #" />
-		<x-landlord.show.my-text value="{{ $checkout->session_id }}" label="Session ID" />
-
-		<x-landlord.show.my-text value="{{ $checkout->product->sku }}" label="Product SKU" />
-		<x-landlord.show.my-number value="{{ $checkout->price }}" label="Price" />
-		<x-landlord.show.my-number value="{{ $checkout->mnth }}" label="Mnth" />
-		<x-landlord.show.my-badge value="{{ $checkout->status->name }}" badge="{{ $checkout->status->badge }}" label="Status" />
-
-	</div>
-	<!-- End Body -->
-
-
-	<!-- Footer -->
-	<div class="card-footer pt-0">
-		<div class="d-flex justify-content-end gap-3">
-			<a class="btn btn-primary" href="{{ route('checkouts.edit',$checkout->id) }}">Edit</a>
+						@endif
+					</div>
+					<h5 class="card-title">View Checkout</h5>
+					<h6 class="card-subtitle text-muted">View Checkout Detail.</h6>
+				</div>
+				<div class="card-body">
+					<table class="table table-sm my-2">
+						<tbody>
+							<x-landlord.show.my-badge value="{{ $checkout->id }}" label="ID" />
+							<x-landlord.show.my-date-time value="{{ $checkout->checkout_date }}" />
+							<x-landlord.show.my-text value="{{ $checkout->site }}" label="Site" />
+							<x-landlord.show.my-text value="{{ $checkout->account_name }}" label="Name" />
+							<x-landlord.show.my-text value="{{ $checkout->email }}" label="Email" />
+					
+							<x-landlord.show.my-text value="{{ $checkout->account_id }}" label="Account #" />
+							<x-landlord.show.my-text value="{{ $checkout->account_name }}" label="Account Name" />
+							<x-landlord.show.my-text value="{{ $checkout->invoice_id }}" label="Invoice #" />
+							<x-landlord.show.my-date value="{{ $checkout->start_date }}" abel="Start"/>
+							<x-landlord.show.my-date value="{{ $checkout->end_date }}" abel="End"/>
+					
+							<x-landlord.show.my-enable value="{{ $checkout->existing_user }}" label="existing_user" />
+							<x-landlord.show.my-text value="{{ $checkout->owner_id }}" label="Owner #" />
+							<x-landlord.show.my-text value="{{ $checkout->session_id }}" label="Session ID" />
+					
+							<x-landlord.show.my-text value="{{ $checkout->product->sku }}" label="Product SKU" />
+							<x-landlord.show.my-number value="{{ $checkout->price }}" label="Price" />
+							<x-landlord.show.my-number value="{{ $checkout->mnth }}" label="Mnth" />
+							<x-landlord.show.my-badge value="{{ $checkout->status->name }}" badge="{{ $checkout->status->badge }}" label="Status" />
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
-	<!-- End Footer -->
-</div>
-<!-- End Card -->
+
 
 @endsection

@@ -75,7 +75,7 @@
 							<td><x-landlord.list.my-badge :value="$domain->tenant_id"/></td>
 							<td class="text-end">
 								<a href="{{ route('domains.show',$domain->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View (Err)</a>
+									data-bs-placement="top" title="View">View</a>
 							</td>
 						</tr>
 					@endforeach

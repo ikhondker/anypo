@@ -3,27 +3,31 @@
 @section('breadcrumb','Create Category')
 
 @section('content')
-	<!-- Card -->
+
+	<h1 class="h3 mb-3">Create Category</h1>
+
 	<div class="card">
-		<form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
-			@csrf
+		<div class="card-header">
 
-			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
-				<h5 class="card-header-title">Create Category</h5>
-				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
-			</div>
+			<h5 class="card-title">Create Category</h5>
+			<h6 class="card-subtitle text-muted">Create New Category.</h6>
+		</div>
+		<div class="card-body">
+			<form id="myform" action="{{ route('categories.store') }}" method="POST">
+				@csrf
+				@method('PUT')
 
-			<!-- Body -->
-			<div class="card-body">
-				<x-landlord.create.name/>
+				<table class="table table-sm my-2">
+					<tbody>
 
-			</div>
-			<!-- End Body -->
+						<x-landlord.create.name/>
+					</tbody>
+				</table>
 
-
-			<x-landlord.create.save/>
-		</form>
+				<x-landlord.edit.save/>
+			</form>
+		</div>
 	</div>
-	<!-- End Card -->
+
 @endsection
 

@@ -69,6 +69,8 @@
 							<td class="text-end">
 								<a href="{{ route('categories.show',$category->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
+								<a href="{{ route('categories.edit',$category->id) }}" class="text-body" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="Edit"><i data-lucide="edit"></i></a>
 								<a href="{{ route('categories.destroy', $category->id) }}"
 									class="text-body sw2-advance" data-entity="Category"
 									data-name="{{ $category->name }}"

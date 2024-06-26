@@ -11,6 +11,7 @@ use App\Models\Tenant;
 use App\Models\User;
 # 2. Enums
 # 3. Helpers
+use App\Helpers\LandlordEventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -80,7 +81,9 @@ class DomainController extends Controller
 	 */
 	public function edit(Domain $domain)
 	{
-		//
+		$this->authorize('update', $domain);
+
+		return view('domains.edit', compact('domain'));
 	}
 
 	/**
@@ -88,7 +91,16 @@ class DomainController extends Controller
 	 */
 	public function update(UpdateDomainRequest $request, Domain $domain)
 	{
-		//
+		$this->authorize('update', $domain);
+
+		$request->validate([
+		]);
+		$domain->update($request->all());
+
+		// Write to Log
+		LandlordEventLog::event('category', $domain->id, 'update', 'name', $request->name);
+
+		return redirect()->route('categories.index')->with('success', 'Category updated successfully');
 	}
 
 	/**

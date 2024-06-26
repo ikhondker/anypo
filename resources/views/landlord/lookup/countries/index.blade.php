@@ -5,8 +5,10 @@
 
 @section('content')
 
+	@if (auth()->user()->isSystem())
+		<a href="{{ route('countries.create') }}" class="btn btn-danger text-white float-end mt-n1"><i class="fas fa-plus"></i> New Country(*)</a>
+	@endif
 
-	<a href="{{ route('countries.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Country</a>
 	<h1 class="h3 mb-3">All Countries</h1>
 
 	<div class="card">
@@ -56,7 +58,7 @@
 					@foreach ($countries as $country)
 						<tr>
 							<td>
-								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo" title="Logo">
+								<img src="{{ Storage::disk('s3l')->url('flags/'. Str::lower($country->country).'.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo" title="Logo">
 							</td>
 							<td>{{ $country->country }}</td>
 							<td>

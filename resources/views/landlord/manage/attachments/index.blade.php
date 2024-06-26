@@ -18,7 +18,7 @@
 						<input type="text" class="form-control" id="datatables-attachment-search"
 							minlength=3 name="term"
 							value="{{ old('term', request('term')) }}" id="term"
-							placeholder="Search templates…" required>
+							placeholder="Search attachments…" required>
 						<button class="btn" type="submit">
 							<i class="align-middle" data-lucide="search"></i>
 						</button>
