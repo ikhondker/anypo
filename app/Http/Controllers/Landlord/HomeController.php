@@ -43,8 +43,8 @@ use App\Enum\LandlordCheckoutStatusEnum;
 use App\Enum\LandlordInvoiceStatusEnum;
 use App\Enum\LandlordPaymentStatusEnum;
 # 3. Helpers
-use App\Helpers\LandlordFileUpload;
-//use App\Helpers\LandlordEventLog;
+use App\Helpers\Landlord\FileUpload;
+//use App\Helpers\EventLog;
 # 4. Notifications
 use Notification;
 use App\Notifications\Landlord\Test;
@@ -661,7 +661,7 @@ class HomeController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $contact->id]);
 			$request->merge(['entity'		=> $ENTITY]);
-			$attachment_id = LandlordFileUpload::aws($request);
+			$attachment_id = FileUpload::aws($request);
 
 			// update back table with attachment_id
 			$contact->attachment_id = $attachment_id;

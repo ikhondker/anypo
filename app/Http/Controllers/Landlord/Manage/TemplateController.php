@@ -36,7 +36,7 @@ use App\Models\Landlord\Manage\Country;
 # 2. Enums
 # 3. Helpers
 use App\Helpers\FileUpload;
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
@@ -127,7 +127,7 @@ class TemplateController extends Controller
 		//dd($request);
 		$template = Template::create($request->all());
 		// Write to Log
-		LandlordEventLog::event('template', $template->id, 'create');
+		EventLog::event('template', $template->id, 'create');
 
 
 		// Upload File, if any, insert row in attachment table and get attachments id
@@ -167,7 +167,7 @@ class TemplateController extends Controller
 		$countries = Country::getAll();
 
 		// Write Event Log
-		LandlordEventLog::event('template', $template->id, 'edit', 'template', $template->name);
+		EventLog::event('template', $template->id, 'edit', 'template', $template->name);
 		return view('landlord.manage.templates.edit', compact('template', 'users', 'countries'));
 	}
 
@@ -184,10 +184,10 @@ class TemplateController extends Controller
 
 		// check if old value has been change
 		if ($request->input('address2') <> $template->address2) {
-			LandlordEventLog::event('template', $template->id, 'update', 'address2', $template->address2);
+			EventLog::event('template', $template->id, 'update', 'address2', $template->address2);
 		}
 		if ($request->input('email') <> $template->email) {
-			LandlordEventLog::event('template', $template->id, 'update', 'email', $template->email);
+			EventLog::event('template', $template->id, 'update', 'email', $template->email);
 		}
 
 		if ($request->input('agent_id') <> $template->agent_id) {
@@ -195,7 +195,7 @@ class TemplateController extends Controller
 			// Send notification to Assigned Agent
 			// $agent = User::where('id', $request->input('agent_id'))->first();
 			$agent->notify(new templateAssigned($agent, $template));
-			LandlordEventLog::event('template', $template->id, 'update', 'agent_id', $template->agent_id);
+			EventLog::event('template', $template->id, 'update', 'agent_id', $template->agent_id);
 		}
 
 		// check box
@@ -211,7 +211,7 @@ class TemplateController extends Controller
 		$request->validate([]);
 		$template->update($request->all());
 
-		LandlordEventLog::event('template', $template->id, 'update', 'name', $template->name);
+		EventLog::event('template', $template->id, 'update', 'name', $template->name);
 		return redirect()->route('templates.index')->with('success', 'Template updated successfully');
 	}
 
@@ -230,7 +230,7 @@ class TemplateController extends Controller
 		$template->update();
 
 		// Write to Log
-		LandlordEventLog::event('template', $template->id, 'enable', 'status', $template->enable);
+		EventLog::event('template', $template->id, 'enable', 'status', $template->enable);
 
 		return redirect()->route('templates.index')->with('success', 'Template Status updated successfully');
 	}
@@ -242,7 +242,7 @@ class TemplateController extends Controller
 		//$this->authorize('delete', $template);
 
 		// Write to Log
-		//LandlordEventLog::event('template',$template->id,'enable','status',$template->enable);
+		//EventLog::event('template',$template->id,'enable','status',$template->enable);
 
 		return redirect()->route('landlord.manage.templates.show', $template->id)->with('success', 'Template Submitted successfully');
 	}

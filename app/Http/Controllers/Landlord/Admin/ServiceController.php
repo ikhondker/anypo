@@ -31,7 +31,7 @@ use App\Models\Landlord\Account;
 use App\Models\Landlord\Lookup\Product;
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 use App\Helpers\Export;
 # 4. Notifications
 # 5. Jobs
@@ -159,7 +159,7 @@ class ServiceController extends Controller
 		$service->update($request->all());
 
 		if ($request->input('owner_id') <> $service->owner_id) {
-			LandlordEventLog::event('service', $service->id, 'update', 'owner_id', $service->owner_id);
+			EventLog::event('service', $service->id, 'update', 'owner_id', $service->owner_id);
 		}
 
 		return redirect()->route('services.index')->with('success', 'Service updated successfully');

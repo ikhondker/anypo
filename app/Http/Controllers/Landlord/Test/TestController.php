@@ -31,7 +31,7 @@ use App\Models\Landlord\Manage\Checkout;
 // Enums
 use App\Enum\UserRoleEnum;
 // Helpers
-use App\Helpers\Bo;
+use App\Helpers\Landlord\Bo;
 
 // Notification
 use Notification;

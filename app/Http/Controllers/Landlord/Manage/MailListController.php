@@ -30,7 +30,7 @@ use App\Http\Requests\Landlord\Manage\UpdateMailListRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -110,7 +110,7 @@ class MailListController extends Controller
 		$mailList->fill(['enable' => ! $mailList->enable]);
 		$mailList->update();
 		// Write to Log
-		LandlordEventLog::event('mailList', $mailList->id, 'status', 'enable', $mailList->enable);
+		EventLog::event('mailList', $mailList->id, 'status', 'enable', $mailList->enable);
 
 		return redirect()->route('mail-lists.index')->with('success', 'MailList status Updated successfully');
 	}

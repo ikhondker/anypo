@@ -11,7 +11,7 @@ use App\Models\Tenant;
 use App\Models\User;
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -98,7 +98,7 @@ class DomainController extends Controller
 		$domain->update($request->all());
 
 		// Write to Log
-		LandlordEventLog::event('category', $domain->id, 'update', 'name', $request->name);
+		EventLog::event('category', $domain->id, 'update', 'name', $request->name);
 
 		return redirect()->route('categories.index')->with('success', 'Category updated successfully');
 	}

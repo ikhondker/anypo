@@ -46,8 +46,8 @@ use App\Enum\ClosureStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
-use App\Helpers\FileUpload;
-use App\Helpers\ExchangeRate;
+use App\Helpers\Tenant\FileUpload;
+use App\Helpers\Tenant\ExchangeRate;
 # 4. Notifications
 # 5. Jobs
 use App\Jobs\Tenant\AehReceipt;

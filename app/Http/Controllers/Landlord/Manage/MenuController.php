@@ -30,7 +30,7 @@ use App\Http\Requests\Landlord\Manage\UpdateMenuRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -85,7 +85,7 @@ class MenuController extends Controller
 		$request->merge(['access'	=> Str::upper($request->input('access')) ]);
 		$menu = Menu::create($request->all());
 		// Write to Log
-		LandlordEventLog::event('menu', $menu->id, 'create');
+		EventLog::event('menu', $menu->id, 'create');
 
 		return redirect()->route('menus.index')->with('success', 'Menu created successfully.');
 	}
@@ -119,7 +119,7 @@ class MenuController extends Controller
 		$menu->update($request->all());
 
 		// Write to Log
-		LandlordEventLog::event('menu', $menu->id, 'update', 'name', $request->raw_route_name);
+		EventLog::event('menu', $menu->id, 'update', 'name', $request->raw_route_name);
 
 		return redirect()->route('menus.index')->with('success', 'Menu updated successfully');
 	}
@@ -134,7 +134,7 @@ class MenuController extends Controller
 		$menu->fill(['enable' => ! $menu->enable]);
 		$menu->update();
 		// Write to Log
-		LandlordEventLog::event('menu', $menu->id, 'status', 'enable', $menu->enable);
+		EventLog::event('menu', $menu->id, 'status', 'enable', $menu->enable);
 
 		return redirect()->route('menus.index')->with('success', 'Menu status Updated successfully');
 	}

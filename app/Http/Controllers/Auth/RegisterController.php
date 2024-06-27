@@ -30,7 +30,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 use App\Enum\UserRoleEnum;
-use App\Helpers\LandlordEventLog;
 use App\Helpers\EventLog;
 
 use Notification;
@@ -116,7 +115,6 @@ class RegisterController extends Controller
 		// Write to Log
 		if (tenant('id') == '') {
 			$user->notify(new \App\Notifications\Landlord\UserRegistered($user));
-			LandlordEventLog::event('user', $user->id, 'register');
 		} else {
 
 			$user->notify(new \App\Notifications\Tenant\UserRegistered($user));
@@ -125,9 +123,8 @@ class RegisterController extends Controller
 			$setup = Setup::first();
 			$tenantAdmin = User::where('id', $setup->admin_id)->first();
 			$tenantAdmin->notify(new NotifyAdmin($tenantAdmin, 'USER-REGISTERED', $user->id));
-
-			EventLog::event('user', $user->id, 'register');
 		}
+		EventLog::event('user', $user->id, 'register');
 		return $user;
 	}
 

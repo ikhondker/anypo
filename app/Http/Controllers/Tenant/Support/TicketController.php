@@ -171,14 +171,14 @@ class TicketController extends Controller
 				]);
 				Log::debug('tenant.support.Ticket.store Landlord Ticket created = ' . $ticket->id);
 
-				//Write to Log
-				\App\Helpers\LandlordEventLog::event('ticket', $ticket->id, 'create');
+				//TODO It should be landlord event_log
+				//\App\Helpers\LandlordEventLog::event('ticket', $ticket->id, 'create');
 
 				// Upload File, if any, insert row in attachment table and get attachments id
 				if ($file = $request->file('file_to_upload')) {
 					$request->merge(['article_id'	=> $ticket->id]);
 					$request->merge(['entity'		=> static::ENTITY]);
-					$attachment_id = \App\Helpers\LandlordFileUpload::aws($request);
+					$attachment_id = \App\Helpers\Landlord\FileUpload::aws($request);
 
 					// update back table with attachment_id
 					$ticket->attachment_id = $attachment_id;

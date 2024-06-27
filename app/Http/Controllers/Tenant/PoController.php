@@ -55,10 +55,10 @@ use App\Enum\AuthStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
-use App\Helpers\Workflow;
-use App\Helpers\FileUpload;
-use App\Helpers\PoBudget;
-use App\Helpers\ExchangeRate;
+use App\Helpers\Tenant\Workflow;
+use App\Helpers\Tenant\FileUpload;
+use App\Helpers\Tenant\PoBudget;
+use App\Helpers\Tenant\ExchangeRate;
 # 4. Notifications
 use Notification;
 use App\Notifications\Tenant\PoActions;

@@ -3,72 +3,70 @@
 @section('breadcrumb','Create Menu')
 
 @section('content')
-	<!-- Card -->
+
+	<a href="{{ route('menus.index') }}" class="btn btn-primary float-end mt-n1 "><i class="fas fa-list-alt"></i> View All</a>
+	<h1 class="h3 mb-3">Create Menu</h1>
+
 	<div class="card">
-		<form action="{{ route('menus.store') }}" method="POST" enctype="multipart/form-data">
-			@csrf
+		<div class="card-header">
+			<h5 class="card-title">Create Menu</h5>
+			<h6 class="card-subtitle text-muted">Create New Menu.</h6>
+		</div>
+		<div class="card-body">
 
-			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
-				<h5 class="card-header-title">Create Menu</h5>
-				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
-			</div>
+			<form action="{{ route('menus.store') }}" method="POST" enctype="multipart/form-data">
+				@csrf
 
-			<!-- Body -->
-			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
 
-				<!-- Form -->
-				<div class="row mb-4">
-					<label for="raw_route_name" class="col-sm-3 col-form-label form-label">raw_route_name X:</label>
-					<div class="col-sm-9">
-					<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror"
-							name="raw_route_name" id="raw_route_name" placeholder="Summary"
-							value="{{ old('raw_route_name', '' ) }}"
-							required/>
-						@error('raw_route_name')
-							<div class="text-danger text-xs">{{ $message }}</div>
-						@enderror
-					</div>
-				</div>
-				<!-- End Form -->
+						<tr>
+							<th>Raw Route Name:</th>
+							<td>
+								<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror"
+									name="raw_route_name" id="raw_route_name" placeholder="raw_route_name"
+									value="{{ old('raw_route_name', '' ) }}"
+									required/>
+								@error('raw_route_name')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</td>
+						</tr>
 
-				<!-- Form -->
-				<div class="row mb-4">
-					<label for="route_name" class="col-sm-3 col-form-label form-label">route_name X:</label>
-					<div class="col-sm-9">
-					<input type="text" class="form-control @error('route_name') is-invalid @enderror"
-							name="route_name" id="route_name" placeholder="Summary"
-							value="{{ old('route_name', '' ) }}"
-							required/>
-						@error('route_name')
-							<div class="text-danger text-xs">{{ $message }}</div>
-						@enderror
-					</div>
-				</div>
-				<!-- End Form -->
+						<tr>
+							<th>Route Name:</th>
+							<td>
+								<input type="text" class="form-control @error('route_name') is-invalid @enderror"
+									name="route_name" id="route_name" placeholder="route_name"
+									value="{{ old('route_name', '' ) }}"
+									required/>
+								@error('route_name')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</td>
+						</tr>
 
-				<!-- Form -->
-				<div class="row mb-4">
-					<label for="access" class="col-sm-3 col-form-label form-label">Access X:</label>
-					<div class="col-sm-9">
-					<input type="text" class="form-control @error('access') is-invalid @enderror"
-							name="access" id="access" placeholder="Summary"
-							value="{{ old('access', '' ) }}"
-							required/>
-						@error('access')
-							<div class="text-danger text-xs">{{ $message }}</div>
-						@enderror
-					</div>
-				</div>
-				<!-- End Form -->
+						<tr>
+							<th>Access :</th>
+							<td>
+								<input type="text" class="form-control @error('access') is-invalid @enderror"
+									name="access" id="access" placeholder="P"
+									value="{{ old('access', '' ) }}"
+									required/>
+								@error('access')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</td>
+						</tr>
 
-			</div>
-			<!-- End Body -->
-
-
-			<x-landlord.create.save/>
-		</form>
+						
+					</tbody>
+				</table>
+				<x-landlord.create.save/>
+			</form>
+		</div>
 	</div>
-	<!-- End Card -->
+
 @endsection
 
 

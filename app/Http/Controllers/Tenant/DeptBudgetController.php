@@ -32,7 +32,7 @@ use App\Models\Tenant\Admin\Attachment;
 # 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\UserRoleEnum;
-use App\Helpers\FileUpload;
+use App\Helpers\Tenant\FileUpload;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;

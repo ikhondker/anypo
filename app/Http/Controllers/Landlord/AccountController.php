@@ -50,7 +50,7 @@ use App\Enum\LandlordCheckoutStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\FileUpload;
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 use Notification;
 use App\Notifications\Landlord\AddonPurchased;
@@ -190,7 +190,7 @@ class AccountController extends Controller
 		$account->update($request->all());
 
 		if ($request->input('name') <> $account->name) {
-			LandlordEventLog::event('account', $account->id, 'update', 'name', $account->dept_id);
+			EventLog::event('account', $account->id, 'update', 'name', $account->dept_id);
 		}
 
 		return redirect()->route('dashboards.index')->with('success', 'Account updated successfully');
@@ -308,7 +308,7 @@ class AccountController extends Controller
 
 		//$account_service_id			= $accountService->id;
 		//Log::debug('Account Service Created id = '. $accountService->id);
-		LandlordEventLog::event('accountService', $accountService->id, 'create');
+		EventLog::event('accountService', $accountService->id, 'create');
 
 		// Find and update the account with new parameter
 		$account = Account::where('id', $account_id)->first();
@@ -326,7 +326,7 @@ class AccountController extends Controller
 		$account->price				= $service->price;
 
 		$account->save();
-		LandlordEventLog::event('account', $account->id, 'updated');
+		EventLog::event('account', $account->id, 'updated');
 
 		// Send notification on service upgrade
 		$user = User::where('id', auth()->user()->id)->first();

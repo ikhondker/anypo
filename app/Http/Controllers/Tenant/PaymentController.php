@@ -41,8 +41,8 @@ use App\Enum\PaymentStatusEnum;
 use App\Enum\InvoiceStatusEnum;
 use App\Enum\ClosureStatusEnum;
 # 3. Helpers
-use App\Helpers\FileUpload;
-use App\Helpers\ExchangeRate;
+use App\Helpers\Tenant\FileUpload;
+use App\Helpers\Tenant\ExchangeRate;
 use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications

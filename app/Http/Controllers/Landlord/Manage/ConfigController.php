@@ -13,7 +13,7 @@ use App\Http\Requests\Landlord\Manage\UpdateConfigRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -98,7 +98,7 @@ class ConfigController extends Controller
 		$config->update($request->all());
 
 		// Write to Log
-		LandlordEventLog::event('config', $config->id, 'update', 'name', $request->name);
+		EventLog::event('config', $config->id, 'update', 'name', $request->name);
 
 		return redirect()->route('configs.index')->with('success', 'Config updated successfully');
 	}

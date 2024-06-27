@@ -12,7 +12,7 @@ use App\Http\Requests\UpdateTenantRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -80,7 +80,7 @@ class TenantController extends Controller
 		$tenant->update($request->all());
 
 		// Write to Log
-		LandlordEventLog::event('tenant', $tenant->id, 'update', 'name', $request->name);
+		EventLog::event('tenant', $tenant->id, 'update', 'name', $request->name);
 
 		return redirect()->route('tenants.index')->with('success', 'Tenant updated successfully');
 	}

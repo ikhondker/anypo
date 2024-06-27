@@ -36,8 +36,8 @@ use App\Enum\UserRoleEnum;
 use App\Enum\LandlordTicketStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
-use App\Helpers\LandlordFileUpload;
-use App\Helpers\LandlordEventLog;
+use App\Helpers\Landlord\FileUpload;
+use App\Helpers\EventLog;
 
 # 4. Notifications
 use Notification;
@@ -148,13 +148,13 @@ class TicketController extends Controller
 		$ticket = Ticket::create($request->all());
 
 		// Write to Log
-		LandlordEventLog::event('ticket', $ticket->id, 'create');
+		EventLog::event('ticket', $ticket->id, 'create');
 
 		// Upload File, if any, insert row in attachment table and get attachments id
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $ticket->id]);
 			$request->merge(['entity'		=> static::ENTITY]);
-			$attachment_id = LandlordFileUpload::aws($request);
+			$attachment_id = FileUpload::aws($request);
 
 			// update back table with attachment_id
 			$ticket->attachment_id = $attachment_id;
@@ -216,10 +216,10 @@ class TicketController extends Controller
 		$request->validate([]);
 
 		if ($request->input('dept_id') <> $ticket->dept_id) {
-			LandlordEventLog::event('ticket', $ticket->id, 'update', 'dept_id', $ticket->dept_id);
+			EventLog::event('ticket', $ticket->id, 'update', 'dept_id', $ticket->dept_id);
 		}
 		if ($request->input('priority_id') <> $ticket->priority_id) {
-			LandlordEventLog::event('ticket', $ticket->id, 'update', 'priority_id', $ticket->priority_id);
+			EventLog::event('ticket', $ticket->id, 'update', 'priority_id', $ticket->priority_id);
 		}
 
 		if ($request->input('agent_id') <> $ticket->agent_id) {
@@ -228,7 +228,7 @@ class TicketController extends Controller
 			$agent = User::where('id', $request->input('agent_id'))->first();
 			$agent->notify(new TicketAssigned($agent, $ticket));
 
-			LandlordEventLog::event('ticket', $ticket->id, 'update', 'agent_id', $ticket->agent_id);
+			EventLog::event('ticket', $ticket->id, 'update', 'agent_id', $ticket->agent_id);
 		}
 		//dd($ticket);
 		$ticket->update($request->all());
@@ -265,13 +265,13 @@ class TicketController extends Controller
 		$ticket->agent_id	= $request->input('agent_id');
 		$ticket->save();
 
-		LandlordEventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
+		EventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
 
 		// Send notification to Assigned Agent
 		$agent = User::where('id', $request->input('agent_id'))->first();
 		$agent->notify(new TicketAssigned($agent, $ticket));
 
-		LandlordEventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
+		EventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
 
 		return redirect()->route('tickets.show', $ticket->id)->with('success', 'Ticket #' . $ticket->id . ' assigned to agent and notified.');
 	}
@@ -286,7 +286,7 @@ class TicketController extends Controller
 		$ticket->closed_at	= Now();
 
 		$ticket->save();
-		LandlordEventLog::event('ticket', $ticket->id, 'update', 'status_code', $ticket->status_code);
+		EventLog::event('ticket', $ticket->id, 'update', 'status_code', $ticket->status_code);
 
 		// Send notification to Ticket creator
 		$owner = User::where('id', $ticket->owner_id)->first();

@@ -11,7 +11,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('activities.index') }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  View all</a>
+						<a href="{{ route('activities.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 						@if (auth()->user()->isSystem())
 						    <a class="btn btn-sm btn-danger text-white" href="{{ route('attachments.edit', $attachment->id) }}"><i class="fas fa-edit"></i> Edit</a>
 						@endif

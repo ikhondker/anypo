@@ -30,7 +30,7 @@ use App\Models\Landlord\Manage\Entity;
 # 2. Enums
 # 3. Helpers
 use App\Helpers\FileUpload;
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -129,7 +129,7 @@ class AttachmentController extends Controller
 		$attachment->update($request->all());
 
 		// Write to Log
-		LandlordEventLog::event('menu', $attachment->id, 'update', 'name', $attachment->id);
+		EventLog::event('menu', $attachment->id, 'update', 'name', $attachment->id);
 
 		return redirect()->route('attachments.index')->with('success', 'Attachment updated successfully');
 	}

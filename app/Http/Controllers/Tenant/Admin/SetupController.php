@@ -35,7 +35,7 @@ use App\Models\Tenant\Lookup\BankAccount;
 
 # 2. Enums
 use App\Helpers\EventLog;
-use App\Helpers\FileUpload;
+use App\Helpers\Tenant\FileUpload;
 //use App\Helpers\Export;
 # 3. Helpers
 # 4. Notifications

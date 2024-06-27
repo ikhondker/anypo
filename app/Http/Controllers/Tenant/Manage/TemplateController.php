@@ -34,7 +34,7 @@ use App\Enum\EntityEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
-use App\Helpers\FileUpload;
+use App\Helpers\Tenant\FileUpload;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails

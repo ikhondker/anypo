@@ -30,7 +30,7 @@ use App\Http\Requests\Landlord\Lookup\UpdateCategoryRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -77,7 +77,7 @@ class CategoryController extends Controller
 		$this->authorize('create', Category::class);
 		$category = Category::create($request->all());
 		// Write to Log
-		LandlordEventLog::event('category', $category->id, 'create');
+		EventLog::event('category', $category->id, 'create');
 		return redirect()->route('categories.index')->with('success', 'Category created successfully.');
 	}
 
@@ -111,7 +111,7 @@ class CategoryController extends Controller
 		$category->update($request->all());
 
 		// Write to Log
-		LandlordEventLog::event('category', $category->id, 'update', 'name', $request->name);
+		EventLog::event('category', $category->id, 'update', 'name', $request->name);
 
 		return redirect()->route('categories.index')->with('success', 'Category updated successfully');
 	}
@@ -127,7 +127,7 @@ class CategoryController extends Controller
 		$category->update();
 
 		// Write to Log
-		LandlordEventLog::event('category',$category->id,'status','enable',$category->enable);
+		EventLog::event('category',$category->id,'status','enable',$category->enable);
 
 		return redirect()->route('categories.index')->with('success','Category Status Updated successfully');
 	}

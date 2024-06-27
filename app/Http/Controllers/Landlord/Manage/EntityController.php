@@ -28,7 +28,7 @@ use App\Http\Requests\Landlord\Manage\UpdateEntityRequest;
 use App\Models\Landlord\Manage\Entity;
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -78,7 +78,7 @@ class EntityController extends Controller
 		$this->authorize('create', Entity::class);
 		$Entity = Entity::create($request->all());
 		// Write to Log
-		LandlordEventLog::event('entity', $Entity->id, 'create');
+		EventLog::event('entity', $Entity->id, 'create');
 
 		return redirect()->route('entities.index')->with('success', 'Entity created successfully.');
 	}
@@ -106,7 +106,7 @@ class EntityController extends Controller
 	{
 		$this->authorize('update',$entity);
 		// Write Event Log
-		//LandlordEventLog::event('template',$template->id,'edit','template',$template->id);
+		//EventLog::event('template',$template->id,'edit','template',$template->id);
 		return view('landlord.manage.entities.edit', compact('entity'));
 	}
 
@@ -124,8 +124,8 @@ class EntityController extends Controller
 		$request->validate([]);
 		$entity->update($request->all());
 
-		LandlordEventLog::event('entity', $entity->entity, 'update', 'name', $entity->name);
-		LandlordEventLog::event('entity', $entity->entity, 'update', 'limit', $entity->limit);
+		EventLog::event('entity', $entity->entity, 'update', 'name', $entity->name);
+		EventLog::event('entity', $entity->entity, 'update', 'limit', $entity->limit);
 		return redirect()->route('entities.index')->with('success', 'Entity updated successfully');
 	}
 
@@ -143,7 +143,7 @@ class EntityController extends Controller
 		$entity->update();
 
 		// Write to Log
-		LandlordEventLog::event('entity', $entity->entity, 'status', 'enable', $entity->enable);
+		EventLog::event('entity', $entity->entity, 'status', 'enable', $entity->enable);
 		return redirect()->route('entities.index')->with('success', 'Entity Status Updated successfully');
 	}
 

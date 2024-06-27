@@ -17,7 +17,7 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Helpers;
+namespace App\Helpers\Landlord;
 
 use App\Models\User;
 
@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class LandlordFileUpload
+class FileUpload
 {
 
 	public static function aws(FormRequest $request)

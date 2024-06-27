@@ -18,7 +18,7 @@
 * =====================================================================================
 */
 
-namespace App\Helpers;
+namespace App\Helpers\Landlord;
 
 use App\Models\User;
 use App\Models\Landlord\Account;
@@ -66,6 +66,7 @@ class Bo
 		return $invoice_no;
 	}
 
+	// Called from App\Jobs\Landlord\CreateTenant;
 	public static function createServiceForCheckout($checkout_id = 0)
 	{
 

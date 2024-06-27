@@ -53,7 +53,7 @@ use Illuminate\Support\Facades\Http;
 
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
-use App\Helpers\ChartData;
+use App\Helpers\Tenant\ChartData;
 
 #Jobs
 use App\Jobs\Tenant\RecordDeptBudgetUsage;

@@ -30,7 +30,7 @@ use App\Http\Requests\Landlord\Lookup\UpdateCountryRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -114,7 +114,7 @@ class CountryController extends Controller
 		$country->update();
 
 		// Write to Log
-		LandlordEventLog::event('country',$country->country,'status','enable',$country->enable);
+		EventLog::event('country',$country->country,'status','enable',$country->enable);
 
 		return redirect()->route('countries.index')->with('success','Country Status Updated successfully');
 	}

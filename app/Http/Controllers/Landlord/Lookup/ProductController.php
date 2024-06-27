@@ -29,7 +29,7 @@ use App\Models\User;
 use App\Models\Landlord\Lookup\Product;
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails

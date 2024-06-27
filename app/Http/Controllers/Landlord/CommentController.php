@@ -32,8 +32,8 @@ use App\Models\Landlord\Ticket;
 use App\Enum\UserRoleEnum;
 use App\Enum\LandlordTicketStatusEnum;
 # 3. Helpers
-use App\Helpers\LandlordFileUpload;
-use App\Helpers\LandlordEventLog;
+use App\Helpers\Landlord\FileUpload;
+use App\Helpers\EventLog;
 # 4. Notifications
 use Notification;
 use App\Notifications\Landlord\TicketUpdated;
@@ -118,8 +118,8 @@ class CommentController extends Controller
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $comment->id ]);
 			$request->merge(['entity'		=> static::ENTITY ]);
-			//$attachment_id = LandlordFileUpload::upload($request);
-			$attachment_id = LandlordFileUpload::aws($request);
+			//$attachment_id = FileUpload::upload($request);
+			$attachment_id = FileUpload::aws($request);
 			// update back table with attachment_id
 			$comment->attachment_id = $attachment_id;
 			$comment->save();
@@ -168,8 +168,8 @@ class CommentController extends Controller
 		}
 
 		// Write to Log
-		LandlordEventLog::event('comment',$comment->id,'create');
-		LandlordEventLog::event('ticket', $ticket->id, 'update', 'status_code', $ticket->status_code);
+		EventLog::event('comment',$comment->id,'create');
+		EventLog::event('ticket', $ticket->id, 'update', 'status_code', $ticket->status_code);
 
 		return redirect()->route('tickets.show',$request->input('ticket_id'))->with('success','Ticket updated successfully');
 

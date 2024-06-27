@@ -36,9 +36,9 @@ use App\Enum\WflActionEnum;
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
 # 3. Helpers
-use App\Helpers\PrBudget;
-use App\Helpers\PoBudget;
-use App\Helpers\Workflow;
+use App\Helpers\Tenant\PrBudget;
+use App\Helpers\Tenant\PoBudget;
+use App\Helpers\Tenant\Workflow;
 use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications

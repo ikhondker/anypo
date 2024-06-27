@@ -4,95 +4,76 @@
 
 @section('content')
 
-<div class="d-grid gap-3 gap-lg-5">
-
-	<!-- Card -->
+		
 	<div class="card">
-		<div class="card-header d-sm-flex justify-content-sm-between align-items-sm-center border-bottom">
-			<h4 class="card-header-title text-info">#{{ $ticket->id }}: {{ $ticket->title }}</h4>
-			<div class="h3"><span class="badge bg-{{ $ticket->status->badge }}"><i class="bi bi-gear"></i> {{ $ticket->status->name }}</span></div>
-		</div>
-
-		<!-- Body -->
-		<div class="card-body">
-
-			<ul class="list-comment mb-3">
-				<!-- Item -->
-				<li class="list-comment-item">
-					<!-- Media -->
-					<div class="d-flex mb-3">
-						<div class="flex-shrink-0">
-							<img class="avatar avatar-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
-						</div>
-
-						<div class="flex-grow-1 ms-3">
-							<h5 class="text-info">{{ $ticket->owner->name }}</h5>
-							<div class="d-flex align-items-center mb-1">
-								<span class="d-block small">
-									Date: {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }} <br>
-									Account: {{ $ticket->owner->account->name }} <br>
-									@if (auth()->user()->isSeeded())
-										Department: {{ $ticket->dept->name }} | Priority: {{ $ticket->priority->name }}
-										@if ($ticket->agent_id <> '')
-											| Agent: <span class="badge bg-secondary">{{ $ticket->agent->name }}</span>
-										@endif
-									@endif
-								</span>
-							</div>
-
-							<h5 class="text-muted mt-4">TICKET SUMMARY:</h5>
-							<p class="text-dark">
-								<hr class="text-muted" />
-								{!! nl2br($ticket->content) !!}
-							</p>
-
-							@if ($ticket->attachment_id <> '')
-								<p class="small text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $ticket->attachment_id }}"/></p>
-							@endif
-
-							<hr class="text-muted" />
-							@if ($ticket->closed)
-								<p class="small text-muted">Closed at: {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->closed_at ))) }} </p>
-							@endif
-
-							@if ( auth()->user()->isSeeded() && ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
-								<a class="btn btn-info btn-sm" href="{{ route('tickets.assign',$ticket->id) }}">
-									<i class="bi bi-person-circle"></i>
-									Assign
-								</a>
-								<a class="btn btn-info btn-sm" href="{{ route('tickets.edit',$ticket->id) }}">
-									<i class="bi bi-pencil-square"></i>
-									Edit
-								</a>
-							@endif
-
-							@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
-								<a class="btn btn-info btn-sm sw2" href="{{ route('tickets.close',$ticket->id) }}">
-									<i class="bi bi-lightbulb-off"></i>
-									Close Ticket
-								</a>
-							@endif
-
-						</div>
-					</div>
-					<!-- End Media -->
-				</li>
-				<!-- End Item -->
-			</ul>
-
-		</div>
-		<!-- End Body -->
-
-		<!-- Footer -->
-		{{-- <div class="card-footer pt-0">
-			<div class="d-flex justify-content-end gap-3">
-				<a class="btn btn-primary" href="{{ route('tickets.edit',$ticket->id) }}">Edit</a>
+		<div class="card-header">
+			<div class="card-actions float-end">
+				@if ( auth()->user()->isSeeded() && ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
+					<a href="{{ route('tickets.assign',$ticket->id) }}" class="btn btn-sm btn-light"><i class="fas fa-tasks"></i> Assign</a>
+					<a href="{{ route('tickets.edit',$ticket->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+				@endif
+				@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
+					<a href="{{ route('tickets.close',$ticket->id) }}" class="btn btn-sm btn-light sw2"><i class="fas fa-power-off text-danger"></i> Close Ticket</a>
+				@endif
+				<a href="{{ route('products.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list-alt"></i> View all</a>
 			</div>
-		</div> --}}
-		<!-- End Footer -->
+			<h5 class="card-title mb-0">#{{ $ticket->id }}: {{ $ticket->title }}</h5>
+			<div class="badge bg-{{ $ticket->status->badge }} my-2">{{ $ticket->status->name }}</div>
+		</div>
+		<div class="card-body pt-0">
+			<h5>Description</h5>
+			<p class="text-muted">
+				{!! nl2br($ticket->content) !!}
+			</p>
+			<small class="text-muted">{{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }}</small><br />
+			@if ($ticket->attachment_id <> '')
+				<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $ticket->attachment_id }}"/></small><br />
+			@endif
+			@if ($ticket->closed)
+				<small class="text-muted">Closed at: {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->closed_at ))) }}</small><br />
+			@endif
 
+
+			{{-- <div>
+				<h5>Requestor</h5>
+				<img src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" class="rounded-circle me-1" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}" width="34" height="34">
+			</div> --}}
+
+			<table class="table table-sm my-2">
+				<tbody>
+					<tr>
+						<th>Requestor</th>
+						<td>
+							{{ $ticket->owner->name }}
+						</td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td>{{ $ticket->owner->email }}</td>
+					</tr>
+					<tr>
+						<th>Account</th>
+						<td>{{ $ticket->owner->account->name }} </td>
+					</tr>
+					
+					@if (auth()->user()->isSeeded())
+						<tr>
+							<th>Department</th>
+							<td>{{ $ticket->dept->name }}</td>
+						</tr>
+						<tr>
+							<th>Priority</th>
+							<td>{{ $ticket->priority->name }}</td>
+						</tr>
+						<tr>
+							<th>Agent</th>
+							<td><span class="badge badge-subtle-success">{{ $ticket->agent->name }}</span> </td>
+						</tr>
+					@endif
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<!-- End Card -->
 
 	<!--  BEGIN ADD COMMENT  -->
 	@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
@@ -103,10 +84,6 @@
 	<!-- card-ticket-comments -->
 	<x-landlord.widgets.ticket-comments id="{{ $ticket->id }}"/>
 	<!-- /.card-ticket-comments -->
-
-
-
-</div>
 
 @endsection
 

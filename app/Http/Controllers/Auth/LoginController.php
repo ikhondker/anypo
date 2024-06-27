@@ -38,7 +38,6 @@ use App\Enum\UserRoleEnum;
 
 # Helpers
 use App\Helpers\EventLog;
-use App\Helpers\LandlordEventLog;
 
 class LoginController extends Controller
 {
@@ -77,14 +76,7 @@ class LoginController extends Controller
 	public function logout(Request $request)
 	{
 		// Write logout event to Log
-		if (tenant('id') == '') {
-			// address timeout issue
-			if(isset($user)){
-				LandlordEventLog::event('user', auth()->user()->id, 'sign-out');
-			}
-		} else {
-			EventLog::event('user', auth()->user()->id, 'sign-out');
-		}
+		EventLog::event('user', auth()->user()->id, 'sign-out');
 		Session::flush();
 		Auth::logout();
 		return redirect('/');
@@ -100,11 +92,7 @@ class LoginController extends Controller
 		$user->save();
 
 		// Write to Log
-		if (tenant('id') == '') {
-			LandlordEventLog::event('user', $user->id, 'sign-in');
-		} else {
-			EventLog::event('user', $user->id, 'sign-in');
-		}
+		EventLog::event('user', $user->id, 'sign-in');
 
 	}
 

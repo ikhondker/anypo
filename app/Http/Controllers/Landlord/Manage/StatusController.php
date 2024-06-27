@@ -29,7 +29,7 @@ use App\Http\Requests\Landlord\Manage\UpdateStatusRequest;
 # 1. Models
 # 2. Enums
 # 3. Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -98,7 +98,7 @@ class StatusController extends Controller
 		$request->validate([]);
 		$status->update($request->all());
 
-		LandlordEventLog::event('status', $status->id, 'update', 'name', $request->name);
+		EventLog::event('status', $status->id, 'update', 'name', $request->name);
 
 		return redirect()->route('statuses.index')->with('success', 'Statuses updated successfully.');
 	}
@@ -114,7 +114,7 @@ class StatusController extends Controller
 		$status->update();
 
 		// Write to Log
-		LandlordEventLog::event('status',$status->id,'status','enable',$status->enable);
+		EventLog::event('status',$status->id,'status','enable',$status->enable);
 
 		return redirect()->route('statuses.index')->with('success','Status Status Updated successfully');
 	}

@@ -18,7 +18,7 @@ class Kpi extends Component
 	public function __construct(
 		public string $value,
 		public string $label='KPI NAME',
-		public string $icon='abs027',
+		public string $icon='activity',
 		public string $route='dashboards',
 	)
 	{

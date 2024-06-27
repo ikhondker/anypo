@@ -34,7 +34,7 @@ use App\Models\Tenant\Lookup\Dept;
 # 2. Enums
 use App\Enum\UserRoleEnum;
 # 3. Helpers
-use App\Helpers\FileUpload;
+use App\Helpers\Tenant\FileUpload;
 use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications

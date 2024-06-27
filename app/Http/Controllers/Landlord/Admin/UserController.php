@@ -33,8 +33,8 @@ use App\Models\Landlord\Lookup\Country;
 use App\Enum\UserRoleEnum;
 # 3. Helpers
 use App\Helpers\Export;
-use App\Helpers\LandlordFileUpload;
-use App\Helpers\LandlordEventLog;
+use App\Helpers\Landlord\FileUpload;
+use App\Helpers\EventLog;
 # 4. Notifications
 use Notification;
 use App\Notifications\Landlord\UserCreated;
@@ -159,7 +159,7 @@ class UserController extends Controller
 		// Send notification on new user creation
 		$user->notify(new UserCreated($user,$random_password));
 
-		LandlordEventLog::event('user',$user->id,'create');
+		EventLog::event('user',$user->id,'create');
 		return redirect()->route('users.index')->with('success','User created successfully.');
 	}
 
@@ -225,7 +225,7 @@ class UserController extends Controller
 		}
 
 		$user->update($request->all());
-		LandlordEventLog::event('user',$user->id,'update','name', $request->name);
+		EventLog::event('user',$user->id,'update','name', $request->name);
 		return redirect()->route('users.show',$user->id)->with('success','User profile updated successfully.');
 	}
 
@@ -245,7 +245,7 @@ class UserController extends Controller
 		$user->update();
 
 		// Write to Log
-		LandlordEventLog::event('user',$user->id,'status','enable',$user->enable);
+		EventLog::event('user',$user->id,'status','enable',$user->enable);
 
 		return redirect()->route('dashboards.index')->with('success','User Status Updated successfully');
 	}
@@ -263,7 +263,7 @@ class UserController extends Controller
 		$user->update();
 
 		// Write to Log
-		LandlordEventLog::event('user',$user->id,'updaterole','name',$role);
+		EventLog::event('user',$user->id,'updaterole','name',$role);
 		return redirect()->route('users.index')->with('success','User '.$user->name.' role to \''.$role.'\' updated successfully');
 	}
 
@@ -292,7 +292,7 @@ class UserController extends Controller
 		$user->update();
 
 		// Write to Log
-		LandlordEventLog::event('user',$user->id,'update','password',$request->id);
+		EventLog::event('user',$user->id,'update','password',$request->id);
 		return redirect()->route('dashboards.index')->with('success','User password updated successfully');
 	}
 
@@ -392,7 +392,7 @@ class UserController extends Controller
 		}
 
 		$user->update($request->all());
-		LandlordEventLog::event('user', $user->id, 'update', 'name', $request->name);
+		EventLog::event('user', $user->id, 'update', 'name', $request->name);
 		return redirect()->route('users.profile')->with('success', 'User profile updated successfully.');
 	}
 
@@ -434,7 +434,7 @@ class UserController extends Controller
 		Log::debug('Landlord.user.impersonate to_impersonated_user_id = ' . $user->id);
 
 		// log before impersonate
-		LandlordEventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
+		EventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
 
 		if ($user->id <= 1008 ) {
 			return redirect()->route('users.all')->with('error','You can not impersonate any seeded users!');
@@ -465,7 +465,7 @@ class UserController extends Controller
 		Log::debug('Landlord.user.leaveImpersonate impersonated_user_id = ' . $impersonated_user_id);
 
 		// log after leave Impersonate
-		LandlordEventLog::event('user', $impersonated_user_id, 'leave-impersonate', 'id', auth()->user()->id);
+		EventLog::event('user', $impersonated_user_id, 'leave-impersonate', 'id', auth()->user()->id);
 
 
 		return redirect('/dashboards');
