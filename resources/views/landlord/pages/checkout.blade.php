@@ -34,7 +34,7 @@
 												<span class="input-group-text">.ANYPO.NET</span>
 											</div>
 											@error('site')
-												<div class="text-danger text-xs">{{ $message }}</div>
+												<div class="small text-danger">{{ $message }}</div>
 											@enderror
 										</div>
 
@@ -46,7 +46,7 @@
 													value="{{ old('email', auth()->user()->email) }}"
 													class="@error('email') is-invalid @enderror" readonly>
 												@error('email')
-													<div class="text-danger text-xs">{{ $message }}</div>
+													<div class="small text-danger">{{ $message }}</div>
 												@enderror
 												{{-- {{ auth()->user()->email }} --}}
 											@endauth
@@ -56,7 +56,7 @@
 													value="{{ old('email', 'you@example.com') }}"
 													class="@error('email') is-invalid @enderror" required>
 												@error('email')
-													<div class="text-danger text-xs">{{ $message }}</div>
+													<div class="small text-danger">{{ $message }}</div>
 												@enderror
 											@endguest
 
@@ -70,7 +70,7 @@
 													value="{{ old('account_name', auth()->user()->name) }}"
 													class="@error('account_name') is-invalid @enderror">
 												@error('account_name')
-													<div class="text-danger text-xs">{{ $message }}</div>
+													<div class="small text-danger">{{ $message }}</div>
 												@enderror
 											@endauth
 											@guest
@@ -79,7 +79,7 @@
 													value="{{ old('account_name', 'John Doe') }}"
 													class="@error('account_name') is-invalid @enderror" required>
 												@error('account_name')
-													<div class="text-danger text-xs">{{ $message }}</div>
+													<div class="small text-danger">{{ $message }}</div>
 												@enderror
 											@endguest
 										</div>

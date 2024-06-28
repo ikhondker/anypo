@@ -9,7 +9,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('contacts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  View all</a>
+						<a href="{{ route('contacts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 						<a class="btn btn-sm btn-light" href="{{ route('contacts.edit', $contact->id) }}"><i class="fas fa-edit"></i> Edit</a>
 
 					</div>

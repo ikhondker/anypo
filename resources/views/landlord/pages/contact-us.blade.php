@@ -65,7 +65,7 @@
 								value="{{ old('first_name', auth()->check() ? auth()->user()->name : '') }}"
 								required/>
 							@error('first_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</div>
 						<!-- End Form -->
@@ -80,7 +80,7 @@
 								name="last_name" id="last_name" placeholder="Last name"
 								value="{{ old('last_name', '' ) }}"/>
 							@error('last_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</div>
 						<!-- End Form -->
@@ -99,7 +99,7 @@
 								value="{{ old('email', auth()->check() ? auth()->user()->email : '' ) }}"
 								required/>
 							@error('email')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</div>
 						<!-- End Form -->
@@ -114,7 +114,7 @@
 								name="cell" id="cell" placeholder="+x(xxx)xxx-xx-xx"
 								value="{{ old('cell', auth()->check() ? auth()->user()->cell : '' ) }}"/>
 							@error('cell')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</div>
 						<!-- End Form -->
@@ -129,7 +129,7 @@
 						<textarea class="form-control form-control-lg @error('notes') is-invalid @enderror"
 							name="notes" placeholder="Tell us about your ..." rows="4" required>{{ old('notes', 'Tell us about your ...') }}</textarea>
 						@error('notes')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 					<!-- End Form -->
@@ -142,7 +142,7 @@
 									accept=".docs,.xlsx.jpg,.jpeg,.png,.zip,.rar"
 									placeholder="file_to_upload">
 						@error('file_to_upload')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 					<!-- End Form -->

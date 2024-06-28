@@ -7,10 +7,12 @@
   data-sidebar-behavior: sticky (default), fixed, compact
 -->
 
-<html lang="en" data-bs-theme="light" data-layout="fluid"
+<html lang="en" 
+		data-bs-theme="light" 
+		data-layout="fluid"
 		data-sidebar-theme="dark"
 		data-sidebar-position="left"
-		data-sidebar-behavior="sticky">
+		data-sidebar-behavior="fixed">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,9 +50,9 @@
 
 					<!-- ========== SIDEBAR ========== -->
 					@if(auth()->user()->isSeeded())
-						@include('landlord.includes.as4-sidebar-back-office')
+						@include('landlord.includes.sidebar-back-office')
 					@else
-						@include('landlord.includes.as4-sidebar-front-office')
+						@include('landlord.includes.sidebar-front-office')
 					@endif
 					<!-- ========== END SIDEBAR ========== -->
 

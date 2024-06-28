@@ -301,8 +301,11 @@ class InvoiceController extends Controller
 	{
 		$this->authorize('view', $invoice);
 
+		$config 	= Config::with('relCountry')->where('id', config('bo.CONFIG_ID'))->first();
+		$account 	= Account::with('relCountry')->where('id', $invoice->account_id)->first();
+
 		$entity = static::ENTITY;
-		return view('landlord.admin.invoices.show', compact('invoice', 'entity'));
+		return view('landlord.admin.invoices.show', compact('invoice', 'entity','account','config'));
 	}
 
 

@@ -133,7 +133,7 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/email/verify', function () {
 	if (tenant('id') == '') {
-		return view('auth.landlord-verify-email');
+		return view('auth.landlord.verify-email');
 	} else {
 		return view('auth.verify-email');
 	}

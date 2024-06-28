@@ -23,7 +23,7 @@
 							value="{{ old('entity', 'X001' ) }}"
 							class="@error('entity') is-invalid @enderror" required>
 						@error('entity')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 							value="{{ old('parent_entity', "" ) }}"
 							class="@error('parent_entity') is-invalid @enderror">
 						@error('parent_entity')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 							value="{{ old('subdir', "" ) }}"
 							class="@error('subdir') is-invalid @enderror" required>
 						@error('subdir')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 							value="{{ old('route', "" ) }}"
 							class="@error('route') is-invalid @enderror">
 						@error('route')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -89,7 +89,7 @@
 							value="{{ old('module', "XX" ) }}"
 							class="@error('module') is-invalid @enderror" required>
 						@error('module')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div> --}}

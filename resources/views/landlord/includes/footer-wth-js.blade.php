@@ -63,7 +63,7 @@
 								class="form-control @error('join_email') is-invalid @enderror"
 								value="{{ old('join_email') }}" required>
 							@error('join_email')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>

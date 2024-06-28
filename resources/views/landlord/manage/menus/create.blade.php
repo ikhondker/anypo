@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<a href="{{ route('menus.index') }}" class="btn btn-primary float-end mt-n1 "><i class="fas fa-list-alt"></i> View All</a>
+	<a href="{{ route('menus.index') }}" class="btn btn-primary float-end mt-n1 "><i class="fas fa-list"></i> View All</a>
 	<h1 class="h3 mb-3">Create Menu</h1>
 
 	<div class="card">
@@ -28,7 +28,7 @@
 									value="{{ old('raw_route_name', '' ) }}"
 									required/>
 								@error('raw_route_name')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -41,7 +41,7 @@
 									value="{{ old('route_name', '' ) }}"
 									required/>
 								@error('route_name')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -54,7 +54,7 @@
 									value="{{ old('access', '' ) }}"
 									required/>
 								@error('access')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>

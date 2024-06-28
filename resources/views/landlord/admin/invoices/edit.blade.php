@@ -54,7 +54,7 @@
 										value="{{ old('invoice_date', $invoice->invoice_date ) }}"
 										required/>
 									@error('invoice_date')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>
@@ -66,7 +66,7 @@
 										value="{{ old('from_date', $invoice->from_date ) }}"
 										required/>
 									@error('from_date')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>
@@ -78,7 +78,7 @@
 										value="{{ old('to_date', $invoice->to_date ) }}"
 										required/>
 									@error('to_date')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>
@@ -90,7 +90,7 @@
 										value="{{ old('due_date', $invoice->due_date ) }}"
 										required/>
 									@error('due_date')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>
@@ -102,7 +102,7 @@
 								value="{{ old('price', $invoice->price ) }}"
 								required/>
 							@error('price')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -114,7 +114,7 @@
 										value="{{ old('amount', $invoice->amount ) }}"
 										required/>
 									@error('amount')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>

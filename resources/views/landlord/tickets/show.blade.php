@@ -15,7 +15,7 @@
 				@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
 					<a href="{{ route('tickets.close',$ticket->id) }}" class="btn btn-sm btn-light sw2"><i class="fas fa-power-off text-danger"></i> Close Ticket</a>
 				@endif
-				<a href="{{ route('products.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list-alt"></i> View all</a>
+				<a href="{{ route('tickets.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title mb-0">#{{ $ticket->id }}: {{ $ticket->title }}</h5>
 			<div class="badge bg-{{ $ticket->status->badge }} my-2">{{ $ticket->status->name }}</div>

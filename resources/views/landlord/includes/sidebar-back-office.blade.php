@@ -1,170 +1,167 @@
-<!-- Nav -->
-<span class="text-cap">Menu</span>
+<li class="sidebar-header">
+	Navigation
+</li>
 
-<!-- List -->
-<ul class="nav nav-sm nav-tabs nav-vertical mb-4">
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'dashboards.index' ? 'active' : '' }}" href="{{ route('dashboards.index') }}">
-			<i class="bi bi-house-door nav-icon"></i> Home
-		</a>
-	</li>
-	{{-- <li class="nav-item">
-		<a class="nav-link " href="./account-notifications.html">
-			<i class="bi-bell nav-icon"></i> Notifications
-			<span class="badge bg-soft-dark text-dark rounded-pill nav-link-badge">1</span>
-		</a>
-	</li> --}}
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'tickets.index' ? 'active' : '' }}" href="{{ route('tickets.all') }}">
-			<i class="bi-ticket nav-icon"></i>All Tickets
-		</a>
-	</li>
+<li class="sidebar-item {{ $_route_name == 'dashboards.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('dashboards.index') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Home</span>
+	</a>
+</li>
 
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'checkouts.index' ? 'active' : '' }}" href="{{ route('checkouts.all') }}">
-			<i class="bi-cart-plus nav-icon"></i>
-			All Checkouts</a>
-	</li>
 
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'accounts.index' ? 'active' : '' }}" href="{{ route('accounts.all') }}">
-			<i class="bi-ui-checks-grid nav-icon"></i> All Accounts</a>
-	</li>
+<li class="sidebar-item {{ $_route_name == 'tickets.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('tickets.all') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Tickets</span>
+	</a>
+</li>
 
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'services.index' ? 'active' : '' }}" href="{{ route('services.all') }}">
-			<i class="bi-columns nav-icon"></i> All Services</a>
-	</li>
+<li class="sidebar-item {{ $_route_name == 'checkouts.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('checkouts.index') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Checkouts</span>
+	</a>
+</li>
 
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'invoices.index' ? 'active' : '' }}" href="{{ route('invoices.all') }}">
-			<i class="bi-file-ruled nav-icon"></i> All Invoices
-		</a>
-	</li>
+<li class="sidebar-item {{ $_route_name == 'accounts.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('accounts.all') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Accounts</span>
+	</a>
+</li>
 
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'payments.index' ? 'active' : '' }}" href="{{ route('payments.all') }}">
-			<i class="bi-currency-dollar nav-icon"></i> All Payments
-		</a>
-	</li>
+<li class="sidebar-item {{ $_route_name == 'services.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('services.all') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Services</span>
+	</a>
+</li>
+<li class="sidebar-item {{ $_route_name == 'invoices.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('invoices.all') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Invoices</span>
+	</a>
+</li>
+<li class="sidebar-item {{ $_route_name == 'payments.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('payments.all') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Payments</span>
+	</a>
+</li>
+<li class="sidebar-item {{ $_route_name == 'contacts.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('contacts.all') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Contacts</span>
+	</a>
+</li>
 
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'contacts.index' ? 'active' : '' }}" href="{{ route('contacts.all') }}">
-			<i class="bi-person-lines-fill nav-icon"></i> All Contacts</a>
-	</li>
-</ul>
-<!-- End List -->
 
-<!-- Nav -->
-<span class="text-cap">ADMIN</span>
-<!-- List -->
-<ul class="nav nav-sm nav-tabs nav-vertical mb-4">
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'users.index' ? 'active' : '' }}" href="{{ route('users.all') }}">
-			<i class="bi-people nav-icon"></i> All Users</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'activities.index' ? 'active' : '' }}"
-			href="{{ route('activities.all') }}">
-			<i class="bi-activity nav-icon"></i> All Activity</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link {{ $_route_name == 'attachments.index' ? 'active' : '' }}"
-			href="{{ route('attachments.index') }}">
-			<i class="bi-paperclip nav-icon"></i>
-			All Attachments</a>
-	</li>
+<li class="sidebar-header">
+	ADMIN
+</li>
+<li class="sidebar-item {{ $_route_name == 'users.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('users.all') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Users</span>
+	</a>
+</li>
+<li class="sidebar-item {{ $_route_name == 'activities.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('activities.all') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Activity</span>
+	</a>
+</li>
+<li class="sidebar-item {{ $_route_name == 'attachments.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('attachments.index') }}">
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">All Attachments</span>
+	</a>
+</li>
 
-</ul>
-<!-- End List -->
+
 
 
 
 @if (auth()->user()->role->value == \UserRoleEnum::SYSTEM->value)
 	<!-- Nav -->
-	<span class="text-cap">SYSTEM</span>
+	<li class="sidebar-header">
+		SYSTEM
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'tables.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('tables.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Tables</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'error-logs.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('error-logs.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Error logs</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'templates.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('templates.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Templates</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'products.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('products.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Products</span>
+		</a>
+	</li>
 
-	<!-- List -->
-	<ul class="nav nav-sm nav-tabs nav-vertical mb-4">
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'tables.index' ? 'active' : '' }}"
-				href="{{ route('tables.index') }}"><i class="bi-bell nav-icon"></i> Tables</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'error-logs.index' ? 'active' : '' }}"
-				href="{{ route('error-logs.index') }}"><i class="bi-bell nav-icon"></i> Error Logs</a>
-		</li>
+	<li class="sidebar-item {{ $_route_name == 'categories.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('categories.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Categories</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'countries.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('countries.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Countries</span>
+		</a>
+	</li>
 
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'templates.index' ? 'active' : '' }}"
-				href="{{ route('templates.index') }}"><i class="bi-bell nav-icon"></i> Templates</a>
-		</li>
+	<li class="sidebar-item {{ $_route_name == 'processes.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('processes.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Processes</span>
+		</a>
+	</li>
 
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'products.index' ? 'active' : '' }}"
-				href="{{ route('products.index') }}">
-				<i class="bi-bell nav-icon"></i> Products </a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'categories.index' ? 'active' : '' }}"
-				href="{{ route('categories.index') }}">
-				<i class="bi-bell nav-icon"></i> Category </a>
-		</li>
+	<li class="sidebar-item {{ $_route_name == 'tenants.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('tenants.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Tenants</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'domains.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('domains.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Domains</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'entities.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('entities.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Entities</span>
+		</a>
+	</li>
 
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'countries.index' ? 'active' : '' }}"
-				href="{{ route('countries.index') }}">
-				<i class="bi-bell nav-icon"></i> Country</a>
-		</li>
 
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'tenants.index' ? 'active' : '' }}"
-				href="{{ route('tenants.index') }}">
-				<i class="bi-bell nav-icon"></i> Tenant</a>
-		</li>
-		<li class="nav-item"><a class="nav-link {{ $_route_name == 'processes.index' ? 'active' : '' }}"
-			href="{{ route('processes.index') }}">
-			<i class="bi-cpu nav-icon"></i>
-			Run Process</a>
-		</li>
+	<li class="sidebar-item {{ $_route_name == 'mail-lists.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('mail-lists.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Mail lists</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'statuses.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('statuses.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Statuses</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'menus.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('menus.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Menus</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ $_route_name == 'widgets' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('widgets') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Widgets</span>
+		</a>
+	</li>
 
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'domains.index' ? 'active' : '' }}"
-				href="{{ route('domains.index') }}"><i class="bi-bell nav-icon"></i> Domain</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'entities.index' ? 'active' : '' }}"
-				href="{{ route('entities.index') }}"><i class="bi-bell nav-icon"></i> Entity</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'mail-lists.index' ? 'active' : '' }}"
-				href="{{ route('mail-lists.index') }}"><i class="bi-bell nav-icon"></i> Mail List</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'statuses.index' ? 'active' : '' }}"
-				href="{{ route('statuses.index') }}"><i class="bi-bell nav-icon"></i> Status</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'menus.index' ? 'active' : '' }}"
-				href="{{ route('menus.index') }}"><i class="bi-bell nav-icon"></i> Menu</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'widgets' ? 'active' : '' }}"
-				href="{{ route('widgets') }}"><i class="bi-bell nav-icon"></i> Widgets</a>
-		</li>
-        <li class="nav-item">
-			<a class="nav-link {{ $_route_name == 'configs.index' ? 'active' : '' }}"
-				href="{{ route('configs.index') }}"><i class="bi-bell nav-icon"></i> Config</a>
-		</li>
-	</ul>
-	<!-- End List -->
+	<li class="sidebar-item {{ $_route_name == 'configs.index' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('configs.index') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Config</span>
+		</a>
+	</li>
 @endif
 
 <!-- ========== Account ========== -->
-@include('landlord.includes.submenu-account')
+@include('landlord.includes.sidebar-my-account')
 <!-- ========== END Account ========== -->
 
 <div class="d-lg-none">

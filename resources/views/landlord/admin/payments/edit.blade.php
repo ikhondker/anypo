@@ -43,7 +43,7 @@
 											value="{{ old('pay_date', $payment->pay_date ) }}"
 											required/>
 										@error('pay_date')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 								</td>
 							</tr>
@@ -68,7 +68,7 @@
                                             value="{{ old('amount', $payment->amount ) }}"
                                             required/>
                                         @error('amount')
-                                            <div class="text-danger text-xs">{{ $message }}</div>
+                                            <div class="small text-danger">{{ $message }}</div>
                                         @enderror
                                 </td>
                             </tr>

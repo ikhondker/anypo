@@ -15,7 +15,7 @@
 						<td>
 							<textarea class="form-control" rows="4" name="content" placeholder="Ticket Update ...">{{ old('content', 'Ticket Update ...') }}</textarea>
 							@error('content')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</td>
 					</tr>

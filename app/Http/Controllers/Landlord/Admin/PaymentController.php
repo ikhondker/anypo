@@ -25,7 +25,11 @@ use App\Http\Requests\Landlord\Admin\StorePaymentRequest;
 use App\Http\Requests\Landlord\Admin\UpdatePaymentRequest;
 
 # 1. Models
+use App\Models\Landlord\Account;
 use App\Models\Landlord\Admin\Payment;
+use App\Models\Landlord\Admin\Invoice;
+use App\Models\Landlord\Manage\Config;
+
 # 2. Enums
 use App\Enum\UserRoleEnum;
 # 3. Helpers
@@ -109,8 +113,13 @@ class PaymentController extends Controller
 	public function show(Payment $payment)
 	{
 		$this->authorize('view', $payment);
+
+		$config 	= Config::with('relCountry')->where('id', config('bo.CONFIG_ID'))->first();
+		$invoice 	= Invoice::where('id', $payment->invoice_id)->first();
+		$account 	= Account::with('relCountry')->where('id', $invoice->account_id)->first();
+
 		$entity = static::ENTITY;
-		return view('landlord.admin.payments.show', compact('payment', 'entity'));
+		return view('landlord.admin.payments.show', compact('payment', 'entity','config','invoice','account'));
 	}
 
 	/**

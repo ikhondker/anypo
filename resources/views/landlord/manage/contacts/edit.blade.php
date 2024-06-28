@@ -55,7 +55,7 @@
 											value="{{ old('contact_date', $contact->contact_date ) }}"
 											required/>
 										@error('contact_date')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 								</td>
 							</tr>

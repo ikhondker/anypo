@@ -70,7 +70,7 @@
 							value="{{ old('password1', $user->password1 ) }}"
 							required/>
 						@error('password1')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 				</div>
 			</div>
@@ -85,7 +85,7 @@
 							value="{{ old('password2', $user->password2 ) }}"
 							required/>
 						@error('password2')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 				</div>
 			</div>

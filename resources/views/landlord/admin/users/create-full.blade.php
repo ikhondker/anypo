@@ -27,7 +27,7 @@
 							value="{{ old('email', "name@company.com" ) }}"
 							class="@error('email') is-invalid @enderror" required>
 						@error('email')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 							Make this person an Admin
 						</label>
 						@error('maintenance')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -54,7 +54,7 @@
 							autocomplete="current-password"
 							class="@error('password') is-invalid @enderror" required>
 						@error('password')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 							autocomplete="current-password"
 							class="@error('password') is-invalid @enderror" required>
 						@error('password')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -86,7 +86,7 @@
 							value="{{ old('name', "Full Name" ) }}"
 							class="@error('name') is-invalid @enderror" required>
 							@error('name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 					</div>
 				</div>
@@ -99,7 +99,7 @@
 							value="{{ old('cell', "01911-" ) }}"
 							class="@error('cell') is-invalid @enderror" required>
 						@error('cell')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -126,7 +126,7 @@
 							value="{{ old('address1', "XYZ Street" ) }}"
 							class="@error('address1') is-invalid @enderror">
 						@error('address1')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -139,7 +139,7 @@
 							value="{{ old('address2', "Road #8, Block C" ) }}"
 							class="@error('address2') is-invalid @enderror">
 						@error('address2')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -152,7 +152,7 @@
 							value="{{ old('zip', "1229" ) }}"
 							class="@error('zip') is-invalid @enderror">
 						@error('zip')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -165,7 +165,7 @@
 							value="{{ old('country', "bd" ) }}"
 							class="@error('country') is-invalid @enderror">
 						@error('country')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -182,7 +182,7 @@
 							value="{{ old('facebook', "https://www.facebook.com/username" ) }}"
 							class="@error('facebook') is-invalid @enderror">
 						@error('facebook')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -195,7 +195,7 @@
 							value="{{ old('linkedin', "https://www.linkedin.com/username" ) }}"
 							class="@error('linkedin') is-invalid @enderror">
 						@error('linkedin')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>

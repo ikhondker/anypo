@@ -30,7 +30,7 @@
 								value="{{ old('mnth', $product->mnth ) }}"
 								required/>
 							@error('mnth')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -42,7 +42,7 @@
 										value="{{ old('user', $product->user ) }}"
 										required/>
 									@error('user')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 
 							</td>
@@ -55,7 +55,7 @@
 										value="{{ old('gb', $product->gb ) }}"
 										required/>
 									@error('gb')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>
@@ -67,7 +67,7 @@
 										value="{{ old('price', $product->price ) }}"
 										required/>
 									@error('price')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>

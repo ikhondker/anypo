@@ -50,7 +50,7 @@
 							value="{{ old('facebook', $user->facebook ) }}"
 							/>
 						@error('facebook')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 						</td>
 					</tr>
@@ -62,7 +62,7 @@
 							value="{{ old('linkedin', $user->linkedin ) }}"
 							/>
 						@error('linkedin')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 						</td>
 					</tr>

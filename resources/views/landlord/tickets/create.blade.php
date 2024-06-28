@@ -5,7 +5,7 @@
 
 @section('content')
 
-	<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end mt-n1 "><i class="fas fa-edit"></i> View All</a>
+	<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end mt-n1 "><i class="fas fa-list"></i> View All</a>
 	<h1 class="h3 mb-3">Create Ticket</h1>
 
 	<div class="card">
@@ -30,7 +30,7 @@
 									value="{{ old('title', '' ) }}"
 									required/>
 								@error('title')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>

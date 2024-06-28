@@ -31,7 +31,7 @@
 								value="{{ old('mnth', $service->mnth ) }}"
 								required/>
 							@error('mnth')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -43,7 +43,7 @@
 										value="{{ old('user', $service->user ) }}"
 										required/>
 									@error('user')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 
 							</td>
@@ -56,7 +56,7 @@
 										value="{{ old('gb', $service->gb ) }}"
 										required/>
 									@error('gb')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>
@@ -68,7 +68,7 @@
 										value="{{ old('price', $service->price ) }}"
 										required/>
 									@error('price')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>
@@ -80,7 +80,7 @@
 										value="{{ old('start_date', $service->start_date ) }}"
 										required/>
 									@error('start_date')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>
@@ -92,7 +92,7 @@
 										value="{{ old('end_date', $service->end_date ) }}"
 										required/>
 									@error('end_date')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 							</td>
 						</tr>

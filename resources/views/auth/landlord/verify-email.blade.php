@@ -1,0 +1,152 @@
+@extends('layouts.landlord.page')
+@section('title','Verify Your Email Address')
+
+@section('content')
+
+	<div class="auth-full-page d-flex">
+		<div class="auth-form p-3">
+
+			<div class="text-center">
+				<span class="avatar avatar-xxl avatar-circle">
+					<img src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" class="img-fluid rounded-circle" alt="Carl Jenkins" width="128" height="128">
+				</span>
+				<h1 class="h2">Verify Your Email Address </h1>
+				<p class="lead">
+					We have sent you a mail with email verification link. Before proceeding, please check your email and click on the verification link to verify your email address.
+				</p>
+			</div>
+
+			@if (session('resent'))
+				<div class="alert alert-success" role="alert">
+					{{ __('A fresh verification link has been sent to your email address.') }}
+				</div>
+			@endif
+
+			<div class="mb-3">
+				<!-- Form -->
+				<form action="{{ route('verification.send') }}" method="post" onsubmit="return validateForm()">
+					@csrf
+
+					<div class="mb-3">
+						<div class="text-center">
+						<label class="form-label" for="email">If you did not receive the email, request again by
+							entering your email bellow</label>
+						</div>		
+						<input id="email" type="email" placeholder="you@example.com"
+							class="form-control form-control-lg @error('email') is-invalid @enderror" name="email"
+							value="{{ old('email', " you@example.com" ) }}" required autocomplete="email" autofocus>
+						@error('email')
+							<div class="text-danger text-xs">{{ $message }}</div>
+						@enderror
+
+					</div>
+					<div class="d-grid gap-2 mt-3">
+						<button type="submit" class="btn btn-lg btn-primary">Click Here to Request Another</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="text-center">
+				Don't have an account yet? <a href="{{ route('register') }}">Sign up</a>
+			</div>
+		</div>
+	</div>
+
+@endsection
+
+@section('contentyy')
+	<div class="container content-space-2">
+		<div class="w-lg-50 mx-lg-auto">
+
+			<!-- Card -->
+			<div class="card card-lg mt-5">
+				<div class="card-body">
+					<!-- Heading -->
+					<div class="text-center mb-5 mb-md-7">
+						<span class="avatar avatar-xxl avatar-circle">
+							<img class="avatar-img" src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" alt="Avatar">
+						</span>
+						<h2 class="h2 text-info">Verify Your Email Address </h2>
+						<p>We have sent you a mail with email verification link. Before proceeding, please check your email and click on the verification link to verify your email address.</p>
+					</div>
+					<!-- End Heading -->
+
+					@if (session('resent'))
+						<div class="alert alert-success" role="alert">
+							{{ __('A fresh verification link has been sent to your email address.') }}
+						</div>
+					@endif
+
+					<!-- Form -->
+					<form action="{{ route('verification.send') }}" method="post" onsubmit="return validateForm()">
+						@csrf
+
+						<!-- Form -->
+						<div class="mb-4">
+							<label class="form-label" for="email">If you did not receive the email, request again by
+								entering your email bellow</label>
+							<input id="email" type="email" placeholder="you@example.com"
+								class="form-control form-control-lg @error('email') is-invalid @enderror" name="email"
+								value="{{ old('email', " you@example.com" ) }}" required autocomplete="email" autofocus>
+							@error('email')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</div>
+						<!-- End Form -->
+						<div class="d-grid mb-4">
+							<button type="submit" class="btn btn-primary btn-lg">Click Here to Request Another</button>
+						</div>
+
+						<div class="text-center">
+							<p class="small">Don't have an account yet? <a class="link" href="{{ route('register') }}">Sign
+									up here</a></p>
+						</div>
+					</form>
+					<!-- End Form -->
+				</div>
+			</div>
+			<!-- End Card -->
+		</div>
+	</div>
+@endsection
+
+@section('xxcontent')
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header">{{ __('Verify Your Email Address Landlord') }}</div>
+
+					<div class="card-body">
+						@if (session('resent'))
+							<div class="alert alert-success" role="alert">
+								{{ __('A fresh verification link has been sent to your email address.') }}
+							</div>
+						@endif
+
+						{{ __('Before proceeding, please check your email for a verification link.') }}
+						{{ __('If you did not receive the email') }},
+						<form class="d-inline" method="POST" action="{{ route('verification.send') }}">
+							@csrf
+							<div class="col-12">
+								<div class="mb-3">
+									<label class="form-label">Your Email <span class="text-danger">*</span></label>
+									<input id="email" type="email" placeholder="you6@example.com"
+										class="form-control @error('email') is-invalid @enderror" name="email"
+										value="{{ old('email', " you@example.com" ) }}" required autocomplete="email"
+										autofocus>
+									@error('email')
+									<div class="text-danger text-xs">{{ $message }}</div>
+									@enderror
+								</div>
+							</div>
+							<!--end col-->
+							<button type="submit" class="btn btn-info align-baseline">{{ __('click here to request another')
+								}}</button>.
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+@endsection

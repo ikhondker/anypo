@@ -47,7 +47,7 @@
 							value="{{ old('code', "" ) }}"
 							class="@error('code') is-invalid @enderror" required>
 						@error('code')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 							value="{{ old('summary', "" ) }}"
 							class="@error('summary') is-invalid @enderror" required>
 						@error('summary')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -73,7 +73,7 @@
 							value="{{ old('name', "" ) }}"
 							class="@error('name') is-invalid @enderror" required>
 						@error('name')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -93,7 +93,7 @@
 							value="{{ old('address1', "address1" ) }}"
 							class="@error('address1') is-invalid @enderror">
 						@error('address1')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -106,7 +106,7 @@
 							value="{{ old('email', "email@example.com" ) }}"
 							class="@error('email') is-invalid @enderror" required>
 						@error('email')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -119,7 +119,7 @@
 							value="{{ old('phone', "01911310509" ) }}"
 							class="@error('phone') is-invalid @enderror">
 						@error('phone')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -134,7 +134,7 @@
 							@endforeach
 						</select>
 						@error('user_id')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -162,7 +162,7 @@
 							style="text-align: right;" min="1"
 							class="@error('qty') is-invalid @enderror" required>
 						@error('qty')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -176,7 +176,7 @@
 							value="{{ old('amount', "1.0" ) }}"
 							class="@error('amount') is-invalid @enderror" required>
 						@error('amount')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -188,7 +188,7 @@
 							value="{{ old('my_date', date('Y-m-d') ) }}"
 							class="@error('my_date') is-invalid @enderror" required>
 						@error('my_date')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>
@@ -200,7 +200,7 @@
 							value="{{ old('my_date_time', date('Y-m-d') ) }}"
 							class="@error('my_date_time') is-invalid @enderror">
 						@error('my_date_time')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>

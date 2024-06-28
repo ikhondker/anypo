@@ -78,14 +78,14 @@
 							<a href="{{ route('invoices.show',$invoice->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>
 
-								<a href="{{ route('home.invoice', $invoice->invoice_no) }}" target="_blank"
-									class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="View Online">
-									<i class="bi bi-globe" style="font-size: 1.3rem;"></i>a
-								</a>
-								<a href="{{ route('reports.pdf-invoice', $invoice->id) }}" class="text-body" target="_blank"
-									data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-									<i class="bi bi-cloud-download" style="font-size: 1.3rem;"></i>b
-								</a>
+							<a href="{{ route('home.invoice', $invoice->invoice_no) }}" class="text-body"
+								target="_blank" data-bs-toggle="tooltip"
+								data-bs-placement="top" title="View Online"><i data-lucide="globe"></i></a>
+
+							<a href="{{ route('reports.pdf-invoice', $invoice->id) }}" class="text-body"
+								target="_blank" data-bs-toggle="tooltip"
+								data-bs-placement="top" title="Download"><i data-lucide="download"></i></a>
+								
 						</td>
 					</tr>
 				@endforeach

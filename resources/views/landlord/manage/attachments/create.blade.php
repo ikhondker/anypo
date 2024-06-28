@@ -31,7 +31,7 @@
 							value="{{ old('summary', "Type Brief Attachment Description" ) }}"
 							class="@error('summary') is-invalid @enderror">
 						@error('summary')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</div>
 				</div>

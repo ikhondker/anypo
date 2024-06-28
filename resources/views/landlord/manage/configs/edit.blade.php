@@ -82,7 +82,7 @@
 											value="{{ old('maintenance_start_time', date('d-m-Y h:m:s',strtotime($config->maintenance_start_time)) ) }}"
 											/>
 											@error('maintenance_start_time')
-												<div class="text-danger text-xs">{{ $message }}</div>
+												<div class="small text-danger">{{ $message }}</div>
 											@enderror
 
 										</div>
@@ -92,7 +92,7 @@
 												value="{{ old('maintenance_end_time', date('Y-m-d',strtotime($config->maintenance_end_time)) ) }}"
 												/>
 												@error('maintenance_end_time')
-													<div class="text-danger text-xs">{{ $message }}</div>
+													<div class="small text-danger">{{ $message }}</div>
 												@enderror
 										</div>
 									</div>
@@ -122,7 +122,7 @@
 								<td>
 									<textarea class="form-control" rows="3" name="banner_message" placeholder="Enter ...">{{ old('content', $config->banner_message) }}</textarea>
 										@error('banner_message')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 								</td>
 							</tr>
