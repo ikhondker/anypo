@@ -1,4 +1,4 @@
-@extends('layouts.portrait')
+@extends('layouts.tenant.portrait')
 
 @section('title','Purchase Order Portrait')
 {{-- @section('breadcrumb','Create Pr') --}}

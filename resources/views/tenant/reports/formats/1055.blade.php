@@ -1,4 +1,4 @@
-@extends('layouts.landscape')
+@extends('layouts.tenant.landscape')
 
 @section('title','Tax Register')
 {{-- @section('breadcrumb','Create Pr') --}}

@@ -17,7 +17,7 @@
 			}
 
 			* {
-		    /* Change your font family */
+			/* Change your font family */
 				font-family: Arial, Helvetica, sans-serif;
 			}
 
@@ -86,7 +86,7 @@
 				margin: 0;
 			}
 
-            h2.report_name {
+			h2.report_name {
 				font-size: 1.7em;
 				font-weight: normal;
 				margin: 0;
@@ -224,12 +224,12 @@
 				content: counter(page);
 			}
 
-            .sub_title {
-                font-size: 1em;
-                margin: 5px 0 0 0;
-            }
+			.sub_title {
+				font-size: 1em;
+				margin: 5px 0 0 0;
+			}
 
-            .param { margin: 5px 0 0 0; }
+			.param { margin: 5px 0 0 0; }
 
 
 		</style>
@@ -256,13 +256,14 @@
 		<header class="clearfix">
 			<div id="logo">
 				{{-- <img src="{{ storage_path('logo.png') }}"> --}}
-                <img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px"/>
+				<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px"/>
+				<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px"/>
 
 				{{-- <img src="{{ asset('logo/aa.png') }}"> --}}
 				<h2 class="name">{{ $_setup->name }}</h2>
 				<div>{{ $setup->address1.', '. $setup->address2 }}</div>
 				<div>{{ ($setup->address2 == '' ? '' : $setup->address2 .', ') . $setup->city .' '. $setup->state .', '. $setup->country_name->name }}</div>
-                {{-- <h1>REQUISITION #{{ $pr->id}}</h1> --}}
+				{{-- <h1>REQUISITION #{{ $pr->id}}</h1> --}}
 				{{-- <h2 class="name">{{ env('APP_NAME')}}</h2> --}}
 			</div>
 			<div id="company">
@@ -274,16 +275,16 @@
 				@if ($param2 <> '')
 					<div class="param">{{ $param2 }}</div>
 				@endif
-                @if ($param3 <> '')
+				@if ($param3 <> '')
 					<div class="param">{{ $param3 }}</div>
 				@endif
 
-                {{-- <div>
-                    <p class="param">{{ $param1 }}</p>
-                    <p  class="param">{{ $param2 }}</p>
-                    <p  class="param">{{ $param3 }}</p>
-                </div> --}}
-    			{{-- <div><small>Report Date {{ strtoupper(date('d-M-Y H:i:s', strtotime(now()))) }}<small></div> --}}
+				{{-- <div>
+					<p class="param">{{ $param1 }}</p>
+					<p  class="param">{{ $param2 }}</p>
+					<p  class="param">{{ $param3 }}</p>
+				</div> --}}
+				{{-- <div><small>Report Date {{ strtoupper(date('d-M-Y H:i:s', strtotime(now()))) }}<small></div> --}}
 				{{-- <div>{{ $setup->cell }} {{ $setup->email }}</div>	 --}}
 				{{-- <div>{{ $setup->email }}</div>	 --}}
 				{{-- <div>{{ $setup->website }}</div> --}}
@@ -295,7 +296,7 @@
 		<!-- ========== LETTERHEAD ========== -->
 
 		<main>
-        	<!-- Report main content -->
+			<!-- Report main content -->
 				@yield('content')
 			<!-- /.content -->
 			<!-- ========== STYLE ========== -->

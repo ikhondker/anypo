@@ -43,7 +43,7 @@
 
 	<!-- approval form, show only if pending to current auth user -->
 	@if ($pr->auth_status == App\Enum\AuthStatusEnum::INPROCESS->value)
-		@if (\App\Helpers\Workflow::allowApprove($pr->wf_id))
+		@if (\App\Helpers\Tenant\Workflow::allowApprove($pr->wf_id))
 			{{-- @include('tenant.includes.wfl-approve-reject') --}}
 			<x-tenant.widgets.wfl.get-approval wfid="{{ $pr->wf_id }}" />
 		@endif

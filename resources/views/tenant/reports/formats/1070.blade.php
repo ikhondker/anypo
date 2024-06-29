@@ -1,4 +1,4 @@
-@extends('layouts.landscape')
+@extends('layouts.tenant.landscape')
 
 @section('title','Accounting Entries Report')
 

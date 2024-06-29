@@ -1,5 +1,5 @@
 {{-- @extends('layouts.portrait') --}}
-@extends('layouts.landscape')
+@extends('layouts.tenant.landscape')
 
 @section('title','Requisition portrait')
 {{-- @section('breadcrumb','Create Pr') --}}

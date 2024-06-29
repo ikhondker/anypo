@@ -204,9 +204,9 @@
 
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{ route('dashboards.index') }}"><i class="align-middle me-1" data-lucide="pie-chart"></i> Dashboard</a>
-								<a class="dropdown-item" href="{{ route('notifications.index') }}"><i class="align-middle me-1" data-lucide=" message-square"></i> Notifications</a>
+								<a class="dropdown-item" href="{{ route('notifications.index') }}"><i class="align-middle me-1" data-lucide="message-square"></i> Notifications</a>
 								<a class="dropdown-item" href="{{ route('help') }}"> <i class="align-middle me-1" data-lucide="help-circle"></i> Help</a>
-								<a class="dropdown-item" href="{{ route('tickets.create') }}"><i class="align-middle me-1" data-lucide="message-square"></i> Support</a>
+								<a class="dropdown-item" href="{{ route('tickets.create') }}"><i class="align-middle me-1" data-lucide="message-circle"></i> Support</a>
 								<a class="dropdown-item" href="{{ route('logout') }}"><i class="align-middle text-danger me-1" data-lucide="power"></i> Sign out</a>
 							</div>
 						</li>

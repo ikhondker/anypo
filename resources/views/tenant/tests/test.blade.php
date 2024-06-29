@@ -44,9 +44,6 @@
 
 	</x-tenant.page-header>
 
-
-
-
 	<h1 class="h3 mb-3">Empty card (card-header)</h1>
 	<div class="row">
 		<div class="col-12">
@@ -59,6 +56,8 @@
 					  <h6 class="card-subtitle text-muted">Heatmap is a visualization tool that employs.</h6>
 				</div>
 				<div class="card-body">
+					<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px"/>
+
 					<table class="table table-sm my-2">
 						<tbody>
 							<tr>
