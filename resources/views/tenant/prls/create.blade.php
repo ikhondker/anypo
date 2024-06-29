@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Add Requisition Line')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>

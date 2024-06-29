@@ -1,11 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Get Started')
 
 @section('content')
 
-	<x-tenant.page-header>
+
+
+		<x-tenant.page-header>
 		@slot('title')
-		Get Started  
+			Get Started  
 		@endslot
 
 		@slot('buttons')
@@ -39,11 +41,75 @@
 			  </div>
 			  
 		@endslot
+
 	</x-tenant.page-header>
+
+
+
+
+	<h1 class="h3 mb-3">Empty card (card-header)</h1>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-actions float-end">
+						<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					</div>
+					<h5 class="card-title">Empty card</h5>
+					  <h6 class="card-subtitle text-muted">Heatmap is a visualization tool that employs.</h6>
+				</div>
+				<div class="card-body">
+					<table class="table table-sm my-2">
+						<tbody>
+							<tr>
+								<th>Name</th>
+								<td>Angelica Ramos</td>
+							</tr>
+	
+							<tr>
+								<th>Company</th>
+								<td>The Wiz</td>
+							</tr>
+							<tr>
+								<th>Email</th>
+								<td>angelica@ramos.com</td>
+							</tr>
+							<tr>
+								<th>Status</th>
+								<td><span class="badge badge-subtle-success">Active</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+		<div class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			<div class="alert-icon">
+				<i data-lucide="alert-triangle" class="text-danger"></i>
+			</div>
+			<div class="alert-message">
+				<strong>Error!</strong> aaaaaaaaaaaaaaaaaaaaa
+				
+					<ul>
+				
+							<li class="">1111</li>
+							<li class="">1111</li>
+							<li class="">1111</li>
+				
+					</ul>
+				
+			</div>
+		</div>
+	
+
 
 	<main class="content">
 		<div class="container-fluid p-0">
-
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

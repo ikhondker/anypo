@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','View Custom Error')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('custom-errors.index') }}">Custom Errors</a></li>

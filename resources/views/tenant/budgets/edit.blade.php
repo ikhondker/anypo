@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Edit Budget')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('budgets.index') }}">Budgets</a></li>

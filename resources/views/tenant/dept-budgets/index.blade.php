@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','DeptBudget')
 
 @section('breadcrumb')
@@ -17,7 +17,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-	@if ( \App\Helpers\Akk::userAnyDeptBudgetExists() )
+	@if ( \App\Helpers\Tenant\Akk::userAnyDeptBudgetExists() )
 		<x-tenant.dashboards.dept-budget-stat/>
 	@endif
 

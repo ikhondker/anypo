@@ -2,13 +2,13 @@
 
 	<li class="sidebar-item {{ ($_route_name == 'home' ? 'active' : '') }}">
 		<a class="sidebar-link" href="{{ route('home') }}">
-			<i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
+			<i class="align-middle" data-lucide="home"></i><span class="align-middle">Home</span>
 		</a>
 	</li>
 
 	<li class="sidebar-item {{ ($_route_name == 'notifications.index' ? 'active' : '') }}">
 		<a class="sidebar-link" href="{{ route('notifications.index') }}">
-			<i class="align-middle" data-feather="bell-off"></i><span class="align-middle">Notifications*</span>
+			<i class="align-middle" data-lucide="message-square"></i><span class="align-middle">Notifications*</span>
 			<span class="badge badge-sidebar-primary">{{ $_count_unread_notifications }}</span>
 		</a>
 	</li>
@@ -16,7 +16,7 @@
 	@if (auth()->user()->role->value == UserRoleEnum::USER->value)
 		<li class="sidebar-item {{ ($_route_name == 'prs.index' ? 'active' : '') }}">
 			<a class="sidebar-link" href="{{ route('prs.index') }}">
-				<i class="align-middle" data-feather="layout"></i><span class="align-middle">Requisitions*</span>
+				<i class="align-middle" data-lucide="layout"></i><span class="align-middle">Requisitions*</span>
 			</a>
 		</li>
 	@endif
@@ -24,16 +24,16 @@
 	@can('viewWorkbenchMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_node_name == 'workbench' ? 'active' : '') }}">
 			<a data-bs-target="#workbench"s data-bs-toggle="collapse" class="sidebar-link collapsed">
-				<i class="align-middle" data-feather="grid"></i>
+				<i class="align-middle" data-lucide="layout-template"></i>
 				<span class="align-middle">Workbench *</span>
 			</a>
 			<ul id="workbench" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'workbench' ? 'show' : '') }}" data-bs-parent="#sidebar">
-				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-feather="layout"></i>Requisitions*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'pos.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('pos.index') }}"><i class="align-middle" data-feather="layout"></i>Purchase Orders*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'receipts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('receipts.index') }}"><i class="align-middle" data-feather="layout"></i>Receipts*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'invoices.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('invoices.index') }}"><i class="align-middle" data-feather="layout"></i>Invoices*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'payments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('payments.index') }}"><i class="align-middle" data-feather="layout"></i>Payments*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'aehs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('aehs.index') }}"><i class="align-middle" data-feather="layout"></i>Accounting*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'prs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prs.index') }}"><i class="align-middle" data-lucide="layout"></i>Requisitions*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'pos.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('pos.index') }}"><i class="align-middle" data-lucide="layout"></i>Purchase Orders*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'receipts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('receipts.index') }}"><i class="align-middle" data-lucide="layout"></i>Receipts*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'invoices.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('invoices.index') }}"><i class="align-middle" data-lucide="layout"></i>Invoices*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'payments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('payments.index') }}"><i class="align-middle" data-lucide="layout"></i>Payments*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'aehs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('aehs.index') }}"><i class="align-middle" data-lucide="layout"></i>Accounting*</a></li>
 			</ul>
 		</li>
 	@endcan
@@ -41,24 +41,24 @@
 	@can('viewBudgetMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_node_name == 'budget' ? 'active' : '') }}">
 			<a data-bs-target="#budget" data-bs-toggle="collapse" class="sidebar-link collapsed">
-				<i class="align-middle" data-feather="grid"></i>
+				<i class="align-middle" data-lucide="layout-template"></i>
 				<span class="align-middle">Budget</span>
 			</a>
 			<ul id="budget" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'budget' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				@can('viewAny', App\Models\Tenant\Budget::class)
-					<li class="sidebar-item {{ ($_route_name == 'budgets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Budget*</a></li>
+					<li class="sidebar-item {{ ($_route_name == 'budgets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('budgets.index') }}"><i class="align-middle" data-lucide="layout"></i>Budget*</a></li>
 				@endcan
 				@can('viewAny', App\Models\Tenant\DeptBudget::class)
-					<li class="sidebar-item {{ ($_route_name == 'dept-budgets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dept-budgets.index') }}"><i class="align-middle" data-feather="layout"></i>Dept Budgets*</a></li>
+					<li class="sidebar-item {{ ($_route_name == 'dept-budgets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dept-budgets.index') }}"><i class="align-middle" data-lucide="layout"></i>Dept Budgets*</a></li>
 				@endcan
 				@can('spends', App\Models\Tenant\Lookup\Supplier::class)
-					<li class="sidebar-item {{ ($_route_name == 'suppliers.spends' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('suppliers.spends') }}"><i class="align-middle" data-feather="layout"></i>Supplier Spends*</a></li>
+					<li class="sidebar-item {{ ($_route_name == 'suppliers.spends' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('suppliers.spends') }}"><i class="align-middle" data-lucide="layout"></i>Supplier Spends*</a></li>
 				@endcan
 				@can('spends', App\Models\Tenant\Lookup\Project::class)
-					<li class="sidebar-item {{ ($_route_name == 'projects.spends' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('projects.spends') }}"><i class="align-middle" data-feather="layout"></i>Project Spends*</a></li>
+					<li class="sidebar-item {{ ($_route_name == 'projects.spends' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('projects.spends') }}"><i class="align-middle" data-lucide="layout"></i>Project Spends*</a></li>
 					@endcan
 				@can('viewAny', App\Models\Tenant\Dbu::class)
-					<li class="sidebar-item {{ ($_route_name == 'dbus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dbus.index') }}"><i class="align-middle" data-feather="layout"></i>Budget Usage*</a></li>
+					<li class="sidebar-item {{ ($_route_name == 'dbus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dbus.index') }}"><i class="align-middle" data-lucide="layout"></i>Budget Usage*</a></li>
 				@endcan
 			</ul>
 		</li>
@@ -67,7 +67,7 @@
 	@can('viewReportMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_route_name == 'reports.index' ? 'active' : '') }}">
 			<a class="sidebar-link" href="{{ route('reports.index') }}">
-				<i class="align-middle" data-feather="grid"></i><span class="align-middle">Reports</span>
+				<i class="align-middle" data-lucide="layout"></i><span class="align-middle">Reports</span>
 			</a>
 		</li>
 	@endcan
@@ -75,7 +75,7 @@
 	@can('viewMasterDataMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_node_name == 'master' ? 'active' : '') }}">
 			<a data-bs-target="#master" data-bs-toggle="collapse" class="sidebar-link collapsed">
-				<i class="align-middle" data-feather="grid"></i>
+				<i class="align-middle" data-lucide="layout-template"></i>
 				<span class="align-middle">Master Data</span>
 			</a>
 			<ul id="master" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'master' ? 'show' : '') }}" data-bs-parent="#sidebar">
@@ -89,7 +89,7 @@
 	@can('viewLookupMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_node_name == 'lookups' ? 'active' : '') }}">
 			<a data-bs-target="#lookups" data-bs-toggle="collapse" class="sidebar-link collapsed">
-				<i class="align-middle" data-feather="grid"></i>
+				<i class="align-middle" data-lucide="layout-template"></i>
 				<span class="align-middle">Lookups</span>
 			</a>
 			<ul id="lookups" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'lookups' ? 'show' : '') }}" data-bs-parent="#sidebar">
@@ -108,7 +108,7 @@
 	@can('viewInterfaceMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_node_name == 'interface' ? 'active' : '') }}">
 			<a data-bs-target="#interface" data-bs-toggle="collapse" class="sidebar-link collapsed">
-				<i class="align-middle" data-feather="grid"></i>
+				<i class="align-middle" data-lucide="layout-template"></i>
 				<span class="align-middle">Interface</span>
 			</a>
 			<ul id="interface" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'interface' ? 'show' : '') }}" data-bs-parent="#sidebar">
@@ -121,7 +121,7 @@
 	@can('viewAdminMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_node_name == 'admin' ? 'active' : '') }}">
 			<a data-bs-target="#admin" data-bs-toggle="collapse" class="sidebar-link collapsed">
-				<i class="align-middle" data-feather="grid"></i>
+				<i class="align-middle" data-lucide="layout-template"></i>
 				<span class="align-middle">Admin</span>
 			</a>
 			<ul id="admin" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'admin' ? 'show' : '') }}" data-bs-parent="#sidebar">
@@ -139,7 +139,7 @@
 	@can('viewSystemMenu', App\Models\Tenant\Manage\Menu::class)
 		<li class="sidebar-item {{ ($_node_name == 'system' ? 'active' : '') }}">
 			<a data-bs-target="#system" data-bs-toggle="collapse" class="sidebar-link collapsed">
-				<i class="align-middle" data-feather="grid"></i>
+				<i class="align-middle" data-lucide="layout-template"></i>
 				<span class="align-middle">System</span>
 			</a>
 			<ul id="system" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'system' ? 'show' : '') }}" data-bs-parent="#sidebar">
@@ -153,6 +153,8 @@
 				<li class="sidebar-item {{ ($_route_name == 'groups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('groups.index') }}"><i class="align-middle" data-feather="circle"></i>Item Groups</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-feather="circle"></i>Country</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('templates.index') }}"><i class="align-middle" data-feather="circle"></i>Templates</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'ui' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('ui') }}"><i class="align-middle" data-feather="circle"></i>UI</a></li>
+
 			</ul>
 		</li>
 	@endcan

@@ -175,8 +175,12 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.create',	  	'route_name' => 'users.index',	'access' => 'F'],
 			[ 'raw_route_name' => 'users.all',			'route_name' => 'users.index',	'access' => 'B'],
 
-            // Others
-            [ 'raw_route_name' => 'widgets',			'route_name' => 'widgets',	'access' => 'B'],
+			/**
+			* ==================================================================================
+			* 9. Others
+			* ==================================================================================
+			*/
+			[ 'raw_route_name' => 'ui',			'route_name' => 'ui',	'access' => 'B'],
 
 		];
 		Menu::insert($menus);

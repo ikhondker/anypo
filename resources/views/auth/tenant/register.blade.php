@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.tenant.auth')
 @section('title','Register')
 
 @section('content')
@@ -62,7 +62,7 @@
 							@enderror
 					</div>
 
-					<div>
+					{{-- <div>
 						<div class="form-check align-items-center">
 							<input id="terms" type="checkbox" class="form-check-input" name="terms" required>
 							<label class="form-check-label text-small" for="terms">
@@ -72,7 +72,7 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-					</div>
+					</div> --}}
 
 					<div class="text-end mt-3">
 						<div class="button-group d-flex justify-content-center flex-wrap">

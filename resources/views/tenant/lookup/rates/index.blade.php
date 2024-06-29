@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Exchange Rates')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Exchange Rates</li>

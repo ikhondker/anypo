@@ -68,7 +68,7 @@ class ConfirmPasswordController extends Controller
 			return view('auth.landlord.passwords.confirm');
 
 		} else {
-			return view('auth.passwords.confirm');
+			return view('auth.tenant.passwords.confirm');
 		}
 	}
 }

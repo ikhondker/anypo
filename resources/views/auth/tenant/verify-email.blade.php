@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.tenant.auth')
 @section('title','Verify Your Email Address')
 
 @section('content')

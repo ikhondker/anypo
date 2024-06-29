@@ -1,6 +1,6 @@
 <li class="sidebar-item {{ ($_node_name == 'profile' ? 'active' : '') }}">
 	<a data-bs-target="#profile" data-bs-toggle="collapse" class="sidebar-link collapsed">
-		<i class="align-middle" data-feather="grid"></i>
+		<i class="align-middle" data-lucide="layout-template"></i>
 		<span class="align-middle">My Account</span>
 	</a>
 	<ul id="profile" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'profile' ? 'show' : '') }}" data-bs-parent="#sidebar">
@@ -12,7 +12,7 @@
 
 <li class="sidebar-item {{ ($_route_name == 'help' ? 'active' : '') }}">
 	<a class="sidebar-link" href="{{ route('help') }}">
-		<i class="align-middle" data-feather="help-circle"></i><span class="align-middle">Help</span>
+		<i class="align-middle" data-lucide="help-circle"></i><span class="align-middle">Help</span>
 	</a>
 </li>
 {{-- <li class="sidebar-item {{ ($_route_name == 'tickets.create' ? 'active' : '') }}">
@@ -22,14 +22,14 @@
 </li> --}}
 <li class="sidebar-item }}">
 	<a class="sidebar-link" href="{{ route('logout') }}">
-		<i class="align-middle text-danger" data-feather="power"></i><span class="align-middle"> Sign out</span>
+		<i class="align-middle text-danger" data-lucide="power"></i><span class="align-middle"> Sign out</span>
 	</a>
 </li>
 
 @if(session('original_user'))
 	<li class="sidebar-item">
 		<a class="sidebar-link" href="{{ route('users.leave-impersonate') }}">
-			<i class="align-middle text-danger" data-feather="power"></i><span class="align-middle text-danger"> Leave Impersonate</span>
+			<i class="align-middle text-danger" data-lucide="power"></i><span class="align-middle text-danger"> Leave Impersonate</span>
 		</a>
 	</li>
 @endif

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','View Activity Log')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('activities.index') }}">Activity Logs</a></li>

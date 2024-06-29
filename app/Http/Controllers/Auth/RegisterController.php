@@ -136,7 +136,7 @@ class RegisterController extends Controller
 		if (tenant('id') == '') {
 			return view('auth.landlord.register');
 		} else {
-			return view('auth.register');
+			return view('auth.tenant.register');
 		}
 	}
 }

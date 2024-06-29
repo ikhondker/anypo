@@ -18,7 +18,7 @@
 * =====================================================================================
 */
 
-namespace App\Helpers;
+namespace App\Helpers\Tenant;
 
 use App\Models\Tenant\Admin\Attachment;
 use App\Models\Tenant\Manage\Entity;

@@ -18,7 +18,7 @@
 * =====================================================================================
 */
 
-namespace App\Helpers;
+namespace App\Helpers\Tenant;
 
 use App\Models\Tenant\DeptBudget;
 use Illuminate\Support\Facades\Log;

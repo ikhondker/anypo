@@ -1,5 +1,5 @@
 @extends('layouts.tenant-jquery')
-{{-- @extends('layouts.app') --}}
+{{-- @extends('layouts.tenant.app') --}}
 @section('title','JQuery in Laravel 10 | TENANT')
 
 @section('content')

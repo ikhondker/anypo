@@ -60,7 +60,7 @@ class ResetPasswordController extends Controller
 		if (tenant('id') == '') {
 			return view('auth.landlord.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
 		} else {
-			return view('auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
+			return view('auth.tenant.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
 		}
 	}
 }

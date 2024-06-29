@@ -83,6 +83,10 @@ Route::get('/contact-us', function () {
 	return view('landlord.pages.contact-us', compact('config'));
 })->name('contact-us');
 
+Route::get('/404', function () {
+    abort(404);
+});
+
 /**
 * ==================================================================================
 * 3. Public Controller Based Routes
@@ -135,7 +139,7 @@ Route::get('/email/verify', function () {
 	if (tenant('id') == '') {
 		return view('auth.landlord.verify-email');
 	} else {
-		return view('auth.verify-email');
+		return view('auth.tenant.verify-email');
 	}
 	})->middleware('auth')->name('verification.notice');
 
@@ -444,9 +448,9 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 		return view('landlord.tests.test');
 	})->name('test');
 
-	Route::get('/widgets', function () {
-		return view('landlord.manage.widgets');
-	})->name('widgets');
+	Route::get('/ui', function () {
+		return view('landlord.manage.ui');
+	})->name('ui');
 
 	Route::get('/sweet2', function () {
 		return view('landlord.tests.sweet2');

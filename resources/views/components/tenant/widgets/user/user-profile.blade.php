@@ -4,7 +4,7 @@
 	</div>
 	<div class="card-body text-center">
 
-		<img src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="img-fluid rounded-circle mb-2" width="128" height="128" title="{{ $user->name }}">
+		<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="img-fluid rounded-circle mb-2" width="128" height="128" title="{{ $user->name }}">
 
 		<h5 class="card-title mb-0">{{ $user->name }}</h5>
 		<div class="text-muted mb-2">{{ $user->designation->name }}</div>

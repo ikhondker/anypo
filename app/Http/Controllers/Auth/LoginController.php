@@ -117,7 +117,7 @@ class LoginController extends Controller
 		if (tenant('id') == '') {
 			return view('auth.landlord.login');
 		} else {
-			return view('auth.login');
+			return view('auth.tenant.login');
 		}
 	}
 }

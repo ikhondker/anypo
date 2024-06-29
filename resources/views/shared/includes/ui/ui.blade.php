@@ -1,10 +1,3 @@
-@extends('layouts.landlord.app')
-@section('title', 'Resuable Widgets')
-@section('breadcrumb', 'Resuable Widgets')
-
-
-@section('content')
-
 		<div class="row mb-2 mb-xl-3">
 			<div class="col-auto d-none d-sm-block">
 				<h3>Dashboard</h3>
@@ -846,8 +839,3 @@
 			</div>
 		</div>
 
-
-
-
-
-@endsection

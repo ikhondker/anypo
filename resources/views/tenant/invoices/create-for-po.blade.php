@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Create Invoice')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO#{{ $po->id }}</a></li>

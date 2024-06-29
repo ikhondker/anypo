@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Documentation')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Documentation</li>
@@ -15,7 +15,7 @@
 			<a href="tel:{{ config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-danger float-end me-2"><i data-feather="phone-outgoing"></i> Call support {{config('akk.SUPPORT_PHONE_NO')}}</a>
 			<a href="{{ route('get-started') }}" class="btn btn-danger float-end me-2"><i data-feather="phone-outgoing"></i> Get Started **</a>
 			@endif 
-			<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-2"><i data-feather="message-square"></i> Create Ticket</a>
+			<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-2"><i class="fas fa-plus"></i> Create Ticket</a>
 		@endslot
 	</x-tenant.page-header>
 

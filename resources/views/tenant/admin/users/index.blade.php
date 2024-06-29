@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Users')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Users</li>
@@ -12,7 +12,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="User"/>
-            <x-tenant.actions.user-actions-index/>
+			<x-tenant.actions.user-actions-index/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -35,7 +35,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="database"></i>
+								<i class="align-middle" data-lucide="database"></i>
 							</div>
 						</div>
 					</div>
@@ -52,7 +52,7 @@
 						</div>
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="bell"></i>
+								<i class="align-middle" data-lucide="bell"></i>
 							</div>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="bell-off"></i>
+								<i class="align-middle" data-lucide="bell-off"></i>
 							</div>
 						</div>
 					</div>
@@ -91,7 +91,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="activity"></i>
+								<i class="align-middle" data-lucide="activity"></i>
 							</div>
 						</div>
 					</div>
@@ -118,16 +118,16 @@
 				</div>
 
 				<div class="card-body">
-					<table class="table">
+					<table id="datatables-orders" class="table w-100">
 						<thead>
 							<tr>
-								<th>Lead</th>
-								<th>Email</th>
-								<th>Role</th>
-								<th>Title</th>
-								<th>Dept</th>
-								<th>Enable</th>
-								<th>View</th>
+								<th class="align-middle">Lead</th>
+								<th class="align-middle">Email</th>
+								<th class="align-middle">Role</th>
+								<th class="align-middle">Title</th>
+								<th class="align-middle">Dept</th>
+								<th class="align-middle">Enable</th>
+								<th class="align-middle">View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -143,7 +143,7 @@
 									@endif
 								</td>
 								<td>{{ $user->email }}</td>
-                                <td>
+								<td>
 									@if ($user->isAdmin())
 										<span class="badge bg-danger">{{ $user->role }}</span>
 									@else
@@ -154,9 +154,11 @@
 								<td>{{ $user->dept->name }}</td>
 
 								<td><x-tenant.list.my-boolean :value="$user->enable"/></td>
-								<td class="table-action">
-									<a href="{{ route('users.show',$user->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-feather="eye"></i></a>
+								<td>
+									<a href="{{ route('users.show',$user->id) }}" class="btn btn-light" 
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+
 									@if(session('original_user'))
 										{{-- <a wire:ignore href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">
 											<i class="align-middle text-success" data-feather="log-in"></i>
@@ -165,7 +167,7 @@
 										@can('impersonate',$user)
 											@if ($user->id > 1002 )
 												<a wire:ignore href="{{ route('users.impersonate',$user->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
-													<i class="align-middle text-danger" data-feather="log-out"></i>
+													<i class="align-middle text-danger" data-lucide="log-out"></i>
 												</a>
 											@endif
 										@endcan

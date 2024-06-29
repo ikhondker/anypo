@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Group')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Item Groups</li>

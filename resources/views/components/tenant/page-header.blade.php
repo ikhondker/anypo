@@ -6,10 +6,10 @@
 	<div class="col-auto ms-auto text-end mt-n1">
 		{{-- <div class="dropdown position-relative"> --}}
 			<a href="{{ route('tickets.create') }}" class="btn btn-info float-end me-1">
-				<i class="align-middle" data-feather="message-square"></i>
+				<i class="align-middle" data-lucide="message-square"></i>
 			</a>
 			<a href="{{ route('help') }}" class="btn btn-info float-end me-1">
-				<i class="align-middle" data-feather="help-circle"></i>
+				<i class="align-middle" data-lucide="help-circle"></i>
 			</a>
 
 			{{-- <div class="dropdown-menu dropdown-menu-end">

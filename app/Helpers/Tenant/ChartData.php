@@ -18,7 +18,7 @@
 * =====================================================================================
 */
 
-namespace App\Helpers;
+namespace App\Helpers\Tenant;
 use DB;
 use File;
 use Str;

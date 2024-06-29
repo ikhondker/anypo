@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Additional Information for Purchase Orders')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>

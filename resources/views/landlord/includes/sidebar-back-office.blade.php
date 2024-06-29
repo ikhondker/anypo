@@ -147,9 +147,9 @@
 			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Menus</span>
 		</a>
 	</li>
-	<li class="sidebar-item {{ $_route_name == 'widgets' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('widgets') }}">
-			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Widgets</span>
+	<li class="sidebar-item {{ $_route_name == 'ui' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('ui') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">UI</span>
 		</a>
 	</li>
 

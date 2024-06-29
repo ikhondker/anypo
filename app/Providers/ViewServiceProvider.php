@@ -75,7 +75,7 @@ class ViewServiceProvider extends ServiceProvider
 		// 	$view->with('_logo_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\");
 		// });
 
-		view()->composer('layouts.app', function ($view) {
+		view()->composer('layouts.tenant.app', function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu	= new Menu;
 			 	//Log::debug("ViewServiceProvider.boot.tenant raw_route_name = ".$raw_route_name);
@@ -92,12 +92,12 @@ class ViewServiceProvider extends ServiceProvider
 			$view->with('_node_name', $menu->node_name)->with('_route_name', $menu->route_name);
 		});
 
-		Facades\View::composer(['layouts.app','tenant.*',
+		Facades\View::composer(['layouts.tenant.app','tenant.*',
 				'components.tenant.create.amount','components.tenant.edit.amount','components.tenant.show.my-amount',
 				'components.tenant.edit.price','components.tenant.create.price-fc',
 				'components.tenant.dashboards.*','components.tenant.widgets.*','components.tenant.info.*'
 				],
 				\App\View\Composers\SetupComposer::class);
-		Facades\View::composer('layouts.app', \App\View\Composers\NotificationComposer::class);
+		Facades\View::composer('layouts.tenant.app', \App\View\Composers\NotificationComposer::class);
 	}
 }

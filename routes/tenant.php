@@ -130,16 +130,16 @@ Route::middleware([
 		// })->name('test');
 		//Route::view('/test', 'tenant.pages.test');
 		Route::get('/test', function () {
-			return view('tenant.tests.pages.test');
+			return view('tenant.tests.test');
 		})->name('test');
 		Route::get('/sweet2', function () {
-			return view('tenant.tests.pages.sweet2');
+			return view('tenant.tests.sweet2');
 		})->name('sweet2');
 		Route::get('/jq', function () {
-			return view('tenant.tests.pages.jquery');
+			return view('tenant.tests.jquery');
 		})->name('jq');
 		Route::get('/jql', function () {
-			return view('tenant.tests.pages.jqueryl');
+			return view('tenant.tests.jqueryl');
 		})->name('jql');
 
 		/* ======================== Purging Cache ========================================  */
@@ -684,6 +684,11 @@ Route::middleware([
 		/* ======================== Aeh ======================================== */
 		Route::resource('aehs', AehController::class);
 
+		Route::get('/ui', function () {
+			return view('tenant.manage.ui');
+		})->name('ui');
+	
+		
 		/* ======================== Purging Cache ========================================  */
 		// Route::get('/clear', function() {
 		// 	Artisan::call('cache:clear');

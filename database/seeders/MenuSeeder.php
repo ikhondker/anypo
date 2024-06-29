@@ -279,8 +279,15 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 			[ 'raw_route_name' => 'users.profile','route_name' 			=> 'users.profile', 'node_name' 		=> 'profile'],
-			[ 'raw_route_name' => 'users.profile-edit','route_name' 	=> 'users.profile-edit', 'node_name' 		=> 'profile'],
-			[ 'raw_route_name' => 'users.profile-password','route_name' => 'users.profile-password', 'node_name' 		=> 'profile'],
+			[ 'raw_route_name' => 'users.profile-edit','route_name' 	=> 'users.profile-edit', 'node_name' 	=> 'profile'],
+			[ 'raw_route_name' => 'users.profile-password','route_name' => 'users.profile-password', 'node_name'=> 'profile'],
+
+			/**
+			* ==================================================================================
+			* 9. Others
+			* ==================================================================================
+			*/
+			[ 'raw_route_name' => 'ui','route_name' => 'ui', 'node_name'=> 'system'],
 
 		  ];
 		//

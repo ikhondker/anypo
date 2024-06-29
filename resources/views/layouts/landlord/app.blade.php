@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-<!--
-  HOW TO USE:
-  data-layout: fluid (default), boxed
-  data-sidebar-theme: dark (default), colored, light
-  data-sidebar-position: left (default), right
-  data-sidebar-behavior: sticky (default), fixed, compact
--->
-
 <html lang="en" 
 		data-bs-theme="light" 
 		data-layout="fluid"
@@ -17,18 +9,16 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Bootstrap 5 Admin &amp; Dashboard Template">
-	<meta name="author" content="Bootlab">
+	<meta name="description" content="ANYPO.NET - Control Expenses ">
+	<meta name="author" content="Iqbal H Khondker">
 
 	<!-- Title -->
 	<title>@yield('title', 'ANYPO.NET')</title>
 
 	<!-- Favicon -->
-	{{-- <link rel="shortcut icon" href="./favicon.ico"> --}}
-	{{-- <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"> --}}
 	<link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
 
-	<link rel="canonical" href="https://appstack.bootlab.io/pages-blank.html" />
+	<link rel="canonical" href="https://www.anypo.net/404" />
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

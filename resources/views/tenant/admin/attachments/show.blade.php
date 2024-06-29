@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','View Attachment')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('attachments.index') }}">Attachments</a></li>

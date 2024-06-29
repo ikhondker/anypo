@@ -234,6 +234,7 @@
 						@include('tenant.admin.setups.initial')
 						<!-- /.content -->
 					@endif
+					
 				</div>
 			</main>
 

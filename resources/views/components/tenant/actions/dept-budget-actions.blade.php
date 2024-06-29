@@ -1,6 +1,6 @@
 <div class="dropdown me-2 d-inline-block position-relative">
 	<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-		<i class="align-middle mt-n1" data-feather="folder"></i> Dept Budget Actions
+		<i class="align-middle mt-n1" data-lucide="settings"></i> Dept Budget Actions
 	</a>
 	<div class="dropdown-menu dropdown-menu-end">
 		<a class="dropdown-item" href="{{ route('dept-budgets.edit', $id) }}"><i class="align-middle me-1" data-feather="edit"></i> Edit Dept Budget</a>

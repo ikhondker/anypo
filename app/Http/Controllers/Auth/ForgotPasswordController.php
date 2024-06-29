@@ -47,7 +47,7 @@ class ForgotPasswordController extends Controller
 		if (tenant('id') == '') {
 			return view('auth.landlord.passwords.email');
 		} else {
-			return view('auth.passwords.email');
+			return view('auth.tenant.passwords.email');
 		}
 	}
 }

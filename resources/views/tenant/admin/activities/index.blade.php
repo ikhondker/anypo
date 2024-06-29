@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Activity Log')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Activity Logs</li>

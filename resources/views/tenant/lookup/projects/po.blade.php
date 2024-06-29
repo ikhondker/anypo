@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','PO for a Project')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('suppliers.index') }}">Projects</a></li>

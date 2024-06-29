@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Templates')
 @section('breadcrumb','Templates v1.3 (6-MAR-23)')
 

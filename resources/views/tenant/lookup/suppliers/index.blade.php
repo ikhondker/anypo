@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Supplier Master')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Supplier Master</li>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Edit Uom')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('uoms.index') }}">UoM's</a></li>

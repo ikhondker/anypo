@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title','Tables')
 @section('breadcrumb')
 	DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]

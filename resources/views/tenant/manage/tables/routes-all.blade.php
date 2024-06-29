@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tenant.app')
 @section('title',' All Routes List')
 @section('breadcrumb')
 	All Routes List
