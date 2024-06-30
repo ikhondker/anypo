@@ -52,7 +52,7 @@
 									<a href="{{ route('categories.destroy',$category->id) }}" class="me-2 sw2-advance"
 										data-entity="Category" data-name="{{ $category->name }}" data-status="{{ ($category->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($category->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle {{ ($category->enable ? 'text-muted' : 'text-success') }}" data-feather="{{ ($category->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle {{ ($category->enable ? 'text-muted' : 'text-success') }}" data-lucide="{{ ($category->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

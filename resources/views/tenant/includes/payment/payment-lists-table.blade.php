@@ -32,7 +32,7 @@
 
             <td class="table-action">
                 <a href="{{ route('payments.show',$payment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                    <i class="align-middle" data-feather="eye"></i>
+                    <i class="align-middle" data-lucide="eye"></i>
                 </a>
             </td>
         </tr>

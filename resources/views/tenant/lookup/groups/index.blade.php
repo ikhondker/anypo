@@ -43,7 +43,7 @@
 									<a href="{{ route('groups.destroy',$group->id) }}" class="me-2 sw2-advance"
 										data-entity="Group" data-name="{{ $group->name }}" data-status="{{ ($group->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($group->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle {{ ($group->enable ? 'text-muted' : 'text-success') }}" data-feather="{{ ($group->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle {{ ($group->enable ? 'text-muted' : 'text-success') }}" data-lucide="{{ ($group->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

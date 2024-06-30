@@ -46,7 +46,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="database"></i>
+								<i class="align-middle" data-lucide="database"></i>
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 						</div>
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="bell"></i>
+								<i class="align-middle" data-lucide="bell"></i>
 							</div>
 						</div>
 					</div>
@@ -91,7 +91,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="bell-off"></i>
+								<i class="align-middle" data-lucide="bell-off"></i>
 							</div>
 						</div>
 					</div>
@@ -141,7 +141,7 @@
 								<td><x-tenant.list.my-boolean :value="$supplier->enable"/></td>
 								<td class="table-action">
 									<a href="{{ route('suppliers.show',$supplier->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-feather="eye"></i></a>
+										<i class="align-middle" data-lucide="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach

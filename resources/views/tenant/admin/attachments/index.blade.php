@@ -55,7 +55,7 @@
 								<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 								<td class="table-action">
 									<a href="{{ route('attachments.show',$attachment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-feather="eye"></i></a>
+										<i class="align-middle" data-lucide="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach

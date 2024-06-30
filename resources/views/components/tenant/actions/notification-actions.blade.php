@@ -5,7 +5,7 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		
 		@if ( $notification->id <> '' && $notification->read_at == '' )
-			<a class="dropdown-item" href="{{ route('notifications.read',$notification->id) }}"><i class="align-middle me-1 text-success" data-feather="list"></i> Mark As Read</a>
+			<a class="dropdown-item" href="{{ route('notifications.read',$notification->id) }}"><i class="align-middle me-1 text-success" data-lucide="list"></i> Mark As Read</a>
 			<div class="dropdown-divider"></div>
 		@endif 
 

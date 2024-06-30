@@ -69,7 +69,7 @@
 									<a href="{{ route('templates.destroy',$template->id) }}" class="me-2 sw2-advance"
 										data-entity="Template" data-name="{{ $template->name }}" data-status="{{ ($template->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($template->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($template->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($template->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

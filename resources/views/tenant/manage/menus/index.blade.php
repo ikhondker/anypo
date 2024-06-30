@@ -56,7 +56,7 @@
 									<a href="{{ route('menus.destroy',$menu->id) }}" class="me-2 sw2-advance"
 										data-entity="Menu" data-name="{{ $menu->name }}" data-status="{{ ($menu->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($menu->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle {{ ($menu->enable ? 'text-muted' : 'text-success') }}" data-feather="{{ ($menu->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle {{ ($menu->enable ? 'text-muted' : 'text-success') }}" data-lucide="{{ ($menu->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

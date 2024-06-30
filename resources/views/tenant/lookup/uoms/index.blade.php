@@ -58,7 +58,7 @@
 									<a href="{{ route('uoms.destroy',$uom->id) }}" class="me-2 sw2-advance"
 										data-entity="Uom" data-name="{{ $uom->name }}" data-status="{{ ($uom->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($uom->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($uom->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($uom->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

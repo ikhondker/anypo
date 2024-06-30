@@ -10853,8 +10853,8 @@ textarea.form-control-lg {
 					<td>864-348-0485</td>
 					<td class="d-none d-md-table-cell">June 21, 1961</td>
 					<td class="table-action">
-						<a href="#"><i class="align-middle" data-feather="edit-2"></i></a>
-						<a href="#"><i class="align-middle" data-feather="trash"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="edit-2"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="trash"></i></a>
 					</td>
 				</tr>
 				<tr>
@@ -10862,8 +10862,8 @@ textarea.form-control-lg {
 					<td>914-939-2458</td>
 					<td class="d-none d-md-table-cell">May 15, 1948</td>
 					<td class="table-action">
-						<a href="#"><i class="align-middle" data-feather="edit-2"></i></a>
-						<a href="#"><i class="align-middle" data-feather="trash"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="edit-2"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="trash"></i></a>
 					</td>
 				</tr>
 				<tr>
@@ -10871,8 +10871,8 @@ textarea.form-control-lg {
 					<td>704-993-5435</td>
 					<td class="d-none d-md-table-cell">September 14, 1965</td>
 					<td class="table-action">
-						<a href="#"><i class="align-middle" data-feather="edit-2"></i></a>
-						<a href="#"><i class="align-middle" data-feather="trash"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="edit-2"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="trash"></i></a>
 					</td>
 				</tr>
 				<tr>
@@ -10880,8 +10880,8 @@ textarea.form-control-lg {
 					<td>765-382-8195</td>
 					<td class="d-none d-md-table-cell">April 2, 1971</td>
 					<td class="table-action">
-						<a href="#"><i class="align-middle" data-feather="edit-2"></i></a>
-						<a href="#"><i class="align-middle" data-feather="trash"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="edit-2"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="trash"></i></a>
 					</td>
 				</tr>
 				<tr>
@@ -10889,8 +10889,8 @@ textarea.form-control-lg {
 					<td>202-672-1407</td>
 					<td class="d-none d-md-table-cell">October 12, 1966</td>
 					<td class="table-action">
-						<a href="#"><i class="align-middle" data-feather="edit-2"></i></a>
-						<a href="#"><i class="align-middle" data-feather="trash"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="edit-2"></i></a>
+						<a href="#"><i class="align-middle" data-lucide="trash"></i></a>
 					</td>
 				</tr>
 			</tbody>

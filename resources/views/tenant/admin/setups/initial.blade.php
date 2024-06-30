@@ -33,7 +33,7 @@
 							<div class="mb-3">
 								<div class="alert alert-warning" role="alert">
 									<div class="alert-icon">
-										<i data-feather="alert-triangle" class="text-danger"></i>
+										<i data-lucide="alert-triangle" class="text-danger"></i>
 									</div>
 									<div class="alert-message">
 										<strong>Note: </strong> Please note you wont be able to change this currency setting once Setup is Freezed! </br>
@@ -54,7 +54,7 @@
 							</div>
 					
 							<div class="mb-3 float-end">
-								<button type="submit" id="submit" name="submit" class="btn btn-primary"><i data-feather="save"></i> Freeze Setup</button>
+								<button type="submit" id="submit" name="submit" class="btn btn-primary"><i data-lucide="save"></i> Freeze Setup</button>
 							</div>
 							
 						</div>

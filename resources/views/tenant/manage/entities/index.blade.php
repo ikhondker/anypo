@@ -50,7 +50,7 @@
 									<a href="{{ route('entities.destroy',$entity->entity) }}" class="me-2 sw2-advance" 
 										data-entity="Entity" data-name="{{ $entity->name }}" data-status="{{ ($entity->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($entity->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($entity->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($entity->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

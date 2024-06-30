@@ -11,7 +11,7 @@
 			Dashboard
 		@endslot
 		@slot('buttons')
-			{{-- <x-tenant.buttons.header.create object="User"/> --}}
+			<x-tenant.actions.dashboard-actions/>
 		@endslot
 	</x-tenant.page-header>
 	
@@ -39,7 +39,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="activity"></i>
+								<i class="align-middle" data-lucide="activity"></i>
 							</div>
 						</div>
 					</div>
@@ -83,7 +83,7 @@
 						</div>
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="shopping-bag"></i>
+								<i class="align-middle" data-lucide="shopping-bag"></i>
 							</div>
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="shopping-cart"></i>
+								<i class="align-middle" data-lucide="shopping-cart"></i>
 							</div>
 						</div>
 					</div>
@@ -142,7 +142,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="activity"></i>
+								<i class="align-middle" data-lucide="activity"></i>
 							</div>
 						</div>
 					</div>
@@ -170,7 +170,7 @@
 						</div>
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="activity"></i>
+								<i class="align-middle" data-lucide="activity"></i>
 							</div>
 						</div>
 					</div>
@@ -202,7 +202,7 @@
 						</div>
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="shopping-bag"></i>
+								<i class="align-middle" data-lucide="shopping-bag"></i>
 							</div>
 						</div>
 					</div>
@@ -235,7 +235,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="shopping-cart"></i>
+								<i class="align-middle" data-lucide="shopping-cart"></i>
 							</div>
 						</div>
 					</div>
@@ -268,7 +268,7 @@
 
 						<div class="col-auto">
 							<div class="stat stat-sm">
-								<i class="align-middle" data-feather="activity"></i>
+								<i class="align-middle" data-lucide="activity"></i>
 							</div>
 						</div>
 					</div>
@@ -301,7 +301,7 @@
 					<div class="card-actions float-end">
 						<div class="dropdown position-relative">
 							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-								<i class="align-middle" data-feather="more-horizontal"></i>
+								<i class="align-middle" data-lucide="more-horizontal"></i>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end">
@@ -331,7 +331,7 @@
 					<div class="card-actions float-end">
 						<div class="dropdown position-relative">
 							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-								<i class="align-middle" data-feather="more-horizontal"></i>
+								<i class="align-middle" data-lucide="more-horizontal"></i>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end">
@@ -361,7 +361,7 @@
 					<div class="card-actions float-end">
 						<div class="dropdown position-relative">
 							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
+							<i class="align-middle" data-lucide="more-horizontal"></i>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end">
@@ -389,7 +389,7 @@
 					<div class="card-actions float-end">
 						<div class="dropdown position-relative">
 							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
+							<i class="align-middle" data-lucide="more-horizontal"></i>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end">
@@ -475,7 +475,7 @@
 					<div class="card-actions float-end">
 						<div class="dropdown position-relative">
 							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
+							<i class="align-middle" data-lucide="more-horizontal"></i>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end">
@@ -501,7 +501,7 @@
 					<div class="card-actions float-end">
 						<div class="dropdown position-relative">
 							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
+							<i class="align-middle" data-lucide="more-horizontal"></i>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end">
@@ -529,7 +529,7 @@
 					<div class="card-actions float-end">
 						<div class="dropdown position-relative">
 							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
+							<i class="align-middle" data-lucide="more-horizontal"></i>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end">
@@ -556,7 +556,7 @@
 					<div class="card-actions float-end">
 						<div class="dropdown position-relative">
 							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-								<i class="align-middle" data-feather="more-horizontal"></i>
+								<i class="align-middle" data-lucide="more-horizontal"></i>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end">
@@ -617,7 +617,7 @@
 					<div class="card-actions float-end">
 						<div class="dropdown position-relative">
 							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
+							<i class="align-middle" data-lucide="more-horizontal"></i>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-end">

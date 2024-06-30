@@ -8,9 +8,9 @@
 		Get Started
 		@endslot
 		@slot('buttons')
-		<a href="tel:{{ config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-primary float-end me-2"><i data-feather="phone-outgoing"></i> Call support {{config('akk.SUPPORT_PHONE_NO')}}</a>
-		<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-2"><i data-feather="message-square"></i> Create Ticket</a>
-		<a href="{{ route('help') }}" class="btn btn-primary float-end me-2"><i class="align-middle" data-feather="help-circle"></i> Help</a>
+		<a href="tel:{{ config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-primary float-end me-2"><i data-lucide="phone-outgoing"></i> Call support {{config('akk.SUPPORT_PHONE_NO')}}</a>
+		<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-2"><i data-lucide="message-square"></i> Create Ticket</a>
+		<a href="{{ route('help') }}" class="btn btn-primary float-end me-2"><i class="align-middle" data-lucide="help-circle"></i> Help</a>
 		@endslot
 	</x-tenant.page-header>
 

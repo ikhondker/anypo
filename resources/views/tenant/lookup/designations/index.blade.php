@@ -51,7 +51,7 @@
 									<a href="{{ route('designations.destroy',$designation->id) }}" class="me-2 sw2-advance"
 										data-entity="Designation" data-name="{{ $designation->name }}" data-status="{{ ($designation->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($designation->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($designation->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($designation->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

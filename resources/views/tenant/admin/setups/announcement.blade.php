@@ -30,7 +30,7 @@
 							<div class="mb-3">
 								<div class="alert alert-warning" role="alert">
 									<div class="alert-icon">
-										<i data-feather="info" class="text-danger"></i>
+										<i data-lucide="info" class="text-danger"></i>
 									</div>
 									<div class="alert-message">
 										<strong class="">WARNING!</strong> Once enabled, every user will see this message, after login, in their dashboard!

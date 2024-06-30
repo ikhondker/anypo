@@ -52,7 +52,7 @@
 									<a href="{{ route('countries.destroy',$country->country) }}" class="me-2 sw2-advance" 
 										data-entity="Country" data-name="{{ $country->name }}" data-status="{{ ($country->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($country->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($country->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($country->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

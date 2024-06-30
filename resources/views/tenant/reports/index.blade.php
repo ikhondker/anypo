@@ -41,7 +41,7 @@
 									<td>{{ $report->name }}</td>
 									<td>{{ $report->summary }}</td>
 									<td class="table-action">
-										<a class="btn btn-primary text-white" href="{{ route('reports.parameter',$report->id) }}"><i data-feather="printer"></i> Run Report</a>
+										<a class="btn btn-primary text-white" href="{{ route('reports.parameter',$report->id) }}"><i data-lucide="printer"></i> Run Report</a>
 									</td>
 								</tr>
 							@endforeach

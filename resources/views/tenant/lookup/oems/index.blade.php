@@ -54,7 +54,7 @@
 									<a href="{{ route('oems.destroy',$oem->id) }}" class="me-2 sw2-advance"
 										data-entity="OEM" data-name="{{ $oem->name }}" data-status="{{ ($oem->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($oem->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($oem->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($oem->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

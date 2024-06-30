@@ -161,7 +161,7 @@
 
 									@if(session('original_user'))
 										{{-- <a wire:ignore href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">
-											<i class="align-middle text-success" data-feather="log-in"></i>
+											<i class="align-middle text-success" data-lucide="log-in"></i>
 										</a> --}}
 									@else
 										@can('impersonate',$user)

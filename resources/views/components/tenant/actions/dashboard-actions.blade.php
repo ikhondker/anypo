@@ -1,34 +1,34 @@
 <div class="dropdown me-2 d-inline-block position-relative">
 	<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-		<i class="align-middle  text-info mt-n1" data-lucide="settings"></i> Quick Actions
+		<i class="align-middle text-info mt-n1" data-lucide="settings"></i> Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
-		<a class="dropdown-item" href="{{ route('prs.my-prs') }}"><i class="align-middle me-1" data-feather="user-plus"></i> My Requisitions</a>
-		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Requisition</a>
+		<a class="dropdown-item" href="{{ route('prs.my-prs') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Requisitions</a>
+		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Requisition</a>
 		@can('create', App\Models\Tenant\Po::class)
-			<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create PO</a>
+			<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create PO</a>
 		@endcan
 		<div class="dropdown-divider"></div>
 		@can('create', App\Models\Tenant\Lookup\Item::class)
-			<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Item</a>
+			<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Item</a>
 		@endcan
 		@can('create', App\Models\Tenant\Lookup\Supplier::class)
-			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Supplier</a>
+			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Supplier</a>
 		@endcan
 		@can('create', App\Models\Tenant\Lookup\Project::class)
-			<a class="dropdown-item" href="{{ route('projects.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create Project</a>
+			<a class="dropdown-item" href="{{ route('projects.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Project</a>
 		@endcan
 		@can('create', App\Models\Tenant\Admin\User::class)
-		<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-feather="plus-circle"></i> Create User</a>
+		<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create User</a>
 		@endcan
 		@can('viewAny', App\Models\Tenant\Budget::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('budgets.index') }}"><i class="align-middle me-1" data-feather="eye"></i> View Budget</a>
+			<a class="dropdown-item" href="{{ route('budgets.index') }}"><i class="align-middle me-1" data-lucide="eye"></i> View Budget</a>
 		@endcan
 		@can('viewAny', App\Models\Tenant\DeptBudget::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('dept-budgets.index') }}"><i class="align-middle me-1" data-feather="eye"></i> View Dept Budget</a>
+			<a class="dropdown-item" href="{{ route('dept-budgets.index') }}"><i class="align-middle me-1" data-lucide="eye"></i> View Dept Budget</a>
 		@endcan
 
 	</div>

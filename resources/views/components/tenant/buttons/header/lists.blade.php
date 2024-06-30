@@ -1,1 +1,1 @@
-<a href="{{ route($route.'.index') }}" class="btn btn-primary float-end me-2"><i data-feather="list"></i> {{ $title }}</a>
+<a href="{{ route($route.'.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> {{ $title }}</a>

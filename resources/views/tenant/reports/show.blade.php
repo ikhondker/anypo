@@ -44,7 +44,7 @@
 				@if ( auth()->user()->isSystem() )
 				<div class="card-footer pt-0">
 					<div class="d-flex justify-content-end gap-3">
-						<a class="btn btn-danger" href="{{ route('reports.edit',$report->id) }}"><i data-feather="edit"></i> Edit</a>
+						<a class="btn btn-danger" href="{{ route('reports.edit',$report->id) }}"><i data-lucide="edit"></i> Edit</a>
 					</div>
 				</div>
 				<!-- End Footer -->

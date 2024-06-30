@@ -51,7 +51,7 @@
 								<td><x-tenant.list.my-boolean :value="$hierarchy->enable"/></td>
 								<td class="table-action">
 									<a href="{{ route('hierarchies.show',$hierarchy->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-feather="eye"></i></a>
+										<i class="align-middle" data-lucide="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach

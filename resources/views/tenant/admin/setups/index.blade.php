@@ -59,7 +59,7 @@
 								<td><x-tenant.list.my-boolean :value="$setup->show_notice"/></td>
 								<td class="table-action">
 									<a href="{{ route('setups.show',$setup->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-feather="eye"></i></a>
+										<i class="align-middle" data-lucide="eye"></i></a>
 								</td>
 							</tr>
 							@endforeach

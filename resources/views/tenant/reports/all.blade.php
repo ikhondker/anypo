@@ -99,10 +99,10 @@
 									<a href="{{ route('reports.destroy', $report->id) }}" class="me-2 sw2-advance" 
 										data-entity="Report" data-name="{{ $report->name }}" data-status="{{ ($report->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($report->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 									<a href="{{ route('reports.parameter',$report->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Run">
-										<i class="align-middle" data-feather="printer"></i>
+										<i class="align-middle" data-lucide="printer"></i>
 									</a>
 								</td>
 							</tr>

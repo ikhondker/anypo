@@ -4,7 +4,7 @@
 		@isset($po)
 			<input type="text" name="po_id" id="po_id" class="form-control" placeholder="ID" value="{{ old('po_id', $po->id ) }}" hidden>
 		@endisset
-		<i class="align-middle me-1" data-feather="plus"></i>
+		<i class="align-middle me-1" data-lucide="plus"></i>
 	</td>
 	<td class="">
 		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id" required>
@@ -104,8 +104,8 @@
 		*
 	</td>
 	<td class="">
-		<button type="submit" id="submit" name="action" value="save" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-feather="save"></i></button>
-		<a class="btn btn-secondary" href="{{ url()->previous() }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i data-feather="x-circle"></i></a>
+		<button type="submit" id="submit" name="action" value="save" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i></button>
+		<a class="btn btn-secondary" href="{{ url()->previous() }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i data-lucide="x-circle"></i></a>
 	</td>
 </tr>
 

@@ -53,7 +53,7 @@
 <div class="col-auto ms-auto text-end mt-n1">
 	<div class="dropdown me-2 d-inline-block position-relative">
 		<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-		<i class="align-middle mt-n1" data-feather="calendar"></i> Today
+		<i class="align-middle mt-n1" data-lucide="calendar"></i> Today
 		</a> 
 
 		<div class="dropdown-menu dropdown-menu-end">

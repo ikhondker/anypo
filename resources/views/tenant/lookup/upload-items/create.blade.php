@@ -31,7 +31,7 @@
 
 						<div class="alert alert-danger alert-outline" role="alert">
 							<div class="alert-icon">
-                                <i data-feather="alert-triangle" class=""></i>
+                                <i data-lucide="alert-triangle" class=""></i>
 							</div>
 							<div class="alert-message text-danger">
 								<strong class="text-danger">WARNING!</strong> Uploading new data will purge any previous non-uploaded data!

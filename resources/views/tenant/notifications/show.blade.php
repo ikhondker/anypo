@@ -17,56 +17,51 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-10">
-			<div class="card">
-				{{-- <div class="card-header">
-					<h5 class="card-title">Notification Info</h5>
-				</div> --}}
-				<div class="card-header">
-					<a href="{{ route('notifications.index') }}" class="btn btn-primary float-end me-2"><i data-feather="list"></i> Notifications List</a>
-					{{-- <h5 class="card-title">{{ $notification->data['subject'] }}</h5> --}}
-					{{-- <h6 class="card-subtitle text-muted">List of Purchase Requisitions.	</h6> --}}
+	<div class="card">
+		<div class="card-body">
+			<div>
+				<div class="card-actions float-end">
+					@if ( $notification->read_at == "")
+						<a class="btn btn-sm btn-light me-2" href="{{ route('notifications.read',$notification->id) }}"><i data-lucide="check-circle"></i> Mark as Read</a>
+					@endif
+					<a href="{{ route('notifications.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
+				
+				<h5 class="card-title">{{ $notification->data['subject'] }}</h5>
+				<hr>
 
-				<div class="card-body">
-					
-					<h4 class="text-info">{{ $notification->data['subject'] }}</h4>
-					<span class="text-xs">
-						From: {{ $notification->data['from'] }} 
-						</br>
-						<small>at {{ strtoupper(date('d-M-Y H:i:s', strtotime($notification->created_at))) }}</small>
-					</span>
-					<hr>
-					{{-- <p>&nbsp;</p> --}}
-					<p><strong class="">{{ $notification->data['greeting'] }}</strong></p>
-					{{-- <p>&nbsp;</p> --}}
-					<p>{{ $notification->data['body'] }}</p>
-					<a class="btn btn-info" href="{{ $notification->data['actionURL'] }}"><i data-feather="eye"></i> {{ $notification->data['actionText'] }}</a>
+				<div class="d-flex">
+					<img width="40" height="40" src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" class="rounded-circle d-flex me-2" alt="Logo">
+					<div class="w-100 mt-1">
+						<small class="float-end">{{ date('F d, Y H:i A', strtotime($notification->created_at)) }}</small>
+						<h6 class="mb-0">{{ $notification->data['from'] }} </h6>
+						<small class="text-muted">from: workflow@anypo.com</small><br>
+					</div>
+				</div>
+				<div class="mx-5 my-3">
+					<p>{{ $notification->data['greeting'] }},</p>
+					{{-- <p>We hope this email finds you well.</p> --}}
+					<p>{{ $notification->data['body'] }}.</p>
+					<p><a class="btn btn-info" href="{{ $notification->data['actionURL'] }}"><i data-lucide="eye"></i> {{ $notification->data['actionText'] }}</a></p>
 					<p>&nbsp;</p>
 					<p>{{ $notification->data['thanks'] }}</p>
-					{{-- <p>&nbsp;</p> --}}
-					<span>
-						Thank you, </br>
-						{{ config('app.name') }} Team</br>
-						@if ($notification->read_at <> "")
+					<p>Thank you, </br>
+					{{ config('app.name') }} Team</br></p>
+					@if ($notification->read_at <> "")
 						<small class="text-muted"> Read At: {{ $notification->read_at }}</small>
-						@endif
-					</span>
-					<hr>
+					@endif
+				</div>
+
+				<hr />
+				<div class="btn-toolbar">
 					@if ( $notification->read_at == "")
-						<a class="btn btn-success" href="{{ route('notifications.read',$notification->id) }}"><i data-feather="check-circle"></i> Mark as Read</a>
+						<a class="btn btn-light me-2" href="{{ route('notifications.read',$notification->id) }}"><i data-lucide="check-circle"></i> Mark as Read</a>
 					@endif
 				</div>
 			</div>
-		</div>
-		<!-- end col-6 -->
-		<div class="col-4">
 
 		</div>
-		<!-- end col-6 -->
 	</div>
-	<!-- end row -->
-	
+
 @endsection
 

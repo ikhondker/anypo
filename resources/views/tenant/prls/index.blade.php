@@ -65,7 +65,7 @@
 									<a href="{{ route('prls.destroy',$prl->id) }}" class="me-2 sw2-advance"
 										data-entity="Prl" data-name="{{ $prl->name }}" data-status="{{ ($prl->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($prl->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($prl->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($prl->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

@@ -57,7 +57,7 @@
 										<a href="{{ route('statuses.destroy',$status->code) }}" class="me-2 sw2-advance"
 											data-entity="Status" data-name="{{ $status->name }}" data-status="{{ ($status->enable ? 'Disable' : 'Enable') }}"
 											data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($status->enable ? 'Disable' : 'Enable') }}">
-											<i class="align-middle {{ ($status->enable ? 'text-muted' : 'text-success') }}" data-feather="{{ ($status->enable ? 'bell-off' : 'bell') }}"></i>
+											<i class="align-middle {{ ($status->enable ? 'text-muted' : 'text-success') }}" data-lucide="{{ ($status->enable ? 'bell-off' : 'bell') }}"></i>
 										</a>
 								</td>
 							</tr>

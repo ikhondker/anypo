@@ -14,7 +14,7 @@
 			Report Parameter
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('reports.index') }}" class="btn btn-primary float-end me-2"><i data-feather="list"></i> Reports List</a>
+			<a href="{{ route('reports.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> Reports List</a>
 		@endslot
 	</x-tenant.page-header>
 
@@ -188,8 +188,8 @@
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">&nbsp;</label>
 								<div class="col-sm-10 ml-sm-auto">
-									<a class="btn btn-secondary" href="{{ url()->previous() }}"><i data-feather="x-circle"></i> Cancel</a>
-									<button type="submit" id="submit" name="submit" class="btn btn-primary"><i data-feather="printer"></i> Run Report</button>
+									<a class="btn btn-secondary" href="{{ url()->previous() }}"><i data-lucide="x-circle"></i> Cancel</a>
+									<button type="submit" id="submit" name="submit" class="btn btn-primary"><i data-lucide="printer"></i> Run Report</button>
 								</div>
 							</div>
 					</div>

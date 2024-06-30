@@ -8,13 +8,13 @@
 		Get Started  
 		@endslot
 		@slot('buttons')
-			<a href="tel:{{ config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-primary float-end me-2"><i data-feather="phone-outgoing"></i> Call support {{config('akk.SUPPORT_PHONE_NO')}}</a>
-			<a  href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-2"><i data-feather="message-square"></i> Create Ticket</a>
-			<a href="{{ route('help') }}" class="btn btn-primary float-end me-2"><i class="align-middle" data-feather="help-circle"></i> Help</a>
+			<a href="tel:{{ config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-primary float-end me-2"><i data-lucide="phone-outgoing"></i> Call support {{config('akk.SUPPORT_PHONE_NO')}}</a>
+			<a  href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-2"><i data-lucide="message-square"></i> Create Ticket</a>
+			<a href="{{ route('help') }}" class="btn btn-primary float-end me-2"><i class="align-middle" data-lucide="help-circle"></i> Help</a>
 
 			<div class="dropdown me-2 d-inline-block position-relative">
 				<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-					<i class="align-middle mt-n1" data-feather="calendar"></i> Today
+					<i class="align-middle mt-n1" data-lucide="calendar"></i> Today
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
 					<h6 class="dropdown-header">Settings</h6>

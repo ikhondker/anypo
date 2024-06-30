@@ -55,7 +55,7 @@
 									<a href="{{ route('custom-errors.destroy', $customError->code) }}" class="me-2 sw2-advance" 
 										data-entity="CustomError" data-name="{{ $customError->code }}" data-status="{{ ($customError->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($customError->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($customError->enable ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($customError->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

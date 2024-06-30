@@ -24,7 +24,7 @@
 			</div>
 			<h5 class="card-title">Folder: {{ request()->route()->parameter('dir') }}</h5>
 				<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}
-					<a class="" href="{{ route('tables.policies') }}"><i class="align-middle me-1" data-feather="folder"></i>Root</a>
+					<a class="" href="{{ route('tables.policies') }}"><i class="align-middle me-1" data-lucide="folder"></i>Root</a>
 					<a class="" href="{{ route('tables.policies','Admin') }}"><i class="align-middle me-1" data-lucide="folder"></i>Admin</a>
 					<a class="" href="{{ route('tables.policies','Lookup') }}"><i class="align-middle me-1" data-lucide="folder"></i>Lookup</a>
 					<a class="" href="{{ route('tables.policies','Manage') }}"><i class="align-middle me-1" data-lucide="folder"></i>Manage</a>

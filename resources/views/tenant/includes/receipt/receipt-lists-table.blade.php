@@ -29,7 +29,7 @@
             <td><span class="badge {{ $receipt->status_badge->badge }}">{{ $receipt->status_badge->name}}</span></td>
             <td class="table-action">
                 <a href="{{ route('receipts.show',$receipt->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                    <i class="align-middle" data-feather="eye"></i></a>
+                    <i class="align-middle" data-lucide="eye"></i></a>
             </td>
         </tr>
         @endforeach

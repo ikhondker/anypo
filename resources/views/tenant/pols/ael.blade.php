@@ -13,12 +13,12 @@
 			{{-- <a href="{{ route('prs.show', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Pr</a> --}}
 			<div class="dropdown me-2 d-inline-block position-relative">
 				<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
-					<i class="align-middle mt-n1" data-feather="folder"></i> Actions
+					<i class="align-middle mt-n1" data-lucide="folder"></i> Actions
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="{{ route('receipts.create', $pol->id) }}"><i class="align-middle me-1" data-feather="layout"></i> Create Another Receipt</a>
-					<a class="dropdown-item" href="{{ route('pos.show', $pol->po_id) }}"><i class="align-middle me-1" data-feather="layout"></i> View Purchase Order</a>
+					<a class="dropdown-item" href="{{ route('receipts.create', $pol->id) }}"><i class="align-middle me-1" data-lucide="layout"></i> Create Another Receipt</a>
+					<a class="dropdown-item" href="{{ route('pos.show', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="layout"></i> View Purchase Order</a>
 					<div class="dropdown-divider"></div>
 				</div>
 			</div>

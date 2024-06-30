@@ -67,13 +67,13 @@
 								<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								<td class="table-action">
 									<a href="{{ route('pos.show',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-feather="eye"></i></a>
+										<i class="align-middle" data-lucide="eye"></i></a>
 
 									<a href="{{ route('reports.po',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Print">
-											<i class="align-middle" data-feather="printer"></i></a>
+											<i class="align-middle" data-lucide="printer"></i></a>
 
 									<a href="{{ route('pos.invoice',$po->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Invoices">
-										<i class="align-middle" data-feather="layout"></i></a>
+										<i class="align-middle" data-lucide="layout"></i></a>
 									</a>
 								</td>
 							</tr>

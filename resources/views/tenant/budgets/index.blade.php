@@ -12,7 +12,7 @@
 			{{ $_setup->name }} Budgets [{{ ($_setup->currency ) }}]
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('budgets.create') }}" class="btn btn-primary float-end sw2"><i data-feather="folder-plus"></i> Open Next FY Budget*</a>
+			<a href="{{ route('budgets.create') }}" class="btn btn-primary float-end sw2"><i data-lucide="folder-plus"></i> Open Next FY Budget*</a>
 		@endslot
 	</x-tenant.page-header>
 
@@ -74,7 +74,7 @@
 									<a href="{{ route('budgets.destroy',$budget->id) }}" class="me-2 sw2-advance"
 										data-entity="Budget" data-name="{{ $budget->name }}" data-status="{{ ($budget->closed ? 'Open' : 'Close') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($budget->closed ? 'Open' : 'Close') }}">
-										<i class="align-middle text-muted" data-feather="{{ ($budget->closed ? 'bell-off' : 'bell') }}"></i>
+										<i class="align-middle text-muted" data-lucide="{{ ($budget->closed ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>
