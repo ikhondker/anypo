@@ -642,8 +642,8 @@ Route::middleware([
 		Route::get('/table/models-fnc/{dir?}',[TableController::class, 'fncModels'])->name('tables.fnc-models');
 		Route::get('/table/policies/{dir?}',[TableController::class, 'policies'])->name('tables.policies');
 		Route::get('/table/policies-fnc/{dir?}',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');
-		Route::get('/table/helpers',[TableController::class, 'helpers'])->name('tables.helpers');
-		Route::get('/table/helpers-fnc',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
+		Route::get('/table/helpers/{dir?}',[TableController::class, 'helpers'])->name('tables.helpers');
+		Route::get('/table/helpers-fnc/{dir?}',[TableController::class, 'fncHelpers'])->name('tables.fnc-helpers');
 		Route::get('/table/routes',[TableController::class, 'routes'])->name('tables.routes');
 		Route::get('/table/route-code/{dir?}',[TableController::class, 'routeCode'])->name('tables.route-code');
 		Route::get('/table/comments/{dir?}',[TableController::class, 'comments'])->name('tables.comments');

@@ -1,44 +1,26 @@
 @extends('layouts.landlord.app')
 @section('title','Tables')
 @section('breadcrumb')
-	DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]
+	<li class="breadcrumb-item active">{{ env('DB_DATABASE')}}@[{{ base_path()}}]</li>
 @endsection
-
 
 @section('content')
 
-	<!-- Card -->
-	<div class="card">
-		<div class="card-header">
-			<h5 class="card-header-title">Table List DB: {{ env('DB_DATABASE')}}@[{{ base_path()}}]</h5>
-		</div>
+	<x-tenant.page-header>
+		@slot('title')
+			Tables Lists
+		@endslot
+		@slot('buttons')
+			<x-share.actions.table-actions/>
+		@endslot
+	</x-tenant.page-header>
 
-		<!-- card-body -->
-		<div class="card-body">
+	<!-- ========== INCLUDE ========== -->
+	@include('shared.includes.tables.tables')
+	<!-- ========== INCLUDE ========== -->
 
-			<!-- Breadcrumb -->
-			<div class="container">
-				<div class="row align-items-lg-center pb-3">
-					<div class="col-lg mb-2 mb-lg-0">
-						<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}</h6>
-					</div>
-					<!-- End Col -->
-					<div class="col-lg-auto">
-						<x-landlord.table-links/>
-					</div>
-					<!-- End Col -->
-					</div>
-					<!-- End Row -->
-			</div>
-			<!-- End Breadcrumb -->
-
-			@include('shared.includes.tables.tables')
-
-		</div>
-		<!-- /. card-body -->
-	</div>
-	<!-- End Card -->
 
 @endsection
+
 
 

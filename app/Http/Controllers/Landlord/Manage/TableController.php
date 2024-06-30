@@ -179,7 +179,7 @@ class TableController extends Controller
 		return view('landlord.manage.tables.helpers', compact('filesInFolder'));
 	}
 
-	public function fncHelpers()
+	public function xxfncHelpers()
 	{
 		$this->authorize('controllers', Table::class);
 
@@ -190,6 +190,21 @@ class TableController extends Controller
 		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
 		return view('landlord.manage.tables.helpers-fnc', compact('filesInFolder'));
 	}
+
+	public function fncHelpers($dir = null)
+	{
+		$this->authorize('controllers', Table::class);
+
+		// NOTE: App not app but App <===========
+		$BASE_DIR	= "\App\Helpers\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.helpers-fnc dir = ' . $dir);
+		Log::debug('tenant.TableController.helpers-fnc target_dir = ' . $target_dir);
+		$filesInFolder = Docs::getFiles( $target_dir );
+
+		return view('landlord.manage.tables.helpers-fnc', compact('filesInFolder','dir','target_dir'));
+	}
+
 
 
 	public function models($dir = null)
@@ -262,7 +277,8 @@ class TableController extends Controller
 
 		//$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_POLICY'));
 		$filesInFolder = Docs::getFiles($target_dir);
-		return view('landlord.manage.tables.policies-fnc', compact('filesInFolder'));
+		return view('landlord.manage.tables.policies-fnc', compact('filesInFolder','dir','target_dir'));
+
 	}
 
 

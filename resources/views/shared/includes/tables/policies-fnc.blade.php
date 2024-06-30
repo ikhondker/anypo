@@ -5,12 +5,12 @@
 		</div>
 		<h5 class="card-title">Folder: {{ request()->route()->parameter('dir') }}</h5>
 		<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}
-			<a class="" href="{{ route('tables.fnc-controllers') }}"><i class="align-middle me-1" data-lucide="folder"></i>Root</a>
-			<a class="" href="{{ route('tables.fnc-controllers','Admin') }}"><i class="align-middle me-1" data-lucide="folder"></i>Admin</a>
-			<a class="" href="{{ route('tables.fnc-controllers','Lookup') }}"><i class="align-middle me-1" data-lucide="folder"></i>Lookup</a>
-			<a class="" href="{{ route('tables.fnc-controllers','Manage') }}"><i class="align-middle me-1" data-lucide="folder"></i>Manage</a>
-			<a class="" href="{{ route('tables.fnc-controllers','Workflow') }}"><i class="align-middle me-1" data-lucide="folder"></i>Workflow</a>
-			<a class="" href="{{ route('tables.fnc-controllers','Support') }}"><i class="align-middle me-1" data-lucide="folder"></i>Support</a>
+			<a class="" href="{{ route('tables.fnc-policies') }}"><i class="align-middle me-1" data-lucide="folder"></i>Root</a>
+			<a class="" href="{{ route('tables.fnc-policies','Admin') }}"><i class="align-middle me-1" data-lucide="folder"></i>Admin</a>
+			<a class="" href="{{ route('tables.fnc-policies','Lookup') }}"><i class="align-middle me-1" data-lucide="folder"></i>Lookup</a>
+			<a class="" href="{{ route('tables.fnc-policies','Manage') }}"><i class="align-middle me-1" data-lucide="folder"></i>Manage</a>
+			<a class="" href="{{ route('tables.fnc-policies','Workflow') }}"><i class="align-middle me-1" data-lucide="folder"></i>Workflow</a>
+			<a class="" href="{{ route('tables.fnc-policies','Support') }}"><i class="align-middle me-1" data-lucide="folder"></i>Support</a>
 		</h6>
 	</div>
 	<div class="card-body">
@@ -30,22 +30,17 @@
 
 				@foreach ($filesInFolder as $row)
 					@php
-					//$methods = (new ReflectionClass('\App\Blog'))->getMethods();
-					//dd($methods); 
-					$exclude = array("middleware", "getMiddleware", "callAction", "__call", "authorize",'authorizeForUser','authorizeResource','validateWith','validate','validateWithBag');
+					$exclude = array('__call',	);
 					//$class = new ReflectionClass('App\Http\Controllers\Tenant\HomeController');
-					//$class = new ReflectionClass('App\Http\Controllers\Tenant\\'. $row["f"]);
-					//$class = new ReflectionClass(config('akk.DOC_DIR_CLASS') .'\\'. $row["f"]);
-					
-					//Log::debug('Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
+					//$class = new ReflectionClass('App\Models\Tenant\\'. $row["f"]);
+					//$class = new ReflectionClass(config('akk.DOC_DIR_POLICY') .'\\'. $row["f"]);
 					//$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
-					//Log::debug('Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
 
 					if ($dir == "") {
-						Log::debug('NULL Value of $target_dir-> row[f]=' . $target_dir . $row["f"]);
+						//Log::debug('NULL Value of $target_dir-> row[f]=' . $target_dir . $row["f"]);
 						$class = new ReflectionClass( $target_dir .$row["f"]);
 					} else {
-						Log::debug('NOT NOT Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
+						//Log::debug('NOT NOT Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
 						$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
 					}
 
@@ -64,7 +59,7 @@
 								<td class="text-start"></td>
 							</tr>
 							@php
-						}
+							}
 							@endphp
 
 					@endforeach

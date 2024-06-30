@@ -11,7 +11,7 @@
 			Tables Lists
 		@endslot
 		@slot('buttons')
-			<x-tenant.table-links/>
+		<x-share.actions.table-actions/>
 		@endslot
 	</x-tenant.page-header>
 

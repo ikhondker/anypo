@@ -11,32 +11,12 @@
 			Controllers Lists
 		@endslot
 		@slot('buttons')
-			<x-tenant.table-links />
+			<x-share.actions.table-actions/>
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-header">
-					{{-- <h5 class="card-title">Controllers List</h5> --}}
-					{{-- <h6 class="card-subtitle text-muted">{{ config('akk.DOC_DIR_CLASS') }}</h6> --}}
-					<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}</h6><br>
-					<a class="" href="{{ route('tables.controllers') }}"><i class="align-middle me-1" data-lucide="folder"></i>Root</a>
-					<a class="" href="{{ route('tables.controllers','Admin') }}"><i class="align-middle me-1" data-lucide="folder"></i>Admin</a>
-					<a class="" href="{{ route('tables.controllers','Lookup') }}"><i class="align-middle me-1" data-lucide="folder"></i>Lookup</a>
-					<a class="" href="{{ route('tables.controllers','Manage') }}"><i class="align-middle me-1" data-lucide="folder"></i>Manage</a>
-					<a class="" href="{{ route('tables.controllers','Workflow') }}"><i class="align-middle me-1" data-lucide="folder"></i>Workflow</a>
-					<a class="" href="{{ route('tables.controllers','Support') }}"><i class="align-middle me-1" data-lucide="folder"></i>Support</a>
-				</div>
-				<div class="card-body">
-					
-					@include('shared.includes.tables.controllers')
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-
+	<!-- ========== INCLUDE ========== -->
+	@include('shared.includes.tables.controllers')
+	<!-- ========== INCLUDE ========== -->
+	
 @endsection

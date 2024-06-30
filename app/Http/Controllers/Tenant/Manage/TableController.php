@@ -180,26 +180,40 @@ class TableController extends Controller
 		return view('tenant.manage.tables.controllers-fnc', compact('filesInFolder','dir','target_dir'));
 	}
 
-	public function helpers()
+	public function helpers($dir = null)
 	{
 		$this->authorize('controllers', Table::class);
 
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
-		$filesInFolder = Docs::getFiles('\app\Helpers');
+		//$filesInFolder = Docs::getFiles('\app\Helpers');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+
+		$BASE_DIR	= "\app\Helpers\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.helpers dir = ' . $dir);
+		Log::debug('tenant.TableController.helpers target_dir = ' . $target_dir);
+
+
+		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
+		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Tenant');
+		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		$filesInFolder = Docs::getFiles( $target_dir );
 
 		return view('tenant.manage.tables.helpers', compact('filesInFolder'));
 	}
 
-	public function fncHelpers()
+	public function fncHelpers($dir = null)
 	{
 		$this->authorize('controllers', Table::class);
 
-		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
-		$filesInFolder = Docs::getFiles('\app\Helpers');
-		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
+		// NOTE: App not app but App <===========
+		$BASE_DIR	= "\App\Helpers\\";
+		$target_dir = $BASE_DIR . $dir;
+		Log::debug('tenant.TableController.helpers-fnc dir = ' . $dir);
+		Log::debug('tenant.TableController.helpers-fnc target_dir = ' . $target_dir);
+		$filesInFolder = Docs::getFiles( $target_dir );
 
-		return view('tenant.manage.tables.helpers-fnc', compact('filesInFolder'));
+		return view('tenant.manage.tables.helpers-fnc', compact('filesInFolder','dir','target_dir'));
 	}
 
 
@@ -225,6 +239,7 @@ class TableController extends Controller
 	{
 		$this->authorize('models', Table::class);
 
+		// NOTE: App not app but App <===========
 		$BASE_DIR	= "\App\Models\Tenant\\";
 		$target_dir = $BASE_DIR . $dir;
 		Log::debug('tenant.TableController.fncModels dir = ' . $dir);
