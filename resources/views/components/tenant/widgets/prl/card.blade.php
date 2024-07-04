@@ -57,7 +57,7 @@
 					<tr>
 						<td class="" colspan="3" scope="col">
 							@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-								<a href="{{ route('prls.add-line', $pr->id) }}" class="text-warning d-inline-block"><i data-feather="plus-square"></i> Add Lines</a>
+								<a href="{{ route('prls.add-line', $pr->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 							@endif
 						</td>
 						<td class="" colspan="2" scope="col">&nbsp;</td>

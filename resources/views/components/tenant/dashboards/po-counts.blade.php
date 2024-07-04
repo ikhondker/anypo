@@ -1,6 +1,6 @@
 <div class="row">
 
-	
+
 	<div class="col-md-6 col-xxl-3 d-flex">
 		<div class="card illustration flex-fill">
 			<div class="card-body p-0 d-flex flex-fill">
@@ -35,14 +35,14 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="check-circle"></i>
+							<i class="align-middle text-success" data-lucide="check-circle"></i>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
 		<div class="card flex-fill">
@@ -58,14 +58,14 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="clock"></i>
+							<i class="align-middle text-success" data-lucide="clock"></i>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
 		<div class="card flex-fill">
@@ -81,7 +81,7 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="x-circle"></i>
+							<i class="align-middle text-success" data-lucide="x-circle"></i>
 						</div>
 					</div>
 				</div>

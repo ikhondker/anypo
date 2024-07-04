@@ -11,16 +11,16 @@
 
 		{{-- <div>
 			<a class="btn btn-primary btn-sm" href="#">Follow</a>
-			<a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+			<a class="btn btn-primary btn-sm" href="#"><span data-lucide="message-square"></span> Message</a>
 		</div> --}}
 	</div>
 	<hr class="my-0" />
 	<div class="card-body">
 		<h5 class="h6 card-title">Contact Info</h5>
 		<ul class="list-unstyled mb-0">
-			<li class="mb-1"><span data-feather="mail" class="feather-sm me-1"></span> Email : {{ $user->email }}</li>
-			<li class="mb-1"><span data-feather="smartphone" class="feather-sm me-1"></span> Cell : {{ $user->cell }}</li>
-			<li class="mb-1"><span data-feather="grid" class="feather-sm me-1"></span> Department : {{ $user->dept->name }}</li>
+			<li class="mb-1"><span data-lucide="mail" class="feather-sm me-1"></span> Email : {{ $user->email }}</li>
+			<li class="mb-1"><span data-lucide="smartphone" class="feather-sm me-1"></span> Cell : {{ $user->cell }}</li>
+			<li class="mb-1"><span data-lucide="grid" class="feather-sm me-1"></span> Department : {{ $user->dept->name }}</li>
 		</ul>
 	</div>
 	<hr class="my-0" />

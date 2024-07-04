@@ -9,7 +9,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="database"></i>
+							<i class="align-middle" data-lucide="database"></i>
 						</div>
 					</div>
 				</div>
@@ -30,7 +30,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="check-circle"></i>
+							<i class="align-middle" data-lucide="check-circle"></i>
 						</div>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="file"></i>
+							<i class="align-middle" data-lucide="file"></i>
 						</div>
 					</div>
 				</div>
@@ -80,7 +80,7 @@
 
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="dollar-sign"></i>
+							<i class="align-middle" data-lucide="dollar-sign"></i>
 						</div>
 					</div>
 				</div>

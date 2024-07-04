@@ -4,14 +4,14 @@
 			<div class="card-actions float-end">
 				<div class="dropdown position-relative">
 					<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-						<i class="align-middle" data-feather="more-horizontal"></i>
+						<i class="align-middle" data-lucide="more-horizontal"></i>
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="{{ route('budgets.index') }}"><i class="align-middle me-1" data-feather="eye"></i>View Company Budgets</a>
-						<a class="dropdown-item" href="{{ route('dept-budgets.index') }}"><i class="align-middle me-1" data-feather="eye"></i>View Dept Budgets</a>
-						<a class="dropdown-item" href="{{ route('projects.index') }}"><i class="align-middle me-1" data-feather="eye"></i>View Project Spends</a>
-						<a class="dropdown-item" href="{{ route('suppliers.index') }}"><i class="align-middle me-1" data-feather="eye"></i>View Supplier Spends</a>
+						<a class="dropdown-item" href="{{ route('budgets.index') }}"><i class="align-middle me-1" data-lucide="eye"></i>View Company Budgets</a>
+						<a class="dropdown-item" href="{{ route('dept-budgets.index') }}"><i class="align-middle me-1" data-lucide="eye"></i>View Dept Budgets</a>
+						<a class="dropdown-item" href="{{ route('projects.index') }}"><i class="align-middle me-1" data-lucide="eye"></i>View Project Spends</a>
+						<a class="dropdown-item" href="{{ route('suppliers.index') }}"><i class="align-middle me-1" data-lucide="eye"></i>View Supplier Spends</a>
 					</div>
 				</div>
 			</div>

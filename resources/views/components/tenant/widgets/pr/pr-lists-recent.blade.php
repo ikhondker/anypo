@@ -3,7 +3,7 @@
 
 		<div class="card">
 			<div class="card-header">
-				<a href="{{ route('prs.create') }}" class="btn btn-primary float-end me-2"><i data-feather="plus-square"></i> Create Requisition</a>
+				<a href="{{ route('prs.create') }}" class="btn btn-primary float-end me-2"><i data-lucide="plus-square"></i> Create Requisition</a>
 				<h5 class="card-title">
 					Requisitions (Recent 5)
 				</h5>

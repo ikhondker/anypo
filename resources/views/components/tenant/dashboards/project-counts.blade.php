@@ -25,7 +25,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="activity"></i>
+							<i class="align-middle" data-lucide="activity"></i>
 						</div>
 					</div>
 				</div>
@@ -42,7 +42,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="shopping-bag"></i>
+							<i class="align-middle" data-lucide="shopping-bag"></i>
 						</div>
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="shopping-cart"></i>
+							<i class="align-middle" data-lucide="shopping-cart"></i>
 						</div>
 					</div>
 				</div>

@@ -31,7 +31,7 @@ use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 //use Illuminate\Support\Facades\Log;
-
+use App\Models\Tenant\Admin\Setup;
 // Enums
 use App\Enum\UserRoleEnum;
 
@@ -117,7 +117,8 @@ class LoginController extends Controller
 		if (tenant('id') == '') {
 			return view('auth.landlord.login');
 		} else {
-			return view('auth.tenant.login');
+            $setup = Setup::first();
+			return view('auth.tenant.login', compact('setup'));
 		}
 	}
 }

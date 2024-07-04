@@ -47,7 +47,7 @@ use App\Helpers\Tenant\FileUpload;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Str;
-# 13. FUTURE 
+# 13. FUTURE
 
 class TemplateController extends Controller
 {
@@ -92,8 +92,8 @@ class TemplateController extends Controller
 	{
 		$this->authorize('create', Template::class);
 
-		$users = User::getAll();
-		$countries = Country::getAll();
+		$users = User::All();
+		$countries = Country::All();
 
 		return view('tenant.manage.templates.create', compact('users', 'countries'));
 	}
@@ -160,8 +160,8 @@ class TemplateController extends Controller
 	{
 
 		$this->authorize('update', $template);
-		$users = User::getAll();
-		$countries = Country::getAll();
+		$users = User::All();
+		$countries = Country::All();
 
 		// Write Event Log
 		EventLog::event('template', $template->id, 'edit', 'template', $template->name);
@@ -255,8 +255,8 @@ class TemplateController extends Controller
 	{
 		$this->authorize('export', Template::class);
 
-		$data = DB::select("SELECT id, code, name, summary, user_id, address1, address2, city, state, zip, country, email, phone, qty, amount, notes, 
-				enable, my_date, my_date_time, my_enum, my_url, logo, avatar, attachment, fbpage, deleted_at, created_by, created_at, updated_by, updated_at 
+		$data = DB::select("SELECT id, code, name, summary, user_id, address1, address2, city, state, zip, country, email, phone, qty, amount, notes,
+				enable, my_date, my_date_time, my_enum, my_url, logo, avatar, attachment, fbpage, deleted_at, created_by, created_at, updated_by, updated_at
 				FROM templates
 				 ORDER BY id
 				 ");

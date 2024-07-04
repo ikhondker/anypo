@@ -25,13 +25,9 @@
 	</x-tenant.page-header>
 
 
-	<div class="row">
-		<div class="col-12">
-		
-
 			<div class="card">
 				<div class="card-header">
-					
+
 					<div class="card-actions float-end">
 						<form action="{{ route( 'aels.index') }}" method="GET" role="search">
 							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
@@ -51,13 +47,13 @@
 									<button type="submit" name="action" value="export" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
 										<i class="align-middle" data-lucide="download-cloud"></i>
 									</button>
-									
+
 								</div>
 							</div>
 						</form>
 					</div>
 
-					
+
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -111,18 +107,13 @@
 						{{ $aels->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
 			<!-- end card -->
 
-		</div>
-		 <!-- end col -->
-	</div>
-	 <!-- end row -->
 
-	
-	
+
 @endsection
 

@@ -12,12 +12,10 @@
 		@endslot
 		@slot('buttons')
 
-		
+
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -55,8 +53,10 @@
 								<td><x-tenant.list.my-badge :value="$wf->wf_status"/></td>
 								<td><x-tenant.list.my-badge :value="$wf->auth_status"/></td>
 								<td><x-tenant.list.my-date-time :value="$wf->created_at"/></td>
-								<td class="table-action">
-									<x-tenant.list.actions object="Wf" :id="$wf->id" :edit="false" :show="true"/>
+								<td class="text-end">
+									<a href="{{ route('wfs.show',$wf->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
 								</td>
 							</tr>
 							@endforeach
@@ -73,12 +73,6 @@
 			</div>
 			<!-- end card -->
 
-		</div>
-		 <!-- end col -->
-	</div>
-	 <!-- end row -->
-
-	 
 
 @endsection
 

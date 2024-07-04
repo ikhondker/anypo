@@ -1,19 +1,18 @@
 <?php
- 
+
 namespace App\View\Composers;
- 
+
 //use App\Repositories\UserRepository;
 use Illuminate\View\View;
- 
+
 use App\Models\Tenant\Admin\Setup;
-//use App\Models\Setup;
 class SetupComposer
 {
 	/**
 	 * Create a new profile composer.
 	 */
 	public function __construct() {}
- 
+
 	/**
 	 * Bind data to the view.
 	 */

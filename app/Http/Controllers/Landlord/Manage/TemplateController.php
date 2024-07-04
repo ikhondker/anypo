@@ -32,7 +32,7 @@ use App\Http\Requests\Landlord\Manage\UpdateTemplateRequest;
 
 # 1. Models
 use App\Models\User;
-use App\Models\Landlord\Manage\Country;
+use App\Models\Landlord\Lookup\Country;
 # 2. Enums
 # 3. Helpers
 use App\Helpers\FileUpload;
@@ -50,7 +50,7 @@ use App\Helpers\Export;
 use Illuminate\Support\Facades\Log;
 use DB;
 use Str;
-# 13. FUTURE 
+# 13. FUTURE
 
 class TemplateController extends Controller
 {
@@ -95,8 +95,8 @@ class TemplateController extends Controller
 	{
 		$this->authorize('create', Template::class);
 
-		$users = User::getAll();
-		$countries = Country::getAll();
+		$users = User::All();
+		$countries = Country::All();
 
 		return view('landlord.manage.templates.create', compact('users', 'countries'));
 	}
@@ -163,8 +163,8 @@ class TemplateController extends Controller
 	{
 
 		$this->authorize('update', $template);
-		$users = User::getAll();
-		$countries = Country::getAll();
+		$users = User::All();
+		$countries = Country::All();
 
 		// Write Event Log
 		EventLog::event('template', $template->id, 'edit', 'template', $template->name);

@@ -18,14 +18,19 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Custom Error Detail</h5>
-					<h6 class="card-subtitle text-muted">Custom Error detail information.</h6>
-				</div>
-				<div class="card-body">
+
+
+	<div class="card">
+		<div class="card-header">
+			<div class="card-actions float-end">
+				<a href="{{ route('custom-errors.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+			</div>
+			<h5 class="card-title">Custom Error Detail</h5>
+			<h6 class="card-subtitle text-muted">Custom Error detail information.</h6>
+		</div>
+		<div class="card-body">
+			<table class="table table-sm my-2">
+				<tbody>
 					<x-tenant.show.my-text		value="{{ $customError->code }}" label="Code"/>
 					<x-tenant.show.my-text		value="{{ $customError->entity }}" label="Entity"/>
 					<x-tenant.show.my-text		value="{{ $customError->message }}" label="Message"/>
@@ -33,13 +38,13 @@
 					<x-tenant.show.my-created_at value="{{ $customError->created_at }}"/>
 					<x-tenant.show.my-updated_at value="{{ $customError->updated_at }}"/>
 					<x-tenant.buttons.show.edit object="CustomError" :id="$customError->code"/>
-		
-				</div>
-			</div>
+
+			</table>
 		</div>
-		<!-- end col-6 -->
 	</div>
-	<!-- end row -->
+
+
+
 
 @endsection
 

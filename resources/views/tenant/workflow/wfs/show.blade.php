@@ -19,38 +19,41 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Wf Details</h5>
-					<h6 class="card-subtitle text-muted">Details of workflow.</h6>
-				</div>
-				<div class="card-body">
-					<x-tenant.show.my-text			value="{{ $wf->entity }}" label="Entity"/>
-					<x-tenant.show.article-link 	entity="{{ $wf->entity }}" :id="$wf->article_id"/>
-					<x-tenant.show.my-text			value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
-					<x-tenant.show.my-date-time		value="{{ $wf->created_at }}" label="Date"/>
-					<x-tenant.show.my-badge			value="{{ $wf->wf_status }}" label="WF Status"/>
-					<x-tenant.show.my-badge			value="{{ $wf->auth_status }}" label="Auth Status"/>
-					<x-tenant.show.my-text			value="{{ $wf->last_performer->name }}" label="Final Approver"/>
-					<x-tenant.show.my-date-time		value="{{ $wf->auth_date }}" label="Auth Date"/>
-					<div class="row">
-						<div class="col-sm-3 text-end">
-							
-						</div>
-						<div class="col-sm-9 text-end">
-							@if (auth()->user()->isSystem())
-								<a href="{{ route('wfs.edit',$wf->id) }}" class="text-warning d-inline-block">Edit</a>
-							@endif
-						</div>
-					</div>
-				</div>
+	<div class="card">
+		<div class="card-header">
+			<div class="card-actions float-end">
+				<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				@if (auth()->user()->isSystem())
+					<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 1111) }}"><i class="fas fa-edit"></i> Edit</a>
+				 @endif
 			</div>
+			<h5 class="card-title">Wf Details</h5>
+			<h6 class="card-subtitle text-muted">Details of workflow.</h6>
 		</div>
-		<!-- end col-6 -->
+		<div class="card-body">
+			<table class="table table-sm my-2">
+				<tbody>
+					<x-tenant.show.my-text			value="{{ $wf->entity }}" label="Entity"/>
+						<x-tenant.show.article-link 	entity="{{ $wf->entity }}" :id="$wf->article_id"/>
+						<x-tenant.show.my-text			value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
+						<x-tenant.show.my-date-time		value="{{ $wf->created_at }}" label="Date"/>
+						<x-tenant.show.my-badge			value="{{ $wf->wf_status }}" label="WF Status"/>
+						<x-tenant.show.my-badge			value="{{ $wf->auth_status }}" label="Auth Status"/>
+						<x-tenant.show.my-text			value="{{ $wf->last_performer->name }}" label="Final Approver"/>
+						<x-tenant.show.my-date-time		value="{{ $wf->auth_date }}" label="Auth Date"/>
+						<tr>
+							<th>&nbsp;</th>
+							<td>
+								@if (auth()->user()->isSystem())
+									<a href="{{ route('wfs.edit',$wf->id) }}" class="text-warning d-inline-block">Edit</a>
+								@endif
+							</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<!-- end row -->
+
 
 	<div class="row">
 		<div class="col-12">
@@ -74,7 +77,7 @@
 						<tbody>
 							@foreach ($wfls as $wfl)
 							<tr>
-								<td><span class="badge bg-primary-light">{{ $wfl->id }}</span></td>
+								<td><span class="badge badge-subtle-primary">{{ $wfl->id }}</span></td>
 								<td>{{ $wfl->performer->name }}</td>
 								<td>{{ $wfl->assign_date }} </td>
 								<td>{{ $wfl->action }} </td>
@@ -90,13 +93,13 @@
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
-		
+
 		</div>
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
 
-	
+
 
 @endsection
 

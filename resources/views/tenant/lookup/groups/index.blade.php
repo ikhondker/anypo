@@ -16,7 +16,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -66,7 +66,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

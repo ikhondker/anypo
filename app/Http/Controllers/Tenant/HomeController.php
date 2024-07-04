@@ -47,7 +47,7 @@ use Illuminate\Support\Facades\Log;
 use Mail;
 use Illuminate\Support\Facades\Auth;
 use Str;
-# 13. FUTURE 
+# 13. FUTURE
 
 class HomeController extends Controller
 {
@@ -79,7 +79,7 @@ class HomeController extends Controller
 		$pr = PR::where('id', 1001)->first();
 		$action = WflActionEnum::SUBMITTED->value;
 		$actionURL = route('prs.show', $pr->id);
-		$requestor = User::where('id',1005)->first();
+		$requestor = User::where('id',1001)->first();
 		$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 
 		dd('Done: '. now());

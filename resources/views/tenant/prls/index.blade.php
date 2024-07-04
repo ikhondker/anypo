@@ -12,8 +12,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-12">
+
 
 			<div class="card">
 				<div class="card-header">
@@ -41,7 +40,7 @@
 								<th class="text-end">Tax</th>
 								<th class="text-end">GST</th>
 								<th class="text-end">Amount</th>
-	
+
 								<th>Enable</th>
 								<th>Actions</th>
 							</tr>
@@ -83,12 +82,8 @@
 			</div>
 			<!-- end card -->
 
-		</div>
-		 <!-- end col -->
-	</div>
-	 <!-- end row -->
 
-	 
+
 
 @endsection
 

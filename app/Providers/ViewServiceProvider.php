@@ -92,7 +92,8 @@ class ViewServiceProvider extends ServiceProvider
 			$view->with('_node_name', $menu->node_name)->with('_route_name', $menu->route_name);
 		});
 
-		Facades\View::composer(['layouts.tenant.app','tenant.*',
+		Facades\View::composer(['layouts.tenant.*','xxlayouts.tenant.auth',
+                'xxtenant.*',
 				'components.tenant.create.amount','components.tenant.edit.amount','components.tenant.show.my-amount',
 				'components.tenant.edit.price','components.tenant.create.price-fc',
 				'components.tenant.dashboards.*','components.tenant.widgets.*','components.tenant.info.*'

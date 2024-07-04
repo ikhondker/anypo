@@ -6,7 +6,7 @@
 				<div class="card-actions float-end">
 					<div class="dropdown position-relative">
 						<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
+							<i class="align-middle" data-lucide="more-horizontal"></i>
 						</a>
 						<div class="dropdown-menu dropdown-menu-end">
 							<a class="dropdown-item" href="#">Action</a>
@@ -51,11 +51,11 @@
 
 							<td class="table-action">
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-									<i class="align-middle" data-feather="eye"></i></a>
+									<i class="align-middle" data-lucide="eye"></i></a>
 								<a href="{{ route('invoices.edit',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-									<i class="align-middle" data-feather="edit"></i></a>
+									<i class="align-middle" data-lucide="edit"></i></a>
 								<a href="{{ route('payments.create',$invoice->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments">
-									<i class="align-middle" data-feather="dollar-sign"></i></a>
+									<i class="align-middle" data-lucide="dollar-sign"></i></a>
 							</td>
 						</tr>
 					@endforeach

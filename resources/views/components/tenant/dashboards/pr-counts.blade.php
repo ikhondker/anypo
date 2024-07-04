@@ -33,7 +33,7 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="check-circle"></i>
+							<i class="align-middle text-success" data-lucide="check-circle"></i>
 						</div>
 					</div>
 				</div>
@@ -56,7 +56,7 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="x-circle"></i>
+							<i class="align-middle text-success" data-lucide="x-circle"></i>
 						</div>
 					</div>
 				</div>
@@ -79,7 +79,7 @@
 					</div>
 					<div class="d-inline-block ms-3">
 						<div class="stat">
-							<i class="align-middle text-success" data-feather="clock"></i>
+							<i class="align-middle text-success" data-lucide="clock"></i>
 						</div>
 					</div>
 				</div>

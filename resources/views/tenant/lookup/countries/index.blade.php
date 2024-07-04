@@ -17,7 +17,7 @@
 	</x-tenant.page-header>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-12">
 
 			<div class="card">
 				<div class="card-header">
@@ -49,7 +49,7 @@
 								<td><x-tenant.list.my-boolean :value="$country->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Country" :id="$country->country" :show="false"/>
-									<a href="{{ route('countries.destroy',$country->country) }}" class="me-2 sw2-advance" 
+									<a href="{{ route('countries.destroy',$country->country) }}" class="me-2 sw2-advance"
 										data-entity="Country" data-name="{{ $country->name }}" data-status="{{ ($country->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($country->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-lucide="{{ ($country->enable ? 'bell-off' : 'bell') }}"></i>
@@ -64,7 +64,7 @@
 						{{ $countries->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -75,7 +75,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

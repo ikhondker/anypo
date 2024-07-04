@@ -10,7 +10,7 @@
 								<input class="form-check-input m-1" type="checkbox" id="add_row" name="add_row" checked>
 								<label class="form-check-label" for="add_row">... add another row</label>
 							</div>
-						@endif 
+						@endif
 					</div>
 				</div>
 				<h5 class="card-title">Purchase Order Lines</h5>
@@ -52,13 +52,13 @@
 					</tr>
 				</thead>
 				{{ $lines }}
-				
+
 				@if ( $readOnly )
 					<!-- Table footer i.e. Totals -->
 					<tr>
-						<td class="" colspan="2" scope="col"> 
+						<td class="" colspan="2" scope="col">
 							@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-								<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-feather="plus-square"></i> Add Lines</a>
+								<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 							@endif
 						</td>
 						<td class="" colspan="4" scope="col">&nbsp;</td>
@@ -90,7 +90,7 @@
 							{{-- <x-tenant.buttons.show.save/> --}}
 						</td>
 					</tr>
-			
+
 					<!-- End Table footer i.e. Totals -->
 				@endif
 		</table>

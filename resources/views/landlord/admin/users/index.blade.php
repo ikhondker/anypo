@@ -46,7 +46,6 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-
 						<th class="align-middle">#</th>
 						<th class="align-middle">Name</th>
 						<th class="align-middle">Email</th>

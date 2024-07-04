@@ -5,23 +5,26 @@
 
 	<div class="text-center mt-4">
 		<h1 class="h2">Welcome back,</h1>
-		<p class="lead">Sign in to your existing account to continue</p>
+		<p class="lead">Sign in to your existing {{ $setup->name}} account to continue</p>
 	</div>
 
 	<div class="card">
 		<div class="card-body">
 			<div class="m-sm-4">
 				<div class="text-center">
-					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
-				</div>
+					{{-- <img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" /> --}}
+                    <img src="{{ Storage::disk('s3t')->url('logo/'.$setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $setup->name }}"/>
+                    <h3 class="text-info">{{ $setup->name}}</h3>
+
+                </div>
 				<form action="{{ route('login') }}" method="post">
 
 					@csrf
 					<div class="mb-3">
 						<label class="form-label">Email</label>
-						<input class="form-control form-control-lg @error('email') is-invalid @enderror" 
+						<input class="form-control form-control-lg @error('email') is-invalid @enderror"
 							type="email" name="email" value="{{ old('email') }}"
-							placeholder="email@example.com" 
+							placeholder="email@example.com"
 							required autocomplete="email" autofocus/>
 							@error('email')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -29,9 +32,9 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Password</label>
-						<input class="form-control form-control-lg @error('password') is-invalid @enderror" 
-								type="password" name="password" 
-								placeholder="Enter your password" 
+						<input class="form-control form-control-lg @error('password') is-invalid @enderror"
+								type="password" name="password"
+								placeholder="Enter your password"
 								required autocomplete="current-password"
 								/>
 					</div>

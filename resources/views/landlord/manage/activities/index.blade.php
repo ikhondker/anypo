@@ -2,7 +2,6 @@
 @section('title','Event Log')
 @section('breadcrumb','Event Log')
 
-
 @section('content')
 
 <h1 class="h3 mb-3">All Activities</h1>

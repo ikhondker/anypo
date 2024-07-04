@@ -687,8 +687,8 @@ Route::middleware([
 		Route::get('/ui', function () {
 			return view('tenant.manage.ui');
 		})->name('ui');
-	
-		
+
+
 		/* ======================== Purging Cache ========================================  */
 		// Route::get('/clear', function() {
 		// 	Artisan::call('cache:clear');
@@ -723,7 +723,7 @@ Route::middleware([
 			dd('Send mail using que successfully !!');
 		});
 		Route::get('email-test', function(){
-			$details['email'] = 'your_email@gmail.com';
+			$details['email'] = 'khondker@gmail.com';
 			dispatch(new App\Jobs\SendEmailJob($details));
 			dd('Done: '. now());
 		});

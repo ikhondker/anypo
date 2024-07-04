@@ -6,7 +6,7 @@
 				<div class="card-actions float-end">
 					<div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
 						<a href="{{ route('pos.export-for-project',$id) }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-							<i class="align-middle" data-feather="download-cloud"></i>
+							<i class="align-middle" data-lucide="download-cloud"></i>
 						</a>
 					</div>
 				</div>

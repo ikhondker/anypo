@@ -5,7 +5,7 @@
 				<h5 class="card-title mb-0">Profile Details</h5>
 			</div>
 			<div class="card-body text-center">
-				
+
 				<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="img-fluid rounded-circle mb-2" width="128" height="128" title="{{ $user->name }}">
 
 				<h5 class="card-title mb-0">{{ $user->name }}</h5>
@@ -13,16 +13,16 @@
 
 				{{-- <div>
 					<a class="btn btn-primary btn-sm" href="#">Follow</a>
-					<a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Message</a>
+					<a class="btn btn-primary btn-sm" href="#"><span data-lucide="message-square"></span> Message</a>
 				</div> --}}
 			</div>
 			<hr class="my-0" />
 			<div class="card-body">
 				<h5 class="h6 card-title">Contact Info</h5>
 				<ul class="list-unstyled mb-0">
-					<li class="mb-1"><span data-feather="mail" class="feather-sm me-1"></span> Email : {{ $user->email }}</li>
-					<li class="mb-1"><span data-feather="smartphone" class="feather-sm me-1"></span> Cell : {{ $user->cell }}</li>
-					<li class="mb-1"><span data-feather="grid" class="feather-sm me-1"></span> Department : {{ $user->dept->name }}</li>
+					<li class="mb-1"><span data-lucide="mail" class="feather-sm me-1"></span> Email : {{ $user->email }}</li>
+					<li class="mb-1"><span data-lucide="smartphone" class="feather-sm me-1"></span> Cell : {{ $user->cell }}</li>
+					<li class="mb-1"><span data-lucide="grid" class="feather-sm me-1"></span> Department : {{ $user->dept->name }}</li>
 				</ul>
 			</div>
 			<hr class="my-0" />
@@ -41,7 +41,7 @@
 				<h5 class="h6 card-title">User Role</h5>
 				<a href="#" class="badge bg-primary me-1 my-1">{{ $user->role }}</a>
 			</div>
-			
+
 		</div>
 	</div>
 
@@ -50,7 +50,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<div class="dropdown position-relative">
-						
+
 					</div>
 				</div>
 				<h5 class="card-title mb-0">User Details</h5>
@@ -64,7 +64,7 @@
 				<x-tenant.show.my-text		value="{{ $user->dept->name }}" label="Dept"/>
 				<x-tenant.show.my-badge		value="{{ $user->role }}" label="Role"/>
 				<x-tenant.show.my-boolean	value="{{ $user->enable }}"/>
-					
+
 				<hr />
 				<x-tenant.show.my-url		value="{{ $user->facebook }}" label="Facebook"/>
 				<x-tenant.show.my-url		value="{{ $user->linkedin }}" label="LinkedIn"/>
@@ -74,7 +74,7 @@
 
 				<hr />
 				<x-tenant.show.my-text-area value="{{ $user->notes }}" label="About Myself"/>
-			
+
 			</div>
 		</div>
 	</div>

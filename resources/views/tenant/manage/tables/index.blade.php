@@ -15,6 +15,8 @@
 		@endslot
 	</x-tenant.page-header>
 
+	<!-- ========== INCLUDE ========== -->
 	@include('shared.includes.tables.tables')
+	<!-- ========== INCLUDE ========== -->
 
 @endsection

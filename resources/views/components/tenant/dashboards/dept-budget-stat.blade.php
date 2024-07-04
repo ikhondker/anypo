@@ -8,7 +8,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="database"></i>
+							<i class="align-middle" data-lucide="database"></i>
 						</div>
 					</div>
 				</div>
@@ -29,11 +29,11 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="check-circle"></i>
+							<i class="align-middle" data-lucide="check-circle"></i>
 						</div>
 					</div>
 				</div>
-				
+
 				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $deptBudget->amount_po) }}</span>
 				<div class="mb-0">
 					<span class="badge badge-soft-success me-2">{{ number_format($deptBudget->amount_pod / ($deptBudget->amount == 0 ? 1 :$deptBudget->amount) * 100,2) }}%</span>
@@ -55,7 +55,7 @@
 
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="file"></i>
+							<i class="align-middle" data-lucide="file"></i>
 						</div>
 					</div>
 				</div>
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="col-md-6 col-xxl-3 d-flex">
 		<div class="card flex-fill">
 			<div class="card-body">
@@ -80,7 +80,7 @@
 
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-feather="dollar-sign"></i>
+							<i class="align-middle" data-lucide="dollar-sign"></i>
 						</div>
 					</div>
 				</div>

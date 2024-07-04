@@ -3,7 +3,7 @@
 
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('pos.create') }}" class="btn btn-primary float-end me-2"><i data-feather="plus-square"></i> Create Purchase Order</a>
+                <a href="{{ route('pos.create') }}" class="btn btn-primary float-end me-2"><i data-lucide="plus-square"></i> Create Purchase Order</a>
 
                 <h5 class="card-title">
                     {{ $card_header }}

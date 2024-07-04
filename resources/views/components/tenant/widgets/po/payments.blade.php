@@ -6,7 +6,7 @@
 				<div class="card-actions float-end">
 					<div class="dropdown position-relative">
 						<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-feather="more-horizontal"></i>
+							<i class="align-middle" data-lucide="more-horizontal"></i>
 						</a>
 						<div class="dropdown-menu dropdown-menu-end">
 							<a class="dropdown-item" href="#">Action</a>
@@ -26,7 +26,7 @@
 						<th class="">Bank Ac</th>
 						<th class="text-end">Ref/Cheque No</th>
 						<th class="text-end">Amount</th>
-						
+
 						<th class="text-end">Currency</th>
 						<th class="">Actions</th>
 					</tr>
@@ -42,7 +42,7 @@
 							<td class="text-end">{{ $payment->currency }}</td>
 							<td class="table-action">
 								<a href="{{ route('payments.show',$payment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-									<i class="align-middle" data-feather="eye"></i></a>
+									<i class="align-middle" data-lucide="eye"></i></a>
 							</td>
 						</tr>
 					@endforeach

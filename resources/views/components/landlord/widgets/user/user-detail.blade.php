@@ -1,24 +1,22 @@
-
-
 <div class="card">
 	<div class="card-header">
 
-        <div class="card-header">
-            {{-- <div class="card-actions float-end">
-                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
-            </div> --}}
-            <h5 class="card-title">User Profile</h5>
-            <h6 class="card-subtitle text-muted">View User Profile.</h6>
-        </div>
+		<div class="card-header">
+			{{-- <div class="card-actions float-end">
+				<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
+			</div> --}}
+			<h5 class="card-title">User Profile</h5>
+			<h6 class="card-subtitle text-muted">View User Profile.</h6>
+		</div>
 
 	</div>
 	<div class="card-body">
 		<table class="table table-sm my-2">
 			<tbody>
-                <tr>
-                    <th>Photo</th>
-                    <td><img src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="img-fluid rounded-circle mb-2" width="128" height="128" title="{{ $user->name }}"></td>
-                </tr>
+				<tr>
+					<th>Photo</th>
+					<td><img src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="img-fluid rounded-circle mb-2" width="128" height="128" title="{{ $user->name }}"></td>
+				</tr>
 				<x-landlord.show.my-text value="{{ $user->name }}" />
 				<x-landlord.show.my-text value="{{ $user->email }}" label="E-mail"/>
 				<x-landlord.show.my-text value="{{ $user->cell }}" label="Cell"/>

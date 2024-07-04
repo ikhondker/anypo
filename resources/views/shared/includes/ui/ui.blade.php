@@ -803,40 +803,40 @@
 		</div>
 
 		<h1 class="h3 mb-3">Empty card (card-header)</h1>
-		<div class="row">
-			<div class="col-12">
-				<div class="card">
-					<div class="card-header">
-						<div class="card-actions float-end">
-							<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
-						</div>
-						<h5 class="card-title">Empty card</h5>
-  						<h6 class="card-subtitle text-muted">Heatmap is a visualization tool that employs.</h6>
-					</div>
-					<div class="card-body">
-						<table class="table table-sm my-2">
-							<tbody>
-								<tr>
-									<th>Name</th>
-									<td>Angelica Ramos</td>
-								</tr>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+                    @if (auth()->user()->isSystem())
+                        <a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 1111) }}"><i class="fas fa-edit"></i> Edit</a>
+                     @endif
+                </div>
+				<h5 class="card-title">Empty card</h5>
+				<h6 class="card-subtitle text-muted">Please provide brief description of this card.</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th>Name</th>
+							<td>Angelica Ramos</td>
+						</tr>
 
-								<tr>
-									<th>Company</th>
-									<td>The Wiz</td>
-								</tr>
-								<tr>
-									<th>Email</th>
-									<td>angelica@ramos.com</td>
-								</tr>
-								<tr>
-									<th>Status</th>
-									<td><span class="badge badge-subtle-success">Active</span></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
+						<tr>
+							<th>Company</th>
+							<td>The Wiz</td>
+						</tr>
+						<tr>
+							<th>Email</th>
+							<td>angelica@ramos.com</td>
+						</tr>
+						<tr>
+							<th>Status</th>
+							<td><span class="badge badge-subtle-success">Active</span></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
+
 
