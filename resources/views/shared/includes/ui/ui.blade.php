@@ -807,10 +807,10 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
-                    @if (auth()->user()->isSystem())
-                        <a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 1111) }}"><i class="fas fa-edit"></i> Edit</a>
-                     @endif
-                </div>
+					@if (auth()->user()->isSystem())
+						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
+					 @endif
+				</div>
 				<h5 class="card-title">Empty card</h5>
 				<h6 class="card-subtitle text-muted">Please provide brief description of this card.</h6>
 			</div>
@@ -821,7 +821,6 @@
 							<th>Name</th>
 							<td>Angelica Ramos</td>
 						</tr>
-
 						<tr>
 							<th>Company</th>
 							<td>The Wiz</td>

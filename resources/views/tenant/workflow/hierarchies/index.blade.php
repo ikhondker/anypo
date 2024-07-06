@@ -50,8 +50,10 @@
 								<td><x-tenant.list.my-date-time :value="$hierarchy->created_at"/></td>
 								<td><x-tenant.list.my-boolean :value="$hierarchy->enable"/></td>
 								<td class="table-action">
-									<a href="{{ route('hierarchies.show',$hierarchy->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-lucide="eye"></i></a>
+									<a href="{{ route('hierarchies.show',$hierarchy->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+
 								</td>
 							</tr>
 							@endforeach
@@ -73,7 +75,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

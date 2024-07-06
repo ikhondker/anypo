@@ -212,7 +212,7 @@
 	</div>
 	<!-- End Card -->
 
-    <!-- form start -->
+	<!-- form start -->
 	<form id="myform" action="{{ route('templates.update',$template->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')

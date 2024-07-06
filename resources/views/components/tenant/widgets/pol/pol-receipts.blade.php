@@ -28,7 +28,7 @@
 						<th class="text-end">Amount</th>
 						<th class="">Receiver</th>
 						<th class="">Warehouse</th>
-                        <th class="">Status</th>
+						<th class="">Status</th>
 						<th class="">Action</th>
 					</tr>
 				</thead>
@@ -42,7 +42,7 @@
 							<td class="text-end"><x-tenant.list.my-number :value="$receipt->amount"/></td>
 							<td class="">{{ $receipt->receiver->name }}</td>
 							<td class="">{{ $receipt->warehouse->name }}</td>
-                            <td><x-tenant.list.my-badge :value="$receipt->status"/></td>
+							<td><x-tenant.list.my-badge :value="$receipt->status"/></td>
 							<td class="table-action">
 								<a href="{{ route('receipts.show',$receipt->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="align-middle" data-lucide="eye"></i></a>

@@ -30,13 +30,19 @@
 					<h6 class="card-subtitle text-muted">Additional information of a Purchase Order</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-amount-currency	value="{{ $po->sub_total }}" currency="{{ $po->currency }}" label="Subtotal"/>
-					<x-tenant.show.my-amount-currency	value="{{ $po->tax }}" currency="{{ $po->currency }}" label="Tax"/>
-					<x-tenant.show.my-amount-currency	value="{{ $po->gst }}" currency="{{ $po->currency }}" label="GST"/>
-					<x-tenant.show.my-amount-currency	value="{{ $po->amount }}" currency="{{ $po->currency }}" label="PR Amount" />
-					<x-tenant.show.my-date		value="{{ $po->submission_date }}" label="Submission Date"/>
-					<x-tenant.show.my-date		value="{{ $po->auth_date }}" label="Auth Date"/>
-					<x-tenant.show.my-text		value="{{ $po->hierarchy->name }}" label="Hierarchy Name"/>
+					<table class="table table-sm my-2">
+						<tbody>
+							<x-tenant.show.my-amount-currency	value="{{ $po->sub_total }}" currency="{{ $po->currency }}" label="Subtotal"/>
+								<x-tenant.show.my-amount-currency	value="{{ $po->tax }}" currency="{{ $po->currency }}" label="Tax"/>
+								<x-tenant.show.my-amount-currency	value="{{ $po->gst }}" currency="{{ $po->currency }}" label="GST"/>
+								<x-tenant.show.my-amount-currency	value="{{ $po->amount }}" currency="{{ $po->currency }}" label="PR Amount" />
+								<x-tenant.show.my-date		value="{{ $po->submission_date }}" label="Submission Date"/>
+								<x-tenant.show.my-date		value="{{ $po->auth_date }}" label="Auth Date"/>
+								<x-tenant.show.my-text		value="{{ $po->hierarchy->name }}" label="Hierarchy Name"/>
+						</tbody>
+					</table>
+
+
 				</div>
 			</div>
 
@@ -49,12 +55,18 @@
 					<h6 class="card-subtitle text-muted">Purchase Order Amounts in Functional Currency.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $po->fc_currency }}" label="Functional Currency"/>
-					<x-tenant.show.my-amount	value="{{ $po->fc_exchange_rate }}" label="Exchange Rate"/>
-					<x-tenant.show.my-amount	value="{{ $po->fc_sub_total }}" label="Subtotal"/>
-					<x-tenant.show.my-amount	value="{{ $po->fc_tax }}" label="Tax"/>
-					<x-tenant.show.my-amount	value="{{ $po->fc_gst }}" label="GST"/>
-					<x-tenant.show.my-amount	value="{{ $po->fc_amount }}" label="PR Amount"/>
+					<table class="table table-sm my-2">
+						<tbody>
+							<x-tenant.show.my-text		value="{{ $po->fc_currency }}" label="Functional Currency"/>
+								<x-tenant.show.my-amount	value="{{ $po->fc_exchange_rate }}" label="Exchange Rate"/>
+								<x-tenant.show.my-amount	value="{{ $po->fc_sub_total }}" label="Subtotal"/>
+								<x-tenant.show.my-amount	value="{{ $po->fc_tax }}" label="Tax"/>
+								<x-tenant.show.my-amount	value="{{ $po->fc_gst }}" label="GST"/>
+								<x-tenant.show.my-amount	value="{{ $po->fc_amount }}" label="PR Amount"/>
+						</tbody>
+					</table>
+
+
 				</div>
 			</div>
 

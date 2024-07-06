@@ -33,7 +33,7 @@
 							<h6 class="card-subtitle text-muted">Edit Project detail and other information.</h6>
 						</div>
 						<div class="card-body">
-							
+
 							<div class="mb-3 col-md-6">
 								<label for="code" class="form-label">Code</label>
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
@@ -62,13 +62,13 @@
 							<x-tenant.edit.notes :value="$project->notes"/>
 
 							<x-tenant.buttons.show.save/>
- 
+
 						</div>
 					</div>
 				</div>
 				<!-- end col-6 -->
 			</div>
-		
+
 	</form>
 	<!-- /.form end -->
 @endsection

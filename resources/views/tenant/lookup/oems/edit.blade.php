@@ -2,7 +2,7 @@
 @section('title','Edit Oem')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('oems.index') }}">OEMs</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('oems.show',$oem->id) }}">{{ $oem->name }}</a></li>
+	<li class="breadcrumb-item">{{ $oem->name }}</li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 

@@ -276,7 +276,7 @@
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
-                        <div class="col-6 text-start">
+						<div class="col-6 text-start">
 							<ul class="list-inline">
 								<li class="list-inline-item">
 									<a class="text-muted" href="{{ route('tickets.create') }}">Support</a>
@@ -298,8 +298,8 @@
 						</div>
 						<div class="col-6 text-end">
 							<p class="mb-0">
-                                @if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
-                                       Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
+								@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
+										Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
 								@endif
 								<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a></p>
 							</p>

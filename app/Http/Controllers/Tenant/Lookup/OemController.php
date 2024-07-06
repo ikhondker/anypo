@@ -41,7 +41,7 @@ use App\Helpers\Export;
 # 10. Events
 # 11. Seeded
 use DB;
-# 12. FUTURE 
+# 12. FUTURE
 
 
 class OemController extends Controller
@@ -67,7 +67,6 @@ class OemController extends Controller
 	public function create()
 	{
 		$this->authorize('create', Oem::class);
-
 		return view('tenant.lookup.oems.create');
 	}
 

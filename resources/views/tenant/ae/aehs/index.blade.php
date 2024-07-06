@@ -95,7 +95,9 @@
 								<td><x-tenant.common.link-po id="{{ $aeh->po_id }}"/></td>
 								<td>{{ $aeh->reference_no }}</td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Aeh" :id="$aeh->id" :edit="false"/>
+									<a href="{{ route('aehs.show',$aeh->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
 								</td>
 							</tr>
 							@endforeach

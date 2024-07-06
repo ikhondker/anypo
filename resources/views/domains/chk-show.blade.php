@@ -8,30 +8,30 @@
 
 <h1 class="h3 mb-3">View Domain</h1>
 <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-actions float-end">
-                    <a href="{{ route('domains.index') }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  View all</a>
-                    @if (auth()->user()->isSystem())
-                    <a class="btn btn-sm btn-danger text-white" href="{{ route('domains.edit', $domain->id) }}"><i class="fas fa-edit"></i> Edit</a>
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('domains.index') }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  View all</a>
+					@if (auth()->user()->isSystem())
+					<a class="btn btn-sm btn-danger text-white" href="{{ route('domains.edit', $domain->id) }}"><i class="fas fa-edit"></i> Edit</a>
 
-                    @endif
-                </div>
-                <h5 class="card-title">View Domain</h5>
-                <h6 class="card-subtitle text-muted">View details of a domain.</h6>
-            </div>
-            <div class="card-body">
-                <table class="table table-sm my-2">
-                    <tbody>
-                        <x-landlord.show.my-badge value="{{ $domain->id }}" />
-                        <x-landlord.show.my-content value="{{ $domain->data }}" label="Data1" />
-                        <x-landlord.show.my-date value="{{ $domain->created_at }}" />
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+					@endif
+				</div>
+				<h5 class="card-title">View Domain</h5>
+				<h6 class="card-subtitle text-muted">View details of a domain.</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<x-landlord.show.my-badge value="{{ $domain->id }}" />
+						<x-landlord.show.my-content value="{{ $domain->data }}" label="Data1" />
+						<x-landlord.show.my-date value="{{ $domain->created_at }}" />
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
 
 	<div class="d-grid gap-3 gap-lg-5">

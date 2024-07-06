@@ -35,7 +35,7 @@
 									@enderror
 								</td>
 							</tr>
-                            <tr>
+							<tr>
 								<th>Object ID :</th>
 								<td>
 									<input type="text" class="form-control @error('object_id') is-invalid @enderror"
@@ -48,7 +48,7 @@
 								</td>
 							</tr>
 
-                            <tr>
+							<tr>
 								<th>Event Name  :</th>
 								<td>
 									<input type="text" class="form-control @error('event_name') is-invalid @enderror"
@@ -61,7 +61,7 @@
 								</td>
 							</tr>
 
-                            <tr>
+							<tr>
 								<th>Column Name  :</th>
 								<td>
 									<input type="text" class="form-control @error('column_name') is-invalid @enderror"
@@ -74,7 +74,7 @@
 								</td>
 							</tr>
 
-                            <tr>
+							<tr>
 								<th>Prior Value  :</th>
 								<td>
 									<input type="text" class="form-control @error('prior_value') is-invalid @enderror"

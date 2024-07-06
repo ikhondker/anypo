@@ -13,7 +13,7 @@
 				<!-- form -->
 				<form action="{{ route('activities.index') }}" method="GET" role="search">
 					<div class="input-group input-group-search">
-                        <input type="date" class="datepicker form-control @error('start_date') is-invalid @enderror"
+						<input type="date" class="datepicker form-control @error('start_date') is-invalid @enderror"
 							name="start_date" id="start_date" placeholder=""
 							value="{{ old('start_date', date('Y-m-01') ) }}"
 							required/>
@@ -25,8 +25,8 @@
 							<i class="align-middle" data-lucide="search"></i>
 						</button>
 					</div>
-                    @if (request('start_date'))
-                        Search result for: <strong class="text-danger">{{ request('start_date') .' to '.request('end_date') }}</strong>
+					@if (request('start_date'))
+						Search result for: <strong class="text-danger">{{ request('start_date') .' to '.request('end_date') }}</strong>
 					@endif
 				</form>
 				<!--/. form -->
@@ -49,7 +49,7 @@
 				<tr>
 					<th class="align-middle">#</th>
 					<th class="align-middle">Object</th>
-                    <th class="align-middle">Obj ID</th>
+					<th class="align-middle">Obj ID</th>
 
 					<th class="align-middle">Date</th>
 					<th class="align-middle">Event</th>
@@ -68,10 +68,10 @@
 							<strong>{{ $activity->object_name }}</strong>
 							</a>
 						</td>
-                        <td>{{ $activity->object_id }}</td>
-                        <td><x-landlord.list.my-date :value="$activity->created_at"/></td>
-                        <td>{{ $activity->event_name }}</td>
-                        <td>{{ $activity->user->name }}</td>
+						<td>{{ $activity->object_id }}</td>
+						<td><x-landlord.list.my-date :value="$activity->created_at"/></td>
+						<td>{{ $activity->event_name }}</td>
+						<td>{{ $activity->user->name }}</td>
 						<td class="text-end">
 							<a href="{{ route('activities.show',$activity->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>

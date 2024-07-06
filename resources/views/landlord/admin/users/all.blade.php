@@ -63,9 +63,9 @@
 								<img src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $user->name }}" title="{{ $user->name }}">
 							</td>
 							<td> <a href="{{ route('users.show', $user->id) }}">
-                                <strong>{{ $user->name }}</strong>
-                            </a>
-                            </td>
+								<strong>{{ $user->name }}</strong>
+							</a>
+							</td>
 							<td>{{ $user->email }}</td>
 							<td>{{ $user->account->name }} </td>
 							<td>

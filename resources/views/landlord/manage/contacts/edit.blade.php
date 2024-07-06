@@ -34,7 +34,7 @@
 									@enderror
 								</td>
 							</tr>
-                            <tr>
+							<tr>
 								<th>Last Name :</th>
 								<td>
 									<input type="text" class="form-control @error('last_name') is-invalid @enderror"
@@ -46,7 +46,7 @@
 									@enderror
 								</td>
 							</tr>
-                            <x-landlord.edit.email :value="$contact->email" />
+							<x-landlord.edit.email :value="$contact->email" />
 							<tr>
 								<th>Contact Date :</th>
 								<td>
@@ -59,7 +59,7 @@
 										@enderror
 								</td>
 							</tr>
-                            <tr>
+							<tr>
 								<th>Subject :</th>
 								<td>
 									<input type="text" class="form-control @error('subject') is-invalid @enderror"
@@ -71,7 +71,7 @@
 									@enderror
 								</td>
 							</tr>
-                            <x-landlord.edit.notes :value="$contact->notes" />
+							<x-landlord.edit.notes :value="$contact->notes" />
 
 					</tbody>
 				</table>

@@ -1,5 +1,5 @@
 @extends('layouts.tenant.app')
-@section('title','Project')
+@section('title','Create Project')
 
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Projects</a></li>
@@ -41,11 +41,11 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						
+
 						<x-tenant.create.name/>
 						<x-tenant.create.start-date/>
 						<x-tenant.create.end-date/>
-						
+
 						<div class="mb-3">
 							<label class="form-label">Project Manager</label>
 							<select class="form-control" name="pm_id" required>
@@ -73,7 +73,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- end col-6 -->
 		</div>
 		<!-- end row -->

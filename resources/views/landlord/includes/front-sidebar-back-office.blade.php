@@ -155,7 +155,7 @@
 			<a class="nav-link {{ $_route_name == 'widgets' ? 'active' : '' }}"
 				href="{{ route('widgets') }}"><i class="bi-bell nav-icon"></i> Widgets</a>
 		</li>
-        <li class="nav-item">
+		<li class="nav-item">
 			<a class="nav-link {{ $_route_name == 'configs.index' ? 'active' : '' }}"
 				href="{{ route('configs.index') }}"><i class="bi-bell nav-icon"></i> Config</a>
 		</li>

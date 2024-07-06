@@ -24,6 +24,6 @@
 
 	<x-tenant.widgets.pr.pr-lists-po-pending/>
 
-    <x-tenant.widgets.po.po-lists-recent/>
+	<x-tenant.widgets.po.po-lists-recent/>
 
 @endsection

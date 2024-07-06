@@ -14,7 +14,7 @@
 		@slot('buttons')
 			@can('create', App\Models\Tenant\Lookup\Item::class)
 				<x-tenant.buttons.header.create object="Item"/>
-			@endcan	
+			@endcan
 		@endslot
 	</x-tenant.page-header>
 
@@ -148,8 +148,9 @@
 								<td>{{ $item->glType->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$item->enable"/></td>
 								<td class="table-action">
-									<a href="{{ route('items.show',$item->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-lucide="eye"></i></a>
+									<a href="{{ route('items.show',$item->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
 								</td>
 							</tr>
 							@endforeach
@@ -171,6 +172,6 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 @endsection
 

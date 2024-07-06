@@ -12,19 +12,19 @@
 			Workflow Details
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Wf"/>
+			{{-- <x-tenant.buttons.header.lists object="Wf"/>
 			@can('edit', $wf)
 				<x-tenant.buttons.header.edit object="Wf" :id="$wf->id"/>
-			@endcan
+			@endcan --}}
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				<a href="{{ route('wfs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				@if (auth()->user()->isSystem())
-					<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 1111) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-danger text-white" href="{{ route('wfs.edit', $wf->id) }}"><i class="fas fa-edit"></i> Edit</a>
 				 @endif
 			</div>
 			<h5 class="card-title">Wf Details</h5>
@@ -41,14 +41,7 @@
 						<x-tenant.show.my-badge			value="{{ $wf->auth_status }}" label="Auth Status"/>
 						<x-tenant.show.my-text			value="{{ $wf->last_performer->name }}" label="Final Approver"/>
 						<x-tenant.show.my-date-time		value="{{ $wf->auth_date }}" label="Auth Date"/>
-						<tr>
-							<th>&nbsp;</th>
-							<td>
-								@if (auth()->user()->isSystem())
-									<a href="{{ route('wfs.edit',$wf->id) }}" class="text-warning d-inline-block">Edit</a>
-								@endif
-							</td>
-						</tr>
+
 				</tbody>
 			</table>
 		</div>

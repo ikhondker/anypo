@@ -42,7 +42,7 @@ use App\Helpers\Export;
 # 10. Events
 # 11. Seeded
 use DB;
-# 12. FUTURE 
+# 12. FUTURE
 
 
 class DesignationController extends Controller
@@ -92,6 +92,7 @@ class DesignationController extends Controller
 	 */
 	public function show(Designation $designation)
 	{
+        abort(403);
 		return view('tenant.lookup.designations.show', compact('designation'));
 	}
 

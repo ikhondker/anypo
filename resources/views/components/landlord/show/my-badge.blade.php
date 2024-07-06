@@ -18,6 +18,6 @@
 </div> --}}
 
 <tr>
-    <th>{{ $label }} X :</th>
-    <td><span class="badge badge-subtle-{{ $badge }}">{{ $value }}</span></td>
+	<th>{{ $label }} X :</th>
+	<td><span class="badge badge-subtle-{{ $badge }}">{{ $value }}</span></td>
 </tr>

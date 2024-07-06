@@ -12,9 +12,9 @@
 						</a>
 					@endauth
 					@guest
-                        <a class="nav-flag dropdown-toggle" href="#" id="flag" data-bs-toggle="no-dropdown">
-                            <img src="{{ Storage::disk('s3l')->url('flags/ca.png') }}" alt="CA" />
-                        </a>
+						<a class="nav-flag dropdown-toggle" href="#" id="flag" data-bs-toggle="no-dropdown">
+							<img src="{{ Storage::disk('s3l')->url('flags/ca.png') }}" alt="CA" />
+						</a>
 					@endguest
 				</li>
 				<li class="nav-item d-none d-md-inline-block">

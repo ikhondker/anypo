@@ -140,8 +140,11 @@
 								<td>{{ $supplier->cell }}</td>
 								<td><x-tenant.list.my-boolean :value="$supplier->enable"/></td>
 								<td class="table-action">
-									<a href="{{ route('suppliers.show',$supplier->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-lucide="eye"></i></a>
+									<a href="{{ route('suppliers.show',$supplier->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+
+
 								</td>
 							</tr>
 							@endforeach
@@ -163,7 +166,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <h1 class="h3 mb-3">Template Info</h1>
+	<h1 class="h3 mb-3">Template Info</h1>
 
 	<!-- ========== INCLUDE ========== -->
 	@include('shared.includes.templates.show')

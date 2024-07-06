@@ -15,12 +15,11 @@
 									<th>Code</th>
 									<td>{{ $project->code }}</td>
 								</tr>
-
 								<tr>
 									<th>Duration</th>
 									<td>
 										{{ ($project->start_date <> "") ? strtoupper(date('d-M-Y', strtotime($project->start_date ))) : "" }}
-										to 
+										to
 										{{ ($project->end_date <> "") ? strtoupper(date('d-M-Y', strtotime($project->end_date ))) : "" }}
 									</td>
 								</tr>
@@ -34,7 +33,7 @@
 								</tr>
 								<tr>
 									<th>Closed</th>
-									<td><span class="badge {{ ($project->closed ? 'bg-danger' : 'bg-success') }}">{{ ($project->closed ? 'Yes' : 'No') }}</span></td>
+									<td><span class="badge {{ ($project->closed ? 'badge-subtle-danger' : 'badge-subtle-success') }}">{{ ($project->closed ? 'Yes' : 'No') }}</span></td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>

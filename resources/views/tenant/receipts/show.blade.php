@@ -23,56 +23,45 @@
 
 	{{-- <x-tenant.info.pol-info id="{{ $receipt->pol_id }}"/> --}}
 
-	<div class="row">
-		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Goods Receipt Information</h5>
 					<h6 class="card-subtitle text-muted">List of Goods Receipts.11</h6>
 				</div>
 				<div class="card-body">
-					<div class="row mb-3">
-						<div class="col-sm-3 text-end">
-							<span class="h6 text-secondary">PO #:</span>
-						</div>
-						<div class="col-sm-9">
-							<a class="text-info" href="{{ route('pos.show',$receipt->pol->po_id) }}">
-								{{ "#". $receipt->pol->po_id. " - ". $receipt->pol->po->summary }}
-							</a>
 
+					<table class="table table-sm my-2">
+						<tbody>
+							<tr>
+								<th>PO #:</th>
+								<td>
+									<a class="text-info" href="{{ route('pos.show',$receipt->pol->po_id) }}">
+									{{ "#". $receipt->pol->po_id. " - ". $receipt->pol->po->summary }}
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<th>Line #</th>
+								<td> {{ "#". $receipt->pol->line_num. " - ". $receipt->pol->item_description }}</td>
+							</tr>
+							<x-tenant.show.my-number	value="{{ $receipt->pol->qty }}" label="Ord Qty" />
+							<x-tenant.show.my-badge		value="{{ $receipt->id }}" label="GRN#"/>
+							<x-tenant.show.my-date		value="{{ $receipt->receive_date }}"/>
+							<x-tenant.show.my-number	value="{{ $receipt->qty }}" label="Rcv Qty" />
+							<x-tenant.show.my-text		value="{{ $receipt->warehouse->name }}" label="Warehouse"/>
+							<x-tenant.show.my-text		value="{{ $receipt->receiver->name }}" label="Receiver"/>
+							<x-tenant.show.my-badge		value="{{ $receipt->status }}" label="Status"/>
+							<x-tenant.show.my-text-area		value="{{ $receipt->notes }}" label="Notes"/>
 
-						</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col-sm-3 text-end">
-							<span class="h6 text-secondary">Line #:</span>
-						</div>
-						<div class="col-sm-9">
-							{{ "#". $receipt->pol->line_num. " - ". $receipt->pol->item_description }}
-						</div>
-					</div>
-					<x-tenant.show.my-number	value="{{ $receipt->pol->qty }}" label="Ord Qty" />
-					<x-tenant.show.my-badge		value="{{ $receipt->id }}" label="GRN#"/>
-					<x-tenant.show.my-date		value="{{ $receipt->receive_date }}"/>
-					<x-tenant.show.my-number	value="{{ $receipt->qty }}" label="Rcv Qty" />
-					<x-tenant.show.my-text		value="{{ $receipt->warehouse->name }}" label="Warehouse"/>
-					<x-tenant.show.my-text		value="{{ $receipt->receiver->name }}" label="Receiver"/>
-					<x-tenant.show.my-badge		value="{{ $receipt->status }}" label="Status"/>
-					<x-tenant.show.my-text-area		value="{{ $receipt->notes }}" label="Notes"/>
-					<div class="row mb-3">
-						<div class="col-sm-3 text-end">
-							<span class="h6 text-secondary">Attachments :</span>
-						</div>
-						<div class="col-sm-9">
-							<x-tenant.attachment.all entity="RECEIPT" aid="{{ $receipt->id }}"/>
-						</div>
-					</div>
+							<tr>
+								<th>Attachments</th>
+								<td><x-tenant.attachment.all entity="RECEIPT" aid="{{ $receipt->id }}"/></td>
+							</tr>
 
+						</tbody>
+					</table>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- end row -->
 
 
 @endsection

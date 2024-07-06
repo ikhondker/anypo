@@ -118,32 +118,32 @@
 					</div>
 					<div class="card-body">
 
-                        <div class="mb-3 row">
+						<div class="mb-3 row">
 							<label class="col-form-label col-sm-3 text-sm-right">Need By Date</label>
 							<div class="col-sm-9">
 								<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
-                                    name="need_by_date" id="need_by_date" placeholder=""
-                                    value="{{ old('need_by_date', date('Y-m-d') ) }}"
-                                    required/>
-                                @error('need_by_date')
-                                    <div class="text-danger text-xs">{{ $message }}</div>
-                                @enderror
+									name="need_by_date" id="need_by_date" placeholder=""
+									value="{{ old('need_by_date', date('Y-m-d') ) }}"
+									required/>
+								@error('need_by_date')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
 							</div>
 						</div>
 
-                        <div class="mb-3 row">
+						<div class="mb-3 row">
 							<label class="col-form-label col-sm-3 text-sm-right">Notes</label>
 							<div class="col-sm-9">
 								<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', 'Enter ...') }}</textarea>
-                                @error('notes')
-                                    <div class="text-danger text-xs">{{ $message }}</div>
-                                @enderror
+								@error('notes')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
 							</div>
 						</div>
 
 						<x-tenant.attachment.create />
 
-                        <div class="mb-3 row">
+						<div class="mb-3 row">
 							<label class="col-form-label col-sm-3 text-sm-right">Requestor</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control"

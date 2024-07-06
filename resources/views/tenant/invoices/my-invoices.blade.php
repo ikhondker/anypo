@@ -12,7 +12,7 @@
 		@endslot
 		@slot('buttons')
 			{{-- <x-tenant.buttons.header.create object="Invoice"/> --}}
-            <x-tenant.actions.invoice-actions-index/>
+			<x-tenant.actions.invoice-actions-index/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -32,7 +32,7 @@
 					<h6 class="card-subtitle text-muted">List of Invoices.</h6>
 				</div>
 				<div class="card-body">
-                    <!-- ========== INCLUDE ========== -->
+					<!-- ========== INCLUDE ========== -->
 					@include('tenant.includes.invoice.invoice-lists-table')
 					<!-- ========== INCLUDE ========== -->
 

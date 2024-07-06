@@ -36,20 +36,20 @@
 
 @section('content')
 
-            <table border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                   <tr>
-                        <td class="xsl">
-                            <div class="desc">Summary:<strong> {{ $pr->summary }}</strong></div>
-			                <div class="desc">Proposed Vendor: {{ $pr->supplier->name }}</div>
-                        </td>
-                        <td class="xsl">
-                            <div class="numeric">Project: {{ $pr->project->name }}</div>
-                            <div class="numeric">Department: {{ $pr->dept->name }}</div>
-                        </td>
-                    </tr>
-                <tbody>
-           	</table>
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr>
+						<td class="xsl">
+							<div class="desc">Summary:<strong> {{ $pr->summary }}</strong></div>
+							<div class="desc">Proposed Vendor: {{ $pr->supplier->name }}</div>
+						</td>
+						<td class="xsl">
+							<div class="numeric">Project: {{ $pr->project->name }}</div>
+							<div class="numeric">Department: {{ $pr->dept->name }}</div>
+						</td>
+					</tr>
+				<tbody>
+			</table>
 
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
@@ -61,8 +61,8 @@
 				<th class="numeric">QUANTITY</th>
 
 				<th class="numeric">SUBTOTAL</th>
-                <th class="numeric">TAX</th>
-                <th class="numeric">GST</th>
+				<th class="numeric">TAX</th>
+				<th class="numeric">GST</th>
 
 				<th class="numeric">AMOUNT</th>
 			</tr>
@@ -76,12 +76,12 @@
 				<td class="numeric">{{ number_format($prl->price,2) }}</td>
 				<td class="numeric">{{ $prl->qty }}</td>
 
-                <td class="numeric">{{ number_format($prl->sub_total,2) }}</td>
-                <td class="numeric">{{ number_format($prl->tax,2) }}</td>
-                <td class="numeric">{{ number_format($prl->gst,2) }}</td>
+				<td class="numeric">{{ number_format($prl->sub_total,2) }}</td>
+				<td class="numeric">{{ number_format($prl->tax,2) }}</td>
+				<td class="numeric">{{ number_format($prl->gst,2) }}</td>
 
 
-                <td class="numeric">{{ number_format($prl->amount,2) }}</td>
+				<td class="numeric">{{ number_format($prl->amount,2) }}</td>
 
 
 			</tr>

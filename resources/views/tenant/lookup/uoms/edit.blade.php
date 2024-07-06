@@ -2,7 +2,7 @@
 @section('title','Edit Uom')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('uoms.index') }}">UoM's</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('uoms.show',$uoms->id) }}">{{ $uoms->name }}</a></li>
+	<li class="breadcrumb-item">{{ $uom->name }}</li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -14,7 +14,7 @@
 			Edit Uom
 		@endslot
 		@slot('buttons')
-			
+
 			<x-tenant.buttons.header.lists object="Uom"/>
 			<x-tenant.buttons.header.create object="Uom"/>
 		@endslot

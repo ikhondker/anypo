@@ -34,7 +34,7 @@
 
 	<x-tenant.dashboards.pr-counts/>
 
-    <x-tenant.widgets.pr.pr-lists-recent/>
+	<x-tenant.widgets.pr.pr-lists-recent/>
 
 	<div class="row">
 		<div class="col-12">

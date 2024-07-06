@@ -19,5 +19,5 @@
 	<x-tenant.landlord-notice-one-tenant/>
 
 	<x-tenant.dashboards.pr-counts/>
-    <x-tenant.widgets.pr.pr-lists-recent/>
+	<x-tenant.widgets.pr.pr-lists-recent/>
 @endsection

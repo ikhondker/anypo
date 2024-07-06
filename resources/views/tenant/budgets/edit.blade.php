@@ -15,7 +15,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Budget"/>
-			<x-tenant.buttons.header.create object="Budget"/>
+
 			<x-tenant.actions.budget-actions id="{{ $budget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -25,8 +25,7 @@
 		@csrf
 		@method('PUT')
 
-			<div class="row">
-				<div class="col-6">
+
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Edit Budget Detail</h5>
@@ -58,37 +57,51 @@
 						</div>
 					</div>
 
+
 					<div class="card">
 						<div class="card-header">
 							<h5 class="card-title">Attachments</h5>
-							<h6 class="card-subtitle text-muted">Budget Attachments.</h6>
+							<h6 class="card-subtitle text-muted">List of document attached with this budget.</h6>
 						</div>
 						<div class="card-body">
-							<div class="row mb-3">
-								<div class="col-sm-3 text-end">
-									<span class="h6 text-secondary">Attachments:</span>
-								</div>
-								<div class="col-sm-9">
-									<x-tenant.attachment.all entity="BUDGET" aid="{{ $budget->id }}"/>
-								</div>
-							</div>
+							<table class="table table-sm my-2">
+								<tbody>
 
+									<tr>
+										<th>Attachments</th>
+										<td><x-tenant.attachment.all entity="BUDGET" aid="{{ $budget->id }}"/></td>
+									</tr>
+									<tr>
+										<th></th>
+										<td>
+											@if (! $budget->closed)
+												<form action="{{ route('budgets.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
+													@csrf
+													{{-- <x-tenant.attachment.create /> --}}
+													<input type="text" name="attach_budget_id" id="attach_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $budget->id ) }}" hidden>
+													<div class="row">
+														<div class="col-sm-3 text-end">
+
+														</div>
+														<div class="col-sm-9 text-end">
+															<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
+															<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
+														</div>
+													</div>
+												</form>
+												<!-- /.form end -->
+											@endif
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
 						</div>
 					</div>
-				</div>
-				<!-- end col-6 -->
-
-				<div class="col-6">
-					<div class="card">
-
-					</div>
-				</div>
-				<!-- end col-6 -->
-			</div>
 
 	</form>
 	<!-- /.form end -->
 
-	
+
 @endsection
 

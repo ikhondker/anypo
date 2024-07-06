@@ -46,7 +46,7 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-                   		<th class="align-middle">#</th>
+						<th class="align-middle">#</th>
 						<th class="align-middle">Name</th>
 						<th class="align-middle">Date</th>
 						<th class="align-middle">Site</th>
@@ -61,12 +61,12 @@
 							<td>
 								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo">
 							</td>
-                            <td>{{ $checkout->account_name }}</td>
+							<td>{{ $checkout->account_name }}</td>
 
 							<td><x-landlord.list.my-date :value="$checkout->checkout_date"/></td>
 							<td>{{ $checkout->site }}</td>
-                            <td><x-landlord.list.my-number :value="$checkout->price"/></td>
-                            <td><x-landlord.list.my-badge :value="$checkout->status->name" badge="{{ $checkout->status->badge }}"/></td>
+							<td><x-landlord.list.my-number :value="$checkout->price"/></td>
+							<td><x-landlord.list.my-badge :value="$checkout->status->name" badge="{{ $checkout->status->badge }}"/></td>
 							<td class="text-end">
 								<a href="{{ route('checkouts.show',$checkout->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>

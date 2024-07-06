@@ -101,7 +101,7 @@
 						</div>
 
 						<x-tenant.create.currency/>
-                        <x-tenant.buttons.show.save/>
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>
@@ -115,37 +115,37 @@
 					</div>
 					<div class="card-body">
 
-                        <div class="mb-3 row">
+						<div class="mb-3 row">
 							<label class="col-form-label col-sm-3 text-sm-right">Need By Date</label>
 							<div class="col-sm-9">
 								<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
-                                    name="need_by_date" id="need_by_date" placeholder=""
-                                    value="{{ old('need_by_date', date('Y-m-d') ) }}"
-                                    required/>
-                                @error('need_by_date')
-                                    <div class="text-danger text-xs">{{ $message }}</div>
-                                @enderror
+									name="need_by_date" id="need_by_date" placeholder=""
+									value="{{ old('need_by_date', date('Y-m-d') ) }}"
+									required/>
+								@error('need_by_date')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
 							</div>
 						</div>
 
 
-                        <div class="mb-3 row">
+						<div class="mb-3 row">
 							<label class="col-form-label col-sm-3 text-sm-right">Terms and Conditions</label>
 							<div class="col-sm-9">
 								<textarea class="form-control" name="notes" placeholder="Enter ..." rows="4">{{ old('notes', 'Enter ...') }}</textarea>
-                                @error('notes')
-                                    <div class="text-danger text-xs">{{ $message }}</div>
-                                @enderror
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input mt-2" type="checkbox" id="tc" name="tc">
-                                    <label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
-                                </div>
+								@error('notes')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+								<div class="form-check form-switch">
+									<input class="form-check-input mt-2" type="checkbox" id="tc" name="tc">
+									<label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
+								</div>
 							</div>
 						</div>
 
 						<x-tenant.attachment.create />
 
-                        <div class="mb-3 row">
+						<div class="mb-3 row">
 							<label class="col-form-label col-sm-3 text-sm-right">Buyer :</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control"
@@ -155,7 +155,7 @@
 							</div>
 						</div>
 
-                        <x-tenant.buttons.show.save/>
+						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
 			</div>

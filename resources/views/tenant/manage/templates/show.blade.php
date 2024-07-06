@@ -18,7 +18,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-    <!-- ========== INCLUDE ========== -->
+	<!-- ========== INCLUDE ========== -->
 	@include('shared.includes.templates.show')
 	<!-- ========== INCLUDE ========== -->
 

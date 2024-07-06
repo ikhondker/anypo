@@ -60,20 +60,20 @@
 									@enderror
 								</td>
 							</tr>
-                            <tr>
-                                <th>Amount :</th>
-                                <td>
-                                    <input type="number" class="form-control @error('amount') is-invalid @enderror"
-                                            name="amount" id="amount" placeholder="Name"
-                                            value="{{ old('amount', $payment->amount ) }}"
-                                            required/>
-                                        @error('amount')
-                                            <div class="small text-danger">{{ $message }}</div>
-                                        @enderror
-                                </td>
-                            </tr>
+							<tr>
+								<th>Amount :</th>
+								<td>
+									<input type="number" class="form-control @error('amount') is-invalid @enderror"
+											name="amount" id="amount" placeholder="Name"
+											value="{{ old('amount', $payment->amount ) }}"
+											required/>
+										@error('amount')
+											<div class="small text-danger">{{ $message }}</div>
+										@enderror
+								</td>
+							</tr>
 
-                            <tr>
+							<tr>
 								<th>Cheque No :</th>
 								<td>
 									<input type="text" class="form-control @error('cheque_no') is-invalid @enderror"
@@ -86,7 +86,7 @@
 								</td>
 							</tr>
 
-                            <tr>
+							<tr>
 								<th>Reference ID :</th>
 								<td>
 									<input type="text" class="form-control @error('reference_id') is-invalid @enderror"

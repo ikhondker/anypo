@@ -13,32 +13,32 @@
 			<div class="card-body">
 				<div class="row mb-3">
 					<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
-                        <!-- form -->
-				        <form action="{{ route('users.all') }}" method="GET" role="search">
-                            <div class="input-group input-group-search">
-                                <input type="text" class="form-control" id="datatables-orders-search"
-                                    minlength=3 name="term"
-                                    value="{{ old('term', request('term')) }}" id="term"
-                                    placeholder="Search users…" required>
-                                <button class="btn" type="submit">
-                                    <i class="align-middle" data-lucide="search"></i>
-                                </button>
+						<!-- form -->
+						<form action="{{ route('users.all') }}" method="GET" role="search">
+							<div class="input-group input-group-search">
+								<input type="text" class="form-control" id="datatables-orders-search"
+									minlength=3 name="term"
+									value="{{ old('term', request('term')) }}" id="term"
+									placeholder="Search users…" required>
+								<button class="btn" type="submit">
+									<i class="align-middle" data-lucide="search"></i>
+								</button>
 
-                            </div>
-                                @if (request('term'))
-                                    Search result for: <strong class="text-danger">{{ request('term') }}</strong>
-                                @endif
-                        </form>
+							</div>
+								@if (request('term'))
+									Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+								@endif
+						</form>
 					</div>
 					<div class="col-md-6 col-xl-8">
 
 						<div class="text-sm-end">
-                            <a href="{{ route('users.all') }}" class="btn btn-primary btn-lg"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
-                                <i data-lucide="refresh-cw"></i></a>
-                            <a href="{{ route('users.export') }}" class="btn btn-light btn-lg me-2"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
-                                <i data-lucide="download"></i> Export</a>
+							<a href="{{ route('users.all') }}" class="btn btn-primary btn-lg"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+								<i data-lucide="refresh-cw"></i></a>
+							<a href="{{ route('users.export') }}" class="btn btn-light btn-lg me-2"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
+								<i data-lucide="download"></i> Export</a>
 						</div>
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 								<td><x-landlord.list.my-enable :value="$user->enable"/></td>
 								<td class="text-end">
 									<a href="{{ route('users.show',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="View">View</a>
+										data-bs-placement="top" title="View">View</a>
 								</td>
 							</tr>
 						@endforeach

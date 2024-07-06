@@ -20,8 +20,7 @@
 	<form action="{{ route('upload-items.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-		<div class="row">
-			<div class="col-8">
+
 				<div class="card">
 					<div class="card-header">
 					<h5 class="card-title">Upload Items</h5>
@@ -31,7 +30,7 @@
 
 						<div class="alert alert-danger alert-outline" role="alert">
 							<div class="alert-icon">
-                                <i data-lucide="alert-triangle" class=""></i>
+								<i data-lucide="alert-triangle" class=""></i>
 							</div>
 							<div class="alert-message text-danger">
 								<strong class="text-danger">WARNING!</strong> Uploading new data will purge any previous non-uploaded data!
@@ -52,14 +51,7 @@
 						<x-tenant.buttons.show.save/>
 					</div>
 				</div>
-			</div>
-			<!-- end col-6 -->
-			<div class="col-6">
 
-			</div>
-			<!-- end col-6 -->
-		</div>
-		<!-- end row -->
 
 	</form>
 	<!-- /.form end -->

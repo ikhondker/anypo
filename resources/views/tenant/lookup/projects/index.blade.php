@@ -57,8 +57,10 @@
 								<td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
 								<td class="table-action">
-									<a href="{{ route('projects.show',$project->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-lucide="eye"></i></a>
+									<a href="{{ route('projects.show',$project->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+
 								</td>
 							</tr>
 							@endforeach
@@ -80,7 +82,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

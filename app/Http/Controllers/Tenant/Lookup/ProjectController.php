@@ -155,8 +155,6 @@ class ProjectController extends Controller
 			'code' 			=> Str::upper($request['code']),
 		]);
 
-
-
 		//$request->validate();
 		$request->validate([
 

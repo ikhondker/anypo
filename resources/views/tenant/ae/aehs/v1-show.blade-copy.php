@@ -18,9 +18,9 @@
 		@endslot
 	</x-tenant.page-header>
 
-    <x-tenant.info.aeh-info id="{{ $aeh->id }}"/>
+	<x-tenant.info.aeh-info id="{{ $aeh->id }}"/>
 
-    <x-tenant.ael.ael-for-aeh id="{{ $aeh->id }}"/>
+	<x-tenant.ael.ael-for-aeh id="{{ $aeh->id }}"/>
 
 	<div class="row">
 		<div class="col-12">

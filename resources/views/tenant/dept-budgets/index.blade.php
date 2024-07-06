@@ -80,7 +80,10 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_payment"/></td>
 								<td><x-tenant.list.my-closed :value="$dept_budget->closed"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="DeptBudget" :id="$dept_budget->id"/>
+									<a href="{{ route('dept-budgets.show',$dept_budget->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+
 									<a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 sw2-advance"
 										data-entity="DeptBudget" data-name="{{ $dept_budget->budget->name }}" data-status="{{ ($dept_budget->closed ? 'Open' : 'Close') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept_budget->closed ? 'Open' : 'Close') }}">

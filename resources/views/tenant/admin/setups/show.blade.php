@@ -18,11 +18,11 @@
 
 	<div class="card">
 		<div class="card-header">
-            {{-- <div class="card-actions float-end">
-                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
-            </div> --}}
-            <h5 class="card-title">Setup Information</h5>
-            <h6 class="card-subtitle text-muted">Setup Information.</h6>
+			{{-- <div class="card-actions float-end">
+				<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
+			</div> --}}
+			<h5 class="card-title">Setup Information</h5>
+			<h6 class="card-subtitle text-muted">Setup Information.</h6>
 		</div>
 		<div class="card-body">
 			<table class="table table-sm my-2">
@@ -47,7 +47,7 @@
 					<x-tenant.show.my-text value="{{ $setup->address2 }}" label="Address2"/>
 					<x-tenant.show.my-text value="{{ $setup->city.', '.$setup->state.', '.$setup->zip }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $setup->country_name->name }}" label="Country"/>
-                    <x-tenant.show.my-text value="{{ $setup->cell }}" label="Cell"/>
+					<x-tenant.show.my-text value="{{ $setup->cell }}" label="Cell"/>
 					<x-tenant.show.my-text value="{{ $setup->email }}" label="E-mail"/>
 					<x-tenant.show.my-url value="{{ $setup->website }}" label="Website"/>
 					<x-tenant.show.my-url value="{{ $setup->facebook }}" label="Facebook"/>
@@ -59,11 +59,11 @@
 
 	<div class="card">
 		<div class="card-header">
-            {{-- <div class="card-actions float-end">
-                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
-            </div> --}}
-            <h5 class="card-title">Integration Information</h5>
-            <h6 class="card-subtitle text-muted">Integration Information.</h6>
+			{{-- <div class="card-actions float-end">
+				<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
+			</div> --}}
+			<h5 class="card-title">Integration Information</h5>
+			<h6 class="card-subtitle text-muted">Integration Information.</h6>
 		</div>
 		<div class="card-body">
 			<table class="table table-sm my-2">
@@ -75,7 +75,7 @@
 		</div>
 	</div>
 
-    <div class="card">
+	<div class="card">
 		<div class="card-header">
 				{{-- <div class="card-actions float-end">
 					<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
@@ -87,7 +87,7 @@
 			<table class="table table-sm my-2">
 				<tbody>
 					<x-tenant.show.my-boolean	value="{{ $setup->banner_show }}" label="Announcement?"/>
-                    <x-tenant.show.my-text-area value="{{ $setup->banner_message }}" label="Announcement"/>
+					<x-tenant.show.my-text-area value="{{ $setup->banner_message }}" label="Announcement"/>
 				</tbody>
 			</table>
 		</div>

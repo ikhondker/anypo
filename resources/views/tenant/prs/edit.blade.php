@@ -57,7 +57,7 @@
 								<div class="col-sm-9">
 									<input type="text" class="form-control"
 										name="dsp_date" id="dsp_date" value="{{ date_format($pr->pr_date,"d-M-Y"); }}"
-									    readonly/>
+										readonly/>
 								</div>
 							</div>
 
@@ -135,16 +135,16 @@
 						</div>
 						<div class="card-body">
 
-                            <div class="mb-3 row">
+							<div class="mb-3 row">
 								<label class="col-form-label col-sm-3 text-sm-right">Need By Date :</label>
 								<div class="col-sm-9">
 									<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
-                                    name="need_by_date" id="need_by_date" placeholder=""
-                                    value="{{ old('need_by_date', date('Y-m-d',strtotime($pr->need_by_date)) ) }}"
-                                    required/>
-                                    @error('need_by_date')
-                                        <div class="text-danger text-xs">{{ $message }}</div>
-                                    @enderror
+									name="need_by_date" id="need_by_date" placeholder=""
+									value="{{ old('need_by_date', date('Y-m-d',strtotime($pr->need_by_date)) ) }}"
+									required/>
+									@error('need_by_date')
+										<div class="text-danger text-xs">{{ $message }}</div>
+									@enderror
 								</div>
 							</div>
 
@@ -152,15 +152,15 @@
 
 							<x-tenant.attachment.create />
 
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-sm-3 text-sm-right">Requestor :</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control"
-                                    name="requestor" id="requestor"
-                                    value="{{ $pr->requestor->name }}"
-                                    readonly/>
-                                </div>
-                            </div>
+							<div class="mb-3 row">
+								<label class="col-form-label col-sm-3 text-sm-right">Requestor :</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control"
+									name="requestor" id="requestor"
+									value="{{ $pr->requestor->name }}"
+									readonly/>
+								</div>
+							</div>
 
 							<x-tenant.buttons.show.save/>
 

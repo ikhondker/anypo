@@ -7,8 +7,8 @@
 
 @section('content')
 
-    <a href="{{ route('users.profile-edit') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-edit"></i> Edit Profile</a>
-    <h1 class="h3 mb-3">User Profile</h1>
+	<a href="{{ route('users.profile-edit') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-edit"></i> Edit Profile</a>
+	<h1 class="h3 mb-3">User Profile</h1>
 
 	<div class="row">
 		<div class="col-md-5 col-xl-4">

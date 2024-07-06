@@ -34,7 +34,7 @@
 									@enderror
 								</td>
 							</tr>
-                            <tr>
+							<tr>
 								<th>Article ID :</th>
 								<td>
 									<input type="text" class="form-control @error('article_id') is-invalid @enderror"
@@ -47,7 +47,7 @@
 								</td>
 							</tr>
 
-                            <tr>
+							<tr>
 								<th>File Entity  :</th>
 								<td>
 									<input type="text" class="form-control @error('file_entity') is-invalid @enderror"
@@ -60,7 +60,7 @@
 								</td>
 							</tr>
 
-                            <tr>
+							<tr>
 								<th>Owner ID :</th>
 								<td>
 									<input type="text" class="form-control @error('owner_id') is-invalid @enderror"

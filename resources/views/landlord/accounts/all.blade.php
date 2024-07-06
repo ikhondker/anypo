@@ -47,12 +47,12 @@
 			<thead>
 				<tr>
 					<th class="align-middle">#</th>
-                    <th class="align-middle">Site</th>
+					<th class="align-middle">Site</th>
 					<th class="align-middle">Name</th>
 					<th class="align-middle">Owner</th>
 					<th class="align-middle">End</th>
 					<th class="align-middle">User</th>
-                    <th class="align-middle">Amount</th>
+					<th class="align-middle">Amount</th>
 					<th class="align-middle">Status</th>
 					<th class="align-middle text-end">Actions</th>
 				</tr>
@@ -63,21 +63,21 @@
 						<td>
 							<img src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $account->name }}" title="{{ $account->name }}">
 						</td>
-                        <td>
-                            <a class="" href="{{ route('accounts.show', $account->id) }}">
-                                <h6 class="mb-0"> {{ $account->site }}</h6>
-                            </a>
-                           </td>
-                        <td>
-                            <a class="" href="{{ route('accounts.show', $account->id) }}">
-                            <strong>{{ $account->name }}</strong>
-                            </a>
-                        </td>
-                        <td>{{ $account->owner->name }}</td>
-                        <td><x-landlord.list.my-date :value="$account->start_date" />-<x-landlord.list.my-date :value="$account->end_date" /></td>
-                        <td><span class="badge badge-subtle-primary">{{ $account->user }}</span></td>
-                        <td><x-landlord.list.my-number :value="$account->price"/>$</td>
-                        <td><x-landlord.list.my-badge :value="$account->status->name" badge="{{ $account->status->badge }}" /></td>
+						<td>
+							<a class="" href="{{ route('accounts.show', $account->id) }}">
+								<h6 class="mb-0"> {{ $account->site }}</h6>
+							</a>
+						</td>
+						<td>
+							<a class="" href="{{ route('accounts.show', $account->id) }}">
+							<strong>{{ $account->name }}</strong>
+							</a>
+						</td>
+						<td>{{ $account->owner->name }}</td>
+						<td><x-landlord.list.my-date :value="$account->start_date" />-<x-landlord.list.my-date :value="$account->end_date" /></td>
+						<td><span class="badge badge-subtle-primary">{{ $account->user }}</span></td>
+						<td><x-landlord.list.my-number :value="$account->price"/>$</td>
+						<td><x-landlord.list.my-badge :value="$account->status->name" badge="{{ $account->status->badge }}" /></td>
 						<td class="text-end">
 							<a href="{{ route('accounts.show',$account->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>

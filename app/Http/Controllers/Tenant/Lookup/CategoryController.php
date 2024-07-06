@@ -39,7 +39,7 @@ use App\Helpers\EventLog;
 # 10. Events
 # 11. Seeded
 use DB;
-# 12. FUTURE 
+# 12. FUTURE
 
 class CategoryController extends Controller
 {
@@ -88,6 +88,7 @@ class CategoryController extends Controller
 	 */
 	public function show(Category $category)
 	{
+        abort(403);
 		return view('tenant.lookup.categories.show', compact('category'));
 	}
 

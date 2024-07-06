@@ -8,11 +8,11 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-		    My Payment Lists
+			My Payment Lists
 		@endslot
 		@slot('buttons')
 			{{-- <x-tenant.buttons.header.create object="Payment"/> --}}
-            <x-tenant.actions.payment-actions-index/>
+			<x-tenant.actions.payment-actions-index/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -32,7 +32,7 @@
 					<h6 class="card-subtitle text-muted">List of Payments.</h6>
 				</div>
 				<div class="card-body">
-                    <!-- ========== INCLUDE ========== -->
+					<!-- ========== INCLUDE ========== -->
 					@include('tenant.includes.payment.payment-lists-table')
 					<!-- ========== INCLUDE ========== -->
 

@@ -1,6 +1,5 @@
 @extends('layouts.tenant.app')
 @section('title','Budget')
-
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Budget</li>
 @endsection
@@ -70,12 +69,9 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_payment"/></td>
 								<td class="text-start"><x-tenant.list.my-closed :value="$budget->closed"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Budget" :id="$budget->id" :show="true"/>
-									<a href="{{ route('budgets.destroy',$budget->id) }}" class="me-2 sw2-advance"
-										data-entity="Budget" data-name="{{ $budget->name }}" data-status="{{ ($budget->closed ? 'Open' : 'Close') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($budget->closed ? 'Open' : 'Close') }}">
-										<i class="align-middle text-muted" data-lucide="{{ ($budget->closed ? 'bell-off' : 'bell') }}"></i>
-									</a>
+										<a href="{{ route('budgets.show',$budget->id) }}" class="btn btn-light"
+											data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+										</a>
 								</td>
 							</tr>
 							@endforeach

@@ -21,7 +21,7 @@
 					<tbody>
 
 					<x-landlord.edit.name :value="$tenant->id"/>
-                    <x-landlord.edit.name :value="$tenant->status"/>
+					<x-landlord.edit.name :value="$tenant->status"/>
 
 
 					</tbody>

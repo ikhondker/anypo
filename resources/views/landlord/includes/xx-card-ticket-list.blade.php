@@ -60,7 +60,7 @@
 							@endif
 								{{ Str::limit($ticket->title, 45) }}
 								</strong>
-						    </a>
+							</a>
 						</td>
 
 						<td>

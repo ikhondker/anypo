@@ -12,7 +12,7 @@
 		@endslot
 		@slot('buttons')
 			{{-- <x-tenant.buttons.header.create object="Receipt"/> --}}
-            <x-tenant.actions.receipt-actions-index/>
+			<x-tenant.actions.receipt-actions-index/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -33,7 +33,7 @@
 				</div>
 				<div class="card-body">
 
-                    <!-- ========== INCLUDE ========== -->
+					<!-- ========== INCLUDE ========== -->
 					@include('tenant.includes.receipt.receipt-lists-table')
 					<!-- ========== INCLUDE ========== -->
 

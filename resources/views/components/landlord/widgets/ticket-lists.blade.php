@@ -21,10 +21,10 @@
 						<th class="align-middle">Subject</th>
 						<th class="align-middle">Requestor</th>
 						<th class="align-middle">Date</th>
-                        @if ( auth()->user()->isSeeded())
-                            <th class="align-middle">Dept</th>
-                            <th class="align-middle">Agent</th>
-                        @endif
+						@if ( auth()->user()->isSeeded())
+							<th class="align-middle">Dept</th>
+							<th class="align-middle">Agent</th>
+						@endif
 						<th class="align-middle">Status</th>
 						<th class="align-middle text-end">Actions</th>
 					</tr>
@@ -53,21 +53,21 @@
 								{{ $ticket->owner->name }}
 							</td>
 							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }} </td>
-                            @if ( auth()->user()->isSeeded())
-							    <td>{{ $ticket->dept->name }}</td>
-							    <td>{{ $ticket->agent->name }}</td>
-                            @endif
+							@if ( auth()->user()->isSeeded())
+								<td>{{ $ticket->dept->name }}</td>
+								<td>{{ $ticket->agent->name }}</td>
+							@endif
 							<td>
 								<x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/>
 							</td>
 							<td class="text-end">
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
-                                @if ( auth()->user()->isSeeded())
-                                    <a href="{{  route('tickets.assign',$ticket->id) }}" class="me-2"
+								@if ( auth()->user()->isSeeded())
+									<a href="{{  route('tickets.assign',$ticket->id) }}" class="me-2"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
 										<i data-lucide="check-circle" class="text-danger"></i>
-                                @endif
+								@endif
 								</a>
 							</td>
 						</tr>

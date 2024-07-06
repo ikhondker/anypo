@@ -2,7 +2,7 @@
 @section('title','Edit Item Category')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Categories</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('categories.show',$category->id) }}">{{ $category->name }}</a></li>
+	<li class="breadcrumb-item">{{ $category->name }}</li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -31,7 +31,7 @@
 							<h6 class="card-subtitle text-muted">Edit an Item Category.</h6>
 						</div>
 						<div class="card-body">
-						
+
 							<x-tenant.edit.name :value="$category->name"/>
 
 							<x-tenant.buttons.show.save/>

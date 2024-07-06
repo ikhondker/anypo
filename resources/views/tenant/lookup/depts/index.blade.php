@@ -27,7 +27,7 @@
 
 	<div class="row">
 		<div class="col-12">
-		
+
 
 			<div class="card">
 				<div class="card-header">
@@ -62,8 +62,11 @@
 								<td><a class="text-info" href="{{ route('hierarchies.show',$dept->po_hierarchy_id) }}">{{ $dept->poHierarchy->name }}</a></td>
 								<td><x-tenant.list.my-boolean :value="$dept->enable"/></td>
 								<td class="table-action">
-									<a href="{{ route('depts.show',$dept->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-lucide="eye"></i></a>
+									<a href="{{ route('depts.show',$dept->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+
+
 								</td>
 							</tr>
 							@endforeach
@@ -74,7 +77,7 @@
 						{{ $depts->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -85,7 +88,7 @@
 	</div>
 	 <!-- end row -->
 
-	
-	
+
+
 @endsection
 

@@ -4,7 +4,7 @@
 	<div class="card-body">
 		<div class="row mb-3">
 			<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
-                <h5 class="card-title">Services & Add-ons</h5>
+				<h5 class="card-title">Services & Add-ons</h5>
 			</div>
 			<div class="col-md-6 col-xl-8">
 
@@ -34,7 +34,7 @@
 				@foreach ($services as $service)
 					<tr>
 						<td>
-						   <img src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $service->name }}" title="{{ $service->name }}">
+							<img src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $service->name }}" title="{{ $service->name }}">
 						</td>
 						<td>{{ $service->name }}</td>
 						<td>{{ $service->account->name }} </td>

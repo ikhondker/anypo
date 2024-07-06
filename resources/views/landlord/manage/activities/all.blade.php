@@ -27,8 +27,8 @@
 							<i class="align-middle" data-lucide="search"></i>
 						</button>
 					</div>
-                    @if (request('start_date'))
-                        Search result for: <strong class="text-danger">{{ request('start_date') .' to '.request('end_date') }}</strong>
+					@if (request('start_date'))
+						Search result for: <strong class="text-danger">{{ request('start_date') .' to '.request('end_date') }}</strong>
 					@endif
 				</form>
 				<!--/. form -->
@@ -51,7 +51,7 @@
 				<tr>
 					<th class="align-middle">#</th>
 					<th class="align-middle">Object</th>
-                    <th class="align-middle">Obj ID</th>
+					<th class="align-middle">Obj ID</th>
 
 					<th class="align-middle">Date</th>
 					<th class="align-middle">Event</th>
@@ -70,10 +70,10 @@
 							<strong>{{ $activity->object_name }}</strong>
 							</a>
 						</td>
-                        <td>{{ $activity->object_id }}</td>
-                        <td><x-landlord.list.my-date :value="$activity->created_at"/></td>
-                        <td>{{ $activity->event_name }}</td>
-                        <td>{{ $activity->user->name }}</td>
+						<td>{{ $activity->object_id }}</td>
+						<td><x-landlord.list.my-date :value="$activity->created_at"/></td>
+						<td>{{ $activity->event_name }}</td>
+						<td>{{ $activity->user->name }}</td>
 
 
 						<td class="text-end">

@@ -1,7 +1,7 @@
 
 	<!-- ========== HEADER ========== -->
 
-    <!-- ========== TOP NAV BAR ========== -->
+	<!-- ========== TOP NAV BAR ========== -->
 	<nav class="navbar p-2 navbar-expand-md navbar-dark bg-primary landing-navbar">
 		<div class="container">
 			<ul class="navbar-nav ms-auto">
@@ -62,7 +62,7 @@
 	</nav>
 	<!-- ========== TOP NAV BAR ========== -->
 
-    <!-- ========== MAIN NAV BAR ========== -->
+	<!-- ========== MAIN NAV BAR ========== -->
 	<nav class="navbar navbar-expand-md navbar-dark bg-primary landing-navbar">
 		<div class="container">
 
@@ -78,43 +78,43 @@
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'root' ? 'active' : '' }}" aria-current="page"
 									href="{{ route('home') }}" role="button" aria-expanded="false">Home</a>
 				</li>
-                <!-- End Landings -->
+				<!-- End Landings -->
 
 				<!-- Product -->
 				<li class="nav-item d-none d-md-inline-block">
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'product' ? 'active' : '' }}"
 						href="{{ route('product') }}" role="button" aria-expanded="false">Product</a>
 				</li>
-	            <!-- End Product -->
-                 <!-- Pricing -->
+				<!-- End Product -->
+				 <!-- Pricing -->
 				<li class="nav-item d-none d-md-inline-block">
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'pricing' ? 'active' : '' }}"
 						href="{{ route('pricing') }}" role="button" aria-expanded="false">Pricing</a>
 				</li>
-                <!-- End Pricing -->
+				<!-- End Pricing -->
 
-                <!-- FAQ -->
+				<!-- FAQ -->
 				<li class="nav-item d-none d-md-inline-block">
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'faq' ? 'active' : '' }}"
 						href="{{ route('faq') }}" role="button" aria-expanded="false">FAQ</a>
 				</li>
-                <!-- End FAQ -->
+				<!-- End FAQ -->
 
-                <!-- Contact -->
-                <li class="nav-item d-none d-md-inline-block">
+				<!-- Contact -->
+				<li class="nav-item d-none d-md-inline-block">
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'contact-us' ? 'active' : '' }}"
 						href="{{ route('contact-us') }}" role="button" aria-expanded="false">Contact</a>
 				</li>
-                <!-- End Contact -->
+				<!-- End Contact -->
 
 			</ul>
 			<a href="{{ route('pricing') }}"
-            class="btn btn-lg btn-success btn-pill my-2 my-sm-0 ms-3">Buy now</a>
+			class="btn btn-lg btn-success btn-pill my-2 my-sm-0 ms-3">Buy now</a>
 		</div>
 	</nav>
-    <!-- ========== MAIN NAV BAR ========== -->
+	<!-- ========== MAIN NAV BAR ========== -->
 
-    <!-- ========== HEADER ========== -->
+	<!-- ========== HEADER ========== -->
 	<header id="header" class="navbar navbar-expand-lg navbar-end navbar-light bg-white">
 		<!-- Topbar -->
 		<div class="container navbar-topbar">

@@ -1,6 +1,5 @@
-<div class="mb-3 row">
-	<label class="col-form-label col-sm-3 text-sm-right">Currency</label>
-	<div class="col-sm-9">
+<div class="mb-3">
+	<label class="form-label">Currency X:</label>
 		<select class="form-control" name="currency" required>
 			<option value=""><< Currency >> </option>
 			@foreach ($currencies as $currency)
@@ -10,5 +9,6 @@
 		@error('currency')
 			<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
-	</div>
 </div>
+
+

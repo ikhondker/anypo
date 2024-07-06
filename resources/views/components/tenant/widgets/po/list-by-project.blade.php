@@ -17,7 +17,7 @@
 			</div>
 			<div class="card-body">
 
-                <!-- ========== INCLUDE ========== -->
+				<!-- ========== INCLUDE ========== -->
 				@include('tenant.includes.po.po-lists-table')
 				<!-- ========== INCLUDE ========== -->
 

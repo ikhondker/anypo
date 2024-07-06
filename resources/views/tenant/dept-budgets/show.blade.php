@@ -38,39 +38,34 @@
 					<h6 class="card-subtitle text-muted">Budget Period detail.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-badge value="{{ $deptBudget->budget->fy }}" label="FY"/>
-					<div class="row mb-3">
-						<div class="col-sm-4 text-end">
-							<span class="h6 text-secondary">Budget:</span>
-						</div>
-						<div class="col-sm-8">
-							{{ $deptBudget->budget->name }} <x-tenant.info info="Note: You wont be able to edit this."/>
-						</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col-sm-4 text-end">
-							<span class="h6 text-secondary">Dept:</span>
-						</div>
-						<div class="col-sm-8">
-							{{ $deptBudget->dept->name }} <x-tenant.info info="Note: You wont be able to edit this Department."/>
-						</div>
-					</div>
-					<x-tenant.show.my-date		value="{{ $deptBudget->budget->start_date }}" label="Start Date"/>
-					<x-tenant.show.my-date		value="{{ $deptBudget->budget->end_date }}" label="End Date"/>
-					<x-tenant.show.my-closed	value="{{ $deptBudget->closed }}"/>
-					<x-tenant.show.my-badge		value="{{ $deptBudget->id }}"/>
-					<x-tenant.show.my-text-area		value="{{ $deptBudget->notes }}" label="Notes"/>
+					<table class="table table-sm my-2">
+						<tbody>
+							<x-tenant.show.my-badge value="{{ $deptBudget->budget->fy }}" label="FY"/>
 
-                    <div class="row">
-                        <div class="col-sm-4 text-end">
+								<tr>
+									<th>Budget:</th>
+									<td>{{ $deptBudget->budget->name }} <x-tenant.info info="Note: You wont be able to edit this."/></td>
+								</tr>
+								<tr>
+									<th>Dept:</th>
+									<td>{{ $deptBudget->dept->name }} <x-tenant.info info="Note: You wont be able to edit this Department."/></td>
+								</tr>
 
-                        </div>
-                        <div class="col-sm-8 text-end">
-                            @if (! $deptBudget->closed)
-                                <x-tenant.show.my-edit-link object="DeptBudget" :id="$deptBudget->id"/>
-                            @endif
-                        </div>
-                    </div>
+							<x-tenant.show.my-date		value="{{ $deptBudget->budget->start_date }}" label="Start Date"/>
+							<x-tenant.show.my-date		value="{{ $deptBudget->budget->end_date }}" label="End Date"/>
+							<x-tenant.show.my-closed	value="{{ $deptBudget->closed }}"/>
+							<x-tenant.show.my-badge		value="{{ $deptBudget->id }}"/>
+							<x-tenant.show.my-text-area		value="{{ $deptBudget->notes }}" label="Notes"/>
+							<tr>
+								<th>&nbsp;</th>
+								<td>
+									@if (! $deptBudget->closed)
+										<x-tenant.show.my-edit-link object="DeptBudget" :id="$deptBudget->id"/>
+									@endif
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
 				</div>
 			</div>
@@ -82,10 +77,14 @@
 				</div>
 				<div class="card-body">
 					<div class="row mb-3">
-						<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
-						<x-tenant.show.my-amount	value="{{ $deptBudget->amount_po_booked }}" label="PO Booked"/>
-						<x-tenant.show.my-amount	value="{{ $deptBudget->amount_po }}" label="PO Issued"/>
-						<x-tenant.show.my-amount	value="{{ $deptBudget->amount - $deptBudget->amount_po_booked - $deptBudget->amount_po }}" label="Available"/>
+						<table class="table table-sm my-2">
+							<tbody>
+								<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
+								<x-tenant.show.my-amount	value="{{ $deptBudget->amount_po_booked }}" label="PO Booked"/>
+								<x-tenant.show.my-amount	value="{{ $deptBudget->amount_po }}" label="PO Issued"/>
+								<x-tenant.show.my-amount	value="{{ $deptBudget->amount - $deptBudget->amount_po_booked - $deptBudget->amount_po }}" label="Available"/>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -96,30 +95,37 @@
 					<h6 class="card-subtitle text-muted">List of document attached with this budget.</h6>
 				</div>
 				<div class="card-body">
-					<div class="row mb-3">
-						<div class="col-sm-4 text-end">
-							<span class="h6 text-secondary">Attachments:</span>
-						</div>
-						<div class="col-sm-8">
-							<x-tenant.attachment.all entity="DEPTBUDGET" aid="{{ $deptBudget->id }}"/>
-						</div>
-					</div>
-					@if (! $deptBudget->closed)
-						<form action="{{ route('dept-budgets.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
-							@csrf
-							<input type="text" name="attach_dept_budget_id" id="attach_dept_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $deptBudget->id ) }}" hidden>
-							<div class="row">
-								<div class="col-sm-3 text-end">
+					<table class="table table-sm my-2">
+						<tbody>
+							<tr>
+								<th>Attachments:</th>
+								<td>
+									<x-tenant.attachment.all entity="DEPTBUDGET" aid="{{ $deptBudget->id }}"/>
+								</td>
+							</tr>
+							<tr>
+								<th>&nbsp;</th>
+								<td>
+									@if (! $deptBudget->closed)
+										<form action="{{ route('dept-budgets.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
+											@csrf
+											<input type="text" name="attach_dept_budget_id" id="attach_dept_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $deptBudget->id ) }}" hidden>
+											<div class="row">
+												<div class="col-sm-3 text-end">
 
-								</div>
-								<div class="col-sm-9 text-end">
-									<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
-									<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
-								</div>
-							</div>
-						</form>
-						<!-- /.form end -->
-					@endif
+												</div>
+												<div class="col-sm-9 text-end">
+													<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
+													<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
+												</div>
+											</div>
+										</form>
+										<!-- /.form end -->
+									@endif
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 
@@ -133,10 +139,14 @@
 					<h6 class="card-subtitle text-muted">Allocated and utilized annual budget for this period for Purchase Requisition.</h6>
 				</div>
 				<div class="card-body">
-				<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
-				<x-tenant.show.my-amount	value="{{ $deptBudget->amount_pr_booked }}" label="PR Booked"/>
-				<x-tenant.show.my-amount	value="{{ $deptBudget->amount_pr }}" label="PR Issued"/>
-				<x-tenant.show.my-amount	value="{{ $deptBudget->amount - $deptBudget->amount_pr_booked - $deptBudget->amount_pr }}" label="Available"/>
+					<table class="table table-sm my-2">
+						<tbody>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount_pr_booked }}" label="PR Booked"/>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount_pr }}" label="PR Issued"/>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount - $deptBudget->amount_pr_booked - $deptBudget->amount_pr }}" label="Available"/>
+						</tbody>
+					</table>
 				</div>
 			</div>
 
@@ -146,9 +156,13 @@
 					<h6 class="card-subtitle text-muted">Allocated budget vs Good Receive Amount for this period.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
-					<x-tenant.show.my-amount	value="{{ $deptBudget->amount_grs }}" label="GRS Issued"/>
-					<x-tenant.show.my-amount	value="{{ $deptBudget->amount- $deptBudget->amount_grs }}" label="Available"/>
+					<table class="table table-sm my-2">
+						<tbody>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount_grs }}" label="GRS Issued"/>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount- $deptBudget->amount_grs }}" label="Available"/>
+						</tbody>
+					</table>
 				</div>
 			</div>
 
@@ -158,9 +172,13 @@
 					<h6 class="card-subtitle text-muted">Allocated budget vs Payment made for this period.</h6>
 				</div>
 				<div class="card-body">
-					<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
-					<x-tenant.show.my-amount	value="{{ $deptBudget->amount_payment }}" label="Payment Made"/>
-					<x-tenant.show.my-amount	value="{{ $deptBudget->amount- $deptBudget->amount_payment }}" label="Available"/>
+					<table class="table table-sm my-2">
+						<tbody>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount }}" label="Budget"/>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount_payment }}" label="Payment Made"/>
+							<x-tenant.show.my-amount	value="{{ $deptBudget->amount- $deptBudget->amount_payment }}" label="Available"/>
+						</tbody>
+					</table>
 				</div>
 			</div>
 

@@ -52,10 +52,10 @@
 			</div>
 			@if (! $loop->last)
 				<hr />
-    		@endif
+			@endif
 
 		@endforeach
-		
+
 	</div>
 </div>
 

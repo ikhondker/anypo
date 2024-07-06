@@ -112,7 +112,7 @@
 
 							<x-tenant.edit.currency :value="$po->currency"/>
 
-                            <x-tenant.buttons.show.save/>
+							<x-tenant.buttons.show.save/>
 
 						</div>
 					</div>
@@ -127,58 +127,58 @@
 						</div>
 						<div class="card-body">
 
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-sm-3 text-sm-right">Requestor :</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="requestor_id">
-                                        @foreach ($users as $user)
-                                            <option {{ $user->id == old('requestor_id',$po->requestor_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
-                                        @endforeach
-                                    </select>
-                                    @error('requestor_id')
-                                        <div class="text-danger text-xs">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-								<label class="col-form-label col-sm-3 text-sm-right">Need By Date :</label>
+							<div class="mb-3 row">
+								<label class="col-form-label col-sm-3 text-sm-right">Requestor :</label>
 								<div class="col-sm-9">
-									<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
-                                    name="need_by_date" id="need_by_date" placeholder=""
-                                    value="{{ old('need_by_date', date('Y-m-d',strtotime($po->need_by_date)) ) }}"
-                                    required/>
-                                    @error('need_by_date')
-                                        <div class="text-danger text-xs">{{ $message }}</div>
-                                    @enderror
+									<select class="form-control" name="requestor_id">
+										@foreach ($users as $user)
+											<option {{ $user->id == old('requestor_id',$po->requestor_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+										@endforeach
+									</select>
+									@error('requestor_id')
+										<div class="text-danger text-xs">{{ $message }}</div>
+									@enderror
 								</div>
 							</div>
 
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-sm-3 text-sm-right">Terms and Conditions</label>
-                                <div class="col-sm-9">
-                                    <textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', $po->notes) }}</textarea>
-                                    @error('notes')
-                                        <div class="text-danger text-xs">{{ $message }}</div>
-                                    @enderror
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input mt-2" type="checkbox" id="tc" name="tc" @checked($po->tc)>
-                                        <label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
-                                    </div>
-                                </div>
-                            </div>
+							<div class="mb-3 row">
+								<label class="col-form-label col-sm-3 text-sm-right">Need By Date :</label>
+								<div class="col-sm-9">
+									<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
+									name="need_by_date" id="need_by_date" placeholder=""
+									value="{{ old('need_by_date', date('Y-m-d',strtotime($po->need_by_date)) ) }}"
+									required/>
+									@error('need_by_date')
+										<div class="text-danger text-xs">{{ $message }}</div>
+									@enderror
+								</div>
+							</div>
+
+							<div class="mb-3 row">
+								<label class="col-form-label col-sm-3 text-sm-right">Terms and Conditions</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', $po->notes) }}</textarea>
+									@error('notes')
+										<div class="text-danger text-xs">{{ $message }}</div>
+									@enderror
+									<div class="form-check form-switch">
+										<input class="form-check-input mt-2" type="checkbox" id="tc" name="tc" @checked($po->tc)>
+										<label class="form-check-label mt-1" for="tc">... include standard PO<a class="" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"> Terms and Conditions</a>.</label>
+									</div>
+								</div>
+							</div>
 
 							<x-tenant.attachment.create />
 
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-sm-3 text-sm-right">Buyer :</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control"
-                                    name="requestor" id="requestor"
-                                    value="{{ $po->buyer->name }}"
-                                    readonly/>
-                                </div>
-                            </div>
+							<div class="mb-3 row">
+								<label class="col-form-label col-sm-3 text-sm-right">Buyer :</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control"
+									name="requestor" id="requestor"
+									value="{{ $po->buyer->name }}"
+									readonly/>
+								</div>
+							</div>
 
 							<x-tenant.buttons.show.save/>
 

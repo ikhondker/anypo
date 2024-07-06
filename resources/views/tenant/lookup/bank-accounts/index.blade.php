@@ -40,7 +40,7 @@
 								<th>Bank Name</th>
 								<th>Currency</th>
 								<th>Enable</th>
-								<th>View</th>
+								<th class="text-middle">View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -53,9 +53,11 @@
 								<td>{{ $bankAccount->bank_name }}</td>
 								<td>{{ $bankAccount->currency }}</td>
 								<td><x-tenant.list.my-boolean :value="$bankAccount->enable"/></td>
-								<td class="table-action">
-									<a href="{{ route('bank-accounts.show',$bankAccount->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-										<i class="align-middle" data-lucide="eye"></i></a>
+								<td class="text-middle">
+									<a href="{{ route('bank-accounts.show',$bankAccount->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+
 								</td>
 							</tr>
 							@endforeach
@@ -66,7 +68,7 @@
 						{{ $bankAccounts->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -77,7 +79,7 @@
 	</div>
 	 <!-- end row -->
 
-	
-	
+
+
 @endsection
 

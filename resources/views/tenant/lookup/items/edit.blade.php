@@ -13,7 +13,7 @@
 			Edit Item
 		@endslot
 		@slot('buttons')
-		
+
 			<x-tenant.buttons.header.lists object="Item"/>
 			<x-tenant.buttons.header.create object="Item"/>
 		@endslot
@@ -31,7 +31,7 @@
 							<h5 class="card-title">Item Info</h5>
 						</div>
 						<div class="card-body">
-						
+
 							<div class="mb-3 col-md-6">
 								<label for="code" class="form-label">Code</label>
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
@@ -43,7 +43,7 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</div>
-							
+
 							<x-tenant.edit.name :value="$item->name"/>
 
 							<div class="mb-3">
@@ -92,7 +92,7 @@
 								</select>
 							</div>
 
-							<div class="mb-3 col-md-6">
+							<div class="mb-3">
 								<label for="ac_expense" class="form-label">Expense GL Code</label>
 								<input type="text" class="form-control @error('ac_expense') is-invalid @enderror"
 									name="ac_expense" id="ac_expense" placeholder="A600001" maxlength="255"

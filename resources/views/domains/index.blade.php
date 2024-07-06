@@ -60,12 +60,12 @@
 								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo" title="Logo">
 							</td>
 							<td>{{ $domain->id }}</td>
-                            <td>
-                                <a href="{{ route('domains.show', $domain->id) }}">
+							<td>
+								<a href="{{ route('domains.show', $domain->id) }}">
 									<strong>{{ $domain->domain }}</strong>
 								</a>
 							</td>
-                            </td>
+							</td>
 							<td>
 								<a href="{{ route('domains.show', $domain->id) }}">
 									<strong>{{ $domain->tenant_id }}</strong>

@@ -86,7 +86,7 @@
 
 						<x-tenant.create.currency/>
 
-						<div class="mb-3 col-md-6">
+						<div class="mb-3">
 							<label for="ac_cash" class="form-label">Cash GL Code</label>
 							<input type="text" class="form-control @error('ac_cash') is-invalid @enderror"
 								name="ac_cash" id="ac_cash" placeholder="A400001" maxlength="25"
@@ -111,7 +111,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- end col-6 -->
 		</div>
 		<!-- end row -->

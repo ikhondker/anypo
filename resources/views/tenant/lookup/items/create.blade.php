@@ -29,7 +29,7 @@
 						<h6 class="card-subtitle text-muted">Create and Item.</h6>
 					</div>
 					<div class="card-body">
-						<div class="mb-3 col-md-6">
+						<div class="mb-3">
 							<label for="code" class="form-label">Code</label>
 							<input type="text" class="form-control @error('code') is-invalid @enderror"
 								name="code" id="code" placeholder="XXXX" maxlength="25"
@@ -40,9 +40,9 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						
+
 						<x-tenant.create.name/>
-						
+
 						<x-tenant.create.price-fc/>
 
 
@@ -111,7 +111,7 @@
 							@enderror
 						</div>
 
-						<div class="mb-3 col-md-6">
+						<div class="mb-3">
 							<label for="ac_expense" class="form-label">Expense GL Code</label>
 							<input type="text" class="form-control @error('ac_expense') is-invalid @enderror"
 								name="ac_expense" id="ac_expense" placeholder="A600001" maxlength="25"
@@ -122,7 +122,6 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-
 
 						<x-tenant.create.notes/>
 						<x-tenant.buttons.show.save/>

@@ -38,7 +38,7 @@
 								<th>Name</th>
 								<th>Country</th>
 								<th>Enable?</th>
-								<th>Exchange Rate Available?</th>
+								<th>Rate Avl.?</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -48,7 +48,7 @@
 								<td>{{ $currency->currency }}</td>
 								<td>{{ $currency->name }}</td>
 								<td>{{ $currency->country }}</td>
-								<td><x-tenant.list.my-boolean :value="$currency->enable"/></td>
+								<td><x-tenant.list.my-enable :value="$currency->enable"/></td>
 								<td><x-tenant.list.my-boolean :value="$currency->rates"/></td>
 								<td class="table-action">
 									<a href="{{ route('currencies.destroy',$currency->currency) }}" class="me-2 sw2-advance"

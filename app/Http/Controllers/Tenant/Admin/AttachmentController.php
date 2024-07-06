@@ -235,8 +235,6 @@ class AttachmentController extends Controller
 				Log::error(tenant('id'). 'tenant.attachment.destroy un-matched entity = '.$attachment->entity.' id = ' . $attachment->id);
 				return redirect()->back()->with('error', 'Unknown Error!');
 		}
-
-
 	}
 
 	public function download($fileName)
@@ -248,7 +246,6 @@ class AttachmentController extends Controller
 		} catch (ModelNotFoundException $exception) {
 			 return redirect()->route('dashboards.index')->with('error', 'Attachment Not Found!');
 		}
-
 
 		$this->authorize('download', Attachment::class);
 

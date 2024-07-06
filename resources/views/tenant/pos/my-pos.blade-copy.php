@@ -10,7 +10,7 @@
 			Purchase Orders
 		@endslot
 		@slot('buttons')
-            {{Route::current()->getName()}}
+			{{Route::current()->getName()}}
 			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
 			<x-tenant.actions.po-actions-index/>
 		@endslot

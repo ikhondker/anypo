@@ -27,15 +27,15 @@
 								<span class="card-subtitle">Your plan:
 								<strong>{{ $account->primaryProduct->name }}</strong></span>
 							</div>
-                            <div class="mb-1">
+							<div class="mb-1">
 								<span class="card-subtitle">Subscription:
 								<strong class="text-primary">${{ $account->price }} USD/mo</strong></span>
 							</div>
-                            <div class="mb-1">
+							<div class="mb-1">
 								<span class="card-subtitle">Account Name:
 								<strong>{{ $account->name }}</strong></span>
 							</div>
-                            <div class="mb-1">
+							<div class="mb-1">
 								<span class="card-subtitle">URL:
 								<strong>{{ $account->site.'.'.env('APP_DOMAIN') }}</strong></span>
 							</div>
@@ -46,7 +46,7 @@
 							<div class="table-responsive">
 								<table class="table table-sm mb-0">
 									<tbody>
-                                        <x-landlord.show.my-text value="{{ $account->name }}" label="Account Name" />
+										<x-landlord.show.my-text value="{{ $account->name }}" label="Account Name" />
 										<tr>
 											<th scope="row" style="width: 320px;">Licensed User</th>
 											<td><span class="badge badge-subtle-success">{{ $account->user }}</span></td>
@@ -64,9 +64,9 @@
 											<td><span class="badge badge badge-subtle-{{ $account->status->badge }}">{{ $account->status->name }}</span></td>
 										</tr>
 
-                                        <x-landlord.show.my-text value="{{ $account->email }}" label="E-mail" />
-                                            <x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
-                                        <tr>
+										<x-landlord.show.my-text value="{{ $account->email }}" label="E-mail" />
+											<x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
+										<tr>
 											<th scope="row">Created At</th>
 											<td>{{ $account->created_at }}</td>
 										</tr>
@@ -78,15 +78,15 @@
 							<div class="table-responsive">
 								<table class="table table-sm mb-0">
 									<tbody>
-                                        <x-landlord.show.my-text value="{{ $account->tagline }}" label="Tagline" />
+										<x-landlord.show.my-text value="{{ $account->tagline }}" label="Tagline" />
 
-                                            <x-landlord.show.my-text value="{{ $account->address1 }}" label="Address1" />
-                                            <x-landlord.show.my-text value="{{ $account->address2 }}" label="Address2" />
-                                            <x-landlord.show.my-text value="{{ $account->city.', '.$account->state.', '.$account->zip }}" label="City-State-Zip" />
-                                            <x-landlord.show.my-text value="{{ $account->relCountry->name }}" label="Country" />
-                                            <x-landlord.show.my-url value="{{ $account->website }}" label="Website" />
-                                            <x-landlord.show.my-url value="{{ $account->facebook }}" label="Facebook" />
-                                            <x-landlord.show.my-url value="{{ $account->linkedin }}" label="LinkedIn" />
+											<x-landlord.show.my-text value="{{ $account->address1 }}" label="Address1" />
+											<x-landlord.show.my-text value="{{ $account->address2 }}" label="Address2" />
+											<x-landlord.show.my-text value="{{ $account->city.', '.$account->state.', '.$account->zip }}" label="City-State-Zip" />
+											<x-landlord.show.my-text value="{{ $account->relCountry->name }}" label="Country" />
+											<x-landlord.show.my-url value="{{ $account->website }}" label="Website" />
+											<x-landlord.show.my-url value="{{ $account->facebook }}" label="Facebook" />
+											<x-landlord.show.my-url value="{{ $account->linkedin }}" label="LinkedIn" />
 									</tbody>
 								</table>
 							</div>
@@ -208,10 +208,10 @@
 			<div class="card-body">
 				<x-landlord.show.my-text value="{{ $account->name }}" label="Account Name" />
 
-                <x-landlord.show.my-text value="{{ $account->email }}" label="E-mail" />
+				<x-landlord.show.my-text value="{{ $account->email }}" label="E-mail" />
 
-                <x-landlord.show.my-text value="{{ $account->tagline }}" label="Tagline" />
-                <x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
+				<x-landlord.show.my-text value="{{ $account->tagline }}" label="Tagline" />
+				<x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
 				<x-landlord.show.my-text value="{{ $account->address1 }}" label="Address1" />
 				<x-landlord.show.my-text value="{{ $account->address2 }}" label="Address2" />
 				<x-landlord.show.my-text value="{{ $account->city.', '.$account->state.', '.$account->zip }}" label="City-State-Zip" />

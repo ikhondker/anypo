@@ -18,36 +18,27 @@
 	<!-- form start -->
 	<form action="{{ route('setups.update-tc',$setup->id) }}" method="POST">
 		@csrf
-
-			<div class="row">
-				<div class="col-8">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Terms and Conditions </h5>
-							<h6 class="card-subtitle text-muted">General Terms and Conditions for All Purchase Order.</h6>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">Terms and Conditions Text:</label>
-								<textarea class="form-control" name="tc" placeholder="Enter Terms and Conditions ..." rows="10">{{ old('tc', $setup->tc) }}</textarea>
-								@error('banner_message')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-						
-							<x-tenant.buttons.show.save/>
-						</div>
-					</div>
-					
-				</div>
-				<div class="col-6">
-				</div>
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">Terms and Conditions </h5>
+				<h6 class="card-subtitle text-muted">General Terms and Conditions for All Purchase Order.</h6>
 			</div>
+			<div class="card-body">
+				<div class="mb-3">
+				</div>
 
-			<!-- end row -->
+				<div class="mb-3">
+					<label class="form-label">Terms and Conditions Text:</label>
+					<textarea class="form-control" name="tc" placeholder="Enter Terms and Conditions ..." rows="10">{{ old('tc', $setup->tc) }}</textarea>
+					@error('banner_message')
+						<div class="text-danger text-xs">{{ $message }}</div>
+					@enderror
+				</div>
+
+				<x-tenant.buttons.show.save/>
+			</div>
+		</div>
+
 	</form>
 	<!-- /.form end -->
 @endsection

@@ -50,7 +50,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. TODO 
+# 13. TODO
 
 class WfController extends Controller
 {
@@ -76,8 +76,7 @@ class WfController extends Controller
 	public function create()
 	{
 		abort(403);
-		//$this->authorize('create', Wf::class);
-		//return view('tenant.workflow.wfs.create');
+
 	}
 
 	/**
@@ -105,8 +104,7 @@ class WfController extends Controller
 	public function edit(Wf $wf)
 	{
 		abort(403);
-		//$this->authorize('update',$wf);
-		//return view('wfs.edit',compact('wf'));
+
 	}
 
 	/**
@@ -115,17 +113,6 @@ class WfController extends Controller
 	public function update(UpdateWfRequest $request, Wf $wf)
 	{
 		abort(403);
-		$this->authorize('update', $wf);
-
-		//$request->validate();
-		$request->validate([
-
-		]);
-		$wf->update($request->all());
-
-		// Write to Log
-		EventLog::event('wf', $wf->id, 'update', 'name', $wf->name);
-		return redirect()->route('wfs.index')->with('success', 'Wf updated successfully');
 	}
 
 	/**
@@ -133,17 +120,7 @@ class WfController extends Controller
 	 */
 	public function destroy(Wf $wf)
 	{
-
 		abort(403);
-		$this->authorize('delete', $wf);
-
-		$wf->fill(['enable' => !$wf->enable]);
-		$wf->update();
-
-		// Write to Log
-		EventLog::event('wf', $wf->id, 'status', 'enable', $wf->enable);
-
-		return redirect()->route('wfs.index')->with('success', 'Wf status Updated successfully');
 	}
 
 	public function export()
@@ -161,7 +138,7 @@ class WfController extends Controller
 		return Export::csv('users', $dataArray);
 	}
 
-	
+
 	/**
 	 * Store a newly created resource in storage.
 	 */
@@ -206,7 +183,7 @@ class WfController extends Controller
 	}
 
 
-	
+
 	/**
 	 * Show the form for creating a new resource.
 	 */

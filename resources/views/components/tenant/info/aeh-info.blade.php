@@ -19,7 +19,7 @@
 									<th>Accounting Date</th>
 									<td>{{ strtoupper(date('d-M-y', strtotime($aeh->accounting_date))) }}</td>
 								</tr>
-                                <tr>
+								<tr>
 									<th>PO#</th>
 									<td>{{ $aeh->po_id }}</td>
 								</tr>
