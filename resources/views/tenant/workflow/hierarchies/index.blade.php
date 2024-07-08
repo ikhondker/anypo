@@ -46,7 +46,7 @@
 							@foreach ($hierarchies as $hierarchy)
 							<tr>
 								<td>{{ $hierarchies->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('hierarchies.show',$hierarchy->id) }}">{{ $hierarchy->name }}</a></td>
+								<td><a href="{{ route('hierarchies.show',$hierarchy->id) }}"><strong>{{ $hierarchy->name }}</strong></a></td>
 								<td><x-tenant.list.my-date-time :value="$hierarchy->created_at"/></td>
 								<td><x-tenant.list.my-boolean :value="$hierarchy->enable"/></td>
 								<td class="table-action">

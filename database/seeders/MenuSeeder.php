@@ -153,32 +153,38 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'depts.create','route_name' 		=> 'depts.index', 'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'categories.index','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'categories.edit','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'categories.show','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
+            [ 'raw_route_name' => 'categories.edit','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'categories.create','route_name' 	=> 'categories.index', 'node_name' => 'lookups'],
 
 			// TODO
 			[ 'raw_route_name' => 'uoms.index','route_name' 		=> 'uoms.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'uoms.show','route_name' 		    => 'uoms.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'uoms.create','route_name' 		=> 'uoms.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'uoms.edit','route_name' 			=> 'uoms.index', 'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'designations.index','route_name' => 'designations.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'designations.show','route_name'  => 'designations.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'designations.edit','route_name' 	=> 'designations.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'designations.create','route_name'=> 'designations.index', 'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'oems.index','route_name' 		=> 'oems.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'oems.edit','route_name' 			=> 'oems.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'oems.show','route_name' 		    => 'oems.index', 'node_name' => 'lookups'],
+            [ 'raw_route_name' => 'oems.edit','route_name' 			=> 'oems.index', 'node_name' => 'lookups'],
+            [ 'raw_route_name' => 'oems.create','route_name' 		=> 'oems.index', 'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'warehouses.index','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.show','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.edit','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'warehouses.create','route_name' 	=> 'warehouses.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'bank-accounts.index','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'bank-accounts.index','route_name'=> 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.show','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.edit','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'bank-accounts.create','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'currencies.index','route_name'	=> 'currencies.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'currencies.show','route_name'	=> 'currencies.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'currencies.edit','route_name' 	=> 'currencies.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'currencies.create','route_name' 	=> 'currencies.index', 'node_name' => 'lookups'],
 
@@ -222,10 +228,12 @@ class MenuSeeder extends Seeder
 
 			[ 'raw_route_name' => 'rates.index','route_name' 			=> 'rates.index', 'node_name' => 'admin'],
 
-			[ 'raw_route_name' => 'setups.index','route_name' 			=> 'setups.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'setups.edit','route_name' 			=> 'setups.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'setups.show','route_name' 			=> 'setups.index', 'node_name' => 'admin'],
-			[ 'raw_route_name' => 'setups.notice','route_name' 			=> 'setups.index', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.index','route_name' 			=> 'setups.show', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.edit','route_name' 			=> 'setups.show', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.show','route_name' 			=> 'setups.show', 'node_name' => 'admin'],
+			[ 'raw_route_name' => 'setups.notice','route_name' 			=> 'setups.show', 'node_name' => 'admin'],
+            [ 'raw_route_name' => 'setups.tc','route_name' 			    => 'setups.show', 'node_name' => 'admin'],
+            [ 'raw_route_name' => 'setups.announcement','route_name' 	=> 'setups.show', 'node_name' => 'admin'],
 
 			/**
 			* ==================================================================================

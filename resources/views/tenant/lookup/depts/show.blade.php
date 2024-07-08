@@ -14,8 +14,7 @@
 			View Dept
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Dept"/>
-			<x-tenant.actions.dept-actions id="{{ $dept->id }}"/>
+			<x-tenant.actions.lookup.dept-actions id="{{ $dept->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -23,9 +22,6 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
-				@if (auth()->user()->isSystem())
-					<a class="btn btn-sm btn-danger text-white" href="{{ route('depts.edit', $dept->id) }}"><i class="fas fa-edit"></i> Edit</a>
-				 @endif
 			</div>
 			<h5 class="card-title">Department Detail</h5>
 			<h6 class="card-subtitle text-muted">Department details with Requisition and Purchase Order Approval Hierarchy.</h6>

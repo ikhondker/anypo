@@ -32,6 +32,7 @@ return new class extends Migration
 			$table->string('state')->nullable();
 			$table->string('zip')->nullable();
 			$table->string('country',2)->default('US');
+            $table->string('website')->nullable();
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
 			$table->string('avatar')->nullable()->default('avatar.png');

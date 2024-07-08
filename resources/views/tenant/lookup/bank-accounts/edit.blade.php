@@ -108,10 +108,10 @@
 							</div>
 
 							<x-tenant.edit.address1 :value="$bankAccount->address1"/>
-								<x-tenant.edit.address2 :value="$bankAccount->address2"/>
+							<x-tenant.edit.address2 :value="$bankAccount->address2"/>
 								<div class="row">
 									<x-tenant.edit.city :value="$bankAccount->city"/>
-									<x-tenant.edit.state value="{{ $bankAccount->state }}"/>
+									<x-tenant.edit.state :value="$bankAccount->state"/>
 									<x-tenant.edit.zip :value="$bankAccount->zip"/>
 								</div>
 							<x-tenant.edit.country :value="$bankAccount->country"/>
@@ -127,6 +127,6 @@
 
 	</form>
 	<!-- /.form end -->
-	
+
 @endsection
 

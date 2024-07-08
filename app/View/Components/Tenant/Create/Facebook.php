@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Tenant\Actions;
+namespace App\View\Components\Tenant\Create;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class UserActionsIndex extends Component
+class Facebook extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class UserActionsIndex extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.tenant.actions.user-actions-index');
+        return view('components.tenant.create.facebook');
     }
 }

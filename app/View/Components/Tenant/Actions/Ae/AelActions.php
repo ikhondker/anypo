@@ -1,16 +1,16 @@
 <?php
 
-namespace App\View\Components\Tenant\Actions;
+namespace App\View\Components\Tenant\Actions\Ae;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Models\Tenant\Ae\Aeh;
+use App\Models\Tenant\Ae\Ael;
 
-class AehActions extends Component
+class AelActions extends Component
 {
-	public $aeh;
+	public $ael;
 	/**
 	 * Create a new component instance.
 	 */
@@ -18,9 +18,9 @@ class AehActions extends Component
 	{
 		$this->id 		= $id;
 		if ($this->id <> ''){
-			$this->aeh 	= Aeh::where('id', $this->id)->get()->firstOrFail();
+			$this->ael 	= Ael::where('id', $this->id)->get()->firstOrFail();
 		} else {
-			$this->aeh 	= new Aeh;
+			$this->ael 	= new Ael;
 		}
 	}
 
@@ -29,6 +29,6 @@ class AehActions extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.actions.aeh-actions');
+		return view('components.tenant.actions.ae.ael-actions');
 	}
 }

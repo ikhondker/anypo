@@ -1,17 +1,16 @@
 <?php
 
-namespace App\View\Components\Tenant\Actions;
+namespace App\View\Components\Tenant\Action\Admin;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+use App\Models\User;
 
-use App\Models\Tenant\Lookup\Item;
-
-class ItemActions extends Component
+class UserActions extends Component
 {
-	public $item;
+	public $user;
 
 	/**
 	 * Create a new component instance.
@@ -19,7 +18,7 @@ class ItemActions extends Component
 	public function __construct(public $id)
 	{
 		$this->id 		= $id;
-		$this->item 	= Item::where('id', $this->id)->get()->firstOrFail();
+		$this->user 	= User::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**
@@ -27,6 +26,6 @@ class ItemActions extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.actions.item-actions');
+		return view('components.tenant.actions.admin.user-actions');
 	}
 }

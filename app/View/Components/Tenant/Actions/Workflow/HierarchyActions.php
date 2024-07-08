@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Actions;
+namespace App\View\Components\Tenant\Actions\Workflow;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -26,6 +26,6 @@ class HierarchyActions extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.actions.hierarchy-actions');
+		return view('components.tenant.actions.workflow.hierarchy-actions');
 	}
 }

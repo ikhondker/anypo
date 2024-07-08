@@ -20,6 +20,7 @@
 			Department Lists
 		@endslot
 		@slot('buttons')
+			<x-tenant.actions.lookup.dept-actions/>
 			<x-tenant.buttons.header.create object="Dept"/>
 		@endslot
 	</x-tenant.page-header>
@@ -42,7 +43,7 @@
 					<h6 class="card-subtitle text-muted">List of departments with Requisition and Purchase Order Approval Hierarchy</h6>
 				</div>
 				<div class="card-body">
-					<table class="table">
+					<table class="table w-100">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -50,23 +51,22 @@
 								<th>PR Hierarchy</th>
 								<th>PO Hierarchy</th>
 								<th>Enable?</th>
-								<th>View</th>
+								<th class="text-end">View</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($depts as $dept)
 							<tr>
 								<td>{{ $depts->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('depts.show',$dept->id) }}">{{ $dept->name }}</a></td>
-								<td><a class="text-info" href="{{ route('hierarchies.show',$dept->pr_hierarchy_id) }}">{{ $dept->prHierarchy->name }}</a></td>
-								<td><a class="text-info" href="{{ route('hierarchies.show',$dept->po_hierarchy_id) }}">{{ $dept->poHierarchy->name }}</a></td>
+								<td><a href="{{ route('depts.show',$dept->id) }}"><strong>{{ $dept->name }}</strong></a>
+								</td>
+								<td><a href="{{ route('hierarchies.show',$dept->pr_hierarchy_id) }}"><strong>{{ $dept->prHierarchy->name }}</strong></a></td>
+								<td><a href="{{ route('hierarchies.show',$dept->po_hierarchy_id) }}"><strong>{{ $dept->poHierarchy->name }}</strong></a></td>
 								<td><x-tenant.list.my-boolean :value="$dept->enable"/></td>
-								<td class="table-action">
+								<td class="text-end">
 									<a href="{{ route('depts.show',$dept->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>
-
-
 								</td>
 							</tr>
 							@endforeach

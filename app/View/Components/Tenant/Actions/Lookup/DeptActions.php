@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Actions;
+namespace App\View\Components\Tenant\Actions\Lookup;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -14,10 +14,15 @@ class DeptActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public $id = 0)
 	{
-		$this->id 		= $id;
-		$this->dept 	= Dept::where('id', $this->id)->get()->firstOrFail();
+		if ( $id == 0 ){
+			$this->id       = 0;
+			$this->dept 	= New Dept();
+		} else {
+			$this->id 		= $id;
+			$this->dept 	= Dept::where('id', $this->id)->get()->firstOrFail();
+		}
 	}
 
 	/**
@@ -25,6 +30,6 @@ class DeptActions extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.actions.dept-actions');
+		return view('components.tenant.actions.lookup.dept-actions');
 	}
 }

@@ -64,13 +64,13 @@
 							<img src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $account->name }}" title="{{ $account->name }}">
 						</td>
 						<td>
-							<a class="" href="{{ route('accounts.show', $account->id) }}">
-								<h6 class="mb-0"> {{ $account->site }}</h6>
+							<a href="{{ route('accounts.show', $account->id) }}">
+								<strong>{{ $account->site }}</strong>
 							</a>
 						</td>
 						<td>
-							<a class="" href="{{ route('accounts.show', $account->id) }}">
-							<strong>{{ $account->name }}</strong>
+							<a href="{{ route('accounts.show', $account->id) }}">
+							    <strong>{{ $account->name }}</strong>
 							</a>
 						</td>
 						<td>{{ $account->owner->name }}</td>

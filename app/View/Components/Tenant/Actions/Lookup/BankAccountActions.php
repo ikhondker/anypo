@@ -1,23 +1,22 @@
 <?php
 
-namespace App\View\Components\Tenant\Actions;
+namespace App\View\Components\Tenant\Actions\Lookup;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Models\Tenant\Lookup\Warehouse;
-class WarehouseActions extends Component
+use App\Models\Tenant\Lookup\BankAccount;
+class BankAccountActions extends Component
 {
-	public $warehouse;
-
+	public $bankAccount;
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public $id)
 	{
 		$this->id 		= $id;
-		$this->warehouse 	= Warehouse::where('id', $this->id)->get()->firstOrFail();
+		$this->bankAccount 	= BankAccount::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**
@@ -25,6 +24,6 @@ class WarehouseActions extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.actions.warehouse-actions');
+		return view('components.tenant.actions.lookup.bank-account-actions');
 	}
 }

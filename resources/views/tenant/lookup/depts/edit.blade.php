@@ -14,8 +14,7 @@
 			Edit Dept
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Dept"/>
-			<x-tenant.actions.dept-actions id="{{ $dept->id }}"/>
+            <x-tenant.actions.lookup.dept-actions id="{{ $dept->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -24,29 +23,22 @@
 		@csrf
 		@method('PUT')
 
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Dept Info</h5>
-							<h6 class="card-subtitle text-muted">Edit department and Requisition and Purchase Order Approval Hierarchy</h6>
-						</div>
-						<div class="card-body">
-
-							<div class="mb-3">
-								<label class="form-label">Dept Name</label>
-								<input type="text" class="form-control @error('name') is-invalid @enderror"
-									name="name" id="name" placeholder="Dept Name"
-									value="{{ old('name', $dept->name ) }}"
-									/>
-								@error('name')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">PR Hierarchy</label>
-								<select class="form-control" name="pr_hierarchy_id">
+        <div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				</div>
+                <h5 class="card-title">Dept Info</h5>
+                <h6 class="card-subtitle text-muted">Edit department and Requisition and Purchase Order Approval Hierarchy</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+                        <x-tenant.edit.name :value="$dept->name"/>
+						<tr>
+							<th>PR Hierarchy</th>
+							<td>
+                                <select class="form-control" name="pr_hierarchy_id">
 									@foreach ($hierarchies as $hierarchy)
 										<option {{ $hierarchy->id == old('pr_hierarchy_id',$dept->pr_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }} </option>
 									@endforeach
@@ -54,11 +46,12 @@
 								@error('pr_hierarchy_id')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">PO Hierarchy</label>
-								<select class="form-control" name="po_hierarchy_id">
+                            </td>
+						</tr>
+						<tr>
+							<th>PO Hierarchy</th>
+							<td>
+                                <select class="form-control" name="po_hierarchy_id">
 									@foreach ($hierarchies as $hierarchy)
 										<option {{ $hierarchy->id == old('po_hierarchy_id',$dept->po_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }} </option>
 									@endforeach
@@ -66,16 +59,16 @@
 								@error('po_hierarchy_id')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
-							<x-tenant.buttons.show.save/>
-
-						</div>
-					</div>
-				</div>
-				<!-- end col-6 -->
+                            </td>
+						</tr>
+                        <x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
 			</div>
+		</div>
+
 	</form>
 	<!-- /.form end -->
-	
+
 @endsection
 

@@ -13,9 +13,6 @@
 			Edit User
 		@endslot
 		@slot('buttons')
-			@can('viewAny', $user)
-				<x-tenant.buttons.header.lists object="User"/>
-			@endcan
 			<x-tenant.actions.user-actions id="{{ $user->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -25,16 +22,42 @@
 		@csrf
 		@method('PUT')
 
-			<div class="row">
-				<div class="col-6">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">User Key Informations</h5>
-							<h6 class="card-subtitle text-muted">User's Key Information.</h6>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								<label class="form-label">Full Name</label>
+		<div class="card">
+			<div class="card-header">
+				@can('viewAny', $user)
+					<div class="card-actions float-end">
+						<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					</div>
+				@endcan
+				<h5 class="card-title">User Avatar</h5>
+				<h6 class="card-subtitle text-muted">User's Avatar.</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th></th>
+							<td>
+								<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
+								<x-tenant.attachment.create />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">User Key Information's</h5>
+				<h6 class="card-subtitle text-muted">User's Key Information.</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th>Full Name</th>
+							<td>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"
 									name="name" id="name" placeholder="Full Name"
 									value="{{ old('name', $user->name ) }}"
@@ -42,9 +65,11 @@
 								@error('name')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Email</label> <x-tenant.info info="Note: You wont be able to change the email."/>
+							</td>
+						</tr>
+						<tr>
+							<th>Email <x-tenant.info info="Note: You wont be able to change the email."/></th>
+							<td>
 								<input type="email" class="form-control @error('email') is-invalid @enderror"
 									name="email" id="email" placeholder="name@company.com"
 									value="{{ old('email', $user->email ) }}"
@@ -52,27 +77,31 @@
 								@error('email')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">Designation</label>
+							</td>
+						</tr>
+						<tr>
+							<th>Designation</th>
+							<td>
 								<select class="form-control" name="designation_id">
 									@foreach ($designations as $designation)
 										<option {{ $designation->id == old('designation_id',$user->designation_id) ? 'selected' : '' }} value="{{ $designation->id }}">{{ $designation->name }} </option>
 									@endforeach
 								</select>
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Department</label>
+							</td>
+						</tr>
+						<tr>
+							<th>Department</th>
+							<td>
 								<select class="form-control" name="dept_id">
 									@foreach ($depts as $dept)
 										<option {{ $dept->id == old('dept_id',$user->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
 									@endforeach
 								</select>
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">Cell</label>
+							</td>
+						</tr>
+						<tr>
+							<th>Cell</th>
+							<td>
 								<input type="text" class="form-control @error('cell') is-invalid @enderror"
 									name="cell" id="cell" placeholder="01911310509"
 									value="{{ old('cell', $user->cell ) }}"
@@ -80,177 +109,78 @@
 								@error('cell')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
+							</td>
+						</tr>
 
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">User Avatar</h5>
-							<h6 class="card-subtitle text-muted">User's Avatar.</h6>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								{{-- <x-tenant.show.avatar avatar="{{ $user->avatar }}"/> --}}
-								<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
-
-								<x-tenant.attachment.create />
-							</div>
-						</div>
-					</div>
-	
-				</div>
-				<!-- end col-6 -->
-
-				<div class="col-6">
-
-					@if ( auth()->user()->isAdmin() && (auth()->user()->id <> $user->id) )
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Role Modify</h5>
-							<h6 class="card-subtitle text-muted">Change User's Role.</h6>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								<label class="form-label text-danger">Modify Role To:</label>
-								<select class="form-control" name="role">
-									<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }} value="user">User</option>
-									<option {{ 'buyer' == old('role',$user->role->value) ? 'selected' : '' }} value="buyer">Buyer</option>
-									<option {{ 'hod' == old('role',$user->role->value) ? 'selected' : '' }} value="hod">HoD</option>
-									<option {{ 'cxo' == old('role',$user->role->value) ? 'selected' : '' }} value="cxo">CxO</option>
-									<option {{ 'admin' == old('role',$user->role->value) ? 'selected' : '' }} value="admin">Admin</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					@endif
-
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">User Address</h5>
-							<h6 class="card-subtitle text-muted">User's Address.</h6>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								<label class="form-label">Address 1</label>
-								<input type="text" class="form-control @error('address1') is-invalid @enderror"
-									name="address1" id="address1" placeholder="Address 1"
-									value="{{ old('address1', $user->address1 ) }}"
-									required/>
-								@error('address1')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">Address 2</label>
-								<input type="text" class="form-control @error('address2') is-invalid @enderror"
-									name="address2" id="address2" placeholder="Address 2"
-									value="{{ old('address2', $user->address2 ) }}"
-									/>
-								@error('address2')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<div class="row">
-								<div class="mb-3 col-md-6">
-									<label for="city" class="form-label">City</label>
-									<input type="text" class="form-control @error('city') is-invalid @enderror"
-										name="city" id="city" placeholder="City"
-										value="{{ old('city', $user->city ) }}"
-										required/>
-									@error('city')
-										<div class="text-danger text-xs">{{ $message }}</div>
-									@enderror
-								</div>
-								<div class="mb-3 col-md-4">
-									<label for="state" class="form-label">State</label>
-									<input type="text" class="form-control @error('state') is-invalid @enderror"
-										name="state" id="state" placeholder="N/A"
-										style="text-transform: uppercase"
-										value="{{ old('state', $user->state ) }}"
-										required/>
-									@error('state')
-										<div class="text-danger text-xs">{{ $message }}</div>
-									@enderror
-								</div>
-								<div class="mb-3 col-md-2">
-									<label for="zip" class="form-label">Zip</label>
-									<input type="text" class="form-control @error('zip') is-invalid @enderror"
-										name="zip" id="zip" placeholder="1234"
-										value="{{ old('zip', $user->zip ) }}"
-										required/>
-									@error('zip')
-										<div class="text-danger text-xs">{{ $message }}</div>
-									@enderror
-								</div>
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">Country</label>
-								<select class="form-control" name="country">
-									@foreach ($countries as $country)
-										<option {{ $country->country == old('country',$user->country) ? 'selected' : '' }} value="{{ $country->country }}">{{ $country->name }} </option>
-									@endforeach
-								</select>
-							</div>
-
-
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Other Detail</h5>
-							<h6 class="card-subtitle text-muted">User's Other Details.</h6>
-						</div>
-						<div class="card-body">
-							<x-tenant.edit.notes :value="$user->notes"/>
-							<div class="mb-3">
-								<label class="form-label">Facebook</label>
-								<input type="text" class="form-control @error('facebook') is-invalid @enderror"
-									name="facebook" id="facebook" placeholder="https://www.facebook.com/username"
-									value="{{ old('facebook', $user->facebook ) }}"
-									/>
-								@error('facebook')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-							<div class="mb-3">
-								<label class="form-label">LinkedIn</label>
-								<input type="text" class="form-control @error('linkedin') is-invalid @enderror"
-									name="linkedin" id="linkedin" placeholder="https://www.linkedin.com/username"
-									value="{{ old('linkedin', $user->linkedin ) }}"
-									/>
-								@error('linkedin')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<x-tenant.buttons.show.save/>
-						</div>
-					</div>
-				</div>
-				<!-- end col-6 -->
+					</tbody>
+				</table>
 			</div>
+		</div>
 
-			<div class="row">
-				<div class="col-6">
+		@if ( (auth()->user()->isAdmin() || auth()->user()->isSupport() || auth()->user()->isSystem() ) && (auth()->user()->id <> $user->id) )
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">Role Modify</h5>
+					<h6 class="card-subtitle text-muted">Change User's Role.</h6>
 				</div>
-				<!-- end col-6 -->
-				<div class="col-6">
-					
-				</div>
-				<!-- end col-6 -->
+				<div class="card-body">
+					<table class="table table-sm my-2">
+						<tbody>
+							<tr>
+								<th>Modify Role To:</th>
+								<td>
+									<select class="form-control" name="role">
+										<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }} value="user">User</option>
+										<option {{ 'buyer' == old('role',$user->role->value) ? 'selected' : '' }} value="buyer">Buyer</option>
+										<option {{ 'hod' == old('role',$user->role->value) ? 'selected' : '' }} value="hod">HoD</option>
+										<option {{ 'cxo' == old('role',$user->role->value) ? 'selected' : '' }} value="cxo">CxO</option>
+										<option {{ 'admin' == old('role',$user->role->value) ? 'selected' : '' }} value="admin">Admin</option>
+									</select>
+								</td>
+							</tr>
 
+						</tbody>
+					</table>
+				</div>
 			</div>
-			<!-- end row -->
+		@endif
+
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">User Address</h5>
+				<h6 class="card-subtitle text-muted">User's Address.</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<x-tenant.edit.address1 :value="$user->address1"/>
+						<x-tenant.edit.address2 :value="$user->address2"/>
+						<x-tenant.edit.city-state-zip city="{{ $user->city }}" state="{{ $user->state }}" zip="{{ $user->zip }}"/>
+						<x-tenant.edit.country :value="$user->country"/>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">Other Detail</h5>
+				<h6 class="card-subtitle text-muted">User's Other Details.</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<x-tenant.edit.notes :value="$user->notes"/>
+						<x-tenant.edit.website :value="$setup->website"/>
+						<x-tenant.edit.facebook :value="$setup->facebook"/>
+						<x-tenant.edit.linked-in :value="$setup->linkedin"/>
+						<x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 	</form>
 	<!-- /.form end -->
-
-	
 @endsection
 

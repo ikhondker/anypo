@@ -8,3 +8,9 @@
 		<div class="text-danger text-xs">{{ $message }}</div>
 	@enderror
 </div>
+<tr>
+	<th></th>
+	<td>
+
+	</td>
+</tr>

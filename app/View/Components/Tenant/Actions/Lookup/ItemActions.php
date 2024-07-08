@@ -1,24 +1,25 @@
 <?php
 
-namespace App\View\Components\Tenant\Actions;
+namespace App\View\Components\Tenant\Actions\Lookup;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Models\Tenant\Lookup\Supplier;
 
-class SupplierActions extends Component
+use App\Models\Tenant\Lookup\Item;
+
+class ItemActions extends Component
 {
-	public $supplier;
+	public $item;
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public $id)
 	{
-		$this->id 			= $id;
-		$this->supplier 	= Supplier::where('id', $this->id)->get()->firstOrFail();
+		$this->id 		= $id;
+		$this->item 	= Item::where('id', $this->id)->get()->firstOrFail();
 	}
 
 	/**
@@ -26,6 +27,6 @@ class SupplierActions extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.actions.supplier-actions');
+		return view('components.tenant.actions.lookup.item-actions');
 	}
 }

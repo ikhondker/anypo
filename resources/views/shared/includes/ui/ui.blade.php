@@ -31,7 +31,44 @@
 		</div>
 
 		<a href="#" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New project</a>
-		<h1 class="h3 mb-3">Resuable Widgets</h1>
+		<h1 class="h3 mb-3">Reusable Widgets</h1>
+
+
+
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					@if (auth()->user()->isSystem())
+						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
+					 @endif
+				</div>
+				<h5 class="card-title">Interface Components Guideline</h5>
+				<h6 class="card-subtitle text-muted">Please follow these for UI. Prototype is -> dept</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th>index</th>
+							<td>[index-actions] + Create New + card(search+export) </td>
+						</tr>
+						<tr>
+							<th>show</th>
+							<td>actions + card(View All)</td>
+						</tr>
+						<tr>
+							<th>edit</th>
+							<td>actions + card(View All)</td>
+						</tr>
+						<tr>
+							<th>create</th>
+							<td>index-actions</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 		<div class="card">
 			<div class="card-body">
@@ -839,3 +876,39 @@
 		</div>
 
 
+
+        <h1 class="h3 mb-3">Empty card (Formateted)</h1>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				</div>
+				<h5 class="card-title">Empty (Formateted)</h5>
+				<h6 class="card-subtitle text-muted">Please provide brief description of this card.</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th></th>
+							<td>
+
+                            </td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+
+                            </td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+
+                            </td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>

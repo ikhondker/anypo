@@ -88,7 +88,6 @@ class CategoryController extends Controller
 	 */
 	public function show(Category $category)
 	{
-        abort(403);
 		return view('tenant.lookup.categories.show', compact('category'));
 	}
 

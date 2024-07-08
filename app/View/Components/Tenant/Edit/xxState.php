@@ -8,11 +8,11 @@ use Illuminate\View\Component;
 
 class State extends Component
 {
-	public string $value;
+	//public string $value;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($value)
+	public function __construct(public string $value)
 	{
 		if (is_null($value)){
 			$this->value = 'N/A';

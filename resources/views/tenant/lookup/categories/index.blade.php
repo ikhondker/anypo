@@ -45,9 +45,13 @@
 							@foreach ($categories as $category)
 							<tr>
 								<td>{{ $categories->firstItem() + $loop->index }}</td>
-								<td>{{ $category->name }}</td>
+								<td><a href="{{ route('categories.show',$category->id) }}"><strong>{{ $category->name }}</strong></a>
 								<td><x-tenant.list.my-boolean :value="$category->enable"/></td>
-								<td class="table-action">
+								<td class="text-end">
+                                    <a href="{{ route('categories.show',$category->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+
 									<x-tenant.list.actions object="Category" :id="$category->id" :show="false"/>
 									<a href="{{ route('categories.destroy',$category->id) }}" class="me-2 sw2-advance"
 										data-entity="Category" data-name="{{ $category->name }}" data-status="{{ ($category->enable ? 'Disable' : 'Enable') }}"
@@ -76,7 +80,7 @@
 	 <!-- end row -->
 
 
-	
+
 @endsection
 
 

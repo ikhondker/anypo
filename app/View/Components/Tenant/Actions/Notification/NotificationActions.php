@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Actions;
+namespace App\View\Components\Tenant\Actions\Notification;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -29,6 +29,6 @@ class NotificationActions extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.actions.notification-actions');
+		return view('components.tenant.actions.notification.notification-actions');
 	}
 }
