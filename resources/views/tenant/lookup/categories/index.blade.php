@@ -48,15 +48,8 @@
 								<td><a href="{{ route('categories.show',$category->id) }}"><strong>{{ $category->name }}</strong></a>
 								<td><x-tenant.list.my-boolean :value="$category->enable"/></td>
 								<td class="text-end">
-                                    <a href="{{ route('categories.show',$category->id) }}" class="btn btn-light"
+									<a href="{{ route('categories.show',$category->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
-									</a>
-
-									<x-tenant.list.actions object="Category" :id="$category->id" :show="false"/>
-									<a href="{{ route('categories.destroy',$category->id) }}" class="me-2 sw2-advance"
-										data-entity="Category" data-name="{{ $category->name }}" data-status="{{ ($category->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($category->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle {{ ($category->enable ? 'text-muted' : 'text-success') }}" data-lucide="{{ ($category->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

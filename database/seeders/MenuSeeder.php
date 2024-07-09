@@ -259,8 +259,7 @@ class MenuSeeder extends Seeder
 			// Special
 			[ 'raw_route_name' => 'prls.index','route_name' 			=> 'prls.index', 'node_name' => 'system'],
 
-			[ 'raw_route_name' => 'aehs.index','route_name' 			=> 'aehs.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'aehs.show','route_name' 				=> 'aehs.index', 'node_name' => 'system'],
+
 
 			[ 'raw_route_name' => 'custom-errors.index','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
 			[ 'raw_route_name' => 'custom-errors.show','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],

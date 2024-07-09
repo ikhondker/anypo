@@ -56,7 +56,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<x-tenant.edit.name :value="$setup->name"/>
-                        <x-tenant.edit.email :value="$setup->email"/>
+						<x-tenant.edit.email :value="$setup->email"/>
 						<tr>
 							<th>Tagline</th>
 							<td>

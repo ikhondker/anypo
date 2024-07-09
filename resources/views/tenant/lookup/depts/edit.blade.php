@@ -14,7 +14,7 @@
 			Edit Dept
 		@endslot
 		@slot('buttons')
-            <x-tenant.actions.lookup.dept-actions id="{{ $dept->id }}"/>
+			<x-tenant.actions.lookup.dept-actions id="{{ $dept->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -23,22 +23,22 @@
 		@csrf
 		@method('PUT')
 
-        <div class="card">
+		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
-                <h5 class="card-title">Dept Info</h5>
-                <h6 class="card-subtitle text-muted">Edit department and Requisition and Purchase Order Approval Hierarchy</h6>
+				<h5 class="card-title">Dept Info</h5>
+				<h6 class="card-subtitle text-muted">Edit department and Requisition and Purchase Order Approval Hierarchy</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-                        <x-tenant.edit.name :value="$dept->name"/>
+						<x-tenant.edit.name :value="$dept->name"/>
 						<tr>
 							<th>PR Hierarchy</th>
 							<td>
-                                <select class="form-control" name="pr_hierarchy_id">
+								<select class="form-control" name="pr_hierarchy_id">
 									@foreach ($hierarchies as $hierarchy)
 										<option {{ $hierarchy->id == old('pr_hierarchy_id',$dept->pr_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }} </option>
 									@endforeach
@@ -46,12 +46,12 @@
 								@error('pr_hierarchy_id')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-                            </td>
+							</td>
 						</tr>
 						<tr>
 							<th>PO Hierarchy</th>
 							<td>
-                                <select class="form-control" name="po_hierarchy_id">
+								<select class="form-control" name="po_hierarchy_id">
 									@foreach ($hierarchies as $hierarchy)
 										<option {{ $hierarchy->id == old('po_hierarchy_id',$dept->po_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }} </option>
 									@endforeach
@@ -59,9 +59,9 @@
 								@error('po_hierarchy_id')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-                            </td>
+							</td>
 						</tr>
-                        <x-tenant.buttons.show.save/>
+						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>
 			</div>

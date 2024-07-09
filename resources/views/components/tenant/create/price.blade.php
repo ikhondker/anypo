@@ -1,7 +1,7 @@
 <tr>
 	<th>Price</th>
 	<td>
-        <input type="number" class="form-control @error('price') is-invalid @enderror"
+		<input type="number" class="form-control @error('price') is-invalid @enderror"
 		name="price" id="price" placeholder="99,999.99"
 		value="{{ old('price', '1.00' ) }}"
 		step='0.01' min="1" required/>

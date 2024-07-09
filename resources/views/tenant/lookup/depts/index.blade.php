@@ -20,7 +20,6 @@
 			Department Lists
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.dept-actions/>
 			<x-tenant.buttons.header.create object="Dept"/>
 		@endslot
 	</x-tenant.page-header>

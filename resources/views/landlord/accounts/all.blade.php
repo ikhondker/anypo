@@ -70,7 +70,7 @@
 						</td>
 						<td>
 							<a href="{{ route('accounts.show', $account->id) }}">
-							    <strong>{{ $account->name }}</strong>
+								<strong>{{ $account->name }}</strong>
 							</a>
 						</td>
 						<td>{{ $account->owner->name }}</td>

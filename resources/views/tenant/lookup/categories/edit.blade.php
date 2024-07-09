@@ -13,8 +13,7 @@
 			Edit Item Category
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Category"/>
-			<x-tenant.buttons.header.create object="Category"/>
+			<x-tenant.actions.lookup.category-actions id="{{ $category->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -23,32 +22,24 @@
 		@csrf
 		@method('PUT')
 
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Edit Item Category</h5>
-							<h6 class="card-subtitle text-muted">Edit an Item Category.</h6>
-						</div>
-						<div class="card-body">
-
-							<x-tenant.edit.name :value="$category->name"/>
-
-							<x-tenant.buttons.show.save/>
-
-						</div>
-					</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('categories.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
-				<!-- end col-6 -->
-
-				<div class="col-6">
-					<div class="card">
-
-					</div>
-				</div>
-				<!-- end col-6 -->
+				<h5 class="card-title">Edit Item Category</h5>
+				<h6 class="card-subtitle text-muted">Edit an Item Category.</h6>
 			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<x-tenant.edit.name :value="$category->name"/>
 
+						<x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 	</form>
 	<!-- /.form end -->

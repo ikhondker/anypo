@@ -23,24 +23,24 @@
 
 <!-- form start -->
 <form id="myform" action="{{ route('hierarchies.update',$hierarchy->id) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
-    <div class="card">
-        <div class="card-header">
-            <div class="card-actions float-end">
-                <a href="{{ route('hierarchies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+	@csrf
+	@method('PUT')
+	<div class="card">
+		<div class="card-header">
+			<div class="card-actions float-end">
+				<a href="{{ route('hierarchies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 
-            </div>
-            <h5 class="card-title">Hierarchy Info</h5>
+			</div>
+			<h5 class="card-title">Hierarchy Info</h5>
 				<h6 class="card-subtitle text-muted">Hierarchy Detail Information.</h6>
-        </div>
-        <div class="card-body">
-            <table class="table table-sm my-2">
-                <tbody>
-                    <tr>
-                        <th>Hierarchy Name</th>
-                        <td>
-                            <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $hierarchy->id ) }}" hidden>
+		</div>
+		<div class="card-body">
+			<table class="table table-sm my-2">
+				<tbody>
+					<tr>
+						<th>Hierarchy Name</th>
+						<td>
+							<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $hierarchy->id ) }}" hidden>
 							<input type="text" class="form-control @error('name') is-invalid @enderror"
 							name="name" id="name" placeholder="Hierarchy Name"
 							value="{{ old('name', $hierarchy->name ) }}"
@@ -48,22 +48,22 @@
 							@error('name')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>First Approver</th>
-                        <td>
-                            <select class="form-control" name="approver_id_1" required>
+						</td>
+					</tr>
+					<tr>
+						<th>First Approver</th>
+						<td>
+							<select class="form-control" name="approver_id_1" required>
 								@foreach ($users as $user)
 									<option {{ $user->id == old('approver_id_1',$approver_id_1) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 								@endforeach
 							</select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Second Approver</th>
-                        <td>
-                            <select class="form-control" name="approver_id_2">
+						</td>
+					</tr>
+					<tr>
+						<th>Second Approver</th>
+						<td>
+							<select class="form-control" name="approver_id_2">
 								{{-- @if ($approver_id_2 == 0)
 									<option value="0"><< Second Approver >> </option>
 								@endif --}}
@@ -72,12 +72,12 @@
 									<option {{ $user->id == old('approver_id_2',$approver_id_2) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 								@endforeach
 							</select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Third Approver</th>
-                        <td>
-                            <select class="form-control" name="approver_id_3">
+						</td>
+					</tr>
+					<tr>
+						<th>Third Approver</th>
+						<td>
+							<select class="form-control" name="approver_id_3">
 								@if ($approver_id_3 == 0)
 								@endif
 								<option value="0"><< Third Approver >> </option>
@@ -85,12 +85,12 @@
 									<option {{ $user->id == old('approver_id_3',$approver_id_3) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 								@endforeach
 							</select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Fourth Approver</th>
-                        <td>
-                            <select class="form-control" name="approver_id_4">
+						</td>
+					</tr>
+					<tr>
+						<th>Fourth Approver</th>
+						<td>
+							<select class="form-control" name="approver_id_4">
 								{{-- @if ($approver_id_4 == 0)
 								@endif --}}
 								<option value="0"><< Fourth Approver >> </option>
@@ -98,12 +98,12 @@
 									<option {{ $user->id == old('approver_id_4',$approver_id_4) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 								@endforeach
 							</select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Fifth Approver</th>
-                        <td>
-                            <select class="form-control" name="approver_id_5">
+						</td>
+					</tr>
+					<tr>
+						<th>Fifth Approver</th>
+						<td>
+							<select class="form-control" name="approver_id_5">
 								{{-- @if ($approver_id_5 == 0)
 								@endif --}}
 								<option value="0"><< Fifth Approver >> </option>
@@ -111,16 +111,16 @@
 									<option {{ $user->id == old('approver_id_5',$approver_id_5) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 								@endforeach
 							</select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td><x-tenant.buttons.show.save/></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><x-tenant.buttons.show.save/></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </form>
 
 

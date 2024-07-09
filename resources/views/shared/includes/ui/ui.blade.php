@@ -877,7 +877,7 @@
 
 
 
-        <h1 class="h3 mb-3">Empty card (Formateted)</h1>
+		<h1 class="h3 mb-3">Empty card (Formateted)</h1>
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -893,19 +893,19 @@
 							<th></th>
 							<td>
 
-                            </td>
+							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
 
-                            </td>
+							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
 
-                            </td>
+							</td>
 						</tr>
 
 					</tbody>

@@ -69,7 +69,7 @@
 								</select>
 							</td>
 						</tr>
-                        <x-tenant.buttons.show.save/>
+						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>
 			</div>

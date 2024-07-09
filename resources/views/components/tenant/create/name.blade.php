@@ -1,7 +1,7 @@
 <tr>
 	<th>Name</th>
 	<td>
-        <input type="text" class="form-control @error('name') is-invalid @enderror"
+		<input type="text" class="form-control @error('name') is-invalid @enderror"
 		name="name" id="name" placeholder="Name"
 		value="{{ old('name', '' ) }}"
 		required/>

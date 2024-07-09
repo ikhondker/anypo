@@ -1,7 +1,7 @@
 <tr>
 	<th>End Date </th>
 	<td>
-        <input type="date" class="form-control @error('end_date') is-invalid @enderror"
+		<input type="date" class="form-control @error('end_date') is-invalid @enderror"
 		name="end_date" id="end_date" placeholder=""
 		value="{{ old('end_date', date('Y-m-d') ) }}"
 		required/>

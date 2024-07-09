@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <!--
-  HOW TO USE: 
+  HOW TO USE:
   data-layout: fluid (default), boxed
   data-sidebar-theme: dark (default), colored, light
   data-sidebar-position: left (default), right
   data-sidebar-behavior: sticky (default), fixed, compact
 -->
-<html lang="en" 
-	data-bs-theme="light" 
-	data-layout="fluid" 
-	data-sidebar-theme="dark" 
-	data-sidebar-position="left" 
+<html lang="en"
+	data-bs-theme="light"
+	data-layout="fluid"
+	data-sidebar-theme="dark"
+	data-sidebar-position="left"
 	data-sidebar-behavior="fixed">
 
 <head>
@@ -36,14 +36,14 @@
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/tenant.css') }}">
 
-	
+
 </head>
 
 <body>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar">
 			<div class="sidebar-content js-simplebar">
-				
+
 				<a class="sidebar-brand" href="{{ route('home') }}">
 					@auth
 						<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
@@ -127,13 +127,13 @@
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
-						
+
 						<li class="nav-item dropdown">
 							<a class="nav-flag dropdown-toggle" href="#" id="languageDropdown" data-bs-toggle="dropdown">
 								<img src="{{ Storage::disk('s3t')->url('img/flags/'. Str::lower($_setup->country).'.png') }}" alt="{{ $_setup->country }}" />
 							</a>
 						</li>
-						
+
 						<li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
 								<div class="position-relative">
@@ -166,14 +166,14 @@
 												@break
 											@endif
 										@endforeach
-									@endauth	
+									@endauth
 								</div>
 								<div class="dropdown-menu-footer">
 									<a href="{{ route('notifications.index') }}" class="text-muted">Show all Notifications</a>
 								</div>
 							</div>
 						</li>
-						
+
 						<li class="nav-item nav-theme-toggle dropdown">
 							<a class="nav-icon js-theme-toggle" href="#">
 								<div class="position-relative">
@@ -264,7 +264,7 @@
 						@include('tenant.admin.setups.initial')
 						<!-- /.content -->
 					@endif
-					
+
 					{{-- <div class="row">
 						<div class="col-12">
 							<div class="card">
@@ -305,6 +305,7 @@
 						<div class="col-6 text-end">
 							<p class="mb-0">
 								@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
+									<a class="text-muted" href="{{ route('ui') }}" target="_blank">UUI</a>
 									Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
 								@endif
 								<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a></p>

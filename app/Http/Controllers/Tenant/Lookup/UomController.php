@@ -45,9 +45,6 @@ use DB;
 use Illuminate\Support\Facades\Log;
 # 12. FUTURE
 
-
-
-
 class UomController extends Controller
 {
 	/**
@@ -73,6 +70,7 @@ class UomController extends Controller
 		$this->authorize('create', Uom::class);
 
 		$uomClasses = UomClass::All();
+
 		return view('tenant.lookup.uoms.create', compact('uomClasses'));
 	}
 
@@ -82,6 +80,7 @@ class UomController extends Controller
 	public function store(StoreUomRequest $request)
 	{
 		$this->authorize('create', Uom::class);
+
 		$uom = Uom::create($request->all());
 		// Write to Log
 		EventLog::event('uom', $uom->id, 'create');
@@ -94,7 +93,9 @@ class UomController extends Controller
 	 */
 	public function show(Uom $uom)
 	{
-		abort(403);
+		$this->authorize('view', $uom);
+
+		return view('tenant.lookup.uoms.show', compact('uom'));
 	}
 
 	/**

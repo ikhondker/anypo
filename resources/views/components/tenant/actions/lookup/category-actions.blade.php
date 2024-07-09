@@ -4,12 +4,19 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 
-		<a class="dropdown-item" href="{{ route('categories.show', $category->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Dept</a>
-		<a class="dropdown-item" href="{{ route('categories.edit', $category->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Dept</a>
+		@if (Route::current()->getName() == 'categories.show')
+			<a class="dropdown-item" href="{{ route('categories.edit', $category->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Category</a>
+		@endif
+		@if (Route::current()->getName() == 'categories.edit')
+			<a class="dropdown-item" href="{{ route('categories.show', $category->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Category</a>
+		@endif
+
+		<a class="dropdown-item" href="{{ route('categories.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+
 
 		@can('create', App\Models\Tenant\Lookup\Dept::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('categories.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Dept</a>
+			<a class="dropdown-item" href="{{ route('categories.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Category</a>
 		@endcan
 
 		@can('delete', $category)
