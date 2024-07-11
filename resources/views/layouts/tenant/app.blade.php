@@ -305,7 +305,8 @@
 						<div class="col-6 text-end">
 							<p class="mb-0">
 								@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
-									<a class="text-muted" href="{{ route('ui') }}" target="_blank">UUI</a>
+									<a class="text-muted" href="{{ route('tables.index') }}" target="_blank">Tables</a> |
+									<a class="text-muted" href="{{ route('ui') }}" target="_blank">UI</a> | 
 									Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
 								@endif
 								<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a></p>

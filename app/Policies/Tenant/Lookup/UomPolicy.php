@@ -44,8 +44,7 @@ class UomPolicy
 	 */
 	public function create(User $user): bool
 	{
-		//return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
-        return true;
+		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**

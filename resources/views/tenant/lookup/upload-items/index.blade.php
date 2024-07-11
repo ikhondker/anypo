@@ -89,9 +89,12 @@
 									@endswitch
 
 								</td>
-								<td class="table-action">
-									<x-tenant.list.actions object="UploadItem" :id="$upload_item->id"/>
+								<td class="text-end">
+									<a href="{{ route('upload-items.show',$upload_item->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
 								</td>
+
 							</tr>
 							@endforeach
 						</tbody>
