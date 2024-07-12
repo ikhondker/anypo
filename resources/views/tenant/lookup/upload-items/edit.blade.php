@@ -22,20 +22,21 @@
 		@csrf
 		@method('PUT')
 
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Edit Interface Item Data</h5>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('upload-items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				</div>
+				<h5 class="card-title">Edit Interface Item Data</h5>
 							<h6 class="card-subtitle text-muted">Edit Item Interface Detail.</h6>
-						</div>
-						<div class="card-body">
-
-							<x-tenant.edit.id-read-only :value="$uploadItem->id"/>
-							
-
-							<div class="mb-3">
-								<label class="form-label">item_code</label>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<x-tenant.edit.id-read-only :value="$uploadItem->id"/>
+						<tr>
+							<th>Code</th>
+							<td>
 								<input type="text" class="form-control @error('item_code') is-invalid @enderror"
 									name="item_code" id="item_code" placeholder="XXXXX"
 									style="text-transform: uppercase"
@@ -44,33 +45,25 @@
 								@error('item_code')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">Item</label>
-								<input type="text" class="form-control @error('item_name') is-invalid @enderror"
-									name="item_name" id="item_name" placeholder="Category"
-									value="{{ old('item_name', $uploadItem->item_name ) }}"
-									required/>
-								@error('item_name')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-
-							<div class="mb-3">
-								<label class="form-label">Category</label>
+							</td>
+						</tr>
+						<x-tenant.edit.name :value="$uploadItem->item_name"/>
+						<tr>
+							<th>Category</th>
+							<td>
 								<input type="text" class="form-control @error('category_name') is-invalid @enderror"
-									name="category_name" id="category_name" placeholder="Category"
-									value="{{ old('category_name', $uploadItem->category_name ) }}"
-									required/>
-								@error('category_name')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-							
-							<div class="mb-3">
-								<label class="form-label">OEM</label>
+								name="category_name" id="category_name" placeholder="Category"
+								value="{{ old('category_name', $uploadItem->category_name ) }}"
+								required/>
+							@error('category_name')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+							</td>
+						</tr>
+
+						<tr>
+							<th>OEM</th>
+							<td>
 								<input type="text" class="form-control @error('oem_name') is-invalid @enderror"
 									name="oem_name" id="oem_name" placeholder="OEM"
 									value="{{ old('oem_name', $uploadItem->oem_name ) }}"
@@ -78,10 +71,12 @@
 								@error('oem_name')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
+							</td>
+						</tr>
 
-							<div class="mb-3">
-								<label class="form-label">UOM</label>
+						<tr>
+							<th>UoM</th>
+							<td>
 								<input type="text" class="form-control @error('uom_name') is-invalid @enderror"
 									name="uom_name" id="uom_name" placeholder="UOM"
 									value="{{ old('uom_name', $uploadItem->uom_name ) }}"
@@ -89,10 +84,11 @@
 								@error('uom_name')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">GL Type</label>
+							</td>
+						</tr>
+						<tr>
+							<th>GL Type</th>
+							<td>
 								<input type="text" class="form-control @error('gl_type_name') is-invalid @enderror"
 									name="gl_type_name" id="gl_type_name" placeholder="UOM"
 									value="{{ old('gl_type_name', $uploadItem->gl_type_name ) }}"
@@ -100,10 +96,12 @@
 								@error('gl_type_name')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
+							</td>
+						</tr>
 
-							<div class="mb-3 col-md-6">
-								<label for="ac_expense" class="form-label">Expense GL Code</label>
+						<tr>
+							<th>Expense GL Code</th>
+							<td>
 								<input type="text" class="form-control @error('ac_expense') is-invalid @enderror"
 									name="ac_expense" id="ac_expense" placeholder="A600001" maxlength="255"
 									style="text-transform: uppercase"
@@ -112,16 +110,18 @@
 								@error('ac_expense')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							</div>
+							</td>
+						</tr>
 
-							<x-tenant.edit.price :value="$uploadItem->price"/>
-							<x-tenant.buttons.show.save/>
-						</div>
-					</div>
-				</div>
-				<!-- end col-6 -->
-			
+											
+						<x-tenant.edit.price :value="$uploadItem->price"/>
+						<x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
 			</div>
+		</div>
+
+		
 
 
 	</form>

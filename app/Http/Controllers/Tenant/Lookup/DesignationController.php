@@ -92,7 +92,8 @@ class DesignationController extends Controller
 	 */
 	public function show(Designation $designation)
 	{
-        abort(403);
+		$this->authorize('view', $designation);
+
 		return view('tenant.lookup.designations.show', compact('designation'));
 	}
 

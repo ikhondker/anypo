@@ -23,32 +23,24 @@
 		@csrf
 		@method('PUT')
 
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Edit OEM</h5>
-							<h6 class="card-subtitle text-muted">Edit an OEM</h6>
-						</div>
-						<div class="card-body">
-							<div class="mb-3">
-								<label class="form-label">Oem Name</label>
-								<input type="text" class="form-control @error('name') is-invalid @enderror"
-									name="name" id="name" placeholder="Oem Name"
-									value="{{ old('name', $oem->name ) }}"
-									/>
-								@error('name')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<x-tenant.buttons.show.save/>
-
-						</div>
-					</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('oems.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
-				<!-- end col-6 -->
+				<h5 class="card-title">Edit OEM</h5>
+							<h6 class="card-subtitle text-muted">Edit an OEM</h6>
 			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<x-tenant.edit.name :value="$oem->name"/>
+						<x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
 
 
 	</form>

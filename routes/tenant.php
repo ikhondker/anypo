@@ -466,6 +466,7 @@ Route::middleware([
 		Route::resource('upload-items', UploadItemController::class);
 		Route::get('/upload-item/export',[UploadItemController::class, 'export'])->name('upload-items.export');
 		Route::get('/upload-item/check',[UploadItemController::class, 'check'])->name('upload-items.check');
+		Route::get('/upload-item/purge',[UploadItemController::class, 'purge'])->name('upload-items.purge');
 		Route::get('/upload-item/import',[UploadItemController::class, 'import'])->name('upload-items.import');
 
 	});

@@ -36,6 +36,7 @@ use App\Models\Tenant\Lookup\GlType;
 use App\Enum\InterfaceStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
+use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -196,7 +197,7 @@ class UploadItemController extends Controller
 
 		$uploadItem->update($request->all());
 
-		return redirect()->route('upload-items.index')->with('success', 'Interface items updated successfully');
+		return redirect()->route('upload-items.index')->with('success', 'Interface items updated successfully.');
 	}
 
 	/**
@@ -207,6 +208,14 @@ class UploadItemController extends Controller
 		//
 	}
 
+	public function purge()
+	{
+		$this->authorize('purge', UploadItem::class);
+		DB::table('upload_items')->delete();
+		EventLog::event('UploadItem', 0, 'delete', 'id', 0);
+		return redirect()->route('upload-items.index')->with('success', 'Interface items purged successfully.');
+
+	}
 	public function check()
 	{
 

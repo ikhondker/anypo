@@ -11,6 +11,12 @@
 			Upload Items
 		@endslot
 		@slot('buttons')
+		<a href="{{ route('upload-items.purge') }}" class="btn btn-primary float-end me-2 sw2-advance"
+			data-entity="" data-name="Purge" data-status="Run"
+			data-bs-toggle="tooltip" data-bs-placement="top" title="Validate">
+			<i class="fas fa-plus"></i> 5. Purge</a>
+
+
 			<a href="{{ route('upload-items.import') }}" class="btn btn-primary float-end me-2 sw2-advance"
 				data-entity="" data-name="Import Process" data-status="Run"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Validate">
@@ -64,7 +70,7 @@
 							<tr>
 								<td>{{ $upload_item->id }}</td>
 								<td>{{ $upload_item->item_code }}</td>
-								<td><a class="text-info" href="{{ route('upload-items.show',$upload_item->id) }}">{{ $upload_item->item_name }}</a></td>
+								<td><a href="{{ route('upload-items.show',$upload_item->id) }}"><strong>{{ $upload_item->item_name }}</a></strong></td>
 								<td>{{ $upload_item->category_name }}</td>
 								<td>{{ $upload_item->oem_name }}</td>
 								<td>{{ $upload_item->uom_name }}</td>

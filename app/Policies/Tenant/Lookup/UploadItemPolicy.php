@@ -78,6 +78,11 @@ class UploadItemPolicy
 		//
 	}
 
+	public function purge(User $user): bool
+	{
+		return ($user->isAdmin() || $user->isSupport());
+	}
+
 	/**
 	 * Determine whether the user can delete the model.
 	 */

@@ -20,34 +20,24 @@
 	<form action="{{ route('designations.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-		<div class="row">
-			<div class="col-12">
-				<div class="card">
-					<div class="card-header">
-						<h5 class="card-title">Create Designation</h5>
-						<h6 class="card-subtitle text-muted">Create a new designations</h6>
-					</div>
-					<div class="card-body">
-
-						<div class="mb-3">
-							<label class="form-label">Designation Name</label>
-							<input type="text" class="form-control @error('name') is-invalid @enderror"
-								name="name" id="name" placeholder="Designation Name"
-								value="{{ old('name', '' ) }}"
-								required/>
-							@error('name')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<x-tenant.buttons.show.save/>
-					</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('designations.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
+				<h5 class="card-title">Create Designation</h5>
+						<h6 class="card-subtitle text-muted">Create a new designations</h6>
 			</div>
-			
-			<!-- end col-6 -->
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<x-tenant.create.name/>
+						<x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<!-- end row -->
+
 
 	</form>
 	<!-- /.form end -->

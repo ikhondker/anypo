@@ -89,7 +89,9 @@ class OemController extends Controller
 	 */
 	public function show(Oem $oem)
 	{
-		abort(403);
+		$this->authorize('view', $oem);
+
+		return view('tenant.lookup.oems.show', compact('oem'));
 	}
 
 	/**

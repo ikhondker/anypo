@@ -44,14 +44,11 @@
 							@foreach ($designations as $designation)
 							<tr>
 								<td>{{ $designations->firstItem() + $loop->index }}</td>
-								<td>{{ $designation->name }}</td>
+								<td><a href="{{ route('designations.show',$designation->id) }}"><strong>{{ $designation->name }}</strong></a>
 								<td><x-tenant.list.my-boolean :value="$designation->enable"/></td>
-								<td class="table-action">
-									<x-tenant.list.actions object="Designation" :id="$designation->id" :show="false"/>
-									<a href="{{ route('designations.destroy',$designation->id) }}" class="me-2 sw2-advance"
-										data-entity="Designation" data-name="{{ $designation->name }}" data-status="{{ ($designation->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($designation->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-lucide="{{ ($designation->enable ? 'bell-off' : 'bell') }}"></i>
+								<td class="text-end">
+									<a href="{{ route('designations.show',$designation->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>
 								</td>
 							</tr>
