@@ -43,6 +43,7 @@ use App\Helpers\Export;
 # 10. Events
 # 11. Seeded
 use DB;
+use Str;
 # 12. FUTURE 
 
 

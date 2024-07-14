@@ -11,7 +11,7 @@
 			PO Terms and Conditions
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.setup-actions id="{{ $setup->id }}"/>
+			<x-tenant.actions.admin.setup-actions id="{{ $setup->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

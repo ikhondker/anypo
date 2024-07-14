@@ -14,7 +14,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Supplier"/>
-			<x-tenant.actions.supplier-actions id="{{ $supplier->id }}"/>
+			<x-tenant.actions.lookup.supplier-actions id="{{ $supplier->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -23,33 +23,32 @@
 		@csrf
 		@method('PUT')
 
-		<div class="row">
-			<div class="col-12">
-				<div class="card">
-					<div class="card-header">
-						<h5 class="card-title">Edit Supplier</h5>
-						<h6 class="card-subtitle text-muted">Edit Suppliers Information.</h6>
-					</div>
-					<div class="card-body">
-						
-						<x-tenant.edit.name :value="$supplier->name"/>
-						<x-tenant.edit.contact-person value="{{ $supplier->contact_person }}"/>
-						<x-tenant.edit.cell :value="$supplier->cell"/>
-						<x-tenant.edit.email :value="$supplier->email"/>
-						<x-tenant.edit.website :value="$supplier->website"/>
-						<x-tenant.edit.address1 :value="$supplier->address1"/>
-						<x-tenant.edit.address2 :value="$supplier->address2"/>
-								<div class="row">
-									<x-tenant.edit.city :value="$supplier->city"/>
-									<x-tenant.edit.state value="{{ $supplier->state }}"/>
-									<x-tenant.edit.zip :value="$supplier->zip"/>
-								</div>
-								<x-tenant.edit.country :value="$supplier->country"/>
-						<x-tenant.buttons.show.save/>
-					</div>
+
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('suppliers.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
+				<h5 class="card-title">Edit Supplier</h5>
+				<h6 class="card-subtitle text-muted">Edit Suppliers Information.</h6>
 			</div>
-			<!-- end col-6 -->
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+
+						<x-tenant.edit.name :value="$supplier->name"/>
+							<x-tenant.edit.contact-person value="{{ $supplier->contact_person }}"/>
+							<x-tenant.edit.cell :value="$supplier->cell"/>
+							<x-tenant.edit.email :value="$supplier->email"/>
+							<x-tenant.edit.website :value="$supplier->website"/>
+							<x-tenant.edit.address1 :value="$supplier->address1"/>
+							<x-tenant.edit.address2 :value="$supplier->address2"/>
+							<x-tenant.edit.city-state-zip city="{{ $supplier->city }}" state="{{ $supplier->state }}" zip="{{ $supplier->zip }}"/>
+							<x-tenant.edit.country :value="$supplier->country"/>
+							<x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
+			</div>
 		</div>
 
 

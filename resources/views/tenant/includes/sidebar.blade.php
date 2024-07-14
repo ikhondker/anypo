@@ -148,7 +148,7 @@
 				<li class="sidebar-item {{ ($_route_name == 'statuses.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('statuses.index') }}"><i class="align-middle" data-lucide="circle"></i>Status</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'entities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('entities.index') }}"><i class="align-middle" data-lucide="circle"></i>Entity</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'prls.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('prls.index') }}"><i class="align-middle" data-lucide="circle"></i>Prl*</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'aehs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('aehs.index') }}"><i class="align-middle" data-lucide="circle"></i>Aeh*</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'aels.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('aels.index') }}"><i class="align-middle" data-lucide="circle"></i>Ael*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'custom-errors.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('custom-errors.index') }}"><i class="align-middle" data-lucide="circle"></i>Custom Errors</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'groups.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('groups.index') }}"><i class="align-middle" data-lucide="circle"></i>Item Groups</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-lucide="circle"></i>Country</a></li>

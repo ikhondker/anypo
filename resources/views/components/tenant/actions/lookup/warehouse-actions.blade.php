@@ -4,8 +4,16 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
+
+		@if (Route::current()->getName() == 'warehouses.edit')
 		<a class="dropdown-item" href="{{ route('warehouses.show', $warehouse->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Warehouse</a>
+		@endif
+		@if (Route::current()->getName() == 'warehouses.show')
 		<a class="dropdown-item" href="{{ route('warehouses.edit', $warehouse->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Warehouse</a>
+		@endif
+
+		<a class="dropdown-item" href="{{ route('warehouses.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+
 
 		@can('create', App\Models\Tenant\Lookup\Warehouse::class)
 			<div class="dropdown-divider"></div>

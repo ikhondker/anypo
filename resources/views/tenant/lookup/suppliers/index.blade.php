@@ -135,7 +135,7 @@
 							@foreach ($suppliers as $supplier)
 							<tr>
 								<td>{{ $suppliers->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('suppliers.show',$supplier->id) }}">{{ $supplier->name }}</a></td>
+								<td><a href="{{ route('suppliers.show',$supplier->id) }}"><strong>{{ $supplier->name }}</strong></a></td>
 								<td>{{ $supplier->contact_person }}</td>
 								<td>{{ $supplier->cell }}</td>
 								<td><x-tenant.list.my-boolean :value="$supplier->enable"/></td>
@@ -143,8 +143,6 @@
 									<a href="{{ route('suppliers.show',$supplier->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>
-
-
 								</td>
 							</tr>
 							@endforeach

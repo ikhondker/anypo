@@ -4,10 +4,16 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
+
+		@if (Route::current()->getName() == 'items.edit')
 		<a class="dropdown-item" href="{{ route('items.show', $item->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Item</a>
-		@can('update', $item)
-			<a class="dropdown-item" href="{{ route('items.edit', $item->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Item</a>
-		@endcan
+		@endif
+		@if (Route::current()->getName() == 'items.show')
+			@can('update', $item)
+				<a class="dropdown-item" href="{{ route('items.edit', $item->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Item</a>
+			@endcan
+		@endif
+
 		<a class="dropdown-item" href="{{ route('items.index') }}"><i class="align-middle me-1" data-lucide="list"></i> Item Lists</a>
 
 		@can('create', App\Models\Tenant\Lookup\Item::class)

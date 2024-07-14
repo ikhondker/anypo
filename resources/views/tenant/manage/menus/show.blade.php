@@ -12,33 +12,35 @@
 			View Menu
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Menu"/>
+			<x-tenant.actions.manage.menu-actions id="{{ $menu->id }}"/>
 			<x-tenant.buttons.header.create object="Menu"/>
-			<x-tenant.buttons.header.edit object="Menu" :id="$menu->id"/>
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-6">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Menu Detail</h5>
+
+	<div class="card">
+		<div class="card-header">
+			<div class="card-actions float-end">
+				<a href="{{ route('menus.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+			</div>
+			<h5 class="card-title">Menu Detail</h5>
 					<h6 class="card-subtitle text-muted">Show Menu Details.</h6>
-				</div>
-				<div class="card-body">
-					<x-tenant.show.my-text		value="{{ $menu->name }}"/>
+		</div>
+		<div class="card-body">
+			<table class="table table-sm my-2">
+				<tbody>
 					<x-tenant.show.my-badge		value="{{ $menu->id }}" label="ID"/>
+					<x-tenant.show.my-text		value="{{ $menu->raw_route_name }}" label="Raw Route Name"/>
+					<x-tenant.show.my-text		value="{{ $menu->route_name }}" label="Route Name"/>
+					<x-tenant.show.my-text		value="{{ $menu->node_name }}" label="Node Name"/>
 					<x-tenant.show.my-boolean	value="{{ $menu->enable }}"/>
 					<x-tenant.show.my-created-at value="{{ $menu->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $menu->created_at }}"/>
-
-								
-				</div>
-			</div>
+				</tbody>
+			</table>
 		</div>
-		
 	</div>
-	<!-- end row -->
+
 
 @endsection
 

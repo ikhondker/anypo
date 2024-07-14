@@ -28,8 +28,8 @@
 				<div class="card-actions float-end">
 					<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
-				<h5 class="card-title">Dept Info</h5>
-				<h6 class="card-subtitle text-muted">Edit department and Requisition and Purchase Order Approval Hierarchy</h6>
+				<h5 class="card-title">Edit Dept</h5>
+				<h6 class="card-subtitle text-muted">Edit department and Requisition and Purchase Order Approval Hierarchy.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">

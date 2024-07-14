@@ -30,13 +30,11 @@
 			<table class="table table-sm my-2">
 				<tbody>
 					<x-tenant.show.my-text		value="{{ $dept->name }}"/>
-						<x-tenant.show.my-text		value="{{ $dept->prHierarchy->name }}" label="PR Hierarchy"/>
-						<x-tenant.show.my-text		value="{{ $dept->poHierarchy->name }}" label="PO Hierarchy"/>
-						<x-tenant.show.my-boolean	value="{{ $dept->enable }}"/>
-						<x-tenant.show.my-created-at value="{{ $dept->updated_at }}"/>
-						<x-tenant.show.my-updated-at value="{{ $dept->created_at }}"/>
-
-
+					<x-tenant.show.my-text		value="{{ $dept->prHierarchy->name }}" label="PR Hierarchy"/>
+					<x-tenant.show.my-text		value="{{ $dept->poHierarchy->name }}" label="PO Hierarchy"/>
+					<x-tenant.show.my-boolean	value="{{ $dept->enable }}"/>
+					<x-tenant.show.my-created-at value="{{ $dept->updated_at }}"/>
+					<x-tenant.show.my-updated-at value="{{ $dept->created_at }}"/>
 				</tbody>
 			</table>
 		</div>

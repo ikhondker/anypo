@@ -46,7 +46,7 @@
 			<tbody>
 				@foreach ($activities as $activity)
 				<tr>
-					<td>{{ $activity->id }}</td>
+					<td><a href="{{ route('activities.show',$activity->id) }}"><strong>{{ $activity->id }}</strong></a></td>
 					<td><x-tenant.list.my-date-time :value="$activity->created_at" /></td>
 					<td>{{ $activity->object_name }}</td>
 					<td>{{ $activity->object_id }}

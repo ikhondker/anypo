@@ -46,7 +46,7 @@
 						<tbody>
 							@foreach ($wfs as $wf)
 							<tr>
-								<td>{{ $wf->id }}</td>
+								<td><a href="{{ route('wfs.show',$wf->id) }}"><strong>{{ $wf->id }}</strong></a></td>
 								<td>{{ $wf->entity }}</td>
 								<td><x-tenant.list.article-link entity="{{ $wf->entity }}" :id="$wf->article_id"/></td>
 								<td>{{ $wf->relHierarchy->name }}</td>

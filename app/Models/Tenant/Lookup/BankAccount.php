@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Builder;
 
-use App\Models\Tenant\Payments;
+use App\Models\Tenant\Payment;
 
 class BankAccount extends Model
 {
@@ -33,8 +33,14 @@ class BankAccount extends Model
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */
 	public function payments() {
-		return $this->hasMany(Payments::class);
+		return $this->hasMany(Payment::class);
 	}
+
+	/* ---------------- belongsTo ---------------------- */
+	public function relCountry(){
+		return $this->belongsTo(Country::class,'country');
+	}
+	
 	/* ---------------- belongsTo ---------------------- */
 	
 

@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-use App\Helpers\ExchangeRate;
+use App\Helpers\Tenant\ExchangeRate;
 
 class ImportAllRate implements ShouldQueue, ShouldBeUnique
 {

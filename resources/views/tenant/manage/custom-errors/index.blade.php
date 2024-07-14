@@ -50,15 +50,9 @@
 								<td>{{ $customError->entity }}</td>
 								<td>{{ $customError->message }}</td>
 								<td><x-tenant.list.my-boolean :value="$customError->enable"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('custom-errors.show',$customError->code) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
-									</a>
-									<x-tenant.list.actions object="CustomError" :id="$customError->code"/>
-									<a href="{{ route('custom-errors.destroy', $customError->code) }}" class="me-2 sw2-advance"
-										data-entity="CustomError" data-name="{{ $customError->code }}" data-status="{{ ($customError->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($customError->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-lucide="{{ ($customError->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

@@ -81,7 +81,6 @@ class CustomErrorController extends Controller
 	public function show(CustomError $customError)
 	{
 		$this->authorize('view', $customError);
-
 		return view('tenant.manage.custom-errors.show', compact('customError'));
 	}
 

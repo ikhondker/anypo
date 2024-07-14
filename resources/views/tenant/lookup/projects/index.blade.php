@@ -51,16 +51,16 @@
 							@foreach ($projects as $project)
 							<tr>
 								<td>{{ $projects->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('projects.show',$project->id) }}">{{ $project->code }}</a></td>
-								<td>{{ $project->name }}</td>
+								
+								<td>{{ $project->code }}</td>
+								<td><a href="{{ route('projects.show',$project->id) }}"><strong>{{ $project->name }}</strong></a></td>
 								<td>{{ $project->pm->name }}</td>
 								<td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
-								<td class="table-action">
+								<td class="text-end">
 									<a href="{{ route('projects.show',$project->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>
-
 								</td>
 							</tr>
 							@endforeach

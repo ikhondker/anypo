@@ -17,62 +17,42 @@
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form action="{{ route('statues.store') }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('statuses.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-		<div class="row">
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header">
-					<h5 class="card-title">Status Info</h5>
-					</div>
-					<div class="card-body">
 
-
-						<div class="mb-3">
-							<label class="form-label">Raw Route Name</label>
-							<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror"
-								name="raw_route_name" id="raw_route_name" placeholder="Raw Route Name"
-								value="{{ old('raw_route_name', '' ) }}"
-								required/>
-							@error('raw_route_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<div class="mb-3">
-							<label class="form-label">Route Name</label>
-							<input type="text" class="form-control @error('route_name') is-invalid @enderror"
-								name="route_name" id="route_name" placeholder="Route Name"
-								value="{{ old('route_name', '' ) }}"
-								required/>
-							@error('route_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<div class="mb-3">
-							<label class="form-label">Node Name</label>
-							<input type="text" class="form-control @error('node_name') is-invalid @enderror"
-								name="node_name" id="node_name" placeholder="Node Name"
-								value="{{ old('node_name', '' ) }}"
-								/>
-							@error('node_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<x-tenant.buttons.show.save/>
-					</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
+				<h5 class="card-title">Create Status</h5>
+				<h6 class="card-subtitle text-muted">Create new Status.</h6>
 			</div>
-			<!-- end col-6 -->
-			<div class="col-6">
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<x-tenant.create.name/>
+						<x-tenant.create.code/>
+						<tr>
+							<th>Badge</th>
+							<td>
+								<input type="text" class="form-control @error('badge') is-invalid @enderror"
+								name="badge" id="badge" placeholder="badge"
+								value="{{ old('badge', '' ) }}"
+								required/>
+							@error('badge')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+							</td>
+						</tr>
+						
+						<x-tenant.buttons.show.save/>
 
+					</tbody>
+				</table>
 			</div>
-			<!-- end col-6 -->
 		</div>
-		<!-- end row -->
 
 	</form>
 	<!-- /.form end -->

@@ -44,11 +44,11 @@
 					@foreach ($warehouses as $warehouse)
 					<tr>
 						<td>{{ $warehouses->firstItem() + $loop->index }}</td>
-						<td><a class="text-info" href="{{ route('warehouses.show',$warehouse->id) }}">{{ $warehouse->name }}</a></td>
+						<td><a href="{{ route('warehouses.show',$warehouse->id) }}"><strong>{{ $warehouse->name }}</strong></a></td>
 						<td>{{ $warehouse->contact_person }}</td>
 						<td>{{ $warehouse->cell }}</td>
 						<td><x-tenant.list.my-boolean :value="$warehouse->enable"/></td>
-						<td class="table-action">
+						<td>
 							<a href="{{ route('warehouses.show',$warehouse->id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 							</a>

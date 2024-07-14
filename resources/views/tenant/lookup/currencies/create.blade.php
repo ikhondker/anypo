@@ -21,18 +21,21 @@
 	<form id="myform" action="{{ route('currencies.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-		<div class="row">
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header">
-						<h5 class="card-title">Currency Info</h5>
-					</div>
-					<div class="card-body">
-
-
-						<div class="mb-3">
-							<label class="form-label">Currency Code</label>
-							<input type="text" class="form-control @error('currency') is-invalid @enderror"
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('currencies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				</div>
+				<h5 class="card-title">Create Currency</h5>
+				<h6 class="card-subtitle text-muted">Create new currency.</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th>Currency Code</th>
+							<td>
+								<input type="text" class="form-control @error('currency') is-invalid @enderror"
 								name="currency" id="currency" placeholder="XXX"
 								style="text-transform: uppercase"
 								value="{{ old('currency', '' ) }}"
@@ -40,31 +43,20 @@
 							@error('currency')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
-						</div>
+							</td>
+						</tr>
+						
 
-						<div class="mb-3">
-							<label class="form-label">Currency Name</label>
-							<input type="text" class="form-control @error('name') is-invalid @enderror"
-								name="name" id="name" placeholder="Currency Name"
-								value="{{ old('name', '' ) }}"
-								required/>
-							@error('name')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-
+						<x-tenant.create.name/>
+						
 						<x-tenant.buttons.show.save/>
 
-					</div>
-				</div>
+					</tbody>
+				</table>
 			</div>
-			<!-- end col-6 -->
-			<div class="col-6">
-
-			</div>
-			<!-- end col-6 -->
 		</div>
-		<!-- end row -->
+
+
 
 	</form>
 	<!-- /.form end -->

@@ -57,8 +57,7 @@
 							@foreach ($depts as $dept)
 							<tr>
 								<td>{{ $depts->firstItem() + $loop->index }}</td>
-								<td><a href="{{ route('depts.show',$dept->id) }}"><strong>{{ $dept->name }}</strong></a>
-								</td>
+								<td><a href="{{ route('depts.show',$dept->id) }}"><strong>{{ $dept->name }}</strong></a></td>
 								<td><a href="{{ route('hierarchies.show',$dept->pr_hierarchy_id) }}"><strong>{{ $dept->prHierarchy->name }}</strong></a></td>
 								<td><a href="{{ route('hierarchies.show',$dept->po_hierarchy_id) }}"><strong>{{ $dept->poHierarchy->name }}</strong></a></td>
 								<td><x-tenant.list.my-boolean :value="$dept->enable"/></td>

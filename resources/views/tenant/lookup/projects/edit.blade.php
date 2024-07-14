@@ -25,43 +25,60 @@
 		@csrf
 		@method('PUT')
 
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Edit Project Info</h5>
-							<h6 class="card-subtitle text-muted">Edit Project detail and other information.</h6>
-						</div>
-						<div class="card-body">
-
-							<div class="mb-3 col-md-6">
-								<label for="code" class="form-label">Code</label>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				</div>
+				<h5 class="card-title">Edit Project Info</h5>
+				<h6 class="card-subtitle text-muted">Edit Project detail and other information.</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th>Code</th>
+							<td>
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
-									name="code" id="code" placeholder="XXXX" maxlength="25"
-									style="text-transform: uppercase"
-									value="{{ old('code', $project->code ) }}"
-									required/>
-								@error('code')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<x-tenant.edit.name :value="$project->name"/>
-							<x-tenant.edit.start-date :value="date('Y-m-d',strtotime($project->start_date))"/>
-							<x-tenant.edit.end-date :value="date('Y-m-d',strtotime($project->end_date))"/>
-							<div class="mb-3">
-								<label class="form-label">Project Manager</label>
+								name="code" id="code" placeholder="XXXX" maxlength="25"
+								style="text-transform: uppercase"
+								value="{{ old('code', $project->code ) }}"
+								required/>
+							@error('code')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+							</td>
+						</tr>
+						<x-tenant.edit.name :value="$project->name"/>
+						<x-tenant.edit.start-date :value="date('Y-m-d',strtotime($project->start_date))"/>
+						<x-tenant.edit.end-date :value="date('Y-m-d',strtotime($project->end_date))"/>
+						<tr>
+							<th>Project Manager</th>
+							<td>
 								<select class="form-control" name="pm_id">
 									@foreach ($pms as $user)
 										<option {{ $user->id == old('pm_id',$project->pm_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
 									@endforeach
 								</select>
-							</div>
+							</td>
+						</tr>
+						<x-tenant.edit.amount :value="$project->amount"/>
+						<x-tenant.edit.notes :value="$project->notes"/>
+						<x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-							<x-tenant.edit.amount :value="$project->amount"/>
-							<x-tenant.edit.notes :value="$project->notes"/>
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+						
+						</div>
+						<div class="card-body">
 
-							<x-tenant.buttons.show.save/>
+							
 
 						</div>
 					</div>

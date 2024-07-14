@@ -44,18 +44,13 @@
 					@foreach ($menus as $menu)
 					<tr>
 						<td>{{ $menu->id }}</td>
-						<td>{{ $menu->raw_route_name }}</td>
+						<td><a href="{{ route('menus.show',$menu->id) }}"><strong>{{ $menu->raw_route_name }}</strong></a></td>
 						<td>{{ $menu->route_name }}</td>
 						<td>{{ $menu->node_name }}</td>
 						<td><x-tenant.list.my-boolean :value="$menu->enable"/></td>
 						<td class="text-end">
-							{{-- <a href="{{ route('menus.show',$menu->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-								data-bs-placement="top" title="View">View</a> --}}
-							<x-tenant.list.actions object="menu" :id="$menu->id" :enable="false" :show="false"/>
-							<a href="{{ route('menus.destroy',$menu->id) }}" class="me-2 sw2-advance"
-								data-entity="Menu" data-name="{{ $menu->name }}" data-status="{{ ($menu->enable ? 'Disable' : 'Enable') }}"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($menu->enable ? 'Disable' : 'Enable') }}">
-								<i class="align-middle {{ ($menu->enable ? 'text-muted' : 'text-success') }}" data-lucide="{{ ($menu->enable ? 'bell-off' : 'bell') }}"></i>
+							<a href="{{ route('menus.show',$menu->id) }}" class="btn btn-light"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 							</a>
 						</td>
 					</tr>

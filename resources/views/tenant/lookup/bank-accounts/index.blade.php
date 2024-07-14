@@ -47,17 +47,16 @@
 							@foreach ($bankAccounts as $bankAccount)
 							<tr>
 								<td>{{ $bankAccounts->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('bank-accounts.show',$bankAccount->id) }}">{{ $bankAccount->ac_name }}</a></td>
+								<td><a href="{{ route('bank-accounts.show',$bankAccount->id) }}"><strong>{{ $bankAccount->ac_name }}</strong></a></td>
 								<td>{{ $bankAccount->ac_number }}</td>
 								<td>{{ $bankAccount->routing_number }}</td>
 								<td>{{ $bankAccount->bank_name }}</td>
 								<td>{{ $bankAccount->currency }}</td>
 								<td><x-tenant.list.my-boolean :value="$bankAccount->enable"/></td>
-								<td class="text-middle">
+								<td>
 									<a href="{{ route('bank-accounts.show',$bankAccount->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>
-
 								</td>
 							</tr>
 							@endforeach

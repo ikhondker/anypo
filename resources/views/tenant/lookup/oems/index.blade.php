@@ -47,7 +47,7 @@
 							@foreach ($oems as $oem)
 							<tr>
 								<td>{{ $oems->firstItem() + $loop->index }}</td>
-								<td>{{ $oem->name }}</td>
+								<td><a href="{{ route('oems.show',$oem->id) }}"><strong>{{ $oem->name }}</strong></a></td>
 								<td><x-tenant.list.my-boolean :value="$oem->enable"/></td>
 									<td class="text-end">
 										<a href="{{ route('oems.show',$oem->id) }}" class="btn btn-light"

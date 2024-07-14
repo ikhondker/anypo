@@ -20,7 +20,7 @@
 			Accounting Entries
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.aeh-actions/>
+			<x-tenant.actions.ae.aeh-actions/>
 		@endslot
 	</x-tenant.page-header>
 

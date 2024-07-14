@@ -4,16 +4,22 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
+		@if (Route::current()->getName() == 'suppliers.edit')
 		<a class="dropdown-item" href="{{ route('suppliers.show', $supplier->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Supplier</a>
-		@can('update', $supplier)
-			<a class="dropdown-item" href="{{ route('suppliers.edit', $supplier->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Supplier</a>
-		@endcan
+		@endif
+		@if (Route::current()->getName() == 'suppliers.show')
+			@can('update', $supplier)
+				<a class="dropdown-item" href="{{ route('suppliers.edit', $supplier->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Supplier</a>
+			@endcan
+		@endif
+
 		<a class="dropdown-item" href="{{ route('suppliers.index') }}"><i class="align-middle me-1" data-lucide="list"></i> Supplier List</a>
 		
 		@can('create', App\Models\Tenant\Lookup\Supplier::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Supplier</a>
 		@endcan
+		
 		@can('spends', App\Models\Tenant\Lookup\Supplier::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('suppliers.spends', $supplier->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> Supplier Spends</a>

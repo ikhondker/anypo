@@ -91,7 +91,9 @@ class CurrencyController extends Controller
 	 */
 	public function show(Currency $currency)
 	{
-		abort(403);
+		$this->authorize('view', $currency);
+
+		return view('tenant.lookup.currencies.show', compact('currency'));
 	}
 
 	/**

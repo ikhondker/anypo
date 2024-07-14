@@ -45,17 +45,13 @@
 					<tr>
 						<td>{{ $statuses->firstItem() + $loop->index}}</td>
 						<td>{{ $status->code }}</td>
-						<td>{{ $status->name }}</td>
+						<td><a href="{{ route('statuses.show',$status->code) }}"><strong>{{ $status->name }}</strong></a></td>
 						<td><span class="badge {{ $status->badge }}">{{ $status->badge }}</span></td>
-
 						<td><x-tenant.list.my-boolean :value="$status->enable"/></td>
-						<td class="table-action">
-							<x-tenant.list.actions object="status" :id="$status->code" :enable="false" :show="false"/>
-								<a href="{{ route('statuses.destroy',$status->code) }}" class="me-2 sw2-advance"
-									data-entity="Status" data-name="{{ $status->name }}" data-status="{{ ($status->enable ? 'Disable' : 'Enable') }}"
-									data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($status->enable ? 'Disable' : 'Enable') }}">
-									<i class="align-middle {{ ($status->enable ? 'text-muted' : 'text-success') }}" data-lucide="{{ ($status->enable ? 'bell-off' : 'bell') }}"></i>
-								</a>
+						<td class="text-end">
+							<a href="{{ route('statuses.show',$status->code) }}" class="btn btn-light"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+							</a>
 						</td>
 					</tr>
 					@endforeach

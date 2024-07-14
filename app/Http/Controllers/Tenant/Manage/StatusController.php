@@ -101,7 +101,9 @@ class StatusController extends Controller
 	 */
 	public function show(Status $status)
 	{
-		abort(403);
+		$this->authorize('view', $status);
+
+		return view('tenant.manage.statuses.show', compact('status'));
 	}
 
 	/**

@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
-@section('title','Accounting')
+@section('title','Accounting Lines')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Accounting Entries</li>
+	<li class="breadcrumb-item active">Accounting Lines</li>
 @endsection
 
 @section('content')
@@ -17,10 +17,10 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Accounting Entries
+			Accounting Lines
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.ael-actions/>
+			<x-tenant.actions.ae.ael-actions/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -95,8 +95,10 @@
 								<td>{{ $ael->fc_currency }}</td>
 								<td><x-tenant.common.link-po id="{{ $ael->po_id }}"/></td>
 								<td>{{ $ael->reference }}</td>
-								<td class="table-action">
-									<x-tenant.list.actions object="Ael" :id="$ael->id" :edit="false"/>
+								<td class="text-end">
+									<a href="{{ route('aels.show',$ael->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
 								</td>
 							</tr>
 							@endforeach

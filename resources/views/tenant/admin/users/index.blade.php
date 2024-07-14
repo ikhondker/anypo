@@ -12,7 +12,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="User"/>
-			<x-tenant.actions.user-actions-index/>
+			<x-tenant.actions.admin.user-actions-index/>
 		@endslot
 	</x-tenant.page-header>
 

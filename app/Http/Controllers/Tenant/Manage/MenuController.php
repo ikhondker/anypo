@@ -91,7 +91,9 @@ class MenuController extends Controller
 	 */
 	public function show(Menu $menu)
 	{
-		//
+		$this->authorize('view', $menu);
+
+		return view('tenant.manage.menus.show', compact('menu'));
 	}
 
 	/**
