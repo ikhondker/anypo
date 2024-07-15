@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Action\Ae;
+namespace App\View\Components\Tenant\Actions\Ae;
 
 use Closure;
 use Illuminate\Contracts\View\View;
