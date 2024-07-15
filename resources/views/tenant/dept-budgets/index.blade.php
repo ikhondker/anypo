@@ -79,15 +79,9 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_payment"/></td>
 								<td><x-tenant.list.my-closed :value="$dept_budget->closed"/></td>
-								<td class="table-action">
+								<td class="text-end">
 									<a href="{{ route('dept-budgets.show',$dept_budget->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
-									</a>
-
-									<a href="{{ route('dept-budgets.destroy',$dept_budget->id) }}" class="me-2 sw2-advance"
-										data-entity="DeptBudget" data-name="{{ $dept_budget->budget->name }}" data-status="{{ ($dept_budget->closed ? 'Open' : 'Close') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($dept_budget->closed ? 'Open' : 'Close') }}">
-										<i class="align-middle text-muted" data-lucide="{{ ($dept_budget->closed ? 'bell-off' : 'bell') }}"></i>
 									</a>
 								</td>
 							</tr>

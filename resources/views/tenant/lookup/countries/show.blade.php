@@ -1,9 +1,9 @@
 @extends('layouts.tenant.app')
-@section('title','View Dept')
+@section('title','View Country')
 
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('depts.index') }}">Departments</a></li>
-	<li class="breadcrumb-item active">{{ $dept->name }}</li>
+	<li class="breadcrumb-item active">{{ $country->name }}</li>
 @endsection
 
 
@@ -11,36 +11,31 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			View Dept
+			View Country
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Dept"/>
-			<x-tenant.actions.dept-actions id="{{ $dept->id }}"/>
+			<x-tenant.actions.lookup.country-actions code="{{ $country->country }}"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
-				@if (auth()->user()->isSystem())
-					<a class="btn btn-sm btn-danger text-white" href="{{ route('depts.edit', $dept->id) }}"><i class="fas fa-edit"></i> Edit</a>
-				 @endif
+				<a href="{{ route('countries.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 			</div>
-			<h5 class="card-title">Department Detail</h5>
-			<h6 class="card-subtitle text-muted">Department details with Requisition and Purchase Order Approval Hierarchy.</h6>
+			<h5 class="card-title">Country Detail</h5>
+			<h6 class="card-subtitle text-muted">Country details.</h6>
 		</div>
 		<div class="card-body">
 			<table class="table table-sm my-2">
 				<tbody>
-					<x-tenant.show.my-text		value="{{ $dept->name }}"/>
-						<x-tenant.show.my-text		value="{{ $dept->prHierarchy->name }}" label="PR Hierarchy"/>
-						<x-tenant.show.my-text		value="{{ $dept->poHierarchy->name }}" label="PO Hierarchy"/>
-						<x-tenant.show.my-boolean	value="{{ $dept->enable }}"/>
-						<x-tenant.show.my-created-at value="{{ $dept->updated_at }}"/>
-						<x-tenant.show.my-updated-at value="{{ $dept->created_at }}"/>
-
-
+					<x-tenant.show.my-code		value="{{ $country->country }}"/>
+					<x-tenant.show.my-text		value="{{ $country->name }}"/>
+					<x-tenant.show.my-boolean	value="{{ $country->enable }}"/>
+					<x-tenant.show.my-boolean	value="{{ $country->enable }}" label="Rate Available?"/>
+					<x-tenant.show.my-created-at value="{{ $country->updated_at }}"/>
+					<x-tenant.show.my-updated-at value="{{ $country->created_at }}"/>
 				</tbody>
 			</table>
 		</div>

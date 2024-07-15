@@ -46,7 +46,8 @@
 							@foreach ($customErrors as $customError)
 							<tr>
 								<td>{{ $customErrors->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('custom-errors.show',$customError->code) }}">{{ $customError->code }}</a></td>
+								<td><a href="{{ route('custom-errors.show',$customError->code) }}"><strong>{{ $customError->code }}</strong></a></td>
+
 								<td>{{ $customError->entity }}</td>
 								<td>{{ $customError->message }}</td>
 								<td><x-tenant.list.my-boolean :value="$customError->enable"/></td>

@@ -15,5 +15,17 @@
 		{{-- <div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('prs.export') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> Download Requisitions</a>
 		<a class="dropdown-item" href="{{ route('prls.export') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> Download Requisition Lines</a> --}}
+
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('dept-budgets.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+
+		@can('create', App\Models\Tenant\DeptBudget::class)
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{{ route('dept-budgets.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Dept Budget</a>
+		@endcan
+
+
 	</div>
+
+
 </div>

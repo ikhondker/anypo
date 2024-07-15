@@ -76,8 +76,10 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_payment"/></td>
-								<td class="table-action">
-									<x-tenant.list.actions object="Dbu" :id="$dbu->id" :edit="false"/>
+								<td class="text-end">
+									<a href="{{ route('dbus.show',$dbu->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
 								</td>
 							</tr>
 							@endforeach

@@ -49,11 +49,11 @@
 								<td>{{ $oems->firstItem() + $loop->index }}</td>
 								<td><a href="{{ route('oems.show',$oem->id) }}"><strong>{{ $oem->name }}</strong></a></td>
 								<td><x-tenant.list.my-boolean :value="$oem->enable"/></td>
-									<td class="text-end">
-										<a href="{{ route('oems.show',$oem->id) }}" class="btn btn-light"
-											data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
-										</a>
-									</td>
+								<td class="text-end">
+									<a href="{{ route('oems.show',$oem->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>

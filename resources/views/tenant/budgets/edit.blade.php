@@ -25,38 +25,52 @@
 		@csrf
 		@method('PUT')
 
-
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Edit Budget Detail</h5>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('budgets.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				</div>
+				<h5 class="card-title">Edit Budget Detail</h5>
 							<h6 class="card-subtitle text-muted">Note: To edit budget amount, edit the Department budget. It will be automatically reflected in company budget.</h6>
-						</div>
-						<div class="card-body">
-
-							<div class="mb-3">
-								<label class="form-label">FY</label> <x-tenant.info info="Note: You wont be able to change the Fiscal Year (FY)."/>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th>FY <x-tenant.info info="Note: You wont be able to change the Fiscal Year (FY)."/></th>
+							<td>
 								<input type="text" name="fy" id="fy" class="form-control" placeholder="ID" value="{{ $budget->fy }}" readonly>
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Budget Name</label>
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<th>Budget Name</th>
+							<td>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"
-									name="name" id="name" placeholder="Budget Name"
-									value="{{ old('name', $budget->name ) }}"
-									/>
-								@error('name')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
+								name="name" id="name" placeholder="Budget Name"
+								value="{{ old('name', $budget->name ) }}"
+								/>
+							@error('name')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+							</td>
+						</tr>
+						
+						
 
-							<x-tenant.edit.notes value="{{ $budget->notes }}"/>
+						<x-tenant.edit.notes value="{{ $budget->notes }}"/>
 
-							<x-tenant.attachment.create/>
+						<x-tenant.attachment.create/>
 
-							<x-tenant.buttons.show.save/>
+						<x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-						</div>
-					</div>
 
+					
 
 					<div class="card">
 						<div class="card-header">

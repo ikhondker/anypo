@@ -22,6 +22,9 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 |  7.
 */
 
+
+use App\Http\Controllers\Share\TemplateController;
+
 use App\Http\Controllers\Tenant\Test\TestController;
 //use App\Http\Controllers\ImpersonateController;
 
@@ -51,7 +54,7 @@ use App\Http\Controllers\Tenant\Lookup\ProjectController;
 use App\Http\Controllers\Tenant\Manage\EntityController;
 use App\Http\Controllers\Tenant\Manage\MenuController;
 use App\Http\Controllers\Tenant\Manage\TableController;
-use App\Http\Controllers\Tenant\Manage\TemplateController;
+
 use App\Http\Controllers\Tenant\Manage\StatusController;
 use App\Http\Controllers\Tenant\Manage\CustomErrorController;
 

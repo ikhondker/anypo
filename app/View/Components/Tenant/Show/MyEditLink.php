@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use str;
+use Str;
 
 class MyEditLink extends Component
 {

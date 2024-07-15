@@ -92,7 +92,9 @@ class GroupController extends Controller
 	 */
 	public function show(Group $group)
 	{
-		abort(403);
+		$this->authorize('view', $group);
+
+		return view('tenant.lookup.groups.show', compact('group'));
 	}
 
 	/**

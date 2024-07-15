@@ -57,18 +57,8 @@
 				<x-landlord.edit.address1 value="{{ $template->address1 }}"/>
 				<x-landlord.edit.address2 value="{{ $template->address2 }}"/>
 
-				<!-- Form -->
-				<div class="row mb-4">
-					<label class="col-sm-3 col-form-label form-label"></label>
-					<div class="col-sm-9">
-						<div class="row">
-							<x-tenant.edit.city value="{{ $template->city }}"/>
-							<x-tenant.edit.state value="{{ $template->state }}"/>
-							<x-tenant.edit.zip value="{{ $template->zip }}"/>
-						</div>
-					</div>
-				</div>
-				<!-- End Form -->
+				<x-tenant.edit.city-state-zip city="{{ $template->city }}" state="{{ $template->state }}" zip="{{ $template->zip }}"/>
+
 				<x-landlord.edit.country :value="$template->country"/>
 
 					{{-- Old FORMAT bellow --------}}

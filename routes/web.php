@@ -361,13 +361,16 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 * 10. Route only system can access ['auth', 'verified','can:system']
 * ==================================================================================
 */
+
+use App\Http\Controllers\Share\TemplateController;
+
 use App\Http\Controllers\Landlord\NotificationController;
 
 use App\Http\Controllers\Landlord\Manage\EntityController;
 use App\Http\Controllers\Landlord\Manage\MenuController;
 use App\Http\Controllers\Landlord\Manage\ConfigController;
 use App\Http\Controllers\Landlord\Manage\TableController;
-use App\Http\Controllers\Landlord\Manage\TemplateController;
+
 use App\Http\Controllers\Landlord\Manage\StatusController;
 use App\Http\Controllers\Landlord\Manage\ProcessController;
 use App\Http\Controllers\Landlord\Manage\ErrorLogController;

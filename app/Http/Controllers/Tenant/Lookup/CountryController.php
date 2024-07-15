@@ -92,7 +92,9 @@ class CountryController extends Controller
 	 */
 	public function show(Country $country)
 	{
-		abort(403);
+		$this->authorize('view', $country);
+
+		return view('tenant.lookup.countries.show', compact('country'));
 	}
 
 	/**

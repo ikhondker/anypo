@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 use App\Traits\AddCreatedUpdatedBy;
 
-
 class Ael extends Model
 {
 	use HasFactory;

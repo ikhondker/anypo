@@ -30,6 +30,7 @@
 		<div class="card-body">
 			<table class="table table-sm my-2">
 				<tbody>
+					<x-tenant.show.my-code		value="{{ $currency->currency }}"/>
 					<x-tenant.show.my-text		value="{{ $currency->name }}"/>
 					<x-tenant.show.my-boolean	value="{{ $currency->enable }}"/>
 					<x-tenant.show.my-boolean	value="{{ $currency->enable }}" label="Rate Available?"/>

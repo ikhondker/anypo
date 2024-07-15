@@ -36,16 +36,13 @@
 							@foreach ($groups as $group)
 							<tr>
 								<td>{{ $groups->firstItem() + $loop->index }}</td>
-								<td>{{ $group->name }}</td>
+								<td><a href="{{ route('groups.show',$group->id) }}"><strong>{{ $group->name }}</strong></a></td>
 								<td><x-tenant.list.my-boolean :value="$group->enable"/></td>
-								<td class="table-action">
-									<x-tenant.list.actions object="Group" :id="$group->id" :show="false"/>
-									<a href="{{ route('groups.destroy',$group->id) }}" class="me-2 sw2-advance"
-										data-entity="Group" data-name="{{ $group->name }}" data-status="{{ ($group->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($group->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle {{ ($group->enable ? 'text-muted' : 'text-success') }}" data-lucide="{{ ($group->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
-								</td>
+									<td class="text-end">
+										<a href="{{ route('groups.show',$group->id) }}" class="btn btn-light"
+											data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+										</a>
+									</td>
 							</tr>
 							@endforeach
 						</tbody>

@@ -1,8 +1,11 @@
 @extends('layouts.tenant.app')
-@section('title','Template')
+@section('title','Create Template')
+
 @section('breadcrumb')
-	<li class="breadcrumb-item active">View Templates v1.4 (3-JUL-24)</li>
+	<li class="breadcrumb-item"><a href="{{ route('templates.index') }}">Template</a></li>
+	<li class="breadcrumb-item active">Create Template</li>
 @endsection
+
 
 @section('content')
 <x-tenant.page-header>

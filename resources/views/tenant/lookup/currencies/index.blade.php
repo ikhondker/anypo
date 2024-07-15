@@ -46,8 +46,6 @@
 							@foreach ($currencies as $currency)
 							<tr>
 								<td>{{ $currency->currency }}</td>
-								
-								
 								<td><a href="{{ route('currencies.show',$currency->currency) }}"><strong>{{ $currency->name }}</strong></a></td>
 								<td>{{ $currency->country }}</td>
 								<td><x-tenant.list.my-enable :value="$currency->enable"/></td>

@@ -25,6 +25,13 @@ class AuthServiceProvider extends ServiceProvider
 
 		/*
 		|-----------------------------------------------------------------------------
+		| Share																	 +
+		|-----------------------------------------------------------------------------
+		*/
+		'App\Models\Share\Template'		=> 'App\Policies\Share\TemplatePolicy',
+
+		/*
+		|-----------------------------------------------------------------------------
 		| Landlord																	 +
 		|-----------------------------------------------------------------------------
 		*/
@@ -59,7 +66,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Manage\Config' 		=> 'App\Policies\Landlord\Manage\ConfigPolicy',
 		'App\Models\Landlord\Manage\Status' 		=> 'App\Policies\Landlord\Manage\StatusPolicy',
 		'App\Models\Landlord\Manage\Table' 			=> 'App\Policies\Landlord\Manage\TablePolicy',
-		'App\Models\Landlord\Manage\Template' 		=> 'App\Policies\Landlord\Manage\TemplatePolicy',
+		//'App\Models\Landlord\Manage\Template' 		=> 'App\Policies\Landlord\Manage\TemplatePolicy',
 		/*
 		|-----------------------------------------------------------------------------
 		| Tenant																	 +
@@ -91,7 +98,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Manage\Status' 		=> 'App\Policies\Tenant\Manage\StatusPolicy',
 		'App\Models\Tenant\Manage\Menu'			=> 'App\Policies\Tenant\Manage\MenuPolicy',
 		'App\Models\Tenant\Manage\Table'		=> 'App\Policies\Tenant\Manage\TablePolicy',
-		'App\Models\Tenant\Manage\Template'		=> 'App\Policies\Tenant\Manage\TemplatePolicy',
+		// 'App\Models\Tenant\Manage\Template'		=> 'App\Policies\Tenant\Manage\TemplatePolicy',
 		'App\Models\Tenant\Manage\CustomError'	=> 'App\Policies\Tenant\Manage\CustomErrorPolicy',
 
 

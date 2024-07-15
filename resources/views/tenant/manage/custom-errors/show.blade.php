@@ -12,9 +12,10 @@
 			View Custom Error
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="CustomError"/>
-			<x-tenant.buttons.header.create object="CustomError"/>
-			<x-tenant.buttons.header.edit object="CustomError" :id="$customError->code"/>
+		<x-tenant.actions.manage.custom-error-actions code="{{ $customError->code }}"/>
+		<x-tenant.buttons.header.lists object="CustomError"/>
+		<x-tenant.buttons.header.create object="CustomError"/>
+		<x-tenant.buttons.header.edit object="CustomError" :id="$customError->code"/>
 		@endslot
 	</x-tenant.page-header>
 

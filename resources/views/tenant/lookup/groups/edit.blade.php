@@ -24,44 +24,23 @@
 		@csrf
 		@method('PUT')
 
-			<div class="row">
-				<div class="col-6">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Group Info</h5>
-						</div>
-						<div class="card-body">
-
-							<div class="mb-3">
-								<label class="form-label">ID</label>
-								<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $group->id ) }}" readonly>
-							</div>
-
-							<div class="mb-3">
-								<label class="form-label">Group Name</label>
-								<input type="text" class="form-control @error('name') is-invalid @enderror"
-									name="name" id="name" placeholder="Group Name"
-									value="{{ old('name', $group->name ) }}"
-									/>
-								@error('name')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-
-							<x-tenant.buttons.show.save/>
-
-						</div>
-					</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<a href="{{ route('oems.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
-				<!-- end col-6 -->
-
-				<div class="col-6">
-					<div class="card">
-
-					</div>
-				</div>
-				<!-- end col-6 -->
+				<h5 class="card-title">Edit Item Group</h5>
+				<h6 class="card-subtitle text-muted">Edit an Item Group</h6>
 			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<x-tenant.edit.name :value="$group->name"/>
+						<x-tenant.buttons.show.save/>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 
 	</form>

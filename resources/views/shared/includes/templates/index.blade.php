@@ -133,14 +133,12 @@
 							<td class="text-center">
 								<x-tenant.list.my-boolean :value="$template->enable"/>
 							</td>
-							<td class="table-action">
-								<x-tenant.list.actions object="Template" :id="$template->id"/>
-								<a href="{{ route('templates.destroy',$template->id) }}" class="me-2 sw2-advance"
-									data-entity="Template" data-name="{{ $template->name }}" data-status="{{ ($template->enable ? 'Disable' : 'Enable') }}"
-									data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($template->enable ? 'Disable' : 'Enable') }}">
-									<i class="align-middle text-muted" data-lucide="{{ ($template->enable ? 'bell-off' : 'bell') }}"></i>
+							<td class="text-end">
+								<a href="{{ route('templates.show',$template->id) }}" class="btn btn-light"
+									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 								</a>
 							</td>
+						
 						</tr>
 						@endforeach
 					</tbody>
