@@ -35,24 +35,24 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						<x-tenant.edit.name :value="$warehouse->name"/>
-							<x-tenant.edit.contact-person value="{{ $warehouse->contact_person }}"/>
-							<x-tenant.edit.cell value=" {{ $warehouse->cell }}"/>
-							<x-tenant.edit.address1 :value="$warehouse->address1"/>
-							<x-tenant.edit.address2 :value="$warehouse->address2"/>
-							<x-tenant.edit.city-state-zip city="{{ $warehouse->city }}" state="{{ $warehouse->state }}" zip="{{ $warehouse->zip }}"/>
-							<x-tenant.edit.country :value="$warehouse->country"/>
-							<x-tenant.buttons.show.save/>
+						<x-tenant.edit.name value="{{ $warehouse->name }}"/>
+                        <x-tenant.edit.contact-person value="{{ $warehouse->contact_person }}"/>
+                        <x-tenant.edit.cell value=" {{ $warehouse->cell }}"/>
+                        <x-tenant.edit.address1 value="{{ $warehouse->address1 }}"/>
+                        <x-tenant.edit.address2 value="{{ $warehouse->address2 }}"/>
+                        <x-tenant.edit.city-state-zip city="{{ $warehouse->city }}" state="{{ $warehouse->state }}" zip="{{ $warehouse->zip }}"/>
+                        <x-tenant.edit.country :value="$warehouse->country"/>
+                        <x-tenant.buttons.show.save/>
 					</tbody>
 				</table>
 			</div>
 		</div>
 
 
-		
+
 
 	</form>
 	<!-- /.form end -->
-	
+
 @endsection
 

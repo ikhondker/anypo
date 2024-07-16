@@ -153,8 +153,8 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						<x-tenant.edit.address1 :value="$user->address1"/>
-						<x-tenant.edit.address2 :value="$user->address2"/>
+						<x-tenant.edit.address1 value="{{ $user->address1 }}"/>
+						<x-tenant.edit.address2 value="{{ $user->address2 }}"/>
 						<x-tenant.edit.city-state-zip city="{{ $user->city }}" state="{{ $user->state }}" zip="{{ $user->zip }}"/>
 						<x-tenant.edit.country :value="$user->country"/>
 					</tbody>
@@ -170,10 +170,10 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						<x-tenant.edit.notes :value="$user->notes"/>
-						<x-tenant.edit.website :value="$setup->website"/>
-						<x-tenant.edit.facebook :value="$setup->facebook"/>
-						<x-tenant.edit.linked-in :value="$setup->linkedin"/>
+						<x-tenant.edit.notes value="{{ $user->notes }}"/>
+						<x-tenant.edit.website value="{{ $setup->website }}"/>
+						<x-tenant.edit.facebook value="{{ $setup->facebook }}"/>
+						<x-tenant.edit.linked-in value="{{ $setup->linkedin }}"/>
 						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>

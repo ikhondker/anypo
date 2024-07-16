@@ -21,98 +21,98 @@ class StatusSeeder extends Seeder
 			[
 				'code' 				=> 'draft',
 				'name' 				=> 'Draft',
-				'badge' 			=> 'bg-info',
+				'badge' 			=> 'badge-subtle-info',
 		  	],
 			[
 				'code' 				=> 'partial',
 				'name' 				=> 'Partial',
-				'badge' 			=> 'bg-info',
+				'badge' 			=> 'badge-subtle-info',
 		  	],
 			[
 				'code' 				=> 'accounted',
 				'name' 				=> 'Accounted',
-				'badge' 			=> 'bg-success',
+				'badge' 			=> 'badge-subtle-success',
 		  	],
 			[
 				'code' 				=> 'approved',
 				'name' 				=> 'Approved',
-				'badge' 			=> 'bg-success',
+				'badge' 			=> 'badge-subtle-success',
 		  	],
 			[
 				'code' 				=> 'received',
 				'name' 				=> 'Received',
-				'badge' 			=> 'bg-success',
+				'badge' 			=> 'badge-subtle-success',
 		  	],
 			[
 				'code' 				=> 'open',
 				'name' 				=> 'Open',
-				'badge' 			=> 'bg-success',
+				'badge' 			=> 'badge-subtle-success',
 		  	],
 			[
 				'code' 				=> 'validated',
 				'name' 				=> 'Validated',
-				'badge' 			=> 'bg-success',
+				'badge' 			=> 'badge-subtle-success',
 		  	],
 			[
 				'code' 				=> 'uploaded',
 				'name' 				=> 'Uploaded',
-				'badge' 			=> 'bg-success',
+				'badge' 			=> 'badge-subtle-success',
 		  	],
 		  	[
 				'code' 				=> 'posted',
 				'name' 				=> 'Posted',
-				'badge' 			=> 'bg-success',
+				'badge' 			=> 'badge-subtle-success',
 		  	],
 			[
 				'code' 				=> 'paid',
 				'name' 				=> 'paid',
-				'badge' 			=> 'bg-success',
+				'badge' 			=> 'badge-subtle-success',
 		  	],
 			[
 				'code' 				=> 'submitted',
 				'name' 				=> 'Submitted',
-				'badge' 			=> 'bg-warning',
+				'badge' 			=> 'badge-subtle-warning',
 		  	],
 			[
 				'code' 				=> 'due',
 				'name' 				=> 'Due',
-				'badge' 			=> 'bg-warning',
+				'badge' 			=> 'badge-subtle-warning',
 		  	],
 
 			[
 				'code' 				=> 'unpaid',
 				'name' 				=> 'Unpaid',
-				'badge' 			=> 'bg-warning',
+				'badge' 			=> 'badge-subtle-warning',
 		  	],
 			[
 				'code' 				=> 'in-process',
 				'name' 				=> 'In-Process',
-				'badge' 			=> 'bg-warning',
+				'badge' 			=> 'badge-subtle-warning',
 		  	],
 		  	[
 				'code' 				=> 'rejected',
 				'name' 				=> 'Rejected',
-				'badge' 			=> 'bg-secondary',
+				'badge' 			=> 'badge-subtle-secondary',
 		  	],
 		  	[
 				'code' 				=> 'closed',
 				'name' 				=> 'closed',
-				'badge' 			=> 'bg-secondary',
+				'badge' 			=> 'badge-subtle-secondary',
 		  	],
 		  	[
 				'code' 				=> 'force-closed',
 				'name' 				=> 'Force Closed',
-				'badge' 			=> 'bg-secondary',
+				'badge' 			=> 'badge-subtle-secondary',
 		  	],
 		  	[
 				'code' 				=> 'canceled',
 				'name' 				=> 'Canceled',
-				'badge' 			=> 'bg-danger',
+				'badge' 			=> 'badge-subtle-danger',
 		  	],
 			[
 				'code' 				=> 'error',
 				'name' 				=> 'Error',
-				'badge' 			=> 'bg-danger',
+				'badge' 			=> 'badge-subtle-danger',
 		  	],
 
 		  ];
@@ -120,4 +120,3 @@ class StatusSeeder extends Seeder
 		Status::insert($statuses);
 	}
 }
- 

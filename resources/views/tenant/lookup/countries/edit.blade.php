@@ -14,9 +14,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.actions.lookup.country-actions code="{{ $country->country }}"/>
-			<x-tenant.buttons.header.save/>
-			<x-tenant.buttons.header.lists object="Country"/>
-			<x-tenant.buttons.header.create object="Country"/>
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -28,6 +26,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
+                    <a href="{{ route('countries.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>  Create</a>
 					<a href="{{ route('countries.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
 				<h5 class="card-title">Country Edit</h5>
@@ -39,10 +38,13 @@
 						<tr>
 							<th>Code:</th>
 							<td>
-								<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('country', $country->country ) }}" readonly>
+								<input type="text" name="country" id="country" class="form-control"
+                                placeholder="ID" value="{{ old('country', $country->country ) }}"
+                                readonly/>
 							</td>
 						</tr>
-						<x-tenant.edit.name :value="$country->name"/>
+						<x-tenant.edit.name value="{{ $country->name }}"/>
+
 						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>

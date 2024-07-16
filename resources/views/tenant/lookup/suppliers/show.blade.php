@@ -21,9 +21,9 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a href="{{ route('suppliers.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
-				@if (auth()->user()->isSystem())
-					<a class="btn btn-sm btn-danger text-white" href="{{ route('suppliers.edit', $supplier->id) }}"><i class="fas fa-edit"></i> Edit</a>
-				 @endif
+
+				<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id) }}"><i class="fas fa-edit"></i> Edit</a>
+
 			</div>
 			<h5 class="card-title">Supplier Detail</h5>
 					<h6 class="card-subtitle text-muted">Supplier detail Information.</h6>

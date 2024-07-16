@@ -66,7 +66,7 @@
 						@enderror
 						</td>
 					</tr>
-					<x-landlord.edit.notes :value="$user->notes"/>
+					<x-landlord.edit.notes value="{{ $user->notes }}"/>
 				</tbody>
 			</table>
 

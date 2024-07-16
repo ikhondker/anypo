@@ -22,8 +22,9 @@ class UpdateStatusRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			//TODO 'code'	=> 'required|min:2|max:100|unique:statuses,code,'. $this->status->code,
-            'code'	=> 'required|min:2|max:100',
+			//TODO check
+            //'code'	=> 'required|min:2|max:100|unique:statuses,code,'. $this->status->code,
+            //'code'	=> 'required|min:2|max:100',
 			'name'	=> 'required|min:2|max:100',
 			'badge'	=> 'required|min:2|max:100',
 		];

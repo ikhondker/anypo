@@ -71,7 +71,7 @@
 									@enderror
 								</td>
 							</tr>
-							<x-landlord.edit.notes :value="$contact->notes" />
+							<x-landlord.edit.notes value="{{ $contact->notes }}" />
 
 					</tbody>
 				</table>

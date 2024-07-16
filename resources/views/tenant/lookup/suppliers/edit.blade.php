@@ -23,7 +23,6 @@
 		@csrf
 		@method('PUT')
 
-
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -36,16 +35,16 @@
 				<table class="table table-sm my-2">
 					<tbody>
 
-						<x-tenant.edit.name :value="$supplier->name"/>
-							<x-tenant.edit.contact-person value="{{ $supplier->contact_person }}"/>
-							<x-tenant.edit.cell :value="$supplier->cell"/>
-							<x-tenant.edit.email :value="$supplier->email"/>
-							<x-tenant.edit.website :value="$supplier->website"/>
-							<x-tenant.edit.address1 :value="$supplier->address1"/>
-							<x-tenant.edit.address2 :value="$supplier->address2"/>
-							<x-tenant.edit.city-state-zip city="{{ $supplier->city }}" state="{{ $supplier->state }}" zip="{{ $supplier->zip }}"/>
-							<x-tenant.edit.country :value="$supplier->country"/>
-							<x-tenant.buttons.show.save/>
+						<x-tenant.edit.name value="{{ $supplier->name }}"/>
+						<x-tenant.edit.contact-person value="{{ $supplier->contact_person }}"/>
+						<x-tenant.edit.cell value="{{ $supplier->cell }}"/>
+						<x-tenant.edit.email value="{{ $supplier->email }}"/>
+						<x-tenant.edit.website value="{{ $supplier->website }}"/>
+						<x-tenant.edit.address1 value="{{ $supplier->address1 }}"/>
+						<x-tenant.edit.address2 value="{{ $supplier->address2 }}"/>
+						<x-tenant.edit.city-state-zip city="{{ $supplier->city }}" state="{{ $supplier->state }}" zip="{{ $supplier->zip }}"/>
+						<x-tenant.edit.country :value="$supplier->country"/>
+						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>
 			</div>
@@ -54,6 +53,6 @@
 
 	</form>
 	<!-- /.form end -->
-	
+
 @endsection
 

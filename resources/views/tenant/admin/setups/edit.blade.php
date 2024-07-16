@@ -96,8 +96,8 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						<x-tenant.edit.address1 :value="$setup->address1"/>
-						<x-tenant.edit.address2 :value="$setup->address2"/>
+						<x-tenant.edit.address1 value="{{ $setup->address1 }}"/>
+						<x-tenant.edit.address2 value="{{ $setup->address2 }}"/>
 						<x-tenant.edit.city-state-zip city="{{ $setup->city }}" state="{{ $setup->state }}" zip="{{ $setup->zip }}"/>
 						<x-tenant.edit.country :value="$setup->country"/>
 					</tbody>

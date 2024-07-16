@@ -21,7 +21,7 @@
 					<tbody>
 
 						<x-landlord.edit.id-read-only :value="$service->id"/>
-						<x-landlord.edit.name :value="$service->name"/>
+						<x-landlord.edit.name value="{{ $service->name }}"/>
 
 						<tr>
 							<th>Mnth :</th>

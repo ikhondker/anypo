@@ -14,7 +14,6 @@
 			View Country
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Dept"/>
 			<x-tenant.actions.lookup.country-actions code="{{ $country->country }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -22,7 +21,8 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a href="{{ route('countries.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+                <a class="btn btn-sm btn-light" href="{{ route('countries.edit', $country->country) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('countries.index') }}"><i class="fas fa-list"></i>  View all</a>
 			</div>
 			<h5 class="card-title">Country Detail</h5>
 			<h6 class="card-subtitle text-muted">Country details.</h6>

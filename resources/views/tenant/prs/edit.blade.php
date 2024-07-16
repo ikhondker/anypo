@@ -148,7 +148,7 @@
 								</div>
 							</div>
 
-							<x-tenant.edit.notes :value="$pr->notes"/>
+							<x-tenant.edit.notes value="{{ $pr->notes }}"/>
 
 							<x-tenant.attachment.create />
 

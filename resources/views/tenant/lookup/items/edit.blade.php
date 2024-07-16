@@ -26,7 +26,7 @@
 		@method('PUT')
 
 
-		
+
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -53,7 +53,7 @@
 							</td>
 						</tr>
 
-					
+
 
 						<x-tenant.edit.name :value="$item->name"/>
 						<tr>
@@ -66,7 +66,7 @@
 								</select>
 							</td>
 						</tr>
-					
+
 
 						<x-tenant.edit.price :value="$item->price"/>
 						<tr>
@@ -78,7 +78,7 @@
 							readonly/>
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>UoM</th>
@@ -90,7 +90,7 @@
 								</select>
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>OEM</th>
@@ -102,7 +102,7 @@
 								</select>
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>GL Type</th>
@@ -114,7 +114,7 @@
 								</select>
 							</td>
 						</tr>
-					
+
 
 						<tr>
 							<th>Expense GL Code</th>
@@ -129,9 +129,9 @@
 							@enderror
 							</td>
 						</tr>
-						
 
-						<x-tenant.edit.notes :value="$item->notes"/>
+
+						<x-tenant.edit.notes value="{{ $item->notes }}"/>
 						<x-tenant.buttons.show.save/>
 
 					</tbody>
@@ -139,7 +139,7 @@
 			</div>
 		</div>
 
-			
+
 
 
 	</form>

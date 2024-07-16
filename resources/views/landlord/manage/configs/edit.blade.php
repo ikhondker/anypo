@@ -38,15 +38,14 @@
 						</tr>
 
 						<x-landlord.edit.id-read-only :value="$config->id" />
-						<x-landlord.edit.name :value="$config->name" />
-						<x-landlord.edit.tagline :value="$config->tagline" />
-				
-				
-						<x-landlord.edit.email :value="$config->email" />
+						<x-landlord.edit.name value="{{ $config->name }}" />
+						<x-landlord.edit.tagline value="{{ $config->tagline }}" />
+
+						<x-landlord.edit.email value="{{ $config->email }}" />
 						<x-landlord.edit.cell value="{{ $config->cell }}" />
 						<x-landlord.edit.address1 value="{{ $config->address1 }}" />
 						<x-landlord.edit.address2 value="{{ $config->address2 }}" />
-						
+
 						<x-landlord.edit.city-state-zip city="{{ $config->city }}" state="{{ $config->state }}" zip="{{ $config->zip }}"/>
 
 						<x-landlord.edit.country :value="$config->country" />
@@ -116,7 +115,7 @@
 							</tr>
 
 
-										
+
 							<tr>
 								<th>Banner Message :</th>
 								<td>
@@ -127,8 +126,8 @@
 								</td>
 							</tr>
 
-				
-						
+
+
 					</tbody>
 				</table>
 

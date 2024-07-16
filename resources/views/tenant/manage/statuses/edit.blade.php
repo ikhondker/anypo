@@ -38,7 +38,7 @@
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
 									code="code" id="code" placeholder="code"
 									value="{{ old('code', $status->code ) }}"
-									required/>
+									required readonly/>
 								@error('code')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror

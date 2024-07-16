@@ -43,7 +43,7 @@ use App\Helpers\EventLog;
 # 11. Seeded
 use Illuminate\Support\Facades\Log;
 use DB;
-# 12. FUTURE 
+# 12. FUTURE
 # 1. Disable all country by default, enable only USA and based on active user will be able to select country in Any Address
 
 class CountryController extends Controller
@@ -131,7 +131,7 @@ class CountryController extends Controller
 	public function destroy(Country $country)
 	{
 
-		$this->authorize('delete', $color);
+		$this->authorize('delete', $country);
 		$country->fill(['enable' => ! $country->enable]);
 		$country->update();
 
@@ -145,7 +145,7 @@ class CountryController extends Controller
 	{
 		$this->authorize('export', Country::class);
 
-		$data = DB::select("SELECT country, name, IF(enable, 'Yes', 'No') AS enable 
+		$data = DB::select("SELECT country, name, IF(enable, 'Yes', 'No') AS enable
 		FROM countries");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper

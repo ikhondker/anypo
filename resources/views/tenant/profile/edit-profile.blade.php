@@ -166,7 +166,7 @@
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</div>
-						<x-tenant.edit.notes :value="$user->notes"/>
+						<x-tenant.edit.notes value="{{ $user->notes }}"/>
 						<x-tenant.buttons.show.save/>
 					</div>
 				</div>

@@ -25,8 +25,9 @@ class Create extends Component
 
 		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
 		//$this->title = 'Create '.$object;
-		$this->title = 'Create '. ($this->label=="" ? $this->object : $this->label);
-		
+		//$this->title = 'Create '. ($this->label=="" ? $this->object : $this->label);
+		$this->title = 'Create';
+
 
 	}
 

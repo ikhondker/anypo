@@ -20,10 +20,10 @@
 
 			<table class="table table-sm my-2">
 				<tbody>
-						
+
 					<x-landlord.edit.id-read-only :value="$ticket->id"/>
-					<x-landlord.edit.title :value="$ticket->title"/>
-					<x-landlord.edit.content :value="$ticket->content"/>
+					<x-landlord.edit.title value="{{ $ticket->title }}"/>
+					<x-landlord.edit.content value="{{ $ticket->content }}"/>
 					<x-landlord.edit.dept :value="$ticket->dept_id"/>
 					<x-landlord.edit.priority :value="$ticket->priority_id"/>
 					<x-landlord.edit.agent value="{{ $ticket->agent_id }}"/>
@@ -48,6 +48,6 @@
 	</div>
 </div>
 
-	
+
 
 @endsection

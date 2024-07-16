@@ -93,7 +93,7 @@
 
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Branch Name</th>
 							<td>
@@ -121,10 +121,10 @@
 								@enderror
 							</td>
 						</tr>
-						<x-tenant.edit.address1 :value="$bankAccount->address1"/>
-						<x-tenant.edit.address2 :value="$bankAccount->address2"/>
+						<x-tenant.edit.address1 value="{{ $bankAccount->address1 }}"/>
+						<x-tenant.edit.address2 value="{{ $bankAccount->address2 }}"/>
 						<x-tenant.edit.city-state-zip city="{{ $bankAccount->city }}" state="{{ $bankAccount->state }}" zip="{{ $bankAccount->zip }}"/>
-						<x-tenant.edit.country :value="$bankAccount->country"/>
+						<x-tenant.edit.country value="{{ $bankAccount->country }}"/>
 						<x-tenant.buttons.show.save/>
 						<x-tenant.buttons.show.save/>
 					</tbody>

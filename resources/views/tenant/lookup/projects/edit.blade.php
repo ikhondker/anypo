@@ -63,7 +63,7 @@
 							</td>
 						</tr>
 						<x-tenant.edit.amount :value="$project->amount"/>
-						<x-tenant.edit.notes :value="$project->notes"/>
+						<x-tenant.edit.notes value="{{  $project->notes }}"/>
 						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>
@@ -74,11 +74,11 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-						
+
 						</div>
 						<div class="card-body">
 
-							
+
 
 						</div>
 					</div>

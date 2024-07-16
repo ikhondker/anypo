@@ -20,7 +20,7 @@
 					<tbody>
 
 						<x-landlord.edit.id-read-only :value="$product->id"/>
-						<x-landlord.edit.name :value="$product->name"/>
+						<x-landlord.edit.name value="{{ $product->name }}"/>
 
 						<tr>
 							<th>Mnth :</th>
@@ -71,7 +71,7 @@
 									@enderror
 							</td>
 						</tr>
-						<x-landlord.edit.notes :value="$product->notes"/>
+						<x-landlord.edit.notes value="{{ $product->notes }}"/>
 
 
 					</tbody>

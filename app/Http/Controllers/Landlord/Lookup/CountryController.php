@@ -40,7 +40,7 @@ use App\Helpers\EventLog;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. FUTURE 
+# 13. FUTURE
 
 
 use Str;
@@ -59,7 +59,7 @@ class CountryController extends Controller
 			 $countries->where('name', 'Like', '%'.request('term').'%');
 		}
 		$countries = $countries->orderBy('name', 'ASC')->paginate(40);
- 
+
 		 return view('landlord.lookup.countries.index', compact('countries'));
 	}
 
@@ -108,7 +108,7 @@ class CountryController extends Controller
 	 */
 	public function destroy(Country $country)
 	{
-		$this->authorize('delete', $user);
+		$this->authorize('delete', $country);
 
 		$country->fill(['enable'=>!$country->enable]);
 		$country->update();

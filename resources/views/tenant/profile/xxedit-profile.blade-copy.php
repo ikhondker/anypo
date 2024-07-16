@@ -95,7 +95,7 @@
 							</div>
 						</div>
 					</div>
-	
+
 				</div>
 				<!-- end col-6 -->
 
@@ -203,7 +203,7 @@
 							<h6 class="card-subtitle text-muted">User's Other Details.</h6>
 						</div>
 						<div class="card-body">
-							<x-tenant.edit.notes :value="$user->notes"/>
+							<x-tenant.edit.notes value="{{ $user->notes }}"/>
 							<div class="mb-3">
 								<label class="form-label">Facebook</label>
 								<input type="text" class="form-control @error('facebook') is-invalid @enderror"
@@ -237,7 +237,7 @@
 				</div>
 				<!-- end col-6 -->
 				<div class="col-6">
-					
+
 				</div>
 				<!-- end col-6 -->
 
@@ -247,6 +247,6 @@
 	</form>
 	<!-- /.form end -->
 
-	
+
 @endsection
 

@@ -23,7 +23,7 @@
 
 
 					<x-landlord.edit.id-read-only :value="$category->id"/>
-					<x-landlord.edit.name :value="$category->name"/>
+					<x-landlord.edit.name value="{{  $category->name }}"/>
 
 					</tbody>
 				</table>
