@@ -79,13 +79,13 @@ class PaymentController extends Controller
 			$payments->where('name', 'Like', '%' . request('term') . '%');
 		}
 		switch (auth()->user()->role->value) {
-            case UserRoleEnum::HOD->value:
-                $payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
-                break;
+			case UserRoleEnum::HOD->value:
+				$payments = $payments->with('bank_account')->with('payee')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				break;
 			case UserRoleEnum::BUYER->value:
-            case UserRoleEnum::CXO->value:
-            case UserRoleEnum::ADMIN->value:
-            case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
 				// buyer can see all payment of all his po's
 				//$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
 				//break;
@@ -99,7 +99,7 @@ class PaymentController extends Controller
 		return view('tenant.payments.index', compact('payments'));
 	}
 
-        /**
+		/**
 	 * Display a listing of the resource.
 	 */
 	public function myPayments()
@@ -111,7 +111,7 @@ class PaymentController extends Controller
 		if (request('term')) {
 			$payments->where('name', 'Like', '%' . request('term') . '%');
 		}
-        $payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByCreator()->paginate(10);
+		$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByCreator()->paginate(10);
 		return view('tenant.payments.my-payments', compact('payments'));
 	}
 
@@ -224,7 +224,7 @@ class PaymentController extends Controller
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 
-        // Create Accounting for this Invoice
+		// Create Accounting for this Invoice
 		AehPayment::dispatch($payment->id, $payment->fc_amount);
 
 		// Write to Log

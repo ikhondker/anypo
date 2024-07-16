@@ -14,7 +14,7 @@
 			<x-tenant.actions.dashboard-actions/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	<x-tenant.landlord-notice-all-tenants/>
 	<x-tenant.landlord-notice-one-tenant/>
 
@@ -25,9 +25,9 @@
 	</div>
 
 	<x-tenant.dashboards.budget-stat/>
-	
+
 	<x-tenant.dashboards.pr-counts/>
-		
+
 	<div class="row">
 		<div class="col-md-6 col-xxl-3 d-flex">
 			<div class="card flex-fill">
@@ -45,10 +45,10 @@
 					</div>
 					@php
 						use App\Models\Tenant\Budget;
-						use Illuminate\Database\Eloquent\ModelNotFoundException; 
+						use Illuminate\Database\Eloquent\ModelNotFoundException;
 						try {
 							$budget= Budget::where('fy', date('Y') )->get()->firstOrFail();
-							// handle division by zero 
+							// handle division by zero
 							if ( $budget->amount ==0 ){
 								$budget_used_pc = 0;
 								$budget_amount = 0 ;
@@ -63,12 +63,12 @@
 							$budget_used_pc = 0;
 							$budget_amount = 0 ;
 							$budget_po = 0;
-							
+
 						}
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($budget_used_pc, 2) }}%</span>
 					<div class="mb-0">
-						<span class="badge badge-soft-success me-2">{{ $budget_amount }}</span>
+						<span class="badge badge-subtle-success me-2">{{ $budget_amount }}</span>
 						<span class="text-muted"> total budget for FY{{ date('Y') }}. Utilized {{ $budget_po }}</span>
 					</div>
 				</div>
@@ -96,7 +96,7 @@
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">$ {{ number_format($po_sum,2) }}</span>
 					<div class="mb-0">
-						<span class="badge badge-soft-success me-2">{{ $po_count }}</span>
+						<span class="badge badge-subtle-success me-2">{{ $po_count }}</span>
 						<span class="text-muted"> PO issued in FY23</span>
 					</div>
 				</div>
@@ -118,20 +118,20 @@
 						</div>
 					</div>
 					@php
-						
+
 						$fy = Carbon::now()->format('Y');
 						$pr_sum= Pr::whereYear('auth_date', '=', $fy)->sum('amount');
 						$pr_count= Pr::whereYear('auth_date', '=', $fy)->count();
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">$ {{ number_format($pr_sum,2) }}</span>
 					<div class="mb-0">
-						<span class="badge badge-soft-success me-2">{{ $pr_count }}</span>
+						<span class="badge badge-subtle-success me-2">{{ $pr_count }}</span>
 						<span class="text-muted"> PR issued in FY23</span>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="col-md-6 col-xxl-3 d-flex">
 			<div class="card flex-fill">
 				<div class="card-body">
@@ -187,7 +187,7 @@
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($po_sum_30,2) }} Same??</span>
 					<div class="mb-0">
-						<span class="badge badge-soft-success me-2"> {{ number_format($po_count_30,2) }} </span>
+						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }} </span>
 						<span class="text-muted">Utilized Till date. Available 99.00</span>
 					</div>
 				</div>
@@ -219,7 +219,7 @@
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($po_sum_30,2) }}</span>
 					<div class="mb-0">
-						<span class="badge badge-soft-success me-2"> {{ number_format($po_count_30,2) }} </span>
+						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }} </span>
 						<span class="text-muted">In Last 30 Days</span>
 					</div>
 				</div>
@@ -252,7 +252,7 @@
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($po_sum_30,2) }}</span>
 					<div class="mb-0">
-						<span class="badge badge-soft-success me-2"> {{ number_format($po_count_30,2) }} </span>
+						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }} </span>
 						<span class="text-muted">In Last 30 Days</span>
 					</div>
 				</div>
@@ -285,7 +285,7 @@
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($po_sum_30,2) }}</span>
 					<div class="mb-0">
-						<span class="badge badge-soft-success me-2"> {{ number_format($po_count_30,2) }} </span>
+						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }} </span>
 						<span class="text-muted">In Last 30 Days</span>
 					</div>
 				</div>
@@ -630,7 +630,7 @@
 					<h5 class="card-title">Appointments</h5>
 				</div>
 				<div class="card-body">
-					
+
 				</div>
 			</div>
 		</div>

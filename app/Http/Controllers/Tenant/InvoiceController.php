@@ -85,9 +85,9 @@ class InvoiceController extends Controller
 			$invoices->where('invoice_no', 'Like', '%' . request('term') . '%');
 		}
 		switch (auth()->user()->role->value) {
-            case UserRoleEnum::HOD->value:
-                $invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
-                break;
+			case UserRoleEnum::HOD->value:
+				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				break;
 			case UserRoleEnum::BUYER->value:
 				// buyer can see all invoice of all his po's
 				//$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
@@ -106,13 +106,13 @@ class InvoiceController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function myInvoices()
 	{
 
-        $this->authorize('viewAny', Invoice::class);
+		$this->authorize('viewAny', Invoice::class);
 
 		$invoices = Invoice::query();
 		if (request('term')) {
@@ -120,7 +120,7 @@ class InvoiceController extends Controller
 		}
 		$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
 
-        return view('tenant.invoices.my-invoices', compact('invoices'));
+		return view('tenant.invoices.my-invoices', compact('invoices'));
 	}
 
 	/**

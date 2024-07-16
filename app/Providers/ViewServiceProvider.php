@@ -40,7 +40,7 @@ class ViewServiceProvider extends ServiceProvider
 		// });
 
 		view()->composer(['layouts.landlord.page','layouts.landlord.app',
-                'layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], function ($view) {
+				'layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu			= new Menu;
 			//Log::debug("ViewServiceProvider.boot raw_route_name = ".$raw_route_name);
@@ -59,11 +59,11 @@ class ViewServiceProvider extends ServiceProvider
 		});
 
 		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
-            'layouts.landlord-app','layouts.landlord'],
-            \App\View\Composers\ConfigComposer::class);
+			'layouts.landlord-app','layouts.landlord'],
+			\App\View\Composers\ConfigComposer::class);
 		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
-            'layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'],
-            \App\View\Composers\LandlordUserComposer::class);
+			'layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'],
+			\App\View\Composers\LandlordUserComposer::class);
 
 		/*
 		|-----------------------------------------------------------------------------
@@ -93,7 +93,7 @@ class ViewServiceProvider extends ServiceProvider
 		});
 
 		Facades\View::composer(['layouts.tenant.app','layouts.tenant.auth',
-                'tenant.*', /** keep this */
+				'tenant.*', /** keep this */
 				'components.tenant.create.amount','components.tenant.edit.amount','components.tenant.show.my-amount',
 				'components.tenant.edit.price','components.tenant.create.price-fc',
 				'components.tenant.dashboards.*','components.tenant.widgets.*','components.tenant.info.*'

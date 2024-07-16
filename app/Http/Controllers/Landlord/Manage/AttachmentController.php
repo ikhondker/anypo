@@ -125,7 +125,7 @@ class AttachmentController extends Controller
 	 */
 	public function update(UpdateAttachmentRequest $request, Attachment $attachment)
 	{
-        $this->authorize('update', $attachment);
+		$this->authorize('update', $attachment);
 		$attachment->update($request->all());
 
 		// Write to Log

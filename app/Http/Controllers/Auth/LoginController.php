@@ -117,7 +117,7 @@ class LoginController extends Controller
 		if (tenant('id') == '') {
 			return view('auth.landlord.login');
 		} else {
-            $setup = Setup::first();
+			$setup = Setup::first();
 			return view('auth.tenant.login', compact('setup'));
 		}
 	}

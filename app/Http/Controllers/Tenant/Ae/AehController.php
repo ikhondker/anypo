@@ -147,7 +147,7 @@ class AehController extends Controller
 		//
 	}
 
-    /**
+	/**
 	 * Show the form for editing the specified resource.
 	 */
 	public function manual()

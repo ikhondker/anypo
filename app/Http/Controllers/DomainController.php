@@ -68,11 +68,11 @@ class DomainController extends Controller
 		$tenant = Tenant::find( $domain->tenant_id);
 		$users = $tenant->run(function(){
 			return User::all();
-		    }
+			}
 		);
 
 		//return view('domains.show',compact('domain','users'));
-        return view('domains.show',compact('domain'));
+		return view('domains.show',compact('domain'));
 
 	}
 

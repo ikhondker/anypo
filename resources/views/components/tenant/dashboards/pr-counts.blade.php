@@ -27,7 +27,7 @@
 						<h3 class="mb-2">{{ $count_approved }} </h3>
 						<p class="mb-2">Approved Requisition</p>
 						<div class="mb-0">
-							<span class="badge badge-soft-success me-2"> {{ $_setup->currency }} </span>
+							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
 							<span class="text-muted"> {{ number_format($sum_approved, 2, '.', ',') }}</span>
 						</div>
 					</div>
@@ -50,7 +50,7 @@
 						<h3 class="mb-2">{{ $count_converted }} </h3>
 						<p class="mb-2">Converted to PO</p>
 						<div class="mb-0">
-							<span class="badge badge-soft-success me-2"> {{ $_setup->currency }} </span>
+							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
 							<span class="text-muted"> {{ number_format($sum_converted, 2, '.', ',') }}</span>
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 						<h3 class="mb-2">{{ $count_inprocess }} </h3>
 						<p class="mb-2">In-Process Requisition</p>
 						<div class="mb-0">
-							<span class="badge badge-soft-success me-2"> {{ $_setup->currency }} </span>
+							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
 							<span class="text-muted"> {{ number_format($sum_inprocess, 2, '.', ',') }}</span>
 						</div>
 					</div>

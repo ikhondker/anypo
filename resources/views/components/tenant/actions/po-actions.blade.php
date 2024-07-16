@@ -9,7 +9,7 @@
 		<a class="dropdown-item" href="{{ route('pos.attachments',$po->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
 		<a class="dropdown-item" href="{{ route('pos.history', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('pos.invoice', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
-		<a class="dropdown-item" href="{{ route('pos.invoice', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payment **</a>
+		<a class="dropdown-item" href="{{ route('pos.invoice', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payment TBD **</a>
 		<a class="dropdown-item" href="{{ route('pos.ael', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View All Accounting **</a>
 		<a class="dropdown-item" href="{{ route('reports.po', $po->id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Purchase Order</a>
 		<a class="dropdown-item" href="#"><i class="align-middle me-1" data-lucide="printer"></i> Run PO Detail Report*</a>

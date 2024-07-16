@@ -127,7 +127,7 @@ class ServiceController extends Controller
 		$this->authorize('view', $service);
 
 		$entity = static::ENTITY;
-        $account = Account::where('id', $service->account_id)->first();
+		$account = Account::where('id', $service->account_id)->first();
 		return view('landlord.admin.services.show', compact('service', 'entity','account'));
 	}
 
@@ -175,7 +175,7 @@ class ServiceController extends Controller
 		//
 	}
 
-    public function export()
+	public function export()
 	{
 		$this->authorize('export', Service::class);
 

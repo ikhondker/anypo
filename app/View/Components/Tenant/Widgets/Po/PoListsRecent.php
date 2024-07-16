@@ -23,23 +23,23 @@ class PoListsRecent extends Component
 	public function __construct()
 	{
 		//
-        switch (auth()->user()->role->value) {
+		switch (auth()->user()->role->value) {
 			case UserRoleEnum::HOD->value:
 				$this->pos = Po::ByDeptAll()->orderBy('id', 'DESC')
-                ->where('auth_status', '<>' , AuthStatusEnum::DRAFT->value)
-                ->limit(5)->paginate(10);
+				->where('auth_status', '<>' , AuthStatusEnum::DRAFT->value)
+				->limit(5)->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
-            case UserRoleEnum::CXO->value:
-            case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
 				$this->pos = Po::AllApproved()->orderBy('id', 'DESC')
-                ->where('auth_status', '<>', AuthStatusEnum::DRAFT->value)
-                ->limit(5)->paginate(10);
+				->where('auth_status', '<>', AuthStatusEnum::DRAFT->value)
+				->limit(5)->paginate(10);
 				break;
 			case UserRoleEnum::SYSTEM->value:
 				$this->pos = Po::with('dept')->orderBy('id', 'DESC')
-                ->where('auth_status', '<>', AuthStatusEnum::DRAFT->value)
-                ->limit(5)->paginate(10);
+				->where('auth_status', '<>', AuthStatusEnum::DRAFT->value)
+				->limit(5)->paginate(10);
 				break;
 			default:
 				//$pos = $pos->ByUserAll()->paginate(10);

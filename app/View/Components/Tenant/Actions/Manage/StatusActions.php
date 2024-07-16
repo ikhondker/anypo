@@ -10,7 +10,7 @@ use App\Models\Tenant\Manage\Status;
 
 class StatusActions extends Component
 {
-    public $status;
+	public $status;
 	/**
 	 * Create a new component instance.
 	 */
@@ -20,11 +20,11 @@ class StatusActions extends Component
 		$this->status = Status::where('code', $this->code)->get()->firstOrFail();
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.actions.manage.status-actions');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.actions.manage.status-actions');
+	}
 }

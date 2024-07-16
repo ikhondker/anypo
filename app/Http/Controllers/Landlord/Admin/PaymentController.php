@@ -131,7 +131,7 @@ class PaymentController extends Controller
 	public function edit(Payment $payment)
 	{
 		$this->authorize('update', $payment);
-        return view('landlord.admin.payments.edit', compact('payment'));
+		return view('landlord.admin.payments.edit', compact('payment'));
 	}
 
 	/**
@@ -163,31 +163,31 @@ class PaymentController extends Controller
 	{
 		//
 	}
-    public function export()
+	public function export()
 	{
 		$this->authorize('export', Payment::class);
 
 		if (auth()->user()->isSeeded()){
 			$data = DB::select("
-                SELECT p.id, p.summary, p.pay_date, i.invoice_no, a.name account_name, p.amount, p.currency
-                FROM payments p, invoices i, accounts a
-                WHERE p.invoice_id = i.id
-                AND p.account_id = a.id
-                ");
+				SELECT p.id, p.summary, p.pay_date, i.invoice_no, a.name account_name, p.amount, p.currency
+				FROM payments p, invoices i, accounts a
+				WHERE p.invoice_id = i.id
+				AND p.account_id = a.id
+				");
 		} else if (auth()->user()->isAdmin()){
 			$data = DB::select("
 				SELECT p.id, p.summary, p.pay_date, i.invoice_no, a.name account_name, p.amount, p.currency
-                FROM payments p, invoices i, accounts a
-                WHERE p.invoice_id = i.id
-                AND p.account_id = a.id
+				FROM payments p, invoices i, accounts a
+				WHERE p.invoice_id = i.id
+				AND p.account_id = a.id
 				AND p.account_id = ".auth()->user()->account_id
 				);
 		} else {
 			$data = DB::select("
 				SELECT p.id, p.summary, p.pay_date, i.invoice_no, a.name account_name, p.amount, p.currency
-                FROM payments p, invoices i, accounts a
-                WHERE p.invoice_id = i.id
-                AND p.account_id = a.id
+				FROM payments p, invoices i, accounts a
+				WHERE p.invoice_id = i.id
+				AND p.account_id = a.id
 				AND p.owner_id = ".auth()->user()->id
 				);
 		}
@@ -195,6 +195,6 @@ class PaymentController extends Controller
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('payments', $dataArray);
-    }
+	}
 
 }

@@ -17,7 +17,7 @@ class DeptActions extends Component
 	public function __construct(public $id)
 	{
 		// if ( $id == 0 ){
-		// 	$this->id       = 0;
+		// 	$this->id		= 0;
 		// 	$this->dept 	= New Dept();
 		// } else {
 			$this->id 		= $id;

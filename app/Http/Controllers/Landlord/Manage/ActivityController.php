@@ -158,7 +158,7 @@ class ActivityController extends Controller
 	public function edit(Activity $activity)
 	{
 		$this->authorize('update', $activity);
-        return view('landlord.manage.activities.edit', compact('activity'));
+		return view('landlord.manage.activities.edit', compact('activity'));
 	}
 
 	/**
@@ -189,27 +189,27 @@ class ActivityController extends Controller
 		abort(403);
 	}
 
-    public function export()
+	public function export()
 	{
 		$this->authorize('export', Activity::class);
 
 		if (auth()->user()->isSeeded()){
 			$data = DB::select("
-                SELECT *
-                FROM activities a
-                ");
+				SELECT *
+				FROM activities a
+				");
 		} else if (auth()->user()->isAdmin()){
 			$data = DB::select("
-                SELECT a.id, a.object_name, a.object_id, a.event_name, u.name user_name, a.created_at
-                FROM activities a, users u
-                WHERE a.user_id=u.id
-       		    AND a.account_id = ".auth()->user()->account_id
+				SELECT a.id, a.object_name, a.object_id, a.event_name, u.name user_name, a.created_at
+				FROM activities a, users u
+				WHERE a.user_id=u.id
+	   			AND a.account_id = ".auth()->user()->account_id
 				);
 		} else {
 			$data = DB::select("
 				SELECT id, object_name, object_id, event_name, user_id, created_at
-                FROM activities a, users u
-                WHERE a.user_id=u.id
+				FROM activities a, users u
+				WHERE a.user_id=u.id
 				AND a.user_id = ".auth()->user()->id
 				);
 		}
@@ -217,6 +217,6 @@ class ActivityController extends Controller
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('activities', $dataArray);
-    }
+	}
 
 }

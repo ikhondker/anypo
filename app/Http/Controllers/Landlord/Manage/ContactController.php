@@ -116,7 +116,7 @@ class ContactController extends Controller
 	public function edit(Contact $contact)
 	{
 		$this->authorize('update', $contact);
-        return view('landlord.manage.contacts.edit', compact('contact'));
+		return view('landlord.manage.contacts.edit', compact('contact'));
 	}
 
 	/**
@@ -126,7 +126,7 @@ class ContactController extends Controller
 	{
 		$this->authorize('update', $contact);
 
-        $request->validate([]);
+		$request->validate([]);
 		$contact->update($request->all());
 
 		return redirect()->route('contacts.index')->with('success', 'Contact updated successfully');
@@ -141,7 +141,7 @@ class ContactController extends Controller
 		//
 	}
 
-    public function export()
+	public function export()
 	{
 		$this->authorize('export', Contact::class);
 

@@ -10,7 +10,7 @@ use App\Models\Tenant\Lookup\Designation;
 
 class DesignationActions extends Component
 {
-    public $designation;
+	public $designation;
 	/**
 	 * Create a new component instance.
 	 */
@@ -20,12 +20,12 @@ class DesignationActions extends Component
 			$this->designation 	= Designation::where('id', $this->id)->get()->firstOrFail();
 		//}
 	}
-	
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.actions.lookup.designation-actions');
-    }
+
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.actions.lookup.designation-actions');
+	}
 }

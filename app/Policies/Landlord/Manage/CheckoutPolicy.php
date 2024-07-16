@@ -86,7 +86,7 @@ class CheckoutPolicy
 		//
 	}
 
-    public function export(User $user): bool
+	public function export(User $user): bool
 	{
 		return ($user->isSeeded());
 	}

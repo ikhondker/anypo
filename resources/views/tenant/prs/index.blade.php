@@ -13,7 +13,6 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
 			<x-tenant.actions.pr-actions-index/>
-
 		@endslot
 	</x-tenant.page-header>
 

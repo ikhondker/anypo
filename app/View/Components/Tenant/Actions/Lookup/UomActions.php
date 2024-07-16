@@ -10,21 +10,21 @@ use App\Models\Tenant\Lookup\Uom;
 
 class UomActions extends Component
 {
-    public $uom;
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(public $id)
-    {
-        $this->id 		= $id;
+	public $uom;
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct(public $id)
+	{
+		$this->id 		= $id;
 		$this->uom 	= Uom::where('id', $this->id)->get()->firstOrFail();
-    }
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.actions.lookup.uom-actions');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.actions.lookup.uom-actions');
+	}
 }

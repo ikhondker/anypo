@@ -63,38 +63,38 @@ class AehPayment implements ShouldQueue
 		}
 
 
-        // create accounting header
-        $aeh = new Aeh();
+		// create accounting header
+		$aeh = new Aeh();
 		$aeh->source_entity		= EntityEnum::PAYMENT->value;
-        if ($this->cancel){
+		if ($this->cancel){
 			$aeh->event			= AehEventEnum::CANCEL->value;
 		} else {
 			$aeh->event			= AehEventEnum::POST->value;
 		}
 		$aeh->accounting_date 	= date('Y-m-d');
-        $aeh->description	    = $payment->invoice->summary;
-        $aeh->fc_currency	    = $setup->currency;
-		$aeh->fc_dr_amount	    = $aeh->fc_cr_amount = $this->fc_amount;
+		$aeh->description		= $payment->invoice->summary;
+		$aeh->fc_currency		= $setup->currency;
+		$aeh->fc_dr_amount		= $aeh->fc_cr_amount = $this->fc_amount;
 		$aeh->po_id				= $payment->invoice->po_id;
 		$aeh->article_id		= $payment->id;
-        $aeh->reference_no      = Str::upper(EntityEnum::PAYMENT->value) .' #'. $payment->id;
-        $aeh->status            = AehStatusEnum::DRAFT->value;
-        $aeh->save();
-		$aeh_id                 = $aeh->id;
-        Log::debug('Jobs.Tenant.AehPayment created aeh record with aeh_id ='. $aeh_id);
+		$aeh->reference_no		= Str::upper(EntityEnum::PAYMENT->value) .' #'. $payment->id;
+		$aeh->status			= AehStatusEnum::DRAFT->value;
+		$aeh->save();
+		$aeh_id					= $aeh->id;
+		Log::debug('Jobs.Tenant.AehPayment created aeh record with aeh_id ='. $aeh_id);
 
 
 		// create two accounting row
 		$ael_dr						= new Ael;
 		$ael_cr 					= new Ael;
 
-        $ael_dr->aeh_id		        = $ael_cr->aeh_id 		= $aeh_id ;
+		$ael_dr->aeh_id				= $ael_cr->aeh_id 		= $aeh_id ;
 
-        $ael_dr->line_num			= 1;
+		$ael_dr->line_num			= 1;
 		$ael_cr->line_num			= 2;
 		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d');
 
-        $ael_dr->ac_code			= $setup->ac_liability;
+		$ael_dr->ac_code			= $setup->ac_liability;
 		$ael_cr->ac_code			= $bankAccount->ac_cash;
 
 		$ael_dr->line_description	= $ael_cr->line_description = $payment->invoice->summary;	// <- --------------
@@ -128,9 +128,9 @@ class AehPayment implements ShouldQueue
 		$ael_cr->save();
 		Log::debug('Jobs.Tenant.AelPayment saving cr line ael_dr_id ='. $ael_cr->id);
 
-          // Update aeh header status
-          $aeh->status            = AehStatusEnum::ACCOUNTED->value;
-          $aeh->save();
+		  // Update aeh header status
+		  $aeh->status		= AehStatusEnum::ACCOUNTED->value;
+		  $aeh->save();
 
 		// Update accounted flag
 		DB::statement("UPDATE payments SET

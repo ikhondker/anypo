@@ -17,7 +17,7 @@
 		@foreach ($prs as $pr)
 		<tr>
 			<td>{{ $pr->id }}</td>
-			<td><a class="text-info" href="{{ route('prs.show',$pr->id) }}">{{ $pr->summary }}</a></td>
+			<td><a href="{{ route('prs.show',$pr->id) }}"><strong>{{ $pr->summary }}</strong></a></td>
 			<td><x-tenant.list.my-date :value="$pr->pr_date"/></td>
 			<td>{{ $pr->requestor->name }}</td>
 			<td>{{ $pr->dept->name }}</td>

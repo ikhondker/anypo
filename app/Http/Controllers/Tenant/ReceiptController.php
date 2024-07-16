@@ -83,13 +83,13 @@ class ReceiptController extends Controller
 		}
 
 		switch (auth()->user()->role->value) {
-            case UserRoleEnum::HOD->value:
-                $receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
-                break;
+			case UserRoleEnum::HOD->value:
+				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
+				break;
 			case UserRoleEnum::BUYER->value:
-            case UserRoleEnum::CXO->value:
-            case UserRoleEnum::ADMIN->value:
-            case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
 				// buyer can see all payment of all his po's
 				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
@@ -102,13 +102,13 @@ class ReceiptController extends Controller
 		return view('tenant.receipts.index', compact('receipts'));
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function myReceipts()
 	{
 
-        $this->authorize('viewAny',Receipt::class);
+		$this->authorize('viewAny',Receipt::class);
 
 		$receipts = Receipt::query();
 		if (request('term')) {

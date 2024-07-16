@@ -86,7 +86,7 @@ class ServicePolicy
 		//
 	}
 
-    public function export(User $user): bool
+	public function export(User $user): bool
 	{
 		return ($user->isSeeded());
 	}

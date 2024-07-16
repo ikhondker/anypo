@@ -41,7 +41,7 @@ class Payment extends Model
 
 	/* ----------------- Scopes ------------------------- */
 
-    public function scopeByCreator(Builder $query): void
+	public function scopeByCreator(Builder $query): void
 	{
 		$query->where('created_by', auth()->user()->id);
 	}
@@ -53,8 +53,8 @@ class Payment extends Model
 	public function chkscopeByPoBuyer(Builder $query, $id): void
 	{
 		// P2
-        // TODO
-        // if (! $id) return;
+		// TODO
+		// if (! $id) return;
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('buyer_id', $id);
 		});

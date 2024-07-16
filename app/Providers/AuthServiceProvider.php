@@ -54,7 +54,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Lookup\Product' 		=> 'App\Policies\Landlord\Lookup\ProductPolicy',
 		//'App\Models\Landlord\Lookup\Rating' 		=> 'App\Policies\Landlord\Lookup\RatingPolicy',
 
-        'App\Models\Landlord\Manage\Activity'		=> 'App\Policies\Landlord\Manage\ActivityPolicy',
+		'App\Models\Landlord\Manage\Activity'		=> 'App\Policies\Landlord\Manage\ActivityPolicy',
 		'App\Models\Landlord\Manage\Attachment' 		=> 'App\Policies\Landlord\Manage\AttachmentPolicy',
 		'App\Models\Landlord\Manage\Checkout' 		=> 'App\Policies\Landlord\Manage\CheckoutPolicy',
 		'App\Models\Landlord\Manage\Contact' 		=> 'App\Policies\Landlord\Manage\ContactPolicy',

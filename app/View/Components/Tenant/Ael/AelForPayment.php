@@ -12,7 +12,7 @@ use Exception;
 class AelForPayment extends Component
 {
 	public $id;
-    public $aeh;
+	public $aeh;
 	public $aels;
 
 	/**
@@ -21,14 +21,14 @@ class AelForPayment extends Component
 	public function __construct($id)
 	{
 
-        $this->id   = $id;
-        try {
-            $this->aeh  = Aeh::where('source_entity',EntityEnum::PAYMENT->value)->where('article_id', $this->id)->get()->firstOrFail();
-            $this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
-        } catch (Exception $e) {
-            $this->aeh  =  new Aeh();
-            $this->aels = new Ael();
-        }
+		$this->id   = $id;
+		try {
+			$this->aeh  = Aeh::where('source_entity',EntityEnum::PAYMENT->value)->where('article_id', $this->id)->get()->firstOrFail();
+			$this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
+		} catch (Exception $e) {
+			$this->aeh  =  new Aeh();
+			$this->aels = new Ael();
+		}
 
 	}
 

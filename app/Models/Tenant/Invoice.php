@@ -50,12 +50,12 @@ class Invoice extends Model
 
 	/* ----------------- Scopes ------------------------- */
 
-    public function scopeAll(Builder $query): void
+	public function scopeAll(Builder $query): void
 	{
 		$query;
 	}
 
-    /**
+	/**
 	 * Scope a query to only All Approved PR for tenant.
 	*/
 	public function scopeAllPosted(Builder $query): void
@@ -125,7 +125,7 @@ class Invoice extends Model
 		]);
 	}
 
-    /* ---------------- created and updated by ---------------------- */
+	/* ---------------- created and updated by ---------------------- */
 	public function createdBy(){
 		return $this->belongsTo(User::class,'created_by');
 	}

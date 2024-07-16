@@ -10,24 +10,24 @@ use App\Models\Share\Template;
 
 class TemplateActions extends Component
 {
-    public $template;
+	public $template;
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public $id)
 	{
-		
+
 			$this->id 		= $id;
 			$this->template 	= Template::where('id', $this->id)->get()->firstOrFail();
-		
+
 	}
 
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.share.actions.template-actions');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.share.actions.template-actions');
+	}
 }

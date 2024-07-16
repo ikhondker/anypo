@@ -36,8 +36,8 @@ class PrListsRecent extends Component
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
 				$this->prs = Pr::with('dept')->with('requestor')->orderBy('id', 'DESC')
-                ->where('auth_status','<>',AuthStatusEnum::DRAFT->value)
-                ->limit(5)->paginate(10);
+				->where('auth_status','<>',AuthStatusEnum::DRAFT->value)
+				->limit(5)->paginate(10);
 				break;
 			default:
 				$this->prs = Pr::ByUserAll()->with('dept')->with('requestor')->orderBy('id', 'DESC')->limit(5)->paginate(10);

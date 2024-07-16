@@ -54,7 +54,7 @@
 									<i class="align-middle" data-lucide="eye"></i></a>
 								<a href="{{ route('invoices.edit',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 									<i class="align-middle" data-lucide="edit"></i></a>
-								<a href="{{ route('payments.create',$invoice->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments">
+								<a href="{{ route('payments.create',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments">
 									<i class="align-middle" data-lucide="dollar-sign"></i></a>
 							</td>
 						</tr>

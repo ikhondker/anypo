@@ -331,7 +331,7 @@ class InvoiceController extends Controller
 	public function update(UpdateInvoiceRequest $request, Invoice $invoice)
 	{
 		$this->authorize('update', $invoice);
-        $invoice->update($request->all());
+		$invoice->update($request->all());
 		EventLog::event('invoice',$invoice->id,'update','summary', $request->summary);
 		return redirect()->route('invoices.show',$invoice->id)->with('success','Invoice updated successfully.');
 

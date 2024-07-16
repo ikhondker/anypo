@@ -10,7 +10,7 @@ use App\Models\Tenant\Lookup\Country;
 
 class CountryActions extends Component
 {
-    public $country;
+	public $country;
 	/**
 	 * Create a new component instance.
 	 */
@@ -20,11 +20,11 @@ class CountryActions extends Component
 		$this->country = Country::where('country', $this->code)->get()->firstOrFail();
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.actions.lookup.country-actions');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.actions.lookup.country-actions');
+	}
 }

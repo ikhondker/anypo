@@ -10,14 +10,14 @@ use App\Models\Tenant\Manage\Menu;
 
 class MenuActions extends Component
 {
-    public $menu;
+	public $menu;
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public $id)
 	{
 		// if ( $id == 0 ){
-		// 	$this->id       = 0;
+		// 	$this->id		= 0;
 		// 	$this->menu 	= New Dept();
 		// } else {
 			$this->id 		= $id;
@@ -25,11 +25,11 @@ class MenuActions extends Component
 		//}
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.actions.manage.menu-actions');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.actions.manage.menu-actions');
+	}
 }

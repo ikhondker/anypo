@@ -46,7 +46,7 @@ class AehReceipt implements ShouldQueue
 	 */
 	public function handle(): void
 	{
-		$setup      = Setup::firstOrFail();
+		$setup		= Setup::firstOrFail();
 		$receipt 	= Receipt::with('pol.item')->where('id', $this->receipt_id)->firstOrFail();
 
 		Log::debug('Jobs.Tenant.AehReceipt creating accounting for receipt_id = ' . $receipt->id);
@@ -56,43 +56,43 @@ class AehReceipt implements ShouldQueue
 			return;
 		}
 
-        // create accounting header
-        $aeh = new Aeh();
+		// create accounting header
+		$aeh = new Aeh();
 		$aeh->source_entity		= EntityEnum::RECEIPT->value;
-        if ($this->cancel){
+		if ($this->cancel){
 			$aeh->event			= AehEventEnum::CANCEL->value;
 		} else {
 			$aeh->event			= AehEventEnum::POST->value;
 		}
 		$aeh->accounting_date 	= date('Y-m-d');
-        $aeh->description	    = $receipt->pol->item_description;
-        $aeh->fc_currency	    = $setup->currency;
-		$aeh->fc_dr_amount	    = $aeh->fc_cr_amount = $this->fc_amount;
+		$aeh->description		= $receipt->pol->item_description;
+		$aeh->fc_currency		= $setup->currency;
+		$aeh->fc_dr_amount		= $aeh->fc_cr_amount = $this->fc_amount;
 		$aeh->po_id				= $receipt->pol->po_id;
 		$aeh->article_id		= $receipt->id;
-        //$aeh->reference_no      =  'GRS #'. $receipt->id;
-        $aeh->reference_no      = Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;
-        $aeh->status            = AehStatusEnum::DRAFT->value;
-        $aeh->save();
-		$aeh_id                 = $aeh->id;
-        Log::debug('Jobs.Tenant.AehReceipt created aeh record with aeh_id ='. $aeh_id);
+		//$aeh->reference_no	  =  'GRS #'. $receipt->id;
+		$aeh->reference_no		= Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;
+		$aeh->status			= AehStatusEnum::DRAFT->value;
+		$aeh->save();
+		$aeh_id					= $aeh->id;
+		Log::debug('Jobs.Tenant.AehReceipt created aeh record with aeh_id ='. $aeh_id);
 
 		// create two accounting row
-        $ael_dr						= new Ael;
+		$ael_dr						= new Ael;
 		$ael_cr 					= new Ael;
 
-        $ael_dr->aeh_id		        = $ael_cr->aeh_id 		= $aeh_id ;
+		$ael_dr->aeh_id				= $ael_cr->aeh_id 		= $aeh_id ;
 
-        $ael_dr->line_num			= 1;
+		$ael_dr->line_num			= 1;
 		$ael_cr->line_num			= 2;
-        $ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d');
+		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d');
 
-        $ael_dr->ac_code			= $receipt->pol->item->ac_expense;
+		$ael_dr->ac_code			= $receipt->pol->item->ac_expense;
 		$ael_cr->ac_code			= $setup->ac_accrual;
 
 		$ael_dr->line_description	= $ael_cr->line_description = $receipt->pol->item_description;
 		$ael_dr->fc_currency		= $ael_cr->fc_currency 		= $setup->currency;
-		$ael_dr->reference_no		= $ael_cr->reference_no     = Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;
+		$ael_dr->reference_no		= $ael_cr->reference_no		= Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;
 
 		if ($this->cancel){
 			$ael_dr->fc_dr_amount	= 0;
@@ -114,13 +114,13 @@ class AehReceipt implements ShouldQueue
 		$ael_cr->save();
 		Log::debug('Jobs.Tenant.AehReceipt saving cr line ael_cr_id ='. $ael_cr->id);
 
-        // Update aeh header status
-        $aeh->status            = AehStatusEnum::ACCOUNTED->value;
-        $aeh->save();
+		// Update aeh header status
+		$aeh->status		= AehStatusEnum::ACCOUNTED->value;
+		$aeh->save();
 
 		// Update accounted flag
 		DB::statement("UPDATE receipts SET
-		    accounted		= true
-		    WHERE id = ".$receipt->id."");
+			accounted		= true
+			WHERE id = ".$receipt->id."");
 	}
 }

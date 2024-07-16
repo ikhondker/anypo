@@ -203,7 +203,7 @@ class Ticket extends Model
 
 	public function agent()
 	{
-        return $this->belongsTo(User::class,'agent_id')->withDefault([
+		return $this->belongsTo(User::class,'agent_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 

@@ -11,7 +11,7 @@ use App\Models\Tenant\Ae\Ael;
 class AelForPo extends Component
 {
 	public $id;
-    public $aeh;
+	public $aeh;
 	public $aels;
 
 	/**
@@ -19,14 +19,14 @@ class AelForPo extends Component
 	 */
 	public function __construct($id)
 	{
-        $this->id   = $id;
+		$this->id   = $id;
 		//$this->aeh  = Aeh::where('po_id', $id)->get()->firstOrFail();
 
-        $this->aels = Ael::with('aeh')
-            ->whereHas('aeh', function ($q) use ($id) {
-                $q->where('po_id', $id);
-            })
-            ->get()->all();
+		$this->aels = Ael::with('aeh')
+			->whereHas('aeh', function ($q) use ($id) {
+				$q->where('po_id', $id);
+			})
+			->get()->all();
 
 		//$this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
 	}

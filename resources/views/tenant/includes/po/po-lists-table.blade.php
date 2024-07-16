@@ -19,7 +19,7 @@
 		@foreach ($pos as $po)
 		<tr>
 			<td>{{ $po->id }}</td>
-			<td><a class="text-info" href="{{ route('pos.show',$po->id) }}">{{ $po->summary }}</a></td>
+			<td><a href="{{ route('pos.show',$po->id) }}"><strong>{{ $po->summary }}</strong></a></td>
 			<td><x-tenant.list.my-date :value="$po->po_date"/></td>
 			<td>{{ $po->dept->name }}</td>
 			<td>{{ $po->currency }}</td>

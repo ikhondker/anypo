@@ -13,7 +13,7 @@ use App\Enum\EntityEnum;
 class AelForReceipt extends Component
 {
 	public $id;
-    public $aeh;
+	public $aeh;
 	public $aels;
 
 	/**
@@ -22,12 +22,12 @@ class AelForReceipt extends Component
 	public function __construct($id)
 	{
 		$this->id   = $id;
-        try {
-		    $this->aeh  = Aeh::where('source_entity',EntityEnum::RECEIPT->value)->where('article_id', $this->id)->get()->firstOrFail();
-		    $this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
-        } catch (Exception $e) {
-	        $this->aeh  =  new Aeh();
-            $this->aels = new Ael();
+		try {
+			$this->aeh  = Aeh::where('source_entity',EntityEnum::RECEIPT->value)->where('article_id', $this->id)->get()->firstOrFail();
+			$this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
+		} catch (Exception $e) {
+			$this->aeh  =  new Aeh();
+			$this->aels = new Ael();
 		}
 	}
 

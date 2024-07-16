@@ -44,18 +44,22 @@
 		<nav id="sidebar" class="sidebar">
 			<div class="sidebar-content js-simplebar">
 
-				<a class="sidebar-brand" href="{{ route('home') }}">
+				<div class="sidebar-brand">
 					@auth
-						<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
-						<h4 class="text-info">{{ $_setup->name}}</h4>
-						<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>
-					@endauth
+						<a class="" href="{{ route('home') }}">
+							<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
+							<h4 class="text-info">{{ $_setup->name}}</h4>
+						</a>
+						<a class="" href="{{ route('users.profile') }}">
+							<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>
+						</a>
+						@endauth
 					@guest
 						<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
 						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
 						<h6 class="text-danger">Guest!</h6>
 					@endguest
-				</a>
+				</div>
 
 				@include('tenant.includes.sidebar')
 
@@ -306,7 +310,7 @@
 							<p class="mb-0">
 								@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
 									<a class="text-muted" href="{{ route('tables.index') }}" target="_blank">Tables</a> |
-									<a class="text-muted" href="{{ route('ui') }}" target="_blank">UI</a> | 
+									<a class="text-muted" href="{{ route('ui') }}" target="_blank">UI</a> |
 									Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
 								@endif
 								<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a></p>

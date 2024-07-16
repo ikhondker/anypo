@@ -72,8 +72,8 @@ class UserController extends Controller
 	 */
 	public function index()
 	{
-        //throw new CustomException('An unexpected error has occurred.');
-        //abort(500);
+		//throw new CustomException('An unexpected error has occurred.');
+		//abort(500);
 		$users = User::query();
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
@@ -319,12 +319,12 @@ class UserController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Show the form for creating a new resource.
 	 */
 	public function profile()
 	{
-        ///$this->authorize('create', User::class);
+		///$this->authorize('create', User::class);
 		$user = User::where('id', auth()->user()->id)->first();
 		return view('landlord.profile.profile',compact('user'));
 	}

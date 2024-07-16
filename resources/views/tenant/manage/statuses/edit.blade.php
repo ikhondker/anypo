@@ -20,7 +20,7 @@
 	<form action="{{ route('statuses.update',$status->code) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
-		
+
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -36,24 +36,24 @@
 							<th>Code</th>
 							<td>
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
-								code="code" id="code" placeholder="Raw Route Name"
-								value="{{ old('code', $status->code ) }}"
-								required/>
-							@error('code')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
+									code="code" id="code" placeholder="code"
+									value="{{ old('code', $status->code ) }}"
+									required/>
+								@error('code')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
 							</td>
 						</tr>
 						<tr>
 							<th>Name</th>
 							<td>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"
-								name="name" id="name" placeholder="Raw Route Name"
-								value="{{ old('name', $status->name ) }}"
-								required/>
-							@error('name')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
+									name="name" id="name" placeholder="Name"
+									value="{{ old('name', $status->name ) }}"
+									required/>
+								@error('name')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
 							</td>
 						</tr>
 						<tr>

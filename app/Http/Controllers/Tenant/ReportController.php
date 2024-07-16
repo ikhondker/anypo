@@ -824,10 +824,10 @@ class ReportController extends Controller
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 
 
-        $title 	    = 'Purchase Requisiton #'. $pr->id;
+		$title 		= 'Purchase Requisiton #'. $pr->id;
 		$subTitle 	= 'Approval : '. strtoupper($pr->auth_status);
-		$param1     = 'Amount : '. number_format($pr->amount, 2) .' '. $pr->currency;
-        $param2 	= 'Requestor : '. $pr->requestor->name;
+		$param1		= 'Amount : '. number_format($pr->amount, 2) .' '. $pr->currency;
+		$param2 	= 'Requestor : '. $pr->requestor->name;
 		$param3 	= 'Date : ' .strtoupper(date('d-M-Y', strtotime($pr->pr_date)));
 
 		// Increase reports run_count
@@ -842,11 +842,11 @@ class ReportController extends Controller
 			'report' 	=> $report,
 			'pr' 		=> $pr,
 			'prls' 		=> $prls,
-            'title' 	=> $title,
-            'subTitle' 	=> $subTitle,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-            'param3' 	=> $param3,
+			'param3' 	=> $param3,
 
 		];
 

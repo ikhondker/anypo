@@ -99,8 +99,8 @@ class PoController extends Controller
 				$pos = $pos->ByDeptAll()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
-            case UserRoleEnum::CXO->value:
-            case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
 				$pos = $pos->AllApproved()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::SYSTEM->value:
@@ -489,7 +489,7 @@ class PoController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function myPo()
@@ -500,7 +500,7 @@ class PoController extends Controller
 			$pos->where('summary', 'LIKE', '%' . request('term') . '%');
 		}
 		//$pos = $pos->ByBuyerAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
-        $pos = $pos->ByBuyerAll()->with("buyer")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+		$pos = $pos->ByBuyerAll()->with("buyer")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 
 		return view('tenant.pos.my-pos', compact('pos'));
 	}
@@ -513,16 +513,16 @@ class PoController extends Controller
 			return redirect()->route('pos.show',$po->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
 
-        // only buyer can submit PO
-        if ( ! auth()->user()->isBuyer() ) {
+		// only buyer can submit PO
+		if ( ! auth()->user()->isBuyer() ) {
 			return redirect()->route('pos.show',$po->id)->with('error', 'Only a Buyer Can submit a Purchase Order for Approval!');
 		}
 
-        if ($po->buyer_id <> auth()->user()->id) {
-            return redirect()->route('pos.show',$po->id)->with('error', 'You can only submit Purchase Orders created by you!');
-        }
+		if ($po->buyer_id <> auth()->user()->id) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'You can only submit Purchase Orders created by you!');
+		}
 
-        if ($po->amount == 0) {
+		if ($po->amount == 0) {
 			return redirect()->route('pos.show',$po->id)->with('error', 'You cannot submit zero value Purchase Order');
 		}
 

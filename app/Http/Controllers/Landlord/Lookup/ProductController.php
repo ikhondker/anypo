@@ -91,7 +91,7 @@ class ProductController extends Controller
 	public function show(Product $product)
 	{
 		$this->authorize('view', $product);
-        return view('landlord.lookup.products.show', compact('product'));
+		return view('landlord.lookup.products.show', compact('product'));
 	}
 
 	/**
