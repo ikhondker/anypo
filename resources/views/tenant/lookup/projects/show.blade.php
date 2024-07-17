@@ -9,13 +9,13 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Project [{{ $project->name }}]
+			Project
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Project"/>
 			<x-tenant.actions.project-actions id="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
+
 
 	<x-tenant.info.project-info id="{{ $project->id }}"/>
 
@@ -144,8 +144,8 @@
 					<table class="table table-sm my-2">
 						<tbody>
 							<x-tenant.show.my-amount	value="{{ $project->amount }}" label="Budget"/>
-								<x-tenant.show.my-amount	value="{{ $project->amount_payment }}" label="Paid Amount"/>
-								<x-tenant.show.my-amount	value="{{ $project->amount- $project->amount_payment }}" label="Available"/>
+							<x-tenant.show.my-amount	value="{{ $project->amount_payment }}" label="Paid Amount"/>
+							<x-tenant.show.my-amount	value="{{ $project->amount- $project->amount_payment }}" label="Available"/>
 						</tbody>
 					</table>
 				</div>

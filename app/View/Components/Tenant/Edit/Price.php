@@ -11,13 +11,13 @@ class Price extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $value)
+	public function __construct(public string $value = '')
 	{
-		if (is_null($value)){
-			$this->value = 1.0;
-		} else {
-			$this->value = $value;
-		}
+		// if (is_null($value)){
+		// 	$this->value = 1.0;
+		// } else {
+		//	$this->value = $value;
+		//}
 	}
 
 	/**

@@ -41,10 +41,10 @@
 								<th>#</th>
 								<th>Code</th>
 								<th>Name</th>
-								<th>PM</th>
+								<th>Project Manager</th>
 								<th>Start-End</th>
 								<th>Closed</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -55,9 +55,9 @@
 								<td>{{ $project->code }}</td>
 								<td><a href="{{ route('projects.show',$project->id) }}"><strong>{{ $project->name }}</strong></a></td>
 								<td>{{ $project->pm->name }}</td>
-								<td><x-tenant.list.my-date :value="$project->start_date"/> - <x-tenant.list.my-date :value="$project->end_date"/></td>
+								<td><x-tenant.list.my-date value="{{ $project->start_date }}"/> to <x-tenant.list.my-date value="{{ $project->end_date }}"/></td>
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('projects.show',$project->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

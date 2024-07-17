@@ -13,8 +13,6 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.actions.manage.menu-actions id="{{ $menu->id }}"/>
-			<x-tenant.buttons.header.lists object="Menu"/>
-			<x-tenant.buttons.header.create object="Menu"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -26,7 +24,8 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('menus.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('menus.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+					<a href="{{ route('menus.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Menu</h5>
 							<h6 class="card-subtitle text-muted">Edit Menu Details.</h6>

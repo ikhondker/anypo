@@ -11,7 +11,7 @@ class IdReadOnly extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $value)
+	public function __construct(public string $value='')
 	{
 		//
 	}

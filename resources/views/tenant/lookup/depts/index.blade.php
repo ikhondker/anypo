@@ -50,7 +50,7 @@
 								<th>PR Hierarchy</th>
 								<th>PO Hierarchy</th>
 								<th>Enable?</th>
-								<th class="text-end">View</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -61,7 +61,7 @@
 								<td><a href="{{ route('hierarchies.show',$dept->pr_hierarchy_id) }}"><strong>{{ $dept->prHierarchy->name }}</strong></a></td>
 								<td><a href="{{ route('hierarchies.show',$dept->po_hierarchy_id) }}"><strong>{{ $dept->poHierarchy->name }}</strong></a></td>
 								<td><x-tenant.list.my-boolean :value="$dept->enable"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('depts.show',$dept->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

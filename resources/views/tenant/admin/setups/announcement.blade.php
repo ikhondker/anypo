@@ -21,6 +21,9 @@
 
 		<div class="card">
 			<div class="card-header">
+				<div class="card-actions float-end">
+					<a class="btn btn-sm btn-light" href="{{ route('setups.show', $setup->id ) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Setup</a>
+				</div>
 				<h5 class="card-title">Announcement </h5>
 				<h6 class="card-subtitle text-muted">General Announcement to all user.</h6>
 			</div>

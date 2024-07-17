@@ -12,7 +12,7 @@
 			Unread Notifications
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.notification-actions/>
+			<x-tenant.actions.notification.notification-actions/>
 		@endslot
 	</x-tenant.page-header>
 	

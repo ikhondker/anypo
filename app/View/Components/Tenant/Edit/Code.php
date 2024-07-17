@@ -13,11 +13,9 @@ class Code extends Component
 	 */
 	public function __construct(public string $value = '')
 	{
-		if (is_null($value)){
-			$this->value = '';
-		} else {
-			$this->value = $value;
-		}
+		
+		//$this->value = $value;
+		
 	}
 
 	/**

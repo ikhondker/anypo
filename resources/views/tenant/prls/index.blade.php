@@ -29,9 +29,9 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>PO</th>
-								<th>Item</th>
+								<th>POLID</th>
+								<th>PO#</th>
+								<th>Item ID</th>
 								<th>Summary</th>
 								<th class="text-end">Qty</th>
 								<th class="text-end">Price</th>
@@ -50,7 +50,7 @@
 								<td>{{ $prl->id }}</td>
 								<td>{{ $prl->pr_id }}</td>
 								<td>{{ $prl->item_id }}</td>
-								<td>{{ $prl->summary }}</td>
+								<td>{{ $prl->item_description }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->qty"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->price"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->sub_total"/></td>
@@ -58,7 +58,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->gst"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>
 								<td><x-tenant.list.my-boolean :value="$prl->enable"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('prls.show',$prl->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

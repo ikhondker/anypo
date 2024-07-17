@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
-use App\Helpers\ExchangeRate;
+use App\Helpers\Tenant\ExchangeRate;
 
 use App\Models\Tenant\Prl;
 use App\Models\Tenant\Admin\Setup;

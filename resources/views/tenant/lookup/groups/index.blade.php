@@ -38,11 +38,11 @@
 								<td>{{ $groups->firstItem() + $loop->index }}</td>
 								<td><a href="{{ route('groups.show',$group->id) }}"><strong>{{ $group->name }}</strong></a></td>
 								<td><x-tenant.list.my-boolean :value="$group->enable"/></td>
-									<td class="text-end">
-										<a href="{{ route('groups.show',$group->id) }}" class="btn btn-light"
-											data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
-										</a>
-									</td>
+								<td>
+									<a href="{{ route('groups.show',$group->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>

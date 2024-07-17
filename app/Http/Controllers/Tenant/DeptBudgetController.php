@@ -72,13 +72,13 @@ class DeptBudgetController extends Controller
 
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::HOD->value:
-				$dept_budgets = $dept_budgets->ByDeptAll()->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
+				$dept_budgets = $dept_budgets->ByDeptAll()->with('dept')->with('budget')->orderBy('budget_id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
+				$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('budget_id', 'DESC')->paginate(10);
 				break;
 			default:
 				//$dept_budgets = $dept_budgets->ByUserAll()->with('dept')->with('budget')->paginate(10);

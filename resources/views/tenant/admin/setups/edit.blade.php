@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Setup')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}">Setup</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('setups.show',$setup->id) }}">{{ $setup->name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}" class="text-muted">Setup</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('setups.show',$setup->id) }}" class="text-muted">{{ $setup->name }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -24,8 +24,11 @@
 
 		<div class="card">
 			<div class="card-header">
+				<div class="card-actions float-end">
+					<a class="btn btn-sm btn-light" href="{{ route('setups.show', $setup->id ) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Setup</a>
+				</div>
 				<h5 class="card-title">Logo (90x90)</h5>
-							<h6 class="card-subtitle text-muted">Edit Company Logo (90x90).</h6>
+				<h6 class="card-subtitle text-muted">Edit Company Logo (90x90).</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
@@ -46,9 +49,6 @@
 
 		<div class="card">
 			<div class="card-header">
-				<div class="card-actions float-end">
-					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
-				</div>
 				<h5 class="card-title">Edit Basic Information</h5>
 				<h6 class="card-subtitle text-muted">Basic Configuration details.</h6>
 			</div>
@@ -87,11 +87,8 @@
 
 		<div class="card">
 			<div class="card-header">
-				<div class="card-actions float-end">
-					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
-				</div>
 				<h5 class="card-title">Edit Address</h5>
-							<h6 class="card-subtitle text-muted">Edit Company Address details.</h6>
+				<h6 class="card-subtitle text-muted">Edit Company Address details.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
@@ -109,7 +106,7 @@
 		<div class="card">
 			<div class="card-header">
 				<h5 class="card-title">Currency and GL Account</h5>
-							<h6 class="card-subtitle text-muted">Edit GL Accounts.</h6>
+				<h6 class="card-subtitle text-muted">Edit GL Accounts.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
@@ -118,7 +115,6 @@
 							<th>Currency <x-tenant.info info="Note: You wont be able to change the Currency."/></th>
 							<td>
 								<input type="text" name="currency" id="currency" class="form-control" placeholder="USD" value="{{ old('currency', $setup->currency ) }}" readonly>
-
 							</td>
 						</tr>
 						<tr>
@@ -156,19 +152,20 @@
 		<div class="card">
 			<div class="card-header">
 				<h5 class="card-title">Web Presence</h5>
-							<h6 class="card-subtitle text-muted">Edit Web Presence details.</h6>
+				<h6 class="card-subtitle text-muted">Edit Web Presence details.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-
-						<x-tenant.edit.website :value="$setup->website"/>
-						<x-tenant.edit.facebook :value="$setup->facebook"/>
-						<x-tenant.edit.linked-in :value="$setup->linkedin"/>
+						<x-tenant.edit.website value="{{ $setup->website }}"/>
+						<x-tenant.edit.facebook value="{{ $setup->facebook }}"/>
+						<x-tenant.edit.linked-in value="{{ $setup->linkedin }}"/>
 					</tbody>
 				</table>
 			</div>
 		</div>
+
+		<x-tenant.buttons.show.save/>
 
 	</form>
 	<!-- /.form end -->

@@ -12,8 +12,7 @@
 			Create Hierarchy
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
-			<x-tenant.buttons.header.lists object="Hierarchy"/>
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -21,105 +20,125 @@
 	<form id="myform" action="{{ route('hierarchies.store') }}" method="POST">
 		@csrf
 
+
+
 		<div class="card">
 			<div class="card-header">
+				<div class="card-actions float-end">
+					<a class="btn btn-sm btn-light" href="{{ route('hierarchies.index') }}" ><i class="fas fa-list"></i> View all</a>
+				</div>
+
 				<h5 class="card-title">Create Hierarchy</h5>
 				<h6 class="card-subtitle text-muted">Create New Apporval Hierarchy.</h6>
 			</div>
 			<div class="card-body">
-				<form>
 
-					<div class="mb-3 row">
-						<label class="col-form-label col-sm-3 text-sm-right">Hierarchy Name</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control @error('name') is-invalid @enderror"
-							name="name" id="name" placeholder="Hierarchy Name"
-							value="{{ old('name', '' ) }}"
-							required/>
-						@error('name')
-							<div class="text-danger text-xs">{{ $message }}</div>
-						@enderror
-						</div>
-					</div>
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th>Hierarchy Name</th>
+							<td>
+								<input type="text" class="form-control @error('name') is-invalid @enderror"
+								name="name" id="name" placeholder="Hierarchy Name"
+								value="{{ old('name', '' ) }}"
+								required/>
+							@error('name')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+							</td>
+						</tr>
+						
+	
+						<tr>
+							<th>First Approver</th>
+							<td>
+								<select class="form-control" name="approver_id_1" required>
+									<option value="0"><< First Approver >> </option>
+									@foreach ($users as $user)
+										<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+									@endforeach
+								</select>
+								@error('approver_id_1')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							
+							</td>
+						</tr>
+						
 
-					<div class="mb-3 row">
-						<label class="col-form-label col-sm-3 text-sm-right">First Approver</label>
-						<div class="col-sm-9">
-							<select class="form-control" name="approver_id_1" required>
-								<option value="0"><< First Approver >> </option>
-								@foreach ($users as $user)
-									<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
-								@endforeach
-							</select>
-							@error('approver_id_1')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<label class="col-form-label col-sm-3 text-sm-right">Second Approver</label>
-						<div class="col-sm-9">
-							<select class="form-control" name="approver_id_2">
-								<option value="0"><< Second Approver >> </option>
-								@foreach ($users as $user)
-									<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
-								@endforeach
-							</select>
-							@error('approver_id_2')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<label class="col-form-label col-sm-3 text-sm-right">Third Approver</label>
-						<div class="col-sm-9">
-							<select class="form-control" name="approver_id_3">
-								<option value="0"><< Third Approver >> </option>
-								@foreach ($users as $user)
-									<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
-								@endforeach
-							</select>
-							@error('approver_id_3')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<label class="col-form-label col-sm-3 text-sm-right">Fourth Approver</label>
-						<div class="col-sm-9">
-							<select class="form-control" name="approver_id_4">
-								<option value="0"><< Fourth Approver >> </option>
-								@foreach ($users as $user)
-									<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
-								@endforeach
-							</select>
-							@error('approver_id_4')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-					</div>
+						<tr>
+							<th>Second Approver</th>
+							<td>
+								<select class="form-control" name="approver_id_2">
+									<option value="0"><< Second Approver >> </option>
+									@foreach ($users as $user)
+										<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+									@endforeach
+								</select>
+								@error('approver_id_2')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							
+							</td>
+						</tr>
+						
 
-					<div class="mb-3 row">
-						<label class="col-form-label col-sm-3 text-sm-right">Fifth Approver</label>
-						<div class="col-sm-9">
-							<select class="form-control" name="approver_id_5">
-								<option value=""><< Fifth Approver >> </option>
-								@foreach ($users as $user)
-									<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
-								@endforeach
-							</select>
-							@error('user_id')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-sm-12 ml-sm-auto">
-							<x-tenant.buttons.show.save/>
+						<tr>
+							<th>Third Approver</th>
+							<td>
+								<select class="form-control" name="approver_id_3">
+									<option value="0"><< Third Approver >> </option>
+									@foreach ($users as $user)
+										<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+									@endforeach
+								</select>
+								@error('approver_id_3')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							
+							</td>
+						</tr>
+						
 
-						</div>
-					</div>
-				</form>
+						<tr>
+							<th>Fourth Approver</th>
+							<td>
+								<select class="form-control" name="approver_id_4">
+									<option value="0"><< Fourth Approver >> </option>
+									@foreach ($users as $user)
+										<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+									@endforeach
+								</select>
+								@error('approver_id_4')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							
+							</td>
+						</tr>
+						
+
+						<tr>
+							<th>Fifth Approver</th>
+							<td>
+								<select class="form-control" name="approver_id_5">
+									<option value=""><< Fifth Approver >> </option>
+									@foreach ($users as $user)
+										<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+									@endforeach
+								</select>
+								@error('user_id')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							
+							</td>
+						</tr>
+						
+						
+						<x-tenant.buttons.show.save/>
+
+					</tbody>
+				</table>
+				
 			</div>
 		</div>
 

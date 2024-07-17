@@ -50,7 +50,7 @@ return new class extends Migration
 			$table->biginteger('admin_id')->nullable(); 				// No foreign key intentional TODO
 			$table->biginteger('kam_id')->nullable(); 					// Future
 			$table->biginteger('landlord_account_id')->nullable();
-			$table->dateTime('last_rate_date')->nullable();
+			$table->date('last_rate_date')->nullable();
 			$table->boolean('maintenance')->default(false); 
 			$table->boolean('debug')->default(false); 
 			$table->boolean('readonly')->default(false);

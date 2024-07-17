@@ -13,8 +13,7 @@
 			Edit OEM
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Oem"/>
-			<x-tenant.buttons.header.create object="Oem"/>
+			<x-tenant.actions.lookup.oem-actions id="{{ $oem->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -26,7 +25,8 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('oems.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('oems.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+					<a href="{{ route('oems.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit OEM</h5>
 				<h6 class="card-subtitle text-muted">Edit an OEM</h6>

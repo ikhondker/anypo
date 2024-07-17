@@ -12,8 +12,8 @@
 			Create User
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
-			<x-tenant.buttons.header.lists object="User"/>
+			
+			
 		@endslot
 	</x-tenant.page-header>
 

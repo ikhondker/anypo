@@ -14,7 +14,6 @@
 			View Currency
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Currency"/>
 			<x-tenant.actions.lookup.currency-actions code="{{ $currency->currency }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -22,7 +21,8 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a href="{{ route('currencies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('currencies.edit', $currency->currency ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('currencies.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Currency Detail</h5>
 			<h6 class="card-subtitle text-muted">Currency details.</h6>

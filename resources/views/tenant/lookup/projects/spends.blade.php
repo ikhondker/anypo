@@ -14,6 +14,7 @@
 			Project Spends
 		@endslot
 		@slot('buttons')
+			<x-tenant.buttons.header.lists object="Project"/>
 			<x-tenant.buttons.header.create object="Project"/>
 		@endslot
 	</x-tenant.page-header>
@@ -137,7 +138,6 @@
 								<th class="text-end">GRS</th>
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
-
 								<th>Closed?</th>
 								<th>View</th>
 							</tr>
@@ -146,7 +146,7 @@
 							@foreach ($projects as $project)
 							<tr>
 								<td>{{ $projects->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('projects.po',$project->id) }}">{{ $project->code }}</a></td>
+								<td><a href="{{ route('projects.po',$project->id) }}"><strong>{{ $project->code }}</strong></a></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_pr_booked + $project->amount_pr"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount - $project->amount_pr_booked - $project->amount_pr "/></td>
@@ -156,12 +156,10 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$project->amount_payment"/></td>
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
-								<td class="table-action">
+								<td>
 									<a href="{{ route('projects.show',$project->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>
-
-
 								</td>
 							</tr>
 							@endforeach

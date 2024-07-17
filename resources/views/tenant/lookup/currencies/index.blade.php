@@ -34,7 +34,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Currency</th>
+								<th>Code</th>
 								<th>Name</th>
 								<th>Country</th>
 								<th>Enable?</th>

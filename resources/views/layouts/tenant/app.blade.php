@@ -35,8 +35,6 @@
 	<!-- CSS Front Template -->
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/tenant.css') }}">
-
-
 </head>
 
 <body>
@@ -254,7 +252,7 @@
 						<!-- breadcrumb -->
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><i class="align-top text-muted" data-lucide="home"></i><a href="{{ route('home') }}"> Home</a></li>
+								<li class="breadcrumb-item"><i class="align-top text-muted" data-lucide="home"></i><a href="{{ route('home') }}" class="text-muted"> Home</a></li>
 								@yield('breadcrumb')
 							</ol>
 						</nav>

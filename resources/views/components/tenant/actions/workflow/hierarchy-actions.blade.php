@@ -4,8 +4,14 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
-		<a class="dropdown-item" href="{{ route('hierarchies.show', $hierarchy->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Hierarchy</a>
-		<a class="dropdown-item" href="{{ route('hierarchies.edit', $hierarchy->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Hierarchy</a>
+		@if (Route::current()->getName() == 'hierarchies.edit')
+			<a class="dropdown-item" href="{{ route('hierarchies.show', $hierarchy->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Hierarchy</a>
+		@endif
+		@if (Route::current()->getName() == 'hierarchies.show')
+			<a class="dropdown-item" href="{{ route('hierarchies.edit', $hierarchy->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Hierarchy</a>
+		@endif
+
+		
 		<a class="dropdown-item" href="{{ route('hierarchies.index') }}"><i class="align-middle me-1" data-lucide="list"></i> Hierarchy List</a>
 
 		@can('create', App\Models\Tenant\Workflow\Hierarchy::class)

@@ -20,6 +20,9 @@
 		@csrf
 		<div class="card">
 			<div class="card-header">
+				<div class="card-actions float-end">
+					<a class="btn btn-sm btn-light" href="{{ route('setups.edit', $setup->id ) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Setup</a>
+				</div>
 				<h5 class="card-title">Terms and Conditions </h5>
 				<h6 class="card-subtitle text-muted">General Terms and Conditions for All Purchase Order.</h6>
 			</div>

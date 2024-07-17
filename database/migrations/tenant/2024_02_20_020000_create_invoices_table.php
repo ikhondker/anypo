@@ -16,6 +16,7 @@ return new class extends Migration
 	{
 		Schema::create('invoices', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
+			$table->enum('invoice_type', ['STANDARD','ADVANCE'])->default('STANDARD'); 
 			$table->string('invoice_no');
 			$table->dateTime('invoice_date')->useCurrent(); 
 			$table->foreignId('po_id')->constrained('pos');

@@ -11,8 +11,7 @@
 			Edit Status
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Status"/>
-			<x-tenant.buttons.header.create object="Status"/>
+			<x-tenant.actions.manage.status-actions code="{{ $status->code }}"/>
 		@endslot
 	</x-tenant.page-header>
 

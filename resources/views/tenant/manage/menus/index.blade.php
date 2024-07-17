@@ -48,7 +48,7 @@
 						<td>{{ $menu->route_name }}</td>
 						<td>{{ $menu->node_name }}</td>
 						<td><x-tenant.list.my-boolean :value="$menu->enable"/></td>
-						<td class="text-end">
+						<td>
 							<a href="{{ route('menus.show',$menu->id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 							</a>

@@ -11,7 +11,6 @@
 			View Item
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Item"/>
 			<x-tenant.actions.lookup.item-actions id="{{ $item->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -19,7 +18,8 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a href="{{ route('items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('items.edit', $item->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('items.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Item Detail</h5>
 			<h6 class="card-subtitle text-muted"><h6 class="card-subtitle text-muted">Detail Information of an Item.</h6>.</h6>

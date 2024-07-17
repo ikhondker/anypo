@@ -86,7 +86,7 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col mt-0">
-							<h5 class="card-title">In-Active Suppliers</h5>
+							<h5 class="card-title">InActive Suppliers</h5>
 						</div>
 
 						<div class="col-auto">
@@ -141,19 +141,17 @@
 							@foreach ($suppliers as $supplier)
 							<tr>
 								<td>{{ $suppliers->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('suppliers.po',$supplier->id) }}">{{ $supplier->name }}</a></td>
+								<td><a href="{{ route('suppliers.po',$supplier->id) }}"><strong>{{ $supplier->name }}</strong></a></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_pr_booked + $supplier->amount_pr"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_po_booked + $supplier->amount_po"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$supplier->amount_payment"/></td>
 								<td><x-tenant.list.my-boolean :value="$supplier->enable"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('suppliers.show',$supplier->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>
-
-
 								</td>
 							</tr>
 							@endforeach

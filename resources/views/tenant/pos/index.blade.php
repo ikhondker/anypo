@@ -33,11 +33,9 @@
 					<h6 class="card-subtitle text-muted">List of Purchase Orders.</h6>
 				</div>
 				<div class="card-body">
-
 					<!-- ========== INCLUDE ========== -->
 					@include('tenant.includes.po.po-lists-table')
 					<!-- ========== INCLUDE ========== -->
-
 				</div>
 				<!-- end card-body -->
 			</div>

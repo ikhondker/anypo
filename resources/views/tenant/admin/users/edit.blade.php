@@ -26,7 +26,8 @@
 			<div class="card-header">
 				@can('viewAny', $user)
 					<div class="card-actions float-end">
-						<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+						<a href="{{ route('users.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+						<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 					</div>
 				@endcan
 				<h5 class="card-title">User Avatar</h5>
@@ -171,9 +172,9 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<x-tenant.edit.notes value="{{ $user->notes }}"/>
-						<x-tenant.edit.website value="{{ $setup->website }}"/>
-						<x-tenant.edit.facebook value="{{ $setup->facebook }}"/>
-						<x-tenant.edit.linked-in value="{{ $setup->linkedin }}"/>
+						<x-tenant.edit.website value="{{ $user->website }}"/>
+						<x-tenant.edit.facebook value="{{ $user->facebook }}"/>
+						<x-tenant.edit.linked-in value="{{ $user->linkedin }}"/>
 						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>

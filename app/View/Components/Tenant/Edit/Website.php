@@ -11,14 +11,13 @@ class Website extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $value)
+	public function __construct(public string $value='')
 	{
-		if (is_null($value)){
-			$this->value = '';
-		} else {
-			$this->value = $value;
-		}
-
+		// if (is_null($value)){
+		// 	$this->value = '';
+		// } else {
+		// 	$this->value = $value;
+		// }
 	}
 
 	/**

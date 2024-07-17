@@ -40,7 +40,7 @@
 								<th>#</th>
 								<th>Name</th>
 								<th>Enable</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -49,7 +49,7 @@
 								<td>{{ $oems->firstItem() + $loop->index }}</td>
 								<td><a href="{{ route('oems.show',$oem->id) }}"><strong>{{ $oem->name }}</strong></a></td>
 								<td><x-tenant.list.my-boolean :value="$oem->enable"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('oems.show',$oem->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

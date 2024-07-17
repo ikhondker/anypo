@@ -12,14 +12,13 @@
 			Create Bank Account
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="BankAccount"/>
+
 		@endslot
 	</x-tenant.page-header>
 
 	<!-- form start -->
 	<form id="myform" action="{{ route('bank-accounts.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
-
 
 		<div class="card">
 			<div class="card-header">

@@ -40,7 +40,7 @@
 					<th>Old Value</th>
 					<th>Performed By</th>
 					<th>Role</th>
-					<th>Actions</th>
+					<th>View</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -60,11 +60,10 @@
 					<td>
 						<x-tenant.list.my-badge :value="$activity->role" />
 					</td>
-					<td class="text-end">
+					<td>
 						<a href="{{ route('activities.show',$activity->id) }}" class="btn btn-light"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 						</a>
-
 					</td>
 				</tr>
 				@endforeach

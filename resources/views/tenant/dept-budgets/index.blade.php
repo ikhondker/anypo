@@ -44,7 +44,6 @@
 								<th>#</th>
 								<th>FY</th>
 								<th>Dept</th>
-
 								<th class="text-end">Budget</th>
 								<th class="text-end">PR (Booked)</th>
 								<th class="text-end">PR (Approved)</th>
@@ -55,9 +54,8 @@
 								<th class="text-end">GRS</th>
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
-
-								<th class="text-end">Closed</th>
-								<th>Actions</th>
+								<th>Closed</th>
+								<th>View</th>
 							</tr>
 						</thead>
 
@@ -66,7 +64,7 @@
 							<tr>
 								<td>{{ $dept_budgets->firstItem() + $loop->index }}</td>
 								<td>{{ $dept_budget->budget->fy }}</td>
-								<td><a class="text-info" href="{{ route('dept-budgets.show',$dept_budget->id) }}">{{ $dept_budget->dept->name }}</a></td>
+								<td><a href="{{ route('dept-budgets.show',$dept_budget->id) }}"><strong>{{ $dept_budget->dept->name }}</a></strong></td>
 
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr_booked"/></td>
@@ -79,7 +77,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_payment"/></td>
 								<td><x-tenant.list.my-closed :value="$dept_budget->closed"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('dept-budgets.show',$dept_budget->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

@@ -50,7 +50,6 @@
 								<th class="text-end">PO (Booked)</th>
 								<th class="text-end">PO (Approved)</th>
 								<th class="text-end">GRS</th>
-
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
 								<th>View</th>
@@ -60,7 +59,7 @@
 							@foreach ($dbus as $dbu)
 							<tr>
 								<td>{{ $dbus->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('dbus.show',$dbu->id) }}">{{ $dbu->id }}</a></td>
+								<td><a href="{{ route('dbus.show',$dbu->id) }}"><strong>{{ $dbu->id }}</strong></a></td>
 								<td>{{ $dbu->dept->name }}</td>
 								<td>{{ $dbu->deptBudget->budget->fy }}</td>
 								{{-- <td>aa</td> --}}
@@ -76,7 +75,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_payment"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('dbus.show',$dbu->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

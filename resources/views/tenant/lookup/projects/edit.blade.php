@@ -15,8 +15,7 @@
 			Edit Project
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Project"/>
-			<x-tenant.buttons.header.create object="Project"/>
+			<x-tenant.actions.project-actions id="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -28,7 +27,8 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('projects.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+					<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Project Info</h5>
 				<h6 class="card-subtitle text-muted">Edit Project detail and other information.</h6>
@@ -49,9 +49,9 @@
 							@enderror
 							</td>
 						</tr>
-						<x-tenant.edit.name :value="$project->name"/>
-						<x-tenant.edit.start-date :value="date('Y-m-d',strtotime($project->start_date))"/>
-						<x-tenant.edit.end-date :value="date('Y-m-d',strtotime($project->end_date))"/>
+						<x-tenant.edit.name value="{{ $project->name }}"/>
+						<x-tenant.edit.start-date value="{{ date('Y-m-d',strtotime($project->start_date)) }}"/>
+						<x-tenant.edit.end-date value="{{ date('Y-m-d',strtotime($project->end_date)) }}"/>
 						<tr>
 							<th>Project Manager</th>
 							<td>
@@ -62,7 +62,7 @@
 								</select>
 							</td>
 						</tr>
-						<x-tenant.edit.amount :value="$project->amount"/>
+						<x-tenant.edit.amount value="{{ $project->amount }}"/>
 						<x-tenant.edit.notes value="{{  $project->notes }}"/>
 						<x-tenant.buttons.show.save/>
 					</tbody>

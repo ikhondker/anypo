@@ -12,17 +12,15 @@
 			View Status
 		@endslot
 		@slot('buttons')
-		<x-tenant.actions.manage.status-actions code="{{ $status->code }}"/>
-			<x-tenant.buttons.header.lists object="Status"/>
-			<x-tenant.buttons.header.create object="Status"/>
-			<x-tenant.buttons.header.edit object="Status" :id="$status->code"/>
+			<x-tenant.actions.manage.status-actions code="{{ $status->code }}"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('statuses.edit', $status->code ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('statuses.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Status Detail</h5>
 			<h6 class="card-subtitle text-muted">Status details.</h6>

@@ -66,7 +66,7 @@ class UploadItemController extends Controller
 
 		$upload_items = UploadItem::query();
 		if (request('term')) {
-			$upload_items->where('name', 'Like', '%' . request('term') . '%');
+			$upload_items->where('item_name', 'Like', '%' . request('term') . '%');
 		}
 		$upload_items = $upload_items->with('owner')->with('customError')->orderBy('id', 'DESC')->paginate(25);
 		return view('tenant.lookup.upload-items.index', compact('upload_items'));

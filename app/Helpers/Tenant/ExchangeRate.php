@@ -38,7 +38,7 @@ use App\Helpers\EventLog;
 
 use DB;
 
-// called from Pr.submit and Po.submit
+// called from PrController.submit and PoController.submit
 // $rate = ExchangeRate::getRate($pr->currency, $setup->currency);
 
 // called form Dashboard.index Setup.freeze
@@ -67,6 +67,7 @@ class ExchangeRate
 		}
 	}
 
+	// called form Job ImportAllRate
 	public static function importRates()
 	{
 		// download rates
@@ -105,19 +106,21 @@ class ExchangeRate
 
 			//$currencies = Currency::primary()->orderBy('id', 'DESC');
 
-			$currencies = DB::select("SELECT currency
+			$sql= "SELECT currency
 				FROM currencies c
 				WHERE c.enable = true
-				AND c.currency NOT IN (SELECT r.currency
+				AND c.currency IN (SELECT r.currency
 					FROM rates r
 					WHERE 1 = 1
 					AND r.fc_currency = '".$setup->currency."'
-					AND DATE(now()) NOT BETWEEN DATE(r.from_date) and DATE(r.from_date))
-				");
+					AND DATE(now()) NOT BETWEEN DATE(r.from_date) and DATE(r.to_date))
+				";
+			Log::debug('Helpers.ExchangeRate.importRates sql = '.$sql);
+			$currencies = DB::select($sql);
 
-
+			Log::debug('Helpers.ExchangeRate.importRates looping in all Enabled Currencies ...');
 			foreach ($currencies as $currency) {
-				//Log::debug('Inserting rate for Currency = '. $currency->currency);
+				Log::debug('Helpers.ExchangeRate.importRates Inserting rate for Currency = '. $currency->currency);
 				$cur_currency 		= $currency->currency;
 				$usd_to_currency 	= (float) $rates[$cur_currency];
 				//Log::debug('usd_to_currency = '. $usd_to_currency);
@@ -125,6 +128,7 @@ class ExchangeRate
 				//Log::debug('base_rate='. $base_rate);
 
 				// insert in exchange table
+
 				$rate				= new Rate();
 				$rate->rate_date	= Carbon::now()->startOfMonth();
 				$rate->fc_currency	= $fc_currency;
@@ -134,13 +138,15 @@ class ExchangeRate
 				$rate->rate			= round(1 / $base_rate, 8);
 				$rate->inverse_rate	= round($base_rate, 8);
 				$rate->save();
-				//Log::debug("base=".$rate->base_currency.' to_currency='.$rate->to_currency.' wusd='.$raw_usd.' rate='.$rate->rate .' inv rate='.$rate->inverse_rate );
+				Log::debug("Helpers.ExchangeRate.importRates base=".$rate->currency.' to_currency='.$rate->fc_currency.' rate='.$rate->rate .' inv rate='.$rate->inverse_rate );
 			}
+			Log::debug('Helpers.ExchangeRate.importRates looping complete for all Enabled Currencies.');
 
 			// set back the last rate import date
 			$setup = Setup::first();
 			$setup->last_rate_date = Carbon::now()->startOfMonth();
 			$setup->save();
+			Log::debug('Helpers.ExchangeRate.importRates updating setup->last_rate_date with '.$setup->last_rate_date);
 
 			// Write to Log
 			EventLog::event('rates', $setup->id, 'import');

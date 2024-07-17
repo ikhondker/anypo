@@ -147,7 +147,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$item->price"/></td>
 								<td>{{ $item->glType->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$item->enable"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('items.show',$item->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

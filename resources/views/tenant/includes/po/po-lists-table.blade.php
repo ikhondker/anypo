@@ -12,7 +12,7 @@
 			<th class="text-end">Paid Amount</th>
 			<th>Approval</th>
 			<th>Status</th>
-			<th>Actions</th>
+			<th>View</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -30,7 +30,7 @@
 
 			<td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
 			<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
-			<td class="text-end">
+			<td>
 				<a href="{{ route('pos.show',$po->id) }}" class="btn btn-light"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 				</a>

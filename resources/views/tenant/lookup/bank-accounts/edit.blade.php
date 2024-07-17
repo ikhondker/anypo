@@ -13,7 +13,6 @@
 			Edit Bank Account
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="BankAccount"/>
 			<x-tenant.actions.lookup.bank-account-actions id="{{ $bankAccount->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -27,7 +26,8 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('bank-accounts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('bank-accounts.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+					<a href="{{ route('bank-accounts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Bank Account Detail</h5>
 							<h6 class="card-subtitle text-muted">Edit Bank Account and other details.</h6>
@@ -125,7 +125,6 @@
 						<x-tenant.edit.address2 value="{{ $bankAccount->address2 }}"/>
 						<x-tenant.edit.city-state-zip city="{{ $bankAccount->city }}" state="{{ $bankAccount->state }}" zip="{{ $bankAccount->zip }}"/>
 						<x-tenant.edit.country value="{{ $bankAccount->country }}"/>
-						<x-tenant.buttons.show.save/>
 						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>

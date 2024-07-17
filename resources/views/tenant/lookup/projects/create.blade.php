@@ -13,8 +13,7 @@
 			Create Project
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
-			<x-tenant.buttons.header.lists object="Project"/>
+
 		@endslot
 	</x-tenant.page-header>
 

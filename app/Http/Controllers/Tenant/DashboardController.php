@@ -65,12 +65,16 @@ class DashboardController extends Controller
 			// check if current months import rates imported
 			if ($setup->last_rate_date <> '') {
 				$last_rate_month	= $setup->last_rate_date->startOfMonth();
-				Log::debug('tenant.dashboards.index Checking Rates. last_rate_month = '.$last_rate_month.' Will check if months has been changed since last import.');
+				Log::debug('tenant.dashboards.index Checking Rates. setup.last_rate_month = '.$last_rate_month.' Will check if months has been changed since last import.');
 			} else {
 				Log::debug('tenant.dashboards.index Checking Rates. last_rate_month is empty. Will import rate for the first time.');
 				$last_rate_month	= '';
 			}
+
 			$current_rate_month		= Carbon::now()->startOfMonth();
+
+			Log::debug('tenant.dashboards.index last_rate_month ='.$last_rate_month);
+			Log::debug('tenant.dashboards.index current_rate_month ='.$current_rate_month);
 
 			if ($last_rate_month <> $current_rate_month) {
 				// import current rates using queue

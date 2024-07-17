@@ -12,14 +12,15 @@
 			Approval Hierarchy
 		@endslot
 		@slot('buttons')
-		  			<x-tenant.actions.workflow.hierarchy-actions id="{{ $hierarchy->id }}"/>
+		  	<x-tenant.actions.workflow.hierarchy-actions id="{{ $hierarchy->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a href="{{ route('hierarchies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('hierarchies.edit', $hierarchy->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('hierarchies.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Hierarchy : {{ $hierarchy->name }}</h5>
 			<h6 class="card-subtitle text-muted">Details of a approval hierarchy.</h6>
@@ -28,7 +29,7 @@
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>Sequence</th>
 						<th>Approver Name</th>
 						<th>Title</th>
 						<th>Dept</th>

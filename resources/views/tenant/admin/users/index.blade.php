@@ -145,9 +145,9 @@
 								<td>{{ $user->email }}</td>
 								<td>
 									@if ($user->isAdmin())
-										<span class="badge bg-danger">{{ $user->role }}</span>
+										<span class="badge badge-subtle-danger">{{ $user->role }}</span>
 									@else
-										<span class="badge bg-success">{{ $user->role }}</span>
+										<span class="badge badge-subtle-success">{{ $user->role }}</span>
 									@endif
 								</td>
 								<td>{{ $user->designation->name }}</td>

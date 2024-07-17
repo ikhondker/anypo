@@ -38,7 +38,7 @@
 								<th>#</th>
 								<th>Name</th>
 								<th>Enable</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -47,7 +47,7 @@
 								<td>{{ $categories->firstItem() + $loop->index }}</td>
 								<td><a href="{{ route('categories.show',$category->id) }}"><strong>{{ $category->name }}</strong></a>
 								<td><x-tenant.list.my-boolean :value="$category->enable"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('categories.show',$category->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

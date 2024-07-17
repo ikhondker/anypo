@@ -37,7 +37,7 @@
 								<th>#</th>
 								<th>Name</th>
 								<th>Enable</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,7 +46,7 @@
 								<td>{{ $designations->firstItem() + $loop->index }}</td>
 								<td><a href="{{ route('designations.show',$designation->id) }}"><strong>{{ $designation->name }}</strong></a>
 								<td><x-tenant.list.my-boolean :value="$designation->enable"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('designations.show',$designation->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
-@section('title', 'Reusable Widgets')
+@section('title', 'UI Template [Landlord+Tenant]')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Reusable Widgets</li>
+	<li class="breadcrumb-item active">UI Template [AppStack 4.0] 15-Jul-2024</li>
 @endsection
 
 

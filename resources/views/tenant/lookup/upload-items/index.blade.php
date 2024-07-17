@@ -62,7 +62,7 @@
 								<th>Timestamp</th>
 								<th>Uploaded By</th>
 								<th>Status</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -82,20 +82,20 @@
 								<td>
 									@switch($upload_item->status)
 										@case(App\Enum\InterfaceStatusEnum::DRAFT->value)
-											<span class="badge bg-success">{{ $upload_item->status }}</span>
+											<span class="badge badge-subtle-success">{{ $upload_item->status }}</span>
 											@break
 										@case(App\Enum\InterfaceStatusEnum::VALIDATED->value)
-											<span class="badge bg-info">{{ $upload_item->status }}</span>
+											<span class="badge badge-subtle-info">{{ $upload_item->status }}</span>
 											@break
 										@case(App\Enum\InterfaceStatusEnum::ERROR->value)
-											<span class="badge bg-danger">{{ $upload_item->status }}</span>
+											<span class="badge badge-subtle-danger">{{ $upload_item->status }}</span>
 											@break
 										@default
-											<span class="badge bg-success">{{ $upload_item->status }}</span>
+											<span class="badge badge-subtle-success">{{ $upload_item->status }}</span>
 									@endswitch
 
 								</td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('upload-items.show',$upload_item->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

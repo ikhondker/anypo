@@ -14,8 +14,7 @@
 			Edit Currency
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Currency"/>
-			<x-tenant.buttons.header.create object="Currency"/>
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -28,7 +27,8 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('currencies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('currencies.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+					<a href="{{ route('currencies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Currency Edit</h5>
 				<h6 class="card-subtitle text-muted">Edit a currency.</h6>

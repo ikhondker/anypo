@@ -12,7 +12,7 @@
 			Create Supplier
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Supplier"/>
+
 		@endslot
 	</x-tenant.page-header>
 

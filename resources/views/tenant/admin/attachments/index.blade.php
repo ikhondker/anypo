@@ -36,7 +36,7 @@
 						<th>Entity</th>
 						<th>Upload Date</th>
 						<th>Owner</th>
-						<th>Attached File</th>
+						<th>File</th>
 						<th>View</th>
 					</tr>
 				</thead>
@@ -50,12 +50,10 @@
 						<td><x-tenant.list.my-date-time :value="$attachment->upload_date"/></td>
 						<td>{{ $attachment->owner->name }}</td>
 						<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
-						<td class="text-end">
+						<td>
 							<a href="{{ route('attachments.show',$attachment->id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 							</a>
-
-
 						</td>
 					</tr>
 					@endforeach

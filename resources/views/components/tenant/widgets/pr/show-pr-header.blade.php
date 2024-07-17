@@ -9,7 +9,11 @@
 
 				<table class="table table-sm my-2">
 					<tbody>
-						<x-tenant.show.my-text		value="{{ $pr->summary }}" label="Summary"/>
+						
+						<tr>
+							<th width="20%">Summary :</th>
+							<td>{{ $pr->summary }}</td>
+						</tr>
 						<tr>
 							<th>PR Value :</th>
 							<td>
@@ -41,13 +45,17 @@
 	<div class="col-6">
 		<div class="card">
 			<div class="card-header">
+
+				<div class="card-actions float-end">
+					<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-light" href="{{ route('prs.index') }}" ><i class="fas fa-list"></i> View all</a>
+				</div>
 				<h5 class="card-title">Approval Status</h5>
 				<h6 class="card-subtitle text-muted">Approval information of Purchase Requisition.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-
 						<tr>
 							<th>Auth Status :</th>
 							<td>
@@ -74,7 +82,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Attachments:</th>
+							<th>Attachments :</th>
 							<td>
 								<x-tenant.attachment.all entity="PR" aid="{{ $pr->id }}"/>
 							</td>

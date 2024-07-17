@@ -33,10 +33,10 @@
 		<a href="#" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New project</a>
 		<h1 class="h3 mb-3">Reusable Widgets</h1>
 
+
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-
 					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 					@if (auth()->user()->isSystem())
 						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
@@ -45,28 +45,52 @@
 				<h5 class="card-title">Interface Components Guideline</h5>
 				<h6 class="card-subtitle text-muted">Please follow these for UI. Prototype is -> dept</h6>
 			</div>
-			<div class="card-body">
-				<table class="table table-sm my-2">
-					<tbody>
-						<tr>
-							<th>index</th>
-							<td>[index-actions] + Create New + card(search+export) </td>
-						</tr>
-						<tr>
-							<th>show</th>
-							<td>actions + card(Edit + View All) [FontAwesome]</td>
-						</tr>
-						<tr>
-							<th>edit</th>
-							<td>actions + card(Create + View All) [FontAwesome]</td>
-						</tr>
-						<tr>
-							<th>create</th>
-							<td>index-actions</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<table class="table table-striped table-sm">
+				<thead>
+					<tr>
+						<th>route </th>
+						<th>Page Dropdown</th>
+						<th>Page Buttons<br>x-tenant.page-header</th>
+						<th>Page Icons</th>
+						<th>Card Buttons</th>
+						<th>Card Icons</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>index</td>
+						<td>[index-actions]</td>
+						<td>Create </td>
+						<td>[Lucide]</td>
+						<td>Search + Export</td>
+						<td>[Lucide]</td>
+					</tr>
+					<tr>
+						<td>show</td>
+						<td>actions </td>
+						<td> </td>
+						<td>&nbsp;</td>
+						<td>Edit + View All </td>
+						<td>[FontAwesome]</td>
+					</tr>
+					<tr>
+						<td>edit</td>
+						<td>actions</td>
+						<td></td>
+						<td>&nbsp;</td>
+						<td>Create + View All</td>
+						<td>[FontAwesome]</td>
+					</tr>
+					<tr>
+						<td>create</td>
+						<td>[index-actions] </td>
+						<td></td>
+						<td>&nbsp;</td>
+						<td>View All</td>
+						<td>[FontAwesome]</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 		<div class="card">

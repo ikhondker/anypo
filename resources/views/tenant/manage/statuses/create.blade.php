@@ -12,7 +12,7 @@
 			Create Status
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Status"/>
+			
 		@endslot
 	</x-tenant.page-header>
 

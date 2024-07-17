@@ -48,7 +48,7 @@
 						<td><a href="{{ route('statuses.show',$status->code) }}"><strong>{{ $status->name }}</strong></a></td>
 						<td><span class="badge {{ $status->badge }}">{{ $status->badge }}</span></td>
 						<td><x-tenant.list.my-boolean :value="$status->enable"/></td>
-						<td class="text-end">
+						<td>
 							<a href="{{ route('statuses.show',$status->code) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 							</a>

@@ -64,7 +64,7 @@
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 								@if ( auth()->user()->isSeeded())
-									<a href="{{  route('tickets.assign',$ticket->id) }}" class="me-2"
+									<a href="{{ route('tickets.assign',$ticket->id) }}" class="me-2"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
 										<i data-lucide="check-circle" class="text-danger"></i>
 								@endif

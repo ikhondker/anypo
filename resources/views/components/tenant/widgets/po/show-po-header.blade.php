@@ -10,13 +10,17 @@
 				<table class="table table-sm my-2">
 					<tbody>
 
+						<tr>
+							<th width="20%">Summary :</th>
+							<td>{{$po->summary }}</td>
+						</tr>
 						<x-tenant.show.my-text	value="{{ $po->summary }}" label="Summary"/>
 						<tr>
 							<th>PO Value :</th>
 							<td>
-								{{number_format($po->amount, 2)}} <span class="badge bg-primary">{{ $po->currency }}</span>
+								{{number_format($po->amount, 2)}} <span class="badge badge-subtle-primary">{{ $po->currency }}</span>
 								@if ($po->currency <> $_setup->currency)
-									{{number_format($po->fc_amount, 2)}} <span class="badge bg-success">{{ $po->fc_currency }}</span>
+									{{number_format($po->fc_amount, 2)}} <span class="badge badge-subtle-success">{{ $po->fc_currency }}</span>
 								@endif
 							</td>
 						</tr>
@@ -32,10 +36,6 @@
 									<x-tenant.show.my-edit-link object="Po" :id="$po->id"/>
 								@endif
 							</td>
-						</tr>
-						<tr>
-							<th></th>
-							<td></td>
 						</tr>
 					</tbody>
 				</table>

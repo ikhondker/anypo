@@ -17,8 +17,12 @@
 					@foreach ($table as $key => $value)
 					<tr>
 						<td>{{ ++$i }}</td>
-						<td><a href="{{ route('tables.structure', ['table'=>$value]) }}"><span class="text-info">{{ $value }}</span></a></td>
-						<td><a class="btn btn-sm btn-info" href="{{ route('tables.structure', ['table'=> $value]) }}"><i class="fas fa-list"></i> View</a></td>
+						<td><a href="{{ route('tables.structure', ['table'=>$value]) }}"><strong>{{ $value }}</strong></a></td>
+						<td>
+							<a href="{{ route('tables.structure', ['table'=> $value]) }}" class="btn btn-light"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+							</a>
+						</td>
 					</tr>
 					@endforeach
 				@endforeach

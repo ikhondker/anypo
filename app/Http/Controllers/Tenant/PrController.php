@@ -686,10 +686,11 @@ class PrController extends Controller
 		" ;";
 		DB::INSERT($sql);
 
-		// update source PR
+		// update and close source PR
 		$pr->po_id		= $po_id;
+		$pr->status		= ClosureStatusEnum::CLOSED->value;
 		$pr->save();
-
+		Log::debug('tenant.pr.convertPo PR marked as closed pr_id = '.$pr->id);
 		Log::debug('tenant.pr.convertPo Requisition Converted to po_id = '.$po_id);
 
 		EventLog::event('po', $po->id, 'converted','id',$pr->id);	// Write to Log

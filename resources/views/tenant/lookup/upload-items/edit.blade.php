@@ -28,14 +28,14 @@
 					<a href="{{ route('upload-items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
 				<h5 class="card-title">Edit Interface Item Data</h5>
-							<h6 class="card-subtitle text-muted">Edit Item Interface Detail.</h6>
+				<h6 class="card-subtitle text-muted">Edit Item Interface Detail.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
 						<x-tenant.edit.id-read-only :value="$uploadItem->id"/>
 						<tr>
-							<th>Code</th>
+							<th>Item Code :</th>
 							<td>
 								<input type="text" class="form-control @error('item_code') is-invalid @enderror"
 									name="item_code" id="item_code" placeholder="XXXXX"
@@ -47,9 +47,9 @@
 								@enderror
 							</td>
 						</tr>
-						<x-tenant.edit.name :value="$uploadItem->item_name"/>
+						<x-tenant.edit.name value="{{ $uploadItem->item_name }}"/>
 						<tr>
-							<th>Category</th>
+							<th>Category :</th>
 							<td>
 								<input type="text" class="form-control @error('category_name') is-invalid @enderror"
 								name="category_name" id="category_name" placeholder="Category"
@@ -62,7 +62,7 @@
 						</tr>
 
 						<tr>
-							<th>OEM</th>
+							<th>OEM :</th>
 							<td>
 								<input type="text" class="form-control @error('oem_name') is-invalid @enderror"
 									name="oem_name" id="oem_name" placeholder="OEM"
@@ -75,7 +75,7 @@
 						</tr>
 
 						<tr>
-							<th>UoM</th>
+							<th>UoM :</th>
 							<td>
 								<input type="text" class="form-control @error('uom_name') is-invalid @enderror"
 									name="uom_name" id="uom_name" placeholder="UOM"
@@ -87,12 +87,12 @@
 							</td>
 						</tr>
 						<tr>
-							<th>GL Type</th>
+							<th>GL Type :</th>
 							<td>
 								<input type="text" class="form-control @error('gl_type_name') is-invalid @enderror"
 									name="gl_type_name" id="gl_type_name" placeholder="UOM"
 									value="{{ old('gl_type_name', $uploadItem->gl_type_name ) }}"
-									required/> {{ $uploadItem->price }}
+									required/>
 								@error('gl_type_name')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
@@ -100,7 +100,7 @@
 						</tr>
 
 						<tr>
-							<th>Expense GL Code</th>
+							<th>Expense GL Code :</th>
 							<td>
 								<input type="text" class="form-control @error('ac_expense') is-invalid @enderror"
 									name="ac_expense" id="ac_expense" placeholder="A600001" maxlength="255"
@@ -112,9 +112,7 @@
 								@enderror
 							</td>
 						</tr>
-
-											
-						<x-tenant.edit.price :value="$uploadItem->price"/>
+						<x-tenant.edit.price value="{{ $uploadItem->price }}"/>
 						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>

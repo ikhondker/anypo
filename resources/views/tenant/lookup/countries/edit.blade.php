@@ -26,7 +26,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-                    <a href="{{ route('countries.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>  Create</a>
+					<a href="{{ route('countries.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>  Create</a>
 					<a href="{{ route('countries.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
 				</div>
 				<h5 class="card-title">Country Edit</h5>
@@ -39,8 +39,8 @@
 							<th>Code:</th>
 							<td>
 								<input type="text" name="country" id="country" class="form-control"
-                                placeholder="ID" value="{{ old('country', $country->country ) }}"
-                                readonly/>
+								placeholder="ID" value="{{ old('country', $country->country ) }}"
+								readonly/>
 							</td>
 						</tr>
 						<x-tenant.edit.name value="{{ $country->name }}"/>

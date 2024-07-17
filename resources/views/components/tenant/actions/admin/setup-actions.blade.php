@@ -3,7 +3,6 @@
 		<i class="align-middle text-info mt-n1" data-lucide="settings"></i> Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-		
 		<a class="dropdown-item" href="{{ route('setups.show', $setup->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Setup</a>
 		<a class="dropdown-item" href="{{ route('setups.edit', $setup->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Setup</a>
 		<a class="dropdown-item" href="{{ route('setups.announcement', $setup->id) }}"><i class="align-middle me-1" data-lucide="info"></i> Announcement</a>

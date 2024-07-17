@@ -12,8 +12,7 @@
 			Create Currency
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
-			<x-tenant.buttons.header.lists object="Currency"/>
+
 		@endslot
 	</x-tenant.page-header>
 

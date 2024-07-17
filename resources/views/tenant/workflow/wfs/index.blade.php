@@ -40,7 +40,7 @@
 								<th>WF Status</th>
 								<th>Auth Status</th>
 								<th>Date</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -53,7 +53,7 @@
 								<td><x-tenant.list.my-badge :value="$wf->wf_status"/></td>
 								<td><x-tenant.list.my-badge :value="$wf->auth_status"/></td>
 								<td><x-tenant.list.my-date-time :value="$wf->created_at"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('wfs.show',$wf->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>

@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','View Purchase Requisition')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}" class="text-muted">Requisitions</a></li>
 	<li class="breadcrumb-item active">PR#{{ $pr->id }}</li>
 @endsection
 @section('content')
@@ -11,7 +11,7 @@
 			Purchase Requisition #{{ $pr->id }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
+			
 			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-lucide="printer"></i> Print</a>
 			@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 				<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 sw2-advance"
@@ -20,7 +20,6 @@
 					<i data-lucide="external-link"></i> Submit</a>
 			@endif
 			<x-tenant.actions.pr-actions id="{{ $pr->id }}"/>
-
 		@endslot
 	</x-tenant.page-header>
 		

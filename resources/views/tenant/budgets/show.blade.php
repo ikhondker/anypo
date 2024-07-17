@@ -14,8 +14,6 @@
 			FY {{ $budget->fy }} Budgets
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Budget"/>
-			<x-tenant.buttons.header.edit object="Budget" :id="$budget->id"/>
 			<x-tenant.actions.budget-actions id="{{ $budget->id }}"/>
 		@endslot
 	</x-tenant.page-header>

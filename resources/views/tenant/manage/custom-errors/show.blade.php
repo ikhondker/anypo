@@ -12,10 +12,7 @@
 			View Custom Error
 		@endslot
 		@slot('buttons')
-		<x-tenant.actions.manage.custom-error-actions code="{{ $customError->code }}"/>
-		<x-tenant.buttons.header.lists object="CustomError"/>
-		<x-tenant.buttons.header.create object="CustomError"/>
-		<x-tenant.buttons.header.edit object="CustomError" :id="$customError->code"/>
+			<x-tenant.actions.manage.custom-error-actions code="{{ $customError->code }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -24,7 +21,8 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a href="{{ route('custom-errors.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('custom-errors.edit', $customError->code ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('custom-errors.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Custom Error Detail</h5>
 			<h6 class="card-subtitle text-muted">Custom Error detail information.</h6>

@@ -41,7 +41,7 @@
 								<th>UoM Class</th>
 								<th>Class Default</th>
 								<th>Enable</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -53,7 +53,7 @@
 								<td>{{ $uom->uom_class->name }}</td>
 								<td><x-tenant.list.my-boolean :value="$uom->default"/></td>
 								<td><x-tenant.list.my-boolean :value="$uom->enable"/></td>
-								<td class="text-end">
+								<td>
 									<a href="{{ route('uoms.show',$uom->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 									</a>
