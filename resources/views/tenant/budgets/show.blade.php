@@ -2,7 +2,7 @@
 @section('title','Budgets')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('budgets.index') }}">Budgets</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('budgets.index') }}" class="text-muted">Budgets</a></li>
 	<li class="breadcrumb-item active">{{ $budget->name }}</li>
 @endsection
 

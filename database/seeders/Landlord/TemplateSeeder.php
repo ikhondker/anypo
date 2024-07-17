@@ -5,7 +5,8 @@ namespace Database\Seeders\Landlord;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Landlord\Manage\Template;
+//use App\Models\Landlord\Manage\Template;
+use App\Models\Share\Template;
 
 
 class TemplateSeeder extends Seeder

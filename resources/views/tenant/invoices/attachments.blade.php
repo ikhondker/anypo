@@ -1,9 +1,9 @@
 @extends('layouts.tenant.app')
 @section('title','Attachments')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('pos.show',$invoice->po_id) }}">PO#{{ $invoice->po_id }}</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('pos.invoice', $invoice->po_id) }}">PO Invoices</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('invoices.show', $invoice->id) }}">{{ $invoice->invoice_no }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$invoice->po_id) }}" class="text-muted">PO#{{ $invoice->po_id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.invoice', $invoice->po_id) }}" class="text-muted">PO Invoices</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('invoices.show', $invoice->id) }}" class="text-muted">{{ $invoice->invoice_no }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 

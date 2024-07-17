@@ -13,7 +13,7 @@
 			View Notification
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.notification-actions :id="$notification->id"/>
+			<x-tenant.actions.notification.notification-actions :id="$notification->id"/>
 		@endslot
 	</x-tenant.page-header>
 

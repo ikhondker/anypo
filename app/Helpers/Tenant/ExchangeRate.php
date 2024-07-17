@@ -109,7 +109,7 @@ class ExchangeRate
 			$sql= "SELECT currency
 				FROM currencies c
 				WHERE c.enable = true
-				AND c.currency IN (SELECT r.currency
+				AND c.currency NOT IN (SELECT r.currency
 					FROM rates r
 					WHERE 1 = 1
 					AND r.fc_currency = '".$setup->currency."'

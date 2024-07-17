@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
 		$this->call(\Database\Seeders\Landlord\UserSeeder::class);
 		$this->call(\Database\Seeders\Landlord\MenuSeeder::class);
 		$this->call(\Database\Seeders\Landlord\StatusSeeder::class);
+
+		
 		$this->call(\Database\Seeders\Landlord\TemplateSeeder::class);
 		$this->call(\Database\Seeders\Landlord\EntitySeeder::class);
 		$this->call(\Database\Seeders\Landlord\ConfigSeeder::class);

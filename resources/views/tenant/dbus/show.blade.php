@@ -2,7 +2,7 @@
 @section('title','Budget Usages')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('dbus.index') }}">Budget Usages</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('dbus.index') }}" class="text-muted">Budget Usages</a></li>
 	<li class="breadcrumb-item active">{{ $dbu->id }}</li>
 @endsection
 

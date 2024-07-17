@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','View Attachment')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('attachments.index') }}">Attachments</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('attachments.index') }}" class="text-muted">Attachments</a></li>
 	<li class="breadcrumb-item active">{{ $attachment->org_file_name }}</li>
 @endsection
 @section('content')

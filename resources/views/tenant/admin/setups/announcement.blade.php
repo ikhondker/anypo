@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title',' General Announcement')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}">Setup</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}" class="text-muted">Setup</a></li>
 	<li class="breadcrumb-item active">Announcement</li>
 @endsection
 @section('content')

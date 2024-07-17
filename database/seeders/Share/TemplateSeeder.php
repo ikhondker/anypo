@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Share;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Tenant\Manage\Template;
+use App\Models\Share\Template;
 
 class TemplateSeeder extends Seeder
 {

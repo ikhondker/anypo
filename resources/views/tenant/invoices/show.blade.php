@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','View Invoice')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('invoices.index') }}">Invoices</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('invoices.index') }}" class="text-muted">Invoices</a></li>
 	<li class="breadcrumb-item active">{{ $invoice->invoice_no}}</li>
 @endsection
 @section('content')

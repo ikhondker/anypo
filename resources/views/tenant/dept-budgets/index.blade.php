@@ -2,7 +2,7 @@
 @section('title','DeptBudget')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Dept. Budget</li>
+	<li class="breadcrumb-item active">Dept Budget</li>
 @endsection
 
 

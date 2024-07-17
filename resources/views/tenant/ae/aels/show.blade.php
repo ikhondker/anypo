@@ -2,7 +2,7 @@
 @section('title','View Accounting')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('aels.index') }}">Accounting</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('aels.index') }}" class="text-muted">Accounting</a></li>
 	<li class="breadcrumb-item active">{{ $ael->id }}</li>
 @endsection
 

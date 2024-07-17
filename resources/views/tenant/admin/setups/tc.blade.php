@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title',' PO Terms and Conditions')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}">Setup</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('setups.index') }}" class="text-muted">Setup</a></li>
 	<li class="breadcrumb-item active">PO Terms and Conditions</li>
 @endsection
 @section('content')
