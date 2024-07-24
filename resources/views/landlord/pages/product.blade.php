@@ -12,13 +12,13 @@
 					<h1 class="my-4 text-white"><span class="text-primary">Purchasing </span> and Expense control solution</h1>
 
 					<div class="d-flex gap-3 mb-4">
-						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="Logo">
-						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="Logo">
-						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="Logo">
-						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="Logo">
-						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="Logo">
-						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="Logo">
-						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="Logo">
+						<img src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="yen" width="40" height="40">
+						<img src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="dollar" width="40" height="40">
+						<img src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="euro" width="40" height="40">
+						<img src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="pound" width="40" height="40">
+						<img src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="rupee" width="40" height="40">
+						<img src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="lira" width="40" height="40">
+						<img src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="ruble" width="40" height="40">
 					</div>
 
 					<p class="text-lg text-white-50">
@@ -45,9 +45,8 @@
 				</div>
 				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
 					<div class="landing-intro-screenshot pb-3">
-						<img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
-
-						<img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img1.jpg') }}" alt="Image Description">
+						{{-- <img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" /> --}}
+						<img src="{{ Storage::disk('s3l')->url('img/1618x1010/img1.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
 					</div>
 				</div>
 			</div>
@@ -66,11 +65,8 @@
 			<div class="mb-3">
 			<h2 class="h1">Streamline Your Purchasing. Supercharge Your Growth.</h2>
 			</div>
-
 			<p>Take control of your spending and empower your business with our SAAS-based Purchasing and Budget Control Solution. Designed for small and medium-sized companies and startups, our platform ensures financial stability and strategic spending.</p>
-
 			{{-- <p>Use our tools to explore your ideas and make your vision come true. Then share your work easily.</p> --}}
-
 			<div class="mt-4">
 				<a class="btn btn-primary btn-transition px-5" href="{{ route('pricing') }}">Start Now</a>
 			</div>
@@ -209,9 +205,7 @@
 				</div>
 
 			</div>
-
-
-			<div class="row align-items-center">
+			<div class="row pt-5">
 				<div class="col-lg-5 mx-auto">
 					<!-- Heading -->
 					<div class="mb-4">
@@ -219,7 +213,6 @@
 						<p>Simplify Purchasing & Budgeting with Our Powerful SaaS Platform.</p>
 					</div>
 					<!-- End Heading -->
-
 					<!-- List Checked -->
 					<ul class="list-checked list-checked-primary mb-5">
 						<li class="list-checked-item">Streamline Procurement</li>
@@ -236,30 +229,26 @@
 					<div class="my-4">
 						<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
 					</div>
-					
 				</div>
 				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
 					<div class="landing-intro-screenshot pb-3">
 						<img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
-
-
 						<hr class="my-5">
 						<span class="d-block">Support most currencies of the world</span>
 						<div class="row">
 							<div class="col py-3">
-								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="Logo">
-								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="Logo">
-								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="Logo">
-								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="Logo">
-								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="Logo">
-								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="Logo">
-								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="Logo">
+								<img src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="yen" width="40" height="40">
+								<img src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="dollar" width="40" height="40">
+								<img src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="euro" width="40" height="40">
+								<img src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="pound" width="40" height="40">
+								<img src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="rupee" width="40" height="40">
+								<img src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="lira" width="40" height="40">
+								<img src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" class="rounded-circle rounded me-2 mb-2" alt="ruble" width="40" height="40">
 							</div>
 							<!-- End Col -->
 						</div>
 						<!-- End Row -->
 					</div>
-
 				</div>
 			</div>
 		</div>

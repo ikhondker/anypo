@@ -44,19 +44,26 @@
 
 	<!-- Hero -->
 	{{-- <div class="position-relative bg-img-start" style="background-image: url({{ Storage::disk('s3l')->url('svg/components/card-11.svg') }});"> --}}
-	<section class="py-6 bg-white">
 		<div class="position-relative bg-img-start" style="background-image: url({{asset('/assets/bg/card-11.svg')}});">
 			<div class="container content-space-t-3 content-space-t-lg-5 content-space-b-2 content-space-b-lg-3 position-relative zi-2">
 				<div class="row justify-content-lg-between align-items-md-center">
 					<div class="col-md-6 col-lg-5 mb-10 mb-md-0">
 						<div class="mb-5">
-							<h1 class="display-4">(Front Style) Streamline Your Purchasing. Supercharge Your Growth.</h1>
+							<h1 class="display-4">(Appstack) Streamline Your Purchasing. Supercharge Your Growth.</h1>
 							<p class="lead">
 							Struggling with managing expenses and staying within budget? We offer a seamless purchasing and budget control solution that streamlines workflows, automates tasks, and gives you real-time spending insights.</p>
 						</div>
 	
 						<div class="d-flex align-items-center gap-2 mb-8">
-							<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+							<a class="btn btn-primary btn-transition me-2" href="{{ route('pricing') }}">
+								Get Started <i class="bi-chevron-right small ms-1"></i>
+							</a>
+	
+							<!-- Fancybox -->
+							<!-- <a class="video-player btn btn-outline-primary btn-transition" href="https://www.youtube.com/watch?v=d4eDWc8g0e0" role="button" data-fslightbox="youtube-video">
+								<i class="bi-play-circle-fill me-1"></i> Play video
+							</a> -->
+							<!-- End Fancybox -->
 						</div>
 					</div>
 					<!-- End Col -->
@@ -124,12 +131,120 @@
 				</div>
 				<!-- End Row -->
 			</div>
+	
+			<!-- Shape -->
+			<div class="shape shape-bottom zi-1">
+				<svg width="3000" height="500" viewBox="0 0 3000 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M0 500H3000V0L0 500Z" fill="#fff"/>
+				</svg>
+			</div>
+			<!-- End Shape -->
 		</div>
 		<!-- End Hero -->
-	</section>
-
 
 		
+
+	<!-- Hero -->
+	{{-- <div class="position-relative bg-img-start" style="background-image: url({{ Storage::disk('s3l')->url('svg/components/card-11.svg') }});"> --}}
+	<div class="position-relative bg-img-start" style="background-image: url({{asset('/assets/bg/card-11.svg')}});">
+		<div class="container content-space-t-3 content-space-t-lg-5 content-space-b-2 content-space-b-lg-3 position-relative zi-2">
+			<div class="row justify-content-lg-between align-items-md-center">
+				<div class="col-md-6 col-lg-5 mb-10 mb-md-0">
+					<div class="mb-5">
+						<h1 class="display-4">(FRONT) Streamline Your Purchasing. Supercharge Your Growth.</h1>
+						<p class="lead">
+						Struggling with managing expenses and staying within budget? We offer a seamless purchasing and budget control solution that streamlines workflows, automates tasks, and gives you real-time spending insights.</p>
+					</div>
+
+					<div class="d-flex align-items-center gap-2 mb-8">
+						<a class="btn btn-primary btn-transition me-2" href="{{ route('pricing') }}">
+							Get Started <i class="bi-chevron-right small ms-1"></i>
+						</a>
+
+						<!-- Fancybox -->
+						<!-- <a class="video-player btn btn-outline-primary btn-transition" href="https://www.youtube.com/watch?v=d4eDWc8g0e0" role="button" data-fslightbox="youtube-video">
+							<i class="bi-play-circle-fill me-1"></i> Play video
+						</a> -->
+						<!-- End Fancybox -->
+					</div>
+				</div>
+				<!-- End Col -->
+
+				<div class="col-md-6">
+					<div class="row justify-content-end">
+						<div class="col-3 mb-4">
+							<!-- Logo -->
+							<div class="d-block avatar avatar-lg rounded-circle shadow-sm p-2 mt-n3 ms-5" data-aos="fade-up">
+								<img class="avatar-img" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="Image Description">
+							</div>
+							<!-- End Logo -->
+						</div>
+						<div class="col-4 mb-4">
+							<!-- Logo -->
+							<div class="d-block avatar avatar-xl rounded-circle shadow-sm p-2 mx-auto mt-5" data-aos="fade-up" data-aos-delay="50">
+								<img class="avatar-img" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="Image Description">
+							</div>
+							<!-- End Logo -->
+						</div>
+						<div class="col-4 mb-4">
+							<!-- Logo -->
+							<div class="d-block avatar avatar-xl rounded-circle shadow-sm p-3 ms-auto" data-aos="fade-up" data-aos-delay="150">
+								<img class="avatar-img" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="Image Description">
+							</div>
+							<!-- End Logo -->
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-3 offset-1 my-4">
+							<!-- Logo -->
+							<div class="d-block avatar avatar-xl rounded-circle shadow-sm p-3 ms-auto" data-aos="fade-up" data-aos-delay="200">
+								<img class="avatar-img" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="Image Description">
+							</div>
+							<!-- End Logo -->
+						</div>
+						<div class="col-3 offset-2 my-4">
+							<!-- Logo -->
+							<div class="d-block avatar avatar-xl rounded-circle shadow-sm p-3 ms-auto" data-aos="fade-up" data-aos-delay="250">
+								<img class="avatar-img" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="Image Description">
+							</div>
+							<!-- End Logo -->
+						</div>
+					</div>
+
+					<div class="row d-none d-md-flex">
+						<div class="col-6">
+							<!-- Logo -->
+							<div class="d-block avatar avatar-lg rounded-circle shadow-sm p-3 ms-auto" data-aos="fade-up" data-aos-delay="300">
+								<img class="avatar-img" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="Image Description">
+							</div>
+							<!-- End Logo -->
+						</div>
+						<div class="col-6 mt-6">
+							<!-- Logo -->
+							<div class="d-block avatar avatar-xl rounded-circle shadow-sm p-2 ms-auto" data-aos="fade-up" data-aos-delay="350">
+								<img class="avatar-img" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="Image Description">
+							</div>
+							<!-- End Logo -->
+						</div>
+					</div>
+				</div>
+				<!-- End Col -->
+			</div>
+			<!-- End Row -->
+		</div>
+
+		<!-- Shape -->
+		<div class="shape shape-bottom zi-1">
+			<svg width="3000" height="500" viewBox="0 0 3000 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0 500H3000V0L0 500Z" fill="#fff"/>
+			</svg>
+		</div>
+		<!-- End Shape -->
+	</div>
+	<!-- End Hero -->
+
+
 	<section class="py-6 bg-white">
 		<div class="container">
 			<div class="mb-5 text-center">
@@ -196,7 +311,7 @@
 				<p class="text-muted fs-lg">A responsive dashboard built for everyone who wants to create webapps on top of Bootstrap.</p> --}}
 			</div>
 			<div class="row align-items-center">
-				<div class="col-lg-6 d-none d-lg-flex mx-auto text-center">
+				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
 					<div class="landing-intro-screenshot pb-3">
 						<img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
 					</div>
@@ -207,30 +322,38 @@
 						<div class="card-body p-4">
 							<div class="d-flex align-items-center mb-3">
 								<div>
-									<a href="https://anypo.net">
-										<img src="{{ Storage::disk('s3l')->url('logo/logo.svg') }}" class="rounded me-2 mb-2" alt="Placeholder" width="90" height="90">
-									</a>
+									<img src="img/brands/bootstrap.svg" width="48" height="48" alt="Bootstrap" />
 								</div>
 								<div class="ps-3">
-									<h5 class="mb-1 mt-2">ANYPO.NET</h5><small class="d-block text-muted h5 fw-normal">CONTROL EXPENSES</small>
+									<h5 class="mb-1 mt-2">Nikita</h5><small class="d-block text-muted h5 fw-normal">Head of Product</small>
 								</div>
 							</div>
-							<p class="lead mb-2">
-								Say goodbye to complex spreadsheets and hello to effortless budgeting. Our affordable and user-friendly SaaS solution is designed to help small and medium businesses thrive!
-							</p>
+							<p class="lead mb-2">“We are totally amazed with a simplicity and the design of the template. <span>Probably saved us hundreds of hours of development.</span> We are absolutely
+								amazed with the support Bootlab has provided us.”</p>
 
 							<div class="landing-stars">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="yen" width="45" height="45">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="dollar" width="45" height="45">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="euro" width="45" height="45">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="ruble" width="45" height="45">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="rupee" width="45" height="45">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="lira" width="45" height="45">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="pound" width="45" height="45">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
 							</div>
 						</div>
 					</blockquote>
-				
+
+					<!-- Blockquote -->
+					<figure>
+						<blockquote class="blockquote blockquote-lg">Say goodbye to complex spreadsheets and hello to effortless budgeting. Our affordable and user-friendly SaaS solution is designed to help small and medium businesses thrive!</blockquote>
+
+						<div class="mb-4">
+							<a href="https://anypo.net"><img class="avatar avatar-xl avatar-4x3" src="{{ Storage::disk('s3l')->url('logo/logo.svg') }}" alt="Image Description"></a>
+						</div>
+						<!-- <figcaption class="blockquote-footer">
+							ANYPO.NET
+							<span class="blockquote-footer-source">CONTROL EXPENSES</span>
+						</figcaption> -->
+					</figure>
+					<!-- End Blockquote -->
 				</div>
 			</div>
 		</div>
@@ -315,8 +438,8 @@
 
 				<div class="text-center">
 					<div class="d-grid d-sm-flex justify-content-center gap-2 mb-3">
-						<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Sign up and Start Building</a>
-						<a class="btn btn-link" href="{{ route('contact-us') }}">Let's Talk <i data-lucide="chevron-right"></i></a>
+						<a class="btn btn-primary btn-transition" href="{{ route('pricing') }}">Sign up and Start Building</a>
+						<a class="btn btn-link" href="{{ route('contact-us') }}">Let's Talk <i class="bi-chevron-right small ms-1"></i></a>
 					</div>
 					{{-- <p class="small">Start free trial. * No credit card required.</p> --}}
 				</div>
@@ -341,8 +464,26 @@
 				</div>
 				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
 					<div class="landing-intro-screenshot pb-3">
-						{{-- <img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" /> --}}
-						<img src="{{ Storage::disk('s3l')->url('svg/illustrations/oc-relaxing.svg') }}" class="img-fluid" alt="Image Description">
+						<img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
+
+						<img class="img-fluid" src="{{ Storage::disk('s3l')->url('svg/illustrations/oc-relaxing.svg') }}" alt="Image Description">
+
+						<!-- Browser Device -->
+						<figure class="device-browser-frame rotated-3d-left">
+							<div class="device-browser-frame">
+								<img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img5.jpg') }}" alt="Image Description">
+							</div>
+						</figure>
+						<!-- End Browser Device -->
+
+						<!-- Browser Device -->
+						<figure class="device-browser-frame rotated-3d-left">
+							<div class="device-browser-frame">
+								<img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img4.jpg') }}" alt="Image Description">
+							</div>
+						</figure>
+						<!-- End Browser Device -->
+
 					</div>
 				</div>
 			</div>
@@ -369,8 +510,9 @@
 				</div>
 				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
 					<div class="landing-intro-screenshot pb-3">
-						{{-- <img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" /> --}}
-						<img src="{{ Storage::disk('s3l')->url('svg/illustrations/oc-relaxing.svg') }}" class="img-fluid" alt="Image Description">
+						<img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
+
+						<img class="img-fluid" src="{{ Storage::disk('s3l')->url('svg/illustrations/oc-relaxing.svg') }}" alt="Image Description">
 					</div>
 				</div>
 			</div>

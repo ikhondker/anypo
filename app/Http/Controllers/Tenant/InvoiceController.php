@@ -456,7 +456,7 @@ class InvoiceController extends Controller
 					'fc_tax' 		=> 0,
 					'fc_gst' 		=> 0,
 					'fc_amount' 	=> 0,
-					'paid_amount' 	=> 0,
+					'amount_paid' 	=> 0,
 					'status' 		=> InvoiceStatusEnum::CANCELED->value
 				]);
 
@@ -544,8 +544,8 @@ class InvoiceController extends Controller
 				i.po_id po_id,
 				s.name supplier_name,
 				i.summary, u.name poc_name,
-				i.currency, i.sub_total, i.tax, i.gst, i.amount, i.paid_amount,
-				i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_paid_amount,
+				i.currency, i.sub_total, i.tax, i.gst, i.amount, i.amount_paid,
+				i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_amount_paid,
 				i.notes, i.status, i.payment_status
 			FROM invoices i, pos po, suppliers s, users u
 			WHERE i.po_id =po.id

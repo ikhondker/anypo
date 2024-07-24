@@ -24,7 +24,7 @@
 			<td>{{ $invoice->supplier->name }}</td>
 			<td>{{ $invoice->summary }}</td>
 			<td class="text-end">{{ number_format($invoice->amount, 2) }} {{ $invoice->currency }}  </td>
-			<td class="text-end"><x-tenant.list.my-number :value="$invoice->paid_amount"/></td>
+			<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount_paid"/></td>
 			<td><x-tenant.common.link-po id="{{ $invoice->po_id }}"/></td>
 			<td><span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span></td>
 			<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>

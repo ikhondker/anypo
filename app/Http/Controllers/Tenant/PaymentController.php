@@ -190,10 +190,10 @@ class PaymentController extends Controller
 
 		// update Invoice header
 		$invoice 				= Invoice::where('id', $payment->invoice_id)->firstOrFail();
-		$invoice->paid_amount	= $invoice->paid_amount + $payment->amount;
-		$invoice->fc_paid_amount= $invoice->fc_paid_amount + $payment->fc_amount;
+		$invoice->amount_paid	= $invoice->amount_paid + $payment->amount;
+		$invoice->fc_amount_paid= $invoice->fc_amount_paid + $payment->fc_amount;
 
-		if ($invoice->paid_amount == $invoice->amount){
+		if ($invoice->amount_paid == $invoice->amount){
 			$invoice->payment_status 	= PaymentStatusEnum::PAID->value;
 		} else {
 			$invoice->payment_status	= PaymentStatusEnum::PARTIAL->value;
@@ -321,7 +321,7 @@ class PaymentController extends Controller
 			}
 
 			// Reverse Invoice Payment
-			$invoice->paid_amount	= $invoice->paid_amount - $payment->amount;
+			$invoice->amount_paid	= $invoice->amount_paid - $payment->amount;
 			$invoice->save();
 
 			// Po dept budget grs amount update

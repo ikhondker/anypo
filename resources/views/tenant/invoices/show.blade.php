@@ -63,7 +63,7 @@
 						</td>
 					</tr>
 					<x-tenant.show.my-text		value="{{ $invoice->poc->name }}" label="PoC Name"/>
-					<x-tenant.show.my-amount-currency	value="{{ $invoice->paid_amount }}" currency="{{ $invoice->currency }}" label="Paid Amount"/>
+					<x-tenant.show.my-amount-currency	value="{{ $invoice->amount_paid }}" currency="{{ $invoice->currency }}" label="Paid Amount"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->status }}" label="Status"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->payment_status }}" label="Payment Status"/>
 					<x-tenant.show.my-text-area		value="{{ $invoice->notes }}"/>

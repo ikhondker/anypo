@@ -37,7 +37,7 @@
 							<td class="">{{ $invoice->summary }}</td>
 							<td class="">{{ $invoice->currency }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
-							<td class="text-end"><x-tenant.list.my-number :value="$invoice->paid_amount"/></td>
+							<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount_paid"/></td>
 							<td><span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span></td>
 							<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>
 

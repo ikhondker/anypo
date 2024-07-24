@@ -33,7 +33,7 @@
 						</tr>
 						<tr>
 							<th>Paid Amount</th>
-							<td>{{ number_format($invoice->paid_amount , 2) }} {{ $invoice->currency }}</td>
+							<td>{{ number_format($invoice->amount_paid , 2) }} {{ $invoice->currency }}</td>
 						</tr>
 						
 						<tr>

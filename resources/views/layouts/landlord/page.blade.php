@@ -58,7 +58,7 @@
 						<!-- End Logo -->
 					</div>
 					<p class="text-white-50">
-						A professional package that comes with hundreds of UI components, forms, tables, charts, dashboards, pages and svg icons.
+						Purchasing and Expense Control SAAS Solution for SME and startups.
 					</p>
 					<!-- List -->
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
@@ -68,14 +68,14 @@
 					</ul>
 					<!-- End List -->
 				</div>
-				<div class="col-12 col-md-4 col-lg-2 offset-lg-2 mb-3 mb-md-0">
+				<div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-0">
 					<h4 class="text-light fs-5">Resources</h4>
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
 						<li class="mt-2"><a class="text-white-50" href="{{ route('faq') }}"><i class="align-middle far fa-fw fa-user-circle"></i> FAQ</a></li>
 						<li class="mt-2"><a class="text-white-50" href="{{ route('login') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Your Account</a></li>
 					</ul>
 				</div>
-				<div class="col-12 col-md-4 col-lg-2 mb-3 mb-md-0">
+				<div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-0">
 					<h4 class="text-light fs-5">Legal & Privacy</h4>
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
 						<li class="mt-2"><a class="text-white-50" href="{{ route('privacy') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Privacy &amp; Policy</a></li>
@@ -84,41 +84,20 @@
 					</ul>
 				</div>
 				<div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-0">
-
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search for...">
-						<button class="btn btn-secondary" type="button">Go!</button>
-					</div>
-					
-					<form class="row row-cols-md-auto align-items-center">
-						<div class="col-12">
-
-							<div class="input-group mb-2">
-								<div class="input-group-text">@</div>
-								<input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
-								<button type="submit" class="btn btn-primary mb-2">Submit</button>
-							</div>
-						</div>
-					</form>
+					<h4 class="text-light fs-5">Stay up to date</h4>
 
 					<!-- Form -->
 					<form action="{{ route('home.join-mail-list') }}" method="POST">
 						@csrf
-						<h4 class="text-light fs-5">Stay up to date</h4>
-						<!-- Input Card -->
-						<div class="input-card mt-3">
-							<div class="input-card-form">
-								{{-- <input type="text" class="form-control" placeholder="Enter email" aria-label="Enter email"> --}}
-								<input name="join_email" id="join_email" type="email" placeholder="you@example.com" aria-label="Enter email"
-									class="form-control @error('join_email') is-invalid @enderror"
-									value="{{ old('join_email') }}" required>
-								@error('join_email')
-									<div class="text-danger text-xs">{{ $message }}</div>
-								@enderror
-							</div>
-							<button type="submit" class="btn btn-secondary">Submit</button>
+						<div class="input-group">
+							<input name="join_email" id="join_email" type="email" placeholder="you@example.com" aria-label="Enter email"
+										class="form-control @error('join_email') is-invalid @enderror"
+										value="{{ old('join_email') }}" required>
+									@error('join_email')
+										<div class="text-danger text-xs">{{ $message }}</div>
+									@enderror
+							<button  type="submit" class="btn btn-secondary">Go!</button>
 						</div>
-						<!-- End Input Card -->
 					</form>
 					<!-- End Form -->
 
