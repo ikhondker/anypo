@@ -22,38 +22,42 @@ class WarehouseSeeder extends Seeder
 
 		$faker = app(Generator::class);
 
-		$warehouses =  [
+		$seededWarehouses =  [
 			[
-				'name'			=> 'Seeded Warehouse',
-				'address1'		=> $faker->address,
-				'address2'		=> $faker->address,
-				'zip'			=> $faker->postcode,
-				'city'			=> $faker->city,
+				'name'			=> 'Central Warehouse',
+				'address1'		=> '3939 Lawrence Ave, E#108,',
+				'address2'		=> '',
+				'city'			=> 'Scarborough',  
+				'state'			=> 'ON',  
+				'zip'			=> 'M1G1R9',
 			],
 			[
-				'name'			=> 'Head-Office',
-				'address1'		=> $faker->address,
-				'address2'		=> $faker->address,
-				'zip'			=> $faker->postcode,
-				'city'			=> $faker->city,
+				'name'			=> 'Regional Warehouse 1',
+				'address1'		=> '3939 Lawrence Ave, E#108,',
+				'address2'		=> '',
+				'city'			=> 'Scarborough',  
+				'state'			=> 'ON',  
+				'zip'			=> 'M1G1R9',
+			],
+			[
+				'name'			=> 'Head Office',
+				'address1'		=> '3939 Lawrence Ave, E#108,',
+				'address2'		=> '',
+				'city'			=> 'Scarborough',  
+				'state'			=> 'ON',  
+				'zip'			=> 'M1G1R9',
 			],
 			[
 				'name'			=> 'Branch Office 1',
-				'address1'		=> $faker->address,
-				'address2'		=> $faker->address,
-				'zip'			=> $faker->postcode,
-				'city'			=> $faker->city,
+				'address1'		=> '3939 Lawrence Ave, E#108,',
+				'address2'		=> '',
+				'city'			=> 'Scarborough',  
+				'state'			=> 'ON',  
+				'zip'			=> 'M1G1R9',
 			],
-			[
-				'name'			=> 'Regional Warehouse',
-				'address1'		=> $faker->address,
-				'address2'		=> $faker->address,
-				'zip'			=> $faker->postcode,
-				'city'			=> $faker->city,
-
-			],
+			
 		  ];
 		  //
-		  Warehouse::insert($warehouses);
+		  Warehouse::insert($seededWarehouses);
 	}
 }

@@ -10,17 +10,16 @@ use App\Models\Tenant\Payment;
 
 class PaymentActions extends Component
 {
-	public $id;
-	public $show;
+	
+	
 	public $payment;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id, $show = false)
+	public function __construct(public string $id)
 	{
 		$this->id		= $id;
-		$this->show		= $show; 
 		$this->payment = Payment::where('id', $this->id)->get()->firstOrFail();
 	}
 

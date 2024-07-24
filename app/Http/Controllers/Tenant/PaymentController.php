@@ -86,9 +86,6 @@ class PaymentController extends Controller
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				// buyer can see all payment of all his po's
-				//$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
-				//break;
 				$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:
@@ -118,9 +115,17 @@ class PaymentController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create(Invoice $invoice)
+	public function create()
 	{
-		$this->authorize('create', Payment::class);
+		abort(403);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function createForInvoice(Invoice $invoice)
+	{
+		$this->authorize('createForInvoice', Payment::class);
 
 		$setup 	= Setup::first();
 		if ($setup->readonly ){
@@ -148,7 +153,7 @@ class PaymentController extends Controller
 	 */
 	public function store(StorePaymentRequest $request)
 	{
-		$this->authorize('create', Payment::class);
+		$this->authorize('createForInvoice', Payment::class);
 
 		//$po = Po::where('id', $request->input('po_id'))->first();
 
@@ -157,8 +162,13 @@ class PaymentController extends Controller
 			'amount' => [new OverPaymentRule ( $request->input('invoice_id'))],
 		]);
 
+		
 		$request->merge(['payment_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['payee_id'			=> 	auth()->user()->id ]);
+		
+		// populate po_id in payment to simplify coding 
+		$invoice = Invoice::where('id', $request->input('invoice_id'))->first();
+		$request->merge(['po_id'			=> $invoice->po_id ]);
 		$payment = Payment::create($request->all());
 
 		if ($file = $request->file('file_to_upload')) {
@@ -229,7 +239,9 @@ class PaymentController extends Controller
 
 		// Write to Log
 		EventLog::event('payment', $payment->id, 'create');
-		return redirect()->route('payments.show',$payment->id)->with('success', 'Payment created successfully.');
+
+		//return redirect()->route('payments.show',$payment->id)->with('success', 'Payment created successfully.');
+		return redirect()->route('invoices.show',$payment->invoice_id)->with('success', 'Payment created successfully.');
 	}
 
 	/**
@@ -261,7 +273,7 @@ class PaymentController extends Controller
 	 */
 	public function edit(Payment $payment)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -269,7 +281,7 @@ class PaymentController extends Controller
 	 */
 	public function update(UpdatePaymentRequest $request, Payment $payment)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -277,7 +289,7 @@ class PaymentController extends Controller
 	 */
 	public function destroy(Payment $payment)
 	{
-		//
+		abort(403);
 	}
 
 

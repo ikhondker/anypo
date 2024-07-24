@@ -42,12 +42,12 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'attachments.edit',	'route_name' => 'attachments.index',	'access' => 'B'],
 			[ 'raw_route_name' => 'attachments.create', 'route_name' => 'attachments.index',	'access' => 'B'],
 
-			[ 'raw_route_name' => 'contacts.all',	  'route_name' => 'contacts.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'contacts.all',	  	'route_name' => 'contacts.index',	  'access' => 'B'],
 
 			[ 'raw_route_name' => 'categories.index',	'route_name' => 'categories.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'categories.show',	'route_name' => 'categories.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'categories.update',	'route_name' => 'categories.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'categories.edit',	 'route_name' => 'categories.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'categories.edit',	'route_name' => 'categories.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'categories.create',	'route_name' => 'categories.index',	  'access' => 'B'],
 
 			[ 'raw_route_name' => 'dashboards.index',	'route_name' => 'dashboards.index',	'access' => 'F'],
@@ -62,26 +62,26 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'domains.edit',	  	'route_name' => 'domains.index',	'access' => 'B'],
 			[ 'raw_route_name' => 'domains.create',		'route_name' => 'domains.index',	'access' => 'B'],
 
-			[ 'raw_route_name' => 'entities.index',	'route_name' => 'entities.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'entities.show',	 'route_name' => 'entities.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'entities.index',		'route_name' => 'entities.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'entities.show',	 	'route_name' => 'entities.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'entities.update',	'route_name' => 'entities.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'entities.edit',	 'route_name' => 'entities.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'entities.edit',	 	'route_name' => 'entities.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'entities.create',	'route_name' => 'entities.index',	  'access' => 'B'],
 
 			[ 'raw_route_name' => 'mail-lists.index',	'route_name' => 'mail-lists.index',	  'access' => 'S'],
 
-			[ 'raw_route_name' => 'invoices.index',	'route_name' => 'invoices.index',	  'access' => 'F'],
-			[ 'raw_route_name' => 'invoices.show',	 'route_name' => 'invoices.index',	  'access' => 'F'],
+			[ 'raw_route_name' => 'invoices.index',		'route_name' => 'invoices.index',	  'access' => 'F'],
+			[ 'raw_route_name' => 'invoices.show',	 	'route_name' => 'invoices.index',	  'access' => 'F'],
 			[ 'raw_route_name' => 'invoices.update',	'route_name' => 'invoices.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'invoices.edit',	 'route_name' => 'invoices.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'invoices.edit',	 	'route_name' => 'invoices.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'invoices.create',	'route_name' => 'invoices.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'invoices.all',	  'route_name' => 'invoices.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'invoices.all',	  	'route_name' => 'invoices.index',	  'access' => 'B'],
 
-			[ 'raw_route_name' => 'menus.index',	'route_name' => 'menus.index',	'access' => 'B'],
-			[ 'raw_route_name' => 'menus.show',		'route_name' => 'menus.index',	'access' => 'B'],
-			[ 'raw_route_name' => 'menus.update',	'route_name' => 'menus.index',	'access' => 'B'],
-			[ 'raw_route_name' => 'menus.edit',		'route_name' => 'menus.index',	'access' => 'B'],
-			[ 'raw_route_name' => 'menus.create',	'route_name' => 'menus.index',	'access' => 'B'],
+			[ 'raw_route_name' => 'menus.index',		'route_name' => 'menus.index',	'access' => 'B'],
+			[ 'raw_route_name' => 'menus.show',			'route_name' => 'menus.index',	'access' => 'B'],
+			[ 'raw_route_name' => 'menus.update',		'route_name' => 'menus.index',	'access' => 'B'],
+			[ 'raw_route_name' => 'menus.edit',			'route_name' => 'menus.index',	'access' => 'B'],
+			[ 'raw_route_name' => 'menus.create',		'route_name' => 'menus.index',	'access' => 'B'],
 
 			[ 'raw_route_name' => 'notifications.index','route_name' => 'notifications.index',  'access' => 'X'],
 			[ 'raw_route_name' => 'notifications.show', 'route_name' => 'notifications.index',  'access' => 'X'],
@@ -89,12 +89,12 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'notifications.edit', 'route_name' => 'notifications.index',  'access' => 'X'],
 			[ 'raw_route_name' => 'notifications.create','route_name' => 'notifications.index', 'access' => 'X'],
 
-			[ 'raw_route_name' => 'payments.index',	'route_name' 	=> 'payments.index',	  'access' => 'F'],
-			[ 'raw_route_name' => 'payments.show',	 'route_name' 	=> 'payments.index',	  'access' => 'F'],
+			[ 'raw_route_name' => 'payments.index',		'route_name' 	=> 'payments.index',	  'access' => 'F'],
+			[ 'raw_route_name' => 'payments.show',	 	'route_name' 	=> 'payments.index',	  'access' => 'F'],
 			[ 'raw_route_name' => 'payments.update',	'route_name'=> 'payments.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'payments.edit',	 'route_name' 	=> 'payments.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'payments.edit',	 	'route_name' 	=> 'payments.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'payments.create',	'route_name'=> 'payments.index',	  'access' => 'B'],
-			[ 'raw_route_name' => 'payments.all',	  'route_name' 	=> 'payments.index',	  'access' => 'B'],
+			[ 'raw_route_name' => 'payments.all',	  	'route_name' 	=> 'payments.index',	  'access' => 'B'],
 
 			[ 'raw_route_name' => 'processes.index',	'route_name' => 'processes.index',	 'access' => 'B'],
 			[ 'raw_route_name' => 'processes.show',		'route_name' => 'processes.index',	 'access' => 'B'],
@@ -126,7 +126,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'checkouts.update',	'route_name' => 'checkouts.index',	 'access' => 'B'],
 			[ 'raw_route_name' => 'checkouts.edit',		'route_name' => 'checkouts.index',	 'access' => 'B'],
 			[ 'raw_route_name' => 'checkouts.create',	'route_name' => 'checkouts.index',	 'access' => 'X'],
-			//[ 'raw_route_name' => 'checkouts.all',	 	'route_name' => 'checkouts.index',	 'access' => 'B'],
+			//[ 'raw_route_name' => 'checkouts.all',	'route_name' => 'checkouts.index',	 'access' => 'B'],
 
 			[ 'raw_route_name' => 'statuses.index',		'route_name' => 'statuses.index',	  'access' => 'B'],
 			[ 'raw_route_name' => 'statuses.show',	 	'route_name' => 'statuses.index',	  'access' => 'B'],
@@ -149,9 +149,9 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'templates.create',	'route_name' => 'templates.index',	 'access' => 'S'],
 
 			[ 'raw_route_name' => 'error-logs.index',	'route_name' => 'error-logs.index',	 'access' => 'S'],
-			[ 'raw_route_name' => 'error-logs.show',		'route_name' => 'error-logs.index',	 'access' => 'S'],
+			[ 'raw_route_name' => 'error-logs.show',	'route_name' => 'error-logs.index',	 'access' => 'S'],
 			[ 'raw_route_name' => 'error-logs.update',	'route_name' => 'error-logs.index',	 'access' => 'S'],
-			[ 'raw_route_name' => 'error-logs.edit',		'route_name' => 'error-logs.index',	 'access' => 'S'],
+			[ 'raw_route_name' => 'error-logs.edit',	'route_name' => 'error-logs.index',	 'access' => 'S'],
 			[ 'raw_route_name' => 'error-logs.create',	'route_name' => 'error-logs.index',	 'access' => 'S'],
 
 			[ 'raw_route_name' => 'tenants.index',	 	'route_name' => 'tenants.index',	'access' => 'B'],
@@ -174,6 +174,9 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.edit',			'route_name' => 'users.show',	 'access' => 'F'],
 			[ 'raw_route_name' => 'users.create',	  	'route_name' => 'users.index',	'access' => 'F'],
 			[ 'raw_route_name' => 'users.all',			'route_name' => 'users.index',	'access' => 'B'],
+
+			[ 'raw_route_name' => 'cps.changelog','route_name' 			=> 'cps.changelog', 'access' => 'B'],
+			[ 'raw_route_name' => 'cps.codegen','route_name' 			=> 'cps.codegen', 'access' => 'B'],
 
 			/**
 			* ==================================================================================

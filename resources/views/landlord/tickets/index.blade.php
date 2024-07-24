@@ -57,9 +57,7 @@
 					@foreach ($tickets as $ticket)
 						<tr>
 							<td>
-								<a class="text-info" href="{{ route('tickets.show',$ticket->id) }}">
-								#{{ $ticket->id }}
-								</a>
+								<a href="{{ route('tickets.show',$ticket->id) }}"><strong>#{{ $ticket->id }}</strong></a>
 							</td>
 							<td>
 								<a class="" href="{{ route('tickets.show',$ticket->id) }}">

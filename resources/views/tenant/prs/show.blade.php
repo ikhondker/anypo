@@ -22,10 +22,17 @@
 			<x-tenant.actions.pr-actions id="{{ $pr->id }}"/>
 		@endslot
 	</x-tenant.page-header>
-		
+
+	<!-- approval form, show only if pending to current auth user -->
+	@if ($pr->auth_status == App\Enum\AuthStatusEnum::INPROCESS->value)
+		@if (\App\Helpers\Tenant\Workflow::allowApprove($pr->wf_id))
+			{{-- @include('tenant.includes.wfl-approve-reject') --}}
+			<x-tenant.widgets.wfl.get-approval wfid="{{ $pr->wf_id }}" />
+		@endif
+	@endif
+	
 	<x-tenant.widgets.pr.show-pr-header id="{{ $pr->id }}"/>
 	
-
 	<!-- widget-prl-cards -->
 	<x-tenant.widgets.prl.card :pr="$pr">
 		@slot('lines')
@@ -40,13 +47,7 @@
 	</x-tenant.widgets.prl.card>
 	<!-- /.widget-prl-cards -->
 
-	<!-- approval form, show only if pending to current auth user -->
-	@if ($pr->auth_status == App\Enum\AuthStatusEnum::INPROCESS->value)
-		@if (\App\Helpers\Tenant\Workflow::allowApprove($pr->wf_id))
-			{{-- @include('tenant.includes.wfl-approve-reject') --}}
-			<x-tenant.widgets.wfl.get-approval wfid="{{ $pr->wf_id }}" />
-		@endif
-	@endif
+	
 	
 	
 	

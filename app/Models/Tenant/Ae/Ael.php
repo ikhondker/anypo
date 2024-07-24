@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 use App\Traits\AddCreatedUpdatedBy;
 
+use App\Enum\EntityEnum;
+
 class Ael extends Model
 {
 	use HasFactory;
@@ -30,13 +32,69 @@ class Ael extends Model
 		'created_at'	=> 'datetime',
 	];
 
+	/* ----------------- Scopes ------------------------- */
+	/**
+	 *  Scope a query to return all payment of PO's of his dept.
+	*/
+	public function scopeByPo(Builder $query,$id): void
+	{
+		$query->whereHas('aeh', function ($q) use ($id) {
+			$q->where('po_id', $id);
+		});
+	}
+
+
+	/**
+	 *  Scope a query to return all payment of PO's of his dept.
+	*/
+	public function scopeByReceipt(Builder $query,$id): void
+	{
+		$query->whereHas('aeh', function ($q) use ($id) {
+			$q->where('source_entity', EntityEnum::RECEIPT->value)
+			->where('article_id', $id);
+		});
+	}
+
+	/**
+	 *  Scope a query to return all payment of PO's of his dept.
+	*/
+	public function scopeByInvoice(Builder $query,$id): void
+	{
+		$query->whereHas('aeh', function ($q) use ($id) {
+			$q->where('source_entity', EntityEnum::INVOICE->value)
+			->where('article_id', $id);
+		});
+	}
+
+
+	/**
+	 *  Scope a query to return all payment of PO's of his dept.
+	*/
+	public function scopeByPayment(Builder $query,$id): void
+	{
+		$query->whereHas('aeh', function ($q) use ($id) {
+			$q->where('source_entity', EntityEnum::PAYMENT->value)
+			->where('article_id', $id);
+		});
+	}
+
+	/**
+	 *  Scope a query to return all payment of PO's of his dept.
+	*/
+	public function scopeByAeh(Builder $query,$id): void
+	{
+		$query->whereHas('aeh', function ($q) use ($id) {
+			$q->where('id', $id);
+		});
+	}
 
 	/* ----------------- HasMany ------------------------ */
 
 
 	/* ---------------- belongsTo ---------------------- */
 	public function aeh(){
-		return $this->belongsTo(Aeh::class,'aeh_id');
+		return $this->belongsTo(Aeh::class,'aeh_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
-
 }

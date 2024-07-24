@@ -2,11 +2,12 @@
 	<thead>
 		<tr>
 			<th>PR#</th>
-			<th>Summary</th>
 			<th>Date</th>
+			<th>Summary</th>
 			<th>Requestor</th>
 			<th>Dept</th>
-			<th>Currency</th>
+			<th>Supplier</th>
+			<th>Project</th>
 			<th class="text-end">Amount</th>
 			<th>Approval</th>
 			<th>Status</th>
@@ -17,12 +18,13 @@
 		@foreach ($prs as $pr)
 		<tr>
 			<td>{{ $pr->id }}</td>
-			<td><a href="{{ route('prs.show',$pr->id) }}"><strong>{{ $pr->summary }}</strong></a></td>
 			<td><x-tenant.list.my-date :value="$pr->pr_date"/></td>
+			<td><a href="{{ route('prs.show',$pr->id) }}"><strong>{{ $pr->summary }}</strong></a></td>
 			<td>{{ $pr->requestor->name }}</td>
 			<td>{{ $pr->dept->name }}</td>
-			<td>{{ $pr->currency }}</td>
-			<td class="text-end"><x-tenant.list.my-number :value="$pr->amount"/></td>
+			<td>{{ $pr->supplier->name }}</td>
+			<td>{{ $pr->project->code }}</td>
+			<td class="text-end">{{ number_format($pr->amount, 2) }} {{ $pr->currency }}  </td>
 			<td><span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span></td>
 			<td><span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
 			<td class="table-action">

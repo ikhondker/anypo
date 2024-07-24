@@ -11,7 +11,7 @@
 			{{ $_setup->name }} Budgets [{{ ($_setup->currency ) }}]
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('budgets.create') }}" class="btn btn-primary float-end sw2"><i data-lucide="folder-plus"></i> Open Next FY Budget*</a>
+			<a href="{{ route('budgets.create') }}" class="btn btn-primary float-end me-2 sw2"><i data-lucide="folder-plus"></i> Open Next FY Budget*</a>
 		@endslot
 	</x-tenant.page-header>
 
@@ -38,7 +38,6 @@
 							<tr>
 								<th>FY</th>
 								<th class="text-end">Budget</th>
-
 								<th class="text-end">PR (Book)</th>
 								<th class="text-end">PR (Appr.)</th>
 								<th class="text-end">PR (Avl.)</th>
@@ -49,14 +48,14 @@
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
 								<th>Closed?</th>
-								<th>Actions</th>
+								<th>View</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							@foreach ($budgets as $budget)
 							<tr>
-								<td><a class="text-info" href="{{ route('budgets.show',$budget->id) }}">{{ $budget->fy }}</a></td>
+								<td><a href="{{ route('budgets.show',$budget->id) }}"><strong>{{ $budget->fy }}</strong></a></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr_booked"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr"/></td>
@@ -68,7 +67,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_payment"/></td>
 								<td class="text-start"><x-tenant.list.my-closed :value="$budget->closed"/></td>
-								<td class="table-action">
+								<td>
 										<a href="{{ route('budgets.show',$budget->id) }}" class="btn btn-light"
 											data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 										</a>

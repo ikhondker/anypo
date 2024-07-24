@@ -122,10 +122,12 @@ class SupplierController extends Controller
 		$request->validate([
 
 		]);
-		$supplier->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('supplier', $supplier->id, 'update', 'name', $supplier->name);
+		$supplier->update($request->all());
+
+		
 		return redirect()->route('suppliers.index')->with('success', 'Supplier updated successfully');
 	}
 
@@ -150,7 +152,7 @@ class SupplierController extends Controller
 	 */
 	public function spends()
 	{
-		$this->authorize('viewAny',Supplier::class);
+		$this->authorize('spends',Supplier::class);
 
 		$suppliers = Supplier::query();
 		if (request('term')) {

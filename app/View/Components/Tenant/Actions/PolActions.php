@@ -11,17 +11,14 @@ use App\Models\Tenant\Pol;
 
 class PolActions extends Component
 {
-	public $id;
-	public $show;
 	public $pol;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id, $show = false)
+	public function __construct(public string $id)
 	{
 		$this->id 		= $id;
-		$this->show		= $show; 
 		$this->pol 		= Pol::where('id', $this->id)->get()->firstOrFail();
 	}
 

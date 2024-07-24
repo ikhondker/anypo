@@ -77,7 +77,7 @@ class AehPayment implements ShouldQueue
 		$aeh->fc_dr_amount		= $aeh->fc_cr_amount = $this->fc_amount;
 		$aeh->po_id				= $payment->invoice->po_id;
 		$aeh->article_id		= $payment->id;
-		$aeh->reference_no		= Str::upper(EntityEnum::PAYMENT->value) .' #'. $payment->id;
+		$aeh->reference_no		= Str::upper(EntityEnum::PAYMENT->value) .'#'. $payment->id;
 		$aeh->status			= AehStatusEnum::DRAFT->value;
 		$aeh->save();
 		$aeh_id					= $aeh->id;

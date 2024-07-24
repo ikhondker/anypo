@@ -37,7 +37,9 @@ class ConsolidateBudget implements ShouldQueue, ShouldBeUnique
 	{
 		//Log::debug('ConsolidateBudget.jobs Value of budget_id=' . $this->budget_id);
 		// get sum of DeptBudget for a specific budget
-		$result= DeptBudget::where('budget_id', $this->budget_id)->get( array(
+		$result= DeptBudget::where('budget_id', $this->budget_id)
+			->where('revision',false)
+			->get( array(
 			DB::raw('SUM(amount) as amount'),
 			DB::raw('SUM(amount_pr_booked) 	as amount_pr_booked'),
 			DB::raw('SUM(amount_pr) 		as amount_pr'),
@@ -55,7 +57,8 @@ class ConsolidateBudget implements ShouldQueue, ShouldBeUnique
 		
 		// get and budget tu update based on DeptBudgetUsages table
 		// populate Company Budget 
-		$budget = Budget::where('id', $this->budget_id)->firstOrFail();
+		$budget = Budget::where('id', $this->budget_id)
+			->where('revision',false)->firstOrFail();
 		foreach($result as $row) { 
 			$budget->amount				= $row['amount'] ;
 			$budget->amount_pr_booked	= $row['amount_pr_booked'] ;

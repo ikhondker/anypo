@@ -26,6 +26,6 @@ class PrListsPoPending extends Component
 		 */
 		public function render(): View|Closure|string
 		{
-				return view('components.tenant.widgets.pr.pr-lists-recent');
+				return view('components.tenant.widgets.pr.pr-lists-po-pending');
 		}
 }

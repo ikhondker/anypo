@@ -24,6 +24,7 @@
 			<div class="col-md-3">
 				<input type="text" class="form-control @error('zip') is-invalid @enderror"
 					name="zip" id="zip" placeholder="1234"
+					style="text-transform: uppercase"
 					value="{{ old('zip', '0000' ) }}"
 					required/>
 				@error('zip')

@@ -12,20 +12,24 @@
 			Projects
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Project"/>
-			<x-tenant.actions.project-actions id="{{ $project->id }}"/>
+			<x-tenant.actions.lookup.project-actions id="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
-
-	<div class="row">
-		<div class="col-6">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Project Basic Info</h5>
-					<h6 class="card-subtitle text-muted">Project Basic Information.</h6>
-				</div>
-				<div class="card-body">
+	<div class="card">
+		<div class="card-header">
+			<div class="card-actions float-end">
+				@can('update', $project)
+					<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				@endif 
+				<a class="btn btn-sm btn-light" href="{{ route('projects.index') }}" ><i class="fas fa-list"></i> View all</a>
+			</div>
+			<h5 class="card-title">Project Basic Info</h5>
+			<h6 class="card-subtitle text-muted">Project Basic Information.</h6>
+		</div>
+		<div class="card-body">
+			<table class="table table-sm my-2">
+				<tbody>
 					<x-tenant.show.my-text		value="{{ $project->code }}" label="Code"/>
 					<x-tenant.show.my-text		value="{{ $project->name }}"/>
 					<x-tenant.show.my-date		value="{{ $project->start_date }}" label="Start Date"/>
@@ -33,25 +37,17 @@
 					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
 					<x-tenant.show.my-closed	value="{{ $project->closed }}"/>
 					<x-tenant.show.my-text-area	value="{{ $project->notes }}" label="Notes"/>
-					<div class="row mb-3">
-						<div class="col-sm-4 text-end">
-							<span class="h6 text-secondary">Attachments :</span>
-						</div>
-						<div class="col-sm-8">
-							<x-tenant.attachment.all entity="PROJECT" aid="{{ $project->id }}"/>
-						</div>
-					</div>
-				</div>
-			</div>
+					<tr>
+						<th>Attachments :</th>
+						<td>	<x-tenant.attachment.all entity="PROJECT" aid="{{ $project->id }}"/></td>
+					</tr>
+					<x-tenant.show.my-created-at value="{{ $project->updated_at }}"/>
+					<x-tenant.show.my-updated-at value="{{ $project->created_at }}"/>
+				</tbody>
+			</table>
 		</div>
-		<!-- end col-6 -->
-		<div class="col-6">
-		
-			
-		</div>
-		<!-- end col-6 -->
 	</div>
-	<!-- end row -->
+
 
 @endsection
 

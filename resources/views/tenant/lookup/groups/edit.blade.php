@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Group')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('groups.index') }}">Groups</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('groups.show',$group->id) }}">{{ $group->name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('groups.index') }}" class="text-muted">Groups</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('groups.show',$group->id) }}" class="text-muted">{{ $group->name }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -26,8 +26,8 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('groups.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>  Create</a>
-					<a href="{{ route('groups.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('groups.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>Create</a>
+					<a href="{{ route('groups.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>ew all</a>
 				</div>
 				<h5 class="card-title">Edit Item Group</h5>
 				<h6 class="card-subtitle text-muted">Edit an Item Group</h6>

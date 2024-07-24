@@ -8,27 +8,25 @@ use Illuminate\View\Component;
 use App\Models\Tenant\Ae\Aeh;
 use App\Models\Tenant\Ae\Ael;
 
+use Exception;
+
 class AelForPo extends Component
 {
-	public $id;
-	public $aeh;
 	public $aels;
-
+	public $label;
+	
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $id)
 	{
-		$this->id   = $id;
-		//$this->aeh  = Aeh::where('po_id', $id)->get()->firstOrFail();
-
-		$this->aels = Ael::with('aeh')
-			->whereHas('aeh', function ($q) use ($id) {
-				$q->where('po_id', $id);
-			})
-			->get()->all();
-
-		//$this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
+		$this->id	= $id;
+		$this->label= 'PO #'.$this->id;
+		try {
+			$this->aels = Ael::with('aeh')->ByPo($this->id)->get()->all();
+		} catch (Exception $e) {
+			$this->aels = new Ael();
+		}
 	}
 
 	/**

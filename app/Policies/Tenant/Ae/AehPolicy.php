@@ -24,7 +24,8 @@ class AehPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return ( $user->isSuperior());
+		return true;
+		//return ( $user->isSuperior());
 	}
 
 	/**
@@ -32,7 +33,7 @@ class AehPolicy
 	 */
 	public function view(User $user, Aeh $aeh): bool
 	{
-		//
+		return true;
 	}
 
 	/**

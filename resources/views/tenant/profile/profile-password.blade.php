@@ -2,7 +2,7 @@
 @section('title','Change Password')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('users.profile') }}">{{ $user->name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('users.profile') }}" class="text-muted">{{ $user->name }}</a></li>
 	<li class="breadcrumb-item active">Change Password</li>
 @endsection
 
@@ -18,9 +18,8 @@
 	</x-tenant.page-header>
 
 	 <!-- form start -->
-	 <form action="{{ route('users.password-update',['user'=>$user->id]) }}" method="POST">
+	 <form action="{{ route('users.profile-password-update',['user'=>$user->id]) }}" method="POST">
 		@csrf
-
 
 		<div class="row">
 			<div class="col-md-4 col-xl-4">

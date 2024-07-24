@@ -326,6 +326,15 @@ class Po extends Model
 		$query->where('buyer_id', auth()->user()->id )
 			->where('auth_status',AuthStatusEnum::INPROCESS->value);
 	}
+
+	/**
+	 * Scope a query to only All Draft PR for current user.
+	*/
+	public function scopeByBuyerDraft(Builder $query): void
+	{
+		$query->where('buyer_id', auth()->user()->id )
+			->where('auth_status',AuthStatusEnum::DRAFT->value);
+	}
 	/**
 	 * Scope a query to only All Draft PR for current user.
 	*/
@@ -341,7 +350,8 @@ class Po extends Model
 	*/
 	public function scopeByDeptAll(Builder $query): void
 	{
-		$query->where('dept_id', auth()->user()->dept_id );
+		$query->where('dept_id', auth()->user()->dept_id )
+		->where('auth_status','<>',AuthStatusEnum::DRAFT->value);
 	}
 
 	/**

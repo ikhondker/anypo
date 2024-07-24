@@ -99,6 +99,8 @@ class PoController extends Controller
 				$pos = $pos->ByDeptAll()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
+				$pos = $pos->All()->orderBy('id', 'DESC')->paginate(10);
+				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 				$pos = $pos->AllApproved()->orderBy('id', 'DESC')->paginate(10);
@@ -293,6 +295,8 @@ class PoController extends Controller
 			$request->merge([ 'tc' => 0]);
 		}
 
+		// Write to Log
+		EventLog::event('po', $po->id, 'update', 'summary', $po->summary);
 		$po->update($request->all());
 
 		if ($file = $request->file('file_to_upload')) {
@@ -311,9 +315,6 @@ class PoController extends Controller
 			Log::error(tenant('id'). 'tenant.po.store syncPoValues po_id = '.$po->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
-
-		// Write to Log
-		EventLog::event('po', $po->id, 'update', 'summary', $po->summary);
 		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Purchase Order updated successfully.');
 	}
 
@@ -329,12 +330,23 @@ class PoController extends Controller
 			return redirect()->route('pos.show', $po->id)->with('error', 'Only DRAFT Purchase Order can be deleted!');
 		}
 
+		if ($po->buyer_id <> auth()->user()->id) {
+			return redirect()->route('pos.show',$po->id)->with('error', 'You can only Delete Purchase Orders created by you!');
+		}
+
+		// mark all source PR as non converted to PO and make it open
+		Log::debug(tenant('id'). ' tenant.po.destroy marking source PR as open for po_id='.$po->id);
+		Pr::where('po_id', $po->id)
+			->update([
+				'po_id' 	=> null,
+				'status'	=> ClosureStatusEnum::OPEN->value,
+			]);
+					
 		// Write to Log
 		EventLog::event('Po', $po->id, 'delete', 'id', $po->id);
 		// delete from pol
 		DB::table('pols')->where('po_id', $po->id)->delete();
 		$po->delete();
-
 
 		return redirect()->route('pos.index')->with('success', 'Purchase Order status Updated successfully');
 	}
@@ -438,7 +450,7 @@ class PoController extends Controller
 
 			// Reverse Approve Budget
 			$retcode = PoBudget::poBudgetApproveCancel($po_id);
-			Log::debug("tenant.po.cancel retcode = ".$retcode);
+			Log::debug(tenant('id').' tenant.po.cancel retcode = '.$retcode);
 
 			// Cancel All PO Lines
 			Pol::where('po_id',$po_id)
@@ -471,10 +483,12 @@ class PoController extends Controller
 					'status' 		=> ClosureStatusEnum::CANCELED->value
 				]);
 
-			// mark all source PR as non converted to PO
+			// mark all source PR as non converted to PO and make it open
+			Log::debug(tenant('id'). ' tenant.po.cancel marking source PR as open for po_id='.$po->id);
 			Pr::where('po_id', $po->id)
 				->update([
 					'po_id' 	=> null,
+					'status'	=> ClosureStatusEnum::OPEN->value,
 				]);
 
 			// Write to Log
@@ -623,7 +637,8 @@ class PoController extends Controller
 
 	public function copy(Po $po)
 	{
-		$this->authorize('view', $po);
+
+		$this->authorize('copy', Po::class);
 
 		$sourcePo = Po::where('id', $po->id)->first();
 		$po				= new Po;
@@ -661,10 +676,16 @@ class PoController extends Controller
 		$po_id					= $po->id;
 
 		// copy lines into prls
-		$sql= "INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, closure_status )
-		SELECT ".$po->id.",line_num, item_description, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes, requestor_id, dept_id, unit_id, project_id, '".ClosureStatusEnum::OPEN->value."'
-		FROM pols WHERE
-		po_id= ".$sourcePo->id." ;";
+		$sql= "INSERT INTO pols( 
+			po_id, line_num, item_description, item_id, uom_id, 
+			qty, price, sub_total, tax, gst, amount, notes, 
+			requestor_id, dept_id, unit_id, project_id, closure_status )
+		SELECT ".
+			$po->id.",line_num, item_description, item_id, uom_id, 
+			qty, price, sub_total, tax, gst, amount, notes, 
+			requestor_id, dept_id, unit_id, project_id, '".ClosureStatusEnum::OPEN->value."'
+			FROM pols WHERE
+			po_id= ".$sourcePo->id." ;";
 		DB::INSERT($sql);
 
 		Log::debug('tenant.po.copy New PO created = ' . $po->id);
@@ -682,11 +703,15 @@ class PoController extends Controller
 			return redirect()->route('pos.show', $po->id)->with('error', 'Only DRAFT Purchase Order can be recalculated!');
 		}
 
+		$po = Po::where('id', $po->id)->get()->firstOrFail();
+		// TODO requestor_id don't reset
+
 		// 	update PP Header value
 		DB::statement("set @sequenceNumber=0");
 
 		DB::statement("UPDATE pols SET
 				line_num	= (@sequenceNumber:=@sequenceNumber + 1),
+				dept_id		= ".$po->dept_id.",
 				sub_total	= qty * price,
 				amount		= qty * price + tax +gst
 				WHERE po_id = ".$po->id."");
@@ -705,16 +730,22 @@ class PoController extends Controller
 	public function exportForSupplier($supplier_id)
 	{
 		$this->authorize('export', Po::class);
-		return self::export($supplier_id,null);
-
+		return self::export($supplier_id,null,null);
 	}
 	public function exportForProject($project_id)
 	{
 		$this->authorize('export', Po::class);
-		return self::export(null, $project_id);
-
+		return self::export(null, $project_id,null);
 	}
-	public function export($supplier_id = null, $project_id = null)
+
+	public function exportForBuyer($buyer_id)
+	{
+		$this->authorize('export', Po::class);
+		return self::export(null, null,$buyer_id);
+	}
+
+
+	public function export($supplier_id = null, $project_id = null, $buyer_id = null)
 	{
 		$this->authorize('export', Po::class);
 
@@ -729,6 +760,12 @@ class PoController extends Controller
 			$whereProject = '1 = 1';
 		}
 
+		if ( $buyer_id <> null ) {
+			$whereBuyer = 'po.buyer_id = '. $buyer_id;
+		} else {
+			$whereBuyer = '1 = 1';
+		}
+
 		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
 			$whereRequestor = 'po.requestor_id = '. auth()->user()->id;
 		} else {
@@ -736,29 +773,28 @@ class PoController extends Controller
 		}
 
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$dept_id 	= auth()->user()->dept_id;
+			//$dept_id 	= auth()->user()->dept_id;
 			$whereDept = 'po.dept_id = '. auth()->user()->dept_id;
 		} else {
 			$whereDept = '1 = 1';
 		}
 
 		$sql = "
-		SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
-		po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date
-		FROM pos po, depts d, projects p, suppliers s, users u
-		WHERE po.dept_id=d.id
-		AND po.project_id=p.id
-		AND po.supplier_id=s.id
-		AND po.requestor_id=u.id
-		AND ". $whereRequestor ."
-		AND ". $whereDept ."
-		AND ". $whereSupplier ."
-		AND ". $whereProject ."
-		ORDER BY po.id DESC	";
+			SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
+			po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date
+			FROM pos po, depts d, projects p, suppliers s, users u
+			WHERE po.dept_id=d.id
+			AND po.project_id=p.id
+			AND po.supplier_id=s.id
+			AND po.requestor_id=u.id
+			AND ". $whereRequestor ."
+			AND ". $whereDept ."
+			AND ". $whereSupplier ."
+			AND ". $whereProject ."
+			AND ". $whereBuyer ."
+			ORDER BY po.id DESC	";
 
 		$data = DB::select($sql);
-
-
 
 		// $data = DB::select("
 		// SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
@@ -774,7 +810,7 @@ class PoController extends Controller
 
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
-		return Export::csv('pos', $dataArray);
+		return Export::csv('po-lists', $dataArray);
 	}
 
 	// add attachments
@@ -830,7 +866,7 @@ class PoController extends Controller
 	}
 
 
-	public function invoice(Po $po)
+	public function invoices(Po $po)
 	{
 		$this->authorize('view', $po);
 
@@ -839,10 +875,22 @@ class PoController extends Controller
 		// }
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		return view('tenant.pos.invoice', compact('po'));
+		return view('tenant.pos.invoices', compact('po'));
+	}
+	public function payments(Po $po)
+	{
+		$this->authorize('view', $po);
+
+		// if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+		// 	return redirect()->route('pos.show',$po->id)->with('error', 'Only APPROVED Purchase Order can have Invoices.');
+		// }
+
+		$po = Po::where('id', $po->id)->get()->firstOrFail();
+		return view('tenant.pos.payments', compact('po'));
 	}
 
-/**
+
+	/**
 	 * Display the specified resource.
 	 */
 	public function extra(Po $po)

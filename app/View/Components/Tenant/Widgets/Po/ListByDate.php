@@ -12,7 +12,7 @@ use App\Enum\AuthStatusEnum;
 
 use Illuminate\Support\Facades\Log;
 
-class PoListsRecent extends Component
+class ListByDate extends Component
 {
 	public $pos;
 	public $card_header ='Purchase Orders (Recent 5)';
@@ -53,6 +53,6 @@ class PoListsRecent extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.widgets.po.po-lists-recent');
+		return view('components.tenant.widgets.po.lists-by-date');
 	}
 }

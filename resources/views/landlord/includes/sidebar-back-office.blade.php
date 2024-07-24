@@ -152,7 +152,18 @@
 			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">UI</span>
 		</a>
 	</li>
+	<li class="sidebar-item {{ $_route_name == 'cps.changelog' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('cps.changelog') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Change Log</span>
+		</a>
+	</li>
 
+	<li class="sidebar-item {{ $_route_name == 'cps.codegen' ? 'active' : '' }}">
+		<a class="sidebar-link" href="{{ route('cps.codegen') }}">
+			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Code Gen (All Tenant)</span>
+		</a>
+	</li>
+	
 	<li class="sidebar-item {{ $_route_name == 'configs.index' ? 'active' : '' }}">
 		<a class="sidebar-link" href="{{ route('configs.index') }}">
 			<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Config</span>

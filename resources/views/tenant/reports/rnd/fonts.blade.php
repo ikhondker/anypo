@@ -36,12 +36,12 @@
 	}
 	
 	body {
-	  font-family: "Lato", sans-serif;
+		font-family: "Lato", sans-serif;
 	}
 
 	div {
 		font-family: 'Oswald', sans-serif;
-	}  
+	}
  
 	.m{
 	font-family: 'Montserrat', sans-serif;
@@ -68,7 +68,6 @@
 		margin-top: 50px; /* create space for header */
 		margin-bottom: 50px; /* create space for footer */
 	}
-	  
 	
 </style>
 </head>

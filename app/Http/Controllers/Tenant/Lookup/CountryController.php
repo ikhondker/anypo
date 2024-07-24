@@ -117,10 +117,10 @@ class CountryController extends Controller
 		//$request->validate();
 		$request->validate([
 		]);
-		$country->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('country', $country->name, 'update', 'name', $request->name);
+		$country->update($request->all());
 
 		return redirect()->route('countries.index')->with('success', 'Country information updated successfully');
 	}

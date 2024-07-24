@@ -13,7 +13,6 @@ class ProjectCounts extends Component
 	public $count_total;
 	public $count_open;
 	public $count_closed;
-	
 
 	/**
 	 * Create a new component instance.

@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
-@section('title','View Dept')
+@section('title','View UoM')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('uoms.index') }}">UoM's</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('uoms.index') }}" class="text-muted">UoM's</a></li>
 	<li class="breadcrumb-item active">{{ $uom->name }}</li>
 @endsection
 

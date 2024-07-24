@@ -5847,7 +5847,7 @@ textarea.form-control-lg {
 	"autoRename": true,
 	"stringMap":[ {
 		"name"		: "prev-next",
-		"search"  : "prev",
+		"search": "prev",
 		"replace" : "next"
 	} ]
 } */
@@ -10838,7 +10838,7 @@ textarea.form-control-lg {
 			
 		</div>
 
-		<table class="table  table-striped">
+		<table class="tabletable-striped">
 			<thead>
 				<tr>
 					<th style="width:40%;">Name</th>

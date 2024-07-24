@@ -17,18 +17,19 @@ return new class extends Migration
 	{
 		Schema::create('aehs', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
+			$table->dateTime('accounting_date')->useCurrent(); 
 			$table->string('source_app')->default('ANYPO.NET');
 			//$table->string('source_entity', 15); 
 			//$table->string('source_event', 15); 
-			$table->string('source_entity')->default(EntityEnum::INVOICE->value);
+			//$table->string('source_entity')->default(EntityEnum::INVOICE->value);
+			$table->string('source_entity');
 			$table->string('event')->default(AehEventEnum::POST->value);
-			$table->dateTime('accounting_date')->useCurrent(); 
+			$table->biginteger('article_id')->index()->default(0);
+			$table->biginteger('po_id')->default(0);
 			$table->string('description');
 			$table->string('fc_currency',3);							// Functional Currency
 			$table->float('fc_dr_amount', 15, 2)->default(0);
 			$table->float('fc_cr_amount', 15, 2)->default(0);
-			$table->biginteger('po_id')->default(0);
-			$table->biginteger('article_id')->index()->default(0);
 			$table->string('reference_no')->nullable();
 			/** ENUM */
 			$table->string('status')->default(AehStatusEnum::DRAFT->value);

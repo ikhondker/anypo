@@ -366,6 +366,7 @@ use App\Http\Controllers\Share\TemplateController;
 
 use App\Http\Controllers\Landlord\NotificationController;
 
+use App\Http\Controllers\Landlord\Manage\CpController;
 use App\Http\Controllers\Landlord\Manage\EntityController;
 use App\Http\Controllers\Landlord\Manage\MenuController;
 use App\Http\Controllers\Landlord\Manage\ConfigController;
@@ -379,6 +380,12 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	/* ======================== Account ======================================== */
 	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.delete');
+
+	/* ======================== Cp ======================================== */
+	//Route::resource('menus', MenuController::class);
+	Route::get('/cp/changelog',[CpController::class,'changeLog'])->name('cps.changelog');
+	Route::get('/cp/codegen',[CpController::class,'codeGen'])->name('cps.codegen');
+	//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
 
 	/* ======================== Notification TODO for Landlord ======================================== */
 	Route::resource('notifications', NotificationController::class);

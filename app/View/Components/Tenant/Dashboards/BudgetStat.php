@@ -22,9 +22,9 @@ class BudgetStat extends Component
 	{
 		if ($bid == '0000'){
 			// Get latest budget
-			$this->budget				= Budget::orderBy('id', 'DESC')->firstOrFail();
+			$this->budget				= Budget::where('revision',false)->orderBy('id', 'DESC')->firstOrFail();
 		} else {
-			$this->budget				= Budget::where('id', $bid)->firstOrFail();
+			$this->budget				= Budget::where('revision',false)->where('id', $bid)->firstOrFail();
 		}
 	}
 

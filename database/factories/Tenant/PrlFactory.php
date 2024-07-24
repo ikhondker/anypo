@@ -21,11 +21,14 @@ class PrlFactory extends Factory
 	 */
 	public function definition(): array
 	{
-		$qty				= $this->faker->numberBetween(1,10);
-		$price				= $this->faker->numberBetween(10,20);
+		$qty				= $this->faker->numberBetween(3,6);
+		//$price				= $this->faker->numberBetween(200,400);
+		$price				= $this->faker->randomElement([200,300,400]);
 		$sub_total			= $qty*$price;
-		$tax				= $this->faker->numberBetween(20,40);
-		$gst				= $this->faker->numberBetween(20,40);
+		//$tax				= $this->faker->numberBetween(20,45);
+		$tax				= $this->faker->randomElement([100,200,300]);
+		//$gst				= $this->faker->numberBetween(20,45);
+		$gst				= $this->faker->randomElement([50,100,150]);
 		$fc_exchange_rate	= 125.20;
 
 		return [

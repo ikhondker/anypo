@@ -2,7 +2,7 @@
 @section('title','View Dept')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('depts.index') }}">Departments</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('depts.index') }}" class="text-muted">Departments</a></li>
 	<li class="breadcrumb-item active">{{ $dept->name }}</li>
 @endsection
 
@@ -22,7 +22,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('depts.edit', $dept->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('depts.index') }}" ><i class="fas fa-list"></i>  View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('depts.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 
 			<h5 class="card-title">Department Detail</h5>

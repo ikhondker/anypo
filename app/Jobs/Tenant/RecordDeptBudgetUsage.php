@@ -60,6 +60,8 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		$dbu->entity		= $this->entity;
 		$dbu->article_id	= $this->article_id;
 		$dbu->event			= $this->event;
+		// job don't have this ID
+		//$dbu->user_id		= auth()->user()->id;
 
 		Log::debug('jobs.Tenant.RecordDeptBudgetUsage.handle entity = '.$this->entity);
 		Log::debug('jobs.Tenant.RecordDeptBudgetUsage.handle article_id = '.$this->article_id);
@@ -69,6 +71,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		switch ($this->entity) {
 			case EntityEnum::PR->value:
 				$pr 			= Pr::where('id', $this->article_id)->firstOrFail();
+				$dbu->user_id	= $pr->created_by;
 				//Log::debug("dept_budget_id=". $pr->dept_budget_id);
 				$dept_budget 			= DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
 				$dbu->dept_budget_id	= $pr->dept_budget_id;
@@ -99,6 +102,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				break;
 			case EntityEnum::PO->value:
 				$po 			= Po::where('id', $this->article_id)->firstOrFail();
+				$dbu->user_id	= $po->created_by;
 
 				//Log::debug("dept_budget_id=". $po->dept_budget_id);
 				$dept_budget 			= DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
@@ -129,6 +133,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				break;
 			case EntityEnum::RECEIPT->value:
 				$receipt				= Receipt::with('pol.po')->where('id', $this->article_id)->firstOrFail();
+				$dbu->user_id			= $receipt->created_by;
 				$receipt_dept_budget_id = $receipt->pol->po->dept_budget_id;
 
 				//Log::debug("dept_budget_id=". $pr->dept_budget_id);
@@ -152,6 +157,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				case EntityEnum::INVOICE->value:
 					//Log::debug('I AM HERE 3');
 					$invoice				= Invoice::with('po')->where('id', $this->article_id)->firstOrFail();
+					$dbu->user_id			= $invoice->created_by;
 					$invoice_dept_budget_id = $invoice->po->dept_budget_id;
 					//Log::debug('I AM HERE 3a');
 					//Log::debug("dept_budget_id=". $pr->dept_budget_id);
@@ -176,6 +182,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 					break;
 				case EntityEnum::PAYMENT->value:
 						$payment				= Payment::with('invoice.po')->where('id', $this->article_id)->firstOrFail();
+						$dbu->user_id			= $payment->created_by;
 						$payment_dept_budget_id = $payment->invoice->po->dept_budget_id;
 
 						//Log::debug("dept_budget_id=". $pr->dept_budget_id);

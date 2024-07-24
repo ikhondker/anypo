@@ -49,7 +49,7 @@
 					// 	"#E8EAED"
 					// ],
 					borderWidth: 5,
-					borderColor: window.theme.white
+					//borderColor: window.theme.white
 				}]
 			},
 			options: {

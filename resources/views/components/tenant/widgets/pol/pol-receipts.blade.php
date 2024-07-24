@@ -18,7 +18,7 @@
 				<h5 class="card-title">Purchase Order Receipts</h5>
 				<h6 class="card-subtitle text-muted">List of Good Receipts for a Purchase Order Line.</h6>
 			</div>
-			<table class="table">
+			<table class="table table-sm my-2">
 				<thead>
 					<tr>
 						<th class="">#</th>
@@ -42,10 +42,12 @@
 							<td class="text-end"><x-tenant.list.my-number :value="$receipt->amount"/></td>
 							<td class="">{{ $receipt->receiver->name }}</td>
 							<td class="">{{ $receipt->warehouse->name }}</td>
-							<td><x-tenant.list.my-badge :value="$receipt->status"/></td>
+							<td><span class="badge {{ $receipt->status_badge->badge }}">{{ $receipt->status_badge->name}}</span></td>
 							<td class="table-action">
-								<a href="{{ route('receipts.show',$receipt->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-									<i class="align-middle" data-lucide="eye"></i></a>
+								<a href="{{ route('receipts.show',$receipt->id) }}" class="btn btn-light btn-sm" 
+									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								</a>
+						
 							</td>
 						</tr>
 					@endforeach

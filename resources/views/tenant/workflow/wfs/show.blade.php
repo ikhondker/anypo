@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Workflow Details')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('wfs.index') }}">Workflows</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('wfs.index') }}" class="text-muted">Workflows</a></li>
 	<li class="breadcrumb-item active">{{ $wf->id }}</li>
 @endsection
 
@@ -13,7 +13,7 @@
 		@endslot
 		@slot('buttons')
 			{{-- <x-tenant.buttons.header.lists object="Wf"/>
-			@can('edit', $wf)
+			@can('update', $wf)
 				<x-tenant.buttons.header.edit object="Wf" :id="$wf->id"/>
 			@endcan --}}
 		@endslot

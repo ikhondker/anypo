@@ -22,6 +22,7 @@
 		<x-tenant.charts.budget-by-dept-pie/>
 		<x-tenant.charts.budget-po-pie/>
 		<x-tenant.charts.budget-by-dept-po-bar/>
+		
 	</div>
 
 	<x-tenant.dashboards.budget-stat/>
@@ -668,7 +669,7 @@
 						// 	"#E8EAED"
 						// ],
 						borderWidth: 5,
-						borderColor: window.theme.white
+						//borderColor: window.theme.white
 					}]
 				},
 				options: {
@@ -701,7 +702,7 @@
 						// 	"#E8EAED"
 						// ],
 						borderWidth: 5,
-						borderColor: window.theme.white
+						//borderColor: window.theme.white
 					}]
 				},
 				options: {
@@ -726,10 +727,10 @@
 					labels: {!! json_encode($depb_budget_labels) !!},
 					datasets: [{
 						label: "Budget",
-						backgroundColor: window.theme.primary,
-						borderColor: window.theme.primary,
-						hoverBackgroundColor: window.theme.primary,
-						hoverBorderColor: window.theme.primary,
+						//backgroundColor: window.theme.primary,
+						//borderColor: window.theme.primary,
+						//hoverBackgroundColor: window.theme.primary,
+						//hoverBorderColor: window.theme.primary,
 						data: {!! json_encode($depb_budget_amount) !!},
 						barPercentage: .5,
 						categoryPercentage: .5
@@ -788,7 +789,7 @@
 							"#E8EAED"
 						],
 						borderWidth: 5,
-						borderColor: window.theme.white
+						//borderColor: window.theme.white
 					}]
 				},
 				options: {
@@ -812,10 +813,10 @@
 					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 					datasets: [{
 						label: "Mobile",
-						backgroundColor: window.theme.primary,
-						borderColor: window.theme.primary,
-						hoverBackgroundColor: window.theme.primary,
-						hoverBorderColor: window.theme.primary,
+						//backgroundColor: window.theme.primary,
+						//borderColor: window.theme.primary,
+						//hoverBackgroundColor: window.theme.primary,
+						//hoverBorderColor: window.theme.primary,
 						data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
 						barPercentage: .5,
 						categoryPercentage: .5

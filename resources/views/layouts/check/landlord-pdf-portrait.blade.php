@@ -36,7 +36,7 @@
 				position: relative;
 				/* width: 21cm;
 				height: 29.7cm;
-				margin: 0 auto;  */
+				margin: 0 auto; */
 				color: #555555;
 				background: #FFFFFF;
 				font-family: Lato;
@@ -128,7 +128,7 @@
 			}
 		
 			table td h3 {
-				/* color: #1F9BCF;  */
+				/* color: #1F9BCF; */
 				font-size: 1.2em;
 				font-weight: normal;
 				margin: 0 0 0.2em 0;
@@ -226,7 +226,7 @@
 			<div id="company">
 				<h2 class="name">{{ env('APP_NAME')}}</h2>
 				<div>{{ $config->address1.', '. $config->address2 }}</div>
-				<div>{{ $config->city.', '.$config->state.', '.$config->zip. ', '.$config->country  }}</div>
+				<div>{{ $config->city.', '.$config->state.', '.$config->zip. ', '.$config->country }}</div>
 				<div>{{ $config->cell }}</div>	
 				<div>{{ $config->email }}</div>	
 				{{-- <div>{{ $config->website }}</div> --}}

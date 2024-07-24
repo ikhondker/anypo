@@ -15,7 +15,11 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.dashboards.po-counts/>
+	@if (auth()->user()->isBuyer())
+		<x-tenant.dashboards.po-counts-buyer/>
+	@else
+		<x-tenant.dashboards.po-counts/>
+	@endif
 
 	<div class="row">
 		<div class="col-12">

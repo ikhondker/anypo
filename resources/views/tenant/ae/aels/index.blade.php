@@ -49,18 +49,16 @@
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 				@else
-					Accounting Entries
+					Accounting Lines
 				@endif
 			</h5>
-			<h6 class="card-subtitle text-muted">List of Generated Ael Entries</h6>
+			<h6 class="card-subtitle text-muted">List of Generated Accounting Lines</h6>
 		</div>
 		<div class="card-body">
 			<table class="table">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Entity</th>
-						<th>Event</th>
 						<th>Date</th>
 						<th>A/C CODE</th>
 						<th>Line Description</th>
@@ -69,15 +67,13 @@
 						<th>Currency</th>
 						<th>PO#</th>
 						<th>Reference</th>
-						<th>Actions</th>
+						<th>View</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($aels as $ael)
 					<tr>
-						<td><a class="text-info" href="{{ route('aels.show',$ael->id) }}">{{ $ael->id }}</a></td>
-						<td>{{ $ael->entity }}</td>
-						<td>{{ $ael->event }}</td>
+						<td><a href="{{ route('aels.show',$ael->id) }}"><strong>{{ $ael->id }}</strong></a></td>
 						<td><x-tenant.list.my-date :value="$ael->accounting_date"/></td>
 						<td>{{ $ael->ac_code }}</td>
 						<td>{{ $ael->line_description }}</td>
@@ -86,7 +82,7 @@
 						<td>{{ $ael->fc_currency }}</td>
 						<td><x-tenant.common.link-po id="{{ $ael->po_id }}"/></td>
 						<td>{{ $ael->reference }}</td>
-						<td class="text-end">
+						<td>
 							<a href="{{ route('aels.show',$ael->id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 							</a>

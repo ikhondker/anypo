@@ -63,8 +63,7 @@ class PolPolicy
 	public function delete(User $user, Pol $pol): bool
 	{
 		$po = Po::where('id', $pol->po_id)->first();
-		return ( $user->isAdmin() || $user->isSupport() || ($user->id === $po->buyer_id) ) && ($po->auth_status == AuthStatusEnum::DRAFT->value) ;
-
+		return ( $user->isBuyer() && ($user->id === $po->buyer_id) ) && ($po->auth_status == AuthStatusEnum::DRAFT->value) ;
 	}
 
 	/**

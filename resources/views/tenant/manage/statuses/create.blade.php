@@ -2,7 +2,7 @@
 @section('title','Status')
 @section('breadcrumb','Create Status')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('statuses.index') }}">Statuses</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('statuses.index') }}" class="text-muted">Statuses</a></li>
 	<li class="breadcrumb-item active">Create Status</li>
 @endsection
 @section('content')
@@ -24,7 +24,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create Status</h5>
 				<h6 class="card-subtitle text-muted">Create new Status.</h6>

@@ -12,15 +12,13 @@ use App\Models\Tenant\Po;
 class PoActions extends Component
 {
 	public $po;
-	public $show;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id, $show = false)
+	public function __construct(public string $id)
 	{
-		//$this->id 	= $id;
-		$this->show		= $show;
+		$this->id 	= $id;
 		$this->po 		= Po::where('id', $id)->get()->firstOrFail();
 	}
 

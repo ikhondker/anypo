@@ -23,11 +23,11 @@
 						<x-landlord.edit.id-read-only :value="$attachment->id"/>
 
 							<tr>
-								<th>Summary  :</th>
+								<th>Summary:</th>
 								<td>
 									<input type="text" class="form-control @error('summary') is-invalid @enderror"
 										name="summary" id="summary" placeholder="summary"
-										value="{{ old('summary', $attachment->summary  ) }}"
+										value="{{ old('summary', $attachment->summary) }}"
 										required/>
 									@error('summary')
 										<div class="small text-danger">{{ $message }}</div>
@@ -39,7 +39,7 @@
 								<td>
 									<input type="text" class="form-control @error('article_id') is-invalid @enderror"
 										name="article_id" id="article_id" placeholder="article_id"
-										value="{{ old('article_id', $attachment->article_id  ) }}"
+										value="{{ old('article_id', $attachment->article_id) }}"
 										required/>
 									@error('article_id')
 										<div class="small text-danger">{{ $message }}</div>
@@ -48,11 +48,11 @@
 							</tr>
 
 							<tr>
-								<th>File Entity  :</th>
+								<th>File Entity:</th>
 								<td>
 									<input type="text" class="form-control @error('file_entity') is-invalid @enderror"
 										name="file_entity" id="file_entity" placeholder="file_entity"
-										value="{{ old('file_entity', $attachment->file_entity  ) }}"
+										value="{{ old('file_entity', $attachment->file_entity) }}"
 										required/>
 									@error('file_entity')
 										<div class="small text-danger">{{ $message }}</div>
@@ -65,7 +65,7 @@
 								<td>
 									<input type="text" class="form-control @error('owner_id') is-invalid @enderror"
 										name="owner_id" id="owner_id" placeholder="owner_id"
-										value="{{ old('owner_id', $attachment->owner_id  ) }}"
+										value="{{ old('owner_id', $attachment->owner_id) }}"
 										required/>
 									@error('owner_id')
 										<div class="small text-danger">{{ $message }}</div>

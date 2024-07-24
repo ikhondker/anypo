@@ -31,7 +31,7 @@
 							<td>
 								<input type="text" class="form-control @error('model') is-invalid @enderror"
 									name="model" id="model" placeholder="model"
-									value="{{ old('model', $entity->model  ) }}"
+									value="{{ old('model', $entity->model) }}"
 									required/>
 								@error('model')
 									<div class="small text-danger">{{ $message }}</div>
@@ -44,7 +44,7 @@
 							<td>
 								<input type="text" class="form-control @error('route') is-invalid @enderror"
 									name="route" id="route" placeholder="route"
-									value="{{ old('route', $entity->route  ) }}"
+									value="{{ old('route', $entity->route) }}"
 									required/>
 								@error('route')
 									<div class="small text-danger">{{ $message }}</div>
@@ -58,7 +58,7 @@
 							<td>
 								<input type="text" class="form-control @error('directory') is-invalid @enderror"
 									name="directory" id="directory" placeholder="directory"
-									value="{{ old('directory', $entity->directory  ) }}"
+									value="{{ old('directory', $entity->directory) }}"
 									required/>
 								@error('directory')
 									<div class="small text-danger">{{ $message }}</div>

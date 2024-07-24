@@ -1,7 +1,7 @@
 <script type="module">
 	$(document).ready(function () {
 		
-		//console.log("Hello world 1!");
+		//console.log("Inside: calculate-pr-amount.blade.php ");
 		$('#item_id').change(function() {
 			//console.log("Item changed Hello world !");
 			let id = $(this).val();
@@ -17,9 +17,10 @@
 
 						var old_amount = $("#amount").val();
 						var old_pr_amount = $("#pr_amount").val();
+						//console.log("->old_amount=" + old_amount);
+						//console.log("->old_pr_amount=" + old_pr_amount);
 
-						//console.log("old_amount=" + old_amount);
-						//console.log("old_pr_amount=" + old_pr_amount);
+
 						//console.log("number old_pr_amount=" + Number(old_pr_amount.replace(',','')));
 						//console.log("parseFloat old_pr_amount=" + parseFloat(old_pr_amount.replace(',','')));
 						//console.log("parseInt old_pr_amount=" + parseInt(old_pr_amount.replace(',',''),2));
@@ -35,6 +36,7 @@
 						
 						var sub_total = price * qty;
 						$('#sub_total').val(sub_total.toFixed(2));
+						//console.log("sub_total=" + sub_total);
 
 						var tax = $("#tax").val();
 						var gst = $("#gst").val();
@@ -46,10 +48,9 @@
 						
 						//var pr_amount = parseFloat(old_pr_amount.replace(',','')) - parseInt(old_amount) + parseInt(amount);
 						var pr_amount = parseFloat(old_pr_amount) - parseFloat(old_amount) + parseFloat(amount);
-						//console.log("pr_amount=" + pr_amount);
+						//console.log("->pr_amount=" + pr_amount);
 
 						$('#pr_amount').val(pr_amount.toFixed(2));
-						//console.log("amount = " + amount);
 
 					}
 				}

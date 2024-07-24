@@ -11,14 +11,14 @@
 			<th>Receiver</th>
 			<th>Warehouse</th>
 			<th>Status</th>
-			<th>Actions</th>
+			<th>View</th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach ($receipts as $receipt)
 		<tr>
 			<td>{{ $receipts->firstItem() + $loop->index }}</td>
-			<td><a class="text-info" href="{{ route('receipts.show',$receipt->id) }}">{{ $receipt->id }}</a></td>
+			<td><a href="{{ route('receipts.show',$receipt->id) }}"><strong>{{ $receipt->id }}</strong></a></td>
 			<td>{{ $receipt->receive_date }}</td>
 			<td><x-tenant.common.link-po id="{{ $receipt->pol->po_id }}"/></td>
 			<td>{{ $receipt->pol->line_num }}</td>
@@ -27,7 +27,7 @@
 			<td>{{ $receipt->receiver->name }}</td>
 			<td>{{ $receipt->warehouse->name }}</td>
 			<td><span class="badge {{ $receipt->status_badge->badge }}">{{ $receipt->status_badge->name}}</span></td>
-			<td class="text-end">
+			<td>
 				<a href="{{ route('receipts.show',$receipt->id) }}" class="btn btn-light"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 				</a>

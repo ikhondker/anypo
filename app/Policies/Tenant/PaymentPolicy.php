@@ -44,7 +44,15 @@ class PaymentPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return ($user->isBuyer());
+		return false;
+	}
+
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function createForInvoice(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isSupport());
 	}
 
 	/**
@@ -68,7 +76,7 @@ class PaymentPolicy
 	 */
 	public function cancel(User $user): bool
 	{
-		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
+		return ($user->isBuyer() || $user->isSupport());
 	}
 	
 	/**

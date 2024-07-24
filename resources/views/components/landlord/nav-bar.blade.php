@@ -2,7 +2,8 @@
 	<!-- ========== HEADER ========== -->
 
 	<!-- ========== TOP NAV BAR ========== -->
-	<nav class="navbar p-2 navbar-expand-md navbar-dark bg-primary landing-navbar">
+	{{-- <nav class="navbar p-2 navbar-expand-md navbar-dark bg-primary landing-navbar"> --}}
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar">
 		<div class="container">
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item d-none d-md-inline-block">
@@ -65,7 +66,8 @@
 	<!-- ========== TOP NAV BAR ========== -->
 
 	<!-- ========== MAIN NAV BAR ========== -->
-	<nav class="navbar navbar-expand-md navbar-dark bg-primary landing-navbar">
+	{{-- <nav class="navbar navbar-expand-md navbar-dark bg-primary landing-navbar"> --}}
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar">
 		<div class="container">
 
 			<!-- Default Logo -->

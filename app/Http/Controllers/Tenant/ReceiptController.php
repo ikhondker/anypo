@@ -122,9 +122,17 @@ class ReceiptController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create(Pol $pol)
+	public function create()
 	{
-		$this->authorize('create', Receipt::class);
+		abort(403);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function createForPol(Pol $pol)
+	{
+		$this->authorize('createForPol', Receipt::class);
 
 		$setup 	= Setup::first();
 		if ($setup->readonly ){
@@ -150,7 +158,7 @@ class ReceiptController extends Controller
 	 */
 	public function store(StoreReceiptRequest $request)
 	{
-		$this->authorize('create', Receipt::class);
+		$this->authorize('createForPol', Receipt::class);
 
 		$pol_id =$request->input('pol_id');
 		$pol = Pol::where('id', $pol_id)->first();
@@ -223,11 +231,9 @@ class ReceiptController extends Controller
 		RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CREATE->value,$receipt->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-
-
 		// Write to Log
 		EventLog::event('receipt', $receipt->id, 'create');
-		return redirect()->route('receipts.index')->with('success', 'Receipt created successfully.');
+		return redirect()->route('pols.show',$pol->id)->with('success', 'Receipt created successfully.');
 	}
 
 	/**
@@ -253,7 +259,7 @@ class ReceiptController extends Controller
 	 */
 	public function update(UpdateReceiptRequest $request, Receipt $receipt)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -289,7 +295,7 @@ class ReceiptController extends Controller
 			// update budget and project level summary
 			$po = Po::where('id', $pol->po_id)->first();
 			if ($po->status <> ClosureStatusEnum::OPEN->value) {
-				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Invoices only for OPEN Purchase Order!');
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Receipt only for OPEN Purchase Order!');
 			}
 
 			$pol->received_qty	= $pol->received_qty - $receipt->qty;
@@ -339,7 +345,7 @@ class ReceiptController extends Controller
 			// Write to Log
 			EventLog::event('receipt', $receipt_id, 'cancel', 'id', $receipt_id);
 
-			return redirect()->route('receipts.index')->with('success', 'Receipts canceled successfully.');
+			return redirect()->route('pols.show',$receipt->pol_id)->with('success', 'Receipts canceled successfully.');
 
 		} catch (ModelNotFoundException $exception) {
 			// Error handling code

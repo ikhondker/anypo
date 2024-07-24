@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Wf')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('wfs.index') }}">Workflows</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('wfs.show',$wf->id) }}">{{ $wf->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('wfs.index') }}" class="text-muted">Workflows</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('wfs.show',$wf->id) }}" class="text-muted">{{ $wf->id }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 

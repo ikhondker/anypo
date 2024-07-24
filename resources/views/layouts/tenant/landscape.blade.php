@@ -153,7 +153,7 @@
 				text-align: left;
 			}
 
-			table  .numeric {
+			table .numeric {
 				text-align: right;
 			}
 
@@ -281,8 +281,8 @@
 
 				{{-- <div>
 					<p class="param">{{ $param1 }}</p>
-					<p  class="param">{{ $param2 }}</p>
-					<p  class="param">{{ $param3 }}</p>
+					<p class="param">{{ $param2 }}</p>
+					<p class="param">{{ $param3 }}</p>
 				</div> --}}
 				{{-- <div><small>Report Date {{ strtoupper(date('d-M-Y H:i:s', strtotime(now()))) }}<small></div> --}}
 				{{-- <div>{{ $setup->cell }} {{ $setup->email }}</div>	 --}}

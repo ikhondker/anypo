@@ -1,5 +1,5 @@
 <tr>
-	<th>Country</th>
+	<th>Country X:</th>
 	<td>
 		<select class="form-control" name="country" required>
 			<option value=""><< Country >> </option>

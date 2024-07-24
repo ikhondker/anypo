@@ -7,7 +7,7 @@
 					<div class="col-6">
 						<div class="illustration-text p-3 m-1">
 							<h4 class="illustration-text">Welcome Back, {{ auth()->user()->name }}!</h4>
-							<p class="mb-0">Requisition Listing</p>
+							<p class="mb-0">Requisitions</p>
 						</div>
 					</div>
 					<div class="col-6 align-self-end text-end">
@@ -28,7 +28,7 @@
 						<p class="mb-2">Approved Requisition</p>
 						<div class="mb-0">
 							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
-							<span class="text-muted"> {{ number_format($sum_approved, 2, '.', ',') }}</span>
+							<span class="text-muted">{{ number_format($sum_approved, 2, '.', ',') }}</span>
 						</div>
 					</div>
 					<div class="d-inline-block ms-3">
@@ -41,17 +41,38 @@
 		</div>
 	</div>
 
+	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
+		<div class="card flex-fill">
+			<div class="card-body py-4">
+				<div class="d-flex align-items-start">
+					<div class="flex-grow-1">
+						<h3 class="mb-2">{{ $count_inprocess }} </h3>
+						<p class="mb-2">In-Process Requisition</p>
+						<div class="mb-0">
+							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
+							<span class="text-muted">{{ number_format($sum_inprocess, 2, '.', ',') }}</span>
+						</div>
+					</div>
+					<div class="d-inline-block ms-3">
+						<div class="stat">
+							<i class="align-middle text-success" data-lucide="clock"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
 		<div class="card flex-fill">
 			<div class="card-body py-4">
 				<div class="d-flex align-items-start">
 					<div class="flex-grow-1">
-						<h3 class="mb-2">{{ $count_converted }} </h3>
-						<p class="mb-2">Converted to PO</p>
+						<h3 class="mb-2">{{ $count_rejected }} </h3>
+						<p class="mb-2">Rejected Requisitions</p>
 						<div class="mb-0">
 							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
-							<span class="text-muted"> {{ number_format($sum_converted, 2, '.', ',') }}</span>
+							<span class="text-muted">{{ number_format($sum_rejected, 2, '.', ',') }}</span>
 						</div>
 					</div>
 					<div class="d-inline-block ms-3">
@@ -64,27 +85,5 @@
 		</div>
 	</div>
 
-
-	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
-		<div class="card flex-fill">
-			<div class="card-body py-4">
-				<div class="d-flex align-items-start">
-					<div class="flex-grow-1">
-						<h3 class="mb-2">{{ $count_inprocess }} </h3>
-						<p class="mb-2">In-Process Requisition</p>
-						<div class="mb-0">
-							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
-							<span class="text-muted"> {{ number_format($sum_inprocess, 2, '.', ',') }}</span>
-						</div>
-					</div>
-					<div class="d-inline-block ms-3">
-						<div class="stat">
-							<i class="align-middle text-success" data-lucide="clock"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 </div>

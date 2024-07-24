@@ -4,11 +4,15 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
-		<a class="dropdown-item" href="{{ route('prs.my-prs') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Requisitions</a>
 		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Requisition</a>
-		@can('create', App\Models\Tenant\Po::class)
-			<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create PO</a>
-		@endcan
+		<a class="dropdown-item" href="{{ route('prs.my-prs') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Requisitions</a>
+		
+		@if (auth()->user()->isBuyer())
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Purchase Order</a>
+			<a class="dropdown-item" href="{{ route('pos.my-pos') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Purchase Orders</a>
+		@endif
+		
 		<div class="dropdown-divider"></div>
 		@can('create', App\Models\Tenant\Lookup\Item::class)
 			<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Item</a>

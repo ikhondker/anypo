@@ -361,9 +361,11 @@ class UploadItemController extends Controller
 	{
 		$this->authorize('export', UploadItem::class);
 
-		$data = DB::select("SELECT i.id, u.name owner_name, i.name, i.code, i.notes, i.category, i.oem, i.uom, i.price, i.gl_type_name, i.status
+
+		$data = DB::select("SELECT i.id, i.item_code, i.item_name, i.category_name, i.oem_name, i.uom_name, i.gl_type_name, i.price, i.status, i.notes, 
+			u.name uploaded_by,i.created_at
 			FROM upload_items i,users u
-			WHERE i.owner_id=u.id");
+			WHERE i.owner_id = u.id");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('upload_items', $dataArray);

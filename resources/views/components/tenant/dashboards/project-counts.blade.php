@@ -6,7 +6,7 @@
 					<div class="col-6">
 						<div class="illustration-text p-3 m-1">
 							<h4 class="illustration-text">Welcome Back, {{ auth()->user()->name }}!</h4>
-							<p class="mb-0">Projects Listing</p>
+							<p class="mb-0">Projects</p>
 						</div>
 					</div>
 					<div class="col-6 align-self-end text-end">
@@ -25,7 +25,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-lucide="activity"></i>
+							<i class="align-middle" data-lucide="database"></i>
 						</div>
 					</div>
 				</div>
@@ -42,7 +42,7 @@
 					</div>
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-lucide="shopping-bag"></i>
+							<i class="align-middle" data-lucide="bell"></i>
 						</div>
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 
 					<div class="col-auto">
 						<div class="stat stat-sm">
-							<i class="align-middle" data-lucide="shopping-cart"></i>
+							<i class="align-middle" data-lucide="bell-off"></i>
 						</div>
 					</div>
 				</div>

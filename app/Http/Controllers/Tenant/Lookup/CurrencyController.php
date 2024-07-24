@@ -116,10 +116,10 @@ class CurrencyController extends Controller
 		//$request->validate();
 		$request->validate([
 		]);
-		$currency->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('currency', $currency->name, 'update', 'name', $request->name);
+		$currency->update($request->all());
 
 		return redirect()->route('currencies.index')->with('success', 'Currency information updated successfully');
 	}

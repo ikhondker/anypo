@@ -16,62 +16,53 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-12">
+	<div class="card">
+		<div class="card-header">
+			<x-tenant.cards.header-search-export-bar object="Country"/>
+			<h5 class="card-title">
+				@if (request('term'))
+					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+				@else
+					Country Lists
+				@endif
+			</h5>
+			<h6 class="card-subtitle text-muted">List of countries.</h6>
+		</div>
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Country</th>
+						<th>Name</th>
+						<th>Enable?</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach ($countries as $country)
+					<tr>
+						<td>{{ $country->country }}</td>
+						<td><a href="{{ route('countries.show',$country->country) }}"><strong>{{ $country->name }}</strong></a></td>
+						<td><x-tenant.list.my-boolean :value="$country->enable"/></td>
+							<td>
+								<a href="{{ route('countries.show',$country->country) }}" class="btn btn-light"
+									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								</a>
+							</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
 
-			<div class="card">
-				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Country"/>
-					<h5 class="card-title">
-						@if (request('term'))
-							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
-						@else
-							Country Lists
-						@endif
-					</h5>
-					<h6 class="card-subtitle text-muted">List of countries.</h6>
-				</div>
-				<div class="card-body">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Country</th>
-								<th>Name</th>
-								<th>Enable?</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($countries as $country)
-							<tr>
-								<td>{{ $country->country }}</td>
-								<td><a href="{{ route('countries.show',$country->country) }}"><strong>{{ $country->name }}</strong></a></td>
-								<td><x-tenant.list.my-boolean :value="$country->enable"/></td>
-									<td>
-										<a href="{{ route('countries.show',$country->country) }}" class="btn btn-light"
-											data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
-										</a>
-									</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-
-					<div class="row pt-3">
-						{{ $countries->links() }}
-					</div>
-					<!-- end pagination -->
-
-				</div>
-				<!-- end card-body -->
+			<div class="row pt-3">
+				{{ $countries->links() }}
 			</div>
-			<!-- end card -->
+			<!-- end pagination -->
 
 		</div>
-		 <!-- end col -->
+		<!-- end card-body -->
 	</div>
-	 <!-- end row -->
-
+	<!-- end card -->
 
 
 @endsection

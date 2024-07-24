@@ -159,10 +159,12 @@ class ProjectController extends Controller
 		$request->validate([
 
 		]);
-		$project->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('project', $project->id, 'update', 'name', $project->name);
+		$project->update($request->all());
+
+		
 		return redirect()->route('projects.index')->with('success', 'Project updated successfully');
 	}
 
@@ -237,7 +239,7 @@ class ProjectController extends Controller
 	 */
 	public function spends()
 	{
-		$this->authorize('viewAny',Project::class);
+		$this->authorize('spends',Project::class);
 
 		$projects = Project::query();
 		if (request('term')) {

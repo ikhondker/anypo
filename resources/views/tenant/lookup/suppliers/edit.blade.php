@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Supplier')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('suppliers.index') }}">Suppliers</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('suppliers.show',$supplier->id) }}">{{ $supplier->name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('suppliers.index') }}" class="text-muted">Suppliers</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('suppliers.show',$supplier->id) }}" class="text-muted">{{ $supplier->name }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 

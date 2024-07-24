@@ -26,7 +26,7 @@
 							<td>
 								<input type="text" class="form-control @error('raw_route_name') is-invalid @enderror"
 									name="raw_route_name" id="raw_route_name" placeholder="raw_route_name"
-									value="{{ old('raw_route_name', $menu->raw_route_name  ) }}"
+									value="{{ old('raw_route_name', $menu->raw_route_name) }}"
 									required/>
 								@error('raw_route_name')
 									<div class="small text-danger">{{ $message }}</div>
@@ -39,7 +39,7 @@
 							<td>
 								<input type="text" class="form-control @error('route_name') is-invalid @enderror"
 									name="route_name" id="route_name" placeholder="route_name"
-									value="{{ old('route_name', $menu->route_name  ) }}"
+									value="{{ old('route_name', $menu->route_name) }}"
 									required/>
 								@error('route_name')
 									<div class="small text-danger">{{ $message }}</div>
@@ -52,7 +52,7 @@
 							<td>
 								<input type="text" class="form-control @error('access') is-invalid @enderror"
 									name="access" id="access" placeholder="access"
-									value="{{ old('access', $menu->access  ) }}"
+									value="{{ old('access', $menu->access) }}"
 									required/>
 								@error('access')
 									<div class="small text-danger">{{ $message }}</div>

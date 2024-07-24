@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','View Menus')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('menus.index') }}">Menus</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('menus.index') }}" class="text-muted">Menus</a></li>
 	<li class="breadcrumb-item active">{{ $menu->name }}</li>
 @endsection
 

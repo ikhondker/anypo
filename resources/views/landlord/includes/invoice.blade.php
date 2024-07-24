@@ -2,10 +2,6 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body m-sm-3 m-md-5">
-				{{-- <div class="mb-4">
-					Hello <strong>Chris Wood</strong>,
-					<br /> This is the receipt for a payment of <strong>$268.00</strong> (USD) you made to AppStack.
-				</div> --}}
 
 				<div class="row">
 					<div class="col-md-6">

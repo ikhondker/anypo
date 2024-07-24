@@ -2,7 +2,7 @@
 @section('title','View Notification')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('notifications.index') }}">Notification</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('notifications.index') }}" class="text-muted">Notification</a></li>
 	<li class="breadcrumb-item active">{{ $notification->data['subject'] }}</li>
 @endsection
 
@@ -24,7 +24,7 @@
 					@if ( $notification->read_at == "")
 						<a class="btn btn-sm btn-light me-2" href="{{ route('notifications.read',$notification->id) }}"><i data-lucide="check-circle"></i> Mark as Read</a>
 					@endif
-					<a href="{{ route('notifications.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('notifications.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				
 				<h5 class="card-title">{{ $notification->data['subject'] }}</h5>

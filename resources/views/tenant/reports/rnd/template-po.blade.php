@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 <style>
 	/* body {
-	  font-family: "Sofia", sans-serif;
+		font-family: "Sofia", sans-serif;
 	} */
 
 	/** Define the margins of your page **/
@@ -13,7 +13,7 @@
 		margin-top: 100px; /* create space for header */
 		margin-bottom: 50px; /* create space for footer */
 	}
-	  
+	
 	#my-header-table {
 		font-family: Arial, Helvetica, sans-serif;
 		/* font-family: "Poppins", sans-serif; */
@@ -58,7 +58,7 @@
 		padding-bottom: 2px;
 		color: #808080;
 	}
-	#report-footer  tr {
+	#report-footer tr {
 		padding-top: 4px;
 		border-top: 1px solid #C0C0C0;
 	}
@@ -164,7 +164,7 @@
 				TIN Number: 9790404436093 --}}
 			</td>
 			<td style="text-align:right">
-				<img src="{{ storage_path('app/logo/logo.png') }}" style="width: 60px">  
+				<img src="{{ storage_path('app/logo/logo.png') }}" style="width: 60px">
 				<h2>Purchase Order</h2>
 				<strong>#1234</strong><br>
 				4-Aug-2023
@@ -178,7 +178,7 @@
 			<th style="width:40%; text-align:left">VENDOR</th>
 			<th style="width:20%; text-align:left"></th>
 			<th style="width:40%; text-align:right">SHIP TO</th>
-		  </tr>
+		</tr>
 		<tr>
 			<td width="50%" style="text-align:left">
 				Apollo Painting & Wallcovering<br/>

@@ -33,25 +33,25 @@
 					<div class="col-md-6">
 						<div class="text-muted">Client</div>
 						<strong>
-			  Chris Wood
-			</strong>
+						Chris Wood
+						</strong>
 						<p>
 							4183 Forest Avenue <br> New York City <br> 10011 <br> USA <br>
 							<a href="#">
-			chris.wood@gmail.com
-		  </a>
+						chris.wood@gmail.com
+						</a>
 						</p>
 					</div>
 					<div class="col-md-6 text-md-right">
 						<div class="text-muted">Payment To</div>
 						<strong>
-			  AppStack LLC
-			</strong>
+						AppStack LLC
+						</strong>
 						<p>
 							354 Roy Alley <br> Denver <br> 80202 <br> USA <br>
 							<a href="#">
-			info@appstack.com
-		  </a>
+							info@appstack.com
+							</a>
 						</p>
 					</div>
 				</div>
@@ -109,8 +109,8 @@
 					</p>
 
 					<a href="#" class="btn btn-primary">
-			Print this receipt
-		  </a>
+						Print this receipt
+					</a>
 				</div>
 			</div>
 		</div>

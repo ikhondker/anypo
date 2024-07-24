@@ -25,54 +25,50 @@ class DeptSeeder extends Seeder
 		$faker = app(Generator::class);
 
 		$depts =  [
-			[
-				'id' 				=> 1001,
-				'name' 				=> 'Seeded Dept',
-				'pr_hierarchy_id' 	=> 1001,
-				'po_hierarchy_id' 	=> 1002,
-		  	],
 		  	[
-				'id' 				=> 1002,
+				'id' 				=> 1001,
 				'name' 				=> 'IT',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 		  	],
-		  	[
-				'id' 				=> 1003,
-				'name' 				=> 'Sales',
-				'pr_hierarchy_id' 	=> 1001,
-				'po_hierarchy_id' 	=> 1002,
-			],
 			[
-				'id' 				=> 1004,
-				'name' 				=> 'Marketing',
-				'pr_hierarchy_id' 	=> 1001,
-				'po_hierarchy_id' 	=> 1002,
-			],
-		  	[
-				'id' 				=> 1005,
-				'name' 				=> 'Production',
-				'pr_hierarchy_id' 	=> 1001,
-				'po_hierarchy_id' 	=> 1002,
-		  	],
-			[
-				'id' 				=> 1006,
-				'name' 				=> 'HR & Admin',
-				'pr_hierarchy_id' 	=> 1001,
-				'po_hierarchy_id' 	=> 1002,
-		  	],
-		  	[
-				'id' 				=> 1007,
+				'id' 				=> 1002,
 				'name' 				=> 'Finance',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 		  	],
 			[
-				'id' 				=> 1008,
+				'id' 				=> 1003,
 				'name' 				=> 'Management',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 		  	],
+			[
+				'id' 				=> 1004,
+				'name' 				=> 'HR & Admin',
+				'pr_hierarchy_id' 	=> 1001,
+				'po_hierarchy_id' 	=> 1002,
+		  	],
+		  	[
+				'id' 				=> 1005,
+				'name' 				=> 'Sales',
+				'pr_hierarchy_id' 	=> 1001,
+				'po_hierarchy_id' 	=> 1002,
+			],
+			[
+				'id' 				=> 1006,
+				'name' 				=> 'Marketing',
+				'pr_hierarchy_id' 	=> 1001,
+				'po_hierarchy_id' 	=> 1002,
+			],
+		  	[
+				'id' 				=> 1007,
+				'name' 				=> 'Production',
+				'pr_hierarchy_id' 	=> 1001,
+				'po_hierarchy_id' 	=> 1002,
+		  	],
+			
+			
 		  ];
 		//
 		Dept::insert($depts);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Actions;
+namespace App\View\Components\Tenant\Actions\Lookup;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -10,14 +10,14 @@ use App\Models\Tenant\Lookup\Project;
 
 class ProjectActions extends Component
 {
-	public $id;
+	
 	public $show;
 	public $project;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id, $show = false)
+	public function __construct(public string $id, $show = false)
 	{
 		$this->id 		= $id;
 		$this->show		= $show; 
@@ -29,6 +29,6 @@ class ProjectActions extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.actions.project-actions');
+		return view('components.tenant.actions.lookup.project-actions');
 	}
 }

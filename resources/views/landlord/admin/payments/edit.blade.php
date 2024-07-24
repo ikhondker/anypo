@@ -28,7 +28,7 @@
 								<td>
 									<input type="text" class="form-control @error('summary') is-invalid @enderror"
 										name="summary" id="summary" placeholder="summary"
-										value="{{ old('summary', $payment->summary  ) }}"
+										value="{{ old('summary', $payment->summary ) }}"
 										required/>
 									@error('summary')
 										<div class="small text-danger">{{ $message }}</div>
@@ -53,7 +53,7 @@
 								<td>
 									<input type="text" class="form-control @error('invoice_id') is-invalid @enderror"
 										name="invoice_id" id="invoice_id" placeholder="invoice_id"
-										value="{{ old('invoice_id', $payment->invoice_id  ) }}"
+										value="{{ old('invoice_id', $payment->invoice_id ) }}"
 										required/>
 									@error('invoice_id')
 										<div class="small text-danger">{{ $message }}</div>
@@ -78,7 +78,7 @@
 								<td>
 									<input type="text" class="form-control @error('cheque_no') is-invalid @enderror"
 										name="cheque_no" id="cheque_no" placeholder="cheque_no"
-										value="{{ old('cheque_no', $payment->cheque_no  ) }}"
+										value="{{ old('cheque_no', $payment->cheque_no ) }}"
 										required/>
 									@error('cheque_no')
 										<div class="small text-danger">{{ $message }}</div>
@@ -91,7 +91,7 @@
 								<td>
 									<input type="text" class="form-control @error('reference_id') is-invalid @enderror"
 										name="reference_id" id="reference_id" placeholder="reference_id"
-										value="{{ old('reference_id', $payment->reference_id  ) }}"
+										value="{{ old('reference_id', $payment->reference_id ) }}"
 										required/>
 									@error('reference_id')
 										<div class="small text-danger">{{ $message }}</div>

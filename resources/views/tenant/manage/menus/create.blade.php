@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Menu')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('menus.index') }}">Menus</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('menus.index') }}" class="text-muted">Menus</a></li>
 	<li class="breadcrumb-item active">Create Menu</li>
 @endsection
 
@@ -24,7 +24,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('menus.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('menus.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create Menu</h5>
 				<h6 class="card-subtitle text-muted">Create new Menu.</h6>

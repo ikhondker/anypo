@@ -114,10 +114,11 @@ class OemController extends Controller
 		$request->validate([
 
 		]);
-		$oem->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('oem', $oem->id, 'update', 'name', $oem->name);
+		$oem->update($request->all());
+
 		return redirect()->route('oems.index')->with('success', 'Oem updated successfully');
 	}
 

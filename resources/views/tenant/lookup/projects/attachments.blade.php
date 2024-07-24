@@ -8,7 +8,7 @@
 			Attachments
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.project-actions id="{{ $project->id }}"/>
+			<x-tenant.actions.lookup.project-actions id="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

@@ -22,7 +22,7 @@ class OemSeeder extends Seeder
 		$oems =  [
 			[
 				'id' 	=> 1001,
-				'name'	=> 'Seeded',
+				'name'	=> 'General',
 			],
 			[
 				'id' 	=> 1002,

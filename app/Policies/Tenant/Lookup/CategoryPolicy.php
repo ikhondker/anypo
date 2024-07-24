@@ -40,9 +40,9 @@ class CategoryPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
-		$user->isAdmin();
+		return $user->isAdmin();
 	}
 
 	/**
@@ -50,7 +50,7 @@ class CategoryPolicy
 	 */
 	public function update(User $user, Category $category): bool
 	{
-		$user->isAdmin();
+		return $user->isAdmin();
 	}
 
 	/**
@@ -58,7 +58,7 @@ class CategoryPolicy
 	 */
 	public function delete(User $user, Category $category): bool
 	{
-		$user->isAdmin();
+		return $user->isAdmin();
 	}
 
 	/**

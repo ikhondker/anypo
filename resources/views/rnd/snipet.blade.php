@@ -1,7 +1,7 @@
 show
 <div class="card-actions float-end">
-	<a class="btn btn-sm btn-light" href="{{ route('depts.edit', $dept->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-	<a class="btn btn-sm btn-light" href="{{ route('depts.index') }}" ><i class="fas fa-list"></i> View all</a>
+	<a href="{{ route('depts.edit', $dept->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+	<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 </div>
 
 edit
@@ -37,8 +37,42 @@ create
 	</td>
 </tr>
 
-<th width="30%">Photo</th>
+<th width="20%">Photo</th>
+
+@can('create', App\Models\Tenant\Lookup\Item::class)
+	<div class="dropdown-divider"></div>
+@endcan
+@can('createForPo', App\Models\Tenant\Invoice::class)
+	<a class="dropdown-item" href="{{ route('invoices.create-for-po', $po->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Invoice</a>
+@endcan
+
+@can('edit', $invoice)
+	<div class="dropdown-divider"></div>
+@endcan
+
+@can('delete', $po)
+	<div class="dropdown-divider"></div>
+@endcan
 
 @can('viewAny', $user)
-	<x-tenant.buttons.header.lists object="User"/>
+	<div class="dropdown-divider"></div>
 @endcan
+
+<tr>
+	<th></th>
+	<td>
+		@if ($invoice->status <> App\Enum\InvoiceStatusEnum::POSTED->value)
+			<x-tenant.buttons.show.edit object="Invoice" :id="$invoice->id"/>
+		@endif
+	</td>
+</tr>
+
+
+@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+	<div class="dropdown-divider"></div>
+@endif 
+
+
+@if (auth()->user()->isSystem())
+	<a class="btn btn-sm btn-danger text-white" href="{{ route('activities.edit', $activity->id) }}"><i class="fas fa-edit"></i> Edit</a>
+@endif

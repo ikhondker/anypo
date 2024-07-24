@@ -14,8 +14,7 @@
 		@csrf
 		@method('PUT')
 
-
-		 <!-- content -->
+		<!-- content -->
 		@include('landlord.includes.card-edit-user-profile')
 		<!-- /.content -->
 

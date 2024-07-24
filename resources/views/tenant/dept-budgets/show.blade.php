@@ -2,7 +2,9 @@
 @section('title','Budgets')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('budgets.show', $deptBudget->budget->id ) }}" class="text-muted">{{ $deptBudget->budget->fy }}</a></li>
+	@if (! auth()->user()->isHoD())
+		<li class="breadcrumb-item"><a href="{{ route('budgets.show', $deptBudget->budget->id ) }}" class="text-muted">{{ $deptBudget->budget->fy }}</a></li>
+	@endif
 	<li class="breadcrumb-item"><a href="{{ route('dept-budgets.index') }}" class="text-muted">Dept Budgets</a></li>
 	<li class="breadcrumb-item active">{{ $deptBudget->dept->name }}</li>
 @endsection
@@ -14,8 +16,6 @@
 			Department Budget - {{ $deptBudget->dept->name }}
 		@endslot
 		@slot('buttons')
-			
-			
 			<x-tenant.actions.dept-budget-actions id="{{ $deptBudget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -41,16 +41,14 @@
 					<table class="table table-sm my-2">
 						<tbody>
 							<x-tenant.show.my-badge value="{{ $deptBudget->budget->fy }}" label="FY"/>
-
-								<tr>
-									<th>Budget:</th>
-									<td>{{ $deptBudget->budget->name }} <x-tenant.info info="Note: You wont be able to edit this."/></td>
-								</tr>
-								<tr>
-									<th>Dept:</th>
-									<td>{{ $deptBudget->dept->name }} <x-tenant.info info="Note: You wont be able to edit this Department."/></td>
-								</tr>
-
+							<tr>
+								<th>Budget:</th>
+								<td>{{ $deptBudget->budget->name }} <x-tenant.info info="Note: You wont be able to edit this."/></td>
+							</tr>
+							<tr>
+								<th>Dept:</th>
+								<td>{{ $deptBudget->dept->name }} <x-tenant.info info="Note: You wont be able to edit this Department."/></td>
+							</tr>
 							<x-tenant.show.my-date		value="{{ $deptBudget->budget->start_date }}" label="Start Date"/>
 							<x-tenant.show.my-date		value="{{ $deptBudget->budget->end_date }}" label="End Date"/>
 							<x-tenant.show.my-closed	value="{{ $deptBudget->closed }}"/>

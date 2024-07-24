@@ -67,7 +67,7 @@
 								<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 
-								<a href="{{ route('reports.pdf-payment', $payment->id) }}" class="text-body"  target="_blank"
+								<a href="{{ route('reports.pdf-payment', $payment->id) }}" class="text-body" target="_blank"
 									target="_blank" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="Download"><i data-lucide="download"></i></a>
 										

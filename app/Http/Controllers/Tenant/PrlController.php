@@ -210,6 +210,8 @@ class PrlController extends Controller
 		$request->validate([
 
 		]);
+		// Write to Log
+		EventLog::event('prl', $prl->id, 'update', 'summary', $prl->summary);
 		$prl->update($request->all());
 
 		// 	Update PR Header value and Populate functional currency values. Currency Might change
@@ -224,8 +226,7 @@ class PrlController extends Controller
 			Log::error(tenant('id'). 'tenant.prl.update syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
-		// Write to Log
-		EventLog::event('prl', $prl->id, 'update', 'summary', $prl->summary);
+		
 
 		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR Line updated successfully');
 	}

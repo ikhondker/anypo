@@ -3,23 +3,26 @@
 		<i class="align-middle text-info mt-n1" data-lucide="settings"></i> Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-
-		<a class="dropdown-item" href="{{ route('pols.edit', $pol->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order Line</a>
-		<a class="dropdown-item" href="{{ route('pols.add-line', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Purchase Order Line</a>
-		<a class="dropdown-item" href="{{ route('receipts.create',$pol->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Receipts</a>
-
-		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('pols.receipt', $id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Receipts **</a>
+		<a class="dropdown-item" href="{{ route('pos.attachments', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments **</a>
 		<a class="dropdown-item" href="{{ route('pols.ael', $id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Accounting **</a>
-		<a class="dropdown-item" href="{{ route('pos.show', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Purchase Order</a>
-		<a class="dropdown-item" href="{{ route('reports.po', $pol->po_id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Purchase Order</a>
-		<a class="dropdown-item" href="#"><i class="align-middle me-1" data-lucide="user"></i> Run PO Detail Report*</a>
-		<a class="dropdown-item" href="{{ route('pos.attachments', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> Attachments</a>
-		<a class="dropdown-item" href="{{ route('pos.invoice', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
-		<div class="dropdown-divider"></div>
+		
+		@can('createForPol', App\Models\Tenant\Receipt::class)
+			<a class="dropdown-item" href="{{ route('receipts.create-for-pol',$pol->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Receipts</a>
+		@endcan
+		
+		@if ($pol->po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{{ route('pols.edit', $pol->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order Line</a>
+			<a class="dropdown-item" href="{{ route('pols.add-line', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Purchase Order Line</a>
+		@endif 
 
-		<a class="dropdown-item sw2-advance" href="{{ route('pos.cancel', $id) }}"
-			data-entity="" data-name="PO #{{ $id }}" data-status="Cancel"
-			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Purchase Order">
-			<i class="align-middle me-1 text-danger" data-lucide="x-circle"></i> Cancel Purchase Order lINE **</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('pos.show', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Purchase Order</a>
+		
+		
+		{{-- <a class="dropdown-item" href="{{ route('reports.po', $pol->po_id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Purchase Order</a> --}}
+		{{-- <a class="dropdown-item" href="#"><i class="align-middle me-1" data-lucide="user"></i> Run PO Detail Report*</a> --}}
+		{{-- <a class="dropdown-item" href="{{ route('pos.invoices', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a> --}}
 	</div>
 </div>

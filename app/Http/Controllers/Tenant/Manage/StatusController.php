@@ -124,10 +124,10 @@ class StatusController extends Controller
 		$this->authorize('update', $status);
 
 		//$request->validate();
-		$status->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('status', $status->code, 'update', 'name', $request->name);
+		$status->update($request->all());
 
 		return redirect()->route('statuses.index')->with('success', 'Status updated successfully');
 	}

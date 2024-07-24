@@ -126,10 +126,10 @@ class DeptController extends Controller
 		//$request->validate();
 		$request->validate([
 		]);
-		$dept->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('dept', $dept->id, 'update', 'name', $request->name);
+		$dept->update($request->all());
 
 		return redirect()->route('depts.index')->with('success', 'Dept information updated successfully');
 	}

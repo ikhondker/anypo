@@ -11,7 +11,7 @@
 			All Notifications
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.notification-actions/>
+			<x-tenant.actions.notification.notification-actions/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -22,11 +22,12 @@
 
 			<div class="card">
 				<div class="card-header">
-				
-					<h5 class="card-title">
-						All Notification Lists
-					</h5>
-					<h6 class="card-subtitle text-muted">List of Notifications.</h6>
+			
+					<div class="card-actions float-end">
+						<a href="{{ route('notifications.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> Unread Notifications</a>
+					</div>
+					<h5 class="card-title">All Notification Lists</h5>
+					<h6 class="card-subtitle text-muted">List of All Notifications.</h6>
 				</div>
 
 				<div class="card-body">

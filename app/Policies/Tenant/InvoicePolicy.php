@@ -40,7 +40,15 @@ class InvoicePolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isBuyer();
+		return false;
+	}
+
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function createForPo(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isSupport());
 	}
 
 	/**
@@ -48,7 +56,7 @@ class InvoicePolicy
 	 */
 	public function update(User $user, Invoice $invoice): bool
 	{
-		return ($user->isBuyer() || $user->isAdmin());
+		return ($user->isBuyer() || $user->isSupport());
 	}
 
 	/**
@@ -56,7 +64,15 @@ class InvoicePolicy
 	 */
 	public function delete(User $user, Invoice $invoice): bool
 	{
-		//
+		return ($user->isBuyer() || $user->isSupport());
+	}
+	
+	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function cancel(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isSupport());
 	}
 
 	/**
@@ -74,13 +90,7 @@ class InvoicePolicy
 	{
 		//
 	}
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function cancel(User $user): bool
-	{
-		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() );
-	}
+	
 
 	/**
 	 * Determine whether the user can create models.
@@ -89,7 +99,6 @@ class InvoicePolicy
 	{
 		return ($user->isBuyer() || $user->isSupport());
 	}
-
 
 	/**
 	 * Determine whether the user can create models.

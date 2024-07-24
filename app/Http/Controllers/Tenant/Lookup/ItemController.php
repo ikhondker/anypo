@@ -154,10 +154,11 @@ class ItemController extends Controller
 		$request->validate([
 
 		]);
-		$item->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('item', $item->id, 'update', 'name', $item->name);
+		$item->update($request->all());
+
 		return redirect()->route('items.index')->with('success', 'Item updated successfully');
 	}
 

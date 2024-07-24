@@ -2,10 +2,11 @@
 	<thead>
 		<tr>
 			<th>PO#</th>
-			<th>Summary</th>
 			<th>Date</th>
+			<th>Summary</th>
 			<th>Dept</th>
-			<th>Currency</th>
+			<th>Supplier</th>
+			<th>Project</th>
 			<th class="text-end">PO Amount</th>
 			<th class="text-end">GRS Amount</th>
 			<th class="text-end">Invoice Amount</th>
@@ -19,14 +20,15 @@
 		@foreach ($pos as $po)
 		<tr>
 			<td>{{ $po->id }}</td>
+			<td><x-tenant.list.my-date value="{{ $po->po_date }}"/></td>
 			<td><a href="{{ route('pos.show',$po->id) }}"><strong>{{ $po->summary }}</strong></a></td>
-			<td><x-tenant.list.my-date :value="$po->po_date"/></td>
 			<td>{{ $po->dept->name }}</td>
-			<td>{{ $po->currency }}</td>
-			<td class="text-end"><x-tenant.list.my-number :value="$po->amount"/></td>
-			<td class="text-end"><x-tenant.list.my-number :value="$po->amount_grs"/></td>
-			<td class="text-end"><x-tenant.list.my-number :value="$po->amount_invoice"/></td>
-			<td class="text-end"><x-tenant.list.my-number :value="$po->amount_paid"/></td>
+			<td>{{ $po->supplier->name }}</td>
+			<td>{{ $po->project->code }}</td>
+			<td class="text-end">{{ number_format($po->amount, 2) }} {{ $po->currency }}  </td>
+			<td class="text-end"><x-tenant.list.my-number value="{{ $po->amount_grs }}"/></td>
+			<td class="text-end"><x-tenant.list.my-number value="{{ $po->amount_invoice }}"/></td>
+			<td class="text-end"><x-tenant.list.my-number value="{{ $po->amount_paid }}"/></td>
 
 			<td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
 			<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>

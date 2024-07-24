@@ -116,10 +116,10 @@ class MenuController extends Controller
 		//$request->validate();
 		$request->validate([
 		]);
-		$menu->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('menu', $menu->id, 'update', 'name', $request->name);
+		$menu->update($request->all());
 
 		return redirect()->route('menus.index')->with('success', 'Menu updated successfully');
 	}

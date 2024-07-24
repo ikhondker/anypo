@@ -53,7 +53,7 @@ class InvoiceLinesController extends Controller
 	 */
 	public function index()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -61,7 +61,7 @@ class InvoiceLinesController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -69,7 +69,7 @@ class InvoiceLinesController extends Controller
 	 */
 	public function store(StoreInvoiceLinesRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -77,7 +77,7 @@ class InvoiceLinesController extends Controller
 	 */
 	public function show(InvoiceLines $invoiceLines)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -85,7 +85,7 @@ class InvoiceLinesController extends Controller
 	 */
 	public function edit(InvoiceLines $invoiceLines)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -93,7 +93,7 @@ class InvoiceLinesController extends Controller
 	 */
 	public function update(UpdateInvoiceLinesRequest $request, InvoiceLines $invoiceLines)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -101,6 +101,6 @@ class InvoiceLinesController extends Controller
 	 */
 	public function destroy(InvoiceLines $invoiceLines)
 	{
-		//
+		abort(403);
 	}
 }

@@ -16,6 +16,7 @@
 		<!-- content -->
 		@include('landlord.includes.card-edit-user-profile')
 		<!-- /.content -->
+		
 	</form>
 	<!-- /.form end -->
 

@@ -37,7 +37,7 @@ return new class extends Migration
 			$table->dateTime('maintenance_end_time')->nullable()->useCurrent();
 			$table->boolean('debug')->default(false);
 			$table->boolean('disable_payments')->default(false);
-			$table->string('version')->nullable()->default('1.0');
+			$table->string('version')->nullable()->default('1.0.0');
 			$table->string('build')->nullable()->default('1001');
 			$table->biginteger('days_gen_bill')->default(5);
 			$table->biginteger('days_due')->default(7);

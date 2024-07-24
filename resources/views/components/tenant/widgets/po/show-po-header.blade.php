@@ -14,7 +14,6 @@
 							<th width="20%">Summary :</th>
 							<td>{{$po->summary }}</td>
 						</tr>
-						<x-tenant.show.my-text	value="{{ $po->summary }}" label="Summary"/>
 						<tr>
 							<th>PO Value :</th>
 							<td>
@@ -46,6 +45,10 @@
 	<div class="col-6">
 		<div class="card">
 			<div class="card-header">
+				<div class="card-actions float-end">
+					<a class="btn btn-sm btn-light" href="{{ route('pos.edit', $po->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-light" href="{{ route('pos.index') }}" ><i class="fas fa-list"></i> View all</a>
+				</div>
 				<h5 class="card-title">Approval Status</h5>
 				<h6 class="card-subtitle text-muted">Approval information of Purchase Order.</h6>
 			</div>
@@ -65,11 +68,11 @@
 						<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
 						<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
 						<tr>
-							<th>Attachments</th>
+							<th>Attachments :</th>
 							<td><x-tenant.attachment.all entity="PO" aid="{{ $po->id }}"/></td>
 						</tr>
 						<tr>
-							<th>Attachments</th>
+							<th>&nbsp;</th>
 							<td>
 								@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 									<form action="{{ route('pos.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">

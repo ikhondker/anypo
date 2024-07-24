@@ -42,7 +42,7 @@ class WarehousePolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}

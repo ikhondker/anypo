@@ -17,7 +17,7 @@ return new class extends Migration
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();
-			$table->boolean('enable')->default(true); 
+			$table->boolean('enable')->default(true);
 			$table->softDeletes();
 			$table->biginteger('created_by')->default(1001);
 			$table->timestamp('created_at')->useCurrent();

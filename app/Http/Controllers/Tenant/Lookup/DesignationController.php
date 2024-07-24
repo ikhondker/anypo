@@ -118,10 +118,10 @@ class DesignationController extends Controller
 		$request->validate([
 
 		]);
-		$designation->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('designation', $designation->id, 'update', 'name', $designation->name);
+		$designation->update($request->all());
 		return redirect()->route('designations.index')->with('success', 'Designation updated successfully');
 	}
 

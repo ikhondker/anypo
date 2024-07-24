@@ -24,7 +24,7 @@ class PrSeeder extends Seeder
 	
 		$prs =  [
 				[
-					'summary'			=> 'User 111 - PR 111 - Dept IT',
+					'summary'			=> 'IT User 1 - IT PR 111 - Dept IT',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
 					'requestor_id'		=> 1004,
 					'dept_id'			=> 1001,
@@ -38,7 +38,7 @@ class PrSeeder extends Seeder
 					'fc_currency'		=> 'BDT',
 				],
 				[
-					'summary'			=> 'User 111 - PR 222 - Dept IT',
+					'summary'			=> 'IT User 1 - IT PR 222 - Dept IT',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
 					'requestor_id'		=> 1004,
 					'dept_id'			=> 1001,
@@ -52,7 +52,7 @@ class PrSeeder extends Seeder
 					'fc_currency'		=> 'BDT',
 				],
 				[
-					'summary'			=> 'User 222 - PR 333 - Dept IT',
+					'summary'			=> 'IT User 2 - IT  PR 333 - Dept IT',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
 					'requestor_id'		=> 1005,
 					'dept_id'			=> 1001,
@@ -66,10 +66,10 @@ class PrSeeder extends Seeder
 					'fc_currency'		=> 'BDT',
 				],
 				[
-					'summary'			=> 'User 111 - PR 111 - Dept Sales',
+					'summary'			=> 'Sales User 1 - Sales PR 111 - Dept Sales',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
 					'requestor_id'		=> 1006,
-					'dept_id'			=> 1003,
+					'dept_id'			=> 1005,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
@@ -80,10 +80,10 @@ class PrSeeder extends Seeder
 					'fc_currency'		=> 'BDT',
 				],
 				[
-					'summary'			=> 'User 111 - PR 222 - Dept Sales',
+					'summary'			=> 'Sales User 1 - Sales PR 222 - Dept Sales',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
 					'requestor_id'		=> 1006,
-					'dept_id'			=> 1003,
+					'dept_id'			=> 1005,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
@@ -94,10 +94,10 @@ class PrSeeder extends Seeder
 					'fc_currency'		=> 'BDT',
 				],
 				[
-					'summary'			=> 'User 222 - PR 333 - Dept Sales',
+					'summary'			=> 'Sales User 2 - Sales PR 333 - Dept Sales',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
 					'requestor_id'		=> 1007,
-					'dept_id'			=> 1003,
+					'dept_id'			=> 1005,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
@@ -107,8 +107,6 @@ class PrSeeder extends Seeder
 					'amount'			=> 680,
 					'fc_currency'		=> 'BDT',
 				],
-				
-
 			];
 
 		  Pr::insert($prs);

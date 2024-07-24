@@ -72,13 +72,13 @@ class DeptBudgetController extends Controller
 
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::HOD->value:
-				$dept_budgets = $dept_budgets->ByDeptAll()->with('dept')->with('budget')->orderBy('budget_id', 'DESC')->paginate(10);
+				$dept_budgets = $dept_budgets->ByDeptAll()->with('dept')->with('budget')->where('revision',false)->orderBy('budget_id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-				$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('budget_id', 'DESC')->paginate(10);
+				$dept_budgets = $dept_budgets->with('dept')->with('budget')->where('revision',false)->orderBy('budget_id', 'DESC')->paginate(10);
 				break;
 			default:
 				//$dept_budgets = $dept_budgets->ByUserAll()->with('dept')->with('budget')->paginate(10);
@@ -92,13 +92,54 @@ class DeptBudgetController extends Controller
 
 
 	/**
-	* Display a listing of the resource.
-	*/
-	public function xxrevision(DeptBudget $deptBudget)
+	 * Display a listing of the resource.
+	 */
+	public function revisions(DeptBudget $deptBudget)
 	{
-		$dept_budgets = DeptBudget::where('budget_id', $deptBudget->budget_id)->where('dept_id', $deptBudget->dept_id)->orderBy('id', 'ASC')->paginate(10);
-		return view('tenant.dept-budgets.revision', compact('deptBudget', 'dept_budgets'));
+		$this->authorize('viewAny', DeptBudget::class);
+		// TODO restrict direct access
+
+		$deptBudgets = DeptBudget::where('parent_id',$deptBudget->id)
+					->where('revision',true)
+				 	->orderBy('id', 'DESC')->paginate(10);
+
+		return view('tenant.dept-budgets.revisions', compact('deptBudgets','deptBudget'));
 	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function revisionsAll()
+	{
+		$this->authorize('viewAny', DeptBudget::class);
+
+		$deptBudgets = DeptBudget::query();
+		if (request('term')) {
+			$deptBudgets->whereHas('dept', function ($q) {
+				$q->where('name', 'LIKE', '%' .request('term'). '%');
+			});
+		}
+
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::HOD->value:
+				$deptBudgets = $deptBudgets->ByDeptAllRevisions()->with('dept')->with('budget')->orderBy('budget_id', 'DESC')->paginate(10);
+				break;
+			case UserRoleEnum::BUYER->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
+				$deptBudgets = $deptBudgets->with('dept')->with('budget')->where('revision',true)->orderBy('budget_id', 'DESC')->paginate(10);
+				break;
+			default:
+				//$dept_budgets = $dept_budgets->ByUserAll()->with('dept')->with('budget')->paginate(10);
+				Log::warning(tenant('id'). 'tenant.DeptBudget.index Other role = '. auth()->user()->role->value);
+				abort(403);
+		}
+
+		//$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.dept-budgets.revisions-all', compact('deptBudgets'));
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -119,12 +160,20 @@ class DeptBudgetController extends Controller
 	{
 		$this->authorize('create', DeptBudget::class);
 
-		// check
-		// $validatedData = $request->validate([
-		// 	'budget_id' => 'required|unique:dept_budgets,dept_id',
-		// 	'dept_id' => 'required|unique:dept_budgets,budget_id',
-		// ]);
+		// Make sure only one budget is open at a time
+		$count_dept_budget	= DeptBudget::where('budget_id', $request['budget_id'])
+					->where('dept_id', $request['dept_id'])		
+					->where('revision',false)
+					->count();
+		if ($count_dept_budget <> 0){
+			return redirect()->route('dept-budgets.index')->with('error', 'Dept Budget for this period already exists!');
+		}
 
+		// old check
+		// $validatedData = $request->validate([
+		//  	'budget_id' => 'required|unique:dept_budgets,dept_id',
+		//  	'dept_id' 	=> 'required|unique:dept_budgets,budget_id',
+		// ]);
 
 		$dept_budget = DeptBudget::create($request->all());
 		// Write to Log
@@ -133,7 +182,7 @@ class DeptBudgetController extends Controller
 		//update company budget for that year
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-		return redirect()->route('dept-budgets.index')->with('success', 'DeptBudget created successfully.');
+		return redirect()->route('dept-budgets.index')->with('success', 'Dept Budget created successfully.');
 	}
 
 	/**
@@ -142,7 +191,19 @@ class DeptBudgetController extends Controller
 	public function show(DeptBudget $deptBudget)
 	{
 		$this->authorize('view', $deptBudget);
+
 		return view('tenant.dept-budgets.show', compact('deptBudget'));
+	}
+
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function showRevision(DeptBudget $deptBudget)
+	{
+		$this->authorize('view', $deptBudget);
+
+		return view('tenant.dept-budgets.show-revision', compact('deptBudget'));
 	}
 
 	/**
@@ -152,8 +213,13 @@ class DeptBudgetController extends Controller
 	{
 		$this->authorize('update', $deptBudget);
 
+		
+		if ($deptBudget->budget->closed){
+			return redirect()->route('budgets.index')->with('error', 'Can not edit a Dept Budget, as company budget for this year is closed.');
+		}
+
 		if ($deptBudget->closed){
-			return redirect()->route('budgets.show', $deptBudget->id)->with('error', 'Can not edit a closed Budget.');
+			return redirect()->route('dept-budgets.index')->with('error', 'Can not edit a closed Dept Budget.');
 		}
 
 		return view('tenant.dept-budgets.edit', compact('deptBudget'));
@@ -191,14 +257,55 @@ class DeptBudgetController extends Controller
 
 		// budget has been modified
 		$old_dept_budget_amount =$deptBudget->amount;
+
+		// 1. create revision row for dep_budget
+		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for dept_budgets_id='.$deptBudget->id);
+		$sql= "INSERT INTO dept_budgets( 
+			budget_id, dept_id, amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
+			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,
+			closed, revision, parent_id,
+			created_by,updated_by)
+		SELECT 
+			budget_id, dept_id, amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
+			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,
+			true, true, ".$deptBudget->id.",
+			".auth()->user()->id.",".auth()->user()->id."
+		FROM dept_budgets 
+		WHERE id= ".$deptBudget->id." ;";
+		//Log::warning(tenant('id'). 'tenant.DeptBudget.update dept_budgets sql = '. $sql);
+		//TODO
+		$revision_dept_budget_id = DB::INSERT($sql);
+		Log::warning(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
+
+		// 2. create revision for budget
+		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for budgets_id='.$deptBudget->budget_id);
+		$sql= "INSERT INTO budgets( 
+			fy, name, start_date, end_date, amount, 
+			amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
+			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,  
+			closed, revision, parent_id,
+			created_by,updated_by)
+		SELECT 
+			fy, name, start_date, end_date, amount, 
+			amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
+			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,  
+			true, true, ".$deptBudget->budget_id.",
+			".auth()->user()->id.",".auth()->user()->id."
+		FROM budgets 
+		WHERE id= ".$deptBudget->budget_id." ;";
+		//Log::warning(tenant('id'). 'tenant.DeptBudget.update budgets sql = '. $sql);
+		DB::INSERT($sql);
+
+		if ($request->input('amount') <> $old_dept_budget_amount) {
+			EventLog::event('deptBudget', $deptBudget->id, 'update', 'amount', $deptBudget->amount);
+		}
+
+		// update dept_budget row
 		$deptBudget->update($request->all());
 
 		if ($request->input('amount') <> $old_dept_budget_amount) {
 			//update company budget for that year
 			ConsolidateBudget::dispatch($deptBudget->budget_id);
-
-			//$result = Budget::updateCompanyBudget($deptBudget->budget_id);
-			EventLog::event('deptBudget', $deptBudget->id, 'update', 'amount', $deptBudget->amount);
 		}
 
 		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget updated successfully');
@@ -223,11 +330,29 @@ class DeptBudgetController extends Controller
 	public function export()
 	{
 		$this->authorize('export', DeptBudget::class);
-		$data = DB::select("SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr, db.amount_po_booked, db.amount_po, db.amount_grs, db.amount_payment,
-		db.notes, 	IF(db.closed, 'Yes', 'No') as Closed
-		FROM dept_budgets db,budgets b,depts d
-		WHERE db.budget_id = b.id
-		AND db.dept_id=d.id");
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			//$dept_id 	= auth()->user()->dept_id;
+			$whereDept = 'db.dept_id = '. auth()->user()->dept_id;
+		} else {
+			$whereDept = '1 = 1';
+		}
+
+		// TODO filter by Hod
+		$sql = "
+			SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr, db.amount_po_booked, db.amount_po, db.amount_grs, db.amount_payment,
+			db.notes, IF(db.closed, 'Yes', 'No') as Closed
+			FROM dept_budgets db, budgets b, depts d
+			WHERE db.budget_id = b.id
+			AND db.dept_id=d.id
+			AND ". $whereDept ."
+			AND db.revision = false
+			ORDER BY db.id DESC
+		";
+	
+		//Log::debug(tenant('id'). 'tenant.DeptBudget.export sql = '. $sql);
+		$data = DB::select($sql);
+
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('dept_budgets', $dataArray);
@@ -272,11 +397,11 @@ class DeptBudgetController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function budget(DeptBudget $deptBudget)
+	public function dbu(DeptBudget $deptBudget)
 	{
 		$this->authorize('view', $deptBudget);
 
-		return view('tenant.dept-budgets.budget', compact('deptBudget'));
+		return view('tenant.dept-budgets.dbu', compact('deptBudget'));
 	}
 
 }

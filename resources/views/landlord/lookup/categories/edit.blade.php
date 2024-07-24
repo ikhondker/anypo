@@ -20,14 +20,10 @@
 
 				<table class="table table-sm my-2">
 					<tbody>
-
-
-					<x-landlord.edit.id-read-only :value="$category->id"/>
-					<x-landlord.edit.name value="{{  $category->name }}"/>
-
+						<x-landlord.edit.id-read-only :value="$category->id"/>
+						<x-landlord.edit.name value="{{ $category->name }}"/>
 					</tbody>
 				</table>
-
 				<x-landlord.edit.save/>
 			</form>
 		</div>

@@ -2,7 +2,7 @@
 @section('title','Edit Dept')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('depts.index') }}">Departments</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('depts.index') }}" class="text-muted">Departments</a></li>
 	<li class="breadcrumb-item active">{{ $dept->name }}</li>
 @endsection
 
@@ -26,8 +26,8 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>  Create</a>
-					<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>Create</a>
+					<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Dept</h5>
 				<h6 class="card-subtitle text-muted">Edit department and Requisition and Purchase Order Approval Hierarchy.</h6>

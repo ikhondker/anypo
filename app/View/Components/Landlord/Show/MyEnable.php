@@ -19,7 +19,7 @@ class MyEnable extends Component
 	 */
 	public function __construct(
 		public string $value,
-		public string $label='Enable X:'
+		public string $label='Enable'
 		)
 	{
 		//$this->value = $value;

@@ -244,7 +244,7 @@
 			<div id="company">
 				<h2 class="name">{{ $setup->name }}</h2>
 				<div>{{ $setup->address1.', '. $setup->address2 }}</div>
-				<div>{{ $setup->city.', '.$setup->state.', '.$setup->zip. ', '.$setup->country  }}</div>
+				<div>{{ $setup->city.', '.$setup->state.', '.$setup->zip. ', '.$setup->country }}</div>
 				<div>{{ $setup->cell }} {{ $setup->email }}</div>	
 				{{-- <div>{{ $setup->email }}</div>	 --}}
 				{{-- <div>{{ $setup->website }}</div> --}}

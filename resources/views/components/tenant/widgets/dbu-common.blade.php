@@ -41,7 +41,7 @@
 						@foreach ($dbus as $dbu)
 						<tr>
 							<td>{{ $dbus->firstItem() + $loop->index}}</td>
-							<td><a class="text-info" href="{{ route('dbus.show',$dbu->id) }}">{{ $dbu->id }}</a></td>
+							<td><a class="text-muted" href="{{ route('dbus.show',$dbu->id) }}"><strong>{{ $dbu->id }}</strong></a></td>
 							<td>{{ $dbu->dept->name }}</td>
 							<td>{{ $dbu->deptBudget->budget->fy }}</td>
 							<td><x-tenant.list.my-date :value="$dbu->created_at"/></td>
@@ -55,9 +55,10 @@
 							<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_poissued"/></td>
 							<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_grs"/></td>
 							<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_payment"/></td>
-
-							<td class="table-action">
-								<x-tenant.list.actions object="Dbu" :id="$dbu->id" :edit="false"/>
+							<td>
+								<a href="{{ route('dbus.show',$dbu->id) }}" class="btn btn-light"
+									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								</a>
 							</td>
 						</tr>
 						@endforeach

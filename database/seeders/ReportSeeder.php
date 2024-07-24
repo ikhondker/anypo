@@ -167,6 +167,10 @@ class ReportSeeder extends Seeder
 					'dept_id' 				=> true,
 					'dept_id_required' 		=> false,
 				],
+
+				
+
+
 			];
 		Report::insert($reports);
 
@@ -213,6 +217,44 @@ class ReportSeeder extends Seeder
 				'end_date_required' 	=> true,
 				'supplier_id' 			=> false,
 				'supplier_id_required'	=> false,
+			],
+	  	];
+	  	Report::insert($reports);
+
+
+		  $reports =  [
+			[
+				'id' 					=> 1075,
+				'name' 					=> 'Printed Invoice Report (TBD)',
+				'summary' 				=> 'Printed Invoice Report',
+				'start_date' 			=> false,
+				'start_date_required' 	=> false,
+				'end_date' 				=> false,
+				'end_date_required' 	=> false,
+				'dept_id' 				=> false,
+				'dept_id_required' 		=> false,
+			],
+			[
+				'id' 					=> 1080,
+				'name' 					=> 'Printed Payment Report (TBD)',
+				'summary' 				=> 'Printed Payment Report',
+				'start_date' 			=> false,
+				'start_date_required' 	=> false,
+				'end_date' 				=> false,
+				'end_date_required' 	=> false,
+				'dept_id' 				=> false,
+				'dept_id_required' 		=> false,
+			],
+			[
+				'id' 					=> 1085,
+				'name' 					=> 'Printed Receipt Report (TBD)',
+				'summary' 				=> 'Printed Receipt Report',
+				'start_date' 			=> false,
+				'start_date_required' 	=> false,
+				'end_date' 				=> false,
+				'end_date_required' 	=> false,
+				'dept_id' 				=> false,
+				'dept_id_required' 		=> false,
 			],
 	  	];
 	  	Report::insert($reports);

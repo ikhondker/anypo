@@ -224,8 +224,9 @@ class UserController extends Controller
 
 		}
 
-		$user->update($request->all());
 		EventLog::event('user', $user->id, 'update', 'name', $request->name);
+		$user->update($request->all());
+
 		if ($request->input('role') <> $user->role) {
 			EventLog::event('user', $user->id, 'update', 'role', $user->role);
 		}

@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','View Item')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('items.index') }}">Items</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('items.index') }}" class="text-muted">Items</a></li>
 	<li class="breadcrumb-item active">{{ $item->code }}</li>
 @endsection
 @section('content')
@@ -18,7 +18,9 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('items.edit', $item->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				@can('update', $item)
+					<a class="btn btn-sm btn-light" href="{{ route('items.edit', $item->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				@endcan
 				<a class="btn btn-sm btn-light" href="{{ route('items.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Item Detail</h5>

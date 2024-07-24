@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--
-  HOW TO USE: 
-  data-layout: fluid (default), boxed
-  data-sidebar-theme: dark (default), colored, light
-  data-sidebar-position: left (default), right
-  data-sidebar-behavior: sticky (default), fixed, compact
+	HOW TO USE: 
+	data-layout: fluid (default), boxed
+	data-sidebar-theme: dark (default), colored, light
+	data-sidebar-position: left (default), right
+	data-sidebar-behavior: sticky (default), fixed, compact
 -->
 <html lang="en" 
 	data-bs-theme="light" 

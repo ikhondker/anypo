@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Add Requisition Line')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">{{ $pr->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}" class="text-muted">Requisitions</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}" class="text-muted">{{ $pr->id }}</a></li>
 	<li class="breadcrumb-item active">Add New Line</li>
 @endsection
 @section('content')

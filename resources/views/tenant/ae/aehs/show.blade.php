@@ -3,7 +3,7 @@
 
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('aehs.index') }}" class="text-muted">Accounting</a></li>
-	<li class="breadcrumb-item active">{{ $aeh->id }}</li>
+	<li class="breadcrumb-item active">AE#{{ $aeh->id }}</li>
 @endsection
 
 

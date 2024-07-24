@@ -41,6 +41,7 @@ use App\Helpers\EventLog;
 # 11. Controller
 # 12. Seeded
 use DB;
+use Str;
 use Illuminate\Support\Facades\Log;
 # 13. FUTURE 
 
@@ -129,10 +130,10 @@ class BankAccountController extends Controller
 		//$request->validate();
 		$request->validate([
 		]);
-		$bankAccount->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('bankAccount', $bankAccount->id, 'update', 'name', $request->ac_name);
+		$bankAccount->update($request->all());
 
 		return redirect()->route('bank-accounts.index')->with('success', 'Bank Account updated successfully');
 	}

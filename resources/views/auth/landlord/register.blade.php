@@ -8,7 +8,7 @@
 			<div class="text-center">
 
 				<span class="avatar avatar-xxl avatar-circle">
-					<img src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" class="img-fluid rounded-circle" alt="Carl Jenkins" width="128" height="128">
+					<img src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" class="img-fluid rounded-circle" alt="Avatar" width="128" height="128">
 				</span>
 				<h1 class="h2">Welcome to {{ config('app.name') }}</h1>
 				<p class="lead">

@@ -34,7 +34,7 @@ use App\Enum\LandlordCheckoutStatusEnum;
 
 // Helpers
 use App\Helpers\Bo;
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 
 // Notification
 use Notification;
@@ -110,7 +110,7 @@ class CreateTenant implements ShouldQueue
 		$user->account_id = $account_id;
 		$user->save();
 		Log::debug('Jobs.Landlord.CreateTenant User account_id update user_id = ' . $user->id);
-		LandlordEventLog::event('user', $user->id, 'update', $account_id);
+		EventLog::event('user', $user->id, 'update', $account_id);
 
 		// create service
 		Log::debug('Jobs.Landlord.CreateTenant 3. Calling bo.createServiceForCheckout');
@@ -168,7 +168,7 @@ class CreateTenant implements ShouldQueue
 
 			Log::debug('Jobs.Landlord.CreateTenant Existing User Role updated for id = ' . $user->id);
 			// Write event log
-			LandlordEventLog::event('user', $user->id, 'update', UserRoleEnum::ADMIN->value);
+			EventLog::event('user', $user->id, 'update', UserRoleEnum::ADMIN->value);
 			$user_id = $checkout->owner_id;
 		} else {
 			// create new admin user
@@ -198,7 +198,7 @@ class CreateTenant implements ShouldQueue
 			$checkout->update();
 
 			// Write event log
-			LandlordEventLog::event('user', $user->id, 'create');
+			EventLog::event('user', $user->id, 'create');
 
 			// Send Verification Email
 			event(new Registered($user));
@@ -294,7 +294,7 @@ class CreateTenant implements ShouldQueue
 		//$account_id		= $account->id;
 		Log::debug('Jobs.Landlord.CreateTenant.createCheckoutAccount account created account_id = ' . $account->id);
 		// Write event log
-		LandlordEventLog::event('account', $account->id, 'create');
+		EventLog::event('account', $account->id, 'create');
 
 		return $account->id;
 	}
@@ -330,7 +330,7 @@ class CreateTenant implements ShouldQueue
 
 		// Write event log
 		Log::debug('Lobs.landlord.createTenant.createTenantDb Tenant Created tenant_id = ' . $tenant->id);
-		LandlordEventLog::event('tenant', $tenant->id, 'create');
+		EventLog::event('tenant', $tenant->id, 'create');
 
 		// create first tenant admin for tenant
 		$email 			= $checkout->email;
@@ -345,12 +345,19 @@ class CreateTenant implements ShouldQueue
 			// create first and admin user in newly created tenant
 			$user = User::create([
 				'name'				=> $account_name,
+				'address1'			=> '3939 Lawrence Ave, E#108,',
+				'address2'			=> '',
+				'city'				=> 'Scarborough',  
+				'state'				=> 'ON',  
+				'zip'				=> 'M1G1R9',
 				'email'				=> $email,
 				'email_verified_at'	=> NOW(),	// TODO this is not verified Already Verified in tenant
 				'role'				=> \App\Enum\UserRoleEnum::ADMIN->value,
 				'password'			=> Hash::make($random_password),
 				'designation_id'	=> 1001,	// System/IT Administrator
 				'dept_id'			=> 1001,	// IT
+				'facebook'			=> 'https://www.facebook.com/my.anyponet',
+				'linkedin'			=> 'https://www.linkedin.com/company/anypo-net',
 				'enable'			=> true,
 				//'password' 	=> bcrypt($random_password),
 			]);
@@ -361,6 +368,8 @@ class CreateTenant implements ShouldQueue
 			$tenantSetup 			= \App\Models\Tenant\Admin\Setup::first();
 			$tenantSetup->name 		= $account_name;
 			$tenantSetup->admin_id 	= $user->id;
+			$tenantSetup->facebook 	= 'https://www.facebook.com/my.anyponet';
+			$tenantSetup->linkedin 	= 'https://www.linkedin.com/company/anypo-net';
 			$tenantSetup->update();
 
 			// Insert Rows in Hierarchyl Table
@@ -373,6 +382,15 @@ class CreateTenant implements ShouldQueue
 				'hid'			=> 1002,
 				'approver_id'	=> $user->id,
 			]);
+
+			
+			// Set dept approval hierarchy: Hardcoded in Tenant->DeptSeeder.php 1001 and 1002
+
+			// Update tenant demo project pm in the tenant database
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Updating pm for Seeded Project to admin_id');
+			$tenantProject 			= \App\Models\Tenant\Lookup\Project::first();
+			$tenantProject->pm_id 	= $user->id;
+			$tenantProject->update();
 
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Setup Name Updated setup_id = ' . $tenantSetup->id);
 

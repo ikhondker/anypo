@@ -48,6 +48,16 @@ class Aeh extends Model
 		});
 	}
 
+	/**
+	 *  Scope a query to return all payment of PO's of his dept.
+	*/
+	public function scopeByPoDept(Builder $query,$id): void
+	{
+		$query->whereHas('po', function ($q) use ($id) {
+			$q->where('dept_id', $id);
+		});
+	}
+	
 	/* ----------------- HasMany ------------------------ */
 	public function aels() {
 		return $this->hasMany(Ael::class);

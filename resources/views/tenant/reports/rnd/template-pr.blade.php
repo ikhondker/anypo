@@ -12,15 +12,15 @@
 	}
 
 	body {
-	  font-family: "Lato", sans-serif;
-	  font-size: 12px;
+		font-family: "Lato", sans-serif;
+		font-size: 12px;
 	}
 
 	
 	.letterhead {
-	  font-size: 10px;
-	  padding: 0px;
-	  vertical-align: bottom;
+		font-size: 10px;
+		padding: 0px;
+		vertical-align: bottom;
 	}
 
 	#my-header-table {

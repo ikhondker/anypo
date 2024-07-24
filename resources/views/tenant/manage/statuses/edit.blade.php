@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Status')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('statuses.index') }}">Statues</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('statuses.index') }}" class="text-muted">Statues</a></li>
 	<li class="breadcrumb-item active">{{ $status->name }}</li>
 @endsection
 @section('content')
@@ -23,7 +23,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('statuses.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('statuses.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Status Detail</h5>
 							<h6 class="card-subtitle text-muted">Edit Status Details.</h6>

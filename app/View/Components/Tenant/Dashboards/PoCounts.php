@@ -8,7 +8,9 @@ use Illuminate\View\Component;
 
 use App\Models\Tenant\Po;
 use App\Enum\UserRoleEnum;
-use App\Enum\AuthStatusEnum;
+//use App\Enum\AuthStatusEnum;
+
+use Illuminate\Support\Facades\Log;
 
 class PoCounts extends Component
 {
@@ -27,17 +29,18 @@ class PoCounts extends Component
 	public function __construct()
 	{
 		switch (auth()->user()->role->value) {
-			case UserRoleEnum::BUYER->value:
+			// user separate dashboard widget for buyer
+			// case UserRoleEnum::BUYER->value:
 
-				$this->count_approved	= Po::ByBuyerApproved()->count();
-				$this->sum_approved		= Po::ByBuyerApproved()->sum('fc_amount');
+			// 	$this->count_approved	= Po::ByBuyerApproved()->count();
+			// 	$this->sum_approved		= Po::ByBuyerApproved()->sum('fc_amount');
 
-				$this->count_inprocess	= Po::ByBuyerInProcess()->count();
-				$this->sum_inprocess	= Po::ByBuyerInProcess()->sum('fc_amount');
+			// 	$this->count_inprocess	= Po::ByBuyerInProcess()->count();
+			// 	$this->sum_inprocess	= Po::ByBuyerInProcess()->sum('fc_amount');
 
-				$this->count_rejected	= Po::ByBuyerRejected()->count();
-				$this->sum_rejected		= Po::ByBuyerRejected()->sum('fc_amount');
-				break;
+			// 	$this->count_rejected	= Po::ByBuyerRejected()->count();
+			// 	$this->sum_rejected		= Po::ByBuyerRejected()->sum('fc_amount');
+			// 	break;
 			case UserRoleEnum::HOD->value:
 
 				$this->count_approved	= Po::ByDeptApproved()->count();
@@ -52,7 +55,6 @@ class PoCounts extends Component
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
-
 				$this->count_approved	= Po::AllApproved()->count();
 				$this->sum_approved		= Po::AllApproved()->sum('fc_amount');
 
@@ -63,7 +65,7 @@ class PoCounts extends Component
 				$this->sum_rejected		= Po::AllRejected()->sum('fc_amount');
 				break;
 			default:
-			Log::debug('tenant.component.dashboard.po-counts. Role Not Found!');
+			Log::warning('tenant.component.dashboard.po-counts. Role Not Found!');
 		}
 	}
 

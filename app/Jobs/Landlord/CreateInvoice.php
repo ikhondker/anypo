@@ -17,7 +17,7 @@ use App\Enum\LandlordInvoiceTypeEnum;
 use App\Enum\LandlordInvoiceStatusEnum;
 
 use App\Helpers\Bo;
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 
 use App\Notifications\Landlord\InvoiceCreated;
 
@@ -108,7 +108,7 @@ class CreateInvoice implements ShouldQueue
 		$invoice->save();
 
 		Log::channel('bo')->info('jobs.landlord.CreateInvoice Invoice Generated invoice_id = ' . $invoice->id);
-		LandlordEventLog::event('invoice', $invoice->id, 'create');
+		EventLog::event('invoice', $invoice->id, 'create');
 
 		// update account billing info
 		// $account->last_bill_from_date	= $invoice->from_date;

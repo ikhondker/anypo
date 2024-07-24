@@ -233,6 +233,8 @@ class HierarchyController extends Controller
 		$hierarchyl->approver_id	= $request->input('approver_id_1');
 		$hierarchyl->save();
 
+		// Write to Log
+		EventLog::event('hierarchy', $hierarchy->id, 'update', 'name', $hierarchy->name);
 
 		if ($request->input('approver_id_2') <> 0) {
 			$hierarchyl					= new Hierarchyl();
@@ -262,8 +264,7 @@ class HierarchyController extends Controller
 			$hierarchyl->save();
 		}
 
-		// Write to Log
-		EventLog::event('hierarchy', $hierarchy->id, 'update', 'name', $hierarchy->name);
+		
 		return redirect()->route('hierarchies.index')->with('success', 'Hierarchy updated successfully');
 	}
 

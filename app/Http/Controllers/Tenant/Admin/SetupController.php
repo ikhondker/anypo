@@ -58,8 +58,6 @@ use Illuminate\Support\Facades\Response;
 use Str;
 # 12. FUTURE
 
-
-
 class SetupController extends Controller
 {
 
@@ -167,12 +165,10 @@ class SetupController extends Controller
 
 			$request->merge(['logo' => $thumbImage]);
 		}
-
-
-		$setup->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('setup', $setup->id, 'update', 'name', $request->name);
+		$setup->update($request->all());
 
 		return redirect()->route('setups.show', $setup->id)->with('success', 'Setup updated successfully');
 	}
@@ -195,6 +191,7 @@ class SetupController extends Controller
 
 		return view('tenant.admin.setups.tc', compact('setup'));
 	}
+
 	public function updateTc(Request $request, Setup $setup)
 	{
 		$this->authorize('update', $setup);
@@ -248,27 +245,37 @@ class SetupController extends Controller
 
 		Log::debug('tenant.admin.setup.freeze updating old setup->currency = '.$setup->currency);
 
-		Log::debug('tenant.setup.freeze request input  currency = '.$request->input('currency'));
-		$base = $request->input('currency');
+		Log::debug('tenant.setup.freeze request input currency = '.$request->input('currency'));
+		Log::debug('tenant.setup.freeze request input country = '.$request->input('country'));
+		$default_currency = $request->input('currency');
+		$default_country = $request->input('country');
 
-		// Enable that base currency
-		$currency = Currency::where('currency', $base)->first();
+		// Enable that default_currency currency
+		$currency = Currency::where('currency', $default_currency)->first();
 		$currency->enable = true;
 		$currency->save();
 
-		// update setup.
+		// update setup currency and country.
 		Log::debug('tenant.admin.setup.freeze freezing setup_id = ' . $setup->id);
 		$request->merge(['freezed'	=> true ]);
 		$setup->update($request->all());
 		Log::debug('tenant.admin.setup.freeze updating setup->currency = '.$setup->currency);
 
-
 		// Update currency of seeded bank account
 		Log::debug('tenant.admin.setup.freeze updating seeded bankAccount currency = '.$setup->currency);
 		$bankAccount  = BankAccount ::where('id', 1001)->first();
-		$bankAccount->ac_name = 'STD-SEEDED-'.$base;
-		$bankAccount->currency = $base;
+		$bankAccount->ac_name = 'STD-SEEDED-'.$default_currency;
+		$bankAccount->currency = $default_currency;
+		$bankAccount->country = $default_country;
 		$bankAccount->save();
+
+		Log::debug('tenant.admin.setup.freeze updating country for Users, warehouses and suppliers to = '.$default_country);
+		// update users country
+		DB::statement("UPDATE users 		SET country = '".$default_country."'");
+		// update warehouse country
+		DB::statement("UPDATE warehouses 	SET country = '".$default_country."'");
+		// supplier
+		DB::statement("UPDATE suppliers 	SET country = '".$default_country."'");
 
 		// Write to Log
 		EventLog::event('setup', $setup->id, 'update', 'name', $request->name);

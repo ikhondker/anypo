@@ -11,7 +11,7 @@
 				<div class="card-header">
 					<div class="card-actions float-end">
 						@if (auth()->user()->isSystem())
-						<a href="{{ route('services.edit', $service->id) }}" class="btn btn-sm btn-danger text-white"><i class="fas fa-edit"></i>  Edit Service</a>
+						<a href="{{ route('services.edit', $service->id) }}" class="btn btn-sm btn-danger text-white"><i class="fas fa-edit"></i> Edit Service</a>
 						@endif
 					</div>
 					<h5 class="card-title">Service Overview</h5>

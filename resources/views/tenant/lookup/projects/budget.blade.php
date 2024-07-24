@@ -8,8 +8,7 @@
 			Projects
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Project"/>
-			<x-tenant.buttons.header.create object="Project"/>
+			<x-tenant.actions.lookup.project-actions id="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -19,17 +18,6 @@
 
 	<x-tenant.widgets.dbu-project :id="$project->id"/>
 
-	<div class="row">
-		<div class="col-6">
-			
-		</div>
-		<!-- end col-6 -->
-		<div class="col-6">
-			
-		</div>
-		<!-- end col-6 -->
-	</div>
-	<!-- end row -->
 
 	<script type="text/javascript">
 		function mySubmit() {

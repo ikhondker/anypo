@@ -2,7 +2,7 @@
 @section('title','Edit Template')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('templates.index') }}">Templates</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('templates.index') }}" class="text-muted">Templates</a></li>
 	<li class="breadcrumb-item active">{{ $template->name }}</li>
 @endsection
 

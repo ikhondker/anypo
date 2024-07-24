@@ -2,7 +2,7 @@
 @section('title','Create Custom Error')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('custom-errors.index') }}">Custom Errors</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('custom-errors.index') }}" class="text-muted">Custom Errors</a></li>
 	<li class="breadcrumb-item active">Create CustomError</li>
 @endsection
 
@@ -25,7 +25,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('custom-errors.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('custom-errors.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create new Custom Error </h5>
 				<h6 class="card-subtitle text-muted">Create new Custom Error with details.</h6>

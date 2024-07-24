@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Item Group')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('groups.index') }}">Groups</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('groups.index') }}" class="text-muted">Groups</a></li>
 	<li class="breadcrumb-item active">Create</li>
 @endsection
 
@@ -24,7 +24,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('groups.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('groups.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create Item Group</h5>
 				<h6 class="card-subtitle text-muted">Create a new Item Group</h6>

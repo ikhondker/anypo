@@ -17,6 +17,8 @@ return new class extends Migration
 		Schema::create('payments', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->foreignId('invoice_id')->constrained('invoices');
+			// added to simplify coding 
+			$table->foreignId('po_id')->constrained('pos');
 			$table->dateTime('pay_date')->useCurrent();
 			$table->foreignId('payee_id')->constrained('users');
 			//$table->string('summary')->nullable();

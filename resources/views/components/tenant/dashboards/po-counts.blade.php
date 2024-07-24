@@ -1,6 +1,4 @@
 <div class="row">
-
-
 	<div class="col-md-6 col-xxl-3 d-flex">
 		<div class="card illustration flex-fill">
 			<div class="card-body p-0 d-flex flex-fill">
@@ -8,7 +6,7 @@
 					<div class="col-6">
 						<div class="illustration-text p-3 m-1">
 							<h4 class="illustration-text">Welcome Back, {{ auth()->user()->name }}!</h4>
-							<p class="mb-0">Purchase Order Listing</p>
+							<p class="mb-0">Purchase Orders</p>
 						</div>
 					</div>
 					<div class="col-6 align-self-end text-end">
@@ -19,7 +17,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
 		<div class="card flex-fill">
@@ -43,7 +40,6 @@
 		</div>
 	</div>
 
-
 	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
 		<div class="card flex-fill">
 			<div class="card-body py-4">
@@ -65,7 +61,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<div class="col-12 col-sm-6 col-xxl-3 d-flex">
 		<div class="card flex-fill">

@@ -44,7 +44,7 @@ class ItemSeeder extends Seeder
 				'code'			=> 'AP0001',
 				'name'			=> 'Shipping',
 				'notes'			=> 'Shipping',
-				'price'			=> 10,
+				'price'			=> 899,
 				'stock'			=> 99999999,
 				'reorder'		=> 99999999,
 				'category_id'	=> 1003,

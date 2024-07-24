@@ -119,10 +119,11 @@ class GroupController extends Controller
 		$request->validate([
 
 		]);
-		$group->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('group', $group->id, 'update', 'name', $group->name);
+		$group->update($request->all());
+		
 		return redirect()->route('groups.index')->with('success', 'Group updated successfully');
 	}
 

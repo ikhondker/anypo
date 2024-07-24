@@ -172,10 +172,10 @@
 	// INITIALIZATION OF BOOTSTRAP VALIDATION
 	// =======================================================
 	HSBsValidation.init('.js-validate', {
-	  onSubmit: data => {
-		data.event.preventDefault()
-		alert('Submited')
-	  }
+		onSubmit: data => {
+			data.event.preventDefault()
+			alert('Submited')
+		}
 	})
 
 
@@ -192,14 +192,14 @@
 	// INITIALIZATION OF SELECT
 	// =======================================================
 	HSCore.components.HSTomSelect.init('.js-select', {
-	  render: {
-		'option': function(data, escape) {
-		  return data.optionTemplate
+		render: {
+			'option': function(data, escape) {
+			return data.optionTemplate
 		},
 		'item': function(data, escape) {
-		  return data.optionTemplate
+			return data.optionTemplate
 		}
-	  }
+		}
 	})
-  })()
+})()
 </script>

@@ -3,7 +3,7 @@
 		<x-cards.header-with-simple-search object="Dept" title="Department" :export="true"/>
 	</div>
 	<div class="card-body">
-	  
+	
 		<table class="table">
 			<thead>
 				<tr>

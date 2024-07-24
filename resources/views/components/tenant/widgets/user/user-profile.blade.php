@@ -25,6 +25,12 @@
 	</div>
 	<hr class="my-0" />
 	<div class="card-body">
+		<h5 class="h6 card-title">User Role</h5>
+		<a href="#" class="badge badge-subtle-primary me-1 my-1">{{ $user->role }}</a>
+	</div>
+	
+	<hr class="my-0" />
+	<div class="card-body">
 		<h5 class="h6 card-title">Address</h5>
 		<ul class="list-unstyled mb-0">
 			<li class="mb-1"> {{ empty($user->address1 ) ? 'Empty Address Line 1' : $user->address1 }}</li>
@@ -34,10 +40,5 @@
 		</ul>
 	</div>
 
-	<hr class="my-0" />
-	<div class="card-body">
-		<h5 class="h6 card-title">User Role</h5>
-		<a href="#" class="badge badge-subtle-primary me-1 my-1">{{ $user->role }}</a>
-	</div>
 
 </div>

@@ -11,73 +11,63 @@
 			Currency
 		@endslot
 		@slot('buttons')
-		<x-tenant.buttons.header.create object="Currency"/>
+		@if (auth()->user()->isSystem())
+			<x-tenant.buttons.header.create object="Currency"/>
+		@endif
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-12">
+	<div class="card">
+		<div class="card-header">
+			<x-tenant.cards.header-search-export-bar object="Currency"/>
+			<h5 class="card-title">
+				@if (request('term'))
+					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+				@else
+					Currency Lists
+				@endif
+			</h5>
+			<h6 class="card-subtitle text-muted">List of currencies.</h6>
+		</div>
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Country</th>
+						<th>Enable?</th>
+						<th>Exchange Rate Available?</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach ($currencies as $currency)
+					<tr>
+						<td>{{ $currency->currency }}</td>
+						<td><a href="{{ route('currencies.show',$currency->currency) }}"><strong>{{ $currency->name }}</strong></a></td>
+						<td>{{ $currency->country }}</td>
+						<td><x-tenant.list.my-enable :value="$currency->enable"/></td>
+						<td><x-tenant.list.my-boolean :value="$currency->rates"/></td>
+						<td>
+							<a href="{{ route('currencies.show',$currency->currency) }}" class="btn btn-light"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+							</a>
+						</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
 
-			<div class="card">
-				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Currency"/>
-					<h5 class="card-title">
-						@if (request('term'))
-							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
-						@else
-							Currency Lists
-						@endif
-					</h5>
-					<h6 class="card-subtitle text-muted">List of currencies.</h6>
-				</div>
-				<div class="card-body">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Code</th>
-								<th>Name</th>
-								<th>Country</th>
-								<th>Enable?</th>
-								<th>Rate Avl.?</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($currencies as $currency)
-							<tr>
-								<td>{{ $currency->currency }}</td>
-								<td><a href="{{ route('currencies.show',$currency->currency) }}"><strong>{{ $currency->name }}</strong></a></td>
-								<td>{{ $currency->country }}</td>
-								<td><x-tenant.list.my-enable :value="$currency->enable"/></td>
-								<td><x-tenant.list.my-boolean :value="$currency->rates"/></td>
-								<td>
-									<a href="{{ route('currencies.show',$currency->currency) }}" class="btn btn-light"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
-									</a>
-								</td>
-
-									
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-
-					<div class="row pt-3">
-						{{ $currencies->links() }}
-					</div>
-					<!-- end pagination -->
-
-				</div>
-				<!-- end card-body -->
+			<div class="row pt-3">
+				{{ $currencies->links() }}
 			</div>
-			<!-- end card -->
+			<!-- end pagination -->
 
 		</div>
-		 <!-- end col -->
+		<!-- end card-body -->
 	</div>
-	 <!-- end row -->
-
-
+	<!-- end card -->
 
 @endsection
 

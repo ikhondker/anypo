@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Hierarchy')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('hierarchies.index') }}">Approval Hierarchies</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('hierarchies.show',$hierarchy->id) }}">{{ $hierarchy->name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('hierarchies.index') }}" class="text-muted">Approval Hierarchies</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('hierarchies.show',$hierarchy->id) }}" class="text-muted">{{ $hierarchy->name }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 

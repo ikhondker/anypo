@@ -17,7 +17,7 @@ use App\Enum\LandlordCheckoutStatusEnum;
 
 // Helpers
 use App\Helpers\Bo;
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 
 use Illuminate\Support\Facades\Log;
 

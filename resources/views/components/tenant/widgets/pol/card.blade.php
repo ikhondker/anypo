@@ -10,17 +10,21 @@
 								<input class="form-check-input m-1" type="checkbox" id="add_row" name="add_row" checked>
 								<label class="form-check-label" for="add_row">... add another row</label>
 							</div>
+						@else
+							@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+								<a href="{{ route('pols.add-line', $po->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus-square"></i> Add Line</a>
+							@endif
 						@endif
 					</div>
 				</div>
 				<h5 class="card-title">Purchase Order Lines</h5>
 				<h6 class="card-subtitle text-muted">List of Purchase Order Lines.</h6>
 			</div>
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-sm">
 				<thead>
 					<tr>
 						@if ( $readOnly )
-							<th class="" style="width:2%">LINE#</th>
+							<th class="" style="width:2%">LN#</th>
 							<th class="" style="width:5%" >Item</th>
 							<th class="" style="width:23%">Description</th>
 							<th class="" style="width:7%">UOM</th>
@@ -34,7 +38,7 @@
 							<th class="text-end">Status</th>
 							<th class="" style="width:10%">Actions</th>
 						@else
-							<th class="" style="width:2%">LINE#</th>
+							<th class="" style="width:2%">LN#</th>
 							<th class="" style="width:13%" >Item</th>
 							<th class="" style="width:23%">Description</th>
 							<th class="" style="width:7%">UOM</th>
@@ -51,8 +55,12 @@
 
 					</tr>
 				</thead>
-				{{ $lines }}
 
+
+				<!-- pol lines -->
+				{{ $lines }}
+				<!-- pol lines -->
+		
 				@if ( $readOnly )
 					<!-- Table footer i.e. Totals -->
 					<tr>

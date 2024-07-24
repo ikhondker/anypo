@@ -36,7 +36,12 @@
 				<div class="card-body">
 					<table class="table table-sm my-2">
 						<tbody>
-							<x-tenant.show.my-badge		value="{{ $budget->fy }}" label="FY"/>
+							
+							<tr>
+								<th width="20%">FY :</th>
+								<td><span class="badge badge-subtle-primary">{{ $budget->fy }}</span></td>
+							</tr>
+							<x-tenant.show.my-amount	value="{{ $budget->amount }}" label="Budget"/>
 							<x-tenant.show.my-text		value="{{ $budget->name }}" label="Name"/>
 							<x-tenant.show.my-date		value="{{ $budget->start_date }}" label="Start Date"/>
 							<x-tenant.show.my-date		value="{{ $budget->end_date }}" label="End Date"/>

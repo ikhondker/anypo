@@ -18,8 +18,7 @@ class DeptBudget extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr', 'amount_po_booked', 'amount_po', 'amount_grs', 'amount_invoice', 'amount_payment', 'count_pr_booked', 'count_pr', 'count_po_booked', 'count_po', 'count_grs', 'count_invoice', 'count_payment', 'end_date', 'notes', 'closed', 'updated_by', 'updated_at',
-
+		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr', 'amount_po_booked', 'amount_po', 'amount_grs', 'amount_invoice', 'amount_payment', 'count_pr_booked', 'count_pr', 'count_po_booked', 'count_po', 'count_grs', 'count_invoice', 'count_payment', 'end_date', 'notes', 'revision', 'parent_id', 'closed', 'updated_by', 'updated_at',
 	];
 /*
 	|-----------------------------------------------------------------------------
@@ -27,15 +26,14 @@ class DeptBudget extends Model
 	|-----------------------------------------------------------------------------
 	*/
 
-	
-
 	/* ----------------- Scopes ------------------------- */
 	/**
 	 * Scope a query to only include current account users.
 	 */
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('closed', false);
+		$query->where('closed', false)
+			->where('revision', false);
 	}
 
 	/**
@@ -43,9 +41,19 @@ class DeptBudget extends Model
 	*/
 	public function scopeByDeptAll(Builder $query): void
 	{
-		$query->where('dept_id', auth()->user()->dept_id ); 
+		$query->where('dept_id', auth()->user()->dept_id )
+			->where('revision', false);
 	}
 	
+	/**
+	 * Scope a query to only All PR for current user dept.
+	*/
+	public function scopeByDeptAllRevisions(Builder $query): void
+	{
+		$query->where('dept_id', auth()->user()->dept_id )
+			->where('revision', true);
+	}
+
 	/**
 	 * Scope a query to only All PR for current user dept.
 	*/

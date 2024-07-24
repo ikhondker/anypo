@@ -23,14 +23,14 @@
 			<div class="dropdown-divider"></div>
 			@if ($category->enable)
 				<a class="dropdown-item sw2-advance" href="{{ route('categories.destroy', $category->id) }}"
-					data-entity="Dept" data-name="{{ $category->name }}" data-status="Disable"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="Disable Dept">
-					<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Disable Dept</a>
+					data-entity="Category" data-name="{{ $category->name }}" data-status="Disable"
+					data-bs-toggle="tooltip" data-bs-placement="top" title="Disable Category">
+					<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Disable Category</a>
 			@else
 				<a class="dropdown-item sw2-advance" href="{{ route('categories.destroy', $category->id) }}"
-					data-entity="Dept" data-name="{{ $category->name }}" data-status="Enable"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="Enable Dept">
-					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Dept</a>
+					data-entity="Category" data-name="{{ $category->name }}" data-status="Enable"
+					data-bs-toggle="tooltip" data-bs-placement="top" title="Enable Category">
+					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Category</a>
 			@endif
 		@endcan
 

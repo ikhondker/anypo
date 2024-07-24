@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Hierarchy')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('hierarchies.index') }}">Approval Hierarchies</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('hierarchies.index') }}" class="text-muted">Approval Hierarchies</a></li>
 	<li class="breadcrumb-item active">{{ $hierarchy->name }}</li>
 @endsection
 
@@ -12,7 +12,7 @@
 			Approval Hierarchy
 		@endslot
 		@slot('buttons')
-		  	<x-tenant.actions.workflow.hierarchy-actions id="{{ $hierarchy->id }}"/>
+			<x-tenant.actions.workflow.hierarchy-actions id="{{ $hierarchy->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -40,7 +40,7 @@
 				<tbody>
 					@foreach ($hierarchyls as $hierarchyl)
 					<tr>
-						<td><span class="badge badge-subtle-primary">{{ $loop->iteration }}</span></td>
+						<td>{{ $loop->iteration }}</td>
 						<td>{{ $hierarchyl->approver->name }}</td>
 						<td>{{ $hierarchyl->approver->designation->name }} </td>
 						<td>{{ $hierarchyl->approver->dept->name }} </td>

@@ -89,9 +89,6 @@ class InvoiceController extends Controller
 				$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoDept(auth()->user()->dept_id)->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
-				// buyer can see all invoice of all his po's
-				//$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
-				//break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
 			case UserRoleEnum::SYSTEM->value:
@@ -126,10 +123,18 @@ class InvoiceController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create(Po $po)
+	public function create()
+	{
+		abort(403);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function createForPo(Po $po)
 	{
 
-		$this->authorize('create', Invoice::class);
+		$this->authorize('createForPo', Invoice::class);
 
 		$setup 	= Setup::first();
 		if ($setup->readonly ){
@@ -156,7 +161,7 @@ class InvoiceController extends Controller
 	 */
 	public function store(StoreInvoiceRequest $request)
 	{
-		$this->authorize('create', Invoice::class);
+		$this->authorize('createForPo', Invoice::class);
 
 		// get PO
 		$po = Po::where('id', $request->input('po_id'))->first();
@@ -188,7 +193,8 @@ class InvoiceController extends Controller
 
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'create');
-		return redirect()->route('invoices.show',$invoice->id)->with('success', 'Invoice created successfully. Please POST the invoice.');
+		//return redirect()->route('invoices.show',$invoice->id)->with('success', 'Invoice created successfully. Please POST the invoice.');
+		return redirect()->route('pos.invoices',$invoice->po_id)->with('success', 'Invoice created successfully. Please POST the invoice.');
 	}
 
 	/**
@@ -248,10 +254,12 @@ class InvoiceController extends Controller
 		$request->merge([
 			'invoice_no' => Str::upper($request['invoice_no']),
 		]);
-		$invoice->update($request->all());
 
+		
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'update', 'summary', $invoice->summary);
+		$invoice->update($request->all());
+		
 		return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoices updated successfully.');
 	}
 

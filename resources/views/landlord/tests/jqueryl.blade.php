@@ -5,7 +5,6 @@
 @section('content')
 
 <div id="app">
-  
 	<main class="container">
 		<h1> IQBAL JQuery in Laravel 10? LANDLORD</h1>
 		
@@ -17,7 +16,6 @@
  
 	<main class="container">
 		<h1> How To Install Sweetalert2 in Laravel? - ItSolutionstuiff.com</h1>
-		  
 		<button class="btn btn-success">Click Me</button>
 	</main>
 </div>
@@ -90,7 +88,7 @@
 </script> --}}
 
 <script type="module">
-	  $(document).ready(function() {
+		$(document).ready(function() {
 		$("button").click(function(){
 			alert("Thanks");
 		});
@@ -98,9 +96,9 @@
 </script>
 
 <script type="module">
-  
+
 	$('button').click(function(){
-		  Swal.fire({
+		Swal.fire({
 			title: 'Are you sure?',
 			text: "You won't be able to revert this!",
 			icon: 'warning',
@@ -108,15 +106,15 @@
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, delete it!'
-		  }).then((result) => {
+		}).then((result) => {
 			if (result.isConfirmed) {
-			  Swal.fire(
+			Swal.fire(
 				'Deleted!',
 				'Your file has been deleted.',
 				'success'
-			  )
+			)
 			}
-		  });
+		});
 	});
 </script>
 

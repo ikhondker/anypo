@@ -11,7 +11,7 @@
 <h1 class="h3 mb-3">Change Password</h1>
 
 	 <!-- form start -->
-	 <form action="{{ route('users.password-update',['user'=>$user->id]) }}" method="POST">
+	 <form action="{{ route('users.profile-password-update',['user'=>$user->id]) }}" method="POST">
 		@csrf
 
 

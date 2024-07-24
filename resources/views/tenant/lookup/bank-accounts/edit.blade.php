@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Bank Account')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.index') }}">Bank Accounts</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.show',$bankAccount->id) }}">{{ $bankAccount->ac_name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.index') }}" class="text-muted">Bank Accounts</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('bank-accounts.show',$bankAccount->id) }}" class="text-muted">{{ $bankAccount->ac_name }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 

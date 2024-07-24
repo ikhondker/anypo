@@ -13,7 +13,6 @@
 			Create DeptBudget
 		@endslot
 		@slot('buttons')
-		<x-tenant.buttons.header.save/>
 			<x-tenant.buttons.header.lists object="DeptBudget"/>
 		@endslot
 	</x-tenant.page-header>
@@ -26,7 +25,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('dept-budgets.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('dept-budgets.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create Departmental Budget</h5>
 						<h6 class="card-subtitle text-muted">Create Departmental Budget.</h6>
@@ -36,7 +35,7 @@
 					<tbody>
 						
 						<tr>
-							<th>Budget Year/Name</th>
+							<th>Budget Year/Name :</th>
 							<td>
 								<select class="form-control" name="budget_id" required>
 									<option value=""><< Budget >> </option>
@@ -53,7 +52,7 @@
 						
 
 						<tr>
-							<th>Dept</th>
+							<th>Dept :</th>
 							<td>
 								<select class="form-control" name="dept_id" required>
 									<option value=""><< Dept >> </option>

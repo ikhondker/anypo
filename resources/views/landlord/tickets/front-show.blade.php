@@ -94,11 +94,11 @@
 	</div>
 	<!-- End Card -->
 
-	<!--  BEGIN ADD COMMENT  -->
+	<!-- BEGIN ADD COMMENT -->
 	@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
 		@include('landlord.includes.ticket-add-comment')
 	@endif
-	<!--  END ADD COMMENT  -->
+	<!-- END ADD COMMENT -->
 
 	<!-- card-ticket-comments -->
 	<x-landlord.widgets.ticket-comments id="{{ $ticket->id }}"/>

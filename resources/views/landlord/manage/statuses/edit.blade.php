@@ -28,7 +28,7 @@
 								<td>
 									<input type="text" class="form-control @error('badge') is-invalid @enderror"
 										name="badge" id="badge" placeholder="badge"
-										value="{{ old('badge', $status->badge  ) }}"
+										value="{{ old('badge', $status->badge) }}"
 										required/>
 									@error('badge')
 										<div class="small text-danger">{{ $message }}</div>

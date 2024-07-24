@@ -5,26 +5,26 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		
 		@if (Route::current()->getName() == 'suppliers.edit')
-		<a class="dropdown-item" href="{{ route('suppliers.show', $supplier->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Supplier</a>
+			<a class="dropdown-item" href="{{ route('suppliers.show', $supplier->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Supplier</a>
 		@endif
 		@if (Route::current()->getName() == 'suppliers.show')
 			@can('update', $supplier)
 				<a class="dropdown-item" href="{{ route('suppliers.edit', $supplier->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Supplier</a>
 			@endcan
 		@endif
+		@can('spends', App\Models\Tenant\Lookup\Supplier::class)
+			<a class="dropdown-item" href="{{ route('suppliers.po', $supplier->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Supplier PO</a>
+			<a class="dropdown-item" href="{{ route('suppliers.spends') }}"><i class="align-middle me-1" data-lucide="pie-chart"></i> Supplier Spends</a>
+		@endcan 
 
-		<a class="dropdown-item" href="{{ route('suppliers.index') }}"><i class="align-middle me-1" data-lucide="list"></i> Supplier List</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('suppliers.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
 		
 		@can('create', App\Models\Tenant\Lookup\Supplier::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Supplier</a>
 		@endcan
 		
-		@can('spends', App\Models\Tenant\Lookup\Supplier::class)
-			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('suppliers.spends', $supplier->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> Supplier Spends</a>
-			<a class="dropdown-item" href="{{ route('suppliers.po', $supplier->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Supplier PO</a>
-		@endcan 
 
 		@can('delete', $supplier)
 			<div class="dropdown-divider"></div>

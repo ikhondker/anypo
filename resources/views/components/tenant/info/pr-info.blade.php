@@ -38,6 +38,10 @@
 									<td><span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
 								</tr>
 								<tr>
+									<th>Supplier</th>
+									<td>{{ $pr->supplier->name }}</td>
+								</tr>
+								<tr>
 									<th>Requestor</th>
 									<td>{{ $pr->requestor->name }}</td>
 								</tr>

@@ -69,15 +69,21 @@
 						<th>Currency</th>
 						<th>PO#</th>
 						<th>Reference</th>
-						<th>Actions</th>
+						<th>View</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($aehs as $aeh)
 					<tr>
-						<td><a class="text-info" href="{{ route('aehs.show',$aeh->id) }}">{{ $aeh->id }}</a></td>
-						<td>{{ $aeh->source_entity }}</td>
-						<td>{{ $aeh->event }}</td>
+						<td><a href="{{ route('aehs.show',$aeh->id) }}"><strong>{{ $aeh->id }}</strong></a></td>
+						<td><span class="badge badge-subtle-primary">{{ $aeh->source_entity }}</span></td>
+						<td>
+								@if ($aeh->event->value == App\Enum\AehEventEnum::CANCEL->value)
+									<span class="badge badge-subtle-danger">{{ $aeh->event }}</span>
+								@else 
+									<span class="badge badge-subtle-success">{{ $aeh->event }}</span>
+								@endif 
+						</td>
 						<td><x-tenant.list.my-date :value="$aeh->accounting_date"/></td>
 						<td>{{ $aeh->description }}</td>
 						<td class="text-end"><x-tenant.list.my-number :value="$aeh->fc_dr_amount"/></td>
@@ -85,7 +91,7 @@
 						<td>{{ $aeh->fc_currency }}</td>
 						<td><x-tenant.common.link-po id="{{ $aeh->po_id }}"/></td>
 						<td>{{ $aeh->reference_no }}</td>
-						<td class="table-action">
+						<td>
 							<a href="{{ route('aehs.show',$aeh->id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 							</a>

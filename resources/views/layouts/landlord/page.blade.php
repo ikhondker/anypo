@@ -46,10 +46,10 @@
 	@yield('content')
 	<!-- /.content -->
 
-	<footer class="py-5 bg-primary">
+	<footer class="py-5 bg-dark">
 		<div class="container">
 			<div class="row mb-4">
-				<div class="col-12 col-lg-4">
+				<div class="col-12 col-lg-3">
 					<div class="mb-3">
 						<!-- Logo -->
 						<a class="navbar-brand" href="{{ route('home') }}" aria-label="Space">
@@ -83,7 +83,24 @@
 						<li class="mt-2"><a class="text-white-50" href="{{ route('contact-us') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Contact us</a></li>
 					</ul>
 				</div>
-				<div class="col-12 col-md-4 col-lg-2 mb-3 mb-md-0">
+				<div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-0">
+
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for...">
+						<button class="btn btn-secondary" type="button">Go!</button>
+					</div>
+					
+					<form class="row row-cols-md-auto align-items-center">
+						<div class="col-12">
+
+							<div class="input-group mb-2">
+								<div class="input-group-text">@</div>
+								<input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+								<button type="submit" class="btn btn-primary mb-2">Submit</button>
+							</div>
+						</div>
+					</form>
+
 					<!-- Form -->
 					<form action="{{ route('home.join-mail-list') }}" method="POST">
 						@csrf

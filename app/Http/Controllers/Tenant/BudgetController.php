@@ -64,9 +64,37 @@ class BudgetController extends Controller
 		if (request('term')) {
 			$budgets->where('name', 'Like', '%'.request('term').'%');
 		}
-		$budgets = $budgets->orderBy('id', 'DESC')->paginate(10);
+		$budgets = $budgets->where('revision',false)->orderBy('id', 'DESC')->paginate(10);
 
 		return view('tenant.budgets.index', compact('budgets'));
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function revisions(Budget $budget)
+	{
+		$this->authorize('viewAny', Budget::class);
+
+		$budgets = Budget::where('parent_id',$budget->id)
+					->where('revision',true)
+				 	->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.budgets.revisions', compact('budgets','budget'));
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function revisionsAll()
+	{
+		$this->authorize('viewAny', Budget::class);
+
+		$budgets = Budget::query();
+		if (request('term')) {
+			$budgets->where('name', 'Like', '%'.request('term').'%');
+		}
+		$budgets = $budgets->where('revision',true)->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.budgets.revisions-all', compact('budgets'));
 	}
 
 	/**
@@ -77,10 +105,14 @@ class BudgetController extends Controller
 
 		$this->authorize('create', Budget::class);
 
-		$setup = Setup::first();
+		// Make sure only one budget is open at a time
+		$count_open	= Budget::where('closed', false)->where('revision',false)->count();
+		if ($count_open <> 0){
+			return redirect()->route('budgets.index')->with('error', 'Please close previous Years budget, before opening new Budget year.');
+		}
 
-		$lastbudget = Budget::latest()->first();
-		$lastbudget = Budget::orderBy('fy', 'desc')->first();
+		$setup = Setup::first();
+		$lastbudget = Budget::where('revision',false)->orderBy('fy', 'desc')->first();
 
 		$fy = (int) $lastbudget->fy;
 		$fy = $fy + 1 ;
@@ -96,11 +128,13 @@ class BudgetController extends Controller
 		$budget->save();
 		$budget_id = $budget->id;
 
-
 		// insert deptbudget rows
-		DB::INSERT("INSERT INTO dept_budgets(budget_id, dept_id) 
-				SELECT ".$budget_id.",id 
-				FROM depts WHERE enable = 1 ;");
+		DB::INSERT("INSERT INTO 
+					dept_budgets(budget_id, dept_id) 
+				SELECT ".
+					$budget_id.",id 
+				FROM depts 
+				WHERE enable = 1 ;");
 
 		return redirect()->route('budgets.index')->with('success', 'Next Year Budget opened successfully');
 
@@ -156,6 +190,8 @@ class BudgetController extends Controller
 
 		]);
 		
+		// Write to Log
+		EventLog::event('budget', $budget->id, 'update', 'name', $budget->name);
 		$budget->update($request->all());
 
 		// upload file as record
@@ -165,8 +201,7 @@ class BudgetController extends Controller
 			$attid = FileUpload::aws($request);
 		}
 
-		// Write to Log
-		EventLog::event('budget', $budget->id, 'update', 'name', $budget->name);
+		
 
 		return redirect()->route('budgets.show',$budget->id )->with('success', 'Budget updated successfully');
 
@@ -179,21 +214,39 @@ class BudgetController extends Controller
 	{
 		$this->authorize('delete', $budget);
 
+		// while opening a budget , ake sure only one budget is open at a time
+		if ($budget->closed){ // user is trying to open a budget
+			$count_open	= Budget::where('closed', false)->where('revision',false)->count();
+			if ($count_open <> 0){
+				return redirect()->route('budgets.index')->with('error', 'Please close the open budget, before opening new budget.');
+			}
+		}
 		$budget->fill(['closed' => ! $budget->closed]);
 		$budget->update();
 
 		// Write to Log
 		EventLog::event('budget', $budget->id, 'status', 'closed', $budget->closed);
 
-		return redirect()->route('budgets.show',$budget->id )->with('success', 'Budget status Updated successfully');
+		return redirect()->route('budgets.index')->with('success', 'Budget status Updated successfully');
 	}
 
 	public function export()
 	{
 		$this->authorize('export', Budget::class);
-		$data = DB::select("SELECT id, fy, name, start_date, end_date, amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_payment, notes, 
-				IF(closed, 'Yes', 'No') as closed
-			FROM budgets");
+		$sql = "
+			SELECT b.id, b.fy, b.name, b.start_date, b.end_date,
+			b.amount, 
+			b.amount_pr_booked, b.amount_pr, 
+			b.amount_po_booked, b.amount_po, 
+			b.amount_grs, b.amount_invoice, b.amount_payment, b.notes, 
+			IF(b.closed, 'Yes', 'No') as closed
+			FROM budgets b
+			WHERE b.revision = false 
+			";
+
+		//Log::debug(tenant('id'). 'tenant.Budget.export sql = '. $sql);
+		$data = DB::select($sql);
+			
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('budgets', $dataArray);

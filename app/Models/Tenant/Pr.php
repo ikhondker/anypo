@@ -412,7 +412,8 @@ class Pr extends Model
 	*/
 	public function scopeByDeptAll(Builder $query): void
 	{
-		$query->where('dept_id', auth()->user()->dept_id );
+		$query->where('dept_id', auth()->user()->dept_id )
+		->where('auth_status','<>',AuthStatusEnum::DRAFT->value);
 	}
 
 	/**

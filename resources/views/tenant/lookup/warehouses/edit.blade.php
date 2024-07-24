@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Warehouse')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('warehouses.index') }}">Warehouses</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('warehouses.show',$warehouse->id) }}">{{ $warehouse->name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('warehouses.index') }}" class="text-muted">Warehouses</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('warehouses.show',$warehouse->id) }}" class="text-muted">{{ $warehouse->name }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 

@@ -108,10 +108,9 @@ class CustomErrorController extends Controller
 			'code' => Str::upper($request['code']),
 		]);
 		
-		$customError->update($request->all());
-
 		// Write to Log
 		EventLog::event('customError', $customError->code, 'update', 'message', $request->message);
+		$customError->update($request->all());
 
 		return redirect()->route('custom-errors.index')->with('success', 'Custom Error updated successfully');
 	}

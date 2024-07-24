@@ -19,7 +19,7 @@ window.Chart = Chart;
 // IQBAL 28-MAR-2024
 import feather from "feather-icons";
 document.addEventListener("DOMContentLoaded", () => {
-    feather.replace();
+	feather.replace();
 });
 window.feather = feather;
 

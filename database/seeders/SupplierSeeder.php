@@ -17,7 +17,7 @@ class SupplierSeeder extends Seeder
 
 		//$faker = app(Generator::class);
 
-		$suppliers =  [
+		$seededSupplier =  [
 		 	[
 				'id' 				=> 1001,
 				'name'				=> 'Seeded Supplier',
@@ -36,7 +36,9 @@ class SupplierSeeder extends Seeder
 			],
 		];
 		
-		Supplier::insert($suppliers);
+		Supplier::insert($seededSupplier);
+
+		// MUST comment this in production
 		Supplier::factory()->count(6)->create();
 	}
 }

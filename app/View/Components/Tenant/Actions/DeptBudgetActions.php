@@ -10,17 +10,14 @@ use App\Models\Tenant\DeptBudget;
 
 class DeptBudgetActions extends Component
 {
-	public $id;
-	public $show;
 	public $deptBudget;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id, $show = false)
+	public function __construct(public string $id)
 	{
 		$this->id 			= $id;
-		$this->show			= $show; 
 		$this->deptBudget = DeptBudget::where('id', $this->id)->get()->firstOrFail();
 	}
 

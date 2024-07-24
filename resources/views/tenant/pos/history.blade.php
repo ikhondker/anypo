@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Approval History')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Purchase Orders</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}">PO#{{ $po->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}" class="text-muted">Purchase Orders</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.show',$po->id) }}" class="text-muted">PO#{{ $po->id }}</a></li>
 	<li class="breadcrumb-item active">Approval History</li>
 @endsection
 

@@ -8,7 +8,9 @@
 			<a class="dropdown-item" href="{{ route('currencies.show', $currency->currency) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Currency</a>
 		@endif
 		@if (Route::current()->getName() == 'currencies.show')
-			<a class="dropdown-item" href="{{ route('currencies.edit', $currency->currency) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Currency</a>
+			@if (auth()->user()->isSystem())
+				<a class="dropdown-item" href="{{ route('currencies.edit', $currency->currency) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Currency</a>
+			@endif	
 		@endif
 
 		<a class="dropdown-item" href="{{ route('currencies.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>

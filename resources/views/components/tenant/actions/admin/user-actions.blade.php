@@ -4,14 +4,23 @@
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
 		
-		<a class="dropdown-item" href="{{ route('users.show', $user->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Profile</a>
-		<a class="dropdown-item" href="{{ route('users.edit', $user->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit User</a>
+
+		@if (Route::current()->getName() == 'users.edit')
+			<a class="dropdown-item" href="{{ route('users.show', $user->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Profile</a>
+		@endif
+		@if (Route::current()->getName() == 'users.show')
+			<a class="dropdown-item" href="{{ route('users.edit', $user->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit User</a>
+		@endif
 		<a class="dropdown-item" href="{{ route('users.password-change', $user->id) }}"><i class="align-middle me-1" data-lucide="key"></i> Change Password</a>
+
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('users.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
 
 		@can('create', App\Models\User::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create User</a>
 		@endcan
+		
 
 		@can('delete', $user)
 			<div class="dropdown-divider"></div>

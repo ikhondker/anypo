@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Create Item')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('items.index') }}">Items</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('items.index') }}" class="text-muted">Items</a></li>
 	<li class="breadcrumb-item active">Create</li>
 @endsection
 
@@ -12,7 +12,7 @@
 			Create Item
 		@endslot
 		@slot('buttons')
-
+			<x-tenant.buttons.header.lists object="Item"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -23,7 +23,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create and Item</h5>
 				<h6 class="card-subtitle text-muted">Create and Item.</h6>

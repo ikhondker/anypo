@@ -107,12 +107,10 @@ class CategoryController extends Controller
 	public function update(UpdateCategoryRequest $request, Category $category)
 	{
 		$this->authorize('update', $category);
-
-		//dd($category);
-		$category->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('category', $category->id, 'update', 'name', $category->name);
+		$category->update($request->all());
 
 		return redirect()->route('categories.index')->with('success', 'Category updated successfully');
 	}

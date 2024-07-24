@@ -37,7 +37,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
 					@if (auth()->user()->isSystem())
 						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
 					 @endif
@@ -84,9 +84,9 @@
 					<tr>
 						<td>create</td>
 						<td>[index-actions] </td>
-						<td></td>
+						<td>View all</td>
 						<td>&nbsp;</td>
-						<td>View All</td>
+						<td>[View All]</td>
 						<td>[FontAwesome]</td>
 					</tr>
 				</tbody>
@@ -278,8 +278,8 @@
 				<div class="card-actions float-end">
 					<div class="dropdown position-relative">
 						<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-				  <i class="align-middle" data-lucide="more-horizontal"></i>
-				</a>
+							<i class="align-middle" data-lucide="more-horizontal"></i>
+						</a>
 
 						<div class="dropdown-menu dropdown-menu-end">
 							<a class="dropdown-item" href="#">Action</a>
@@ -866,11 +866,11 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
-                    <a class="btn btn-sm btn-light" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
-                    @if (auth()->user()->isSystem())
+					<a href="{{ route('users.edit', 123) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
+					@if (auth()->user()->isSystem())
 						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
-					 @endif
+					@endif
 				</div>
 				<h5 class="card-title">Empty card</h5>
 				<h6 class="card-subtitle text-muted">Please provide brief description of this card.</h6>
@@ -905,9 +905,9 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-                    <a class="btn btn-sm btn-light" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
-                    <a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>  Create</a>
-					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a class="btn btn-sm btn-light" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>Create</a>
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
 				</div>
 				<h5 class="card-title">Empty (Formateted)</h5>
 				<h6 class="card-subtitle text-muted">Please provide brief description of this card.</h6>

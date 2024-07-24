@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Upload Items')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('upload-items.index') }}">Interface Items</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('upload-items.index') }}" class="text-muted">Interface Items</a></li>
 	<li class="breadcrumb-item active">Upload</li>
 @endsection
 
@@ -12,7 +12,7 @@
 			Upload Items
 		@endslot
 		@slot('buttons')
-
+			
 		@endslot
 	</x-tenant.page-header>
 
@@ -31,12 +31,12 @@
 					</div>
 					<div class="card-body">
 
-						<div class="alert alert-danger alert-outline" role="alert">
+						<div class="alert alert-warning alert-outline" role="alert">
 							<div class="alert-icon">
 								<i data-lucide="alert-triangle" class=""></i>
 							</div>
-							<div class="alert-message text-danger">
-								<strong class="text-danger">WARNING!</strong> Uploading new data will purge any previous non-uploaded data!
+							<div class="alert-message text-warning">
+								<strong class="text-warning">WARNING!</strong> Uploading new data will purge any previous non-uploaded data!
 							</div>
 						</div>
 

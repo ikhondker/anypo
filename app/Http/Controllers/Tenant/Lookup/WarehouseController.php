@@ -130,10 +130,11 @@ class WarehouseController extends Controller
 		$request->validate([
 
 		]);
-		$warehouse->update($request->all());
-
+		
 		// Write to Log
 		EventLog::event('warehouse', $warehouse->id, 'update', 'name', $warehouse->name);
+		$warehouse->update($request->all());
+		
 		return redirect()->route('warehouses.index')->with('success', 'Warehouse updated successfully');
 	}
 

@@ -14,7 +14,7 @@
 		<table class="table table-sm my-2">
 			<tbody>
 				<tr>
-					<th>Photo</th>
+					<th>Avatar :</th>
 					<td><img src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="img-fluid rounded-circle mb-2" width="128" height="128" title="{{ $user->name }}"></td>
 				</tr>
 				<x-landlord.show.my-text value="{{ $user->name }}" />

@@ -3,94 +3,60 @@
 
 @section('content')
 
-<section class="landing-intro text-bg-dark pt-5 pt-lg-6 pb-5 pb-lg-7">
-	<div class="landing-intro-content container ">
-		<div class="row align-items-center">
-			<div class="col-lg-5 mx-auto">
-				<span class="badge badge-subtle-primary p-1">Free Trial</span>
+	<section class="landing-intro text-bg-dark pt-5 pt-lg-6 pb-5 pb-lg-7">
+		<div class="landing-intro-content container ">
+			<div class="row align-items-center">
+				<div class="col-lg-5 mx-auto">
+					<span class="badge badge-subtle-primary p-1">Free Trial</span>
 
-				<h1 class="my-4 text-white">AppStack is the perfect Admin Template <span class="text-primary">for your next project</span></h1>
+					<h1 class="my-4 text-white"><span class="text-primary">Purchasing </span> and Expense control solution</h1>
 
-				<p class="text-lg text-white-50">A professional package that comes with hundreds of UI components, forms, tables, charts, dashboards, pages and svg icons.</p>
-
-				<div class="my-4">
-					<div class="d-inline-block me-3">
-						<h2 class="text-white">500+</h2>
-						<span class="text-white-50">UI Components</span>
+					<div class="d-flex gap-3 mb-4">
+						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="Logo">
+						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="Logo">
+						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="Logo">
+						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="Logo">
+						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="Logo">
+						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="Logo">
+						<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="Logo">
 					</div>
-					<div class="d-inline-block me-3">
-						<h2 class="text-white">1500+</h2>
-						<span class="text-white-50">SVG Icons</span>
+
+					<p class="text-lg text-white-50">
+						Struggling with managing expenses and staying within budget? We offer a seamless purchasing and budget control solution that streamlines workflows, automates tasks, and gives you real-time spending insights.
+					</p>
+
+					<div class="my-4">
+						<div class="d-inline-block me-3">
+							<h2 class="text-white">500+</h2>
+							<span class="text-white-50">UI Components</span>
+						</div>
+						<div class="d-inline-block me-3">
+							<h2 class="text-white">1500+</h2>
+							<span class="text-white-50">SVG Icons</span>
+						</div>
+						<div class="d-inline-block">
+							<h2 class="text-white">75+</h2>
+							<span class="text-white-50">HTML Pages</span>
+						</div>
 					</div>
-					<div class="d-inline-block">
-						<h2 class="text-white">75+</h2>
-						<span class="text-white-50">HTML Pages</span>
+					<div class="my-4">
+						<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
 					</div>
 				</div>
-				<div class="my-4">
-					<a href="https://themes.getbootstrap.com/product/appstack-responsive-admin-template/" target="_blank" class="btn btn-primary btn-lg btn-pill">Get Started</a>
-				</div>
-			</div>
-			<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
-				<div class="landing-intro-screenshot pb-3">
-					<img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
+				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
+					<div class="landing-intro-screenshot pb-3">
+						<img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
+
+						<img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img1.jpg') }}" alt="Image Description">
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
 
 	<!-- Features -->
-	<div class="container content-space-2 content-space-lg-3">
-		<div class="row align-items-lg-center">
-		<div class="col-lg-5 mb-5 mb-lg-0">
-			<div class="pe-lg-6">
-			<div class="mb-4">
-				<h2 class="h1">Purchasing and Expense control solution</h2>
-			</div>
-
-			<div class="d-flex gap-3 mb-4">
-				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="Logo">
-				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="Logo">
-				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="Logo">
-				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="Logo">
-				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="Logo">
-				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="Logo">
-				<img class="avatar avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="Logo">
-			</div>
-
-			<div class="mb-4">
-				<p>Struggling with managing expenses and staying within budget? We offer a seamless purchasing and budget control solution that streamlines workflows, automates tasks, and gives you real-time spending insights.</p>
-			</div>
-
-			<a class="link" href="{{ route('pricing') }}">Get started <i class="bi-chevron-right small ms-1"></i></a>
-			</div>
-		</div>
-		<!-- End Col -->
-
-		<div class="col-lg-7">
-			<!-- Browser Device -->
-			<figure class="device-browser">
-			<div class="device-browser-header">
-				<div class="device-browser-header-btn-list">
-				<span class="device-browser-header-btn-list-btn"></span>
-				<span class="device-browser-header-btn-list-btn"></span>
-				<span class="device-browser-header-btn-list-btn"></span>
-				</div>
-				<div class="device-browser-header-browser-bar">www.htmlstream.com/front/</div>
-			</div>
-
-			<div class="device-browser-frame">
-				<img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img1.jpg') }}" alt="Image Description">
-			</div>
-			</figure>
-			<!-- End Browser Device -->
-		</div>
-		<!-- End Col -->
-		</div>
-		<!-- End Row -->
-	</div>
+	
 	<!-- End Features -->
 
 	<!-- Features -->
@@ -106,7 +72,7 @@
 			{{-- <p>Use our tools to explore your ideas and make your vision come true. Then share your work easily.</p> --}}
 
 			<div class="mt-4">
-			<a class="btn btn-primary btn-transition px-5" href="{{ route('pricing') }}">Start Now</a>
+				<a class="btn btn-primary btn-transition px-5" href="{{ route('pricing') }}">Start Now</a>
 			</div>
 		</div>
 		<!-- End Col -->
@@ -191,98 +157,116 @@
 	</div>
 	<!-- End Features -->
 
-	<!-- Features -->
-	<div class="position-relative bg-light rounded-2 mx-3 mx-lg-10">
-		<div class="container content-space-2 content-space-lg-3">
-			<!-- Heading -->
-			<div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5">
-				<h2>Stop Overspending</h2>
-				<p>Gain real-time insights into your spending. See exactly where your money is going and identify areas where you can save.</p>
+
+	
+	<section class="py-6 bg-white">
+		<div class="container">
+			<div class="mb-5 text-center">
+				<span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">2. What's ANYPO.NET?</span>
+				<h2 class="h1">Stop Overspending.</h2>
+				<p class="text-muted fs-lg">Gain real-time insights into your spending. See exactly where your money is going and identify areas where you can save.</p>
 			</div>
-			<!-- End Heading -->
-
-			<div class="text-center mb-10">
-				<!-- List Checked -->
-
-				<ul class="list-inline list-checked list-checked-primary">
-					<li class="list-inline-item list-checked-item">Streamline Procurement</li>
-					<li class="list-inline-item list-checked-item">Cost control</li>
-					<li class="list-inline-item list-checked-item">Procurement Automation</li>
-					<li class="list-inline-item list-checked-item">Spending insights</li>
-				</ul>
-				<!-- End List Checked -->
-			</div>
-
-			<div class="row">
-				<div class="col-lg-7 mb-9 mb-lg-0">
-				<div class="pe-lg-6">
-					<!-- Browser Device -->
-					<figure class="device-browser">
-					<div class="device-browser-header">
-						<div class="device-browser-header-btn-list">
-						<span class="device-browser-header-btn-list-btn"></span>
-						<span class="device-browser-header-btn-list-btn"></span>
-						<span class="device-browser-header-btn-list-btn"></span>
+			<div class="row text-start">
+				<div class="col-12 col-md-3">
+					<div class="d-flex align-items-start py-3">
+						<div class="landing-feature">
+							<i data-lucide="sliders"></i>
 						</div>
-						<div class="device-browser-header-browser-bar">www.htmlstream.com/front/</div>
+						<div class="flex-grow-1">
+							<h4 class="mt-4">Streamline Procurement</h4>
+						</div>
 					</div>
-
-					<div class="device-browser-frame">
-						<img class="device-browser-img" src="{{ Storage::disk('s3l')->url('img/1618x1010/img6.jpg') }}" alt="Image Description">
+				</div>
+				<div class="col-12 col-md-3">
+					<div class="d-flex align-items-start py-3">
+						<div class="landing-feature">
+							<i data-lucide="smartphone"></i>
+						</div>
+						<div class="flex-grow-1">
+							<h4 class="mt-4">Cost Control</h4>
+						</div>
 					</div>
-					</figure>
-					<!-- End Browser Device -->
 				</div>
-				</div>
-				<!-- End Col -->
-
-				<div class="col-lg-5">
-				<!-- Heading -->
-				<div class="mb-4">
-					<h2>Small Business? Big Dreams.	</h2>
-					<p>Simplify Purchasing & Budgeting with Our Powerful SaaS Platform.</p>
-				</div>
-				<!-- End Heading -->
-
-				<!-- List Checked -->
-				<ul class="list-checked list-checked-primary mb-5">
-					<li class="list-checked-item">Streamline Procurement</li>
-					<li class="list-checked-item">Cost control and Stay on Budget</li>
-					<li class="list-checked-item">Real-Time Spending insights</li>
-					<li class="list-checked-item">Enhanced Efficiency</li>
-					<li class="list-checked-item">Save Time and Effort</li>
-					<li class="list-checked-item">Approval Workflows</li>
-					<li class="list-checked-item">Easy Integration (with Core Accounting System)</li>
-					<li class="list-checked-item">Customer Support</li>
-					<li class="list-checked-item">Peace of Mind</li>
-				</ul>
-				<!-- End List Checked -->
-
-				<a class="btn btn-primary" href="{{ route('pricing') }}">Get started</a>
-
-				<hr class="my-5">
-
-				<span class="d-block">Support most currencies of the world</span>
-				<div class="row">
-					<div class="col py-3">
-						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="Logo">
-						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="Logo">
-						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="Logo">
-						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="Logo">
-						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="Logo">
-						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="Logo">
-						<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="Logo">
+				<div class="col-12 col-md-3">
+					<div class="d-flex align-items-start py-3">
+						<div class="landing-feature">
+							<i data-lucide="mail"></i>
+						</div>
+						<div class="flex-grow-1">
+							<h4 class="mt-4">Procurement Automation</h4>
+						</div>
 					</div>
-					<!-- End Col -->
+				</div>
+				<div class="col-12 col-md-3">
+					<div class="d-flex align-items-start py-3">
+						<div class="landing-feature">
+							<i data-lucide="mail"></i>
+						</div>
+						<div class="flex-grow-1">
+							<h4 class="mt-4">Spending insights</h4>
+						</div>
+					</div>
+				</div>
 
-				</div>
-				<!-- End Row -->
-				</div>
-				<!-- End Col -->
 			</div>
-			<!-- End Row -->
+
+
+			<div class="row align-items-center">
+				<div class="col-lg-5 mx-auto">
+					<!-- Heading -->
+					<div class="mb-4">
+						<h2>Small Business? Big Dreams.	</h2>
+						<p>Simplify Purchasing & Budgeting with Our Powerful SaaS Platform.</p>
+					</div>
+					<!-- End Heading -->
+
+					<!-- List Checked -->
+					<ul class="list-checked list-checked-primary mb-5">
+						<li class="list-checked-item">Streamline Procurement</li>
+						<li class="list-checked-item">Cost control and Stay on Budget</li>
+						<li class="list-checked-item">Real-Time Spending insights</li>
+						<li class="list-checked-item">Enhanced Efficiency</li>
+						<li class="list-checked-item">Save Time and Effort</li>
+						<li class="list-checked-item">Approval Workflows</li>
+						<li class="list-checked-item">Easy Integration (with Core Accounting System)</li>
+						<li class="list-checked-item">Customer Support</li>
+						<li class="list-checked-item">Peace of Mind</li>
+					</ul>
+					<!-- End List Checked -->
+					<div class="my-4">
+						<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+					</div>
+					
+				</div>
+				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
+					<div class="landing-intro-screenshot pb-3">
+						<img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
+
+
+						<hr class="my-5">
+						<span class="d-block">Support most currencies of the world</span>
+						<div class="row">
+							<div class="col py-3">
+								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/yen.svg') }}" alt="Logo">
+								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/dollar.svg') }}" alt="Logo">
+								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/pound.svg') }}" alt="Logo">
+								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/euro.svg') }}" alt="Logo">
+								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/rupee.svg') }}" alt="Logo">
+								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/ruble.svg') }}" alt="Logo">
+								<img class="avatar-xs avatar-4x3" src="{{ Storage::disk('s3l')->url('currency/lira.svg') }}" alt="Logo">
+							</div>
+							<!-- End Col -->
+						</div>
+						<!-- End Row -->
+					</div>
+
+				</div>
+			</div>
 		</div>
-	</div>
+	</section>
+
+	<!-- Features -->
+
 	<!-- End Features -->
 
 

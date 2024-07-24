@@ -2,8 +2,10 @@
 <div class="card">
 	<div class="card-header">
 		<div class="card-actions float-end">
-			<a class="btn btn-sm btn-light" href="{{ route('projects.edit', $project->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-			<a class="btn btn-sm btn-light" href="{{ route('projects.index') }}" ><i class="fas fa-list"></i> View all</a>
+			@can('update', $project)
+				<a href="{{ route('projects.edit', $project->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+			@endcan
+			<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 		</div>
 		<h5 class="card-title mb-0">{{ $project->name }} [{{ $project->code }}]</h5>
 	</div>

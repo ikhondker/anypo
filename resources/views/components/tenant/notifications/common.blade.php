@@ -1,5 +1,5 @@
 
-<table id="datatables-email-inbox" class="table table-email my-0 w-100">
+<table id="notification-table" class="table table-striped table-sm my-0 w-100">
 	<thead class="d-none">
 		<tr>
 			<th></th>

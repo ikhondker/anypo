@@ -11,22 +11,21 @@ use App\Enum\EntityEnum;
 use Exception;
 class AelForPayment extends Component
 {
-	public $id;
-	public $aeh;
+	//public $id;
+	//public $aeh;
 	public $aels;
+	public $label;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $id)
 	{
-
-		$this->id   = $id;
+		$this->id	= $id;
+		$this->label= 'Payment #'.$this->id;
 		try {
-			$this->aeh  = Aeh::where('source_entity',EntityEnum::PAYMENT->value)->where('article_id', $this->id)->get()->firstOrFail();
-			$this->aels = Ael::where('aeh_id', $this->aeh->id)->get()->all();
+			$this->aels = Ael::with('aeh')->ByPayment($this->id)->get()->all();
 		} catch (Exception $e) {
-			$this->aeh  =  new Aeh();
 			$this->aels = new Ael();
 		}
 

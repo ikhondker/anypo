@@ -24,84 +24,62 @@ class DeptBudgetSeeder extends Seeder
 
 		$faker = app(Generator::class);
 
-		$deptBudget24 =  [
-			[
-				'budget_id'			=> '1001',
-				'dept_id'			=> '1002',
-				'amount'			=> 100000,
-				'notes'				=> $faker->paragraph,
-			],
-			[
-				'budget_id'			=> '1001',
-				'dept_id'			=> '1003',
-				'amount'			=> 100000,
-				'notes'				=> $faker->paragraph,
-			],
-			[
-				'budget_id'			=> '1001',
-				'dept_id'			=> '1004',
-				'amount'			=> 100000,
-				'notes'				=> $faker->paragraph,
-			],
-			[
-				'budget_id'			=> '1001',
-				'dept_id'			=> '1005',
-				'amount'			=> 100000,
-				'notes'				=> $faker->paragraph,
-			],
-			// [
-			// 	'budget_id'			=> '1001',
-			// 	'dept_id'			=> '1006',
-			// 	'amount'			=> 100000,
-			// 	'notes'				=> $faker->paragraph,
-			// ],
-			// [
-			// 	'budget_id'			=> '1001',
-			// 	'dept_id'			=> '1007',
-			// 	'amount'			=> 100000,
-			// 	'notes'				=> $faker->paragraph,
-			// ],
-		  ];
+		
 		
 		  $deptBudget23 =  [
 			[
-				'budget_id'			=> '1002',
+				'budget_id'			=> '1001',
+				'dept_id'			=> '1001',
+				'amount'			=> 10000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1001',
 				'dept_id'			=> '1002',
-				'amount'			=> 100000,
+				'amount'			=> 10000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1001',
+				'dept_id'			=> '1004',
+				'amount'			=> 10000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1001',
+				'dept_id'			=> '1005',
+				'amount'			=> 10000,
+				'notes'				=> $faker->paragraph,
+			],
+		  ];
+
+		  $deptBudget24 =  [
+			[
+				'budget_id'			=> '1002',
+				'dept_id'			=> '1001',
+				'amount'			=> 10000,
 				'notes'				=> $faker->paragraph,
 			],
 			[
 				'budget_id'			=> '1002',
-				'dept_id'			=> '1003',
-				'amount'			=> 100000,
+				'dept_id'			=> '1002',
+				'amount'			=> 10000,
 				'notes'				=> $faker->paragraph,
 			],
 			[
 				'budget_id'			=> '1002',
 				'dept_id'			=> '1004',
-				'amount'			=> 100000,
+				'amount'			=> 10000,
 				'notes'				=> $faker->paragraph,
 			],
 			[
 				'budget_id'			=> '1002',
 				'dept_id'			=> '1005',
-				'amount'			=> 100000,
+				'amount'			=> 10000,
 				'notes'				=> $faker->paragraph,
 			],
-			// [
-			// 	'budget_id'			=> '1002',
-			// 	'dept_id'			=> '1006',
-			// 	'amount'			=> 100000,
-			// 	'notes'				=> $faker->paragraph,
-			// ],
-			// [
-			// 	'budget_id'			=> '1002',
-			// 	'dept_id'			=> '1007',
-			// 	'amount'			=> 100000,
-			// 	'notes'				=> $faker->paragraph,
-			// ],
 		  ];
-				
+
 		$deptBudget23Dummy =  [
 			[
 				'budget_id'			=> '1001',

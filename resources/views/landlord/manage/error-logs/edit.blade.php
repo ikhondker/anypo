@@ -35,7 +35,7 @@
 								<td>
 									<input type="text" class="form-control @error('status') is-invalid @enderror"
 										name="status" id="status" placeholder="status"
-										value="{{ old('status', $errorLog->status  ) }}"
+										value="{{ old('status', $errorLog->status) }}"
 										required/>
 									@error('status')
 										<div class="small text-danger">{{ $message }}</div>

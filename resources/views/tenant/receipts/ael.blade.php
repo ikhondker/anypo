@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Accountings for Receipt')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">Receipts</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}" class="text-muted">Receipts</a></li>
 	{{-- <li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li> --}}
 	<li class="breadcrumb-item active">GRN#{{ $receipt->id }}</li>
 @endsection

@@ -14,8 +14,6 @@
 			Edit Budget
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Budget"/>
-
 			<x-tenant.actions.budget-actions id="{{ $budget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -28,10 +26,10 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('budgets.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('budgets.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Budget Detail</h5>
-							<h6 class="card-subtitle text-muted">Note: To edit budget amount, edit the Department budget. It will be automatically reflected in company budget.</h6>
+				<h6 class="card-subtitle text-muted">Note: To edit budget amount, edit the Department budget. It will be automatically reflected in company budget.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
@@ -39,11 +37,9 @@
 						<tr>
 							<th>FY <x-tenant.info info="Note: You wont be able to change the Fiscal Year (FY)."/></th>
 							<td>
-								<input type="text" name="fy" id="fy" class="form-control" placeholder="ID" value="{{ $budget->fy }}" readonly>
+								<input type="text" name="fy" id="fy" class="form-control" placeholder="YYYY" value="{{ $budget->fy }}" readonly>
 							</td>
 						</tr>
-						
-						
 						<tr>
 							<th>Budget Name</th>
 							<td>
@@ -56,13 +52,14 @@
 							@enderror
 							</td>
 						</tr>
-						
-						
-
+						<tr>
+							<th>Amount {{ $_setup->currency }} <x-tenant.info info="Note: You wont be able to edit. Auto calculated based on dept budgets."/></th>
+							<td>
+								<input type="text" name="amount" id="amount" class="form-control" placeholder="ID" value="{{ $budget->amount }}" readonly>
+							</td>
+						</tr>
 						<x-tenant.edit.notes value="{{ $budget->notes }}"/>
-
 						<x-tenant.attachment.create/>
-
 						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>

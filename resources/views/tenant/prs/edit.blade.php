@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Requisition')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}">Requisitions</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}">PR#{{ $pr->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}" class="text-muted">Requisitions</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}" class="text-muted">PR#{{ $pr->id }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -36,7 +36,7 @@
 								<tbody>
 							
 									<tr>
-										<th>Summary :</th>
+										<th width="20%">Summary :</th>
 										<td>
 											<input type="text" class="form-control @error('summary') is-invalid @enderror"
 											name="summary" id="summary" placeholder="PR summary"
@@ -65,7 +65,7 @@
 												<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 												<input type="text" class="form-control"
 													name="dept_name" id="dept_name" placeholder="dept_name"
-													value="{{  $pr->dept->name }}"
+													value="{{$pr->dept->name }}"
 													readonly/>
 											</td>
 										</tr>
@@ -140,7 +140,7 @@
 							<table class="table table-sm my-2">
 								<tbody>
 							
-									<tr>
+									<tr width="20%">
 										<th>Need By Date :</th>
 										<td>
 											<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"

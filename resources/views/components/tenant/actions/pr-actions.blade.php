@@ -10,11 +10,14 @@
 		<a class="dropdown-item" href="{{ route('prs.history', $pr->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('reports.pr', $pr->id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Requisition</a>
 
-		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('prs.edit', $pr->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Requisition</a>
-		<a class="dropdown-item" href="{{ route('prls.add-line', $pr->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Requisition Line</a>
+		@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{{ route('prs.edit', $pr->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Requisition</a>
+			<a class="dropdown-item" href="{{ route('prls.add-line', $pr->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Requisition Line</a>
+		@endif
 
 		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle me-1" data-lucide="list"></i> All Requisitions</a>
 		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Requisition</a>
 		<a class="dropdown-item sw2-advance" href="{{ route('prs.copy', $pr->id) }}"
 			data-entity="" data-name="PR #{{ $pr->id }}" data-status="Duplicate"

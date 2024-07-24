@@ -7,21 +7,26 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Tenant\Ae\Aeh;
 use App\Models\Tenant\Ae\Ael;
+use Exception;
 
 class AelForAeh extends Component
 {
-	public $id;
-	public $aeh;
+
 	public $aels;
+	public $label;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $id)
 	{
-		$this->id   = $id;
-		$this->aeh  = Aeh::where('id', $id)->get()->firstOrFail();
-		$this->aels = Ael::where('aeh_id', $id)->get()->all();
+		$this->id	= $id;
+		$this->label= 'Accounting #'.$this->id;
+		try {
+			$this->aels = Ael::with('aeh')->ByAeh($this->id)->get()->all();
+		} catch (Exception $e) {
+			$this->aels = new Ael();
+		}
 	}
 
 	/**

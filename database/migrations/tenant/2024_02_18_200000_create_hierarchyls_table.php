@@ -12,7 +12,7 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('hierarchyls', function (Blueprint $table) {
-			$table->id();
+			$table->id()->startingValue(1001);
 			$table->foreignId('hid')->constrained('hierarchies');
 			$table->integer('sequence')->default(10);	// TODO P2
 			$table->foreignId('approver_id')->constrained('users');

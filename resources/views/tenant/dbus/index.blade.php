@@ -37,12 +37,10 @@
 							<tr>
 								<th>#</th>
 								<th>ID</th>
+								<th>Budget</th>
 								<th>Dept</th>
-
-								<th>FY</th>
 								<th>Date</th>
-								<th>Entity</th>
-								<th>Document#</th>
+								<th>Linked Document</th>
 								<th>Event</th>
 								<th>Project</th>
 								<th class="text-end">PR (Booked)</th>
@@ -60,13 +58,12 @@
 							<tr>
 								<td>{{ $dbus->firstItem() + $loop->index }}</td>
 								<td><a href="{{ route('dbus.show',$dbu->id) }}"><strong>{{ $dbu->id }}</strong></a></td>
+								<td>{{ $dbu->deptBudget->budget->name }}</td>
 								<td>{{ $dbu->dept->name }}</td>
-								<td>{{ $dbu->deptBudget->budget->fy }}</td>
-								{{-- <td>aa</td> --}}
 								<td><x-tenant.list.my-date :value="$dbu->created_at"/></td>
-								<td>{{ $dbu->entity }}</td>
+								
 								<td><x-tenant.list.article-link entity="{{ $dbu->entity }}" :id="$dbu->article_id"/></td>
-								<td>{{ $dbu->event }}</td>
+								<td><span class="badge badge-subtle-primary">{{ $dbu->event }}</span></td>
 								<td><x-tenant.list.project-link id="{{ $dbu->project_id }}" :label="$dbu->project->code"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr_booked"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr"/></td>

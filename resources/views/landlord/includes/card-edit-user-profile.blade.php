@@ -1,7 +1,6 @@
 
 <div class="card">
 	<div class="card-header">
-
 		<h5 class="card-title">Edit User Profile</h5>
 		<h6 class="card-subtitle text-muted">Edit User Profile.</h6>
 	</div>
@@ -17,7 +16,6 @@
 						<th width="30%">Photo</th>
 						<td>
 							<div class="">
-
 								<img src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle img-responsive mt-2" width="128" height="128" />
 								<div class="mt-2">
 									<input type="file" id="file_to_upload" name="file_to_upload"

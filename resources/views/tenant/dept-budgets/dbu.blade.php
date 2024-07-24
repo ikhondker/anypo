@@ -1,17 +1,14 @@
 @extends('layouts.tenant.app')
-@section('title','DeptBudget')
+@section('title','Dept Budget Usages')
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-		DeptBudget
+			Dept Budget Usages
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="DeptBudget"/>
-			<x-tenant.buttons.header.create object="DeptBudget"/>
 			<x-tenant.actions.dept-budget-actions id="{{ $deptBudget->id }}"/>
-		
 		@endslot
 	</x-tenant.page-header>
 
@@ -19,20 +16,6 @@
 	<x-tenant.info.dept-budget-info :id="$deptBudget->id"/>
 
 	<x-tenant.widgets.dbu-dept :id="$deptBudget->id"/>
-
-	<div class="row">
-		<div class="col-6">
-			
-		</div>
-		<!-- end col-6 -->
-		<div class="col-6">
-			
-		</div>
-		<!-- end col-6 -->
-	</div>
-	<!-- end row -->
-	
-	
 
 	<script type="text/javascript">
 		function mySubmit() {

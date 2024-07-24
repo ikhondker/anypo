@@ -66,6 +66,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Manage\Config' 		=> 'App\Policies\Landlord\Manage\ConfigPolicy',
 		'App\Models\Landlord\Manage\Status' 		=> 'App\Policies\Landlord\Manage\StatusPolicy',
 		'App\Models\Landlord\Manage\Table' 			=> 'App\Policies\Landlord\Manage\TablePolicy',
+		'App\Models\Landlord\Manage\Cp' 			=> 'App\Policies\Landlord\Manage\CpPolicy',
 		//'App\Models\Landlord\Manage\Template' 		=> 'App\Policies\Landlord\Manage\TemplatePolicy',
 		/*
 		|-----------------------------------------------------------------------------
@@ -94,6 +95,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Lookup\BankAccount'	=> 'App\Policies\Tenant\Lookup\BankAccountPolicy',
 		'App\Models\Tenant\Lookup\Project'		=> 'App\Policies\Tenant\Lookup\ProjectPolicy',
 
+		'App\Models\Tenant\Manage\Cp'			=> 'App\Policies\Tenant\Manage\CpPolicy',
 		'App\Models\Tenant\Manage\Entity'		=> 'App\Policies\Tenant\Manage\EntityPolicy',
 		'App\Models\Tenant\Manage\Status' 		=> 'App\Policies\Tenant\Manage\StatusPolicy',
 		'App\Models\Tenant\Manage\Menu'			=> 'App\Policies\Tenant\Manage\MenuPolicy',

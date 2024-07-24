@@ -29,7 +29,7 @@
 							My Invoice Lists
 						@endif
 					</h5>
-					<h6 class="card-subtitle text-muted">List of Invoices.</h6>
+					<h6 class="card-subtitle text-muted">List of Invoices Created by Me.</h6>
 				</div>
 				<div class="card-body">
 					<!-- ========== INCLUDE ========== -->

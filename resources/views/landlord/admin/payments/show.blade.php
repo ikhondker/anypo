@@ -16,7 +16,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('payments.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+						<a href="{{ route('payments.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 						@if (auth()->user()->isSystem())
 							<a class="btn btn-sm btn-danger text-white" href="{{ route('payments.edit', $payment->id) }}"><i class="fas fa-edit"></i> Edit</a>
 						@endif
@@ -54,7 +54,7 @@
 								{{ $account->city . ', ' . $account->state . ', ' . $account->zip }}<br>
 								{{ $account->relCountry->name }}<br> 
 								<a href="#">{{ $account->email }}</a><br> 
-								{{-- Invoice : #{{ $invoice->invoice_no }}<br>  --}}
+								{{-- Invoice : #{{ $invoice->invoice_no }}<br> --}}
 							</p>
 						</div>
 						<div class="col-md-6 text-md-right">

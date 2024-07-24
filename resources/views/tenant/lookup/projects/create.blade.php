@@ -2,7 +2,7 @@
 @section('title','Create Project')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Projects</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}" class="text-muted">Projects</a></li>
 	<li class="breadcrumb-item active">Create</li>
 @endsection
 
@@ -13,7 +13,7 @@
 			Create Project
 		@endslot
 		@slot('buttons')
-
+			<x-tenant.buttons.header.lists object="Project"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -24,7 +24,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create new Project</h5>
 						<h6 class="card-subtitle text-muted">Create new Project and allocate budget.</h6>
@@ -33,7 +33,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>Code</th>
+							<th>Code :</th>
 							<td>
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
 								name="code" id="code" placeholder="XXXX" maxlength="10"
@@ -45,14 +45,12 @@
 							@enderror
 							</td>
 						</tr>
-						
-
 						<x-tenant.create.name/>
 						<x-tenant.create.start-date/>
 						<x-tenant.create.end-date/>
 
 						<tr>
-							<th>Project Manager</th>
+							<th>Project Manager :</th>
 							<td>
 								<select class="form-control" name="pm_id" required>
 									<option value=""><< Project Manager >> </option>
@@ -67,7 +65,7 @@
 						</tr>
 						
 						<tr>
-							<th>Budget Amount ({{ $_setup->currency }})</th>
+							<th>Budget Amount ({{ $_setup->currency }}) :</th>
 							<td>
 								<input type="number" class="form-control @error('amount') is-invalid @enderror"
 								name="amount" id="amount" placeholder="99,99,999.99"

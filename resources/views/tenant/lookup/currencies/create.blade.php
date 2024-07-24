@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Currency')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('currencies.index') }}">Currencies</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('currencies.index') }}" class="text-muted">Currencies</a></li>
 	<li class="breadcrumb-item active">Create</li>
 @endsection
 
@@ -23,7 +23,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('currencies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('currencies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create Currency</h5>
 				<h6 class="card-subtitle text-muted">Create new currency.</h6>

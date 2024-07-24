@@ -60,17 +60,15 @@
 					@foreach ($tickets as $ticket)
 						<tr>
 							<td>
-								<a class="text-info" href="{{ route('tickets.show',$ticket->id) }}">
-									#{{ $ticket->id }}
-								</a>
+								<a href="{{ route('tickets.show',$ticket->id) }}"><strong>#{{ $ticket->id }}</strong></a>
 							</td>
 							<td>
 								<a class="" href="{{ route('tickets.show',$ticket->id) }}">
-								@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
-									<strong class="text-info mb-0">
-								@else
-									<strong class="text-secondary mb-0">
-								@endif
+									@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
+										<strong class="text-info mb-0">
+									@else
+										<strong class="text-muted mb-0">
+									@endif
 									{{ Str::limit($ticket->title, 45) }}
 									</strong>
 								</a>
@@ -91,7 +89,7 @@
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 
-									<a href="{{  route('tickets.assign',$ticket->id) }}" class="me-2"
+									<a href="{{route('tickets.assign',$ticket->id) }}" class="me-2"
 											data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
 											<i data-lucide="check-circle" class="text-danger"></i>
 										</a>

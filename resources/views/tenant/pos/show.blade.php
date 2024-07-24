@@ -11,8 +11,12 @@
 			Purchase Order #{{ $po->id }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
-			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
+			<a href="{{ route('pos.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> View All</a>
+			@can('create', $po)
+				<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
+			@endcan
+
+
 
 			{{-- <a href="{{ route('invoices.create', $po->id) }}" class="btn btn-primary float-end me-2"><i data-lucide="plus"></i> Inv Create</a> --}}
 			{{-- <x-tenant.buttons.header.edit object="Po" :id="$po->id"/> --}}
@@ -36,100 +40,15 @@
 		@endslot
 	</x-tenant.page-header>
 
-
-	<div class="row">
-
-		<div class="col-12 col-sm-6 col-xxl-3 d-flex">
-			<div class="card flex-fill">
-				<div class="card-body py-4">
-					<div class="d-flex align-items-start">
-						<div class="flex-grow-1">
-							<h3 class="mb-2"> {{ number_format($po->fc_amount, 2, '.', ',') }} </h3>
-							<p class="mb-2">PO Amount [{{ $_setup->currency }}]</p>
-							<div class="mb-0">
-								<span class="badge badge-subtle-success me-2"> {{ $po->currency }} </span>
-								<span class="text-muted"> {{ number_format($po->amount, 2, '.', ',') }}</span>
-							</div>
-						</div>
-						<div class="d-inline-block ms-3">
-							<div class="stat">
-								<i class="align-middle text-success" data-lucide="check-circle"></i>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-12 col-sm-6 col-xxl-3 d-flex">
-			<div class="card flex-fill">
-				<div class="card-body py-4">
-					<div class="d-flex align-items-start">
-						<div class="flex-grow-1">
-							<h3 class="mb-2"> {{ number_format($po->fc_amount_grs, 2, '.', ',') }} </h3>
-							<p class="mb-2">GRS Amount </p>
-							<div class="mb-0">
-								<span class="badge badge-subtle-success me-2">{{ $_setup->currency }} </span>
-							</div>
-						</div>
-						<div class="d-inline-block ms-3">
-							<div class="stat">
-								<i class="align-middle text-success" data-lucide="check-circle"></i>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-12 col-sm-6 col-xxl-3 d-flex">
-			<div class="card flex-fill">
-				<div class="card-body py-4">
-					<div class="d-flex align-items-start">
-						<div class="flex-grow-1">
-							<h3 class="mb-2"> {{ number_format($po->fc_amount_invoice, 2, '.', ',') }} </h3>
-							<p class="mb-2">Invoice Amount </p>
-							<div class="mb-0">
-								<span class="badge badge-subtle-success me-2">{{ $_setup->currency }} </span>
-							</div>
-						</div>
-						<div class="d-inline-block ms-3">
-							<div class="stat">
-								<i class="align-middle text-success" data-lucide="check-circle"></i>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-12 col-sm-6 col-xxl-3 d-flex">
-			<div class="card flex-fill">
-				<div class="card-body py-4">
-					<div class="d-flex align-items-start">
-						<div class="flex-grow-1">
-							<h3 class="mb-2"> {{ number_format($po->fc_amount_paid, 2, '.', ',') }} </h3>
-							<p class="mb-2">Payment Amount </p>
-							<div class="mb-0">
-								<span class="badge badge-subtle-success me-2">{{ $_setup->currency }} </span>
-							</div>
-						</div>
-						<div class="d-inline-block ms-3">
-							<div class="stat">
-								<i class="align-middle text-success" data-lucide="check-circle"></i>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-
-
+	<x-tenant.dashboards.po-stats :id="$po->id"/>
+	
+	<!-- approval form, show only if pending to current auth user -->
+	@if (\App\Helpers\Tenant\Workflow::allowApprove($po->wf_id))
+		{{-- @include('tenant.includes.wfl-approve-reject') --}}
+		<x-tenant.widgets.wfl.get-approval wfid="{{ $po->wf_id }}" />
+	@endif
 
 	<x-tenant.widgets.po.show-po-header id="{{ $po->id }}"/>
-
 
 	<!-- widget-pol-card -->
 	<x-tenant.widgets.pol.card :po="$po">
@@ -146,11 +65,6 @@
 	<!-- /.widget-pol-card -->
 
 
-	<!-- approval form, show only if pending to current auth user -->
-	@if (\App\Helpers\Tenant\Workflow::allowApprove($po->wf_id))
-		{{-- @include('tenant.includes.wfl-approve-reject') --}}
-		<x-tenant.widgets.wfl.get-approval wfid="{{ $po->wf_id }}" />
-	@endif
 
 
 

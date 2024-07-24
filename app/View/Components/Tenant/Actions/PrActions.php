@@ -11,17 +11,14 @@ use App\Models\Tenant\Pr;
 class PrActions extends Component
 {
 	public $pr;
-	public $show;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id, $show = false)
+	public function __construct(public string $id)
 	{
-		//$this->id 	= $id;
-		$this->show		= $show;
+		$this->id 	= $id;
 		$this->pr 		= Pr::where('id', $id)->get()->firstOrFail();
-		// $this->po = Po::where('id', $id)->get()->first();
 	}
 
 	/**

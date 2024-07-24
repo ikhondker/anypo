@@ -24,54 +24,59 @@ class ProjectSeeder extends Seeder
 		//Project::truncate();
 		//Schema::enableForeignKeyConstraints();
 	 
-			$projects =  [
+		// TODO check who will be pm for seeded project
+		$seededProject =  [
 				[
-					'name'  	=> 'Seeded Projeect',
-					'code'  	=> 'Seeded',
+					'name'  	=> 'Seeded Project',
+					'code'  	=> 'SEEDED',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
-					'amount'	=> 100000,
-					'notes'		=> $faker->paragraph
+					'amount'	=> 10000,
+					'notes'		=> 'This is Seeded Project.'
 				],
+			];
+
+
+			$demoProjects =  [
 				[
 					'name' 		=> 'Name is AA01',
 					'code'  	=> 'AA01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
-					'amount'	=> 100000,
+					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is AF01',
 					'code'  	=> 'AF01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
-					'amount'	=> 100000,
+					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is AH01',
 					'code'  	=> 'AH01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
-					'amount'	=> 100000,
+					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is AS01',
 					'code'  	=> 'AS01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
-					'amount'	=> 100000,
+					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is BG01',
 					'code'  	=> 'BG01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
-					'amount'	=> 100000,
+					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is BH07',
 					'code'  	=> 'BH07',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
-					'amount'	=> 100000,
+					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 
@@ -86,7 +91,7 @@ class ProjectSeeder extends Seeder
 					'name' 		=> 'Name is GB07',
 					'code'  	=> 'GB07',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
-					'amount'	=> 100000,
+					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
@@ -112,6 +117,8 @@ class ProjectSeeder extends Seeder
 				],
 			];
 			//
-			Project::insert($projects);
+			Project::insert($seededProject);
+			// MUST Comment this
+			Project::insert($demoProjects);
 	}
 }

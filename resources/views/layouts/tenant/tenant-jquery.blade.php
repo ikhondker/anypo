@@ -24,7 +24,7 @@
 {{-- <link rel="stylesheet" href="{{ Storage::disk('s3t')->url('css/light.css') }}"> --}}
 
 
-{{--  popper.js CSS example  --}}
+{{--popper.js CSS example--}}
 <style>
 	#tooltip {
 		background: #333333;

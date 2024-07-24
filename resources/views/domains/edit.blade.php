@@ -25,7 +25,7 @@
 							<td>
 								<input type="text" class="form-control @error('domain') is-invalid @enderror"
 									name="domain" id="domain" placeholder="domain"
-									value="{{ old('domain', $domain->domain  ) }}"
+									value="{{ old('domain', $domain->domain ) }}"
 									required/>
 								@error('domain')
 									<div class="small text-danger">{{ $message }}</div>
@@ -37,7 +37,7 @@
 							<td>
 								<input type="text" class="form-control @error('tenant_id') is-invalid @enderror"
 									name="tenant_id" id="tenant_id" placeholder="tenant_id"
-									value="{{ old('tenant_id', $domain->tenant_id  ) }}"
+									value="{{ old('tenant_id', $domain->tenant_id ) }}"
 									required/>
 								@error('tenant_id')
 									<div class="small text-danger">{{ $message }}</div>

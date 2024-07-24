@@ -20,7 +20,7 @@ use App\Enum\LandlordInvoiceStatusEnum;
 use App\Enum\LandlordPaymentStatusEnum;
 
 // Helpers
-use App\Helpers\LandlordEventLog;
+use App\Helpers\EventLog;
 use App\Helpers\Bo;
 
 // notification
@@ -54,7 +54,7 @@ class SubscriptionInvoicePaid implements ShouldQueue
 		// mark payment as paid
 		$payment->status_code = LandlordPaymentStatusEnum::PAID->value;
 		$payment->update();
-		LandlordEventLog::event('payment', $payment->id, 'create');
+		EventLog::event('payment', $payment->id, 'create');
 
 		// mark invoice as paid
 		$invoice = Invoice::where('id', $payment->invoice_id)->first();

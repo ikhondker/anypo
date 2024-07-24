@@ -24,7 +24,6 @@ class BudgetSeeder extends Seeder
 		//Schema::enableForeignKeyConstraints();
 		$faker = app(Generator::class);
 
-
 		$dummyBudgets =  [
 			[
 				'fy'				=> '2023',
@@ -33,7 +32,7 @@ class BudgetSeeder extends Seeder
 				'end_date'			=> Carbon::parse('2023-12-31'),
 				//TODO remove after this
 				'notes'				=> $faker->paragraph,
-				'amount'			=> 1400000,  
+				'amount'			=> 140000,  
 				'amount_pr_booked'	=> $faker->numberBetween(3000,100000),
 				'amount_pr'			=> $faker->numberBetween(3000,100000),
 				'amount_po_booked'	=> $faker->numberBetween(3000,100000),
@@ -72,28 +71,31 @@ class BudgetSeeder extends Seeder
 			
 		];
 
-		$budgets =  [
+		$budgets23 =  [
 			[
 				'fy'			=> '2023',
 				'name'			=> 'Budget for 2023',
 				'start_date'	=> Carbon::parse('2023-01-01'),
 				'end_date'		=> Carbon::parse('2023-12-31'),
-				'amount'		=> 700000,  //TODO remove
+				'amount'		=> 40000,  //TODO remove
 				'notes'			=> 'Budget for 2023',
 			],
+		];
+
+		$budgets24 =  [
 			[
 				'fy'			=> '2024',
 				'name'			=> 'Budget for 2024',
 				'start_date'	=> Carbon::parse('2024-01-01'),
 				'end_date'		=> Carbon::parse('2024-12-31'),
-				'amount'		=> 700000,  //TODO remove
+				'amount'		=> 40000,  //TODO remove
 				'notes'			=> 'Budget for 2024',
 			],
-			
 		];
 
 		//Budget::insert($dummyBudgets);
-		Budget::insert($budgets);
+		Budget::insert($budgets23);
+		Budget::insert($budgets24);
 
 	}
 }

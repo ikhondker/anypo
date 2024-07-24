@@ -23,7 +23,7 @@ class Payment extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'invoice_id', 'pay_date', 'payee_id', 'bank_account_id', 'cheque_no', 'currency', 'amount', 'fc_exchange_rate', 'fc_amount', 'dr_account', 'cr_account', 'for_entity', 'notes', 'error_code', 'accounted', 'status', 'updated_by', 'updated_at',
+		'invoice_id', 'po_id', 'pay_date', 'payee_id', 'bank_account_id', 'cheque_no', 'currency', 'amount', 'fc_exchange_rate', 'fc_amount', 'dr_account', 'cr_account', 'for_entity', 'notes', 'error_code', 'accounted', 'status', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -69,7 +69,6 @@ class Payment extends Model
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('dept_id', $id);
 		});
-
 	}
 
 
@@ -92,6 +91,13 @@ class Payment extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
+
+	public function po(){
+		return $this->belongsTo(Po::class,'po_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+	
 	public function payee(){
 		return $this->belongsTo(User::class,'payee_id')->withDefault([
 			'name' => '[ Empty ]',

@@ -27,7 +27,7 @@
 							<td>
 								<input type="text" class="form-control @error('summary') is-invalid @enderror"
 									name="summary" id="summary" placeholder="summary"
-									value="{{ old('summary', $invoice->summary  ) }}"
+									value="{{ old('summary', $invoice->summary ) }}"
 									required/>
 								@error('summary')
 									<div class="small text-danger">{{ $message }}</div>
@@ -39,7 +39,7 @@
 							<td>
 								<input type="text" class="form-control @error('invoice_no') is-invalid @enderror"
 									name="invoice_no" id="invoice_no" placeholder="invoice_no"
-									value="{{ old('invoice_no', $invoice->invoice_no  ) }}"
+									value="{{ old('invoice_no', $invoice->invoice_no ) }}"
 									required/>
 								@error('invoice_no')
 									<div class="small text-danger">{{ $message }}</div>

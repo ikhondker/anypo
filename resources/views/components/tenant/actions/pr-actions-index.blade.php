@@ -4,6 +4,7 @@
 	</a>
 	<div class="dropdown-menu dropdown-menu-end">
 		<a class="dropdown-item" href="{{ route('prs.my-prs') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Requisitions</a>
+		<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle me-1" data-lucide="list"></i> All Requisitions</a>
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Requisition</a>
 		<div class="dropdown-divider"></div>

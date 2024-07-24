@@ -28,6 +28,7 @@ use App\Http\Requests\Tenant\Ae\UpdateAehRequest;
 
 # 1. Models
 # 2. Enums
+use App\Enum\UserRoleEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -45,7 +46,6 @@ use Illuminate\Support\Facades\Log;
 use Exception;
 # 13. FUTURE
 
-
 class AehController extends Controller
 {
 	/**
@@ -54,10 +54,26 @@ class AehController extends Controller
 	public function index()
 	{
 		$this->authorize('viewAny',Aeh::class);
+		
+
 		$aehs = Aeh::query();
 
-		Log::debug('tenant.ae.aeh.index Value of action = ' . request('action'));
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::HOD->value:
+				$aehs = $aehs->ByPoDept(auth()->user()->dept_id);
+				break;
+			case UserRoleEnum::BUYER->value:
+			case UserRoleEnum::CXO->value:
+			case UserRoleEnum::ADMIN->value:
+			case UserRoleEnum::SYSTEM->value:
+				$aehs = $aehs->orderBy('id', 'DESC');
+				break;
+			default:
+				Log::warning(tenant('id'). 'tenant.aeh.index Other role = '. auth()->user()->role->value);
+				abort(403);
+		}
 
+		Log::debug('tenant.ae.aeh.index Value of action = ' . request('action'));
 		// TODO CHECK
 		if (request('start_date') && tenant()) {
 			$start_date = 	request('start_date');
@@ -72,7 +88,7 @@ class AehController extends Controller
 				$aehs->whereBetween('accounting_date', [$start_date, $end_date ]);
 				break;
 			case 'export':
-				// Export model
+				// Export model TODO file by dep_id
 				$sql = "
 					SELECT id, source, entity, event, accounting_date, ac_code, line_description,
 					fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount,
@@ -102,7 +118,7 @@ class AehController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -110,7 +126,7 @@ class AehController extends Controller
 	 */
 	public function store(StoreAehRequest $request)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -128,7 +144,7 @@ class AehController extends Controller
 	 */
 	public function edit(Aeh $aeh)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -136,7 +152,7 @@ class AehController extends Controller
 	 */
 	public function update(UpdateAehRequest $request, Aeh $aeh)
 	{
-		//
+		abort(403);
 	}
 
 	/**
@@ -144,7 +160,7 @@ class AehController extends Controller
 	 */
 	public function destroy(Aeh $aeh)
 	{
-		//
+		abort(403);
 	}
 
 	/**

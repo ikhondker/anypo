@@ -10,7 +10,7 @@
 		<table class="table table-sm my-2">
 			<tbody>
 				<tr>
-					<th>COLUMN LIST:</th>
+					<th width="10%">COLUMN LIST:</th>
 					<td>
 						@foreach ($columns as $column)
 							{{ $column->Field.' '}}

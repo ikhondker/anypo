@@ -71,7 +71,7 @@ class AehInvoice implements ShouldQueue
 		$aeh->fc_dr_amount		= $aeh->fc_cr_amount	= $this->fc_amount;
 		$aeh->po_id				= $invoice->po_id;;
 		$aeh->article_id		= $invoice->id;
-		$aeh->reference_no		= Str::upper(EntityEnum::INVOICE->value) .' #'. $invoice->id;
+		$aeh->reference_no		= Str::upper(EntityEnum::INVOICE->value) .'#'. $invoice->id;
 		$aeh->status			= AehStatusEnum::DRAFT->value;
 		$aeh->save();
 		$aeh_id					= $aeh->id;

@@ -823,7 +823,6 @@ class ReportController extends Controller
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 
-
 		$title 		= 'Purchase Requisiton #'. $pr->id;
 		$subTitle 	= 'Approval : '. strtoupper($pr->auth_status);
 		$param1		= 'Amount : '. number_format($pr->amount, 2) .' '. $pr->currency;
@@ -857,8 +856,6 @@ class ReportController extends Controller
 		//$pdf->setPaper('A4', 'portrait');
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
-
-
 
 		// Get height and width of page
 		$canvas = $pdf->getDomPDF()->getCanvas();

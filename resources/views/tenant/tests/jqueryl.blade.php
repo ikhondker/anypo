@@ -8,7 +8,6 @@
 	<p>Thanks for clicking. That felt good.</p>
 	<a href="#" rel="modal:close">Close</a>
  </div>
-  
  <!-- Link to open the modal -->
 <p><a href="#ex1" rel="modal:open">Open Modal</a></p>
 
@@ -26,7 +25,7 @@
  
 	<main class="container">
 		<h1> How To Install Sweetalert2 in Laravel? - ItSolutionstuiff.com TENANT</h1>
-		  
+		
 		<button class="btn btn-success">Click Me</button>
 	</main>
 </div>
@@ -67,28 +66,28 @@
 	</div>
 </div>
 
-{{--  Test Bootstrap css  --}}
+{{--Test Bootstrap css--}}
 <div class="alert alert-success mt-5" role="alert">
 	Boostrap 5 is working using laravel 8 mix!
 </div>
 
 
 
-{{--  popper.js HTML example  --}}
+{{--popper.js HTML example--}}
 <button id="button" aria-describedby="tooltip">My button</button>
 
 <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">
 	Tooltip on top
-  </button>
-  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Tooltip on right">
+</button>
+<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Tooltip on right">
 	Tooltip on right
-  </button>
-  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
+</button>
+<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
 	Tooltip on bottom
-  </button>
-  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Tooltip on left">
+</button>
+<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Tooltip on left">
 	Tooltip on left
-  </button>
+</button>
 
 <div id="app">
 	<main class="container">
@@ -152,7 +151,7 @@
 </script> --}}
 
 <script type="module">
-	  $(document).ready(function() {
+	$(document).ready(function() {
 		$("button").click(function(){
 			alert("Thanks");
 		});
@@ -161,7 +160,7 @@
 
 <script type="module">
 	$('button').click(function(){
-		  Swal.fire({
+		Swal.fire({
 			title: 'Are you sure?',
 			text: "You won't be able to revert this!",
 			icon: 'warning',
@@ -169,15 +168,15 @@
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, delete it!'
-		  }).then((result) => {
+		}).then((result) => {
 			if (result.isConfirmed) {
-			  Swal.fire(
+			Swal.fire(
 				'Deleted!',
 				'Your file has been deleted.',
 				'success'
-			  )
+			)
 			}
-		  });
+		});
 	});
 </script>
 

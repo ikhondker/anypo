@@ -32,7 +32,7 @@
 						<table class="table table-sm my-2">
 							<tbody>
 								<tr>
-									<th>Summary :</th>
+									<th width="20%">Summary :</th>
 									<td>
 										<input type="text" class="form-control @error('summary') is-invalid @enderror"
 										name="summary" id="summary" placeholder="PR summary"
@@ -85,7 +85,6 @@
 										@enderror
 									</td>
 								</tr>
-								
 								<tr>
 									<th>Project :</th>
 									<td>
@@ -117,7 +116,7 @@
 						<table class="table table-sm my-2">
 							<tbody>
 								<tr>
-									<th>Need By Date</th>
+									<th width="20%">Need By Date</th>
 									<td>
 										<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
 										name="need_by_date" id="need_by_date" placeholder=""
@@ -147,8 +146,7 @@
 										readonly/>
 									</td>
 								</tr>
-								
-		
+										
 								<x-tenant.buttons.show.save/>
 							</tbody>
 						</table>

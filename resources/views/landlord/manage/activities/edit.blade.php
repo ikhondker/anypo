@@ -24,11 +24,11 @@
 						<x-landlord.edit.id-read-only :value="$activity->id"/>
 
 							<tr>
-								<th>Object Name  :</th>
+								<th>Object Name :</th>
 								<td>
 									<input type="text" class="form-control @error('object_name') is-invalid @enderror"
 										name="object_name" id="object_name" placeholder="object_name"
-										value="{{ old('object_name', $activity->object_name  ) }}"
+										value="{{ old('object_name', $activity->object_name ) }}"
 										required/>
 									@error('object_name')
 										<div class="small text-danger">{{ $message }}</div>
@@ -40,7 +40,7 @@
 								<td>
 									<input type="text" class="form-control @error('object_id') is-invalid @enderror"
 										name="object_id" id="object_id" placeholder="object_id"
-										value="{{ old('object_id', $activity->object_id  ) }}"
+										value="{{ old('object_id', $activity->object_id ) }}"
 										required/>
 									@error('object_id')
 										<div class="small text-danger">{{ $message }}</div>
@@ -49,11 +49,11 @@
 							</tr>
 
 							<tr>
-								<th>Event Name  :</th>
+								<th>Event Name:</th>
 								<td>
 									<input type="text" class="form-control @error('event_name') is-invalid @enderror"
 										name="event_name" id="event_name" placeholder="event_name"
-										value="{{ old('event_name', $activity->event_name  ) }}"
+										value="{{ old('event_name', $activity->event_name) }}"
 										required/>
 									@error('event_name')
 										<div class="small text-danger">{{ $message }}</div>
@@ -62,11 +62,11 @@
 							</tr>
 
 							<tr>
-								<th>Column Name  :</th>
+								<th>Column Name:</th>
 								<td>
 									<input type="text" class="form-control @error('column_name') is-invalid @enderror"
 										name="column_name" id="column_name" placeholder="column_name"
-										value="{{ old('column_name', $activity->column_name  ) }}"
+										value="{{ old('column_name', $activity->column_name) }}"
 										required/>
 									@error('column_name')
 										<div class="small text-danger">{{ $message }}</div>
@@ -75,11 +75,11 @@
 							</tr>
 
 							<tr>
-								<th>Prior Value  :</th>
+								<th>Prior Value:</th>
 								<td>
 									<input type="text" class="form-control @error('prior_value') is-invalid @enderror"
 										name="prior_value" id="prior_value" placeholder="prior_value"
-										value="{{ old('prior_value', $activity->prior_value  ) }}"
+										value="{{ old('prior_value', $activity->prior_value) }}"
 										required/>
 									@error('prior_value')
 										<div class="small text-danger">{{ $message }}</div>

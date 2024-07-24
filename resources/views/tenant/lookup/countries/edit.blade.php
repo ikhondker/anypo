@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Country')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('countries.index') }}">Countries</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('countries.index') }}" class="text-muted">Countries</a></li>
 	<li class="breadcrumb-item active">{{ $country->name }}</li>
 @endsection
 
@@ -26,8 +26,8 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('countries.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>  Create</a>
-					<a href="{{ route('countries.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('countries.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>Create</a>
+					<a href="{{ route('countries.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Country Edit</h5>
 				<h6 class="card-subtitle text-muted">Edit a Country.</h6>

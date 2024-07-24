@@ -96,23 +96,23 @@ class PrController extends Controller
 		}
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
-				$prs = $prs->ByUserAll()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->ByUserAll()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::HOD->value:
-				$prs = $prs->ByDeptApproved()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->ByDeptAll()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::BUYER->value:
-				$prs = $prs->AllApproved()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->AllApproved()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-				$prs = $prs->AllApproved()->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->AllApproved()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::SYSTEM->value:
 				//->with('status_badge')
 				//->with('auth_status_badge')
 				//$prs = $prs->with("requestor")->with("dept")->with('status_badge')->with('auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
-				$prs = $prs->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 
 				break;
 			default:
@@ -294,7 +294,8 @@ class PrController extends Controller
 			$request->merge(['dept_id'		=> auth()->user()->dept_id]);
 		}
 
-
+		// Write to Log
+		EventLog::event('pr', $pr->id, 'update', 'summary', $pr->summary);
 		$pr->update($request->all());
 
 		if ($file = $request->file('file_to_upload')) {
@@ -315,8 +316,7 @@ class PrController extends Controller
 			Log::error(tenant('id'). 'tenant.pr.update syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
-		// Write to Log
-		EventLog::event('pr', $pr->id, 'update', 'summary', $pr->summary);
+		
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition updated successfully.');
 	}
 
@@ -332,7 +332,7 @@ class PrController extends Controller
 		if (($pr->auth_status <> AuthStatusEnum::DRAFT->value) ) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be deleted!');
 		}
-		Log::debug('tenant.pr.destroy deleting pr_id = ' . $pr->id);
+		Log::debug(tenant('id'). ' tenant.pr.destroy deleting pr_id = ' . $pr->id);
 
 		// check if allowed by policy
 		$this->authorize('delete', $pr);
@@ -355,7 +355,7 @@ class PrController extends Controller
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be recalculated!');
 		}
 
-		Log::debug('tenant.pr.recalculate recalculating pr_id = ' . $pr->id);
+		Log::debug(tenant('id'). ' tenant.pr.recalculate recalculating pr_id = ' . $pr->id);
 
 		// 	update PR Header value
 		DB::statement("set @sequenceNumber=0");
@@ -366,14 +366,14 @@ class PrController extends Controller
 				amount		= qty * price + tax + gst
 				WHERE pr_id = ".$pr->id."");
 
-		Log::debug('tenant.pr.recalculate calling syncPrValues for pr_id = '. $pr->id);
+		Log::debug(tenant('id'). ' tenant.pr.recalculate calling syncPrValues for pr_id = '. $pr->id);
 		$result = Pr::syncPrValues($pr->id);
 
 		if ($result == '') {
-			Log::debug('tenant.PrController.recalculate Pr->syncPrValues Successful');
+			Log::debug(tenant('id'). ' tenant.PrController.recalculate Pr->syncPrValues Successful');
 			return redirect()->route('prs.show', $pr->id)->with('success', 'PR Line Numbers updated and Amount Recalculated!');
 		} else {
-			Log::error(tenant('id'). 'tenant.PrController.recalculate for pr_id = '.$pr->id.' Return value of Pr->syncPrValues = ' . $result);
+			Log::error(tenant('id'). ' tenant.PrController.recalculate for pr_id = '.$pr->id.' Return value of Pr->syncPrValues = ' . $result);
 			$customError = CustomError::where('code', $result)->first();
 			return redirect()->route('prs.show', $pr->id)->with('error', $customError->message.' Please Try later.');
 		}
@@ -386,7 +386,7 @@ class PrController extends Controller
 	{
 
 		$pr_id = $pr->id;
-		Log::debug('tenant.pr.cancel cancelling pr_id = ' . $pr_id);
+		Log::debug(tenant('id'). ' tenant.pr.cancel cancelling pr_id = ' . $pr_id);
 
 		try {
 			$pr = Pr::where('id', $pr_id)->firstOrFail();
@@ -410,12 +410,12 @@ class PrController extends Controller
 			$this->authorize('cancel', $pr);
 
 			// Reverse Booking
-			Log::debug('tenant.pr.cancel calling PrBudget::prBudgetApproveCancel ...');
+			Log::debug(tenant('id'). ' tenant.pr.cancel calling PrBudget::prBudgetApproveCancel ...');
 			$retcode = PrBudget::prBudgetApproveCancel($pr_id);
-			Log::debug('tenant.pr.cancel retcode = '.$retcode);
+			Log::debug(tenant('id'). ' tenant.pr.cancel retcode = '.$retcode);
 
 			// Cancel All PR Lines
-			Log::debug('tenant.pr.cancel cancelling all prl lines ...');
+			Log::debug(tenant('id'). ' tenant.pr.cancel cancelling all prl lines ...');
 			Prl::where('pr_id', $pr_id)
 				->update([
 					'price' 			=> 0,
@@ -431,7 +431,7 @@ class PrController extends Controller
 					]);
 
 			// cancel PR
-			Log::debug('tenant.pr.cancel cancelling pr line ...');
+			Log::debug(tenant('id'). ' tenant.pr.cancel cancelling pr line ...');
 			Pr::where('id', $pr_id)
 				->update([
 					'sub_total' 	=> 0,
@@ -476,7 +476,7 @@ class PrController extends Controller
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit own department Requisition!');
 		}
 
-		Log::debug('tenant.pr.submit submitting pr_id = ' . $pr->id);
+		Log::debug(tenant('id'). ' tenant.pr.submit submitting pr_id = ' . $pr->id);
 
 		// generate fc_currency value and check budget
 		// check if budget created and set dept_budget_id
@@ -487,12 +487,12 @@ class PrController extends Controller
 		} catch (ModelNotFoundException $exception) {
 			return redirect()->route('prs.index')->with('error', 'Budget is not defined for '.$fy.'. Please open this years budget and try again');
 		}
-		Log::debug('tenant.pr.submit budget defined budget_id = ' . $budget->id);
+		Log::debug(tenant('id'). ' tenant.pr.submit budget defined budget_id = ' . $budget->id);
 
 		if ($budget->closed) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Budget for this period is freezed! You can not submit new PR for approval!');
 		}
-		Log::debug('tenant.pr.submit budget is open budget_id = ' . $budget->id);
+		Log::debug(tenant('id'). ' tenant.pr.submit budget is open budget_id = ' . $budget->id);
 
 		// check if dept_budget for this year exists then update dept_budget_id column
 		try {
@@ -501,7 +501,7 @@ class PrController extends Controller
 				->firstOrFail();
 			$pr->dept_budget_id = $dept_budget->id;
 			$pr->save();
-			Log::debug('tenant.pr.submit PR dept_budget_id updated with dept_budget = ' . $dept_budget->id);
+			Log::debug(tenant('id'). ' tenant.pr.submit PR dept_budget_id updated with dept_budget = ' . $dept_budget->id);
 
 		} catch (ModelNotFoundException $exception) {
 			Log::warning(tenant('id').' tenant.prs.submit ModelNotFoundException. DeptBudget not found for budget_id= '. $budget->id);
@@ -514,11 +514,11 @@ class PrController extends Controller
 		Log::debug('tenant.pr.submit DeptBudget is open dept_budget_id = ' . $dept_budget->id);
 
 		// 	Populate functional currency values
-		Log::debug('tenant.pr.submit calling syncPrValues for pr_id = '. $pr->id);
+		Log::debug(tenant('id'). ' tenant.pr.submit calling syncPrValues for pr_id = '. $pr->id);
 		$result = Pr::syncPrValues($pr->id);
 
 		if ($result == '') {
-			Log::debug('tenant.pr.submit syncPrValues completed.');
+			Log::debug(tenant('id'). ' tenant.pr.submit syncPrValues completed.');
 		} else {
 			Log::error(tenant('id'). 'tenant.PrController.submit Return value of pr_id = '.$pr->id.' Pr->syncPrValues = ' . $result);
 			$customError = CustomError::where('code', $result)->first();
@@ -526,7 +526,7 @@ class PrController extends Controller
 		}
 
 		// Check and book Dept Budget TODO use error_code
-		Log::debug('tenant.pr.submit booking budget by PrBudget::prBudgetBook...');
+		Log::debug(tenant('id'). ' tenant.pr.submit booking budget by PrBudget::prBudgetBook...');
 		$retcode = PrBudget::prBudgetBook($pr->id);
 
 		if ( $retcode <> '' ){
@@ -541,11 +541,11 @@ class PrController extends Controller
 			}
 		} else {
 			// Submission Success
-			Log::debug('tenant.prs.submit prBudgetBook okay for pr_id = '. $pr->id);
+			Log::debug(tenant('id'). ' tenant.prs.submit prBudgetBook okay for pr_id = '. $pr->id);
 		}
 
 		// Submit for approval
-		Log::debug('tenant.pr.submit submitting in Workflow::submitWf ...');
+		Log::debug(tenant('id'). ' tenant.pr.submit submitting in Workflow::submitWf ...');
 		$wf_id = Workflow::submitWf(EntityEnum::PR->value, $pr->id);
 		if ($wf_id == 0) {
 			Log::error(tenant('id').' tenant.prs.submit Workflow::submitWf failed for pr_id = '.$pr->id);
@@ -553,7 +553,7 @@ class PrController extends Controller
 		}
 
 		//Update back pr wf_id and status
-		Log::debug('tenant.pr.submit updating pr wf_id and status ...');
+		Log::debug(tenant('id'). ' tenant.pr.submit updating pr wf_id and status ...');
 		$pr->wf_id = $wf_id;
 		$pr->auth_status = AuthStatusEnum::INPROCESS->value;
 		$pr->submission_date = Carbon::now();
@@ -564,19 +564,19 @@ class PrController extends Controller
 		$action = WflActionEnum::SUBMITTED->value;
 		$actionURL = route('prs.show', $pr->id);
 		$requestor = User::where('id', $pr->requestor_id)->first();
-		Log::debug('tenant.pr.submit notifying submitter user_id = ' . $requestor->id);
+		Log::debug(tenant('id'). ' tenant.pr.submit notifying submitter user_id = ' . $requestor->id);
 		$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 
 		// Send notification to Next Approver
 		$action = WflActionEnum::PENDING->value;
 		$actionURL = route('prs.show', $pr->id);
 		$next_approver_id = Workflow::getNextApproverId($pr->wf_id);
-		Log::debug("tenant.pr.submit notifying next_approver_id = ". $next_approver_id);
+		Log::debug(tenant('id'). ' tenant.pr.submit notifying next_approver_id = '. $next_approver_id);
 		if ($next_approver_id <> 0) {
 			$approver = User::where('id', $next_approver_id)->first();
 			$approver->notify(new PrActions($approver, $pr, $action, $actionURL));
 		} else {
-			Log::debug("tenant.pr.submit okay. next_approver_id not found!");
+			Log::debug(tenant('id'). 'tenant.pr.submit okay. next_approver_id not found!');
 		}
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition submitted for approval successfully.');
 	}
@@ -621,8 +621,10 @@ class PrController extends Controller
 		$pr_id					= $pr->id;
 
 		// copy lines into prls
-		$sql= "INSERT INTO prls( pr_id, line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, closure_status )
-		SELECT ".$pr->id.",line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, '".ClosureStatusEnum::OPEN->value."'
+		$sql= "INSERT INTO prls( 
+				pr_id, line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, closure_status )
+		SELECT ".
+				$pr->id.",line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, '".ClosureStatusEnum::OPEN->value."'
 		FROM prls WHERE
 		pr_id= ".$sourcePr->id." ;";
 		DB::INSERT($sql);
@@ -673,13 +675,14 @@ class PrController extends Controller
 		$po->save();
 		$po_id				= $po->id;
 
-
 		// copy prls into pols
 		$sql= "
-		INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id, qty, price, sub_total, tax, gst, amount, notes,
-		requestor_id, dept_id, unit_id, closure_status )
-		SELECT ".$po_id.",prl.line_num, prl.item_description, prl.item_id, prl.uom_id, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
-		pr.requestor_id, pr.dept_id, pr.unit_id,'".ClosureStatusEnum::OPEN->value."'
+		INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id, 
+			qty, price, sub_total, tax, gst, amount, notes,
+			requestor_id, dept_id, unit_id,project_id,prl_id, closure_status )
+		SELECT ".$po_id.",prl.line_num, prl.item_description, prl.item_id, prl.uom_id, 
+			prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
+			pr.requestor_id, pr.dept_id, pr.unit_id,pr.project_id,prl.id,'".ClosureStatusEnum::OPEN->value."'
 		FROM prls prl,prs pr
 		WHERE pr.id=prl.pr_id
 		AND pr_id= ".$pr->id.
@@ -788,7 +791,7 @@ class PrController extends Controller
 		return view('tenant.prs.attachments', compact('pr'));
 	}
 
-	public function history(Pr $pr)
+	public function chkhistory(Pr $pr)
 	{
 		$this->authorize('view', $pr);
 

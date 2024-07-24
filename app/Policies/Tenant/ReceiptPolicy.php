@@ -43,7 +43,15 @@ class ReceiptPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+		return false;
+	}
+	
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function createForPol(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isSupport());
 	}
 
 	/**
@@ -59,7 +67,7 @@ class ReceiptPolicy
 	 */
 	public function delete(User $user, Receipt $receipt): bool
 	{
-		//
+		return false;
 	}
 
 	/**
@@ -67,7 +75,7 @@ class ReceiptPolicy
 	 */
 	public function cancel(User $user): bool
 	{
-		return ($user->isBuyer() || $user->isAdmin());
+		return ($user->isBuyer() || $user->isSupport());
 	}
 	
 	/**

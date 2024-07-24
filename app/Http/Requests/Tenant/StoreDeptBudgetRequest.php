@@ -23,9 +23,9 @@ class StoreDeptBudgetRequest extends FormRequest
 	{
 		return [
 			//unique:users,mobile,NULL,id,isd,' . $request->isd,
-			'budget_id'		=> 'required|integer|exists:budgets,id|unique:dept_budgets,budget_id,'.$this->budget_id.',id,dept_id,'. $this->dept_id,
+			//'budget_id'		=> 'required|integer|exists:budgets,id|unique:dept_budgets,budget_id,'.$this->budget_id.',id,dept_id,'. $this->dept_id,
 			'dept_id'		=> 'required|integer|exists:depts,id',
-			//'budget_id'		=> 'required|integer|exists:budgets,id|unique:dept_budgets,budget_id,dept_id',
+			//'budget_id'	=> 'required|integer|exists:budgets,id|unique:dept_budgets,budget_id,dept_id',
 			//'dept_id'		=> 'required|unique:dept_budgets,budget_id,dept_id',
 			'amount'		=> 'required|numeric|min:1.00|max:9999999999.99',
 		];

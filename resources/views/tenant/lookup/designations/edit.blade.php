@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Designation')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('designations.index') }}">Designations</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('designations.index') }}" class="text-muted">Designations</a></li>
 	<li class="breadcrumb-item">{{ $designation->name }}</li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection

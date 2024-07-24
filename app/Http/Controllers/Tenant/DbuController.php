@@ -128,11 +128,11 @@ class DbuController extends Controller
 	{
 		$this->authorize('update', $dbu);
 
-		//dd($category);
-		$dbu->update($request->all());
-
+		
+		
 		// Write to Log
 		EventLog::event('dbu', $dbu->id, 'update', 'name', $dbu->id);
+		$dbu->update($request->all());
 
 		return redirect()->route('dbus.index')->with('success', 'Dbu updated successfully');
 	}
@@ -149,19 +149,31 @@ class DbuController extends Controller
 	{
 
 		$this->authorize('export', Dbu::class);
+		
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			//$dept_id 	= auth()->user()->dept_id;
+			$whereDept = 'u.dept_id = '. auth()->user()->dept_id;
+		} else {
+			$whereDept = '1 = 1';
+		}
+		
+		$sql = "
+			SELECT u.id, u.entity, u.article_id, u.event, o.name user_name, d.name dept_name, p.name project_name,
+			u.amount_pr_booked, u.amount_pr, u.amount_po_booked, u.amount_po, u.amount_grs, u.amount_invoice, u.amount_payment,
+			u.created_at
+			FROM dbus u,dept_budgets db,budgets b,depts d, projects p, users o
+			WHERE u.dept_budget_id = db.id
+			AND db.budget_id = b.id
+			AND db.dept_id = d.id
+			AND u.project_id = p.id
+			AND u.user_id=o.id
+			AND ". $whereDept ."
+			ORDER BY u.id DESC
+		";
 
-		$data = DB::select("
-		SELECT u.id, u.entity, u.article_id, u.event, o.name user_name, d.name dept_name, p.name project_name,
-		u.amount_pr_booked, u.amount_pr, u.amount_po_booked, u.amount_po, u.amount_grs, u.amount_invoice, u.amount_payment,
-		u.created_at
-		FROM dbus u,dept_budgets db,budgets b,depts d, projects p, users o
-		WHERE u.dept_budget_id = db.id
-		AND db.budget_id = b.id
-		AND db.dept_id=d.id
-		AND u.project_id=p.id
-		AND u.user_id=o.id
+		//Log::debug(tenant('id'). 'tenant.DeptBudget.export sql = '. $sql);
+		$data = DB::select($sql);
 
-		");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('dbus', $dataArray);

@@ -5,14 +5,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<div class="dropdown position-relative">
-						<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-lucide="more-horizontal"></i>
-						</a>
-						<div class="dropdown-menu dropdown-menu-end">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>
+						<a href="{{ route('invoices.create', $poid) }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create Invoice</a>
 					</div>
 				</div>
 				<h5 class="card-title">Purchase Order Invoices</h5>
@@ -44,16 +37,16 @@
 							<td class="">{{ $invoice->summary }}</td>
 							<td class="">{{ $invoice->currency }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount"/></td>
-							<td class="text-end"><x-tenant.list.my-number :value="$invoice->amount_paid"/></td>
+							<td class="text-end"><x-tenant.list.my-number :value="$invoice->paid_amount"/></td>
 							<td><span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span></td>
 							<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>
 
-							<td class="table-action">
+							<td>
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 									<i class="align-middle" data-lucide="eye"></i></a>
 								<a href="{{ route('invoices.edit',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 									<i class="align-middle" data-lucide="edit"></i></a>
-								<a href="{{ route('payments.create',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Payments">
+								<a href="{{ route('payments.create',$invoice->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Pay">
 									<i class="align-middle" data-lucide="dollar-sign"></i></a>
 							</td>
 						</tr>

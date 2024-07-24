@@ -65,13 +65,13 @@ class AehReceipt implements ShouldQueue
 			$aeh->event			= AehEventEnum::POST->value;
 		}
 		$aeh->accounting_date 	= date('Y-m-d');
-		$aeh->description		= $receipt->pol->item_description;
 		$aeh->fc_currency		= $setup->currency;
 		$aeh->fc_dr_amount		= $aeh->fc_cr_amount = $this->fc_amount;
 		$aeh->po_id				= $receipt->pol->po_id;
 		$aeh->article_id		= $receipt->id;
 		//$aeh->reference_no	  =  'GRS #'. $receipt->id;
-		$aeh->reference_no		= Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;
+		$aeh->description		= 'Receipt of '. $receipt->pol->item_description .' Ref. PO#'.$aeh->po_id;
+		$aeh->reference_no		= Str::upper(EntityEnum::RECEIPT->value) .'#'. $receipt->id;
 		$aeh->status			= AehStatusEnum::DRAFT->value;
 		$aeh->save();
 		$aeh_id					= $aeh->id;
@@ -90,7 +90,7 @@ class AehReceipt implements ShouldQueue
 		$ael_dr->ac_code			= $receipt->pol->item->ac_expense;
 		$ael_cr->ac_code			= $setup->ac_accrual;
 
-		$ael_dr->line_description	= $ael_cr->line_description = $receipt->pol->item_description;
+		$ael_dr->line_description	= $ael_cr->line_description = $aeh->description;
 		$ael_dr->fc_currency		= $ael_cr->fc_currency 		= $setup->currency;
 		$ael_dr->reference_no		= $ael_cr->reference_no		= Str::upper(EntityEnum::RECEIPT->value) .' #'. $receipt->id;
 

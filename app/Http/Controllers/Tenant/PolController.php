@@ -160,7 +160,11 @@ class PolController extends Controller
 	public function show(Pol $pol)
 	{
 		$this->authorize('view', $pol);
-		return view('tenant.pols.show', compact('pol'));
+
+		$po = Po::where('id', $pol->po_id)->first();
+		$pols = Pol::where('po_id', $pol->po_id)->get();
+		//dd($pols);
+		return view('tenant.pols.show', compact('po','pol','pols'));
 	}
 
 	/**
@@ -202,10 +206,11 @@ class PolController extends Controller
 		$request->validate([
 
 		]);
-		$pol->update($request->all());
 
 		// Write to Log
+		EventLog::event('pol', $pol->id, 'update', 'summary', $pol->summary);
 		EventLog::event('Pol', $pol->id, 'edit');
+		$pol->update($request->all());
 
 		// 	update PO Header value
 		// old 	$result = Po::updatePoHeaderValue($pol->po_id);
@@ -219,8 +224,6 @@ class PolController extends Controller
 			Log::error(tenant('id'). 'tenant.po.update syncPoValues po_id = '.$pol->po_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
-		// Write to Log
-		EventLog::event('pol', $pol->id, 'update', 'summary', $pol->summary);
 
 		return redirect()->route('pos.show', $pol->po_id)->with('success', 'Purchase Order Line updated successfully');
 	}
@@ -241,7 +244,7 @@ class PolController extends Controller
 		$pol->delete();
 
 		// 	update PR Header value
-		$result = Po::updatePoHeaderValue($pol->po_id);
+		$result = Po::syncPoValues($pol->po_id);
 
 		// Write to Log
 		EventLog::event('pol', $pol->id, 'delete', 'id', $pol->id);

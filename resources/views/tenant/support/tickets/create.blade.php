@@ -12,8 +12,7 @@
 			Create Support Ticket
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.save/>
-			<x-tenant.buttons.header.lists object="User"/>
+			
 		@endslot
 	</x-tenant.page-header>
 
@@ -21,57 +20,55 @@
 	<form id="myform" action="{{ route('tickets.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-		<div class="row">
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header">
-					<h5 class="card-title">Create Ticket</h5>
-					</div>
-					<div class="card-body">
-
-						<div class="mb-3">
-							<label class="form-label">Title</label>
-							<input type="text" class="form-control @error('title') is-invalid @enderror"
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">Create Support Ticket</h5>
+				<h6 class="card-subtitle text-muted">Create a new Support Ticket</h6>
+			</div>
+			<div class="card-body">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th>Subject :</th>
+							<td>
+								<input type="text" class="form-control @error('title') is-invalid @enderror"
 								name="title" id="title" placeholder="Summary"
 								value="{{ old('title', '' ) }}"
 								required/>
 							@error('title')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Content</label>
+							</td>
+						</tr>
+						<tr>
+							<th>Content :</th>
+							<td>
 							<textarea class="form-control" rows="3" name="content"
 								placeholder="Enter ...">{{ old('content', "Enter ...") }}</textarea>
 							@error('content')
 								<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
-						</div>
-
-						<div class="mb-3">
-							<label class="form-label">Attachment</label>
-							<input type="file" class="form-control form-control-sm" name="file_to_upload"
-							id="file_to_upload"
-							accept=".jpg,.jpeg,.bmp,.png,.gif,.doc,.docx,.ppt,.pptx,.csv,.rtf,.xlsx,.xls,.txt,.pdf,.zip"
-							placeholder="file_to_upload">
-
-							@error('file_to_upload')
-								<div class="text-danger text-xs">{{ $message }}</div>
-							@enderror
-						</div>
-
+							</td>
+						</tr>
+						<tr>
+							<th>Attachment :</th>
+							<td>
+								<input type="file" class="form-control form-control-sm" name="file_to_upload"
+								id="file_to_upload"
+								accept=".jpg,.jpeg,.bmp,.png,.gif,.doc,.docx,.ppt,.pptx,.csv,.rtf,.xlsx,.xls,.txt,.pdf,.zip"
+								placeholder="file_to_upload">
+	
+								@error('file_to_upload')
+									<div class="text-danger text-xs">{{ $message }}</div>
+								@enderror
+							</td>
+						</tr>
 						<x-tenant.buttons.show.save/>
-
-					</div>
-				</div>
+				
+					</tbody>
+				</table>
 			</div>
-			<!-- end col-6 -->
-			<div class="col-6">
-
-			</div>
-			<!-- end col-6 -->
 		</div>
-		<!-- end row -->
 
 	</form>
 	<!-- /.form end -->

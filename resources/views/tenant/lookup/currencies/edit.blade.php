@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Currency')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('currencies.index') }}">Currencies</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('currencies.show',$currency->currency) }}">{{ $currency->name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('currencies.index') }}" class="text-muted">Currencies</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('currencies.show',$currency->currency) }}" class="text-muted">{{ $currency->name }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 

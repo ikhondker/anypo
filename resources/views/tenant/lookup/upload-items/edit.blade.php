@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','Edit Interface Item')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('upload-items.index') }}">Interface Items</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('upload-items.show',$uploadItem->id) }}">{{ $uploadItem->item_code }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('upload-items.index') }}" class="text-muted">Interface Items</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('upload-items.show',$uploadItem->id) }}" class="text-muted">{{ $uploadItem->item_code }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -25,7 +25,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('upload-items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('upload-items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Interface Item Data</h5>
 				<h6 class="card-subtitle text-muted">Edit Item Interface Detail.</h6>

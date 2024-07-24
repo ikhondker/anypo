@@ -61,7 +61,7 @@
 								<div class="col-12">
 										<label for="username" class="form-label">Sitename</label>
 										<div class="input-group has-validation">
-												<input type="text" class="form-control form-control-sm" id="username"  value="XYZ" placeholder="sitename" required>
+												<input type="text" class="form-control form-control-sm" id="username" value="XYZ" placeholder="sitename" required>
 												<span class="input-group-text">.anypo.com</span>
 												<div class="invalid-feedback">
 														Your username is required.
@@ -79,7 +79,7 @@
 
 							<div class="col-6">
 								<label for="email" class="form-label">Your Email</label>
-								<input type="email" class="form-control form-control-sm" id="email"  value="you@example.com" placeholder="you@example.com" required>
+								<input type="email" class="form-control form-control-sm" id="email" value="you@example.com" placeholder="you@example.com" required>
 								<div class="invalid-feedback">
 									Please enter a valid email address.
 								</div>

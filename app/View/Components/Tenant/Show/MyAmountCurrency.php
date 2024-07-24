@@ -9,22 +9,18 @@ use Illuminate\View\Component;
 class MyAmountCurrency extends Component
 {
 	
-	public $value;
-	public $currency;
-	public $label;
-	
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($value, $currency, $label='')
+	public function __construct(public string $value, public string $currency, public string $label='')
 	{
-		$this->label = ($label == '')? 'Amount' : $label;
-		if (is_numeric($value)){
-			$this->value = $value;
-		} else {
-			$this->value = 0;
-		}
+		// if (is_numeric($value)){
+		// } else {
+		// 	$this->value = 0;
+		// }
+		$this->value 	= $value;
 		$this->currency = $currency;
+		$this->label 	= ($label == '')? 'Amount' : $label;
 	}
 
 	/**

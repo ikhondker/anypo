@@ -35,7 +35,7 @@ class CurrencyPolicy
 	 */
 	public function view(User $user, Currency $currency): bool
 	{
-		return false;
+		return true;
 	}
 
 	/**

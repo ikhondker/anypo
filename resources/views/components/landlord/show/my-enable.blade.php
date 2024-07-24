@@ -1,5 +1,5 @@
 <tr>
-	<th>{{ $label }}</th>
+	<th>{{ $label }} X:</th>
 	<td><span class="badge {{ ($value ? 'badge-subtle-info' : 'badge-subtle-danger') }}">{{ ($value ? 'Yes' : 'No') }}</span></td>
 </tr>
 

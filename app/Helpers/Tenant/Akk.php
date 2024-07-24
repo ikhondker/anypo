@@ -24,6 +24,7 @@ use App\Models\Tenant\DeptBudget;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+// called form hod.dashboard
 class Akk
 {
 
@@ -31,7 +32,9 @@ class Akk
 	{
 		// Check if dept budget exists for current logged user 
 		try {
-			$deptBudget 	= DeptBudget::where('dept_id', auth()->user()->dept_id )->get()->firstOrFail();
+			$deptBudget 	= DeptBudget::where('dept_id', auth()->user()->dept_id )
+				->where('revision', false)
+				->get()->firstOrFail();
 			return true;
 		} catch (ModelNotFoundException $ex) {
 			//Log::warning('tenant.model.DeptBudget.userDeptBudgetExists dept_budget not found!');

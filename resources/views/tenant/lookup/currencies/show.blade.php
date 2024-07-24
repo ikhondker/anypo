@@ -2,7 +2,7 @@
 @section('title','View Currency')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('currencies.index') }}">Departments</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('currencies.index') }}" class="text-muted">Departments</a></li>
 	<li class="breadcrumb-item active">{{ $currency->name }}</li>
 @endsection
 
@@ -21,7 +21,9 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('currencies.edit', $currency->currency ) }}"><i class="fas fa-edit"></i> Edit</a>
+				@if (auth()->user()->isSystem())
+					<a class="btn btn-sm btn-danger text-white" href="{{ route('currencies.edit', $currency->currency ) }}"><i class="fas fa-edit"></i> Edit</a>
+				@endif
 				<a class="btn btn-sm btn-light" href="{{ route('currencies.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Currency Detail</h5>

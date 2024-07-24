@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Designation')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('designations.index') }}">Designations</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('designations.index') }}" class="text-muted">Designations</a></li>
 	<li class="breadcrumb-item active">Create</li>
 @endsection
 
@@ -23,7 +23,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('designations.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('designations.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create Designation</h5>
 						<h6 class="card-subtitle text-muted">Create a new designations</h6>

@@ -33,9 +33,23 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="{{ route('home') }}" aria-label="Space">
-					<img class="xxnavbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-white.svg') }}" alt="Logo" width="80" height="80">
-				</a>
+
+				<div class="sidebar-brand">
+					@auth
+						<a class="" href="{{ route('home') }}">
+							<img src="{{ Storage::disk('s3l')->url('logo/logo-white.svg') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="Logo"/>
+						</a>
+						<a class="" href="{{ route('users.profile') }}">
+							<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>
+						</a>
+					@endauth
+					@guest
+						<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="Logo"/>
+						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
+						<h6 class="text-danger">Guest!</h6>
+					@endguest
+				</div>
+
 				<ul class="sidebar-nav">
 
 					<!-- ========== SIDEBAR ========== -->

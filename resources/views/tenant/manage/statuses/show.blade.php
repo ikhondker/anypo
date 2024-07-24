@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','View Status')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('statuses.index') }}">Statuses</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('statuses.index') }}" class="text-muted">Statuses</a></li>
 	<li class="breadcrumb-item active">{{ $status->name }}</li>
 @endsection
 

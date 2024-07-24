@@ -1,6 +1,16 @@
-<div class="row">
-	<div class="col-xl-12">
+
 		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+						@can('update', $po)
+							<a class="btn btn-sm btn-light" href="{{ route('pos.edit', $po->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+						@endcan 
+					@endif 	
+					<a class="btn btn-sm btn-light" href="{{ route('pos.index') }}" ><i class="fas fa-list"></i> View all</a>
+				</div>
+				<h5 class="card-title mb-0">[PO#{{ $po->id }}] {{ $po->summary }}</h5>
+			</div>
 			<div class="card-body">
 				<div class="row g-0">
 					<div class="col-sm-3 col-xl-3 col-xxl-3 text-center">
@@ -10,7 +20,7 @@
 
 					</div>
 					<div class="col-sm-9 col-xl-9 col-xxl-9">
-						<h4>PO #{{ $po->id }} : {{ $po->summary }}</h4>
+						<strong>{{ $po->summary }}</strong>
 						<p>{!! nl2br($po->notes) !!}</p>
 						<table class="table table-sm my-2">
 
@@ -42,8 +52,8 @@
 									<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 								</tr>
 								<tr>
-									<th>Buyer</th>
-									<td>{{ $po->buyer->name }}</td>
+									<th>Supplier</th>
+									<td>{{ $po->supplier->name }}</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
@@ -56,5 +66,4 @@
 
 			</div>
 		</div>
-	</div>
-</div>
+	

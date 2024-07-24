@@ -42,7 +42,7 @@ class HierarchylPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function create(User $user): Response
+	public function create(User $user): bool
 	{
 		return false;
 	}
@@ -50,7 +50,7 @@ class HierarchylPolicy
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Hierarchyl $hierarchyl): Response
+	public function update(User $user, Hierarchyl $hierarchyl): bool
 	{
 		return false;
 	}
@@ -58,7 +58,7 @@ class HierarchylPolicy
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, Hierarchyl $hierarchyl): Response
+	public function delete(User $user, Hierarchyl $hierarchyl): bool
 	{
 		return false;
 	}

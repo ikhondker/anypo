@@ -47,7 +47,9 @@
 			<div class="card-header">
 
 				<div class="card-actions float-end">
-					<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					@endif
 					<a class="btn btn-sm btn-light" href="{{ route('prs.index') }}" ><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Approval Status</h5>
@@ -75,7 +77,11 @@
 							<th>PO# :</th>
 							<td>
 								@if ( $pr->po_id <> 0)
-									<a href="{{ route('pos.show',$pr->po_id) }}" class="text-warning d-inline-block">{{ $pr->po_id }}</a>
+									@if (! auth()->user()->isUser())
+										<a href="{{ route('pos.show',$pr->po_id) }}" class="text-muted"><strong>PO#{{ $pr->po_id }}</strong></a>
+									@else 
+										<strong>PO#{{ $pr->po_id }}</strong>
+									@endif
 								@else
 									&nbsp;
 								@endif

@@ -121,9 +121,9 @@ class AelController extends Controller
 	 */
 	public function show(Ael $ael)
 	{
-		abort(403);
-		//$this->authorize('view', $ael);
-		//return view('tenant.ae.aels.show', compact('ael'));
+		//abort(403);
+		$this->authorize('view', $ael);
+		return view('tenant.ae.aels.show', compact('ael'));
 	}
 
 	/**
@@ -147,7 +147,7 @@ class AelController extends Controller
 	 */
 	public function destroy(Ael $ael)
 	{
-		//
+		abort(403);
 	}
 
 

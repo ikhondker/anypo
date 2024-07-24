@@ -19,7 +19,7 @@
 	<x-tenant.landlord-notice-all-tenants/>
 	<x-tenant.landlord-notice-one-tenant/>
 
-	@if ( \App\Helpers\Akk::userAnyDeptBudgetExists() )
+	@if ( \App\Helpers\Tenant\Akk::userAnyDeptBudgetExists() )
 		<div class="row">
 			<x-tenant.charts.dept-budget-po-pie/>
 			<x-tenant.charts.dept-budget-pr-pie/>

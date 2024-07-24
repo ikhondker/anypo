@@ -31,7 +31,7 @@ class AelPolicy
 	 */
 	public function view(User $user, Ael $ael): bool
 	{
-		//
+		return false;
 	}
 
 	/**

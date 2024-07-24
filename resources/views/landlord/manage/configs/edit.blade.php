@@ -4,13 +4,13 @@
 
 @section('content')
 
-	<h1 class="h3 mb-3">Edit  Config</h1>
+	<h1 class="h3 mb-3">EditConfig</h1>
 
 	<div class="card">
 		<div class="card-header">
 
 			<h5 class="card-title">Edit Billing Config</h5>
-			<h6 class="card-subtitle text-muted">Edit  Config Details.</h6>
+			<h6 class="card-subtitle text-muted">EditConfig Details.</h6>
 		</div>
 		<div class="card-body">
 			<form id="myform" action="{{ route('configs.update', $config->id) }}" method="POST" enctype="multipart/form-data">

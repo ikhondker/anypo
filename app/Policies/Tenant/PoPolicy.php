@@ -62,6 +62,8 @@ class PoPolicy
 		return $user->isBuyer();
 	}
 
+	
+
 	/**
 	 * Determine whether the user can update the model.
 	 */
@@ -75,7 +77,7 @@ class PoPolicy
 	 */
 	public function delete(User $user, Po $po): bool
 	{
-		return ($user->isAdmin() || $user->isSupport()) ;
+		return ( $user->isBuyer() || $user->isSupport()) ;
 	}
 
 	/**
@@ -83,7 +85,7 @@ class PoPolicy
 	 */
 	public function cancel(User $user): bool
 	{
-		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport()) ;
+		return ($user->isBuyer() || $user->isSupport()) ;
 	}
 
 	/**
@@ -115,6 +117,22 @@ class PoPolicy
 	public function open(User $user): bool
 	{
 		return $user->isSupport();
+	}
+
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function close(User $user): bool
+	{
+		return $user->isBuyer();
+	}
+
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function copy(User $user): bool
+	{
+		return $user->isBuyer();
 	}
 
 	public function export(User $user): bool

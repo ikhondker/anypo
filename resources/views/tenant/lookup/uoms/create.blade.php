@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Uom')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('uoms.index') }}">UoM's</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('uoms.index') }}" class="text-muted">UoM's</a></li>
 	<li class="breadcrumb-item active">Create</li>
 @endsection
 
@@ -12,7 +12,7 @@
 			Create Uom
 		@endslot
 		@slot('buttons')
-
+			<x-tenant.buttons.header.lists object="Uom"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -24,7 +24,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('uoms.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+					<a href="{{ route('uoms.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Create UoM</h5>
 						<h6 class="card-subtitle text-muted">Create Unit of Measure (UoM) and conversion factor.</h6>

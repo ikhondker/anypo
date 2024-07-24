@@ -11,14 +11,14 @@ import * as bootstrap from "bootstrap";
 // Note: Disable this if you're not using Bootstrap's Popovers
 const popoverTriggerList = [].slice.call(document.querySelectorAll("[data-bs-toggle=\"popover\"]"))
 popoverTriggerList.map((popoverTriggerEl) => {
-  return new bootstrap.Popover(popoverTriggerEl)
+	return new bootstrap.Popover(popoverTriggerEl)
 })
 
 // Tooltips
 // Note: Disable this if you're not using Bootstrap's Tooltips
 const tooltipTriggerList = [].slice.call(document.querySelectorAll("[data-bs-toggle=\"tooltip\"]"))
 tooltipTriggerList.map((tooltipTriggerEl) => {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
+	return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
 // Bootstrap
@@ -50,12 +50,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // window.Pusher = Pusher;
 
 // window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: import.meta.env.VITE_PUSHER_APP_KEY,
-//     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-//     wsHost: import.meta.env.VITE_PUSHER_HOST ?? `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-//     wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
-//     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-//     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
-//     enabledTransports: ['ws', 'wss'],
+//broadcaster: 'pusher',
+//	key: import.meta.env.VITE_PUSHER_APP_KEY,
+//	cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
+//	wsHost: import.meta.env.VITE_PUSHER_HOST ?? `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
+//	wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
+//	wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
+//	forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
+//	enabledTransports: ['ws', 'wss'],
 // });

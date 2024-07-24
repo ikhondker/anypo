@@ -27,7 +27,7 @@
 								<td>
 									<input type="text" class="form-control @error('first_name') is-invalid @enderror"
 										name="first_name" id="first_name" placeholder="first_name"
-										value="{{ old('first_name', $contact->first_name  ) }}"
+										value="{{ old('first_name', $contact->first_name) }}"
 										required/>
 									@error('first_name')
 										<div class="small text-danger">{{ $message }}</div>
@@ -39,7 +39,7 @@
 								<td>
 									<input type="text" class="form-control @error('last_name') is-invalid @enderror"
 										name="last_name" id="last_name" placeholder="last_name"
-										value="{{ old('last_name', $contact->last_name  ) }}"
+										value="{{ old('last_name', $contact->last_name) }}"
 										required/>
 									@error('last_name')
 										<div class="small text-danger">{{ $message }}</div>
@@ -64,7 +64,7 @@
 								<td>
 									<input type="text" class="form-control @error('subject') is-invalid @enderror"
 										name="subject" id="subject" placeholder="subject"
-										value="{{ old('subject', $contact->subject  ) }}"
+										value="{{ old('subject', $contact->subject) }}"
 										required/>
 									@error('subject')
 										<div class="small text-danger">{{ $message }}</div>

@@ -10,7 +10,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('accounts.edit', $account->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>  Edit Account</a>
+						<a href="{{ route('accounts.edit', $account->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit Account</a>
 					</div>
 					<h5 class="card-title">Account Overview</h5>
 					<h6 class="card-subtitle text-muted">View Account Details.</h6>

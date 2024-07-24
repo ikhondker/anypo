@@ -21,7 +21,7 @@
 				@if (auth()->user()->isSystem())
 					<a class="btn btn-sm btn-danger text-white" href="{{ route('activities.edit', $activity->id) }}"><i class="fas fa-edit"></i> Edit</a>
 				@endif
-				<a href="{{ route('activities.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+				<a href="{{ route('activities.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Activity Log Detail</h5>
 			<h6 class="card-subtitle text-muted">Activity log detail information..</h6>
@@ -38,9 +38,11 @@
 						<x-tenant.show.my-text value="{{ $activity->prior_value }}" label="Prior Value" />
 						<x-tenant.show.my-text value="{{ $activity->user->name }}" label="User" />
 						<x-tenant.show.my-badge value="{{ $activity->role }}" label="Role" />
-						<x-tenant.show.my-text value="{{ $activity->url }}" label="URL" />
-						<x-tenant.show.my-badge value="{{ $activity->method }}" label="Method" />
-						<x-tenant.show.my-text value="{{ $activity->ip }}" label="IP" />
+						@if (auth()->user()->isSystem())
+							<x-tenant.show.my-text value="{{ $activity->url }}" label="URL" />
+							<x-tenant.show.my-badge value="{{ $activity->method }}" label="Method" />
+							<x-tenant.show.my-text value="{{ $activity->ip }}" label="IP" />
+						@endif
 				</tbody>
 			</table>
 		</div>

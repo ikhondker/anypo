@@ -22,7 +22,7 @@ class UpdateBudgetRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'name'	=> 'required|min:2|max:100|unique:budgets,name,'. $this->budgets->id,
+			//'name'	=> 'required|min:2|max:100|unique:budgets,name,'. $this->budgets->id,
 		];
 	}
 }

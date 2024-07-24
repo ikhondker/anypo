@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--
-  HOW TO USE:
-  data-layout: fluid (default), boxed
-  data-sidebar-theme: dark (default), colored, light
-  data-sidebar-position: left (default), right
-  data-sidebar-behavior: sticky (default), fixed, compact
+	HOW TO USE:
+	data-layout: fluid (default), boxed
+	data-sidebar-theme: dark (default), colored, light
+	data-sidebar-position: left (default), right
+	data-sidebar-behavior: sticky (default), fixed, compact
 -->
 <html lang="en"
 	data-bs-theme="light"
@@ -51,15 +51,17 @@
 						<a class="" href="{{ route('users.profile') }}">
 							<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>
 						</a>
-						@endauth
+					@endauth
 					@guest
 						<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
 						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
 						<h6 class="text-danger">Guest!</h6>
 					@endguest
 				</div>
-
+				
+				<!-- ========== SIDEBAR ========== -->
 				@include('tenant.includes.sidebar')
+				<!-- ========== END SIDEBAR ========== -->
 
 			</div>
 		</nav>
@@ -81,39 +83,39 @@
 				<ul class="navbar-nav">
 					<li class="nav-item px-2 dropdown d-none d-sm-inline-block">
 						<a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Quick Menu
+							Menu
 						</a>
 						<div class="dropdown-menu dropdown-menu-start dropdown-mega" aria-labelledby="servicesDropdown">
 							<div class="d-md-flex align-items-start justify-content-start">
 								<div class="dropdown-mega-list">
-									<div class="dropdown-header">Transaction</div>
-									<a class="dropdown-item" href="{{ route('prs.create') }}">Create Requisitions</a>
+									<div class="dropdown-header"><strong>Transactions</strong></div>
+									<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Requisitions</a>
 
 									@can('create', App\Models\Tenant\Po::class)
-										<a class="dropdown-item" href="{{ route('pos.create') }}">Create Purchase Orders</a>
+										<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Purchase Orders</a>
 									@endcan
-									@can('create', App\Models\Tenant\Lookup\Items::class)
-										<a class="dropdown-item" href="{{ route('items.create') }}">Create Item</a>
+									@can('create', App\Models\Tenant\Lookup\Item::class)
+										<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Item</a>
 									@endcan
 									@can('create', App\Models\Tenant\Lookup\Supplier::class)
-										<a class="dropdown-item" href="{{ route('suppliers.create') }}">Create Supplier</a>
+										<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Supplier</a>
 									@endcan
 									@can('create', App\Models\Tenant\Lookup\Project::class)
-										<a class="dropdown-item" href="{{ route('projects.create') }}">Create Project</a>
+										<a class="dropdown-item" href="{{ route('projects.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Project</a>
 									@endcan
 									@can('create', App\Models\Tenant\Admin\User::class)
-										<a class="dropdown-item" href="{{ route('users.create') }}">Create User</a>
+										<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create User</a>
 									@endcan
 								</div>
 								<div class="dropdown-mega-list">
-									<div class="dropdown-header">Listing</div>
-									<a class="dropdown-item" href="{{ route('prs.index') }}">View Requisitions</a>
+									<div class="dropdown-header"><strong>Listing</strong></div>
+									<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle" data-lucide="list"></i> View Requisitions</a>
 									@can('viewAny', App\Models\Tenant\Po::class)
-										<a class="dropdown-item" href="{{ route('pos.index') }}">View Purchase Orders</a>
+										<a class="dropdown-item" href="{{ route('pos.index') }}"><i class="align-middle" data-lucide="list"></i> View Purchase Orders</a>
 									@endcan
-									<a class="dropdown-item" href="{{ route('receipts.index') }}">View Receipts*</a>
-									<a class="dropdown-item" href="{{ route('invoices.index') }}">View Invoices*</a>
-									<a class="dropdown-item" href="{{ route('payments.index') }}">View Payments*</a>
+									<a class="dropdown-item" href="{{ route('receipts.index') }}"><i class="align-middle" data-lucide="list"></i> View Receipts*</a>
+									<a class="dropdown-item" href="{{ route('invoices.index') }}"><i class="align-middle" data-lucide="list"></i> View Invoices*</a>
+									<a class="dropdown-item" href="{{ route('payments.index') }}"><i class="align-middle" data-lucide="list"></i> View Payments*</a>
 								</div>
 							</div>
 						</div>
@@ -190,7 +192,7 @@
 							</a>
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								@auth
-									<img src="{{ Storage::disk('s3t')->url('avatar/'.auth()->user()->avatar) }}" class="img-fluid rounded-circle me-1 mt-n2 mb-n2" alt="Chris Wood" width="40" height="40"/>
+									<img src="{{ Storage::disk('s3t')->url('avatar/'.auth()->user()->avatar) }}" class="img-fluid rounded-circle me-1 mt-n2 mb-n2" alt="{{ auth()->user()->name }}" width="40" height="40"/>
 									<span class="text-dark">{{ Str::limit(auth()->user()->name, 25, '...') }}</span>
 								@endauth
 								@guest
@@ -262,9 +264,14 @@
 						@yield('content')
 						<!-- /.content -->
 					@else
-						<!-- content -->
-						@include('tenant.admin.setups.initial')
-						<!-- /.content -->
+						@if (auth()->user()->isAdmin() || auth()->user()->isSystem() )
+							<!-- content -->
+							@include('tenant.admin.setups.initial')
+							<!-- /.content -->
+						@else
+							<x-tenant.alert.error message="Initial setup not done. Only admin can perform the initial setup."/>
+						@endif
+
 					@endif
 
 					{{-- <div class="row">

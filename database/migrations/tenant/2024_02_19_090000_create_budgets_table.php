@@ -13,8 +13,10 @@ return new class extends Migration
 	{
 		Schema::create('budgets', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('fy')->unique()->index();
-			$table->string('name')->unique();
+			$table->string('fy')->index();
+			$table->string('name');
+			//$table->string('fy')->unique()->index();
+			//$table->string('name')->unique();
 			$table->dateTime('start_date', $precision = 0)->nullable()->useCurrent();
 			$table->dateTime('end_date', $precision = 0)->nullable()->useCurrent();
 			//$table->string('currency',3)->default('USD');
@@ -34,7 +36,9 @@ return new class extends Migration
 			$table->biginteger('count_invoice')->default(0);
 			$table->biginteger('count_payment')->default(0);
 			$table->text('notes')->nullable();
-			//$table->boolean('revision')->default(false); 
+			$table->boolean('revision')->default(false);
+			$table->biginteger('parent_id')->default(0);
+			$table->biginteger('revision_dept_budget_id')->default(0);
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();

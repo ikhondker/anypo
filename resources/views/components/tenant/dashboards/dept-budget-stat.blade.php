@@ -14,7 +14,7 @@
 				</div>
 				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format($deptBudget->amount) }} </span>
 				<div class="mb-0">
-					<span class="badge badge-subtle-success me-2">FY{{ $deptBudget->budget->fy }}</span>
+					<span class="badge badge-subtle-success">FY{{ $deptBudget->budget->fy }}</span>
 					<span class="text-muted"> {{ $deptBudget->budget->name }} [{{ strtoupper($deptBudget->dept->name) }}]</span>
 				</div>
 			</div>
@@ -36,9 +36,9 @@
 
 				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $deptBudget->amount_po) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-subtle-success me-2">{{ number_format($deptBudget->amount_pod / ($deptBudget->amount == 0 ? 1 :$deptBudget->amount) * 100,2) }}%</span>
+					<span class="badge badge-subtle-success">{{ number_format($deptBudget->amount_pod / ($deptBudget->amount == 0 ? 1 :$deptBudget->amount) * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
-					<span class="badge badge-subtle-success me-2"> {{ $deptBudget->count_po }} </span>
+					<span class="badge badge-subtle-success"> {{ $deptBudget->count_po }} </span>
 					<span class="text-muted"> PO Issued</span>
 				</div>
 			</div>
@@ -61,9 +61,9 @@
 				</div>
 				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $deptBudget->amount_invoice) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-subtle-success me-2">{{ number_format($deptBudget->amount_invoice / ($deptBudget->amount == 0 ? 1 : $deptBudget->amount) * 100,2) }}%</span>
+					<span class="badge badge-subtle-success">{{ number_format($deptBudget->amount_invoice / ($deptBudget->amount == 0 ? 1 : $deptBudget->amount) * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
-					<span class="badge badge-subtle-success me-2"> {{ $deptBudget->count_invoice }} </span>
+					<span class="badge badge-subtle-success"> {{ $deptBudget->count_invoice }} </span>
 					<span class="text-muted"> Invoice Posted</span>
 				</div>
 			</div>
@@ -86,9 +86,9 @@
 				</div>
 				<span class="h1 d-inline-block mt-1 mb-3">{{ $_setup->currency}} {{ number_format( $deptBudget->amount_payment) }}</span>
 				<div class="mb-0">
-					<span class="badge badge-subtle-success me-2">{{ number_format($deptBudget->amount_payment / ($deptBudget->amount == 0 ? 1 : $deptBudget->amount) * 100,2) }}%</span>
+					<span class="badge badge-subtle-success">{{ number_format($deptBudget->amount_payment / ($deptBudget->amount == 0 ? 1 : $deptBudget->amount) * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
-					<span class="badge badge-subtle-success me-2"> {{ $deptBudget->count_payment }} </span>
+					<span class="badge badge-subtle-success"> {{ $deptBudget->count_payment }} </span>
 					<span class="text-muted"> Payment Made</span>
 
 				</div>

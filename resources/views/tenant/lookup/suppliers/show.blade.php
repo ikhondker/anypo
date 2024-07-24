@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','View Supplier')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('suppliers.index') }}">Suppliers</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('suppliers.index') }}" class="text-muted">Suppliers</a></li>
 	<li class="breadcrumb-item active">{{ $supplier->name }}</li>
 @endsection
 
@@ -19,7 +19,9 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				@can('update', $supplier)
+					<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				@endcan
 				<a class="btn btn-sm btn-light" href="{{ route('suppliers.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Supplier Detail</h5>
@@ -38,8 +40,8 @@
 					<x-tenant.show.my-text value="{{ $supplier->address2 }}" label="Address2"/>
 					<x-tenant.show.my-text value="{{ $supplier->city.', '.$supplier->state.', '.$supplier->zip }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $supplier->relCountry->name }}" label="Country"/>
-					<x-tenant.show.my-date-time value="{{ $supplier->created_at }}" label="Created At" />
 					<x-tenant.show.my-boolean	value="{{ $supplier->enable }}"/>
+					<x-tenant.show.my-date-time value="{{ $supplier->created_at }}" label="Created At" />
 				</tbody>
 			</table>
 		</div>

@@ -11,18 +11,13 @@ use App\Models\Tenant\Receipt;
 class ReceiptActions extends Component
 {
 
-	public $id;
-	public $show;
 	public $receipt;
-
-
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id, $show = false)
+	public function __construct(public string $id)
 	{
 		$this->id		= $id;
-		$this->show		= $show; 
 		$this->receipt = Receipt::where('id', $this->id)->get()->firstOrFail();
 	}
 

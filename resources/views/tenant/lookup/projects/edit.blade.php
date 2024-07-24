@@ -2,8 +2,8 @@
 @section('title','Edit Project')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Projects</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('projects.show',$project->id) }}">{{ $project->code }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}" class="text-muted">Projects</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('projects.show',$project->id) }}" class="text-muted">{{ $project->code }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -15,7 +15,7 @@
 			Edit Project
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.project-actions id="{{ $project->id }}"/>
+			<x-tenant.actions.lookup.project-actions id="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -63,7 +63,7 @@
 							</td>
 						</tr>
 						<x-tenant.edit.amount value="{{ $project->amount }}"/>
-						<x-tenant.edit.notes value="{{  $project->notes }}"/>
+						<x-tenant.edit.notes value="{{$project->notes }}"/>
 						<x-tenant.buttons.show.save/>
 					</tbody>
 				</table>

@@ -133,8 +133,10 @@
 							<td>{{ $activity->event_name }}
 								<small class="d-block">By: {{ $activity->user->name }}</small>
 							</td>
-							<td><x-landlord.list.actions object="Activity" :id="$activity->id" :edit="false"
-									:enable="false" /></td>
+							<td>
+								<a href="{{ route('activities.show',$activity->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="View">View</a>
+								</td>
 						</tr>
 					@endforeach
 				</tbody>

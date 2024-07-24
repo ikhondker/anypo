@@ -105,6 +105,10 @@ class UomController extends Controller
 	{
 		$this->authorize('update', $uom);
 
+		if ($uom->default){
+			return redirect()->route('uoms.index')->with('error', 'Wont be able to edit UoM Class defaults.');	
+		}
+
 		return view('tenant.lookup.uoms.edit', compact('uom'));
 	}
 
@@ -115,10 +119,14 @@ class UomController extends Controller
 	{
 		$this->authorize('update', $uom);
 
-		$uom->update($request->all());
-
+		if ($uom->default){
+			return redirect()->route('uoms.index')->with('error', 'Wont be able to edit UoM Class defaults.');	
+		}
+		
 		// Write to Log
 		EventLog::event('uom', $uom->id, 'update', 'name', $uom->name);
+		$uom->update($request->all());
+		
 		return redirect()->route('uoms.index')->with('success', 'Uom updated successfully');
 	}
 
@@ -128,6 +136,10 @@ class UomController extends Controller
 	public function destroy(Uom $uom)
 	{
 		$this->authorize('delete', $uom);
+
+		if ($uom->default){
+			return redirect()->route('uoms.index')->with('error', 'Wont be able to disable UoM Class defaults.');	
+		}
 
 		$uom->fill(['enable' => !$uom->enable]);
 		$uom->update();

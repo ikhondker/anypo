@@ -2,7 +2,7 @@
 @section('title','View Item Group')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('groups.index') }}">Item Groups</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('groups.index') }}" class="text-muted">Item Groups</a></li>
 	<li class="breadcrumb-item active">{{ $group->name }}</li>
 @endsection
 
@@ -22,7 +22,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('groups.edit', $group->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('groups.index') }}"><i class="fas fa-list"></i>  View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('groups.index') }}"><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Item Group Detail</h5>
 			<h6 class="card-subtitle text-muted">Item Group details.</h6>
