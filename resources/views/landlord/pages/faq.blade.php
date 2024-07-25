@@ -11,577 +11,325 @@
 			{{-- <p>Search our FAQ for answers to anything you might ask.</p> --}}
 			<p class="text-muted fs-lg">Here are some of the answers you might be looking for.</p>
 			<p class="text-muted">For anything we haven't covered, please create a <a href="{{ route('tickets.create') }}" class="text-primary">support ticket</a>. We're here to help.</p>
-			
 		</div>
 
 		<div class="mb-5 text-center">
-			<span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">Basics</span>
+			<span class="text-uppercase text-primary  fw-medium mb-1 d-block">Basics</span>
 		</div>
 		<div class="row">
 			<div class="col-md-10 col-lg-10 mx-auto">
-				<div class="accordion" id="accordionFaq">
+				<div class="accordion" id="accordionBasics">
+						
 					<div class="card border mb-3">
-						<div class="card-header cursor-pointer" id="faqOne" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						<div class="card-header cursor-pointer" id="basicsOne" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+							aria-expanded="true" aria-controls="collapseOne">
 							<h6 class="mb-0">
-								Does it work with Rails? Laravel? ASP.NET? Django?
-							</h6>
-						</div>
-						<div id="collapseOne" class="collapse show" aria-labelledby="faqOne" data-bs-parent="#accordionFaq">
-							<div class="card-body py-3">
-								Yes! We have a Django sample project, featuring allauth, debug-toolbar and crispy-forms, as well as documentation on how to use it with Pip, Pipenv and Docker To
-								get the sample project, please reach out to us at <a href="mailto:support@bootlab.io?subject=I+would+love+to+receive+the+Django+version+of+AppStack&body=Order+ID">support@bootlab.io</a>									with your order ID.<br /><br /> For all other frameworks (Rails, Laravel, ASP.NET, etc) we recommend including the compiled CSS/JS files directly in your
-								application. If you want to enable deeper customization, you can integrate it into your assets pipeline or build processes. <a href="https://themes.getbootstrap.com/guide/#integrating-with-frameworks"
-								 target="_blank" rel="noopener noreferrer nofollow">Read more here</a>.
-							</div>
-						</div>
-					</div>
-					<div class="card border mb-3">
-						<div class="card-header cursor-pointer" id="faqTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-							<h6 class="mb-0">
-								Can I use the static HTML, CSS and JS files?
-							</h6>
-						</div>
-						<div id="collapseTwo" class="collapse" aria-labelledby="faqTwo" data-bs-parent="#accordionFaq">
-							<div class="card-body py-3">
-								Absolutely. You can bypass the Webpack build step completely and simply edit the static HTML, CSS and JS files included in the package.
-							</div>
-						</div>
-					</div>
-					<div class="card border mb-3">
-						<div class="card-header cursor-pointer" id="faqThree" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-							<h6 class="mb-0">
-								Is there any support included?
-							</h6>
-						</div>
-						<div id="collapseThree" class="collapse" aria-labelledby="faqThree" data-bs-parent="#accordionFaq">
-							<div class="card-body py-3">
-								You have access to the Software's online support services via email for six (6) months from the purchase date. Please contact us at <a href="mailto:info@bootlab.io">info@bootlab.io</a>									for any questions.
-							</div>
-						</div>
-					</div>
-					<div class="card border mb-3">
-						<div class="card-header cursor-pointer" id="faqFour" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-							<h6 class="mb-0">
-								How do I get a receipt for my purchase?
-							</h6>
-						</div>
-						<div id="collapseFour" class="collapse" aria-labelledby="faqFour" data-bs-parent="#accordionFaq">
-							<div class="card-body py-3">
-								You'll receive an email from Bootstrap themes once your purchase is complete. More info can be found <a href="https://themes.zendesk.com/hc/en-us/articles/360000011052-How-do-I-get-a-receipt-for-my-purchase-"
-								 rel="noopener noreferrer" target="_blank">here</a>.
-							</div>
-						</div>
-					</div>
-					<div class="card border mb-3">
-						<div class="card-header cursor-pointer" id="faqFive" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-							<h6 class="mb-0">
-								What methods of payments are supported?
-							</h6>
-						</div>
-						<div id="collapseFive" class="collapse" aria-labelledby="faqFive" data-bs-parent="#accordionFaq">
-							<div class="card-body py-3">
-								You can purchase the themes on Bootstrap Themes via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing
-								at this time.
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="mb-5 text-center">
-			<span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">Basics2</span>
-		</div>
-		<div class="row">
-			<div class="col-md-10 col-lg-10 mx-auto">
-				<!-- Accordion -->
-				<div class="accordion" id="accordionFAQBasics">
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsOne">
-							<a class="accordion-button" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsOne" aria-expanded="true" aria-controls="collapseBasicsOne">
 								What is a cloud-based SAAS service for purchasing and spend control?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasicsOne" class="accordion-collapse collapse show" aria-labelledby="headingBasicsOne" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseOne" class="collapse show" aria-labelledby="basicsOne" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								A cloud-based SAAS service for purchasing and spend control is a software-as-a-service solution that enables businesses to streamline and manage their purchasing processes and control expenses through a cloud-based platform.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
-
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsTwo">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsTwo" aria-expanded="false" aria-controls="collapseBasicsTwo">
+					
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+							aria-expanded="true" aria-controls="collapseTwo">
+							<h6 class="mb-0">
 								How does a cloud-based SAAS service help in managing purchasing?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasicsTwo" class="accordion-collapse collapse" aria-labelledby="headingBasicsTwo" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseTwo" class="collapse" aria-labelledby="basicsTwo" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								This service automates the procurement process, from requisition to payment, by providing a centralized platform for requesting, approving, and tracking purchases.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
-
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsThree">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsThree" aria-expanded="false" aria-controls="collapseBasicsThree">
-								What are the benefits of using a cloud-based SAAS service for spend control?
-							</a>
+					
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsThree" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+							aria-expanded="true" aria-controls="collapseThree">
+							<h6 class="mb-0">
+									What are the benefits of using a cloud-based SAAS service for spend control?
+							</h6>
 						</div>
-						<div id="collapseBasicsThree" class="accordion-collapse collapse" aria-labelledby="headingBasicsThree" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseThree" class="collapse" aria-labelledby="basicsThree" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								The benefits include better visibility into spending, improved compliance with purchasing policies, cost savings through supplier management, and enhanced decision-making based on data analytics.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
-
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsFour">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsFour" aria-expanded="false" aria-controls="collapseBasicsFour">
+					
+					
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsFour" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+							aria-expanded="true" aria-controls="collapseFour">
+							<h6 class="mb-0">
 								Can multiple users access the cloud-based SAAS service for purchasing and spend control?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasicsFour" class="accordion-collapse collapse" aria-labelledby="headingBasicsFour" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseFour" class="collapse" aria-labelledby="basicsFour" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								Yes, multiple users within an organization can access the platform with designated roles and permissions to collaborate on purchasing activities and monitor spending.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
-
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsFive">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsFive" aria-expanded="false" aria-controls="collapseBasicsFive">
+					
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsFive" data-bs-toggle="collapse" data-bs-target="#collapseFive"
+							aria-expanded="true" aria-controls="collapseFive">
+							<h6 class="mb-0">
 								How does pricing work for a cloud-based SAAS service for purchasing and spend control?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasicsFive" class="accordion-collapse collapse" aria-labelledby="headingBasicsFive" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseFive" class="collapse" aria-labelledby="basicsFive" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								Pricing models vary among providers and may be based on factors such as the number of users, features required, and transaction volume. We offer subscription-based pricing plans. One simple <a href="{{ route('pricing') }}">pricing model</a>. All you need to start. No hidden costs.
-
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
+					
 
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsSix">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsSix" aria-expanded="false" aria-controls="collapseBasicsSix">
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsSix" data-bs-toggle="collapse" data-bs-target="#collapseSix"
+							aria-expanded="true" aria-controls="collapseSix">
+							<h6 class="mb-0">
 								What kind of customer support is available ?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasicsSix" class="accordion-collapse collapse" aria-labelledby="headingBasicsSix" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseSix" class="collapse " aria-labelledby="basicsSix" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								Customer support options typically include email, phone, and chat support, as well as online help resources and knowledge bases to assist users with any questions or issues they may encounter.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsSeven">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsSeven" aria-expanded="false" aria-controls="collapseBasicsSeven">
+				   
+				   
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsSeven" data-bs-toggle="collapse" data-bs-target="#collapseSeven"
+							aria-expanded="true" aria-controls="collapseSeven">
+							<h6 class="mb-0">
 								What are the benefits of using a cloud-based SAAS service for purchasing and spend control?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasicsSeven" class="accordion-collapse collapse" aria-labelledby="headingBasicsSeven" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseSeven" class="collapse " aria-labelledby="basicsSeven" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								Some of the key benefits include increased efficiency in the purchasing process, better control and visibility over spending, cost savings through improved negotiation and budgeting, and reduced risk of errors.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsEight">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsEight" aria-expanded="false" aria-controls="collapseBasicsEight">
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsEight" data-bs-toggle="collapse" data-bs-target="#collapseEight"
+							aria-expanded="true" aria-controls="collapseEight">
+							<h6 class="mb-0">
 								Is this service suitable for businesses of all sizes?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasicsEight" class="accordion-collapse collapse" aria-labelledby="headingBasicsEight" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseEight" class="collapse " aria-labelledby="basicsEight" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								Yes, this service is suitable for businesses of Small and Medium Businesses and Startups. It can be customized to fit the specific needs and budget of each business.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsNine">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsNine" aria-expanded="false" aria-controls="collapseBasicsNine">
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsNine" data-bs-toggle="collapse" data-bs-target="#collapseNine"
+							aria-expanded="true" aria-controls="collapseNine">
+							<h6 class="mb-0">
 								Is there a free trial or demo available for this service?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasicsNine" class="accordion-collapse collapse" aria-labelledby="headingBasicsNine" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseNine" class="collapse " aria-labelledby="basicsNine" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								Yes, we can provide you access to a demo instance. Please <a href="{{ route('contact-us') }}">Contact us</a>. Many providers of cloud-based SAAS services for purchasing and spend control offer free trials or demos for businesses to test out the software before committing to a subscription. This allows businesses to see the features and benefits firsthand and determine if it is the right solution for their needs.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasicsTen">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsTen" aria-expanded="false" aria-controls="collapseBasicsTen">
+				   
+				   
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsTen" data-bs-toggle="collapse" data-bs-target="#collapseTen"
+							aria-expanded="true" aria-controls="collapseTen">
+							<h6 class="mb-0">
 								Is it easy to implement a cloud-based SAAS solution for purchasing and spend control?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasicsTen" class="accordion-collapse collapse" aria-labelledby="headingBasicsTen" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseTen" class="collapse " aria-labelledby="basicsTen" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								Yes, implementing a cloud-based SAAS solution is typically quick and easy. Since the software is hosted in the cloud, there is no need for complex installations or hardware upgrades. Businesses can simply sign up for the service, perfoom the very basic configuration as per their needs, and start using it right away to streamline their purchasing processes and improve spend control.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
-					<!-- Accordion Item -->
-					<div class="accordion-item">
-						<div class="accordion-header" id="headingBasics11">
-							<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasics11" aria-expanded="false" aria-controls="collapseBasics11">
+				   
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="basicsEleven" data-bs-toggle="collapse"
+							data-bs-target="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
+							<h6 class="mb-0">
 								Can I use a cloud-based SAAS service in a casual setting?
-							</a>
+							</h6>
 						</div>
-						<div id="collapseBasics11" class="accordion-collapse collapse" aria-labelledby="headingBasics11" data-bs-parent="#accordionFAQBasics">
-							<div class="accordion-body">
+						<div id="collapseEleven" class="collapse " aria-labelledby="basicsEleven" data-bs-parent="#accordionBasics">
+							<div class="card-body py-3">
 								Absolutely! Cloud-based SAAS services are designed to be user-friendly and accessible from any device with an internet connection. Whether you're managing your personal finances or running a small business, a cloud-based SAAS service can help you track spending and analyze your expenses with ease.
 							</div>
 						</div>
 					</div>
-					<!-- End Accordion Item -->
+				   
 
 				</div>
-				<!-- End Accordion -->
 			</div>
 		</div>
+
+		<div class="mb-5 mt-5 text-center">
+			<span class="text-uppercase text-primary fw-medium mb-1 d-block">Support</span>
+		</div>
+		<div class="row">
+			<div class="col-md-10 col-lg-10 mx-auto">
+				<div class="accordion" id="accordionSupport">
+					
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="supportOne" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+							aria-expanded="true" aria-controls="collapseOne">
+							<h6 class="mb-0">
+								How do I get help with this SAAS Service?
+							</h6>
+						</div>
+						<div id="collapseOne" class="collapse show" aria-labelledby="supportOne" data-bs-parent="#accordionSupport">
+							<div class="card-body py-3">
+								Technical support typically include email, phone, and chat support, as well as online knowledge bases to assist users with any questions or issues they may encounter.
+							</div>
+						</div>
+					</div>
+				   
+				   
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="supportTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+							aria-expanded="true" aria-controls="collapseTwo">
+							<h6 class="mb-0">
+								Is this service secure?
+							</h6>
+						</div>
+						<div id="collapseTwo" class="collapse " aria-labelledby="supportTwo" data-bs-parent="#accordionSupport">
+							<div class="card-body py-3">
+								Yes, this service is highly secure, with advanced encryption and security measures in place to protect sensitive business data and financial information.
+							</div>
+						</div>
+					</div>
+				   
+				   
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="supportThree" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+							aria-expanded="true" aria-controls="collapseThree">
+							<h6 class="mb-0">
+								What if I have a question that isn't answered here?
+							</h6>
+						</div>
+						<div id="collapseThree" class="collapse " aria-labelledby="supportThree" data-bs-parent="#accordionSupport">
+							<div class="card-body py-3">
+								For anything we haven't covered, feel free to reach out <a href="{{ route('contact-us') }}">reach out</a> to the team or create a <a href="{{ route('tickets.create') }}">support ticket</a>. We're here to help.
+							</div>
+						</div>
+					</div>
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="supportFour" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+							aria-expanded="true" aria-controls="collapseFour">
+							<h6 class="mb-0">
+								How do I get access to the application?
+							</h6>
+						</div>
+						<div id="collapseFour" class="collapse " aria-labelledby="supportFour" data-bs-parent="#accordionSupport">
+							<div class="card-body py-3">
+								Once you have purchased our servicer and your application is provisioned, we will e-mail you all details. The URL will be like https://yourcompany.anypo.net. just remember to use the same email you originally made your purchases with.
+							</div>
+						</div>
+					</div>
+				   
+				</div>
+			</div>
+		</div>
+
+		<div class="mb-5 mt-5 text-center">
+			<span class="text-uppercase text-primary fw-medium mb-1 d-block">Payment</span>
+		</div>
+		<div class="row">
+			<div class="col-md-10 col-lg-10 mx-auto">
+				<div class="accordion" id="accordionPayment">
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="paymentOne" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+							aria-expanded="true" aria-controls="collapseOne">
+							<h6 class="mb-0">
+								What methods of payments are supported?
+							</h6>
+						</div>
+						<div id="collapseOne" class="collapse show" aria-labelledby="paymentOne" data-bs-parent="#accordionPayment">
+							<div class="card-body py-3">
+								You can purchase the service directly from https://anypo.net website via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing at this time.
+							</div>
+						</div>
+					</div>
+				   
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="paymentTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+							aria-expanded="true" aria-controls="collapseTwo">
+							<h6 class="mb-0">
+								How do I get a receipt for my purchase?
+							</h6>
+						</div>
+						<div id="collapseTwo" class="collapse " aria-labelledby="paymentTwo" data-bs-parent="#accordionPayment">
+							<div class="card-body py-3">
+								You'll receive an email from ANYPO.NET once your purchase is complete. Also you will be able to download all payment receipt (in pdf format) for your record keeping purpose.
+							</div>
+						</div>
+					</div>
+				   
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="paymentThree" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+							aria-expanded="true" aria-controls="collapseThree">
+							<h6 class="mb-0">
+								Which license do I need?
+							</h6>
+						</div>
+						<div id="collapseThree" class="collapse " aria-labelledby="paymentThree" data-bs-parent="#accordionPayment">
+							<div class="card-body py-3">
+								We have one simple plan and one license types and pricing model. 'Small and Medium Enterprise (5 User)'. All you need to start.
+							</div>
+						</div>
+					</div>
+				   
+				   
+					<div class="card border mb-3">
+						<div class="card-header cursor-pointer" id="paymentFour" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+							aria-expanded="true" aria-controls="collapseFour">
+							<h6 class="mb-0">
+								How does this service handle compliance and regulatory requirements?
+							</h6>
+						</div>
+						<div id="collapseFour" class="collapse " aria-labelledby="paymentFour" data-bs-parent="#accordionPayment">
+							<div class="card-body py-3">
+								This service typically includes features for managing compliance and regulatory requirements, such as tracking and reporting on spending in specific categories or with certain vendors. It may also have built-in compliance checks and approvals to ensure all purchases and spending are in line with company policies.
+							</div>
+						</div>
+					</div>
+				   
+				</div>
+			</div>
+		</div>
+
 	</div>
 </section>
 
 
 
-<!-- FAQ -->
-<div class="container content-space-2 content-space-b-lg-3">
-		<div class="w-lg-75 mx-lg-auto">
-			<div class="d-grid gap-10">
-				<div class="d-grid gap-3">
-					<h2>Basics</h2>
-
-					<!-- Accordion -->
-					<div class="accordion accordion-flush accordion-lg" id="accordionFAQBasics">
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsOne">
-								<a class="accordion-button" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsOne" aria-expanded="true" aria-controls="collapseBasicsOne">
-									What is a cloud-based SAAS service for purchasing and spend control?
-								</a>
-							</div>
-							<div id="collapseBasicsOne" class="accordion-collapse collapse show" aria-labelledby="headingBasicsOne" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									A cloud-based SAAS service for purchasing and spend control is a software-as-a-service solution that enables businesses to streamline and manage their purchasing processes and control expenses through a cloud-based platform.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsTwo">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsTwo" aria-expanded="false" aria-controls="collapseBasicsTwo">
-									How does a cloud-based SAAS service help in managing purchasing?
-								</a>
-							</div>
-							<div id="collapseBasicsTwo" class="accordion-collapse collapse" aria-labelledby="headingBasicsTwo" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									This service automates the procurement process, from requisition to payment, by providing a centralized platform for requesting, approving, and tracking purchases.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsThree">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsThree" aria-expanded="false" aria-controls="collapseBasicsThree">
-									What are the benefits of using a cloud-based SAAS service for spend control?
-								</a>
-							</div>
-							<div id="collapseBasicsThree" class="accordion-collapse collapse" aria-labelledby="headingBasicsThree" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									The benefits include better visibility into spending, improved compliance with purchasing policies, cost savings through supplier management, and enhanced decision-making based on data analytics.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsFour">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsFour" aria-expanded="false" aria-controls="collapseBasicsFour">
-									Can multiple users access the cloud-based SAAS service for purchasing and spend control?
-								</a>
-							</div>
-							<div id="collapseBasicsFour" class="accordion-collapse collapse" aria-labelledby="headingBasicsFour" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									Yes, multiple users within an organization can access the platform with designated roles and permissions to collaborate on purchasing activities and monitor spending.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsFive">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsFive" aria-expanded="false" aria-controls="collapseBasicsFive">
-									How does pricing work for a cloud-based SAAS service for purchasing and spend control?
-								</a>
-							</div>
-							<div id="collapseBasicsFive" class="accordion-collapse collapse" aria-labelledby="headingBasicsFive" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									Pricing models vary among providers and may be based on factors such as the number of users, features required, and transaction volume. We offer subscription-based pricing plans. One simple <a href="{{ route('pricing') }}">pricing model</a>. All you need to start. No hidden costs.
-
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsSix">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsSix" aria-expanded="false" aria-controls="collapseBasicsSix">
-									What kind of customer support is available ?
-								</a>
-							</div>
-							<div id="collapseBasicsSix" class="accordion-collapse collapse" aria-labelledby="headingBasicsSix" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									Customer support options typically include email, phone, and chat support, as well as online help resources and knowledge bases to assist users with any questions or issues they may encounter.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsSeven">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsSeven" aria-expanded="false" aria-controls="collapseBasicsSeven">
-									What are the benefits of using a cloud-based SAAS service for purchasing and spend control?
-								</a>
-							</div>
-							<div id="collapseBasicsSeven" class="accordion-collapse collapse" aria-labelledby="headingBasicsSeven" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									Some of the key benefits include increased efficiency in the purchasing process, better control and visibility over spending, cost savings through improved negotiation and budgeting, and reduced risk of errors.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsEight">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsEight" aria-expanded="false" aria-controls="collapseBasicsEight">
-									Is this service suitable for businesses of all sizes?
-								</a>
-							</div>
-							<div id="collapseBasicsEight" class="accordion-collapse collapse" aria-labelledby="headingBasicsEight" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									Yes, this service is suitable for businesses of Small and Medium Businesses and Startups. It can be customized to fit the specific needs and budget of each business.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsNine">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsNine" aria-expanded="false" aria-controls="collapseBasicsNine">
-									Is there a free trial or demo available for this service?
-								</a>
-							</div>
-							<div id="collapseBasicsNine" class="accordion-collapse collapse" aria-labelledby="headingBasicsNine" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									Yes, we can provide you access to a demo instance. Please <a href="{{ route('contact-us') }}">Contact us</a>. Many providers of cloud-based SAAS services for purchasing and spend control offer free trials or demos for businesses to test out the software before committing to a subscription. This allows businesses to see the features and benefits firsthand and determine if it is the right solution for their needs.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasicsTen">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsTen" aria-expanded="false" aria-controls="collapseBasicsTen">
-									Is it easy to implement a cloud-based SAAS solution for purchasing and spend control?
-								</a>
-							</div>
-							<div id="collapseBasicsTen" class="accordion-collapse collapse" aria-labelledby="headingBasicsTen" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									Yes, implementing a cloud-based SAAS solution is typically quick and easy. Since the software is hosted in the cloud, there is no need for complex installations or hardware upgrades. Businesses can simply sign up for the service, perfoom the very basic configuration as per their needs, and start using it right away to streamline their purchasing processes and improve spend control.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingBasics11">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasics11" aria-expanded="false" aria-controls="collapseBasics11">
-									Can I use a cloud-based SAAS service in a casual setting?
-								</a>
-							</div>
-							<div id="collapseBasics11" class="accordion-collapse collapse" aria-labelledby="headingBasics11" data-bs-parent="#accordionFAQBasics">
-								<div class="accordion-body">
-									Absolutely! Cloud-based SAAS services are designed to be user-friendly and accessible from any device with an internet connection. Whether you're managing your personal finances or running a small business, a cloud-based SAAS service can help you track spending and analyze your expenses with ease.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-					</div>
-					<!-- End Accordion -->
-				</div>
-
-				<div class="d-grid gap-3">
-					<h2>Support</h2>
-
-					<!-- Accordion -->
-					<div class="accordion accordion-flush accordion-lg" id="accordionFAQSupport">
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingSupportOne">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportOne" aria-expanded="false" aria-controls="collapseSupportOne">
-									How do I get help with this SAAS Service?
-								</a>
-							</div>
-							<div id="collapseSupportOne" class="accordion-collapse collapse" aria-labelledby="headingSupportOne" data-bs-parent="#accordionFAQSupport">
-								<div class="accordion-body">
-									Technical support typically include email, phone, and chat support, as well as online knowledge bases to assist users with any questions or issues they may encounter.
-
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingSupportTwo">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportTwo" aria-expanded="false" aria-controls="collapseSupportTwo">
-									Is this service secure?
-								</a>
-							</div>
-							<div id="collapseSupportTwo" class="accordion-collapse collapse" aria-labelledby="headingSupportTwo" data-bs-parent="#accordionFAQSupport">
-								<div class="accordion-body">
-									Yes, this service is highly secure, with advanced encryption and security measures in place to protect sensitive business data and financial information.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingSupportThree">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportThree" aria-expanded="false" aria-controls="collapseSupportThree">
-									What if I have a question that isn't answered here?
-								</a>
-							</div>
-							<div id="collapseSupportThree" class="accordion-collapse collapse" aria-labelledby="headingSupportThree" data-bs-parent="#accordionFAQSupport">
-								<div class="accordion-body">
-									For anything we haven't covered, feel free to reach out <a href="{{ route('contact-us') }}">reach out</a> to the team or create a <a href="{{ route('tickets.create') }}">support ticket</a>. We're here to help.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingSupportFour">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportFour" aria-expanded="false" aria-controls="collapseSupportFour">
-									How do I get access to the application?
-								</a>
-							</div>
-							<div id="collapseSupportFour" class="accordion-collapse collapse" aria-labelledby="headingSupportFour" data-bs-parent="#accordionFAQSupport">
-								<div class="accordion-body">
-									Once you have purchased our servicer and your application is provisioned, we will e-mail you all details. The URL will be like https://yourcompany.anypo.net. just remember to use the same email you originally made your purchases with.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-					</div>
-					<!-- End Accordion -->
-				</div>
-
-				<div class="d-grid gap-3">
-					<h2>Payments</h2>
-
-					<!-- Accordion -->
-					<div class="accordion accordion-flush accordion-lg" id="accordionFAQPayments">
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingPaymentsOne">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsOne" aria-expanded="false" aria-controls="collapsePaymentsOne">
-									What methods of payments are supported?
-								</a>
-							</div>
-							<div id="collapsePaymentsOne" class="accordion-collapse collapse" aria-labelledby="headingPaymentsOne" data-bs-parent="#accordionFAQPayments">
-								<div class="accordion-body">
-									You can purchase the service directly from https://anypo.net website via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing at this time.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingPaymentsTwo">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsTwo" aria-expanded="false" aria-controls="collapsePaymentsTwo">
-									How do I get a receipt for my purchase?
-								</a>
-							</div>
-							<div id="collapsePaymentsTwo" class="accordion-collapse collapse" aria-labelledby="headingPaymentsTwo" data-bs-parent="#accordionFAQPayments">
-								<div class="accordion-body">
-									You'll receive an email from ANYPO.NET once your purchase is complete. Also you will be able to download all payment receipt (in pdf format) for your record keeping purpose.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingPaymentsThree">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsThree" aria-expanded="false" aria-controls="collapsePaymentsThree">
-									Which license do I need?
-								</a>
-							</div>
-							<div id="collapsePaymentsThree" class="accordion-collapse collapse" aria-labelledby="headingPaymentsThree" data-bs-parent="#accordionFAQPayments">
-								<div class="accordion-body">
-									We have one simple plan and one license types and pricing model. 'Small and Medium Enterprise (5 User)'. All you need to start.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-						<!-- Accordion Item -->
-						<div class="accordion-item">
-							<div class="accordion-header" id="headingPaymentsFour">
-								<a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsFour" aria-expanded="false" aria-controls="collapsePaymentsFour">
-									How does this service handle compliance and regulatory requirements?
-								</a>
-							</div>
-							<div id="collapsePaymentsFour" class="accordion-collapse collapse" aria-labelledby="headingPaymentsFour" data-bs-parent="#accordionFAQPayments">
-								<div class="accordion-body">
-									This service typically includes features for managing compliance and regulatory requirements, such as tracking and reporting on spending in specific categories or with certain vendors. It may also have built-in compliance checks and approvals to ensure all purchases and spending are in line with company policies.
-								</div>
-							</div>
-						</div>
-						<!-- End Accordion Item -->
-
-
-					</div>
-
-					<!-- End Accordion -->
-				</div>
-			</div>
-		</div>
-</div>
-<!-- End FAQ -->
 @endsection
 

@@ -382,7 +382,7 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.delete');
 
 	/* ======================== Cp ======================================== */
-	//Route::resource('menus', MenuController::class);
+	Route::resource('cps', CpController::class);
 	Route::get('/cp/changelog',[CpController::class,'changeLog'])->name('cps.changelog');
 	Route::get('/cp/codegen',[CpController::class,'codeGen'])->name('cps.codegen');
 	//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
