@@ -31,13 +31,20 @@ class CpController extends Controller
     /**
 	 * Display a listing of the resource.
 	 */
-	public function changeLogs()
+	public function changeLog()
 	{
 		//$this->authorize('viewAny',Oem::class);
 		return view('landlord.manage.cps.changelog');
 	}
 
-
+/**
+	 * Display a listing of the resource.
+	 */
+	public function codeGen()
+	{
+		//$this->authorize('viewAny',Oem::class);
+		return view('landlord.manage.cps.codegen');
+	}
 
     /**
      * Display a listing of the resource.

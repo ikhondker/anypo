@@ -36,7 +36,16 @@ class CpController extends Controller
 		//$this->authorize('viewAny',Oem::class);
 		return view('tenant.manage.cps.changelog');
 	}
-
+	
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function codeGen()
+	{
+		//$this->authorize('viewAny',Oem::class);
+		return view('tenant.manage.cps.codegen');
+	}
+	
 	/**
 	 * Display a listing of the resource.
 	 */

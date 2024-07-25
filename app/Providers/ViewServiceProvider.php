@@ -40,7 +40,7 @@ class ViewServiceProvider extends ServiceProvider
 		// });
 
 		view()->composer(['layouts.landlord.page','layouts.landlord.app',
-				'layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'], function ($view) {
+				'components.landlord.nav-bar'], function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu			= new Menu;
 			//Log::debug("ViewServiceProvider.boot raw_route_name = ".$raw_route_name);
@@ -58,11 +58,10 @@ class ViewServiceProvider extends ServiceProvider
 			//$view->with('_xx_name', 'abc');
 		});
 
-		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
-			'layouts.landlord-app','layouts.landlord'],
+		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app'],
 			\App\View\Composers\ConfigComposer::class);
 		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
-			'layouts.landlord-app','layouts.landlord','components.landlord.nav-bar'],
+			'components.landlord.nav-bar'],
 			\App\View\Composers\LandlordUserComposer::class);
 
 		/*

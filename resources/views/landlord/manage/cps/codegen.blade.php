@@ -9,7 +9,7 @@
 	<div class="card">
 		<div class="card-header">
 			<h5 class="card-title">Code Generator - For all Tenants</h5>
-			<h6 class="card-subtitle text-muted">Landlord Version {{ $config->version }}</h6>
+			<h6 class="card-subtitle text-muted">TBD</h6>
 		</div>
 		<div class="card-body">
 					
