@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
+use App\Enum\MenuAccessEnum;
+
 class Menu extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
@@ -20,7 +22,10 @@ class Menu extends Model
 	protected $casts = [
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
+		//'access'		=> MenuAccessEnum::class,
 	];
+
+
 	/* ---------------- Scope ---------------------- */
 	
 	

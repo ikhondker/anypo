@@ -83,10 +83,10 @@
 									data-bs-placement="top" title="View">View</a>
 
 									@if (session('original_user'))
-										<a href="{{ route('users.leave-impersonate') }}" class="me-2"
+										{{-- <a href="{{ route('users.leave-impersonate') }}" class="me-2"
 											data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">
 											<i data-lucide="log-out" class="text-danger"></i>
-										</a>
+										</a> --}}
 									@else
 										@can('impersonate', $user)
 											@if ($user->id > 1008 )
@@ -94,6 +94,13 @@
 													data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
 													<i data-lucide="log-in" class="text-success"></i>
 												</a>
+											@else 
+												@if (auth()->user()->isSystem())
+													<a href="{{ route('users.impersonate', $user->id) }}" class="me-2"
+														data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
+														<i data-lucide="log-in" class="text-success"></i>
+													</a>
+												@endif	
 											@endif
 										@endcan
 									@endif

@@ -75,7 +75,7 @@
 						<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->tax"/></strong></td>
 						<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->gst"/></strong></td>
 						<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->amount"/></strong></td>
-						<td class="" scope="col">&nbsp</td>
+						<td class="" colspan="2" scope="col">&nbsp</td>
 					</tr>
 					<!-- End Table footer i.e. Totals -->
 				@else
@@ -94,7 +94,7 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror
 						</td>
-						<td class="">
+						<td colspan="2">
 							{{-- <x-tenant.buttons.show.save/> --}}
 						</td>
 					</tr>

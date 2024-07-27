@@ -44,7 +44,7 @@
 										<del class="text-danger">{{ number_format($account->price * 3, 2) }} USD</del>
 										{{ number_format(3 * $account->price * (100-$config->discount_pc_3)/100, 2) }} USD
 									</label>
-									<div class="small text-muted">{{ $config->discount_pc_3 }}% Discount .</div>
+									<div class="small text-muted">{{ $config->discount_pc_3 }}% discount .</div>
 								</div>
 								<!-- End Checkbox -->
 
@@ -56,7 +56,7 @@
 										<del class="text-danger">{{ number_format($account->price * 6, 2) }} USD</del>
 										{{ number_format(6 * $account->price * (100-$config->discount_pc_6)/100, 2) }} USD
 									</label>
-									<div class="small text-muted">{{ $config->discount_pc_6 }}% Discount .</div>
+									<div class="small text-muted">{{ $config->discount_pc_6 }}% discount .</div>
 								</div>
 								<!-- End Checkbox -->
 
@@ -68,7 +68,7 @@
 										<del class="text-danger">{{ number_format($account->price * 12, 2) }} USD</del>
 										{{ number_format(12 * $account->price * (100 - $config->discount_pc_12)/100, 2) }} USD
 									</label>
-									<div class="small text-muted">{{ $config->discount_pc_12 }}% Discount .</div>
+									<div class="small text-muted">{{ $config->discount_pc_12 }}% discount .</div>
 								</div>
 							</td>
 						</tr>

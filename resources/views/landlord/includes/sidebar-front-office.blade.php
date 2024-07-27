@@ -3,7 +3,7 @@
 </li>
 <li class="sidebar-item {{ $_route_name == 'dashboards.index' ? 'active' : '' }}">
 	<a class="sidebar-link" href="{{ route('dashboards.index') }}">
-		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Home</span>
+		<i class="align-middle" data-lucide="home"></i> <span class="align-middle">Dashboards</span>
 	</a>
 </li>
 
@@ -67,7 +67,7 @@
 @include('landlord.includes.sidebar-my-account')
 <!-- ========== END Account ========== -->
 
-<div class="d-lg-none">
+{{-- <div class="d-lg-none">
 	<div class="dropdown-divider"></div>
 	<!-- List -->
 	<ul class="nav nav-sm nav-tabs nav-vertical">
@@ -79,5 +79,5 @@
 	</ul>
 	<!-- End List -->
 </div>
-<!-- End Nav -->
+<!-- End Nav --> --}}
 

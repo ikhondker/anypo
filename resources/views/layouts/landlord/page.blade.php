@@ -35,12 +35,13 @@
 
 	<!-- Form Success Message Box -->
 		@if (session('success'))
-		<x-landlord.alert-success message="{{ session('success') }}" />
+		<x-landlord.alert.alert-success message="{{ session('success') }}" />
 	@endif
 	<!-- Form Error Message Box (including Form Validation ) -->
 	@if (session('error') || $errors->any())
-		<x-landlord.alert-error message="{{ session('error') }}" />
+		<x-landlord.alert.alert-error message="{{ session('error') }}" />
 	@endif
+
 
 	<!-- content -->
 	@yield('content')

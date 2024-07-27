@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+//use App\Enum\MenuAccessEnum;
+
 return new class extends Migration
 {
 	/**
@@ -15,7 +17,10 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('raw_route_name');
 			$table->string('route_name')->nullable();
-			$table->enum('access', ['F','C','B','S','X'])->default('F');
+			$table->string('node_name')->nullable();
+			//$table->string('access')->default(MenuAccessEnum::FRONT->value);
+			//$table->enum('access', ['front','system','back','support','other'])->default('front');
+			//$table->enum('access', ['F','C','B','S','X'])->default('F');
 			//$table->string('node_name')->nullable();
 			$table->boolean('enable')->default(true);
 			$table->biginteger('created_by')->default(1001);

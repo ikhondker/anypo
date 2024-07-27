@@ -67,8 +67,7 @@
 			<nav class="navbar navbar-expand navbar-bg">
 				<a class="sidebar-toggle">
 					<i class="hamburger align-self-center"></i>
-					</a>
-
+				</a>
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 
@@ -104,8 +103,21 @@
 			</nav>
 
 			<main class="content">
+
 				<div class="container-fluid p-0">
 
+					<div class="col-lg-9">
+						<!-- Form Success Message Box -->
+						@if (session('success'))
+							<x-landlord.alert.app-alert-success message="{{ session('success') }}" />
+						@endif
+						<!-- Form Error Message Box (including Form Validation ) -->
+						@if (session('error') || $errors->any())
+							<x-landlord.alert.app-alert-error message="{{ session('error') }}" />
+						@endif
+					</div>
+
+					
 					<!-- content -->
 					@yield('content')
 					<!-- /.content -->
