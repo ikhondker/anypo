@@ -67,17 +67,5 @@
 @include('landlord.includes.sidebar-my-account')
 <!-- ========== END Account ========== -->
 
-{{-- <div class="d-lg-none">
-	<div class="dropdown-divider"></div>
-	<!-- List -->
-	<ul class="nav nav-sm nav-tabs nav-vertical">
-		<li class="nav-item">
-			<a class="nav-link" href="{{ route('logout') }}">
-				<i class="bi-box-arrow-right nav-icon"></i> Log out
-			</a>
-		</li>
-	</ul>
-	<!-- End List -->
-</div>
-<!-- End Nav --> --}}
+
 

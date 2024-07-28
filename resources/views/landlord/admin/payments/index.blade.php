@@ -47,7 +47,7 @@
 						<th class="align-middle">Summary</th>
 						<th class="align-middle">Date</th>
 						<th class="align-middle">Invoice #</th>
-						<th class="align-middle">Amount $</th>
+						<th class="align-middle">Amount</th>
 						<th class="align-middle">Status</th>
 						<th class="align-middle text-end">Actions</th>
 					</tr>
@@ -58,10 +58,15 @@
 							<td>
 								<img src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $payment->account->name }}" title="{{ $payment->account->name }}">
 							</td>
-							<td>{{ Str::limit($payment->summary, 15) }}</td>
+							<td>
+								<a href="{{ route('payments.show', $payment->id) }}" class="text-muted">
+									<strong>{{ Str::limit($payment->summary, 20) }}</strong>
+								</a>
+							</td>
+	
 							<td><x-landlord.list.my-date :value="$payment->pay_date" /></td>
 							<td>{{ $payment->invoice->invoice_no }}</td>
-							<td><x-landlord.list.my-number :value="$payment->amount" /></td>
+							<td><x-landlord.list.my-number :value="$payment->amount"/> USD</td>
 							<td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>
 							<td class="text-end">
 								<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light" data-bs-toggle="tooltip"

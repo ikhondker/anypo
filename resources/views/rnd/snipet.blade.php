@@ -1,3 +1,9 @@
+<i class="fas fa-edit">
+	<i data-lucide="alert-circle"></i>
+<i data-lucide="plus-circle"></i>	
+<i data-lucide="alert-triangle"></i>
+<i class="align-middle me-1" data-lucide="plus-circle"></i>
+
 show
 <div class="card-actions float-end">
 	<a href="{{ route('depts.edit', $dept->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>

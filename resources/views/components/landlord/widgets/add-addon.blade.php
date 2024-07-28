@@ -9,8 +9,7 @@
 							<div class="card-body">
 								<span class="text-cap text-muted">Additional User</span>
 								<h2 class="text-info">Need More User? Buy </h2>
-								<p class="card-text text-body small">Will be added immediately to your Account {{ $account->name }} [#{{ $account_id }}]
-								</p>
+								<p class="card-text text-body small">Will be added immediately to your Account {{ $account->name }}.</p>
 							</div>
 						</div>
 				</div>
@@ -25,9 +24,10 @@
 								<div class="card-body">
 									<div class="mb-4">
 										@if ($addon->addon_type =='user')
-											<i class="bi bi-people text-info" style="font-size: 4.3rem;"></i>
+											<i class="fas fa-user-plus" class="text-gray-200" style="font-size: 5rem;"></i> 
 										@else
-											<i class="bi bi-floppy text-info" style="font-size: 4.3rem;"></i>
+											<i class="fas fa-user-plus" class="text-muted" style="font-size: 5rem;"></i> 
+											
 										@endif
 									</div>
 									<h3 class="card-title">{{ $addon->name }}</h3>

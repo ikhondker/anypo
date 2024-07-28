@@ -82,6 +82,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'invoices.create',	'route_name' => 'invoices.index',	  'node_name' => 'nonode'],
 			[ 'raw_route_name' => 'invoices.all',	  	'route_name' => 'invoices.index',	  'node_name' => 'nonode'],
 
+			[ 'raw_route_name' => 'invoices.generate',	'route_name' => 'invoices.generate',	'node_name' => 'nonode'],
+
 			[ 'raw_route_name' => 'menus.index',		'route_name' => 'menus.index',	'node_name' => 'nonode'],
 			[ 'raw_route_name' => 'menus.show',			'route_name' => 'menus.index',	'node_name' => 'nonode'],
 			[ 'raw_route_name' => 'menus.update',		'route_name' => 'menus.index',	'node_name' => 'nonode'],

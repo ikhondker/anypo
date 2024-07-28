@@ -69,9 +69,9 @@
 							</td>
 							<td>{{ $service->account->name }}</td>
 							<td>
-								<span class="badge bg-primary rounded-pill">{{ $service->mnth }}</span>
-								<span class="badge bg-primary rounded-pill">{{ $service->user }}</span>
-								<span class="badge bg-primary rounded-pill">{{ $service->gb }}</span>
+								<span class="badge badge-subtle-primary rounded-pill">{{ $service->mnth }}</span>
+								<span class="badge badge-subtle-primary rounded-pill">{{ $service->user }}</span>
+								<span class="badge badge-subtle-primary rounded-pill">{{ $service->gb }}</span>
 							</td>
 							<td><x-landlord.list.my-number :value="$service->price" /></td>
 							<td><x-landlord.list.my-enable :value="$service->addon" /></td>

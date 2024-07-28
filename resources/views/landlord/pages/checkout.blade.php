@@ -92,7 +92,6 @@
 
 							<button class="w-100 btn btn-primary btn-lg" type="submit"><i class="bi bi-cart-check"></i> Continue to	Checkout</button>
 
-
 						</form>
 					</div>
 			</div>

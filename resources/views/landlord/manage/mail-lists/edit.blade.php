@@ -6,7 +6,7 @@
 	<!-- Card -->
 	<div class="card">
 
-		<form id="myform" action="{{ route('categories.update',$category->id) }}" method="POST" enctype="multipart/form-data">
+		<form id="myform" action="{{ route('mail-lists.update',$category->id) }}" method="POST" enctype="multipart/form-data">
 			@csrf
 			@method('PUT')
 

@@ -58,9 +58,9 @@
 						</a>
 						<!-- End Logo -->
 					</div>
-					<p class="text-white-50">
+					{{-- <p class="text-white-50">
 						Purchasing and Expense Control SAAS Solution for SME and startups.
-					</p>
+					</p> --}}
 					<!-- List -->
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
 						<li class="mt-1"><a href="#" class="text-white-50"><i class="align-middle me-2 fas fa-fw fa-map-marker-alt"></i> {{ $_config->address1 }}</a></li>

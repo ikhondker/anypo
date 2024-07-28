@@ -67,7 +67,7 @@
 						</td>
 						<td>{{ $attachment->article_id }}</td>
 						<td><x-landlord.list.my-date :value="$attachment->upload_date"/></td>
-						<td>{{ number_format($attachment->file_size / 1048576,2) }}</td>
+						<td class="text-end">{{ number_format($attachment->file_size / 1048576,2) }}</td>
 						<td><x-landlord.attachment.show-by-id id="{{ $attachment->id }}"/></td>
 						<td class="text-end">
 							<a href="{{ route('attachments.show',$attachment->id) }}" class="btn btn-light" data-bs-toggle="tooltip"

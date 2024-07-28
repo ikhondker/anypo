@@ -22,7 +22,7 @@
 
 
 					<th class="align-middle">#</th>
-					<th class="align-middle">Servcie Name</th>
+					<th class="align-middle">Service Name</th>
 					<th class="align-middle">Account</th>
 					<th class="align-middle">From</th>
 					<th class="align-middle">User</th>

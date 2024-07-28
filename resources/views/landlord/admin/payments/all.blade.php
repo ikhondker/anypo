@@ -58,7 +58,11 @@
 							<td>
 								<img src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $payment->account->name }}" title="{{ $payment->account->name }}">
 							</td>
-							<td>{{ Str::limit($payment->summary, 15) }}</td>
+							<td>
+								<a href="{{ route('payments.show', $payment->id) }}" class="text-muted">
+									<strong>{{ Str::limit($payment->summary, 20) }}</strong>
+								</a>
+							</td>
 							<td><x-landlord.list.my-date :value="$payment->pay_date" /></td>
 							<td>{{ $payment->invoice->invoice_no }}</td>
 							<td><x-landlord.list.my-number :value="$payment->amount" /></td>

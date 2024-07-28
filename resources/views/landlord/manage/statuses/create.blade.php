@@ -5,12 +5,11 @@
 @section('content')
 	<!-- Card -->
 	<div class="card">
-		<form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+		<form action="{{ route('statuses.store') }}" method="POST" enctype="multipart/form-data">
 			@csrf
 
 			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 				<h5 class="card-header-title">Create User</h5>
-				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
 			</div>
 
 			<!-- Body -->

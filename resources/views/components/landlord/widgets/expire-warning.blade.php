@@ -4,7 +4,7 @@
 	<div class="alert alert-soft-info alert-dismissible fade show" role="alert">
 		<div class="d-flex">
 			<div class="flex-shrink-0">
-				<i class="bi-exclamation-triangle-fill"></i>
+				<i data-lucide="alert-triangle"></i>
 			</div>
 			<div class="flex-grow-1 ms-2">
 				<span class="fw-semibold">Information: </span> Your subscription will expire {{ $account->end_date->diffInDays($carbon::now()) }} days. You have an unpaid invoice 		

@@ -17,7 +17,7 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
+						<th class="align-middle">Ticket#</th>
 						<th class="align-middle">Subject</th>
 						<th class="align-middle">Requestor</th>
 						<th class="align-middle">Date</th>
@@ -33,19 +33,18 @@
 					@foreach ($tickets as $ticket)
 						<tr>
 							<td>
-								<a class="text-info" href="{{ route('tickets.show',$ticket->id) }}">
-									#{{ $ticket->id }}
+								<a class="text-muted" href="{{ route('tickets.show',$ticket->id) }}">
+									@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
+										<i data-lucide="clock" class="text-info"></i> 
+									@else
+										<i data-lucide="check-circle" class="text-muted"></i>
+									@endif
+									<strong>{{ $ticket->id }}</strong>
 								</a>
 							</td>
 							<td>
-								<a class="" href="{{ route('tickets.show',$ticket->id) }}">
-									@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
-										<strong class="text-info mb-0">
-									@else
-										<strong class="text-secondary mb-0">
-									@endif
-										{{ Str::limit($ticket->title, 45) }}
-										</strong>
+								<a class="" href="{{ route('tickets.show', $ticket->id) }}">
+									<strong class="text-muted mb-0">{{ Str::limit($ticket->title, 45) }}</strong>
 								</a>
 							</td>
 							<td>

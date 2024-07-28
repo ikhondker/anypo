@@ -64,11 +64,15 @@
 							<img src="{{ Storage::disk('s3l')->url('logo/'.$invoice->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $invoice->account->name }}" title="{{ $invoice->account->name }}">
 						</td>
 						<td>
-							<a href="{{ route('invoices.show', $invoice->id) }}">
+							<a href="{{ route('invoices.show', $invoice->id) }}" class="text-muted">
 								<strong>#{{ Str::limit($invoice->invoice_no, 10) }}</strong>
 							</a>
 						</td>
-						<td>{{ Str::limit($invoice->summary, 20) }}</td>
+						<td>
+							<a href="{{ route('invoices.show', $invoice->id) }}" class="text-muted">
+								<strong>{{ Str::limit($invoice->summary, 20) }}</strong>
+							</a>
+						</td>
 						<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
 						<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
 						<td><x-landlord.list.my-number :value="$invoice->amount" /></td>

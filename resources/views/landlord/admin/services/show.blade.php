@@ -30,7 +30,7 @@
 							</div>
 							<div class="mb-1">
 								<span class="card-subtitle">Subscription:
-								<strong class="text-primary">${{ $account->price }} USD/mo</strong></span>
+									<span class="badge badge-subtle-primary">{{ $account->price }}USD/mo</span>
 							</div>
 							<div class="mb-1">
 								<span class="card-subtitle">Account Name:

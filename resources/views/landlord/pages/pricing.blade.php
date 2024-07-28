@@ -99,7 +99,7 @@
 										<div class="alert alert-soft-info" role="alert">
 											<div class="d-flex">
 											<div class="flex-shrink-0">
-												<i class="bi bi-check-circle"></i>
+												<i data-lucide="alert-circle"></i>
 											</div>
 											<div class="flex-grow-1 ms-2">
 												You have already Purchased our service! 
