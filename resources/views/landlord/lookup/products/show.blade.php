@@ -1,6 +1,10 @@
 @extends('layouts.landlord.app')
 @section('title','View Product')
-@section('breadcrumb','View Product')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('products.index') }}" class="text-muted">Products</a></li>
+	<li class="breadcrumb-item active">{{ $product->name }}</li>
+@endsection
+
 
 @section('content')
 

@@ -1,6 +1,8 @@
 @extends('layouts.landlord.app')
 @section('title', 'My Services')
-@section('breadcrumb', 'My Services')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Services</li>
+@endsection
 
 @section('content')
 	@inject('carbon', 'Carbon\Carbon')

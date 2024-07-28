@@ -1,6 +1,11 @@
 @extends('layouts.landlord.app')
 @section('title','User')
-@section('breadcrumb','Create User')
+create
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('users.index') }}" class="text-muted">Users</a></li>
+	<li class="breadcrumb-item active">Create User</li>
+@endsection
+
 
 @section('content')
 

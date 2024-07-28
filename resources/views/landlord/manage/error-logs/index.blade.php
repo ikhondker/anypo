@@ -1,6 +1,8 @@
 @extends('layouts.landlord.app')
 @section('title', 'Unhandled Error Logs')
-@section('breadcrumb', 'Unhandled Error Logs')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Error Logs</li>
+@endsection
 
 @section('content')
 	@if (auth()->user()->isSystem())

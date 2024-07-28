@@ -78,7 +78,25 @@ create
 	<div class="dropdown-divider"></div>
 @endif 
 
-
 @if (auth()->user()->isSystem())
 	<a class="btn btn-sm btn-danger text-white" href="{{ route('activities.edit', $activity->id) }}"><i class="fas fa-edit"></i> Edit</a>
 @endif
+
+index
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Tickets</li>
+@endsection
+
+show + edit
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('tickets.index') }}" class="text-muted">Tickets</a></li>
+	<li class="breadcrumb-item active">{{ $ticket->name }}</li>
+@endsection
+
+
+create
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('tickets.index') }}" class="text-muted">Tickets</a></li>
+	<li class="breadcrumb-item active">Create Ticket</li>
+@endsection
+

@@ -1,6 +1,8 @@
 @extends('layouts.landlord.app')
 @section('title', 'My Invoices')
-@section('breadcrumb', 'All Invoices')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">All Invoices</li>
+@endsection
 
 @section('content')
 

@@ -1,6 +1,10 @@
 @extends('layouts.landlord.app')
 @section('title','Entity')
-@section('breadcrumb','Edit Entity')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('entities.index') }}" class="text-muted">Entities</a></li>
+	<li class="breadcrumb-item active">{{ $entity->entity }}</li>
+@endsection
+
 
 @section('content')
 
@@ -13,7 +17,7 @@
 		<h6 class="card-subtitle text-muted">Edit Entity Details.</h6>
 	</div>
 	<div class="card-body">
-		<form id="myform" action="{{ route('payments.update',$entity->entity) }}" method="POST" enctype="multipart/form-data">
+		<form id="myform" action="{{ route('entities.update',$entity->entity) }}" method="POST" enctype="multipart/form-data">
 			@csrf
 			@method('PUT')
 

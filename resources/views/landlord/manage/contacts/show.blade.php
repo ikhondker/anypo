@@ -1,6 +1,10 @@
 @extends('layouts.landlord.app')
 @section('title','View Contact')
-@section('breadcrumb','View Contact')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('contacts.index') }}" class="text-muted">Contacts</a></li>
+	<li class="breadcrumb-item active">{{ $contact->first_name }}</li>
+@endsection
+
 
 @section('content')
 	<h1 class="h3 mb-3">View Visitor Contact</h1>

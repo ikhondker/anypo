@@ -1,6 +1,10 @@
 @extends('layouts.landlord.app')
 @section('title','Category')
-@section('breadcrumb','Create Category')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('mail-lists.index') }}" class="text-muted">Mail Lists</a></li>
+	<li class="breadcrumb-item active">Create Mail Lists</li>
+@endsection
+
 
 @section('content')
 	<!-- Card -->

@@ -1,6 +1,10 @@
 @extends('layouts.landlord.app')
 @section('title','Edit Unhandled Error Log')
-@section('breadcrumb','Edit Unhandled Error Log')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('error-logs.index') }}" class="text-muted">Error Logs</a></li>
+	<li class="breadcrumb-item active">{{ $errorLog->id }}</li>
+@endsection
+
 
 @section('content')
 

@@ -1,6 +1,9 @@
 @extends('layouts.landlord.app')
 @section('title','Generate Invoice')
-@section('breadcrumb','Generate Invoice')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('invoices.index') }}" class="text-muted">Invoices</a></li>
+	<li class="breadcrumb-item active">Generate</li>
+@endsection
 
 @section('content')
 

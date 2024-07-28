@@ -2,7 +2,7 @@
 @section('title','Change Password')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('users.profile') }}">{{ $user->name }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('users.profile') }}" class="text-muted">{{ $user->name }}</a></li>
 	<li class="breadcrumb-item active">Change Password</li>
 @endsection
 

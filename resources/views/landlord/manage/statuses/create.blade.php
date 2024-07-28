@@ -1,6 +1,9 @@
 @extends('layouts.landlord.app')
-@section('title','User')
-@section('breadcrumb','Create User')
+@section('title','Create Status')
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{ route('statuses.index') }}" class="text-muted">Statues</a></li>
+	<li class="breadcrumb-item active">Create Status</li>
+@endsection
 
 @section('content')
 	<!-- Card -->

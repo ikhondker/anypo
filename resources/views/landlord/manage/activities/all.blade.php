@@ -1,7 +1,8 @@
 @extends('layouts.landlord.app')
 @section('title', 'Activity Log')
-@section('breadcrumb', 'All Activity Log')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Activities</li>
+@endsection
 
 @section('content')
 

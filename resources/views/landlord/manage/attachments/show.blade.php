@@ -1,7 +1,9 @@
 @extends('layouts.landlord.app')
 @section('title','Attachments')
-@section('breadcrumb','View Attachments')
-
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('attachments.index') }}" class="text-muted">Attachments</a></li>
+	<li class="breadcrumb-item active">{{ $attachment->id }}</li>
+@endsection
 
 @section('content')
 

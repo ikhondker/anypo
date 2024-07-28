@@ -1,12 +1,15 @@
 @extends('landlord.layouts.site-app')
 @section('title','Create Attachments')
-@section('breadcrumb','Create Attachments')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('attachments.index') }}" class="text-muted">Attachments</a></li>
+	<li class="breadcrumb-item active">Create Attachment</li>
+@endsection
 
 @section('content')
 
 
 	<div class="card col-8">
-		<x-landlord.card.header object="Attachment" title="Create Attachments"/>
+		<x-landlord.card.header object="Attachment" title="Create Attachment"/>
 
 		<!-- form start -->
 		<form action="{{ route('attachments.store') }}" method="POST" enctype="multipart/form-data">

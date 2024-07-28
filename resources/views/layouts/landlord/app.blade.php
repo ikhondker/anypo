@@ -117,7 +117,15 @@
 						@endif
 					</div>
 
-					
+					<!-- breadcrumb -->
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><i class="align-top text-muted" data-lucide="home"></i><a href="{{ route('dashboards.index') }}" class="text-muted"> Home</a></li>
+							@yield('breadcrumb')
+						</ol>
+					</nav>
+					<!-- /.breadcrumb -->
+
 					<!-- content -->
 					@yield('content')
 					<!-- /.content -->

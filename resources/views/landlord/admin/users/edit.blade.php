@@ -1,6 +1,9 @@
 @extends('layouts.landlord.app')
 @section('title','Edit User Profile')
-@section('breadcrumb','Edit User Profile')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('users.index') }}" class="text-muted">Users</a></li>
+	<li class="breadcrumb-item active">{{ $user->name }}</li>
+@endsection
 
 @section('content')
 

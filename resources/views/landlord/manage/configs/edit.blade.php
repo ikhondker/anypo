@@ -1,6 +1,10 @@
 @extends('layouts.landlord.app')
 @section('title','Edit config')
-@section('breadcrumb','Edit config')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('configs.index') }}" class="text-muted">Configs</a></li>
+	<li class="breadcrumb-item active">{{ $config->name }}</li>
+@endsection
+
 
 @section('content')
 

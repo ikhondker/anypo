@@ -1,6 +1,10 @@
 @extends('layouts.landlord.app')
 @section('title','Edit Category')
-@section('breadcrumb','Edit Category')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('mail-lists.index') }}" class="text-muted">Tickets</a></li>
+	<li class="breadcrumb-item active">{{ $ticket->name }}</li>
+@endsection
+
 
 @section('content')
 	<!-- Card -->

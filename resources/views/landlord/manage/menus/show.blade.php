@@ -1,6 +1,10 @@
 @extends('layouts.landlord.app')
 @section('title','Menu')
-@section('breadcrumb','View Menu')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('menus.index') }}" class="text-muted">Menus</a></li>
+	<li class="breadcrumb-item active">{{ $menu->raw_route_name }}</li>
+@endsection
+
 
 @section('content')
 

@@ -9,7 +9,7 @@
 					<div class="text-sm-end">
 						<a href="{{ route('tickets.create') }}" class="btn btn-light btn-lg me-2"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
-							<i data-lucide="download"></i> Create Ticket</a>
+							<i class="fas fa-plus"></i> Create Ticket</a>
 					</div>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 							<td>
 								<a class="text-muted" href="{{ route('tickets.show',$ticket->id) }}">
 									@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
-										<i data-lucide="clock" class="text-info"></i> 
+										<i data-lucide="clock" class="text-warning"></i> 
 									@else
 										<i data-lucide="check-circle" class="text-muted"></i>
 									@endif

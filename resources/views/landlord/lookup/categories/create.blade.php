@@ -1,6 +1,9 @@
 @extends('layouts.landlord.app')
 @section('title','Category')
-@section('breadcrumb','Create Category')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('categories.index') }}" class="text-muted">Category</a></li>
+	<li class="breadcrumb-item active">Create Category</li>
+@endsection
 
 @section('content')
 

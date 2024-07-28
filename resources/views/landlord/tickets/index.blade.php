@@ -1,6 +1,9 @@
 @extends('layouts.landlord.app')
 @section('title','Tickets')
-@section('breadcrumb','My Tickets')
+
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Tickets</li>
+@endsection
 
 @section('content')
 
@@ -59,7 +62,7 @@
 							<td>
 								<a class="text-muted" href="{{ route('tickets.show',$ticket->id) }}">
 									@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
-										<i data-lucide="clock" class="text-info"></i> 
+										<i data-lucide="clock" class="text-warning"></i> 
 									@else
 										<i data-lucide="check-circle" class="text-muted"></i>
 									@endif

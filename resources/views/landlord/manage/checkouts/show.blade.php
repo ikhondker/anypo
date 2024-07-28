@@ -1,6 +1,10 @@
 @extends('layouts.landlord.app')
 @section('title','Checkouts')
-@section('breadcrumb','View Checkout')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('checkouts.index') }}" class="text-muted">Checkouts</a></li>
+	<li class="breadcrumb-item active">{{ $checkout->account_name }}</li>
+@endsection
+
 
 @section('content')
 

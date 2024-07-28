@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title','Entity')
-@section('breadcrumb','Create Entity')
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('entities.index') }}" class="text-muted">Entities</a></li>
+	<li class="breadcrumb-item active">Create Entity</li>
+@endsection
+
 
 
 @section('content')
