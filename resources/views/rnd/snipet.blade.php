@@ -1,6 +1,6 @@
 <i class="fas fa-edit">
 	<i data-lucide="alert-circle"></i>
-<i data-lucide="plus-circle"></i>	
+<i data-lucide="plus-circle"></i>
 <i data-lucide="alert-triangle"></i>
 <i class="align-middle me-1" data-lucide="plus-circle"></i>
 
@@ -16,10 +16,10 @@ edit
 	<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 </div>
 
-create 
+create
 <a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 
-<a href="{{ route('users.show',$user->id) }}" class="btn btn-light" 
+<a href="{{ route('users.show',$user->id) }}" class="btn btn-light"
 	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 </a>
 
@@ -29,17 +29,17 @@ create
 		<tr>
 			<th></th>
 			<td>
-			
+
 			</td>
 		</tr>
-		
+
 	</tbody>
 </table>
 
 <tr>
 	<th></th>
 	<td>
-	
+
 	</td>
 </tr>
 
@@ -64,6 +64,10 @@ create
 	<div class="dropdown-divider"></div>
 @endcan
 
+<a href="{{ route('pols.show',$pol->id) }}" class="text-muted">
+    <strong>{{ Str::limit($pol->item_description,35) }}</strong>
+</a>
+
 <tr>
 	<th></th>
 	<td>
@@ -76,7 +80,7 @@ create
 
 @if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 	<div class="dropdown-divider"></div>
-@endif 
+@endif
 
 @if (auth()->user()->isSystem())
 	<a class="btn btn-sm btn-danger text-white" href="{{ route('activities.edit', $activity->id) }}"><i class="fas fa-edit"></i> Edit</a>

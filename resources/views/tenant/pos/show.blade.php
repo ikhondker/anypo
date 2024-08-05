@@ -41,7 +41,7 @@
 	</x-tenant.page-header>
 
 	<x-tenant.dashboards.po-stats :id="$po->id"/>
-	
+
 	<!-- approval form, show only if pending to current auth user -->
 	@if (\App\Helpers\Tenant\Workflow::allowApprove($po->wf_id))
 		{{-- @include('tenant.includes.wfl-approve-reject') --}}
@@ -63,10 +63,6 @@
 		@endslot
 	</x-tenant.widgets.pol.card>
 	<!-- /.widget-pol-card -->
-
-
-
-
 
 @endsection
 

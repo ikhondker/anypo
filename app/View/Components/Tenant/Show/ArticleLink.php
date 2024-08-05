@@ -10,18 +10,18 @@ use Str;
 
 class ArticleLink extends Component
 {
-	public $entity;
-	public $id;
+	//public $entity;
+	//public $id;
 	public $route;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($entity, $id=1001)
+	public function __construct(public string $entity, public string $id='1001')
 	{
-		$this->entity =$entity;
-		$this->id =$id;
-		$this->route = Str::plural(Str::snake(Str::lower($entity), '-'));
+		//$this->entity   = $entity;
+		//$this->id       = $id;
+		$this->route    = Str::plural(Str::snake(Str::lower($this->entity), '-'));
 
 	}
 

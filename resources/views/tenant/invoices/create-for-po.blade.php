@@ -14,7 +14,6 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
-			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
 			<x-tenant.actions.po-actions id="{{ $po->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
@@ -42,7 +41,7 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-				
+
 						<tr>
 							<th>Invoice No</th>
 							<td>
@@ -56,7 +55,7 @@
 							@enderror
 							</td>
 						</tr>
-					
+
 						<tr>
 							<th>Invoice Date</th>
 							<td>
@@ -69,7 +68,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Particulars</th>
 							<td>
@@ -82,7 +81,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Invoice PoC</th>
 							<td>
@@ -97,7 +96,7 @@
 								@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Amount ({{ $po->currency }})</th>
 							<td>
@@ -110,7 +109,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<x-tenant.create.notes/>
 
 						<x-tenant.attachment.create/>
@@ -121,11 +120,11 @@
 				</table>
 
 
-				
+
 
 			</div>
 		</div>
-		
+
 	</form>
 	<!-- /.form end -->
 

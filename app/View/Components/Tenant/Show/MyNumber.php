@@ -8,19 +8,20 @@ use Illuminate\View\Component;
 
 class MyNumber extends Component
 {
-	public $label;
-	public $value;
+	//public $label;
+	//public $value;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($value, $label='')
+	public function __construct(public string $value,public string  $label = '')
 	{
-		$this->label = ($label == '')? 'Amount' : $label;
-		if (is_numeric($value)){
-			$this->value = $value;
-		} else {
-			$this->value = 0;
-		}
+		$this->label    = ($label == '')? 'Amount' : $label;
+        $this->value 	= ($value == '')? '0.00' : $value;
+		// if (is_numeric($value)){
+		// 	$this->value = $value;
+		// } else {
+		// 	$this->value = 0;
+		// }
 	}
 
 	/**

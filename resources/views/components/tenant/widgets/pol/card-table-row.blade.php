@@ -1,7 +1,11 @@
 <tr class="">
 	<td class="">{{ $pol->line_num }}</td>
 	<td class="">{{ $pol->item->code }}</td>
-	<td class="">{{ $pol->item_description }}</td>
+	<td class="">
+		<a href="{{ route('pols.show',$pol->id) }}" class="text-muted">
+			<strong>{{ Str::limit($pol->item_description,35) }}</strong>
+		</a>
+	</td>
 	<td class="">{{ $pol->uom->name }}</td>
 	<td class="text-end">{{ $pol->qty }}</td>
 	<td class="text-end">{{ $pol->received_qty }}</td>

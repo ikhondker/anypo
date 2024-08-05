@@ -8,14 +8,14 @@ use Illuminate\View\Component;
 
 class MyBadge extends Component
 {
-	public $label;
-	public $value;
+	//public $label;
+	//public $value;
 
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($value, $label='ID')
+	public function __construct(public string $value, public string $label='ID')
 	{
 		$this->label = ($label == '')? 'ID' : $label;
 		$this->value = $value;

@@ -8,15 +8,15 @@ use Illuminate\View\Component;
 
 class ProjectLink extends Component
 {
-	public $id;
-	public $label;
+	//public $id;
+	//public $label;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id=1001,$label='')
+	public function __construct(public string $id='1001',public string $label='')
 	{
-		$this->id =$id;
-		$this->label =$label;
+		//$this->id =$id;
+		//$this->label =$label;
 	}
 	/**
 	 * Get the view / contents that represent the component.

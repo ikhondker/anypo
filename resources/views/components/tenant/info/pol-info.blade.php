@@ -10,9 +10,11 @@
 					@if ($pol->po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 						@can('update', $pol)
 							<a href="{{ route('pols.edit', $pol->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
-						@endcan 
-					@endif 	
-					<a href="{{ route('pols.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+						@endcan
+					@endif
+                    <a class="btn btn-sm btn-light" href="{{ route('pos.show', $pol->po_id ) }}">
+                        <i class="far fa-file"></i> PO#{{ $pol->po_id }}</a>
+
 				</div>
 				<strong>PO #{{ $pol->po->id }} {{ $pol->po->summary }}</strong>
 				<p>{!! nl2br($pol->notes) !!}</p>

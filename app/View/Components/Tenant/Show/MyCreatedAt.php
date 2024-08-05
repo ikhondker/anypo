@@ -8,14 +8,14 @@ use Illuminate\View\Component;
 
 class MyCreatedAt extends Component
 {
-	public $value;
+	//public $value;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($value)
+	public function __construct(public string $value)
 	{
-		$this->value = $value;
+		//$this->value = $value;
 	}
 
 	/**

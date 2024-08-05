@@ -45,13 +45,11 @@
 								<th>FY</th>
 								<th>Dept</th>
 								<th class="text-end">Budget</th>
-								<th class="text-end">PR (Booked)</th>
-								<th class="text-end">PR (Approved)</th>
-								<th class="text-end">PR (Available)</th>
-								<th class="text-end">PO (Booked)</th>
-								<th class="text-end">PO (Approved)</th>
-								<th class="text-end">PO <br>(Available)</th>
-								<th class="text-end">GRS</th>
+								<th class="text-end">PR (Used)</th>
+								<th class="text-end">PR (Avl.)</th>
+								<th class="text-end">PO (Used)</th>
+								<th class="text-end">PO (Avl.)</th>
+								<th class="text-end">Receipt</th>
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
 								<th>Closed</th>
@@ -67,11 +65,9 @@
 								<td><a href="{{ route('dept-budgets.show',$dept_budget->id) }}"><strong>{{ $dept_budget->dept->name }}</a></strong></td>
 
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr_booked"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr_booked + $dept_budget->amount_pr"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_pr_booked - $dept_budget->amount_pr "/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_po_booked"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_po"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_po_booked + $dept_budget->amount_po"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount - $dept_budget->amount_po_booked - $dept_budget->amount_po"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_invoice"/></td>

@@ -12,7 +12,7 @@
 			All Department Budget Revision [{{ ($_setup->currency ) }}]
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="DeptBudget"/>
+
 		@endslot
 	</x-tenant.page-header>
 

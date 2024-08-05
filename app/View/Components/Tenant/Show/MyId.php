@@ -8,14 +8,14 @@ use Illuminate\View\Component;
 
 class MyId extends Component
 {
-	public $id;
+	//public $id;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $id)
 	{
-		
-		$this->id = $id;
+
+		//$this->id = $id;
 	}
 
 	/**

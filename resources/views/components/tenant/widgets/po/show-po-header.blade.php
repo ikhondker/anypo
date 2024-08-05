@@ -28,14 +28,15 @@
 						<x-tenant.show.my-text		value="{{ $po->project->name }}" label="Project"/>
 						<x-tenant.show.my-text		value="{{ $po->supplier->name }}" label="Supplier"/>
 						<x-tenant.show.my-text-area		value="{{ $po->notes }}" label="Notes"/>
-						<tr>
-							<th></th>
-							<td>
-								@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+
+						@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+							<tr>
+								<th></th>
+								<td>
 									<x-tenant.show.my-edit-link object="Po" :id="$po->id"/>
-								@endif
-							</td>
-						</tr>
+								</td>
+							</tr>
+						@endif
 					</tbody>
 				</table>
 			</div>

@@ -8,16 +8,16 @@ use Illuminate\View\Component;
 
 class MyBoolean extends Component
 {
-	public $label;
-	public $value;
+	//public $label;
+	//public $value;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($value, $label='Enable')
+	public function __construct(public string $value, public string $label='Enable')
 	{
-		$this->value = $value;
-		$this->label = $label;
+		// $this->value = $value;
+		// $this->label = $label;
 	}
 
 	/**

@@ -40,7 +40,10 @@
 				<div class="card-body">
 					<table class="table table-sm my-2">
 						<tbody>
-							<x-tenant.show.my-badge value="{{ $deptBudget->budget->fy }}" label="FY"/>
+							<tr>
+								<th width="20%">FY:</th>
+								<td><span class="badge badge-subtle-primary">{{  $deptBudget->budget->fy }}</span></td>
+							</tr>
 							<tr>
 								<th>Budget:</th>
 								<td>{{ $deptBudget->budget->name }} <x-tenant.info info="Note: You wont be able to edit this."/></td>

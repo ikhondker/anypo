@@ -19,7 +19,7 @@
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 						<i data-lucide="external-link"></i> Post Invoice</a>
 				@endif
-			@endcan 	
+			@endcan
 			{{-- <x-tenant.buttons.header.lists object="Po" label="Purchase Order"/> --}}
 			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}"/>
 
@@ -34,7 +34,7 @@
 					@can('update', $invoice)
 						<a href="{{ route('invoices.edit', $invoice->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
 					@endcan
-				@endif 
+				@endif
 				<a href="{{ route('invoices.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Invoice Detail</h5>
@@ -66,7 +66,7 @@
 					<x-tenant.show.my-amount-currency	value="{{ $invoice->amount_paid }}" currency="{{ $invoice->currency }}" label="Paid Amount"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->status }}" label="Status"/>
 					<x-tenant.show.my-badge		value="{{ $invoice->payment_status }}" label="Payment Status"/>
-					<x-tenant.show.my-text-area		value="{{ $invoice->notes }}"/>
+					<x-tenant.show.my-text-area	value="{{ $invoice->notes }}"/>
 					<tr>
 						<th>Created By:</th>
 						<td>{{ $invoice->createdBy->name }}</td>
@@ -75,7 +75,7 @@
 						<th>Attachments</th>
 						<td><x-tenant.attachment.all entity="INVOICE" aid="{{ $invoice->id }}"/></td>
 					</tr>
-					
+
 					<tr>
 						<th></th>
 						<td>
@@ -108,7 +108,7 @@
 
 		</div>
 	</div>
-	
+
 
 	<x-tenant.widgets.po.invoice-payments :iid="$invoice->id" />
 

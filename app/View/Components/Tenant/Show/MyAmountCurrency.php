@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 
 class MyAmountCurrency extends Component
 {
-	
+
 	/**
 	 * Create a new component instance.
 	 */
@@ -18,7 +18,7 @@ class MyAmountCurrency extends Component
 		// } else {
 		// 	$this->value = 0;
 		// }
-		$this->value 	= $value;
+		$this->value 	= ($value == '')? '0.00' : $value;
 		$this->currency = $currency;
 		$this->label 	= ($label == '')? 'Amount' : $label;
 	}

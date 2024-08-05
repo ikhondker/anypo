@@ -8,15 +8,15 @@ use Illuminate\View\Component;
 
 class MyDate extends Component
 {
-	public $label;
-	public $value;
+	//public $label;
+	//public $value;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($value, $label='')
+	public function __construct(public string $value, public string $label='')
 	{
 		$this->label = ($label == '')? 'Date' : $label;
-		$this->value = $value;
+		//$this->value = $value;
 	}
 
 	/**

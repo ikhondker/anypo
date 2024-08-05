@@ -21,15 +21,16 @@
 		@endslot
 	</x-tenant.page-header>
 
-
 	<x-tenant.info.po-info id="{{ $pol->po_id }}" photo='pol'/>
 
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('pos.show', $po->id ) }}"><i class="far fa-file"></i> View PO#{{ $po->id }}</a>
+				<a class="btn btn-sm btn-light" href="{{ route('pos.show', $po->id ) }}">
+                    <i class="far fa-file"></i> PO#{{ $po->id }}
+                </a>
 			</div>
-			
+
 			<h5 class="card-title">Purchase Order Lines</h5>
 		</div>
 		<div class="card-body">
@@ -41,7 +42,7 @@
 						<th class="" style="width:15%">Description</th>
 						<th class="" style="width:7%">UOM</th>
 						<th class="text-end" style="width:5%">Qty</th>
-						<th class="text-end" style="width:5%">Received</th>
+						<th class="text-end" style="width:5%">Rcv</th>
 						<th class="text-end" style="width:9%">Price</th>
 						<th class="text-end" style="width:8%">Subtotal</th>
 						<th class="text-end" style="width:8%">Tax</th>
@@ -53,7 +54,7 @@
 				</thead>
 
 				@foreach ($pols as $pol1)
-					@if ($pol->id == $pol1->id)	
+					@if ($pol->id == $pol1->id)
 						<trclass="badge-subtle-success">
 					@else
 						<trclass="">
@@ -70,39 +71,47 @@
 						<td class="text-end"><x-tenant.list.my-number :value="$pol1->gst"/></td>
 						<td class="text-end"><x-tenant.list.my-number :value="$pol1->amount"/></td>
 						<td class="text-end"><span class="badge {{ $pol1->close_status_badge->badge }}">{{ $pol1->close_status_badge->name}}</span></td>
-						<td class="table-action">
-							<a href="{{ route('pols.show',$pol1->id) }}" class="btn btn-light btn-sm" 
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+						<td>
+							<a href="{{ route('pols.show',$pol1->id) }}" class="text-muted"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+								<i class="align-middle" data-lucide="eye"></i></a>
+							@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+								<a href="{{ route('pols.edit',$pol1->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+									<i class="align-middle" data-lucide="edit"></i></a>
+							@endif
+							@if ($po->auth_status == App\Enum\AuthStatusEnum::APPROVED->value)
+								<a href="{{ route('receipts.create-for-pol', $pol1->id)  }}" class="text-muted"
+									data-bs-toggle="tooltip" data-bs-placement="top" title="Crate Receipt">
+									<i class="align-middle" data-lucide="plus"></i></a>
 							</a>
-							<a href="{{ route('receipts.create-for-pol', $pol1->id)}}" class="btn btn-light btn-sm" 
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">New Receipt
-							</a>
+							@endif
 						</td>
 					</tr>
 				@endforeach
 
 				<!-- Table footer i.e. Totals -->
 				<tr>
-					<td class="" colspan="2" scope="col">
+					<td class="" colspan="2">
 						@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 							<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 						@endif
 					</td>
-					<td class="" colspan="4" scope="col">&nbsp;</td>
-					<td class="text-end" scope="col"><strong>TOTAL ({{ $po->currency }}) :</strong></td>
-					<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->sub_total"/></strong></td>
-					<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->tax"/></strong></td>
-					<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->gst"/></strong></td>
-					<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->amount"/></strong></td>
-					<td class="" scope="col">&nbsp</td>
+					<td class="" colspan="3">&nbsp;</td>
+					<td class="text-end" colspan="2"><strong>TOTAL ({{ $po->currency }}) :</strong></td>
+					<td class="text-end"><strong><x-tenant.list.my-number :value="$po->sub_total"/></strong></td>
+					<td class="text-end"><strong><x-tenant.list.my-number :value="$po->tax"/></strong></td>
+					<td class="text-end"><strong><x-tenant.list.my-number :value="$po->gst"/></strong></td>
+					<td class="text-end"><strong><x-tenant.list.my-number :value="$po->amount"/></strong></td>
+					<td class="">&nbsp</td>
 				</tr>
 				<!-- End Table footer i.e. Totals -->
 			</table>
 		</div>
 	</div>
 
-
-	<x-tenant.widgets.pol.pol-receipts :id="$pol->id" />
+	@if ($po->auth_status == App\Enum\AuthStatusEnum::APPROVED->value)
+		<x-tenant.widgets.pol.pol-receipts :id="$pol->id" />
+	@endif
 
 @endsection
 

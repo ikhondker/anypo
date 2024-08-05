@@ -8,16 +8,16 @@ use Illuminate\View\Component;
 
 class MyClosed extends Component
 {
-	public $label;
-	public $value;
+	//public $label;
+	//public $value;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($value, $label='Closed')
+	public function __construct(public string $value, public string $label='Closed')
 	{
-		$this->value = $value;
-		$this->label = $label;
+		// $this->value = $value;
+		// $this->label = $label;
 	}
 
 	/**

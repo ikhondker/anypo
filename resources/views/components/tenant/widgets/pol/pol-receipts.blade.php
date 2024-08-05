@@ -3,18 +3,6 @@
 	<div class="col-12 col-xl-12">
 		<div class="card">
 			<div class="card-header">
-				<div class="card-actions float-end">
-					<div class="dropdown position-relative">
-						<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-							<i class="align-middle" data-lucide="more-horizontal"></i>
-						</a>
-						<div class="dropdown-menu dropdown-menu-end">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>
-					</div>
-				</div>
 				<h5 class="card-title">Purchase Order Receipts</h5>
 				<h6 class="card-subtitle text-muted">List of Good Receipts for a Purchase Order Line.</h6>
 			</div>
@@ -22,6 +10,7 @@
 				<thead>
 					<tr>
 						<th class="">#</th>
+						<th class="">GRN</th>
 						<th class="">Date</th>
 						<th class="">Item</th>
 						<th class="text-end">Qty</th>
@@ -36,7 +25,12 @@
 					@foreach ($receipts as $receipt)
 						<tr class="">
 							<td class="">{{ $loop->iteration }}</td>
-							<td class="">{{ $receipt->receive_date }}</td>
+							<td class="">
+								<a href="{{ route('receipts.show',$receipt->id) }}" class="text-muted">
+									<strong>{{ $receipt->id }}</strong>
+								</a>
+							</td>
+							<td class=""><x-tenant.list.my-date :value="$receipt->receive_date"/></td>
 							<td class="">{{ $receipt->pol->item_description }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$receipt->qty"/></td>
 							<td class="text-end"><x-tenant.list.my-number :value="$receipt->amount"/></td>
@@ -44,10 +38,10 @@
 							<td class="">{{ $receipt->warehouse->name }}</td>
 							<td><span class="badge {{ $receipt->status_badge->badge }}">{{ $receipt->status_badge->name}}</span></td>
 							<td class="table-action">
-								<a href="{{ route('receipts.show',$receipt->id) }}" class="btn btn-light btn-sm" 
+								<a href="{{ route('receipts.show',$receipt->id) }}" class="btn btn-light btn-sm"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 								</a>
-						
+
 							</td>
 						</tr>
 					@endforeach

@@ -60,22 +60,22 @@
 				<!-- pol lines -->
 				{{ $lines }}
 				<!-- pol lines -->
-		
+
 				@if ( $readOnly )
 					<!-- Table footer i.e. Totals -->
 					<tr>
-						<td class="" colspan="2" scope="col">
+						<td class="" colspan="2">
 							@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 								<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 							@endif
 						</td>
-						<td class="" colspan="4" scope="col">&nbsp;</td>
-						<td class="text-end" scope="col"><strong>TOTAL ({{ $po->currency }}) :</strong></td>
-						<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->sub_total"/></strong></td>
-						<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->tax"/></strong></td>
-						<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->gst"/></strong></td>
-						<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$po->amount"/></strong></td>
-						<td class="" colspan="2" scope="col">&nbsp</td>
+						<td class="" colspan="3">&nbsp;</td>
+						<td class="text-end" colspan="2"><strong>TOTAL ({{ $po->currency }}) :</strong></td>
+						<td class="text-end"><strong><x-tenant.list.my-number :value="$po->sub_total"/></strong></td>
+						<td class="text-end"><strong><x-tenant.list.my-number :value="$po->tax"/></strong></td>
+						<td class="text-end"><strong><x-tenant.list.my-number :value="$po->gst"/></strong></td>
+						<td class="text-end"><strong><x-tenant.list.my-number :value="$po->amount"/></strong></td>
+						<td class="" colspan="2">&nbsp</td>
 					</tr>
 					<!-- End Table footer i.e. Totals -->
 				@else
