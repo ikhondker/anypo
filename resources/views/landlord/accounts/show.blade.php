@@ -8,9 +8,10 @@
 
 @section('content')
 
-	<h1 class="h3 mb-3">Account Overview</h1>
-	<div class="row">
-		<div class="col-12">
+    <a href="{{ route('accounts.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
+    <h1 class="h3 mb-3">Account Overview</h1>
+
+
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
@@ -97,8 +98,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+
 
 	<x-landlord.widgets.account-services/>
 

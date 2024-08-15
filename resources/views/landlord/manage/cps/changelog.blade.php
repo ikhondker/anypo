@@ -2,6 +2,10 @@
 @section('title','Landlord Change Logs')
 @section('breadcrumb', 'Landlord Change Logs')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Landlord Change Logs</li>
+@endsection
+
 @section('content')
 
 	<h1 class="h3 mb-3">Landlord Change Logs</h1>
@@ -56,7 +60,7 @@
 						<td><span class="badge bg-primary">v1.0.0</span></td>
 						<td></td>
 					</tr>
-					
+
 				</tbody>
 			</table>
 		</div>
@@ -64,7 +68,7 @@
 	</div>
 	<!-- end card -->
 
-	 
+
 
 @endsection
 

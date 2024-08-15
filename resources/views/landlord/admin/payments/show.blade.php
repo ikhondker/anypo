@@ -12,10 +12,10 @@
 		<a href="{{ route('payments.edit', $payment->id) }}" class="btn btn-danger float-end"><i class="fas fa-edit"></i> Edit(*)</a>
 	@endif --}}
 
+    <a href="{{ route('payments.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
 	<h1 class="h3 mb-3">View Payment</h1>
 
-	<div class="row">
-		<div class="col-12">
+
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
@@ -30,7 +30,7 @@
 						Hello <strong>{{ $account->name }}</strong>,
 						<br /> This is the receipt for a payment of <strong>${{ number_format($payment->amount,2) }}</strong> (USD) you made to {{ $config->name }}.
 					</div>
-	
+
 					<hr class="my-4" />
 					<div class="row">
 						<div class="col-md-6">
@@ -42,9 +42,9 @@
 							<strong>{{ date('d-M-Y', strtotime($payment->pay_date)) }}</strong>
 						</div>
 					</div>
-	
+
 					<hr class="my-4" />
-	
+
 					<div class="row mb-4">
 						<div class="col-md-6">
 							<div class="text-muted">Client</div>
@@ -55,8 +55,8 @@
 									{{ $account->address2 }}<br>
 								@endif
 								{{ $account->city . ', ' . $account->state . ', ' . $account->zip }}<br>
-								{{ $account->relCountry->name }}<br> 
-								<a href="#">{{ $account->email }}</a><br> 
+								{{ $account->relCountry->name }}<br>
+								<a href="#">{{ $account->email }}</a><br>
 								{{-- Invoice : #{{ $invoice->invoice_no }}<br> --}}
 							</p>
 						</div>
@@ -74,7 +74,7 @@
 							</p>
 						</div>
 					</div>
-	
+
 					<table class="table table-sm">
 						<thead>
 							<tr>
@@ -111,7 +111,7 @@
 							</tr>
 						</tbody>
 					</table>
-	
+
 					<div class="text-center">
 						{{-- <p class="text-sm">
 							<strong>Extra note:</strong> Please send all items at the same time to the shipping address. Thanks in advance.
@@ -119,13 +119,12 @@
 						<a class="btn btn-primary" href="javascript:;" onclick="window.print(); return false;">
 							<i data-lucide="printer"></i> Print This Receipt
 						</a>
-	
+
 					</div>
-	
+
 				</div>
 			</div>
-		</div>
-	</div>
+
 
 @endsection
 

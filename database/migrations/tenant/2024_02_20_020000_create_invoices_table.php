@@ -16,9 +16,9 @@ return new class extends Migration
 	{
 		Schema::create('invoices', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->enum('invoice_type', ['STANDARD','ADVANCE'])->default('STANDARD'); 
+			$table->enum('invoice_type', ['STANDARD','ADVANCE'])->default('STANDARD');
 			$table->string('invoice_no');
-			$table->dateTime('invoice_date')->useCurrent(); 
+			$table->dateTime('invoice_date')->useCurrent();
 			$table->foreignId('po_id')->constrained('pos');
 			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->string('summary');
@@ -28,14 +28,14 @@ return new class extends Migration
 			$table->float('tax',15,2)->default(0);
 			$table->float('gst',15,2)->default(0);
 			$table->float('amount', 15, 2)->default(0);
-			$table->float('paid_amount', 15, 2)->default(0);
+			$table->float('amount_paid', 15, 2)->default(0);
 			//$table->string('fc_currency',3);							// Functional Currency
 			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
 			$table->float('fc_sub_total', 15, 2)->default(0);			// Functional Currency
 			$table->float('fc_tax',15,2)->default(0);					// Functional Currency
 			$table->float('fc_gst',15,2)->default(0);					// Functional Currency
 			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
-			$table->float('fc_paid_amount', 15, 2)->default(0);			// Functional Currency
+			$table->float('fc_amount_paid', 15, 2)->default(0);			// Functional Currency
 			$table->string('dr_account')->default('100001')->nullable();
 			$table->string('cr_account')->default('100001')->nullable();
 			$table->text('notes')->nullable();

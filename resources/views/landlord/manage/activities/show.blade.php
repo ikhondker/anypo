@@ -6,10 +6,10 @@
 @endsection
 
 @section('content')
-
+    <a href="{{ route('activities.index') }}" class="btn btn-primary float-end mt-n1 me-1"><i class="fas fa-list"></i> View all</a>
 	<h1 class="h3 mb-3">View Event Log</h1>
-	<div class="row">
-		<div class="col-12">
+
+
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
@@ -45,7 +45,5 @@
 					</table>
 				</div>
 			</div>
-		</div>
-	</div>
 
 @endsection

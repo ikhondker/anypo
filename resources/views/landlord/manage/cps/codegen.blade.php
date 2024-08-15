@@ -1,6 +1,8 @@
 @extends('layouts.landlord.app')
 @section('title','Code Generator - For all Tenants')
-@section('breadcrumb', 'Landlord Change Logs')
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Code Generator</li>
+@endsection
 
 @section('content')
 
@@ -73,14 +75,14 @@
 			<h6 class="card-subtitle text-muted">TBD</h6>
 		</div>
 		<div class="card-body">
-					
-			
+
+
 		</div>
 		<!-- end card-body -->
 	</div>
 	<!-- end card -->
 
-	 
+
 
 @endsection
 

@@ -1,12 +1,17 @@
 @extends('layouts.landlord.app')
 @section('title','Tenant Detail')
-@section('breadcrumb','Tenant Detail')
+
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('tenants.index') }}" class="text-muted">Tenants</a></li>
+	<li class="breadcrumb-item active">{{ $tenant->id }}</li>
+@endsection
 
 @section('content')
 
+    <a href="{{ route('tenants.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
+
 	<h1 class="h3 mb-3">View Tenant</h1>
-	<div class="row">
-		<div class="col-12">
+
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
@@ -29,7 +34,6 @@
 					</table>
 				</div>
 			</div>
-		</div>
-	</div>
+
 
 @endsection

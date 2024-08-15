@@ -68,7 +68,7 @@
 									<strong>{{ $errorLog->tenant }}</strong>
 								</a>
 							</td>
-							<td>{{ $errorLog->url }}</td>
+							<td>{{ Str::limit($errorLog->url, 20)  }}</td>
 							<td>{{ $errorLog->e_class }}</td>
 							<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($errorLog->created_at))) }}</td>
 							<td>{{ $errorLog->user_id }}</td>

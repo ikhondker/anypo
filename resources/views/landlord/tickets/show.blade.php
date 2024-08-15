@@ -8,7 +8,9 @@
 
 @section('content')
 
-		
+    <a href="{{ route('tickets.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
+	<h1 class="h3 mb-3">Ticket Detail</h1>
+
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
@@ -19,7 +21,7 @@
 				@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
 					<a href="{{ route('tickets.close',$ticket->id) }}" class="btn btn-sm btn-light sw2"><i class="fas fa-power-off text-danger"></i> Close Ticket</a>
 				@endif
-				<a href="{{ route('tickets.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+
 			</div>
 			<h5 class="card-title mb-0">#{{ $ticket->id }}: {{ $ticket->title }}</h5>
 			<div class="badge bg-{{ $ticket->status->badge }} my-2">{{ $ticket->status->name }}</div>
@@ -59,7 +61,7 @@
 						<th>Account</th>
 						<td>{{ $ticket->owner->account->name }} </td>
 					</tr>
-					
+
 					@if (auth()->user()->isSeeded())
 						<tr>
 							<th>Department</th>

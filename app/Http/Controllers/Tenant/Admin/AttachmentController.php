@@ -145,7 +145,9 @@ class AttachmentController extends Controller
 	 */
 	public function edit(Attachment $attachment)
 	{
-		abort(403);
+		//$this->authorize('update', $attachment);
+
+		return view('tenant.admin.attachments.edit', compact('attachment'));
 	}
 
 	/**
@@ -153,7 +155,17 @@ class AttachmentController extends Controller
 	 */
 	public function update(UpdateAttachmentRequest $request, Attachment $attachment)
 	{
-		abort(403);
+		//$this->authorize('update', $attachment);
+
+		//$request->validate();
+		$request->validate([
+		]);
+
+		// Write to Log
+		EventLog::event('attachment', $attachment->id, 'update', 'summary', $request->summary);
+		$attachment->update($request->all());
+
+		return redirect()->route('attachments.index')->with('success', 'Attachment information updated successfully');
 	}
 
 	/**
