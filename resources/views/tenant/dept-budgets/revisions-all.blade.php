@@ -19,7 +19,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.cards.header-search-export-bar object="DeptBudget"/>
+			<x-tenant.card.header-search-export-bar object="DeptBudget"/>
 			<h5 class="card-title">Department Budget Revision</h5>
 			<h6 class="card-subtitle text-muted">Department Budget Revision History.</h6>
 		</div>

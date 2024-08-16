@@ -20,7 +20,7 @@
 	<form action="{{ route('menus.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-		
+
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -44,7 +44,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Route Name</th>
@@ -58,7 +58,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Node Name</th>
@@ -72,10 +72,10 @@
 							@enderror
 							</td>
 						</tr>
-						
 
-						<x-tenant.buttons.show.save/>
-						
+
+                        <x-tenant.create.save/>
+
 					</tbody>
 				</table>
 			</div>

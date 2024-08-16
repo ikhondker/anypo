@@ -17,8 +17,8 @@
 
 	<div class="card">
 		<div class="card-header">
-			
-			<x-tenant.cards.header-search-export-bar object="Oem"/>
+
+			<x-tenant.card.header-search-export-bar object="Oem"/>
 
 			<h5 class="card-title">
 				@if (request('term'))
@@ -67,7 +67,7 @@
 	<!-- end card -->
 
 
-	 
+
 
 @endsection
 

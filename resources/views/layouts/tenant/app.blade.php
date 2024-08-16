@@ -58,7 +58,7 @@
 						<h6 class="text-danger">Guest!</h6>
 					@endguest
 				</div>
-				
+
 				<!-- ========== SIDEBAR ========== -->
 				@include('tenant.includes.sidebar')
 				<!-- ========== END SIDEBAR ========== -->
@@ -238,10 +238,10 @@
 							@endif
 
 							@if (session('success'))
-								<x-tenant.alert.success message="{{ session('success') }}"/>
+								<x-tenant.alerts.success message="{{ session('success') }}"/>
 							@endif
 							@if (session('error') || $errors->any())
-								<x-tenant.alert.error message="{{ session('error') }}"/>
+								<x-tenant.alerts.error message="{{ session('error') }}"/>
 							@endif
 
 						</div>
@@ -269,7 +269,7 @@
 							@include('tenant.admin.setups.initial')
 							<!-- /.content -->
 						@else
-							<x-tenant.alert.error message="Initial setup not done. Only admin can perform the initial setup."/>
+							<x-tenant.alerts.error message="Initial setup not done. Only admin can perform the initial setup."/>
 						@endif
 
 					@endif

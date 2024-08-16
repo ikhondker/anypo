@@ -17,7 +17,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.cards.header-search-export-bar object="Group" :export="true"/>
+			<x-tenant.card.header-search-export-bar object="Group" :export="true"/>
 		</div>
 		<div class="card-body">
 			<table class="table">

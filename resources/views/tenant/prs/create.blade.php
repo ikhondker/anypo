@@ -43,7 +43,7 @@
 									@enderror
 									</td>
 								</tr>
-							
+
 								<tr>
 									<th>PR Date :</th>
 									<td>
@@ -52,7 +52,7 @@
 										readonly/>
 									</td>
 								</tr>
-																
+
 								@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
 									<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 								@else
@@ -146,13 +146,13 @@
 										readonly/>
 									</td>
 								</tr>
-										
-								<x-tenant.buttons.show.save/>
+
+                                <x-tenant.create.save/>
 							</tbody>
 						</table>
 
 
-						
+
 					</div>
 				</div>
 			</div>

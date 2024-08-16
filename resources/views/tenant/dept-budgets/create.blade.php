@@ -33,7 +33,7 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						
+
 						<tr>
 							<th>Budget Year/Name :</th>
 							<td>
@@ -48,8 +48,8 @@
 								@enderror
 							</td>
 						</tr>
-							
-						
+
+
 
 						<tr>
 							<th>Dept :</th>
@@ -66,12 +66,12 @@
 							</td>
 						</tr>
 
-						
-						
+
+
 						<x-tenant.create.amount/>
 						<x-tenant.create.notes/>
 
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 					</tbody>
 				</table>
 			</div>

@@ -55,7 +55,7 @@
 					</label>
 				</div>
 
-				<x-tenant.buttons.show.save/>
+				<x-tenant.edit.save/>
 			</div>
 		</div>
 

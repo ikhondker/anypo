@@ -39,7 +39,7 @@
 							<td>
 								<input type="text" class="form-control @error('country') is-invalid @enderror"
 								name="country" id="country" placeholder="XX"
-								maxlength="2" 
+								maxlength="2"
 								style="text-transform: uppercase"
 								value="{{ old('country', '' ) }}"
 								required/>
@@ -48,10 +48,10 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<x-tenant.create.name/>
-						
-						<x-tenant.buttons.show.save/>
+
+                        <x-tenant.create.save/>
 
 					</tbody>
 				</table>

@@ -47,7 +47,7 @@
 							@enderror
 							</td>
 						</tr>
-					
+
 
 						<tr>
 							<th>Message</th>
@@ -61,8 +61,8 @@
 							@enderror
 							</td>
 						</tr>
-						
-						<x-tenant.buttons.show.save/>
+
+                        <x-tenant.create.save/>
 					</tbody>
 				</table>
 			</div>

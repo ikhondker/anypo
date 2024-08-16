@@ -34,7 +34,7 @@
 
 							<table class="table table-sm my-2">
 								<tbody>
-							
+
 									<tr>
 										<th width="20%">Summary :</th>
 										<td>
@@ -47,7 +47,7 @@
 										@enderror
 										</td>
 									</tr>
-									
+
 									<tr>
 										<th>Date :</th>
 										<td>
@@ -56,8 +56,8 @@
 											readonly/>
 										</td>
 									</tr>
-									
-									
+
+
 									@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
 										<tr>
 											<th>Department :</th>
@@ -83,9 +83,9 @@
 												@enderror
 											</td>
 										</tr>
-										
+
 									@endif
-		
+
 									<tr>
 										<th>Supplier :</th>
 										<td>
@@ -99,7 +99,7 @@
 											@enderror
 										</td>
 									</tr>
-									
+
 									<tr>
 										<th>Project :</th>
 										<td>
@@ -113,13 +113,13 @@
 											@enderror
 										</td>
 									</tr>
-									
-		
+
+
 									<x-tenant.edit.currency :value="$pr->currency"/>
-		
+
 								</tbody>
 							</table>
-							
+
 						</div>
 					</div>
 				</div>
@@ -139,7 +139,7 @@
 
 							<table class="table table-sm my-2">
 								<tbody>
-							
+
 									<tr width="20%">
 										<th>Need By Date :</th>
 										<td>
@@ -152,9 +152,9 @@
 											@enderror
 										</td>
 									</tr>
-									
+
 									<x-tenant.edit.notes value="{{ $pr->notes }}"/>
-		
+
 									<x-tenant.attachment.create />
 									<tr>
 										<th>Requestor :</th>
@@ -165,13 +165,13 @@
 											readonly/>
 										</td>
 									</tr>
-	
-									<x-tenant.buttons.show.save/>
+
+									<x-tenant.edit.save/>
 								</tbody>
 							</table>
 
 
-							
+
 
 						</div>
 					</div>

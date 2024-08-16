@@ -23,7 +23,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-bar object="Pr"/>
+					<x-tenant.card.header-search-bar object="Pr"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>

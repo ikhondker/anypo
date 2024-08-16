@@ -32,7 +32,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<x-tenant.create.name/>
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 					</tbody>
 				</table>
 			</div>

@@ -24,7 +24,7 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						
+
 						<h5 class="card-title">Purchase Order Basic Information</h5>
 						<h6 class="card-subtitle text-muted">Purchase Order Basic Information.</h6>
 					</div>
@@ -32,7 +32,7 @@
 
 						<table class="table table-sm my-2">
 							<tbody>
-						
+
 								<tr>
 									<th width="20%">PO Summary :</th>
 									<td>
@@ -45,7 +45,7 @@
 									@enderror
 									</td>
 								</tr>
-								
+
 								<tr>
 									<th>PO Date :</th>
 									<td>
@@ -55,8 +55,8 @@
 											readonly/>
 									</td>
 								</tr>
-								
-								
+
+
 								@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
 									<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 								@else
@@ -72,7 +72,7 @@
 											@error('dept_id')
 												<div class="text-danger text-xs">{{ $message }}</div>
 											@enderror
-										
+
 										</td>
 									</tr>
 								@endif
@@ -90,7 +90,7 @@
 										@enderror
 									</td>
 								</tr>
-								
+
 								<tr>
 									<th>Project :</th>
 									<td>
@@ -107,11 +107,11 @@
 										</div>
 									</td>
 								</tr>
-										
+
 								<x-tenant.create.currency/>
 							</tbody>
 						</table>
-					
+
 					</div>
 				</div>
 			</div>
@@ -128,7 +128,7 @@
 					<div class="card-body">
 						<table class="table table-sm my-2">
 							<tbody>
-						
+
 								<tr>
 									<th>Need By Date :</th>
 									<td>
@@ -141,7 +141,7 @@
 									@enderror
 									</td>
 								</tr>
-										
+
 								<tr>
 									<th>Terms and Conditions :</th>
 									<td>
@@ -165,11 +165,11 @@
 										readonly/>
 									</td>
 								</tr>
-										
-								<x-tenant.buttons.show.save/>
+
+                                <x-tenant.create.save/>
 							</tbody>
 						</table>
-						
+
 					</div>
 				</div>
 			</div>

@@ -62,7 +62,7 @@
 								@enderror
 							</td>
 						</tr>
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 
 					</tbody>
 				</table>

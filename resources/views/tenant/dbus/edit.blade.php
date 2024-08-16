@@ -9,7 +9,7 @@
 			Edit Dbu
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -39,21 +39,21 @@
 									<input type="text" name="budget_fy" id="budget_fy" class="form-control" placeholder="" value="{{ $dbu->deptBudget->budget->fy }}" readonly>
 								</td>
 							</tr>
-							
+
 							<tr>
 								<th>Budget</th>
 								<td>
 									<input type="text" name="budget_name" id="budget_name" class="form-control" placeholder="" value="{{ $dbu->deptBudget->budget->name }}" readonly>
 								</td>
 							</tr>
-							
+
 							<tr>
 								<th>Dept</th>
 								<td>
 									<input type="text" name="dept_name" id="dept_name" class="form-control" placeholder="" value="{{ $dbu->dept->name }}" readonly>
 								</td>
 							</tr>
-							
+
 							<tr>
 								<th>Amount PR Booked ({{ $_setup->currency }})</th>
 								<td>
@@ -66,18 +66,18 @@
 								@enderror
 								</td>
 							</tr>
-							
+
 
 							<x-tenant.edit.notes value="{{ $dbu->notes }}"/>
 
 							<x-tenant.attachment.create/>
-							
-							<x-tenant.buttons.show.save/>
+
+							<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>
 		</div>
-			
+
 	</form>
 	<!-- /.form end -->
 @endsection

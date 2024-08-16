@@ -12,7 +12,7 @@
 			Create Support Ticket
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -57,14 +57,14 @@
 								id="file_to_upload"
 								accept=".jpg,.jpeg,.bmp,.png,.gif,.doc,.docx,.ppt,.pptx,.csv,.rtf,.xlsx,.xls,.txt,.pdf,.zip"
 								placeholder="file_to_upload">
-	
+
 								@error('file_to_upload')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
-						<x-tenant.buttons.show.save/>
-				
+                        <x-tenant.create.save/>
+
 					</tbody>
 				</table>
 			</div>

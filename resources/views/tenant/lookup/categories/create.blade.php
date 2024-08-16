@@ -35,7 +35,7 @@
 					<tbody>
 						<x-tenant.create.name/>
 
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 
 					</tbody>
 				</table>

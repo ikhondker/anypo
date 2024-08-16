@@ -63,7 +63,7 @@
 								@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Budget Amount ({{ $_setup->currency }}) :</th>
 							<td>
@@ -76,7 +76,7 @@
 							@enderror
 							</td>
 						</tr>
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 
 					</tbody>
 				</table>

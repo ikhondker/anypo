@@ -113,10 +113,8 @@
 							</select>
 						</td>
 					</tr>
-					<tr>
-						<th></th>
-						<td><x-tenant.buttons.show.save/></td>
-					</tr>
+                    <x-tenant.edit.save/>
+
 				</tbody>
 			</table>
 		</div>

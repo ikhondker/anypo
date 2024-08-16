@@ -10,7 +10,7 @@
 			Exchange Rates
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -18,7 +18,7 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Rate" :export="true"/>
+					<x-tenant.card.header-search-export-bar object="Rate" :export="true"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -62,7 +62,7 @@
 						{{ $rates->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -73,7 +73,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

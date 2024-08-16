@@ -12,8 +12,8 @@
 			Create User
 		@endslot
 		@slot('buttons')
-			
-			
+
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -69,7 +69,7 @@
 								</select>
 							</td>
 						</tr>
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 					</tbody>
 				</table>
 			</div>

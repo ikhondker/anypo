@@ -12,7 +12,7 @@
 			Upload Items
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -51,7 +51,7 @@
 							@enderror
 						</div>
 
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 					</div>
 				</div>
 

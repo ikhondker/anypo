@@ -45,7 +45,7 @@
 							@enderror
 							</td>
 						</tr>
-					
+
 
 						<x-tenant.create.name/>
 
@@ -65,7 +65,7 @@
 								@enderror
 							</td>
 						</tr>
-					
+
 
 						<tr>
 							<th>UoM Class</th>
@@ -81,7 +81,7 @@
 								@enderror
 							</td>
 						</tr>
-					
+
 						<tr>
 							<th>UoM</th>
 							<td>
@@ -97,7 +97,7 @@
 							</td>
 						</tr>
 
-						
+
 
 						<tr>
 							<th>OEM</th>
@@ -113,7 +113,7 @@
 								@enderror
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>GL Type</th>
@@ -129,7 +129,7 @@
 								@enderror
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Expense GL Code</th>
@@ -144,10 +144,10 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 
 						<x-tenant.create.notes/>
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 
 
 					</tbody>
@@ -156,7 +156,7 @@
 		</div>
 
 
-		
+
 	</form>
 	<!-- /.form end -->
 

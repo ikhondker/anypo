@@ -60,14 +60,14 @@
 						</tr>
 						<x-tenant.edit.notes value="{{ $budget->notes }}"/>
 						<x-tenant.attachment.create/>
-						<x-tenant.buttons.show.save/>
+						<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>
 		</div>
 
 
-					
+
 
 					<div class="card">
 						<div class="card-header">

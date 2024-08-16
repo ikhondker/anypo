@@ -12,7 +12,7 @@
 			Create Status
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -46,8 +46,8 @@
 							@enderror
 							</td>
 						</tr>
-						
-						<x-tenant.buttons.show.save/>
+
+                        <x-tenant.create.save/>
 
 					</tbody>
 				</table>

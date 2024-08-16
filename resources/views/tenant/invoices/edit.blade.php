@@ -49,7 +49,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Invoice No</th>
@@ -64,7 +64,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Invoice Date</th>
 							<td>
@@ -77,7 +77,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Particulars</th>
 							<td>
@@ -90,7 +90,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Amount ({{ $invoice->currency }})</th>
 							<td>
@@ -103,7 +103,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<x-tenant.create.notes/>
 						<tr>
 							<th>Invoice PoC</th>
@@ -119,10 +119,10 @@
 								@enderror
 							</td>
 						</tr>
-						
 
-						<x-tenant.buttons.show.save/>
-						
+
+						<x-tenant.edit.save/>
+
 					</tbody>
 				</table>
 			</div>

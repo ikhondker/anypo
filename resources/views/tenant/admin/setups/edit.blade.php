@@ -165,7 +165,7 @@
 			</div>
 		</div>
 
-		<x-tenant.buttons.show.save/>
+		<x-tenant.edit.save/>
 
 	</form>
 	<!-- /.form end -->

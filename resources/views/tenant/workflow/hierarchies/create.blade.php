@@ -47,8 +47,8 @@
 							@enderror
 							</td>
 						</tr>
-						
-	
+
+
 						<tr>
 							<th>First Approver</th>
 							<td>
@@ -61,10 +61,10 @@
 								@error('approver_id_1')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							
+
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Second Approver</th>
@@ -78,10 +78,10 @@
 								@error('approver_id_2')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							
+
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Third Approver</th>
@@ -95,10 +95,10 @@
 								@error('approver_id_3')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							
+
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Fourth Approver</th>
@@ -112,10 +112,10 @@
 								@error('approver_id_4')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							
+
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Fifth Approver</th>
@@ -129,16 +129,16 @@
 								@error('user_id')
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
-							
+
 							</td>
 						</tr>
-						
-						
-						<x-tenant.buttons.show.save/>
+
+
+                        <x-tenant.create.save/>
 
 					</tbody>
 				</table>
-				
+
 			</div>
 		</div>
 

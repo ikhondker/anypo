@@ -18,9 +18,9 @@
 			<x-tenant.buttons.header.lists object="Payment"/>
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
 			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}"/>
-			
+
 		@endslot
-	</x-tenant.page-header> 
+	</x-tenant.page-header>
 
 	<x-tenant.info.invoice-info id="{{ $invoice->id }}"/>
 
@@ -37,7 +37,7 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-				
+
 						<tr>
 							<th>Bank Ac</th>
 							<td>
@@ -64,7 +64,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Cheque/Ref No</th>
@@ -78,7 +78,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Amount</th>
 							<td>
@@ -91,13 +91,13 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 
 						<x-tenant.create.notes/>
 
 						<x-tenant.attachment.create/>
 
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 					</tbody>
 				</table>
 
@@ -113,13 +113,13 @@
 					@enderror
 				</div> --}}
 
-				
+
 			</div>
 		</div>
-	
+
 	</form>
 	<!-- /.form end -->
-	
-	
+
+
 
 @endsection

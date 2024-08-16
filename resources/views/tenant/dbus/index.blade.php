@@ -21,7 +21,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Dbu"/>
+					<x-tenant.card.header-search-export-bar object="Dbu"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>

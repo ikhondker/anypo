@@ -21,7 +21,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-bar object="Invoice"/>
+					<x-tenant.card.header-search-bar object="Invoice"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -32,7 +32,7 @@
 					<h6 class="card-subtitle text-muted">List of Invoices.</h6>
 				</div>
 				<div class="card-body">
-					
+
 					<!-- ========== INCLUDE ========== -->
 					@include('tenant.includes.invoice.invoice-lists-table')
 					<!-- ========== INCLUDE ========== -->

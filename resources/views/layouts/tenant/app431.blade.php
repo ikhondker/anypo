@@ -206,10 +206,10 @@
 
 
 							@if (session('success'))
-								<x-tenant.alert.success message="{{ session('success') }}"/>
+								<x-tenant.alerts.success message="{{ session('success') }}"/>
 							@endif
 							@if (session('error') || $errors->any())
-								<x-tenant.alert.error message="{{ session('error') }}"/>
+								<x-tenant.alerts.error message="{{ session('error') }}"/>
 							@endif
 
 						</div>
@@ -234,7 +234,7 @@
 						@include('tenant.admin.setups.initial')
 						<!-- /.content -->
 					@endif
-					
+
 				</div>
 			</main>
 

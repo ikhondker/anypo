@@ -45,7 +45,7 @@
 							</td>
 						</tr>
 
-						
+
 						<tr>
 							<th>Account Number</th>
 							<td>
@@ -112,7 +112,7 @@
 						<x-tenant.create.address2 />
 						<x-tenant.create.city-state-zip/>
 						<x-tenant.create.country/>
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 					</tbody>
 				</table>
 			</div>

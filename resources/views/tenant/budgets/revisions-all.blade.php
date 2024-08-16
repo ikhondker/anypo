@@ -18,7 +18,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.cards.header-search-export-bar object="Budget"/>
+			<x-tenant.card.header-search-export-bar object="Budget"/>
 			<h5 class="card-title">Budgets Revisions</h5>
 			<h6 class="card-subtitle text-muted">Budgets Revision History.</h6>
 		</div>

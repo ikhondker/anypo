@@ -101,7 +101,7 @@
 									<x-tenant.edit.currency :value="$po->currency"/>
 								</tbody>
 							</table>
-							
+
 
 						</div>
 					</div>
@@ -121,7 +121,7 @@
 						<div class="card-body">
 							<table class="table table-sm my-2">
 								<tbody>
-									
+
 									<tr>
 										<th width="20%">Need By Date :</th>
 										<td>
@@ -170,10 +170,10 @@
 											readonly/>
 										</td>
 									</tr>
-									<x-tenant.buttons.show.save/>
+									<x-tenant.edit.save/>
 								</tbody>
 							</table>
-							
+
 
 						</div>
 					</div>

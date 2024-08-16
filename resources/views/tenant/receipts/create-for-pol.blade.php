@@ -20,10 +20,10 @@
 			<x-tenant.actions.pol-actions id="{{ $pol->id }}"/>
 
 		@endslot
-	</x-tenant.page-header> 
+	</x-tenant.page-header>
 
 	<x-tenant.info.pol-info id="{{ $pol->id }}"/>
-		
+
 	<!-- form start -->
 	<form id="myform" action="{{ route('receipts.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
@@ -34,7 +34,7 @@
 				<h5 class="card-title">Create Receipt</h5>
 			</div>
 			<div class="card-body">
-				
+
 				<table class="table table-sm my-2">
 					<tbody>
 
@@ -50,7 +50,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 
 						<tr>
 							<th>Qty ({{ $pol->uom->name }})</th>
@@ -64,7 +64,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Warehouse</th>
 							<td>
@@ -79,23 +79,23 @@
 								@enderror
 							</td>
 						</tr>
-						
+
 
 						<x-tenant.create.notes/>
 
 						<x-tenant.attachment.create/>
 
-						<x-tenant.buttons.show.save/>
+                        <x-tenant.create.save/>
 					</tbody>
 				</table>
-				
+
 			</div>
 		</div>
-	
+
 
 	</form>
 	<!-- /.form end -->
-	
+
 	<x-tenant.widgets.pol.pol-receipts :id="$pol->id" />
 
 @endsection

@@ -18,7 +18,7 @@
 			@endcan
 			@can('spends', App\Models\Tenant\Lookup\Project::class)
 				<a href="{{ route('projects.spends') }}" class="btn btn-primary float-end me-2"><i data-lucide="pie-chart"></i> Project Spends</a>
-			@endcan 
+			@endcan
 		@endslot
 	</x-tenant.page-header>
 
@@ -26,7 +26,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.cards.header-search-export-bar object="Project"/>
+			<x-tenant.card.header-search-export-bar object="Project"/>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -53,7 +53,7 @@
 					@foreach ($projects as $project)
 					<tr>
 						<td>{{ $projects->firstItem() + $loop->index }}</td>
-						
+
 						<td>{{ $project->code }}</td>
 						<td><a href="{{ route('projects.show',$project->id) }}"><strong>{{ $project->name }}</strong></a></td>
 						<td>{{ $project->pm->name }}</td>

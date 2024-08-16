@@ -19,7 +19,7 @@
 
 
 	<x-tenant.dashboards.supplier-counts/>
-	
+
 
 	<div class="row">
 		<x-tenant.charts.spends-by-supplier-bar/>
@@ -28,7 +28,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.cards.header-search-export-bar object="Project"/>
+			<x-tenant.card.header-search-export-bar object="Project"/>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>

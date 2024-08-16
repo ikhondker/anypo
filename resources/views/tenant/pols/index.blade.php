@@ -17,7 +17,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Prl"/>
+					<x-tenant.card.header-search-export-bar object="Prl"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -81,7 +81,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

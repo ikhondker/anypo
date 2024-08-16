@@ -35,15 +35,15 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-                        <tr>
-                            <th>Name X:</th>
-                            <td>{{ $attachment->id }}
-                            </td>
-                        </tr>
+						<tr>
+							<th>Name X:</th>
+							<td>{{ $attachment->id }}
+							</td>
+						</tr>
 
 						<x-tenant.edit.summary :value="$attachment->summary"/>
 
-						<x-tenant.buttons.show.save/>
+						<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

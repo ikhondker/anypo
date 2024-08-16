@@ -39,7 +39,7 @@
 								<input class="form-check-input" type="checkbox" id="article_id_required" name="article_id_required" @checked($report->article_id_required)>
 								<label class="form-check-label" for="article_id_required">article_id_required</label>
 							</div>
-							
+
 							<div class="form-check form-switch">
 								<input class="form-check-input" type="checkbox" id="start_date" name="start_date" @checked($report->start_date)>
 								<label class="form-check-label" for="start_date">start_date</label>
@@ -66,7 +66,7 @@
 								<input class="form-check-input" type="checkbox" id="user_id_required" name="user_id_required" @checked($report->user_id_required)>
 								<label class="form-check-label" for="user_id_required">user_id_required</label>
 							</div>
-					
+
 							<div class="form-check form-switch">
 								<input class="form-check-input" type="checkbox" id="item_id" name="item_id" @checked($report->item_id)>
 								<label class="form-check-label" for="item_id">item_id</label>
@@ -121,7 +121,7 @@
 								<label class="form-check-label" for="warehouse_id_required">warehouse_id_required</label>
 							</div>
 
-							<x-tenant.buttons.show.save/>
+							<x-tenant.edit.save/>
 
 						</div>
 					</div>

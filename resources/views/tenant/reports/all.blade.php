@@ -22,7 +22,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.cards.header-search-export-bar object="Report"/>
+					<x-tenant.card.header-search-export-bar object="Report"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -32,9 +32,9 @@
 					</h5>
 					<h6 class="card-subtitle text-muted">Lists of available reports and brief description.</h6>
 				</div>
-				
+
 				<div class="card-body">
-					<table class="table"> 
+					<table class="table">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -49,7 +49,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							
+
 
 							<tr>
 								<td>1</td>
@@ -96,7 +96,7 @@
 								<td><x-tenant.list.my-boolean :value="$report->enable"/></td>
 								<td class="table-action">
 									<x-tenant.list.actions object="Report" :id="$report->id"/>
-									<a href="{{ route('reports.destroy', $report->id) }}" class="me-2 sw2-advance" 
+									<a href="{{ route('reports.destroy', $report->id) }}" class="me-2 sw2-advance"
 										data-entity="Report" data-name="{{ $report->name }}" data-status="{{ ($report->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($report->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-lucide="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
@@ -111,10 +111,10 @@
 					</table>
 
 					<div class="row pt-3">
-						
+
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>
@@ -125,7 +125,7 @@
 	</div>
 	 <!-- end row -->
 
-	
-	
+
+
 @endsection
 

@@ -36,7 +36,7 @@
 					<tbody>
 						<x-tenant.edit.name :value="$category->name"/>
 
-						<x-tenant.buttons.show.save/>
+                            <x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

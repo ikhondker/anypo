@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" 
-		data-bs-theme="light" 
+<html lang="en"
+		data-bs-theme="light"
 		data-layout="fluid"
 		data-sidebar-theme="dark"
 		data-sidebar-position="left"
@@ -109,11 +109,11 @@
 					<div class="col-lg-9">
 						<!-- Form Success Message Box -->
 						@if (session('success'))
-							<x-landlord.alert.app-alert-success message="{{ session('success') }}" />
+							<x-landlord.alerts.app-alert-success message="{{ session('success') }}" />
 						@endif
 						<!-- Form Error Message Box (including Form Validation ) -->
 						@if (session('error') || $errors->any())
-							<x-landlord.alert.app-alert-error message="{{ session('error') }}" />
+							<x-landlord.alerts.app-alert-error message="{{ session('error') }}" />
 						@endif
 					</div>
 

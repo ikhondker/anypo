@@ -131,7 +131,7 @@
 
 
 						<x-tenant.edit.notes value="{{ $item->notes }}"/>
-						<x-tenant.buttons.show.save/>
+                            <x-tenant.edit.save/>
 
 					</tbody>
 				</table>
