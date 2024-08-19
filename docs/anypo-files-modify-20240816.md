@@ -10,27 +10,28 @@ Ref: laravel-tenancy.txt
 # 2. SEEDED FILE CHANGE 
 ====================================================================
 1. for jquery
-resources/js/app.js
-vite.config.js
-Ref: laravel-jquery.txt
+- resources/js/app.js
+- vite.config.js
+- Ref: laravel-jquery.txt
 
 2. app/Providers/AppServiceProvider.php
 
+~~~
 // IQBAL 28-AUG-23
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Pagination\Paginator;
 use App\Models\User;
-
-   
-	Paginator::useBootstrapFive(); 
-	& https not needed
-	Gate::define('access-back-office',
+~~~
+~~~   
+Paginator::useBootstrapFive(); 
+& https not needed
+Gate::define('access-back-office',)
+~~~
 
 3. app/Providers/AuthServiceProvider.php  -> add policies and in controller $this->authorize('update', $post);
-       'App\Models\Landlord\User' => 'App\Policies\Landlord\UserPolicy',
-
+    - 'App\Models\Landlord\User' => 'App\Policies\Landlord\UserPolicy',
 4.  app/Http/Middleware/VerifyCsrfToken
-
+~~~
   protected $except = [
         '/success',
         '/cancel',
@@ -38,11 +39,11 @@ use App\Models\User;
         '/ipn',
         '/pay-via-ajax', // only required to run example codes. Please see bellow.
     ];
-ssl commerz
-
+~~~
+- ssl commerz
 
 5. app/Exceptions/Handler.php
-=> write unhandled exception in landlord ErrorLog table
+- write unhandled exception in landlord ErrorLog table
 
 6. LoginController.php => override
 
@@ -55,14 +56,16 @@ ssl commerz
 10. ForgotPasswordController.php => override
 
 11. app/Providers/ViewServiceProvider.php
-https://laracasts.com/discuss/channels/laravel/view-composer-data-not-available-when-assigned-to-layout
+- https://laracasts.com/discuss/channels/laravel/view-composer-data-not-available-when-assigned-to-layout
 
 
 12. app/Providers/RouteServiceProvider.php
-public const HOME = '/dashboards';
-==>	laravel-tenancy.txt
+- public const HOME = '/dashboards';
+- ==>	laravel-tenancy.txt
 
--- NOT Used
+
+## NOT Used
+~~~
 protected function mapManageRoutes()
 {
 	Route::prefix('manage')
@@ -73,13 +76,13 @@ protected function mapManageRoutes()
 		//->name('admin.')
 		->group(base_path('routes/manage.php'));
 }
-
+~~~
 
 13. config\logging.php, app.php, env.php, sslcommerz.php, bo.php,mail.php
+- config\app.php
+- APP_ENV = for instances
 
-13.1 config\app.php
-APP_ENV = for instances
-
+~~~
 # IQBAL
 'domain' => env('APP_DOMAIN', 'localhost'),
 
@@ -99,20 +102,22 @@ APP_ENV = for instances
 
 #faker
 	'faker_locale' => 'en_IN',
+~~~
 
 
-13. .env  => env('APP_NAME') 
-APP_NAME=AnyPO
-# alos check $setup->name
-#APP_DOMAIN=anypo.net    # Custom
-APP_DOMAIN=localhost    # Custom
+13. Env
 
-APP_URL=http://localhost:8000
-#APP_URL=http://localhost
+.env  => env('APP_NAME') 
+- APP_NAME=AnyPO
+- alos check $setup->name
+- #APP_DOMAIN=anypo.net    # Custom
+- APP_DOMAIN=localhost    # Custom
+- APP_URL=http://localhost:8000
+- #APP_URL=http://localhost
+- QUEUE_CONNECTION=database
 
-QUEUE_CONNECTION=database
 
-
+~~~
 # IQBAL
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.mailtrap.io
@@ -122,22 +127,17 @@ MAIL_PASSWORD=b519f2b726bc9b
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="i.khondker@hawarit.com"
 MAIL_FROM_NAME="${APP_NAME}"
-
-# IQBAL
-SSLCZ_STORE_ID='perso5d0879ec44338'
-SSLCZ_STORE_PASSWORD='perso5d0879ec44338@ssl'
-SSLCZ_TESTMODE=true
-
+~~~
 
 15. app/Providers/ViewServiceProvider.php
 
-
 16. config/logging.php
-'default' => env('LOG_CHANNEL', 'daily'),
+- 'default' => env('LOG_CHANNEL', 'daily'),
 
--- change in productions
-=> 'level' => env('LOG_LEVEL', 'debug'),
+### change in productions
+- 'level' => env('LOG_LEVEL', 'debug'),
 
+~~~
 'bo' => [
             'driver' => 'daily',
             'path' => storage_path('logs/bo.log'),
@@ -148,17 +148,20 @@ SSLCZ_TESTMODE=true
             'path' => storage_path('logs/tenant.log'),
             'level' => 'info',
         ],
+~~~
 
 17. config/tenancy.php
+~~~
 return [
 	'tenant_model' => \App\Models\Tenant::class,
 
 'features' => [
 	Stancl\Tenancy\Features\UniversalRoutes::class,
-
+~~~
 
 18. config/filesystesm.php
-	 's3' => [
+	~~~
+     's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
@@ -193,18 +196,21 @@ return [
             'visibility' => 'public',
             'root' => 'avatars'
         ],
+    ~~~
 
 19. app/Http/Kernel.php 
-// https://stackoverflow.com/questions/73073575/user-auth-not-working-properly-for-tenant-while-using-stancl-tenancy
+- https://stackoverflow.com/questions/73073575/user-auth-not-working-properly-for-tenant-while-using-stancl-tenancy
+~~~
 protected $middlewareGroups = [
   	// IQBAL 25-apr-23
         'universal' => [
         
         ],
+~~~
 
 20. DatabaseSeeder.php
- -- add auto run seeded
+- add auto run seeded
 
 21. add in web.php
-    use Illuminate\Foundation\Auth\EmailVerificationRequest;
+- use Illuminate\Foundation\Auth\EmailVerificationRequest;
 

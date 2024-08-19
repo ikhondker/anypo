@@ -97,7 +97,7 @@ Log::info(print_r($dept_budget, true));
 
 # 8. Folders 
 ====================================================================
-From CRUD perspective not from daily menu/link perspective
+### From CRUD perspective not from daily menu/link perspective
 1. lookup	- contains both lookup and master data
 2. admin	- client admin
 3. workflow	- hierarchy and workflow related
