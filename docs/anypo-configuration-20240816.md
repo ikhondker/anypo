@@ -4,114 +4,109 @@ email marketing
 https://www.brevo.com/pricing/
 
 # 13. Versions 
-====================================================================]
-0.1 Initial version after merging
-0.2 After Restructuring the Tenant code and Components
-0.3 After Restructuring Landlord
-0.4 After integrating AWS CDN , before clean
-0.5 After Dashboard, UoM, Reports etc before clean
-0.6 After basic GRS and Payment and before starting file comments clean
-0.7 After Budget calculation and other development before clean
-0.8 After adding Business rule, actions and other development before clean
-0.9 After moving attachment to private aws
-0.10 After site contents and FAQ and others, Before clean
-0.11 Before re-writing PR & PO and before clean 
-0.12 After merging jquery, select2, sweetalert2 and chart.js into vite
-0.13 pr-po rewrite, breadcrumb, custom Error  and generate advance invoice, before clean
-0.14 After accounting and others, before clean
-0.15 landlord.setup->config, landlord attachment and landlord testing, tenant action, route rearrange etc 
-0.16 PR and PO view rewrite, notes, actions, info etc, before clean, before tenant testing start
-0.17 move back project to lookup, po by supplier, po by project, separate profile, sw2 move to custom.js, Aeh, Ael ErrorLog, before discarding front theme
-0.18 discard front use single appstack theme, CustomException, dsicss all routes, splt helper inlt landlod and tenant
-0.19 Major Update. Removed Front4.3.1 theme from Landlord. Tenant Theme AppsStack upgraded from 3.4.1 to 4.0.0. Temaple object moved to share. Added Budget Revison history, Before clean.
-0.20 [ongoing] cleaned, attachemtn descriptopn, 
+====================================================================
+1. v0.1 Initial version after merging
+2. 0.2 After Restructuring the Tenant code and Components
+3. 0.3 After Restructuring Landlord
+4. 0.4 After integrating AWS CDN , before clean
+5. 0.5 After Dashboard, UoM, Reports etc before clean
+6. 0.6 After basic GRS and Payment and before starting file comments clean
+7. 0.7 After Budget calculation and other development before clean
+8. 0.8 After adding Business rule, actions and other development before clean
+9. 0.9 After moving attachment to private aws
+10. 0.10 After site contents and FAQ and others, Before clean
+11. 0.11 Before re-writing PR & PO and before clean 
+12. 0.12 After merging jquery, select2, sweetalert2 and chart.js into vite
+13. 0.13 pr-po rewrite, breadcrumb, custom Error  and generate advance invoice, before clean
+14. 0.14 After accounting and others, before clean
+15. 0.15 landlord.setup->config, landlord attachment and landlord testing, tenant action, route rearrange etc 
+16. 0.16 PR and PO view rewrite, notes, actions, info etc, before clean, before tenant testing start
+17. 0.17 move back project to lookup, po by supplier, po by project, separate profile, sw2 move to custom.js, Aeh, Ael ErrorLog, before discarding front theme
+18. 0.18 discard front use single appstack theme, CustomException, dsicss all routes, splt helper inlt landlord and tenant
+19. 0.19 Major Update. Removed Front4.3.1 theme from Landlord. Tenant Theme AppsStack upgraded from 3.4.1 to 4.0.0. Templae object moved to share. Added Budget Revision history, Before clean.
+20. 0.20 [ongoing] cleaned, attachement descriptopn, move attchment to root
 
 # 12. key configuration 
 ====================================================================
-landlord Helper\LandFileUpload.php
-	max file size 5MB	where?
-	LandlordFileUpload->aws->'file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512'
-	UpdateSetupRequest.php 	-> logo
-	UpdateUserRequest.php 	-> avatar
+## landlord Helper\LandFileUpload.php
+- max file size 5MB	where?
+- LandlordFileUpload->aws->'file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512'
+- UpdateSetupRequest.php 	-> logo
+- UpdateUserRequest.php 	-> avatar
 
-Tenant Helper\FileUpload.php
-	max file size 5MB
-	FileUpload->aws->'file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512'
-	UpdateSetupRequest.php 	-> logo
-	UpdateUserRequest.php 	-> avatar
+## Tenant Helper\FileUpload.php
+- max file size 5MB
+- FileUpload->aws->'file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512'
+- UpdateSetupRequest.php 	-> logo
+- UpdateUserRequest.php 	-> avatar
 
 91. FAQ and TOS <div class="bg-img-start" style="background-image: url(./assets/svg/components/card-11.svg);">
 
-# 11. performance 
-====================================================================]
+# 11. Performance 
+====================================================================
 apachebench
 $ ab -n 100 -c 10 https://anypo.net/
 $ ab -n 100 -c 10 https://demo1.anypo.net/
 https://gtmetrix.com/
-https://tools.pingdom.com/
-	Performance grade: C72
+https://tools.pingdom.com/ Performance grade: C72
 https://www.webpagetest.org/
 
 # 10. Setup 
 ====================================================================
-php artisan storage:link
+1. php artisan storage:link
 1. manual copy bo05 file in appropriate folder
 2. copy confg/bo
 3. sslcommerz: config/sslcommerz.php
 4. config: app and 
 5. notification logo https://anypo.net/logo.png
 6. copy font D:\laravel\anypo\storage\fonts
-
-app name sow be in
-app_name, landlord setup table and where in tenant?
+7. app name sow be in
+8. app_name, landlord setup table and where in tenant?
 
 
 # 9. Deploy Architecture 
 ====================================================================
 1. do 4gb+2cpu+80Gb storage
-	CDN: aws
-	Private Files: local
+	- CDN: aws
+	- Private Files: local
 2. all CSS & js is is from s3->cloudfront CDN 
 3. all avatar and logo is from s3->cloudfront CDN  -> anypo=public bucket
-4. all attahcmetn form lcola storage
-5.
-
-.; Default timeout for socket based streams (seconds)
-; https://php.net/default-socket-timeout
-; default_socket_timeout = 60
-; Iqbal
-default_socket_timeout = 360
-
-php artisan queue:listen --timeout=1200
+4. all attahcment form local storage
 
 
+- ; Default timeout for socket based streams (seconds)
+- ; https://php.net/default-socket-timeout
+- ; default_socket_timeout = 60
+- ; Iqbal
+- default_socket_timeout = 360
+- php artisan queue:listen --timeout=1200
 
 # 8. Logos 
 ====================================================================
---Landlord
-D:\laravel\bo05\public\landlord\logos   - for user and tickets
-D:\laravel\bo05\public\assets\logo  - rests
-D:\laravel\bo05\storage\app\logo    - logo in pdf 
---Tenant
+## Landlord
+- D:\laravel\bo05\public\landlord\logos   - for user and tickets
+- D:\laravel\bo05\public\assets\logo  - rests
+- D:\laravel\bo05\storage\app\logo    - logo in pdf 
 
-Error 401—Unauthorised
-Error 403—Forbidden
-Error 404—Not Found
-Error 419—Laravel POST Error
-Error 429—Too Many Requests
-Error 500—Internal Server Error
-Error 503—Service Unavailable
-An exception is always a 500 HTTP status code. A
-https://medium.com/@padamghimire/custom-exceptions-in-laravel-5559fa10561c
+## Tenant
+- Error 401—Unauthorised
+- Error 403—Forbidden
+- Error 404—Not Found
+- Error 419—Laravel POST Error
+- Error 429—Too Many Requests
+- Error 500—Internal Server Error
+- Error 503—Service Unavailable
+- An exception is always a 500 HTTP status code. A
+- https://medium.com/@padamghimire/custom-exceptions-in-laravel-5559fa10561c
 
 # 7. Full refresh 
-====================================================================]
+====================================================================
 1. delete db  tenantdemo1
 2. cmd>php artisan migrate:fresh
-php artisan db:seed
+3. php artisan db:seed
 
 # 6. Virtual Phone Numbers for Small Businesses 
-====================================================================]
+====================================================================
 https://www.wpbeginner.com/showcase/best-virtual-business-phone-number-apps-free-options/
 https://fitsmallbusiness.com/best-virtual-phone-number-provider/
 https://grasshopper.com/virtual-phone-number/
@@ -119,7 +114,7 @@ https://callhippo.com/blog/virtual-numbers/free-virtual-phone-number-providers
 
 
 # 5. Tables with Same name in both 
-====================================================================]
+====================================================================
 * Move to manage subfolder ween NO route level access is needed by frontend. Only model level access
 
 		Landlord				Tenant
