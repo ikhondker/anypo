@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Tenant\Admin;
+namespace App\Http\Requests\Tenant;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAttachmentRequest extends FormRequest
+class StoreAttachmentRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
 	 */
 	public function authorize(): bool
 	{
-		return false;
+		return true;
 	}
 
 	/**
@@ -22,7 +22,11 @@ class UpdateAttachmentRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			//
+			'entity'		=> 'required',
+			'article_id'	=> 'required',
+			'owner_id'		=> 'required|integer|exists:users,id',
+			'file_name'		=> 'required',
+			'org_file_name'	=> 'required',
 		];
 	}
 }

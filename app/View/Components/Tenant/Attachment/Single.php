@@ -5,7 +5,7 @@ namespace App\View\Components\Tenant\Attachment;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Tenant\Admin\Attachment;
+use App\Models\Tenant\Attachment;
 
 class Single extends Component
 {

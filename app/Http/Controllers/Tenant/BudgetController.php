@@ -27,7 +27,7 @@ use App\Http\Requests\Tenant\UpdateBudgetRequest;
 
 # 1. Models
 use App\Models\Tenant\Admin\Setup;
-use App\Models\Tenant\Admin\Attachment;
+use App\Models\Tenant\Attachment;
 
 # 2. Enums
 use App\Enum\EntityEnum;

@@ -37,7 +37,7 @@ use App\Models\Tenant\DeptBudget;
 
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Manage\CustomError;
-use App\Models\Tenant\Admin\Attachment;
+use App\Models\Tenant\Attachment;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;

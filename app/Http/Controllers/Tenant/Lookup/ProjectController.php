@@ -29,7 +29,7 @@ use App\Http\Requests\Tenant\Lookup\UpdateProjectRequest;
 
 # 1. Models
 use App\Models\User;
-use App\Models\Tenant\Admin\Attachment;
+use App\Models\Tenant\Attachment;
 # 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\UserRoleEnum;

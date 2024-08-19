@@ -18,12 +18,12 @@
 * =====================================================================================
 */
 
-namespace App\Http\Controllers\Tenant\Admin;
+namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
-use App\Models\Tenant\Admin\Attachment;
-use App\Http\Requests\Tenant\Admin\StoreAttachmentRequest;
-use App\Http\Requests\Tenant\Admin\UpdateAttachmentRequest;
+use App\Models\Tenant\Attachment;
+use App\Http\Requests\Tenant\StoreAttachmentRequest;
+use App\Http\Requests\Tenant\UpdateAttachmentRequest;
 
 
 # 1. Models
@@ -69,6 +69,15 @@ class AttachmentController extends Controller
 	 */
 	public function index()
 	{
+		abort(403);
+	}
+
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function all()
+	{
 		$this->authorize('viewAny', Attachment::class);
 
 		$attachments = Attachment::query();
@@ -76,7 +85,7 @@ class AttachmentController extends Controller
 			$attachments->where('entity', 'Like', '%' . Str::upper(request('term')) . '%');
 		}
 		$attachments = $attachments->with('owner')->orderBy('id', 'DESC')->paginate(50);
-		return view('tenant.admin.attachments.index', compact('attachments'));
+		return view('tenant.attachments.all', compact('attachments'));
 
 
 		//$attachments = Attachment::latest()->orderBy('id', 'desc')->paginate(25);
@@ -106,7 +115,7 @@ class AttachmentController extends Controller
 	{
 		$this->authorize('view', $attachment);
 
-		return view('tenant.admin.attachments.show', compact('attachment'));
+		return view('tenant.attachments.show', compact('attachment'));
 
 		// switch ($attachment->entity) {
 		// 	case EntityEnum::BUDGET->value:
@@ -147,7 +156,7 @@ class AttachmentController extends Controller
 	{
 		//$this->authorize('update', $attachment);
 
-		return view('tenant.admin.attachments.edit', compact('attachment'));
+		return view('tenant.attachments.edit', compact('attachment'));
 	}
 
 	/**

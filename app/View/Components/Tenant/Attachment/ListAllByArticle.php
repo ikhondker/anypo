@@ -16,7 +16,7 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Invoice;
 
-use App\Models\Tenant\Admin\Attachment;
+use App\Models\Tenant\Attachment;
 
 # Enums
 use App\Enum\EntityEnum;

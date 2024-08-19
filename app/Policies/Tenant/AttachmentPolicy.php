@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies\Tenant\Admin;
+namespace App\Policies\Tenant;
 
-use App\Models\Tenant\Admin\Attachment;
+use App\Models\Tenant\Attachment;
 
 use App\Models\User;
 use Illuminate\Auth\Access\Response;

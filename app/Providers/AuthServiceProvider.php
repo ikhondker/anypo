@@ -75,7 +75,7 @@ class AuthServiceProvider extends ServiceProvider
 		*/
 
 		'App\Models\Tenant\Admin\Activity' 		=> 'App\Policies\Tenant\Admin\ActivityPolicy',
-		'App\Models\Tenant\Admin\Attachment' 	=> 'App\Policies\Tenant\Admin\AttachmentPolicy',
+		
 		'App\Models\Tenant\Admin\Setup' 		=> 'App\Policies\Tenant\Admin\SetupPolicy',
 
 		'App\Models\Tenant\Lookup\Category'		=> 'App\Policies\Tenant\Lookup\CategoryPolicy',
@@ -114,6 +114,7 @@ class AuthServiceProvider extends ServiceProvider
 
 		'App\Models\Tenant\Support\Ticket' 		=> 'App\Policies\Tenant\Support\TicketPolicy',
 
+		'App\Models\Tenant\Attachment' 			=> 'App\Policies\Tenant\AttachmentPolicy',
 		'App\Models\Tenant\Budget'				=> 'App\Policies\Tenant\BudgetPolicy',
 		'App\Models\Tenant\DeptBudget'			=> 'App\Policies\Tenant\DeptBudgetPolicy',
 		'App\Models\Tenant\Dbu'					=> 'App\Policies\Tenant\DbuPolicy',

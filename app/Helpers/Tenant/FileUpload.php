@@ -20,7 +20,7 @@
 
 namespace App\Helpers\Tenant;
 
-use App\Models\Tenant\Admin\Attachment;
+use App\Models\Tenant\Attachment;
 use App\Models\Tenant\Manage\Entity;
 use App\Models\User;
 

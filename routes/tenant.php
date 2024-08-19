@@ -29,7 +29,6 @@ use App\Http\Controllers\Tenant\Test\TestController;
 //use App\Http\Controllers\ImpersonateController;
 
 use App\Http\Controllers\Tenant\Admin\ActivityController;
-use App\Http\Controllers\Tenant\Admin\AttachmentController;
 use App\Http\Controllers\Tenant\Admin\SetupController;
 use App\Http\Controllers\Tenant\Admin\UserController;
 
@@ -69,6 +68,7 @@ use App\Http\Controllers\Tenant\Ae\AelController;
 
 use App\Http\Controllers\Tenant\Support\TicketController;
 
+use App\Http\Controllers\Tenant\AttachmentController;
 use App\Http\Controllers\Tenant\BudgetController;
 use App\Http\Controllers\Tenant\DeptBudgetController;
 use App\Http\Controllers\Tenant\DbuController;
@@ -228,6 +228,11 @@ Route::middleware([
 		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 
+		/* ======================== Attachment ======================================== */
+		Route::resource('attachments', AttachmentController::class);
+		Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
+		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
+
 		/* ======================== Notification ======================================== */
 		Route::resource('notifications', NotificationController::class);
 		Route::get('/notification/all',[NotificationController::class, 'all'])->name('notifications.all');
@@ -277,8 +282,6 @@ Route::middleware([
 		/* ======================== Ticket ======================================== */
 		Route::resource('tickets', TicketController::class);
 
-		/* ======================== Attachment ======================================== */
-		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
 
 		/* ======================== Report ========================================  */
 		Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
@@ -402,6 +405,7 @@ Route::middleware([
 * 3. HoD + Admin  (Need Auth+ Email Verification + can:hod)
 * ==================================================================================
 */
+// TODO
 Route::middleware([
 	'web','auth', 'verified','can:hod-or-cxo',
 	InitializeTenancyByDomain::class,
@@ -688,16 +692,16 @@ Route::middleware([
 		Route::resource('activities', ActivityController::class);
 		Route::get('/activity/export',[ActivityController::class, 'export'])->name('activities.export');
 
-		/* ======================== Attachment ======================================== */
-		Route::resource('attachments', AttachmentController::class);
-		Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
-		Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
 		
 		/* ======================== Template ========================================  */
 		Route::resource('templates', TemplateController::class);
 		Route::get('/template/export',[TemplateController::class, 'export'])->name('templates.export');
 		Route::get('/templates/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.destroy');
 		Route::get('/templates/submit/{template}',[TemplateController::class, 'submit'])->name('templates.submit');
+
+		/* ======================== Attachment ======================================== */
+		Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
+		Route::get('/attachment/all',[AttachmentController::class, 'all'])->name('attachments.all');
 
 		/* ======================== Menu ======================================== */
 		Route::resource('menus', MenuController::class);

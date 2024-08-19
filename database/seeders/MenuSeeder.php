@@ -251,8 +251,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'activities.index','route_name' 		=> 'activities.index', 'node_name' 	=> 'system'],
 			[ 'raw_route_name' => 'activities.show','route_name' 		=> 'activities.index', 'node_name' 	=> 'system'],
 
-			[ 'raw_route_name' => 'attachments.index','route_name' 		=> 'attachments.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'attachments.show','route_name' 		=> 'attachments.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'attachments.all','route_name' 		=> 'attachments.all', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'attachments.show','route_name' 		=> 'attachments.all', 'node_name' => 'system'],
 
 			[ 'raw_route_name' => 'menus.index','route_name' 			=> 'menus.index', 'node_name' 		=> 'system'],
 			[ 'raw_route_name' => 'menus.show','route_name' 			=> 'menus.index', 'node_name' 		=> 'system'],
