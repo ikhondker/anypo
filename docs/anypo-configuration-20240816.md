@@ -40,16 +40,17 @@ https://www.brevo.com/pricing/
 - UpdateSetupRequest.php 	-> logo
 - UpdateUserRequest.php 	-> avatar
 
-91. FAQ and TOS <div class="bg-img-start" style="background-image: url(./assets/svg/components/card-11.svg);">
 
 # 11. Performance 
 ====================================================================
+~~~
 apachebench
 $ ab -n 100 -c 10 https://anypo.net/
 $ ab -n 100 -c 10 https://demo1.anypo.net/
-https://gtmetrix.com/
-https://tools.pingdom.com/ Performance grade: C72
-https://www.webpagetest.org/
+~~~
+- https://gtmetrix.com/
+- https://tools.pingdom.com/ Performance grade: C72
+- https://www.webpagetest.org/
 
 # 10. Setup 
 ====================================================================
@@ -62,7 +63,6 @@ https://www.webpagetest.org/
 6. copy font D:\laravel\anypo\storage\fonts
 7. app name sow be in
 8. app_name, landlord setup table and where in tenant?
-
 
 # 9. Deploy Architecture 
 ====================================================================
@@ -107,18 +107,18 @@ https://www.webpagetest.org/
 
 # 6. Virtual Phone Numbers for Small Businesses 
 ====================================================================
-https://www.wpbeginner.com/showcase/best-virtual-business-phone-number-apps-free-options/
-https://fitsmallbusiness.com/best-virtual-phone-number-provider/
-https://grasshopper.com/virtual-phone-number/
-https://callhippo.com/blog/virtual-numbers/free-virtual-phone-number-providers
+- https://www.wpbeginner.com/showcase/best-virtual-business-phone-number-apps-free-options/
+- https://fitsmallbusiness.com/best-virtual-phone-number-provider/
+- https://grasshopper.com/virtual-phone-number/
+- https://callhippo.com/blog/virtual-numbers/free-virtual-phone-number-providers
 
 
 # 5. Tables with Same name in both 
 ====================================================================
 * Move to manage subfolder ween NO route level access is needed by frontend. Only model level access
 
-		Landlord				Tenant
-		'can:access-back-office'	?? TODO
+			Landlord				Tenant
+			'can:access-back-office'	?? TODO
 1. users	admin				admin
 2. setup	manage				admin	?
 3. activity	admin				admin
@@ -131,7 +131,7 @@ https://callhippo.com/blog/virtual-numbers/free-virtual-phone-number-providers
 10. config	manage				N/A
 
 # 4. Steps to move a Class 
-====================================================================]
+====================================================================
 1. Landlord Attachment 	manage -> admin
 Controller
 request
@@ -144,30 +144,36 @@ web.php
 use App\Models\Landlord\Manage\Attachment;	=> replace
 
 # 3. Git 
-====================================================================]
+====================================================================
 git add app/*
 git add database/*
 git add resources/*
 git add routes/*
+git add docs/*
 
-Manually upload
+## Manually upload
 1. all config
 2. .env
 3. landlord custom css
 3. tenant custom css
 
 # 2. BO Migration 
-====================================================================]
+====================================================================
 configure tenancy
 1. app
 2. middlewere manual
 3. config
 
 # 1. Known Issue 
-====================================================================]
- SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'created_by' cannot be null (Connection: mysql, SQL: insert into `countries` (`name`, `country`, `created_by`, `updated_by`, `updated_at`, `created_at`) values (Afghanistan, AF, ?, ?, 2023-11-27 15:02:28, 2023-11-27 15:02:28))
+====================================================================
+SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'created_by' cannot be null (Connection: mysql, SQL: insert into `countries` (`name`, `country`, `created_by`, `updated_by`, `updated_at`, `created_at`) values (Afghanistan, AF, ?, ?, 2023-11-27 15:02:28, 2023-11-27 15:02:28))
 $table->biginteger('created_by')->nullable()->default(1001);
 
-[== Title ====================================================================]
+# 0. Unsorted
+====================================================================
+91. FAQ and TOS <div class="bg-img-start" style="background-image: url(./assets/svg/components/card-11.svg);">
+
+
+
 
 
