@@ -1,7 +1,7 @@
 [25-NOV-2023] : Instance Specific development Related Notes
 
 # 13. Use sequence 
-====================================================================]
+====================================================================
 1. Models
 2. Enums
 3. Helpers
@@ -19,7 +19,7 @@
 2. layout chang for edit user page role change
 
 # 12. Function Sequence in Controller 
-====================================================================]
+====================================================================
 1. index
 2. create
 3. store
@@ -30,7 +30,8 @@
 
 
 # 11. Frequent 
-====================================================================]
+====================================================================
+~~~
 use Illuminate\Support\Facades\Log;
 Log::debug('fileName='. $filename);
 Log::info(print_r($dept_budget, true));
@@ -40,16 +41,16 @@ git commit -m "Tables"
 php artisan queue:listen --timeout=1200
 php artisan schedule:run
 php artisan queue:flush
-$user->isBackOffice() )
+$user->isBackOffice()
 <i class="bi {{ ($menu->enable ? 'bi-bell-slash' : 'bi-bell') }} " style="font-size: 1.3rem;"></i>
 optional($article->expired_at)->format('Y-m-d')
 Log::info(print_r($dept_budget, true));
-
+~~~
 
 # 10. TODO 
-====================================================================]
-//TODO php artisan route:cache error
-https://www.youtube.com/watch?app=desktop&v=rtiK6iblU1I
+====================================================================
+1. //TODO php artisan route:cache error
+1. https://www.youtube.com/watch?app=desktop&v=rtiK6iblU1I
 1. rename NotificationComposer.php to TenantNotificationComposer.php
 1.  same table structure setup, menu, attachment, event log etc
 2.  fix file merge issue sp user model
@@ -84,13 +85,10 @@ https://www.youtube.com/watch?app=desktop&v=rtiK6iblU1I
 36. throw new NotFoundHttpException();
 37. index() and cache() in migration and model
 38. unique in name for all lookup
-x21. tenant setup name
-x22. supplier wise spent chart
-x19. jquery for tenants
 
 
 # 9. TODO P2 
-====================================================================]
+====================================================================
 1. recon country vs currency vs flag
 2. Edit CORS Configuration aws
 3. terms and conditon for tena registraion
@@ -98,7 +96,7 @@ x19. jquery for tenants
 5. tenant login page show comapny logo
 
 # 8. Folders 
-====================================================================]
+====================================================================
 From CRUD perspective not from daily menu/link perspective
 1. lookup	- contains both lookup and master data
 2. admin	- client admin
@@ -110,14 +108,14 @@ From CRUD perspective not from daily menu/link perspective
 
 
 # 7. Error Reporting 
-====================================================================]
-custom error reportign in laravel.log warnign and error 
-app/exceptions/Handler
-write to: \App\Models\Landlord\Manage\ErrorLog();
+====================================================================
+- custom error reportign in laravel.log warnign and error 
+- app/exceptions/Handler
+- write to: \App\Models\Landlord\Manage\ErrorLog();
 
 
 # 6. Learning 
-====================================================================]
+====================================================================
 1. for non id PK, define PK in model
 2. when column name and relation name equal error. Must be separated
 3. Pr status and auth_status issue. Eager loading warning. ok. Dont cast these two column in model. with() failse
@@ -126,24 +124,25 @@ write to: \App\Models\Landlord\Manage\ErrorLog();
 5. in production env, un-handled exception write full log in laravel.log
 
 # 5. Set Environment 
-====================================================================]
+====================================================================
+~~~
 .env    =>  APP_DOMAIN=anypo.net    # Custom
 app.php => 'domain' => env('APP_DOMAIN', 'localhost'),
-
 Log::debug("app.names= ".config('app.name') );
 Log::debug("app.domain= ".config('app.domain') );
 Log::debug("app.url= ".config('app.url') );
-
 D:\laravel\anypo\config/akk.php
+~~~
 
 # 4. Authorization, CRUD and Homepage 
-====================================================================]
-ref: laravel-CRUD.txt
-https://laracasts.com/discuss/channels/laravel/make-my-root-login-page
-Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('/login');
+====================================================================
+- ref: laravel-CRUD.txt
+- https://laracasts.com/discuss/channels/laravel/make-my-root-login-page
+- Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('/login');
 
 # 3. Route 
-====================================================================]
+====================================================================
+~~~
 Route::post('password/email', [
     'as' => 'laravel.password.email',
     'uses' => 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail'
@@ -153,20 +152,24 @@ Route::get('password/reset', [
     'as' => 'laravel.password.request',
     'uses' => 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm'
 ]);
+~~~
 
 # 2. Generate dummy chart data screenshot 
-====================================================================]	
-TestController => run()
-//ChartData::budget();
-//ChartData::deptBudget();
-//ChartData::project();
-ChartData::supplier();
-echo "Done";
-exit;
+====================================================================
+- TestController => run()
+- //ChartData::budget();
+- //ChartData::deptBudget();
+- //ChartData::project();
+- ChartData::supplier();
+- echo "Done";
+- exit;
 
 # 1. Setup->config 
-====================================================================]
-$_landlord_setup -> _config
+====================================================================
+- $_landlord_setup -> _config
 
 # 0. Done 
-====================================================================]
+====================================================================
+- [x] 21. tenant setup name
+- [x] 22. supplier wise spent chart
+- [x] 19. jquery for tenants

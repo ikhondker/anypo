@@ -73,14 +73,14 @@ $ ab -n 100 -c 10 https://demo1.anypo.net/
 3. all avatar and logo is from s3->cloudfront CDN  -> anypo=public bucket
 4. all attahcment form local storage
 
-
-- ; Default timeout for socket based streams (seconds)
-- ; https://php.net/default-socket-timeout
-- ; default_socket_timeout = 60
-- ; Iqbal
-- default_socket_timeout = 360
-- php artisan queue:listen --timeout=1200
-
+~~~
+; Default timeout for socket based streams (seconds)
+; https://php.net/default-socket-timeout
+; default_socket_timeout = 60
+; Iqbal
+default_socket_timeout = 360
+php artisan queue:listen --timeout=1200
+~~~
 # 8. Logos 
 ====================================================================
 ## Landlord
@@ -133,23 +133,24 @@ $ ab -n 100 -c 10 https://demo1.anypo.net/
 # 4. Steps to move a Class 
 ====================================================================
 1. Landlord Attachment 	manage -> admin
-Controller
-request
-model
-policy
-views
-AuthServiceProvider.php
-web.php
-
-use App\Models\Landlord\Manage\Attachment;	=> replace
+2. Controller
+3. request
+4. model
+5. policy
+6. views
+7. AuthServiceProvider.php
+8. web.php
+9. use App\Models\Landlord\Manage\Attachment;	=> replace
 
 # 3. Git 
 ====================================================================
+~~~
 git add app/*
 git add database/*
 git add resources/*
 git add routes/*
 git add docs/*
+~~~
 
 ## Manually upload
 1. all config
@@ -159,21 +160,19 @@ git add docs/*
 
 # 2. BO Migration 
 ====================================================================
-configure tenancy
-1. app
-2. middlewere manual
-3. config
+1. configure tenancy
+2. app
+3. middlewere manual
+4. config
 
 # 1. Known Issue 
 ====================================================================
+~~~
 SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'created_by' cannot be null (Connection: mysql, SQL: insert into `countries` (`name`, `country`, `created_by`, `updated_by`, `updated_at`, `created_at`) values (Afghanistan, AF, ?, ?, 2023-11-27 15:02:28, 2023-11-27 15:02:28))
 $table->biginteger('created_by')->nullable()->default(1001);
+~~~
 
 # 0. Unsorted
 ====================================================================
-91. FAQ and TOS <div class="bg-img-start" style="background-image: url(./assets/svg/components/card-11.svg);">
-
-
-
-
+1. FAQ and TOS <div class="bg-img-start" style="background-image: url(./assets/svg/components/card-11.svg);">
 
