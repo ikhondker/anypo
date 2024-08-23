@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->string('file_entity',15); 
 			//$table->foreignId('attachment_entity')->constrained('entities');
 			$table->foreignId('owner_id')->constrained('users');
-			$table->string('summary')->nullable();
+			$table->string('summary')->nullable()->default('Empty Description');
 			$table->string('file_name');
 			$table->string('file_type')->nullable();;
 			$table->biginteger('file_size')->nullable();

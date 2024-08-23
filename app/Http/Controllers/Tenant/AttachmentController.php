@@ -72,7 +72,6 @@ class AttachmentController extends Controller
 		abort(403);
 	}
 
-
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -154,7 +153,7 @@ class AttachmentController extends Controller
 	 */
 	public function edit(Attachment $attachment)
 	{
-		//$this->authorize('update', $attachment);
+		$this->authorize('update', $attachment);
 
 		return view('tenant.attachments.edit', compact('attachment'));
 	}
@@ -164,17 +163,20 @@ class AttachmentController extends Controller
 	 */
 	public function update(UpdateAttachmentRequest $request, Attachment $attachment)
 	{
-		//$this->authorize('update', $attachment);
+		$this->authorize('update', $attachment);
 
 		//$request->validate();
 		$request->validate([
 		]);
 
+		Log::debug('Value of id=' . $attachment->id);
+		Log::debug('Value of summary=' . $attachment->summary);
+
 		// Write to Log
 		EventLog::event('attachment', $attachment->id, 'update', 'summary', $request->summary);
 		$attachment->update($request->all());
 
-		return redirect()->route('attachments.index')->with('success', 'Attachment information updated successfully');
+		return redirect()->route('attachments.show',$attachment->id)->with('success', 'Attachment information updated successfully');
 	}
 
 	/**

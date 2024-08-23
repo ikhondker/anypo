@@ -10,6 +10,7 @@
 				<thead>
 					<tr>
 						<th class="" scope="col">#</th>
+						<th class="" scope="col">Summary</th>
 						<th class="" scope="col">Owner</th>
 						<th class="" scope="col">File Name</th>
 						<th class="text-end" scope="col">Size (Byte)</th>
@@ -22,17 +23,17 @@
 					@foreach ($attachments as $attachment)
 					<tr>
 						<td class="">{{ $loop->iteration }}</td>
+						<td class="">{{ $attachment->summary }}</td>
 						<td class="">{{ $attachment->owner->name }}</td>
 						<td class="">{{ $attachment->org_file_name }}</td>
 						<td class="text-end">{{ number_format($attachment->file_size) }}</td>
 						<td><x-tenant.list.my-date-time :value="$attachment->upload_date"/></td>
 						<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 						<td>
+							@if (\App\Helpers\Tenant\Access::isAttachmentEditable($attachment->id))
+								<a href="{{ route('attachments.edit',$attachment->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+									<i class="align-middle" data-lucide="edit"></i></a>
 
-                            <a href="{{ route('attachments.edit',$attachment->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                <i class="align-middle" data-lucide="edit"></i></a>
-
-							@if ($delete)
 								<a href="{{ route('attachments.destroy', $attachment->id) }}" class="me-2 sw2-advance"
 									data-entity="Attachment" data-name="{{ $attachment->org_file_name }}" data-status="Delete"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">

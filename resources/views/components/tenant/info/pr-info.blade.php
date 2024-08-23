@@ -1,7 +1,10 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					@endif
+					
 					<a class="btn btn-sm btn-light" href="{{ route('prs.index') }}" ><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title mb-0">[PR#{{ $pr->id }}] {{ $pr->summary }}</h5>

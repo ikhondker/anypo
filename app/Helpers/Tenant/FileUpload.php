@@ -5,7 +5,7 @@
 * =====================================================================================
 * @file			FileUpload.php
 * @brief		This file contains the implementation of the FileUpload
-* @path			\app\Helpers
+* @path			\app\Helpers\Tenant
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
 * @copyright	(c) Iqbal H. Khondker 
@@ -82,7 +82,7 @@ class FileUpload
 
 			$attachment->owner_id		= auth()->check() ? auth()->user()->id : config('akk.GUEST_USER_ID');
 
-			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No details';
+			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'Empty Description';
 			$attachment->file_name		= $fileName;
 			$attachment->org_file_name	= $org_fileName;
 			$attachment->file_type		= $request->file('file_to_upload')->getMimeType();

@@ -791,7 +791,7 @@ class PrController extends Controller
 		return view('tenant.prs.attachments', compact('pr'));
 	}
 
-	public function chkhistory(Pr $pr)
+	public function history(Pr $pr)
 	{
 		$this->authorize('view', $pr);
 

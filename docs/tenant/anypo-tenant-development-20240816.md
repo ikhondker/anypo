@@ -91,7 +91,7 @@ BO-4-source-file-modify-20230413.txt
 149. Printed Payment Report (TBD)
 148. Find and replace 'PO #', 'PR #', debug('tenant, =$, @can('edit' , ANYPO.NET, <i class="bi
 126. find and replace 01911310509 +0012262804920 you@company.com email@example.com
-127. # remove TODO
+127. address/remove all TODO
 147. rewrite po lists
 145. Department Budget [BDT] export
 144. dbu export user_id -= null
@@ -123,7 +123,7 @@ BO-4-source-file-modify-20230413.txt
 113. Budget Utilized 30?
 112. finalize <x-tenant.widgets.budget-stat/>
 111. email gateway use AWS
-110. view composer in login page view name inside viewservice provider
+110. view composer in login page view name inside viewService provider
 109. setup->admin_id is degraded to user and edit setup admin_id drop down error
 108. start and end date date-time and date only seeder issue. seeder store date and time
 107. some object does not start with 1001, setup, menu, designation, group, pay_method, (workaround id=> deployed)

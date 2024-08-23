@@ -27,71 +27,17 @@ use Illuminate\Support\Facades\Log;
 
 class ListAllByArticle extends Component
 {
-	public $entity;
-	public $aid;
+	//public $entity;
+	//public $article_id;
 	public $delete;
 	public $attachments;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($entity, $aid)
+	public function __construct(public string $entity, public string $articleId)
 	{
-		$this->entity		= $entity;
-		$this->aid			= $aid;
-		$this->delete		= false;
-
-		switch ($this->entity) {
-
-			case EntityEnum::BUDGET->value:
-				$budget = Budget::where('id', $this->aid)->get()->firstOrFail();
-				if (!$budget->closed) {
-					$this->delete		= true;
-				} 
-				break;
-			case EntityEnum::DEPTBUDGET->value:
-				$deptBudget = DeptBudget::where('id', $this->aid)->get()->firstOrFail();
-				if (!$deptBudget->closed) {
-					$this->delete		= true;
-				} 
-				break;
-			case EntityEnum::PR->value:
-				$pr = Pr::where('id', $this->aid)->get()->firstOrFail();
-				if ($pr->auth_status == AuthStatusEnum::DRAFT->value) {
-					$this->delete		= true;
-				}
-				break;
-			case EntityEnum::PO->value:
-				$po = PO::where('id', $this->aid)->get()->firstOrFail();
-				if ($po->auth_status == AuthStatusEnum::DRAFT->value) {
-					$this->delete		= true;
-				}
-				break;
-			case EntityEnum::PROJECT->value:
-				$project = Project::where('id', $this->aid)->get()->firstOrFail();
-				if (!$project->closed) {
-					$this->delete		= true;
-				} 
-				break;
-			case EntityEnum::RECEIPT->value:
-				$this->delete			= false;
-				break;
-			case EntityEnum::INVOICE->value:
-				$invoice = Invoice::where('id', $this->aid)->get()->firstOrFail();
-				if ($invoice->status == InvoiceStatusEnum::DRAFT->value) {
-					$this->delete		= true;
-				}
-				break;
-			case EntityEnum::PAYMENT->value:
-				$this->delete			= false;
-				break;
-			default:
-				Log::errror('tenenat.ListAllByArticle Invalid entity=' . $this->entity);
-				return redirect()->route('attachments.index');
-				// Success
-		}
-
-		$this->attachments = Attachment::with('owner')->where('entity', $this->entity)->where('article_id', $this->aid)->get()->all();
+		$this->attachments = Attachment::with('owner')->where('entity', $this->entity)->where('article_id', $this->articleId)->get()->all();
 	}
 
 	/**

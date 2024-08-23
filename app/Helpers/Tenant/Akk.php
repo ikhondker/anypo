@@ -3,9 +3,9 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			Bo.php
+* @file			Akk.php
 * @brief		This file contains the implementation of the Bo
-* @path			\app\Helpers
+* @path			\app\Helpers\Tenant
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
 * @copyright	(c) Iqbal H. Khondker 

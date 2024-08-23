@@ -7,7 +7,8 @@ use App\Models\Tenant\Attachment;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Enum\UserRoleEnum;
+
+use App\Helpers\Tenant\Access;
 
 class AttachmentPolicy
 {
@@ -52,7 +53,7 @@ class AttachmentPolicy
 	 */
 	public function update(User $user, Attachment $attachment): bool
 	{
-		return false;
+		return Access::isAttachmentEditable($attachment->id);
 	}
 
 	/**
@@ -60,7 +61,8 @@ class AttachmentPolicy
 	 */
 	public function delete(User $user, Attachment $attachment): bool
 	{
-		return ($user->isAdmin() || $user->isSupport());
+		return Access::isAttachmentEditable($attachment->id);
+		//return ($user->isAdmin() || $user->isSupport());
 	}
 
 

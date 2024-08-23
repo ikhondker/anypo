@@ -49,7 +49,7 @@ Where is jquery code? @include('tenant.includes.js.calculate-pr-amount')
 
 # Final Components for PR
 -------------------------- ------------------------------------------
-Overall Strucure:
+Overall Structure:
 
 <x-tenant.widgets.prl.card :pr="$pr">
 	@slot('lines')

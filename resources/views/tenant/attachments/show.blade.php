@@ -1,7 +1,8 @@
 @extends('layouts.tenant.app')
 @section('title','View Attachment')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('attachments.index') }}" class="text-muted">Attachments</a></li>
+	{{-- <li class="breadcrumb-item"><a href="{{ route('attachments.index') }}" class="text-muted">Attachments</a></li> --}}
+	<li class="breadcrumb-item active">Attachment</li>
 	<li class="breadcrumb-item active">{{ $attachment->org_file_name }}</li>
 @endsection
 @section('content')
@@ -30,6 +31,7 @@
 		<div class="card-body">
 			<table class="table table-sm my-2">
 				<tbody>
+					<x-tenant.show.my-text		value="{{ $attachment->summary }}" label="Description"/>
 					<x-tenant.show.my-text		value="{{ $attachment->org_file_name }}" label="File Name"/>
 					<x-tenant.show.my-text		value="{{ $attachment->entity }}" label="Entity"/>
 					<x-tenant.show.article-link entity="{{ $attachment->entity }}" :id="$attachment->article_id"/>
