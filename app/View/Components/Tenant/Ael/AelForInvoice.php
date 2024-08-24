@@ -20,12 +20,12 @@ class AelForInvoice extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $invoiceId)
 	{
-		$this->id	= $id;
-		$this->label= 'Invoice #'.$this->id;
+		
+		$this->label= 'Invoice #'.$invoiceId;
 		try {
-			$this->aels = Ael::with('aeh')->ByInvoice($this->id)->get()->all();
+			$this->aels = Ael::with('aeh')->ByInvoice($invoiceId)->get()->all();
 		} catch (Exception $e) {
 			$this->aels = new Ael();
 		}

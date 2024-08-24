@@ -14,11 +14,10 @@ class GroupActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string  $groupId)
 	{
 
-			$this->id 		= $id;
-			$this->group 	= Group::where('id', $this->id)->get()->firstOrFail();
+			$this->group 	= Group::where('id', $groupId)->get()->firstOrFail();
 
 	}
 

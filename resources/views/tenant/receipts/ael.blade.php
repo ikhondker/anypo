@@ -10,18 +10,18 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Accountings for Receipt #{{ $receipt->id }}
+			Accounting for Receipt #{{ $receipt->id }}
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Invoice" label="Receipt"/>
 			{{-- <x-tenant.buttons.header.create object="Invoice" label="Requisition"/> --}}
-			<x-tenant.actions.receipt-actions id="{{ $receipt->id }}" show="true"/>
+			<x-tenant.actions.receipt-actions receiptId="{{ $receipt->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.receipt-info id="{{ $receipt->id }}"/>
+	<x-tenant.info.receipt-info receiptId="{{ $receipt->id }}"/>
 
-	<x-tenant.ael.ael-for-receipt id="{{ $receipt->id }}"/>
+	<x-tenant.ael.ael-for-receipt receiptId="{{ $receipt->id }}"/>
 
 @endsection
 

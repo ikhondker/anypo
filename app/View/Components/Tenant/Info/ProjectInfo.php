@@ -9,15 +9,15 @@ use App\Models\Tenant\Lookup\Project;
 
 class ProjectInfo extends Component
 {
-	public $id;
+	
 	public $project;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $projectId)
 	{
-		$this->project = Project::where('id', $id)->get()->first();
+		$this->project = Project::where('id', $projectId)->get()->first();
 	}
 
 	/**

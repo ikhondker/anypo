@@ -13,7 +13,7 @@
 			Edit Bank Account
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.bank-account-actions id="{{ $bankAccount->id }}"/>
+			<x-tenant.actions.lookup.bank-account-actions bankAccountId="{{ $bankAccount->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

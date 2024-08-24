@@ -35,7 +35,7 @@
 					<i data-lucide="external-link"></i> Submit</a>
 			@endif
 
-			<x-tenant.actions.po-actions id="{{ $po->id }}"/>
+			<x-tenant.actions.po-actions poId="{{ $po->id }}"/>
 
 		@endslot
 	</x-tenant.page-header>

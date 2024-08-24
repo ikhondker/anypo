@@ -15,10 +15,9 @@ class PrActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $prId)
 	{
-		$this->id 	= $id;
-		$this->pr 		= Pr::where('id', $id)->get()->firstOrFail();
+		$this->pr 		= Pr::where('id', $prId)->get()->firstOrFail();
 	}
 
 	/**

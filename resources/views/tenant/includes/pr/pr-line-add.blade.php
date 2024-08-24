@@ -100,11 +100,10 @@
 				<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
-	<td class="">
+	{{-- <td class="">
 		<button type="submit" id="submit" name="action" value="save" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i></button>
 		<a class="btn btn-secondary" href="{{ url()->previous() }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i data-lucide="x-circle"></i></a>
-
-	</td>
+	</td> --}}
 </tr>
 
 @include('tenant.includes.js.calculate-pr-amount')

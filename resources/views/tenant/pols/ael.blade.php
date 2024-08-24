@@ -26,7 +26,7 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	<x-tenant.info.pol-info id="{{ $pol->id }}"/>
+	<x-tenant.info.pol-info polId="{{ $pol->id }}"/>
 	
 	<x-tenant.accounting.for-po id="{{ $pol->po_id }}"/>
 

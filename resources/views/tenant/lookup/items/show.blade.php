@@ -11,7 +11,7 @@
 			View Item
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.item-actions id="{{ $item->id }}"/>
+			<x-tenant.actions.lookup.item-actions itemId="{{ $item->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

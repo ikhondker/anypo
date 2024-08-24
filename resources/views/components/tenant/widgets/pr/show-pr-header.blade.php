@@ -2,6 +2,9 @@
 	<div class="col-6">
 		<div class="card">
 			<div class="card-header">
+				<div class="card-actions float-end">
+					<a class="btn btn-sm btn-light" href="{{ route('reports.pr', $pr->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
+				</div>
 				<h5 class="card-title">Basic Information for PR#{{ $pr->id }}</h5>
 				<h6 class="card-subtitle text-muted">Key information of a Purchase Requisitions</h6>
 			</div>
@@ -50,7 +53,7 @@
 					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
 					@endif
-					<a class="btn btn-sm btn-light" href="{{ route('prs.index') }}" ><i class="fas fa-list"></i> View all</a>
+					{{-- <a class="btn btn-sm btn-light" href="{{ route('prs.index') }}" ><i class="fas fa-list"></i> View all</a> --}}
 				</div>
 				<h5 class="card-title">Approval Status</h5>
 				<h6 class="card-subtitle text-muted">Approval information of Purchase Requisition.</h6>

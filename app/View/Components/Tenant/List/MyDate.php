@@ -8,13 +8,13 @@ use Illuminate\View\Component;
 
 class MyDate extends Component
 {
-	public $value;
+	
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($value)
+	public function __construct(public string $value)
 	{
-		$this->value = $value;
+		
 	}
 
 	/**

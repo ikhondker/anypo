@@ -10,17 +10,13 @@ use App\Models\Tenant\Attachment;
 
 class All extends Component
 {
-	public $entity;
-	public $aid;
 	public $attachments;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($entity, $aid)
+	public function __construct(public string $entity, public string $aid)
 	{
-		$this->entity	= $entity;
-		$this->aid		= $aid;
 		$this->attachments = Attachment::where('entity', $entity)->where('article_id', $aid)->get()->all();
 	}
 

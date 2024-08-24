@@ -10,15 +10,15 @@ use App\Models\Tenant\Payment;
 
 class PaymentInfo extends Component
 {
-	public $id;
+
 	public $payment;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $paymentId)
 	{
-		 $this->payment = Payment::with('invoice.po')->where('id', $id)->get()->first();
+		 $this->payment = Payment::with('invoice.po')->where('id', $paymentId)->get()->first();
 	}
 
 	/**

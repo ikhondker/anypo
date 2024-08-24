@@ -40,7 +40,7 @@
 									<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $wfl->id ) }}" hidden>
 								</td>
 							</tr>
-							<x-tenant.buttons.show.save/>
+							<x-tenant.edit.save/>
 						</tbody>
 					</table>
 			</div>

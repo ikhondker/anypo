@@ -16,7 +16,7 @@
 			<x-tenant.buttons.header.lists object="Budget"/>
 			<x-tenant.buttons.header.edit object="Budget" :id="$budget->id"/>
 			<x-tenant.buttons.header.create object="Budget"/>
-			<x-tenant.actions.budget-actions id="{{ $budget->id }}"/>
+			<x-tenant.actions.budget-actions budgetId="{{ $budget->id }}"/>
 	
 		@endslot
 	</x-tenant.page-header>

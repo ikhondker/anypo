@@ -14,12 +14,12 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
 			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
-			<x-tenant.actions.pr-actions id="{{ $pr->id }}" show="true"/>
+			<x-tenant.actions.pr-actions prId="{{ $pr->id }}" show="true"/>
 
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.pr-info id="{{ $pr->id }}"/>
+	<x-tenant.info.pr-info prId="{{ $pr->id }}"/>
 
 
 	<div class="row">

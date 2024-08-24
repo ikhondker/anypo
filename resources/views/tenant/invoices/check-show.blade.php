@@ -33,7 +33,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.invoice-info id="{{ $invoice->id }}"/>
+	<x-tenant.info.invoice-info invoiceId="{{ $invoice->id }}"/>
 
 	<x-tenant.widgets.po.payments :id="$invoice->id" />
 

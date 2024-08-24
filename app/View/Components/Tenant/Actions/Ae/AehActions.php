@@ -14,11 +14,11 @@ class AehActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id='')
+	public function __construct(public string $aehId='')
 	{
-		$this->id 		= $id;
-		if ($this->id <> ''){
-			$this->aeh 	= Aeh::where('id', $this->id)->get()->firstOrFail();
+		
+		if ($aehId <> ''){
+			$this->aeh 	= Aeh::where('id', $aehId)->get()->firstOrFail();
 		} else {
 			$this->aeh 	= new Aeh;
 		}

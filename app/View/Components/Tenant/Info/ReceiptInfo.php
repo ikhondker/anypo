@@ -10,15 +10,15 @@ use App\Models\Tenant\Receipt;
 
 class ReceiptInfo extends Component
 {
-	public $id;
+	
 	public $receipt;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $receiptId)
 	{
-		$this->receipt = Receipt::with('pol.po')->where('id', $id)->get()->first();
+		$this->receipt = Receipt::with('pol.po')->where('id', $receiptId)->get()->first();
 	}
 
 	/**

@@ -15,10 +15,9 @@ class UserActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $userId)
 	{
-		$this->id 		= $id;
-		$this->user 	= User::where('id', $this->id)->get()->firstOrFail();
+		$this->user 	= User::where('id', $userId)->get()->firstOrFail();
 	}
 
 	/**

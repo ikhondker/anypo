@@ -17,12 +17,12 @@
 
 			<x-tenant.buttons.header.lists object="Receipt"/>
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
-			<x-tenant.actions.pol-actions id="{{ $pol->id }}"/>
+			<x-tenant.actions.pol-actions polId="{{ $pol->id }}"/>
 
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.pol-info id="{{ $pol->id }}"/>
+	<x-tenant.info.pol-info polId="{{ $pol->id }}"/>
 
 	<!-- form start -->
 	<form id="myform" action="{{ route('receipts.store') }}" method="POST" enctype="multipart/form-data">

@@ -14,7 +14,7 @@
 			Edit Hierarchy
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.workflow.hierarchy-actions id="{{ $hierarchy->id }}"/>
+			<x-tenant.actions.workflow.hierarchy-actions hierarchyId="{{ $hierarchy->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

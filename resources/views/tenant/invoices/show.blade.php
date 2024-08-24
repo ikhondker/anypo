@@ -21,7 +21,7 @@
 				@endif
 			@endcan
 			{{-- <x-tenant.buttons.header.lists object="Po" label="Purchase Order"/> --}}
-			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}"/>
+			<x-tenant.actions.invoice-actions invoiceId="{{ $invoice->id }}"/>
 
 		@endslot
 	</x-tenant.page-header>

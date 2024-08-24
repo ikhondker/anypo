@@ -14,7 +14,7 @@
 			Edit Uom
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.uom-actions id="{{ $uom->id }}"/>
+			<x-tenant.actions.lookup.uom-actions uomId="{{ $uom->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

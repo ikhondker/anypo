@@ -14,7 +14,7 @@
 			View Category
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.category-actions id="{{ $category->id }}"/>
+			<x-tenant.actions.lookup.category-actions categoryId="{{ $category->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

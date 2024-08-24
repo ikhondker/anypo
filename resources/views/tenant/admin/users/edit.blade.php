@@ -13,7 +13,7 @@
 			Edit User
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.admin.user-actions id="{{ $user->id }}"/>
+			<x-tenant.actions.admin.user-actions userId="{{ $user->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

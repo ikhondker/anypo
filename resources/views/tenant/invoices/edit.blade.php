@@ -16,7 +16,7 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Invoice"/>
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
-			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}" show="true"/>
+			<x-tenant.actions.invoice-actions invoiceId="{{ $invoice->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
 

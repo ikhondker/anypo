@@ -18,12 +18,12 @@ class AelForAeh extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $aehId)
 	{
-		$this->id	= $id;
-		$this->label= 'Accounting #'.$this->id;
+		
+		$this->label= 'Accounting #'.$aehId;
 		try {
-			$this->aels = Ael::with('aeh')->ByAeh($this->id)->get()->all();
+			$this->aels = Ael::with('aeh')->ByAeh($aehId)->get()->all();
 		} catch (Exception $e) {
 			$this->aels = new Ael();
 		}

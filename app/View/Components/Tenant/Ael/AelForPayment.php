@@ -19,12 +19,11 @@ class AelForPayment extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $paymentId)
 	{
-		$this->id	= $id;
-		$this->label= 'Payment #'.$this->id;
+		$this->label= 'Payment #'.$paymentId;
 		try {
-			$this->aels = Ael::with('aeh')->ByPayment($this->id)->get()->all();
+			$this->aels = Ael::with('aeh')->ByPayment($paymentId)->get()->all();
 		} catch (Exception $e) {
 			$this->aels = new Ael();
 		}

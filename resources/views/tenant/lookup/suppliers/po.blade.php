@@ -12,12 +12,12 @@
 			PO for a Supplier
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.supplier-actions id="{{ $supplier->id }}"/>
+			<x-tenant.actions.lookup.supplier-actions supplierId="{{ $supplier->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
 
-	<x-tenant.info.supplier-info id="{{ $supplier->id }}"/>
+	<x-tenant.info.supplier-info supplierId="{{ $supplier->id }}"/>
 
 	<x-tenant.widgets.po.list-by-supplier id="{{ $supplier->id }}"/>
 	

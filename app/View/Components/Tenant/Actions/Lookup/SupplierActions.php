@@ -15,10 +15,9 @@ class SupplierActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $supplierId)
 	{
-		$this->id 			= $id;
-		$this->supplier 	= Supplier::where('id', $this->id)->get()->firstOrFail();
+		$this->supplier 	= Supplier::where('id', $supplierId)->get()->firstOrFail();
 	}
 
 	/**

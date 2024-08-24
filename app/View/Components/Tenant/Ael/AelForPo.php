@@ -18,12 +18,12 @@ class AelForPo extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $poId)
 	{
-		$this->id	= $id;
-		$this->label= 'PO #'.$this->id;
+		
+		$this->label= 'PO #'.$poId;
 		try {
-			$this->aels = Ael::with('aeh')->ByPo($this->id)->get()->all();
+			$this->aels = Ael::with('aeh')->ByPo($poId)->get()->all();
 		} catch (Exception $e) {
 			$this->aels = new Ael();
 		}

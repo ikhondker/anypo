@@ -16,9 +16,9 @@ class SupplierInfo extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $supplierId)
 	{
-		$this->supplier = Supplier::where('id', $id)->get()->first();
+		$this->supplier = Supplier::where('id', $supplierId)->get()->first();
 	}
 
 	/**

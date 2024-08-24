@@ -14,10 +14,9 @@ class CurrencyActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $code)
+	public function __construct(public string $currencyCode)
 	{
-		$this->code 		= $code;
-		$this->currency = Currency::where('currency', $this->code)->get()->firstOrFail();
+		$this->currency = Currency::where('currency', $currencyCode)->get()->firstOrFail();
 	}
 	/**
 	 * Get the view / contents that represent the component.

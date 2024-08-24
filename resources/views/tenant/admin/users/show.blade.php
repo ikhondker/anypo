@@ -12,18 +12,18 @@
 			Users
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.admin.user-actions id="{{ $user->id }}"/>
+			<x-tenant.actions.admin.user-actions userId="{{ $user->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
 
 	<div class="row">
 		<div class="col-md-4 col-xl-4">
-			<x-tenant.widgets.user.user-profile id="{{ $user->id }}"/>
+			<x-tenant.widgets.user.user-profile userI="{{ $user->id }}"/>
 		</div>
 
 		<div class="col-md-8 col-xl-8">
-			<x-tenant.widgets.user.user-detail id="{{ $user->id }}"/>
+			<x-tenant.widgets.user.user-detail userId="{{ $user->id }}"/>
 		</div>
 	</div>
 

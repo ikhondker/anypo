@@ -14,10 +14,9 @@ class OemActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $oemId)
 	{
-			$this->id 		= $id;
-			$this->oem 	= Oem::where('id', $this->id)->get()->firstOrFail();
+			$this->oem 	= Oem::where('id', $oemId)->get()->firstOrFail();
 		//}
 	}
 

@@ -14,15 +14,9 @@ class MenuActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $menuId)
 	{
-		// if ( $id == 0 ){
-		// 	$this->id		= 0;
-		// 	$this->menu 	= New Dept();
-		// } else {
-			$this->id 		= $id;
-			$this->menu 	= Menu::where('id', $this->id)->get()->firstOrFail();
-		//}
+		$this->menu 	= Menu::where('id', $menuId)->get()->firstOrFail();
 	}
 
 	/**

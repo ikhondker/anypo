@@ -14,10 +14,9 @@ class WarehouseActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $warehouseId)
 	{
-		$this->id 		= $id;
-		$this->warehouse 	= Warehouse::where('id', $this->id)->get()->firstOrFail();
+		$this->warehouse 	= Warehouse::where('id', $warehouseId)->get()->firstOrFail();
 	}
 
 	/**

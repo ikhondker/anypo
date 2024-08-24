@@ -16,12 +16,12 @@
 		@slot('buttons')
 
 		<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
-		<x-tenant.actions.pol-actions id="{{ $pol->id }}"/>
+		<x-tenant.actions.pol-actions polId="{{ $pol->id }}"/>
 
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.po-info id="{{ $pol->po_id }}" photo='pol'/>
+	<x-tenant.info.po-info poId="{{ $pol->po_id }}" photo='pol'/>
 
 	<div class="card">
 		<div class="card-header">

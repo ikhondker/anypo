@@ -14,7 +14,7 @@
 			Edit Budget
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.budget-actions id="{{ $budget->id }}"/>
+			<x-tenant.actions.budget-actions budgetId="{{ $budget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

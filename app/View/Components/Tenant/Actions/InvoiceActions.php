@@ -10,17 +10,14 @@ use App\Models\Tenant\Invoice;
 
 class InvoiceActions extends Component
 {
-	//public $id;
-	//public $show;
 	public $invoice;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $invoiceId)
 	{
-		$this->id		= $id;
-		$this->invoice = Invoice::where('id', $this->id)->get()->firstOrFail();
+		$this->invoice = Invoice::where('id', $invoiceId)->get()->firstOrFail();
 	}
 
 	/**

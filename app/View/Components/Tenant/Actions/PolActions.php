@@ -16,10 +16,10 @@ class PolActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $polId)
 	{
-		$this->id 		= $id;
-		$this->pol 		= Pol::where('id', $this->id)->get()->firstOrFail();
+	
+		$this->pol 		= Pol::where('id', $polId)->get()->firstOrFail();
 	}
 
 	/**

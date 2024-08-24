@@ -10,16 +10,16 @@ use App\Models\Tenant\Pol;
 
 class PolInfo extends Component
 {
-	public $id;
+	
 	public $pol;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $polId)
 	{
 
-		 $this->pol = Pol::with('po')->where('id', $id)->get()->first();
+		 $this->pol = Pol::with('po')->where('id', $polId)->get()->first();
 	}
 	/**
 	 * Get the view / contents that represent the component.

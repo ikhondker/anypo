@@ -16,13 +16,13 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Invoice" label="Requisition"/>
 			{{-- <x-tenant.buttons.header.create object="Invoice" label="Requisition"/> --}}
-			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}" show="true"/>
+			<x-tenant.actions.invoice-actions invoiceIid="{{ $invoice->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.invoice-info id="{{ $invoice->id }}"/>
+	<x-tenant.info.invoice-info invoiceIid="{{ $invoice->id }}"/>
 
-	<x-tenant.ael.ael-for-invoice id="{{ $invoice->id }}"/>
+	<x-tenant.ael.ael-for-invoice invoiceId="{{ $invoice->id }}"/>
 
 @endsection
 

@@ -14,10 +14,9 @@ class CategoryActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $categoryId)
 	{
-		$this->id 		= $id;
-		$this->category = Category::where('id', $this->id)->get()->firstOrFail();
+		$this->category = Category::where('id', $categoryId)->get()->firstOrFail();
 	}
 
 	/**

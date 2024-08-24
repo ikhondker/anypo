@@ -14,7 +14,9 @@
 			Edit PR#{{ $pr->id }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.pr-actions id="{{ $pr->id }}" show="true"/>
+			<a href="{{ route('prs.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> View All</a>
+			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
+			<x-tenant.actions.pr-actions prId="{{ $pr->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -129,8 +131,8 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="card-actions float-end">
-								<a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
-								<a href="{{ route('prs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+								{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+								<a href="{{ route('prs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 							</div>
 							<h5 class="card-title">Edit Requisition Additional Info</h5>
 							<h6 class="card-subtitle text-muted">Edit Requisition Additional Info.</h6>
@@ -166,12 +168,9 @@
 										</td>
 									</tr>
 
-									<x-tenant.edit.save/>
+									
 								</tbody>
 							</table>
-
-
-
 
 						</div>
 					</div>
@@ -179,21 +178,13 @@
 				<!-- end col-6 -->
 			</div>
 
-			<!-- widget-prl-cards -->
-			<x-tenant.widgets.prl.card :pr="$pr">
-				@slot('lines')
-					<tbody>
-						@forelse ($prls as $prl)
-							<x-tenant.widgets.prl.card-table-row :line="$prl" :status="$pr->auth_status"/>
-						@empty
+			<x-tenant.widgets.prl.list-all-lines prId="{{ $pr->id }}"/>
 
-						@endforelse
-					</tbody>
-				@endslot
-			</x-tenant.widgets.prl.card>
-			<!-- /.widget-prl-cards -->
-
-
+			<div class="float-end">
+				<a class="btn btn-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ route('prs.show',$pr->id) }}"><i data-lucide="x-circle"></i> Cancel</a>
+				<button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Save</button>
+			</div>
+			
 	</form>
 	<!-- /.form end -->
 

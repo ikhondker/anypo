@@ -13,7 +13,7 @@
 			Edit Supplier
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.supplier-actions id="{{ $supplier->id }}"/>
+			<x-tenant.actions.lookup.supplier-actions supplierId="{{ $supplier->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

@@ -11,7 +11,7 @@
 			View Warehouse
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.warehouse-actions id="{{ $warehouse->id }}"/>
+			<x-tenant.actions.lookup.warehouse-actions warehouseId="{{ $warehouse->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

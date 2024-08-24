@@ -14,7 +14,7 @@
 			View OEM
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.oem-actions id="{{ $oem->id }}"/>
+			<x-tenant.actions.lookup.oem-actions oemId="{{ $oem->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

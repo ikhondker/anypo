@@ -16,13 +16,13 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Payment"/>
-			<x-tenant.actions.payment-actions id="{{ $payment->id }}"/>
+			<x-tenant.actions.payment-actions paymentId="{{ $payment->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.payment-info id="{{ $payment->id }}"/>
+	<x-tenant.info.payment-info paymentId="{{ $payment->id }}"/>
 
-	<x-tenant.ael.ael-for-payment id="{{ $payment->id }}"/>
+	<x-tenant.ael.ael-for-payment paymentId="{{ $payment->id }}"/>
 
 
 

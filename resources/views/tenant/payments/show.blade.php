@@ -17,12 +17,12 @@
 		@slot('buttons')
 
 			<x-tenant.buttons.header.lists object="Payment"/>
-			<x-tenant.actions.payment-actions id="{{ $payment->id }}"/>
+			<x-tenant.actions.payment-actions paymentId="{{ $payment->id }}"/>
 
 		@endslot
 	</x-tenant.page-header>
 
-	{{-- <x-tenant.info.invoice-info id="{{ $payment->invoice_id }}"/> --}}
+	{{-- <x-tenant.info.invoice-info paymentId="{{ $payment->invoice_id }}"/> --}}
 
 
 			<div class="card">

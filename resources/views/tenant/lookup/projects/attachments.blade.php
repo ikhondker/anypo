@@ -8,11 +8,11 @@
 			Attachments
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.project-actions id="{{ $project->id }}"/>
+			<x-tenant.actions.lookup.project-actions projectId="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.project-info id="{{ $project->id }}"/>
+	<x-tenant.info.project-info projectId="{{ $project->id }}"/>
 
 	
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PROJECT->value }}" aid="{{ $project->id }}"/>

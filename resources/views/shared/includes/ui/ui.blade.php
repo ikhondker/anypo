@@ -68,7 +68,7 @@
 					<tr>
 						<td>show</td>
 						<td>actions </td>
-						<td> </td>
+						<td>Create+View all</td>
 						<td>&nbsp;</td>
 						<td>Edit + View All </td>
 						<td>[FontAwesome]</td>
@@ -76,7 +76,7 @@
 					<tr>
 						<td>edit</td>
 						<td>actions</td>
-						<td></td>
+						<td>Create+View all</td>
 						<td>&nbsp;</td>
 						<td>Create + View All</td>
 						<td>[FontAwesome]</td>

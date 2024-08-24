@@ -9,16 +9,15 @@ use App\Models\Tenant\Ae\Aeh;
 
 class AehInfo extends Component
 {
-	public $id;
+	
 	public $aeh;
-
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $aehId)
 	{
-		$this->aeh = Aeh::where('id', $id)->get()->first();
+		$this->aeh = Aeh::where('id', $aehId)->get()->first();
 	}
 
 	/**

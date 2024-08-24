@@ -14,14 +14,13 @@ class DeptActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $deptId)
 	{
 		// if ( $id == 0 ){
 		// 	$this->id		= 0;
 		// 	$this->dept 	= New Dept();
 		// } else {
-			$this->id 		= $id;
-			$this->dept 	= Dept::where('id', $this->id)->get()->firstOrFail();
+			$this->dept 	= Dept::where('id', $deptId)->get()->firstOrFail();
 		//}
 	}
 

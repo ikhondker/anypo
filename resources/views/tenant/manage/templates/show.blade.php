@@ -12,7 +12,7 @@
 			View Template
 		@endslot
 		@slot('buttons')
-			<x-share.actions.template-actions id="{{ $template->id }}"/>
+			<x-share.actions.template-actions templateId="{{ $template->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

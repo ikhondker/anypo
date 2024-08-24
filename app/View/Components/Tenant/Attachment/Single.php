@@ -9,15 +9,13 @@ use App\Models\Tenant\Attachment;
 
 class Single extends Component
 {
-	public $id;
 	public $attachment;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $id)
 	{
-		$this->id			= $id;
 		$this->attachment 	= Attachment::where('id', $id)->get()->first();
 	}
 

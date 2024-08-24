@@ -15,10 +15,9 @@ class SetupActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $setupId)
 	{
-		$this->id 		= $id;
-		$this->setup 	= Setup::where('id', $this->id)->get()->firstOrFail();
+		$this->setup 	= Setup::where('id', $setupId)->get()->firstOrFail();
 	}
 
 	/**

@@ -19,15 +19,15 @@
                 <i data-lucide="plus-circle"></i> Create
             </a>
 
-			<x-tenant.actions.po-actions id="{{ $po->id }}" show="true"/>
+			<x-tenant.actions.po-actions poId="{{ $po->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.po-info id="{{ $po->id }}"/>
+	<x-tenant.info.po-info poId="{{ $po->id }}"/>
 
 	{{-- @include('tenant.includes.pr.view-pr-header-basic') --}}
 
-	<x-tenant.widgets.po.invoices poid="{{ $po->id }}" />
+	<x-tenant.widgets.po.invoices poId="{{ $po->id }}" />
 
 @endsection
 

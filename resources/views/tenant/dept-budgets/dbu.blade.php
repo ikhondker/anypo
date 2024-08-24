@@ -8,14 +8,14 @@
 			Dept Budget Usages
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.dept-budget-actions id="{{ $deptBudget->id }}"/>
+			<x-tenant.actions.dept-budget-actions deptBudgetId="{{ $deptBudget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
 
-	<x-tenant.info.dept-budget-info :id="$deptBudget->id"/>
+	<x-tenant.info.dept-budget-info deptBudgetId={{ $deptBudget->id }}/>
 
-	<x-tenant.widgets.dbu-dept :id="$deptBudget->id"/>
+	<x-tenant.widgets.dbu-dept-budget deptBudgetId={{ $deptBudget->id }}/>
 
 	<script type="text/javascript">
 		function mySubmit() {

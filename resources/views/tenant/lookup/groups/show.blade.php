@@ -14,7 +14,7 @@
 			View Item Group
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.group-actions id="{{ $group->id }}"/>
+			<x-tenant.actions.lookup.group-actions groupId="{{ $group->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

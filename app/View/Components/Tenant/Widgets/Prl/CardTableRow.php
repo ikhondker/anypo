@@ -9,14 +9,16 @@ use Illuminate\View\Component;
 class CardTableRow extends Component
 {
 	public $prl;
-	public $status;
+	//public $status;
+	public $action;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($line, $status)
+	public function __construct($line, $action = false )
 	{
 		$this->prl		= $line;
-		$this->status	= $status;
+		//$this->status	= $status;
+		$this->action	= $action;
 	}
 
 	/**

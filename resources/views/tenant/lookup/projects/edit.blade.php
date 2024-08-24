@@ -15,7 +15,7 @@
 			Edit Project
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.project-actions id="{{ $project->id }}"/>
+			<x-tenant.actions.lookup.project-actions projectId="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

@@ -15,11 +15,11 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Invoice" label="Invoice"/>
-			<x-tenant.actions.invoice-actions id="{{ $invoice->id }}" show="true"/>
+			<x-tenant.actions.invoice-actions invoiceIid="{{ $invoice->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.invoice-info id="{{ $invoice->id }}"/>
+	<x-tenant.info.invoice-info invoiceIid="{{ $invoice->id }}"/>
 
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::INVOICE->value }}" aid="{{ $invoice->id }}"/>
 

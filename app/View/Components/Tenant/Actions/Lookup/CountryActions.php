@@ -14,10 +14,9 @@ class CountryActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $code)
+	public function __construct(public string $countryCode)
 	{
-		$this->code 		= $code;
-		$this->country = Country::where('country', $this->code)->get()->firstOrFail();
+		$this->country = Country::where('country', $countryCode)->get()->firstOrFail();
 	}
 
 	/**

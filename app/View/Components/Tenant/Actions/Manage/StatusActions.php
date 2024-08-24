@@ -14,10 +14,9 @@ class StatusActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $code)
+	public function __construct(public string $code)
 	{
-		$this->code 		= $code;
-		$this->status = Status::where('code', $this->code)->get()->firstOrFail();
+		$this->status = Status::where('code', $code)->get()->firstOrFail();
 	}
 
 	/**

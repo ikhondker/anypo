@@ -17,11 +17,10 @@ class ProjectActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id, $show = false)
+	public function __construct(public string $projectId, $show = false)
 	{
-		$this->id 		= $id;
 		$this->show		= $show; 
-		$this->project = Project::where('id', $this->id)->get()->firstOrFail();
+		$this->project = Project::where('id', $projectId)->get()->firstOrFail();
 	}
 
 	/**

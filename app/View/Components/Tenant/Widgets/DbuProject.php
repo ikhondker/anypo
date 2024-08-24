@@ -10,18 +10,18 @@ use App\Models\Tenant\Dbu;
 
 class DbuProject extends Component
 {
-	public $id;
+	//public $id;
 	public $dbus;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $projectId)
 	{
-		$this->id	= $id;
+		//$this->id	= $id;
 		//$dbus = $dbus->orderBy('id', 'DESC')->paginate(10);
 		//$this->dbus = Dbu::where('project_id',$this->id)->get()->all();
-		$this->dbus = Dbu::with('dept')->with('deptBudget.budget')->with('project')->where('project_id',$this->id)->orderBy('id', 'DESC')->paginate(10);
+		$this->dbus = Dbu::with('dept')->with('deptBudget.budget')->with('project')->where('project_id',$projectId)->orderBy('id', 'DESC')->paginate(10);
 	}
 
 	/**

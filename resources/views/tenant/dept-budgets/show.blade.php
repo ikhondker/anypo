@@ -16,7 +16,7 @@
 			Department Budget - {{ $deptBudget->dept->name }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.dept-budget-actions id="{{ $deptBudget->id }}"/>
+			<x-tenant.actions.dept-budget-actions deptBudgetId="{{ $deptBudget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

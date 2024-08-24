@@ -14,10 +14,9 @@ class UomActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $uomId)
 	{
-		$this->id 		= $id;
-		$this->uom 	= Uom::where('id', $this->id)->get()->firstOrFail();
+		$this->uom 	= Uom::where('id', $uomId)->get()->firstOrFail();
 	}
 
 	/**

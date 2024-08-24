@@ -11,11 +11,11 @@ php artisan make:component Tenant/Widgets/Pr/PrListsPoPending
 xxphp artisan make:component Tenant/Widgets/Prl/EditPrLine
 xphp artisan make:component Tenant/Widgets/Prl/ShowPrLines
 
-php artisan make:component Tenant/Widgets/Prl/Card
+xxphp artisan make:component Tenant/Widgets/Prl/Card
 xxphp artisan make:component Tenant/Widgets/Prl/PrLinesTableHeader --view
 xxphp artisan make:component Tenant/Widgets/Prl/CardTableHeader --view
 php artisan make:component Tenant/Widgets/Prl/CardTableRow
-
+php artisan make:component Tenant/Widgets/Prl/ListAllLines
 
 php artisan make:component Tenant/Widgets/Wf/ApprovalHistory	<x-tenant.widgets.approval-history
 php artisan make:component Tenant/Widgets/Wfl/GetApproval
@@ -47,7 +47,46 @@ xxphp artisan make:component Tenant/Widgets/Submit 	<x-tenant.widgets.submit/>
 --------------------------------------------------------------------
 Where is jquery code? @include('tenant.includes.js.calculate-pr-amount')
 
-# Final Components for PR
+
+# Final Components for PR 24-aug-24
+-------------------------- ------------------------------------------
+
+## prs.show
+	<x-tenant.widgets.wfl.get-approval wfId="{{ $pr->wf_id }}" />
+	<x-tenant.widgets.pr.show-pr-header prId="{{ $pr->id }}"/>
+	<x-tenant.widgets.prl.list-all-lines prId="{{ $pr->id }}"/>
+		<x-tenant.widgets.prl.card-table-row :line="$prl" :action="true"/>
+
+## prs.edit
+	Form
+	<x-tenant.widgets.prl.list-all-lines prId="{{ $pr->id }}"/>
+
+## prs.create
+	Form
+	@include('tenant.includes.pr.pr-line-add')
+	
+## prls.create
+		<x-tenant.widgets.pr.show-pr-header prId="{{ $pr->id }}"/>
+		loop {
+			<x-tenant.widgets.prl.card-table-row :line="$prl"/>
+		}
+		@include('tenant.includes.pr.pr-line-add')
+
+## prls.edit
+		<x-tenant.widgets.pr.show-pr-header prId="{{ $pr->id }}"/>
+		loop{
+			<x-tenant.widgets.prl.card-table-row :line="$prln"/>
+			@include('tenant.includes.pr.pr-line-edit')
+		}	
+		
+## prls.show
+	N/A 403
+
+## prs.attachment/extra/history/
+	<x-tenant.info.pr-info id="{{ $pr->id }}"/>
+
+
+# depricated Final Components for PR
 -------------------------- ------------------------------------------
 Overall Structure:
 

@@ -14,13 +14,13 @@
 		@slot('buttons')
 
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
-			<x-tenant.actions.pol-actions id="{{ $pol->id }}"/>
+			<x-tenant.actions.pol-actions polId="{{ $pol->id }}"/>
 		
 		@endslot
 	</x-tenant.page-header>
 	
 
-	<x-tenant.widgets.po.show-po-header id="{{ $po->id }}"/>
+	<x-tenant.widgets.po.show-po-header poId="{{ $po->id }}"/>
 
 	<!-- form start -->
 	<form action="{{ route('pols.update',$pol->id) }}" method="POST" enctype="multipart/form-data">

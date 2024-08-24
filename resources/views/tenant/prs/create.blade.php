@@ -105,7 +105,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- end col-6 -->
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
@@ -146,30 +145,72 @@
 										readonly/>
 									</td>
 								</tr>
-
-                                <x-tenant.create.save/>
 							</tbody>
 						</table>
-
-
-
 					</div>
 				</div>
 			</div>
-			<!-- end col-6 -->
 		</div>
 		<!-- end row -->
+	
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+					<div class="dropdown position-relative">
+					</div>
+				</div>
+				<h5 class="card-title">Requisition Lines</h5>
+				<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
+			</div>
 
-		<!-- widget-prl-cards -->
-		<x-tenant.widgets.prl.card :readOnly="false" :addMore="true">
-			@slot('lines')
+			<table class="table table-striped table-sm">
+				<thead>
+					<tr>
+						<th class="text-center" style="width:1%">#</th>
+						<th class="" style="width:15%">Item</th>
+						<th class="" style="width:25%">Description</th>
+						<th class="" style="width:8%">UOM</th>
+						<th class="text-end" style="width:6%">Qty</th>
+						<th class="text-end" style="width:9%">Price</th>
+						<th class="text-end" style="width:9%">Subtotal</th>
+						<th class="text-end" style="width:9%">Tax</th>
+						<th class="text-end" style="width:9%">GST</th>
+						<th class="text-end" style="width:9%">Amount</th>
+					</tr>
+				</thead>
 				<tbody>
 					@include('tenant.includes.pr.pr-line-add')
+					<tr class="">
+						<td colspan="9" class="text-end">
+							<strong>TOTAL:</strong>
+						</td>
+						<td class="text-end">
+							<input type="text" class="form-control @error('pr_amount') is-invalid @enderror"
+								style="text-align: right;"
+								name="pr_amount" id="pr_amount" placeholder="0.00"
+								value="{{ old('pr_amount', (isset($pr->amount) ? number_format($pr->amount,2) : "0.00")) }}"
+								readonly>
+							@error('pr_amount')
+									<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+						</td>
+					</tr>
 				</tbody>
-			@endslot
-		</x-tenant.widgets.prl.card>
-		<!-- /.widget-prl-cards -->
+			</table>
 
+			<div class="card-footer">
+				<div class="card-actions float-end">
+					<div class="dropdown position-relative">
+						<div class="form-check form-switch">
+							<input class="form-check-input m-1" type="checkbox" id="add_row" name="add_row" checked>
+							<label class="form-check-label" for="add_row">... add More Line </label>
+							<a class="btn btn-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ route('prs.index') }}"><i data-lucide="x-circle"></i> Cancel</a>
+							<button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</form>
 	<!-- /.form end -->
 

@@ -15,10 +15,9 @@ class HierarchyActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public $hierarchyId)
 	{
-		$this->id 		= $id;
-		$this->hierarchy 	= Hierarchy::where('id', $this->id)->get()->firstOrFail();
+		$this->hierarchy 	= Hierarchy::where('id', $hierarchyId)->get()->firstOrFail();
 	}
 
 	/**

@@ -14,11 +14,10 @@ class AelActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id='')
+	public function __construct(public string $aelId='')
 	{
-		$this->id 		= $id;
-		if ($this->id <> ''){
-			$this->ael 	= Ael::where('id', $this->id)->get()->firstOrFail();
+		if ($aelId <> ''){
+			$this->ael 	= Ael::where('id', $aelId)->get()->firstOrFail();
 		} else {
 			$this->ael 	= new Ael;
 		}

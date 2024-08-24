@@ -10,14 +10,14 @@ use App\Models\Tenant\Pr;
 
 class ShowPrHeader extends Component
 {
-	public $id;
+	//public $id;
 	public $pr;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $prId)
 	{
-		$this->pr = Pr::where('id', $id)->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->get()->first();
+		$this->pr = Pr::where('id', $prId)->with("requestor")->with("dept")->with('status_badge','auth_status_badge')->get()->first();
 	}
 
 	/**

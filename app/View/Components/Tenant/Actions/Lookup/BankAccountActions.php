@@ -13,10 +13,9 @@ class BankAccountActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $bankAccountId)
 	{
-		$this->id 		= $id;
-		$this->bankAccount 	= BankAccount::where('id', $this->id)->get()->firstOrFail();
+		$this->bankAccount 	= BankAccount::where('id', $bankAccountId)->get()->firstOrFail();
 	}
 
 	/**

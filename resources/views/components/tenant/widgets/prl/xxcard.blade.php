@@ -17,7 +17,7 @@
 		<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
 	</div>
 	<table class="table table-striped table-sm">
-		<thead>
+		{{-- <thead>
 			<tr>
 				@if ( $readOnly )
 					<th class="text-center" style="width:1%">#</th>
@@ -46,7 +46,7 @@
 				@endif
 
 			</tr>
-		</thead>
+		</thead> --}}
 
 		<!-- prl lines -->
 		{{ $lines }}
@@ -71,7 +71,7 @@
 		<!-- End Table footer i.e. Totals -->
 		@else
 			<tr class="">
-				<td colspan="9" class="text-end">
+				<td colspan="7" class="text-end">
 					<strong>TOTAL:</strong>
 				</td>
 				<td class="text-end">

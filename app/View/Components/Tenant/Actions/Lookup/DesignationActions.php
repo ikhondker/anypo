@@ -14,10 +14,9 @@ class DesignationActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $designationId)
 	{
-			$this->id 		= $id;
-			$this->designation 	= Designation::where('id', $this->id)->get()->firstOrFail();
+			$this->designation 	= Designation::where('id', $designationId)->get()->firstOrFail();
 		//}
 	}
 

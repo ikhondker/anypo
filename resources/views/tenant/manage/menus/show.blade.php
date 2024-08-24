@@ -12,7 +12,7 @@
 			View Menu
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.manage.menu-actions id="{{ $menu->id }}"/>
+			<x-tenant.actions.manage.menu-actions menuId="{{ $menu->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

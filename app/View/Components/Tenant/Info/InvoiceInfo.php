@@ -10,15 +10,15 @@ use App\Models\Tenant\Invoice;
 
 class InvoiceInfo extends Component
 {
-	public $id;
+	
 	public $invoice;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $invoiceId)
 	{
-		 $this->invoice = Invoice::with('po')->where('id', $id)->get()->first();
+		 $this->invoice = Invoice::with('po')->where('id', $invoiceId)->get()->first();
 	}
 
 	/**

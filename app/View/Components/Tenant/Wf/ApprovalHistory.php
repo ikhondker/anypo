@@ -10,15 +10,15 @@ use App\Models\Tenant\Workflow\Wfl;
 
 class ApprovalHistory extends Component
 {
-	public $id;
+//	public $id;
 	public $wfls;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct($wfId)
 	{
-		$this->wfls = Wfl::with('performer.designation')->where('wf_id', $id)->get()->all();
+		$this->wfls = Wfl::with('performer.designation')->where('wf_id', $wfId)->get()->all();
 	}
 
 	/**

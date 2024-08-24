@@ -15,10 +15,9 @@ class ReceiptActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $receiptId)
 	{
-		$this->id		= $id;
-		$this->receipt = Receipt::where('id', $this->id)->get()->firstOrFail();
+		$this->receipt = Receipt::where('id', $receiptId)->get()->firstOrFail();
 	}
 
 	/**

@@ -20,12 +20,12 @@ class GetApproval extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $wfid)
+	public function __construct(public string $wfId)
 	{
-		if ( $wfid <> ''){
+		if ( $wfId <> ''){
 			//$count 	= Wfl::where('wf_id', $wfid)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->count();
 			// $this->wfl 	= Wfl::where('wf_id', $wfid)->first();
-			$this->wfl = Wfl::where('wf_id', $wfid)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
+			$this->wfl = Wfl::where('wf_id', $wfId)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
 			Log::debug("Components.Tenant.Widgets.Wfl.GetApproval showing for approval wfl_id=".$this->wfl->id);
 
 		}

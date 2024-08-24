@@ -18,12 +18,11 @@ class AelForReceipt extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $receiptId)
 	{
-		$this->id	= $id;
-		$this->label= 'Receipt #'.$this->id;
+		$this->label= 'Receipt #'.$receiptId;
 		try {
-			$this->aels = Ael::with('aeh')->ByReceipt($this->id)->get()->all();
+			$this->aels = Ael::with('aeh')->ByReceipt($receiptId)->get()->all();
 		} catch (Exception $e) {
 			$this->aels = new Ael();
 		}

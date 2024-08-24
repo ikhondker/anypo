@@ -16,10 +16,9 @@ class PoActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $id)
+	public function __construct(public string $poId)
 	{
-		$this->id 	= $id;
-		$this->po 		= Po::where('id', $id)->get()->firstOrFail();
+		$this->po 		= Po::where('id', $poId)->get()->firstOrFail();
 	}
 
 	/**

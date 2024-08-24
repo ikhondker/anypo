@@ -11,9 +11,8 @@
 			Purchase Requisition #{{ $pr->id }}
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('prs.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> View All</a>
-			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
-			{{-- <a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-lucide="printer"></i> Print</a> --}}
+			
+			<a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-lucide="printer"></i> Print</a>
 			@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 				<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 sw2-advance"
 					data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
@@ -27,13 +26,30 @@
 	<!-- approval form, show only if pending to current auth user -->
 	@if ($pr->auth_status == App\Enum\AuthStatusEnum::INPROCESS->value)
 		@if (\App\Helpers\Tenant\Workflow::allowApprove($pr->wf_id))
-			<x-tenant.widgets.wfl.get-approval wfId="{{ $pr->wf_id }}" />
+			{{-- @include('tenant.includes.wfl-approve-reject') --}}
+			<x-tenant.widgets.wfl.get-approval wfid="{{ $pr->wf_id }}" />
 		@endif
 	@endif
 	
-	<x-tenant.widgets.pr.show-pr-header prId="{{ $pr->id }}"/>
-	<x-tenant.widgets.prl.list-all-lines prId="{{ $pr->id }}"/>
-		
+	<x-tenant.widgets.pr.show-pr-header id="{{ $pr->id }}"/>
+	
+	<!-- widget-prl-cards -->
+	<x-tenant.widgets.prl.card :pr="$pr">
+		@slot('lines')
+			<tbody>
+				@forelse ($prls as $prl)
+					<x-tenant.widgets.prl.card-table-row :line="$prl" :status="$pr->auth_status" :action="true"/>
+				@empty
+
+				@endforelse
+			</tbody>
+		@endslot
+	</x-tenant.widgets.prl.card>
+	<!-- /.widget-prl-cards -->
+
+	
+	
+	
 	
 @endsection
 

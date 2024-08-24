@@ -16,10 +16,9 @@ class ItemActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $itemId)
 	{
-		$this->id 		= $id;
-		$this->item 	= Item::where('id', $this->id)->get()->firstOrFail();
+		$this->item 	= Item::where('id', $itemId)->get()->firstOrFail();
 	}
 
 	/**

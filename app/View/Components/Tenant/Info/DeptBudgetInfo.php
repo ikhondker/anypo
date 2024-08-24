@@ -10,16 +10,15 @@ use App\Models\Tenant\DeptBudget;
 
 class DeptBudgetInfo extends Component
 {
-	public $id;
+
 	public $deptBudget;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $deptBudgetId)
 	{
-		$this->id= $id;
-		$this->deptBudget = DeptBudget::with('budget')->with('dept')->where('id', $this->id)->get()->first();
+		$this->deptBudget = DeptBudget::with('budget')->with('dept')->where('id', $deptBudgetId)->get()->first();
 	}
 
 	/**

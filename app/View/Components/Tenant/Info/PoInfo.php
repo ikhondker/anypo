@@ -11,17 +11,16 @@ use App\Models\Tenant\Po;
 class PoInfo extends Component
 {
 	
-	public $id;
 	public $po;
 	public $photo;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id, $photo='po')
+	public function __construct(public string $poId, $photo='po')
 	{
 		$this->photo 	= 'flow/'.$photo.'.jpg';
-		 $this->po 		= Po::where('id', $id)->get()->first();
+		$this->po 		= Po::where('id', $poId)->get()->first();
 	}
 
 
