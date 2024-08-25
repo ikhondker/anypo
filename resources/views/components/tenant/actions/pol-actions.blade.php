@@ -3,9 +3,9 @@
 		<i class="align-middle text-info mt-n1" data-lucide="settings"></i> Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-		<a class="dropdown-item" href="{{ route('pols.receipt', $id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Receipts **</a>
+		<a class="dropdown-item" href="{{ route('pols.receipt', $polId) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Receipts **</a>
 		<a class="dropdown-item" href="{{ route('pos.attachments', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments **</a>
-		<a class="dropdown-item" href="{{ route('pols.ael', $id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Accounting **</a>
+		<a class="dropdown-item" href="{{ route('pols.ael', $polId) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Accounting **</a>
 		
 		@can('createForPol', App\Models\Tenant\Receipt::class)
 			<a class="dropdown-item" href="{{ route('receipts.create-for-pol',$pol->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Receipts</a>

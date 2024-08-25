@@ -1,6 +1,6 @@
 <tr class="">
 	<td class="text-middle">{{ $prl->line_num }}</td>
-	<td class="">{{ $prl->item->code }}</td>
+	<td class="">{{ $prl->item->code }}</td> 
 	<td class="">{{ $prl->item_description }}</td>
 	<td class="">{{ $prl->uom->name }}</td>
 	<td class="text-end">{{ $prl->qty }}</td>

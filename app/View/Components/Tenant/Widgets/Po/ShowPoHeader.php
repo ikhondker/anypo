@@ -10,15 +10,15 @@ use App\Models\Tenant\Po;
 
 class ShowPoHeader extends Component
 {
-	public $id;
+	
 	public $po;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $poId)
 	{
-		$this->po = Po::where('id', $id)->with("buyer")->with("dept")->with('status_badge','auth_status_badge')->get()->first();
+		$this->po = Po::where('id', $poId)->with("buyer")->with("dept")->with('status_badge','auth_status_badge')->get()->first();
 	}
 
 	/**

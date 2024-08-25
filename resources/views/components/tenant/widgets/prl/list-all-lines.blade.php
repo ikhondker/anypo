@@ -2,7 +2,9 @@
 	<div class="card-header">
 		<div class="card-actions float-end">
 			<div class="dropdown position-relative">
-				
+				@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+					<a href="{{ route('prls.add-line', $pr->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus-square"></i> Add Line</a>
+				@endif
 			</div>
 		</div>
 		<h5 class="card-title">Requisition Lines</h5>
@@ -11,8 +13,7 @@
 	<table class="table table-striped table-sm">
 		<thead>
 			<tr>
-	
-				<th class="text-center" style="width:1%">#</th>
+					<th class="text-center" style="width:1%">#</th>
 				<th class="" style="width:3%">Item</th>
 				<th class="" style="width:23%">Description</th>
 				<th class="" style="width:7%">UOM</th>

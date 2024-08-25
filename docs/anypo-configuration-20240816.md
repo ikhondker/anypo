@@ -24,7 +24,7 @@ https://www.brevo.com/pricing/
 17. 0.17 move back project to lookup, po by supplier, po by project, separate profile, sw2 move to custom.js, Aeh, Ael ErrorLog, before discarding front theme
 18. 0.18 discard front use single appstack theme, CustomException, dsicss all routes, splt helper inlt landlord and tenant
 19. 0.19 Major Update. Removed Front4.3.1 theme from Landlord. Tenant Theme AppsStack upgraded from 3.4.1 to 4.0.0. Templae object moved to share. Added Budget Revision history, Before clean.
-20. 0.20 [ongoing] cleaned, attachement descriptopn, move attchment to root, rewrite pr and po 
+20. 0.20 [ongoing] cleaned, attachement descriptopn, move attchment to root, rewrite pr and po , add invoiceLines, component argument rename form id
 
 # 12. key configuration 
 ====================================================================

@@ -32,8 +32,8 @@
 	@endif
 	
 	<x-tenant.widgets.pr.show-pr-header prId="{{ $pr->id }}"/>
+
 	<x-tenant.widgets.prl.list-all-lines prId="{{ $pr->id }}"/>
-		
 	
 @endsection
 

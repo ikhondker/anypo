@@ -30,9 +30,9 @@ php artisan make:component Tenant/Widgets/Po/ListByBuyer
 php artisan make:component Tenant/Widgets/Po/ListByDate 
 xxphp artisan make:component Tenant/Widgets/Po/PoLists
 
-php artisan make:component Tenant/Widgets/Pol/Card
+xxphp artisan make:component Tenant/Widgets/Pol/Card
 php artisan make:component Tenant/Widgets/Pol/CardTableRow
-
+php artisan make:component Tenant/Widgets/Pol/ListAllLines
 
 php artisan make:component Tenant/Widgets/Pol/EditPoLine
 php artisan make:component Tenant/Widgets/Pol/ShowPoLines

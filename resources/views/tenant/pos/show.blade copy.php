@@ -48,9 +48,21 @@
 		<x-tenant.widgets.wfl.get-approval wfid="{{ $po->wf_id }}" />
 	@endif
 
-	<x-tenant.widgets.po.show-po-header poId="{{ $po->id }}"/>
+	<x-tenant.widgets.po.show-po-header id="{{ $po->id }}"/>
 
-	<x-tenant.widgets.pol.list-all-lines poId="{{ $po->id }}" :status="true" />
-	
+	<!-- widget-pol-card -->
+	<x-tenant.widgets.pol.card :po="$po">
+		@slot('lines')
+			<tbody>
+				@forelse ($pols as $pol)
+					<x-tenant.widgets.pol.card-table-row :line="$pol" :status="$po->auth_status"/>
+				@empty
+
+				@endforelse
+			</tbody>
+		@endslot
+	</x-tenant.widgets.pol.card>
+	<!-- /.widget-pol-card -->
+
 @endsection
 

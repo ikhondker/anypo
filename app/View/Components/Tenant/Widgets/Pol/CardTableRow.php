@@ -10,13 +10,16 @@ class CardTableRow extends Component
 {
 	public $pol;
 	public $status;
+	public $action;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($line, $status)
+	public function __construct($line, $status=false, $action = false )
+
 	{
 		$this->pol		= $line;
 		$this->status	= $status;
+		$this->action	= $action;
 	}
 
 	/**

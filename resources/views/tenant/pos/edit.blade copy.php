@@ -170,20 +170,31 @@
 											readonly/>
 										</td>
 									</tr>
+									<x-tenant.edit.save/>
 								</tbody>
 							</table>
+
+
 						</div>
 					</div>
 				</div>
 				<!-- end col-6 -->
 			</div>
 
-			<x-tenant.widgets.pol.list-all-lines poId="{{ $po->id }}"/>
+			<!-- widget-pol-card -->
+			<x-tenant.widgets.pol.card :po="$po">
+				@slot('lines')
+					<tbody>
+						@forelse ($pols as $pol)
+							<x-tenant.widgets.pol.card-table-row :line="$pol" :status="$po->auth_status"/>
+						@empty
 
-			<div class="float-end">
-				<a class="btn btn-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ route('pos.show',$po->id) }}"><i data-lucide="x-circle"></i> Cancel</a>
-				<button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Save</button>
-			</div>
+						@endforelse
+					</tbody>
+				@endslot
+			</x-tenant.widgets.pol.card>
+			<!-- /.widget-pol-card -->
+
 
 	</form>
 	<!-- /.form end -->

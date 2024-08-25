@@ -2,7 +2,7 @@
 @section('title','Add Requisition Line')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}" class="text-muted">Requisitions</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}" class="text-muted">{{ $pr->id }}</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('prs.show',$pr->id) }}" class="text-muted">#{{ $pr->id }}</a></li>
 	<li class="breadcrumb-item active">Add New Line</li>
 @endsection
 @section('content')
@@ -28,9 +28,12 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<div class="dropdown position-relative">
+					<div class="form-check form-switch">
+						<input class="form-check-input m-1" type="checkbox" id="add_row" name="add_row" checked>
+						<label class="form-check-label" for="add_row">... add another Line</label>
 					</div>
 				</div>
+
 				<h5 class="card-title">Requisition Lines</h5>
 				<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
 			</div>
@@ -79,14 +82,8 @@
 
 			<div class="card-footer">
 				<div class="card-actions float-end">
-					<div class="dropdown position-relative">
-						<div class="form-check form-switch">
-							<input class="form-check-input m-1" type="checkbox" id="add_row" name="add_row" checked>
-							<label class="form-check-label" for="add_row">... add another row </label>
-							<a class="btn btn-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ route('prs.show',$pr->id) }}"><i data-lucide="x-circle"></i> Cancel</a>
-							<button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Save</button>
-						</div>
-					</div>
+					<a class="btn btn-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ route('prs.show',$pr->id) }}"><i data-lucide="x-circle"></i> Cancel</a>
+					<button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Save</button>
 				</div>
 			</div>
 		</div>
