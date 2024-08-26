@@ -4,6 +4,9 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('reports.pr', $pr->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
+					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					@endif
 				</div>
 				<h5 class="card-title">Basic Information for PR#{{ $pr->id }}</h5>
 				<h6 class="card-subtitle text-muted">Key information of a Purchase Requisitions</h6>
@@ -51,9 +54,13 @@
 
 				<div class="card-actions float-end">
 					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-sm btn-success text-white float-end me-2 sw2-advance"
+							data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
+							<i data-lucide="external-link" class="text-white"></i> Submit for Approval</a>
+					@else 
+						<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>	
 					@endif
-					{{-- <a class="btn btn-sm btn-light" href="{{ route('prs.index') }}" ><i class="fas fa-list"></i> View all</a> --}}
 				</div>
 				<h5 class="card-title">Approval Status</h5>
 				<h6 class="card-subtitle text-muted">Approval information of Purchase Requisition.</h6>

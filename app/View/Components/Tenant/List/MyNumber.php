@@ -12,7 +12,7 @@ class MyNumber extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $value)
+	public function __construct(public string $value = '0')
 	{
 		
 	}

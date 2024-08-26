@@ -24,7 +24,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 
 use App\Models\Tenant\Invoice;
-use App\Models\Tenant\InvoiceLine;
 use App\Http\Requests\Tenant\StoreInvoiceRequest;
 use App\Http\Requests\Tenant\UpdateInvoiceRequest;
 
@@ -35,7 +34,6 @@ use App\Models\Tenant\Payment;
 use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Lookup\Supplier;
-use App\Models\Tenant\Manage\CustomError;
 # 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\EventEnum;
@@ -139,15 +137,15 @@ class InvoiceController extends Controller
 		$this->authorize('createForPo', Invoice::class);
 
 		$setup 	= Setup::first();
-		if ( $setup->readonly ){
+		if ($setup->readonly ){
 			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
 		}
 		// check if po is approved and open
-		if ( $po->auth_status <> AuthStatusEnum::APPROVED->value ) {
+		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for APPROVED Purchase Order!');
 		}
 
-		if ( $po->status <> ClosureStatusEnum::OPEN->value ) {
+		if ($po->status <> ClosureStatusEnum::OPEN->value) {
 			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for OPEN Purchase Order!');
 		}
 
@@ -163,30 +161,26 @@ class InvoiceController extends Controller
 	 */
 	public function store(StoreInvoiceRequest $request)
 	{
-
 		$this->authorize('createForPo', Invoice::class);
-		$setup = Setup::first();
+
 		// get PO
 		$po = Po::where('id', $request->input('po_id'))->first();
+
+		// Check over invoice
+		$request->validate([
+			'amount' => [new OverInvoiceRule ($po->id)],
+		]);
+
 
 		$request->merge([
 			'currency' 		=> $po->currency,
 			'invoice_no' 	=> Str::upper($request['invoice_no']),
-			'supplier_id'	=> $po->supplier_id,
-			'fc_currency'	=> $setup->currency
+			'supplier_id'	=> 	$po->supplier_id
 		]);
 
-	
-		// as this is the first line pr value will be same as prl values
-		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
-		$request->merge(['tax'			=> $request->input('tax')]);
-		$request->merge(['gst'			=> $request->input('gst')]);
-		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
 
+		// $request->merge(['invoice_date'		=> date('Y-m-d H:i:s')]);
 		$invoice = Invoice::create($request->all());
-
-		// Write to Log
-		EventLog::event('invoice', $invoice->id, 'create');
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $invoice->id ]);
@@ -194,40 +188,13 @@ class InvoiceController extends Controller
 			$attid = FileUpload::aws($request);
 		}
 
-		
-		// create invoice lines with line number
-		$invl			= new InvoiceLine();
-		$invl->invoice_id		= $invoice->id;
-		$invl->line_num	= 1;
-		$invl->summary	= $request->input('summary');
-		$invl->qty		= $request->input('qty');
-		$invl->price		= $request->input('price');
 
-		$invl->sub_total	= $request->input('qty') * $request->input('price');
-		$invl->tax		= $request->input('tax');
-		$invl->gst		= $request->input('gst');
-		$invl->amount	= ($request->input('qty') * $request->input('price')) +$request->input('tax')+$request->input('gst');
 
-		$invl->save();
-		$invl_id			= $invl->id;
 
-		// 	Update Invoice Header value and Populate functional currency values
-		$result = Invoice::syncInvoiceValues($invoice->id);
-		if ($result == '') {
-			Log::debug('tenant.invoice.store syncInvoiceValues completed.');
-		} else {
-			$customError = CustomError::where('code', $result)->first();
-			Log::error(tenant('id'). 'tenant.invoice.store syncPrValues invoice_id = '.$invoice->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
-		}
-
-		if($request->has('add_row')) {
-			//Checkbox checked
-			return redirect()->route('invoice-lines.add-line', $invoice->id)->with('success', 'Invoice #'. $invoice->id.' created successfully. Please add more line.');
-		} else {
-			//Checkbox not checked
-			return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoice #'. $invoice->id.' created successfully. Please POST the invoice.');
-		}
-
+		// Write to Log
+		EventLog::event('invoice', $invoice->id, 'create');
+		//return redirect()->route('invoices.show',$invoice->id)->with('success', 'Invoice created successfully. Please POST the invoice.');
+		return redirect()->route('pos.invoices',$invoice->po_id)->with('success', 'Invoice created successfully. Please POST the invoice.');
 	}
 
 	/**

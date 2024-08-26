@@ -5,8 +5,8 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		
 		<a class="dropdown-item" href="{{ route('invoices.show', $invoice->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
-		<a class="dropdown-item" href="{{ route('invoices.ael', $id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Accounting **</a>
-		<a class="dropdown-item" href="{{ route('invoices.attachments',$id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> Attachments</a>
+		<a class="dropdown-item" href="{{ route('invoices.ael', $invoiceId) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Accounting **</a>
+		<a class="dropdown-item" href="{{ route('invoices.attachments',$invoiceId) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> Attachments</a>
 		
 		<div class="dropdown-divider"></div>		
 		@if ($invoice->status == App\Enum\InvoiceStatusEnum::DRAFT->value)
@@ -34,8 +34,8 @@
 		
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('invoices.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All </a>
-		<a class="dropdown-item" href="{{ route('pos.show', $id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Purchase Order</a>
-		<a class="dropdown-item" href="{{ route('reports.po', $id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Invoice **</a>
+		<a class="dropdown-item" href="{{ route('pos.show', $invoice->po_id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Purchase Order</a>
+		<a class="dropdown-item" href="{{ route('reports.po', $invoice->po_id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Invoice **</a>
 
 		@can('cancel', App\Models\Tenant\Invoice::class)
 			<div class="dropdown-divider"></div>

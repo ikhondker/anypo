@@ -62,7 +62,7 @@ xxphp artisan make:model PayMethod --all	<< don't used
 
 
 php artisan make:model Tenant\Invoice --all
-php artisan make:model Tenant\InvoiceLines --all
+php artisan make:model Tenant\InvoiceLine --all
 
 
 php artisan make:model Payment --all

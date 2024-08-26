@@ -15,15 +15,15 @@ return new class extends Migration
 	{
 		Schema::create('invoice_lines', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->foreignId('inv_id')->constrained('invoices');
+			$table->foreignId('invoice_id')->constrained('invoices');
 			$table->biginteger('line_num')->default(0);
 			$table->string('summary');
-			$table->foreignId('item_id')->constrained('items');
-			$table->foreignId('uom_id')->constrained('uoms');
+			//$table->foreignId('item_id')->constrained('items');
+			//$table->foreignId('uom_id')->constrained('uoms');
 			$table->float('qty')->default(1);
 			$table->float('price')->default(0);
 			$table->float('sub_total', 15, 2)->default(0);
-			$table->float('tax',15,2)->default(0);
+			$table->float('tax',15,2)->default(0); 
 			$table->float('gst',15,2)->default(0);
 			$table->float('amount', 15, 2)->default(0);
 			$table->float('fc_sub_total', 15, 2)->default(0);			// Functional Currency

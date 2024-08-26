@@ -30,7 +30,7 @@ return new class extends Migration
 			$table->biginteger('count_grs')->default(0);
 			$table->biginteger('count_invoice')->default(0);
 			$table->biginteger('count_payment')->default(0);
-			$table->dateTime('end_date', $precision = 0)->nullable();
+			$table->date('end_date', $precision = 0)->nullable();
 			$table->text('notes')->nullable();
 			$table->boolean('revision')->default(false);
 			$table->biginteger('parent_id')->default(0);

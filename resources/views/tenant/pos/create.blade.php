@@ -120,7 +120,7 @@
 				<div class="card">
 					<div class="card-header">
 						<div class="card-actions float-end">
-							<a href="{{ route('pos.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+							
 						</div>
 						<h5 class="card-title">Purchase Order Additional Info</h5>
 						<h6 class="card-subtitle text-muted">Purchase Order Additional Information.</h6>

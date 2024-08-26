@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->enum('invoice_type', ['STANDARD','ADVANCE'])->default('STANDARD');
 			$table->string('invoice_no');
-			$table->dateTime('invoice_date')->useCurrent();
+			$table->date('invoice_date')->useCurrent();
 			$table->foreignId('po_id')->constrained('pos');
 			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->string('summary');
@@ -29,7 +29,7 @@ return new class extends Migration
 			$table->float('gst',15,2)->default(0);
 			$table->float('amount', 15, 2)->default(0);
 			$table->float('amount_paid', 15, 2)->default(0);
-			//$table->string('fc_currency',3);							// Functional Currency
+			$table->string('fc_currency',3);							// Functional Currency
 			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
 			$table->float('fc_sub_total', 15, 2)->default(0);			// Functional Currency
 			$table->float('fc_tax',15,2)->default(0);					// Functional Currency

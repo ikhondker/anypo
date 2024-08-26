@@ -2,6 +2,12 @@
 	<div class="col-6">
 		<div class="card">
 			<div class="card-header">
+				<div class="card-actions float-end">
+					<a class="btn btn-sm btn-light" href="{{ route('reports.po', $po->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
+					@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+						<a class="btn btn-sm btn-light" href="{{ route('pos.edit', $po->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					@endif
+				</div>
 				<h5 class="card-title">Basic Information</h5>
 				<h6 class="card-subtitle text-muted">Basic information of a Purchase Order.</h6>
 			</div>
@@ -47,8 +53,19 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a class="btn btn-sm btn-light" href="{{ route('pos.edit', $po->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-					<a class="btn btn-sm btn-light" href="{{ route('pos.index') }}" ><i class="fas fa-list"></i> View all</a>
+
+					<div class="card-actions float-end">
+						@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+							<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-sm btn-success text-white float-end me-2 sw2-advance"
+								data-entity="" data-name="PO#{{ $po->id }}" data-status="Submit"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
+								<i data-lucide="external-link" class="text-white"></i> Submit for Approval</a>
+						@else 
+							<span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span>	
+						@endif
+					</div>
+
+					
 				</div>
 				<h5 class="card-title">Approval Status</h5>
 				<h6 class="card-subtitle text-muted">Approval information of Purchase Order.</h6>

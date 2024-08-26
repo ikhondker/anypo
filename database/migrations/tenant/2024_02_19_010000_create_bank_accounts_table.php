@@ -18,8 +18,8 @@ return new class extends Migration
 			$table->string('routing_number')->nullable();
 			$table->string('bank_name')->nullable();
 			$table->string('branch_name')->nullable();
-			$table->dateTime('start_date', $precision = 0)->useCurrent();
-			$table->dateTime('end_date', $precision = 0)->nullable();
+			$table->date('start_date', $precision = 0)->useCurrent();
+			$table->date('end_date', $precision = 0)->nullable();
 			$table->string('currency',3)->default('USD'); 
 			$table->string('ac_cash')->default('A400001');
 			$table->string('contact_person')->nullable();

@@ -15,7 +15,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->foreignId('aeh_id')->constrained('aehs');
 			$table->biginteger('line_num')->default(0);
-			$table->dateTime('accounting_date')->useCurrent(); 
+			$table->date('accounting_date')->useCurrent(); 
 			$table->string('ac_code');
 			$table->string('line_description');
 			$table->string('fc_currency', 3);							// Functional Currency

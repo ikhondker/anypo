@@ -17,7 +17,7 @@ return new class extends Migration
 	{
 		Schema::create('aehs', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->dateTime('accounting_date')->useCurrent(); 
+			$table->date('accounting_date')->useCurrent(); 
 			$table->string('source_app')->default('ANYPO.NET');
 			//$table->string('source_entity', 15); 
 			//$table->string('source_event', 15); 

@@ -14,12 +14,6 @@
 			<a href="{{ route('prs.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> View All</a>
 			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
 			{{-- <a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-lucide="printer"></i> Print</a> --}}
-			@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-				<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-primary float-end me-2 sw2-advance"
-					data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
-					<i data-lucide="external-link"></i> Submit</a>
-			@endif
 			<x-tenant.actions.pr-actions prId="{{ $pr->id }}"/>
 		@endslot
 	</x-tenant.page-header>
