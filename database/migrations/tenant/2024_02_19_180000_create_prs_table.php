@@ -17,8 +17,8 @@ return new class extends Migration
 		Schema::create('prs', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('summary');
-			$table->date('pr_date')->useCurrent();
-			$table->date('need_by_date')->useCurrent();
+			$table->date('pr_date')->default(DB::raw('(CURDATE())'));
+			$table->date('need_by_date')->nullable();
 			$table->foreignId('requestor_id')->constrained('users');
 			$table->foreignId('dept_id')->constrained('depts')->index();
 			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use

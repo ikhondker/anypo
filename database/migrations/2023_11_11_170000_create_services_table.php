@@ -32,7 +32,7 @@ return new class extends Migration
 			$table->float('tax',8,2)->default(0);
 			$table->float('vat',8,2)->default(0);
 			$table->float('amount',8, 2)->default(0);
-			$table->date('start_date')->useCurrent();
+			$table->date('start_date')->default(DB::raw('(CURDATE())'));
 			$table->date('end_date')->nullable();
 			/** ENUM */
 			$table->string('status_code')->default(LandlordServiceStatusEnum::DRAFT->value); 

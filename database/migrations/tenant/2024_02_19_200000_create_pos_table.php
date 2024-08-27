@@ -19,8 +19,8 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('summary');
 			$table->foreignId('buyer_id')->constrained('users');
-			$table->date('po_date')->useCurrent();
-			$table->date('need_by_date')->useCurrent();
+			$table->date('po_date')->default(DB::raw('(CURDATE())'));
+			$table->date('need_by_date')->nullable();
 			$table->foreignId('requestor_id')->constrained('users');
 			$table->foreignId('dept_id')->constrained('depts');
 			$table->biginteger('unit_id')->nullable()->default(1001);				// Future Use

@@ -17,8 +17,8 @@ return new class extends Migration
 			$table->string('name');
 			//$table->string('fy')->unique()->index();
 			//$table->string('name')->unique();
-			$table->date('start_date', $precision = 0)->nullable()->useCurrent();
-			$table->date('end_date', $precision = 0)->nullable()->useCurrent();
+			$table->date('start_date');
+			$table->date('end_date');
 			//$table->string('currency',3)->default('USD');
 			$table->float('amount', 15, 2)->default(0);
 			$table->float('amount_pr_booked', 15, 2)->default(0);

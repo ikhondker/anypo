@@ -17,7 +17,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('summary');
 			$table->string('session_id')->nullable();
-			$table->date('pay_date')->useCurrent();
+			$table->date('pay_date')->default(DB::raw('(CURDATE())'));
 			$table->foreignId('invoice_id')->constrained('invoices');
 			$table->foreignId('account_id')->nullable()->constrained('accounts');
 			$table->foreignId('owner_id')->nullable()->constrained('users');

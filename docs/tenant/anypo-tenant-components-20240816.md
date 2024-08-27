@@ -373,6 +373,10 @@ php artisan make:component Tenant/Ael/AelForInvoice
 php artisan make:component Tenant/Ael/AelForPayment
 php artisan make:component Tenant/Ael/AelForReceipt
 
+php artisan make:component Tenant/Widgets/InvoiceLine/CardTableRow
+php artisan make:component Tenant/Widgets/InvoiceLine/ListAllLines
+
+
 
 --Dashboard-------------------------------------
 php artisan make:component Tenant/Dashboards/PrCounts		<x-tenant.dashboards.pr-counts/>

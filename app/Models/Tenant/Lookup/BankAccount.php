@@ -31,6 +31,7 @@ class BankAccount extends Model
 	}
 
 	/* ----------------- Functions ---------------------- */
+	
 	/* ----------------- HasMany ------------------------ */
 	public function payments() {
 		return $this->hasMany(Payment::class);

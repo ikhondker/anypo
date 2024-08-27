@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->enum('invoice_type', ['STANDARD','ADVANCE'])->default('STANDARD');
 			$table->string('invoice_no');
-			$table->date('invoice_date')->useCurrent();
+			$table->date('invoice_date')->default(DB::raw('(CURDATE())'));
 			$table->foreignId('po_id')->constrained('pos');
 			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->string('summary');

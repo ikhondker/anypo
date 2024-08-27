@@ -46,13 +46,13 @@
 						<tbody>
 							@foreach ($wfs as $wf)
 							<tr>
-								<td><a href="{{ route('wfs.show',$wf->id) }}"><strong>{{ $wf->id }}</strong></a></td>
+								<td><a href="{{ route('wfs.show', $wf->id) }}"><strong>{{ $wf->id }}</strong></a></td>
 								<td>{{ $wf->entity }}</td>
 								<td><x-tenant.list.article-link entity="{{ $wf->entity }}" :id="$wf->article_id"/></td>
 								<td>{{ $wf->relHierarchy->name }}</td>
-								<td><x-tenant.list.my-badge :value="$wf->wf_status"/></td>
-								<td><x-tenant.list.my-badge :value="$wf->auth_status"/></td>
-								<td><x-tenant.list.my-date-time :value="$wf->created_at"/></td>
+								<td><x-tenant.list.my-badge value={{ $wf->wf_status }}/></td>
+								<td><x-tenant.list.my-badge value={{ $wf->auth_status }}/></td>
+								<td><x-tenant.list.my-date-time value={{ $wf->created_at }}/></td>
 								<td>
 									<a href="{{ route('wfs.show',$wf->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View

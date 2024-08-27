@@ -83,7 +83,7 @@ use App\Http\Controllers\Tenant\PolController;
 
 use App\Http\Controllers\Tenant\ReceiptController;
 use App\Http\Controllers\Tenant\InvoiceController;
-//use App\Http\Controllers\Tenant\InvoiceLinesController;
+use App\Http\Controllers\Tenant\InvoiceLineController;
 use App\Http\Controllers\Tenant\PaymentController;
 
 
@@ -368,6 +368,10 @@ Route::middleware([
 		Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
 		Route::get('/invoices/ael/{invoice}',[InvoiceController::class,'ael'])->name('invoices.ael');
 
+		/* ======================== InvoiceLines ======================================== */
+		Route::resource('invoice-lines', InvoiceLineController::class);
+		Route::get('/invoice-lines/delete/{invoiceLine}',[InvoiceLineController::class,'destroy'])->name('invoice-lines.destroy');
+		Route::get('/invoice-lines/add-line/{invoice}',[InvoiceLineController::class, 'addLine'])->name('invoice-lines.add-line');
 		
 		/* ======================== Payment ======================================== */
 		Route::resource('payments', PaymentController::class);
@@ -814,10 +818,6 @@ Route::middleware([
 	//Route::get('/pay-method/export',[PayMethodController::class,'export'])->name('pay-methods.export');
 	//Route::get('/pay-methods/delete/{payMethod}',[PayMethodController::class,'destroy'])->name('pay-methods.destroy');
 
-	/* ======================== InvoiceLines ======================================== */
-	//Route::resource('invoicelines', InvoiceLinesController::class)->middleware(['auth', 'verified']);
-	//Route::get('/invoicelines/export',[InvoiceLinesController::class,'export'])->name('invoicelines.export');
-	//Route::get('/invoicelines/delete/{invoicelines}',[InvoiceLinesController::class,'destroy'])->name('invoicelines.destroy');
 
 	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
 	//Route::get('/entity/export',[EntityController::class, 'export'])->name('entities.export');

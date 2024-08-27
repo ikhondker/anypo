@@ -81,6 +81,7 @@ BO-4-source-file-modify-20230413.txt
 
 # 33. TODO 
 -------------------------------------------------------------------------------------------------
+157. wfs.index badge not shown
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
 155. fix component  list -> ArticleLink nad ProjectLink
 154. export file name add export

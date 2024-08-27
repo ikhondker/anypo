@@ -16,8 +16,8 @@ return new class extends Migration
 			$table->string('code')->unique();
 			$table->string('name')->unique();
 			$table->foreignId('pm_id')->constrained('users')->nullable();
-			$table->date('start_date', $precision = 0)->nullable()->useCurrent();
-			$table->date('end_date', $precision = 0)->nullable()->useCurrent();
+			$table->date('start_date')->default(DB::raw('(CURDATE())'));
+			$table->date('end_date')->nullable();
 			$table->boolean('budget_control')->default(true);
 			$table->float('amount', 15, 2)->default(0);
 			$table->float('amount_pr_booked', 15, 2)->default(0);

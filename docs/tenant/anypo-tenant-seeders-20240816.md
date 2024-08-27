@@ -35,8 +35,6 @@ delete from attachments;
 Database\Seeders\Landlord\
 php artisan tenants:seed --class="Database\Seeders\Share\TemplateSeeder" --tenants=demo1
 
-??php artisan tenants:seed --class=HawarSeeder --tenants=demo1
-
 php artisan tenants:seed --class=UserSeeder --tenants=demo1
 php artisan tenants:seed --class=SetupSeeder --tenants=demo1
 

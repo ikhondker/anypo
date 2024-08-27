@@ -38,9 +38,9 @@ Log::info(print_r($dept_budget, true));
 composer update
 php artisan --version
 git commit -m "Tables"
+php artisan queue:flush
 php artisan queue:listen --timeout=1200
 php artisan schedule:run
-php artisan queue:flush
 $user->isBackOffice()
 <i class="bi {{ ($menu->enable ? 'bi-bell-slash' : 'bi-bell') }} " style="font-size: 1.3rem;"></i>
 optional($article->expired_at)->format('Y-m-d')

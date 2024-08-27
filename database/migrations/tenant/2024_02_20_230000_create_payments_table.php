@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->foreignId('invoice_id')->constrained('invoices');
 			// added to simplify coding 
 			$table->foreignId('po_id')->constrained('pos');
-			$table->date('pay_date')->useCurrent();
+			$table->date('pay_date')->default(DB::raw('(CURDATE())'));
 			$table->foreignId('payee_id')->constrained('users');
 			//$table->string('summary')->nullable();
 			$table->foreignId('bank_account_id')->constrained('bank_accounts')->nullable();

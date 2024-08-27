@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+//use DB;
 
 return new class extends Migration
 {
@@ -18,8 +19,8 @@ return new class extends Migration
 			$table->string('routing_number')->nullable();
 			$table->string('bank_name')->nullable();
 			$table->string('branch_name')->nullable();
-			$table->date('start_date', $precision = 0)->useCurrent();
-			$table->date('end_date', $precision = 0)->nullable();
+			$table->date('start_date')->default(DB::raw('(CURDATE())'));
+			$table->date('end_date')->nullable();
 			$table->string('currency',3)->default('USD'); 
 			$table->string('ac_cash')->default('A400001');
 			$table->string('contact_person')->nullable();

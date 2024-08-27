@@ -29,9 +29,12 @@ use App\Http\Requests\Tenant\StoreInvoiceLineRequest;
 use App\Http\Requests\Tenant\UpdateInvoiceLineRequest;
 
 # 1. Models
+use App\Models\Tenant\Invoice;
+
 # 2. Enums
+use App\Enum\AuthStatusEnum;
 # 3. Helpers
-use App\Helpers\Export;
+//use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
@@ -50,6 +53,31 @@ use Illuminate\Support\Facades\Log;
 
 class InvoiceLineController extends Controller
 {
+
+    public function addLine(Invoice $invoice)
+	{
+		//$pr = Pr::where('id', $pr_id)->first();
+
+		//dd($pr);
+		// Write Event Log
+		//LogEvent('template',$template->id,'edit','template',$template->id);
+
+		if ($invoice->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('invoices.show',$invoice->id)->with('error', 'You can only add line to Invoice with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+		}
+
+		$this->authorize('update',$invoice);	// << =============
+
+		//$items = Item::primary()->get();
+		//$uoms = Uom::getAllClient();
+		//$uoms = Uom::primary()->get();
+
+		//$prls = Prl::with('item')->with('uom')->where('pr_id', $pr->id)->get()->all();
+        $invoiceLines = InvoiceLine::with('invoice')->where('invoice_id', $invoice->id)->get()->all();
+
+		return view('tenant.invoice-lines.create', with(compact('invoiceLines')));
+	}
+
     /**
      * Display a listing of the resource.
      */

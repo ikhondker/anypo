@@ -22,7 +22,7 @@ return new class extends Migration
 			$table->string('invoice_type')->default(LandlordInvoiceTypeEnum::SUBSCRIPTION->value);
 			$table->foreignId('account_id')->constrained('accounts');
 			$table->foreignId('owner_id')->nullable()->constrained('users');
-			$table->date('invoice_date')->nullable()->useCurrent();
+			$table->date('invoice_date')->default(DB::raw('(CURDATE())'));
 			$table->date('from_date');
 			$table->date('to_date');
 			$table->date('org_from_date')->nullable();

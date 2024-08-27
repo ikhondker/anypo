@@ -1,1 +1,2 @@
-<span class="badge badge-subtle-success">{{ $value }}</span>
+<span class="badge badge-subtle-primary">{{ $value }}</span>
+
