@@ -1,39 +1,23 @@
 <tr class="table-primary">
 	<td class="">
-		<input type="text" name="pr_id" id="pr_id" class="form-control" placeholder="ID" value="{{ old('pr_id', $pr->id ) }}" hidden>
-		{{ $prl->line_num }}
+		<input type="text" name="invoice_id" id="invoice_id" class="form-control" placeholder="ID" value="{{ old('invoice_id', $invoice->id ) }}" hidden>
+		{{ $invoiceLine->line_num }}
 	</td>
 	<td class="">
-		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id">
-			@foreach ($items as $item)
-				<option {{ $item->id == old('item_id',$prl->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->code .' - '.$item->name }} </option>
-			@endforeach
-		</select>
-		@error('item_id')
-			<div class="text-danger text-xs">{{ $message }}</div>
-		@enderror
-	</td>
-	<td class="">
-		<input type="item_description" class="form-control @error('item_description') is-invalid @enderror"
-			name="item_description" id="item_description" placeholder="Item Description"
-			value="{{ old('item_description', $prl->item_description ) }}"
+		<input type="summary" class="form-control @error('summary') is-invalid @enderror"
+			name="summary" id="summary" placeholder="Item Description"
+			value="{{ old('summary', $invoiceLine->summary ) }}"
 			required/>
-		@error('item_description')
+		@error('summary')
 			<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>
-	<td class="">
-		<select class="form-control" name="uom_id" id="uom_id">
-			@foreach ($uoms as $uom)
-				<option {{ $uom->id == old('uom_id',$prl->uom_id) ? 'selected' : '' }} value="{{ $uom->id }}">{{ $uom->name }} </option>
-			@endforeach
-		</select>
-	</td>
+	
 	<td class="text-end">
 		<input type="number" class="form-control @error('qty') is-invalid @enderror"
 			style="text-align: right;" min="1"
 			name="qty" id="qty" placeholder="1"
-			value="{{ old('qty', $prl->qty ) }}"
+			value="{{ old('qty', $invoiceLine->qty ) }}"
 			required>
 		@error('qty')
 				<div class="text-danger text-xs">{{ $message }}</div>
@@ -43,7 +27,7 @@
 		<input type="number" step='0.01' min="1" class="form-control @error('price') is-invalid @enderror"
 			style="text-align: right;"
 			name="price" id="price" placeholder="0.00"
-			value="{{ old('price', $prl->price ) }}"
+			value="{{ old('price', $invoiceLine->price ) }}"
 			required>
 		@error('price')
 				<div class="text-danger text-xs">{{ $message }}</div>
@@ -54,7 +38,7 @@
 		<input type="text" class="form-control @error('sub_total') is-invalid @enderror"
 			style="text-align: right;"
 			name="sub_total" id="sub_total" placeholder="0.00"
-			value="{{ old('sub_total', $prl->sub_total ) }}"
+			value="{{ old('sub_total', $invoiceLine->sub_total ) }}"
 			readonly>
 		@error('sub_total')
 				<div class="text-danger text-xs">{{ $message }}</div>
@@ -64,7 +48,7 @@
 		<input type="number" step='0.01' min="0" class="form-control @error('tax') is-invalid @enderror"
 			style="text-align: right;"
 			name="tax" id="tax" placeholder="0.00"
-			value="{{ old('tax', $prl->tax ) }}"
+			value="{{ old('tax', $invoiceLine->tax ) }}"
 			required>
 		@error('tax')
 				<div class="text-danger text-xs">{{ $message }}</div>
@@ -74,7 +58,7 @@
 		<input type="number" step='0.01' min="0" class="form-control @error('gst') is-invalid @enderror"
 			style="text-align: right;"
 			name="gst" id="gst" placeholder="0.00"
-			value="{{ old('gst', $prl->gst ) }}"
+			value="{{ old('gst', $invoiceLine->gst ) }}"
 			required>
 		@error('gst')
 				<div class="text-danger text-xs">{{ $message }}</div>
@@ -85,7 +69,7 @@
 		<input type="text" class="form-control @error('amount') is-invalid @enderror"
 			style="text-align: right;"
 			name="amount" id="amount" placeholder="0.00"
-			value="{{ old('amount',number_format($prl->amount, 2)) }}"
+			value="{{ old('amount',number_format($invoiceLine->amount, 2)) }}"
 			readonly>
 		@error('amount')
 				<div class="text-danger text-xs">{{ $message }}</div>

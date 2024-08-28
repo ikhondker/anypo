@@ -1,17 +1,17 @@
 <tr class="table-primary">
 	<td class="">
 		{{-- First PR line of New PR --}}
-		@isset($pr)
-			<input type="text" name="pr_id" id="pr_id" class="form-control" placeholder="ID" value="{{ old('pr_id', $pr->id ) }}" hidden>
+		@isset($invoice)
+			<input type="text" name="invoice_id" id="invoice_id" class="form-control" placeholder="ID" value="{{ old('invoice_id', $invoice->id ) }}" hidden>
 		@endisset
 		<i class="align-middle me-1" data-lucide="plus"></i>
 	</td>
 	<td class="">
-		<input type="text" class="form-control @error('item_description') is-invalid @enderror"
-			name="item_description" id="item_description" placeholder="Item Description"
-			value="{{ old('item_description', '' ) }}"
+		<input type="text" class="form-control @error('summary') is-invalid @enderror"
+			name="summary" id="summary" placeholder="Item Description"
+			value="{{ old('summary', '' ) }}"
 			required/>
-		@error('item_description')
+		@error('summary')
 			<div class="text-danger text-xs">{{ $message }}</div>
 		@enderror
 	</td>

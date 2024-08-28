@@ -361,6 +361,7 @@ php artisan make:component Tenant\LandlordNoticeOneTenant	<x-tenant.landlord-not
 --Widgets-------------------------------------
 rest is in anypo-tenant-pr-po-components-20240323.txt
 
+php artisan make:component Tenant/Widgets/Invoice/ShowInvoiceHeader
 
 php artisan make:component Tenant/Widgets/DbuDept
 php artisan make:component Tenant/Widgets/DbuProject

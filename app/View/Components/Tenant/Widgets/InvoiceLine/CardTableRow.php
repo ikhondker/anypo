@@ -6,15 +6,19 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+
 class CardTableRow extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+    public $invoiceLine;
+	public $action;
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct($line, $action = false )
+	{
+		$this->invoiceLine		= $line;
+		$this->action	= $action;
+	}
 
     /**
      * Get the view / contents that represent the component.

@@ -24,13 +24,13 @@
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 
-use App\Models\Tenant\InvoiceLine;
 use App\Http\Requests\Tenant\StoreInvoiceLineRequest;
 use App\Http\Requests\Tenant\UpdateInvoiceLineRequest;
 
 # 1. Models
 use App\Models\Tenant\Invoice;
-
+use App\Models\Tenant\InvoiceLine;
+use App\Models\Tenant\Manage\CustomError;
 # 2. Enums
 use App\Enum\AuthStatusEnum;
 # 3. Helpers
@@ -54,15 +54,15 @@ use Illuminate\Support\Facades\Log;
 class InvoiceLineController extends Controller
 {
 
-    public function addLine(Invoice $invoice)
+	public function addLine(Invoice $invoice)
 	{
-		//$pr = Pr::where('id', $pr_id)->first();
+		//$pr = Pr::where('id', $invoice_id)->first();
 
 		//dd($pr);
 		// Write Event Log
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 
-		if ($invoice->auth_status <> AuthStatusEnum::DRAFT->value) {
+		if ($invoice->status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('invoices.show',$invoice->id)->with('error', 'You can only add line to Invoice with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
 
@@ -72,65 +72,205 @@ class InvoiceLineController extends Controller
 		//$uoms = Uom::getAllClient();
 		//$uoms = Uom::primary()->get();
 
-		//$prls = Prl::with('item')->with('uom')->where('pr_id', $pr->id)->get()->all();
-        $invoiceLines = InvoiceLine::with('invoice')->where('invoice_id', $invoice->id)->get()->all();
+		//$prls = InvoiceLine::with('item')->with('uom')->where('invoice_id', $pr->id)->get()->all();
+		$invoiceLines = InvoiceLine::with('invoice')->where('invoice_id', $invoice->id)->get()->all();
 
-		return view('tenant.invoice-lines.create', with(compact('invoiceLines')));
+		return view('tenant.invoice-lines.create', with(compact('invoice','invoiceLines')));
 	}
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		//
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		//
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreInvoiceLineRequest $request)
-    {
-        //
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreInvoiceLineRequest $request)
+	{
+		$this->authorize('create', InvoiceLine::class);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(InvoiceLine $invoiceLine)
-    {
-        //
-    }
+		// get max line num for the
+		$line_num 						= InvoiceLine::where('invoice_id', '=',$request->input('invoice_id'))->max('line_num');
+		$request->merge(['line_num'		=> $line_num +1]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(InvoiceLine $invoiceLine)
-    {
-        //
-    }
+		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
+		$request->merge(['tax'			=> $request->input('tax')]);
+		$request->merge(['gst'			=> $request->input('gst')]);
+		$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateInvoiceLineRequest $request, InvoiceLine $invoiceLine)
-    {
-        //
-    }
+		$invoiceLine = InvoiceLine::create($request->all());
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(InvoiceLine $invoiceLine)
-    {
-        //
-    }
+		// Write to Log
+		EventLog::event('InvoiceLine', $invoiceLine->id, 'create');
+
+		// 	Update PR Header value and Populate functional currency values
+		Log::debug('tenant.invoiceLine.store calling syncInvoiceValues for invoice_id = '. $invoiceLine->invoice_id);
+		$result = Invoice::syncInvoiceValues($invoiceLine->invoice_id);
+		Log::debug('tenant.invoiceLine.store syncPrValues return value = '. $result);
+
+		if ($result == '') {
+			Log::debug('tenant.invoiceLine.store syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error(tenant('id'). 'tenant.invoiceLine.store syncPrValues invoice_id = '.$invoiceLine->invoice_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+			//return redirect()->route('prs.index')->with('error', 'Exchange Rate not found for today. System will automatically import it in background. Please try after sometime.');
+		}
+
+
+		if($request->has('add_row')) {
+			//Checkbox checked
+			return redirect()->route('invoice-lines.add-line', $invoiceLine->invoice_id)->with('success', 'Line added to PR #'. $invoiceLine->invoice_id.' successfully.');
+		} else {
+			//Checkbox not checked
+			return redirect()->route('invoices.show', $invoiceLine->invoice_id)->with('success', 'Lined added to PR #'. $invoiceLine->invoice_id.' successfully.');
+		}
+
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(InvoiceLine $invoiceLine)
+	{
+		abort(403);
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(InvoiceLine $invoiceLine)
+	{
+		$this->authorize('update', $invoiceLine);
+
+		$invoice = Invoice::where('id', $invoiceLine->invoice_id)->first();
+		$invoiceLines = InvoiceLine::where('invoice_id', $invoiceLine->invoice_id)->get()->all();
+
+		return view('tenant.invoice-lines.edit', with(compact('invoice', 'invoiceLines', 'invoiceLine')));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateInvoiceLineRequest $request, InvoiceLine $invoiceLine)
+	{
+		$this->authorize('update', $prl);
+
+		//$request->merge(['sub_total'	=> $request->input('prl_amount')]);
+		//$request->merge(['amount'		=> $request->input('sub_total')+$request->input('tax')+$request->input('gst')]);
+		//$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
+		//$request->merge(['tax'			=> $request->input('tax')]);
+		//$request->merge(['gst'			=> $request->input('gst')]);
+		//$request->merge(['amount'		=> ($request->input('qty')*$request->input('price'))+$request->input('tax')+ $request->input('gst') ]);
+
+		//$request->validate();
+		$request->validate([
+
+		]);
+		// Write to Log
+		EventLog::event('prl', $prl->id, 'update', 'summary', $prl->summary);
+		$prl->update($request->all());
+
+		// 	Update PR Header value and Populate functional currency values. Currency Might change
+		Log::debug('tenant.prl.update calling syncPrValues for pr_id = '. $prl->pr_id);
+		$result = Pr::syncPrValues($prl->pr_id);
+		Log::debug('tenant.prl.update syncPrValues return value = '. $result);
+
+		if ($result == '') {
+			Log::debug('tenant.prl.update syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error(tenant('id'). 'tenant.prl.update syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+		}
+
+		
+
+		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR Line updated successfully');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(InvoiceLine $invoiceLine)
+	{
+		$pr = Pr::where('id', $prl->pr_id)->first();
+
+		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can delete line in Requisition with only status '. strtoupper($pr->auth_status) .' !');
+		}
+
+		Log::debug('tenant.prl.destroy deleting pr_id = '. $prl->pr_id);
+		// check if allowed by policy
+		$this->authorize('delete', $prl);
+
+		$prl->delete();
+
+		// 	update PR Header value
+		Log::debug('tenant.prl.destroy calling syncPrValues for pr_id = '. $prl->pr_id);
+		$result = Pr::syncPrValues($prl->pr_id);
+		Log::debug('tenant.prl.destroy syncPrValues return value = '. $result);
+
+		if ($result == '') {
+			Log::debug('tenant.prl.destroy syncPrValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error(tenant('id'). 'tenant.prl.destroy syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+		}
+
+		// Write to Log
+		EventLog::event('prl', $prl->id, 'delete', 'id', $prl->id);
+
+		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR Line deleted successfully');
+	}
+
+	public function export()
+	{
+
+		$this->authorize('export', Prl::class);
+
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$requestor_id 	= auth()->user()->id;
+		} else {
+			$requestor_id 	= '';
+		}
+
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$dept_id 	= auth()->user()->dept_id;
+		} else {
+			$dept_id 	= '';
+		}
+
+		$data = DB::select("
+			SELECT pr.id, pr.summary pr_summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
+			pr.notes, pr.currency, pr.amount pr_amount, pr.status, pr.auth_status, pr.auth_date ,
+			prl.line_num, prl.item_description , i.code item_code, uom.name uom, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount,
+			prl.price, prl.sub_total, prl.amount,prl.notes, prl.closure_status
+			FROM prs pr, prls prl, depts d, projects p, suppliers s, users u , items i, uoms uom
+			WHERE pr.dept_id=d.id
+			AND pr.project_id=p.id
+			AND pr.supplier_id=s.id
+			AND pr.requestor_id=u.id
+			AND pr.id = prl.pr_id
+			AND prl.item_id = i.id
+			AND prl.uom_id = uom.id
+			AND ". ($dept_id <> '' ? 'pr.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+			AND ". ($requestor_id <> '' ? 'pr.requestor_id = '.$requestor_id.' ' : ' 1=1 ') ."
+			ORDER BY pr.id DESC
+		");
+
+		$dataArray = json_decode(json_encode($data), true);
+		// used Export Helper
+		return Export::csv('prs', $dataArray);
+	}
 }
