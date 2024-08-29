@@ -5,7 +5,9 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		
 		<a class="dropdown-item" href="{{ route('invoices.show', $invoice->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
+		<a class="dropdown-item" href="{{ route('invoices.payments', $invoice->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payments</a>
 		<a class="dropdown-item" href="{{ route('invoices.ael', $invoiceId) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Accounting **</a>
+
 		<a class="dropdown-item" href="{{ route('invoices.attachments',$invoiceId) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> Attachments</a>
 		
 		<div class="dropdown-divider"></div>		

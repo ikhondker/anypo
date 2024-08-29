@@ -130,7 +130,7 @@ class ReceiptController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function createForPol(Pol $pol)
+	public function createForPol(Pol $pol = null)
 	{
 		$this->authorize('createForPol', Receipt::class);
 
@@ -139,18 +139,24 @@ class ReceiptController extends Controller
 			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
 		}
 
-		//check if PO is approved and open
-		$po = Po::where('id', $pol->po_id)->first();
-		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
-			return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for APPROVED Purchase Order!');
-		}
-		if ($po->status <> ClosureStatusEnum::OPEN->value) {
-			return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for OPEN Purchase Order!');
-		}
 		$warehouses = Warehouse::primary()->get();
+		
+		if(empty($pol)){
+			Log::debug('tenant.ReceiptController.createForPol No pol Selected!');
+			$pols = Pol::receiptDue()->get();
+			return view('tenant.receipts.create-for-pol', with(compact('pol','pols','warehouses')));
+		} else {
+			//check if PO is approved and open
+			$po = Po::where('id', $pol->po_id)->first();
+			if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+				return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for APPROVED Purchase Order!');
+			}
+			if ($po->status <> ClosureStatusEnum::OPEN->value) {
+				return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for OPEN Purchase Order!');
+			}
 
-		return view('tenant.receipts.create-for-pol', with(compact('po','pol','warehouses')));
-
+			return view('tenant.receipts.create-for-pol', with(compact('po','pol','warehouses')));
+		}
 	}
 
 	/**

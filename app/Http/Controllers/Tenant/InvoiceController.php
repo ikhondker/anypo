@@ -476,7 +476,24 @@ class InvoiceController extends Controller
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 			// Create Reverse Accounting for this Invoice
-			AelInvoice::dispatch($invoice->id, $invoice->fc_amount, true);
+			AehInvoice::dispatch($invoice->id, $invoice->fc_amount, true);
+
+			// Cancel All Invoice Lines
+			Log::debug(tenant('id'). ' tenant.invoice.cancel cancelling all invoice lines ...');
+			InvoiceLine::where('invoice_id', $invoice_id)
+				->update([
+					'price' 			=> 0,
+					'sub_total' 		=> 0,
+					'tax' 				=> 0,
+					'gst' 				=> 0,
+					'amount' 			=> 0,
+					'fc_sub_total' 		=> 0,
+					'fc_tax' 			=> 0,
+					'price' 			=> 0,
+					'fc_amount' 		=> 0,
+					'closure_status'	=> ClosureStatusEnum::CANCELED->value
+					]);
+
 
 			// cancel Invoice
 			Invoice::where('id', $invoice->id)
@@ -552,6 +569,13 @@ class InvoiceController extends Controller
 		$po = Po::where('id', $invoice->po_id)->get()->firstOrFail();
 
 		return view('tenant.invoices.ael', compact('po','invoice'));
+	}
+
+
+	public function payments(Invoice $invoice)
+	{
+		$this->authorize('view', $invoice);
+		return view('tenant.invoices.payments', compact('invoice'));
 	}
 
 

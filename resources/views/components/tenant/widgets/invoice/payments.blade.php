@@ -5,17 +5,20 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<div class="dropdown position-relative">
-						<div class="card-actions float-end">
-							@can('createForInvoice', App\Models\Tenant\Payment::class)
-								<a href="{{ route('payments.create-for-invoice',$invoiceId) }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create Payment</a>
-							@endcan 
+						<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
+							<i class="align-middle" data-lucide="more-horizontal"></i>
+						</a>
+						<div class="dropdown-menu dropdown-menu-end">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
 						</div>
 					</div>
 				</div>
 				<h5 class="card-title">Invoice Payments</h5>
 				<h6 class="card-subtitle text-muted">List of Invoice Payments.</h6>
 			</div>
-			<table class="table table-sm my-2">
+			<table class="table">
 				<thead>
 					<tr>
 						<th class="">ID</th>
@@ -23,6 +26,7 @@
 						<th class="">Bank Ac</th>
 						<th class="text-end">Ref/Cheque No</th>
 						<th class="text-end">Amount</th>
+
 						<th class="text-end">Currency</th>
 						<th class="">Actions</th>
 					</tr>
@@ -37,9 +41,8 @@
 							<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/></td>
 							<td class="text-end">{{ $payment->currency }}</td>
 							<td class="table-action">
-								<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light btn-sm" 
-									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
-								</a>
+								<a href="{{ route('payments.show',$payment->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+									<i class="align-middle" data-lucide="eye"></i></a>
 							</td>
 						</tr>
 					@endforeach

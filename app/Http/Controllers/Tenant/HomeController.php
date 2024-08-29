@@ -73,8 +73,17 @@ class HomeController extends Controller
 		return view('tenant.help.help');
 	}
 
-	public function testNotification()
+	public function testNotification($id = null)
 	{
+
+		//Log::debug('I am here testNotification');
+
+		if(empty($id)){
+			Log::debug('NO ID selected!');
+		} else {
+			Log::debug('Sending notification to id=' . $id);
+		}
+
 		// Send notification to Pr creator
 		$pr = PR::where('id', 1001)->first();
 		$action = WflActionEnum::SUBMITTED->value;

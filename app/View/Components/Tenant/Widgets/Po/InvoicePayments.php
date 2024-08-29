@@ -15,9 +15,9 @@ class InvoicePayments extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $iid)
+	public function __construct(public string $invoiceId)
 	{
-		$this->payments 	= Payment::with('bank_account')->where('invoice_id', $iid)->get()->all();
+		$this->payments 	= Payment::with('bank_account')->where('invoice_id', $invoiceId)->get()->all();
 	}
 
 	/**

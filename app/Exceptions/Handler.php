@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 //use Illuminate\Database\Eloquent\ItemNotFoundException;
 use Illuminate\Support\ItemNotFoundException;
 
+// ok
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+//NOT use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Response;
+
 use App\Models\Landlord\Manage\ErrorLog;
 
 class Handler extends ExceptionHandler
@@ -25,10 +30,42 @@ class Handler extends ExceptionHandler
 		'password_confirmation',
 	];
 
+
+	// https://stackoverflow.com/questions/54392184/laravel-5-7-how-to-log-404-with-url
+	public function render33($request, Exception $exception)
+	{
+		if($this->is404($exception)) {
+			$this->log404($request);
+		}
+	
+		return parent::render($request, $exception);
+	}
 	/**
 	 * Register the exception handling callbacks for the application.
 	 */
-	public function register(): void
+
+	// https://medium.com/@dayoolapeju/exception-error-handling-in-laravel-25843a8aabb3
+	 public function okregister(): void
+	 {
+		 $this->renderable(function (Throwable $e) {
+			 if($e instanceof NotFoundHttpException) {
+				 Log::info('From renderable method: '.$e->getMessage());
+	 
+				 // you can return a view, json object, e.t.c
+				 return response()->json([
+					 'message' => 'From renderable method: Resource not found'
+				 ], Response::HTTP_NOT_FOUND);
+			 }
+	 
+			 return response()->json([
+				 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
+				 'message' => $e->getMessage()
+			 ], Response::HTTP_INTERNAL_SERVER_ERROR);
+		 });
+	 }
+
+
+	public function TODOregister(): void
 	{
 		$this->reportable(function (Throwable $e) {
 
@@ -79,4 +116,6 @@ class Handler extends ExceptionHandler
 
 		});
 	}
+
+	
 }

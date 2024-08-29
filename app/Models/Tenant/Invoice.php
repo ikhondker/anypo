@@ -72,6 +72,16 @@ class Invoice extends Model
 	}
 
 	/**
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopePaymentDue(Builder $query): void
+	{
+		$query->where('status',InvoiceStatusEnum::POSTED->value);
+		// TODO ->where('payment_status',); 
+		// PaymentStatusEnum::DUE or PaymentStatusEnum::PARTIAL
+	}
+
+	/**
 	 * Scope a query to return all payment of PO's where he is the buyer.
 	*/
 	public function scopeByPoBuyer(Builder $query, $id): void

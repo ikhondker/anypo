@@ -64,6 +64,10 @@ Gate::define('access-back-office',)
 - ==>	laravel-tenancy.txt
 
 
+13. app/Exceptions\Handler.php
+    register on-demand
+
+
 ## NOT Used
 ~~~
 protected function mapManageRoutes()

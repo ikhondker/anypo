@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 use App\Models\Tenant\Manage\Status;
 use App\Enum\ClosureStatusEnum;
+use App\Enum\AuthStatusEnum;
 
 class Pol extends Model
 {
@@ -36,17 +37,41 @@ class Pol extends Model
 		// 'closure_status'	=> ClosureStatusEnum::class,
 	];
 
-	/* ----------------- Functions ---------------------- */
-	/* ----------------- HasMany ------------------------ */
-	/* ---------------- belongsTo ---------------------- */
-	/* ---------------- belongsTo ---------------------- */
+	/* ----------------- Scopes ------------------------- */
+	/**
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopexxReceiptDue(Builder $query): void
+	{
+		//TODO
+		$query->where('closure_status',ClosureStatusEnum::OPEN->value);
+		//->where('received_qty','<','qty');
+	}
 
+	/**
+	 * Scope a query to return all payment of PO's where he is the buyer.
+	*/
+	public function scopeReceiptDue(Builder $query): void
+	{
+		// P2
+		//if (! $id) return;
+		$query->where('closure_status',ClosureStatusEnum::OPEN->value)
+			->whereHas('po', function ($q) {
+				$q->where('auth_status',AuthStatusEnum::APPROVED->value);
+			});
+	}
+
+
+	/* ----------------- Functions ---------------------- */
+
+	/* ----------------- HasMany ------------------------ */
+
+	/* ---------------- belongsTo ---------------------- */
 	public function close_status_badge(){
 		return $this->belongsTo(Status::class,'closure_status')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}
-
 
 	public function po(){
 		return $this->belongsTo(Po::class,'po_id');

@@ -31,7 +31,7 @@
 
 	<x-tenant.widgets.invoice-line.list-all-lines invoiceId="{{ $invoice->id }}"/>
 
-	{{-- <x-tenant.widgets.po.invoice-payments :iid="$invoice->id" /> --}}
+	<x-tenant.widgets.po.invoice-payments :invoiceId="$invoice->id" />
 
 	<script type="text/javascript">
 		function mySubmit() {

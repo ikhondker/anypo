@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades;
 use Illuminate\View\View;
-
+//use Illuminate\Http\Request;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
@@ -77,7 +77,7 @@ class ViewServiceProvider extends ServiceProvider
 		view()->composer('layouts.tenant.app', function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu	= new Menu;
-			 	//Log::debug("ViewServiceProvider.boot.tenant raw_route_name = ".$raw_route_name);
+			//Log::debug("ViewServiceProvider.boot.tenant raw_route_name = ".$raw_route_name);
 			try {
 				$menu = Menu::where('raw_route_name',$raw_route_name)
 					->where('enable',true)

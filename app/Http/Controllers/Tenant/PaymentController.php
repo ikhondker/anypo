@@ -120,11 +120,13 @@ class PaymentController extends Controller
 		abort(403);
 	}
 
+	
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function createForInvoice(Invoice $invoice)
+	public function createForInvoice(Invoice $invoice = null)
 	{
+
 		$this->authorize('createForInvoice', Payment::class);
 
 		$setup 	= Setup::first();
@@ -132,20 +134,31 @@ class PaymentController extends Controller
 			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
 		}
 
-		// check if invoice is posted
-		if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
-			//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
-			return back()->withError("You can only Pay POSTED Invoices!")->withInput();
-		}
-
-		$po = Po::where('id', $invoice->po_id)->first();
-		if ($po->status <> ClosureStatusEnum::OPEN->value) {
-			return redirect()->route('pos.show', $po->id)->with('error', 'You can make Payment only for OPEN Purchase Orders!');
-		}
-
 		$bank_accounts = BankAccount::primary()->get();
+		
+		if(empty($invoice)){
+			Log::debug('tenant.PaymentController.createForInvoice No Invoice Selected!');
 
-		return view('tenant.payments.create-for-invoice', with(compact('po','invoice','bank_accounts')));
+			$invoices = Invoice::paymentDue()->get();
+			return view('tenant.payments.create-for-invoice', with(compact('invoice','invoices','bank_accounts')));
+		} else {
+			
+			Log::debug('tenant.PaymentController.createForInvoice Creating payment for invoice id=' . $invoice->id);
+			
+			// check if invoice is posted
+			if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
+				//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
+				return back()->withError("You can only Pay POSTED Invoices!")->withInput();
+			}
+	
+			$po = Po::where('id', $invoice->po_id)->first();
+			if ($po->status <> ClosureStatusEnum::OPEN->value) {
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can make Payment only for OPEN Purchase Orders!');
+			}
+
+			return view('tenant.payments.create-for-invoice', with(compact('po','invoice','bank_accounts')));
+		}
+
 	}
 
 	/**
@@ -155,20 +168,30 @@ class PaymentController extends Controller
 	{
 		$this->authorize('createForInvoice', Payment::class);
 
-		//$po = Po::where('id', $request->input('po_id'))->first();
+		// populate po_id in payment to simplify coding 
+		$invoice = Invoice::where('id', $request->input('invoice_id'))->first();
+		
+		// check if invoice is posted (if direct creation)
+		if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
+			//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
+			return back()->withError("You can only Pay POSTED Invoices!")->withInput();
+		}
+		
+		// check if PO is open (if direct creation)
+		$po = Po::where('id', $invoice->po_id)->first();
+		if ($po->status <> ClosureStatusEnum::OPEN->value) {
+			return redirect()->route('pos.show', $po->id)->with('error', 'You can make Payment only for OPEN Purchase Orders!');
+		}
 
 		// Check over Payment
 		$request->validate([
 			'amount' => [new OverPaymentRule ( $request->input('invoice_id'))],
 		]);
-
-		
+	
 		$request->merge(['payment_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['payee_id'			=> 	auth()->user()->id ]);
-		
-		// populate po_id in payment to simplify coding 
-		$invoice = Invoice::where('id', $request->input('invoice_id'))->first();
 		$request->merge(['po_id'			=> $invoice->po_id ]);
+		$request->merge(['currency'			=> $invoice->currency ]);
 		$payment = Payment::create($request->all());
 
 		if ($file = $request->file('file_to_upload')) {
@@ -347,7 +370,7 @@ class PaymentController extends Controller
 			ConsolidateBudget::dispatch($dept_budget->budget_id);
 
 			// Create Reverse Accounting for this Receipt
-			AelPayment::dispatch($payment->id, $payment->fc_amount, true);
+			AehPayment::dispatch($payment->id, $payment->fc_amount, true);
 
 			// cancel Payment
 			Payment::where('id', $payment->id)

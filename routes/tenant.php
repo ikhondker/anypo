@@ -361,8 +361,9 @@ Route::middleware([
 		Route::get('/invoice/my-invoices',[InvoiceController::class,'myInvoices'])->name('invoices.my-invoices');
 		Route::post('/invoice/attach',[InvoiceController::class,'attach'])->name('invoices.attach');
 		Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
+		Route::get('/invoices/payments/{invoice}',[InvoiceController::class,'payments'])->name('invoices.payments');
 		Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
-		
+
 		Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
 		Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
 		Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
@@ -393,6 +394,9 @@ Route::middleware([
 		Route::resource('reports', ReportController::class);
 		Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
 		Route::get('/report/po/{id}',[ReportController::class, 'po'])->name('reports.po');
+		Route::get('/report/invoice/{id}',[ReportController::class, 'invoice'])->name('reports.invoice');
+		Route::get('/report/payment/{id}',[ReportController::class, 'payment'])->name('reports.payment');
+		Route::get('/report/receipt/{id}',[ReportController::class, 'receipt'])->name('reports.receipt');
 		Route::get('/reports/parameter/{report}',[ReportController::class,'parameter'])->name('reports.parameter');
 		Route::put('/reports/run/{report}',[ReportController::class,'run'])->name('reports.run');
 
@@ -507,11 +511,15 @@ Route::middleware([
 		Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
 
 		/* ======================== Receipt ======================================== */
-		Route::get('/receipts/create-for-pol/{pol}',[ReceiptController::class,'createForPol'])->name('receipts.create-for-pol');
+		Route::get('/receipt/create-for-pol/{pol?}',[ReceiptController::class,'createForPol'])->name('receipts.create-for-pol');
+
 		/* ======================== Invoice ======================================== */
-		Route::get('/invoices/create-for-po/{po}',[InvoiceController::class,'createForPo'])->name('invoices.create-for-po');
+		Route::get('/invoice/create-for-po/{po?}',[InvoiceController::class,'createForPo'])->name('invoices.create-for-po');
+
 		/* ======================== Payment ======================================== */
-		Route::get('/payments/create-for-invoice/{invoice}',[PaymentController::class,'createForInvoice'])->name('payments.create-for-invoice');
+		Route::get('/payment/create-for-invoice/{invoice?}',[PaymentController::class,'createForInvoice'])->name('payments.create-for-invoice');
+		//Route::get('/payments/create-for-invoice/{id?}',[PaymentController::class,'testNotification'])->name('payments.create-for-invoice');
+		//Route::get('/payments/send/{id}',[PaymentController::class,'testNotification'])->name('payments.send');
 					
 		/* ======================== UploadItem ======================================== */
 		Route::resource('upload-items', UploadItemController::class);
@@ -762,8 +770,9 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
+		//Route::get('/payment/send/{xid?}',[PaymentController::class,'testNotification'])->name('payments.send');
 		/* ======================== Home Controller ======================================== */
-		Route::get('/send', [HomeController::class, 'testNotification'])->name('send');
+		Route::get('/send/{id?}', [HomeController::class, 'testNotification'])->name('send');
 		Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
 		Route::post('/save-contact', [HomeController::class, 'saveContact'])->name('home.savecontact');
 		Route::get('/send-queue-email', function(){

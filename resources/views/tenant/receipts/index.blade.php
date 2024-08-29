@@ -11,7 +11,7 @@
 			Receipt Lists
 		@endslot
 		@slot('buttons')
-			{{-- <x-tenant.buttons.header.create object="Receipt"/> --}}
+			<a href="{{ route('receipts.create-for-pol') }}" class="btn btn-primary float-end me-2"><i data-lucide="plus-circle"></i> Create</a>
 			<x-tenant.actions.receipt-actions-index/>
 		@endslot
 	</x-tenant.page-header>

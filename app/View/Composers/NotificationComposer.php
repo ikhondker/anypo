@@ -9,6 +9,9 @@ use Illuminate\View\View;
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Notification;
 
+use Illuminate\Support\Facades\Log;
+
+
 class NotificationComposer
 {
 	/**
@@ -21,6 +24,8 @@ class NotificationComposer
 	 */
 	public function compose(View $view): void
 	{
+
+		//Log::debug('NotificationComposer ... ');
 
 		if (auth()->check()){
 			//$_notifications = auth()->user()->Notifications;

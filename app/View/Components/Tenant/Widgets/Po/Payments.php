@@ -15,9 +15,9 @@ class Payments extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $poId)
 	{
-		$this->payments 	= Payment::with('bank_account')->where('po_id', $id)->get()->all();
+		$this->payments 	= Payment::with('bank_account')->where('po_id', $poId)->get()->all();
 	}
 
 	/**

@@ -109,7 +109,7 @@ Log::info(print_r($dept_budget, true));
 
 # 7. Error Reporting 
 ====================================================================
-- custom error reportign in laravel.log warnign and error 
+- custom error reporting in laravel.log warnign and error 
 - app/exceptions/Handler
 - write to: \App\Models\Landlord\Manage\ErrorLog();
 
@@ -122,6 +122,7 @@ Log::info(print_r($dept_budget, true));
 4. while passing data to component, variable name with _ create issues dept_budge_id did not work bu dbid word
 4. check all env used env('APP_DOMAIN'); case sensitive
 5. in production env, un-handled exception write full log in laravel.log
+6. to debug 404 error use the regiter method of app/Exacptins/Handler
 
 # 5. Set Environment 
 ====================================================================

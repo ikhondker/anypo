@@ -15,7 +15,6 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Invoice"/>
-			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
 			<x-tenant.actions.invoice-actions invoiceId="{{ $invoice->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
@@ -24,8 +23,6 @@
 	<form action="{{ route('invoices.update',$invoice->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
-
-
 
 		<div class="row">
 			<div class="col-6">

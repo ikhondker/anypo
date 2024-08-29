@@ -7,6 +7,8 @@ use Illuminate\View\View;
 
 use App\Models\Tenant\Admin\Setup;
 
+use Illuminate\Support\Facades\Log;
+
 class SetupComposer
 {
 	/**
@@ -19,6 +21,8 @@ class SetupComposer
 	 */
 	public function compose(View $view): void
 	{
+		//Log::debug('SetupComposer ... ');
+
 		$setup = Setup::first();
 		$view->with(['_setup' => $setup]);
 		//$view->with('count', $this->users->count());

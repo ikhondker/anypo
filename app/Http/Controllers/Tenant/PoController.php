@@ -796,18 +796,6 @@ class PoController extends Controller
 
 		$data = DB::select($sql);
 
-		// $data = DB::select("
-		// SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
-		// po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date
-		// FROM pos po, depts d, projects p, suppliers s, users u
-		// WHERE po.dept_id=d.id
-		// AND po.project_id=p.id
-		// AND po.supplier_id=s.id
-		// AND po.requestor_id=u.id
-		// AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
-		// AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
-		// ORDER BY po.id DESC	");
-
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('po-lists', $dataArray);
@@ -877,6 +865,8 @@ class PoController extends Controller
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
 		return view('tenant.pos.invoices', compact('po'));
 	}
+
+	
 	public function payments(Po $po)
 	{
 		$this->authorize('view', $po);
