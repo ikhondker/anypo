@@ -75,6 +75,19 @@
 						@endif
 						
 						<tr>
+							<th>Particulars</th>
+							<td>
+								<input type="text" class="form-control @error('summary') is-invalid @enderror"
+								name="summary" id="summary" placeholder="Summary"
+								value="{{ old('summary', '' ) }}"
+								required/>
+							@error('summary')
+								<div class="text-danger text-xs">{{ $message }}</div>
+							@enderror
+							</td>
+						</tr>
+						
+						<tr>
 							<th>Bank Ac</th>
 							<td>
 								<select class="form-control" name="bank_account_id" required>

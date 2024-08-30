@@ -286,6 +286,16 @@ class Po extends Model
 	}
 
 	/**
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopeAllOpen(Builder $query): void
+	{
+		$query->where('auth_status',AuthStatusEnum::APPROVED->value)
+			->where('status',ClosureStatusEnum::OPEN->value);
+	}
+
+
+	/**
 	 * Scope a query to only All InProcess PR for current tenant.
 	*/
 	public function scopeAllInProcess(Builder $query): void

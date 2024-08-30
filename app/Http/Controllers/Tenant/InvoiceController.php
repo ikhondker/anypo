@@ -133,7 +133,7 @@ class InvoiceController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function createForPo(Po $po)
+	public function createForPo(Po $po = null)
 	{
 
 		$this->authorize('createForPo', Invoice::class);
@@ -142,20 +142,26 @@ class InvoiceController extends Controller
 		if ( $setup->readonly ){
 			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
 		}
-		// check if po is approved and open
-		if ( $po->auth_status <> AuthStatusEnum::APPROVED->value ) {
-			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for APPROVED Purchase Order!');
-		}
 
-		if ( $po->status <> ClosureStatusEnum::OPEN->value ) {
-			return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for OPEN Purchase Order!');
-		}
-
-		Log::debug('tenant.invoices.create creating invoice for po_id = ' . $po->id);
 		//$po = Po::where('id', $po_id)->first();
 		$pocs	= User::Tenant()->get();
 
-		return view('tenant.invoices.create-for-po', with(compact('po','pocs')));
+		if(empty($invoice)){
+			Log::debug('tenant.InvoiceController.createForPo No PO Selected!');
+			$pos = Po::allOpen()->get();
+			return view('tenant.invoices.create-for-po', with(compact('po','pos','pocs')));
+		} else {
+			Log::debug('tenant.invoices.createForPo creating invoice for po_id = ' . $po->id);
+			// check if po is approved and open
+			if ( $po->auth_status <> AuthStatusEnum::APPROVED->value ) {
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for APPROVED Purchase Order!');
+			}
+			if ( $po->status <> ClosureStatusEnum::OPEN->value ) {
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for OPEN Purchase Order!');
+			}
+
+			return view('tenant.invoices.create-for-po', with(compact('po','pocs')));
+		}
 	}
 
 	/**
@@ -166,6 +172,7 @@ class InvoiceController extends Controller
 
 		$this->authorize('createForPo', Invoice::class);
 		$setup = Setup::first();
+
 		// get PO
 		$po = Po::where('id', $request->input('po_id'))->first();
 
@@ -175,7 +182,6 @@ class InvoiceController extends Controller
 			'supplier_id'	=> $po->supplier_id,
 			'fc_currency'	=> $setup->currency
 		]);
-
 	
 		// as this is the first line pr value will be same as prl values
 		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);

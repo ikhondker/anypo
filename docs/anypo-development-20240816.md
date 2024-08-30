@@ -16,7 +16,7 @@
 12. Seeded
 13. FUTURE 
 1. create a new role PM for projects
-2. layout chang for edit user page role change
+2. layout change for edit user page role change
 
 # 12. Function Sequence in Controller 
 ====================================================================
@@ -57,7 +57,7 @@ Log::info(print_r($dept_budget, true));
 3.  move price/checkout/online invoice in HomeCOntroller as no auth() needed
 4.  use @forelse ($products as $product) everywhere
 5.  all model withDefault[Empty]
-6.  load balance one small vm witg apapche+2app+1 db server
+6.  load balance one small vm witg apache+2app+1 db server
 7.  P2 quick code snipe generator like breadcrumb, edit, add etc
 8.  merge sweet alert landlord and tenant
 9.  check TODO clean
@@ -81,7 +81,7 @@ Log::info(print_r($dept_budget, true));
 31. cell placeholder="+x(xxx)xxx-xx-xx"
 32. install laravel sentry for error monitoring
 33. laravel pulse
-35. enable verify middleware for all route
+35. enable verify middle ware for all route
 36. throw new NotFoundHttpException();
 37. index() and cache() in migration and model
 38. unique in name for all lookup
@@ -91,9 +91,9 @@ Log::info(print_r($dept_budget, true));
 ====================================================================
 1. recon country vs currency vs flag
 2. Edit CORS Configuration aws
-3. terms and conditon for tena registraion
-4. inital item code uplaod
-5. tenant login page show comapny logo
+3. terms and condition for tenant registration
+4. initial item code upload
+5. tenant login page show company logo
 
 # 8. Folders 
 ====================================================================
@@ -109,7 +109,7 @@ Log::info(print_r($dept_budget, true));
 
 # 7. Error Reporting 
 ====================================================================
-- custom error reporting in laravel.log warnign and error 
+- custom error reporting in laravel.log warning and error 
 - app/exceptions/Handler
 - write to: \App\Models\Landlord\Manage\ErrorLog();
 
@@ -118,11 +118,11 @@ Log::info(print_r($dept_budget, true));
 ====================================================================
 1. for non id PK, define PK in model
 2. when column name and relation name equal error. Must be separated
-3. Pr status and auth_status issue. Eager loading warning. ok. Dont cast these two column in model. with() failse
+3. Pr status and auth_status issue. Eager loading warning. ok. Don't cast these two column in model. with() fails
 4. while passing data to component, variable name with _ create issues dept_budge_id did not work bu dbid word
 4. check all env used env('APP_DOMAIN'); case sensitive
 5. in production env, un-handled exception write full log in laravel.log
-6. to debug 404 error use the regiter method of app/Exacptins/Handler
+6. to debug 404 error use the register method of app/Exception/Handler
 
 # 5. Set Environment 
 ====================================================================

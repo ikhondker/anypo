@@ -1,50 +1,50 @@
 # TODO ----------------------
 - TenantSetupComposer -> SetupComposer
-- Info image aws upalod 
+- Info image aws upload 
 
 
 
 
 # Rates
-tenant crerate at 4-may-24. next user lgoin in july. Is the rate imorted covering tJun-24?
+tenant created at 4-may-24. next user login in july. Is the rate imported covering tJun-24?
 UPDATE `setups` SET `last_rate_date` = '2024-05-01 00:00:00' WHERE `setups`.`id` = 1001;
 
 
 
 # User
-ok - Disbale user login stop?
+ok - Disable user login stop?
 - can register
 - he can not login unless activate
-- admin chagne user password
-- backoffi change tenat admin passowrd
-- from email verificatsion can login directly but not from login screen!
-- user can only edit/cahgne password of owne
-- admin can edit/cahgne password of all
-- admin can not disbale own account
+- admin change user password
+- back-office change tenant admin password
+- from email verification can login directly but not from login screen!
+- user can only edit/change password of owner
+- admin can edit/change password of all
+- admin can not disable own account
 
 
 # PR
 - delete pr and prl
-- cancle pr: only approved. can not cancel if ocnverred 
+- cancel pr: only approved. can not cancel if converted 
 - reject
-- change curranc and update line and save
-- in kpi: draft amount can not be shows as there might be non base curnet PR
+- change currency and update line and save
+- in kpi: draft amount can not be shows as there might be non base current PR
 -
 
 # PO
 - delete: only draft,only where is buyer, reset PR
-- cancle: only approved. reverse everyting
+- cancel: only approved. reverse everything
 - reject: reverse booking
-- in kpi: draft amount can not be shows as there might be non base curnet PO
+- in kpi: draft amount can not be shows as there might be non base current PO
 - 
 - 
 # POL
-- line cancel is not allowd in apprved PO. workarodun cancel the PO then recreate.
+- line cancel is not allowed in approved PO. workaround cancel the PO then recreate.
 
 
 # RECEIPT
 - no delete:
-- cancle: only reverse
+- cancel: only reverse
 
 # INVOCIE
 - delete: only draft
@@ -52,14 +52,14 @@ ok - Disbale user login stop?
 
 # PAYMNET
 - delete: No
-- cancle: reverse
--132. allow only payment form same currencybanck account
+- cancel: reverse
+-132. allow only payment form same currency bank account
 
  
 # BUDGET
 - make sure can not reduce budget below issues+bookingBudget
 - Can not keep open multiple budget - test
-- Can not open next year if previos year is open - tested
+- Can not open next year if previous year is open - tested
 
 
 # Dept Budget
@@ -82,12 +82,12 @@ ael imported y/n
 
 
 # item interface
-- validated intems edit makes it draft
+- validated items edit makes it draft
 
 
 # Activity
-- BIG issue iwth activty. not savign old value. move to manage.
-- workaround-write to logn before update
+- BIG issue with activity. not saving old value. move to manage.
+- workaround-write to logon before update
 
 # Uom
 -- wont be able to edit or disable the class defaults

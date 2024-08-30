@@ -83,7 +83,7 @@ BO-4-source-file-modify-20230413.txt
 -------------------------------------------------------------------------------------------------
 157. wfs.index badge not shown
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
-155. fix component  list -> ArticleLink nad ProjectLink
+155. fix component  list -> ArticleLink and ProjectLink
 154. export file name add export
 153. allow user to edit attachment file description
 155. add users need multi user avatar
@@ -92,7 +92,7 @@ BO-4-source-file-modify-20230413.txt
 150. Printed Receipt Report (TBD)
 150. Printed Invoice Report (TBD)
 149. Printed Payment Report (TBD)
-148. Find and replace 'PO #', 'PR #', debug('tenant, =$, @can('edit' , ANYPO.NET, <i class="bi
+148. Find and replace 'PO #', 'PR #', debug('tenant, =$, @can('edit' , ANYPO.NET, <i class="bi"
 126. find and replace 01911310509 +0012262804920 you@company.com email@example.com
 127. address/remove all TODO
 147. rewrite po lists
@@ -137,7 +137,7 @@ BO-4-source-file-modify-20230413.txt
 134. command generator based on tenants
 142. budget update approval workflow P2
 1. add advance/prepayment functionality
-1. edit user edit form show lrofile left side 
+1. edit user edit form show profile left side 
 2. PR budget utilization pie chart in budget dashboard
 1. item attachment, supplier attachments
 1.	* a check list to check count and amount by sql with budget level count of po/project/supplier etc
@@ -145,7 +145,7 @@ BO-4-source-file-modify-20230413.txt
 3.	add date filter in applicable index pages like Ael
 4.	API in landlord to create ticket form tenant on unexpected issues
 5.	allow download data with parameter and filter like date/vendor/project item etc
-6.	 <label for="summary" 
+6.	 <label for="summary"
 7.	breadcrumb change to icons
 8.	breadcrumb replace with feather arrow icon
 9.	during user creation by admin set dept and designation
@@ -165,7 +165,7 @@ BO-4-source-file-modify-20230413.txt
 23.	Add collapsible card + add search card + search in menu + hamburger icon change
 24.	page loader spinner in pages
 25.	$setup->enable = false. block access
-26.	<link rel="canonical" href="https://appstack.bootlab.io/pages-blank.html" />
+26.	<link rel='canonical' href='https://appstack.bootlab.io/pages-blank.html' />
 27.	hide support user activity from activity view
 118. vite /npm build deploy to amazon 
 

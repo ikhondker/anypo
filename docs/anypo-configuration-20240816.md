@@ -24,7 +24,7 @@ https://www.brevo.com/pricing/
 17. 0.17 move back project to lookup, po by supplier, po by project, separate profile, sw2 move to custom.js, Aeh, Ael ErrorLog, before discarding front theme
 18. 0.18 discard front use single appstack theme, CustomException, dsicss all routes, split helper into landlord and tenant
 19. 0.19 Major Update. Removed Front4.3.1 theme from Landlord. Tenant Theme AppsStack upgraded from 3.4.1 to 4.0.0. Template object moved to share. Added Budget Revision history, Before clean.
-20. 0.20 [ongoing] cleaned, attachment description, move attachment to root, rewrite pr and po , add invoiceLines, component argument rename form id, InvoiceLines,
+20. 0.20 [ongoing] cleaned, attachment description, move attachment to root, rewrite pr and po , add invoiceLines, component argument rename form id, InvoiceLines, direct creation invoice/pol/receipt
 
 # 12. key configuration 
 ====================================================================
@@ -55,9 +55,7 @@ $ ab -n 100 -c 10 https://demo1.anypo.net/
 # 10. Setup 
 ====================================================================
 1. php artisan storage:link
-1. manual copy bo05 file in appropriate folder
 2. copy confg/bo
-3. sslcommerz: config/sslcommerz.php
 4. config: app and 
 5. notification logo https://anypo.net/logo.png
 6. copy font D:\laravel\anypo\storage\fonts
@@ -71,7 +69,7 @@ $ ab -n 100 -c 10 https://demo1.anypo.net/
 	- Private Files: local
 2. all CSS & js is is from s3->cloudfront CDN 
 3. all avatar and logo is from s3->cloudfront CDN  -> anypo=public bucket
-4. all attahcment form local storage
+4. all attachment form aws storage, because in future might need multiple middle tier server
 
 ~~~
 ; Default timeout for socket based streams (seconds)
@@ -89,7 +87,7 @@ php artisan queue:listen --timeout=1200
 - D:\laravel\bo05\storage\app\logo    - logo in pdf 
 
 ## Tenant
-- Error 401—Unauthorised
+- Error 401—Unauthorized
 - Error 403—Forbidden
 - Error 404—Not Found
 - Error 419—Laravel POST Error
@@ -115,7 +113,7 @@ php artisan queue:listen --timeout=1200
 
 # 5. Tables with Same name in both 
 ====================================================================
-* Move to manage subfolder ween NO route level access is needed by frontend. Only model level access
+* Move to manage sub folder ween NO route level access is needed by fronted. Only model level access
 
 			Landlord				Tenant
 			'can:access-back-office'	?? TODO

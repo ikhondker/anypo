@@ -52,7 +52,7 @@ pr.index : HoD+Buyer+CxO sees only approve PR lists
 - 5 type list: @include('tenant.includes.po.po-lists-table')
 	all (index) + my (my-pos)+ recent (po-lists-recent) + supplier(ListBySupplier->list-by-supp) + project(ListByProject->list-by-project)
 - buyer can create direly manual PO
-- pos header requster_id not decided yet
+- pos header requester_id not decided yet
 - dynamic change of UoM code is in calculate-po-amount
  
 # BUDGET

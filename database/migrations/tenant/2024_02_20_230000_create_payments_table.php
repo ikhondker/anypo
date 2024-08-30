@@ -21,7 +21,7 @@ return new class extends Migration
 			$table->foreignId('po_id')->constrained('pos');
 			$table->date('pay_date')->default(DB::raw('(CURDATE())'));
 			$table->foreignId('payee_id')->constrained('users');
-			//$table->string('summary')->nullable();
+			$table->string('summary')->nullable();
 			$table->foreignId('bank_account_id')->constrained('bank_accounts')->nullable();
 			$table->string('cheque_no');
 			$table->string('currency',3);

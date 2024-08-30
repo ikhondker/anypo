@@ -27,10 +27,10 @@
 19. dashboard
 20. multi currency
 21. AP rate auto collection
-22. proejct cost tracking
+22. project cost tracking
 23. notify system on error
-24. auto accounting genratsion
-25. fale base dintegrtison iwth core accoung system
+24. auto accounting generation
+25. file based integration with core accounting system
 
 
 # 3.Major steps 
@@ -39,7 +39,7 @@
 2. git 
 3. appsstack deploy
 	- tenant is using public\tenancy\assets for css by default. 
-4. install multitenant and enable universal
+4. install multi tenant and enable universal
 5. enable livewire for lieutenancy
 6. enable queue
 7. review code standard with laravel pint (laravel-used-packeges.txt)
