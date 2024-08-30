@@ -1,6 +1,5 @@
 {{-- @extends('layouts.portrait') --}}
-{{-- @extends('layouts.tenant.landscape') --}}
-@extends('layouts.tenant.report')
+@extends('layouts.tenant.landscape')
 
 @section('title','Requisition')
 {{-- @section('breadcrumb','Create Pr') --}}
@@ -33,56 +32,6 @@
 		</div>
 	</div>
 @endsection
-
-@section('info1')
-	<div class="desc">Summary:<strong> {{ $pr->summary }}</strong></div>
-	<div class="desc">Proposed Vendor: {{ $pr->supplier->name }}</div>
-@endsection
-
-@section('info2')
-	<div class="numeric">Project: {{ $pr->project->name }}</div>
-	<div class="numeric">Department: {{ $pr->dept->name }}</div>
-@endsection
-
-@section('data')
-	<thead>
-		<tr>
-			<th class="sl">#</th>
-			<th class="desc">DESCRIPTION</th>
-			<th class="desc">UOM</th>
-			<th class="numeric">UNIT PRICE</th>
-			<th class="numeric">QUANTITY</th>
-			<th class="numeric">SUBTOTAL</th>
-			<th class="numeric">TAX</th>
-			<th class="numeric">GST</th>
-			<th class="numeric">AMOUNT</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach ($prls as $prl)
-		<tr>
-			<td class="sl">{{ $prl->line_num }}</td>
-			<td class="desc">{{ $prl->item_description }}</td>
-			<td class="desc">{{ $prl->item->uom->name }} </td>
-			<td class="numeric">{{ number_format($prl->price,2) }}</td>
-			<td class="numeric">{{ $prl->qty }}</td>
-			<td class="numeric">{{ number_format($prl->sub_total,2) }}</td>
-			<td class="numeric">{{ number_format($prl->tax,2) }}</td>
-			<td class="numeric">{{ number_format($prl->gst,2) }}</td>
-			<td class="numeric">{{ number_format($prl->amount,2) }}</td>
-		</tr>
-		@endforeach
-		<tr>
-			<td colspan="8" style="text-align: right;"><strong>TOTAL ({{ $pr->currency }}):</strong></td>
-			<td style="text-align: right;">{{ number_format($pr->amount,2) }}</td>
-		</tr>
-	</tbody>
-@endsection
-
-@section('notes')
-	NOTES: {!! nl2br( $pr->notes ) !!}<br><br>
-@endsection
-
 
 @section('content')
 

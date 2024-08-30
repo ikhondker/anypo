@@ -18,6 +18,8 @@
 * DD-MON-YYYY	v1.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
+// https://laracasts.com/discuss/channels/laravel/how-to-display-footer-on-all-pages-in-laravel-generated-pdf
+// https://ourcodeworld.com/articles/read/687/how-to-configure-a-header-and-footer-in-dompdf
 
 namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;

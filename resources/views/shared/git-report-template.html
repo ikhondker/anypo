@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Master Invoice</title>
+	<title>Report Template</title>
 	<style type="text/css">
 		/* CSS for styling the invoice */
-
 		body {
 			font-family: "Inter", sans-serif;
 			font-size: 14px;
 		}
+
 		table {
 			border-collapse: collapse;
 			width: 100%;
 		}
 		#data th, td {
 			border: 1px solid silver;
-			padding: 6px;
+			padding: 8px;
 		}
 		#data th {
 			text-align: left;
 			background-color: #f2f2f2;
 		}
+
 		/* added styles */
 		.logo {
 			width: 100px;
@@ -45,79 +46,61 @@
 			padding: 10px;
 		}
 
-
-
+		/* Custom  Iqbal */
 		.address {
 			font-size: 12px;
 			width: 50%;
-			padding: 10px;
+			margin: 0px;
+			padding: 3px;
 		}
-		hr.new1 {
+		h2, h3 {
+			margin: 0;
+			padding: 0;
+		}
+		hr {
 	  		border-top: 1px solid silver;
 		}
-
-		table #footer1 {
-			border-collapse: collapse;
-			border: none;
-		}
-
-        #footer1 td, th {
-		  	border: none;
-		}
-
 		#letterhead td, th {
 		  	border: none;
 		}
-
-		/* .footer tr, td {
-    		border: none;
-		} */
-
-		.footer {
-			font-size:10px;
-			width: 33%;
-			padding: 2px;
+		#footer td, th {
+		  	border: none;
 		}
-
 	</style>
 </head>
 <body>
-
-    <table id="letterhead">
-
+	<table id="letterhead1">
 		<tr>
-			<td width='33%'>Item 1</td>
-			<td width='34%'  align='center'>Description of item 1</td>
-			<td width='33%' align='right'>$10.00</td>
-		</tr>
-
-	</table>
-
-
-	<div class="invoice-header">
-		<img class="logo" src="https://www.example.com/logo.png" alt="Company Logo">
-		<div class="company-name">Company Name</div>
-        <div class="company-name">Company Name</div>
-		<br>
-		<div class="address">
-			<p><strong>Invoice From:</strong></br>
-			Company Name<br>
-			Address</br>
-			City, State ZIP</br>
-			Phone: 555-555-5555</p>
-		</div>
-	</div>
-	<table id="header" width='100%' height='50' cellspacing='2' cellpadding='0'>
-		<tr>
-		  	<td>
-				<div align='center' style='font-size: 14px;font-weight: bold;'>Title: Credit note #  137 </div>
-				<div align='center' style='font-size: 11px;'>Title: Credit note #  137 </div>
-				<div align='center' style='font-size: 11px;'>Title: Credit note #  137 </div>
+			<td width='33%'>
+				<h3>Company Name</h3>
+				<div class="address">
+					<strong>Invoice From:</strong></br>
+					Company Name<br>
+					Address</br>
+					City, State ZIP</br>
+					Phone: 555-555-5555
+				</div>
+			</td>
+			<td width='34%' align='center'>
+				<h2>Report Title</h2>
+				<div class="address">
+					<strong>Invoice From:</strong></br>
+					Company Name<br>
+					Phone: 555-555-5555
+				</div>	
+			</td>
+			<td width='33%' align='right'>
+				<img class="logo" src="https://www.example.com/logo.png" alt="Company Logo">
 			</td>
 		</tr>
 	</table>
 
+	<!-- <div class="invoice-header">
+		<img class="logo" src="https://www.example.com/logo.png" alt="Company Logo">
+		<div class="company-name">Company Name</div>
+	</div> -->
 	<!--   <h1>Invoice</h1> -->
+
 	<div class="invoice-from-to">
 		<div class="invoice-from">
 			<p><strong>Invoice From:</strong></p>
@@ -139,17 +122,17 @@
 		<tr>
 			<th>Item</th>
 			<th>Description</th>
-			<th>Price</th>
+			<th style="text-align: right;">Price</th>
 		</tr>
 		<tr>
 			<td>Item 1</td>
 			<td>Description of item 1</td>
-			<td>$10.00</td>
+			<td style="text-align: right;">$10.00</td>
 		</tr>
 		<tr>
 			<td>Item 2</td>
 			<td>Description of item 2</td>
-			<td>$20.00</td>
+			<td style="text-align: right;">$20.00</td>
 		</tr>
 		<tr>
 			<td>Item 3</td>
@@ -158,20 +141,19 @@
 		</tr>
 		<tr>
 			<td colspan="2" style="text-align: right;">Total:</td>
-			<td style="text-align: right;"><strong>$60.00</strong></td>
+			<td style="text-align: right;">$60.00</td>
 		</tr>
 	</table>
-
 	<br>
 
 	<p>Total Due: $60.00</p>
  	<p>Total Due: $60.00</p>
 	<p>Thank you for your business!</p>
 
-	<hr class="new1">
+	<hr>
 
-	<table id="footer1">
-	   	<tr style="border-collapse: collapse; border: none;">
+	<table id="footer">
+		<tr>
 			<td width='33%' style='font-size:10px;' valign='top' >
 				[Company name]
 			</td>
@@ -181,21 +163,8 @@
 			<td valign='top' width='33%' style='font-size:10px;' align='right'>
 				[payment details]
 			</td>
-	   </tr>
+		</tr>
 	</table>
-
-	<div class="invoice-from-to">
-		<div class="footer" valign='top'>
-			Company Name
-		</div>
-		<div class="footer" align='center' valign='top'>
-			Customer Name
-		</div>
-		<div class="footer" align='right' valign='top'>
-			Customer Name
-		</div>
-	</div>
-
 
 </body>
 </html>
