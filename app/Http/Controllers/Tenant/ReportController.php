@@ -86,7 +86,7 @@ class ReportController extends Controller
 			$reports = $reports->orderBy('code', 'ASC')->paginate(100);
 			return view('tenant.reports.all', compact('reports'));
 		} else {
-			$reports = $reports->where('enable', true)->orderBy('id', 'ASC')->paginate(100);
+			$reports = $reports->where('enable', true)->orderBy('code', 'ASC')->paginate(100);
 			return view('tenant.reports.index', compact('reports'));
 		}
 	}
@@ -122,8 +122,6 @@ class ReportController extends Controller
 
 
 	}
-
-
 
 	/**
 	 * Display the specified resource.
@@ -164,54 +162,55 @@ class ReportController extends Controller
 		$bank_account_id	= $request->input('bank_account_id');
 		$pm_id				= $request->input('pm_id');
 
-		Log::debug('tenant.report.run report_id = '.$report->id);
+		Log::debug('tenant.report.run report_code = '.$report->code);
 		Log::debug('tenant.report.run start_date = '.$start_date);
 		Log::debug('tenant.report.run end_date = '.$end_date);
 		Log::debug('tenant.report.run pm_id = '.$pm_id);
 
-		// Increse reports run_count -------------------------
-		DB::statement("UPDATE reports SET
-				run_count	= run_count + 1
-				WHERE id 	= ".$report->id."");
-
-		switch ($report->id) {
-			case '1001':
-				return self::r1001();
+		// Increase reports run_count -------------------------
+		self::increaseRunCounter(Str::lower($report->code));
+		
+		switch ($report->code) {
+			case 'prlist':
+				return self::prlist($start_date, $end_date, $dept_id);
 				break;
-			case '1020':
-				return self::r1020($start_date, $end_date, $dept_id);
-				break;
-			case '1025':
-				return self::r1025($start_date, $end_date, $dept_id);
-				break;
-			case '1030':
-				return self::r1030($start_date, $end_date, $dept_id);
-				break;
-			case '1035':
-				return self::r1035($start_date, $end_date, $dept_id);
-				break;
-			case '1040':
-				return self::r1040($start_date, $end_date, $dept_id);
-				break;
-			case '1045':
-				return self::r1045($start_date, $end_date, $dept_id);
-				break;
-			case '1050':
-				return self::r1050($start_date, $end_date, $dept_id);
-				break;
-			case '1055':
-				return self::r1055($start_date, $end_date, $dept_id);
-				break;
-			case '1060':
-				return self::r1060($start_date, $end_date, $project_id);
-				break;
-			case '1065':
-				return self::r1065($start_date, $end_date, $supplier_id);
-				break;
-			case '1070':
-				return self::r1070($start_date, $end_date);
+			case 'prdetail':
+				return self::prdetail($start_date, $end_date, $dept_id);
 				break;
 
+			case 'polist':
+				return self::polist($start_date, $end_date, $dept_id);
+				break;
+			case 'podetail':
+				return self::podetail($start_date, $end_date, $dept_id);
+				break;
+
+			case 'receiptregister':
+				return self::receiptregister($start_date, $end_date, $dept_id);
+				break;
+
+			case 'invocieregister':
+				return self::invocieregister($start_date, $end_date, $dept_id);
+				break;
+
+			case 'paymentregister':
+				return self::paymentregister($start_date, $end_date, $dept_id);
+				break;
+
+			case 'taxregsiter':
+				return self::taxregsiter($start_date, $end_date, $dept_id);
+				break;
+
+			case 'projectspend':
+				return self::projectspend($start_date, $end_date, $project_id);
+				break;
+
+			case 'supplierspend':
+				return self::supplierspend($start_date, $end_date, $supplier_id);
+				break;
+			case 'aeh':
+				return self::aeh($start_date, $end_date);
+				break;
 			default:
 				Log::warning(tenant('id').' tenant.report.run report_id = '.$report->id.' not found!');
 		}
@@ -290,23 +289,58 @@ class ReportController extends Controller
 		return Export::csv('reports', $dataArray);
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function r1001()
+	public function pr($id)
 	{
-		Log::debug("tenant.report.r1001 inside !");
+		//TODO auth check
+		//TODO if pr exists
+		//Log::debug('tenant.report.pr storage_path() = '.storage_path());
+		// NOTE: Uses InvoicePolicy
+		// $this->authorize('pdfInvoice', $invoice);
+
+		//Log::debug('Function name =' . __FUNCTION__);
+		//Log::debug('Method name =' . __METHOD__);
+
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
+		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
+
+		$title 		= 'Purchase Requisition #'. $pr->id;
+		$subTitle	= 'Amount: '. number_format($pr->amount, 2) .' '. $pr->currency;
+		$param1 	= 'Approval: '. strtoupper($pr->auth_status);
+		$param2 	= '';
+		$param3 	= '';
+		self::increaseRunCounter(Str::lower($report->code));
+		
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'pr' 		=> $pr,
+			'prls' 		=> $prls,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> $param3,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
+		// ->setOption('fontDir', public_path('/fonts/lato'));
+		self::setWatermark($pr->auth_status, $pdf);
+		return $pdf->stream('PR#'.$pr->id.'.pdf');
 	}
 
 	/**
 	 * Display the specified resource.
 	 */
-	public function r1020($start_date, $end_date, $dept_id)
+	public function prlist($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('id', '1020')->firstOrFail();
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$title 		= 'Purchase Requisition List';
+		$subTitle	= 'Status: APPROVED';
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		if ($dept_id <> ''){
 			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
@@ -317,7 +351,7 @@ class ReportController extends Controller
 
 		$sql = "
 			SELECT pr.id pr_id, pr.pr_date,pr.summary, pr.auth_status,d.name dept,
-			u.name requestor, p.name project,s.name supplier,
+			u.name requestor, p.code project, s.name supplier,
 			pr.currency,
 			pr.sub_total, pr.tax, pr.gst, pr.amount, pr.fc_exchange_rate, pr.fc_sub_total, pr.fc_tax, pr.fc_gst, pr.fc_amount
 			FROM prs pr, depts d, users u, projects p,suppliers s
@@ -328,20 +362,23 @@ class ReportController extends Controller
 			AND pr.project_id=p.id
 			AND pr.supplier_id=s.id
 			AND ". ($dept_id <> '' ? 'pr.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-			AND DATE(pr.pr_date) BETWEEN '".$start_date."' AND '".$end_date."'
+			AND DATE(pr.pr_date) NOT BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
-		//Log::debug('tenant.reports.r1020 sql = ' . $sql);
 		$prs = DB::select($sql);
 
 		$data = [
+			'setup' 	=> $setup,
 			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
+			'param3' 	=> '',
 			'prs' 		=> $prs,
 		];
 
-		$pdf = PDF::loadView('tenant.reports.formats.1020', $data);
+		$pdf = PDF::loadView('tenant.reports.formats.prlist', $data);
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
@@ -349,12 +386,12 @@ class ReportController extends Controller
 		return $pdf->stream('prs-'.strtotime("now").'.pdf');
 	}
 
-	public function r1025($start_date, $end_date, $dept_id)
+	public function polist($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1025')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		if ($dept_id <> ''){
@@ -399,12 +436,12 @@ class ReportController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function r1030($start_date, $end_date, $dept_id)
+	public function prdetail($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1030')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		//$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
@@ -428,7 +465,7 @@ class ReportController extends Controller
 			AND DATE(p.pr_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
-		//Log::debug('tenant.reports.r1030 sql = ' . $sql);
+		//Log::debug('tenant.reports.prdetail sql = ' . $sql);
 		$prls = DB::select($sql);
 
 		$data = [
@@ -446,12 +483,12 @@ class ReportController extends Controller
 		return $pdf->stream('prl-'.strtotime("now").'.pdf');
 	}
 
-	public function r1035($start_date, $end_date, $dept_id)
+	public function podetail($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1035')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
@@ -492,12 +529,12 @@ class ReportController extends Controller
 		return $pdf->stream('pol-'.strtotime("now").'.pdf');
 	}
 
-	public function r1040($start_date, $end_date, $dept_id)
+	public function receiptregister($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1040')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
@@ -539,12 +576,12 @@ class ReportController extends Controller
 		return $pdf->stream('receipts-'.strtotime("now").'.pdf');
 	}
 
-	public function r1045($start_date, $end_date, $dept_id)
+	public function invocieregister($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1045')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
@@ -585,12 +622,12 @@ class ReportController extends Controller
 		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
 	}
 
-	public function r1050($start_date, $end_date, $dept_id)
+	public function paymentregister($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1050')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
@@ -635,12 +672,12 @@ class ReportController extends Controller
 	}
 
 
-	public function r1055($start_date, $end_date, $dept_id)
+	public function taxregsiter($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1055')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		if ($dept_id <> ''){
@@ -682,12 +719,12 @@ class ReportController extends Controller
 		return $pdf->stream('tax-'.strtotime("now").'.pdf');
 	}
 
-	public function r1060($start_date, $end_date, $project_id)
+	public function projectspend($start_date, $end_date, $project_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1060')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= "";
@@ -729,12 +766,12 @@ class ReportController extends Controller
 	}
 
 
-	public function r1065($start_date, $end_date, $supplier_id)
+	public function supplierspend($start_date, $end_date, $supplier_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1065')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= "";
@@ -775,12 +812,12 @@ class ReportController extends Controller
 		return $pdf->stream('supplier-spend-'.strtotime("now").'.pdf');
 	}
 
-	public function r1070($start_date, $end_date)
+	public function aeh($start_date, $end_date)
 	{
 
 		$this->authorize('run',Report::class);
 
-		$report 	= Report::where('id', '1070')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		$param2 	= "";
@@ -811,43 +848,7 @@ class ReportController extends Controller
 		return $pdf->stream('aels-'.strtotime("now").'.pdf');
 	}
 
-	public function pr($id)
-	{
-		//TODO auth check
-		//TODO if pr exists
-		//Log::debug('tenant.report.pr storage_path() = '.storage_path());
-		// NOTE: Uses InvoicePolicy
-		// $this->authorize('pdfInvoice', $invoice);
-
-		$setup 		= Setup::with('country_name')->first();
-		$report 	= Report::where('id', '1010')->firstOrFail();
-		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
-		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
-
-		$title 		= 'Purchase Requisition #'. $pr->id;
-		$subTitle	= 'Amount: '. number_format($pr->amount, 2) .' '. $pr->currency;
-		$param1 	= 'Approval: '. strtoupper($pr->auth_status);
-		$param2 	= '';
-		$param3 	= '';
-		self::increaseRunCounter($report->id);
-		
-		$data = [
-			'setup' 	=> $setup,
-			'report' 	=> $report,
-			'pr' 		=> $pr,
-			'prls' 		=> $prls,
-			'title' 	=> $title,
-			'subTitle' 	=> $subTitle,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'param3' 	=> $param3,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
-		// ->setOption('fontDir', public_path('/fonts/lato'));
-		self::setWatermark($pr->auth_status, $pdf);
-		return $pdf->stream('PR#'.$pr->id.'.pdf');
-	}
+	
 
 	
 	public function po($id)
@@ -859,9 +860,9 @@ class ReportController extends Controller
 		// NOTE: Uses InvoicePolicy
 		// $this->authorize('pdfInvoice', $invoice);
 
-		Log::debug('tenant.ReportController.po Value of id = ' . $id);
+		Log::debug('tenant.ReportController.po Value of po_id = ' . $id);
 		$setup 		= Setup::first();
-		$report 	= Report::where('id', '1015')->firstOrFail();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
 		$pols 		= Pol::with('item')->where('po_id', $po->id)->get()->all();
 		
@@ -870,7 +871,7 @@ class ReportController extends Controller
 		$param1 	= 'Approval: '. strtoupper($po->auth_status);
 		$param2 	= '';
 		$param3 	= '';
-		self::increaseRunCounter($report->id);
+		self::increaseRunCounter(Str::lower($report->code));
 
 		$data = [
 			'setup' 	=> $setup,
@@ -889,12 +890,12 @@ class ReportController extends Controller
 		return $pdf->stream('PO'.$po->id.'.pdf');
 	}
 
-	function increaseRunCounter($reportId)
+	function increaseRunCounter($reportCode)
 	{
 		// Increase reports run_count
 		DB::statement("UPDATE reports SET
 			run_count	= run_count + 1
-			WHERE id 	= ".$reportId."");
+			WHERE code 	= '".$reportCode."'");
 	}
 
 	public function chk_prv1($id)

@@ -37,6 +37,7 @@ return new class extends Migration
 			$table->boolean('dept_id_required')->default(false); 
 			$table->boolean('warehouse_id')->default(false); 
 			$table->boolean('warehouse_id_required')->default(false); 
+			$table->integer('order_by')->default(0);
 			$table->unsignedinteger('run_count')->default(0);
 			$table->biginteger('order_by')->default(1001);
 			$table->boolean('enable')->default(true); 

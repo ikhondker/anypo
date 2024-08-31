@@ -1,5 +1,5 @@
 {{-- @extends('layouts.tenant.portrait') --}}
-@extends('layouts.tenant.report')
+@extends('layouts.tenant.report', ['info' => true])
 
 @section('title','Purchase Order Report')
 

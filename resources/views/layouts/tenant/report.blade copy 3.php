@@ -203,38 +203,60 @@
 				</div>	
 			</td>
 			<td width='33%' align='right'>
-				<img src="{{ storage_path('logo.png') }}" width="80px" height="80px">
+				<img src="{{ storage_path('logo.png') }}" width="90px" height="90px">
 				{{-- <img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px"/> --}}
 				{{-- <img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px"/> --}}
 			</td>
 		</tr>
 	</table>
 	<!-- ========== LETTERHEAD ========== -->
-	@if ($info)
-		<table id="info">
-			<tr>
-				<td valign='top' width='50%' >
-					@yield('info1')
-				</td>
-				<td align='right' valign='top' width='50%'>
-					@yield('info2')
-				</td>
-			</tr>
-		</table>
-		<br>
-	@endif 
 
+	<!-- <div class="invoice-header">
+		<img class="logo" src="https://www.example.com/logo.png" alt="Company Logo">
+		<div class="company-name">Company Name</div>
+	</div> -->
+	<!--   <h1>Invoice</h1> -->
+
+	{{-- <div class="invoice-from-to">
+		<div class="invoice-from">
+			<p><strong>Invoice From:</strong></p>
+			<p>Company Name</p>
+			<p>Address</p>
+			<p>City, State ZIP</p>
+			<p>Phone: 555-555-5555</p>
+		</div>
+		<div class="invoice-to">
+			<p><strong>Invoice To:</strong></p>
+			<p>Customer Name</p>
+			<p>Address</p>
+			<p>City, State ZIP</p>
+			<p>Phone: 555-555-5555</p>
+		</div>
+	</div> --}}
+
+	<!-- Report main content -->
+	{{-- @yield('content') --}}
+	<!-- /.content -->
+
+	<table id="info">
+		<tr>
+			<td valign='top' width='50%' >
+				@yield('info1')
+			</td>
+			<td align='right' valign='top' width='50%'>
+				@yield('info2')
+			</td>
+		</tr>
+	</table>
+
+	<br>
 	<table id="data">
-		<!-- Report main content -->
 		@yield('data')
-		<!-- ./Report main content -->
 	</table>
 	<br>
-	
+
 	<div id="notes">
-		<!-- Notes -->
 		@yield('notes')
-		<!-- ./Notes -->
 	</div>
 </body>
 </html>

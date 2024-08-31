@@ -19,7 +19,7 @@
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form id="myform" action="{{ route('reports.run', $report->id) }}" method="POST">
+	<form id="myform" action="{{ route('reports.run', $report->code) }}" method="POST">
 		@csrf
 		@method('PUT')
 

@@ -24,8 +24,11 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				@if ( auth()->user()->isSystem() )
-					<a class="btn btn-sm btn-danger text-white" href="{{ route('reports.edit', $report->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-danger text-white" href="{{ route('reports.edit', $report->code ) }}"><i class="fas fa-edit"></i> Edit</a>
 				@endif
+					<a class="btn btn-sm btn-light" href="{{ route('reports.parameter', $report->code ) }}"><i class="fas fa-print"></i> Run</a>
+			
+
 			</div>
 			<h5 class="card-title">Reports Detail</h5>
 			<h6 class="card-subtitle text-muted">Details of a Report.</h6>

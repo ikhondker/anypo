@@ -32,7 +32,7 @@ App\Jobs\Landlord\CreateTenant;
 -------------------------------------------------------------------------------------------------
 1. anypo logo <img src="{{asset('logo/logo.png')}}" width="80px" height="45px"/> <br>
 2. any function return '' is considered as success else it will return the error code like E015
-3.
+3. reports.code=ReportController.function=View.Code
 
 # 32. Before prod deploy 
 -------------------------------------------------------------------------------------------------

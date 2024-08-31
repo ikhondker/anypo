@@ -41,7 +41,7 @@
 									<td>{{ $report->name }}</td>
 									<td>{{ $report->summary }}</td>
 									<td class="">
-										<a href="{{ route('reports.parameter',$report->id) }}" class="btn btn-light"
+										<a href="{{ route('reports.parameter',$report->code) }}" class="btn btn-light"
 											data-bs-toggle="tooltip" data-bs-placement="top" title="View"> <i data-lucide="printer"></i> Run Report
 										</a>
 									</td>

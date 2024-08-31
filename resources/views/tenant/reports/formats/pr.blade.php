@@ -1,5 +1,5 @@
 {{-- @extends('layouts.tenant.landscape') --}}
-@extends('layouts.tenant.report')
+@extends('layouts.tenant.report', ['info' => true])
 
 @section('title','Requisition')
 
@@ -12,7 +12,7 @@
 @section('info2')
 	Department: {{ $pr->dept->name }}</br>
 	Project: {{ $pr->project->name }}</br>
-	Vendor: {{ $pr->supplier->name }}
+	Vendor: {{ $pr->supplier->name }} 
 @endsection
 
 @section('data')

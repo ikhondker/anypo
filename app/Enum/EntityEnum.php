@@ -21,8 +21,10 @@ namespace App\Enum;
 
 enum EntityEnum: string{
 	case CORE		= 'CORE';
+
 	case PROJECT	= 'PROJECT';
 	case ITEM		= 'ITEM';
+	case SUPPLIER	= 'SUPPLIER';
 	case BUDGET		= 'BUDGET';
 	case DEPTBUDGET	= 'DEPTBUDGET';
 	case PR			= 'PR';
@@ -30,11 +32,11 @@ enum EntityEnum: string{
 	case RECEIPT	= 'RECEIPT';
 	case INVOICE	= 'INVOICE';
 	case PAYMENT	= 'PAYMENT';
-	case AE			= 'AE';
+	case AEH		= 'AEH';
 	case TEMPLATE	= 'TEMPLATE';
 	case TICKET		= 'TICKET';		// Support Ticket raise from Tenant
 	case CONTACT	= 'CONTACT';	// Home Controlled 
-	
+	case TAX		= 'TAX';	// Not used
 }
 
 
