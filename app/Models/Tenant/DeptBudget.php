@@ -18,7 +18,7 @@ class DeptBudget extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr', 'amount_po_booked', 'amount_po', 'amount_grs', 'amount_invoice', 'amount_payment', 'count_pr_booked', 'count_pr', 'count_po_booked', 'count_po', 'count_grs', 'count_invoice', 'count_payment', 'end_date', 'notes', 'revision', 'parent_id', 'closed', 'updated_by', 'updated_at',
+		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr', 'amount_po_booked', 'amount_po', 'amount_grs', 'amount_invoice', 'amount_payment', 'count_pr_booked', 'count_pr', 'count_po_booked', 'count_po', 'count_grs', 'count_invoice', 'count_payment', 'start_date', 'end_date', 'notes', 'revision', 'parent_id', 'closed', 'updated_by', 'updated_at',
 	];
 /*
 	|-----------------------------------------------------------------------------

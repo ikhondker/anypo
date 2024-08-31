@@ -18,6 +18,7 @@ class BankAccount extends Model
 
 	protected $fillable = [
 		'ac_name', 'ac_number', 'routing_number', 'bank_name', 'branch_name', 'start_date', 'end_date', 'currency', 'ac_cash', 'contact_person', 'cell', 'address1', 'address2', 'city', 'zip', 'state', 'country', 'website', 'email', 'enable', 'updated_by', 'updated_at',
+
 	];
 
 

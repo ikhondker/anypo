@@ -100,18 +100,25 @@ class EntitySeeder extends Seeder
 				'directory'		=> 'payment',
 			],
 			[
-				'entity'		=> 'AE',
+				'entity'		=> 'AEH',
 				'name'		  	=> 'Accounting Entry',
 				'model'			=> 'Aeh',
 				'route'		 	=> 'aeh',
-				'directory'		=> 'ae',
+				'directory'		=> 'aeh',
 			],
 			[
-				'entity'		=> 'COMMENT',
-				'name'		  	=> 'Comment',
-				'model'			=> 'Comment',
-				'route'		 	=> 'comments',
-				'directory'		=> 'comment',
+				'entity'		=> 'TAX',
+				'name'		  	=> 'Tax',
+				'model'			=> 'Tax',
+				'route'		 	=> 'tax',
+				'directory'		=> 'tax',
+			],
+			[
+				'entity'		=> 'SUPPLIER',
+				'name'		  	=> 'Supplier',
+				'model'			=> 'Supplier',
+				'route'		 	=> 'Supplier',
+				'directory'		=> 'Supplier',
 			],
 		  ];
 

@@ -23,7 +23,7 @@ class Payment extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'invoice_id', 'po_id', 'pay_date', 'payee_id', 'bank_account_id', 'cheque_no', 'currency', 'amount', 'fc_exchange_rate', 'fc_amount', 'dr_account', 'cr_account', 'for_entity', 'notes', 'error_code', 'accounted', 'status', 'updated_by', 'updated_at',
+		'invoice_id', 'po_id', 'pay_date', 'payee_id', 'summary', 'bank_account_id', 'cheque_no', 'currency', 'amount', 'fc_exchange_rate', 'fc_amount', 'dr_account', 'cr_account', 'for_entity', 'notes', 'error_code', 'accounted', 'status', 'updated_by', 'updated_at',
 	];
 
 	/**

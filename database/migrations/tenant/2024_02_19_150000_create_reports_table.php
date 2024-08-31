@@ -12,7 +12,7 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('reports', function (Blueprint $table) {
-			$table->id()->startingValue(1001);
+			$table->string('code', 15);	//  model: protected $primaryKey = 'code'; 
 			$table->string('entity')->nullable();
 			$table->string('name');
 			$table->string('summary')->nullable();

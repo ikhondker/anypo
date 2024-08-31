@@ -83,7 +83,7 @@ class ReportController extends Controller
 			$reports->where('name', 'Like', '%'.request('term').'%');
 		}
 		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
-			$reports = $reports->orderBy('code', 'ASC')->paginate(100);
+			$reports = $reports->orderBy('id', 'ASC')->paginate(100);
 			return view('tenant.reports.all', compact('reports'));
 		} else {
 			$reports = $reports->where('enable', true)->orderBy('id', 'ASC')->paginate(100);
@@ -827,10 +827,18 @@ class ReportController extends Controller
 		$title 		= 'Purchase Requisition #'. $pr->id;
 		$subTitle	= 'Amount: '. number_format($pr->amount, 2) .' '. $pr->currency;
 		$param1 	= 'Approval: '. strtoupper($pr->auth_status);
+		//$param2 	= 'Requestor: '. $pr->requestor->name;
 		$param2 	= '';
+		//$param3 	= 'Date: ' .strtoupper(date('d-M-Y', strtotime($pr->pr_date)));
 		$param3 	= '';
-		self::increaseRunCounter($report->id);
-		
+
+		// Increase reports run_count
+		DB::statement("UPDATE reports SET
+			run_count	= run_count + 1
+			WHERE id 	= ".$report->id."");
+
+		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
+
 		$data = [
 			'setup' 	=> $setup,
 			'report' 	=> $report,
@@ -844,12 +852,45 @@ class ReportController extends Controller
 		];
 
 		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
-		// ->setOption('fontDir', public_path('/fonts/lato'));
-		self::setWatermark($pr->auth_status, $pdf);
+			// ->setOption('fontDir', public_path('/fonts/lato'));
+
+		// (Optional) Setup the paper size and orientation
+		//$pdf->setPaper('A4', 'portrait');
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		// Get height and width of page
+		// https://www.codexworld.com/create-pdf-with-watermark-in-php-using-dompdf/
+		$canvas = $pdf->getDomPDF()->getCanvas();
+		$height = $canvas->get_height();
+		$width = $canvas->get_width();
+
+		// Specify watermark text
+		$text = Str::upper($pr->auth_status);
+
+		// Get height and width of text
+		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");
+		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
+		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
+		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
+
+		// Specify horizontal and vertical position
+		$x = (($width - $textWidth) / 1.6);
+		$y = (($height - $txtHeight) / 2);
+
+		$color = array(255,0,0);
+		$canvas->set_opacity(.2,"Multiply");
+		//$canvas->set_opacity(.2);
+
+		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
+
 		return $pdf->stream('PR#'.$pr->id.'.pdf');
 	}
 
-	
+	public function watermark($pdf)
+	{
+
+	}
 	public function po($id)
 	{
 		//TODO auth check
@@ -859,42 +900,61 @@ class ReportController extends Controller
 		// NOTE: Uses InvoicePolicy
 		// $this->authorize('pdfInvoice', $invoice);
 
+
 		Log::debug('tenant.ReportController.po Value of id = ' . $id);
+
 		$setup 		= Setup::first();
 		$report 	= Report::where('id', '1015')->firstOrFail();
 		$po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
 		$pols 		= Pol::with('item')->where('po_id', $po->id)->get()->all();
-		
-		$title 		= 'Purchase Order #'. $po->id;
-		$subTitle	= 'Amount: '. number_format($po->amount, 2) .' '. $po->currency;
-		$param1 	= 'Approval: '. strtoupper($po->auth_status);
-		$param2 	= '';
-		$param3 	= '';
-		self::increaseRunCounter($report->id);
+
+		//return view('tenant.reports.formats.pr', compact('setup','pr','prls','supplier'));
+		// Increase reports run_count
+		DB::statement("UPDATE reports SET
+		run_count	= run_count + 1
+		WHERE id 	= ".$report->id."");
 
 		$data = [
 			'setup' 	=> $setup,
 			'report' 	=> $report,
 			'po' 		=> $po,
 			'pols' 		=> $pols,
-			'title' 	=> $title,
-			'subTitle' 	=> $subTitle,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'param3' 	=> $param3,
 		];
 
-		$pdf = PDF::loadView('tenant.reports.formats.po', $data);
-		self::setWatermark($po->auth_status, $pdf);
-		return $pdf->stream('PO'.$po->id.'.pdf');
-	}
 
-	function increaseRunCounter($reportId)
-	{
-		// Increase reports run_count
-		DB::statement("UPDATE reports SET
-			run_count	= run_count + 1
-			WHERE id 	= ".$reportId."");
+		$pdf = PDF::loadView('tenant.reports.formats.po', $data);
+			// ->setOption('fontDir', public_path('/fonts/lato'));
+
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'portrait');
+		$pdf->output();
+
+
+		// Get height and width of page
+		$canvas = $pdf->getDomPDF()->getCanvas();
+		$height = $canvas->get_height();
+		$width = $canvas->get_width();
+
+		// Specify watermark text
+		$text = Str::upper($po->auth_status);
+
+		// Get height and width of text
+		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");
+		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
+		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
+		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
+
+		// Specify horizontal and vertical position
+		$x = (($width - $textWidth) / 1.6);
+		$y = (($height - $txtHeight) / 2);
+
+		$color = array(255,0,0);
+		//$canvas->set_opacity(.2,"Multiply");
+		$canvas->set_opacity(.2);
+
+		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
+
+		return $pdf->stream('PO'.$po->id.'.pdf');
 	}
 
 	public function chk_prv1($id)
@@ -1044,38 +1104,5 @@ class ReportController extends Controller
 		return $pdf->stream('templatepo.pdf');
 	}
 
-	function setWatermark($text, $pdf)
-	{
-		// (Optional) Setup the paper size and orientation
-		//$pdf->setPaper('A4', 'portrait');
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
 
-		// Get height and width of page
-		// https://www.codexworld.com/create-pdf-with-watermark-in-php-using-dompdf/
-		// https://www.codesenior.com/en/tutorial/Dompdf--Create-Watermark-and-Page-Numbers#google_vignette
-		$canvas = $pdf->getDomPDF()->getCanvas();
-		$height = $canvas->get_height();
-		$width = $canvas->get_width();
-
-		// Specify watermark text
-		//$text = Str::upper($pr->auth_status);
-		$text = Str::upper($text);
-
-		// Get height and width of text
-		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");
-		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
-		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
-		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-
-		// Specify horizontal and vertical position
-		$x = (($width - $textWidth) / 1.6);
-		$y = (($height - $txtHeight) / 2);
-
-		$color = array(255,0,0);
-		$canvas->set_opacity(.2,"Multiply");
-		//$canvas->set_opacity(.2);
-
-		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
-	}
 }

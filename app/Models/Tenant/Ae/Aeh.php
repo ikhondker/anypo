@@ -21,7 +21,7 @@ class Aeh extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'source_app', 'source_entity', 'event', 'accounting_date', 'description', 'fc_currency', 'fc_dr_amount', 'fc_cr_amount', 'po_id', 'article_id', 'reference_no', 'status', 'updated_by', 'updated_at',
+		'accounting_date', 'source_app', 'source_entity', 'event', 'article_id', 'po_id', 'description', 'fc_currency', 'fc_dr_amount', 'fc_cr_amount', 'reference_no', 'status', 'updated_by', 'updated_at',
 	];
 
 	/**

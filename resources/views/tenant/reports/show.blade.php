@@ -1,6 +1,12 @@
 @extends('layouts.tenant.app')
 @section('title','View Report')
 
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{ route('reports.index') }}" class="text-muted">Reports</a></li>
+	<li class="breadcrumb-item active">{{ $report->name }}</li>
+@endsection
+
+
 @section('content')
 
 	<x-tenant.page-header>
@@ -9,18 +15,24 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Report"/>
-			<x-tenant.buttons.header.create object="Report"/>
-			<x-tenant.buttons.header.edit object="Report" :id="$report->id"/>
+			{{-- <x-tenant.buttons.header.create object="Report"/> --}}
+			{{-- <x-tenant.buttons.header.edit object="Report" :id="$report->id"/> --}}
 		@endslot
 	</x-tenant.page-header>
 
-	<div class="row">
-		<div class="col-6">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="card-title">Report Info</h5>
-				</div>
-				<div class="card-body">
+	<div class="card">
+		<div class="card-header">
+			<div class="card-actions float-end">
+				@if ( auth()->user()->isSystem() )
+					<a class="btn btn-sm btn-danger text-white" href="{{ route('reports.edit', $report->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				@endif
+			</div>
+			<h5 class="card-title">Reports Detail</h5>
+			<h6 class="card-subtitle text-muted">Details of a Report.</h6>
+		</div>
+		<div class="card-body">
+			<table class="table table-sm my-2">
+				<tbody>
 					<x-tenant.show.my-badge		value="{{ $report->id }}" label="ID"/>
 					<x-tenant.show.my-text		value="{{ $report->name }}"/>
 					<x-tenant.show.my-text		value="{{ $report->summary }}" label="Summary"/>
@@ -38,24 +50,10 @@
 					<x-tenant.show.my-boolean	value="{{ $report->enable }}"/>
 					<x-tenant.show.my-created-at value="{{ $report->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $report->created_at }}"/>
-				</div>
-
-				<!-- Footer -->
-				@if ( auth()->user()->isSystem() )
-				<div class="card-footer pt-0">
-					<div class="d-flex justify-content-end gap-3">
-						<a class="btn btn-danger" href="{{ route('reports.edit',$report->id) }}"><i data-lucide="edit"></i> Edit</a>
-					</div>
-				</div>
-				<!-- End Footer -->
-				@endif
-
-			</div>
+				</tbody>
+			</table>
 		</div>
-		<!-- end col-6 -->
-		
 	</div>
-	<!-- end row -->
 
 @endsection
 

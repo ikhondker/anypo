@@ -5,7 +5,6 @@
 	<li class="breadcrumb-item active">Reports</li>
 @endsection
 
-
 @section('content')
 
 	<x-tenant.page-header>
@@ -38,6 +37,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
+								<th>Entity</th>
 								<th>Name</th>
 								<th>Summary</th>
 								<th>Run Count</th>
@@ -49,10 +49,40 @@
 							</tr>
 						</thead>
 						<tbody>
+							
 
+							@foreach ($reports as $report)
+							<tr>
+								<td>{{ $reports->firstItem() + $loop->index }}</td>
+								<td>{{ $report->entity }}</td>
+								<td><a class="text-info" href="{{ route('reports.show',$report->code) }}">{{ $report->name }} [{{ $report->code }}] </a></td>
+								<td>{{ $report->summary }}</td>
+								<td>{{ $report->run_count }}</td>
+								<td>{{ $report->access }}</td>
+								<td><x-tenant.list.my-boolean :value="$report->start_date"/></td>
+								<td><x-tenant.list.my-boolean :value="$report->end_date"/></td>
+								<td><x-tenant.list.my-boolean :value="$report->enable"/></td>
+								<td class="table-action">
+									<a href="{{ route('reports.show',$report->code) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									</a>
+									<a href="{{ route('reports.edit',$report->code) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+										<i class="align-middle" data-lucide="edit"></i></a>
+									<a href="{{ route('reports.destroy', $report->code) }}" class="me-2 sw2-advance"
+										data-entity="Report" data-name="{{ $report->name }}" data-status="{{ ($report->enable ? 'Disable' : 'Enable') }}"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($report->enable ? 'Disable' : 'Enable') }}">
+										<i class="align-middle text-muted" data-lucide="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
+									</a>
+									<a href="{{ route('reports.parameter',$report->code) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View"> <i data-lucide="printer"></i> Run Report
+									</a>
+								</td>
+							</tr>
+							@endforeach
 
 							<tr>
 								<td>1</td>
+								<td>Test</td>
 								<td colspan="6">Parameter Testing 1</td>
 								<td>run</td>
 								<td class="table-action">
@@ -61,6 +91,7 @@
 							</tr>
 							<tr>
 								<td>2</td>
+								<td>Test</td>
 								<td colspan="6">Create PDF</td>
 								<td>run</td>
 								<td class="table-action">
@@ -69,6 +100,7 @@
 							</tr>
 							<tr>
 								<td>3</td>
+								<td>Test</td>
 								<td colspan="6">Template PR</td>
 								<td>run</td>
 								<td class="table-action">
@@ -77,6 +109,7 @@
 							</tr>
 							<tr>
 								<td>4</td>
+								<td>Test</td>
 								<td colspan="6">Template PO</td>
 								<td>run</td>
 								<td class="table-action">
@@ -84,29 +117,6 @@
 								</td>
 							</tr>
 
-							@foreach ($reports as $report)
-							<tr>
-								<td>{{ $reports->firstItem() + $loop->index }}</td>
-								<td><a class="text-info" href="{{ route('reports.show',$report->id) }}">{{ $report->name }} [r{{ $report->id }}] </a></td>
-								<td>{{ $report->summary }}</td>
-								<td>{{ $report->run_count }}</td>
-								<td>{{ $report->access }}</td>
-								<td><x-tenant.list.my-boolean :value="$report->start_date"/></td>
-								<td><x-tenant.list.my-boolean :value="$report->end_date"/></td>
-								<td><x-tenant.list.my-boolean :value="$report->enable"/></td>
-								<td class="table-action">
-									<x-tenant.list.actions object="Report" :id="$report->id"/>
-									<a href="{{ route('reports.destroy', $report->id) }}" class="me-2 sw2-advance"
-										data-entity="Report" data-name="{{ $report->name }}" data-status="{{ ($report->enable ? 'Disable' : 'Enable') }}"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($report->enable ? 'Disable' : 'Enable') }}">
-										<i class="align-middle text-muted" data-lucide="{{ ($report->enable ? 'bell-off' : 'bell') }}"></i>
-									</a>
-									<a href="{{ route('reports.parameter',$report->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Run">
-										<i class="align-middle" data-lucide="printer"></i>
-									</a>
-								</td>
-							</tr>
-							@endforeach
 						</tbody>
 					</table>
 
@@ -124,7 +134,6 @@
 		 <!-- end col -->
 	</div>
 	 <!-- end row -->
-
 
 
 @endsection

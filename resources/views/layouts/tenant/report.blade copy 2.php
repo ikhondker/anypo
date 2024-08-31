@@ -1,26 +1,10 @@
-
-<html lang="en">
-	<head>
-	<meta charset="utf-8">
+<!DOCTYPE html>
+<html>
+<head>
 	
 	<title>@yield('title', 'Reports')</title>
-	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
 	<style type="text/css">
 		/* CSS for styling the invoice */
-		@font-face {
-				font-family: 'Lato';
-				font-weight: normal;
-				font-style: normal;
-				font-variant: normal;
-				/* src: url("fonts/lato/Lato-Regular.ttf") format('truetype'); */
-				/* src: url({{ storage_path() . '/fonts/lato/Lato-Regular.ttf' }}) format("truetype"); */
-			}
-		* {
-			/* Change your font family */
-			font-family: Arial, Helvetica, sans-serif;
-
-		}
-
 		body {
 			font-family: "Inter", sans-serif;
 			font-size: 14px;
@@ -28,8 +12,10 @@
 			margin-left: 2cm;
 			margin-right: 2cm;
 			 */
-			 margin-bottom: 1cm;	/* Needed for footer */
+			 margin-bottom: 1cm;
 		}
+
+		
 		table {
 			border-collapse: collapse;
 			width: 100%;
@@ -39,7 +25,7 @@
 			padding: 8px;
 		}
 		#data th {
-			/* text-align: left; */
+			text-align: left;
 			background-color: #f2f2f2;
 		}
 
@@ -67,27 +53,18 @@
 			padding: 10px;
 		}
 
-		/* Custom  Added BY Iqbal */
+		/* Custom  Iqbal */
 
-		h2, h3 {
-			color: #0087C3;
-			font-size: 16px;
-			margin: 0;
-			padding: 0;
-		}
+		/** Define the margins of your page **/
+		/* @page {
+                margin: 0cm 0cm;
+            } */
+
 		.address {
 			font-size: 12px;
-			/* width: 50%; */
+			width: 50%;
 			margin: 0px;
 			padding: 3px;
-		}
-
-		/* hr {
-			border-top: 1px solid silver;
-			} */
-			
-		#letterhead td, th {
-			border: none;
 		}
 
 		.title {
@@ -97,9 +74,27 @@
 			padding: 3px;
 		}
 
-		/* used in data tables */
+		h2, h3 {
+			margin: 0;
+			padding: 0;
+		}
+		hr {
+	  		border-top: 1px solid silver;
+		}
+		#letterhead td, th {
+		  	border: none;
+		}
+
+		#footer td, th {
+		  	/* border: none; */
+			border-left: none;
+			border-bottom: none;
+			border-right: none;
+
+		}
+
 		table .sl {
-			text-align: center;
+				text-align: center;
 		}
 
 		table .desc {
@@ -110,13 +105,13 @@
 			text-align: right;
 		}
 
-		/* style for footer */
 		footer {
 			position: fixed; 
-			bottom: 0cm; 
-			left: 0cm; 
-			right: 0cm;
-			height: 1cm;
+            bottom: 0cm; 
+            left: 0cm; 
+            right: 0cm;
+            height: 1cm;
+		
 		}
 		#pagenum {
 			float: right;
@@ -125,25 +120,8 @@
 		.pagenum:before {
 			content: counter(page);
 		}
-		#footer td, th {
-		  	/* border: none; */
-			border-left: none;
-			border-bottom: none;
-			border-right: none;
-		}
 
-		/* #info td {
-			padding-left: 6px;
-			border-left: 6px solid #555858;
-			border-top: none;
-			border-bottom: none;
-			border-right: none;
-		}	 */
-
-		#notes {
-				padding-left: 6px;
-				border-left: 6px solid #0087C3;
-		}
+		
 
 	</style>
 </head>
@@ -153,19 +131,17 @@
 		
 		<table id="footer">
 			<tr>
-				<td width='34%' style='font-size:10px;' valign='top' >
-					Printed by
+				<td width='70%' style='font-size:10px;' valign='top' >
+					Printed at: {{ now()->format('d-M-Y H:i:s') }} by
 						@if(Auth::check())
 							{{ auth()->user()->name }}
 						@else
 							Guest
 						@endif
-						at {{ now()->format('d-M-Y H:i:s') }}
-					</td>
-				<td width='34%' style='font-size:10px;' align='right' valign='top'>
-						Ref: {{ URL::current() }}
+						from {{ URL::current() }}
 				</td>
-				<td width='33%' style='font-size:10px;' align='right' valign='top'>
+				
+				<td width='30%' style='font-size:10px;' align='right' valign='top'>
 					<div id="pagenum">
 						Page <span class="pagenum"></span>
 					</div>
@@ -184,10 +160,10 @@
 					<strong>{{ $_setup->name }}</strong></br>
 					{{ $setup->address1.', '. $setup->address2 }}<br>
 					{{ ($setup->address2 == '' ? '' : $setup->address2 .', ') . $setup->city .' '. $setup->state .', '. $setup->country_name->name }}</br>
-					{{ $setup->email.' | '. $setup->website }}
+					Phone: 555-555-5555
 				</div>
 			</td>
-			<td width='34%' align='center' valign='top'>
+			<td width='34%' align='center'>
 				<h2>{{ $title }}</h2>
 				<div class="title">
 					<strong>{{ $subTitle }}</strong></br>
@@ -243,7 +219,7 @@
 			<td valign='top' width='50%' >
 				@yield('info1')
 			</td>
-			<td align='right' valign='top' width='50%'>
+			<td valign='top' width='50%'>
 				@yield('info2')
 			</td>
 		</tr>
@@ -255,8 +231,9 @@
 	</table>
 	<br>
 
-	<div id="notes">
-		@yield('notes')
-	</div>
+	@yield('notes')
+
+	
+
 </body>
 </html>

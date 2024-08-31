@@ -14,63 +14,21 @@ class ReportSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		$xxreports =  [
-			[
-				'id' 	=> 1001,
-				'name' 	=> 'Test Reports',
-			],
-			[
-				'id' 	=> 1002,
-				'name' => '*Printed PR pdf',
-			],
-			[
-				'id' 	=> 1003,
-				'name' => '*Printed PO pdf',
-			],
-			[
-				'id' 	=> 1004,
-				'name' => 'Purchase Requisition Details Report*',
-			],
-			[
-				'id' 	=> 1005,
-				'name' => 'Purchase Order Details Report',
-			],
-			[
-				'id' 	=> 1006,
-				'name' => 'Goods Receipt Details Report',
-			],
-			[
-				'id' 	=> 1007,
-				'name' => 'Payment Details Report',
-			],
-			[
-				'id' 	=> 1008,
-				'name' => 'Budget Utilization Report',
-			],
-			[
-				'id' 	=> 1009,
-				'name' => 'Dept Budget Utilization Report',
-			],
-			[
-				'id' 	=> 1010,
-				'name' => 'Project Spend Report (**)',
-			],
-			[
-				'id' 	=> 1011,
-				'name' => 'Supplier Spend Report (**)',
-			],
-	  	];
-	  
-			// Disabled. Not called by Report.run method
+	 
+		
+		
+			// Disabled. Not called by reports.run method
 		  	$reports =  [
 				[
-					'id' 					=> 1010,
+					//'id' 					=> 1010,
+					'code' 					=> 'pr',
 					'name' 					=> '*Printed PR pdf',
 					'summary' 				=> '*Printed Purchase Requisition Report',
 					'enable' 				=> false,
 				],
 				[
-					'id' 					=> 1015,
+					//'id' 					=> 1015,
+					'code' 					=> 'po',
 					'name' 					=> '*Printed PO pdf',
 					'summary' 				=> '*Printed  Purchase Order Report',
 					'enable' 				=> false,
@@ -80,7 +38,8 @@ class ReportSeeder extends Seeder
 
 		  	$reports =  [
 				[
-					'id' 					=> 1020,
+					//'id' 					=> 1020,
+					'code' 					=> 'prlist',
 					'name' 					=> 'Requisition Listing',
 					'summary' 				=> 'List of Approved Purchase Requisitions (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -91,7 +50,8 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1025,
+					//'id' 					=> 1025,
+					'code' 					=> 'polist',
 					'name' 					=> 'Purchase Order Listing',
 					'summary' 				=> 'List of Approved Purchase Orders (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -102,7 +62,8 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1030,
+					//'id' 					=> 1030,
+					'code' 					=> 'prdetail',
 					'name' 					=> 'Requisition Detail Report',
 					'summary' 				=> 'Approved Purchase Requisition Detail Report (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -113,7 +74,8 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1035,
+					//'id' 					=> 1035,
+					'code' 					=> 'podetail',
 					'name' 					=> 'Purchase Order Detail Report',
 					'summary' 				=> 'Approved Purchase Order Detail Report (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -124,7 +86,8 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1040,
+					//'id' 					=> 1040,
+					'code' 					=> 'receiptregister',
 					'name' 					=> 'Goods Receipt Register',
 					'summary' 				=> 'Goods Receipt Detail Report (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -135,7 +98,8 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1045,
+					//'id' 					=> 1045,
+					'code' 					=> 'invocieregister',
 					'name' 					=> 'Invoice Register',
 					'summary' 				=> 'Invoice Register (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -146,7 +110,8 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1050,
+					//'id' 					=> 1050,
+					'code' 					=> 'paymentregister',
 					'name' 					=> 'Payment Register',
 					'summary' 				=> 'Payment Register (For a Date range, by Department)',
 					'start_date' 			=> true,
@@ -157,7 +122,8 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 				[
-					'id' 					=> 1055,
+					//'id' 					=> 1055,
+					'code' 					=> 'taxregsiter',
 					'name' 					=> 'Tax/GST Register(**)',
 					'summary' 				=> 'Tax/GST Register (For a Date range)',
 					'start_date' 			=> true,
@@ -168,15 +134,13 @@ class ReportSeeder extends Seeder
 					'dept_id_required' 		=> false,
 				],
 
-				
-
-
 			];
 		Report::insert($reports);
 
 		$reports =  [
 			[
-				'id' 					=> 1060,
+				//'id' 					=> 1060,
+				'code' 					=> 'projectspend',
 				'name' 					=> 'Project Spend Report (**)',
 				'summary' 				=> 'Payment Register (For a Date range)',
 				'start_date' 			=> true,
@@ -190,10 +154,10 @@ class ReportSeeder extends Seeder
 	  	];
 	  	Report::insert($reports);
 
-
 		$reports =  [
 			[
-				'id' 					=> 1065,
+				//'id' 					=> 1065,
+				'code' 					=> 'supplierspend',
 				'name' 					=> 'Supplier Spend Report (**)',
 				'summary' 				=> 'Payment Register (For a Date range)',
 				'start_date' 			=> true,
@@ -208,7 +172,8 @@ class ReportSeeder extends Seeder
 
 		$reports =  [
 			[
-				'id' 					=> 1070,
+				//'id' 					=> 1070,
+				'code' 					=> 'aeh',
 				'name' 					=> 'Accounting Reports (**)',
 				'summary' 				=> 'Accounting Reports (For a Date range)',
 				'start_date' 			=> true,
@@ -224,7 +189,8 @@ class ReportSeeder extends Seeder
 
 		  $reports =  [
 			[
-				'id' 					=> 1075,
+				//'id' 					=> 1075,
+				'code' 					=> 'invoice',
 				'name' 					=> 'Printed Invoice Report (TBD)',
 				'summary' 				=> 'Printed Invoice Report',
 				'start_date' 			=> false,
@@ -235,7 +201,8 @@ class ReportSeeder extends Seeder
 				'dept_id_required' 		=> false,
 			],
 			[
-				'id' 					=> 1080,
+				//'id' 					=> 1080,
+				'code' 					=> 'payment',
 				'name' 					=> 'Printed Payment Report (TBD)',
 				'summary' 				=> 'Printed Payment Report',
 				'start_date' 			=> false,
@@ -246,7 +213,8 @@ class ReportSeeder extends Seeder
 				'dept_id_required' 		=> false,
 			],
 			[
-				'id' 					=> 1085,
+				//'id' 					=> 1085,
+				'code' 					=> 'receipt',
 				'name' 					=> 'Printed Receipt Report (TBD)',
 				'summary' 				=> 'Printed Receipt Report',
 				'start_date' 			=> false,

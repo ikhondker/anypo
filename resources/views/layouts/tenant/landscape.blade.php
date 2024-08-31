@@ -17,7 +17,7 @@
 			}
 
 			* {
-			/* Change your font family */
+				/* Change your font family */
 				font-family: Arial, Helvetica, sans-serif;
 			}
 
