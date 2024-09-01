@@ -652,6 +652,9 @@ Route::middleware([
 		/* ======================== Pr ======================================== */
 		Route::get('/prs/recalculate/{pr}',[PrController::class,'recalculate'])->name('prs.recalculate');
 
+		/* ======================== Invoice ======================================== */
+		Route::get('/invoices/recalculate/{invoice}',[InvoiceController::class,'recalculate'])->name('invoices.recalculate');
+
 		/* ======================== Ael ========================================  */
 		Route::get('/aeh/manual',[AehController::class,'manual'])->name('aehs.manual');
 		Route::post('/aeh/manual-ael',[AehController::class,'manualAeh'])->name('aehs.manual-aeh');

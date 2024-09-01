@@ -1,4 +1,4 @@
-@extends('layouts.tenant.report', ['info' => false])
+@extends('layouts.tenant.report')
 @section('title','Requisition List')
 
 @section('data')
@@ -41,12 +41,13 @@
 					$sum = $sum + $pr->fc_amount;
 				@endphp
 			@endforeach
-			<tr>
-				<td colspan="10" style="text-align: right;"><strong>TOTAL ({{ $_setup->currency }}):</strong></td>
-				<td style="text-align: right;">{{ number_format($sum,2) }}</td>
-			</tr>
 		</tbody>
 		
-		
+		<tfoot>
+			<tr>
+				<td colspan="10" style="text-align: right;"><strong>TOTAL ({{ $_setup->currency }}):</strong></td>
+				<td style="text-align: right;">{{ number_format($sum,2) }}</td>			
+			</tr>
+		</tfoot>
 
 @endsection

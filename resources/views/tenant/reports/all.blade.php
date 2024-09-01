@@ -38,6 +38,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Entity</th>
+								<th>Code</th>
 								<th>Name</th>
 								<th>Summary</th>
 								<th>Run Count</th>
@@ -55,7 +56,8 @@
 							<tr>
 								<td>{{ $reports->firstItem() + $loop->index }}</td>
 								<td>{{ $report->entity }}</td>
-								<td><a class="text-info" href="{{ route('reports.show',$report->code) }}">{{ $report->name }} [{{ $report->code }}] </a></td>
+								<td>{{ $report->code }}</td>
+								<td>{{ $report->name }}</td>
 								<td>{{ $report->summary }}</td>
 								<td>{{ $report->run_count }}</td>
 								<td>{{ $report->access }}</td>
@@ -79,43 +81,6 @@
 								</td>
 							</tr>
 							@endforeach
-
-							<tr>
-								<td>1</td>
-								<td>Test</td>
-								<td colspan="6">Parameter Testing 1</td>
-								<td>run</td>
-								<td class="table-action">
-									<a class="btn btn-primary text-white" href="{{ route('reports.edit','1004') }}">Run</a>
-								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Test</td>
-								<td colspan="6">Create PDF</td>
-								<td>run</td>
-								<td class="table-action">
-									<a class="btn btn-primary text-white" href="{{ route('reports.createPDF') }}">Create PDF</a>
-								</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Test</td>
-								<td colspan="6">Template PR</td>
-								<td>run</td>
-								<td class="table-action">
-									<a class="btn btn-primary text-white" href="{{ route('reports.templatepr') }}">Template PR</a>
-								</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>Test</td>
-								<td colspan="6">Template PO</td>
-								<td>run</td>
-								<td class="table-action">
-									<a class="btn btn-primary text-white" href="{{ route('reports.templatepo') }}">Template PO</a>
-								</td>
-							</tr>
 
 						</tbody>
 					</table>

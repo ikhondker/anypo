@@ -83,10 +83,10 @@ class ReportController extends Controller
 			$reports->where('name', 'Like', '%'.request('term').'%');
 		}
 		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
-			$reports = $reports->orderBy('code', 'ASC')->paginate(100);
+			$reports = $reports->orderBy('order_by1', 'ASC')->orderBy('order_by2', 'ASC')->paginate(100);
 			return view('tenant.reports.all', compact('reports'));
 		} else {
-			$reports = $reports->where('enable', true)->orderBy('code', 'ASC')->paginate(100);
+			$reports = $reports->where('enable', true)->orderBy('order_by1', 'ASC')->orderBy('order_by2', 'ASC')->paginate(100);
 			return view('tenant.reports.index', compact('reports'));
 		}
 	}
@@ -174,43 +174,46 @@ class ReportController extends Controller
 			case 'prlist':
 				return self::prlist($start_date, $end_date, $dept_id);
 				break;
-			case 'prdetail':
-				return self::prdetail($start_date, $end_date, $dept_id);
+			case 'prllist':
+				return self::prllist($start_date, $end_date, $dept_id);
 				break;
 
 			case 'polist':
 				return self::polist($start_date, $end_date, $dept_id);
 				break;
-			case 'podetail':
-				return self::podetail($start_date, $end_date, $dept_id);
+			case 'pollist':
+				return self::pollist($start_date, $end_date, $dept_id);
 				break;
 
-			case 'receiptregister':
-				return self::receiptregister($start_date, $end_date, $dept_id);
+			case 'invoicelist':
+				return self::invoicelist($start_date, $end_date, $dept_id);
 				break;
 
-			case 'invocieregister':
-				return self::invocieregister($start_date, $end_date, $dept_id);
+			case 'paymentlist':
+				return self::paymentlist($start_date, $end_date, $dept_id);
 				break;
 
-			case 'paymentregister':
-				return self::paymentregister($start_date, $end_date, $dept_id);
-				break;
-
-			case 'taxregsiter':
-				return self::taxregsiter($start_date, $end_date, $dept_id);
-				break;
-
+			case 'receiptlist':
+					return self::receiptlist($start_date, $end_date, $dept_id);
+					break;
+					
+					
 			case 'projectspend':
 				return self::projectspend($start_date, $end_date, $project_id);
 				break;
-
+						
 			case 'supplierspend':
 				return self::supplierspend($start_date, $end_date, $supplier_id);
 				break;
-			case 'aeh':
-				return self::aeh($start_date, $end_date);
+
+			case 'taxregister':
+				return self::taxregister($start_date, $end_date, $dept_id);
 				break;
+
+			case 'aellist':
+				return self::aellist($start_date, $end_date);
+				break;
+				
 			default:
 				Log::warning(tenant('id').' tenant.report.run report_id = '.$report->id.' not found!');
 		}
@@ -304,8 +307,7 @@ class ReportController extends Controller
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
-
-		$title 		= 'Purchase Requisition #'. $pr->id;
+		$title 		= $report->name. ' #'. $pr->id; ;
 		$subTitle	= 'Amount: '. number_format($pr->amount, 2) .' '. $pr->currency;
 		$param1 	= 'Approval: '. strtoupper($pr->auth_status);
 		$param2 	= '';
@@ -339,7 +341,7 @@ class ReportController extends Controller
 		$this->authorize('run',Report::class);
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-		$title 		= 'Purchase Requisition List';
+		$title 		= $report->name;
 		$subTitle	= 'Status: APPROVED';
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		if ($dept_id <> ''){
@@ -386,63 +388,18 @@ class ReportController extends Controller
 		return $pdf->stream('prs-'.strtotime("now").'.pdf');
 	}
 
-	public function polist($start_date, $end_date, $dept_id)
-	{
-
-		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		if ($dept_id <> ''){
-			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
-			$param2 	= 'Dept: '. $dept->name;
-		} else {
-			$param2 	= '';
-		}
-
-		$sql = "
-			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
-			u.name requestor, p.name project,s.name supplier,
-			po.currency,
-			po.sub_total, po.tax, po.gst, po.amount, po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
-			FROM pos po, depts d, users u, projects p,suppliers s
-			WHERE 1=1
-			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND po.dept_id =d.id
-			AND po.requestor_id=u.id
-			AND po.project_id=p.id
-			AND po.supplier_id=s.id
-			AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
-		";
-		$pos = DB::select($sql);
-
-		$data = [
-			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'pos' 		=> $pos,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.1025', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		return $pdf->stream('pos-'.strtotime("now").'.pdf');
-	}
-
 	/**
 	 * Display the specified resource.
 	 */
-	public function prdetail($start_date, $end_date, $dept_id)
+	public function prllist($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
-
+		
+		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
+		$title 		= $report->name;
+		$subTitle	= 'Status: APPROVED';
 		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
 		//$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
 		if ($dept_id <> ''){
@@ -454,7 +411,7 @@ class ReportController extends Controller
 
 		$sql = "
 			SELECT p.id pr_id, p.currency, d.name dept_name, p.pr_date,p.auth_status,
-			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
+			l.line_num, l.item_description, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
 			FROM prs p , prls l , uoms u, depts d
 			WHERE 1=1
 			AND p.auth_status = '".AuthStatusEnum::APPROVED->value."'
@@ -465,17 +422,21 @@ class ReportController extends Controller
 			AND DATE(p.pr_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
-		//Log::debug('tenant.reports.prdetail sql = ' . $sql);
+	//Log::debug('tenant.reports.prdetail sql = ' . $sql);
 		$prls = DB::select($sql);
 
 		$data = [
+			'setup' 	=> $setup,
 			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
+			'param3' 	=> '',
 			'prls' 		=> $prls,
 		];
 
-		$pdf = PDF::loadView('tenant.reports.formats.1030', $data);
+		$pdf = PDF::loadView('tenant.reports.formats.prllist', $data);
 		// (Optional) Setup the paper size and orientation
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
@@ -483,374 +444,6 @@ class ReportController extends Controller
 		return $pdf->stream('prl-'.strtotime("now").'.pdf');
 	}
 
-	public function podetail($start_date, $end_date, $dept_id)
-	{
-
-		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
-
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
-		if ($dept_id <> ''){
-			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
-			$param2 	= 'Dept: '. $dept->name;
-		} else {
-			$param2 	= '';
-		}
-
-		$sql = "
-			SELECT p.id po_id, p.currency, d.name dept_name, p.po_date,p.auth_status,
-			l.line_num, l.summary, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
-			FROM pos p , pols l , uoms u, depts d
-			WHERE 1=1
-			AND p.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND p.dept_id =d.id
-			AND l.uom_id=u.id
-			AND p.id =l.po_id
-			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
-		";
-		$pols = DB::select($sql);
-
-		$data = [
-			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'pols' 		=> $pols,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.1035', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		return $pdf->stream('pol-'.strtotime("now").'.pdf');
-	}
-
-	public function receiptregister($start_date, $end_date, $dept_id)
-	{
-
-		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
-		if ($dept_id <> ''){
-			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
-			$param2 	= 'Dept: '. $dept->name;
-		} else {
-			$param2 	= '';
-		}
-
-		$sql = "
-			SELECT r.id, r.receive_date, r.warehouse_id,w.name warehouse_name, r.receiver_id, r.qty rcv_qty, r.fc_amount,
-			l.line_num, l.summary, u.name uom_name,l.qty ord_qty,
-			p.id po_id, p.po_date, d.name dept_name
-			FROM receipts r, pols l,pos p, uoms u, depts d,warehouses w
-			WHERE 1=1
-			AND r.pol_id =l.id
-			AND p.id =l.po_id
-			AND p.dept_id =d.id
-			AND l.uom_id=u.id
-			AND r.warehouse_id = w.id
-			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-			AND DATE(r.receive_date) BETWEEN '".$start_date."' AND '".$end_date."'
-		";
-		$receipts = DB::select($sql);
-
-		$data = [
-			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'receipts'	=> $receipts,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.1040', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		return $pdf->stream('receipts-'.strtotime("now").'.pdf');
-	}
-
-	public function invocieregister($start_date, $end_date, $dept_id)
-	{
-
-		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
-		if ($dept_id <> ''){
-			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
-			$param2 	= 'Dept: '. $dept->name;
-		} else {
-			$param2 	= '';
-		}
-
-		$sql = "
-			SELECT i.id, i.po_id, i.summary, i.invoice_no, i.invoice_date, i.currency,
-			i.sub_total, i.tax, i.gst, i.amount, i.fc_amount,
-			s.name supplier_name, d.name dept_name
-			FROM invoices i, pos p, depts d, suppliers s
-			WHERE 1=1
-			AND i.po_id =p.id
-			AND p.supplier_id = s.id
-			AND i.status = '".InvoiceStatusEnum::POSTED->value."'
-			AND p.dept_id =d.id
-			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
-		";
-		$invoices = DB::select($sql);
-
-		$data = [
-			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'invoices'	=> $invoices,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.1045', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
-	}
-
-	public function paymentregister($start_date, $end_date, $dept_id)
-	{
-
-		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
-
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
-		if ($dept_id <> ''){
-			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
-			$param2 	= 'Dept: '. $dept->name;
-		} else {
-			$param2 	= '';
-		}
-
-		$sql = "
-			SELECT pay.id, pay.invoice_id, pay.pay_date, b.ac_name, pay.cheque_no, pay.currency, pay.amount,pay.fc_amount,
-			i.invoice_no, i.invoice_date,
-			p.id po_id, d.name dept_name
-			FROM payments pay, invoices i, pos p, depts d, bank_accounts b
-			WHERE 1=1
-			AND pay.invoice_id =i.id
-			AND pay.bank_account_id =b.id
-			AND i.po_id =p.id
-			AND p.dept_id =d.id
-
-			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-			AND DATE(pay.pay_date) BETWEEN '".$start_date."' AND '".$end_date."'
-		";
-
-		$payments = DB::select($sql);
-
-		$data = [
-			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'payments'	=> $payments,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.1050', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
-	}
-
-
-	public function taxregsiter($start_date, $end_date, $dept_id)
-	{
-
-		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		if ($dept_id <> ''){
-			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
-			$param2 	= 'Dept: '. $dept->name;
-		} else {
-			$param2 	= '';
-		}
-
-		$sql = "
-			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
-			u.name requestor, p.name project,s.name supplier,
-			po.currency,
-			po.sub_total, po.tax, po.gst, po.amount, po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
-			FROM pos po, depts d, users u, projects p,suppliers s
-			WHERE 1=1
-			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND po.dept_id =d.id
-			AND po.requestor_id=u.id
-			AND po.project_id=p.id
-			AND po.supplier_id=s.id
-			AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
-		";
-		$pos = DB::select($sql);
-
-		$data = [
-			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'pos' 		=> $pos,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.1055', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		return $pdf->stream('tax-'.strtotime("now").'.pdf');
-	}
-
-	public function projectspend($start_date, $end_date, $project_id)
-	{
-
-		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= "";
-		$project 	= Project::where('id', $project_id )->firstOrFail();
-		$param2 	= 'Project: '. $project->name;
-
-		$sql = "
-			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
-			u.name requestor, p.name project,s.name supplier,
-			po.currency,
-			po.sub_total, po.tax, po.gst, po.amount,
-			po.amount_grs, po.amount_invoice, po.amount_paid,
-			po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
-			FROM pos po, depts d, users u, projects p,suppliers s
-			WHERE 1=1
-			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND po.dept_id =d.id
-			AND po.requestor_id=u.id
-			AND po.project_id=p.id
-			AND po.supplier_id=s.id
-			AND ". ($project_id <> '' ? 'po.project_id = '.$project_id.' ' : ' 1=1 ') ."
-			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
-		";
-		$pos = DB::select($sql);
-
-		$data = [
-			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'pos'		=> $pos,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.1060', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		return $pdf->stream('project-spend--'.strtotime("now").'.pdf');
-	}
-
-
-	public function supplierspend($start_date, $end_date, $supplier_id)
-	{
-
-		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= "";
-		$supplier 	= Supplier::where('id', $supplier_id )->firstOrFail();
-		$param2 	= 'Supplier: '. $supplier->name;
-
-		$sql = "
-			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
-			u.name requestor, p.name project,s.name supplier,
-			po.currency,
-			po.sub_total, po.tax, po.gst, po.amount,
-			po.amount_grs, po.amount_invoice, po.amount_paid,
-			po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
-			FROM pos po, depts d, users u, projects p,suppliers s
-			WHERE 1=1
-			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
-			AND po.dept_id =d.id
-			AND po.requestor_id=u.id
-			AND po.project_id=p.id
-			AND po.supplier_id=s.id
-			AND ". ($supplier_id <> '' ? 'po.supplier_id = '.$supplier_id.' ' : ' 1=1 ') ."
-			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
-		";
-		$pos = DB::select($sql);
-
-		$data = [
-			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'pos'		=> $pos,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.1065', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		return $pdf->stream('supplier-spend-'.strtotime("now").'.pdf');
-	}
-
-	public function aeh($start_date, $end_date)
-	{
-
-		$this->authorize('run',Report::class);
-
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-
-		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
-		$param2 	= "";
-		//$supplier 	= Supplier::where('id', $supplier_id )->firstOrFail();
-		$param2 	= "";
-
-		$sql = "
-			SELECT id, source, entity, event, accounting_date, ac_code, line_description,
-			fc_currency, fc_dr_amount, fc_cr_amount,
-			po_id, reference
-			FROM aels
-			WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
-		";
-		$aels = DB::select($sql);
-
-		$data = [
-			'report' 	=> $report,
-			'param1' 	=> $param1,
-			'param2' 	=> $param2,
-			'aels'		=> $aels,
-		];
-
-		$pdf = PDF::loadView('tenant.reports.formats.1070', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		return $pdf->stream('aels-'.strtotime("now").'.pdf');
-	}
-
-	
-
-	
 	public function po($id)
 	{
 		//TODO auth check
@@ -865,8 +458,7 @@ class ReportController extends Controller
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
 		$pols 		= Pol::with('item')->where('po_id', $po->id)->get()->all();
-		
-		$title 		= 'Purchase Order #'. $po->id;
+		$title 		= $report->name. ' #'. $po->id; ;
 		$subTitle	= 'Amount: '. number_format($po->amount, 2) .' '. $po->currency;
 		$param1 	= 'Approval: '. strtoupper($po->auth_status);
 		$param2 	= '';
@@ -890,6 +482,523 @@ class ReportController extends Controller
 		return $pdf->stream('PO'.$po->id.'.pdf');
 	}
 
+	public function polist($start_date, $end_date, $dept_id)
+	{
+
+		$this->authorize('run',Report::class);
+
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$setup 		= Setup::with('country_name')->first();
+		$title 		= $report->name;
+		$subTitle	= 'Status: APPROVED';
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		$sql = "
+			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
+			u.name requestor, p.name project,s.name supplier,
+			po.currency,
+			po.sub_total, po.tax, po.gst, po.amount, po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
+			FROM pos po, depts d, users u, projects p,suppliers s
+			WHERE 1=1
+			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
+			AND po.dept_id =d.id
+			AND po.requestor_id=u.id
+			AND po.project_id=p.id
+			AND po.supplier_id=s.id
+			AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+		$pos = DB::select($sql);
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> '',
+			'pos' 		=> $pos,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.polist', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('pos-'.strtotime("now").'.pdf');
+	}
+
+	
+
+	public function pollist($start_date, $end_date, $dept_id)
+	{
+
+		$this->authorize('run',Report::class);
+
+		
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$title 		= $report->name;
+		$subTitle	= 'Status: APPROVED';
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		$sql = "
+			SELECT p.id po_id, p.currency, d.name dept_name, p.po_date,p.auth_status,
+			l.line_num, l.item_description, u.name uom_name, l.qty, l.price, l.amount, l.fc_amount
+			FROM pos p , pols l , uoms u, depts d
+			WHERE 1=1
+			AND p.auth_status = '".AuthStatusEnum::APPROVED->value."'
+			AND p.dept_id =d.id
+			AND l.uom_id=u.id
+			AND p.id =l.po_id
+			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+	
+		$pols = DB::select($sql);
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> '',
+			'pols' 		=> $pols,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.pollist', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('pol-'.strtotime("now").'.pdf');
+	}
+
+	
+
+	public function invoicelist($start_date, $end_date, $dept_id)
+	{
+
+		$this->authorize('run',Report::class);
+
+		
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$title 		= $report->name;
+		$subTitle	= 'Status: POSTED';
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		$sql = "
+			SELECT i.id, i.po_id, i.summary, i.invoice_no, i.invoice_date, i.currency,
+			i.sub_total, i.tax, i.gst, i.amount, i.fc_amount,
+			s.name supplier_name, d.name dept_name
+			FROM invoices i, pos p, depts d, suppliers s
+			WHERE 1=1
+			AND i.po_id =p.id
+			AND p.supplier_id = s.id
+			AND i.status = '".InvoiceStatusEnum::POSTED->value."'
+			AND p.dept_id =d.id
+			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+		$invoices = DB::select($sql);
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> '',
+			'invoices'	=> $invoices,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.invocielist', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
+	}
+
+	public function paymentlist($start_date, $end_date, $dept_id)
+	{
+
+		$this->authorize('run',Report::class);
+
+		
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$title 		= $report->name;
+		$subTitle	= 'Status: POSTED';
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		$sql = "
+			SELECT pay.id, pay.invoice_id, pay.pay_date, b.ac_name, pay.cheque_no, pay.currency, pay.amount,pay.fc_amount,
+			i.invoice_no, i.invoice_date,
+			p.id po_id, d.name dept_name
+			FROM payments pay, invoices i, pos p, depts d, bank_accounts b
+			WHERE 1=1
+			AND pay.invoice_id =i.id
+			AND pay.bank_account_id =b.id
+			AND i.po_id =p.id
+			AND p.dept_id =d.id
+			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+			AND DATE(pay.pay_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+		$payments = DB::select($sql);
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> '',
+			'payments'	=> $payments,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.paymentlist', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
+	}
+
+	public function receiptlist($start_date, $end_date, $dept_id)
+	{
+
+		$this->authorize('run',Report::class);
+
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$title 		= $report->name;
+		$subTitle	= 'Status: POSTED';
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= ($dept_id <> '' ? ' AND p.dept_id = '.$dept_id.' ' : ' ');
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		$sql = "
+			SELECT r.id, r.receive_date, r.warehouse_id,w.name warehouse_name, r.receiver_id, r.qty rcv_qty, r.fc_amount,
+			l.line_num, l.item_description, u.name uom_name,l.qty ord_qty,
+			p.id po_id, p.po_date, d.name dept_name
+			FROM receipts r, pols l,pos p, uoms u, depts d,warehouses w
+			WHERE 1=1
+			AND r.pol_id =l.id
+			AND p.id =l.po_id
+			AND p.dept_id =d.id
+			AND l.uom_id=u.id
+			AND r.warehouse_id = w.id
+			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+			AND DATE(r.receive_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+		$receipts = DB::select($sql);
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> '',			'receipts'	=> $receipts,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.receiptlist', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('receipts-'.strtotime("now").'.pdf');
+	}
+	
+	public function taxregister($start_date, $end_date, $dept_id)
+	{
+
+		$this->authorize('run',Report::class);
+
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$title 		= $report->name;
+		$subTitle	= 'Status: POSTED';
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		if ($dept_id <> ''){
+			$dept 	= Dept::where('id', $dept_id )->firstOrFail();
+			$param2 	= 'Dept: '. $dept->name;
+		} else {
+			$param2 	= '';
+		}
+
+		$sql = "
+			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
+			u.name requestor, p.name project,s.name supplier,
+			po.currency,
+			po.sub_total, po.tax, po.gst, po.amount, po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
+			FROM pos po, depts d, users u, projects p,suppliers s
+			WHERE 1=1
+			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
+			AND po.dept_id =d.id
+			AND po.requestor_id=u.id
+			AND po.project_id=p.id
+			AND po.supplier_id=s.id
+			AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
+			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+		$pos = DB::select($sql);
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> '',
+			'pos' 		=> $pos,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.taxregister', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('tax-'.strtotime("now").'.pdf');
+	}
+
+	public function projectspend($start_date, $end_date, $project_id)
+	{
+
+		$this->authorize('run',Report::class);
+
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$title 		= $report->name;
+		$subTitle	= 'Status: POSTED';
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= "";
+		$project 	= Project::where('id', $project_id )->firstOrFail();
+		$param2 	= 'Project: '. $project->name;
+		$param3 	= '';
+
+		$sql = "
+			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
+			u.name requestor, p.name project,s.name supplier,
+			po.currency,
+			po.sub_total, po.tax, po.gst, po.amount,
+			po.amount_grs, po.amount_invoice, po.amount_paid,
+			po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
+			FROM pos po, depts d, users u, projects p,suppliers s
+			WHERE 1=1
+			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
+			AND po.dept_id =d.id
+			AND po.requestor_id=u.id
+			AND po.project_id=p.id
+			AND po.supplier_id=s.id
+			AND ". ($project_id <> '' ? 'po.project_id = '.$project_id.' ' : ' 1=1 ') ."
+			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+
+		$pos = DB::select($sql);
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> $param3,
+			'pos'		=> $pos,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.projectspend', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('project-spend-'.strtotime("now").'.pdf');
+	}
+
+
+	public function supplierspend($start_date, $end_date, $supplier_id)
+	{
+
+		$this->authorize('run',Report::class);
+
+		
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$title 		= $report->name;
+		$subTitle	= 'Status: POSTED';
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= "";
+		$supplier 	= Supplier::where('id', $supplier_id )->firstOrFail();
+		$param2 	= 'Supplier: '. $supplier->name;
+		$param3 	= '';
+
+		$sql = "
+			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
+			u.name requestor, p.name project,s.name supplier,
+			po.currency,
+			po.sub_total, po.tax, po.gst, po.amount,
+			po.amount_grs, po.amount_invoice, po.amount_paid,
+			po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
+			FROM pos po, depts d, users u, projects p,suppliers s
+			WHERE 1=1
+			AND po.auth_status = '".AuthStatusEnum::APPROVED->value."'
+			AND po.dept_id =d.id
+			AND po.requestor_id=u.id
+			AND po.project_id=p.id
+			AND po.supplier_id=s.id
+			AND ". ($supplier_id <> '' ? 'po.supplier_id = '.$supplier_id.' ' : ' 1=1 ') ."
+			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+
+		$sql = "
+			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
+			u.name requestor, p.name project,s.name supplier,
+			po.currency,
+			po.sub_total, po.tax, po.gst, po.amount,
+			po.amount_grs, po.amount_invoice, po.amount_paid,
+			po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
+			FROM pos po, depts d, users u, projects p,suppliers s
+			WHERE 1=1
+			AND po.dept_id =d.id
+			AND po.requestor_id=u.id
+			AND po.project_id=p.id
+			AND po.supplier_id=s.id
+			AND ". ($supplier_id <> '' ? 'po.supplier_id = '.$supplier_id.' ' : ' 1=1 ') ."
+		";
+
+		$pos = DB::select($sql);
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> $param3,
+			'pos'		=> $pos,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.supplierspend', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('supplier-spend-'.strtotime("now").'.pdf');
+	}
+
+	public function aellist($start_date, $end_date)
+	{
+
+		$this->authorize('run',Report::class);
+
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$title 		= $report->name;
+		$subTitle	= 'Status: POSTED';
+
+		$param1 	= 'From '.strtoupper(date('d-M-Y', strtotime($start_date))) .' to '.strtoupper(date('d-M-Y', strtotime($end_date)));
+		$param2 	= "";
+		$param3 	= "";
+
+		$sql = "
+			SELECT a.id, a.source_app,a.source_entity, a.event, a.accounting_date, al.ac_code, al.line_description,
+			al.fc_currency, al.fc_dr_amount, al.fc_cr_amount,
+			a.po_id, a.reference_no
+			FROM aehs a, aels al 
+            WHERE 1=1 
+            AND a.id=al.aeh_id;
+			WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
+		";
+		$sql = "
+		SELECT a.id, a.source_app,a.source_entity, a.event, a.accounting_date, al.ac_code, al.line_description,
+		al.fc_currency, al.fc_dr_amount, al.fc_cr_amount,
+		a.po_id, a.reference_no
+		FROM aehs a, aels al 
+		WHERE 1=1 
+		AND a.id=al.aeh_id;
+	";
+
+		$aels = DB::select($sql);
+
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> $param3,
+			'aels'		=> $aels,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.aellist', $data);
+		// (Optional) Setup the paper size and orientation
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('aels-'.strtotime("now").'.pdf');
+	}
+
+	
+
+	
+	
+
 	function increaseRunCounter($reportCode)
 	{
 		// Increase reports run_count
@@ -898,153 +1007,7 @@ class ReportController extends Controller
 			WHERE code 	= '".$reportCode."'");
 	}
 
-	public function chk_prv1($id)
-	{
-		//todo auth check
-		//todo if pr exists
-		$setup = Setup::first();
-		//$setup = Setup::where('id', config('akk.SETUP_ID'))->firstOrFail();
-		$pr = Pr::with('requestor')->where('id', $id)->firstOrFail();
-		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
-		$prls = Prl::with('item')->where('pr_id', $pr->id)->get()->all();
-
-		//$prls = Prl::where('pr_id', $id)->firstOrFail();
-		//$prls = Prl::getLinesByPrId($id);
-		//$prls = Prl::By_pr_id($id);
-		//$prls = Prl::where('pr_id', $id)->firstOrFail();
-		//dd($id, $prls);
-
-		$data = [
-			'title' => 'Company XYZ',
-			'id' => $id,
-			'date' => date('m/d/Y'),
-			'setup' => $setup,
-			'pr' => $pr,
-			'supplier' => $supplier,
-			'prls' => $prls,
-		];
-		$pdf = PDF::loadView('tenant.reports.formats.prv1', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'portrait');
-		$pdf->output();
-		// Get height and width of page
-
-		$canvas = $pdf->getDomPDF()->getCanvas();
-		$height = $canvas->get_height();
-		$width = $canvas->get_width();
-
-		// Specify watermark text
-		$text = "DRAFT";
-
-		// Get height and width of text
-		$font		= $pdf->getFontMetrics()->get_font("lato", "bold");
-		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
-		$textWidth 	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-		// Specify horizontal and vertical position
-		$x = (($width - $textWidth) / 1.4);
-		$y = (($height - $txtHeight) / 2);
-
-		$color = array(255,0,0);
-		//$canvas->set_opacity(.2,"Multiply");
-		$canvas->set_opacity(.2);
-
-		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
-		//$canvas->page_text($width/5, $height/2, $text, $font, 55, array(125,0,0),2,2,-30);
-		//$canvas->page_text($width/5, $height/2, 'ANYPO.NET', $font, 55,array(255,153,153), 2, 2, -30);
-
-		return $pdf->stream('templatepr.pdf');
-	}
-
-	// Generate PDF
-	public function createPDF()
-	{
-		//Route::get('/report/createPDF',[ReportController::class, 'createPDF'])->name('reports.createPDF');
-		$data = [
-			'title' => 'Company XYZ',
-			'date' => date('m/d/Y'),
-			//'products' => Product::all()
-		];
-		$pdf = PDF::loadView('tenant.reports.rnd.htmltable', $data);
-		//$pdf = PDF::loadView('reports.htmltable', $data)->setPaper('A4', 'landscape');
-		//$pdf = PDF::loadView('reports.style2', $data);
-		//$pdf = PDF::loadView('reports.appstack', $data);
-		//$pdf = PDF::loadView('reports.style3', $data);
-		return $pdf->stream('htmltable.pdf');
-
-		//$pdf = PDF::loadView('Center.View_download', compact('view','center_detail'))->setPaper(customPaper, 'landscape');
-
-		// R&D bellow
-		//Try to set isHtml5ParserEnabled option to true:
-		//PDF::setOptions(['dpi' => 150, 'isHtml5ParserEnabled' => true, 'defaultFont' => 'sans-serif']);
-		//PDF::setBasePath(public_path().'/tenancy/assets/css/');
-
-		// $pdf = app()->make('dompdf.wrapper'); // $pdf is now a PDF instance
-		// $pdf->getDomPDF()->setBasePath(public_path().'/img/');
-		// //NOT $pdf = PDF::loadHTML($content); // don't create a NEW instance, use the existing $pdf instance
-		// $pdf->loadHTML($content);
-		// return $pdf->download('certificates.pdf');
-		//$dompdf->set_base_path("/www/public/css/");
-
-		// $pdf = app()->make('dompdf.wrapper'); // $pdf is now a PDF instance
-		// $pdf->getDomPDF()->setBasePath(public_path().'/tenancy/assets/css/');
-		// $pdf->loadView('reports.appstack', $data);
-
-		// poppin font not found
-		//$pdf = PDF::loadView('reports.appstack', ['Data' => $data])->setOptions(['defaultFont' => 'sans-serif']);
-
-	}
-
-
-	public function templatepr()
-	{
-		$data = [
-			'title' => 'Company XYZ',
-			'date' => date('m/d/Y'),
-			//'products' => Product::all()
-		];
-		$pdf = PDF::loadView('tenant.reports.rnd.template-pr', $data);
-		// (Optional) Setup the paper size and orientation
-		$pdf->setPaper('A4', 'portrait');
-		$pdf->output();
-		// Get height and width of page
-
-		$canvas = $pdf->getDomPDF()->getCanvas();
-		$height = $canvas->get_height();
-		$width = $canvas->get_width();
-
-		// Specify watermark text
-		$text = "DRAFT";
-
-		// Get height and width of text
-		$font		= $pdf->getFontMetrics()->get_font("lato", "bold");
-		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
-		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-		// Specify horizontal and vertical position
-		$x = (($width - $textWidth) / 1.4);
-		$y = (($height - $txtHeight) / 2);
-
-		$color = array(255,0,0);
-		//$canvas->set_opacity(.2,"Multiply");
-		$canvas->set_opacity(.2);
-
-		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
-		//$canvas->page_text($width/5, $height/2, $text, $font, 55, array(125,0,0),2,2,-30);
-		//$canvas->page_text($width/5, $height/2, 'ANYPO.NET', $font, 55, array(255,153,153), 2, 2, -30);
-
-		return $pdf->stream('templatepr.pdf');
-	}
-
-	public function templatepo()
-	{
-		$data = [
-			'title' => 'Company XYZ PR',
-			'date' => date('m/d/Y'),
-			//'products' => Product::all()
-		];
-		$pdf = PDF::loadView('tenant.reports.rnd.template-po', $data);
-		return $pdf->stream('templatepo.pdf');
-	}
-
+	
 	function setWatermark($text, $pdf)
 	{
 		// (Optional) Setup the paper size and orientation

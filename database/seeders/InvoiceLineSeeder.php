@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Tenant\InvoiceLine;
 
 class InvoiceLineSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class InvoiceLineSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        InvoiceLine::factory()->count(15)->create();
     }
 }

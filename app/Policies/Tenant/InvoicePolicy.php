@@ -108,6 +108,12 @@ class InvoicePolicy
 		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
-
+/**
+	 * Determine whether the user can recalculate models.
+	 */
+	public function recalculate(User $user): bool
+	{
+		return $user->isSupport();
+	}
 
 }

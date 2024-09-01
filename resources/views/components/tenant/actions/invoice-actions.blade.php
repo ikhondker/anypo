@@ -46,5 +46,12 @@
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
 					<i class="align-middle me-1 text-danger" data-lucide="x-circle"></i> Cancel Invoice</a>
 		@endcan
+
+		@can('recalculate', App\Models\Tenant\Invoice::class)
+			<a class="dropdown-item sw2-advance" href="{{ route('invoices.recalculate', $invoice->id) }}"
+				data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Recalculate"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Recalculate">
+				<i class="align-middle me-1 text-danger" data-lucide="refresh-cw"></i> Recalculate (Support)</a>
+		@endcan
 	</div>
 </div>

@@ -30,6 +30,8 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> false,
 				'dept_id_required' 		=> false,
 				'enable' 				=> false,
+				'order_by1' 			=> 10,
+				'order_by2' 			=> 10,
 			],
 			[
 				//'id' 					=> 1020,
@@ -44,13 +46,16 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> true,
 				'dept_id_required' 		=> false,
 				'enable' 				=> true,
+				'order_by1' 			=> 10,
+				'order_by2' 			=> 20,
+
 			],
 			[
 				//'id' 					=> 1030,
-				'code' 					=> 'prdetail',
+				'code' 					=> 'prllist',
 				'entity' 				=> EntityEnum::PR->value,
-				'name' 					=> 'Requisition Detail Report',
-				'summary' 				=> 'Approved Purchase Requisition Detail Report (For a Date range, by Department)',
+				'name' 					=> 'Requisition Lines Report',
+				'summary' 				=> 'Approved Purchase Requisition Lines Report (For a Date range, by Department)',
 				'start_date' 			=> true,
 				'start_date_required' 	=> true,
 				'end_date' 				=> true,
@@ -58,6 +63,9 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> true,
 				'dept_id_required' 		=> false,
 				'enable' 				=> true,
+				'order_by1' 			=> 10,
+				'order_by2' 			=> 30,
+
 			],
 		];
 		Report::insert($pr);
@@ -76,6 +84,8 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> false,
 				'dept_id_required' 		=> false,
 				'enable' 				=> false,
+				'order_by1' 			=> 20,
+				'order_by2' 			=> 10,
 			],
 			[
 				//'id' 					=> 1025,
@@ -90,13 +100,15 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> true,
 				'dept_id_required' 		=> false,
 				'enable' 				=> true,
+				'order_by1' 			=> 20,
+				'order_by2' 			=> 20,
 			],
 			[
 				//'id' 					=> 1035,
-				'code' 					=> 'podetail',
+				'code' 					=> 'pollist',
 				'entity' 				=> EntityEnum::PO->value,
-				'name' 					=> 'Purchase Order Detail Report',
-				'summary' 				=> 'Approved Purchase Order Detail Report (For a Date range, by Department)',
+				'name' 					=> 'Purchase Order Lines Report',
+				'summary' 				=> 'Approved Purchase Order Lines Report (For a Date range, by Department)',
 				'start_date' 			=> true,
 				'start_date_required' 	=> true,
 				'end_date' 				=> true,
@@ -104,41 +116,11 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> true,
 				'dept_id_required' 		=> false,
 				'enable' 				=> true,
+				'order_by1' 			=> 20,
+				'order_by2' 			=> 30,
 			],
 		];
 		Report::insert($po);
-
-		$receipt =  [
-			[
-				//'id' 					=> 1085,
-				'code' 					=> 'receipt',
-				'entity' 				=> EntityEnum::RECEIPT->value,
-				'name' 					=> 'Printed Receipt Report (TBD)',
-				'summary' 				=> 'Printed Receipt Report',
-				'start_date' 			=> false,
-				'start_date_required' 	=> false,
-				'end_date' 				=> false,
-				'end_date_required' 	=> false,
-				'dept_id' 				=> false,
-				'dept_id_required' 		=> false,
-				'enable' 				=> false,
-			],
-			[
-				//'id' 					=> 1040,
-				'code' 					=> 'receiptregister',
-				'entity' 				=> EntityEnum::RECEIPT->value,
-				'name' 					=> 'Goods Receipt Register',
-				'summary' 				=> 'Goods Receipt Detail Report (For a Date range, by Department)',
-				'start_date' 			=> true,
-				'start_date_required' 	=> true,
-				'end_date' 				=> true,
-				'end_date_required' 	=> true,
-				'dept_id' 				=> true,
-				'dept_id_required' 		=> false,
-				'enable' 				=> true,
-			],
-	  	];
-	  	Report::insert($receipt);
 
 		$invoice =  [
 			[
@@ -154,10 +136,12 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> false,
 				'dept_id_required' 		=> false,
 				'enable' 				=> false,
+				'order_by1' 			=> 30,
+				'order_by2' 			=> 10,
 			],
 			[
 				//'id' 					=> 1045,
-				'code' 					=> 'invocieregister',
+				'code' 					=> 'invoicelist',
 				'entity' 				=> EntityEnum::INVOICE->value,
 				'name' 					=> 'Invoice Register',
 				'summary' 				=> 'Invoice Register (For a Date range, by Department)',
@@ -168,10 +152,11 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> true,
 				'dept_id_required' 		=> false,
 				'enable' 				=> true,
+				'order_by1' 			=> 30,
+				'order_by2' 			=> 20,
 			],
 	  	];
 	  	Report::insert($invoice);
-
 
 		$payment =  [
 			[
@@ -187,10 +172,12 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> false,
 				'dept_id_required' 		=> false,
 				'enable' 				=> false,
+				'order_by1' 			=> 40,
+				'order_by2' 			=> 10,
 			],
 			[
 				//'id' 					=> 1050,
-				'code' 					=> 'paymentregister',
+				'code' 					=> 'paymentlist',
 				'entity' 				=> EntityEnum::PAYMENT->value,
 				'name' 					=> 'Payment Register',
 				'summary' 				=> 'Payment Register (For a Date range, by Department)',
@@ -201,29 +188,49 @@ class ReportSeeder extends Seeder
 				'dept_id' 				=> true,
 				'dept_id_required' 		=> false,
 				'enable' 				=> true,
+				'order_by1' 			=> 40,
+				'order_by2' 			=> 20,
 			],
 	  	];
 	  	Report::insert($payment);
 
-
-		  $tax =  [
+	  	$receipt =  [
 			[
-				//'id' 					=> 1055,
-				'code' 					=> 'taxregsiter',
-				'entity' 				=> EntityEnum::TAX->value,
-				'name' 					=> 'Tax/GST Register(**)',
-				'summary' 				=> 'Tax/GST Register (For a Date range)',
+				//'id' 					=> 1085,
+				'code' 					=> 'receipt',
+				'entity' 				=> EntityEnum::RECEIPT->value,
+				'name' 					=> 'Printed Receipt Report (TBD)',
+				'summary' 				=> 'Printed Receipt Report',
+				'start_date' 			=> false,
+				'start_date_required' 	=> false,
+				'end_date' 				=> false,
+				'end_date_required' 	=> false,
+				'dept_id' 				=> false,
+				'dept_id_required' 		=> false,
+				'enable' 				=> false,
+				'order_by1' 			=> 50,
+				'order_by2' 			=> 10,
+			],
+			[
+				//'id' 					=> 1040,
+				'code' 					=> 'receiptlist',
+				'entity' 				=> EntityEnum::RECEIPT->value,
+				'name' 					=> 'Goods Receipt Register',
+				'summary' 				=> 'Goods Receipt Detail Report (For a Date range, by Department)',
 				'start_date' 			=> true,
 				'start_date_required' 	=> true,
 				'end_date' 				=> true,
 				'end_date_required' 	=> true,
 				'dept_id' 				=> true,
 				'dept_id_required' 		=> false,
+				'enable' 				=> true,
+				'order_by1' 			=> 50,
+				'order_by2' 			=> 20,
 			],
 	  	];
-	  	Report::insert($tax);
+	  	Report::insert($receipt);
 
-		  $projects =  [
+	  	$project =  [
 			[
 				//'id' 					=> 1060,
 				'code' 					=> 'projectspend',
@@ -236,12 +243,14 @@ class ReportSeeder extends Seeder
 				'end_date_required' 	=> true,
 				'project_id' 			=> true,
 				'project_id_required'	=> true,
+				'order_by1' 			=> 60,
+				'order_by2' 			=> 10,
 			],
 	  	];
-	  	Report::insert($projects);
+	  	Report::insert($project);
 
 
-		  $supplier =  [
+		$supplier =  [
 			[
 				//'id' 					=> 1065,
 				'code' 					=> 'supplierspend',
@@ -254,15 +263,40 @@ class ReportSeeder extends Seeder
 				'end_date_required' 	=> true,
 				'supplier_id' 			=> true,
 				'supplier_id_required'	=> true,
+				'order_by1' 			=> 70,
+				'order_by2' 			=> 10,
+
 			],
 	  	];	
 	  	Report::insert($supplier);
 
+		
 
-		  $aeh =  [
+		
+		$tax =  [
+			[
+				//'id' 					=> 1055,
+				'code' 					=> 'taxregister',
+				'entity' 				=> EntityEnum::TAX->value,
+				'name' 					=> 'Tax/GST Register(**)',
+				'summary' 				=> 'Tax/GST Register (For a Date range)',
+				'start_date' 			=> true,
+				'start_date_required' 	=> true,
+				'end_date' 				=> true,
+				'end_date_required' 	=> true,
+				'dept_id' 				=> true,
+				'dept_id_required' 		=> false,
+				'order_by1' 			=> 80,
+				'order_by2' 			=> 10,
+
+			],
+	  	];
+	  	Report::insert($tax);
+
+	  	$aeh =  [
 			[
 				//'id' 					=> 1070,
-				'code' 					=> 'aeh',
+				'code' 					=> 'aellist',
 				'entity' 				=> EntityEnum::AEH->value,
 				'name' 					=> 'Accounting Reports (**)',
 				'summary' 				=> 'Accounting Reports (For a Date range)',
@@ -272,6 +306,8 @@ class ReportSeeder extends Seeder
 				'end_date_required' 	=> true,
 				'supplier_id' 			=> false,
 				'supplier_id_required'	=> false,
+				'order_by1' 			=> 90,
+				'order_by2' 			=> 10,
 			],
 	  	];
 	  	Report::insert($aeh);

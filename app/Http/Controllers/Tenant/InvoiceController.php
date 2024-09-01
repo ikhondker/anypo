@@ -584,6 +584,39 @@ class InvoiceController extends Controller
 		return view('tenant.invoices.payments', compact('invoice'));
 	}
 
+	public function recalculate(Invoice $invoice)
+	{
+		// Update pr.line_num
+		$this->authorize('recalculate', Invoice::class);
+
+		if ($invoice->status <> AuthStatusEnum::DRAFT->value) {
+			return redirect()->route('invoices.show', $invoice->id)->with('error', 'Only DRAFT Invoice can be recalculated!');
+		}
+
+		Log::debug(tenant('id'). ' tenant.invoice.recalculate recalculating invoice_id = ' . $invoice->id);
+
+		// 	update PR Header value
+		DB::statement("set @sequenceNumber=0");
+
+		DB::statement("UPDATE invoice_lines SET
+				line_num	= (@sequenceNumber:=@sequenceNumber + 1),
+				sub_total	= qty * price,
+				amount		= qty * price + tax + gst
+				WHERE invoice_id = ".$invoice->id."");
+
+		Log::debug(tenant('id'). ' tenant.invoice.recalculate calling syncPrValues for invoice_id = '. $invoice->id);
+		$result = Invoice::syncInvoiceValues($invoice->id);
+
+		if ($result == '') {
+			Log::debug(tenant('id'). ' tenant.InvoiceController.recalculate Pr->syncPrValues Successful');
+			return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoice Line Numbers updated and Amount Recalculated!');
+		} else {
+			Log::error(tenant('id'). ' tenant.InvoiceController.recalculate for pr_id = '.$invoice->id.' Return value of Invoice->syncPrValues = ' . $result);
+			$customError = CustomError::where('code', $result)->first();
+			return redirect()->route('invoices.show', $invoice->id)->with('error', $customError->message.' Please Try later.');
+		}
+	}
+
 
 	public function export()
 	{

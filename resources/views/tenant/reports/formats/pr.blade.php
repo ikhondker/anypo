@@ -1,5 +1,5 @@
 {{-- @extends('layouts.tenant.landscape') --}}
-@extends('layouts.tenant.report', ['info' => true])
+@extends('layouts.tenant.report', ['info' => true,'padding' => true])
 
 @section('title','Requisition')
 
@@ -43,11 +43,15 @@
 				<td class="numeric">{{ number_format($prl->amount,2) }}</td>
 			</tr>
 		@endforeach
+	</tbody>
+	<tfoot>
 		<tr>
 			<td colspan="8" style="text-align: right;"><strong>TOTAL ({{ $pr->currency }}):</strong></td>
 			<td style="text-align: right;">{{ number_format($pr->amount,2) }}</td>
 		</tr>
-	</tbody>
+	</tfoot>
+
+
 @endsection
 
 <!-- ========== THANKS ========== -->

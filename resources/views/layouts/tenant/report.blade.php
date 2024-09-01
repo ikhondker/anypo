@@ -37,6 +37,13 @@
 		#data th, td {
 			border: 1px solid silver;
 			padding: 5px;
+
+			/* Increase padding for few selected reports */
+			@isset($padding)
+				@if ($padding)
+					padding: 10px;
+				@endif 
+			@endisset
 		}
 		#data th {
 			/* text-align: left; */
@@ -210,20 +217,22 @@
 		</tr>
 	</table>
 	<!-- ========== LETTERHEAD ========== -->
-	@if ($info)
-		<table id="info">
-			<tr>
-				<td valign='top' width='50%' >
-					@yield('info1')
-				</td>
-				<td align='right' valign='top' width='50%'>
-					@yield('info2')
-				</td>
-			</tr>
-		</table>
-		<br>
-	@endif 
-
+	@isset($info)
+		@if ($info)
+			<table id="info">
+				<tr>
+					<td valign='top' width='50%' >
+						@yield('info1')
+					</td>
+					<td align='right' valign='top' width='50%'>
+						@yield('info2')
+					</td>
+				</tr>
+			</table>
+			<br>
+		@endif 
+	@endisset
+	
 	<table id="data">
 		<!-- Report main content -->
 		@yield('data')
