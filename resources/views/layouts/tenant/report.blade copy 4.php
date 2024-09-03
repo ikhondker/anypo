@@ -18,6 +18,7 @@
 		* {
 			/* Change your font family */
 			font-family: Arial, Helvetica, sans-serif;
+
 		}
 
 		body {
@@ -36,6 +37,7 @@
 		#data th, td {
 			border: 1px solid silver;
 			padding: 5px;
+
 			/* Increase padding for few selected reports */
 			@isset($padding)
 				@if ($padding)
@@ -93,8 +95,6 @@
 			
 		#letterhead td, th {
 			border: none;
-			margin: 0;
-			padding: 3px;
 		}
 
 		.title {
@@ -139,26 +139,13 @@
 			border-right: none;
 		}
 
-		/* 
-		#info td, th {
-			border-top: 1px solid silver;
-			border-bottom: 1px solid silver;
-			border-left: none;
-			border-right: none;
-			margin: 0;
-			padding: 0;
-		}  
-		*/
-
-		/* 
-		#info td {
+		/* #info td {
 			padding-left: 6px;
 			border-left: 6px solid #555858;
 			border-top: none;
 			border-bottom: none;
 			border-right: none;
-		} 
-		*/
+		}	 */
 
 		#notes {
 				padding-left: 6px;
@@ -204,15 +191,20 @@
 					<strong>{{ $_setup->name }}</strong></br>
 					{{ $setup->address1.', '. $setup->address2 }}<br>
 					{{ ($setup->address2 == '' ? '' : $setup->address2 .', ') . $setup->city .' '. $setup->state .', '. $setup->country_name->name }}</br>
-					{{ $setup->email }} </br>
-					{{ $setup->website }}
+					{{ $setup->email.' | '. $setup->website }}
 				</div>
 			</td>
 			<td width='34%' align='center' valign='top'>
 				<h2>{{ $title }}</h2>
 				<div class="title">
+					@php
+						$imgUrl = 	Str::replace('\\','/',Storage::disk('s3t')->url('/logo/'.$_setup->logo));
+						//$imgUrl = 	Storage::disk('s3t')->url('');
+					@endphp
+					=={{ $imgUrl }}==
+
 					@if ($subTitle <> '')
-						<strong>{{ $subTitle }}</strong> </br>
+						{{-- <strong>{{ $subTitle }}</strong> --}} </br>
 					@endif
 					@if ($param1 <> '')
 						{{ $param1 }}</br>
@@ -227,7 +219,19 @@
 			</td>
 			<td width='33%' align='right'>
 				{{-- <img src="{{ storage_path('logo.png') }}" width="80px" height="80px"> --}}
+				
 				<img src="{{ Str::replace('\\','/',Storage::disk('s3t')->url('logo/'.$_setup->logo)) }}" width="80px" height="80px"/>
+				<img src="{{ url('https://d36yu27tkxden3.cloudfront.net/tenancy/assets/logo/'.$_setup->logo) }}" width="80px" height="80px"/>
+				
+				<img src="{{ $imgUrl }}" width="80px" height="80px">
+				{{-- <img src="https://anypo-public.s3.us-east-1.amazonaws.com/tenancy/assets/logo/demo1-1001-66d744575c7c0-uploaded.jpg" width="80px" height="80px"> --}}
+				{{-- <img src="https://d36yu27tkxden3.cloudfront.net/tenancy/assets/logo/demo1-1001-66d744575c7c0.jpg" width="80px" height="80px"> --}}
+				
+
+				{{-- https://anypo-public.s3.us-east-1.amazonaws.com/tenancy/assets/logo/demo1-1001-66d744575c7c0-uploaded.jpg --}}
+				
+
+				{{-- <img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px"/> --}}
 			</td>
 		</tr>
 	</table>

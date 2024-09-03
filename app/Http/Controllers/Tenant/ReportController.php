@@ -385,7 +385,9 @@ class ReportController extends Controller
 			'prls' 		=> $prls,
 		];
 
+		PDF::setOptions(['debugCss' => true]);
 		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
+		
 		// ->setOption('fontDir', public_path('/fonts/lato'));
 		self::setWatermark($pr->auth_status, $pdf);
 		return $pdf->stream('PR#'.$pr->id.'.pdf');
