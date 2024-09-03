@@ -31,6 +31,7 @@ class PaymentFactory extends Factory
 			'bank_account_id'	=> BankAccount::inRandomOrder()->first()->id,
 			'cheque_no'			=> $this->faker->numberBetween($min = 100000, $max = 900000),
 			'amount'			=> $this->faker->numberBetween(1000,50000),
+			'summary'			=> $this->faker->sentence,
 			'notes'				=> $this->faker->paragraph,
 			'currency'			=> 'BDT',
 			'fc_exchange_rate'	=> $this->faker->numberBetween(100,120),

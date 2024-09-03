@@ -18,7 +18,8 @@ return new class extends Migration
 			$table->string('summary')->nullable();
 			$table->string('access')->default('all'); 
 			$table->string('article_id')->default(false); 
-			$table->string('article_id_required')->default(false); 
+			$table->boolean('article_id_required')->default(false); 
+			//$table->string('article_label')->nullable();
 			$table->boolean('start_date')->default(false); 
 			$table->boolean('start_date_required')->default(false); 
 			$table->boolean('end_date')->default(false); 
@@ -45,6 +46,7 @@ return new class extends Migration
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent();
+			$table->primary('code');
 		});
 	}
 

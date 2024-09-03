@@ -197,7 +197,9 @@
 			<td width='34%' align='center' valign='top'>
 				<h2>{{ $title }}</h2>
 				<div class="title">
+					@if ($subTitle <> '')
 					<strong>{{ $subTitle }}</strong></br>
+					@endif
 					@if ($param1 <> '')
 						{{ $param1 }}</br>
 					@endif

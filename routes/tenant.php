@@ -369,6 +369,7 @@ Route::middleware([
 		Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
 		Route::get('/invoices/ael/{invoice}',[InvoiceController::class,'ael'])->name('invoices.ael');
 
+		
 		/* ======================== InvoiceLines ======================================== */
 		Route::resource('invoice-lines', InvoiceLineController::class);
 		Route::get('/invoice-lines/delete/{invoiceLine}',[InvoiceLineController::class,'destroy'])->name('invoice-lines.destroy');
@@ -391,6 +392,7 @@ Route::middleware([
 		Route::get('/ael/export-for-po/{id}',[AelController::class,'exportForPo'])->name('aels.export-for-po');
 
 		/* ======================== Report ========================================  */
+		// PR Report is moved elsewhere
 		Route::resource('reports', ReportController::class);
 		Route::get('/report/export',[ReportController::class, 'export'])->name('reports.export');
 		Route::get('/report/po/{id}',[ReportController::class, 'po'])->name('reports.po');
@@ -737,13 +739,7 @@ Route::middleware([
 		Route::get('/custom-error/export',[CustomErrorController::class,'export'])->name('custom-errors.export');
 		Route::get('/custom-errors/delete/{customError}',[CustomErrorController::class,'destroy'])->name('custom-errors.destroy');
 
-		/* ======================== Report ========================================  */
-		Route::get('/report/createPDF',[ReportController::class, 'createPDF'])->name('reports.createPDF');
-		Route::get('/report/templatepr',[ReportController::class, 'templatepr'])->name('reports.templatepr');
-		Route::get('/report/templatepo',[ReportController::class, 'templatepo'])->name('reports.templatepo');
-		Route::get('/report/stocks',[ReportController::class, 'stocks'])->name('reports.stocks');
-
-		
+		/* ======================== UI ========================================  */
 		Route::get('/ui', function () {
 			return view('tenant.manage.ui');
 		})->name('ui');

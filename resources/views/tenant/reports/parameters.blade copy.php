@@ -33,21 +33,6 @@
 					<div class="card-body">
 							{{-- <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id',$report->id ) }}"> --}}
 
-							@if ($report->article_id_required)
-								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">{{ $report->entity }} ID :</label>
-									<div class="col-sm-10">
-											<input type="text" class="form-control @error('article_id') is-invalid @enderror"
-												name="article_id" id="article_id" placeholder=""
-												value="{{ old('article_id', '0000' ) }}"
-												required/>
-											@error('article_id')
-												<div class="text-danger text-xs">{{ $message }}</div>
-											@enderror
-									</div>
-								</div>
-							@endif
-
 							@if ($report->start_date)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Start Date </label>

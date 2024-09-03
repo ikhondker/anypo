@@ -37,6 +37,10 @@ use App\Models\Tenant\Prl;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 
+use App\Models\Tenant\Invoice;
+use App\Models\Tenant\InvoiceLine;
+use App\Models\Tenant\Payment;
+use App\Models\Tenant\Receipt;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Project;
@@ -46,6 +50,7 @@ use App\Models\Tenant\Lookup\BankAccount;
 
 use App\Models\Tenant\Admin\Setup;
 # 2. Enums
+use App\Enum\EntityEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\AuthStatusEnum;
 use App\Enum\InvoiceStatusEnum;
@@ -65,6 +70,9 @@ use PDF;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
+
 # 13. FUTURE
 # 1 . Add entity column in reports.index
 
@@ -153,6 +161,7 @@ class ReportController extends Controller
 	{
 
 		//$report_id		= $request->input('report_id');
+		$article_id			= $request->input('article_id');
 		$start_date			= $request->input('start_date');
 		$end_date			= $request->input('end_date');
 		$dept_id			= $request->input('dept_id');
@@ -162,15 +171,51 @@ class ReportController extends Controller
 		$bank_account_id	= $request->input('bank_account_id');
 		$pm_id				= $request->input('pm_id');
 
-		Log::debug('tenant.report.run report_code = '.$report->code);
+		Log::debug('tenant.report.run article_id = '.$article_id);
 		Log::debug('tenant.report.run start_date = '.$start_date);
 		Log::debug('tenant.report.run end_date = '.$end_date);
 		Log::debug('tenant.report.run pm_id = '.$pm_id);
+		
+		Log::debug('tenant.report.run report_code = '.$report->code);
 
 		// Increase reports run_count -------------------------
 		self::increaseRunCounter(Str::lower($report->code));
 		
+
+		// article_id validation
+		if ($report->article_id_required){
+			try {
+				switch ($report->entity) {
+					case EntityEnum::PR->value:
+						$pr = Pr::where('id', $article_id)->firstOrFail();
+						break;
+					case EntityEnum::PO->value:
+						$po = Po::where('id', $article_id)->firstOrFail();
+						break;
+					case EntityEnum::INVOICE->value:
+						$invoice = Invoice::where('id', $article_id)->firstOrFail();
+						break;
+					case EntityEnum::PAYMENT->value:
+						$payment = Payment::where('id', $article_id)->firstOrFail();
+						break;
+					case EntityEnum::RECEIPT->value:
+						$receipt = Receipt::where('id', $article_id)->firstOrFail();
+						break;
+					default:
+						Log::error(tenant('id'). 'tenant.ReportController.run entity = '.$report->entity.' article_id = ' . $article_id);
+						return redirect()->back()->with('error', 'Unknown Error!');
+				}
+			} catch (ModelNotFoundException $exception) {
+				//} catch (Exception $e) {
+				throw ValidationException::withMessages(['article_id' => $report->entity.' ID #'.$article_id.' not found!']);
+			}
+		}
+
+
 		switch ($report->code) {
+			case 'pr':
+				return self::pr($article_id);
+				break;
 			case 'prlist':
 				return self::prlist($start_date, $end_date, $dept_id);
 				break;
@@ -178,6 +223,9 @@ class ReportController extends Controller
 				return self::prllist($start_date, $end_date, $dept_id);
 				break;
 
+			case 'po':
+					return self::po($article_id);
+					break;
 			case 'polist':
 				return self::polist($start_date, $end_date, $dept_id);
 				break;
@@ -185,14 +233,23 @@ class ReportController extends Controller
 				return self::pollist($start_date, $end_date, $dept_id);
 				break;
 
+			case 'invoice':
+					return self::invoice($article_id);
+					break;
 			case 'invoicelist':
 				return self::invoicelist($start_date, $end_date, $dept_id);
 				break;
 
+			case 'payment':
+					return self::payment($article_id);
+					break;
 			case 'paymentlist':
 				return self::paymentlist($start_date, $end_date, $dept_id);
 				break;
 
+			case 'receipt':
+					return self::receipt($article_id);
+					break;
 			case 'receiptlist':
 					return self::receiptlist($start_date, $end_date, $dept_id);
 					break;
@@ -305,8 +362,10 @@ class ReportController extends Controller
 
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
+		
 		$title 		= $report->name. ' #'. $pr->id; ;
 		$subTitle	= 'Amount: '. number_format($pr->amount, 2) .' '. $pr->currency;
 		$param1 	= 'Approval: '. strtoupper($pr->auth_status);
@@ -317,13 +376,13 @@ class ReportController extends Controller
 		$data = [
 			'setup' 	=> $setup,
 			'report' 	=> $report,
-			'pr' 		=> $pr,
-			'prls' 		=> $prls,
 			'title' 	=> $title,
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
 			'param3' 	=> $param3,
+			'pr' 		=> $pr,
+			'prls' 		=> $prls,
 		];
 
 		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
@@ -350,6 +409,7 @@ class ReportController extends Controller
 		} else {
 			$param2 	= '';
 		}
+		$param3 	= '';
 
 		$sql = "
 			SELECT pr.id pr_id, pr.pr_date,pr.summary, pr.auth_status,d.name dept,
@@ -376,7 +436,7 @@ class ReportController extends Controller
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-			'param3' 	=> '',
+			'param3' 	=> $param3,
 			'prs' 		=> $prs,
 		];
 
@@ -408,6 +468,7 @@ class ReportController extends Controller
 		} else {
 			$param2 	= '';
 		}
+		$param3 	= '';
 
 		$sql = "
 			SELECT p.id pr_id, p.currency, d.name dept_name, p.pr_date,p.auth_status,
@@ -432,7 +493,7 @@ class ReportController extends Controller
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-			'param3' 	=> '',
+			'param3' 	=> $param3,
 			'prls' 		=> $prls,
 		];
 
@@ -499,6 +560,7 @@ class ReportController extends Controller
 		} else {
 			$param2 	= '';
 		}
+		$param3 	= '';
 
 		$sql = "
 			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
@@ -524,7 +586,7 @@ class ReportController extends Controller
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-			'param3' 	=> '',
+			'param3' 	=> $param3,
 			'pos' 		=> $pos,
 		];
 
@@ -556,6 +618,7 @@ class ReportController extends Controller
 		} else {
 			$param2 	= '';
 		}
+		$param3 	= '';
 
 		$sql = "
 			SELECT p.id po_id, p.currency, d.name dept_name, p.po_date,p.auth_status,
@@ -579,7 +642,7 @@ class ReportController extends Controller
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-			'param3' 	=> '',
+			'param3' 	=> $param3,
 			'pols' 		=> $pols,
 		];
 
@@ -591,7 +654,41 @@ class ReportController extends Controller
 		return $pdf->stream('pol-'.strtotime("now").'.pdf');
 	}
 
-	
+	public function invoice($id)
+	{
+		//TODO auth check
+		//TODO if pr exists
+		// $this->authorize('pdfInvoice', $invoice);
+
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$invoice 	= Invoice::with('supplier')->with('po')->where('id', $id)->firstOrFail();
+		$invoiceLines 		= InvoiceLine::where('invoice_id', $invoice->id)->get()->all();
+		$title 		= $report->name. ' #'. $invoice->invoice_num; ;
+		$subTitle	= 'Amount: '. number_format($invoice->amount, 2) .' '. $invoice->currency;
+		$param1 	= 'Status: '. strtoupper($invoice->status);
+		$param2 	= '';
+		$param3 	= '';
+		self::increaseRunCounter(Str::lower($report->code));
+		
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> $param3,
+			'invoice' 		=> $invoice,
+			'invoiceLines'	=> $invoiceLines,
+		];
+
+		$pdf = PDF::loadView('tenant.reports.formats.invoice', $data);
+		// ->setOption('fontDir', public_path('/fonts/lato'));
+		self::setWatermark($invoice->status, $pdf);
+		return $pdf->stream('Invoice #'.$invoice->id.'.pdf');
+	}
+
 
 	public function invoicelist($start_date, $end_date, $dept_id)
 	{
@@ -612,6 +709,7 @@ class ReportController extends Controller
 		} else {
 			$param2 	= '';
 		}
+		$param3 	= '';
 
 		$sql = "
 			SELECT i.id, i.po_id, i.summary, i.invoice_no, i.invoice_date, i.currency,
@@ -636,7 +734,7 @@ class ReportController extends Controller
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-			'param3' 	=> '',
+			'param3' 	=> $param3,
 			'invoices'	=> $invoices,
 		];
 
@@ -647,6 +745,40 @@ class ReportController extends Controller
 
 		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
 	}
+
+
+	public function payment($id)
+	{
+		//TODO auth check
+		//TODO if pr exists
+		// $this->authorize('pdfInvoice', $invoice);
+
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$payment 	= Payment::with('invoice')->with('po')->with('bank_account')->where('id', $id)->firstOrFail();
+		$title 		= $report->name. ' #'. $payment->id; ;
+		$subTitle	= 'Amount: '. number_format($payment->amount, 2) .' '. $payment->currency;
+		$param1 	= 'Status: '. strtoupper($payment->status);
+		$param2 	= '';
+		$param3 	= '';
+		self::increaseRunCounter(Str::lower($report->code));
+		
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> $param3,
+			'payment' 	=> $payment,
+		];
+		$pdf = PDF::loadView('tenant.reports.formats.payment', $data);
+		// ->setOption('fontDir', public_path('/fonts/lato'));
+		self::setWatermark($payment->status, $pdf);
+		return $pdf->stream('Payment #'.$payment->id.'.pdf');
+	}
+
 
 	public function paymentlist($start_date, $end_date, $dept_id)
 	{
@@ -667,6 +799,7 @@ class ReportController extends Controller
 		} else {
 			$param2 	= '';
 		}
+		$param3 	= '';
 
 		$sql = "
 			SELECT pay.id, pay.invoice_id, pay.pay_date, b.ac_name, pay.cheque_no, pay.currency, pay.amount,pay.fc_amount,
@@ -691,7 +824,7 @@ class ReportController extends Controller
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-			'param3' 	=> '',
+			'param3' 	=> $param3,
 			'payments'	=> $payments,
 		];
 
@@ -702,6 +835,45 @@ class ReportController extends Controller
 
 		return $pdf->stream('invoices-'.strtotime("now").'.pdf');
 	}
+
+
+	public function receipt($id)
+	{
+		//TODO auth check
+		//TODO if pr exists
+		// $this->authorize('pdfInvoice', $invoice);
+
+		$setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
+		$receipt 	= Receipt::with('pol')->with('receiver')->with('warehouse')->where('id', $id)->firstOrFail();
+		$title 		= $report->name. ' #'. $receipt->id; ;
+		//$subTitle	= 'Amount: '. number_format($payment->amount, 2) .' '. $payment->currency;
+		$subTitle	= '';
+		$param1 	= 'Status: '. strtoupper($receipt->status);
+		$param2 	= '';
+		$param3 	= '';
+		self::increaseRunCounter(Str::lower($report->code));
+		
+		$data = [
+			'setup' 	=> $setup,
+			'report' 	=> $report,
+			'title' 	=> $title,
+			'subTitle' 	=> $subTitle,
+			'param1' 	=> $param1,
+			'param2' 	=> $param2,
+			'param3' 	=> $param3,
+			'receipt' 	=> $receipt,
+		];
+		$pdf = PDF::loadView('tenant.reports.formats.receipt', $data);
+		// ->setOption('fontDir', public_path('/fonts/lato'));
+		//self::setWatermark($receipt->status, $pdf);
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->output();
+
+		return $pdf->stream('Receipt #'.$receipt->id.'.pdf');
+	}
+
+
 
 	public function receiptlist($start_date, $end_date, $dept_id)
 	{
@@ -721,6 +893,7 @@ class ReportController extends Controller
 		} else {
 			$param2 	= '';
 		}
+		$param3 	= '';
 
 		$sql = "
 			SELECT r.id, r.receive_date, r.warehouse_id,w.name warehouse_name, r.receiver_id, r.qty rcv_qty, r.fc_amount,
@@ -746,7 +919,8 @@ class ReportController extends Controller
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-			'param3' 	=> '',			'receipts'	=> $receipts,
+			'param3' 	=> $param3,	
+			'receipts'	=> $receipts,
 		];
 
 		$pdf = PDF::loadView('tenant.reports.formats.receiptlist', $data);
@@ -774,6 +948,7 @@ class ReportController extends Controller
 		} else {
 			$param2 	= '';
 		}
+		$param3 	= '';
 
 		$sql = "
 			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
@@ -800,7 +975,7 @@ class ReportController extends Controller
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-			'param3' 	=> '',
+			'param3' 	=> $param3,
 			'pos' 		=> $pos,
 		];
 
@@ -904,21 +1079,21 @@ class ReportController extends Controller
 			AND DATE(po.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 
-		$sql = "
-			SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
-			u.name requestor, p.name project,s.name supplier,
-			po.currency,
-			po.sub_total, po.tax, po.gst, po.amount,
-			po.amount_grs, po.amount_invoice, po.amount_paid,
-			po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
-			FROM pos po, depts d, users u, projects p,suppliers s
-			WHERE 1=1
-			AND po.dept_id =d.id
-			AND po.requestor_id=u.id
-			AND po.project_id=p.id
-			AND po.supplier_id=s.id
-			AND ". ($supplier_id <> '' ? 'po.supplier_id = '.$supplier_id.' ' : ' 1=1 ') ."
-		";
+		// $sql = "
+		// 	SELECT po.id po_id, po.po_date,po.summary, po.auth_status,d.name dept,
+		// 	u.name requestor, p.name project,s.name supplier,
+		// 	po.currency,
+		// 	po.sub_total, po.tax, po.gst, po.amount,
+		// 	po.amount_grs, po.amount_invoice, po.amount_paid,
+		// 	po.fc_exchange_rate, po.fc_sub_total, po.fc_tax, po.fc_gst, po.fc_amount
+		// 	FROM pos po, depts d, users u, projects p,suppliers s
+		// 	WHERE 1=1
+		// 	AND po.dept_id =d.id
+		// 	AND po.requestor_id=u.id
+		// 	AND po.project_id=p.id
+		// 	AND po.supplier_id=s.id
+		// 	AND ". ($supplier_id <> '' ? 'po.supplier_id = '.$supplier_id.' ' : ' 1=1 ') ."
+		// ";
 
 		$pos = DB::select($sql);
 
