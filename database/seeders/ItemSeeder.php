@@ -17,7 +17,7 @@ class ItemSeeder extends Seeder
 	{
 		//Item::factory()->count(10)->create();
 		//TODO change item code to laptop/tables/mobile etc..
-		$items =  [
+		$items = [
 			// [
 			// 	'name'			=> 'Tax',
 			// 	'notes'			=> 'Tax',

@@ -22,7 +22,7 @@ class PrSeeder extends Seeder
 
 		$faker = app(Generator::class);
 	
-		$prs =  [
+		$prs = [
 				[
 					'summary'			=> 'IT User 1 - IT PR 111 - Dept IT',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
@@ -52,7 +52,7 @@ class PrSeeder extends Seeder
 					'fc_currency'		=> 'BDT',
 				],
 				[
-					'summary'			=> 'IT User 2 - IT  PR 333 - Dept IT',
+					'summary'			=> 'IT User 2 - IT PR 333 - Dept IT',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
 					'requestor_id'		=> 1005,
 					'dept_id'			=> 1001,
@@ -109,9 +109,9 @@ class PrSeeder extends Seeder
 				],
 			];
 
-		  Pr::insert($prs);
-		  
-		  //Pr::factory()->count(10)->create();
+		Pr::insert($prs);
+		
+		//Pr::factory()->count(10)->create();
 
 	}
 }

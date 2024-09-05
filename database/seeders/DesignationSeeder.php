@@ -15,9 +15,9 @@ class DesignationSeeder extends Seeder
 	public function run(): void
 	{
 
-	  Designation::truncate();
+		Designation::truncate();
 
-		$designations =  [
+		$designations = [
 
 			[
 				'id'	=> '1001',

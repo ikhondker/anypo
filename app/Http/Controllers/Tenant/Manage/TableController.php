@@ -36,6 +36,7 @@ use App\Helpers\Docs;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use Illuminate\Support\Facades\Storage;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -231,9 +232,19 @@ class TableController extends Controller
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
 		$filesInFolder = Docs::getFiles($target_dir);
-
+		
 		return view('tenant.manage.tables.models', compact('filesInFolder'));
 	}
+
+	
+	public function allModels()
+	{
+		$this->authorize('models', Table::class);
+		$dir	=  "D:\laravel\anypo\app\Models\Tenant\\";
+		$a= Docs::listFolderFiles($dir);	
+	}
+
+
 
 	public function fncModels($dir = null)
 	{
@@ -355,50 +366,56 @@ class TableController extends Controller
 	public function check()
 	{
 		$this->authorize('check', Table::class);
+
 		// =CONCATENATE("""",TRIM(A1),""",")
 		$objects = array(
-			'User',
-			'Home',
-			'Table',
-			'FileAccess',
-			'Dashboard',
-			'Menu',
-			'Notification',
-			'Template',
 			'Activity',
-			'Currency',
-			'Rate',
-			'Country',
 			'Setup',
-			'Entity',
+			'Aeh',
+			'Ael',
 			'Attachment',
-			'Hierarchy',
-			'Hierarchyl',
+			'Budget',
+			'Dbu',
+			'DeptBudget',
+			'Invoice',
+			'InvoiceLine',
+			'BankAccount',
+			'Category',
+			'Country',
+			'Currency',
 			'Dept',
 			'Designation',
-			'Warehouse',
-			'Category',
+			'GlType',
 			'Group',
-			'Uom',
-			'Oem',
-			'Supplier',
-			'Project',
-			'Budget',
 			'Item',
+			'Oem',
+			'Project',
+			'Rate',
+			'Supplier',
+			'Uom',
 			'UploadItem',
-			'Wf',
-			'Wfl',
-			'Report',
-			'DeptBudget',
-			'PayMethod',
-			'Pr',
-			'Prl',
+			'Warehouse',
+			'Cp',
+			'CustomError',
+			'Entity',
+			'Menu',
+			'Status',
+			'Table',
+			'UomClass',
+			'Notification',
+			'Payment',
 			'Po',
 			'Pol',
+			'Pr',
+			'Prl',
 			'Receipt',
-			'Payment',
-			'Test',
-			);
+			'Report',
+			'Ticket',
+			'Hierarchy',
+			'Hierarchyl',
+			'Wf',
+			'Wfl',
+		);
 
 		//foreach ($objects as $value) {
 		//	echo "$value <br>";

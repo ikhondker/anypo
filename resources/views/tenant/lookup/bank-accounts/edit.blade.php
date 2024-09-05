@@ -125,7 +125,7 @@
 						<x-tenant.edit.address2 value="{{ $bankAccount->address2 }}"/>
 						<x-tenant.edit.city-state-zip city="{{ $bankAccount->city }}" state="{{ $bankAccount->state }}" zip="{{ $bankAccount->zip }}"/>
 						<x-tenant.edit.country value="{{ $bankAccount->country }}"/>
-                            <x-tenant.edit.save/>
+							<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

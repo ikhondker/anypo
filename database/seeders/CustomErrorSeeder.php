@@ -17,7 +17,7 @@ class CustomErrorSeeder extends Seeder
 	public function run(): void
 	{
 
-		$customErrors =  [
+		$customErrors = [
 			[
 				'code'		=> 'E000',
 				'entity'	=> EntityEnum::CORE->value,

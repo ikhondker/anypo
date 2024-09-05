@@ -125,9 +125,6 @@
 											</div>
 										</div>
 									</div>
-								   
-								   
-								   
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsSeven" data-bs-toggle="collapse" data-bs-target="#collapseSeven"
 											aria-expanded="true" aria-controls="collapseSeven">
@@ -141,7 +138,7 @@
 											</div>
 										</div>
 									</div>
-								   
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsEight" data-bs-toggle="collapse" data-bs-target="#collapseEight"
 											aria-expanded="true" aria-controls="collapseEight">
@@ -155,7 +152,7 @@
 											</div>
 										</div>
 									</div>
-								   
+								
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsNine" data-bs-toggle="collapse" data-bs-target="#collapseNine"
 											aria-expanded="true" aria-controls="collapseNine">
@@ -169,9 +166,7 @@
 											</div>
 										</div>
 									</div>
-								   
-								   
-								   
+							
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsTen" data-bs-toggle="collapse" data-bs-target="#collapseTen"
 											aria-expanded="true" aria-controls="collapseTen">
@@ -185,8 +180,8 @@
 											</div>
 										</div>
 									</div>
-								   
-								   
+								
+								
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsEleven" data-bs-toggle="collapse"
 											data-bs-target="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
@@ -200,7 +195,7 @@
 											</div>
 										</div>
 									</div>
-								   
+								
 				
 								</div>
 							</div>
@@ -226,9 +221,9 @@
 											</div>
 										</div>
 									</div>
-								   
-								   
-								   
+							
+								
+								
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="supportTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
 											aria-expanded="true" aria-controls="collapseTwo">
@@ -242,9 +237,9 @@
 											</div>
 										</div>
 									</div>
-								   
-								   
-								   
+								
+								
+								
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="supportThree" data-bs-toggle="collapse" data-bs-target="#collapseThree"
 											aria-expanded="true" aria-controls="collapseThree">
@@ -258,7 +253,7 @@
 											</div>
 										</div>
 									</div>
-								   
+								
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="supportFour" data-bs-toggle="collapse" data-bs-target="#collapseFour"
 											aria-expanded="true" aria-controls="collapseFour">
@@ -272,7 +267,7 @@
 											</div>
 										</div>
 									</div>
-								   
+								
 								</div>
 							</div>
 						</div>
@@ -296,8 +291,8 @@
 											</div>
 										</div>
 									</div>
-								   
-								   
+								
+								
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="paymentTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
 											aria-expanded="true" aria-controls="collapseTwo">
@@ -311,8 +306,8 @@
 											</div>
 										</div>
 									</div>
-								   
-								   
+								
+								
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="paymentThree" data-bs-toggle="collapse" data-bs-target="#collapseThree"
 											aria-expanded="true" aria-controls="collapseThree">
@@ -326,8 +321,8 @@
 											</div>
 										</div>
 									</div>
-								   
-								   
+								
+								
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="paymentFour" data-bs-toggle="collapse" data-bs-target="#collapseFour"
 											aria-expanded="true" aria-controls="collapseFour">
@@ -341,7 +336,7 @@
 											</div>
 										</div>
 									</div>
-								   
+								
 								</div>
 							</div>
 						</div>

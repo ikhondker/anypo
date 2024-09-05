@@ -17,105 +17,105 @@ class StatusSeeder extends Seeder
 
 		// Primary Secondary Success Danger Warning Info
 		// bg-soft-primary
-		$statuses =  [
+		$statuses = [
 			[
 				'code' 				=> 'draft',
 				'name' 				=> 'Draft',
 				'badge' 			=> 'badge-subtle-info',
-		  	],
+			],
 			[
 				'code' 				=> 'partial',
 				'name' 				=> 'Partial',
 				'badge' 			=> 'badge-subtle-info',
-		  	],
+			],
 			[
 				'code' 				=> 'accounted',
 				'name' 				=> 'Accounted',
 				'badge' 			=> 'badge-subtle-success',
-		  	],
+			],
 			[
 				'code' 				=> 'approved',
 				'name' 				=> 'Approved',
 				'badge' 			=> 'badge-subtle-success',
-		  	],
+			],
 			[
 				'code' 				=> 'received',
 				'name' 				=> 'Received',
 				'badge' 			=> 'badge-subtle-success',
-		  	],
+			],
 			[
 				'code' 				=> 'open',
 				'name' 				=> 'Open',
 				'badge' 			=> 'badge-subtle-success',
-		  	],
+			],
 			[
 				'code' 				=> 'validated',
 				'name' 				=> 'Validated',
 				'badge' 			=> 'badge-subtle-success',
-		  	],
+			],
 			[
 				'code' 				=> 'uploaded',
 				'name' 				=> 'Uploaded',
 				'badge' 			=> 'badge-subtle-success',
-		  	],
-		  	[
+			],
+			[
 				'code' 				=> 'posted',
 				'name' 				=> 'Posted',
 				'badge' 			=> 'badge-subtle-success',
-		  	],
+			],
 			[
 				'code' 				=> 'paid',
 				'name' 				=> 'paid',
 				'badge' 			=> 'badge-subtle-success',
-		  	],
+			],
 			[
 				'code' 				=> 'submitted',
 				'name' 				=> 'Submitted',
 				'badge' 			=> 'badge-subtle-warning',
-		  	],
+			],
 			[
 				'code' 				=> 'due',
 				'name' 				=> 'Due',
 				'badge' 			=> 'badge-subtle-warning',
-		  	],
+			],
 
 			[
 				'code' 				=> 'unpaid',
 				'name' 				=> 'Unpaid',
 				'badge' 			=> 'badge-subtle-warning',
-		  	],
+			],
 			[
 				'code' 				=> 'in-process',
 				'name' 				=> 'In-Process',
 				'badge' 			=> 'badge-subtle-warning',
-		  	],
-		  	[
+			],
+			[
 				'code' 				=> 'rejected',
 				'name' 				=> 'Rejected',
 				'badge' 			=> 'badge-subtle-secondary',
-		  	],
-		  	[
+			],
+			[
 				'code' 				=> 'closed',
 				'name' 				=> 'closed',
 				'badge' 			=> 'badge-subtle-secondary',
-		  	],
-		  	[
+			],
+			[
 				'code' 				=> 'force-closed',
 				'name' 				=> 'Force Closed',
 				'badge' 			=> 'badge-subtle-secondary',
-		  	],
-		  	[
+			],
+			[
 				'code' 				=> 'canceled',
 				'name' 				=> 'Canceled',
 				'badge' 			=> 'badge-subtle-danger',
-		  	],
+			],
 			[
 				'code' 				=> 'error',
 				'name' 				=> 'Error',
 				'badge' 			=> 'badge-subtle-danger',
-		  	],
+			],
 
-		  ];
+		];
 		//
 		Status::insert($statuses);
 	}

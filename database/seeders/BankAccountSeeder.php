@@ -18,7 +18,7 @@ class BankAccountSeeder extends Seeder
 
 		//$faker = app(Generator::class);
 		// Note: ac_name get updated by setup.freeze
-		$bank_accounts =  [
+		$bank_accounts = [
 		 	[
 				'id' 			=> 1001,
 		 		'ac_name'		=> 'STD-SEEDED',

@@ -12,7 +12,7 @@ use App\Models\Tenant\Pol;
 
 class ListAllLines extends Component
 {
-    public $po;
+	public $po;
 	public $pols;
 
 	/**
@@ -21,16 +21,16 @@ class ListAllLines extends Component
 	public function __construct(public string $poId)
 	{
 		//Log::debug('Value of prId=' . $prId);
-		$this->po 	    = Po::where('id', $poId)->firstOrFail();
+		$this->po 		= Po::where('id', $poId)->firstOrFail();
 		//Log::debug('Value of id=' . $this->pr->id);
 		$this->pols 	= Pol::with('po')->where('po_id', $poId)->get()->all();
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.pol.list-all-lines');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.pol.list-all-lines');
+	}
 }

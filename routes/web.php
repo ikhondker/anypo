@@ -423,6 +423,7 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::get('/table/controllers/{dir?}',[TableController::class, 'controllers'])->name('tables.controllers');
 	Route::get('/table/controllers-fnc/{dir?}',[TableController::class, 'fncControllers'])->name('tables.fnc-controllers');
 	Route::get('/table/models/{dir?}',[TableController::class, 'models'])->name('tables.models');
+	Route::get('/table/all-models',[TableController::class, 'allModels'])->name('tables.all-models');
 	Route::get('/table/models-fnc/{dir?}',[TableController::class, 'fncModels'])->name('tables.fnc-models');
 	Route::get('/table/policies/{dir?}',[TableController::class, 'policies'])->name('tables.policies');
 	Route::get('/table/policies-fnc/{dir?}',[TableController::class, 'fncPolicies'])->name('tables.fnc-policies');

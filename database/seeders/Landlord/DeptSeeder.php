@@ -14,7 +14,7 @@ class DeptSeeder extends Seeder
 		 */
 		public function run(): void
 		{
-			$depts =  [
+			$depts = [
 					[
 						'id'	=> '1001',
 						'name' 	=> 'General',

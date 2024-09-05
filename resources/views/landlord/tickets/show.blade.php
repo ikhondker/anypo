@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <a href="{{ route('tickets.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
+	<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
 	<h1 class="h3 mb-3">Ticket Detail</h1>
 
 	<div class="card">

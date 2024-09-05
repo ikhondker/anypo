@@ -15,11 +15,10 @@ class OemSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-	  //Schema::disableForeignKeyConstraints();
-	  //Oem::truncate();
-	  //Schema::enableForeignKeyConstraints();
-	  
-		$oems =  [
+		//Schema::disableForeignKeyConstraints();
+		//Oem::truncate();
+		//Schema::enableForeignKeyConstraints();
+		$oems = [
 			[
 				'id' 	=> 1001,
 				'name'	=> 'General',

@@ -14,7 +14,7 @@ class MyAmount extends Component
 	 */
 	public function __construct(public string $value, public string $label='')
 	{
-        $this->value 	= ($value == '')? '0.00' : $value;
+		$this->value 	= ($value == '')? '0.00' : $value;
 		$this->label = ($label == '')? 'Amount' : $label;
 		// if (is_numeric($value)){
 		// 	$this->value = $value;

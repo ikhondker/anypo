@@ -15,7 +15,7 @@ return new class extends Migration
 	{
 		// aravel does not support Composite Primary Key
 		Schema::create('statuses', function (Blueprint $table) {
-			$table->string('code', 15);	//  model: protected $primaryKey = 'entity'; 
+			$table->string('code', 15);	// model: protected $primaryKey = 'entity'; 
 			/** ENUM */
 			//$table->string('entity')->default(EntityEnum::PR->value);
 			/** end ENUM */

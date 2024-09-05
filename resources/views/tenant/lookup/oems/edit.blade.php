@@ -35,7 +35,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<x-tenant.edit.name :value="$oem->name"/>
-                            <x-tenant.edit.save/>
+							<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

@@ -17,7 +17,7 @@ class GlTypeSeeder extends Seeder
 		//GlType::truncate();
 		//Schema::enableForeignKeyConstraints();
 
-		$gl_types =  [
+		$gl_types =[
 			[
 				'code'		=> 'E',
 				'name'		=> 'Expense',

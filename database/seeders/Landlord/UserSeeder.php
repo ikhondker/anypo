@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
 		$faker = app(Generator::class);
 		//User::truncate();
 
-		$seededUsers =  [
+		$seededUsers = [
 			[
 				'id'				=> '1001',
 				'name'				=> 'System Admin',
@@ -175,7 +175,7 @@ class UserSeeder extends Seeder
 			],
 		];
 
-		$demoUsers =  [
+		$demoUsers = [
 		/*
 			[
 				'id'				=> '1007',

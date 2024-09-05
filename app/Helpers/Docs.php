@@ -35,6 +35,37 @@ class Docs
 		return DB::SELECT('describe ' . $table);
 	}
 
+	public static function getAllFiles($folder)
+	{
+		$files = Storage::allFiles($directory);
+	}
+
+	//https://stackoverflow.com/questions/7121479/listing-all-the-folders-subfolders-and-files-in-a-directory-using-php
+	public static function listFolderFiles($dir){
+		$ffs = scandir($dir);
+	
+		unset($ffs[array_search('.', $ffs, true)]);
+		unset($ffs[array_search('..', $ffs, true)]);
+	
+		// prevent empty ordered elements
+		if (count($ffs) < 1){
+			return;
+		}
+
+		//	 v1
+		echo '<ol>';
+		foreach($ffs as $ff){
+			echo '<li>'.$ff;
+			if(is_dir($dir.'/'.$ff)) self::listFolderFiles($dir.'/'.$ff);
+			echo '</li>';
+		}
+		echo '</ol>';
+		
+		//echo '=========================================';
+		//	
+		
+	}
+
 	public static function getFiles($folder)
 	{
 		//$filesInFolder = \File::files(base_path() . '\app\Models\Landlord');

@@ -219,6 +219,14 @@ class TableController extends Controller
 		return view('landlord.manage.tables.models', compact('filesInFolder'));
 	}
 
+	public function allModels()
+	{
+		$this->authorize('models', Table::class);
+		$dir	=  "D:\laravel\anypo\app\Models\Landlord\\";
+		$a= Docs::listFolderFiles($dir);	
+	}
+
+
 	public function fncModels($dir = null)
 	{
 		$this->authorize('models', Table::class);

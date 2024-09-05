@@ -51,7 +51,7 @@
 							@enderror
 						</div>
 
-                        <x-tenant.create.save/>
+						<x-tenant.create.save/>
 					</div>
 				</div>
 

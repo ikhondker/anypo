@@ -1137,8 +1137,8 @@ class ReportController extends Controller
 			al.fc_currency, al.fc_dr_amount, al.fc_cr_amount,
 			a.po_id, a.reference_no
 			FROM aehs a, aels al 
-            WHERE 1=1 
-            AND a.id=al.aeh_id;
+			WHERE 1=1 
+			AND a.id=al.aeh_id;
 			WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
 		$sql = "

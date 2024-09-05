@@ -16,18 +16,18 @@ class ConfigSeeder extends Seeder
 	{
 		Config::truncate();
 
-		$configs =  [
+		$configs = [
 				[
 					'name'			=> 'ANYPO.NET',
 					'tagline'		=> 'Control Expense',
 					'currency'		=> 'USD',
 					'address1'		=> '3939 Lawrence Ave, E#108,',
 					'address2'		=> '',
-					'city'			=> 'Scarborough',  
-					'state'		  	=> 'ON',  
+					'city'			=> 'Scarborough',
+					'state'			=> 'ON',
 					'zip'			=> 'M1G1R9',
 					'country'		=> 'CA',
-					'email'		  	=> 'info@anypo.net',
+					'email'			=> 'info@anypo.net',
 					'cell'			=> '+0012262804920',
 					'website'		=> 'https://www.anypo.net',
 					'banner_message'=> 'This is a test public message. Will be shown only in all dashboards, when enabled.',

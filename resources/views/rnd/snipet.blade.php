@@ -67,7 +67,7 @@ create
 @endcan
 
 <a href="{{ route('pols.show',$pol->id) }}" class="text-muted">
-    <strong>{{ Str::limit($pol->item_description,35) }}</strong>
+	<strong>{{ Str::limit($pol->item_description,35) }}</strong>
 </a>
 
 <tr>

@@ -18,7 +18,7 @@ class ServiceSeeder extends Seeder
 	public function run(): void
 	{
 		$faker = app(Generator::class);
-		$services =  [
+		$services = [
 			[
 				'id'			=> '1001',
 				'name'			=> 'STARTUP',
@@ -43,7 +43,7 @@ class ServiceSeeder extends Seeder
 			],
 			[
 				'id'			=> '1003',
-				'sku'			 => 'MEDIUM-OFFICE',
+				'sku'			=> 'MEDIUM-OFFICE',
 				'name'			=> 'MEDIUM OFFICE',
 				'addon'			=> false,
 				'addon_type'	=> 'na',
@@ -55,9 +55,9 @@ class ServiceSeeder extends Seeder
 			],
 			[
 				'id'			=> '1004',
-				'sku'			 => 'FUTURE',
+				'sku'			=> 'FUTURE',
 				'name'			=> 'Future',
-				'addon'	  => false,
+				'addon'			=> false,
 				'addon_type'	=> 'na',
 				'mnth'			=> 1,
 				'user'			=> 15,
@@ -68,9 +68,9 @@ class ServiceSeeder extends Seeder
 			/* ----------------------- ADDON --------------- */
 			[
 				'id'			=> '1005',
-				'sku'			 => 'ADDON1',
+				'sku'			=> 'ADDON1',
 				'name'			=> '3 More user',
-				'addon'	  => true,
+				'addon'			=> true,
 				'addon_type'	=> 'user',
 				'mnth'			=> 1,
 				'user'			=> 3,
@@ -80,9 +80,9 @@ class ServiceSeeder extends Seeder
 			],
 			[
 				'id'			=> '1006',
-				'sku'			 => 'ADDON2',
+				'sku'			=> 'ADDON2',
 				'name'			=> '5 More user',
-				'addon'	  => true,
+				'addon'			=> true,
 				'addon_type'	=> 'user',
 				'mnth'			=> 1,
 				'user'			=> 5,
@@ -92,9 +92,9 @@ class ServiceSeeder extends Seeder
 			],
 			[
 				'id'			=> '1007',
-				'sku'			 => 'ADDON3',
+				'sku'			=> 'ADDON3',
 				'name'			=> '3 GB More Space',
-				'addon'	  => true,
+				'addon'			=> true,
 				'addon_type'	=> 'gb',
 				'mnth'			=> 1,
 				'user'			=> 0,
@@ -104,9 +104,9 @@ class ServiceSeeder extends Seeder
 			],
 			[
 				'id'			=> '1008',
-				'sku'			 => 'ADDON4',
+				'sku'			=> 'ADDON4',
 				'name'			=> '5 GB More Space',
-				'addon'	  => true,
+				'addon'			=> true,
 				'addon_type'	=> 'gb',
 				'mnth'			=> 1,
 				'user'			=> 0,

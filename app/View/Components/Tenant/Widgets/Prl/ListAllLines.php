@@ -22,7 +22,7 @@ class ListAllLines extends Component
 	public function __construct(public string $prId)
 	{
 		//Log::debug('Value of prId=' . $prId);
-		$this->pr 	    = Pr::where('id', $prId)->firstOrFail();
+		$this->pr 		= Pr::where('id', $prId)->firstOrFail();
 		//Log::debug('Value of id=' . $this->pr->id);
 		$this->prls 	= Prl::with('pr')->where('pr_id', $prId)->get()->all();
 	}

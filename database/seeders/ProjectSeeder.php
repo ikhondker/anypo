@@ -25,10 +25,10 @@ class ProjectSeeder extends Seeder
 		//Schema::enableForeignKeyConstraints();
 	 
 		// TODO check who will be pm for seeded project
-		$seededProject =  [
+		$seededProject = [
 				[
-					'name'  	=> 'Seeded Project',
-					'code'  	=> 'SEEDED',
+					'name'		=> 'Seeded Project',
+					'code'		=> 'SEEDED',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 10000,
 					'notes'		=> 'This is Seeded Project.'
@@ -36,45 +36,45 @@ class ProjectSeeder extends Seeder
 			];
 
 
-			$demoProjects =  [
+			$demoProjects = [
 				[
 					'name' 		=> 'Name is AA01',
-					'code'  	=> 'AA01',
+					'code'		=> 'AA01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is AF01',
-					'code'  	=> 'AF01',
+					'code'		=> 'AF01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is AH01',
-					'code'  	=> 'AH01',
+					'code'		=> 'AH01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is AS01',
-					'code'  	=> 'AS01',
+					'code'		=> 'AS01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is BG01',
-					'code'  	=> 'BG01',
+					'code'		=> 'BG01',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is BH07',
-					'code'  	=> 'BH07',
+					'code'		=> 'BH07',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
@@ -82,35 +82,35 @@ class ProjectSeeder extends Seeder
 
 				[
 					'name' 		=> 'Name is GB06',
-					'code'  	=> 'GB06',
+					'code'		=> 'GB06',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is GB07',
-					'code'  	=> 'GB07',
+					'code'		=> 'GB07',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 10000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is GB08',
-					'code'  	=> 'GB08',
+					'code'		=> 'GB08',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is GB09',
-					'code'  	=> 'GB09',
+					'code'		=> 'GB09',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph
 				],
 				[
 					'name' 		=> 'Name is GB10',
-					'code'  	=> 'GB10',
+					'code'		=> 'GB10',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
 					'amount'	=> 100000,
 					'notes'		=> $faker->paragraph

@@ -19,7 +19,7 @@ class PayMethodSeeder extends Seeder
 
 		$faker = app(Generator::class);
 
-		$bank_accounts =  [
+		$bank_accounts = [
 			[
 				'id'				=> '1001',
 				'name'				=> 'DB-STD-756.1234.5678.96',

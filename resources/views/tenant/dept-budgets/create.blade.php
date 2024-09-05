@@ -65,13 +65,9 @@
 								@enderror
 							</td>
 						</tr>
-
-
-
 						<x-tenant.create.amount/>
 						<x-tenant.create.notes/>
-
-                        <x-tenant.create.save/>
+						<x-tenant.create.save/>
 					</tbody>
 				</table>
 			</div>

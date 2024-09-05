@@ -15,7 +15,7 @@ class RatingSeeder extends Seeder
 	public function run(): void
 	{
 		//Rating::truncate();
-		$ratings =  [
+		$ratings = [
 			[
 				'name' => '*',
 			],

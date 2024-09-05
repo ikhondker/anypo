@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <a href="{{ route('tenants.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
+	<a href="{{ route('tenants.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
 
 	<h1 class="h3 mb-3">View Tenant</h1>
 

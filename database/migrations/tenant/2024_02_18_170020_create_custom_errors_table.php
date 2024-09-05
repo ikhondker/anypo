@@ -12,7 +12,7 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('custom_errors', function (Blueprint $table) {
-			$table->string('code', 15);	//  model: protected $primaryKey = 'code'; 
+			$table->string('code', 15);	// model: protected $primaryKey = 'code'; 
 			$table->string('entity',15); 
 			/** ENUM */
 			//$table->string('entity')->default(EntityEnum::PR->value);

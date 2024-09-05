@@ -42,7 +42,7 @@
 						<x-tenant.edit.address2 value="{{ $warehouse->address2 }}"/>
 						<x-tenant.edit.city-state-zip city="{{ $warehouse->city }}" state="{{ $warehouse->state }}" zip="{{ $warehouse->zip }}"/>
 						<x-tenant.edit.country :value="$warehouse->country"/>
-                        <x-tenant.edit.save/>
+						<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

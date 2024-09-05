@@ -151,7 +151,7 @@
 				<x-tenant.edit.facebook value="{{ $user->facebook }}"/>
 				<x-tenant.edit.linked-in value="{{ $user->linkedin }}"/>
 				<x-tenant.edit.notes value="{{ $user->notes }}"/>
-                    <x-tenant.edit.save/>
+					<x-tenant.edit.save/>
 			</tbody>
 		</table>
 	</div>

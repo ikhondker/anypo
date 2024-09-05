@@ -22,7 +22,7 @@ class HierarchylSeeder extends Seeder
 
 		// TODO need to update from CreateTenant
 		// TODO need to set approver_id as new admin id
-		$hierarchyls =  [
+		$hierarchyls = [
 			[
 				'hid'			=> 1001,
 				'approver_id'	=> '1001',
@@ -55,7 +55,7 @@ class HierarchylSeeder extends Seeder
 
 
 			];
-		  //
-		  Hierarchyl::insert($hierarchyls);
+		//
+		Hierarchyl::insert($hierarchyls);
 	}
 }

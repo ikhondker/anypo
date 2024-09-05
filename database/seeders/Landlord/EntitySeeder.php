@@ -16,7 +16,7 @@ class EntitySeeder extends Seeder
 		{
 				//Entity::truncate();
 
-				$entities =  [
+				$entities = [
 						[
 							'entity'	=> 'TEMPLATE',
 							'name'		=> 'Templates',

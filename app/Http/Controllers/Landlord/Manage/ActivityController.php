@@ -203,7 +203,7 @@ class ActivityController extends Controller
 				SELECT a.id, a.object_name, a.object_id, a.event_name, u.name user_name, a.created_at
 				FROM activities a, users u
 				WHERE a.user_id=u.id
-	   			AND a.account_id = ".auth()->user()->account_id
+				AND a.account_id = ".auth()->user()->account_id
 				);
 		} else {
 			$data = DB::select("

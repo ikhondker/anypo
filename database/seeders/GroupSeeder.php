@@ -16,13 +16,13 @@ class GroupSeeder extends Seeder
 	{
 		//Group::truncate();
 
-		$groups =  [
+		$groups = [
 			[
 				'id'	=> '1001',
-				'name'  => "Seeded Item Group",
+				'name'	=> "Seeded Item Group",
 			],
-		  ];
+		];
 
-		  Group::insert($groups);
+		Group::insert($groups);
 	}
 }

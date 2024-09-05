@@ -65,7 +65,8 @@ class Handler extends ExceptionHandler
 	 }
 
 
-	public function TODOregister(): void
+	// TODO - rename one function which one you want 
+	public function dbregister(): void
 	{
 		$this->reportable(function (Throwable $e) {
 

@@ -48,7 +48,7 @@
 
 						<x-tenant.create.name/>
 
-                        <x-tenant.create.save/>
+						<x-tenant.create.save/>
 
 					</tbody>
 				</table>

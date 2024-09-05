@@ -15,7 +15,7 @@ class CurrencySeeder extends Seeder
 	public function run(): void
 	{
 		Currency::truncate();
-  
+
 		$currencies = [
 		['currency' =>'AED' , 'name' => 'Dirhams', 'country' => 'United Arab Emirates', 'symbol' => '', 'enable'=>FALSE, 'rates'=>TRUE, 'never'=>TRUE],
 		['currency' =>'AFN' , 'name' => 'Afghanis', 'country' => 'Afghanistan', 'symbol' => 'Ø‹', 'enable'=>FALSE, 'rates'=>TRUE, 'never'=>TRUE],

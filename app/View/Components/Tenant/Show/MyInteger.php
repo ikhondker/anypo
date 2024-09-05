@@ -16,7 +16,7 @@ class MyInteger extends Component
 	public function __construct(public string $value, public string $label='')
 	{
 		$this->label = ($label == '')? 'Amount' : $label;
-        $this->value 	= ($value == '')? '0' : $value;
+		$this->value 	= ($value == '')? '0' : $value;
 
 		// if (is_numeric($value)){
 		// 	$this->value = $value;

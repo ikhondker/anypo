@@ -32,14 +32,14 @@ return new class extends Migration
 			$table->string('state')->nullable();
 			$table->string('zip')->nullable();
 			$table->string('country',2)->default('US');
-            $table->string('website')->nullable();
+			$table->string('website')->nullable();
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
 			$table->string('avatar')->nullable()->default('avatar.png');
 			$table->text('notes')->nullable();
 			$table->string('timezone', 255)->default('UTC');
 			$table->boolean('seeded')->default(false);
-			$table->boolean('enable')->default(false);  // only make first admin true
+			$table->boolean('enable')->default(false);	// only make first admin true
 			$table->boolean('ban')->default(true);
 			$table->datetime('last_login_at')->nullable();
 			$table->string('last_login_ip')->nullable();

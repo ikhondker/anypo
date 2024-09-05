@@ -21,6 +21,7 @@
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('tables.controllers') }}"><i class="align-middle me-1" data-lucide="user"></i> Controller</a>
 		<a class="dropdown-item" href="{{ route('tables.models') }}"><i class="align-middle me-1" data-lucide="user"></i> Model</a>
+		<a class="dropdown-item" href="{{ route('tables.all-models') }}"><i class="align-middle me-1" data-lucide="user"></i> All Model</a>
 		<a class="dropdown-item" href="{{ route('tables.policies') }}"><i class="align-middle me-1" data-lucide="user"></i> Policy</a>
 		<a class="dropdown-item" href="{{ route('tables.helpers') }}"><i class="align-middle me-1" data-lucide="user"></i> Helpers</a>
 		<div class="dropdown-divider"></div>

@@ -20,7 +20,7 @@ class PoSeeder extends Seeder
 	{
 		$faker = app(Generator::class);
 	
-		$pos =  [
+		$pos = [
 				[
 					'summary'			=> 'PO#1 for IT - BDT',
 					'currency'			=> 'BDT',
@@ -113,6 +113,6 @@ class PoSeeder extends Seeder
 				],
 			];
 
-		  Po::insert($pos);
+		Po::insert($pos);
 	}
 }

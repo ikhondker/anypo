@@ -8,11 +8,11 @@ use App\Models\Tenant\InvoiceLine;
 
 class InvoiceLineSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        InvoiceLine::factory()->count(15)->create();
-    }
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		InvoiceLine::factory()->count(15)->create();
+	}
 }

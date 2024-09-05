@@ -57,7 +57,7 @@
 									<div class="text-danger text-xs">{{ $message }}</div>
 								@enderror
 						</div>
-                        <x-tenant.edit.save/>
+						<x-tenant.edit.save/>
 					</div>
 				</div>
 

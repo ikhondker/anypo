@@ -20,7 +20,7 @@ class UomSeeder extends Seeder
 		//Uom::truncate();
 		//Schema::enableForeignKeyConstraints();
 	
-		$uoms_default =  [
+		$uoms_default = [
 			[
 				'id' 			=> 1001,
 				'name' 			=> 'Each',
@@ -61,7 +61,7 @@ class UomSeeder extends Seeder
 		//
 		Uom::insert($uoms_default);
 
-		$uoms_count =  [
+		$uoms_count = [
 			[
 				'name' 			=> 'Pcs',
 				'uom_class_id' 	=> '1001',
@@ -77,7 +77,7 @@ class UomSeeder extends Seeder
 		Uom::insert($uoms_count);
 
 
-		$uoms_length =  [
+		$uoms_length = [
 			[
 				'name' 			=> 'Cm',
 				'uom_class_id' 	=> '1002',
@@ -102,7 +102,7 @@ class UomSeeder extends Seeder
 		// TODO
 		// Uom::insert($uoms_length);
 
-		$uoms_mass =  [
+		$uoms_mass = [
 			[
 				'name' 			=> 'gm',
 				'uom_class_id' 	=> '1003',
@@ -122,7 +122,7 @@ class UomSeeder extends Seeder
 		// TODO
 		// Uom::insert($uoms_mass);
 
-		$uoms_capacity =  [
+		$uoms_capacity =[
 			[
 				'name' 			=> 'ml',
 				'uom_class_id' 	=> '1004',
@@ -137,7 +137,7 @@ class UomSeeder extends Seeder
 		// TODO
 		// Uom::insert($uoms_capacity);
 		
-		$uoms_time =  [
+		$uoms_time = [
 			[
 				'name' 			=> 'Hour',
 				'uom_class_id' 	=> '1005',

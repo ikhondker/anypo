@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
 	public function run(): void
 	{
 		$faker = app(Generator::class);
-		$products =  [
+		$products = [
 			[
 
 				'id'			=> '1001',

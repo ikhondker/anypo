@@ -20,7 +20,7 @@ class CategorySeeder extends Seeder
 		//Category::truncate();
 		// Schema::enableForeignKeyConstraints();
 
-		$categories =  [
+		$categories = [
 			[
 				'id' 	=> 1001,
 				'name' 	=> 'Seeded Category',
@@ -57,8 +57,8 @@ class CategorySeeder extends Seeder
 			// 	'id' 	=> 1009,
 			// 	'name' => 'Petty Cash',
 			// ],
-	  ];
-	  //
-	  Category::insert($categories);
+		];
+		//
+		Category::insert($categories);
 	}
 }

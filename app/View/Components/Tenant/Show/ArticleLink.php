@@ -19,9 +19,9 @@ class ArticleLink extends Component
 	 */
 	public function __construct(public string $entity, public string $id='1001')
 	{
-		//$this->entity   = $entity;
-		//$this->id       = $id;
-		$this->route    = Str::plural(Str::snake(Str::lower($this->entity), '-'));
+		//$this->entity	= $entity;
+		//$this->id		= $id;
+		$this->route	= Str::plural(Str::snake(Str::lower($this->entity), '-'));
 
 	}
 

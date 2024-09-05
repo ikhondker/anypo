@@ -45,7 +45,7 @@
 						</tr>
 						<x-tenant.edit.name value="{{ $country->name }}"/>
 
-                            <x-tenant.edit.save/>
+							<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

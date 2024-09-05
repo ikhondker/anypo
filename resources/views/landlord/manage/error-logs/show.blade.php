@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <a href="{{ route('error-logs.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
+	<a href="{{ route('error-logs.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
 	<h1 class="h3 mb-3">View Unhandled Error Log</h1>
 
 			<div class="card">

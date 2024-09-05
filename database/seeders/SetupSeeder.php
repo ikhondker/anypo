@@ -16,7 +16,7 @@ class SetupSeeder extends Seeder
 	{
 		Setup::truncate();
 
-		$setups =  [
+		$setups = [
 			[
 				'id'			=> '1001',
 				'name'			=> 'ANYPO.NET',
@@ -25,8 +25,8 @@ class SetupSeeder extends Seeder
 				'admin_id'		=> 1001, // TODO 
 				'address1'		=> '3939 Lawrence Ave, E#108,',
 				'address2'		=> '',
-				'city'			=> 'Scarborough',  
-				'state'			=> 'ON',  
+				'city'			=> 'Scarborough',
+				'state'			=> 'ON',
 				'zip'			=> 'M1G1R9',
 				'country'		=> 'CA',
 				'email'			=> 'info@anypo.net',

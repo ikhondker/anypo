@@ -16,7 +16,7 @@ class PaymentMethodSeeder extends Seeder
 		{
 			 //PaymentMethod::truncate();
 				
-			 $payment_methods =  [
+			 $payment_methods = [
 				[
 					'id' => 1001,
 					'name' => 'Cash',

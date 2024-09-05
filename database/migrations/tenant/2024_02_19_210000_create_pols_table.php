@@ -56,7 +56,6 @@ return new class extends Migration
 			$table->timestamp('created_at')->useCurrent();
 			$table->biginteger('updated_by')->default(1001);
 			$table->timestamp('updated_at')->useCurrent();
-		  
 		});
 	}
 

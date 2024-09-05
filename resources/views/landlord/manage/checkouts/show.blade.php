@@ -8,8 +8,8 @@
 
 @section('content')
 
-    <a href="{{ route('checkouts.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
-    <h1 class="h3 mb-3">View Checkout</h1>
+	<a href="{{ route('checkouts.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
+	<h1 class="h3 mb-3">View Checkout</h1>
 
 
 			<div class="card">

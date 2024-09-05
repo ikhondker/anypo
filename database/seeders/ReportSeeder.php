@@ -16,7 +16,7 @@ class ReportSeeder extends Seeder
 	public function run(): void
 	{
 	 
-		$pr =  [
+		$pr = [
 			[
 				//'id' 					=> 1010,
 				'code' 					=> 'pr',
@@ -70,7 +70,7 @@ class ReportSeeder extends Seeder
 		];
 		Report::insert($pr);
 
-		$po =  [
+		$po = [
 			[
 				//'id' 					=> 1015,
 				'code' 					=> 'po',
@@ -122,7 +122,7 @@ class ReportSeeder extends Seeder
 		];
 		Report::insert($po);
 
-		$invoice =  [
+		$invoice = [
 			[
 				//'id' 					=> 1075,
 				'code' 					=> 'invoice',
@@ -155,10 +155,10 @@ class ReportSeeder extends Seeder
 				'order_by1' 			=> 30,
 				'order_by2' 			=> 20,
 			],
-	  	];
-	  	Report::insert($invoice);
+		];
+		Report::insert($invoice);
 
-		$payment =  [
+		$payment = [
 			[
 				//'id' 					=> 1080,
 				'code' 					=> 'payment',
@@ -191,10 +191,10 @@ class ReportSeeder extends Seeder
 				'order_by1' 			=> 40,
 				'order_by2' 			=> 20,
 			],
-	  	];
-	  	Report::insert($payment);
+		];
+		Report::insert($payment);
 
-	  	$receipt =  [
+		$receipt = [
 			[
 				//'id' 					=> 1085,
 				'code' 					=> 'receipt',
@@ -227,10 +227,10 @@ class ReportSeeder extends Seeder
 				'order_by1' 			=> 50,
 				'order_by2' 			=> 20,
 			],
-	  	];
-	  	Report::insert($receipt);
+		];
+		Report::insert($receipt);
 
-	  	$project =  [
+		$project = [
 			[
 				//'id' 					=> 1060,
 				'code' 					=> 'projectspend',
@@ -246,11 +246,11 @@ class ReportSeeder extends Seeder
 				'order_by1' 			=> 60,
 				'order_by2' 			=> 10,
 			],
-	  	];
-	  	Report::insert($project);
+		];
+		Report::insert($project);
 
 
-		$supplier =  [
+		$supplier = [
 			[
 				//'id' 					=> 1065,
 				'code' 					=> 'supplierspend',
@@ -267,11 +267,11 @@ class ReportSeeder extends Seeder
 				'order_by2' 			=> 10,
 
 			],
-	  	];	
-	  	Report::insert($supplier);
+		];	
+		Report::insert($supplier);
 
 
-		$tax =  [
+		$tax = [
 			[
 				//'id' 					=> 1055,
 				'code' 					=> 'taxregister',
@@ -288,10 +288,10 @@ class ReportSeeder extends Seeder
 				'order_by2' 			=> 10,
 
 			],
-	  	];
-	  	Report::insert($tax);
+		];
+		Report::insert($tax);
 
-	  	$aeh =  [
+		$aeh = [
 			[
 				//'id' 					=> 1070,
 				'code' 					=> 'aellist',
@@ -307,8 +307,8 @@ class ReportSeeder extends Seeder
 				'order_by1' 			=> 90,
 				'order_by2' 			=> 10,
 			],
-	  	];
-	  	Report::insert($aeh);
+		];
+		Report::insert($aeh);
 
 	}
 }

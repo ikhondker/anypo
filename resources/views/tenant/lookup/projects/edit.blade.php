@@ -64,7 +64,7 @@
 						</tr>
 						<x-tenant.edit.amount value="{{ $project->amount }}"/>
 						<x-tenant.edit.notes value="{{$project->notes }}"/>
-                        <x-tenant.edit.save/>
+						<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

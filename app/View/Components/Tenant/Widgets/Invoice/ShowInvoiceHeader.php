@@ -10,7 +10,7 @@ use App\Models\Tenant\Invoice;
 
 class ShowInvoiceHeader extends Component
 {
-    //public $id;
+	//public $id;
 	public $invoice;
 	/**
 	 * Create a new component instance.
@@ -20,11 +20,11 @@ class ShowInvoiceHeader extends Component
 		$this->invoice = Invoice::where('id', $invoiceId)->with("po")->with("supplier")->with('status_badge','pay_status_badge')->get()->first();
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.invoice.show-invoice-header');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.invoice.show-invoice-header');
+	}
 }

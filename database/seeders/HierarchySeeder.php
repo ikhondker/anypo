@@ -20,7 +20,7 @@ class HierarchySeeder extends Seeder
 		//Hierarchy::truncate();
 		//Schema::enableForeignKeyConstraints();
 
-		$hierarchies =  [
+		$hierarchies = [
 			[
 				'id' 	=> 1001,
 				'name'	=> 'All PR Approval (Seeded)',
@@ -30,19 +30,19 @@ class HierarchySeeder extends Seeder
 				'name'	=> 'All PO Approval (Seeded)',
 			],
 			// [
-		  
+		
 			//	'name'		=> 'All PO Approval',
 			// ],
 			// [
-		  
+		
 			//	'name'		=> 'PR Approval for Sales',
 			// ],
 			// [
-		  
+		
 			//	'name'		=> 'PO Approval for Finance',
 			// ],
 			];
-		  //
-		  Hierarchy::insert($hierarchies);
+		//
+		Hierarchy::insert($hierarchies);
 	}
 }

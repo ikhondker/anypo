@@ -75,7 +75,7 @@
 							@enderror
 							</td>
 						</tr>
-                        <x-tenant.edit.save/>
+						<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

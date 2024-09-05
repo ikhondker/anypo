@@ -12,7 +12,7 @@
 		<a href="{{ route('payments.edit', $payment->id) }}" class="btn btn-danger float-end"><i class="fas fa-edit"></i> Edit(*)</a>
 	@endif --}}
 
-    <a href="{{ route('payments.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
+	<a href="{{ route('payments.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
 	<h1 class="h3 mb-3">View Payment</h1>
 
 

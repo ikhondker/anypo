@@ -16,7 +16,7 @@ class PrioritySeeder extends Seeder
 	{
 		//Priority::truncate();
 		
-		$priorities =  [
+		$priorities = [
 				[
 					'id'	=> '1001',
 					'name' => 'Low',

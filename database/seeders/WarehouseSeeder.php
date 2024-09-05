@@ -22,42 +22,42 @@ class WarehouseSeeder extends Seeder
 
 		$faker = app(Generator::class);
 
-		$seededWarehouses =  [
+		$seededWarehouses =[
 			[
 				'name'			=> 'Central Warehouse',
 				'address1'		=> '3939 Lawrence Ave, E#108,',
 				'address2'		=> '',
-				'city'			=> 'Scarborough',  
-				'state'			=> 'ON',  
+				'city'			=> 'Scarborough',
+				'state'			=> 'ON',
 				'zip'			=> 'M1G1R9',
 			],
 			[
 				'name'			=> 'Regional Warehouse 1',
 				'address1'		=> '3939 Lawrence Ave, E#108,',
 				'address2'		=> '',
-				'city'			=> 'Scarborough',  
-				'state'			=> 'ON',  
+				'city'			=> 'Scarborough',
+				'state'			=> 'ON',
 				'zip'			=> 'M1G1R9',
 			],
 			[
 				'name'			=> 'Head Office',
 				'address1'		=> '3939 Lawrence Ave, E#108,',
 				'address2'		=> '',
-				'city'			=> 'Scarborough',  
-				'state'			=> 'ON',  
+				'city'			=> 'Scarborough',
+				'state'			=> 'ON',
 				'zip'			=> 'M1G1R9',
 			],
 			[
 				'name'			=> 'Branch Office 1',
 				'address1'		=> '3939 Lawrence Ave, E#108,',
 				'address2'		=> '',
-				'city'			=> 'Scarborough',  
-				'state'			=> 'ON',  
+				'city'			=> 'Scarborough',
+				'state'			=> 'ON',
 				'zip'			=> 'M1G1R9',
 			],
 			
-		  ];
-		  //
-		  Warehouse::insert($seededWarehouses);
+		];
+		//
+		Warehouse::insert($seededWarehouses);
 	}
 }

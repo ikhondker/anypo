@@ -20,7 +20,7 @@ class UomClassSeeder extends Seeder
 		//Uom::truncate();
 		//Schema::enableForeignKeyConstraints();
 	
-		$uomClasses =  [
+		$uomClasses = [
 			[
 				'id' 	=> 1001,
 				'name' => 'Count',

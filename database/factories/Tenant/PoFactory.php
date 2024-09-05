@@ -38,7 +38,7 @@ class PoFactory extends Factory
 			'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 			'project_id'		=> Project::inRandomOrder()->first()->id,
 			'po_date'			=> $this->faker->dateTimeBetween($startDate = '-1 months', $endDate = 'now', $timezone = null),
-			'notes'			  	=> $this->faker->paragraph,
+			'notes'				=> $this->faker->paragraph,
 			'sub_total'			=> $sub_total,
 			'tax'				=> $tax,
 			'gst'				=> $gst,

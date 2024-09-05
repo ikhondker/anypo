@@ -113,7 +113,7 @@
 							</td>
 						</tr>
 						<x-tenant.edit.price value="{{ $uploadItem->price }}"/>
-                            <x-tenant.edit.save/>
+							<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

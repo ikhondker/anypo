@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		$categories =  [
+		$categories = [
 			[
 				'id'	=> '1001',
 				'name' => 'General',
@@ -35,7 +35,7 @@ class CategorySeeder extends Seeder
 				'id'	=> '1005',
 				'name' => 'Technical Issues',
 			],
-		  ];
+		];
 		//
 		Category::insert($categories);
 	}
