@@ -1,7 +1,6 @@
 
 
-
-# 9. Size 
+# 4. Size 
 -------------------------------------------------------------------------------------------------
 laptop screen size
 1920 x 1080
@@ -15,13 +14,11 @@ logo color:
 blue: #008BCD
 ash: #6A778A
 
-# 3. Icons 
--------------------------------------------------------------------------------------------------
-lucide and font awsome
+# 3. Icons (Tenat & landlord) 
+====================================================================
+- lucide and font awsome
 
-Lanldord
-	
-Tenant
+Lanldord & Tenant
 - sidebar - lucide
 - page header button - <i class="fas fa-plus"></i>
 - card header button - <i class="fas fa-edit"></i>
@@ -30,27 +27,23 @@ Tenant
 - buttons
 - kpi 			<i class="align-middle" data-lucide="activity"></i>
 
-# 6. Landlord Theme App: AppsStack 
-====================================================================]
-sample: User and Payment 
+# 2. Tenant and landlord Theme App: AppsStack 4.0.0 
+====================================================================
+Now 4.0.1 avaiable
 
-[- Front theme discarded ] 26-jun-24
-- AppsStack
-
-
-# 6. Tenant Theme App: AppsStack 
-====================================================================]
+was in Asus Laptop
 Version: appstack-4-0-0.zip
 Source: E:\BoughtGraphics\AppStack
 vanila: D:\xampp\htdocs\appstack4
-scss change: D:\xampp\htdocs\appstack
+scss change: D:\xampp\htdocs\appstack4
+    -> D:\xampp\htdocs\appstack4\src\js\ app.js and custom.js  [Asus laptop]
 	- place everything inside   D:\laravel\anypo\public\tenancy\assets TODO
 	- aws\anypo-public -> tenancy\assets TODO
 	- aws filesystem s3t
 
 sample: User
 
-anypo_full_v.0.17 frotn discarded
+anypo_full_v.0.17 front discarded
 
 small icon
 <span data-feather="home" class="feather-sm me-1"></span>
@@ -65,10 +58,6 @@ light.css
 <i class="fa-regular fa-square-plus">
 <i class="fa-regular fa-rectangle-list"></i>
 
-[
-USED: https://feathericons.com/
-<i data-feather="home"></i>
-<i class="align-middle" data-feather="download-cloud"></i>]
 
 // Theme colors
 $blue: 			#3F80EA !default;
@@ -97,8 +86,8 @@ $black: #000 !default;
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 works if added in app.blade.php
 
-# 7. [Discrded] Theme Landlord : Front 
-====================================================================]
+# 1. [Discarded] Theme Landlord : Front 
+====================================================================
 TODO comape them btn orignal and used in landlaord
 
 use: <link rel="stylesheet" href="{{ asset('/assets/css/theme.css') }}">
