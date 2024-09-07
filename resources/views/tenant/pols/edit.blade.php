@@ -77,7 +77,7 @@
 							value="{{ old('po_amount', isset($po->amount) ? number_format($po->amount,2) : "0.00") }}"
 							required readonly>
 						@error('po_amount')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</td>
 				</tr>

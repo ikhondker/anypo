@@ -63,7 +63,7 @@
 												@endforeach
 											</select>
 											@error('po_id')
-												<div class="text-danger text-xs">{{ $message }}</div>
+												<div class="small text-danger">{{ $message }}</div>
 											@enderror
 										</td>
 									</tr>
@@ -96,7 +96,7 @@
 										value="{{ old('invoice_no', '' ) }}"
 										required/>
 									@error('invoice_no')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -108,7 +108,7 @@
 										value="{{ old('invoice_date', date('Y-m-d') ) }}"
 										required/>
 									@error('invoice_date')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -120,7 +120,7 @@
 										value="{{ old('summary', '' ) }}"
 										required/>
 									@error('summary')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -168,7 +168,7 @@
 											@endforeach
 										</select>
 										@error('poc_id')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</td>
 								</tr>
@@ -221,7 +221,7 @@
 								value="{{ old('invoice_amount', (isset($pr->amount) ? number_format($invoice->amount,2) : "0.00")) }}"
 								readonly>
 							@error('invoice_amount')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</td>
 					</tr>

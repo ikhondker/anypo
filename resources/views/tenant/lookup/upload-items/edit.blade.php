@@ -43,7 +43,7 @@
 									value="{{ old('item_code', $uploadItem->item_code ) }}"
 									required/>
 								@error('item_code')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -56,7 +56,7 @@
 								value="{{ old('category_name', $uploadItem->category_name ) }}"
 								required/>
 							@error('category_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -69,7 +69,7 @@
 									value="{{ old('oem_name', $uploadItem->oem_name ) }}"
 									required/>
 								@error('oem_name')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -82,7 +82,7 @@
 									value="{{ old('uom_name', $uploadItem->uom_name ) }}"
 									required/>
 								@error('uom_name')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -94,7 +94,7 @@
 									value="{{ old('gl_type_name', $uploadItem->gl_type_name ) }}"
 									required/>
 								@error('gl_type_name')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -108,7 +108,7 @@
 									value="{{ old('ac_expense', $uploadItem->ac_expense ) }}"
 									required/>
 								@error('ac_expense')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>

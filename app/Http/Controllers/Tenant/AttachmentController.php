@@ -169,14 +169,44 @@ class AttachmentController extends Controller
 		$request->validate([
 		]);
 
-		Log::debug('Value of id=' . $attachment->id);
-		Log::debug('Value of summary=' . $attachment->summary);
+		//Log::debug('Value of id=' . $attachment->id);
+		//Log::debug('Value of summary=' . $attachment->summary);
 
 		// Write to Log
 		EventLog::event('attachment', $attachment->id, 'update', 'summary', $request->summary);
 		$attachment->update($request->all());
+		// TODO redirect to parent document attah list
 
-		return redirect()->route('attachments.show',$attachment->id)->with('success', 'Attachment information updated successfully');
+		$msg = 'Attachment information updated successfully';
+
+		switch ($attachment->entity) {
+			case EntityEnum::BUDGET->value:
+				return redirect()->route('budgets.show',$attachment->article_id)->with('success', $msg );
+				break;
+			case EntityEnum::DEPTBUDGET->value:
+				return redirect()->route('dept-budgets.show',$attachment->article_id)->with('success', $msg );
+				break;
+			case EntityEnum::PR->value:
+				return redirect()->route('prs.show',$attachment->article_id)->with('success', $msg );
+				break;
+			case EntityEnum::PO->value:
+				return redirect()->route('po.show',$attachment->article_id)->with('success', $msg );
+				break;
+			case EntityEnum::PROJECT->value:
+				return redirect()->route('projects.show',$attachment->article_id)->with('success', $msg );
+				break;
+			case EntityEnum::RECEIPT->value:
+				return redirect()->route('receipts.show',$attachment->article_id)->with('success', $msg );
+				break;
+			case EntityEnum::INVOICE->value:
+				return redirect()->route('invoices.show',$attachment->article_id)->with('success', $msg );
+				break;
+			case EntityEnum::PAYMENT->value:
+				return redirect()->route('payments.show',$attachment->article_id)->with('success', $msg );
+				break;
+			default:
+				return redirect()->route('dashboard.index')->with('success', $msg);
+			}
 	}
 
 	/**

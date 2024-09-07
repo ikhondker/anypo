@@ -44,7 +44,7 @@
 										value="{{ $invoice->po->summary }}"
 										readonly/>
 									@error('po_summary')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -59,7 +59,7 @@
 										value="{{ old('invoice_no', $invoice->invoice_no ) }}"
 										required/>
 									@error('invoice_no')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -72,7 +72,7 @@
 										value="{{ old('invoice_date', date('Y-m-d',strtotime($invoice->invoice_date)) ) }}"
 										required/>
 									@error('invoice_date')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -85,7 +85,7 @@
 										value="{{ old('summary', $invoice->summary ) }}"
 										required/>
 									@error('summary')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -123,7 +123,7 @@
 										value="{{ old('amount', $invoice->amount ) }}"
 										step='0.01' min="1" required/>
 									@error('amount')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -139,7 +139,7 @@
 											@endforeach
 										</select>
 										@error('poc_id')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</td>
 								</tr>

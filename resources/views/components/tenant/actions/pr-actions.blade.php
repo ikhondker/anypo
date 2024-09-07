@@ -17,19 +17,22 @@
 		@endif
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle me-1" data-lucide="list"></i> All Requisitions</a>
 		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Requisition</a>
 		<a class="dropdown-item sw2-advance" href="{{ route('prs.copy', $pr->id) }}"
 			data-entity="" data-name="PR #{{ $pr->id }}" data-status="Duplicate"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PR">
 			<i class="align-middle me-1" data-lucide="copy"></i> Copy Requisition</a>
+		
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle me-1" data-lucide="list"></i> All Requisitions</a>
 
 		@can('convert', $pr)
 			<a class="dropdown-item sw2-advance" href="{{ route('prs.convert', $pr->id) }}"
 				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Convert to PO"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Convert to PO">
 				<i class="align-middle me-1" data-lucide="copy"></i> Convert to PO</a>
-			@endcan
+		@endcan
+
 		<div class="dropdown-divider"></div>
 		@can('reset', App\Models\Tenant\Wf::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-pr', $pr->id) }}"

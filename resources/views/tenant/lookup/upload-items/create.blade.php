@@ -47,7 +47,7 @@
 								accept=".xlsx" placeholder="file_to_upload"/>
 								<small class="form-text text-muted">Select the file to upload.</small>
 							@error('file_to_upload')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</div>
 

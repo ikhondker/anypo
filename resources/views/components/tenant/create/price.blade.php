@@ -6,7 +6,7 @@
 		value="{{ old('price', '1.00' ) }}"
 		step='0.01' min="1" required/>
 	@error('price')
-		<div class="text-danger text-xs">{{ $message }}</div>
+		<div class="small text-danger">{{ $message }}</div>
 	@enderror
 	</td>
 </tr>

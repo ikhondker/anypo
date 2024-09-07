@@ -71,7 +71,7 @@
 								value="{{ old('invoice_amount', (isset($invoice->amount) ? number_format($invoice->amount,2) : "0.00")) }}"
 								readonly>
 							@error('invoice_amount')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</td>
 					</tr>

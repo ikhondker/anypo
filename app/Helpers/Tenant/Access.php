@@ -59,6 +59,7 @@ class Access
 		// also check ListAllByArticle Component
 
 		$editable		= false;
+		Log::debug(tenant('id'). ' tenant.Access.isAttachmentEditable article_id = '. $attachment->article_id);
 
 		switch ($attachment->entity) {
 

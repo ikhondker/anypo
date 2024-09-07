@@ -28,7 +28,9 @@
 6. update
 6. destroy
 
-
+<div class="text-danger text-xs">{{ $message }}</div>
+to
+<div class="small text-danger">{{ $message }}</div>
 # 11. Frequent 
 ====================================================================
 ~~~
@@ -49,6 +51,7 @@ Log::info(print_r($dept_budget, true));
 
 # 10. TODO 
 ====================================================================
+1. float to decimal (19,4)
 1. //TODO php artisan route:cache error
 1. https://www.youtube.com/watch?app=desktop&v=rtiK6iblU1I
 1. rename NotificationComposer.php to TenantNotificationComposer.php

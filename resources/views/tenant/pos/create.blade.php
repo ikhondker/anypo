@@ -41,7 +41,7 @@
 										value="{{ old('summary', '' ) }}"
 										required/>
 									@error('summary')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -70,7 +70,7 @@
 												@endforeach
 											</select>
 											@error('dept_id')
-												<div class="text-danger text-xs">{{ $message }}</div>
+												<div class="small text-danger">{{ $message }}</div>
 											@enderror
 
 										</td>
@@ -86,7 +86,7 @@
 											@endforeach
 										</select>
 										@error('supplier_id')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</td>
 								</tr>
@@ -102,7 +102,7 @@
 												@endforeach
 											</select>
 											@error('project_id')
-												<div class="text-danger text-xs">{{ $message }}</div>
+												<div class="small text-danger">{{ $message }}</div>
 											@enderror
 										</div>
 									</td>
@@ -137,7 +137,7 @@
 										value="{{ old('need_by_date', date('Y-m-d') ) }}"
 										required/>
 									@error('need_by_date')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 									</td>
 								</tr>
@@ -147,7 +147,7 @@
 									<td>
 										<textarea class="form-control" name="notes" placeholder="Enter ..." rows="4">{{ old('notes', 'Enter ...') }}</textarea>
 										@error('notes')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 										<div class="form-check form-switch">
 											<input class="form-check-input mt-2" type="checkbox" id="tc" name="tc">
@@ -220,7 +220,7 @@
 								value="{{ old('po_amount', isset($po->amount) ? number_format($po->amount,2) : "0.00") }}"
 								required readonly>
 							@error('po_amount')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</td>
 					</tr>

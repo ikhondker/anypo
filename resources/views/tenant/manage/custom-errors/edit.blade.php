@@ -46,7 +46,7 @@
 								value="{{ old('entity', $customError->entity ) }}"
 								/>
 							@error('entity')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -58,7 +58,7 @@
 								value="{{ old('message', $customError->message ) }}"
 								/>
 							@error('message')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

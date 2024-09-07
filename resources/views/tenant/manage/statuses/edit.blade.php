@@ -39,7 +39,7 @@
 									value="{{ old('code', $status->code ) }}"
 									required readonly/>
 								@error('code')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -51,7 +51,7 @@
 									value="{{ old('name', $status->name ) }}"
 									required/>
 								@error('name')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -63,7 +63,7 @@
 								value="{{ old('badge', $status->badge ) }}"
 								required/>
 							@error('badge')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

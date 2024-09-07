@@ -35,8 +35,6 @@
 
 	<script type="text/javascript">
 		function mySubmit() {
-			//alert('I am inside 2');
-			//document.getElementById('upload').click();
 			document.getElementById('frm1').submit();
 		}
 	</script>

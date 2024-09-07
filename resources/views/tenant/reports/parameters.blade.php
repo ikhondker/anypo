@@ -42,7 +42,7 @@
 												value="{{ old('article_id', '0000' ) }}"
 												required/>
 											@error('article_id')
-												<div class="text-danger text-xs">{{ $message }}</div>
+												<div class="small text-danger">{{ $message }}</div>
 											@enderror
 									</div>
 								</div>
@@ -57,7 +57,7 @@
 												value="{{ old('start_date', date('Y-m-01') ) }}"
 												required/>
 											@error('start_date')
-												<div class="text-danger text-xs">{{ $message }}</div>
+												<div class="small text-danger">{{ $message }}</div>
 											@enderror
 									</div>
 								</div>
@@ -71,7 +71,7 @@
 											value="{{ old('end_date', date('Y-m-d') ) }}"
 											required/>
 										@error('end_date')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</div>
 								</div>
@@ -87,7 +87,7 @@
 											@endforeach
 										</select>
 										@error('dept_id')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</div>
 								</div>
@@ -103,7 +103,7 @@
 											@endforeach
 										</select>
 										@error('supplier_id')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</div>
 								</div>
@@ -119,7 +119,7 @@
 											@endforeach
 										</select>
 										@error('project_id')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</div>
 								</div>
@@ -135,7 +135,7 @@
 											@endforeach
 										</select>
 										@error('warehouse_id')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</div>
 								</div>
@@ -151,7 +151,7 @@
 											@endforeach
 										</select>
 										@error('bank_account_id')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</div>
 								</div>
@@ -168,7 +168,7 @@
 											@endforeach
 										</select>
 										@error('pm_id')
-											<div class="text-danger text-xs">{{ $message }}</div>
+											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</div>
 								</div>

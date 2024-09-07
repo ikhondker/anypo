@@ -44,7 +44,7 @@
 								value="{{ old('country', '' ) }}"
 								required/>
 							@error('country')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

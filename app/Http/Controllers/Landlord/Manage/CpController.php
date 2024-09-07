@@ -74,8 +74,8 @@ class CpController extends Controller
 
 		$section 	= $request->input('section');				// Faq
 		$div 		= $request->input('div');					// One
-		Log::debug('Value of accordion_id	=' . $section);
-		Log::debug('Value of div_id			=' . $div);
+		//Log::debug('Value of accordion_id	=' . $section);
+		//Log::debug('Value of div_id			=' . $div);
 
 		$accordion 	= 'accordion'.ucfirst($section);			// accordionFaq
 		$card 		= strtolower($section).ucfirst($div);		// faqOne

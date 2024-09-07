@@ -43,6 +43,8 @@ create
 	</td>
 </tr>
 
+Log::debug(tenant('id'). ' tenant.Access.isAttachmentEditable article_id = '. $attachment->article_id);
+
 <th width="20%">Photo</th>
 
 <div class="text-danger text-xs">{{ $message }}</div> to <div class="small text-danger">{{ $message }}</div>

@@ -43,7 +43,7 @@
 								value="{{ old('name', '' ) }}"
 								required/>
 							@error('name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -59,7 +59,7 @@
 									@endforeach
 								</select>
 								@error('approver_id_1')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 
 							</td>
@@ -76,7 +76,7 @@
 									@endforeach
 								</select>
 								@error('approver_id_2')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 
 							</td>
@@ -93,7 +93,7 @@
 									@endforeach
 								</select>
 								@error('approver_id_3')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 
 							</td>
@@ -110,7 +110,7 @@
 									@endforeach
 								</select>
 								@error('approver_id_4')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 
 							</td>
@@ -127,7 +127,7 @@
 									@endforeach
 								</select>
 								@error('user_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 
 							</td>

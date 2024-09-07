@@ -45,7 +45,7 @@
 									@endforeach
 								</select>
 								@error('pr_hierarchy_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -58,7 +58,7 @@
 									@endforeach
 								</select>
 								@error('po_hierarchy_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>

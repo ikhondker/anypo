@@ -11,7 +11,7 @@
 		placeholder="file_to_upload">
 
 	@error('file_to_upload')
-	<div class="text-danger text-xs">{{ $message }}</div>
+	<div class="small text-danger">{{ $message }}</div>
 	@enderror
 </div> --}}
 
@@ -29,7 +29,7 @@
 			placeholder="file_to_upload">
 
 			@error('file_to_upload')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 			@enderror
 	</td>
 </tr>

@@ -28,8 +28,10 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>Create</a>
-					<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+					@if (auth()->user()->isSystem())
+						<a href="{{ route('attachments.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+						<a href="{{ route('attachments.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+					@endif
 				</div>
 				<h5 class="card-title">Edit Attachment</h5>
 				<h6 class="card-subtitle text-muted">Edit Attachment description.</h6>
@@ -37,7 +39,7 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						<x-tenant.edit.summary :value="$attachment->summary"/>
+						<x-tenant.edit.summary 		:value="$attachment->summary"/>
 						<x-tenant.show.my-text		value="{{ $attachment->org_file_name }}" label="File Name"/>
 						<x-tenant.show.article-link entity="{{ $attachment->entity }}" :id="$attachment->article_id"/>
 						<x-tenant.show.my-text		value="{{ $attachment->file_type }}" label="File Type"/>
@@ -45,6 +47,10 @@
 						<x-tenant.show.my-text		value="{{ $attachment->owner->name }}" label="Owner Name"/>
 						<x-tenant.show.my-created-at value="{{ $attachment->updated_at }}"/>
 						<x-tenant.show.my-updated-at value="{{ $attachment->created_at }}"/>
+						<tr>
+							<th>File :</th>
+							<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
+						</tr>
 						<x-tenant.edit.save/>
 					</tbody>
 				</table>

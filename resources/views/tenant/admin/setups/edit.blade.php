@@ -65,7 +65,7 @@
 									value="{{ old('tagline', $setup->tagline ) }}"
 									required/>
 								@error('tagline')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -126,7 +126,7 @@
 									value="{{ old('ac_accrual', $setup->ac_accrual ) }}"
 									required/>
 								@error('ac_accrual')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -139,7 +139,7 @@
 									value="{{ old('ac_liability', $setup->ac_liability ) }}"
 									/>
 								@error('ac_liability')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>

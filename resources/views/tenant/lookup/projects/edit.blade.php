@@ -45,7 +45,7 @@
 								value="{{ old('code', $project->code ) }}"
 								required/>
 							@error('code')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

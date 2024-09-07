@@ -2,6 +2,9 @@
 	<div class="col-12 col-xl-12">
 		<div class="card">
 			<div class="card-header">
+				<div class="card-actions float-end">
+
+				</div>
 				<h5 class="card-title">Attachments</h5>
 				<h6 class="card-subtitle text-muted">List of Attachments for current document.</h6>
 			</div>
@@ -9,23 +12,23 @@
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr>
-						<th class="" scope="col">#</th>
-						<th class="" scope="col">Summary</th>
-						<th class="" scope="col">Owner</th>
-						<th class="" scope="col">File Name</th>
-						<th class="text-end" scope="col">Size (Byte)</th>
-						<th class="" scope="col">Upload Date</th>
-						<th class="" scope="col">File</th>
-						<th class="" scope="col">Action</th>
+						<th>#</th>
+						<th>Summary</th>
+						<th>Owner</th>
+						<th>File Name</th>
+						<th class="text-end">Size (Byte)</th>
+						<th>Upload Date</th>
+						<th>File</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($attachments as $attachment)
 					<tr>
-						<td class="">{{ $loop->iteration }}</td>
-						<td class="">{{ $attachment->summary }}</td>
-						<td class="">{{ $attachment->owner->name }}</td>
-						<td class="">{{ $attachment->org_file_name }}</td>
+						<td>{{ $loop->iteration }}</td>
+						<td>{{ $attachment->summary }}</td>
+						<td>{{ $attachment->owner->name }}</td>
+						<td>{{ $attachment->org_file_name }}</td>
 						<td class="text-end">{{ number_format($attachment->file_size) }}</td>
 						<td><x-tenant.list.my-date-time :value="$attachment->upload_date"/></td>
 						<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>

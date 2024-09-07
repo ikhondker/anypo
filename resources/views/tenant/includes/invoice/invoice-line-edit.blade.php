@@ -9,7 +9,7 @@
 			value="{{ old('summary', $invoiceLine->summary ) }}"
 			required/>
 		@error('summary')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	
@@ -20,7 +20,7 @@
 			value="{{ old('qty', $invoiceLine->qty ) }}"
 			required>
 		@error('qty')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -30,7 +30,7 @@
 			value="{{ old('price', $invoiceLine->price ) }}"
 			required>
 		@error('price')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 
@@ -41,7 +41,7 @@
 			value="{{ old('sub_total', $invoiceLine->sub_total ) }}"
 			readonly>
 		@error('sub_total')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -51,7 +51,7 @@
 			value="{{ old('tax', $invoiceLine->tax ) }}"
 			required>
 		@error('tax')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -61,7 +61,7 @@
 			value="{{ old('gst', $invoiceLine->gst ) }}"
 			required>
 		@error('gst')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 
@@ -72,7 +72,7 @@
 			value="{{ old('amount',number_format($invoiceLine->amount, 2)) }}"
 			readonly>
 		@error('amount')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	{{-- <td class="">

@@ -81,13 +81,16 @@ BO-4-source-file-modify-20230413.txt
 
 # 33. TODO 
 -------------------------------------------------------------------------------------------------
+160. show attachments, add attachment
+159. attachment id replace with random code
+158. prefix form pr/po number
 157. wfs.index badge not shown
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
 155. fix component  list -> ArticleLink and ProjectLink
 154. export file name add export
 153. allow user to edit attachment file description
 155. add users need multi user avatar
-153. po table issue, invocieLines, reports, FAQ, attachments
+153. po table issue, invoiceLines, reports, FAQ, attachments
 152. re-use D:\Temp\svg\illustrations\png from Front theme
 150. Printed Receipt Report (TBD)
 150. Printed Invoice Report (TBD)

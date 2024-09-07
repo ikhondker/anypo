@@ -14,7 +14,8 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('users', function (Blueprint $table) {
-			$table->id()->startingValue(1001);
+			//$table->id()->startingValue(1001);
+			$table->uuid('id')->primary();
 			$table->string('name');
 			$table->string('email')->unique();
 			$table->biginteger('designation_id')->nullable()->default(1001); 	// No foreign key to avoid circular FK dependency

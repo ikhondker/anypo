@@ -43,7 +43,7 @@
 									@endforeach
 								</select>
 								@error('uom_class_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -57,7 +57,7 @@
 								step='0.01' min="1" value="{{ old('conversion', '1.00' ) }}"
 								required/>
 							@error('conversion')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

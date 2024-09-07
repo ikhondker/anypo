@@ -1,5 +1,5 @@
 <tr>
-	<th>Currency X:</th>
+	<th class="text-warning">Currency :</th>
 	<td>
 		<select class="form-control" name="currency" id="currency" required>
 			@foreach ($currencies as $currency)
@@ -7,7 +7,7 @@
 			@endforeach
 		</select>
 		@error('currency')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 </tr>

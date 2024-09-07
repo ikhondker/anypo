@@ -9,7 +9,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Approval History PR #{{ $pr->id }}
+			PR #{{ $pr->id }} : Approval History
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
@@ -18,12 +18,16 @@
 		@endslot
 	</x-tenant.page-header>
 	
-	<x-tenant.info.pr-info prId="{{ $pr->id }}"/>
+	{{-- <x-tenant.info.pr-info prId="{{ $pr->id }}"/> --}}
 
 	{{-- @include('tenant.includes.pr.view-pr-header-basic') --}}
 
 	<!-- Approval History -->
 	<x-tenant.wf.approval-history wfId="{{ $pr->wf_id }}"/>
+
+		<div class="float-end">
+			<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ route('prs.show', $pr->id) }}"><i data-lucide="arrow-left-circle"></i> Back to PR</a>
+		</div>
 
 @endsection
 

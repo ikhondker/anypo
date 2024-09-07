@@ -6,7 +6,7 @@
 		value="{{ old('website', 'http://www.anypo.net' ) }}"
 		required/>
 	@error('website')
-		<div class="text-danger text-xs">{{ $message }}</div>
+		<div class="small text-danger">{{ $message }}</div>
 	@enderror
 	</td>
 </tr>

@@ -20,7 +20,7 @@
 									<option {{ 'rejected' == old('action',$wfl->action->value) ? 'selected' : '' }} value="{{ App\Enum\WflActionEnum::REJECTED->value }}">REJECTED</option>
 									</select>
 									@error('action')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 								</td>
 							</tr>
@@ -29,7 +29,7 @@
 								<td>
 									<textarea class="form-control" name="notes" placeholder="Enter ..." rows="3">{{ old('notes', $wfl->notes) }}</textarea>
 									@error('notes')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 								</td>
 							</tr>

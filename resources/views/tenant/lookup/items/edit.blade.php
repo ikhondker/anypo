@@ -47,7 +47,7 @@
 								value="{{ old('code', $item->code ) }}"
 								required/>
 							@error('code')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -124,7 +124,7 @@
 								value="{{ old('ac_expense', $item->ac_expense ) }}"
 								required/>
 							@error('ac_expense')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

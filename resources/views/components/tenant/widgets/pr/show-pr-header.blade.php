@@ -54,10 +54,10 @@
 
 				<div class="card-actions float-end">
 					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-sm btn-success text-white float-end me-2 sw2-advance"
+						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-sm btn-warning text-white float-end me-2 sw2-advance"
 							data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
-							<i data-lucide="external-link" class="text-white"></i> Submit for Approval</a>
+							<i data-lucide="external-link" class="text-white"></i> Submit</a>
 					@else 
 						<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>	
 					@endif
@@ -69,7 +69,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>Auth Status :</th>
+							<th width="20%">Auth Status :</th>
 							<td>
 								<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
 							</td>
@@ -138,8 +138,6 @@
 
 <script type="text/javascript">
 	function mySubmit() {
-		//alert('I am inside 2');
-		//document.getElementById('upload').click();
 		document.getElementById('frm1').submit();
 	}
 </script>

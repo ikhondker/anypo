@@ -778,7 +778,8 @@ class PrController extends Controller
 			$attid = FileUpload::aws($request);
 		}
 
-		return redirect()->route('prs.show', $request->input('attach_pr_id'))->with('success', 'File Uploaded successfully.');
+		//return redirect()->route('prs.show', $request->input('attach_pr_id'))->with('success', 'File Uploaded successfully.');
+		return redirect()->back()->with('success', 'File Uploaded successfully.');
 	}
 
 	public function attachments(Pr $pr)

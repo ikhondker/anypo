@@ -40,7 +40,7 @@
 							value="{{ old('name', $user->name ) }}"
 							required/>
 						@error('name')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</td>
 				</tr>
@@ -52,7 +52,7 @@
 							value="{{ old('email', $user->email ) }}"
 							readonly/>
 						@error('email')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</td>
 				</tr>
@@ -84,7 +84,7 @@
 							value="{{ old('cell', $user->cell ) }}"
 							required/>
 						@error('cell')
-							<div class="text-danger text-xs">{{ $message }}</div>
+							<div class="small text-danger">{{ $message }}</div>
 						@enderror
 					</td>
 				</tr>

@@ -36,7 +36,7 @@
 								value="{{ old('title', '' ) }}"
 								required/>
 							@error('title')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -46,7 +46,7 @@
 							<textarea class="form-control" rows="3" name="content"
 								placeholder="Enter ...">{{ old('content', "Enter ...") }}</textarea>
 							@error('content')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -59,7 +59,7 @@
 								placeholder="file_to_upload">
 
 								@error('file_to_upload')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>

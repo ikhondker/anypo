@@ -62,7 +62,7 @@
 									value="{{ old('amount_pr_booked', $dbu->amount_pr_booked ) }}"
 									step='0.01' min="0" required/>
 								@error('amount_pr_booked')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 								</td>
 							</tr>

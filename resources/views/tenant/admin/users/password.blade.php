@@ -42,7 +42,7 @@
 								value="{{ old('password1', $user->password1 ) }}"
 								required/>
 								@error('password1')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 						</div>
 
@@ -54,7 +54,7 @@
 								placeholder="Retype password"
 								required autocomplete="new-password"/>
 								@error('password2')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 						</div>
 						<x-tenant.edit.save/>

@@ -27,6 +27,7 @@ use App\Models\User;
 use File;
 // use Illuminate\Support\Facades\File;
 use Image;
+use Str;
 
 use Request;
 use Exception;
@@ -76,6 +77,7 @@ class FileUpload
 
 			// create Attachment record 
 			$attachment					= new Attachment();
+			//$attachment->id 			= Str::uuid();
 			$attachment->article_id		= $request->article_id;
 			$attachment->entity			= $request->entity;
 			$attachment->file_entity	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;

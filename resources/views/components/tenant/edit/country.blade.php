@@ -1,5 +1,5 @@
 <tr>
-	<th>Country X:</th>
+	<th class="text-warning">Country :</th>
 	<td>
 		<select class="form-control" name="country">
 			@foreach ($countries as $country)

@@ -55,7 +55,7 @@
 										@endforeach
 									</select>
 									@error('pol_id')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 								</td>
 							</tr>
@@ -69,7 +69,7 @@
 									value="{{ old('pol_summary', $pol->item_description ) }}"
 									readonly/>
 								@error('pol_summary')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 								</td>
 							</tr>
@@ -86,7 +86,7 @@
 								value="{{ old('qty', '1.00' ) }}"
 								step='0.01' min="1" required/>
 							@error('qty')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -101,7 +101,7 @@
 									@endforeach
 								</select>
 								@error('warehouse_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>

@@ -12,7 +12,8 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('attachments', function (Blueprint $table) {
-			$table->id()->startingValue(1001);
+			//$table->id()->startingValue(1001);
+			$table->uuid('id')->primary();
 			$table->string('entity',15); 
 			$table->biginteger('article_id')->default(0);
 			$table->string('file_entity',15); 

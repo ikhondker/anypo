@@ -43,7 +43,7 @@
 								value="{{ old('entity', '' ) }}"
 								required/>
 							@error('entity')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -57,7 +57,7 @@
 								value="{{ old('message', '' ) }}"
 								required/>
 							@error('message')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

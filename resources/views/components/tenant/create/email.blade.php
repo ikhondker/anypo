@@ -6,7 +6,7 @@
 		value="{{ old('email', 'you@example.com' ) }}"
 		required/>
 	@error('email')
-		<div class="text-danger text-xs">{{ $message }}</div>
+		<div class="small text-danger">{{ $message }}</div>
 	@enderror
 	</td>
 </tr>

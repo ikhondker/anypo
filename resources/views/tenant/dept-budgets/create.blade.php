@@ -44,7 +44,7 @@
 									@endforeach
 								</select>
 								@error('budget_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -61,7 +61,7 @@
 									@endforeach
 								</select>
 								@error('dept_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>

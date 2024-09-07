@@ -10,7 +10,7 @@
 			@endforeach
 		</select>
 		@error('item_id')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="">
@@ -19,7 +19,7 @@
 			value="{{ old('item_description', $prl->item_description ) }}"
 			required/>
 		@error('item_description')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="">
@@ -36,7 +36,7 @@
 			value="{{ old('qty', $prl->qty ) }}"
 			required>
 		@error('qty')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -46,7 +46,7 @@
 			value="{{ old('price', $prl->price ) }}"
 			required>
 		@error('price')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 
@@ -57,7 +57,7 @@
 			value="{{ old('sub_total', $prl->sub_total ) }}"
 			readonly>
 		@error('sub_total')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -67,7 +67,7 @@
 			value="{{ old('tax', $prl->tax ) }}"
 			required>
 		@error('tax')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -77,7 +77,7 @@
 			value="{{ old('gst', $prl->gst ) }}"
 			required>
 		@error('gst')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 
@@ -88,7 +88,7 @@
 			value="{{ old('amount',number_format($prl->amount, 2)) }}"
 			readonly>
 		@error('amount')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	{{-- <td class="">

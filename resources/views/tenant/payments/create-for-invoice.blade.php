@@ -54,7 +54,7 @@
 										@endforeach
 									</select>
 									@error('invoice_id')
-										<div class="text-danger text-xs">{{ $message }}</div>
+										<div class="small text-danger">{{ $message }}</div>
 									@enderror
 								</td>
 							</tr>
@@ -68,7 +68,7 @@
 									value="{{ $po->currency }}"
 									readonly/>
 								@error('invoice_no')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 								</td>
 							</tr>
@@ -82,7 +82,7 @@
 								value="{{ old('summary', '' ) }}"
 								required/>
 							@error('summary')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -97,7 +97,7 @@
 									@endforeach
 								</select>
 								@error('bank_account_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -111,7 +111,7 @@
 								value="{{ old('cheque_no', '' ) }}"
 								required/>
 							@error('cheque_no')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -124,7 +124,7 @@
 								value="{{ old('amount', '1.00' ) }}"
 								step='0.01' min="1" required/>
 							@error('amount')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

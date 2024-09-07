@@ -47,7 +47,7 @@
 								value="{{ old('raw_route_name', $menu->raw_route_name ) }}"
 								required/>
 							@error('raw_route_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -59,7 +59,7 @@
 								value="{{ old('route_name', $menu->route_name ) }}"
 								required/>
 							@error('route_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -71,7 +71,7 @@
 								value="{{ old('node_name', $menu->node_name ) }}"
 								/>
 							@error('node_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

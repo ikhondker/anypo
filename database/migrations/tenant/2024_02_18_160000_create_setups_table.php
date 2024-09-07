@@ -17,6 +17,7 @@ return new class extends Migration
 			$table->string('tagline')->nullable();
 			$table->string('currency',3)->default('USD');
 			$table->boolean('freezed')->default(false);
+			$table->string('prefix')->default('AP/');
 			$table->float('tax_pc',15,2)->default(0);				// Future user
 			$table->float('gst_pc',15,2)->default(7.5);				// Future user
 			$table->string('address1')->nullable();

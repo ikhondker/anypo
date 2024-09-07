@@ -4,7 +4,7 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
@@ -15,8 +15,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Attachment extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
+	use HasUuids;
 
 	use SoftDeletes;
+
+	protected $keyType		= 'string';
+	public $incrementing 	= false;
 
 	protected $casts = [
 		'deleted_at' => 'datetime',

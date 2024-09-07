@@ -6,7 +6,7 @@
 		value="{{ old('end_date', date('Y-m-d') ) }}"
 		required/>
 	@error('end_date')
-		<div class="text-danger text-xs">{{ $message }}</div>
+		<div class="small text-danger">{{ $message }}</div>
 	@enderror
 	</td>
 </tr>

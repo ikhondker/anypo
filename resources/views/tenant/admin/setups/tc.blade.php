@@ -34,7 +34,7 @@
 					<label class="form-label">Terms and Conditions Text:</label>
 					<textarea class="form-control" name="tc" placeholder="Enter Terms and Conditions ..." rows="10">{{ old('tc', $setup->tc) }}</textarea>
 					@error('banner_message')
-						<div class="text-danger text-xs">{{ $message }}</div>
+						<div class="small text-danger">{{ $message }}</div>
 					@enderror
 				</div>
 

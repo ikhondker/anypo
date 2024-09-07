@@ -32,7 +32,7 @@ use App\Models\Landlord\Admin\Attachment;
 */
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Designation;
-
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use App\Traits\AddCreatedUpdatedBy;
 
 use Laravel\Sanctum\HasApiTokens;
@@ -50,10 +50,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 // IQBAL MustVerifyEmail
 class User extends Authenticatable implements MustVerifyEmail
 {
+	use HasUuids;
 	use HasApiTokens;
 	use HasFactory;
 	use Notifiable;
 	use AddCreatedUpdatedBy;
+
+
+	protected $keyType		= 'string';
+	public $incrementing 	= false;
 
 	/**
 	 * The attributes that are mass assignable.

@@ -12,7 +12,7 @@
 			value="{{ old('summary', '' ) }}"
 			required/>
 		@error('summary')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -22,7 +22,7 @@
 			value="{{ old('qty','1') }}"
 			required>
 		@error('qty')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	
@@ -36,7 +36,7 @@
 			value="{{ old('price','0.00') }}"
 			required>
 		@error('price')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -46,7 +46,7 @@
 			value="{{ old('sub_total','0.00') }}"
 			readonly>
 		@error('sub_total')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -56,7 +56,7 @@
 			value="{{ old('tax','0.00') }}"
 			required>
 		@error('tax')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -66,7 +66,7 @@
 			value="{{ old('gst','0.00') }}"
 			required>
 		@error('gst')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -76,7 +76,7 @@
 			value="{{ old('amount','0.00') }}"
 			readonly>
 		@error('amount')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	{{-- <td class="">

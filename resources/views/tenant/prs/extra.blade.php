@@ -9,7 +9,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Additional Information for Requisition
+		 	PR #{{ $pr->id }} : Additional Information
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
@@ -19,13 +19,15 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.pr-info prId="{{ $pr->id }}"/>
-
+	{{-- <x-tenant.info.pr-info prId="{{ $pr->id }}"/> --}}
 
 	<div class="row">
 		<div class="col-6">
 			<div class="card">
 				<div class="card-header">
+					<div class="card-actions float-end">
+						<a class="btn btn-sm btn-light" href="{{ route('prs.show', $pr->id) }}"><i class="fas fa-edit"></i> PR#{{ $pr->id }}</a>
+					</div>
 					<h5 class="card-title">Additional Information PR# {{ $pr->id }}</h5>
 					<h6 class="card-subtitle text-muted">Additional information of a Purchase Requisitions</h6>
 				</div>
@@ -57,14 +59,20 @@
 
 					<table class="table table-sm my-2">
 						<tbody>
-
-
-						<x-tenant.show.my-text		value="{{ $pr->fc_currency }}" label="Functional Currency"/>
-						<x-tenant.show.my-amount	value="{{ $pr->fc_exchange_rate }}" label="Exchange Rate"/>
-						<x-tenant.show.my-amount	value="{{ $pr->fc_sub_total }}" label="Subtotal"/>
-						<x-tenant.show.my-amount	value="{{ $pr->fc_tax }}" label="Tax"/>
-						<x-tenant.show.my-amount	value="{{ $pr->fc_gst }}" label="GST"/>
-						<x-tenant.show.my-amount	value="{{ $pr->fc_amount }}" label="PR Amount"/>
+							<x-tenant.show.my-text		value="{{ $pr->fc_currency }}" label="Functional Currency"/>
+							<x-tenant.show.my-amount	value="{{ $pr->fc_exchange_rate }}" label="Exchange Rate"/>
+							<x-tenant.show.my-amount	value="{{ $pr->fc_sub_total }}" label="Subtotal"/>
+							<x-tenant.show.my-amount	value="{{ $pr->fc_tax }}" label="Tax"/>
+							<x-tenant.show.my-amount	value="{{ $pr->fc_gst }}" label="GST"/>
+							<x-tenant.show.my-amount	value="{{ $pr->fc_amount }}" label="PR Amount"/>
+							<tr>
+								<th>&nbsp;</th>
+								<td>
+									<div class="float-end">
+										<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ route('prs.show', $pr->id) }}"><i data-lucide="arrow-left-circle"></i> Back to PR</a>
+									</div>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 

@@ -43,7 +43,7 @@
 									value="{{ old('name', $wf->name ) }}"
 									/>
 								@error('name')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</div>
 

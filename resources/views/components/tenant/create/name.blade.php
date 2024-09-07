@@ -6,7 +6,7 @@
 		value="{{ old('name', '' ) }}"
 		required/>
 	@error('name')
-		<div class="text-danger text-xs">{{ $message }}</div>
+		<div class="small text-danger">{{ $message }}</div>
 	@enderror
 	</td>
 </tr>

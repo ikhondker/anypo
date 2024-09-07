@@ -43,7 +43,7 @@
 									value="{{ old('ac_name', $bankAccount->ac_name ) }}"
 									/>
 								@error('ac_name')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -55,7 +55,7 @@
 									value="{{ old('ac_number', $bankAccount->ac_number ) }}"
 									/>
 								@error('ac_number')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -67,7 +67,7 @@
 									value="{{ old('routing_number', $bankAccount->routing_number ) }}"
 									/>
 								@error('routing_number')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -88,7 +88,7 @@
 								value="{{ old('bank_name', $bankAccount->bank_name ) }}"
 								/>
 							@error('bank_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 
 							</td>
@@ -102,7 +102,7 @@
 								value="{{ old('branch_name', $bankAccount->branch_name ) }}"
 								/>
 							@error('branch_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 
 							</td>
@@ -117,7 +117,7 @@
 									value="{{ old('ac_cash', $bankAccount->ac_cash ) }}"
 									required/>
 								@error('ac_cash')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -125,7 +125,7 @@
 						<x-tenant.edit.address2 value="{{ $bankAccount->address2 }}"/>
 						<x-tenant.edit.city-state-zip city="{{ $bankAccount->city }}" state="{{ $bankAccount->state }}" zip="{{ $bankAccount->zip }}"/>
 						<x-tenant.edit.country value="{{ $bankAccount->country }}"/>
-							<x-tenant.edit.save/>
+						<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

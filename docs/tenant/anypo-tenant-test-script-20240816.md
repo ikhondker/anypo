@@ -3,16 +3,12 @@
 - Info image aws upload 
 
 
-
-
 # Rates
-tenant created at 4-may-24. next user login in july. Is the rate imported covering tJun-24?
-UPDATE `setups` SET `last_rate_date` = '2024-05-01 00:00:00' WHERE `setups`.`id` = 1001;
-
-
+- tenant created at 4-may-24. next user login in july. Is the rate imported covering tJun-24?
+- UPDATE `setups` SET `last_rate_date` = '2024-05-01 00:00:00' WHERE `setups`.`id` = 1001;
 
 # User
-ok - Disable user login stop?
+- ok. Disable user login stop?
 - can register
 - he can not login unless activate
 - admin change user password
@@ -41,7 +37,6 @@ ok - Disable user login stop?
 # POL
 - line cancel is not allowed in approved PO. workaround cancel the PO then recreate.
 
-
 # RECEIPT
 - no delete:
 - cancel: only reverse
@@ -53,19 +48,17 @@ ok - Disable user login stop?
 # PAYMNET
 - delete: No
 - cancel: reverse
--132. allow only payment form same currency bank account
+- allow only payment form same currency bank account
 
- 
+
 # BUDGET
 - make sure can not reduce budget below issues+bookingBudget
 - Can not keep open multiple budget - test
 - Can not open next year if previous year is open - tested
 
-
 # Dept Budget
 - can not edit if budget is closed - 
 - can not edit if dept budget is closed - 
-
 
 # PROJECT
 - delete: No
@@ -75,7 +68,7 @@ ok - Disable user login stop?
 - banner show
 
 # WF
-Anypo test case wf user inactive, 
+anypo test case wf user inactive, 
 
 # AEL
 ael imported y/n
@@ -90,4 +83,4 @@ ael imported y/n
 - workaround-write to logon before update
 
 # Uom
--- wont be able to edit or disable the class defaults
+- wont be able to edit or disable the class defaults

@@ -41,7 +41,7 @@
 								value="{{ old('code', '' ) }}"
 								required/>
 							@error('code')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -61,7 +61,7 @@
 									@endforeach
 								</select>
 								@error('category_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -77,7 +77,7 @@
 									@endforeach
 								</select>
 								@error('uom_class_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -92,7 +92,7 @@
 									@endforeach
 								</select>
 								@error('uom_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -109,7 +109,7 @@
 									@endforeach
 								</select>
 								@error('oem_id')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -125,7 +125,7 @@
 									@endforeach
 								</select>
 								@error('gl_type')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -140,7 +140,7 @@
 								value="{{ old('ac_expense', 'A600001' ) }}"
 								required/>
 							@error('ac_expense')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

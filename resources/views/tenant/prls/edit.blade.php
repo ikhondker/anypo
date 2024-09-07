@@ -73,7 +73,7 @@
 								value="{{ old('pr_amount', (isset($pr->amount) ? number_format($pr->amount,2) : "0.00")) }}"
 								readonly>
 							@error('pr_amount')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</td>
 					</tr>

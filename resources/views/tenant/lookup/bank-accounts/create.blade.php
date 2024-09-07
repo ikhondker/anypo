@@ -40,7 +40,7 @@
 									value="{{ old('ac_name', '' ) }}"
 									required/>
 								@error('ac_name')
-									<div class="text-danger text-xs">{{ $message }}</div>
+									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>
 						</tr>
@@ -54,7 +54,7 @@
 								value="{{ old('ac_number', '' ) }}"
 								required/>
 							@error('ac_number')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -66,7 +66,7 @@
 								value="{{ old('routing_number', '' ) }}"
 								required/>
 							@error('routing_number')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -78,7 +78,7 @@
 								value="{{ old('bank_name', '' ) }}"
 								required/>
 							@error('bank_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -90,7 +90,7 @@
 								value="{{ old('branch_name', '' ) }}"
 								required/>
 							@error('branch_name')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
@@ -104,7 +104,7 @@
 								value="{{ old('ac_cash', 'A400001' ) }}"
 								required/>
 							@error('ac_cash')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

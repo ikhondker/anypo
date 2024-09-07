@@ -53,7 +53,7 @@
 								value="{{ old('conversion', $uom->conversion ) }}"
 								step='0.01' min="1" required/>
 							@error('conversion')
-								<div class="text-danger text-xs">{{ $message }}</div>
+								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>

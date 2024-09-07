@@ -14,7 +14,7 @@
 			@endforeach
 		</select>
 		@error('item_id')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="">
@@ -23,7 +23,7 @@
 			value="{{ old('item_description', '' ) }}"
 			required/>
 		@error('item_description')
-			<div class="text-danger text-xs">{{ $message }}</div>
+			<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="">
@@ -34,7 +34,7 @@
 				@endforeach
 			</select>
 			@error('uom_id')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 			@enderror
 	</td>
 	<td class="text-end">
@@ -44,7 +44,7 @@
 			value="{{ old('qty','1') }}"
 			required>
 		@error('qty')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -54,7 +54,7 @@
 			value="{{ old('price','0.00') }}"
 			required>
 		@error('price')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -64,7 +64,7 @@
 			value="{{ old('sub_total','0.00') }}"
 			required>
 		@error('sub_total')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -74,7 +74,7 @@
 			value="{{ old('tax','0.00') }}"
 			required>
 		@error('tax')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -84,7 +84,7 @@
 			value="{{ old('gst','0.00') }}"
 			required>
 		@error('gst')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
@@ -94,7 +94,7 @@
 			value="{{ old('amount','0.00') }}"
 			required>
 		@error('amount')
-				<div class="text-danger text-xs">{{ $message }}</div>
+				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 </tr>
