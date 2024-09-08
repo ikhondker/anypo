@@ -15,12 +15,12 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->foreignId('hid')->constrained('hierarchies');
 			$table->integer('sequence')->default(10);	// TODO P2
-			$table->foreignId('approver_id')->constrained('users');
+			$table->foreignUuid('approver_id')->constrained('users');
 			$table->boolean('enable')->default(true); 	// Not Used
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

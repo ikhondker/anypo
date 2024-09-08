@@ -20,14 +20,14 @@ return new class extends Migration
 			// added to simplify coding 
 			$table->foreignId('po_id')->constrained('pos');
 			$table->date('pay_date')->default(DB::raw('(CURDATE())'));
-			$table->foreignId('payee_id')->constrained('users');
+			$table->foreignUuid('payee_id')->constrained('users');
 			$table->string('summary')->nullable();
 			$table->foreignId('bank_account_id')->constrained('bank_accounts')->nullable();
 			$table->string('cheque_no');
 			$table->string('currency',3);
-			$table->float('amount', 15, 2)->default(0);
-			$table->double('fc_exchange_rate', 15, 10)->default(1);
-			$table->float('fc_amount', 15, 2)->default(0);
+			$table->decimal('amount', 19, 4)->default(0);
+			$table->double('fc_exchange_rate', 19, 8)->default(1);
+			$table->decimal('fc_amount', 19, 4)->default(0);
 			$table->string('dr_account')->default('100001')->nullable();
 			$table->string('cr_account')->default('100001')->nullable();
 			//$table->foreignId('organization_id')->constrained('organizations');
@@ -39,9 +39,9 @@ return new class extends Migration
 			/** ENUM */
 			$table->string('status')->default(PaymentStatusEnum::PAID->value);;
 			/** end ENUM */
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 			$table->foreign('for_entity')->references('entity')->on('entities');
 		});

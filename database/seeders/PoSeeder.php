@@ -10,6 +10,7 @@ use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
 
 use Faker\Generator;
+use App\Models\User;
 
 class PoSeeder extends Seeder
 {
@@ -19,13 +20,20 @@ class PoSeeder extends Seeder
 	public function run(): void
 	{
 		$faker = app(Generator::class);
-	
+		$user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
+		$user2it = User::where('email', 'user2it@anypo.net')->firstOrFail();
+		$user1sales = User::where('email', 'user1sales@anypo.net')->firstOrFail();
+		$user2sales = User::where('email', 'user2sales@anypo.net')->firstOrFail();
+
+		$buyer1 = User::where('email', 'buyer1@anypo.net')->firstOrFail();
+		$buyer2 = User::where('email', 'buyer2@anypo.net')->firstOrFail();
+
 		$pos = [
 				[
 					'summary'			=> 'PO#1 for IT - BDT',
 					'currency'			=> 'BDT',
-					'requestor_id'		=> 1004,
-					'buyer_id'			=> 1008,
+					'requestor_id'		=> $user1it->id,
+					'buyer_id'			=> $buyer1->id,
 					'dept_id'			=> 1001,
 					'supplier_id'		=> '1001',
 					'project_id'		=> '1001',
@@ -39,8 +47,8 @@ class PoSeeder extends Seeder
 				[
 					'summary'			=> 'PO#2 for IT - BDT',
 					'currency'			=> 'BDT',
-					'requestor_id'		=> 1004,
-					'buyer_id'			=> 1008,
+					'requestor_id'		=> $user1it->id,
+					'buyer_id'			=> $buyer1->id,
 					'dept_id'			=> 1001,
 					'supplier_id'		=> '1001',
 					'project_id'		=> '1001',
@@ -54,8 +62,8 @@ class PoSeeder extends Seeder
 				[
 					'summary'			=> 'PO#3 for IT - USD',
 					'currency'			=> 'USD',
-					'requestor_id'		=> 1005,
-					'buyer_id'			=> 1008,
+					'requestor_id'		=> $user2it->id,
+					'buyer_id'			=> $buyer1->id,
 					'dept_id'			=> 1001,
 					'supplier_id'		=> '1001',
 					'project_id'		=> '1001',
@@ -69,8 +77,8 @@ class PoSeeder extends Seeder
 				[
 					'summary'			=> 'PO#4 for Sales - BDT',
 					'currency'			=> 'BDT',
-					'requestor_id'		=> 1006,
-					'buyer_id'			=> 1009,
+					'requestor_id'		=> $user1sales->id,
+					'buyer_id'			=> $buyer2->id,
 					'dept_id'			=> 1005,
 					'supplier_id'		=> '1002',
 					'project_id'		=> '1002',
@@ -84,8 +92,8 @@ class PoSeeder extends Seeder
 				[
 					'summary'			=> 'PO#5 for Sales - BDT',
 					'currency'			=> 'BDT',
-					'requestor_id'		=> 1006,
-					'buyer_id'			=> 1009,
+					'requestor_id'		=> $user1sales->id,
+					'buyer_id'			=> $buyer2->id,
 					'dept_id'			=> 1005,
 					'supplier_id'		=> '1002',
 					'project_id'		=> '1002',
@@ -99,8 +107,8 @@ class PoSeeder extends Seeder
 				[
 					'summary'			=> 'PO#6 for Sales - USD',
 					'currency'			=> 'USD',
-					'requestor_id'		=> 1007,
-					'buyer_id'			=> 1009,
+					'requestor_id'		=> $user2sales->id,
+					'buyer_id'			=> $buyer2->id,
 					'dept_id'			=> 1005,
 					'supplier_id'		=> '1002',
 					'project_id'		=> '1002',

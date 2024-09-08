@@ -16,7 +16,7 @@ return new class extends Migration
 			$table->string('code')->unique();
 			$table->string('name');
 			$table->text('summary');
-			$table->foreignId('user_id')->constrained('users')->default(1);
+			$table->foreignUuid('user_id')->constrained('users');
 			$table->text('address1')->nullable();
 			$table->text('address2')->nullable();
 			$table->string('city')->nullable();
@@ -25,8 +25,8 @@ return new class extends Migration
 			$table->string('country',2)->default('US');
 			$table->string('email',100);
 			$table->string('cell',100)->nullable();
-			$table->integer('qty')->default(0);
-			$table->float('amount',8,2)->default(0);
+			$table->decimal('qty', 19, 4)->default(0);
+			$table->decimal('amount',19, 4)->default(0);
 			$table->text('notes')->nullable();
 			$table->boolean('enable')->default(true); 
 			$table->date('my_date')->nullable()->useCurrent();
@@ -38,9 +38,9 @@ return new class extends Migration
 			$table->string('attachment')->nullable(); /* private */ 
 			$table->string('fbpage')->nullable();
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

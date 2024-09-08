@@ -33,7 +33,8 @@ use App\Enum\LandlordInvoiceTypeEnum;
 use App\Enum\LandlordCheckoutStatusEnum;
 
 // Helpers
-use App\Helpers\Bo;
+use App\Helpers\Landlord\Bo;
+
 use App\Helpers\EventLog;
 
 // Notification
@@ -303,33 +304,37 @@ class CreateTenant implements ShouldQueue
 	public function createTenantDb()
 	{
 		//$checkout_id = $this->checkout_id;
-		$checkout = Checkout::where('id', $this->checkout_id)->first();
 		//$product = Product::where('id', $checkout->product_id)->first();
-		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb checkout_id = ".$this->checkout_id);
+		$checkout = Checkout::where('id', $this->checkout_id)->first();
+		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb checkout_id = ".$checkout->id);
+		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb checkout->site = ".$checkout->site);
 
 		$tenant_id 	= $checkout->site;
 		$domain 	= $tenant_id . '.' . config('app.domain');
+		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb tenant_id = ".$tenant_id);
+		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain = ".$domain);
+
 		$tenant 	= Tenant::create([
-			'id' 				=> $tenant_id,
+			'id' 	=> $tenant_id,
 			// Custom columns inside data
 			//'initial_owner_id' 	=> $checkout->owner_id,
 		]);
 
-		// // this auto run migrations
+		// this auto run migrations
 		$tenant->createDomain([
 			'domain' => $domain
 		]);
-
+		Log::debug('Jobs.landlord.createTenant.createTenantDb Tenant Created tenant_id = ' . $tenant_id);
+		Log::debug('Jobs.landlord.createTenant.createTenantDb Tenant Created tenant->id = ' . $tenant->id);
 
 		// run seeders in tenant
+		Log::debug('Jobs.landlord.createTenant.createTenantDb Running seeder in tenant_id = ' . $tenant->id);
 		$tenant->run(function () {
 			$seeder = new \Database\Seeders\TenantSeeder();
 			$seeder->run();
 		});
 
-
 		// Write event log
-		Log::debug('Lobs.landlord.createTenant.createTenantDb Tenant Created tenant_id = ' . $tenant->id);
 		EventLog::event('tenant', $tenant->id, 'create');
 
 		// create first tenant admin for tenant
@@ -337,10 +342,13 @@ class CreateTenant implements ShouldQueue
 		$account_name 	= $checkout->account_name;
 		$random_password= \Illuminate\Support\Str::random(12);
 
-		$tenant = Tenant::find($tenant_id);
+		// ??
+		//$tenant = Tenant::find($tenant_id);
+		Log::debug('Jobs.landlord.createTenant.createTenantDb finding newly created tenant_id = ' . $tenant_id);
+		Log::debug('Jobs.landlord.createTenant.createTenantDb finding newly created tenant->id = ' . $tenant->id);
 
 		$tenant->run(function($tenant) use ($account_name, $email, $random_password){
-			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb tenant_id = ' . $tenant->id);
+			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb inside tenant_id = ' . $tenant->id);
 
 			// create first and admin user in newly created tenant
 			$user = User::create([

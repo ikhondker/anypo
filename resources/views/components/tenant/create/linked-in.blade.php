@@ -1,5 +1,5 @@
 <tr>
-	<th>LinkedIn X:</th>
+	<th class="text-success">LinkedIn :</th>
 	<td>
 		<input type="text" class="form-control @error('linkedin') is-invalid @enderror"
 			name="linkedin" id="linkedin" placeholder="https://www.linkedin.com/username"

@@ -4,7 +4,7 @@ namespace App\Models\Landlord\Manage;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 use App\Traits\AddCreatedUpdatedBy;
 
@@ -15,6 +15,10 @@ use App\Models\Landlord\Manage\Entity;
 class Attachment extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
+	use HasUuids;
+
+	protected $keyType		= 'string';
+	public $incrementing 	= false;
 
 	protected $fillable = [
 		'entity', 'article_id', 'file_entity', 'owner_id', 'summary', 'file_name', 'file_type', 'file_size', 'org_file_name', 'upload_date', 'view_count', 'status', 'updated_by', 'updated_at',

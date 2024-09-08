@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->string('name');
 			$table->foreignId('account_id')->nullable()->constrained('accounts');
 			$table->foreignId('product_id')->nullable()->constrained('products');
-			$table->foreignId('owner_id')->nullable()->constrained('users');
+			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->boolean('addon')->default(false); 
 			/** ENUM */
 			$table->string('addon_type')->default(LandlordAddonTypeEnum::NA->value);
@@ -27,11 +27,11 @@ return new class extends Migration
 			$table->integer('mnth')->default(0);
 			$table->integer('user')->default(1);
 			$table->integer('gb')->default(10);
-			$table->float('price', 8, 2)->default(0);
-			$table->float('subtotal',8,2)->default(0);
-			$table->float('tax',8,2)->default(0);
-			$table->float('vat',8,2)->default(0);
-			$table->float('amount',8, 2)->default(0);
+			$table->decimal('price', 19, 4)->default(0);
+			$table->decimal('subtotal',19, 4)->default(0);
+			$table->decimal('tax',19, 4)->default(0);
+			$table->decimal('vat',19, 4)->default(0);
+			$table->decimal('amount',19, 4)->default(0);
 			$table->date('start_date')->default(DB::raw('(CURDATE())'));
 			$table->date('end_date')->nullable();
 			/** ENUM */
@@ -42,9 +42,9 @@ return new class extends Migration
 			
 			$table->boolean('enable')->default(true); 
 			$table->text('notes')->default(0);
-			$table->biginteger('created_by')->default(1);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

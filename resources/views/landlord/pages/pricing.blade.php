@@ -10,8 +10,8 @@
 				<p class="text-muted fs-lg">One simple pricing model. All you need to start. No hidden costs.</p>
 			</div>
 			<div class="row align-items-center">
-				<div class="col-lg-7 mx-auto">
-					<div class="d-flex align-items-start py-3">
+				<div class="col-lg-5 mx-auto">
+					<div class="d-flex align-items-start py-3"> 
 						<div class="landing-feature">
 							<i data-lucide="sliders"></i>
 						</div>
@@ -49,7 +49,7 @@
 					</div>
 
 				</div>
-				<div class="col-lg-5 mx-auto text-center">
+				<div class="col-lg-7 mx-auto text-center">
 					
 					<div class="card text-center h-100">
 						<div class="card-body d-flex flex-column">

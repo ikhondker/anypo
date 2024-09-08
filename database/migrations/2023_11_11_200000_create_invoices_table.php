@@ -21,20 +21,20 @@ return new class extends Migration
 			$table->string('invoice_no')->unique();
 			$table->string('invoice_type')->default(LandlordInvoiceTypeEnum::SUBSCRIPTION->value);
 			$table->foreignId('account_id')->constrained('accounts');
-			$table->foreignId('owner_id')->nullable()->constrained('users');
+			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->date('invoice_date')->default(DB::raw('(CURDATE())'));
 			$table->date('from_date');
 			$table->date('to_date');
 			$table->date('org_from_date')->nullable();
 			$table->date('due_date')->nullable()->useCurrent();
 			$table->string('currency')->default('USD');
-			$table->float('price', 8, 2)->default(0);
-			$table->float('discount',8,2)->default(0);
-			$table->float('subtotal',8,2)->default(0);
-			$table->float('tax',15,2)->default(0);
-			$table->float('vat',15,2)->default(0);
-			$table->float('amount',15,2)->default(0);
-			$table->float('amount_paid',15,2)->default(0);
+			$table->decimal('price', 19, 4)->default(0);
+			$table->decimal('discount',19, 4)->default(0);
+			$table->decimal('subtotal',19, 4)->default(0);
+			$table->decimal('tax',19, 4)->default(0);
+			$table->decimal('vat',19, 4)->default(0);
+			$table->decimal('amount',19, 4)->default(0);
+			$table->decimal('amount_paid',15,2)->default(0);
 			$table->date('pay_date')->nullable()->useCurrent();
 			$table->text('notes')->nullable();
 			$table->boolean('adjusted')->default(false); // in case addon added for 3/6/12 month advance payment
@@ -52,9 +52,9 @@ return new class extends Migration
 			//$table->boolean('enable')->default(true);
 			//$table->string('attachment')->nullable();
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

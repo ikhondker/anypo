@@ -7,8 +7,8 @@ use Illuminate\Database\Seeder;
 
 // IQBAL
 use Faker\Generator;
+use Illuminate\Support\Str;
 use App\Models\User;
-use Str;
 
 class UserSeeder extends Seeder
 {
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
 
 		$seededUsers = [
 			[
-				'id'				=> Str::uuid(),
+				'id'				=> '1001',
 				'name'				=> 'System Admin',
 				'email'				=> 'system@anypo.net',
 				'role'				=> 'system',
@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
 				'seeded'			=> true,
 			],
 			[
-				'id'				=> Str::uuid(),
+				'id'				=> '1002',
 				'name'				=> 'Guest',
 				'email'				=> 'guest@anypo.net',
 				'role'				=> 'guest',
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
 				'seeded'			=> true,
 			],
 			[
-				'id'				=> Str::uuid(),
+				'id'				=> '1003',
 				'name'				=> 'Support Supervisor',
 				'email'				=> 'support@anypo.net',
 				'role'				=> 'supervisor',
@@ -84,7 +84,7 @@ class UserSeeder extends Seeder
 				'seeded'			=> true,
 			],
 			[
-				'id'				=> Str::uuid(),
+				'id'				=> '1004',
 				'name'				=> 'Accounts Manager',
 				'email'				=> 'accounts@anypo.net',
 				'role'				=> 'accounts',
@@ -102,7 +102,7 @@ class UserSeeder extends Seeder
 				'seeded'			=> true,
 			],
 			[
-				'id'				=> Str::uuid(),
+				'id'				=> '1005',
 				'name'				=> 'Support Agent 1',
 				'email'				=> 'agent1@anypo.net',
 				'role'				=> 'support',
@@ -120,7 +120,7 @@ class UserSeeder extends Seeder
 				'seeded'			=> true,
 			],
 			[
-				'id'				=> Str::uuid(),
+				'id'				=> '1006',
 				'name'				=> 'Support Agent 2',
 				'email'				=> 'agent2@anypo.net',
 				'role'				=> 'support',
@@ -138,7 +138,7 @@ class UserSeeder extends Seeder
 				'seeded'			=> true,
 			],
 			[
-				'id'				=> Str::uuid(),
+				'id'				=> '1007',
 				'name'				=> 'Developer 1',
 				'email'				=> 'dev1@anypo.net',
 				'role'				=> 'developer',
@@ -156,7 +156,7 @@ class UserSeeder extends Seeder
 				'seeded'			=> true,
 			],
 			[
-				'id'				=> Str::uuid(),
+				'id'				=> '1008',
 				'name'				=> 'Developer 2',
 				'email'				=> 'dev2@anypo.net',
 				'role'				=> 'developer',
@@ -283,9 +283,9 @@ class UserSeeder extends Seeder
 		];
 		
 		User::insert($seededUsers);
-		//User::where('id', 1001)->update(['avatar' => 'sys.png']);
-		//User::where('id', 1005)->update(['avatar' => 's1.png']);
-		//User::where('id', 1006)->update(['avatar' => 's2.png']);
+		User::where('id', 1001)->update(['avatar' => 'sys.png']);
+		User::where('id', 1005)->update(['avatar' => 's1.png']);
+		User::where('id', 1006)->update(['avatar' => 's2.png']);
 
 		//User::where('id', 1007)->update(['avatar' => 'account1u1.png']);
 		//User::where('id', 1008)->update(['avatar' => 'account1u2.png']);

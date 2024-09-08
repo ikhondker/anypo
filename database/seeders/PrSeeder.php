@@ -11,6 +11,7 @@ use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
 
 use Faker\Generator;
+use App\Models\User;
 
 class PrSeeder extends Seeder
 {
@@ -21,12 +22,16 @@ class PrSeeder extends Seeder
 	{
 
 		$faker = app(Generator::class);
-	
+		$user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
+		$user2it = User::where('email', 'user2it@anypo.net')->firstOrFail();
+		$user1sales = User::where('email', 'user1sales@anypo.net')->firstOrFail();
+		$user2sales = User::where('email', 'user2sales@anypo.net')->firstOrFail();
+
 		$prs = [
 				[
 					'summary'			=> 'IT User 1 - IT PR 111 - Dept IT',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
-					'requestor_id'		=> 1004,
+					'requestor_id'		=> $user1it->id,
 					'dept_id'			=> 1001,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
@@ -40,7 +45,7 @@ class PrSeeder extends Seeder
 				[
 					'summary'			=> 'IT User 1 - IT PR 222 - Dept IT',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
-					'requestor_id'		=> 1004,
+					'requestor_id'		=> $user1it->id,
 					'dept_id'			=> 1001,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
@@ -54,7 +59,7 @@ class PrSeeder extends Seeder
 				[
 					'summary'			=> 'IT User 2 - IT PR 333 - Dept IT',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
-					'requestor_id'		=> 1005,
+					'requestor_id'		=> $user2it->id,
 					'dept_id'			=> 1001,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
@@ -68,7 +73,7 @@ class PrSeeder extends Seeder
 				[
 					'summary'			=> 'Sales User 1 - Sales PR 111 - Dept Sales',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
-					'requestor_id'		=> 1006,
+					'requestor_id'		=> $user1sales->id,
 					'dept_id'			=> 1005,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
@@ -82,7 +87,7 @@ class PrSeeder extends Seeder
 				[
 					'summary'			=> 'Sales User 1 - Sales PR 222 - Dept Sales',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
-					'requestor_id'		=> 1006,
+					'requestor_id'		=> $user1sales->id,
 					'dept_id'			=> 1005,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
@@ -96,7 +101,7 @@ class PrSeeder extends Seeder
 				[
 					'summary'			=> 'Sales User 2 - Sales PR 333 - Dept Sales',
 					'currency'			=> $faker->randomElement(['BDT', 'USD']),
-					'requestor_id'		=> 1007,
+					'requestor_id'		=> $user2sales->id,
 					'dept_id'			=> 1005,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,

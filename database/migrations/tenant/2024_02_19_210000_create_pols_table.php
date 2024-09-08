@@ -21,30 +21,30 @@ return new class extends Migration
 			$table->foreignId('item_id')->constrained('items');
 			$table->string('item_description');
 			$table->foreignId('uom_id')->constrained('uoms');
-			$table->float('qty')->default(1);
-			$table->float('price', 15, 2)->default(0);
-			$table->float('sub_total', 15, 2)->default(0);
-			$table->float('tax_pc',15,2)->default(0);				// Future user
-			$table->float('gst_pc',15,2)->default(7.5);				// Future user
-			$table->float('tax',15,2)->default(0);
-			$table->float('gst',15,2)->default(0);
-			$table->float('amount', 15, 2)->default(0);
-			$table->float('grs_price', 15, 2)->default(0);
+			$table->decimal('qty', 19, 4)->default(1);
+			$table->decimal('price', 19, 4)->default(0);
+			$table->decimal('sub_total', 19, 4)->default(0);
+			$table->decimal('tax_pc',19, 4)->default(0);				// Future user
+			$table->decimal('gst_pc',19, 4)->default(7.5);				// Future user
+			$table->decimal('tax',19, 4)->default(0);
+			$table->decimal('gst',19, 4)->default(0);
+			$table->decimal('amount', 19, 4)->default(0);
+			$table->decimal('grs_price', 19, 4)->default(0);
 			//$table->string('fc_currency',3)->default('USD');			// Functional Currency
 			//$table->double('fc_exchange_rate', 15, 10)->default(1);
-			$table->float('fc_sub_total', 15, 2)->default(0);			// Functional Currency
-			$table->float('fc_tax',15,2)->default(0);					// Functional Currency
-			$table->float('fc_gst',15,2)->default(0);					// Functional Currency
-			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
-			$table->float('fc_grs_price', 15, 2)->default(0);
+			$table->decimal('fc_sub_total', 19, 4)->default(0);			// Functional Currency
+			$table->decimal('fc_tax',19, 4)->default(0);					// Functional Currency
+			$table->decimal('fc_gst',19, 4)->default(0);					// Functional Currency
+			$table->decimal('fc_amount', 19, 4)->default(0);				// Functional Currency
+			$table->decimal('fc_grs_price', 19, 4)->default(0);
 			$table->text('notes')->nullable();
 			$table->string('error_code',15)->nullable();
-			$table->foreignId('requestor_id')->constrained('users')->nullable();
+			$table->foreignUuid('requestor_id')->constrained('users')->nullable();
 			$table->foreignId('dept_id')->constrained('depts')->nullable();			// Future User. Covert to PO
 			$table->biginteger('unit_id')->nullable()->default(1001);				// Future User. Covert to PO
 			$table->foreignId('project_id')->nullable()->constrained('projects');	// Future User. Covert to PO
 			$table->biginteger('prl_id')->default(0);								// PR that converted to PO
-			$table->float('received_qty')->default(0);
+			$table->decimal('received_qty', 19, 4)->default(0);
 			/** ENUM */
 			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);;
 			$table->foreign('closure_status')->references('code')->on('statuses');
@@ -52,9 +52,9 @@ return new class extends Migration
 			$table->boolean('asset_created')->default(false); 
 			$table->date('asset_date')->nullable();
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

@@ -47,6 +47,9 @@ Log::debug(tenant('id'). ' tenant.Access.isAttachmentEditable article_id = '. $a
 
 <th width="20%">Photo</th>
 
+$user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
+		
+
 <div class="text-danger text-xs">{{ $message }}</div> to <div class="small text-danger">{{ $message }}</div>
 
 @can('create', App\Models\Tenant\Lookup\Item::class)
@@ -55,6 +58,10 @@ Log::debug(tenant('id'). ' tenant.Access.isAttachmentEditable article_id = '. $a
 @can('createForPo', App\Models\Tenant\Invoice::class)
 	<a class="dropdown-item" href="{{ route('invoices.create-for-po', $po->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Invoice</a>
 @endcan
+
+@if (auth()->user()->isSystem())
+	<a href="{{ route('aels.edit',$ael->id) }}" class="text-warning d-inline-block">Edit</a>
+@endif
 
 @can('edit', $invoice)
 	<div class="dropdown-divider"></div>

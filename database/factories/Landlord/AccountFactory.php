@@ -38,12 +38,15 @@ class AccountFactory extends Factory
 			//'product_id'	=> Product::inRandomOrder()->first()->id,
 			'start_date'	=> $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
 			'end_date'		=> $this->faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = null),
-			'last_bill_from_date'	=> $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
-			'last_bill_to_date'		=> $this->faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = null),
+			'last_bill_date'	=> $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
+			//'last_bill_from_date'	=> $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
+			//'last_bill_to_date'		=> $this->faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = null),
 			'expired_at' 	=> $this->faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = null),
 			'website'		=> $this->faker->domainName,
 			'cell'			=> $this->faker->PhoneNumber,
 			'email'			=> $this->faker->email,
+			'created_by'	=> User::inRandomOrder()->first()->id,
+			'updated_by'	=> User::inRandomOrder()->first()->id,
 		];
 	}
 }

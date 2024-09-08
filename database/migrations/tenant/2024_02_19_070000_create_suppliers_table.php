@@ -24,13 +24,13 @@ return new class extends Migration
 			$table->string('country',2)->default('US');
 			$table->string('website')->nullable();
 			$table->string('email')->nullable();
-			$table->float('amount_pr_booked', 15, 2)->default(0); // NEW
-			$table->float('amount_pr', 15, 2)->default(0);
-			$table->float('amount_po_booked', 15, 2)->default(0);
-			$table->float('amount_po', 15, 2)->default(0);
-			$table->float('amount_grs', 15, 2)->default(0);
-			$table->float('amount_invoice', 15, 2)->default(0);
-			$table->float('amount_payment', 15, 2)->default(0);
+			$table->decimal('amount_pr_booked', 19, 4)->default(0); // NEW
+			$table->decimal('amount_pr', 19, 4)->default(0);
+			$table->decimal('amount_po_booked', 19, 4)->default(0);
+			$table->decimal('amount_po', 19, 4)->default(0);
+			$table->decimal('amount_grs', 19, 4)->default(0);
+			$table->decimal('amount_invoice', 19, 4)->default(0);
+			$table->decimal('amount_payment', 19, 4)->default(0);
 			$table->biginteger('count_pr_booked')->default(0);
 			$table->biginteger('count_pr')->default(0);
 			$table->biginteger('count_po_booked')->default(0);
@@ -39,12 +39,12 @@ return new class extends Migration
 			$table->biginteger('count_invoice')->default(0);
 			$table->biginteger('count_payment')->default(0);
 			$table->text('notes')->nullable();
-			$table->float('rating', 15, 2)->default(0);
+			$table->decimal('rating', 15, 4)->default(0);
 			$table->boolean('enable')->default(true);
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

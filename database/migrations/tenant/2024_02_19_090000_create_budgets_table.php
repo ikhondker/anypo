@@ -20,14 +20,14 @@ return new class extends Migration
 			$table->date('start_date');
 			$table->date('end_date');
 			//$table->string('currency',3)->default('USD');
-			$table->float('amount', 15, 2)->default(0);
-			$table->float('amount_pr_booked', 15, 2)->default(0);
-			$table->float('amount_pr', 15, 2)->default(0);
-			$table->float('amount_po_booked', 15, 2)->default(0);
-			$table->float('amount_po', 15, 2)->default(0);
-			$table->float('amount_grs', 15, 2)->default(0);
-			$table->float('amount_invoice', 15, 2)->default(0);
-			$table->float('amount_payment', 15, 2)->default(0);
+			$table->decimal('amount', 19, 4)->default(0);
+			$table->decimal('amount_pr_booked', 19, 4)->default(0);
+			$table->decimal('amount_pr', 19, 4)->default(0);
+			$table->decimal('amount_po_booked', 19, 4)->default(0);
+			$table->decimal('amount_po', 19, 4)->default(0);
+			$table->decimal('amount_grs', 19, 4)->default(0);
+			$table->decimal('amount_invoice', 19, 4)->default(0);
+			$table->decimal('amount_payment', 19, 4)->default(0);
 			$table->biginteger('count_pr_booked')->default(0);
 			$table->biginteger('count_pr')->default(0);
 			$table->biginteger('count_po_booked')->default(0);
@@ -44,9 +44,9 @@ return new class extends Migration
 			$table->string('icon')->nullable();
 			//$table->boolean('first_time')->default(true); 
 			$table->boolean('closed')->default(false); 
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

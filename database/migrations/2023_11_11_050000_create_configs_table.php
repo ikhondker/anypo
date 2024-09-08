@@ -16,8 +16,8 @@ return new class extends Migration
 			$table->string('name');
 			$table->string('tagline')->nullable();
 			$table->string('currency',3)->default('USD');
-			//$table->float('tax', 15, 2)->default(0);
-			//$table->float('gst', 15, 2)->default(0);
+			//$table->decimal('tax', 19, 4)->default(0);
+			//$table->decimal('gst', 19, 4)->default(0);
 			$table->string('address1')->nullable();
 			$table->string('address2')->nullable();
 			$table->string('city')->nullable();
@@ -44,14 +44,14 @@ return new class extends Migration
 			$table->biginteger('days_past_due')->default(14);
 			$table->biginteger('days_archive')->default(60);
 			//$table->biginteger('days_pay_for_addon')->default(35);
-			$table->float('discount_pc_3', 15, 2)->default(5);
-			$table->float('discount_pc_6', 15, 2)->default(10);
-			$table->float('discount_pc_12', 15, 2)->default(15);
-			$table->float('discount_pc_24', 15, 2)->default(20);
+			$table->decimal('discount_pc_3', 19, 4)->default(5);
+			$table->decimal('discount_pc_6', 19, 4)->default(10);
+			$table->decimal('discount_pc_12', 19, 4)->default(15);
+			$table->decimal('discount_pc_24', 19, 4)->default(20);
 			$table->boolean('enable')->default(true);
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

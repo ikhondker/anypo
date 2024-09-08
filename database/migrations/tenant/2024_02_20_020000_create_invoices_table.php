@@ -22,20 +22,20 @@ return new class extends Migration
 			$table->foreignId('po_id')->constrained('pos');
 			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->string('summary');
-			$table->foreignId('poc_id')->constrained('users');
+			$table->foreignUuid('poc_id')->constrained('users');
 			$table->string('currency',3);
-			$table->float('sub_total', 15, 2)->default(0);
-			$table->float('tax',15,2)->default(0);
-			$table->float('gst',15,2)->default(0);
-			$table->float('amount', 15, 2)->default(0);
-			$table->float('amount_paid', 15, 2)->default(0);
+			$table->decimal('sub_total', 19, 4)->default(0);
+			$table->decimal('tax',19, 4)->default(0);
+			$table->decimal('gst',19, 4)->default(0);
+			$table->decimal('amount', 19, 4)->default(0);
+			$table->decimal('amount_paid', 19, 4)->default(0);
 			$table->string('fc_currency',3);							// Functional Currency
-			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
-			$table->float('fc_sub_total', 15, 2)->default(0);			// Functional Currency
-			$table->float('fc_tax',15,2)->default(0);					// Functional Currency
-			$table->float('fc_gst',15,2)->default(0);					// Functional Currency
-			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
-			$table->float('fc_amount_paid', 15, 2)->default(0);			// Functional Currency
+			$table->double('fc_exchange_rate', 19, 8)->default(1);		// Functional Currency
+			$table->decimal('fc_sub_total', 19, 4)->default(0);			// Functional Currency
+			$table->decimal('fc_tax',19, 4)->default(0);					// Functional Currency
+			$table->decimal('fc_gst',19, 4)->default(0);					// Functional Currency
+			$table->decimal('fc_amount', 19, 4)->default(0);				// Functional Currency
+			$table->decimal('fc_amount_paid', 19, 4)->default(0);			// Functional Currency
 			$table->string('dr_account')->default('100001')->nullable();
 			$table->string('cr_account')->default('100001')->nullable();
 			$table->text('notes')->nullable();
@@ -50,9 +50,9 @@ return new class extends Migration
 			$table->foreign('payment_status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

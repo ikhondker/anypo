@@ -18,8 +18,8 @@ return new class extends Migration
 			$table->string('currency',3)->default('USD');
 			$table->boolean('freezed')->default(false);
 			$table->string('prefix')->default('AP/');
-			$table->float('tax_pc',15,2)->default(0);				// Future user
-			$table->float('gst_pc',15,2)->default(7.5);				// Future user
+			$table->decimal('tax_pc',19, 4)->default(0);				// Future user
+			$table->decimal('gst_pc',19, 4)->default(7.5);				// Future user
 			$table->string('address1')->nullable();
 			$table->string('address2')->nullable();
 			$table->string('city')->nullable();
@@ -33,9 +33,9 @@ return new class extends Migration
 			$table->string('linkedin')->nullable();
 			$table->biginteger('days_payment')->nullable()->default(45);
 			$table->biginteger('days_return')->nullable()->default(30);
-			$table->float('tolerance_invoice', 15, 2)->default(1);		// Future
-			$table->float('tolerance_receipt', 15, 2)->default(1);		// Future
-			$table->float('tolerance_payment', 15, 2)->default(1);		// Future
+			$table->decimal('tolerance_invoice', 15, 2)->default(1);		// Future
+			$table->decimal('tolerance_receipt', 15, 2)->default(1);		// Future
+			$table->decimal('tolerance_payment', 15, 2)->default(1);		// Future
 			$table->boolean('user_master_data_entry')->default(false); 	// Future. Allow user to create master data
 			$table->string('ac_accrual')->default('A200001');
 			$table->string('ac_liability')->default('A200004');
@@ -48,8 +48,8 @@ return new class extends Migration
 			$table->string('build')->nullable()->default('1001');
 			//$table->boolean('show_notice')->default(false);
 			//$table->text('notice')->nullable();
-			$table->biginteger('admin_id')->nullable(); 				// No foreign key intentional TODO
-			$table->biginteger('kam_id')->nullable(); 					// Future
+			$table->uuid('admin_id')->nullable(); 				// No foreign key intentional TODO
+			$table->uuid('kam_id')->nullable(); 					// Future
 			$table->biginteger('landlord_account_id')->nullable();
 			$table->date('last_rate_date')->nullable();
 			$table->boolean('maintenance')->default(false); 
@@ -57,9 +57,9 @@ return new class extends Migration
 			$table->boolean('readonly')->default(false);
 			$table->boolean('enable')->default(true);
 			//$table->boolean('purge')->default(true);
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

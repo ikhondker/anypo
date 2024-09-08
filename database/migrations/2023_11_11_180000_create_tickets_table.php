@@ -19,13 +19,13 @@ return new class extends Migration
 			//$table->string('ticket_number');
 			$table->longText('content');
 			$table->dateTime('ticket_date')->useCurrent();
-			$table->foreignId('owner_id')->nullable()->constrained('users');
+			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->foreignId('account_id')->nullable()->constrained('accounts');
 			$table->foreignId('dept_id')->constrained('depts');
 			$table->foreignId('priority_id')->constrained('priorities');
 			$table->foreignId('rating_id')->nullable()->constrained('ratings');
-			$table->foreignId('agent_id')->nullable()->constrained('users');
-			$table->foreignId('attachment_id')->nullable()->constrained('attachments');
+			$table->foreignUuid('agent_id')->nullable()->constrained('users');
+			$table->foreignUuid('attachment_id')->nullable()->constrained('attachments');
 			$table->foreignId('category_id')->nullable()->constrained('categories');
 			/** TODO category */
 			/** ENUM */
@@ -45,16 +45,16 @@ return new class extends Migration
 			$table->dateTime('reopened_at')->nullable();
 			$table->boolean('follow_up')->default(false); 
 			$table->dateTime('reviewed_at')->nullable();
-			$table->foreignId('reviewed_by')->nullable()->constrained('users');
+			$table->foreignUuid('reviewed_by')->nullable()->constrained('users');
 			$table->boolean('source_change_needed')->default(false); 
 			$table->dateTime('last_message_at')->nullable();
 			$table->dateTime('last_response_at')->nullable();
 			$table->biginteger('link_ticket_id')->nullable();
 			$table->string('ip')->default('127.0.0.1');
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

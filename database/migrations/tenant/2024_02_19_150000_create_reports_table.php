@@ -42,9 +42,9 @@ return new class extends Migration
 			$table->integer('order_by2')->default(0);
 			$table->unsignedinteger('run_count')->default(0);
 			$table->boolean('enable')->default(true); 
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 			$table->primary('code');
 		});

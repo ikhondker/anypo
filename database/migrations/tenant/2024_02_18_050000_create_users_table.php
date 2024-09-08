@@ -44,9 +44,9 @@ return new class extends Migration
 			$table->boolean('ban')->default(true);
 			$table->datetime('last_login_at')->nullable();
 			$table->string('last_login_ip')->nullable();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 			$table->rememberToken();
 

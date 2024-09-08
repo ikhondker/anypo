@@ -37,6 +37,7 @@ use App\Enum\LandlordPaymentStatusEnum;
 
 // Helpers
 use Illuminate\Support\Facades\Log;
+use App\Helpers\EventLog;
 
 // Notification
 use Notification;
@@ -97,7 +98,7 @@ class Bo
 		$service->save();
 
 		Log::debug('Helpers.bo.createCheckoutService Account Service created id = ' . $service->id);
-		LandlordEventLog::event('service', $service->id, 'create');
+		EventLog::event('service', $service->id, 'create');
 		return $service->id;
 	}
 
@@ -157,7 +158,7 @@ class Bo
 		$invoice->save();
 
 		Log::debug('Helpers.bo.createCheckoutInvoice Invoice Generated id = ' . $invoice->id);
-		LandlordEventLog::event('invoice', $invoice->id, 'create');
+		EventLog::event('invoice', $invoice->id, 'create');
 
 		// post invoice creation update
 		$user		= User::where('id', $checkout->owner_id)->first();
@@ -208,13 +209,13 @@ class Bo
 
 		Log::debug('Jobs.Landlord.CreateTenant.payCheckoutInvoice payment account_id = ' . $payment->account_id);
 		Log::debug('Jobs.Landlord.CreateTenant.payCheckoutInvoice Invoice payment_id = ' . $payment->id);
-		LandlordEventLog::event('payment', $payment->id, 'create');
+		EventLog::event('payment', $payment->id, 'create');
 
 		// update paid amount in invoice as paid
 		$invoice->status_code		= LandlordInvoiceStatusEnum::PAID->value;
 		$invoice->amount_paid		= $invoice->amount_paid + $payment->amount;
 		$invoice->save();
-		LandlordEventLog::event('invoice', $invoice->id, 'update', 'status', LandlordPaymentStatusEnum::PAID->value);
+		EventLog::event('invoice', $invoice->id, 'update', 'status', LandlordPaymentStatusEnum::PAID->value);
 
 		// Invoice Paid Notification
 		$user = User::where('id', $invoice->owner_id)->first();

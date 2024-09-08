@@ -19,15 +19,15 @@ return new class extends Migration
 			$table->string('ac_code');
 			$table->string('line_description');
 			$table->string('fc_currency', 3);							// Functional Currency
-			$table->float('fc_dr_amount', 15, 2)->default(0);
-			$table->float('fc_cr_amount', 15, 2)->default(0);
+			$table->decimal('fc_dr_amount', 19, 4)->default(0);
+			$table->decimal('fc_cr_amount', 19, 4)->default(0);
 			// $table->biginteger('po_id')->default(0);
 			// $table->biginteger('article_id')->index()->default(0);
 			$table->string('reference_no')->nullable();
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

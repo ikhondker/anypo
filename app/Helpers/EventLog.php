@@ -4,8 +4,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			LandlordEventLog.php
-* @brief		This file contains the implementation of the LandlordEventLog
+* @file			EventLog.php
+* @brief		This file contains the implementation of the EventLog
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -57,9 +57,11 @@ class EventLog
 			} else {
 				$log['account_id']	= config('bo.GUEST_ACCOUNT_ID');
 			}
-			$log['user_id']		= auth()->check() ? auth()->user()->id : config('bo.SYSTEM_USER_ID');
+			//$log['user_id']		= auth()->check() ? auth()->user()->id : config('bo.SYSTEM_USER_ID');
+			$log['user_id']		= auth()->check() ? auth()->user()->id : '';
 		} else {
-			$log['user_id'] 	= auth()->check() ? auth()->user()->id : config('akk.SYSTEM_USER_ID');
+			//$log['user_id'] 	= auth()->check() ? auth()->user()->id : config('akk.SYSTEM_USER_ID');
+			$log['user_id'] 	= auth()->check() ? auth()->user()->id : '';
 		}
 		
 

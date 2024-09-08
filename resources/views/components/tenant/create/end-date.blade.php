@@ -1,5 +1,5 @@
 <tr>
-	<th>End Date </th>
+	<th class="text-success">End Date :</th>
 	<td>
 		<input type="date" class="form-control @error('end_date') is-invalid @enderror"
 		name="end_date" id="end_date" placeholder=""

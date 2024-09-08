@@ -20,9 +20,9 @@ return new class extends Migration
 			$table->date('to_date',)->nullable();
 			$table->double('rate', 15, 10)->default(1);
 			$table->double('inverse_rate', 15, 10)->default(1);
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 			$table->unique(['rate_date','currency','fc_currency']);
 		});

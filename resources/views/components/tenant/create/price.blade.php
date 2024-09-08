@@ -1,5 +1,5 @@
 <tr>
-	<th>Price</th>
+	<th class="text-success">Price :</th>
 	<td>
 		<input type="number" class="form-control @error('price') is-invalid @enderror"
 		name="price" id="price" placeholder="99,999.99"

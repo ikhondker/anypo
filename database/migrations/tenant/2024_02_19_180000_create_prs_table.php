@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->string('summary');
 			$table->date('pr_date')->default(DB::raw('(CURDATE())'));
 			$table->date('need_by_date')->nullable();
-			$table->foreignId('requestor_id')->constrained('users');
+			$table->foreignUuid('requestor_id')->constrained('users');
 			$table->foreignId('dept_id')->constrained('depts')->index();
 			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
@@ -28,16 +28,16 @@ return new class extends Migration
 			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->text('notes')->nullable();
 			$table->string('currency',3);
-			$table->float('sub_total', 15, 2)->default(0);
-			$table->float('tax',15,2)->default(0);
-			$table->float('gst',15,2)->default(0);
-			$table->float('amount', 15, 2)->default(0);
+			$table->decimal('sub_total', 19, 4)->default(0);
+			$table->decimal('tax',19, 4)->default(0);
+			$table->decimal('gst',19, 4)->default(0);
+			$table->decimal('amount', 19, 4)->default(0);
 			$table->string('fc_currency',3);							// Functional Currency
 			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
-			$table->float('fc_sub_total', 15, 2)->default(0);			// Functional Currency
-			$table->float('fc_tax',15,2)->default(0);					// Functional Currency
-			$table->float('fc_gst',15,2)->default(0);					// Functional Currency
-			$table->float('fc_amount', 15, 2)->default(0);				// Functional Currency
+			$table->decimal('fc_sub_total', 19, 4)->default(0);			// Functional Currency
+			$table->decimal('fc_tax',19, 4)->default(0);					// Functional Currency
+			$table->decimal('fc_gst',19, 4)->default(0);					// Functional Currency
+			$table->decimal('fc_amount', 19, 4)->default(0);				// Functional Currency
 			$table->dateTime('submission_date')->nullable();
 			$table->integer('po_id')->default(0);
 			/** ENUM */
@@ -58,9 +58,9 @@ return new class extends Migration
 			
 			$table->integer('wf_id')->default(0);
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

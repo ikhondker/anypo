@@ -1,5 +1,5 @@
 <tr>
-	<th>Currency X:</th>
+	<th class="text-success">Currency :</th>
 	<td>
 		<select class="form-control" name="currency" required>
 			<option value=""><< Currency >> </option>

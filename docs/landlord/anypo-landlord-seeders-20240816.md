@@ -17,6 +17,10 @@ php artisan db:seed --class="UserSeeder"
 
 # Landlord seed 
 -------------------
+-- all seeder
+php artisan db:seed --class="Database\Seeders\Landlord\LandlordSeeder"
+
+[
 php artisan db:seed --class="Database\Seeders\Landlord\UserSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\MenuSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\StatusSeeder"
@@ -42,7 +46,7 @@ php artisan db:seed --class="Database\Seeders\Landlord\TicketSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\CommentSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\InvoiceSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\PaymentSeeder"
-
+]
 
 #Dahsbaord
 #Notification

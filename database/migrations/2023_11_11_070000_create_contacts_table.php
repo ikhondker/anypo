@@ -22,8 +22,8 @@ return new class extends Migration
 			$table->text('notes');
 			$table->dateTime('contact_date')->useCurrent();
 			$table->string('tenant')->nullable();
-			$table->integer('user_id')->nullable();
-			$table->foreignId('attachment_id')->nullable()->constrained('attachments');
+			$table->foreignUuid('user_id')->nullable();
+			$table->foreignUuid('attachment_id')->nullable()->constrained('attachments');
 			$table->string('ip')->nullable();
 			$table->string('country',2)->default('us');
 //			$table->foreignId('user_id')->nullable()->constrained('users');

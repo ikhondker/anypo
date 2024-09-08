@@ -20,9 +20,9 @@ return new class extends Migration
 			$table->date('pay_date')->default(DB::raw('(CURDATE())'));
 			$table->foreignId('invoice_id')->constrained('invoices');
 			$table->foreignId('account_id')->nullable()->constrained('accounts');
-			$table->foreignId('owner_id')->nullable()->constrained('users');
+			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->foreignId('payment_method_id')->constrained('payment_methods');
-			$table->float('amount',8,2)->default(0);
+			$table->decimal('amount',19, 4)->default(0);
 			$table->string('currency')->default('USD');
 			$table->string('cheque_no')->nullable();
 			$table->string('payment_token')->nullable();
@@ -37,9 +37,9 @@ return new class extends Migration
 			$table->foreign('status_code')->references('code')->on('statuses');
 			//$table->foreignId('status_id')->default(LandlordPaymentStatusEnum::NEW->value)->constrained('statuses');
 			/** end ENUM */
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

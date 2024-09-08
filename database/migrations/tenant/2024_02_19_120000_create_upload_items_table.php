@@ -23,7 +23,7 @@ return new class extends Migration
 			$table->string('uom_name')->nullable();
 			$table->string('gl_type_name')->nullable();
 			$table->string('ac_expense')->nullable();
-			$table->float('price', 8, 2)->default(0);
+			$table->decimal('price', 15, 4)->default(0);
 			 /** ENUM */
 			 $table->string('status')->default(InterfaceStatusEnum::DRAFT->value);
 			 /** end ENUM */
@@ -36,9 +36,9 @@ return new class extends Migration
 			$table->string('error_code',15)->nullable();
 			//$table->enum('gl_type', ['E','A','I'])->nullable();
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 			$table->foreign('error_code')->references('code')->on('custom_errors');
 		});

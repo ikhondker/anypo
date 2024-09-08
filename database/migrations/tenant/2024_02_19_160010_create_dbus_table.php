@@ -25,23 +25,23 @@ return new class extends Migration
 			/** ENUM */
 			$table->string('event')->default(EventEnum::BOOK->value);
 			/** end ENUM */
-			$table->foreignId('user_id')->nullable()->constrained('users');
+			$table->foreignUuid('user_id')->nullable()->constrained('users');
 			$table->foreignId('dept_id')->nullable()->constrained('depts');
 			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
 			$table->foreignId('supplier_id')->nullable()->constrained('suppliers');	// NEW
-			$table->float('amount_pr_booked', 15, 2)->default(0);
-			$table->float('amount_pr', 15, 2)->default(0);
-			$table->float('amount_po_booked', 15, 2)->default(0);
-			$table->float('amount_po', 15, 2)->default(0);
-			$table->float('amount_grs', 15, 2)->default(0);
-			$table->float('amount_invoice', 15, 2)->default(0);
-			$table->float('amount_payment', 15, 2)->default(0);
+			$table->decimal('amount_pr_booked', 19, 4)->default(0);
+			$table->decimal('amount_pr', 19, 4)->default(0);
+			$table->decimal('amount_po_booked', 19, 4)->default(0);
+			$table->decimal('amount_po', 19, 4)->default(0);
+			$table->decimal('amount_grs', 19, 4)->default(0);
+			$table->decimal('amount_invoice', 19, 4)->default(0);
+			$table->decimal('amount_payment', 19, 4)->default(0);
 			//$table->text('notes')->nullable();
 			$table->softDeletes();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 			$table->foreign('entity')->references('entity')->on('entities');
 		});

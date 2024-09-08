@@ -1,5 +1,5 @@
 <tr>
-	<th>City-State-Zip</th>
+	<th class="text-success">City-State-Zip :</th>
 	<td>
 		<div class="row">
 			<div class="col-md-5">

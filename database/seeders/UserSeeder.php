@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Schema;
 
 // IQBAL
 use Faker\Generator;
-use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\Dept;
 use App\Models\Designation;
+use Str;
 
 class UserSeeder extends Seeder
 {
@@ -37,9 +37,9 @@ class UserSeeder extends Seeder
 
 		$usersSeeded = [
 			[
-				'id'				=> '1001',
+				'id'				=> Str::uuid(),
 				'name'				=> 'System Owner',
-				'email'				=> 'system@anypo.net',
+				'email'				=> 'system@anypo.net',	// Don't change. Used in Seeder
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
 				'role'				=> 'system',
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'system.png',
 			],
 			[
-				'id'				=> '1002',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Mr Support User',
 				'email'				=> 'support@anypo.net',
 				'designation_id'	=> '1001',
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
 
 		$usersDemo = [
 			[
-				'id'				=> '1003',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Dummy Admin (Temp)',
 				'email'				=> 'admin@anypo.net',
 				'designation_id'	=> '1001',
@@ -103,9 +103,9 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'admin.png',
 			],
 			[
-				'id'				=> '1004',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Mr. User 1 (IT)',
-				'email'				=> 'user1it@anypo.net',
+				'email'				=> 'user1it@anypo.net',		// Don't change. Used in Seeder
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1001',
 				'role'				=> 'user',
@@ -124,9 +124,9 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'u1-it.png',
 			],
 			[
-				'id'				=> '1005',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Mr User 2 (IT)',
-				'email'				=> 'user2it@anypo.net',
+				'email'				=> 'user2it@anypo.net',		// Don't change. Used in Seeder
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1001',
 				'role'				=> 'user',
@@ -145,9 +145,9 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'u2-it.png',
 			],
 			[
-				'id'				=> '1006',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Mr. User 1 (Sales)',
-				'email'				=> 'user1sales@anypo.net',
+				'email'				=> 'user1sales@anypo.net',	// Don't change. Used in Seeder
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1005',
 				'role'				=> 'user',
@@ -166,9 +166,9 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'u1-sales.png',
 			],
 			[
-				'id'				=> '1007',
-				'name'				=> 'Mr User 2 (Sales)',
-				'email'				=> 'user2sales@anypo.net',
+				'id'				=> Str::uuid(),
+				'name'				=> 'Mr User 2 (Sales)',	
+				'email'				=> 'user2sales@anypo.net',	// Don't change. Used in Seeder
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1005',
 				'role'				=> 'user',
@@ -187,9 +187,9 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'u2-sales.png',
 			],
 			[
-				'id'				=> '1008',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Mr Buyer 1 (IT)',
-				'email'				=> 'buyer1@anypo.net',
+				'email'				=> 'buyer1@anypo.net',		// Don't change. Used in Seeder
 				'designation_id'	=> '1002',
 				'dept_id'			=> '1002',
 				'role'				=> 'buyer',
@@ -208,9 +208,9 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'buyer1.png',
 			],
 			[
-				'id'				=> '1009',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Mr Buyer 2 (Sales)',
-				'email'				=> 'buyer2@anypo.net',
+				'email'				=> 'buyer2@anypo.net',		// Don't change. Used in Seeder	
 				'designation_id'	=> '1002',
 				'dept_id'			=> '1002',
 				'role'				=> 'buyer',
@@ -229,7 +229,7 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'buyer2.png',
 			],
 			[
-				'id'				=> '1010',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Mr HoD (IT)',
 				'email'				=> 'hodit@anypo.net',
 				'designation_id'	=> '1005',
@@ -250,7 +250,7 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'hod-it.png',
 			],
 			[
-				'id'				=> '1011',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Mr HoD (Sales)',
 				'email'				=> 'hodsales@anypo.net',
 				'designation_id'	=> '1005',
@@ -271,7 +271,7 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'hod-sales.png',
 			],
 			[
-				'id'				=> '1012',
+				'id'				=> Str::uuid(),
 				'name'				=> 'Mr CxO',
 				'email'				=> 'cxo@anypo.net',
 				'designation_id'	=> '1004',

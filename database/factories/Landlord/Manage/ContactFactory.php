@@ -23,7 +23,7 @@ class ContactFactory extends Factory
 			'email'			=> $this->faker->email,
 			'cell'			=> $this->faker->PhoneNumber,
 			'subject'		=> $this->faker->sentence,
-			'message'		=> $this->faker->paragraph,
+			'notes'		=> $this->faker->paragraph,
 			'contact_date'	=> $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
 			'ip'			=> '192.168.50.1',
 		];

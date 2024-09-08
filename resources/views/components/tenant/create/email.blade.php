@@ -1,5 +1,5 @@
 <tr>
-	<th>Email</th>
+	<th class="text-success">Email :</th>
 	<td>
 		<input type="email" class="form-control @error('email') is-invalid @enderror"
 		name="email" id="email" placeholder="you@example.com"

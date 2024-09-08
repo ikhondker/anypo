@@ -23,9 +23,9 @@ return new class extends Migration
 			//$table->enum('access', ['F','C','B','S','X'])->default('F');
 			//$table->string('node_name')->nullable();
 			$table->boolean('enable')->default(true);
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

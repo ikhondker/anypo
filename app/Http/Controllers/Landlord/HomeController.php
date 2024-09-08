@@ -318,9 +318,9 @@ class HomeController extends Controller
 				Log::debug('landlord.home.success checkout_id = '. $checkout->id);
 				CreateTenant::dispatch($checkout->id);
 			}
-			return view('landlord.pages.info')->with('title','Thank you for purchasing '.config('app.name').' service!')
-				->with('msg','You will shorty receive an email, with service instance login credential.
-					Please check your email at '. $checkout->email. ' .');
+			return view('landlord.pages.info')
+				->with('title','Thank you for purchasing '.config('app.name').' service!')
+				->with('msg','You will shorty receive an email, with service instance login credential. Please check your email at '. $checkout->email. ' .');
 
 		} catch (\Exception $e) {
 			throw new NotFoundHttpException();

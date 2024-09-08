@@ -456,7 +456,11 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::get('/demomail', [HomeController::class, 'demomail'])->name('demomail');
 
 	Route::get('/test', function () {
-		return view('landlord.tests.test');
+		//return view('landlord.tests.test');
+		return view('landlord.pages.error')
+				->with('title','Thank you for purchasing '.config('app.name').' service!')
+				->with('msg','You will shorty receive an email, with service instance login credential. Please check your email at .');
+
 	})->name('test');
 
 	Route::get('/ui', function () {

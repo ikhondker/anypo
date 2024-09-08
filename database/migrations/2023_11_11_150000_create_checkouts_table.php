@@ -25,16 +25,16 @@ return new class extends Migration
 			$table->string('email');
 			$table->string('account_name');
 			$table->boolean('existing_user')->default(false);
-			$table->foreignId('owner_id')->nullable()->constrained('users');
+			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->integer('account_id')->nullable();
 			$table->integer('invoice_id')->nullable();
 			$table->date('start_date');
 			$table->date('end_date');
 			$table->foreignId('product_id')->constrained('products');
 			$table->string('product_name');
-			$table->float('tax', 15, 2)->default(0);
-			$table->float('vat', 15, 2)->default(0);
-			$table->float('price', 15, 2)->default(0);
+			$table->decimal('tax', 19, 4)->default(0);
+			$table->decimal('vat', 19, 4)->default(0);
+			$table->decimal('price', 19, 4)->default(0);
 			$table->integer('mnth')->default(1);
 			$table->integer('user')->default(3);
 			$table->integer('gb')->default(5);
@@ -49,9 +49,9 @@ return new class extends Migration
 			$table->string('state')->nullable();
 			$table->string('zip')->nullable();
 			$table->string('country',2)->default('us');
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

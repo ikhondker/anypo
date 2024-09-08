@@ -18,17 +18,22 @@ class AccountSeeder extends Seeder
 	{
 		Account::factory()->count(2)->create();
 
-		// Link User with Accounts
-		User::where('id', 1007)->update(['account_id' => '1001']);
-		User::where('id', 1008)->update(['account_id' => '1001']);
-		User::where('id', 1009)->update(['account_id' => '1001']);
+		// $user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
+		// $user2it = User::where('email', 'user2it@anypo.net')->firstOrFail();
+		// $user1sales = User::where('email', 'user1sales@anypo.net')->firstOrFail();
+		// $user2sales = User::where('email', 'user2sales@anypo.net')->firstOrFail();
 
-		User::where('id', 1010)->update(['account_id' => '1002']);
-		User::where('id', 1011)->update(['account_id' => '1002']);
-		User::where('id', 1012)->update(['account_id' => '1002']);
+		// Link User with Accounts TODO
+		// User::where('id', 1007)->update(['account_id' => '1001']);
+		// User::where('id', 1008)->update(['account_id' => '1001']);
+		// User::where('id', 1009)->update(['account_id' => '1001']);
 
-		Account::where('id', 1001)->update(['logo' => 'account1.png']);
-		Account::where('id', 1002)->update(['logo' => 'account2.png']);
+		// User::where('id', 1010)->update(['account_id' => '1002']);
+		// User::where('id', 1011)->update(['account_id' => '1002']);
+		// User::where('id', 1012)->update(['account_id' => '1002']);
+
+		// Account::where('id', 1001)->update(['logo' => 'account1.png']);
+		// Account::where('id', 1002)->update(['logo' => 'account2.png']);
 
 	}
 }

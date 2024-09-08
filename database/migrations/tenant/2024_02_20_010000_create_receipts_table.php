@@ -21,20 +21,20 @@ return new class extends Migration
 			$table->foreignId('pol_id')->constrained('pols');
 			$table->foreignId('warehouse_id')->constrained('warehouses');
 			//$table->foreignId('item_id')->constrained('items');
-			$table->foreignId('receiver_id')->constrained('users');
+			$table->foreignUuid('receiver_id')->constrained('users');
 			//$table->foreignId('supplier_id')->nullable()->constrained('organizations');
-			$table->unsignedinteger('qty')->default(1);
-			$table->float('price', 15, 2)->default(0);					// This is grs_price from pol
-			$table->float('amount', 15, 2)->default(0);
+			$table->decimal('qty', 19, 4)->default(1);
+			$table->decimal('price', 19, 4)->default(0);					// This is grs_price from pol
+			$table->decimal('amount', 19, 4)->default(0);
 			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
-			$table->float('fc_amount', 15, 2)->default(0);
+			$table->decimal('fc_amount', 19, 4)->default(0);
 			$table->string('dr_account')->default('100001')->nullable();
 			$table->string('cr_account')->default('100001')->nullable();
-			// $table->float('price', 15, 2)->default(1);
-			// $table->float('amount', 15, 2)->default(1);
+			// $table->decimal('price', 19, 4)->default(1);
+			// $table->decimal('amount', 19, 4)->default(1);
 			// $table->string('base_currency',3)->default('USD');
-			// $table->float('base_exchange_rate')->default(1);
-			// $table->float('base_amount')->default(0);
+			// $table->decimal('base_exchange_rate')->default(1);
+			// $table->decimal('base_amount')->default(0);
 			//$table->string('attachment')->nullable();
 			$table->text('notes')->nullable();
 			$table->string('error_code',15)->nullable();
@@ -43,9 +43,9 @@ return new class extends Migration
 			$table->string('status')->default(ReceiptStatusEnum::RECEIVED->value);;
 			$table->foreign('status')->references('code')->on('statuses');
 			/** end ENUM */
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

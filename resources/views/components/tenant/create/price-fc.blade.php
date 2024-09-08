@@ -1,5 +1,5 @@
 <tr>
-	<th>Price ({{ $_setup->currency }})</th>
+	<th class="text-success">Price ({{ $_setup->currency }}) :</th>
 	<td>
 		<input type="number" class="form-control @error('price') is-invalid @enderror"
 			name="price" id="price" placeholder="99,999.99"

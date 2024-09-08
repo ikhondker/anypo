@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 use App\Models\Tenant\Workflow\Hierarchyl;
 
@@ -16,6 +17,8 @@ class HierarchylSeeder extends Seeder
 	public function run(): void
 	{
 
+		$admin = User::where('email', 'system@anypo.net')->firstOrFail();
+
 		//Schema::disableForeignKeyConstraints();
 		Hierarchyl::truncate();
 		//Schema::enableForeignKeyConstraints();
@@ -25,7 +28,7 @@ class HierarchylSeeder extends Seeder
 		$hierarchyls = [
 			[
 				'hid'			=> 1001,
-				'approver_id'	=> '1001',
+				'approver_id'	=> $admin->id,
 			],
 			// [
 			// 	'hid'			=> 1001,
@@ -37,7 +40,7 @@ class HierarchylSeeder extends Seeder
 			// ],
 			[
 				'hid'			=> 1002,
-				'approver_id'	=> '1001',
+				'approver_id'	=> $admin->id,
 			],
 			// [
 			// 	'hid'			=> 1002,

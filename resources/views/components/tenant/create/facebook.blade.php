@@ -1,5 +1,5 @@
 <tr>
-	<th>Facebook X:</th>
+	<th class="text-success">Facebook :</th>
 	<td>
 		<input type="text" class="form-control @error('facebook') is-invalid @enderror"
 			name="facebook" id="facebook" placeholder="https://www.facebook.com/username"

@@ -30,22 +30,22 @@ return new class extends Migration
 			$table->string('linkedin')->nullable();
 			$table->string('email')->nullable();
 			$table->string('cell')->nullable();
-			$table->foreignId('owner_id')->nullable()->constrained('users');
+			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->foreignId('primary_product_id')->nullable()->constrained('products');
 			$table->integer('base_mnth')->default(0);
 			$table->integer('base_user')->default(1);
 			$table->integer('base_gb')->default(10);
-			$table->float('base_price', 15, 2)->default(0);
+			$table->decimal('base_price', 19, 4)->default(0);
 			$table->integer('mnth')->default(0);
 			$table->integer('user')->default(1);
 			$table->integer('gb')->default(10);
-			$table->float('price', 15, 2)->default(0);
+			$table->decimal('price', 19, 4)->default(0);
 			$table->date('start_date');
 			$table->date('end_date');
 			// there will be only one unpaid invoice. updated when a subscription is generated
 			$table->boolean('next_bill_generated')->default(false);
 			$table->integer('next_invoice_no')->nullable();
-			$table->date('last_bill_date')->nullable();
+			$table->date('last_bill_date')->nullable(); 
 			//$table->date('next_bill_gen_date')->nullable();
 			//$table->date('last_bill_from_date')->nullable();
 			//$table->date('last_bill_to_date')->nullable();
@@ -67,9 +67,9 @@ return new class extends Migration
 			/** end ENUM */
 			//$table->boolean('enable')->default(true); 
 			$table->string('logo')->nullable()->default('logo.png');
-			$table->biginteger('created_by')->default(1);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->foreignId('wf_id')->constrained('wfs');
 			$table->integer('sequence')->default(10);	// TODO P2
-			$table->integer('performer_id');
+			$table->uuid('performer_id');
 			$table->dateTime('assign_date',)->useCurrent(); // TODO make sure it is not nullable
 			$table->dateTime('action_date',)->nullable();
 			/** ENUM */
@@ -26,9 +26,9 @@ return new class extends Migration
 			/** end ENUM */
 			$table->text('notes')->nullable();
 			$table->string('error_code',15)->nullable();
-			$table->biginteger('created_by')->default(1001);
+			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
-			$table->biginteger('updated_by')->default(1001);
+			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
 	}

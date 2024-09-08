@@ -1,4 +1,4 @@
-@extends('layouts.landlord')
+@extends('layouts.landlord.page')
 @section('title','Payment Canceled')
 
 @section('content')
