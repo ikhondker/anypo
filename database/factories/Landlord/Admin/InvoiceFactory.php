@@ -1,6 +1,7 @@
 <?php
 
-namespace Database\Factories\Landlord;
+
+namespace Database\Factories\Landlord\Admin;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -28,7 +29,7 @@ class InvoiceFactory extends Factory
 			'subtotal'		=> $this->faker->numberBetween(5,50),
 			'tax'			=> $this->faker->numberBetween(1,5),
 			'vat'			=> $this->faker->numberBetween(2,6),
-			'amount'		 => $this->faker->numberBetween(6,50),
+			'amount'		=> $this->faker->numberBetween(6,50),
 			'from_date'	 	=> $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
 			'to_date'		=> $this->faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = null),
 			'due_date'		=> $this->faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = null),

@@ -145,10 +145,11 @@ class CreateTenant implements ShouldQueue
 		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
 
-		// Send notification to system on new purchase
+		// Send notification to Landlord system on new purchase
 		$account 	= Account::where('id', $account_id)->first();
-		$system 	= User::where('id', config('bo.SYSTEM_USER_ID'))->first();
-		$system->notify(new ServicePurchased($user, $account));
+		//TODO 
+		//$system 	= User::where('id', config('bo.SYSTEM_USER_ID'))->first();
+		//$system->notify(new ServicePurchased($user, $account));
 
 		// copy logo and avatar default files Not needed after AWS CDN
 		// Log::debug('7. Calling copyCheckoutFiles');
@@ -328,7 +329,7 @@ class CreateTenant implements ShouldQueue
 		Log::debug('Jobs.landlord.createTenant.createTenantDb Tenant Created tenant->id = ' . $tenant->id);
 
 		// run seeders in tenant
-		Log::debug('Jobs.landlord.createTenant.createTenantDb Running seeder in tenant_id = ' . $tenant->id);
+		Log::debug('Jobs.landlord.createTenant.createTenantDb Running seeder in tenant->id = ' . $tenant->id);
 		$tenant->run(function () {
 			$seeder = new \Database\Seeders\TenantSeeder();
 			$seeder->run();

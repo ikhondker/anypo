@@ -31,7 +31,6 @@ return new class extends Migration
 			/** ENUM */
 			$table->string('status_code')->default(LandlordTicketStatusEnum::NEW->value); 
 			$table->foreign('status_code')->references('code')->on('statuses');
-			
 			//$table->foreignId('status_id')->default(LandlordTicketStatusEnum::NEW->value)->constrained('statuses');
 			/** end ENUM */
 			//$table->boolean('is_answered')->default(false); 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Factories\Landlord;
+namespace Database\Factories\Landlord\Admin;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Landlord\Invoice;
-use App\Models\Landlord\Admin\PaymentMethod;
+use App\Models\Landlord\Admin\Invoice;
+use App\Models\Landlord\Lookup\PaymentMethod;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Payment>
