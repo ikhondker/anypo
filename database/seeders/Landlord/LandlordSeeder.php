@@ -23,6 +23,7 @@ class LandlordSeeder extends Seeder
 		$this->call(\Database\Seeders\Landlord\StatusSeeder::class);
 		
 		$this->call(\Database\Seeders\Landlord\EntitySeeder::class);
+		// Make sure ConfigSeeder runs after UserSeeder as system_user_id will be generated
 		$this->call(\Database\Seeders\Landlord\ConfigSeeder::class);
 
 		$this->call(\Database\Seeders\Landlord\ContactSeeder::class);

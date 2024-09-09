@@ -25,7 +25,7 @@ https://www.brevo.com/pricing/
 18. 0.18 discard front use single appstack theme, CustomException, dsicss all routes, split helper into landlord and tenant
 19. 0.19 Major Update. Removed Front4.3.1 theme from Landlord. Tenant Theme AppsStack upgraded from 3.4.1 to 4.0.0. Template object moved to share. Added Budget Revision history, Before clean.
 20. 0.20 cleaned, attachment description, move attachment to root, rewrite pr and po , add invoiceLines, component argument rename form id, InvoiceLines, direct creation invoice/pol/receipt, report id to code, new reports
-21. 0.21 [ongoing] float(15,2) to decimal(19,4) , user_id and attachment_id form integer to uuid, upload attachments in attachment page 
+21. 0.21 [ongoing] float(15,2) to decimal(19,4) , user_id and attachment_id form integer to uuid, upload attachments in attachment page , tenantmgj, 
 
 
 # 12. key configuration 

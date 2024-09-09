@@ -13,6 +13,7 @@ class TenantSeeder extends Seeder
 		public function run(): void
 		{
 		$this->call(\Database\Seeders\UserSeeder::class);
+		// Make sure SetupSeeder runs after UserSeeder as system_user_id will be generated
 		$this->call(\Database\Seeders\SetupSeeder::class);
 
 		$this->call(\Database\Seeders\EntitySeeder::class);

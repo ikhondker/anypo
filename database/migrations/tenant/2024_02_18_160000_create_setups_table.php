@@ -41,14 +41,15 @@ return new class extends Migration
 			$table->string('ac_liability')->default('A200004');
 			$table->string('ac_clearing')->default('A200006');			// Future user
 			$table->text('tc')->nullable();
-			$table->string('logo')->nullable()->default('logo.png');
+			$table->string('logo')->nullable()->default('logo-white.svg');
 			$table->boolean('banner_show')->default(false); 
 			$table->text('banner_message')->nullable();
 			$table->string('version')->nullable()->default('1.0.0');
 			$table->string('build')->nullable()->default('1001');
 			//$table->boolean('show_notice')->default(false);
 			//$table->text('notice')->nullable();
-			$table->uuid('admin_id')->nullable(); 				// No foreign key intentional TODO
+			$table->uuid('admin_id')->nullable(); 					// No foreign key intentional TODO
+			$table->uuid('system_user_id')->nullable();				// No foreign key intentional TODO
 			$table->uuid('kam_id')->nullable(); 					// Future
 			$table->biginteger('landlord_account_id')->nullable();
 			$table->date('last_rate_date')->nullable();

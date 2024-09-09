@@ -2,7 +2,7 @@
 @section('title','Domain Detail')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ domains('tenants.index') }}" class="text-muted">Domains</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('domains.index') }}" class="text-muted">Domains</a></li>
 	<li class="breadcrumb-item active">{{ $domain->id }}</li>
 @endsection
 

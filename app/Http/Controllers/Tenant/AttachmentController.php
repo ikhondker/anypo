@@ -85,10 +85,8 @@ class AttachmentController extends Controller
 		}
 		$attachments = $attachments->with('owner')->orderBy('id', 'DESC')->paginate(50);
 		return view('tenant.attachments.all', compact('attachments'));
-
-
-		//$attachments = Attachment::latest()->orderBy('id', 'desc')->paginate(25);
-		//return view('attachments.index',compact('attachments'));
+		// $attachments = Attachment::latest()->orderBy('id', 'desc')->paginate(25);
+		// return view('attachments.index',compact('attachments'));
 	}
 
 	/**
@@ -113,7 +111,6 @@ class AttachmentController extends Controller
 	public function show(Attachment $attachment)
 	{
 		$this->authorize('view', $attachment);
-
 		return view('tenant.attachments.show', compact('attachment'));
 
 		// switch ($attachment->entity) {

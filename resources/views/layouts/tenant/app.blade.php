@@ -45,12 +45,13 @@
 				<div class="sidebar-brand">
 					@auth
 						<a class="" href="{{ route('home') }}">
-							<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
+							<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded" alt="{{ $_setup->name }}"/>
 							<h4 class="text-info">{{ $_setup->name}}</h4>
 						</a>
 						<a class="" href="{{ route('users.profile') }}">
 							<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>
 						</a>
+						{{-- <p class="small text-muted m-0 p-0">{{ auth()->user()->email }}</p> --}}
 					@endauth
 					@guest
 						<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>

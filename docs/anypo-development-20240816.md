@@ -51,6 +51,7 @@ Log::info(print_r($dept_budget, true));
 
 # 10. TODO 
 ====================================================================
+1. update all alravel pack to last aviale version for laravel 10
 1.	fix bo.SYSTEM_USER_ID, akk.SYSTEM_USER_ID, bo.SUPPORT_MGR_ID
 2.	float to decimal (19,4)
 3.	//TODO php artisan route:cache error

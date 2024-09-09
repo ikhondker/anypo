@@ -50,7 +50,14 @@
 						<th class="align-middle">ID</th>
 						<th class="align-middle">Domain</th>
 						<th class="align-middle">Tenant ID</th>
-						<th class="align-middle">Date</th>
+						<th class="align-middle">Start</th>
+						<th class="align-middle">End</th>
+						<th class="align-middle">User+GB</th>
+						<th class="align-middle">User</th>
+						<th class="align-middle">GB</th>
+						<th class="align-middle">PR</th>
+						<th class="align-middle">PO</th>
+						<th class="align-middle">Rank</th>
 						<th class="align-middle">Status</th>
 						<th class="align-middle text-end">Actions</th>
 					</tr>
@@ -73,8 +80,15 @@
 									<strong>{{ $domain->tenant_id }}</strong>
 								</a>
 							</td>
-							<td><x-landlord.list.my-date :value="$domain->created_at"/></td>
-							<td><x-landlord.list.my-badge :value="$domain->tenant_id"/></td>
+							<td><x-landlord.list.my-date value={{ $domain->tenant->start_date }}/></td>
+							<td><x-landlord.list.my-date value={{ $domain->tenant->end_date }}/></td>
+							<td>{{ $domain->tenant->user }}-{{ $domain->tenant->gb }}</td>
+							<td><x-landlord.list.my-badge :value="$domain->tenant->count_user"/></td>
+							<td><x-landlord.list.my-badge :value="$domain->tenant->count_gb"/></td>
+							<td><x-landlord.list.my-badge :value="$domain->tenant->count_pr"/></td>
+							<td><x-landlord.list.my-badge :value="$domain->tenant->count_po"/></td>
+							<td><x-landlord.list.my-badge :value="$domain->tenant->rank"/></td>
+							<td><x-landlord.list.my-badge :value="$domain->tenant->status"/></td>
 							<td class="text-end">
 								<a href="{{ route('domains.show',$domain->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
