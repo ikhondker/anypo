@@ -11,7 +11,7 @@ php artisan tenants:migrate-fresh --tenants=demo1
 >> seed ALL tenant table
 php artisan tenants:seed --class=TenantSeeder --tenants=demo1
 
-php artisan tenants:rollback --tenants=demo1
+php artisan tenants:rollback --tenants=e560be3a-74b2-4d94-ad25-a035fc3f016c
 php artisan tenants:migrate --tenants=demo1
 php artisan queue:listen
 

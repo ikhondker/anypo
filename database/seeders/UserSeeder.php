@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> Str::uuid(),
 				'name'				=> 'System Owner',
-				'email'				=> 'system@anypo.net',	// Don't change. Used in Seeder
+				'email'				=> config('akk.SYSTEM_EMAIL_ID'),	// Don't change. Used in Seeder
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
 				'role'				=> 'system',

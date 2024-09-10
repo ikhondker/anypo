@@ -54,6 +54,7 @@
 						<th class="align-middle">Email</th>
 						<th class="align-middle">Account</th>
 						<th class="align-middle">Role</th>
+						<th class="align-middle">Verified</th>
 						<th class="align-middle">Seeded</th>
 						<th class="align-middle">Enable</th>
 						<th class="align-middle text-end">Actions</th>
@@ -79,6 +80,9 @@
 								@else
 									<span class="badge badge-subtle-warning">{{ $user->role }}</span>
 								@endif
+							</td>
+							<td>
+								<span class="badge {{ ( ($user->email_verified_at == '') ? 'badge-subtle-danger' : 'badge-subtle-success') }}">{{ (($user->email_verified_at == '') ? 'No' : 'Yes') }}</span>
 							</td>
 							<td><x-landlord.list.my-enable :value="$user->seeded"/></td>
 							<td><x-landlord.list.my-enable :value="$user->enable"/></td>

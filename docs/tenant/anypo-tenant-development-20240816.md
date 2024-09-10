@@ -81,21 +81,15 @@ BO-4-source-file-modify-20230413.txt
 
 # 33. TODO 
 -------------------------------------------------------------------------------------------------
-akk.GUEST_USER_ID
-160. show attachments, add attachment
-159. attachment id replace with random code
-158. prefix form pr/po number
+158. clean akk.GUEST_USER_ID
 157. wfs.index badge not shown
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
-155. fix component  list -> ArticleLink and ProjectLink
+155. fix component list -> ArticleLink and ProjectLink
 154. export file name add export
 153. allow user to edit attachment file description
 155. add users need multi user avatar
 153. po table issue, invoiceLines, reports, FAQ, attachments
 152. re-use D:\Temp\svg\illustrations\png from Front theme
-150. Printed Receipt Report (TBD)
-150. Printed Invoice Report (TBD)
-149. Printed Payment Report (TBD)
 148. Find and replace 'PO #', 'PR #', debug('tenant, =$, @can('edit' , ANYPO.NET, <i class="bi"
 126. find and replace 01911310509 +0012262804920 you@company.com email@example.com
 127. address/remove all TODO
@@ -138,6 +132,7 @@ akk.GUEST_USER_ID
 
 # 30 Nice to Have P2 
 -------------------------------------------------------------------------------------------------
+158. prefix form pr/po number
 134. command generator based on tenants
 142. budget update approval workflow P2
 1. add advance/prepayment functionality
@@ -951,3 +946,8 @@ x113. report run count
 x112. error_code in other table
 x104. revise cost 39$
 x86  Font Awesome font load form CDN
+x160. show attachments, add attachment
+x159. attachment id replace with random code
+x150. Printed Receipt Report (TBD)
+x150. Printed Invoice Report (TBD)
+x149. Printed Payment Report (TBD)

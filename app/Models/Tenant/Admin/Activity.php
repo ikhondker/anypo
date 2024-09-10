@@ -49,6 +49,8 @@ class Activity extends Model
 	/* ----------------- belongsTo ---------------------- */
 	public function user()
 	{
-		return $this->belongsTo(User::class, 'user_id');
+		return $this->belongsTo(User::class, 'user_id')->withDefault([
+			'name' => '[ Guest ]',
+		]);
 	}
 }

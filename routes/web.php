@@ -230,7 +230,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	//Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 	/* ======================== Attachment ======================================== */
-	Route::get('/attachments/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
+	Route::get('/attachments/download/{attachment}', [AttachmentController::class, 'download'])->name('attachments.download');
 
 });
 

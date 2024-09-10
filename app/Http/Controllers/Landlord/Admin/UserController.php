@@ -82,11 +82,11 @@ class UserController extends Controller
 
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::ADMIN->value:
-				$users= $users->with('account')->byAccount()->orderBy('id', 'DESC')->paginate(10);
+				$users= $users->with('account')->byAccount()->orderBy('created_at', 'DESC')->paginate(10);
 				break;
 
 			default:
-				$users= $users->with('account')->byUser()->orderBy('id', 'DESC')->paginate(10);
+				$users= $users->with('account')->byUser()->orderBy('created_at', 'DESC')->paginate(10);
 				Log::warning("landlord.users.index Other roles!");
 		}
 		return view('landlord.admin.users.index',compact('users'));

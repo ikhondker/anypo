@@ -7,7 +7,10 @@ email_verified_at
 use Faker\Generator;
 
 php artisan migrate
-php artisan db:seed	<=== Full
+-- all seeder
+php artisan db:seed			<=== Full
+[php artisan db:seed --class="Database\Seeders\Landlord\LandlordSeeder"]
+
 php artisan migrate:rollback
 php artisan migrate:reset
 php artisan migrate:refresh
@@ -15,11 +18,8 @@ php artisan migrate:fresh
 
 php artisan db:seed --class="UserSeeder"
 
-# Landlord seed 
+# Landlord Individual Seeder 
 -------------------
--- all seeder
-php artisan db:seed --class="Database\Seeders\Landlord\LandlordSeeder"
-
 [
 php artisan db:seed --class="Database\Seeders\Landlord\UserSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\MenuSeeder"

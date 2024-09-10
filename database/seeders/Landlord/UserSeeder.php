@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> Str::uuid(),
 				'name'				=> 'System Admin',
-				'email'				=> 'system@anypo.net',
+				'email'				=> config('bo.SYSTEM_EMAIL_ID'),
 				'role'				=> 'system',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password

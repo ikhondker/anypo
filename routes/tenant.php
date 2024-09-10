@@ -227,11 +227,10 @@ Route::middleware([
 		Route::post('profile-password-update', [UserController::class, 'updateProfilePassword'])->name('users.profile-password-update');
 		Route::get('/leave-impersonate',[UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
-
 		/* ======================== Attachment ======================================== */
 		Route::resource('attachments', AttachmentController::class);
 		Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
-		Route::get('/attachments/download/{fileName}',[AttachmentController::class, 'download'])->name('attachments.download');
+		Route::get('/attachments/download/{attachment}', [AttachmentController::class, 'download'])->name('attachments.download');
 
 		/* ======================== Notification ======================================== */
 		Route::resource('notifications', NotificationController::class);

@@ -147,9 +147,9 @@ class CreateTenant implements ShouldQueue
 
 		// Send notification to Landlord system on new purchase
 		$account 	= Account::where('id', $account_id)->first();
-		$config 	= Config::first();
-		$system 	= User::where('id', $config->system_user_id)->first();
-		$system->notify(new ServicePurchased($user, $account));
+		//TODO 
+		//$system 	= User::where('id', config('bo.SYSTEM_USER_ID'))->first();
+		//$system->notify(new ServicePurchased($user, $account));
 
 		// copy logo and avatar default files Not needed after AWS CDN
 		// Log::debug('7. Calling copyCheckoutFiles');
@@ -310,13 +310,13 @@ class CreateTenant implements ShouldQueue
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb checkout_id = ".$checkout->id);
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb checkout->site = ".$checkout->site);
 
-		$domain_id 	= $checkout->site;
-		$domain 	= $domain_id . '.' . config('app.domain');
-		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain_id = ".$domain_id);
+		$tenant_id 	= $checkout->site;
+		$domain 	= $tenant_id . '.' . config('app.domain');
+		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb tenant_id = ".$tenant_id);
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain = ".$domain);
 
 		$tenant 	= Tenant::create([
-			'id' 	=> $domain_id,
+			'id' 	=> $tenant_id,
 			// Custom columns inside data
 			//'initial_owner_id' 	=> $checkout->owner_id,
 		]);
@@ -325,7 +325,7 @@ class CreateTenant implements ShouldQueue
 		$tenant->createDomain([
 			'domain' => $domain
 		]);
-		//Log::debug('Jobs.landlord.createTenant.createTenantDb Tenant Created domain_id = ' . $domain_id);
+		Log::debug('Jobs.landlord.createTenant.createTenantDb Tenant Created tenant_id = ' . $tenant_id);
 		Log::debug('Jobs.landlord.createTenant.createTenantDb Tenant Created tenant->id = ' . $tenant->id);
 
 		// run seeders in tenant
@@ -343,8 +343,10 @@ class CreateTenant implements ShouldQueue
 		$account_name 	= $checkout->account_name;
 		$random_password= \Illuminate\Support\Str::random(12);
 
-		//Log::debug('Jobs.landlord.createTenant.createTenantDb finding newly created domain_id = ' . $domain_id);
-		//Log::debug('Jobs.landlord.createTenant.createTenantDb finding newly created tenant->id = ' . $tenant->id);
+		// ??
+		//$tenant = Tenant::find($tenant_id);
+		Log::debug('Jobs.landlord.createTenant.createTenantDb finding newly created tenant_id = ' . $tenant_id);
+		Log::debug('Jobs.landlord.createTenant.createTenantDb finding newly created tenant->id = ' . $tenant->id);
 
 		$tenant->run(function($tenant) use ($account_name, $email, $random_password){
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb inside tenant_id = ' . $tenant->id);
@@ -371,7 +373,6 @@ class CreateTenant implements ShouldQueue
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Admin User created user_id = ' . $user->id);
 
 			// Update tenant config->name in the tenant database
-			// setups.system_user_id is set by SetupSeeder
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Updating Tenant Setup for account_name and admin_id');
 			$tenantSetup 			= \App\Models\Tenant\Admin\Setup::first();
 			$tenantSetup->name 		= $account_name;
@@ -390,6 +391,7 @@ class CreateTenant implements ShouldQueue
 				'hid'			=> 1002,
 				'approver_id'	=> $user->id,
 			]);
+
 			
 			// Set dept approval hierarchy: Hardcoded in Tenant->DeptSeeder.php 1001 and 1002
 

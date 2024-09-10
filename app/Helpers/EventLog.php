@@ -58,7 +58,7 @@ class EventLog
 				$log['account_id']	= config('bo.GUEST_ACCOUNT_ID');
 			}
 			//$log['user_id']		= auth()->check() ? auth()->user()->id : config('bo.SYSTEM_USER_ID');
-			$log['user_id']		= auth()->check() ? auth()->user()->id : '';
+			$log['user_id']		= auth()->check() ? auth()->user()->id : NULL;
 		} else {
 			//$log['user_id'] 	= auth()->check() ? auth()->user()->id : config('akk.SYSTEM_USER_ID');
 			$log['user_id'] 	= auth()->check() ? auth()->user()->id : '';

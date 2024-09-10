@@ -27,6 +27,7 @@ use App\Models\Landlord\Manage\Entity;
 
 use File;
 // use Illuminate\Support\Facades\File;
+use Str;
 
 use Request;
 use Exception;
@@ -59,9 +60,12 @@ class FileUpload
 			return $attachment_id;
 		}
 
+		$attachment_id 			= Str::uuid();
+
 		// ===> both file_to_upload and fileName is used
 		//$fileName 		= uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
-		$fileName 		= $request->article_id.'-'. uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+		//$fileName 		= $request->article_id.'-'. uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
+		$fileName 		= $attachment_id . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$org_fileName 	= $request->file('file_to_upload')->getClientOriginalName();
 
 		// get tenant, entity and directory to upload
@@ -79,13 +83,12 @@ class FileUpload
 
 			// create Attachment record rewrite
 			$attachment					= new Attachment;
+			$attachment->id 			= $attachment_id;
 			$attachment->article_id		= $request->article_id;
 			$attachment->entity			= $request->entity;
 			$attachment->file_entity 	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
-
-			$attachment->owner_id		= auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
-
-			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No Details';
+			$attachment->owner_id		= auth()->check() ? auth()->user()->id : NULL;
+			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No file description available';
 			$attachment->file_name		= $fileName;
 			$attachment->org_file_name	= $org_fileName;
 			$attachment->file_type	 	= $request->file('file_to_upload')->getMimeType();

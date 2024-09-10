@@ -287,24 +287,27 @@ class AttachmentController extends Controller
 		}
 	}
 
-	public function download($fileName)
+	public function download(Attachment $attachment)
 	{
-
-		Log::debug('tenant.attachments.download Value of fileName = ' . $fileName);
-		try {
-			$attachment 				= Attachment::where('file_name', $fileName)->firstOrFail();
-		} catch (ModelNotFoundException $exception) {
-			 return redirect()->route('dashboards.index')->with('error', 'Attachment Not Found!');
-		}
-
+		// TODO check
 		$this->authorize('download', Attachment::class);
+
+		Log::debug('tenant.attachments.download Value of attachment_id = '. $attachment->id);
+		Log::debug('tenant.attachments.download Value of file_name = '. $attachment->org_file_name);
+		Log::debug('tenant.attachments.download Value of entity = '. $attachment->entity);
+		// Log::debug('tenant.attachments.download Value of fileName = ' . $fileName);
+		// try {
+		// 	$attachment 				= Attachment::where('file_name', $fileName)->firstOrFail();
+		// } catch (ModelNotFoundException $exception) {
+		// 	 return redirect()->route('dashboards.index')->with('error', 'Attachment Not Found!');
+		// }
 
 		// get entity -> directory from filename
 		//$att 				= Attachment::where('file_name', $fileName)->first();
 		$entity 			= Entity::where('entity', $attachment->entity)->first();
-		$fileDownloadPath 	= tenant('id')."/".$entity->directory."/". $fileName;
+		$fileDownloadPath 	= tenant('id')."/".$entity->directory."/". $attachment->file_name;
 		Log::debug('tenant.attachments.download Value of fileDownloadPath = '. $fileDownloadPath);
-		return Storage::disk('s3tf')->download($fileDownloadPath);
+		return Storage::disk('s3tf')->download($fileDownloadPath, $attachment->org_file_name);
 	}
 
 	public function downloadLocal($filename)

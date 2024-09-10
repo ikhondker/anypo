@@ -6,7 +6,7 @@
 			{{-- {{ $attachment->id }} => {{ $attachment->org_file_name }} -> {{ $attachment->file_name }} --}}
 			{{-- @endforeach --}}
 		@foreach ($attachments as $attachment)
-			<a href="{{ route('attachments.download',$attachment->file_name) }}" class="action-btn btn-view bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Attachments">
+			<a href="{{ route('attachments.download',$attachment->id) }}" class="action-btn btn-view bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Attachments">
 				<i data-feather="paperclip" class="fea text-danger feather-16"></i> 
 				{{ $attachment->org_file_name }}
 			</a>
