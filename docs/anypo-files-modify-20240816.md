@@ -29,16 +29,16 @@ Gate::define('access-back-office',)
 ~~~
 
 3. app/Providers/AuthServiceProvider.php  -> add policies and in controller $this->authorize('update', $post);
-    - 'App\Models\Landlord\User' => 'App\Policies\Landlord\UserPolicy',
+	- 'App\Models\Landlord\User' => 'App\Policies\Landlord\UserPolicy',
 4.  app/Http/Middleware/VerifyCsrfToken
 ~~~
   protected $except = [
-        '/success',
-        '/cancel',
-        '/fail',
-        '/ipn',
-        '/pay-via-ajax', // only required to run example codes. Please see bellow.
-    ];
+		'/success',
+		'/cancel',
+		'/fail',
+		'/ipn',
+		'/pay-via-ajax', // only required to run example codes. Please see bellow.
+	];
 ~~~
 - ssl commerz
 
@@ -65,7 +65,7 @@ Gate::define('access-back-office',)
 
 
 13. app/Exceptions\Handler.php
-    register on-demand
+	register on-demand
 
 
 ## NOT Used
@@ -91,18 +91,18 @@ protected function mapManageRoutes()
 'domain' => env('APP_DOMAIN', 'localhost'),
 
  'providers' => ServiceProvider::defaultProviders()->merge([
-        /*
-	App\Providers\TenancyServiceProvider::class,    // IQBAL
-        Intervention\Image\ImageServiceProvider::class, // IQBAL
-        Barryvdh\DomPDF\ServiceProvider::class,         // IQBAL
-        App\Providers\ViewServiceProvider::class        // IQBAL
+		/*
+	App\Providers\TenancyServiceProvider::class,		// IQBAL
+		Intervention\Image\ImageServiceProvider::class, // IQBAL
+		Barryvdh\DomPDF\ServiceProvider::class,			// IQBAL
+		App\Providers\ViewServiceProvider::class		// IQBAL
  
 'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+		// 'Example' => App\Facades\Example::class,
 	'EntityEnum'	=> App\Enum\EntityEnum::class,
 	'UserRoleEnum' => App\Enum\UserRoleEnum::class,
-        'Image' => Intervention\Image\Facades\Image::class, //IQBAL
-        'PDF' => Barryvdh\DomPDF\Facade::class,             // IQBAL
+		'Image' => Intervention\Image\Facades\Image::class, //IQBAL
+		'PDF' => Barryvdh\DomPDF\Facade::class,             // IQBAL
 
 #faker
 	'faker_locale' => 'en_IN',
@@ -143,15 +143,15 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 ~~~
 'bo' => [
-            'driver' => 'daily',
-            'path' => storage_path('logs/bo.log'),
-            'level' => 'info',
-        ],
+			'driver' => 'daily',
+			'path' => storage_path('logs/bo.log'),
+			'level' => 'info',
+		],
  'tenant' => [
-            'driver' => 'daily',
-            'path' => storage_path('logs/tenant.log'),
-            'level' => 'info',
-        ],
+			'driver' => 'daily',
+			'path' => storage_path('logs/tenant.log'),
+			'level' => 'info',
+		],
 ~~~
 
 17. config/tenancy.php
@@ -165,51 +165,51 @@ return [
 
 18. config/filesystesm.php
 	~~~
-     's3' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
-        ],
-        'invoices' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('PROFILE_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'visibility' => 'public',
-            'root' => 'invoices'
-        ],
-        'avatars' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('PROFILE_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'visibility' => 'public',
-            'root' => 'avatars'
-        ],
-    ~~~
+	 's3' => [
+			'driver' => 's3',
+			'key' => env('AWS_ACCESS_KEY_ID'),
+			'secret' => env('AWS_SECRET_ACCESS_KEY'),
+			'region' => env('AWS_DEFAULT_REGION'),
+			'bucket' => env('AWS_BUCKET'),
+			'url' => env('AWS_URL'),
+			'endpoint' => env('AWS_ENDPOINT'),
+			'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+			'throw' => false,
+		],
+		'invoices' => [
+			'driver' => 's3',
+			'key' => env('AWS_ACCESS_KEY_ID'),
+			'secret' => env('AWS_SECRET_ACCESS_KEY'),
+			'region' => env('AWS_DEFAULT_REGION'),
+			'bucket' => env('AWS_BUCKET'),
+			'url' => env('AWS_URL'),
+			'endpoint' => env('PROFILE_ENDPOINT'),
+			'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+			'visibility' => 'public',
+			'root' => 'invoices'
+		],
+		'avatars' => [
+			'driver' => 's3',
+			'key' => env('AWS_ACCESS_KEY_ID'),
+			'secret' => env('AWS_SECRET_ACCESS_KEY'),
+			'region' => env('AWS_DEFAULT_REGION'),
+			'bucket' => env('AWS_BUCKET'),
+			'url' => env('AWS_URL'),
+			'endpoint' => env('PROFILE_ENDPOINT'),
+			'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+			'visibility' => 'public',
+			'root' => 'avatars'
+		],
+	~~~
 
 19. app/Http/Kernel.php 
 - https://stackoverflow.com/questions/73073575/user-auth-not-working-properly-for-tenant-while-using-stancl-tenancy
 ~~~
 protected $middlewareGroups = [
   	// IQBAL 25-apr-23
-        'universal' => [
-        
-        ],
+		'universal' => [
+		
+		],
 ~~~
 
 20. DatabaseSeeder.php

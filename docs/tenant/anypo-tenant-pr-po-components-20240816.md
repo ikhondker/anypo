@@ -198,19 +198,19 @@ prs.show	@include('includes.view-pr-header')
 			@include('includes.pr-line-add')
 			@include('includes.pr-footer-add')                        
 			@include('includes.pr-footer-edit')
-                        @include('includes.pr-footer-view')
+						@include('includes.pr-footer-view')
 		@include('includes.wfl-approve-reject')
 		<x-widgets.approval-history id="{{ $pr->wf_id }}"/>
 prs.edit
 
 prs.create	header+
 		@include('includes.pr-line-add')
-                @include('includes.pr-footer-add')
+				@include('includes.pr-footer-add')
 prls.createline
 		@include('includes.view-pr-header')
 		<x-widgets.pr-lines id="{{ $pr->id }}" :add="true"/>
 			 @include('includes.pr-line-add')
-                         @include('includes.pr-footer-edit') <=================
+						 @include('includes.pr-footer-edit') <=================
 prls.edit
 		 @include('includes.view-pr-header')
 		<x-widgets.pr-lines id="{{ $pr->id }}" :edit="true" pid="{{ $prl->id }}"/>

@@ -258,9 +258,9 @@ headingPr3	1+1
 need to update
 tenant\includes\modal-boolean-advance.php
 <a href="{{ route('budgets.destroy',$budget->id) }}" class="me-2 modal-boolean-advance" 
-    data-entity="Budget" data-name="{{ $budget->name }}" data-status="{{ ($budget->freeze ? 'UnFreeze' : 'Freeze') }}"
-    data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($budget->freeze ? 'UnFreeze' : 'freeze') }}">
-    <i class="align-middle text-muted" data-feather="{{ ($budget->freeze ? 'bell-off' : 'bell') }}"></i>
+	data-entity="Budget" data-name="{{ $budget->name }}" data-status="{{ ($budget->freeze ? 'UnFreeze' : 'Freeze') }}"
+	data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($budget->freeze ? 'UnFreeze' : 'freeze') }}">
+	<i class="align-middle text-muted" data-feather="{{ ($budget->freeze ? 'bell-off' : 'bell') }}"></i>
 </a>
 @include('tenant.includes.modal-boolean-advance')
 
@@ -292,8 +292,8 @@ Log::debug("Rates Importing for ".$current_rate_month);
 php artisan make:mail SendEmailTest
 file: app/Mail/SendEmailTest.php
 return new Content(
-            view: 'emails.test',
-        );
+			view: 'emails.test',
+		);
 create: resources/views/emails/test.blade.php
 
 .env
@@ -334,8 +334,8 @@ INFO  Provider [D:\laravel\po02\app/Providers/ViewServiceProvider.php] created s
 
 config/app.php
 'providers' => [
-    // Add View Composer Provider
-    App\Providers\ViewServiceProvider::class
+	// Add View Composer Provider
+	App\Providers\ViewServiceProvider::class
  ],
 
 => app/Providers/ViewServiceProvider.php
@@ -372,9 +372,9 @@ https://sweetcode.io/import-and-export-excel-files-data-using-in-laravel/
 -------------------------------------------------------------------------------------------------
 sweet-alert2.txt -> countries->index.blade.php
 <a href="{{ route('countries.destroy',$country->country) }}" class="me-2 enable-confirm" 
-    data-entity="Country" data-name="{{ $country->name }}" data-status="{{ ($country->enable ? 'Disable' : 'Enable') }}"
-    data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($country->enable ? 'Disable' : 'Enable') }}">
-    <i class="align-middle {{ ($country->enable ? 'text-danger' : 'text-success') }}" data-feather="{{ ($country->enable ? 'bell-off' : 'bell') }}"></i>
+	data-entity="Country" data-name="{{ $country->name }}" data-status="{{ ($country->enable ? 'Disable' : 'Enable') }}"
+	data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($country->enable ? 'Disable' : 'Enable') }}">
+	<i class="align-middle {{ ($country->enable ? 'text-danger' : 'text-success') }}" data-feather="{{ ($country->enable ? 'bell-off' : 'bell') }}"></i>
 </a>
  @include('includes.modal-enable')
 
@@ -394,9 +394,9 @@ https://codeanddeploy.com/blog/laravel/laravel-8-logout-for-your-authenticated-u
 
 edit LoginController.php
 public function redirectTo()
-    {
-        auth()->user()->notify(new StatusNotification());
-    }
+	{
+		auth()->user()->notify(new StatusNotification());
+	}
 
 
 LoginController
@@ -431,14 +431,14 @@ $user->role    		    = UserRoleEnum::ADMIN->value;
 
 switch (auth()->user()->role->value) {
 	case UserRoleEnum::USER->value:
-                $users= $users->byuser()->orderBy('id', 'DESC')->paginate(10);
-                break;
-        case UserRoleEnum::ADMIN->value:
-                $users= $users->byaccount()->orderBy('id', 'DESC')->paginate(10);
-                break;
-        default:
-                $users= $users->orderBy('id', 'DESC')->paginate(10);
-                Log::debug("Other roles!");
+				$users= $users->byuser()->orderBy('id', 'DESC')->paginate(10);
+				break;
+		case UserRoleEnum::ADMIN->value:
+				$users= $users->byaccount()->orderBy('id', 'DESC')->paginate(10);
+				break;
+		default:
+				$users= $users->orderBy('id', 'DESC')->paginate(10);
+				Log::debug("Other roles!");
 }
 
 
@@ -447,14 +447,14 @@ switch (auth()->user()->role->value) {
 Config\app.php	=> 
 
   'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
-        // IQBAL 12-APR-23
-        'FileUpload' => App\Helpers\FileUpload::class,
-        'Workflow' => App\Helpers\Workflow::class,
-        'Image' => Intervention\Image\Facades\Image::class,
-        'UserRoleEnum' => App\Enum\UserRoleEnum::class,
-        'TicketStatusEnum' => App\Enum\TicketStatusEnum::class,
-    ])->toArray(),
+		// 'ExampleClass' => App\Example\ExampleClass::class,
+		// IQBAL 12-APR-23
+		'FileUpload' => App\Helpers\FileUpload::class,
+		'Workflow' => App\Helpers\Workflow::class,
+		'Image' => Intervention\Image\Facades\Image::class,
+		'UserRoleEnum' => App\Enum\UserRoleEnum::class,
+		'TicketStatusEnum' => App\Enum\TicketStatusEnum::class,
+	])->toArray(),
 blade: \App\Helpers\Workflow
 class: Workflow::
 
@@ -464,8 +464,8 @@ https://stackoverflow.com/questions/68287936/where-we-sould-dispatch-use-illumin
 https://laravel.com/docs/10.x/verification
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
-    // ...
+	use Notifiable;
+	// ...
 }
 
 Class "EmailVerificationRequest" does not exist 
@@ -497,8 +497,8 @@ https://mailtrap.io/blog/laravel-email-testing/
 
 Global Mail Address config/mail.php file
 'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'i.khondker@hawarIt.com'),
-        'name' => env('MAIL_FROM_NAME', 'HawarIT Limited'),
+		'address' => env('MAIL_FROM_ADDRESS', 'i.khondker@hawarIt.com'),
+		'name' => env('MAIL_FROM_NAME', 'HawarIT Limited'),
 ],
 
 => https://mailtrap.io/signin -> .env
@@ -520,10 +520,10 @@ MAIL_FROM_NAME="${APP_NAME}"
 ------------------------------------------
 config/logging.php
 'bo' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/bo.log'),
-            'level' => 'info',
-        ],
+			'driver' => 'single',
+			'path' => storage_path('logs/bo.log'),
+			'level' => 'info',
+		],
 
 Inside controller
 use Illuminate\Support\Facades\Log;
@@ -555,19 +555,19 @@ route.php
 	
 php artisan make:model Notification --controller --resource
 ==> in Model: Notification extends Model
-    protected $primaryKey = 'id';
-    protected $keyType = 'string';
-    // https://stackoverflow.com/questions/61844701/laravel-how-to-get-id-of-database-notification
-    protected $casts = [
-        'data' => 'array',
-        'id' => 'string'
-    ];
+	protected $primaryKey = 'id';
+	protected $keyType = 'string';
+	// https://stackoverflow.com/questions/61844701/laravel-how-to-get-id-of-database-notification
+	protected $casts = [
+		'data' => 'array',
+		'id' => 'string'
+	];
 
 public function via(object $notifiable): array
-    {
-        //return ['mail'];
-        return ['mail','database'];
-    }
+	{
+		//return ['mail'];
+		return ['mail','database'];
+	}
 
 # 12. multi-word controller name two
 -------------------------------------------------------------------------------------------------
@@ -610,7 +610,7 @@ a. post login redirect to dashboard
 b. post logout redirect to login: 
 	LoginController.php
 	public function logout(Request $request) {
-            return redirect('/');
+			return redirect('/');
 	}
 
 -- for PO it was done by route "/"
@@ -619,8 +619,8 @@ RouteServiceProvider.php
 	//public const HOME = '/dashboards';
 
 logout
-    // IQBAL 28-feb-23
-    Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
+	// IQBAL 28-feb-23
+	Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 
 https://laracasts.com/discuss/channels/laravel/make-my-root-login-page
@@ -630,16 +630,16 @@ Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginFor
 -------------------------------------------------------------------------------------------------
 	// disable user login LoginController.php
 	// IQBAL 9-sep-2022    
-    //added to overwrite the login credentials
-     protected function credentials(Request $request)
-     {
-        //Log::debug('I am here!');
-        return [
-             'email'    => request()->email,
-             'password' => request()->password,
-             'enable'   => 1
-         ];
-     }
+	//added to overwrite the login credentials
+	 protected function credentials(Request $request)
+	 {
+		//Log::debug('I am here!');
+		return [
+			 'email'    => request()->email,
+			 'password' => request()->password,
+			 'enable'   => 1
+		 ];
+	 }
 
 -- disable auto login after registration
 RegiserController.php
@@ -654,7 +654,7 @@ verification.notice Laravel
 
 Protecting Routes
 Route::get('/profile', function () {
-    // Only verified users may access this route...
+	// Only verified users may access this route...
 })->middleware(['auth', 'verified']);
 
 # 8. authentication 
@@ -697,8 +697,8 @@ Register File Path In composer.json File in "autoload":
 
    },	
   "files": [
-        "app/Helpers/helpers.php"
-    ]
+		"app/Helpers/helpers.php"
+	]
 *** Eachtime added a function run it
 
 composer dump-autoload	<<====== take time OK. MUST
@@ -732,10 +732,10 @@ composer dump-autoload	<<====== take time OK. MUST
   composer require intervention/image
   Config\app.php	=> 
   'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+		// 'ExampleClass' => App\Example\ExampleClass::class,
 	// IQBAL 7-FEB-23
-        'Image' => Intervention\Image\Facades\Image::class,
-    ])->toArray(),
+		'Image' => Intervention\Image\Facades\Image::class,
+	])->toArray(),
 
 - install dompdf
   https://github.com/barryvdh/laravel-dompdf

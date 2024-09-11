@@ -51,41 +51,41 @@ https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/
 # 11. Pricing 
 ====================================================================
 ## current
-    default 5 user 	list price 30 actual 25$
-    3 addition user 	19 - 15
-    5 	addition user 	29-25 
+		default 5 user 	list price 30 actual 25$
+		3 addition user 	19 - 15
+		5 	addition user 	29-25 
 
 ## initial
-    in price page no multiple options   
-    14.99$/user min 3 user i.e. 45$/Month
-    9.99$/user min 3 user i.e. 29$/Month
-    then per user 6.99$ in a bundle of 3 18$
-    archive mode 9.99$/month
+		in price page no multiple options   
+		14.99$/user min 3 user i.e. 45$/Month
+		9.99$/user min 3 user i.e. 29$/Month
+		then per user 6.99$ in a bundle of 3 18$
+		archive mode 9.99$/month
 
 ## account creation 
-      - 1 month without any add-on
-            - can create 3/6/12 month invoice if no earlier due, which
-            - invoice extend account validity
+			- 1 month without any add-on
+						- can create 3/6/12 month invoice if no earlier due, which
+						- invoice extend account validity
 ## add-on        
-   - add-on is NOT monthly basis
-            - can add/remove any time
-            - if current billing is one month will be added from next bill. do the same when cancel
-            - if current billing is 3/6/12 month, the account validity is reduce accordingly. reverse when cancel
-            - what happened if not enough days to adjust => add next cycle
-            - what happened if multiple addone is bought consecutively?
-            - everything is in services.index when account_id <> ''
+	 - add-on is NOT monthly basis
+						- can add/remove any time
+						- if current billing is one month will be added from next bill. do the same when cancel
+						- if current billing is 3/6/12 month, the account validity is reduce accordingly. reverse when cancel
+						- what happened if not enough days to adjust => add next cycle
+						- what happened if multiple addone is bought consecutively?
+						- everything is in services.index when account_id <> ''
 
 # 10. container width() 
 ====================================================================
 @media (min-width: 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
-  }
+	.container-xl, .container-lg, .container-md, .container-sm, .container {
+		max-width: 1140px;
+	}
 }
 @media (min-width: 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
-  }
+	.container-xl, .container-lg, .container-md, .container-sm, .container {
+		max-width: 1140px;
+	}
 }
 
 # 9. Reports 
@@ -100,15 +100,15 @@ https://www.itsolutionstuff.com/post/laravel-8-pdf-laravel-8-generate-pdf-file-u
 2. override view from auth.register to landlord.auth.register
 3. move User Model: from use App\Models\User => to use App\Models\Landlord\User;
 4. DID NOT WORK => move User Model to Landlord
-    https://laracasts.com/discuss/channels/general-discussion/is-it-possible-to-put-model-and-controller-files-in-subfolders
+		https://laracasts.com/discuss/channels/general-discussion/is-it-possible-to-put-model-and-controller-files-in-subfolders
 config/auth file:
 Copy
 'providers' => [
-    'users' => [
-        'driver' => 'eloquent',
-        'model' => App\Models\User::class,
-    ]
-  ]  
+		'users' => [
+				'driver' => 'eloquent',
+				'model' => App\Models\User::class,
+		]
+	]  
 -- issue for tenant and landlord two user model
 https://laracasts.com/discuss/channels/laravel/how-to-login-with-different-models-in-laravel
 https://pusher.com/tutorials/multiple-authentication-guards-laravel/#run-the-application
@@ -178,8 +178,8 @@ php artisan make:command BillingCron --command=billing:cron
 edit app/Console/Commands/DemoCron.php
 
 app/Console/Kernel.php
-  $schedule->command('billing:cron')
-                 ->everyMinute();
+	$schedule->command('billing:cron')
+								 ->everyMinute();
 		->daily();
 		->everyFiveMinutes();	
 		->dailyAt('13:00');	Run the task every day at 13:00
@@ -221,13 +221,13 @@ APP_URL=http://localhost:8000
 success/cancel should work
 
 VerifyCsrfToken
-  protected $except = [
-        '/success',
-        '/cancel',
-        '/fail',
-        '/ipn',
-        '/pay-via-ajax', // only required to run example codes. Please see bellow.
-    ];
+	protected $except = [
+				'/success',
+				'/cancel',
+				'/fail',
+				'/ipn',
+				'/pay-via-ajax', // only required to run example codes. Please see bellow.
+		];
 
 VISA:
 Card Number: 4111111111111111
@@ -267,28 +267,28 @@ RouteServiceProvider.php
 # 3. Package  
 ====================================================================
 - install and configure intervention pkg
-  https://github.com/Intervention/image
-  composer require intervention/image
-  Config\app.php	=> 
-  'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+	https://github.com/Intervention/image
+	composer require intervention/image
+	Config\app.php	=> 
+	'aliases' => Facade::defaultAliases()->merge([
+				// 'ExampleClass' => App\Example\ExampleClass::class,
 	// IQBAL 7-FEB-23
-        'Image' => Intervention\Image\Facades\Image::class,
-    ])->toArray(),
+				'Image' => Intervention\Image\Facades\Image::class,
+		])->toArray(),
 
 - inbstal dompdf
-  https://github.com/barryvdh/laravel-dompdf
-  composer require barryvdh/laravel-dompdf
+	https://github.com/barryvdh/laravel-dompdf
+	composer require barryvdh/laravel-dompdf
 
-  Configure DomPDF Package in Laravel
+	Configure DomPDF Package in Laravel
 Open config/app.php fil
 'providers' => [
-  Barryvdh\DomPDF\ServiceProvider::class,
+	Barryvdh\DomPDF\ServiceProvider::class,
 ],
 'aliases' => [
-   // IQBAL 1-MAR-23
-  'Image' => Intervention\Image\Facades\Image::class,
-  'PDF' => Barryvdh\DomPDF\Facade::class,
+	 // IQBAL 1-MAR-23
+	'Image' => Intervention\Image\Facades\Image::class,
+	'PDF' => Barryvdh\DomPDF\Facade::class,
 ]
 [php artisan vendor:publish]
 Route::get('/employee/pdf', [EmployeeController::class, 'createPDF']);

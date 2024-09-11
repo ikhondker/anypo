@@ -84,9 +84,9 @@ php artisan queue:listen --timeout=1200
 # 8. Logos 
 ====================================================================
 ## Landlord
-- D:\laravel\bo05\public\landlord\logos   - for user and tickets
-- D:\laravel\bo05\public\assets\logo  - rests
-- D:\laravel\bo05\storage\app\logo    - logo in pdf 
+- D:\laravel\bo05\public\landlord\logos - for user and tickets
+- D:\laravel\bo05\public\assets\logo - rests
+- D:\laravel\bo05\storage\app\logo - logo in pdf 
 
 ## Tenant
 - Error 401—Unauthorized

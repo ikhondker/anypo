@@ -133,7 +133,7 @@ Log::info(print_r($dept_budget, true));
 # 5. Set Environment 
 ====================================================================
 ~~~
-.env    =>  APP_DOMAIN=anypo.net    # Custom
+.env =>  APP_DOMAIN=anypo.net # Custom
 app.php => 'domain' => env('APP_DOMAIN', 'localhost'),
 Log::debug("app.names= ".config('app.name') );
 Log::debug("app.domain= ".config('app.domain') );
@@ -151,13 +151,13 @@ D:\laravel\anypo\config/akk.php
 ====================================================================
 ~~~
 Route::post('password/email', [
-    'as' => 'laravel.password.email',
-    'uses' => 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail'
+	'as' => 'laravel.password.email',
+	'uses' => 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail'
 ]);
 
 Route::get('password/reset', [
-    'as' => 'laravel.password.request',
-    'uses' => 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm'
+	'as' => 'laravel.password.request',
+	'uses' => 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm'
 ]);
 ~~~
 

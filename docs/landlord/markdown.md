@@ -6,9 +6,9 @@ Paragraphs are separated by a blank line.
 2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists
 look like:
 
-  * this one
-  * that one
-  * the other one
+	* this one
+	* that one
+	* the other one
 
 Note that --- not considering the asterisk --- the actual text
 content starts at 4-columns in.
@@ -37,15 +37,15 @@ Here's a numbered list:
 Note again how the actual text starts at 4 columns in (4 characters
 from the left side). Here's a code sample:
 
-    # Let me re-iterate ...
-    for i in 1 .. 10 { do-something(i) }
+		# Let me re-iterate ...
+		for i in 1 .. 10 { do-something(i) }
 
 As you probably guessed, indented 4 spaces. By the way, instead of
 indenting the block, you can use delimited blocks, if you like:
 
 ~~~
 define foobar() {
-    print "Welcome to flavor country!";
+		print "Welcome to flavor country!";
 }
 ~~~
 
@@ -56,9 +56,9 @@ delimited block for Pandoc to syntax highlight it:
 import time
 # Quick, count to ten!
 for i in range(10):
-    # (but not *too* quick)
-    time.sleep(0.5)
-    print i
+		# (but not *too* quick)
+		time.sleep(0.5)
+		print i
 ~~~
 
 
@@ -69,24 +69,24 @@ Now a nested list:
 
  1. First, get these ingredients:
 
-      * carrots
-      * celery
-      * lentils
+			* carrots
+			* celery
+			* lentils
 
  2. Boil some water.
 
  3. Dump everything in the pot and follow
-    this algorithm:
+		this algorithm:
 
-        find wooden spoon
-        uncover pot
-        stir
-        cover pot
-        balance wooden spoon precariously on pot handle
-        wait 10 minutes
-        goto first step (or shut off burner when done)
+				find wooden spoon
+				uncover pot
+				stir
+				cover pot
+				balance wooden spoon precariously on pot handle
+				wait 10 minutes
+				goto first step (or shut off burner when done)
 
-    Do not bump wooden spoon or it will fall.
+		Do not bump wooden spoon or it will fall.
 
 Notice again how text always lines up on 4-space indents (including
 that last line which continues item 3 above).
@@ -114,12 +114,12 @@ multi-line tables:
 keyword   text
 --------  -----------------------
 red       Sunsets, apples, and
-          other red or reddish
-          things.
+					other red or reddish
+					things.
 
 green     Leaves, grass, frogs
-          and other things it's
-          not easy being.
+					and other things it's
+					not easy being.
 --------  -----------------------
 
 A horizontal rule follows.
@@ -129,11 +129,11 @@ A horizontal rule follows.
 Here's a definition list:
 
 apples
-  : Good for making applesauce.
+	: Good for making applesauce.
 oranges
-  : Citrus!
+	: Citrus!
 tomatoes
-  : There's no "e" in tomatoe.
+	: There's no "e" in tomatoe.
 
 Again, text is indented 4 spaces. (Put a blank line between each
 term/definition pair to spread things out more.)
