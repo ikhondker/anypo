@@ -80,7 +80,7 @@
 									<i class="align-middle" data-lucide="edit"></i></a>
 							@endif
 							@if ($po->auth_status == App\Enum\AuthStatusEnum::APPROVED->value)
-								<a href="{{ route('receipts.create-for-pol', $pol1->id)  }}" class="text-muted"
+								<a href="{{ route('receipts.create-for-pol', $pol1->id) }}" class="text-muted"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Crate Receipt">
 									<i class="align-middle" data-lucide="plus"></i></a>
 							</a>

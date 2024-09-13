@@ -171,8 +171,8 @@ class DeptBudgetController extends Controller
 
 		// old check
 		// $validatedData = $request->validate([
-		//  	'budget_id' => 'required|unique:dept_budgets,dept_id',
-		//  	'dept_id' 	=> 'required|unique:dept_budgets,budget_id',
+		// 'budget_id' => 'required|unique:dept_budgets,dept_id',
+		// 'dept_id' 	=> 'required|unique:dept_budgets,budget_id',
 		// ]);
 
 		$dept_budget = DeptBudget::create($request->all());
@@ -282,13 +282,13 @@ class DeptBudgetController extends Controller
 		$sql= "INSERT INTO budgets( 
 			fy, name, start_date, end_date, amount, 
 			amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
-			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,  
+			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,
 			closed, revision, parent_id,
 			created_by,updated_by)
 		SELECT 
 			fy, name, start_date, end_date, amount, 
 			amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
-			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,  
+			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,
 			true, true, ".$deptBudget->budget_id.",
 			".auth()->user()->id.",".auth()->user()->id."
 		FROM budgets 

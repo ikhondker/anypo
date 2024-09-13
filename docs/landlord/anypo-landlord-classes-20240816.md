@@ -63,9 +63,9 @@ php artisan make:model AccountService --all
 
 # Event and listner ---------------------------
 PS D:\laravel\bo05> php artisan make:event PodcastProcessed
-   INFO  Event [D:\laravel\bo05\app/Events/PodcastProcessed.php] created successfully.  
+INFO  Event [D:\laravel\bo05\app/Events/PodcastProcessed.php] created successfully.  
 PS D:\laravel\bo05> php artisan make:listener SendPodcastNotification --event=PodcastProcessed
-   INFO  Listener [D:\laravel\bo05\app/Listeners/SendPodcastNotification.php] created successfully.  
+INFO  Listener [D:\laravel\bo05\app/Listeners/SendPodcastNotification.php] created successfully.  
 
 # Resue ---------------------------
 ChartController.php
@@ -73,10 +73,10 @@ HomeController.php
 TestController.php
 
 >>[REUSE] php artisan make:policy UserPolicy --model=User
-	  php artisan make:model User --all
+	php artisan make:model User --all
 
 >>[REUSE] php artisan make:model Table --all
-          php artisan make:controller TableController --resource
+	php artisan make:controller TableController --resource
 
 >>[REUSE] php artisan make:model Dashboard --all
 >>[REUSE] php artisan make:model Template --all

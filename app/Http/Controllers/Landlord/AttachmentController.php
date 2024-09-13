@@ -18,14 +18,14 @@
 * =====================================================================================
 */
 
-namespace App\Http\Controllers\Landlord\Manage;
+namespace App\Http\Controllers\Landlord;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Landlord\Manage\StoreAttachmentRequest;
-use App\Http\Requests\Landlord\Manage\UpdateAttachmentRequest;
+use App\Http\Requests\Landlord\StoreAttachmentRequest;
+use App\Http\Requests\Landlord\UpdateAttachmentRequest;
 
 # 1. Models
-use App\Models\Landlord\Manage\Attachment;
+use App\Models\Landlord\Attachment;
 use App\Models\Landlord\Manage\Entity;
 # 2. Enums
 # 3. Helpers
@@ -59,10 +59,16 @@ class AttachmentController extends Controller
 	 */
 	public function index()
 	{
+		abort(500, 'Can not create attachments manually!');
+	}
+
+	public function all()
+	{
 		$this->authorize('viewAny',Attachment::class);
 		$attachments = Attachment::latest()->with('entity')->with('owner')->orderBy('id','desc')->paginate(10);
-		return view('landlord.manage.attachments.index',compact('attachments'));
+		return view('landlord.attachments.index',compact('attachments'));
 	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -71,7 +77,7 @@ class AttachmentController extends Controller
 	 */
 	public function create()
 	{
-		abort(500, 'Can not create attachments Manually!');
+		abort(500, 'Can not create attachments manually!');
 		//abort( response('Can not create attachments manually!', 401) );
 		//$this->authorize('create',Attachment::class);
 		//return view('landlord.manage.attachments.create');
@@ -86,9 +92,11 @@ class AttachmentController extends Controller
 
 	public function store(StoreAttachmentRequest $request)
 	{
-		$this->authorize('create',Attachment::class);
-		FileUpload::uploadPublicPhoto($request);
-		return redirect()->route('attachments.index')->with('success','Attachment created successfully.');
+		abort(500, 'Can not create attachments manually!');
+
+		// $this->authorize('create',Attachment::class);
+		// FileUpload::uploadPublicPhoto($request);
+		// return redirect()->route('attachments.index')->with('success','Attachment created successfully.');
 
 	}
 
@@ -101,7 +109,7 @@ class AttachmentController extends Controller
 	public function show(Attachment $attachment)
 	{
 		$this->authorize('view', $attachment);
-		return view('landlord.manage.attachments.show',compact('attachment'));
+		return view('landlord.attachments.show',compact('attachment'));
 	}
 
 	/**
@@ -113,7 +121,7 @@ class AttachmentController extends Controller
 	public function edit(Attachment $attachment)
 	{
 		$this->authorize('update',$attachment);
-		return view('landlord.manage.attachments.edit', compact('attachment'));
+		return view('landlord.attachments.edit', compact('attachment'));
 	}
 
 	/**
@@ -129,7 +137,7 @@ class AttachmentController extends Controller
 		$attachment->update($request->all());
 
 		// Write to Log
-		EventLog::event('menu', $attachment->id, 'update', 'name', $attachment->id);
+		EventLog::event('attachment', $attachment->id, 'update', 'name', $attachment->id);
 
 		return redirect()->route('attachments.index')->with('success', 'Attachment updated successfully');
 	}
@@ -155,13 +163,7 @@ class AttachmentController extends Controller
 		Log::debug('tenant.attachments.download Value of file_name = '. $attachment->org_file_name);
 		Log::debug('tenant.attachments.download Value of entity = '. $attachment->entity);
 
-		
-		// Log::debug('landlord.attachments.download Value of fileName = ' . $fileName);
-		// try {
-		// 	$attachment 				= Attachment::where('file_name', $fileName)->firstOrFail();
-		// } catch (ModelNotFoundException $exception) {
-		// 	 return redirect()->route('dashboards.index')->with('error', 'Attachment Not Found!');
-		// }
+	
 
 		$entity 			= Entity::where('entity', $attachment->entity)->first();
 		$fileDownloadPath 	= $entity->directory."/". $attachment->file_name;

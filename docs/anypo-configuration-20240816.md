@@ -150,6 +150,8 @@ git add database/*
 git add resources/*
 git add routes/*
 git add docs/*
+git add public/assets/css/landlord.css
+git add public/tenancy/assets/css/tenant.css
 ~~~
 
 ## Manually upload

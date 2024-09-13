@@ -1,0 +1,45 @@
+input[readonly]{
+    background-color:#E8E8E8;
+  }
+
+.feather-16{
+    width: 16px;
+    height: 16px;
+}
+
+.feather-24{
+    width: 24px;
+    height: 24px;
+}
+
+.feather-32{
+    width: 32px;
+    height: 32px;
+}
+
+  /* .swal2-popup {
+    background: #222 !important;
+    border: 1px solid white !important;
+    color: whitesmoke !important;
+  } */
+
+/* Hide Arrows From Input Number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* #pr.table, td, th, tr { */
+#pr.table>:not(caption)>*>*{
+    /* border: 1px solid; */
+    padding-right: 4px;
+    padding-left: 4px;
+    /* padding: 25px 50px 75px 100px; */
+}

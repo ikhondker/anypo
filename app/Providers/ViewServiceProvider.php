@@ -58,7 +58,8 @@ class ViewServiceProvider extends ServiceProvider
 			//$view->with('_xx_name', 'abc');
 		});
 
-		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app'],
+		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
+			'landlord.*', /** keep this */],
 			\App\View\Composers\ConfigComposer::class);
 		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
 			'components.landlord.nav-bar'],

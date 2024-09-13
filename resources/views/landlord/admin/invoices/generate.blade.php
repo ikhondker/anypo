@@ -14,9 +14,9 @@
 			{{-- <h6 class="card-subtitle text-muted">Generate Invoice & Pay.</h6> --}}
 		</div>
 		<div class="card-body">
-			<form name="myForm" id="myForm" action="{{ route('invoices.store') }}" method="POST" enctype="multipart/form-data">
+			<form name="myForm" id="myForm" action="{{ route('invoices.store') }}" method="POST">
 				@csrf
-
+				
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
@@ -82,9 +82,6 @@
 					<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ url()->previous() }}"><i class="fas fa-times"></i></i> Cancel</a>
 					<button type="submit" id="submit" name="submit" class="btn btn-primary sw2" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i class="fas fa-save"></i> Generate</button>
 				</div>
-
-				
-				
 			</form>
 		</div>
 	</div>

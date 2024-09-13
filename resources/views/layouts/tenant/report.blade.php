@@ -14,7 +14,7 @@
 				font-variant: normal;
 				/* src: url("fonts/lato/Lato-Regular.ttf") format('truetype'); */
 				/* src: url({{ storage_path() . '/fonts/lato/Lato-Regular.ttf' }}) format("truetype"); */
-			}
+		}
 		* {
 			/* Change your font family */
 			font-family: Arial, Helvetica, sans-serif;
@@ -72,7 +72,7 @@
 			padding: 10px;
 		}
 
-		/* Custom  Added BY Iqbal */
+		/* Custom Added by Iqbal */
 
 		h2, h3 {
 			color: #0087C3;

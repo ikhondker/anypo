@@ -13,7 +13,7 @@ class MyNumber extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $value,public string  $label = '')
+	public function __construct(public string $value, public string $label = '')
 	{
 		$this->label	= ($label == '')? 'Amount' : $label;
 		$this->value 	= ($value == '')? '0.00' : $value;

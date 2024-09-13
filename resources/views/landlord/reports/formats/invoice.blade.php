@@ -1,5 +1,5 @@
 
-@extends('layouts.landlord-pdf-portrait')
+@extends('layouts.landlord.pdf-portrait')
 
 @section('title','Invoice')
 

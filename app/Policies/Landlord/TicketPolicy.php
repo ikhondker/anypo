@@ -57,6 +57,25 @@ class TicketPolicy
 		}
 	}
 
+
+	/**
+	 * Determine whether the user can view the model.
+	 */
+	public function pdfTicket(User $user, Ticket $ticket): bool
+	{
+		// owner, account admin and back office users can view ticket
+		if ($user->isUser() ) {
+			return ($user->id == $ticket->owner_id);
+		} elseif ($user->isAdmin() ) {
+			return ($user->account_id == $ticket->account_id);
+		} elseif ($user->isSeeded()) {
+			return (true);
+		} else {
+			return (false);
+		}
+
+	}
+
 	/**
 	 * Determine whether the user can create models.
 	 */

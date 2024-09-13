@@ -65,7 +65,7 @@ class Access
 
 			case EntityEnum::BUDGET->value:
 				$budget = Budget::where('id', $attachment->article_id)->get()->firstOrFail();
-				if (!$budget->closed)  {
+				if (!$budget->closed) {
 					if (auth()->user()->id == $attachment->owner_id){
 						$editable		= true;
 					}	

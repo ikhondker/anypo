@@ -27,7 +27,7 @@ php artisan make:component Tenant/Widgets/Po/InvoicePayments
 php artisan make:component Tenant/Widgets/Po/ListBySupplier
 php artisan make:component Tenant/Widgets/Po/ListByProject
 php artisan make:component Tenant/Widgets/Po/ListByBuyer
-php artisan make:component Tenant/Widgets/Po/ListByDate 
+php artisan make:component Tenant/Widgets/Po/ListByDate
 xxphp artisan make:component Tenant/Widgets/Po/PoLists
 
 xxphp artisan make:component Tenant/Widgets/Pol/Card
@@ -43,7 +43,7 @@ xxphp artisan make:component Tenant/Widgets/Pr/ListsPoPending
 xxphp artisan make:component Tenant/Widgets/Submit 	<x-tenant.widgets.submit/>
 
 
-# PR JS 
+# PR JS
 --------------------------------------------------------------------
 Where is jquery code? @include('tenant.includes.js.calculate-pr-amount')
 
@@ -64,7 +64,7 @@ Where is jquery code? @include('tenant.includes.js.calculate-pr-amount')
 ## prs.create
 	Form
 	@include('tenant.includes.pr.pr-line-add')
-	
+
 ## prls.create
 		<x-tenant.widgets.pr.show-pr-header prId="{{ $pr->id }}"/>
 		loop {
@@ -77,8 +77,8 @@ Where is jquery code? @include('tenant.includes.js.calculate-pr-amount')
 		loop{
 			<x-tenant.widgets.prl.card-table-row :line="$prln"/>
 			@include('tenant.includes.pr.pr-line-edit')
-		}	
-		
+		}
+
 ## prls.show
 	N/A 403
 
@@ -120,7 +120,7 @@ Overall Structure:
 	Form
 	<x-tenant.widgets.prl.card :readOnly="false" :addMore="true">
 		@include('tenant.includes.pr.pr-line-add')
-	
+
 ## prls.addLine
 ->prls.create
 	<x-tenant.widgets.prl.card :pr="$pr" :readOnly="false" :addMore="true">
@@ -138,7 +138,7 @@ Overall Structure:
 ## prs.attachment/extra/history/
 	<x-tenant.info.pr-info id="{{ $pr->id }}"/>
 
-#  OLD PO 
+#  OLD PO
 ================================================================
 pos.show
 old
@@ -147,7 +147,7 @@ old
 	<!-- approval form, show only if pending to current auth user -->
 	@if (\App\Helpers\Workflow::allowApprove($po->wf_id))
 		@include('tenant.includes.wfl-approve-reject')
-	@endif 
+	@endif
 
 new
 	<x-tenant.widgets.pr.show-po-header id="{{ $po->id }}"/>
@@ -165,7 +165,7 @@ pos.edit
 
 pos.attachment/extra/history/
 	<x-tenant.info.po-info id="{{ $po->id }}"/>
-	
+
 pols.show
 N/A
 
@@ -196,7 +196,7 @@ prs.index	=> as usaul
 prs.show	@include('includes.view-pr-header')
 		<x-widgets.pr-lines id="{{ $pr->id }}" :show="true"/>
 			@include('includes.pr-line-add')
-			@include('includes.pr-footer-add')                        
+			@include('includes.pr-footer-add')
 			@include('includes.pr-footer-edit')
 						@include('includes.pr-footer-view')
 		@include('includes.wfl-approve-reject')

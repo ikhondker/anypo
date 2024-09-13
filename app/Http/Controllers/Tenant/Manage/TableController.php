@@ -240,7 +240,7 @@ class TableController extends Controller
 	public function allModels()
 	{
 		$this->authorize('models', Table::class);
-		$dir	=  "D:\laravel\anypo\app\Models\Tenant\\";
+		$dir	= "D:\laravel\anypo\app\Models\Tenant\\";
 		$a= Docs::listFolderFiles($dir);	
 	}
 

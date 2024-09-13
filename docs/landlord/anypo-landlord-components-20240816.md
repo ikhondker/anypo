@@ -64,20 +64,20 @@ php artisan make:component CardFooter		<x-card-footer object="Template"/>
 
 # Show
 -------------------------------------
-xxphp artisan make:component Show/Id		 <x-show.id          id="{{ $training->id }}"/>
-php artisan make:component Show/MyId		 <x-show.my-id          id="{{ $training->id }}"/>
-php artisan make:component Landlord/Show/MyText		<x-show.my-text       value="{{ $user->country }}" label="Country"/>
+xxphp artisan make:component Show/Id		 <x-show.id id="{{ $training->id }}"/>
+php artisan make:component Show/MyId		 <x-show.my-id id="{{ $training->id }}"/>
+php artisan make:component Landlord/Show/MyText		<x-show.my-text value="{{ $user->country }}" label="Country"/>
 php artisan make:component Landlord/Show/MyTitle
 php artisan make:component Landlord/Show/MyContent
 php artisan make:component Landlord/Show/MyNumber
 php artisan make:component Landlord/Show/MyInteger
-php artisan make:component Landlord/Show/MyDate		<x-show.my-date     value="{{ $payment->pay_date }}"/>
-php artisan make:component Landlord/Show/MyTextArea		<x-show.my-date     value="{{ $payment->pay_date }}"/>
+php artisan make:component Landlord/Show/MyDate		<x-show.my-date value="{{ $payment->pay_date }}"/>
+php artisan make:component Landlord/Show/MyTextArea		<x-show.my-date value="{{ $payment->pay_date }}"/>
 
-php artisan make:component Landlord/Show/MyDateTime	<x-show.my-date-time       value="{{$account->created_at }}" label="Created At"/>
-php artisan make:component Show/MyUrl		<x-show.my-url       value="{{ $user->lnpage }}" label="LinkedIn"/>
-php artisan make:component Show/MyBadge		<x-show.my-badge       value="{{ $user->role }}" label="Role"/>
-php artisan make:component Show/MyEnable	 <x-show.my-enable       value="{{ $user->enable }}"/>
+php artisan make:component Landlord/Show/MyDateTime	<x-show.my-date-time value="{{$account->created_at }}" label="Created At"/>
+php artisan make:component Show/MyUrl		<x-show.my-url value="{{ $user->lnpage }}" label="LinkedIn"/>
+php artisan make:component Show/MyBadge		<x-show.my-badge value="{{ $user->role }}" label="Role"/>
+php artisan make:component Show/MyEnable	 <x-show.my-enable value="{{ $user->enable }}"/>
 
 php artisan make:component Show/MyCreatedBy	 <x-show.my-created-by  value="{{$attachment->user_created_by->name }}"/>
 php artisan make:component Show/MyUpdatedBy	 <x-show.my-created-at  value="{{ $attachment->created_at }}"/>

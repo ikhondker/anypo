@@ -8,28 +8,28 @@
 	<h3>About the company</h3>
 
 	<div class="row mb-5">
-	  <div class="col-md-3 order-md-2 mb-3 mb-md-0">
+		<div class="col-md-3 order-md-2 mb-3 mb-md-0">
 		<div class="ps-md-4">
-		  <!-- List -->
-		  <ul class="list-unstyled list-py-2">
+			<!-- List -->
+			<ul class="list-unstyled list-py-2">
 			<li>
-			  <h5>Founded</h5>
-			  <p class="small mb-0">2009</p>
+				<h5>Founded</h5>
+				<p class="small mb-0">2009</p>
 			</li>
 			<li>
-			  <h5>Company size</h5>
-			  <p class="small mb-0">150 - 300</p>
+				<h5>Company size</h5>
+				<p class="small mb-0">150 - 300</p>
 			</li>
 			<li>
-			  <h5>Avg. Salary</h5>
-			  <p class="small mb-0">$25 - $45</p>
+			<h5>Avg. Salary</h5>
+			<p class="small mb-0">$25 - $45</p>
 			</li>
 			<li>
-			  <h5>Industry</h5>
-			  <p class="small mb-0">Information Technology</p>
+			<h5>Industry</h5>
+			<p class="small mb-0">Information Technology</p>
 			</li>
 			<li>
-			  <h5>Links</h5>
+			<h5>Links</h5>
 
 			  <!-- Socials -->
 			  <ul class="list-inline">

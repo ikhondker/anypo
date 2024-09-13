@@ -42,7 +42,7 @@
 						<tbody>
 							<tr>
 								<th width="20%">FY:</th>
-								<td><span class="badge badge-subtle-primary">{{  $deptBudget->budget->fy }}</span></td>
+								<td><span class="badge badge-subtle-primary">{{ $deptBudget->budget->fy }}</span></td>
 							</tr>
 							<tr>
 								<th>Budget:</th>

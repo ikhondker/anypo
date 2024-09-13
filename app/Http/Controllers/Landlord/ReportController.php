@@ -27,9 +27,14 @@ use App\Http\Requests\Landlord\StoreReportRequest;
 use App\Http\Requests\Landlord\UpdateReportRequest;
 
 # 1. Models
+use App\Models\User;
 use App\Models\Landlord\Report;
 use App\Models\Landlord\Account;
 
+use App\Helpers\Watermark;
+
+use App\Models\Landlord\Ticket;
+use App\Models\Landlord\Comment;
 use App\Models\Landlord\Admin\Payment;
 use App\Models\Landlord\Admin\Invoice;
 use App\Models\Landlord\Manage\Config;
@@ -91,7 +96,6 @@ class ReportController extends Controller
 		//dd($id, $prls);
 
 		$data = [
-			//'title' 	=> 'Company XYZ',
 			'id' 		=> $invoice->id,
 			'date' 		=> date('m/d/Y'),
 			'config' 	=> $config,
@@ -101,34 +105,8 @@ class ReportController extends Controller
 
 		$pdf = PDF::loadView('landlord.reports.formats.invoice', $data);
 			// ->setOption('fontDir', public_path('/fonts/lato'));
-
-		// (Optional) Config the paper size and orientation
-		$pdf->setPaper('A4', 'portrait');
-		$pdf->output();
-
-		// Get height and width of page
-		$canvas = $pdf->getDomPDF()->getCanvas();
-		$height = $canvas->get_height();
-		$width = $canvas->get_width();
-
-		// Specify watermark text
-		$text = Str::upper($invoice->status->name);
-
-		// Get height and width of text
-		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");
-		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
-		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
-		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-
-		// Specify horizontal and vertical position
-		$x = (($width - $textWidth) / 1.6);
-		$y = (($height - $txtHeight) / 2);
-
-		$color = array(255,0,0);
-		//$canvas->set_opacity(.2,"Multiply");
-		$canvas->set_opacity(.2);
-
-		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
+	
+		Watermark::set($pdf, $invoice->status->name,'P');
 
 		return $pdf->stream('Invoice'.$invoice->id.'.pdf');
 	}
@@ -137,64 +115,67 @@ class ReportController extends Controller
 	public function viewPdfPayment(Payment $payment)
 	{
 
-		// NOTE: Uses InvoicePolicy
+		// NOTE: Uses PaymentPolicy
 		$this->authorize('pdfPayment', $payment);
 
 		$config = Config::first();
-		//$payment = Payment::where('id', $id)->firstOrFail();
+		
 		$invoice = Invoice::where('id', $payment->invoice_id)->firstOrFail();
 		$account = Account::where('id', $payment->account_id)->firstOrFail();
-		//dd($payment);
-		//$config = Config::where('id', config('akk.SETUP_ID'))->firstOrFail();
-		//$pr = Pr::with('requestor')->where('id', $id)->firstOrFail();
-		//$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
-		//$prls = Prl::with('item')->where('pr_id', $pr->id)->get()->all();
-
-		//$prls = Prl::where('pr_id', $id)->firstOrFail();
-		//$prls = Prl::getLinesByPrId($id);
-		//$prls = Prl::By_pr_id($id);
-		//$prls = Prl::where('pr_id', $id)->firstOrFail();
-		//dd($id, $prls);
-
 		$data = [
-			'title' => 'Company XYZ',
-			'id' => $payment->id,
-			'date' => date('m/d/Y'),
-			'config' => $config,
-			'payment' => $payment,
-			'invoice' => $invoice,
-			'account' => $account,
+			'id' 		=> $payment->id,
+			'date' 		=> date('m/d/Y'),
+			'config' 	=> $config,
+			'payment' 	=> $payment,
+			'invoice' 	=> $invoice,
+			'account' 	=> $account,
 		];
 
-
 		$pdf = PDF::loadView('landlord.reports.formats.receipt', $data);
-		// (Optional) Config the paper size and orientation
-		$pdf->setPaper('A4', 'portrait');
 
-		// Get height and width of page
-
-		$canvas = $pdf->getDomPDF()->getCanvas();
-		$height = $canvas->get_height();
-		$width = $canvas->get_width();
-
-		// Specify watermark text
-		$text = "DRAFT";
-
-		// Get height and width of text
-		$font		= $pdf->getFontMetrics()->get_font("lato", "bold");
-		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
-		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-		// Specify horizontal and vertical position
-		$x = (($width - $textWidth) / 1.4);
-		$y = (($height - $txtHeight) / 2);
-
-		$color = array(255,0,0);
-		//$canvas->set_opacity(.2,"Multiply");
-		$canvas->set_opacity(.2);
-
-		//$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
+	
+		Watermark::set($pdf, $payment->status->name,'P');
 
 		return $pdf->stream('receipt.pdf');
+	}
+
+
+	public function viewPdfTicket(Ticket $ticket)
+	{
+
+		// NOTE: Uses InvoicePolicy
+		$this->authorize('pdfTicket', $ticket);
+
+		$config = Config::first();
+		//$payment = Payment::where('id', $id)->firstOrFail();
+		$ticket = Ticket::where('id', $ticket->id)->firstOrFail();
+		$owner = User::where('id', $ticket->owner_id)->firstOrFail();
+		//$account = Account::where('id', $ticket->account_id)->firstOrFail();
+		
+		
+		if (auth()->user()->isSeeded()) {
+			$comments = Comment::with('owner')->where('ticket_id', $ticket->id)->orderBy('id', 'desc')->get()->all();
+		} else {
+			// Hide internal comments form user
+			$comments = Comment::with('owner')->where('ticket_id', $ticket->id)->where('is_internal', false)->orderBy('id', 'desc')->get()->all();
+		}
+
+		$data = [
+		
+			'id' 		=> $ticket->id,
+			'date' 		=> date('m/d/Y'),
+			'config' 	=> $config,
+			'ticket' 	=> $ticket,
+			'comments' 	=> $comments,
+			'owner' 	=> $owner,
+		//	'account' 	=> $account,
+		];
+
+		$pdf = PDF::loadView('landlord.reports.formats.ticket', $data);
+
+		Watermark::set($pdf, $ticket->status->name,'P');
+
+		return $pdf->stream('ticket.pdf');
 	}
 
 

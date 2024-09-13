@@ -125,7 +125,7 @@ TestController.php
 	  php artisan make:model User --all
 
 >>[REUSE] php artisan make:model Table --all
-          php artisan make:controller TableController --resource
+	php artisan make:controller TableController --resource
 
 >>[REUSE] php artisan make:model Dashboard --all
 >>[REUSE] php artisan make:model Template --all

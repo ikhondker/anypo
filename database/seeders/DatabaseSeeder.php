@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
 		$this->call(\Database\Seeders\Landlord\EntitySeeder::class);
 		// Make sure ConfigSeeder runs after UserSeeder as system_user_id will be generated
 		$this->call(\Database\Seeders\Landlord\ConfigSeeder::class);
-		$this->call(\Database\Seeders\Landlord\ContactSeeder::class);
 		$this->call(\Database\Seeders\Landlord\CategorySeeder::class);
 		$this->call(\Database\Seeders\Landlord\CountrySeeder::class);
 		$this->call(\Database\Seeders\Landlord\DeptSeeder::class);
@@ -38,11 +37,12 @@ class DatabaseSeeder extends Seeder
 		$this->call(\Database\Seeders\Share\TemplateSeeder::class);
 
 		// TODO don't run in live
-		$this->call(\Database\Seeders\Landlord\AccountSeeder::class);
-		$this->call(\Database\Seeders\Landlord\TicketSeeder::class);
-		$this->call(\Database\Seeders\Landlord\CommentSeeder::class);
-		$this->call(\Database\Seeders\Landlord\InvoiceSeeder::class);
-		$this->call(\Database\Seeders\Landlord\PaymentSeeder::class);
+		// $this->call(\Database\Seeders\Landlord\ContactSeeder::class);
+		//$this->call(\Database\Seeders\Landlord\AccountSeeder::class);
+		//$this->call(\Database\Seeders\Landlord\TicketSeeder::class);
+		//$this->call(\Database\Seeders\Landlord\CommentSeeder::class);
+		//$this->call(\Database\Seeders\Landlord\InvoiceSeeder::class);
+		//$this->call(\Database\Seeders\Landlord\PaymentSeeder::class);
 
 		/*
 		|-----------------------------------------------------------------------------

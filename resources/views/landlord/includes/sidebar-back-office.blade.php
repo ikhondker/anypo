@@ -62,8 +62,8 @@
 		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Activity</span>
 	</a>
 </li>
-<li class="sidebar-item {{ $_route_name == 'attachments.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('attachments.index') }}">
+<li class="sidebar-item {{ $_route_name == 'attachments.all' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('attachments.all') }}">
 		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Attachments</span>
 	</a>
 </li>

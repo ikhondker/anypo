@@ -1,18 +1,18 @@
 [25-NOV-2023] : Instance Specific Key Information
 
-# Overall Architecture    
+# Overall Architecture
 ====================================================================
 1. Restrict route access by gate like auth, admin, support, system etc . Restrict article access by policy
 2. Split resource route and separate into gate middle routes in web and tenant.php
-3. 
+3.
 
-# Steps 
+# Steps
 ====================================================================
 Laravel Strict Mode: https://coderflex.com/blog/laravel-strict-mode-all-what-you-need-to-know
 =>dompdf failed: create D:\laravel\po02\storage\fonts
 
 
-# Environment    
+# Environment
 ====================================================================
 6. set APP_ENV for instances
 7. invoice type subscription/add-on/archive/advance

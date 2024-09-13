@@ -11,7 +11,7 @@
 				<div class="text-sm-end">
 					<a href="{{ route('services.index') }}" class="btn btn-light btn-lg me-2"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
-						<i data-lucide="download"></i> Buy More User</a>
+						<i data-lucide="shopping-cart"></i> Buy more User</a>
 				</div>
 			</div>
 		</div>
@@ -19,15 +19,11 @@
 		<table id="datatables-orders" class="table w-100">
 			<thead>
 				<tr>
-
-
 					<th class="align-middle">#</th>
 					<th class="align-middle">Service Name</th>
 					<th class="align-middle">Account</th>
-					<th class="align-middle">From</th>
-					<th class="align-middle">User</th>
+					<th class="align-middle">Licensed User</th>
 					<th class="align-middle">Fee/mo</th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -38,7 +34,6 @@
 						</td>
 						<td>{{ $service->name }}</td>
 						<td>{{ $service->account->name }} </td>
-						<td><x-landlord.list.my-date :value="$service->start_date" /></td>
 						<td>
 							<span class="badge badge-subtle-success">{{ $service->user }}</span>
 						</td>

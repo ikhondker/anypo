@@ -243,7 +243,7 @@ class HomeController extends Controller
 
 		// check if invoice is already paid
 		if ($invoice->status_code <> LandlordInvoiceStatusEnum::DUE->value) {
-			return redirect()->route('invoices.index')->with('error','Invoice #'.$invoice->invoice_no.' is already paid!');
+			return redirect()->route('invoices.show',$invoice->id)->with('error','Invoice #'.$invoice->invoice_no.' is already paid!');
 		}
 
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));

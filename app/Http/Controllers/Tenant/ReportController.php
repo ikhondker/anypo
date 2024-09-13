@@ -55,6 +55,7 @@ use App\Enum\UserRoleEnum;
 use App\Enum\AuthStatusEnum;
 use App\Enum\InvoiceStatusEnum;
 # 3. Helpers
+use App\Helpers\Watermark;
 use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
@@ -385,11 +386,12 @@ class ReportController extends Controller
 			'prls' 		=> $prls,
 		];
 
-		PDF::setOptions(['debugCss' => true]);
+		//PDF::setOptions(['debugCss' => true]);
 		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
 		
 		// ->setOption('fontDir', public_path('/fonts/lato'));
-		self::setWatermark($pr->auth_status, $pdf);
+		Watermark::set($pdf, $pr->auth_status);
+
 		return $pdf->stream('PR#'.$pr->id.'.pdf');
 	}
 
@@ -541,7 +543,7 @@ class ReportController extends Controller
 		];
 
 		$pdf = PDF::loadView('tenant.reports.formats.po', $data);
-		self::setWatermark($po->auth_status, $pdf);
+		Watermark::set($pdf, $po->auth_status);
 		return $pdf->stream('PO'.$po->id.'.pdf');
 	}
 
@@ -687,7 +689,7 @@ class ReportController extends Controller
 
 		$pdf = PDF::loadView('tenant.reports.formats.invoice', $data);
 		// ->setOption('fontDir', public_path('/fonts/lato'));
-		self::setWatermark($invoice->status, $pdf);
+		Watermark::set($pdf, $invoice->status);
 		return $pdf->stream('Invoice #'.$invoice->id.'.pdf');
 	}
 
@@ -777,7 +779,7 @@ class ReportController extends Controller
 		];
 		$pdf = PDF::loadView('tenant.reports.formats.payment', $data);
 		// ->setOption('fontDir', public_path('/fonts/lato'));
-		self::setWatermark($payment->status, $pdf);
+		Watermark::set($pdf, $payment->status);
 		return $pdf->stream('Payment #'.$payment->id.'.pdf');
 	}
 
@@ -868,7 +870,7 @@ class ReportController extends Controller
 		];
 		$pdf = PDF::loadView('tenant.reports.formats.receipt', $data);
 		// ->setOption('fontDir', public_path('/fonts/lato'));
-		//self::setWatermark($receipt->status, $pdf);
+		//Watermark::set($receipt->status, $pdf);
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();
 
@@ -1183,40 +1185,5 @@ class ReportController extends Controller
 			run_count	= run_count + 1
 			WHERE code 	= '".$reportCode."'");
 	}
-
 	
-	function setWatermark($text, $pdf)
-	{
-		// (Optional) Setup the paper size and orientation
-		//$pdf->setPaper('A4', 'portrait');
-		$pdf->setPaper('A4', 'landscape');
-		$pdf->output();
-
-		// Get height and width of page
-		// https://www.codexworld.com/create-pdf-with-watermark-in-php-using-dompdf/
-		// https://www.codesenior.com/en/tutorial/Dompdf--Create-Watermark-and-Page-Numbers#google_vignette
-		$canvas = $pdf->getDomPDF()->getCanvas();
-		$height = $canvas->get_height();
-		$width = $canvas->get_width();
-
-		// Specify watermark text
-		//$text = Str::upper($pr->auth_status);
-		$text = Str::upper($text);
-
-		// Get height and width of text
-		//$font		= $pdf->getFontMetrics()->get_font("Times", "bold");
-		$font		= $pdf->getFontMetrics()->get_font("helvetica", "bold");
-		$txtHeight	= $pdf->getFontMetrics()->getFontHeight($font, 75);
-		$textWidth	= $pdf->getFontMetrics()->getTextWidth($text, $font, 75);
-
-		// Specify horizontal and vertical position
-		$x = (($width - $textWidth) / 1.6);
-		$y = (($height - $txtHeight) / 2);
-
-		$color = array(255,0,0);
-		$canvas->set_opacity(.2,"Multiply");
-		//$canvas->set_opacity(.2);
-
-		$canvas->page_text($x, $y, $text, $font, 55, $color, 2, 2, -30);
-	}
 }

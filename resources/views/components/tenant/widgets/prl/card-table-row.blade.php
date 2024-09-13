@@ -4,7 +4,7 @@
 	<td class="">{{ $prl->item_description }}</td>
 	<td class="">{{ $prl->uom->name }}</td>
 	<td class="text-end">{{ $prl->qty }}</td>
-	<td class="text-end"><x-tenant.list.my-number :value="$prl->price"/> {{ $prl->pr->currency  }}</td>
+	<td class="text-end"><x-tenant.list.my-number :value="$prl->price"/> {{ $prl->pr->currency }}</td>
 	<td class="text-end"><x-tenant.list.my-number :value="$prl->sub_total"/></td>
 	<td class="text-end"><x-tenant.list.my-number :value="$prl->tax"/></td>
 	<td class="text-end"><x-tenant.list.my-number :value="$prl->gst"/></td>

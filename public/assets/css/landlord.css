@@ -1,0 +1,30 @@
+input[readonly]{
+    background-color:#F5F5F5;
+}
+
+.list-crossed-bg-primary .list-checked-item::before {
+    background-image: url("data:image/svg+xml,%3csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='18' height='18' rx='9' fill='%23377dff'/%3e%3cpath d='M12.0603 5.78792C12.2511 5.56349 12.5876 5.5362 12.8121 5.72697C13.0365 5.91774 13.0638 6.25432 12.873 6.47875L8.3397 11.8121C8.14594 12.04 7.80261 12.064 7.57901 11.8653L5.17901 9.73195C4.95886 9.53626 4.93903 9.19915 5.13472 8.979C5.33041 8.75885 5.66751 8.73902 5.88766 8.93471L7.88011 10.7058L12.0603 5.78792Z' fill='white'/%3e%3c/svg%3e");
+}
+
+/* Reduce td gaps */
+.card .card-table > :not(caption) > * > * {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+/* top logo size */
+.navbar-brand-logo {
+  width: 100%;
+  min-width: 5.5rem;
+  max-width: 5.5rem;
+}
+
+
+small, .small {
+  font-size: 0.75em;
+}
+
+/* login page  */
+.auth-full-page {
+  height: 70vh;
+}

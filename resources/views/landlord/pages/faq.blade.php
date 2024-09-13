@@ -34,7 +34,7 @@
 					<!-- Card Body -->
 					<div class="card-body">
 						<div id="basics" class="mb-5 text-center">
-							<span class="text-uppercase text-primary  fw-medium mb-1 d-block">Basics</span>
+							<span class="text-uppercase text-primary fw-medium mb-1 d-block">Basics</span>
 						</div>
 						<div class="row">
 							<div class="col-md-12 col-lg-12 mx-auto">

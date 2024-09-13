@@ -36,8 +36,8 @@ Version: appstack-4-0-0.zip
 Source: E:\BoughtGraphics\AppStack
 vanila: D:\xampp\htdocs\appstack4
 scss change: D:\xampp\htdocs\appstack4
-    -> D:\xampp\htdocs\appstack4\src\js\ app.js and custom.js  [Asus laptop]
-	- place everything inside   D:\laravel\anypo\public\tenancy\assets TODO
+  -> D:\xampp\htdocs\appstack4\src\js\ app.js and custom.js  [Asus laptop]
+	- place everything inside D:\laravel\anypo\public\tenancy\assets TODO
 	- aws\anypo-public -> tenancy\assets TODO
 	- aws filesystem s3t
 
@@ -71,7 +71,7 @@ $green: 		#4BBF73 !default;
 $teal: 			#20c997 !default;
 $cyan: 			#1F9BCF !default;
 
-$white:    #fff !default;
+$white: #fff !default;
 $gray-100: #f4f7f9 !default;
 $gray-200: #e2e8ee !default;
 $gray-300: #dee6ed !default;
@@ -142,13 +142,13 @@ pip install setuptools
 edit front ->src->css->theme.css
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
+  max-width: 1140px;
   }
 }
 to 
 @media (min-width: 1440px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1400px;
+  max-width: 1400px;
   }
 }
 

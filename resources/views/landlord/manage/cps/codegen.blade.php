@@ -59,7 +59,7 @@
 								@endisset
 							</td>
 						</tr>
-						<x-tenant.buttons.show.save/>
+						<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

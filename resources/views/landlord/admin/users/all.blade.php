@@ -84,7 +84,9 @@
 							<td>
 								<span class="badge {{ ( ($user->email_verified_at == '') ? 'badge-subtle-danger' : 'badge-subtle-success') }}">{{ (($user->email_verified_at == '') ? 'No' : 'Yes') }}</span>
 							</td>
-							<td><x-landlord.list.my-enable :value="$user->seeded"/></td>
+							<td>
+								<span class="badge {{ ($user->seeded ? 'badge-subtle-danger' : 'badge-subtle-success') }} ">{{ ($user->seeded ? 'Yes' : 'No') }}</span>
+							</td>
 							<td><x-landlord.list.my-enable :value="$user->enable"/></td>
 							<td class="text-end">
 								<a href="{{ route('users.show',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"

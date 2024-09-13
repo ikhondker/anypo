@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies\Landlord\Manage;
+namespace App\Policies\Landlord;
 
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Models\Landlord\Manage\Attachment;
+use App\Models\Landlord\Attachment;
 
 use App\Enum\UserRoleEnum;
 use Illuminate\Support\Facades\Log;

@@ -72,6 +72,17 @@ class InvoiceController extends Controller
 
 
 	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+	
+		abort(403);
+		//$this->authorize('create', Category::class);
+		//return view('landlord.admin.invoices.create');
+	}
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
@@ -119,8 +130,8 @@ class InvoiceController extends Controller
 	{
 
 		$period 		= $request->period;
-		Log::debug('landlord.invoice.store of period = ' . $period);
-
+		Log::debug('landlord.invoice.store generating invoice for period = ' . $period);
+		
 		// allowed periods
 		$periods = array("1", "3", "6", "12");
 		if ( ! in_array($period, $periods)) {
@@ -250,11 +261,14 @@ class InvoiceController extends Controller
 	 * @param  \App\Http\Requests\StoreInvoiceRequest  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function org_store(StoreInvoiceRequest $request)
+	public function oldstore(StoreInvoiceRequest $request)
 	{
 
+		Log::debug('landlord.invoice.store I AM HERE!');
+		exit;
+
 		//
-		abort(404);
+		//abort(404);
 
 
 		// Create future Invoice Manually by user+admin
@@ -262,6 +276,8 @@ class InvoiceController extends Controller
 
 		$period 		= $request->period;
 		$account_id 	= auth()->user()->account_id;
+
+		Log::debug('landlord.invoice.store generating invoice for period = ' . $period);
 
 		if ( $account_id == '') {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
@@ -272,6 +288,9 @@ class InvoiceController extends Controller
 			Log::debug('landlord.invoice.store Unpaid invoice exists for Account id = ' . $account->id . ' Invoice not created.');
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for this Account! Can not create more Invoices.');
 		}
+
+
+	
 
 		try {
 			// Create invoice
@@ -356,22 +375,22 @@ class InvoiceController extends Controller
 		if (auth()->user()->isSeeded()){
 			$data = DB::select("
 				SELECT i.invoice_no, i.summary, i.invoice_type, a.name account_name, i.invoice_date,
-				i.from_date, i.to_date,  i.currency,  i.amount
+				i.from_date, i.to_date, i.currency, i.amount
 				FROM invoices i,accounts a
 				WHERE i.account_id=a.id
 				");
 		} else if (auth()->user()->isAdmin()){
 			$data = DB::select("
 				SELECT i.invoice_no, i.summary, i.invoice_type, a.name account_name, i.invoice_date,
-				i.from_date, i.to_date,  i.currency,  i.amount
+				i.from_date, i.to_date, i.currency, i.amount
 				FROM invoices i,accounts a
 				WHERE i.account_id=a.id
 				AND i.account_id = ".auth()->user()->account_id
 				);
 		} else {
 			$data = DB::select("
-								SELECT i.invoice_no, i.summary, i.invoice_type, a.name account_name, i.invoice_date,
-				i.from_date, i.to_date,  i.currency,  i.amount
+				SELECT i.invoice_no, i.summary, i.invoice_type, a.name account_name, i.invoice_date,
+				i.from_date, i.to_date, i.currency, i.amount
 				FROM invoices i,accounts a
 				WHERE i.account_id=a.id
 				AND i.owner_id = ".auth()->user()->id

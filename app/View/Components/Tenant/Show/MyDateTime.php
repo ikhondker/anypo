@@ -13,7 +13,7 @@ class MyDateTime extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $value,public string  $label='')
+	public function __construct(public string $value, public string $label='')
 	{
 		$this->label = ($label == '')? 'Timestamp' : $label;
 		//$this->value = $value;

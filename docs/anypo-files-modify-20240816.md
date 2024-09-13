@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Pagination\Paginator;
 use App\Models\User;
 ~~~
-~~~   
+~~~
 Paginator::useBootstrapFive(); 
 & https not needed
 Gate::define('access-back-office',)
@@ -102,7 +102,7 @@ protected function mapManageRoutes()
 	'EntityEnum'	=> App\Enum\EntityEnum::class,
 	'UserRoleEnum' => App\Enum\UserRoleEnum::class,
 		'Image' => Intervention\Image\Facades\Image::class, //IQBAL
-		'PDF' => Barryvdh\DomPDF\Facade::class,             // IQBAL
+		'PDF' => Barryvdh\DomPDF\Facade::class,				// IQBAL
 
 #faker
 	'faker_locale' => 'en_IN',
@@ -114,8 +114,8 @@ protected function mapManageRoutes()
 .env  => env('APP_NAME') 
 - APP_NAME=AnyPO
 - alos check $setup->name
-- #APP_DOMAIN=anypo.net    # Custom
-- APP_DOMAIN=localhost    # Custom
+- #APP_DOMAIN=anypo.net		# Custom
+- APP_DOMAIN=localhost		# Custom
 - APP_URL=http://localhost:8000
 - #APP_URL=http://localhost
 - QUEUE_CONNECTION=database

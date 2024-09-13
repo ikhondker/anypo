@@ -23,7 +23,7 @@
 			<td><a href="{{ route('payments.show',$payment->id) }}"><strong>{{ $payment->id }}</strong></a></td>
 			<td><x-tenant.list.my-date :value="$payment->pay_date"/></td>
 			<td>{{ $payment->cheque_no }}</td>
-			<td class="text-end">{{ number_format($payment->amount, 2) }} {{ $payment->currency }}  </td>
+			<td class="text-end">{{ number_format($payment->amount, 2) }} {{ $payment->currency }}</td>
 			<td>{{ $payment->bank_account->ac_name }}</td>
 			<td>{{ $payment->invoice->supplier->name }}</td>
 			<td><a href="{{ route('invoices.show',$payment->invoice_id) }}"><strong>{{ $payment->invoice->invoice_no }}</strong></a></td>

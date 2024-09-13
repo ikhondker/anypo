@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-12">
+	<div class="col-sm-12 col-md-8">
 		<div class="card">
 			<div class="card-body m-sm-3 m-md-5">
 
@@ -25,15 +25,15 @@
 							<a href="#">{{ $config->email }}</a>
 						</p>
 
-						{{-- @if ($invoice->status_code == App\Enum\LandlordInvoiceStatusEnum::DUE->value) --}}
-						<form action="{{ url('/payment-stripe') }}" method="POST" class="needs-validation">
-							<input type="hidden" value="{{ csrf_token() }}" name="_token" />
-							<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-							<button class="btn btn-primary btn-sm" type="submit">
-								<i class="fas fa-edit"></i></i> Pay Invoice
-							</button>
-						</form>
-						{{-- @endif --}}
+						@if ($invoice->status_code == App\Enum\LandlordInvoiceStatusEnum::DUE->value)
+							<form action="{{ url('/payment-stripe') }}" method="POST" class="needs-validation">
+								<input type="hidden" value="{{ csrf_token() }}" name="_token" />
+								<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+								<button class="btn btn-primary btn-sm" type="submit">
+									<i class="fas fa-edit"></i></i> Pay Invoice
+								</button>
+							</form>
+						@endif
 					
 							
 					</div>

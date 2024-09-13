@@ -165,8 +165,8 @@ php artisan make:component Tenant\List\ProjectLink
 php artisan make:component Show/Logo		<x-show.logo logo="{{ $setup->logo }}"/>
 php artisan make:component Show/Avatar		<x-show.avatar />
 
-?php artisan make:component Show/MyId		<x-show.my-id          id="{{ $training->id }}"/>
-php artisan make:component Tenant\Show/MyText		<x-show.my-text       value="{{ $user->country }}" label="Country"/>
+?php artisan make:component Show/MyId		<x-show.my-id id="{{ $training->id }}"/>
+php artisan make:component Tenant\Show/MyText		<x-show.my-text value="{{ $user->country }}" label="Country"/>
 php artisan make:component Tenant\Show\MyCode
 php artisan make:component Tenant\Show\MyTextArea
 php artisan make:component Tenant\Show/MyNumber	<x-tenant.show.my-number
@@ -175,11 +175,11 @@ php artisan make:component Tenant\Show\MyAmountCurrency	- amount with entered cu
 
 php artisan make:component Tenant\Show\MyCurrency	<x-tenant.show.my-integer
 php artisan make:component Tenant\Show/MyInteger	<x-tenant.show.my-integer
-php artisan make:component Tenant\Show/MyDate		<x-show.my-date     value="{{ $payment->pay_date }}"/>
-?php artisan make:component Tenant\Show/MyDateTime	<x-show.my-date-time       value="{{$account->created_at }}" label="Created At"/>
-php artisan make:component Tenant\Show/MyUrl		<x-show.my-url       value="{{ $user->lnpage }}" label="LinkedIn"/>
-php artisan make:component Tenant\Show/MyBadge		<x-show.my-badge       value="{{ $user->role }}" label="Role"/>
-php artisan make:component Tenant\Show/MyEmail 		<x-show.my-email       value="{{ $user->email }}"/>
+php artisan make:component Tenant\Show/MyDate		<x-show.my-date  value="{{ $payment->pay_date }}"/>
+?php artisan make:component Tenant\Show/MyDateTime	<x-show.my-date-time value="{{$account->created_at }}" label="Created At"/>
+php artisan make:component Tenant\Show/MyUrl		<x-show.my-url value="{{ $user->lnpage }}" label="LinkedIn"/>
+php artisan make:component Tenant\Show/MyBadge		<x-show.my-badge value="{{ $user->role }}" label="Role"/>
+php artisan make:component Tenant\Show/MyEmail 		<x-show.my-email value="{{ $user->email }}"/>
 php artisan make:component Tenant\Show\MyClosed		<x-show.my-boolean
 php artisan make:component Tenant\Show\MyBoolean 	<x-tenant.show.my-boolean value="{{ $user->enable }}" />
 php artisan make:component Tenant\Show\MyEnable	 	<x-tenant.show.my-enable value="{{ $user->enable }}" />
@@ -321,8 +321,8 @@ php artisan make:component Tenant/Create/Notes		<x-tenant.create.notes/>
 
 # Notifications
 -------------------------------------
-php artisan make:component Notifications\All		   <x-tenant.notifications.all/>
-php artisan make:component Notifications\Unread		    <x-tenant.notifications.unread/>
+php artisan make:component Notifications\All		<x-tenant.notifications.all/>
+php artisan make:component Notifications\Unread		<x-tenant.notifications.unread/>
 
 # Attachments
 -------------------------------------

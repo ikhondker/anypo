@@ -263,7 +263,7 @@ class SetupController extends Controller
 
 		// Update currency of seeded bank account
 		Log::debug('tenant.admin.setup.freeze updating seeded bankAccount currency = '.$setup->currency);
-		$bankAccount  = BankAccount ::where('id', 1001)->first();
+		$bankAccount = BankAccount ::where('id', 1001)->first();
 		$bankAccount->ac_name = 'STD-SEEDED-'.$default_currency;
 		$bankAccount->currency = $default_currency;
 		$bankAccount->country = $default_country;

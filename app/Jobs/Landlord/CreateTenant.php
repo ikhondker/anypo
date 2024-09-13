@@ -354,8 +354,8 @@ class CreateTenant implements ShouldQueue
 				'name'				=> $account_name,
 				'address1'			=> '3939 Lawrence Ave, E#108,',
 				'address2'			=> '',
-				'city'				=> 'Scarborough',  
-				'state'				=> 'ON',  
+				'city'				=> 'Scarborough',
+				'state'				=> 'ON',
 				'zip'				=> 'M1G1R9',
 				'email'				=> $email,
 				'email_verified_at'	=> NOW(),	// TODO this is not verified Already Verified in tenant

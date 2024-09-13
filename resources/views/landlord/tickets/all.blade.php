@@ -90,12 +90,18 @@
 							</td>
 							<td class="text-end">
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
-
-									<a href="{{route('tickets.assign',$ticket->id) }}" class="me-2"
-											data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
-											<i data-lucide="check-circle" class="text-danger"></i>
-										</a>
+									data-bs-placement="top" title="View">View
+								</a>
+								
+								<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="text-body"
+									target="_blank" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="Download"><i data-lucide="download"></i>
+								</a>
+									
+								<a href="{{route('tickets.assign',$ticket->id) }}" class="me-2"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
+										<i data-lucide="check-circle" class="text-danger"></i>
+								</a>
 
 							</td>
 						</tr>

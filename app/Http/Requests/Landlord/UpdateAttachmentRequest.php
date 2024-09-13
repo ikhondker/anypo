@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Landlord\Manage;
+namespace App\Http\Requests\Landlord;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAttachmentRequest extends FormRequest
+class UpdateAttachmentRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.

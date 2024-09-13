@@ -69,7 +69,7 @@ class AehReceipt implements ShouldQueue
 		$aeh->fc_dr_amount		= $aeh->fc_cr_amount = $this->fc_amount;
 		$aeh->po_id				= $receipt->pol->po_id;
 		$aeh->article_id		= $receipt->id;
-		//$aeh->reference_no	  =  'GRS #'. $receipt->id;
+		//$aeh->reference_no	= 'GRS #'. $receipt->id;
 		$aeh->description		= 'Receipt of '. $receipt->pol->item_description .' Ref. PO#'.$aeh->po_id;
 		$aeh->reference_no		= Str::upper(EntityEnum::RECEIPT->value) .'#'. $receipt->id;
 		$aeh->status			= AehStatusEnum::DRAFT->value;

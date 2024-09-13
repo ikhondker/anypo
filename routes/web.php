@@ -185,13 +185,11 @@ Route::get('/cancel', [HomeController::class, 'cancel'])->name('checkout.cancel'
 * ==================================================================================
 */
 use App\Http\Controllers\Landlord\DashboardController;
+use App\Http\Controllers\Landlord\AttachmentController;
 use App\Http\Controllers\Landlord\TicketController;
 use App\Http\Controllers\Landlord\CommentController;
 use App\Http\Controllers\Landlord\ReportController;
 use App\Http\Controllers\Landlord\Admin\UserController;
-
-
-use App\Http\Controllers\Landlord\Manage\AttachmentController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -201,7 +199,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	/* ======================== Ticket ======================================== */
 	Route::resource('tickets', TicketController::class);
 	//Route::get('/ticket/support', [TicketController::class, 'support'])->name('tickets.support');
-	//Route::get('/tickets/pdf/{pr}', [TicketController::class,'pdf'])->name('tickets.pdf');
 	Route::get('/ticket/export', [TicketController::class, 'export'])->name('tickets.export');
 	Route::get('/ticket/close/{ticket}', [TicketController::class, 'close'])->name('tickets.close');
 
@@ -212,6 +209,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::resource('reports', ReportController::class);
 	Route::get('/reports/pdf-invoice/{invoice}', [ReportController::class, 'viewPdfInvoice'])->name('reports.pdf-invoice');
 	Route::get('/reports/pdf-receipt/{payment}', [ReportController::class, 'viewPdfPayment'])->name('reports.pdf-payment');
+	Route::get('/reports/pdf-ticket/{ticket}', [ReportController::class, 'viewPdfTicket'])->name('reports.pdf-ticket');
 
 	/* ======================== User (Profile) ========================================  */
 	Route::get('profile',[UserController::class, 'profile'])->name('users.profile');
@@ -285,7 +283,6 @@ use App\Http\Controllers\Landlord\Manage\CheckoutController;
 use App\Http\Controllers\Landlord\Manage\MailListController;
 use App\Http\Controllers\Landlord\Manage\ActivityController;
 
-
 // Ref: app/Providers/AppServiceProvider.php
 Route::middleware(['auth', 'verified','can:support'])->group(function () {
 
@@ -328,8 +325,9 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 
 	/* ======================== Attachment ======================================== */
 	Route::resource('attachments', AttachmentController::class);
-	//Route::get('/attachment/download/{fileName}', [AttachmentController::class, 'download'])->name('attachments.download');
-
+	Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
+	Route::get('/attachment/all',[AttachmentController::class, 'all'])->name('attachments.all');
+	
 	/* ======================== Country ======================================== */
 	Route::resource('countries', CountryController::class);
 	Route::get('/country/export',[CountryController::class,'export'])->name('countries.export');

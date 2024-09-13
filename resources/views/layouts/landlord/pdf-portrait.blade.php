@@ -18,9 +18,13 @@
 				font-style: normal;
 				font-variant: normal;
 				/* src: url("fonts/lato/Lato-Regular.ttf") format('truetype'); */
-				src: url({{storage_path().'/fonts/lato/Lato-Regular.ttf'}}) format("truetype");
+				/* src: url({{storage_path().'/fonts/lato/Lato-Regular.ttf'}}) format("truetype"); */
 			}
-		
+			* {
+				/* Change your font family */
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
 			.clearfix:after {
 				content: "";
 				display: table;
@@ -213,6 +217,10 @@
 				padding: 8px 0;
 				text-align: center;
 			}
+
+			hr {
+				border-top: 1px solid #FFFFFF;
+			}
 		</style>
 		<!-- ========== STYLE ========== -->
 	</head>
@@ -236,27 +244,27 @@
 		</header>
 		<!-- ========== letterhead ========== -->
 
-
 		<main>
-
 			<!-- Report header content -->
 			@yield('header')
 			<!-- /.content -->
 
-		
 			<!-- Report main content -->
 			@yield('content')
 			<!-- /.content -->
 
+			@isset($thanks)
+				@if ($thanks)
+					<!-- ========== thankyou ========== -->
+					<div id="thanks">Thank you!</div>
+					<div id="notices">
+						<div>NOTICE:</div>
+						<div class="notice">This document was created on a computer and is valid without the signature and seal.</div>
+					</div>
+					<!-- ========== thankyou ========== -->
+				@endif 
+			@endisset
 
-			<!-- ========== thankyou ========== -->
-			<div id="thanks">Thank you!</div>
-			<div id="notices">
-				<div>NOTICE:</div>
-				<div class="notice">This document was created on a computer and is valid without the signature and seal.</div>
-			</div>
-			<!-- ========== thankyou ========== -->
-			
 		</main>
 
 		<!-- ========== footer ========== -->

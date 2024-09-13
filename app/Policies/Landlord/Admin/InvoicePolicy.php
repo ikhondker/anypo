@@ -59,7 +59,6 @@ class InvoicePolicy
 
 	}
 
-
 	/**
 	 * Determine whether the user can update the model.
 	 */

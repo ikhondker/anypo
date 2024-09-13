@@ -11,7 +11,7 @@ https://code.visualstudio.com/docs/languages/markdown
 https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/
 
 
-# 14. Ref Objects & Files 
+# 14. Ref Objects & Files
 ====================================================================
 - User->Ticket
 - D:\My Works\p2cmain\sslcommerz
@@ -26,7 +26,7 @@ https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/
 - Front: bootstrap icon update from 1.9.1 to 1.11.2
 
 
-# 13. Business Rules 
+# 13. Business Rules
 ====================================================================
 1. There will be maximum one unpaid invoice. Wont be able to create invoice if have any unpaid invoice
 2. Invoice cancellation is not possible
@@ -37,7 +37,7 @@ https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/
 3. manual join to mailing list P2
 4. separate notification TicketCreated.php for user and support P2
 
-# 12. Assumption and limitation 
+# 12. Assumption and limitation
 ====================================================================
 1. Used the same User model for both landlord and tenant
 2. end use wont have access to notification only email . Admin/agent/manager will have access to notification
@@ -48,25 +48,25 @@ https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/
 5. automatically get feather icons !! check landlord.manage.tables.controllers view
 
 
-# 11. Pricing 
+# 11. Pricing
 ====================================================================
 ## current
 		default 5 user 	list price 30 actual 25$
 		3 addition user 	19 - 15
-		5 	addition user 	29-25 
+		5 	addition user 	29-25
 
 ## initial
-		in price page no multiple options   
+		in price page no multiple options
 		14.99$/user min 3 user i.e. 45$/Month
 		9.99$/user min 3 user i.e. 29$/Month
 		then per user 6.99$ in a bundle of 3 18$
 		archive mode 9.99$/month
 
-## account creation 
+## account creation
 			- 1 month without any add-on
 						- can create 3/6/12 month invoice if no earlier due, which
 						- invoice extend account validity
-## add-on        
+## add-on
 	 - add-on is NOT monthly basis
 						- can add/remove any time
 						- if current billing is one month will be added from next bill. do the same when cancel
@@ -75,7 +75,7 @@ https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/
 						- what happened if multiple addone is bought consecutively?
 						- everything is in services.index when account_id <> ''
 
-# 10. container width() 
+# 10. container width()
 ====================================================================
 @media (min-width: 1200px) {
 	.container-xl, .container-lg, .container-md, .container-sm, .container {
@@ -88,13 +88,13 @@ https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/
 	}
 }
 
-# 9. Reports 
+# 9. Reports
 ====================================================================
 https://www.positronx.io/laravel-pdf-tutorial-generate-pdf-with-dompdf-in-laravel/
 https://www.itsolutionstuff.com/post/laravel-8-pdf-laravel-8-generate-pdf-file-using-dompdfexample.html
 
 
-# 8. auth::route() 
+# 8. auth::route()
 ====================================================================
 1. move Auth controller to landlord
 2. override view from auth.register to landlord.auth.register
@@ -108,7 +108,7 @@ Copy
 				'driver' => 'eloquent',
 				'model' => App\Models\User::class,
 		]
-	]  
+	]
 -- issue for tenant and landlord two user model
 https://laracasts.com/discuss/channels/laravel/how-to-login-with-different-models-in-laravel
 https://pusher.com/tutorials/multiple-authentication-guards-laravel/#run-the-application
@@ -122,7 +122,7 @@ https://techvblogs.com/blog/multiple-authentication-guards-laravel-9
 108. bypass payment and create tenant for sysadmin
 106. mail-lists views
 107. {!! nl2br($ticket->content) !!}
-106. breadcrumb in landlord app 
+106. breadcrumb in landlord app
 105. move attachment download to a verified route
 102. country icon size
 101. enable disable user
@@ -145,7 +145,7 @@ https://techvblogs.com/blog/multiple-authentication-guards-laravel-9
 79. ticket category
 87. tenant table -> add columns. its inside data
 90. Verification mail to ques event(new Registered($user));
-94. var_dump(__METHOD__); var_dump(__FUNCTION__); 
+94. var_dump(__METHOD__); var_dump(__FUNCTION__);
 96. invoice and receipt drop-down policy check
 98. error message bullet point in main pages
 
@@ -165,7 +165,7 @@ https://techvblogs.com/blog/multiple-authentication-guards-laravel-9
 47. mail when a user activated UserController ->destroy
 63. captcha in contact us page
 
-# 6. Task Scheduling Billing  
+# 6. Task Scheduling Billing
 ====================================================================
 $schedule->job(new Billing)->everyFiveMinutes();
 php artisan queue:listen --timeout=1200
@@ -181,21 +181,21 @@ app/Console/Kernel.php
 	$schedule->command('billing:cron')
 								 ->everyMinute();
 		->daily();
-		->everyFiveMinutes();	
+		->everyFiveMinutes();
 		->dailyAt('13:00');	Run the task every day at 13:00
 
-$schedule->command('billing:cron')->everyFiveMinutes();	
+$schedule->command('billing:cron')->everyFiveMinutes();
 
 Step 4: Run Scheduler Command For Test
 php artisan schedule:run
 
 php artisan
  billing
- billing:cron            Command description
+ billing:cron	Command description
 
 php artisan schedule:list
 
-# 5. SSLCommerz 
+# 5. SSLCommerz
 ====================================================================
 2. Laravel sslcommerz => https://github.com/sslcommerz/SSLCommerz-Laravel
 Step 1: Download and extract the library files.
@@ -235,7 +235,7 @@ Exp: 12/25
 CVV: 111
 
 
-# 4. Authentication 
+# 4. Authentication
 ====================================================================
 Copy:
 	D:\laravel\ho03\resources\views\auth
@@ -258,18 +258,18 @@ Steps
  	- http://localhost:8000/login
 
 -- post login redirect to dashboard
-LoginController.php 
+LoginController.php
 	protected $redirectTo = RouteServiceProvider::HOME;
-RouteServiceProvider.php 
+RouteServiceProvider.php
 	public const HOME = '/home';
 	public const HOME = '/dashboards';
 
-# 3. Package  
+# 3. Package
 ====================================================================
 - install and configure intervention pkg
 	https://github.com/Intervention/image
 	composer require intervention/image
-	Config\app.php	=> 
+	Config\app.php	=>
 	'aliases' => Facade::defaultAliases()->merge([
 				// 'ExampleClass' => App\Example\ExampleClass::class,
 	// IQBAL 7-FEB-23
@@ -294,7 +294,7 @@ Open config/app.php fil
 Route::get('/employee/pdf', [EmployeeController::class, 'createPDF']);
 <a class="btn btn-primary" href="{{ URL::to('/employee/pdf') }}">Export to PDF</a>
 
-# 2. Setup baseline  
+# 2. Setup baseline
 ====================================================================
 - pagination ==> laravel-prototype.txt
 - modify and run migration for basic table
@@ -305,20 +305,20 @@ Route::get('/employee/pdf', [EmployeeController::class, 'createPDF']);
 - http://localhost:8000/design
 
 
-# 1. Template page 
+# 1. Template page
 ====================================================================
-- php artisan db:seed --class=EntitySeeder 
-- php artisan db:seed --class=TemplateSeeder 
+- php artisan db:seed --class=EntitySeeder
+- php artisan db:seed --class=TemplateSeeder
 - set route template
 - number, date/validation
 - dropdown
 - view/add/edit/inactive
-- export 
+- export
 - log event
 - validation
 - created_by and updated_by
 
-# 0. DONE 
+# 0. DONE
 ====================================================================
 x1. attachment add account
 x4. profile photo
@@ -327,7 +327,7 @@ x10. TicketStatusEnum.php did not work in ticket controller
 x11. enum for Ticket notifications
 x15. fix enum issue
 x17. page to site layout rename
-x20. record last login 
+x20. record last login
 x22. contact for save to db
 x23. date casts 10.x
 x24. contact both auth and non-auth access
@@ -385,13 +385,13 @@ x65. dont create invoice if last one is unpaid
 x64. set APP_ENV for instances
 x64. User avatar upload
 x61. Verify Your Email Address tempale for landlord and tenant
-x62. veryfy email   @if (session('resent')) is not working
+x62. veryfy email @if (session('resent')) is not working
 x63. you@example.com or you@youromapny.com
 x84. Remove  LandlordCheckAccess Reference
 x85. no space in site name/regex
 x98. put a single place checkout row creation checkout + buy add-on
 x70. invoice type subscript/addon/archive
-x73. P2 create 3/6/12 invoice/50. Generate invoice for 3 months 
+x73. P2 create 3/6/12 invoice/50. Generate invoice for 3 months
 x80. laravel text field length
 x86. P2 admin -> generate invoice for account
 x103 landlord-verify-email.blade.php
