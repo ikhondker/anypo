@@ -14,9 +14,9 @@
 			{{-- <h6 class="card-subtitle text-muted">Generate Invoice & Pay.</h6> --}}
 		</div>
 		<div class="card-body">
-			<form name="myForm" id="myForm" action="{{ route('invoices.store') }}" method="POST">
+			<form id="myForm" action="{{ route('invoices.store') }}" method="POST">
 				@csrf
-				
+
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
@@ -80,11 +80,48 @@
 
 				<div class="mb-3 float-end">
 					<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ url()->previous() }}"><i class="fas fa-times"></i></i> Cancel</a>
-					<button type="submit" id="submit" name="submit" class="btn btn-primary sw2" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i class="fas fa-save"></i> Generate</button>
+					<button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i class="fas fa-dollar-sign"></i> Generate</button>
 				</div>
 			</form>
 		</div>
 	</div>
+
+	<script type="module">
+		$(function() {
+			const $myForm = $('#myForm')
+				.on('submit', function(e) {
+				e.preventDefault();
+				Swal.fire({
+					title: '<h2>Confirmation?</h2>',
+					text: "Are you sure, you want to do this?",
+					icon: 'question',
+					iconColor: '#d9534f',
+					showCancelButton: true,
+					confirmButtonText: 'Yes, confirmed!',
+					customClass: {
+						confirmButton: 'btn btn-primary m-1',
+						cancelButton: 'btn btn-secondary m-1'
+					},
+					buttonsStyling: false
+				}).then(function(result) {
+					if (result.value) {
+					// Swal.fire({
+					// 	icon: 'success',
+					// 	title: 'Deleted!',
+					// 	text: '',
+					// 	customClass: {
+					// 	confirmButton: 'btn btn-success'
+					// 	}
+					// });
+					setTimeout(function() {
+						$myForm[0].submit()
+					}, 2000); 		// submit the DOM form
+					}
+				});
+				});
+			});
+
+	</script>
 
 @endsection
 

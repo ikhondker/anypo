@@ -118,6 +118,7 @@ https://techvblogs.com/blog/multiple-authentication-guards-laravel-9
 
 # 7. TODO - Open
 ====================================================================
+110. change invoice description of advance payment 
 109. button show save. card cards
 108. bypass payment and create tenant for sysadmin
 106. mail-lists views

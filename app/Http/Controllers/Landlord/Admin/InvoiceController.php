@@ -76,10 +76,10 @@ class InvoiceController extends Controller
 	 */
 	public function create()
 	{
-	
-		//abort(403);
-		$this->authorize('create', Invoice::class);
-		return view('landlord.admin.invoices.create');
+		abort(403);
+		// TODO Manual Invoice Create P2
+		//$this->authorize('create', Invoice::class);
+		//return view('landlord.admin.invoices.create');
 	}
 
 	/**
@@ -103,7 +103,7 @@ class InvoiceController extends Controller
 	public function generate()
 	{
 
-		//$this->authorize('generate', Invoice::class);
+		$this->authorize('generate', Invoice::class);
 
 		if (auth()->user()->account_id == '') {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
@@ -132,7 +132,6 @@ class InvoiceController extends Controller
 		$period 		= $request->period;
 		Log::debug('landlord.invoice.store generating invoice for period = ' . $period);
 		
-		exit;
 		// allowed periods
 		$periods = array("1", "3", "6", "12");
 		if ( ! in_array($period, $periods)) {

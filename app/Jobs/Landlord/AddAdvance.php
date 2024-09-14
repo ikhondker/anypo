@@ -16,7 +16,7 @@ use App\Models\Landlord\Account;
 use App\Enum\LandlordCheckoutStatusEnum;
 
 // Helpers
-use App\Helpers\Bo;
+use App\Helpers\Landlord\Bo;
 use App\Helpers\EventLog;
 
 use Illuminate\Support\Facades\Log;

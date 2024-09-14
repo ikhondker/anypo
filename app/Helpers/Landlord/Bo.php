@@ -127,7 +127,7 @@ class Bo
 		// This is the first bill for initial purchase
 		$invoice->invoice_type	= $checkout->invoice_type;
 
-		// invoice_type specific treatment
+		// TODO invoice_type specific treatment
 		switch ($invoice->invoice_type) {
 			case LandlordInvoiceTypeEnum::CHECKOUT->value:
 				break;
@@ -142,9 +142,9 @@ class Bo
 		$invoice->from_date		= $checkout->start_date;
 		$invoice->to_date		= $checkout->end_date;
 		Log::channel('bo')->info('Helpers.bo.createCheckoutInvoice Account id = ' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
-		
 
 		$invoice->due_date		= $checkout->end_date;
+		// TODO change description for other type of invocie
 		$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain');
 		$invoice->price			= $checkout->price;
 		$invoice->subtotal		= $checkout->price;
