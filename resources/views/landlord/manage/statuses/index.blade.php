@@ -95,7 +95,7 @@
 								<a href="{{ route('statuses.edit',$status->code) }}" class="text-body" data-bs-toggle="tooltip"
 										data-bs-placement="top" title="View"> <i data-lucide="edit"></i></a>
 								<a href="{{ route('statuses.delete', $status->code) }}"
-									class="text-body sw2-advance" data-entity="Menu"
+									class="text-body sw2-advance" data-entity="Status"
 									data-name="{{ $status->route_name }}"
 									data-status="{{ $status->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $status->enable ? 'Disable' : 'Enable' }}">

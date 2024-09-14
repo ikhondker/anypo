@@ -251,6 +251,8 @@ class TemplateController extends Controller
 
 		$this->authorize('delete', $template);
 
+		Log::debug('deactivating template Value of id=' . $template->id);
+
 		$template->fill(['enable' => ! $template->enable]);
 		$template->update();
 
@@ -259,6 +261,7 @@ class TemplateController extends Controller
 
 		return redirect()->route('templates.index')->with('success', 'Template Status updated successfully');
 	}
+
 
 
 	public function submit(Template $template)

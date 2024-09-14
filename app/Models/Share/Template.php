@@ -18,13 +18,13 @@ class Template extends Model
 		
 		protected $casts = [ 
 				'my_date_time'	=> 'datetime',
-				'my_date'		=> 'datetime',
+				'my_date'		=> 'date',
 				'updated_at'	=> 'datetime',
 				'created_at'	=> 'datetime',
 		];
 		
 		protected $fillable = [
-			'code', 'name', 'summary', 'user_id', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'phone', 'qty', 'amount', 'notes', 'enable', 'my_date', 'my_date_time', 'my_enum', 'my_url', 'logo', 'avatar', 'attachment', 'fbpage', 'updated_by', 'updated_at',
+			'code', 'name', 'summary', 'user_id', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'cell', 'qty', 'amount', 'notes', 'enable', 'my_date', 'my_date_time', 'my_enum', 'my_url', 'logo', 'avatar', 'attachment', 'fbpage', 'updated_by', 'updated_at',
 		];
 
 		/* ----------------- Functions ---------------------- */

@@ -121,7 +121,7 @@ class CategoryController extends Controller
 	 */
 	public function destroy(Category $category)
 	{
-		$this->authorize('delete', $user);
+		$this->authorize('delete', $category);
 
 		$category->fill(['enable'=>!$category->enable]);
 		$category->update();

@@ -8,7 +8,7 @@
 
 
 	<a href="{{ route('templates.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Template</a>
-	<h1 class="h3 mb-3">All Templates</h1>
+	<h1 class="h3 mb-3">All Templates [ Disable does not work!?]</h1>
 
 	<!-- ========== INCLUDE ========== -->
 	@include('shared.includes.templates.index')

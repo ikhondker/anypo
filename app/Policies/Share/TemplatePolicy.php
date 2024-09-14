@@ -56,7 +56,7 @@ class TemplatePolicy
 	 */
 	public function delete(User $user, Template $template): bool
 	{
-		return false;
+		//
 	}
 
 	/**

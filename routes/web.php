@@ -321,8 +321,8 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
-	//P2 Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.delete');
-
+	Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.delete');
+	
 	/* ======================== Attachment ======================================== */
 	Route::resource('attachments', AttachmentController::class);
 	Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
@@ -335,7 +335,8 @@ Route::middleware(['auth', 'verified','can:support'])->group(function () {
 
 	/* ======================== Product ======================================== */
 	Route::resource('products', ProductController::class);
-
+	Route::get('/products/delete/{product}',[ProductController::class, 'destroy'])->name('products.delete');
+	
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
 	//Route::get('/checkout/all', [CheckoutController::class, 'all'])->name('checkouts.all');
@@ -407,7 +408,7 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	/* ======================== Entity ======================================== */
 	Route::resource('entities', EntityController::class);
-	//Route::get('/entity/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.destroy');
+	Route::get('/entities/delete/{entity}',[EntityController::class, 'destroy'])->name('entities.delete');
 	Route::get('/entity/export', [EntityController::class, 'export'])->name('entities.export');
 
 	/* ======================== Menu ======================================== */
@@ -435,8 +436,9 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	/* ======================== Template ========================================  */
 	Route::resource('templates', TemplateController::class);
+	Route::post('/templates/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
 	Route::get('/template/export', [TemplateController::class, 'export'])->name('templates.export');
-	Route::post('/template/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
+	
 });
 
 

@@ -49,17 +49,7 @@ class ProductController extends Controller
 	// define entity constant for file upload and workflow
 	const ENTITY	= 'PRODUCT';
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
-
-
+	
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -122,6 +112,14 @@ class ProductController extends Controller
 	 */
 	public function destroy(Product $product)
 	{
-		//
+		$this->authorize('delete', $product);
+
+		$product->fill(['enable'=>!$product->enable]);
+		$product->update();
+
+		// Write to Log
+		EventLog::event('product',$product->id,'status','enable',$product->enable);
+
+		return redirect()->route('products.index')->with('success','Product Status Updated successfully');
 	}
 }

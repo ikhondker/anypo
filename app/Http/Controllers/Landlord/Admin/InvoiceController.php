@@ -77,9 +77,9 @@ class InvoiceController extends Controller
 	public function create()
 	{
 	
-		abort(403);
-		//$this->authorize('create', Category::class);
-		//return view('landlord.admin.invoices.create');
+		//abort(403);
+		$this->authorize('create', Invoice::class);
+		return view('landlord.admin.invoices.create');
 	}
 
 	/**
@@ -132,6 +132,7 @@ class InvoiceController extends Controller
 		$period 		= $request->period;
 		Log::debug('landlord.invoice.store generating invoice for period = ' . $period);
 		
+		exit;
 		// allowed periods
 		$periods = array("1", "3", "6", "12");
 		if ( ! in_array($period, $periods)) {

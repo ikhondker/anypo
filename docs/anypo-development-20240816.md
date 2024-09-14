@@ -129,6 +129,9 @@ Log::info(print_r($dept_budget, true));
 4. check all env used env('APP_DOMAIN'); case sensitive
 5. in production env, un-handled exception write full log in laravel.log
 6. to debug 404 error use the register method of app/Exception/Handler
+7. if get js error in developer tools, first disable all chrome extension special google Sheets etc
+8. for ajax to works use <script type="module"> not <script type="text/javascript">
+9. 
 
 # 5. Set Environment 
 ====================================================================

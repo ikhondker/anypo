@@ -69,6 +69,13 @@
 						<td class="text-end">
 							<a href="{{ route('templates.show',$template->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>
+							<a href="{{ route('templates.delete', $template->id) }}"
+								class="text-body" data-entity="Template"
+								data-name="{{ $template->name }}"
+								data-status="{{ $template->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
+								data-bs-placement="top" title="{{ $template->enable ? 'Disable' : 'Enable' }}">
+								<i data-lucide="{{ $template->enable ? 'bell-off' : 'bell' }} "></i>
+							</a>
 						</td>
 					</tr>
 				@endforeach

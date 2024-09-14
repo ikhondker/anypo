@@ -73,13 +73,15 @@
 
 								<a href="{{ route('entities.edit',$entity->entity) }}" class="text-body" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View"> <i data-lucide="edit"></i></a>
-							<a href="{{ route('entities.destroy', $entity->entity) }}"
-								class="text-body sw2-advance" data-entity="Menu"
+							<a href="{{ route('entities.delete', $entity->entity) }}"
+								class="text-body sw2-advance" data-entity="Entiry"
 								data-name="{{ $entity->entity }}"
 								data-status="{{ $entity->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="{{ $entity->enable ? 'Disable' : 'Enable' }}">
 								<i data-lucide="{{ $entity->enable ? 'bell-off' : 'bell' }} "></i>
 							</a>
+
+							
 							</td>
 						</tr>
 					@endforeach

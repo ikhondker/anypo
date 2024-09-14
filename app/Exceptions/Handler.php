@@ -32,20 +32,20 @@ class Handler extends ExceptionHandler
 
 
 	// https://stackoverflow.com/questions/54392184/laravel-5-7-how-to-log-404-with-url
-	public function render33($request, Exception $exception)
-	{
-		if($this->is404($exception)) {
-			$this->log404($request);
-		}
+	// public function render33($request, Exception $exception)
+	// {
+	// 	if($this->is404($exception)) {
+	// 		$this->log404($request);
+	// 	}
 	
-		return parent::render($request, $exception);
-	}
+	// 	return parent::render($request, $exception);
+	// }
 	/**
 	 * Register the exception handling callbacks for the application.
 	 */
 
 	// https://medium.com/@dayoolapeju/exception-error-handling-in-laravel-25843a8aabb3
-	 public function okregister(): void
+	 public function OKregister(): void
 	 {
 		 $this->renderable(function (Throwable $e) {
 			 if($e instanceof NotFoundHttpException) {

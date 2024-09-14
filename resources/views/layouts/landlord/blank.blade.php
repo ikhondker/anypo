@@ -13,8 +13,6 @@
 	<meta name="description" content="ANYPO.NET - Control Expenses ">
 	<meta name="author" content="Iqbal H Khondker">
 
-	 <!-- Title -->
-	 {{-- <title>404 Page Not Found | AppStack - Bootstrap 5 Admin &amp; Dashboard Template</title> --}}
 	 <title>@yield('title', 'ANYPO.NET')</title>
 
 	 <!-- Favicon -->
@@ -26,7 +24,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-	<!-- CSS Front Template -->
+	<!-- CSS Template -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
 	<link rel="stylesheet" href="{{ asset('/assets/css/landlord.css') }}">
 
