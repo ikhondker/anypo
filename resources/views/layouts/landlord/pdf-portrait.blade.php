@@ -229,7 +229,7 @@
 		<!-- ========== letterhead ========== -->
 		<header class="clearfix">
 			<div id="logo">
-				<img src="{{ storage_path('app/logo/logo.png') }}">
+				<img src="{{ Str::replace('\\','/',Storage::disk('s3l')->url('logo/logot.png')) }}"/>
 			</div>
 			<div id="company">
 				<h2 class="name">{{ env('APP_NAME')}}</h2>

@@ -52,10 +52,13 @@ class ViewServiceProvider extends ServiceProvider
 				// Log::debug("node_name not Found! raw_route_name =".$raw_route_name);
 				$menu->raw_route_name	= $raw_route_name;
 				$menu->route_name		= $raw_route_name;
-				//$menu->node_name		= '';
+				$menu->node_name		= '';
 			}
-			$view->with('_route_name', $menu->route_name)->with('_access', $menu->access);
+			//$view->with('_route_name', $menu->route_name)->with('_access', $menu->access);
+			$view->with('_node_name', $menu->node_name)->with('_route_name', $menu->route_name);
 			//$view->with('_xx_name', 'abc');
+			Log::debug('raw_route_name = '.$menu->raw_route_name .' route_name ='.$menu->route_name .'_node_name ='.$menu->node_name);
+
 		});
 
 		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',

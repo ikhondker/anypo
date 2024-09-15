@@ -22,7 +22,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search users…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 
 						</div>
@@ -49,15 +49,15 @@
 				<thead>
 					<tr>
 
-						<th class="align-middle">#</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Email</th>
-						<th class="align-middle">Account</th>
-						<th class="align-middle">Role</th>
-						<th class="align-middle">Verified</th>
-						<th class="align-middle">Seeded</th>
-						<th class="align-middle">Enable</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Account</th>
+						<th>Role</th>
+						<th>Verified</th>
+						<th>Seeded</th>
+						<th>Enable</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -88,7 +88,7 @@
 								<span class="badge {{ ($user->seeded ? 'badge-subtle-danger' : 'badge-subtle-success') }} ">{{ ($user->seeded ? 'Yes' : 'No') }}</span>
 							</td>
 							<td><x-landlord.list.my-enable :value="$user->enable"/></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('users.show',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 
@@ -98,18 +98,14 @@
 											<i data-lucide="log-out" class="text-danger"></i>
 										</a> --}}
 									@else
-										@can('impersonate', $user)
-											@if ($user->id > 1008 )
-												<a href="{{ route('users.impersonate', $user->id) }}" class="me-2"
-													data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
-													<i data-lucide="log-in" class="text-success"></i>
-												</a>
+										@can('impersonate', $user) 
+											@if (! $user->isSeeded() )
+												<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+												data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-success"></i> Impersonate</a>
 											@else 
 												@if (auth()->user()->isSystem())
-													<a href="{{ route('users.impersonate', $user->id) }}" class="me-2"
-														data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
-														<i data-lucide="log-in" class="text-success"></i>
-													</a>
+													<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+														data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-success"></i> Impersonate</a>
 												@endif	
 											@endif
 										@endcan

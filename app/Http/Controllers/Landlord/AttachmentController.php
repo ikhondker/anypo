@@ -66,7 +66,7 @@ class AttachmentController extends Controller
 	{
 		$this->authorize('viewAny',Attachment::class);
 		$attachments = Attachment::latest()->with('entity')->with('owner')->orderBy('id','desc')->paginate(10);
-		return view('landlord.attachments.index',compact('attachments'));
+		return view('landlord.attachments.all',compact('attachments'));
 	}
 
 
@@ -163,9 +163,7 @@ class AttachmentController extends Controller
 		Log::debug('tenant.attachments.download Value of file_name = '. $attachment->org_file_name);
 		Log::debug('tenant.attachments.download Value of entity = '. $attachment->entity);
 
-	
-
-		$entity 			= Entity::where('entity', $attachment->entity)->first();
+			$entity 			= Entity::where('entity', $attachment->entity)->first();
 		$fileDownloadPath 	= $entity->directory."/". $attachment->file_name;
 		Log::debug('landlord.attachments.download Value of fileDownloadPath = '. $fileDownloadPath);
 		return Storage::disk('s3lf')->download($fileDownloadPath,$attachment->org_file_name);

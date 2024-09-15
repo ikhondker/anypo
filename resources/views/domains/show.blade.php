@@ -3,7 +3,7 @@
 
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('domains.index') }}" class="text-muted">Domains</a></li>
-	<li class="breadcrumb-item active">{{ $domain->id }}</li>
+	<li class="breadcrumb-item active">{{ $domain->domain }}</li>
 @endsection
 
 @section('content')
@@ -25,9 +25,9 @@
 				<div class="card-body">
 					<table class="table table-sm my-2">
 						<tbody>
+							<x-landlord.show.my-text value="{{ $domain->domain }}" label="Domain"/>
 							<x-landlord.show.my-badge value="{{ $domain->id }}" />
 							<x-landlord.show.my-text value="{{ $domain->tenant_id }}" label="Tenant ID"/>
-							<x-landlord.show.my-text value="{{ $domain->domain }}" label="Domain"/>
 							<x-landlord.show.my-content value="{{ $domain->data }}" label="Data1" />
 							<x-landlord.show.my-date value="{{ $domain->created_at }}" />
 						</tbody>

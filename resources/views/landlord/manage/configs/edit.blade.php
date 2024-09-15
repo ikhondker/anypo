@@ -109,7 +109,7 @@
 								<td>
 									<label class="form-check form-switch" for="admin">
 										<input class="form-check-input mt-0" type="checkbox" id="banner" name="banner" @checked($config->banner)>
-										<span class="d-block"> Display Banner?</span>
+										<span class="d-block"> Display Banner in ALL Tenant?</span>
 										<span class="d-block small text-danger">Be careful! This will display Banner for ALL tenants.</span>
 									</label>
 									@error('banner')

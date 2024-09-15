@@ -22,7 +22,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search categories…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 						</div>
 						@if (request('term'))
@@ -46,12 +46,12 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">ID</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Date</th>
-						<th class="align-middle">Enable</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Date</th>
+						<th>Enable</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,7 +68,7 @@
 							</td>
 							<td><x-landlord.list.my-date :value="$category->created_at" /></td>
 							<td><x-landlord.list.my-enable :value="$category->enable" /></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('categories.show',$category->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 								<a href="{{ route('categories.edit',$category->id) }}" class="text-body" data-bs-toggle="tooltip"

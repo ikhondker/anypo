@@ -23,7 +23,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search users…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 
 						</div>
@@ -49,13 +49,13 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Email</th>
-						<th class="align-middle">Account</th>
-						<th class="align-middle">Role</th>
-						<th class="align-middle">Enable</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Account</th>
+						<th>Role</th>
+						<th>Enable</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -81,7 +81,7 @@
 								@endif
 							</td>
 							<td><x-landlord.list.my-enable :value="$user->enable"/></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('users.show',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 							</td>

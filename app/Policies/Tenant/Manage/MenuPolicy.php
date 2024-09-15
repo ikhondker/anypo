@@ -118,8 +118,6 @@ class MenuPolicy
 	 */
 	public function viewMasterDataMenu(User $user): bool
 	{
-		// TODO MUST 
-		//return true;
 		return ( $user->isUser() || $user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
@@ -128,8 +126,6 @@ class MenuPolicy
 	 */
 	public function viewLookupMenu(User $user): bool
 	{
-		// TODO MUST 
-		//return true;
 		return ($user->isAdmin() || $user->isSupport());
 	}
 
@@ -138,8 +134,6 @@ class MenuPolicy
 	 */
 	public function viewInterfaceMenu(User $user): bool
 	{
-		// TODO MUST 
-		//return true;
 		return ($user->isAdmin() || $user->isSupport());
 	}
 
@@ -148,8 +142,6 @@ class MenuPolicy
 	 */
 	public function viewAdminMenu(User $user): bool
 	{
-		// TODO MUST 
-		//return true;
 		return ($user->isAdmin() || $user->isSupport());
 	}
 
@@ -158,8 +150,6 @@ class MenuPolicy
 	 */
 	public function viewSystemMenu(User $user): bool
 	{
-		// TODO MUST 
-		//return true;
 		return ($user->isSystem());
 	}
 

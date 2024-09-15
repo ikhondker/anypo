@@ -20,6 +20,10 @@ return new class extends Migration
 			/** ENUM */
 			$table->string('invoice_type')->default(LandlordInvoiceTypeEnum::CHECKOUT->value);
 			/** end ENUM */
+			/** ENUM */
+			$table->string('status_code')->default(LandlordCheckoutStatusEnum::DRAFT->value);
+			$table->foreign('status_code')->references('code')->on('statuses');
+			/** end ENUM */
 			$table->string('session_id');
 			$table->string('site');
 			$table->string('email');
@@ -38,10 +42,7 @@ return new class extends Migration
 			$table->integer('mnth')->default(1);
 			$table->integer('user')->default(3);
 			$table->integer('gb')->default(5);
-			/** ENUM */
-			$table->string('status_code')->default(LandlordCheckoutStatusEnum::DRAFT->value);
-			$table->foreign('status_code')->references('code')->on('statuses');
-			/** end ENUM */
+			
 			$table->string('ip')->nullable();
 			$table->string('address1')->nullable();
 			$table->string('address2')->nullable();

@@ -25,7 +25,7 @@
 							value="{{ old('end_date', date('Y-m-d') ) }}"
 							required/>
 						<button class="btn" type="submit">
-							<i class="align-middle" data-lucide="search"></i>
+							<i data-lucide="search"></i>
 						</button>
 					</div>
 					@if (request('start_date'))
@@ -50,14 +50,14 @@
 		<table id="datatables-orders" class="table w-100">
 			<thead>
 				<tr>
-					<th class="align-middle">#</th>
-					<th class="align-middle">Object</th>
-					<th class="align-middle">Obj ID</th>
+					<th>#</th>
+					<th>Object</th>
+					<th>Obj ID</th>
 
-					<th class="align-middle">Date</th>
-					<th class="align-middle">Event</th>
-					<th class="align-middle">Performer</th>
-					<th class="align-middle text-end">Actions</th>
+					<th>Date</th>
+					<th>Event</th>
+					<th>Performer</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -77,7 +77,7 @@
 						<td>{{ $activity->user->name }}</td>
 
 
-						<td class="text-end">
+						<td>
 							<a href="{{ route('activities.show',$activity->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>
 						</td>

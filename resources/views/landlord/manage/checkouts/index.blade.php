@@ -22,7 +22,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search checkouts…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 
 						</div>
@@ -48,13 +48,14 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Date</th>
-						<th class="align-middle">Site</th>
-						<th class="align-middle">Price</th>
-						<th class="align-middle">Status</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Name</th>
+						<th>Date</th>
+						<th>Site</th>
+						<th>Price</th>
+						<th>TYpe</th>
+						<th>Status</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,8 +69,9 @@
 							<td><x-landlord.list.my-date :value="$checkout->checkout_date"/></td>
 							<td>{{ $checkout->site }}</td>
 							<td><x-landlord.list.my-number :value="$checkout->price"/></td>
+								<td><x-landlord.list.my-badge :value="$checkout->invoice_type->value"/></td>	
 							<td><x-landlord.list.my-badge :value="$checkout->status->name" badge="{{ $checkout->status->badge }}"/></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('checkouts.show',$checkout->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 							</td>

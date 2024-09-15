@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
 		$seededUsers = [
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'System Admin',
+				'name'				=> 'System Owner',
 				'email'				=> config('bo.SYSTEM_EMAIL_ID'),
 				'role'				=> 'system',
 				'email_verified_at' => now(),
@@ -52,6 +52,24 @@ class UserSeeder extends Seeder
 				'name'				=> 'Guest',
 				'email'				=> 'guest@anypo.net',
 				'role'				=> 'guest',
+				'email_verified_at' => now(),
+				'password'			=> bcrypt('password') , // password
+				'remember_token'	=> Str::random(10),
+				'cell'				=> $faker->PhoneNumber(),
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'state'				=> 'N/A',
+				'zip'				=> $faker->postcode,
+				'facebook'			=> $faker->url,
+				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
+			],
+			[
+				'id'				=> Str::uuid(),
+				'name'				=> 'System Admin',
+				'email'				=> 'sysadmin@anypo.net',
+				'role'				=> 'sysadmin',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),

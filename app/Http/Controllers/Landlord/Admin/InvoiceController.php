@@ -77,7 +77,7 @@ class InvoiceController extends Controller
 	public function create()
 	{
 		abort(403);
-		// TODO Manual Invoice Create P2
+		// P2 Manual Invoice Create P2
 		//$this->authorize('create', Invoice::class);
 		//return view('landlord.admin.invoices.create');
 	}

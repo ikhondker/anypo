@@ -25,18 +25,18 @@ https://www.brevo.com/pricing/
 18. 0.18 discard front use single appstack theme, CustomException, dsicss all routes, split helper into landlord and tenant
 19. 0.19 Major Update. Removed Front4.3.1 theme from Landlord. Tenant Theme AppsStack upgraded from 3.4.1 to 4.0.0. Template object moved to share. Added Budget Revision history, Before clean.
 20. 0.20 cleaned, attachment description, move attachment to root, rewrite pr and po , add invoiceLines, component argument rename form id, InvoiceLines, direct creation invoice/pol/receipt, report id to code, new reports
-21. 0.21 [ongoing] float(15,2) to decimal(19,4) , user_id and attachment_id form integer to uuid, upload attachments in attachment page , tenantmgj, 
+21. 0.21 [ongoing] float(15,2) to decimal(19,4) , user_id and attachment_id form integer to uuid, upload attachments in attachment page , tenant db name to uid, pdf Ticket, npm recompile, sweetalert2 customization, landlord logo, reorganized Landlord menus, add SYSADMIN Role, 
 
 
-# 12. key configuration 
+# 12. Key Configuration 
 ====================================================================
-## landlord Helper\LandFileUpload.php
+## landlord Helper\Landlord\FileUpload.php
 - max file size 5MB	where?
 - LandlordFileUpload->aws->'file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512'
 - UpdateSetupRequest.php 	-> logo
 - UpdateUserRequest.php 	-> avatar
 
-## Tenant Helper\FileUpload.php
+## Tenant Helper\Tenant\FileUpload.php
 - max file size 5MB
 - FileUpload->aws->'file_to_upload'	=> 'required|file|mimes:zip,rar,doc,docx,xls,xlsx,pdf,jpg|max:512'
 - UpdateSetupRequest.php 	-> logo
@@ -64,7 +64,7 @@ $ ab -n 100 -c 10 https://demo1.anypo.net/
 7. app name sow be in
 8. app_name, landlord setup table and where in tenant?
 
-# 9. Deploy Architecture 
+# 9. Deployment Architecture 
 ====================================================================
 1. do 4gb+2cpu+80Gb storage
 	- CDN: aws
@@ -81,23 +81,24 @@ $ ab -n 100 -c 10 https://demo1.anypo.net/
 default_socket_timeout = 360
 php artisan queue:listen --timeout=1200
 ~~~
-# 8. Logos 
+
+# 9. Post Deployment Steps
+====================================================================
+1. set bo.SUPPORT_MGR_ID
+2. logo in landlord reports
+
+
+# 8. Logos Used
 ====================================================================
 ## Landlord
-- D:\laravel\bo05\public\landlord\logos - for user and tickets
-- D:\laravel\bo05\public\assets\logo - rests
-- D:\laravel\bo05\storage\app\logo - logo in pdf 
+  logo.png (300x300) and logot.png (200x200) , 
+  	logo-white.svg (landlord apps) logo-whitet.svg  (Landlord Pages)
+
+  	D:\laravel\anypo\public\assets\logo - general user including logo in pdf 
 
 ## Tenant
-- Error 401—Unauthorized
-- Error 403—Forbidden
-- Error 404—Not Found
-- Error 419—Laravel POST Error
-- Error 429—Too Many Requests
-- Error 500—Internal Server Error
-- Error 503—Service Unavailable
-- An exception is always a 500 HTTP status code. A
-- https://medium.com/@padamghimire/custom-exceptions-in-laravel-5559fa10561c
+
+
 
 # 7. Full refresh 
 ====================================================================

@@ -79,7 +79,7 @@
 				</table>
 
 				<div class="mb-3 float-end">
-					<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ url()->previous() }}"><i class="fas fa-times"></i></i> Cancel</a>
+					<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ url()->previous() }}"><i class="far fa-times-circle"></i></i> Back</a>
 					<button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i class="fas fa-dollar-sign"></i> Generate</button>
 				</div>
 			</form>

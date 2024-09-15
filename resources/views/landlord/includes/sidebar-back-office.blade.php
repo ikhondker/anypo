@@ -1,5 +1,7 @@
-<li class="sidebar-header">
-	Navigation
+<li class="sidebar-item {{ ($_route_name == 'home' ? 'active' : '') }}">
+	<a class="sidebar-link" href="{{ route('home') }}">
+		<i class="align-middle" data-lucide="home"></i><span class="align-middle">Home</span>
+	</a>
 </li>
 
 <li class="sidebar-item {{ $_route_name == 'dashboards.index' ? 'active' : '' }}">
@@ -8,170 +10,93 @@
 	</a>
 </li>
 
-
-<li class="sidebar-item {{ $_route_name == 'tickets.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('tickets.all') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Tickets</span>
-	</a>
-</li>
-
-<li class="sidebar-item {{ $_route_name == 'checkouts.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('checkouts.index') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Checkouts</span>
-	</a>
-</li>
-
-<li class="sidebar-item {{ $_route_name == 'accounts.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('accounts.all') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Accounts</span>
-	</a>
-</li>
-
-<li class="sidebar-item {{ $_route_name == 'services.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('services.all') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Services</span>
-	</a>
-</li>
-<li class="sidebar-item {{ $_route_name == 'invoices.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('invoices.all') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Invoices</span>
-	</a>
-</li>
-<li class="sidebar-item {{ $_route_name == 'payments.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('payments.all') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Payments</span>
-	</a>
-</li>
-<li class="sidebar-item {{ $_route_name == 'contacts.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('contacts.all') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Contacts</span>
-	</a>
-</li>
-
-
-<li class="sidebar-header">
-	ADMIN
-</li>
-<li class="sidebar-item {{ $_route_name == 'users.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('users.all') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Users</span>
-	</a>
-</li>
-<li class="sidebar-item {{ $_route_name == 'activities.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('activities.all') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Activity</span>
-	</a>
-</li>
-<li class="sidebar-item {{ $_route_name == 'attachments.all' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('attachments.all') }}">
-		<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">All Attachments</span>
-	</a>
-</li>
-
-
-
-
-
-@if (auth()->user()->role->value == \UserRoleEnum::SYSTEM->value)
-	<!-- Nav -->
-	<li class="sidebar-header">
-		SYSTEM
-	</li>
-	<li class="sidebar-item {{ $_route_name == 'tables.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('tables.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Tables</span>
+@can('viewWorkbenchMenu', App\Models\Landlord\Manage\Menu::class)
+	<li class="sidebar-item {{ ($_node_name == 'workbench' ? 'active' : '') }}">
+		<a data-bs-target="#workbench"s data-bs-toggle="collapse" class="sidebar-link collapsed">
+			<i class="align-middle" data-lucide="layout-template"></i>
+			<span class="align-middle">Workbench *</span>
 		</a>
+		<ul id="workbench" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'workbench' ? 'show' : '') }}" data-bs-parent="#sidebar">
+			<li class="sidebar-item {{ ($_route_name == 'tickets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tickets.all') }}"><i class="align-middle" data-lucide="circle"></i>All Tickets</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'checkouts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('checkouts.index') }}"><i class="align-middle" data-lucide="circle"></i>All Checkouts</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'accounts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('accounts.all') }}"><i class="align-middle" data-lucide="circle"></i>All Accounts</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'services.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('services.all') }}"><i class="align-middle" data-lucide="circle"></i>All Services</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'invoices.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('invoices.all') }}"><i class="align-middle" data-lucide="circle"></i>All Invoices</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'payments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('payments.all') }}"><i class="align-middle" data-lucide="circle"></i>All Payments</a></li>
+		</ul>
 	</li>
-	<li class="sidebar-item {{ $_route_name == 'error-logs.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('error-logs.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Error logs</span>
-		</a>
-	</li>
-	<li class="sidebar-item {{ $_route_name == 'templates.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('templates.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Templates</span>
-		</a>
-	</li>
-	<li class="sidebar-item {{ $_route_name == 'products.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('products.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Products</span>
-		</a>
-	</li>
-
-	<li class="sidebar-item {{ $_route_name == 'categories.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('categories.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Categories</span>
-		</a>
-	</li>
-	<li class="sidebar-item {{ $_route_name == 'countries.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('countries.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Countries</span>
-		</a>
-	</li>
-
-	<li class="sidebar-item {{ $_route_name == 'processes.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('processes.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Processes</span>
-		</a>
-	</li>
-
-	<li class="sidebar-item {{ $_route_name == 'tenants.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('tenants.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Tenants</span>
-		</a>
-	</li>
-	<li class="sidebar-item {{ $_route_name == 'domains.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('domains.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Domains</span>
-		</a>
-	</li>
-	<li class="sidebar-item {{ $_route_name == 'entities.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('entities.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Entities</span>
-		</a>
-	</li>
+@endcan
 
 
-	<li class="sidebar-item {{ $_route_name == 'mail-lists.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('mail-lists.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Mail lists</span>
+@can('viewLookupMenu', App\Models\Landlord\Manage\Menu::class)
+	<li class="sidebar-item {{ ($_node_name == 'lookups' ? 'active' : '') }}">
+		<a data-bs-target="#lookups" data-bs-toggle="collapse" class="sidebar-link collapsed">
+			<i class="align-middle" data-lucide="layout-template"></i>
+			<span class="align-middle">Lookups</span>
 		</a>
+		<ul id="lookups" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'lookups' ? 'show' : '') }}" data-bs-parent="#sidebar">
+			<li class="sidebar-item {{ ($_route_name == 'products.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('products.index') }}"><i class="align-middle" data-lucide="circle"></i>Product</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'categories.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('categories.index') }}"><i class="align-middle" data-lucide="circle"></i>Category</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-lucide="circle"></i>Country</a></li>
+		</ul>
 	</li>
-	<li class="sidebar-item {{ $_route_name == 'statuses.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('statuses.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Statuses</span>
-		</a>
-	</li>
-	<li class="sidebar-item {{ $_route_name == 'menus.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('menus.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Menus</span>
-		</a>
-	</li>
-	<li class="sidebar-item {{ $_route_name == 'ui' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('ui') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">UI</span>
-		</a>
-	</li>
-	<li class="sidebar-item {{ $_route_name == 'cps.changelog' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('cps.changelog') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Change Log</span>
-		</a>
-	</li>
+@endcan
 
-	<li class="sidebar-item {{ $_route_name == 'cps.codegen' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('cps.codegen') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Code Gen (All Tenant)</span>
-		</a>
-	</li>
-	
-	<li class="sidebar-item {{ $_route_name == 'configs.index' ? 'active' : '' }}">
-		<a class="sidebar-link" href="{{ route('configs.index') }}">
-			<i class="align-middle" data-lucide="circle"></i> <span class="align-middle">Config</span>
-		</a>
-	</li>
-@endif
 
-<!-- ========== Account ========== -->
-@include('landlord.includes.sidebar-my-account')
-<!-- ========== END Account ========== -->
+
+@can('viewSupportMenu', App\Models\Landlord\Manage\Menu::class)
+	<li class="sidebar-item {{ ($_node_name == 'support' ? 'active' : '') }}">
+		<a data-bs-target="#support" data-bs-toggle="collapse" class="sidebar-link collapsed">
+			<i class="align-middle" data-lucide="layout-template"></i>
+			<span class="align-middle">Support</span>
+		</a>
+		<ul id="support" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'support' ? 'show' : '') }}" data-bs-parent="#sidebar">
+			<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.all') }}"><i class="align-middle" data-lucide="circle"></i>Users</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'error-logs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('error-logs.index') }}"><i class="align-middle" data-lucide="circle"></i>Error logs</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'contacts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('contacts.all') }}"><i class="align-middle" data-lucide="circle"></i>All Contacts</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'mail-lists.all' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('mail-lists.index') }}"><i class="align-middle" data-lucide="circle"></i>Mail Lists</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'tenants.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tenants.index') }}"><i class="align-middle" data-lucide="circle"></i>All Tenants</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'domains.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('domains.index') }}"><i class="align-middle" data-lucide="circle"></i>All Domains</a></li>
+		</ul>
+	</li>
+@endcan
+
+@can('viewSysAdminMenu', App\Models\Landlord\Manage\Menu::class)
+	<li class="sidebar-item {{ ($_node_name == 'sysadmin' ? 'active' : '') }}">
+		<a data-bs-target="#sysadmin" data-bs-toggle="collapse" class="sidebar-link collapsed">
+			<i class="align-middle" data-lucide="layout-template"></i>
+			<span class="align-middle">SysAdmin</span>
+		</a>
+		<ul id="sysadmin" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'sysadmin' ? 'show' : '') }}" data-bs-parent="#sidebar">
+			<li class="sidebar-item {{ ($_route_name == 'activities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('activities.index') }}"><i class="align-middle" data-lucide="circle"></i>Activity Log</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'attachments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('attachments.all') }}"><i class="align-middle" data-lucide="circle"></i>Attachments*</a></li>
+		</ul>
+	</li>
+@endcan
+
+@can('viewSystemMenu', App\Models\Landlord\Manage\Menu::class)
+	<li class="sidebar-item {{ ($_node_name == 'system' ? 'active' : '') }}">
+		<a data-bs-target="#system" data-bs-toggle="collapse" class="sidebar-link collapsed">
+			<i class="align-middle" data-lucide="layout-template"></i>
+			<span class="align-middle">System</span>
+		</a>
+		<ul id="system" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'system' ? 'show' : '') }}" data-bs-parent="#sidebar">
+			<li class="sidebar-item {{ ($_route_name == 'tables.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tables.index') }}"><i class="align-middle" data-lucide="circle"></i>Tables</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'processes.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('processes.index') }}"><i class="align-middle" data-lucide="circle"></i>Processes</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'menus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('menus.index') }}"><i class="align-middle" data-lucide="circle"></i>Menu</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'statuses.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('statuses.index') }}"><i class="align-middle" data-lucide="circle"></i>Status</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'entities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('entities.index') }}"><i class="align-middle" data-lucide="circle"></i>Entity</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'cps.changelog' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('cps.changelog') }}"><i class="align-middle" data-lucide="circle"></i>Change Log</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'cps.codegen' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('cps.codegen') }}"><i class="align-middle" data-lucide="circle"></i>Code Gen (All Tenant)</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'ui' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('ui') }}"><i class="align-middle" data-lucide="circle"></i>UI</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('templates.index') }}"><i class="align-middle" data-lucide="circle"></i>Templates</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'configs.show' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('configs.show',config('bo.CONFIG_ID')) }}"><i class="align-middle" data-lucide="circle"></i>Config</a></li>
+
+		</ul>
+	</li>
+@endcan
+
+<!-- ========== Profile ========== -->
+@include('landlord.includes.sidebar-my-profile')
+<!-- ========== End Profile ========== -->
 

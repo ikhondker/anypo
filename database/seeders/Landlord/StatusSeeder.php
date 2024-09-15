@@ -107,7 +107,7 @@ class StatusSeeder extends Seeder
 				[
 					'code'		=> 'processing', //1009,
 					'name'		=> 'Processing',
-					'badge'		=> 'primary',
+					'badge'		=> 'danger',
 					'accounts'	=> false,
 					'services'	=> true,
 					'tickets'	=> false,

@@ -26,6 +26,13 @@ class MenuSeeder extends Seeder
 
 			/**
 			* ==================================================================================
+			* 0. Excluded
+			* ==================================================================================
+			*/
+			// 1. Notification
+
+			/**
+			* ==================================================================================
 			* 1. Workbench
 			* ==================================================================================
 			*/
@@ -64,7 +71,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'receipts.my-receipts','route_name'   => 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.show','route_name'          => 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.create-for-pol','route_name'=> 'receipts.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'receipts.ael','route_name'          => 'receipts.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'receipts.ael','route_name'           => 'receipts.index', 'node_name' => 'workbench'],
 
 			[ 'raw_route_name' => 'invoices.index','route_name'         => 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.my-invoices','route_name'   => 'invoices.index', 'node_name' => 'workbench'],

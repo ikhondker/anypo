@@ -5,7 +5,7 @@
 
 				<div class="row">
 					<div class="col-md-6">
-						<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" alt="Logo" width="120" height="120">
+						<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/logot.png') }}" alt="Logo" width="120" height="120">
 						{{-- <div class="text-muted">Payment No.</div>
 						<strong>741037024</strong> --}}
 					</div>

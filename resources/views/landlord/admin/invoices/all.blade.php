@@ -21,7 +21,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search invoices…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 
 						</div>
@@ -47,14 +47,14 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Invoice #</th>
-						<th class="align-middle">Summary</th>
-						<th class="align-middle">Invoice Date</th>
-						<th class="align-middle">Type</th>
-						<th class="align-middle">Amount $</th>
-						<th class="align-middle">Status</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Invoice #</th>
+						<th>Summary</th>
+						<th>Invoice Date</th>
+						<th>Type</th>
+						<th class="text-end">Amount $</th>
+						<th>Status</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -71,10 +71,10 @@
 							<td>{{ Str::limit($invoice->summary, 20) }}</td>
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
 							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
-							<td><x-landlord.list.my-number :value="$invoice->amount" /></td>
+							<td  class="text-end"><x-landlord.list.my-number :value="$invoice->amount" /></td>
 							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
 
-							<td class="text-end">
+							<td>
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 

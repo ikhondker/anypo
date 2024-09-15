@@ -108,6 +108,7 @@ class Bo
 
 		Log::debug('Helpers.bo.createCheckoutInvoice Generating Invoice for checkout_id = ' . $checkout_id );
 		Log::debug('Helpers.bo.createCheckoutInvoice Generating Invoice for account_id = ' . $checkout->account_id );
+		Log::debug('Helpers.bo.createCheckoutInvoice checkout->invoice_type = ' . $checkout->invoice_type->value );
 
 		if ($checkout->account_id == 0) {
 			//return redirect()->back()->with(['error' => 'Could you find account.']);
@@ -127,25 +128,30 @@ class Bo
 		// This is the first bill for initial purchase
 		$invoice->invoice_type	= $checkout->invoice_type;
 
+		
 		// TODO invoice_type specific treatment
-		switch ($invoice->invoice_type) {
+		// change description for other type of invoice
+		switch ($invoice->invoice_type->value) {
 			case LandlordInvoiceTypeEnum::CHECKOUT->value:
+				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain');
 				break;
 			case LandlordInvoiceTypeEnum::SUBSCRIPTION->value:
+				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain') .
+					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
 			case LandlordInvoiceTypeEnum::ADDON->value:
+				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain') ;
 				break;
 			case LandlordInvoiceTypeEnum::ADVANCE->value:
+				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain') .
+					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
 		}		
 		
+		Log::channel('bo')->info('Helpers.bo.createCheckoutInvoice Account id = ' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
 		$invoice->from_date		= $checkout->start_date;
 		$invoice->to_date		= $checkout->end_date;
-		Log::channel('bo')->info('Helpers.bo.createCheckoutInvoice Account id = ' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
-
 		$invoice->due_date		= $checkout->end_date;
-		// TODO change description for other type of invocie
-		$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain');
 		$invoice->price			= $checkout->price;
 		$invoice->subtotal		= $checkout->price;
 		$invoice->amount		= $checkout->price; 

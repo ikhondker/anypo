@@ -23,7 +23,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search tickets…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 
 						</div>
@@ -48,14 +48,14 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Subject</th>
-						<th class="align-middle">Requestor</th>
-						<th class="align-middle">Date</th>
-						<th class="align-middle">Dept</th>
-						<th class="align-middle">Agent</th>
-						<th class="align-middle">Status</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Subject</th>
+						<th>Requestor</th>
+						<th>Date</th>
+						<th>Dept</th>
+						<th>Agent</th>
+						<th>Status</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -88,20 +88,21 @@
 							<td>
 								<x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/>
 							</td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View
 								</a>
-								
+
+								<a href="{{ route('tickets.assign',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="Assign">Assign
+								</a>
+
 								<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="text-body"
 									target="_blank" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="Download"><i data-lucide="download"></i>
+									data-bs-placement="top" title="Download"><i class="fas fa-file-pdf text-primary"></i>
 								</a>
 									
-								<a href="{{route('tickets.assign',$ticket->id) }}" class="me-2"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
-										<i data-lucide="check-circle" class="text-danger"></i>
-								</a>
+								
 
 							</td>
 						</tr>

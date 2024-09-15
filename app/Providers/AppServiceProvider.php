@@ -49,27 +49,27 @@ class AppServiceProvider extends ServiceProvider
 		*/
 		// Should return TRUE or FALSE IQBAL 
 		Gate::define('superior', function(User $user) {
-			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
+			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
 
 		Gate::define('buyer', function(User $user) {
-			return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
+			return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
 		
 		Gate::define('hod', function(User $user) {
-			return ($user->isHoD() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
+			return ($user->isHoD() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
 
 		Gate::define('cxo', function(User $user) {
-			return ($user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSystem());
+			return ($user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
 
 		Gate::define('buyer-or-cxo', function(User $user) {
-			return (($user->isBuyer() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSystem());
+			return (($user->isBuyer() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
 		
 		Gate::define('hod-or-cxo', function(User $user) {
-			return (($user->isHoD() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSystem());
+			return (($user->isHoD() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
 
 		/**
@@ -79,11 +79,11 @@ class AppServiceProvider extends ServiceProvider
 		*/
 		// Should return TRUE or FALSE IQBAL 
 		Gate::define('admin', function(User $user) {
-			return ($user->isAdmin() || $user->isSupport() || $user->isSystem());
+			return ($user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
 
 		Gate::define('support', function(User $user) {
-			return ($user->isSupport() || $user->isSystem());
+			return ($user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
 
 		Gate::define('system', function(User $user) {

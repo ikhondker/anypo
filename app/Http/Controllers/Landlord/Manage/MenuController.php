@@ -58,7 +58,7 @@ class MenuController extends Controller
 		$this->authorize('viewAny', Menu::class);
 		$menus = Menu::query();
 		if (request('term')) {
-			$menus->where('name', 'Like', '%'.request('term').'%');
+			$menus->where('route_name', 'Like', '%'.request('term').'%');
 		}
 		$menus = $menus->orderBy('route_name', 'ASC')->paginate(40);
 

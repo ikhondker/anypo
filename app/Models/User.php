@@ -178,9 +178,12 @@ class User extends Authenticatable implements MustVerifyEmail
 		}
 	}
 
+	
 	public function isSupport()
 	{
-		if ($this->role->value == UserRoleEnum::SUPPORT->value) {
+
+		if ($this->role->value == UserRoleEnum::SUPPORT->value
+		|| $this->role->value == UserRoleEnum::SUPERVISOR->value ) {
 			return true;
 		} else {
 			return false;
@@ -195,6 +198,35 @@ class User extends Authenticatable implements MustVerifyEmail
 			return false;
 		}
 	}
+
+	public function isSysAdmin()
+	{
+		if ($this->role->value == UserRoleEnum::SYSADMIN->value) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function isDeveloper()
+	{
+		if ($this->role->value == UserRoleEnum::DEVELOPER->value) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function isAccounts()
+	{
+		if ($this->role->value == UserRoleEnum::ACCOUNTS->value) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
 
 	/*
 	|-----------------------------------------------------------------------------

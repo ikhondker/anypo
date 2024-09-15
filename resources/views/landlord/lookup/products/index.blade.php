@@ -25,7 +25,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search products…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 						</div>
 						@if (request('term'))
@@ -49,18 +49,16 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Addon</th>
-
-						<th class="align-middle">Month</th>
-						<th class="align-middle">User</th>
-						<th class="align-middle">GB</th>
-						<th class="align-middle">Price</th>
-						<th class="align-middle">Qty</th>
-						<th class="align-middle">Enable</th>
-
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Name</th>
+						<th>Addon</th>
+						<th class="text-end">Month</th>
+						<th class="text-end">User</th>
+						<th class="text-end">GB</th>
+						<th class="text-end">Price</th>
+						<th class="text-end">Sold</th>
+						<th>Enable</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -80,13 +78,13 @@
 									title="addon"></i>
 
 							</td>
-							<td><x-landlord.list.my-integer :value="$product->mnth" /></td>
-								<td>{{ $product->user }}</td>
-								<td> {{ $product->gb }}</td>
-								<td><x-landlord.list.my-number :value="$product->price" /></td>
-								<td><x-landlord.list.my-integer :value="$product->sold_qty" /></td>
-								<td><x-landlord.list.my-enable :value="$product->enable" /></td>
-							<td class="text-end">
+							<td class="text-end"><x-landlord.list.my-integer :value="$product->mnth" /></td>
+							<td class="text-end">{{ $product->user }}</td>
+							<td class="text-end"> {{ $product->gb }}</td>
+							<td class="text-end"><x-landlord.list.my-number :value="$product->price" /></td>
+							<td class="text-end"><x-landlord.list.my-integer :value="$product->sold_qty" /></td>
+							<td><x-landlord.list.my-enable :value="$product->enable" /></td>
+							<td>
 								<a href="{{ route('products.show',$product->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 									<a href="{{ route('products.edit',$product->id) }}" class="text-body" data-bs-toggle="tooltip"

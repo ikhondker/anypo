@@ -21,7 +21,7 @@
 							value="{{ old('term', request('term')) }}" id="term"
 							placeholder="Search accounts…" required>
 						<button class="btn" type="submit">
-							<i class="align-middle" data-lucide="search"></i>
+							<i data-lucide="search"></i>
 						</button>
 
 					</div>
@@ -47,15 +47,15 @@
 		<table id="datatables-orders" class="table w-100">
 			<thead>
 				<tr>
-					<th class="align-middle">#</th>
-					<th class="align-middle">Site</th>
-					<th class="align-middle">Name</th>
-					<th class="align-middle">Owner</th>
-					<th class="align-middle">End</th>
-					<th class="align-middle">User</th>
-					<th class="align-middle">Amount</th>
-					<th class="align-middle">Status</th>
-					<th class="align-middle text-end">Actions</th>
+					<th>#</th>
+					<th>Site</th>
+					<th>Name</th>
+					<th>Owner</th>
+					<th>End</th>
+					<th>User</th>
+					<th>Amount</th>
+					<th>Status</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -79,7 +79,7 @@
 						<td><span class="badge badge-subtle-primary">{{ $account->user }}</span></td>
 						<td><x-landlord.list.my-number :value="$account->price"/>$</td>
 						<td><x-landlord.list.my-badge :value="$account->status->name" badge="{{ $account->status->badge }}" /></td>
-						<td class="text-end">
+						<td>
 							<a href="{{ route('accounts.show',$account->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>
 						</td>

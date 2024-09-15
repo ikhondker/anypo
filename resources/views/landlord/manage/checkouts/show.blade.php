@@ -15,7 +15,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('checkouts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
+						{{-- <a href="{{ route('checkouts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a> --}}
 						@if (auth()->user()->isSystem())
 						<a class="btn btn-sm btn-danger text-white" href="{{ route('checkouts.edit', $checkout->id) }}"><i class="fas fa-edit"></i> Edit(*)</a>
 
@@ -39,7 +39,7 @@
 							<x-landlord.show.my-date value="{{ $checkout->start_date }}" abel="Start"/>
 							<x-landlord.show.my-date value="{{ $checkout->end_date }}" abel="End"/>
 
-							<x-landlord.show.my-enable value="{{ $checkout->existing_user }}" label="existing_user" />
+							<x-landlord.show.my-enable value="{{ $checkout->existing_user }}" label="Existing user?" />
 							<x-landlord.show.my-text value="{{ $checkout->owner_id }}" label="Owner #" />
 							<x-landlord.show.my-text value="{{ $checkout->session_id }}" label="Session ID" />
 

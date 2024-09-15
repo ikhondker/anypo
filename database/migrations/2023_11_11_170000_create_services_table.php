@@ -39,7 +39,6 @@ return new class extends Migration
 			$table->foreign('status_code')->references('code')->on('statuses');
 			//$table->foreignId('status_id')->default(LandlordInvoiceStatusEnum::DUE->value)->constrained('statuses');
 			/** end ENUM */
-			
 			$table->boolean('enable')->default(true); 
 			$table->text('notes')->default(0);
 			$table->uuid('created_by')->nullable();

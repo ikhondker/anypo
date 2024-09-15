@@ -37,7 +37,7 @@
 				<div class="sidebar-brand">
 					@auth
 						<a class="" href="{{ route('home') }}">
-							<img src="{{ Storage::disk('s3l')->url('logo/logo-white.svg') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="Logo"/>
+							<img src="{{ Storage::disk('s3l')->url('logo/logo-whitet.svg') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="Logo"/>
 						</a>
 						<a class="" href="{{ route('users.profile') }}">
 							<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>

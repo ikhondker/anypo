@@ -76,4 +76,53 @@ class MenuPolicy
 	{
 		//
 	}
+
+		/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewWorkbenchMenu(User $user): bool
+	{
+		return ($user->isAdmin() || $user->isSupport() || $user->isSysAdmin());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewLookupMenu(User $user): bool
+	{
+		return ($user->isSupport() || $user->isSysAdmin());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewSupportMenu(User $user): bool
+	{
+		return ($user->isSupport() || $user->isSysAdmin());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewAdminMenu(User $user): bool
+	{
+		return ($user->isAdmin() || $user->isSupport() || $user->isSysAdmin());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewSysAdminMenu(User $user): bool
+	{
+		return ($user->isSysAdmin());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewSystemMenu(User $user): bool
+	{
+		return ($user->isSystem());
+	}
+
 }
