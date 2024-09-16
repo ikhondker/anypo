@@ -118,10 +118,11 @@ class TicketController extends Controller
 	{
 		$this->authorize('create',Ticket::class);
 
-		$depts = Dept::getAll();
+		$owners		= User::LandlordAllEnable()->get();
+		$depts 		= Dept::getAll();
 		$priorities = Priority::getAll();
 
-		return view('landlord.tickets.create', compact('depts', 'priorities'));
+		return view('landlord.tickets.create', compact('depts', 'priorities','owners'));
 	}
 
 	/**
@@ -133,12 +134,27 @@ class TicketController extends Controller
 	public function store(StoreTicketRequest $request)
 	{
 		$this->authorize('create',Ticket::class);
+
+		// if support create a Ticke on behalf of a User
+		if ( auth()->user()->isSeeded() ){
+			$owner 		= User::where('id', $request->input('owner_id'))->first();
+			$owner_id	= $owner->id;
+			$account_id	= $owner->account_id;
+		} else {
+			$owner_id		= auth()->user()->id;
+			$account_id	= auth()->user()->account_id;
+		}
+		Log::debug('landlord.TicketController.store $request->input(owner_id) = ' . $request->input('owner_id'));
+		Log::debug('landlord.TicketController.store isSeeded= ' . auth()->user()->isSeeded());
+		Log::debug('landlord.TicketController.store owner_id= ' . $owner_id);
+		Log::debug('landlord.TicketController.store account_id= ' . $account_id);
+		
 		$request->merge([
 			//'ticket_number' => Str::uuid()->toString(),
 			'ticket_date'	=> date('Y-m-d H:i:s'),
 			'status_code'	=> LandlordTicketStatusEnum::NEW->value,
-			'owner_id'		=> auth()->user()->id,
-			'account_id'	=> auth()->user()->account_id,
+			'owner_id'		=> $owner_id,
+			'account_id'	=> $account_id,
 			'dept_id'		=> '1001',
 			'priority_id'	=> '1001',
 			'ip'			=> $request->ip()

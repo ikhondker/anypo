@@ -96,14 +96,10 @@
 								<a href="{{ route('tickets.assign',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="Assign">Assign
 								</a>
-
 								<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="text-body"
 									target="_blank" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="Download"><i class="fas fa-file-pdf text-primary"></i>
+									data-bs-placement="top" title="Download"><i class="align-middle" data-lucide="printer"></i>
 								</a>
-									
-								
-
 							</td>
 						</tr>
 					@endforeach

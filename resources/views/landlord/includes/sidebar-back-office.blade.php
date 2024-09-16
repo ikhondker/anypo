@@ -10,6 +10,13 @@
 	</a>
 </li>
 
+<li class="sidebar-item {{ $_route_name == 'tickets.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('tickets.all') }}">
+		<i class="align-middle" data-lucide="sliders"></i> <span class="align-middle">All Tickets</span>
+	</a>
+</li>
+
+
 @can('viewWorkbenchMenu', App\Models\Landlord\Manage\Menu::class)
 	<li class="sidebar-item {{ ($_node_name == 'workbench' ? 'active' : '') }}">
 		<a data-bs-target="#workbench"s data-bs-toggle="collapse" class="sidebar-link collapsed">
@@ -17,12 +24,13 @@
 			<span class="align-middle">Workbench *</span>
 		</a>
 		<ul id="workbench" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'workbench' ? 'show' : '') }}" data-bs-parent="#sidebar">
-			<li class="sidebar-item {{ ($_route_name == 'tickets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tickets.all') }}"><i class="align-middle" data-lucide="circle"></i>All Tickets</a></li>
+			{{-- <li class="sidebar-item {{ ($_route_name == 'tickets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tickets.all') }}"><i class="align-middle" data-lucide="circle"></i>All Tickets</a></li> --}}
 			<li class="sidebar-item {{ ($_route_name == 'checkouts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('checkouts.index') }}"><i class="align-middle" data-lucide="circle"></i>All Checkouts</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'accounts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('accounts.all') }}"><i class="align-middle" data-lucide="circle"></i>All Accounts</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'services.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('services.all') }}"><i class="align-middle" data-lucide="circle"></i>All Services</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'invoices.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('invoices.all') }}"><i class="align-middle" data-lucide="circle"></i>All Invoices</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'payments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('payments.all') }}"><i class="align-middle" data-lucide="circle"></i>All Payments</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.all') }}"><i class="align-middle" data-lucide="circle"></i>Users</a></li>
 		</ul>
 	</li>
 @endcan
@@ -51,7 +59,7 @@
 			<span class="align-middle">Support</span>
 		</a>
 		<ul id="support" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'support' ? 'show' : '') }}" data-bs-parent="#sidebar">
-			<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.all') }}"><i class="align-middle" data-lucide="circle"></i>Users</a></li>
+			
 			<li class="sidebar-item {{ ($_route_name == 'error-logs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('error-logs.index') }}"><i class="align-middle" data-lucide="circle"></i>Error logs</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'contacts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('contacts.all') }}"><i class="align-middle" data-lucide="circle"></i>All Contacts</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'mail-lists.all' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('mail-lists.index') }}"><i class="align-middle" data-lucide="circle"></i>Mail Lists</a></li>

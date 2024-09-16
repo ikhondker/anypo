@@ -44,71 +44,64 @@ class MenuSeeder extends Seeder
 			* 1. Workbench
 			* ==================================================================================
 			*/
-			[ 'raw_route_name' => 'tickets.index',	 	'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.all',		'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.show',	  	'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.update',		'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.edit',	  	'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.create',		'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.assign',	  	'route_name' => 'tickets.index',	'node_name' => ''],
+			[ 'raw_route_name' => 'tickets.index',	 	'route_name' => 'tickets.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'tickets.show',	  	'route_name' => 'tickets.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'tickets.update',		'route_name' => 'tickets.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'tickets.edit',	  	'route_name' => 'tickets.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'tickets.create',		'route_name' => 'tickets.create',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'tickets.all',		'route_name' => 'tickets.index',	'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'invoices.index',		'route_name' => 'invoices.index', 	'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'invoices.all',	  	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'invoices.show',	 	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'invoices.generate',	'route_name' => 'invoices.generate','node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'invoices.update',	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'invoices.edit',	 	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'invoices.create',	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'invoices.all',	  	'route_name' => 'invoices.index',	  'node_name' => 'workbench'],
 			
-			[ 'raw_route_name' => 'payments.index',		'route_name' => 'payments.index',  'node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'payments.all',	  	'route_name' 	=> 'payments.index', 'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'payments.show',	 	'route_name' 	=> 'payments.index', 'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'payments.update',	'route_name'	=> 'payments.index', 'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'payments.edit',	 	'route_name' 	=> 'payments.index', 'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'payments.create',	'route_name'	=> 'payments.index', 'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'invoices.update',	'route_name' => 'invoices.index',	  'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.edit',	 	'route_name' => 'invoices.index',	  'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.create',	'route_name' => 'invoices.index',	  'node_name' => 'workbench'],
 			
-			[ 'raw_route_name' => 'services.index',		'route_name' => 'services.index', 'node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'services.all',	  	'route_name' => 'services.index',	  'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'services.show',	 	'route_name' => 'services.index',	  'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'services.update',	'route_name' => 'services.index',	  'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'services.edit',	 	'route_name' => 'services.index',	  'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'services.create',	'route_name' => 'services.index',	  'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'payments.update',	'route_name'	=> 'payments.index',	  'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'payments.edit',	 	'route_name' 	=> 'payments.index',	  'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'payments.create',	'route_name'	=> 'payments.index',	  'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'payments.all',	  	'route_name' 	=> 'payments.index',	  'node_name' => 'workbench'],
+			
+			[ 'raw_route_name' => 'services.show',	 	'route_name' => 'services.index',	  'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'services.update',	'route_name' => 'services.index',	  'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'services.edit',	 	'route_name' => 'services.index',	  'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'services.create',	'route_name' => 'services.index',	  'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'services.all',	  	'route_name' => 'services.index',	  'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'accounts.index',		'route_name' => 'accounts.index','node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'accounts.all',	  	'route_name' => 'accounts.index',	'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'accounts.show',		'route_name' => 'accounts.show','node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'accounts.edit',	 	'route_name' => 'accounts.show','node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'accounts.update',	'route_name' => 'accounts.index',	'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'accounts.create',	'route_name' => 'accounts.index',	'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'accounts.all',	  	'route_name' => 'accounts.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'accounts.update',	'route_name' => 'accounts.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'accounts.create',	'route_name' => 'accounts.index',	'node_name' => 'workbench'],
 
 			[ 'raw_route_name' => 'checkouts.index',	'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
-			//[ 'raw_route_name' => 'checkouts.all',	'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'checkouts.show',		'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'checkouts.update',	'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'checkouts.edit',		'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'checkouts.create',	'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
-
-			[ 'raw_route_name' => 'users.index',		'route_name' => 'users.index',	'node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'users.all',			'route_name' => 'users.index',	'node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'users.show',			'route_name' => 'users.index',	 'node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'users.edit',			'route_name' => 'users.index',	 'node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'users.create',	  	'route_name' => 'users.index',	'node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'users.password-change','route_name' => 'users.password-change','node_name' => 'workbench'],
-			[ 'raw_route_name' => 'users.update',	  	'route_name' => 'users.index',	'node_name' 		=> 'workbench'],
+			//[ 'raw_route_name' => 'checkouts.all',	'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
 
 			/**
 			* ==================================================================================
 			* 1. Admin
 			* ==================================================================================
 			*/
-			
+			[ 'raw_route_name' => 'invoices.index',		'route_name' => 'invoices.index', 	'node_name' 	=> 'admin'],
+			[ 'raw_route_name' => 'invoices.show',	 	'route_name' => 'invoices.index',	  'node_name' 	=> 'admin'],
+			[ 'raw_route_name' => 'invoices.generate',	'route_name' => 'invoices.generate','node_name' 	=> 'admin'],
 
-			
+			[ 'raw_route_name' => 'payments.index',		'route_name' => 'payments.index',  'node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'payments.show',	 	'route_name' 	=> 'payments.index',  'node_name' 	=> 'admin'],
 
-			
-			
+			[ 'raw_route_name' => 'services.index',		'route_name' => 'services.index', 'node_name' 		=> 'admin'],
 
-			
+			[ 'raw_route_name' => 'accounts.index',		'route_name' => 'accounts.index','node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'accounts.show',		'route_name' => 'accounts.show','node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'accounts.edit',	 	'route_name' => 'accounts.show','node_name' 		=> 'admin'],
+
+			[ 'raw_route_name' => 'users.index',		'route_name' => 'users.index',	'node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'users.show',			'route_name' => 'users.index',	 'node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'users.edit',			'route_name' => 'users.index',	 'node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'users.create',	  	'route_name' => 'users.index',	'node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'users.password-change','route_name' => 'users.password-change','node_name' => 'admin'],
 
 			/**
 			* ==================================================================================
@@ -149,7 +142,8 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			
+			[ 'raw_route_name' => 'users.all',			'route_name' => 'users.index',	'node_name' 	=> 'support'],
+			[ 'raw_route_name' => 'users.update',	  	'route_name' => 'users.index',	'node_name' 	=> 'support'],
 
 			[ 'raw_route_name' => 'error-logs.index',	'route_name' => 'error-logs.index',	 'node_name' => 'support'],
 			[ 'raw_route_name' => 'error-logs.show',	'route_name' => 'error-logs.index',	 'node_name' => 'support'],

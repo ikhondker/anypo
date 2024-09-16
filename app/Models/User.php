@@ -241,8 +241,6 @@ class User extends Authenticatable implements MustVerifyEmail
 	| Policy Related Functions (Tenant)		 									+
 	|-----------------------------------------------------------------------------
 	*/
-
-
 	// usages auth()->user()->isSuperior()
 	public function isSuperior()
 	{
@@ -289,6 +287,38 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
 	/* ----------------- Scopes ------------------------- */
+	
+	
+	/*
+	|-----------------------------------------------------------------------------
+	| Scopes Common (both Landlord and Tenant) 				+
+	|-----------------------------------------------------------------------------
+	*/
+
+	/**
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopePrimary(Builder $query): void
+	{
+		$query->where('seeded', false)
+		->where('enable', true)
+		->orderBy('name', 'asc'); 
+	}
+
+	
+
+	/*
+	|-----------------------------------------------------------------------------
+	| Scopes for (Landlord) 													+
+	|-----------------------------------------------------------------------------
+	*/
+
+	public function scopeLandlordAllEnable(Builder $query): void
+	{
+		$query->where('enable', true)
+		->orderBy('name', 'asc'); 
+	}
+
 	/**
 	 * Scope a query to only include current account users.
 	 */
@@ -304,6 +334,66 @@ class User extends Authenticatable implements MustVerifyEmail
 	{
 		$query->where('id', auth()->user()->id);
 	}
+
+/*
+	|-----------------------------------------------------------------------------
+	| Scopes for (Tenant) 													+
+	|-----------------------------------------------------------------------------
+	*/
+	
+	/**
+	 * Scope a query to only Tenant Active users.
+	*/
+	public function scopeTenant(Builder $query): void
+	{
+		$query->where('enable', true)
+			->where('seeded', false);
+	}
+
+	/**
+	 * Scope a query to only tenant all non-seeded users.
+	*/
+	public function scopeTenantAll(Builder $query): void
+	{
+		$query->where('seeded', false);
+	}
+
+	public function scopeTenantAdmins(Builder $query): void
+	{
+		$query->where('role', UserRoleEnum::ADMIN->value)
+			->where('enable', true)
+			->where('seeded', false)
+			->orderBy('name', 'asc');
+	}
+
+
+	/**
+	 * Scope a query to only non-seeded users.
+	*/
+	// public function scopeNonSeeded(Builder $query): void
+	// {
+	// 	$query->where('seeded', false);
+	// }
+
+	/**
+	 * Scope a query to only non-seeded users.
+	*/
+	public function scopeTenantInactive(Builder $query): void
+	{
+		$query->where('enable', false)
+			->where('seeded', false);
+	}
+
+	/**
+	 * Scope a query to only non-seeded users.
+	*/
+	public function scopeTenantAdmin(Builder $query): void
+	{
+		$query->where('seeded', false)
+			->where('role', UserRoleEnum::ADMIN->value );
+	}
+
+
 
 	/* ---------------- HasMany ---------------------- */
 	public function contacts(): HasMany {
@@ -378,58 +468,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	/* ----------------- Functions ---------------------- */
 
-	/* ----------------- Scopes ------------------------- */
-	/**
-	 * Scope a query to only Tenant Active users.
-	*/
-	public function scopeTenant(Builder $query): void
-	{
-		$query->where('enable', true)
-			->where('seeded', false);
-	}
-
-	/**
-	 * Scope a query to only tenant all non-seeded users.
-	*/
-	public function scopeTenantAll(Builder $query): void
-	{
-		$query->where('seeded', false);
-	}
-
-	public function scopeTenantAdmins(Builder $query): void
-	{
-		$query->where('role', UserRoleEnum::ADMIN->value)
-			->where('enable', true)
-			->where('seeded', false)
-			->orderBy('name', 'asc');
-	}
 
 
-	/**
-	 * Scope a query to only non-seeded users.
-	*/
-	// public function scopeNonSeeded(Builder $query): void
-	// {
-	// 	$query->where('seeded', false);
-	// }
 
-	/**
-	 * Scope a query to only non-seeded users.
-	*/
-	public function scopeTenantInactive(Builder $query): void
-	{
-		$query->where('enable', false)
-			->where('seeded', false);
-	}
-
-	/**
-	 * Scope a query to only non-seeded users.
-	*/
-	public function scopeTenantAdmin(Builder $query): void
-	{
-		$query->where('seeded', false)
-			->where('role', UserRoleEnum::ADMIN->value );
-	}
+	
+	
 
 	/* ----------------- HasMany ------------------------ */
 

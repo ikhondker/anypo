@@ -178,7 +178,9 @@ class Ticket extends Model
 	/* ---------------- belongsTo ---------------------- */
 	public function dept()
 	{
-		return $this->belongsTo(Dept::class, 'dept_id');
+		return $this->belongsTo(Dept::class, 'dept_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 
 	public function priority()
@@ -193,12 +195,16 @@ class Ticket extends Model
 
 	public function status()
 	{
-		return $this->belongsTo(Status::class, 'status_code');
+		return $this->belongsTo(Status::class, 'status_code')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 
 	public function owner()
 	{
-		return $this->belongsTo(User::class, 'owner_id');
+		return $this->belongsTo(User::class, 'owner_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 
 	public function agent()

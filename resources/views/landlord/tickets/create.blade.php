@@ -27,6 +27,24 @@
 
 				<table class="table table-sm my-2">
 					<tbody>
+						@if ( auth()->user()->isSeeded() )
+							<tr>
+								<th>For User :</th>
+								<td>
+									<select class="form-control select2" data-toggle="select2" name="owner_id" required>
+										<option value=""><< User >> </option>
+										@foreach ($owners as $user)
+											<option value="{{ $user->id }}" {{ $user->id == old('owner_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+										@endforeach
+									</select>
+									@error('owner_id')
+										<div class="small text-danger">{{ $message }}</div>
+									@enderror
+								</td>
+							</tr>
+						@else
+							<input type="text" name="owner_id" id="owner_id" class="form-control" placeholder="ID" value="{{ auth()->user()->id }}" hidden>
+						@endif
 						<tr>
 							<th>Subject :</th>
 							<td>
