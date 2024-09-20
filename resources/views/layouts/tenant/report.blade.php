@@ -133,7 +133,7 @@
 			content: counter(page);
 		}
 		#footer td, th {
-		  	/* border: none; */
+			/* border: none; */
 			border-left: none;
 			border-bottom: none;
 			border-right: none;
@@ -147,7 +147,7 @@
 			border-right: none;
 			margin: 0;
 			padding: 0;
-		}  
+		}
 		*/
 
 		/* 

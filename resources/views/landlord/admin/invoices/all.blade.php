@@ -68,10 +68,10 @@
 									<strong>#{{ Str::limit($invoice->invoice_no, 10) }}</strong>
 								</a>
 							</td>
-							<td>{{ Str::limit($invoice->summary, 20) }}</td>
+							<td>{{ Str::limit($invoice->summary, 25) }}</td>
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
 							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
-							<td  class="text-end"><x-landlord.list.my-number :value="$invoice->amount" /></td>
+							<td class="text-end"><x-landlord.list.my-number :value="$invoice->amount" /></td>
 							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
 
 							<td>

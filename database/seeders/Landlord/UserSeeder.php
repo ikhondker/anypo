@@ -85,7 +85,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Support Supervisor',
+				'name'				=> 'Support Manager',
 				'email'				=> 'support@anypo.net',
 				'role'				=> 'supervisor',
 				'email_verified_at' => now(),

@@ -43,10 +43,11 @@ class UserCreated extends Notification implements ShouldQueue
 		return (new MailMessage)
 			->subject('Welcome to '. config('app.name'))
 			->greeting('Hello '. $this->user->name . ',')
-			->line('You user account has been created. You will be receiving another email shortly to verify your email, with e-mail verification link.')
+			->line('Your user account has been created. You will be receiving another email shortly to verify your email, with e-mail verification link.')
 			->line('After verifying your email, you may use the following credentials to login:')
 			->line('Email: '.$this->user->email)
 			->line('Password: '.$this->random_password)
+			->line('URL: '.url('/login') )
 			->action('Login', url('/login'))
 			->line('Thank you for using '.config('app.name').' application!');
 	}

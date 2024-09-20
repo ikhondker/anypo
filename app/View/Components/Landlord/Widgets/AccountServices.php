@@ -15,9 +15,10 @@ class AccountServices extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct()
+	public function __construct(public string $accountId)
 	{
-		$this->services = Service::with('account')->byAccount()->orderBy('id', 'ASC')->paginate(10);
+		$this->services = Service::with('account')->where('id', $accountId)->orderBy('id', 'ASC')->paginate(10);
+		//$this->services = Service::with('account')->byAccount($accountId)->orderBy('id', 'ASC')->paginate(10);
 	}
 
 	/**

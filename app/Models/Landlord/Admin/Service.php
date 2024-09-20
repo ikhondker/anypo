@@ -51,9 +51,10 @@ class Service extends Model
 	/**
 	 * Scope a query to only include current users account.
 	 */
-	public function scopeByAccount(Builder $query): void
+	public function scopeByAuthAccount(Builder $query): void
 	{
 		$query->where('account_id', auth()->user()->account_id);
+		//$query->where('account_id', $accountId);
 	}
 
 	public function scopeByUser(Builder $query): void

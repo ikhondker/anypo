@@ -185,7 +185,13 @@ class TicketController extends Controller
 		$mgr = User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
 		$mgr->notify(new TicketCreated($mgr, $ticket));
 
-		return redirect()->route('tickets.index')->with('success', 'A New Ticket #' . $ticket->id . ' is created. We will come back to you soon. Thanks.');
+		if ( auth()->user()->isSeeded() ){
+			return redirect()->route('tickets.all')->with('success', 'A New Ticket #' . $ticket->id . ' is created. We will come back to you soon. Thanks.');
+		} else {
+			return redirect()->route('tickets.index')->with('success', 'A New Ticket #' . $ticket->id . ' is created. We will come back to you soon. Thanks.');
+		}
+
+		
 	}
 
 	/**

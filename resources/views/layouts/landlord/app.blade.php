@@ -37,7 +37,7 @@
 				<div class="sidebar-brand">
 					@auth
 						<a class="" href="{{ route('home') }}">
-							<img src="{{ Storage::disk('s3l')->url('logo/logo-whitet.svg') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="Logo"/>
+							<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/logo-whitet.svg') }}" width="90px" height="90px" alt="Logo"/>
 						</a>
 						<a class="" href="{{ route('users.profile') }}">
 							<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>
@@ -106,18 +106,16 @@
 			<main class="content">
 
 				<div class="container-fluid p-0">
-
-					<div class="col-lg-9">
-						<!-- Form Success Message Box -->
-						@if (session('success'))
-							<x-landlord.alerts.app-alert-success message="{{ session('success') }}" />
-						@endif
-						<!-- Form Error Message Box (including Form Validation ) -->
-						@if (session('error') || $errors->any())
-							<x-landlord.alerts.app-alert-error message="{{ session('error') }}" />
-						@endif
-					</div>
-
+				
+					<!-- Form Success Message Box -->
+					@if (session('success'))
+						<x-landlord.alerts.app-alert-success message="{{ session('success') }}" />
+					@endif
+					<!-- Form Error Message Box (including Form Validation ) -->
+					@if (session('error') || $errors->any())
+						<x-landlord.alerts.app-alert-error message="{{ session('error') }}" />
+					@endif
+				
 					<!-- breadcrumb -->
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">

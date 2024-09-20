@@ -36,7 +36,7 @@
 
 				{{-- <a href="{{ route('categories.show', 1001) }}"
 					class="btn btn-primary sw2">
-					<i data-lucide="bell"></i>  Go Link Btn
+					<i data-lucide="bell"></i> Go Link Btn
 				</a> --}}
 
 			</form>
@@ -54,13 +54,13 @@
 
 		// 	Swal.fire({
 		// 		title: "Are you Sure ?",
-		// 		  text:"You want to Delete the selected Invoice",
-		// 		  type: "warning",
-		// 		  showCancelButton: true,
-		// 		  confirmButtonColor: "#cc3f44",
-		// 		  confirmButtonText: "Delete",
-		// 		  closeOnConfirm: true,
-		// 		  html: false
+		// 		text:"You want to Delete the selected Invoice",
+		// 		type: "warning",
+		// 		showCancelButton: true,
+		// 		confirmButtonColor: "#cc3f44",
+		// 		confirmButtonText: "Delete",
+		// 		closeOnConfirm: true,
+		// 		html: false
 		// 	}).then((confirmed) => {
 		// 		if (confirmed) {
 		// 		$('#myform').submit(); // << here

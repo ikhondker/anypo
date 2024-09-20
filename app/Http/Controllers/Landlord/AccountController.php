@@ -134,10 +134,8 @@ class AccountController extends Controller
 	{
 		$this->authorize('view', $account);
 		$entity = static::ENTITY;
-
-		$services = Service::with('account')->byAccount()->orderBy('id', 'ASC')->paginate(10);
-
-		return view('landlord.accounts.show', compact('account', 'services', 'entity'));
+		//$services = Service::with('account')->byAccount()->orderBy('id', 'ASC')->paginate(10);
+		return view('landlord.accounts.show', compact('account',  'entity'));
 	}
 
 	/**

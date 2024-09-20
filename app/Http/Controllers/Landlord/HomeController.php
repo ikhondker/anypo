@@ -158,7 +158,7 @@ class HomeController extends Controller
 				'site.required' 		=> 'Site name is Required!',
 				'site.unique'			=> 'This site code is already in use. Please try another.',
 				'site.without_spaces'	=> 'Whitespace not allowed.',
-				'email.unique'			=> 'This email is already registered. Please login first and the try to purchase service.',
+				'email.unique'			=> 'This email is already registered. Please login first and then purchase this service.',
 			]);
 		}
 

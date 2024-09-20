@@ -34,7 +34,7 @@
 			<li class="sidebar-item {{ ($_route_name == 'invoices.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('invoices.index') }}"><i class="align-middle" data-lucide="circle"></i>All Invoices</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'payments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('payments.index') }}"><i class="align-middle" data-lucide="circle"></i>All Payments</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'services.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('services.index') }}"><i class="align-middle" data-lucide="circle"></i>Buy Users</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'invoices.generate' ? 'active' : '') }}"><a class="sidebar-link" href="{{  route('invoices.generate') }}"><i class="align-middle" data-lucide="circle"></i>Generate Invoice</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'invoices.generate' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('invoices.generate') }}"><i class="align-middle" data-lucide="circle"></i>Generate Invoice</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.index') }}"><i class="align-middle" data-lucide="circle"></i>Users</a></li>
 		</ul>
 	</li>

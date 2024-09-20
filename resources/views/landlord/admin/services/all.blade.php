@@ -52,6 +52,7 @@
 						<th class="align-middle">#</th>
 						<th class="align-middle">Name</th>
 						<th class="align-middle">Account</th>
+						<th class="align-middle">Date</th>
 						<th class="align-middle">Mnth-User-GB</th>
 						<th class="align-middle">Price</th>
 						<th class="align-middle">Addon?</th>
@@ -71,6 +72,7 @@
 								</a>
 							</td>
 							<td>{{ $service->account->name }}</td>
+							<td>{{ strtoupper(date('d-M-Y', strtotime( $service->start_date)))  }} </td>
 							<td>
 								<span class="badge badge-subtle-primary rounded-pill">{{ $service->mnth }}</span>
 								<span class="badge badge-subtle-primary rounded-pill">{{ $service->user }}</span>

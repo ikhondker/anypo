@@ -49,7 +49,7 @@
 				<tr>
 					<th>#</th>
 					<th>Site</th>
-					<th>Name</th>
+					<th>Site Name</th>
 					<th>Owner</th>
 					<th>End</th>
 					<th>User</th>

@@ -1,5 +1,3 @@
-
-
 <div class="card">
 	<div class="card-body">
 		<div class="row mb-3">
@@ -22,6 +20,7 @@
 					<th class="align-middle">#</th>
 					<th class="align-middle">Service Name</th>
 					<th class="align-middle">Account</th>
+					<th>Date</th>
 					<th class="align-middle">Licensed User</th>
 					<th class="align-middle">Fee/mo</th>
 				</tr>
@@ -33,13 +32,13 @@
 							<img src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $service->name }}" title="{{ $service->name }}">
 						</td>
 						<td>{{ $service->name }}</td>
+
 						<td>{{ $service->account->name }} </td>
+						<td>{{ strtoupper(date('d-M-Y', strtotime( $service->start_date)))  }} </td>
 						<td>
 							<span class="badge badge-subtle-success">{{ $service->user }}</span>
 						</td>
 						<td><x-landlord.list.my-number :value="$service->price" />$</td>
-
-
 					</tr>
 				@endforeach
 			</tbody>

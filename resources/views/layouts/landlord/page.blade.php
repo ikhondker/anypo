@@ -34,7 +34,7 @@
 	<x-landlord.nav-bar />
 
 	<!-- Form Success Message Box -->
-		@if (session('success'))
+	@if (session('success'))
 		<x-landlord.alerts.alert-success message="{{ session('success') }}" />
 	@endif
 	<!-- Form Error Message Box (including Form Validation ) -->
@@ -54,7 +54,7 @@
 					<div class="mb-3">
 						<!-- Logo -->
 						<a class="navbar-brand" href="{{ route('home') }}" aria-label="Space">
-							<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-whitet.svg') }}" alt="Logo" width="60" height="60">
+							<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-whitet.svg') }}" width="60" height="60" alt="Logo">
 						</a>
 						<!-- End Logo -->
 					</div>

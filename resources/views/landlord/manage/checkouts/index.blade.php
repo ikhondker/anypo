@@ -52,7 +52,7 @@
 						<th>Name</th>
 						<th>Date</th>
 						<th>Site</th>
-						<th>Price</th>
+						<th>Price ($)</th>
 						<th>TYpe</th>
 						<th>Status</th>
 						<th>Actions</th>

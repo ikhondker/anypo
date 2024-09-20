@@ -10,12 +10,14 @@ bo05
 https://code.visualstudio.com/docs/languages/markdown
 https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/
 
+# 4. Diagram
+====================================================================
+D:\My Works\lv-anypo-local\landlord\docs\flow.vsdx
 
 # 14. Ref Objects & Files
 ====================================================================
 - User->Ticket
-- D:\My Works\p2cmain\sslcommerz
-- HO-objects-lists-20221015.xlsx
+- BO-objects-lists-20240414.xlsx   C:\Users\pulok\Google Drive\Briefcase\lv-anypo
 - laravel-CRUD.txt
 - HO-1-objects.txt
 - HO-2-components.txt
@@ -23,29 +25,33 @@ https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/
 - Ref: laravel-project-post-create.txt
 - Tenant model only Not inside landlord directory
 - custom mail template is in fs06
-- Front: bootstrap icon update from 1.9.1 to 1.11.2
-
 
 # 13. Business Rules
 ====================================================================
 1. There will be maximum one unpaid invoice. Wont be able to create invoice if have any unpaid invoice
 2. Invoice cancellation is not possible
 3. no space limit for in P1
-15. Not possible to integrated any existing anypo user into a current account. may be P2
-11. now upto 2 decimal price round down in advance pay P2
-7. close account P2
+4. Not possible to integrated any existing anypo user into a current account. may be P2
+5. now upto 2 decimal price round down in advance pay P2
+6. close account P2
 3. manual join to mailing list P2
 4. separate notification TicketCreated.php for user and support P2
+
+# 4. Design Consideration
+====================================================================
+1. Intentionally kept index and all, have duplicate code. however keep seprated so that back offcie can have sperate itnerfac. alos export seperate
+2. 
 
 # 12. Assumption and limitation
 ====================================================================
 1. Used the same User model for both landlord and tenant
-2. end use wont have access to notification only email . Admin/agent/manager will have access to notification
-3. user can not register to an existing account. Account admin need to create user
-1. end use wont have access to notification only email . Admin/agent/manager will have access to notification
-2. Add-on buy will be free and will be charge form next bill cycle
-4. completely remove JS form footer.blade.php check.
-5. automatically get feather icons !! check landlord.manage.tables.controllers view
+2. End use wont have access to notification only email . Only Backoffice may have access to notification
+3. User can not register to an existing account. Account admin need to create user.
+4. Add-on buy will be free and will be charge form next bill cycle (check??)
+5. Completely remove JS form footer.blade.php check.!!?
+6. Aan not just create advance invoices. Must have to pay to accept
+7. add-on how the date and charge is fined?
+
 
 
 # 11. Pricing
@@ -114,8 +120,6 @@ https://laracasts.com/discuss/channels/laravel/how-to-login-with-different-model
 https://pusher.com/tutorials/multiple-authentication-guards-laravel/#run-the-application
 https://techvblogs.com/blog/multiple-authentication-guards-laravel-9
 
-<i data-lucide="refresh-cw"></i>
-
 # 7. TODO - Open
 ====================================================================
 110. MenuSeeder for Workbench issue
@@ -123,7 +127,6 @@ https://techvblogs.com/blog/multiple-authentication-guards-laravel-9
 109. button show save. card cards
 108. bypass payment and create tenant for sysadmin
 106. mail-lists views
-107. {!! nl2br($ticket->content) !!}
 106. breadcrumb in landlord app
 105. move attachment download to a verified route
 102. country icon size
@@ -147,129 +150,86 @@ https://techvblogs.com/blog/multiple-authentication-guards-laravel-9
 79. ticket category
 87. tenant table -> add columns. its inside data
 90. Verification mail to ques event(new Registered($user));
-94. var_dump(__METHOD__); var_dump(__FUNCTION__);
 96. invoice and receipt drop-down policy check
 98. error message bullet point in main pages
 
 # 6. P2 TODO
 ====================================================================
-92. add manager call back in tickets
-98. predefined text in support ticket
-97. date picker
-2. storage usages statistics
-67. prepare pest and dusk test cases
-2. storage usages statistics
-6. bug report/feature request
-9. auth check for route tables
-13. component for create and list <a> with icons
-19. chatbot
-31. laravel 9 disable auto login after registration
-47. mail when a user activated UserController ->destroy
-63. captcha in contact us page
+1.	add manager call back in tickets
+2.	predefined text in support ticket
+3.	date picker
+4.	storage usages statistics
+5.	prepare pest and dusk test cases
+6.	storage usages statistics
+7.	bug report/feature request
+8.	auth check for route tables
+9.	component for create and list <a> with icons
+10.	chatbot
+11.	 laravel 9 disable auto login after registration
+12.	 mail when a user activated UserController ->destroy
+13.	 captcha in contact us page
+14. storage as addon P2
+
 
 # 6. Task Scheduling Billing
 ====================================================================
+...php
 $schedule->job(new Billing)->everyFiveMinutes();
 php artisan queue:listen --timeout=1200
-Running the Scheduler
- The schedule:run Artisan command will evaluate all of your scheduled tasks and determine if they need to run based on the server's current time.
-* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+...
 
--- don't need to create command !!
+Running the Scheduler
+The schedule:run Artisan command will evaluate all of your scheduled tasks and determine if they need to run based on the server's current time.
+...
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+...
+
+- don't need to create command !!
+...php
 php artisan make:command BillingCron --command=billing:cron
 edit app/Console/Commands/DemoCron.php
+...
 
+...
 app/Console/Kernel.php
 	$schedule->command('billing:cron')
-								 ->everyMinute();
+		->everyMinute();
 		->daily();
 		->everyFiveMinutes();
 		->dailyAt('13:00');	Run the task every day at 13:00
 
 $schedule->command('billing:cron')->everyFiveMinutes();
+.. 
 
 Step 4: Run Scheduler Command For Test
 php artisan schedule:run
 
+...php
 php artisan
  billing
  billing:cron	Command description
 
 php artisan schedule:list
-
-# 5. SSLCommerz
-====================================================================
-2. Laravel sslcommerz => https://github.com/sslcommerz/SSLCommerz-Laravel
-Step 1: Download and extract the library files.
-Step 2: Copy the Library folder and put it in the laravel project's app/ directory. If needed, then run composer dump -o.
-Step 3: Copy the config/sslcommerz.php file into your project's config/ folder.
-Step 4: Copy and put 3 key-value pairs from env_example to your .env file.
-Step 5: Add exceptions for VerifyCsrfToken middleware accordingly.
-
-
-Copy SslCommerzPaymentController into your project's Controllers folder.
-Copy defined routes from routes/web.php into your project's route file.
-Copy views from resources/views/*.blade.php.
-
->> my note: add @csrf in exampleEasycheckout.blade.php. http://localhost:8000/example1 works
-
-Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
-
-.env
-APP_URL=http://localhost
-to
-APP_URL=http://localhost:8000
-success/cancel should work
-
-VerifyCsrfToken
-	protected $except = [
-				'/success',
-				'/cancel',
-				'/fail',
-				'/ipn',
-				'/pay-via-ajax', // only required to run example codes. Please see bellow.
-		];
-
-VISA:
-Card Number: 4111111111111111
-Exp: 12/25
-CVV: 111
+...
 
 
 # 4. Authentication
 ====================================================================
-Copy:
-	D:\laravel\ho03\resources\views\auth
-	D:\laravel\ho03\app\Http\Controllers\Auth
-
-- system@example.com/password
-- homepage
-- user seeder
-- login
-- Registration
-- reset password
-- create user
-- profile
-- logout http://localhost:8000/
-
-Steps
-	- auth.blade.php layout
-	- page: login.blade.php
-	- seed user
- 	- http://localhost:8000/login
-
 -- post login redirect to dashboard
+...
 LoginController.php
 	protected $redirectTo = RouteServiceProvider::HOME;
 RouteServiceProvider.php
 	public const HOME = '/home';
 	public const HOME = '/dashboards';
+...
+
 
 # 3. Package
 ====================================================================
 - install and configure intervention pkg
-	https://github.com/Intervention/image
+- https://github.com/Intervention/image
+	...
 	composer require intervention/image
 	Config\app.php	=>
 	'aliases' => Facade::defaultAliases()->merge([
@@ -277,8 +237,9 @@ RouteServiceProvider.php
 	// IQBAL 7-FEB-23
 				'Image' => Intervention\Image\Facades\Image::class,
 		])->toArray(),
+	...
 
-- inbstal dompdf
+- install dompdf
 	https://github.com/barryvdh/laravel-dompdf
 	composer require barryvdh/laravel-dompdf
 
@@ -299,26 +260,7 @@ Route::get('/employee/pdf', [EmployeeController::class, 'createPDF']);
 # 2. Setup baseline
 ====================================================================
 - pagination ==> laravel-prototype.txt
-- modify and run migration for basic table
-- modify and run seeder as needed
-- http://localhost:8000/tables
-- http://localhost:8000/test
-- http://localhost:8000/testrun
-- http://localhost:8000/design
 
-
-# 1. Template page
-====================================================================
-- php artisan db:seed --class=EntitySeeder
-- php artisan db:seed --class=TemplateSeeder
-- set route template
-- number, date/validation
-- dropdown
-- view/add/edit/inactive
-- export
-- log event
-- validation
-- created_by and updated_by
 
 # 0. DONE
 ====================================================================

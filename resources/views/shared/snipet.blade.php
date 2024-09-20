@@ -23,6 +23,12 @@ create
 	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 </a>
 
+
+<i data-lucide="refresh-cw"></i>
+{!! nl2br($ticket->content) !!}
+94. var_dump(__METHOD__); var_dump(__FUNCTION__);
+
+
 <table class="table table-sm my-2">
 	<tbody>
 

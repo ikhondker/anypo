@@ -149,7 +149,7 @@ class CreateTenant implements ShouldQueue
 		$account 	= Account::where('id', $account_id)->first();
 		$config 	= Config::first();
 		$system 	= User::where('id', $config->system_user_id)->first();
-		$system->notify(new ServicePurchased($user, $account));
+		$system->notify(new ServicePurchased($system, $account));
 
 		// copy logo and avatar default files Not needed after AWS CDN
 		// Log::debug('7. Calling copyCheckoutFiles');

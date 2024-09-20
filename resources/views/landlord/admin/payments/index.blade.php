@@ -46,6 +46,7 @@
 				<thead>
 					<tr>
 						<th class="align-middle">#</th>
+						<th class="align-middle">Pay ID</th>
 						<th class="align-middle">Summary</th>
 						<th class="align-middle">Date</th>
 						<th class="align-middle">Invoice #</th>
@@ -60,12 +61,12 @@
 							<td>
 								<img src="{{ Storage::disk('s3l')->url('logo/'.$payment->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $payment->account->name }}" title="{{ $payment->account->name }}">
 							</td>
+							<td>{{ $payment->id }}</td>
 							<td>
 								<a href="{{ route('payments.show', $payment->id) }}" class="text-muted">
 									<strong>{{ Str::limit($payment->summary, 20) }}</strong>
 								</a>
 							</td>
-	
 							<td><x-landlord.list.my-date :value="$payment->pay_date" /></td>
 							<td>{{ $payment->invoice->invoice_no }}</td>
 							<td><x-landlord.list.my-number :value="$payment->amount"/> USD</td>
