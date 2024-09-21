@@ -34,7 +34,7 @@ use App\Jobs\Landlord\CreateInvoice;
 use Str;
 use Illuminate\Support\Facades\Log;
 
-class Billing implements ShouldQueue
+class ProcessBilling implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -74,9 +74,14 @@ class Billing implements ShouldQueue
 		// save lines into processes and pass to invoice creation
 		$process			= new Process();
 		$process->job_code	= 'BILLING';
+		$process->parameter	= 'ALL';
+		$process->status	= 'Submitted';
 		$process->save();
-		Log::channel('bo')->info('Jobs.Landlord.Billing.handle process_id = '. $process->id);
 
+		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle process_id = '. $process->id);
+		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle config->days_gen_bill = '. $config->days_gen_bill);
+		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle end date before  = '. now()->addDays($config->days_gen_bill));
+		
 		$accounts = Account::where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
 			->where('next_bill_generated', false)
 			//->where('id', 1005 )
@@ -84,14 +89,14 @@ class Billing implements ShouldQueue
 			->get();
 
 		foreach ($accounts as $account) {
-			// Log::debug('Jobs.Landlord.Billing.handleInvoice account_id = ' . $account->id);
+			//Log::debug('Jobs.Landlord.Billing.handleInvoice account_id = ' . $account->id);
 			// Generate invoice 5 days before expire
 			$diff = now()->diffInDays($account->end_date);
 			if ($diff <= $config->days_gen_bill) {
-				Log::channel('bo')->info('Jobs.Billing.handle Generating Invoice for account_id = ' . $account->id);
+				Log::channel('bo')->info('Jobs.ProcessBilling.handle Generating Invoice for account_id = ' . $account->id);
 				CreateInvoice::dispatch($account->id, 1, $process->id);
 			} else {
-				Log::channel('bo')->info('Jobs.Billing.handle Skipping account_id = ' . $account->id. ". Days remains ". $diff);
+				Log::channel('bo')->info('Jobs.ProcessBilling.handle Skipping account_id = ' . $account->id. " as days remains ". $diff);
 			}
 		}
 	}

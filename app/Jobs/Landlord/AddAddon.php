@@ -52,7 +52,7 @@ class AddAddon implements ShouldQueue
 		Log::debug('Jobs.Landlord.AddAddon 1. Calling createServiceForCheckout');
 		$service_id = bo::createServiceForCheckout($this->checkout_id);
 
-		// generate first invoice for this account and notify
+		// generate invoice and notify 
 		Log::debug('Jobs.Landlord.AddAddon 2. Calling createInvoiceForCheckout');
 		$invoice_id = bo::createInvoiceForCheckout($this->checkout_id);
 		if ($invoice_id == 0){
@@ -63,12 +63,12 @@ class AddAddon implements ShouldQueue
 			$checkout->save();
 		}
 
-		// pay this first invoice and notify
+		// pay this invoice and notify
 		Log::debug('Jobs.Landlord.AddAddon 3. Calling payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
 
 		// update product addon sold_qty column
-		$addon			= Product::where('id', $checkout->product_id )->first();
+		$addon				= Product::where('id', $checkout->product_id )->first();
 		$addon->sold_qty	= $addon->sold_qty+1;
 		$addon->save();
 

@@ -52,8 +52,6 @@ D:\My Works\lv-anypo-local\landlord\docs\flow.vsdx
 6. Aan not just create advance invoices. Must have to pay to accept
 7. add-on how the date and charge is fined?
 
-
-
 # 11. Pricing
 ====================================================================
 ## current
@@ -62,24 +60,25 @@ D:\My Works\lv-anypo-local\landlord\docs\flow.vsdx
 		5 	addition user 	29-25
 
 ## initial
-		in price page no multiple options
-		14.99$/user min 3 user i.e. 45$/Month
-		9.99$/user min 3 user i.e. 29$/Month
-		then per user 6.99$ in a bundle of 3 18$
-		archive mode 9.99$/month
+	in price page no multiple options
+	14.99$/user min 3 user i.e. 45$/Month
+	9.99$/user min 3 user i.e. 29$/Month
+	then per user 6.99$ in a bundle of 3 18$
+	archive mode 9.99$/month
 
 ## account creation
-			- 1 month without any add-on
-						- can create 3/6/12 month invoice if no earlier due, which
-						- invoice extend account validity
+	- 1 month without any add-on
+	- can create 3/6/12 month invoice if no earlier due, which
+	- invoice extend account validity
+
 ## add-on
-	 - add-on is NOT monthly basis
-						- can add/remove any time
-						- if current billing is one month will be added from next bill. do the same when cancel
-						- if current billing is 3/6/12 month, the account validity is reduce accordingly. reverse when cancel
-						- what happened if not enough days to adjust => add next cycle
-						- what happened if multiple addone is bought consecutively?
-						- everything is in services.index when account_id <> ''
+	- add-on is NOT monthly basis
+	- can add/remove any time
+	- if current billing is one month will be added from next bill. do the same when cancel
+	- if current billing is 3/6/12 month, the account validity is reduce accordingly. reverse when cancel
+	- what happened if not enough days to adjust => add next cycle
+	- what happened if multiple add-on is bought consecutively?
+	- Everything is in services.index when account_id <> ''
 
 # 10. container width()
 ====================================================================

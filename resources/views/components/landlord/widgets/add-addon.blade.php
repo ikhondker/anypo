@@ -40,7 +40,7 @@
 											class="btn btn-primary sw2-advance"
 											data-entity="Add-On" data-name="{{ $addon->name }}"
 											data-status="BUY" data-bs-toggle="tooltip"
-											data-bs-placement="top" title="Add-on">
+											data-bs-placement="top" title="Add-on"><i data-lucide="shopping-cart"></i> 
 											Buy Now
 										</a>
 								</div>

@@ -51,10 +51,11 @@
 					<th>Site</th>
 					<th>Site Name</th>
 					<th>Owner</th>
-					<th>End</th>
+					<th>Period</th>
 					<th>User</th>
 					<th>Amount</th>
 					<th>Status</th>
+					<th>Billed</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -75,10 +76,11 @@
 							</a>
 						</td>
 						<td>{{ $account->owner->name }}</td>
-						<td><x-landlord.list.my-date :value="$account->start_date" />-<x-landlord.list.my-date :value="$account->end_date" /></td>
+						<td><x-landlord.list.my-date :value="$account->start_date" /> - <x-landlord.list.my-date :value="$account->end_date" /></td>
 						<td><span class="badge badge-subtle-primary">{{ $account->user }}</span></td>
 						<td><x-landlord.list.my-number :value="$account->price"/>$</td>
 						<td><x-landlord.list.my-badge :value="$account->status->name" badge="{{ $account->status->badge }}" /></td>
+							<td><x-landlord.list.my-enable :value="$account->next_bill_generated" /></td>
 						<td>
 							<a href="{{ route('accounts.show',$account->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>

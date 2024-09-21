@@ -13,6 +13,6 @@ class Process extends Model
 	//use HasFactory, AddCreatedUpdatedBy;
 	use HasFactory;
 	protected $fillable = [
-		'job_code', 'updated_at',
+		'job_code', 'parameter', 'status', 'updated_at',
 	];
 }

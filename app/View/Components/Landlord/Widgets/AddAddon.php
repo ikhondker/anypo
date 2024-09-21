@@ -20,9 +20,9 @@ class AddAddon extends Component
 	 */
 	public function __construct()
 	{
-		$this->account_id = auth()->user()->account_id;
-		$this->account = Account::where('id', $this->account_id )->first();
-		$this->addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
+		$this->account_id 	= auth()->user()->account_id;
+		$this->account 		= Account::where('id', $this->account_id )->first();
+		$this->addons 		= Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 	}
 
 	/**

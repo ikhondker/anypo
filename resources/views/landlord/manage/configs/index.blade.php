@@ -1,12 +1,11 @@
 @extends('layouts.landlord.app')
-@section('title', 'config')
+@section('title', 'Configuration')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Configs</li>
+	<li class="breadcrumb-item active">Configuration</li>
 @endsection
 
 @section('content')
 
-	<a href="{{ route('configs.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Config</a>
 	<h1 class="h3 mb-3">All Configs</h1>
 
 	<div class="card">

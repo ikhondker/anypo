@@ -6,7 +6,16 @@
 
 @section('content')
 
-	<h1 class="h3 mb-3">My Payments</h1>
+<x-landlord.page-header>
+	@slot('title')
+		My Payments
+	@endslot
+	@slot('buttons')
+			<x-landlord.actions.account-actions/>
+		
+	@endslot
+</x-landlord.page-header>
+
 	<div class="card">
 		<div class="card-body">
 			<div class="row mb-3">

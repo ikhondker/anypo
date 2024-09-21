@@ -343,14 +343,14 @@ class AccountController extends Controller
 		Log::channel('bo')->info('landlord.account.addAddon buying new addon account = '. $account_id . ' product_id = ' . $addon_id);
 
 		if (auth()->user()->account_id == '') {
-			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
+			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not buy addon as no valid Account Found!');
 		}
 
-		// update account with user+GB+service name
+		// check for unpaid invoices
 		$account			= Account::where('id', $account_id)->first();
 		if ($account->next_bill_generated) {
-			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
-			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id = ' . $account->id . '! Can not create more Invoices.');
+			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' addon can not be added.');
+			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id = ' . $account->id . '! Please pay unpaid invoice, before buying new addon.');
 		}
 
 		// get product
@@ -413,6 +413,7 @@ class AccountController extends Controller
 		$checkout->gb				= $product->gb;
 
 		$checkout->start_date		= now();
+		// check
 		$checkout->end_date			= now()->addMonth($product->mnth);
 
 		$checkout->status_code		= LandlordCheckoutStatusEnum::DRAFT->value;

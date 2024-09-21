@@ -7,7 +7,16 @@
 
 @section('content')
 
-	<h1 class="h3 mb-3">Generate Invoice & Pay</h1>
+<x-landlord.page-header>
+	@slot('title')
+		Generate Invoice & Pay
+	@endslot
+	@slot('buttons')
+			<x-landlord.actions.account-actions/>
+		
+	@endslot
+</x-landlord.page-header>
+
 	<div class="card">
 		<div class="card-header">
 			<h5 class="card-title">Generate Invoice & Pay</h5>

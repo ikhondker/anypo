@@ -18,6 +18,13 @@ php artisan make:job Landlord/AccountsArchive
 -------------------------------------------------------------------------------------------------
 
 
+
+# 13. Form top Drop-down Actions 
+-------------------------------------------------------------------------------------------------
+php artisan make:component Landlord\Actions\AccountActions
+xxphp artisan make:component Tenant\Actions\Admin\UserActionsIndex
+
+
 # 13. Notification 
 -------------------------------------------------------------------------------------------------
 php artisan notifications:table

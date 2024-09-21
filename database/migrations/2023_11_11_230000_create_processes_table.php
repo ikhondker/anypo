@@ -14,6 +14,8 @@ return new class extends Migration
 		Schema::create('processes', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('job_code')->nullable();
+			$table->string('parameter')->nullable();
+			$table->string('status')->nullable();
 			$table->timestamp('created_at')->useCurrent();
 			$table->timestamp('updated_at')->useCurrent();
 		});

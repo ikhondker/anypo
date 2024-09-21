@@ -7,12 +7,19 @@
 @endsection
 
 @section('content')
-	<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end m-1"><i class="fas fa-plus"></i> New Ticket</a>
-	@if (auth()->user()->isSupport())
-		<a href="{{ route('accounts.index') }}" class="btn btn-primary float-end m-1"><i class="fas fa-list"></i> View all</a>
-	@endif
-	
-	<h1 class="h3 mb-3">Billing Account Overview</h1>
+
+	<x-landlord.page-header>
+		@slot('title')
+			Billing Account Overview
+		@endslot
+		@slot('buttons')
+				<x-landlord.actions.account-actions accountId="{{ $account->id }}"/>
+				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
+				@if (auth()->user()->isSupport())
+					<a href="{{ route('accounts.index') }}" class="btn btn-primary float-end me-1"><i class="fas fa-list"></i> View all</a>
+				@endif
+		@endslot
+	</x-landlord.page-header>
 
 	<div class="card">
 		<div class="card-header">
@@ -77,7 +84,7 @@
 								<x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
 								<tr>
 									<th scope="row">Created At :</th>
-									<td>{{ $account->created_at }}</td>
+									<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($account->created_at )))  }}</td>
 								</tr>
 							</tbody>
 						</table>

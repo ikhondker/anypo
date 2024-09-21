@@ -77,7 +77,6 @@
 	- update account user limit and price
 	- Done
 
-	<x-landlord.widgets.add-addon/> 
 	- service/index.blade.php
 	- <x-landlord.widget.add-addon/>
 	- route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id])
@@ -87,19 +86,26 @@
 	-> Stripe ->
 	- route('checkout.success-addon') => HomeController.successAddon
 	- AddAddon::dispatch($checkout->id);
+	- bo::createServiceForCheckout($this->checkout_id);
 	- bo::createInvoiceForCheckout($this->checkout_id);
 		<<TABLE>>  $invoice->save();
 	- bo::payCheckoutInvoice($checkout->invoice_id );
 		<<TABLE>>  $payment->save();
+	$account->user		= $account->user + $addon->user;
+	$account->price		= $account->price + $addon->price;
+	<<TABLE>> $account->save();
+	$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
+	<<TABLE>> $checkout->update();
 
 
-# 1. create Monthly Subscription Invoice (by Process)
+# 1. create Monthly Subscription Invoice (by Billing Process)
 ====================================================================
 	- process/index.blade.php
 	- route('processes.gen-invoice-all')
 	- ProcessController.genInvoiceAll
-	- Billing::dispatch();
-		- CreateInvoice::dispatch($account->id, 1);
+	- ProcessBilling::dispatch();
+		- CreateInvoice::dispatch($account->id, 1, $process->id);
+
 		- <<TABLE>> $invoice->save();
 
 # 2. Pay Generated Subscription Invoice

@@ -63,7 +63,7 @@ class ServiceController extends Controller
 	{
 		$this->authorize('viewAny',Service::class);
 
-		$services = Service::with('account')->byAccount()->orderBy('id', 'ASC')->paginate(10);
+		$services = Service::with('account')->byAuthAccount()->orderBy('id', 'ASC')->paginate(10);
 
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 

@@ -31,7 +31,7 @@ use App\Http\Requests\Landlord\Manage\UpdateProcessRequest;
 # 3. Helpers
 # 4. Notifications
 # 5. Jobs
-use App\Jobs\Landlord\Billing;
+use App\Jobs\Landlord\ProcessBilling;
 use App\Jobs\Landlord\AccountsArchive;
 # 6. Mails
 # 7. Rules
@@ -53,7 +53,16 @@ class ProcessController extends Controller
 	 */
 	public function index()
 	{
-		return view('landlord.manage.processes.index');
+		$this->authorize('viewAny', Process::class);
+		$processes = Process::query();
+		if (request('term')) {
+			$processes->where('id', 'Like', '%'.request('term').'%');
+		}
+		$processes = $processes->orderBy('id', 'ASC')->paginate(40);
+
+		return view('landlord.manage.processes.index', compact('processes'));
+
+		
 	}
 
 
@@ -64,7 +73,8 @@ class ProcessController extends Controller
 	 */
 	public function create()
 	{
-		abort(403);
+		$this->authorize('create', Process::class);
+		return view('landlord.manage.processes.create');
 	}
 
 	/**
@@ -134,8 +144,8 @@ class ProcessController extends Controller
 	{
 		// Run process
 		Log::debug('landlord.process.genInvoiceAll Running process to generate all invoices.');
-		Log::debug('landlord.process.genInvoiceAll Dispatch job Billing.');
-		Billing::dispatch();
+		Log::debug('landlord.process.genInvoiceAll Dispatch job ProcessBilling.');
+		ProcessBilling::dispatch();
 		return redirect()->route('processes.index')->with('success','Invoice Generation Process submitted successfully.');
 	}
 

@@ -1,20 +1,20 @@
 @extends('layouts.landlord.app')
-@section('title','Edit config')
+@section('title','Edit Configuration')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('configs.index') }}" class="text-muted">Configs</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('configs.index') }}" class="text-muted">Edit Configuration</a></li>
 	<li class="breadcrumb-item active">{{ $config->name }}</li>
 @endsection
 
 
 @section('content')
 
-	<h1 class="h3 mb-3">EditConfig</h1>
+	<h1 class="h3 mb-3">Edit Configuration</h1>
 
 	<div class="card">
 		<div class="card-header">
 
-			<h5 class="card-title">Edit Billing Config</h5>
-			<h6 class="card-subtitle text-muted">EditConfig Details.</h6>
+			<h5 class="card-title">Edit Configuration</h5>
+			<h6 class="card-subtitle text-muted">Edit Configuration Details.</h6>
 		</div>
 		<div class="card-body">
 			<form id="myform" action="{{ route('configs.update', $config->id) }}" method="POST" enctype="multipart/form-data">
@@ -24,7 +24,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th width="30%">Photo</th>
+							<th width="30%">Logo</th>
 							<td>
 								<div class="">
 									<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" class="rounded-circle img-responsive mt-2" width="128" height="128" alt="{{ $config->name }}" title="{{ $config->name }}"/>

@@ -4,12 +4,17 @@
 	<li class="breadcrumb-item active">Users</li>
 @endsection
 
-
-
 @section('content')
 
-	<a href="{{ route('users.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New User</a>
-	<h1 class="h3 mb-3">All Users</h1>
+	<x-landlord.page-header>
+		@slot('title')
+			All Users
+		@endslot
+		@slot('buttons')
+				<x-landlord.actions.account-actions/>
+				<a href="{{ route('users.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New User</a>
+		@endslot
+	</x-landlord.page-header>
 
 	<div class="card">
 		<div class="card-body">
