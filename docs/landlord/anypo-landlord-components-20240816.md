@@ -2,7 +2,8 @@ php artisan make:component Admin/Form/Input
 
 
 # 14. Jobs 
--------------------------------------------------------------------------------------------------
+====================================================================
+~~~
 php artisan queue:listen
 
 php artisan make:job Landlord/CreateTenant
@@ -13,20 +14,22 @@ php artisan make:job Landlord/CreateInvoice
 php artisan make:job Landlord/SubscriptionInvoicePaid
 xphp artisan make:job Landlord/GenerateAllSubscriptionInvoice
 php artisan make:job Landlord/AccountsArchive
-
-# -13. View Composer 
--------------------------------------------------------------------------------------------------
+~~~
+# 13. View Composer 
+====================================================================
 
 
 
 # 13. Form top Drop-down Actions 
--------------------------------------------------------------------------------------------------
+====================================================================
+~~~
 php artisan make:component Landlord\Actions\AccountActions
 xxphp artisan make:component Tenant\Actions\Admin\UserActionsIndex
-
+~~~
 
 # 13. Notification 
--------------------------------------------------------------------------------------------------
+====================================================================
+~~~
 php artisan notifications:table
 
 php artisan make:notification Test			HomeController.php
@@ -49,14 +52,14 @@ php artisan make:notification InvoicePaid	Provision.php
 php artisan make:notification InvoiceDue
 
 php artisan make:notification Contacted
-
+~~~
 # 13. Mail 
--------------------------------------------------------------------------------------------------
-ContactUsMail
-_landlord_setup	-> _config
+====================================================================
+- ContactUsMail
+- _landlord_setup	-> _config
 
 # Cards
--------------------------------------
+====================================================================
 php artisan make:component Landlord/Card/Header <x-landlord.card.header title="Your Title Here "/>
 php artisan make:component Card/Test
 php artisan make:component Card/Header		<x-card.header title="Your Title Here "/>
@@ -70,7 +73,7 @@ php artisan make:component CardFooterList	<x-card-footer-list object="Template"/
 php artisan make:component CardFooter		<x-card-footer object="Template"/>
 
 # Show
--------------------------------------
+====================================================================
 xxphp artisan make:component Show/Id		 <x-show.id id="{{ $training->id }}"/>
 php artisan make:component Show/MyId		 <x-show.my-id id="{{ $training->id }}"/>
 php artisan make:component Landlord/Show/MyText		<x-show.my-text value="{{ $user->country }}" label="Country"/>

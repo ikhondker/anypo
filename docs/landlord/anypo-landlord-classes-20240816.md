@@ -1,11 +1,11 @@
 User (4 tables)
 
-Ren User.php modle to org-User.php
+Rename User.php modle to org-User.php
 
 
 # Objects/Classes
---------------------------
-
+====================================================================
+~~~
 php artisan make:model User --all
 php artisan make:model Landlord\Menu --all
 php artisan make:model Landlord\Status --all
@@ -58,19 +58,22 @@ php artisan make:model UserGroup --migration	php artisan make:seeder UserGroupSe
 php artisan make:model InvoiceGroup --migration	php artisan make:seeder InvoiceGroupSeeder
 php artisan make:model AccountService --all
 [?? php artisan make:model Hisotry --all]
+~~~
 
-
-
-# Event and listner ---------------------------
+# Event and listener 
+====================================================================
+~~~
 PS D:\laravel\bo05> php artisan make:event PodcastProcessed
 INFO  Event [D:\laravel\bo05\app/Events/PodcastProcessed.php] created successfully.  
 PS D:\laravel\bo05> php artisan make:listener SendPodcastNotification --event=PodcastProcessed
 INFO  Listener [D:\laravel\bo05\app/Listeners/SendPodcastNotification.php] created successfully.  
+~~~
 
-# Resue ---------------------------
-ChartController.php
-HomeController.php
-TestController.php
+# Reusable Controllers
+====================================================================
+- ChartController.php
+- HomeController.php
+- TestController.php
 
 >>[REUSE] php artisan make:policy UserPolicy --model=User
 	php artisan make:model User --all
@@ -94,12 +97,15 @@ TestController.php
 	NotificationController.php
 	PaymentController.php
 
-# notification------------------------------
-BO-development-log-20230401.txt
+# Notifications
+====================================================================
+- BO-development-log-20230401.txt
 
 
-# mail------------------------------
+# mails
+====================================================================
+~~~
 php artisan make:mail DemoMail
 xx php artisan make:mail WelcomeMail	app/Http/Controllers/Auth/RegisterController.php
 php artisan make:mail ContactUsMail
-
+~~~

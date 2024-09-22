@@ -189,29 +189,14 @@ class HomeController extends Controller
 			'metadata' 		=> ['trx_type' => 'CHECKOUT'],
 		]);
 
-		// create check out row
-		$checkout_id = self::createCheckoutRow($session->id,$request->input('site'),$request->input('account_name'),$request->input('email'));
-		Log::debug('landlord.home.checkoutStripe created checkout_id = '. $checkout_id);
-
-		return redirect($session->url);
-	}
-
-	// used to pay subscription invoices
-	public function createCheckoutRow($sessionId, $site, $account_name, $email)
-	{
-
 		// create checkout row
 		$checkout					= new Checkout;
-		//$checkout->session_id		= $session->id;
-		$checkout->session_id		= $sessionId;
+		$checkout->session_id		= $session->id;
 		$checkout->checkout_date	= date('Y-m-d H:i:s');
-		//$checkout->site			= Str::lower($request->input('site'));
-		//$checkout->account_name	= $request->input('account_name');
-		$checkout->site				= Str::lower($site);
-		$checkout->account_name		= $account_name;
+		$checkout->site				= Str::lower($request->input('site'));
+		$checkout->account_name		= $request->input('account_name');
 
-		// make sure when system create a tenant it is created under new user
-		if ((auth()->check()) && (! auth()->user()->isSystem()) ) {
+		if (auth()->check()) {
 			$checkout->existing_user	= true;
 			$checkout->owner_id			= auth()->user()->id;
 			$checkout->email			= auth()->user()->email;
@@ -223,12 +208,12 @@ class HomeController extends Controller
 			$checkout->country			= auth()->user()->country;
 		} else {
 			$checkout->existing_user	= false;
-			$checkout->email			= $email;
+			$checkout->email			= $request->input('email');
 		}
 
 		// get product
 		$product = Product::where('id', config('bo.DEFAULT_PRODUCT_ID') )->first();
-
+		
 		$checkout->product_id		= $product->id;
 		$checkout->product_name		= $product->name;
 		$checkout->tax				= $product->tax;
@@ -242,13 +227,14 @@ class HomeController extends Controller
 		$checkout->end_date			= now()->addMonth($product->mnth);
 
 		$checkout->status_code		= LandlordCheckoutStatusEnum::DRAFT->value;
-		//$checkout->ip				= $request->ip();
-		$checkout->ip				= request()->ip();
+		$checkout->ip				= $request->ip();
 
 		$checkout->save();
-		return $checkout->id;
+		//$checkout_id				= $checkout->id;
 
+		return redirect($session->url);
 	}
+
 	// used to pay subscription invoices
 	public function paymentStripe(Request $request)
 	{

@@ -50,6 +50,7 @@
 					<tr>
 						<th>#</th>
 						<th>Name</th>
+						<th>Email</th>
 						<th>Date</th>
 						<th>Site</th>
 						<th>Price ($)</th>
@@ -65,6 +66,7 @@
 								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo">
 							</td>
 							<td>{{ $checkout->account_name }}</td>
+							<td>{{ $checkout->email }}</td>
 
 							<td><x-landlord.list.my-date :value="$checkout->checkout_date"/></td>
 							<td>{{ $checkout->site }}</td>

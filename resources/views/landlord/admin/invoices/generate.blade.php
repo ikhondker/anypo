@@ -9,7 +9,7 @@
 
 <x-landlord.page-header>
 	@slot('title')
-		Generate Invoice & Pay
+		Generate & Pay Invoice
 	@endslot
 	@slot('buttons')
 			<x-landlord.actions.account-actions/>
@@ -19,7 +19,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<h5 class="card-title">Generate Invoice & Pay</h5>
+			<h5 class="card-title">Generate & Pay Invoice</h5>
 			{{-- <h6 class="card-subtitle text-muted">Generate Invoice & Pay.</h6> --}}
 		</div>
 		<div class="card-body">
@@ -89,7 +89,7 @@
 
 				<div class="mb-3 float-end">
 					<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ url()->previous() }}"><i class="far fa-times-circle"></i></i> Back</a>
-					<button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i class="fas fa-dollar-sign"></i> Generate</button>
+					<button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i class="fas fa-dollar-sign"></i> Proceed to Pay</button>
 				</div>
 			</form>
 		</div>

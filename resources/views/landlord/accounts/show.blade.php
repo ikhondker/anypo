@@ -2,7 +2,9 @@
 @section('title','Account')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('accounts.index') }}" class="text-muted">Accounts</a></li>
+	@if (auth()->user()->isSupport())
+		<li class="breadcrumb-item"><a href="{{ route('accounts.index') }}" class="text-muted">Accounts</a></li>
+	@endif
 	<li class="breadcrumb-item active">{{ $account->name }}</li>
 @endsection
 

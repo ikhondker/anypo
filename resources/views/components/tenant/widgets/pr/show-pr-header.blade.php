@@ -12,7 +12,6 @@
 				<h6 class="card-subtitle text-muted">Key information of a Purchase Requisitions</h6>
 			</div>
 			<div class="card-body">
-
 				<table class="table table-sm my-2">
 					<tbody>
 						
@@ -42,8 +41,8 @@
 								@endif
 							</td>
 						</tr>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

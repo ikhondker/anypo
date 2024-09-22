@@ -1,7 +1,4 @@
-
-
-
-# 4. Flow 
+# 9. Business Flow 
 ====================================================================
 1. Pricing->Checkout->Stripe Success(provision=Create User+Account+Service i.e. Purchase)->upgrade => bill next cycle
 2. Register->Login->Pricing->Checkout->Success(provision=Create Account+service i.e. Purchase)->upgrade => bill next cycle
@@ -10,20 +7,7 @@
 5. job->CreateTenant->createCheckoutAccount : Defaulted
 
 
-
-# 1. Functional details 
-====================================================================
-1. Only admin  user can be add add-on
-3. check if can mere checkout create row both form check out and buy add-on
-4. Generate and Pay invoice by end admin user
-...blade
-	<a class="btn btn-primary btn-sm" href="{{ route('invoices.generate') }}">
-		<i class="bi bi-plus-square me-1"></i> Generate Invoice
-	</a>
-...
-
-
-# 3. Invoice and payment Codes
+# 8. Invoice and Payment Codes
 ==================================================
 1. Invoice created by three place: job- 
 	- CreateInvoice: called form where?
@@ -34,38 +18,42 @@
 	- bo::payCheckoutInvoice and 
 	- HomeController.paymentStripe
 
-# 3. Regular Checkout (Table CHECKOUT)
+# 7. Regular Checkout (Table CHECKOUT)
 ====================================================================
-	- pricing.blade.php 
-	- route('home.checkout')  => HomeController.checkout => view('landlord.pages.checkout)
-	- route('checkout-stripe') => HomeController.checkoutStripe
-	- <<TABLE>> $checkout->save();
-	- checkout.success => HomeController.success
-	- CreateTenant::dispatch($checkout->id);
-		bo::createInvoiceForCheckout($this->checkout_id);
-		<<TABLE>> $service->save();
-		bo::createInvoiceForCheckout($this->checkout_id);
-		<<TABLE>>  $invoice->save();
-		bo::payCheckoutInvoice($checkout->invoice_id );
-		<<TABLE>>  $payment->save();
+~~~
+- pricing.blade.php 
+- route('home.checkout')  => HomeController.checkout => view('landlord.pages.checkout)
+- route('checkout-stripe') => HomeController.checkoutStripe
+- <<TABLE>> $checkout->save();
+- checkout.success => HomeController.success
+- CreateTenant::dispatch($checkout->id);
+	bo::createInvoiceForCheckout($this->checkout_id);
+	<<TABLE>> $service->save();
+	bo::createInvoiceForCheckout($this->checkout_id);
+	<<TABLE>>  $invoice->save();
+	bo::payCheckoutInvoice($checkout->invoice_id );
+	<<TABLE>>  $payment->save();
+~~~
 
-# 5. Advance invoice and pay (Table CHECKOUT)
+# 6. Advance invoice and pay (Table CHECKOUT)
 ====================================================================
-	invoices/index.blade.php => 	route('invoices.generate') 
-	- InvoiceController.generate => view('landlord.admin.invoices.generate')
-	- route('invoices.store') 
-	- <<TABLE>> set $checkout->end_date	
-	- <<TABLE>> $checkout->save();
-	- route('checkout.success-advance') => HomeController.successAdvance
-	- Advance::dispatch($checkout->id);
-	- bo::createInvoiceForCheckout($this->checkout_id);
-		<<TABLE>>  $invoice->save();
-	- bo::payCheckoutInvoice($checkout->invoice_id );
-		<<TABLE>>  $payment->save();
-	- bo::extendAccountValidity($invoice_id);
-	- Ok
+~~~
+- invoices/index.blade.php => 	route('invoices.generate') 
+- InvoiceController.generate => view('landlord.admin.invoices.generate')
+- route('invoices.store') 
+- <<TABLE>> set $checkout->end_date	
+- <<TABLE>> $checkout->save();
+- route('checkout.success-advance') => HomeController.successAdvance
+- Advance::dispatch($checkout->id);
+- bo::createInvoiceForCheckout($this->checkout_id);
+	<<TABLE>>  $invoice->save();
+- bo::payCheckoutInvoice($checkout->invoice_id );
+	<<TABLE>>  $payment->save();
+- bo::extendAccountValidity($invoice_id);
+- Ok
+~~~
 
-# 2. Buy add-on buy process (Table CHECKOUT)
+# 5. Buy add-on buy process (Table CHECKOUT)
 ====================================================================
 1. Stop if any unpaid invoice
 2. add buy user in account page
@@ -77,52 +65,54 @@
 	- update account user limit and price
 	- Done
 
-	- service/index.blade.php
-	- <x-landlord.widget.add-addon/>
-	- route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id])
-	- AccountController.addAddon
-	- <<TABLE>> set $checkout->end_date	
-	- <<TABLE>> $checkout->save();
-	-> Stripe ->
-	- route('checkout.success-addon') => HomeController.successAddon
-	- AddAddon::dispatch($checkout->id);
-	- bo::createServiceForCheckout($this->checkout_id);
-	- bo::createInvoiceForCheckout($this->checkout_id);
-		<<TABLE>>  $invoice->save();
-	- bo::payCheckoutInvoice($checkout->invoice_id );
-		<<TABLE>>  $payment->save();
-	$account->user		= $account->user + $addon->user;
-	$account->price		= $account->price + $addon->price;
-	<<TABLE>> $account->save();
-	$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
-	<<TABLE>> $checkout->update();
+~~~
+- service/index.blade.php
+- <x-landlord.widget.add-addon/>
+- route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id])
+- AccountController.addAddon
+- <<TABLE>> set $checkout->end_date	
+- <<TABLE>> $checkout->save();
+-> Stripe ->
+- route('checkout.success-addon') => HomeController.successAddon
+- AddAddon::dispatch($checkout->id);
+- bo::createServiceForCheckout($this->checkout_id);
+- bo::createInvoiceForCheckout($this->checkout_id);
+	<<TABLE>>  $invoice->save();
+- bo::payCheckoutInvoice($checkout->invoice_id );
+	<<TABLE>>  $payment->save();
+$account->user		= $account->user + $addon->user;
+$account->price		= $account->price + $addon->price;
+<<TABLE>> $account->save();
+$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
+<<TABLE>> $checkout->update();
+~~~
 
-
-# 1. create Monthly Subscription Invoice (by Billing Process)
+# 4. create Monthly Subscription Invoice (by Billing Process)
 ====================================================================
-	- process/index.blade.php
-	- route('processes.gen-invoice-all')
-	- ProcessController.genInvoiceAll
-	- ProcessBilling::dispatch();
-		- CreateInvoice::dispatch($account->id, 1, $process->id);
+~~~
+- process/index.blade.php
+- route('processes.gen-invoice-all')
+- ProcessController.genInvoiceAll
+- ProcessBilling::dispatch();
+- CreateInvoice::dispatch($account->id, 1, $process->id);
+- <<TABLE>> $invoice->save();
+~~~
 
-		- <<TABLE>> $invoice->save();
-
-# 2. Pay Generated Subscription Invoice
+# 3. Pay Generated Subscription Invoice
 ====================================================================
+- invoice/invoice.blade.php 
+- url('/payment-stripe') => HomeController.paymentStripe
+- <<TABLE>> $payment->save();
+- checkout.success-payment => HomeController.successPayment
+- SubscriptionInvoicePaid::dispatch($payment->id);
+- bo::extendAccountValidity($invoice->id);
+- OK
 
-	- invoice/invoice.blade.php 
-	- url('/payment-stripe') => HomeController.paymentStripe
-	- <<TABLE>> $payment->save();
-	- checkout.success-payment => HomeController.successPayment
-	- SubscriptionInvoicePaid::dispatch($payment->id);
-	- bo::extendAccountValidity($invoice->id);
-	- OK
 
 
-# 3. bill and payment cycle 
+# 1. bill and payment cycle 
 ====================================================================
 - need to update
 - InvoiceController->createSubscriptionInvoice: Set
 - job->SubscriptionInvoicePaid : reset
- -addon - none
+- addon - none
