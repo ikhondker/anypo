@@ -39,10 +39,11 @@ return new class extends Migration
 			$table->boolean('disable_payments')->default(false);
 			$table->string('version')->nullable()->default('1.0.0');
 			$table->string('build')->nullable()->default('1001');
-			$table->biginteger('days_gen_bill')->default(5);
-			$table->biginteger('days_due')->default(7);
-			$table->biginteger('days_past_due')->default(14);
-			$table->biginteger('days_archive')->default(60);
+			$table->integer('days_gen_bill')->default(5);		// days bill generate before expire
+			$table->integer('days_due')->default(7);
+			$table->integer('days_past_due')->default(14);
+			$table->integer('days_addon_free')->default(15);		// used during addon purchase
+			$table->integer('days_archive')->default(60);
 			//$table->biginteger('days_pay_for_addon')->default(35);
 			$table->decimal('discount_pc_3', 19, 4)->default(5);
 			$table->decimal('discount_pc_6', 19, 4)->default(10);

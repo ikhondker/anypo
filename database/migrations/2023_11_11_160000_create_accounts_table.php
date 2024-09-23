@@ -39,6 +39,8 @@ return new class extends Migration
 			$table->integer('mnth')->default(0);
 			$table->integer('user')->default(1);
 			$table->integer('gb')->default(10);
+			$table->decimal('monthly_fee', 19, 4)->default(0);		// added later
+			$table->decimal('monthly_addon', 19, 4)->default(0);	// added later
 			$table->decimal('price', 19, 4)->default(0);
 			$table->date('start_date');
 			$table->date('end_date');
@@ -52,7 +54,6 @@ return new class extends Migration
 			$table->date('expired_at')->nullable();
 			$table->boolean('banner_show')->default(false);	// Show account specific message from landlord
 			$table->text('banner_message')->nullable();		// Show account specific message from landlord
-
 			$table->integer('count_user')->default(1);
 			$table->integer('count_product')->default(0);
 			$table->integer('used_gb')->default(0);

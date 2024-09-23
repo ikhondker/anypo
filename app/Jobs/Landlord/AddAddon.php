@@ -73,11 +73,14 @@ class AddAddon implements ShouldQueue
 		$addon->save();
 
 		// update account with user+GB+service name
-		$account			= Account::where('id', $checkout->account_id)->first();
-		$account->user		= $account->user + $addon->user;
-		$account->gb		= $account->gb + $addon->gb;
-		$account->price		= $account->price + $addon->price;
+		$account				= Account::where('id', $checkout->account_id)->first();
+		$account->user			= $account->user + $addon->user;
+		$account->gb			= $account->gb + $addon->gb;
+
+		$account->monthly_addon	= $addon->price;
+		$account->price			= $account->monthly_fee+$account->monthly_addon;
 		$account->save();
+
 		Log::channel('bo')->info('Jobs.Landlord.AddAddon Account qty updated for account_id = ' . $account->id);
 
 		// mark checkout as complete

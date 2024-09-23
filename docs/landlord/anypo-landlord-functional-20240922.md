@@ -69,3 +69,9 @@
 	- Everything is in services.index when account_id <> '
 
 
+# 1. Account Creation and update
+====================================================================
+- create
+	HomeCOntroller->CreateTenant::dispatch($checkout->id);->self::createCheckoutAccount($this->checkout_id);
+- update
+	HomeCOntroller->AddAddon::dispatch($checkout->id);

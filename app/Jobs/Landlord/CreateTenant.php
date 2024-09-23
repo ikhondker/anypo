@@ -50,6 +50,7 @@ use Illuminate\Auth\Events\Registered;
 
 // Seeded
 use Str;
+use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -136,13 +137,19 @@ class CreateTenant implements ShouldQueue
 		$product->sold_qty	= $product->sold_qty+1;
 		$product->save();
 
-		// Create new tenant TODO
+		// Create new tenant
 		Log::debug("Jobs.Landlord.CreateTenant Creating Tenant for checkout ID= ".$this->checkout_id);
 		Log::debug('Jobs.Landlord.CreateTenant 6. Calling self::createTenantDb');
 		$tenant_id= self::createTenantDb();
-
-		// mark checkout as complete
-		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
+		// tenant creation fails
+		if ($tenant_id == 0){
+			Log::error("Jobs.Landlord.CreateTenant.handle Tenant Creation failed. Marking checkout as Error!");
+			// mark checkout as complete
+			$checkout->status_code = LandlordCheckoutStatusEnum::ERROR->value;
+		} else {
+			// mark checkout as complete
+			$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
+		}
 		$checkout->update();
 
 		// Send notification to Landlord system on new purchase
@@ -269,7 +276,10 @@ class CreateTenant implements ShouldQueue
 		$account->mnth				= $checkout->mnth;
 		$account->user				= $checkout->user;
 		$account->gb				= $checkout->gb;
-		$account->price				= $checkout->price;
+
+		$account->monthly_fee		= $checkout->price;
+		$account->monthly_addon		= 0;
+		$account->price				= $account->monthly_fee+$account->monthly_addon;
 
 		// default address
 		$account->address1			= $config->address1;
@@ -315,25 +325,46 @@ class CreateTenant implements ShouldQueue
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain_id = ".$domain_id);
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain = ".$domain);
 
-		$tenant 	= Tenant::create([
-			'id' 	=> $domain_id,
-			// Custom columns inside data
-			//'initial_owner_id' 	=> $checkout->owner_id,
-		]);
 
-		// this auto run migrations
-		$tenant->createDomain([
-			'domain' => $domain
-		]);
+		try {
+			// Create tenant
+			$tenant 	= Tenant::create([
+				'id' 	=> $domain_id,
+				// Custom columns inside data
+				//'initial_owner_id' 	=> $checkout->owner_id,
+			]);
+		} catch (Exception $e) {
+			// Record to Error Log
+			Log::error("Jobs.Landlord.CreateTenant.createTenantDb Tenant Creation failed!");
+			return 0;
+		}
+
+		try {
+			// create domain. this auto run migrations
+			$tenant->createDomain([
+				'domain' => $domain
+			]);
+		} catch (Exception $e) {
+			// Record to Error Log
+			Log::error("Jobs.Landlord.CreateTenant.createTenantDb Domain Creation or Migration failed!");
+			return 0;
+		}
+
 		//Log::debug('Jobs.landlord.createTenant.createTenantDb Tenant Created domain_id = ' . $domain_id);
 		Log::debug('Jobs.landlord.createTenant.createTenantDb Tenant Created tenant->id = ' . $tenant->id);
 
-		// run seeders in tenant
-		Log::debug('Jobs.landlord.createTenant.createTenantDb Running seeder in tenant->id = ' . $tenant->id);
-		$tenant->run(function () {
-			$seeder = new \Database\Seeders\TenantSeeder();
-			$seeder->run();
-		});
+		try {
+			// run seeders in tenant
+			Log::debug('Jobs.landlord.createTenant.createTenantDb Running seeder in tenant->id = ' . $tenant->id);
+			$tenant->run(function () {
+				$seeder = new \Database\Seeders\TenantSeeder();
+				$seeder->run();
+			});
+		} catch (Exception $e) {
+			// Record to Error Log
+			Log::error("Jobs.Landlord.CreateTenant.createTenantDb Seeder Run failed!");
+			return 0;
+		}
 
 		// Write event log
 		EventLog::event('tenant', $tenant->id, 'create');

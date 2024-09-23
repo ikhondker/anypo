@@ -108,7 +108,7 @@ class HomeController extends Controller
 			if (auth()->user()->account_id == '') {
 				$cur_product_id = '';
 			} else {
-				$account = Account::where('id', auth()->user()->account_id)->first();
+				$account 		= Account::where('id', auth()->user()->account_id)->first();
 				$cur_product_id = $account->primary_product_id;
 			}
 		} else {
