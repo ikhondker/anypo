@@ -24,8 +24,12 @@ create
 </a>
 
 
+<i class="fa fa-check-circle fa-5x text-success"></i>
+
 <i data-lucide="refresh-cw"></i>
+
 {!! nl2br($ticket->content) !!}
+
 94. var_dump(__METHOD__); var_dump(__FUNCTION__);
 
 

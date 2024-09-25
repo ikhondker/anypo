@@ -53,7 +53,7 @@
 					<div class="mb-1">
 						<span class="card-subtitle">URL :
 							<strong>
-							<a href="https://{{ $account->site.'.'.env('APP_DOMAIN') }}" target="_blank" class="text-info">{{ $account->site.'.'.env('APP_DOMAIN') }}</a>	
+							<a href="https://{{ $account->site.'.'.config('app.domain') }}" target="_blank" class="text-info">{{ $account->site.'.'.config('app.domain') }}</a>	
 							</strong>
 						</span>
 					</div>

@@ -210,12 +210,13 @@ class UserController extends Controller
 			$request->merge(['avatar' => $thumbImage ]);
 		}
 
-		// for non admin role field is not shown
-		if ($request->has('role')) {
-			Log::debug('tenant.user.update Role Found! Do nothing.');
+		// for non admin role field is not shown TODO
+		if ($request->has('role') && (auth()->user()->isAdmin()) ) {
+			Log::debug('tenant.user.update Role dropdown shown! Update role.');
+			$request->merge(['role'	=> $request->input('role') ]);
 		} else {
-			$request->merge(['role'	=> $user->role->value ]);
-			Log::debug('tenant.user.update Role hidden for system users!');
+			Log::debug('tenant.user.update Role hidden from non admin user!. Do nothing');
+			//$request->merge(['role'	=> $user->role->value ]);
 		}
 		// P2 add Role update
 		if (auth()->user()->role->value <> UserRoleEnum::ADMIN->value) {

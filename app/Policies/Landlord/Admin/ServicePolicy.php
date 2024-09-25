@@ -67,7 +67,7 @@ class ServicePolicy
 	 */
 	public function delete(User $user, Service $service): bool
 	{
-		//
+		return (($user->account_id == $service->account_id) && ($user->isAdmin()) || $user->isSeeded());
 	}
 
 	/**

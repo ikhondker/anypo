@@ -79,7 +79,7 @@ class Bo
 		$service->product_id	= $checkout->product_id;
 		$service->name			= $checkout->product_name;
 
-		if ($checkout->invoice_type == LandlordInvoiceTypeEnum::ADDON->value ){
+		if ($checkout->invoice_type->value == LandlordInvoiceTypeEnum::ADDON->value ){
 			$service->addon			= true;
 		} else {
 			$service->addon			= false;
@@ -97,7 +97,7 @@ class Bo
 
 		$service->save();
 
-		Log::debug('Helpers.bo.createCheckoutService Account Service created id = ' . $service->id);
+		Log::debug('Helpers.bo.createCheckoutService Account Service created. service_id = ' . $service->id);
 		EventLog::event('service', $service->id, 'create');
 		return $service->id;
 	}
@@ -133,17 +133,17 @@ class Bo
 		// change description for other type of invoice
 		switch ($invoice->invoice_type->value) {
 			case LandlordInvoiceTypeEnum::CHECKOUT->value:
-				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain');
+				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN');
 				break;
 			case LandlordInvoiceTypeEnum::SUBSCRIPTION->value:
-				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain') .
+				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
 			case LandlordInvoiceTypeEnum::ADDON->value:
-				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain') ;
+				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') ;
 				break;
 			case LandlordInvoiceTypeEnum::ADVANCE->value:
-				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain') .
+				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
 		}		

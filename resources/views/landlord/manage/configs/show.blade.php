@@ -13,7 +13,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('configs.edit', $config->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>Edit Configuration</a>
+						<a href="{{ route('configs.edit', $config->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i>Edit</a>
 					</div>
 					<h5 class="card-title">Configuration Overview</h5>
 					<h6 class="card-subtitle text-muted">Detail Information of your Configuration.</h6>
@@ -66,16 +66,18 @@
 								<table class="table table-sm mb-0">
 									<tbody>
 										
+									
 
-										<x-landlord.show.my-number value="{{ $config->discount_pc_3 }}" label="3 Months Discount %" />
-										<x-landlord.show.my-number value="{{ $config->discount_pc_6 }}" label="6 Months Discount %" />
-										<x-landlord.show.my-number value="{{ $config->discount_pc_12 }}" label="12 Months Discount %" />
-										<x-landlord.show.my-number value="{{ $config->discount_pc_24 }}" label="24 Months Discount %" />
+										<x-landlord.show.my-number value="{{ $config->discount_pc_3 }}" label="3 Months Discount %"/>
+										<x-landlord.show.my-number value="{{ $config->discount_pc_6 }}" label="6 Months Discount %"/>
+										<x-landlord.show.my-number value="{{ $config->discount_pc_12 }}" label="12 Months Discount %"/>
+										<x-landlord.show.my-number value="{{ $config->discount_pc_24 }}" label="24 Months Discount %"/>
 				
-										<x-landlord.show.my-integer value="{{ $config->days_gen_bill }}" label="Gen Invoice Before" />
-										<x-landlord.show.my-integer value="{{ $config->days_due }}" label="Mark config as due after" />
-										<x-landlord.show.my-integer value="{{ $config->days_pastdue }}" label="Mark config as past due after" />
-										<x-landlord.show.my-integer value="{{ $config->days_archive }}" label="Mark config for archive after" />
+										<x-landlord.show.my-integer value="{{ $config->days_gen_bill }}" label="Gen Invoice Before"/>
+										<x-landlord.show.my-integer value="{{ $config->days_due }}" label="Mark config as due after"/>
+										<x-landlord.show.my-integer value="{{ $config->days_pastdue }}" label="Mark config as past due after"/>
+										<x-landlord.show.my-integer value="{{ $config->days_archive }}" label="Mark config for archive after"/>
+										<x-landlord.show.my-integer value="{{ $config->days_addon_free }}" label="Days Addon Free"/>
 				
 										<x-landlord.show.my-enable	value="{{ $config->maintenance }}" label="Maintenance ?"/>
 										<x-landlord.show.my-date-time	value="{{ $config->maintenance_start_time }}" label="Start"/>

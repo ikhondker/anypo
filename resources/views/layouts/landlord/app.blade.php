@@ -108,6 +108,7 @@
 				<div class="container-fluid p-0">
 				
 					<!-- Form Success Message Box -->
+					
 					@if (session('success'))
 						<x-landlord.alerts.app-alert-success message="{{ session('success') }}" />
 					@endif

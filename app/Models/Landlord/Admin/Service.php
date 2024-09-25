@@ -38,7 +38,7 @@ class Service extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'account_id', 'product_id', 'owner_id', 'is_addon', 'addon_type', 'mnth', 'user', 'gb', 'price', 'subtotal', 'tax', 'vat', 'amount', 'start_date', 'end_date', 'enable', 'notes', 'updated_by', 'updated_at',
+		'name', 'account_id', 'product_id', 'owner_id', 'addon', 'addon_type', 'mnth', 'user', 'gb', 'price', 'subtotal', 'tax', 'vat', 'amount', 'start_date', 'end_date', 'status_code', 'enable', 'notes', 'updated_by', 'updated_at',
 	];
 
 	protected $casts = [

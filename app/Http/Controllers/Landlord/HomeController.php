@@ -189,15 +189,15 @@ class HomeController extends Controller
 			'metadata' 		=> ['trx_type' => 'CHECKOUT'],
 		]);
 
-		// create check out row
-		$checkout_id = self::createCheckoutRow($session->id,$request->input('site'),$request->input('account_name'),$request->input('email'));
+		// create check out row for buy
+		$checkout_id = self::createCheckoutForBuy($session->id,$request->input('site'),$request->input('account_name'),$request->input('email'));
 		Log::debug('landlord.home.checkoutStripe created checkout_id = '. $checkout_id);
 
 		return redirect($session->url);
 	}
 
 	// used to pay subscription invoices
-	public function createCheckoutRow($sessionId, $site, $account_name, $email)
+	public function createCheckoutForBuy($sessionId, $site, $account_name, $email)
 	{
 
 		// create checkout row
@@ -408,7 +408,7 @@ class HomeController extends Controller
 				AddAddon::dispatch($checkout->id);
 			}
 			return view('landlord.pages.info')->with('title','Thank you for purchasing Add-on!')
-				->with('msg','Please check your Account for this Invoices.');
+				->with('msg','Please check your Account Detail after few minutes.');
 
 		} catch (\Exception $e) {
 			throw new NotFoundHttpException();
@@ -712,7 +712,10 @@ class HomeController extends Controller
 		// create MailList
 		$contact = MailList::create($request->all());
 		
-		return redirect()->route('home')->with('success', 'Thank you for joining our mailing list.');
+		return view('landlord.pages.info')->with('title','Thank you for joining our mailing list.')
+				->with('msg','Thank you for joining our mailing list.');
+
+		//return redirect()->route('home')->with('success', 'Thank you for joining our mailing list.');
 		
 	}
 }

@@ -30,6 +30,7 @@ use App\Models\User;
 use App\Models\Domain;
 use App\Models\Tenant;
 
+use App\Models\Landlord\Manage\Config;
 use App\Models\Landlord\Ticket;
 //use App\Models\Landlord\Comment;
 use App\Models\Landlord\Account;
@@ -55,6 +56,7 @@ use App\Helpers\EventLog;
 use Notification;
 use App\Notifications\Landlord\AddonPurchased;
 # 5. Jobs
+use App\Jobs\Landlord\AddAddon;
 # 6. Mails
 # 7. Rules
 # 8. Packages
@@ -62,9 +64,9 @@ use App\Notifications\Landlord\AddonPurchased;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-use Illuminate\Support\Facades\Log;
-use Image;
 use Str;
+use Image;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 # 13. FUTURE
 
@@ -336,8 +338,121 @@ class AccountController extends Controller
 	/**
 	 * buy new add-addon
 	*/
-
 	public function addAddon($account_id, $addon_id)
+	{
+
+		Log::channel('bo')->info('landlord.account.addAddon buying new addon account = '. $account_id . ' product_id = ' . $addon_id);
+
+		if (auth()->user()->account_id == '') {
+			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not buy addon as no valid Account Found!');
+		}
+
+		// check for unpaid invoices
+		$account			= Account::where('id', $account_id)->first();
+		if ($account->next_bill_generated) {
+			Log::debug('landlord.account.addAddon Unpaid invoice exists for Account #' . $account->id . ' addon can not be added.');
+			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id = ' . $account->id . '! Please pay unpaid invoice, before buying new addon.');
+		}
+
+		// get product/addon
+		$product = Product::where('id', $addon_id)
+			->where('addon', true)
+			->where('enable', true)
+			->first();
+
+		// check if need to pay for addon
+		$config = Config::first();
+		$diff = now()->diffInDays($account->end_date);
+		if ($diff <= $config->days_addon_free) {
+			Log::debug('landlord.account.addAddon dont need to pay as end in days  = ' . $diff);
+			$needToPay 	= false;
+			$addonPrice =  0;
+		} else {
+			Log::debug('landlord.account.addAddon need to pay as end in days  = ' . $diff);
+			$needToPay 	= true;
+			$addonPrice =  round($product->price/30*$diff, 2);
+		}
+
+		// check if need to pay for adding this addon
+		if ($needToPay){
+			\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+			$lineItems = [];
+			$lineItems[] = [
+				'price_data' => [
+					'currency' => 'usd',
+					'product_data' => [
+						'name' => $product->name,
+						// 'images' => [$product->image]
+					],
+					'unit_amount' => $addonPrice * 100,		// << -------------
+				],
+				'quantity' => 1,
+			];
+
+			$session = \Stripe\Checkout\Session::create([
+				'line_items' => $lineItems,
+				'mode' => 'payment',
+				'success_url' => route('checkout.success-addon', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+				'cancel_url' => route('checkout.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+				'metadata' 	=> ['trx_type' => 'ADDON'],
+			]);
+		} else {
+
+		}
+
+		// create checkout row
+		$checkout					= new Checkout;
+		$checkout->invoice_type		= LandlordInvoiceTypeEnum::ADDON->value;
+		if ($needToPay){
+			$checkout->session_id		= $session->id;
+		} else {
+			$sessionId = Str::uuid()->toString();
+			$checkout->session_id		= $sessionId;
+		}
+
+		$checkout->checkout_date	= date('Y-m-d H:i:s');
+		$checkout->site				= $account->site;
+		$checkout->account_id		= $account->id;
+		$checkout->account_name		= $account->name;
+
+		$checkout->existing_user	= true;
+		$checkout->owner_id			= auth()->user()->id;
+		$checkout->email			= auth()->user()->email;
+		$checkout->address1			= auth()->user()->address1;
+		$checkout->address2			= auth()->user()->address2;
+		$checkout->city				= auth()->user()->city;
+		$checkout->state			= auth()->user()->state;
+		$checkout->zip				= auth()->user()->zip;
+		$checkout->country			= auth()->user()->country;
+
+		// get product
+		$checkout->product_id		= $product->id;
+		$checkout->product_name		= $product->name;
+		$checkout->tax				= $product->tax;
+		$checkout->vat				= $product->vat;
+		$checkout->price			= $addonPrice;		// <<-----------
+		$checkout->mnth				= $product->mnth;
+		$checkout->user				= $product->user;
+		$checkout->gb				= $product->gb;
+
+		$checkout->start_date		= now();
+		// check
+		$checkout->end_date			= now()->addMonth($product->mnth);
+		$checkout->status_code		= LandlordCheckoutStatusEnum::DRAFT->value;
+		$checkout->ip				= request()->ip();
+		$checkout->save();
+
+		if ($needToPay){
+			return redirect($session->url);
+		} else {
+			AddAddon::dispatch($checkout->id);
+			return view('landlord.pages.info')->with('title','Thank you for purchasing Add-on!')
+				->with('msg','Please check your Account Detail after few minutes.');
+		}
+	}
+
+	public function chkaddAddonStripe($account_id, $addon_id)
 	{
 
 		Log::channel('bo')->info('landlord.account.addAddon buying new addon account = '. $account_id . ' product_id = ' . $addon_id);
@@ -424,4 +539,6 @@ class AccountController extends Controller
 		return redirect($session->url);
 
 	}
+
 }
+

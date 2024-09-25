@@ -14,9 +14,9 @@ class AccountActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $accountId='')
+	public function __construct(public string $accountId = '')
 	{
-		if ($accountId ==''){
+		if ($accountId == ''){
 			$accountId = auth()->user()->account_id;
 		}
 		$this->account 	= Account::where('id', $accountId)->get()->firstOrFail();

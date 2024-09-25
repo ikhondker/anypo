@@ -3,40 +3,22 @@
 
 # 7. TODO - Open
 ====================================================================
-x110. MenuSeeder for Workbench issue
+review TODO and P2
 110. change invoice description of advance payment 
-x109. button show save. card cards
-108. bypass payment and create tenant for sysadmin
-106. mail-lists views
-106. breadcrumb in landlord app
-105. move attachment download to a verified route
-102. country icon size
-101. enable disable user
-100. make user admin and vice versa
-99. captcha
-97. clean landlord.head.blade.php remove direct js and css
-96. config('app.domain'); vs app_domain
-91. clean config(app.url) vs env(app_URL)
-95. datetime-local value edit for maintenance start
-x97. menu rearrange
-94. <x-tenant.landlord-notice-all-tenants/>
-93. <x-tenant.landlord-notice-one-tenant/>
-38. error card in general page
-66. search IQBAL
-68. user update request
-66. badge attribute
 69. lock/cancel/archive account
-74. sweet alert everywhere
-75. post login re-direct to dashboard	https://laraveldaily.com/post/change-redirect-login-register-laravel-breeze
+95. datetime-local value edit for maintenance start
+66. search IQBAL
 79. ticket category
 87. tenant table -> add columns. its inside data
 90. Verification mail to ques event(new Registered($user));
 96. invoice and receipt drop-down policy check
-98. error message bullet point in main pages
 
 # 6. P2 TODO
 ====================================================================
+93. <x-tenant.landlord-notice-one-tenant/>
 1.	add manager call back in tickets
+99. captcha
+102. country icon size
 2.	predefined text in support ticket
 3.	date picker
 4.	storage usages statistics
@@ -53,6 +35,24 @@ x97. menu rearrange
 
 # 0. DONE
 ====================================================================
+xx96. config('app.domain'); vs app_domain
+xx91. clean config(app.url) vs env(app_URL)
+x94. <x-tenant.landlord-notice-all-tenants/>
+x68. user update request
+x66. badge attribute
+x74. sweet alert everywhere
+x38. error card in general page
+x98. error message bullet point in main pages
+x110. MenuSeeder for Workbench issue
+x109. button show save. card cards
+x108. bypass payment and create tenant for sysadmin
+x106. mail-lists views
+x106. breadcrumb in landlord app
+x105. move attachment download to a verified route
+x101. enable disable user
+x100. make user admin and vice versa
+x97. clean landlord.head.blade.php remove direct js and css
+x97. menu rearrange
 x1. attachment add account
 x4. profile photo
 x8. account logo

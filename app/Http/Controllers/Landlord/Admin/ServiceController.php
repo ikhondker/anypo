@@ -63,6 +63,7 @@ class ServiceController extends Controller
 	{
 		$this->authorize('viewAny',Service::class);
 
+		
 		$services = Service::with('account')->byAuthAccount()->orderBy('id', 'ASC')->paginate(10);
 
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
@@ -172,7 +173,42 @@ class ServiceController extends Controller
 	 */
 	public function destroy(Service $service)
 	{
-		//
+		$this->authorize('delete', $service);
+
+		Log::debug('Landlord.Service.destroy updated for service->product_id = ' . $service->product_id);
+
+		// check for unpaid invoices
+		$account				= Account::where('id', $service->account_id)->first();
+		if ($account->next_bill_generated) {
+			Log::debug('landlord.account.addAddon Unpaid invoice exists for Account #' . $account->id . ' addon can not be added.');
+			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id = ' . $account->id . '! Please pay unpaid invoice, before removing addon.');
+		}
+
+		// reduce product addon sold_qty column
+		$addon				= Product::where('id', $service->product_id )->first();
+		Log::debug('Landlord.Service.destroy updated for addon_id = ' . $addon->id);
+		$addon->sold_qty	= $addon->sold_qty - 1;
+		$addon->save();
+
+		// reduce account with user+GB+service name
+		$account->user			= $account->user - $addon->user;
+		$account->gb			= $account->gb - $addon->gb;
+		// reduce monthly_addon and update account->price
+		$account->monthly_addon	= $account->monthly_addon - $addon->price;
+		$account->price			= $account->monthly_fee + $account->monthly_addon;
+		$account->save();
+		Log::debug('Landlord.Service.destroy updated for account_id = ' . $account->id);
+
+		$service->fill([
+			'enable'	=> false,
+			'end_date'	=>  now(),
+		]);
+		$service->update();
+
+		// Write to Log
+		EventLog::event('service',$service->id,'status','enable',$service->enable);
+
+		return redirect()->route('accounts.show',$service->account_id)->with('success','Addon Removed successfully');
 	}
 
 	public function export()

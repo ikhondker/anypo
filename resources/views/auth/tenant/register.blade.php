@@ -10,7 +10,7 @@
 					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
 				</div>
 				<div class="text-center mt-4">
-					<h1 class="h2">Get started with {{ tenant('id') }}.{{ env('APP_DOMAIN') }}</h1>
+					<h1 class="h2">Get started with {{ tenant('id') }}.{{ config('app.domain') }}</h1>
 					<p class="lead">
 						Fill out the form to get started.
 					</p>

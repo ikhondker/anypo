@@ -42,7 +42,7 @@
 							</div>
 							<div class="mb-1">
 								<span class="card-subtitle">URL:
-								<strong>{{ $account->site.'.'.env('APP_DOMAIN') }}</strong></span>
+								<strong>{{ $account->site.'.'.config('app.domain') }}</strong></span>
 							</div>
 						</div>
 					</div>

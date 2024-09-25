@@ -16,9 +16,9 @@ class LandlordNoticeAllTenants extends Component
 	 */
 	public function __construct()
 	{
-		//
+		// shown in tenant dashboard pages
 		$landlordConfig = tenancy()->central(function ($tenant) {
-			return \App\Models\Landlord\Manage\Config::where('id', 1)->first();
+			return \App\Models\Landlord\Manage\Config::where('id', config('akk.LANDLORD_CONFIG_ID'))->first();
 		});
 		//dd($landlordConfig);
 

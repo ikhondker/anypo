@@ -60,14 +60,14 @@
 	- invoice extend account validity
 
 ## 4 Add-on
-	- add-on is NOT monthly basis
-	- can add/remove any time
-	- if current billing is one month will be added from next bill. do the same when cancel
-	- if current billing is 3/6/12 month, the account validity is reduce accordingly. reverse when cancel
-	- what happened if not enough days to adjust => add next cycle
-	- what happened if multiple add-on is bought consecutively?
-	- Everything is in services.index when account_id <> '
-
+	- can add and remove any time
+	- Everything is in services.index when account_id <> ''
+	- services.index -> <x-landlord.widgets.add-addon/> ->  route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id])
+	- make sure no pending unpaid invoice 
+	- need to prorate days based on config.days_addon_free
+	- add: free: AccountController.addAddon -> AddAddon::dispatch($checkout->id);
+	- add: payment: AccountController.addAddon -> Stripe -> HomeController.successAddon -> AddAddon::dispatch($checkout->id);
+	- remove: ServiceController.destroy
 
 # 1. Account Creation and update
 ====================================================================

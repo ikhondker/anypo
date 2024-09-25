@@ -61,7 +61,8 @@ class ViewServiceProvider extends ServiceProvider
 		});
 
 		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
-			'landlord.*', /** keep this */],
+			'landlord.*', /** keep this */
+			'components.landlord.widgets.*'],
 			\App\View\Composers\ConfigComposer::class);
 		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
 			'components.landlord.nav-bar'],

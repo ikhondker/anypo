@@ -181,24 +181,24 @@ class CreateTenant implements ShouldQueue
 			$user_id = $checkout->owner_id;
 		} else {
 			// create new admin user
-			$user			= new User();
-			$user->name		= $checkout->account_name;
-			$user->email	= $checkout->email;
-			$user->role		= UserRoleEnum::ADMIN->value;
-			$random_password= Str::random(12);
+			$user				= new User();
+			$user->name			= $checkout->account_name;
+			$user->email		= $checkout->email;
+			$user->role			= UserRoleEnum::ADMIN->value;
+			$random_password 	= Str::random(12);
 			$user->password	= bcrypt($random_password);
 			// TODO MUST comment
 			// $user->password	= bcrypt('password');
 
 			// default address
-			$user->address1			= $config->address1;
-			$user->address2			= $config->address2;
-			$user->city				= $config->city;
-			$user->state			= $config->state;
-			$user->zip				= $config->zip;
-			$user->country			= $config->country;
-			$user->facebook			= $config->facebook;
-			$user->linkedin			= $config->linkedin;
+			$user->address1		= $config->address1;
+			$user->address2		= $config->address2;
+			$user->city			= $config->city;
+			$user->state		= $config->state;
+			$user->zip			= $config->zip;
+			$user->country		= $config->country;
+			$user->facebook		= $config->facebook;
+			$user->linkedin		= $config->linkedin;
 
 			$user->save();
 
@@ -321,7 +321,7 @@ class CreateTenant implements ShouldQueue
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb checkout->site = ".$checkout->site);
 
 		$domain_id 	= $checkout->site;
-		$domain 	= $domain_id . '.' . config('app.domain');
+		$domain 	= $domain_id . '.' . env('APP_DOMAIN');
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain_id = ".$domain_id);
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain = ".$domain);
 

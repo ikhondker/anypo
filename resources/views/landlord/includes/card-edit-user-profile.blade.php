@@ -32,9 +32,21 @@
 					<x-landlord.edit.name :value="$user->name"/>
 					<tr>
 						<th>Email :</th>
-						<td><input type="email" name="email" id="email" class="form-control" placeholder="you@example.com" value="{{ $user->email }}" readonly>
-						</td>
+						<td><input type="email" name="email" id="email" class="form-control" placeholder="you@example.com" value="{{ $user->email }}" readonly></td>
 					</tr>
+					
+					@if ( (auth()->user()->isAdmin() || auth()->user()->isSupport() || auth()->user()->isSystem() ) && (auth()->user()->id <> $user->id) )
+						<tr>
+							<th class="text-danger">Modify Role:</th>
+							<td>
+								<select class="form-control" name="role">
+									<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }} value="user">User</option>
+									<option {{ 'admin' == old('role',$user->role->value) ? 'selected' : '' }} value="admin">Admin</option>
+								</select>
+							</td>
+						</tr>
+					@endif
+
 					<x-landlord.edit.cell value="{{ $user->cell }}"/>
 					<x-landlord.edit.address1 value="{{ $user->address1 }}"/>
 					<x-landlord.edit.address2 value="{{ $user->address2 }}"/>
@@ -65,6 +77,8 @@
 						</td>
 					</tr>
 					<x-landlord.edit.notes value="{{ $user->notes }}"/>
+						
+
 				</tbody>
 			</table>
 
@@ -72,4 +86,3 @@
 		</form>
 	</div>
 </div>
-

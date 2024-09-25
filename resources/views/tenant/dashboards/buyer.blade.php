@@ -17,6 +17,7 @@
 	</x-tenant.page-header>
 
 	<x-tenant.landlord-notice-all-tenants/>
+	
 	<x-tenant.landlord-notice-one-tenant/>
 
 	<x-tenant.dashboards.po-counts-buyer/>

@@ -64,6 +64,16 @@ class TestController extends Controller
 	public function run()
 	{
 
+		Log::debug('Value of config(app.domain)=' . config('app.domain'));
+		Log::debug('Value of env(APP_DOMAIN)=' . env('APP_DOMAIN'));
+
+		Log::debug('Value of config(app.url)=' . config('app.url'));
+		Log::debug('Value of env(APP_URL)=' . env('APP_URL'));
+
+		Log::debug('Value of env(ASSET_URL)=' . env('ASSET_URL'));
+
+		exit;
+
 		// Unhandled Exception handing
 		//try {
 			$id='100111';
@@ -79,17 +89,7 @@ class TestController extends Controller
 
 
 
-		Log::debug('Value of config(app.domain)=' . config('app.domain'));
-		Log::debug('Value of env(APP_DOMAIN)=' . env('APP_DOMAIN'));
-
-		Log::debug('Value of config(app.url)=' . config('app.url'));
-		Log::debug('Value of env(APP_URL)=' . env('APP_URL'));
-
-		Log::debug('Value of env(ASSET_URL)=' . env('ASSET_URL'));
-
-
-
-		exit;
+		
 
 		$tenant = Tenant::find('demo1');
 		$account_name = 'aaaaaaaaaaaaaaaaa';

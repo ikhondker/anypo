@@ -71,8 +71,9 @@
 							<td>{{ $mailList->ip }}</td>
 							<td><x-landlord.list.my-enable :value="$mailList->enable" /></td>
 							<td class="text-end">
-								<a href="{{ route('mail-lists.show',$mailList->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+
+								{{-- <a href="{{ route('mail-lists.show',$mailList->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="View">View</a> --}}
 
 									<a href="{{ route('mail-lists.destroy', $mailList->id) }}"
 										class="text-body sw2-advance" data-entity="Email"

@@ -1,4 +1,14 @@
 @if ($account->id != '' )
+
+	@php
+		$diff = now()->diffInDays($account->end_date);
+		if ($diff <= $_config->days_addon_free) {
+			$needToPay = false;
+		} else {
+			$needToPay = true;
+		}
+	@endphp
+
 		<!-- Card Grid -->
 		<div class="container content-space-2">
 
@@ -16,24 +26,28 @@
 			</div>
 
 			<div class="row justify-content-center">
-
 				@foreach ($addons as $addon)
 					<div class="col-md-6 col-lg-5 mb-4 mb-md-5 mb-lg-0">
 						<!-- Card -->
 							<div class="card card-lg card-transition h-100 text-center">
 								<div class="card-body">
 									<div class="mb-4">
-										@if ($addon->addon_type =='user')
-											<i class="fas fa-user-plus" class="text-gray-200" style="font-size: 5rem;"></i> 
+										@if ($addon->addon_type == 'user')
+											<i class="fas fa-user-plus text-info" class="" style="font-size: 5rem;"></i> 
 										@else
-											<i class="fas fa-user-plus" class="text-muted" style="font-size: 5rem;"></i> 
-											
+											<i class="fas fa-user-plus text-info" class="" style="font-size: 5rem;"></i> 
 										@endif
 									</div>
 									<h3 class="card-title">{{ $addon->name }}</h3>
-									<h4 class="card-title text-info"> <del class="text-danger">{{ number_format($addon->list_price, 2) }}</del> {{ number_format($addon->price, 2) }}$/mo</h4>
-									{{-- <p class="card-text text-body"></p> --}}
-									<p class="card-text text-body small">Next billing date {{ strtoupper(date('d-M-Y', strtotime($account->end_date))) }}</p>
+									<h4 class="card-title text-info"> <del class="text-danger">{{ number_format($addon->list_price, 2) }}$</del> {{ number_format($addon->price, 2) }}$/mo</h4>
+									<p class="card-text text-body small">Your Next billing date {{ strtoupper(date('d-M-Y', strtotime($account->end_date))) }}</p>
+									@if ($needToPay)	
+										<p class="card-text text-body">You will need to pay prorated for {{ $diff}} days </br>
+											i.e. <del class="text-danger">{{ number_format($addon->list_price/30 * $diff, 2) }}$</del> <strong>{{ number_format($addon->price/30 * $diff, 2) }}$ </strong> for current billing period.
+										</p>
+									@else 	
+										<p class="card-text text-body">Will be added to your account immediately. </br>Will be charged from next billing cycle.</p>
+									@endif 
 								</div>
 								<div class="card-footer pt-0">
 										<a href="{{ route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id]) }}"
@@ -50,7 +64,7 @@
 					</div>
 					<!-- End Col -->
 				@endforeach
-				<span class="small text-center mt-2">Note: Once added, Add-ons can not be removed or deactivated.</span>
+				{{-- <span class="small text-center mt-2">Note: Once added, Add-ons can not be removed or deactivated.</span> --}}
 			</div>
 			<!-- End Row -->
 		</div>

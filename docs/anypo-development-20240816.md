@@ -81,7 +81,7 @@ Log::info(print_r($dept_budget, true));
 7. if get js error in developer tools, first disable all chrome extension special google Sheets etc
 8. for ajax to works use <script type="module"> not <script type="text/javascript">
 9. sweetalert2 confirmation on form post account/generate.blade.php
-10. 
+10. use config('app.url') or config('app.domain'). Not env(APP_DOMAIN) and env(APP_URL) . Remember APP_DOMAIN is added by iqbal in app.php. Ref: \resources\views\vendor\mail\text
 
 # 5. Set Environment 
 ====================================================================

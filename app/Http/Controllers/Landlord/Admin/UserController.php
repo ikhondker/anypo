@@ -78,15 +78,15 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		Log::debug("landlord.users.index role = ".auth()->user()->role->value);
+		
+		//Log::debug("landlord.users.index role = ".auth()->user()->role->value);
 
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::ADMIN->value:
-				$users= $users->with('account')->byAccount()->orderBy('created_at', 'ASC')->paginate(10);
+				$users= $users->with('account')->byAccount()->orderBy('created_at', 'DESC')->paginate(10);
 				break;
-
 			default:
-				$users= $users->with('account')->byUser()->orderBy('created_at', 'ASC')->paginate(10);
+				$users= $users->with('account')->byUser()->orderBy('created_at', 'DESC')->paginate(10);
 				Log::warning("landlord.users.index Other roles!");
 		}
 		return view('landlord.admin.users.index',compact('users'));
@@ -107,7 +107,7 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$users= $users->with('account')->orderBy('created_at', 'ASC')->paginate(10);
+		$users= $users->with('account')->orderBy('created_at', 'DESC')->paginate(10);
 
 		return view('landlord.admin.users.all',compact('users'));
 	}
@@ -137,13 +137,16 @@ class UserController extends Controller
 		$this->authorize('create', User::class);
 
 		//user settings
-		$request->merge(['account_id'	=> auth()->user()->account_id]);
+		if (auth()->user()->isAdmin()){
+			$request->merge(['account_id'	=> auth()->user()->account_id]);
+		}
 		$request->merge(['enable'		=> true]);
+
 		if($request->has('admin')){
-			//Checkbox checked
+			// Checkbox checked
 			$request->merge(['role'		=> UserRoleEnum::ADMIN->value ]);
 		}else{
-			//Checkbox not checked
+			// Checkbox not checked
 			$request->merge(['role'		=> UserRoleEnum::USER->value ]);
 		}
 
@@ -160,7 +163,12 @@ class UserController extends Controller
 		$user->notify(new UserCreated($user,$random_password));
 
 		EventLog::event('user',$user->id,'create');
-		return redirect()->route('users.index')->with('success','User created successfully.');
+		if (auth()->user()->isAdmin()){
+			return redirect()->route('users.index')->with('success','User created successfully.');
+		} else {
+			return redirect()->route('users.all')->with('success','User created successfully.');
+		}
+		
 	}
 
 	/**
@@ -222,6 +230,16 @@ class UserController extends Controller
 			$path =Storage::disk('s3l')->put('avatar/'.$thumbImage, $image_resize->stream()->__toString());
 
 			$request->merge(['avatar' => $thumbImage ]);
+		}
+
+
+		// for non admin role field is not shown
+		if ($request->has('role') && (auth()->user()->isAdmin()) ) {
+			Log::debug('landlord.user.update Role dropdown shown! Update role.');
+			$request->merge(['role'	=> $request->input('role') ]);
+		} else {
+			Log::debug('landlord.user.update Role hidden from non admin user!. Do nothing');
+			//$request->merge(['role'	=> $user->role->value ]);
 		}
 
 		$user->update($request->all());

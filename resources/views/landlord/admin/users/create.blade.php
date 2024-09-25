@@ -1,6 +1,5 @@
 @extends('layouts.landlord.app')
 @section('title','User')
-create
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('users.index') }}" class="text-muted">Users</a></li>
 	<li class="breadcrumb-item active">Create User</li>
@@ -28,17 +27,18 @@ create
 						<x-landlord.create.name/>
 						<x-landlord.create.email/>
 						<x-landlord.create.cell/>
-						<tr>
-							<th>Role :</th>
-							<td>
-								<div class="form-check align-items-center">
-									<input id="admin" type="checkbox" class="form-check-input" value="remember-me" name="admin">
-									<label class="form-check-label text-small" for="customControlInline">Make this person an Admin</label>
-									<span class="d-block small text-muted">Be careful! This user will be able to perform all admin activities</span>
-								</div>
-							</td>
-						</tr>
-
+						@if (auth()->user()->isAdmin())
+							<tr>
+								<th>Role :</th>
+								<td>
+									<div class="form-check align-items-center">
+										<input id="admin" type="checkbox" class="form-check-input" value="user-role" name="admin">
+										<label class="form-check-label text-small" for="customControlInline">Make this person an Admin</label>
+										<span class="d-block small text-danger">Be careful! This user will be able to perform all admin activities for this account.</span>
+									</div>
+								</td>
+							</tr>
+						@endif
 					</tbody>
 				</table>
 				<x-landlord.create.save/>

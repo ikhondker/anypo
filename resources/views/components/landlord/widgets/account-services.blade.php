@@ -20,9 +20,12 @@
 					<th class="align-middle">#</th>
 					<th class="align-middle">Service Name</th>
 					<th class="align-middle">Account</th>
-					<th>Date</th>
+					<th>Start</th>
+					<th>End</th>
 					<th class="align-middle">Licensed User</th>
 					<th class="align-middle">Fee/mo</th>
+					<th>Enable</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,13 +35,27 @@
 							<img src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $service->name }}" title="{{ $service->name }}">
 						</td>
 						<td>{{ $service->name }}</td>
-
 						<td>{{ $service->account->name }} </td>
 						<td>{{ strtoupper(date('d-M-Y', strtotime( $service->start_date)))  }} </td>
 						<td>
-							<span class="badge badge-subtle-success">{{ $service->user }}</span>
+							@if ($service->end_date <> NULL)
+							{{ strtoupper(date('d-M-Y', strtotime( $service->end_date)))  }} 
+							@endif
 						</td>
+						<td><span class="badge badge-subtle-success">{{ $service->user }}</span></td>
 						<td><x-landlord.list.my-number :value="$service->price" />$</td>
+						<td><x-landlord.list.my-enable :value="$service->enable" /></td>
+						<td>
+							@if ($service->addon && $service->enable)
+								<a href="{{ route('services.delete', $service->id) }}"
+									class="text-body sw2-advance" data-entity="AddOn"
+									data-name="{{ $service->name }}"
+									data-status="Remove" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="Remove Add-On">
+									<i data-lucide="x-circle" class="text-danger"></i>
+								</a>
+							@endif 
+						</td>
 					</tr>
 				@endforeach
 			</tbody>

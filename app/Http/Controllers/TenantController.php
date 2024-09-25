@@ -80,7 +80,7 @@ class TenantController extends Controller
 		// create checkout row
 		$sessionId = Str::uuid()->toString();
 
-		$checkout_id = (new HomeController)->createCheckoutRow($sessionId,$request->input('site'),$request->input('account_name'),$request->input('email'));
+		$checkout_id = (new HomeController)->createCheckoutForBuy($sessionId, $request->input('site'), $request->input('account_name'), $request->input('email'));
 		Log::debug('landlord.TenantController.storee created checkout_id = '. $checkout_id);
 		// Write to Log
 		EventLog::event('checkout', $checkout_id, 'create');

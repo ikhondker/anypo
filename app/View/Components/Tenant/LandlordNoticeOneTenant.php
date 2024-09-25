@@ -18,10 +18,11 @@ class LandlordNoticeOneTenant extends Component
 	{
 		//
 		$landlordConfig = tenancy()->central(function ($tenant) {
-			return \App\Models\Landlord\Manage\Config::where('id', 1)->first();
+			return \App\Models\Landlord\Manage\Config::where('id', config('akk.LANDLORD_CONFIG_ID'))->first();
 		});
 		//dd($landlordConfig);
 
+		// use tenant table for notice
 		$this->anyNotice = false;
 		$this->notice = "Test Notice ONE Tenant TODO Landlord ." .$landlordConfig->name ;
 	}

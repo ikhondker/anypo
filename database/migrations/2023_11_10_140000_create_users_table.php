@@ -43,7 +43,7 @@ return new class extends Migration
 			$table->string('timezone', 255)->default('UTC');
 			$table->boolean('seeded')->default(false);
 			$table->boolean('enable')->default(true);
-			$table->boolean('ban')->default(true);
+			$table->boolean('locked')->default(false);
 			$table->datetime('last_login_at')->nullable();
 			$table->string('last_login_ip')->nullable();
 			$table->uuid('created_by')->nullable();

@@ -14,14 +14,14 @@ return new class extends Migration
 		Schema::create('mail_lists', function (Blueprint $table) {
 			$table->id();
 			$table->string('email');
-			$table->biginteger('user_id')->nullable();
+			$table->uuid('user_id')->nullable();
 			$table->string('ip')->default('127.0.0.1');
 			$table->boolean('enable')->default(true);
-			$table->softDeletes();
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
+			$table->softDeletes();
 		});
 	}
 
