@@ -7,6 +7,12 @@
 
 
 @section('content')
+	@inject('carbon', 'Carbon\Carbon')
+	@php
+		//$currentDateTime = Carbon\Carbon::now();
+		$date_gen_bill = Carbon\Carbon::now()->addDay($config->days_gen_bill);
+	@endphp
+
 	<h1 class="h3 mb-3">Configuration Overview</h1>
 	<div class="row">
 		<div class="col-12">
@@ -66,14 +72,14 @@
 								<table class="table table-sm mb-0">
 									<tbody>
 										
-									
-
 										<x-landlord.show.my-number value="{{ $config->discount_pc_3 }}" label="3 Months Discount %"/>
 										<x-landlord.show.my-number value="{{ $config->discount_pc_6 }}" label="6 Months Discount %"/>
 										<x-landlord.show.my-number value="{{ $config->discount_pc_12 }}" label="12 Months Discount %"/>
 										<x-landlord.show.my-number value="{{ $config->discount_pc_24 }}" label="24 Months Discount %"/>
-				
-										<x-landlord.show.my-integer value="{{ $config->days_gen_bill }}" label="Gen Invoice Before"/>
+										<tr>
+											<th>Gen Invoice Before :</th>
+											<td>{{number_format($config->days_gen_bill, 0)}} i.e. {{  strtoupper(date('d-M-Y', strtotime($date_gen_bill)))  }}</td>
+										</tr>
 										<x-landlord.show.my-integer value="{{ $config->days_due }}" label="Mark config as due after"/>
 										<x-landlord.show.my-integer value="{{ $config->days_pastdue }}" label="Mark config as past due after"/>
 										<x-landlord.show.my-integer value="{{ $config->days_archive }}" label="Mark config for archive after"/>

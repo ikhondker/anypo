@@ -288,7 +288,7 @@ use App\Http\Controllers\Landlord\Manage\ActivityController;
 Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 
 	/* ======================== User ========================================  */
-	Route::get('/user/all', [UserController::class, 'all'])->name('users.all');
+	Route::get('/user/all/{account?}', [UserController::class, 'all'])->name('users.all');
 	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
 	//Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
@@ -301,14 +301,14 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	Route::get('/account/all', [AccountController::class, 'all'])->name('accounts.all');
 
 	/* ======================== Services ======================================== */
-	Route::get('/service/all', [ServiceController::class, 'all'])->name('services.all');
+	Route::get('/service/all/{account?}', [ServiceController::class, 'all'])->name('services.all');
 	Route::get('/service/export', [ServiceController::class, 'export'])->name('services.export');
 
-		/* ======================== Invoice ======================================== */
-	Route::get('/invoice/all', [InvoiceController::class, 'all'])->name('invoices.all');
+	/* ======================== Invoice ======================================== */
+	Route::get('/invoice/all/{account?}', [InvoiceController::class, 'all'])->name('invoices.all');
 
 	/* ======================== Payment ======================================== */
-	Route::get('/payment/all', [PaymentController::class, 'all'])->name('payments.all');
+	Route::get('/payment/all/{account?}', [PaymentController::class, 'all'])->name('payments.all');
 
 	/* ======================== Activity ======================================== */
 	Route::resource('activities', ActivityController::class);

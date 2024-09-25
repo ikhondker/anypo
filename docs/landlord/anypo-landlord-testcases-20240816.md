@@ -1,3 +1,19 @@
+
+update accounts
+set 
+start_date = DATE_SUB(start_date, INTERVAL 30 DAY),
+end_date = DATE_SUB(end_date, INTERVAL 20 DAY)
+where account_id=1001
+
+DATE_SUB(curdate(), INTERVAL 30 DAY),
+
+update accounts
+update accounts 
+set start_date = DATE_SUB(start_date, INTERVAL 1 MONTH );
+set  start_date = curdate(), end_date= curdate()
+where account_id=1001
+
+
 # 3. TODO 
 ==================================================
 

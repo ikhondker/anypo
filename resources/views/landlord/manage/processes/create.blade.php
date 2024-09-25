@@ -46,7 +46,7 @@
 						<td class="">Generate Invoice</td>
 						<td class="">Generate Invoice</td>
 						<td class="text-end">
-							<a class="btn btn-danger" onclick="return confirm('Do you want to run Invoice Generation Process? ')" href="{{ route('processes.gen-invoice-all') }}">Run Process</a>
+							<a class="btn btn-danger" onclick="return confirm('Do you want to run Invoice Generation Process? ')" href="{{ route('processes.gen-invoice-all') }}">Run Billing Process</a>
 						</td>
 					</tr>
 					<tr>

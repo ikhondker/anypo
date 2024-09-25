@@ -7,14 +7,12 @@
 @section('content')
 	@inject('carbon', 'Carbon\Carbon')
 
-
 	<x-landlord.page-header>
 		@slot('title')
-		Services & Add-ons
+			Services & Add-ons
 		@endslot
 		@slot('buttons')
 				<x-landlord.actions.account-actions/>
-			
 		@endslot
 	</x-landlord.page-header>
 

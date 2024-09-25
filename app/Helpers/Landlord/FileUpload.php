@@ -79,7 +79,7 @@ class FileUpload
 			//$request->file_to_upload->storeAs('private/' . $directory . '/', $fileName);
 
 			$path= Storage::disk('s3lf')->put($fileUploadPath, file_get_contents($file));
-			Log::debug('Helpers.LandlordFileUpload.aws Value of path = '. $path);
+			//Log::debug('Helpers.LandlordFileUpload.aws Value of path = '. $path);
 
 			// create Attachment record rewrite
 			$attachment					= new Attachment;

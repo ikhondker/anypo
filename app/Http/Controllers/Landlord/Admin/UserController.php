@@ -28,7 +28,7 @@ use App\Http\Requests\Landlord\Admin\UpdateUserRequest;
 # 1. Models
 use App\Models\User;
 use App\Models\Landlord\Lookup\Country;
-
+use App\Models\Landlord\Account;
 # 2. Enums
 use App\Enum\UserRoleEnum;
 # 3. Helpers
@@ -98,7 +98,7 @@ class UserController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function all()
+	public function all(Account $account = null)
 	{
 
 		$this->authorize('viewAll', User::class);
@@ -107,7 +107,17 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$users= $users->with('account')->orderBy('created_at', 'DESC')->paginate(10);
+		
+		if ($account == '') {
+			// here the parameter doesn't exist
+			$users= $users->with('account')->orderBy('created_at', 'DESC')->paginate(10);
+			
+		} else {
+			$users= $users->with('account')
+				->where('account_id',$account->id)	
+				->orderBy('created_at', 'DESC')->paginate(10);
+		}
+
 
 		return view('landlord.admin.users.all',compact('users'));
 	}

@@ -74,10 +74,19 @@ class PaymentController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function all()
+	public function all(Account $account = null)
 	{
 		$this->authorize('viewAll',Payment::class);
-		$payments = Payment::with('invoice')->with('account')->with('status')->orderBy('id', 'desc')->paginate(10);
+
+		if ($account == '') {
+			// here the parameter doesn't exist
+			$payments = Payment::with('invoice')->with('account')->with('status')->orderBy('id', 'desc')->paginate(10);
+		} else {
+			$payments = Payment::with('invoice')->with('account')->with('status')
+				->where('account_id',$account->id)	
+				->orderBy('id', 'desc')->paginate(10);
+		}
+
 		return view('landlord.admin.payments.all', compact('payments'));
 	}
 

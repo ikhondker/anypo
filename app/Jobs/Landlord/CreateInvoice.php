@@ -16,7 +16,7 @@ use App\Models\Landlord\Account;
 use App\Enum\LandlordInvoiceTypeEnum;
 use App\Enum\LandlordInvoiceStatusEnum;
 
-use App\Helpers\Bo;
+use App\Helpers\Landlord\Bo;
 use App\Helpers\EventLog;
 
 use App\Notifications\Landlord\InvoiceCreated;

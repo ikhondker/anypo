@@ -8,7 +8,6 @@
 @section('content')
 	@inject('carbon', 'Carbon\Carbon')
 
-
 	<h1 class="h3 mb-3">All Services</h1>
 
 	<div class="card">

@@ -89,7 +89,7 @@
 									data-bs-placement="top" title="View">View</a>
 								<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="text-body"
 									target="_blank" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="Download"><i class="fas fa-file-pdf text-primary"></i>
+									data-bs-placement="top" title="Download"><i data-lucide="download"></i>
 								</a>
 							</td>
 						</tr>

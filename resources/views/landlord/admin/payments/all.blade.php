@@ -19,7 +19,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search payments…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 
 						</div>
@@ -45,14 +45,15 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Pay ID</th>
-						<th class="align-middle">Summary</th>
-						<th class="align-middle">Date</th>
-						<th class="align-middle">Invoice #</th>
-						<th class="align-middle">Amount $</th>
-						<th class="align-middle">Status</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Pay ID</th>
+						<th>Summary</th>
+						<th>Date</th>
+						<th>Account</th>
+						<th>Invoice #</th>
+						<th>Amount $</th>
+						<th>Status</th>
+						<th class="text-end">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,6 +69,7 @@
 								</a>
 							</td>
 							<td><x-landlord.list.my-date :value="$payment->pay_date" /></td>
+							<td>{{ Str::limit($payment->account->name, 25) }}</td>
 							<td>{{ $payment->invoice->invoice_no }}</td>
 							<td><x-landlord.list.my-number :value="$payment->amount" /></td>
 							<td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>

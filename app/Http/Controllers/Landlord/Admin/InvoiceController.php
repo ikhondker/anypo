@@ -87,11 +87,22 @@ class InvoiceController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function all()
+	public function all(Account $account = null)
 	{
+
 		// backend invoice list
 		$this->authorize('viewAll',Invoice::class);
-		$invoices = Invoice::with('account')->with('status')->orderBy('id', 'DESC')->paginate(10);
+
+		if ($account == '') {
+			// here the parameter doesn't exist
+			$invoices = Invoice::with('account')->with('status')->orderBy('id', 'DESC')->paginate(10);
+		} else {
+			$invoices = Invoice::with('account')->with('status')
+			->where('account_id',$account->id)	
+			->orderBy('id', 'DESC')->paginate(10);
+		}
+
+		
 		return view('landlord.admin.invoices.all', compact('invoices'));
 	}
 

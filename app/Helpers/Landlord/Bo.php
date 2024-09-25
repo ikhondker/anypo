@@ -185,8 +185,10 @@ class Bo
 		$account = Account::where('id', $invoice->account_id)->first();
 		Log::debug('Helpers.bo.extendAccountValidity extending validity for account_id = ' . $account->id);
 
-		$account->next_bill_generated	= false;
-		$account->next_invoice_no		= 0;
+		
+		$account->next_bill_generated	= true;
+		$account->next_invoice_no		= $invoice->invoice_no;
+		$account->last_bill_date		= now();
 		$account->end_date				= $invoice->to_date;	// << ===============
 		$account->save();
 		Log::debug('Helpers.bo.extendAccountValidity Account validity extended till '. $invoice->to_date);

@@ -2,7 +2,7 @@
 @section('title','Account')
 
 @section('breadcrumb')
-	@if (auth()->user()->isSupport())
+	@if (auth()->user()->isSeeded())
 		<li class="breadcrumb-item"><a href="{{ route('accounts.index') }}" class="text-muted">Accounts</a></li>
 	@endif
 	<li class="breadcrumb-item active">{{ $account->name }}</li>
@@ -15,7 +15,11 @@
 			Billing Account Overview
 		@endslot
 		@slot('buttons')
-				<x-landlord.actions.account-actions accountId="{{ $account->id }}"/>
+				@if (auth()->user()->isSeeded())
+					<x-landlord.actions.account-actions-support accountId="{{ $account->id }}"/>
+				@else 
+					<x-landlord.actions.account-actions accountId="{{ $account->id }}"/>
+				@endif
 				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
 				@if (auth()->user()->isSupport())
 					<a href="{{ route('accounts.index') }}" class="btn btn-primary float-end me-1"><i class="fas fa-list"></i> View all</a>
@@ -39,16 +43,16 @@
 				<div class="col-sm-9 col-xl-12 col-xxl-9">
 					{{-- <strong>{{ $account->primaryProduct->name }}</strong> --}}
 					<div class="mb-1">
+						<span class="card-subtitle">Account Name :
+						<strong>{{ $account->name }}</strong></span>
+					</div>
+					<div class="mb-1">
 						<span class="card-subtitle">Your plan :
 						<strong>{{ $account->primaryProduct->name }}</strong></span>
 					</div>
 					<div class="mb-1">
 						<span class="card-subtitle">Subscription :
 						<strong class="text-info">${{number_format($account->price, 2)}} USD/mo</strong></span>
-					</div>
-					<div class="mb-1">
-						<span class="card-subtitle">Account Name :
-						<strong>{{ $account->name }}</strong></span>
 					</div>
 					<div class="mb-1">
 						<span class="card-subtitle">URL :

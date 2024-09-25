@@ -51,6 +51,7 @@
 						<th>Invoice #</th>
 						<th>Summary</th>
 						<th>Invoice Date</th>
+						<th>Account</th>
 						<th>Type</th>
 						<th class="text-end">Amount $</th>
 						<th>Status</th>
@@ -70,6 +71,7 @@
 							</td>
 							<td>{{ Str::limit($invoice->summary, 25) }}</td>
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
+							<td>{{ Str::limit($invoice->account->name, 25) }}</td>
 							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
 							<td class="text-end"><x-landlord.list.my-number :value="$invoice->amount" /></td>
 							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
