@@ -10,7 +10,7 @@ use App\Models\Landlord\Account;
 
 class AccountActionsSupport extends Component
 {
-    public $account;
+	public $account;
 	/**
 	 * Create a new component instance.
 	 */
@@ -22,11 +22,11 @@ class AccountActionsSupport extends Component
 		$this->account 	= Account::where('id', $accountId)->get()->firstOrFail();
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.landlord.actions.account-actions-support');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.landlord.actions.account-actions-support');
+	}
 }

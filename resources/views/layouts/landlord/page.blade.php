@@ -97,7 +97,7 @@
 									@error('join_email')
 										<div class="text-danger text-xs">{{ $message }}</div>
 									@enderror
-							<button  type="submit" class="btn btn-secondary">Go!</button>
+							<button type="submit" class="btn btn-secondary">Go!</button>
 						</div>
 					</form>
 					<!-- End Form -->

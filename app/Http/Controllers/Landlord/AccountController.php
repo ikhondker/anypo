@@ -137,7 +137,7 @@ class AccountController extends Controller
 		$this->authorize('view', $account);
 		$entity = static::ENTITY;
 		//$services = Service::with('account')->byAccount()->orderBy('id', 'ASC')->paginate(10);
-		return view('landlord.accounts.show', compact('account',  'entity'));
+		return view('landlord.accounts.show', compact('account', 'entity'));
 	}
 
 	/**
@@ -364,13 +364,13 @@ class AccountController extends Controller
 		$config = Config::first();
 		$diff = now()->diffInDays($account->end_date);
 		if ($diff <= $config->days_addon_free) {
-			Log::debug('landlord.account.addAddon dont need to pay as end in days  = ' . $diff);
+			Log::debug('landlord.account.addAddon dont need to pay as end in days = ' . $diff);
 			$needToPay 	= false;
-			$addonPrice =  0;
+			$addonPrice = 0;
 		} else {
-			Log::debug('landlord.account.addAddon need to pay as end in days  = ' . $diff);
+			Log::debug('landlord.account.addAddon need to pay as end in days = ' . $diff);
 			$needToPay 	= true;
-			$addonPrice =  round($product->price/30*$diff, 2);
+			$addonPrice = round($product->price/30*$diff, 2);
 		}
 
 		// check if need to pay for adding this addon

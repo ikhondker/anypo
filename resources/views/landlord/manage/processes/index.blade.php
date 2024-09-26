@@ -64,7 +64,7 @@
 								</a>
 							</td>
 							<td>{{ $process->job_code }} </td>
-							<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($process->created_at)))  }} </td>
+							<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($process->created_at))) }} </td>
 							<td>
 								<a href="{{ route('processes.show',$process->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>

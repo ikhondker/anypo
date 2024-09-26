@@ -36,10 +36,10 @@
 						</td>
 						<td>{{ $service->name }}</td>
 						<td>{{ $service->account->name }} </td>
-						<td>{{ strtoupper(date('d-M-Y', strtotime( $service->start_date)))  }} </td>
+						<td>{{ strtoupper(date('d-M-Y', strtotime( $service->start_date))) }} </td>
 						<td>
 							@if ($service->end_date <> NULL)
-							{{ strtoupper(date('d-M-Y', strtotime( $service->end_date)))  }} 
+							{{ strtoupper(date('d-M-Y', strtotime( $service->end_date))) }}
 							@endif
 						</td>
 						<td><span class="badge badge-subtle-success">{{ $service->user }}</span></td>
@@ -54,7 +54,7 @@
 									data-bs-placement="top" title="Remove Add-On">
 									<i data-lucide="x-circle" class="text-danger"></i>
 								</a>
-							@endif 
+							@endif
 						</td>
 					</tr>
 				@endforeach

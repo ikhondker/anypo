@@ -17,7 +17,7 @@
 		@slot('buttons')
 				@if (auth()->user()->isSeeded())
 					<x-landlord.actions.account-actions-support accountId="{{ $account->id }}"/>
-				@else 
+				@else
 					<x-landlord.actions.account-actions accountId="{{ $account->id }}"/>
 				@endif
 				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
@@ -57,7 +57,7 @@
 					<div class="mb-1">
 						<span class="card-subtitle">URL :
 							<strong>
-							<a href="https://{{ $account->site.'.'.config('app.domain') }}" target="_blank" class="text-info">{{ $account->site.'.'.config('app.domain') }}</a>	
+							<a href="https://{{ $account->site.'.'.config('app.domain') }}" target="_blank" class="text-info">{{ $account->site.'.'.config('app.domain') }}</a>
 							</strong>
 						</span>
 					</div>
@@ -90,7 +90,7 @@
 								<x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
 								<tr>
 									<th scope="row">Created At :</th>
-									<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($account->created_at )))  }}</td>
+									<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($account->created_at ))) }}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -116,6 +116,6 @@
 		</div>
 	</div>
 
-	<x-landlord.widgets.account-services accountId="{{ $account->id }}"  />
+	<x-landlord.widgets.account-services accountId="{{ $account->id }}"/>
 
 @endsection

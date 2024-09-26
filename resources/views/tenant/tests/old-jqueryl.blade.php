@@ -4,10 +4,10 @@
 @section('content')
 
 <div id="app">
-  
+
 	<main class="container">
 		<h1> IQBAL JQuery in Laravel 10? OK</h1>
-		
+
 		<button class="btn btn-success">Click Me</button>
 	</main>
 </div>

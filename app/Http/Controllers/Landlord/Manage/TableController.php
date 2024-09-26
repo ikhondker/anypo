@@ -42,7 +42,7 @@ use Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 
@@ -147,7 +147,7 @@ class TableController extends Controller
 		//$filesInFolder = Docs::getFiles(config('bo.DOC_DIR_CLASS'));
 		$filesInFolder = Docs::getFiles( $target_dir );
 		return view('landlord.manage.tables.controllers', compact('filesInFolder'));
-		
+
 	}
 
 	public function fncControllers($dir = null)
@@ -174,7 +174,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		$filesInFolder = Docs::getFiles('\app\Helpers');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
-		
+
 		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
 		return view('landlord.manage.tables.helpers', compact('filesInFolder'));
 	}
@@ -186,7 +186,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
 		$filesInFolder = Docs::getFiles('\app\Helpers');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
-		
+
 		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
 		return view('landlord.manage.tables.helpers-fnc', compact('filesInFolder'));
 	}
@@ -222,8 +222,8 @@ class TableController extends Controller
 	public function allModels()
 	{
 		$this->authorize('models', Table::class);
-		$dir	=  "D:\laravel\anypo\app\Models\Landlord\\";
-		$a= Docs::listFolderFiles($dir);	
+		$dir	= "D:\laravel\anypo\app\Models\Landlord\\";
+		$a		= Docs::listFolderFiles($dir);
 	}
 
 
@@ -303,7 +303,7 @@ class TableController extends Controller
 		//$filesInFolder = \File::files(base_path().'\app\Enum');
 		//$filesInFolder = \File::files(base_path().'\app\Helpers');
 		//$filesInFolder = \File::files(base_path().'\app\Notifications');
-		
+
 		//$filesInFolder = Docs::getFiles('\app\Http\Controllers\Landlord\Manage');
 		$filesInFolder = Docs::getFiles($target_dir);
 		return view('landlord.manage.tables.comments', compact('filesInFolder','dir'));

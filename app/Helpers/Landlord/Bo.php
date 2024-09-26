@@ -8,7 +8,7 @@
 * @path			\app\Helpers\Landlord
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -114,7 +114,7 @@ class Bo
 			//return redirect()->back()->with(['error' => 'Could you find account.']);
 			return 0;
 		}
-		
+
 		// create new Invoice
 		// logic: create invoice from the next date, after current billed date
 		$invoice				= new Invoice();
@@ -128,7 +128,7 @@ class Bo
 		// This is the first bill for initial purchase
 		$invoice->invoice_type	= $checkout->invoice_type;
 
-		
+
 		// TODO invoice_type specific treatment
 		// change description for other type of invoice
 		switch ($invoice->invoice_type->value) {
@@ -146,15 +146,15 @@ class Bo
 				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
-		}		
-		
+		}
+
 		Log::channel('bo')->info('Helpers.bo.createCheckoutInvoice Account id = ' . $checkout->account_id . ' FIRST inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date);
 		$invoice->from_date		= $checkout->start_date;
 		$invoice->to_date		= $checkout->end_date;
 		$invoice->due_date		= $checkout->end_date;
 		$invoice->price			= $checkout->price;
 		$invoice->subtotal		= $checkout->price;
-		$invoice->amount		= $checkout->price; 
+		$invoice->amount		= $checkout->price;
 		$invoice->account_id	= $checkout->account_id;
 		$invoice->owner_id		= $checkout->owner_id;
 
@@ -174,20 +174,21 @@ class Bo
 
 		//return redirect()->route('processes.index')->with('success','Invoice Generation Process completed successfully.');
 		return $invoice->id;
-	}	
+	}
 
 
 	public static function extendAccountValidity($invoice_id = 0)
 	{
 		Log::debug('Helpers.bo.extendAccountValidity extending validity by invoice_id = ' . $invoice_id);
-		
+
 		$invoice = Invoice::where('id', $invoice_id)->first();
 		$account = Account::where('id', $invoice->account_id)->first();
 		Log::debug('Helpers.bo.extendAccountValidity extending validity for account_id = ' . $account->id);
 
-		
-		$account->next_bill_generated	= true;
-		$account->next_invoice_no		= $invoice->invoice_no;
+
+
+		$account->next_bill_generated	= false;		// make sure picked by process next run before expire
+		$account->next_invoice_no		= 0;
 		$account->last_bill_date		= now();
 		$account->end_date				= $invoice->to_date;	// << ===============
 		$account->save();

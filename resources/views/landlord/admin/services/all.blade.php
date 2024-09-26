@@ -71,7 +71,7 @@
 								</a>
 							</td>
 							<td>{{ $service->account->name }}</td>
-							<td>{{ strtoupper(date('d-M-Y', strtotime( $service->start_date)))  }} </td>
+							<td>{{ strtoupper(date('d-M-Y', strtotime( $service->start_date))) }} </td>
 							<td>
 								<span class="badge badge-subtle-primary rounded-pill">{{ $service->mnth }}</span>
 								<span class="badge badge-subtle-primary rounded-pill">{{ $service->user }}</span>

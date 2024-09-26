@@ -63,7 +63,7 @@ class ServiceController extends Controller
 	{
 		$this->authorize('viewAny',Service::class);
 
-		
+
 		$services = Service::with('account')->byAuthAccount()->orderBy('id', 'ASC')->paginate(10);
 
 		$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
@@ -92,14 +92,14 @@ class ServiceController extends Controller
 		//$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
 		//$account = Account::where('id', auth()->user()->account_id)->first();
 		//return view('landlord.admin.services.all', compact('services', 'addons','account'));
-		
+
 		if ($account == '') {
 			// here the parameter doesn't exist
 			$services = Service::with('account')->orderBy('id', 'ASC')->paginate(10);
-			
+
 		} else {
 			$services = Service::with('account')
-			->where('account_id',$account->id)	
+			->where('account_id',$account->id)
 				->orderBy('id', 'ASC')->paginate(10);
 		}
 
@@ -212,7 +212,7 @@ class ServiceController extends Controller
 
 		$service->fill([
 			'enable'	=> false,
-			'end_date'	=>  now(),
+			'end_date'	=> now(),
 		]);
 		$service->update();
 

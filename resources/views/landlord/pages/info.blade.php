@@ -5,7 +5,7 @@
 	<section class="py-6 bg-white">
 		<div class="container">
 			<div class="mb-5 text-center">
-				<span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">2. Information</span>
+				<span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">Information</span>
 				<h2 class="h1">INFORMATION</h2>
 				{{-- <p class="text-muted fs-lg">One simple pricing model. All you need to start. No hidden costs.</p> --}}
 			</div>

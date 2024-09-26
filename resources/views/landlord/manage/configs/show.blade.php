@@ -43,7 +43,7 @@
 								<span class="card-subtitle">Currency:
 								<strong>{{ $config->currency }}</strong></span>
 							</div>
-						
+
 						</div>
 					</div>
 					<div class="row pt-5">
@@ -71,20 +71,20 @@
 							<div class="table-responsive">
 								<table class="table table-sm mb-0">
 									<tbody>
-										
+
 										<x-landlord.show.my-number value="{{ $config->discount_pc_3 }}" label="3 Months Discount %"/>
 										<x-landlord.show.my-number value="{{ $config->discount_pc_6 }}" label="6 Months Discount %"/>
 										<x-landlord.show.my-number value="{{ $config->discount_pc_12 }}" label="12 Months Discount %"/>
 										<x-landlord.show.my-number value="{{ $config->discount_pc_24 }}" label="24 Months Discount %"/>
 										<tr>
 											<th>Gen Invoice Before :</th>
-											<td>{{number_format($config->days_gen_bill, 0)}} i.e. {{  strtoupper(date('d-M-Y', strtotime($date_gen_bill)))  }}</td>
+											<td>{{number_format($config->days_gen_bill, 0)}} i.e. {{ strtoupper(date('d-M-Y', strtotime($date_gen_bill))) }}</td>
 										</tr>
 										<x-landlord.show.my-integer value="{{ $config->days_due }}" label="Mark config as due after"/>
 										<x-landlord.show.my-integer value="{{ $config->days_pastdue }}" label="Mark config as past due after"/>
 										<x-landlord.show.my-integer value="{{ $config->days_archive }}" label="Mark config for archive after"/>
 										<x-landlord.show.my-integer value="{{ $config->days_addon_free }}" label="Days Addon Free"/>
-				
+
 										<x-landlord.show.my-enable	value="{{ $config->maintenance }}" label="Maintenance ?"/>
 										<x-landlord.show.my-date-time	value="{{ $config->maintenance_start_time }}" label="Start"/>
 										<x-landlord.show.my-date-time	value="{{ $config->maintenance_end_time }}" label="End"/>

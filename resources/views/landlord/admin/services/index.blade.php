@@ -16,7 +16,7 @@
 		@endslot
 	</x-landlord.page-header>
 
-	<x-landlord.widgets.account-services accountId="{{ auth()->user()->account_id }}"  />
+	<x-landlord.widgets.account-services accountId="{{ auth()->user()->account_id }}" />
 
 	<x-landlord.widgets.add-addon/>
 
