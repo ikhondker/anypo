@@ -44,7 +44,7 @@ class InvoicePaid extends Notification implements ShouldQueue
 	{
 		//->line('You may also download the PDf receipt after logging into your account.')
 		return (new MailMessage)
-			->subject(config('app.name'). ' Invoice #'.$this->invoice->invoice_no.' has been paid')
+			->subject(config('app.name'). ' - Invoice #'.$this->invoice->invoice_no.' has been paid')
 			->greeting('Hello '.$this->user->name.',')
 			->line('This is a notice that your Invoice #'.$this->invoice->invoice_no.' has been paid.')
 			->line('Payment Ref #'.$this->payment->id)

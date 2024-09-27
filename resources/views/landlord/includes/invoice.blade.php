@@ -29,8 +29,8 @@
 							<form action="{{ url('/payment-stripe') }}" method="POST" class="needs-validation">
 								<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 								<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-								<button class="btn btn-primary btn-sm" type="submit">
-									<i class="fas fa-edit"></i></i> Pay Invoice
+								<button class="btn btn-danger btn-sm" type="submit">
+									<i class="fas fa-dollar-sign"></i></i> Pay Invoice
 								</button>
 							</form>
 						@endif
@@ -72,8 +72,8 @@
 						<strong>AppStack LLC</strong> --}}
 						<p>
 							Invoice : #{{ $invoice->invoice_no }}<br> 
-							Invoice date: {{ date('d-M-Y', strtotime($invoice->invoice_date)) }}<br> 
-							Due date: {{ date('d-M-Y', strtotime($invoice->due_date)) }}<br> 
+							Invoice date: {{ strtoupper(date('d-M-Y', strtotime($invoice->invoice_date))) }}<br> 
+							Due date: {{ strtoupper(date('d-M-Y', strtotime($invoice->due_date))) }}<br> 
 						</p>
 					</div>
 				</div>
@@ -89,7 +89,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>{{ $invoice->summary }}</td>
+							<td>{{ $invoice->notes }}</td>
 							<td>1</td>
 							<td>${{ number_format($invoice->amount,2) }}</td>
 							<td class="text-end">${{ number_format($invoice->amount,2) }}</td>

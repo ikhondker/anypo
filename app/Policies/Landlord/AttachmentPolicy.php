@@ -85,8 +85,29 @@ class AttachmentPolicy
 	 */
 	public function download(User $user, Attachment $attachment): bool
 	{
-		// TODO write logic here does not work
-		return true;
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::USER->value:
+				return ($user->id == $attachment->owner_id) ;
+				break;
+			case UserRoleEnum::ADMIN->value:
+				return ($user->account_id == $attachment->id);
+				break;
+			case UserRoleEnum::SUPPORT->value:
+				return true;
+				break;
+			case UserRoleEnum::SUPERVISOR->value:
+				return true;
+				break;
+			case UserRoleEnum::DEVELOPER->value:
+				return true;
+				break;
+			case UserRoleEnum::SYSTEM->value:
+				return true;
+				break;
+			default:
+				return false;
+				Log::error('landlord.policy.attachment Other roles= '. auth()->user()->role->value);
+		}
 	}
 
 }

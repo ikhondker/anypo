@@ -44,7 +44,7 @@ class InvoiceCreated extends Notification implements ShouldQueue
 	public function toMail(object $notifiable): MailMessage
 	{
 		return (new MailMessage)
-			->subject(config('app.name'). ' Customer Invoice #'.$this->invoice->invoice_no)
+			->subject(config('app.name'). ' - Invoice #'.$this->invoice->invoice_no)
 			->greeting('Hello '. $this->user->name . ',')
 			->line('This is a notice that an Invoice#'.$this->invoice->invoice_no.' for '.config('app.name').' for your account has been generated.')
 			->line('Please use the following link to View Invoice:')

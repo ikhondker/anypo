@@ -1,5 +1,5 @@
 @extends('layouts.landlord.app')
-@section('title','Users')
+@section('title','Category')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('categories.index') }}" class="text-muted">Category</a></li>
 	<li class="breadcrumb-item active">{{ $category->name }}</li>

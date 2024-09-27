@@ -50,14 +50,14 @@ class CategoryController extends Controller
 	 */
 	public function index()
 	{
-	 //$this->authorize('viewAny', Category::class);
-		 $categories = Category::query();
-		 if (request('term')) {
-			 $categories->where('name', 'Like', '%'.request('term').'%');
-		 }
-		 $categories = $categories->orderBy('name', 'ASC')->paginate(40);
- 
-		 return view('landlord.lookup.categories.index', compact('categories'));
+	 	$this->authorize('viewAny', Category::class);
+		$categories = Category::query();
+		if (request('term')) {
+			$categories->where('name', 'Like', '%'.request('term').'%');
+		}
+		$categories = $categories->orderBy('name', 'ASC')->paginate(40);
+
+		return view('landlord.lookup.categories.index', compact('categories'));
 	}
 
 	/**

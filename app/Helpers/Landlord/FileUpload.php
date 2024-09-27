@@ -88,6 +88,7 @@ class FileUpload
 			$attachment->entity			= $request->entity;
 			$attachment->file_entity 	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
 			$attachment->owner_id		= auth()->check() ? auth()->user()->id : NULL;
+			$attachment->account_id		= auth()->check() ? auth()->user()->account_id : NULL;
 			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No file description available';
 			$attachment->file_name		= $fileName;
 			$attachment->org_file_name	= $org_fileName;

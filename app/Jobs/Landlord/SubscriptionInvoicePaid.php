@@ -21,7 +21,7 @@ use App\Enum\LandlordPaymentStatusEnum;
 
 // Helpers
 use App\Helpers\EventLog;
-use App\Helpers\Bo;
+use App\Helpers\Landlord\Bo;
 
 // notification
 use Notification;
@@ -61,9 +61,10 @@ class SubscriptionInvoicePaid implements ShouldQueue
 		$invoice->amount_paid = $payment->amount;
 		$invoice->status_code = LandlordInvoiceStatusEnum::PAID->value ;
 		$invoice->update();
-		Log::debug('jobs.SubscriptionInvoicePaid invoice end_date = ' . $invoice->to_date);
+		Log::debug('jobs.Landlord.SubscriptionInvoicePaid invoice end_date = ' . $invoice->to_date);
 
-		//extend account validity and end_date
+		// extend account validity and end_date
+		Log::debug('jobs.Landlord.SubscriptionInvoicePaid calling extendAccountValidity for invoice_id = ' . $invoice->id);
 		$account_id= bo::extendAccountValidity($invoice->id);
 
 		// Invoice Paid Notification

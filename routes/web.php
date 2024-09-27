@@ -297,6 +297,10 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	Route::get('/ticket/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
 	Route::post('/ticket/doassign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.doassign');
 
+	/* ======================== Comment ========================================  */
+	Route::get('/comment/all', [CommentController::class, 'all'])->name('comments.all');
+	//Route::get('/comments/delete/{comment}', [CommentController::class, 'destroy'])->name('comments.delete');
+
 	/* ======================== Accounts ========================================  */
 	Route::get('/account/all', [AccountController::class, 'all'])->name('accounts.all');
 

@@ -44,7 +44,7 @@
 - <<TABLE>> set $checkout->end_date	
 - <<TABLE>> $checkout->save();
 - route('checkout.success-advance') => HomeController.successAdvance
-- Advance::dispatch($checkout->id);
+- AddAdvance::dispatch($checkout->id);
 - bo::createInvoiceForCheckout($this->checkout_id);
 	<<TABLE>>  $invoice->save();
 - bo::payCheckoutInvoice($checkout->invoice_id );
@@ -94,7 +94,7 @@ $checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 - route('processes.gen-invoice-all')
 - ProcessController.genInvoiceAll
 - ProcessBilling::dispatch();
-- CreateInvoice::dispatch($account->id, 1, $process->id);
+- CreateMonthlyInvoice::dispatch($account->id, 1, $process->id);
 - <<TABLE>> $invoice->save();
 ~~~
 

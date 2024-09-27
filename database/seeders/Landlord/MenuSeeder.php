@@ -44,13 +44,18 @@ class MenuSeeder extends Seeder
 			* 1. Workbench
 			* ==================================================================================
 			*/
-			[ 'raw_route_name' => 'tickets.index',	 	'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.all',		'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.show',	  	'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.update',		'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.edit',	  	'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.create',		'route_name' => 'tickets.index',	'node_name' => ''],
-			[ 'raw_route_name' => 'tickets.assign',	  	'route_name' => 'tickets.index',	'node_name' => ''],
+			[ 'raw_route_name' => 'tickets.index',	 	'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'tickets.all',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'tickets.show',	  	'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'tickets.update',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'tickets.edit',	  	'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'tickets.create',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'tickets.assign',	  	'route_name' => 'tickets.index',	'node_name' 	=> ''],
+
+			[ 'raw_route_name' => 'comments.all',		'route_name' => 'comments.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'comments.show',	  	'route_name' => 'comments.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'comments.update',	'route_name' => 'comments.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'comments.edit',	  	'route_name' => 'comments.index',	'node_name' 	=> ''],
 
 			[ 'raw_route_name' => 'invoices.index',		'route_name' => 'invoices.index', 	'node_name' 	=> 'workbench'],
 			[ 'raw_route_name' => 'invoices.all',	  	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
@@ -61,11 +66,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'invoices.create',	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
 			
 			[ 'raw_route_name' => 'payments.index',		'route_name' => 'payments.index',  'node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'payments.all',	  	'route_name' 	=> 'payments.index', 'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'payments.show',	 	'route_name' 	=> 'payments.index', 'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'payments.update',	'route_name'	=> 'payments.index', 'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'payments.edit',	 	'route_name' 	=> 'payments.index', 'node_name' 	=> 'workbench'],
-			[ 'raw_route_name' => 'payments.create',	'route_name'	=> 'payments.index', 'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'payments.all',	  	'route_name' => 'payments.index', 'node_name' 		=> 'workbench'],
+			[ 'raw_route_name' => 'payments.show',	 	'route_name' => 'payments.index', 'node_name' 		=> 'workbench'],
+			[ 'raw_route_name' => 'payments.update',	'route_name'=> 'payments.index', 'node_name' 		=> 'workbench'],
+			[ 'raw_route_name' => 'payments.edit',	 	'route_name'=> 'payments.index', 'node_name' 		=> 'workbench'],
+			[ 'raw_route_name' => 'payments.create',	'route_name'=> 'payments.index', 'node_name' 		=> 'workbench'],
 			
 			[ 'raw_route_name' => 'services.index',		'route_name' => 'services.index', 'node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'services.all',	  	'route_name' => 'services.index',	  'node_name' 	=> 'workbench'],
@@ -81,12 +86,12 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'accounts.update',	'route_name' => 'accounts.index',	'node_name' 	=> 'workbench'],
 			[ 'raw_route_name' => 'accounts.create',	'route_name' => 'accounts.index',	'node_name' 	=> 'workbench'],
 
-			[ 'raw_route_name' => 'checkouts.index',	'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
-			//[ 'raw_route_name' => 'checkouts.all',	'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'checkouts.show',		'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'checkouts.update',	'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'checkouts.edit',		'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'checkouts.create',	'route_name' => 'checkouts.index',	 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'checkouts.index',	'route_name' => 'checkouts.index',	 'node_name' 	=> 'workbench'],
+			//[ 'raw_route_name' => 'checkouts.all',	'route_name' => 'checkouts.index',	 'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'checkouts.show',		'route_name' => 'checkouts.index',	 'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'checkouts.update',	'route_name' => 'checkouts.index',	 'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'checkouts.edit',		'route_name' => 'checkouts.index',	 'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'checkouts.create',	'route_name' => 'checkouts.index',	 'node_name' 	=> 'workbench'],
 
 			[ 'raw_route_name' => 'users.index',		'route_name' => 'users.index',	'node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'users.all',			'route_name' => 'users.index',	'node_name' 		=> 'workbench'],
@@ -104,10 +109,6 @@ class MenuSeeder extends Seeder
 			
 
 			
-
-			
-			
-
 			
 
 			/**
@@ -118,8 +119,6 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.profile',	  	'route_name' => 'users.profile',	'node_name' 		=> 'profile'],
 			[ 'raw_route_name' => 'users.profile-edit',	'route_name' => 'users.profile-edit',	'node_name' 	=> 'profile'],
 			[ 'raw_route_name' => 'users.profile-password','route_name' => 'users.profile-password','node_name'	=> 'profile'],
-
-			
 
 			/**
 			* ==================================================================================

@@ -51,14 +51,16 @@ class Comment extends Model
 
 
 	/* ---------------- belongsTo ---------------------- */
-	public function tickets()
+	public function ticket()
 	{
-		return $this->belongsTo(TicketStatus::class, 'ticket_id');
+		return $this->belongsTo(Ticket::class, 'ticket_id');
 	}
 
 	public function owner()
 	{
-		return $this->belongsTo(User::class, 'owner_id');
+		return $this->belongsTo(User::class, 'owner_id')->withDefault([
+			'name' => '[ Guest ]',
+		]);
 	}
 
 	/* ---------------- created and updated by ---------------------- */

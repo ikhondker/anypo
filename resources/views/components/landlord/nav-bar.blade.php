@@ -3,7 +3,7 @@
 
 	<!-- ========== TOP NAV BAR ========== -->
 	{{-- <nav class="navbar p-2 navbar-expand-md navbar-dark bg-primary landing-navbar"> --}}
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar">
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar pb-0">
 		<div class="container">
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item d-none d-md-inline-block">
@@ -67,7 +67,7 @@
 
 	<!-- ========== MAIN NAV BAR ========== -->
 	{{-- <nav class="navbar navbar-expand-md navbar-dark bg-primary landing-navbar"> --}}
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar">
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar pt-0 pb-0">
 		<div class="container">
 
 			<!-- Default Logo -->
@@ -111,9 +111,13 @@
 				</li>
 				<!-- End Contact -->
 
+				<!-- Contact -->
+				<li class="nav-item d-none d-md-inline-block">
+					<a href="{{ route('pricing') }}" class="btn btn-lg btn-success btn-pill my-2 my-sm-0 ms-3">Buy now</a>
+				</li>
+				<!-- End Contact -->
 			</ul>
-			<a href="{{ route('pricing') }}"
-			class="btn btn-lg btn-success btn-pill my-2 my-sm-0 ms-3">Buy now</a>
+			
 		</div>
 	</nav>
 	<!-- ========== MAIN NAV BAR ========== -->

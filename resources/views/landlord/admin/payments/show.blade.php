@@ -38,7 +38,7 @@
 						</div>
 						<div class="col-md-6 text-md-right">
 							<div class="text-muted">Payment Date</div>
-							<strong>{{ date('d-M-Y', strtotime($payment->pay_date)) }}</strong>
+							<strong>{{ strtoupper(date('d-M-Y', strtotime($payment->pay_date))) }}</strong>
 						</div>
 					</div>
 

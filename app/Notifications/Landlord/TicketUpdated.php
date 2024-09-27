@@ -41,7 +41,7 @@ class TicketUpdated extends Notification implements ShouldQueue
 	public function toMail(object $notifiable): MailMessage
 	{
 		return (new MailMessage)
-		->subject('Ticket #'.$this->ticket->id.' has been updated')
+		->subject(config('app.name'). ' - Ticket #'.$this->ticket->id.' has been updated')
 		->greeting('Hello '.$this->user->name.',')
 		->line('Ticket #'.$this->ticket->id.' for '.$this->ticket->title .' has been updated.')
 		->action('View Ticket', url('/tickets/'.$this->ticket->id))

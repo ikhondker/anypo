@@ -1,9 +1,9 @@
 
 update accounts
 set 
-start_date = DATE_SUB(start_date, INTERVAL 30 DAY),
-end_date = DATE_SUB(end_date, INTERVAL 20 DAY)
-where account_id=1001
+start_date = DATE_SUB(start_date, INTERVAL 28 DAY),
+end_date = DATE_SUB(end_date, INTERVAL 28 DAY)
+where id=1004
 
 DATE_SUB(curdate(), INTERVAL 30 DAY),
 

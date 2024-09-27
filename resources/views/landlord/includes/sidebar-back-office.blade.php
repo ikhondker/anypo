@@ -16,12 +16,16 @@
 	</a>
 </li>
 
-
+<li class="sidebar-item {{ $_route_name == 'comments.index' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('comments.all') }}">
+		<i class="align-middle" data-lucide="sliders"></i> <span class="align-middle">All Comments</span>
+	</a>
+</li>
 @can('viewWorkbenchMenu', App\Models\Landlord\Manage\Menu::class)
 	<li class="sidebar-item {{ ($_node_name == 'workbench' ? 'active' : '') }}">
 		<a data-bs-target="#workbench"s data-bs-toggle="collapse" class="sidebar-link collapsed">
 			<i class="align-middle" data-lucide="layout-template"></i>
-			<span class="align-middle">Workbench *</span>
+			<span class="align-middle">Workbench</span>
 		</a>
 		<ul id="workbench" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'workbench' ? 'show' : '') }}" data-bs-parent="#sidebar">
 			{{-- <li class="sidebar-item {{ ($_route_name == 'tickets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tickets.all') }}"><i class="align-middle" data-lucide="circle"></i>All Tickets</a></li> --}}
@@ -34,22 +38,6 @@
 		</ul>
 	</li>
 @endcan
-
-
-@can('viewLookupMenu', App\Models\Landlord\Manage\Menu::class)
-	<li class="sidebar-item {{ ($_node_name == 'lookups' ? 'active' : '') }}">
-		<a data-bs-target="#lookups" data-bs-toggle="collapse" class="sidebar-link collapsed">
-			<i class="align-middle" data-lucide="layout-template"></i>
-			<span class="align-middle">Lookups</span>
-		</a>
-		<ul id="lookups" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'lookups' ? 'show' : '') }}" data-bs-parent="#sidebar">
-			<li class="sidebar-item {{ ($_route_name == 'products.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('products.index') }}"><i class="align-middle" data-lucide="circle"></i>Product</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'categories.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('categories.index') }}"><i class="align-middle" data-lucide="circle"></i>Category</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-lucide="circle"></i>Country</a></li>
-		</ul>
-	</li>
-@endcan
-
 
 
 @can('viewSupportMenu', App\Models\Landlord\Manage\Menu::class)
@@ -65,6 +53,20 @@
 			<li class="sidebar-item {{ ($_route_name == 'mail-lists.all' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('mail-lists.index') }}"><i class="align-middle" data-lucide="circle"></i>Mail Lists</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'tenants.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tenants.index') }}"><i class="align-middle" data-lucide="circle"></i>All Tenants</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'domains.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('domains.index') }}"><i class="align-middle" data-lucide="circle"></i>All Domains</a></li>
+		</ul>
+	</li>
+@endcan
+
+@can('viewLookupMenu', App\Models\Landlord\Manage\Menu::class)
+	<li class="sidebar-item {{ ($_node_name == 'lookups' ? 'active' : '') }}">
+		<a data-bs-target="#lookups" data-bs-toggle="collapse" class="sidebar-link collapsed">
+			<i class="align-middle" data-lucide="layout-template"></i>
+			<span class="align-middle">Lookups</span>
+		</a>
+		<ul id="lookups" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'lookups' ? 'show' : '') }}" data-bs-parent="#sidebar">
+			<li class="sidebar-item {{ ($_route_name == 'products.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('products.index') }}"><i class="align-middle" data-lucide="circle"></i>Product</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'categories.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('categories.index') }}"><i class="align-middle" data-lucide="circle"></i>Category</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-lucide="circle"></i>Country</a></li>
 		</ul>
 	</li>
 @endcan

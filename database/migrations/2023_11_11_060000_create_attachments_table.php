@@ -16,6 +16,7 @@ return new class extends Migration
 			$table->uuid('id')->primary();
 			$table->string('entity',15); 
 			$table->biginteger('article_id')->default(0);
+			$table->foreignId('account_id')->nullable();		// no FK intentionally
 			$table->string('file_entity',15); 
 			//$table->foreignId('attachment_entity')->constrained('entities');
 			$table->foreignUuid('owner_id')->constrained('users')->nullable();

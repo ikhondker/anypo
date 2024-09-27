@@ -66,7 +66,25 @@ class CommentController extends Controller
 	 */
 	public function index()
 	{
-		//
+		abort(403);
+	}
+
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function all()
+	{
+		$this->authorize('viewAny', Comment::class);
+		$comments = Comment::query();
+		if (request('term')) {
+			$comments->where('content', 'Like', '%'.request('term').'%');
+		}
+		$comments = $comments->orderBy('id', 'DESC')->paginate(40);
+
+		return view('landlord.comments.all', compact('comments'));
 	}
 
 	/**
@@ -183,7 +201,8 @@ class CommentController extends Controller
 	 */
 	public function show(Comment $comment)
 	{
-		//
+		$this->authorize('view', $comment);
+		return view('landlord.comments.show', compact('comment'));
 	}
 
 	/**
@@ -194,7 +213,8 @@ class CommentController extends Controller
 	 */
 	public function edit(Comment $comment)
 	{
-		//
+		$this->authorize('update', $comment);
+		return view('landlord.comments.edit', compact('comment'));
 	}
 
 	/**
@@ -206,7 +226,16 @@ class CommentController extends Controller
 	 */
 	public function update(UpdateCommentRequest $request, Comment $comment)
 	{
-		//
+		$this->authorize('update', $comment);
+
+		$request->validate([
+		]);
+		$comment->update($request->all());
+
+		// Write to Log
+		EventLog::event('comment', $comment->id, 'update', 'name', $request->name);
+
+		return redirect()->route('comments.all')->with('success', 'Comment updated successfully');
 	}
 
 	/**

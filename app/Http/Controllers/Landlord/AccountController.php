@@ -350,8 +350,8 @@ class AccountController extends Controller
 		// check for unpaid invoices
 		$account			= Account::where('id', $account_id)->first();
 		if ($account->next_bill_generated) {
-			Log::debug('landlord.account.addAddon Unpaid invoice exists for Account #' . $account->id . ' addon can not be added.');
-			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id = ' . $account->id . '! Please pay unpaid invoice, before buying new addon.');
+			Log::debug('landlord.account.addAddon Unpaid invoice exists for this Account. Addon can not be added.');
+			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for this account! Please pay unpaid invoice, before buying new addon.');
 		}
 
 		// get product/addon

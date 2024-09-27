@@ -3,7 +3,11 @@
 
 # 7. TODO - Open
 ====================================================================
-review TODO and P2
+113. collap top navbar whne small sceen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+111. // Navbar brand $navbar-brand-padding-y: $spacer*0.875 !default; _app.scss
+111. <nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar"> p-0 m-0
+110. linebreak in invoice notes/description
+111. review TODO and P2
 110. change invoice description of advance payment 
 69. lock/cancel/archive account
 95. datetime-local value edit for maintenance start

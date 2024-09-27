@@ -131,19 +131,20 @@ class Bo
 
 		// TODO invoice_type specific treatment
 		// change description for other type of invoice
+		$invoice->summary		= env('APP_DOMAIN'). ' - Your Invoice #'. $invoice->invoice_no;
 		switch ($invoice->invoice_type->value) {
 			case LandlordInvoiceTypeEnum::CHECKOUT->value:
-				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN');
+				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN');
 				break;
-			case LandlordInvoiceTypeEnum::SUBSCRIPTION->value:
-				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
+			case LandlordInvoiceTypeEnum::SUBSCRIPTION->value:  // manually generate an pay invoice 
+				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
 			case LandlordInvoiceTypeEnum::ADDON->value:
-				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') ;
+				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') ;
 				break;
 			case LandlordInvoiceTypeEnum::ADVANCE->value:
-				$invoice->summary		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
+				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
 		}
@@ -179,11 +180,11 @@ class Bo
 
 	public static function extendAccountValidity($invoice_id = 0)
 	{
-		Log::debug('Helpers.bo.extendAccountValidity extending validity by invoice_id = ' . $invoice_id);
+		Log::debug('Helpers.landlord.bo.extendAccountValidity extending validity by invoice_id = ' . $invoice_id);
 
 		$invoice = Invoice::where('id', $invoice_id)->first();
 		$account = Account::where('id', $invoice->account_id)->first();
-		Log::debug('Helpers.bo.extendAccountValidity extending validity for account_id = ' . $account->id);
+		Log::debug('Helpers.landlord.bo.extendAccountValidity extending validity for account_id = ' . $account->id);
 
 
 
@@ -192,7 +193,7 @@ class Bo
 		$account->last_bill_date		= now();
 		$account->end_date				= $invoice->to_date;	// << ===============
 		$account->save();
-		Log::debug('Helpers.bo.extendAccountValidity Account validity extended till '. $invoice->to_date);
+		Log::debug('Helpers.landlord.bo.extendAccountValidity Account validity extended till '. $invoice->to_date);
 		return $account->id;
 	}
 
@@ -200,8 +201,8 @@ class Bo
 	{
 
 		$invoice = Invoice::where('id', $invoice_id)->first();
-		Log::debug('Helpers.bo.payCheckoutInvoice Paying invoice_id = ' . $invoice->id);
-		Log::debug('Helpers.bo.payCheckoutInvoice Invoice for account_id = ' . $invoice->account_id);
+		Log::debug('Helpers.landlord.bo.payCheckoutInvoice Paying invoice_id = ' . $invoice->id);
+		Log::debug('Helpers.landlord.bo.payCheckoutInvoice Invoice for account_id = ' . $invoice->account_id);
 
 		// create payment
 		$payment					= new Payment();
@@ -216,8 +217,8 @@ class Bo
 		//$payment->ip				= $request->ip(); // ERROR
 		$payment->save();
 
-		Log::debug('Jobs.Landlord.CreateTenant.payCheckoutInvoice payment account_id = ' . $payment->account_id);
-		Log::debug('Jobs.Landlord.CreateTenant.payCheckoutInvoice Invoice payment_id = ' . $payment->id);
+		Log::debug('Helpers.landlord.bo.payCheckoutInvoice payment account_id = ' . $payment->account_id);
+		Log::debug('Helpers.landlord.bo.payCheckoutInvoice Invoice payment_id = ' . $payment->id);
 		EventLog::event('payment', $payment->id, 'create');
 
 		// update paid amount in invoice as paid

@@ -71,7 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail
 		// common columns
 		'name', 'email', 'role', 'password', 'email_verified_at', 'remember_token', 'cell', 'title', 'address1', 'address2', 'city', 'state', 'zip', 'country',
 		'website','facebook', 'linkedin', 'avatar', 'notes', 'timezone',
-		'seeded', 'enable', 'ban', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at',
+		'seeded', 'enable', 'locked', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at',
 		// landlord column
 		'account_id',
 		// Tenant column

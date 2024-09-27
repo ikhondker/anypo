@@ -1,4 +1,4 @@
-<div class="alert alert-danger alert-dismissible" role="alert">
+<div class="alert alert-danger alert-dismissible m-0 p-0" role="alert">
 	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	<div class="alert-icon">
 		<i data-lucide="alert-triangle" class="text-danger"></i>

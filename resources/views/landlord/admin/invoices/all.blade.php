@@ -66,10 +66,10 @@
 							</td>
 							<td>
 								<a href="{{ route('invoices.show', $invoice->id) }}">
-									<strong>#{{ Str::limit($invoice->invoice_no, 10) }}</strong>
+									<strong>#{{ Str::limit($invoice->invoice_no, 15) }}</strong>
 								</a>
 							</td>
-							<td>{{ Str::limit($invoice->summary, 25) }}</td>
+							<td>{{ Str::limit($invoice->summary, 35) }}</td>
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
 							<td>{{ Str::limit($invoice->account->name, 25) }}</td>
 							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>

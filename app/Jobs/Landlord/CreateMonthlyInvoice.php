@@ -23,7 +23,7 @@ use App\Notifications\Landlord\InvoiceCreated;
 
 use Illuminate\Support\Facades\Log;
 
-class CreateInvoice implements ShouldQueue
+class CreateMonthlyInvoice implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -48,12 +48,12 @@ class CreateInvoice implements ShouldQueue
 	{
 
 		$config = Config::first();
-		Log::debug('jobs.landlord.CreateInvoice Generating Invoice for account_id = ' . $this->account_id .' for period = '. $this->period);
+		Log::debug('jobs.landlord.CreateMonthlyInvoice Generating Invoice for account_id = ' . $this->account_id .' for period = '. $this->period);
 		$account = Account::where('id', $this->account_id)->first();
 
 		// Don't create invoice if unpaid invoice exists
 		if ($account->next_bill_generated) {
-			Log::debug('jobs.landlord.CreateInvoice Unpaid invoice exists for account_id = ' . $this->account_id . '. Invoice not created.');
+			Log::debug('jobs.landlord.CreateMonthlyInvoice Unpaid invoice exists for account_id = ' . $this->account_id . '. Invoice not created.');
 			return;
 		}
 
@@ -68,10 +68,11 @@ class CreateInvoice implements ShouldQueue
 		$invoice->from_date		= $account->end_date->addDay(1);
 		$invoice->to_date		= $account->end_date->addDay(1)->addMonth($this->period);
 		//Log::channel('bo')->info('Account id='. $account_id.' SECOND inv start '.$invoice->from_date.' to date '.$invoice->to_date);
-		Log::channel('bo')->info('jobs.landlord.CreateInvoice Account #' . $this->account_id . ' Second inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date . ' period= ' . $this->period);
+		Log::channel('bo')->info('jobs.landlord.CreateMonthlyInvoice Account #' . $this->account_id . ' Second inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date . ' period= ' . $this->period);
 
 		$invoice->due_date		= $account->end_date;
-		$invoice->summary		= 'Subscription Invoice for Account #' . $account->id . ' for' . $account->site .'.'. env('APP_DOMAIN');
+		$invoice->summary		= env('APP_DOMAIN'). ' - Your Invoice #'. $invoice->invoice_no;
+		$invoice->notes			= 'Subscription Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
 
 		switch ($this->period) {
 			case '1':
@@ -93,7 +94,7 @@ class CreateInvoice implements ShouldQueue
 				$discount_pc =0 ;
 		}
 
-		Log::channel('bo')->info('jobs.landlord.CreateInvoice discount_pc = ' . $discount_pc);
+		Log::channel('bo')->info('jobs.landlord.CreateMonthlyInvoice discount_pc = ' . $discount_pc);
 
 		$invoice->price			= round($this->period * $account->price * (100 - $discount_pc)/100, 2) ;
 		$invoice->subtotal		= $invoice->price;
@@ -107,7 +108,7 @@ class CreateInvoice implements ShouldQueue
 		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
 		$invoice->save();
 
-		Log::channel('bo')->info('jobs.landlord.CreateInvoice Invoice Generated invoice_id = ' . $invoice->id);
+		Log::channel('bo')->info('jobs.landlord.CreateMonthlyInvoice Invoice Generated invoice_id = ' . $invoice->id);
 		EventLog::event('invoice', $invoice->id, 'create');
 
 		// update account billing info

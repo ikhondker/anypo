@@ -156,14 +156,13 @@ class AttachmentController extends Controller
 	public function download(Attachment $attachment)
 	{
 
-		// TODO check
 		$this->authorize('download', $attachment);
 
 		Log::debug('tenant.attachments.download Value of attachment_id = '. $attachment->id);
 		Log::debug('tenant.attachments.download Value of file_name = '. $attachment->org_file_name);
 		Log::debug('tenant.attachments.download Value of entity = '. $attachment->entity);
 
-			$entity 			= Entity::where('entity', $attachment->entity)->first();
+		$entity 			= Entity::where('entity', $attachment->entity)->first();
 		$fileDownloadPath 	= $entity->directory."/". $attachment->file_name;
 		Log::debug('landlord.attachments.download Value of fileDownloadPath = '. $fileDownloadPath);
 		return Storage::disk('s3lf')->download($fileDownloadPath,$attachment->org_file_name);

@@ -9,7 +9,7 @@
 				<div class="text-sm-end">
 					<a href="{{ route('services.index') }}" class="btn btn-light btn-lg me-2"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
-						<i data-lucide="shopping-cart"></i> Buy more User</a>
+						<i data-lucide="shopping-cart"></i> Buy More User</a>
 				</div>
 			</div>
 		</div>

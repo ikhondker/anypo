@@ -24,6 +24,8 @@ create
 </a>
 
 
+{{ Carbon\Carbon::parse($comment->comment_date)->ago() }}
+
 <i class="fa fa-check-circle fa-5x text-success"></i>
 
 <i data-lucide="refresh-cw"></i>

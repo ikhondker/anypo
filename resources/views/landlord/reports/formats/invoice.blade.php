@@ -38,7 +38,7 @@
 	<tbody>
 		<tr>
 			<td class="no">01</td>
-			<td class="desc"><h3>{{ Str::upper($invoice->invoice_type) }}</h3>{{ $invoice->summary }}</td>
+			<td class="desc"><h3>{{ Str::upper($invoice->invoice_type) }}</h3>{{ $invoice->notes }}</td>
 			<td class="unit">${{ number_format($invoice->amount,2) }}</td>
 			<td class="qty">1</td>
 			<td class="total">${{ number_format($invoice->amount,2) }}</td>

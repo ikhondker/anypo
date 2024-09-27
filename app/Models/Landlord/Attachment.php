@@ -21,7 +21,7 @@ class Attachment extends Model
 	public $incrementing 	= false;
 
 	protected $fillable = [
-		'entity', 'article_id', 'file_entity', 'owner_id', 'summary', 'file_name', 'file_type', 'file_size', 'org_file_name', 'upload_date', 'view_count', 'status', 'updated_by', 'updated_at',
+		'entity', 'article_id', 'account_id', 'file_entity', 'owner_id', 'summary', 'file_name', 'file_type', 'file_size', 'org_file_name', 'upload_date', 'view_count', 'status', 'updated_by', 'updated_at',
 	];
 
 	/**
@@ -54,6 +54,14 @@ class Attachment extends Model
 			'name' => '[ Guest ]',
 		]);
 	}
+
+	public function account()
+	{
+		return $this->belongsTo(Account::class,'account_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
 
 	/* ---------------- created and updated by ---------------------- */
 	public function user_created_by()

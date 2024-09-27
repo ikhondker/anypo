@@ -661,7 +661,7 @@ class HomeController extends Controller
 			'email'			=> 'required|email',
 			//'phone'		=> 'required|digits:10|numeric',
 			//'subject'		=> 'required',
-			'message'		=> 'required'
+			'notes'		=> 'required'
 		], [
 			'first_name.required'	=> 'First Name is Required',
 			'email.required'		=> 'Email is required.',

@@ -40,7 +40,7 @@ class ServicePurchased extends Notification implements ShouldQueue
 	public function toMail(object $notifiable): MailMessage
 	{
 		return (new MailMessage)
-			->subject(config('app.name'). ' Service purchase Notification')
+			->subject(config('app.name'). ' - Service Purchase Notification')
 			->greeting('Hello '.$this->user->name.',')
 			->line('A new purchase has been made as follows: ')
 			->line('Name: '.$this->account->name)
