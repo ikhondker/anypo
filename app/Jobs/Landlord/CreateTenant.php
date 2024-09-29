@@ -445,6 +445,8 @@ class CreateTenant implements ShouldQueue
 		$user->notify(new FirstTenantAdminCreated($user, $random_password, $domain));
 		Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Admin User Notified : '.$user->name);
 
+		Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant '. $domain->domain  .' create. Done.');
+
 		return $tenant->id;
 
 	}

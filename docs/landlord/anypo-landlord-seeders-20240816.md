@@ -20,7 +20,7 @@ php artisan db:seed --class="UserSeeder"
 
 # Landlord Individual Seeder 
 -------------------
-[
+[ 
 php artisan db:seed --class="Database\Seeders\Landlord\UserSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\MenuSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\StatusSeeder"
