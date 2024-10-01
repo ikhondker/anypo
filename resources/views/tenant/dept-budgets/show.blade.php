@@ -182,7 +182,12 @@
 					</table>
 				</div>
 			</div>
-
+			<x-tenant.widgets.who-when
+				createdBy="{{ $deptBudget->user_created_by->name }}"
+				createdAt="{{ $deptBudget->created_at }}"
+				updatedBy="{{ $deptBudget->user_updated_by->name }}"
+				updatedAt="{{ $deptBudget->updated_at }}"
+			/>
 
 		</div>
 		<!-- end col-6 -->

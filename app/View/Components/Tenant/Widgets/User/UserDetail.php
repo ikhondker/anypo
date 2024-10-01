@@ -10,16 +10,16 @@ use App\Models\User;
 
 class UserDetail extends Component
 {
-	public $id;
+	//public $id;
 	public $user;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $userId)
 	{
-		$this->id	= $id;
-		$this->user = User::where('id', $id)->with("user_country")->get()->first();
+		//$this->id	= $id;
+		$this->user = User::where('id', $userId)->with("user_country")->get()->first();
 	}
 
 

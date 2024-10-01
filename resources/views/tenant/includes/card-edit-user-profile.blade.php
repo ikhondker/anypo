@@ -104,7 +104,7 @@
 			<table class="table table-sm my-2">
 				<tbody>
 					<tr>
-						<th>Modify Role To:</th>
+						<th class="text-danger">Modify Role To:</th>
 						<td>
 							<select class="form-control" name="role">
 								<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }} value="user">User</option>
@@ -115,7 +115,6 @@
 							</select>
 						</td>
 					</tr>
-
 				</tbody>
 			</table>
 		</div>

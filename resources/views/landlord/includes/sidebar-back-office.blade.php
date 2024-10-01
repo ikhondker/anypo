@@ -21,6 +21,7 @@
 		<i class="align-middle" data-lucide="sliders"></i> <span class="align-middle">All Comments</span>
 	</a>
 </li>
+
 @can('viewWorkbenchMenu', App\Models\Landlord\Manage\Menu::class)
 	<li class="sidebar-item {{ ($_node_name == 'workbench' ? 'active' : '') }}">
 		<a data-bs-target="#workbench"s data-bs-toggle="collapse" class="sidebar-link collapsed">
@@ -35,27 +36,14 @@
 			<li class="sidebar-item {{ ($_route_name == 'invoices.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('invoices.all') }}"><i class="align-middle" data-lucide="circle"></i>All Invoices</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'payments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('payments.all') }}"><i class="align-middle" data-lucide="circle"></i>All Payments</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'users.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('users.all') }}"><i class="align-middle" data-lucide="circle"></i>All Users</a></li>
-		</ul>
-	</li>
-@endcan
-
-
-@can('viewSupportMenu', App\Models\Landlord\Manage\Menu::class)
-	<li class="sidebar-item {{ ($_node_name == 'support' ? 'active' : '') }}">
-		<a data-bs-target="#support" data-bs-toggle="collapse" class="sidebar-link collapsed">
-			<i class="align-middle" data-lucide="layout-template"></i>
-			<span class="align-middle">Support</span>
-		</a>
-		<ul id="support" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'support' ? 'show' : '') }}" data-bs-parent="#sidebar">
-			
-			<li class="sidebar-item {{ ($_route_name == 'error-logs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('error-logs.index') }}"><i class="align-middle" data-lucide="circle"></i>Error logs</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'contacts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('contacts.all') }}"><i class="align-middle" data-lucide="circle"></i>All Contacts</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'mail-lists.all' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('mail-lists.index') }}"><i class="align-middle" data-lucide="circle"></i>Mail Lists</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'tenants.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tenants.index') }}"><i class="align-middle" data-lucide="circle"></i>All Tenants</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'domains.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('domains.index') }}"><i class="align-middle" data-lucide="circle"></i>All Domains</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'contacts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('contacts.all') }}"><i class="align-middle" data-lucide="circle"></i>All Contacts</a></li>
 		</ul>
 	</li>
 @endcan
+
+
 
 @can('viewLookupMenu', App\Models\Landlord\Manage\Menu::class)
 	<li class="sidebar-item {{ ($_node_name == 'lookups' ? 'active' : '') }}">
@@ -78,6 +66,8 @@
 			<span class="align-middle">SysAdmin</span>
 		</a>
 		<ul id="sysadmin" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'sysadmin' ? 'show' : '') }}" data-bs-parent="#sidebar">
+			<li class="sidebar-item {{ ($_route_name == 'mail-lists.all' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('mail-lists.index') }}"><i class="align-middle" data-lucide="circle"></i>Mail Lists</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'error-logs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('error-logs.index') }}"><i class="align-middle" data-lucide="circle"></i>Error logs</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'activities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('activities.index') }}"><i class="align-middle" data-lucide="circle"></i>Activity Log</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'attachments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('attachments.all') }}"><i class="align-middle" data-lucide="circle"></i>Attachments*</a></li>
 		</ul>

@@ -100,13 +100,13 @@ class Workflow
 
 			$wf->save();
 			$wf_id				= $wf->id;
-			
+
 			Log::debug("Helpers.Workflow.submitWf new workflow created with wf_id = ".$wf->id);
 
-			// Insert submission row first 
+			// Insert submission row first
 			DB::INSERT("
 				INSERT INTO wfls(wf_id, performer_id, action_date, action, notes)
-				SELECT ".$wf_id.",".$requestor_id." ,now(),'". WflActionEnum::SUBMITTED->value ."','Submitted for Review and Approval';
+				SELECT ".$wf_id.",'".$requestor_id."' ,now(),'". WflActionEnum::SUBMITTED->value ."','Submitted for Review and Approval';
 			");
 
 			DB::INSERT("

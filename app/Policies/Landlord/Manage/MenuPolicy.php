@@ -96,7 +96,7 @@ class MenuPolicy
 	/**
 	 * Determine whether the user can view any models.
 	 */
-	public function viewSupportMenu(User $user): bool
+	public function xxviewSupportMenu(User $user): bool
 	{
 		return ($user->isSupport() || $user->isSysAdmin());
 	}

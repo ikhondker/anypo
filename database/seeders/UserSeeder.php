@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
 		$usersSeeded = [
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'System Owner',
+				'name'				=> 'SYSTEM',
 				'email'				=> config('akk.SYSTEM_EMAIL_ID'),	// Don't change. Used in Seeder
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr System Admin',
+				'name'				=> 'Systems Admin',
 				'email'				=> 'sysadmin@anypo.net',
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr Support User',
+				'name'				=> 'Support User (Seeded)',
 				'email'				=> 'support@anypo.net',
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
@@ -125,7 +125,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr. User 1 (IT)',
+				'name'				=> 'Mr. User 1 (IT) (Temp)',
 				'email'				=> 'user1it@anypo.net',		// Don't change. Used in Seeder
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1001',
@@ -146,7 +146,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr User 2 (IT)',
+				'name'				=> 'Mr User 2 (IT) (Temp)',
 				'email'				=> 'user2it@anypo.net',		// Don't change. Used in Seeder
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1001',
@@ -167,7 +167,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr. User 1 (Sales)',
+				'name'				=> 'Mr. User 1 (Sales) (Temp)',
 				'email'				=> 'user1sales@anypo.net',	// Don't change. Used in Seeder
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1005',
@@ -188,7 +188,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr User 2 (Sales)',	
+				'name'				=> 'Mr User 2 (Sales) (Temp)',
 				'email'				=> 'user2sales@anypo.net',	// Don't change. Used in Seeder
 				'designation_id'	=> '1007',
 				'dept_id'			=> '1005',
@@ -209,7 +209,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr Buyer 1 (IT)',
+				'name'				=> 'Mr Buyer 1 (IT) (Temp)',
 				'email'				=> 'buyer1@anypo.net',		// Don't change. Used in Seeder
 				'designation_id'	=> '1002',
 				'dept_id'			=> '1002',
@@ -230,8 +230,8 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr Buyer 2 (Sales)',
-				'email'				=> 'buyer2@anypo.net',		// Don't change. Used in Seeder	
+				'name'				=> 'Mr Buyer 2 (Sales) (Temp)',
+				'email'				=> 'buyer2@anypo.net',		// Don't change. Used in Seeder
 				'designation_id'	=> '1002',
 				'dept_id'			=> '1002',
 				'role'				=> 'buyer',
@@ -251,7 +251,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr HoD (IT)',
+				'name'				=> 'Mr HoD (IT) (Temp)',
 				'email'				=> 'hodit@anypo.net',
 				'designation_id'	=> '1005',
 				'dept_id'			=> '1001',
@@ -272,7 +272,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr HoD (Sales)',
+				'name'				=> 'Mr HoD (Sales) (Temp)',
 				'email'				=> 'hodsales@anypo.net',
 				'designation_id'	=> '1005',
 				'dept_id'			=> '1005',
@@ -293,7 +293,7 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Mr CxO',
+				'name'				=> 'Mr CxO (Temp)',
 				'email'				=> 'cxo@anypo.net',
 				'designation_id'	=> '1004',
 				'dept_id'			=> '1003',

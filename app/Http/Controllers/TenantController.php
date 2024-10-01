@@ -60,7 +60,7 @@ class TenantController extends Controller
 	public function store(StoreTenantRequest $request)
 	{
 		$this->authorize('create', Tenant::class);
-		
+
 		Validator::extend('without_spaces', function($attr, $value){
 			return preg_match('/^\S*$/u', $value);
 		});
@@ -76,12 +76,12 @@ class TenantController extends Controller
 			'site.without_spaces'	=> 'Whitespace not allowed.',
 			'email.unique'			=> 'This email is already registered. Please login first and then purchase this service.',
 		]);
-		
+
 		// create checkout row
 		$sessionId = Str::uuid()->toString();
 
 		$checkout_id = (new HomeController)->createCheckoutForBuy($sessionId, $request->input('site'), $request->input('account_name'), $request->input('email'));
-		Log::debug('landlord.TenantController.storee created checkout_id = '. $checkout_id);
+		Log::debug('landlord.TenantController.store created checkout_id = '. $checkout_id);
 		// Write to Log
 		EventLog::event('checkout', $checkout_id, 'create');
 

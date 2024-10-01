@@ -22,7 +22,7 @@ class DeptBudget extends Model
 	];
 /*
 	|-----------------------------------------------------------------------------
-	| Functions 
+	| Functions
 	|-----------------------------------------------------------------------------
 	*/
 
@@ -44,7 +44,7 @@ class DeptBudget extends Model
 		$query->where('dept_id', auth()->user()->dept_id )
 			->where('revision', false);
 	}
-	
+
 	/**
 	 * Scope a query to only All PR for current user dept.
 	*/
@@ -62,12 +62,12 @@ class DeptBudget extends Model
 			$query->whereHas('budget', function ($q) {
 				$q->where('fy', date('Y'));
 			})
-			->where('dept_id', auth()->user()->dept_id ); 
+			->where('dept_id', auth()->user()->dept_id );
 	}
 
 
 	/* ----------------- Functions ---------------------- */
-	
+
 
 	/* ---------------- belongsTo ---------------------- */
 	public function budget(){
@@ -78,11 +78,16 @@ class DeptBudget extends Model
 		return $this->belongsTo(Dept::class,'dept_id');
 	}
 
-	/* ---------------- created and updated by ---------------------- */
+
+    /* ---------------- created and updated by ---------------------- */
 	public function user_created_by(){
-		return $this->belongsTo(User::class,'created_by');
+		return $this->belongsTo(User::class,'created_by')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 	public function user_updated_by(){
-		return $this->belongsTo(User::class,'updated_by');
+		return $this->belongsTo(User::class,'updated_by')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 }

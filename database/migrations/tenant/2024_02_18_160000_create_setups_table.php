@@ -41,7 +41,7 @@ return new class extends Migration
 			$table->string('ac_liability')->default('A200004');
 			$table->string('ac_clearing')->default('A200006');			// Future user
 			$table->text('tc')->nullable();
-			$table->string('logo')->nullable()->default('logo-white.svg');
+			$table->string('logo')->nullable()->default('logo.png');
 			$table->boolean('banner_show')->default(false); 
 			$table->text('banner_message')->nullable();
 			$table->string('version')->nullable()->default('1.0.0');

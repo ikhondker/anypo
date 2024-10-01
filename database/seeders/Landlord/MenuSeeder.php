@@ -101,6 +101,21 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.password-change','route_name' => 'users.password-change','node_name' => 'workbench'],
 			[ 'raw_route_name' => 'users.update',	  	'route_name' => 'users.index',	'node_name' 		=> 'workbench'],
 
+			[ 'raw_route_name' => 'contacts.all',	  	'route_name' => 'contacts.index',	  'node_name' => 'workbench'],
+			
+			[ 'raw_route_name' => 'tenants.index',	 	'route_name' => 'tenants.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'tenants.show',	  	'route_name' => 'tenants.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'tenants.update',		'route_name' => 'tenants.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'tenants.edit',	  	'route_name' => 'tenants.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'tenants.create',		'route_name' => 'tenants.index',	'node_name' => 'workbench'],
+
+			[ 'raw_route_name' => 'domains.index',	 	'route_name' => 'domains.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'domains.show',	  	'route_name' => 'domains.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'domains.update',		'route_name' => 'domains.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'domains.edit',	  	'route_name' => 'domains.index',	'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'domains.create',		'route_name' => 'domains.index',	'node_name' => 'workbench'],
+
+
 			/**
 			* ==================================================================================
 			* 1. Admin
@@ -150,27 +165,11 @@ class MenuSeeder extends Seeder
 
 			
 
-			[ 'raw_route_name' => 'error-logs.index',	'route_name' => 'error-logs.index',	 'node_name' => 'support'],
-			[ 'raw_route_name' => 'error-logs.show',	'route_name' => 'error-logs.index',	 'node_name' => 'support'],
-			[ 'raw_route_name' => 'error-logs.update',	'route_name' => 'error-logs.index',	 'node_name' => 'support'],
-			[ 'raw_route_name' => 'error-logs.edit',	'route_name' => 'error-logs.index',	 'node_name' => 'support'],
-			[ 'raw_route_name' => 'error-logs.create',	'route_name' => 'error-logs.index',	 'node_name' => 'support'],
+			
+			
+			
 
-			[ 'raw_route_name' => 'tenants.index',	 	'route_name' => 'tenants.index',	'node_name' => 'support'],
-			[ 'raw_route_name' => 'tenants.show',	  	'route_name' => 'tenants.index',	'node_name' => 'support'],
-			[ 'raw_route_name' => 'tenants.update',		'route_name' => 'tenants.index',	'node_name' => 'support'],
-			[ 'raw_route_name' => 'tenants.edit',	  	'route_name' => 'tenants.index',	'node_name' => 'support'],
-			[ 'raw_route_name' => 'tenants.create',		'route_name' => 'tenants.index',	'node_name' => 'support'],
-
-			[ 'raw_route_name' => 'domains.index',	 	'route_name' => 'domains.index',	'node_name' => 'support'],
-			[ 'raw_route_name' => 'domains.show',	  	'route_name' => 'domains.index',	'node_name' => 'support'],
-			[ 'raw_route_name' => 'domains.update',		'route_name' => 'domains.index',	'node_name' => 'support'],
-			[ 'raw_route_name' => 'domains.edit',	  	'route_name' => 'domains.index',	'node_name' => 'support'],
-			[ 'raw_route_name' => 'domains.create',		'route_name' => 'domains.index',	'node_name' => 'support'],
-
-			[ 'raw_route_name' => 'mail-lists.index',	'route_name' => 'mail-lists.index',	  'node_name' => 'support'],
-
-			[ 'raw_route_name' => 'contacts.all',	  	'route_name' => 'contacts.index',	  'node_name' => 'support'],
+			
 
 			/**
 			* ==================================================================================
@@ -178,6 +177,12 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 			
+			[ 'raw_route_name' => 'error-logs.index',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'error-logs.show',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'error-logs.update',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'error-logs.edit',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'error-logs.create',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
+
 
 			[ 'raw_route_name' => 'activities.index',	'route_name' => 'activities.index',	'node_name' => 'sysadmin'],
 			[ 'raw_route_name' => 'activities.show',	'route_name' => 'activities.index',	'node_name' => 'sysadmin'],
@@ -192,6 +197,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'attachments.update', 'route_name' => 'attachments.index',	'node_name' => 'sysadmin'],
 			[ 'raw_route_name' => 'attachments.edit',	'route_name' => 'attachments.index',	'node_name' => 'sysadmin'],
 			[ 'raw_route_name' => 'attachments.create', 'route_name' => 'attachments.index',	'node_name' => 'sysadmin'],
+
+			[ 'raw_route_name' => 'mail-lists.index',	'route_name' => 'mail-lists.index',	  'node_name' => 'sysadmin'],
 
 			/**
 			* ==================================================================================

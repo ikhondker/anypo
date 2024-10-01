@@ -3,8 +3,9 @@
 
 # 33. TODO
 -------------------------------------------------------------------------------------------------
-158. clean akk.GUEST_USER_ID
-role update
+x159. user register page get start with domain name
+x158. clean akk.GUEST_USER_ID
+111. role update in user.edit tab for edit role dropdowsn
 157. wfs.index badge not shown
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
 155. fix component list -> ArticleLink and ProjectLink

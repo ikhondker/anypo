@@ -8,7 +8,7 @@
 * @path			\app\Helpers\Tenant
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -44,7 +44,7 @@ class FileUpload
 	public static function aws(FormRequest $request)
 	{
 		$request->validate(['file_to_upload'	=> 'required|file|mimes:eml,msg,zip,rar,doc,docx,xls,xlsx,pdf,jpg,png|max:2048']);
-		
+
 		// ===> both file_to_upload and fileName is used
 		if ($request->hasFile('file_to_upload')) {
 			$file 			= $request->file('file_to_upload');
@@ -60,7 +60,7 @@ class FileUpload
 			return $attachment_id;
 		}
 
-		$attachment_id 			= Str::uuid(); 
+		$attachment_id 			= Str::uuid();
 
 		//$fileName 		= $request->article_id.'-'. uniqid() . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
 		$fileName 		= $attachment_id . "." . trim($request->file('file_to_upload')->getClientOriginalExtension());
@@ -78,7 +78,7 @@ class FileUpload
 			$path= Storage::disk('s3tf')->put($fileUploadPath, file_get_contents($file));
 			//Log::debug('Helpers.FileUpload.aws Value of path = '. $path);
 
-			// create Attachment record 
+			// create Attachment record
 			$attachment					= new Attachment();
 			$attachment->id 			= $attachment_id;
 			$attachment->article_id		= $request->article_id;
@@ -100,7 +100,7 @@ class FileUpload
 			// Either form a friendlier message to display to the user OR redirect them to a failure page
 			$attachment_id = 0;
 		}
-	
+
 		return $attachment_id;
 	}
 
@@ -124,13 +124,13 @@ class FileUpload
 			//Code that may throw an Exception
 			$request->file_to_upload->storeAs('private/'.$directory.'/', $fileName);
 
-			// create Attachment record 
+			// create Attachment record
 			$attachment					= new Attachment();
 			$attachment->article_id		= $request->article_id;
 			$attachment->entity			= $request->entity;
 			$attachment->file_entity	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
 
-			$attachment->owner_id		= auth()->check() ? auth()->user()->id : config('akk.GUEST_USER_ID');
+			$attachment->owner_id		= auth()->check() ? auth()->user()->id : NULL;
 
 			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No details';
 			$attachment->file_name		= $fileName;
@@ -147,7 +147,7 @@ class FileUpload
 			// Either form a friendlier message to display to the user OR redirect them to a failure page
 			$attachment_id = 0;
 		}
-	
+
 		return $attachment_id;
 	}
 
@@ -219,7 +219,7 @@ class FileUpload
 
 			exit;
 		}
-	
+
 		return true;
 	}
 

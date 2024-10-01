@@ -48,5 +48,12 @@
 		</div>
 	</div>
 
+	<x-tenant.widgets.who-when
+		createdBy="{{ $dept->user_created_by->name }}"
+		createdAt="{{ $dept->created_at }}"
+		updatedBy="{{ $dept->user_updated_by->name }}"
+		updatedAt="{{ $dept->updated_at }}"
+	/>
+
 @endsection
 

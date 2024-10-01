@@ -92,12 +92,13 @@ php artisan queue:listen --timeout=1200
 ====================================================================
 ## Landlord
   logo.png (300x300) and logot.png (200x200) , 
-  	logo-white.svg (landlord apps) logo-whitet.svg  (Landlord Pages)
+  logo-white.svg (landlord apps) logo-whitet.svg  (Landlord Pages)
 
   	D:\laravel\anypo\public\assets\logo - general user including logo in pdf 
 
 ## Tenant
-
+	logo.png and logot.png
+	avatar.png
 
 
 # 7. Full refresh 

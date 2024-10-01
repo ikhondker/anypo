@@ -20,7 +20,7 @@
 
 	<div class="row">
 		<div class="col-md-5 col-xl-4">
-			<x-landlord.widgets.user.user-profile id="{{ $user->id }}"/>
+			<x-tenant.widgets.user.user-profile userId="{{ $user->id }}"/>
 		</div>
 
 		<div class="col-md-7 col-xl-8">
@@ -32,12 +32,12 @@
 				<!-- content -->
 				@include('tenant.includes.card-edit-user-profile')
 				<!-- /.content -->
-				
+
 			</form>
 			<!-- /.form end -->
 		</div>
 	</div>
 
-	
+
 @endsection
 

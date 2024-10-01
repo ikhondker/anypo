@@ -162,7 +162,7 @@ class DeptBudgetController extends Controller
 
 		// Make sure only one budget is open at a time
 		$count_dept_budget	= DeptBudget::where('budget_id', $request['budget_id'])
-					->where('dept_id', $request['dept_id'])		
+					->where('dept_id', $request['dept_id'])
 					->where('revision',false)
 					->count();
 		if ($count_dept_budget <> 0){
@@ -213,7 +213,7 @@ class DeptBudgetController extends Controller
 	{
 		$this->authorize('update', $deptBudget);
 
-		
+
 		if ($deptBudget->budget->closed){
 			return redirect()->route('budgets.index')->with('error', 'Can not edit a Dept Budget, as company budget for this year is closed.');
 		}
@@ -260,17 +260,15 @@ class DeptBudgetController extends Controller
 
 		// 1. create revision row for dep_budget
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for dept_budgets_id='.$deptBudget->id);
-		$sql= "INSERT INTO dept_budgets( 
-			budget_id, dept_id, amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
+		$sql= "INSERT INTO dept_budgets(
+			budget_id, dept_id, amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment,
 			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,
-			closed, revision, parent_id,
-			created_by,updated_by)
-		SELECT 
-			budget_id, dept_id, amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
+			closed, revision, parent_id)
+		SELECT
+			budget_id, dept_id, amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment,
 			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,
-			true, true, ".$deptBudget->id.",
-			".auth()->user()->id.",".auth()->user()->id."
-		FROM dept_budgets 
+			true, true, ".$deptBudget->id."
+		FROM dept_budgets
 		WHERE id= ".$deptBudget->id." ;";
 		//Log::warning(tenant('id'). 'tenant.DeptBudget.update dept_budgets sql = '. $sql);
 		//TODO
@@ -279,19 +277,18 @@ class DeptBudgetController extends Controller
 
 		// 2. create revision for budget
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for budgets_id='.$deptBudget->budget_id);
-		$sql= "INSERT INTO budgets( 
-			fy, name, start_date, end_date, amount, 
-			amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
+		$sql= "INSERT INTO budgets(
+			fy, name, start_date, end_date, amount,
+			amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment,
 			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,
-			closed, revision, parent_id,
-			created_by,updated_by)
-		SELECT 
-			fy, name, start_date, end_date, amount, 
-			amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment, 
+			closed, revision, parent_id
+			)
+		SELECT
+			fy, name, start_date, end_date, amount,
+			amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_invoice, amount_payment,
 			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment, notes,
-			true, true, ".$deptBudget->budget_id.",
-			".auth()->user()->id.",".auth()->user()->id."
-		FROM budgets 
+			true, true, ".$deptBudget->budget_id."
+		FROM budgets
 		WHERE id= ".$deptBudget->budget_id." ;";
 		//Log::warning(tenant('id'). 'tenant.DeptBudget.update budgets sql = '. $sql);
 		DB::INSERT($sql);
@@ -349,7 +346,7 @@ class DeptBudgetController extends Controller
 			AND db.revision = false
 			ORDER BY db.id DESC
 		";
-	
+
 		//Log::debug(tenant('id'). 'tenant.DeptBudget.export sql = '. $sql);
 		$data = DB::select($sql);
 

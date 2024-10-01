@@ -136,7 +136,8 @@ class RegisterController extends Controller
 		if (tenant('id') == '') {
 			return view('auth.landlord.register');
 		} else {
-			return view('auth.tenant.register');
+            $setup = Setup::first();
+			return view('auth.tenant.register', compact('setup'));
 		}
 	}
 }

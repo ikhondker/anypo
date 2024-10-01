@@ -23,12 +23,12 @@ class TenantSeeder extends Seeder
 
 		// Note:
 		$this->call(\Database\Seeders\Share\TemplateSeeder::class);
-		
+
 		$this->call(\Database\Seeders\GroupSeeder::class);
 		$this->call(\Database\Seeders\CategorySeeder::class);
 		$this->call(\Database\Seeders\CountrySeeder::class);
 		$this->call(\Database\Seeders\CurrencySeeder::class);
-		
+
 		$this->call(\Database\Seeders\HierarchySeeder::class);
 		$this->call(\Database\Seeders\HierarchylSeeder::class);
 
@@ -36,11 +36,11 @@ class TenantSeeder extends Seeder
 		$this->call(\Database\Seeders\DesignationSeeder::class);
 
 		$this->call(\Database\Seeders\GlTypeSeeder::class);
-		
+
 		$this->call(\Database\Seeders\OemSeeder::class);
 		$this->call(\Database\Seeders\ProjectSeeder::class);
 		$this->call(\Database\Seeders\SupplierSeeder::class);
-		
+
 		$this->call(\Database\Seeders\UomClassSeeder::class);
 		$this->call(\Database\Seeders\UomSeeder::class);
 
@@ -50,8 +50,11 @@ class TenantSeeder extends Seeder
 
 		$this->call(\Database\Seeders\BudgetSeeder::class);
 		$this->call(\Database\Seeders\DeptBudgetSeeder::class);
-		
+
 		$this->call(\Database\Seeders\ReportSeeder::class);
+
+        $this->call(\Database\Seeders\TimestampSeeder::class);
+
 
 		//TODO Remove
 		$this->call(\Database\Seeders\PrSeeder::class);

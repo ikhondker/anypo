@@ -8,7 +8,9 @@ use Illuminate\Database\Seeder;
 // IQBAL
 use Faker\Generator;
 use App\Models\User;
+//use AWS\CRT\Log;
 use Str;
+use Illuminate\Support\Facades\Log;
 
 class UserSeeder extends Seeder
 {
@@ -20,10 +22,10 @@ class UserSeeder extends Seeder
 
 		/*
 		|-----------------------------------------------------------------------------
-		| Landlord																	 + 
+		| Landlord																	 +
 		|-----------------------------------------------------------------------------
 		*/
-		
+
 		//User::factory()->count(10)->create();
 		$faker = app(Generator::class);
 		//User::truncate();
@@ -31,31 +33,13 @@ class UserSeeder extends Seeder
 		$seededUsers = [
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'System Owner',
+				'name'				=> 'SYSTEM',
 				'email'				=> config('bo.SYSTEM_EMAIL_ID'),
 				'role'				=> 'system',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
 				'cell'				=> '01911310509',
-				'address1'			=> $faker->address,
-				'address2'			=> $faker->address,
-				'city'				=> $faker->city,
-				'state'				=> 'N/A',
-				'zip'				=> $faker->postcode,
-				'facebook'			=> $faker->url,
-				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
-			],
-			[
-				'id'				=> Str::uuid(),
-				'name'				=> 'Guest',
-				'email'				=> 'guest@anypo.net',
-				'role'				=> 'guest',
-				'email_verified_at' => now(),
-				'password'			=> bcrypt('password') , // password
-				'remember_token'	=> Str::random(10),
-				'cell'				=> $faker->PhoneNumber(),
 				'address1'			=> $faker->address,
 				'address2'			=> $faker->address,
 				'city'				=> $faker->city,
@@ -86,8 +70,26 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> Str::uuid(),
 				'name'				=> 'Support Manager',
-				'email'				=> 'support@anypo.net',
+				'email'				=> config('bo.SUPPORT_GROUP_EMAIL_ID'),
 				'role'				=> 'supervisor',
+				'email_verified_at' => now(),
+				'password'			=> bcrypt('password') , // password
+				'remember_token'	=> Str::random(10),
+				'cell'				=> $faker->PhoneNumber(),
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'state'				=> 'N/A',
+				'zip'				=> $faker->postcode,
+				'facebook'			=> $faker->url,
+				'linkedin'			=> $faker->url,
+				'seeded'			=> true,
+			],
+            [
+				'id'				=> Str::uuid(),
+				'name'				=> 'Guest',
+				'email'				=> 'guest@anypo.net',
+				'role'				=> 'guest',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -193,8 +195,9 @@ class UserSeeder extends Seeder
 			],
 		];
 
+        /*
 		$demoUsers = [
-		/*
+
 			[
 				'id'				=> '1007',
 				'name'				=> 'User 1 Account 1',
@@ -297,11 +300,17 @@ class UserSeeder extends Seeder
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 			],
-			*/
 		];
-		
+        	*/
+
 		User::insert($seededUsers);
-		//User::where('id', 1001)->update(['avatar' => 'sys.png']);
+
+        Log::debug('bo.SUPPORT_GROUP_EMAIL_ID =========== '.config('bo.SUPPORT_GROUP_EMAIL_ID'));
+        $user = User::where('email', config('bo.SUPPORT_GROUP_EMAIL_ID'))->first();
+        Log::debug('bo.SUPPORT_MGR_ID = ' . $user->id);
+        Log::debug('=== > update config\bo.php bo.SUPPORT_MGR_ID manually onetime.');
+
+        //User::where('id', 1001)->update(['avatar' => 'sys.png']);
 		//User::where('id', 1005)->update(['avatar' => 's1.png']);
 		//User::where('id', 1006)->update(['avatar' => 's2.png']);
 
