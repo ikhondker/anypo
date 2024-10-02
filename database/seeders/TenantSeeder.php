@@ -53,8 +53,8 @@ class TenantSeeder extends Seeder
 
 		$this->call(\Database\Seeders\ReportSeeder::class);
 
+        // This seeder set create_by and updated_by to default
         $this->call(\Database\Seeders\TimestampSeeder::class);
-
 
 		//TODO Remove
 		$this->call(\Database\Seeders\PrSeeder::class);
