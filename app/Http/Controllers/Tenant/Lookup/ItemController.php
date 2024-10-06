@@ -49,7 +49,7 @@ use App\Helpers\Export;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# 12. FUTURE 
+# 12. FUTURE
 # 1. dependent dropdown for uom
 
 class ItemController extends Controller
@@ -154,7 +154,7 @@ class ItemController extends Controller
 		$request->validate([
 
 		]);
-		
+
 		// Write to Log
 		EventLog::event('item', $item->id, 'update', 'name', $item->name);
 		$item->update($request->all());
@@ -184,11 +184,11 @@ class ItemController extends Controller
 
 		$data = DB::select("
 			SELECT i.id, i.name, i.notes, c.name category_name, o.name oem_name, u.name uom_name, i.price, glt.name gl_type,
-			IF(i.enable, 'Yes', 'No') as Enable 
+			IF(i.enable, 'Yes', 'No') as Enable
 			FROM items i, categories c, oems o, uoms u, gl_types glt
 			WHERE i.category_id = c.id
 			AND i.oem_id=o.id
-			AND i.uom_id=u.id 
+			AND i.uom_id=u.id
 			AND i.gl_type_code=glt.code ");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
@@ -203,9 +203,9 @@ class ItemController extends Controller
 		//$data = Category::where('id', $id)->first();
 		//{"id":3,"name":"Category -3","slug":"Neque non.","enable":1,"limit":30,"created_at":"2022-07-04T07:08:42.000000Z","updated_at":"2022-07-04T07:08:42.000000Z"}
 		$data = Item::select('code','name','uom_class_id','price')->where('id', $id)->first();
-		// {"limit":30,"slug":"Neque non."} 
+		// {"limit":30,"slug":"Neque non."}
 		//Log::info( $data);
-		
+
 		//Log::debug('Value of data=' . $data);
 		return response()->json($data);
 

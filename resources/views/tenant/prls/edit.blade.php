@@ -16,7 +16,7 @@
 			<x-tenant.actions.pr-actions prId="{{ $pr->id }}"/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	{{-- @include('tenant.includes.pr.view-pr-header') --}}
 	<x-tenant.widgets.pr.show-pr-header prId="{{ $pr->id }}"/>
 
@@ -31,7 +31,7 @@
 					<div class="dropdown position-relative">
 					</div>
 				</div>
-				<h5 class="card-title">Requisition Lines</h5>
+				<h5 class="card-title">Requisition Lines <span class="badge badge-subtle-primary">{{ $pr->fc_currency }}</span></h5>
 				<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
 			</div>
 
@@ -57,7 +57,7 @@
 							@include('tenant.includes.pr.pr-line-edit')
 						@else
 							<x-tenant.widgets.prl.card-table-row :line="$prln"/>
-						@endif 
+						@endif
 					@empty
 
 					@endforelse

@@ -4,9 +4,9 @@
 			@can('update', $user)
 				<a class="btn btn-sm btn-light" href="{{ route('users.edit', $user->id ) }}"><i class="fas fa-edit"></i> Edit</a>
 			@endcan
-			@can('viewAny', $user)
+			{{-- @can('viewAny', $user)
 				<a class="btn btn-sm btn-light" href="{{ route('users.index') }}" ><i class="fas fa-list"></i> View all</a>
-			@endcan
+			@endcan --}}
 
 		</div>
 		<h5 class="card-title">User Profile</h5>
@@ -27,7 +27,7 @@
 				<x-tenant.show.my-text		value="{{ $user->cell }}" label="Cell"/>
 				<x-tenant.show.my-boolean	value="{{ $user->enable }}"/>
 
-		
+
 				<x-landlord.show.my-text value="{{ $user->address1 }}" label="Address1"/>
 				<x-landlord.show.my-text value="{{ $user->address2 }}" label="Address2"/>
 				<x-landlord.show.my-text value="{{ $user->city . ', ' . $user->state . ', ' . $user->zip }}" label="City-State-Zip"/>
@@ -36,7 +36,7 @@
 				<x-tenant.show.my-url		value="{{ $user->facebook }}" label="Facebook"/>
 				<x-tenant.show.my-url		value="{{ $user->linkedin }}" label="LinkedIn"/>
 				<x-tenant.show.my-text-area value="{{ $user->notes }}" label="About"/>
-							
+
 				<x-landlord.show.my-date-time value="{{ $user->email_verified_at }}" label="Email Verified At" />
 				<x-landlord.show.my-date-time	value="{{ $user->last_login_at }}" label="Last Login"/>
 				<x-landlord.show.my-text		value="{{ $user->last_login_ip }}" label="Last Login IP"/>

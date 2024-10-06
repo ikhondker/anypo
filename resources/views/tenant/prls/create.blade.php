@@ -16,7 +16,7 @@
 			<x-tenant.actions.pr-actions prId="{{ $pr->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	<x-tenant.widgets.pr.show-pr-header prId="{{ $pr->id }}"/>
 
 
@@ -34,7 +34,7 @@
 					</div>
 				</div>
 
-				<h5 class="card-title">Requisition Lines</h5>
+				<h5 class="card-title">Requisition Lines <span class="badge badge-subtle-primary">{{ $pr->fc_currency }}</span></h5>
 				<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
 			</div>
 
@@ -46,7 +46,7 @@
 						<th class="" style="width:25%">Description</th>
 						<th class="" style="width:8%">UOM</th>
 						<th class="text-end" style="width:6%">Qty</th>
-						<th class="text-end" style="width:9%">Price</th>
+						<th class="text-end" style="width:9%">Unit Price</th>
 						<th class="text-end" style="width:9%">Subtotal</th>
 						<th class="text-end" style="width:9%">Tax</th>
 						<th class="text-end" style="width:9%">GST</th>
@@ -87,13 +87,13 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</form>
 	<!-- /.form end -->
-	
-	
+
+
 	@include('tenant.includes.js.select2')
 	@include('tenant.includes.js.calculate-pr-amount')
-	
+
 @endsection
 

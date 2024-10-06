@@ -81,7 +81,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'invoices.ael','route_name'          	=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.payments','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.attachments','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
-			
+
 			[ 'raw_route_name' => 'payments.index','route_name'         => 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.my-payments','route_name'   => 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.show','route_name'          => 'payments.index', 'node_name' => 'workbench'],
@@ -92,7 +92,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'aehs.index','route_name'				=> 'aehs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'aehs.show','route_name'              => 'aehs.index', 'node_name' => 'workbench'],
 
-			
+
 			/**
 			* ==================================================================================
 			* 2. Budget
@@ -234,7 +234,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'hierarchies.edit','route_name' 		=> 'hierarchies.index', 'node_name' => 'admin'],
 			[ 'raw_route_name' => 'hierarchies.create','route_name' 	=> 'hierarchies.index', 'node_name' => 'admin'],
 
-			
+
 
 			[ 'raw_route_name' => 'wfs.index','route_name' 				=> 'wfs.index', 'node_name' 		=> 'admin'],
 			[ 'raw_route_name' => 'wfs.show','route_name' 				=> 'wfs.index', 'node_name' 		=> 'admin'],
@@ -317,9 +317,15 @@ class MenuSeeder extends Seeder
 			* 8. My Account
 			* ==================================================================================
 			*/
+            /**
+			* ==================================================================================
+			* 1. Profile
+			* ==================================================================================
+			*/
 			[ 'raw_route_name' => 'users.profile','route_name' 			=> 'users.profile', 'node_name' 		=> 'profile'],
 			[ 'raw_route_name' => 'users.profile-edit','route_name' 	=> 'users.profile-edit', 'node_name' 	=> 'profile'],
 			[ 'raw_route_name' => 'users.profile-password','route_name' => 'users.profile-password', 'node_name'=> 'profile'],
+
 
 		  ];
 		//

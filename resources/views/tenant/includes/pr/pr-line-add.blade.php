@@ -39,7 +39,7 @@
 	</td>
 	<td class="text-end">
 		<input type="number" class="form-control @error('qty') is-invalid @enderror"
-			style="text-align: right;" min="1"
+			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="qty" id="qty" placeholder="1"
 			value="{{ old('qty','1') }}"
 			required>
@@ -52,7 +52,7 @@
 		<input type="number" class="form-control @error('price') is-invalid @enderror"
 			{{-- data-mask="000,000,000.00" data-reverse="true" --}}
 			{{-- data-inputmask="'mask': '9,999,999.99'" --}}
-			style="text-align: right;"
+			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="price" id="price" placeholder="0.00"
 			value="{{ old('price','0.00') }}"
 			required>
@@ -72,7 +72,7 @@
 	</td>
 	<td class="text-end">
 		<input type="number" step='0.01' min="0" class="form-control @error('tax') is-invalid @enderror"
-			style="text-align: right;"
+			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="tax" id="tax" placeholder="0.00"
 			value="{{ old('tax','0.00') }}"
 			required>
@@ -82,7 +82,7 @@
 	</td>
 	<td class="text-end">
 		<input type="number" step='0.01' min="0" class="form-control @error('gst') is-invalid @enderror"
-			style="text-align: right;"
+			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="gst" id="gst" placeholder="0.00"
 			value="{{ old('gst','0.00') }}"
 			required>

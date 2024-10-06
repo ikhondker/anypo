@@ -99,28 +99,28 @@ class HierarchyController extends Controller
 		//Log::debug('approver_id_4 = '.$request->input('approver_id_4'));
 		//Log::debug('approver_id_5 = '.$request->input('approver_id_5'));
 
-		if ($request->input('approver_id_2') <> 0) {
+		if ($request->input('approver_id_2') <> '') {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
 			$hierarchyl->approver_id	= $request->input('approver_id_2');
 			$hierarchyl->save();
 		}
 
-		if ($request->input('approver_id_3') <> 0) {
+		if ($request->input('approver_id_3') <> '') {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
 			$hierarchyl->approver_id 	= $request->input('approver_id_3');
 			$hierarchyl->save();
 		}
 
-		if ($request->input('approver_id_4') <> 0) {
+		if ($request->input('approver_id_4') <> '') {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
 			$hierarchyl->approver_id 	= $request->input('approver_id_4');
 			$hierarchyl->save();
 		}
 
-		if ($request->input('approver_id_5') <> 0) {
+		if ($request->input('approver_id_5') <> '') {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
 			$hierarchyl->approver_id 	= $request->input('approver_id_5');
@@ -155,11 +155,11 @@ class HierarchyController extends Controller
 		//$users = User::getAll();
 		$users = User::TenantAll()->get();
 
-		$approver_id_1 = 0;
-		$approver_id_2 = 0;
-		$approver_id_3 = 0;
-		$approver_id_4 = 0;
-		$approver_id_5 = 0;
+		$approver_id_1 = '';
+		$approver_id_2 = '';
+		$approver_id_3 = '';
+		$approver_id_4 = '';
+		$approver_id_5 = '';
 
 		$i = 1;
 		foreach ($hierarchyls as $hierarchyl) {
@@ -264,7 +264,7 @@ class HierarchyController extends Controller
 			$hierarchyl->save();
 		}
 
-		
+
 		return redirect()->route('hierarchies.index')->with('success', 'Hierarchy updated successfully');
 	}
 

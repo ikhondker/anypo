@@ -52,6 +52,7 @@ class TimestampSeeder extends Seeder
 
         //Post::where('id',3)->update(['title'=>'Updated title']);
         //User::where('id',3)->update(['created_by' => $system->id]);
+        // User::query()->update(['created_by' => $system->id,'updated_by' => $system->id]);
         User::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
         Setup::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
         Entity::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 
 use App\Traits\AddCreatedUpdatedBy;
+use App\Traits\CreatedUpdatedBy;
+
 use App\Models\User;
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Dept;
@@ -15,7 +17,7 @@ use App\Models\Tenant\Lookup\Dept;
 
 class DeptBudget extends Model
 {
-	use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy,CreatedUpdatedBy;
 
 	protected $fillable = [
 		'budget_id', 'dept_id', 'amount', 'amount_pr_booked', 'amount_pr', 'amount_po_booked', 'amount_po', 'amount_grs', 'amount_invoice', 'amount_payment', 'count_pr_booked', 'count_pr', 'count_po_booked', 'count_po', 'count_grs', 'count_invoice', 'count_payment', 'start_date', 'end_date', 'notes', 'revision', 'parent_id', 'closed', 'updated_by', 'updated_at',
@@ -78,16 +80,4 @@ class DeptBudget extends Model
 		return $this->belongsTo(Dept::class,'dept_id');
 	}
 
-
-    /* ---------------- created and updated by ---------------------- */
-	public function user_created_by(){
-		return $this->belongsTo(User::class,'created_by')->withDefault([
-			'name' => '[ Empty ]',
-		]);
-	}
-	public function user_updated_by(){
-		return $this->belongsTo(User::class,'updated_by')->withDefault([
-			'name' => '[ Empty ]',
-		]);
-	}
 }

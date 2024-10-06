@@ -7,7 +7,7 @@
 				@endif
 			</div>
 		</div>
-		<h5 class="card-title">Requisition Lines</h5>
+		<h5 class="card-title">Requisition Lines <span class="badge badge-subtle-primary">{{ $pr->fc_currency }}</span></h5>
 		<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
 	</div>
 	<table class="table table-striped table-sm">
@@ -50,7 +50,7 @@
 				<td class="" scope="col">&nbsp</td>
 			</tr>
 			<!-- End Table footer i.e. Totals -->
-			
+
 		</tbody>
 
 	</table>

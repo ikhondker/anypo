@@ -82,6 +82,8 @@ Log::info(print_r($dept_budget, true));
 8. for ajax to works use <script type="module"> not <script type="text/javascript">
 9. sweetalert2 confirmation on form post account/generate.blade.php
 10. use config('app.url') or config('app.domain'). Not env(APP_DOMAIN) and env(APP_URL) . Remember APP_DOMAIN is added by iqbal in app.php. Ref: \resources\views\vendor\mail\text
+11. use trait to add a custoem function to all Model like App\Trait\CreatedUpdateBy 
+12.
 
 # 5. Set Environment 
 ====================================================================

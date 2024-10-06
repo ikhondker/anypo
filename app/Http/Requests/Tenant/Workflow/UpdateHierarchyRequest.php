@@ -23,7 +23,7 @@ class UpdateHierarchyRequest extends FormRequest
 	{
 		return [
 			'name'				=> 'required|min:2|max:100|unique:hierarchies,name,'. $this->hierarchy->id,
-			'approver_id_1'		=> 'required|integer|exists:users,id',
+			'approver_id_1'		=> 'required|exists:users,id',
 			//'approver_id_2'		=> 'integer|exists:users,id',
 			//'approver_id_3'		=> 'integer|exists:users,id',
 			//'approver_id_4'		=> 'integer|exists:users,id',

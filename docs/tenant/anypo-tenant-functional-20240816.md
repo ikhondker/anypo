@@ -15,6 +15,12 @@ Actions	None	Yes		show,edit,history,attachment etc
 delete: where draft can be deleted like pr by use
 cancel: where can not be deleted. Only cancel by admin. Like payment
 
+# PR & PO Max limit 
+----------------------------
+StorePrlRequest.php & UpdatePrlRequest.php
+    'qty'				=> 'required|numeric|min:1.00|max:999999.9999',
+    'price'				=> 'required|numeric|min:1.00|max:999999.9999',
+
 
 # Tech:
 - Attachments are in aws
