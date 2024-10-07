@@ -85,7 +85,7 @@ class UserSeeder extends Seeder
 				'linkedin'			=> $faker->url,
 				'seeded'			=> true,
 			],
-            [
+			[
 				'id'				=> Str::uuid(),
 				'name'				=> 'Guest',
 				'email'				=> 'guest@anypo.net',
@@ -195,7 +195,7 @@ class UserSeeder extends Seeder
 			],
 		];
 
-        /*
+		/*
 		$demoUsers = [
 
 			[
@@ -301,16 +301,16 @@ class UserSeeder extends Seeder
 				'linkedin'			=> $faker->url,
 			],
 		];
-        	*/
+			*/
 
 		User::insert($seededUsers);
 
-        Log::debug('bo.SUPPORT_GROUP_EMAIL_ID =========== '.config('bo.SUPPORT_GROUP_EMAIL_ID'));
-        $user = User::where('email', config('bo.SUPPORT_GROUP_EMAIL_ID'))->first();
-        Log::debug('bo.SUPPORT_MGR_ID = ' . $user->id);
-        Log::debug('=== > update config\bo.php bo.SUPPORT_MGR_ID manually onetime.');
+		Log::debug('bo.SUPPORT_GROUP_EMAIL_ID =========== '.config('bo.SUPPORT_GROUP_EMAIL_ID'));
+		$user = User::where('email', config('bo.SUPPORT_GROUP_EMAIL_ID'))->first();
+		Log::debug('bo.SUPPORT_MGR_ID = ' . $user->id);
+		Log::debug('=== > update config\bo.php bo.SUPPORT_MGR_ID manually onetime.');
 
-        //User::where('id', 1001)->update(['avatar' => 'sys.png']);
+		//User::where('id', 1001)->update(['avatar' => 'sys.png']);
 		//User::where('id', 1005)->update(['avatar' => 's1.png']);
 		//User::where('id', 1006)->update(['avatar' => 's2.png']);
 

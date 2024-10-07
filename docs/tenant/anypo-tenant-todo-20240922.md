@@ -5,7 +5,7 @@
 -------------------------------------------------------------------------------------------------
 x159. user register page get start with domain name
 x158. clean akk.GUEST_USER_ID
-111. role update in user.edit tab for edit role dropdowsn
+111. role update in user.edit tab for edit role dropdown
 157. wfs.index badge not shown
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
 155. fix component list -> ArticleLink and ProjectLink
@@ -27,7 +27,7 @@ x158. clean akk.GUEST_USER_ID
 137. budget revision TODO link for source with DB:insert and last id
 136. create UOM - UoM Class - default uom mention
 135. hierarchyl export serial number
-133. budget revision TODO check budget and dept_budge duplicate form fornt end.
+133. budget revision TODO check budget and dept_budge duplicate from front end.
 132. ({{ $_setup->currency }}) is not working in project show and create
 131. country, status, code edit error is showing
 130. ticket create and view update from tenant without login to landlord

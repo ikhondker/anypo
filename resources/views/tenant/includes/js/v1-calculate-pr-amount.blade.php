@@ -18,7 +18,7 @@
 						var old_line_amount = $("#amount").val();
 						var old_pr_amount = $("#pr_amount").val();
 						old_line_amount = old_line_amount.replace(",", ""); // remove command
-						old_pr_amount = old_pr_amount.replace(",", "");     // remove command
+						old_pr_amount = old_pr_amount.replace(",", ""); 	// remove command
 
 						console.log("->old_line_amount=" + old_line_amount);
 						console.log("->old_pr_amount=" + old_pr_amount);
@@ -78,12 +78,12 @@
 			});
 		});
 
-        function calculate() {
-            console.log("========= Calcualte Function ===============");
-            var old_line_amount = $("#amount").val();
+		function calculate() {
+			console.log("========= Calcualte Function ===============");
+			var old_line_amount = $("#amount").val();
 			var old_pr_amount = $("#pr_amount").val();
 			old_line_amount = old_line_amount.replace(",", ""); // remove command
-			old_pr_amount = old_pr_amount.replace(",", "");     // remove command
+			old_pr_amount = old_pr_amount.replace(",", "");		 // remove command
 			console.log("->old_line_amount=" + old_line_amount);
 			console.log("->old_pr_amount=" + old_pr_amount);
 
@@ -91,16 +91,16 @@
 
 
 
-        }
+		}
 
 
 		$('#qty').change(function() {
 
-            calculate();
+			calculate();
 			var old_line_amount = $("#amount").val();
 			var old_pr_amount = $("#pr_amount").val();
 			old_line_amount = old_line_amount.replace(",", ""); // remove command
-			old_pr_amount = old_pr_amount.replace(",", "");     // remove command
+			old_pr_amount = old_pr_amount.replace(",", "");		 // remove command
 
 			var qty = $("#qty").val();
 			var price = $("#price").val();

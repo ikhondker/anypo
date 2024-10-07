@@ -8,7 +8,7 @@
 			<div class="m-sm-4">
 				<div class="text-center">
 					{{-- <img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" /> --}}
-                    <img src="{{ Storage::disk('s3t')->url('logo/'.$setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $setup->name }}" width="132" height="132"/>
+					<img src="{{ Storage::disk('s3t')->url('logo/'.$setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $setup->name }}" width="132" height="132"/>
 				</div>
 				<div class="text-center mt-4">
 					<h1 class="h2 text-info">{{ $setup->name}}</h1>

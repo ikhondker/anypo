@@ -8,24 +8,24 @@ use Illuminate\View\Component;
 
 class WhoWhen extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(
-        public string $createdBy = '',
-        public string $createdAt  = '',
-        public string $updatedBy  = '',
-        public string $updatedAt  = ''
-    )
-    {
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct(
+		public string $createdBy = '',
+		public string $createdAt  = '',
+		public string $updatedBy  = '',
+		public string $updatedAt  = ''
+	)
+	{
 
-    }
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.widgets.who-when');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.widgets.who-when');
+	}
 }

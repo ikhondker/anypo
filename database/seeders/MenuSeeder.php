@@ -37,60 +37,60 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'prs.index','route_name'              => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.my-prs','route_name'             => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.show','route_name'               => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.history','route_name'            => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.extra','route_name'              => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.edit','route_name'               => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.create','route_name'             => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.attachments','route_name'        => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.index','route_name'  			=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.my-prs','route_name' 			=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.show','route_name'			    => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.history','route_name'			=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.extra','route_name'  			=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.edit','route_name'			    => 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.create','route_name' 			=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.attachments','route_name'		=> 'prs.index', 'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'prls.edit','route_name'              => 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prls.add-line','route_name'          => 'prs.index', 'node_name' => 'workbench'],
-
-
-			[ 'raw_route_name' => 'pos.index','route_name'              => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.my-pos','route_name'             => 'pos.index', 'node_name' => 'workbench'],
-
-			[ 'raw_route_name' => 'pos.show','route_name'               => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.edit','route_name'               => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.create','route_name'             => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.history','route_name'            => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.extra','route_name'              => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.invoice','route_name'            => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.attachments','route_name'        => 'pos.index', 'node_name' => 'workbench'],
-
-			[ 'raw_route_name' => 'pols.show','route_name'              => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pols.edit','route_name'              => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pols.receipt','route_name'           => 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pols.add-line','route_name'          => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prls.edit','route_name'  			=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prls.add-line','route_name'  		=> 'prs.index', 'node_name' => 'workbench'],
 
 
-			[ 'raw_route_name' => 'receipts.index','route_name'         => 'receipts.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.index','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.my-pos','route_name' 			=> 'pos.index', 'node_name' => 'workbench'],
+
+			[ 'raw_route_name' => 'pos.show','route_name'  				=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.edit','route_name'			    => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.create','route_name' 			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.history','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.extra','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.invoice','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.attachments','route_name'		=> 'pos.index', 'node_name' => 'workbench'],
+
+			[ 'raw_route_name' => 'pols.show','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.edit','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.receipt','route_name'		    => 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.add-line','route_name'  		=> 'pos.index', 'node_name' => 'workbench'],
+
+
+			[ 'raw_route_name' => 'receipts.index','route_name' 		=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.my-receipts','route_name'   => 'receipts.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'receipts.show','route_name'          => 'receipts.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'receipts.show','route_name'  		=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.create-for-pol','route_name'=> 'receipts.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'receipts.ael','route_name'           => 'receipts.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'receipts.ael','route_name'		    => 'receipts.index', 'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'invoices.index','route_name'         => 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.index','route_name' 		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.my-invoices','route_name'   => 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.show','route_name'          => 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.edit','route_name'          => 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.show','route_name'  		=> 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.edit','route_name'  		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.create-for-po','route_name' => 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.ael','route_name'          	=> 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.ael','route_name'  			=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.payments','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.attachments','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'payments.index','route_name'         => 'payments.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'payments.index','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.my-payments','route_name'   => 'payments.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'payments.show','route_name'          => 'payments.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'payments.create-for-invoice','route_name'        => 'payments.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'payments.ael','route_name'        	=> 'payments.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'payments.show','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'payments.create-for-invoice','route_name'	=> 'payments.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'payments.ael','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
 
 
 			[ 'raw_route_name' => 'aehs.index','route_name'				=> 'aehs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'aehs.show','route_name'              => 'aehs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'aehs.show','route_name'				=> 'aehs.index', 'node_name' => 'workbench'],
 
 
 			/**
@@ -162,59 +162,58 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
+			[ 'raw_route_name' => 'depts.index','route_name' 			=> 'depts.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'depts.show','route_name' 			=> 'depts.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'depts.edit','route_name' 			=> 'depts.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'depts.create','route_name' 			=> 'depts.index', 'node_name' 		=> 'lookups'],
 
-			[ 'raw_route_name' => 'depts.index','route_name' 		=> 'depts.index', 'node_name' 		=> 'lookups'],
-			[ 'raw_route_name' => 'depts.show','route_name' 		=> 'depts.index', 'node_name' 		=> 'lookups'],
-			[ 'raw_route_name' => 'depts.edit','route_name' 		=> 'depts.index', 'node_name' 		=> 'lookups'],
-			[ 'raw_route_name' => 'depts.create','route_name' 		=> 'depts.index', 'node_name' 		=> 'lookups'],
-
-			[ 'raw_route_name' => 'categories.index','route_name' 	=> 'categories.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'categories.show','route_name' 	=> 'categories.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'categories.edit','route_name' 	=> 'categories.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'categories.create','route_name' 	=> 'categories.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'categories.index','route_name' 		=> 'categories.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'categories.show','route_name' 		=> 'categories.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'categories.edit','route_name' 		=> 'categories.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'categories.create','route_name' 		=> 'categories.index', 'node_name' 	=> 'lookups'],
 
 			// TODO
-			[ 'raw_route_name' => 'uoms.index','route_name' 		=> 'uoms.index', 'node_name' 		=> 'lookups'],
-			[ 'raw_route_name' => 'uoms.show','route_name' 		    => 'uoms.index', 'node_name' 		=> 'lookups'],
-			[ 'raw_route_name' => 'uoms.create','route_name' 		=> 'uoms.index', 'node_name' 		=> 'lookups'],
-			[ 'raw_route_name' => 'uoms.edit','route_name' 			=> 'uoms.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'uoms.index','route_name' 			=> 'uoms.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'uoms.show','route_name' 				=> 'uoms.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'uoms.create','route_name' 			=> 'uoms.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'uoms.edit','route_name' 				=> 'uoms.index', 'node_name' 		=> 'lookups'],
 
-			[ 'raw_route_name' => 'designations.index','route_name' => 'designations.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'designations.show','route_name'  => 'designations.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'designations.edit','route_name' 	=> 'designations.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'designations.create','route_name'=> 'designations.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'designations.index','route_name' 	=> 'designations.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'designations.show','route_name'  	=> 'designations.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'designations.edit','route_name' 		=> 'designations.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'designations.create','route_name'	=> 'designations.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'oems.index','route_name' 		=> 'oems.index', 'node_name' 		=> 'lookups'],
-			[ 'raw_route_name' => 'oems.show','route_name' 		    => 'oems.index', 'node_name' 		=> 'lookups'],
-			[ 'raw_route_name' => 'oems.edit','route_name' 			=> 'oems.index', 'node_name' 		=> 'lookups'],
-			[ 'raw_route_name' => 'oems.create','route_name' 		=> 'oems.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'oems.index','route_name' 			=> 'oems.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'oems.show','route_name' 				=> 'oems.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'oems.edit','route_name' 				=> 'oems.index', 'node_name' 		=> 'lookups'],
+			[ 'raw_route_name' => 'oems.create','route_name' 			=> 'oems.index', 'node_name' 		=> 'lookups'],
 
-			[ 'raw_route_name' => 'warehouses.index','route_name' 	=> 'warehouses.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'warehouses.show','route_name' 	=> 'warehouses.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'warehouses.edit','route_name' 	=> 'warehouses.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'warehouses.create','route_name' 	=> 'warehouses.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'warehouses.index','route_name' 		=> 'warehouses.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'warehouses.show','route_name' 		=> 'warehouses.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'warehouses.edit','route_name' 		=> 'warehouses.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'warehouses.create','route_name' 		=> 'warehouses.index', 'node_name' 	=> 'lookups'],
 
-			[ 'raw_route_name' => 'bank-accounts.index','route_name'=> 'bank-accounts.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'bank-accounts.show','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'bank-accounts.edit','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'bank-accounts.create','route_name' => 'bank-accounts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'bank-accounts.index','route_name'	=> 'bank-accounts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'bank-accounts.show','route_name' 	=> 'bank-accounts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'bank-accounts.edit','route_name' 	=> 'bank-accounts.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'bank-accounts.create','route_name' 	=> 'bank-accounts.index', 'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'currencies.index','route_name'	=> 'currencies.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'currencies.show','route_name'	=> 'currencies.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'currencies.edit','route_name' 	=> 'currencies.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'currencies.create','route_name' 	=> 'currencies.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'currencies.index','route_name'		=> 'currencies.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'currencies.show','route_name'		=> 'currencies.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'currencies.edit','route_name' 		=> 'currencies.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'currencies.create','route_name' 		=> 'currencies.index', 'node_name' 	=> 'lookups'],
 
 			/**
 			* ==================================================================================
 			* 6. Interface
 			* ==================================================================================
 			*/
-			[ 'raw_route_name' => 'upload-items.index','route_name' => 'upload-items.index', 'node_name' 	=> 'interface'],
-			[ 'raw_route_name' => 'upload-items.show','route_name' 	=> 'upload-items.index', 'node_name' 	=> 'interface'],
-			[ 'raw_route_name' => 'upload-items.edit','route_name' 	=> 'upload-items.index', 'node_name' 	=> 'interface'],
-			[ 'raw_route_name' => 'upload-items.create','route_name'=> 'upload-items.create', 'node_name'	=> 'interface'],
-			[ 'raw_route_name' => 'upload-items.check','route_name' => 'upload-items.index', 'node_name' 	=> 'interface'],
-			[ 'raw_route_name' => 'upload-items.import','route_name'=> 'upload-items.index', 'node_name' 	=> 'interface'],
+			[ 'raw_route_name' => 'upload-items.index','route_name' 	=> 'upload-items.index', 'node_name' 	=> 'interface'],
+			[ 'raw_route_name' => 'upload-items.show','route_name' 		=> 'upload-items.index', 'node_name' 	=> 'interface'],
+			[ 'raw_route_name' => 'upload-items.edit','route_name' 		=> 'upload-items.index', 'node_name' 	=> 'interface'],
+			[ 'raw_route_name' => 'upload-items.create','route_name'	=> 'upload-items.create', 'node_name'	=> 'interface'],
+			[ 'raw_route_name' => 'upload-items.check','route_name' 	=> 'upload-items.index', 'node_name' 	=> 'interface'],
+			[ 'raw_route_name' => 'upload-items.import','route_name'	=> 'upload-items.index', 'node_name' 	=> 'interface'],
 
 
 			/**
@@ -245,7 +244,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'setups.edit','route_name' 			=> 'setups.show', 'node_name' 		=> 'admin'],
 			[ 'raw_route_name' => 'setups.show','route_name' 			=> 'setups.show', 'node_name' 		=> 'admin'],
 			[ 'raw_route_name' => 'setups.notice','route_name' 			=> 'setups.show', 'node_name' 		=> 'admin'],
-			[ 'raw_route_name' => 'setups.tc','route_name' 			    => 'setups.show', 'node_name' 		=> 'admin'],
+			[ 'raw_route_name' => 'setups.tc','route_name' 				=> 'setups.show', 'node_name' 		=> 'admin'],
 			[ 'raw_route_name' => 'setups.announcement','route_name' 	=> 'setups.show', 'node_name' 		=> 'admin'],
 
 			/**
@@ -310,14 +309,14 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'aels.index','route_name' 			=> 'aels.index', 'node_name' 		=> 'system'],
 			[ 'raw_route_name' => 'aels.show','route_name' 				=> 'aels.index', 'node_name' 		=> 'system'],
 
-			[ 'raw_route_name' => 'ui','route_name' 					=> 'ui', 'node_name'			=> 'system'],
+			[ 'raw_route_name' => 'ui','route_name' 					=> 'ui', 'node_name'				=> 'system'],
 
 			/**
 			* ==================================================================================
 			* 8. My Account
 			* ==================================================================================
 			*/
-            /**
+			/**
 			* ==================================================================================
 			* 1. Profile
 			* ==================================================================================
