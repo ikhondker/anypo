@@ -122,7 +122,7 @@ class PrActions extends Notification implements ShouldQueue
 			'to'			=> $this->user->name,
 			//'subject'		=> '[FYI] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. $this->pr->amount. $this->pr->currency.' has been '.Str::lower($this->action).'.',
 			'subject'		=> $this->subject,
-			'greeting'		=> 'Hi '.$this->user->name.',',
+			'greeting'		=> 'Hi '.$this->user->name,
 			//'body'		=> '[FYI] PR#'.$this->pr->id.' '. $this->pr->summary .' for '. $this->pr->amount. ' has been '.Str::lower($this->action).'.',
 			'body'			=> $this->line,
 			'thanks'		=> 'Thank you for using '. config('app.name').'!',

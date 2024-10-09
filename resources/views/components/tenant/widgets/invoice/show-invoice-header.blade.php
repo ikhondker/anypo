@@ -11,13 +11,13 @@
 					@endif
 				</div>
 				<h5 class="card-title">Basic Information for Invoice #{{ $invoice->id }}</h5>
-				<h6 class="card-subtitle text-muted">Key information of a Purchase Requisitions</h6>
+				<h6 class="card-subtitle text-muted">Key information of a Purchase Invoice</h6>
 			</div>
 			<div class="card-body">
 
 				<table class="table table-sm my-2">
 					<tbody>
-						
+
 						<tr>
 							<th width="20%">Invoice Num #:</th>
 							<td><strong>{{ $invoice->invoice_no }}</strong></td>
@@ -61,12 +61,12 @@
 							data-entity="" data-name="INV#{{ $invoice->id }}" data-status="Post"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 							<i data-lucide="external-link" class="text-white"></i> Post Invoice</a>
-					@else 
-						<span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span>	
+					@else
+						<span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span>
 					@endif
 				</div>
-				<h5 class="card-title">Approval Status</h5>
-				<h6 class="card-subtitle text-muted">Approval information of Purchase Requisition.</h6>
+				<h5 class="card-title">Other Informatsion</h5>
+				<h6 class="card-subtitle text-muted">Others information about Purchase Invoice.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
@@ -92,7 +92,7 @@
 							<th>Attachments</th>
 							<td><x-tenant.attachment.all entity="INVOICE" aid="{{ $invoice->id }}"/></td>
 						</tr>
-	
+
 						<tr>
 							<th>&nbsp;</th>
 							<td>
@@ -117,7 +117,7 @@
 								@endif
 							</td>
 						</tr>
-				
+
 					</tbody>
 				</table>
 			</div>

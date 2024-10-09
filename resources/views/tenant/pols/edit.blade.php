@@ -31,7 +31,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<div class="dropdown position-relative">
-					
+
 				</div>
 			</div>
 			<h5 class="card-title">Purchase Order Lines</h5>
@@ -60,7 +60,7 @@
 						@include('tenant.includes.po.po-line-edit')
 					@else
 						<x-tenant.widgets.pol.card-table-row :line="$poln"/>
-					@endif 
+					@endif
 				@empty
 
 				@endforelse
@@ -71,7 +71,7 @@
 						<strong>TOTAL:</strong>
 					</td>
 					<td class="text-end">
-						<input type="number" step='0.01' min="1" class="form-control @error('po_amount') is-invalid @enderror"
+                        <input type="text" class="form-control @error('po_amount') is-invalid @enderror"
 							style="text-align: right;"
 							name="po_amount" id="po_amount" placeholder="1.00"
 							value="{{ old('po_amount', isset($po->amount) ? number_format($po->amount,2) : "0.00") }}"
@@ -84,7 +84,7 @@
 				<!-- End Table footer i.e. Totals -->
 			</tbody>
 			<!-- pol lines -->
-				
+
 		</table>
 		<div class="card-footer">
 			<div class="card-actions float-end">
@@ -96,11 +96,12 @@
 	</div>
 
 
-	
+
 	</form>
 	<!-- /.form end -->
 
 	 @include('tenant.includes.js.select2')
+    @include('tenant.includes.js.calculate-po-amount')
 
 @endsection
 

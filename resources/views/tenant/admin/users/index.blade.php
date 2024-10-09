@@ -164,13 +164,19 @@
 											<i class="align-middle text-success" data-lucide="log-in"></i>
 										</a> --}}
 									@else
-										@can('impersonate',$user)
-											@if ($user->id > 1002 )
-												<a wire:ignore href="{{ route('users.impersonate',$user->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Impersonate">
-													<i class="align-middle text-danger" data-lucide="log-out"></i>
-												</a>
+                                        @can('impersonate', $user)
+											@if (! $user->isSeeded() )
+												<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+												data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i></a>
+											@else
+												@if (auth()->user()->isSystem())
+													<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+														data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i></a>
+												@endif
 											@endif
 										@endcan
+
+
 									@endif
 
 									{{-- <a href="{{ route('users.impersonate', $user->id) }}" class="btn btn-warning btn-sm">Impersonate</a>

@@ -49,13 +49,12 @@ return new class extends Migration
 			$table->foreign('auth_status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->dateTime('auth_date',)->nullable();
-			$table->integer('auth_user_id')->nullable();
+			$table->uuid('auth_user_id')->nullable();
 			//$table->enum('status', ['OPEN','CANCELED','CLOSED'])->default('OPEN');
 			//$table->enum('auth_status', ['DRAFT','SUBMITTED','IN-PROCESS','APPROVED','REJECTED','ERROR'])->default('DRAFT');
 			$table->string('error_code',15)->nullable();
 			$table->string('wf_key',10)->default('WFPR');
 			$table->integer('hierarchy_id')->default(0);
-			
 			$table->integer('wf_id')->default(0);
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();

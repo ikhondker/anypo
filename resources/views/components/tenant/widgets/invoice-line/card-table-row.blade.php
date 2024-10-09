@@ -1,7 +1,7 @@
 <tr class="">
 	<td class="text-middle">{{ $invoiceLine->line_num }}</td>
 	<td class="">{{ $invoiceLine->summary }}</td>
-	<td class="text-end">{{ $invoiceLine->qty }}</td>
+	<td class="text-end"><x-tenant.list.my-number :value="$invoiceLine->qty"/></td>
 	<td class="text-end"><x-tenant.list.my-number :value="$invoiceLine->price"/> {{ $invoiceLine->invoice->currency }}</td>
 	<td class="text-end"><x-tenant.list.my-number :value="$invoiceLine->sub_total"/></td>
 	<td class="text-end"><x-tenant.list.my-number :value="$invoiceLine->tax"/></td>

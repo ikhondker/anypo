@@ -74,7 +74,7 @@
 		<input type="number" step='0.01' min="0" class="form-control @error('gst') is-invalid @enderror"
 			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="gst" id="gst" placeholder="0.00"
-			value="{{ old('gst', number_format($prl->gst, 2) ) }}"
+			value="{{ old('gst', number_format($prl->gst, 2)) }}"
 			required>
 		@error('gst')
 				<div class="small text-danger">{{ $message }}</div>
@@ -97,6 +97,5 @@
 	</td> --}}
 </tr>
 
-@include('tenant.includes.js.calculate-pr-amount')
 
 

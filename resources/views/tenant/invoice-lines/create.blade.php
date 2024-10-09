@@ -16,7 +16,7 @@
 			<x-tenant.actions.invoice-actions invoiceId="{{ $invoice->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 
 	<x-tenant.widgets.invoice.show-invoice-header invoiceId="{{ $invoice->id }}"/>
 
@@ -65,12 +65,12 @@
 							<strong>TOTAL:</strong>
 						</td>
 						<td class="text-end">
-							<input type="text" class="form-control @error('pr_amount') is-invalid @enderror"
+							<input type="text" class="form-control @error('inv_amount') is-invalid @enderror"
 								style="text-align: right;"
-								name="pr_amount" id="pr_amount" placeholder="0.00"
-								value="{{ old('pr_amount', (isset($invoice->amount) ? number_format($invoice->amount,2) : "0.00")) }}"
+								name="inv_amount" id="inv_amount" placeholder="0.00"
+								value="{{ old('inv_amount', (isset($invoice->amount) ? number_format($invoice->amount,2) : "0.00")) }}"
 								readonly>
-							@error('pr_amount')
+							@error('inv_amount')
 									<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</td>
@@ -85,13 +85,12 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</form>
 	<!-- /.form end -->
-	
-	
+
 	@include('tenant.includes.js.select2')
-	@include('tenant.includes.js.calculate-pr-amount')
-	
+    @include('tenant.includes.js.calculate-invoice-amount')
+
 @endsection
 

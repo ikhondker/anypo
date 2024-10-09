@@ -67,7 +67,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		Log::debug('jobs.Tenant.RecordDeptBudgetUsage.handle article_id = '.$this->article_id);
 		Log::debug('jobs.Tenant.RecordDeptBudgetUsage.handle event = '.$this->event);
 		Log::debug('jobs.Tenant.RecordDeptBudgetUsage.handle fc_amount = '.$this->fc_amount);
-		
+
 		switch ($this->entity) {
 			case EntityEnum::PR->value:
 				$pr 			= Pr::where('id', $this->article_id)->firstOrFail();
@@ -84,7 +84,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 						$dbu->amount_pr_booked	= $this->fc_amount;
 						break;
 					case EventEnum::RESET->value:
-						
+
 					case EventEnum::REJECT->value:
 						$dbu->amount_pr_booked	= - $this->fc_amount;
 						break;
@@ -159,7 +159,6 @@ class RecordDeptBudgetUsage implements ShouldQueue
 					$invoice				= Invoice::with('po')->where('id', $this->article_id)->firstOrFail();
 					$dbu->user_id			= $invoice->created_by;
 					$invoice_dept_budget_id = $invoice->po->dept_budget_id;
-					//Log::debug('I AM HERE 3a');
 					//Log::debug("dept_budget_id=". $pr->dept_budget_id);
 					$dept_budget 			= DeptBudget::primary()->where('id', $invoice_dept_budget_id)->firstOrFail();
 					$dbu->dept_budget_id	= $invoice_dept_budget_id;
@@ -207,7 +206,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 			default:
 				Log::error("job.Tenant.RecordDeptBudgetUsage Other Entity!");
 		}
-		
+		Log::error("job.Tenant.RecordDeptBudgetUsage Complete.");
 		$dbu->save();
 	}
 }

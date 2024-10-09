@@ -7,7 +7,7 @@
 				@endif
 			</div>
 		</div>
-		<h5 class="card-title">Requisition Lines <span class="badge badge-subtle-primary">{{ $pr->fc_currency }}</span></h5>
+		<h5 class="card-title">Requisition Lines <span class="badge badge-subtle-primary">{{ $pr->currency }}</span></h5>
 		<h6 class="card-subtitle text-muted">List of Requisition Lines.</h6>
 	</div>
 	<table class="table table-striped table-sm">
@@ -46,7 +46,7 @@
 				<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->sub_total"/></strong></td>
 				<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->tax"/></strong></td>
 				<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->gst"/></strong></td>
-				<td class="text-end" scope="col">{{ $pr->currency }} <strong><x-tenant.list.my-number :value="$pr->amount"/></strong></td>
+				<td class="text-end" scope="col"><span class="badge badge-subtle-primary">{{ $pr->currency }}</span> <strong><x-tenant.list.my-number :value="$pr->amount"/></strong></td>
 				<td class="" scope="col">&nbsp</td>
 			</tr>
 			<!-- End Table footer i.e. Totals -->

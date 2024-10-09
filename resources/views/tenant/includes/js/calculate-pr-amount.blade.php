@@ -79,14 +79,17 @@
 		console.log("->old_pr_amount = " + old_pr_amount);
 
 		var sub_total = price * qty;
-		console.log("->sub_total=" + sub_total);
-		$('#sub_total').val(sub_total.toFixed(2));
-
 		var line_amount = parseFloat(sub_total) + parseFloat(tax) + parseFloat(gst);
-		console.log("->line amount=" + line_amount);
-		$('#amount').val(line_amount.toFixed(2));
-
 		var pr_amount = parseFloat(old_pr_amount) - parseFloat(old_line_amount) + parseFloat(line_amount);
+
+        sub_total = sub_total.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+		console.log("->sub_total=" + sub_total);
+		$('#sub_total').val(sub_total);
+
+        line_amount = line_amount.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+		console.log("->line amount=" + line_amount);
+		$('#amount').val(line_amount);
+
 		pr_amount = pr_amount.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
 		console.log("->new pr_amount=" + pr_amount);
 		$('#pr_amount').val(pr_amount);

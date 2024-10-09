@@ -24,7 +24,6 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-
 						<h5 class="card-title">Purchase Order Basic Information</h5>
 						<h6 class="card-subtitle text-muted">Purchase Order Basic Information.</h6>
 					</div>
@@ -120,7 +119,7 @@
 				<div class="card">
 					<div class="card-header">
 						<div class="card-actions float-end">
-							
+
 						</div>
 						<h5 class="card-title">Purchase Order Additional Info</h5>
 						<h6 class="card-subtitle text-muted">Purchase Order Additional Information.</h6>
@@ -227,7 +226,7 @@
 					<!-- End Table footer i.e. Totals -->
 				</tbody>
 				<!-- pol lines -->
-					
+
 			</table>
 			<div class="card-footer">
 				<div class="card-actions float-end">

@@ -98,15 +98,15 @@
 											<i data-lucide="log-out" class="text-danger"></i>
 										</a> --}}
 									@else
-										@can('impersonate', $user) 
+										@can('impersonate', $user)
 											@if (! $user->isSeeded() )
 												<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-												data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-success"></i> Impersonate</a>
-											@else 
+												data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i></a>
+											@else
 												@if (auth()->user()->isSystem())
 													<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-														data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-success"></i> Impersonate</a>
-												@endif	
+														data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i></a>
+												@endif
 											@endif
 										@endcan
 									@endif

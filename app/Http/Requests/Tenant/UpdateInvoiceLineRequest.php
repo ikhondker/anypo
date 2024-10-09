@@ -22,7 +22,11 @@ class UpdateInvoiceLineRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			//
+			'summary'	=> 'required|min:2|max:200',
+			'qty'				=> 'required|numeric|min:1.00|max:999999.99',
+			'price'				=> 'required|numeric|min:1.00|max:999999.99',
+            'tax'				=> 'required|numeric|min:0.00|max:999999.99',
+            'gst'				=> 'required|numeric|min:0.00|max:999999.99',
 		];
 	}
 }

@@ -13,10 +13,10 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Create Invoice 
+			Create Invoice
 			@if(!empty($po))
 				for PO #{{ $po->id }}
-			@endif 
+			@endif
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
@@ -33,16 +33,16 @@
 	<!-- form start -->
 	<form id="myform" action="{{ route('invoices.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
-		
+
 
 		<div class="row">
-			<div class="col-6">		
+			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
 						<div class="card-actions float-end">
 							@if(!empty($po))
 								<a class="btn btn-sm btn-light" href="{{ route('pos.invoices', $po->id) }}" ><i class="fas fa-list"></i> View Invoices</a>
-							@endif 
+							@endif
 
 						</div>
 						<h5 class="card-title">Create Invoice For a Purchase Order</h5>
@@ -56,8 +56,8 @@
 									<tr>
 										<th>PO #</th>
 										<td>
-											<select class="form-control" name="po_id" required>
-												<option value=""><< Open PO Lines >> </option>
+											<select class="form-control select2" data-toggle="select2" name="po_id" required>
+												<option value=""><< Select PO >> </option>
 												@foreach ($pos as $poN)
 													<option value="{{ $poN->id }}" {{ $poN->id == old('po_id') ? 'selected' : '' }} >{{ $poN->summary }} -PO#{{ $poN->id }} </option>
 												@endforeach
@@ -85,7 +85,7 @@
 											readonly/>
 										</td>
 									</tr>
-								@endif 
+								@endif
 
 								<tr>
 									<th>Invoice No</th>
@@ -124,9 +124,9 @@
 									@enderror
 									</td>
 								</tr>
-								
-								
-								
+
+
+
 
 							</tbody>
 						</table>
@@ -140,7 +140,7 @@
 						<div class="card-actions float-end">
 							@if(!empty($po))
 								<a class="btn btn-sm btn-light" href="{{ route('pos.invoices', $po->id) }}" ><i class="fas fa-list"></i> View Invoices</a>
-							@endif 
+							@endif
 						</div>
 						<h5 class="card-title">Create Invoice For a Purchase Order</h5>
 						<h6 class="card-subtitle text-muted">Create Invoice For a Purchase Order.</h6>
@@ -157,7 +157,7 @@
 											readonly/>
 										</td>
 									</tr>
-								@endif 
+								@endif
 								<tr>
 									<th>Invoice PoC</th>
 									<td>
@@ -183,7 +183,7 @@
 		</div>
 		<!-- end row -->
 
-		<div class="card">	
+		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<div class="form-check form-switch">
@@ -243,7 +243,8 @@
 
 	@if(!empty($po))
 		<x-tenant.widgets.po.invoices poId="{{ $po->id }}" />
-	@endif 
+	@endif
 
+    @include('tenant.includes.js.select2')
 
 @endsection

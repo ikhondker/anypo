@@ -29,8 +29,8 @@
 		var tax = $("#tax").val();
 		var gst = $("#gst").val();
 
-		old_line_amount = old_line_amount.replace(/,/g, '');	// remove comma
-		old_inv_amount 	= old_inv_amount.replace(/,/g, '');		// remove comma
+		//old_line_amount = old_line_amount.replace(/,/g, '');	// remove comma
+		//old_inv_amount 	= old_inv_amount.replace(/,/g, '');		// remove comma
 		qty 			= qty.replace(/,/g, '');				// remove comma
 		price 			= price.replace(/,/g, '');				// remove comma
 		tax 			= tax.replace(/,/g, ''); 				// remove comma
@@ -41,7 +41,6 @@
 		var sub_total = price * qty;
 		var line_amount = parseFloat(sub_total) + parseFloat(tax) + parseFloat(gst);
 		var inv_amount = parseFloat(old_inv_amount) - parseFloat(old_line_amount) + parseFloat(line_amount);
-
 
         sub_total = sub_total.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
 		console.log("->sub_total=" + sub_total);

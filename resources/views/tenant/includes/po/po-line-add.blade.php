@@ -39,7 +39,7 @@
 	</td>
 	<td class="text-end">
 		<input type="number" class="form-control @error('qty') is-invalid @enderror"
-			style="text-align: right;" min="1"
+			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="qty" id="qty" placeholder="1"
 			value="{{ old('qty','1') }}"
 			required>
@@ -49,7 +49,7 @@
 	</td>
 	<td class="text-end">
 		<input type="number" step='0.01' min="1" class="form-control @error('price') is-invalid @enderror"
-			style="text-align: right;"
+			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="price" id="price" placeholder="1.00"
 			value="{{ old('price','0.00') }}"
 			required>
@@ -62,14 +62,14 @@
 			style="text-align: right;"
 			name="sub_total" id="sub_total" placeholder="1.00"
 			value="{{ old('sub_total','0.00') }}"
-			required>
+			readonly>
 		@error('sub_total')
 				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 	<td class="text-end">
 		<input type="number" step='0.01' min="0" class="form-control @error('tax') is-invalid @enderror"
-			style="text-align: right;"
+			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="tax" id="tax" placeholder="1.00"
 			value="{{ old('tax','0.00') }}"
 			required>
@@ -79,7 +79,7 @@
 	</td>
 	<td class="text-end">
 		<input type="number" step='0.01' min="0" class="form-control @error('gst') is-invalid @enderror"
-			style="text-align: right;"
+			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="gst" id="gst" placeholder="1.00"
 			value="{{ old('gst','0.00') }}"
 			required>
@@ -92,11 +92,11 @@
 			style="text-align: right;"
 			name="amount" id="amount" placeholder="1.00"
 			value="{{ old('amount','0.00') }}"
-			required>
+			readonly>
 		@error('amount')
 				<div class="small text-danger">{{ $message }}</div>
 		@enderror
 	</td>
 </tr>
 
-@include('tenant.includes.js.calculate-po-amount')
+

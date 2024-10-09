@@ -281,6 +281,8 @@ Route::middleware([
 		/* ======================== Ticket ======================================== */
 		Route::resource('tickets', TicketController::class);
 
+        /* ======================== Wfl ======================================== */
+	    Route::resource('wfls', WflController::class);      // anyone can be in approval hierarchy
 
 		/* ======================== Report ========================================  */
 		Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
@@ -368,18 +370,18 @@ Route::middleware([
 		Route::get('/invoices/post/{invoice}',[InvoiceController::class,'post'])->name('invoices.post');
 		Route::get('/invoices/ael/{invoice}',[InvoiceController::class,'ael'])->name('invoices.ael');
 
-		
+
 		/* ======================== InvoiceLines ======================================== */
 		Route::resource('invoice-lines', InvoiceLineController::class);
 		Route::get('/invoice-lines/delete/{invoiceLine}',[InvoiceLineController::class,'destroy'])->name('invoice-lines.destroy');
 		Route::get('/invoice-lines/add-line/{invoice}',[InvoiceLineController::class, 'addLine'])->name('invoice-lines.add-line');
-		
+
 		/* ======================== Payment ======================================== */
 		Route::resource('payments', PaymentController::class);
 		Route::get('/payment/my-payments',[PaymentController::class,'myPayments'])->name('payments.my-payments');
 		Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
 		Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
-		
+
 		Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
 		Route::get('/payments/ael/{payment}',[PaymentController::class,'ael'])->name('payments.ael');
 
@@ -421,7 +423,7 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
-	
+
 	});
 
 
@@ -451,7 +453,7 @@ Route::middleware([
 	});
 
 
-	
+
 /**
 * ==================================================================================
 * 3. Buyer+ CxO + Admin  (Need Auth+ Email Verification + can:cxo)
@@ -469,7 +471,7 @@ Route::middleware([
 
 		/* ======================== Project ======================================== */
 		Route::get('/project/spends',[ProjectController::class,'spends'])->name('projects.spends');
-		
+
 	});
 
 /**
@@ -521,7 +523,7 @@ Route::middleware([
 		Route::get('/payment/create-for-invoice/{invoice?}',[PaymentController::class,'createForInvoice'])->name('payments.create-for-invoice');
 		//Route::get('/payments/create-for-invoice/{id?}',[PaymentController::class,'testNotification'])->name('payments.create-for-invoice');
 		//Route::get('/payments/send/{id}',[PaymentController::class,'testNotification'])->name('payments.send');
-					
+
 		/* ======================== UploadItem ======================================== */
 		Route::resource('upload-items', UploadItemController::class);
 		Route::get('/upload-item/export',[UploadItemController::class, 'export'])->name('upload-items.export');
@@ -630,7 +632,6 @@ Route::middleware([
 	Route::get('/wfs/wf-reset-po/{po}',[WfController::class,'wfResetPo'])->name('wfs.wf-reset-po');
 
 	/* ======================== Wfl ======================================== */
-	Route::resource('wfls', WflController::class);
 	Route::get('/wfl/export',[WflController::class,'export'])->name('wfls.export');
 	Route::get('/wfls/delete/{wfl}',[WflController::class,'destroy'])->name('wfls.destroy');
 
@@ -709,7 +710,7 @@ Route::middleware([
 		Route::resource('activities', ActivityController::class);
 		Route::get('/activity/export',[ActivityController::class, 'export'])->name('activities.export');
 
-		
+
 		/* ======================== Template ========================================  */
 		Route::resource('templates', TemplateController::class);
 		Route::get('/template/export',[TemplateController::class, 'export'])->name('templates.export');

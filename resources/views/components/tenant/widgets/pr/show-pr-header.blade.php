@@ -14,7 +14,7 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						
+
 						<tr>
 							<th width="20%">Summary :</th>
 							<td>{{ $pr->summary }}</td>
@@ -55,10 +55,10 @@
 					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-sm btn-warning text-white float-end me-2 sw2-advance"
 							data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
-							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Purchase Order">
 							<i data-lucide="external-link" class="text-white"></i> Submit</a>
-					@else 
-						<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>	
+					@else
+						<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
 					@endif
 				</div>
 				<h5 class="card-title">Approval Status</h5>
@@ -88,7 +88,7 @@
 								@if ( $pr->po_id <> 0)
 									@if (! auth()->user()->isUser())
 										<a href="{{ route('pos.show',$pr->po_id) }}" class="text-muted"><strong>PO#{{ $pr->po_id }}</strong></a>
-									@else 
+									@else
 										<strong>PO#{{ $pr->po_id }}</strong>
 									@endif
 								@else

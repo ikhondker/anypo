@@ -105,5 +105,3 @@
 		<a class="btn btn-secondary" href="{{ url()->previous() }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel"><i data-lucide="x-circle"></i></a>
 	</td> --}}
 </tr>
-
-@include('tenant.includes.js.calculate-pr-amount')

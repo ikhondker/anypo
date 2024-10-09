@@ -60,7 +60,7 @@ return new class extends Migration
 			$table->string('auth_status')->default(AuthStatusEnum::DRAFT->value);
 			/** end ENUM */
 			$table->dateTime('auth_date',)->nullable();
-			$table->integer('auth_user_id')->nullable();
+			$table->uuid('auth_user_id')->nullable();
 			$table->string('error_code',15)->nullable();
 			$table->string('wf_key',10)->default('WFPR');
 			$table->integer('hierarchy_id')->default(0);

@@ -116,7 +116,7 @@ class PoActions extends Notification implements ShouldQueue
 			'from'			=> 'Workflow',
 			'to'			=> $this->user->name,
 			'subject'		=> $this->subject,
-			'greeting'		=> 'Hi '.$this->user->name.',',
+			'greeting'		=> 'Hi '.$this->user->name,
 			'body'			=> $this->line,
 			'thanks'		=> 'Thank you for using '. config('app.name').'!',
 			'actionText'	=> 'View Purchase Order',

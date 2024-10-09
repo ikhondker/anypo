@@ -16,7 +16,7 @@
 			<x-tenant.actions.invoice-actions invoiceId="{{ $invoice->id }}"/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	{{-- @include('tenant.includes.pr.view-pr-header') --}}
 	<x-tenant.widgets.invoice.show-invoice-header invoiceId="{{ $invoice->id }}"/>
 
@@ -55,7 +55,7 @@
 							@include('tenant.includes.invoice.invoice-line-edit')
 						@else
 							<x-tenant.widgets.invoice-line.card-table-row :line="$invoiceLineN"/>
-						@endif 
+						@endif
 					@empty
 
 					@endforelse
@@ -65,12 +65,12 @@
 							<strong>TOTAL:</strong>
 						</td>
 						<td class="text-end">
-							<input type="text" class="form-control @error('invoice_amount') is-invalid @enderror"
+							<input type="text" class="form-control @error('inv_amount') is-invalid @enderror"
 								style="text-align: right;"
-								name="invoice_amount" id="invoice_amount" placeholder="0.00"
-								value="{{ old('invoice_amount', (isset($invoice->amount) ? number_format($invoice->amount,2) : "0.00")) }}"
+								name="inv_amount" id="inv_amount" placeholder="0.00"
+								value="{{ old('inv_amount', (isset($invoice->amount) ? number_format($invoice->amount,2) : "0.00")) }}"
 								readonly>
-							@error('invoice_amount')
+							@error('inv_amount')
 									<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</td>
@@ -92,6 +92,6 @@
 	<!-- /.form end -->
 
 	@include('tenant.includes.js.select2')
-	@include('tenant.includes.js.calculate-pr-amount')
+	@include('tenant.includes.js.calculate-invoice-amount')
 @endsection
 

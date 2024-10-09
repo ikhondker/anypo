@@ -82,6 +82,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'invoices.payments','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.attachments','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
 
+            [ 'raw_route_name' => 'invoice-lines.add-line','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
+            [ 'raw_route_name' => 'invoice-lines.edit','route_name'	    => 'invoices.index', 'node_name' => 'workbench'],
+
+
 			[ 'raw_route_name' => 'payments.index','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.my-payments','route_name'   => 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.show','route_name'			=> 'payments.index', 'node_name' => 'workbench'],

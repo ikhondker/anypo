@@ -7,9 +7,9 @@
 		</a>
 	</td>
 	<td class="">{{ $pol->uom->name }}</td>
-	<td class="text-end">{{ $pol->qty }}</td>
+	<td class="text-end"><x-tenant.list.my-number :value="$pol->qty"/></td>
 	@if ($status)
-		<td class="text-end">{{ $pol->received_qty }}</td>
+		<td class="text-end"><x-tenant.list.my-number :value="$pol->received_qty"/></td>
 	@endif
 	<td class="text-end"><x-tenant.list.my-number :value="$pol->price"/></td>
 	<td class="text-end"><x-tenant.list.my-number :value="$pol->sub_total"/></td>
