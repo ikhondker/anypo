@@ -8,7 +8,7 @@
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -23,6 +23,7 @@ enum WflActionEnum: string{
 	case CREATED	= 'created';
 	case SUBMITTED	= 'submitted';
 	case PENDING	= 'pending';
+    case DUE	    = 'due';
 	case FORWARD	= 'forward';
 	case QUESTION	= 'question';
 	case ANSWER		= 'answer';

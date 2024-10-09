@@ -114,6 +114,15 @@ class Workflow
 					SELECT ".$wf_id.",approver_id
 					FROM hierarchyls WHERE hid= ".$hierarchy_id.";
 				");
+
+            // mark current approver as pending
+            // find first approve and make in wfls as pending
+            //$hierarchyl = Hierarchyl::where('id', $hierarchy_id)->firstOrFail();
+
+
+
+
+
 		} else {
 			$wf_id = 0;
 		}
@@ -126,6 +135,7 @@ class Workflow
 	{
 		Log::debug('Helpers.Workflow.allowApprove checking if workflow wf_id = '.$wf_id.' is pending with current user_id = '.auth()->user()->id);
 		try {
+            // TODO rewrite
 			$wfl = Wfl::where('wf_id', $wf_id)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
 			Log::debug('Helpers.Workflow.allowApprove Yes, found row pending with current user wfl_id = '.$wfl->id);
 			return true;
@@ -136,6 +146,7 @@ class Workflow
 	}
 
 	// Check if any more approver exists who need to approve document
+    // from where it is called? PoController.submit, PrController.submit, WflController.update WflController.moveToNext
 	public static function getNextApproverId($wf_id)
 	{
 		Log::debug('Helpers.Workflow.getNextApproverId finding next_approver for wf_id = '.$wf_id);

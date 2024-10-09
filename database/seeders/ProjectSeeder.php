@@ -23,14 +23,14 @@ class ProjectSeeder extends Seeder
 		//Schema::disableForeignKeyConstraints();
 		//Project::truncate();
 		//Schema::enableForeignKeyConstraints();
-	 
+
 		// TODO check who will be pm for seeded project
 		$seededProject = [
 				[
 					'name'		=> 'Seeded Project',
 					'code'		=> 'SEEDED',
 					'pm_id' 	=> User::inRandomOrder()->first()->id,
-					'amount'	=> 10000,
+					'amount'	=> 100000,
 					'notes'		=> 'This is Seeded Project.'
 				],
 			];

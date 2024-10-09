@@ -102,8 +102,10 @@ class PoController extends Controller
 				$pos = $pos->All()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
+                $pos = $pos->AllApproved()->orderBy('id', 'DESC')->paginate(10);
+				break;
 			case UserRoleEnum::ADMIN->value:
-				$pos = $pos->AllApproved()->orderBy('id', 'DESC')->paginate(10);
+				$pos = $pos->AllExceptDraft()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::SYSTEM->value:
 				$pos = $pos->with('dept')->orderBy('id', 'DESC')->paginate(10);
@@ -341,7 +343,7 @@ class PoController extends Controller
 				'po_id' 	=> null,
 				'status'	=> ClosureStatusEnum::OPEN->value,
 			]);
-					
+
 		// Write to Log
 		EventLog::event('Po', $po->id, 'delete', 'id', $po->id);
 		// delete from pol
@@ -676,13 +678,13 @@ class PoController extends Controller
 		$po_id					= $po->id;
 
 		// copy lines into prls
-		$sql= "INSERT INTO pols( 
-			po_id, line_num, item_description, item_id, uom_id, 
-			qty, price, sub_total, tax, gst, amount, notes, 
+		$sql= "INSERT INTO pols(
+			po_id, line_num, item_description, item_id, uom_id,
+			qty, price, sub_total, tax, gst, amount, notes,
 			requestor_id, dept_id, unit_id, project_id, closure_status )
 		SELECT ".
-			$po->id.",line_num, item_description, item_id, uom_id, 
-			qty, price, sub_total, tax, gst, amount, notes, 
+			$po->id.",line_num, item_description, item_id, uom_id,
+			qty, price, sub_total, tax, gst, amount, notes,
 			requestor_id, dept_id, unit_id, project_id, '".ClosureStatusEnum::OPEN->value."'
 			FROM pols WHERE
 			po_id= ".$sourcePo->id." ;";
@@ -866,7 +868,7 @@ class PoController extends Controller
 		return view('tenant.pos.invoices', compact('po'));
 	}
 
-	
+
 	public function payments(Po $po)
 	{
 		$this->authorize('view', $po);
