@@ -167,7 +167,7 @@ class AttachmentController extends Controller
 		]);
 
 		//Log::debug('Value of id=' . $attachment->id);
-		//Log::debug('Value of summary=' . $attachment->summary);
+		//Log::debug('Value of summary = ' . $attachment->summary);
 
 		// Write to Log
 		EventLog::event('attachment', $attachment->id, 'update', 'summary', $request->summary);
@@ -187,7 +187,7 @@ class AttachmentController extends Controller
 				return redirect()->route('prs.show',$attachment->article_id)->with('success', $msg );
 				break;
 			case EntityEnum::PO->value:
-				return redirect()->route('po.show',$attachment->article_id)->with('success', $msg );
+				return redirect()->route('pos.show',$attachment->article_id)->with('success', $msg );
 				break;
 			case EntityEnum::PROJECT->value:
 				return redirect()->route('projects.show',$attachment->article_id)->with('success', $msg );

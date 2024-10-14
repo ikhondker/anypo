@@ -3,10 +3,12 @@
 
 # 33. TODO
 -------------------------------------------------------------------------------------------------
-123. show allowapprove=true for admin
-123. selelct t form invocie creatsion PO dropdowsn and proejct dropdowan
+x124. stop same emp in same hierarchy twice
+x123. show allowapprove=true for admin
+x124. reset Pr and po by admin
 x111. page-2 user list no impersonate
-111. sales Po appover IT Hod can not see. Oka. Reset PO  
+x111. sales Po appover IT Hod can not see. Oka. Reset PO  
+123. select form invoice creation PO dropdown and project dropdown
 113. Auth::user()->unreadNotifications->markAsRead();
 x159. user register page get start with domain name
 x158. clean akk.GUEST_USER_ID
@@ -61,6 +63,7 @@ x158. clean akk.GUEST_USER_ID
 
 # 30 Nice to Have P2
 -------------------------------------------------------------------------------------------------
+1. notfication mark-as-read with ajax see https://blog.quickadminpanel.com/laravel-notifications-with-database-driver-internal-messages/
 1.	prefix form pr/po number
 2.	command generator based on tenants
 3.	budget update approval workflow P2

@@ -315,7 +315,7 @@ class PrController extends Controller
 			Log::error(tenant('id'). 'tenant.pr.update syncPrValues pr_id = '.$pr->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
-		
+
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition updated successfully.');
 	}
 
@@ -464,17 +464,20 @@ class PrController extends Controller
 		$this->authorize('submit', $pr);
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit if Requisition status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
 		}
 
 		if ($pr->amount == 0) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You cannot submit zero value Requisition');
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You cannot submit zero value Requisition.');
 		}
 
-		if ($pr->dept_id <> auth()->user()->dept_id) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit own department Requisition!');
-		}
+		// if ($pr->dept_id <> auth()->user()->dept_id) {
+		// 	return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit own department Requisition!');
+		// }
 
+		if ($pr->requestor_id <> auth()->user()->id) {
+			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit own Requisition!');
+		}
 		Log::debug(tenant('id'). ' tenant.pr.submit submitting pr_id = ' . $pr->id);
 
 		// generate fc_currency value and check budget
@@ -567,20 +570,22 @@ class PrController extends Controller
 		$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 
 		// Send notification to Next Approver
-		$action = WflActionEnum::PENDING->value;
+		$action = WflActionEnum::DUE->value;
 		$actionURL = route('prs.show', $pr->id);
-		$next_approver_id = Workflow::getNextApproverId($pr->wf_id);
-		Log::debug(tenant('id'). ' tenant.pr.submit notifying next_approver_id = '. $next_approver_id);
-		if ($next_approver_id <> 0) {
-			$approver = User::where('id', $next_approver_id)->first();
+		$due_approver_id = Workflow::getDueApproverId($pr->wf_id);
+		Log::debug(tenant('id'). ' tenant.pr.submit notifying next_approver_id = '. $due_approver_id);
+		if ($due_approver_id <> '') {
+			$approver = User::where('id', $due_approver_id)->first();
 			$approver->notify(new PrActions($approver, $pr, $action, $actionURL));
 		} else {
-			Log::debug(tenant('id'). 'tenant.pr.submit okay. next_approver_id not found!');
+			Log::debug(tenant('id'). 'tenant.pr.submit okay. Last Approver. next_approver_id not found!');
 		}
+
+
 		return redirect()->route('prs.show', $pr->id)->with('success', 'Purchase Requisition submitted for approval successfully.');
 	}
 
-	public function copy(Pr $pr)
+	public function duplicate(Pr $pr)
 	{
 		$this->authorize('view', $pr);
 
@@ -620,7 +625,7 @@ class PrController extends Controller
 		$pr_id					= $pr->id;
 
 		// copy lines into prls
-		$sql= "INSERT INTO prls( 
+		$sql= "INSERT INTO prls(
 				pr_id, line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, closure_status )
 		SELECT ".
 				$pr->id.",line_num, item_description, item_id, uom_id, notes, qty, price, sub_total, tax, gst, amount, '".ClosureStatusEnum::OPEN->value."'
@@ -676,10 +681,10 @@ class PrController extends Controller
 
 		// copy prls into pols
 		$sql= "
-		INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id, 
+		INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id,
 			qty, price, sub_total, tax, gst, amount, notes,
 			requestor_id, dept_id, unit_id,project_id,prl_id, closure_status )
-		SELECT ".$po_id.",prl.line_num, prl.item_description, prl.item_id, prl.uom_id, 
+		SELECT ".$po_id.",prl.line_num, prl.item_description, prl.item_id, prl.uom_id,
 			prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
 			pr.requestor_id, pr.dept_id, pr.unit_id,pr.project_id,prl.id,'".ClosureStatusEnum::OPEN->value."'
 		FROM prls prl,prs pr

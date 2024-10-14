@@ -40,7 +40,7 @@ class InvoicePolicy
 	 */
 	public function create(User $user): bool
 	{
-		return false;
+		return ($user->isBuyer() || $user->isSupport());
 	}
 
 	/**
@@ -66,7 +66,7 @@ class InvoicePolicy
 	{
 		return ($user->isBuyer() || $user->isSupport());
 	}
-	
+
 	/**
 	 * Determine whether the user can delete the model.
 	 */
@@ -90,7 +90,7 @@ class InvoicePolicy
 	{
 		//
 	}
-	
+
 
 	/**
 	 * Determine whether the user can create models.

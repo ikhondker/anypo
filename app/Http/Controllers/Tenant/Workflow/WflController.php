@@ -106,9 +106,9 @@ class WflController extends Controller
 	public function update(UpdateWflRequest $request, Wfl $wfl)
 	{
 		$this->authorize('update',$wfl);
-		Log::debug("tenant.wfl.update Processing wf_id=" .$wfl->wf_id);
-		Log::debug("tenant.wfl.update Processing wfl_id=" .$wfl->id);
-		Log::debug("tenant.wfl.update Processing action=" .$request->input('action'));
+		Log::debug("tenant.wfl.update Processing wf_id = " .$wfl->wf_id);
+		Log::debug("tenant.wfl.update Processing wfl_id = " .$wfl->id);
+		Log::debug("tenant.wfl.update Processing action = " .$request->input('action'));
 
 		$request->merge(['action_date' => date('Y-m-d H:i:s')]);
 		// update wfl row
@@ -124,7 +124,7 @@ class WflController extends Controller
 			case(WflActionEnum::APPROVED->value):
 				Log::debug('tenant.wfl.update Checking if next_approver_id exists.');
 				$next_approver_id = Workflow::getNextApproverId($wfl->wf_id);
-				if ($next_approver_id <> 0) {
+				if ($next_approver_id <> '') {
 					Log::debug('tenant.wfl.update next_approver exists with user_i = '.$next_approver_id);
 					Log::debug('tenant.wfl.update Forward Wf. Executing tenant.wfl.moveToNext.');
 					self::moveToNext($wf);
@@ -230,9 +230,9 @@ class WflController extends Controller
 				//Log::debug("retcode = ".$retcode);
 
 				// send approval mail to requestor
-				$action = WflActionEnum::APPROVED->value;
-				$actionURL = route('prs.show', $pr->id);
-				$requestor = User::where('id', $pr->requestor_id)->first();
+				$action	 			= WflActionEnum::APPROVED->value;
+				$actionURL  		= route('prs.show', $pr->id);
+				$requestor			= User::where('id', $pr->requestor_id)->first();
 				$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 				break;
 			case('PO'):
@@ -247,9 +247,9 @@ class WflController extends Controller
 				//Log::debug("retcode = ".$retcode);
 
 				// send approval mail to requestor
-				$action = WflActionEnum::APPROVED->value;
-				$actionURL = route('pos.show', $po->id);
-				$requestor = User::where('id', $po->requestor_id)->first();
+				$action 		= WflActionEnum::APPROVED->value;
+				$actionURL 		= route('pos.show', $po->id);
+				$requestor 		= User::where('id', $po->requestor_id)->first();
 				$requestor->notify(new PoActions($requestor, $po, $action, $actionURL));
 
 				break;
@@ -269,9 +269,9 @@ class WflController extends Controller
 		// get next approver exists
 		//Log::debug("notifying next approver ");
 		$auth_status = AuthStatusEnum::APPROVED->value;
-		$next_approver_id = Workflow::getNextApproverId($wf->id);
+		$next_approver_id = Workflow::setNextApproverDue($wf->id);
 		Log::debug("tenant.wfl.moveToNext next_approver_id = ". $next_approver_id);
-		if ($next_approver_id == 0) {
+		if ($next_approver_id == '') {
 			Log::debug("tenant.wfl.moveToNext next_approver_id not found!");
 			return false;
 		}
@@ -287,7 +287,6 @@ class WflController extends Controller
 				break;
 			case('PO'):
 				// Send notification to Next Approver
-
 				$action 	= WflActionEnum::PENDING->value;
 				$po 		= Po::where('id', $wf->article_id)->first();
 				$actionURL 	= route('pos.show', $po->id);

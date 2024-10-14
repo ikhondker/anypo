@@ -57,10 +57,10 @@
 
 				<div class="card-actions float-end">
 					@if ($invoice->status == App\Enum\AuthStatusEnum::DRAFT->value)
-						<a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-sm btn-success text-white float-end me-2 sw2-advance"
-							data-entity="" data-name="INV#{{ $invoice->id }}" data-status="Post"
+						<a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
+							data-entity="" data-name="INV#{{ $invoice->id }}" data-status="Post Invoice"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
-							<i data-lucide="external-link" class="text-white"></i> Post Invoice</a>
+							<i data-lucide="external-link" class="text-white"></i> Post</a>
 					@else
 						<span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span>
 					@endif

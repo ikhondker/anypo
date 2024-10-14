@@ -21,7 +21,7 @@ class WfPolicy
 		return null;
 	}
 
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -62,7 +62,7 @@ class WfPolicy
 		return false;
 	}
 
-	
+
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -82,9 +82,10 @@ class WfPolicy
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function reset(User $user, Wf $wf): bool
+	public function reset(User $user): bool
 	{
-		return ($user->isAdmin() || $user->isSupport());
+        return true;
+		//return ($user->isAdmin() || $user->isSupport());
 	}
 
 

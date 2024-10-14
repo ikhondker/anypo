@@ -21,19 +21,19 @@
 			<x-tenant.buttons.header.lists object="Receipt"/>
 			@if(!empty($pol))
 				<x-tenant.actions.pol-actions polId="{{ $pol->id }}"/>
-			@endif 
+			@endif
 
 		@endslot
 	</x-tenant.page-header>
 
 	@if(!empty($pol))
 		<x-tenant.info.pol-info polId="{{ $pol->id }}"/>
-	@endif 
+	@endif
 
 	<!-- form start -->
 	<form id="myform" action="{{ route('receipts.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
-		
+
 
 		<div class="card">
 			<div class="card-header">
@@ -48,10 +48,10 @@
 							<tr>
 								<th>PO Line #</th>
 								<td>
-									<select class="form-control" name="pol_id" required>
+									<select class="form-control select2" data-toggle="select2" name="pol_id" required>
 										<option value=""><< Open PO Lines >> </option>
 										@foreach ($pols as $polN)
-											<option value="{{ $polN->id }}" {{ $polN->id == old('pol_id') ? 'selected' : '' }} >{{ $polN->item_description }} -PO#{{ $polN->po->id }} </option>
+											<option value="{{ $polN->id }}" {{ $polN->id == old('pol_id') ? 'selected' : '' }} >PO#{{ $polN->po->id }} Line# {{ $polN->line_num }} - {{ $polN->item_description }}</option>
 										@endforeach
 									</select>
 									@error('pol_id')
@@ -75,10 +75,10 @@
 							</tr>
 						@endif
 						<tr>
-							<th>Qty 
+							<th>Qty
 								@if(!empty($pol))
 									({{ $pol->uom->name }})
-								@endif 
+								@endif
 							</th>
 							<td>
 								<input type="number" class="form-control @error('qty') is-invalid @enderror"
@@ -123,6 +123,8 @@
 	<!-- /.form end -->
 	@if(!empty($pol))
 		<x-tenant.widgets.pol.pol-receipts :id="$pol->id" />
-	@endif 	
+	@endif
+
+    @include('tenant.includes.js.select2')
 
 @endsection

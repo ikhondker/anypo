@@ -164,7 +164,7 @@
 											<i class="align-middle text-success" data-lucide="log-in"></i>
 										</a> --}}
 									@else
-                                        @can('impersonate', $user)
+										@can('impersonate', $user)
 											@if (! $user->isSeeded() )
 												<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 												data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i></a>

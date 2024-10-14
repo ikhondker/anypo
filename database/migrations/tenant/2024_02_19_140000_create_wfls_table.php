@@ -22,7 +22,7 @@ return new class extends Migration
 			$table->dateTime('assign_date',)->useCurrent(); // TODO make sure it is not nullable
 			$table->dateTime('action_date',)->nullable();
 			/** ENUM */
-			$table->string('action')->default(WflActionEnum::DUE->value);
+			$table->string('action')->default(WflActionEnum::PENDING->value);
 			/** end ENUM */
 			$table->text('notes')->nullable();
 			$table->string('error_code',15)->nullable();

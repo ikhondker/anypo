@@ -245,6 +245,7 @@
 		<x-tenant.widgets.po.invoices poId="{{ $po->id }}" />
 	@endif
 
-    @include('tenant.includes.js.select2')
+	@include('tenant.includes.js.select2')
+	@include('tenant.includes.js.calculate-invoice-amount')
 
 @endsection

@@ -47,11 +47,11 @@ class PrActions extends Notification implements ShouldQueue
 				$this->subject	= '[FYI] PR#'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' has been '.Str::lower($this->action).'.';
 				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).' for approval.';
 				break;
-			case WflActionEnum::PENDING->value:
+			case WflActionEnum::DUE->value:
 				$this->subject	= '[Action Required] PR#'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' requires your approval.';
 				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' requires your approval.';
 				break;
-			case WflActionEnum::REJECTED->value:
+   			case WflActionEnum::REJECTED->value:
 				$this->subject	= '[FYI] PR#'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' has been '.Str::lower($this->action).'.';
 				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
 				break;
@@ -116,7 +116,7 @@ class PrActions extends Notification implements ShouldQueue
 
 		$details = [
 			'entity'		=> 'PR',
-			'id'			=> $this->user->id,
+			'owner_id'		=> $this->user->id,
 			//'from'		=> $this->user->name,	// P2
 			'from'			=> 'Workflow',
 			'to'			=> $this->user->name,
@@ -133,7 +133,7 @@ class PrActions extends Notification implements ShouldQueue
 
 		return [
 			'entity'		=> $details['entity'],
-			'id'			=> $details['id'],
+			'owner_id'		=> $details['owner_id'],
 			'from'			=> $details['from'],
 			'to'			=> $details['to'],
 			'subject'		=> $details['subject'],

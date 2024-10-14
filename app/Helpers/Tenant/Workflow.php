@@ -28,6 +28,7 @@ use App\Models\Tenant\Po;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Workflow\Hierarchy;
+use App\Models\Tenant\Workflow\Hierarchyl;
 use App\Models\Tenant\Workflow\Wf;
 use App\Models\Tenant\Workflow\Wfl;
 
@@ -115,14 +116,20 @@ class Workflow
 					FROM hierarchyls WHERE hid= ".$hierarchy_id.";
 				");
 
-            // mark current approver as pending
-            // find first approve and make in wfls as pending
-            //$hierarchyl = Hierarchyl::where('id', $hierarchy_id)->firstOrFail();
+			Log::debug("Helpers.Workflow.submitWf First rows inserted into wfl as per hierarchy_id = ".$hierarchy_id);
 
+			// mark first approver as due
+			// find first approver and make him in wfls as due
+			$hierarchyl = Hierarchyl::where('hid', $wf->hierarchy_id)->orderBy('id', 'ASC')->firstOrFail();
+			Log::debug("Helpers.Workflow.submitWf First Approver approver_id = ".$hierarchyl->approver_id);
 
+			// find from wfls and change status
+			$wfl = Wfl::where('wf_id',$wf->id)->where('performer_id', $hierarchyl->approver_id)->orderBy('id', 'ASC')->firstOrFail();
+			Log::debug("Helpers.Workflow.submitWf found first approver in wlf for wfl_id = ".$wfl->id);
+			Log::debug("Helpers.Workflow.submitWf change status as DUE for wfl_id = ".$wfl->id);
 
-
-
+			$wfl->fill(['action' => WflActionEnum::DUE->value]);
+			$wfl->update();
 		} else {
 			$wf_id = 0;
 		}
@@ -133,33 +140,69 @@ class Workflow
 	// check if current logged-in user can approve current document
 	public static function allowApprove($wf_id)
 	{
-		Log::debug('Helpers.Workflow.allowApprove checking if workflow wf_id = '.$wf_id.' is pending with current user_id = '.auth()->user()->id);
+		Log::debug('Helpers.Tenant.Workflow.allowApprove checking if workflow wf_id = '.$wf_id.' is pending with current user_id = '.auth()->user()->id);
 		try {
-            // TODO rewrite
-			$wfl = Wfl::where('wf_id', $wf_id)->where('action', WflActionEnum::PENDING->value)->where('performer_id', auth()->user()->id)->firstOrFail();
-			Log::debug('Helpers.Workflow.allowApprove Yes, found row pending with current user wfl_id = '.$wfl->id);
+			$wfl = Wfl::where('wf_id', $wf_id)->where('action', WflActionEnum::DUE->value)->where('performer_id', auth()->user()->id)->firstOrFail();
+			Log::debug('Helpers.Tenant.Workflow.allowApprove Yes, found row pending with current user wfl_id = '.$wfl->id);
 			return true;
 		} catch (ModelNotFoundException $exception) {
-			Log::debug('Helpers.Workflow.allowApprove No, not pending with current user wf_id = '.$wf_id);
+			Log::debug('Helpers.Tenant.Workflow.allowApprove No, not pending with current user wf_id = '.$wf_id);
 			return false;
 		}
 	}
 
 	// Check if any more approver exists who need to approve document
-    // from where it is called? PoController.submit, PrController.submit, WflController.update WflController.moveToNext
+	// from where it is called? PoController.submit, PrController.submit, WflController.update WflController.moveToNext
+	public static function setNextApproverDue($wf_id)
+	{
+		Log::debug('Helpers.Workflow.setNextApproverDue finding next_approver for wf_id = '.$wf_id);
+		try {
+			// mark as due for next approver
+			$wfl = Wfl::with('wf')->where('wf_id', $wf_id)->where('action', WflActionEnum::PENDING->value)->firstOrFail();
+			$wfl->action = WflActionEnum::DUE->value;
+			$wfl->update();
+
+			//Log::debug('Helpers.Workflow.setNextApproverDue wfl_id = '.$wfl->id);
+			//Log::debug('Helpers.Workflow.setNextApproverDue wf->action = '.$wfl->action->value);
+			Log::debug('Helpers.Workflow.setNextApproverDue wfl->performer_id = '.$wfl->performer_id);
+			return $wfl->performer_id;
+		} catch (ModelNotFoundException $exception) {
+			Log::debug('Helpers.Workflow.setNextApproverDue no next performer_id found. This is last approver. Returning zero.');
+			return '';
+		}
+	}
+
+	public static function getDueApproverId($wf_id)
+	{
+		Log::debug('Helpers.Workflow.getDueApproverId finding next_approver for wf_id = '.$wf_id);
+		try {
+			// get next approver
+			$wfl = Wfl::where('wf_id', $wf_id)->where('action', WflActionEnum::DUE->value)->firstOrFail();
+			//Log::debug('Helpers.Workflow.getDueApproverId wfl_id = '.$wfl->id);
+			//Log::debug('Helpers.Workflow.getDueApproverId wf->action = '.$wfl->action->value);
+			Log::debug('Helpers.Workflow.getDueApproverId wfl->performer_id = '.$wfl->performer_id);
+			return $wfl->performer_id;
+		} catch (ModelNotFoundException $exception) {
+			Log::debug('Helpers.Workflow.getDueApproverId no next performer_id found. This is last approver. Returning null.');
+			return '';
+		}
+	}
+
+	// Check if any more approver exists who need to approve document
+	// from where it is called? PoController.submit, PrController.submit, WflController.update WflController.moveToNext
 	public static function getNextApproverId($wf_id)
 	{
-		Log::debug('Helpers.Workflow.getNextApproverId finding next_approver for wf_id = '.$wf_id);
+		Log::debug('Helpers.Tenant.Workflow.getNextApproverId finding next_approver for wf_id = '.$wf_id);
 		try {
 			// get next approver
 			$wfl = Wfl::where('wf_id', $wf_id)->where('action', WflActionEnum::PENDING->value)->firstOrFail();
 			//Log::debug('Helpers.Workflow.getNextApproverId wfl_id = '.$wfl->id);
 			//Log::debug('Helpers.Workflow.getNextApproverId wf->action = '.$wfl->action->value);
-			Log::debug('Helpers.Workflow.getNextApproverId wfl->performer_id = '.$wfl->performer_id);
+			Log::debug('Helpers.Tenant.Workflow.getNextApproverId wfl->performer_id = '.$wfl->performer_id);
 			return $wfl->performer_id;
 		} catch (ModelNotFoundException $exception) {
-			Log::debug('Helpers.Workflow.getNextApproverId no next performer_id found. This is last approver. Returning zero.');
-			return 0;
+			Log::debug('Helpers.Tenant.Workflow.getNextApproverId no next performer_id found. This is last approver. Returning null.');
+			return '';
 		}
 	}
 }

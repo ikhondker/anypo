@@ -96,10 +96,10 @@ class TicketController extends Controller
 		// create or find user in Landlord if don't exists
 		$landlordUserId = tenancy()->central(function ($tenant) use ($tenant_id, $name, $email, $cell) {
 
-			Log::debug("tenant.support.Ticket.store tenant_id= ".$tenant_id);
+			Log::debug("tenant.support.Ticket.store tenant_id = ".$tenant_id);
 
 			$account = \App\Models\Landlord\Account::where('site', $tenant_id)->first();
-			Log::debug("tenant.support.Ticket.store account_id= ".$account->id);
+			Log::debug("tenant.support.Ticket.store account_id = ".$account->id);
 
 			// check if user need to create
 			$createLandlordUser =false;

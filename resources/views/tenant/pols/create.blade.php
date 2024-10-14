@@ -71,7 +71,7 @@
 							<strong>TOTAL:</strong>
 						</td>
 						<td class="text-end">
-                            <input type="text" class="form-control @error('po_amount') is-invalid @enderror"
+							<input type="text" class="form-control @error('po_amount') is-invalid @enderror"
 								style="text-align: right;"
 								name="po_amount" id="po_amount" placeholder="1.00"
 								value="{{ old('po_amount', isset($po->amount) ? number_format($po->amount,2) : "0.00") }}"
@@ -101,7 +101,7 @@
 	<!-- /.form end -->
 
 	@include('tenant.includes.js.select2')
-    @include('tenant.includes.js.calculate-po-amount')
+	@include('tenant.includes.js.calculate-po-amount')
 
 @endsection
 

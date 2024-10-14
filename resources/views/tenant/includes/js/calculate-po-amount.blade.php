@@ -20,9 +20,9 @@
 						$('#item_description').val(response.name);
 						var uom_class_id = response.uom_class_id;
 						var price = response.price;
-                        price = parseFloat(price).toFixed(2);	// make two decimal
-                        $('#price').val(price);
-                        calculate();
+						price = parseFloat(price).toFixed(2);	// make two decimal
+						$('#price').val(price);
+						calculate();
 
 					}
 				}
@@ -66,8 +66,8 @@
 		});
 	});
 
-    function calculate() {
-		console.log("========= Calcualte Function ===============");
+	function calculate() {
+		console.log("========= Calculate Function ===============");
 		var old_line_amount = $("#amount").val();
 		var old_po_amount = $("#po_amount").val();
 		console.log("->old_po_amount before: = " + old_po_amount);
@@ -89,11 +89,11 @@
 		var line_amount = parseFloat(sub_total) + parseFloat(tax) + parseFloat(gst);
 		var po_amount = parseFloat(old_po_amount) - parseFloat(old_line_amount) + parseFloat(line_amount);
 
-        sub_total = sub_total.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+		sub_total = sub_total.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
 		console.log("->sub_total=" + sub_total);
 		$('#sub_total').val(sub_total);
 
-        line_amount = line_amount.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+		line_amount = line_amount.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
 		console.log("->line amount=" + line_amount);
 		$('#amount').val(line_amount);
 

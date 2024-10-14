@@ -75,7 +75,7 @@ class AehReceipt implements ShouldQueue
 		$aeh->status			= AehStatusEnum::DRAFT->value;
 		$aeh->save();
 		$aeh_id					= $aeh->id;
-		Log::debug('Jobs.Tenant.AehReceipt created aeh record with aeh_id ='. $aeh_id);
+		Log::debug('Jobs.Tenant.AehReceipt created aeh record with aeh_id = '. $aeh_id);
 
 		// create two accounting row
 		$ael_dr						= new Ael;
@@ -109,10 +109,10 @@ class AehReceipt implements ShouldQueue
 		}
 
 		$ael_dr->save();
-		Log::debug('Jobs.Tenant.AehReceipt saving dr line ael_dr_id ='. $ael_dr->id);
+		Log::debug('Jobs.Tenant.AehReceipt saving dr line ael_dr_id = '. $ael_dr->id);
 
 		$ael_cr->save();
-		Log::debug('Jobs.Tenant.AehReceipt saving cr line ael_cr_id ='. $ael_cr->id);
+		Log::debug('Jobs.Tenant.AehReceipt saving cr line ael_cr_id = '. $ael_cr->id);
 
 		// Update aeh header status
 		$aeh->status		= AehStatusEnum::ACCOUNTED->value;

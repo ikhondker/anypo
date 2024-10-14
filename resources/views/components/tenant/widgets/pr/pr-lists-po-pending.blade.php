@@ -1,6 +1,10 @@
 <div class="card">
 	<div class="card-header">
-		<a href="{{ route('prs.create') }}" class="btn btn-primary float-end me-2"><i data-lucide="plus-square"></i> Create Requisition</a>
+
+        @if (auth()->user()->isBuyer())
+		    <a href="{{ route('pos.create') }}" class="btn btn-primary float-end me-2"><i data-lucide="plus-square"></i> Create Purchase order</a>
+		@endif
+        {{-- <a href="{{ route('prs.create') }}" class="btn btn-primary float-end me-2"><i data-lucide="plus-square"></i> Create Requisition</a> --}}
 		<h5 class="card-title">
 			Approved Requisitions - Pending for PO
 		</h5>

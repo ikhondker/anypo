@@ -9,6 +9,23 @@ known width issue?
 
 
 
-sweetlater2 post confirmatsion
+sweetlater2 post confirmation
 -----------------------------
 where?
+2. conformatisonis on scss comiler
+
+
+
+time ago
+-----------------------------
+@php
+	$timeAgo = Carbon\Carbon::parse($comment->comment_date)->ago();
+@endphp
+{{ $timeAgo }}
+
+
+attachment file type and max size?
+-----------------------------
+1.
+
+

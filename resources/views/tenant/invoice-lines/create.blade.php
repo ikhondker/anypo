@@ -65,12 +65,12 @@
 							<strong>TOTAL:</strong>
 						</td>
 						<td class="text-end">
-							<input type="text" class="form-control @error('inv_amount') is-invalid @enderror"
+							<input type="text" class="form-control @error('invoice_amount') is-invalid @enderror"
 								style="text-align: right;"
-								name="inv_amount" id="inv_amount" placeholder="0.00"
-								value="{{ old('inv_amount', (isset($invoice->amount) ? number_format($invoice->amount,2) : "0.00")) }}"
+								name="invoice_amount" id="invoice_amount" placeholder="0.00"
+								value="{{ old('invoice_amount', (isset($invoice->amount) ? number_format($invoice->amount,2) : "0.00")) }}"
 								readonly>
-							@error('inv_amount')
+							@error('invoice_amount')
 									<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</td>
@@ -90,7 +90,7 @@
 	<!-- /.form end -->
 
 	@include('tenant.includes.js.select2')
-    @include('tenant.includes.js.calculate-invoice-amount')
+	@include('tenant.includes.js.calculate-invoice-amount')
 
 @endsection
 

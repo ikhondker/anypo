@@ -22,14 +22,14 @@ namespace App\Enum;
 enum WflActionEnum: string{
 	case CREATED	= 'created';
 	case SUBMITTED	= 'submitted';
+	case DUE	  	= 'due';
 	case PENDING	= 'pending';
-    case DUE	    = 'due';
-	case FORWARD	= 'forward';
-	case QUESTION	= 'question';
-	case ANSWER		= 'answer';
 	case APPROVED	= 'approved';
-	case DELEGATED	= 'delegated';
 	case REJECTED	= 'rejected';
 	case CANCELED	= 'canceled';
+	// case FORWARD	= 'forward';
+	//case DELEGATED	= 'delegated';
+	//case QUESTION	= 'question';
+	//case ANSWER		= 'answer';
 }
 

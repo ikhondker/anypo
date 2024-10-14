@@ -85,7 +85,7 @@ class TemplateController extends Controller
 		} else {
 			return view('tenant.manage.templates.index', compact('templates'));
 		}
-	
+
 	}
 
 	/**
@@ -107,7 +107,7 @@ class TemplateController extends Controller
 		}
 
 
-		
+
 	}
 
 	/**
@@ -165,7 +165,7 @@ class TemplateController extends Controller
 		} else {
 			return view('tenant.manage.templates.show', compact('template', 'entity'));
 		}
-		
+
 	}
 
 	/**
@@ -183,7 +183,7 @@ class TemplateController extends Controller
 
 		// Write Event Log
 		EventLog::event('template', $template->id, 'edit', 'template', $template->name);
-		
+
 
 		if (tenant('id') == '') {
 			return view('landlord.manage.templates.edit', compact('template', 'users', 'countries'));
@@ -251,7 +251,7 @@ class TemplateController extends Controller
 
 		$this->authorize('delete', $template);
 
-		Log::debug('deactivating template Value of id=' . $template->id);
+		Log::debug('deactivating template Value of template_id = ' . $template->id);
 
 		$template->fill(['enable' => ! $template->enable]);
 		$template->update();

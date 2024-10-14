@@ -26,4 +26,13 @@ class Notification extends Model
 		'data'	=> 'array',
 		'id'	=> 'string',
 	];
+
+
+	/* ---------------- belongsTo ---------------------- */
+	public function xxowner(){
+		return $this->belongsTo(User::class, data['id'])->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
 }

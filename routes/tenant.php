@@ -236,6 +236,9 @@ Route::middleware([
 		Route::resource('notifications', NotificationController::class);
 		Route::get('/notification/all',[NotificationController::class, 'all'])->name('notifications.all');
 		Route::get('/notifications/read/{notification}',[NotificationController::class, 'read'])->name('notifications.read');
+        //Route::get('/notifications/mark-as-read/{notification}',[NotificationController::class, 'markNotification'])->name('notifications.mark-as-read');
+        //Route::get('/notifications/mark-as-read',[NotificationController::class, 'markNotification'])->name('notifications.mark-as-read');
+
 		Route::get('/notification/purge',[NotificationController::class, 'purge'])->name('notifications.purge');
 		Route::get('/notifications/delete/{notification}',[NotificationController::class, 'destroy'])->name('notifications.destroy');
 
@@ -268,7 +271,7 @@ Route::middleware([
 		Route::get('/prs/history/{pr}',[PrController::class,'history'])->name('prs.history');
 		Route::get('/prs/extra/{pr}',[PrController::class,'extra'])->name('prs.extra');
 		Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit');
-		Route::get('/prs/copy/{pr}',[PrController::class, 'copy'])->name('prs.copy');
+		Route::get('/prs/duplicate/{pr}',[PrController::class, 'duplicate'])->name('prs.duplicate');
 		Route::get('/prs/convert-to-po/{pr}',[PrController::class, 'convertPo'])->name('prs.convert');
 
 		/* ======================== Prl ======================================== */
@@ -626,9 +629,7 @@ Route::middleware([
 	/* ======================== Wf ======================================== */
 	Route::resource('wfs', WfController::class);
 	Route::get('/wf/export',[WfController::class,'export'])->name('wfs.export');
-	//Route::get('/wf/get-reset-pr-num',[WfController::class,'getResetPrNum'])->name('wfs.get-reset-pr-num');
 	Route::get('/wfs/wf-reset-pr/{pr}',[WfController::class,'wfResetPr'])->name('wfs.wf-reset-pr');
-	//Route::get('/wf/get-reset-po-num',[WfController::class,'getResetPoNum'])->name('wfs.get-reset-po-num');
 	Route::get('/wfs/wf-reset-po/{po}',[WfController::class,'wfResetPo'])->name('wfs.wf-reset-po');
 
 	/* ======================== Wfl ======================================== */
@@ -739,6 +740,9 @@ Route::middleware([
 		Route::resource('custom-errors', CustomErrorController::class);
 		Route::get('/custom-error/export',[CustomErrorController::class,'export'])->name('custom-errors.export');
 		Route::get('/custom-errors/delete/{customError}',[CustomErrorController::class,'destroy'])->name('custom-errors.destroy');
+
+        /* ======================== Notification ======================================== */
+        Route::get('/notification/full',[NotificationController::class, 'full'])->name('notifications.full');
 
 		/* ======================== UI ========================================  */
 		Route::get('/ui', function () {

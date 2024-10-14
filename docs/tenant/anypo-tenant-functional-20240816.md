@@ -15,6 +15,17 @@ Actions	None	Yes		show,edit,history,attachment etc
 delete: where draft can be deleted like pr by use
 cancel: where can not be deleted. Only cancel by admin. Like payment
 
+# WORKFLOW
+----------------------------
+PrController.submit -> Workflow::submitWf -> WflActionEnum::DUE->value  -> Workflow::getDueApproverId -> notify
+PoController.submit -> Workflow::submitWf -> WflActionEnum::DUE->value  -> Workflow::getDueApproverId -> notify
+
+
+<x-tenant.widgets.wfl.get-approval wfId="{{ $po->wf_id }}" /> 
+	->WflController.update  -> approved -> Workflow::getNextApproverId ->  WflController.moveToNext -> Workflow::setNextApproverDue -> notify
+						    -> rejected
+
+
 # PR & PO Max limit 
 ----------------------------
 StorePrlRequest.php & UpdatePrlRequest.php
@@ -33,7 +44,7 @@ pr.index : HoD+Buyer+CxO sees only approve PR lists
 	user: sees only his PR
 
 - don't allow REJECTED PR to delete or cancel as it has dbu rows.
-- only can submit own dept PR
+- only can submit own dept PR. WHY dept? Ristricted to OWN PR
 - dept_budget_id set during submissions
 - Function currency amounts is set during submit
 - rejected pr can not be re-submitted. Instead copy

@@ -73,7 +73,7 @@ class Invoice extends Model
 	public function scopePaymentDue(Builder $query): void
 	{
 		$query->where('status',InvoiceStatusEnum::POSTED->value);
-		// TODO ->where('payment_status',); 
+		// TODO ->where('payment_status',);
 		// PaymentStatusEnum::DUE or PaymentStatusEnum::PARTIAL
 	}
 
@@ -105,7 +105,7 @@ class Invoice extends Model
 	public static function syncInvoiceValues($invoice_id)
 	{
 
-		Log::debug('tenant.model.pr.syncInvoiceValues invoice_id= '. $invoice_id);
+		Log::debug('tenant.model.pr.syncInvoiceValues invoice_id = '. $invoice_id);
 		$setup 	= Setup::first();
 		//$pr		= Pr::where('id', $invoice_id)->firstOrFail();
 
@@ -118,11 +118,11 @@ class Invoice extends Model
 			DB::raw('SUM(amount) as amount'),
 		));
 
-		Log::debug('tenant.model.invoice.syncInvoiceValues updating PR header invoice_id= '. $invoice_id);
+		Log::debug('tenant.model.invoice.syncInvoiceValues updating PR header invoice_id = '. $invoice_id);
 		// No row in child table
 		foreach($result as $row) {
 			if ( is_null($row['sub_total']) ) {
-				Log::debug('tenant.model.invoice.syncInvoiceValues no row in prl for invoice_id= '. $invoice_id);
+				Log::debug('tenant.model.invoice.syncInvoiceValues no row in prl for invoice_id = '. $invoice_id);
 				$invoice->sub_total		= 0;
 				$invoice->tax			= 0 ;
 				$invoice->gst			= 0 ;

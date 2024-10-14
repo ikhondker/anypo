@@ -102,7 +102,7 @@ class PoController extends Controller
 				$pos = $pos->All()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::CXO->value:
-                $pos = $pos->AllApproved()->orderBy('id', 'DESC')->paginate(10);
+				$pos = $pos->AllApproved()->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::ADMIN->value:
 				$pos = $pos->AllExceptDraft()->orderBy('id', 'DESC')->paginate(10);
@@ -337,7 +337,7 @@ class PoController extends Controller
 		}
 
 		// mark all source PR as non converted to PO and make it open
-		Log::debug(tenant('id'). ' tenant.po.destroy marking source PR as open for po_id='.$po->id);
+		Log::debug(tenant('id'). ' tenant.po.destroy marking source PR as open for po_id = '.$po->id);
 		Pr::where('po_id', $po->id)
 			->update([
 				'po_id' 	=> null,
@@ -623,12 +623,12 @@ class PoController extends Controller
 		$buyer->notify(new PoActions($buyer, $po, $action, $actionURL));
 
 		// Send notification to Next Approver
-		$action = WflActionEnum::PENDING->value;
+        $action = WflActionEnum::DUE->value;
 		$actionURL = route('pos.show', $po->id);
-		$next_approver_id = Workflow::getNextApproverId($po->wf_id);
-		Log::debug("tenant.po.submit next_approver_id = ". $next_approver_id);
-		if ($next_approver_id <> 0) {
-			$approver = User::where('id', $next_approver_id)->first();
+		$due_approver_id = Workflow::getDueApproverId($po->wf_id);
+		Log::debug("tenant.po.submit next_approver_id = ". $due_approver_id);
+		if ($due_approver_id <> '') {
+			$approver = User::where('id', $due_approver_id)->first();
 			$approver->notify(new PoActions($approver, $po, $action, $actionURL));
 		} else {
 			Log::debug("tenant.po.submit next_approver_id not found!");

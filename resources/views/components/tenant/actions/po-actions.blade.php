@@ -8,27 +8,27 @@
 		<a class="dropdown-item" href="{{ route('pos.extra', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Extra Information</a>
 		<a class="dropdown-item" href="{{ route('pos.attachments',$po->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
 		<a class="dropdown-item" href="{{ route('pos.history', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Approval History</a>
-				
+
 		@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
 			<div class="dropdown-divider"></div>
 			@can('update', $po)
 				<a class="dropdown-item" href="{{ route('pos.edit', $po->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order</a>
-			@endcan 
+			@endcan
 			<a class="dropdown-item" href="{{ route('pols.add-line', $po->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Purchase Order Line</a>
-		@endif 
-		
+		@endif
+
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('pos.invoices', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
-		
+
 		@can('createForPo', App\Models\Tenant\Invoice::class)
 			<a class="dropdown-item" href="{{ route('invoices.create-for-po', $po->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Invoice</a>
 		@endcan
-		
+
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('pos.payments', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payments</a>
 		<a class="dropdown-item" href="{{ route('pos.ael', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View All Accounting **</a>
-	
-		
+
+
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('reports.po', $po->id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Purchase Order</a>
 		<a class="dropdown-item" href="#"><i class="align-middle me-1" data-lucide="printer"></i> Print PO Detail Report*</a>
@@ -41,7 +41,7 @@
 			<a class="dropdown-item sw2-advance" href="{{ route('pos.copy', $po->id) }}"
 				data-entity="" data-name="PO#{{ $po->id }}" data-status="Duplicate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PO">
-				<i class="align-middle me-1" data-lucide="copy"></i> Copy Purchase Order</a>
+				<i class="align-middle me-1" data-lucide="copy"></i> Duplicate Purchase Order</a>
 		@endcan
 		@can('close', App\Models\Tenant\Po::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('pos.close', $po->id) }}"
@@ -50,7 +50,7 @@
 				<i class="align-middle me-1 text-danger" data-lucide="lock"></i> Force Close PO *</a>
 		@endcan
 
-		@can('reset', App\Models\Tenant\Wf::class)
+		@can('reset', App\Models\Tenant\Workflow\Wf::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-po', $po->id) }}"
 				data-entity="" data-name="PO #{{ $po->id }}" data-status="Reset"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PO">

@@ -43,9 +43,9 @@ use App\Helpers\EventLog;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
-
+use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
@@ -66,6 +66,17 @@ class NotificationController extends Controller
 		// show all notifications
 		return view('tenant.notifications.all');
 	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function full()
+	{
+		// show full notifications for tenant
+		$notifications =  Notification::orderBy('created_at', 'DESC')->paginate(10);;
+		return view('tenant.notifications.full', compact('notifications'));
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -89,7 +100,7 @@ class NotificationController extends Controller
 	public function show(Notification $notification)
 	{
 		$id = $notification->id;
-		
+
 		return view('tenant.notifications.show', compact('notification','id'));
 	}
 
@@ -121,6 +132,18 @@ class NotificationController extends Controller
 
 		return redirect()->route('notifications.index')->with('success', 'Notification deleted.');
 	}
+
+	public function markNotification(Request $request){
+		auth()->user()
+			->unreadNotifications
+			->when($request->input('id'), function ($query) use ($request) {
+				return $query->where('id', $request->input('id'));
+			})
+			->markAsRead();
+
+		return response()->noContent();
+	}
+
 
 	public function read(Notification $notification)
 	{

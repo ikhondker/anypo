@@ -47,6 +47,7 @@ php artisan make:notification ReportError		=>Everywhere
 php artisan make:notification ReportInfo		=>Everywhere
 
 
+
 # xxxx
 ----------
 php artisan make:notification PrCreated		=>PrController.php
@@ -131,6 +132,12 @@ php artisan make:component Info --view		<x-tenant.info info="Note: You wont be a
 ?php artisan make:component Alert/Success
 ?php artisan make:component Alert/Error
 php artisan make:component Share\Actions\TableActions --view
+
+# 13. Component to Display Notification
+ -------------------------------------------------------------------------------------------------
+php artisan make:component Tenant\Notifications\All
+php artisan make:component Tenant\Notifications\Full
+php artisan make:component Tenant\Notifications\Unread
 
 
 # Card

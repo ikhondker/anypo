@@ -73,8 +73,8 @@ class DashboardController extends Controller
 
 			$current_rate_month		= Carbon::now()->startOfMonth();
 
-			Log::debug('tenant.dashboards.index last_rate_month ='.$last_rate_month);
-			Log::debug('tenant.dashboards.index current_rate_month ='.$current_rate_month);
+			Log::debug('tenant.dashboards.index last_rate_month = '.$last_rate_month);
+			Log::debug('tenant.dashboards.index current_rate_month = '.$current_rate_month);
 
 			if ($last_rate_month <> $current_rate_month) {
 				// import current rates using queue

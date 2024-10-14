@@ -9,9 +9,9 @@ use Faker\Generator;
 php artisan tenants:migrate-fresh --tenants=demo1
 
 >> seed ALL tenant table
-php artisan tenants:seed --class=TenantSeeder --tenants='a3db8d28-7b4b-4525-ac46-d11ee5c1658d'
 php artisan tenants:rollback --tenants='a3db8d28-7b4b-4525-ac46-d11ee5c1658d'
 php artisan tenants:migrate --tenants='a3db8d28-7b4b-4525-ac46-d11ee5c1658d'
+php artisan tenants:seed --class=TenantSeeder --tenants='a3db8d28-7b4b-4525-ac46-d11ee5c1658d'
 
 php artisan queue:listen
 php artisan tenants:seed --tenants=demo1

@@ -81,7 +81,7 @@ class HomeController extends Controller
 		if(empty($id)){
 			Log::debug('NO ID selected!');
 		} else {
-			Log::debug('Sending notification to id=' . $id);
+			Log::debug('Sending notification to id = ' . $id);
 		}
 
 		// Send notification to Pr creator

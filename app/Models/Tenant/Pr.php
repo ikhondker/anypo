@@ -61,12 +61,12 @@ class Pr extends Model
 	public static function syncPrValues($pr_id)
 	{
 
-		Log::debug('tenant.model.pr.syncPrValues pr_id= '. $pr_id);
+		Log::debug('tenant.model.pr.syncPrValues pr_id = '. $pr_id);
 		$setup 	= Setup::first();
 		//$pr		= Pr::where('id', $pr_id)->firstOrFail();
 
 		// update PR header
-		//Log::debug('tenant.model.pr.syncPrValues retrieving detail for pr_id= '. $pr_id);
+		//Log::debug('tenant.model.pr.syncPrValues retrieving detail for pr_id = '. $pr_id);
 		$pr		= Pr::where('id', $pr_id)->firstOrFail();
 		$result = Prl::where('pr_id', $pr->id)->get( array(
 			DB::raw('SUM(sub_total) as sub_total'),
@@ -75,17 +75,17 @@ class Pr extends Model
 			DB::raw('SUM(amount) as amount'),
 		));
 
-		Log::debug('tenant.model.pr.syncPrValues updating PR header pr_id= '. $pr_id);
+		Log::debug('tenant.model.pr.syncPrValues updating PR header pr_id = '. $pr_id);
 		// No row in child table
 		foreach($result as $row) {
 			if ( is_null($row['sub_total']) ) {
-				Log::debug('tenant.model.pr.syncPrValues no row in prl for pr_id= '. $pr_id);
+				Log::debug('tenant.model.pr.syncPrValues no row in prl for pr_id = '. $pr_id);
 				$pr->sub_total		= 0;
 				$pr->tax			= 0 ;
 				$pr->gst			= 0 ;
 				$pr->amount			= 0;
 			} else {
-				//Log::debug('tenant.model.pr.syncPrValues rows found in prl for pr_id= '. $pr_id);
+				//Log::debug('tenant.model.pr.syncPrValues rows found in prl for pr_id = '. $pr_id);
 				$pr->sub_total	= $row['sub_total'] ;
 				$pr->tax		= $row['tax'] ;
 				$pr->gst		= $row['gst'] ;
@@ -128,7 +128,7 @@ class Pr extends Model
 		}
 
 		// P2 handle in better way
-		Log::debug('tenant.model.pr.syncPrValues Updating header FC column PR = ' . $pr->id);
+		Log::debug('tenant.model.pr.syncPrValues Updating header FC column pr_id = ' . $pr->id);
 
 		// check if rows exists in prl
 		$count_prl		= Prl::where('pr_id',$pr->id)->count();

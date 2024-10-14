@@ -257,6 +257,8 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
+            [ 'raw_route_name' => 'notifications.full','route_name' 	=> 'notifications.full', 'node_name' => 'system'],
+
 			[ 'raw_route_name' => 'tables.index','route_name' 			=> 'tables.index', 'node_name' 		=> 'system'],
 
 			[ 'raw_route_name' => 'activities.index','route_name' 		=> 'activities.index', 'node_name' 	=> 'system'],

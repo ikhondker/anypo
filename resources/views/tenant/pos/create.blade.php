@@ -241,5 +241,5 @@
 	<!-- /.form end -->
 
 	@include('tenant.includes.js.select2')
-
+	@include('tenant.includes.js.calculate-po-amount')
 @endsection

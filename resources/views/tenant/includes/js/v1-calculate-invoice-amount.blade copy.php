@@ -22,7 +22,7 @@
 	function calculate() {
 		console.log("========= Calculate Function ===============");
 		var old_line_amount = $("#amount").val();
-		var old_inv_amount = $("#invoice_amount").val();
+		var old_inv_amount = $("#inv_amount").val();
 		console.log("->old_inv_amount before: = " + old_inv_amount);
 		var qty = $("#qty").val();
 		var price = $("#price").val();
@@ -53,7 +53,7 @@
 
 		inv_amount = inv_amount.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
 		console.log("->new inv_amount=" + inv_amount);
-		$('#invoice_amount').val(inv_amount);
+		$('#inv_amount').val(inv_amount);
 
 	}
 </script>

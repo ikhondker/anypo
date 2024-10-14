@@ -108,7 +108,7 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						
+
 						<h5 class="card-title">Requisition Additional Info</h5>
 						<h6 class="card-subtitle text-muted">Requisition Additional Information.</h6>
 					</div>
@@ -153,7 +153,7 @@
 			</div>
 		</div>
 		<!-- end row -->
-	
+
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -214,5 +214,6 @@
 	<!-- /.form end -->
 
 	@include('tenant.includes.js.select2')
+	@include('tenant.includes.js.calculate-pr-amount')
 
 @endsection

@@ -84,6 +84,33 @@ class HierarchyController extends Controller
 	{
 		$this->authorize('create', Hierarchy::class);
 
+		// check for duplicate entry
+		$empList =array();
+		// check if any person is more than once
+		if ($request->input('approver_id_1') <> 0) {
+			$empList[]	= $request->input('approver_id_1');
+		}
+		if ($request->input('approver_id_2') <> 0) {
+			$empList[]	= $request->input('approver_id_2');
+		}
+		if ($request->input('approver_id_3') <> 0) {
+			$empList[]	= $request->input('approver_id_3');
+		}
+		if ($request->input('approver_id_4') <> 0) {
+			$empList[]	= $request->input('approver_id_4');
+		}
+		if ($request->input('approver_id_5') <> 0) {
+			$empList[]	= $request->input('approver_id_5');
+		}
+
+		Log::debug('empList = '.print_r($empList));
+		//Will be true if duplicates, or false if no duplicates.
+		$hasDuplicates = count($empList) > count(array_unique($empList));
+		Log::debug('hasDuplicates = '.$hasDuplicates);
+		if ($hasDuplicates){
+			return back()->withErrors('Duplicate Employee is not allowed in a  Hierarchy.')->withInput();
+		}
+
 		$hierarchy = Hierarchy::create($request->all());
 
 		//dd($request);
@@ -99,28 +126,28 @@ class HierarchyController extends Controller
 		//Log::debug('approver_id_4 = '.$request->input('approver_id_4'));
 		//Log::debug('approver_id_5 = '.$request->input('approver_id_5'));
 
-		if ($request->input('approver_id_2') <> '') {
+		if ($request->input('approver_id_2') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
 			$hierarchyl->approver_id	= $request->input('approver_id_2');
 			$hierarchyl->save();
 		}
 
-		if ($request->input('approver_id_3') <> '') {
+		if ($request->input('approver_id_3') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
 			$hierarchyl->approver_id 	= $request->input('approver_id_3');
 			$hierarchyl->save();
 		}
 
-		if ($request->input('approver_id_4') <> '') {
+		if ($request->input('approver_id_4') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
 			$hierarchyl->approver_id 	= $request->input('approver_id_4');
 			$hierarchyl->save();
 		}
 
-		if ($request->input('approver_id_5') <> '') {
+		if ($request->input('approver_id_5') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
 			$hierarchyl->approver_id 	= $request->input('approver_id_5');
@@ -150,6 +177,7 @@ class HierarchyController extends Controller
 	public function edit(Hierarchy $hierarchy)
 	{
 		$this->authorize('update', $hierarchy);
+
 		$hierarchyls = Hierarchyl::where('hid', $hierarchy->id)->orderBy('id', 'asc')->get();
 		//$users = User::NonSeeded();
 		//$users = User::getAll();
@@ -215,6 +243,37 @@ class HierarchyController extends Controller
 	public function update(UpdateHierarchyRequest $request, Hierarchy $hierarchy)
 	{
 		$this->authorize('update', $hierarchy);
+
+		// check for duplicate entry
+		$empList = array();
+
+		Log::debug('approver_id_1 = '. $request->input('approver_id_1'));
+		// check if any person is more than once
+		if ($request->input('approver_id_1') <> 0) {
+			$empList[]	= $request->input('approver_id_1');
+		}
+		if ($request->input('approver_id_2') <> 0) {
+			$empList[]	= $request->input('approver_id_2');
+		}
+		if ($request->input('approver_id_3') <> 0) {
+			$empList[]	= $request->input('approver_id_3');
+		}
+		if ($request->input('approver_id_4') <> 0) {
+			$empList[]	= $request->input('approver_id_4');
+		}
+		if ($request->input('approver_id_5') <> 0) {
+			$empList[]	= $request->input('approver_id_5');
+		}
+
+		//print_r($empList);
+
+		//Will be true if duplicates, or false if no duplicates.
+		$hasDuplicates = count($empList) > count(array_unique($empList));
+		//Log::debug('hasDuplicates = '.$hasDuplicates);
+
+		if ($hasDuplicates){
+			return back()->withErrors('Duplicate Employee is not allowed in a  Hierarchy.')->withInput();
+		}
 
 		//dd($request);
 		//$request->validate();

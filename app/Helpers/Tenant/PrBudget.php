@@ -154,7 +154,7 @@ class PrBudget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, $event, $pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-		Log::debug("PrBudget.prBudgetBookReject Inside");
+		//Log::debug("tenant.helper.PrBudget.prBudgetBookReject Inside");
 
 		return '';
 	}
@@ -223,7 +223,7 @@ class PrBudget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, $pr_id, EventEnum::CANCEL->value,$pr->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-		Log::debug("PrBudget.prBudgetApproveCancel Inside");
+		//Log::debug("tenant.helper.PrBudget.prBudgetApproveCancel Inside");
 
 		return '';
 	}

@@ -163,7 +163,7 @@
 				<li class="sidebar-item {{ ($_route_name == 'templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('templates.index') }}"><i class="align-middle" data-lucide="circle"></i>Templates</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'ui' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('ui') }}"><i class="align-middle" data-lucide="circle"></i>UI</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'cps.changelog' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('cps.changelog') }}"><i class="align-middle" data-lucide="circle"></i>Change Log</a></li>
-
+				<li class="sidebar-item {{ ($_route_name == 'notifications.full' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('notifications.full') }}"><i class="align-middle" data-lucide="circle"></i>Full Notification*</a></li>
 			</ul>
 		</li>
 	@endcan

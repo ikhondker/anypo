@@ -64,7 +64,7 @@ class Po extends Model
 	public static function syncPoValues($po_id)
 	{
 
-		Log::debug('tenant.model.po.syncPoValues po_id= '. $po_id);
+		Log::debug('tenant.model.po.syncPoValues po_id = '. $po_id);
 		$setup 	= Setup::first();
 		$po		= Po::where('id', $po_id)->firstOrFail();
 		$result= Pol::where('po_id', $po->id)->get( array(
@@ -128,13 +128,10 @@ class Po extends Model
 
 
 
-		//Log::debug('Value of id=' . $rs);
-		//Log::debug('Value of tax=' . $r->tax);
-
 		// update PO header
 		// handle No row in child table
 		// P2 handle in better way
-		Log::debug('tenant.model.po.syncPoValues updating header FC column PO = ' . $po->id);
+		Log::debug('tenant.model.po.syncPoValues updating header FC column po_id = ' . $po->id);
 
 		// check if rows exists in pol
 		$count_pol		= Pol::where('po_id',$po->id)->count();
@@ -285,7 +282,7 @@ class Po extends Model
 		$query->where('auth_status',AuthStatusEnum::APPROVED->value);
 	}
 
-    /**
+	/**
 	 * Scope a query to only All Approved PR for tenant.
 	*/
 	public function scopeAllExceptDraft(Builder $query): void

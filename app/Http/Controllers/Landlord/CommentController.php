@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Str;
 use Illuminate\Support\Facades\Request;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 
@@ -123,7 +123,7 @@ class CommentController extends Controller
 			//Checkbox checked
 			$request->merge(['is_internal'		=> true ]);
 			$isInternal =true;
-		}else{ 
+		}else{
 			//Checkbox not checked
 			$request->merge(['is_internal'		=> false ]);
 			$isInternal =false;
@@ -171,8 +171,8 @@ class CommentController extends Controller
 				// 	return redirect()->route('tickets.show',$request->input('ticket_id'))->with('success','Ticket Closed successfully');
 				// 	break;
 				default:
-					Log::channel('bo')->info('landlord.comment.store Invalid status_code='. $status_code);
-				
+					Log::channel('bo')->info('landlord.comment.store Invalid status_code = '. $status_code);
+
 			}
 		} else {
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();

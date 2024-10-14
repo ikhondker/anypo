@@ -120,7 +120,7 @@ class PaymentController extends Controller
 		abort(403);
 	}
 
-	
+
 	/**
 	 * Show the form for creating a new resource.
 	 */
@@ -135,22 +135,22 @@ class PaymentController extends Controller
 		}
 
 		$bank_accounts = BankAccount::primary()->get();
-		
+
 		if(empty($invoice)){
 			Log::debug('tenant.PaymentController.createForInvoice No Invoice Selected!');
 
 			$invoices = Invoice::paymentDue()->get();
 			return view('tenant.payments.create-for-invoice', with(compact('invoice','invoices','bank_accounts')));
 		} else {
-			
-			Log::debug('tenant.PaymentController.createForInvoice Creating payment for invoice id=' . $invoice->id);
-			
+
+			Log::debug('tenant.PaymentController.createForInvoice Creating payment for invoice id = ' . $invoice->id);
+
 			// check if invoice is posted
 			if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
 				//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
 				return back()->withError("You can only Pay POSTED Invoices!")->withInput();
 			}
-	
+
 			$po = Po::where('id', $invoice->po_id)->first();
 			if ($po->status <> ClosureStatusEnum::OPEN->value) {
 				return redirect()->route('pos.show', $po->id)->with('error', 'You can make Payment only for OPEN Purchase Orders!');
@@ -168,15 +168,15 @@ class PaymentController extends Controller
 	{
 		$this->authorize('createForInvoice', Payment::class);
 
-		// populate po_id in payment to simplify coding 
+		// populate po_id in payment to simplify coding
 		$invoice = Invoice::where('id', $request->input('invoice_id'))->first();
-		
+
 		// check if invoice is posted (if direct creation)
 		if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
 			//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
 			return back()->withError("You can only Pay POSTED Invoices!")->withInput();
 		}
-		
+
 		// check if PO is open (if direct creation)
 		$po = Po::where('id', $invoice->po_id)->first();
 		if ($po->status <> ClosureStatusEnum::OPEN->value) {
@@ -187,7 +187,7 @@ class PaymentController extends Controller
 		$request->validate([
 			'amount' => [new OverPaymentRule ( $request->input('invoice_id'))],
 		]);
-	
+
 		$request->merge(['payment_date'		=> date('Y-m-d H:i:s')]);
 		$request->merge(['payee_id'			=> 	auth()->user()->id ]);
 		$request->merge(['po_id'			=> $invoice->po_id ]);

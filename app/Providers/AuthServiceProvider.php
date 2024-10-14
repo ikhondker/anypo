@@ -75,7 +75,7 @@ class AuthServiceProvider extends ServiceProvider
 		*/
 
 		'App\Models\Tenant\Admin\Activity' 		=> 'App\Policies\Tenant\Admin\ActivityPolicy',
-		
+
 		'App\Models\Tenant\Admin\Setup' 		=> 'App\Policies\Tenant\Admin\SetupPolicy',
 
 		'App\Models\Tenant\Lookup\Category'		=> 'App\Policies\Tenant\Lookup\CategoryPolicy',
@@ -101,7 +101,6 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Manage\Menu'			=> 'App\Policies\Tenant\Manage\MenuPolicy',
 		'App\Models\Tenant\Manage\Table'		=> 'App\Policies\Tenant\Manage\TablePolicy',
 		'App\Models\Tenant\Manage\CustomError'	=> 'App\Policies\Tenant\Manage\CustomErrorPolicy',
-
 
 		'App\Models\Tenant\Workflow\Hierarchy'	=> 'App\Policies\Tenant\Workflow\HierarchyPolicy',
 		'App\Models\Tenant\Workflow\Hierarchyl'	=> 'App\Policies\Tenant\Workflow\HierarchylPolicy',

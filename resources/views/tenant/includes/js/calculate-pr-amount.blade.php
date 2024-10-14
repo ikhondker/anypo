@@ -60,7 +60,7 @@
 	});
 
 	function calculate() {
-		console.log("========= Calcualte Function ===============");
+		console.log("========= Calculate Function ===============");
 		var old_line_amount = $("#amount").val();
 		var old_pr_amount = $("#pr_amount").val();
 		console.log("->old_pr_amount before: = " + old_pr_amount);
@@ -82,11 +82,11 @@
 		var line_amount = parseFloat(sub_total) + parseFloat(tax) + parseFloat(gst);
 		var pr_amount = parseFloat(old_pr_amount) - parseFloat(old_line_amount) + parseFloat(line_amount);
 
-        sub_total = sub_total.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+		sub_total = sub_total.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
 		console.log("->sub_total=" + sub_total);
 		$('#sub_total').val(sub_total);
 
-        line_amount = line_amount.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+		line_amount = line_amount.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
 		console.log("->line amount=" + line_amount);
 		$('#amount').val(line_amount);
 

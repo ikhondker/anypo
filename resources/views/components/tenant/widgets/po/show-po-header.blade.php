@@ -56,16 +56,19 @@
 
 					<div class="card-actions float-end">
 						@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-							<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-sm btn-success text-white float-end me-2 sw2-advance"
+							<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
 								data-entity="" data-name="PO#{{ $po->id }}" data-status="Submit"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Requisition">
-								<i data-lucide="external-link" class="text-white"></i> Submit for Approval</a>
-						@else 
-							<span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span>	
+								data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
+								<i data-lucide="external-link" class="text-white"></i> Submit</a>
+						@else
+							<span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span>
 						@endif
+
+
+
 					</div>
 
-					
+
 				</div>
 				<h5 class="card-title">Approval Status</h5>
 				<h6 class="card-subtitle text-muted">Approval information of Purchase Order.</h6>

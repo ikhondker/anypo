@@ -53,9 +53,9 @@
 
 				<div class="card-actions float-end">
 					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
-						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-sm btn-warning text-white float-end me-2 sw2-advance"
+						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
 							data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
-							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit Purchase Order">
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
 							<i data-lucide="external-link" class="text-white"></i> Submit</a>
 					@else
 						<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>

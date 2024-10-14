@@ -71,14 +71,13 @@ class StatusSeeder extends Seeder
 			[
 				'code' 				=> 'submitted',
 				'name' 				=> 'Submitted',
-				'badge' 			=> 'badge-subtle-warning',
+				'badge' 			=> 'badge-subtle-success',
 			],
 			[
 				'code' 				=> 'due',
 				'name' 				=> 'Due',
 				'badge' 			=> 'badge-subtle-warning',
 			],
-
 			[
 				'code' 				=> 'unpaid',
 				'name' 				=> 'Unpaid',
@@ -89,20 +88,26 @@ class StatusSeeder extends Seeder
 				'name' 				=> 'In-Process',
 				'badge' 			=> 'badge-subtle-warning',
 			],
-			[
-				'code' 				=> 'rejected',
-				'name' 				=> 'Rejected',
-				'badge' 			=> 'badge-subtle-secondary',
-			],
+
 			[
 				'code' 				=> 'closed',
 				'name' 				=> 'closed',
+				'badge' 			=> 'badge-subtle-secondary',
+			],
+            [
+				'code' 				=> 'pending',
+				'name' 				=> 'pending',
 				'badge' 			=> 'badge-subtle-secondary',
 			],
 			[
 				'code' 				=> 'force-closed',
 				'name' 				=> 'Force Closed',
 				'badge' 			=> 'badge-subtle-secondary',
+			],
+            [
+				'code' 				=> 'rejected',
+				'name' 				=> 'Rejected',
+				'badge' 			=> 'badge-subtle-danger',
 			],
 			[
 				'code' 				=> 'canceled',
