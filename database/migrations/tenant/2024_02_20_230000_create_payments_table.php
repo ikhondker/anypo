@@ -17,7 +17,7 @@ return new class extends Migration
 		Schema::create('payments', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->foreignId('invoice_id')->constrained('invoices');
-			// added to simplify coding 
+			// added to simplify coding
 			$table->foreignId('po_id')->constrained('pos');
 			$table->date('pay_date')->default(DB::raw('(CURDATE())'));
 			$table->foreignUuid('payee_id')->constrained('users');
@@ -32,7 +32,7 @@ return new class extends Migration
 			$table->string('cr_account')->default('100001')->nullable();
 			//$table->foreignId('organization_id')->constrained('organizations');
 			//$table->biginteger('for_doc_type_id')->constrained('doc_types');
-			$table->string('for_entity',15)->default(EntityEnum::PO->value); 
+			$table->string('for_entity',15)->default(EntityEnum::PO->value);
 			$table->text('notes')->nullable();
 			$table->string('error_code',15)->nullable();
 			$table->boolean('accounted')->default(false);

@@ -19,11 +19,19 @@
 */
 namespace App\Enum;
 
+// For Both
 enum PaymentMethodEnum:string{
-	case CASH		= '1001';
-	case CARD		= '1002';
-	case MFS		= '1003';
-	case CHECK		= '1004';
-	case BANK		= '1005';
-	case CRYPTO		= '1006';
+	// case CASH		= '1001';
+	// case CARD		= '1002';
+	// case MFS		    = '1003';
+	// case CHECK		= '1004';
+	// case BANK		= '1005';
+	// case CRYPTO		= '1006';
+    case CASH		= 'cash';
+	case CARD		= 'card';
+	case MFS		= 'mfs';
+	case CHEQUE		= 'cheque';
+	case BANK		= 'bank';
+	case CRYPTO		= 'crypto';
+
 }

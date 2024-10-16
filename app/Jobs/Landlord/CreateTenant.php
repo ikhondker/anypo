@@ -27,7 +27,6 @@ use App\Models\Landlord\Manage\Config;
 // Enums
 use App\Enum\UserRoleEnum;
 use App\Enum\LandlordInvoiceStatusEnum;
-use App\Enum\PaymentMethodEnum;
 use App\Enum\LandlordPaymentStatusEnum;
 use App\Enum\LandlordInvoiceTypeEnum;
 use App\Enum\LandlordCheckoutStatusEnum;
@@ -421,7 +420,7 @@ class CreateTenant implements ShouldQueue
 				'hid'			=> 1002,
 				'approver_id'	=> $user->id,
 			]);
-			
+
 			// Set dept approval hierarchy: Hardcoded in Tenant->DeptSeeder.php 1001 and 1002
 
 			// Update tenant demo project pm in the tenant database

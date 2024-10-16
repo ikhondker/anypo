@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			PaymentMethodEnum.php
-* @brief		This file contains the implementation of the PaymentStatusEnum
+* @file			ReceiptStatusEnum.php
+* @brief		This file contains the implementation of the ReceiptStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023

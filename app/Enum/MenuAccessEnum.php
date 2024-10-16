@@ -8,7 +8,7 @@
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -20,7 +20,6 @@
 namespace App\Enum;
 
 // NOT USED
-
 enum MenuAccessEnum: string{
 	case FRONT		= 'front';
 	case ADMIN		= 'admin';

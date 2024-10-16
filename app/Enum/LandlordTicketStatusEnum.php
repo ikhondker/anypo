@@ -20,7 +20,6 @@
 namespace App\Enum;
 
 enum LandlordTicketStatusEnum:string{
-
 	case NEW				= 'new';
 	case ASSIGNED			= 'assigned';
 	case PENDING			= 'pending';
