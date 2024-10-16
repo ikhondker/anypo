@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 use App\Models\Tenant\Workflow\Wfl;
-use App\Enum\WflActionEnum;
+use App\Enum\Tenant\WflActionEnum;
 use Illuminate\Support\Facades\Log;
 
 class GetApproval extends Component

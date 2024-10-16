@@ -1,3 +1,4 @@
+
 @extends('layouts.tenant.app')
 @section('title','Attachments')
 @section('breadcrumb')
@@ -21,11 +22,11 @@
 
 	<x-tenant.info.invoice-info invoiceId="{{ $invoice->id }}"/>
 
-	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::INVOICE->value }}" articleId="{{ $invoice->id }}"/>
+	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::INVOICE->value }}" articleId="{{ $invoice->id }}"/>
 
-    <div class="row">
+	<div class="row">
 		<div class="col-sm-6">
-			@if ($invoice->status == App\Enum\InvoiceStatusEnum::DRAFT->value)
+			@if ($invoice->status == App\Enum\Tenant\InvoiceStatusEnum::DRAFT->value)
 				<form action="{{ route('invoices.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 					@csrf
 					<input type="text" name="attach_invoice_id" id="attach_invoice_id" class="form-control" placeholder="ID" value="{{ old('id', $invoice->id ) }}" hidden>

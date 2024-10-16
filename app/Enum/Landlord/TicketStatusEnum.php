@@ -3,12 +3,12 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			LandlordAddonTypeEnum.php
-* @brief		This file contains the implementation of the LandlordAddonTypeEnum
+* @file			TicketStatusEnum.php
+* @brief		This file contains the implementation of the TicketStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -17,11 +17,16 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Landlord;
 
-enum LandlordAddonTypeEnum: string{
-	case NA		= 'na';
-	case USER	= 'user';
-	case GB		= 'gb';
-	case BONUS	= 'bonus';
+enum TicketStatusEnum:string{
+	case NEW				= 'new';
+	case ASSIGNED			= 'assigned';
+	case PENDING			= 'pending';
+	case INPROGRESS			= 'in-progress';
+	case DEVELOPMENT		= 'development';
+	case BUGFIXING			= 'bug-fixing';
+	case CWIP				= 'cwip';
+	case CLOSED				= 'closed';
+	case ONHOLD				= 'on-hold';
 }

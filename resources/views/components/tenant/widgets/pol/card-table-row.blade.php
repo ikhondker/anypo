@@ -24,7 +24,7 @@
 			<a href="{{ route('pols.show',$pol->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 				<i class="align-middle" data-lucide="eye"></i></a>
 
-			@if ($pol->po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+			@if ($pol->po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 				<a href="{{ route('pols.edit',$pol->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 					<i class="align-middle" data-lucide="edit"></i></a>
 
@@ -33,7 +33,7 @@
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 					<i class="align-middle" data-lucide="trash-2"></i>
 				</a>
-			@elseif ($pol->po->auth_status == App\Enum\AuthStatusEnum::APPROVED->value)
+			@elseif ($pol->po->auth_status == App\Enum\Tenant\AuthStatusEnum::APPROVED->value)
 				<a href="{{ route('pols.receipt',$pol->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Goods Receipt">
 					<i class="align-middle" data-lucide="file-text"></i></a>
 			@endif

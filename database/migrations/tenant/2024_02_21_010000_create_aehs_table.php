@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\EntityEnum;
-use App\Enum\AehEventEnum;
-use App\Enum\AehStatusEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\AehEventEnum;
+use App\Enum\Tenant\AehStatusEnum;
 
 return new class extends Migration
 {
@@ -19,8 +19,8 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->date('accounting_date')->default(DB::raw('(CURDATE())'));
 			$table->string('source_app')->default('ANYPO.NET');
-			//$table->string('source_entity', 15); 
-			//$table->string('source_event', 15); 
+			//$table->string('source_entity', 15);
+			//$table->string('source_event', 15);
 			//$table->string('source_entity')->default(EntityEnum::INVOICE->value);
 			$table->string('source_entity');
 			$table->string('event')->default(AehEventEnum::POST->value);

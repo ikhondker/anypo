@@ -13,7 +13,7 @@ use App\Http\Controllers\Landlord\HomeController;
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
-use App\Enum\LandlordCheckoutStatusEnum;
+use App\Enum\Landlord\CheckoutStatusEnum;
 # 3. Helpers
 use App\Helpers\EventLog;
 # 4. Notifications
@@ -90,7 +90,7 @@ class TenantController extends Controller
 		if (!$checkout) {
 			throw new NotFoundHttpException();
 		}
-		if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
+		if ($checkout->status_code == CheckoutStatusEnum::DRAFT->value) {
 			Log::debug('landlord.home.success checkout_id = '. $checkout->id);
 			CreateTenant::dispatch($checkout->id); // TODO uncomment
 		}

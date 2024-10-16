@@ -9,7 +9,7 @@
 				<h6 class="card-subtitle text-muted">List of Attachments for current document.</h6>
 			</div>
 
-			<table class="table table-striped table-sm">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>#</th>

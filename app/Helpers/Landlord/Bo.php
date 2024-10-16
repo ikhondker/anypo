@@ -30,10 +30,10 @@ use App\Models\Landlord\Admin\Payment;
 use App\Models\Landlord\Manage\Checkout;
 
 // Enums
-use App\Enum\LandlordInvoiceTypeEnum;
-use App\Enum\LandlordInvoiceStatusEnum;
-use App\Enum\PaymentMethodEnum;
-use App\Enum\LandlordPaymentStatusEnum;
+use App\Enum\Landlord\InvoiceTypeEnum;
+use App\Enum\Landlord\InvoiceStatusEnum;
+use App\Enum\Landlord\PaymentMethodEnum;
+use App\Enum\Landlord\PaymentStatusEnum;
 
 // Helpers
 use Illuminate\Support\Facades\Log;
@@ -79,7 +79,7 @@ class Bo
 		$service->product_id	= $checkout->product_id;
 		$service->name			= $checkout->product_name;
 
-		if ($checkout->invoice_type->value == LandlordInvoiceTypeEnum::ADDON->value ){
+		if ($checkout->invoice_type->value == InvoiceTypeEnum::ADDON->value ){
 			$service->addon			= true;
 		} else {
 			$service->addon			= false;
@@ -133,17 +133,17 @@ class Bo
 		// change description for other type of invoice
 		$invoice->summary		= env('APP_DOMAIN'). ' - Your Invoice #'. $invoice->invoice_no;
 		switch ($invoice->invoice_type->value) {
-			case LandlordInvoiceTypeEnum::CHECKOUT->value:
+			case InvoiceTypeEnum::CHECKOUT->value:
 				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN');
 				break;
-			case LandlordInvoiceTypeEnum::SUBSCRIPTION->value:  // manually generate an pay invoice 
+			case InvoiceTypeEnum::SUBSCRIPTION->value:  // manually generate an pay invoice
 				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
-			case LandlordInvoiceTypeEnum::ADDON->value:
+			case InvoiceTypeEnum::ADDON->value:
 				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') ;
 				break;
-			case LandlordInvoiceTypeEnum::ADVANCE->value:
+			case InvoiceTypeEnum::ADVANCE->value:
 				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
@@ -161,7 +161,7 @@ class Bo
 
 		// create invoice
 		$invoice->currency		= 'USD';
-		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
+		$invoice->status_code	= InvoiceStatusEnum::DUE->value;
 		$invoice->save();
 
 		Log::debug('Helpers.bo.createCheckoutInvoice Invoice Generated id = ' . $invoice->id);
@@ -211,9 +211,9 @@ class Bo
 		$payment->invoice_id		= $invoice->id;
 		$payment->account_id		= $invoice->account_id;
 		$payment->owner_id			= $invoice->owner_id; // Might be guest as well
-		$payment->payment_method_id	= PaymentMethodEnum::CARD->value;
+		$payment->payment_method_code	= PaymentMethodEnum::CARD->value;
 		$payment->amount			= $invoice->amount;
-		$payment->status_code		= LandlordPaymentStatusEnum::PAID->value;
+		$payment->status_code		= PaymentStatusEnum::PAID->value;
 		//$payment->ip				= $request->ip(); // ERROR
 		$payment->save();
 
@@ -222,10 +222,10 @@ class Bo
 		EventLog::event('payment', $payment->id, 'create');
 
 		// update paid amount in invoice as paid
-		$invoice->status_code		= LandlordInvoiceStatusEnum::PAID->value;
+		$invoice->status_code		= InvoiceStatusEnum::PAID->value;
 		$invoice->amount_paid		= $invoice->amount_paid + $payment->amount;
 		$invoice->save();
-		EventLog::event('invoice', $invoice->id, 'update', 'status', LandlordPaymentStatusEnum::PAID->value);
+		EventLog::event('invoice', $invoice->id, 'update', 'status', PaymentStatusEnum::PAID->value);
 
 		// Invoice Paid Notification
 		$user = User::where('id', $invoice->owner_id)->first();

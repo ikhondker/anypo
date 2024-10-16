@@ -13,8 +13,8 @@ use App\Models\Landlord\Admin\Invoice;
 use App\Models\Landlord\Manage\Config;
 use App\Models\Landlord\Account;
 
-use App\Enum\LandlordInvoiceTypeEnum;
-use App\Enum\LandlordInvoiceStatusEnum;
+use App\Enum\Landlord\InvoiceTypeEnum;
+use App\Enum\Landlord\InvoiceStatusEnum;
 
 use App\Helpers\Landlord\Bo;
 use App\Helpers\EventLog;
@@ -64,7 +64,7 @@ class CreateMonthlyInvoice implements ShouldQueue
 		$invoice->invoice_no	= Bo::getInvoiceNo();
 		$invoice->invoice_date	= now();
 
-		$invoice->invoice_type	= LandlordInvoiceTypeEnum::SUBSCRIPTION->value;
+		$invoice->invoice_type	= InvoiceTypeEnum::SUBSCRIPTION->value;
 		$invoice->from_date		= $account->end_date->addDay(1);
 		$invoice->to_date		= $account->end_date->addDay(1)->addMonth($this->period);
 		//Log::channel('bo')->info('Account id='. $account_id.' SECOND inv start '.$invoice->from_date.' to date '.$invoice->to_date);
@@ -105,7 +105,7 @@ class CreateMonthlyInvoice implements ShouldQueue
 
 		// Save invoice
 		$invoice->currency		= 'USD';
-		$invoice->status_code	= LandlordInvoiceStatusEnum::DUE->value;
+		$invoice->status_code	= InvoiceStatusEnum::DUE->value;
 		$invoice->save();
 
 		Log::channel('bo')->info('jobs.landlord.CreateMonthlyInvoice Invoice Generated invoice_id = ' . $invoice->id);

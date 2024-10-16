@@ -33,7 +33,7 @@ use App\Models\Landlord\Lookup\Dept;
 use App\Models\Landlord\Manage\Priority;
 # 2. Enums
 use App\Enum\UserRoleEnum;
-use App\Enum\LandlordTicketStatusEnum;
+use App\Enum\Landlord\TicketStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\Landlord\FileUpload;
@@ -148,11 +148,11 @@ class TicketController extends Controller
 		Log::debug('landlord.TicketController.store isSeeded= ' . auth()->user()->isSeeded());
 		Log::debug('landlord.TicketController.store owner_id= ' . $owner_id);
 		Log::debug('landlord.TicketController.store account_id= ' . $account_id);
-		
+
 		$request->merge([
 			//'ticket_number' => Str::uuid()->toString(),
 			'ticket_date'	=> date('Y-m-d H:i:s'),
-			'status_code'	=> LandlordTicketStatusEnum::NEW->value,
+			'status_code'	=> TicketStatusEnum::NEW->value,
 			'owner_id'		=> $owner_id,
 			'account_id'	=> $account_id,
 			'dept_id'		=> '1001',
@@ -191,7 +191,7 @@ class TicketController extends Controller
 			return redirect()->route('tickets.index')->with('success', 'A New Ticket #' . $ticket->id . ' is created. We will come back to you soon. Thanks.');
 		}
 
-		
+
 	}
 
 	/**
@@ -303,7 +303,7 @@ class TicketController extends Controller
 	{
 		$this->authorize('update', $ticket);
 
-		$ticket->status_code	= LandlordTicketStatusEnum::CLOSED->value;
+		$ticket->status_code	= TicketStatusEnum::CLOSED->value;
 		$ticket->closed	= true;
 		$ticket->closed_at	= Now();
 

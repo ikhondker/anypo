@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord\Lookup
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -31,6 +31,10 @@ use App\Models\Landlord\Admin\Payment;
 class PaymentMethod extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
+
+	protected $primaryKey	= 'code';
+	public $incrementing 	= false;
+	protected $keyType		= 'string';
 
 	protected $fillable = [
 		'name', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',

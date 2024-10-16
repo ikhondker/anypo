@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			EntityEnum.php
-* @brief		This file contains the implementation of the EntityEnum
+* @file			InvoiceTypeEnum.php
+* @brief		This file contains the implementation of the InvoiceTypeEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,22 +17,12 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Landlord;
 
-// PR/PO Events
-enum EventEnum: string{
-	case CREATE		= 'create';
-	case UPDATE		= 'update';
-	case SUBMIT		= 'submit';
-	//case FORWARD	= 'forward';
-	case BOOK		= 'book';
-	case POST		= 'post';	// Invoice
-	case REJECT		= 'reject';
-	case APPROVE	= 'approve';
-	case CANCEL		= 'cancel';
-	case RESET		= 'reset';
-	//case ADJUST	= 'adjust';
-	//case PAYMENT	= 'payment';
+enum InvoiceTypeEnum:string{
+	case CHECKOUT		= 'checkout';
+	case SUBSCRIPTION	= 'subscription';
+	case ADDON			= 'addon';
+	case ADVANCE		= 'advance';
+	case ARCHIVE		= 'archive';
 }
-
-

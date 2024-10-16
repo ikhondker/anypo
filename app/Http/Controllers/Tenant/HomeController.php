@@ -25,7 +25,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Tenant\Pr;
 # 2. Enums
-use App\Enum\WflActionEnum;
+use App\Enum\Tenant\WflActionEnum;
 # 3. Helpers
 use App\Helpers\Tenant\FileUpload;
 use App\Helpers\Export;

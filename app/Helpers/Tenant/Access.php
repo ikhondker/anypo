@@ -8,7 +8,7 @@
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -32,9 +32,9 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Invoice;
 # 2. Enums
-use App\Enum\EntityEnum;
-use App\Enum\AuthStatusEnum;
-use App\Enum\InvoiceStatusEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\AuthStatusEnum;
+use App\Enum\Tenant\InvoiceStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -49,7 +49,7 @@ class Access
 
 	public static function isAttachmentEditable($attId)
 	{
-		
+
 		$attachment = Attachment::where('id', $attId)->get()->firstOrFail();
 
 		// TODO fine tuning access edit and delete
@@ -68,8 +68,8 @@ class Access
 				if (!$budget->closed) {
 					if (auth()->user()->id == $attachment->owner_id){
 						$editable		= true;
-					}	
-				} 
+					}
+				}
 				break;
 			case EntityEnum::DEPTBUDGET->value:
 				$deptBudget = DeptBudget::where('id', $attachment->article_id)->get()->firstOrFail();
@@ -77,7 +77,7 @@ class Access
 					if (auth()->user()->id == $attachment->owner_id){
 						$editable		= true;
 					}
-				} 
+				}
 				break;
 			case EntityEnum::PR->value:
 				$pr = Pr::where('id', $attachment->article_id)->get()->firstOrFail();
@@ -103,7 +103,7 @@ class Access
 					if (auth()->user()->id == $attachment->owner_id){
 						$editable		= true;
 					}
-				} 
+				}
 				break;
 			case EntityEnum::RECEIPT->value:
 				$editable			= false;

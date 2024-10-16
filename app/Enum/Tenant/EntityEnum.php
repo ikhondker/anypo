@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			LandlordCheckoutStatusEnum.php
-* @brief		This file contains the implementation of the LandlordCheckoutStatusEnum
+* @file			EntityEnum.php
+* @brief		This file contains the implementation of the EntityEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,15 +17,25 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Tenant;
 
-enum LandlordCheckoutStatusEnum:string{
-	case DRAFT		= 'draft';
-	case PROCESSING	= 'processing';
-	case COMPLETED	= 'completed';
-	case CANCELED	= 'canceled';
-	case FAILED		= 'failed';
-	case ERROR		= 'error';
-
-
+enum EntityEnum: string{
+	case CORE		= 'CORE';
+	case PROJECT	= 'PROJECT';
+	case ITEM		= 'ITEM';
+	case SUPPLIER	= 'SUPPLIER';
+	case BUDGET		= 'BUDGET';
+	case DEPTBUDGET	= 'DEPTBUDGET';
+	case PR			= 'PR';
+	case PO			= 'PO';
+	case RECEIPT	= 'RECEIPT';
+	case INVOICE	= 'INVOICE';
+	case PAYMENT	= 'PAYMENT';
+	case AEH		= 'AEH';
+	case TEMPLATE	= 'TEMPLATE';
+	case TICKET		= 'TICKET';		// Support Ticket raise from Tenant
+	case CONTACT	= 'CONTACT';	// Home Controlled
+	case TAX		= 'TAX';	// Not used
 }
+
+

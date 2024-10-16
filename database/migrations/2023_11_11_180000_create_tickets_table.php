@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\LandlordTicketStatusEnum;
+use App\Enum\Landlord\TicketStatusEnum;
 
 return new class extends Migration
 {
@@ -29,23 +29,23 @@ return new class extends Migration
 			$table->foreignId('category_id')->nullable()->constrained('categories');
 			/** TODO category */
 			/** ENUM */
-			$table->string('status_code')->default(LandlordTicketStatusEnum::NEW->value); 
+			$table->string('status_code')->default(TicketStatusEnum::NEW->value);
 			$table->foreign('status_code')->references('code')->on('statuses');
-			//$table->foreignId('status_id')->default(LandlordTicketStatusEnum::NEW->value)->constrained('statuses');
+			//$table->foreignId('status_id')->default(TicketStatusEnum::NEW->value)->constrained('statuses');
 			/** end ENUM */
-			//$table->boolean('is_answered')->default(false); 
+			//$table->boolean('is_answered')->default(false);
 			$table->integer('sla')->nullable()->index('sla');
 			$table->dateTime('due_date')->nullable();
-			$table->boolean('is_overdue')->default(false); 
-			$table->boolean('closed')->default(false); 
+			$table->boolean('is_overdue')->default(false);
+			$table->boolean('closed')->default(false);
 			$table->dateTime('closed_at')->nullable();
-			$table->boolean('is_deleted')->default(false); 
-			$table->boolean('reopened')->default(false); 
+			$table->boolean('is_deleted')->default(false);
+			$table->boolean('reopened')->default(false);
 			$table->dateTime('reopened_at')->nullable();
-			$table->boolean('follow_up')->default(false); 
+			$table->boolean('follow_up')->default(false);
 			$table->dateTime('reviewed_at')->nullable();
 			$table->foreignUuid('reviewed_by')->nullable()->constrained('users');
-			$table->boolean('source_change_needed')->default(false); 
+			$table->boolean('source_change_needed')->default(false);
 			$table->dateTime('last_message_at')->nullable();
 			$table->dateTime('last_response_at')->nullable();
 			$table->biginteger('link_ticket_id')->nullable();

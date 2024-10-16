@@ -30,6 +30,8 @@ use App\Models\Tenant\Prl;
 use App\Models\Tenant\Pol;
 use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
+use App\Models\Tenant;
+use App\Helpers\Tenant\Akk;
 
 // Enums
 use App\Enum\UserRoleEnum;
@@ -51,8 +53,8 @@ use Str;
 
 use Illuminate\Support\Facades\Http;
 
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 use App\Helpers\Tenant\ChartData;
 
 #Jobs
@@ -60,6 +62,8 @@ use App\Jobs\Tenant\RecordDeptBudgetUsage;
 
 use Exception;
 use Illuminate\Support\Facades\Session;
+use Stancl\Tenancy\Resolvers;
+
 
 class TestController extends Controller
 {
@@ -71,6 +75,28 @@ class TestController extends Controller
 
 	public function run()
 	{
+        //Log::error(tenant('id'). ' tenant.budget.attach1 user_id = '. DomainTenantResolver::currentDomain );
+        //Log::error(tenant('id'). \Stancl\Tenancy\Resolvers\DomainTenantResolver::class->currentDomain);
+        //Log::error(tenant('id'). Tenant::find(tenant('id'))->path());
+        //$aa= Tenant::find(tenant('id')->path());
+        //$aa= Tenancy::find('b07aa3b0-dc68-11e9-9352-9159b2055c42')
+        //$aa= Tenancy::find(tenant('id'));
+
+        //dd(tenant()->where('id',tenant('id'))->with('domains'));
+        //dd(tenant()->where('id',tenant('id'))->domains(tenant('id')));
+        // ok
+
+        //Log::debug('domain='.getDomainName());
+        Log::debug('domain='.Akk::getDomainName());
+
+        //dd(tenant()->domains->first()->domain);
+
+        //Log::debug('tenant='.tenant('id'));
+        //Log::debug('domain='.tenant('id')->domains()->domain);
+        //Log::debug('domain='. Akk::getDomainFromTenantId(tenant('id')));
+
+        exit;
+
 
 		// Unhandled Exception handing
 		//try {
@@ -103,7 +129,7 @@ class TestController extends Controller
 		Log::debug('Value of env(APP_URL)=' . env('APP_URL'));
 
 		Log::debug('Value of env(ASSET_URL)=' . env('ASSET_URL'));
-		
+
 		echo "Done";
 		exit;
 
@@ -126,7 +152,7 @@ class TestController extends Controller
 
 
 		$cnt		= Pol::where('po_id','1004')->count();
-		
+
 		Log::debug('count cnt=' . $cnt);
 		exit;
 
@@ -134,14 +160,14 @@ class TestController extends Controller
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PR->value, 1001, EventEnum::BOOK->value);
 		exit;
 
-	
+
 		$rs= Prl::where('id',1001)->get( array(
 			DB::raw('SUM(sub_total) as sub_total'),
 			DB::raw('SUM(tax) as tax'),
 			DB::raw('SUM(gst) as gst'),
 			DB::raw('SUM(amount) as amount'),
 		));
-		
+
 		Log::debug('Value of id=' . $rs);
 		//Log::debug('Value of tax=' . $r->tax);
 

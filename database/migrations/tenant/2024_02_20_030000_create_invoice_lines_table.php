@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\ClosureStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
 
 return new class extends Migration
 {
@@ -23,7 +23,7 @@ return new class extends Migration
 			$table->decimal('qty', 19, 4)->default(1);
 			$table->decimal('price', 19, 4)->default(0);
 			$table->decimal('sub_total', 19, 4)->default(0);
-			$table->decimal('tax',19, 4)->default(0); 
+			$table->decimal('tax',19, 4)->default(0);
 			$table->decimal('gst',19, 4)->default(0);
 			$table->decimal('amount', 19, 4)->default(0);
 			$table->decimal('fc_sub_total', 19, 4)->default(0);			// Functional Currency

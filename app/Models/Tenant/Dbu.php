@@ -12,8 +12,8 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Project;
 
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 
 use Illuminate\Database\Eloquent\Builder;
 
@@ -46,9 +46,9 @@ class Dbu extends Model
 	*/
 	public function scopeByDeptAll(Builder $query): void
 	{
-		$query->where('dept_id', auth()->user()->dept_id ); 
+		$query->where('dept_id', auth()->user()->dept_id );
 	}
-	
+
 	/* ---------------- belongsTo ---------------------- */
 	public function deptBudget(){
 		return $this->belongsTo(DeptBudget::class,'dept_budget_id')->withDefault([

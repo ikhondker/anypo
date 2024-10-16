@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
-use App\Enum\ReceiptStatusEnum;
+use App\Enum\Tenant\ReceiptStatusEnum;
 
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;

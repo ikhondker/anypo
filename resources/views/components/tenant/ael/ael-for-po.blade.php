@@ -33,9 +33,9 @@
 					<td><a class="text-muted" href="{{ route('aels.show',$ael->id) }}"><strong>{{ $ael->id }}</strong></a></td>
 					<td><span class="badge badge-subtle-primary">{{ $ael->aeh->source_entity->value }}</span></td>
 					<td>
-						@if ($ael->aeh->event->value == App\Enum\AehEventEnum::POST->value)
+						@if ($ael->aeh->event->value == App\Enum\Tenant\AehEventEnum::POST->value)
 						<span class="badge badge-subtle-success">{{ $ael->aeh->event }}</span>
-						@else 
+						@else
 						<span class="badge badge-subtle-danger">{{ $ael->aeh->event }}</span>
 						@endif
 					</td>

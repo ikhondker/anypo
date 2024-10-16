@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\ClosureStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
 
 return new class extends Migration
 {
@@ -46,10 +46,10 @@ return new class extends Migration
 			$table->biginteger('prl_id')->default(0);								// PR that converted to PO
 			$table->decimal('received_qty', 19, 4)->default(0);
 			/** ENUM */
-			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);;
+			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);
 			$table->foreign('closure_status')->references('code')->on('statuses');
 			/** end ENUM */
-			$table->boolean('asset_created')->default(false); 
+			$table->boolean('asset_created')->default(false);
 			$table->date('asset_date')->nullable();
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();

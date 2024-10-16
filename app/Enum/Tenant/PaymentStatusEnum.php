@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			LandlordServiceStatusEnum.php
-* @brief		This file contains the implementation of the LandlordServiceStatusEnum
+* @file			PaymentStatusEnum.php
+* @brief		This file contains the implementation of the PaymentStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,13 +17,13 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Tenant;
 
-enum LandlordServiceStatusEnum:string{
-	case DRAFT		= 'draft';
-	case ACTIVE		= 'active';
-	case PROCESSING	= 'processing';
+enum PaymentStatusEnum:string{
+	case DUE		= 'due';
+	//case UNPAID	= 'unpaid';
+	case PARTIAL	= 'partial';
+	case PAID		= 'paid';
 	case CANCELED	= 'canceled';
-	case FAILED		= 'failed';
 	case ERROR		= 'error';
 }

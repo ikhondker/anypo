@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
-
+use App\Models\Tenant\Attachment;
 
 class Entity extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
-	
+
 	protected $primaryKey	= 'entity';
 	public $incrementing 	= false;
 	protected $keyType		= 'string';
@@ -36,7 +36,7 @@ class Entity extends Model
 	public function attachmentfiles(): HasMany {
 		return $this->hasMany(Attachment::class,'file_entity');
 	}
- 
+
 	/* ---------------- belongsTo ---------------------- */
 
 

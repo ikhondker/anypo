@@ -21,8 +21,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 //use App\Helpers\Tenant\ExchangeRate;
 
-use App\Enum\InvoiceStatusEnum;
-//use App\Enum\PaymentStatusEnum;
+use App\Enum\Tenant\InvoiceStatusEnum;
+//use App\Enum\Tenant\PaymentStatusEnum;
 
 use App\Models\Tenant\Admin\Setup;
 

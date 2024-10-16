@@ -10,7 +10,7 @@
 		<a class="dropdown-item" href="{{ route('prs.history', $pr->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('reports.pr', $pr->id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Requisition</a>
 
-		@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+		@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('prs.edit', $pr->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Requisition</a>
 			<a class="dropdown-item" href="{{ route('prls.add-line', $pr->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Requisition Line</a>

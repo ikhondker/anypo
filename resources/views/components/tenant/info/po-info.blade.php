@@ -2,7 +2,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+					@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 						@can('update', $po)
 							<a class="btn btn-sm btn-light" href="{{ route('pos.edit', $po->id ) }}"><i class="fas fa-edit"></i> Edit</a>
 						@endcan

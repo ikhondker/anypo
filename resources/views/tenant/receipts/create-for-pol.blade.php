@@ -125,6 +125,6 @@
 		<x-tenant.widgets.pol.pol-receipts :id="$pol->id" />
 	@endif
 
-    @include('tenant.includes.js.select2')
+	@include('tenant.includes.js.select2')
 
 @endsection

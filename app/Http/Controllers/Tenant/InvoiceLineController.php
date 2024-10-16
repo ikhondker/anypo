@@ -32,7 +32,7 @@ use App\Models\Tenant\Invoice;
 use App\Models\Tenant\InvoiceLine;
 use App\Models\Tenant\Manage\CustomError;
 # 2. Enums
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 # 3. Helpers
 //use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -47,7 +47,7 @@ use App\Helpers\EventLog;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class InvoiceLineController extends Controller

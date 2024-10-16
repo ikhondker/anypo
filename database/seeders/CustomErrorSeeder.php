@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Tenant\Manage\CustomError;
 
-use App\Enum\EntityEnum;
+use App\Enum\Tenant\EntityEnum;
 
 class CustomErrorSeeder extends Seeder
 {

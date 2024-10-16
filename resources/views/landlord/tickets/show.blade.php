@@ -15,11 +15,11 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				@if ( auth()->user()->isSeeded() && ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value) )
+				@if ( auth()->user()->isSeeded() && ( $ticket->status_code <> App\Enum\Landlord\TicketStatusEnum::CLOSED->value) )
 					<a href="{{ route('tickets.assign',$ticket->id) }}" class="btn btn-sm btn-light"><i class="fas fa-tasks"></i> Assign</a>
 					<a href="{{ route('tickets.edit',$ticket->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
 				@endif
-				@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
+				@if ( $ticket->status_code <> App\Enum\Landlord\TicketStatusEnum::CLOSED->value)
 					<a href="{{ route('tickets.close',$ticket->id) }}" class="btn btn-sm btn-light sw2"><i class="fas fa-power-off text-danger"></i> Close Ticket</a>
 				@endif
 			</div>
@@ -82,7 +82,7 @@
 	</div>
 
 	<!-- BEGIN ADD COMMENT -->
-	@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
+	@if ( $ticket->status_code <> App\Enum\Landlord\TicketStatusEnum::CLOSED->value)
 		@include('landlord.includes.ticket-add-comment')
 	@endif
 	<!-- END ADD COMMENT -->

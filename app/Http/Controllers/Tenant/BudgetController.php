@@ -30,7 +30,7 @@ use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Attachment;
 
 # 2. Enums
-use App\Enum\EntityEnum;
+use App\Enum\Tenant\EntityEnum;
 # 3. Helpers
 use App\Helpers\Tenant\FileUpload;
 use App\Helpers\Export;
@@ -49,7 +49,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 use Carbon\Carbon;
 use Exception;
-# 13. FUTURE 
+# 13. FUTURE
 
 class BudgetController extends Controller
 {
@@ -123,17 +123,17 @@ class BudgetController extends Controller
 		$budget->start_date	= Carbon::parse($budget->fy.'-01-01');
 		$budget->end_date	= Carbon::parse($budget->fy.'-12-31');
 		$budget->notes		= 'Budget for ' .$budget->fy;
-		
+
 		$budget->closed	= false;
 		$budget->save();
 		$budget_id = $budget->id;
 
 		// insert deptbudget rows
-		DB::INSERT("INSERT INTO 
-					dept_budgets(budget_id, dept_id) 
+		DB::INSERT("INSERT INTO
+					dept_budgets(budget_id, dept_id)
 				SELECT ".
-					$budget_id.",id 
-				FROM depts 
+					$budget_id.",id
+				FROM depts
 				WHERE enable = 1 ;");
 
 		return redirect()->route('budgets.index')->with('success', 'Next Year Budget opened successfully');
@@ -189,7 +189,7 @@ class BudgetController extends Controller
 		$request->validate([
 
 		]);
-		
+
 		// Write to Log
 		EventLog::event('budget', $budget->id, 'update', 'name', $budget->name);
 		$budget->update($request->all());
@@ -201,7 +201,7 @@ class BudgetController extends Controller
 			$attid = FileUpload::aws($request);
 		}
 
-		
+
 
 		return redirect()->route('budgets.show',$budget->id )->with('success', 'Budget updated successfully');
 
@@ -235,18 +235,18 @@ class BudgetController extends Controller
 		$this->authorize('export', Budget::class);
 		$sql = "
 			SELECT b.id, b.fy, b.name, b.start_date, b.end_date,
-			b.amount, 
-			b.amount_pr_booked, b.amount_pr, 
-			b.amount_po_booked, b.amount_po, 
-			b.amount_grs, b.amount_invoice, b.amount_payment, b.notes, 
+			b.amount,
+			b.amount_pr_booked, b.amount_pr,
+			b.amount_po_booked, b.amount_po,
+			b.amount_grs, b.amount_invoice, b.amount_payment, b.notes,
 			IF(b.closed, 'Yes', 'No') as closed
 			FROM budgets b
-			WHERE b.revision = false 
+			WHERE b.revision = false
 			";
 
 		//Log::debug(tenant('id'). 'tenant.Budget.export sql = '. $sql);
 		$data = DB::select($sql);
-			
+
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('budgets', $dataArray);
@@ -255,9 +255,9 @@ class BudgetController extends Controller
 	// add attachments
 	public function attach(FormRequest $request)
 	{
-		
+
 		$this->authorize('create', Budget::class);
-		
+
 		// allow add attachment only if budget is open
 		try {
 			$budget = Budget::where('id', $request->input('attach_budget_id'))->get()->firstOrFail();
@@ -269,7 +269,7 @@ class BudgetController extends Controller
 		if ($budget->closed){
 			return redirect()->route('budgets.show', $budget->id)->with('error', 'Add attachment is allowed only for open Budget.');
 		}
-	
+
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $request->input('attach_budget_id') ]);
 			$request->merge(['entity'		=> EntityEnum::BUDGET->value ]);

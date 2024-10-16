@@ -11,8 +11,8 @@ use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Pr;
 
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tenant\Dbu>
  */

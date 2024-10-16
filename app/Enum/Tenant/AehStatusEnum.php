@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			InvoiceStatusEnum.php
-* @brief		This file contains the implementation of the PaymentStatusEnum
+* @file			PrStatusEnum.php
+* @brief		This file contains the implementation of the PrStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,11 +17,12 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Tenant;
 
-enum InvoiceStatusEnum:string{
+enum AehStatusEnum: string{
 	case DRAFT		= 'draft';
-	case POSTED		= 'posted';
+	case ACCOUNTED	= 'accounted';
 	case CANCELED	= 'canceled';
 	case ERROR		= 'error';
 }
+

@@ -75,11 +75,11 @@
 							<a href="{{ route('pols.show',$pol1->id) }}" class="text-muted"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 								<i class="align-middle" data-lucide="eye"></i></a>
-							@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+							@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 								<a href="{{ route('pols.edit',$pol1->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 									<i class="align-middle" data-lucide="edit"></i></a>
 							@endif
-							@if ($po->auth_status == App\Enum\AuthStatusEnum::APPROVED->value)
+							@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::APPROVED->value)
 								<a href="{{ route('receipts.create-for-pol', $pol1->id) }}" class="text-muted"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="Crate Receipt">
 									<i class="align-middle" data-lucide="plus"></i></a>
@@ -92,7 +92,7 @@
 				<!-- Table footer i.e. Totals -->
 				<tr>
 					<td class="" colspan="2">
-						@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+						@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 							<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 						@endif
 					</td>
@@ -109,7 +109,7 @@
 		</div>
 	</div>
 
-	@if ($po->auth_status == App\Enum\AuthStatusEnum::APPROVED->value)
+	@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::APPROVED->value)
 		<x-tenant.widgets.pol.pol-receipts :id="$pol->id" />
 	@endif
 

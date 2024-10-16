@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 
 
 return new class extends Migration

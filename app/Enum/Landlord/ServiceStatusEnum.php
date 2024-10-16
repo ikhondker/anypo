@@ -3,12 +3,12 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			InterfaceStatusEnum.php
-* @brief		This file contains the implementation of the InterfaceStatusEnum
+* @file			ServiceStatusEnum.php
+* @brief		This file contains the implementation of the ServiceStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -17,11 +17,13 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Landlord;
 
-enum InterfaceStatusEnum: string{
+enum ServiceStatusEnum:string{
 	case DRAFT		= 'draft';
+	case ACTIVE		= 'active';
+	case PROCESSING	= 'processing';
+	case CANCELED	= 'canceled';
+	case FAILED		= 'failed';
 	case ERROR		= 'error';
-	case VALIDATED	= 'validated';
-	case UPLOADED	= 'uploaded';
 }

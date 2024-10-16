@@ -8,10 +8,11 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 use App\Models\User;
+use App\Helpers\Tenant\Akk;
 
 class UserCreated extends Notification implements ShouldQueue
 {
-	
+
 	protected $user;
 	protected $random_password;
 	use Queueable;
@@ -41,7 +42,7 @@ class UserCreated extends Notification implements ShouldQueue
 	public function toMail(object $notifiable): MailMessage
 	{
 		return (new MailMessage)
-		->subject('Welcome to '.tenant('id').'.'. config('app.name'))
+		->subject('Welcome to '.Akk::getDomainName())
 			->greeting('Hello '. $this->user->name . ',')
 			->line('Welcome to '.tenant('id').'.'.config('app.name').' Your account has been created as follows: ' )
 			->line('Email: '.$this->user->email.'.')

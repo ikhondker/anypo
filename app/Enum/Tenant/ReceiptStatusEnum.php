@@ -17,7 +17,7 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Tenant;
 
 enum ReceiptStatusEnum:string{
 	case RECEIVED	= 'received';

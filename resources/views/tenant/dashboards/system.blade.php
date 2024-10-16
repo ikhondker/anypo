@@ -22,7 +22,7 @@
 		<x-tenant.charts.budget-by-dept-pie/>
 		<x-tenant.charts.budget-po-pie/>
 		<x-tenant.charts.budget-by-dept-po-bar/>
-		
+
 	</div>
 
 	<x-tenant.dashboards.budget-stat/>
@@ -179,10 +179,10 @@
 						//use App\Models\Pr;
 						//use Carbon\Carbon;
 						//$fy = Carbon::now()->format('Y');
-						$po_sum_30= Pr::where('auth_status', '=', App\Enum\WflActionEnum::APPROVED->value )
+						$po_sum_30= Pr::where('auth_status', '=', App\Enum\Tenant\WflActionEnum::APPROVED->value )
 							->where('auth_date', '>', now()->subDays(30)->endOfDay())
 							->sum('amount');
-						$po_count_30= Pr::where('auth_status', '=', App\Enum\WflActionEnum::APPROVED->value )
+						$po_count_30= Pr::where('auth_status', '=', App\Enum\Tenant\WflActionEnum::APPROVED->value )
 							->where('auth_date', '>', now()->subDays(30)->endOfDay())
 							->count();
 					@endphp
@@ -211,10 +211,10 @@
 					//use App\Models\Pr;
 					//use Carbon\Carbon;
 					//$fy = Carbon::now()->format('Y');
-					$po_sum_30= Pr::where('auth_status', '=', App\Enum\WflActionEnum::APPROVED->value )
+					$po_sum_30= Pr::where('auth_status', '=', App\Enum\Tenant\WflActionEnum::APPROVED->value )
 						->where('auth_date', '>', now()->subDays(30)->endOfDay())
 						->sum('amount');
-					$po_count_30= Pr::where('auth_status', '=', App\Enum\WflActionEnum::APPROVED->value )
+					$po_count_30= Pr::where('auth_status', '=', App\Enum\Tenant\WflActionEnum::APPROVED->value )
 						->where('auth_date', '>', now()->subDays(30)->endOfDay())
 						->count();
 					@endphp
@@ -244,10 +244,10 @@
 					//use App\Models\Pr;
 					//use Carbon\Carbon;
 					//$fy = Carbon::now()->format('Y');
-					$po_sum_30= Pr::where('auth_status', '=', App\Enum\WflActionEnum::APPROVED->value )
+					$po_sum_30= Pr::where('auth_status', '=', App\Enum\Tenant\WflActionEnum::APPROVED->value )
 						->where('auth_date', '>', now()->subDays(30)->endOfDay())
 						->sum('amount');
-					$po_count_30= Pr::where('auth_status', '=', App\Enum\WflActionEnum::APPROVED->value )
+					$po_count_30= Pr::where('auth_status', '=', App\Enum\Tenant\WflActionEnum::APPROVED->value )
 						->where('auth_date', '>', now()->subDays(30)->endOfDay())
 						->count();
 					@endphp
@@ -277,10 +277,10 @@
 					//use App\Models\Pr;
 					//use Carbon\Carbon;
 					//$fy = Carbon::now()->format('Y');
-					$po_sum_30= Pr::where('auth_status', '=', App\Enum\WflActionEnum::APPROVED->value )
+					$po_sum_30= Pr::where('auth_status', '=', App\Enum\Tenant\WflActionEnum::APPROVED->value )
 						->where('auth_date', '>', now()->subDays(30)->endOfDay())
 						->sum('amount');
-					$po_count_30= Pr::where('auth_status', '=', App\Enum\WflActionEnum::APPROVED->value )
+					$po_count_30= Pr::where('auth_status', '=', App\Enum\Tenant\WflActionEnum::APPROVED->value )
 						->where('auth_date', '>', now()->subDays(30)->endOfDay())
 						->count();
 					@endphp

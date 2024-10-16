@@ -17,14 +17,14 @@
 			<x-tenant.actions.pr-actions prId="{{ $pr->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	{{-- <x-tenant.info.pr-info prId="{{ $pr->id }}"/> --}}
 
-	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PR->value }}" articleId="{{ $pr->id }}"/>
+	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::PR->value }}" articleId="{{ $pr->id }}"/>
 
 	<div class="row">
 		<div class="col-sm-6">
-			@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+			@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 				<form action="{{ route('prs.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 					@csrf
 					<input type="text" name="attach_pr_id" id="attach_pr_id" class="form-control" placeholder="ID" value="{{ old('id', $pr->id ) }}" hidden>

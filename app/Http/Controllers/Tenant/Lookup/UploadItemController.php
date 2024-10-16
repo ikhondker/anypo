@@ -33,7 +33,7 @@ use App\Models\Tenant\Lookup\Oem;
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\GlType;
 # 2. Enums
-use App\Enum\InterfaceStatusEnum;
+use App\Enum\Tenant\InterfaceStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -362,7 +362,7 @@ class UploadItemController extends Controller
 		$this->authorize('export', UploadItem::class);
 
 
-		$data = DB::select("SELECT i.id, i.item_code, i.item_name, i.category_name, i.oem_name, i.uom_name, i.gl_type_name, i.price, i.status, i.notes, 
+		$data = DB::select("SELECT i.id, i.item_code, i.item_name, i.category_name, i.oem_name, i.uom_name, i.gl_type_name, i.price, i.status, i.notes,
 			u.name uploaded_by,i.created_at
 			FROM upload_items i,users u
 			WHERE i.owner_id = u.id");

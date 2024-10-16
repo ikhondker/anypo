@@ -13,7 +13,7 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Invoice"/>
 			@can('post', $invoice)
-				@if ($invoice->status == App\Enum\InvoiceStatusEnum::DRAFT->value)
+				@if ($invoice->status == App\Enum\Tenant\InvoiceStatusEnum::DRAFT->value)
 					<a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-primary float-end me-2 sw2-advance"
 						data-entity="INVOICE #" data-name="{{ $invoice->id }}" data-status="Post"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
@@ -31,7 +31,7 @@
 
 	<x-tenant.widgets.invoice-line.list-all-lines invoiceId="{{ $invoice->id }}"/>
 
-    <x-tenant.widgets.invoice.payments :invoiceId="$invoice->id" />
+	<x-tenant.widgets.invoice.payments :invoiceId="$invoice->id" />
 
 	<script type="text/javascript">
 		function mySubmit() {

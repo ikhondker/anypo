@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\LandlordAddonTypeEnum;
+use App\Enum\Landlord\AddonTypeEnum;
 
 
 return new class () extends Migration {
@@ -20,7 +20,7 @@ return new class () extends Migration {
 			$table->string('sku')->unique();
 			$table->boolean('addon')->default(false);
 			/** ENUM */
-			$table->string('addon_type')->default(LandlordAddonTypeEnum::NA->value);
+			$table->string('addon_type')->default(AddonTypeEnum::NA->value);
 			/** end ENUM */
 			$table->decimal('list_price', 19, 4)->default(0);
 			$table->decimal('base_price', 19, 4)->default(0);

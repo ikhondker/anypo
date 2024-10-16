@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -30,7 +30,7 @@ use App\Models\Landlord\Lookup\Country;
 use App\Models\Landlord\Manage\Status;
 use App\Models\Landlord\Lookup\Product;
 
-use App\Enum\LandlordAccountStatusEnum;
+use App\Enum\Landlord\AccountStatusEnum;
 
 class Account extends Model
 {
@@ -49,7 +49,7 @@ class Account extends Model
 		'updated_at'			=> 'datetime',
 		'created_at'			=> 'datetime',
 		// DO NOT CAST. eager loading shows error
-		//'status_code'			=> LandlordAccountStatusEnum::class,
+		//'status_code'			=> AccountStatusEnum::class,
 	];
 
 	/* ---------------- Scope ---------------------- */
@@ -90,7 +90,7 @@ class Account extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
-	
+
 	// public function service()
 	// {
 	// 	return $this->belongsTo(Service::class, 'service_id');

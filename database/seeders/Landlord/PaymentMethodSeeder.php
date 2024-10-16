@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\Landlord\Lookup\PaymentMethod;
+use App\Enum\Landlord\PaymentMethodEnum;
 
 class PaymentMethodSeeder extends Seeder
 {
@@ -15,30 +16,30 @@ class PaymentMethodSeeder extends Seeder
 		public function run(): void
 		{
 			 //PaymentMethod::truncate();
-				
+
 			 $payment_methods = [
 				[
-					'id' => 1001,
+					'code' => PaymentMethodEnum::CASH->value,
 					'name' => 'Cash',
 				],
 				[
-					'id' => 1002,
+					'code' => PaymentMethodEnum::CARD->value,
 					'name' => 'Credit and Debit card',
 				],
 				[
-					'id' => 1003,
+					'code' => PaymentMethodEnum::MFS->value,
 					'name' => 'Mobile Payments',
 				],
 				[
-					'id' => 1004,
+					'code' => PaymentMethodEnum::CHECK->value,
 				'name' => 'Checks',
 				],
 				[
-					'id' => 1005,
+					'code' => PaymentMethodEnum::BANK->value,
 					'name' => 'Bank Transfer',
 				],
 				[
-					'id' => 1006,
+					'code' => PaymentMethodEnum::CARD->value,
 					'name' => 'Cryptocurrency',
 				],
 			];

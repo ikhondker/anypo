@@ -30,7 +30,7 @@ use App\Http\Requests\Share\UpdateTemplateRequest;
 use App\Models\User;
 use App\Models\Tenant\Lookup\Country;
 # 2. Enums
-use App\Enum\EntityEnum;
+use App\Enum\Tenant\EntityEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;

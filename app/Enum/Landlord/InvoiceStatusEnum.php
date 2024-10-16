@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			EntityEnum.php
-* @brief		This file contains the implementation of the EntityEnum
+* @file			InvoiceStatusEnum.php
+* @brief		This file contains the implementation of the InvoiceStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,15 +17,12 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Landlord;
 
-// NOT USED
-enum MenuAccessEnum: string{
-	case FRONT		= 'front';
-	case ADMIN		= 'admin';
-	case SUPPORT	= 'support';
-	case DISABLE	= 'disable';
-	case SYSTEM		= 'system';
+enum InvoiceStatusEnum:string{
+	case PAID		= 'paid';
+	case ONHOLD		= 'on-hold';
+	case DUE		= 'due';
+	case PASTDUE	= 'past-due';
+	case CANCELED	= 'canceled';
 }
-
-

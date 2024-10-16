@@ -9,15 +9,15 @@
 				<h6 class="card-subtitle text-muted">Please enter Approval Actions, Approve or Reject.</h6>
 			</div>
 			<div class="card-body">
-				
+
 					<table class="table table-sm my-2">
 						<tbody>
 							<tr>
 								<th width="20%">Decision :</th>
 								<td>
 									<select class="form-control" name="action" placeholder="Action" value="APPROVED">
-									<option {{ 'approved' == old('action',$wfl->action->value) ? 'selected' : '' }} value="{{ App\Enum\WflActionEnum::APPROVED->value }}">APPROVED</option>
-									<option {{ 'rejected' == old('action',$wfl->action->value) ? 'selected' : '' }} value="{{ App\Enum\WflActionEnum::REJECTED->value }}">REJECTED</option>
+									<option {{ 'approved' == old('action',$wfl->action->value) ? 'selected' : '' }} value="{{ App\Enum\Tenant\WflActionEnum::APPROVED->value }}">APPROVED</option>
+									<option {{ 'rejected' == old('action',$wfl->action->value) ? 'selected' : '' }} value="{{ App\Enum\Tenant\WflActionEnum::REJECTED->value }}">REJECTED</option>
 									</select>
 									@error('action')
 										<div class="small text-danger">{{ $message }}</div>

@@ -13,7 +13,7 @@ use App\Models\User;
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Manage\Status;
 
-use App\Enum\LandlordInvoiceTypeEnum;
+use App\Enum\Landlord\InvoiceTypeEnum;
 
 class Checkout extends Model
 {
@@ -34,9 +34,9 @@ class Checkout extends Model
 		'end_date'		=> 'date',
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
-		'invoice_type'	=> LandlordInvoiceTypeEnum::class,
+		'invoice_type'	=> InvoiceTypeEnum::class,
 		// DO NOT CAST. eager loading shows error
-		//'status_code'	=> LandlordCheckoutStatusEnum::class,
+		//'status_code'	=> CheckoutStatusEnum::class,
 	];
 
 	/* ---------------- HasMany ---------------------- */

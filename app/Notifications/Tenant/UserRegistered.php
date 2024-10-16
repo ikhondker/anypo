@@ -8,6 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 use App\Models\User;
+use App\Helpers\Tenant\Akk;
 
 class UserRegistered extends Notification implements ShouldQueue
 {
@@ -28,7 +29,7 @@ class UserRegistered extends Notification implements ShouldQueue
 	 * @return array<int, string>
 	 */
 	public function via(object $notifiable): array
-	{ 
+	{
 		return ['mail'];
 	}
 
@@ -38,7 +39,7 @@ class UserRegistered extends Notification implements ShouldQueue
 	public function toMail(object $notifiable): MailMessage
 	{
 		return (new MailMessage)
-			->subject('Welcome to '.tenant('id').'.'. config('app.name'))
+			->subject('Welcome to '.Akk::getDomainName())
 			->greeting('Hello '. $this->user->name . ',')
 			->line('Welcome to '.tenant('id').'.'.config('app.name').' and thank you for the registration.' )
 			->line('You have registered with email: '.$this->user->email )
@@ -47,7 +48,7 @@ class UserRegistered extends Notification implements ShouldQueue
 			->action('Login', url('/login'))
 			->line('Thank you for using '.config('app.name').' application!');
 	}
-			
+
 	/**
 	 * Get the array representation of the notification.
 	 *

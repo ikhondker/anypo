@@ -16,6 +16,7 @@
 87. tenant table -> add columns. its inside data
 90. Verification mail to ques event(new Registered($user));
 96. invoice and receipt drop-down policy check
+118. add facebook messenger chat in landlord site
 
 # 6. P2 TODO
 ====================================================================

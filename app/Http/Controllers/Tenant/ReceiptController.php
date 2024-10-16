@@ -36,13 +36,13 @@ use App\Models\Tenant\Lookup\Supplier;
 
 use App\Models\Tenant\Admin\Setup;
 # 2. Enums
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 use App\Enum\UserRoleEnum;
-use App\Enum\ReceiptStatusEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\ReceiptStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
-use App\Enum\ClosureStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -140,7 +140,7 @@ class ReceiptController extends Controller
 		}
 
 		$warehouses = Warehouse::primary()->get();
-		
+
 		if(empty($pol)){
 			Log::debug('tenant.ReceiptController.createForPol No pol Selected!');
 			$pols = Pol::receiptDue()->get();

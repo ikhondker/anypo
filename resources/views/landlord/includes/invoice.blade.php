@@ -11,11 +11,11 @@
 					</div>
 					<div class="col-md-6 text-md-right">
 						{{-- <div><span class="badge badge-subtle-primary">{{ strtoupper($invoice->status->name) }}</span></div> --}}
-						
+
 						<strong>INVOICE #{{ $invoice->invoice_no }}</strong>
 						<span class="badge badge-subtle-primary">{{ strtoupper($invoice->status->name) }}</span>
 						<p>
-							{{ $config->name }}<br> 
+							{{ $config->name }}<br>
 							{{ $config->address1 }}<br>
 							@if ($config->address2 <> '' )
 								{{ $config->address2 }}<br>
@@ -25,7 +25,7 @@
 							<a href="#">{{ $config->email }}</a>
 						</p>
 
-						@if ($invoice->status_code == App\Enum\LandlordInvoiceStatusEnum::DUE->value)
+						@if ($invoice->status_code == App\Enum\Landlord\InvoiceStatusEnum::DUE->value)
 							<form action="{{ url('/payment-stripe') }}" method="POST" class="needs-validation">
 								<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 								<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
@@ -34,8 +34,8 @@
 								</button>
 							</form>
 						@endif
-					
-							
+
+
 					</div>
 				</div>
 
@@ -63,7 +63,7 @@
 								{{ $account->address2 }}<br>
 							@endif
 							{{ $account->city . ', ' . $account->state . ', ' . $account->zip }}<br>
-							{{ $account->relCountry->name }}<br> 
+							{{ $account->relCountry->name }}<br>
 							<a href="#">{{ $account->email }}</a>
 						</p>
 					</div>
@@ -71,9 +71,9 @@
 						{{-- <div class="text-muted">Payment To</div>
 						<strong>AppStack LLC</strong> --}}
 						<p>
-							Invoice : #{{ $invoice->invoice_no }}<br> 
-							Invoice date: {{ strtoupper(date('d-M-Y', strtotime($invoice->invoice_date))) }}<br> 
-							Due date: {{ strtoupper(date('d-M-Y', strtotime($invoice->due_date))) }}<br> 
+							Invoice : #{{ $invoice->invoice_no }}<br>
+							Invoice date: {{ strtoupper(date('d-M-Y', strtotime($invoice->invoice_date))) }}<br>
+							Due date: {{ strtoupper(date('d-M-Y', strtotime($invoice->due_date))) }}<br>
 						</p>
 					</div>
 				</div>

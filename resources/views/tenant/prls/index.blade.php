@@ -39,8 +39,7 @@
 								<th class="text-end">Tax</th>
 								<th class="text-end">GST</th>
 								<th class="text-end">Amount</th>
-
-								<th>Enable</th>
+								<th>Closure</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -57,7 +56,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->tax"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->gst"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>
-								<td><x-tenant.list.my-boolean :value="$prl->enable"/></td>
+								<td><x-tenant.list.my-badge :value="$prl->closure_status"/></td>
 								<td>
 									<a href="{{ route('prls.show',$prl->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View

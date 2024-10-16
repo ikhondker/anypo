@@ -1,0 +1,36 @@
+
+Enum Change
+-----------------------------
+D:\laravel\anypo\app\Enum\Tenant
+
+AehEventEnum.php			use App\Enum\AehEventEnum; 		use App\Enum\Tenant\AehEventEnum;
+AehStatusEnum.php			use App\Enum\AehStatusEnum; 	use App\Enum\Tenant\AehStatusEnum;	
+AuthStatusEnum.php			use App\Enum\AuthStatusEnum;	use App\Enum\Tenant\AuthStatusEnum;	
+ClosureStatusEnum.php		use App\Enum\ClosureStatusEnum; use App\Enum\Tenant\ClosureStatusEnum;
+EntityEnum.php				use App\Enum\EntityEnum;		use App\Enum\Tenant\EntityEnum;
+EventEnum.php 				use App\Enum\EventEnum; 		use App\Enum\Tenant\EventEnum;
+InterfaceStatusEnum.php		use App\Enum\InterfaceStatusEnum; 		use App\Enum\Tenant\InterfaceStatusEnum;
+InvoiceStatusEnum.php		use App\Enum\InvoiceStatusEnum; 		use App\Enum\Tenant\InvoiceStatusEnum;
+MenuAccessEnum.php			use App\Enum\MenuAccessEnum; 		use App\Enum\Tenant\MenuAccessEnum;  CHK
+PaymentStatusEnum.php		use App\Enum\PaymentStatusEnum; 		use App\Enum\Tenant\PaymentStatusEnum;
+ReceiptStatusEnum.php		use App\Enum\ReceiptStatusEnum; 		use App\Enum\Tenant\ReceiptStatusEnum;
+WflActionEnum.php			use App\Enum\WflActionEnum; 		use App\Enum\Tenant\WflActionEnum;
+WfStatusEnum.php			use App\Enum\WfStatusEnum; 		use App\Enum\Tenant\WfStatusEnum;
+ok
+
+
+
+D:\laravel\anypo\app\Enum\Landlord
+LandlordAccountStatusEnum.php
+LandlordAddonTypeEnum.php
+LandlordCheckoutStatusEnum.php
+LandlordInvoiceStatusEnum.php
+LandlordInvoiceTypeEnum.php
+LandlordPaymentStatusEnum.php
+LandlordServiceStatusEnum.php
+LandlordTicketStatusEnum.php
+PaymentMethodEnum ?
+
+
+common
+UserRoleEnum

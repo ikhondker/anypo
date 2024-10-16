@@ -4,7 +4,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('reports.pr', $pr->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
-					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+					@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
 					@endif
 				</div>
@@ -36,7 +36,7 @@
 						<tr>
 							<th>&nbsp;</th>
 							<td>
-								@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+								@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 									<x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
 								@endif
 							</td>
@@ -52,7 +52,7 @@
 			<div class="card-header">
 
 				<div class="card-actions float-end">
-					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+					@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
 							data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
@@ -105,7 +105,7 @@
 						<tr>
 							<th>&nbsp;</th>
 							<td>
-								@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+								@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 									<form action="{{ route('prs.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 										@csrf
 										{{-- <x-tenant.attachment.create /> --}}

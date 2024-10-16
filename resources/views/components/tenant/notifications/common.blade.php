@@ -26,7 +26,7 @@
 				<td class="text-truncate w-75 col-subject">
 					@if ($notification->read_at == null)
 							<a href="{{ route('notifications.show', $notification->id) }}"><span class="text-warning">{{ $notification->data['subject'] }}</span></a>
-                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as Read" class="" href="{{ route('notifications.read',$notification->id) }}"><i data-lucide="check-circle" class="lucide-16 text-muted"></i></a>
+							<a data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as Read" class="" href="{{ route('notifications.read',$notification->id) }}"><i data-lucide="check-circle" class="lucide-16 text-muted"></i></a>
 						@else
 							<a href="{{ route('notifications.show', $notification->id) }}"><span class="text-muted">{{ $notification->data['subject'] }}</span></a>
 						@endif

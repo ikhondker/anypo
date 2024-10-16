@@ -28,7 +28,7 @@
 
 			{{-- <a href="{{ route('payments.create-for-po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-lucide="credit-card"></i> Payment</a> --}}
 			{{-- <a href="{{ route('reports.po', $po->id) }}" class="btn btn-primary float-end me-2"><i data-lucide="printer"></i> Print</a> --}}
-			@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+			@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 
 			@endif
 
@@ -37,15 +37,15 @@
 		@endslot
 	</x-tenant.page-header>
 
-	@if ($po->auth_status == App\Enum\AuthStatusEnum::APPROVED->value)
+	@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::APPROVED->value)
 		<x-tenant.dashboards.po-stats :id="$po->id"/>
 	@endif
 
 	<!-- approval form, show only if pending to current auth user -->
-	@if ($po->auth_status == App\Enum\AuthStatusEnum::INPROCESS->value)
-        @if (\App\Helpers\Tenant\Workflow::allowApprove($po->wf_id))
-             <x-tenant.widgets.wfl.get-approval wfId="{{ $po->wf_id }}" />
-        @endif
+	@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::INPROCESS->value)
+		@if (\App\Helpers\Tenant\Workflow::allowApprove($po->wf_id))
+			 <x-tenant.widgets.wfl.get-approval wfId="{{ $po->wf_id }}" />
+		@endif
 	@endif
 
  	<x-tenant.widgets.po.show-po-header poId="{{ $po->id }}"/>

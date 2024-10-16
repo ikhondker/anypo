@@ -2,7 +2,7 @@
 	<div class="card-header">
 		<div class="card-actions float-end">
 			<div class="dropdown position-relative">
-				@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+				@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 					<a href="{{ route('pols.add-line', $po->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus-square"></i> Add Line</a>
 				@endif
 			</div>
@@ -34,11 +34,11 @@
 			@empty
 
 			@endforelse
-		
+
 			<!-- Table footer i.e. Totals -->
 			<tr>
 				<td class="" colspan="2">
-					@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+					@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 						<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 					@endif
 				</td>
@@ -52,6 +52,6 @@
 			</tr>
 			<!-- End Table footer i.e. Totals -->
 		</tbody>
-	
+
 	</table>
 </div>

@@ -22,11 +22,12 @@ use App\Models\Landlord\Manage\Process;
 use App\Models\Landlord\Manage\Config;
 
 // Enums
-use App\Enum\InvoiceStatusEnum;
-use App\Enum\LandlordAccountStatusEnum;
+use App\Enum\Tenant\InvoiceStatusEnum;
+use App\Enum\Landlord\AccountStatusEnum;
 
 # Job
 use App\Jobs\Landlord\CreateMonthlyInvoice;
+
 
 // Helpers
 
@@ -81,8 +82,8 @@ class ProcessBilling implements ShouldQueue
 		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle process_id = '. $process->id);
 		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle config->days_gen_bill = '. $config->days_gen_bill);
 		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle end date before  = '. now()->addDays($config->days_gen_bill));
-		
-		$accounts = Account::where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
+
+		$accounts = Account::where('status_code', AccountStatusEnum::ACTIVE->value)
 			->where('next_bill_generated', false)
 			//->where('id', 1005 )
 			->orderBy('id', 'ASC')

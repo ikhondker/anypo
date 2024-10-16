@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 use App\Traits\AddCreatedUpdatedBy;
 
-use App\Enum\EntityEnum;
-use App\Enum\AehEventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\AehEventEnum;
+
 
 use App\Models\Tenant\Po;
 
@@ -57,7 +58,7 @@ class Aeh extends Model
 			$q->where('dept_id', $id);
 		});
 	}
-	
+
 	/* ----------------- HasMany ------------------------ */
 	public function aels() {
 		return $this->hasMany(Ael::class);

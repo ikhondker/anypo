@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\ClosureStatusEnum;
-use App\Enum\AuthStatusEnum;
-use App\Enum\PaymentStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
+use App\Enum\Tenant\PaymentStatusEnum;
 
 return new class extends Migration
 {
@@ -49,11 +49,11 @@ return new class extends Migration
 			$table->decimal('amount_paid',19, 4)->default(0);
 			$table->decimal('fc_amount_paid',19, 4)->default(0);
 			/** ENUM */
-			$table->string('status')->default(ClosureStatusEnum::OPEN->value);;
+			$table->string('status')->default(ClosureStatusEnum::OPEN->value);
 			$table->foreign('status')->references('code')->on('statuses');
 			/** end ENUM */
 			/** ENUM */
-			$table->string('payment_status')->default(PaymentStatusEnum::DUE->value);;
+			$table->string('payment_status')->default(PaymentStatusEnum::DUE->value);
 			$table->foreign('payment_status')->references('code')->on('statuses');
 			/** end ENUM */
 			/** ENUM */

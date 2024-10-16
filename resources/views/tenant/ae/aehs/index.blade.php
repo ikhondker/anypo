@@ -78,11 +78,11 @@
 						<td><a href="{{ route('aehs.show',$aeh->id) }}"><strong>{{ $aeh->id }}</strong></a></td>
 						<td><span class="badge badge-subtle-primary">{{ $aeh->source_entity }}</span></td>
 						<td>
-								@if ($aeh->event->value == App\Enum\AehEventEnum::CANCEL->value)
+								@if ($aeh->event->value == App\Enum\Tenant\AehEventEnum::CANCEL->value)
 									<span class="badge badge-subtle-danger">{{ $aeh->event }}</span>
-								@else 
+								@else
 									<span class="badge badge-subtle-success">{{ $aeh->event }}</span>
-								@endif 
+								@endif
 						</td>
 						<td><x-tenant.list.my-date :value="$aeh->accounting_date"/></td>
 						<td>{{ $aeh->description }}</td>

@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
 class PoPolicy
 {
@@ -22,7 +22,7 @@ class PoPolicy
 		return null;
 	}
 
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -51,7 +51,7 @@ class PoPolicy
 	 */
 	public function submit(User $user, Po $po): bool
 	{
-		return ($po->auth_status == AuthStatusEnum::DRAFT->value); 
+		return ($po->auth_status == AuthStatusEnum::DRAFT->value);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class PoPolicy
 		return $user->isBuyer();
 	}
 
-	
+
 
 	/**
 	 * Determine whether the user can update the model.

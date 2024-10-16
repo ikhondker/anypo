@@ -40,7 +40,7 @@ class AccountsArchive implements ShouldQueue
 		$Config = Config::first();
 
 		$accounts = Account::
-			where('status_code', LandlordAccountStatusEnum::ACTIVE->value)
+			where('status_code', AccountStatusEnum::ACTIVE->value)
 			->where('next_bill_generated', true )
 			->where('end_date', '>', now()->subDays($Config->days_archive))
 			->orderBy('id', 'ASC')

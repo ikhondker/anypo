@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			LandlordInvoiceStatusEnum.php
-* @brief		This file contains the implementation of the LandlordInvoiceStatusEnum
+* @file			PaymentMethodEnum.php
+* @brief		This file contains the implementation of the PaymentMethodEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,12 +17,15 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Landlord;
 
-enum LandlordInvoiceStatusEnum:string{
-	case PAID		= 'paid';
-	case ONHOLD		= 'on-hold';
-	case DUE		= 'due';
-	case PASTDUE	= 'past-due';
-	case CANCELED	= 'canceled';
+// For Both
+enum PaymentMethodEnum:string{
+	case CASH		= 'cash';
+	case CARD		= 'card';
+	case MFS		= 'mfs';
+	case CHECK		= 'check';
+	case BANK		= 'bank';
+	case CRYPTO		= 'crypto';
+
 }

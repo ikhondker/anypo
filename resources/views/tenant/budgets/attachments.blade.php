@@ -17,10 +17,10 @@
 			<x-tenant.buttons.header.edit object="Budget" :id="$budget->id"/>
 			<x-tenant.buttons.header.create object="Budget"/>
 			<x-tenant.actions.budget-actions budgetId="{{ $budget->id }}"/>
-	
+
 		@endslot
 	</x-tenant.page-header>
-	
+
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -44,10 +44,10 @@
 				</table>
 			</div>
 		</div>
-	
-	
-	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::BUDGET->value }}" aid="{{ $budget->id }}"/>
 
-	
+
+	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::BUDGET->value }}" aid="{{ $budget->id }}"/>
+
+
 @endsection
 

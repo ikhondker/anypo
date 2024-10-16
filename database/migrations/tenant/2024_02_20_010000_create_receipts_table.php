@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\ReceiptStatusEnum;
+use App\Enum\Tenant\ReceiptStatusEnum;
 
 return new class extends Migration
 {
@@ -16,7 +16,7 @@ return new class extends Migration
 		Schema::create('receipts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->date('receive_date')->default(DB::raw('(CURDATE())'));
-			$table->enum('rcv_type', ['RECEIVE','ADJUSTMENT','MISCELLANEOUS'])->default('RECEIVE'); 
+			$table->enum('rcv_type', ['RECEIVE','ADJUSTMENT','MISCELLANEOUS'])->default('RECEIVE');
 			//$table->string('summary')->nullable();
 			$table->foreignId('pol_id')->constrained('pols');
 			$table->foreignId('warehouse_id')->constrained('warehouses');
@@ -40,7 +40,7 @@ return new class extends Migration
 			$table->string('error_code',15)->nullable();
 			$table->boolean('accounted')->default(false);
 			/** ENUM */
-			$table->string('status')->default(ReceiptStatusEnum::RECEIVED->value);;
+			$table->string('status')->default(ReceiptStatusEnum::RECEIVED->value);
 			$table->foreign('status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->uuid('created_by')->nullable();

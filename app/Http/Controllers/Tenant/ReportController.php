@@ -50,10 +50,10 @@ use App\Models\Tenant\Lookup\BankAccount;
 
 use App\Models\Tenant\Admin\Setup;
 # 2. Enums
-use App\Enum\EntityEnum;
+use App\Enum\Tenant\EntityEnum;
 use App\Enum\UserRoleEnum;
-use App\Enum\AuthStatusEnum;
-use App\Enum\InvoiceStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
+use App\Enum\Tenant\InvoiceStatusEnum;
 # 3. Helpers
 use App\Helpers\Watermark;
 use App\Helpers\Export;
@@ -176,12 +176,12 @@ class ReportController extends Controller
 		Log::debug('tenant.report.run start_date = '.$start_date);
 		Log::debug('tenant.report.run end_date = '.$end_date);
 		Log::debug('tenant.report.run pm_id = '.$pm_id);
-		
+
 		Log::debug('tenant.report.run report_code = '.$report->code);
 
 		// Increase reports run_count -------------------------
 		self::increaseRunCounter(Str::lower($report->code));
-		
+
 
 		// article_id validation
 		if ($report->article_id_required){
@@ -254,12 +254,12 @@ class ReportController extends Controller
 			case 'receiptlist':
 					return self::receiptlist($start_date, $end_date, $dept_id);
 					break;
-					
-					
+
+
 			case 'projectspend':
 				return self::projectspend($start_date, $end_date, $project_id);
 				break;
-						
+
 			case 'supplierspend':
 				return self::supplierspend($start_date, $end_date, $supplier_id);
 				break;
@@ -271,7 +271,7 @@ class ReportController extends Controller
 			case 'aellist':
 				return self::aellist($start_date, $end_date);
 				break;
-				
+
 			default:
 				Log::warning(tenant('id').' tenant.report.run report_id = '.$report->id.' not found!');
 		}
@@ -366,14 +366,14 @@ class ReportController extends Controller
 
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
-		
+
 		$title 		= $report->name. ' #'. $pr->id; ;
 		$subTitle	= 'Amount: '. number_format($pr->amount, 2) .' '. $pr->currency;
 		$param1 	= 'Approval: '. strtoupper($pr->auth_status);
 		$param2 	= '';
 		$param3 	= '';
 		self::increaseRunCounter(Str::lower($report->code));
-		
+
 		$data = [
 			'setup' 	=> $setup,
 			'report' 	=> $report,
@@ -388,7 +388,7 @@ class ReportController extends Controller
 
 		//PDF::setOptions(['debugCss' => true]);
 		$pdf = PDF::loadView('tenant.reports.formats.pr', $data);
-		
+
 		// ->setOption('fontDir', public_path('/fonts/lato'));
 		Watermark::set($pdf, $pr->auth_status);
 
@@ -459,7 +459,7 @@ class ReportController extends Controller
 	{
 
 		$this->authorize('run',Report::class);
-		
+
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$title 		= $report->name;
@@ -602,14 +602,14 @@ class ReportController extends Controller
 		return $pdf->stream('pos-'.strtotime("now").'.pdf');
 	}
 
-	
+
 
 	public function pollist($start_date, $end_date, $dept_id)
 	{
 
 		$this->authorize('run',Report::class);
 
-		
+
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$title 		= $report->name;
@@ -636,7 +636,7 @@ class ReportController extends Controller
 			AND ". ($dept_id <> '' ? 'p.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
 			AND DATE(p.po_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
-	
+
 		$pols = DB::select($sql);
 
 		$data = [
@@ -674,7 +674,7 @@ class ReportController extends Controller
 		$param2 	= '';
 		$param3 	= '';
 		self::increaseRunCounter(Str::lower($report->code));
-		
+
 		$data = [
 			'setup' 	=> $setup,
 			'report' 	=> $report,
@@ -699,7 +699,7 @@ class ReportController extends Controller
 
 		$this->authorize('run',Report::class);
 
-		
+
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$title 		= $report->name;
@@ -766,7 +766,7 @@ class ReportController extends Controller
 		$param2 	= '';
 		$param3 	= '';
 		self::increaseRunCounter(Str::lower($report->code));
-		
+
 		$data = [
 			'setup' 	=> $setup,
 			'report' 	=> $report,
@@ -789,7 +789,7 @@ class ReportController extends Controller
 
 		$this->authorize('run',Report::class);
 
-		
+
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$title 		= $report->name;
@@ -857,7 +857,7 @@ class ReportController extends Controller
 		$param2 	= '';
 		$param3 	= '';
 		self::increaseRunCounter(Str::lower($report->code));
-		
+
 		$data = [
 			'setup' 	=> $setup,
 			'report' 	=> $report,
@@ -923,7 +923,7 @@ class ReportController extends Controller
 			'subTitle' 	=> $subTitle,
 			'param1' 	=> $param1,
 			'param2' 	=> $param2,
-			'param3' 	=> $param3,	
+			'param3' 	=> $param3,
 			'receipts'	=> $receipts,
 		];
 
@@ -934,7 +934,7 @@ class ReportController extends Controller
 
 		return $pdf->stream('receipts-'.strtotime("now").'.pdf');
 	}
-	
+
 	public function taxregister($start_date, $end_date, $dept_id)
 	{
 
@@ -1053,7 +1053,7 @@ class ReportController extends Controller
 
 		$this->authorize('run',Report::class);
 
-		
+
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$title 		= $report->name;
@@ -1138,8 +1138,8 @@ class ReportController extends Controller
 			SELECT a.id, a.source_app,a.source_entity, a.event, a.accounting_date, al.ac_code, al.line_description,
 			al.fc_currency, al.fc_dr_amount, al.fc_cr_amount,
 			a.po_id, a.reference_no
-			FROM aehs a, aels al 
-			WHERE 1=1 
+			FROM aehs a, aels al
+			WHERE 1=1
 			AND a.id=al.aeh_id;
 			WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
 		";
@@ -1147,8 +1147,8 @@ class ReportController extends Controller
 		SELECT a.id, a.source_app,a.source_entity, a.event, a.accounting_date, al.ac_code, al.line_description,
 		al.fc_currency, al.fc_dr_amount, al.fc_cr_amount,
 		a.po_id, a.reference_no
-		FROM aehs a, aels al 
-		WHERE 1=1 
+		FROM aehs a, aels al
+		WHERE 1=1
 		AND a.id=al.aeh_id;
 	";
 
@@ -1173,10 +1173,10 @@ class ReportController extends Controller
 		return $pdf->stream('aels-'.strtotime("now").'.pdf');
 	}
 
-	
 
-	
-	
+
+
+
 
 	function increaseRunCounter($reportCode)
 	{
@@ -1185,5 +1185,5 @@ class ReportController extends Controller
 			run_count	= run_count + 1
 			WHERE code 	= '".$reportCode."'");
 	}
-	
+
 }

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
-use App\Enum\MenuAccessEnum;
+use App\Enum\Tenant\MenuAccessEnum;
 
 class Menu extends Model
 {
@@ -27,9 +27,9 @@ class Menu extends Model
 
 
 	/* ---------------- Scope ---------------------- */
-	
-	
+
+
 	/* ---------------- HasMany ---------------------- */
-	
+
 	/* ---------------- belongsTo ---------------------- */
 }

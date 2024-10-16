@@ -31,8 +31,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 // Enums
 //use App\Enum\UserRoleEnum;
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Budget;

@@ -35,9 +35,9 @@ use App\Models\Tenant\Workflow\Wfl;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-use App\Enum\EntityEnum;
-use App\Enum\WflActionEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\WflActionEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 use Exception;
 
 use DB;

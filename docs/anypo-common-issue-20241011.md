@@ -34,3 +34,23 @@ attachment file type and max size?
 (###) ###-####
 (000) 000-0000
 s example.org, example.net and example.com
+
+
+Step 3: Autoloading the Helper File
+----------------------------------------
+composer.json
+
+"autoload": {
+    "files": [
+        "app/Helpers/Tenant/Akk.php"
+    ],
+    ...
+},
+
+"files":   "app/Helpers/Tenant/Akk.php",
+ you need to run composer dump-autoload to make sure that everything has been loaded.
+
+
+ge current domain
+https://tenancyforlaravel.com/docs/v3/tenants/
+dd(tenant()->domains->first()->domain);

@@ -12,12 +12,13 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('payment_methods', function (Blueprint $table) {
-			$table->id()->startingValue(1001);
+			//$table->id()->startingValue(1001);
+            $table->string('code',15);	// model: protected $primaryKey = 'code'; // Hardcoded in Workflow Helper only
 			$table->string('name');
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();
-			$table->boolean('enable')->default(true); 
+			$table->boolean('enable')->default(true);
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

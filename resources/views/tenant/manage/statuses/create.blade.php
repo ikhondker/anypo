@@ -33,18 +33,18 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<x-tenant.create.name/>
-                        <tr>
-                            <th class="text-success">Code :</th>
-                            <td>
-                                <input type="text" class="form-control @error('code') is-invalid @enderror"
-                                    name="code" id="code" placeholder="xxx"
-                                    value="{{ old('code', '' ) }}"
-                                    required/>
-                                @error('code')
-                                    <div class="small text-danger">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
+						<tr>
+							<th class="text-success">Code :</th>
+							<td>
+								<input type="text" class="form-control @error('code') is-invalid @enderror"
+									name="code" id="code" placeholder="xxx"
+									value="{{ old('code', '' ) }}"
+									required/>
+								@error('code')
+									<div class="small text-danger">{{ $message }}</div>
+								@enderror
+							</td>
+						</tr>
 						<tr>
 							<th>Badge</th>
 							<td>

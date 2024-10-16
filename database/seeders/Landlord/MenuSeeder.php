@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Landlord\Manage\Menu;
 
-use App\Enum\MenuAccessEnum;
 
 class MenuSeeder extends Seeder
 {
@@ -64,14 +63,14 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'invoices.update',	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
 			[ 'raw_route_name' => 'invoices.edit',	 	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
 			[ 'raw_route_name' => 'invoices.create',	'route_name' => 'invoices.index',	  'node_name' 	=> 'workbench'],
-			
+
 			[ 'raw_route_name' => 'payments.index',		'route_name' => 'payments.index',  'node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'payments.all',	  	'route_name' => 'payments.index', 'node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'payments.show',	 	'route_name' => 'payments.index', 'node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'payments.update',	'route_name'=> 'payments.index', 'node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'payments.edit',	 	'route_name'=> 'payments.index', 'node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'payments.create',	'route_name'=> 'payments.index', 'node_name' 		=> 'workbench'],
-			
+
 			[ 'raw_route_name' => 'services.index',		'route_name' => 'services.index', 'node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'services.all',	  	'route_name' => 'services.index',	  'node_name' 	=> 'workbench'],
 			[ 'raw_route_name' => 'services.show',	 	'route_name' => 'services.index',	  'node_name' 	=> 'workbench'],
@@ -102,7 +101,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.update',	  	'route_name' => 'users.index',	'node_name' 		=> 'workbench'],
 
 			[ 'raw_route_name' => 'contacts.all',	  	'route_name' => 'contacts.index',	  'node_name' => 'workbench'],
-			
+
 			[ 'raw_route_name' => 'tenants.index',	 	'route_name' => 'tenants.index',	'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'tenants.show',	  	'route_name' => 'tenants.index',	'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'tenants.update',		'route_name' => 'tenants.index',	'node_name' => 'workbench'],
@@ -121,10 +120,10 @@ class MenuSeeder extends Seeder
 			* 1. Admin
 			* ==================================================================================
 			*/
-			
 
-			
-			
+
+
+
 
 			/**
 			* ==================================================================================
@@ -163,20 +162,20 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			
 
-			
-			
-			
 
-			
+
+
+
+
+
 
 			/**
 			* ==================================================================================
 			* 1. SysAdmin
 			* ==================================================================================
 			*/
-			
+
 			[ 'raw_route_name' => 'error-logs.index',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
 			[ 'raw_route_name' => 'error-logs.show',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
 			[ 'raw_route_name' => 'error-logs.update',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
@@ -222,7 +221,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'menus.update',		'route_name' => 'menus.index',	'node_name' => 'system'],
 			[ 'raw_route_name' => 'menus.edit',			'route_name' => 'menus.index',	'node_name' => 'system'],
 			[ 'raw_route_name' => 'menus.create',		'route_name' => 'menus.index',	'node_name' => 'system'],
-			
+
 			[ 'raw_route_name' => 'statuses.index',		'route_name' => 'statuses.index',	  'node_name' => 'system'],
 			[ 'raw_route_name' => 'statuses.show',	 	'route_name' => 'statuses.index',	  'node_name' => 'system'],
 			[ 'raw_route_name' => 'statuses.update',	'route_name' => 'statuses.index',	  'node_name' => 'system'],
@@ -265,7 +264,7 @@ class MenuSeeder extends Seeder
 			* 9. Others
 			* ==================================================================================
 			*/
-			
+
 
 		];
 		Menu::insert($menus);

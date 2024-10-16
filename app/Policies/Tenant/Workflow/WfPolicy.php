@@ -84,7 +84,7 @@ class WfPolicy
 	 */
 	public function reset(User $user): bool
 	{
-        return true;
+		return true;
 		//return ($user->isAdmin() || $user->isSupport());
 	}
 

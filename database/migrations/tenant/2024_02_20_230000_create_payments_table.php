@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\EntityEnum;
-use App\Enum\PaymentStatusEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\PaymentStatusEnum;
 
 return new class extends Migration
 {
@@ -37,7 +37,7 @@ return new class extends Migration
 			$table->string('error_code',15)->nullable();
 			$table->boolean('accounted')->default(false);
 			/** ENUM */
-			$table->string('status')->default(PaymentStatusEnum::PAID->value);;
+			$table->string('status')->default(PaymentStatusEnum::PAID->value);
 			/** end ENUM */
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

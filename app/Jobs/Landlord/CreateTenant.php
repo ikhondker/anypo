@@ -26,10 +26,10 @@ use App\Models\Landlord\Manage\Config;
 
 // Enums
 use App\Enum\UserRoleEnum;
-use App\Enum\LandlordInvoiceStatusEnum;
-use App\Enum\LandlordPaymentStatusEnum;
-use App\Enum\LandlordInvoiceTypeEnum;
-use App\Enum\LandlordCheckoutStatusEnum;
+use App\Enum\Landlord\InvoiceStatusEnum;
+use App\Enum\Landlord\PaymentStatusEnum;
+use App\Enum\Landlord\InvoiceTypeEnum;
+use App\Enum\Landlord\CheckoutStatusEnum;
 
 // Helpers
 use App\Helpers\Landlord\Bo;
@@ -89,7 +89,7 @@ class CreateTenant implements ShouldQueue
 
 		// mark checkout as processing
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
-		$checkout->status_code = LandlordCheckoutStatusEnum::PROCESSING->value ;
+		$checkout->status_code = CheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
 		Log::debug('Jobs.Landlord.CreateTenant 0. Processing Site = '.$checkout->site);
 
@@ -139,21 +139,28 @@ class CreateTenant implements ShouldQueue
 		// Create new tenant
 		Log::debug("Jobs.Landlord.CreateTenant Creating Tenant for checkout ID= ".$this->checkout_id);
 		Log::debug('Jobs.Landlord.CreateTenant 6. Calling self::createTenantDb');
-		$tenant_id= self::createTenantDb();
+		$tenant_id = self::createTenantDb();
 		// tenant creation fails
 		if ($tenant_id == 0){
 			Log::error("Jobs.Landlord.CreateTenant.handle Tenant Creation failed. Marking checkout as Error!");
 			// mark checkout as complete
-			$checkout->status_code = LandlordCheckoutStatusEnum::ERROR->value;
+			$checkout->status_code = CheckoutStatusEnum::ERROR->value;
 		} else {
 			// mark checkout as complete
-			$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
+            Log::debug('Jobs.Landlord.CreateTenant New Tenant created successfully tenant_id = '.$tenant_id);
+			$checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
 		}
 		$checkout->update();
 
-		// Send notification to Landlord system on new purchase
+
+
+		// Update account with tenant_id
 		$account 	= Account::where('id', $account_id)->first();
-		$config 	= Config::first();
+		$account->tenant_id = $tenant_id;
+        $account->update();
+
+        // Send notification to Landlord system on new purchase
+        $config 	= Config::first();
 		$system 	= User::where('id', $config->system_user_id)->first();
 		$system->notify(new ServicePurchased($system, $account));
 

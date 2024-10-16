@@ -7,7 +7,7 @@
 
 		<x-tenant.page-header>
 		@slot('title')
-			Get Started  
+			Get Started
 		@endslot
 
 		@slot('buttons')
@@ -39,7 +39,7 @@
 				  <a class="dropdown-item" href="#">Something else here</a>
 				</div>
 			  </div>
-			  
+
 		@endslot
 
 	</x-tenant.page-header>
@@ -61,10 +61,10 @@
 					<table class="table table-sm my-2">
 						<tbody>
 							<tr>
-								<th>Name</th>
+								<th>Name {{ DomainTenantResolver::currentDomain }}</th>
 								<td>Angelica Ramos</td>
 							</tr>
-	
+
 							<tr>
 								<th>Company</th>
 								<td>The Wiz</td>
@@ -83,9 +83,9 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
+
+
+
 		<div class="alert alert-danger alert-dismissible" role="alert">
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			<div class="alert-icon">
@@ -93,18 +93,18 @@
 			</div>
 			<div class="alert-message">
 				<strong>Error!</strong> aaaaaaaaaaaaaaaaaaaaa
-				
+
 					<ul>
-				
+
 							<li class="">1111</li>
 							<li class="">1111</li>
 							<li class="">1111</li>
-				
+
 					</ul>
-				
+
 			</div>
 		</div>
-	
+
 
 
 	<main class="content">
@@ -138,11 +138,11 @@
 				<p>Thanks for clicking. That felt good.</p>
 				<a href="#" rel="modal:close">Close</a>
 			  </div>
-			  
+
 			  <!-- Link to open the modal -->
 			  <p><a href="#ex1" rel="modal:open">Open Modal</a></p>
-			  
-			
+
+
 			<div class="row">
 				<div class="mx-auto col-lg-10 col-xl-8">
 					<h1 class="h3">Get Started TODO1s <i class="bi bi-eye" style="font-size: 1.3rem;"></i></h1>

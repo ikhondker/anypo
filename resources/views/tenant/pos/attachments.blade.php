@@ -21,11 +21,11 @@
 
 	<x-tenant.info.po-info poId="{{ $po->id }}"/>
 
-	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PO->value }}" articleId="{{ $po->id }}"/>
+	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::PO->value }}" articleId="{{ $po->id }}"/>
 
-    <div class="row">
+	<div class="row">
 		<div class="col-sm-6">
-			@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+			@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 				<form action="{{ route('pos.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 					@csrf
 					<input type="text" name="attach_po_id" id="attach_po_id" class="form-control" placeholder="ID" value="{{ old('id', $po->id ) }}" hidden>

@@ -9,7 +9,7 @@
 		<a class="dropdown-item" href="{{ route('pos.attachments',$po->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
 		<a class="dropdown-item" href="{{ route('pos.history', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Approval History</a>
 
-		@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+		@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 			<div class="dropdown-divider"></div>
 			@can('update', $po)
 				<a class="dropdown-item" href="{{ route('pos.edit', $po->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order</a>

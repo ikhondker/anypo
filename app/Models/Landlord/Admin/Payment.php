@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord\Admin
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -34,14 +34,15 @@ use App\Models\Landlord\Manage\Status;
 
 use App\Models\Landlord\Admin\Invoice;
 
-use App\Enum\LandlordPaymentStatusEnum;
+//use App\Enum\Landlord\PaymentStatusEnum;
+use App\Enum\Landlord\PaymentMethodEnum;
 
 class Payment extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'summary', 'pay_date','session_id', 'invoice_id', 'account_id', 'owner_id', 'payment_method_id', 'amount', 'currency', 'cheque_no', 'payment_token', 'reference_id', 'notes', 'ip', 'status_code', 'updated_by', 'updated_at',
+		'summary', 'pay_date','session_id', 'invoice_id', 'account_id', 'owner_id', 'payment_method_code', 'amount', 'currency', 'cheque_no', 'payment_token', 'reference_id', 'notes', 'ip', 'status_code', 'updated_by', 'updated_at',
 	];
 
 	protected $casts = [
@@ -49,7 +50,8 @@ class Payment extends Model
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
 		// DO NOT CAST. eager loading shows error
-		//'status_code'	=> LandlordPaymentStatusEnum::class,
+		//'status_code'	=> PaymentStatusEnum::class,
+		// TODO 'payment_method_code' => PaymentMethodEnum::class,
 	];
 
 	/* ---------------- Scope ---------------------- */
@@ -78,7 +80,7 @@ class Payment extends Model
 
 	public function payment_method()
 	{
-		return $this->belongsTo(PaymentMethod::class, 'payment_method_id');
+		return $this->belongsTo(PaymentMethod::class, 'payment_method_code');
 	}
 
 	public function status()

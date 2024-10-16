@@ -14,8 +14,8 @@ use App\Models\Tenant\Po;
 use Illuminate\Database\Eloquent\Builder;
 
 use App\Models\Tenant\Manage\Status;
-use App\Enum\ClosureStatusEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
 class Pol extends Model
 {

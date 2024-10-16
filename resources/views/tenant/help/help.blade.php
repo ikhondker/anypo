@@ -14,14 +14,14 @@
 			@if ( auth()->user()->role == UserRoleEnum::SYSTEM->value)
 			<a href="tel:{{ config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-danger float-end me-2"><i data-lucide="phone-outgoing"></i> Call support {{config('akk.SUPPORT_PHONE_NO')}}</a>
 			<a href="{{ route('get-started') }}" class="btn btn-danger float-end me-2"><i data-lucide="phone-outgoing"></i> Get Started **</a>
-			@endif 
+			@endif
 			<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-2"><i class="fas fa-plus"></i> Create Ticket</a>
 		@endslot
 	</x-tenant.page-header>
 
-	
+
 	<div class="row">
-		<div class="col-md-3 col-xl-2"> 
+		<div class="col-md-3 col-xl-2">
 
 			<div class="card">
 				<div class="card-header">
@@ -34,6 +34,7 @@
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppr" role="tab">Requisition</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppo" role="tab">Purchase Orders</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpapproval" role="tab">Approval</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpworkflow" role="tab">Workflow***</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpcurrency" role="tab">Currency</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpbudget" role="tab">Budgets</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpdbudget" role="tab">Dept Budgets</a>
@@ -46,20 +47,20 @@
 
 		<div class="col-md-9 col-xl-10">
 			<div class="tab-content">
-				
+
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpstart')
 				<!-- ========== INCLUDE ========== -->
 
-				
+
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpfaq')
 				<!-- ========== INCLUDE ========== -->
-				
+
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpsetup')
 				<!-- ========== INCLUDE ========== -->
-				
+
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helppr')
 				<!-- ========== INCLUDE ========== -->
@@ -71,11 +72,11 @@
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpapproval')
 				<!-- ========== INCLUDE ========== -->
-			
+
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpcurrency')
 				<!-- ========== INCLUDE ========== -->
-				
+
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpbudget')
 				<!-- ========== INCLUDE ========== -->
@@ -83,7 +84,7 @@
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpdbudget')
 				<!-- ========== INCLUDE ========== -->
-								
+
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpmaster')
 				<!-- ========== INCLUDE ========== -->
@@ -97,12 +98,12 @@
 				<!-- ========== INCLUDE ========== -->
 
 
-				
+
 
 			</div>
 			 <!-- end tab-content -->
 		</div>
-		
+
 	</div>
 
 

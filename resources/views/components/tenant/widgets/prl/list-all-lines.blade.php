@@ -2,7 +2,7 @@
 	<div class="card-header">
 		<div class="card-actions float-end">
 			<div class="dropdown position-relative">
-				@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+				@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 					<a href="{{ route('prls.add-line', $pr->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus-square"></i> Add Line</a>
 				@endif
 			</div>
@@ -37,7 +37,7 @@
 			<!-- Table footer i.e. Totals -->
 			<tr>
 				<td class="" colspan="3" scope="col">
-					@if ($pr->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+					@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 						<a href="{{ route('prls.add-line', $pr->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 					@endif
 				</td>

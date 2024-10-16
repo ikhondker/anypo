@@ -13,7 +13,7 @@ use App\Models\Landlord\Manage\Checkout;
 use App\Models\Landlord\Account;
 
 // Enums
-use App\Enum\LandlordCheckoutStatusEnum;
+use App\Enum\Landlord\CheckoutStatusEnum;
 
 // Helpers
 use App\Helpers\Landlord\Bo;
@@ -44,7 +44,7 @@ class AddAddon implements ShouldQueue
 	{
 		// mark checkout as processing
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
-		$checkout->status_code = LandlordCheckoutStatusEnum::PROCESSING->value ;
+		$checkout->status_code = CheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
 		Log::debug('Jobs.Landlord.AddAddon 0. Processing Site = '.$checkout->site);
 
@@ -52,7 +52,7 @@ class AddAddon implements ShouldQueue
 		Log::debug('Jobs.Landlord.AddAddon 1. Calling createServiceForCheckout');
 		$service_id = bo::createServiceForCheckout($this->checkout_id);
 
-		// generate invoice and notify 
+		// generate invoice and notify
 		Log::debug('Jobs.Landlord.AddAddon 2. Calling createInvoiceForCheckout');
 		$invoice_id = bo::createInvoiceForCheckout($this->checkout_id);
 		if ($invoice_id == 0){
@@ -84,7 +84,7 @@ class AddAddon implements ShouldQueue
 		Log::channel('bo')->info('Jobs.Landlord.AddAddon Account qty updated for account_id = ' . $account->id);
 
 		// mark checkout as complete
-		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
+		$checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
 		Log::debug('Jobs.Landlord.AddAddon 4. Done');
 

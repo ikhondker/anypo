@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			PaymentMethodEnum.php
-* @brief		This file contains the implementation of the PaymentMethodEnum
+* @file			CheckoutStatusEnum.php
+* @brief		This file contains the implementation of the CheckoutStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,21 +17,15 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Landlord;
 
-// For Both
-enum PaymentMethodEnum:string{
-	// case CASH		= '1001';
-	// case CARD		= '1002';
-	// case MFS		    = '1003';
-	// case CHECK		= '1004';
-	// case BANK		= '1005';
-	// case CRYPTO		= '1006';
-    case CASH		= 'cash';
-	case CARD		= 'card';
-	case MFS		= 'mfs';
-	case CHEQUE		= 'cheque';
-	case BANK		= 'bank';
-	case CRYPTO		= 'crypto';
+enum CheckoutStatusEnum:string{
+	case DRAFT		= 'draft';
+	case PROCESSING	= 'processing';
+	case COMPLETED	= 'completed';
+	case CANCELED	= 'canceled';
+	case FAILED		= 'failed';
+	case ERROR		= 'error';
+
 
 }

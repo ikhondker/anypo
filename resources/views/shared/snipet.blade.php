@@ -60,7 +60,7 @@ Log::debug(tenant('id'). ' tenant.Access.isAttachmentEditable article_id = '. $a
 <th width="20%">Photo</th>
 
 $user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
-		
+
 
 <div class="text-danger text-xs">{{ $message }}</div> to <div class="small text-danger">{{ $message }}</div>
 
@@ -94,7 +94,7 @@ $user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
 <tr>
 	<th></th>
 	<td>
-		@if ($invoice->status <> App\Enum\InvoiceStatusEnum::POSTED->value)
+		@if ($invoice->status <> App\Enum\Tenant\InvoiceStatusEnum::POSTED->value)
 			<x-tenant.buttons.show.edit object="Invoice" :id="$invoice->id"/>
 		@endif
 	</td>
@@ -102,7 +102,7 @@ $user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
 
 
 
-@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 	<div class="dropdown-divider"></div>
 @endif
 

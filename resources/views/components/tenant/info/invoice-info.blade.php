@@ -7,14 +7,14 @@
 			</div>
 			<div class="col-sm-9 col-xl-12 col-xxl-9">
 				<div class="card-actions float-end">
-					@if ($invoice->status <> App\Enum\InvoiceStatusEnum::POSTED->value)
+					@if ($invoice->status <> App\Enum\Tenant\InvoiceStatusEnum::POSTED->value)
 						@can('edit', $invoice)
 							<a href="{{ route('invoices.edit', $invoice->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
-						@endcan 
+						@endcan
 					@endif
 					<a href="{{ route('invoices.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
-			
+
 				<strong>INVOICE #{{ $invoice->invoice_no }} : {{ $invoice->summary }}</strong>
 				<p>{!! nl2br($invoice->notes) !!}</p>
 				<table class="table table-sm my-2">
@@ -35,7 +35,7 @@
 							<th>Paid Amount</th>
 							<td>{{ number_format($invoice->amount_paid , 2) }} {{ $invoice->currency }}</td>
 						</tr>
-						
+
 						<tr>
 							<th>Status</th>
 							<td><span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span></td>

@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
 class PrPolicy
 {
@@ -22,7 +22,7 @@ class PrPolicy
 		return null;
 	}
 
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -53,7 +53,7 @@ class PrPolicy
 	 */
 	public function submit(User $user, Pr $pr): bool
 	{
-		return ($pr->auth_status == AuthStatusEnum::DRAFT->value); 
+		return ($pr->auth_status == AuthStatusEnum::DRAFT->value);
 	}
 
 
@@ -62,7 +62,7 @@ class PrPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return true; 
+		return true;
 	}
 
 	/**
@@ -132,7 +132,7 @@ class PrPolicy
 	{
 		return $user->isSupport();
 	}
-	
+
 	public function export(User $user): bool
 	{
 		return true;

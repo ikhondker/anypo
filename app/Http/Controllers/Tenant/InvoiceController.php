@@ -37,13 +37,13 @@ use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Manage\CustomError;
 # 2. Enums
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 use App\Enum\UserRoleEnum;
-use App\Enum\InvoiceStatusEnum;
-use App\Enum\ClosureStatusEnum;
-use App\Enum\PaymentStatusEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\InvoiceStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
+use App\Enum\Tenant\PaymentStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -182,7 +182,7 @@ class InvoiceController extends Controller
 			'supplier_id'	=> $po->supplier_id,
 			'fc_currency'	=> $setup->currency
 		]);
-	
+
 		// as this is the first line pr value will be same as prl values
 		$request->merge(['sub_total'	=> $request->input('qty') * $request->input('price')]);
 		$request->merge(['tax'			=> $request->input('tax')]);
@@ -200,7 +200,7 @@ class InvoiceController extends Controller
 			$attid = FileUpload::aws($request);
 		}
 
-		
+
 		// create invoice lines with line number
 		$invl			= new InvoiceLine();
 		$invl->invoice_id		= $invoice->id;
@@ -294,11 +294,11 @@ class InvoiceController extends Controller
 			'invoice_no' => Str::upper($request['invoice_no']),
 		]);
 
-		
+
 		// Write to Log
 		EventLog::event('invoice', $invoice->id, 'update', 'summary', $invoice->summary);
 		$invoice->update($request->all());
-		
+
 		return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoices updated successfully.');
 	}
 

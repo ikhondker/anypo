@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\LandlordInvoiceTypeEnum;
-use App\Enum\LandlordCheckoutStatusEnum;
+use App\Enum\Landlord\InvoiceTypeEnum;
+use App\Enum\Landlord\CheckoutStatusEnum;
 
 return new class extends Migration
 {
@@ -18,10 +18,10 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->dateTime('checkout_date')->useCurrent();
 			/** ENUM */
-			$table->string('invoice_type')->default(LandlordInvoiceTypeEnum::CHECKOUT->value);
+			$table->string('invoice_type')->default(InvoiceTypeEnum::CHECKOUT->value);
 			/** end ENUM */
 			/** ENUM */
-			$table->string('status_code')->default(LandlordCheckoutStatusEnum::DRAFT->value);
+			$table->string('status_code')->default(CheckoutStatusEnum::DRAFT->value);
 			$table->foreign('status_code')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->string('session_id');
@@ -42,7 +42,7 @@ return new class extends Migration
 			$table->integer('mnth')->default(1);
 			$table->integer('user')->default(3);
 			$table->integer('gb')->default(5);
-			
+
 			$table->string('ip')->nullable();
 			$table->string('address1')->nullable();
 			$table->string('address2')->nullable();

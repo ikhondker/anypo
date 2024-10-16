@@ -63,7 +63,7 @@
 						<tr>
 							<td>
 								<a class="text-muted" href="{{ route('tickets.show',$ticket->id) }}">
-									@if ( $ticket->status_code <> App\Enum\LandlordTicketStatusEnum::CLOSED->value)
+									@if ( $ticket->status_code <> App\Enum\Landlord\TicketStatusEnum::CLOSED->value)
 										<i data-lucide="clock" class="text-info"></i>
 									@else
 										<i data-lucide="check-circle" class="text-muted"></i>

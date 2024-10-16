@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Tenant\Workflow\Wf;
 
-use App\Enum\WflActionEnum;
+use App\Enum\Tenant\WflActionEnum;
 use App\Models\Tenant\Manage\Status;
 
 class Wfl extends Model
@@ -44,8 +44,8 @@ class Wfl extends Model
 		return $this->belongsTo(User::class,'performer_id');
 	}
 
-    /* ---------------- belongsTo ---------------------- */
-	public function status_badge(){
+	/* ---------------- belongsTo ---------------------- */
+	public function action_badge(){
 		return $this->belongsTo(Status::class,'action')->withDefault([
 			'name' => '[ Empty ]',
 		]);

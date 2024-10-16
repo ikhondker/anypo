@@ -19,8 +19,8 @@ use App\Models\Tenant\Receipt;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\Payment;
 
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 
 use Illuminate\Support\Facades\Log;
 

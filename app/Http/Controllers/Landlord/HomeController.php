@@ -21,7 +21,7 @@
 // test
 namespace App\Http\Controllers\Landlord;
 use App\Http\Controllers\Controller;
- 
+
 # 1. Models
 use App\Models\User;
 use App\Models\Landlord\Service;
@@ -38,10 +38,10 @@ use App\Models\Landlord\Manage\Contact;
 use App\Models\Landlord\Manage\Checkout;
 
 # 2. Enums
-use App\Enum\PaymentMethodEnum;
-use App\Enum\LandlordCheckoutStatusEnum;
-use App\Enum\LandlordInvoiceStatusEnum;
-use App\Enum\LandlordPaymentStatusEnum;
+use App\Enum\Landlord\PaymentMethodEnum;
+use App\Enum\Landlord\CheckoutStatusEnum;
+use App\Enum\Landlord\InvoiceStatusEnum;
+use App\Enum\Landlord\PaymentStatusEnum;
 # 3. Helpers
 use App\Helpers\Landlord\FileUpload;
 //use App\Helpers\EventLog;
@@ -76,7 +76,7 @@ use Str;
 use DB;
 use Validator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-# 13. FUTURE 
+# 13. FUTURE
 use App\Http\Requests\Landlord\Manage\StoreContactRequest;
 
 
@@ -180,7 +180,7 @@ class HomeController extends Controller
 			'quantity' 	=> 1,
 		];
 
-		
+
 		$session = \Stripe\Checkout\Session::create([
 			'line_items' 	=> $lineItems,
 			'mode' 			=> 'payment',
@@ -241,7 +241,7 @@ class HomeController extends Controller
 		$checkout->start_date		= now();
 		$checkout->end_date			= now()->addMonth($product->mnth);
 
-		$checkout->status_code		= LandlordCheckoutStatusEnum::DRAFT->value;
+		$checkout->status_code		= CheckoutStatusEnum::DRAFT->value;
 		//$checkout->ip				= $request->ip();
 		$checkout->ip				= request()->ip();
 
@@ -256,7 +256,7 @@ class HomeController extends Controller
 		$invoice = Invoice::where('id', $request->input('invoice_id') )->first();
 
 		// check if invoice is already paid
-		if ($invoice->status_code <> LandlordInvoiceStatusEnum::DUE->value) {
+		if ($invoice->status_code <> InvoiceStatusEnum::DUE->value) {
 			return redirect()->route('invoices.show',$invoice->id)->with('error','Invoice #'.$invoice->invoice_no.' is already paid!');
 		}
 
@@ -290,7 +290,7 @@ class HomeController extends Controller
 		 $payment->invoice_id			= $invoice->id;
 		 $payment->account_id			= $invoice->account_id;
 		 $payment->summary				= $invoice->summary;
-		 $payment->payment_method_id	= PaymentMethodEnum::CARD->value;
+		 $payment->payment_method_code	= PaymentMethodEnum::CARD->value;
 		 $payment->amount				= $invoice->amount;
 		 $payment->ip					= $request->ip();
 		 if (auth()->check()) {
@@ -298,10 +298,10 @@ class HomeController extends Controller
 		} else {
 			//
 		}
-		$payment->status_code			= LandlordPaymentStatusEnum::DRAFT->value;
+		$payment->status_code			= PaymentStatusEnum::DRAFT->value;
 		$payment->save();
 		//$payment_id					= $payment->id;
-		
+
 		return redirect($session->url);
 	}
 
@@ -309,12 +309,12 @@ class HomeController extends Controller
 	// landed here both for checkout and subscription payment
 	public function success(Request $request)
 	{
-	
+
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 		$sessionId = $request->get('session_id');
 
 		try {
-		
+
 			$session = \Stripe\Checkout\Session::retrieve($sessionId);
 
 			if (!$session) {
@@ -323,12 +323,12 @@ class HomeController extends Controller
 
 			$trx_type	= $session->metadata->trx_type;
 			Log::debug('landlord.home.success metadata trx_type = '. $session->metadata->trx_type);
-			
+
 			$checkout = Checkout::where('session_id', $session->id)->first();
 			if (!$checkout) {
 				throw new NotFoundHttpException();
 			}
-			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
+			if ($checkout->status_code == CheckoutStatusEnum::DRAFT->value) {
 				Log::debug('landlord.home.success checkout_id = '. $checkout->id);
 				CreateTenant::dispatch($checkout->id);
 			}
@@ -341,17 +341,17 @@ class HomeController extends Controller
 		}
 
 	}
-	
+
 
 	// landed after successful subscription payment payment-stripe
 	public function successPayment(Request $request)
 	{
-	
+
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 		$sessionId = $request->get('session_id');
 
 		try {
-		
+
 			$session = \Stripe\Checkout\Session::retrieve($sessionId);
 
 			if (!$session) {
@@ -367,13 +367,13 @@ class HomeController extends Controller
 				throw new NotFoundHttpException();
 			}
 
-			if ($payment->status_code == LandlordPaymentStatusEnum::DRAFT->value) {
+			if ($payment->status_code == PaymentStatusEnum::DRAFT->value) {
 				Log::debug("landlord.home.successPayment SubscriptionInvoicePaid payment_id= ".$payment->id);
 				SubscriptionInvoicePaid::dispatch($payment->id);
 			}
 			return view('landlord.pages.info')->with('title','Payment Successful')
 				->with('msg','Please check you Account for purchased add-ons.');
-			
+
 
 		} catch (\Exception $e) {
 			throw new NotFoundHttpException();
@@ -384,12 +384,12 @@ class HomeController extends Controller
 	// landed here for successful addon payment
 	public function successAddon(Request $request)
 	{
-	
+
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 		$sessionId = $request->get('session_id');
 
 		try {
-		
+
 			$session = \Stripe\Checkout\Session::retrieve($sessionId);
 
 			if (!$session) {
@@ -403,7 +403,7 @@ class HomeController extends Controller
 			if (!$checkout) {
 				throw new NotFoundHttpException();
 			}
-			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
+			if ($checkout->status_code == CheckoutStatusEnum::DRAFT->value) {
 				Log::debug('landlord.home.successAddon checkout_id = '. $checkout->id);
 				AddAddon::dispatch($checkout->id);
 			}
@@ -419,12 +419,12 @@ class HomeController extends Controller
 	// landed here for successful addon payment
 	public function successAdvance(Request $request)
 	{
-	
+
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 		$sessionId = $request->get('session_id');
 
 		try {
-		
+
 			$session = \Stripe\Checkout\Session::retrieve($sessionId);
 
 			if (!$session) {
@@ -438,7 +438,7 @@ class HomeController extends Controller
 			if (!$checkout) {
 				throw new NotFoundHttpException();
 			}
-			if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
+			if ($checkout->status_code == CheckoutStatusEnum::DRAFT->value) {
 				Log::debug('landlord.home.successAdvance checkout_id = '. $checkout->id);
 				AddAdvance::dispatch($checkout->id);
 			}
@@ -456,7 +456,7 @@ class HomeController extends Controller
 	{
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 		$sessionId = $request->get('session_id');
-		
+
 		try {
 			$session = \Stripe\Checkout\Session::retrieve($sessionId);
 			if (!$session) {
@@ -473,8 +473,8 @@ class HomeController extends Controller
 						throw new NotFoundHttpException();
 					}
 
-					if ($checkout->status_code == LandlordCheckoutStatusEnum::DRAFT->value) {
-						$checkout->status_code = LandlordCheckoutStatusEnum::CANCELED->value;
+					if ($checkout->status_code == CheckoutStatusEnum::DRAFT->value) {
+						$checkout->status_code = CheckoutStatusEnum::CANCELED->value;
 						$checkout->update();
 						Log::debug('landlord.home.success checkout Canceled');
 					}
@@ -486,8 +486,8 @@ class HomeController extends Controller
 						throw new NotFoundHttpException();
 					}
 
-					if ($payment->status_code == LandlordPaymentStatusEnum::DRAFT->value) {
-						$payment->status_code = LandlordPaymentStatusEnum::CANCELED->value;
+					if ($payment->status_code == PaymentStatusEnum::DRAFT->value) {
+						$payment->status_code = PaymentStatusEnum::CANCELED->value;
 						$payment->amount = 0;
 						$payment->update();
 						Log::debug('landlord.home.success Payment Canceled');
@@ -508,7 +508,7 @@ class HomeController extends Controller
 	// P2 Please use session_id to troublehsot in stripe dashboard
 	public function webhook()
 	{
-		
+
 		Log::debug('landlord.home.webhook Inside Webhook');
 		// This is your Stripe CLI webhook secret for testing your endpoint locally.
 		$endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
@@ -655,7 +655,7 @@ class HomeController extends Controller
 		//$request->merge(['tenant'	=> tenant('id)')]);
 		$request->merge(['user_id'	=> $user_id]);
 		$request->merge(['ip'		=> $request->ip()]);
-		
+
 		$request->validate([
 			'first_name'	=> 'required',
 			'email'			=> 'required|email',
@@ -698,7 +698,7 @@ class HomeController extends Controller
 	 */
 	public function joinMailList(StoreContactRequest $request)
 	{
-		
+
 		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 		$request->merge(['user_id'	=> $user_id]);
 		$request->merge(['ip'		=> $request->ip()]);
@@ -711,11 +711,11 @@ class HomeController extends Controller
 
 		// create MailList
 		$contact = MailList::create($request->all());
-		
+
 		return view('landlord.pages.info')->with('title','Thank you for joining our mailing list.')
 				->with('msg','Thank you for joining our mailing list.');
 
 		//return redirect()->route('home')->with('success', 'Thank you for joining our mailing list.');
-		
+
 	}
 }

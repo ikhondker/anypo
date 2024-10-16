@@ -31,7 +31,7 @@ use App\Http\Requests\Tenant\Lookup\UpdateProjectRequest;
 use App\Models\User;
 use App\Models\Tenant\Attachment;
 # 2. Enums
-use App\Enum\EntityEnum;
+use App\Enum\Tenant\EntityEnum;
 use App\Enum\UserRoleEnum;
 # 3. Helpers
 use App\Helpers\Export;
@@ -159,12 +159,12 @@ class ProjectController extends Controller
 		$request->validate([
 
 		]);
-		
+
 		// Write to Log
 		EventLog::event('project', $project->id, 'update', 'name', $project->name);
 		$project->update($request->all());
 
-		
+
 		return redirect()->route('projects.index')->with('success', 'Project updated successfully');
 	}
 

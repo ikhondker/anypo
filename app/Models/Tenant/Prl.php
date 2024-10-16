@@ -13,7 +13,7 @@ use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Pr;
 use Illuminate\Database\Eloquent\Builder;
 
-use App\Enum\ClosureStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
 
 class Prl extends Model
 {

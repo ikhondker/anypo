@@ -16,8 +16,8 @@ use App\Models\Landlord\Admin\Invoice;
 use App\Models\Landlord\Admin\Payment;
 
 // Enums
-use App\Enum\LandlordInvoiceStatusEnum;
-use App\Enum\LandlordPaymentStatusEnum;
+use App\Enum\Landlord\InvoiceStatusEnum;
+use App\Enum\Landlord\PaymentStatusEnum;
 
 // Helpers
 use App\Helpers\EventLog;
@@ -52,14 +52,14 @@ class SubscriptionInvoicePaid implements ShouldQueue
 		$payment = Payment::where('id', $this->payment_id)->first();
 
 		// mark payment as paid
-		$payment->status_code = LandlordPaymentStatusEnum::PAID->value;
+		$payment->status_code = PaymentStatusEnum::PAID->value;
 		$payment->update();
 		EventLog::event('payment', $payment->id, 'create');
 
 		// mark invoice as paid
 		$invoice = Invoice::where('id', $payment->invoice_id)->first();
 		$invoice->amount_paid = $payment->amount;
-		$invoice->status_code = LandlordInvoiceStatusEnum::PAID->value ;
+		$invoice->status_code = InvoiceStatusEnum::PAID->value ;
 		$invoice->update();
 		Log::debug('jobs.Landlord.SubscriptionInvoicePaid invoice end_date = ' . $invoice->to_date);
 

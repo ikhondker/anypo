@@ -4,7 +4,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('reports.invoice', $invoice->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
-					@if ($invoice->status == App\Enum\InvoiceStatusEnum::DRAFT->value)
+					@if ($invoice->status == App\Enum\Tenant\InvoiceStatusEnum::DRAFT->value)
 						@can('update', $invoice)
 							<a href="{{ route('invoices.edit', $invoice->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
 						@endcan
@@ -40,7 +40,7 @@
 						<tr>
 							<th>&nbsp;</th>
 							<td>
-								@if ($invoice->status == App\Enum\AuthStatusEnum::DRAFT->value)
+								@if ($invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 									<x-tenant.show.my-edit-link object="Pr" :id="$invoice->id"/>
 								@endif
 							</td>
@@ -56,7 +56,7 @@
 			<div class="card-header">
 
 				<div class="card-actions float-end">
-					@if ($invoice->status == App\Enum\AuthStatusEnum::DRAFT->value)
+					@if ($invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 						<a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
 							data-entity="" data-name="INV#{{ $invoice->id }}" data-status="Post Invoice"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
@@ -96,7 +96,7 @@
 						<tr>
 							<th>&nbsp;</th>
 							<td>
-								@if ($invoice->status == App\Enum\AuthStatusEnum::DRAFT->value)
+								@if ($invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 									<form action="{{ route('invoices.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 										@csrf
 										{{-- <x-tenant.attachment.create /> --}}

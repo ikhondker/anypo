@@ -7,7 +7,7 @@ use App\Models\Tenant\InvoiceLine;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
 class InvoiceLinePolicy
 {

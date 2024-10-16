@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			LandlordPaymentStatusEnum.php
-* @brief		This file contains the implementation of the LandlordPaymentStatusEnum
+* @file			WflActionEnum.php
+* @brief		This file contains the implementation of the WflActionEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,13 +17,13 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Tenant;
 
-enum LandlordPaymentStatusEnum:string{
-	case DRAFT		= 'draft';
-	case PAID		= 'paid';
-	case CANCELED	= 'canceled';
-	case FAILED		= 'failed';
+enum WfStatusEnum: string{
+	case OPEN		= 'open';
+	case CLOSED		= 'closed';
+	case RESET		= 'reset';
+	case INVALID	= 'invalid';
 	case ERROR		= 'error';
-
+	case CANCELED	= 'canceled';
 }

@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 
 use App\Models\Tenant\Po;
 use App\Enum\UserRoleEnum;
-//use App\Enum\AuthStatusEnum;
+//use App\Enum\Tenant\AuthStatusEnum;
 
 use Illuminate\Support\Facades\Log;
 

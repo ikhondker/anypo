@@ -30,7 +30,7 @@ use App\Models\Landlord\Comment;
 use App\Models\Landlord\Ticket;
 # 2. Enums
 use App\Enum\UserRoleEnum;
-use App\Enum\LandlordTicketStatusEnum;
+use App\Enum\Landlord\TicketStatusEnum;
 # 3. Helpers
 use App\Helpers\Landlord\FileUpload;
 use App\Helpers\EventLog;
@@ -152,17 +152,17 @@ class CommentController extends Controller
 			$ticket->update();
 
 			switch ($status_code) {
-				case LandlordTicketStatusEnum::INPROGRESS->value:
+				case TicketStatusEnum::INPROGRESS->value:
 
 					break;
-				case LandlordTicketStatusEnum::CWIP->value:
+				case TicketStatusEnum::CWIP->value:
 					if (! $isInternal){
 						// Send notification to Ticket creator if agent updates the tickets
 						$owner = User::where('id', $ticket->owner_id)->first();
 						$owner->notify(new TicketUpdated($owner, $ticket));
 					}
 					break;
-				// case LandlordTicketStatusEnum::RESOLVED->value:
+				// case TicketStatusEnum::RESOLVED->value:
 				// 	if (! $isInternal){
 				// 		// Send notification to Ticket creator if agent closes the tickets
 				// 		$owner = User::where('id', $ticket->owner_id)->first();
@@ -176,7 +176,7 @@ class CommentController extends Controller
 			}
 		} else {
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
-			$ticket->status_code = LandlordTicketStatusEnum::PENDING->value;
+			$ticket->status_code = TicketStatusEnum::PENDING->value;
 			$ticket->update();
 			if ($ticket->agent_id <> ''){
 				// Send notification to Assigned Agent if customer updates the ticket

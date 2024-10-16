@@ -4,13 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\LandlordPaymentStatusEnum;
+use App\Enum\Landlord\PaymentStatusEnum;
+use App\Enum\Landlord\PaymentMethodEnum;
 
 return new class extends Migration
 {
 	/**
 	 * Run the migrations.
 	 */
+
 	public function up(): void
 	{
 		Schema::create('payments', function (Blueprint $table) {
@@ -21,7 +23,6 @@ return new class extends Migration
 			$table->foreignId('invoice_id')->constrained('invoices');
 			$table->foreignId('account_id')->nullable()->constrained('accounts');
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
-			$table->foreignId('payment_method_id')->constrained('payment_methods');
 			$table->decimal('amount',19, 4)->default(0);
 			$table->string('currency')->default('USD');
 			$table->string('cheque_no')->nullable();
@@ -29,13 +30,17 @@ return new class extends Migration
 			$table->string('reference_id')->nullable();
 			$table->text('notes')->nullable();
 			$table->string('ip')->nullable();
-			/** ENUM */
-			//$table->string('status')->default(LandlordPaymentStatusEnum::DRAFT->value);
+            /** ENUM */
+			//$table->foreignId('payment_method_id')->constrained('payment_methods');
+			$table->string('payment_method_code')->default(PaymentMethodEnum::CARD->value);
+			//TODO
+            //$table->foreign('payment_method_code')->references('code')->on('payment_methods');
 			/** end ENUM */
 			/** ENUM */
-			$table->string('status_code')->default(LandlordPaymentStatusEnum::DRAFT->value);
+			//$table->string('status')->default(PaymentStatusEnum::DRAFT->value);
+			$table->string('status_code')->default(PaymentStatusEnum::DRAFT->value);
 			$table->foreign('status_code')->references('code')->on('statuses');
-			//$table->foreignId('status_id')->default(LandlordPaymentStatusEnum::NEW->value)->constrained('statuses');
+			//$table->foreignId('status_id')->default(PaymentStatusEnum::NEW->value)->constrained('statuses');
 			/** end ENUM */
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			WfStatusEnum.php
-* @brief		This file contains the implementation of the WfStatusEnum
+* @file			AuthStatusEnum.php
+* @brief		This file contains the implementation of the AuthStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,19 +17,13 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Tenant;
 
-enum WflActionEnum: string{
-	case CREATED	= 'created';
+enum AuthStatusEnum:string{
+	case DRAFT		= 'draft';
 	case SUBMITTED	= 'submitted';
-	case DUE	  	= 'due';
-	case PENDING	= 'pending';
+	case INPROCESS	= 'in-process';
 	case APPROVED	= 'approved';
 	case REJECTED	= 'rejected';
-	case CANCELED	= 'canceled';
-	// case FORWARD	= 'forward';
-	//case DELEGATED	= 'delegated';
-	//case QUESTION	= 'question';
-	//case ANSWER		= 'answer';
+	case ERROR		= 'error';
 }
-

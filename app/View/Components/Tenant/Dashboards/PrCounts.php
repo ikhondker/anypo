@@ -8,21 +8,21 @@ use Illuminate\View\Component;
 
 use App\Models\Tenant\Pr;
 use App\Enum\UserRoleEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
 class PrCounts extends Component
 {
 
-	
+
 	public $count_approved;
 	public $sum_approved;
-	
+
 	public $count_inprocess;
 	public $sum_inprocess;
-	
+
 	public $count_rejected;
 	public $sum_rejected;
-	
+
 	// Dont show converted does not make any sense
 	//public $count_converted;
 	//public $sum_converted;

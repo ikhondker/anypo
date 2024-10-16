@@ -4,7 +4,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('reports.po', $po->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
-					@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+					@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 						<a class="btn btn-sm btn-light" href="{{ route('pos.edit', $po->id ) }}"><i class="fas fa-edit"></i> Edit</a>
 					@endif
 				</div>
@@ -35,7 +35,7 @@
 						<x-tenant.show.my-text		value="{{ $po->supplier->name }}" label="Supplier"/>
 						<x-tenant.show.my-text-area		value="{{ $po->notes }}" label="Notes"/>
 
-						@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+						@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 							<tr>
 								<th></th>
 								<td>
@@ -55,7 +55,7 @@
 				<div class="card-actions float-end">
 
 					<div class="card-actions float-end">
-						@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+						@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 							<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
 								data-entity="" data-name="PO#{{ $po->id }}" data-status="Submit"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
@@ -95,7 +95,7 @@
 						<tr>
 							<th>&nbsp;</th>
 							<td>
-								@if ($po->auth_status == App\Enum\AuthStatusEnum::DRAFT->value)
+								@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 									<form action="{{ route('pos.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 										@csrf
 										{{-- <x-tenant.attachment.create /> --}}

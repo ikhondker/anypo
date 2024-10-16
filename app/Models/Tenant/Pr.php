@@ -23,8 +23,8 @@ use App\Models\Tenant\Manage\Status;
 
 use App\Models\Tenant\Workflow\Hierarchy;
 
-use App\Enum\ClosureStatusEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 use Illuminate\Database\Eloquent\Builder;
 
 use Illuminate\Support\Facades\Log;
@@ -37,7 +37,6 @@ class Pr extends Model
 	protected $fillable = [
 		'summary', 'pr_date', 'need_by_date', 'requestor_id', 'dept_id', 'unit_id', 'project_id', 'dept_budget_id', 'supplier_id', 'notes', 'currency', 'sub_total', 'tax', 'gst', 'amount', 'fc_currency', 'fc_exchange_rate', 'fc_sub_total', 'fc_tax', 'fc_gst', 'fc_amount', 'submission_date', 'po_id', 'status', 'auth_status', 'auth_date', 'auth_user_id', 'error_code', 'wf_key', 'hierarchy_id', 'wf_id', 'updated_by', 'updated_at',
 	];
-
 
 	/**
 	 * The attributes that should be cast.

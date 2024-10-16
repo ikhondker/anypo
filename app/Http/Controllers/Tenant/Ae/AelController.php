@@ -29,7 +29,7 @@ use App\Http\Requests\Tenant\Ae\UpdateAelRequest;
 use App\Models\Tenant\Admin\Setup;
 
 # 2. Enums
-use App\Enum\EntityEnum;
+use App\Enum\Tenant\EntityEnum;
 
 # 3. Helpers
 use App\Helpers\Export;

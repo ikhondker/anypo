@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			LandlordAccountStatusEnum.php
-* @brief		This file contains the implementation of the LandlordAccountStatusEnum
+* @file			EntityEnum.php
+* @brief		This file contains the implementation of the EntityEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,12 +17,15 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Tenant;
 
-
-enum LandlordAccountStatusEnum:string{
-	case ACTIVE		= 'active';
-	case ONHOLD		= 'on-hold';
-	case CANCELED	= 'canceled';
-	case ARCHIVED	= 'archived';
+// NOT USED
+enum MenuAccessEnum: string{
+	case FRONT		= 'front';
+	case ADMIN		= 'admin';
+	case SUPPORT	= 'support';
+	case DISABLE	= 'disable';
+	case SYSTEM		= 'system';
 }
+
+

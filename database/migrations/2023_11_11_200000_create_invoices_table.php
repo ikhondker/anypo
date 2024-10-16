@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\LandlordInvoiceStatusEnum;
-use App\Enum\LandlordInvoiceTypeEnum;
+use App\Enum\Landlord\InvoiceStatusEnum;
+use App\Enum\Landlord\InvoiceTypeEnum;
 
 
 return new class extends Migration
@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->id()->startingValue(100001);
 			$table->string('summary');
 			$table->string('invoice_no')->unique();
-			$table->string('invoice_type')->default(LandlordInvoiceTypeEnum::SUBSCRIPTION->value);
+			$table->string('invoice_type')->default(InvoiceTypeEnum::SUBSCRIPTION->value);
 			$table->foreignId('account_id')->constrained('accounts');
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->date('invoice_date')->default(DB::raw('(CURDATE())'));
@@ -41,13 +41,13 @@ return new class extends Migration
 			$table->date('adjustment_date')->nullable();
 			$table->string('adjustment_ref')->nullable();
 			/** ENUM */
-			//$table->string('status')->default(LandlordInvoiceStatusEnum::DUE->value);
+			//$table->string('status')->default(InvoiceStatusEnum::DUE->value);
 			/** end ENUM */
 			/** ENUM */
-			$table->string('status_code')->default(LandlordInvoiceStatusEnum::DUE->value);
+			$table->string('status_code')->default(InvoiceStatusEnum::DUE->value);
 			$table->foreign('status_code')->references('code')->on('statuses');
 			$table->biginteger('process_id')->nullable();
-			//$table->foreignId('status_id')->default(LandlordInvoiceStatusEnum::DUE->value)->constrained('statuses');
+			//$table->foreignId('status_id')->default(InvoiceStatusEnum::DUE->value)->constrained('statuses');
 			/** end ENUM */
 			//$table->boolean('enable')->default(true);
 			//$table->string('attachment')->nullable();

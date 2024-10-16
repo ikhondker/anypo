@@ -34,7 +34,7 @@ use App\Models\Landlord\Manage\Status;
 
 use App\Models\Landlord\Comment;
 
-use App\Enum\LandlordTicketStatusEnum;
+use App\Enum\Landlord\TicketStatusEnum;
 
 class Ticket extends Model
 {
@@ -53,7 +53,7 @@ class Ticket extends Model
 		'ticket_date'	=> 'datetime',
 		'created_at'	=> 'datetime',
 		// DO NOT CAST. eager loading shows error
-		// 'status_code'	=> LandlordTicketStatusEnum::class,
+		// 'status_code'	=> TicketStatusEnum::class,
 	];
 
 
@@ -64,7 +64,7 @@ class Ticket extends Model
 	*/
 	public function isClosed()
 	{
-		return $this->status_code == LandlordTicketStatusEnum::CLOSED->value;
+		return $this->status_code == TicketStatusEnum::CLOSED->value;
 	}
 
 	/* ---------------- Scope ---------------------- */
@@ -81,7 +81,7 @@ class Ticket extends Model
 	public function scopeByAccountOpen(Builder $query): void
 	{
 		$query->where('account_id', auth()->user()->account_id)
-		->where('status_code', '<>', LandlordTicketStatusEnum::CLOSED->value);
+		->where('status_code', '<>', TicketStatusEnum::CLOSED->value);
 	}
 	/**
 	 * Scope a query to only include current account users.
@@ -89,7 +89,7 @@ class Ticket extends Model
 	public function scopeByAccountClosed(Builder $query): void
 	{
 		$query->where('account_id', auth()->user()->account_id)
-		->where('status_code', LandlordTicketStatusEnum::CLOSED->value);
+		->where('status_code', TicketStatusEnum::CLOSED->value);
 	}
 
 	/**
@@ -108,7 +108,7 @@ class Ticket extends Model
 	{
 		//$query->where('created_by', auth()->user()->id);
 		$query->where('owner_id', auth()->user()->id)
-			->where('status_code', '<>', LandlordTicketStatusEnum::CLOSED->value);
+			->where('status_code', '<>', TicketStatusEnum::CLOSED->value);
 	}
 
 	/**
@@ -118,7 +118,7 @@ class Ticket extends Model
 	{
 		//$query->where('created_by', auth()->user()->id);
 		$query->where('owner_id', auth()->user()->id)
-			->where('status_code', LandlordTicketStatusEnum::CLOSED->value);
+			->where('status_code', TicketStatusEnum::CLOSED->value);
 	}
 
 	/**
@@ -127,7 +127,7 @@ class Ticket extends Model
 	public function scopeByAgentOpen(Builder $query): void
 	{
 		$query->where('agent_id', auth()->user()->id)
-			->where('status_code', '<>', LandlordTicketStatusEnum::CLOSED->value);
+			->where('status_code', '<>', TicketStatusEnum::CLOSED->value);
 	}
 
 	/**
@@ -136,7 +136,7 @@ class Ticket extends Model
 	public function scopeByAgentClosed(Builder $query): void
 	{
 		$query->where('agent_id', auth()->user()->id)
-			->where('status_code', LandlordTicketStatusEnum::CLOSED->value);
+			->where('status_code', TicketStatusEnum::CLOSED->value);
 	}
 
 	/**
@@ -145,28 +145,28 @@ class Ticket extends Model
 	public function scopeByUnassigned(Builder $query): void
 	{
 		$query->where('agent_id','=', NULL)
-		->where('status_code', '<>', LandlordTicketStatusEnum::CLOSED->value);
+		->where('status_code', '<>', TicketStatusEnum::CLOSED->value);
 	}
 	/**
 	 * Scope a query to only include current users.
 	 */
 	public function scopeByAllOpen(Builder $query): void
 	{
-		$query->where('status_code', '<>', LandlordTicketStatusEnum::CLOSED->value);
+		$query->where('status_code', '<>', TicketStatusEnum::CLOSED->value);
 	}
 	/**
 	 * Scope a query to only include current users.
 	 */
 	public function scopeByAllClosed(Builder $query): void
 	{
-		$query->where('status_code', LandlordTicketStatusEnum::CLOSED->value);
+		$query->where('status_code', TicketStatusEnum::CLOSED->value);
 	}
 	/**
 	 * Scope a query to only include current users.
 	 */
 	public function scopeByAllOnhold(Builder $query): void
 	{
-		$query->where('status_code', LandlordTicketStatusEnum::ONHOLD->value);
+		$query->where('status_code', TicketStatusEnum::ONHOLD->value);
 	}
 
 	/* ---------------- HasMany ---------------------- */

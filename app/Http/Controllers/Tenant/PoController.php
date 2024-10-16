@@ -48,10 +48,10 @@ use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Workflow\Wfl;
 # 2. Enums
 use App\Enum\UserRoleEnum;
-use App\Enum\EntityEnum;
-use App\Enum\WflActionEnum;
-use App\Enum\ClosureStatusEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\WflActionEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
@@ -623,7 +623,7 @@ class PoController extends Controller
 		$buyer->notify(new PoActions($buyer, $po, $action, $actionURL));
 
 		// Send notification to Next Approver
-        $action = WflActionEnum::DUE->value;
+		$action = WflActionEnum::DUE->value;
 		$actionURL = route('pos.show', $po->id);
 		$due_approver_id = Workflow::getDueApproverId($po->wf_id);
 		Log::debug("tenant.po.submit next_approver_id = ". $due_approver_id);

@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\LandlordAddonTypeEnum;
-use App\Enum\LandlordServiceStatusEnum;
+use App\Enum\Landlord\AddonTypeEnum;
+use App\Enum\Landlord\ServiceStatusEnum;
 
 return new class extends Migration
 {
@@ -20,9 +20,9 @@ return new class extends Migration
 			$table->foreignId('account_id')->nullable()->constrained('accounts');
 			$table->foreignId('product_id')->nullable()->constrained('products');
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
-			$table->boolean('addon')->default(false); 
+			$table->boolean('addon')->default(false);
 			/** ENUM */
-			$table->string('addon_type')->default(LandlordAddonTypeEnum::NA->value);
+			$table->string('addon_type')->default(AddonTypeEnum::NA->value);
 			/** end ENUM */
 			$table->integer('mnth')->default(0);
 			$table->integer('user')->default(1);
@@ -35,11 +35,11 @@ return new class extends Migration
 			$table->date('start_date')->default(DB::raw('(CURDATE())'));
 			$table->date('end_date')->nullable();
 			/** ENUM */
-			$table->string('status_code')->default(LandlordServiceStatusEnum::DRAFT->value); 
+			$table->string('status_code')->default(ServiceStatusEnum::DRAFT->value);
 			$table->foreign('status_code')->references('code')->on('statuses');
-			//$table->foreignId('status_id')->default(LandlordInvoiceStatusEnum::DUE->value)->constrained('statuses');
+			//$table->foreignId('status_id')->default(InvoiceStatusEnum::DUE->value)->constrained('statuses');
 			/** end ENUM */
-			$table->boolean('enable')->default(true); 
+			$table->boolean('enable')->default(true);
 			$table->text('notes')->default(0);
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

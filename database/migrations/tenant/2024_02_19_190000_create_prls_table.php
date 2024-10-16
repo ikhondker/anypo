@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\ClosureStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
 
 
 return new class extends Migration
@@ -39,7 +39,7 @@ return new class extends Migration
 			$table->text('notes')->nullable();
 			$table->string('error_code',15)->nullable();
 			/** ENUM */
-			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);;
+			$table->string('closure_status')->default(ClosureStatusEnum::OPEN->value);
 			$table->foreign('closure_status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->softDeletes();

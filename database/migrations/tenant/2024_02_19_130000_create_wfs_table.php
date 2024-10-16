@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\WfStatusEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\WfStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
 return new class extends Migration
 {
@@ -16,8 +16,8 @@ return new class extends Migration
 	{
 		Schema::create('wfs', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->string('entity',15); 
-			$table->integer('article_id')->default(1); 
+			$table->string('entity',15);
+			$table->integer('article_id')->default(1);
 			$table->integer('hierarchy_id')->default(1);
 			/** ENUM */
 			$table->string('wf_status')->default(WfStatusEnum::OPEN->value);

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\EntityEnum;
+use App\Enum\Tenant\EntityEnum;
 
 return new class extends Migration
 {
@@ -15,7 +15,7 @@ return new class extends Migration
 	{
 		// aravel does not support Composite Primary Key
 		Schema::create('statuses', function (Blueprint $table) {
-			$table->string('code', 15);	// model: protected $primaryKey = 'entity'; 
+			$table->string('code', 15);	// model: protected $primaryKey = 'entity';
 			/** ENUM */
 			//$table->string('entity')->default(EntityEnum::PR->value);
 			/** end ENUM */
@@ -24,7 +24,7 @@ return new class extends Migration
 			//$table->string('message')->nullable();
 			$table->string('badge')->nullable();
 			$table->string('icon')->nullable();
-			$table->boolean('enable')->default(true); 
+			$table->boolean('enable')->default(true);
 			//$table->softDeletes();
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

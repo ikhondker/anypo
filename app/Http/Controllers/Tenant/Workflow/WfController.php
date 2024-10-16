@@ -30,9 +30,9 @@ use App\Models\Tenant\Workflow\Wfl;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
 # 2. Enums
-use App\Enum\AuthStatusEnum;
-use App\Enum\WfStatusEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\AuthStatusEnum;
+use App\Enum\Tenant\WfStatusEnum;
+use App\Enum\Tenant\EventEnum;
 # 3. Helpers
 use App\Helpers\Tenant\PrBudget;
 use App\Helpers\Tenant\PoBudget;
@@ -153,7 +153,7 @@ class WfController extends Controller
 
 		try {
 			// mark wf as RESET
-            Log::debug('tenant.wf.wfResetPr Reseting WF for PR#  = '. $pr->id);
+			Log::debug('tenant.wf.wfResetPr Reseting WF for PR#  = '. $pr->id);
 			try {
 				$wf = Wf::findOrFail($pr->wf_id);
 				$wf->wf_status = WfStatusEnum::RESET->value;
@@ -164,12 +164,12 @@ class WfController extends Controller
 			}
 
 			// reverse Booking
-            Log::debug('tenant.wf.wfResetPr Running PrBudget::prBudgetBookReverse for PR#  = '. $pr->id);
+			Log::debug('tenant.wf.wfResetPr Running PrBudget::prBudgetBookReverse for PR#  = '. $pr->id);
 			$retcode = PrBudget::prBudgetBookReverse(EventEnum::RESET->value, $pr->id);
 			Log::debug("tenant.wf.wfResetPr PrBudget::prBudgetBookReverse retcode = ".$retcode);
 
 			//reset pr wf_id and status
-            Log::debug('tenant.wf.wfResetPr Reseting Pr Wf status for PR#  = '. $pr->id);
+			Log::debug('tenant.wf.wfResetPr Reseting Pr Wf status for PR#  = '. $pr->id);
 			$pr->wf_id = 0;
 			$pr->auth_status = AuthStatusEnum::DRAFT->value;
 			$pr->submission_date = null;
@@ -205,7 +205,7 @@ class WfController extends Controller
 			//$po = Po::where('id', $po->id)->where('auth_status', AuthStatusEnum::INPROCESS->value)->firstOrFail();
 
 			// mark wf as RESET
-            Log::debug('tenant.wf.wfResetPo Reseting WF for PO#  = '. $po->id);
+			Log::debug('tenant.wf.wfResetPo Reseting WF for PO#  = '. $po->id);
 			try {
 				$wf = Wf::findOrFail($po->wf_id);
 				$wf->wf_status = WfStatusEnum::RESET->value;
@@ -216,12 +216,12 @@ class WfController extends Controller
 			}
 
 			// reverse Booking
-            Log::debug('tenant.wf.wfResetPo Running PrBudget::prBudgetBookReverse for PR#  = '. $po->id);
+			Log::debug('tenant.wf.wfResetPo Running PrBudget::prBudgetBookReverse for PR#  = '. $po->id);
 			$retcode = PoBudget::poBudgetBookReverse(EventEnum::RESET->value,$po->id);
 			Log::debug("tenant.wf.wfResetPo PoBudget::poBudgetBookReverse retcode = ".$retcode);
 
 			//reset po wf_id and status
-            Log::debug('tenant.wf.wfResetPo Reseting Pr Wf status for PO#  = '. $po->id);
+			Log::debug('tenant.wf.wfResetPo Reseting Pr Wf status for PO#  = '. $po->id);
 			$po->wf_id = 0;
 			$po->auth_status = AuthStatusEnum::DRAFT->value;
 			$po->submission_date = null;

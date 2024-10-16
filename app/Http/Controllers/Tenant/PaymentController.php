@@ -34,12 +34,12 @@ use App\Models\Tenant\Lookup\BankAccount;
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Lookup\Supplier;
 # 2. Enums
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 use App\Enum\UserRoleEnum;
-use App\Enum\PaymentStatusEnum;
-use App\Enum\InvoiceStatusEnum;
-use App\Enum\ClosureStatusEnum;
+use App\Enum\Tenant\PaymentStatusEnum;
+use App\Enum\Tenant\InvoiceStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
 # 3. Helpers
 use App\Helpers\Tenant\FileUpload;
 use App\Helpers\Tenant\ExchangeRate;

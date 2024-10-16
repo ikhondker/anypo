@@ -14,7 +14,7 @@
 			View Country
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.country-actions code="{{ $country->country }}"/>
+			<x-tenant.actions.lookup.country-actions countryCode="{{ $country->country }}"/>
 		@endslot
 	</x-tenant.page-header>
 

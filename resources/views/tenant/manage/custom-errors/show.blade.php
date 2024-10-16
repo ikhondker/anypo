@@ -36,8 +36,6 @@
 					<x-tenant.show.my-boolean	value="{{ $customError->enable }}"/>
 					<x-tenant.show.my-created_at value="{{ $customError->created_at }}"/>
 					<x-tenant.show.my-updated_at value="{{ $customError->updated_at }}"/>
-					<x-tenant.buttons.show.edit object="CustomError" :id="$customError->code"/>
-
 			</table>
 		</div>
 	</div>

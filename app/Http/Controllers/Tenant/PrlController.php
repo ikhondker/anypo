@@ -32,7 +32,7 @@ use App\Models\Tenant\Manage\CustomError;
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Prl;
 # 2. Enums
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 use App\Enum\UserRoleEnum;
 # 3. Helpers
 use App\Helpers\Export;
@@ -226,7 +226,7 @@ class PrlController extends Controller
 			Log::error(tenant('id'). 'tenant.prl.update syncPrValues pr_id = '.$prl->pr_id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
-		
+
 
 		return redirect()->route('prs.show', $prl->pr_id)->with('success', 'PR Line updated successfully');
 	}

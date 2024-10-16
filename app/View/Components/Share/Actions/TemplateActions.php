@@ -14,12 +14,9 @@ class TemplateActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id)
+	public function __construct(public string $templateId)
 	{
-
-			$this->id 		= $id;
-			$this->template 	= Template::where('id', $this->id)->get()->firstOrFail();
-
+		$this->template 	= Template::where('id', $templateId)->get()->firstOrFail();
 	}
 
 

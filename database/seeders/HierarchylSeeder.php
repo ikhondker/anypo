@@ -23,42 +23,21 @@ class HierarchylSeeder extends Seeder
 		Hierarchyl::truncate();
 		//Schema::enableForeignKeyConstraints();
 
-		// TODO need to update from CreateTenant
-		// TODO need to set approver_id as new admin id
+
 		$hierarchyls = [
-			[
-				'hid'			=> 1001,
-				'approver_id'	=> $admin->id,
-			],
-			// [
-			// 	'hid'			=> 1001,
-			// 	'approver_id'	=> '1009',
-			// ],
-			// [
-			//		'hid'		=> 1001,
-			//		'approver_id'	=> '1003',
-			// ],
-			[
-				'hid'			=> 1002,
-				'approver_id'	=> $admin->id,
-			],
-			// [
-			// 	'hid'			=> 1002,
-			// 	'approver_id'	=> '1009',
-			// ],
-			// [
-			//		'hid'		=> 1002,
-			//		'approver_id'	=> '1003',
-			// ],
-
-			// INSERT INTO hierarchyls(hid, approver_id) 
-			//		SELECT 1003/1004,approver_id 
-			//		FROM hierarchyls 
-			//		WHERE hid= 1001;
-
-
+                [
+                    'hid'			=> 1001,
+                    'approver_id'	=> $admin->id,
+                ],
+                [
+                    'hid'			=> 1002,
+                    'approver_id'	=> $admin->id,
+                ],
 			];
-		//
-		Hierarchyl::insert($hierarchyls);
+
+        // TODO need to update from CreateTenant
+		// TODO need to set approver_id as new admin id
+		// Dont run this, as CreateTeant Jobs creates these lines
+		// Hierarchyl::insert($hierarchyls);
 	}
 }

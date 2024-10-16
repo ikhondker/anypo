@@ -13,7 +13,7 @@ use App\Models\Landlord\Manage\Priority;
 use App\Models\Landlord\Lookup\Rating;
 
 
-use App\Enum\LandlordTicketStatusEnum;
+use App\Enum\Landlord\TicketStatusEnum;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ticket>
@@ -37,7 +37,7 @@ class TicketFactory extends Factory
 			'dept_id'		=> Dept::inRandomOrder()->first()->id,
 			'priority_id'	=> Priority::inRandomOrder()->first()->id,
 			'rating_id'		=> Rating::inRandomOrder()->first()->id,
-			//'status_id'	=> LandlordTicketStatusEnum::NEW->value,
+			//'status_id'	=> TicketStatusEnum::NEW->value,
 		];
 	}
 }

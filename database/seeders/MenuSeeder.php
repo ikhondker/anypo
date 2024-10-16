@@ -288,6 +288,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'custom-errors.create','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
 
 			[ 'raw_route_name' => 'groups.index','route_name' 			=> 'groups.index', 'node_name' 		=> 'system'],
+            [ 'raw_route_name' => 'groups.show','route_name' 			=> 'groups.index', 'node_name' 		=> 'system'],
 			[ 'raw_route_name' => 'groups.edit','route_name' 			=> 'groups.index', 'node_name' 		=> 'system'],
 			[ 'raw_route_name' => 'groups.create','route_name' 			=> 'groups.index', 'node_name' 		=> 'system'],
 

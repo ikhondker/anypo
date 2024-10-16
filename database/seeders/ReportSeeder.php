@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\Tenant\Report;
-use App\Enum\EntityEnum;
+use App\Enum\Tenant\EntityEnum;
 
 class ReportSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class ReportSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-	 
+
 		$pr = [
 			[
 				//'id' 					=> 1010,
@@ -267,7 +267,7 @@ class ReportSeeder extends Seeder
 				'order_by2' 			=> 10,
 
 			],
-		];	
+		];
 		Report::insert($supplier);
 
 

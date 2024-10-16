@@ -10,7 +10,7 @@ use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
 
-use App\Enum\PaymentStatusEnum;
+use App\Enum\Tenant\PaymentStatusEnum;
 use App\Models\Tenant\Manage\Status;
 
 use App\Models\Tenant\Po;
@@ -97,7 +97,7 @@ class Payment extends Model
 			'name' => '[ Empty ]',
 		]);
 	}
-	
+
 	public function payee(){
 		return $this->belongsTo(User::class,'payee_id')->withDefault([
 			'name' => '[ Empty ]',

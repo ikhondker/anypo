@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
 
 class PrlPolicy
@@ -24,7 +24,7 @@ class PrlPolicy
 		return null;
 	}
 
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -82,7 +82,7 @@ class PrlPolicy
 		//
 	}
 
-	
+
 
 	public function export(User $user): bool
 	{

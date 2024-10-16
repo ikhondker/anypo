@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\InvoiceStatusEnum;
-use App\Enum\PaymentStatusEnum;
+use App\Enum\Tenant\InvoiceStatusEnum;
+use App\Enum\Tenant\PaymentStatusEnum;
 
 return new class extends Migration
 {
@@ -46,7 +46,7 @@ return new class extends Migration
 			$table->foreign('status')->references('code')->on('statuses');
 			/** end ENUM */
 			/** ENUM */
-			$table->string('payment_status')->default(PaymentStatusEnum::DUE->value);;
+			$table->string('payment_status')->default(PaymentStatusEnum::DUE->value);
 			$table->foreign('payment_status')->references('code')->on('statuses');
 			/** end ENUM */
 			$table->softDeletes();

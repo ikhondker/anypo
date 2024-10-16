@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 use Illuminate\Database\Eloquent\Builder;
-use App\Enum\LandlordTicketStatusEnum;
+use App\Enum\Landlord\TicketStatusEnum;
 
 use App\Models\User;
 use App\Models\Landlord\Ticket;

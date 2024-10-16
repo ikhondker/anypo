@@ -14,7 +14,7 @@ use Str;
 
 use Illuminate\Support\Facades\Log;
 
-use App\Enum\WflActionEnum;
+use App\Enum\Tenant\WflActionEnum;
 
 class PoActions extends Notification implements ShouldQueue
 {

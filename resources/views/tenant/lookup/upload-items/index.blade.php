@@ -61,13 +61,13 @@
 						<td>{{ $upload_item->owner->name }}</td>
 						<td>
 							@switch($upload_item->status)
-								@case(App\Enum\InterfaceStatusEnum::DRAFT->value)
+								@case(App\Enum\Tenant\InterfaceStatusEnum::DRAFT->value)
 									<span class="badge badge-subtle-secondary">{{ $upload_item->status }}</span>
 									@break
-								@case(App\Enum\InterfaceStatusEnum::VALIDATED->value)
+								@case(App\Enum\Tenant\InterfaceStatusEnum::VALIDATED->value)
 									<span class="badge badge-subtle-info">{{ $upload_item->status }}</span>
 									@break
-								@case(App\Enum\InterfaceStatusEnum::ERROR->value)
+								@case(App\Enum\Tenant\InterfaceStatusEnum::ERROR->value)
 									<span class="badge badge-subtle-danger">{{ $upload_item->status }}</span>
 									@break
 								@default

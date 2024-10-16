@@ -13,7 +13,7 @@ use App\Models\Landlord\Manage\Checkout;
 use App\Models\Landlord\Account;
 
 // Enums
-use App\Enum\LandlordCheckoutStatusEnum;
+use App\Enum\Landlord\CheckoutStatusEnum;
 
 // Helpers
 use App\Helpers\Landlord\Bo;
@@ -44,7 +44,7 @@ class AddAdvance implements ShouldQueue
 	{
 		// mark checkout as processing
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
-		$checkout->status_code = LandlordCheckoutStatusEnum::PROCESSING->value ;
+		$checkout->status_code = CheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
 		Log::debug('Jobs.Landlord.AddAdvance 0. Processing Site = '.$checkout->site);
 
@@ -69,7 +69,7 @@ class AddAdvance implements ShouldQueue
 		$account_id= bo::extendAccountValidity($invoice_id);
 
 		// mark checkout as complete
-		$checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
+		$checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
 		$checkout->update();
 		Log::debug('Jobs.Landlord.AddAdvance 4. Done');
 	}

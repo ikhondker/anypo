@@ -23,8 +23,8 @@
 						<td class="">{{ $wfl->performer->name }} [{{ $wfl->performer->designation->name }}]</td>
 						<td class=""><x-tenant.list.my-date-time value="{{ $wfl->action_date }}"/></td>
 						<td class="">
-                            <span class="badge {{ $wfl->status_badge->badge }}">{{ $wfl->status_badge->name}}</span>
-                        </td>
+							<span class="badge {{ $wfl->action_badge->badge }}">{{ $wfl->action_badge->name}}</span>
+						</td>
 						<td class="">{!! nl2br($wfl->notes) !!}</td>
 					</tr>
 					@endforeach

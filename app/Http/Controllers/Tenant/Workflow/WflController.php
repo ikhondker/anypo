@@ -30,11 +30,11 @@ use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
 use App\Models\User;
 # 2. Enums
-use App\Enum\AuthStatusEnum;
-use App\Enum\WfStatusEnum;
-use App\Enum\WflActionEnum;
-use App\Enum\EntityEnum;
-use App\Enum\EventEnum;
+use App\Enum\Tenant\AuthStatusEnum;
+use App\Enum\Tenant\WfStatusEnum;
+use App\Enum\Tenant\WflActionEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\EventEnum;
 # 3. Helpers
 use App\Helpers\Tenant\PrBudget;
 use App\Helpers\Tenant\PoBudget;

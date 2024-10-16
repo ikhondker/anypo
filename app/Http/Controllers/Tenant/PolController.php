@@ -32,7 +32,7 @@ use App\Models\Tenant\Manage\CustomError;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 # 2. Enums
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 use App\Enum\UserRoleEnum;
 # 3. Helpers
 use App\Helpers\Export;

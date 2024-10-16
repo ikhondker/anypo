@@ -8,7 +8,7 @@
 * @path			\app\Helpers\Tenant
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -21,6 +21,7 @@
 namespace App\Helpers\Tenant;
 
 use App\Models\Tenant\DeptBudget;
+use App\Models\Domain;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -30,7 +31,7 @@ class Akk
 
 	public static function userAnyDeptBudgetExists()
 	{
-		// Check if dept budget exists for current logged user 
+		// Check if dept budget exists for current logged user
 		try {
 			$deptBudget 	= DeptBudget::where('dept_id', auth()->user()->dept_id )
 				->where('revision', false)
@@ -40,9 +41,29 @@ class Akk
 			//Log::warning('tenant.model.DeptBudget.userDeptBudgetExists dept_budget not found!');
 			return false;
 		} catch (\Exception $exception) {
-			// General Exception class which is the parent of all Exceptions 
+			// General Exception class which is the parent of all Exceptions
 			return false;
 		}
+	}
+
+    public static function getDomainName()
+	{
+
+        // dd(tenant()->domains->first()->domain);
+        return (tenant()->domains->first()->domain);
+        //Log::log('tenant.akk.getDomainFromTenantId tenantId not found!'.$tenantId);
+		// Check if dept budget exists for current logged user
+		// try {
+		// 	$domain 	= Domain::where('tenant_id', $tenantId )
+		// 		->get()->firstOrFail();
+		// 	return $domain->domain;
+		// } catch (ModelNotFoundException $ex) {
+		// 	Log::warning('tenant.akk.getDomainFromTenantId tenantId not found!');
+		// 	return '';
+		// } catch (\Exception $exception) {
+		// 	// General Exception class which is the parent of all Exceptions
+		// 	return '';
+		// }
 	}
 
 	// P2 Use this

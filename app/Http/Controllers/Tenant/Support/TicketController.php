@@ -77,7 +77,7 @@ class TicketController extends Controller
 		// $request->merge([
 		// 	//'ticket_number' => Str::uuid()->toString(),
 		// 	'ticket_date'	=> date('Y-m-d H:i:s'),
-		// 	//'status_code'	=> LandlordTicketStatusEnum::NEW->value,
+		// 	//'status_code'	=> TicketStatusEnum::NEW->value,
 		// 	'owner_id'		=> auth()->user()->id,
 		// 	//'account_id'	=> auth()->user()->account_id,
 		// 	//'ip'			=> Request::ip()
@@ -87,18 +87,17 @@ class TicketController extends Controller
 		//https://stackoverflow.com/questions/67902063/stancl-tenancy-how-to-fetch-data-from-tenant-db-globally
 		//Stancl\Tenancy\Database\Concerns\CentralConnection
 
-		$tenant_id= tenant('id');
-		$name=auth()->user()->name;
-		$email=auth()->user()->email;
-		$cell=auth()->user()->cell;
-
+		$tenant_id  = tenant('id');
+		$name       = auth()->user()->name;
+		$email      = auth()->user()->email;
+		$cell       = auth()->user()->cell;
 
 		// create or find user in Landlord if don't exists
 		$landlordUserId = tenancy()->central(function ($tenant) use ($tenant_id, $name, $email, $cell) {
 
 			Log::debug("tenant.support.Ticket.store tenant_id = ".$tenant_id);
 
-			$account = \App\Models\Landlord\Account::where('site', $tenant_id)->first();
+			$account = \App\Models\Landlord\Account::where('tenant_id', $tenant_id)->first();
 			Log::debug("tenant.support.Ticket.store account_id = ".$account->id);
 
 			// check if user need to create
@@ -162,7 +161,7 @@ class TicketController extends Controller
 					'title' 		=> $request->input('title'),
 					'content' 		=> $request->input('content'),
 					'ticket_date'	=> date('Y-m-d H:i:s'),
-					'status_code'	=> \App\Enum\LandlordTicketStatusEnum::NEW->value,
+					'status_code'	=> \App\Enum\TicketStatusEnum::NEW->value,
 					'owner_id' 		=> $user->id,
 					'account_id' 	=> $user->account_id,
 					'dept_id' 		=> 1004,	// Support

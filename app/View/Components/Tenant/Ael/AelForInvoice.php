@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Tenant\Ae\Aeh;
 use App\Models\Tenant\Ae\Ael;
-use App\Enum\EntityEnum;
+use App\Enum\Tenant\EntityEnum;
 use Exception;
 
 class AelForInvoice extends Component
@@ -22,7 +22,7 @@ class AelForInvoice extends Component
 	 */
 	public function __construct(public string $invoiceId)
 	{
-		
+
 		$this->label= 'Invoice #'.$invoiceId;
 		try {
 			$this->aels = Ael::with('aeh')->ByInvoice($invoiceId)->get()->all();

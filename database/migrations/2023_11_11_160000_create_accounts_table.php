@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Enum\LandlordAccountStatusEnum;
+use App\Enum\Landlord\AccountStatusEnum;
 
 return new class extends Migration
 {
@@ -16,6 +16,7 @@ return new class extends Migration
 		Schema::create('accounts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('site');
+            $table->string('tenant_id')->nullable();
 			$table->string('name');
 			$table->string('currency',3)->default('USD');
 			$table->string('tagline')->nullable();
@@ -47,7 +48,7 @@ return new class extends Migration
 			// there will be only one unpaid invoice. updated when a subscription is generated
 			$table->boolean('next_bill_generated')->default(false);
 			$table->integer('next_invoice_no')->nullable();
-			$table->date('last_bill_date')->nullable(); 
+			$table->date('last_bill_date')->nullable();
 			//$table->date('next_bill_gen_date')->nullable();
 			//$table->date('last_bill_from_date')->nullable();
 			//$table->date('last_bill_to_date')->nullable();
@@ -57,16 +58,16 @@ return new class extends Migration
 			$table->integer('count_user')->default(1);
 			$table->integer('count_product')->default(0);
 			$table->integer('used_gb')->default(0);
-			$table->boolean('maintenance')->default(false); 
+			$table->boolean('maintenance')->default(false);
 			/** ENUM */
-			//$table->string('status')->default(LandlordAccountStatusEnum::ACTIVE->value);
+			//$table->string('status')->default(AccountStatusEnum::ACTIVE->value);
 			/** end ENUM */
 			/** ENUM */
-			$table->string('status_code')->default(LandlordAccountStatusEnum::ACTIVE->value); 
+			$table->string('status_code')->default(AccountStatusEnum::ACTIVE->value);
 			$table->foreign('status_code')->references('code')->on('statuses');
-			//$table->foreignId('status_id')->default(LandlordAccountStatusEnum::ACTIVE->value)->constrained('statuses');
+			//$table->foreignId('status_id')->default(AccountStatusEnum::ACTIVE->value)->constrained('statuses');
 			/** end ENUM */
-			//$table->boolean('enable')->default(true); 
+			//$table->boolean('enable')->default(true);
 			$table->string('logo')->nullable()->default('logo.png');
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

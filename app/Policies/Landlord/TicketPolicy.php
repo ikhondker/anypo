@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
 
-use App\Enum\LandlordTicketStatusEnum;
+use App\Enum\Landlord\TicketStatusEnum;
 use Illuminate\Support\Facades\Log;
 
 class TicketPolicy
@@ -90,7 +90,7 @@ class TicketPolicy
 	public function update(User $user, Ticket $ticket): bool
 	{
 		// only back office user can edit non closed ticket
-		//return ($user->isSeeded() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
+		//return ($user->isSeeded() && ($ticket->status_code <> TicketStatusEnum::CLOSED->value));
 		//return ($user->isSeeded() && ! $ticket->isClosed());
 		// anyone can close a ticket
 		return (! $ticket->isClosed());
@@ -102,7 +102,7 @@ class TicketPolicy
 	public function assign(User $user, Ticket $ticket): bool
 	{
 		// only back office user can assign non closed ticket
-		//return ($user->isSeeded() && ($ticket->status_code <> LandlordTicketStatusEnum::CLOSED->value));
+		//return ($user->isSeeded() && ($ticket->status_code <> TicketStatusEnum::CLOSED->value));
 		return ($user->isSeeded() && ! $ticket->isClosed());
 	}
 

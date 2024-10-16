@@ -11,8 +11,8 @@ use App\Models\User;
 use App\Models\Tenant\Workflow\Wfl;
 use App\Models\Tenant\Workflow\Hierarchy;
 
-use App\Enum\WfStatusEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\WfStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
 
 class Wf extends Model

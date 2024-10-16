@@ -47,10 +47,10 @@ use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Workflow\Wfl;
 # 2. Enums
 use App\Enum\UserRoleEnum;
-use App\Enum\EntityEnum;
-use App\Enum\WflActionEnum;
-use App\Enum\ClosureStatusEnum;
-use App\Enum\AuthStatusEnum;
+use App\Enum\Tenant\EntityEnum;
+use App\Enum\Tenant\WflActionEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
+use App\Enum\Tenant\AuthStatusEnum;
 
 # 3. Helpers
 use App\Helpers\Export;

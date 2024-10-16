@@ -8,16 +8,19 @@ x123. show allowapprove=true for admin
 x124. reset Pr and po by admin
 x111. page-2 user list no impersonate
 x111. sales Po appover IT Hod can not see. Oka. Reset PO  
-123. select form invoice creation PO dropdown and project dropdown
-113. Auth::user()->unreadNotifications->markAsRead();
 x159. user register page get start with domain name
 x158. clean akk.GUEST_USER_ID
+x134. tenancyforlaravel get domain name
+xx157. wfs.index badge not shown
+x153. allow user to edit attachment file description
+x141. calculate-pr-amount.blade.php pr_amount during add line incorrect
+?132. ({{ $_setup->currency }}) is not working in project show and create
+x125. calculate-pr-amount.blade hard-coded 1001
+123. select form invoice creation PO dropdown and project dropdown width
 111. role update in user.edit tab for edit role dropdown
-157. wfs.index badge not shown
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
 155. fix component list -> ArticleLink and ProjectLink
 154. export file name add export
-153. allow user to edit attachment file description
 155. add users need multi user avatar
 153. po table issue, invoiceLines, reports, FAQ, attachments
 152. re-use D:\Temp\svg\illustrations\png from Front theme
@@ -28,26 +31,22 @@ x158. clean akk.GUEST_USER_ID
 145. Department Budget [BDT] export
 144. dbu export user_id -= null
 143. Home - 2024 - Dept Budgets - IT -Edit
-141. calculate-pr-amount.blade.php pr_amount during add line incorrect
 140. set fb and linked url to any po during setup and seeded
 139. edit master data supp/project/item by buyer @can button not shown
 137. budget revision TODO link for source with DB:insert and last id
 136. create UOM - UoM Class - default uom mention
 135. hierarchyl export serial number
 133. budget revision TODO check budget and dept_budge duplicate from front end.
-132. ({{ $_setup->currency }}) is not working in project show and create
 131. country, status, code edit error is showing
 130. ticket create and view update from tenant without login to landlord
 129. anypo item tax+gst, JS for tax gst, pr pdf tax, p2 reject pr, pr dashboard converted to po count
 128. adding default T&C text in PO line break check
-125. calculate-pr-amount.blade hard-coded 1001
 124. TODO prl cancel here
 123. Recon script not accounted transaction an fix issue.
 122. Manual Generate Accounting admin
 121. ac_expense validate now aplha_dash need to allow .
 120. country currency model called twice in edit page in control and in component
 119. **search PO/PO by Number
-118. add facebook messenger chat in landlord site
 117. getting started mail notification
 116. getting started page *
 115. both in landlord and tenant Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
@@ -59,10 +58,13 @@ x158. clean akk.GUEST_USER_ID
 109. setup->admin_id is degraded to user and edit setup admin_id drop down error
 108. start and end date date-time and date only seeder issue. seeder store date and time
 107. some object does not start with 1001, setup, menu, designation, group, pay_method, (workaround id=> deployed)
+108. add several pie chart in project show pages
+109. docu page start panel
 
 
 # 30 Nice to Have P2
 -------------------------------------------------------------------------------------------------
+113. Auth::user()->unreadNotifications->markAsRead(); jquery
 1. notfication mark-as-read with ajax see https://blog.quickadminpanel.com/laravel-notifications-with-database-driver-internal-messages/
 1.	prefix form pr/po number
 2.	command generator based on tenants

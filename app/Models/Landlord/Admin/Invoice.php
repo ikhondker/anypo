@@ -31,7 +31,7 @@ use App\Models\Landlord\Account;
 
 use App\Models\Landlord\Manage\Status;
 
-use App\Enum\LandlordInvoiceStatusEnum;
+use App\Enum\Landlord\InvoiceStatusEnum;
 
 class Invoice extends Model
 {
@@ -48,7 +48,7 @@ class Invoice extends Model
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
 		// DO NOT CAST. eager loading shows error
-		//'status_code'	=> LandlordInvoiceStatusEnum::class,
+		//'status_code'	=> InvoiceStatusEnum::class,
 	];
 
 	/* ---------------- Scope ---------------------- */

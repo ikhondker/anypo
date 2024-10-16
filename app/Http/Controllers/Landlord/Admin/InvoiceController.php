@@ -31,8 +31,8 @@ use App\Models\Landlord\Manage\Config;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
-use App\Enum\LandlordInvoiceTypeEnum;
-use App\Enum\LandlordCheckoutStatusEnum;
+use App\Enum\Landlord\InvoiceTypeEnum;
+use App\Enum\Landlord\CheckoutStatusEnum;
 
 # 3. Helpers
 use App\Helpers\Export;
@@ -98,11 +98,11 @@ class InvoiceController extends Controller
 			$invoices = Invoice::with('account')->with('status')->orderBy('id', 'DESC')->paginate(10);
 		} else {
 			$invoices = Invoice::with('account')->with('status')
-			->where('account_id',$account->id)	
+			->where('account_id',$account->id)
 			->orderBy('id', 'DESC')->paginate(10);
 		}
 
-		
+
 		return view('landlord.admin.invoices.all', compact('invoices'));
 	}
 
@@ -142,7 +142,7 @@ class InvoiceController extends Controller
 
 		$period 		= $request->period;
 		Log::debug('landlord.invoice.store generating invoice for period = ' . $period);
-		
+
 		// allowed periods
 		$periods = array("1", "3", "6", "12");
 		if ( ! in_array($period, $periods)) {
@@ -227,7 +227,7 @@ class InvoiceController extends Controller
 
 		// create checkout row
 		$checkout					= new Checkout;
-		$checkout->invoice_type		= LandlordInvoiceTypeEnum::ADVANCE->value;
+		$checkout->invoice_type		= InvoiceTypeEnum::ADVANCE->value;
 		$checkout->session_id		= $session->id;
 		$checkout->checkout_date	= date('Y-m-d H:i:s');
 
@@ -258,7 +258,7 @@ class InvoiceController extends Controller
 		$checkout->start_date		= $account->end_date;						// < ===============
 		$checkout->end_date			= $account->end_date->addMonth($period);	// < ===============
 
-		$checkout->status_code		= LandlordCheckoutStatusEnum::DRAFT->value;
+		$checkout->status_code		= CheckoutStatusEnum::DRAFT->value;
 		$checkout->ip				= '127.0.0.1';
 
 		$checkout->save();
@@ -301,7 +301,7 @@ class InvoiceController extends Controller
 		}
 
 
-	
+
 
 		try {
 			// Create invoice

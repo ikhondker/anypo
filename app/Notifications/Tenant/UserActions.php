@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notification;
 
 use App\Models\User;
 use Str;
+use App\Helpers\Tenant\Akk;
 
 class UserActions extends Notification implements ShouldQueue
 {
@@ -33,7 +34,7 @@ class UserActions extends Notification implements ShouldQueue
 
 		switch ($this->action) {
 			case 'ACTIVATED':
-				$this->subject = '[FYA] Your '.tenant('id').'.'.config('app.name').' account at has been '.Str::lower($this->action).'.';
+				$this->subject = '[FYA] Your '.Akk::getDomainName().' account at has been '.Str::lower($this->action).'.';
 				$this->line1	= 'Your '.tenant('id').'.' .config('app.name').' account at has been '.Str::lower($this->action).'.';
 				$this->line2	= 'Login email: '.$this->user->email;
 				break;

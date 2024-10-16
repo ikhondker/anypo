@@ -14,8 +14,8 @@
 
 	<x-tenant.info.project-info projectId="{{ $project->id }}"/>
 
-	
-	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PROJECT->value }}" aid="{{ $project->id }}"/>
+
+	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::PROJECT->value }}" aid="{{ $project->id }}"/>
 
 @endsection
 

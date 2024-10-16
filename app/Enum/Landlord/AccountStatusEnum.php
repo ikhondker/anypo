@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			LandlordInvoiceTypeEnum.php
-* @brief		This file contains the implementation of the LandlordInvoiceTypeEnum
+* @file			AccountStatusEnum.php
+* @brief		This file contains the implementation of the AccountStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,12 +17,12 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Landlord;
 
-enum LandlordInvoiceTypeEnum:string{
-	case CHECKOUT		= 'checkout';
-	case SUBSCRIPTION	= 'subscription';
-	case ADDON			= 'addon';
-	case ADVANCE		= 'advance';
-	case ARCHIVE		= 'archive';
+
+enum AccountStatusEnum:string{
+	case ACTIVE		= 'active';
+	case ONHOLD		= 'on-hold';
+	case CANCELED	= 'canceled';
+	case ARCHIVED	= 'archived';
 }

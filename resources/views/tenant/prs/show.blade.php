@@ -19,15 +19,15 @@
 	</x-tenant.page-header>
 
 	<!-- approval form, show only if pending to current auth user -->
-	@if ($pr->auth_status == App\Enum\AuthStatusEnum::INPROCESS->value)
+	@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::INPROCESS->value)
 		@if (\App\Helpers\Tenant\Workflow::allowApprove($pr->wf_id))
 			<x-tenant.widgets.wfl.get-approval wfId="{{ $pr->wf_id }}" />
 		@endif
 	@endif
-	
+
 	<x-tenant.widgets.pr.show-pr-header prId="{{ $pr->id }}"/>
 
 	<x-tenant.widgets.prl.list-all-lines prId="{{ $pr->id }}"/>
-	
+
 @endsection
 

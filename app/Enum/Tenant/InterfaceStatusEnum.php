@@ -3,8 +3,8 @@
 * =====================================================================================
 * @version v1.0.0
 * =====================================================================================
-* @file			LandlordTicketStatusEnum.php
-* @brief		This file contains the implementation of the LandlordTicketStatusEnum
+* @file			InterfaceStatusEnum.php
+* @brief		This file contains the implementation of the InterfaceStatusEnum
 * @path			\app\Enum
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
@@ -17,16 +17,11 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum;
+namespace App\Enum\Tenant;
 
-enum LandlordTicketStatusEnum:string{
-	case NEW				= 'new';
-	case ASSIGNED			= 'assigned';
-	case PENDING			= 'pending';
-	case INPROGRESS			= 'in-progress';
-	case DEVELOPMENT		= 'development';
-	case BUGFIXING			= 'bug-fixing';
-	case CWIP				= 'cwip';
-	case CLOSED				= 'closed';
-	case ONHOLD				= 'on-hold';
+enum InterfaceStatusEnum: string{
+	case DRAFT		= 'draft';
+	case ERROR		= 'error';
+	case VALIDATED	= 'validated';
+	case UPLOADED	= 'uploaded';
 }
