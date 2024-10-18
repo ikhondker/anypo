@@ -54,3 +54,13 @@ composer.json
 ge current domain
 https://tenancyforlaravel.com/docs/v3/tenants/
 dd(tenant()->domains->first()->domain);
+
+number formated
+----------------------------------
+https://laracasts.com/discuss/channels/laravel/laravel-convert-amount-in-digit-to-words?page=1&replyId=124593
+enable this extension in php.ini by uncommenting this line: extension=ext/php_intl.dll
+$f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+echo $f->format(1432);
+Log::debug(Number::spell(8));
+Log::debug(Number::spell(9));
+Log::debug(Number::spell(10));

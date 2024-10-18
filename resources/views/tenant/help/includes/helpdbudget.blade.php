@@ -1,60 +1,24 @@
-<div class="tab-pane fade" id="helpdbudget" role="tabpanel">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="card-title">Budget Management and Monitoring</h5>
-						</div>
-						<div class="card-body">
-							<div class="accordion" id="accordionDeptBudget">
 
-								<div class="card">
-									<div class="card-header" id="headingDeptBudget1">
-										<h5 class="card-title my-2">
-											<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseDeptBudget1" aria-expanded="true" aria-controls="collapseDeptBudget1">Dont need budget control</a>
-										</h5>
-									</div>
-									<div id="collapseDeptBudget1" class="collapse show" aria-labelledby="headingDeptBudget1" data-bs-parent="#accordionDeptBudget">
-										<div class="card-body">
-											Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-											Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-											et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-											craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-										</div>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-header" id="headingDeptBudget2">
-										<h5 class="card-title my-2">
-											<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseDeptBudget2" aria-expanded="true" aria-controls="collapseDeptBudget1"> How to edit company budget</a>
-										</h5>
-									</div>
-									<div id="collapseDeptBudget2" class="collapse" aria-labelledby="headingDeptBudget2" data-bs-parent="#accordionDeptBudget">
-										<div class="card-body">
-											Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-											Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-											et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-											craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-										</div>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-header" id="headingDeptBudget3">
-										<h5 class="card-title my-2">
-											<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseDeptBudget3" aria-expanded="true" aria-controls="collapseDeptBudget1">Something else</a>
-										</h5>
-									</div>
-									<div id="collapseDeptBudget3" class="collapse" aria-labelledby="headingDeptBudget3" data-bs-parent="#accordionDeptBudget">
-										<div class="card-body">
-											Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-											Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-											et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-											craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- end accordion -->
-						</div>
-					</div>
-					<!-- end card -->
-				</div>
-				<!-- end tab-pan -->
+<div class="tab-pane fade" id="helpdbudget" role="tabpanel">
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="mb-5 text-center">
+                {{-- <span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">FAQ</span> --}}
+                <h2 class="h1">Dept Budget</h2>
+                <p class="text-muted fs-lg">Here are some of the answers you might be looking for.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-12 mx-auto">
+                    <div class="accordion" id="accordionDbudget">
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

@@ -1,62 +1,95 @@
 <div class="tab-pane fade" id="helpapproval" role="tabpanel">
-	<div class="card">
-		<div class="card-header">
-			<h5 class="card-title">PR/PO Approval</h5>
-		</div>
-		<div class="card-body">
-			<div class="accordion" id="accordionApproval">
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="mb-5 text-center">
+                {{-- <span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">FAQ</span> --}}
+                <h2 class="h1">Approval</h2>
+                <p class="text-muted fs-lg">Here are some of the answers you might be looking for.</p>
+            </div>
 
-				<div class="card">
-					<div class="card-header" id="headingApproval1">
-						<h5 class="card-title my-2">
-							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseApproval1" aria-expanded="true" aria-controls="collapseApproval1">Accordion Accordion</a>
-						</h5>
-					</div>
-					<div id="collapseApproval1" class="collapse show" aria-labelledby="headingApproval1" data-bs-parent="#accordionApproval">
-						<div class="card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-							Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-							et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						</div>
-					</div>
-				</div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12 mx-auto">
+                    <div class="accordion" id="accordionApproval">
+
+                        <div class="card border mb-3">
+                            <div class="card-header cursor-pointer" id="approvalOne" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h6 class="mb-0">
+                                    Q: Section Approval : Question Number: one
+                                </h6>
+                            </div>
+                            <div id="collapseOne" class="collapse " aria-labelledby="approvalOne"
+                                data-bs-parent="#accordionApproval">
+                                <div class="card-body py-3">
+                                    A: Section Approval : Answer of Question Number: one
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border mb-3">
+                            <div class="card-header cursor-pointer" id="approvalTwo" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                <h6 class="mb-0">
+                                    Q: Section Approval : Question Number: two
+                                </h6>
+                            </div>
+                            <div id="collapseTwo" class="collapse " aria-labelledby="approvalTwo"
+                                data-bs-parent="#accordionApproval">
+                                <div class="card-body py-3">
+                                    A: Section Approval : Answer of Question Number: two
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border mb-3">
+                            <div class="card-header cursor-pointer" id="approvalThree" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                <h6 class="mb-0">
+                                    Q: Section Approval : Question Number: three
+                                </h6>
+                            </div>
+                            <div id="collapseThree" class="collapse " aria-labelledby="approvalThree"
+                                data-bs-parent="#accordionApproval">
+                                <div class="card-body py-3">
+                                    A: Section Approval : Answer of Question Number: three
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border mb-3">
+                            <div class="card-header cursor-pointer" id="approvalFour" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                <h6 class="mb-0">
+                                    Q: Section Approval : Question Number: four
+                                </h6>
+                            </div>
+                            <div id="collapseFour" class="collapse " aria-labelledby="approvalFour"
+                                data-bs-parent="#accordionApproval">
+                                <div class="card-body py-3">
+                                    A: Section Approval : Answer of Question Number: four
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border mb-3">
+                            <div class="card-header cursor-pointer" id="approvalFive" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                <h6 class="mb-0">
+                                    Q: Section Approval : Question Number: five
+                                </h6>
+                            </div>
+                            <div id="collapseFive" class="collapse " aria-labelledby="approvalFive"
+                                data-bs-parent="#accordionApproval">
+                                <div class="card-body py-3">
+                                    A: Section Approval : Answer of Question Number: five
+                                </div>
+                            </div>
+                        </div>
 
 
-				<div class="card">
-					<div class="card-header" id="headingApproval2">
-						<h5 class="card-title my-2">
-							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseApproval2" aria-expanded="true" aria-controls="collapseApproval1">Another Approval1</a>
-						</h5>
-					</div>
-					<div id="collapseApproval2" class="collapse" aria-labelledby="headingApproval2" data-bs-parent="#accordionApproval">
-						<div class="card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-							Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-							et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-header" id="headingApproval3">
-						<h5 class="card-title my-2">
-							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseApproval3" aria-expanded="true" aria-controls="collapseApproval1">Something else</a>
-						</h5>
-					</div>
-					<div id="collapseApproval3" class="collapse" aria-labelledby="headingApproval3" data-bs-parent="#accordionApproval">
-						<div class="card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-							Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-							et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- end accordion -->
-		</div>
-	</div>
-	<!-- end card -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-<!-- end tab-pan -->

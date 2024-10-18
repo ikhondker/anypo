@@ -1,63 +1,94 @@
 <div class="tab-pane fade" id="helpfaq" role="tabpanel">
-	<div class="card">
-		<div class="card-header">
-			<h5 class="card-title">FAQ</h5>
-		</div>
-		<div class="card-body">
-			<div class="accordion" id="accordionFAQ">
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="mb-5 text-center">
+                {{-- <span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">FAQ</span> --}}
+                <h2 class="h1">FAQ Started1</h2>
+                <p class="text-muted fs-lg">Here are some of the answers you might be looking for.</p>
+            </div>
 
-				<div class="card">
-					<div class="card-header" id="headingFAQ1">
-						<h5 class="card-title my-2">
-							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseFAQ1" aria-expanded="true" aria-controls="collapseFAQ1">Accordion</a>
-						</h5>
-					</div>
-					<div id="collapseFAQ1" class="collapse show" aria-labelledby="headingFAQ1" data-bs-parent="#accordionFAQ">
-						<div class="card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-							Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-							et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						</div>
-					</div>
-				</div>
-				
-				<div class="card">
-					<div class="card-header" id="headingFAQ2">
-						<h5 class="card-title my-2">
-							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseFAQ2" aria-expanded="true" aria-controls="collapseFAQ1">Another Po1</a>
-						</h5>
-					</div>
-					<div id="collapseFAQ2" class="collapse" aria-labelledby="headingFAQ2" data-bs-parent="#accordionFAQ">
-						<div class="card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-							Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-							et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						</div>
-					</div>
-				</div>
-				
-				<div class="card">
-					<div class="card-header" id="headingFAQ3">
-						<h5 class="card-title my-2">
-							<a href="#" data-bs-toggle="collapse" data-bs-target="#collapseFAQ3" aria-expanded="true" aria-controls="collapseFAQ1">Something else</a>
-						</h5>
-					</div>
-					<div id="collapseFAQ3" class="collapse" aria-labelledby="headingFAQ3" data-bs-parent="#accordionFAQ">
-						<div class="card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-							Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch
-							et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<!-- end accordion -->
-		</div>
-	</div>
-	<!-- end card -->
+            <div class="row">
+                <div class="col-md-12 col-lg-12 mx-auto">
+                    <div class="accordion" id="accordionFaq">
+                        <div class="card border mb-3">
+
+                            <div class="card-header cursor-pointer" id="faqOne" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h6 class="mb-0">
+                                    Q: Section Faq : Question Number: one
+                                </h6>
+                            </div>
+                            <div id="collapseOne" class="collapse " aria-labelledby="faqOne"
+                                data-bs-parent="#accordionFaq">
+                                <div class="card-body py-3">
+                                    A: Section Faq : Answer of Question Number: one
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border mb-3">
+                            <div class="card-header cursor-pointer" id="faqTwo" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                <h6 class="mb-0">
+                                    Q: Section Faq : Question Number: two
+                                </h6>
+                            </div>
+                            <div id="collapseTwo" class="collapse " aria-labelledby="faqTwo"
+                                data-bs-parent="#accordionFaq">
+                                <div class="card-body py-3">
+                                    A: Section Faq : Answer of Question Number: two
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border mb-3">
+                            <div class="card-header cursor-pointer" id="faqThree" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                <h6 class="mb-0">
+                                    Q: Section Faq : Question Number: three
+                                </h6>
+                            </div>
+                            <div id="collapseThree" class="collapse " aria-labelledby="faqThree"
+                                data-bs-parent="#accordionFaq">
+                                <div class="card-body py-3">
+                                    A: Section Faq : Answer of Question Number: three
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border mb-3">
+                            <div class="card-header cursor-pointer" id="faqFour" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                <h6 class="mb-0">
+                                    Q: Section Faq : Question Number: four
+                                </h6>
+                            </div>
+                            <div id="collapseFour" class="collapse " aria-labelledby="faqFour"
+                                data-bs-parent="#accordionFaq">
+                                <div class="card-body py-3">
+                                    A: Section Faq : Answer of Question Number: four
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border mb-3">
+                            <div class="card-header cursor-pointer" id="faqFive" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                <h6 class="mb-0">
+                                    Q: Section Faq : Question Number: five
+                                </h6>
+                            </div>
+                            <div id="collapseFive" class="collapse " aria-labelledby="faqFive"
+                                data-bs-parent="#accordionFaq">
+                                <div class="card-body py-3">
+                                    A: Section Faq : Answer of Question Number: five
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-<!-- end tab-pan -->

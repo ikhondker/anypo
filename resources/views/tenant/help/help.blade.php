@@ -30,16 +30,19 @@
 				<div class="list-group list-group-flush" role="tablist">
 					<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#helpstart" role="tab">Getting Started</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpfaq" role="tab">FAQ</a>
-					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpsetup" role="tab">Setups</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppr" role="tab">Requisition</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppo" role="tab">Purchase Orders</a>
-					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpapproval" role="tab">Approval</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpworkflow" role="tab">Workflow***</a>
-					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpcurrency" role="tab">Currency</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpgrs" role="tab">Receipts</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpinv" role="tab">Invoice</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppay" role="tab">Payment</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpbudget" role="tab">Budgets</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpdbudget" role="tab">Dept Budgets</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpmaster" role="tab">Master Data</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpuser" role="tab">User Management</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpapproval" role="tab">Approval</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpwf" role="tab">Workflow***</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpcurrency" role="tab">Currency</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpsetup" role="tab">Setup</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpsupport" role="tab">Support</a>
 				</div>
 			</div>
@@ -52,13 +55,8 @@
 				@include('tenant.help.includes.helpstart')
 				<!-- ========== INCLUDE ========== -->
 
-
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpfaq')
-				<!-- ========== INCLUDE ========== -->
-
-				<!-- ========== INCLUDE ========== -->
-				@include('tenant.help.includes.helpsetup')
 				<!-- ========== INCLUDE ========== -->
 
 				<!-- ========== INCLUDE ========== -->
@@ -70,12 +68,17 @@
 				<!-- ========== INCLUDE ========== -->
 
 				<!-- ========== INCLUDE ========== -->
-				@include('tenant.help.includes.helpapproval')
+				@include('tenant.help.includes.helpgrs')
 				<!-- ========== INCLUDE ========== -->
 
 				<!-- ========== INCLUDE ========== -->
-				@include('tenant.help.includes.helpcurrency')
+				@include('tenant.help.includes.helpinv')
 				<!-- ========== INCLUDE ========== -->
+
+				<!-- ========== INCLUDE ========== -->
+				@include('tenant.help.includes.helppay')
+				<!-- ========== INCLUDE ========== -->
+
 
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpbudget')
@@ -85,12 +88,31 @@
 				@include('tenant.help.includes.helpdbudget')
 				<!-- ========== INCLUDE ========== -->
 
+
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpmaster')
 				<!-- ========== INCLUDE ========== -->
 
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpuser')
+				<!-- ========== INCLUDE ========== -->
+
+
+				<!-- ========== INCLUDE ========== -->
+				@include('tenant.help.includes.helpapproval')
+				<!-- ========== INCLUDE ========== -->
+
+                <!-- ========== INCLUDE ========== -->
+				@include('tenant.help.includes.helpwf')
+				<!-- ========== INCLUDE ========== -->
+
+
+				<!-- ========== INCLUDE ========== -->
+				@include('tenant.help.includes.helpcurrency')
+				<!-- ========== INCLUDE ========== -->
+
+				<!-- ========== INCLUDE ========== -->
+				@include('tenant.help.includes.helpsetup')
 				<!-- ========== INCLUDE ========== -->
 
 				<!-- ========== INCLUDE ========== -->

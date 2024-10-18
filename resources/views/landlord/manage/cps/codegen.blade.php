@@ -29,8 +29,8 @@
 							<th>Section (accordionFaq ex. Faq):</th>
 							<td>
 								<input type="text" class="form-control @error('section') is-invalid @enderror"
-								name="section" id="section" placeholder="Payment"
-								value="{{ old('section', 'Payment' ) }}"
+								name="section" id="section" placeholder="Start"
+								value="{{ old('section', 'Start' ) }}"
 								required/>
 							@error('section')
 								<div class="small text-danger">{{ $message }}</div>
@@ -38,7 +38,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Div (collapseOne ex. One ) :</th>
+							<th>XX Div (collapseOne ex. One ) NOT Used :</th>
 							<td>
 								<input type="text" class="form-control @error('div') is-invalid @enderror"
 								name="div" id="div" placeholder="One"
