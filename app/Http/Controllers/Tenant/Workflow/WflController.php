@@ -110,7 +110,7 @@ class WflController extends Controller
 		Log::debug("tenant.wfl.update Processing wfl_id = " .$wfl->id);
 		Log::debug("tenant.wfl.update Processing action = " .$request->input('action'));
 
-		$request->merge(['action_date' => date('Y-m-d H:i:s')]);
+		$request->merge(['end_date' => date('Y-m-d H:i:s')]);
 		// update wfl row
 		$wfl->update($request->all());
 		Log::debug("tenant.wfl.update After updating current action=" .$wfl->action->value);
@@ -279,7 +279,7 @@ class WflController extends Controller
 		switch($wf->entity) {
 			case('PR'):
 				// Send notification to Next Approver
-				$action 	= WflActionEnum::PENDING->value;
+				$action 	= WflActionEnum::DUE->value;
 				$pr 		= Pr::where('id', $wf->article_id)->first();
 				$actionURL 	= route('prs.show', $pr->id);
 				$approver 	= User::where('id', $next_approver_id)->first();
@@ -287,7 +287,7 @@ class WflController extends Controller
 				break;
 			case('PO'):
 				// Send notification to Next Approver
-				$action 	= WflActionEnum::PENDING->value;
+				$action 	= WflActionEnum::DUE->value;
 				$po 		= Po::where('id', $wf->article_id)->first();
 				$actionURL 	= route('pos.show', $po->id);
 				$approver 	= User::where('id', $next_approver_id)->first();

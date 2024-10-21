@@ -106,13 +106,14 @@ class Workflow
 
 			// Insert submission row first
 			DB::INSERT("
-				INSERT INTO wfls(wf_id, performer_id, action_date, action, notes)
-				SELECT ".$wf_id.",'".$requestor_id."' ,now(),'". WflActionEnum::SUBMITTED->value ."','Submitted for Review and Approval';
+				INSERT INTO wfls(wf_id, performer_id, assign_date, start_date, end_date, action, notes)
+				SELECT ".$wf_id.",'".$requestor_id."' ,now(),now(),now(),'". WflActionEnum::SUBMITTED->value ."','Submitted for Review and Approval';
 			");
 
+            // insert all hieararcy rows
 			DB::INSERT("
-					INSERT INTO wfls(wf_id, performer_id)
-					SELECT ".$wf_id.",approver_id
+					INSERT INTO wfls(wf_id, performer_id, assign_date)
+					SELECT ".$wf_id.",approver_id,now()
 					FROM hierarchyls WHERE hid= ".$hierarchy_id.";
 				");
 
@@ -128,7 +129,9 @@ class Workflow
 			Log::debug("Helpers.Workflow.submitWf found first approver in wlf for wfl_id = ".$wfl->id);
 			Log::debug("Helpers.Workflow.submitWf change status as DUE for wfl_id = ".$wfl->id);
 
+            $wfl->fill(['start_date' => date('Y-m-d H:i:s')]);
 			$wfl->fill(['action' => WflActionEnum::DUE->value]);
+
 			$wfl->update();
 		} else {
 			$wf_id = 0;
@@ -159,7 +162,8 @@ class Workflow
 		try {
 			// mark as due for next approver
 			$wfl = Wfl::with('wf')->where('wf_id', $wf_id)->where('action', WflActionEnum::PENDING->value)->firstOrFail();
-			$wfl->action = WflActionEnum::DUE->value;
+			$wfl->start_date   = date('Y-m-d H:i:s');
+            $wfl->action       = WflActionEnum::DUE->value;
 			$wfl->update();
 
 			//Log::debug('Helpers.Workflow.setNextApproverDue wfl_id = '.$wfl->id);

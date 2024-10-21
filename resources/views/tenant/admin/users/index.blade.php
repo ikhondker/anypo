@@ -175,8 +175,6 @@
 												@endif
 											@endif
 										@endcan
-
-
 									@endif
 
 									{{-- <a href="{{ route('users.impersonate', $user->id) }}" class="btn btn-warning btn-sm">Impersonate</a>

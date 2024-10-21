@@ -1,6 +1,11 @@
 <script type="module">
-	$(document).ready(function () {
+    $(function() {
+        $("#po_id").change(function() {
+            alert( $('option:selected', this).text() );
+        });
+    });
 
+	$(document).ready(function () {
 		$('#qty').change(function() {
 			calculate();
 		});
@@ -16,6 +21,28 @@
 		$('#gst').change(function() {
 			calculate();
 		});
+
+		$('#po_id').change(function() {
+			//alert($('option:selected').text());
+			console.log("PO changed new Hello world1 !");
+			let id = $(this).val();
+			let url = '{{ route("pos.get-open-pos", ":id") }}';
+			url = url.replace(':id', id);
+			$.ajax({
+				url: url,
+				type: 'get',
+				dataType: 'json',
+				// delay: 250,
+				success: function(response) {
+					if (response != null) {
+						$('#dsp_supplier').val(response.supplier_id);
+						$('#dsp_po_currency').val(response.currency);
+					}
+				}
+			});
+
+		});
+
 	});
 
 

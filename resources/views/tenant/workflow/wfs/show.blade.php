@@ -37,10 +37,7 @@
 						<x-tenant.show.article-link 	entity="{{ $wf->entity }}" :id="$wf->article_id"/>
 						<x-tenant.show.my-text			value="{{ $wf->relHierarchy->name }}" label="Hierarchy Name"/>
 						<x-tenant.show.my-date-time		value="{{ $wf->created_at }}" label="Date"/>
-
-
-
-						<x-tenant.show.my-badge			value="{{ $wf->wf_status }}" label="WF Status"/>
+        				<x-tenant.show.my-badge			value="{{ $wf->wf_status }}" label="WF Status"/>
 						<x-tenant.show.my-badge			value="{{ $wf->auth_status }}" label="Auth Status"/>
 						<x-tenant.show.my-text			value="{{ $wf->last_performer->name }}" label="Final Approver"/>
 						<x-tenant.show.my-date-time		value="{{ $wf->auth_date }}" label="Auth Date"/>
@@ -64,9 +61,9 @@
 							<tr>
 								<th>ID#</th>
 								<th>Approver Name</th>
-								<th>Assign Date</th>
+								<th>Start Date</th>
+                                <th>End Date</th>
 								<th>Actions</th>
-								<th>Action Date</th>
 								<th>Notes</th>
 							</tr>
 						</thead>
@@ -75,9 +72,9 @@
 							<tr>
 								<td><span class="badge badge-subtle-primary">{{ $wfl->id }}</span></td>
 								<td>{{ $wfl->performer->name }}</td>
-								<td>{{ $wfl->assign_date }} </td>
+                                <td><x-tenant.list.my-date-time value="{{ $wfl->start_date }}"/></td>
+                                <td><x-tenant.list.my-date-time value="{{ $wfl->end_date }}"/></td>
 								<td><span class="badge {{ $wfl->action_badge->badge }}">{{ $wfl->action_badge->name}}</span> </td>
-								<td>{{ $wfl->action_date }} </td>
 								<td>{!! nl2br($wfl->notes) !!}</td>
 							</tr>
 							@endforeach

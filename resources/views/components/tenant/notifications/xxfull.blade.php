@@ -27,10 +27,10 @@
 						{{ $notification->data['from'] }}
 					</td>
 					<td class="text-truncate col-name">
-                        @php
-                            $owner = User::where('id', $notification->data['id'])->first();
-                        @endphp
-                        {{ $owner->name }}
+						@php
+							$owner = User::where('id', $notification->data['id'])->first();
+						@endphp
+						{{ $owner->name }}
 					</td>
 					<td class="text-truncate w-75 col-subject">
 						@if ($notification->read_at == null)
@@ -41,10 +41,10 @@
 					</td>
 					<td class="d-none d-xl-table-cell text-end text-truncate col-date">
 						{{-- <x-tenant.list.my-date-time :value="$notification->created_at"/> --}}
-                        @php
-                            $timeAgo = Carbon\Carbon::parse($notification->created_at)->ago();
-                        @endphp
-                        {{ $timeAgo }}
+						@php
+							$timeAgo = Carbon\Carbon::parse($notification->created_at)->ago();
+						@endphp
+						{{ $timeAgo }}
 
 
 					</td>

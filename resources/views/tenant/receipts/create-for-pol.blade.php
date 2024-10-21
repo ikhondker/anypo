@@ -27,7 +27,7 @@
 	</x-tenant.page-header>
 
 	@if(!empty($pol))
-		<x-tenant.info.pol-info polId="{{ $pol->id }}"/>
+		{{-- <x-tenant.info.pol-info polId="{{ $pol->id }}"/> --}}
 	@endif
 
 	<!-- form start -->
@@ -122,7 +122,7 @@
 	</form>
 	<!-- /.form end -->
 	@if(!empty($pol))
-		<x-tenant.widgets.pol.pol-receipts :id="$pol->id" />
+		{{-- <x-tenant.widgets.pol.pol-receipts :id="$pol->id" /> --}}
 	@endif
 
 	@include('tenant.includes.js.select2')

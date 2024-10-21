@@ -328,6 +328,8 @@ Route::middleware([
 		Route::get('/pos/export-for-supplier/{supplier}',[PoController::class,'exportForSupplier'])->name('pos.export-for-supplier');
 		Route::get('/pos/export-for-project/{project}',[PoController::class,'exportForProject'])->name('pos.export-for-project');
 		Route::get('/pos/export-for-buyer/{user}',[PoController::class,'exportForBuyer'])->name('pos.export-for-buyer');
+		Route::get('/pos/get-open-pos/{po}',[PoController::class, 'getOpenPos'])->name('pos.get-open-pos');
+
 
 		Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
 		Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
@@ -341,7 +343,7 @@ Route::middleware([
 		Route::get('/pos/ael/{po}',[PoController::class,'ael'])->name('pos.ael');
 
 		Route::get('/pos/submit/{po}',[PoController::class, 'submit'])->name('pos.submit');
-		Route::get('/pos/copy/{po}',[PoController::class, 'copy'])->name('pos.copy');
+		Route::get('/pos/duplicate/{po}',[PoController::class, 'duplicate'])->name('pos.duplicate');
 
 		/* ======================== Pol ======================================== */
 		Route::resource('pols', PolController::class);

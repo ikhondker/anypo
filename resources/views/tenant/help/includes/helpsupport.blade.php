@@ -1,24 +1,24 @@
 
 <div class="tab-pane fade" id="helpsupport" role="tabpanel">
-    <section class="py-5 bg-white">
-        <div class="container">
-            <div class="mb-5 text-center">
-                {{-- <span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">FAQ</span> --}}
-                <h2 class="h1">Support</h2>
-                <p class="text-muted fs-lg">Here are some of the answers you might be looking for.</p>
-            </div>
+	<section class="py-5 bg-white">
+		<div class="container">
+			<div class="mb-5 text-center">
+				{{-- <span class="text-uppercase text-primary text-sm fw-medium mb-1 d-block">FAQ</span> --}}
+				<h2 class="h1">Support</h2>
+				<p class="text-muted fs-lg">Here are some of the answers you might be looking for.</p>
+			</div>
 
-            <div class="row">
-                <div class="col-md-12 col-lg-12 mx-auto">
-                    <div class="accordion" id="accordionSupport">
-
-
+			<div class="row">
+				<div class="col-md-12 col-lg-12 mx-auto">
+					<div class="accordion" id="accordionSupport">
 
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </div>
 

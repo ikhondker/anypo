@@ -38,10 +38,10 @@
 
 		<div class="dropdown-divider"></div>
 		@can('copy', App\Models\Tenant\Po::class)
-			<a class="dropdown-item sw2-advance" href="{{ route('pos.copy', $po->id) }}"
+			<a class="dropdown-item sw2-advance" href="{{ route('pos.duplicate', $po->id) }}"
 				data-entity="" data-name="PO#{{ $po->id }}" data-status="Duplicate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PO">
-				<i class="align-middle me-1" data-lucide="copy"></i> Duplicate Purchase Order</a>
+				<i class="align-middle me-1" data-lucide="duplicate"></i> Duplicate Purchase Order</a>
 		@endcan
 		@can('close', App\Models\Tenant\Po::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('pos.close', $po->id) }}"

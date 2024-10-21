@@ -20,7 +20,7 @@
 					<tr>
 						<th class="">ID</th>
 						<th class="">Date</th>
-                        <th class="">Particulars</th>
+						<th class="">Particulars</th>
 						<th class="">Bank Ac</th>
 						<th class="text-end">Ref/Cheque No</th>
 						<th class="text-end">Amount</th>
@@ -32,7 +32,7 @@
 						<tr class="">
 							<td class="">{{ $payment->id }}</td>
 							<td class=""><x-tenant.list.my-date :value="$payment->pay_date"/></td>
-                            <td class="">{{ $payment->summary }}</td>
+							<td class="">{{ $payment->summary }}</td>
 							<td class="">{{ $payment->bank_account->ac_name }}</td>
 							<td class="text-end">{{ $payment->cheque_no }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/> {{ $payment->currency }}</td>

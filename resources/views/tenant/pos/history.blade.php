@@ -19,7 +19,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.info.po-info poId="{{ $po->id }}"/>
+	{{-- <x-tenant.info.po-info poId="{{ $po->id }}"/> --}}
 
 	{{-- @include('tenant.includes.pr.view-pr-header-basic') --}}
 

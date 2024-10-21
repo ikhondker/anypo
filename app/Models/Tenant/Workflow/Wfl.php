@@ -18,7 +18,7 @@ class Wfl extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'wf_id', 'sequence', 'performer_id', 'assign_date', 'action_date', 'action', 'notes', 'error_code', 'updated_by', 'updated_at',
+		'wf_id', 'sequence', 'performer_id', 'assign_date', 'start_date', 'end_date', 'action', 'notes', 'error_code', 'updated_by', 'updated_at',
 	];
 
 	/**

@@ -206,7 +206,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 			default:
 				Log::error("job.Tenant.RecordDeptBudgetUsage Other Entity!");
 		}
-		Log::error("job.Tenant.RecordDeptBudgetUsage Complete.");
+		Log::debug("job.Tenant.RecordDeptBudgetUsage Complete.");
 		$dbu->save();
 	}
 }

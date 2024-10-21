@@ -29,6 +29,7 @@ create
 <i class="fa fa-check-circle fa-5x text-success"></i>
 
 <i data-lucide="refresh-cw"></i>
+$checkout->checkout_date	= date('Y-m-d H:i:s');
 
 {!! nl2br($ticket->content) !!}
 

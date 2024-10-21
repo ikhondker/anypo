@@ -31,6 +31,7 @@ return new class extends Migration
 			$table->string('website')->nullable();
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
+            $table->string('timezone', 255)->default('UTC');
 			$table->biginteger('days_payment')->nullable()->default(45);
 			$table->biginteger('days_return')->nullable()->default(30);
 			$table->decimal('tolerance_invoice', 15, 2)->default(1);		// Future
@@ -42,7 +43,7 @@ return new class extends Migration
 			$table->string('ac_clearing')->default('A200006');			// Future user
 			$table->text('tc')->nullable();
 			$table->string('logo')->nullable()->default('logo.png');
-			$table->boolean('banner_show')->default(false); 
+			$table->boolean('banner_show')->default(false);
 			$table->text('banner_message')->nullable();
 			$table->string('version')->nullable()->default('1.0.0');
 			$table->string('build')->nullable()->default('1001');
@@ -53,8 +54,8 @@ return new class extends Migration
 			$table->uuid('kam_id')->nullable(); 					// Future
 			$table->biginteger('landlord_account_id')->nullable();
 			$table->date('last_rate_date')->nullable();
-			$table->boolean('maintenance')->default(false); 
-			$table->boolean('debug')->default(false); 
+			$table->boolean('maintenance')->default(false);
+			$table->boolean('debug')->default(false);
 			$table->boolean('readonly')->default(false);
 			$table->boolean('enable')->default(true);
 			//$table->boolean('purge')->default(true);

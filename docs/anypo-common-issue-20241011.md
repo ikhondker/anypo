@@ -13,6 +13,10 @@ https://stackoverflow.com/questions/12683907/set-the-width-of-select2-input-thro
 sweetlater2 post confirmation
 -----------------------------
 where?
+dont put inside any DIV. Only TD
+<td>
+<select class="form-control select2" data-toggle="select2" name="supplier_id" required>
+</td>
 2. conformatisonis on scss comiler
 
 
@@ -30,10 +34,13 @@ attachment file type and max size?
 1.
 
 
+sample email and cell number
+-----------------------------
+
 (123) 456-7890
 (###) ###-####
 (000) 000-0000
-s example.org, example.net and example.com
+example.org, example.net and example.com
 
 
 Step 3: Autoloading the Helper File
@@ -60,7 +67,15 @@ number formated
 https://laracasts.com/discuss/channels/laravel/laravel-convert-amount-in-digit-to-words?page=1&replyId=124593
 enable this extension in php.ini by uncommenting this line: extension=ext/php_intl.dll
 $f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+use Illuminate\Support\Number;
+CpControler.php
+
 echo $f->format(1432);
 Log::debug(Number::spell(8));
 Log::debug(Number::spell(9));
 Log::debug(Number::spell(10));
+
+
+tiemzone
+https://qcode.in/managing-users-timezone-in-laravel-app/
+$table->string('timezone', 60);

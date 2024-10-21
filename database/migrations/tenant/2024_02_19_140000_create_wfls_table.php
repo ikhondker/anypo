@@ -20,7 +20,8 @@ return new class extends Migration
 			$table->integer('sequence')->default(10);	// TODO P2
 			$table->uuid('performer_id');
 			$table->dateTime('assign_date',)->useCurrent(); // TODO make sure it is not nullable
-			$table->dateTime('action_date',)->nullable();
+			$table->dateTime('start_date',)->nullable();
+            $table->dateTime('end_date',)->nullable();
 			/** ENUM */
 			$table->string('action')->default(WflActionEnum::PENDING->value);
 			/** end ENUM */

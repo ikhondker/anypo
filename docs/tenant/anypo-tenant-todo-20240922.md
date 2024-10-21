@@ -16,22 +16,26 @@ x153. allow user to edit attachment file description
 x141. calculate-pr-amount.blade.php pr_amount during add line incorrect
 ?132. ({{ $_setup->currency }}) is not working in project show and create
 x125. calculate-pr-amount.blade hard-coded 1001
-123. select form invoice creation PO dropdown and project dropdown width
-111. role update in user.edit tab for edit role dropdown
+x111. role update in user.edit tab for edit role dropdown
+x128. adding default T&C text in PO line break check
+x127. add start and end action date in wlfl 
+
+127. create-for-po if po_id is invalid and auto populate currency and supplier issue
+126. find and replace 01911310509 +0012262804920 you@company.com email@example.com
+127. address/remove all TODO
+123. PO dropdown ain invoice creation and project dropdown width
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
+140. set fb and linked url to any po during setup and seeded
 155. fix component list -> ArticleLink and ProjectLink
 154. export file name add export
 155. add users need multi user avatar
 153. po table issue, invoiceLines, reports, FAQ, attachments
 152. re-use D:\Temp\svg\illustrations\png from Front theme
 148. Find and replace 'PO #', 'PR #', debug('tenant, =$, @can('edit' , ANYPO.NET, <i class="bi"
-126. find and replace 01911310509 +0012262804920 you@company.com email@example.com
-127. address/remove all TODO
 147. rewrite po lists
 145. Department Budget [BDT] export
 144. dbu export user_id -= null
 143. Home - 2024 - Dept Budgets - IT -Edit
-140. set fb and linked url to any po during setup and seeded
 139. edit master data supp/project/item by buyer @can button not shown
 137. budget revision TODO link for source with DB:insert and last id
 136. create UOM - UoM Class - default uom mention
@@ -40,7 +44,6 @@ x125. calculate-pr-amount.blade hard-coded 1001
 131. country, status, code edit error is showing
 130. ticket create and view update from tenant without login to landlord
 129. anypo item tax+gst, JS for tax gst, pr pdf tax, p2 reject pr, pr dashboard converted to po count
-128. adding default T&C text in PO line break check
 124. TODO prl cancel here
 123. Recon script not accounted transaction an fix issue.
 122. Manual Generate Accounting admin
@@ -64,6 +67,7 @@ x125. calculate-pr-amount.blade hard-coded 1001
 
 # 30 Nice to Have P2
 -------------------------------------------------------------------------------------------------
+111. chat plugin for intenral   Laravel reverb work with laravel 11 i
 113. Auth::user()->unreadNotifications->markAsRead(); jquery
 1. notfication mark-as-read with ajax see https://blog.quickadminpanel.com/laravel-notifications-with-database-driver-internal-messages/
 1.	prefix form pr/po number

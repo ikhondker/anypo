@@ -597,14 +597,15 @@ class PrController extends Controller
 		$pr->summary			= $sourcePr->summary;
 		$pr->pr_date			= now();
 
-		// User and Hod can copy into own department
-		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
-			$pr->requestor_id	= auth()->user()->id;
-			$pr->dept_id		= auth()->user()->dept_id;
-		} else {
-			$pr->requestor_id	= $sourcePr->requestor_id;
-			$pr->dept_id		= $sourcePr->dept_id;
-		}
+		// For User and Hod change requestor and dept to on
+        // For everyone change requestor and dept to own
+        $pr->requestor_id	= auth()->user()->id;
+        $pr->dept_id		= auth()->user()->dept_id;
+		// if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
+		// } else {
+		// 	$pr->requestor_id	= $sourcePr->requestor_id;
+		// 	$pr->dept_id		= $sourcePr->dept_id;
+		// }
 
 		$pr->need_by_date		= $sourcePr->need_by_date;
 		$pr->project_id			= $sourcePr->project_id;

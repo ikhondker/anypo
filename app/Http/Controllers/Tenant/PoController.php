@@ -637,10 +637,10 @@ class PoController extends Controller
 		return redirect()->route('pos.show', $po->id)->with('success', 'Workflow #'.$wf_id.' created. Purchase Order submitted for approval successfully.');
 	}
 
-	public function copy(Po $po)
+	public function duplicate(Po $po)
 	{
 
-		$this->authorize('copy', Po::class);
+		$this->authorize('duplicate', Po::class);
 
 		$sourcePo = Po::where('id', $po->id)->first();
 		$po				= new Po;
@@ -651,14 +651,9 @@ class PoController extends Controller
 		$po->po_date			= now();
 		$po->buyer_id			= auth()->user()->id;
 
-		// User and Hod can copy into own department
-		if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value ) {
-			$po->requestor_id	= auth()->user()->id;
-			$po->dept_id		= auth()->user()->dept_id;
-		} else {
-			$po->requestor_id	= $sourcePo->requestor_id;
-			$po->dept_id		= $sourcePo->dept_id;
-		}
+        // Only buyer can copy dont change requestor and dept
+        $po->requestor_id	= $sourcePo->requestor_id;
+        $po->dept_id		= $sourcePo->dept_id;
 
 		$po->need_by_date		= $sourcePo->need_by_date;
 		$po->project_id			= $sourcePo->project_id;
@@ -890,5 +885,23 @@ class PoController extends Controller
 		$this->authorize('view', $po);
 
 		return view('tenant.pos.extra', compact('po'));
+	}
+
+    // user in prl and pol dropdown ajax
+	public function getOpenPos($id = 0)
+	{
+		Log::debug('Value of id=' . $id);
+        //http://demo1.localhost:8000/items/get-item/1005
+		$data = [];
+		//Log::info('id='.$id);
+		//$data = Category::where('id', $id)->first();
+		//{"id":3,"name":"Category -3","slug":"Neque non.","enable":1,"limit":30,"created_at":"2022-07-04T07:08:42.000000Z","updated_at":"2022-07-04T07:08:42.000000Z"}
+		$data = Po::select('id','currency','supplier_id')->where('id', $id)->first();
+		// {"limit":30,"slug":"Neque non."}
+		//Log::info( $data);
+
+		Log::debug('Value of data=' . $data);
+		return response()->json($data);
+
 	}
 }

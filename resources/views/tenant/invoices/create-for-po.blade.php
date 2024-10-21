@@ -51,7 +51,6 @@
 					<div class="card-body">
 						<table class="table table-sm my-2">
 							<tbody>
-
 								@if(empty($po))
 									<tr>
 										<th>PO #</th>
@@ -67,6 +66,14 @@
 											@enderror
 										</td>
 									</tr>
+                                    <tr>
+										<th>Supplier :</th>
+										<td>
+											<input type="text" class="form-control"
+											name="dsp_supplier" id="dsp_supplier" value=""
+											readonly/>
+										</td>
+									</tr>
 								@else
 									<input type="text" name="po_id" id="po_id" class="form-control" placeholder="ID" value="{{ old('po_id', $po->id ) }}" hidden>
 									<tr>
@@ -77,18 +84,18 @@
 											readonly/>
 										</td>
 									</tr>
-									<tr>
-										<th>Currency :</th>
+                                    <tr>
+										<th>Supplier :</th>
 										<td>
 											<input type="text" class="form-control"
-											name="dsp_po_currency" id="dsp_po_currency" value="{{ $po->currency }}"
+											name="dsp_supplier" id="dsp_supplier" value="{{ $po->supplier->name }}"
 											readonly/>
 										</td>
 									</tr>
 								@endif
 
 								<tr>
-									<th>Invoice No</th>
+									<th>Invoice No :</th>
 									<td>
 										<input type="text" class="form-control @error('invoice_no') is-invalid @enderror"
 										name="invoice_no" id="invoice_no" placeholder="XXXXX"
@@ -101,7 +108,7 @@
 									</td>
 								</tr>
 								<tr>
-									<th>Invoice Date</th>
+									<th>Invoice Date :</th>
 									<td>
 										<input type="date" class="form-control @error('invoice_date') is-invalid @enderror"
 										name="invoice_date" id="invoice_date" placeholder=""
@@ -113,7 +120,7 @@
 									</td>
 								</tr>
 								<tr>
-									<th>Particulars</th>
+									<th>Particulars :</th>
 									<td>
 										<input type="text" class="form-control @error('summary') is-invalid @enderror"
 										name="summary" id="summary" placeholder="Summary"
@@ -124,10 +131,6 @@
 									@enderror
 									</td>
 								</tr>
-
-
-
-
 							</tbody>
 						</table>
 					</div>
@@ -149,17 +152,26 @@
 						<table class="table table-sm my-2">
 							<tbody>
 								@if(!empty($po))
-									<tr>
-										<th>Supplier :</th>
+								    <tr>
+										<th>Currency :</th>
 										<td>
 											<input type="text" class="form-control"
-											name="dsp_supplier" id="dsp_supplier" value="{{ $po->supplier->name }}"
+											name="dsp_po_currency" id="dsp_po_currency" value="{{ $po->currency }}"
+											readonly/>
+										</td>
+									</tr>
+                                @else
+                                     <tr>
+										<th>Currency :</th>
+										<td>
+											<input type="text" class="form-control"
+											name="dsp_po_currency" id="dsp_po_currency" value=""
 											readonly/>
 										</td>
 									</tr>
 								@endif
 								<tr>
-									<th>Invoice PoC</th>
+									<th>Invoice PoC :</th>
 									<td>
 										<select class="form-control" name="poc_id" required>
 											<option value=""><< PoC Name >> </option>
@@ -240,12 +252,10 @@
 	</form>
 	<!-- /.form end -->
 
-
 	@if(!empty($po))
 		<x-tenant.widgets.po.invoices poId="{{ $po->id }}" />
 	@endif
 
 	@include('tenant.includes.js.select2')
-	@include('tenant.includes.js.calculate-invoice-amount')
-
+    @include('tenant.includes.js.calculate-invoice-amount')
 @endsection

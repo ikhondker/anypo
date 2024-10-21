@@ -32,15 +32,16 @@
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpfaq" role="tab">FAQ</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppr" role="tab">Requisition</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppo" role="tab">Purchase Orders</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpgrs" role="tab">Receipts</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpinv" role="tab">Invoice</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppay" role="tab">Payment</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpgrs" role="tab">Receipts</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpinv" role="tab">Invoice</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helppay" role="tab">Payment</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpbudget" role="tab">Budgets</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpdbudget" role="tab">Dept Budgets</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpmaster" role="tab">Master Data</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpuser" role="tab">User Management</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helphier" role="tab">Hierarchy</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpapproval" role="tab">Approval</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpwf" role="tab">Workflow***</a>
+					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpwf" role="tab">Workflow</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpcurrency" role="tab">Currency</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpsetup" role="tab">Setup</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpsupport" role="tab">Support</a>
@@ -97,12 +98,16 @@
 				@include('tenant.help.includes.helpuser')
 				<!-- ========== INCLUDE ========== -->
 
+				<!-- ========== INCLUDE ========== -->
+				@include('tenant.help.includes.helphier')
+				<!-- ========== INCLUDE ========== -->
+
 
 				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpapproval')
 				<!-- ========== INCLUDE ========== -->
 
-                <!-- ========== INCLUDE ========== -->
+				<!-- ========== INCLUDE ========== -->
 				@include('tenant.help.includes.helpwf')
 				<!-- ========== INCLUDE ========== -->
 

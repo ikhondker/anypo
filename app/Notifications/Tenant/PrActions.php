@@ -60,7 +60,8 @@ class PrActions extends Notification implements ShouldQueue
 				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
 				break;
 			default:
-				// Success
+                // Error
+                Log::error('tenant.Notification.PrActions Other roles '. $this->action .' for pr_id = '. $this->pr->id);
 		}
 
 	}

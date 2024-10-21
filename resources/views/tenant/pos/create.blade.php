@@ -93,17 +93,15 @@
 								<tr>
 									<th>Project :</th>
 									<td>
-										<div class="col-sm-9">
-											<select class="form-control select2" data-toggle="select2" name="project_id" required>
-												<option value=""><< Project >> </option>
-												@foreach ($projects as $project)
-													<option value="{{ $project->id }}" {{ $project->id == old('project_id') ? 'selected' : '' }} >{{ $project->name }} </option>
-												@endforeach
-											</select>
-											@error('project_id')
-												<div class="small text-danger">{{ $message }}</div>
-											@enderror
-										</div>
+										<select class="form-control select2" data-toggle="select2" name="project_id" required>
+											<option value=""><< Project >> </option>
+											@foreach ($projects as $project)
+												<option value="{{ $project->id }}" {{ $project->id == old('project_id') ? 'selected' : '' }} >{{ $project->name }} </option>
+											@endforeach
+										</select>
+										@error('project_id')
+											<div class="small text-danger">{{ $message }}</div>
+										@enderror
 									</td>
 								</tr>
 

@@ -33,6 +33,7 @@ return new class extends Migration
 			$table->boolean('banner')->default(false);
 			$table->text('banner_message')->nullable();
 			$table->boolean('maintenance')->default(false);
+            $table->string('timezone', 255)->default('UTC');
 			$table->dateTime('maintenance_start_time')->nullable()->useCurrent();
 			$table->dateTime('maintenance_end_time')->nullable()->useCurrent();
 			$table->boolean('debug')->default(false);

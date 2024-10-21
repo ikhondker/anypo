@@ -18,7 +18,7 @@
 		@slot('buttons')
 
 			<x-tenant.buttons.header.lists object="Payment"/>
-			
+
 			@if(!empty($invoice))
 				<x-tenant.actions.invoice-actions invoiceId="{{ $invoice->id }}"/>
 			@endif
@@ -27,7 +27,7 @@
 	</x-tenant.page-header>
 
 	@if(!empty($invoice))
-		<x-tenant.info.invoice-info invoiceId="{{ $invoice->id }}"/>
+		{{-- <x-tenant.info.invoice-info invoiceId="{{ $invoice->id }}"/> --}}
 	@endif
 
 	<!-- form start -->
@@ -73,7 +73,7 @@
 								</td>
 							</tr>
 						@endif
-						
+
 						<tr>
 							<th>Particulars</th>
 							<td>
@@ -86,7 +86,7 @@
 							@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Bank Ac</th>
 							<td>

@@ -146,7 +146,7 @@ class InvoiceController extends Controller
 		//$po = Po::where('id', $po_id)->first();
 		$pocs	= User::Tenant()->get();
 
-		if(empty($invoice)){
+		if(empty($po)){
 			Log::debug('tenant.InvoiceController.createForPo No PO Selected!');
 			$pos = Po::allOpen()->get();
 			return view('tenant.invoices.create-for-po', with(compact('po','pos','pocs')));

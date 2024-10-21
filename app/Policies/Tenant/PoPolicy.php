@@ -130,7 +130,7 @@ class PoPolicy
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function copy(User $user): bool
+	public function duplicate(User $user): bool
 	{
 		return $user->isBuyer();
 	}

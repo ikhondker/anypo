@@ -181,7 +181,7 @@ pols.edit
 
 
 PR & PRL:
- Route::resource('prs', PrController::class)->middleware(['auth', 'verified']);
+Route::resource('prs', PrController::class)->middleware(['auth', 'verified']);
 Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
 Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
 Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
@@ -191,7 +191,7 @@ Route::get('/prs/submit/{pr}',[PrController::class, 'submit'])->name('prs.submit
 
 Route::get('/prls/createline/{id}',[PrlController::class, 'createLine'])->name('prls.createline');
 
-prs.index	=> as usaul
+prs.index	=> as usual
 
 prs.show	@include('includes.view-pr-header')
 		<x-widgets.pr-lines id="{{ $pr->id }}" :show="true"/>
