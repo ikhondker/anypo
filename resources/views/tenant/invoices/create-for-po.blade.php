@@ -55,7 +55,7 @@
 									<tr>
 										<th>PO #</th>
 										<td>
-											<select class="form-control select2" data-toggle="select2" name="po_id" required>
+											<select class="form-control select2" data-toggle="select2" name="po_id" id="po_id" required>
 												<option value=""><< Select PO >> </option>
 												@foreach ($pos as $poN)
 													<option value="{{ $poN->id }}" {{ $poN->id == old('po_id') ? 'selected' : '' }} >{{ $poN->summary }} -PO#{{ $poN->id }} </option>
@@ -66,7 +66,7 @@
 											@enderror
 										</td>
 									</tr>
-                                    <tr>
+									<tr>
 										<th>Supplier :</th>
 										<td>
 											<input type="text" class="form-control"
@@ -84,7 +84,7 @@
 											readonly/>
 										</td>
 									</tr>
-                                    <tr>
+									<tr>
 										<th>Supplier :</th>
 										<td>
 											<input type="text" class="form-control"
@@ -152,7 +152,7 @@
 						<table class="table table-sm my-2">
 							<tbody>
 								@if(!empty($po))
-								    <tr>
+									<tr>
 										<th>Currency :</th>
 										<td>
 											<input type="text" class="form-control"
@@ -160,8 +160,8 @@
 											readonly/>
 										</td>
 									</tr>
-                                @else
-                                     <tr>
+								@else
+									 <tr>
 										<th>Currency :</th>
 										<td>
 											<input type="text" class="form-control"
@@ -253,9 +253,9 @@
 	<!-- /.form end -->
 
 	@if(!empty($po))
-		<x-tenant.widgets.po.invoices poId="{{ $po->id }}" />
+		{{-- <x-tenant.widgets.po.invoices poId="{{ $po->id }}" /> --}}
 	@endif
 
 	@include('tenant.includes.js.select2')
-    @include('tenant.includes.js.calculate-invoice-amount')
+	@include('tenant.includes.js.calculate-invoice-amount')
 @endsection

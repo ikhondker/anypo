@@ -21,7 +21,7 @@ class UpdateUserRequest extends FormRequest
 	 */
 	public function rules(): array
 	{
-		//TODO P2
+		//TODO
 		return [
 			'name'				=> 'required|max:100',
 			'address1'			=> 'required|max:100',

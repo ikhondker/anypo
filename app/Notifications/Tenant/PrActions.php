@@ -118,7 +118,7 @@ class PrActions extends Notification implements ShouldQueue
 		$details = [
 			'entity'		=> 'PR',
 			'owner_id'		=> $this->user->id,
-			//'from'		=> $this->user->name,	// P2
+			//'from'		=> $this->user->name,	// TODOP2
 			'from'			=> 'Workflow',
 			'to'			=> $this->user->name,
 			//'subject'		=> '[FYI] PR #'.$this->pr->id.' '. $this->pr->summary .' for '. $this->pr->amount. $this->pr->currency.' has been '.Str::lower($this->action).'.',

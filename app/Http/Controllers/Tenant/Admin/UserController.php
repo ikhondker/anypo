@@ -39,7 +39,7 @@ use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 use Notification;
-use App\Notifications\Tenant\UserCreated; //P2
+use App\Notifications\Tenant\UserCreated; //TODOP2
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\Tenant\UserActions;
 # 5. Jobs
@@ -218,7 +218,7 @@ class UserController extends Controller
 			Log::debug('tenant.user.update Role hidden from non admin user!. Do nothing');
 			//$request->merge(['role'	=> $user->role->value ]);
 		}
-		// P2 add Role update
+		// TODOP2 add Role update
 		if (auth()->user()->role->value <> UserRoleEnum::ADMIN->value) {
 
 		} else {

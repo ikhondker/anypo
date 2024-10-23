@@ -126,7 +126,7 @@ class Pr extends Model
 				WHERE pr_id = ".$pr_id."");
 		}
 
-		// P2 handle in better way
+		// TODOP2 handle in better way
 		Log::debug('tenant.model.pr.syncPrValues Updating header FC column pr_id = ' . $pr->id);
 
 		// check if rows exists in prl

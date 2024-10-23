@@ -82,7 +82,7 @@ class Invoice extends Model
 	*/
 	public function scopeByPoBuyer(Builder $query, $id): void
 	{
-		// P2
+		// TODOP2
 		//if (! $id) return;
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('buyer_id', $id);
@@ -169,7 +169,7 @@ class Invoice extends Model
 				WHERE invoice_id = ".$invoice_id."");
 		}
 
-		// P2 handle in better way
+		// TODOP2 handle in better way
 		Log::debug('tenant.model.invoice.syncInvoiceValues Updating header FC column Invoice = ' . $invoice->id);
 
 		// check if rows exists in prl

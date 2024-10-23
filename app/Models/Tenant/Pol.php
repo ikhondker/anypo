@@ -53,7 +53,7 @@ class Pol extends Model
 	*/
 	public function scopeReceiptDue(Builder $query): void
 	{
-		// P2
+		// TODOP2
 		//if (! $id) return;
 		$query->where('closure_status',ClosureStatusEnum::OPEN->value)
 			->whereHas('po', function ($q) {

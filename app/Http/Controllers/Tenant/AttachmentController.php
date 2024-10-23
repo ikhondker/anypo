@@ -315,7 +315,7 @@ class AttachmentController extends Controller
 
 		$this->authorize('download', Attachment::class);
 
-		// P2 simplify
+		// TODOP2 simplify
 		// get entity -> directory from filename
 		$att = Attachment::where('file_name', $filename)->first();
 		$entity = Entity::where('entity', $att->entity)->first();

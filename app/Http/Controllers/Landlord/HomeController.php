@@ -505,7 +505,7 @@ class HomeController extends Controller
 	}
 
 
-	// P2 Please use session_id to troublehsot in stripe dashboard
+	// TODOP2 Please use session_id to troublehsot in stripe dashboard
 	public function webhook()
 	{
 

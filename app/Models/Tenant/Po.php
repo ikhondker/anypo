@@ -130,7 +130,7 @@ class Po extends Model
 
 		// update PO header
 		// handle No row in child table
-		// P2 handle in better way
+		// TODOP2 handle in better way
 		Log::debug('tenant.model.po.syncPoValues updating header FC column po_id = ' . $po->id);
 
 		// check if rows exists in pol
@@ -216,7 +216,7 @@ class Po extends Model
 
 		// update PO header
 		// handle No row in child table
-		// P2 handle in better way
+		// TODOP2 handle in better way
 		Log::debug('tenenat.model.po.updatePoFcValues updating header FC column PO = ' . $po->id);
 
 		// check if rows exists in pol

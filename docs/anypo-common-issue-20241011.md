@@ -79,3 +79,13 @@ Log::debug(Number::spell(10));
 tiemzone
 https://qcode.in/managing-users-timezone-in-laravel-app/
 $table->string('timezone', 60);
+
+
+
+-- jquery dropdown select
+calculate-invoice-amount.blade.php
+PoController.php
+InvoiceController.php
+-- note make sure to enter key in the first select like po_id or supplier_id
+$data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $id)->first();
+$data = Po::select('id','currency','supplier_id')->with('supplier:id,name')->where('id', $id)->first();

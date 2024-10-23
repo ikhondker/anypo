@@ -42,7 +42,7 @@ use App\Jobs\Landlord\AccountsArchive;
 # 12. Seeded
 use Str;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 class ProcessController extends Controller
 {
@@ -62,7 +62,7 @@ class ProcessController extends Controller
 
 		return view('landlord.manage.processes.index', compact('processes'));
 
-		
+
 	}
 
 
@@ -152,7 +152,7 @@ class ProcessController extends Controller
 	public function accountsArchive()
 	{
 		abort(403);
-		// P2 
+		// TODOP2
 		//Log::debug('landlord.process.accountsArchive Running process to generate all invoices.');
 		//AccountsArchive::dispatch();
 		//return redirect()->route('processes.index')->with('success','Accounts Archive Process submitted successfully.');

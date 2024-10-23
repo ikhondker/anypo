@@ -48,7 +48,7 @@ use App\Notifications\Landlord\InvoicePaid;
 class Bo
 {
 
-	// P2 Use this
+	// TODOP2 Use this
 	// use Exception;
 	// try {
 	// 	//Code that may throw an Exception

@@ -321,7 +321,7 @@ class TableController extends Controller
 		return view('landlord.manage.tables.messages', compact('filesInFolder','target_dir'));
 	}
 
-	// P2
+	// TODOP2
 	public function check()
 	{
 

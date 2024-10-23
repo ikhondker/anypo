@@ -888,18 +888,13 @@ class PoController extends Controller
 	}
 
     // user in prl and pol dropdown ajax
-	public function getOpenPos($id = 0)
+	public function getPo($poId = 0)
 	{
-		Log::debug('Value of id=' . $id);
+		//Log::debug('Value of id=' . $id);
         //http://demo1.localhost:8000/items/get-item/1005
 		$data = [];
-		//Log::info('id='.$id);
-		//$data = Category::where('id', $id)->first();
-		//{"id":3,"name":"Category -3","slug":"Neque non.","enable":1,"limit":30,"created_at":"2022-07-04T07:08:42.000000Z","updated_at":"2022-07-04T07:08:42.000000Z"}
-		$data = Po::select('id','currency','supplier_id')->where('id', $id)->first();
-		// {"limit":30,"slug":"Neque non."}
-		//Log::info( $data);
-
+		//$data = Po::select('id','currency','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
+        $data = Po::select('id','summary','amount','currency','supplier_id')->with('supplier:id,name')->where('id', $poId)->first();
 		Log::debug('Value of data=' . $data);
 		return response()->json($data);
 

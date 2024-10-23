@@ -658,41 +658,51 @@ class InvoiceController extends Controller
      // user in prl and pol dropdown ajax
 	public function getInvoice($invoiceId = 0)
 	{
+		//Log::debug('Value of id=' . $id);
+        //http://demo1.localhost:8000/items/get-item/1005
+		$data = [];
+		//$data = Invoice::select('id','currency','summary','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
+        //$data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
+        // xx $data = Invoice::select('id','currency','summary','invoice_date','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary','currency','po_date')->where('id', $invoiceId)->first();
+        // $data1 = DB::select("SELECT 'id','currency','amount','invoice_date','summary','supplier_id','po_id' FROM invoices
+        // WHERE id = '.$invoiceId.'
+        // ");
+
+        $sql = "SELECT id, currency, amount FROM invoices WHERE id = '1002'";
+        Log::debug('Value of sql=' . $sql);
+        $result = DB::selectOne($sql);
+        Log::debug('Value of result id =' .  $result->id);
+        return response()->json([
+            'id'        => $result->id,
+            'currency'  => $result->currency,
+            'amount'    => $result->amount,
+        ]);
+
+        $sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";
+        Log::debug('Value of sql=' . $sql);
+        $result = DB::select($sql);
+
+        //$rows = [];
+        $data = [];
+        foreach ($result as $row) {
+            Log::debug('Value of rows=' . $row->aa);
+            $data[] = $row->aa;
+        }
+        return response()->json($data);
+
+
+
+        //$sql = "SELECT id,currency,amount,invoice_date,summary,supplier_id,po_id FROM invoices WHERE id = '1002'";
+        //Log::debug('Value of sql=' . $sql);
+        //$result = DB::select($sql);
+        //Log::debug('Value of data2=' . $result);
+
+
 
         // lwc
-        //http://demo1.localhost:8000/items/get-item/1005
-		//$data = Invoice::select('id','currency','summary','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
-        //$data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
-		//Log::debug('Value of data=' . $data);
-		//return response()->json($data);
-
-        $sql = "
-            SELECT i.id, i.po_id, i.invoice_no,
-            i.summary invoice_summary, i.invoice_date, i.amount invoice_amount,i.currency,
-            p.summary po_summary, p.po_date, p.amount po_amount,p.currency po_currency,
-            s.name supplier_name
-            FROM invoices i, pos p, suppliers s
-            WHERE 1=1
-            AND i.po_id =p.id
-            AND p.supplier_id = s.id
-            AND i.id = '".$invoiceId."'
-        ";
-
-        //og::debug('Value of sql=' . $sql);
-        $result = DB::selectOne($sql);
-        return response()->json([
-            'id'                => $result->id,
-            'po_id'             => $result->po_id,
-            'invoice_summary'   => $result->invoice_summary,
-            'invoice_date'      => $result->invoice_date,
-            'invoice_amount'    => $result->invoice_amount,
-            'currency'          => $result->currency,
-            'po_summary'        => $result->po_summary,
-            'po_date'           => $result->po_date,
-            'po_amount'         => $result->po_amount,
-            'po_currency'       => $result->po_currency,
-            'supplier_name'     => $result->supplier_name
-        ]);
+        $data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
+		Log::debug('Value of data=' . $data);
+		return response()->json($data);
 
 	}
 

@@ -29,6 +29,7 @@ use App\Models\User;
 use App\Models\Tenant\Prl;
 use App\Models\Tenant\Pol;
 use App\Models\Landlord\Service;
+use App\Models\Tenant\Invoice;
 use App\Models\Landlord\Account;
 use App\Models\Tenant;
 use App\Helpers\Tenant\Akk;
@@ -75,6 +76,107 @@ class TestController extends Controller
 
 	public function run()
 	{
+        //https://stackoverflow.com/questions/41758870/how-to-convert-result-table-to-json-array-in-mysql
+
+
+        $invoiceId='1002';
+
+        $data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->where('id', $invoiceId)->first();
+		Log::debug('Value of data=' . $data);
+
+
+        $sql = "SELECT id,currency,amount FROM invoices WHERE id = '1002'";
+        Log::debug('Value of sql=' . $sql);
+        $result = DB::selectOne($sql);
+        Log::debug('Value of result id =' .  $result->id);
+
+
+        // error
+        // return response()->json(['id' => '1111']);
+        // return response()->json([
+        //     'id'        => $result->id,
+        //     'currency'  => $result->currency,
+        //     'amount'    => $result->amount,
+        // ],200);
+
+
+        $sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";
+        Log::debug('Value of sql=' . $sql);
+        $result = DB::select($sql);
+
+       //$rows = [];
+        foreach ($result as $row) {
+            Log::debug('Value of rows=' . $row->aa);
+            //Log::debug('Value of rows=' . print_r($row['aa']));
+            // $rows[] = [
+            //     'id'        => $row['id'],
+            //     'currency'  => $row['currency'],
+            // ];
+        }
+
+        //Log::debug('Value of rows=' . print_r($rows));
+
+        exit;
+
+
+
+		//$data = Invoice::select('id','currency','summary','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
+        //$data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
+        // xx $data = Invoice::select('id','currency','summary','invoice_date','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary','currency','po_date')->where('id', $invoiceId)->first();
+
+        //SELECT JSON_ARRAYAGG(JSON_OBJECT('name', name, 'phone', phone)) from Person;
+
+        //$sql = "SELECT JSON_OBJECT('id',id,'currency',currency,'amount',amount) FROM invoices WHERE id = '1002'";
+
+        // $sql = "
+        // SELECT CONCAT(
+        //     '[',
+        //     GROUP_CONCAT(JSON_OBJECT('id', id, 'currency', currency)),
+        //     ']'
+        // )
+        // FROM invoices WHERE id = '1002'
+        // ";
+
+        $sql = "SELECT 'id','currency','amount' FROM invoices WHERE id = '1002'";
+        Log::debug('Value of sql=' . $sql);
+        $result = DB::select($sql);
+
+
+        $rows = [];
+        foreach ($result as $row) {
+            $rows[] = [
+                'id' => $row['id'],
+                'currency' => $row['text'],
+            ];
+        }
+
+
+        // works
+        $data = [];
+        foreach($result as $r){
+            $data[] = $r;
+        }
+
+        //dd($data);
+        $response         = [];
+        $response['data'] =  $data;
+
+
+        // works
+        $dataArray = json_decode(json_encode($result), true);
+        dd($dataArray);
+        Log::debug('Value of dataArray=' . $dataArray);
+
+        exit;
+        dd($data2);
+        Log::debug('Value of data2=' . json_encode($data2));
+
+        $data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
+		Log::debug('Value of data=' . $data);
+
+        exit;
+        return response()->json($data);
+
         //Log::error(tenant('id'). ' tenant.budget.attach1 user_id = '. DomainTenantResolver::currentDomain );
         //Log::error(tenant('id'). \Stancl\Tenancy\Resolvers\DomainTenantResolver::class->currentDomain);
         //Log::error(tenant('id'). Tenant::find(tenant('id'))->path());

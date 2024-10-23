@@ -328,8 +328,7 @@ Route::middleware([
 		Route::get('/pos/export-for-supplier/{supplier}',[PoController::class,'exportForSupplier'])->name('pos.export-for-supplier');
 		Route::get('/pos/export-for-project/{project}',[PoController::class,'exportForProject'])->name('pos.export-for-project');
 		Route::get('/pos/export-for-buyer/{user}',[PoController::class,'exportForBuyer'])->name('pos.export-for-buyer');
-		Route::get('/pos/get-open-pos/{po}',[PoController::class, 'getOpenPos'])->name('pos.get-open-pos');
-
+		Route::get('/pos/get-po/{po}',[PoController::class, 'getPo'])->name('pos.get-po');
 
 		Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
 		Route::get('/pos/cancel/{po}',[PoController::class,'cancel'])->name('pos.cancel');
@@ -369,6 +368,7 @@ Route::middleware([
 		Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
 		Route::get('/invoices/payments/{invoice}',[InvoiceController::class,'payments'])->name('invoices.payments');
 		Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
+        Route::get('/invoices/get-invoices/{po}',[InvoiceController::class, 'getInvoice'])->name('invoices.get-invoice');
 
 		Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
 		Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');

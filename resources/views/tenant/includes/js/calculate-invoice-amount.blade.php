@@ -1,9 +1,5 @@
 <script type="module">
-    $(function() {
-        $("#po_id").change(function() {
-            alert( $('option:selected', this).text() );
-        });
-    });
+
 
 	$(document).ready(function () {
 		$('#qty').change(function() {
@@ -24,9 +20,9 @@
 
 		$('#po_id').change(function() {
 			//alert($('option:selected').text());
-			console.log("PO changed new Hello world1 !");
+			//console.log("PO changed new Hello world1 !");
 			let id = $(this).val();
-			let url = '{{ route("pos.get-open-pos", ":id") }}';
+			let url = '{{ route("pos.get-po", ":id") }}';
 			url = url.replace(':id', id);
 			$.ajax({
 				url: url,
@@ -35,7 +31,7 @@
 				// delay: 250,
 				success: function(response) {
 					if (response != null) {
-						$('#dsp_supplier').val(response.supplier_id);
+						$('#dsp_supplier').val(response.supplier.name);
 						$('#dsp_po_currency').val(response.currency);
 					}
 				}
@@ -62,8 +58,8 @@
 		price 			= price.replace(/,/g, '');				// remove comma
 		tax 			= tax.replace(/,/g, ''); 				// remove comma
 		gst 			= gst.replace(/,/g, ''); 				// remove comma
-		console.log("->old_line_amount = " + old_line_amount);
-		console.log("->old_inv_amount = " + old_inv_amount);
+		//console.log("->old_line_amount = " + old_line_amount);
+		//console.log("->old_inv_amount = " + old_inv_amount);
 
 		var sub_total = price * qty;
 		var line_amount = parseFloat(sub_total) + parseFloat(tax) + parseFloat(gst);
@@ -71,15 +67,15 @@
 
 
 		sub_total = sub_total.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
-		console.log("->sub_total=" + sub_total);
+		//console.log("->sub_total=" + sub_total);
 		$('#sub_total').val(sub_total);
 
 		line_amount = line_amount.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
-		console.log("->line amount=" + line_amount);
+		//console.log("->line amount=" + line_amount);
 		$('#amount').val(line_amount);
 
 		inv_amount = inv_amount.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
-		console.log("->new inv_amount=" + inv_amount);
+		//console.log("->new inv_amount=" + inv_amount);
 		$('#invoice_amount').val(inv_amount);
 
 	}

@@ -12,7 +12,7 @@
 						<th scope="col">#</th>
 						<th scope="col">Performer</th>
 						<th scope="col">Start</th>
-                        <th scope="col">End</th>
+						<th scope="col">End</th>
 						<th scope="col">Action</th>
 						<th scope="col">Notes</th>
 					</tr>
@@ -23,7 +23,7 @@
 						<td> {{ $loop->iteration }} </td>
 						<td>{{ $wfl->performer->name }} [{{ $wfl->performer->designation->name }}]</td>
 						<td><x-tenant.list.my-date-time value="{{ $wfl->start_date }}"/></td>
-                        <td><x-tenant.list.my-date-time value="{{ $wfl->end_date }}"/></td>
+						<td><x-tenant.list.my-date-time value="{{ $wfl->end_date }}"/></td>
 						<td>
 							<span class="badge {{ $wfl->action_badge->badge }}">{{ $wfl->action_badge->name}}</span>
 						</td>

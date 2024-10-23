@@ -264,7 +264,7 @@ class PaymentController extends Controller
 		EventLog::event('payment', $payment->id, 'create');
 
 		//return redirect()->route('payments.show',$payment->id)->with('success', 'Payment created successfully.');
-		return redirect()->route('invoices.show',$payment->invoice_id)->with('success', 'Payment created successfully.');
+		return redirect()->route('payments.show',$payment->id)->with('success', 'Payment created successfully.');
 	}
 
 	/**
