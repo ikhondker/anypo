@@ -8,7 +8,7 @@
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -24,7 +24,7 @@ class Export
 {
 	public static function csv($filename, $data)
 	{
-		
+
 		function cleanData(&$str)
 		{
 			if ($str == 't') {
@@ -42,7 +42,7 @@ class Export
 		}
 
 		// filename for download
-		$filename = $filename. "-" . date('Ymd') . ".csv";
+		$filename = 'export-'.$filename. "-" . date('Ymd') . ".csv";
 
 		header("Content-Disposition: attachment; filename=\"$filename\"");
 		header("Content-Type: text/csv");

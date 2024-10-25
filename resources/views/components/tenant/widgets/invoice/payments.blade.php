@@ -18,24 +18,26 @@
 			<table class="table table-sm my-2">
 				<thead>
 					<tr>
-						<th class="">ID</th>
-						<th class="">Date</th>
-						<th class="">Particulars</th>
-						<th class="">Bank Ac</th>
-						<th class="text-end">Ref/Cheque No</th>
+						<th>ID</th>
+						<th>Date</th>
+						<th>Particulars</th>
+						<th>Bank Ac</th>
+						<th>Ref/Cheque No</th>
 						<th class="text-end">Amount</th>
-						<th class="">Actions</th>
+                        <th>Status</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($payments as $payment)
-						<tr class="">
-							<td class="">{{ $payment->id }}</td>
-							<td class=""><x-tenant.list.my-date :value="$payment->pay_date"/></td>
-							<td class="">{{ $payment->summary }}</td>
-							<td class="">{{ $payment->bank_account->ac_name }}</td>
-							<td class="text-end">{{ $payment->cheque_no }}</td>
+						<tr>
+							<td>{{ $payment->id }}</td>
+							<td><x-tenant.list.my-date :value="$payment->pay_date"/></td>
+							<td>{{ $payment->summary }}</td>
+							<td>{{ $payment->bank_account->ac_name }}</td>
+							<td>{{ $payment->cheque_no }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/> {{ $payment->currency }}</td>
+                            <td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
 							<td class="table-action">
 								<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light btn-sm"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View

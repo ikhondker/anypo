@@ -36,6 +36,16 @@ $checkout->checkout_date	= date('Y-m-d H:i:s');
 94. var_dump(__METHOD__); var_dump(__FUNCTION__);
 
 
+<input type="number" class="form-control @error('price') is-invalid @enderror"
+    style="text-align: right;" min="1" step="0.01" max="999999.99"
+    name="price" id="price" placeholder="0.00"
+    value="{{ old('price','0.00') }}"
+    required>
+@error('price')
+        <div class="small text-danger">{{ $message }}</div>
+@enderror
+
+
 <table class="table table-sm my-2">
 	<tbody>
 

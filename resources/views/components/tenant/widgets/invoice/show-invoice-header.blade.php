@@ -65,7 +65,7 @@
 						<span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span>
 					@endif
 				</div>
-				<h5 class="card-title">Other Informatsion</h5>
+				<h5 class="card-title">Other Information</h5>
 				<h6 class="card-subtitle text-muted">Others information about Purchase Invoice.</h6>
 			</div>
 			<div class="card-body">

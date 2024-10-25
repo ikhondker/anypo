@@ -15,7 +15,7 @@
 		<a class="dropdown-item" href="{{ route('pos.show', $receipt->pol->po_id) }}"><i class="align-middle me-1" data-lucide="layout"></i> View Purchase Order</a>
 		<a class="dropdown-item" href="{{ route('receipts.ael', $receipt->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Accounting **</a>
 		<div class="dropdown-divider"></div>
-		@if ($receipt->status <> App\Enum\Tenant\ReceiptStatusEnum::RECEIVED->value)
+		@if ($receipt->status == App\Enum\Tenant\ReceiptStatusEnum::RECEIVED->value)
 			@can('cancel', App\Models\Tenant\Receipt::class)
 				<a class="dropdown-item sw2-advance" href="{{ route('receipts.cancel', $receipt->id) }}"
 					data-entity="" data-name="GRN #{{ $receipt->id }}" data-status="Cancel"

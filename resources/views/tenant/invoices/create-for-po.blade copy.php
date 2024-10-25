@@ -80,7 +80,14 @@
 									</tr>
 
 								@endif
-
+                                <tr>
+                                    <th>Supplier :</th>
+                                    <td>
+                                        <input type="text" class="form-control"
+                                        name="dsp_supplier" id="dsp_supplier" value="{{ empty($po) ? old('dsp_supplier') : $po->supplier->name }}"
+                                        readonly/>
+                                    </td>
+                                </tr>
 
 								<tr>
 									<th>Invoice No :</th>
@@ -119,21 +126,6 @@
 									@enderror
 									</td>
 								</tr>
-                                <tr>
-									<th>Invoice PoC :</th>
-									<td>
-										<select class="form-control" name="poc_id" required>
-											<option value=""><< PoC Name >> </option>
-											@foreach ($pocs as $user)
-												<option value="{{ $user->id }}" {{ $user->id == old('poc_id') ? 'selected' : '' }} >{{ $user->name }} </option>
-											@endforeach
-										</select>
-										@error('poc_id')
-											<div class="small text-danger">{{ $message }}</div>
-										@enderror
-									</td>
-								</tr>
-                                <x-tenant.attachment.create/>
 							</tbody>
 						</table>
 					</div>
@@ -148,20 +140,12 @@
 								<a class="btn btn-sm btn-light" href="{{ route('pos.invoices', $po->id) }}" ><i class="fas fa-list"></i> View Invoices</a>
 							@endif
 						</div>
-						<h5 class="card-title">Purchase Order Detail</h5>
-						<h6 class="card-subtitle text-muted">Purchase Order Detail Information.</h6>
+						<h5 class="card-title">Create Invoice For a Purchase Order</h5>
+						<h6 class="card-subtitle text-muted">Create Invoice For a Purchase Order.</h6>
 					</div>
 					<div class="card-body">
 						<table class="table table-sm my-2">
 							<tbody>
-                                <tr>
-                                    <th>Supplier :</th>
-                                    <td>
-                                        <input type="text" class="form-control"
-                                        name="dsp_supplier" id="dsp_supplier" value="{{ empty($po) ? old('dsp_supplier') : $po->supplier->name }}"
-                                        readonly/>
-                                    </td>
-                                </tr>
                                 <tr>
                                     <th>PO Date and Amount :</th>
                                     <td>
@@ -189,7 +173,7 @@
                                     <th>Department :</th>
                                     <td>
                                         <input type="text" class="form-control"
-                                        name="dsp_dept_name" id="dsp_dept_name" value="{{ empty($po) ? old('dsp_dept_name') : $po->dept->name }}"
+                                        name="dsp_dept_name" id="dsp_dept_name" value="{{ empty($invoice) ? old('dsp_dept_name') : $invoice->po->dept->name }}"
                                         readonly/>
                                     </td>
                                 </tr>
@@ -197,7 +181,7 @@
                                     <th>Project :</th>
                                     <td>
                                         <input type="text" class="form-control"
-                                        name="dsp_project_name" id="dsp_project_name" value="{{ empty($po) ? old('dsp_project_name') : $po->project->name }}"
+                                        name="dsp_project_name" id="dsp_project_name" value="{{ empty($invoice) ? old('dsp_project_name') : $invoice->po->project->name }}"
                                         readonly/>
                                     </td>
                                 </tr>
@@ -205,13 +189,46 @@
                                     <th>Buyer Name :</th>
                                     <td>
                                         <input type="text" class="form-control"
-                                        name="dsp_buyer_name" id="dsp_buyer_name" value="{{ empty($po) ? old('dsp_buyer_name') : $po->buyer->name }}"
+                                        name="dsp_buyer_name" id="dsp_buyer_name" value="{{ empty($invoice) ? old('dsp_buyer_name') : $invoice->po->buyer->name }}"
                                         readonly/>
                                     </td>
                                 </tr>
 
+								@if(!empty($po))
+									<tr>
+										<th>Currency :</th>
+										<td>
+											<input type="text" class="form-control"
+											name="dsp_po_currency" id="dsp_po_currency" value="{{ $po->currency }}"
+											readonly/>
+										</td>
+									</tr>
+								@else
+									 <tr>
+										<th>Currency :</th>
+										<td>
+											<input type="text" class="form-control"
+											name="dsp_po_currency" id="dsp_po_currency" value=""
+											readonly/>
+										</td>
+									</tr>
+								@endif
+								<tr>
+									<th>Invoice PoC :</th>
+									<td>
+										<select class="form-control" name="poc_id" required>
+											<option value=""><< PoC Name >> </option>
+											@foreach ($pocs as $user)
+												<option value="{{ $user->id }}" {{ $user->id == old('poc_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+											@endforeach
+										</select>
+										@error('poc_id')
+											<div class="small text-danger">{{ $message }}</div>
+										@enderror
+									</td>
+								</tr>
 								<x-tenant.create.notes/>
-
+								<x-tenant.attachment.create/>
 							</tbody>
 						</table>
 					</div>

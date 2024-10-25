@@ -668,17 +668,21 @@ class InvoiceController extends Controller
 
         $sql = "
             SELECT i.id, i.po_id, i.invoice_no,
-            i.summary invoice_summary, i.invoice_date, i.amount invoice_amount,i.currency,
-            p.summary po_summary, p.po_date, p.amount po_amount,p.currency po_currency,
+            i.summary invoice_summary, DATE_FORMAT(i.invoice_date, '%d-%b-%Y') invoice_date , FORMAT(i.amount,2) invoice_amount,i.currency,
+            p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
+            d.name dept_name,prj.name project_name, u.name buyer_name,
             s.name supplier_name
-            FROM invoices i, pos p, suppliers s
+            FROM invoices i, pos p, suppliers s, depts d, projects prj, users u
             WHERE 1=1
             AND i.po_id =p.id
             AND p.supplier_id = s.id
+            AND p.dept_id = d.id
+            AND p.project_id = prj.id
+            AND p.buyer_id = u.id
             AND i.id = '".$invoiceId."'
         ";
 
-        //og::debug('Value of sql=' . $sql);
+        //Log::debug('Value of sql=' . $sql);
         $result = DB::selectOne($sql);
         return response()->json([
             'id'                => $result->id,
@@ -691,6 +695,9 @@ class InvoiceController extends Controller
             'po_date'           => $result->po_date,
             'po_amount'         => $result->po_amount,
             'po_currency'       => $result->po_currency,
+            'dept_name'         => $result->dept_name,
+            'project_name'      => $result->project_name,
+            'buyer_name'        => $result->buyer_name,
             'supplier_name'     => $result->supplier_name
         ]);
 

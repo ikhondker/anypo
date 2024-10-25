@@ -31,8 +31,14 @@
 				// delay: 250,
 				success: function(response) {
 					if (response != null) {
-						$('#dsp_supplier').val(response.supplier.name);
-						$('#dsp_po_currency').val(response.currency);
+						$('#dsp_supplier').val(response.supplier_name);
+						$('#dsp_po_currency').val(response.po_currency);
+						$('#dsp_po_date').val(response.po_date);
+                        $('#dsp_po_amount').val(response.po_amount);
+                        $('#dsp_po_currency').val(response.po_currency);
+                        $('#dsp_dept_name').val(response.dept_name);
+                        $('#dsp_project_name').val(response.project_name);
+                        $('#dsp_buyer_name').val(response.buyer_name);
 					}
 				}
 			});

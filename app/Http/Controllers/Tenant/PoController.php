@@ -890,13 +890,40 @@ class PoController extends Controller
     // user in prl and pol dropdown ajax
 	public function getPo($poId = 0)
 	{
-		//Log::debug('Value of id=' . $id);
-        //http://demo1.localhost:8000/items/get-item/1005
-		$data = [];
-		//$data = Po::select('id','currency','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
-        $data = Po::select('id','summary','amount','currency','supplier_id')->with('supplier:id,name')->where('id', $poId)->first();
-		Log::debug('Value of data=' . $data);
-		return response()->json($data);
+        // lwc
+	    //http://demo1.localhost:8000/pos/get-po/1005
+		//$data = [];
+	    //$data = Po::select('id','summary','amount','currency','supplier_id')->with('supplier:id,name')->where('id', $poId)->first();
+		//Log::debug('Value of data=' . $data);
+		//return response()->json($data);
+
+
+        $sql = "
+        SELECT  p.id po_id, p.currency,
+        p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
+        d.name dept_name,prj.name project_name, u.name buyer_name,
+        s.name supplier_name
+        FROM pos p, suppliers s, depts d, projects prj, users u
+        WHERE 1=1
+        AND p.supplier_id = s.id
+        AND p.dept_id = d.id
+        AND p.project_id = prj.id
+        AND p.buyer_id = u.id
+        AND p.id = '".$poId."'
+    ";
+
+        $result = DB::selectOne($sql);
+        return response()->json([
+            'po_id'             => $result->po_id,
+            'po_currency'          => $result->currency,
+            'po_summary'        => $result->po_summary,
+            'po_date'           => $result->po_date,
+            'po_amount'         => $result->po_amount,
+            'dept_name'         => $result->dept_name,
+            'project_name'      => $result->project_name,
+            'buyer_name'        => $result->buyer_name,
+            'supplier_name'     => $result->supplier_name
+        ]);
 
 	}
 }

@@ -351,7 +351,7 @@ Route::middleware([
 		Route::get('/pols/add-line/{po}',[PolController::class, 'addLine'])->name('pols.add-line');
 		Route::get('/pols/receipt/{pol}',[PolController::class,'receipt'])->name('pols.receipt');
 		Route::get('/pols/ael/{pol}',[PolController::class,'ael'])->name('pols.ael');
-
+		Route::get('/pols/get-pol/{pol}',[PolController::class, 'getPol'])->name('pols.get-pol');
 
 		/* ======================== Receipt ======================================== */
 		Route::resource('receipts', ReceiptController::class);

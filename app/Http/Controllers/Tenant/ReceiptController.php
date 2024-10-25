@@ -239,7 +239,7 @@ class ReceiptController extends Controller
 
 		// Write to Log
 		EventLog::event('receipt', $receipt->id, 'create');
-		return redirect()->route('pols.show',$pol->id)->with('success', 'Receipt created successfully.');
+		return redirect()->route('receipts.show',$receipt->id)->with('success', 'Receipt created successfully.');
 	}
 
 	/**

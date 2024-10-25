@@ -48,8 +48,6 @@
 									@enderror
 									</td>
 								</tr>
-		
-		
 								<tr>
 									<th>Invoice No</th>
 									<td>
@@ -63,7 +61,7 @@
 									@enderror
 									</td>
 								</tr>
-		
+
 								<tr>
 									<th>Invoice Date</th>
 									<td>
@@ -76,7 +74,7 @@
 									@enderror
 									</td>
 								</tr>
-		
+
 								<tr>
 									<th>Particulars</th>
 									<td>
@@ -89,9 +87,14 @@
 									@enderror
 									</td>
 								</tr>
-
-								<x-tenant.edit.currency :value="$invoice->currency"/>
-
+                                <tr>
+                                    <th>Currency :</th>
+                                    <td>
+                                       <input type="text" class="form-control"
+                                                name="currency" id="currency" value="{{ $invoice->currency }}"
+                                                readonly/>
+                                    </td>
+                                </tr>
 							</tbody>
 						</table>
 
@@ -118,16 +121,13 @@
 								<tr>
 									<th>Amount ({{ $invoice->currency }})</th>
 									<td>
-										<input type="number" class="form-control @error('amount') is-invalid @enderror"
-										name="amount" id="amount" placeholder="99,999.99"
-										value="{{ old('amount', $invoice->amount ) }}"
-										step='0.01' min="1" required/>
-									@error('amount')
-										<div class="small text-danger">{{ $message }}</div>
-									@enderror
+                                      <input type="text" class="form-control"
+                                                 style="text-align: right;"
+                                                name="amount" id="amount" value="{{ number_format($invoice->amount,2) }}"
+                                                readonly/>
 									</td>
 								</tr>
-		
+
 								<x-tenant.create.notes/>
 								<tr>
 									<th>Invoice PoC</th>
@@ -143,11 +143,11 @@
 										@enderror
 									</td>
 								</tr>
-		
-		
+
+
 								<x-tenant.edit.save/>
 
-								
+
 							</tbody>
 						</table>
 
@@ -164,7 +164,7 @@
 			<button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Save</button>
 		</div>
 
-		
+
 
 	</form>
 	<!-- /.form end -->
