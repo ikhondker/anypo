@@ -128,8 +128,6 @@ class DbuController extends Controller
 	{
 		$this->authorize('update', $dbu);
 
-		
-		
 		// Write to Log
 		EventLog::event('dbu', $dbu->id, 'update', 'name', $dbu->id);
 		$dbu->update($request->all());
@@ -149,14 +147,14 @@ class DbuController extends Controller
 	{
 
 		$this->authorize('export', Dbu::class);
-		
+
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
 			//$dept_id 	= auth()->user()->dept_id;
 			$whereDept = 'u.dept_id = '. auth()->user()->dept_id;
 		} else {
 			$whereDept = '1 = 1';
 		}
-		
+
 		$sql = "
 			SELECT u.id, u.entity, u.article_id, u.event, o.name user_name, d.name dept_name, p.name project_name,
 			u.amount_pr_booked, u.amount_pr, u.amount_po_booked, u.amount_po, u.amount_grs, u.amount_invoice, u.amount_payment,

@@ -6,25 +6,26 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+use App\Models\Tenant\Po;
 use App\Models\Tenant\Budget;
+
 
 class BudgetStat extends Component
 {
 	//public $id;
 	public $budget;
-
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(
-		public string $bid='0000',
+		public string $bid='0000'
 	)
 	{
 		if ($bid == '0000'){
 			// Get latest budget
-			$this->budget				= Budget::where('revision',false)->orderBy('id', 'DESC')->firstOrFail();
+			$this->budget			= Budget::where('revision',false)->orderBy('id', 'DESC')->firstOrFail();
 		} else {
-			$this->budget				= Budget::where('revision',false)->where('id', $bid)->firstOrFail();
+			$this->budget			= Budget::where('revision',false)->where('id', $bid)->firstOrFail();
 		}
 	}
 

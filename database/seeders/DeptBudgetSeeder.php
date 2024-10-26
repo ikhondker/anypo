@@ -320,7 +320,6 @@ class DeptBudgetSeeder extends Seeder
 			],
 		];
 
-
 		DeptBudget::insert($deptBudget23);
 		DeptBudget::insert($deptBudget24);
 		//DeptBudget::insert($deptBudget23Dummy);

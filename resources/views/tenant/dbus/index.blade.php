@@ -43,11 +43,7 @@
 								<th>Linked Document</th>
 								<th>Event</th>
 								<th>Project</th>
-								<th class="text-end">PR</th>
-								<th class="text-end">PO</th>
-								<th class="text-end">GRS</th>
-								<th class="text-end">Invoice</th>
-								<th class="text-end">Payment</th>
+								<th class="text-end">Amount</th>
 								<th>View</th>
 							</tr>
 						</thead>
@@ -62,11 +58,7 @@
 								<td><x-tenant.list.article-link entity="{{ $dbu->entity }}" :id="$dbu->article_id"/></td>
 								<td><span class="badge badge-subtle-primary">{{ $dbu->event }}</span></td>
 								<td><x-tenant.list.project-link id="{{ $dbu->project_id }}" :label="$dbu->project->code"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_pr_booked + $dbu->amount_pr"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_po_booked + $dbu->amount_po"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_grs"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_invoice"/></td>
-								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount_payment"/></td>
+								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount"/></td>
 								<td>
 									<a href="{{ route('dbus.show',$dbu->id) }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View

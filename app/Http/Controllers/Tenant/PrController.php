@@ -44,6 +44,10 @@ use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
 
+use App\Models\Tenant\Workflow\Hierarchy;
+use App\Models\Tenant\Workflow\Hierarchyl;
+
+
 use App\Models\Tenant\Workflow\Wfl;
 # 2. Enums
 use App\Enum\UserRoleEnum;
@@ -480,6 +484,23 @@ class PrController extends Controller
 		}
 		Log::debug(tenant('id'). ' tenant.pr.submit submitting pr_id = ' . $pr->id);
 
+        // check if approval hierarchy exists and is valid
+        $dept = Dept::where('id', $pr->dept_id)->first();
+        try {
+            $hierarchy      = Hierarchy::where('id', $dept->pr_hierarchy_id)->firstOrFail();
+            $hierarchy_id   = $hierarchy->id;
+        } catch (Exception $e) {
+            Log::error("tenant.pr.submit Hierarchy find error for pr_id= ".$pr->id ." dept_id = ".$dept->id);
+            return redirect()->route('prs.show',$pr->id)->with('error', 'Approval Hierarchy not found! Please assign approval Hierarchy for dept!');
+        }
+
+        // check if approval hierarchy lines exists and is valid
+        $hl_count	= Hierarchyl::where('hid',$hierarchy_id)->count();
+        //Log::error("tenant.pr.submit hl_count = ".$hl_count);
+        if ( $hl_count == 0){
+            return redirect()->route('prs.show',$pr->id)->with('error', 'No Approver found in Approval Hierarchy ' . $hierarchy->name . '! Please assign approver first.');
+        }
+
 		// generate fc_currency value and check budget
 		// check if budget created and set dept_budget_id
 		// check if budget for this year exists
@@ -526,6 +547,7 @@ class PrController extends Controller
 			$customError = CustomError::where('code', $result)->first();
 			return redirect()->route('prs.show', $pr->id)->with('error', $customError->message.' Please Try later.');
 		}
+
 
 		// Check and book Dept Budget TODO use error_code
 		Log::debug(tenant('id'). ' tenant.pr.submit booking budget by PrBudget::prBudgetBook...');

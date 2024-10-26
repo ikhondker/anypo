@@ -28,7 +28,19 @@ use App\Http\Requests\Tenant\Manage\UpdateCpRequest;
 class CpController extends Controller
 {
 
+
+
 	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		return view('tenant.manage.cps.index');
+    }
+
+
+
+    /**
 	 * Display a listing of the resource.
 	 */
 	public function changeLog()
@@ -36,7 +48,7 @@ class CpController extends Controller
 		//$this->authorize('viewAny',Oem::class);
 		return view('tenant.manage.cps.changelog');
 	}
-	
+
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -45,15 +57,23 @@ class CpController extends Controller
 		//$this->authorize('viewAny',Oem::class);
 		return view('tenant.manage.cps.codegen');
 	}
-	
-	/**
-	 * Display a listing of the resource.
+
+     /**
+	 * Show the form for creating a new resource.
 	 */
-	public function index()
+	public function ui()
 	{
-		//
+        return view('tenant.manage.ui');
+
 	}
 
+     /**
+	 * Show the form for creating a new resource.
+	 */
+	public function checkTimestamp()
+	{
+		return view('tenant.manage.cps.timestamp');
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 */

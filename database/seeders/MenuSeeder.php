@@ -261,6 +261,11 @@ class MenuSeeder extends Seeder
 
 			[ 'raw_route_name' => 'tables.index','route_name' 			=> 'tables.index', 'node_name' 		=> 'system'],
 
+            [ 'raw_route_name' => 'cps.index','route_name' 			    => 'cps.index', 'node_name' 		=> 'system'],
+            [ 'raw_route_name' => 'cps.changelog','route_name' 			=> 'cps.changelog', 'node_name' 	=> 'system'],
+            [ 'raw_route_name' => 'cps.ui','route_name' 				=> 'cps.index', 'node_name'			=> 'system'],
+            [ 'raw_route_name' => 'cps.timestamp','route_name' 			=> 'cps.index', 'node_name' 		=> 'system'],
+
 			[ 'raw_route_name' => 'activities.index','route_name' 		=> 'activities.index', 'node_name' 	=> 'system'],
 			[ 'raw_route_name' => 'activities.show','route_name' 		=> 'activities.index', 'node_name' 	=> 'system'],
 
@@ -302,7 +307,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'templates.edit','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
 			[ 'raw_route_name' => 'templates.create','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
 
-			[ 'raw_route_name' => 'cps.changelog','route_name' 			=> 'cps.changelog', 'node_name' 	=> 'system'],
+
 
 			/**
 			* ==================================================================================
@@ -316,7 +321,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'aels.index','route_name' 			=> 'aels.index', 'node_name' 		=> 'system'],
 			[ 'raw_route_name' => 'aels.show','route_name' 				=> 'aels.index', 'node_name' 		=> 'system'],
 
-			[ 'raw_route_name' => 'ui','route_name' 					=> 'ui', 'node_name'				=> 'system'],
+
 
 			/**
 			* ==================================================================================

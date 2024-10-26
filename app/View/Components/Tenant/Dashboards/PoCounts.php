@@ -42,7 +42,6 @@ class PoCounts extends Component
 			// 	$this->sum_rejected		= Po::ByBuyerRejected()->sum('fc_amount');
 			// 	break;
 			case UserRoleEnum::HOD->value:
-
 				$this->count_approved	= Po::ByDeptApproved()->count();
 				$this->sum_approved		= Po::ByDeptApproved()->sum('fc_amount');
 

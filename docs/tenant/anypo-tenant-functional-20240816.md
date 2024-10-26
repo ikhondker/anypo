@@ -33,6 +33,9 @@ StorePrlRequest.php & UpdatePrlRequest.php
 	'price'				=> 'required|numeric|min:1.00|max:999999.9999',
 
 
+# dbu
+Where it is booked? Jobs.RecordDeptBudgetUsage
+
 # Tech:
 - Attachments are in aws
 - logo, avatar and assets are in amazon public
@@ -73,6 +76,7 @@ pr.index : HoD+Buyer+CxO sees only approve PR lists
 - dynamic change of UoM code is in calculate-po-amount
  
 # BUDGET
+- during revision can not mark original line as revision as child row exists
 - not optional. use workaround . large budget amount and forget
 - update by 
 	- dept budget add/edit
@@ -82,6 +86,9 @@ pr.index : HoD+Buyer+CxO sees only approve PR lists
 	- po submitted
 	- po cancels
 	- po workflow reset
+
+# DEPTBUDGET
+// during revision can not mark original line as revision as child row exists
 
 # PROJECT
 - budget control is optional. should we make it mandatory and user workaround?

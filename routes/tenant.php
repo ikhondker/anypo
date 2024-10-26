@@ -452,9 +452,9 @@ Route::middleware([
 		Route::post('/dept-budget/attach',[DeptBudgetController::class,'attach'])->name('dept-budgets.attach');
 		Route::get('/dept-budgets/attachments/{deptBudget}',[DeptBudgetController::class,'attachments'])->name('dept-budgets.attachments');
 		Route::get('/dept-budgets/dbu/{deptBudget}',[DeptBudgetController::class,'dbu'])->name('dept-budgets.dbu');
-		Route::get('/dept-budgets/revisions/{deptBudget}',[DeptBudgetController::class,'revisions'])->name('dept-budgets.revisions');
 		Route::get('/dept-budget/revisions-all',[DeptBudgetController::class,'revisionsAll'])->name('dept-budgets.revisions-all');
-		Route::get('/dept-budgets/show-revision/{deptBudget}',[DeptBudgetController::class,'showRevision'])->name('dept-budgets.show-revision');
+		Route::get('/dept-budgets/revisions/{deptBudget}',[DeptBudgetController::class,'revisions'])->name('dept-budgets.revisions');
+		Route::get('/dept-budgets/revision-detail/{deptBudget}',[DeptBudgetController::class,'revisionDetail'])->name('dept-budgets.revision-detail');
 	});
 
 
@@ -490,15 +490,14 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
-
 		/* ======================== Budget ======================================== */
 		Route::resource('budgets', BudgetController::class);
 		Route::get('/budget/export',[BudgetController::class,'export'])->name('budgets.export');
 		Route::get('/budgets/delete/{budget}',[BudgetController::class,'destroy'])->name('budgets.destroy');
 		Route::post('/budget/attach',[BudgetController::class,'attach'])->name('budgets.attach');
 		Route::get('/budgets/attachments/{budget}',[BudgetController::class,'attachments'])->name('budgets.attachments');
-		Route::get('/budgets/revisions/{budget}',[BudgetController::class,'revisions'])->name('budgets.revisions');
 		Route::get('/budget/revisions-all',[BudgetController::class,'revisionsAll'])->name('budgets.revisions-all');
+		Route::get('/budgets/revisions/{budget}',[BudgetController::class,'revisions'])->name('budgets.revisions');
 	});
 
 
@@ -687,8 +686,11 @@ Route::middleware([
 	])->group(function () {
 
 		/* ======================== Cp ======================================== */
-		//Route::resource('menus', MenuController::class);
+		Route::resource('cps', CpController::class);
 		Route::get('/cp/changelog',[CpController::class,'changeLog'])->name('cps.changelog');
+        Route::get('/cp/codegen',[CpController::class,'changeLog'])->name('cps.changelog');
+        Route::get('/cp/ui',[CpController::class,'ui'])->name('cps.ui');
+        Route::get('/cp/timestamp',[CpController::class,'checkTimestamp'])->name('cps.timestamp');
 		//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
 
 		/* ======================== Table ========================================  */
@@ -745,11 +747,6 @@ Route::middleware([
 
         /* ======================== Notification ======================================== */
         Route::get('/notification/full',[NotificationController::class, 'full'])->name('notifications.full');
-
-		/* ======================== UI ========================================  */
-		Route::get('/ui', function () {
-			return view('tenant.manage.ui');
-		})->name('ui');
 
 
 		/* ======================== Purging Cache ========================================  */

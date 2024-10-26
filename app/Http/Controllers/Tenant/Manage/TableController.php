@@ -227,21 +227,20 @@ class TableController extends Controller
 		Log::debug('tenant.TableController.models dir = ' . $dir);
 		Log::debug('tenant.TableController.models target_dir = ' . $target_dir);
 
-
 		//$filesInFolder = \File::files(base_path().'\app\Models');
 		// $filesInFolder = Docs::getFiles('\app\Models\Tenant');
 		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_MODEL'));
 		$filesInFolder = Docs::getFiles($target_dir);
-		
+
 		return view('tenant.manage.tables.models', compact('filesInFolder'));
 	}
 
-	
+
 	public function allModels()
 	{
 		$this->authorize('models', Table::class);
 		$dir	= "D:\laravel\anypo\app\Models\Tenant\\";
-		$a= Docs::listFolderFiles($dir);	
+		$a= Docs::listFolderFiles($dir);
 	}
 
 

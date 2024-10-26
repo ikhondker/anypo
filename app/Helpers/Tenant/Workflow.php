@@ -48,7 +48,6 @@ class Workflow
 {
 	public static function submitWf($entity, $article_id)
 	{
-
 		// don't need exception as can not save dept with hierarchy
 		switch ($entity) {
 			case EntityEnum::PR->value:

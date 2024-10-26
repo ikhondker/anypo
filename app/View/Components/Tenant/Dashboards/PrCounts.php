@@ -38,8 +38,6 @@ class PrCounts extends Component
 
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
-
-
 				$this->count_approved	= Pr::ByUserApproved()->count();
 				$this->sum_approved		= Pr::ByUserApproved()->sum('fc_amount');
 
@@ -54,7 +52,6 @@ class PrCounts extends Component
 
 				break;
 			case UserRoleEnum::HOD->value:
-
 				$this->count_approved	= Pr::ByDeptApproved()->count();
 				$this->sum_approved		= Pr::ByDeptApproved()->sum('fc_amount');
 

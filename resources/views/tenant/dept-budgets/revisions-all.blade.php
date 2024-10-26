@@ -50,7 +50,7 @@
 						<td class=""> {{ $deptBudget->user_created_by->name }}</td>
 						<td class=""><x-tenant.list.my-date-time :value="$deptBudget->created_at"/></td>
 						<td>
-							<a href="{{ route('dept-budgets.show-revision',$deptBudget->id) }}" class="btn btn-light"
+							<a href="{{ route('dept-budgets.revision-detail',$deptBudget->id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 							</a>
 						</td>

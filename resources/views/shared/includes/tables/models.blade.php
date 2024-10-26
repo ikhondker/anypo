@@ -14,6 +14,20 @@
 		</h6>
 	</div>
 	<div class="card-body">
+
+        <table class="table table-sm my-2">
+			<tbody>
+				<tr>
+					<th width="10%">Model List:</th>
+					<td>
+						@foreach($filesInFolder as $row)
+							{{ $row['f'] }},
+						@endforeach
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
 		<!-- Table -->
 		<table class="table table-striped table-sm">
 
@@ -29,7 +43,7 @@
 			</tr>
 			</thead>
 			<tbody>
-				@foreach($filesInFolder as $row) 
+				@foreach($filesInFolder as $row)
 					<tr>
 						<th scope="row">{{ $loop->iteration }}</th>
 						<td>{{ $row['f'] }}</td>
@@ -50,5 +64,10 @@
 			</tbody>
 		</table>
 		<!-- End Table -->
+
+
+
+
+
 	</div>
 </div>

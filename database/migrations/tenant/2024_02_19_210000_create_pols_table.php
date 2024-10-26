@@ -32,7 +32,7 @@ return new class extends Migration
 			$table->decimal('grs_price', 19, 4)->default(0);
 			//$table->string('fc_currency',3)->default('USD');			// Functional Currency
 			//$table->double('fc_exchange_rate', 15, 10)->default(1);
-			$table->decimal('fc_sub_total', 19, 4)->default(0);			// Functional Currency
+			$table->decimal('fc_sub_total', 19, 4)->default(0);			    // Functional Currency
 			$table->decimal('fc_tax',19, 4)->default(0);					// Functional Currency
 			$table->decimal('fc_gst',19, 4)->default(0);					// Functional Currency
 			$table->decimal('fc_amount', 19, 4)->default(0);				// Functional Currency

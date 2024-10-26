@@ -387,10 +387,14 @@ php artisan make:component Tenant/Widgets/InvoiceLine/CardTableRow
 php artisan make:component Tenant/Widgets/InvoiceLine/ListAllLines
 
 
-
 --Dashboard-------------------------------------
-php artisan make:component Tenant/Dashboards/PrCounts		<x-tenant.dashboards.pr-counts/>
-php artisan make:component Tenant/Dashboards/PoCounts		<x-tenant.dashboards.pr-counts/>
+php artisan make:component Tenant/Dashboards/PrCounts		        <x-tenant.dashboards.pr-counts/>
+php artisan make:component Tenant/Dashboards/PrCountByBudget	    <x-tenant.dashboards.pr-counts/>
+php artisan make:component Tenant/Dashboards/PrCountByDeptBudget	<x-tenant.dashboards.pr-counts/>
+php artisan make:component Tenant/Dashboards/PoCounts		        <x-tenant.dashboards.pr-counts/>
+php artisan make:component Tenant/Dashboards/PoCountByBudget	    <x-tenant.dashboards.pr-counts/>
+php artisan make:component Tenant/Dashboards/PoCountByDeptBudget	<x-tenant.dashboards.pr-counts/>
+
 php artisan make:component Tenant/Dashboards/PoStats		<x-tenant.dashboards.po-stats :id="$po->id"/>
 php artisan make:component Tenant/Dashboards/PoCountsBuyer	<x-tenant.dashboards.pr-counts-buyer/>
 php artisan make:component Tenant/Dashboards/ProjectCounts	<x-tenant.dashboards.project-counts/>

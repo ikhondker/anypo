@@ -27,6 +27,8 @@ return new class extends Migration
 			$table->decimal('amount_pr_booked', 19, 4)->default(0); // NEW
 			$table->decimal('amount_pr', 19, 4)->default(0);
 			$table->decimal('amount_po_booked', 19, 4)->default(0);
+            $table->decimal('amount_po_tax', 19, 4)->default(0);    // only for approved po
+            $table->decimal('amount_po_gst', 19, 4)->default(0);    // only for approved po
 			$table->decimal('amount_po', 19, 4)->default(0);
 			$table->decimal('amount_grs', 19, 4)->default(0);
 			$table->decimal('amount_invoice', 19, 4)->default(0);

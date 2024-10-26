@@ -21,6 +21,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="col-md-6 col-xxl-3 d-flex">
 		<div class="card flex-fill">
 			<div class="card-body">
@@ -52,7 +53,6 @@
 					<div class="col mt-0">
 						<h5 class="card-title">Invoice Received</h5>
 					</div>
-
 					<div class="col-auto">
 						<div class="stat stat-sm">
 							<i class="align-middle" data-lucide="file"></i>
@@ -95,4 +95,5 @@
 			</div>
 		</div>
 	</div>
+
 </div>

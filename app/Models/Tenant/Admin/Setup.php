@@ -16,8 +16,8 @@ class Setup extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name','system_user_id', 'tagline', 'currency', 'freezed', 'tax_pc', 'gst_pc', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'cell', 'website', 'facebook', 'linkedin', 'days_payment', 'days_return', 'tolerance_invoice', 'tolerance_receipt', 'tolerance_payment', 'user_master_data_entry', 'ac_accrual', 'ac_liability', 'ac_clearing', 'tc', 'logo', 'banner_show', 'banner_message', 'version', 'build', 'admin_id', 'kam_id', 'landlord_account_id', 'last_rate_date', 'maintenance', 'debug', 'readonly', 'enable', 'updated_by', 'updated_at',
-	];
+    	'name', 'tagline', 'currency', 'freezed', 'prefix', 'tax_pc', 'gst_pc', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'cell', 'website', 'facebook', 'linkedin', 'timezone', 'days_payment', 'days_return', 'tolerance_invoice', 'tolerance_receipt', 'tolerance_payment', 'user_master_data_entry', 'ac_accrual', 'ac_liability', 'ac_clearing', 'tc', 'logo', 'banner_show', 'banner_message', 'version', 'build', 'admin_id', 'system_user_id', 'kam_id', 'landlord_account_id', 'last_rate_date', 'maintenance', 'debug', 'readonly', 'enable', 'updated_by', 'updated_at',
+    ];
 
 	/**
 	 * The attributes that should be cast.
@@ -33,7 +33,7 @@ class Setup extends Model
 
 	/* ----------------- HasMany ------------------------ */
 
- 
+
 	/* ---------------- belongsTo ---------------------- */
 	public function country_name(){
 		return $this->belongsTo(Country::class,'country')->withDefault([
@@ -60,5 +60,5 @@ class Setup extends Model
 	public function user_updated_by(){
 		return $this->belongsTo(User::class,'updated_by');
 	}
-	
+
 }

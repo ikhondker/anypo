@@ -150,6 +150,7 @@
 			</a>
 			<ul id="system" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'system' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'tables.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tables.index') }}"><i class="align-middle" data-lucide="circle"></i>Tables</a></li>
+                <li class="sidebar-item {{ ($_route_name == 'cps.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('cps.index') }}"><i class="align-middle" data-lucide="circle"></i>Control Panel</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'menus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('menus.index') }}"><i class="align-middle" data-lucide="circle"></i>Menu</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'statuses.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('statuses.index') }}"><i class="align-middle" data-lucide="circle"></i>Status</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'entities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('entities.index') }}"><i class="align-middle" data-lucide="circle"></i>Entity</a></li>
@@ -161,8 +162,6 @@
 				<li class="sidebar-item {{ ($_route_name == 'activities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('activities.index') }}"><i class="align-middle" data-lucide="circle"></i>Activity Log</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'attachments.all' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('attachments.all') }}"><i class="align-middle" data-lucide="circle"></i>Attachments*</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('templates.index') }}"><i class="align-middle" data-lucide="circle"></i>Templates</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'ui' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('ui') }}"><i class="align-middle" data-lucide="circle"></i>UI</a></li>
-				<li class="sidebar-item {{ ($_route_name == 'cps.changelog' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('cps.changelog') }}"><i class="align-middle" data-lucide="circle"></i>Change Log</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'notifications.full' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('notifications.full') }}"><i class="align-middle" data-lucide="circle"></i>Full Notification*</a></li>
 			</ul>
 		</li>

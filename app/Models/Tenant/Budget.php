@@ -21,7 +21,7 @@ class Budget extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'fy', 'name', 'start_date', 'end_date', 'amount', 'amount_pr_booked', 'amount_pr', 'amount_po_booked', 'amount_po', 'amount_grs', 'amount_invoice', 'amount_payment', 'count_pr_booked', 'count_pr', 'count_po_booked', 'count_po', 'count_grs', 'count_invoice', 'count_payment', 'notes', 'revision', 'parent_id', 'revision_dept_budget_id', 'text_color', 'bg_color', 'icon', 'closed', 'updated_by', 'updated_at',
+		'fy', 'name', 'start_date', 'end_date', 'amount', 'amount_pr_booked', 'amount_pr', 'amount_po_booked', 'amount_po_tax', 'amount_po_gst', 'amount_po', 'amount_grs', 'amount_invoice', 'amount_payment', 'count_pr_booked', 'count_pr', 'count_po_booked', 'count_po', 'count_grs', 'count_invoice', 'count_payment', 'notes', 'revision', 'parent_id', 'revision_dept_budget_id', 'text_color', 'bg_color', 'icon', 'closed', 'updated_by', 'updated_at',
 	];
 
 	/* ----------------- Scopes ------------------------- */
@@ -32,12 +32,12 @@ class Budget extends Model
 	{
 		$query->where('closed', false)
 			->where('revision', false);
-	} 
+	}
 
 	public function scopeAllRevisions(Builder $query): void
 	{
 		$query->where('revision', true);
-	} 
+	}
 
 	/**
 	 * Scope a query to only All PR for current user dept.

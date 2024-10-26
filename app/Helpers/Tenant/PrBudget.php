@@ -99,14 +99,15 @@ class PrBudget
 			Log::debug("tenant.helper.PrBudget.prBudgetBook updating dept_budget->amount_pr_booked.");
 			Log::debug("tenant.helper.PrBudget.prBudgetBook before dept_budget->amount_pr_booked = ".$dept_budget->amount_pr_booked );
 			Log::debug("tenant.helper.PrBudget.prBudgetBook updating pr->fc_amount = ".$pr->fc_amount);
-			$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked + $pr->fc_amount;
-			$dept_budget->count_pr_booked = $dept_budget->count_pr_booked + 1;
+
+			$dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked + $pr->fc_amount;
+			$dept_budget->count_pr_booked   = $dept_budget->count_pr_booked + 1;
 			$dept_budget->save();
 			Log::debug("tenant.helper.PrBudget.prBudgetBook AFTER dept_budget->amount_pr_booked = ".$dept_budget->amount_pr_booked );
 
 			// book project budget
-			$project->amount_pr_booked 	= $project->amount_pr_booked + $pr->fc_amount;
-			$project->count_pr_booked 	= $project->count_pr_booked + 1;
+			$project->amount_pr_booked 	    = $project->amount_pr_booked + $pr->fc_amount;
+			$project->count_pr_booked 	    = $project->count_pr_booked + 1;
 			$project->save();
 			Log::debug("tenant.helper.PrBudget.prBudgetBook AFTER project->amount_pr_booked = ".$project->amount_pr_booked );
 
@@ -164,30 +165,29 @@ class PrBudget
 		$pr = Pr::where('id', $pr_id)->first();
 		// Pr dept budget approved
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-		$dept_budget->amount_pr_booked = $dept_budget->amount_pr_booked - $pr->fc_amount;
-		$dept_budget->count_pr_booked = $dept_budget->count_pr_count - 1;
+		$dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked - $pr->fc_amount;
+		$dept_budget->count_pr_booked   = $dept_budget->count_pr_count - 1;
 
-		$dept_budget->amount_pr = $dept_budget->amount_pr + $pr->fc_amount;
-		$dept_budget->count_pr = $dept_budget->count_pr + 1;
-
+		$dept_budget->amount_pr         = $dept_budget->amount_pr + $pr->fc_amount;
+		$dept_budget->count_pr          = $dept_budget->count_pr + 1;
 		$dept_budget->save();
 
 		// Pr project budget used
 		$project = Project::where('id', $pr->project_id)->firstOrFail();
-		$project->amount_pr_booked 	= $project->amount_pr_booked - $pr->fc_amount;
-		$project->count_pr_booked 			= $project->count_pr_booked - 1;
+		$project->amount_pr_booked 	    = $project->amount_pr_booked - $pr->fc_amount;
+		$project->count_pr_booked 	    = $project->count_pr_booked - 1;
 
-		$project->amount_pr 	= $project->amount_pr + $pr->fc_amount;
-		$project->count_pr 		= $project->count_pr + 1;
+		$project->amount_pr 	        = $project->amount_pr + $pr->fc_amount;
+		$project->count_pr 		        = $project->count_pr + 1;
 		$project->save();
 
 		// Pr supplier pr issues amount
 		$supplier = Supplier::where('id', $pr->supplier_id)->firstOrFail();
-		$project->amount_pr_booked 	= $project->amount_pr_booked - $pr->fc_amount;
-		$project->count_pr_booked 			= $project->count_pr_booked - 1;
+		$project->amount_pr_booked 	    = $project->amount_pr_booked - $pr->fc_amount;
+		$project->count_pr_booked 		= $project->count_pr_booked - 1;
 
-		$supplier->amount_pr = $supplier->amount_pr + $pr->fc_amount;
-		$supplier->count_pr 		= $supplier->count_pr + 1;
+		$supplier->amount_pr            = $supplier->amount_pr + $pr->fc_amount;
+		$supplier->count_pr 		    = $supplier->count_pr + 1;
 		$supplier->save();
 
 		// run job to Sync Budget

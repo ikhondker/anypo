@@ -69,20 +69,7 @@ class BudgetController extends Controller
 		return view('tenant.budgets.index', compact('budgets'));
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function revisions(Budget $budget)
-	{
-		$this->authorize('viewAny', Budget::class);
-
-		$budgets = Budget::where('parent_id',$budget->id)
-					->where('revision',true)
-				 	->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.budgets.revisions', compact('budgets','budget'));
-	}
-
-	/**
+    /**
 	 * Display a listing of the resource.
 	 */
 	public function revisionsAll()
@@ -95,6 +82,20 @@ class BudgetController extends Controller
 		}
 		$budgets = $budgets->where('revision',true)->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.budgets.revisions-all', compact('budgets'));
+	}
+
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function revisions(Budget $budget)
+	{
+		$this->authorize('viewAny', Budget::class);
+
+		$budgets = Budget::where('parent_id',$budget->id)
+					->where('revision',true)
+				 	->orderBy('id', 'DESC')->paginate(10);
+		return view('tenant.budgets.revisions', compact('budgets','budget'));
 	}
 
 	/**

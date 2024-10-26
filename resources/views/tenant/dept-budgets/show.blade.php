@@ -134,6 +134,9 @@
 		</div>
 		<!-- end col-6 -->
 		<div class="col-6">
+
+            <x-tenant.dashboards.pr-count-by-dept-budget deptBudgetId="{{ $deptBudget->id }}"  />
+
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Budget for Purchase Requisition</h5>

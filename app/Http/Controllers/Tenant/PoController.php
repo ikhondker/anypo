@@ -39,6 +39,11 @@ use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Manage\CustomError;
 use App\Models\Tenant\Attachment;
 
+
+use App\Models\Tenant\Workflow\Hierarchy;
+use App\Models\Tenant\Workflow\Hierarchyl;
+
+
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
@@ -539,8 +544,24 @@ class PoController extends Controller
 		}
 
 		if ($po->amount == 0) {
-			return redirect()->route('pos.show',$po->id)->with('error', 'You cannot submit zero value Purchase Order');
+			return redirect()->route('pos.show',$po->id)->with('error', 'You cannot submit zero value Purchase Order!');
 		}
+
+        // check if approval hierarchy exists and is valid
+        $dept = Dept::where('id', $po->dept_id)->first();
+        try {
+            $hierarchy      = Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
+            $hierarchy_id   = $hierarchy->id;
+        } catch (Exception $e) {
+            Log::error("tenant.po.submit Hierarchy find error for po_id= ".$po->id ." dept_id = ".$dept->id);
+            return redirect()->route('prs.show',$po->id)->with('error', 'Approval Hierarchy not found! Please assign approval Hierarchy for dept!');
+        }
+
+        // check if approval hierarchy lines exists and is valid
+        $hl_count	= Hierarchyl::where('hid',$hierarchy_id)->count();
+        if ( $hl_count == 0){
+            return redirect()->route('pos.show',$po->id)->with('error', 'No Approver found in Approval Hierarchy ' . $hierarchy->name . '! Please assign approver first.');
+        }
 
 		Log::debug('tenant.po.submit submitting po_id = ' . $po->id);
 

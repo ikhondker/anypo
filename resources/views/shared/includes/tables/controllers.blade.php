@@ -15,11 +15,24 @@
 	</div>
 	<div class="card-body">
 
+        <table class="table table-sm my-2">
+			<tbody>
+				<tr>
+					<th width="10%">Controller List:</th>
+					<td>
+						@foreach($filesInFolder as $row)
+							{{ $row['f'] }},
+						@endforeach
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
 		<table class="table table-striped table-sm">
 			<thead>
 				<tr>
 					<th class="">#</th>
-					<th class="">Name</th> 
+					<th class="">Name</th>
 					<th class="">Object/Model</th>
 					<th class="">Route</th>
 					<th class="">Functions</th>
@@ -54,7 +67,7 @@
 								{{ $row['days'] }}
 							@endif
 
-							
+
 						</td>
 						<td class="table-action"><a class="text-info"
 								href="http://localhost:8000/{{ $row['route'] }}">Jump</a>
@@ -65,4 +78,4 @@
 
 		</table>
 	</div>
-</div>		
+</div>

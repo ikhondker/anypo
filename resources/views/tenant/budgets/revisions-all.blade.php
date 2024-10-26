@@ -46,7 +46,7 @@
 						<td class=""> {{ $budget->user_created_by->name }}</td>
 						<td class=""><x-tenant.list.my-date-time :value="$budget->created_at"/></td>
 						<td>
-							<a href="{{ route('budgets.show',$budget->id) }}" class="btn btn-light"
+							<a href="{{ route('budgets.revisions',$budget->parent_id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">Source(*)
 							</a>
 						</td>

@@ -36,7 +36,7 @@
 				<div class="card-body">
 					<table class="table table-sm my-2">
 						<tbody>
-							
+
 							<tr>
 								<th width="20%">FY :</th>
 								<td><span class="badge badge-subtle-primary">{{ $budget->fy }}</span></td>
@@ -125,6 +125,7 @@
 		<!-- end col-6 -->
 		<div class="col-6">
 
+	        <x-tenant.dashboards.pr-count-by-budget budgetId="{{ $budget->id }}"  />
 
 			<div class="card">
 				<div class="card-header">

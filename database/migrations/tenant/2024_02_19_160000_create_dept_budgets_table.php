@@ -19,6 +19,8 @@ return new class extends Migration
 			$table->decimal('amount_pr_booked', 19, 4)->default(0);
 			$table->decimal('amount_pr', 19, 4)->default(0);
 			$table->decimal('amount_po_booked', 19, 4)->default(0);
+            $table->decimal('amount_po_tax', 19, 4)->default(0);    // only for approved po
+            $table->decimal('amount_po_gst', 19, 4)->default(0);    // only for approved po
 			$table->decimal('amount_po', 19, 4)->default(0);
 			$table->decimal('amount_grs', 19, 4)->default(0);
 			$table->decimal('amount_invoice', 19, 4)->default(0);
@@ -35,7 +37,7 @@ return new class extends Migration
 			$table->text('notes')->nullable();
 			$table->boolean('revision')->default(false);
 			$table->biginteger('parent_id')->default(0);
-			$table->boolean('closed')->default(false); 
+			$table->boolean('closed')->default(false);
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();

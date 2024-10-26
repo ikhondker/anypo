@@ -36,7 +36,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 	/**
 	 * Create a new job instance.
 	 */
-	public function __construct($entity, $article_id, $event,$fc_amount)
+	public function __construct($entity, $article_id, $event, $fc_amount)
 	{
 		$this->entity 		= $entity;
 		$this->article_id 	= $article_id;
@@ -60,6 +60,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		$dbu->entity		= $this->entity;
 		$dbu->article_id	= $this->article_id;
 		$dbu->event			= $this->event;
+        $dbu->amount		= $this->fc_amount;
 		// job don't have this ID
 		//$dbu->user_id		= auth()->user()->id;
 
@@ -78,6 +79,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				$dbu->dept_id			= $pr->dept_id;
 				$dbu->project_id		= $pr->project_id;
 				$dbu->supplier_id		= $pr->supplier_id;
+
 
 				switch ($this->event) {
 					case EventEnum::BOOK->value:
