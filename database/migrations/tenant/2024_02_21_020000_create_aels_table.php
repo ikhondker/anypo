@@ -19,8 +19,8 @@ return new class extends Migration
 			$table->string('ac_code');
 			$table->string('line_description');
 			$table->string('fc_currency', 3);							// Functional Currency
-			$table->decimal('fc_dr_amount', 19, 4)->default(0);
-			$table->decimal('fc_cr_amount', 19, 4)->default(0);
+			$table->decimal('fc_dr_amount', 19, 2)->default(0);
+			$table->decimal('fc_cr_amount', 19, 2)->default(0);
 			// $table->biginteger('po_id')->default(0);
 			// $table->biginteger('article_id')->index()->default(0);
 			$table->string('reference_no')->nullable();

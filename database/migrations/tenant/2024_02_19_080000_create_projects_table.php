@@ -19,16 +19,16 @@ return new class extends Migration
 			$table->date('start_date')->default(DB::raw('(CURDATE())'));
 			$table->date('end_date')->nullable();
 			$table->boolean('budget_control')->default(true);
-			$table->decimal('amount', 19, 4)->default(0);
-			$table->decimal('amount_pr_booked', 19, 4)->default(0);
-			$table->decimal('amount_pr', 19, 4)->default(0);
-			$table->decimal('amount_po_booked', 19, 4)->default(0);
-            $table->decimal('amount_po_tax', 19, 4)->default(0);    // only for approved po
-            $table->decimal('amount_po_gst', 19, 4)->default(0);    // only for approved po
-			$table->decimal('amount_po', 19, 4)->default(0);
-			$table->decimal('amount_grs', 19, 4)->default(0);
-			$table->decimal('amount_invoice', 19, 4)->default(0);
-			$table->decimal('amount_payment', 19, 4)->default(0);
+			$table->decimal('amount', 19, 2)->default(0);
+			$table->decimal('amount_pr_booked', 19, 2)->default(0);
+			$table->decimal('amount_pr', 19, 2)->default(0);
+			$table->decimal('amount_po_booked', 19, 2)->default(0);
+            $table->decimal('amount_po_tax', 19, 2)->default(0);    // only for approved po
+            $table->decimal('amount_po_gst', 19, 2)->default(0);    // only for approved po
+			$table->decimal('amount_po', 19, 2)->default(0);
+			$table->decimal('amount_grs', 19, 2)->default(0);
+			$table->decimal('amount_invoice', 19, 2)->default(0);
+			$table->decimal('amount_payment', 19, 2)->default(0);
 			$table->biginteger('count_pr_booked')->default(0);
 			$table->biginteger('count_pr')->default(0);
 			$table->biginteger('count_po_booked')->default(0);

@@ -30,24 +30,24 @@ return new class extends Migration
 			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->text('notes')->nullable();
 			$table->string('currency',3);
-			$table->decimal('sub_total', 19, 4)->default(0);
-			$table->decimal('tax',19,4)->default(0);
-			$table->decimal('gst',19, 4)->default(0);
-			$table->decimal('amount', 19, 4)->default(0);
+			$table->decimal('sub_total', 19, 2)->default(0);
+			$table->decimal('tax', 19, 2)->default(0);
+			$table->decimal('gst', 19, 2)->default(0);
+			$table->decimal('amount', 19, 2)->default(0);
 			$table->boolean('tc')->default(true);
 			$table->dateTime('submission_date')->nullable();
 			$table->string('fc_currency',3);							// Functional Currency
 			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
-			$table->decimal('fc_sub_total', 19, 4)->default(0);			// Functional Currency
-			$table->decimal('fc_tax',19, 4)->default(0);					// Functional Currency
-			$table->decimal('fc_gst',19, 4)->default(0);					// Functional Currency
-			$table->decimal('fc_amount', 19, 4)->default(0);				// Functional Currency
-			$table->decimal('amount_grs',19, 4)->default(0);
-			$table->decimal('fc_amount_grs',19, 4)->default(0);
-			$table->decimal('amount_invoice',19, 4)->default(0);
-			$table->decimal('fc_amount_invoice',19, 4)->default(0);
-			$table->decimal('amount_paid',19, 4)->default(0);
-			$table->decimal('fc_amount_paid',19, 4)->default(0);
+			$table->decimal('fc_sub_total', 19, 2)->default(0);			// Functional Currency
+			$table->decimal('fc_tax', 19, 2)->default(0);					// Functional Currency
+			$table->decimal('fc_gst', 19, 2)->default(0);					// Functional Currency
+			$table->decimal('fc_amount', 19, 2)->default(0);				// Functional Currency
+			$table->decimal('amount_grs', 19, 2)->default(0);
+			$table->decimal('fc_amount_grs', 19, 2)->default(0);
+			$table->decimal('amount_invoice', 19, 2)->default(0);
+			$table->decimal('fc_amount_invoice',19, 2)->default(0);
+			$table->decimal('amount_paid', 19, 2)->default(0);
+			$table->decimal('fc_amount_paid', 19, 2)->default(0);
 			/** ENUM */
 			$table->string('status')->default(ClosureStatusEnum::OPEN->value);
 			$table->foreign('status')->references('code')->on('statuses');

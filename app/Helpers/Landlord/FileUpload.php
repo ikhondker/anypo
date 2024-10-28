@@ -8,7 +8,7 @@
 * @path			\app\Helpers\Landlord
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -44,7 +44,7 @@ class FileUpload
 	public static function aws(FormRequest $request)
 	{
 
-		$request->validate(['file_to_upload'	=> 'required|file|mimes:csv,eml,msg,zip,rar,doc,docx,xls,xlsx,pdf,jpg,png|max:2048']);
+		$request->validate(['file_to_upload'	=> 'required|file|mimes:eml,msg,zip,rar,doc,docx,csv,xls,xlsx,ppt,pptx,pdf,gif,jpg,png|max:2048']);
 
 		if ($request->hasFile('file_to_upload')) {
 			$file 			= $request->file('file_to_upload');
@@ -72,7 +72,7 @@ class FileUpload
 		$entity 		= Entity::where('entity', $request->entity)->first();
 		$fileUploadPath = $entity->directory."/". $fileName;
 		Log::debug('Helpers.LandlordFileUpload.aws Value of fileUploadPath = '. $fileUploadPath);
-			
+
 		try {
 			//Code that may throw an Exception
 			// OK. Store File in Storage Private Folder. Auto create folder
@@ -89,13 +89,16 @@ class FileUpload
 			$attachment->file_entity 	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
 			$attachment->owner_id		= auth()->check() ? auth()->user()->id : NULL;
 			$attachment->account_id		= auth()->check() ? auth()->user()->account_id : NULL;
-			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No file description available';
 			$attachment->file_name		= $fileName;
 			$attachment->org_file_name	= $org_fileName;
 			$attachment->file_type	 	= $request->file('file_to_upload')->getMimeType();
 			$attachment->file_size	 	= $request->file('file_to_upload')->getSize();
 			$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
-
+            if ($request->has('summary')){
+                $attachment->summary		=  $request->summary;
+            } else {
+                $attachment->summary		=  ' File Uploaded by '. (auth()->check() ? auth()->user()->name : 'Guest'). ' on ' . now();
+            }
 			$attachment->save();
 			$attachment_id				=$attachment->id;
 		} catch (Exception $e) {
@@ -104,7 +107,7 @@ class FileUpload
 			// Either form a friendlier message to display to the user OR redirect them to a failure page
 			$attachment_id = 0;
 		}
-		
+
 		return $attachment_id;
 	}
 
@@ -148,7 +151,7 @@ class FileUpload
 			// Either form a friendlier message to display to the user OR redirect them to a failure page
 			$attachment_id = 0;
 		}
-		
+
 		return $attachment_id;
 	}
 

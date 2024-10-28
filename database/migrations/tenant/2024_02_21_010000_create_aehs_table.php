@@ -28,8 +28,8 @@ return new class extends Migration
 			$table->biginteger('po_id')->default(0);
 			$table->string('description');
 			$table->string('fc_currency',3);							// Functional Currency
-			$table->decimal('fc_dr_amount', 19, 4)->default(0);
-			$table->decimal('fc_cr_amount', 19, 4)->default(0);
+			$table->decimal('fc_dr_amount', 19, 2)->default(0);
+			$table->decimal('fc_cr_amount', 19, 2)->default(0);
 			$table->string('reference_no')->nullable();
 			/** ENUM */
 			$table->string('status')->default(AehStatusEnum::DRAFT->value);

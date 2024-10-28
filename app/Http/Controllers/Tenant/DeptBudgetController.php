@@ -252,7 +252,7 @@ class DeptBudgetController extends Controller
 			$request->merge(['article_id'	=> $deptBudget->id ]);
 			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
 			$attid = FileUpload::aws($request);
-		}
+        }
 
 		// budget has been modified
 		$old_dept_budget_amount =$deptBudget->amount;
@@ -281,20 +281,27 @@ class DeptBudgetController extends Controller
 		$revision_dept_budget_id = DB::INSERT($sql);
 		Log::warning(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
 
-		// 2. create revision for budget
+        // attach the same document with $revision_dept_budget_id
+        if ($file = $request->file('file_to_upload')) {
+            $request->merge(['article_id'	=> $revision_dept_budget_id ]);
+            $request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
+            $attid = FileUpload::aws($request);
+        }
+
+		// 2. create revision for budget and link to revision_dept_budget_id
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for budgets_id = '.$deptBudget->budget_id);
 		$sql= "INSERT INTO budgets(
 			fy, name, start_date, end_date,
             amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
 			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-            notes,closed, revision, parent_id,
+            notes,closed, revision, parent_id, revision_dept_budget_id,
             created_by, created_at, updated_by, updated_at
 			)
 		SELECT
 			fy, name, start_date, end_date,
             amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
 			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-            notes,true, true, ".$deptBudget->budget_id.",
+            notes,true, true, ".$deptBudget->budget_id.",". $revision_dept_budget_id .",
             '". $who ."', now(), '". $who ."', now()
 		FROM budgets
 		WHERE id= ".$deptBudget->budget_id." ;";

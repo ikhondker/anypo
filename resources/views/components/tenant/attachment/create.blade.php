@@ -2,8 +2,6 @@
 <input type="file" class="form-control form-control-sm" name="file_to_upload" id="file_to_upload"
 	accept=".jpg,.jpeg,.bmp,.png,.gif,.doc,.docx,.ppt,.pptx,.csv,.rtf,.xlsx,.xls,.txt,.pdf,.zip"
 	placeholder="file_to_upload"> --}}
-
-
 {{-- <div class="mb-3">
 	<label class="form-label">Attachment</label>
 	<input type="file" class="form-control form-control-sm" name="file_to_upload" id="file_to_upload"
@@ -27,9 +25,8 @@
 		<input type="file" class="form-control form-control-sm" name="file_to_upload" id="file_to_upload"
 			accept=".jpg,.jpeg,.bmp,.png,.gif,.doc,.docx,.ppt,.pptx,.csv,.rtf,.xlsx,.xls,.txt,.pdf,.zip"
 			placeholder="file_to_upload">
-
 			@error('file_to_upload')
-			<div class="small text-danger">{{ $message }}</div>
+			    <div class="small text-danger">{{ $message }}</div>
 			@enderror
 	</td>
 </tr>

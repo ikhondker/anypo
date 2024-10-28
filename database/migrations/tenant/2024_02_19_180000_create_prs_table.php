@@ -28,16 +28,16 @@ return new class extends Migration
 			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->text('notes')->nullable();
 			$table->string('currency',3);
-			$table->decimal('sub_total', 19, 4)->default(0);
-			$table->decimal('tax',19, 4)->default(0);
-			$table->decimal('gst',19, 4)->default(0);
-			$table->decimal('amount', 19, 4)->default(0);
+			$table->decimal('sub_total', 19, 2)->default(0);
+			$table->decimal('tax', 19, 2)->default(0);
+			$table->decimal('gst', 19, 2)->default(0);
+			$table->decimal('amount', 19, 2)->default(0);
 			$table->string('fc_currency',3);							// Functional Currency
 			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
-			$table->decimal('fc_sub_total', 19, 4)->default(0);			// Functional Currency
-			$table->decimal('fc_tax',19, 4)->default(0);					// Functional Currency
-			$table->decimal('fc_gst',19, 4)->default(0);					// Functional Currency
-			$table->decimal('fc_amount', 19, 4)->default(0);				// Functional Currency
+			$table->decimal('fc_sub_total', 19, 2)->default(0);			// Functional Currency
+			$table->decimal('fc_tax',19, 2)->default(0);					// Functional Currency
+			$table->decimal('fc_gst',19, 2)->default(0);					// Functional Currency
+			$table->decimal('fc_amount', 19, 2)->default(0);				// Functional Currency
 			$table->dateTime('submission_date')->nullable();
 			$table->integer('po_id')->default(0);
 			/** ENUM */

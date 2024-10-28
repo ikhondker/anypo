@@ -22,21 +22,21 @@ return new class extends Migration
 			$table->string('item_description');
 			$table->foreignId('uom_id')->constrained('uoms');
 			$table->decimal('qty', 19, 4)->default(1);
-			$table->decimal('price', 19, 4)->default(0);
-			$table->decimal('sub_total', 19, 4)->default(0);
-			$table->decimal('tax_pc',19, 4)->default(0);				// Future user
-			$table->decimal('gst_pc',19, 4)->default(7.5);				// Future user
-			$table->decimal('tax',19, 4)->default(0);
-			$table->decimal('gst',19, 4)->default(0);
-			$table->decimal('amount', 19, 4)->default(0);
-			$table->decimal('grs_price', 19, 4)->default(0);
+			$table->decimal('price', 19, 2)->default(0);
+			$table->decimal('sub_total', 19, 2)->default(0);
+			$table->decimal('tax_pc', 19, 2)->default(0);				// Future user
+			$table->decimal('gst_pc', 19, 2)->default(7.5);				// Future user
+			$table->decimal('tax', 19, 2)->default(0);
+			$table->decimal('gst', 19, 2)->default(0);
+			$table->decimal('amount', 19, 2)->default(0);
+			$table->decimal('grs_price', 19, 2)->default(0);
 			//$table->string('fc_currency',3)->default('USD');			// Functional Currency
 			//$table->double('fc_exchange_rate', 15, 10)->default(1);
-			$table->decimal('fc_sub_total', 19, 4)->default(0);			    // Functional Currency
-			$table->decimal('fc_tax',19, 4)->default(0);					// Functional Currency
-			$table->decimal('fc_gst',19, 4)->default(0);					// Functional Currency
-			$table->decimal('fc_amount', 19, 4)->default(0);				// Functional Currency
-			$table->decimal('fc_grs_price', 19, 4)->default(0);
+			$table->decimal('fc_sub_total', 19, 2)->default(0);			    // Functional Currency
+			$table->decimal('fc_tax', 19, 2)->default(0);					// Functional Currency
+			$table->decimal('fc_gst', 19, 2)->default(0);					// Functional Currency
+			$table->decimal('fc_amount', 19, 2)->default(0);				// Functional Currency
+			$table->decimal('fc_grs_price', 19, 2)->default(0);
 			$table->text('notes')->nullable();
 			$table->string('error_code',15)->nullable();
 			$table->foreignUuid('requestor_id')->constrained('users')->nullable();

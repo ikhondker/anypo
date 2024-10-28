@@ -43,7 +43,7 @@ class FileUpload
 
 	public static function aws(FormRequest $request)
 	{
-		$request->validate(['file_to_upload'	=> 'required|file|mimes:eml,msg,zip,rar,doc,docx,xls,xlsx,pdf,jpg,png|max:2048']);
+		$request->validate(['file_to_upload'	=> 'required|file|mimes:eml,msg,zip,rar,doc,docx,csv,xls,xlsx,ppt,pptx,pdf,gif,jpg,png|max:2048']);
 
 		// ===> both file_to_upload and fileName is used
 		if ($request->hasFile('file_to_upload')) {
@@ -79,19 +79,23 @@ class FileUpload
 			//Log::debug('Helpers.FileUpload.aws Value of path = '. $path);
 
 			// create Attachment record
+
 			$attachment					= new Attachment();
 			$attachment->id 			= $attachment_id;
 			$attachment->article_id		= $request->article_id;
 			$attachment->entity			= $request->entity;
 			$attachment->file_entity	= ($request->has('file_entity')) ? $request->file_entity : $request->entity;
 			$attachment->owner_id		= auth()->check() ? auth()->user()->id : NULL;
-			$attachment->summary		= ($request->has('summary')) ? $request->summary : 'No file description available';
 			$attachment->file_name		= $fileName;
 			$attachment->org_file_name	= $org_fileName;
 			$attachment->file_type		= $request->file('file_to_upload')->getMimeType();
 			$attachment->file_size		= $request->file('file_to_upload')->getSize();
 			$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
-
+            if ($request->has('summary')){
+                $attachment->summary		=  $request->summary;
+            } else {
+                $attachment->summary		=  ' File Uploaded by '. (auth()->check() ? auth()->user()->name : 'Guest'). ' on ' . now();
+            }
 			$attachment->save();
 			$attachment_id				=$attachment->id;
 		} catch (Exception $e) {

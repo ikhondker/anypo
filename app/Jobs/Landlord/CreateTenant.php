@@ -102,7 +102,7 @@ class CreateTenant implements ShouldQueue
 		$account_id		= self::createCheckoutAccount($this->checkout_id);
 
 		// update account_id in checkout
-		$checkout		= Checkout::where('id', $this->checkout_id)->first();
+		$checkout		        = Checkout::where('id', $this->checkout_id)->first();
 		$checkout->account_id	= $account_id;
 		$checkout->save();
 
@@ -151,8 +151,6 @@ class CreateTenant implements ShouldQueue
 			$checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
 		}
 		$checkout->update();
-
-
 
 		// Update account with tenant_id
 		$account 	= Account::where('id', $account_id)->first();
@@ -331,7 +329,6 @@ class CreateTenant implements ShouldQueue
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain_id = ".$domain_id);
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain = ".$domain);
 
-
 		try {
 			// Create tenant
 			$tenant 	= Tenant::create([
@@ -341,7 +338,7 @@ class CreateTenant implements ShouldQueue
 			]);
 		} catch (Exception $e) {
 			// Record to Error Log
-			Log::error("Jobs.Landlord.CreateTenant.createTenantDb Tenant Creation failed!");
+			Log::error("Jobs.Landlord.CreateTenant.createTenantDb Tenant Creation failed! ". $e->getMessage());
 			return 0;
 		}
 
@@ -352,7 +349,7 @@ class CreateTenant implements ShouldQueue
 			]);
 		} catch (Exception $e) {
 			// Record to Error Log
-			Log::error("Jobs.Landlord.CreateTenant.createTenantDb Domain Creation or Migration failed!");
+			Log::error("Jobs.Landlord.CreateTenant.createTenantDb Domain Creation or Migration failed! ". $e->getMessage());
 			return 0;
 		}
 
@@ -368,7 +365,7 @@ class CreateTenant implements ShouldQueue
 			});
 		} catch (Exception $e) {
 			// Record to Error Log
-			Log::error("Jobs.Landlord.CreateTenant.createTenantDb Seeder Run failed!");
+			Log::error("Jobs.Landlord.CreateTenant.createTenantDb Seeder Run failed! ". $e->getMessage());
 			return 0;
 		}
 

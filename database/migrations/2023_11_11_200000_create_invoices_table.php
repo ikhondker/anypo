@@ -28,13 +28,13 @@ return new class extends Migration
 			$table->date('org_from_date')->nullable();
 			$table->date('due_date')->nullable()->useCurrent();
 			$table->string('currency')->default('USD');
-			$table->decimal('price', 19, 4)->default(0);
-			$table->decimal('discount',19, 4)->default(0);
-			$table->decimal('subtotal',19, 4)->default(0);
-			$table->decimal('tax',19, 4)->default(0);
-			$table->decimal('vat',19, 4)->default(0);
-			$table->decimal('amount',19, 4)->default(0);
-			$table->decimal('amount_paid',15,2)->default(0);
+			$table->decimal('price', 19, 2)->default(0);
+			$table->decimal('discount',19, 2)->default(0);
+			$table->decimal('subtotal',19, 2)->default(0);
+			$table->decimal('tax',19, 2)->default(0);
+			$table->decimal('vat',19, 2)->default(0);
+			$table->decimal('amount',19, 2)->default(0);
+			$table->decimal('amount_paid',19, 2)->default(0);
 			$table->date('pay_date')->nullable()->useCurrent();
 			$table->text('notes')->nullable();
 			$table->boolean('adjusted')->default(false); // in case addon added for 3/6/12 month advance payment

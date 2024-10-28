@@ -27,11 +27,11 @@ return new class extends Migration
 			$table->integer('mnth')->default(0);
 			$table->integer('user')->default(1);
 			$table->integer('gb')->default(10);
-			$table->decimal('price', 19, 4)->default(0);
-			$table->decimal('subtotal',19, 4)->default(0);
-			$table->decimal('tax',19, 4)->default(0);
-			$table->decimal('vat',19, 4)->default(0);
-			$table->decimal('amount',19, 4)->default(0);
+			$table->decimal('price', 19, 2)->default(0);
+			$table->decimal('subtotal',19, 2)->default(0);
+			$table->decimal('tax',19, 2)->default(0);
+			$table->decimal('vat',19, 2)->default(0);
+			$table->decimal('amount',19, 2)->default(0);
 			$table->date('start_date')->default(DB::raw('(CURDATE())'));
 			$table->date('end_date')->nullable();
 			/** ENUM */

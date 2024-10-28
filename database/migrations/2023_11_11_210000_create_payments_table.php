@@ -23,7 +23,7 @@ return new class extends Migration
 			$table->foreignId('invoice_id')->constrained('invoices');
 			$table->foreignId('account_id')->nullable()->constrained('accounts');
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
-			$table->decimal('amount',19, 4)->default(0);
+			$table->decimal('amount',19, 2)->default(0);
 			$table->string('currency')->default('USD');
 			$table->string('cheque_no')->nullable();
 			$table->string('payment_token')->nullable();

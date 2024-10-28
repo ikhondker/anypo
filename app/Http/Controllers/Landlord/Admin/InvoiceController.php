@@ -300,9 +300,6 @@ class InvoiceController extends Controller
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for this Account! Can not create more Invoices.');
 		}
 
-
-
-
 		try {
 			// Create invoice
 			Log::channel('bo')->info('landlord.invoice.store Generating Invoice for Account id = ' . $account_id);

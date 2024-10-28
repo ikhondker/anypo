@@ -24,8 +24,8 @@ return new class extends Migration
 			$table->foreignUuid('receiver_id')->constrained('users');
 			//$table->foreignId('supplier_id')->nullable()->constrained('organizations');
 			$table->decimal('qty', 19, 4)->default(1);
-			$table->decimal('price', 19, 4)->default(0);					// This is grs_price from pol
-			$table->decimal('amount', 19, 4)->default(0);
+			$table->decimal('price', 19, 2)->default(0);					// This is grs_price from pol
+			$table->decimal('amount', 19, 2)->default(0);
 			$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
 			$table->decimal('fc_amount', 19, 4)->default(0);
 			$table->string('dr_account')->default('100001')->nullable();

@@ -15,13 +15,13 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('name')->unique();
 			$table->foreignId('uom_class_id')->nullable();
-			$table->decimal('conversion', 15, 4)->default(1);
-			//$table->enum('base', ['length','mass','temperature','time'])->default('length');	
+			$table->decimal('conversion', 19, 4)->default(1);
+			//$table->enum('base', ['length','mass','temperature','time'])->default('length');
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();
-			$table->boolean('default')->default(false); 
-			$table->boolean('enable')->default(true); 
+			$table->boolean('default')->default(false);
+			$table->boolean('enable')->default(true);
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

@@ -22,11 +22,11 @@ return new class () extends Migration {
 			/** ENUM */
 			$table->string('addon_type')->default(AddonTypeEnum::NA->value);
 			/** end ENUM */
-			$table->decimal('list_price', 19, 4)->default(0);
-			$table->decimal('base_price', 19, 4)->default(0);
-			$table->decimal('tax', 19, 4)->default(0);
-			$table->decimal('vat', 19, 4)->default(0);
-			$table->decimal('price', 19, 4)->default(0);
+			$table->decimal('list_price', 19, 2)->default(0);
+			$table->decimal('base_price', 19, 2)->default(0);
+			$table->decimal('tax', 19, 2)->default(0);
+			$table->decimal('vat', 19, 2)->default(0);
+			$table->decimal('price', 19, 2)->default(0);
 			$table->integer('mnth')->default(1);
 			$table->integer('user')->default(3);
 			$table->integer('gb')->default(5);
@@ -38,15 +38,15 @@ return new class () extends Migration {
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
-			//$table->decimal('price_3', 19, 4)->default(0);
-			//$table->decimal('price_6', 19, 4)->default(0);
-			//$table->decimal('price_12', 19, 4)->default(0);
-			//$table->decimal('price_24', 19, 4)->default(0);
+			//$table->decimal('price_3', 19, 2)->default(0);
+			//$table->decimal('price_6', 19, 2)->default(0);
+			//$table->decimal('price_12', 19, 2)->default(0);
+			//$table->decimal('price_24', 19, 2)->default(0);
 			//$table->boolean('taxable')->default(false);
-			//$table->decimal('tax_pc', 19, 4)->default(0);
-			//$table->decimal('vat_pc', 19, 4)->default(0);
-			//$table->decimal('subtotal', 19, 4)->default(0);
-			//$table->decimal('amount', 19, 4)->default(0);
+			//$table->decimal('tax_pc', 19, 2)->default(0);
+			//$table->decimal('vat_pc', 19, 2)->default(0);
+			//$table->decimal('subtotal', 19, 2)->default(0);
+			//$table->decimal('amount', 19, 2)->default(0);
 		});
 	}
 

@@ -27,7 +27,7 @@ https://www.brevo.com/pricing/
 20. 0.20 cleaned, attachment description, move attachment to root, rewrite pr and po , add invoiceLines, component argument rename form id, InvoiceLines, direct creation invoice/pol/receipt, report id to code, new reports
 21. 0.21 float(15,2) to decimal(19,4) , user_id and attachment_id form integer to uuid, upload attachments in attachment page , tenant db name to uid, pdf Ticket, npm recompile, sweetalert2 customization, landlord logo, reorganized Landlord menus, add SYSADMIN Role, 
 22. 0.22 Landlord MenuSeeder, Ticket Create by Support for User, Tenant Create by System, Add-on add billing, comments, add Trait CreatedUpdatedBy Trait for create and update By, pr+po+inv jquery calculate, notification correction
-23. 0.23 [ongoing] stop duplicate emp in hierarchy , due/pending is wfl getNextApproverId to setNextApproverDue, AllNotification, Enum Rearrange, timezone column, wfl start and end date, inv/payment and grs create jquery population, budget and deptBudget tax, gst, dbu amount add and budget created by , budget and deptBudget revisions
+23. 0.23 [ongoing] stop duplicate emp in hierarchy , due/pending is wfl getNextApproverId to setNextApproverDue, AllNotification, Enum Rearrange, timezone column, wfl start and end date, inv/payment and grs create jquery population, budget and deptBudget tax, gst, dbu amount add and budget created by , budget and deptBudget revisions, decimal back to 2, 
 
 
 

@@ -12,7 +12,7 @@
 -------------------------------------------------------------------------------------------------
 1. for non id PK, define PK in model
 2. when column name and relation name equal error. Must be separated
-3. when rout is same called the tenant rout invoice/attachment etc
+3. when route is same called the tenant rout invoice/attachment etc
 	both in landlord and tenant Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
 	can:access-back-office
 

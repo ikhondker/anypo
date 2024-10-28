@@ -31,7 +31,10 @@ time ago
 
 attachment file type and max size?
 -----------------------------
-1.
+1.namespace App\Helpers\Tenant\FileUpload\aws
+$request->validate(['file_to_upload'	=> 'required|file|mimes:eml,msg,zip,rar,doc,docx,xls,xlsx,pdf,jpg,png|max:2048']);
+
+2. resources\views\components\tenant\attachment\create.blade.php
 
 
 sample email and cell number

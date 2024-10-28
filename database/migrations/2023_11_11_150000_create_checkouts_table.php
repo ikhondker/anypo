@@ -36,13 +36,12 @@ return new class extends Migration
 			$table->date('end_date');
 			$table->foreignId('product_id')->constrained('products');
 			$table->string('product_name');
-			$table->decimal('tax', 19, 4)->default(0);
-			$table->decimal('vat', 19, 4)->default(0);
-			$table->decimal('price', 19, 4)->default(0);
+			$table->decimal('tax', 19, 2)->default(0);
+			$table->decimal('vat', 19, 2)->default(0);
+			$table->decimal('price', 19, 2)->default(0);
 			$table->integer('mnth')->default(1);
 			$table->integer('user')->default(3);
 			$table->integer('gb')->default(5);
-
 			$table->string('ip')->nullable();
 			$table->string('address1')->nullable();
 			$table->string('address2')->nullable();

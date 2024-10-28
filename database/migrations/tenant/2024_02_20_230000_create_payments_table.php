@@ -25,7 +25,7 @@ return new class extends Migration
 			$table->foreignId('bank_account_id')->constrained('bank_accounts')->nullable();
 			$table->string('cheque_no');
 			$table->string('currency',3);
-			$table->decimal('amount', 19, 4)->default(0);
+			$table->decimal('amount', 19, 2)->default(0);
 			$table->double('fc_exchange_rate', 19, 8)->default(1);
 			$table->decimal('fc_amount', 19, 4)->default(0);
 			$table->string('dr_account')->default('100001')->nullable();

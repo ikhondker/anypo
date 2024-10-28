@@ -187,22 +187,22 @@ class BudgetController extends Controller
 		$this->authorize('update', $budget);
 
 		//$request->validate();
-		$request->validate([
+		// $request->validate([
 
-		]);
+		// ]);
 
-		// Write to Log
-		EventLog::event('budget', $budget->id, 'update', 'name', $budget->name);
-		$budget->update($request->all());
+        // Write to Log
+        EventLog::event('budget', $budget->id, 'update', 'name', $budget->name);
+        $budget->update($request->all());
 
+        // dd($request);
 		// upload file as record
+
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $budget->id ]);
 			$request->merge(['entity'		=> EntityEnum::BUDGET->value ]);
 			$attid = FileUpload::aws($request);
 		}
-
-
 
 		return redirect()->route('budgets.show',$budget->id )->with('success', 'Budget updated successfully');
 

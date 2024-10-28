@@ -18,8 +18,8 @@ return new class extends Migration
 			$table->string('currency',3)->default('USD');
 			$table->boolean('freezed')->default(false);
 			$table->string('prefix')->default('AP/');
-			$table->decimal('tax_pc',19, 4)->default(0);				// Future user
-			$table->decimal('gst_pc',19, 4)->default(7.5);				// Future user
+			$table->decimal('tax_pc',19, 2)->default(0);				// Future user
+			$table->decimal('gst_pc',19, 2)->default(7.5);				// Future user
 			$table->string('address1')->nullable();
 			$table->string('address2')->nullable();
 			$table->string('city')->nullable();

@@ -26,16 +26,16 @@ return new class extends Migration
 			$table->string('email',100);
 			$table->string('cell',100)->nullable();
 			$table->decimal('qty', 19, 4)->default(0);
-			$table->decimal('amount',19, 4)->default(0);
+			$table->decimal('amount',19, 2)->default(0);
 			$table->text('notes')->nullable();
-			$table->boolean('enable')->default(true); 
+			$table->boolean('enable')->default(true);
 			$table->date('my_date')->nullable()->useCurrent();
 			$table->dateTime('my_date_time', $precision = 0)->nullable()->useCurrent();
-			$table->enum('my_enum', ['user', 'admin','agent','manager','system'])->default('user'); 
+			$table->enum('my_enum', ['user', 'admin','agent','manager','system'])->default('user');
 			$table->string('my_url')->nullable();
 			$table->string('logo')->nullable(); /* public */
 			$table->string('avatar')->nullable(); /* private */
-			$table->string('attachment')->nullable(); /* private */ 
+			$table->string('attachment')->nullable(); /* private */
 			$table->string('fbpage')->nullable();
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();

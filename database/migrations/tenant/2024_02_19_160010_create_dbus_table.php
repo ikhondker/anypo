@@ -30,14 +30,14 @@ return new class extends Migration
 			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
 			$table->foreignId('supplier_id')->nullable()->constrained('suppliers');	// NEW
-            $table->decimal('amount', 19, 4)->default(0);                   // used for front end display
-			$table->decimal('amount_pr_booked', 19, 4)->default(0);
-			$table->decimal('amount_pr', 19, 4)->default(0);
-			$table->decimal('amount_po_booked', 19, 4)->default(0);
-			$table->decimal('amount_po', 19, 4)->default(0);
-			$table->decimal('amount_grs', 19, 4)->default(0);
-			$table->decimal('amount_invoice', 19, 4)->default(0);
-			$table->decimal('amount_payment', 19, 4)->default(0);
+            $table->decimal('amount', 19, 2)->default(0);                   // used for front end display
+			$table->decimal('amount_pr_booked', 19, 2)->default(0);
+			$table->decimal('amount_pr', 19, 2)->default(0);
+			$table->decimal('amount_po_booked', 19, 2)->default(0);
+			$table->decimal('amount_po', 19, 2)->default(0);
+			$table->decimal('amount_grs', 19, 2)->default(0);
+			$table->decimal('amount_invoice', 19, 2)->default(0);
+			$table->decimal('amount_payment', 19, 2)->default(0);
 			//$table->text('notes')->nullable();
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();

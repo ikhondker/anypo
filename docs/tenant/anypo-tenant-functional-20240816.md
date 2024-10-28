@@ -10,6 +10,14 @@ index	Create
 create	Save,List	
 Actions	None	Yes		show,edit,history,attachment etc
 
+
+# Number column
+----------------------------
+any amount          $table->decimal('tax', 19, 2)->default(0);
+qty/rate/rating/    $table->decimal('tax', 19, 4)->default(0);
+$table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
+
+
 # routes 
 ----------------------------
 delete: where draft can be deleted like pr by use
@@ -47,7 +55,7 @@ pr.index : HoD+Buyer+CxO sees only approve PR lists
 	user: sees only his PR
 
 - don't allow REJECTED PR to delete or cancel as it has dbu rows.
-- only can submit own dept PR. WHY dept? Ristricted to OWN PR
+- only can submit own dept PR. WHY dept? Restricted to OWN PR
 - dept_budget_id set during submissions
 - Function currency amounts is set during submit
 - rejected pr can not be re-submitted. Instead copy

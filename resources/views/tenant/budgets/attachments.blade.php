@@ -37,16 +37,19 @@
 						<x-tenant.show.my-text		value="{{ $budget->name }}"/>
 						<x-tenant.show.my-date		value="{{ $budget->start_date }}"/>
 						<x-tenant.show.my-date		value="{{ $budget->end_date }}"/>
-						<x-tenant.show.my-text		value="{{ $budget->name }}" label="Name"/>
-						<x-tenant.show.my-closed	value="{{ $budget->closed }}" label="Closed?"/>
+                        <tr>
+							<th>Budget</th>
+							<td>{{number_format($budget->amount, 2)}} {{ $_setup->currency }}</td>
+						</tr>
 						<x-tenant.show.my-text-area		value="{{ $budget->notes }}" label="Notes"/>
+						<x-tenant.show.my-closed	value="{{ $budget->closed }}" label="Closed?"/>
 					</tbody>
 				</table>
 			</div>
 		</div>
 
 
-	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::BUDGET->value }}" aid="{{ $budget->id }}"/>
+	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::BUDGET->value }}" articleId="{{ $budget->id }}"/>
 
 
 @endsection

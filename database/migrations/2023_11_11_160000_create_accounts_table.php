@@ -36,13 +36,13 @@ return new class extends Migration
 			$table->integer('base_mnth')->default(0);
 			$table->integer('base_user')->default(1);
 			$table->integer('base_gb')->default(10);
-			$table->decimal('base_price', 19, 4)->default(0);
+			$table->decimal('base_price', 19, 2)->default(0);
 			$table->integer('mnth')->default(0);
 			$table->integer('user')->default(1);
 			$table->integer('gb')->default(10);
-			$table->decimal('monthly_fee', 19, 4)->default(0);		// added later
-			$table->decimal('monthly_addon', 19, 4)->default(0);	// added later
-			$table->decimal('price', 19, 4)->default(0);
+			$table->decimal('monthly_fee', 19, 2)->default(0);		// added later
+			$table->decimal('monthly_addon', 19, 2)->default(0);	// added later
+			$table->decimal('price', 19, 2)->default(0);
 			$table->date('start_date');
 			$table->date('end_date');
 			// there will be only one unpaid invoice. updated when a subscription is generated
