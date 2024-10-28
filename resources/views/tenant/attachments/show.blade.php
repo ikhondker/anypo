@@ -21,7 +21,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				@if (auth()->user()->isSystem())
-				<a class="btn btn-sm btn-danger text-white" href="{{ route('attachments.edit', $attachment->id) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('attachments.edit', $attachment->id) }}"><i class="fas fa-edit"></i> Edit</a>
 				@endif
 				<a href="{{ route('attachments.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 			</div>
@@ -38,12 +38,12 @@
 					<x-tenant.show.my-text		value="{{ $attachment->file_type }}" label="File Type"/>
 					<x-tenant.show.my-integer	value="{{ $attachment->file_size }}" label="File Size"/>
 					<x-tenant.show.my-text		value="{{ $attachment->owner->name }}" label="Owner Name"/>
-					<x-tenant.show.my-created-at value="{{ $attachment->updated_at }}"/>
-					<x-tenant.show.my-updated-at value="{{ $attachment->created_at }}"/>
 					<tr>
 						<th>File :</th>
 						<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 					</tr>
+					<x-tenant.show.my-created-at value="{{ $attachment->updated_at }}"/>
+					<x-tenant.show.my-updated-at value="{{ $attachment->created_at }}"/>
 				</tbody>
 			</table>
 		</div>

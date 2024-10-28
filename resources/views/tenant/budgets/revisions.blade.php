@@ -17,7 +17,7 @@
 			<x-tenant.actions.budget-actions budgetId="{{ $budget->id }}"/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	<x-tenant.dashboards.budget-stat :bid="$budget->id"/>
 
 	<div class="card">
@@ -49,8 +49,8 @@
 						<td class=""> {{ $budget->user_created_by->name }}</td>
 						<td class=""><x-tenant.list.my-date-time :value="$budget->created_at"/></td>
 						<td>
-							<a href="{{ route('budgets.show',$budget->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">Source(*)
+							<a href="{{ route('dept-budgets.revision-detail',$budget->revision_dept_budget_id) }}" class="btn btn-light"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View Source
 							</a>
 						</td>
 					</tr>

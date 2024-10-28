@@ -44,7 +44,7 @@
 				<tbody>
 					@foreach ($attachments as $attachment)
 					<tr>
-						<td>{{ $attachment->id }}</td>
+                        <td>{{ $attachments->firstItem() + $loop->index }}</td>
 						<td><a href="{{ route('attachments.show',$attachment->id) }}"><strong>{{ Str::limit($attachment->org_file_name,35) }}</strong></a></td>
 						<td>{{ $attachment->entity }}</td>
                         <td>{{ $attachment->article_id }}</td>

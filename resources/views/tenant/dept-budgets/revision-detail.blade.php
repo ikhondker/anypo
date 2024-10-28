@@ -15,7 +15,7 @@
 			Revision Detail - {{ $deptBudget->dept->name }} Budget
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -40,11 +40,21 @@
 					</tr>
 					<x-tenant.show.my-text			value="{{ $deptBudget->budget->name }}"/>
 					<x-tenant.show.my-number			value="{{ $deptBudget->amount }}"/>
+					<x-tenant.show.my-text-area			value="{{ $deptBudget->notes }}"/>
+
 					<tr>
 						<th>Created By :</th>
 						<td>{{ $deptBudget->user_created_by->name }}</td>
 					</tr>
 					<x-tenant.show.my-updated-at 	value="{{ $deptBudget->created_at }}"/>
+					<tr>
+                        <th>Attachments :</th>
+                        <td>
+                            <x-tenant.attachment.all entity="DEPTBUDGET" aid="{{ $deptBudget->id }}"/>
+                        </td>
+					</tr>
+
+
 				</tbody>
 			</table>
 		</div>

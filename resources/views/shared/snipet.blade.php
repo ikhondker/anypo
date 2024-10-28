@@ -24,6 +24,8 @@ create
 </a>
 
 
+$po->po_date		= now();
+
 {{ Carbon\Carbon::parse($comment->comment_date)->ago() }}
 
 <i class="fa fa-check-circle fa-5x text-success"></i>

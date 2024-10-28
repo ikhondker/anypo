@@ -262,24 +262,36 @@ class DeptBudgetController extends Controller
         // can not mark original line as revision as child row exists
 		// 1. create revision row for dep_budget
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for dept_budgets_id = '.$deptBudget->id);
-		$sql= "INSERT INTO dept_budgets(
-			budget_id, dept_id,
-            amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
-			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-            notes,closed, revision, parent_id,
-            created_by, created_at, updated_by, updated_at)
-		SELECT
-			budget_id, dept_id,
-            amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
-			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-            notes,true, true, ".$deptBudget->id.",
-            '". $who ."', now(), '". $who ."', now()
-		FROM dept_budgets
-		WHERE id= ".$deptBudget->id." ;";
+		// $sql= "INSERT INTO dept_budgets(
+		// 	budget_id, dept_id,
+        //     amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+		// 	count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
+        //     notes, closed, revision, parent_id,
+        //     created_by, created_at, updated_by, updated_at)
+		// SELECT
+		// 	budget_id, dept_id,
+        //     amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+		// 	count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
+        //     notes, true, true, ".$deptBudget->id.",
+        //     '". $who ."', now(), '". $who ."', now()
+		// FROM dept_budgets
+		// WHERE id= ".$deptBudget->id." ;";
 		//Log::warning(tenant('id'). 'tenant.DeptBudget.update dept_budgets sql = '. $sql);
 		//TODO
-		$revision_dept_budget_id = DB::INSERT($sql);
-		Log::warning(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
+		//$revision_dept_budget_id = DB::INSERT($sql);
+        //Log::warning(tenant('id'). 'tenant.DeptBudget.update dept_budgets sql = '. $sql);
+
+        $revDeptBudget              = $deptBudget->replicate();
+        $revDeptBudget->closed      = true;
+        $revDeptBudget->revision    = true;
+        $revDeptBudget->parent_id   = $deptBudget->id;
+        $revDeptBudget->created_by  = $who ;
+        $revDeptBudget->created_at  = now();
+        $revDeptBudget->updated_by  = $who ;
+        $revDeptBudget->updated_at  = now();
+        $revDeptBudget->save();
+        $revision_dept_budget_id = $revDeptBudget->id;
+		Log::debug(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
 
         // attach the same document with $revision_dept_budget_id
         if ($file = $request->file('file_to_upload')) {
@@ -314,7 +326,6 @@ class DeptBudgetController extends Controller
 
 		// update dept_budget row
 		$deptBudget->update($request->all());
-
 		if ($request->input('amount') <> $old_dept_budget_amount) {
 			//update company budget for that year
 			ConsolidateBudget::dispatch($deptBudget->budget_id);

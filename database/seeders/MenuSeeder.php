@@ -118,9 +118,9 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'dept-budgets.budget','route_name'	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.revisions','route_name'	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.revisions-all','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.show-revision','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.revision-detail','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 	=> 'budget'],
 
-			[ 'raw_route_name' => 'suppliers.spends','route_name' 		=> 'suppliers.spends', 'node_name' 		=> 'budget'],
+            [ 'raw_route_name' => 'suppliers.spends','route_name' 		=> 'suppliers.spends', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'suppliers.po','route_name' 			=> 'suppliers.spends', 'node_name' 		=> 'budget'],
 
 			[ 'raw_route_name' => 'projects.spends','route_name' 		=> 'projects.spends', 'node_name' 		=> 'budget'],

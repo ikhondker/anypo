@@ -41,6 +41,14 @@ StorePrlRequest.php & UpdatePrlRequest.php
 	'price'				=> 'required|numeric|min:1.00|max:999999.9999',
 
 
+
+# close po/invocie
+- can not be scheduled as manual open will be closed by scheduled
+- event based jobs
+- grs - po close
+- payment - invoice close
+
+
 # dbu
 Where it is booked? Jobs.RecordDeptBudgetUsage
 
