@@ -327,12 +327,12 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
 	Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.delete');
-	
+
 	/* ======================== Attachment ======================================== */
 	Route::resource('attachments', AttachmentController::class);
 	Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
 	Route::get('/attachment/all',[AttachmentController::class, 'all'])->name('attachments.all');
-	
+
 	/* ======================== Country ======================================== */
 	Route::resource('countries', CountryController::class);
 	Route::get('/country/export',[CountryController::class,'export'])->name('countries.export');
@@ -341,7 +341,7 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	/* ======================== Product ======================================== */
 	Route::resource('products', ProductController::class);
 	Route::get('/products/delete/{product}',[ProductController::class, 'destroy'])->name('products.delete');
-	
+
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
 	//Route::get('/checkout/all', [CheckoutController::class, 'all'])->name('checkouts.all');
@@ -390,6 +390,13 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::get('/cp/changelog',[CpController::class,'changeLog'])->name('cps.changelog');
 	Route::get('/cp/codegen',[CpController::class,'codeGen'])->name('cps.codegen');
 	//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
+
+
+    /* ======================== Invoice ======================================== */
+    Route::get('/invoices/pwop/{invoice}',[InvoiceController::class,'pwop'])->name('invoices.pwop');
+	Route::get('/invoices/discount/{invoice}',[InvoiceController::class,'generate'])->name('invoices.discount');
+    Route::get('/invoices/apply-discount/{invoice}',[InvoiceController::class,'generate'])->name('invoices.apply-discount');
+
 
 	/* ======================== Notification TODO for Landlord ======================================== */
 	Route::resource('notifications', NotificationController::class);
@@ -443,7 +450,7 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::resource('templates', TemplateController::class);
 	Route::post('/templates/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
 	Route::get('/template/export', [TemplateController::class, 'export'])->name('templates.export');
-	
+
 });
 
 

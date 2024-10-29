@@ -116,7 +116,7 @@ class PoPolicy
 	 */
 	public function open(User $user): bool
 	{
-		return $user->isSupport();
+		return ($user->isBuyer() || $user->isSupport());
 	}
 
 	/**

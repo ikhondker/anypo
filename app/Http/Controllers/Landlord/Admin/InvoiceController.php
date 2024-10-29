@@ -32,6 +32,7 @@ use App\Models\Landlord\Account;
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
 use App\Enum\Landlord\InvoiceTypeEnum;
+use App\Enum\Landlord\InvoiceStatusEnum;
 use App\Enum\Landlord\CheckoutStatusEnum;
 
 # 3. Helpers
@@ -363,6 +364,41 @@ class InvoiceController extends Controller
 		return redirect()->route('invoices.show',$invoice->id)->with('success','Invoice updated successfully.');
 
 	}
+
+    /**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  \App\Models\Invoice  $invoice
+	 * @return \Illuminate\Http\Response
+	 */
+	public function discount(Invoice $invoice)
+	{
+		$this->authorize('update', $invoice);
+		return view('landlord.admin.invoices.discount',compact('invoice'));
+	}
+
+    public function applyDiscount(UpdateInvoiceRequest $request, Invoice $invoice)
+	{
+		$this->authorize('update', $invoice);
+        // TODO check if invoice is paid error
+        if ($invoice->status_code <> InvoiceStatusEnum::DUE->value){
+            return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, discount can only be applied to DUE Invoices!');
+        }
+
+
+		//$invoice->update($request->all());
+		//EventLog::event('invoice',$invoice->id,'discount','summary', $request->summary);
+		return redirect()->route('invoices.show',$invoice->id)->with('success','Invoice Discount Applied successfully.');
+
+	}
+
+    public function pwop(Invoice $invoice)
+	{
+		$this->authorize('pwop', $invoice);
+		// TODO
+        //return view('landlord.admin.invoices.discount',compact('invoice'));
+	}
+
 
 	/**
 	 * Remove the specified resource from storage.

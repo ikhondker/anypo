@@ -35,20 +35,30 @@
 
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('pos.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All </a>
-
-		<div class="dropdown-divider"></div>
-		@can('copy', App\Models\Tenant\Po::class)
+		@can('duplicate', App\Models\Tenant\Po::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('pos.duplicate', $po->id) }}"
 				data-entity="" data-name="PO#{{ $po->id }}" data-status="Duplicate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PO">
-				<i class="align-middle me-1" data-lucide="duplicate"></i> Duplicate Purchase Order</a>
+				<i class="align-middle me-1" data-lucide="copy"></i> Duplicate Purchase Order</a>
 		@endcan
-		@can('close', App\Models\Tenant\Po::class)
-			<a class="dropdown-item sw2-advance" href="{{ route('pos.close', $po->id) }}"
-				data-entity="" data-name="PO #{{ $po->id }}" data-status="Force Close"
-				data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
-				<i class="align-middle me-1 text-danger" data-lucide="lock"></i> Force Close PO *</a>
-		@endcan
+
+		<div class="dropdown-divider"></div>
+
+        @if ( $po->status == App\Enum\Tenant\ClosureStatusEnum::OPEN->value )
+        	@can('close', App\Models\Tenant\Po::class)
+		    	<a class="dropdown-item sw2-advance" href="{{ route('pos.close', $po->id) }}"
+			    	data-entity="" data-name="PO #{{ $po->id }}" data-status="Force Close"
+				    data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
+				    <i class="align-middle me-1 text-danger" data-lucide="lock"></i> Force Close PO *</a>
+        	@endcan
+        @else
+        	@can('open', App\Models\Tenant\Po::class)
+		    	<a class="dropdown-item sw2-advance" href="{{ route('pos.open', $po->id) }}"
+			    	data-entity="" data-name="PO #{{ $po->id }}" data-status="Open"
+				    data-bs-toggle="tooltip" data-bs-placement="top" title="Open">
+				    <i class="align-middle me-1 text-danger" data-lucide="lock"></i> Open PO *</a>
+        	@endcan
+        @endif
 
 		@can('reset', App\Models\Tenant\Workflow\Wf::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-po', $po->id) }}"

@@ -16,7 +16,7 @@
 			<h6 class="card-subtitle text-muted">Edit Invoice Details.</h6>
 		</div>
 		<div class="card-body">
-			<form id="myform" action="{{ route('services.update',$invoice->id) }}" method="POST" enctype="multipart/form-data">
+			<form id="myform" action="{{ route('invoices.update',$invoice->id) }}" method="POST" enctype="multipart/form-data">
 				@csrf
 				@method('PUT')
 

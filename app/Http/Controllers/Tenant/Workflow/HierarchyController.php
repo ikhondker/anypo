@@ -247,7 +247,7 @@ class HierarchyController extends Controller
 		// check for duplicate entry
 		$empList = array();
 
-		Log::debug('approver_id_1 = '. $request->input('approver_id_1'));
+		Log::debug('tenant.Hierarchy.update approver_id_1 = '. $request->input('approver_id_1'));
 		// check if any person is more than once
 		if ($request->input('approver_id_1') <> 0) {
 			$empList[]	= $request->input('approver_id_1');

@@ -67,6 +67,14 @@ class InvoicePolicy
 		return $user->isSeeded();
 	}
 
+    /**
+	 * Determine whether the user can update the model.
+	 */
+	public function pwop(User $user, Invoice $invoice): bool
+	{
+		return false;
+	}
+
 	/**
 	 * Determine whether the user can delete the model.
 	 */

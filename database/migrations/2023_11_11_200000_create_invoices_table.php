@@ -30,8 +30,6 @@ return new class extends Migration
 			$table->string('currency')->default('USD');
 			$table->decimal('price', 19, 2)->default(0);
 			$table->decimal('discount',19, 2)->default(0);
-            $table->date('discount_date')->nullable();
-			$table->uuid('discount_by')->nullable();
             $table->decimal('subtotal',19, 2)->default(0);
 			$table->decimal('tax',19, 2)->default(0);
 			$table->decimal('vat',19, 2)->default(0);
@@ -39,10 +37,13 @@ return new class extends Migration
             $table->decimal('org_amount',19, 2)->default(0);        // before apply any discount
 			$table->decimal('amount_paid',19, 2)->default(0);
 			$table->date('pay_date')->nullable()->useCurrent();
+            $table->date('discount_date')->nullable();
+			$table->uuid('discount_by')->nullable();
             $table->boolean('admin_pay')->default(false);         // paid by admin without payment
             $table->date('admin_pay_date')->nullable();
 			$table->uuid('admin_paid_by')->nullable();
  			$table->text('notes')->nullable();
+             $table->text('notes_internal')->nullable();              // Internal use only
 			$table->boolean('adjusted')->default(false); // in case addon added for 3/6/12 month advance payment
 			$table->date('adjustment_date')->nullable();
 			$table->string('adjustment_ref')->nullable();

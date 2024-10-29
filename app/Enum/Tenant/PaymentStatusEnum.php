@@ -22,7 +22,7 @@ namespace App\Enum\Tenant;
 enum PaymentStatusEnum:string{
 	case DUE		= 'due';
 	//case UNPAID	= 'unpaid';
-	case PARTIAL	= 'partial';
+	// case PARTIAL	= 'partial'; don't use it. Issue with auto close
 	case PAID		= 'paid';
 	case CANCELED	= 'canceled';
 	case ERROR		= 'error';

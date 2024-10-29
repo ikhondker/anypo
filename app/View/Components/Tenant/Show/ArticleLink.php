@@ -23,7 +23,6 @@ class ArticleLink extends Component
 		//$this->entity	= $entity;
 		//$this->id		= $id;
 		//$this->route	= Str::plural(Str::snake($this->entity, '-'));
-
 		// case EntityEnum::BUDGET->value:
 		// case EntityEnum::PR->value:
 		// case EntityEnum::PO->value:

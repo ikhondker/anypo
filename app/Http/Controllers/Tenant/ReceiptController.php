@@ -51,9 +51,9 @@ use App\Helpers\Tenant\ExchangeRate;
 # 4. Notifications
 # 5. Jobs
 use App\Jobs\Tenant\AehReceipt;
-
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
+use App\Jobs\Tenant\ClosePo;
 # 6. Mails
 # 7. Rules
 use App\Rules\Tenant\OverReceiptRule;
@@ -185,6 +185,7 @@ class ReceiptController extends Controller
 		// Create Accounting for this Receipt
 		AehReceipt::dispatch($receipt->id, $receipt->amount);
 
+
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $receipt->id ]);
 			$request->merge(['entity'		=> EntityEnum::RECEIPT->value ]);
@@ -206,6 +207,8 @@ class ReceiptController extends Controller
 			$pol->closure_status = ClosureStatusEnum::CLOSED->value;
 		}
 		$pol->save();
+
+
 
 		// update budget, project and supplier level summary
 		$po = Po::where('id', $pol->po_id)->first();
@@ -236,6 +239,9 @@ class ReceiptController extends Controller
 		// run job to Sync Budget
 		RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CREATE->value,$receipt->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
+
+        Log::debug('tenant.dashboards.index Submitting ClosePo::dispatch() for receipt_id = '.$receipt->id);
+		ClosePo::dispatch($receipt->id);
 
 		// Write to Log
 		EventLog::event('receipt', $receipt->id, 'create');
@@ -296,14 +302,11 @@ class ReceiptController extends Controller
 			}
 
 			// update pol rcv quantity
-			$pol 				= Pol::where('id', $receipt->pol_id)->firstOrFail();
-
-			// update budget and project level summary
+			$pol 	= Pol::where('id', $receipt->pol_id)->firstOrFail();
 			$po = Po::where('id', $pol->po_id)->first();
 			if ($po->status <> ClosureStatusEnum::OPEN->value) {
 				return redirect()->route('pos.show', $po->id)->with('error', 'You can cancel Receipt only for OPEN Purchase Order!');
 			}
-
 			$pol->received_qty	= $pol->received_qty - $receipt->qty;
 			$pol->save();
 
@@ -338,7 +341,7 @@ class ReceiptController extends Controller
 			AehReceipt::dispatch($receipt->id, $receipt->amount, true);
 
 			// Cancel Receipt
-			Receipt::where('id', $receipt_id)
+			Receipt::where('id', $receipt->id)
 				->update([
 					'qty' 				=> 0,
 					'price' 			=> 0,
@@ -347,6 +350,9 @@ class ReceiptController extends Controller
 					'fc_amount'			=> 0,
 					'status' 			=> ReceiptStatusEnum::CANCELED->value
 					]);
+
+            Log::debug('tenant.dashboards.index Submitting ClosePo::dispatch() for receipt_id = '.$receipt->id);
+            ClosePo::dispatch($receipt->id);
 
 			// Write to Log
 			EventLog::event('receipt', $receipt_id, 'cancel', 'id', $receipt_id);

@@ -60,6 +60,7 @@ return new class extends Migration
 			$table->integer('count_product')->default(0);
 			$table->integer('used_gb')->default(0);
 			$table->boolean('maintenance')->default(false);
+            $table->text('notes_internal')->nullable();              // Internal use only
 			/** ENUM */
 			//$table->string('status')->default(AccountStatusEnum::ACTIVE->value);
 			/** end ENUM */

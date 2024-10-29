@@ -50,6 +50,7 @@ use App\Helpers\EventLog;
 use App\Jobs\Tenant\ConsolidateBudget;
 use App\Jobs\Tenant\RecordDeptBudgetUsage;
 use App\Jobs\Tenant\AehPayment;
+use App\Jobs\Tenant\CloseInvoice;
 # 6. Mails
 # 7. Rules
 use App\Rules\Tenant\OverPaymentRule;
@@ -218,12 +219,10 @@ class PaymentController extends Controller
 
 		if ($invoice->amount_paid == $invoice->amount){
 			$invoice->payment_status 	= PaymentStatusEnum::PAID->value;
-		} else {
-			$invoice->payment_status	= PaymentStatusEnum::PARTIAL->value;
-		}
-
+		}   // else {
+			//$invoice->payment_status	= PaymentStatusEnum::PARTIAL->value;
+		    //}
 		$invoice->save();
-
 
 		// update budget and project level summary
 		$po = Po::where('id', $payment->invoice->po_id)->first();
@@ -256,9 +255,11 @@ class PaymentController extends Controller
 		RecordDeptBudgetUsage::dispatch(EntityEnum::PAYMENT->value, $payment->id, EventEnum::CREATE->value, $payment->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-
 		// Create Accounting for this Invoice
 		AehPayment::dispatch($payment->id, $payment->fc_amount);
+
+        Log::debug('tenant.dashboards.index Submitting CloseInvoice::dispatch() for payment_id = '.$payment->id);
+        CloseInvoice::dispatch($payment->id);
 
 		// Write to Log
 		EventLog::event('payment', $payment->id, 'create');
@@ -380,9 +381,11 @@ class PaymentController extends Controller
 					'status' => PaymentStatusEnum::CANCELED->value
 				]);
 
+            Log::debug('tenant.dashboards.index Submitting CloseInvoice::dispatch() for payment_id = '.$payment->id);
+            CloseInvoice::dispatch($payment->id);
+
 			// Write to Log
 			EventLog::event('payment', $payment->id, 'void', 'id', $payment->id);
-
 			return redirect()->route('payments.index')->with('success', 'Payment canceled successfully.');
 
 		} catch (ModelNotFoundException $exception) {

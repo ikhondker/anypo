@@ -25,6 +25,7 @@ php artisan make:job Landlord/AccountsArchive
 ~~~
 php artisan make:component Landlord\Actions\AccountActions
 php artisan make:component Landlord\Actions\AccountActionsSupport
+php artisan make:component Landlord\Actions\InvoiceActionsSupport
 
 xxphp artisan make:component Tenant\Actions\Admin\UserActionsIndex
 ~~~

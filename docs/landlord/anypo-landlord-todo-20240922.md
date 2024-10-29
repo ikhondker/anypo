@@ -17,6 +17,7 @@
 90. Verification mail to ques event(new Registered($user));
 96. invoice and receipt drop-down policy check
 118. add facebook messenger chat in landlord site
+123. aut post reply when a ticket raised after 15 min
 
 # 6. P2 TODO
 ====================================================================
