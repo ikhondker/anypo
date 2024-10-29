@@ -45,34 +45,34 @@ class ClosePo implements ShouldQueue
 	{
 
 		Log::debug('Jobs.Tenant.ClosePo check po close  receipt_id = ' . $this->receipt_id);
-        $receipt	= Receipt::with('pol')->where('id', $this->receipt_id)->firstOrFail();
-        if ($receipt->status == ReceiptStatusEnum::CANCELED->value){
-            $cancel = true;
-            // open pol and po if not already
-            Pol::where('id', $receipt->pol_id)->where('closure_status','<>', ClosureStatusEnum::OPEN->value)->update(['closure_status'=> ClosureStatusEnum::OPEN->value]);
-            Po::where('id', $receipt->pol->po_id)->where('status','<>', ClosureStatusEnum::OPEN->value)->update(['status'=> ClosureStatusEnum::OPEN->value]);
-            return;
-        } else {
-            $cancel = false;
-        }
+		$receipt	= Receipt::with('pol')->where('id', $this->receipt_id)->firstOrFail();
+		if ($receipt->status == ReceiptStatusEnum::CANCELED->value){
+			$cancel = true;
+			// open pol and po if not already
+			Pol::where('id', $receipt->pol_id)->where('closure_status','<>', ClosureStatusEnum::OPEN->value)->update(['closure_status'=> ClosureStatusEnum::OPEN->value]);
+			Po::where('id', $receipt->pol->po_id)->where('status','<>', ClosureStatusEnum::OPEN->value)->update(['status'=> ClosureStatusEnum::OPEN->value]);
+			return;
+		} else {
+			$cancel = false;
+		}
 
-        $pol	            = Pol::where('id', $receipt->pol_id)->firstOrFail();
-        $sum_received_qty	= Receipt::where('pol_id',$receipt->pol_id)->sum();
-        if ( $receipt->pol->qty == $sum_received_qty) {
-            // all qty received close pol
-            $pol->closure_status = ClosureStatusEnum::CLOSED->value;
-        } else {
-            return;       // no need to continue further
-        }
+		$pol	            = Pol::where('id', $receipt->pol_id)->firstOrFail();
+		$sum_received_qty	= Receipt::where('pol_id',$receipt->pol_id)->sum();
+		if ( $receipt->pol->qty == $sum_received_qty) {
+			// all qty received close pol
+			$pol->closure_status = ClosureStatusEnum::CLOSED->value;
+		} else {
+			return;       // no need to continue further
+		}
 
-        // check if all pol is closed for this po then close the po also
-        $count_open_pols	= Pol::where('po_id',$pol->po_id)->where('closure_status', ClosureStatusEnum::OPEN->value)->count();
-        if ( $count_open_pols == 0) {
-            // all pol closed close pol
-            Po::where('id', $pol->po_id)->update(['status'=> ClosureStatusEnum::CLOSED->value]);
-        } else {
-            return;       // no need to continue further
-        }
+		// check if all pol is closed for this po then close the po also
+		$count_open_pols	= Pol::where('po_id',$pol->po_id)->where('closure_status', ClosureStatusEnum::OPEN->value)->count();
+		if ( $count_open_pols == 0) {
+			// all pol closed close pol
+			Po::where('id', $pol->po_id)->update(['status'=> ClosureStatusEnum::CLOSED->value]);
+		} else {
+			return;       // no need to continue further
+		}
 
 	}
 }

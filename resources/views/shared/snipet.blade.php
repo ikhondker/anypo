@@ -39,12 +39,12 @@ $checkout->checkout_date	= date('Y-m-d H:i:s');
 
 
 <input type="number" class="form-control @error('price') is-invalid @enderror"
-    style="text-align: right;" min="1" step="0.01" max="999999.99"
-    name="price" id="price" placeholder="0.00"
-    value="{{ old('price','0.00') }}"
-    required>
+	style="text-align: right;" min="1" step="0.01" max="999999.99"
+	name="price" id="price" placeholder="0.00"
+	value="{{ old('price','0.00') }}"
+	required>
 @error('price')
-        <div class="small text-danger">{{ $message }}</div>
+		<div class="small text-danger">{{ $message }}</div>
 @enderror
 
 

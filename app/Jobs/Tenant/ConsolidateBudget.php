@@ -44,16 +44,16 @@ class ConsolidateBudget implements ShouldQueue, ShouldBeUnique
 			DB::raw('SUM(amount_pr_booked) 	as amount_pr_booked'),
 			DB::raw('SUM(amount_pr) 		as amount_pr'),
 			DB::raw('SUM(amount_po_booked) 	as amount_po_booked'),
-            DB::raw('SUM(amount_po_tax) 	as amount_po_tax'),
-            DB::raw('SUM(amount_po_gst) 	as amount_po_gst'),
+			DB::raw('SUM(amount_po_tax) 	as amount_po_tax'),
+			DB::raw('SUM(amount_po_gst) 	as amount_po_gst'),
 			DB::raw('SUM(amount_po) 		as amount_po'),
 			DB::raw('SUM(amount_grs) 		as amount_grs'),
 			DB::raw('SUM(amount_invoice)	as amount_invoice'),
 			DB::raw('SUM(amount_payment) 	as amount_payment'),
 			DB::raw('SUM(count_pr) 			as count_pr'),
-            DB::raw('SUM(count_pr_booked) 	as count_pr_booked'),
+			DB::raw('SUM(count_pr_booked) 	as count_pr_booked'),
 			DB::raw('SUM(count_po) 			as count_po'),
-            DB::raw('SUM(count_po_booked) 	as count_po_booked'),
+			DB::raw('SUM(count_po_booked) 	as count_po_booked'),
 			DB::raw('SUM(count_grs) 		as count_grs'),
 			DB::raw('SUM(count_invoice) 	as count_invoice'),
 			DB::raw('SUM(count_payment) 	as count_payment'),
@@ -68,16 +68,16 @@ class ConsolidateBudget implements ShouldQueue, ShouldBeUnique
 			$budget->amount_pr_booked	= $row['amount_pr_booked'] ;
 			$budget->amount_pr			= $row['amount_pr'] ;
 			$budget->amount_po_booked	= $row['amount_po_booked'];
-            $budget->amount_po_tax			= $row['amount_po_tax'];
-            $budget->amount_po_gst			= $row['amount_po_gst'];
+			$budget->amount_po_tax			= $row['amount_po_tax'];
+			$budget->amount_po_gst			= $row['amount_po_gst'];
 			$budget->amount_po			= $row['amount_po'];
 			$budget->amount_grs			= $row['amount_grs'];
 			$budget->amount_invoice		= $row['amount_invoice'];
 			$budget->amount_payment		= $row['amount_payment'];
 			$budget->count_pr			= $row['count_pr'];
-            $budget->count_pr_booked	= $row['count_pr_booked'];
+			$budget->count_pr_booked	= $row['count_pr_booked'];
 			$budget->count_po			= $row['count_po'];
-            $budget->count_po_booked	= $row['count_po_booked'];
+			$budget->count_po_booked	= $row['count_po_booked'];
 			$budget->count_grs			= $row['count_grs'];
 			$budget->count_invoice		= $row['count_invoice'];
 			$budget->count_payment		= $row['count_payment'];

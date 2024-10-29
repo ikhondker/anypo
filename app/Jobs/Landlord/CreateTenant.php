@@ -147,7 +147,7 @@ class CreateTenant implements ShouldQueue
 			$checkout->status_code = CheckoutStatusEnum::ERROR->value;
 		} else {
 			// mark checkout as complete
-            Log::debug('Jobs.Landlord.CreateTenant New Tenant created successfully tenant_id = '.$tenant_id);
+			Log::debug('Jobs.Landlord.CreateTenant New Tenant created successfully tenant_id = '.$tenant_id);
 			$checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
 		}
 		$checkout->update();
@@ -155,10 +155,10 @@ class CreateTenant implements ShouldQueue
 		// Update account with tenant_id
 		$account 	= Account::where('id', $account_id)->first();
 		$account->tenant_id = $tenant_id;
-        $account->update();
+		$account->update();
 
-        // Send notification to Landlord system on new purchase
-        $config 	= Config::first();
+		// Send notification to Landlord system on new purchase
+		$config 	= Config::first();
 		$system 	= User::where('id', $config->system_user_id)->first();
 		$system->notify(new ServicePurchased($system, $account));
 

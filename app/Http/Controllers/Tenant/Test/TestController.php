@@ -76,128 +76,128 @@ class TestController extends Controller
 
 	public function run()
 	{
-        //https://stackoverflow.com/questions/41758870/how-to-convert-result-table-to-json-array-in-mysql
+		//https://stackoverflow.com/questions/41758870/how-to-convert-result-table-to-json-array-in-mysql
 
 
-        $invoiceId='1002';
+		$invoiceId='1002';
 
-        $data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->where('id', $invoiceId)->first();
+		$data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->where('id', $invoiceId)->first();
 		Log::debug('Value of data=' . $data);
 
 
-        $sql = "SELECT id,currency,amount FROM invoices WHERE id = '1002'";
-        Log::debug('Value of sql=' . $sql);
-        $result = DB::selectOne($sql);
-        Log::debug('Value of result id =' .  $result->id);
+		$sql = "SELECT id,currency,amount FROM invoices WHERE id = '1002'";
+		Log::debug('Value of sql=' . $sql);
+		$result = DB::selectOne($sql);
+		Log::debug('Value of result id =' .  $result->id);
 
 
-        // error
-        // return response()->json(['id' => '1111']);
-        // return response()->json([
-        //     'id'        => $result->id,
-        //     'currency'  => $result->currency,
-        //     'amount'    => $result->amount,
-        // ],200);
+		// error
+		// return response()->json(['id' => '1111']);
+		// return response()->json([
+		//     'id'        => $result->id,
+		//     'currency'  => $result->currency,
+		//     'amount'    => $result->amount,
+		// ],200);
 
 
-        $sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";
-        Log::debug('Value of sql=' . $sql);
-        $result = DB::select($sql);
+		$sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";
+		Log::debug('Value of sql=' . $sql);
+		$result = DB::select($sql);
 
-       //$rows = [];
-        foreach ($result as $row) {
-            Log::debug('Value of rows=' . $row->aa);
-            //Log::debug('Value of rows=' . print_r($row['aa']));
-            // $rows[] = [
-            //     'id'        => $row['id'],
-            //     'currency'  => $row['currency'],
-            // ];
-        }
+	   //$rows = [];
+		foreach ($result as $row) {
+			Log::debug('Value of rows=' . $row->aa);
+			//Log::debug('Value of rows=' . print_r($row['aa']));
+			// $rows[] = [
+			//     'id'        => $row['id'],
+			//     'currency'  => $row['currency'],
+			// ];
+		}
 
-        //Log::debug('Value of rows=' . print_r($rows));
+		//Log::debug('Value of rows=' . print_r($rows));
 
-        exit;
+		exit;
 
 
 
 		//$data = Invoice::select('id','currency','summary','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
-        //$data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
-        // xx $data = Invoice::select('id','currency','summary','invoice_date','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary','currency','po_date')->where('id', $invoiceId)->first();
+		//$data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
+		// xx $data = Invoice::select('id','currency','summary','invoice_date','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary','currency','po_date')->where('id', $invoiceId)->first();
 
-        //SELECT JSON_ARRAYAGG(JSON_OBJECT('name', name, 'phone', phone)) from Person;
+		//SELECT JSON_ARRAYAGG(JSON_OBJECT('name', name, 'phone', phone)) from Person;
 
-        //$sql = "SELECT JSON_OBJECT('id',id,'currency',currency,'amount',amount) FROM invoices WHERE id = '1002'";
+		//$sql = "SELECT JSON_OBJECT('id',id,'currency',currency,'amount',amount) FROM invoices WHERE id = '1002'";
 
-        // $sql = "
-        // SELECT CONCAT(
-        //     '[',
-        //     GROUP_CONCAT(JSON_OBJECT('id', id, 'currency', currency)),
-        //     ']'
-        // )
-        // FROM invoices WHERE id = '1002'
-        // ";
+		// $sql = "
+		// SELECT CONCAT(
+		//     '[',
+		//     GROUP_CONCAT(JSON_OBJECT('id', id, 'currency', currency)),
+		//     ']'
+		// )
+		// FROM invoices WHERE id = '1002'
+		// ";
 
-        $sql = "SELECT 'id','currency','amount' FROM invoices WHERE id = '1002'";
-        Log::debug('Value of sql=' . $sql);
-        $result = DB::select($sql);
-
-
-        $rows = [];
-        foreach ($result as $row) {
-            $rows[] = [
-                'id' => $row['id'],
-                'currency' => $row['text'],
-            ];
-        }
+		$sql = "SELECT 'id','currency','amount' FROM invoices WHERE id = '1002'";
+		Log::debug('Value of sql=' . $sql);
+		$result = DB::select($sql);
 
 
-        // works
-        $data = [];
-        foreach($result as $r){
-            $data[] = $r;
-        }
-
-        //dd($data);
-        $response         = [];
-        $response['data'] =  $data;
+		$rows = [];
+		foreach ($result as $row) {
+			$rows[] = [
+				'id' => $row['id'],
+				'currency' => $row['text'],
+			];
+		}
 
 
-        // works
-        $dataArray = json_decode(json_encode($result), true);
-        dd($dataArray);
-        Log::debug('Value of dataArray=' . $dataArray);
+		// works
+		$data = [];
+		foreach($result as $r){
+			$data[] = $r;
+		}
 
-        exit;
-        dd($data2);
-        Log::debug('Value of data2=' . json_encode($data2));
+		//dd($data);
+		$response         = [];
+		$response['data'] =  $data;
 
-        $data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
+
+		// works
+		$dataArray = json_decode(json_encode($result), true);
+		dd($dataArray);
+		Log::debug('Value of dataArray=' . $dataArray);
+
+		exit;
+		dd($data2);
+		Log::debug('Value of data2=' . json_encode($data2));
+
+		$data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
 		Log::debug('Value of data=' . $data);
 
-        exit;
-        return response()->json($data);
+		exit;
+		return response()->json($data);
 
-        //Log::error(tenant('id'). ' tenant.budget.attach1 user_id = '. DomainTenantResolver::currentDomain );
-        //Log::error(tenant('id'). \Stancl\Tenancy\Resolvers\DomainTenantResolver::class->currentDomain);
-        //Log::error(tenant('id'). Tenant::find(tenant('id'))->path());
-        //$aa= Tenant::find(tenant('id')->path());
-        //$aa= Tenancy::find('b07aa3b0-dc68-11e9-9352-9159b2055c42')
-        //$aa= Tenancy::find(tenant('id'));
+		//Log::error(tenant('id'). ' tenant.budget.attach1 user_id = '. DomainTenantResolver::currentDomain );
+		//Log::error(tenant('id'). \Stancl\Tenancy\Resolvers\DomainTenantResolver::class->currentDomain);
+		//Log::error(tenant('id'). Tenant::find(tenant('id'))->path());
+		//$aa= Tenant::find(tenant('id')->path());
+		//$aa= Tenancy::find('b07aa3b0-dc68-11e9-9352-9159b2055c42')
+		//$aa= Tenancy::find(tenant('id'));
 
-        //dd(tenant()->where('id',tenant('id'))->with('domains'));
-        //dd(tenant()->where('id',tenant('id'))->domains(tenant('id')));
-        // ok
+		//dd(tenant()->where('id',tenant('id'))->with('domains'));
+		//dd(tenant()->where('id',tenant('id'))->domains(tenant('id')));
+		// ok
 
-        //Log::debug('domain='.getDomainName());
-        Log::debug('domain='.Akk::getDomainName());
+		//Log::debug('domain='.getDomainName());
+		Log::debug('domain='.Akk::getDomainName());
 
-        //dd(tenant()->domains->first()->domain);
+		//dd(tenant()->domains->first()->domain);
 
-        //Log::debug('tenant='.tenant('id'));
-        //Log::debug('domain='.tenant('id')->domains()->domain);
-        //Log::debug('domain='. Akk::getDomainFromTenantId(tenant('id')));
+		//Log::debug('tenant='.tenant('id'));
+		//Log::debug('domain='.tenant('id')->domains()->domain);
+		//Log::debug('domain='. Akk::getDomainFromTenantId(tenant('id')));
 
-        exit;
+		exit;
 
 
 		// Unhandled Exception handing

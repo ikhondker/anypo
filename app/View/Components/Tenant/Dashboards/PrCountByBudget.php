@@ -12,9 +12,9 @@ use App\Models\Tenant\Budget;
 
 class PrCountByBudget extends Component
 {
-    //public $id;
+	//public $id;
 	public $budget;
-    public $count_approved;
+	public $count_approved;
 	public $sum_approved;
 
 	public $count_inprocess;
@@ -36,11 +36,11 @@ class PrCountByBudget extends Component
 
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.dashboards.pr-count-by-budget');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.dashboards.pr-count-by-budget');
+	}
 }

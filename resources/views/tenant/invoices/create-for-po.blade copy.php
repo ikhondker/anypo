@@ -80,14 +80,14 @@
 									</tr>
 
 								@endif
-                                <tr>
-                                    <th>Supplier :</th>
-                                    <td>
-                                        <input type="text" class="form-control"
-                                        name="dsp_supplier" id="dsp_supplier" value="{{ empty($po) ? old('dsp_supplier') : $po->supplier->name }}"
-                                        readonly/>
-                                    </td>
-                                </tr>
+								<tr>
+									<th>Supplier :</th>
+									<td>
+										<input type="text" class="form-control"
+										name="dsp_supplier" id="dsp_supplier" value="{{ empty($po) ? old('dsp_supplier') : $po->supplier->name }}"
+										readonly/>
+									</td>
+								</tr>
 
 								<tr>
 									<th>Invoice No :</th>
@@ -146,53 +146,53 @@
 					<div class="card-body">
 						<table class="table table-sm my-2">
 							<tbody>
-                                <tr>
-                                    <th>PO Date and Amount :</th>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <input type="text" class="form-control"
-                                                name="dsp_po_date" id="dsp_po_date" value="{{ empty($po) ? old('dsp_po_date') :strtoupper(date('d-M-y', strtotime($po->po_date)))   }}"
-                                                readonly/>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control"
-                                                 style="text-align: right;"
-                                                name="dsp_po_amount" id="dsp_po_amount" value="{{ empty($po) ? old('dsp_po_amount') : number_format($po->amount,2) }}"
-                                                readonly/>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control"
-                                                name="dsp_po_currency" id="dsp_po_currency" value="{{ empty($po) ? old('dsp_po_currency') : $po->currency }}"
-                                                readonly/>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Department :</th>
-                                    <td>
-                                        <input type="text" class="form-control"
-                                        name="dsp_dept_name" id="dsp_dept_name" value="{{ empty($invoice) ? old('dsp_dept_name') : $invoice->po->dept->name }}"
-                                        readonly/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Project :</th>
-                                    <td>
-                                        <input type="text" class="form-control"
-                                        name="dsp_project_name" id="dsp_project_name" value="{{ empty($invoice) ? old('dsp_project_name') : $invoice->po->project->name }}"
-                                        readonly/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Buyer Name :</th>
-                                    <td>
-                                        <input type="text" class="form-control"
-                                        name="dsp_buyer_name" id="dsp_buyer_name" value="{{ empty($invoice) ? old('dsp_buyer_name') : $invoice->po->buyer->name }}"
-                                        readonly/>
-                                    </td>
-                                </tr>
+								<tr>
+									<th>PO Date and Amount :</th>
+									<td>
+										<div class="row">
+											<div class="col-md-5">
+												<input type="text" class="form-control"
+												name="dsp_po_date" id="dsp_po_date" value="{{ empty($po) ? old('dsp_po_date') :strtoupper(date('d-M-y', strtotime($po->po_date)))   }}"
+												readonly/>
+											</div>
+											<div class="col-md-4">
+												<input type="text" class="form-control"
+												 style="text-align: right;"
+												name="dsp_po_amount" id="dsp_po_amount" value="{{ empty($po) ? old('dsp_po_amount') : number_format($po->amount,2) }}"
+												readonly/>
+											</div>
+											<div class="col-md-3">
+												<input type="text" class="form-control"
+												name="dsp_po_currency" id="dsp_po_currency" value="{{ empty($po) ? old('dsp_po_currency') : $po->currency }}"
+												readonly/>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>Department :</th>
+									<td>
+										<input type="text" class="form-control"
+										name="dsp_dept_name" id="dsp_dept_name" value="{{ empty($invoice) ? old('dsp_dept_name') : $invoice->po->dept->name }}"
+										readonly/>
+									</td>
+								</tr>
+								<tr>
+									<th>Project :</th>
+									<td>
+										<input type="text" class="form-control"
+										name="dsp_project_name" id="dsp_project_name" value="{{ empty($invoice) ? old('dsp_project_name') : $invoice->po->project->name }}"
+										readonly/>
+									</td>
+								</tr>
+								<tr>
+									<th>Buyer Name :</th>
+									<td>
+										<input type="text" class="form-control"
+										name="dsp_buyer_name" id="dsp_buyer_name" value="{{ empty($invoice) ? old('dsp_buyer_name') : $invoice->po->buyer->name }}"
+										readonly/>
+									</td>
+								</tr>
 
 								@if(!empty($po))
 									<tr>

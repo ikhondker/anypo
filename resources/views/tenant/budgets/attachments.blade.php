@@ -37,7 +37,7 @@
 						<x-tenant.show.my-text		value="{{ $budget->name }}"/>
 						<x-tenant.show.my-date		value="{{ $budget->start_date }}"/>
 						<x-tenant.show.my-date		value="{{ $budget->end_date }}"/>
-                        <tr>
+						<tr>
 							<th>Budget</th>
 							<td>{{number_format($budget->amount, 2)}} {{ $_setup->currency }}</td>
 						</tr>

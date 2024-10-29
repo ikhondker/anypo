@@ -9,7 +9,7 @@ use App\Models\Tenant\DeptBudget;
 
 class PrCountByDeptBudget extends Component
 {
-    public $deptBudget;
+	public $deptBudget;
 
 	/**
 	 * Create a new component instance.
@@ -31,11 +31,11 @@ class PrCountByDeptBudget extends Component
 
 	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.dashboards.pr-count-by-dept-budget');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.dashboards.pr-count-by-dept-budget');
+	}
 }

@@ -15,7 +15,7 @@
 	</div>
 	<div class="card-body">
 
-        <table class="table table-sm my-2">
+		<table class="table table-sm my-2">
 			<tbody>
 				<tr>
 					<th width="10%">Controller List:</th>

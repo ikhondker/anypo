@@ -22,22 +22,22 @@ class ArticleLink extends Component
 	{
 		//$this->entity	= $entity;
 		//$this->id		= $id;
-        //$this->route	= Str::plural(Str::snake($this->entity, '-'));
+		//$this->route	= Str::plural(Str::snake($this->entity, '-'));
 
-        // case EntityEnum::BUDGET->value:
-        // case EntityEnum::PR->value:
-        // case EntityEnum::PO->value:
-        // case EntityEnum::PROJECT->value:
-        // case EntityEnum::RECEIPT->value:
-        // case EntityEnum::INVOICE->value:
-        // case EntityEnum::PAYMENT->value:
-        switch ($entity) {
-            case EntityEnum::DEPTBUDGET->value:
-                $this->route	= 'dept-budgets';
-                break;
-            default:
-                $this->route	= Str::plural(Str::snake(Str::lower($this->entity), '-'));
-        }
+		// case EntityEnum::BUDGET->value:
+		// case EntityEnum::PR->value:
+		// case EntityEnum::PO->value:
+		// case EntityEnum::PROJECT->value:
+		// case EntityEnum::RECEIPT->value:
+		// case EntityEnum::INVOICE->value:
+		// case EntityEnum::PAYMENT->value:
+		switch ($entity) {
+			case EntityEnum::DEPTBUDGET->value:
+				$this->route	= 'dept-budgets';
+				break;
+			default:
+				$this->route	= Str::plural(Str::snake(Str::lower($this->entity), '-'));
+		}
 
 
 	}

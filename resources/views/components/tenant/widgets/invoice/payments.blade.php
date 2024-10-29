@@ -24,7 +24,7 @@
 						<th>Bank Ac</th>
 						<th>Ref/Cheque No</th>
 						<th class="text-end">Amount</th>
-                        <th>Status</th>
+						<th>Status</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -37,7 +37,7 @@
 							<td>{{ $payment->bank_account->ac_name }}</td>
 							<td>{{ $payment->cheque_no }}</td>
 							<td class="text-end"><x-tenant.list.my-number :value="$payment->amount"/> {{ $payment->currency }}</td>
-                            <td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
+							<td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
 							<td class="table-action">
 								<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light btn-sm"
 									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View

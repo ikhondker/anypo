@@ -94,11 +94,11 @@ class FileUpload
 			$attachment->file_type	 	= $request->file('file_to_upload')->getMimeType();
 			$attachment->file_size	 	= $request->file('file_to_upload')->getSize();
 			$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
-            if ($request->has('summary')){
-                $attachment->summary		=  $request->summary;
-            } else {
-                $attachment->summary		=  ' File Uploaded by '. (auth()->check() ? auth()->user()->name : 'Guest'). ' on ' . now();
-            }
+			if ($request->has('summary')){
+				$attachment->summary		=  $request->summary;
+			} else {
+				$attachment->summary		=  ' File Uploaded by '. (auth()->check() ? auth()->user()->name : 'Guest'). ' on ' . now();
+			}
 			$attachment->save();
 			$attachment_id				=$attachment->id;
 		} catch (Exception $e) {

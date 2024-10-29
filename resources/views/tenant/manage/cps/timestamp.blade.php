@@ -1,18 +1,18 @@
 @php
-    $count_attachment	= App\Models\Tenant\Attachment::where('created_by',null )->count();
-    $count_budget	    = App\Models\Tenant\Budget::where('created_by',null )->count();
-    $count_dbu	        = App\Models\Tenant\Dbu::where('created_by',null )->count();
-    $count_deptBudget	= App\Models\Tenant\DeptBudget::where('created_by',null )->count();
-    $count_invoice	    = App\Models\Tenant\Invoice::where('created_by',null )->count();
-    $count_invoiceLine	= App\Models\Tenant\InvoiceLine::where('created_by',null )->count();
-    //$count_notification	= App\Models\Tenant\Notification::where('created_by',null )->count();
-    $count_payment	    = App\Models\Tenant\Payment::where('created_by',null )->count();
-    $count_po	        = App\Models\Tenant\Po::where('created_by',null )->count();
-    $count_pol	        = App\Models\Tenant\Pol::where('created_by',null )->count();
-    $count_pr	        = App\Models\Tenant\Pr::where('created_by',null )->count();
-    $count_prl	        = App\Models\Tenant\Prl::where('created_by',null )->count();
-    $count_receipt	    = App\Models\Tenant\Receipt::where('created_by',null )->count();
-    $count_report	    = App\Models\Tenant\Report::where('created_by',null )->count();
+	$count_attachment	= App\Models\Tenant\Attachment::where('created_by',null )->count();
+	$count_budget		= App\Models\Tenant\Budget::where('created_by',null )->count();
+	$count_dbu			= App\Models\Tenant\Dbu::where('created_by',null )->count();
+	$count_deptBudget	= App\Models\Tenant\DeptBudget::where('created_by',null )->count();
+	$count_invoice		= App\Models\Tenant\Invoice::where('created_by',null )->count();
+	$count_invoiceLine	= App\Models\Tenant\InvoiceLine::where('created_by',null )->count();
+	//$count_notification	= App\Models\Tenant\Notification::where('created_by',null )->count();
+	$count_payment		= App\Models\Tenant\Payment::where('created_by',null )->count();
+	$count_po			= App\Models\Tenant\Po::where('created_by',null )->count();
+	$count_pol			= App\Models\Tenant\Pol::where('created_by',null )->count();
+	$count_pr			= App\Models\Tenant\Pr::where('created_by',null )->count();
+	$count_prl	 		= App\Models\Tenant\Prl::where('created_by',null )->count();
+	$count_receipt		= App\Models\Tenant\Receipt::where('created_by',null )->count();
+	$count_report		= App\Models\Tenant\Report::where('created_by',null )->count();
 
 @endphp
 @extends('layouts.tenant.app')
@@ -58,7 +58,7 @@
 						<td>{{ $count_attachment }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
@@ -69,7 +69,7 @@
 						<td>{{ $count_budget }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
@@ -79,7 +79,7 @@
 						<td>{{ $count_dbu }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
@@ -89,7 +89,7 @@
 						<td>{{ $count_deptBudget }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
@@ -99,7 +99,7 @@
 						<td>{{ $count_invoice }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
@@ -109,7 +109,7 @@
 						<td>{{ $count_invoiceLine }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
@@ -119,60 +119,60 @@
 						<td>{{ $count_payment }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
-                    <tr>
+					<tr>
 						<td>1</td>
 						<td>count_po </td>
 						<td>{{ $count_po }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
-                    <tr>
+					<tr>
 						<td>1</td>
 						<td>count_pol </td>
 						<td>{{ $count_pol }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
-                    <tr>
+					<tr>
 						<td>1</td>
 						<td>count_prl </td>
 						<td>{{ $count_prl }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
-                    <tr>
+					<tr>
 						<td>1</td>
 						<td>count_receipt </td>
 						<td>{{ $count_receipt }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
 					</tr>
-                    <tr>
+					<tr>
 						<td>1</td>
 						<td>count_report </td>
 						<td>{{ $count_report }}</td>
 						<td></td>
 						<td></td>
-                        <td></td>
+						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
 						</td>
-                    <tr>
+					<tr>
 				</tbody>
 			</table>
 

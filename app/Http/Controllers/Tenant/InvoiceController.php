@@ -655,51 +655,51 @@ class InvoiceController extends Controller
 		return Export::csv('depts', $dataArray);
 	}
 
-     // user in prl and pol dropdown ajax
+	 // user in prl and pol dropdown ajax
 	public function getInvoice($invoiceId = 0)
 	{
 
-        // lwc
-        //http://demo1.localhost:8000/items/get-item/1005
+		// lwc
+		//http://demo1.localhost:8000/items/get-item/1005
 		//$data = Invoice::select('id','currency','summary','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
-        //$data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
+		//$data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
 		//Log::debug('Value of data=' . $data);
 		//return response()->json($data);
 
-        $sql = "
-            SELECT i.id, i.po_id, i.invoice_no,
-            i.summary invoice_summary, DATE_FORMAT(i.invoice_date, '%d-%b-%Y') invoice_date , FORMAT(i.amount,2) invoice_amount,i.currency,
-            p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
-            d.name dept_name,prj.name project_name, u.name buyer_name,
-            s.name supplier_name
-            FROM invoices i, pos p, suppliers s, depts d, projects prj, users u
-            WHERE 1=1
-            AND i.po_id =p.id
-            AND p.supplier_id = s.id
-            AND p.dept_id = d.id
-            AND p.project_id = prj.id
-            AND p.buyer_id = u.id
-            AND i.id = '".$invoiceId."'
-        ";
+		$sql = "
+			SELECT i.id, i.po_id, i.invoice_no,
+			i.summary invoice_summary, DATE_FORMAT(i.invoice_date, '%d-%b-%Y') invoice_date , FORMAT(i.amount,2) invoice_amount,i.currency,
+			p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
+			d.name dept_name,prj.name project_name, u.name buyer_name,
+			s.name supplier_name
+			FROM invoices i, pos p, suppliers s, depts d, projects prj, users u
+			WHERE 1=1
+			AND i.po_id =p.id
+			AND p.supplier_id = s.id
+			AND p.dept_id = d.id
+			AND p.project_id = prj.id
+			AND p.buyer_id = u.id
+			AND i.id = '".$invoiceId."'
+		";
 
-        //Log::debug('Value of sql=' . $sql);
-        $result = DB::selectOne($sql);
-        return response()->json([
-            'id'                => $result->id,
-            'po_id'             => $result->po_id,
-            'invoice_summary'   => $result->invoice_summary,
-            'invoice_date'      => $result->invoice_date,
-            'invoice_amount'    => $result->invoice_amount,
-            'currency'          => $result->currency,
-            'po_summary'        => $result->po_summary,
-            'po_date'           => $result->po_date,
-            'po_amount'         => $result->po_amount,
-            'po_currency'       => $result->po_currency,
-            'dept_name'         => $result->dept_name,
-            'project_name'      => $result->project_name,
-            'buyer_name'        => $result->buyer_name,
-            'supplier_name'     => $result->supplier_name
-        ]);
+		//Log::debug('Value of sql=' . $sql);
+		$result = DB::selectOne($sql);
+		return response()->json([
+			'id'                => $result->id,
+			'po_id'             => $result->po_id,
+			'invoice_summary'   => $result->invoice_summary,
+			'invoice_date'      => $result->invoice_date,
+			'invoice_amount'    => $result->invoice_amount,
+			'currency'          => $result->currency,
+			'po_summary'        => $result->po_summary,
+			'po_date'           => $result->po_date,
+			'po_amount'         => $result->po_amount,
+			'po_currency'       => $result->po_currency,
+			'dept_name'         => $result->dept_name,
+			'project_name'      => $result->project_name,
+			'buyer_name'        => $result->buyer_name,
+			'supplier_name'     => $result->supplier_name
+		]);
 
 	}
 

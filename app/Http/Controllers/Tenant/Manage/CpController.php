@@ -36,11 +36,11 @@ class CpController extends Controller
 	public function index()
 	{
 		return view('tenant.manage.cps.index');
-    }
+	}
 
 
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function changeLog()
@@ -58,16 +58,16 @@ class CpController extends Controller
 		return view('tenant.manage.cps.codegen');
 	}
 
-     /**
+	 /**
 	 * Show the form for creating a new resource.
 	 */
 	public function ui()
 	{
-        return view('tenant.manage.ui');
+		return view('tenant.manage.ui');
 
 	}
 
-     /**
+	 /**
 	 * Show the form for creating a new resource.
 	 */
 	public function checkTimestamp()

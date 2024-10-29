@@ -43,6 +43,7 @@ return new class extends Migration
 			$table->decimal('monthly_fee', 19, 2)->default(0);		// added later
 			$table->decimal('monthly_addon', 19, 2)->default(0);	// added later
 			$table->decimal('price', 19, 2)->default(0);
+            $table->integer('lifetime_discount')->default(10);
 			$table->date('start_date');
 			$table->date('end_date');
 			// there will be only one unpaid invoice. updated when a subscription is generated

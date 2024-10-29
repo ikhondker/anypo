@@ -73,15 +73,15 @@ class CpController extends Controller
 	{
 		//$accordion_id = 'Faq';
 		//$div_id = 'One';
-        //$test = 1000025.05;
+		//$test = 1000025.05;
 
-        //$f = new \NumberFormatter( locale_get_default(), \NumberFormatter::SPELLOUT );
-        //$word = $f->format($test);
-        //dd($word);
+		//$f = new \NumberFormatter( locale_get_default(), \NumberFormatter::SPELLOUT );
+		//$word = $f->format($test);
+		//dd($word);
 
-        //$f = new \NumberFormatter("en", \NumberFormatter::SPELLOUT);
-        //echo $f->format(1432);
-        //dd($f->format(1432));
+		//$f = new \NumberFormatter("en", \NumberFormatter::SPELLOUT);
+		//echo $f->format(1432);
+		//dd($f->format(1432));
 
 		$section 	= $request->input('section');				// Faq
 		$div 		= $request->input('div');					// One
@@ -105,36 +105,36 @@ class CpController extends Controller
 		// 	</div>
 
 
-        $text='';
-        for ($x = 1; $x <= 5; $x++) {
-            //Log::debug('x = '.Number::spell($x));
+		$text='';
+		for ($x = 1; $x <= 5; $x++) {
+			//Log::debug('x = '.Number::spell($x));
 
-            $div        = Number::spell($x);
-            $accordion 	= 'accordion'.ucfirst($section);			// accordionFaq
-		    $card 		= strtolower($section).ucfirst($div);		// faqOne
-		    $collapse 	= 'collapse'.ucfirst($div);					// collapseOne
+			$div        = Number::spell($x);
+			$accordion 	= 'accordion'.ucfirst($section);			// accordionFaq
+			$card 		= strtolower($section).ucfirst($div);		// faqOne
+			$collapse 	= 'collapse'.ucfirst($div);					// collapseOne
 
-            Log::debug('div loop = '.Number::spell($x));
-            Log::debug('accordion = '.$accordion);
-            Log::debug('card = '.$card);
-            Log::debug('collapse = '.$collapse);
+			Log::debug('div loop = '.Number::spell($x));
+			Log::debug('accordion = '.$accordion);
+			Log::debug('card = '.$card);
+			Log::debug('collapse = '.$collapse);
 
-            $single='
-            <div class="card border mb-3">
-                <div class="card-header cursor-pointer" id="'.$card.'" data-bs-toggle="collapse" data-bs-target="#'.$collapse.'" aria-expanded="true" aria-controls="'.$collapse.'">
-                    <h6 class="mb-0">
-                        Q: Section '.$section.' : Question Number: '. $div .'
-                    </h6>
-                </div>
-                <div id="'.$collapse.'" class="collapse '.($div == 'One' ? 'show' : '').'" aria-labelledby="'.$card.'" data-bs-parent="#'.$accordion.'">
-                    <div class="card-body py-3">
-                        A: Section '.$section.' : Answer of Question Number: '.$div .'
-                    </div>
-                </div>
-            </div>
-            ';
-            $text=$text . '' . $single;
-        }
+			$single='
+			<div class="card border mb-3">
+				<div class="card-header cursor-pointer" id="'.$card.'" data-bs-toggle="collapse" data-bs-target="#'.$collapse.'" aria-expanded="true" aria-controls="'.$collapse.'">
+					<h6 class="mb-0">
+						Q: Section '.$section.' : Question Number: '. $div .'
+					</h6>
+				</div>
+				<div id="'.$collapse.'" class="collapse '.($div == 'One' ? 'show' : '').'" aria-labelledby="'.$card.'" data-bs-parent="#'.$accordion.'">
+					<div class="card-body py-3">
+						A: Section '.$section.' : Answer of Question Number: '.$div .'
+					</div>
+				</div>
+			</div>
+			';
+			$text=$text . '' . $single;
+		}
 
 		// {!! $text !!}
 

@@ -69,7 +69,7 @@ class BudgetController extends Controller
 		return view('tenant.budgets.index', compact('budgets'));
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function revisionsAll()
@@ -191,11 +191,11 @@ class BudgetController extends Controller
 
 		// ]);
 
-        // Write to Log
-        EventLog::event('budget', $budget->id, 'update', 'name', $budget->name);
-        $budget->update($request->all());
+		// Write to Log
+		EventLog::event('budget', $budget->id, 'update', 'name', $budget->name);
+		$budget->update($request->all());
 
-        // dd($request);
+		// dd($request);
 		// upload file as record
 
 		if ($file = $request->file('file_to_upload')) {

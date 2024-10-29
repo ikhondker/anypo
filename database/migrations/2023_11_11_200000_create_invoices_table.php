@@ -24,19 +24,25 @@ return new class extends Migration
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->date('invoice_date')->default(DB::raw('(CURDATE())'));
 			$table->date('from_date');
-			$table->date('to_date');
 			$table->date('org_from_date')->nullable();
+			$table->date('to_date');
 			$table->date('due_date')->nullable()->useCurrent();
 			$table->string('currency')->default('USD');
 			$table->decimal('price', 19, 2)->default(0);
 			$table->decimal('discount',19, 2)->default(0);
-			$table->decimal('subtotal',19, 2)->default(0);
+            $table->date('discount_date')->nullable();
+			$table->uuid('discount_by')->nullable();
+            $table->decimal('subtotal',19, 2)->default(0);
 			$table->decimal('tax',19, 2)->default(0);
 			$table->decimal('vat',19, 2)->default(0);
 			$table->decimal('amount',19, 2)->default(0);
+            $table->decimal('org_amount',19, 2)->default(0);        // before apply any discount
 			$table->decimal('amount_paid',19, 2)->default(0);
 			$table->date('pay_date')->nullable()->useCurrent();
-			$table->text('notes')->nullable();
+            $table->boolean('admin_pay')->default(false);         // paid by admin without payment
+            $table->date('admin_pay_date')->nullable();
+			$table->uuid('admin_paid_by')->nullable();
+ 			$table->text('notes')->nullable();
 			$table->boolean('adjusted')->default(false); // in case addon added for 3/6/12 month advance payment
 			$table->date('adjustment_date')->nullable();
 			$table->string('adjustment_ref')->nullable();

@@ -252,69 +252,69 @@ class DeptBudgetController extends Controller
 			$request->merge(['article_id'	=> $deptBudget->id ]);
 			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
 			$attid = FileUpload::aws($request);
-        }
+		}
 
 		// budget has been modified
 		$old_dept_budget_amount =$deptBudget->amount;
 
-        $who = auth()->user()->id;
+		$who = auth()->user()->id;
 
-        // can not mark original line as revision as child row exists
+		// can not mark original line as revision as child row exists
 		// 1. create revision row for dep_budget
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for dept_budgets_id = '.$deptBudget->id);
 		// $sql= "INSERT INTO dept_budgets(
 		// 	budget_id, dept_id,
-        //     amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+		//     amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
 		// 	count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-        //     notes, closed, revision, parent_id,
-        //     created_by, created_at, updated_by, updated_at)
+		//     notes, closed, revision, parent_id,
+		//     created_by, created_at, updated_by, updated_at)
 		// SELECT
 		// 	budget_id, dept_id,
-        //     amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+		//     amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
 		// 	count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-        //     notes, true, true, ".$deptBudget->id.",
-        //     '". $who ."', now(), '". $who ."', now()
+		//     notes, true, true, ".$deptBudget->id.",
+		//     '". $who ."', now(), '". $who ."', now()
 		// FROM dept_budgets
 		// WHERE id= ".$deptBudget->id." ;";
 		//Log::warning(tenant('id'). 'tenant.DeptBudget.update dept_budgets sql = '. $sql);
 		//TODO
 		//$revision_dept_budget_id = DB::INSERT($sql);
-        //Log::warning(tenant('id'). 'tenant.DeptBudget.update dept_budgets sql = '. $sql);
+		//Log::warning(tenant('id'). 'tenant.DeptBudget.update dept_budgets sql = '. $sql);
 
-        $revDeptBudget              = $deptBudget->replicate();
-        $revDeptBudget->closed      = true;
-        $revDeptBudget->revision    = true;
-        $revDeptBudget->parent_id   = $deptBudget->id;
-        $revDeptBudget->created_by  = $who ;
-        $revDeptBudget->created_at  = now();
-        $revDeptBudget->updated_by  = $who ;
-        $revDeptBudget->updated_at  = now();
-        $revDeptBudget->save();
-        $revision_dept_budget_id = $revDeptBudget->id;
+		$revDeptBudget              = $deptBudget->replicate();
+		$revDeptBudget->closed      = true;
+		$revDeptBudget->revision    = true;
+		$revDeptBudget->parent_id   = $deptBudget->id;
+		$revDeptBudget->created_by  = $who ;
+		$revDeptBudget->created_at  = now();
+		$revDeptBudget->updated_by  = $who ;
+		$revDeptBudget->updated_at  = now();
+		$revDeptBudget->save();
+		$revision_dept_budget_id = $revDeptBudget->id;
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
 
-        // attach the same document with $revision_dept_budget_id
-        if ($file = $request->file('file_to_upload')) {
-            $request->merge(['article_id'	=> $revision_dept_budget_id ]);
-            $request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
-            $attid = FileUpload::aws($request);
-        }
+		// attach the same document with $revision_dept_budget_id
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $revision_dept_budget_id ]);
+			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
+			$attid = FileUpload::aws($request);
+		}
 
 		// 2. create revision for budget and link to revision_dept_budget_id
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for budgets_id = '.$deptBudget->budget_id);
 		$sql= "INSERT INTO budgets(
 			fy, name, start_date, end_date,
-            amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+			amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
 			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-            notes,closed, revision, parent_id, revision_dept_budget_id,
-            created_by, created_at, updated_by, updated_at
+			notes,closed, revision, parent_id, revision_dept_budget_id,
+			created_by, created_at, updated_by, updated_at
 			)
 		SELECT
 			fy, name, start_date, end_date,
-            amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+			amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
 			count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-            notes,true, true, ".$deptBudget->budget_id.",". $revision_dept_budget_id .",
-            '". $who ."', now(), '". $who ."', now()
+			notes,true, true, ".$deptBudget->budget_id.",". $revision_dept_budget_id .",
+			'". $who ."', now(), '". $who ."', now()
 		FROM budgets
 		WHERE id= ".$deptBudget->budget_id." ;";
 		//Log::warning(tenant('id'). 'tenant.DeptBudget.update budgets sql = '. $sql);

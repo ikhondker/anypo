@@ -48,10 +48,10 @@
 					</tr>
 					<x-tenant.show.my-updated-at 	value="{{ $deptBudget->created_at }}"/>
 					<tr>
-                        <th>Attachments :</th>
-                        <td>
-                            <x-tenant.attachment.all entity="DEPTBUDGET" aid="{{ $deptBudget->id }}"/>
-                        </td>
+						<th>Attachments :</th>
+						<td>
+							<x-tenant.attachment.all entity="DEPTBUDGET" aid="{{ $deptBudget->id }}"/>
+						</td>
 					</tr>
 
 

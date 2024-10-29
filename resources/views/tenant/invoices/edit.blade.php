@@ -87,14 +87,14 @@
 									@enderror
 									</td>
 								</tr>
-                                <tr>
-                                    <th>Currency :</th>
-                                    <td>
-                                       <input type="text" class="form-control"
-                                                name="currency" id="currency" value="{{ $invoice->currency }}"
-                                                readonly/>
-                                    </td>
-                                </tr>
+								<tr>
+									<th>Currency :</th>
+									<td>
+									   <input type="text" class="form-control"
+												name="currency" id="currency" value="{{ $invoice->currency }}"
+												readonly/>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 
@@ -121,10 +121,10 @@
 								<tr>
 									<th>Amount ({{ $invoice->currency }})</th>
 									<td>
-                                      <input type="text" class="form-control"
-                                                 style="text-align: right;"
-                                                name="amount" id="amount" value="{{ number_format($invoice->amount,2) }}"
-                                                readonly/>
+									  <input type="text" class="form-control"
+												 style="text-align: right;"
+												name="amount" id="amount" value="{{ number_format($invoice->amount,2) }}"
+												readonly/>
 									</td>
 								</tr>
 

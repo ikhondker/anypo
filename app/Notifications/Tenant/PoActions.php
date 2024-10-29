@@ -57,7 +57,7 @@ class PoActions extends Notification implements ShouldQueue
 				break;
 			default:
 				// Error
-                Log::error('tenant.Notification.PrActions Other roles '. $this->action .' for po_id = '. $this->po->id);
+				Log::error('tenant.Notification.PrActions Other roles '. $this->action .' for po_id = '. $this->po->id);
 		}
 	}
 

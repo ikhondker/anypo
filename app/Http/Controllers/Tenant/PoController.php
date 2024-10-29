@@ -547,21 +547,21 @@ class PoController extends Controller
 			return redirect()->route('pos.show',$po->id)->with('error', 'You cannot submit zero value Purchase Order!');
 		}
 
-        // check if approval hierarchy exists and is valid
-        $dept = Dept::where('id', $po->dept_id)->first();
-        try {
-            $hierarchy      = Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
-            $hierarchy_id   = $hierarchy->id;
-        } catch (Exception $e) {
-            Log::error("tenant.po.submit Hierarchy find error for po_id= ".$po->id ." dept_id = ".$dept->id);
-            return redirect()->route('prs.show',$po->id)->with('error', 'Approval Hierarchy not found! Please assign approval Hierarchy for dept!');
-        }
+		// check if approval hierarchy exists and is valid
+		$dept = Dept::where('id', $po->dept_id)->first();
+		try {
+			$hierarchy      = Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
+			$hierarchy_id   = $hierarchy->id;
+		} catch (Exception $e) {
+			Log::error("tenant.po.submit Hierarchy find error for po_id= ".$po->id ." dept_id = ".$dept->id);
+			return redirect()->route('prs.show',$po->id)->with('error', 'Approval Hierarchy not found! Please assign approval Hierarchy for dept!');
+		}
 
-        // check if approval hierarchy lines exists and is valid
-        $hl_count	= Hierarchyl::where('hid',$hierarchy_id)->count();
-        if ( $hl_count == 0){
-            return redirect()->route('pos.show',$po->id)->with('error', 'No Approver found in Approval Hierarchy ' . $hierarchy->name . '! Please assign approver first.');
-        }
+		// check if approval hierarchy lines exists and is valid
+		$hl_count	= Hierarchyl::where('hid',$hierarchy_id)->count();
+		if ( $hl_count == 0){
+			return redirect()->route('pos.show',$po->id)->with('error', 'No Approver found in Approval Hierarchy ' . $hierarchy->name . '! Please assign approver first.');
+		}
 
 		Log::debug('tenant.po.submit submitting po_id = ' . $po->id);
 
@@ -672,9 +672,9 @@ class PoController extends Controller
 		$po->po_date			= now();
 		$po->buyer_id			= auth()->user()->id;
 
-        // Only buyer can copy dont change requestor and dept
-        $po->requestor_id	= $sourcePo->requestor_id;
-        $po->dept_id		= $sourcePo->dept_id;
+		// Only buyer can copy dont change requestor and dept
+		$po->requestor_id	= $sourcePo->requestor_id;
+		$po->dept_id		= $sourcePo->dept_id;
 
 		$po->need_by_date		= $sourcePo->need_by_date;
 		$po->project_id			= $sourcePo->project_id;
@@ -908,43 +908,43 @@ class PoController extends Controller
 		return view('tenant.pos.extra', compact('po'));
 	}
 
-    // user in prl and pol dropdown ajax
+	// user in prl and pol dropdown ajax
 	public function getPo($poId = 0)
 	{
-        // lwc
-	    //http://demo1.localhost:8000/pos/get-po/1005
+		// lwc
+		//http://demo1.localhost:8000/pos/get-po/1005
 		//$data = [];
-	    //$data = Po::select('id','summary','amount','currency','supplier_id')->with('supplier:id,name')->where('id', $poId)->first();
+		//$data = Po::select('id','summary','amount','currency','supplier_id')->with('supplier:id,name')->where('id', $poId)->first();
 		//Log::debug('Value of data=' . $data);
 		//return response()->json($data);
 
 
-        $sql = "
-        SELECT  p.id po_id, p.currency,
-        p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
-        d.name dept_name,prj.name project_name, u.name buyer_name,
-        s.name supplier_name
-        FROM pos p, suppliers s, depts d, projects prj, users u
-        WHERE 1=1
-        AND p.supplier_id = s.id
-        AND p.dept_id = d.id
-        AND p.project_id = prj.id
-        AND p.buyer_id = u.id
-        AND p.id = '".$poId."'
-    ";
+		$sql = "
+		SELECT  p.id po_id, p.currency,
+		p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
+		d.name dept_name,prj.name project_name, u.name buyer_name,
+		s.name supplier_name
+		FROM pos p, suppliers s, depts d, projects prj, users u
+		WHERE 1=1
+		AND p.supplier_id = s.id
+		AND p.dept_id = d.id
+		AND p.project_id = prj.id
+		AND p.buyer_id = u.id
+		AND p.id = '".$poId."'
+	";
 
-        $result = DB::selectOne($sql);
-        return response()->json([
-            'po_id'             => $result->po_id,
-            'po_currency'          => $result->currency,
-            'po_summary'        => $result->po_summary,
-            'po_date'           => $result->po_date,
-            'po_amount'         => $result->po_amount,
-            'dept_name'         => $result->dept_name,
-            'project_name'      => $result->project_name,
-            'buyer_name'        => $result->buyer_name,
-            'supplier_name'     => $result->supplier_name
-        ]);
+		$result = DB::selectOne($sql);
+		return response()->json([
+			'po_id'             => $result->po_id,
+			'po_currency'          => $result->currency,
+			'po_summary'        => $result->po_summary,
+			'po_date'           => $result->po_date,
+			'po_amount'         => $result->po_amount,
+			'dept_name'         => $result->dept_name,
+			'project_name'      => $result->project_name,
+			'buyer_name'        => $result->buyer_name,
+			'supplier_name'     => $result->supplier_name
+		]);
 
 	}
 }

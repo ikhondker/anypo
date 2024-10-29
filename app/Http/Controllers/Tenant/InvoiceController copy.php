@@ -655,52 +655,52 @@ class InvoiceController extends Controller
 		return Export::csv('depts', $dataArray);
 	}
 
-     // user in prl and pol dropdown ajax
+	 // user in prl and pol dropdown ajax
 	public function getInvoice($invoiceId = 0)
 	{
 		//Log::debug('Value of id=' . $id);
-        //http://demo1.localhost:8000/items/get-item/1005
+		//http://demo1.localhost:8000/items/get-item/1005
 		$data = [];
 		//$data = Invoice::select('id','currency','summary','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
-        //$data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
-        // xx $data = Invoice::select('id','currency','summary','invoice_date','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary','currency','po_date')->where('id', $invoiceId)->first();
-        // $data1 = DB::select("SELECT 'id','currency','amount','invoice_date','summary','supplier_id','po_id' FROM invoices
-        // WHERE id = '.$invoiceId.'
-        // ");
+		//$data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
+		// xx $data = Invoice::select('id','currency','summary','invoice_date','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary','currency','po_date')->where('id', $invoiceId)->first();
+		// $data1 = DB::select("SELECT 'id','currency','amount','invoice_date','summary','supplier_id','po_id' FROM invoices
+		// WHERE id = '.$invoiceId.'
+		// ");
 
-        $sql = "SELECT id, currency, amount FROM invoices WHERE id = '1002'";
-        Log::debug('Value of sql=' . $sql);
-        $result = DB::selectOne($sql);
-        Log::debug('Value of result id =' .  $result->id);
-        return response()->json([
-            'id'        => $result->id,
-            'currency'  => $result->currency,
-            'amount'    => $result->amount,
-        ]);
+		$sql = "SELECT id, currency, amount FROM invoices WHERE id = '1002'";
+		Log::debug('Value of sql=' . $sql);
+		$result = DB::selectOne($sql);
+		Log::debug('Value of result id =' .  $result->id);
+		return response()->json([
+			'id'        => $result->id,
+			'currency'  => $result->currency,
+			'amount'    => $result->amount,
+		]);
 
-        $sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";
-        Log::debug('Value of sql=' . $sql);
-        $result = DB::select($sql);
+		$sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";
+		Log::debug('Value of sql=' . $sql);
+		$result = DB::select($sql);
 
-        //$rows = [];
-        $data = [];
-        foreach ($result as $row) {
-            Log::debug('Value of rows=' . $row->aa);
-            $data[] = $row->aa;
-        }
-        return response()->json($data);
-
-
-
-        //$sql = "SELECT id,currency,amount,invoice_date,summary,supplier_id,po_id FROM invoices WHERE id = '1002'";
-        //Log::debug('Value of sql=' . $sql);
-        //$result = DB::select($sql);
-        //Log::debug('Value of data2=' . $result);
+		//$rows = [];
+		$data = [];
+		foreach ($result as $row) {
+			Log::debug('Value of rows=' . $row->aa);
+			$data[] = $row->aa;
+		}
+		return response()->json($data);
 
 
 
-        // lwc
-        $data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
+		//$sql = "SELECT id,currency,amount,invoice_date,summary,supplier_id,po_id FROM invoices WHERE id = '1002'";
+		//Log::debug('Value of sql=' . $sql);
+		//$result = DB::select($sql);
+		//Log::debug('Value of data2=' . $result);
+
+
+
+		// lwc
+		$data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
 		Log::debug('Value of data=' . $data);
 		return response()->json($data);
 

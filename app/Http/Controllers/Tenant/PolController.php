@@ -308,44 +308,44 @@ class PolController extends Controller
 		return Export::csv('pos', $dataArray);
 	}
 
-    public function getPol($polId = 0)
+	public function getPol($polId = 0)
 	{
 
-	    //http://demo1.localhost:8000/pols/get-pol/1005
+		//http://demo1.localhost:8000/pols/get-pol/1005
 
-        $sql = "
-            SELECT  p.id po_id, p.currency,
-            p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
-            uom.name uom_name, FORMAT(pol.qty,2) qty, FORMAT(pol.received_qty,2) received_qty,
-            d.name dept_name,prj.name project_name, u.name buyer_name,
-            s.name supplier_name
-            FROM pols pol, uoms uom, pos p, suppliers s, depts d, projects prj, users u
-            WHERE 1=1
-            AND pol.po_id = p.id
-            AND pol.uom_id=uom.id
-            AND p.supplier_id = s.id
-            AND p.dept_id = d.id
-            AND p.project_id = prj.id
-            AND p.buyer_id = u.id
-            AND pol.id = '".$polId."'
-        ";
+		$sql = "
+			SELECT  p.id po_id, p.currency,
+			p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
+			uom.name uom_name, FORMAT(pol.qty,2) qty, FORMAT(pol.received_qty,2) received_qty,
+			d.name dept_name,prj.name project_name, u.name buyer_name,
+			s.name supplier_name
+			FROM pols pol, uoms uom, pos p, suppliers s, depts d, projects prj, users u
+			WHERE 1=1
+			AND pol.po_id = p.id
+			AND pol.uom_id=uom.id
+			AND p.supplier_id = s.id
+			AND p.dept_id = d.id
+			AND p.project_id = prj.id
+			AND p.buyer_id = u.id
+			AND pol.id = '".$polId."'
+		";
 
-        Log::debug('id=' . $sql);
-        $result = DB::selectOne($sql);
-        return response()->json([
-            'po_id'             => $result->po_id,
-            'po_currency'       => $result->currency,
-            'po_summary'        => $result->po_summary,
-            'po_date'           => $result->po_date,
-            'po_amount'         => $result->po_amount,
-            'pol_uom_name'      => $result->uom_name,
-            'pol_qty'           => $result->qty,
-            'pol_received_qty'  => $result->received_qty,
-            'dept_name'         => $result->dept_name,
-            'project_name'      => $result->project_name,
-            'buyer_name'        => $result->buyer_name,
-            'supplier_name'     => $result->supplier_name
-        ]);
+		Log::debug('id=' . $sql);
+		$result = DB::selectOne($sql);
+		return response()->json([
+			'po_id'             => $result->po_id,
+			'po_currency'       => $result->currency,
+			'po_summary'        => $result->po_summary,
+			'po_date'           => $result->po_date,
+			'po_amount'         => $result->po_amount,
+			'pol_uom_name'      => $result->uom_name,
+			'pol_qty'           => $result->qty,
+			'pol_received_qty'  => $result->received_qty,
+			'dept_name'         => $result->dept_name,
+			'project_name'      => $result->project_name,
+			'buyer_name'        => $result->buyer_name,
+			'supplier_name'     => $result->supplier_name
+		]);
 
 	}
 

@@ -60,7 +60,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 		$dbu->entity		= $this->entity;
 		$dbu->article_id	= $this->article_id;
 		$dbu->event			= $this->event;
-        $dbu->amount		= $this->fc_amount;
+		$dbu->amount		= $this->fc_amount;
 		// job don't have this ID
 		//$dbu->user_id		= auth()->user()->id;
 
