@@ -673,9 +673,9 @@ class InvoiceController extends Controller
 		$result = DB::selectOne($sql);
 		Log::debug('Value of result id =' .  $result->id);
 		return response()->json([
-			'id'        => $result->id,
-			'currency'  => $result->currency,
-			'amount'    => $result->amount,
+			'id'		=> $result->id,
+			'currency'	=> $result->currency,
+			'amount'	=> $result->amount,
 		]);
 
 		$sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";

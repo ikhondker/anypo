@@ -161,8 +161,8 @@ class Workflow
 		try {
 			// mark as due for next approver
 			$wfl = Wfl::with('wf')->where('wf_id', $wf_id)->where('action', WflActionEnum::PENDING->value)->firstOrFail();
-			$wfl->start_date   = date('Y-m-d H:i:s');
-			$wfl->action       = WflActionEnum::DUE->value;
+			$wfl->start_date	= date('Y-m-d H:i:s');
+			$wfl->action		= WflActionEnum::DUE->value;
 			$wfl->update();
 
 			//Log::debug('Helpers.Workflow.setNextApproverDue wfl_id = '.$wfl->id);

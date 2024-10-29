@@ -158,8 +158,8 @@ class TestController extends Controller
 		}
 
 		//dd($data);
-		$response         = [];
-		$response['data'] =  $data;
+		$response			= [];
+		$response['data'] 	=  $data;
 
 
 		// works

@@ -88,9 +88,9 @@ class TicketController extends Controller
 		//Stancl\Tenancy\Database\Concerns\CentralConnection
 
 		$tenant_id  = tenant('id');
-		$name       = auth()->user()->name;
-		$email      = auth()->user()->email;
-		$cell       = auth()->user()->cell;
+		$name		= auth()->user()->name;
+		$email		= auth()->user()->email;
+		$cell		= auth()->user()->cell;
 
 		// create or find user in Landlord if don't exists
 		$landlordUserId = tenancy()->central(function ($tenant) use ($tenant_id, $name, $email, $cell) {

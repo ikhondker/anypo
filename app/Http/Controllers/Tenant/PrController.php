@@ -487,8 +487,8 @@ class PrController extends Controller
 		// check if approval hierarchy exists and is valid
 		$dept = Dept::where('id', $pr->dept_id)->first();
 		try {
-			$hierarchy      = Hierarchy::where('id', $dept->pr_hierarchy_id)->firstOrFail();
-			$hierarchy_id   = $hierarchy->id;
+			$hierarchy		= Hierarchy::where('id', $dept->pr_hierarchy_id)->firstOrFail();
+			$hierarchy_id	= $hierarchy->id;
 		} catch (Exception $e) {
 			Log::error("tenant.pr.submit Hierarchy find error for pr_id= ".$pr->id ." dept_id = ".$dept->id);
 			return redirect()->route('prs.show',$pr->id)->with('error', 'Approval Hierarchy not found! Please assign approval Hierarchy for dept!');

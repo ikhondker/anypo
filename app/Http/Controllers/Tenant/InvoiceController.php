@@ -685,20 +685,20 @@ class InvoiceController extends Controller
 		//Log::debug('Value of sql=' . $sql);
 		$result = DB::selectOne($sql);
 		return response()->json([
-			'id'                => $result->id,
-			'po_id'             => $result->po_id,
-			'invoice_summary'   => $result->invoice_summary,
-			'invoice_date'      => $result->invoice_date,
-			'invoice_amount'    => $result->invoice_amount,
-			'currency'          => $result->currency,
-			'po_summary'        => $result->po_summary,
-			'po_date'           => $result->po_date,
-			'po_amount'         => $result->po_amount,
-			'po_currency'       => $result->po_currency,
-			'dept_name'         => $result->dept_name,
-			'project_name'      => $result->project_name,
-			'buyer_name'        => $result->buyer_name,
-			'supplier_name'     => $result->supplier_name
+			'id'				=> $result->id,
+			'po_id'				=> $result->po_id,
+			'invoice_summary'	=> $result->invoice_summary,
+			'invoice_date'		=> $result->invoice_date,
+			'invoice_amount'	=> $result->invoice_amount,
+			'currency'			=> $result->currency,
+			'po_summary'		=> $result->po_summary,
+			'po_date'			=> $result->po_date,
+			'po_amount'			=> $result->po_amount,
+			'po_currency'		=> $result->po_currency,
+			'dept_name'			=> $result->dept_name,
+			'project_name'		=> $result->project_name,
+			'buyer_name'		=> $result->buyer_name,
+			'supplier_name'=> $result->supplier_name
 		]);
 
 	}

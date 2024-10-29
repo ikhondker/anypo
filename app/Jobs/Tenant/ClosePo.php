@@ -56,13 +56,13 @@ class ClosePo implements ShouldQueue
 			$cancel = false;
 		}
 
-		$pol	            = Pol::where('id', $receipt->pol_id)->firstOrFail();
+		$pol				= Pol::where('id', $receipt->pol_id)->firstOrFail();
 		$sum_received_qty	= Receipt::where('pol_id',$receipt->pol_id)->sum();
 		if ( $receipt->pol->qty == $sum_received_qty) {
 			// all qty received close pol
 			$pol->closure_status = ClosureStatusEnum::CLOSED->value;
 		} else {
-			return;       // no need to continue further
+			return;		// no need to continue further
 		}
 
 		// check if all pol is closed for this po then close the po also
@@ -71,7 +71,7 @@ class ClosePo implements ShouldQueue
 			// all pol closed close pol
 			Po::where('id', $pol->po_id)->update(['status'=> ClosureStatusEnum::CLOSED->value]);
 		} else {
-			return;       // no need to continue further
+			return;		// no need to continue further
 		}
 
 	}

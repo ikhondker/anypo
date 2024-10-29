@@ -935,15 +935,15 @@ class PoController extends Controller
 
 		$result = DB::selectOne($sql);
 		return response()->json([
-			'po_id'             => $result->po_id,
-			'po_currency'          => $result->currency,
-			'po_summary'        => $result->po_summary,
-			'po_date'           => $result->po_date,
-			'po_amount'         => $result->po_amount,
-			'dept_name'         => $result->dept_name,
-			'project_name'      => $result->project_name,
-			'buyer_name'        => $result->buyer_name,
-			'supplier_name'     => $result->supplier_name
+			'po_id'   		=> $result->po_id,
+			'po_currency'	=> $result->currency,
+			'po_summary'	=> $result->po_summary,
+			'po_date' 		=> $result->po_date,
+			'po_amount' 	=> $result->po_amount,
+			'dept_name' 	=> $result->dept_name,
+			'project_name'	=> $result->project_name,
+			'buyer_name'	=> $result->buyer_name,
+			'supplier_name'	=> $result->supplier_name
 		]);
 
 	}

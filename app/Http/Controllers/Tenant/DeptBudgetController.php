@@ -281,9 +281,9 @@ class DeptBudgetController extends Controller
 		//$revision_dept_budget_id = DB::INSERT($sql);
 		//Log::warning(tenant('id'). 'tenant.DeptBudget.update dept_budgets sql = '. $sql);
 
-		$revDeptBudget              = $deptBudget->replicate();
-		$revDeptBudget->closed      = true;
-		$revDeptBudget->revision    = true;
+		$revDeptBudget				= $deptBudget->replicate();
+		$revDeptBudget->closed		= true;
+		$revDeptBudget->revision	= true;
 		$revDeptBudget->parent_id   = $deptBudget->id;
 		$revDeptBudget->created_by  = $who ;
 		$revDeptBudget->created_at  = now();

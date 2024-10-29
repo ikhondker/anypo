@@ -50,7 +50,7 @@ class BudgetPolicy
 	 */
 	public function update(User $user, Budget $budget): bool
 	{
-        return true;
+		return true;
 		//return (( $user->isCxO() || $user->isAdmin() || $user->isSupport() ) && !$budget->freeze );
 	}
 

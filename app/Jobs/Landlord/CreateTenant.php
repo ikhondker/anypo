@@ -102,7 +102,7 @@ class CreateTenant implements ShouldQueue
 		$account_id		= self::createCheckoutAccount($this->checkout_id);
 
 		// update account_id in checkout
-		$checkout		        = Checkout::where('id', $this->checkout_id)->first();
+		$checkout				= Checkout::where('id', $this->checkout_id)->first();
 		$checkout->account_id	= $account_id;
 		$checkout->save();
 

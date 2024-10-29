@@ -20,8 +20,8 @@ class ItemCounts extends Component
 	public function __construct()
 	{
 
-		$this->count_total	    = Item::count();
-		$this->count_enable	    = Item::where('enable',true )->count();
+		$this->count_total		= Item::count();
+		$this->count_enable		= Item::where('enable',true )->count();
 		$this->count_disable	= Item::where('enable',false )->count();
 		//$count_draft	= Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 
