@@ -3,6 +3,7 @@
 
 # 7. TODO - Open
 ====================================================================
+116. rewrtie flow of invoice creation 
 115. consider account level discount while generaitng invoices
 114. Invoice Date :	edit invocie.edit payments edit pay date
 113. collaps top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

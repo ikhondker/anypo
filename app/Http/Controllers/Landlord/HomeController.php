@@ -381,40 +381,7 @@ class HomeController extends Controller
 
 	}
 
-	// landed here for successful addon payment
-	public function successAddon(Request $request)
-	{
 
-		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-		$sessionId = $request->get('session_id');
-
-		try {
-
-			$session = \Stripe\Checkout\Session::retrieve($sessionId);
-
-			if (!$session) {
-				throw new NotFoundHttpException;
-			}
-
-			$trx_type	= $session->metadata->trx_type;
-			Log::debug('landlord.home.successAddon metadata trx_type = '. $session->metadata->trx_type);
-
-			$checkout = Checkout::where('session_id', $session->id)->first();
-			if (!$checkout) {
-				throw new NotFoundHttpException();
-			}
-			if ($checkout->status_code == CheckoutStatusEnum::DRAFT->value) {
-				Log::debug('landlord.home.successAddon checkout_id = '. $checkout->id);
-				AddAddon::dispatch($checkout->id);
-			}
-			return view('landlord.pages.info')->with('title','Thank you for purchasing Add-on!')
-				->with('msg','Please check your Account Detail after few minutes.');
-
-		} catch (\Exception $e) {
-			throw new NotFoundHttpException();
-		}
-
-	}
 
 	// landed here for successful addon payment
 	public function successAdvance(Request $request)
@@ -444,6 +411,41 @@ class HomeController extends Controller
 			}
 			return view('landlord.pages.info')->with('title','Thank you for paying advance invoices!')
 				->with('msg','We have received your payment. Thanks again.');
+
+		} catch (\Exception $e) {
+			throw new NotFoundHttpException();
+		}
+
+	}
+
+    // landed here for successful addon payment
+	public function successAddon(Request $request)
+	{
+
+		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+		$sessionId = $request->get('session_id');
+
+		try {
+
+			$session = \Stripe\Checkout\Session::retrieve($sessionId);
+
+			if (!$session) {
+				throw new NotFoundHttpException;
+			}
+
+			$trx_type	= $session->metadata->trx_type;
+			Log::debug('landlord.home.successAddon metadata trx_type = '. $session->metadata->trx_type);
+
+			$checkout = Checkout::where('session_id', $session->id)->first();
+			if (!$checkout) {
+				throw new NotFoundHttpException();
+			}
+			if ($checkout->status_code == CheckoutStatusEnum::DRAFT->value) {
+				Log::debug('landlord.home.successAddon checkout_id = '. $checkout->id);
+				AddAddon::dispatch($checkout->id);
+			}
+			return view('landlord.pages.info')->with('title','Thank you for purchasing Add-on!')
+				->with('msg','Please check your Account Detail after few minutes.');
 
 		} catch (\Exception $e) {
 			throw new NotFoundHttpException();

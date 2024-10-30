@@ -29,8 +29,8 @@ return new class extends Migration
 			$table->date('due_date')->nullable()->useCurrent();
 			$table->string('currency')->default('USD');
 			$table->decimal('price', 19, 2)->default(0);
-			$table->decimal('discount',19, 2)->default(0);
             $table->decimal('subtotal',19, 2)->default(0);
+			$table->decimal('discount',19, 2)->default(0);
 			$table->decimal('tax',19, 2)->default(0);
 			$table->decimal('vat',19, 2)->default(0);
 			$table->decimal('amount',19, 2)->default(0);

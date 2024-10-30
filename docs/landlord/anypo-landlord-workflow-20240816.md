@@ -10,9 +10,14 @@
 # 8. Invoice and Payment Codes
 ==================================================
 1. Invoice created by three place: job- 
-	- CreateInvoice: called form where?
-	- bo::createInvoiceForCheckout, : called form where 
-	- Process: scheduled
+	- landlord.admin.invoices.generate -> InvoiceController::store() -> checkout.success-advance -> HomeController::successAdvance ->job.AddAdvance (InvoiceTypeEnum::ADVANCE->value; )
+    - services -> accounts.add-addon-> AccountController::class, 'addAddon' -> checkout.success-addon -> HomeController::successAddon -> jobs.AddAddon
+    - bo::createInvoiceForCheckout($this->checkout_id);  -> $checkout->invoice_type; all 3 Type
+                        - jobs.CreateTenant :  bo::createInvoiceForCheckout($this->checkout_id);    InvoiceTypeEnum::CHECKOUT->value:
+                        - jobs. AddAdvance  :  bo::createInvoiceForCheckout($this->checkout_id);    InvoiceTypeEnum::ADVANCE->value:
+                        - jobs. AddAddon    :  bo::createInvoiceForCheckout($this->checkout_id);    InvoiceTypeEnum::ADDON->value
+	- ProcessController::create -> landlord.manage.process.create  -> ProcessController::genInvoiceAll ->  jobs.ProcessBilling: -> CreateMonthlyInvoice -> INSERT -> invoices
+                                             InvoiceTypeEnum::SUBSCRIPTION->value;
 
 2. Payment made from three place: 
 	- bo::payCheckoutInvoice and 

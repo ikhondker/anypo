@@ -392,6 +392,8 @@ class InvoiceController extends Controller
         $this->authorize('discount', $invoice);
         Log::debug("landlord.Invoice.applyDiscount applying invoice level discount for invoice_id= ".$invoice->id);
 
+        $request->merge(['org_amount'=> $invoice->amount]);
+        $request->merge(['amount'=> $invoice->amount * (100 - $request->input('discount'))/100 ]);      // apply discount
         $request->merge(['discount_date'=> now()]);
         $request->merge(['discount_by'  => auth()->user()->id ]);
         Log::debug("landlord.Invoice.applyDiscount discount %  = ".$request->input('discount'));
@@ -399,7 +401,7 @@ class InvoiceController extends Controller
             $request->merge(['notes'=> $invoice->notes .'<br>Added discount '. $request->input('discount') .'%' ]);
         }
 	    $invoice->update($request->all());
-		EventLog::event('invoice',$invoice->id,'discount','discount', $request->discount);
+		EventLog::event('invoice',$invoice->id,'discount','discount', $invoice->discount);
 		return redirect()->route('invoices.show',$invoice->id)->with('success','Invoice Discount Applied successfully.');
 	}
 
