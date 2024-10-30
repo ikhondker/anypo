@@ -394,8 +394,9 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
     /* ======================== Invoice ======================================== */
     Route::get('/invoices/pwop/{invoice}',[InvoiceController::class,'pwop'])->name('invoices.pwop');
-	Route::get('/invoices/discount/{invoice}',[InvoiceController::class,'generate'])->name('invoices.discount');
-    Route::get('/invoices/apply-discount/{invoice}',[InvoiceController::class,'generate'])->name('invoices.apply-discount');
+    Route::put('/invoices/pay-pwop/{invoice}',[InvoiceController::class,'payPwop'])->name('invoices.pay-pwop');
+	Route::get('/invoices/discount/{invoice}',[InvoiceController::class,'discount'])->name('invoices.discount');
+    Route::put('/invoices/apply-discount/{invoice}',[InvoiceController::class,'applyDiscount'])->name('invoices.apply-discount');
 
 
 	/* ======================== Notification TODO for Landlord ======================================== */

@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
 use App\Enum\Tenant\AuthStatusEnum;
+use App\Enum\Tenant\ClosureStatusEnum;
 
 class PrPolicy
 {
@@ -115,6 +116,16 @@ class PrPolicy
 	public function convert(User $user, Pr $pr): bool
 	{
 		return ( $user->isBuyer() || $user->isSupport()) ;
+	}
+
+
+    /**
+	 * Determine whether the user can create models.
+	 */
+	public function reset(User $user, Pr $pr): bool
+	{
+        // allow only approved open PO to close
+		return ($user->isBuyer() || $user->isSupport()) && ($pr->auth_status == AuthStatusEnum::INPROCESS->value) && ($pr->status == ClosureStatusEnum::OPEN->value) ;
 	}
 
 	/**

@@ -50,6 +50,7 @@
 
  	<x-tenant.widgets.po.show-po-header poId="{{ $po->id }}"/>
 
+
 	<x-tenant.widgets.pol.list-all-lines poId="{{ $po->id }}" :status="true" />
 
 @endsection

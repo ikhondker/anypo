@@ -8,7 +8,8 @@ use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
 use App\Enum\Tenant\AuthStatusEnum;
-
+use App\Enum\Tenant\ClosureStatusEnum;
+use Illuminate\Support\Facades\Log;
 class PoPolicy
 {
 	/**
@@ -62,31 +63,15 @@ class PoPolicy
 		return $user->isBuyer();
 	}
 
-
-
 	/**
 	 * Determine whether the user can update the model.
 	 */
 	public function update(User $user, Po $po): bool
 	{
-		return ($user->isBuyer() || $user->isSupport()) ;
+        // allow update only draft PO
+		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::DRAFT->value);
 	}
 
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function delete(User $user, Po $po): bool
-	{
-		return ( $user->isBuyer() || $user->isSupport()) ;
-	}
-
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function cancel(User $user): bool
-	{
-		return ($user->isBuyer() || $user->isSupport()) ;
-	}
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -106,26 +91,57 @@ class PoPolicy
 	/**
 	 * Determine whether the user can recalculate models.
 	 */
-	public function recalculate(User $user): bool
+	public function recalculate(User $user, Po $po): bool
 	{
-		return $user->isSupport();
+        // allow recalculate only draft PO
+		return ($user->isSupport()) && ($po->auth_status == AuthStatusEnum::DRAFT->value);
 	}
 
 	/**
 	 * Determine whether the user can recalculate models.
 	 */
-	public function open(User $user): bool
+	public function open(User $user, Po $po): bool
 	{
-		return ($user->isBuyer() || $user->isSupport());
+        // allow only approved closed PO to open
+		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::APPROVED->value) && ($po->status == ClosureStatusEnum::CLOSED->value) ;
 	}
 
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function close(User $user): bool
+	public function close(User $user, Po $po): bool
 	{
-		return $user->isBuyer();
+        // allow only approved open PO to close
+
+		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::APPROVED->value) && ($po->status == ClosureStatusEnum::OPEN->value) ;
 	}
+
+    /**
+	 * Determine whether the user can create models.
+	 */
+	public function reset(User $user, Po $po): bool
+	{
+        // allow only approved open PO to close
+		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::INPROCESS->value) && ($po->status == ClosureStatusEnum::OPEN->value) ;
+	}
+
+    /**
+	 * Determine whether the user can delete the model.
+	 */
+	public function cancel(User $user, Po $po): bool
+	{
+		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::APPROVED->value) ;
+	}
+
+    /**
+	 * Determine whether the user can delete the model.
+	 */
+	public function delete(User $user, Po $po): bool
+	{
+		return ( $user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::DRAFT->value) ;
+
+    }
+
 
 	/**
 	 * Determine whether the user can create models.

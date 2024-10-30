@@ -22,7 +22,7 @@ namespace App\Enum\Tenant;
 enum ClosureStatusEnum: string{
 	case OPEN		= 'open';
 	case CLOSED		= 'closed';
-	case FORCED		= 'force-closed';
+	// case FORCED		= 'force-closed'; don't use
 	case CANCELED	= 'canceled';
 	case ERROR		= 'error';
 }

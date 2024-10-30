@@ -70,6 +70,14 @@ class InvoicePolicy
     /**
 	 * Determine whether the user can update the model.
 	 */
+	public function discount(User $user, Invoice $invoice): bool
+	{
+		return false;
+	}
+
+    /**
+	 * Determine whether the user can update the model.
+	 */
 	public function pwop(User $user, Invoice $invoice): bool
 	{
 		return false;

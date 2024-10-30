@@ -1,14 +1,14 @@
 @extends('layouts.landlord.app')
 @section('title', 'Processes')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Processes</li>
+	<li class="breadcrumb-item active">All Processes Logs</li>
 @endsection
 
 
 @section('content')
 
 	<a href="{{ route('processes.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> Submit New Process</a>
-	<h1 class="h3 mb-3">All Processes</h1>
+	<h1 class="h3 mb-3">All Processes Logs</h1>
 
 	<div class="card">
 		<div class="card-body">

@@ -6,7 +6,10 @@
 
 @section('content')
 
-	<a href="{{ route('invoices.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> Generate Invoice **</a>
+    @if (auth()->user()->account_id <> '')
+	    <a href="{{ route('invoices.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> Generate Invoice **</a>
+    @endif
+
 	<h1 class="h3 mb-3">All Invoices</h1>
 
 	<div class="card">
@@ -54,6 +57,8 @@
 						<th>Account</th>
 						<th>Type</th>
 						<th class="text-end">Amount $</th>
+                        <th class="text-end">Discount %</th>
+                        <th>Pwop</th>
 						<th>Status</th>
 						<th>Actions</th>
 					</tr>
@@ -73,9 +78,11 @@
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
 							<td>{{ Str::limit($invoice->account->name, 25) }}</td>
 							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
-							<td class="text-end"><x-landlord.list.my-number :value="$invoice->amount" /></td>
-							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
 
+							<td class="text-end"><x-landlord.list.my-number :value="$invoice->amount" /></td>
+                            <td class="text-end"><x-landlord.list.my-number :value="$invoice->discount" /></td>
+							<td><x-landlord.list.my-enable :value="$invoice->pwop"/></td>
+							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
 							<td>
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>

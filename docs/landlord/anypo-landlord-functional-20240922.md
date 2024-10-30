@@ -1,5 +1,3 @@
-
-
 # 5. Business Rules
 ====================================================================
 1. There will be maximum one unpaid invoice. Wont be able to create invoice if have any unpaid invoice

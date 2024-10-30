@@ -19,7 +19,7 @@ class ConfigSeeder extends Seeder
 
 		$configs = [
 				[
-					'name'				=> 'ANYPO.NET',
+					'name'				=> 'anypo.net',
 					'tagline'			=> 'Control Expense',
 					'currency'			=> 'USD',
 					'address1'			=> '3939 Lawrence Ave',
@@ -39,7 +39,7 @@ class ConfigSeeder extends Seeder
 					'updated_by'		=> $system->id,
 				],
 			];
-		
+
 			Config::insert($configs);
 	}
 }

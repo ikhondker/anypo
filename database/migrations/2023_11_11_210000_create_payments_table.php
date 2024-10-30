@@ -28,6 +28,7 @@ return new class extends Migration
 			$table->string('cheque_no')->nullable();
 			$table->string('payment_token')->nullable();
 			$table->string('reference_id')->nullable();
+            $table->boolean('pwop')->default(false);         // paid by admin without payment, from invoice table
 			$table->text('notes')->nullable();
 			$table->string('ip')->nullable();
             /** ENUM */

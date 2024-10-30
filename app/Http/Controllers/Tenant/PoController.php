@@ -358,13 +358,43 @@ class PoController extends Controller
 		return redirect()->route('pos.index')->with('success', 'Purchase Order status Updated successfully');
 	}
 
+
+
 	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function open(Po $po)
+	{
+
+		$this->authorize('open',$po);
+		//$po_id= $request->input('po_id');
+
+		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+			return back()->withError("Only APPROVED Purchase Order can be Opened!")->withInput();
+		}
+
+		if ($po->status <> ClosureStatusEnum::CLOSED->value) {
+			return back()->withError("Only Closed Purchased Order can be Opened!")->withInput();
+		}
+
+		// PO status update
+		$po->status = ClosureStatusEnum::OPEN->value;
+		$po->save();
+
+		// Write to Log
+		EventLog::event('po', $po->id, 'open', 'id', $po->id);
+
+		return redirect()->route('pos.index')->with('success', 'Purchase Order Opened successfully');
+
+	}
+
+    /**
 	 * Remove the specified resource from storage.
 	 */
 	public function close(Po $po)
 	{
 
-		$this->authorize('close',Po::class);
+		$this->authorize('close', $po);
 		//$po_id= $request->input('po_id');
 
 
@@ -377,38 +407,10 @@ class PoController extends Controller
 		}
 
 		// PO status update
-		$po->status = ClosureStatusEnum::FORCED->value;
+		$po->status = ClosureStatusEnum::CLOSED->value;
 		$po->save();
 
 		return redirect()->route('pos.index')->with('success', 'Purchase Order Force Closed successfully');
-
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function open(Po $po)
-	{
-
-		$this->authorize('close',Po::class);
-		//$po_id= $request->input('po_id');
-
-		if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
-			return back()->withError("Only APPROVED Purchase Order can be Opened!")->withInput();
-		}
-
-		if ($po->status <> ClosureStatusEnum::FORCED->value) {
-			return back()->withError("Only Force Closed Purchased Order can be Opened!")->withInput();
-		}
-
-		// PO status update
-		$po->status = ClosureStatusEnum::OPEN->value;
-		$po->save();
-
-		// Write to Log
-		EventLog::event('po', $po->id, 'open', 'id', $po->id);
-
-		return redirect()->route('pos.index')->with('success', 'Purchase Order Opened successfully');
 
 	}
 

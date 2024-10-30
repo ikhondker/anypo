@@ -7,16 +7,16 @@
 
 @section('content')
 
-	<h1 class="h3 mb-3">Apply Discount to Invoice</h1>
+	<h1 class="h3 mb-3">Pay without Actual Payment</h1>
 
 	<div class="card">
 		<div class="card-header">
 
-			<h5 class="card-title">Invoice Discount (Admin Only)</h5>
-			<h6 class="card-subtitle text-muted">Apply Discount to Invoice.</h6>
+			<h5 class="card-title">Pay without Actual Payment (System Only)</h5>
+			<h6 class="card-subtitle text-muted">Pay without Actual Payment.</h6>
 		</div>
 		<div class="card-body">
-			<form id="myform" action="{{ route('invoices.apply-discount',$invoice->id) }}" method="POST" enctype="multipart/form-data">
+			<form id="myform" action="{{ route('invoices.pay-pwop',$invoice->id) }}" method="POST" enctype="multipart/form-data">
 				@csrf
 				@method('PUT')
 
@@ -53,14 +53,13 @@
 								<input type="number" class="form-control @error('discount') is-invalid @enderror"
 								name="discount" id="discount" placeholder="Name"
 								value="{{ old('discount', $invoice->discount ) }}"
-								required/>
+								readonly/>
 							@error('discount')
 								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 							</td>
 						</tr>
-
-                        <tr>
+                         <tr>
                             <th>Internal Notes :</th>
                             <td>
                                 <textarea class="form-control" name="notes_internal" placeholder="Enter ..." rows="4">{{ old('notes_internal', $invoice->notes_internal) }}</textarea>

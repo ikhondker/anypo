@@ -89,7 +89,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>{{ $invoice->notes }}</td>
+							<td>{!! nl2br($invoice->notes) !!}</td>
 							<td>1</td>
 							<td>${{ number_format($invoice->amount,2) }}</td>
 							<td class="text-end">${{ number_format($invoice->amount,2) }}</td>

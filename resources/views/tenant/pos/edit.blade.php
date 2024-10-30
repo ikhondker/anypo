@@ -112,7 +112,7 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="card-actions float-end">
-								
+
 							</div>
 							<h5 class="card-title">Edit Purchase Order Other Information</h5>
 							<h6 class="card-subtitle text-muted">Edit Purchase Order Other Information.</h6>
@@ -177,7 +177,7 @@
 				<!-- end col-6 -->
 			</div>
 
-			<x-tenant.widgets.pol.list-all-lines poId="{{ $po->id }}"/>
+			<x-tenant.widgets.pol.list-all-lines poId="{{ $po->id }}" :status="true"/>
 
 			<div class="float-end">
 				<a class="btn btn-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ route('pos.show',$po->id) }}"><i data-lucide="x-circle"></i> Cancel</a>

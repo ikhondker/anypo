@@ -27,6 +27,7 @@ use App\Http\Requests\Landlord\Admin\UpdateInvoiceRequest;
 # 1. Models
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Admin\Invoice;
+use App\Models\Landlord\Admin\Payment;
 use App\Models\Landlord\Manage\Config;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Manage\Checkout;
@@ -34,12 +35,15 @@ use App\Models\Landlord\Manage\Checkout;
 use App\Enum\Landlord\InvoiceTypeEnum;
 use App\Enum\Landlord\InvoiceStatusEnum;
 use App\Enum\Landlord\CheckoutStatusEnum;
+use App\Enum\Landlord\PaymentMethodEnum;
+use App\Enum\Landlord\PaymentStatusEnum;
 
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
+use App\Jobs\Landlord\SubscriptionInvoicePaid;
 # 6. Mails
 # 7. Rules
 # 8. Packages
@@ -48,6 +52,7 @@ use App\Helpers\EventLog;
 # 11. Controller
 # 12. Seeded
 use DB;
+use Str;
 use Exception;
 use Illuminate\Support\Facades\Log;
 # 13. FUTURE
@@ -373,30 +378,78 @@ class InvoiceController extends Controller
 	 */
 	public function discount(Invoice $invoice)
 	{
-		$this->authorize('update', $invoice);
+		$this->authorize('discount', $invoice);
+        // check if invoice is unpaid else show error
+        if ($invoice->status_code <> InvoiceStatusEnum::DUE->value){
+           return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, discount can only be applied to DUE Invoices!');
+        }
 		return view('landlord.admin.invoices.discount',compact('invoice'));
 	}
 
     public function applyDiscount(UpdateInvoiceRequest $request, Invoice $invoice)
 	{
-		$this->authorize('update', $invoice);
-        // TODO check if invoice is paid error
-        if ($invoice->status_code <> InvoiceStatusEnum::DUE->value){
-            return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, discount can only be applied to DUE Invoices!');
+
+        $this->authorize('discount', $invoice);
+        Log::debug("landlord.Invoice.applyDiscount applying invoice level discount for invoice_id= ".$invoice->id);
+
+        $request->merge(['discount_date'=> now()]);
+        $request->merge(['discount_by'  => auth()->user()->id ]);
+        Log::debug("landlord.Invoice.applyDiscount discount %  = ".$request->input('discount'));
+        if ($request->input('discount') <> 0){
+            $request->merge(['notes'=> $invoice->notes .'<br>Added discount '. $request->input('discount') .'%' ]);
         }
-
-
-		//$invoice->update($request->all());
-		//EventLog::event('invoice',$invoice->id,'discount','summary', $request->summary);
+	    $invoice->update($request->all());
+		EventLog::event('invoice',$invoice->id,'discount','discount', $request->discount);
 		return redirect()->route('invoices.show',$invoice->id)->with('success','Invoice Discount Applied successfully.');
-
 	}
 
     public function pwop(Invoice $invoice)
 	{
 		$this->authorize('pwop', $invoice);
-		// TODO
-        //return view('landlord.admin.invoices.discount',compact('invoice'));
+        // check if invoice is unpaid else show error
+        if ($invoice->status_code <> InvoiceStatusEnum::DUE->value){
+           return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, you can Pay without Payment only for DUE Invoices!');
+        }
+		return view('landlord.admin.invoices.pwop',compact('invoice'));
+	}
+
+    public function payPwop(UpdateInvoiceRequest $request, Invoice $invoice)
+	{
+		$this->authorize('pwop', $invoice);
+
+        // check if invoice is unpaid else show error
+        if ($invoice->status_code <> InvoiceStatusEnum::DUE->value){
+           return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, you can Pay without Payment only for DUE Invoices!');
+        }
+
+        Log::debug("landlord.Invoice.payPwop updating invoice with PWOP for invoice_id= ".$invoice->id);
+        $request->merge(['pwop'         => true]);
+        $request->merge(['pwop_date'    => now()]);
+        $request->merge(['pwop_paid_by' => auth()->user()->id ]);
+	    $invoice->update($request->all());          // internal notes
+		EventLog::event('invoice',$invoice->id,'pwop','pwop', $request->pwop);
+        Log::debug("landlord.Invoice.payPwop PWOP creating payment record for invoice_id = ".$invoice->id);
+
+        // create payment
+        $payment						= new Payment;
+        $payment->pwop			        = true;                     // here difference
+        $payment->session_id			= Str::uuid()->toString();
+        $payment->pay_date				= date('Y-m-d H:i:s');
+        $payment->invoice_id			= $invoice->id;
+        $payment->account_id			= $invoice->account_id;
+        $payment->summary				= $invoice->summary;
+        $payment->payment_method_code	= PaymentMethodEnum::CARD->value;
+        $payment->amount				= $invoice->amount;
+        $payment->ip					= $request->ip();
+        $payment->owner_id			    = auth()->user()->id;
+        $payment->status_code			= PaymentStatusEnum::DRAFT->value;
+        $payment->save();
+
+        if ($payment->status_code == PaymentStatusEnum::DRAFT->value) {
+            Log::debug("landlord.Invoice.payPwop paying PWOP payment_id= ".$payment->id);
+            SubscriptionInvoicePaid::dispatch($payment->id);
+        }
+		return redirect()->route('invoices.show',$invoice->id)->with('success','Invoice Paid without Actual Payment.');
 	}
 
 

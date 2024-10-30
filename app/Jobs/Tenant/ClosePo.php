@@ -53,12 +53,13 @@ class ClosePo implements ShouldQueue
             Log::debug('Jobs.Tenant.ClosePo opening pol_id = ' . $receipt->pol_id);
 
             Pol::where('id', $receipt->pol_id)
-                ->where('auth_status', AuthStatusEnum::APPROVED->value)
                 ->where('closure_status',ClosureStatusEnum::CLOSED->value)
                 ->update(['closure_status'=> ClosureStatusEnum::OPEN->value]);
 
             Log::debug('Jobs.Tenant.ClosePo opening po_id = ' . $receipt->pol->po_id);
-			Po::where('id', $receipt->pol->po_id)->where('status','<>', ClosureStatusEnum::OPEN->value)->update(['status'=> ClosureStatusEnum::OPEN->value]);
+			Po::where('id', $receipt->pol->po_id)
+                ->where('status', ClosureStatusEnum::CLOSED->value)
+                ->update(['status'=> ClosureStatusEnum::OPEN->value]);
 			return;
 		}
 

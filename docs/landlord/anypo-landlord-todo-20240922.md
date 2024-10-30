@@ -3,7 +3,9 @@
 
 # 7. TODO - Open
 ====================================================================
-113. collap top navbar whne small sceen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+115. consider account level discount while generaitng invoices
+114. Invoice Date :	edit invocie.edit payments edit pay date
+113. collaps top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 111. // Navbar brand $navbar-brand-padding-y: $spacer*0.875 !default; _app.scss
 111. <nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar"> p-0 m-0
 110. linebreak in invoice notes/description

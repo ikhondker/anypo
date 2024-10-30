@@ -20,6 +20,9 @@ class ListAllLines extends Component
 	 */
 	public function __construct(public string $poId)
 	{
+
+        // status is used in CardTableRow component
+
 		//Log::debug('Value of prId=' . $prId);
 		$this->po 		= Po::where('id', $poId)->firstOrFail();
 		//Log::debug('Value of id=' . $this->pr->id);

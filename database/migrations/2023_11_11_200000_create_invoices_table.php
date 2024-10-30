@@ -22,7 +22,7 @@ return new class extends Migration
 			$table->string('invoice_type')->default(InvoiceTypeEnum::SUBSCRIPTION->value);
 			$table->foreignId('account_id')->constrained('accounts');
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
-			$table->date('invoice_date')->default(DB::raw('(CURDATE())'));
+			$table->date('invoice_date')->nullable()->useCurrent();
 			$table->date('from_date');
 			$table->date('org_from_date')->nullable();
 			$table->date('to_date');
@@ -39,9 +39,9 @@ return new class extends Migration
 			$table->date('pay_date')->nullable()->useCurrent();
             $table->date('discount_date')->nullable();
 			$table->uuid('discount_by')->nullable();
-            $table->boolean('admin_pay')->default(false);         // paid by admin without payment
-            $table->date('admin_pay_date')->nullable();
-			$table->uuid('admin_paid_by')->nullable();
+            $table->boolean('pwop')->default(false);         // paid by admin without payment
+            $table->date('pwop_date')->nullable();
+			$table->uuid('pwop_paid_by')->nullable();
  			$table->text('notes')->nullable();
              $table->text('notes_internal')->nullable();              // Internal use only
 			$table->boolean('adjusted')->default(false); // in case addon added for 3/6/12 month advance payment

@@ -34,7 +34,7 @@
 		@endcan
 
 		<div class="dropdown-divider"></div>
-		@can('reset', App\Models\Tenant\Workflow\Wf::class)
+		@can('reset', $pr)
 			<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-pr', $pr->id) }}"
 				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Reset"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Reset PR">

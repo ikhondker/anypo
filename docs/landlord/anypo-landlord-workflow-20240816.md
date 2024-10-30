@@ -14,9 +14,10 @@
 	- bo::createInvoiceForCheckout, : called form where 
 	- Process: scheduled
 
-2. Payment made from two place: 
+2. Payment made from three place: 
 	- bo::payCheckoutInvoice and 
 	- HomeController.paymentStripe
+    - InvoiceController.payPwop
 
 # 7. Regular Checkout (Table CHECKOUT)
 ====================================================================
