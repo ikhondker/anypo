@@ -388,7 +388,7 @@ class PoController extends Controller
 
 	}
 
-    /**
+	/**
 	 * Remove the specified resource from storage.
 	 */
 	public function close(Po $po)
@@ -552,7 +552,7 @@ class PoController extends Controller
 		// check if approval hierarchy exists and is valid
 		$dept = Dept::where('id', $po->dept_id)->first();
 		try {
-			$hierarchy      = Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
+			$hierarchy		= Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
 			$hierarchy_id   = $hierarchy->id;
 		} catch (Exception $e) {
 			Log::error("tenant.po.submit Hierarchy find error for po_id= ".$po->id ." dept_id = ".$dept->id);
@@ -921,18 +921,18 @@ class PoController extends Controller
 		//return response()->json($data);
 
 		$sql = "
-            SELECT  p.id po_id, p.currency,
-            p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
-            d.name dept_name,prj.name project_name, u.name buyer_name,
-            s.name supplier_name
-            FROM pos p, suppliers s, depts d, projects prj, users u
-            WHERE 1=1
-            AND p.supplier_id = s.id
-            AND p.dept_id = d.id
-            AND p.project_id = prj.id
-            AND p.buyer_id = u.id
-            AND p.id = '".$poId."'
-    	";
+			SELECT  p.id po_id, p.currency,
+			p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
+			d.name dept_name,prj.name project_name, u.name buyer_name,
+			s.name supplier_name
+			FROM pos p, suppliers s, depts d, projects prj, users u
+			WHERE 1=1
+			AND p.supplier_id = s.id
+			AND p.dept_id = d.id
+			AND p.project_id = prj.id
+			AND p.buyer_id = u.id
+			AND p.id = '".$poId."'
+		";
 
 		$result = DB::selectOne($sql);
 		return response()->json([

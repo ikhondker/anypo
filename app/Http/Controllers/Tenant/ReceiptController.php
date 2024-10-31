@@ -240,7 +240,7 @@ class ReceiptController extends Controller
 		RecordDeptBudgetUsage::dispatch(EntityEnum::RECEIPT->value, $receipt->id, EventEnum::CREATE->value,$receipt->fc_amount);
 		ConsolidateBudget::dispatch($dept_budget->budget_id);
 
-        Log::debug('tenant.dashboards.index Submitting ClosePo::dispatch() for receipt_id = '.$receipt->id);
+		Log::debug('tenant.dashboards.index Submitting ClosePo::dispatch() for receipt_id = '.$receipt->id);
 		ClosePo::dispatch($receipt->id);
 
 		// Write to Log
@@ -351,8 +351,8 @@ class ReceiptController extends Controller
 					'status' 			=> ReceiptStatusEnum::CANCELED->value
 					]);
 
-            Log::debug('tenant.dashboards.index Submitting ClosePo::dispatch() for receipt_id = '.$receipt->id);
-            ClosePo::dispatch($receipt->id);
+			Log::debug('tenant.dashboards.index Submitting ClosePo::dispatch() for receipt_id = '.$receipt->id);
+			ClosePo::dispatch($receipt->id);
 
 			// Write to Log
 			EventLog::event('receipt', $receipt_id, 'cancel', 'id', $receipt_id);

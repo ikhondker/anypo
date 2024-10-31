@@ -418,7 +418,7 @@ class HomeController extends Controller
 
 	}
 
-    // landed here for successful addon payment
+	// landed here for successful addon payment
 	public function successAddon(Request $request)
 	{
 

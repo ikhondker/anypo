@@ -59,15 +59,15 @@
 							@enderror
 							</td>
 						</tr>
-                         <tr>
-                            <th>Internal Notes :</th>
-                            <td>
-                                <textarea class="form-control" name="notes_internal" placeholder="Enter ..." rows="4">{{ old('notes_internal', $invoice->notes_internal) }}</textarea>
-                                @error('notes_internal')
-                                    <div class="small text-danger">{{ $message }}</div>
-                                @enderror
-                            </td>
-                        </tr>
+						 <tr>
+							<th>Internal Notes :</th>
+							<td>
+								<textarea class="form-control" name="notes_internal" placeholder="Enter ..." rows="4">{{ old('notes_internal', $invoice->notes_internal) }}</textarea>
+								@error('notes_internal')
+									<div class="small text-danger">{{ $message }}</div>
+								@enderror
+							</td>
+						</tr>
 					</tbody>
 				</table>
 

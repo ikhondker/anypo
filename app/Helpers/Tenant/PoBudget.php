@@ -176,21 +176,21 @@ class PoBudget
 		$dept_budget->count_po_booked   = $dept_budget->count_po_count - 1;
 
 		$dept_budget->amount_po_tax		= $dept_budget->amount_po_tax + $po->fc_tax;
-		$dept_budget->amount_po_gst	    = $dept_budget->amount_po_gst + $po->fc_gst;
+		$dept_budget->amount_po_gst		= $dept_budget->amount_po_gst + $po->fc_gst;
 
-		$dept_budget->amount_po		    = $dept_budget->amount_po + $po->fc_amount;
-		$dept_budget->count_po		    = $dept_budget->count_po + 1;
+		$dept_budget->amount_po			= $dept_budget->amount_po + $po->fc_amount;
+		$dept_budget->count_po			= $dept_budget->count_po + 1;
 		$dept_budget->save();
 
 		// Po project budget used
 		$project = Project::where('id', $po->project_id)->firstOrFail();
-		$project->amount_po_booked	    = $project->amount_po_booked - $po->fc_amount;
+		$project->amount_po_booked		= $project->amount_po_booked - $po->fc_amount;
 		$project->count_po_booked 		= $project->count_po_booked - 1;
 
-		$project->amount_po_tax		    = $project->amount_po_tax + $po->fc_tax;
-		$project->amount_po_gst		    = $project->amount_po_gst + $po->fc_gst;
+		$project->amount_po_tax			= $project->amount_po_tax + $po->fc_tax;
+		$project->amount_po_gst			= $project->amount_po_gst + $po->fc_gst;
 
-		$project->amount_po			    =	 $project->amount_po + $po->fc_amount;
+		$project->amount_po				=	 $project->amount_po + $po->fc_amount;
 		$project->count_po 				= $project->count_po + 1;
 		$project->save();
 

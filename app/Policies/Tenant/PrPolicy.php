@@ -119,12 +119,12 @@ class PrPolicy
 	}
 
 
-    /**
+	/**
 	 * Determine whether the user can create models.
 	 */
 	public function reset(User $user, Pr $pr): bool
 	{
-        // allow only approved open PO to close
+		// allow only approved open PO to close
 		return ($user->isBuyer() || $user->isSupport()) && ($pr->auth_status == AuthStatusEnum::INPROCESS->value) && ($pr->status == ClosureStatusEnum::OPEN->value) ;
 	}
 

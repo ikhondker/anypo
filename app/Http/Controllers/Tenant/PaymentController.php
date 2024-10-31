@@ -221,7 +221,7 @@ class PaymentController extends Controller
 			$invoice->payment_status 	= PaymentStatusEnum::PAID->value;
 		}   // else {
 			//$invoice->payment_status	= PaymentStatusEnum::PARTIAL->value;
-		    //}
+			//}
 		$invoice->save();
 
 		// update budget and project level summary
@@ -258,8 +258,8 @@ class PaymentController extends Controller
 		// Create Accounting for this Invoice
 		AehPayment::dispatch($payment->id, $payment->fc_amount);
 
-        Log::debug('tenant.dashboards.index Submitting CloseInvoice::dispatch() for payment_id = '.$payment->id);
-        CloseInvoice::dispatch($payment->id);
+		Log::debug('tenant.dashboards.index Submitting CloseInvoice::dispatch() for payment_id = '.$payment->id);
+		CloseInvoice::dispatch($payment->id);
 
 		// Write to Log
 		EventLog::event('payment', $payment->id, 'create');
@@ -381,8 +381,8 @@ class PaymentController extends Controller
 					'status' => PaymentStatusEnum::CANCELED->value
 				]);
 
-            Log::debug('tenant.dashboards.index Submitting CloseInvoice::dispatch() for payment_id = '.$payment->id);
-            CloseInvoice::dispatch($payment->id);
+			Log::debug('tenant.dashboards.index Submitting CloseInvoice::dispatch() for payment_id = '.$payment->id);
+			CloseInvoice::dispatch($payment->id);
 
 			// Write to Log
 			EventLog::event('payment', $payment->id, 'void', 'id', $payment->id);

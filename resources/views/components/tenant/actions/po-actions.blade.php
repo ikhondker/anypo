@@ -10,11 +10,11 @@
 		<a class="dropdown-item" href="{{ route('pos.history', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Approval History</a>
 
 
-        @can('update', $po)
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('pos.edit', $po->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order</a>
-            <a class="dropdown-item" href="{{ route('pols.add-line', $po->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Purchase Order Line</a>
-        @endcan
+		@can('update', $po)
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{{ route('pos.edit', $po->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order</a>
+			<a class="dropdown-item" href="{{ route('pols.add-line', $po->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Purchase Order Line</a>
+		@endcan
 
 
 		<div class="dropdown-divider"></div>
@@ -42,19 +42,19 @@
 		@endcan
 
 		<div class="dropdown-divider"></div>
-        @can('close', $po)
-            <a class="dropdown-item sw2-advance" href="{{ route('pos.close', $po->id) }}"
-                data-entity="" data-name="PO #{{ $po->id }}" data-status="Force Close"
-                data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
-                <i class="align-middle me-1 text-danger" data-lucide="lock"></i> Force Close PO **</a>
-        @endcan
+		@can('close', $po)
+			<a class="dropdown-item sw2-advance" href="{{ route('pos.close', $po->id) }}"
+				data-entity="" data-name="PO #{{ $po->id }}" data-status="Force Close"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">
+				<i class="align-middle me-1 text-danger" data-lucide="lock"></i> Force Close PO **</a>
+		@endcan
 
-        @can('open', $po)
-            <a class="dropdown-item sw2-advance" href="{{ route('pos.open', $po->id) }}"
-                data-entity="" data-name="PO #{{ $po->id }}" data-status="Open"
-                data-bs-toggle="tooltip" data-bs-placement="top" title="Open">
-                <i class="align-middle me-1 text-danger" data-lucide="lock"></i> Open PO *</a>
-        @endcan
+		@can('open', $po)
+			<a class="dropdown-item sw2-advance" href="{{ route('pos.open', $po->id) }}"
+				data-entity="" data-name="PO #{{ $po->id }}" data-status="Open"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Open">
+				<i class="align-middle me-1 text-danger" data-lucide="lock"></i> Open PO *</a>
+		@endcan
 
 		@can('reset', $po)
 			<a class="dropdown-item sw2-advance" href="{{ route('wfs.wf-reset-po', $po->id) }}"
@@ -71,10 +71,10 @@
 		@endcan
 
 		@can('delete', $po)
-            <a class="dropdown-item sw2-advance" href="{{ route('pos.destroy', $po->id) }}"
-                data-entity="" data-name="PR#{{ $po->id }}" data-status="Delete"
-                data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Purchase Order">
-                <i class="align-middle me-1 text-danger" data-lucide="trash-2"></i> Delete Purchase Order*</a>
+			<a class="dropdown-item sw2-advance" href="{{ route('pos.destroy', $po->id) }}"
+				data-entity="" data-name="PR#{{ $po->id }}" data-status="Delete"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Purchase Order">
+				<i class="align-middle me-1 text-danger" data-lucide="trash-2"></i> Delete Purchase Order*</a>
 		@endcan
 
 		@can('recalculate', $po)

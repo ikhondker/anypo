@@ -68,7 +68,7 @@ class PoPolicy
 	 */
 	public function update(User $user, Po $po): bool
 	{
-        // allow update only draft PO
+		// allow update only draft PO
 		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::DRAFT->value);
 	}
 
@@ -93,7 +93,7 @@ class PoPolicy
 	 */
 	public function recalculate(User $user, Po $po): bool
 	{
-        // allow recalculate only draft PO
+		// allow recalculate only draft PO
 		return ($user->isSupport()) && ($po->auth_status == AuthStatusEnum::DRAFT->value);
 	}
 
@@ -102,7 +102,7 @@ class PoPolicy
 	 */
 	public function open(User $user, Po $po): bool
 	{
-        // allow only approved closed PO to open
+		// allow only approved closed PO to open
 		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::APPROVED->value) && ($po->status == ClosureStatusEnum::CLOSED->value) ;
 	}
 
@@ -111,21 +111,21 @@ class PoPolicy
 	 */
 	public function close(User $user, Po $po): bool
 	{
-        // allow only approved open PO to close
+		// allow only approved open PO to close
 
 		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::APPROVED->value) && ($po->status == ClosureStatusEnum::OPEN->value) ;
 	}
 
-    /**
+	/**
 	 * Determine whether the user can create models.
 	 */
 	public function reset(User $user, Po $po): bool
 	{
-        // allow only approved open PO to close
+		// allow only approved open PO to close
 		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::INPROCESS->value) && ($po->status == ClosureStatusEnum::OPEN->value) ;
 	}
 
-    /**
+	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function cancel(User $user, Po $po): bool
@@ -133,14 +133,14 @@ class PoPolicy
 		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::APPROVED->value) ;
 	}
 
-    /**
+	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function delete(User $user, Po $po): bool
 	{
 		return ( $user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::DRAFT->value) ;
 
-    }
+	}
 
 
 	/**

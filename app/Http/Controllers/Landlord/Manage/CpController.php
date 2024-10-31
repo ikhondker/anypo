@@ -109,7 +109,7 @@ class CpController extends Controller
 		for ($x = 1; $x <= 5; $x++) {
 			//Log::debug('x = '.Number::spell($x));
 
-			$div        = Number::spell($x);
+			$div		= Number::spell($x);
 			$accordion 	= 'accordion'.ucfirst($section);			// accordionFaq
 			$card 		= strtolower($section).ucfirst($div);		// faqOne
 			$collapse 	= 'collapse'.ucfirst($div);					// collapseOne

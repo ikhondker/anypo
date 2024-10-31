@@ -48,9 +48,8 @@ class Akk
 
 	public static function getDomainName()
 	{
-
-		// dd(tenant()->domains->first()->domain);
 		return (tenant()->domains->first()->domain);
+		// dd(tenant()->domains->first()->domain);
 		//Log::log('tenant.akk.getDomainFromTenantId tenantId not found!'.$tenantId);
 		// Check if dept budget exists for current logged user
 		// try {

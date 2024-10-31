@@ -121,7 +121,7 @@
 									@enderror
 							</td>
 						</tr>
-                        <x-landlord.edit.notes value="{{ $invoice->notes }}"/>
+						<x-landlord.edit.notes value="{{ $invoice->notes }}"/>
 
 					</tbody>
 				</table>

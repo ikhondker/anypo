@@ -67,7 +67,7 @@ class InvoicePolicy
 		return $user->isSeeded();
 	}
 
-    /**
+	/**
 	 * Determine whether the user can update the model.
 	 */
 	public function discount(User $user, Invoice $invoice): bool
@@ -75,7 +75,7 @@ class InvoicePolicy
 		return false;
 	}
 
-    /**
+	/**
 	 * Determine whether the user can update the model.
 	 */
 	public function pwop(User $user, Invoice $invoice): bool
