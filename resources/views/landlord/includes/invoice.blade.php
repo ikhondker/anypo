@@ -26,7 +26,8 @@
 						</p>
 
 						@if ($invoice->status_code == App\Enum\Landlord\InvoiceStatusEnum::DUE->value)
-							<form action="{{ url('/payment-stripe') }}" method="POST" class="needs-validation">
+							{{-- <form action="{{ url('/payment-stripe') }}" method="POST" class="needs-validation"> --}}
+                            <form action="{{ route('akk.process-subscription') }}" method="POST" class="needs-validation">
 								<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 								<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
 								<button class="btn btn-danger btn-sm" type="submit">

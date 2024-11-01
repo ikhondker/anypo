@@ -33,28 +33,28 @@
 								<div class="card-body">
 									<div class="mb-4">
 										@if ($addon->addon_type == 'user')
-											<i class="fas fa-user-plus text-info" class="" style="font-size: 5rem;"></i> 
+											<i class="fas fa-user-plus text-info" class="" style="font-size: 5rem;"></i>
 										@else
-											<i class="fas fa-user-plus text-info" class="" style="font-size: 5rem;"></i> 
+											<i class="fas fa-user-plus text-info" class="" style="font-size: 5rem;"></i>
 										@endif
 									</div>
 									<h3 class="card-title">{{ $addon->name }}</h3>
 									<h4 class="card-title text-info"> <del class="text-danger">{{ number_format($addon->list_price, 2) }}$</del> {{ number_format($addon->price, 2) }}$/mo</h4>
 									<p class="card-text text-body small">Your Next billing date {{ strtoupper(date('d-M-Y', strtotime($account->end_date))) }}</p>
-									@if ($needToPay)	
+									@if ($needToPay)
 										<p class="card-text text-body">You will need to pay prorated for {{ $diff}} days </br>
 											i.e. <del class="text-danger">{{ number_format($addon->list_price/30 * $diff, 2) }}$</del> <strong>{{ number_format($addon->price/30 * $diff, 2) }}$ </strong> for current billing period.
 										</p>
-									@else 	
+									@else
 										<p class="card-text text-body">Will be added to your account immediately. </br>Will be charged from next billing cycle.</p>
-									@endif 
+									@endif
 								</div>
 								<div class="card-footer pt-0">
-										<a href="{{ route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id]) }}"
+										<a href="{{ route('akk.process-addon', ['account_id' => $account->id, 'addon_id' => $addon->id]) }}"
 											class="btn btn-primary sw2-advance"
 											data-entity="Add-On" data-name="{{ $addon->name }}"
 											data-status="BUY" data-bs-toggle="tooltip"
-											data-bs-placement="top" title="Add-on"><i data-lucide="shopping-cart"></i> 
+											data-bs-placement="top" title="Add-on"><i data-lucide="shopping-cart"></i>
 											Buy Now
 										</a>
 								</div>

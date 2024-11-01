@@ -49,12 +49,12 @@
 				<thead>
 					<tr>
 						<th>#</th>
+						<th>Type</th>
 						<th>Name</th>
 						<th>Email</th>
-						<th>Date</th>
 						<th>Site</th>
+						<th>Date</th>
 						<th>Price ($)</th>
-						<th>TYpe</th>
 						<th>Status</th>
 						<th>Actions</th>
 					</tr>
@@ -65,13 +65,12 @@
 							<td>
 								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo">
 							</td>
+							<td><x-landlord.list.my-badge :value="$checkout->invoice_type->value"/></td>
 							<td>{{ $checkout->account_name }}</td>
 							<td>{{ $checkout->email }}</td>
-
-							<td><x-landlord.list.my-date :value="$checkout->checkout_date"/></td>
 							<td>{{ $checkout->site }}</td>
+							<td><x-landlord.list.my-date :value="$checkout->checkout_date"/></td>
 							<td><x-landlord.list.my-number :value="$checkout->price"/></td>
-								<td><x-landlord.list.my-badge :value="$checkout->invoice_type->value"/></td>	
 							<td><x-landlord.list.my-badge :value="$checkout->status->name" badge="{{ $checkout->status->badge }}"/></td>
 							<td>
 								<a href="{{ route('checkouts.show',$checkout->id) }}" class="btn btn-light" data-bs-toggle="tooltip"

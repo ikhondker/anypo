@@ -29,7 +29,7 @@
 					</div>
 				</div>
 				<div class="my-4">
-					<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+					<a href="{{ route('akk.pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
 				</div>
 			</div>
 			<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
@@ -54,13 +54,13 @@
 							<p class="lead">
 							Struggling with managing expenses and staying within budget? We offer a seamless purchasing and budget control solution that streamlines workflows, automates tasks, and gives you real-time spending insights.</p>
 						</div>
-	
+
 						<div class="d-flex align-items-center gap-2 mb-8">
-							<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+							<a href="{{ route('akk.pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
 						</div>
 					</div>
 					<!-- End Col -->
-	
+
 					<div class="col-md-6">
 						<div class="row justify-content-end">
 							<div class="col-3 mb-4">
@@ -85,7 +85,7 @@
 								<!-- End Logo -->
 							</div>
 						</div>
-	
+
 						<div class="row">
 							<div class="col-3 offset-1 my-4">
 								<!-- Logo -->
@@ -102,7 +102,7 @@
 								<!-- End Logo -->
 							</div>
 						</div>
-	
+
 						<div class="row d-none d-md-flex">
 							<div class="col-6">
 								<!-- Logo -->
@@ -129,7 +129,7 @@
 	</section>
 
 
-		
+
 	<section class="py-6 bg-white">
 		<div class="container">
 			<div class="mb-5 text-center">
@@ -175,11 +175,11 @@
 							<p class="fs-lg">Simple file based integration simplifies consolidated reporting from core accounting system. It reduces the need for manual data entry, allowing information to flow across the system.</p>
 						</div>
 					</div>
-	
+
 				</div>
 				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
 					<div class="landing-intro-screenshot pb-3">
-						
+
 						<img src="{{ asset('/assets/img/screenshots/mixed.jpg') }}" alt="Dark/Light Bootstrap Admin Template" class="img-fluid" />
 					</div>
 				</div>
@@ -230,7 +230,7 @@
 							</div>
 						</div>
 					</blockquote>
-				
+
 				</div>
 			</div>
 		</div>
@@ -315,12 +315,12 @@
 
 				<div class="text-center">
 					<div class="d-grid d-sm-flex justify-content-center gap-2 mb-3">
-						<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Sign up and Start Building</a>
+						<a href="{{ route('akk.pricing') }}" class="btn btn-primary btn-lg btn-pill">Sign up and Start Building</a>
 						<a class="btn btn-link" href="{{ route('contact-us') }}">Let's Talk <i data-lucide="chevron-right"></i></a>
 					</div>
 					{{-- <p class="small">Start free trial. * No credit card required.</p> --}}
 				</div>
-				
+
 			</div>
 		</div>
 	</section>
@@ -332,11 +332,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-5 mx-auto">
 					<span class="badge badge-subtle-primary p-1">Purchasing and Expense Control Solution</span>
-	
+
 					<h2 class="my-4">Small Business? Big Dreams. </br>Simplify Purchasing & Budgeting with Our Powerful SaaS Platform.</h2>
-	
+
 					<div class="my-4">
-						<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+						<a href="{{ route('akk.pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
 					</div>
 				</div>
 				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
@@ -356,15 +356,15 @@
 			<div class="row align-items-center">
 				<div class="col-lg-5 mx-auto">
 					<span class="badge badge-subtle-primary p-1">CHK : Purchasing and Expense Control Solution</span>
-	
+
 					<h1 class="my-4">Streamline Your Purchasing. Supercharge <span class="text-primary">Your Growth</span></h1>
-	
+
 					<p class="text-lg">
 						Take control of your spending and empower your business with our SAAS-based Purchasing and Budget Control Solution. Designed for small and medium-sized companies and startups, our platform ensures financial stability and strategic spending.
 					</p>
-	
+
 					<div class="my-4">
-						<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+						<a href="{{ route('akk.pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
 					</div>
 				</div>
 				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">

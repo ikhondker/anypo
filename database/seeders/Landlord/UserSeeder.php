@@ -305,10 +305,10 @@ class UserSeeder extends Seeder
 
 		User::insert($seededUsers);
 
-		Log::debug('landlord.seeders.UserSeeder bo.SUPPORT_GROUP_EMAIL_ID =========== '.config('bo.SUPPORT_GROUP_EMAIL_ID'));
+		Log::debug('landlord.seeders.UserSeeder bo.SUPPORT_GROUP_EMAIL_ID = '.config('bo.SUPPORT_GROUP_EMAIL_ID'));
 		$user = User::where('email', config('bo.SUPPORT_GROUP_EMAIL_ID'))->first();
 		Log::debug('landlord.seeders.UserSeeder bo.SUPPORT_MGR_ID = ' . $user->id);
-		Log::debug('landlord.seeders.UserSeeder === > update config\bo.php bo.SUPPORT_MGR_ID manually onetime.');
+		Log::debug('landlord.seeders.UserSeeder ===> UPDATE config\bo.php bo.SUPPORT_MGR_ID manually onetime.');
 
 		//User::where('id', 1001)->update(['avatar' => 'sys.png']);
 		//User::where('id', 1005)->update(['avatar' => 's1.png']);

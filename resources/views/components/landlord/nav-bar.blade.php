@@ -93,7 +93,7 @@
 				 <!-- Pricing -->
 				<li class="nav-item d-none d-md-inline-block">
 					<a class="nav-link active text-lg px-lg-3 {{ $_route_name == 'pricing' ? 'active' : '' }}"
-						href="{{ route('pricing') }}" role="button" aria-expanded="false">Pricing</a>
+						href="{{ route('akk.pricing') }}" role="button" aria-expanded="false">Pricing</a>
 				</li>
 				<!-- End Pricing -->
 
@@ -113,11 +113,11 @@
 
 				<!-- Contact -->
 				<li class="nav-item d-none d-md-inline-block">
-					<a href="{{ route('pricing') }}" class="btn btn-lg btn-success btn-pill my-2 my-sm-0 ms-3">Buy now</a>
+					<a href="{{ route('akk.pricing') }}" class="btn btn-lg btn-success btn-pill my-2 my-sm-0 ms-3">Buy now</a>
 				</li>
 				<!-- End Contact -->
 			</ul>
-			
+
 		</div>
 	</nav>
 	<!-- ========== MAIN NAV BAR ========== -->

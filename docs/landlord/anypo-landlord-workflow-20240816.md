@@ -7,22 +7,45 @@
 5. job->CreateTenant->createCheckoutAccount : Defaulted
 
 
-# 8. Invoice and Payment Codes
+# 8. Signup/Invoice/Payment/Addon/Advance Flow
 ==================================================
-1. Invoice created by three place: job- 
+0. Overall: event -> AkkController -> checkout -> stripe -> success -> job
+
+1. InvoiceTypeEnum::SIGNUP->value:
+        -landlord.pages.checkout.blade.php -> route('akk.process-signup') -> 
+		- AkkController.success - jobs.CreateTenant -> 
+        -> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice
+
+2. InvoiceTypeEnum::SUBSCRIPTION->value
+        -> @include('landlord.includes.invoice') -> route('akk.process-subscription') ->
+		- AkkController.success -> jobs.SubscriptionInvoicePaid 
+        -> bo::payCheckoutInvoice -> bo::extendAccountValidity
+
+3. InvoiceTypeEnum::ADVANCE->value:
+		admin.invoice.generate.blade.php -> route('akk.process-advance') 
+        - AkkController.success	-> jobs.AddAdvance  -> 
+        -> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice  -> bo::extendAccountValidity
+
+4. InvoiceTypeEnum::ADDON->value
+		- admin.services.index -> <x-landlord.widgets.add-addon/> -> route('akk.process-addon')
+		- AkkController.success - jobs.AddAddon  
+        -> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice
+
+[1. Invoice created by three place: job- 
 	- landlord.admin.invoices.generate -> InvoiceController::store() -> checkout.success-advance -> HomeController::successAdvance ->job.AddAdvance (InvoiceTypeEnum::ADVANCE->value; )
-    - services -> accounts.add-addon-> AccountController::class, 'addAddon' -> checkout.success-addon -> HomeController::successAddon -> jobs.AddAddon
-    - bo::createInvoiceForCheckout($this->checkout_id);  -> $checkout->invoice_type; all 3 Type
-                        - jobs.CreateTenant :  bo::createInvoiceForCheckout($this->checkout_id);    InvoiceTypeEnum::CHECKOUT->value:
-                        - jobs. AddAdvance  :  bo::createInvoiceForCheckout($this->checkout_id);    InvoiceTypeEnum::ADVANCE->value:
-                        - jobs. AddAddon    :  bo::createInvoiceForCheckout($this->checkout_id);    InvoiceTypeEnum::ADDON->value
+	- services -> <x-landlord.widgets.add-addon/> -> accounts.add-addon-> AccountController::class, 'addAddon' -> checkout.success-addon -> HomeController::successAddon -> jobs.AddAddon
+	- bo::createInvoiceForCheckout($this->checkout_id);  -> $checkout->invoice_type; all 3 Type
+						- jobs.CreateTenant :  bo::createInvoiceForCheckout($this->checkout_id);    InvoiceTypeEnum::CHECKOUT->value:
+						- jobs. AddAdvance  :  bo::createInvoiceForCheckout($this->checkout_id);    InvoiceTypeEnum::ADVANCE->value:
+						- jobs. AddAddon    :  bo::createInvoiceForCheckout($this->checkout_id);    InvoiceTypeEnum::ADDON->value
 	- ProcessController::create -> landlord.manage.process.create  -> ProcessController::genInvoiceAll ->  jobs.ProcessBilling: -> CreateMonthlyInvoice -> INSERT -> invoices
-                                             InvoiceTypeEnum::SUBSCRIPTION->value;
+											 InvoiceTypeEnum::SUBSCRIPTION->value;
+]
 
 2. Payment made from three place: 
 	- bo::payCheckoutInvoice and 
 	- HomeController.paymentStripe
-    - InvoiceController.payPwop
+	- InvoiceController.payPwop ??
 
 # 7. Regular Checkout (Table CHECKOUT)
 ====================================================================

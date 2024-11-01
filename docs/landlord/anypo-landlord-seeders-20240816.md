@@ -6,6 +6,7 @@ email_verified_at
 # IQBAL
 use Faker\Generator;
 
+php artisan migrate:rollback
 php artisan migrate
 -- all seeder
 php artisan db:seed			<=== Full

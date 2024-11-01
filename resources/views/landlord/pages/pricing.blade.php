@@ -11,7 +11,7 @@
 			</div>
 			<div class="row align-items-center">
 				<div class="col-lg-5 mx-auto">
-					<div class="d-flex align-items-start py-3"> 
+					<div class="d-flex align-items-start py-3">
 						<div class="landing-feature">
 							<i data-lucide="sliders"></i>
 						</div>
@@ -50,7 +50,7 @@
 
 				</div>
 				<div class="col-lg-7 mx-auto text-center">
-					
+
 					<div class="card text-center h-100">
 						<div class="card-body d-flex flex-column">
 							<div class="mb-4">
@@ -86,14 +86,13 @@
 							<div class="mt-auto">
 								{{-- <a href="#" class="btn btn-lg btn-pill btn-outline-primary">Try it for free</a>
 								<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a> --}}
-								
 								@guest
-									<a href="{{ route('home.checkout') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+									<a href="{{ route('akk.checkout') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
 									<p class="small mt-2">All you need to start streamlining your Purchasing. No hidden costs.</p>
 								@endguest
 								@auth
 									@if (auth()->user()->account_id == '')
-										<a class="btn btn-primary btn-transition" href="{{ route('home.checkout') }}">Get started</a>
+										<a class="btn btn-primary btn-transition" href="{{ route('akk.checkout') }}">Get started</a>
 									@else
 										{{-- <a class="btn btn-primary btn-transition" href="#">You already Have This</a> --}}
 										<div class="alert alert-soft-info" role="alert">
@@ -102,7 +101,7 @@
 												<i data-lucide="alert-circle"></i>
 											</div>
 											<div class="flex-grow-1 ms-2">
-												You have already Purchased our service! 
+												You have already Purchased our service!
 												<a href="{{ route('accounts.show',auth()->user()->account_id) }}" class="btn btn-lg btn-pill btn-outline-primary">View Details</a>
 											</div>
 											</div>

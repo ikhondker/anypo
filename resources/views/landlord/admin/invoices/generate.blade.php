@@ -13,7 +13,7 @@
 	@endslot
 	@slot('buttons')
 			<x-landlord.actions.account-actions/>
-		
+
 	@endslot
 </x-landlord.page-header>
 
@@ -23,7 +23,7 @@
 			{{-- <h6 class="card-subtitle text-muted">Generate Invoice & Pay.</h6> --}}
 		</div>
 		<div class="card-body">
-			<form id="myForm" action="{{ route('invoices.store') }}" method="POST">
+			<form id="myForm" action="{{ route('akk.process-advance') }}" method="POST">
 				@csrf
 
 				<table class="table table-sm my-2">

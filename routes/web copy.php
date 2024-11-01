@@ -92,13 +92,37 @@ Route::get('/404', function () {
 * 3. Public Controller Based Routes
 * ==================================================================================
 */
-// Home Controller
 use App\Http\Controllers\Landlord\HomeController;
-Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
-Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
-Route::get('/online/{invoice_no}', [HomeController::class, 'onlineInvoice'])->name('home.invoice');
 Route::post('/save-contact', [HomeController::class, 'saveLandlordContact'])->name('home.save-contact');
 Route::post('/join-mail-list', [HomeController::class, 'joinMailList'])->name('home.join-mail-list');
+
+/**
+* ==================================================================================
+* 3. Public Controller Based Routes
+* ==================================================================================
+*/
+
+use App\Http\Controllers\Landlord\AkkController;
+Route::get('/pricing', [AkkController::class, 'pricing'])->name('akk.pricing');
+Route::get('/checkout', [AkkController::class, 'checkout'])->name('akk.checkout');
+Route::get('/online/{invoice_no}', [AkkController::class, 'onlineInvoice'])->name('akk.invoice');
+Route::get('/add-addon/{account_id}/{addon_id}', [AkkController::class, 'addAddon'])->name('akk.add-addon');
+
+/**
+* ==================================================================================
+* 6. Public routes for stripe
+* ==================================================================================
+*/
+Route::post('/checkout-stripe', [AkkController::class, 'checkoutStripe'])->name('akk.checkout-stripe');
+Route::get('/success', [AkkController::class, 'success'])->name('akk.success');
+Route::get('/cancel', [AkkController::class, 'cancel'])->name('akk.cancel');
+Route::post('/payment-stripe', [AkkController::class, 'paymentStripe'])->name('payment-stripe');
+Route::get('/success-payment', [AkkController::class, 'successPayment'])->name('checkout.success-payment');
+Route::get('/success-addon', [AkkController::class, 'successAddon'])->name('checkout.success-addon');
+Route::get('/success-advance', [AkkController::class, 'successAdvance'])->name('checkout.success-advance');
+// TODO
+// Route::post('/webhook', [AkkController::class, 'webhook'])->name('checkout.webhook');
+
 
 /**
 * ==================================================================================
@@ -164,20 +188,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 	return back()->with('success', 'Verification link sent! Please check your mail and clink on "Verify Email Address" link.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-/**
-* ==================================================================================
-* 6. Public routes for stripe
-* ==================================================================================
-*/
-Route::post('/checkout-stripe', [HomeController::class, 'checkoutStripe'])->name('checkout-stripe');
-Route::post('/payment-stripe', [HomeController::class, 'paymentStripe'])->name('payment-stripe');
-Route::get('/success', [HomeController::class, 'success'])->name('checkout.success');
-Route::get('/success-payment', [HomeController::class, 'successPayment'])->name('checkout.success-payment');
-Route::get('/success-addon', [HomeController::class, 'successAddon'])->name('checkout.success-addon');
-Route::get('/success-advance', [HomeController::class, 'successAdvance'])->name('checkout.success-advance');
-Route::get('/cancel', [HomeController::class, 'cancel'])->name('checkout.cancel');
-// TODO
-// Route::post('/webhook', [HomeController::class, 'webhook'])->name('checkout.webhook');
 
 /**
 * ==================================================================================
@@ -249,7 +259,6 @@ Route::middleware(['auth', 'verified','can:admin'])->group(function () {
 	/* ======================== Account ======================================== */
 	Route::resource('accounts', AccountController::class);
 	Route::get('/account/export', [AccountController::class, 'export'])->name('accounts.export');
-	Route::get('/add-addon/{account_id}/{addon_id}', [AccountController::class, 'addAddon'])->name('accounts.add-addon');
 
 	/* ======================== Service ======================================== */
 	Route::resource('services', ServiceController::class);
@@ -288,7 +297,7 @@ use App\Http\Controllers\Landlord\Manage\ActivityController;
 Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 
 	/* ======================== User ========================================  */
-	Route::get('/user/all', [UserController::class, 'all'])->name('users.all');
+	Route::get('/user/all/{account?}', [UserController::class, 'all'])->name('users.all');
 	Route::get('/users/impersonate/{user}/', [UserController::class, 'impersonate'])->name('users.impersonate');
 	//Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
@@ -297,18 +306,22 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	Route::get('/ticket/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
 	Route::post('/ticket/doassign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.doassign');
 
+	/* ======================== Comment ========================================  */
+	Route::get('/comment/all', [CommentController::class, 'all'])->name('comments.all');
+	//Route::get('/comments/delete/{comment}', [CommentController::class, 'destroy'])->name('comments.delete');
+
 	/* ======================== Accounts ========================================  */
 	Route::get('/account/all', [AccountController::class, 'all'])->name('accounts.all');
 
 	/* ======================== Services ======================================== */
-	Route::get('/service/all', [ServiceController::class, 'all'])->name('services.all');
+	Route::get('/service/all/{account?}', [ServiceController::class, 'all'])->name('services.all');
 	Route::get('/service/export', [ServiceController::class, 'export'])->name('services.export');
 
-		/* ======================== Invoice ======================================== */
-	Route::get('/invoice/all', [InvoiceController::class, 'all'])->name('invoices.all');
+	/* ======================== Invoice ======================================== */
+	Route::get('/invoice/all/{account?}', [InvoiceController::class, 'all'])->name('invoices.all');
 
 	/* ======================== Payment ======================================== */
-	Route::get('/payment/all', [PaymentController::class, 'all'])->name('payments.all');
+	Route::get('/payment/all/{account?}', [PaymentController::class, 'all'])->name('payments.all');
 
 	/* ======================== Activity ======================================== */
 	Route::resource('activities', ActivityController::class);
@@ -323,12 +336,12 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
 	Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.delete');
-	
+
 	/* ======================== Attachment ======================================== */
 	Route::resource('attachments', AttachmentController::class);
 	Route::get('/attachment/export',[AttachmentController::class,'export'])->name('attachments.export');
 	Route::get('/attachment/all',[AttachmentController::class, 'all'])->name('attachments.all');
-	
+
 	/* ======================== Country ======================================== */
 	Route::resource('countries', CountryController::class);
 	Route::get('/country/export',[CountryController::class,'export'])->name('countries.export');
@@ -337,7 +350,7 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	/* ======================== Product ======================================== */
 	Route::resource('products', ProductController::class);
 	Route::get('/products/delete/{product}',[ProductController::class, 'destroy'])->name('products.delete');
-	
+
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
 	//Route::get('/checkout/all', [CheckoutController::class, 'all'])->name('checkouts.all');
@@ -386,6 +399,14 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::get('/cp/changelog',[CpController::class,'changeLog'])->name('cps.changelog');
 	Route::get('/cp/codegen',[CpController::class,'codeGen'])->name('cps.codegen');
 	//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
+
+
+    /* ======================== Invoice ======================================== */
+    Route::get('/invoices/pwop/{invoice}',[InvoiceController::class,'pwop'])->name('invoices.pwop');
+    Route::put('/invoices/pay-pwop/{invoice}',[InvoiceController::class,'payPwop'])->name('invoices.pay-pwop');
+	Route::get('/invoices/discount/{invoice}',[InvoiceController::class,'discount'])->name('invoices.discount');
+    Route::put('/invoices/apply-discount/{invoice}',[InvoiceController::class,'applyDiscount'])->name('invoices.apply-discount');
+
 
 	/* ======================== Notification TODO for Landlord ======================================== */
 	Route::resource('notifications', NotificationController::class);
@@ -439,7 +460,7 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 	Route::resource('templates', TemplateController::class);
 	Route::post('/templates/delete/{template}',[TemplateController::class, 'destroy'])->name('templates.delete');
 	Route::get('/template/export', [TemplateController::class, 'export'])->name('templates.export');
-	
+
 });
 
 

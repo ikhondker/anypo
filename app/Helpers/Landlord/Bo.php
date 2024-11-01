@@ -132,7 +132,7 @@ class Bo
 		// change description for other type of invoice
 		$invoice->summary		= env('APP_DOMAIN'). ' - Your Invoice #'. $invoice->invoice_no;
 		switch ($invoice->invoice_type->value) {
-			case InvoiceTypeEnum::CHECKOUT->value:
+			case InvoiceTypeEnum::SIGNUP->value:
 				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN');
 				break;
 			case InvoiceTypeEnum::SUBSCRIPTION->value:  // manually generate an pay invoice
@@ -198,7 +198,6 @@ class Bo
 
 	public static function payCheckoutInvoice($invoice_id = 0)
 	{
-
 		$invoice = Invoice::where('id', $invoice_id)->first();
 		Log::debug('Helpers.landlord.bo.payCheckoutInvoice Paying invoice_id = ' . $invoice->id);
 		Log::debug('Helpers.landlord.bo.payCheckoutInvoice Invoice for account_id = ' . $invoice->account_id);

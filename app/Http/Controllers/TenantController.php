@@ -7,13 +7,14 @@ use App\Models\Tenant;
 
 use App\Http\Requests\StoreTenantRequest;
 use App\Http\Requests\UpdateTenantRequest;
-use App\Http\Controllers\Landlord\HomeController;
+use App\Http\Controllers\Landlord\AkkController;
 
 # 1. Models
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
 use App\Enum\Landlord\CheckoutStatusEnum;
+use App\Enum\Landlord\InvoiceTypeEnum;
 # 3. Helpers
 use App\Helpers\EventLog;
 # 4. Notifications
@@ -78,9 +79,25 @@ class TenantController extends Controller
 		]);
 
 		// create checkout row
-		$sessionId = Str::uuid()->toString();
+		//$checkout_id = (new HomeController)->createCheckoutForBuy($sessionId, $request->input('site'), $request->input('account_name'), $request->input('email'));
+		$checkout_id = (new AkkController)->insertCheckout(
+			InvoiceTypeEnum::SIGNUP->value,
+			$request->input('site'),
+			$request->input('account_name'),
+			$request->input('email'),
+			'',
+			config('bo.DEFAULT_PRODUCT_ID'),
+			'',
+			''
+		);
+		$checkout     = Checkout::where('id', $checkout_id )->first();
+		Log::debug('landlord.TenantController.store created checkout_id = '. $checkout_id);
 
-		$checkout_id = (new HomeController)->createCheckoutForBuy($sessionId, $request->input('site'), $request->input('account_name'), $request->input('email'));
+		// set session_id
+		$sessionId = Str::uuid()->toString();
+		$checkout->session_id = $sessionId;
+		$checkout->update();
+
 		Log::debug('landlord.TenantController.store created checkout_id = '. $checkout_id);
 		// Write to Log
 		EventLog::event('checkout', $checkout_id, 'create');

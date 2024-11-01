@@ -14,10 +14,14 @@ use App\Models\User;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Admin\Invoice;
 use App\Models\Landlord\Admin\Payment;
+use App\Models\Landlord\Manage\Checkout;
 
 // Enums
-use App\Enum\Landlord\InvoiceStatusEnum;
+use App\Enum\Landlord\CheckoutStatusEnum;
 use App\Enum\Landlord\PaymentStatusEnum;
+use App\Enum\Landlord\InvoiceStatusEnum;
+use App\Enum\Landlord\PaymentMethodEnum;
+
 
 // Helpers
 use App\Helpers\EventLog;
@@ -29,19 +33,20 @@ use App\Notifications\Landlord\InvoicePaid;
 
 // Seeded
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class SubscriptionInvoicePaid implements ShouldQueue
 {
 	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-	protected $payment_id;
+	protected $checkout_id;
 
 	/**
 	 * Create a new job instance.
 	 */
-	public function __construct($payment_id)
+	public function __construct($checkout_id)
 	{
-		$this->payment_id = $payment_id;
+		$this->checkout_id = $checkout_id;
 	}
 
 	/**
@@ -49,26 +54,48 @@ class SubscriptionInvoicePaid implements ShouldQueue
 	 */
 	public function handle(): void
 	{
-		$payment = Payment::where('id', $this->payment_id)->first();
 
-		// mark payment as paid
-		$payment->status_code = PaymentStatusEnum::PAID->value;
-		$payment->update();
-		EventLog::event('payment', $payment->id, 'create');
+        // mark checkout as processing
+		$checkout = Checkout::where('id', $this->checkout_id )->first();
+		$checkout->status_code = CheckoutStatusEnum::PROCESSING->value ;
+		$checkout->update();
+		Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 0. Processing Site = '.$checkout->site);
+        Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 0. Processing invoice_id = '.$checkout->invoice_id);
+
+       // pay this invoice and notify
+        // pay this invoice and notify
+		// TODO check if payment is successful
+		Log::debug('Jobs.Landlord.AddAdvance 3. Calling payCheckoutInvoice');
+		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
+
+		// $payment						= new Payment;
+		// $payment->session_id			= $checkout->session_id;
+		// $payment->pay_date				= date('Y-m-d H:i:s');
+		// $payment->invoice_id			= $invoice->id;
+		// $payment->account_id			= $invoice->account_id;
+		// $payment->summary				= $invoice->summary;
+		// $payment->payment_method_code	= PaymentMethodEnum::CARD->value;
+		// $payment->amount				= $invoice->amount;
+        // $payment->status_code = PaymentStatusEnum::PAID->value;         // mark payment as paid
+        // if (auth()->check()) {
+        //     $payment->owner_id			= auth()->user()->id;
+		// } else {
+        //     //
+		// }
+        // $payment->ip					= request()->ip();
+		// $payment->save();
+		// EventLog::event('payment', $payment->id, 'create');
 
 		// mark invoice as paid
-		$invoice = Invoice::where('id', $payment->invoice_id)->first();
-		$invoice->amount_paid = $payment->amount;
-		$invoice->status_code = InvoiceStatusEnum::PAID->value ;
-		$invoice->update();
-		Log::debug('jobs.Landlord.SubscriptionInvoicePaid invoice end_date = ' . $invoice->to_date);
+		// $invoice->amount_paid = $payment->amount;
+		// $invoice->status_code = InvoiceStatusEnum::PAID->value ;
+		// $invoice->update();
+		// Log::debug('jobs.Landlord.SubscriptionInvoicePaid invoice end_date = ' . $invoice->to_date);
 
 		// extend account validity and end_date
-		Log::debug('jobs.Landlord.SubscriptionInvoicePaid calling extendAccountValidity for invoice_id = ' . $invoice->id);
-		$account_id= bo::extendAccountValidity($invoice->id);
+        // create payment from invoice
+		Log::debug('jobs.Landlord.SubscriptionInvoicePaid calling extendAccountValidity for invoice_id = ' .$checkout->invoice_id);
+		$account_id= bo::extendAccountValidity($checkout->invoice_id);
 
-		// Invoice Paid Notification
-		$user = User::where('id', $invoice->owner_id)->first();
-		$user->notify(new InvoicePaid($user, $invoice, $payment));
 	}
 }

@@ -92,13 +92,40 @@ Route::get('/404', function () {
 * 3. Public Controller Based Routes
 * ==================================================================================
 */
-// Home Controller
 use App\Http\Controllers\Landlord\HomeController;
-Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
-Route::get('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
-Route::get('/online/{invoice_no}', [HomeController::class, 'onlineInvoice'])->name('home.invoice');
 Route::post('/save-contact', [HomeController::class, 'saveLandlordContact'])->name('home.save-contact');
 Route::post('/join-mail-list', [HomeController::class, 'joinMailList'])->name('home.join-mail-list');
+
+/**
+* ==================================================================================
+* 3. Public Controller Based Routes
+* ==================================================================================
+*/
+
+use App\Http\Controllers\Landlord\AkkController;
+Route::get('/pricing', [AkkController::class, 'pricing'])->name('akk.pricing');
+Route::get('/checkout', [AkkController::class, 'checkout'])->name('akk.checkout');
+Route::post('/process-signup', [AkkController::class, 'processSignup'])->name('akk.process-signup');
+Route::post('/process-subscription', [AkkController::class, 'processSubscription'])->name('akk.process-subscription');
+Route::post('/process-advance', [AkkController::class, 'processAdvance'])->name('akk.process-advance');
+Route::get('/process-addon/{account_id}/{addon_id}', [AkkController::class, 'processAddon'])->name('akk.process-addon');
+Route::get('/online/{invoice_no}', [AkkController::class, 'onlineInvoice'])->name('akk.invoice');
+
+/**
+* ==================================================================================
+* 6. Public routes for stripe
+* ==================================================================================
+*/
+Route::get('/success', [AkkController::class, 'success'])->name('akk.success');
+Route::get('/cancel', [AkkController::class, 'cancel'])->name('akk.cancel');
+//Route::get('/success-addon', [AkkController::class, 'successAddon'])->name('akk.success-addon');
+Route::post('/payment-stripe', [AkkController::class, 'paymentStripe'])->name('payment-stripe');
+
+Route::get('/success-payment', [AkkController::class, 'successPayment'])->name('checkout.success-payment');
+Route::get('/success-advance', [AkkController::class, 'successAdvance'])->name('checkout.success-advance');
+// TODO
+// Route::post('/webhook', [AkkController::class, 'webhook'])->name('checkout.webhook');
+
 
 /**
 * ==================================================================================
@@ -164,20 +191,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 	return back()->with('success', 'Verification link sent! Please check your mail and clink on "Verify Email Address" link.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-/**
-* ==================================================================================
-* 6. Public routes for stripe
-* ==================================================================================
-*/
-Route::post('/checkout-stripe', [HomeController::class, 'checkoutStripe'])->name('checkout-stripe');
-Route::post('/payment-stripe', [HomeController::class, 'paymentStripe'])->name('payment-stripe');
-Route::get('/success', [HomeController::class, 'success'])->name('checkout.success');
-Route::get('/success-payment', [HomeController::class, 'successPayment'])->name('checkout.success-payment');
-Route::get('/success-addon', [HomeController::class, 'successAddon'])->name('checkout.success-addon');
-Route::get('/success-advance', [HomeController::class, 'successAdvance'])->name('checkout.success-advance');
-Route::get('/cancel', [HomeController::class, 'cancel'])->name('checkout.cancel');
-// TODO
-// Route::post('/webhook', [HomeController::class, 'webhook'])->name('checkout.webhook');
 
 /**
 * ==================================================================================
@@ -249,7 +262,6 @@ Route::middleware(['auth', 'verified','can:admin'])->group(function () {
 	/* ======================== Account ======================================== */
 	Route::resource('accounts', AccountController::class);
 	Route::get('/account/export', [AccountController::class, 'export'])->name('accounts.export');
-	Route::get('/add-addon/{account_id}/{addon_id}', [AccountController::class, 'addAddon'])->name('accounts.add-addon');
 
 	/* ======================== Service ======================================== */
 	Route::resource('services', ServiceController::class);

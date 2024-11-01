@@ -18,13 +18,13 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->dateTime('checkout_date')->useCurrent();
 			/** ENUM */
-			$table->string('invoice_type')->default(InvoiceTypeEnum::CHECKOUT->value);
+			$table->string('invoice_type')->default(InvoiceTypeEnum::SIGNUP->value);
 			/** end ENUM */
 			/** ENUM */
 			$table->string('status_code')->default(CheckoutStatusEnum::DRAFT->value);
 			$table->foreign('status_code')->references('code')->on('statuses');
 			/** end ENUM */
-			$table->string('session_id');
+			$table->string('session_id')->nullable();
 			$table->string('site');
 			$table->string('email');
 			$table->string('account_name');

@@ -14,7 +14,7 @@
 				<div class="col-lg-7 mx-auto">
 						<div class="col-md-7 col-lg-8">
 							<h4 class="mb-3">Service Detail</h4>
-							<form action="{{ route('checkout-stripe') }}" method="POST" class="needs-validation">
+							<form action="{{ route('akk.process-signup') }}" method="POST" class="needs-validation">
 								<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 
 								<div class="row g-3">
