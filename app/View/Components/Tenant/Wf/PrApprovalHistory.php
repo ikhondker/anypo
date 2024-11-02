@@ -6,19 +6,23 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+use App\Enum\Tenant\EntityEnum;
 use App\Models\Tenant\Workflow\Wfl;
 
-class ApprovalHistory extends Component
-{
-//	public $id;
-	public $wfls;
 
+class PrApprovalHistory extends Component
+{
+	public $wfls;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($wfId)
+	public function __construct($prId)
 	{
-		$this->wfls = Wfl::with('performer.designation')->where('wf_id', $wfId)->get()->all();
+		$this->wfls = Wfl::with('performer.designation')->with('wf')
+			->whereHas('wf', function ($q) use ($prId) {
+				$q->where('article_id', $prId)->where('entity',EntityEnum::PR->value);
+			})
+			->get()->all();
 	}
 
 	/**

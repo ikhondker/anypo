@@ -22,7 +22,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search configs…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 						</div>
 						@if (request('term'))
@@ -46,20 +46,20 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">ID</th>
-						<th class="align-middle">Domain</th>
-						<th class="align-middle">Tenant ID</th>
-						<th class="align-middle">Start</th>
-						<th class="align-middle">End</th>
-						<th class="align-middle">User+GB</th>
-						<th class="align-middle">User</th>
-						<th class="align-middle">GB</th>
-						<th class="align-middle">PR</th>
-						<th class="align-middle">PO</th>
-						<th class="align-middle">Rank</th>
-						<th class="align-middle">Status</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>ID</th>
+						<th>Domain</th>
+						<th>Tenant ID</th>
+						<th>Start</th>
+						<th>End</th>
+						<th>User+GB</th>
+						<th>User</th>
+						<th>GB</th>
+						<th>PR</th>
+						<th>PO</th>
+						<th>Rank</th>
+						<th>Status</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -89,7 +89,7 @@
 							<td><x-landlord.list.my-badge :value="$domain->tenant->count_po"/></td>
 							<td><x-landlord.list.my-badge :value="$domain->tenant->rank"/></td>
 							<td><x-landlord.list.my-badge :value="$domain->tenant->status"/></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('domains.show',$domain->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 							</td>

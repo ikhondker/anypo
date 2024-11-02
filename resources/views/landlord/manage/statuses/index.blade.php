@@ -21,7 +21,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search statuses…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 						</div>
 						@if (request('term'))
@@ -45,13 +45,13 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Code</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Acc-Svc-Tkt-Chk-Inv-Pay</th>
-						<th class="align-middle">Badge</th>
-						<th class="align-middle">Enable</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Acc-Svc-Tkt-Chk-Inv-Pay</th>
+						<th>Badge</th>
+						<th>Enable</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -89,7 +89,7 @@
 							</td>
 							<td><span class="badge bg-{{ $status->badge }}">{{ $status->badge }}</span></td>
 							<td><x-landlord.list.my-enable :value="$status->enable" /></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('statuses.show',$status->code) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 								<a href="{{ route('statuses.edit',$status->code) }}" class="text-body" data-bs-toggle="tooltip"

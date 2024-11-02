@@ -11,7 +11,7 @@
 							value="{{ old('term', request('term')) }}" id="term"
 							placeholder="Search templates…" required>
 						<button class="btn" type="submit">
-							<i class="align-middle" data-lucide="search"></i>
+							<i data-lucide="search"></i>
 						</button>
 					</div>
 					@if (request('term'))
@@ -35,15 +35,15 @@
 		<table id="datatables-orders" class="table w-100">
 			<thead>
 				<tr>
-					<th class="align-middle">#</th>
-					<th class="align-middle">Name</th>
-					<th class="align-middle">Phone</th>
-					<th class="align-middle">Date</th>
+					<th>#</th>
+					<th>Name</th>
+					<th>Phone</th>
+					<th>Date</th>
 					<th class="text-end">Amount</th>
-					<th class="align-middle">Name2</th>
-					<th class="align-middle">Role</th>
-					<th class="align-middle">Enable</th>
-					<th class="align-middle text-end">Actions</th>
+					<th>Name2</th>
+					<th>Role</th>
+					<th>Enable</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,7 +66,7 @@
 							<span class="badge {{ ($template->enable ? 'badge-subtle-success text-success' : 'badge-subtle-danger text-danger') }}">{{ ($template->enable ? 'Yes' : 'No') }}</span>
 						</td>
 
-						<td class="text-end">
+						<td>
 							<a href="{{ route('templates.show',$template->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>
 							<a href="{{ route('templates.delete', $template->id) }}"
@@ -145,7 +145,7 @@
 									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 								</a>
 							</td>
-						
+
 						</tr>
 						@endforeach
 					</tbody>

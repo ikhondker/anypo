@@ -268,22 +268,26 @@ class AkkController extends Controller
 
 				break;
 			case InvoiceTypeEnum::SUBSCRIPTION->value:  // can pay without login
+
+
 				$checkout->invoice_type		= InvoiceTypeEnum::SUBSCRIPTION->value;
 
-				// get invoice details
+				// get invoice and account details
 				$invoice = Invoice::with('account')->where('id', $invoice_id )->first();
+                $checkout->site				= $invoice->account->site;
+				$checkout->account_id		= $invoice->account->id;
+				$checkout->account_name		= $invoice->account->name;
 				$checkout->invoice_id		= $invoice->id;
-
 				if ((auth()->check()) ) {
 					// email already set
 				} else {
 					$checkout->email			= config('bo.GUEST_EMAIL_ID');
 				}
-
 				$checkout->price			= $invoice->amount;		// <<-----------
 
 				break;
 			case InvoiceTypeEnum::ADDON->value:
+
 				$checkout->invoice_type		= InvoiceTypeEnum::ADDON->value;
 				$checkout->existing_user	= true;
 
@@ -295,10 +299,10 @@ class AkkController extends Controller
 				// check if need to pay for addon
 				$diff = now()->diffInDays($account->end_date);
 				if ($diff <= $config->days_addon_free) {
-					Log::debug('landlord.account.addAddon dont need to pay as end in days = ' . $diff);
+					Log::debug('landlord.AkkController.insertCheckout dont need to pay as end in days = ' . $diff);
 					$addonPrice = 0;
 				} else {
-					Log::debug('landlord.account.addAddon need to pay as end in days = ' . $diff);
+					Log::debug('landlord.AkkController.insertCheckout need to pay as end in days = ' . $diff);
 					$addonPrice = round($product->price/30*$diff, 2);
 				}
 				$checkout->price			= $addonPrice;		// <<-----------
@@ -339,18 +343,19 @@ class AkkController extends Controller
 				$checkout->end_date			= $account->end_date->addMonth($period);	// < ===============
 				break;
 			case InvoiceTypeEnum::ARCHIVE->value:
-				// TODO
+				// TODOP2
 				break;
 			default:
-				Log::Error("landlord.AkkController.success Invalid transaction type!");
+				Log::Error("landlord.AkkController.insertCheckout Invalid transaction type!");
 				return 0;
 		}
 
 		$checkout->status_code		= CheckoutStatusEnum::DRAFT->value;
 		$checkout->ip				= request()->ip();
 		$checkout->save();
-		return $checkout->id;
 
+        Log::debug('landlord.AkkController.insertCheckout checkout inserted checkout_id = '.  $checkout->id);
+		return $checkout->id;
 	}
 
 
@@ -370,8 +375,6 @@ class AkkController extends Controller
 				throw new NotFoundHttpException;
 			}
 
-			$trx_type	= $session->metadata->trx_type;
-			Log::debug('landlord.AkkController.success metadata trx_type = '. $session->metadata->trx_type);
 
 			$checkout = Checkout::where('session_id', $session->id)->first();
 			if (!$checkout) {
@@ -416,7 +419,7 @@ class AkkController extends Controller
 
 	}
 
-	// landed here both for chekcout and subscription payment
+	// landed here both for checkout and subscription payment
 	public function cancel(Request $request)
 	{
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
@@ -427,9 +430,6 @@ class AkkController extends Controller
 			if (!$session) {
 				throw new NotFoundHttpException;
 			}
-
-			$trx_type	= $session->metadata->trx_type;
-			Log::debug('landlord.AkkController.success metadata trx_type = '. $session->metadata->trx_type);
 
 			$checkout = Checkout::where('session_id', $session->id)->first();
 			if (!$checkout) {
@@ -470,6 +470,8 @@ class AkkController extends Controller
 	*/
 	public function processAddon($account_id, $addon_id)
 	{
+
+        $this->authorize('addon',Akk::class);
 
 		Log::channel('bo')->info('landlord.account.addAddon buying new addon account = '. $account_id . ' product_id = ' . $addon_id);
 
@@ -525,14 +527,13 @@ class AkkController extends Controller
 				'mode' => 'payment',
 				'success_url' => route('akk.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
 				'cancel_url' => route('akk.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-				'metadata' 	=> ['trx_type' => 'ADDON'],
 			]);
 		} else {
 
 		}
 
 		$checkout_id = self::insertCheckout(
-			InvoiceTypeEnum::SIGNUP->value,
+			InvoiceTypeEnum::ADDON->value,
 			'',
 			'',
 			'',
@@ -542,7 +543,7 @@ class AkkController extends Controller
 			''
 		);
 		$checkout     = Checkout::where('id', $checkout_id )->first();
-		Log::debug('landlord.AkkController.checkoutStripe created checkout_id = '. $checkout_id);
+		Log::debug('landlord.AkkController.addAddon created checkout_id = '. $checkout_id);
 
 		// set session_id
 		$checkout->session_id = $session->id;
@@ -564,11 +565,14 @@ class AkkController extends Controller
 	 * @param  \App\Http\Requests\StoreInvoiceRequest  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function processAdvance(StoreInvoiceRequest $request)
+	//public function processAdvance(StoreInvoiceRequest $request)
+    public function processAdvance(Request $request)
 	{
 
+        $this->authorize('advance',Akk::class);
+
 		$period 		= $request->period;
-		Log::debug('landlord.invoice.store generating advance invoice for period = ' . $period);
+		Log::debug('landlord.AkkController.processAdvance generating advance invoice for period = ' . $period);
 
 		// allowed periods
 		$periods = array("1", "3", "6", "12");
@@ -577,7 +581,7 @@ class AkkController extends Controller
 		}
 
 		$account_id 	= auth()->user()->account_id;
-		Log::channel('bo')->info('landlord.invoice.store generating advance invoice for account_id = '. $account_id . ' period = ' . $period);
+		Log::channel('bo')->info('landlord.AkkController.processAdvance generating advance invoice for account_id = '. $account_id . ' period = ' . $period);
 
 		if (auth()->user()->account_id == '') {
 			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
@@ -586,7 +590,7 @@ class AkkController extends Controller
 		// Check if any unpaid invoice exists!
 		$account	= Account::where('id', $account_id)->first();
 		if ($account->next_bill_generated) {
-			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
+			Log::debug('landlord.AkkController.processAdvance Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
 			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for Account id = ' . $account->id . '! Can not create more Invoices.');
 		}
 
@@ -649,22 +653,21 @@ class AkkController extends Controller
 			'mode' => 'payment',
 			'success_url' => route('akk.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
 			'cancel_url' => route('akk.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-			'metadata' 	=> ['trx_type' => 'ADVANCE'],
 		]);
 
 		// create checkout row
 		$checkout_id = self::insertCheckout(
-			InvoiceTypeEnum::SIGNUP->value,
+			InvoiceTypeEnum::ADVANCE->value,
 			'',
 			'',
 			'',
 			$account_id,
-			'',
+			$product->id,
 			$period,
 			''
 		);
 		$checkout     = Checkout::where('id', $checkout_id )->first();
-		Log::debug('landlord.AkkController.checkoutStripe created checkout_id = '. $checkout_id);
+		Log::debug('landlord.AkkController.processAdvance created checkout_id = '. $checkout_id);
 
 		// set session_id
 		$checkout->session_id = $session->id;
@@ -675,8 +678,7 @@ class AkkController extends Controller
 	}
 
 	/**
-	 * // used to pay subscription invoices
-	 *  TODO rename to subscription
+	 * used to pay subscription invoices
 	*/
 	public function processSubscription(Request $request)
 	{
@@ -708,20 +710,21 @@ class AkkController extends Controller
 			'mode' 			=> 'payment',
 			'success_url' 	=> route('akk.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
 			'cancel_url' 	=> route('akk.cancel', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-			'metadata' 		=> ['trx_type' => 'PAYMENT'],
 		]);
 
 		// get product
 		$product    = Product::where('id', $invoice->account->primary_product_id)->first();
 
 		// create checkout row
+        // insertCheckout($type, $site ='', $account_name ='', $email ='', $account_id, $product_id, $period, $invoice_id)
+
 		$checkout_id = self::insertCheckout(
-			InvoiceTypeEnum::SIGNUP->value,
+			InvoiceTypeEnum::SUBSCRIPTION->value,
 			'',
 			'',
 			'',
 			'',
-			'',
+			$product->id,
 			'',
 			$invoice->id
 		);

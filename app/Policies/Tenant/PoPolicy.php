@@ -15,13 +15,13 @@ class PoPolicy
 	/**
 	 * Perform pre-authorization checks.
 	*/
-	public function before(User $user, string $ability): bool|null
-	{
-		if ($user->isSystem()) {
-			return true;
-		}
-		return null;
-	}
+	// public function before(User $user, string $ability): bool|null
+	// {
+	// 	if ($user->isSystem()) {
+	// 		return true;
+	// 	}
+	// 	return null;
+	// }
 
 
 	/**
@@ -29,7 +29,7 @@ class PoPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() );
+		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport()  || $user->isSystem() );
 	}
 
 	/**
@@ -37,8 +37,7 @@ class PoPolicy
 	 */
 	public function view(User $user, Po $po): bool
 	{
-
-		if ($user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+		if ($user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSystem()  ) {
 			return true;
 		} elseif ($user->role->value == UserRoleEnum::HOD->value) {
 			return ($user->dept_id == $po->dept_id);
@@ -52,7 +51,18 @@ class PoPolicy
 	 */
 	public function submit(User $user, Po $po): bool
 	{
-		return ($po->auth_status == AuthStatusEnum::DRAFT->value);
+		//return ($po->auth_status == AuthStatusEnum::DRAFT->value);
+
+        // only buyer can submit own draft and rejected PO
+        if ($user->id <> $po->buyer_id) {
+			return false;
+        } elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
+			return true;
+		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
+			return true;
+		} else {
+			return ( false ) ;
+        }
 	}
 
 	/**
@@ -68,8 +78,16 @@ class PoPolicy
 	 */
 	public function update(User $user, Po $po): bool
 	{
-		// allow update only draft PO
-		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::DRAFT->value);
+        // only buyer can edit draft and rejected PO
+        if ($user->id <> $po->buyer_id) {
+			return false;
+        } elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
+			return true;
+		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
+			return true;
+		} else {
+			return ( false ) ;
+		}
 	}
 
 

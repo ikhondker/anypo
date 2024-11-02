@@ -75,8 +75,6 @@
 						<td><x-landlord.list.my-date :value="$activity->created_at"/></td>
 						<td>{{ $activity->event_name }}</td>
 						<td>{{ $activity->user->name }}</td>
-
-
 						<td>
 							<a href="{{ route('activities.show',$activity->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>

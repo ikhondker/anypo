@@ -149,11 +149,20 @@ class CommentController extends Controller
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
 			$status_code = $request->input('status_code');
 			$ticket->status_code = $status_code;
-			$ticket->update();
+
+            // set first_response_at , last_response_at
+            if (! $comment->is_internal){
+                // if public response and first_response_at is null
+                if ($ticket->first_response_at == null){
+                    $ticket->first_response_at = now();
+                }
+                $ticket->last_response_at = now();
+            }
+
+            $ticket->update();
 
 			switch ($status_code) {
 				case TicketStatusEnum::INPROGRESS->value:
-
 					break;
 				case TicketStatusEnum::CWIP->value:
 					if (! $isInternal){
@@ -172,11 +181,12 @@ class CommentController extends Controller
 				// 	break;
 				default:
 					Log::channel('bo')->info('landlord.comment.store Invalid status_code = '. $status_code);
-
 			}
 		} else {
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
 			$ticket->status_code = TicketStatusEnum::PENDING->value;
+            // update user last message date
+            $ticket->last_message_at = now();
 			$ticket->update();
 			if ($ticket->agent_id <> ''){
 				// Send notification to Assigned Agent if customer updates the ticket

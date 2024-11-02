@@ -24,7 +24,7 @@
 	{{-- @include('tenant.includes.pr.view-pr-header-basic') --}}
 
 	<!-- Approval History -->
-	<x-tenant.wf.approval-history wfId="{{ $po->wf_id }}"/>
+	<x-tenant.wf.po-approval-history poId="{{ $po->id }}"/>
 
 @endsection
 

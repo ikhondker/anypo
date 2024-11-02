@@ -54,7 +54,17 @@ class PrlPolicy
 	 */
 	public function update(User $user, Prl $prl): bool
 	{
-		return true;
+		// only requester can edit prl where PR is draft and rejected
+		$pr = Pr::where('id', $prl->pr_id)->first();
+		if ($user->id <> $pr->requestor_id) {
+			return false;
+		} elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
+			return true;
+		} elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
+			return true;
+		} else {
+			return ( false ) ;
+		}
 	}
 
 	/**

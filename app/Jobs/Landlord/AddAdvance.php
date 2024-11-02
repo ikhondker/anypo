@@ -49,7 +49,7 @@ class AddAdvance implements ShouldQueue
 		Log::debug('Jobs.Landlord.AddAdvance 0. Processing Site = '.$checkout->site);
 
 		// generate first invoice for this account and notify
-		Log::debug('Jobs.Landlord.AddAdvance 1. Calling createInvoiceForCheckout');
+		Log::debug('Jobs.Landlord.AddAdvance 1. Calling bo::createInvoiceForCheckout');
 		$invoice_id = bo::createInvoiceForCheckout($this->checkout_id);
 		if ($invoice_id == 0){
 			Log::error('Jobs.Landlord.AddAdvance.createCheckoutInvoice ERROR. Invoice Could not generated!');
@@ -61,7 +61,7 @@ class AddAdvance implements ShouldQueue
 
 		// pay this invoice and notify
 		// TODO check if payment is successful
-		Log::debug('Jobs.Landlord.AddAdvance 3. Calling payCheckoutInvoice');
+		Log::debug('Jobs.Landlord.AddAdvance 3. bo::Calling payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
 
 		//extend account validity and end_date

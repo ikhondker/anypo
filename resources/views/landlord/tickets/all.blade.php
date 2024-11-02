@@ -55,6 +55,7 @@
 						<th>Dept</th>
 						<th>Agent</th>
 						<th>Status</th>
+                        <th>Last Response</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -88,18 +89,17 @@
 							<td>
 								<x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/>
 							</td>
+                            <td>
+                                {{ ($ticket->last_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_response_at)->ago() }}
+                            </td>
 							<td>
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View
-								</a>
-
+									data-bs-placement="top" title="View">View</a>
 								<a href="{{ route('tickets.assign',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="Assign">Assign
-								</a>
+									data-bs-placement="top" title="Assign">Assign</a>
 								<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="text-body"
 									target="_blank" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="Download"><i class="align-middle" data-lucide="printer"></i>
-								</a>
+									data-bs-placement="top" title="Download"><i class="align-middle" data-lucide="printer"></i></a>
 							</td>
 						</tr>
 					@endforeach

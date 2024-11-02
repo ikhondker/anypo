@@ -43,7 +43,7 @@ return new class extends Migration
 			$table->decimal('monthly_fee', 19, 2)->default(0);		// added later
 			$table->decimal('monthly_addon', 19, 2)->default(0);	// added later
 			$table->decimal('price', 19, 2)->default(0);
-            $table->integer('discount')->default(10);               // lifetime iem discount
+            $table->integer('discount')->default(0);               // lifetime iem discount
             $table->date('discount_date')->nullable();
 			$table->uuid('discount_by')->nullable();
 			$table->date('start_date');

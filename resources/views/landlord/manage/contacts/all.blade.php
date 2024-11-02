@@ -22,7 +22,7 @@
 							value="{{ old('term', request('term')) }}" id="term"
 							placeholder="Search contacts…" required>
 						<button class="btn" type="submit">
-							<i class="align-middle" data-lucide="search"></i>
+							<i data-lucide="search"></i>
 						</button>
 					</div>
 						@if (request('term'))
@@ -47,12 +47,12 @@
 		<table id="datatables-orders" class="table w-100">
 			<thead>
 				<tr>
-					<th class="align-middle">#</th>
-					<th class="align-middle">Name</th>
-					<th class="align-middle">Date</th>
-					<th class="align-middle">Subject</th>
-					<th class="align-middle">Attachment</th>
-					<th class="align-middle text-end">Actions</th>
+					<th>#</th>
+					<th>Name</th>
+					<th>Date</th>
+					<th>Subject</th>
+					<th>Attachment</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,7 +69,7 @@
 						<td><x-landlord.list.my-date :value="$contact->created_at"/></td>
 						<td>{{ Str::limit($contact->subject,15) }}</td>
 						<td><x-landlord.attachment.show-by-id id="{{ $contact->attachment_id }}"/></td>
-						<td class="text-end">
+						<td>
 							<a href="{{ route('contacts.show',$contact->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>
 						</td>

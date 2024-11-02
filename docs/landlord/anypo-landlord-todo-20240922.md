@@ -3,10 +3,12 @@
 
 # 7. TODO - Open
 ====================================================================
-117. reject/resubmit pr/po
+AkkControel Policy
+111. account level discount apply while creating invoice 
+222. tick first and last repsonse
 116. rewrtie flow of invoice creation 
 115. consider account level discount while generaitng invoices
-114. Invoice Date :	edit invocie.edit payments edit pay date
+114. Invoice Date :	edit invoice.edit payments edit pay date
 113. collaps top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 111. // Navbar brand $navbar-brand-padding-y: $spacer*0.875 !default; _app.scss
 111. <nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar"> p-0 m-0

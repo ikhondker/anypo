@@ -87,7 +87,7 @@
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 
-								<a href="{{ route('home.invoice', $invoice->invoice_no) }}" class="text-body"
+								<a href="{{ route('akk.invoice', $invoice->invoice_no) }}" class="text-body"
 									target="_blank" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View Online"><i data-lucide="globe"></i></a>
 

@@ -8,9 +8,12 @@
 		<a class="dropdown-item" href="{{ route('payments.all',$account->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Payments</a>
 		<a class="dropdown-item" href="{{ route('services.all',$account->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Services</a>
 		<a class="dropdown-item" href="{{ route('users.all',$account->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Users</a>
-		<a class="dropdown-item" href="{{ route('invoices.generate') }}"></i><i class="align-middle me-1 fas fa-dollar-sign"></i> Generate Invoice ***</a>
+		{{-- <a class="dropdown-item" href="{{ route('invoices.generate') }}"></i><i class="align-middle me-1 fas fa-dollar-sign"></i> Generate Invoice ***</a> --}}
 		@if (auth()->user()->isSystem())
-			<a class="dropdown-item text-danger" href="{{ route('users.all',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="list"></i> Lifetime Discount (*)</a>
+            <div class="dropdown-divider"></div>
+			<a class="dropdown-item text-danger" href="{{ route('accounts.all',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="list"></i> Lifetime Discount (*)</a>
+            <a class="dropdown-item text-danger sw2" href="{{ route('accounts.reset',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="list"></i> Account Reset (*)</a>
+            <a class="dropdown-item text-danger sw2" href="{{ route('accounts.delete',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="list"></i> Delete Account (*)</a>
 		@endif
 	</div>
 </div>

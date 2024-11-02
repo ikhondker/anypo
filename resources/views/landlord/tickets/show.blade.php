@@ -8,6 +8,7 @@
 
 @section('content')
 
+	<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end m-1"><i class="fas fa-plus"></i> New Ticket</a>
 	<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end m-1"><i class="fas fa-list"></i> View all</a>
 	<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="btn btn-primary float-end m-1"><i class="fas fa-print"></i> Print</a>
 	<h1 class="h3 mb-3">Ticket Detail</h1>
@@ -61,8 +62,21 @@
 						<th>Account</th>
 						<td>{{ $ticket->owner->account->name }} </td>
 					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-					@if (auth()->user()->isSeeded())
+	@if (auth()->user()->isSeeded())
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+				</div>
+				<h5 class="card-title text-danger mb-0">Support Details</h5>
+			</div>
+			<div class="card-body pt-0">
+				<table class="table table-sm my-2">
+					<tbody>
 						<tr>
 							<th>Department</th>
 							<td>{{ $ticket->dept->name }}</td>
@@ -75,11 +89,31 @@
 							<th>Agent</th>
 							<td><span class="badge badge-subtle-success">{{ $ticket->agent->name }}</span> </td>
 						</tr>
-					@endif
-				</tbody>
-			</table>
+						<tr>
+							<th>first_response_at</th>
+							<td>{{ ($ticket->first_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->first_response_at)->ago() }}</td>
+						</tr>
+						<tr>
+							<th>last_message_at</th>
+							<td>{{ ($ticket->last_message_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_message_at)->ago() }}</td>
+						</tr>
+						<tr>
+							<th>last_response_at</th>
+							<td>{{ ($ticket->last_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_response_at)->ago() }}</td>
+						</tr>
+                        <tr>
+							<th>closed_at</th>
+							<td>{{ ($ticket->closed_at == null) ? null  :  Carbon\Carbon::parse($ticket->closed_at)->ago() }}</td>
+						</tr>
+
+                        closed_at
+
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
+	@endif
+
 
 	<!-- BEGIN ADD COMMENT -->
 	@if ( $ticket->status_code <> App\Enum\Landlord\TicketStatusEnum::CLOSED->value)

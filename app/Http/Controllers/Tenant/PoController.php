@@ -532,10 +532,6 @@ class PoController extends Controller
 	{
 		$this->authorize('submit', $po);
 
-		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('pos.show',$po->id)->with('error', 'You can only submit if the status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
-		}
-
 		// only buyer can submit PO
 		if ( ! auth()->user()->isBuyer() ) {
 			return redirect()->route('pos.show',$po->id)->with('error', 'Only a Buyer Can submit a Purchase Order for Approval!');
@@ -717,7 +713,7 @@ class PoController extends Controller
 	public function recalculate(Po $po)
 	{
 
-		$this->authorize('recalculate', Po::class);
+		$this->authorize('recalculate', $po);
 
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('pos.show', $po->id)->with('error', 'Only DRAFT Purchase Order can be recalculated!');

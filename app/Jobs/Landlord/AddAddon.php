@@ -49,11 +49,11 @@ class AddAddon implements ShouldQueue
 		Log::debug('Jobs.Landlord.AddAddon 0. Processing Site = '.$checkout->site);
 
 		// create add service
-		Log::debug('Jobs.Landlord.AddAddon 1. Calling createServiceForCheckout');
+		Log::debug('Jobs.Landlord.AddAddon 1. Calling bo::createServiceForCheckout');
 		$service_id = bo::createServiceForCheckout($this->checkout_id);
 
 		// generate invoice and notify
-		Log::debug('Jobs.Landlord.AddAddon 2. Calling createInvoiceForCheckout');
+		Log::debug('Jobs.Landlord.AddAddon 2. Calling bo::createInvoiceForCheckout');
 		$invoice_id = bo::createInvoiceForCheckout($this->checkout_id);
 		if ($invoice_id == 0){
 			Log::error('Jobs.Landlord.AddAddon.createCheckoutInvoice ERROR Invoice Could not generated!');
@@ -64,7 +64,7 @@ class AddAddon implements ShouldQueue
 		}
 
 		// pay this invoice and notify
-		Log::debug('Jobs.Landlord.AddAddon 3. Calling payCheckoutInvoice');
+		Log::debug('Jobs.Landlord.AddAddon 3. Calling bo::payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
 
 		// update product addon sold_qty column

@@ -41,7 +41,8 @@ class Ticket extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'title', 'content', 'ticket_date', 'owner_id', 'account_id', 'dept_id', 'priority_id', 'rating_id', 'agent_id', 'attachment_id', 'category_id', 'status_code', 'sla', 'due_date', 'is_overdue', 'closed', 'closed_at', 'is_deleted', 'reopened', 'reopened_at', 'follow_up', 'reviewed_at', 'reviewed_by', 'source_change_needed', 'last_message_at', 'last_response_at', 'link_ticket_id', 'ip', 'updated_by', 'updated_at',
+        'title', 'content', 'ticket_date', 'owner_id', 'account_id', 'dept_id', 'priority_id', 'rating_id', 'agent_id', 'attachment_id', 'category_id', 'status_code', 'sla', 'first_response_at', 'due_date', 'is_overdue', 'closed', 'closed_at', 'is_deleted', 'reopened', 'reopened_at', 'follow_up', 'reviewed_at', 'reviewed_by', 'cr_needed', 'last_message_at', 'last_response_at', 'link_ticket_id', 'ip', 'updated_by', 'updated_at',
+
 	];
 
 	/**

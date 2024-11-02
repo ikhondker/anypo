@@ -4,9 +4,9 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('reports.po', $po->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
-					@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+                    @can('update', $po)
 						<a class="btn btn-sm btn-light" href="{{ route('pos.edit', $po->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-					@endif
+    			    @endcan
 				</div>
 				<h5 class="card-title">Basic Information</h5>
 				<h6 class="card-subtitle text-muted">Basic information of a Purchase Order.</h6>
@@ -34,15 +34,14 @@
 						<x-tenant.show.my-text		value="{{ $po->project->name }}" label="Project"/>
 						<x-tenant.show.my-text		value="{{ $po->supplier->name }}" label="Supplier"/>
 						<x-tenant.show.my-text-area		value="{{ $po->notes }}" label="Notes"/>
-
-						@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-							<tr>
-								<th></th>
-								<td>
-									<x-tenant.show.my-edit-link object="Po" :id="$po->id"/>
-								</td>
-							</tr>
-						@endif
+                        @can('update', $po)
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <x-tenant.show.my-edit-link object="Po" :id="$po->id"/>
+                                </td>
+                            </tr>
+                        @endcan
 					</tbody>
 				</table>
 			</div>
@@ -55,20 +54,15 @@
 				<div class="card-actions float-end">
 
 					<div class="card-actions float-end">
-						@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-							<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
-								data-entity="" data-name="PO#{{ $po->id }}" data-status="Submit"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
-								<i data-lucide="external-link" class="text-white"></i> Submit</a>
-						@else
-							<span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span>
-						@endif
-
-
-
+                        @can('submit', $po)
+                            <a href="{{ route('pos.submit', $po->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
+                                data-entity="" data-name="PO#{{ $po->id }}" data-status="Submit"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
+                                <i data-lucide="external-link" class="text-white"></i> Submit</a>
+                        @else
+                                <span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span>
+                        @endcan
 					</div>
-
-
 				</div>
 				<h5 class="card-title">Approval Status</h5>
 				<h6 class="card-subtitle text-muted">Approval information of Purchase Order.</h6>

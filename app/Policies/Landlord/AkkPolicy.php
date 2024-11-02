@@ -2,14 +2,14 @@
 
 namespace App\Policies\Landlord;
 
-use App\Models\Landlord\Account;
+use App\Models\Landlord\Akk;
 use App\Models\User;
 
 use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
 
-class AccountPolicy
+class AkkPolicy
 {
 	/**
 	 * Perform pre-authorization checks.
@@ -30,18 +30,17 @@ class AccountPolicy
 		//
 	}
 
-	// Only back office users can view all accounts
-	public function viewAll(User $user): bool
+		public function viewAll(User $user): bool
 	{
-		return $user->isSeeded();
+        return false;
 	}
 
 	/**
 	 * Determine whether the user can view the model.
 	 */
-	public function view(User $user, Account $account): bool
+	public function view(User $user, Akk $akk): bool
 	{
-		return (($user->account_id == $account->id) && $user->isAdmin()) || $user->isSeeded();
+        return false;
 	}
 
 	/**
@@ -52,20 +51,34 @@ class AccountPolicy
 		return false;
 	}
 
+    /**
+	 * Determine whether the user can create models.
+	 */
+	public function addon(User $user): bool
+	{
+		return ($user->isAdmin() ||$user->isSeeded());
+	}
+
+    /**
+	 * Determine whether the user can create models.
+	 */
+	public function advance(User $user): bool
+	{
+		return ($user->isAdmin() ||$user->isSeeded());
+	}
+
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function update(User $user, Account $account): bool
+	public function update(User $user, Akk $akk): bool
 	{
-		// editable to its admin user only
-		return ((($user->account_id == $account->id) && $user->isAdmin()) || $user->isSeeded());
-
+        return false;
 	}
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
-	public function delete(User $user, Account $account): bool
+	public function delete(User $user, Akk $akk): bool
 	{
 		return false;
 	}
@@ -74,7 +87,7 @@ class AccountPolicy
     /**
 	 * Determine whether the user can delete the model.
 	 */
-	public function reset(User $user, Account $account): bool
+	public function reset(User $user, Akk $akk): bool
 	{
 		return false;
 	}
@@ -82,7 +95,7 @@ class AccountPolicy
 	/**
 	 * Determine whether the user can restore the model.
 	 */
-	public function restore(User $user, Account $account): bool
+	public function restore(User $user, Akk $akk): bool
 	{
 		//
 	}
@@ -90,7 +103,7 @@ class AccountPolicy
 	/**
 	 * Determine whether the user can permanently delete the model.
 	 */
-	public function forceDelete(User $user, Account $account): bool
+	public function forceDelete(User $user, Akk $akk): bool
 	{
 		//
 	}

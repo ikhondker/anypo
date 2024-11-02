@@ -128,9 +128,10 @@ class Bo
 		// This is the first bill for initial purchase
 		$invoice->invoice_type	= $checkout->invoice_type;
 
-		// TODO invoice_type specific treatment
+		// invoice_type specific treatment
 		// change description for other type of invoice
 		$invoice->summary		= env('APP_DOMAIN'). ' - Your Invoice #'. $invoice->invoice_no;
+
 		switch ($invoice->invoice_type->value) {
 			case InvoiceTypeEnum::SIGNUP->value:
 				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN');

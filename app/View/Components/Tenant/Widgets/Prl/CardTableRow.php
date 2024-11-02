@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class CardTableRow extends Component
 {
+
 	public $prl;
 	//public $status;
 	public $action;

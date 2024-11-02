@@ -21,7 +21,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search configs…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 						</div>
 						@if (request('term'))
@@ -45,14 +45,14 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Entity</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Model</th>
-						<th class="align-middle">Directory</th>
-						<th class="align-middle">Route</th>
-						<th class="align-middle">Enable</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Entity</th>
+						<th>Name</th>
+						<th>Model</th>
+						<th>Directory</th>
+						<th>Route</th>
+						<th>Enable</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -67,21 +67,18 @@
 							<td>{{ $entity->model }}</td>
 							<td>{{ $entity->route }}</td>
 							<td><x-landlord.list.my-enable :value="$entity->enable" /></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('entities.show',$entity->entity) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
-
 								<a href="{{ route('entities.edit',$entity->entity) }}" class="text-body" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View"> <i data-lucide="edit"></i></a>
-							<a href="{{ route('entities.delete', $entity->entity) }}"
-								class="text-body sw2-advance" data-entity="Entiry"
-								data-name="{{ $entity->entity }}"
-								data-status="{{ $entity->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
-								data-bs-placement="top" title="{{ $entity->enable ? 'Disable' : 'Enable' }}">
-								<i data-lucide="{{ $entity->enable ? 'bell-off' : 'bell' }} "></i>
-							</a>
-
-							
+                                <a href="{{ route('entities.delete', $entity->entity) }}"
+                                    class="text-body sw2-advance" data-entity="Entiry"
+                                    data-name="{{ $entity->entity }}"
+                                    data-status="{{ $entity->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="{{ $entity->enable ? 'Disable' : 'Enable' }}">
+                                    <i data-lucide="{{ $entity->enable ? 'bell-off' : 'bell' }} "></i>
+                                </a>
 							</td>
 						</tr>
 					@endforeach

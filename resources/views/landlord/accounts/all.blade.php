@@ -51,14 +51,14 @@
 					<th>Site</th>
 					<th>Site Name</th>
 					<th>Owner</th>
-					<th>Period</th> 
+					<th>Period</th>
 					<th>User</th>
 					<th>Amount</th>
 					<th>Status</th>
 					<th>Billed</th>
 					<th>Last Bill Date</th>
 					<th>Next Inv No</th>
-					
+
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -84,10 +84,10 @@
 						<td><x-landlord.list.my-number :value="$account->price"/>$</td>
 						<td><x-landlord.list.my-badge :value="$account->status->name" badge="{{ $account->status->badge }}" /></td>
 						<td><x-landlord.list.my-enable :value="$account->next_bill_generated" /></td>
-						<td><x-landlord.list.my-date :value="$account->last_bill_date" /></td>
+						<td><x-landlord.list.my-date value="{{ $account->last_bill_date }}" /></td>
 						<td>
 							@if ($account->next_invoice_no <> 0)
-							<a href="{{ route('home.invoice', $account->next_invoice_no) }}" class="text-muted">
+							<a href="{{ route('akk.invoice', $account->next_invoice_no) }}" class="text-muted">
 								#{{ Str::limit($account->next_invoice_no, 10) }}
 							</a>
 							@endif

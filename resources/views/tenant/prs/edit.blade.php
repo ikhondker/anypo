@@ -131,6 +131,7 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="card-actions float-end">
+                            	<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
 								{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
 								<a href="{{ route('prs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 							</div>
@@ -168,7 +169,7 @@
 										</td>
 									</tr>
 
-									
+
 								</tbody>
 							</table>
 
@@ -184,7 +185,7 @@
 				<a class="btn btn-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel" href="{{ route('prs.show',$pr->id) }}"><i data-lucide="x-circle"></i> Cancel</a>
 				<button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Save</button>
 			</div>
-			
+
 	</form>
 	<!-- /.form end -->
 

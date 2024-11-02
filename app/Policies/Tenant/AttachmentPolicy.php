@@ -87,7 +87,7 @@ class AttachmentPolicy
 	 */
 	public function download(User $user): bool
 	{
-		// TODO write logic here does not work
+		// TODOP2 write logic here does not work
 		return true;
 	}
 

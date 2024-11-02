@@ -2,9 +2,9 @@
 	<div class="card-header">
 		<div class="card-actions float-end">
 			<div class="dropdown position-relative">
-				@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+                @can('update', $pr)
 					<a href="{{ route('prls.add-line', $pr->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus-square"></i> Add Line</a>
-				@endif
+			    @endcan
 			</div>
 		</div>
 		<h5 class="card-title">Requisition Lines <span class="badge badge-subtle-primary">{{ $pr->currency }}</span></h5>
@@ -37,9 +37,9 @@
 			<!-- Table footer i.e. Totals -->
 			<tr>
 				<td class="" colspan="3" scope="col">
-					@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+                     @can('update', $pr)
 						<a href="{{ route('prls.add-line', $pr->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
-					@endif
+					@endcan
 				</td>
 				<td class="" colspan="2" scope="col">&nbsp;</td>
 				<td class="text-end" scope="col"><strong>TOTAL ({{ $pr->currency }}) :</strong></td>

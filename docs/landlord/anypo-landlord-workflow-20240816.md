@@ -7,11 +7,18 @@
 5. job->CreateTenant->createCheckoutAccount : Defaulted
 
 
+
+# 8. Tenet creatsion
+==================================================
+1. buy
+2. by =system from backend
+
+
 # 8. Signup/Invoice/Payment/Addon/Advance Flow
 ==================================================
 0. Overall: event -> AkkController -> checkout -> stripe -> success -> job
 
-1. InvoiceTypeEnum::SIGNUP->value:
+1. InvoiceTypeEnum::SIGNUP->value: (called from 2 places)
         -landlord.pages.checkout.blade.php -> route('akk.process-signup') -> 
 		- AkkController.success - jobs.CreateTenant -> 
         -> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice

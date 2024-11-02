@@ -35,13 +35,21 @@ class CpController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
+	public function index()
+	{
+		return view('landlord.manage.cps.index');
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
 	public function changeLog()
 	{
 		//$this->authorize('viewAny',Oem::class);
 		return view('landlord.manage.cps.changelog');
 	}
 
-/**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function codeGen()
@@ -49,14 +57,22 @@ class CpController extends Controller
 		//$this->authorize('viewAny',Oem::class);
 		return view('landlord.manage.cps.codegen');
 	}
-
 	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function ui()
+	{
+		return view('landlord.manage.ui');
+	}
+
+/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function resetAccEndDate()
 	{
-		//
+
 	}
+
 
 	/**
 	 * Show the form for creating a new resource.

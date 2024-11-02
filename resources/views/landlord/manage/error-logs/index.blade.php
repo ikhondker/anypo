@@ -22,7 +22,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search errors…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 						</div>
 						@if (request('term'))
@@ -46,15 +46,14 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-
-					<th class="align-middle">#</th>
-						<th class="align-middle">Tenant</th>
-						<th class="align-middle">URL</th>
-						<th class="align-middle">Type</th>
-						<th class="align-middle">Date</th>
-						<th class="align-middle">User</th>
-						<th class="align-middle">Status</th>
-						<th class="align-middle text-end">Actions</th>
+                        <th>#</th>
+                        <th>Tenant</th>
+                        <th>URL</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Status</th>
+                        <th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,12 +72,11 @@
 							<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($errorLog->created_at))) }}</td>
 							<td>{{ $errorLog->user_id }}</td>
 							<td><x-landlord.list.my-badge :value="$errorLog->status" /></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('error-logs.show',$errorLog->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 									<a href="{{ route('error-logs.edit',$errorLog->id) }}" class="text-body" data-bs-toggle="tooltip"
 										data-bs-placement="top" title="View"> <i data-lucide="edit"></i></a>
-
 							</td>
 						</tr>
 					@endforeach

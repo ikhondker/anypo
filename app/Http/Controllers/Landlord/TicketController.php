@@ -151,13 +151,14 @@ class TicketController extends Controller
 
 		$request->merge([
 			//'ticket_number' => Str::uuid()->toString(),
-			'ticket_date'	=> date('Y-m-d H:i:s'),
-			'status_code'	=> TicketStatusEnum::NEW->value,
-			'owner_id'		=> $owner_id,
-			'account_id'	=> $account_id,
-			'dept_id'		=> '1001',
-			'priority_id'	=> '1001',
-			'ip'			=> $request->ip()
+			'ticket_date'		=> date('Y-m-d H:i:s'),
+			'status_code'		=> TicketStatusEnum::NEW->value,
+			'owner_id'			=> $owner_id,
+			'account_id'		=> $account_id,
+			'dept_id'			=> '1001',
+			'priority_id'		=> '1001',
+			'last_message_at'	=> date('Y-m-d H:i:s'),
+			'ip'				=> $request->ip()
 		]);
 
 		// Create Ticket

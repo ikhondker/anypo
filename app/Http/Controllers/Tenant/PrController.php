@@ -266,17 +266,17 @@ class PrController extends Controller
 	public function edit(Pr $pr)
 	{
 
-		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You can not edit a Requisition with status '. strtoupper($pr->auth_status) .' !');
-		}
+		// if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
+		// 	return redirect()->route('prs.show',$pr->id)->with('error', 'You can not edit a Requisition with status '. strtoupper($pr->auth_status) .' !');
+		// }
 
 		$this->authorize('update', $pr);
 
-		$depts = Dept::primary()->get();
+		$depts  	= Dept::primary()->get();
 
-		$suppliers = Supplier::primary()->get();
-		$projects = Project::primary()->get();
-		$users = User::tenant()->get();
+		$suppliers 	= Supplier::primary()->get();
+		$projects 	= Project::primary()->get();
+		$users 		= User::tenant()->get();
 
 		$prls = Prl::with('item')->with('uom')->where('pr_id', $pr->id)->get()->all();
 
@@ -466,10 +466,6 @@ class PrController extends Controller
 	{
 
 		$this->authorize('submit', $pr);
-
-		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only submit if Requisition status is '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
-		}
 
 		if ($pr->amount == 0) {
 			return redirect()->route('prs.show',$pr->id)->with('error', 'You cannot submit zero value Requisition.');

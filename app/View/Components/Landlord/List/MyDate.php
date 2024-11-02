@@ -14,7 +14,7 @@ class MyDate extends Component
 	 *
 	 * @return void
 	 */
-	public function __construct(public string $value)
+	public function __construct(public string $value='')
 	{
 		//$this->value = $value;
 	}

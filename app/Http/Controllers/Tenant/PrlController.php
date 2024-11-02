@@ -180,6 +180,7 @@ class PrlController extends Controller
 	{
 
 		$this->authorize('update', $prl);
+
 		// Write Event Log
 		//LogEvent('template',$template->id,'edit','template',$template->id);
 

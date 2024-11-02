@@ -7,7 +7,7 @@
 
 @section('content')
 
-	
+
 	<h1 class="h3 mb-3">All Comments</h1>
 
 	<div class="card">
@@ -49,8 +49,8 @@
 						<th>Attachment</th>
 						<th>Internal?</th>
 						<th>Comment By</th>
+						<th>Comment Date</th>
 						<th>Ticket</th>
-						<th>Ticket Date</th>
 						<th>Ticket Status</th>
 						<th>Actions</th>
 					</tr>
@@ -70,6 +70,7 @@
 							<td><x-landlord.attachment.show-by-id id="{{ $comment->attachment_id }}"/></td>
 							<td><x-landlord.list.my-enable :value="$comment->is_internal" /></td>
 							<td>{{ $comment->owner->name }}</td>
+							<td>{{ Carbon\Carbon::parse($comment->ticket->ticket_date)->ago() }}</td>
 							<td>
 								<a href="{{ route('tickets.show', $comment->ticket_id) }}" class="text-muted">
 									<strong>{{ Str::limit($comment->ticket->title, 45) }}</strong>
@@ -77,7 +78,6 @@
 								<br>
 								<span class="small text-muted">{{ $comment->ticket->owner->name }}</span>
 							</td>
-							<td>{{ Carbon\Carbon::parse($comment->ticket->ticket_date)->ago() }}</td>
 							<td>
 								<x-landlord.list.my-badge value="{{ $comment->ticket->status->name }}" badge="{{ $comment->ticket->status->badge }}"/>
 							</td>

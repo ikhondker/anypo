@@ -195,6 +195,10 @@ php artisan make:component Tenant\Show\MyUpdatedAt
 php artisan make:component Tenant\Show\ArticleLink
 php artisan make:component Tenant\Show\ProjectLink
 
+# 13. Workflow
+-------------------------------------------------------------------------------------------------
+php artisan make:component Tenant\Wf\PrApprovalHistory
+php artisan make:component Tenant\Wf\PoApprovalHistory
 
 # 13. Form top Drop-down Actions 
 -------------------------------------------------------------------------------------------------

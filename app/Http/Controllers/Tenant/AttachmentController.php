@@ -172,34 +172,32 @@ class AttachmentController extends Controller
 		// Write to Log
 		EventLog::event('attachment', $attachment->id, 'update', 'summary', $request->summary);
 		$attachment->update($request->all());
-		// TODO redirect to parent document attah list
 
 		$msg = 'Attachment information updated successfully';
-
 		switch ($attachment->entity) {
 			case EntityEnum::BUDGET->value:
-				return redirect()->route('budgets.show',$attachment->article_id)->with('success', $msg );
+				return redirect()->route('budgets.attachments',$attachment->article_id)->with('success', $msg );
 				break;
 			case EntityEnum::DEPTBUDGET->value:
-				return redirect()->route('dept-budgets.show',$attachment->article_id)->with('success', $msg );
+				return redirect()->route('dept-budgets.attachments',$attachment->article_id)->with('success', $msg );
 				break;
 			case EntityEnum::PR->value:
-				return redirect()->route('prs.show',$attachment->article_id)->with('success', $msg );
+				return redirect()->route('prs.attachments',$attachment->article_id)->with('success', $msg );
 				break;
 			case EntityEnum::PO->value:
-				return redirect()->route('pos.show',$attachment->article_id)->with('success', $msg );
+				return redirect()->route('pos.attachments',$attachment->article_id)->with('success', $msg );
 				break;
 			case EntityEnum::PROJECT->value:
-				return redirect()->route('projects.show',$attachment->article_id)->with('success', $msg );
+				return redirect()->route('projects.attachments',$attachment->article_id)->with('success', $msg );
 				break;
 			case EntityEnum::RECEIPT->value:
-				return redirect()->route('receipts.show',$attachment->article_id)->with('success', $msg );
+				return redirect()->route('receipts.attachments',$attachment->article_id)->with('success', $msg );
 				break;
 			case EntityEnum::INVOICE->value:
-				return redirect()->route('invoices.show',$attachment->article_id)->with('success', $msg );
+				return redirect()->route('invoices.attachments',$attachment->article_id)->with('success', $msg );
 				break;
 			case EntityEnum::PAYMENT->value:
-				return redirect()->route('payments.show',$attachment->article_id)->with('success', $msg );
+				return redirect()->route('payments.attachments',$attachment->article_id)->with('success', $msg );
 				break;
 			default:
 				return redirect()->route('dashboard.index')->with('success', $msg);
@@ -211,7 +209,7 @@ class AttachmentController extends Controller
 	 */
 	public function destroy(Attachment $attachment)
 	{
-		// TODO need to delete actual file form aws
+		// TODOP2 need to delete actual file form aws
 		$this->authorize('delete', $attachment);
 
 		switch ($attachment->entity) {
@@ -289,7 +287,7 @@ class AttachmentController extends Controller
 
 	public function download(Attachment $attachment)
 	{
-		// TODO check
+		// TODOP2 check
 		$this->authorize('download', Attachment::class);
 
 		Log::debug('tenant.attachments.download Value of attachment_id = '. $attachment->id);

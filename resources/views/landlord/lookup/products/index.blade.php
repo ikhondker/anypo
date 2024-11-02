@@ -76,7 +76,6 @@
 								<i data-lucide="check-circle" class="{{$product->addon ? 'text-success' : 'text-secondary' }}"
 									data-bs-toggle="tooltip" data-bs-placement="top"
 									title="addon"></i>
-
 							</td>
 							<td class="text-end"><x-landlord.list.my-integer :value="$product->mnth" /></td>
 							<td class="text-end">{{ $product->user }}</td>
@@ -87,16 +86,14 @@
 							<td>
 								<a href="{{ route('products.show',$product->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
-									<a href="{{ route('products.edit',$product->id) }}" class="text-body" data-bs-toggle="tooltip"
-										data-bs-placement="top" title="Edit"><i data-lucide="edit"></i></a>
-
-									<a href="{{ route('products.delete', $product->id) }}"
-										class="text-body sw2-advance" data-entity="Product"
-										data-name="{{ $product->name }}"
-										data-status="{{ $product->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
-										data-bs-placement="top" title="{{ $product->enable ? 'Disable' : 'Enable' }}">
-										<i data-lucide="{{ $product->enable ? 'bell-off' : 'bell' }} "></i>
-									</a>
+								<a href="{{ route('products.edit',$product->id) }}" class="text-body" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="Edit"><i data-lucide="edit"></i></a>
+								<a href="{{ route('products.delete', $product->id) }}"
+                                    class="text-body sw2-advance" data-entity="Product"
+                                    data-name="{{ $product->name }}"
+                                    data-status="{{ $product->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="{{ $product->enable ? 'Disable' : 'Enable' }}">
+                                    <i data-lucide="{{ $product->enable ? 'bell-off' : 'bell' }} "></i></a>
 							</td>
 						</tr>
 					@endforeach

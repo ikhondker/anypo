@@ -25,7 +25,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search countries…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 						</div>
 						@if (request('term'))
@@ -49,11 +49,11 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Code</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Enable</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Enable</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -69,7 +69,7 @@
 								</a>
 							</td>
 							<td><x-landlord.list.my-enable :value="$country->enable" /></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('countries.show',$country->country) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 

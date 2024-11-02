@@ -53,7 +53,7 @@
 						<th>Invoice #</th>
 						<th>Amount $</th>
 						<th>Status</th>
-						<th class="text-end">Actions</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,14 +73,14 @@
 							<td>{{ $payment->invoice->invoice_no }}</td>
 							<td><x-landlord.list.my-number :value="$payment->amount" /></td>
 							<td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 
 								<a href="{{ route('reports.pdf-payment', $payment->id) }}" class="text-body" target="_blank"
 									target="_blank" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="Download"><i data-lucide="download"></i></a>
-										
+
 							</td>
 						</tr>
 					@endforeach

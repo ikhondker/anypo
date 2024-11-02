@@ -280,17 +280,13 @@ class PaymentController extends Controller
 		return view('tenant.payments.show', compact('payment'));
 	}
 
-
 	public function ael(Payment $payment)
 	{
 		$this->authorize('view', $payment);
-		// TODO single query
-		$invoice = Invoice::where('id', $payment->invoice_id)->get()->firstOrFail();
-		$po = Po::where('id', $invoice->po_id)->get()->firstOrFail();
-		return view('tenant.payments.ael', compact('po','payment'));
+		//$invoice = Invoice::where('id', $payment->invoice_id)->get()->firstOrFail();
+		//$po = Po::where('id', $invoice->po_id)->get()->firstOrFail();
+		return view('tenant.payments.ael', compact('payment'));
 	}
-
-
 
 	/**
 	 * Show the form for editing the specified resource.

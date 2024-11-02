@@ -254,8 +254,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'notifications.edit', 'route_name' => 'notifications.index', 'node_name' 	=> 'system'],
 			[ 'raw_route_name' => 'notifications.create','route_name'=> 'notifications.index', 'node_name' 	=> 'system'],
 
-			[ 'raw_route_name' => 'cps.changelog','route_name' 		=> 'cps.changelog', 	'node_name'		=> 'system'],
-			[ 'raw_route_name' => 'cps.codegen','route_name' 		=> 'cps.codegen', 'node_name' 			=> 'system'],
+            [ 'raw_route_name' => 'cps.index','route_name' 			    => 'cps.index', 'node_name' 		=> 'system'],
+            [ 'raw_route_name' => 'cps.changelog','route_name' 			=> 'cps.index', 'node_name' 	=> 'system'],
+            [ 'raw_route_name' => 'cps.ui','route_name' 				=> 'cps.index', 'node_name'			=> 'system'],
+            [ 'raw_route_name' => 'cps.codegen','route_name' 			=> 'cps.index', 'node_name' 	    => 'system'],
 
 			[ 'raw_route_name' => 'ui',			'route_name' 		=> 'ui',	'node_name' 				=> 'system'],
 

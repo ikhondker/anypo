@@ -54,7 +54,24 @@ class PrPolicy
 	 */
 	public function submit(User $user, Pr $pr): bool
 	{
-		return ($pr->auth_status == AuthStatusEnum::DRAFT->value);
+        // only requester can submit own draft and rejected PR
+        if ($user->id <> $pr->requestor_id) {
+			return false;
+        } elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
+			return true;
+		} elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
+			return true;
+		} else {
+			return ( false ) ;
+		}
+
+        // if ($pr->auth_status == AuthStatusEnum::DRAFT->value ) {
+		// 	return ($user->id == $pr->requestor_id);
+        // } elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
+		// 	return ($user->id == $pr->requestor_id);
+		// } else {
+		// 	return ( false ) ;
+		// }
 	}
 
 
@@ -71,20 +88,32 @@ class PrPolicy
 	 */
 	public function update(User $user, Pr $pr): bool
 	{
-		// owner, manager, hod, admin and system can view PR
-		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value ) {
+        // only requester can edit draft and rejected PR
+        if ($user->id <> $pr->requestor_id) {
 			return false;
-		} elseif ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+        } elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
 			return true;
-		} elseif ($user->role->value == UserRoleEnum::USER->value) {
-			return ($user->id == $pr->requestor_id);
-		} elseif ($user->role->value == UserRoleEnum::HOD->value) {
-			return ($user->dept_id == $pr->dept_id);
+		} elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
+			return true;
 		} else {
 			return ( false ) ;
 		}
 
+		// owner, manager, hod, admin and system can view PR in draft and rejected status
+		// if (($pr->auth_status <> AuthStatusEnum::DRAFT->value ) && ($pr->auth_status <> AuthStatusEnum::REJECTED->value ) ) {
+		// 	return false;
+        // } elseif ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+		// 	return true;
+		// } elseif ($user->role->value == UserRoleEnum::USER->value) {
+		// 	return ($user->id == $pr->requestor_id);
+		// } elseif ($user->role->value == UserRoleEnum::HOD->value) {
+		// 	return ($user->dept_id == $pr->dept_id);
+		// } else {
+		// 	return ( false ) ;
+		// }
+
 	}
+
 
 	/**
 	 * Determine whether the user can delete the model.

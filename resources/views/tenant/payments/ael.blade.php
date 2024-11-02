@@ -24,7 +24,5 @@
 
 	<x-tenant.ael.ael-for-payment paymentId="{{ $payment->id }}"/>
 
-
-
 @endsection
 

@@ -22,7 +22,7 @@
 							value="{{ old('term', request('term')) }}" id="term"
 							placeholder="Search attachments…" required>
 						<button class="btn" type="submit">
-							<i class="align-middle" data-lucide="search"></i>
+							<i data-lucide="search"></i>
 						</button>
 					</div>
 					@if (request('term'))
@@ -47,13 +47,13 @@
 			<thead>
 				<tr>
 
-					<th class="align-middle">#</th>
-					<th class="align-middle">Entity</th>
-					<th class="align-middle">Article ID</th>
-					<th class="align-middle">Date</th>
+					<th>#</th>
+					<th>Entity</th>
+					<th>Article ID</th>
+					<th>Date</th>
 					<th class="text-end">Size</th>
-					<th class="align-middle">File</th>
-					<th class="align-middle text-end">Actions</th>
+					<th>File</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -71,7 +71,7 @@
 						<td><x-landlord.list.my-date :value="$attachment->upload_date"/></td>
 						<td class="text-end">{{ number_format($attachment->file_size / 1048576,2) }}</td>
 						<td><x-landlord.attachment.show-by-id id="{{ $attachment->id }}"/></td>
-						<td class="text-end">
+						<td>
 							<a href="{{ route('attachments.show',$attachment->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>
 							<a href="{{ route('attachments.edit',$attachment->id) }}" class="text-body" data-bs-toggle="tooltip"

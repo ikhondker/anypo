@@ -1,4 +1,4 @@
-@extends('layouts.tenant.app')
+@extends('layouts.landlord.app')
 @section('title','Dept')
 
 @section('breadcrumb')
@@ -58,7 +58,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>1</td>
+						<td>2</td>
 						<td>UI </td>
 						<td>UI </td>
 						<td>
@@ -68,21 +68,21 @@
 						</td>
 					</tr>
 					<tr>
-						<td>2</td>
+						<td>3</td>
 						<td>Code Generation * </td>
 						<td>Code Generation </td>
 						<td>
-							<a href="{{ route('home') }}" class="btn btn-light"
+							<a href="{{ route('cps.codegen') }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">Run
 							</a>
 						</td>
 					</tr>
 					<tr>
-						<td>3</td>
-						<td>Check Created By </td>
-						<td>Check Created By </td>
+						<td>4</td>
+						<td>Empty</td>
+						<td>Empty</td>
 						<td>
-							<a href="{{ route('cps.timestamp') }}" class="btn btn-light"
+							<a href="{{ route('home') }}" class="btn btn-light sw2"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">Run
 							</a>
 						</td>

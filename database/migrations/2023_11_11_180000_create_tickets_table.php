@@ -35,6 +35,7 @@ return new class extends Migration
 			/** end ENUM */
 			//$table->boolean('is_answered')->default(false);
 			$table->integer('sla')->nullable()->index('sla');
+            $table->dateTime('first_response_at')->nullable();
 			$table->dateTime('due_date')->nullable();
 			$table->boolean('is_overdue')->default(false);
 			$table->boolean('closed')->default(false);
@@ -45,7 +46,7 @@ return new class extends Migration
 			$table->boolean('follow_up')->default(false);
 			$table->dateTime('reviewed_at')->nullable();
 			$table->foreignUuid('reviewed_by')->nullable()->constrained('users');
-			$table->boolean('source_change_needed')->default(false);
+			$table->boolean('cr_needed')->default(false);
 			$table->dateTime('last_message_at')->nullable();
 			$table->dateTime('last_response_at')->nullable();
 			$table->biginteger('link_ticket_id')->nullable();

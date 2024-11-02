@@ -396,13 +396,15 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	/* ======================== Account ======================================== */
 	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.delete');
+    Route::get('/accounts/reset/{account}',[AccountController::class,'reset'])->name('accounts.reset');
 
 	/* ======================== Cp ======================================== */
 	Route::resource('cps', CpController::class);
 	Route::get('/cp/changelog',[CpController::class,'changeLog'])->name('cps.changelog');
 	Route::get('/cp/codegen',[CpController::class,'codeGen'])->name('cps.codegen');
-	//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
+    Route::get('/cp/ui',[CpController::class,'ui'])->name('cps.ui');
 
+	//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
 
     /* ======================== Invoice ======================================== */
     Route::get('/invoices/pwop/{invoice}',[InvoiceController::class,'pwop'])->name('invoices.pwop');
@@ -488,9 +490,9 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	})->name('test');
 
-	Route::get('/ui', function () {
-		return view('landlord.manage.ui');
-	})->name('ui');
+	// Route::get('/ui', function () {
+	// 	return view('landlord.manage.ui');
+	// })->name('ui');
 
 	Route::get('/sweet2', function () {
 		return view('landlord.tests.sweet2');

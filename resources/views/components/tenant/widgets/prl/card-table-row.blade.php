@@ -11,7 +11,7 @@
 	<td class="text-end"><x-tenant.list.my-number :value="$prl->amount"/></td>
 	@if ($action)
 		<td class="">
-			@if ($prl->pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+            @can('update', $prl)
 				<a href="{{ route('prls.edit',$prl->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 					<i class="align-middle" data-lucide="edit"></i></a>
 				<a href="{{ route('prls.destroy',$prl->id) }}" class="text-muted sw2-advance"
@@ -19,7 +19,7 @@
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 					<i class="align-middle" data-lucide="trash-2"></i>
 				</a>
-			@endif
+		    @endcan
 		</td>
 	@endif
 </tr>

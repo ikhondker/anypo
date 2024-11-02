@@ -4,9 +4,9 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('reports.pr', $pr->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
-					@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+                    @can('update', $pr)
 						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-					@endif
+					@endcan
 				</div>
 				<h5 class="card-title">Basic Information for PR#{{ $pr->id }}</h5>
 				<h6 class="card-subtitle text-muted">Key information of a Purchase Requisitions</h6>
@@ -33,14 +33,15 @@
 						<x-tenant.show.my-text		value="{{ $pr->project->name }}" label="Project"/>
 						<x-tenant.show.my-text		value="{{ $pr->supplier->name }}" label="Supplier"/>
 						<x-tenant.show.my-text-area	value="{{ $pr->notes }}" label="Notes"/>
-						<tr>
-							<th>&nbsp;</th>
-							<td>
-								@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-									<x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
-								@endif
-							</td>
-						</tr>
+                         @can('update', $pr)
+                            <tr>
+                                <th>&nbsp;</th>
+                                <td>
+                                        <x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
+                                </td>
+                            </tr>
+					    @endcan
+
 					</tbody>
 				</table>
 			</div>
@@ -50,16 +51,15 @@
 	<div class="col-6">
 		<div class="card">
 			<div class="card-header">
-
 				<div class="card-actions float-end">
-					@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+                    @can('submit', $pr)
 						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
 							data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
 							<i data-lucide="external-link" class="text-white"></i> Submit</a>
 					@else
 						<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
-					@endif
+					@endcan
 				</div>
 				<h5 class="card-title">Approval Status</h5>
 				<h6 class="card-subtitle text-muted">Approval information of Purchase Requisition.</h6>

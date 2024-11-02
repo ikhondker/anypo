@@ -22,7 +22,7 @@
 								value="{{ old('term', request('term')) }}" id="term"
 								placeholder="Search menus…" required>
 							<button class="btn" type="submit">
-								<i class="align-middle" data-lucide="search"></i>
+								<i data-lucide="search"></i>
 							</button>
 						</div>
 						@if (request('term'))
@@ -46,11 +46,11 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Menu Name</th>
-						<th class="align-middle">Menu</th>
-						<th class="align-middle">Enable</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Menu Name</th>
+						<th>Menu</th>
+						<th>Enable</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -66,7 +66,7 @@
 							</td>
 							<td>{{ $menu->route_name }} </td>
 							<td><x-landlord.list.my-enable :value="$menu->enable" /></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('menus.show',$menu->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
 								<a href="{{ route('menus.edit',$menu->id) }}" class="text-body" data-bs-toggle="tooltip"

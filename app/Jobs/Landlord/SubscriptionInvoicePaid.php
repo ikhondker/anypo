@@ -59,13 +59,14 @@ class SubscriptionInvoicePaid implements ShouldQueue
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
 		$checkout->status_code = CheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
+
 		Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 0. Processing Site = '.$checkout->site);
         Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 0. Processing invoice_id = '.$checkout->invoice_id);
 
        // pay this invoice and notify
         // pay this invoice and notify
 		// TODO check if payment is successful
-		Log::debug('Jobs.Landlord.AddAdvance 3. Calling payCheckoutInvoice');
+		Log::debug('Jobs.Landlord.AddAdvance 1. Calling bo::payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
 
 		// $payment						= new Payment;
@@ -94,8 +95,16 @@ class SubscriptionInvoicePaid implements ShouldQueue
 
 		// extend account validity and end_date
         // create payment from invoice
-		Log::debug('jobs.Landlord.SubscriptionInvoicePaid calling extendAccountValidity for invoice_id = ' .$checkout->invoice_id);
+        Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 1. Calling bo::extendAccountValidity');
+		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
 		$account_id= bo::extendAccountValidity($checkout->invoice_id);
+
+
+        // mark checkout as complete
+		$checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
+		$checkout->update();
+		Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 4. Done');
+
 
 	}
 }

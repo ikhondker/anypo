@@ -65,6 +65,7 @@ use App\Jobs\Landlord\AddAddon;
 # 11. Controller
 # 12. Seeded
 use Str;
+use DB;
 use Image;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -85,12 +86,9 @@ class AccountController extends Controller
 	 */
 	public function index()
 	{
-		$this->authorize('viewAll', Account::class);
-
-		$accounts = Account::with('status')->with('owner')->byAccount()->orderBy('id', 'DESC')->paginate(10);
-		//$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
-
-		return view('landlord.accounts.index', compact('accounts'));
+		//$this->authorize('viewAll', Account::class);
+		//$accounts = Account::with('status')->with('owner')->byAccount()->orderBy('id', 'DESC')->paginate(10);
+		//return view('landlord.accounts.index', compact('accounts'));
 	}
 
 	/**
@@ -241,6 +239,33 @@ class AccountController extends Controller
 		Log::channel('bo')->info('User Deleted = ' . $result);
 
 		return redirect()->route('accounts.index')->with('success', 'Account Deleted successfully');
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param \App\Models\Account $account
+	 * @return \Illuminate\Http\Response
+	 */
+	public function reset(Account $account)
+	{
+
+		$this->authorize('reset', $account);
+
+        $account_id = $account->id;
+		Log::debug('landlord.AccountController.resets reset account_id = '. $account_id);
+		$sql= "
+		UPDATE accounts SET
+			start_date = DATE_SUB(curdate(), INTERVAL 1 MONTH),
+            end_date = curdate(),
+            next_bill_generated = false, next_invoice_no = null,
+            last_bill_date = DATE_SUB(curdate(), INTERVAL 1 MONTH)
+			WHERE id = ".$account_id.";
+		";
+		//Log::debug('landlord.AccountController.resets reset  sql = '. $sql);
+		DB::statement($sql);
+		return redirect()->route('accounts.all')->with('success', 'Account Reset.');
 	}
 
 	public function export()

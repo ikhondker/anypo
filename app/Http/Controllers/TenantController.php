@@ -109,7 +109,7 @@ class TenantController extends Controller
 		}
 		if ($checkout->status_code == CheckoutStatusEnum::DRAFT->value) {
 			Log::debug('landlord.home.success checkout_id = '. $checkout->id);
-			CreateTenant::dispatch($checkout->id); // TODO uncomment
+			CreateTenant::dispatch($checkout->id);
 		}
 		return redirect()->route('tenants.index')->with('success', 'Tenant '.$request->input('site').' created successfully.');
 	}

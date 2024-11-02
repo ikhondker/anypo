@@ -21,6 +21,9 @@ x128. adding default T&C text in PO line break check
 x127. add start and end action date in wlfl 
 x154. export file name add export
 
+disbale prl/pol edit by policy
+117. reject/resubmit pr/po
+        policy/header/lines/
 131. ListAllLines and CardTableRow with status-true/false
 130. $e->getMessage()
 129. DASC - decimal-rev attahment-sourcdepbudid-? cllose po/pr/invice/pol/
