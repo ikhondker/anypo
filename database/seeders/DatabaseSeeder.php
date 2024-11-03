@@ -10,18 +10,18 @@ class DatabaseSeeder extends Seeder
 	/**
 	 * Seed the application's database.
 	 */
-	public function run(): void 
+	public function run(): void
 	{
 
 		/*
 		|-----------------------------------------------------------------------------
-		| Landlord																	 + 
+		| Landlord																	 +
 		|-----------------------------------------------------------------------------
 		*/
 		$this->call(\Database\Seeders\Landlord\UserSeeder::class);
 		$this->call(\Database\Seeders\Landlord\MenuSeeder::class);
 		$this->call(\Database\Seeders\Landlord\StatusSeeder::class);
-		
+
 		$this->call(\Database\Seeders\Landlord\EntitySeeder::class);
 		// Make sure ConfigSeeder runs after UserSeeder as system_user_id will be generated
 		$this->call(\Database\Seeders\Landlord\ConfigSeeder::class);
@@ -32,11 +32,12 @@ class DatabaseSeeder extends Seeder
 		$this->call(\Database\Seeders\Landlord\RatingSeeder::class);
 		$this->call(\Database\Seeders\Landlord\PaymentMethodSeeder::class);
 		$this->call(\Database\Seeders\Landlord\ProductSeeder::class);
+        $this->call(\Database\Seeders\Landlord\TopicSeeder::class);
 
 		// // Note:
 		$this->call(\Database\Seeders\Share\TemplateSeeder::class);
 
-		// TODO don't run in live
+		// don't run in live
 		// $this->call(\Database\Seeders\Landlord\ContactSeeder::class);
 		//$this->call(\Database\Seeders\Landlord\AccountSeeder::class);
 		//$this->call(\Database\Seeders\Landlord\TicketSeeder::class);
@@ -46,7 +47,7 @@ class DatabaseSeeder extends Seeder
 
 		/*
 		|-----------------------------------------------------------------------------
-		| Example																	 + 
+		| Example																	 +
 		|-----------------------------------------------------------------------------
 		*/
 

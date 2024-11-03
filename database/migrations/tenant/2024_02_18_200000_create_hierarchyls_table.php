@@ -14,7 +14,7 @@ return new class extends Migration
 		Schema::create('hierarchyls', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->foreignId('hid')->constrained('hierarchies');
-			$table->integer('sequence')->default(10);	// TODO P2
+			$table->integer('sequence')->default(10);
 			$table->foreignUuid('approver_id')->constrained('users');
 			$table->boolean('enable')->default(true); 	// Not Used
 			$table->softDeletes();

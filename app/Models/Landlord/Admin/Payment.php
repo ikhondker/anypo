@@ -46,12 +46,12 @@ class Payment extends Model
 	];
 
 	protected $casts = [
-		'pay_date'		=> 'datetime',
-		'updated_at'	=> 'datetime',
-		'created_at'	=> 'datetime',
+		'pay_date'		        => 'datetime',
+		'updated_at'			=> 'datetime',
+		'created_at'			=> 'datetime',
+		'payment_method_code' 	=> PaymentMethodEnum::class,
 		// DO NOT CAST. eager loading shows error
 		//'status_code'	=> PaymentStatusEnum::class,
-		// TODO 'payment_method_code' => PaymentMethodEnum::class,
 	];
 
 	/* ---------------- Scope ---------------------- */

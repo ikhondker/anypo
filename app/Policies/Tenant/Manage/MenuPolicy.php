@@ -18,7 +18,7 @@ class MenuPolicy
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -88,8 +88,6 @@ class MenuPolicy
 	 */
 	public function viewWorkbenchMenu(User $user): bool
 	{
-		// TODO MUST 
-		//return true;
 		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
@@ -98,8 +96,6 @@ class MenuPolicy
 	 */
 	public function viewBudgetMenu(User $user): bool
 	{
-		// TODO MUST 
-		//return true;
 		return ( $user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() );
 	}
 
@@ -108,8 +104,6 @@ class MenuPolicy
 	 */
 	public function viewReportMenu(User $user): bool
 	{
-		// TODO MUST 
-		//return true;
 		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 

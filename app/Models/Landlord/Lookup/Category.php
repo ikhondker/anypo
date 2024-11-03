@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord\Lookup
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 // IQBAL 27-SEP-22
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
+use App\Models\Landlord\Ticket;
 
 class Category extends Model
 {
@@ -33,7 +34,7 @@ class Category extends Model
 		protected $fillable = [
 			'name', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
 		];
-	
+
 		/**
 		 * The attributes that should be cast.
 		 *
@@ -45,9 +46,13 @@ class Category extends Model
 		];
 
 	/* ---------------- Scope ---------------------- */
-	
-	
+
+
 	/* ---------------- HasMany ---------------------- */
+	public function tickets()
+	{
+		return $this->hasMany(Ticket::class);
+	}
 
 
 	/* ---------------- belongsTo ---------------------- */

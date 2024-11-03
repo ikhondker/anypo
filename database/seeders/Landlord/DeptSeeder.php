@@ -32,6 +32,6 @@ class DeptSeeder extends Seeder
 						'name' => 'Support',
 					],
 				];
-				Dept::insert($depts);
+			Dept::insert($depts);
 		}
 }

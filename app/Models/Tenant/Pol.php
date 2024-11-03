@@ -43,9 +43,7 @@ class Pol extends Model
 	*/
 	public function scopexxReceiptDue(Builder $query): void
 	{
-		//TODO
-		$query->where('closure_status',ClosureStatusEnum::OPEN->value);
-		//->where('received_qty','<','qty');
+			$query->where('closure_status',ClosureStatusEnum::OPEN->value);
 	}
 
 	/**

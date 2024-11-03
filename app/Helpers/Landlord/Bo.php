@@ -204,16 +204,16 @@ class Bo
 		Log::debug('Helpers.landlord.bo.payCheckoutInvoice Invoice for account_id = ' . $invoice->account_id);
 
 		// create payment
-		$payment					= new Payment();
-		$payment->summary			= 'Payment for Invoice #' . $invoice->invoice_no;
-		$payment->pay_date			= now();
-		$payment->invoice_id		= $invoice->id;
-		$payment->account_id		= $invoice->account_id;
-		$payment->owner_id			= $invoice->owner_id; // Might be guest as well
+		$payment					    = new Payment();
+		$payment->summary			    = 'Payment for Invoice #' . $invoice->invoice_no;
+		$payment->pay_date			    = now();
+		$payment->invoice_id		    = $invoice->id;
+		$payment->account_id		    = $invoice->account_id;
+		$payment->owner_id			    = $invoice->owner_id; // Might be guest as well
 		$payment->payment_method_code	= PaymentMethodEnum::CARD->value;
-		$payment->amount			= $invoice->amount;
-		$payment->status_code		= PaymentStatusEnum::PAID->value;
-		//$payment->ip				= $request->ip(); // ERROR
+		$payment->amount				= $invoice->amount;
+		$payment->status_code			= PaymentStatusEnum::PAID->value;
+		//$payment->ip					= $request->ip(); // ERROR
 		$payment->save();
 
 		Log::debug('Helpers.landlord.bo.payCheckoutInvoice payment account_id = ' . $payment->account_id);

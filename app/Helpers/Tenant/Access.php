@@ -52,14 +52,14 @@ class Access
 
 		$attachment = Attachment::where('id', $attId)->get()->firstOrFail();
 
-		// TODO fine tuning access edit and delete
+		// TODOP2 fine tuning access edit and delete
 		// Restriction
 		// document to be draft or non closed
 		// owner and admin can can only edit if editable
-		// also check ListAllByArticle Component
+		// TODOP2 also check ListAllByArticle Component
 
 		$editable		= false;
-		Log::debug(tenant('id'). ' tenant.Access.isAttachmentEditable article_id = '. $attachment->article_id);
+		Log::debug('tenant.Access.isAttachmentEditable article_id = '. $attachment->article_id);
 
 		switch ($attachment->entity) {
 

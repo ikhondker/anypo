@@ -81,6 +81,7 @@ class TicketPolicy
 	 */
 	public function create(User $user): bool
 	{
+        // anyone can create a ticket
 		return true;
 	}
 
@@ -90,10 +91,22 @@ class TicketPolicy
 	public function update(User $user, Ticket $ticket): bool
 	{
 		// only back office user can edit non closed ticket
-		//return ($user->isSeeded() && ($ticket->status_code <> TicketStatusEnum::CLOSED->value));
+		return ($user->isSeeded() && ($ticket->status_code <> TicketStatusEnum::CLOSED->value));
 		//return ($user->isSeeded() && ! $ticket->isClosed());
 		// anyone can close a ticket
+		//return (! $ticket->isClosed());
+	}
+
+    public function close(User $user, Ticket $ticket): bool
+	{
+		// anyone can close a ticket if open
 		return (! $ticket->isClosed());
+	}
+
+    public function open(User $user, Ticket $ticket): bool
+	{
+		// only system can open a ticket
+		return false;
 	}
 
 	/**
@@ -104,6 +117,15 @@ class TicketPolicy
 		// only back office user can assign non closed ticket
 		//return ($user->isSeeded() && ($ticket->status_code <> TicketStatusEnum::CLOSED->value));
 		return ($user->isSeeded() && ! $ticket->isClosed());
+	}
+
+	/**
+	 * Determine whether the user can update the model.
+	 */
+	public function addTopic(User $user, Ticket $ticket): bool
+	{
+		// only back office user can add topics to ticket
+		return ($user->isSeeded());
 	}
 
 	public function export(User $user): bool

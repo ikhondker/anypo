@@ -720,7 +720,6 @@ class PoController extends Controller
 		}
 
 		$po = Po::where('id', $po->id)->get()->firstOrFail();
-		// TODO requestor_id don't reset why?
 
 		// 	update PP Header value
 		DB::statement("set @sequenceNumber=0");

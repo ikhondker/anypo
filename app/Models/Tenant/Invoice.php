@@ -72,7 +72,7 @@ class Invoice extends Model
 	*/
 	public function scopePaymentDue(Builder $query): void
 	{
-		$query->where('status',InvoiceStatusEnum::POSTED->value);
+		$query->where('status', InvoiceStatusEnum::POSTED->value);
 		// TODO ->where('payment_status',);
 		// PaymentStatusEnum::DUE or PaymentStatusEnum::PARTIAL
 	}

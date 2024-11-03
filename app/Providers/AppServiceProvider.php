@@ -9,6 +9,10 @@ use Illuminate\Pagination\Paginator;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 
+use App\Enum\UserRoleEnum;
+use App\Models\Tenant\Pr;
+use App\Models\Tenant\Po;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -47,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
  		* Tenant
  		* ==================================================================================
 		*/
-		// Should return TRUE or FALSE IQBAL 
+		// Should return TRUE or FALSE IQBAL
 		Gate::define('superior', function(User $user) {
 			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
@@ -55,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
 		Gate::define('buyer', function(User $user) {
 			return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
-		
+
 		Gate::define('hod', function(User $user) {
 			return ($user->isHoD() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
@@ -67,7 +71,7 @@ class AppServiceProvider extends ServiceProvider
 		Gate::define('buyer-or-cxo', function(User $user) {
 			return (($user->isBuyer() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
-		
+
 		Gate::define('hod-or-cxo', function(User $user) {
 			return (($user->isHoD() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
@@ -77,7 +81,7 @@ class AppServiceProvider extends ServiceProvider
  		* Common
  		* ==================================================================================
 		*/
-		// Should return TRUE or FALSE IQBAL 
+		// Should return TRUE or FALSE IQBAL
 		Gate::define('admin', function(User $user) {
 			return ($user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
 		});
@@ -89,6 +93,30 @@ class AppServiceProvider extends ServiceProvider
 		Gate::define('system', function(User $user) {
 			return $user->isSystem();
 		});
+
+        Gate::define('pr-pdf', function(User $user, Pr $pr) {
+			// owner, manager, hod, admin and system can view PR
+            if ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+                return true;
+            } elseif ($user->role->value == UserRoleEnum::USER->value) {
+                return ($user->id == $pr->requestor_id);
+            } elseif ($user->role->value == UserRoleEnum::HOD->value) {
+                return ($user->dept_id == $pr->dept_id);
+            } else {
+                return ( false ) ;
+            }
+		});
+
+        Gate::define('po-pdf', function(User $user, Po $po) {
+			if ($user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+                return true;
+            } elseif ($user->role->value == UserRoleEnum::HOD->value) {
+                return ($user->dept_id == $po->dept_id);
+            } else {
+                return ( false ) ;
+            }
+		});
+
 
 	}
 }

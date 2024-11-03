@@ -53,7 +53,6 @@ class Payment extends Model
 	public function chkscopeByPoBuyer(Builder $query, $id): void
 	{
 		// TODOP2
-		// TODO
 		// if (! $id) return;
 		$query->whereHas('po', function ($q) use ($id) {
 			$q->where('buyer_id', $id);

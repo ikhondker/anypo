@@ -73,6 +73,7 @@ use Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Gate;
 
 # 13. FUTURE
 # 1 . Add entity column in reports.index
@@ -352,19 +353,14 @@ class ReportController extends Controller
 
 	public function pr($id)
 	{
-		//TODO auth check
-		//TODO if pr exists
-		//Log::debug('tenant.report.pr storage_path() = '.storage_path());
-		// NOTE: Uses InvoicePolicy
-		// $this->authorize('pdfInvoice', $invoice);
-
-		//Log::debug('Function name =' . __FUNCTION__);
-		//Log::debug('Method name =' . __METHOD__);
-
-		$setup 		= Setup::with('country_name')->first();
-		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
+        if (! Gate::allows('pr-pdf', $pr)) {
+            abort(403);
+        }
+
+        $setup 		= Setup::with('country_name')->first();
+		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 
 		$title 		= $report->name. ' #'. $pr->id; ;
@@ -402,6 +398,7 @@ class ReportController extends Controller
 	{
 
 		$this->authorize('run',Report::class);
+
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$title 		= $report->name;
@@ -511,17 +508,15 @@ class ReportController extends Controller
 
 	public function po($id)
 	{
-		//TODO auth check
-		//TODO if pr exists
-		//Log::debug('tenant.report.pr storage_path() = '.storage_path());
 
-		// NOTE: Uses InvoicePolicy
-		// $this->authorize('pdfInvoice', $invoice);
+        $po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
+        if (! Gate::allows('po-pdf', $po)) {
+            abort(403);
+        }
 
 		Log::debug('tenant.ReportController.po Value of po_id = ' . $id);
 		$setup 		= Setup::first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
-		$po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
 		$pols 		= Pol::with('item')->where('po_id', $po->id)->get()->all();
 		$title 		= $report->name. ' #'. $po->id; ;
 		$subTitle	= 'Amount: '. number_format($po->amount, 2) .' '. $po->currency;
@@ -660,9 +655,7 @@ class ReportController extends Controller
 
 	public function invoice($id)
 	{
-		//TODO auth check
-		//TODO if pr exists
-		// $this->authorize('pdfInvoice', $invoice);
+		$this->authorize('run',Report::class);
 
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
@@ -753,9 +746,8 @@ class ReportController extends Controller
 
 	public function payment($id)
 	{
-		//TODO auth check
-		//TODO if pr exists
-		// $this->authorize('pdfInvoice', $invoice);
+		$this->authorize('run',Report::class);
+
 
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
@@ -843,9 +835,8 @@ class ReportController extends Controller
 
 	public function receipt($id)
 	{
-		//TODO auth check
-		//TODO if pr exists
-		// $this->authorize('pdfInvoice', $invoice);
+
+        $this->authorize('run',Report::class);
 
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();

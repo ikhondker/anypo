@@ -38,6 +38,7 @@ class PrPolicy
 	public function view(User $user, Pr $pr): bool
 	{
 		// owner, manager, hod, admin and system can view PR
+        // same in Gate pr-report
 		if ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
 			return true;
 		} elseif ($user->role->value == UserRoleEnum::USER->value) {

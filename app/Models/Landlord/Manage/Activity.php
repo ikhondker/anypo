@@ -52,8 +52,7 @@ class Activity extends Model
 	 */
 	public function scopeByAccount(Builder $query): void
 	{
-		//$query->where('account_id', auth()->user()->account_id);
-		// TODO CHECK
+		// TODOP2 CHECK
 		$query->where('account_id', auth()->user()->account_id)
 			->whereHas('user', function ($q) {
 				$q->where('seeded', false);

@@ -28,7 +28,7 @@ https://www.brevo.com/pricing/
 21. 0.21 float(15,2) to decimal(19,4) , user_id and attachment_id form integer to uuid, upload attachments in attachment page , tenant db name to uid, pdf Ticket, npm recompile, sweetalert2 customization, landlord logo, reorganized Landlord menus, add SYSADMIN Role, 
 22. 0.22 Landlord MenuSeeder, Ticket Create by Support for User, Tenant Create by System, Add-on add billing, comments, add Trait CreatedUpdatedBy Trait for create and update By, pr+po+inv jquery calculate, notification correction
 23. 0.23 stop duplicate emp in hierarchy , due/pending is wfl getNextApproverId to setNextApproverDue, AllNotification, Enum Rearrange, timezone column, wfl start and end date, inv/payment and grs create jquery population, budget and deptBudget tax, gst, dbu amount add and budget created by , budget and deptBudget revisions, decimal back to 2, close po and invoice automatically, landlord invoice pwop and discount, account lifetime discount field
-24. 0.24 [ongoing] Rearrange invoice & payment into single AkkControler, Reject PR/PO,  ticket first_response_at , last_response_at, 
+24. 0.24 [ongoing] Rearrange invoice & payment into single AkkControler, Reject PR/PO,  ticket first_response_at , last_response_at,  report level pdf security. ticket topics, and pivot
 
 
 # 12. Key Configuration 
@@ -69,6 +69,7 @@ $ ab -n 100 -c 10 https://demo1.anypo.net/
 
 # 9. Deployment Architecture 
 ====================================================================
+0. CI/CD https://docs.gitlab.com/ee/ci/examples/laravel_with_gitlab_and_envoy/
 1. do 4gb+2cpu+80Gb storage
 	- CDN: aws
 	- Private Files: local
@@ -90,7 +91,8 @@ php artisan queue:listen --timeout=1200
 1. set bo.SUPPORT_MGR_ID
 2. logo in landlord reports
 3. enable this extension in php.ini by uncommenting this line: extension=ext/php_intl.dll
-
+4. review App\Exceptions\Handler
+5.   config('akk.LANDLORD_CONFIG_ID'
 
 # 8. Logos Used
 ====================================================================

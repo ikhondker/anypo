@@ -15,8 +15,7 @@ class ItemSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		//Item::factory()->count(10)->create();
-		//TODO change item code to laptop/tables/mobile etc..
+
 		$items = [
 			// [
 			// 	'name'			=> 'Tax',
@@ -52,7 +51,7 @@ class ItemSeeder extends Seeder
 				'uom_class_id'	=> 1001,
 				'uom_id'		=> 1001,
 			],
-			
+
 			[
 				'code'			=> 'AP0002',
 				'name'			=> 'Laptop (Lenovo)',
@@ -77,7 +76,7 @@ class ItemSeeder extends Seeder
 				'uom_class_id'	=> 1001,
 				'uom_id'		=> 1001,
 			],
-			
+
 			[
 				'code'			=> 'AP0004',
 				'name'			=> 'Laptop (Dell)',

@@ -54,7 +54,7 @@ class AehController extends Controller
 	public function index()
 	{
 		$this->authorize('viewAny',Aeh::class);
-		
+
 
 		$aehs = Aeh::query();
 
@@ -88,7 +88,7 @@ class AehController extends Controller
 				$aehs->whereBetween('accounting_date', [$start_date, $end_date ]);
 				break;
 			case 'export':
-				// Export model TODO file by dep_id
+				// TODO Export model by dep_id
 				$sql = "
 					SELECT id, source, entity, event, accounting_date, ac_code, line_description,
 					fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount,

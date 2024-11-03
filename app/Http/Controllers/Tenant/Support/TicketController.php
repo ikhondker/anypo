@@ -170,7 +170,7 @@ class TicketController extends Controller
 				]);
 				Log::debug('tenant.support.Ticket.store Landlord Ticket created = ' . $ticket->id);
 
-				//TODO It should be landlord event_log
+				//TODOP2 It should be landlord event_log
 				//\App\Helpers\LandlordEventLog::event('ticket', $ticket->id, 'create');
 
 				// Upload File, if any, insert row in attachment table and get attachments id

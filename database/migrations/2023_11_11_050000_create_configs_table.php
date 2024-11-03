@@ -49,8 +49,8 @@ return new class extends Migration
 			$table->decimal('discount_pc_6', 19, 2)->default(10);
 			$table->decimal('discount_pc_12', 19, 2)->default(15);
 			$table->decimal('discount_pc_24', 19, 2)->default(20);
-			$table->uuid('system_user_id')->nullable();					// No foreign key intentional TODO
-			$table->uuid('support_manager_id')->nullable();					// No foreign key intentional TODO
+			$table->uuid('system_user_id')->nullable();					// No foreign key intentional
+			$table->uuid('support_manager_id')->nullable();				// No foreign key intentional
 			$table->boolean('enable')->default(true);
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

@@ -8,64 +8,25 @@
 
 @section('content')
 
-	<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end m-1"><i class="fas fa-plus"></i> New Ticket</a>
-	<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end m-1"><i class="fas fa-list"></i> View all</a>
-	<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="btn btn-primary float-end m-1"><i class="fas fa-print"></i> Print</a>
-	<h1 class="h3 mb-3">Ticket Detail</h1>
 
-	<div class="card">
-		<div class="card-header">
-			<div class="card-actions float-end">
-				@if ( auth()->user()->isSeeded() && ( $ticket->status_code <> App\Enum\Landlord\TicketStatusEnum::CLOSED->value) )
-					<a href="{{ route('tickets.assign',$ticket->id) }}" class="btn btn-sm btn-light"><i class="fas fa-tasks"></i> Assign</a>
-					<a href="{{ route('tickets.edit',$ticket->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+	<x-landlord.page-header>
+		@slot('title')
+			Ticket #{{ $ticket->id }}
+		@endslot
+		@slot('buttons')
+				@if (auth()->user()->isSeeded())
+					<x-landlord.actions.ticket-actions ticketId="{{ $ticket->id }}"/>
 				@endif
-				@if ( $ticket->status_code <> App\Enum\Landlord\TicketStatusEnum::CLOSED->value)
-					<a href="{{ route('tickets.close',$ticket->id) }}" class="btn btn-sm btn-light sw2"><i class="fas fa-power-off text-danger"></i> Close Ticket</a>
-				@endif
-			</div>
-			<div class="badge bg-{{ $ticket->status->badge }} my-2">{{ $ticket->status->name }}</div>
-			<h5 class="card-title mb-0">#{{ $ticket->id }}: {{ $ticket->title }}</h5>
-		</div>
-		<div class="card-body pt-0">
-			<h5>Description</h5>
-			<p class="text-muted">
-				{!! nl2br($ticket->content) !!}
-			</p>
-			<small class="text-muted">{{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }}</small><br />
-			@if ($ticket->attachment_id <> '')
-				<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $ticket->attachment_id }}"/></small><br />
-			@endif
-			@if ($ticket->closed)
-				<small class="text-muted">Closed at: {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->closed_at ))) }}</small><br />
-			@endif
+               <a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
+                <a href="{{ route('tickets.index') }}" class="btn btn-primary float-end me-1"><i class="fas fa-list"></i> View all</a>
+                <a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="btn btn-primary float-end me-1"><i class="fas fa-print"></i> Print</a>
+		@endslot
+	</x-landlord.page-header>
 
+    <!-- card-ticket-header -->
+	<x-landlord.widgets.ticket-header ticketId="{{ $ticket->id }}"/>
+	<!-- /.card-ticket-header -->
 
-			{{-- <div>
-				<h5>Requestor</h5>
-				<img src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" class="rounded-circle me-1" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}" width="34" height="34">
-			</div> --}}
-
-			<table class="table table-sm my-2">
-				<tbody>
-					<tr>
-						<th>Requestor</th>
-						<td>
-							{{ $ticket->owner->name }}
-						</td>
-					</tr>
-					<tr>
-						<th>Email</th>
-						<td>{{ $ticket->owner->email }}</td>
-					</tr>
-					<tr>
-						<th>Account</th>
-						<td>{{ $ticket->owner->account->name }} </td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
 
 	@if (auth()->user()->isSeeded())
 		<div class="card">
@@ -78,36 +39,33 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>Department</th>
+							<th>Department :</th>
 							<td>{{ $ticket->dept->name }}</td>
 						</tr>
 						<tr>
-							<th>Priority</th>
+							<th>Priority :</th>
 							<td>{{ $ticket->priority->name }}</td>
 						</tr>
 						<tr>
-							<th>Agent</th>
+							<th>Agent :</th>
 							<td><span class="badge badge-subtle-success">{{ $ticket->agent->name }}</span> </td>
 						</tr>
 						<tr>
-							<th>first_response_at</th>
+							<th>First Response At :</th>
 							<td>{{ ($ticket->first_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->first_response_at)->ago() }}</td>
 						</tr>
 						<tr>
-							<th>last_message_at</th>
+							<th>Last Message At :</th>
 							<td>{{ ($ticket->last_message_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_message_at)->ago() }}</td>
 						</tr>
 						<tr>
-							<th>last_response_at</th>
+							<th>Last Response At :</th>
 							<td>{{ ($ticket->last_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_response_at)->ago() }}</td>
 						</tr>
                         <tr>
-							<th>closed_at</th>
+							<th>Closed At :</th>
 							<td>{{ ($ticket->closed_at == null) ? null  :  Carbon\Carbon::parse($ticket->closed_at)->ago() }}</td>
 						</tr>
-
-                        closed_at
-
 					</tbody>
 				</table>
 			</div>

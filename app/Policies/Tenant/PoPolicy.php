@@ -29,7 +29,7 @@ class PoPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport()  || $user->isSystem() );
+		return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 	/**
@@ -37,7 +37,7 @@ class PoPolicy
 	 */
 	public function view(User $user, Po $po): bool
 	{
-		if ($user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSystem()  ) {
+		if ($user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
 			return true;
 		} elseif ($user->role->value == UserRoleEnum::HOD->value) {
 			return ($user->dept_id == $po->dept_id);

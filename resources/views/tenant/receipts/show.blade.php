@@ -2,7 +2,6 @@
 @section('title','View Receipt')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('receipts.index') }}" class="text-muted">Receipts</a></li>
-	{{-- <li class="breadcrumb-item"><a href="{{ route('receipts.index') }}">TODO POL</a></li> --}}
 	<li class="breadcrumb-item active">GRN#{{ $receipt->id }}</li>
 @endsection
 
@@ -20,7 +19,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			
+
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('reports.receipt', $receipt->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
 				<a href="{{ route('receipts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>

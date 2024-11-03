@@ -199,14 +199,14 @@ class AkkController extends Controller
 	public function insertCheckout($type, $site ='', $account_name ='', $email ='', $account_id, $product_id, $period, $invoice_id)
 	{
 
-		Log::debug('landlord.AkkController.insertCheckout type = '. $type);
-		Log::debug('landlord.AkkController.insertCheckout site = '. $site);
-		Log::debug('landlord.AkkController.insertCheckout account_name = '. $account_name);
-		Log::debug('landlord.AkkController.insertCheckout email = '. $email);
-		Log::debug('landlord.AkkController.insertCheckout account_id = '. $account_id);
-		Log::debug('landlord.AkkController.insertCheckout product_id = '. $product_id);
-		Log::debug('landlord.AkkController.insertCheckout period = '. $period);
-		Log::debug('landlord.AkkController.insertCheckout invoice_id = '. $invoice_id);
+		// Log::debug('landlord.AkkController.insertCheckout type = '. $type);
+		// Log::debug('landlord.AkkController.insertCheckout site = '. $site);
+		// Log::debug('landlord.AkkController.insertCheckout account_name = '. $account_name);
+		// Log::debug('landlord.AkkController.insertCheckout email = '. $email);
+		// Log::debug('landlord.AkkController.insertCheckout account_id = '. $account_id);
+		// Log::debug('landlord.AkkController.insertCheckout product_id = '. $product_id);
+		// Log::debug('landlord.AkkController.insertCheckout period = '. $period);
+		// Log::debug('landlord.AkkController.insertCheckout invoice_id = '. $invoice_id);
 
 		$config     = Config::where('id', config('bo.CONFIG_ID'))->firstOrFail();
 

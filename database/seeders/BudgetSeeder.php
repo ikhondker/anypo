@@ -30,7 +30,6 @@ class BudgetSeeder extends Seeder
 				'name'				=> 'Budget for 2023',
 				'start_date'		=> Carbon::parse('2023-01-01'),
 				'end_date'			=> Carbon::parse('2023-12-31'),
-				//TODO remove after this
 				'notes'				=> $faker->paragraph,
 				'amount'			=> 140000,
 				'amount_pr_booked'	=> $faker->numberBetween(3000,100000),
@@ -51,7 +50,6 @@ class BudgetSeeder extends Seeder
 				'name'				=> 'Budget for 2024',
 				'start_date'		=> Carbon::parse('2024-01-01'),
 				'end_date'			=> Carbon::parse('2024-12-31'),
-				//TODO remove after this
 				'notes'				=> $faker->paragraph,
 				'amount'			=> 700000,
 				'amount_pr_booked'	=> $faker->numberBetween(2000,70000),

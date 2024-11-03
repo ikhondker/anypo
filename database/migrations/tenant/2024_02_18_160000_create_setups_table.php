@@ -49,8 +49,8 @@ return new class extends Migration
 			$table->string('build')->nullable()->default('1001');
 			//$table->boolean('show_notice')->default(false);
 			//$table->text('notice')->nullable();
-			$table->uuid('admin_id')->nullable(); 					// No foreign key intentional TODO
-			$table->uuid('system_user_id')->nullable();				// No foreign key intentional TODO
+			$table->uuid('admin_id')->nullable(); 					// No foreign key intentional
+			$table->uuid('system_user_id')->nullable();				// No foreign key intentional
 			$table->uuid('kam_id')->nullable(); 					// Future
 			$table->biginteger('landlord_account_id')->nullable();
 			$table->date('last_rate_date')->nullable();

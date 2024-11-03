@@ -29,6 +29,8 @@ use App\Models\User;
 use App\Models\Landlord\Ticket;
 
 use App\Models\Landlord\Lookup\Dept;
+use App\Models\Landlord\Lookup\Topic;
+use App\Models\Landlord\Manage\TicketTopic;
 
 use App\Models\Landlord\Manage\Priority;
 # 2. Enums
@@ -285,6 +287,7 @@ class TicketController extends Controller
 	{
 
 		$this->authorize('assign', $ticket);
+
 		$ticket->agent_id	= $request->input('agent_id');
 		$ticket->save();
 
@@ -297,6 +300,33 @@ class TicketController extends Controller
 		EventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);
 
 		return redirect()->route('tickets.show', $ticket->id)->with('success', 'Ticket #' . $ticket->id . ' assigned to agent and notified.');
+	}
+
+	public function topics(Ticket $ticket)
+	{
+        $this->authorize('addTopic', $ticket);
+		$topics		= Topic::primary()->get();
+		return view('landlord.tickets.topics', compact('ticket','topics'));
+	}
+
+	public function addTopic(Request $request, Ticket $ticket)
+	{
+
+        $this->authorize('addTopic', $ticket);
+
+		Log::debug('landlord.TicketController.addTopic ticket_id= ' . $ticket->id);
+		Log::debug('landlord.TicketController.addTopic request ticket_id= ' . $request->input('ticket_id'));
+
+		// create ticketTopic row
+		$ticketTopic					= new TicketTopic;
+		$ticketTopic->ticket_id		= $request->input('ticket_id');
+		$ticketTopic->topic_id		= $request->input('topic_id');
+		$ticketTopic->save();
+
+		//$topics		= Topic::primary()->get();
+		//return view('landlord.tickets.topics', compact('ticket','topics'));
+
+		return redirect()->route('tickets.all', $ticket->id)->with('success', 'Topic added.');
 	}
 
 

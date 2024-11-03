@@ -7,22 +7,23 @@ use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 use App\Enum\UserRoleEnum;
-
+use App\Models\Tenant\Pr;
+use Illuminate\Support\Facades\Log;
 
 class ReportPolicy
 {
 	/**
 	 * Perform pre-authorization checks.
 	*/
-	public function before(User $user, string $ability): bool|null
-	{
-		if ($user->isSystem()) {
-			return true;
-		}
-		return null;
-	}
+	// public function before(User $user, string $ability): bool|null
+	// {
+	// 	if ($user->isSystem()) {
+	// 		return true;
+	// 	}
+	// 	return null;
+	// }
 
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -86,4 +87,6 @@ class ReportPolicy
 	{
 		//
 	}
+
+
 }

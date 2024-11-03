@@ -190,8 +190,7 @@ class CreateTenant implements ShouldQueue
 			$user->email		= $checkout->email;
 			$user->role			= UserRoleEnum::ADMIN->value;
 			$random_password 	= Str::random(12);
-			$user->password	= bcrypt($random_password);
-			// TODO MUST comment
+			$user->password	    = bcrypt($random_password);
 			// $user->password	= bcrypt('password');
 
 			// default address
@@ -392,11 +391,11 @@ class CreateTenant implements ShouldQueue
 				'state'				=> 'ON',
 				'zip'				=> 'M1G1R9',
 				'email'				=> $email,
-				'email_verified_at'	=> NOW(),	// TODO this is not verified Already Verified in tenant
+				'email_verified_at'	=> NOW(),		// this is already verified Already in Landlord
 				'role'				=> \App\Enum\UserRoleEnum::ADMIN->value,
 				'password'			=> Hash::make($random_password),
-				'designation_id'	=> 1001,	// System/IT Administrator
-				'dept_id'			=> 1001,	// IT
+				'designation_id'	=> 1001,		// System/IT Administrator
+				'dept_id'			=> 1001,		// IT
 				'facebook'			=> 'https://www.facebook.com/my.anyponet',
 				'linkedin'			=> 'https://www.linkedin.com/company/anypo-net',
 				'enable'			=> true,
@@ -414,7 +413,7 @@ class CreateTenant implements ShouldQueue
 			$tenantSetup->linkedin 	= 'https://www.linkedin.com/company/anypo-net';
 			$tenantSetup->update();
 
-			// Insert Rows in Hierarchyl Table
+			// Insert Rows in Tenant Hierarchyl Table
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Inserting two Rows for Seeded Approval Workflow Hierarchy.');
 			$pr=\App\Models\Tenant\Workflow\Hierarchyl::create([
 				'hid'			=> 1001,
@@ -435,7 +434,7 @@ class CreateTenant implements ShouldQueue
 
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Setup Name Updated setup_id = ' . $tenantSetup->id);
 
-			// TODO Send Verification Email from tenant context
+			// TODOP2 Send Verification Email from tenant context
 			// event(new Registered($user));
 
 		}

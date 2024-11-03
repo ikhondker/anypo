@@ -178,12 +178,13 @@ class User extends Authenticatable implements MustVerifyEmail
 		}
 	}
 
-	
+
 	public function isSupport()
 	{
 
 		if ($this->role->value == UserRoleEnum::SUPPORT->value
-		|| $this->role->value == UserRoleEnum::SUPERVISOR->value ) {
+		|| $this->role->value == UserRoleEnum::SUPERVISOR->value
+        || $this->role->value == UserRoleEnum::SYSTEM->value ) {            // Added later to skip before
 			return true;
 		} else {
 			return false;
@@ -287,8 +288,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
 	/* ----------------- Scopes ------------------------- */
-	
-	
+
+
 	/*
 	|-----------------------------------------------------------------------------
 	| Scopes Common (both Landlord and Tenant) 				+
@@ -302,10 +303,10 @@ class User extends Authenticatable implements MustVerifyEmail
 	{
 		$query->where('seeded', false)
 		->where('enable', true)
-		->orderBy('name', 'asc'); 
+		->orderBy('name', 'asc');
 	}
 
-	
+
 
 	/*
 	|-----------------------------------------------------------------------------
@@ -316,7 +317,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function scopeLandlordAllEnable(Builder $query): void
 	{
 		$query->where('enable', true)
-		->orderBy('name', 'asc'); 
+		->orderBy('name', 'asc');
 	}
 
 	/**
@@ -340,7 +341,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	| Scopes for (Tenant) 													+
 	|-----------------------------------------------------------------------------
 	*/
-	
+
 	/**
 	 * Scope a query to only Tenant Active users.
 	*/
@@ -471,8 +472,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
 
-	
-	
+
+
 
 	/* ----------------- HasMany ------------------------ */
 

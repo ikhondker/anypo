@@ -23,7 +23,7 @@ class AccountSeeder extends Seeder
 		// $user1sales = User::where('email', 'user1sales@anypo.net')->firstOrFail();
 		// $user2sales = User::where('email', 'user2sales@anypo.net')->firstOrFail();
 
-		// Link User with Accounts TODO
+		// Link User with Accounts
 		// User::where('id', 1007)->update(['account_id' => '1001']);
 		// User::where('id', 1008)->update(['account_id' => '1001']);
 		// User::where('id', 1009)->update(['account_id' => '1001']);

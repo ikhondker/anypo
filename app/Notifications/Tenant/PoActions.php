@@ -113,7 +113,7 @@ class PoActions extends Notification implements ShouldQueue
 		$details = [
 			'entity'		=> 'PO',
 			'owner_id'		=> $this->user->id,
-			//'from'		=> $this->user->name,	// TODO
+			//'from'		=> $this->user->name,	// TODOP2
 			'from'			=> 'Workflow',
 			'to'			=> $this->user->name,
 			'subject'		=> $this->subject,

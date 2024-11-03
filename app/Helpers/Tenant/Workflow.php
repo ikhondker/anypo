@@ -106,7 +106,7 @@ class Workflow
 			// Insert submission row first
 			DB::INSERT("
 				INSERT INTO wfls(wf_id, performer_id, assign_date, start_date, end_date, action, notes)
-				SELECT ".$wf_id.",'".$requestor_id."' ,now(),now(),now(),'". WflActionEnum::SUBMITTED->value ."','Submitted for Review and Approval';
+				SELECT ".$wf_id.",'".$requestor_id."', now(), now(), now(), '". WflActionEnum::SUBMITTED->value ."','Submitted for Review and Approval';
 			");
 
 			// insert all hieararcy rows

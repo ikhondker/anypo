@@ -118,6 +118,9 @@ class HierarchyController extends Controller
 		$hierarchyl					= new Hierarchyl();
 
 		$hierarchyl->hid			= $hierarchy->id;
+        $hierarchyl->sequence		= 10;
+
+
 		$hierarchyl->approver_id	= $request->input('approver_id_1');
 		$hierarchyl->save();
 
@@ -129,6 +132,7 @@ class HierarchyController extends Controller
 		if ($request->input('approver_id_2') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
+            $hierarchyl->sequence		= 20;
 			$hierarchyl->approver_id	= $request->input('approver_id_2');
 			$hierarchyl->save();
 		}
@@ -136,6 +140,7 @@ class HierarchyController extends Controller
 		if ($request->input('approver_id_3') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
+            $hierarchyl->sequence		= 30;
 			$hierarchyl->approver_id 	= $request->input('approver_id_3');
 			$hierarchyl->save();
 		}
@@ -143,6 +148,7 @@ class HierarchyController extends Controller
 		if ($request->input('approver_id_4') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
+            $hierarchyl->sequence		= 40;
 			$hierarchyl->approver_id 	= $request->input('approver_id_4');
 			$hierarchyl->save();
 		}
@@ -150,6 +156,7 @@ class HierarchyController extends Controller
 		if ($request->input('approver_id_5') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
+            $hierarchyl->sequence		= 50;
 			$hierarchyl->approver_id 	= $request->input('approver_id_5');
 			$hierarchyl->save();
 		}
@@ -289,6 +296,7 @@ class HierarchyController extends Controller
 		$hierarchyl					= new Hierarchyl();
 
 		$hierarchyl->hid			= $hierarchy->id;
+        $hierarchyl->sequence		= 10;
 		$hierarchyl->approver_id	= $request->input('approver_id_1');
 		$hierarchyl->save();
 
@@ -298,6 +306,7 @@ class HierarchyController extends Controller
 		if ($request->input('approver_id_2') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
+            $hierarchyl->sequence		= 20;
 			$hierarchyl->approver_id 	= $request->input('approver_id_2');
 			$hierarchyl->save();
 		}
@@ -305,6 +314,7 @@ class HierarchyController extends Controller
 		if ($request->input('approver_id_3') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
+            $hierarchyl->sequence		= 30;
 			$hierarchyl->approver_id 	= $request->input('approver_id_3');
 			$hierarchyl->save();
 		}
@@ -312,6 +322,7 @@ class HierarchyController extends Controller
 		if ($request->input('approver_id_4') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
+            $hierarchyl->sequence		= 40;
 			$hierarchyl->approver_id 	= $request->input('approver_id_4');
 			$hierarchyl->save();
 		}
@@ -319,6 +330,7 @@ class HierarchyController extends Controller
 		if ($request->input('approver_id_5') <> 0) {
 			$hierarchyl					= new Hierarchyl();
 			$hierarchyl->hid			= $hierarchy->id;
+            $hierarchyl->sequence		= 50;
 			$hierarchyl->approver_id 	= $request->input('approver_id_5');
 			$hierarchyl->save();
 		}

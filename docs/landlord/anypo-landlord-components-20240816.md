@@ -26,6 +26,8 @@ php artisan make:job Landlord/AccountsArchive
 php artisan make:component Landlord\Actions\AccountActions
 php artisan make:component Landlord\Actions\AccountActionsSupport
 php artisan make:component Landlord\Actions\InvoiceActionsSupport
+php artisan make:component Landlord\Actions\TicketActions
+
 
 xxphp artisan make:component Tenant\Actions\Admin\UserActionsIndex
 ~~~
@@ -208,12 +210,14 @@ php artisan make:component Modal/Upgrade	<x-modal.upgrade/>
 
 # Widget
 -------------------------------------
-php artisan make:component Landlord/Widget/TicketComments
-php artisan make:component Landlord/Widget/TicketLists
-php artisan make:component Landlord/Widget/Kpi		<x-landlord.widget.kpi/>
-php artisan make:component Landlord/Widget/AddAddon
-php artisan make:component Landlord/Widget/ExpireWarning
-php artisan make:component Landlord/Widget/AccountServices
+php artisan make:component Landlord/Widgets/TicketHeader
+php artisan make:component Landlord/Widgets/TicketComments
+php artisan make:component Landlord/Widgets/TicketTopics
+php artisan make:component Landlord/Widgets/TicketLists
+php artisan make:component Landlord/Widgets/Kpi		<x-landlord.widget.kpi/>
+php artisan make:component Landlord/Widgets/AddAddon
+php artisan make:component Landlord/Widgets/ExpireWarning
+php artisan make:component Landlord/Widgets/AccountServices
 
 card-numbers
 Scarborough ON M1G1R9, Canada

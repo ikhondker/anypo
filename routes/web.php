@@ -292,6 +292,7 @@ use App\Http\Controllers\Landlord\Manage\ContactController;
 use App\Http\Controllers\Landlord\Lookup\CategoryController;
 use App\Http\Controllers\Landlord\Lookup\CountryController;
 use App\Http\Controllers\Landlord\Lookup\ProductController;
+use App\Http\Controllers\Landlord\Lookup\TopicController;
 use App\Http\Controllers\Landlord\Manage\CheckoutController;
 use App\Http\Controllers\Landlord\Manage\MailListController;
 use App\Http\Controllers\Landlord\Manage\ActivityController;
@@ -306,8 +307,10 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 
 	/* ======================== Ticket ========================================  */
 	Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
-	Route::get('/ticket/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
-	Route::post('/ticket/doassign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.doassign');
+	Route::get('/tickets/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
+	Route::post('/tickets/doassign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.doassign');
+    Route::get('/tickets/topics/{ticket}', [TicketController::class, 'topics'])->name('tickets.topics');
+    Route::post('/ticket/add-topic', [TicketController::class, 'addTopic'])->name('tickets.add-topic');
 
 	/* ======================== Comment ========================================  */
 	Route::get('/comment/all', [CommentController::class, 'all'])->name('comments.all');
@@ -353,6 +356,10 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	/* ======================== Product ======================================== */
 	Route::resource('products', ProductController::class);
 	Route::get('/products/delete/{product}',[ProductController::class, 'destroy'])->name('products.delete');
+
+    /* ======================== Topic ======================================== */
+	Route::resource('topics', TopicController::class);
+    Route::get('/topics/delete/{topic}',[TopicController::class, 'destroy'])->name('topics.delete');
 
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);

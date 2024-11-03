@@ -54,6 +54,7 @@ class AuthServiceProvider extends ServiceProvider
 		//'App\Models\Landlord\Lookup\PaymentMethod' 	=> 'App\Policies\Landlord\Lookup\PaymentMethodPolicy',
 		//'App\Models\Landlord\Lookup\Priority' 		=> 'App\Policies\Landlord\Lookup\PriorityPolicy',
 		'App\Models\Landlord\Lookup\Product' 		=> 'App\Policies\Landlord\Lookup\ProductPolicy',
+        'App\Models\Landlord\Lookup\Topic' 		    => 'App\Policies\Landlord\Lookup\TopicPolicy',
 		//'App\Models\Landlord\Lookup\Rating' 		=> 'App\Policies\Landlord\Lookup\RatingPolicy',
 
 		'App\Models\Landlord\Manage\Activity'		=> 'App\Policies\Landlord\Manage\ActivityPolicy',
@@ -68,6 +69,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Manage\Status' 		=> 'App\Policies\Landlord\Manage\StatusPolicy',
 		'App\Models\Landlord\Manage\Table' 			=> 'App\Policies\Landlord\Manage\TablePolicy',
 		'App\Models\Landlord\Manage\Cp' 			=> 'App\Policies\Landlord\Manage\CpPolicy',
+        'App\Models\Landlord\Manage\TicketTopic' 	=> 'App\Policies\Landlord\Manage\TicketTopicPolicy',
 
 		/*
 		|-----------------------------------------------------------------------------

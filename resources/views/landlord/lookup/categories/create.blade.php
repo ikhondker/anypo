@@ -18,7 +18,7 @@
 		<div class="card-body">
 			<form id="myform" action="{{ route('categories.store') }}" method="POST">
 				@csrf
-				@method('PUT')
+
 
 				<table class="table table-sm my-2">
 					<tbody>

@@ -60,17 +60,23 @@ class AddAdvance implements ShouldQueue
 		}
 
 		// pay this invoice and notify
-		// TODO check if payment is successful
 		Log::debug('Jobs.Landlord.AddAdvance 3. bo::Calling payCheckoutInvoice');
 		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
+        if ( $payment_id == 0){
+            Log::error('Jobs.Landlord.AddAdvance payCheckoutInvoice FAIL. Stop.');
+        } else {
+            //extend account validity and end_date
+            Log::debug('Jobs.Landlord.AddAdvance 4. Calling bo::extendAccountValidity');
+            $account_id= bo::extendAccountValidity($invoice_id);
+            if ( $account_id == 0){
+                Log::error('Jobs.Landlord.AddAdvance extendAccountValidity FAIL. Stop');
+            } else {
+                // mark checkout as complete
+                $checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
+                $checkout->update();
+                Log::debug('Jobs.Landlord.AddAdvance 4. Done');
+            }
+        }
 
-		//extend account validity and end_date
-		Log::debug('Jobs.Landlord.AddAdvance 4. Calling bo::extendAccountValidity');
-		$account_id= bo::extendAccountValidity($invoice_id);
-
-		// mark checkout as complete
-		$checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
-		$checkout->update();
-		Log::debug('Jobs.Landlord.AddAdvance 4. Done');
 	}
 }

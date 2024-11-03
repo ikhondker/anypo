@@ -42,6 +42,7 @@
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helphier" role="tab">Hierarchy</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpapproval" role="tab">Approval</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpwf" role="tab">Workflow</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpinterface" role="tab">Interface</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpcurrency" role="tab">Currency</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpsetup" role="tab">Setup</a>
 					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#helpsupport" role="tab">Support</a>

@@ -45,6 +45,9 @@ php artisan make:model Tenant --all
 php artisan make:model Landlord\Report --all
 
 php artisan make:model Landlord\Manage\Cp --all
+php artisan make:model Landlord\Lookup\Topic --all
+php artisan make:model Landlord\Manage\TicketTopic --all
+
 
 php artisan make:controller ProvisionController --resource
 

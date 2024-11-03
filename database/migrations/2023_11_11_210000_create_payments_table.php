@@ -34,7 +34,6 @@ return new class extends Migration
             /** ENUM */
 			//$table->foreignId('payment_method_id')->constrained('payment_methods');
 			$table->string('payment_method_code')->default(PaymentMethodEnum::CARD->value);
-			//TODO
             //$table->foreign('payment_method_code')->references('code')->on('payment_methods');
 			/** end ENUM */
 			/** ENUM */

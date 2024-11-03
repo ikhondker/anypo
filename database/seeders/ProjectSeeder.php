@@ -20,11 +20,7 @@ class ProjectSeeder extends Seeder
 	{
 
 		$faker = app(Generator::class);
-		//Schema::disableForeignKeyConstraints();
-		//Project::truncate();
-		//Schema::enableForeignKeyConstraints();
-
-		// TODO check who will be pm for seeded project
+		// createTenant Job sets pm for seeded project
 		$seededProject = [
 				[
 					'name'		=> 'Seeded Project',
@@ -118,7 +114,8 @@ class ProjectSeeder extends Seeder
 			];
 			//
 			Project::insert($seededProject);
+
 			// MUST Comment this
-			Project::insert($demoProjects);
+			// Project::insert($demoProjects);
 	}
 }

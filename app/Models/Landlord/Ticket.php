@@ -33,6 +33,7 @@ use App\Models\Landlord\Lookup\Rating;
 use App\Models\Landlord\Manage\Status;
 
 use App\Models\Landlord\Comment;
+use App\Models\Landlord\Manage\TicketTopic;
 
 use App\Enum\Landlord\TicketStatusEnum;
 
@@ -174,6 +175,11 @@ class Ticket extends Model
 	public function comments()
 	{
 		return $this->hasMany(Comment::class);
+	}
+
+    public function ticketTopics()
+	{
+		return $this->hasMany(TicketTopic::class);
 	}
 
 	/* ---------------- belongsTo ---------------------- */
