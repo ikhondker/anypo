@@ -32,7 +32,7 @@
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 					<i class="align-middle" data-lucide="trash-2"></i>
 				</a>
-            @endcan
+			@endcan
 			@if ($pol->po->auth_status == App\Enum\Tenant\AuthStatusEnum::APPROVED->value)
 				<a href="{{ route('pols.receipt',$pol->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Goods Receipt">
 					<i class="align-middle" data-lucide="file-text"></i></a>

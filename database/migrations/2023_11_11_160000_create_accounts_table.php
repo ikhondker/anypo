@@ -16,7 +16,7 @@ return new class extends Migration
 		Schema::create('accounts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('site');
-            $table->string('tenant_id')->nullable();
+			$table->string('tenant_id')->nullable();
 			$table->string('name');
 			$table->string('currency',3)->default('USD');
 			$table->string('tagline')->nullable();
@@ -43,8 +43,8 @@ return new class extends Migration
 			$table->decimal('monthly_fee', 19, 2)->default(0);		// added later
 			$table->decimal('monthly_addon', 19, 2)->default(0);	// added later
 			$table->decimal('price', 19, 2)->default(0);
-            $table->integer('discount')->default(0);               // lifetime iem discount
-            $table->date('discount_date')->nullable();
+			$table->integer('discount')->default(0);				// lifetime iem discount
+			$table->date('discount_date')->nullable();
 			$table->uuid('discount_by')->nullable();
 			$table->date('start_date');
 			$table->date('end_date');
@@ -62,7 +62,7 @@ return new class extends Migration
 			$table->integer('count_product')->default(0);
 			$table->integer('used_gb')->default(0);
 			$table->boolean('maintenance')->default(false);
-            $table->text('notes_internal')->nullable();              // Internal use only
+			$table->text('notes_internal')->nullable();		// Internal use only
 			/** ENUM */
 			//$table->string('status')->default(AccountStatusEnum::ACTIVE->value);
 			/** end ENUM */

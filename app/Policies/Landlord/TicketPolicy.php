@@ -81,7 +81,7 @@ class TicketPolicy
 	 */
 	public function create(User $user): bool
 	{
-        // anyone can create a ticket
+		// anyone can create a ticket
 		return true;
 	}
 
@@ -97,13 +97,13 @@ class TicketPolicy
 		//return (! $ticket->isClosed());
 	}
 
-    public function close(User $user, Ticket $ticket): bool
+	public function close(User $user, Ticket $ticket): bool
 	{
 		// anyone can close a ticket if open
 		return (! $ticket->isClosed());
 	}
 
-    public function open(User $user, Ticket $ticket): bool
+	public function open(User $user, Ticket $ticket): bool
 	{
 		// only system can open a ticket
 		return false;

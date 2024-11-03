@@ -21,7 +21,7 @@ return new class extends Migration
 			$table->uuid('performer_id');
 			$table->dateTime('assign_date',)->useCurrent(); // make sure it is not nullable
 			$table->dateTime('start_date',)->nullable();
-            $table->dateTime('end_date',)->nullable();
+			$table->dateTime('end_date',)->nullable();
 			/** ENUM */
 			$table->string('action')->default(WflActionEnum::PENDING->value);
 			/** end ENUM */

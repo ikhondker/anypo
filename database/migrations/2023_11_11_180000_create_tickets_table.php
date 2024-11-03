@@ -34,7 +34,7 @@ return new class extends Migration
 			/** end ENUM */
 			//$table->boolean('is_answered')->default(false);
 			$table->integer('sla')->nullable()->index('sla');
-            $table->dateTime('first_response_at')->nullable();
+			$table->dateTime('first_response_at')->nullable();
 			$table->dateTime('due_date')->nullable();
 			$table->boolean('is_overdue')->default(false);
 			$table->boolean('closed')->default(false);

@@ -184,7 +184,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 		if ($this->role->value == UserRoleEnum::SUPPORT->value
 		|| $this->role->value == UserRoleEnum::SUPERVISOR->value
-        || $this->role->value == UserRoleEnum::SYSTEM->value ) {            // Added later to skip before
+		|| $this->role->value == UserRoleEnum::SYSTEM->value ) {		// Added later to skip before
 			return true;
 		} else {
 			return false;

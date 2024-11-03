@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('payment_methods', function (Blueprint $table) {
 			//$table->id()->startingValue(1001);
-            $table->string('code',15);	// model: protected $primaryKey = 'code'; // Hardcoded in Workflow Helper only
+			$table->string('code',15);	// model: protected $primaryKey = 'code'; // Hardcoded in Workflow Helper only
 			$table->string('name');
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();

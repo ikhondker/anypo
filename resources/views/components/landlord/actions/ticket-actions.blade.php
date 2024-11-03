@@ -7,7 +7,7 @@
 		@can('update', $ticket)
 			<a class="dropdown-item" href="{{ route('tickets.assign', $ticket->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> Assign Ticket</a>
 			<a class="dropdown-item" href="{{ route('tickets.edit', $ticket->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Ticket</a>
-            <a class="dropdown-item" href="{{ route('tickets.topics', $ticket->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> Ticket Topics (*)</a>
+			<a class="dropdown-item" href="{{ route('tickets.topics', $ticket->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> Ticket Topics (*)</a>
 		@endcan
 		@can('close', $ticket)
 			<a class="dropdown-item sw2" href="{{ route('tickets.close', $ticket->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> Close Ticket</a>

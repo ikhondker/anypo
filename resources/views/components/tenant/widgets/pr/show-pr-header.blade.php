@@ -4,7 +4,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('reports.pr', $pr->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
-                    @can('update', $pr)
+					@can('update', $pr)
 						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
 					@endcan
 				</div>
@@ -33,14 +33,14 @@
 						<x-tenant.show.my-text		value="{{ $pr->project->name }}" label="Project"/>
 						<x-tenant.show.my-text		value="{{ $pr->supplier->name }}" label="Supplier"/>
 						<x-tenant.show.my-text-area	value="{{ $pr->notes }}" label="Notes"/>
-                         @can('update', $pr)
-                            <tr>
-                                <th>&nbsp;</th>
-                                <td>
-                                        <x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
-                                </td>
-                            </tr>
-					    @endcan
+						 @can('update', $pr)
+							<tr>
+								<th>&nbsp;</th>
+								<td>
+										<x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
+								</td>
+							</tr>
+						@endcan
 
 					</tbody>
 				</table>
@@ -52,7 +52,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-                    @can('submit', $pr)
+					@can('submit', $pr)
 						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
 							data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">

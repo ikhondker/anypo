@@ -53,16 +53,16 @@ class PoPolicy
 	{
 		//return ($po->auth_status == AuthStatusEnum::DRAFT->value);
 
-        // only buyer can submit own draft and rejected PO
-        if ($user->id <> $po->buyer_id) {
+		// only buyer can submit own draft and rejected PO
+		if ($user->id <> $po->buyer_id) {
 			return false;
-        } elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
 			return true;
 		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;
 		} else {
 			return ( false ) ;
-        }
+		}
 	}
 
 	/**
@@ -78,10 +78,10 @@ class PoPolicy
 	 */
 	public function update(User $user, Po $po): bool
 	{
-        // only buyer can edit draft and rejected PO
-        if ($user->id <> $po->buyer_id) {
+		// only buyer can edit draft and rejected PO
+		if ($user->id <> $po->buyer_id) {
 			return false;
-        } elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
 			return true;
 		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;

@@ -91,13 +91,7 @@ class TestController extends Controller
 		Log::debug('Value of result id =' .  $result->id);
 
 
-		// error
-		// return response()->json(['id' => '1111']);
-		// return response()->json([
-		//     'id'        => $result->id,
-		//     'currency'  => $result->currency,
-		//     'amount'    => $result->amount,
-		// ],200);
+
 
 
 		$sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";
@@ -109,8 +103,8 @@ class TestController extends Controller
 			Log::debug('Value of rows=' . $row->aa);
 			//Log::debug('Value of rows=' . print_r($row['aa']));
 			// $rows[] = [
-			//     'id'        => $row['id'],
-			//     'currency'  => $row['currency'],
+			// 'id'			=> $row['id'],
+			// 'currency'  	=> $row['currency'],
 			// ];
 		}
 
@@ -122,7 +116,6 @@ class TestController extends Controller
 
 		//$data = Invoice::select('id','currency','summary','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
 		//$data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $invoiceId)->first();
-		// xx $data = Invoice::select('id','currency','summary','invoice_date','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary','currency','po_date')->where('id', $invoiceId)->first();
 
 		//SELECT JSON_ARRAYAGG(JSON_OBJECT('name', name, 'phone', phone)) from Person;
 
@@ -130,9 +123,9 @@ class TestController extends Controller
 
 		// $sql = "
 		// SELECT CONCAT(
-		//     '[',
-		//     GROUP_CONCAT(JSON_OBJECT('id', id, 'currency', currency)),
-		//     ']'
+		// '[',
+		// GROUP_CONCAT(JSON_OBJECT('id', id, 'currency', currency)),
+		// ']'
 		// )
 		// FROM invoices WHERE id = '1002'
 		// ";

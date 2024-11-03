@@ -90,7 +90,7 @@ class TenantController extends Controller
 			'',
 			''
 		);
-		$checkout     = Checkout::where('id', $checkout_id )->first();
+		$checkout	= Checkout::where('id', $checkout_id )->first();
 		Log::debug('landlord.TenantController.store created checkout_id = '. $checkout_id);
 
 		// set session_id

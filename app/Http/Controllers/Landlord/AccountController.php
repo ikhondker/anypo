@@ -253,14 +253,14 @@ class AccountController extends Controller
 
 		$this->authorize('reset', $account);
 
-        $account_id = $account->id;
+		$account_id = $account->id;
 		Log::debug('landlord.AccountController.resets reset account_id = '. $account_id);
 		$sql= "
 		UPDATE accounts SET
 			start_date = DATE_SUB(curdate(), INTERVAL 1 MONTH),
-            end_date = curdate(),
-            next_bill_generated = false, next_invoice_no = null,
-            last_bill_date = DATE_SUB(curdate(), INTERVAL 1 MONTH)
+			end_date = curdate(),
+			next_bill_generated = false, next_invoice_no = null,
+			last_bill_date = DATE_SUB(curdate(), INTERVAL 1 MONTH)
 			WHERE id = ".$account_id.";
 		";
 		//Log::debug('landlord.AccountController.resets reset  sql = '. $sql);

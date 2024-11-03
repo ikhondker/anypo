@@ -94,7 +94,7 @@ class StatusSeeder extends Seeder
 				'name' 				=> 'closed',
 				'badge' 			=> 'badge-subtle-secondary',
 			],
-            [
+			[
 				'code' 				=> 'pending',
 				'name' 				=> 'pending',
 				'badge' 			=> 'badge-subtle-secondary',
@@ -104,7 +104,7 @@ class StatusSeeder extends Seeder
 				'name' 				=> 'Force Closed',
 				'badge' 			=> 'badge-subtle-secondary',
 			],
-            [
+			[
 				'code' 				=> 'rejected',
 				'name' 				=> 'Rejected',
 				'badge' 			=> 'badge-subtle-danger',

@@ -21,9 +21,7 @@
 namespace App\Http\Controllers\Landlord;
 
 use App\Http\Controllers\Controller;
-//use App\Http\Requests\Landlord\StoreAttachmentRequest;
-//use App\Http\Requests\Landlord\UpdateAttachmentRequest;
-use App\Http\Requests\Landlord\Admin\StoreInvoiceRequest;       // <--------------
+
 
 # 1. Models
 //use App\Models\User;
@@ -185,7 +183,7 @@ class AkkController extends Controller
 							'',
 							''
 						);
-		$checkout     = Checkout::where('id', $checkout_id )->first();
+		$checkout	= Checkout::where('id', $checkout_id )->first();
 		Log::debug('landlord.AkkController.checkoutStripe created checkout_id = '. $checkout_id);
 
 		// set session_id
@@ -208,17 +206,17 @@ class AkkController extends Controller
 		// Log::debug('landlord.AkkController.insertCheckout period = '. $period);
 		// Log::debug('landlord.AkkController.insertCheckout invoice_id = '. $invoice_id);
 
-		$config     = Config::where('id', config('bo.CONFIG_ID'))->firstOrFail();
+		$config		= Config::where('id', config('bo.CONFIG_ID'))->firstOrFail();
 
 		//insertCheckout(InvoiceTypeEnum::ADDON->value, $site ='', $account_name ='', $email ='' , $account_id, $product_id)
 
 		// create checkout row
 		$checkout					= new Checkout;
-		$checkout->invoice_type     = $type;
+		$checkout->invoice_type		= $type;
 		$checkout->checkout_date	= date('Y-m-d H:i:s');
 
 		if ((auth()->check()) ) {
-			$checkout->existing_user	= true;             			 // override as necessary, like system creating new Tenant
+			$checkout->existing_user	= true;   			 // override as necessary, like system creating new Tenant
 			$checkout->owner_id			= auth()->user()->id;
 			$checkout->email			= auth()->user()->email;
 			$checkout->address1			= auth()->user()->address1;
@@ -228,8 +226,8 @@ class AkkController extends Controller
 			$checkout->zip				= auth()->user()->zip;
 			$checkout->country			= auth()->user()->country;
 		} else {
-			$checkout->existing_user	= false;                          // override as necessary
-			$checkout->email			= $email;                         // override as necessary
+			$checkout->existing_user	= false;			// override as necessary
+			$checkout->email			= $email;			// override as necessary
 		}
 
 		// get product
@@ -238,7 +236,7 @@ class AkkController extends Controller
 		$checkout->product_name		= $product->name;
 		$checkout->tax				= $product->tax;
 		$checkout->vat				= $product->vat;
-		$checkout->price			= $product->price;		            // override as necessary
+		$checkout->price			= $product->price;		// override as necessary
 		$checkout->mnth				= $product->mnth;
 		$checkout->user				= $product->user;
 		$checkout->gb				= $product->gb;
@@ -263,7 +261,7 @@ class AkkController extends Controller
 					$checkout->existing_user	= true;
 				} else {
 					$checkout->existing_user	= false;
-                    $checkout->email			= $email;                   // Tenant created by system from backend
+					$checkout->email			= $email;	// Tenant created by system from backend
 				}
 
 				break;
@@ -274,7 +272,7 @@ class AkkController extends Controller
 
 				// get invoice and account details
 				$invoice = Invoice::with('account')->where('id', $invoice_id )->first();
-                $checkout->site				= $invoice->account->site;
+				$checkout->site				= $invoice->account->site;
 				$checkout->account_id		= $invoice->account->id;
 				$checkout->account_name		= $invoice->account->name;
 				$checkout->invoice_id		= $invoice->id;
@@ -291,7 +289,7 @@ class AkkController extends Controller
 				$checkout->invoice_type		= InvoiceTypeEnum::ADDON->value;
 				$checkout->existing_user	= true;
 
-				$account			        = Account::where('id', $account_id)->first();
+				$account					= Account::where('id', $account_id)->first();
 				$checkout->site				= $account->site;
 				$checkout->account_id		= $account->id;
 				$checkout->account_name		= $account->name;
@@ -312,7 +310,7 @@ class AkkController extends Controller
 				$checkout->invoice_type		= InvoiceTypeEnum::ADVANCE->value;
 				$checkout->existing_user	= true;
 
-				$account			        = Account::where('id', $account_id)->first();
+				$account					= Account::where('id', $account_id)->first();
 				$checkout->site				= $account->site;
 				$checkout->account_id		= $account->id;
 				$checkout->account_name		= $account->name;
@@ -354,7 +352,7 @@ class AkkController extends Controller
 		$checkout->ip				= request()->ip();
 		$checkout->save();
 
-        Log::debug('landlord.AkkController.insertCheckout checkout inserted checkout_id = '.  $checkout->id);
+		Log::debug('landlord.AkkController.insertCheckout checkout inserted checkout_id = '.  $checkout->id);
 		return $checkout->id;
 	}
 
@@ -471,7 +469,7 @@ class AkkController extends Controller
 	public function processAddon($account_id, $addon_id)
 	{
 
-        $this->authorize('addon',Akk::class);
+		$this->authorize('addon',Akk::class);
 
 		Log::channel('bo')->info('landlord.account.addAddon buying new addon account = '. $account_id . ' product_id = ' . $addon_id);
 
@@ -542,7 +540,7 @@ class AkkController extends Controller
 			'',
 			''
 		);
-		$checkout     = Checkout::where('id', $checkout_id )->first();
+		$checkout		= Checkout::where('id', $checkout_id )->first();
 		Log::debug('landlord.AkkController.addAddon created checkout_id = '. $checkout_id);
 
 		// set session_id
@@ -553,8 +551,8 @@ class AkkController extends Controller
 			return redirect($session->url);
 		} else {
 			AddAddon::dispatch($checkout->id);
-            return view('landlord.pages.info')
-                ->with('title','Thank you for purchasing Add-on!')->with('msg','Please check you Account for purchased add-ons.');
+			return view('landlord.pages.info')
+				->with('title','Thank you for purchasing Add-on!')->with('msg','Please check you Account for purchased add-ons.');
 		}
 	}
 
@@ -566,10 +564,10 @@ class AkkController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	//public function processAdvance(StoreInvoiceRequest $request)
-    public function processAdvance(Request $request)
+	public function processAdvance(Request $request)
 	{
 
-        $this->authorize('advance',Akk::class);
+		$this->authorize('advance',Akk::class);
 
 		$period 		= $request->period;
 		Log::debug('landlord.AkkController.processAdvance generating advance invoice for period = ' . $period);
@@ -613,7 +611,7 @@ class AkkController extends Controller
 
 		// get product
 		$product    = Product::where('id', $account->primary_product_id)->first();
-		$config     = Config::where('id', config('bo.CONFIG_ID'))->first();
+		$config		= Config::where('id', config('bo.CONFIG_ID'))->first();
 
 		switch ($period) {
 			case '1':
@@ -666,7 +664,7 @@ class AkkController extends Controller
 			$period,
 			''
 		);
-		$checkout     = Checkout::where('id', $checkout_id )->first();
+		$checkout		= Checkout::where('id', $checkout_id )->first();
 		Log::debug('landlord.AkkController.processAdvance created checkout_id = '. $checkout_id);
 
 		// set session_id
@@ -716,7 +714,7 @@ class AkkController extends Controller
 		$product    = Product::where('id', $invoice->account->primary_product_id)->first();
 
 		// create checkout row
-        // insertCheckout($type, $site ='', $account_name ='', $email ='', $account_id, $product_id, $period, $invoice_id)
+		// insertCheckout($type, $site ='', $account_name ='', $email ='', $account_id, $product_id, $period, $invoice_id)
 
 		$checkout_id = self::insertCheckout(
 			InvoiceTypeEnum::SUBSCRIPTION->value,
@@ -728,7 +726,7 @@ class AkkController extends Controller
 			'',
 			$invoice->id
 		);
-		$checkout     = Checkout::where('id', $checkout_id )->first();
+		$checkout	= Checkout::where('id', $checkout_id )->first();
 		Log::debug('landlord.AkkController.checkoutStripe created checkout_id = '. $checkout_id);
 
 		// set session_id

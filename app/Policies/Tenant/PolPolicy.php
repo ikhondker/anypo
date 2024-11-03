@@ -54,11 +54,11 @@ class PolPolicy
 	 */
 	public function update(User $user, Pol $pol): bool
 	{
-        // only buyer can edit prl where PO is draft and rejected
+		// only buyer can edit prl where PO is draft and rejected
 		$po = Po::where('id', $pol->po_id)->first();
-        if ($user->id <> $po->buyer_id) {
+		if ($user->id <> $po->buyer_id) {
 			return false;
-        } elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
 			return true;
 		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;

@@ -17,13 +17,13 @@
 				@if (auth()->user()->isSeeded())
 					<x-landlord.actions.ticket-actions ticketId="{{ $ticket->id }}"/>
 				@endif
-               <a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
-                <a href="{{ route('tickets.index') }}" class="btn btn-primary float-end me-1"><i class="fas fa-list"></i> View all</a>
-                <a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="btn btn-primary float-end me-1"><i class="fas fa-print"></i> Print</a>
+			   <a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
+				<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end me-1"><i class="fas fa-list"></i> View all</a>
+				<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="btn btn-primary float-end me-1"><i class="fas fa-print"></i> Print</a>
 		@endslot
 	</x-landlord.page-header>
 
-    <!-- card-ticket-header -->
+	<!-- card-ticket-header -->
 	<x-landlord.widgets.ticket-header ticketId="{{ $ticket->id }}"/>
 	<!-- /.card-ticket-header -->
 
@@ -62,7 +62,7 @@
 							<th>Last Response At :</th>
 							<td>{{ ($ticket->last_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_response_at)->ago() }}</td>
 						</tr>
-                        <tr>
+						<tr>
 							<th>Closed At :</th>
 							<td>{{ ($ticket->closed_at == null) ? null  :  Carbon\Carbon::parse($ticket->closed_at)->ago() }}</td>
 						</tr>

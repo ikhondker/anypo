@@ -2,9 +2,9 @@
 	<div class="card-header">
 		<div class="card-actions float-end">
 			<div class="dropdown position-relative">
-                @can('update', $pr)
+				@can('update', $pr)
 					<a href="{{ route('prls.add-line', $pr->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus-square"></i> Add Line</a>
-			    @endcan
+				@endcan
 			</div>
 		</div>
 		<h5 class="card-title">Requisition Lines <span class="badge badge-subtle-primary">{{ $pr->currency }}</span></h5>
@@ -37,7 +37,7 @@
 			<!-- Table footer i.e. Totals -->
 			<tr>
 				<td class="" colspan="3" scope="col">
-                     @can('update', $pr)
+					 @can('update', $pr)
 						<a href="{{ route('prls.add-line', $pr->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 					@endcan
 				</td>

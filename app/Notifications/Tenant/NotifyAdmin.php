@@ -39,9 +39,6 @@ class NotifyAdmin extends Notification implements ShouldQueue
 				$this->line1	= 'Please note, a new user your '. $tenantUser->name.' has been registered at '.tenant('id').'.' .config('app.name').' with email '.$tenantUser->email;
 				$this->line2	= 'Please review and enable that account, if it is a valid team member.';
 				break;
-			case 'XXACTIVATED':
-
-
 			default:
 				// Success
 		}

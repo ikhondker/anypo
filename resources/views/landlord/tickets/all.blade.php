@@ -55,7 +55,7 @@
 						<th>Dept</th>
 						<th>Agent</th>
 						<th>Status</th>
-                        <th>Last Response</th>
+						<th>Last Response</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -89,9 +89,9 @@
 							<td>
 								<x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/>
 							</td>
-                            <td>
-                                {{ ($ticket->last_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_response_at)->ago() }}
-                            </td>
+							<td>
+								{{ ($ticket->last_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_response_at)->ago() }}
+							</td>
 							<td>
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>

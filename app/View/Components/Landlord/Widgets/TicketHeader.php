@@ -9,21 +9,21 @@ use App\Models\Landlord\Ticket;
 
 class TicketHeader extends Component
 {
-    public $ticket;
+	public $ticket;
 
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(public string $ticketId)
-    {
-        $this->ticket = Ticket::where('id', $ticketId)->first();
-    }
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct(public string $ticketId)
+	{
+		$this->ticket = Ticket::where('id', $ticketId)->first();
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.landlord.widgets.ticket-header');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.landlord.widgets.ticket-header');
+	}
 }

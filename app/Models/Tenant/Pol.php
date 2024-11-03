@@ -38,13 +38,6 @@ class Pol extends Model
 	];
 
 	/* ----------------- Scopes ------------------------- */
-	/**
-	 * Scope a query to only All Approved PR for tenant.
-	*/
-	public function scopexxReceiptDue(Builder $query): void
-	{
-			$query->where('closure_status',ClosureStatusEnum::OPEN->value);
-	}
 
 	/**
 	 * Scope a query to return all payment of PO's where he is the buyer.

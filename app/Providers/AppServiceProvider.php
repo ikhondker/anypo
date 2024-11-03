@@ -94,27 +94,27 @@ class AppServiceProvider extends ServiceProvider
 			return $user->isSystem();
 		});
 
-        Gate::define('pr-pdf', function(User $user, Pr $pr) {
+		Gate::define('pr-pdf', function(User $user, Pr $pr) {
 			// owner, manager, hod, admin and system can view PR
-            if ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
-                return true;
-            } elseif ($user->role->value == UserRoleEnum::USER->value) {
-                return ($user->id == $pr->requestor_id);
-            } elseif ($user->role->value == UserRoleEnum::HOD->value) {
-                return ($user->dept_id == $pr->dept_id);
-            } else {
-                return ( false ) ;
-            }
+			if ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+				return true;
+			} elseif ($user->role->value == UserRoleEnum::USER->value) {
+				return ($user->id == $pr->requestor_id);
+			} elseif ($user->role->value == UserRoleEnum::HOD->value) {
+				return ($user->dept_id == $pr->dept_id);
+			} else {
+				return ( false ) ;
+			}
 		});
 
-        Gate::define('po-pdf', function(User $user, Po $po) {
+		Gate::define('po-pdf', function(User $user, Po $po) {
 			if ($user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
-                return true;
-            } elseif ($user->role->value == UserRoleEnum::HOD->value) {
-                return ($user->dept_id == $po->dept_id);
-            } else {
-                return ( false ) ;
-            }
+				return true;
+			} elseif ($user->role->value == UserRoleEnum::HOD->value) {
+				return ($user->dept_id == $po->dept_id);
+			} else {
+				return ( false ) ;
+			}
 		});
 
 

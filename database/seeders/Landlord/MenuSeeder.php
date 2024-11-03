@@ -50,7 +50,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'tickets.edit',	  	'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.create',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.assign',	  	'route_name' => 'tickets.index',	'node_name' 	=> ''],
-            [ 'raw_route_name' => 'tickets.topics',	  	'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'tickets.topics',	  	'route_name' => 'tickets.index',	'node_name' 	=> ''],
 
 			[ 'raw_route_name' => 'comments.all',		'route_name' => 'comments.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'comments.show',	  	'route_name' => 'comments.index',	'node_name' 	=> ''],
@@ -149,7 +149,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'products.edit',	 	'route_name' => 'products.index',	  'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'products.create',	'route_name' => 'products.index',	  'node_name' => 'lookups'],
 
-            [ 'raw_route_name' => 'topics.index',		'route_name' => 'topics.index',	  'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'topics.index',		'route_name' => 'topics.index',	  'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'topics.show',	 	'route_name' => 'topics.index',	  'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'topics.update',	    'route_name' => 'topics.index',	  'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'topics.edit',	 	'route_name' => 'topics.index',	  'node_name' => 'lookups'],
@@ -253,10 +253,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'notifications.edit', 'route_name' => 'notifications.index', 'node_name' 	=> 'system'],
 			[ 'raw_route_name' => 'notifications.create','route_name'=> 'notifications.index', 'node_name' 	=> 'system'],
 
-            [ 'raw_route_name' => 'cps.index','route_name' 			    => 'cps.index', 'node_name' 		=> 'system'],
-            [ 'raw_route_name' => 'cps.changelog','route_name' 			=> 'cps.index', 'node_name' 	=> 'system'],
-            [ 'raw_route_name' => 'cps.ui','route_name' 				=> 'cps.index', 'node_name'			=> 'system'],
-            [ 'raw_route_name' => 'cps.codegen','route_name' 			=> 'cps.index', 'node_name' 	    => 'system'],
+			[ 'raw_route_name' => 'cps.index','route_name' 			    => 'cps.index', 'node_name' 		=> 'system'],
+			[ 'raw_route_name' => 'cps.changelog','route_name' 			=> 'cps.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'cps.ui','route_name' 				=> 'cps.index', 'node_name'			=> 'system'],
+			[ 'raw_route_name' => 'cps.codegen','route_name' 			=> 'cps.index', 'node_name' 	    => 'system'],
 
 			[ 'raw_route_name' => 'ui',			'route_name' 		=> 'ui',	'node_name' 				=> 'system'],
 

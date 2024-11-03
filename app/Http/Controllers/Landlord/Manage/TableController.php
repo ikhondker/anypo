@@ -179,18 +179,6 @@ class TableController extends Controller
 		return view('landlord.manage.tables.helpers', compact('filesInFolder'));
 	}
 
-	public function xxfncHelpers()
-	{
-		$this->authorize('controllers', Table::class);
-
-		//$filesInFolder = \File::files(base_path().'\app\Http\Controllers\Tenant');
-		$filesInFolder = Docs::getFiles('\app\Helpers');
-		//$filesInFolder = Docs::getFiles(config('akk.DOC_DIR_CLASS'));
-
-		//Log::debug('Value of id=' . config('akk.DOC_DIR'));
-		return view('landlord.manage.tables.helpers-fnc', compact('filesInFolder'));
-	}
-
 	public function fncHelpers($dir = null)
 	{
 		$this->authorize('controllers', Table::class);

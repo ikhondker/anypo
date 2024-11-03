@@ -57,14 +57,6 @@ class CheckoutController extends Controller
 	}
 
 	/**
-	 * Display a listing of the resource.
-	 */
-	public function xxall()
-	{
-
-	}
-
-	/**
 	 * Show the form for creating a new resource.
 	 */
 	public function create()

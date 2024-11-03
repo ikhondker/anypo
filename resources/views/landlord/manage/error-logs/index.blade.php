@@ -46,14 +46,14 @@
 			<table id="datatables-orders" class="table w-100">
 				<thead>
 					<tr>
-                        <th>#</th>
-                        <th>Tenant</th>
-                        <th>URL</th>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>User</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+						<th>#</th>
+						<th>Tenant</th>
+						<th>URL</th>
+						<th>Type</th>
+						<th>Date</th>
+						<th>User</th>
+						<th>Status</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>

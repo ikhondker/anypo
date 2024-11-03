@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 		$this->call(\Database\Seeders\Landlord\RatingSeeder::class);
 		$this->call(\Database\Seeders\Landlord\PaymentMethodSeeder::class);
 		$this->call(\Database\Seeders\Landlord\ProductSeeder::class);
-        $this->call(\Database\Seeders\Landlord\TopicSeeder::class);
+		$this->call(\Database\Seeders\Landlord\TopicSeeder::class);
 
 		// // Note:
 		$this->call(\Database\Seeders\Share\TemplateSeeder::class);

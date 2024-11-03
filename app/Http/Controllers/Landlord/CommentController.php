@@ -150,16 +150,16 @@ class CommentController extends Controller
 			$status_code = $request->input('status_code');
 			$ticket->status_code = $status_code;
 
-            // set first_response_at , last_response_at
-            if (! $comment->is_internal){
-                // if public response and first_response_at is null
-                if ($ticket->first_response_at == null){
-                    $ticket->first_response_at = now();
-                }
-                $ticket->last_response_at = now();
-            }
+			// set first_response_at , last_response_at
+			if (! $comment->is_internal){
+				// if public response and first_response_at is null
+				if ($ticket->first_response_at == null){
+					$ticket->first_response_at = now();
+				}
+				$ticket->last_response_at = now();
+			}
 
-            $ticket->update();
+			$ticket->update();
 
 			switch ($status_code) {
 				case TicketStatusEnum::INPROGRESS->value:
@@ -185,8 +185,8 @@ class CommentController extends Controller
 		} else {
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
 			$ticket->status_code = TicketStatusEnum::PENDING->value;
-            // update user last message date
-            $ticket->last_message_at = now();
+			// update user last message date
+			$ticket->last_message_at = now();
 			$ticket->update();
 			if ($ticket->agent_id <> ''){
 				// Send notification to Assigned Agent if customer updates the ticket

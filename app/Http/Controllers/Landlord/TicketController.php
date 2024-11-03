@@ -304,7 +304,7 @@ class TicketController extends Controller
 
 	public function topics(Ticket $ticket)
 	{
-        $this->authorize('addTopic', $ticket);
+		$this->authorize('addTopic', $ticket);
 		$topics		= Topic::primary()->get();
 		return view('landlord.tickets.topics', compact('ticket','topics'));
 	}
@@ -312,7 +312,7 @@ class TicketController extends Controller
 	public function addTopic(Request $request, Ticket $ticket)
 	{
 
-        $this->authorize('addTopic', $ticket);
+		$this->authorize('addTopic', $ticket);
 
 		Log::debug('landlord.TicketController.addTopic ticket_id= ' . $ticket->id);
 		Log::debug('landlord.TicketController.addTopic request ticket_id= ' . $request->input('ticket_id'));

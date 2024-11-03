@@ -355,11 +355,11 @@ class ReportController extends Controller
 	{
 
 		$pr 		= Pr::with('requestor')->where('id', $id)->firstOrFail();
-        if (! Gate::allows('pr-pdf', $pr)) {
-            abort(403);
-        }
+		if (! Gate::allows('pr-pdf', $pr)) {
+			abort(403);
+		}
 
-        $setup 		= Setup::with('country_name')->first();
+		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();
 		$prls 		= Prl::with('item')->where('pr_id', $pr->id)->get()->all();
 
@@ -509,10 +509,10 @@ class ReportController extends Controller
 	public function po($id)
 	{
 
-        $po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
-        if (! Gate::allows('po-pdf', $po)) {
-            abort(403);
-        }
+		$po 		= Po::with('requestor')->where('id', $id)->firstOrFail();
+		if (! Gate::allows('po-pdf', $po)) {
+			abort(403);
+		}
 
 		Log::debug('tenant.ReportController.po Value of po_id = ' . $id);
 		$setup 		= Setup::first();
@@ -836,7 +836,7 @@ class ReportController extends Controller
 	public function receipt($id)
 	{
 
-        $this->authorize('run',Report::class);
+		$this->authorize('run',Report::class);
 
 		$setup 		= Setup::with('country_name')->first();
 		$report 	= Report::where('code', __FUNCTION__)->firstOrFail();

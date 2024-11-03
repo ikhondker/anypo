@@ -32,7 +32,7 @@ class AkkPolicy
 
 		public function viewAll(User $user): bool
 	{
-        return false;
+		return false;
 	}
 
 	/**
@@ -40,7 +40,7 @@ class AkkPolicy
 	 */
 	public function view(User $user, Akk $akk): bool
 	{
-        return false;
+		return false;
 	}
 
 	/**
@@ -51,7 +51,7 @@ class AkkPolicy
 		return false;
 	}
 
-    /**
+	/**
 	 * Determine whether the user can create models.
 	 */
 	public function addon(User $user): bool
@@ -59,7 +59,7 @@ class AkkPolicy
 		return ($user->isAdmin() ||$user->isSeeded());
 	}
 
-    /**
+	/**
 	 * Determine whether the user can create models.
 	 */
 	public function advance(User $user): bool
@@ -72,7 +72,7 @@ class AkkPolicy
 	 */
 	public function update(User $user, Akk $akk): bool
 	{
-        return false;
+		return false;
 	}
 
 	/**
@@ -84,7 +84,7 @@ class AkkPolicy
 	}
 
 
-    /**
+	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function reset(User $user, Akk $akk): bool

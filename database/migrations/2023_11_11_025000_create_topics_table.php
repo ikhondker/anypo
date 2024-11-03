@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('topics', function (Blueprint $table) {
+	/**
+	 * Run the migrations.
+	 */
+	public function up(): void
+	{
+		Schema::create('topics', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('name');
-            $table->biginteger('count_tickets')->default(0);
+			$table->biginteger('count_tickets')->default(0);
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();
@@ -24,13 +24,13 @@ return new class extends Migration
 			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 		});
-    }
+	}
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('topics');
-    }
+	/**
+	 * Reverse the migrations.
+	 */
+	public function down(): void
+	{
+		Schema::dropIfExists('topics');
+	}
 };

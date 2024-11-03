@@ -28,13 +28,13 @@ return new class extends Migration
 			$table->string('cheque_no')->nullable();
 			$table->string('payment_token')->nullable();
 			$table->string('reference_id')->nullable();
-            $table->boolean('pwop')->default(false);         // paid by admin without payment, from invoice table
+			$table->boolean('pwop')->default(false);	// paid by admin without payment, from invoice table
 			$table->text('notes')->nullable();
 			$table->string('ip')->nullable();
-            /** ENUM */
+			/** ENUM */
 			//$table->foreignId('payment_method_id')->constrained('payment_methods');
 			$table->string('payment_method_code')->default(PaymentMethodEnum::CARD->value);
-            //$table->foreign('payment_method_code')->references('code')->on('payment_methods');
+			//$table->foreign('payment_method_code')->references('code')->on('payment_methods');
 			/** end ENUM */
 			/** ENUM */
 			//$table->string('status')->default(PaymentStatusEnum::DRAFT->value);

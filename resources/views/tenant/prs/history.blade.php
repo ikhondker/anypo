@@ -23,11 +23,11 @@
 	{{-- @include('tenant.includes.pr.view-pr-header-basic') --}}
 
 	<!-- Approval History -->
-    <x-tenant.wf.pr-approval-history prId="{{ $pr->id }}"/>
+	<x-tenant.wf.pr-approval-history prId="{{ $pr->id }}"/>
 
-    <div class="float-end">
-        <a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ route('prs.show', $pr->id) }}"><i data-lucide="arrow-left-circle"></i> Back to PR</a>
-    </div>
+	<div class="float-end">
+		<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ route('prs.show', $pr->id) }}"><i data-lucide="arrow-left-circle"></i> Back to PR</a>
+	</div>
 
 @endsection
 

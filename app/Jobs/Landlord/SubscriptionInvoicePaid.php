@@ -55,32 +55,32 @@ class SubscriptionInvoicePaid implements ShouldQueue
 	public function handle(): void
 	{
 
-        // mark checkout as processing
+		// mark checkout as processing
 		$checkout = Checkout::where('id', $this->checkout_id )->first();
 		$checkout->status_code = CheckoutStatusEnum::PROCESSING->value ;
 		$checkout->update();
 
 		Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 0. Processing Site = '.$checkout->site);
-        Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 0. Processing invoice_id = '.$checkout->invoice_id);
+		Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 0. Processing invoice_id = '.$checkout->invoice_id);
 
-        // pay this invoice and notify
-        Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 1. Calling bo::payCheckoutInvoice');
-        $payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
-        if ( $payment_id == 0){
-            Log::error('Jobs.Landlord.SubscriptionInvoicePaid bo::payCheckoutInvoice FAIL. Stop.');
-        } else {
-            //extend account validity and end_date
-            Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 4. Calling bo::extendAccountValidity');
-            $account_id = bo::extendAccountValidity($checkout->invoice_id);
+		// pay this invoice and notify
+		Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 1. Calling bo::payCheckoutInvoice');
+		$payment_id = bo::payCheckoutInvoice($checkout->invoice_id );
+		if ( $payment_id == 0){
+			Log::error('Jobs.Landlord.SubscriptionInvoicePaid bo::payCheckoutInvoice FAIL. Stop.');
+		} else {
+			//extend account validity and end_date
+			Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 4. Calling bo::extendAccountValidity');
+			$account_id = bo::extendAccountValidity($checkout->invoice_id);
 
-            if ( $account_id == 0){
-                Log::error('Jobs.Landlord.SubscriptionInvoicePaid bo::extendAccountValidity FAIL. Stop');
-            } else {
-                // mark checkout as complete
-                $checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
-                $checkout->update();
-                Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 4. Done');
-            }
-        }
+			if ( $account_id == 0){
+				Log::error('Jobs.Landlord.SubscriptionInvoicePaid bo::extendAccountValidity FAIL. Stop');
+			} else {
+				// mark checkout as complete
+				$checkout->status_code = CheckoutStatusEnum::COMPLETED->value;
+				$checkout->update();
+				Log::debug('Jobs.Landlord.SubscriptionInvoicePaid 4. Done');
+			}
+		}
 	}
 }

@@ -46,7 +46,7 @@ class Payment extends Model
 	];
 
 	protected $casts = [
-		'pay_date'		        => 'datetime',
+		'pay_date'				=> 'datetime',
 		'updated_at'			=> 'datetime',
 		'created_at'			=> 'datetime',
 		'payment_method_code' 	=> PaymentMethodEnum::class,

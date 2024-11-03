@@ -30,7 +30,7 @@ class TopicSeeder extends Seeder
 			['name' 	=> 'Hierarchy'],
 			['name' 	=> 'Approval'],
 			['name' 	=> 'Workflow'],
-            ['name' 	=> 'Interface'],
+			['name' 	=> 'Interface'],
 			['name' 	=> 'Currency'],
 			['name' 	=> 'Setup'],
 			['name' 	=> 'Support'],

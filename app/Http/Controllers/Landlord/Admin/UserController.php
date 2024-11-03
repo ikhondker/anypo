@@ -78,7 +78,7 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		
+
 		//Log::debug("landlord.users.index role = ".auth()->user()->role->value);
 
 		switch (auth()->user()->role->value) {
@@ -107,14 +107,14 @@ class UserController extends Controller
 		if (request('term')) {
 			$users->where('name', 'Like', '%' . request('term') . '%');
 		}
-		
+
 		if ($account == '') {
 			// here the parameter doesn't exist
 			$users= $users->with('account')->orderBy('created_at', 'DESC')->paginate(10);
-			
+
 		} else {
 			$users= $users->with('account')
-				->where('account_id',$account->id)	
+				->where('account_id',$account->id)
 				->orderBy('created_at', 'DESC')->paginate(10);
 		}
 
@@ -178,7 +178,7 @@ class UserController extends Controller
 		} else {
 			return redirect()->route('users.all')->with('success','User created successfully.');
 		}
-		
+
 	}
 
 	/**
@@ -278,22 +278,6 @@ class UserController extends Controller
 		return redirect()->route('dashboards.index')->with('success','User Status Updated successfully');
 	}
 
-	public function xxrole()
-	{
-		$users = User::latest()->orderBy('id','desc')->paginate(10);
-		return view('users.role',compact('users'));
-	}
-
-	public function xxupdaterole(User $user, $role)
-	{
-		$this->authorize('updaterole',$user);
-		$user->role = $role;
-		$user->update();
-
-		// Write to Log
-		EventLog::event('user',$user->id,'updaterole','name',$role);
-		return redirect()->route('users.index')->with('success','User '.$user->name.' role to \''.$role.'\' updated successfully');
-	}
 
 	public function changePassword(User $user)
 	{

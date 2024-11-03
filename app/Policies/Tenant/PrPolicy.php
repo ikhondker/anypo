@@ -38,7 +38,7 @@ class PrPolicy
 	public function view(User $user, Pr $pr): bool
 	{
 		// owner, manager, hod, admin and system can view PR
-        // same in Gate pr-report
+		// same in Gate pr-report
 		if ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
 			return true;
 		} elseif ($user->role->value == UserRoleEnum::USER->value) {
@@ -55,10 +55,10 @@ class PrPolicy
 	 */
 	public function submit(User $user, Pr $pr): bool
 	{
-        // only requester can submit own draft and rejected PR
-        if ($user->id <> $pr->requestor_id) {
+		// only requester can submit own draft and rejected PR
+		if ($user->id <> $pr->requestor_id) {
 			return false;
-        } elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
 			return true;
 		} elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;
@@ -66,9 +66,9 @@ class PrPolicy
 			return ( false ) ;
 		}
 
-        // if ($pr->auth_status == AuthStatusEnum::DRAFT->value ) {
+		// if ($pr->auth_status == AuthStatusEnum::DRAFT->value ) {
 		// 	return ($user->id == $pr->requestor_id);
-        // } elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
+		// } elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
 		// 	return ($user->id == $pr->requestor_id);
 		// } else {
 		// 	return ( false ) ;
@@ -89,10 +89,10 @@ class PrPolicy
 	 */
 	public function update(User $user, Pr $pr): bool
 	{
-        // only requester can edit draft and rejected PR
-        if ($user->id <> $pr->requestor_id) {
+		// only requester can edit draft and rejected PR
+		if ($user->id <> $pr->requestor_id) {
 			return false;
-        } elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
 			return true;
 		} elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;
@@ -103,7 +103,7 @@ class PrPolicy
 		// owner, manager, hod, admin and system can view PR in draft and rejected status
 		// if (($pr->auth_status <> AuthStatusEnum::DRAFT->value ) && ($pr->auth_status <> AuthStatusEnum::REJECTED->value ) ) {
 		// 	return false;
-        // } elseif ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
+		// } elseif ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() ) {
 		// 	return true;
 		// } elseif ($user->role->value == UserRoleEnum::USER->value) {
 		// 	return ($user->id == $pr->requestor_id);

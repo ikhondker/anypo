@@ -1,9 +1,9 @@
 <div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-               	@can('close', $ticket)
+			   	@can('close', $ticket)
 					<a href="{{ route('tickets.close',$ticket->id) }}" class="btn btn-sm btn-light sw2"><i class="fas fa-power-off text-danger"></i> Close Ticket</a>
-        		@endcan
+				@endcan
 			</div>
 			<div class="badge bg-{{ $ticket->status->badge }} my-2">{{ $ticket->status->name }}</div>
 			<h5 class="card-title mb-0">#{{ $ticket->id }}: {{ $ticket->title }}</h5>

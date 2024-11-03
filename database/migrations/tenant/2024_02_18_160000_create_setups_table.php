@@ -31,7 +31,7 @@ return new class extends Migration
 			$table->string('website')->nullable();
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();
-            $table->string('timezone', 255)->default('UTC');
+			$table->string('timezone', 255)->default('UTC');
 			$table->biginteger('days_payment')->nullable()->default(45);
 			$table->biginteger('days_return')->nullable()->default(30);
 			$table->decimal('tolerance_invoice', 15, 2)->default(1);		// Future
