@@ -360,7 +360,7 @@ class HierarchyController extends Controller
 		$this->authorize('export', Hierarchy::class);
 
 		$data = DB::select("SELECT h.id, h.name, IF(h.enable, 'Yes', 'No') AS enable,
-			hl.id sequence, u.name user_name
+			hl.sequence, u.name user_name
 			FROM hierarchies h,hierarchyls hl, users u
 			WHERE h.id=hl.hid
 			AND hl.approver_id=u.id

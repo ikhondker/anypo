@@ -47,6 +47,8 @@ $checkout->checkout_date	= date('Y-m-d H:i:s');
 		<div class="small text-danger">{{ $message }}</div>
 @enderror
 
+{{ $dbus->firstItem() + $loop->index}}
+
 
 <table class="table table-sm my-2">
 	<tbody>

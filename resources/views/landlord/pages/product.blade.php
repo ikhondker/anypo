@@ -40,7 +40,7 @@
 						</div>
 					</div>
 					<div class="my-4">
-						<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+						<a href="{{ route('akk.pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
 					</div>
 				</div>
 				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
@@ -55,7 +55,7 @@
 
 
 	<!-- Features -->
-	
+
 	<!-- End Features -->
 
 	<!-- Features -->
@@ -68,7 +68,7 @@
 			<p>Take control of your spending and empower your business with our SAAS-based Purchasing and Budget Control Solution. Designed for small and medium-sized companies and startups, our platform ensures financial stability and strategic spending.</p>
 			{{-- <p>Use our tools to explore your ideas and make your vision come true. Then share your work easily.</p> --}}
 			<div class="mt-4">
-				<a class="btn btn-primary btn-transition px-5" href="{{ route('pricing') }}">Start Now</a>
+				<a class="btn btn-primary btn-transition px-5" href="{{ route('akk.pricing') }}">Start Now</a>
 			</div>
 		</div>
 		<!-- End Col -->
@@ -154,7 +154,7 @@
 	<!-- End Features -->
 
 
-	
+
 	<section class="py-6 bg-white">
 		<div class="container">
 			<div class="mb-5 text-center">
@@ -227,7 +227,7 @@
 					</ul>
 					<!-- End List Checked -->
 					<div class="my-4">
-						<a href="{{ route('pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
+						<a href="{{ route('akk.pricing') }}" class="btn btn-primary btn-lg btn-pill">Get Started</a>
 					</div>
 				</div>
 				<div class="col-lg-7 d-none d-lg-flex mx-auto text-center">
@@ -267,7 +267,7 @@
 			<p>Answer a few questions and match your goals to our programs.</p>
 			</div>
 
-			<a class="btn btn-primary btn-transition" href="{{ route('pricing') }}">Get started</a>
+			<a class="btn btn-primary btn-transition" href="{{ route('akk.pricing') }}">Get started</a>
 		</div>
 	</div>
 	<!-- End CTA -->

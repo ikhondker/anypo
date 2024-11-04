@@ -39,7 +39,7 @@
 						<div class="row">
 							<div class="col-md-12 col-lg-12 mx-auto">
 								<div class="accordion" id="accordionBasics">
-										
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsOne" data-bs-toggle="collapse" data-bs-target="#collapseOne"
 											aria-expanded="true" aria-controls="collapseOne">
@@ -53,7 +53,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
 											aria-expanded="true" aria-controls="collapseTwo">
@@ -67,7 +67,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsThree" data-bs-toggle="collapse" data-bs-target="#collapseThree"
 											aria-expanded="true" aria-controls="collapseThree">
@@ -81,8 +81,8 @@
 											</div>
 										</div>
 									</div>
-									
-									
+
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsFour" data-bs-toggle="collapse" data-bs-target="#collapseFour"
 											aria-expanded="true" aria-controls="collapseFour">
@@ -96,7 +96,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsFive" data-bs-toggle="collapse" data-bs-target="#collapseFive"
 											aria-expanded="true" aria-controls="collapseFive">
@@ -106,12 +106,12 @@
 										</div>
 										<div id="collapseFive" class="collapse" aria-labelledby="basicsFive" data-bs-parent="#accordionBasics">
 											<div class="card-body py-3">
-												Pricing models vary among providers and may be based on factors such as the number of users, features required, and transaction volume. We offer subscription-based pricing plans. One simple <a href="{{ route('pricing') }}">pricing model</a>. All you need to start. No hidden costs.
+												Pricing models vary among providers and may be based on factors such as the number of users, features required, and transaction volume. We offer subscription-based pricing plans. One simple <a href="{{ route('akk.pricing') }}">pricing model</a>. All you need to start. No hidden costs.
 											</div>
 										</div>
 									</div>
-									
-				
+
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsSix" data-bs-toggle="collapse" data-bs-target="#collapseSix"
 											aria-expanded="true" aria-controls="collapseSix">
@@ -152,7 +152,7 @@
 											</div>
 										</div>
 									</div>
-								
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsNine" data-bs-toggle="collapse" data-bs-target="#collapseNine"
 											aria-expanded="true" aria-controls="collapseNine">
@@ -166,7 +166,7 @@
 											</div>
 										</div>
 									</div>
-							
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsTen" data-bs-toggle="collapse" data-bs-target="#collapseTen"
 											aria-expanded="true" aria-controls="collapseTen">
@@ -180,8 +180,8 @@
 											</div>
 										</div>
 									</div>
-								
-								
+
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="basicsEleven" data-bs-toggle="collapse"
 											data-bs-target="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
@@ -195,19 +195,19 @@
 											</div>
 										</div>
 									</div>
-								
-				
+
+
 								</div>
 							</div>
 						</div>
-				
+
 						<div id="support" class="mb-5 mt-5 text-center">
 							<span class="text-uppercase text-primary fw-medium mb-1 d-block">Support</span>
 						</div>
 						<div class="row">
 							<div class="col-md-12 col-lg-12 mx-auto">
 								<div class="accordion" id="accordionSupport">
-									
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="supportOne" data-bs-toggle="collapse" data-bs-target="#collapseOne"
 											aria-expanded="true" aria-controls="collapseOne">
@@ -221,9 +221,9 @@
 											</div>
 										</div>
 									</div>
-							
-								
-								
+
+
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="supportTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
 											aria-expanded="true" aria-controls="collapseTwo">
@@ -237,9 +237,9 @@
 											</div>
 										</div>
 									</div>
-								
-								
-								
+
+
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="supportThree" data-bs-toggle="collapse" data-bs-target="#collapseThree"
 											aria-expanded="true" aria-controls="collapseThree">
@@ -253,7 +253,7 @@
 											</div>
 										</div>
 									</div>
-								
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="supportFour" data-bs-toggle="collapse" data-bs-target="#collapseFour"
 											aria-expanded="true" aria-controls="collapseFour">
@@ -267,11 +267,11 @@
 											</div>
 										</div>
 									</div>
-								
+
 								</div>
 							</div>
 						</div>
-				
+
 						<div id="payments" class="mb-5 mt-5 text-center">
 							<span class="text-uppercase text-primary fw-medium mb-1 d-block">Payment</span>
 						</div>
@@ -291,8 +291,8 @@
 											</div>
 										</div>
 									</div>
-								
-								
+
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="paymentTwo" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
 											aria-expanded="true" aria-controls="collapseTwo">
@@ -306,8 +306,8 @@
 											</div>
 										</div>
 									</div>
-								
-								
+
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="paymentThree" data-bs-toggle="collapse" data-bs-target="#collapseThree"
 											aria-expanded="true" aria-controls="collapseThree">
@@ -321,8 +321,8 @@
 											</div>
 										</div>
 									</div>
-								
-								
+
+
 									<div class="card border mb-3">
 										<div class="card-header cursor-pointer" id="paymentFour" data-bs-toggle="collapse" data-bs-target="#collapseFour"
 											aria-expanded="true" aria-controls="collapseFour">
@@ -336,7 +336,7 @@
 											</div>
 										</div>
 									</div>
-								
+
 								</div>
 							</div>
 						</div>
@@ -350,7 +350,7 @@
 		</div>
 		<!-- End row -->
 
-	
+
 
 	</div>
 

@@ -305,6 +305,7 @@ class UserSeeder extends Seeder
 
 		User::insert($seededUsers);
 
+        // Find and report support manager email
 		Log::debug('landlord.seeders.UserSeeder bo.SUPPORT_GROUP_EMAIL_ID = '.config('bo.SUPPORT_GROUP_EMAIL_ID'));
 		$user = User::where('email', config('bo.SUPPORT_GROUP_EMAIL_ID'))->first();
 		Log::debug('landlord.seeders.UserSeeder bo.SUPPORT_MGR_ID = ' . $user->id);
