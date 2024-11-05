@@ -14,7 +14,7 @@ use App\Models\Landlord\Lookup\Topic;
 
 class TicketTopic extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
 		'ticket_id', 'topic_id', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
@@ -25,14 +25,14 @@ class TicketTopic extends Model
 		'created_at'	=> 'datetime',
 	];
 
-    /* ---------------- belongsTo ---------------------- */
+	/* ---------------- belongsTo ---------------------- */
 	public function ticket() {
 		return $this->belongsTo(Ticket::class, 'ticket_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}
 
-    public function topic() {
+	public function topic() {
 		return $this->belongsTo(Topic::class, 'topic_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);

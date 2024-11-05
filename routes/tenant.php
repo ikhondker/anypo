@@ -236,8 +236,8 @@ Route::middleware([
 		Route::resource('notifications', NotificationController::class);
 		Route::get('/notification/all',[NotificationController::class, 'all'])->name('notifications.all');
 		Route::get('/notifications/read/{notification}',[NotificationController::class, 'read'])->name('notifications.read');
-        //Route::get('/notifications/mark-as-read/{notification}',[NotificationController::class, 'markNotification'])->name('notifications.mark-as-read');
-        //Route::get('/notifications/mark-as-read',[NotificationController::class, 'markNotification'])->name('notifications.mark-as-read');
+		//Route::get('/notifications/mark-as-read/{notification}',[NotificationController::class, 'markNotification'])->name('notifications.mark-as-read');
+		//Route::get('/notifications/mark-as-read',[NotificationController::class, 'markNotification'])->name('notifications.mark-as-read');
 
 		Route::get('/notification/purge',[NotificationController::class, 'purge'])->name('notifications.purge');
 		Route::get('/notifications/delete/{notification}',[NotificationController::class, 'destroy'])->name('notifications.destroy');
@@ -284,8 +284,8 @@ Route::middleware([
 		/* ======================== Ticket ======================================== */
 		Route::resource('tickets', TicketController::class);
 
-        /* ======================== Wfl ======================================== */
-	    Route::resource('wfls', WflController::class);      // anyone can be in approval hierarchy
+		/* ======================== Wfl ======================================== */
+		Route::resource('wfls', WflController::class);	// anyone can be in approval hierarchy
 
 		/* ======================== Report ========================================  */
 		Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
@@ -368,7 +368,7 @@ Route::middleware([
 		Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
 		Route::get('/invoices/payments/{invoice}',[InvoiceController::class,'payments'])->name('invoices.payments');
 		Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
-        Route::get('/invoices/get-invoices/{po}',[InvoiceController::class, 'getInvoice'])->name('invoices.get-invoice');
+		Route::get('/invoices/get-invoices/{po}',[InvoiceController::class, 'getInvoice'])->name('invoices.get-invoice');
 
 		Route::get('/invoices/delete/{invoice}',[InvoiceController::class,'destroy'])->name('invoices.destroy');
 		Route::get('/invoices/cancel/{invoice}',[InvoiceController::class,'cancel'])->name('invoices.cancel');
@@ -663,9 +663,9 @@ Route::middleware([
 		Route::get('/aeh/manual',[AehController::class,'manual'])->name('aehs.manual');
 		Route::post('/aeh/manual-ael',[AehController::class,'manualAeh'])->name('aehs.manual-aeh');
 
-        /* ======================== Ael ========================================  */
-        // Check
-        //Route::get('/ael/manual',[AelController::class,'manual'])->name('aels.manual');
+		/* ======================== Ael ========================================  */
+		// Check
+		//Route::get('/ael/manual',[AelController::class,'manual'])->name('aels.manual');
 		//Route::post('/ael/manual-ael',[AelController::class,'manualAel'])->name('aels.manual-ael');
 
 		/* ======================== Country ======================================== */
@@ -688,9 +688,9 @@ Route::middleware([
 		/* ======================== Cp ======================================== */
 		Route::resource('cps', CpController::class);
 		Route::get('/cp/changelog',[CpController::class,'changeLog'])->name('cps.changelog');
-        Route::get('/cp/codegen',[CpController::class,'changeLog'])->name('cps.changelog');
-        Route::get('/cp/ui',[CpController::class,'ui'])->name('cps.ui');
-        Route::get('/cp/timestamp',[CpController::class,'checkTimestamp'])->name('cps.timestamp');
+		Route::get('/cp/codegen',[CpController::class,'changeLog'])->name('cps.changelog');
+		Route::get('/cp/ui',[CpController::class,'ui'])->name('cps.ui');
+		Route::get('/cp/timestamp',[CpController::class,'checkTimestamp'])->name('cps.timestamp');
 		//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
 
 		/* ======================== Table ========================================  */
@@ -745,8 +745,8 @@ Route::middleware([
 		Route::get('/custom-error/export',[CustomErrorController::class,'export'])->name('custom-errors.export');
 		Route::get('/custom-errors/delete/{customError}',[CustomErrorController::class,'destroy'])->name('custom-errors.destroy');
 
-        /* ======================== Notification ======================================== */
-        Route::get('/notification/full',[NotificationController::class, 'full'])->name('notifications.full');
+		/* ======================== Notification ======================================== */
+		Route::get('/notification/full',[NotificationController::class, 'full'])->name('notifications.full');
 
 
 		/* ======================== Purging Cache ========================================  */

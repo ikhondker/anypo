@@ -23,7 +23,7 @@ x154. export file name add export
 
 disbale prl/pol edit by policy
 117. reject/resubmit pr/po
-        policy/header/lines/
+		policy/header/lines/
 131. ListAllLines and CardTableRow with status-true/false
 130. $e->getMessage()
 129. DASC - decimal-rev attahment-sourcdepbudid-? cllose po/pr/invice/pol/
@@ -77,7 +77,7 @@ disbale prl/pol edit by policy
 
 # 30 Nice to Have P2
 -------------------------------------------------------------------------------------------------
-111. chat plugin for intenral   Laravel reverb work with laravel 11 i
+111. chat plugin for intenral Laravel reverb work with laravel 11 i
 113. Auth::user()->unreadNotifications->markAsRead(); jquery
 1. notfication mark-as-read with ajax see https://blog.quickadminpanel.com/laravel-notifications-with-database-driver-internal-messages/
 1.	prefix form pr/po number

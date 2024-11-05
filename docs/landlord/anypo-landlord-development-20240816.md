@@ -17,7 +17,7 @@ D:\My Works\lv-anypo-local\landlord\docs\flow.vsdx
 # 14. Ref Objects & Files
 ====================================================================
 - User->Ticket
-- BO-objects-lists-20240414.xlsx   C:\Users\pulok\Google Drive\Briefcase\lv-anypo
+- BO-objects-lists-20240414.xlsx C:\Users\pulok\Google Drive\Briefcase\lv-anypo
 - laravel-CRUD.txt
 - HO-1-objects.txt
 - HO-2-components.txt

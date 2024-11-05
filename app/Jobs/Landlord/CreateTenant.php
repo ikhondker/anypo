@@ -190,7 +190,7 @@ class CreateTenant implements ShouldQueue
 			$user->email		= $checkout->email;
 			$user->role			= UserRoleEnum::ADMIN->value;
 			$random_password 	= Str::random(12);
-			$user->password	    = bcrypt($random_password);
+			$user->password		= bcrypt($random_password);
 			// $user->password	= bcrypt('password');
 
 			// default address

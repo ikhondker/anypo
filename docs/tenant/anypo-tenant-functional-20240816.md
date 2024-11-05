@@ -13,8 +13,8 @@ Actions	None	Yes		show,edit,history,attachment etc
 
 # Number column
 ----------------------------
-any amount          $table->decimal('tax', 19, 2)->default(0);
-qty/rate/rating/    $table->decimal('tax', 19, 4)->default(0);
+any amount			$table->decimal('tax', 19, 2)->default(0);
+qty/rate/rating/	$table->decimal('tax', 19, 4)->default(0);
 $table->double('fc_exchange_rate', 15, 10)->default(1);		// Functional Currency
 
 
@@ -31,7 +31,7 @@ PoController.submit -> Workflow::submitWf -> WflActionEnum::DUE->value  -> Workf
 
 <x-tenant.widgets.wfl.get-approval wfId="{{ $po->wf_id }}" /> 
 	->WflController.update  -> approved -> Workflow::getNextApproverId ->  WflController.moveToNext -> Workflow::setNextApproverDue -> notify
-						    -> rejected
+							-> rejected
 
 
 # PR & PO Max limit 

@@ -316,7 +316,7 @@ class AkkController extends Controller
 				$checkout->account_name		= $account->name;
 
 				// get product
-				$product    = Product::where('id', $account->primary_product_id)->first();
+				$product	= Product::where('id', $account->primary_product_id)->first();
 
 				switch ($period) {
 					case '1':
@@ -610,7 +610,7 @@ class AkkController extends Controller
 
 
 		// get product
-		$product    = Product::where('id', $account->primary_product_id)->first();
+		$product	= Product::where('id', $account->primary_product_id)->first();
 		$config		= Config::where('id', config('bo.CONFIG_ID'))->first();
 
 		switch ($period) {
@@ -711,7 +711,7 @@ class AkkController extends Controller
 		]);
 
 		// get product
-		$product    = Product::where('id', $invoice->account->primary_product_id)->first();
+		$product	= Product::where('id', $invoice->account->primary_product_id)->first();
 
 		// create checkout row
 		// insertCheckout($type, $site ='', $account_name ='', $email ='', $account_id, $product_id, $period, $invoice_id)

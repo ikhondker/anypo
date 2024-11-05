@@ -93,7 +93,7 @@ php artisan queue:listen --timeout=1200
 2. logo in landlord reports
 3. enable this extension in php.ini by uncommenting this line: extension=ext/php_intl.dll
 4. review App\Exceptions\Handler
-5.   config('akk.LANDLORD_CONFIG_ID'
+5. config('akk.LANDLORD_CONFIG_ID'
 
 # 8. Logos Used
 ====================================================================

@@ -20,7 +20,7 @@
 namespace App\Enum\Landlord;
 
 enum InvoiceTypeEnum:string{
-	case SIGNUP		    = 'signup';
+	case SIGNUP			= 'signup';
 	case SUBSCRIPTION	= 'subscription';
 	case ADDON			= 'addon';
 	case ADVANCE		= 'advance';

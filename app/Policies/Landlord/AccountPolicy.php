@@ -71,7 +71,7 @@ class AccountPolicy
 	}
 
 
-    /**
+	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function reset(User $user, Account $account): bool

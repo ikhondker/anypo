@@ -114,7 +114,7 @@
 									<th>Amount :</th>
 									<td>
 										<input type="number" class="form-control @error('amount') is-invalid @enderror"
-										   style="text-align: right;" min="1" step="0.01" max="999999.99"
+											style="text-align: right;" min="1" step="0.01" max="999999.99"
 											name="amount" id="amount" placeholder="0.00"
 											value="{{ old('amount','0.00') }}"
 											required>
@@ -167,7 +167,7 @@
 										<div class="row">
 											<div class="col-md-4">
 												<input type="text" class="form-control"
-												name="dsp_invoice_date" id="dsp_invoice_date" value="{{ empty($invoice) ? old('dsp_invoice_date') : strtoupper(date('d-M-y', strtotime($invoice->invoice_date)))   }}"
+												name="dsp_invoice_date" id="dsp_invoice_date" value="{{ empty($invoice) ? old('dsp_invoice_date') : strtoupper(date('d-M-y', strtotime($invoice->invoice_date))) }}"
 												readonly/>
 											</div>
 											<div class="col-md-5">
@@ -198,7 +198,7 @@
 										<div class="row">
 											<div class="col-md-5">
 												<input type="text" class="form-control"
-												name="dsp_po_date" id="dsp_po_date" value="{{ empty($invoice) ? old('dsp_po_date') :strtoupper(date('d-M-y', strtotime($invoice->po->po_date)))   }}"
+												name="dsp_po_date" id="dsp_po_date" value="{{ empty($invoice) ? old('dsp_po_date') :strtoupper(date('d-M-y', strtotime($invoice->po->po_date))) }}"
 												readonly/>
 											</div>
 											<div class="col-md-4">

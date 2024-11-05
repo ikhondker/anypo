@@ -171,7 +171,7 @@
 										<div class="row">
 											<div class="col-md-5">
 												<input type="text" class="form-control"
-												name="dsp_po_date" id="dsp_po_date" value="{{ empty($pol) ? old('dsp_po_date') :strtoupper(date('d-M-y', strtotime($po->po_date)))   }}"
+												name="dsp_po_date" id="dsp_po_date" value="{{ empty($pol) ? old('dsp_po_date') :strtoupper(date('d-M-y', strtotime($po->po_date))) }}"
 												readonly/>
 											</div>
 											<div class="col-md-4">

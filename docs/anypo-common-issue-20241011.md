@@ -51,13 +51,13 @@ Step 3: Autoloading the Helper File
 composer.json
 
 "autoload": {
-    "files": [
-        "app/Helpers/Tenant/Akk.php"
-    ],
-    ...
+	"files": [
+		"app/Helpers/Tenant/Akk.php"
+	],
+	...
 },
 
-"files":   "app/Helpers/Tenant/Akk.php",
+"files": "app/Helpers/Tenant/Akk.php",
  you need to run composer dump-autoload to make sure that everything has been loaded.
 
 

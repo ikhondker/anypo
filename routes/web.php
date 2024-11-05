@@ -84,7 +84,7 @@ Route::get('/contact-us', function () {
 })->name('contact-us');
 
 Route::get('/404', function () {
-    abort(404);
+	abort(404);
 });
 
 /**
@@ -309,8 +309,8 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
 	Route::get('/tickets/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
 	Route::post('/tickets/doassign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.doassign');
-    Route::get('/tickets/topics/{ticket}', [TicketController::class, 'topics'])->name('tickets.topics');
-    Route::post('/ticket/add-topic', [TicketController::class, 'addTopic'])->name('tickets.add-topic');
+	Route::get('/tickets/topics/{ticket}', [TicketController::class, 'topics'])->name('tickets.topics');
+	Route::post('/ticket/add-topic', [TicketController::class, 'addTopic'])->name('tickets.add-topic');
 
 	/* ======================== Comment ========================================  */
 	Route::get('/comment/all', [CommentController::class, 'all'])->name('comments.all');
@@ -357,9 +357,9 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	Route::resource('products', ProductController::class);
 	Route::get('/products/delete/{product}',[ProductController::class, 'destroy'])->name('products.delete');
 
-    /* ======================== Topic ======================================== */
+	/* ======================== Topic ======================================== */
 	Route::resource('topics', TopicController::class);
-    Route::get('/topics/delete/{topic}',[TopicController::class, 'destroy'])->name('topics.delete');
+	Route::get('/topics/delete/{topic}',[TopicController::class, 'destroy'])->name('topics.delete');
 
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);
@@ -403,21 +403,21 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	/* ======================== Account ======================================== */
 	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.delete');
-    Route::get('/accounts/reset/{account}',[AccountController::class,'reset'])->name('accounts.reset');
+	Route::get('/accounts/reset/{account}',[AccountController::class,'reset'])->name('accounts.reset');
 
 	/* ======================== Cp ======================================== */
 	Route::resource('cps', CpController::class);
 	Route::get('/cp/changelog',[CpController::class,'changeLog'])->name('cps.changelog');
 	Route::get('/cp/codegen',[CpController::class,'codeGen'])->name('cps.codegen');
-    Route::get('/cp/ui',[CpController::class,'ui'])->name('cps.ui');
+	Route::get('/cp/ui',[CpController::class,'ui'])->name('cps.ui');
 
 	//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
 
-    /* ======================== Invoice ======================================== */
-    Route::get('/invoices/pwop/{invoice}',[InvoiceController::class,'pwop'])->name('invoices.pwop');
-    Route::put('/invoices/pay-pwop/{invoice}',[InvoiceController::class,'payPwop'])->name('invoices.pay-pwop');
+	/* ======================== Invoice ======================================== */
+	Route::get('/invoices/pwop/{invoice}',[InvoiceController::class,'pwop'])->name('invoices.pwop');
+	Route::put('/invoices/pay-pwop/{invoice}',[InvoiceController::class,'payPwop'])->name('invoices.pay-pwop');
 	Route::get('/invoices/discount/{invoice}',[InvoiceController::class,'discount'])->name('invoices.discount');
-    Route::put('/invoices/apply-discount/{invoice}',[InvoiceController::class,'applyDiscount'])->name('invoices.apply-discount');
+	Route::put('/invoices/apply-discount/{invoice}',[InvoiceController::class,'applyDiscount'])->name('invoices.apply-discount');
 
 
 	/* ======================== Notification TODO for Landlord ======================================== */

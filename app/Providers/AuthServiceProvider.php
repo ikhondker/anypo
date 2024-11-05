@@ -40,7 +40,6 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Attachment' 			=> 'App\Policies\Landlord\AttachmentPolicy',
 		'App\Models\Landlord\Comment' 				=> 'App\Policies\Landlord\CommentPolicy',
 		'App\Models\Landlord\Dashboard' 			=> 'App\Policies\Landlord\DashboardPolicy',
-		//'App\Models\Landlord\Notification' 		=> 'App\Policies\Landlord\NotificationPolicy',
 		'App\Models\Landlord\Report' 				=> 'App\Policies\Landlord\ReportPolicy',
 		'App\Models\Landlord\Ticket' 				=> 'App\Policies\Landlord\TicketPolicy',
 
@@ -50,12 +49,8 @@ class AuthServiceProvider extends ServiceProvider
 
 		'App\Models\Landlord\Lookup\Category' 		=> 'App\Policies\Landlord\Lookup\CategoryPolicy',
 		'App\Models\Landlord\Lookup\Country' 		=> 'App\Policies\Landlord\Lookup\CountryPolicy',
-		//'App\Models\Landlord\Lookup\Dept'			=> 'App\Policies\Landlord\Lookup\DeptPolicy',
-		//'App\Models\Landlord\Lookup\PaymentMethod' 	=> 'App\Policies\Landlord\Lookup\PaymentMethodPolicy',
-		//'App\Models\Landlord\Lookup\Priority' 		=> 'App\Policies\Landlord\Lookup\PriorityPolicy',
 		'App\Models\Landlord\Lookup\Product' 		=> 'App\Policies\Landlord\Lookup\ProductPolicy',
-		'App\Models\Landlord\Lookup\Topic' 		    => 'App\Policies\Landlord\Lookup\TopicPolicy',
-		//'App\Models\Landlord\Lookup\Rating' 		=> 'App\Policies\Landlord\Lookup\RatingPolicy',
+		'App\Models\Landlord\Lookup\Topic' 			=> 'App\Policies\Landlord\Lookup\TopicPolicy',
 
 		'App\Models\Landlord\Manage\Activity'		=> 'App\Policies\Landlord\Manage\ActivityPolicy',
 		'App\Models\Landlord\Manage\Checkout' 		=> 'App\Policies\Landlord\Manage\CheckoutPolicy',

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Topic extends Model
 {
-    use HasFactory, AddCreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
 		'name', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
@@ -26,7 +26,7 @@ class Topic extends Model
 		'created_at'	=> 'datetime',
 	];
 
-    /* ----------------- Scopes ------------------------- */
+	/* ----------------- Scopes ------------------------- */
 	/**
 	 * Scope a query to only All Approved PR for tenant.
 	*/
@@ -35,7 +35,7 @@ class Topic extends Model
 		$query->where('enable', true)->orderBy('name', 'asc');
 	}
 
-    /* ---------------- HasMany ---------------------- */
+	/* ---------------- HasMany ---------------------- */
 	public function ticketTopics()
 	{
 		return $this->hasMany(TicketTopic::class);

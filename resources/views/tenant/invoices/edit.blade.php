@@ -90,9 +90,9 @@
 								<tr>
 									<th>Currency :</th>
 									<td>
-									   <input type="text" class="form-control"
-												name="currency" id="currency" value="{{ $invoice->currency }}"
-												readonly/>
+										<input type="text" class="form-control"
+											name="currency" id="currency" value="{{ $invoice->currency }}"
+											readonly/>
 									</td>
 								</tr>
 							</tbody>
