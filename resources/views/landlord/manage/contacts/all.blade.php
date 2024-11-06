@@ -48,6 +48,7 @@
 			<thead>
 				<tr>
 					<th>#</th>
+                    <th>Type</th>
 					<th>Name</th>
 					<th>Date</th>
 					<th>Subject</th>
@@ -61,6 +62,7 @@
 						<td>
 							<img src="{{ Storage::disk('s3l')->url('avatar/avatar.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar" title="Avatar">
 						</td>
+                        <td><span class="badge badge-subtle-success">{{ $contact->type }}</span></td>
 						<td>
 							<a href="{{ route('contacts.show', $contact->id) }}">
 							<strong>{{ $contact->first_name.' '.$contact->last_name }}</strong>

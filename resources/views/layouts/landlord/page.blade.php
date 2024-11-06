@@ -74,6 +74,7 @@
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
 						<li class="mt-2"><a class="text-white-50" href="{{ route('faq') }}"><i class="align-middle far fa-fw fa-user-circle"></i> FAQ</a></li>
 						<li class="mt-2"><a class="text-white-50" href="{{ route('login') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Your Account</a></li>
+                        <li class="mt-2"><a class="text-white-50" href="{{ route('request-demo') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Request Demo</a></li>
 					</ul>
 				</div>
 				<div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-0">

@@ -22,6 +22,12 @@
 				<div class="card-body">
 					<table class="table table-sm my-2">
 						<tbody>
+
+
+							<tr>
+								<th>Type :</th>
+								<td><span class="badge badge-subtle-success">{{ $contact->type }}</span></td>
+							</tr>
 							<x-landlord.show.my-text	value="{{ $contact->first_name.' '.$contact->last_name }}"/>
 							<x-landlord.show.my-text	value="{{ $contact->email }}" label="E-mail"/>
 							<x-landlord.show.my-text	value="{{ $contact->cell }}" label="Cell"/>

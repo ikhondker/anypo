@@ -83,6 +83,12 @@ Route::get('/contact-us', function () {
 	return view('landlord.pages.contact-us', compact('config'));
 })->name('contact-us');
 
+Route::get('/request-demo', function () {
+	$config = Config::with('relCountry')->first();
+	return view('landlord.pages.request-demo', compact('config'));
+})->name('request-demo');
+
+
 Route::get('/404', function () {
 	abort(404);
 });
@@ -94,6 +100,7 @@ Route::get('/404', function () {
 */
 use App\Http\Controllers\Landlord\HomeController;
 Route::post('/save-contact', [HomeController::class, 'saveLandlordContact'])->name('home.save-contact');
+Route::post('/request-demo', [HomeController::class, 'requestDemo'])->name('home.request-demo');
 Route::post('/join-mail-list', [HomeController::class, 'joinMailList'])->name('home.join-mail-list');
 
 /**

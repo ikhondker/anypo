@@ -1,6 +1,7 @@
 
 # 3. TODO 
 ====================================================================
+bug report in both landlaord and tenant
 1. move changelog to a shared controler and let supprot entry P2
 1. .gitignore file modify
 1.  update all laravel pack to last avialable version for laravel 10

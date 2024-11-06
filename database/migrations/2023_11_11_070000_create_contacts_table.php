@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('contacts', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->enum('type', ['general', 'bug','feature','other'])->default('general');
+			$table->enum('type', ['contact','bug', 'feature', 'demo', 'quote', 'other'])->default('contact');
 			$table->string('first_name');
 			$table->string('last_name')->nullable();
 			$table->string('email');
@@ -21,15 +21,15 @@ return new class extends Migration
 			$table->string('subject')->nullable();
 			$table->text('notes');
 			$table->dateTime('contact_date')->useCurrent();
-			$table->string('tenant')->nullable();
-			$table->boolean('demo_requested')->default(true);
+			$table->foreignUuid('attachment_id')->nullable()->constrained('attachments');
+			$table->foreignUuid('user_id')->nullable();
+			$table->foreignUuid('owner_id')->nullable();    // bug/demo/feedback
+            $table->string('tenant')->nullable();
+			//$table->boolean('demo_requested')->default(true);
 			$table->dateTime('demo_preferred_date')->useCurrent();
 			$table->boolean('demo_performed')->default(false);
 			$table->dateTime('demo_date')->nullable();
-			$table->foreignUuid('demo_performed_by')->nullable();
-			$table->text('demo_feedback')->nullable();
-			$table->foreignUuid('user_id')->nullable();
-			$table->foreignUuid('attachment_id')->nullable()->constrained('attachments');
+            $table->text('notes_internal')->nullable();
 			$table->string('ip')->nullable();
 			$table->string('country',2)->default('us');
 //			$table->foreignId('user_id')->nullable()->constrained('users');

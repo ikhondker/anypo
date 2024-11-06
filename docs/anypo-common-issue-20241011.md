@@ -92,3 +92,7 @@ InvoiceController.php
 -- note make sure to enter key in the first select like po_id or supplier_id
 $data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('supplier:id,name')->with('po:id,summary')->where('id', $id)->first();
 $data = Po::select('id','currency','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
+
+
+enum 
+as alias both entity and user role

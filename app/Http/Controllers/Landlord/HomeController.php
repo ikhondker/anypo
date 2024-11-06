@@ -188,8 +188,18 @@ class HomeController extends Controller
 	{
 		$ENTITY	= 'CONTACT';
 
+		// demo page
+		if ($request->has('type')) {
+			$request->merge(['type'	=> 'demo']);
+		} elseif  ($request->has('bug')) {
+			$request->merge(['type'	=> 'bug']);
+		} else {
+			$request->merge(['type'	=> 'contact']);
+		}
+
 		//$request->merge(['ip' => Request::ip()]);
 		//$request->merge(['ip' => '127.0.01']);
+		//Log::debug('$request->path(): '.$request->path());
 
 		$user_id = auth()->check() ? auth()->user()->id : config('bo.GUEST_USER_ID');
 
