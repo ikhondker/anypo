@@ -94,6 +94,7 @@ php artisan queue:listen --timeout=1200
 3. enable this extension in php.ini by uncommenting this line: extension=ext/php_intl.dll
 4. review App\Exceptions\Handler
 5. config('akk.LANDLORD_CONFIG_ID'
+6. 6. comment demo data seeder insert 
 
 # 8. Logos Used
 ====================================================================

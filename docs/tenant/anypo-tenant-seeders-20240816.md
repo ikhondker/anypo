@@ -10,9 +10,9 @@ php artisan tenants:migrate-fresh --tenants=demo1
 
 
 >> seed ALL tenant table
-php artisan tenants:rollback --tenants='1fb6d7b2-dd56-4b97-a3ee-1707a3633759'
-php artisan tenants:migrate --tenants='1fb6d7b2-dd56-4b97-a3ee-1707a3633759'
-php artisan tenants:seed --class=TenantSeeder --tenants='1fb6d7b2-dd56-4b97-a3ee-1707a3633759'
+php artisan tenants:rollback --tenants='71157320-7cce-41db-85dc-09506a096b56'
+php artisan tenants:migrate --tenants='71157320-7cce-41db-85dc-09506a096b56'
+php artisan tenants:seed --class=TenantSeeder --tenants='71157320-7cce-41db-85dc-09506a096b56'
 
 php artisan queue:listen
 php artisan tenants:seed --tenants=demo1

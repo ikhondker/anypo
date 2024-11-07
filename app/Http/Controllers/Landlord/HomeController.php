@@ -191,7 +191,7 @@ class HomeController extends Controller
 		// demo page
 		if ($request->has('type')) {
 			$request->merge(['type'	=> 'demo']);
-		} elseif  ($request->has('bug')) {
+		} elseif ($request->has('bug')) {
 			$request->merge(['type'	=> 'bug']);
 		} else {
 			$request->merge(['type'	=> 'contact']);

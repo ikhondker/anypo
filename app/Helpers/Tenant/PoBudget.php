@@ -114,14 +114,14 @@ class PoBudget
 			Log::debug('tenant.helper.PoBudget.poBudgetBook dept_budget->amount_pr_booked = '.$dept_budget->amount_po_booked );
 
 			// book project budget
-			$project->amount_po_booked		   	= $project->amount_po_booked + $po->fc_amount;
+			$project->amount_po_booked		 	= $project->amount_po_booked + $po->fc_amount;
 			$project->count_po_booked			= $project->count_po_booked + 1;
 			$project->save();
 
 			// Pr supplier pr issues amount
 			$supplier = Supplier::where('id', $po->supplier_id)->firstOrFail();
-			$supplier->amount_po_booked		  =	 $supplier->amount_po_booked + $po->fc_amount;
-			$supplier->count_po_booked 			= $supplier->count_po_booked + 1;
+			$supplier->amount_po_booked		= $supplier->amount_po_booked + $po->fc_amount;
+			$supplier->count_po_booked 		= $supplier->count_po_booked + 1;
 			$supplier->save();
 
 			Log::debug('tenant.helper.PoBudget.poBudgetBook AFTER project->amount_po_booked = '.$project->amount_po_booked );
@@ -172,8 +172,8 @@ class PoBudget
 		$po = Po::where('id', $po_id)->first();
 		// Po dept budget approved
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
-		$dept_budget->amount_po_booked  = $dept_budget->amount_po_booked - $po->fc_amount;
-		$dept_budget->count_po_booked   = $dept_budget->count_po_count - 1;
+		$dept_budget->amount_po_booked	= $dept_budget->amount_po_booked - $po->fc_amount;
+		$dept_budget->count_po_booked 	= $dept_budget->count_po_count - 1;
 
 		$dept_budget->amount_po_tax		= $dept_budget->amount_po_tax + $po->fc_tax;
 		$dept_budget->amount_po_gst		= $dept_budget->amount_po_gst + $po->fc_gst;
@@ -222,20 +222,20 @@ class PoBudget
 		// Cancel Po dept budget booking
 		$dept_budget = DeptBudget::primary()->where('id', $po->dept_budget_id)->firstOrFail();
 
-		$dept_budget->amount_po_tax		 = $dept_budget->amount_po_tax - $po->fc_tax;
-		$dept_budget->amount_po_gst	 = $dept_budget->amount_po_gst - $po->fc_gst;
+		$dept_budget->amount_po_tax	= $dept_budget->amount_po_tax - $po->fc_tax;
+		$dept_budget->amount_po_gst	= $dept_budget->amount_po_gst - $po->fc_gst;
 
-		$dept_budget->amount_po		  = $dept_budget->amount_po - $po->fc_amount;
-		$dept_budget->count_po		   = $dept_budget->count_po - 1;
+		$dept_budget->amount_po		= $dept_budget->amount_po - $po->fc_amount;
+		$dept_budget->count_po		= $dept_budget->count_po - 1;
 		$dept_budget->save();
 
 		// Cancel Po project booking
 		$project = Project::where('id', $po->project_id)->firstOrFail();
-		$project->amount_po_tax		  = $project->amount_po_tax - $po->fc_tax;
-		$project->amount_po_gst		  = $project->amount_po_gst - $po->fc_gst;
+		$project->amount_po_tax		= $project->amount_po_tax - $po->fc_tax;
+		$project->amount_po_gst		= $project->amount_po_gst - $po->fc_gst;
 
-		$project->amount_po			  =	 $project->amount_po - $po->fc_amount;
-		$project->count_po 				= $project->count_po - 1;
+		$project->amount_po			=	 $project->amount_po - $po->fc_amount;
+		$project->count_po 			= $project->count_po - 1;
 		$project->save();
 
 		// Po supplier po issues reduce

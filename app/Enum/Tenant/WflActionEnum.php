@@ -22,7 +22,7 @@ namespace App\Enum\Tenant;
 enum WflActionEnum: string{
 	case CREATED	= 'created';
 	case SUBMITTED	= 'submitted';
-	case DUE	  	= 'due';
+	case DUE		= 'due';
 	case PENDING	= 'pending';
 	case APPROVED	= 'approved';
 	case REJECTED	= 'rejected';

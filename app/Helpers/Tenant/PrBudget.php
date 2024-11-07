@@ -100,7 +100,7 @@ class PrBudget
 			Log::debug("tenant.helper.PrBudget.prBudgetBook before dept_budget->amount_pr_booked = ".$dept_budget->amount_pr_booked );
 			Log::debug("tenant.helper.PrBudget.prBudgetBook updating pr->fc_amount = ".$pr->fc_amount);
 
-			$dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked + $pr->fc_amount;
+			$dept_budget->amount_pr_booked	= $dept_budget->amount_pr_booked + $pr->fc_amount;
 			$dept_budget->count_pr_booked	= $dept_budget->count_pr_booked + 1;
 			$dept_budget->save();
 			Log::debug("tenant.helper.PrBudget.prBudgetBook AFTER dept_budget->amount_pr_booked = ".$dept_budget->amount_pr_booked );
@@ -165,11 +165,11 @@ class PrBudget
 		$pr = Pr::where('id', $pr_id)->first();
 		// Pr dept budget approved
 		$dept_budget = DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
-		$dept_budget->amount_pr_booked  = $dept_budget->amount_pr_booked - $pr->fc_amount;
+		$dept_budget->amount_pr_booked	= $dept_budget->amount_pr_booked - $pr->fc_amount;
 		$dept_budget->count_pr_booked	= $dept_budget->count_pr_count - 1;
 
 		$dept_budget->amount_pr = $dept_budget->amount_pr + $pr->fc_amount;
-		$dept_budget->count_pr  = $dept_budget->count_pr + 1;
+		$dept_budget->count_pr	= $dept_budget->count_pr + 1;
 		$dept_budget->save();
 
 		// Pr project budget used

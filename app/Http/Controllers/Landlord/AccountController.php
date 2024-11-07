@@ -263,7 +263,7 @@ class AccountController extends Controller
 			last_bill_date = DATE_SUB(curdate(), INTERVAL 1 MONTH)
 			WHERE id = ".$account_id.";
 		";
-		//Log::debug('landlord.AccountController.resets reset  sql = '. $sql);
+		//Log::debug('landlord.AccountController.resets reset sql = '. $sql);
 		DB::statement($sql);
 		return redirect()->route('accounts.all')->with('success', 'Account Reset.');
 	}

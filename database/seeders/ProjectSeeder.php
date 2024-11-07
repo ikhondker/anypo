@@ -116,6 +116,6 @@ class ProjectSeeder extends Seeder
 			Project::insert($seededProject);
 
 			// MUST Comment this
-			// Project::insert($demoProjects);
+			Project::insert($demoProjects);
 	}
 }

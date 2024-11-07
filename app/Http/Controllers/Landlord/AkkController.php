@@ -216,7 +216,7 @@ class AkkController extends Controller
 		$checkout->checkout_date	= date('Y-m-d H:i:s');
 
 		if ((auth()->check()) ) {
-			$checkout->existing_user	= true;   			 // override as necessary, like system creating new Tenant
+			$checkout->existing_user	= true; 			 // override as necessary, like system creating new Tenant
 			$checkout->owner_id			= auth()->user()->id;
 			$checkout->email			= auth()->user()->email;
 			$checkout->address1			= auth()->user()->address1;
@@ -242,7 +242,7 @@ class AkkController extends Controller
 		$checkout->gb				= $product->gb;
 
 		$checkout->start_date		= now();
-		$checkout->end_date			= now()->addMonth($product->mnth);  // override as necessary
+		$checkout->end_date			= now()->addMonth($product->mnth);	// override as necessary
 
 		switch ($type) {
 			case InvoiceTypeEnum::SIGNUP->value:
@@ -265,7 +265,7 @@ class AkkController extends Controller
 				}
 
 				break;
-			case InvoiceTypeEnum::SUBSCRIPTION->value:  // can pay without login
+			case InvoiceTypeEnum::SUBSCRIPTION->value:		// can pay without login
 
 
 				$checkout->invoice_type		= InvoiceTypeEnum::SUBSCRIPTION->value;
@@ -352,7 +352,7 @@ class AkkController extends Controller
 		$checkout->ip				= request()->ip();
 		$checkout->save();
 
-		Log::debug('landlord.AkkController.insertCheckout checkout inserted checkout_id = '.  $checkout->id);
+		Log::debug('landlord.AkkController.insertCheckout checkout inserted checkout_id = '. $checkout->id);
 		return $checkout->id;
 	}
 

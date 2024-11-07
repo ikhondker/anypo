@@ -136,7 +136,7 @@ class Bo
 			case InvoiceTypeEnum::SIGNUP->value:
 				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN');
 				break;
-			case InvoiceTypeEnum::SUBSCRIPTION->value:  // manually generate an pay invoice
+			case InvoiceTypeEnum::SUBSCRIPTION->value:		// manually generate an pay invoice
 				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
