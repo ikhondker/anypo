@@ -57,6 +57,7 @@ use App\Notifications\Landlord\TicketClosed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Str;
 use DB;
 # 13. FUTURE
@@ -314,11 +315,19 @@ class TicketController extends Controller
 
 		$this->authorize('addTopic', $ticket);
 
-		Log::debug('landlord.TicketController.addTopic ticket_id= ' . $ticket->id);
+		Log::debug('landlord.TicketController.addTopic !! ticket_id= ' . $ticket->id);
 		Log::debug('landlord.TicketController.addTopic request ticket_id= ' . $request->input('ticket_id'));
+        Log::debug('landlord.TicketController.addTopic request topic_id= ' . $request->input('topic_id'));
 
+        // TODO check if topic is already added
+        $count		= TicketTopic::where('ticket_id',$request->input('ticket_id') )->where('topic_id',$request->input('topic_id') )->count();
+        Log::debug('landlord.TicketController.addTopic count= ' . $count);
+
+        if ($count <> 0){
+            throw ValidationException::withMessages(['topic_id' => 'This Topic Already added to this Ticket']);
+        }
 		// create ticketTopic row
-		$ticketTopic					= new TicketTopic;
+		$ticketTopic				= new TicketTopic;
 		$ticketTopic->ticket_id		= $request->input('ticket_id');
 		$ticketTopic->topic_id		= $request->input('topic_id');
 		$ticketTopic->save();
@@ -326,7 +335,11 @@ class TicketController extends Controller
 		//$topics		= Topic::primary()->get();
 		//return view('landlord.tickets.topics', compact('ticket','topics'));
 
-		return redirect()->route('tickets.all', $ticket->id)->with('success', 'Topic added.');
+        // again show topics
+        $topics		= Topic::primary()->get();
+		return view('landlord.tickets.topics', compact('ticket','topics'));
+
+		//return redirect()->route('tickets.show', $ticket->id)->with('success', 'Topic added.');
 	}
 
 

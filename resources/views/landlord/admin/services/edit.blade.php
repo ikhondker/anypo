@@ -80,7 +80,7 @@
 							<td>
 								<input type="date" class="form-control @error('start_date') is-invalid @enderror"
 										name="start_date" id="start_date" placeholder="Name"
-										value="{{ old('start_date', $service->start_date ) }}"
+										value="{{ old('start_date', date('Y-m-d',strtotime($service->start_date)) ) }}"
 										required/>
 									@error('start_date')
 										<div class="small text-danger">{{ $message }}</div>
@@ -92,7 +92,7 @@
 							<td>
 								<input type="date" class="form-control @error('end_date') is-invalid @enderror"
 										name="end_date" id="end_date" placeholder="Name"
-										value="{{ old('end_date', $service->end_date ) }}"
+										value="{{ old('end_date', date('Y-m-d',strtotime($service->end_date)) ) }}"
 										required/>
 									@error('end_date')
 										<div class="small text-danger">{{ $message }}</div>

@@ -63,7 +63,6 @@ class InvoiceController extends Controller
 	// define entity constant for file upload and workflow
 	const ENTITY	= 'INVOICE';
 
-
 	/**
 	 * Display a listing of the resource.
 	 *

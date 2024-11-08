@@ -211,6 +211,10 @@ class Bo
 		$payment->account_id			= $invoice->account_id;
 		$payment->owner_id				= $invoice->owner_id; // Might be guest as well
 		$payment->payment_method_code	= PaymentMethodEnum::CARD->value;
+
+        $payment->cheque_no			    = 'CHECKOUT';
+        $payment->reference_id			= 'CHECKOUT';
+
 		$payment->amount				= $invoice->amount;
 		$payment->status_code			= PaymentStatusEnum::PAID->value;
 		//$payment->ip					= $request->ip(); // ERROR

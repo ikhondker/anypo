@@ -75,6 +75,8 @@
 						<li class="mt-2"><a class="text-white-50" href="{{ route('faq') }}"><i class="align-middle far fa-fw fa-user-circle"></i> FAQ</a></li>
 						<li class="mt-2"><a class="text-white-50" href="{{ route('login') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Your Account</a></li>
                         <li class="mt-2"><a class="text-white-50" href="{{ route('request-demo') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Request Demo</a></li>
+                        <li class="mt-2"><a class="text-white-50" href="{{ route('contact-us') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Contact us</a></li>
+
 					</ul>
 				</div>
 				<div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-0">
@@ -82,7 +84,8 @@
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
 						<li class="mt-2"><a class="text-white-50" href="{{ route('privacy') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Privacy &amp; Policy</a></li>
 						<li class="mt-2"><a class="text-white-50" href="{{ route('tos') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Terms of Services</a></li>
-						<li class="mt-2"><a class="text-white-50" href="{{ route('contact-us') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Contact us</a></li>
+                        <li class="mt-2"><a class="text-white-50" href="{{ route('bug-report') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Report a Bug</a></li>
+
 					</ul>
 				</div>
 				<div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-0">

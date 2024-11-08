@@ -54,7 +54,7 @@
 							<td>
 								<input type="date" class="form-control @error('invoice_date') is-invalid @enderror"
 										name="invoice_date" id="invoice_date" placeholder="Name"
-										value="{{ old('invoice_date', $invoice->invoice_date ) }}"
+										value="{{ old('invoice_date', date('Y-m-d',strtotime($invoice->invoice_date)) ) }}"
 										required/>
 									@error('invoice_date')
 										<div class="small text-danger">{{ $message }}</div>
@@ -66,7 +66,7 @@
 							<td>
 								<input type="date" class="form-control @error('from_date') is-invalid @enderror"
 										name="from_date" id="from_date" placeholder="Name"
-										value="{{ old('from_date', $invoice->from_date ) }}"
+										value="{{ old('from_date', date('Y-m-d',strtotime($invoice->from_date)) ) }}"
 										required/>
 									@error('from_date')
 										<div class="small text-danger">{{ $message }}</div>
@@ -78,7 +78,7 @@
 							<td>
 								<input type="date" class="form-control @error('to_date') is-invalid @enderror"
 										name="to_date" id="to_date" placeholder="Name"
-										value="{{ old('to_date', $invoice->to_date ) }}"
+										value="{{ old('to_date', date('Y-m-d',strtotime($invoice->to_date)) ) }}"
 										required/>
 									@error('to_date')
 										<div class="small text-danger">{{ $message }}</div>
@@ -90,7 +90,7 @@
 							<td>
 								<input type="date" class="form-control @error('due_date') is-invalid @enderror"
 										name="due_date" id="due_date" placeholder="Name"
-										value="{{ old('due_date', $invoice->due_date ) }}"
+										value="{{ old('due_date', date('Y-m-d',strtotime($invoice->due_date)) ) }}"
 										required/>
 									@error('due_date')
 										<div class="small text-danger">{{ $message }}</div>

@@ -99,10 +99,6 @@ class HomeController extends Controller
 
 
 
-
-
-
-
 	public function testNotification()
 	{
 		//$user = User::first();
@@ -190,10 +186,14 @@ class HomeController extends Controller
 
 		// demo page
 		if ($request->has('type')) {
-			$request->merge(['type'	=> 'demo']);
-		} elseif ($request->has('bug')) {
-			$request->merge(['type'	=> 'bug']);
-		} else {
+			if ($request->has('demo')) {
+				$request->merge(['type'	=> 'demo']);
+			} elseif ($request->has('bug')) {
+				$request->merge(['type'	=> 'bug']);
+			} else {
+				$request->merge(['type'	=> 'contact']);
+			}
+	   	} else {
 			$request->merge(['type'	=> 'contact']);
 		}
 

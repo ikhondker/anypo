@@ -121,7 +121,7 @@
 						<strong>Extra note:</strong> Please send all items at the same time to the shipping address. Thanks in advance.
 					</p> --}}
 					<a class="btn btn-primary" href="javascript:;" onclick="window.print(); return false;">
-						<i data-lucide="printer"></i> Print This Invoice
+						<i data-lucide="printer"></i> Print This Invoice ***
 					</a>
 
 				</div>

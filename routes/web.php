@@ -88,6 +88,10 @@ Route::get('/request-demo', function () {
 	return view('landlord.pages.request-demo', compact('config'));
 })->name('request-demo');
 
+Route::get('/bug-report', function () {
+	$config = Config::with('relCountry')->first();
+	return view('landlord.pages.bug-report', compact('config'));
+})->name('bug-report');
 
 Route::get('/404', function () {
 	abort(404);
@@ -300,6 +304,7 @@ use App\Http\Controllers\Landlord\Lookup\CategoryController;
 use App\Http\Controllers\Landlord\Lookup\CountryController;
 use App\Http\Controllers\Landlord\Lookup\ProductController;
 use App\Http\Controllers\Landlord\Lookup\TopicController;
+use App\Http\Controllers\Landlord\Manage\TicketTopicController;
 use App\Http\Controllers\Landlord\Manage\CheckoutController;
 use App\Http\Controllers\Landlord\Manage\MailListController;
 use App\Http\Controllers\Landlord\Manage\ActivityController;
@@ -315,9 +320,12 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	/* ======================== Ticket ========================================  */
 	Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
 	Route::get('/tickets/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
-	Route::post('/tickets/doassign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.doassign');
+	Route::post('/tickets/do-assign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.do-assign');
 	Route::get('/tickets/topics/{ticket}', [TicketController::class, 'topics'])->name('tickets.topics');
-	Route::post('/ticket/add-topic', [TicketController::class, 'addTopic'])->name('tickets.add-topic');
+	Route::post('/ticket/add-topic/{ticket}', [TicketController::class, 'addTopic'])->name('tickets.add-topic');
+
+    /* ======================== TicketTopic ========================================  */
+    Route::get('/ticket-topics/delete/{ticketTopic}',[TicketTopicController::class, 'destroy'])->name('ticket-topics.delete');
 
 	/* ======================== Comment ========================================  */
 	Route::get('/comment/all', [CommentController::class, 'all'])->name('comments.all');
@@ -367,6 +375,9 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	/* ======================== Topic ======================================== */
 	Route::resource('topics', TopicController::class);
 	Route::get('/topics/delete/{topic}',[TopicController::class, 'destroy'])->name('topics.delete');
+
+
+
 
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);

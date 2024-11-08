@@ -102,6 +102,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.update',	  	'route_name' => 'users.index',	'node_name' 		=> 'workbench'],
 
 			[ 'raw_route_name' => 'contacts.all',	  	'route_name' => 'contacts.index',	  'node_name' => 'workbench'],
+            [ 'raw_route_name' => 'contacts.show',	  	'route_name' => 'contacts.index',	  'node_name' => 'workbench'],
+            [ 'raw_route_name' => 'contacts.edit',	  	'route_name' => 'contacts.index',	  'node_name' => 'workbench'],
 
 			[ 'raw_route_name' => 'tenants.index',	 	'route_name' => 'tenants.index',	'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'tenants.show',	  	'route_name' => 'tenants.index',	'node_name' => 'workbench'],

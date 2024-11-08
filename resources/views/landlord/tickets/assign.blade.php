@@ -19,7 +19,7 @@
 	</div>
 	<div class="card-body">
 
-		<form action="{{ route('tickets.doassign', $ticket->id) }}" method="POST">
+		<form action="{{ route('tickets.do-assign', $ticket->id) }}" method="POST">
 			@csrf
 
 
@@ -34,7 +34,7 @@
 					<x-landlord.show.my-badge	value="{{ $ticket->priority->name }}" label="Priority"/>
 					<x-landlord.show.my-badge	value="{{ $ticket->dept->name }}" label="Dept"/>
 					<x-landlord.show.my-badge	value="{{ $ticket->status->name }}" label="Status"/>
-					
+
 				</tbody>
 			</table>
 			<x-landlord.create.save/>

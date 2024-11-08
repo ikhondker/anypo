@@ -222,6 +222,12 @@ php artisan make:component Landlord/Widgets/AccountServices
 card-numbers
 Scarborough ON M1G1R9, Canada
 
+# Forms
+-------------------------------------
+php artisan make:component Landlord/Forms/Contact
+
+
+
 # Others
 -------------------------------------
 php artisan make:component Landlord/TableLinks

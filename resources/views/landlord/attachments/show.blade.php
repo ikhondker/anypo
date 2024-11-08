@@ -41,7 +41,7 @@
 						<th>Attachments :</th>
 						<td>
 							@if ($attachment->file_name <> '')
-							<x-landlord.attachment.show-by-id id="{{ $attachment->id }}"/>
+							<x-landlord.attachment.show-by-id attachmentId="{{ $attachment->id }}"/>
 						@else
 							Missing!
 						@endif

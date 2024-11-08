@@ -6,7 +6,6 @@
 
 @section('content')
 
-
 <a href="{{ route('contacts.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Contact</a>
 <h1 class="h3 mb-3">All Contacts</h1>
 
@@ -70,7 +69,7 @@
 						</td>
 						<td><x-landlord.list.my-date :value="$contact->created_at"/></td>
 						<td>{{ Str::limit($contact->subject,15) }}</td>
-						<td><x-landlord.attachment.show-by-id id="{{ $contact->attachment_id }}"/></td>
+						<td><x-landlord.attachment.show-by-id attachmentId="{{ $contact->attachment_id }}"/></td>
 						<td>
 							<a href="{{ route('contacts.show',$contact->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>

@@ -34,7 +34,7 @@
 						@endcan
 						<a href="{{ route('payments.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 					</div>
-				
+
 					<h5 class="card-title">Payment Information</h5>
 					<h6 class="card-subtitle text-muted">Payment Information Details.</h6>
 				</div>
@@ -69,7 +69,7 @@
 							<x-tenant.show.my-text-area		value="{{ $payment->notes }}" label="Notes"/>
 							<tr>
 								<th>Attachments</th>
-								<td><x-tenant.attachment.all entity="PAYMENT" aid="{{ $payment->id }}"/></td>
+								<td><x-tenant.attachment.all entity="PAYMENT" articleId="{{ $payment->id }}"/></td>
 							</tr>
 						</div>
 					</tbody>

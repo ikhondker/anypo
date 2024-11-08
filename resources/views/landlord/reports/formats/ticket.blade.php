@@ -26,7 +26,7 @@
 	<div id="notices">
 		<h3>#{{ $ticket->id}} : {{ $ticket->title}}</h3>
 		<p>{{ $ticket->content}}</p>
-		<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $ticket->attachment_id }}"/></small><br />
+		<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id attachmentId="{{ $ticket->attachment_id }}"/></small><br />
 		<hr />
 	</div>
 
@@ -56,7 +56,7 @@
 						<br />
 
 						@if ($comment->attachment_id <> '')
-							<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $comment->attachment_id }}"/></small><br />
+							<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id attachmentId="{{ $comment->attachment_id }}"/></small><br />
 						@endif
 					</div>
 				</div>

@@ -55,7 +55,7 @@
 					<x-tenant.show.my-text-area		value="{{ $receipt->notes }}" label="Notes"/>
 					<tr>
 						<th>Attachments</th>
-						<td><x-tenant.attachment.all entity="RECEIPT" aid="{{ $receipt->id }}"/></td>
+						<td><x-tenant.attachment.all entity="RECEIPT" articleId="{{ $receipt->id }}"/></td>
 					</tr>
 
 				</tbody>

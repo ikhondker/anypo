@@ -101,7 +101,7 @@
 							<tr>
 								<th>Attachments:</th>
 								<td>
-									<x-tenant.attachment.all entity="DEPTBUDGET" aid="{{ $deptBudget->id }}"/>
+									<x-tenant.attachment.all entity="DEPTBUDGET" articleId="{{ $deptBudget->id }}"/>
 								</td>
 							</tr>
 							<tr>

@@ -3,24 +3,25 @@
 
 # 7. TODO - Open
 ====================================================================
-111. request demo
-111. AkkControel Policy
-111. Topic and TicketTiopc Controller
+x111. request demo/bug report
+x111. AkkControel Policy
+x111. Topic and TicketTiopc Controller
+x222. tick first and last repsonse
+x116. rewrtie flow of invoice creation 
+x114. Invoice Date :	edit invoice.edit payments edit pay date
+x110. linebreak in invoice notes/description
 111. account level discount apply while creating invoice 
-222. tick first and last repsonse
-116. rewrtie flow of invoice creation 
+79. ticket edit set/update category
+111. javascript invoce print
 115. consider account level discount while generaitng invoices
-114. Invoice Date :	edit invoice.edit payments edit pay date
 113. collaps top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 111. // Navbar brand $navbar-brand-padding-y: $spacer*0.875 !default; _app.scss
 111. <nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar"> p-0 m-0
-110. linebreak in invoice notes/description
 111. review TODO and P2
 110. change invoice description of advance payment 
 69. lock/cancel/archive account
 95. datetime-local value edit for maintenance start
 66. search IQBAL
-79. ticket category
 87. tenant table -> add columns. its inside data
 90. Verification mail to ques event(new Registered($user));
 96. invoice and receipt drop-down policy check

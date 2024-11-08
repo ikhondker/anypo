@@ -67,7 +67,7 @@
 									<strong>{{ Str::limit($comment->content, 45)  }}</strong>
 								</a>
 							</td>
-							<td><x-landlord.attachment.show-by-id id="{{ $comment->attachment_id }}"/></td>
+							<td><x-landlord.attachment.show-by-id attachmentId="{{ $comment->attachment_id }}"/></td>
 							<td><x-landlord.list.my-enable :value="$comment->is_internal" /></td>
 							<td>{{ $comment->owner->name }}</td>
 							<td>{{ Carbon\Carbon::parse($comment->ticket->ticket_date)->ago() }}</td>

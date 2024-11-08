@@ -15,7 +15,7 @@
 			</p>
 			<small class="text-muted">{{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->ticket_date ))) }}</small><br />
 			@if ($ticket->attachment_id <> '')
-				<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $ticket->attachment_id }}"/></small><br />
+				<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id attachmentId="{{ $ticket->attachment_id }}"/></small><br />
 			@endif
 			@if ($ticket->closed)
 				<small class="text-muted">Closed at: {{ strtoupper(date('d-M-Y H:i:s', strtotime($ticket->closed_at ))) }}</small><br />

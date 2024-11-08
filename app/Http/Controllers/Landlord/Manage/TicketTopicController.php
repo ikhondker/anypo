@@ -8,6 +8,8 @@ use App\Models\Landlord\Manage\TicketTopic;
 use App\Http\Requests\Landlord\Manage\StoreTicketTopicRequest;
 use App\Http\Requests\Landlord\Manage\UpdateTicketTopicRequest;
 
+use Illuminate\Support\Facades\Log;
+
 class TicketTopicController extends Controller
 {
 	/**
@@ -63,6 +65,12 @@ class TicketTopicController extends Controller
 	 */
 	public function destroy(TicketTopic $ticketTopic)
 	{
-		//
+
+
+		$this->authorize('delete', $ticketTopic);
+		Log::debug('landlord.TicketTopicController.destroy ticket_topic_id= ' . $ticketTopic->id);
+		$ticketTopic->delete();
+		return redirect()->route('tickets.all')->with('success', 'Topic deleted.');
+
 	}
 }

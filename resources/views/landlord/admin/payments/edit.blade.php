@@ -43,7 +43,7 @@
 								<td>
 									<input type="date" class="form-control @error('pay_date') is-invalid @enderror"
 											name="pay_date" id="pay_date" placeholder="Name"
-											value="{{ old('pay_date', $payment->pay_date ) }}"
+                                            value="{{ old('pay_date', date('Y-m-d',strtotime($payment->pay_date)) ) }}"
 											required/>
 										@error('pay_date')
 											<div class="small text-danger">{{ $message }}</div>
@@ -80,7 +80,7 @@
 								<th>Cheque No :</th>
 								<td>
 									<input type="text" class="form-control @error('cheque_no') is-invalid @enderror"
-										name="cheque_no" id="cheque_no" placeholder="cheque_no"
+										name="cheque_no" id="cheque_no" placeholder="1234567890"
 										value="{{ old('cheque_no', $payment->cheque_no ) }}"
 										required/>
 									@error('cheque_no')
@@ -93,7 +93,7 @@
 								<th>Reference ID :</th>
 								<td>
 									<input type="text" class="form-control @error('reference_id') is-invalid @enderror"
-										name="reference_id" id="reference_id" placeholder="reference_id"
+										name="reference_id" id="reference_id" placeholder="1234567890"
 										value="{{ old('reference_id', $payment->reference_id ) }}"
 										required/>
 									@error('reference_id')

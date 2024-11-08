@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Log;
 
 class Show extends Component
 {
-	 public $entity;
-	 public $aid;
+	 //public $entity;
+	 //public $aid;
 	 public $attachments;
 
 	/**
@@ -22,12 +22,12 @@ class Show extends Component
 	 *
 	 * @return void
 	 */
-	public function __construct($entity, $aid)
+	public function __construct(public string $entity, public string $attachmentId)
 	{
 		//there will id 1001 and 1001 for PO and PR. need entity
-		$this->entity	= $entity;
-		$this->aid		= $aid;
-		$this->attachments = Attachment::where('entity', $entity)->where('article_id', $aid)->get()->all();
+		//$this->entity	= $entity;
+		//$this->aid		= $aid;
+		$this->attachments = Attachment::where('entity', $entity)->where('article_id', $attachmentId)->get()->all();
 	}
 
 	/**

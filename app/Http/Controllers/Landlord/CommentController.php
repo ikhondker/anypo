@@ -148,7 +148,7 @@ class CommentController extends Controller
 			// change ticket status if back office is updating
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
 			$status_code = $request->input('status_code');
-			$ticket->status_code = $status_code;
+			$ticket->status_code =$request->input('status_code');
 
 			// set first_response_at , last_response_at
 			if (! $comment->is_internal){
@@ -158,7 +158,6 @@ class CommentController extends Controller
 				}
 				$ticket->last_response_at = now();
 			}
-
 			$ticket->update();
 
 			switch ($status_code) {

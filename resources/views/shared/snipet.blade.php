@@ -28,6 +28,9 @@ $po->po_date		= now();
 
 {{ Carbon\Carbon::parse($comment->comment_date)->ago() }}
 
+value="{{ old('invoice_date', date('Y-m-d',strtotime($invoice->invoice_date)) ) }}"
+
+
 <i class="fa fa-check-circle fa-5x text-success"></i>
 
 <i data-lucide="refresh-cw"></i>

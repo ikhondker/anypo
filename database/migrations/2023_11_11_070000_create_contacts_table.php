@@ -25,8 +25,7 @@ return new class extends Migration
 			$table->foreignUuid('user_id')->nullable();
 			$table->foreignUuid('owner_id')->nullable();    // bug/demo/feedback
             $table->string('tenant')->nullable();
-			//$table->boolean('demo_requested')->default(true);
-			$table->dateTime('demo_preferred_date')->useCurrent();
+			$table->dateTime('demo_preferred_date')->nullable();
 			$table->boolean('demo_performed')->default(false);
 			$table->dateTime('demo_date')->nullable();
             $table->text('notes_internal')->nullable();

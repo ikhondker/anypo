@@ -21,7 +21,7 @@
 			<div class="card-actions float-end">
 				@can('update', $project)
 					<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-				@endif 
+				@endif
 				<a class="btn btn-sm btn-light" href="{{ route('projects.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Project Basic Info</h5>
@@ -39,7 +39,7 @@
 					<x-tenant.show.my-text-area	value="{{ $project->notes }}" label="Notes"/>
 					<tr>
 						<th>Attachments :</th>
-						<td>	<x-tenant.attachment.all entity="PROJECT" aid="{{ $project->id }}"/></td>
+						<td>	<x-tenant.attachment.all entity="PROJECT" articleId="{{ $project->id }}"/></td>
 					</tr>
 					<x-tenant.show.my-created-at value="{{ $project->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $project->created_at }}"/>

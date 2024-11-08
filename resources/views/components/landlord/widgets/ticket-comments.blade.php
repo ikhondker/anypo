@@ -46,7 +46,7 @@
 					@endif
 					<small class="text-muted">{{ strtoupper(date('d-M-Y H:i:s', strtotime($comment->comment_date ))) }}</small><br />
 					@if ($comment->attachment_id <> '')
-						<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id id="{{ $comment->attachment_id }}"/></small><br />
+						<small class="text-muted">Attachment: <x-landlord.attachment.show-by-id attachmentId="{{ $comment->attachment_id }}"/></small><br />
 					@endif
 				</div>
 			</div>

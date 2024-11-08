@@ -10,16 +10,16 @@ use App\Models\Landlord\Attachment;
 
 class ShowById extends Component
 {
-	public $id;
+	//public $id;
 	public $attachment;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $attachmentId)
 	{
-		$this->id			= $id;
-		$this->attachment 	= Attachment::where('id', $id)->get()->first();
+		//$this->id			= $id;
+		$this->attachment 	= Attachment::where('id', $attachmentId)->get()->first();
 	}
 
 	/**
