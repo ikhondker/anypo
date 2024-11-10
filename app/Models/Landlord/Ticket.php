@@ -29,6 +29,7 @@ use App\Models\User;
 
 use App\Models\Landlord\Lookup\Dept;
 use App\Models\Landlord\Lookup\Priority;
+use App\Models\Landlord\Lookup\Category;
 use App\Models\Landlord\Lookup\Rating;
 use App\Models\Landlord\Manage\Status;
 
@@ -186,6 +187,13 @@ class Ticket extends Model
 	public function dept()
 	{
 		return $this->belongsTo(Dept::class, 'dept_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+    public function category()
+	{
+		return $this->belongsTo(Category::class, 'category_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

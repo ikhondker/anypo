@@ -10,9 +10,9 @@ x222. tick first and last repsonse
 x116. rewrtie flow of invoice creation 
 x114. Invoice Date :	edit invoice.edit payments edit pay date
 x110. linebreak in invoice notes/description
+x79. ticket edit set/update category
 111. account level discount apply while creating invoice 
-79. ticket edit set/update category
-111. javascript invoce print
+111. javascript invoice print issue
 115. consider account level discount while generaitng invoices
 113. collaps top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 111. // Navbar brand $navbar-brand-padding-y: $spacer*0.875 !default; _app.scss

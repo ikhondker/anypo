@@ -74,9 +74,10 @@ class CreateMonthlyInvoice implements ShouldQueue
 		$invoice->summary		= env('APP_DOMAIN'). ' - Your Invoice #'. $invoice->invoice_no;
 		$invoice->notes			= 'Subscription Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
 
+        // TODO is this applicable here?
 		switch ($this->period) {
 			case '1':
-				$discount_pc =0 ;
+				$discount_pc = 0 ;
 				break;
 			case '3':
 				$discount_pc = $config->discount_pc_3 ;

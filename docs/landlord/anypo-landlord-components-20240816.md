@@ -182,6 +182,7 @@ php artisan make:component Landlord/Edit/Country		<x-edit.country :value="$wareh
 php artisan make:component Landlord/Edit/Dept
 php artisan make:component Landlord/Edit/Priority
 php artisan make:component Landlord/Edit/Agent
+php artisan make:component Landlord/Edit/Category
 
 # Attachments
 -------------------------------------

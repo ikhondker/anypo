@@ -8,13 +8,18 @@
 
 
 
-# 8. Tenet creatsion
+# 8. Tenet Creation
 ==================================================
-1. buy
-2. by =system from backend
+1. Buy
+2. By system from backend
+
+# 8. Invoice Creation
+==================================================
+1. bo::createInvoiceForCheckout
+2. CreateMonthlyInvoice::dispatch($account->id, 1, $process->id);?
 
 
-# 8. Signup/Invoice/Payment/Addon/Advance Flow
+# 8. Sign-up/Invoice/Payment/Addon/Advance Flow
 ==================================================
 0. Overall: event -> AkkController -> checkout -> stripe -> success -> job
 
@@ -28,7 +33,7 @@
 		- AkkController.success -> jobs.SubscriptionInvoicePaid 
 		-> bo::payCheckoutInvoice -> bo::extendAccountValidity
 
-3. InvoiceTypeEnum::ADVANCE->value:
+3. InvoiceTypeEnum::ADVANCE->value:  // discount considered AkkControler::insertCheckout 
 		admin.invoice.generate.blade.php -> route('akk.process-advance') 
 		- AkkController.success	-> jobs.AddAdvance  -> 
 		-> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice  -> bo::extendAccountValidity
@@ -37,17 +42,6 @@
 		- admin.services.index -> <x-landlord.widgets.add-addon/> -> route('akk.process-addon')
 		- AkkController.success - jobs.AddAddon  
 		-> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice
-
-[1. Invoice created by three place: job- 
-	- landlord.admin.invoices.generate -> InvoiceController::store() -> checkout.success-advance -> HomeController::successAdvance ->job.AddAdvance (InvoiceTypeEnum::ADVANCE->value; )
-	- services -> <x-landlord.widgets.add-addon/> -> accounts.add-addon-> AccountController::class, 'addAddon' -> checkout.success-addon -> HomeController::successAddon -> jobs.AddAddon
-	- bo::createInvoiceForCheckout($this->checkout_id);  -> $checkout->invoice_type; all 3 Type
-						- jobs.CreateTenant :  bo::createInvoiceForCheckout($this->checkout_id);	InvoiceTypeEnum::CHECKOUT->value:
-						- jobs. AddAdvance  :  bo::createInvoiceForCheckout($this->checkout_id);	InvoiceTypeEnum::ADVANCE->value:
-						- jobs. AddAddon	:  bo::createInvoiceForCheckout($this->checkout_id);	InvoiceTypeEnum::ADDON->value
-	- ProcessController::create -> landlord.manage.process.create  -> ProcessController::genInvoiceAll ->  jobs.ProcessBilling: -> CreateMonthlyInvoice -> INSERT -> invoices
-											 InvoiceTypeEnum::SUBSCRIPTION->value;
-]
 
 2. Payment made from three place: 
 	- bo::payCheckoutInvoice and 
@@ -89,7 +83,7 @@
 - Ok
 ~~~
 
-# 5. Buy add-on buy process (Table CHECKOUT)
+# 4. Buy add-on buy process (Table CHECKOUT)
 ====================================================================
 1. Stop if any unpaid invoice
 2. add buy user in account page
@@ -123,7 +117,7 @@ $checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 <<TABLE>> $checkout->update();
 ~~~
 
-# 4. create Monthly Subscription Invoice (by Billing Process)
+# 3. create Monthly Subscription Invoice (by Billing Process)
 ====================================================================
 ~~~
 - process/index.blade.php
@@ -134,7 +128,7 @@ $checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 - <<TABLE>> $invoice->save();
 ~~~
 
-# 3. Pay Generated Subscription Invoice
+# 2. Pay Generated Subscription Invoice
 ====================================================================
 - invoice/invoice.blade.php 
 - url('/payment-stripe') => HomeController.paymentStripe
@@ -143,8 +137,6 @@ $checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 - SubscriptionInvoicePaid::dispatch($payment->id);
 - bo::extendAccountValidity($invoice->id);
 - OK
-
-
 
 # 1. bill and payment cycle 
 ====================================================================

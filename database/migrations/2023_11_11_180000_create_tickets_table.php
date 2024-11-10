@@ -26,7 +26,7 @@ return new class extends Migration
 			$table->foreignId('rating_id')->nullable()->constrained('ratings');
 			$table->foreignUuid('agent_id')->nullable()->constrained('users');
 			$table->foreignUuid('attachment_id')->nullable()->constrained('attachments');
-			$table->foreignId('category_id')->nullable()->constrained('categories');
+			$table->foreignId('category_id')->nullable()->constrained('categories')->default(1001);
 			/** ENUM */
 			$table->string('status_code')->default(TicketStatusEnum::NEW->value);
 			$table->foreign('status_code')->references('code')->on('statuses');

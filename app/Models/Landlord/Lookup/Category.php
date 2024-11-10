@@ -45,6 +45,15 @@ class Category extends Model
 			'created_at'	=> 'datetime',
 		];
 
+    /* ---------------- Functions ---------------------- */
+	public static function getAll()
+	{
+		return Category::select('id', 'name')
+			->where('enable', true)
+			->orderBy('id', 'asc')
+			->get();
+	}
+
 	/* ---------------- Scope ---------------------- */
 
 
