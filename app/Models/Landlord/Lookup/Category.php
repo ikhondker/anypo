@@ -45,7 +45,7 @@ class Category extends Model
 			'created_at'	=> 'datetime',
 		];
 
-    /* ---------------- Functions ---------------------- */
+	/* ---------------- Functions ---------------------- */
 	public static function getAll()
 	{
 		return Category::select('id', 'name')

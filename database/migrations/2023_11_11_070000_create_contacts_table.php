@@ -23,12 +23,12 @@ return new class extends Migration
 			$table->dateTime('contact_date')->useCurrent();
 			$table->foreignUuid('attachment_id')->nullable()->constrained('attachments');
 			$table->foreignUuid('user_id')->nullable();
-			$table->foreignUuid('owner_id')->nullable();    // bug/demo/feedback
-            $table->string('tenant')->nullable();
+			$table->foreignUuid('owner_id')->nullable();	// bug/demo/feedback
+			$table->string('tenant')->nullable();
 			$table->dateTime('demo_preferred_date')->nullable();
 			$table->boolean('demo_performed')->default(false);
 			$table->dateTime('demo_date')->nullable();
-            $table->text('notes_internal')->nullable();
+			$table->text('notes_internal')->nullable();
 			$table->string('ip')->nullable();
 			$table->string('country',2)->default('us');
 //			$table->foreignId('user_id')->nullable()->constrained('users');

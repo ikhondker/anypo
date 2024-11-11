@@ -259,7 +259,7 @@ class InvoiceController extends Controller
 		$this->authorize('discount', $invoice);
 		// check if invoice is unpaid else show error
 		if ($invoice->status_code <> InvoiceStatusEnum::DUE->value){
-		   return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, discount can only be applied to DUE Invoices!');
+			return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, discount can only be applied to DUE Invoices!');
 		}
 		return view('landlord.admin.invoices.discount',compact('invoice'));
 	}
@@ -288,7 +288,7 @@ class InvoiceController extends Controller
 		$this->authorize('pwop', $invoice);
 		// check if invoice is unpaid else show error
 		if ($invoice->status_code <> InvoiceStatusEnum::DUE->value){
-		   return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, you can Pay without Payment only for DUE Invoices!');
+			return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, you can Pay without Payment only for DUE Invoices!');
 		}
 		return view('landlord.admin.invoices.pwop',compact('invoice'));
 	}
@@ -299,7 +299,7 @@ class InvoiceController extends Controller
 
 		// check if invoice is unpaid else show error
 		if ($invoice->status_code <> InvoiceStatusEnum::DUE->value){
-		   return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, you can Pay without Payment only for DUE Invoices!');
+			return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, you can Pay without Payment only for DUE Invoices!');
 		}
 
 		Log::debug("landlord.Invoice.payPwop updating invoice with PWOP for invoice_id= ".$invoice->id);

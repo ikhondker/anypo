@@ -29,7 +29,7 @@
 					<x-landlord.edit.title value="{{ $ticket->title }}"/>
 					<x-landlord.edit.content value="{{ $ticket->content }}"/>
 					<x-landlord.edit.dept :value="$ticket->dept_id"/>
-                    <x-landlord.edit.category value="{{ $ticket->category_id }}"/>
+					<x-landlord.edit.category value="{{ $ticket->category_id }}"/>
 					<x-landlord.edit.priority :value="$ticket->priority_id"/>
 					<x-landlord.edit.agent value="{{ $ticket->agent_id }}"/>
 					<tr>

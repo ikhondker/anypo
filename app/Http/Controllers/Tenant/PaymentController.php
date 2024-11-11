@@ -219,7 +219,7 @@ class PaymentController extends Controller
 
 		if ($invoice->amount_paid == $invoice->amount){
 			$invoice->payment_status 	= PaymentStatusEnum::PAID->value;
-		}   // else {
+		} // else {
 			//$invoice->payment_status	= PaymentStatusEnum::PARTIAL->value;
 			//}
 		$invoice->save();

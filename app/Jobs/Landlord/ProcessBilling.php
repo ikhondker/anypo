@@ -95,7 +95,7 @@ class ProcessBilling implements ShouldQueue
 			$diff = now()->diffInDays($account->end_date);
 			if ($diff <= $config->days_gen_bill) {
 				Log::channel('bo')->info('Jobs.ProcessBilling.handle Generating Invoice for account_id = ' . $account->id);
-				CreateMonthlyInvoice::dispatch($account->id, 1, $process->id);
+				CreateMonthlyInvoice::dispatch($account->id, $process->id);
 			} else {
 				Log::channel('bo')->info('Jobs.ProcessBilling.handle Skipping account_id = ' . $account->id. " as days remains ". $diff);
 			}

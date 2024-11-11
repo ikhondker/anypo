@@ -549,7 +549,7 @@ class PoController extends Controller
 		$dept = Dept::where('id', $po->dept_id)->first();
 		try {
 			$hierarchy		= Hierarchy::where('id', $dept->po_hierarchy_id)->firstOrFail();
-			$hierarchy_id   = $hierarchy->id;
+			$hierarchy_id	= $hierarchy->id;
 		} catch (Exception $e) {
 			Log::error("tenant.po.submit Hierarchy find error for po_id= ".$po->id ." dept_id = ".$dept->id);
 			return redirect()->route('prs.show',$po->id)->with('error', 'Approval Hierarchy not found! Please assign approval Hierarchy for dept!');
@@ -931,7 +931,7 @@ class PoController extends Controller
 
 		$result = DB::selectOne($sql);
 		return response()->json([
-			'po_id'   		=> $result->po_id,
+			'po_id'			=> $result->po_id,
 			'po_currency'	=> $result->currency,
 			'po_summary'	=> $result->po_summary,
 			'po_date' 		=> $result->po_date,

@@ -38,17 +38,17 @@
 			<div class="card-body pt-0">
 				<table class="table table-sm my-2">
 					<tbody>
-                    	<tr>
+						<tr>
 							<th>Category :</th>
-                            <td><span class="badge badge-subtle-success">{{ $ticket->category->name }}</span> </td>
+							<td><span class="badge badge-subtle-success">{{ $ticket->category->name }}</span> </td>
 						</tr>
 						<tr>
 							<th>Department :</th>
-                            <td><span class="badge badge-subtle-success">{{ $ticket->dept->name }}</span> </td>
+							<td><span class="badge badge-subtle-success">{{ $ticket->dept->name }}</span> </td>
 						</tr>
 						<tr>
 							<th>Priority :</th>
-                            <td><span class="badge badge-subtle-success">{{ $ticket->priority->name }}</span> </td>
+							<td><span class="badge badge-subtle-success">{{ $ticket->priority->name }}</span> </td>
 						</tr>
 						<tr>
 							<th>Agent :</th>

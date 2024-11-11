@@ -45,7 +45,7 @@
 
 			<div class="col-lg-6">
 				<div class="ps-lg-5">
-                    <x-landlord.forms.contact/>
+					<x-landlord.forms.contact/>
 				</div>
 			</div>
 			<!-- End Col -->

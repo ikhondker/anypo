@@ -39,7 +39,7 @@
 
 							<x-landlord.show.my-date	value="{{ $contact->demo_preferred_date }}" label="Demo Preferred Date"/>
 							<x-landlord.show.my-enable	value="{{ $contact->demo_performed }}" label="Demo Done"/>
-                            <x-landlord.show.my-date	value="{{ $contact->demo_date }}" label="Demo Date"/>
+							<x-landlord.show.my-date	value="{{ $contact->demo_date }}" label="Demo Date"/>
 							<x-landlord.show.my-text-area	value="{{ $contact->notes_internal }}" label="Notes (Internal)"/>
 							<x-landlord.show.my-text	value="{{ $contact->ip }}" label="IP"/>
 							<tr>

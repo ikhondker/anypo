@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 
 class Category extends Component
 {
-    public $categories;
+	public $categories;
 
 	/**
 	 * Create a new component instance.

@@ -34,11 +34,11 @@ class CreateMonthlyInvoice implements ShouldQueue
 	/**
 	 * Create a new job instance.
 	 */
-	public function __construct($account_id, $period, $process_id=0)
+	public function __construct($account_id, $process_id = 0)
 	{
 		$this->account_id 	= $account_id;
-		$this->period 		= $period;
 		$this->process_id 	= $process_id;
+		$this->period 		= 1;			// should be 1 always
 	}
 
 	/**
@@ -74,30 +74,9 @@ class CreateMonthlyInvoice implements ShouldQueue
 		$invoice->summary		= env('APP_DOMAIN'). ' - Your Invoice #'. $invoice->invoice_no;
 		$invoice->notes			= 'Subscription Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
 
-        // TODO is this applicable here?
-		switch ($this->period) {
-			case '1':
-				$discount_pc = 0 ;
-				break;
-			case '3':
-				$discount_pc = $config->discount_pc_3 ;
-				break;
-			case '6':
-				$discount_pc = $config->discount_pc_6 ;
-				break;
-			case '12':
-				$discount_pc = $config->discount_pc_12 ;
-			 	break;
-			case '24':
-				$discount_pc = $config->discount_pc_24 ;
-				break;
-			default:
-				$discount_pc =0 ;
-		}
-
-		Log::channel('bo')->info('jobs.landlord.CreateMonthlyInvoice discount_pc = ' . $discount_pc);
-
-		$invoice->price			= round($this->period * $account->price * (100 - $discount_pc)/100, 2) ;
+		// consider account level discount
+		Log::channel('bo')->info('jobs.landlord.CreateMonthlyInvoice account->discount = ' . $account->discount);
+		$invoice->price			= round($this->period * $account->price * (100 - $account->discount)/100, 2) ;
 		$invoice->subtotal		= $invoice->price;
 		$invoice->amount		= $invoice->price;
 		$invoice->account_id	= $account->id;

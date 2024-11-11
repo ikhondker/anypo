@@ -191,7 +191,7 @@ class Ticket extends Model
 		]);
 	}
 
-    public function category()
+	public function category()
 	{
 		return $this->belongsTo(Category::class, 'category_id')->withDefault([
 			'name' => '[ Empty ]',

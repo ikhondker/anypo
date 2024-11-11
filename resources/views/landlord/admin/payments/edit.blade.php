@@ -43,7 +43,7 @@
 								<td>
 									<input type="date" class="form-control @error('pay_date') is-invalid @enderror"
 											name="pay_date" id="pay_date" placeholder="Name"
-                                            value="{{ old('pay_date', date('Y-m-d',strtotime($payment->pay_date)) ) }}"
+											value="{{ old('pay_date', date('Y-m-d',strtotime($payment->pay_date)) ) }}"
 											required/>
 										@error('pay_date')
 											<div class="small text-danger">{{ $message }}</div>

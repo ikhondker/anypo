@@ -98,7 +98,7 @@ class TestController extends Controller
 		Log::debug('Value of sql=' . $sql);
 		$result = DB::select($sql);
 
-	   //$rows = [];
+		//$rows = [];
 		foreach ($result as $row) {
 			Log::debug('Value of rows=' . $row->aa);
 			//Log::debug('Value of rows=' . print_r($row['aa']));

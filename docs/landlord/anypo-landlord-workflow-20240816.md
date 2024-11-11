@@ -16,7 +16,7 @@
 # 8. Invoice Creation
 ==================================================
 1. bo::createInvoiceForCheckout
-2. CreateMonthlyInvoice::dispatch($account->id, 1, $process->id);?
+2. Jobs.CreateMonthlyInvoice::dispatch($account->id, 1, $process->id);?
 
 
 # 8. Sign-up/Invoice/Payment/Addon/Advance Flow
@@ -24,7 +24,7 @@
 0. Overall: event -> AkkController -> checkout -> stripe -> success -> job
 
 1. InvoiceTypeEnum::SIGNUP->value: (called from 2 places)
-		-landlord.pages.checkout.blade.php -> route('akk.process-signup') -> 
+		-landlord.pages.checkout.blade.php -> route('akk.process-signup') -> insertCheckout -> 
 		- AkkController.success - jobs.CreateTenant -> 
 		-> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice
 
@@ -34,12 +34,12 @@
 		-> bo::payCheckoutInvoice -> bo::extendAccountValidity
 
 3. InvoiceTypeEnum::ADVANCE->value:  // discount considered AkkControler::insertCheckout 
-		admin.invoice.generate.blade.php -> route('akk.process-advance') 
+		admin.invoice.generate.blade.php -> route('akk.process-advance') -> self::insertCheckout
 		- AkkController.success	-> jobs.AddAdvance  -> 
 		-> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice  -> bo::extendAccountValidity
 
 4. InvoiceTypeEnum::ADDON->value
-		- admin.services.index -> <x-landlord.widgets.add-addon/> -> route('akk.process-addon')
+		- admin.services.index -> <x-landlord.widgets.add-addon/> -> route('akk.process-addon') -> self::insertCheckout
 		- AkkController.success - jobs.AddAddon  
 		-> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice
 

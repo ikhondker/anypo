@@ -193,7 +193,7 @@ class HomeController extends Controller
 			} else {
 				$request->merge(['type'	=> 'contact']);
 			}
-	   	} else {
+		} else {
 			$request->merge(['type'	=> 'contact']);
 		}
 

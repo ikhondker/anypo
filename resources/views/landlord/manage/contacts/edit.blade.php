@@ -56,7 +56,7 @@
 								<td>
 									<input type="date" class="form-control @error('contact_date') is-invalid @enderror"
 											name="contact_date" id="contact_date" placeholder="Name"
-                                            value="{{ old('contact_date', date('Y-m-d',strtotime($contact->contact_date)) ) }}"
+											value="{{ old('contact_date', date('Y-m-d',strtotime($contact->contact_date)) ) }}"
 											required/>
 										@error('contact_date')
 											<div class="small text-danger">{{ $message }}</div>
@@ -76,7 +76,7 @@
 								</td>
 							</tr>
 							<x-landlord.edit.notes value="{{ $contact->notes }}" />
-                            <x-landlord.edit.notes value="{{ $contact->notes_internal }}" />
+							<x-landlord.edit.notes value="{{ $contact->notes_internal }}" />
 
 					</tbody>
 				</table>

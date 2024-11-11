@@ -1,12 +1,12 @@
 <!-- Card -->
 				<div class="card">
 					<div class="card-header border-bottom text-center">
-                    	@if ($formType == 'demo')
+						@if ($formType == 'demo')
 							<h3 class="card-header-title">Request a Demo</h3>
 						@elseif ($formType =='bug')
-					        <h3 class="card-header-title">Report a Bug</h3>
+							<h3 class="card-header-title">Report a Bug</h3>
 						@else
-					        <h3 class="card-header-title">Contact Us</h3>
+							<h3 class="card-header-title">Contact Us</h3>
 						@endif
 					</div>
 

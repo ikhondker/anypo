@@ -13,7 +13,7 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6 mb-9 mb-lg-0">
-                    <div class="row align-items-center">
+					<div class="row align-items-center">
 
 
 
@@ -36,7 +36,7 @@
 			<div class="col-lg-6">
 				<div class="ps-lg-5">
 
-                <x-landlord.forms.contact formType="demo" />
+				<x-landlord.forms.contact formType="demo" />
 
 				</div>
 			</div>

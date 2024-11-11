@@ -266,7 +266,7 @@ class DeptBudgetController extends Controller
 		$revDeptBudget				= $deptBudget->replicate();
 		$revDeptBudget->closed		= true;
 		$revDeptBudget->revision	= true;
-		$revDeptBudget->parent_id   = $deptBudget->id;
+		$revDeptBudget->parent_id	= $deptBudget->id;
 		$revDeptBudget->created_by  = $who ;
 		$revDeptBudget->created_at  = now();
 		$revDeptBudget->updated_by  = $who ;

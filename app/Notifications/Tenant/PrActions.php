@@ -51,7 +51,7 @@ class PrActions extends Notification implements ShouldQueue
 				$this->subject	= '[Action Required] PR#'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' requires your approval.';
 				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' requires your approval.';
 				break;
-   			case WflActionEnum::REJECTED->value:
+			case WflActionEnum::REJECTED->value:
 				$this->subject	= '[FYI] PR#'.$this->pr->id.' '. $this->pr->summary .' for '. number_format($this->pr->amount, 2).$this->pr->currency.' has been '.Str::lower($this->action).'.';
 				$this->line		= 'Purchase Requisition #'.$this->pr->id.' for '.$this->pr->summary .' has been '.Str::lower($this->action).'.';
 				break;
