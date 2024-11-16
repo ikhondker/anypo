@@ -35,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
 		| Landlord																	 +
 		|-----------------------------------------------------------------------------
 		*/
-		'App\Models\Landlord\Akk'				=> 'App\Policies\Landlord\AkkPolicy',
+		'App\Models\Landlord\Akk'				    => 'App\Policies\Landlord\AkkPolicy',
 		'App\Models\Landlord\Account'				=> 'App\Policies\Landlord\AccountPolicy',
 		'App\Models\Landlord\Attachment' 			=> 'App\Policies\Landlord\AttachmentPolicy',
 		'App\Models\Landlord\Comment' 				=> 'App\Policies\Landlord\CommentPolicy',
@@ -51,6 +51,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Landlord\Lookup\Country' 		=> 'App\Policies\Landlord\Lookup\CountryPolicy',
 		'App\Models\Landlord\Lookup\Product' 		=> 'App\Policies\Landlord\Lookup\ProductPolicy',
 		'App\Models\Landlord\Lookup\Topic' 			=> 'App\Policies\Landlord\Lookup\TopicPolicy',
+		'App\Models\Landlord\Lookup\ReplyTemplate' 	=> 'App\Policies\Landlord\Lookup\ReplyTemplatePolicy',
 
 		'App\Models\Landlord\Manage\Activity'		=> 'App\Policies\Landlord\Manage\ActivityPolicy',
 		'App\Models\Landlord\Manage\Checkout' 		=> 'App\Policies\Landlord\Manage\CheckoutPolicy',

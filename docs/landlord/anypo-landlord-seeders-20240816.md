@@ -4,6 +4,7 @@ email_verified_at
  ($user->email_verified_at == '') ? false : true;
 
 # IQBAL
+~~~
 use Faker\Generator;
 
 php artisan migrate:rollback
@@ -18,9 +19,11 @@ php artisan migrate:refresh
 php artisan migrate:fresh
 
 php artisan db:seed --class="UserSeeder"
+~~~
 
 # Landlord Individual Seeder 
 -------------------
+~~~
 [ 
 php artisan db:seed --class="Database\Seeders\Landlord\UserSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\MenuSeeder"
@@ -39,6 +42,7 @@ php artisan db:seed --class="Database\Seeders\Landlord\DeptSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\PrioritySeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\RatingSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\PaymentMethodSeeder"
+php artisan db:seed --class="Database\Seeders\Landlord\ReplyTemplateSeeder"
 
 php artisan db:seed --class="Database\Seeders\Landlord\ProductSeeder"
 #checkout
@@ -49,9 +53,11 @@ php artisan db:seed --class="Database\Seeders\Landlord\CommentSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\InvoiceSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\PaymentSeeder"
 ]
+~~~
 
-#Dahsbaord
-#Notification
-#xxphp artisan db:seed --class="Database\Seeders\Landlord\TicketStatusSeeder"
+# Dahsbaord
+
+# Notification
+
 
 

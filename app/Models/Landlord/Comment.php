@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -32,7 +32,7 @@ class Comment extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		 'comment_date', 'content', 'ticket_id', 'owner_id','is_internal','by_backoffice', 'attachment_id', 'ip', 'updated_by', 'updated_at',
+		'comment_date', 'content', 'ticket_id', 'owner_id', 'reply_template_id', 'is_internal', 'by_back_office', 'attachment_id', 'ip', 'updated_by', 'updated_at',
 	];
 
 

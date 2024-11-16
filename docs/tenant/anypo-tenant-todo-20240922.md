@@ -3,25 +3,9 @@
 
 # 33. TODO
 -------------------------------------------------------------------------------------------------
-x124. stop same emp in same hierarchy twice
-x123. show allowapprove=true for admin
-x124. reset Pr and po by admin
-x111. page-2 user list no impersonate
-x111. sales Po appover IT Hod can not see. Oka. Reset PO  
-x159. user register page get start with domain name
-x158. clean akk.GUEST_USER_ID
-x134. tenancyforlaravel get domain name
-xx157. wfs.index badge not shown
-x153. allow user to edit attachment file description
-x141. calculate-pr-amount.blade.php pr_amount during add line incorrect
-?132. ({{ $_setup->currency }}) is not working in project show and create
-x125. calculate-pr-amount.blade hard-coded 1001
-x111. role update in user.edit tab for edit role dropdown
-x128. adding default T&C text in PO line break check
-x127. add start and end action date in wlfl 
-x154. export file name add export
 
-disbale prl/pol edit by policy
+
+118. disbale prl/pol edit by policy
 117. reject/resubmit pr/po
 		policy/header/lines/
 131. ListAllLines and CardTableRow with status-true/false
@@ -128,6 +112,23 @@ disbale prl/pol edit by policy
 
 # 0. DONE
 -------------------------------------------------------------------------------------------------
+x124. stop same emp in same hierarchy twice
+x123. show allowapprove=true for admin
+x124. reset Pr and po by admin
+x111. page-2 user list no impersonate
+x111. sales Po appover IT Hod can not see. Oka. Reset PO  
+x159. user register page get start with domain name
+x158. clean akk.GUEST_USER_ID
+x134. tenancyforlaravel get domain name
+xx157. wfs.index badge not shown
+x153. allow user to edit attachment file description
+x141. calculate-pr-amount.blade.php pr_amount during add line incorrect
+?132. ({{ $_setup->currency }}) is not working in project show and create
+x125. calculate-pr-amount.blade hard-coded 1001
+x111. role update in user.edit tab for edit role dropdown
+x128. adding default T&C text in PO line break check
+x127. add start and end action date in wlfl 
+x154. export file name add export
 x151. paid_amount vs amount_paid landlord vs tenant (keep amount_paid)
 x147. disabe one buyer to submission by other buyer PO
 x146. Dashboard [TODO - BUYER] count+pending pr and my po

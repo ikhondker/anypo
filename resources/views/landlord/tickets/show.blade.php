@@ -8,7 +8,6 @@
 
 @section('content')
 
-
 	<x-landlord.page-header>
 		@slot('title')
 			Ticket #{{ $ticket->id }}
@@ -26,7 +25,6 @@
 	<!-- card-ticket-header -->
 	<x-landlord.widgets.ticket-header ticketId="{{ $ticket->id }}"/>
 	<!-- /.card-ticket-header -->
-
 
 	@if (auth()->user()->isSeeded())
 		<div class="card">

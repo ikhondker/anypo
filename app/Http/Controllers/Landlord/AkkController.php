@@ -27,11 +27,14 @@ use App\Http\Controllers\Controller;
 //use App\Models\User;
 //use App\Models\Landlord\Service;
 use App\Models\Landlord\Account;
+use App\Models\Landlord\Akk;
 use App\Models\Landlord\Admin\Invoice;
 //use App\Models\Landlord\Admin\Payment;
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Manage\Config;
 use App\Models\Landlord\Manage\Checkout;
+
+
 # 2. Enums
 use App\Enum\Landlord\CheckoutStatusEnum;
 use App\Enum\Landlord\InvoiceTypeEnum;
@@ -469,7 +472,7 @@ class AkkController extends Controller
 	public function processAddon($account_id, $addon_id)
 	{
 
-		$this->authorize('addon',Akk::class);
+        $this->authorize('addon', Akk::class);
 
 		Log::channel('bo')->info('landlord.account.addAddon buying new addon account = '. $account_id . ' product_id = ' . $addon_id);
 

@@ -7,8 +7,8 @@
 				<i data-lucide="alert-triangle"></i>
 			</div>
 			<div class="flex-grow-1 ms-2">
-				<span class="fw-semibold">Information: </span> Your subscription will expire {{ $account->end_date->diffInDays($carbon::now()) }} days. You have an unpaid invoice 		
-				<a class="text-danger" href="{{ route('home.invoice', $account->next_invoice_no) }}" target="_blank"> #{{ $account->next_invoice_no }}</a>.
+				<span class="fw-semibold">Information: </span> Your subscription will expire {{ $account->end_date->diffInDays($carbon::now()) }} days. You have an unpaid invoice
+				<a class="text-danger" href="{{ route('akk.invoice', $account->next_invoice_no) }}" target="_blank"> #{{ $account->next_invoice_no }}</a>.
 				You might consider paying it.
 			</div>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

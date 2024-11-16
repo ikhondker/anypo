@@ -42,7 +42,7 @@
 						@endif
 
 						<small class="text-muted">
-							@if ($comment->by_backoffice)
+							@if ($comment->by_back_office)
 								@if (auth()->user()->isSeeded())
 									{{ $comment->owner->name }}
 								@else

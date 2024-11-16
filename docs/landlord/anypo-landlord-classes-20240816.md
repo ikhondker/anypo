@@ -9,6 +9,7 @@ Rename User.php modle to org-User.php
 php artisan make:model User --all
 php artisan make:model Landlord\Menu --all
 php artisan make:model Landlord\Status --all
+php artisan make:model Landlord\Lookup\ReplyTemplate --all
 
 php artisan make:model Template --all
 php artisan make:model Landlord\Entity --all
@@ -16,6 +17,7 @@ php artisan make:model Activity --all
 [php artisan make:model Setup --all]
 php artisan make:model Landlord\Manage\Config --all
 php artisan make:model Landlord\Manage\ErrorLog --all
+
 
 php artisan make:model Attachment --all
 php artisan make:model Contact --all

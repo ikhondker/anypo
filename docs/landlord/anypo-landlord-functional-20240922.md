@@ -75,7 +75,7 @@
 	HomeCOntroller->AddAddon::dispatch($checkout->id);
 
 
-	- folgin three colum update
+	- following three colum update
 		$account->next_bill_generated	= true;
 		$account->next_invoice_no		= $invoice->invoice_no;
 		$account->last_bill_date		= now();

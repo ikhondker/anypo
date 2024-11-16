@@ -60,6 +60,23 @@
 						<x-landlord.edit.facebook url="{{ $account->facebook }}" />
 						<x-landlord.edit.linkedin url="{{ $account->linkedin }}" />
 
+						@if (auth()->user()->isSystem())
+							<tr>
+								<th class="text-danger">LifeTime Discount % :</th>
+								<td>
+									<input type="number" class="form-control @error('discount') is-invalid @enderror"
+										min="0" step="0.01" max="99.99"
+										name="discount" id="discount" placeholder="99.99"
+										value="{{ old('discount', $account->discount ) }}"
+										required/>
+									@error('discount')
+										<div class="small text-danger">{{ $message }}</div>
+									@enderror
+								</td>
+							</tr>
+						@endif
+
+
 					</tbody>
 				</table>
 

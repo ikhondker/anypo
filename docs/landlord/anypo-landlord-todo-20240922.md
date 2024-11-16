@@ -3,37 +3,20 @@
 
 # 7. TODO - Open
 ====================================================================
-x111. request demo/bug report
-x111. AkkControel Policy
-x111. Topic and TicketTiopc Controller
-x222. tick first and last repsonse
-x116. rewrtie flow of invoice creation 
-x114. Invoice Date :	edit invoice.edit payments edit pay date
-x110. linebreak in invoice notes/description
-x79. ticket edit set/update category
-111. account level discount apply while creating invoice 
-111. javascript invoice print issue
-115. consider account level discount while generaitng invoices
+111. javascript invoice print issue in view invoice
 113. collaps top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 111. // Navbar brand $navbar-brand-padding-y: $spacer*0.875 !default; _app.scss
 111. <nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar"> p-0 m-0
-111. review TODO and P2
 110. change invoice description of advance payment 
 69. lock/cancel/archive account
 95. datetime-local value edit for maintenance start
-66. search IQBAL
 87. tenant table -> add columns. its inside data
 90. Verification mail to ques event(new Registered($user));
-96. invoice and receipt drop-down policy check
 118. add facebook messenger chat in landlord site
-123. aut post reply when a ticket raised after 15 min
+123. auto post reply when a ticket raised after 15 min
 
 # 6. P2 TODO
 ====================================================================
-93. <x-tenant.landlord-notice-one-tenant/>
-1.	add manager call back in tickets
-99. captcha
-102. country icon size
 2.	predefined text in support ticket
 3.	date picker
 4.	storage usages statistics
@@ -47,9 +30,24 @@ x79. ticket edit set/update category
 12.	 mail when a user activated UserController ->destroy
 13.	 captcha in contact us page
 14. storage as addon P2
+15. <x-tenant.landlord-notice-one-tenant/>
+16.	add manager call back in tickets
+17. captcha
+18. country icon size
+
 
 # 0. DONE
 ====================================================================
+xx96. invoice and receipt drop-down policy check
+x111. account level discount apply while creating invoice 
+x111. request demo/bug report
+x111. AkkControel Policy
+x111. Topic and TicketTiopc Controller
+x222. tick first and last repsonse
+x116. rewrtie flow of invoice creation 
+x114. Invoice Date :	edit invoice.edit payments edit pay date
+x110. linebreak in invoice notes/description
+x79. ticket edit set/update category
 xx96. config('app.domain'); vs app_domain
 xx91. clean config(app.url) vs env(app_URL)
 x94. <x-tenant.landlord-notice-all-tenants/>

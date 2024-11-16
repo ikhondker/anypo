@@ -18,6 +18,20 @@
 1. create a new role PM for projects
 2. layout change for edit user page role change
 
+
+# 12. Icons
+====================================================================
+-    <i class="align-middle me-1" data-lucide="eye"></i> View Purchase Order
+-    <i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments
+-    <i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order
+-    <i class="align-middle me-1" data-lucide="plus-circle"></i> Create Invoice
+-    <i class="align-middle me-1" data-lucide="printer"></i> Print Purchase Order
+    <i class="align-middle me-1 text-danger" data-lucide="dollar-sign"></i> Lifetime Discount (*)
+    <i class="align-middle me-1 text-danger" data-lucide="rotate-ccw"></i> Account Reset (*)
+    <i class="align-middle me-1 text-danger" data-lucide="delete"></i> Delete Account (*)
+    <i class="fas fa-plus"></i> New Ticket
+
+
 # 12. Function Sequence in Controller 
 ====================================================================
 1. index

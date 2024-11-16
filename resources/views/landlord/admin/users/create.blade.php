@@ -41,7 +41,7 @@
 						@endif
 					</tbody>
 				</table>
-				<x-landlord.create.save/>
+				<x-landlord.create.save value="User" />
 			</form>
 		</div>
 	</div>

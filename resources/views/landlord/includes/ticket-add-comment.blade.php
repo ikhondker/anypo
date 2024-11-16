@@ -1,3 +1,7 @@
+@php
+    $replyTemplates		= App\Models\Landlord\Lookup\ReplyTemplate::primary()->get();
+@endphp
+
 <div class="card">
 	<div class="card-header">
 		<h5 class="card-title">Add Comment</h5>
@@ -13,8 +17,22 @@
 					<tr>
 						<th>Comment :</th>
 						<td>
-							<textarea class="form-control" rows="4" name="content" placeholder="Ticket Update ...">{{ old('content', 'Ticket Update ...') }}</textarea>
+							<textarea class="form-control" rows="6" name="content" id="content"  placeholder="Ticket Update ...">{{ old('content', 'Ticket Update ...') }}</textarea>
 							@error('content')
+								<div class="small text-danger">{{ $message }}</div>
+							@enderror
+						</td>
+					</tr>
+					<tr>
+						<th>Reply Template :</th>
+						<td>
+							<select class="form-control select2" data-toggle="select2" name="reply_template_id" id="reply_template_id">
+								<option value=""><< Reply Template >> </option>
+								@foreach ($replyTemplates as $replyTemplate)
+									<option value="{{ $replyTemplate->id }}" {{ $replyTemplate->id == old('reply_template_id') ? 'selected' : '' }} >{{ $replyTemplate->name }} </option>
+								@endforeach
+							</select>
+							@error('reply_template_id')
 								<div class="small text-danger">{{ $message }}</div>
 							@enderror
 						</td>
@@ -41,7 +59,7 @@
 								</select>
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Type of Update :</th>
 							<td>
@@ -63,7 +81,7 @@
 							</td>
 						</tr>
 					@endif
-				
+
 				</tbody>
 			</table>
 			<x-landlord.create.save/>
@@ -71,5 +89,30 @@
 		<!-- Form -->
 	</div>
 </div>
+
+<script type="module">
+	$(document).ready(function () {
+		//console.log("Inside: reply_template_id");
+		$('#reply_template_id').change(function() {
+			//console.log("reply_template_id changed");
+			let id = $(this).val();
+			let url = '{{ route("reply-templates.get-template", ":id") }}';
+			url = url.replace(':id', id);
+			$.ajax({
+				url: url,
+				type: 'get',
+				dataType: 'json',
+				// delay: 250,
+				success: function(response) {
+					if (response != null) {
+						$('#content').val(response.notes);
+					}
+				}
+			});
+		});
+	});
+
+</script>
+
 
 

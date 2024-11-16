@@ -113,7 +113,7 @@ class CommentController extends Controller
 			'comment_date'		=> date('Y-m-d H:i:s'),
 			//'ticket_number'	=> Str::uuid()->toString(),
 			'owner_id'			=> auth()->user()->id ,
-			'by_backoffice'		=> (auth()->user()->isSeeded()? true : false ),
+			'by_back_office'		=> (auth()->user()->isSeeded()? true : false ),
 			'ip'				=> Request::ip()
 		]);
 

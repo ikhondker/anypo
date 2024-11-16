@@ -35,20 +35,39 @@
 				<h6 class="card-subtitle text-muted">Confidential Invoice Detail.</h6>
 			</div>
 			<div class="card-body">
-				<table class="table table-sm my-2">
-					<tbody>
-						<x-landlord.show.my-number value="{{ $invoice->discount }}" label="Discount %" />
-						<x-landlord.show.my-date value="{{ $invoice->discount_date }}" label="Discount Date"  />
-						<x-landlord.show.my-text value="{{ $invoice->discount_by }}" label="Discount By" />
-						<tr>
-							<th>Pay Without Payment ?</th>
-							<td><span class="badge {{ ($invoice->pwop ? 'badge-subtle-danger' : 'badge-subtle-success') }}">{{ ($invoice->pwop ? 'Yes' : 'No') }}</span></td>
-						</tr>
-						<x-landlord.show.my-date value="{{ $invoice->pwop_date }}" label="Pwop Date" />
-						<x-landlord.show.my-text value="{{ $invoice->pwop_paid_by }}" label="Pwop By" />
-						<x-landlord.show.my-text-area value="{{ $invoice->notes_internal }}" label="Internal Notes" />
-					</tbody>
-				</table>
+
+
+				<div class="row pt-5">
+					<div class="col-md-6">
+						<div class="table-responsive">
+							<table class="table table-sm mb-0">
+								<tbody>
+									<tr>
+										<th class="text-danger">Discount % :</th>
+										<td>{{ number_format($invoice->discount, 2) }}</td>
+									</tr>
+									<x-landlord.show.my-date value="{{ $invoice->discount_date }}" label="Discount Date"  />
+									<x-landlord.show.my-text value="{{ $invoice->discount_by }}" label="Discount By" />
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="table-responsive">
+							<table class="table table-sm mb-0">
+								<tbody>
+									<tr>
+										<th>Pay Without Payment ?</th>
+										<td><span class="badge {{ ($invoice->pwop ? 'badge-subtle-danger' : 'badge-subtle-success') }}">{{ ($invoice->pwop ? 'Yes' : 'No') }}</span></td>
+									</tr>
+									<x-landlord.show.my-date value="{{ $invoice->pwop_date }}" label="Pwop Date" />
+									<x-landlord.show.my-text value="{{ $invoice->pwop_paid_by }}" label="Pwop By" />
+									<x-landlord.show.my-text-area value="{{ $invoice->notes_internal }}" label="Internal Notes" />
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	@endif

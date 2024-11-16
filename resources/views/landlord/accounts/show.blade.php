@@ -88,10 +88,17 @@
 
 								<x-landlord.show.my-text value="{{ $account->email }}" label="E-mail" />
 								<x-landlord.show.my-text value="{{ $account->cell }}" label="Cell" />
+
 								<tr>
 									<th scope="row">Created At :</th>
 									<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($account->created_at ))) }}</td>
 								</tr>
+								@if (auth()->user()->isSystem())
+								<tr>
+									<th scope="row" class="text-danger" >Lifetime Discount % :</th>
+									<td>{{ number_format($account->discount, 2) }} </td>
+								</tr>
+								@endif
 							</tbody>
 						</table>
 					</div>

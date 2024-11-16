@@ -88,6 +88,7 @@
 			<li class="sidebar-item {{ ($_route_name == 'menus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('menus.index') }}"><i class="align-middle" data-lucide="circle"></i>Menu</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'statuses.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('statuses.index') }}"><i class="align-middle" data-lucide="circle"></i>Status</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'entities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('entities.index') }}"><i class="align-middle" data-lucide="circle"></i>Entity</a></li>
+            <li class="sidebar-item {{ ($_route_name == 'reply-templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('reply-templates.index') }}"><i class="align-middle" data-lucide="circle"></i>Reply Templates</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('templates.index') }}"><i class="align-middle" data-lucide="circle"></i>Templates</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'configs.show' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('configs.show',config('bo.CONFIG_ID')) }}"><i class="align-middle" data-lucide="circle"></i>Config</a></li>
 

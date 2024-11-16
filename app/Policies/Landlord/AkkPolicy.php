@@ -6,7 +6,7 @@ use App\Models\Landlord\Akk;
 use App\Models\User;
 
 use Illuminate\Auth\Access\Response;
-
+use Illuminate\Support\Facades\Log;
 use App\Enum\UserRoleEnum;
 
 class AkkPolicy
@@ -56,7 +56,7 @@ class AkkPolicy
 	 */
 	public function addon(User $user): bool
 	{
-		return ($user->isAdmin() ||$user->isSeeded());
+		return ($user->isAdmin() || $user->isSeeded());
 	}
 
 	/**
@@ -64,7 +64,7 @@ class AkkPolicy
 	 */
 	public function advance(User $user): bool
 	{
-		return ($user->isAdmin() ||$user->isSeeded());
+		return ($user->isAdmin() || $user->isSeeded());
 	}
 
 	/**

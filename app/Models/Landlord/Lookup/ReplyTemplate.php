@@ -1,44 +1,43 @@
 <?php
 
+
 namespace App\Models\Landlord\Lookup;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/* IQBAL 12-FEB-23 */
-use App\Traits\AddCreatedUpdatedBy;
-use App\Models\User;
-
-use App\Models\Landlord\Manage\TicketTopic;
-
 use Illuminate\Database\Eloquent\Builder;
 
-class Topic extends Model
+// IQBAL 27-SEP-22
+use App\Traits\AddCreatedUpdatedBy;
+use App\Models\User;
+use App\Models\Landlord\Ticket;
+
+class ReplyTemplate extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'count_tickets', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
+		'name', 'notes', 'entity', 'enable', 'updated_by', 'updated_at',
 	];
 
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array<string, string>
+	 */
 	protected $casts = [
 		'updated_at'	=> 'datetime',
 		'created_at'	=> 'datetime',
 	];
 
-	/* ----------------- Scopes ------------------------- */
+    /* ----------------- Scopes ------------------------- */
 	/**
 	 * Scope a query to only All Approved PR for tenant.
 	*/
 	public function scopePrimary(Builder $query): void
 	{
 		$query->where('enable', true)->orderBy('name', 'asc');
-	}
-
-	/* ---------------- HasMany ---------------------- */
-	public function ticketTopics()
-	{
-		return $this->hasMany(TicketTopic::class);
 	}
 
 }

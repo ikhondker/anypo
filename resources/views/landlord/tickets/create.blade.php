@@ -66,7 +66,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<x-landlord.create.save/>
+				<x-landlord.create.save value="Ticket" />
 			</form>
 		</div>
 	</div>

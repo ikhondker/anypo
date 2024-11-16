@@ -5,8 +5,16 @@
 @endsection
 
 @section('content')
-	<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Ticket</a>
-	<h1 class="h3 mb-3">Dashboard</h1>
+
+	<x-landlord.page-header>
+		@slot('title')
+			Dashboard
+		@endslot
+		@slot('buttons')
+				<x-landlord.actions.account-actions/>
+				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
+		@endslot
+	</x-landlord.page-header>
 
 	<div class="d-grid gap-1 gap-lg-1">
 		<div class="row">

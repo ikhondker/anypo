@@ -3,17 +3,18 @@
 		<i class="align-middle text-danger mt-n1" data-lucide="settings"></i> {{ $account->name }}
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
+    	<a class="dropdown-item" href="{{ route('accounts.edit', $account->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Account</a>
 		<a class="dropdown-item" href="{{ route('accounts.show', $account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Account</a>
-		<a class="dropdown-item" href="{{ route('invoices.all',$account->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Invoices</a>
-		<a class="dropdown-item" href="{{ route('payments.all',$account->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Payments</a>
-		<a class="dropdown-item" href="{{ route('services.all',$account->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Services</a>
-		<a class="dropdown-item" href="{{ route('users.all',$account->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Users</a>
+		<a class="dropdown-item" href="{{ route('invoices.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
+		<a class="dropdown-item" href="{{ route('payments.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payments</a>
+		<a class="dropdown-item" href="{{ route('services.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Services</a>
+		<a class="dropdown-item" href="{{ route('users.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Users</a>
 		{{-- <a class="dropdown-item" href="{{ route('invoices.generate') }}"></i><i class="align-middle me-1 fas fa-dollar-sign"></i> Generate Invoice ***</a> --}}
 		@if (auth()->user()->isSystem())
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item text-danger" href="{{ route('accounts.all',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="list"></i> Lifetime Discount (*)</a>
-			<a class="dropdown-item text-danger sw2" href="{{ route('accounts.reset',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="list"></i> Account Reset (*)</a>
-			<a class="dropdown-item text-danger sw2" href="{{ route('accounts.delete',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="list"></i> Delete Account (*)</a>
+			<a class="dropdown-item text-danger" href="{{ route('accounts.edit',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="dollar-sign"></i> Lifetime Discount</a>
+			<a class="dropdown-item text-danger sw2" href="{{ route('accounts.reset',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="rotate-ccw"></i> Account Reset (*)</a>
+			<a class="dropdown-item text-danger sw2" href="{{ route('accounts.delete',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="delete"></i> Delete Account (*)</a>
 		@endif
 	</div>
 </div>

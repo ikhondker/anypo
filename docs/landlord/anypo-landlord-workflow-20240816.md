@@ -10,7 +10,7 @@
 
 # 8. Tenet Creation
 ==================================================
-1. Buy
+1. Buy purchase
 2. By system from backend
 
 # 8. Invoice Creation

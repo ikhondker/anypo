@@ -17,8 +17,9 @@ return new class extends Migration
 			$table->longText('content');
 			$table->foreignId('ticket_id')->constrained('tickets');
 			$table->foreignUuid('owner_id')->constrained('users');
-			$table->boolean('is_internal')->default(false); 
-			$table->boolean('by_backoffice')->default(false); 
+            $table->integer('reply_template_id')->nullable();
+			$table->boolean('is_internal')->default(false);
+			$table->boolean('by_back_office')->default(false);
 			$table->foreignUuid('attachment_id')->nullable()->constrained('attachments');
 			$table->string('ip')->default('127.0.0.1');
 			$table->softDeletes();

@@ -6,7 +6,7 @@
 
 		@foreach ($comments as $comment)
 			<div class="d-flex align-items-start">
-				@if ($comment->by_backoffice)
+				@if ($comment->by_back_office)
 					@if (auth()->user()->isSeeded())
 						<img src="{{ Storage::disk('s3l')->url('avatar/'.$comment->owner->avatar) }}" width="56" height="56" class="rounded-circle me-3" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
 					@else
@@ -25,7 +25,7 @@
 					</small>
 					<p class="mb-2">
 						<strong>
-							@if ($comment->by_backoffice)
+							@if ($comment->by_back_office)
 								@if (auth()->user()->isSeeded())
 									{{ $comment->owner->name }}
 								@else

@@ -405,7 +405,10 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 
 use App\Http\Controllers\Share\TemplateController;
 
+
 use App\Http\Controllers\Landlord\NotificationController;
+
+use App\Http\Controllers\Landlord\Lookup\ReplyTemplateController;
 
 use App\Http\Controllers\Landlord\Manage\CpController;
 use App\Http\Controllers\Landlord\Manage\EntityController;
@@ -449,6 +452,12 @@ Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	/* ======================== Config ======================================== */
 	Route::resource('configs', ConfigController::class);
+
+    /* ======================== ReplyTemplate ======================================== */
+	Route::resource('reply-templates', ReplyTemplateController::class);
+    Route::get('/reply-templates/delete/{replyTemplate}', [ReplyTemplateController::class, 'destroy'])->name('reply-templates.delete');
+    Route::get('/reply-templates/get-template/{replyTemplate}',[ReplyTemplateController::class, 'getTemplate'])->name('reply-templates.get-template');
+
 
 	/* ======================== ErrorLog ======================================== */
 	Route::resource('error-logs', ErrorLogController::class);

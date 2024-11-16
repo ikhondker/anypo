@@ -48,7 +48,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Discount :</th>
+							<th class="text-danger">Discount :</th>
 							<td>
 								<input type="number" class="form-control @error('discount') is-invalid @enderror"
 								name="discount" id="discount" placeholder="Name"
