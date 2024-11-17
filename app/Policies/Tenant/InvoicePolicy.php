@@ -5,6 +5,7 @@ namespace App\Policies\Tenant;
 use App\Models\Tenant\Invoice;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use App\Enum\Tenant\AuthStatusEnum;
 
 class InvoicePolicy
 {
@@ -56,7 +57,7 @@ class InvoicePolicy
 	 */
 	public function update(User $user, Invoice $invoice): bool
 	{
-		return ($user->isBuyer() || $user->isSupport());
+		return ($invoice->status == AuthStatusEnum::DRAFT->value) && ($user->isBuyer() || $user->isSupport());
 	}
 
 	/**
@@ -91,13 +92,12 @@ class InvoicePolicy
 		//
 	}
 
-
 	/**
 	 * Determine whether the user can create models.
 	 */
-	public function post(User $user): bool
+	public function post(User $user, Invoice $invoice): bool
 	{
-		return ($user->isBuyer() || $user->isSupport());
+		return ($invoice->status == AuthStatusEnum::DRAFT->value) && ($user->isBuyer() || $user->isSupport());
 	}
 
 	/**

@@ -711,10 +711,12 @@ Route::middleware([
 		Route::get('/table/messages/{dir?}',[TableController::class, 'messages'])->name('tables.messages');
 		Route::get('/table/check',[TableController::class, 'check'])->name('tables.check');
 
+        /* ======================== User ======================================== */
+        Route::get('/user/switch',[UserController::class, 'switch'])->name('users.switch');
+
 		/* ======================== Activity ======================================== */
 		Route::resource('activities', ActivityController::class);
 		Route::get('/activity/export',[ActivityController::class, 'export'])->name('activities.export');
-
 
 		/* ======================== Template ========================================  */
 		Route::resource('templates', TemplateController::class);

@@ -34,7 +34,7 @@
 					<h6 class="card-subtitle text-muted">List of Purchase Requisitions.</h6>
 				</div>
 				<div class="card-body">
-				<!-- ========== INCLUDE ========== -->
+				    <!-- ========== INCLUDE ========== -->
 					@include('tenant.includes.pr.pr-lists-table')
 					<!-- ========== INCLUDE ========== -->
 				</div>

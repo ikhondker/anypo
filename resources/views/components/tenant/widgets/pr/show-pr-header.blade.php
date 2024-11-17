@@ -14,7 +14,6 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-
 						<tr>
 							<th width="20%">Summary :</th>
 							<td>{{ $pr->summary }}</td>
@@ -37,7 +36,7 @@
 							<tr>
 								<th>&nbsp;</th>
 								<td>
-										<x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
+									<x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
 								</td>
 							</tr>
 						@endcan
@@ -99,7 +98,7 @@
 						<tr>
 							<th>Attachments :</th>
 							<td>
-								<x-tenant.attachment.all entity="PR" aid="{{ $pr->id }}"/>
+								<x-tenant.attachment.all entity="PR" articleId="{{ $pr->id }}"/>
 							</td>
 						</tr>
 						<tr>

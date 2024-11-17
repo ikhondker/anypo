@@ -65,10 +65,6 @@ class PolController extends Controller
 
 		Log::debug('tenant.PolController.addLine po_id = ' . $po->id);
 
-		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {
-		 	return redirect()->route('pos.show',$po->id)->with('error', 'You can only add line to Purchase Order with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
-		}
-
 		$this->authorize('update',$po);	// << =============
 
 		$items = Item::primary()->get();

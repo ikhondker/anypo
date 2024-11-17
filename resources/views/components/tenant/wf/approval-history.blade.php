@@ -6,7 +6,7 @@
 				<h5 class="card-title">Approval History</h5>
 				<h6 class="card-subtitle text-muted">Approval History with Performer and Action.</h6>
 			</div>
-			<table class="table table-striped table-sm">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th scope="col">#</th>

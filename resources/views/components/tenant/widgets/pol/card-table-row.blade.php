@@ -11,7 +11,7 @@
 	@if ($status)
 		<td class="text-end"><x-tenant.list.my-number :value="$pol->received_qty"/></td>
 	@endif
-	<td class="text-end"><x-tenant.list.my-number :value="$pol->price"/></td>
+	<td class="text-end"><x-tenant.list.my-number :value="$pol->price"/> {{ $pol->po->currency }}</td>
 	<td class="text-end"><x-tenant.list.my-number :value="$pol->sub_total"/></td>
 	<td class="text-end"><x-tenant.list.my-number :value="$pol->tax"/></td>
 	<td class="text-end"><x-tenant.list.my-number :value="$pol->gst"/></td>

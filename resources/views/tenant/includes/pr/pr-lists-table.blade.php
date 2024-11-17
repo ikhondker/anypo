@@ -9,6 +9,7 @@
 			<th>Supplier</th>
 			<th>Project</th>
 			<th class="text-end">Amount</th>
+            <th>Currency</th>
 			<th>Approval</th>
 			<th>Status</th>
 			<th>Actions</th>
@@ -24,7 +25,8 @@
 			<td>{{ $pr->dept->name }}</td>
 			<td>{{ $pr->supplier->name }}</td>
 			<td>{{ $pr->project->code }}</td>
-			<td class="text-end">{{ number_format($pr->amount, 2) }} {{ $pr->currency }}</td>
+			<td class="text-end">{{ number_format($pr->amount, 2) }}</td>
+            <td>{{ $pr->currency }}</td>
 			<td><span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span></td>
 			<td><span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
 			<td class="table-action">

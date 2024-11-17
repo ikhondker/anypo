@@ -56,14 +56,14 @@
 			<div class="card-header">
 
 				<div class="card-actions float-end">
-					@if ($invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+                    @can('post', $invoice)
 						<a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
 							data-entity="" data-name="INV#{{ $invoice->id }}" data-status="Post Invoice"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 							<i data-lucide="external-link" class="text-white"></i> Post</a>
 					@else
 						<span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span>
-					@endif
+                    @endcan
 				</div>
 				<h5 class="card-title">Other Information</h5>
 				<h6 class="card-subtitle text-muted">Others information about Purchase Invoice.</h6>
@@ -90,7 +90,7 @@
 						</tr>
 						<tr>
 							<th>Attachments</th>
-							<td><x-tenant.attachment.all entity="INVOICE" aid="{{ $invoice->id }}"/></td>
+							<td><x-tenant.attachment.all entity="INVOICE" articleId="{{ $invoice->id }}"/></td>
 						</tr>
 
 						<tr>

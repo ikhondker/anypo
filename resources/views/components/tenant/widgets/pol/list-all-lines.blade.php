@@ -13,10 +13,10 @@
 	<table class="table table-striped table-sm">
 		<thead>
 			<tr>
-				<th class="" style="width:2%">LN#</th>
-				<th class="" style="width:5%" >Item</th>
-				<th class="" style="width:23%">Description</th>
-				<th class="" style="width:7%">UOM</th>
+				<th style="width:2%">LN#</th>
+				<th style="width:5%" >Item</th>
+				<th style="width:23%">Description</th>
+				<th style="width:7%">UOM</th>
 				<th class="text-end" style="width:5%">Qty</th>
 				<th class="text-end" style="width:5%">Received</th>
 				<th class="text-end" style="width:9%">Price</th>
@@ -39,7 +39,7 @@
 			<tr>
 				<td class="" colspan="2">
 				 @can('update', $po)
-						<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
+					<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 				@endcan
 				</td>
 				<td class="" colspan="3">&nbsp;</td>

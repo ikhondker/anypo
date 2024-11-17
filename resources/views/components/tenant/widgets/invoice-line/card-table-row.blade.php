@@ -9,7 +9,7 @@
 	<td class="text-end"><x-tenant.list.my-number :value="$invoiceLine->amount"/></td>
 	@if ($action)
 		<td class="">
-			@if ($invoiceLine->invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+            @can('update', $invoiceLine)
 				<a href="{{ route('invoice-lines.edit',$invoiceLine->id) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 					<i class="align-middle" data-lucide="edit"></i></a>
 				<a href="{{ route('invoice-lines.destroy',$invoiceLine->id) }}" class="text-muted sw2-advance"
@@ -17,7 +17,7 @@
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
 					<i class="align-middle" data-lucide="trash-2"></i>
 				</a>
-			@endif
+            @endcan
 		</td>
 	@endif
 </tr>

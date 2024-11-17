@@ -61,15 +61,6 @@ class PrlController extends Controller
 	 */
 	public function addLine(Pr $pr)
 	{
-		//$pr = Pr::where('id', $pr_id)->first();
-
-		//dd($pr);
-		// Write Event Log
-		//LogEvent('template',$template->id,'edit','template',$template->id);
-
-		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
-			return redirect()->route('prs.show',$pr->id)->with('error', 'You can only add line to Requisition with status '. strtoupper(AuthStatusEnum::DRAFT->value) .' !');
-		}
 
 		$this->authorize('update',$pr);	// << =============
 

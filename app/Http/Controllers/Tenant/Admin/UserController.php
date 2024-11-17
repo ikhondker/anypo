@@ -89,6 +89,22 @@ class UserController extends Controller
 		return view('tenant.admin.users.index', compact('users'));
 	}
 
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function switch()
+	{
+		$this->authorize('viewAny', User::class);
+
+		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
+			$users = User::with('dept')->with('designation')->orderBy('name', 'ASC')->paginate(25);
+		} else {
+			$users = User::with('dept')->with('designation')->TenantAll()->orderBy('id', 'DESC')->paginate(10);
+		}
+		return view('tenant.admin.users.switch', compact('users'));
+	}
+
+
 	/**
 	 * Show the form for creating a new resource.
 	 */

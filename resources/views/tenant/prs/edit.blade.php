@@ -142,20 +142,20 @@
 
 							<table class="table table-sm my-2">
 								<tbody>
-
 									<tr width="20%">
 										<th>Need By Date :</th>
 										<td>
 											<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
-											name="need_by_date" id="need_by_date" placeholder=""
-											value="{{ old('need_by_date', date('Y-m-d',strtotime($pr->need_by_date)) ) }}"
-											required/>
+												name="need_by_date" id="need_by_date" placeholder=""
+												value="{{ old(
+														'need_by_date', ( empty($pr->need_by_date)? date('Y-m-d') :  date('Y-m-d',strtotime($pr->need_by_date)))
+														 ) }}"
+												required/>
 											@error('need_by_date')
 												<div class="small text-danger">{{ $message }}</div>
 											@enderror
 										</td>
 									</tr>
-
 									<x-tenant.edit.notes value="{{ $pr->notes }}"/>
 
 									<x-tenant.attachment.create />

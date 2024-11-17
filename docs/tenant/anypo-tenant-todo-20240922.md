@@ -1,23 +1,16 @@
-
-
-
 # 33. TODO
 -------------------------------------------------------------------------------------------------
-
-
-118. disbale prl/pol edit by policy
-117. reject/resubmit pr/po
-		policy/header/lines/
+127. address/remove all TODO
+x118. disable prl/pol/invoice line edit by policy
+x117. reject/resubmit pr/po 	policy/header/lines/
 131. ListAllLines and CardTableRow with status-true/false
 130. $e->getMessage()
-129. DASC - decimal-rev attahment-sourcdepbudid-? cllose po/pr/invice/pol/
+129. DASC - decimal-rev attahment - sourcdepbudid-? close po/pr/invoice/pol/
 128. budget amount edit issue 4 decimal
-127. pr edit need_by_date
-127. in Budget  count_po is not updated
-127. auto close pol, invocie and PO **
+x127. pr edit need_by_date
+127. in Budget count_po is not updated
+127. auto close pol, invoice and PO **
 127. create-for-po if po_id is invalid and auto populate currency and supplier issue
-126. find and replace 01911310509 +0012262804920 you@company.com email@example.com
-127. address/remove all TODO
 123. PO dropdown ain invoice creation and project dropdown width
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
 140. set fb and linked url to any po during setup and seeded
@@ -61,8 +54,6 @@
 
 # 30 Nice to Have P2
 -------------------------------------------------------------------------------------------------
-111. chat plugin for intenral Laravel reverb work with laravel 11 i
-113. Auth::user()->unreadNotifications->markAsRead(); jquery
 1. notfication mark-as-read with ajax see https://blog.quickadminpanel.com/laravel-notifications-with-database-driver-internal-messages/
 1.	prefix form pr/po number
 2.	command generator based on tenants
@@ -106,9 +97,8 @@
 40.	auto update inv/grs /pol status
 41.	laravel down from application
 42.	Allow rejected pr/po edit and resubmit
-
-
-
+43. chat plugin for intenral Laravel reverb work with laravel 11 i
+44. Auth::user()->unreadNotifications->markAsRead(); jquery
 
 # 0. DONE
 -------------------------------------------------------------------------------------------------

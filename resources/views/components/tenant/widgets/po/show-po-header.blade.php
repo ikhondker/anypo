@@ -84,7 +84,7 @@
 						<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
 						<tr>
 							<th>Attachments :</th>
-							<td><x-tenant.attachment.all entity="PO" aid="{{ $po->id }}"/></td>
+							<td><x-tenant.attachment.all entity="PO" articleId="{{ $po->id }}"/></td>
 						</tr>
 						<tr>
 							<th>&nbsp;</th>

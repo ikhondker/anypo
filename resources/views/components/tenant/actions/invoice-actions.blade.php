@@ -11,19 +11,18 @@
 		<a class="dropdown-item" href="{{ route('invoices.attachments',$invoiceId) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> Attachments</a>
 
 		<div class="dropdown-divider"></div>
-		@if ($invoice->status == App\Enum\Tenant\InvoiceStatusEnum::DRAFT->value)
-			@can('update', $invoice)
-				<a class="dropdown-item" href="{{ route('invoices.edit', $invoice->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Invoice</a>
-			@endcan
-		@endif
-		@if ($invoice->status <> App\Enum\Tenant\InvoiceStatusEnum::POSTED->value)
+		@can('update', $invoice)
+			<a class="dropdown-item" href="{{ route('invoices.edit', $invoice->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Invoice</a>
+		@endcan
+
+		{{-- @if ($invoice->status <> App\Enum\Tenant\InvoiceStatusEnum::POSTED->value) --}}
 			@can('post', $invoice)
 				<a class="dropdown-item sw2-advance" href="{{ route('invoices.post', $invoice->id) }}"
 					data-entity="" data-name="Invoice #{{ $invoice->id }}" data-status="Post"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 					<i class="align-middle me-1" data-lucide="copy"></i> Post Invoice *</a>
 			@endcan
-		@endif
+		{{-- @endif --}}
 
 		@can('createForInvoice', App\Models\Tenant\Payment::class)
 			<a class="dropdown-item" href="{{ route('payments.create-for-invoice',$invoice->id) }}"><i class="align-middle me-1" data-lucide="layout"></i> Pay Invoice</a>

@@ -124,10 +124,12 @@
 									<tr>
 										<th width="20%">Need By Date :</th>
 										<td>
-											<input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
-											name="need_by_date" id="need_by_date" placeholder=""
-											value="{{ old('need_by_date', date('Y-m-d',strtotime($po->need_by_date)) ) }}"
-											required/>
+                                            <input type="date" class="form-control @error('need_by_date') is-invalid @enderror"
+												name="need_by_date" id="need_by_date" placeholder=""
+												value="{{ old(
+														'need_by_date', ( empty($po->need_by_date)? date('Y-m-d') :  date('Y-m-d',strtotime($po->need_by_date)))
+														 ) }}"
+												required/>
 											@error('need_by_date')
 												<div class="small text-danger">{{ $message }}</div>
 											@enderror

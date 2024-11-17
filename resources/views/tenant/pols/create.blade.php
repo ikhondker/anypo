@@ -25,8 +25,6 @@
 	<form action="{{ route('pols.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
-
-		{{-- ================================================================== --}}
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -43,10 +41,10 @@
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr>
-						<th class="" style="width:1%">LN#</th>
-						<th class="" style="width:15%" >Item</th>
-						<th class="" style="width:25%">Description</th>
-						<th class="" style="width:8%">UOM</th>
+						<th style="width:1%">LN#</th>
+						<th style="width:15%" >Item</th>
+						<th style="width:25%">Description</th>
+						<th style="width:8%">UOM</th>
 						<th class="text-end" style="width:6%">Qty</th>
 						<th class="text-end" style="width:9%">Price</th>
 						<th class="text-end" style="width:9%">Subtotal</th>
@@ -94,8 +92,6 @@
 			</div>
 
 		</div>
-
-
 
 	</form>
 	<!-- /.form end -->
