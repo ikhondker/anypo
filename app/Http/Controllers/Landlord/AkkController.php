@@ -472,7 +472,7 @@ class AkkController extends Controller
 	public function processAddon($account_id, $addon_id)
 	{
 
-        $this->authorize('addon', Akk::class);
+		$this->authorize('addon', Akk::class);
 
 		Log::channel('bo')->info('landlord.account.addAddon buying new addon account = '. $account_id . ' product_id = ' . $addon_id);
 

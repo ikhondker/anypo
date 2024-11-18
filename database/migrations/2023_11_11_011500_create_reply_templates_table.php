@@ -13,10 +13,10 @@ return new class extends Migration
 	{
 		Schema::create('reply_templates', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-            $table->string('name');
+			$table->string('name');
 			$table->longText('notes')->nullable();
 			$table->enum('entity', ['ticket', 'future'])->default('ticket');
-            $table->boolean('enable')->default(true);
+			$table->boolean('enable')->default(true);
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();

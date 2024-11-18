@@ -31,7 +31,7 @@ class ReplyTemplate extends Model
 		'created_at'	=> 'datetime',
 	];
 
-    /* ----------------- Scopes ------------------------- */
+	/* ----------------- Scopes ------------------------- */
 	/**
 	 * Scope a query to only All Approved PR for tenant.
 	*/

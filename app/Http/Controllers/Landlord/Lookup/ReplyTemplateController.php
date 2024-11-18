@@ -132,7 +132,7 @@ class ReplyTemplateController extends Controller
 		return redirect()->route('reply-templates.index')->with('success','ReplyTemplate Status Updated successfully');
 	}
 
-    // user in Ticket create comment dropdown ajax
+	// user in Ticket create comment dropdown ajax
 	public function getTemplate($id = 0)
 	{
 		//http://demo1.localhost:8000/reply-templates/get-template/1005

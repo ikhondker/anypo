@@ -1,5 +1,5 @@
 @php
-    $replyTemplates		= App\Models\Landlord\Lookup\ReplyTemplate::primary()->get();
+	$replyTemplates		= App\Models\Landlord\Lookup\ReplyTemplate::primary()->get();
 @endphp
 
 <div class="card">

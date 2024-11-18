@@ -3,7 +3,7 @@
 		<i class="align-middle text-danger mt-n1" data-lucide="settings"></i> {{ $account->name }}
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-    	<a class="dropdown-item" href="{{ route('accounts.edit', $account->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Account</a>
+		<a class="dropdown-item" href="{{ route('accounts.edit', $account->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Account</a>
 		<a class="dropdown-item" href="{{ route('accounts.show', $account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Account</a>
 		<a class="dropdown-item" href="{{ route('invoices.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
 		<a class="dropdown-item" href="{{ route('payments.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payments</a>

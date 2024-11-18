@@ -89,7 +89,7 @@ class UserController extends Controller
 		return view('tenant.admin.users.index', compact('users'));
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function switch()

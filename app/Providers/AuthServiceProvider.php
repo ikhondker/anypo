@@ -35,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
 		| Landlord																	 +
 		|-----------------------------------------------------------------------------
 		*/
-		'App\Models\Landlord\Akk'				    => 'App\Policies\Landlord\AkkPolicy',
+		'App\Models\Landlord\Akk'					=> 'App\Policies\Landlord\AkkPolicy',
 		'App\Models\Landlord\Account'				=> 'App\Policies\Landlord\AccountPolicy',
 		'App\Models\Landlord\Attachment' 			=> 'App\Policies\Landlord\AttachmentPolicy',
 		'App\Models\Landlord\Comment' 				=> 'App\Policies\Landlord\CommentPolicy',

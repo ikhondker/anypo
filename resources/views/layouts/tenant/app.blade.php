@@ -212,10 +212,10 @@
 								<a class="dropdown-item" href="{{ route('help') }}"> <i class="align-middle me-1" data-lucide="help-circle"></i> Help</a>
 								<a class="dropdown-item" href="{{ route('tickets.create') }}"><i class="align-middle me-1" data-lucide="message-circle"></i> Support</a>
 								<a class="dropdown-item" href="{{ route('logout') }}"><i class="align-middle text-danger me-1" data-lucide="power"></i> Sign out</a>
-                                @if (auth()->user()->isSystem())
-                                    <div class="dropdown-divider"></div>
-                                	<a class="dropdown-item" href="{{ route('users.switch') }}"><i class="align-middle text-danger me-1" data-lucide="user"></i> Switch User </a>
-				                @endif
+								@if (auth()->user()->isSystem())
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="{{ route('users.switch') }}"><i class="align-middle text-danger me-1" data-lucide="user"></i> Switch User </a>
+								@endif
 							</div>
 						</li>
 					</ul>

@@ -8,7 +8,7 @@
 			<th>Supplier</th>
 			<th>Project</th>
 			<th class="text-end">PO Amount</th>
-            <th>Cur.</th>
+			<th>Cur.</th>
 			<th>Buyer</th>
 			<th>Approval</th>
 			<th>Status</th>
@@ -25,7 +25,7 @@
 			<td>{{ $po->supplier->name }}</td>
 			<td>{{ $po->project->code }}</td>
 			<td class="text-end">{{ number_format($po->amount, 2) }}</td>
-            <td>{{ $po->currency }}</td>
+			<td>{{ $po->currency }}</td>
 			<td>{{ $po->buyer->name }}</td>
 			<td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
 			<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>

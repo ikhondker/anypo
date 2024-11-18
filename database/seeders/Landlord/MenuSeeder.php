@@ -183,7 +183,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'error-logs.edit',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
 			[ 'raw_route_name' => 'error-logs.create',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
 
-            [ 'raw_route_name' => 'reply-templates.index',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'reply-templates.index',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],
 			[ 'raw_route_name' => 'reply-templates.show',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],
 			[ 'raw_route_name' => 'reply-templates.update',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],
 			[ 'raw_route_name' => 'reply-templates.edit',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],

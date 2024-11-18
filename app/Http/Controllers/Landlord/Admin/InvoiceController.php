@@ -282,7 +282,7 @@ class InvoiceController extends Controller
 			if ($invoice->org_amount == 0 )  {
 				$request->merge(['org_amount'=> $invoice->amount]);
 			}
-			$request->merge(['amount'=> round($invoice->amount * (100 - $request->input('discount'))/100,2) ]);		    // apply discount
+			$request->merge(['amount'=> round($invoice->amount * (100 - $request->input('discount'))/100,2) ]);			// apply discount
 			$request->merge(['notes'=> $invoice->notes .'<br>Added discount '. $request->input('discount') .'%' ]);
 			// $table->decimal('amount',19, 2)->default(0);
 			// $table->decimal('org_amount',19, 2)->default(0);	// before apply any discount

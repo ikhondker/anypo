@@ -36,7 +36,7 @@ class Contact extends Model
 	use HasFactory, Notifiable;
 
 	public $fillable = [
-        'type', 'first_name', 'last_name', 'email', 'cell', 'subject', 'notes', 'contact_date', 'attachment_id', 'user_id', 'owner_id', 'tenant', 'demo_preferred_date', 'demo_performed', 'demo_date', 'notes_internal', 'ip', 'country', 'updated_at',
+		'type', 'first_name', 'last_name', 'email', 'cell', 'subject', 'notes', 'contact_date', 'attachment_id', 'user_id', 'owner_id', 'tenant', 'demo_preferred_date', 'demo_performed', 'demo_date', 'notes_internal', 'ip', 'country', 'updated_at',
 	];
 
 	/**
