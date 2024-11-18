@@ -1,5 +1,5 @@
 @extends('layouts.tenant.app')
-@section('title','PR/PO Category')
+@section('title','Category')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Categories</li>
 @endsection
@@ -9,7 +9,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			PR/PO Category
+			Item Category
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.create object="Category"/>
@@ -23,10 +23,10 @@
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
 				@else
-					PR/PO Category Lists
+					Item Category Lists
 				@endif
 			</h5>
-			<h6 class="card-subtitle text-muted">List of PR/PO Category.</h6>
+			<h6 class="card-subtitle text-muted">List of Item Category.</h6>
 		</div>
 		<div class="card-body">
 			<table class="table">
@@ -39,13 +39,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($categories as $category)
+					@foreach ($itemCategories as $itemCategory)
 					<tr>
-						<td>{{ $categories->firstItem() + $loop->index }}</td>
-						<td><a href="{{ route('categories.show',$category->id) }}"><strong>{{ $category->name }}</strong></a>
-						<td><x-tenant.list.my-boolean :value="$category->enable"/></td>
+						<td>{{ $itemCategories->firstItem() + $loop->index }}</td>
+						<td><a href="{{ route('item-categories.show',$itemCategory->id) }}"><strong>{{ $itemCategory->name }}</strong></a>
+						<td><x-tenant.list.my-boolean :value="$itemCategory->enable"/></td>
 						<td>
-							<a href="{{ route('categories.show',$category->id) }}" class="btn btn-light"
+							<a href="{{ route('item-categories.show',$itemCategory->id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 							</a>
 						</td>
@@ -55,7 +55,7 @@
 			</table>
 
 			<div class="row pt-3">
-				{{ $categories->links() }}
+				{{ $itemCategories->links() }}
 			</div>
 			<!-- end pagination -->
 

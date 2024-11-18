@@ -17,7 +17,7 @@ return new class extends Migration
 			$table->string('name')->unique();
 			$table->text('notes')->nullable();
 			//$table->string('sku')->unique()->nullable();
-			$table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('item_category_id')->constrained('item_categories');
 			$table->foreignId('oem_id')->constrained('oems');
 			$table->foreignId('uom_class_id')->constrained('uom_classes');
 			$table->foreignId('uom_id')->constrained('uoms');

@@ -78,6 +78,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Admin\Setup' 		=> 'App\Policies\Tenant\Admin\SetupPolicy',
 
 		'App\Models\Tenant\Lookup\Category'		=> 'App\Policies\Tenant\Lookup\CategoryPolicy',
+        'App\Models\Tenant\Lookup\ItemCategory'	=> 'App\Policies\Tenant\Lookup\ItemCategoryPolicy',
 		'App\Models\Tenant\Lookup\Country'		=> 'App\Policies\Tenant\Lookup\CountryPolicy',
 		'App\Models\Tenant\Lookup\Currency'		=> 'App\Policies\Tenant\Lookup\CurrencyPolicy',
 		'App\Models\Tenant\Lookup\Dept'			=> 'App\Policies\Tenant\Lookup\DeptPolicy',

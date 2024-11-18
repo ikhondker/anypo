@@ -22,7 +22,7 @@ class Item extends Model
 	];
 
 
-	
+
 	/* ----------------- Scopes ------------------------- */
 	/**
 	 * Scope a query to only Tenant Active users.
@@ -30,12 +30,12 @@ class Item extends Model
 	public function scopePrimary(Builder $query): void
 	{
 		$query->where('enable', true)
-			->orderBy('id', 'asc'); 
+			->orderBy('id', 'asc');
 	}
 
 	/* ----------------- Functions ---------------------- */
-		
-	
+
+
 	/* ----------------- HasMany ------------------------ */
 	public function prl() {
 		return $this->hasMany(Prl::class);
@@ -46,8 +46,8 @@ class Item extends Model
 	}
 
 	/* ---------------- belongsTo ---------------------- */
-	public function category(){
-		return $this->belongsTo(Category::class,'category_id')->withDefault([
+	public function item_category(){
+		return $this->belongsTo(ItemCategory::class,'item_category_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

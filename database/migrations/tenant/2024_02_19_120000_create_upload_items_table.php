@@ -28,7 +28,7 @@ return new class extends Migration
 			 $table->string('status')->default(InterfaceStatusEnum::DRAFT->value);
 			 /** end ENUM */
 			$table->text('notes')->nullable();
-			$table->integer('category_id')->nullable();
+			$table->integer('item_category_id')->nullable();
 			$table->integer('oem_id')->nullable();
 			$table->string('uom_class_id')->nullable();
 			$table->integer('uom_id')->nullable();

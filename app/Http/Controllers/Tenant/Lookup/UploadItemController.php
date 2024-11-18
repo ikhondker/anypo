@@ -27,7 +27,7 @@ use App\Models\Tenant\Lookup\UploadItem;
 use Illuminate\Http\Request;
 
 # 1. Models
-use App\Models\Tenant\Lookup\Category;
+use App\Models\Tenant\Lookup\ItemCategory;
 use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Lookup\Oem;
 use App\Models\Tenant\Lookup\Item;
@@ -248,13 +248,13 @@ class UploadItemController extends Controller
 					Log::debug('tenant.Lookup.UploadItemController.check code = ' . $code. ' exists!');
 				}
 
-				$category = Category::firstWhere('name', $upload_item->category_name);
-				if(is_null($category)) {
+				$itemCategory = ItemCategory::firstWhere('name', $upload_item->category_name);
+				if(is_null($itemCategory)) {
 					$category_id = '';
 					$error_code = 'E007';
 					Log::debug('tenant.Lookup.UploadItemController.check category = ' . $upload_item->category_name. ' not found!');
 				} else {
-					$category_id = $category->id;
+					$item_category_id = $itemCategory->id;
 				}
 
 				$oem = OEM::firstWhere('name', $upload_item->oem_name);
@@ -290,7 +290,7 @@ class UploadItemController extends Controller
 				// $oem = OEM::where('name', $upload_item->oem)->firstOrFail();
 				// $uom = Uom::where('name', $upload_item->uom)->firstOrFail();
 
-				Log::debug('Result => id = '.$upload_item->id.' category_id = '.$category_id.' oem_id = '.$oem_id.' uom_id = '.$uom_id.' gl_type = '.$gl_type);
+				Log::debug('Result => id = '.$upload_item->id.' item_category_id = '.$item_category_id.' oem_id = '.$oem_id.' uom_id = '.$uom_id.' gl_type = '.$gl_type);
 
 				if ( $error_code <> '') {
 					// Any error identified
@@ -302,14 +302,14 @@ class UploadItemController extends Controller
 				} else {
 					UploadItem::where('id', $upload_item->id)
 						->update([
-							'category_id'	=> $category_id,
-							'oem_id'		=> $oem_id,
-							'uom_class_id'	=> $uom_class_id,
-							'uom_id'		=> $uom_id,
-							'gl_type'		=> $gl_type,
-							'ac_expense'	=> Str::upper('ac_expense'),
-							'status'		=> InterfaceStatusEnum::VALIDATED->value,
-							'error_code'	=> NULL,
+							'item_category_id'	=> $item_category_id,
+							'oem_id'			=> $oem_id,
+							'uom_class_id'		=> $uom_class_id,
+							'uom_id'			=> $uom_id,
+							'gl_type'			=> $gl_type,
+							'ac_expense'		=> Str::upper('ac_expense'),
+							'status'			=> InterfaceStatusEnum::VALIDATED->value,
+							'error_code'		=> NULL,
 						]);
 				}
 
@@ -336,16 +336,16 @@ class UploadItemController extends Controller
 			//id name notes code category_id oem_id uom_id price stock reorder account_type photo enable created_by created_at updated_by updated_at
 
 			$item = [
-				'code'			=> $upload_item->item_code,
-				'name'			=> $upload_item->item_name,
-				'notes'			=> $upload_item->notes,
-				'category_id'	=> $upload_item->category_id,
-				'oem_id'		=> $upload_item->oem_id,
-				'uom_class_id'	=> $upload_item->uom_class_id,
-				'uom_id'		=> $upload_item->uom_id,
-				'price'			=> $upload_item->price,
-				'gl_type'		=> $upload_item->gl_type,
-				'ac_expense'	=> ($upload_item->ac_expense <> '') ? $upload_item->ac_expense : 'A600001' ,
+				'code'				=> $upload_item->item_code,
+				'name'				=> $upload_item->item_name,
+				'notes'				=> $upload_item->notes,
+				'item_category_id'	=> $upload_item->item_category_id,
+				'oem_id'			=> $upload_item->oem_id,
+				'uom_class_id'		=> $upload_item->uom_class_id,
+				'uom_id'			=> $upload_item->uom_id,
+				'price'				=> $upload_item->price,
+				'gl_type'			=> $upload_item->gl_type,
+				'ac_expense'		=> ($upload_item->ac_expense <> '') ? $upload_item->ac_expense : 'A600001' ,
 			];
 
 			Item::create($item); // don't forget to fill $fillable in Model

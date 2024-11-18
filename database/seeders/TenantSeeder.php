@@ -26,6 +26,7 @@ class TenantSeeder extends Seeder
 
 		$this->call(\Database\Seeders\GroupSeeder::class);
 		$this->call(\Database\Seeders\CategorySeeder::class);
+        $this->call(\Database\Seeders\ItemCategorySeeder::class);
 		$this->call(\Database\Seeders\CountrySeeder::class);
 		$this->call(\Database\Seeders\CurrencySeeder::class);
 

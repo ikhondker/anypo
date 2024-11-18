@@ -9,6 +9,7 @@ use App\Models\Tenant\Pr;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Lookup\Category;
 
 use Faker\Generator;
 use App\Models\User;
@@ -35,6 +36,7 @@ class PrSeeder extends Seeder
 					'dept_id'			=> 1001,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 700,
 					'tax'				=> 50,
@@ -49,6 +51,7 @@ class PrSeeder extends Seeder
 					'dept_id'			=> 1001,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 800,
 					'tax'				=> 50,
@@ -63,6 +66,7 @@ class PrSeeder extends Seeder
 					'dept_id'			=> 1001,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 800,
 					'tax'				=> 50,
@@ -77,6 +81,7 @@ class PrSeeder extends Seeder
 					'dept_id'			=> 1005,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 500,
 					'tax'				=> 50,
@@ -91,6 +96,7 @@ class PrSeeder extends Seeder
 					'dept_id'			=> 1005,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 600,
 					'tax'				=> 50,
@@ -105,6 +111,7 @@ class PrSeeder extends Seeder
 					'dept_id'			=> 1005,
 					'supplier_id'		=> Supplier::inRandomOrder()->first()->id,
 					'project_id'		=> Project::inRandomOrder()->first()->id,
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 600,
 					'tax'				=> 50,
@@ -115,7 +122,7 @@ class PrSeeder extends Seeder
 			];
 
 		Pr::insert($prs);
-		
+
 		//Pr::factory()->count(10)->create();
 
 	}

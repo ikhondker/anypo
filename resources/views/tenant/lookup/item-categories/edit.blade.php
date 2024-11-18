@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
-@section('title','Edit PR/PO Category')
+@section('title','Edit Item Category')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('categories.index') }}" class="text-muted">PR/PO Categories</a></li>
-	<li class="breadcrumb-item">{{ $category->name }}</li>
+	<li class="breadcrumb-item"><a href="{{ route('categories.index') }}" class="text-muted">Categories</a></li>
+	<li class="breadcrumb-item">{{ $itemCategory->name }}</li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
 
@@ -10,15 +10,15 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Edit PR/PO Category
+			Edit Item Category
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.category-actions categoryId="{{ $category->id }}"/>
+			<x-tenant.actions.lookup.item-category-actions itemCategoryId="{{ $itemCategory->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form action="{{ route('categories.update',$category->id) }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('categories.update',$itemCategory->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
 
@@ -28,15 +28,14 @@
 					<a href="{{ route('categories.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
 					<a href="{{ route('categories.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
-				<h5 class="card-title">Edit PR/PO Category</h5>
-				<h6 class="card-subtitle text-muted">Edit an PR/PO Category.</h6>
+				<h5 class="card-title">Edit Item Category</h5>
+				<h6 class="card-subtitle text-muted">Edit an Item Category.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						<x-tenant.edit.name :value="$category->name"/>
-
-							<x-tenant.edit.save/>
+						<x-tenant.edit.name :value="$itemCategory->name"/>
+						<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>

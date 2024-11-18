@@ -25,6 +25,7 @@ return new class extends Migration
 			$table->foreignId('dept_id')->constrained('depts');
 			$table->biginteger('unit_id')->nullable()->default(1001);				// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
+            $table->foreignId('category_id')->constrained('categories');
 			$table->biginteger('dept_budget_id')->nullable();	// Intentional kept null to allow user save draft PO before budget upload
 			//$table->foreignId('dept_budget_id')->constrained('dept_budgets')->nullable();
 			$table->foreignId('supplier_id')->constrained('suppliers');

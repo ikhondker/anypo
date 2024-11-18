@@ -25,14 +25,14 @@ php artisan make:model Dept --all
 php artisan make:model Designation --all
 php artisan make:model Group --all
 php artisan make:model Category --all
+php artisan make:model Tenant\Lookup\ItemCategory --all
 php artisan make:model Supplier --all  <<<<<<<<<<<<<<
 php artisan make:model Warehouse --all
 php artisan make:model BankAccount --all
 
-
 php artisan make:model Uom --all
 php artisan make:model Oem --all
-php artisan make:model OrgType --all	<< dont use
+xphp artisan make:model OrgType --all	<< dont use
 php artisan make:model Project --all
 php artisan make:model Budget --all
 

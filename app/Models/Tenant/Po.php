@@ -17,7 +17,8 @@ use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
-use App\Models\Tenant\Lookup\Currency;
+use App\Models\Tenant\Lookup\Category;
+//use App\Models\Tenant\Lookup\Currency;
 
 use App\Models\Tenant\Manage\Status;
 
@@ -353,6 +354,12 @@ class Po extends Model
 	}
 	public function project(){
 		return $this->belongsTo(Project::class,'project_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
+    public function category(){
+		return $this->belongsTo(Category::class,'category_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}

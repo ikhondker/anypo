@@ -16,47 +16,30 @@ class CategorySeeder extends Seeder
 	public function run(): void
 	{
 
-		//Schema::disableForeignKeyConstraints();
-		//Category::truncate();
-		// Schema::enableForeignKeyConstraints();
-
 		$categories = [
-			[
-				'id' 	=> 1001,
-				'name' 	=> 'Seeded Category',
-			],
-			[
-				'id' 	=> 1002,
-				'name' => 'Tax/VAT/GST',
-			],
-			[
-				'id' 	=> 1003,
-				'name' => 'Logistics',
-			],
-			[
-				'id' 	=> 1004,
-				'name' => 'Computers',
-			],
-			[
-				'id' 	=> 1005,
-				'name' => 'Office Expenses',
-			],
-			[
-				'id' 	=> 1006,
-				'name' => 'Cafeteria',
-			],
-			[
-				'id' 	=> 1007,
-				'name' => 'Vehicle',
-			],
-			[
-				'id' 	=> 1008,
-				'name' => 'Office Equipment',
-			],
-			// [
-			// 	'id' 	=> 1009,
-			// 	'name' => 'Petty Cash',
-			// ],
+			['name'	=> 'Miscellaneous', ],
+			['name'	=> 'Office Rent', ],
+			['name'	=> 'Electric Bill', ],
+			['name'	=> 'Water Bill', ],
+			['name'	=> 'Internet Bill', ],
+			['name'	=> 'Fuel-Diesel/Petrol/Octen/CNG/LPG etc.', ],
+			['name'	=> 'Telephone/Cell Phone Bill etc.', ],
+			['name'	=> 'Stationery', ],
+			['name'	=> 'Computer Accessories', ],
+			['name'	=> 'Others Accessories', ],
+			['name'	=> 'Professional fee-Tax/Audit & Company Affairs', ],
+			['name'	=> 'Government Fees etc.', ],
+			['name'	=> 'Membership Fee', ],
+			['name'	=> 'Advertisement/Business Promotion', ],
+			['name'	=> 'Repairing and Maintenance', ],
+			['name'	=> 'Renovation', ],
+			['name'	=> 'Refreshment/Entertainment', ],
+			['name'	=> 'Advance Salary/Loan', ],
+			['name'	=> 'Assets', ],
+			['name'	=> 'Office Furniture', ],
+			['name'	=> 'Electrical Goods etc.,', ],
+			['name'	=> 'Laptop/Note Book etc.', ],
+			['name'	=> 'Desktop/Monitor/Router etc.', ],
 		];
 		//
 		Category::insert($categories);

@@ -211,6 +211,7 @@ php artisan make:component Tenant\Actions\Workflow\HierarchyActions
 php artisan make:component Tenant\Actions\Lookup\SupplierActions
 php artisan make:component Tenant\Actions\Lookup\ItemActions
 php artisan make:component Tenant\Actions\Lookup\CategoryActions
+php artisan make:component Tenant\Actions\Lookup\ItemCategoryActions
 php artisan make:component Tenant\Actions\Lookup\UomActions
 php artisan make:component Tenant\Actions\Lookup\GroupActions
 php artisan make:component Tenant\Actions\Lookup\OemActions

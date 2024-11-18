@@ -1,47 +1,13 @@
-
-Category:
-
-Office Rent,
-Electric Bill(s),
-Water Bill(s),
-Internet Bill(s),
-Fuel-Diesel/Petrol/Octen/CNG/LPG etc.,
-Telephone/Cell Phone etc.,
-Stationery,
-Computer Accessories ,
-Others Accessories,
-Professional fee-Tax/Audit & Company Affairs,
-Government fee-RJSC/Trade License/"&"ERC etc.,
-Membership fee-Trade Organization ,
-Register/Revenue Stamp  ,
-Advertisement/Business Promotion ,
-Garage Rent,
-Corporate Tax/VAT ,
-Tax/VAT Deduction at Source-TDS/VDS,
-Repairing and Maintenance/Renovation ,
-Refreshment/Entertainment,
-Outsourcing Bill(s),
-Advance Salary/Loan,
-Stipend-(Education Support for Poor Student),
-Assets-Office Furniture/Electrical Goods etc.,
-Laptop/Note Book etc.,
-Desktop/Monitor/Router etc.,
-Others/Miscellaneous ,
-Special Bonus ,
-Petty Cash,
-Allowance"
-
-
 # 33. TODO
 -------------------------------------------------------------------------------------------------
 127. address/remove all TODO
 x118. disable prl/pol/invoice line edit by policy
 x117. reject/resubmit pr/po 	policy/header/lines/
+x127. pr edit need_by_date
 131. ListAllLines and CardTableRow with status-true/false
 130. $e->getMessage()
 129. DASC - decimal-rev attahment - sourcdepbudid-? close po/pr/invoice/pol/
 128. budget amount edit issue 4 decimal
-x127. pr edit need_by_date
 127. in Budget count_po is not updated
 127. auto close pol, invoice and PO **
 127. create-for-po if po_id is invalid and auto populate currency and supplier issue

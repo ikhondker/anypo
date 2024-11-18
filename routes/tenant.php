@@ -22,7 +22,6 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 |  7.
 */
 
-
 use App\Http\Controllers\Share\TemplateController;
 
 use App\Http\Controllers\Tenant\Test\TestController;
@@ -33,6 +32,7 @@ use App\Http\Controllers\Tenant\Admin\SetupController;
 use App\Http\Controllers\Tenant\Admin\UserController;
 
 use App\Http\Controllers\Tenant\Lookup\CategoryController;
+use App\Http\Controllers\Tenant\Lookup\ItemCategoryController;
 use App\Http\Controllers\Tenant\Lookup\CountryController;
 use App\Http\Controllers\Tenant\Lookup\CurrencyController;
 use App\Http\Controllers\Tenant\Lookup\DeptController;
@@ -601,6 +601,12 @@ Route::middleware([
 	Route::resource('categories', CategoryController::class);
 	Route::get('/category/export',[CategoryController::class, 'export'])->name('categories.export');
 	Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
+
+    /* ======================== ItemCategory ======================================== */
+	Route::resource('item-categories', ItemCategoryController::class);
+	Route::get('/item-category/export',[ItemCategoryController::class, 'export'])->name('item-categories.export');
+	Route::get('/item-categories/delete/{category}',[ItemCategoryController::class, 'destroy'])->name('item-categories.destroy');
+
 
 	/* ======================== Uom ======================================== */
 	Route::resource('uoms', UomController::class);

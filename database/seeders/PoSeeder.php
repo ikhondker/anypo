@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Lookup\Category;
 
 use Faker\Generator;
 use App\Models\User;
@@ -37,6 +38,7 @@ class PoSeeder extends Seeder
 					'dept_id'			=> 1001,
 					'supplier_id'		=> '1001',
 					'project_id'		=> '1001',
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 700,
 					'tax'				=> 50,
@@ -52,6 +54,7 @@ class PoSeeder extends Seeder
 					'dept_id'			=> 1001,
 					'supplier_id'		=> '1001',
 					'project_id'		=> '1001',
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 800,
 					'tax'				=> 50,
@@ -67,6 +70,7 @@ class PoSeeder extends Seeder
 					'dept_id'			=> 1001,
 					'supplier_id'		=> '1001',
 					'project_id'		=> '1001',
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 800,
 					'tax'				=> 50,
@@ -82,6 +86,7 @@ class PoSeeder extends Seeder
 					'dept_id'			=> 1005,
 					'supplier_id'		=> '1002',
 					'project_id'		=> '1002',
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 500,
 					'tax'				=> 50,
@@ -97,6 +102,7 @@ class PoSeeder extends Seeder
 					'dept_id'			=> 1005,
 					'supplier_id'		=> '1002',
 					'project_id'		=> '1002',
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 600,
 					'tax'				=> 50,
@@ -112,6 +118,7 @@ class PoSeeder extends Seeder
 					'dept_id'			=> 1005,
 					'supplier_id'		=> '1002',
 					'project_id'		=> '1002',
+                    'category_id'		=> Category::inRandomOrder()->first()->id,
 					'notes'				=> $faker->paragraph,
 					'sub_total'			=> 600,
 					'tax'				=> 50,
