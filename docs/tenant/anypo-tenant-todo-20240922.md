@@ -1,3 +1,37 @@
+
+Category:
+
+Office Rent,
+Electric Bill(s),
+Water Bill(s),
+Internet Bill(s),
+Fuel-Diesel/Petrol/Octen/CNG/LPG etc.,
+Telephone/Cell Phone etc.,
+Stationery,
+Computer Accessories ,
+Others Accessories,
+Professional fee-Tax/Audit & Company Affairs,
+Government fee-RJSC/Trade License/"&"ERC etc.,
+Membership fee-Trade Organization ,
+Register/Revenue Stamp  ,
+Advertisement/Business Promotion ,
+Garage Rent,
+Corporate Tax/VAT ,
+Tax/VAT Deduction at Source-TDS/VDS,
+Repairing and Maintenance/Renovation ,
+Refreshment/Entertainment,
+Outsourcing Bill(s),
+Advance Salary/Loan,
+Stipend-(Education Support for Poor Student),
+Assets-Office Furniture/Electrical Goods etc.,
+Laptop/Note Book etc.,
+Desktop/Monitor/Router etc.,
+Others/Miscellaneous ,
+Special Bonus ,
+Petty Cash,
+Allowance"
+
+
 # 33. TODO
 -------------------------------------------------------------------------------------------------
 127. address/remove all TODO
