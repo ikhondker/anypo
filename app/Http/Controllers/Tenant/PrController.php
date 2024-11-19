@@ -76,6 +76,7 @@ use App\Notifications\Tenant\PrActions;
 use App\Http\Controllers\Tenant\DeptBudgetControllers;
 # 12. Seeded
 use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Str;
 use Carbon\Carbon;
@@ -627,6 +628,7 @@ class PrController extends Controller
 
 		$pr->need_by_date		= $sourcePr->need_by_date;
 		$pr->project_id			= $sourcePr->project_id;
+        $pr->category_id	    = $sourcePr->category_id;
 		$pr->supplier_id		= $sourcePr->supplier_id;
 		$pr->notes				= $sourcePr->notes;
 		$pr->currency			= $sourcePr->currency;
@@ -682,6 +684,7 @@ class PrController extends Controller
 		$po->dept_id		= $pr->dept_id;
 		$po->unit_id		= $pr->unit_id;
 		$po->project_id		= $pr->project_id;
+        $po->category_id	= $pr->category_id;
 		//dept_budget_id
 		$po->supplier_id	= $pr->supplier_id;
 		$po->notes			= $pr->notes;
@@ -699,18 +702,7 @@ class PrController extends Controller
 		$po_id				= $po->id;
 
 		// copy prls into pols
-		$sql= "
-		INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id,
-			qty, price, sub_total, tax, gst, amount, notes,
-			requestor_id, dept_id, unit_id,project_id,prl_id, closure_status )
-		SELECT ".$po_id.",prl.line_num, prl.item_description, prl.item_id, prl.uom_id,
-			prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
-			pr.requestor_id, pr.dept_id, pr.unit_id,pr.project_id,prl.id,'".ClosureStatusEnum::OPEN->value."'
-		FROM prls prl,prs pr
-		WHERE pr.id=prl.pr_id
-		AND pr_id= ".$pr->id.
-		" ;";
-		DB::INSERT($sql);
+		$result = Pr::insertPrlsIntoPols($pr->id, $po_id);
 
 		// update and close source PR
 		$pr->po_id		= $po_id;
@@ -832,4 +824,80 @@ class PrController extends Controller
 
 		return view('tenant.prs.extra', compact('pr'));
 	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function addToPo(Pr $pr)
+	{
+		$this->authorize('addToPo', $pr);
+		return view('tenant.prs.add-to-po', compact('pr'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function addPrLineToPo(Request $request, Pr $pr)
+	{
+		$this->authorize('addToPo', $pr);
+
+		Log::debug('tenant.pr.addPrLineToPo updating pr_id = ' . $pr->id);
+
+		// check if PR is approved
+		if ($pr->auth_status <> AuthStatusEnum::APPROVED->value) {
+			return back()->withErrors('YOu can only add to PO a approved Requisition.');
+		}
+		// if PR is open
+		if ($pr->status <> ClosureStatusEnum::OPEN->value) {
+			return back()->withErrors('You can only add an Open Requisition with PO.');
+		}
+
+		// if PO exists
+        $po_id= $request->input('po_id');
+        Log::debug('tenant.pr.addPrLineToPo entered po_id = '.$po_id);
+		try {
+			$po = Po::where('id', $request->input('po_id'))->firstOrFail();
+		} catch (ModelNotFoundException $exception) {
+		   return back()->withErrors('Invalid PO Number!');
+		}
+
+		// if PO is draft or rejected
+		if (($po->auth_status <> AuthStatusEnum::DRAFT->value ) && ($po->auth_status <> AuthStatusEnum::REJECTED->value )) {
+			return back()->withErrors('You can only add a Requisition with DRAFT Purchase Order!');
+
+		}
+
+		// check if PR supplier is same don't need to check
+
+		// check if currency is same
+		if ($pr->currency <> $po->currency ) {
+			return back()->withErrors('Requisition Currency and Purchase Order Currency should be same!.');
+		}
+
+		$result = Pr::insertPrlsIntoPols($pr->id, $po->id);
+
+		// update and close source PR
+		$pr->po_id		= $po->id;
+		$pr->status		= ClosureStatusEnum::CLOSED->value;
+		$pr->save();
+
+		Log::debug('tenant.pr.addPrLineToPo PR marked as closed pr_id = '.$pr->id);
+		Log::debug('tenant.pr.addPrLineToPo Requisition Added to po_id = '.$po->id);
+
+		EventLog::event('po', $po->id, 'add','id',$pr->id);	// Write to Log
+
+		// now update PO values
+		$result = Po::syncPoValues($po->id);
+		Log::debug('tenant.PoController.addPrLineToPo Return value of Po->syncPoValues = ' . $result);
+		if ($result == '') {
+			Log::debug('tenant.PoController.addPrLineToPo syncPoValues completed.');
+		} else {
+			$customError = CustomError::where('code', $result)->first();
+			Log::error(tenant('id'). 'tenant.PoController.addPrLineToPo syncPoValues po_id = '.$po->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
+		}
+
+		return redirect()->route('pos.show', $po->id)->with('success', 'Purchase Requisition added to PO# '.$po->id.' successfully.');
+	}
+
+
 }

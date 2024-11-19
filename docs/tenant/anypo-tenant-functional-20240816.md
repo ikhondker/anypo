@@ -42,11 +42,14 @@ StorePrlRequest.php & UpdatePrlRequest.php
 
 
 
-# close po/invocie
+# Close pr/po/invoice
+----------------------------
 - can not be scheduled as manual open will be closed by scheduled
-- event based jobs
-- grs - po close
-- payment - invoice close
+- event based jobs => ReceiptController -> save/cancel => Dispatch -> ClosePo.php
+- grs =>  po close
+- payment => invoice close
+- pr 	=> PrController.convertPo	close 
+		=> PrController.cancel Open
 
 
 # dbu

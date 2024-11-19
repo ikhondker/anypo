@@ -78,6 +78,7 @@
 								<span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span>
 							</td>
 						</tr>
+                        <x-tenant.show.my-text		value="{{ $pr->category->name }}" label="Category"/>
 						<x-tenant.show.my-text		value="{{ $pr->requestor->name }}" label="Requestor"/>
 						<x-tenant.show.my-date-time	value="{{ $pr->auth_date }}" label="Auth Date"/>
 						<x-tenant.show.my-date		value="{{ $pr->need_by_date }}" label="Need by Date"/>

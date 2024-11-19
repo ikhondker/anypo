@@ -114,14 +114,6 @@
 					buttonsStyling: false
 				}).then(function(result) {
 					if (result.value) {
-					// Swal.fire({
-					// 	icon: 'success',
-					// 	title: 'Deleted!',
-					// 	text: '',
-					// 	customClass: {
-					// 	confirmButton: 'btn btn-success'
-					// 	}
-					// });
 					setTimeout(function() {
 						$myForm[0].submit()
 					}, 2000); 		// submit the DOM form
@@ -129,7 +121,6 @@
 				});
 				});
 			});
-
 	</script>
 
 @endsection

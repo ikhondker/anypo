@@ -162,7 +162,73 @@ class Pr extends Model
 		return '';
 	}
 
+	// insert prls into pols user in convertToPo and addToPO
+	// TODO need to update line_num
+	public static function insertPrlsIntoPols($prId, $poId)
+	{
 
+        Log::debug('tenant.pr.insertPrlsIntoPols FROM pr_id = ' . $prId);
+        Log::debug('tenant.pr.insertPrlsIntoPols TO   po_id = ' . $poId);
+
+		// get last line num from POL
+		$last_pol_line_num = Pol::where('po_id', $poId )->max('line_num');
+		Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  = '.$last_pol_line_num);
+		if (empty($last_pol_line_num)){
+			$last_pol_line_num = 0;
+		}
+
+        $prls	= Prl::where('pr_id', $prId)->get();
+		foreach ($prls as $prl) {
+			// create invoice lines with line number
+			$pol			= new Pol();
+
+			$pol->po_id 		= $poId;
+			$pol->line_num 		=  $last_pol_line_num + 1 ;
+
+            Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->id = '.$prl->id);
+            Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->item_description = '.$prl->item_description);
+
+
+			$pol->item_description = $prl->item_description;
+			$pol->item_id 		= $prl->item_id;
+			$pol->uom_id 		= $prl->uom_id;
+			$pol->qty 			= $prl->qty;
+			$pol->price 		= $prl->price;
+			$pol->sub_total		= $prl->sub_total;
+			$pol->tax			= $prl->tax;
+			$pol->gst			= $prl->gst;
+			$pol->amount		= $prl->amount;
+			$pol->notes			= $prl->notes;
+			$pol->requestor_id	= $prl->requestor_id;
+			$pol->dept_id 		= $prl->dept_id;
+			$pol->unit_id		= $prl->unit_id;
+			$pol->project_id 	= $prl->project_id;
+			$pol->prl_id		= $prl->id ;
+			$pol->closure_status=ClosureStatusEnum::OPEN->value;
+			$pol->save();
+
+			// increment counter
+			$last_pol_line_num =  $last_pol_line_num + 1 ;
+		}
+
+
+
+		// insert prls into pols
+		$sql= "
+		INSERT INTO pols( po_id, line_num, item_description, item_id, uom_id,
+			qty, price, sub_total, tax, gst, amount, notes,
+			requestor_id, dept_id, unit_id, project_id, prl_id, closure_status )
+		SELECT ".$poId.",prl.line_num, prl.item_description, prl.item_id, prl.uom_id,
+			prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount, prl.notes,
+			pr.requestor_id, pr.dept_id, pr.unit_id,pr.project_id,prl.id,'".ClosureStatusEnum::OPEN->value."'
+		FROM prls prl,prs pr
+		WHERE pr.id=prl.pr_id
+		AND pr_id= ".$prId.
+		" ;";
+		// DB::INSERT($sql);
+
+
+	}
 	/* ----------------- Scopes ------------------------- */
 
 	//$this->count_total		= Pr::count();
@@ -374,7 +440,7 @@ class Pr extends Model
 		]);
 	}
 
-    public function category(){
+	public function category(){
 		return $this->belongsTo(Category::class,'category_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);

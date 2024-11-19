@@ -79,19 +79,40 @@ class TestController extends Controller
 		//https://stackoverflow.com/questions/41758870/how-to-convert-result-table-to-json-array-in-mysql
 
 
+
+
+        $prId = '1002';
+        //$prls	= Prl::all()->where('pr_id', $prId);
+        $prls	= Prl::where('pr_id', $prId)->get();
+		foreach ($prls as $prl) {
+            Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->id = '.$prl->id);
+            Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->item_description = '.$prl->item_description);
+        }
+
+        exit;
+
+        $poId = '1033302';
+        Log::debug('tenant.test.run max prl poId  = '.$poId);
+        // get last line num from POL
+        $last_pol_line_num = Pol::where('po_id', $poId )->max('line_num');
+        Log::debug('tenant.test.run max prl line_num  = '.$last_pol_line_num);
+        if (empty($last_pol_line_num)){
+            Log::debug('tenant.test.run max YES Empty');
+        }
+
+        exit;
+
+
+
 		$invoiceId='1002';
 
 		$data = Invoice::select('id','currency','amount','invoice_date','summary','supplier_id','po_id')->where('id', $invoiceId)->first();
 		Log::debug('Value of data=' . $data);
 
-
 		$sql = "SELECT id,currency,amount FROM invoices WHERE id = '1002'";
 		Log::debug('Value of sql=' . $sql);
 		$result = DB::selectOne($sql);
 		Log::debug('Value of result id =' .  $result->id);
-
-
-
 
 
 		$sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";

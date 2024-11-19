@@ -4,6 +4,9 @@
 bug report in both landlaord and tenant
 111. review TODO and P2
 66. search IQBAL, 01911 @example.com, demo, //console.log
+'email'				=> 'info@anypo.net',
+'cell'				=> '+0012262804920',
+website'			=> 'https://www.anypo.net',
 126. find and replace 01911310509 +0012262804920 you@company.com email@example.com
 find and replace <table id="datatables-orders" class="table w-100">
 

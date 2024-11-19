@@ -12,12 +12,15 @@ https://stackoverflow.com/questions/12683907/set-the-width-of-select2-input-thro
 
 sweetlater2 post confirmation
 -----------------------------
-where?
-dont put inside any DIV. Only TD
+where? sweet-alert2.txt 
+D:\laravel\anypo\resources\views\landlord\admin\invoices\generate.blade.php
+D:\laravel\anypo\resources\views\tenant\invoices\invoices\add-to-po.blade.php
+
+don't put inside any DIV. Only TD
 <td>
 <select class="form-control select2" data-toggle="select2" name="supplier_id" required>
 </td>
-2. conformatisonis on scss comiler
+2. confirmationis on scss compile
 
 
 

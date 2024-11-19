@@ -10,6 +10,11 @@
 		<a class="dropdown-item" href="{{ route('prs.history', $pr->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('reports.pr', $pr->id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Requisition</a>
 
+    	@can('addToPo', $pr)
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{{ route('prs.add-to-po', $pr->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Add To PO</a>
+		@endcan
+
 		@can('update', $pr)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('prs.edit', $pr->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Requisition</a>

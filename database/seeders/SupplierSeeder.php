@@ -20,7 +20,7 @@ class SupplierSeeder extends Seeder
 		$seededSupplier = [
 		 	[
 				'id' 				=> 1001,
-				'name'				=> 'Seeded Supplier',
+				'name'				=> 'Any Supplier (Seeded)',
 				'contact_person'	=> 'Support Engineer',
 				'address1'			=> '3939 Lawrence Ave, E#108,',
 				'address2'			=> '',
@@ -32,10 +32,10 @@ class SupplierSeeder extends Seeder
 				'cell'				=> '+0012262804920',
 				'website'			=> 'https://www.anypo.net',
 
-				
+
 			],
 		];
-		
+
 		Supplier::insert($seededSupplier);
 
 		// MUST comment this in production

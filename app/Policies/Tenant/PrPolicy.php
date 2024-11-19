@@ -15,13 +15,13 @@ class PrPolicy
 	/**
 	 * Perform pre-authorization checks.
 	*/
-	public function before(User $user, string $ability): bool|null
-	{
-		if ($user->isSystem()) {
-			return true;
-		}
-		return null;
-	}
+	// public function before(User $user, string $ability): bool|null
+	// {
+	// 	if ($user->isSystem()) {
+	// 		return true;
+	// 	}
+	// 	return null;
+	// }
 
 
 	/**
@@ -146,6 +146,16 @@ class PrPolicy
 	public function convert(User $user, Pr $pr): bool
 	{
 		return ( $user->isBuyer() || $user->isSupport()) ;
+	}
+
+    /**
+	 * Determine whether the user can create models.
+	 */
+	public function addToPo(User $user, Pr $pr): bool
+	{
+
+		// allow only approved open PO to close
+		return ($user->isBuyer() || $user->isSupport()) && ($pr->auth_status == AuthStatusEnum::APPROVED->value) && ($pr->status == ClosureStatusEnum::OPEN->value) ;
 	}
 
 

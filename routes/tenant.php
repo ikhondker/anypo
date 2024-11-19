@@ -265,7 +265,7 @@ Route::middleware([
 		Route::get('/prs/attachments/{pr}',[PrController::class,'attachments'])->name('prs.attachments');
 		Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
 		Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
-		Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
+        Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
 		Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
 		Route::get('/prs/cancel/{pr}',[PrController::class,'cancel'])->name('prs.cancel');
 		Route::get('/prs/history/{pr}',[PrController::class,'history'])->name('prs.history');
@@ -514,6 +514,10 @@ Route::middleware([
 	])->group(function () {
 
 
+        /* ======================== Pr ======================================== */
+		Route::get('/prs/add-to-po/{pr}',[PrController::class,'addToPo'])->name('prs.add-to-po');
+        Route::post('/prs/add-lines-to-po/{pr}', [PrController::class, 'addPrLineToPo'])->name('prs.add-lines-to-po');
+
 		/* ======================== Supplier ======================================== */
 		Route::get('/suppliers/delete/{supplier}',[SupplierController::class,'destroy'])->name('suppliers.destroy');
 
@@ -606,7 +610,6 @@ Route::middleware([
 	Route::resource('item-categories', ItemCategoryController::class);
 	Route::get('/item-category/export',[ItemCategoryController::class, 'export'])->name('item-categories.export');
 	Route::get('/item-categories/delete/{category}',[ItemCategoryController::class, 'destroy'])->name('item-categories.destroy');
-
 
 	/* ======================== Uom ======================================== */
 	Route::resource('uoms', UomController::class);

@@ -221,8 +221,6 @@ class PoController extends Controller
 			Log::error(tenant('id'). 'tenant.po.store syncPoValues po_id = '.$po->id. ' ERROR_CODE = '.$customError->code.' Error Message = '.$customError->message);
 		}
 
-
-
 		if($request->has('add_row')) {
 			//Checkbox checked
 			return redirect()->route('pols.add-line', $pol->po_id)->with('success', 'Line added to PO #'. $pol->po_id.' successfully.');

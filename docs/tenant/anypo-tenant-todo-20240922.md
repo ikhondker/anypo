@@ -1,6 +1,8 @@
 # 33. TODO
 -------------------------------------------------------------------------------------------------
 127. address/remove all TODO
+128. pr po cated in pr po crea/edit page
+127. add approve PR to draft PO
 x118. disable prl/pol/invoice line edit by policy
 x117. reject/resubmit pr/po 	policy/header/lines/
 x127. pr edit need_by_date

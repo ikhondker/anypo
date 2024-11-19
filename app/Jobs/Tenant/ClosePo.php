@@ -44,7 +44,7 @@ class ClosePo implements ShouldQueue
 	public function handle(): void
 	{
 
-		Log::debug('Jobs.Tenant.ClosePo check po close  receipt_id = ' . $this->receipt_id);
+		Log::debug('Jobs.Tenant.ClosePo check po close receipt_id = ' . $this->receipt_id);
 		$receipt	= Receipt::with('pol')->where('id', $this->receipt_id)->firstOrFail();
 
 		Log::debug('Jobs.Tenant.ClosePo receipt->status = ' . $receipt->status);
