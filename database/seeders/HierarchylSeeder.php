@@ -23,7 +23,6 @@ class HierarchylSeeder extends Seeder
 		Hierarchyl::truncate();
 		//Schema::enableForeignKeyConstraints();
 
-
 		$hierarchyls = [
 				[
 					'hid'			=> 1001,

@@ -9,7 +9,7 @@ use App\Models\Tenant\Lookup\ItemCategory;
 
 class ItemCategoryActions extends Component
 {
-    public $itemCategory;
+	public $itemCategory;
 
 	/**
 	 * Create a new component instance.

@@ -73,10 +73,10 @@ php artisan tenants:seed --class=ItemSeeder --tenants=demo1
 php artisan tenants:seed --class=BudgetSeeder --tenants=demo1
 php artisan tenants:seed --class=DeptBudgetSeeder --tenants=demo1 !! revision issue
 
-php artisan tenants:seed --class=PrSeeder --tenants=demo1
+php artisan tenants:seed --class=PrSeeder --tenants=6499d3bd-ca62-4a32-a1a0-3d92d14f6cb0
 php artisan tenants:seed --class=PrlSeeder --tenants=demo1
 
-php artisan tenants:seed --class=PoSeeder --tenants=demo1
+php artisan tenants:seed --class=PoSeeder --tenants=6499d3bd-ca62-4a32-a1a0-3d92d14f6cb0
 php artisan tenants:seed --class=PolSeeder --tenants=demo1
 
 php artisan tenants:seed --class=ReceiptSeeder --tenants=demo1

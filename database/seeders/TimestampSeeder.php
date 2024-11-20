@@ -18,6 +18,7 @@ use App\Models\Tenant\Manage\UomClass;
 
 use App\Models\Tenant\Lookup\BankAccount;
 use App\Models\Tenant\Lookup\Category;
+use App\Models\Tenant\Lookup\ItemCategory;
 use App\Models\Tenant\Lookup\Country;
 use App\Models\Tenant\Lookup\Currency;
 use App\Models\Tenant\Lookup\Dept;
@@ -36,9 +37,17 @@ use App\Models\Tenant\Workflow\Hierarchy;
 use App\Models\Tenant\Workflow\Hierarchyl;
 //use App\Models\Tenant\Manage\Menu;
 
+
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Report;
+
+// TODO Remove
+use App\Models\Tenant\Pr;
+use App\Models\Tenant\Prl;
+use App\Models\Tenant\Po;
+use App\Models\Tenant\Pol;
+
 
 class TimestampSeeder extends Seeder
 {
@@ -63,6 +72,7 @@ class TimestampSeeder extends Seeder
 		//Template::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
 		Group::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
 		Category::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+		ItemCategory::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
 		Country::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
 		Currency::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
 		Hierarchy::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
@@ -83,5 +93,12 @@ class TimestampSeeder extends Seeder
 		Budget::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
 		DeptBudget::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
 		Report::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+
+		// TODO Remove Finally
+		Pr::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+		Prl::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+		Po::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+		Pol::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+
 	}
 }

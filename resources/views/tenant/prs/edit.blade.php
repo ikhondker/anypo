@@ -142,6 +142,20 @@
 
 							<table class="table table-sm my-2">
 								<tbody>
+									<tr>
+										<th>Category :</th>
+										<td>
+											<select class="form-control select2" data-toggle="select2" name="category_id" id="category_id">
+												@foreach ($categories as $category)
+													<option {{ $category->id == old('category_id',$po->category_id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }} </option>
+												@endforeach
+											</select>
+											@error('category_id')
+												<div class="small text-danger">{{ $message }}</div>
+											@enderror
+										</td>
+									</tr>
+
 									<tr width="20%">
 										<th>Need By Date :</th>
 										<td>

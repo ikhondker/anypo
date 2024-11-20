@@ -13,10 +13,10 @@
 	<table class="table table-striped table-sm">
 		<thead>
 			<tr>
-					<th class="text-center" style="width:1%">#</th>
-				<th class="" style="width:3%">Item</th>
-				<th class="" style="width:23%">Description</th>
-				<th class="" style="width:7%">UOM</th>
+				<th class="text-center" style="width:1%">#</th>
+				<th style="width:3%">Item</th>
+				<th style="width:23%">Description</th>
+				<th style="width:7%">UOM</th>
 				<th class="text-end" style="width:5%">Qty</th>
 				<th class="text-end" style="width:9%">Price</th>
 				<th class="text-end" style="width:8%">Subtotal</th>
@@ -41,13 +41,13 @@
 						<a href="{{ route('prls.add-line', $pr->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
 					@endcan
 				</td>
-				<td class="" colspan="2" scope="col">&nbsp;</td>
+				<td colspan="2" scope="col">&nbsp;</td>
 				<td class="text-end" scope="col"><strong>TOTAL ({{ $pr->currency }}) :</strong></td>
 				<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->sub_total"/></strong></td>
 				<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->tax"/></strong></td>
 				<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$pr->gst"/></strong></td>
 				<td class="text-end" scope="col"><span class="badge badge-subtle-primary">{{ $pr->currency }}</span> <strong><x-tenant.list.my-number :value="$pr->amount"/></strong></td>
-				<td class="" scope="col">&nbsp</td>
+				<td scope="col">&nbsp</td>
 			</tr>
 			<!-- End Table footer i.e. Totals -->
 

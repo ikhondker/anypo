@@ -17,7 +17,7 @@ class Category extends Model
 	use AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'tax_pc', 'gst_pc', 'group_id', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
+		'name', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
 	];
 
 
@@ -32,8 +32,8 @@ class Category extends Model
 
 
 	/* ----------------- Functions ---------------------- */
-	
-	
+
+
 	/* ----------------- HasMany ------------------------ */
 	public function item(): HasMany
 	{

@@ -32,7 +32,7 @@
 					<x-tenant.show.my-text		value="{{ $item->name }}"/>
 					<x-tenant.show.my-text		value="{{ $item->code }}" label="Code"/>
 					<x-tenant.show.my-text		value="{{ $item->glType->name }}" label="Gl Type"/>
-					<x-tenant.show.my-text		value="{{ $item->category->name }}" label="Category"/>
+					<x-tenant.show.my-text		value="{{ $item->item_category->name }}" label="Category"/>
 					<x-tenant.show.my-text		value="{{ $item->oem->name }}" label="OEM"/>
 					<x-tenant.show.my-text		value="{{ $item->uom_class->name }}" label="UoM Class"/>
 					<x-tenant.show.my-text		value="{{ $item->uom->name }}" label="UoM"/>

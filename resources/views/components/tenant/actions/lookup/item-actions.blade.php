@@ -3,10 +3,10 @@
 		<i class="align-middle text-info mt-n1" data-lucide="settings"></i> Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-		
+
 
 		@if (Route::current()->getName() == 'items.edit')
-		<a class="dropdown-item" href="{{ route('items.show', $item->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Item</a>
+			<a class="dropdown-item" href="{{ route('items.show', $item->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Item</a>
 		@endif
 		@if (Route::current()->getName() == 'items.show')
 			@can('update', $item)

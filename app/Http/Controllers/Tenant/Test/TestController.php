@@ -81,26 +81,26 @@ class TestController extends Controller
 
 
 
-        $prId = '1002';
-        //$prls	= Prl::all()->where('pr_id', $prId);
-        $prls	= Prl::where('pr_id', $prId)->get();
+		$prId = '1002';
+		//$prls	= Prl::all()->where('pr_id', $prId);
+		$prls	= Prl::where('pr_id', $prId)->get();
 		foreach ($prls as $prl) {
-            Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->id = '.$prl->id);
-            Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->item_description = '.$prl->item_description);
-        }
+			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->id = '.$prl->id);
+			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->item_description = '.$prl->item_description);
+		}
 
-        exit;
+		exit;
 
-        $poId = '1033302';
-        Log::debug('tenant.test.run max prl poId  = '.$poId);
-        // get last line num from POL
-        $last_pol_line_num = Pol::where('po_id', $poId )->max('line_num');
-        Log::debug('tenant.test.run max prl line_num  = '.$last_pol_line_num);
-        if (empty($last_pol_line_num)){
-            Log::debug('tenant.test.run max YES Empty');
-        }
+		$poId = '1033302';
+		Log::debug('tenant.test.run max prl poId  = '.$poId);
+		// get last line num from POL
+		$last_pol_line_num = Pol::where('po_id', $poId )->max('line_num');
+		Log::debug('tenant.test.run max prl line_num  = '.$last_pol_line_num);
+		if (empty($last_pol_line_num)){
+			Log::debug('tenant.test.run max YES Empty');
+		}
 
-        exit;
+		exit;
 
 
 

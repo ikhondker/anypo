@@ -71,8 +71,8 @@ class RecordDeptBudgetUsage implements ShouldQueue
 
 		switch ($this->entity) {
 			case EntityEnum::PR->value:
-				$pr 			= Pr::where('id', $this->article_id)->firstOrFail();
-				$dbu->user_id	= $pr->created_by;
+				$pr 					= Pr::where('id', $this->article_id)->firstOrFail();
+				$dbu->user_id			= $pr->created_by;
 				//Log::debug("dept_budget_id=". $pr->dept_budget_id);
 				$dept_budget 			= DeptBudget::primary()->where('id', $pr->dept_budget_id)->firstOrFail();
 				$dbu->dept_budget_id	= $pr->dept_budget_id;
@@ -113,6 +113,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				$dbu->project_id		= $po->project_id;
 				$dbu->supplier_id		= $po->supplier_id;
 
+
 				switch ($this->event) {
 					case EventEnum::BOOK->value:
 						$dbu->amount_po_booked	= $this->fc_amount;
@@ -145,6 +146,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				$dbu->project_id		= $receipt->pol->po->project_id;
 				$dbu->supplier_id		= $receipt->pol->po->supplier_id;
 
+
 				switch ($this->event) {
 					case EventEnum::CREATE->value:
 						$dbu->amount_grs	= $this->fc_amount;
@@ -167,6 +169,8 @@ class RecordDeptBudgetUsage implements ShouldQueue
 					$dbu->dept_id			= $invoice->po->dept_id;
 					$dbu->project_id		= $invoice->po->project_id;
 					$dbu->supplier_id		= $invoice->po->supplier_id;
+
+
 					//Log::debug('I AM HERE 3b');
 					switch ($this->event) {
 						case EventEnum::POST->value:
@@ -193,6 +197,7 @@ class RecordDeptBudgetUsage implements ShouldQueue
 						$dbu->project_id		= $payment->invoice->po->project_id;
 						$dbu->supplier_id		= $payment->invoice->po->supplier_id;
 
+
 						switch ($this->event) {
 							case EventEnum::CREATE->value:
 								$dbu->amount_payment	= $this->fc_amount;
@@ -208,7 +213,14 @@ class RecordDeptBudgetUsage implements ShouldQueue
 			default:
 				Log::error("job.Tenant.RecordDeptBudgetUsage Other Entity!");
 		}
+
+
 		Log::debug("job.Tenant.RecordDeptBudgetUsage Complete.");
+		$dbu->created_by		= $dbu->user_id;
+		$dbu->updated_by		= $dbu->user_id;
+		$dbu->created_at		= now();
+		$dbu->updated_at		= now();
+
 		$dbu->save();
 	}
 }

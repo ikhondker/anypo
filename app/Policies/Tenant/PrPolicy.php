@@ -125,6 +125,14 @@ class PrPolicy
 	}
 
 	/**
+	 * Determine whether the user can delete the model.
+	 */
+	public function cancel(User $user, Pr $pr): bool
+	{
+		return ( $user->isAdmin() || $user->isSupport() ) && ($pr->auth_status == AuthStatusEnum::APPROVED->value) ;
+	}
+
+	/**
 	 * Determine whether the user can restore the model.
 	 */
 	public function restore(User $user, Pr $pr): bool
@@ -145,19 +153,17 @@ class PrPolicy
 	 */
 	public function convert(User $user, Pr $pr): bool
 	{
-		return ( $user->isBuyer() || $user->isSupport()) ;
+		return ( $user->isBuyer() || $user->isSupport()) && ($pr->auth_status == AuthStatusEnum::APPROVED->value);
 	}
 
-    /**
+	/**
 	 * Determine whether the user can create models.
 	 */
 	public function addToPo(User $user, Pr $pr): bool
 	{
-
 		// allow only approved open PO to close
 		return ($user->isBuyer() || $user->isSupport()) && ($pr->auth_status == AuthStatusEnum::APPROVED->value) && ($pr->status == ClosureStatusEnum::OPEN->value) ;
 	}
-
 
 	/**
 	 * Determine whether the user can create models.
@@ -169,19 +175,11 @@ class PrPolicy
 	}
 
 	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function cancel(User $user, Pr $pr): bool
-	{
-		return ( $user->isAdmin() || $user->isSupport() ) && ($pr->auth_status == AuthStatusEnum::APPROVED->value) ;
-	}
-
-	/**
 	 * Determine whether the user can recalculate models.
 	 */
-	public function recalculate(User $user): bool
+	public function recalculate(User $user, Pr $pr): bool
 	{
-		return $user->isSupport();
+		return ($user->isSupport()  && ($pr->auth_status <> AuthStatusEnum::APPROVED->value) ) ;
 	}
 
 	public function export(User $user): bool

@@ -52,21 +52,17 @@
 							</td>
 						</tr>
 
-
-
 						<x-tenant.edit.name :value="$item->name"/>
 						<tr>
 							<th>Item Category</th>
 							<td>
-								<select class="form-control" name="category_id">
-									@foreach ($categories as $category)
-										<option {{ $category->id == old('pm_id',$item->category_id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }} </option>
+								<select class="form-control" name="item_category_id">
+									@foreach ($itemCategories as $itemCategory)
+										<option {{ $itemCategory->id == old('item_category_id',$item->item_category_id) ? 'selected' : '' }} value="{{ $itemCategory->id }}">{{ $itemCategory->name }} </option>
 									@endforeach
 								</select>
 							</td>
 						</tr>
-
-
 						<x-tenant.edit.price :value="$item->price"/>
 						<tr>
 							<th>UoM Class <x-tenant.info info="Note: You wont be able to change the UoM Class."/></th>

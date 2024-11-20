@@ -123,6 +123,8 @@ class PrSeeder extends Seeder
 
 		Pr::insert($prs);
 
+
+
 		//Pr::factory()->count(10)->create();
 
 	}

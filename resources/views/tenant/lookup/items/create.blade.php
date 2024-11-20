@@ -54,13 +54,13 @@
 						<tr>
 							<th>Category</th>
 							<td>
-								<select class="form-control" name="category_id" required>
+								<select class="form-control" name="item_category_id" required>
 									<option value=""><< Category >> </option>
-									@foreach ($categories as $category)
-										<option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : '' }} >{{ $category->name }} </option>
+									@foreach ($itemCategories as $itemCategory)
+										<option value="{{ $itemCategory->id }}" {{ $itemCategory->id == old('item_category_id') ? 'selected' : '' }} >{{ $itemCategory->name }} </option>
 									@endforeach
 								</select>
-								@error('category_id')
+								@error('item_category_id')
 									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>

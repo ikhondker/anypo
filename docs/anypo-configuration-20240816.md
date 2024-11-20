@@ -87,6 +87,14 @@ default_socket_timeout = 360
 php artisan queue:listen --timeout=1200
 ~~~
 
+
+# 9. Pre Deployment Steps
+====================================================================
+1. clean TimestampSeeder
+2. clean TenantSeeder // disable auto Setup freeze
+3. logo in landlord reports
+
+
 # 9. Post Deployment Steps
 ====================================================================
 1. set bo.SUPPORT_MGR_ID

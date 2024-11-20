@@ -131,7 +131,7 @@ class ItemCategoryController extends Controller
 		return redirect()->route('item-categories.index')->with('success', 'ItemCategory status Updated successfully');
 	}
 
-    public function export()
+	public function export()
 	{
 		$this->authorize('export', ItemCategory::class);
 

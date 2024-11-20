@@ -49,6 +49,7 @@ use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
+use App\Models\Tenant\Lookup\Category;
 
 use App\Models\Tenant\Workflow\Wfl;
 # 2. Enums
@@ -141,8 +142,9 @@ class PoController extends Controller
 		$suppliers 	= Supplier::primary()->get();
 		$projects 	= Project::primary()->get();
 		$uoms 		= Uom::primary()->get();
+		$categories	= Category::primary()->get();
 
-		return view('tenant.pos.create', compact('suppliers', 'depts', 'items','uoms', 'projects'));
+		return view('tenant.pos.create', compact('suppliers', 'depts', 'items','uoms', 'projects','categories'));
 	}
 
 	/**
@@ -274,10 +276,11 @@ class PoController extends Controller
 		$suppliers = Supplier::primary()->get();
 		$projects = Project::primary()->get();
 		$users = User::tenant()->get();
+		$categories	= Category::primary()->get();
 
 		$pols = Pol::with('item')->with('uom')->where('po_id', $po->id)->get()->all();
 
-		return view('tenant.pos.edit', compact('po','pols', 'suppliers', 'depts', 'projects', 'users'));
+		return view('tenant.pos.edit', compact('po','pols', 'suppliers', 'depts', 'projects', 'users','categories'));
 	}
 
 	/**

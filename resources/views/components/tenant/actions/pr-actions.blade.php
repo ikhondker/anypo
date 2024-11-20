@@ -10,7 +10,7 @@
 		<a class="dropdown-item" href="{{ route('prs.history', $pr->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('reports.pr', $pr->id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Requisition</a>
 
-    	@can('addToPo', $pr)
+		@can('addToPo', $pr)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('prs.add-to-po', $pr->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Add To PO</a>
 		@endcan
@@ -46,17 +46,21 @@
 				<i class="align-middle me-1 text-danger" data-lucide="refresh-cw"></i> Reset Workflow**</a>
 		@endcan
 
-		<a class="dropdown-item sw2-advance" href="{{ route('prs.cancel', $pr->id) }}"
-			data-entity="" data-name="PR#{{ $pr->id }}" data-status="Cancel"
-			data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Requisition">
-			<i class="align-middle me-1 text-danger" data-lucide="x-circle"></i> Cancel Requisition</a>
+		@can('cancel', $pr)
+			<a class="dropdown-item sw2-advance" href="{{ route('prs.cancel', $pr->id) }}"
+				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Cancel"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Requisition">
+				<i class="align-middle me-1 text-danger" data-lucide="x-circle"></i> Cancel Requisition</a>
+		@endcan
 
+		@can('delete', $pr)
 		<a class="dropdown-item sw2-advance" href="{{ route('prs.destroy', $pr->id) }}"
 			data-entity="" data-name="PR#{{ $pr->id }}" data-status="Delete"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Requisition">
 			<i class="align-middle me-1 text-danger" data-lucide="trash-2"></i> Delete Requisition*</a>
+		@endcan
 
-		@can('recalculate', App\Models\Tenant\Pr::class)
+		@can('recalculate', $pr)
 			<a class="dropdown-item sw2-advance" href="{{ route('prs.recalculate', $pr->id) }}"
 				data-entity="" data-name="PR #{{ $pr->id }}" data-status="Recalculate"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Recalculate">

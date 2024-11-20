@@ -24,6 +24,15 @@ create
 </a>
 
 
+// allow add attachment only if status is draft
+try {
+	$po = Po::where('id', $request->input('attach_po_id'))->get()->firstOrFail();
+} catch (Exception $e) {
+	Log::error(tenant('id'). ' tenant.po.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
+	return redirect()->back()->with(['error' => 'Purchase Order not Found!']);
+}
+
+
 $po->po_date		= now();
 
 {{ Carbon\Carbon::parse($comment->comment_date)->ago() }}
@@ -41,6 +50,7 @@ $checkout->checkout_date	= date('Y-m-d H:i:s');
 94. var_dump(__METHOD__); var_dump(__FUNCTION__);
 
 
+amount
 <input type="number" class="form-control @error('price') is-invalid @enderror"
 	style="text-align: right;" min="1" step="0.01" max="999999.99"
 	name="price" id="price" placeholder="0.00"

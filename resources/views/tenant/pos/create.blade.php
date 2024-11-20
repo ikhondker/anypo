@@ -125,6 +125,20 @@
 					<div class="card-body">
 						<table class="table table-sm my-2">
 							<tbody>
+								<tr>
+									<th>Category :</th>
+									<td>
+										<select class="form-control select2" data-toggle="select2" name="category_id" required>
+											<option value=""><< Category >> </option>
+											@foreach ($categories as $category)
+												<option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : '' }} >{{ $category->name }} </option>
+											@endforeach
+										</select>
+										@error('category_id')
+											<div class="small text-danger">{{ $message }}</div>
+										@enderror
+									</td>
+								</tr>
 
 								<tr>
 									<th>Need By Date :</th>

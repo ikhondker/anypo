@@ -28,7 +28,7 @@ use App\Http\Requests\Tenant\Lookup\UpdateItemRequest;
 
 # 1. Models
 use App\Models\Tenant\Lookup\Item;
-use App\Models\Tenant\Lookup\Category;
+use App\Models\Tenant\Lookup\ItemCategory;
 use App\Models\Tenant\Lookup\Uom;
 use App\Models\Tenant\Lookup\Oem;
 use App\Models\Tenant\Lookup\GlType;
@@ -65,7 +65,7 @@ class ItemController extends Controller
 		if (request('term')) {
 			$items->where('name', 'Like', '%' . request('term') . '%');
 		}
-		$items = $items->with('category')->with('uom')->with('oem')->with('glType')->orderBy('id', 'DESC')->paginate(25);
+		$items = $items->with('item_category')->with('uom')->with('oem')->with('glType')->orderBy('id', 'DESC')->paginate(25);
 		return view('tenant.lookup.items.index', compact('items'));
 	}
 
@@ -76,7 +76,7 @@ class ItemController extends Controller
 	{
 		$this->authorize('create', Item::class);
 
-		$categories = Category::primary()->get();
+		$itemCategories = ItemCategory::primary()->get();
 
 		$uomClasses = UomClass::All();
 
@@ -86,7 +86,7 @@ class ItemController extends Controller
 
 		$gl_types = GlType::primary()->get();
 
-		return view('tenant.lookup.items.create', compact('categories','uomClasses','uoms', 'oems', 'gl_types'));
+		return view('tenant.lookup.items.create', compact('itemCategories','uomClasses','uoms', 'oems', 'gl_types'));
 	}
 
 	/**
@@ -130,12 +130,12 @@ class ItemController extends Controller
 	{
 		$this->authorize('update', $item);
 
-		$categories = Category::primary()->get();
+		$itemCategories = ItemCategory::primary()->get();
 		$uoms = Uom::byUomClass($item->uom_class_id)->get();
 		$oems = Oem::primary()->get();
 		$gl_types = GlType::primary()->get();
 
-		return view('tenant.lookup.items.edit', compact('item', 'categories', 'uoms', 'oems', 'gl_types'));
+		return view('tenant.lookup.items.edit', compact('item', 'itemCategories', 'uoms', 'oems', 'gl_types'));
 	}
 
 	/**

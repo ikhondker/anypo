@@ -103,7 +103,7 @@
 			<ul id="lookups" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'lookups' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'depts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('depts.index') }}"><i class="align-middle" data-lucide="circle"></i>Dept</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'categories.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('categories.index') }}"><i class="align-middle" data-lucide="circle"></i>Category</a></li>
-                <li class="sidebar-item {{ ($_route_name == 'item-categories.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('item-categories.index') }}"><i class="align-middle" data-lucide="circle"></i>Item Category</a></li>
+				<li class="sidebar-item {{ ($_route_name == 'item-categories.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('item-categories.index') }}"><i class="align-middle" data-lucide="circle"></i>Item Category</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'uoms.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('uoms.index') }}"><i class="align-middle" data-lucide="circle"></i>UOM</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'designations.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('designations.index') }}"><i class="align-middle" data-lucide="circle"></i>Designation</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'oems.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('oems.index') }}"><i class="align-middle" data-lucide="circle"></i>OEM</a></li>

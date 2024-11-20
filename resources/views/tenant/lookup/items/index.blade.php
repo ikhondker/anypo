@@ -55,7 +55,7 @@
 						<td>{{ $item->id }}</td>
 						<td>{{ $item->code }}</td>
 						<td><a href="{{ route('items.show',$item->id) }}"><strong>{{ $item->name }}</strong></a></td>
-						<td>{{ $item->category->name }}</td>
+						<td>{{ $item->item_category->name }}</td>
 						<td>{{ $item->uom->name }}</td>
 						<td>{{ $item->oem->name }}</td>
 						<td class="text-end"><x-tenant.list.my-number :value="$item->price"/></td>

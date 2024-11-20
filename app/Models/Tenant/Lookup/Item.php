@@ -18,7 +18,7 @@ class Item extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'code', 'name', 'notes', 'category_id', 'oem_id', 'uom_class_id', 'uom_id', 'gl_type_code', 'ac_expense', 'price', 'tax_pc', 'gst_pc', 'stock', 'reorder', 'photo', 'enable', 'updated_by', 'updated_at',
+		'code', 'name', 'notes', 'item_category_id', 'oem_id', 'uom_class_id', 'uom_id', 'gl_type_code', 'ac_expense', 'price', 'tax_pc', 'gst_pc', 'stock', 'reorder', 'photo', 'enable', 'updated_by', 'updated_at',
 	];
 
 

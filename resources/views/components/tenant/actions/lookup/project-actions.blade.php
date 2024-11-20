@@ -4,9 +4,8 @@
 	</a>
 	<div class="dropdown-menu dropdown-menu-end">
 
-		
 		<a class="dropdown-item" href="{{ route('projects.show', $project->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Project</a>
-		
+
 		@if (Route::current()->getName() == 'projects.show')
 			@can('update', $project)
 				<a class="dropdown-item" href="{{ route('projects.edit', $project->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Project</a>
@@ -17,7 +16,7 @@
 			<a class="dropdown-item" href="{{ route('projects.po', $project->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Project PO</a>
 			<a class="dropdown-item" href="{{ route('projects.budget', $project->id) }}"><i class="align-middle me-1" data-lucide="dollar-sign"></i> Project Budget Usage</a>
 			<a class="dropdown-item" href="{{ route('projects.spends') }}"><i class="align-middle me-1" data-lucide="pie-chart"></i> Project Spends</a>
-		@endcan 
+		@endcan
 		<a class="dropdown-item" href="{{ route('projects.attachments',$project->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> Attachments</a>
 
 		<div class="dropdown-divider"></div>

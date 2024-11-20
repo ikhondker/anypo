@@ -80,7 +80,7 @@
 						</tr>
 						<x-tenant.show.my-date-time	value="{{ $po->auth_date }}" label="Auth Date"/>
 						<x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>
-                        <x-tenant.show.my-text		value="{{ $po->category->name }}" label="Category"/>
+						<x-tenant.show.my-text		value="{{ $po->category->name }}" label="Category"/>
 						<x-tenant.show.my-text		value="{{ $po->buyer->name }}" label="Buyer"/>
 						<x-tenant.show.my-text		value="{{ $po->requestor->name }}" label="Requestor"/>
 						<tr>
@@ -90,7 +90,7 @@
 						<tr>
 							<th>&nbsp;</th>
 							<td>
-								@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+								@can('update', $po)
 									<form action="{{ route('pos.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 										@csrf
 										{{-- <x-tenant.attachment.create /> --}}
@@ -109,7 +109,7 @@
 										{{-- <x-buttons.submit/> --}}
 									</form>
 									<!-- /.form end -->
-								@endif
+								@endcan
 							</td>
 						</tr>
 

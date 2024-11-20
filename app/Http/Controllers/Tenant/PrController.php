@@ -43,6 +43,7 @@ use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Lookup\Project;
 use App\Models\Tenant\Lookup\Item;
 use App\Models\Tenant\Lookup\Uom;
+use App\Models\Tenant\Lookup\Category;
 
 use App\Models\Tenant\Workflow\Hierarchy;
 use App\Models\Tenant\Workflow\Hierarchyl;
@@ -145,8 +146,9 @@ class PrController extends Controller
 		$suppliers 	= Supplier::primary()->get();
 		$projects 	= Project::primary()->get();
 		$uoms 		= Uom::primary()->get();
+		$categories	= Category::primary()->get();
 
-		return view('tenant.prs.create', compact('suppliers', 'depts', 'items','uoms', 'projects'));
+		return view('tenant.prs.create', compact('suppliers', 'depts', 'items','uoms', 'projects','categories'));
 
 	}
 
@@ -278,10 +280,11 @@ class PrController extends Controller
 		$suppliers 	= Supplier::primary()->get();
 		$projects 	= Project::primary()->get();
 		$users 		= User::tenant()->get();
+		$categories	= Category::primary()->get();
 
 		$prls = Prl::with('item')->with('uom')->where('pr_id', $pr->id)->get()->all();
 
-		return view('tenant.prs.edit', compact('pr','prls', 'suppliers', 'depts', 'projects', 'users'));
+		return view('tenant.prs.edit', compact('pr','prls', 'suppliers', 'depts', 'projects', 'users','categories'));
 	}
 
 	/**
@@ -353,7 +356,7 @@ class PrController extends Controller
 	public function recalculate(Pr $pr)
 	{
 		// Update pr.line_num
-		$this->authorize('recalculate', Pr::class);
+		$this->authorize('recalculate', $pr);
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be recalculated!');
@@ -628,7 +631,7 @@ class PrController extends Controller
 
 		$pr->need_by_date		= $sourcePr->need_by_date;
 		$pr->project_id			= $sourcePr->project_id;
-        $pr->category_id	    = $sourcePr->category_id;
+		$pr->category_id	 	= $sourcePr->category_id;
 		$pr->supplier_id		= $sourcePr->supplier_id;
 		$pr->notes				= $sourcePr->notes;
 		$pr->currency			= $sourcePr->currency;
@@ -684,7 +687,7 @@ class PrController extends Controller
 		$po->dept_id		= $pr->dept_id;
 		$po->unit_id		= $pr->unit_id;
 		$po->project_id		= $pr->project_id;
-        $po->category_id	= $pr->category_id;
+		$po->category_id	= $pr->category_id;
 		//dept_budget_id
 		$po->supplier_id	= $pr->supplier_id;
 		$po->notes			= $pr->notes;
@@ -853,8 +856,8 @@ class PrController extends Controller
 		}
 
 		// if PO exists
-        $po_id= $request->input('po_id');
-        Log::debug('tenant.pr.addPrLineToPo entered po_id = '.$po_id);
+		$po_id= $request->input('po_id');
+		Log::debug('tenant.pr.addPrLineToPo entered po_id = '.$po_id);
 		try {
 			$po = Po::where('id', $request->input('po_id'))->firstOrFail();
 		} catch (ModelNotFoundException $exception) {

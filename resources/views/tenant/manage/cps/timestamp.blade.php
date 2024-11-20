@@ -19,7 +19,7 @@
 @section('title','Timestamp Check')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Models with Empty Who Columns</li>
+	<li class="breadcrumb-item active">Transaction Models with Empty Who Columns</li>
 @endsection
 
 @section('content')
@@ -59,8 +59,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 
 					<tr>
@@ -70,9 +69,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
-					</tr>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td></tr>
 					<tr>
 						<td>1</td>
 						<td>count_dbu </td>
@@ -80,8 +77,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -90,8 +86,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -100,8 +95,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -110,8 +104,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -120,8 +113,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -130,8 +122,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -140,8 +131,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -150,8 +140,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -160,8 +149,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -170,8 +158,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a>
-						</td>
+						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					<tr>
 				</tbody>
 			</table>

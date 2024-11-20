@@ -1,47 +1,32 @@
 # 33. TODO
 -------------------------------------------------------------------------------------------------
 127. address/remove all TODO
-128. pr po cated in pr po crea/edit page
-127. add approve PR to draft PO
-x118. disable prl/pol/invoice line edit by policy
-x117. reject/resubmit pr/po 	policy/header/lines/
-x127. pr edit need_by_date
-131. ListAllLines and CardTableRow with status-true/false
-130. $e->getMessage()
-129. DASC - decimal-rev attahment - sourcdepbudid-? close po/pr/invoice/pol/
-128. budget amount edit issue 4 decimal
+119. **search PO/PO by Number
+136. create UOM - UoM Class - default uom mention
+148. Find and replace 'PO #', 'PR #', debug('tenant, =$, @can('edit' , ANYPO.NET, <i class="bi"
+135. hierarchyl export serial number
+144. dbu export user_id -= null
+121. ac_expense validate now aplha_dash need to allow .
+122. Manual Generate Accounting admin
+133. budget revision TODO check budget and dept_budge duplicate from front end.
+131. po.ListAllLines and po.CardTableRow with status-true/false Not sure?
+123. PO dropdown in invoice creation and project dropdown width
 127. in Budget count_po is not updated
-127. auto close pol, invoice and PO **
-127. create-for-po if po_id is invalid and auto populate currency and supplier issue
-123. PO dropdown ain invoice creation and project dropdown width
 156. check DbuDeptBudget extends Component , dept-budget.dbu.php
 140. set fb and linked url to any po during setup and seeded
 155. fix component list -> ArticleLink and ProjectLink
 155. add users need multi user avatar
 153. po table issue, invoiceLines, reports, FAQ, attachments
 152. re-use D:\Temp\svg\illustrations\png from Front theme
-148. Find and replace 'PO #', 'PR #', debug('tenant, =$, @can('edit' , ANYPO.NET, <i class="bi"
 147. rewrite po lists
 145. Department Budget [BDT] export
-144. dbu export user_id -= null
 143. Home - 2024 - Dept Budgets - IT -Edit
-139. edit master data supp/project/item by buyer @can button not shown
-137. budget revision TODO link for source with DB:insert and last id
-136. create UOM - UoM Class - default uom mention
-135. hierarchyl export serial number
-133. budget revision TODO check budget and dept_budge duplicate from front end.
-131. country, status, code edit error is showing
 130. ticket create and view update from tenant without login to landlord
 129. anypo item tax+gst, JS for tax gst, pr pdf tax, p2 reject pr, pr dashboard converted to po count
-124. TODO prl cancel here
 123. Recon script not accounted transaction an fix issue.
-122. Manual Generate Accounting admin
-121. ac_expense validate now aplha_dash need to allow .
 120. country currency model called twice in edit page in control and in component
-119. **search PO/PO by Number
 117. getting started mail notification
 116. getting started page *
-115. both in landlord and tenant Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
 114. split RecordDeptBudgetUsage job into FIVE separate class
 113. Budget Utilized 30?
 112. finalize <x-tenant.widgets.budget-stat/>
@@ -53,10 +38,9 @@ x127. pr edit need_by_date
 108. add several pie chart in project show pages
 109. docu page start panel
 
-
 # 30 Nice to Have P2
 -------------------------------------------------------------------------------------------------
-1. notfication mark-as-read with ajax see https://blog.quickadminpanel.com/laravel-notifications-with-database-driver-internal-messages/
+1. notification mark-as-read with ajax see https://blog.quickadminpanel.com/laravel-notifications-with-database-driver-internal-messages/
 1.	prefix form pr/po number
 2.	command generator based on tenants
 3.	budget update approval workflow P2
@@ -104,6 +88,21 @@ x127. pr edit need_by_date
 
 # 0. DONE
 -------------------------------------------------------------------------------------------------
+x128. pr po category in pr po crea/edit page
+x127. add approve PR to draft PO
+x118. disable prl/pol/invoice line edit by policy
+x117. reject/resubmit pr/po 	policy/header/lines/
+x127. pr edit need_by_date
+x130. $e->getMessage()
+x129. DASC - decimal -rev attachment - sourcdepbudid-? close po/pr/invoice/pol/
+x128. budget amount edit issue 4 decimal
+x127. auto close pol, invoice and PO **
+x127. create-for-po if po_id is invalid and auto populate currency and supplier issue
+x139. edit master data supp/project/item by buyer @can button not shown
+x137. budget revision TODO link for source with DB:insert and last id
+x131. country, status, code edit error is showing
+x124. TODO prl cancel here
+x115. both in landlord and tenant Route::get('/invoices/create/{po}',[InvoiceController::class,'create'])->name('invoices.create');
 x124. stop same emp in same hierarchy twice
 x123. show allowapprove=true for admin
 x124. reset Pr and po by admin

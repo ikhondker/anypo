@@ -105,7 +105,7 @@
 						<tr>
 							<th>&nbsp;</th>
 							<td>
-								@if ($pr->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
+								@can('update', $pr)
 									<form action="{{ route('prs.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 										@csrf
 										{{-- <x-tenant.attachment.create /> --}}
@@ -123,7 +123,7 @@
 										{{-- <x-buttons.submit/> --}}
 									</form>
 									<!-- /.form end -->
-								@endif
+								@endcan
 							</td>
 						</tr>
 					</tbody>
