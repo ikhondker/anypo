@@ -66,11 +66,13 @@ class TicketTopicController extends Controller
 	public function destroy(TicketTopic $ticketTopic)
 	{
 
-
 		$this->authorize('delete', $ticketTopic);
+
+        $ticket_id 		= $ticketTopic->ticket_id;
+
 		Log::debug('landlord.TicketTopicController.destroy ticket_topic_id= ' . $ticketTopic->id);
 		$ticketTopic->delete();
-		return redirect()->route('tickets.all')->with('success', 'Topic deleted.');
+		return redirect()->route('tickets.topics',$ticket_id )->with('success', 'Topic deleted.');
 
 	}
 }

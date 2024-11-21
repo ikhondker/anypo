@@ -10,11 +10,11 @@ website'			=> 'https://www.anypo.net',
 126. find and replace 01911310509 +0012262804920 you@company.com email@example.com
 find and replace <table id="datatables-orders" class="table w-100">
 
-1. move changelog to a shared controler and let supprot entry P2
+x1. move changelog to a shared controler and let supprot entry P2
 1. .gitignore file modify
 1.  update all laravel pack to last avialable version for laravel 10
 1.	fix bo.SYSTEM_USER_ID, akk.SYSTEM_USER_ID, bo.SUPPORT_MGR_ID
-2.	float to decimal (19,4)
+x2.	float to decimal (19,4)
 3.	//TODO php artisan route:cache error
 4.	https://www.youtube.com/watch?app=desktop&v=rtiK6iblU1I
 5.	rename NotificationComposer.php to TenantNotificationComposer.php

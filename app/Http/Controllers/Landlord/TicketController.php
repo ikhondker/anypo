@@ -319,10 +319,9 @@ class TicketController extends Controller
 		Log::debug('landlord.TicketController.addTopic request ticket_id= ' . $request->input('ticket_id'));
 		Log::debug('landlord.TicketController.addTopic request topic_id= ' . $request->input('topic_id'));
 
-		// TODO check if topic is already added
+		// check if topic is already added
 		$count		= TicketTopic::where('ticket_id',$request->input('ticket_id') )->where('topic_id',$request->input('topic_id') )->count();
 		Log::debug('landlord.TicketController.addTopic count= ' . $count);
-
 		if ($count <> 0){
 			throw ValidationException::withMessages(['topic_id' => 'This Topic Already added to this Ticket']);
 		}

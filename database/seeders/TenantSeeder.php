@@ -61,8 +61,10 @@ class TenantSeeder extends Seeder
 
 		$this->call(\Database\Seeders\ReportSeeder::class);
 
+
 		// ========================================================
 		//TODO Remove
+
 		$this->call(\Database\Seeders\PrSeeder::class);
 		$this->call(\Database\Seeders\PrlSeeder::class);
 		$this->call(\Database\Seeders\PoSeeder::class);
@@ -76,21 +78,20 @@ class TenantSeeder extends Seeder
 
 		// TODO Remove Finally
 		// create hiaerarchy
-		$admin = User::where('email', 'admin@anypo.net')->firstOrFail();
+        $system = User::where('email', 'system@anypo.net')->firstOrFail();
 		$pr=Hierarchyl::create([
 			'hid'			=> 1001,
-			'approver_id'	=> $admin->id,
+			'approver_id'	=> $system->id,
 		]);
 		$po=Hierarchyl::create([
 			'hid'			=> 1002,
-			'approver_id'	=> $admin->id,
+			'approver_id'	=> $system->id,
 		]);
 
 		// $this->call(\Database\Seeders\ReceiptSeeder::class);
 		// $this->call(\Database\Seeders\InvoiceSeeder::class);
 		// $this->call(\Database\Seeders\PaymentSeeder::class);
 		// ========================================================
-
 
 
    		// This seeder set create_by and updated_by to default

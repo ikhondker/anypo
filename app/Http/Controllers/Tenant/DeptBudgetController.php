@@ -94,11 +94,12 @@ class DeptBudgetController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function revisions(DeptBudget $deptBudget)
+	public function chk_revisions(DeptBudget $deptBudget)
 	{
+        abort(404);
+        // CHK
 		$this->authorize('viewAny', DeptBudget::class);
-		// TODO restrict direct access
-
+		// restrict direct access
 		$deptBudgets = DeptBudget::where('parent_id',$deptBudget->id)
 					->where('revision',true)
 				 	->orderBy('id', 'DESC')->paginate(10);
@@ -138,6 +139,16 @@ class DeptBudgetController extends Controller
 
 		//$dept_budgets = $dept_budgets->with('dept')->with('budget')->orderBy('id', 'DESC')->paginate(10);
 		return view('tenant.dept-budgets.revisions-all', compact('deptBudgets'));
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function revisionDetail(DeptBudget $deptBudget)
+	{
+		$this->authorize('view', $deptBudget);
+
+		return view('tenant.dept-budgets.revision-detail', compact('deptBudget'));
 	}
 
 
@@ -196,15 +207,6 @@ class DeptBudgetController extends Controller
 	}
 
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function revisionDetail(DeptBudget $deptBudget)
-	{
-		$this->authorize('view', $deptBudget);
-
-		return view('tenant.dept-budgets.revision-detail', compact('deptBudget'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.

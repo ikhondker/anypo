@@ -549,7 +549,7 @@ class PrController extends Controller
 		}
 
 
-		// Check and book Dept Budget TODO use error_code
+		// Check and book Dept Budget
 		Log::debug(tenant('id'). ' tenant.pr.submit booking budget by PrBudget::prBudgetBook...');
 		$retcode = PrBudget::prBudgetBook($pr->id);
 

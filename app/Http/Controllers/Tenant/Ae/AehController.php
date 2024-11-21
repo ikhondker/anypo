@@ -76,8 +76,8 @@ class AehController extends Controller
 		Log::debug('tenant.ae.aeh.index Value of action = ' . request('action'));
 		// TODO CHECK
 		if (request('start_date') && tenant()) {
-			$start_date = 	request('start_date');
-			$end_date	=	request('end_date');
+			$start_date = request('start_date');
+			$end_date	= request('end_date');
 			Log::debug('tenant.ae.aeh.index Value of start_date = ' . request('start_date'));
 			Log::debug('tenant.ae.aeh.index Value of end_date = ' . request('end_date'));
 		}
