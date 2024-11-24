@@ -14,7 +14,7 @@
 			View Currency
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.currency-actions code="{{ $currency->currency }}"/>
+			<x-tenant.actions.lookup.currency-actions currencyCode="{{ $currency->currency }}"/>
 		@endslot
 	</x-tenant.page-header>
 

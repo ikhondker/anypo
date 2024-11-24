@@ -1,12 +1,10 @@
 <script type="module">
 	$(document).ready(function () {
-
-		//console.log("Inside: calculate-pr-amount.blade.php ");
 		$('#item_id').change(function() {
-			//console.log("Item changed Hello world !");
 			let id = $(this).val();
 			let url = '{{ route("items.get-item", ":id") }}';
 			url = url.replace(':id', id);
+			var uom_class_id = '';
 			$.ajax({
 				url: url,
 				type: 'get',
@@ -18,28 +16,29 @@
 						var uom_class_id = response.uom_class_id;
 						var price = response.price;
 						price = parseFloat(price).toFixed(2);	// make two decimal
-						//console.log("price=" + price);
 						$('#price').val(price);
 						calculate();
+
+						// populate uom dropdown
+						let url2 = '{{ route("uoms.get-uoms-by-class", ":id") }}';
+						url2 = url2.replace(':id', uom_class_id);
+						$("#uom_id").html('');
+						$.ajax({
+							url: url2,
+							type: 'get',
+							dataType: 'json',
+							success: function (res) {
+								// $('#uom_id').html('<option value="">-- Select UoM --</option>');
+								$.each(res.uoms, function (key, value) {
+									$("#uom_id").append('<option value="' + value
+										.id + '">' + value.name + '</option>');
+								});
+							}
+						});
 					}
 				}
 			});
 
-			let url2 = '{{ route("uoms.get-uoms-by-class", ":id") }}';
-			url2 = url2.replace(':id', '1001');	// TODO
-			$("#uom_id").html('');
-			$.ajax({
-				url: url2,
-				type: 'get',
-				dataType: 'json',
-				success: function (res) {
-					// $('#uom_id').html('<option value="">-- Select UoM --</option>');
-					$.each(res.uoms, function (key, value) {
-						$("#uom_id").append('<option value="' + value
-							.id + '">' + value.name + '</option>');
-					});
-				}
-			});
 		});
 
 		$('#qty').change(function() {
@@ -60,7 +59,6 @@
 	});
 
 	function calculate() {
-		console.log("========= Calculate Function ===============");
 		var old_line_amount = $("#amount").val();
 		var old_pr_amount = $("#pr_amount").val();
 		console.log("->old_pr_amount before: = " + old_pr_amount);

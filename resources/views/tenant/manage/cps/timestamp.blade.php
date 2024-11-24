@@ -26,7 +26,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Models with Empty Who Columns (** TODO)
+			Models with Empty Who Columns (**)
 		@endslot
 		@slot('buttons')
 

@@ -121,8 +121,6 @@ class User extends Authenticatable implements MustVerifyEmail
 	|-----------------------------------------------------------------------------
 	*/
 
-
-	//TODO change
 	/* ---------------- Functions ---------------------- */
 	public static function getAllLandlord() {
 		return User::select('id','name')
@@ -133,18 +131,18 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	public static function getAllAgent() {
 		return User::select('id','name')
-		->where('enable', true)
-		 ->where('role', 'support')
-		 ->orderBy('id','asc')
-		 ->get();
+			->where('enable', true)
+			->where('role', 'support')
+			->orderBy('id','asc')
+			->get();
 	}
 
 	public static function getOwners($account_id) {
 		return User::select('id','name')
-		 ->where('enable', true)
-		 ->where('account_id', $account_id)
-		 ->orderBy('id','asc')
-		 ->get();
+			->where('enable', true)
+			->where('account_id', $account_id)
+			->orderBy('id','asc')
+			->get();
 	}
 
 	/*

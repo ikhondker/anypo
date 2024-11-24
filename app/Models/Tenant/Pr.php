@@ -163,13 +163,11 @@ class Pr extends Model
 	}
 
 	// insert prls into pols user in convertToPo and addToPO
-	// TODO need to update line_num
 	public static function insertPrlsIntoPols($prId, $poId)
 	{
 
 		Log::debug('tenant.pr.insertPrlsIntoPols FROM pr_id = ' . $prId);
 		Log::debug('tenant.pr.insertPrlsIntoPols TO   po_id = ' . $poId);
-
 		// get last line num from POL
 		$last_pol_line_num = Pol::where('po_id', $poId )->max('line_num');
 		Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  = '.$last_pol_line_num);

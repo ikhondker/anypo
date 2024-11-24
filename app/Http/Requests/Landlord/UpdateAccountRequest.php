@@ -21,12 +21,11 @@ class UpdateAccountRequest extends FormRequest
 	 */
 	public function rules(): array
 	{
-		//TODO check if mail and cell will be unique
 		return [
 			'name'				=> 'required|max:100',
 			'address1'			=> 'required|max:100',
-			'email'				=> 'required|email|max:100',
-			'cell'				=> 'required|max:20',
+            'cell'				=> 'required|min:6|max:20|unique:accounts,cell,'. $this->account->id,
+            'email'				=> 'required|unique:accounts,email,'. $this->account->id,
 			'file_to_upload'	=> 'image|mimes:jpeg,png,jpg,gif|max:1024'
 		];
 	}

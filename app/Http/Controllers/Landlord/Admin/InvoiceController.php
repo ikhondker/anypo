@@ -270,7 +270,7 @@ class InvoiceController extends Controller
 		$this->authorize('discount', $invoice);
 		Log::debug("landlord.Invoice.applyDiscount applying invoice level discount for invoice_id= ".$invoice->id);
 
-		// can update discus PC multiple time. org_amount is the original invoice amount
+		// can update discount % multiple time. org_amount is the original invoice amount
 		// can remove discount which is wrongly applied
 
 		$request->merge(['discount_date'=> now()]);
@@ -291,7 +291,7 @@ class InvoiceController extends Controller
 
 		}
 
-		// TODO update amount
+		// update record
 		$invoice->update($request->all());
 		EventLog::event('invoice',$invoice->id,'discount','discount', $invoice->discount);
 		return redirect()->route('invoices.show',$invoice->id)->with('success','Invoice Discount Applied successfully.');

@@ -25,7 +25,7 @@ class UpdateItemRequest extends FormRequest
 			//'code'		=> 'required|max:25|alpha_dash|unique:items,code,'. $this->item->id,
 			'code'			=> 'required|max:25|regex:/^[0-9A-Za-z.\-]+$/u|unique:items,code,'. $this->item->id,
 			'name'			=> 'required|min:5|max:120|unique:items,name,'. $this->item->id,
-			'category_id'	=> 'required|integer|exists:categories,id',
+			'item_category_id'	=> 'required|integer|exists:item_categories,id',
 			'uom_id'		=> 'required|integer|exists:uoms,id',
 			'oem_id'		=> 'required|integer|exists:oems,id',
 			'price'			=> 'required|numeric|min:0.1|max:9999999.99',

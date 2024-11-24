@@ -19,7 +19,7 @@ class UomSeeder extends Seeder
 		//Schema::disableForeignKeyConstraints();
 		//Uom::truncate();
 		//Schema::enableForeignKeyConstraints();
-	
+
 		$uoms_default = [
 			[
 				'id' 			=> 1001,
@@ -35,7 +35,7 @@ class UomSeeder extends Seeder
 			],
 			[
 				'id' 			=> 1003,
-				'name' 			=> 'Mg',
+				'name' 			=> 'gm',
 				'uom_class_id' 	=> '1003',
 				'default' 		=> true,
 			],
@@ -136,7 +136,7 @@ class UomSeeder extends Seeder
 		];
 		// TODO
 		// Uom::insert($uoms_capacity);
-		
+
 		$uoms_time = [
 			[
 				'name' 			=> 'Hour',

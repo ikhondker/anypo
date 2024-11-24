@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Builder;
 //use App\Helpers\Tenant\ExchangeRate;
 
 use App\Enum\Tenant\InvoiceStatusEnum;
-//use App\Enum\Tenant\PaymentStatusEnum;
+use App\Enum\Tenant\PaymentStatusEnum;
 
 use App\Models\Tenant\Admin\Setup;
 
@@ -72,9 +72,8 @@ class Invoice extends Model
 	*/
 	public function scopePaymentDue(Builder $query): void
 	{
-		$query->where('status', InvoiceStatusEnum::POSTED->value);
-		// TODO ->where('payment_status',);
-		// PaymentStatusEnum::DUE or PaymentStatusEnum::PARTIAL
+		$query->where('status', InvoiceStatusEnum::POSTED->value)
+			->where('payment_status',PaymentStatusEnum::DUE->value);
 	}
 
 	/**
