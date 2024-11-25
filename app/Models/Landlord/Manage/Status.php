@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord\Lookup
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -22,7 +22,6 @@ namespace App\Models\Landlord\Manage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// IQBAL 27-SEP-22
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Landlord\Ticket;
@@ -49,8 +48,8 @@ class Status extends Model
 	];
 
 	/* ---------------- Scope ---------------------- */
-	
-	
+
+
 	/* ---------------- HasMany ---------------------- */
 	public function tickets()
 	{
@@ -58,5 +57,5 @@ class Status extends Model
 	}
 
 	/* ---------------- belongsTo ---------------------- */
-	
+
 }

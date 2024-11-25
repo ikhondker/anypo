@@ -11,7 +11,7 @@
 			{{-- <div class="address">{{ $owner->address1.', '. $owner->address2 }}</div> --}}
 			{{-- <div class="address">{{ $owner->city.', '.$owner->state.', '.$owner->zip. ', '.$owner->country }}</div> --}}
 			{{-- <div class="address">796 Silver Harbour, TX 79273, US</div>
-			<div class="email">john@example.com</div> --}}
+			<div class="email">you@example.com</div> --}}
 		</div>
 		<div id="invoice">
 			<h1>TICKET #{{ $ticket->id}}</h1>

@@ -143,18 +143,18 @@
 							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
 								<div class="position-relative">
 									<i class="align-middle text-body" data-lucide="message-circle"></i>
-									<span class="indicator">{{ $_count_unread_notifications }} </span>
+									<span class="indicator">{{ $_tenant_count_unread_notifications }} </span>
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
 								<div class="dropdown-menu-header">
 									<div class="position-relative">
-										{{ $_count_unread_notifications }} New Notification
+										{{ $_tenant_count_unread_notifications }} New Notification
 									</div>
 								</div>
 								<div class="list-group">
 									@auth
-										@foreach($_notifications as $notification)
+										@foreach($_tenant_notifications as $notification)
 											<a href="{{ route('notifications.show', $notification->id) }}" class="list-group-item">
 												<div class="row g-0 align-items-center">
 													<div class="col-2">

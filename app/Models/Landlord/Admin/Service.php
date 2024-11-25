@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-/* IQBAL 12-FEB-23 */
+
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Landlord\Checkouts;
@@ -61,7 +61,7 @@ class Service extends Model
 	{
 		$query->where('owner_id', auth()->user()->id);
 	}
-	
+
 	/* ---------------- HasMany ---------------------- */
 
 

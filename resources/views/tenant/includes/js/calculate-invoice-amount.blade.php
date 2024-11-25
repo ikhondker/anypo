@@ -20,7 +20,6 @@
 
 		$('#po_id').change(function() {
 			//alert($('option:selected').text());
-			//console.log("PO changed new Hello world1 !");
 			let id = $(this).val();
 			let url = '{{ route("pos.get-po", ":id") }}';
 			url = url.replace(':id', id);

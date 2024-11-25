@@ -52,7 +52,7 @@
 				</div>
 			</div>
 
-			<table id="datatables-orders" class="table w-100">
+			<table class="table w-100">
 				<thead>
 					<tr>
 						<th class="align-middle">#</th>

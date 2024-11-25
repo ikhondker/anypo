@@ -21,15 +21,15 @@
 
 # 12. Icons
 ====================================================================
--    <i class="align-middle me-1" data-lucide="eye"></i> View Purchase Order
--    <i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments
--    <i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order
--    <i class="align-middle me-1" data-lucide="plus-circle"></i> Create Invoice
--    <i class="align-middle me-1" data-lucide="printer"></i> Print Purchase Order
-    <i class="align-middle me-1 text-danger" data-lucide="dollar-sign"></i> Lifetime Discount (*)
-    <i class="align-middle me-1 text-danger" data-lucide="rotate-ccw"></i> Account Reset (*)
-    <i class="align-middle me-1 text-danger" data-lucide="delete"></i> Delete Account (*)
-    <i class="fas fa-plus"></i> New Ticket
+-	<i class="align-middle me-1" data-lucide="eye"></i> View Purchase Order
+-	<i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments
+-	<i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order
+-	<i class="align-middle me-1" data-lucide="plus-circle"></i> Create Invoice
+-	<i class="align-middle me-1" data-lucide="printer"></i> Print Purchase Order
+-	<i class="align-middle me-1 text-danger" data-lucide="dollar-sign"></i> Lifetime Discount (*)
+-	<i class="align-middle me-1 text-danger" data-lucide="rotate-ccw"></i> Account Reset (*)
+-	<i class="align-middle me-1 text-danger" data-lucide="delete"></i> Delete Account (*)
+-	<i class="fas fa-plus"></i> New Ticket
 
 
 # 12. Function Sequence in Controller 
@@ -45,6 +45,7 @@
 <div class="text-danger text-xs">{{ $message }}</div>
 to
 <div class="small text-danger">{{ $message }}</div>
+
 # 11. Frequent 
 ====================================================================
 ~~~
@@ -98,7 +99,7 @@ Log::info(print_r($dept_budget, true));
 10. use config('app.url') or config('app.domain'). Not env(APP_DOMAIN) and env(APP_URL) . Remember APP_DOMAIN is added by iqbal in app.php. Ref: \resources\views\vendor\mail\text
 11. use trait to add a custoem function to all Model like App\Trait\CreatedUpdateBy 
 12. The relationship is Tenant hasMany Domain. https://tenancyforlaravel.com/docs/v3/tenant-identification/
-13. 
+13. Aliases is in app.php like 'UserRoleEnum'	=> App\Enum\UserRoleEnum::class,
 
 # 5. Set Environment 
 ====================================================================
@@ -140,6 +141,12 @@ Route::get('password/reset', [
 - ChartData::supplier();
 - echo "Done";
 - exit;
+
+# 1. Interface and layout 
+====================================================================
+ - table 
+        appstack4\docs\ecommerce-orders.html
+        <table id="datatables-orders" class="table w-100">
 
 # 1. Setup->config 
 ====================================================================

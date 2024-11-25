@@ -244,7 +244,7 @@
 								<div class="mb-3">
 									<label class="form-label">Email</label>
 									<input type="email" class="form-control @error('email') is-invalid @enderror"
-										name="email" id="email" placeholder="name@company.com"
+										name="email" id="email" placeholder="you@example.com"
 										value="{{ old('email', $template->email ) }}"
 										required/>
 									@error('email')
@@ -256,7 +256,7 @@
 								<div class="mb-3">
 									<label class="form-label">Cell</label>
 									<input type="text" class="form-control @error('cell') is-invalid @enderror"
-										name="cell" id="cell" placeholder="01911310509"
+										name="cell" id="cell" placeholder="(123) 456-7890"
 										value="{{ old('cell', $template->cell ) }}"
 										required/>
 									@error('cell')

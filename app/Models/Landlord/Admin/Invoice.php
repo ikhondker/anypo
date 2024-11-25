@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 
-/* IQBAL 12-FEB-23 */
+
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Landlord\Account;

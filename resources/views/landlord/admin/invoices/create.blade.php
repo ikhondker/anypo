@@ -18,7 +18,7 @@
 		<div class="card-body">
 			<form id="myForm" action="{{ route('invoices.store') }}" method="POST">
 				@csrf
-				
+
 				<table class="table table-sm my-2">
 					<tbody>
 						<x-landlord.create.name/>
@@ -46,32 +46,6 @@
 	</div>
 
 	<script type="module">
-		// function mySubmit(){
-		// 		document.getElementById('myForm').submit();
-		// };
-		// $(".swa-confirm").on("click", function(e) {
-		// 	e.preventDefault();
-
-		// 	Swal.fire({
-		// 		title: "Are you Sure ?",
-		// 		text:"You want to Delete the selected Invoice",
-		// 		type: "warning",
-		// 		showCancelButton: true,
-		// 		confirmButtonColor: "#cc3f44",
-		// 		confirmButtonText: "Delete",
-		// 		closeOnConfirm: true,
-		// 		html: false
-		// 	}).then((confirmed) => {
-		// 		if (confirmed) {
-		// 		$('#myform').submit(); // << here
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error)
-		// 	});
-		// });
-		// https://stackoverflow.com/questions/66562974/how-to-catch-form-submit-method-with-sweetalert2
-		
 		$(function() {
 			const $myForm = $('#myForm')
 				.on('submit', function(e) {

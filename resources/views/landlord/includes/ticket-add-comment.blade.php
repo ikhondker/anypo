@@ -92,9 +92,7 @@
 
 <script type="module">
 	$(document).ready(function () {
-		//console.log("Inside: reply_template_id");
 		$('#reply_template_id').change(function() {
-			//console.log("reply_template_id changed");
 			let id = $(this).val();
 			let url = '{{ route("reply-templates.get-template", ":id") }}';
 			url = url.replace(':id', id);

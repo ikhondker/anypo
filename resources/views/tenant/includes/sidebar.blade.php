@@ -9,7 +9,7 @@
 	<li class="sidebar-item {{ ($_route_name == 'notifications.index' ? 'active' : '') }}">
 		<a class="sidebar-link" href="{{ route('notifications.index') }}">
 			<i class="align-middle" data-lucide="message-square"></i><span class="align-middle">Notifications*</span>
-			<span class="badge badge-sidebar-primary">{{ $_count_unread_notifications }}</span>
+			<span class="badge badge-sidebar-primary">{{ $_tenant_count_unread_notifications }}</span>
 		</a>
 	</li>
 

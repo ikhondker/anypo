@@ -68,7 +68,7 @@ class TicketTopicController extends Controller
 
 		$this->authorize('delete', $ticketTopic);
 
-        $ticket_id 		= $ticketTopic->ticket_id;
+		$ticket_id 		= $ticketTopic->ticket_id;
 
 		Log::debug('landlord.TicketTopicController.destroy ticket_topic_id= ' . $ticketTopic->id);
 		$ticketTopic->delete();

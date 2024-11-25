@@ -96,8 +96,8 @@ class DeptBudgetController extends Controller
 	 */
 	public function chk_revisions(DeptBudget $deptBudget)
 	{
-        abort(404);
-        // CHK
+		abort(404);
+		// CHK
 		$this->authorize('viewAny', DeptBudget::class);
 		// restrict direct access
 		$deptBudgets = DeptBudget::where('parent_id',$deptBudget->id)
@@ -141,7 +141,7 @@ class DeptBudgetController extends Controller
 		return view('tenant.dept-budgets.revisions-all', compact('deptBudgets'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function revisionDetail(DeptBudget $deptBudget)

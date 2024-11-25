@@ -4,7 +4,7 @@
 			let id = $(this).val();
 			let url = '{{ route("items.get-item", ":id") }}';
 			url = url.replace(':id', id);
-            var uom_class_id = '';
+			var uom_class_id = '';
 			$.ajax({
 				url: url,
 				type: 'get',
@@ -19,7 +19,7 @@
 						$('#price').val(price);
 						calculate();
 
-                        console.log("uom_class_id =" + uom_class_id);
+						console.log("uom_class_id =" + uom_class_id);
 					}
 				}
 			});
@@ -28,8 +28,8 @@
 
 			let url2 = '{{ route("uoms.get-uoms-by-class", ":id") }}';
 			//url2 = url2.replace(':id', '1001');	// TODO
-            //console.log("uom_class_id url2 =" + response.uom_class_id);
-            url2 = url2.replace(':id', '1001');	// TODO
+			//console.log("uom_class_id url2 =" + response.uom_class_id);
+			url2 = url2.replace(':id', '1001');	// TODO
 			$("#uom_id").html('');
 			$.ajax({
 				url: url2,

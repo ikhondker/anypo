@@ -98,8 +98,8 @@
 					<label for="email" class="col-sm-2 col-form-label text-end text-secondary">Email:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control"
-							name="email" id="email" placeholder="email@example.com"
-							value="{{ old('email', "email@example.com" ) }}"
+							name="email" id="email" placeholder="you@example.com"
+							value="{{ old('email', "you@example.com" ) }}"
 							class="@error('email') is-invalid @enderror" required>
 						@error('email')
 							<div class="small text-danger">{{ $message }}</div>
@@ -112,7 +112,7 @@
 					<div class="col-sm-10">
 						<input type="text" class="form-control"
 							name="phone" id="phone" placeholder="phone"
-							value="{{ old('phone', "01911310509" ) }}"
+							value="{{ old('phone', "(123) 456-7890" ) }}"
 							class="@error('phone') is-invalid @enderror">
 						@error('phone')
 							<div class="small text-danger">{{ $message }}</div>
@@ -270,8 +270,8 @@
 						<div class="mb-3">
 							<label class="form-label">Email</label>
 							<input type="email" class="form-control @error('email') is-invalid @enderror"
-								name="email" id="email" placeholder="name@company.com"
-								value="{{ old('email', 'email@example.com' ) }}"
+								name="email" id="email" placeholder="you@example.com"
+								value="{{ old('email', 'you@example.com' ) }}"
 								required/>
 							@error('email')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -281,8 +281,8 @@
 						<div class="mb-3">
 							<label class="form-label">Cell</label>
 							<input type="text" class="form-control @error('cell') is-invalid @enderror"
-								name="cell" id="cell" placeholder="01911310509"
-								value="{{ old('cell', '01911310509' ) }}"
+								name="cell" id="cell" placeholder="(123) 456-7890"
+								value="{{ old('cell', '(123) 456-7890' ) }}"
 								required/>
 							@error('cell')
 								<div class="text-danger text-xs">{{ $message }}</div>

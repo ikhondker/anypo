@@ -15,11 +15,11 @@
 			<div class="address">Vendor: {{ $pr->supplier->name }}</div>
 			{{-- <div class="address">Amount {{ number_format($pr->amount,2) }} {{ $pr->currency }}</div> --}}
 			{{-- <div class="address">796 Silver Harbour, TX 79273, US</div>
-			<div class="email">john@example.com</div> --}}
+			<div class="email">you@example.com</div> --}}
 		</div>
 		<div id="invoice">
 			<h1>REQUISITION #{{ $pr->id}}</h1>
-			
+
 			{{-- <div class="name">AMOUNT {{ number_format($pr->amount,2) }} {{ $pr->currency }}</div> --}}
 			<div class="date">DATE: {{ strtoupper(date('d-M-Y', strtotime($pr->pr_date))) }}</div>
 			{{-- <div class="date">APPROVAL: {{ strtoupper($pr->auth_status->value) }}</div> --}}
@@ -99,4 +99,3 @@
 
 @endsection
 
-		

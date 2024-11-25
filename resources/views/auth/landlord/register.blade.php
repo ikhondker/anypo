@@ -33,7 +33,7 @@
 						<label class="form-label">Email</label>
 						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
 								name="email" value="{{ old('email') }}" placeholder="Enter your email"
-								aria-label="email@example.com" required autocomplete="email">
+								aria-label="you@example.com" required autocomplete="email">
 							@error('email')
 							<div class="text-danger text-xs">{{ $message }}</div>
 							@enderror

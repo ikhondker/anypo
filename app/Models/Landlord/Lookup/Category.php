@@ -22,7 +22,6 @@ namespace App\Models\Landlord\Lookup;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// IQBAL 27-SEP-22
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Landlord\Ticket;

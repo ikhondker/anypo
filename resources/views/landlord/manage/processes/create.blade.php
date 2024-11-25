@@ -13,7 +13,7 @@
 		<div class="card-body">
 			<div class="row mb-3">
 				<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
-					
+
 				</div>
 				<div class="col-md-6 col-xl-8">
 					<div class="text-sm-end">
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 
-			<table id="datatables-orders" class="table w-100">
+			<table class="table w-100">
 				<thead>
 					<tr>
 						<th class="align-middle">Logo</th>

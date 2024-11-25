@@ -1,33 +1,21 @@
 
 # 3. TODO 
 ====================================================================
-bug report in both landlaord and tenant
+bug report in both landlord and tenant
 111. review TODO and P2
-66. search IQBAL, 01911 @example.com, demo, //console.log
-'email'				=> 'info@anypo.net',
-'cell'				=> '+0012262804920',
-website'			=> 'https://www.anypo.net',
-126. find and replace 01911310509 +0012262804920 you@company.com email@example.com
-find and replace <table id="datatables-orders" class="table w-100">
-
-x1. move changelog to a shared controler and let supprot entry P2
+66. search and remove //console.log
+				'facebook'			=> 'https://www.facebook.com/my.anyponet',
+				'linkedin'			=> 'https://www.linkedin.com/company/anypo-net',
 1. .gitignore file modify
 1.  update all laravel pack to last avialable version for laravel 10
 1.	fix bo.SYSTEM_USER_ID, akk.SYSTEM_USER_ID, bo.SUPPORT_MGR_ID
-x2.	float to decimal (19,4)
 3.	//TODO php artisan route:cache error
 4.	https://www.youtube.com/watch?app=desktop&v=rtiK6iblU1I
-5.	rename NotificationComposer.php to TenantNotificationComposer.php
-6.	same table structure setup, menu, attachment, event log etc
 7.	fix file merge issue sp user model
-8.	move price/checkout/online invoice in HomeCOntroller as no auth() needed
 9.	use @forelse ($products as $product) everywhere
 10.	all model withDefault[Empty]
-11.	load balance one small vm witg apache+2app+1 db server
+11.	load balance one small vm with apache+2app+1 db server
 12.	P2 quick code snipe generator like breadcrumb, edit, add etc
-13.	merge sweet alert landlord and tenant
-14.	check TODO clean
-15.	vite using dynamic import() to code-split the application
 16.	flyer for anypo.net
 17.	Facebook boost post design
 18.	FAQ landlord 
@@ -35,19 +23,14 @@ x2.	float to decimal (19,4)
 20.	good product g2, captive listing
 21.	chatbot
 22.	screenshots for site and FAQ
-23.	request for demo landlord
 24.	check max length  for float and text(255)
-25.	{{ $dbus->firstItem() + $loop->index}}
-26.	remove use App\Enum\UserRoleEnum; as in alias
 27.	use bo and tenant Chanel instead of log
 28.	http://localhost:8000/email/verify/1 access denied
-29.	Route::get('users-password/{user}', [UserController::class, 'userPassword'])->name('users.password');
 30.	my-password-change menu entry
 31.	delete tenant helper
 32.	cell placeholder="+x(xxx)xxx-xx-xx"
 33.	install laravel sentry for error monitoring
 34.	laravel pulse
-35.	enable verify middle ware for all route
 36.	throw new NotFoundHttpException();
 37.	index() and cache() in migration and model
 38.	unique in name for all lookup
@@ -66,3 +49,22 @@ x2.	float to decimal (19,4)
 - [x] 21. tenant setup name
 - [x] 22. supplier wise spent chart
 - [x] 19. jquery for tenants
+x01911 , IQBAL
+x@example.com, demo,  email@example.com
+xx'email'				=> 'info@anypo.net',
+xx'cell'				=> '+0012262804920',
+xwebsite'			=> 'https://www.anypo.net',
+x126. find and replace 01911310509 +0012262804920 you@company.com 
+x2.	float to decimal (19,4)
+x1. move changelog to a shared controler and let supprot entry P2
+xfind and replace <table id="datatables-orders" class="table w-100">
+x composer split int landlord an tenant
+x5.	rename NotificationComposer.php to TenantNotificationComposer.php
+x8.	move price/checkout/online invoice in HomeCOntroller as no auth() needed
+x13.	merge sweet alert landlord and tenant
+x14.	check TODO clean
+x15.	vite using dynamic import() to code-split the application
+x23.	request for demo landlord
+x26.	remove use App\Enum\UserRoleEnum; as in alias
+x35.	enable verify middle ware for all route
+

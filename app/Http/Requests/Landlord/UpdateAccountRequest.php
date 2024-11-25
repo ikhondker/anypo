@@ -24,8 +24,8 @@ class UpdateAccountRequest extends FormRequest
 		return [
 			'name'				=> 'required|max:100',
 			'address1'			=> 'required|max:100',
-            'cell'				=> 'required|min:6|max:20|unique:accounts,cell,'. $this->account->id,
-            'email'				=> 'required|unique:accounts,email,'. $this->account->id,
+			'cell'				=> 'required|min:6|max:20|unique:accounts,cell,'. $this->account->id,
+			'email'				=> 'required|unique:accounts,email,'. $this->account->id,
 			'file_to_upload'	=> 'image|mimes:jpeg,png,jpg,gif|max:1024'
 		];
 	}

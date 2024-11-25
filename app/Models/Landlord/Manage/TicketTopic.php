@@ -5,7 +5,7 @@ namespace App\Models\Landlord\Manage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/* IQBAL 12-FEB-23 */
+
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
@@ -38,7 +38,7 @@ class TicketTopic extends Model
 		]);
 	}
 
-    /* ---------------- created and updated by ---------------------- */
+	/* ---------------- created and updated by ---------------------- */
 
 	public function user_created_by()
 	{

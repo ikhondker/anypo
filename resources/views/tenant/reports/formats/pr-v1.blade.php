@@ -16,7 +16,7 @@
 			<div class="address">Vendor: {{ $pr->supplier->name }}</div>
 			{{-- <div class="address">Amount {{ number_format($pr->amount,2) }} {{ $pr->currency }}</div> --}}
 			{{-- <div class="address">796 Silver Harbour, TX 79273, US</div>
-			<div class="email">john@example.com</div> --}}
+			<div class="email">you@example.com</div> --}}
 		</div>
 		<div id="invoice">
 			<h1>REQUISITION #{{ $pr->id}}</h1>

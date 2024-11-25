@@ -89,6 +89,7 @@ Log::debug(tenant('id'). ' tenant.Access.isAttachmentEditable article_id = '. $a
 
 $user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
 
+25.	{{ $dbus->firstItem() + $loop->index}}
 
 <div class="text-danger text-xs">{{ $message }}</div> to <div class="small text-danger">{{ $message }}</div>
 

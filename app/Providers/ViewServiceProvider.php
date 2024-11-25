@@ -62,10 +62,10 @@ class ViewServiceProvider extends ServiceProvider
 		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
 			'landlord.*', /** keep this */
 			'components.landlord.widgets.*'],
-			\App\View\Composers\ConfigComposer::class);
+			\App\View\Composers\Landlord\ConfigComposer::class);
 		Facades\View::composer(['layouts.landlord.page','layouts.landlord.app',
 			'components.landlord.nav-bar'],
-			\App\View\Composers\LandlordUserComposer::class);
+			\App\View\Composers\Landlord\UserComposer::class);
 
 		/*
 		|-----------------------------------------------------------------------------
@@ -100,7 +100,7 @@ class ViewServiceProvider extends ServiceProvider
 				'components.tenant.edit.price','components.tenant.create.price-fc',
 				'components.tenant.dashboards.*','components.tenant.widgets.*','components.tenant.info.*'
 				],
-				\App\View\Composers\SetupComposer::class);
-		Facades\View::composer('layouts.tenant.app', \App\View\Composers\NotificationComposer::class);
+				\App\View\Composers\Tenant\SetupComposer::class);
+		Facades\View::composer('layouts.tenant.app', \App\View\Composers\Tenant\NotificationComposer::class);
 	}
 }

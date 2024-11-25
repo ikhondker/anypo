@@ -59,7 +59,7 @@ class ConfirmPasswordController extends Controller
 
 	// IQBAL 20-APR-2023
 	// D:\laravel\bo04\vendor\laravel\ui\auth-backend\ConfirmsPasswords.php
-	//added to overwrite the login form
+	// added to overwrite the login form
 
 	public function showConfirmForm()
 	{

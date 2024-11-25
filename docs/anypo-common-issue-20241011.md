@@ -42,11 +42,11 @@ $request->validate(['file_to_upload'	=> 'required|file|mimes:eml,msg,zip,rar,doc
 
 sample email and cell number
 -----------------------------
-
 (123) 456-7890
 (###) ###-####
 (000) 000-0000
 example.org, example.net and example.com
+you@example.com [email@example.com]
 
 
 Step 3: Autoloading the Helper File

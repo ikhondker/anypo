@@ -1,28 +1,29 @@
 <?php
- 
-namespace App\View\Composers;
- 
+
+ namespace App\View\Composers\Landlord;
+
 //use App\Repositories\UserRepository;
 use Illuminate\View\View;
- 
-use App\Models\Landlord\Manage\Config;
-use App\Models\Landlord\Manage\Country;
 
-class ConfigComposer
+use App\Models\User;
+
+class UserComposer
 {
 	/**
 	 * Create a new profile composer.
 	 */
 	public function __construct() {}
- 
+
 	/**
 	 * Bind data to the view.
 	 */
 	public function compose(View $view): void
 	{
-
-		$config = Config::with('relCountry')->first();
-		$view->with(['_config' => $config]);
+		$user = new User();
+		if (auth()->check() ){
+			$user = User::where('id', auth()->user()->id)->first();
+		}
+		$view->with(['_landlord_user' => $user]);
 		//$view->with('count', $this->users->count());
 	}
 }

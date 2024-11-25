@@ -101,7 +101,7 @@ php artisan queue:listen --timeout=1200
 2. logo in landlord reports
 3. enable this extension in php.ini by uncommenting this line: extension=ext/php_intl.dll
 4. review App\Exceptions\Handler
-5. config('akk.LANDLORD_CONFIG_ID'
+5. config('akk.LANDLORD_CONFIG_ID')
 6. 6. comment demo data seeder insert 
 
 # 8. Logos Used
@@ -134,11 +134,9 @@ php artisan queue:listen --timeout=1200
 # 5. Tables with Same name in both 
 ====================================================================
 * Move to manage sub folder ween NO route level access is needed by fronted. Only model level access
-
 			Landlord				Tenant
 			'can:access-back-office'	?? TODO
 1. users	admin				admin
-2. setup	manage				admin	?
 3. activity	admin				admin
 4. attachments	admin				admin	
 5. menu		manage				manage
@@ -147,6 +145,7 @@ php artisan queue:listen --timeout=1200
 8. dept		lookup				lookup		[no landlord controller]
 9. invoice	admin				\
 10. config	manage				N/A
+11. event_log
 
 # 4. Steps to move a Class 
 ====================================================================

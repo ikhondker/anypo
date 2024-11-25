@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Composers;
+namespace App\View\Composers\Tenant;
 
 //use App\Repositories\UserRepository;
 use Illuminate\View\View;

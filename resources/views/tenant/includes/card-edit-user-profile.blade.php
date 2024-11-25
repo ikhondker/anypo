@@ -48,7 +48,7 @@
 					<th>Email <x-tenant.info info="Note: You wont be able to change the email."/> :</th>
 					<td>
 						<input type="email" class="form-control @error('email') is-invalid @enderror"
-							name="email" id="email" placeholder="name@company.com"
+							name="email" id="email" placeholder="you@example.com"
 							value="{{ old('email', $user->email ) }}"
 							readonly/>
 						@error('email')
@@ -80,7 +80,7 @@
 					<th>Cell :</th>
 					<td>
 						<input type="text" class="form-control @error('cell') is-invalid @enderror"
-							name="cell" id="cell" placeholder="01911310509"
+							name="cell" id="cell" placeholder="(123) 456-7890"
 							value="{{ old('cell', $user->cell ) }}"
 							required/>
 						@error('cell')

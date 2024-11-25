@@ -176,7 +176,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'categories.edit','route_name' 		=> 'categories.index', 'node_name' 	=> 'lookups'],
 			[ 'raw_route_name' => 'categories.create','route_name' 		=> 'categories.index', 'node_name' 	=> 'lookups'],
 
-            [ 'raw_route_name' => 'item-categories.index','route_name' 	=> 'item-categories.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'item-categories.index','route_name' 	=> 'item-categories.index', 'node_name' 	=> 'lookups'],
 			[ 'raw_route_name' => 'item-categories.show','route_name' 	=> 'item-categories.index', 'node_name' 	=> 'lookups'],
 			[ 'raw_route_name' => 'item-categories.edit','route_name' 	=> 'item-categories.index', 'node_name' 	=> 'lookups'],
 			[ 'raw_route_name' => 'item-categories.create','route_name' => 'item-categories.index', 'node_name' 	=> 'lookups'],

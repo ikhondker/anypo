@@ -33,7 +33,7 @@
 				</div>
 
 				<div class="card-body">
-					<table id="datatables-orders" class="table w-100 table-sm">
+					<table class="table w-100 table-sm">
 						<thead>
 							<tr>
 								<th class="align-middle">Lead</th>

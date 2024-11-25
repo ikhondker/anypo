@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord\Lookup
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -22,7 +22,7 @@ namespace App\Models\Landlord\Lookup;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/* IQBAL 12-FEB-23 */
+
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 
