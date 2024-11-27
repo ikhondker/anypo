@@ -54,19 +54,19 @@
 						</tr>
 						<tr>
 							<th>First Response At :</th>
-							<td>{{ ($ticket->first_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->first_response_at)->ago() }}</td>
+							<td>{{ ($ticket->first_response_at == null) ? null : Carbon\Carbon::parse($ticket->first_response_at)->ago() }}</td>
 						</tr>
 						<tr>
 							<th>Last Message At :</th>
-							<td>{{ ($ticket->last_message_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_message_at)->ago() }}</td>
+							<td>{{ ($ticket->last_message_at == null) ? null : Carbon\Carbon::parse($ticket->last_message_at)->ago() }}</td>
 						</tr>
 						<tr>
 							<th>Last Response At :</th>
-							<td>{{ ($ticket->last_response_at == null) ? null  :  Carbon\Carbon::parse($ticket->last_response_at)->ago() }}</td>
+							<td>{{ ($ticket->last_response_at == null) ? null : Carbon\Carbon::parse($ticket->last_response_at)->ago() }}</td>
 						</tr>
 						<tr>
 							<th>Closed At :</th>
-							<td>{{ ($ticket->closed_at == null) ? null  :  Carbon\Carbon::parse($ticket->closed_at)->ago() }}</td>
+							<td>{{ ($ticket->closed_at == null) ? null : Carbon\Carbon::parse($ticket->closed_at)->ago() }}</td>
 						</tr>
 					</tbody>
 				</table>

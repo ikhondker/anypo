@@ -20,7 +20,6 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('hierarchies.edit', $hierarchy->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('hierarchies.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Hierarchy : {{ $hierarchy->name }}</h5>
 			<h6 class="card-subtitle text-muted">Details of a approval hierarchy.</h6>

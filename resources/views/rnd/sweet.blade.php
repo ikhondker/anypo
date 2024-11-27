@@ -34,7 +34,7 @@
 							<form method="POST" action="{{ route('countries.destroy', 'BD') }}">
 									@csrf
 									<input name="_method" type="hidden" value="DELETE">
-									<button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-name="abc" data-username='uname'  data-toggle="tooltip" title='Delete'>Submit</button>
+									<button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-name="abc" data-username='uname' data-toggle="tooltip" title='Delete'>Submit</button>
 							</form>
 
 

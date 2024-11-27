@@ -46,7 +46,7 @@
 										<th class="text-danger">Discount % :</th>
 										<td>{{ number_format($invoice->discount, 2) }}</td>
 									</tr>
-									<x-landlord.show.my-date value="{{ $invoice->discount_date }}" label="Discount Date"  />
+									<x-landlord.show.my-date value="{{ $invoice->discount_date }}" label="Discount Date" />
 									<x-landlord.show.my-text value="{{ $invoice->discount_by }}" label="Discount By" />
 								</tbody>
 							</table>

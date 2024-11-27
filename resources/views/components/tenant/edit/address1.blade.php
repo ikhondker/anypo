@@ -1,5 +1,5 @@
 <tr>
-	<th class="text-warning">Address :</th>
+	<th width="25%" class="text-warning">Address :</th>
 	<td>
 		<input type="text" class="form-control @error('address1') is-invalid @enderror"
 			name="address1" id="address1" placeholder="Address 1"

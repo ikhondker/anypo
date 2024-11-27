@@ -17,7 +17,7 @@
 		<input type="number" class="form-control @error('qty') is-invalid @enderror"
 			style="text-align: right;" min="1" step="0.01" max="999999.99"
 			name="qty" id="qty" placeholder="1"
-			value="{{ old('qty', number_format($invoiceLine->qty, 2)  ) }}"
+			value="{{ old('qty', number_format($invoiceLine->qty, 2) ) }}"
 			required>
 		@error('qty')
 				<div class="small text-danger">{{ $message }}</div>

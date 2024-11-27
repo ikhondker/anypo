@@ -33,7 +33,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>Email <x-tenant.info info="Note: You wont be able to change the email."/></th>
+							<th width="25%">Email :<x-tenant.info info="Note: You wont be able to change the email."/></th>
 							<td>
 								<input type="email" class="form-control @error('email') is-invalid @enderror"
 									name="email" id="email" placeholder="you@example.com"
@@ -45,7 +45,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Full Name</th>
+							<th>Full Name :</th>
 							<td>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"
 									name="name" id="name" placeholder="Full Name"
@@ -57,7 +57,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Role</th>
+							<th>Role :</th>
 							<td>
 								<select class="form-control" name="role" required>
 									<option value=""><< Role >> </option>

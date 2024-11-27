@@ -2,7 +2,7 @@
 	<div class="card-header">
 		@can('viewAny', $user)
 			<div class="card-actions float-end">
-				<a href="{{ route('users.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+				{{-- <a href="{{ route('users.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a> --}}
 				{{-- <a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 			</div>
 		@endcan
@@ -13,7 +13,7 @@
 		<table class="table table-sm my-2">
 			<tbody>
 				<tr>
-					<th></th>
+					<th ></th>
 					<td>
 						<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="rounded-circle rounded me-2 mb-2" title="{{ $user->name }}" width="120px">
 						<x-tenant.attachment.create />
@@ -33,7 +33,7 @@
 		<table class="table table-sm my-2">
 			<tbody>
 				<tr>
-					<th>Full Name :</th>
+					<th width="25%">Full Name :</th>
 					<td>
 						<input type="text" class="form-control @error('name') is-invalid @enderror"
 							name="name" id="name" placeholder="Full Name"
@@ -104,7 +104,7 @@
 			<table class="table table-sm my-2">
 				<tbody>
 					<tr>
-						<th class="text-danger">Modify Role To:</th>
+						<th width="25%" class="text-danger">Modify Role To:</th>
 						<td>
 							<select class="form-control" name="role">
 								<option {{ 'user' == old('role',$user->role->value) ? 'selected' : '' }} value="user">User</option>

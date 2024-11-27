@@ -1,5 +1,5 @@
 <tr>
-	<th class="text-warning">Website :</th>
+	<th width="25%" class="text-warning">Website :</th>
 	<td>
 		<input type="text" class="form-control @error('website') is-invalid @enderror"
 			name="website" id="website" placeholder="https://www.example.com"

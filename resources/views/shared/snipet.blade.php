@@ -85,7 +85,7 @@ amount
 
 Log::debug(tenant('id'). ' tenant.Access.isAttachmentEditable article_id = '. $attachment->article_id);
 
-<th width="20%">Photo</th>
+<th width="25%">Photo</th>
 
 $user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
 
@@ -157,3 +157,15 @@ create
 	<li class="breadcrumb-item active">Create Ticket</li>
 @endsection
 
+
+
+respsnive layour
+
+<div class="row">
+	<div class="col-12 col-lg-6">
+
+	</div>
+	<div class="col-12 col-lg-6">
+
+	</div>
+</div>

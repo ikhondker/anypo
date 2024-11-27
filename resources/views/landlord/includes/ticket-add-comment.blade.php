@@ -17,7 +17,7 @@
 					<tr>
 						<th>Comment :</th>
 						<td>
-							<textarea class="form-control" rows="6" name="content" id="content"  placeholder="Ticket Update ...">{{ old('content', 'Ticket Update ...') }}</textarea>
+							<textarea class="form-control" rows="6" name="content" id="content" placeholder="Ticket Update ...">{{ old('content', 'Ticket Update ...') }}</textarea>
 							@error('content')
 								<div class="small text-danger">{{ $message }}</div>
 							@enderror

@@ -64,7 +64,7 @@
 							<td>{{ Carbon\Carbon::parse($comment->comment_date)->ago() }}</td>
 							<td>
 								<a href="{{ route('comments.show', $comment->id) }}">
-									<strong>{{ Str::limit($comment->content, 45)  }}</strong>
+									<strong>{{ Str::limit($comment->content, 45) }}</strong>
 								</a>
 							</td>
 							<td><x-landlord.attachment.show-by-id attachmentId="{{ $comment->attachment_id }}"/></td>

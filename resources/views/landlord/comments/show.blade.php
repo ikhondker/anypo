@@ -27,10 +27,10 @@
 						<tbody>
 							<x-landlord.show.my-badge	value="{{ $comment->id }}" label="ID"/>
 							<x-landlord.show.my-content	value="{{ $comment->content }}" label="Comment"/>
-							<x-landlord.show.my-enable	value="{{ $comment->is_internal }}"  label="Internal?"/>
-							<x-landlord.show.my-text	value="{{ $comment->owner->name  }}" label="Comment By:"/>
+							<x-landlord.show.my-enable	value="{{ $comment->is_internal }}" label="Internal?"/>
+							<x-landlord.show.my-text	value="{{ $comment->owner->name }}" label="Comment By:"/>
 							<x-landlord.show.my-date	value="{{ $comment->comment_date }}" label="Date:"/>
-							<x-landlord.show.my-text	value="{{ $comment->ticket->title  }}" label="Ticket:"/>
+							<x-landlord.show.my-text	value="{{ $comment->ticket->title }}" label="Ticket:"/>
 						</tbody>
 					</table>
 				</div>

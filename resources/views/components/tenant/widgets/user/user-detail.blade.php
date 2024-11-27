@@ -16,7 +16,7 @@
 		<table class="table table-sm my-2">
 			<tbody>
 				<tr>
-					<th>Photo</th>
+					<th width="25%">Photo</th>
 					<td><img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" alt="{{ $user->name }}" class="img-fluid rounded-circle mb-2" width="128" height="128" title="{{ $user->name }}"></td>
 				</tr>
 				<x-tenant.show.my-text		value="{{ $user->name }}"/>

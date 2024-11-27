@@ -36,7 +36,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>Hierarchy Name</th>
+							<th width="25%">Hierarchy Name :</th>
 							<td>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"
 								name="name" id="name" placeholder="Hierarchy Name"
@@ -47,10 +47,8 @@
 							@enderror
 							</td>
 						</tr>
-
-
 						<tr>
-							<th>First Approver</th>
+							<th>First Approver :</th>
 							<td>
 								<select class="form-control" name="approver_id_1" required>
 									<option value="0"><< First Approver >> </option>
@@ -64,10 +62,8 @@
 
 							</td>
 						</tr>
-
-
 						<tr>
-							<th>Second Approver</th>
+							<th>Second Approver :</th>
 							<td>
 								<select class="form-control" name="approver_id_2">
 									<option value="0"><< Second Approver >> </option>
@@ -81,10 +77,8 @@
 
 							</td>
 						</tr>
-
-
 						<tr>
-							<th>Third Approver</th>
+							<th>Third Approver :</th>
 							<td>
 								<select class="form-control" name="approver_id_3">
 									<option value="0"><< Third Approver >> </option>
@@ -98,10 +92,8 @@
 
 							</td>
 						</tr>
-
-
 						<tr>
-							<th>Fourth Approver</th>
+							<th>Fourth Approver :</th>
 							<td>
 								<select class="form-control" name="approver_id_4">
 									<option value="0"><< Fourth Approver >> </option>
@@ -115,10 +107,8 @@
 
 							</td>
 						</tr>
-
-
 						<tr>
-							<th>Fifth Approver</th>
+							<th>Fifth Approver :</th>
 							<td>
 								<select class="form-control" name="approver_id_5">
 									<option value=""><< Fifth Approver >> </option>

@@ -20,7 +20,7 @@
 <small class="form-text text-muted">Example block-level help text here.</small> --}}
 
 <tr>
-	<th>Attachment X: </th>
+	<th width="25%">Attachment X: </th>
 	<td>
 		<input type="file" class="form-control form-control-sm" name="file_to_upload" id="file_to_upload"
 			accept=".jpg,.jpeg,.bmp,.png,.gif,.doc,.docx,.ppt,.pptx,.csv,.rtf,.xlsx,.xls,.txt,.pdf,.zip"

@@ -24,7 +24,7 @@
 
 		<div class="row">
 			<div class="col-md-4 col-xl-3">
-				<x-tenant.widgets.user.user-profile id="{{ $user->id }}"/>
+				<x-tenant.widgets.user.user-profile userId="{{ $user->id }}"/>
 			</div>
 
 			<div class="col-md-8 col-xl-9">
@@ -35,7 +35,7 @@
 					</div>
 					<div class="card-body">
 						<div class="mb-3">
-							<label class="form-label">New password</label>
+							<label class="form-label">New password :</label>
 							<input class="form-control form-control-lg @error('password1') is-invalid @enderror"
 								type="password" name="password1" id="password1"
 								placeholder="New password"
@@ -47,7 +47,7 @@
 						</div>
 
 						<div class="mb-3">
-							<label class="form-label">Confirm Password</label>
+							<label class="form-label">Confirm Password :</label>
 							<input class="form-control form-control-lg @error('password2') is-invalid @enderror"
 								type="password" name="password2" id="password2"
 								value="{{ old('password2', $user->password2 ) }}"

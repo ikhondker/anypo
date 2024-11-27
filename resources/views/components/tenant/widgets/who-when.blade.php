@@ -17,7 +17,7 @@
 					</tr>
 					<tr>
 						<th>Created At :</th>
-						<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($createdAt)))  }}</td>
+						<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($createdAt))) }}</td>
 					</tr>
 					<tr>
 						<th>Updated By :</th>
@@ -25,7 +25,7 @@
 					</tr>
 					<tr>
 						<th>Updated At :</th>
-						<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($updatedAt)))  }}</td>
+						<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($updatedAt))) }}</td>
 					</tr>
 				</tbody>
 			</table>

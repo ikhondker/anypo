@@ -145,8 +145,8 @@ Route::get('password/reset', [
 # 1. Interface and layout 
 ====================================================================
  - table 
-        appstack4\docs\ecommerce-orders.html
-        <table id="datatables-orders" class="table w-100">
+		appstack4\docs\ecommerce-orders.html
+		<table id="datatables-orders" class="table w-100">
 
 # 1. Setup->config 
 ====================================================================

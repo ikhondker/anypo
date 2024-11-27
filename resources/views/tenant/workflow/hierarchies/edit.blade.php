@@ -38,7 +38,7 @@
 			<table class="table table-sm my-2">
 				<tbody>
 					<tr>
-						<th>Hierarchy Name</th>
+						<th width="25%">Hierarchy Name :</th>
 						<td>
 							<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $hierarchy->id ) }}" hidden>
 							<input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -51,7 +51,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>First Approver</th>
+						<th>First Approver :</th>
 						<td>
 							<select class="form-control" name="approver_id_1" required>
 								@foreach ($users as $user)
@@ -61,7 +61,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Second Approver</th>
+						<th>Second Approver :</th>
 						<td>
 							<select class="form-control" name="approver_id_2">
 								{{-- @if ($approver_id_2 == 0)
@@ -75,7 +75,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Third Approver</th>
+						<th>Third Approver :</th>
 						<td>
 							<select class="form-control" name="approver_id_3">
 								@if ($approver_id_3 == 0)
@@ -88,7 +88,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Fourth Approver</th>
+						<th>Fourth Approver :</th>
 						<td>
 							<select class="form-control" name="approver_id_4">
 								{{-- @if ($approver_id_4 == 0)
@@ -101,7 +101,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Fifth Approver</th>
+						<th>Fifth Approver :</th>
 						<td>
 							<select class="form-control" name="approver_id_5">
 								{{-- @if ($approver_id_5 == 0)

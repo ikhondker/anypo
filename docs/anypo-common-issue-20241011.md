@@ -40,13 +40,19 @@ $request->validate(['file_to_upload'	=> 'required|file|mimes:eml,msg,zip,rar,doc
 2. resources\views\components\tenant\attachment\create.blade.php
 
 
-sample email and cell number
+Sample email and cell number
 -----------------------------
 (123) 456-7890
 (###) ###-####
 (000) 000-0000
 example.org, example.net and example.com
 you@example.com [email@example.com]
+'facebook'			=> 'https://www.facebook.com/my.anyponet',
+'linkedin'			=> 'https://www.linkedin.com/company/anypo-net',
+
+// in help page
+akk.	'SUPPORT_PHONE_NO'		=> '+8801911310509',
+The standard screen resolution size for most modern monitors is 1920 x 1080 pixels, also known as Full HD or 1080p. However, higher resolutions like 2560 x 1440 (1440p) and 3840 x 2160 (4K) are becoming more common.
 
 
 Step 3: Autoloading the Helper File

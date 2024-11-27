@@ -1,7 +1,5 @@
 # TODO ----------------------
-- TenantSetupComposer -> SetupComposer
 - Info image aws upload 
-
 
 # Rates
 - tenant created at 4-may-24. next user login in july. Is the rate imported covering tJun-24?
@@ -41,15 +39,14 @@
 - no delete:
 - cancel: only reverse
 
-# INVOCIE
+# INVOICE
 - delete: only draft
 - cancle: only posted. Not paid. reverse
 
-# PAYMNET
+# PAYMENT
 - delete: No
 - cancel: reverse
 - allow only payment form same currency bank account
-
 
 # BUDGET
 - make sure can not reduce budget below issues+bookingBudget
@@ -69,12 +66,11 @@
 
 # WF
 anypo test case wf user inactive, 
-no person in hierarchy? What happend
+no person in hierarchy? What happened
 
 
 # AEL
 ael imported y/n
-
 
 # item interface
 - validated items edit makes it draft
@@ -86,3 +82,8 @@ ael imported y/n
 
 # Uom
 - wont be able to edit or disable the class defaults
+
+
+# LOOKUPS
+
+# MASTER

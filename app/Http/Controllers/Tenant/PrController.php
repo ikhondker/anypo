@@ -861,7 +861,7 @@ class PrController extends Controller
 		try {
 			$po = Po::where('id', $request->input('po_id'))->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
-		   return back()->withErrors('Invalid PO Number!');
+			return back()->withErrors('Invalid PO Number!');
 		}
 
 		// if PO is draft or rejected

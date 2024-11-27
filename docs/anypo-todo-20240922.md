@@ -1,14 +1,11 @@
 
 # 3. TODO 
 ====================================================================
-bug report in both landlord and tenant
+1. bug report in both landlord and tenant
 111. review TODO and P2
 66. search and remove //console.log
-				'facebook'			=> 'https://www.facebook.com/my.anyponet',
-				'linkedin'			=> 'https://www.linkedin.com/company/anypo-net',
 1. .gitignore file modify
 1.  update all laravel pack to last avialable version for laravel 10
-1.	fix bo.SYSTEM_USER_ID, akk.SYSTEM_USER_ID, bo.SUPPORT_MGR_ID
 3.	//TODO php artisan route:cache error
 4.	https://www.youtube.com/watch?app=desktop&v=rtiK6iblU1I
 7.	fix file merge issue sp user model
@@ -28,12 +25,13 @@ bug report in both landlord and tenant
 28.	http://localhost:8000/email/verify/1 access denied
 30.	my-password-change menu entry
 31.	delete tenant helper
-32.	cell placeholder="+x(xxx)xxx-xx-xx"
 33.	install laravel sentry for error monitoring
 34.	laravel pulse
 36.	throw new NotFoundHttpException();
 37.	index() and cache() in migration and model
 38.	unique in name for all lookup
+x32.	cell placeholder="+x(xxx)xxx-xx-xx"
+x1.	fix bo.SYSTEM_USER_ID, akk.SYSTEM_USER_ID, bo.SUPPORT_MGR_ID
 
 # 2. TODO P2 
 ====================================================================
