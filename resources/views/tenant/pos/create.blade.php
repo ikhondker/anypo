@@ -65,7 +65,7 @@
 												<select class="form-control select2" data-toggle="select2" name="dept_id" required>
 												<option value=""><< Dept >> </option>
 												@foreach ($depts as $dept)
-													<option value="{{ $dept->id }}" {{ $dept->id == old('dept_id') ? 'selected' : '' }} >{{ $dept->name }} </option>
+													<option value="{{ $dept->id }}" {{ $dept->id == old('dept_id') ? 'selected' : '' }} >{{ $dept->name }}</option>
 												@endforeach
 											</select>
 											@error('dept_id')
@@ -81,7 +81,7 @@
 										<select class="form-control select2" data-toggle="select2" name="supplier_id" required>
 											<option value=""><< Supplier >> </option>
 											@foreach ($suppliers as $supplier)
-												<option value="{{ $supplier->id }}" {{ $supplier->id == old('supplier_id') ? 'selected' : '' }} >{{ $supplier->name }} </option>
+												<option value="{{ $supplier->id }}" {{ $supplier->id == old('supplier_id') ? 'selected' : '' }} >{{ $supplier->name }}</option>
 											@endforeach
 										</select>
 										@error('supplier_id')
@@ -96,7 +96,7 @@
 										<select class="form-control select2" data-toggle="select2" name="project_id" required>
 											<option value=""><< Project >> </option>
 											@foreach ($projects as $project)
-												<option value="{{ $project->id }}" {{ $project->id == old('project_id') ? 'selected' : '' }} >{{ $project->name }} </option>
+												<option value="{{ $project->id }}" {{ $project->id == old('project_id') ? 'selected' : '' }} >{{ $project->name }}</option>
 											@endforeach
 										</select>
 										@error('project_id')
@@ -131,7 +131,7 @@
 										<select class="form-control select2" data-toggle="select2" name="category_id" required>
 											<option value=""><< Category >> </option>
 											@foreach ($categories as $category)
-												<option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : '' }} >{{ $category->name }} </option>
+												<option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : '' }} >{{ $category->name }}</option>
 											@endforeach
 										</select>
 										@error('category_id')

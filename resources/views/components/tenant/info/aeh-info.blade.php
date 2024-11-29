@@ -12,7 +12,7 @@
 					<a href="{{ route('aehs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 
-				<strong>{{ $aeh->source_entity->value .'#'.$aeh->article_id }} </strong>
+				<strong>{{ $aeh->source_entity->value .'#'.$aeh->article_id }}</strong>
 				<p>Event: {{ $aeh->event }}</p>
 				<table class="table table-sm my-2">
 					<tbody>
@@ -26,7 +26,7 @@
 						</tr>
 						<tr>
 							<th>PO</th>
-							<td><a href="{{ route('pos.show',$aeh->po_id) }}" class="text-muted"><strong>#{{ $aeh->po_id }}</strong></a> </td>
+							<td><a href="{{ route('pos.show',$aeh->po_id) }}" class="text-muted"><strong>#{{ $aeh->po_id }}</strong></a></td>
 						</tr>
 
 						<tr>

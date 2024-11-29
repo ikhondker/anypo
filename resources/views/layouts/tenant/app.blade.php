@@ -143,7 +143,7 @@
 							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
 								<div class="position-relative">
 									<i class="align-middle text-body" data-lucide="message-circle"></i>
-									<span class="indicator">{{ $_tenant_count_unread_notifications }} </span>
+									<span class="indicator">{{ $_tenant_count_unread_notifications }}</span>
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">

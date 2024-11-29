@@ -21,7 +21,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@php 
+		@php
 			$sum = 0
 		@endphp
 		@foreach ($prls as $prl)
@@ -32,16 +32,16 @@
 			<td class="sl">{{ $prl->line_num }}</td>
 			<td class="desc">{{ $prl->item_description }}</td>
 			<td class="desc">{{ $prl->dept_name }}</td>
-			<td class="desc">{{ $prl->uom_name }} </td>
+			<td class="desc">{{ $prl->uom_name }}</td>
 			<td class="numeric">{{ number_format($prl->price,2) }}</td>
-			<td class="desc">{{ $prl->currency }} </td>
+			<td class="desc">{{ $prl->currency }}</td>
 			<td class="numeric">{{ $prl->qty }}</td>
 			<td class="numeric">{{ number_format($prl->amount,2) }}</td>
-			<td class="numeric">{{ number_format($prl->fc_amount,2) }}</td>	
+			<td class="numeric">{{ number_format($prl->fc_amount,2) }}</td>
 		</tr>
 		{{-- @empty
 			<td olspan="7" class="desc">No Data Found!</td> --}}
-			@php 
+			@php
 				$sum = $sum + $prl->fc_amount;
 			@endphp
 		@endforeach
@@ -77,7 +77,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@php 
+			@php
 				$sum = 0
 			@endphp
 			@foreach ($prls as $prl)
@@ -88,16 +88,16 @@
 				<td class="sl">{{ $prl->line_num }}</td>
 				<td class="desc">{{ $prl->item_description }}</td>
 				<td class="desc">{{ $prl->dept_name }}</td>
-				<td class="desc">{{ $prl->uom_name }} </td>
+				<td class="desc">{{ $prl->uom_name }}</td>
 				<td class="qty">{{ number_format($prl->price,2) }}</td>
-				<td class="desc">{{ $prl->currency }} </td>
+				<td class="desc">{{ $prl->currency }}</td>
 				<td class="qty">{{ $prl->qty }}</td>
 				<td class="qty">{{ number_format($prl->amount,2) }}</td>
-				<td class="qty">{{ number_format($prl->fc_amount,2) }}</td>	
+				<td class="qty">{{ number_format($prl->fc_amount,2) }}</td>
 			</tr>
 			{{-- @empty
 				<td olspan="7" class="desc">No Data Found!</td> --}}
-				@php 
+				@php
 					$sum = $sum + $prl->fc_amount;
 				@endphp
 			@endforeach

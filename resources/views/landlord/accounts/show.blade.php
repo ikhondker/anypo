@@ -96,7 +96,7 @@
 								@if (auth()->user()->isSystem())
 								<tr>
 									<th scope="row" class="text-danger" >Lifetime Discount % :</th>
-									<td>{{ number_format($account->discount, 2) }} </td>
+									<td>{{ number_format($account->discount, 2) }}</td>
 								</tr>
 								@endif
 							</tbody>

@@ -29,7 +29,7 @@
 							<select class="form-control select2" data-toggle="select2" name="reply_template_id" id="reply_template_id">
 								<option value=""><< Reply Template >> </option>
 								@foreach ($replyTemplates as $replyTemplate)
-									<option value="{{ $replyTemplate->id }}" {{ $replyTemplate->id == old('reply_template_id') ? 'selected' : '' }} >{{ $replyTemplate->name }} </option>
+									<option value="{{ $replyTemplate->id }}" {{ $replyTemplate->id == old('reply_template_id') ? 'selected' : '' }} >{{ $replyTemplate->name }}</option>
 								@endforeach
 							</select>
 							@error('reply_template_id')

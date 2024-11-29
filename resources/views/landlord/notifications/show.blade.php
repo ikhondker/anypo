@@ -22,7 +22,7 @@
 			<p>&nbsp;</p>
 			<p>Thank you, </p>
 			<p>{{ config('app.name') }} Team</p>
-			<p class="mt-4"><small class="text-muted"> Read At: {{ $notification->read_at }} </small></p>
+			<p class="mt-4"><small class="text-muted"> Read At: {{ $notification->read_at }}</small></p>
 
 			{{-- <p class=""><small class="text-muted">{{ $ticket->content }}</small></p>
 			<p class="text-xs"><small class="text-muted">Created By: {{ $ticket->owner->name }}</small><small class="text-muted"> on : {{ $ticket->ticket_date }}</small></p>

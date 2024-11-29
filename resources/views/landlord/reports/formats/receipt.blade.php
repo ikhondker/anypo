@@ -19,7 +19,7 @@
 			<h1>PAYMENT RECEIPT</h1>
 			<div class="date">PAYMENT #{{ $payment->id }}</div>
 			<div class="date">DATE: {{ strtoupper(date('d-M-Y', strtotime($payment->pay_date))) }}</div>
-			{{-- <div class="date">STATUS: {{Str::upper($invoice->status->name)}} </div> --}}
+			{{-- <div class="date">STATUS: {{Str::upper($invoice->status->name)}}</div> --}}
 			{{-- <div class="date">Due Date: 30/06/2014</div> --}}
 		</div>
 	</div>

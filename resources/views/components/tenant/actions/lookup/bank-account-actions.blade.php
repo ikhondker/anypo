@@ -3,7 +3,7 @@
 		<i class="align-middle text-info mt-n1" data-lucide="settings"></i> Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-		
+
 		<a class="dropdown-item" href="{{ route('bank-accounts.show', $bankAccount->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View BankAccount</a>
 		<a class="dropdown-item" href="{{ route('bank-accounts.edit', $bankAccount->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit BankAccount</a>
 
@@ -15,12 +15,12 @@
 		@can('delete', $bankAccount)
 			<div class="dropdown-divider"></div>
 			@if ($bankAccount->enable)
-				<a class="dropdown-item sw2-advance" href="{{ route('bank-accounts.destroy', $id) }}"
+				<a class="dropdown-item sw2-advance" href="{{ route('bank-accounts.destroy', $bankAccount->id) }}"
 					data-entity="BankAccount" data-name="{{ $bankAccount->name }}" data-status="Disable"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Disable BankAccount">
 					<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Disable BankAccount</a>
 			@else
-				<a class="dropdown-item sw2-advance" href="{{ route('bank-accounts.destroy', $id) }}"
+				<a class="dropdown-item sw2-advance" href="{{ route('bank-accounts.destroy',$bankAccount->id) }}"
 					data-entity="BankAccount" data-name="{{ $bankAccount->name }}" data-status="Enable"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Enable BankAccount">
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable BankAccount</a>

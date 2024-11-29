@@ -94,7 +94,7 @@
 						<div class="col-sm-9">
 							<select class="form-control" name="user_id">
 								@foreach ($users as $template)
-								<option {{ $template->id == old('user_id',$template->user_id) ? 'selected' : '' }} value="{{ $template->id }}">{{ $template->name }} </option>
+								<option {{ $template->id == old('user_id',$template->user_id) ? 'selected' : '' }} value="{{ $template->id }}">{{ $template->name }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -327,7 +327,7 @@
 									<label class="form-label">Country</label>
 									<select class="form-control" name="country">
 										@foreach ($countries as $country)
-											<option {{ $country->country == old('country',$template->country) ? 'selected' : '' }} value="{{ $country->country }}">{{ $country->name }} </option>
+											<option {{ $country->country == old('country',$template->country) ? 'selected' : '' }} value="{{ $country->country }}">{{ $country->name }}</option>
 										@endforeach
 									</select>
 								</div>
@@ -367,7 +367,7 @@
 									<label class="form-label">User</label>
 									<select class="form-control" name="user_id">
 										@foreach ($users as $user)
-										<option {{ $user->id == old('user_id',$template->user_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+										<option {{ $user->id == old('user_id',$template->user_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 										@endforeach
 									</select>
 								</div>

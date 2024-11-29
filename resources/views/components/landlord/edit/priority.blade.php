@@ -3,7 +3,7 @@
 	<td>
 		<select class="form-control" name="priority_id">
 			@foreach ($priorities as $priority)
-				<option {{ $priority->id == old('priority_id',$value) ? 'selected' : '' }} value="{{ $priority->id }}">{{ $priority->name }} </option>
+				<option {{ $priority->id == old('priority_id',$value) ? 'selected' : '' }} value="{{ $priority->id }}">{{ $priority->name }}</option>
 			@endforeach
 		</select>
 	</td>

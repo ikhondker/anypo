@@ -65,7 +65,7 @@
 									<strong>{{ $status->code }}</strong>
 								</a>
 							</td>
-							<td>{{ $status->name }} </td>
+							<td>{{ $status->name }}</td>
 							<td>
 
 								<i data-lucide="check-circle" class="{{ $status->accounts ? 'text-success' : 'text-secondary' }}"
@@ -99,7 +99,7 @@
 									data-name="{{ $status->route_name }}"
 									data-status="{{ $status->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $status->enable ? 'Disable' : 'Enable' }}">
-									<i data-lucide="{{ $status->enable ? 'bell-off' : 'bell' }} "></i>
+									<i data-lucide="{{ $status->enable ? 'bell-off' : 'bell' }}"></i>
 								</a>
 							</td>
 						</tr>

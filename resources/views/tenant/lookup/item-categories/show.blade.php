@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
-@section('title','View Category')
+@section('title','View Item Category')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('categories.index') }}" class="text-muted">Departments</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('item-categories.index') }}" class="text-muted">Item Categories</a></li>
 	<li class="breadcrumb-item active">{{ $itemCategory->name }}</li>
 @endsection
 
@@ -11,7 +11,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			View Category
+			View Item Category
 		@endslot
 		@slot('buttons')
 			<x-tenant.actions.lookup.item-category-actions itemCategoryId="{{ $itemCategory->id }}"/>
@@ -21,8 +21,8 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('categories.edit', $itemCategory->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('categories.index') }}" ><i class="fas fa-list"></i> View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('item-categories.edit', $itemCategory->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('item-categories.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Category Detail</h5>
 			<h6 class="card-subtitle text-muted">Category details.</h6>

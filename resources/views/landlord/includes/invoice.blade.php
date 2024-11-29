@@ -21,7 +21,7 @@
 								{{ $config->address2 }}<br>
 							@endif
 							{{ $config->city . ', ' . $config->state . ', ' . $config->zip }}<br>
-							{{ $config->relCountry->name }} <br>
+							{{ $config->relCountry->name }}<br>
 							<a href="#">{{ $config->email }}</a>
 						</p>
 

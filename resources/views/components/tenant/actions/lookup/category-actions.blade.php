@@ -14,7 +14,7 @@
 		<a class="dropdown-item" href="{{ route('categories.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
 
 
-		@can('create', App\Models\Tenant\Lookup\Dept::class)
+		@can('create', App\Models\Tenant\Lookup\Category::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('categories.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Category</a>
 		@endcan

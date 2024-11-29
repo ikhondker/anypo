@@ -44,7 +44,7 @@
 
 						<tr>
 							<th>Line Amount</th>
-							<td>{{ $pol->po->currency }} {{ number_format($pol->amount , 2) }} </td>
+							<td>{{ $pol->po->currency }} {{ number_format($pol->amount , 2) }}</td>
 						</tr>
 						<tr>
 							<th>Supplier</th>

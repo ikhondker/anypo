@@ -71,7 +71,7 @@
 			<tr>
 				<td class="sl">{{ $prl->line_num }}</td>
 				<td class="desc">{{ $prl->item_description }}</td>
-				<td class="desc">{{ $prl->item->uom->name }} </td>
+				<td class="desc">{{ $prl->item->uom->name }}</td>
 				<td class="numeric">{{ number_format($prl->price,2) }}</td>
 				<td class="numeric">{{ $prl->qty }}</td>
 

@@ -66,7 +66,7 @@
 					<table class="table table-sm my-2">
 						<tbody>
 							<tr>
-								<th>Attachments:</th>
+								<th>Attachments :</th>
 								<td><x-tenant.attachment.all entity="PROJECT" articleId="{{ $project->id }}"/></td>
 							</tr>
 							<tr>

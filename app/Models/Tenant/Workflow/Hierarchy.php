@@ -17,9 +17,9 @@ class Hierarchy extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'enable', 'seeded', 'updated_by', 'updated_at',
+		'name', 'summary', 'enable', 'seeded', 'updated_by', 'updated_at',
 	];
-	
+
 
 	/* ----------------- Scopes ------------------------- */
 	/**
@@ -27,13 +27,13 @@ class Hierarchy extends Model
 	*/
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('enable',true); 
+		$query->where('enable',true);
 	}
 
 
 	/* ----------------- Functions ---------------------- */
-	
-	 
+
+
 	/* ----------------- HasMany ------------------------ */
 	public function lines() {
 		return $this->hasMany(Hierarchyl::class);

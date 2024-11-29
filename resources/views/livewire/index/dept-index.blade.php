@@ -3,7 +3,7 @@
 		<x-cards.header-with-simple-search object="Dept" title="Department" :export="true"/>
 	</div>
 	<div class="card-body">
-	
+
 		<table class="table">
 			<thead>
 				<tr>
@@ -38,7 +38,7 @@
 			{{ $depts->links() }}
 		</div>
 		<!-- end pagination -->
-	
+
 	</div>
 	<!-- end card-body -->
 
@@ -48,7 +48,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">
-						<x-icons.confirm/> 
+						<x-icons.confirm/>
 						@can('delete', $dept)
 							Confirmation
 						@else
@@ -58,7 +58,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body m-3">
-					<p class="mb-0"> {{$message}}</p>
+					<p class="mb-0"> {{ $message }}</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

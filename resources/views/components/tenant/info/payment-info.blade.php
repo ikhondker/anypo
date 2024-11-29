@@ -16,7 +16,7 @@
 				<p>{!! nl2br($payment->notes) !!}</p>
 				<table class="table table-sm my-2">
 					<tbody>
-						
+
 						<tr>
 							<th>Ref/Cheque#</th>
 							<td>{{ $payment->cheque_no }}</td>
@@ -38,8 +38,8 @@
 							<td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
 						</tr>
 
-						
-						
+
+
 						<tr>
 							<th>Invoice</th>
 							<td>
@@ -58,7 +58,7 @@
 						</tr>
 						<tr>
 							<th>Supplier</th>
-							<td>{{$payment->invoice->supplier->name }}</td>
+							<td>{{ $payment->invoice->supplier->name }}</td>
 						</tr>
 						<tr>
 							<th>PO #</th>
@@ -68,14 +68,14 @@
 								</a>
 							</td>
 						</tr>
-						
+
 						{{-- <tr>
 							<th>Payment Status</th>
 							<td><span class="badge {{ $payment->pay_status_badge->badge }}">{{ $payment->pay_status_badge->name}}</span></td>
 						</tr> --}}
 						{{-- <tr>
-							<th>PO <a href="{{ route('pos.show',$payment->po_id) }}" class="text-warning d-inline-block">#{{ $payment->po_id }}</a> </th>
-							<td>{{ $payment->po->summary }} </td>
+							<th>PO <a href="{{ route('pos.show',$payment->po_id) }}" class="text-warning d-inline-block">#{{ $payment->po_id }}</a></th>
+							<td>{{ $payment->po->summary }}</td>
 						</tr> --}}
 						<tr>
 							<td>&nbsp;</td>

@@ -12,6 +12,9 @@ use App\Models\Tenant\Admin\Setup;
 use App\Models\User;
 use App\Models\Tenant\Workflow\Hierarchyl;
 
+use App\Http\Controllers\Tenant\PrController;
+use App\Http\Controllers\Tenant\PoController;
+
 class TenantSeeder extends Seeder
 {
 		/**
@@ -63,7 +66,7 @@ class TenantSeeder extends Seeder
 
 
 		// ========================================================
-		//TODO Remove
+		//TODO MUST Remove
 
 		$this->call(\Database\Seeders\PrSeeder::class);
 		$this->call(\Database\Seeders\PrlSeeder::class);
@@ -87,6 +90,24 @@ class TenantSeeder extends Seeder
 			'hid'			=> 1002,
 			'approver_id'	=> $system->id,
 		]);
+
+		// recalculate Pr
+		$pr = new PrController();
+		$pr1001 = Pr::where('id', '1001')->firstOrFail();
+		$result = $pr->recalculate($pr1001);
+		$pr1002 = Pr::where('id', '1002')->firstOrFail();
+		$result = $pr->recalculate($pr1002);
+		$pr1003 = Pr::where('id', '1003')->firstOrFail();
+		$result = $pr->recalculate($pr1002);
+
+		// recalculate Po
+		$po = new PoController();
+		$po1001 = Po::where('id', '1001')->firstOrFail();
+		$result = $po->recalculate($po1001);
+		$po1002 = Po::where('id', '1002')->firstOrFail();
+		$result = $po->recalculate($po1002);
+		$po1003 = Po::where('id', '1003')->firstOrFail();
+		$result = $po->recalculate($po1003);
 
 		// $this->call(\Database\Seeders\ReceiptSeeder::class);
 		// $this->call(\Database\Seeders\InvoiceSeeder::class);

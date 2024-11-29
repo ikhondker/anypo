@@ -15,15 +15,15 @@ return new class extends Migration
 	{
 		Schema::create('upload_items', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
-			$table->integer('owner_id')->default(1);
-			$table->string('item_code')->nullable();
+			$table->uuid('owner_id');
+			$table->string('item_code');
 			$table->string('item_name')->nullable();
 			$table->string('category_name')->nullable();
 			$table->string('oem_name')->nullable();
 			$table->string('uom_name')->nullable();
 			$table->string('gl_type_name')->nullable();
 			$table->string('ac_expense')->nullable();
-			$table->decimal('price', 19, 2)->default(0);
+			$table->decimal('price', 19, 2)->nullable()->default(0);
 			 /** ENUM */
 			 $table->string('status')->default(InterfaceStatusEnum::DRAFT->value);
 			 /** end ENUM */

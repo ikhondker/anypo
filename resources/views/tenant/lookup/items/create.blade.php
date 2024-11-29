@@ -33,7 +33,7 @@
 					<tbody>
 
 						<tr>
-							<th>Code</th>
+							<th width="25%">Code :</th>
 							<td>
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
 								name="code" id="code" placeholder="XXXX" maxlength="25"
@@ -57,7 +57,7 @@
 								<select class="form-control" name="item_category_id" required>
 									<option value=""><< Category >> </option>
 									@foreach ($itemCategories as $itemCategory)
-										<option value="{{ $itemCategory->id }}" {{ $itemCategory->id == old('item_category_id') ? 'selected' : '' }} >{{ $itemCategory->name }} </option>
+										<option value="{{ $itemCategory->id }}" {{ $itemCategory->id == old('item_category_id') ? 'selected' : '' }} >{{ $itemCategory->name }}</option>
 									@endforeach
 								</select>
 								@error('item_category_id')
@@ -73,7 +73,7 @@
 								<select class="form-control" name="uom_class_id" id="uom_class_id" required>
 									<option value=""><< UoM Class>> </option>
 									@foreach ($uomClasses as $uomClass)
-										<option value="{{ $uomClass->id }}" {{ $uomClass->id == old('uom_class_id') ? 'selected' : '' }} >{{ $uomClass->name }} </option>
+										<option value="{{ $uomClass->id }}" {{ $uomClass->id == old('uom_class_id') ? 'selected' : '' }} >{{ $uomClass->name }}</option>
 									@endforeach
 								</select>
 								@error('uom_class_id')
@@ -88,7 +88,7 @@
 								<select class="form-control" name="uom_id" id="uom_id" required>
 									<option value=""><< UoM >> </option>
 									@foreach ($uoms as $uom)
-										<option value="{{ $uom->id }}" {{ $uom->id == old('uom_id') ? 'selected' : '' }} >{{ $uom->name }} </option>
+										<option value="{{ $uom->id }}" {{ $uom->id == old('uom_id') ? 'selected' : '' }} >{{ $uom->name }}</option>
 									@endforeach
 								</select>
 								@error('uom_id')
@@ -105,7 +105,7 @@
 								<select class="form-control" name="oem_id" required>
 									<option value=""><< OEM >> </option>
 									@foreach ($oems as $oem)
-										<option value="{{ $oem->id }}" {{ $oem->id == old('oem_id') ? 'selected' : '' }} >{{ $oem->name }} </option>
+										<option value="{{ $oem->id }}" {{ $oem->id == old('oem_id') ? 'selected' : '' }} >{{ $oem->name }}</option>
 									@endforeach
 								</select>
 								@error('oem_id')
@@ -121,7 +121,7 @@
 								<select class="form-control" name="gl_type" required>
 									<option value=""><< GL Type >> </option>
 									@foreach ($gl_types as $gl_type)
-										<option value="{{ $gl_type->gl_type }}" {{ $gl_type->gl_type == old('gl_type') ? 'selected' : '' }} >{{ $gl_type->name }} </option>
+										<option value="{{ $gl_type->gl_type }}" {{ $gl_type->gl_type == old('gl_type') ? 'selected' : '' }} >{{ $gl_type->name }}</option>
 									@endforeach
 								</select>
 								@error('gl_type')

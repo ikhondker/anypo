@@ -18,7 +18,7 @@
 			<h1>INVOICE #{{ $invoice->invoice_no}}</h1>
 			<div class="date">DATE: {{ strtoupper(date('d-M-Y', strtotime($invoice->invoice_date))) }}</div>
 
-			<div class="date">STATUS: {{ Str::upper($invoice->status->name) }} </div>
+			<div class="date">STATUS: {{ Str::upper($invoice->status->name) }}</div>
 			{{-- <div class="date">Due Date: 30/06/2014</div> --}}
 		</div>
 	</div>

@@ -40,7 +40,7 @@
 						<select class="form-control form-control" name="module" id="module" required>
 							<option value=""><< Module >> </option>
 							@foreach ($modules as $module)
-							<option value="{{ $module->module }}" {{ $module->module == old('module') ? 'selected' : '' }} >{{ $module->name.' ('.$module->module.')' }} </option>
+							<option value="{{ $module->module }}" {{ $module->module == old('module') ? 'selected' : '' }} >{{ $module->name.' ('.$module->module.')' }}</option>
 							@endforeach
 						</select>
 					</div>

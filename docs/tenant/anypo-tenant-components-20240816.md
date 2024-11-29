@@ -222,6 +222,7 @@ php artisan make:component Tenant\Actions\Lookup\CountryActions
 php artisan make:component Tenant\Actions\Lookup\WarehouseActions
 php artisan make:component Tenant\Actions\Lookup\BankAccountActions
 php artisan make:component Tenant\Actions\Lookup\ProjectActions
+php artisan make:component Tenant\Actions\Lookup\UploadItemActions
 php artisan make:component Tenant\Actions\Lookup\UploadItemActionsIndex
 
 php artisan make:component Tenant\Actions\Notification\NotificationActions
@@ -309,6 +310,7 @@ php artisan make:component Edit/Currency	<x-edit.currency :value="$pr->currency"
 -------------------------------------
 php artisan make:component Tenant/Create/Code		<x-tenant.create.code/>
 php artisan make:component Tenant/Create/Name		<x-tenant.create.name/>
+php artisan make:component Tenant/Create/Summary		<x-tenant.create.summary/>
 php artisan make:component Tenant/Create/Address1	<x-create.address1/>
 php artisan make:component Tenant/Create/Address2	<x-create.address2/>
 php artisan make:component Tenant/Create/CityStateZip

@@ -29,7 +29,7 @@
 						<div class="card-body">
 
 							<x-tenant.edit.name :value="$report->name"/>
-							<x-tenant.edit.summary :value="$report->summary"/>
+							<x-tenant.edit.summary value="{{ $report->summary }}"/>
 
 							<div class="form-check form-switch">
 								<input class="form-check-input" type="checkbox" id="article_id" name="article_id" @checked($report->article_id)>

@@ -35,13 +35,13 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>FY <x-tenant.info info="Note: You wont be able to change the Fiscal Year (FY)."/></th>
+							<th>FY :<x-tenant.info info="Note: You wont be able to change the Fiscal Year (FY)."/></th>
 							<td>
 								<input type="text" name="fy" id="fy" class="form-control" placeholder="YYYY" value="{{ $budget->fy }}" readonly>
 							</td>
 						</tr>
 						<tr>
-							<th>Budget Name</th>
+							<th>Budget Name :</th>
 							<td>
 								<input type="text" class="form-control @error('name') is-invalid @enderror"
 								name="name" id="name" placeholder="Budget Name"
@@ -53,7 +53,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Amount {{ $_setup->currency }} <x-tenant.info info="Note: You wont be able to edit. Auto calculated based on dept budgets."/></th>
+							<th>Amount {{ $_setup->currency }} : <x-tenant.info info="Note: You wont be able to edit. Auto calculated based on dept budgets."/></th>
 							<td>
 								<input type="text" name="amount" id="amount" class="form-control" placeholder="1.0" value="{{ $budget->amount }}" readonly>
 							</td>

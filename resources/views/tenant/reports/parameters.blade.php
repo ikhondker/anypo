@@ -83,7 +83,7 @@
 										<select class="form-control" name="dept_id" {{ $report->dept_id_required ? "required" : "" }}>
 											<option value=""><< Department >> </option>
 											@foreach ($depts as $dept)
-												<option value="{{ $dept->id }}" {{ $dept->id == old('pm_id') ? 'selected' : '' }} >{{ $dept->name }} </option>
+												<option value="{{ $dept->id }}" {{ $dept->id == old('pm_id') ? 'selected' : '' }} >{{ $dept->name }}</option>
 											@endforeach
 										</select>
 										@error('dept_id')
@@ -99,7 +99,7 @@
 										<select class="form-control" name="supplier_id" required>
 											<option value=""><< Supplier >> </option>
 											@foreach ($suppliers as $supplier)
-												<option value="{{ $supplier->id }}" {{ $supplier->id == old('pm_id') ? 'selected' : '' }} >{{ $supplier->name }} </option>
+												<option value="{{ $supplier->id }}" {{ $supplier->id == old('pm_id') ? 'selected' : '' }} >{{ $supplier->name }}</option>
 											@endforeach
 										</select>
 										@error('supplier_id')
@@ -115,7 +115,7 @@
 										<select class="form-control" name="project_id" required>
 											<option value=""><< Project >> </option>
 											@foreach ($projects as $project)
-												<option value="{{ $project->id }}" {{ $project->id == old('pm_id') ? 'selected' : '' }} >{{ $project->name }} </option>
+												<option value="{{ $project->id }}" {{ $project->id == old('pm_id') ? 'selected' : '' }} >{{ $project->name }}</option>
 											@endforeach
 										</select>
 										@error('project_id')
@@ -131,7 +131,7 @@
 										<select class="form-control" name="warehouse_id" required>
 											<option value=""><< Warehouse >> </option>
 											@foreach ($warehouses as $warehouse)
-												<option value="{{ $warehouse->id }}" {{ $warehouse->id == old('pm_id') ? 'selected' : '' }} >{{ $warehouse->name }} </option>
+												<option value="{{ $warehouse->id }}" {{ $warehouse->id == old('pm_id') ? 'selected' : '' }} >{{ $warehouse->name }}</option>
 											@endforeach
 										</select>
 										@error('warehouse_id')
@@ -147,7 +147,7 @@
 										<select class="form-control" name="bank_account_id" required>
 											<option value=""><< Bank Account >> </option>
 											@foreach ($bank_accounts as $bank_account)
-												<option value="{{ $bank_account->id }}" {{ $bank_account->id == old('pm_id') ? 'selected' : '' }} >{{ $bank_account->name }} </option>
+												<option value="{{ $bank_account->id }}" {{ $bank_account->id == old('pm_id') ? 'selected' : '' }} >{{ $bank_account->name }}</option>
 											@endforeach
 										</select>
 										@error('bank_account_id')
@@ -164,7 +164,7 @@
 										<select class="form-control" name="pm_id" required>
 											<option value=""><< Project Manager >> </option>
 											@foreach ($pms as $user)
-												<option value="{{ $user->id }}" {{ $user->id == old('pm_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+												<option value="{{ $user->id }}" {{ $user->id == old('pm_id') ? 'selected' : '' }} >{{ $user->name }}</option>
 											@endforeach
 										</select>
 										@error('pm_id')

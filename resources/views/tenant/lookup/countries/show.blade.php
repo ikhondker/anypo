@@ -2,7 +2,7 @@
 @section('title','View Country')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('depts.index') }}" class="text-muted">Departments</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('countries.index') }}" class="text-muted">Countries</a></li>
 	<li class="breadcrumb-item active">{{ $country->name }}</li>
 @endsection
 

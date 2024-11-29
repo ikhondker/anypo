@@ -534,6 +534,7 @@ Route::middleware([
 
 		/* ======================== UploadItem ======================================== */
 		Route::resource('upload-items', UploadItemController::class);
+        Route::get('/upload-items/delete/{uploadItem}',[UploadItemController::class,'destroy'])->name('upload-items.destroy');
 		Route::get('/upload-item/export',[UploadItemController::class, 'export'])->name('upload-items.export');
 		Route::get('/upload-item/check',[UploadItemController::class, 'check'])->name('upload-items.check');
 		Route::get('/upload-item/purge',[UploadItemController::class, 'purge'])->name('upload-items.purge');

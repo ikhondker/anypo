@@ -63,7 +63,7 @@
 											<td>
 												<select class="form-control select2" data-toggle="select2" name="dept_id" id="dept_id">
 													@foreach ($depts as $dept)
-														<option {{ $dept->id == old('dept_id',$po->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
+														<option {{ $dept->id == old('dept_id',$po->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }}</option>
 													@endforeach
 												</select>
 												@error('dept_id')
@@ -77,7 +77,7 @@
 										<td>
 											<select class="form-control select2" data-toggle="select2" name="supplier_id" id="supplier_id">
 												@foreach ($suppliers as $supplier)
-													<option {{ $supplier->id == old('supplier_id',$po->supplier_id) ? 'selected' : '' }} value="{{ $supplier->id }}">{{ $supplier->name }} </option>
+													<option {{ $supplier->id == old('supplier_id',$po->supplier_id) ? 'selected' : '' }} value="{{ $supplier->id }}">{{ $supplier->name }}</option>
 												@endforeach
 											</select>
 											@error('supplier_id')
@@ -90,7 +90,7 @@
 										<td>
 											<select class="form-control select2" data-toggle="select2" name="project_id" id="project_id">
 												@foreach ($projects as $project)
-													<option {{ $project->id == old('project_id',$po->project_id) ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->name }} </option>
+													<option {{ $project->id == old('project_id',$po->project_id) ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->name }}</option>
 												@endforeach
 											</select>
 											@error('project_id')
@@ -125,7 +125,7 @@
 										<td>
 											<select class="form-control select2" data-toggle="select2" name="category_id" id="category_id">
 												@foreach ($categories as $category)
-													<option {{ $category->id == old('category_id',$po->category_id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }} </option>
+													<option {{ $category->id == old('category_id',$po->category_id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
 												@endforeach
 											</select>
 											@error('category_id')
@@ -166,7 +166,7 @@
 										<td>
 											<select class="form-control" name="requestor_id">
 												@foreach ($users as $user)
-													<option {{ $user->id == old('requestor_id',$po->requestor_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+													<option {{ $user->id == old('requestor_id',$po->requestor_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 												@endforeach
 											</select>
 											@error('requestor_id')

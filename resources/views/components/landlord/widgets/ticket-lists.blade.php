@@ -51,7 +51,7 @@
 								<img src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
 								{{ $ticket->owner->name }}
 							</td>
-							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }} </td>
+							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
 							@if ( auth()->user()->isSeeded())
 								<td>{{ $ticket->dept->name }}</td>
 								<td>{{ $ticket->agent->name }}</td>

@@ -73,7 +73,7 @@
 								</a>
 							</td>
 							<td>
-								<i data-lucide="check-circle" class="{{$product->addon ? 'text-success' : 'text-secondary' }}"
+								<i data-lucide="check-circle" class="{{ $product->addon ? 'text-success' : 'text-secondary' }}"
 									data-bs-toggle="tooltip" data-bs-placement="top"
 									title="addon"></i>
 							</td>
@@ -93,7 +93,7 @@
 									data-name="{{ $product->name }}"
 									data-status="{{ $product->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $product->enable ? 'Disable' : 'Enable' }}">
-									<i data-lucide="{{ $product->enable ? 'bell-off' : 'bell' }} "></i></a>
+									<i data-lucide="{{ $product->enable ? 'bell-off' : 'bell' }}"></i></a>
 							</td>
 						</tr>
 					@endforeach

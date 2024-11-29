@@ -59,7 +59,7 @@
 					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>ID#</th>
+								<th>ID</th>
 								<th>Approver Name</th>
 								<th>Start Date</th>
 								<th>End Date</th>

@@ -9,10 +9,10 @@
 						<h3 class="mb-2"> {{ number_format($po->fc_amount, 2, '.', ',') }} [{{ $_setup->currency }}]</h3>
 						<p class="mb-2">PO Amount </p>
 						<div class="mb-0">
-							<span class="badge badge-subtle-success me-2"> {{ $po->currency }} </span>
-							
+							<span class="badge badge-subtle-success me-2"> {{ $po->currency }}</span>
+
 								<span class="text-muted"> {{ number_format($po->amount, 2, '.', ',') }}</span>
-							
+
 						</div>
 					</div>
 					<div class="d-inline-block ms-3">
@@ -30,10 +30,10 @@
 			<div class="card-body py-4">
 				<div class="d-flex align-items-start">
 					<div class="flex-grow-1">
-						<h3 class="mb-2"> {{ number_format($po->fc_amount_grs, 2, '.', ',') }} </h3>
+						<h3 class="mb-2"> {{ number_format($po->fc_amount_grs, 2, '.', ',') }}</h3>
 						<p class="mb-2">GRS Amount </p>
 						<div class="mb-0">
-							<span class="badge badge-subtle-success me-2">{{ $_setup->currency }} </span>
+							<span class="badge badge-subtle-success me-2">{{ $_setup->currency }}</span>
 						</div>
 					</div>
 					<div class="d-inline-block ms-3">
@@ -51,10 +51,10 @@
 			<div class="card-body py-4">
 				<div class="d-flex align-items-start">
 					<div class="flex-grow-1">
-						<h3 class="mb-2"> {{ number_format($po->fc_amount_invoice, 2, '.', ',') }} </h3>
+						<h3 class="mb-2"> {{ number_format($po->fc_amount_invoice, 2, '.', ',') }}</h3>
 						<p class="mb-2">Invoice Amount </p>
 						<div class="mb-0">
-							<span class="badge badge-subtle-success me-2">{{ $_setup->currency }} </span>
+							<span class="badge badge-subtle-success me-2">{{ $_setup->currency }}</span>
 						</div>
 					</div>
 					<div class="d-inline-block ms-3">
@@ -72,10 +72,10 @@
 			<div class="card-body py-4">
 				<div class="d-flex align-items-start">
 					<div class="flex-grow-1">
-						<h3 class="mb-2"> {{ number_format($po->fc_amount_paid, 2, '.', ',') }} </h3>
+						<h3 class="mb-2"> {{ number_format($po->fc_amount_paid, 2, '.', ',') }}</h3>
 						<p class="mb-2">Payment Amount </p>
 						<div class="mb-0">
-							<span class="badge badge-subtle-success me-2">{{ $_setup->currency }} </span>
+							<span class="badge badge-subtle-success me-2">{{ $_setup->currency }}</span>
 						</div>
 					</div>
 					<div class="d-inline-block ms-3">

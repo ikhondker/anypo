@@ -5,9 +5,9 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		<a class="dropdown-item" href="{{ route('setups.show', $setup->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Setup</a>
 		<a class="dropdown-item" href="{{ route('setups.edit', $setup->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Setup</a>
-        <div class="dropdown-divider"></div>
+		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('setups.announcement', $setup->id) }}"><i class="align-middle me-1" data-lucide="info"></i> Announcement</a>
-        <div class="dropdown-divider"></div>
+		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('setups.tc', $setup->id) }}"><i class="align-middle me-1" data-lucide="align-left"></i> PO Terms & Conditions</a>
 
 	</div>

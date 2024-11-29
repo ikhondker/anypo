@@ -48,7 +48,6 @@ class CustomErrorSeeder extends Seeder
 				'entity'	=> EntityEnum::PROJECT->value,
 				'message'	=> 'Not Enough Project Budget Available!',
 			],
-
 			[
 				'code'		=> 'E006',
 				'entity'	=> EntityEnum::ITEM->value,
@@ -57,7 +56,7 @@ class CustomErrorSeeder extends Seeder
 			[
 				'code'		=> 'E007',
 				'entity'	=> EntityEnum::ITEM->value,
-				'message'	=> 'Invalid Category Name!',
+				'message'	=> 'Invalid Item Category Name!',
 			],
 			[
 				'code'		=> 'E008',
@@ -73,6 +72,21 @@ class CustomErrorSeeder extends Seeder
 				'code'		=> 'E010',
 				'entity'	=> EntityEnum::ITEM->value,
 				'message'	=> 'Invalid GL_TYPE Name!',
+			],
+            [
+				'code'		=> 'E011',
+				'entity'	=> EntityEnum::ITEM->value,
+				'message'	=> 'Item code is Empty!',
+			],
+            [
+				'code'		=> 'E012',
+				'entity'	=> EntityEnum::ITEM->value,
+				'message'	=> 'Item Name is Empty!',
+			],
+            [
+				'code'		=> 'E013',
+				'entity'	=> EntityEnum::ITEM->value,
+				'message'	=> 'Item with same name already exists!',
 			],
 			[
 				'code'		=> 'E015',	// Not used Yet

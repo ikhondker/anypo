@@ -2,7 +2,7 @@
 @section('title','View Currency')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('currencies.index') }}" class="text-muted">Departments</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('currencies.index') }}" class="text-muted">Currencies</a></li>
 	<li class="breadcrumb-item active">{{ $currency->name }}</li>
 @endsection
 
@@ -35,7 +35,7 @@
 					<x-tenant.show.my-code		value="{{ $currency->currency }}"/>
 					<x-tenant.show.my-text		value="{{ $currency->name }}"/>
 					<x-tenant.show.my-boolean	value="{{ $currency->enable }}"/>
-					<x-tenant.show.my-boolean	value="{{ $currency->enable }}" label="Rate Available?"/>
+					<x-tenant.show.my-boolean	value="{{ $currency->enable }}" label="Rate Available "/>
 					<x-tenant.show.my-created-at value="{{ $currency->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $currency->created_at }}"/>
 				</tbody>

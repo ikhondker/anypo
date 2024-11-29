@@ -12,7 +12,7 @@
 			Item Category
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Category"/>
+			<x-tenant.buttons.header.create object="ItemCategory"/>
 		@endslot
 	</x-tenant.page-header>
 

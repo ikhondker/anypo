@@ -11,16 +11,17 @@
 			View Interface Item
 		@endslot
 		@slot('buttons')
-			
-			
+			<x-tenant.actions.lookup.upload-item-actions  uploadItemId="{{ $uploadItem->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('upload-items.edit', $uploadItem->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('upload-items.index') }}" ><i class="fas fa-list"></i> View all</a>
+				@can('update', $uploadItem)
+					<a class="btn btn-sm btn-light" href="{{ route('upload-items.edit', $uploadItem->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				@endcan
+				{{-- <a class="btn btn-sm btn-light" href="{{ route('upload-items.index') }}" ><i class="fas fa-list"></i> View all</a> --}}
 			</div>
 			<h5 class="card-title">Item Detail (In Interface Table) </h5>
 				<h6 class="card-subtitle text-muted">Item Interface Data Detail.</h6>
@@ -29,7 +30,7 @@
 			<table class="table table-sm my-2">
 				<tbody>
 					<x-tenant.show.my-badge		value="{{ $uploadItem->id }}" label="ID"/>
-					<x-tenant.show.my-text		value="{{ $uploadItem->item_code }}" label="Code"/>	
+					<x-tenant.show.my-text		value="{{ $uploadItem->item_code }}" label="Code"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->item_name }}"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->category_name }}" label="Category"/>
 					<x-tenant.show.my-text		value="{{ $uploadItem->oem_name }}" label="OEM"/>
@@ -54,7 +55,7 @@
 		</div>
 	</div>
 
-	
+
 
 @endsection
 

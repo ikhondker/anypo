@@ -6,7 +6,7 @@
 	<td class="">
 		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id">
 			@foreach ($items as $item)
-				<option {{ $item->id == old('item_id',$pol->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }} </option>
+				<option {{ $item->id == old('item_id',$pol->item_id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
 			@endforeach
 		</select>
 		@error('item_id')
@@ -25,7 +25,7 @@
 	<td class="">
 		<select class="form-control" name="uom_id">
 			@foreach ($uoms as $uom)
-				<option {{ $uom->id == old('uom_id',$pol->uom_id) ? 'selected' : '' }} value="{{ $uom->id }}">{{ $uom->name }} </option>
+				<option {{ $uom->id == old('uom_id',$pol->uom_id) ? 'selected' : '' }} value="{{ $uom->id }}">{{ $uom->name }}</option>
 			@endforeach
 		</select>
 	</td>

@@ -35,12 +35,12 @@
 					<tbody>
 						<x-tenant.create.name/>
 						<tr>
-							<th>PR Hierarchy</th>
+							<th>PR Hierarchy :</th>
 							<td>
 								<select class="form-control" name="pr_hierarchy_id" required>
 									<option value=""><< Hierarchy >> </option>
 									@foreach ($hierarchies as $hierarchy)
-										<option value="{{ $hierarchy->id }}" {{ $hierarchy->id == old('pr_hierarchy_id') ? 'selected' : '' }} >{{ $hierarchy->name }} </option>
+										<option value="{{ $hierarchy->id }}" {{ $hierarchy->id == old('pr_hierarchy_id') ? 'selected' : '' }} >{{ $hierarchy->name }}</option>
 									@endforeach
 								</select>
 								@error('pr_hierarchy_id')
@@ -49,12 +49,12 @@
 							</td>
 						</tr>
 						<tr>
-							<th>PO Hierarchy</th>
+							<th>PO Hierarchy :</th>
 							<td>
 								<select class="form-control" name="po_hierarchy_id" required>
 									<option value=""><< Hierarchy >> </option>
 									@foreach ($hierarchies as $hierarchy)
-										<option value="{{ $hierarchy->id }}" {{ $hierarchy->id == old('pr_hierarchy_id') ? 'selected' : '' }} >{{ $hierarchy->name }} </option>
+										<option value="{{ $hierarchy->id }}" {{ $hierarchy->id == old('pr_hierarchy_id') ? 'selected' : '' }} >{{ $hierarchy->name }}</option>
 									@endforeach
 								</select>
 								@error('po_hierarchy_id')

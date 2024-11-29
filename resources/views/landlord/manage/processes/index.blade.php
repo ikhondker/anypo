@@ -63,8 +63,8 @@
 									<strong>{{ $process->id }}</strong>
 								</a>
 							</td>
-							<td>{{ $process->job_code }} </td>
-							<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($process->created_at))) }} </td>
+							<td>{{ $process->job_code }}</td>
+							<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($process->created_at))) }}</td>
 							<td>
 								<a href="{{ route('processes.show',$process->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View">View</a>
@@ -75,7 +75,7 @@
 									data-name="{{ $process->route_name }}"
 									data-status="{{ $process->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $process->enable ? 'Disable' : 'Enable' }}">
-									<i data-lucide="{{ $process->enable ? 'bell-off' : 'bell' }} "></i>
+									<i data-lucide="{{ $process->enable ? 'bell-off' : 'bell' }}"></i>
 								</a> --}}
 							</td>
 						</tr>

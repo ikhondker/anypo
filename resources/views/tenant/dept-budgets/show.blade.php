@@ -46,11 +46,11 @@
 							</tr>
 							<tr>
 								<th>Budget:</th>
-								<td>{{ $deptBudget->budget->name }} <x-tenant.info info="Note: You wont be able to edit this."/></td>
+								<td>{{ $deptBudget->budget->name }}<x-tenant.info info="Note: You wont be able to edit this."/></td>
 							</tr>
 							<tr>
 								<th>Dept:</th>
-								<td>{{ $deptBudget->dept->name }} <x-tenant.info info="Note: You wont be able to edit this Department."/></td>
+								<td>{{ $deptBudget->dept->name }}<x-tenant.info info="Note: You wont be able to edit this Department."/></td>
 							</tr>
 							<x-tenant.show.my-date		value="{{ $deptBudget->budget->start_date }}" label="Start Date"/>
 							<x-tenant.show.my-date		value="{{ $deptBudget->budget->end_date }}" label="End Date"/>

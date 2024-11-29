@@ -61,7 +61,7 @@
 					<td>
 						<select class="form-control" name="designation_id">
 							@foreach ($designations as $designation)
-								<option {{ $designation->id == old('designation_id',$user->designation_id) ? 'selected' : '' }} value="{{ $designation->id }}">{{ $designation->name }} </option>
+								<option {{ $designation->id == old('designation_id',$user->designation_id) ? 'selected' : '' }} value="{{ $designation->id }}">{{ $designation->name }}</option>
 							@endforeach
 						</select>
 					</td>
@@ -71,7 +71,7 @@
 					<td>
 						<select class="form-control" name="dept_id">
 							@foreach ($depts as $dept)
-								<option {{ $dept->id == old('dept_id',$user->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
+								<option {{ $dept->id == old('dept_id',$user->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }}</option>
 							@endforeach
 						</select>
 					</td>

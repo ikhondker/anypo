@@ -20,7 +20,7 @@
 				<div class="row mt-4">
 					<div class="col-sm-6">
 						<h5 class="mb-1">Call us:</h5>
-						<p>{{ $config->cell }} </p>
+						<p>{{ $config->cell }}</p>
 					</div>
 					<!-- End Col -->
 

@@ -14,7 +14,7 @@
 			Edit Interface Item
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="UploadItem"/>
+			<x-tenant.actions.lookup.upload-item-actions  uploadItemId="{{ $uploadItem->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 	<!-- form start -->
@@ -25,7 +25,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('upload-items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+					{{-- <a href="{{ route('upload-items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 				</div>
 				<h5 class="card-title">Edit Interface Item Data</h5>
 				<h6 class="card-subtitle text-muted">Edit Item Interface Detail.</h6>
@@ -35,7 +35,7 @@
 					<tbody>
 						<x-tenant.edit.id-read-only :value="$uploadItem->id"/>
 						<tr>
-							<th>Item Code :</th>
+							<th width="25%">Item Code :</th>
 							<td>
 								<input type="text" class="form-control @error('item_code') is-invalid @enderror"
 									name="item_code" id="item_code" placeholder="XXXXX"
@@ -47,7 +47,18 @@
 								@enderror
 							</td>
 						</tr>
-						<x-tenant.edit.name value="{{ $uploadItem->item_name }}"/>
+						<tr>
+							<th class="text-warning">Item Name :</th>
+							<td>
+								<input type="text" class="form-control @error('name') is-invalid @enderror"
+									name="item_name" id="item_name" placeholder="Name"
+									value="{{ old('item_name', $uploadItem->item_name ) }}"
+									required/>
+								@error('item_name')
+									<div class="small text-danger">{{ $message }}</div>
+								@enderror
+							</td>
+						</tr>
 						<tr>
 							<th>Category :</th>
 							<td>
@@ -90,7 +101,7 @@
 							<th>GL Type :</th>
 							<td>
 								<input type="text" class="form-control @error('gl_type_name') is-invalid @enderror"
-									name="gl_type_name" id="gl_type_name" placeholder="UOM"
+									name="gl_type_name" id="gl_type_name" placeholder="Expense"
 									value="{{ old('gl_type_name', $uploadItem->gl_type_name ) }}"
 									required/>
 								@error('gl_type_name')

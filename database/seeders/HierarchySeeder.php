@@ -22,23 +22,25 @@ class HierarchySeeder extends Seeder
 
 		$hierarchies = [
 			[
-				'id' 	=> 1001,
-				'name'	=> 'All PR Approval (Seeded)',
+				'id' 		=> 1001,
+				'name'		=> 'All PR Approval (Seeded)',
+				'summary'	=> 'Used to Approve All Requisitions from all Departments (Seeded)',
 			],
 			[
-				'id' 	=> 1002,
-				'name'	=> 'All PO Approval (Seeded)',
+				'id' 		=> 1002,
+				'name'		=> 'All PO Approval (Seeded)',
+				'summary'	=> 'Used to Approve All Purchase Orders from all Departments (Seeded)',
 			],
 			// [
-		
+
 			//	'name'		=> 'All PO Approval',
 			// ],
 			// [
-		
+
 			//	'name'		=> 'PR Approval for Sales',
 			// ],
 			// [
-		
+
 			//	'name'		=> 'PO Approval for Finance',
 			// ],
 			];

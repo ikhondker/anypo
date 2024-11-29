@@ -75,7 +75,7 @@
 								</a>
 							</td>
 							<td>{{ $user->email }}</td>
-							<td>{{ $user->account->name }} </td>
+							<td>{{ $user->account->name }}</td>
 							<td>
 								@if ($user->role == UserRoleEnum::USER)
 									<span class="badge badge-subtle-info">{{ $user->role }}</span>

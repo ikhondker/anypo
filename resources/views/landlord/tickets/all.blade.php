@@ -83,7 +83,7 @@
 							</a>
 							</td>
 
-							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }} </td>
+							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
 							<td>{{ $ticket->dept->name }}</td>
 							<td>{{ $ticket->agent->name }}</td>
 							<td>

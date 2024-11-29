@@ -106,9 +106,9 @@
 			<main class="content">
 
 				<div class="container-fluid p-0">
-				
+
 					<!-- Form Success Message Box -->
-					
+
 					@if (session('success'))
 						<x-landlord.alerts.app-alert-success message="{{ session('success') }}" />
 					@endif
@@ -116,7 +116,7 @@
 					@if (session('error') || $errors->any())
 						<x-landlord.alerts.app-alert-error message="{{ session('error') }}" />
 					@endif
-				
+
 					<!-- breadcrumb -->
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
@@ -154,7 +154,7 @@
 						</div>
 						<div class="col-6 text-end">
 							<p class="mb-0">
-								&copy; {{ date('Y') }} <a href="{{ route('home') }}" class="text-muted">{{ env('APP_NAME') }}</a>. All rights reserved.
+								&copy; {{ date('Y') }}<a href="{{ route('home') }}" class="text-muted">{{ env('APP_NAME') }}</a>. All rights reserved.
 							</p>
 						</div>
 					</div>

@@ -18,14 +18,14 @@
 
 						<tr>
 							<th width="20%">Summary :</th>
-							<td>{{$po->summary }}</td>
+							<td>{{ $po->summary }}</td>
 						</tr>
 						<tr>
 							<th>PO Value :</th>
 							<td>
-								{{number_format($po->amount, 2)}} <span class="badge badge-subtle-primary">{{ $po->currency }}</span>
+								{{number_format($po->amount, 2)}}<span class="badge badge-subtle-primary">{{ $po->currency }}</span>
 								@if ($po->currency <> $_setup->currency)
-									{{number_format($po->fc_amount, 2)}} <span class="badge badge-subtle-success">{{ $po->fc_currency }}</span>
+									{{number_format($po->fc_amount, 2)}}<span class="badge badge-subtle-success">{{ $po->fc_currency }}</span>
 								@endif
 							</td>
 						</tr>
@@ -76,7 +76,7 @@
 						</tr>
 						<tr>
 							<th>Closure Status :</th>
-							<td> <span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
+							<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 						</tr>
 						<x-tenant.show.my-date-time	value="{{ $po->auth_date }}" label="Auth Date"/>
 						<x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>

@@ -27,9 +27,9 @@
 						<tr>
 							<th>Invoice Amount :</th>
 							<td>
-								{{number_format($invoice->amount, 2)}} <span class="badge badge-subtle-primary">{{ $invoice->currency }}</span>
+								{{number_format($invoice->amount, 2)}}<span class="badge badge-subtle-primary">{{ $invoice->currency }}</span>
 								@if ($invoice->currency <> $_setup->currency)
-									{{number_format($invoice->fc_amount, 2)}} <span class="badge badge-subtle-success">{{ $invoice->fc_currency }}</span>
+									{{number_format($invoice->fc_amount, 2)}}<span class="badge badge-subtle-success">{{ $invoice->fc_currency }}</span>
 								@endif
 							</td>
 						</tr>

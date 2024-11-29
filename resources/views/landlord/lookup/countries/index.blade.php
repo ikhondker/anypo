@@ -78,7 +78,7 @@
 										data-name="{{ $country->name }}"
 										data-status="{{ $country->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 										data-bs-placement="top" title="{{ $country->enable ? 'Disable' : 'Enable' }}">
-										<i data-lucide="{{ $country->enable ? 'bell-off' : 'bell' }} "></i>
+										<i data-lucide="{{ $country->enable ? 'bell-off' : 'bell' }}"></i>
 									</a>
 							</td>
 						</tr>

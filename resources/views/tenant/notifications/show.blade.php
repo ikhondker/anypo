@@ -26,7 +26,7 @@
 					@endif
 					<a href="{{ route('notifications.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
-				
+
 				<h5 class="card-title">{{ $notification->data['subject'] }}</h5>
 				<hr>
 
@@ -34,7 +34,7 @@
 					<img width="40" height="40" src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" class="rounded-circle d-flex me-2" alt="Logo">
 					<div class="w-100 mt-1">
 						<small class="float-end">{{ date('F d, Y H:i A', strtotime($notification->created_at)) }}</small>
-						<h6 class="mb-0">{{ $notification->data['from'] }} </h6>
+						<h6 class="mb-0">{{ $notification->data['from'] }}</h6>
 						<small class="text-muted">from: workflow@anypo.com</small><br>
 					</div>
 				</div>

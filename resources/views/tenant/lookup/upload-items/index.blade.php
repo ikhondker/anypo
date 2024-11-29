@@ -74,7 +74,7 @@
 									<span class="badge badge-subtle-success">{{ $upload_item->status }}</span>
 							@endswitch
 						</td>
-						<td><x-tenant.list.my-badge :value="$upload_item->error_code"/></td>
+						<td><x-tenant.list.my-badge value="{{ $upload_item->error_code }}"/></td>
 						<td>
 							<a href="{{ route('upload-items.show',$upload_item->id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View

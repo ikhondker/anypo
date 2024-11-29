@@ -4,7 +4,7 @@
 
 @section('data')
 
-	
+
 		<thead>
 			<tr>
 				<th class="sl">SL</th>
@@ -22,7 +22,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@php 
+			@php
 				$sum = 0
 			@endphp
 			@foreach ($pols as $pol)
@@ -33,16 +33,16 @@
 				<td class="sl">{{ $pol->line_num }}</td>
 				<td class="desc">{{ $pol->item_description }}</td>
 				<td class="desc">{{ $pol->dept_name }}</td>
-				<td class="desc">{{ $pol->uom_name }} </td>
+				<td class="desc">{{ $pol->uom_name }}</td>
 				<td class="numeric">{{ number_format($pol->price,2) }}</td>
-				<td class="desc">{{ $pol->currency }} </td>
+				<td class="desc">{{ $pol->currency }}</td>
 				<td class="numeric">{{ $pol->qty }}</td>
 				<td class="numeric">{{ number_format($pol->amount,2) }}</td>
-				<td class="numeric">{{ number_format($pol->fc_amount,2) }}</td>	
+				<td class="numeric">{{ number_format($pol->fc_amount,2) }}</td>
 			</tr>
 			{{-- @empty
 				<td olspan="7" class="desc">No Data Found!</td> --}}
-				@php 
+				@php
 					$sum = $sum + $pol->fc_amount;
 				@endphp
 			@endforeach

@@ -59,13 +59,12 @@
 						</td>
 						<td>{{ $template->phone }}</td>
 						<td>{{ strtoupper(date('d-M-y', strtotime($template->my_date))) }}</td>
-						<td class="text-end">{{number_format($template->amount, 2)}} </td>
+						<td class="text-end">{{number_format($template->amount, 2)}}</td>
 						<td>{{ $template->user->name}}</td>
 						<td><span class="badge bg-primary">{{ $template->my_enum}}</span> </td>
 						<td>
 							<span class="badge {{ ($template->enable ? 'badge-subtle-success text-success' : 'badge-subtle-danger text-danger') }}">{{ ($template->enable ? 'Yes' : 'No') }}</span>
 						</td>
-
 						<td>
 							<a href="{{ route('templates.show',$template->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View">View</a>
@@ -74,7 +73,7 @@
 								data-name="{{ $template->name }}"
 								data-status="{{ $template->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="{{ $template->enable ? 'Disable' : 'Enable' }}">
-								<i data-lucide="{{ $template->enable ? 'bell-off' : 'bell' }} "></i>
+								<i data-lucide="{{ $template->enable ? 'bell-off' : 'bell' }}"></i>
 							</a>
 						</td>
 					</tr>
@@ -134,7 +133,7 @@
 
 							<td class="">{{ $template->phone }}</td>
 							<td>{{ strtoupper(date('d-M-y', strtotime($template->my_date))) }}</td>
-							<td class="text-end">{{number_format($template->amount, 2)}} </td>
+							<td class="text-end">{{number_format($template->amount, 2)}}</td>
 							<td class="">{{ $template->user->name}}</td>
 							<td class=""><span class="badge bg-primary-light">{{ $template->my_enum}}</span> </td>
 							<td class="text-center">

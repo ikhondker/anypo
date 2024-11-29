@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 					<th>Account</th>
-					<td>{{ $ticket->owner->account->name }} </td>
+					<td>{{ $ticket->owner->account->name }}</td>
 				</tr>
 			</tbody>
 		</table>

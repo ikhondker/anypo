@@ -44,7 +44,7 @@
 								<select class="form-control select2" data-toggle="select2" name="topic_id" id="topic_id" required>
 									<option value=""><< Topic >> </option>
 									@foreach ($topics as $topic)
-										<option value="{{ $topic->id }}" {{ $topic->id == old('topic_id') ? 'selected' : '' }} >{{ $topic->name }} </option>
+										<option value="{{ $topic->id }}" {{ $topic->id == old('topic_id') ? 'selected' : '' }} >{{ $topic->name }}</option>
 									@endforeach
 								</select>
 								@error('topic_id')

@@ -53,7 +53,7 @@
 											<select class="form-control select2" data-toggle="select2" name="invoice_id" id="invoice_id" required>
 												<option value=""><< Invoice >> </option>
 												@foreach ($invoices as $invoiceN)
-													<option value="{{ $invoiceN->id }}" {{ $invoiceN->id == old('invoice_id') ? 'selected' : '' }} >{{ $invoiceN->invoice_no }} </option>
+													<option value="{{ $invoiceN->id }}" {{ $invoiceN->id == old('invoice_id') ? 'selected' : '' }} >{{ $invoiceN->invoice_no }}</option>
 												@endforeach
 											</select>
 											@error('invoice_id')
@@ -90,7 +90,7 @@
 										<select class="form-control" name="bank_account_id" required>
 											<option value=""><< Bank Account >> </option>
 											@foreach ($bank_accounts as $bank_account)
-												<option value="{{ $bank_account->id }}" {{ $bank_account->id == old('bank_account_id') ? 'selected' : '' }} >{{ $bank_account->ac_name }} </option>
+												<option value="{{ $bank_account->id }}" {{ $bank_account->id == old('bank_account_id') ? 'selected' : '' }} >{{ $bank_account->ac_name }}</option>
 											@endforeach
 										</select>
 										@error('bank_account_id')

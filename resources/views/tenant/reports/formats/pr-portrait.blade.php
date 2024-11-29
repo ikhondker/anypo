@@ -50,7 +50,7 @@
 			<tr>
 				<td class="desc">{{ $prl->line_num }}</td>
 				<td class="desc">{{ $prl->item_description }}</td>
-				<td class="desc">{{ $prl->item->uom->name }} </td>
+				<td class="desc">{{ $prl->item->uom->name }}</td>
 				<td class="unit">{{ number_format($prl->amount,2) }}</td>
 				<td class="qty">{{ $prl->qty }}</td>
 				<td class="total">{{ number_format($prl->amount,2) }}</td>

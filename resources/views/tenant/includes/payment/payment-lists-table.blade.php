@@ -6,7 +6,7 @@
 			<th>Date</th>
 			<th>Ref/Cheque</th>
 			<th class="text-end">Amount</th>
-			
+
 			<th>Bank A/C</th>
 			<th>Supplier</th>
 			<th>Invoice#</th>
@@ -28,7 +28,7 @@
 			<td>{{ $payment->invoice->supplier->name }}</td>
 			<td><a href="{{ route('invoices.show',$payment->invoice_id) }}"><strong>{{ $payment->invoice->invoice_no }}</strong></a></td>
 			<td><x-tenant.common.link-po id="{{ $payment->invoice->po_id }}"/></td>
-			<td>{{ $payment->payee->name }} </td>
+			<td>{{ $payment->payee->name }}</td>
 			<td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
 			<td>
 				<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light"

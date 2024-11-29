@@ -39,7 +39,7 @@
 								<select class="form-control" name="uom_class_id" required>
 									<option value=""><< UoM Class >> </option>
 									@foreach ($uomClasses as $uomClass)
-										<option value="{{ $uomClass->id }}" {{ $uomClass->id == old('uom_class_id') ? 'selected' : '' }} >{{ $uomClass->name }} </option>
+										<option value="{{ $uomClass->id }}" {{ $uomClass->id == old('uom_class_id') ? 'selected' : '' }} >{{ $uomClass->name }}</option>
 									@endforeach
 								</select>
 								@error('uom_class_id')

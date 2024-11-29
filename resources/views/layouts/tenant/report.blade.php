@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 	<meta charset="utf-8">
-	
+
 	<title>@yield('title', 'Reports')</title>
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
 	<style type="text/css">
@@ -40,7 +40,7 @@
 			@isset($padding)
 				@if ($padding)
 					padding: 10px;
-				@endif 
+				@endif
 			@endisset
 		}
 		#data th {
@@ -90,7 +90,7 @@
 		/* hr {
 			border-top: 1px solid silver;
 			} */
-			
+
 		#letterhead td, th {
 			border: none;
 			margin: 0;
@@ -119,9 +119,9 @@
 
 		/* style for footer */
 		footer {
-			position: fixed; 
-			bottom: 0cm; 
-			left: 0cm; 
+			position: fixed;
+			bottom: 0cm;
+			left: 0cm;
 			right: 0cm;
 			height: 1cm;
 		}
@@ -139,7 +139,7 @@
 			border-right: none;
 		}
 
-		/* 
+		/*
 		#info td, th {
 			border-top: 1px solid silver;
 			border-bottom: 1px solid silver;
@@ -150,14 +150,14 @@
 		}
 		*/
 
-		/* 
+		/*
 		#info td {
 			padding-left: 6px;
 			border-left: 6px solid #555858;
 			border-top: none;
 			border-bottom: none;
 			border-right: none;
-		} 
+		}
 		*/
 
 		#notes {
@@ -170,7 +170,7 @@
 <body>
 	<!-- ========== FOOTER ========== -->
 	<footer>
-		
+
 		<table id="footer">
 			<tr>
 				<td width='34%' style='font-size:10px;' valign='top' >
@@ -204,7 +204,7 @@
 					<strong>{{ $_setup->name }}</strong></br>
 					{{ $setup->address1.', '. $setup->address2 }}<br>
 					{{ ($setup->address2 == '' ? '' : $setup->address2 .', ') . $setup->city .' '. $setup->state .', '. $setup->country_name->name }}</br>
-					{{ $setup->email }} </br>
+					{{ $setup->email }}</br>
 					{{ $setup->website }}
 				</div>
 			</td>
@@ -223,7 +223,7 @@
 					@if ($param3 <> '')
 						{{ $param3 }}</br>
 					@endif
-				</div>	
+				</div>
 			</td>
 			<td width='33%' align='right'>
 				{{-- <img src="{{ storage_path('logo.png') }}" width="80px" height="80px"> --}}
@@ -245,16 +245,16 @@
 				</tr>
 			</table>
 			<br>
-		@endif 
+		@endif
 	@endisset
-	
+
 	<table id="data">
 		<!-- Report main content -->
 		@yield('data')
 		<!-- ./Report main content -->
 	</table>
 	<br>
-	
+
 	<div id="notes">
 		<!-- Notes -->
 		@yield('notes')

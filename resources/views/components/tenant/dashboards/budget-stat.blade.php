@@ -63,7 +63,7 @@
 				<div class="mb-0">
 					<span class="badge badge-subtle-success">{{ number_format($budget->amount_invoice / ($budget->amount == 0 ? 1 : $budget->amount) * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
-					<span class="badge badge-subtle-success"> {{ $budget->count_invoice }} </span>
+					<span class="badge badge-subtle-success"> {{ $budget->count_invoice }}</span>
 					<span class="text-muted"> Invoice Posted</span>
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 				<div class="mb-0">
 					<span class="badge badge-subtle-success">{{ number_format($budget->amount_payment / ($budget->amount == 0 ? 1 : $budget->amount) * 100,2) }}%</span>
 					<span class="text-muted"> budget Utilized</span>
-					<span class="badge badge-subtle-success"> {{ $budget->count_payment }} </span>
+					<span class="badge badge-subtle-success"> {{ $budget->count_payment }}</span>
 					<span class="text-muted"> Payment Made</span>
 				</div>
 

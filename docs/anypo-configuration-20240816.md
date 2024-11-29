@@ -29,7 +29,7 @@ https://www.brevo.com/pricing/
 22. 0.22 Landlord MenuSeeder, Ticket Create by Support for User, Tenant Create by System, Add-on add billing, comments, add Trait CreatedUpdatedBy Trait for create and update By, pr+po+inv jquery calculate, notification correction
 23. 0.23 stop duplicate emp in hierarchy , due/pending is wfl getNextApproverId to setNextApproverDue, AllNotification, Enum Rearrange, timezone column, wfl start and end date, inv/payment and grs create jquery population, budget and deptBudget tax, gst, dbu amount add and budget created by , budget and deptBudget revisions, decimal back to 2, close po and invoice automatically, landlord invoice pwop and discount, account lifetime discount field
 24. 0.24 Rearrange invoice & payment into single AkkControler, Reject PR/PO,  ticket first_response_at , last_response_at,  report level pdf security. ticket topics, and pivot
-24. 0.25 [ongoing] demo request etc, bug request, ticket Topics, ReplyTemplate, ItemCategory add,
+24. 0.25 [ongoing] demo request etc, bug request, ticket Topics, ReplyTemplate, ItemCategory add, UploadItem
 
 
 # 12. Key Configuration 

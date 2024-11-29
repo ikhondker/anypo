@@ -12,7 +12,7 @@
 @section('info2')
 	Department: {{ $pr->dept->name }}</br>
 	Project: {{ $pr->project->name }}</br>
-	Vendor: {{ $pr->supplier->name }} 
+	Vendor: {{ $pr->supplier->name }}
 @endsection
 
 @section('data')
@@ -34,7 +34,7 @@
 			<tr>
 				<td class="sl">{{ $prl->line_num }}</td>
 				<td class="desc">{{ $prl->item_description }}</td>
-				<td class="desc">{{ $prl->item->uom->name }} </td>
+				<td class="desc">{{ $prl->item->uom->name }}</td>
 				<td class="numeric">{{ number_format($prl->price,2) }}</td>
 				<td class="numeric">{{ $prl->qty }}</td>
 				<td class="numeric">{{ number_format($prl->sub_total,2) }}</td>

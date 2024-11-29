@@ -2,7 +2,7 @@
 	<th class="text-warning">Contact Person :</th>
 	<td>
 		<input type="text" class="form-control @error('contact_person') is-invalid @enderror"
-			name="contact_person" id="contact_person" placeholder="Contact Persone"
+			name="contact_person" id="contact_person" placeholder="Contact Person"
 			value="{{ old('contact_person', $value ) }}"
 			/>
 		@error('contact_person')

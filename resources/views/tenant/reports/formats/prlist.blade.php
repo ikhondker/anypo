@@ -18,7 +18,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@php 
+			@php
 				$sum = 0
 			@endphp
 			@foreach ($prs as $pr)
@@ -29,24 +29,24 @@
 				<td class="desc">{{ $pr->summary }}</td>
 				<td class="desc">{{ $pr->requestor }}</td>
 				<td class="desc">{{ $pr->dept }}</td>
-				<td class="desc">{{ $pr->supplier }} </td>
+				<td class="desc">{{ $pr->supplier }}</td>
 				<td class="desc">{{ $pr->project }}</td>
-				<td class="desc">{{ $pr->currency }} </td>
+				<td class="desc">{{ $pr->currency }}</td>
 				<td class="numeric">{{ number_format($pr->amount,2) }}</td>
-				<td class="numeric">{{ number_format($pr->fc_amount,2) }}</td>	
+				<td class="numeric">{{ number_format($pr->fc_amount,2) }}</td>
 			</tr>
 			{{-- @empty
 				<td olspan="7" class="desc">No Data Found!</td> --}}
-				@php 
+				@php
 					$sum = $sum + $pr->fc_amount;
 				@endphp
 			@endforeach
 		</tbody>
-		
+
 		<tfoot>
 			<tr>
 				<td colspan="10" style="text-align: right;"><strong>TOTAL ({{ $_setup->currency }}):</strong></td>
-				<td style="text-align: right;">{{ number_format($sum,2) }}</td>			
+				<td style="text-align: right;">{{ number_format($sum,2) }}</td>
 			</tr>
 		</tfoot>
 

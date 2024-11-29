@@ -126,7 +126,7 @@
 						<select class="form-control" name="user_id" required>
 							<option value=""><< User >> </option>
 							@foreach ($users as $user)
-								<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+								<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }}</option>
 							@endforeach
 						</select>
 						@error('user_id')
@@ -394,7 +394,7 @@
 							<select class="form-control" name="user_id" required>
 								<option value=""><< User >> </option>
 								@foreach ($users as $user)
-									<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+									<option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : '' }} >{{ $user->name }}</option>
 								@endforeach
 							</select>
 							@error('user_id')

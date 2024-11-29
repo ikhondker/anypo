@@ -35,8 +35,8 @@
 							<img src="{{ Storage::disk('s3l')->url('logo/'.$service->account->logo) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $service->name }}" title="{{ $service->name }}">
 						</td>
 						<td>{{ $service->name }}</td>
-						<td>{{ $service->account->name }} </td>
-						<td>{{ strtoupper(date('d-M-Y', strtotime( $service->start_date))) }} </td>
+						<td>{{ $service->account->name }}</td>
+						<td>{{ strtoupper(date('d-M-Y', strtotime( $service->start_date))) }}</td>
 						<td>
 							@if ($service->end_date <> NULL)
 							{{ strtoupper(date('d-M-Y', strtotime( $service->end_date))) }}

@@ -19,25 +19,25 @@
 			</tr>
 		</thead>
 		<tbody>
-			@php 
+			@php
 				$sum = 0
 			@endphp
 			@foreach ($invoices as $invoice)
 			<tr>
 				<td class="sl">{{ $loop->iteration }}</td>
-				<td class="desc">{{ $invoice->invoice_no }} </td>
+				<td class="desc">{{ $invoice->invoice_no }}</td>
 				<td class="desc">{{ date('d-M-y', strtotime($invoice->invoice_date)) }}</td>
 				<td class="desc">{{ $invoice->po_id }}</td>
 				<td class="desc">{{ $invoice->dept_name }}</td>
 				<td class="desc">{{ $invoice->supplier_name }}</td>
 				<td class="desc">{{ $invoice->summary }}</td>
-				<td class="desc">{{ $invoice->currency }} </td>
+				<td class="desc">{{ $invoice->currency }}</td>
 				<td class="numeric">{{ number_format($invoice->amount,2) }}</td>
-				<td class="numeric">{{ number_format($invoice->fc_amount,2) }}</td>	
+				<td class="numeric">{{ number_format($invoice->fc_amount,2) }}</td>
 			</tr>
 			{{-- @empty
 				<td olspan="7" class="desc">No Data Found!</td> --}}
-				@php 
+				@php
 					$sum = $sum + $invoice->fc_amount;
 				@endphp
 			@endforeach
@@ -48,6 +48,6 @@
 				<td style="text-align: right;">{{ number_format($sum,2) }}</td>
 			</tr>
 		</tfoot>
-	
+
 
 @endsection

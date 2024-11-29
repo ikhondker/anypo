@@ -42,12 +42,12 @@
 						<tr>
 							<th>Currency : </th>
 							<td>
-								{{ $setup->currency.' - '.$setup->relCurrency->name.' ('.$setup->relCurrency->country.')' }} <x-tenant.info info="Note: You wont be able to change the currency."/>
+								{{ $setup->currency.' - '.$setup->relCurrency->name.' ('.$setup->relCurrency->country.')' }}<x-tenant.info info="Note: You wont be able to change the currency."/>
 							</td>
 						</tr>
-                        @if (auth()->user()->isSystem())
-		    				<x-tenant.show.my-boolean	value="{{ $setup->freezed }}" label="Setup freezed"/>
-        				@endif
+						@if (auth()->user()->isSystem())
+							<x-tenant.show.my-boolean	value="{{ $setup->freezed }}" label="Setup freezed"/>
+						@endif
 						<x-tenant.show.my-boolean	value="{{ $setup->enable }}"/>
 					</tbody>
 				</table>

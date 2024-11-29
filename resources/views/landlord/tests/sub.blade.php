@@ -16,7 +16,7 @@
 	  Paddle.Environment.set("sandbox");
 	  Paddle.Setup({
 		seller: 15117 // replace with your Paddle seller ID
-	  });
+		});
 	</script>
 
 <script type="text/javascript">
@@ -29,9 +29,9 @@
 		  {
 			priceId: 'pri_01hcyxfsp4exswz4zzsweyxayf',
 			quantity: 1
-		  },
+			},
 		]
-	  });
+		);
 	}
   </script>
 

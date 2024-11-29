@@ -66,12 +66,9 @@
 							<td>
 								<img src="{{ Storage::disk('s3l')->url('avatar/'.$user->avatar) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $user->name }}" title="{{ $user->name }}">
 							</td>
-							<td> <a href="{{ route('users.show', $user->id) }}">
-								<strong>{{ $user->name }}</strong>
-							</a>
-							</td>
+							<td><a href="{{ route('users.show', $user->id) }}"><strong>{{ $user->name }}</strong></a></td>
 							<td>{{ $user->email }}</td>
-							<td>{{ $user->account->name }} </td>
+							<td>{{ $user->account->name }}</td>
 							<td>
 								@if ($user->role == UserRoleEnum::USER)
 									<span class="badge badge-subtle-info">{{ $user->role }}</span>
@@ -85,7 +82,7 @@
 								<span class="badge {{ ( ($user->email_verified_at == '') ? 'badge-subtle-danger' : 'badge-subtle-success') }}">{{ (($user->email_verified_at == '') ? 'No' : 'Yes') }}</span>
 							</td>
 							<td>
-								<span class="badge {{ ($user->seeded ? 'badge-subtle-danger' : 'badge-subtle-success') }} ">{{ ($user->seeded ? 'Yes' : 'No') }}</span>
+								<span class="badge {{ ($user->seeded ? 'badge-subtle-danger' : 'badge-subtle-success') }}">{{ ($user->seeded ? 'Yes' : 'No') }}</span>
 							</td>
 							<td><x-landlord.list.my-enable :value="$user->enable"/></td>
 							<td>

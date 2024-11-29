@@ -52,7 +52,7 @@
 									<td>
 										<select class="form-control" name="admin_id">
 											@foreach ($admins as $user)
-												<option {{ $user->id == old('admin_id',$setup->admin_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+												<option {{ $user->id == old('admin_id',$setup->admin_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 											@endforeach
 										</select>
 									</td>

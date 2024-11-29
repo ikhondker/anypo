@@ -54,8 +54,8 @@
 							<td><span class="badge {{ $receipt->pay_status_badge->badge }}">{{ $receipt->pay_status_badge->name}}</span></td>
 						</tr> --}}
 						{{-- <tr>
-							<th>PO <a href="{{ route('pos.show',$receipt->po_id) }}" class="text-warning d-inline-block">#{{ $receipt->po_id }}</a> </th>
-							<td>{{ $receipt->po->summary }} </td>
+							<th>PO <a href="{{ route('pos.show',$receipt->po_id) }}" class="text-warning d-inline-block">#{{ $receipt->po_id }}</a></th>
+							<td>{{ $receipt->po->summary }}</td>
 						</tr> --}}
 						<tr>
 							<td>&nbsp;</td>

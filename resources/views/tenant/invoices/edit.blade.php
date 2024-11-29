@@ -121,7 +121,7 @@
 								<tr>
 									<th>Amount ({{ $invoice->currency }})</th>
 									<td>
-									    <input type="text" class="form-control"
+										<input type="text" class="form-control"
 											style="text-align: right;"
 											name="amount" id="amount" value="{{ number_format($invoice->amount,2) }}"
 											readonly/>
@@ -135,7 +135,7 @@
 										<select class="form-control" name="poc_id" required>
 											<option value=""><< PoC Name >> </option>
 											@foreach ($pocs as $user)
-												<option {{ $user->id == old('poc_id',$invoice->poc_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+												<option {{ $user->id == old('poc_id',$invoice->poc_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 											@endforeach
 										</select>
 										@error('poc_id')

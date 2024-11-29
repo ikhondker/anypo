@@ -19,7 +19,7 @@
 				<tbody>
 					@foreach ($ticketTopics as $ticketTopic)
 					<tr>
-						<td>{{ $loop->iteration }} </td>
+						<td>{{ $loop->iteration }}</td>
 						<td>{{ $ticketTopic->topic->name }}</td>
 						<td><x-landlord.list.my-date-time value="{{ $ticketTopic->created_at }}"/> </td>
 						<td>{{ $ticketTopic->user_created_by->name }}</td>

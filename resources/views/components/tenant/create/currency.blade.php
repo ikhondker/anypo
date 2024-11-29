@@ -4,7 +4,7 @@
 		<select class="form-control" name="currency" required>
 			<option value=""><< Currency >> </option>
 			@foreach ($currencies as $currency)
-				<option value="{{ $currency->currency }}" {{ $currency->currency == old('currency') ? 'selected' : '' }} >{{ $currency->currency." -".$currency->name." (".$currency->country.")" }} </option>
+				<option value="{{ $currency->currency }}" {{ $currency->currency == old('currency') ? 'selected' : '' }} >{{ $currency->currency." -".$currency->name." (".$currency->country.")" }}</option>
 			@endforeach
 		</select>
 		@error('currency')

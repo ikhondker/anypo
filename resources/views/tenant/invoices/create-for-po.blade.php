@@ -60,7 +60,7 @@
 											<select class="form-control select2" data-toggle="select2" name="po_id" id="po_id" required>
 												<option value=""><< Select PO >> </option>
 												@foreach ($pos as $poN)
-													<option value="{{ $poN->id }}" {{ $poN->id == old('po_id') ? 'selected' : '' }} >{{ $poN->summary }} -PO#{{ $poN->id }} </option>
+													<option value="{{ $poN->id }}" {{ $poN->id == old('po_id') ? 'selected' : '' }} >{{ $poN->summary }} -PO#{{ $poN->id }}</option>
 												@endforeach
 											</select>
 											@error('po_id')
@@ -125,7 +125,7 @@
 										<select class="form-control" name="poc_id" required>
 											<option value=""><< PoC Name >> </option>
 											@foreach ($pocs as $user)
-												<option value="{{ $user->id }}" {{ $user->id == old('poc_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+												<option value="{{ $user->id }}" {{ $user->id == old('poc_id') ? 'selected' : '' }} >{{ $user->name }}</option>
 											@endforeach
 										</select>
 										@error('poc_id')

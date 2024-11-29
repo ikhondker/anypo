@@ -22,7 +22,7 @@
 				<a class="btn btn-sm btn-light" href="{{ route('hierarchies.edit', $hierarchy->id ) }}"><i class="fas fa-edit"></i> Edit</a>
 			</div>
 			<h5 class="card-title">Hierarchy : {{ $hierarchy->name }}</h5>
-			<h6 class="card-subtitle text-muted">Details of a approval hierarchy.</h6>
+			<h6 class="card-subtitle text-muted">{{ $hierarchy->summary }}</h6>
 		</div>
 		<div class="card-body">
 			<table class="table table-bordered table-striped">
@@ -41,9 +41,9 @@
 					<tr>
 						<td>{{ $loop->iteration }}</td>
 						<td>{{ $hierarchyl->approver->name }}</td>
-						<td>{{ $hierarchyl->approver->designation->name }} </td>
-						<td>{{ $hierarchyl->approver->dept->name }} </td>
-						<td>{{ $hierarchyl->approver->email }} </td>
+						<td>{{ $hierarchyl->approver->designation->name }}</td>
+						<td>{{ $hierarchyl->approver->dept->name }}</td>
+						<td>{{ $hierarchyl->approver->email }}</td>
 						<td><x-tenant.list.my-boolean :value="$hierarchyl->approver->enable"/></td>
 
 					</tr>

@@ -65,7 +65,7 @@
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
 						<li class="mt-1"><a href="#" class="text-white-50"><i class="align-middle me-2 fas fa-fw fa-map-marker-alt"></i> {{ $_config->address1 }}</a></li>
 						<li class="mt-1"><a href="#" class="text-white-50">{{ $_config->city.' '.$_config->state.' '. $_config->zip. ', '. $_config->relCountry->name }}</a></li>
-						<li class="mt-1"><a href="tel:{{$_config->cell}}" class="text-white-50"><i class="align-middle me-2 fas fa-fw fa-phone"></i> {{ $_config->cell }}</a></li>
+						<li class="mt-1"><a href="tel:{{ $_config->cell}}" class="text-white-50"><i class="align-middle me-2 fas fa-fw fa-phone"></i> {{ $_config->cell }}</a></li>
 					</ul>
 					<!-- End List -->
 				</div>

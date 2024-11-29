@@ -37,7 +37,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>Code</th>
+							<th>Code :</th>
 							<td>
 								<input type="text" class="form-control @error('code') is-invalid @enderror"
 								name="code" id="code" placeholder="XXXX" maxlength="25"
@@ -53,17 +53,17 @@
 						<x-tenant.edit.start-date value="{{ date('Y-m-d',strtotime($project->start_date)) }}"/>
 						<x-tenant.edit.end-date value="{{ date('Y-m-d',strtotime($project->end_date)) }}"/>
 						<tr>
-							<th>Project Manager</th>
+							<th>Project Manager :</th>
 							<td>
 								<select class="form-control" name="pm_id">
 									@foreach ($pms as $user)
-										<option {{ $user->id == old('pm_id',$project->pm_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+										<option {{ $user->id == old('pm_id',$project->pm_id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 									@endforeach
 								</select>
 							</td>
 						</tr>
 						<x-tenant.edit.amount value="{{ $project->amount }}"/>
-						<x-tenant.edit.notes value="{{$project->notes }}"/>
+						<x-tenant.edit.notes value="{{ $project->notes }}"/>
 						<x-tenant.edit.save/>
 					</tbody>
 				</table>

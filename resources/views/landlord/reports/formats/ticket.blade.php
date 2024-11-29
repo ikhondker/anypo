@@ -16,7 +16,7 @@
 		<div id="invoice">
 			<h1>TICKET #{{ $ticket->id}}</h1>
 			<div class="date">Date: {{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date))) }}</div>
-			<div class="date">Status: {{ Str::upper($ticket->status->name) }} </div>
+			<div class="date">Status: {{ Str::upper($ticket->status->name) }}</div>
 		</div>
 	</div>
 @endsection

@@ -21,7 +21,7 @@
 			Application Setup
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -51,7 +51,7 @@
 							<td>
 								<select class="form-control" name="currency">
 									@foreach ($currencies as $currency)
-										<option {{ $currency->currency == old('currency',$setup->currency) ? 'selected' : '' }} value="{{ $currency->currency }}">{{ $currency->currency." -".$currency->name." (".$currency->country.")" }} </option>
+										<option {{ $currency->currency == old('currency',$setup->currency) ? 'selected' : '' }} value="{{ $currency->currency }}">{{ $currency->currency." -".$currency->name." (".$currency->country.")" }}</option>
 									@endforeach
 								</select>
 							</td>
@@ -62,7 +62,7 @@
 								<select class="form-control" name="country" required>
 									<option value=""><< Country >> </option>
 									@foreach ($countries as $country)
-										<option {{ $country->country == old('country',$setup->country) ? 'selected' : '' }} value="{{ $country->country }}">{{ $country->name }} </option>
+										<option {{ $country->country == old('country',$setup->country) ? 'selected' : '' }} value="{{ $country->country }}">{{ $country->name }}</option>
 									@endforeach
 								</select>
 							</td>
@@ -76,11 +76,11 @@
 								</div>
 							</td>
 						</tr>
-						
+
 					</tbody>
 				</table>
 
-				
+
 			</div>
 		</div>
 

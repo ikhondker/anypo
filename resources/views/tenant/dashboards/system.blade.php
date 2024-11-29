@@ -188,7 +188,7 @@
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($po_sum_30,2) }} Same??</span>
 					<div class="mb-0">
-						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }} </span>
+						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }}</span>
 						<span class="text-muted">Utilized Till date. Available 99.00</span>
 					</div>
 				</div>
@@ -220,7 +220,7 @@
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($po_sum_30,2) }}</span>
 					<div class="mb-0">
-						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }} </span>
+						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }}</span>
 						<span class="text-muted">In Last 30 Days</span>
 					</div>
 				</div>
@@ -253,7 +253,7 @@
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($po_sum_30,2) }}</span>
 					<div class="mb-0">
-						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }} </span>
+						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }}</span>
 						<span class="text-muted">In Last 30 Days</span>
 					</div>
 				</div>
@@ -286,7 +286,7 @@
 					@endphp
 					<span class="h1 d-inline-block mt-1 mb-3">{{ number_format($po_sum_30,2) }}</span>
 					<div class="mb-0">
-						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }} </span>
+						<span class="badge badge-subtle-success me-2"> {{ number_format($po_count_30,2) }}</span>
 						<span class="text-muted">In Last 30 Days</span>
 					</div>
 				</div>

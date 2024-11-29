@@ -40,7 +40,7 @@
 								<select class="form-control" name="budget_id" required>
 									<option value=""><< Budget >> </option>
 									@foreach ($budgets as $budget)
-										<option value="{{ $budget->id }}" {{ $budget->id == old('budget_id') ? 'selected' : '' }} >{{ $budget->name }} </option>
+										<option value="{{ $budget->id }}" {{ $budget->id == old('budget_id') ? 'selected' : '' }} >{{ $budget->name }}</option>
 									@endforeach
 								</select>
 								@error('budget_id')
@@ -57,7 +57,7 @@
 								<select class="form-control" name="dept_id" required>
 									<option value=""><< Dept >> </option>
 									@foreach ($depts as $dept)
-										<option value="{{ $dept->id }}" {{ $dept->id == old('dept_id') ? 'selected' : '' }} >{{ $dept->name }} </option>
+										<option value="{{ $dept->id }}" {{ $dept->id == old('dept_id') ? 'selected' : '' }} >{{ $dept->name }}</option>
 									@endforeach
 								</select>
 								@error('dept_id')

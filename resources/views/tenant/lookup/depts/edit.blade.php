@@ -37,11 +37,11 @@
 					<tbody>
 						<x-tenant.edit.name :value="$dept->name"/>
 						<tr>
-							<th>PR Hierarchy</th>
+							<th>PR Hierarchy :</th>
 							<td>
 								<select class="form-control" name="pr_hierarchy_id">
 									@foreach ($hierarchies as $hierarchy)
-										<option {{ $hierarchy->id == old('pr_hierarchy_id',$dept->pr_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }} </option>
+										<option {{ $hierarchy->id == old('pr_hierarchy_id',$dept->pr_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }}</option>
 									@endforeach
 								</select>
 								@error('pr_hierarchy_id')
@@ -50,11 +50,11 @@
 							</td>
 						</tr>
 						<tr>
-							<th>PO Hierarchy</th>
+							<th>PO Hierarchy :</th>
 							<td>
 								<select class="form-control" name="po_hierarchy_id">
 									@foreach ($hierarchies as $hierarchy)
-										<option {{ $hierarchy->id == old('po_hierarchy_id',$dept->po_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }} </option>
+										<option {{ $hierarchy->id == old('po_hierarchy_id',$dept->po_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }}</option>
 									@endforeach
 								</select>
 								@error('po_hierarchy_id')

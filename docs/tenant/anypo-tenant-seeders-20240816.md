@@ -14,6 +14,8 @@ php artisan tenants:rollback --tenants='6499d3bd-ca62-4a32-a1a0-3d92d14f6cb0'
 php artisan tenants:migrate --tenants='6499d3bd-ca62-4a32-a1a0-3d92d14f6cb0'
 php artisan tenants:seed --class=TenantSeeder --tenants='6499d3bd-ca62-4a32-a1a0-3d92d14f6cb0'
 
+php artisan tenants:seed --class=WfSeeder --tenants='6499d3bd-ca62-4a32-a1a0-3d92d14f6cb0'
+
 php artisan queue:listen
 php artisan tenants:seed --tenants=demo1
 php artisan tenants:seed --class=UserSeeder --tenants=demo1

@@ -121,7 +121,7 @@
 										<select class="form-control" name="warehouse_id" required>
 											<option value=""><< Warehouse >> </option>
 											@foreach ($warehouses as $warehouse)
-												<option value="{{ $warehouse->id }}" {{ $warehouse->id == old('warehouse_id') ? 'selected' : '' }} >{{ $warehouse->name }} </option>
+												<option value="{{ $warehouse->id }}" {{ $warehouse->id == old('warehouse_id') ? 'selected' : '' }} >{{ $warehouse->name }}</option>
 											@endforeach
 										</select>
 										@error('warehouse_id')
@@ -166,7 +166,7 @@
 									</td>
 								</tr>
 								<tr>
-									<th>PO Date and Amount :</th>
+									<th>PO Date & Amount :</th>
 									<td>
 										<div class="row">
 											<div class="col-md-5">

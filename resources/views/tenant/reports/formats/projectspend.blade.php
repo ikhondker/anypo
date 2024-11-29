@@ -22,7 +22,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@php 
+			@php
 				$sum = 0
 			@endphp
 			@foreach ($pos as $po)
@@ -32,15 +32,15 @@
 				<td class="desc">{{ date('d-M-y', strtotime($po->po_date)) }}</td>
 				<td class="desc">{{ $po->summary }}</td>
 				<td class="desc">{{ $po->dept }}</td>
-				<td class="desc">{{ $po->supplier }} </td>
-				<td class="desc">{{ $po->currency }} </td>
+				<td class="desc">{{ $po->supplier }}</td>
+				<td class="desc">{{ $po->currency }}</td>
 				<td class="numeric">{{ number_format($po->amount,2) }}</td>
 				<td class="numeric">{{ number_format($po->amount_grs,2) }}</td>
 				<td class="numeric">{{ number_format($po->amount_invoice,2) }}</td>
-				<td class="numeric">{{ number_format($po->amount_paid,2) }}</td>	
-				<td class="numeric">{{ number_format($po->fc_amount,2) }}</td>	
+				<td class="numeric">{{ number_format($po->amount_paid,2) }}</td>
+				<td class="numeric">{{ number_format($po->fc_amount,2) }}</td>
 			</tr>
-				@php 
+				@php
 					$sum = $sum + $po->fc_amount;
 				@endphp
 			@endforeach
@@ -48,7 +48,7 @@
 		<tfoot>
 			<tr>
 				<td colspan="11" style="text-align: right;"><strong>TOTAL ({{ $_setup->currency }}):</strong></td>
-				<td style="text-align: right;">{{ number_format($sum,2) }}</td>		
+				<td style="text-align: right;">{{ number_format($sum,2) }}</td>
 			</tr>
 		</tfoot>
 

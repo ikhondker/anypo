@@ -39,7 +39,7 @@
 					<x-tenant.show.my-text-area	value="{{ $project->notes }}" label="Notes"/>
 					<tr>
 						<th>Attachments :</th>
-						<td>	<x-tenant.attachment.all entity="PROJECT" articleId="{{ $project->id }}"/></td>
+						<td><x-tenant.attachment.all entity="PROJECT" articleId="{{ $project->id }}"/></td>
 					</tr>
 					<x-tenant.show.my-created-at value="{{ $project->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $project->created_at }}"/>

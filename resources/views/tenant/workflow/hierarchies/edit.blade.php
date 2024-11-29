@@ -18,8 +18,6 @@
 		@endslot
 	</x-tenant.page-header>
 
-
-
 <!-- form start -->
 <form id="myform" action="{{ route('hierarchies.update',$hierarchy->id) }}" method="POST" enctype="multipart/form-data">
 	@csrf
@@ -37,25 +35,15 @@
 		<div class="card-body">
 			<table class="table table-sm my-2">
 				<tbody>
-					<tr>
-						<th width="25%">Hierarchy Name :</th>
-						<td>
-							<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $hierarchy->id ) }}" hidden>
-							<input type="text" class="form-control @error('name') is-invalid @enderror"
-							name="name" id="name" placeholder="Hierarchy Name"
-							value="{{ old('name', $hierarchy->name ) }}"
-							/>
-							@error('name')
-								<div class="small text-danger">{{ $message }}</div>
-							@enderror
-						</td>
-					</tr>
+					<input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id', $hierarchy->id ) }}" hidden>
+					<x-tenant.edit.name 		:value="$hierarchy->name"/>
+					<x-tenant.edit.summary 		value="{{ $hierarchy->summary }}"/>
 					<tr>
 						<th>First Approver :</th>
 						<td>
 							<select class="form-control" name="approver_id_1" required>
 								@foreach ($users as $user)
-									<option {{ $user->id == old('approver_id_1',$approver_id_1) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+									<option {{ $user->id == old('approver_id_1',$approver_id_1) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 								@endforeach
 							</select>
 						</td>
@@ -69,7 +57,7 @@
 								@endif --}}
 								<option value="0"><< Second Approver >> </option>
 								@foreach ($users as $user)
-									<option {{ $user->id == old('approver_id_2',$approver_id_2) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+									<option {{ $user->id == old('approver_id_2',$approver_id_2) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 								@endforeach
 							</select>
 						</td>
@@ -82,7 +70,7 @@
 								@endif
 								<option value="0"><< Third Approver >> </option>
 								@foreach ($users as $user)
-									<option {{ $user->id == old('approver_id_3',$approver_id_3) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+									<option {{ $user->id == old('approver_id_3',$approver_id_3) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 								@endforeach
 							</select>
 						</td>
@@ -95,7 +83,7 @@
 								@endif --}}
 								<option value="0"><< Fourth Approver >> </option>
 								@foreach ($users as $user)
-									<option {{ $user->id == old('approver_id_4',$approver_id_4) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+									<option {{ $user->id == old('approver_id_4',$approver_id_4) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 								@endforeach
 							</select>
 						</td>
@@ -108,7 +96,7 @@
 								@endif --}}
 								<option value="0"><< Fifth Approver >> </option>
 								@foreach ($users as $user)
-									<option {{ $user->id == old('approver_id_5',$approver_id_5) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }} </option>
+									<option {{ $user->id == old('approver_id_5',$approver_id_5) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->name }}</option>
 								@endforeach
 							</select>
 						</td>

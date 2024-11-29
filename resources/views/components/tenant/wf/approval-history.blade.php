@@ -20,7 +20,7 @@
 				<tbody>
 					@foreach ($wfls as $wfl)
 					<tr>
-						<td> {{ $loop->iteration }} </td>
+						<td> {{ $loop->iteration }}</td>
 						<td>{{ $wfl->performer->name }} [{{ $wfl->performer->designation->name }}]</td>
 						<td><x-tenant.list.my-date-time value="{{ $wfl->start_date }}"/></td>
 						<td><x-tenant.list.my-date-time value="{{ $wfl->end_date }}"/></td>

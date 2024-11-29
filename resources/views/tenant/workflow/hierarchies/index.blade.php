@@ -37,6 +37,7 @@
 							<tr>
 								<th>#</th>
 								<th>Name</th>
+								<th>Summary</th>
 								<th>Date Created</th>
 								<th>Enable</th>
 								<th>View</th>
@@ -47,6 +48,7 @@
 							<tr>
 								<td>{{ $hierarchies->firstItem() + $loop->index }}</td>
 								<td><a href="{{ route('hierarchies.show',$hierarchy->id) }}"><strong>{{ $hierarchy->name }}</strong></a></td>
+								<td>{{ $hierarchy->summary }}</td>
 								<td><x-tenant.list.my-date-time :value="$hierarchy->created_at"/></td>
 								<td><x-tenant.list.my-boolean :value="$hierarchy->enable"/></td>
 								<td class="table-action">

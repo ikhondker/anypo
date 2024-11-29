@@ -43,7 +43,7 @@
 				<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$invoice->sub_total"/></strong></td>
 				<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$invoice->tax"/></strong></td>
 				<td class="text-end" scope="col"><strong><x-tenant.list.my-number :value="$invoice->gst"/></strong></td>
-				<td class="text-end" scope="col">{{ $invoice->currency }} <strong><x-tenant.list.my-number :value="$invoice->amount"/></strong></td>
+				<td class="text-end" scope="col">{{ $invoice->currency }}<strong><x-tenant.list.my-number :value="$invoice->amount"/></strong></td>
 				<td class="" scope="col">&nbsp</td>
 			</tr>
 			<!-- End Table footer i.e. Totals -->

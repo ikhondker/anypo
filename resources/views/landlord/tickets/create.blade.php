@@ -34,7 +34,7 @@
 									<select class="form-control select2" data-toggle="select2" name="owner_id" required>
 										<option value=""><< User >> </option>
 										@foreach ($owners as $user)
-											<option value="{{ $user->id }}" {{ $user->id == old('owner_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+											<option value="{{ $user->id }}" {{ $user->id == old('owner_id') ? 'selected' : '' }} >{{ $user->name }}</option>
 										@endforeach
 									</select>
 									@error('owner_id')

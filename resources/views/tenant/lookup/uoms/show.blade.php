@@ -32,12 +32,12 @@
 				<tbody>
 					<x-tenant.show.my-text		value="{{ $uom->name }}"/>
 						<tr>
-							<th>Conversion:</th>
+							<th>Conversion Factor:</th>
 							<td>{{ number_format($uom->conversion, 4) }}</td>
 						</tr>
 
 						<tr>
-							<th>Class Name:</th>
+							<th>Class Name :</th>
 							<td>{{ $uom->uom_class->name }}</td>
 						</tr>
 

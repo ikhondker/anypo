@@ -129,9 +129,14 @@ class UploadItemController extends Controller
 
 			$data = array();
 			foreach ($row_range as $row) {
-				$data[] = [
+                // will skip row if item_code is empty
+				$item_code		= Str::upper($sheet->getCell('A' . $row)->getValue());
+                if (empty($item_code)){
+                    continue;
+                }
+                $data[] = [
 					'owner_id'		=> $owner_id,
-					'item_code'		=> Str::upper($sheet->getCell('A' . $row)->getValue()),
+					'item_code'		=> $item_code,
 					'item_name'		=> $sheet->getCell('B' . $row)->getValue(),
 					'notes'			=> $sheet->getCell('C' . $row)->getValue(),
 					'category_name'	=> $sheet->getCell('D' . $row)->getValue(),
@@ -139,10 +144,11 @@ class UploadItemController extends Controller
 					'uom_name'		=> $sheet->getCell('F' . $row)->getValue(),
 					'price'			=> $sheet->getCell('G' . $row)->getValue(),
 					'gl_type_name'	=> $sheet->getCell('H' . $row)->getValue(),
-					'ac_expense'	=> $sheet->getCell('I' . $row)->getValue(),
+					'ac_expense'	=> Str::upper($sheet->getCell('I' . $row)->getValue()),
 					'created_at'	=> $created_at,
 					'updated_at'	=> $updated_at,
 				];
+
 				$startcount++;
 			}
 
@@ -205,7 +211,12 @@ class UploadItemController extends Controller
 	 */
 	public function destroy(UploadItem $uploadItem)
 	{
-		//
+		// check if allowed by policy
+		$this->authorize('delete', $uploadItem);
+
+		$uploadItem->delete();
+
+		return redirect()->route('upload-items.index')->with('success', 'Interface item deleted successfully');
 	}
 
 	public function purge()
@@ -236,42 +247,64 @@ class UploadItemController extends Controller
 		//$os = array("E", "A", "I");
 
 		foreach ($upload_items as $upload_item) {
+
 			$error_code = '';
 			try {
 
-				$item = Item::firstWhere('code', $upload_item->item_code);
-				if(is_null($item)) {
-					$code = '';
+				// check if Item code is empty
+				if(empty($upload_item->item_code)) {
+					Log::debug('tenant.Lookup.UploadItemController.check item_code is empty!');
+					self::markRowAsError($upload_item->id, 'E011');
+					continue;
 				} else {
-					$code = $item->code;
-					$error_code = 'E006';
-					Log::debug('tenant.Lookup.UploadItemController.check code = ' . $code. ' exists!');
+					// check if Item Exists
+					$item = Item::firstWhere('code', $upload_item->item_code);
+					if(! is_null($item)) {
+						Log::debug('tenant.Lookup.UploadItemController.check item_code = ' . $upload_item->item_code. ' already exists!');
+						self::markRowAsError($upload_item->id, 'E006');
+						continue;
+					}
 				}
+
+                // check if Item name is empty
+                if(empty($upload_item->item_name)) {
+					Log::debug('tenant.Lookup.UploadItemController.check item_name is empty!');
+					self::markRowAsError($upload_item->id, 'E012');
+					continue;
+				} else {
+					// check if Item name Exists
+					$item = Item::firstWhere('name', $upload_item->item_name);
+					if(! is_null($item)) {
+						Log::debug('tenant.Lookup.UploadItemController.check item_name = ' . $upload_item->item_name. ' already exists!');
+						self::markRowAsError($upload_item->id, 'E013');
+						continue;
+					}
+                }
+
 
 				$itemCategory = ItemCategory::firstWhere('name', $upload_item->category_name);
 				if(is_null($itemCategory)) {
-					$category_id = '';
-					$error_code = 'E007';
 					Log::debug('tenant.Lookup.UploadItemController.check category = ' . $upload_item->category_name. ' not found!');
+					self::markRowAsError($upload_item->id, 'E007');
+					continue;
 				} else {
 					$item_category_id = $itemCategory->id;
 				}
 
 				$oem = OEM::firstWhere('name', $upload_item->oem_name);
 				if(is_null($oem)) {
-					$oem_id = '';
-					$error_code = 'E008';
 					Log::debug('tenant.Lookup.UploadItemController.check oem = ' . $upload_item->oem_name. ' not found!');
+					self::markRowAsError($upload_item->id, 'E008');
+					continue;
 				} else {
 					$oem_id = $oem->id;
 				}
 
 				$uom = Uom::firstWhere('name', $upload_item->uom_name);
 				if(is_null($uom)) {
-					$uom_class_id= '';
-					$uom_id = '';
-					$error_code = 'E009';
 					Log::debug('tenant.Lookup.UploadItemController.check uom = ' . $upload_item->uom_name. ' not found!');
+					self::markRowAsError($upload_item->id, 'E009');
+					continue;
 				} else {
 					$uom_class_id 	= $uom->uom_class_id;
 					$uom_id 		= $uom->id;
@@ -279,9 +312,9 @@ class UploadItemController extends Controller
 
 				$gl_type = GLType::firstWhere('name', $upload_item->gl_type_name);
 				if(is_null($gl_type)) {
-					$gl_type = '';
-					$error_code = 'E010';
 					Log::debug('tenant.Lookup.UploadItemController.check gl_type = ' . $upload_item->gl_type_name. ' not found!');
+					self::markRowAsError($upload_item->id, 'E010');
+					continue;
 				} else {
 					$gl_type = $gl_type->code;
 				}
@@ -290,28 +323,18 @@ class UploadItemController extends Controller
 				// $oem = OEM::where('name', $upload_item->oem)->firstOrFail();
 				// $uom = Uom::where('name', $upload_item->uom)->firstOrFail();
 
-				Log::debug('Result => id = '.$upload_item->id.' item_category_id = '.$item_category_id.' oem_id = '.$oem_id.' uom_id = '.$uom_id.' gl_type = '.$gl_type);
-
-				if ( $error_code <> '') {
-					// Any error identified
-					UploadItem::where('id', $upload_item->id)
-						->update([
-							'error_code'	=> $error_code,
-							'status' 		=> InterfaceStatusEnum::ERROR->value
-						]);
-				} else {
-					UploadItem::where('id', $upload_item->id)
-						->update([
-							'item_category_id'	=> $item_category_id,
-							'oem_id'			=> $oem_id,
-							'uom_class_id'		=> $uom_class_id,
-							'uom_id'			=> $uom_id,
-							'gl_type'			=> $gl_type,
-							'ac_expense'		=> Str::upper('ac_expense'),
-							'status'			=> InterfaceStatusEnum::VALIDATED->value,
-							'error_code'		=> NULL,
-						]);
-				}
+				// data is clean
+				Log::debug('Result : id = '.$upload_item->id.' item_code = '.$upload_item->item_code.' item_category_id = '.$item_category_id.' oem_id = '.$oem_id.' uom_id = '.$uom_id.' gl_type = '.$gl_type);
+				UploadItem::where('id', $upload_item->id)
+					->update([
+						'item_category_id'	=> $item_category_id,
+						'oem_id'			=> $oem_id,
+						'uom_class_id'		=> $uom_class_id,
+						'uom_id'			=> $uom_id,
+						'gl_type'			=> $gl_type,
+						'status'			=> InterfaceStatusEnum::VALIDATED->value,
+						'error_code'		=> NULL,
+					]);
 
 			} catch (Exception $e) {
 				$error_code = $e->errorInfo[1];
@@ -323,6 +346,16 @@ class UploadItemController extends Controller
 
 	}
 
+	public function markRowAsError($id, $error_code)
+	{
+		// Any error identified
+		UploadItem::where('id', $id)
+		->update([
+			'error_code'	=> $error_code,
+			'status' 		=> InterfaceStatusEnum::ERROR->value
+		]);
+
+	}
 	public function import()
 	{
 
@@ -345,7 +378,7 @@ class UploadItemController extends Controller
 				'uom_id'			=> $upload_item->uom_id,
 				'price'				=> $upload_item->price,
 				'gl_type'			=> $upload_item->gl_type,
-				'ac_expense'		=> ($upload_item->ac_expense <> '') ? $upload_item->ac_expense : 'A600001' ,
+				'ac_expense'		=> ($upload_item->ac_expense <> '') ? $upload_item->ac_expense : config('akk.DEFAULT_EXPENSE_AC') ,
 			];
 
 			Item::create($item); // don't forget to fill $fillable in Model
@@ -356,6 +389,7 @@ class UploadItemController extends Controller
 		return redirect()->route('upload-items.index')->with('success', 'Item uploaded successfully.');
 
 	}
+
 
 	public function export()
 	{

@@ -2,8 +2,6 @@
 @section('title','Edit Attachment')
 
 @section('breadcrumb')
-	{{-- <li class="breadcrumb-item"><a href="{{ route('depts.index') }}" class="text-muted">Departments</a></li>
-	<li class="breadcrumb-item active">{{ $dept->name }}</li> --}}
 	<li class="breadcrumb-item"><a href="{{ route('attachments.show',$attachment->id) }}" class="text-muted">Attachment #{{ $attachment->id }}</a></li>
 	<li class="breadcrumb-item active">Edit</li>
 @endsection
@@ -39,7 +37,7 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						<x-tenant.edit.summary 		:value="$attachment->summary"/>
+						<x-tenant.edit.summary 		value="{{ $attachment->summary }}"/>
 						<x-tenant.show.my-text		value="{{ $attachment->org_file_name }}" label="File Name"/>
 						<x-tenant.show.article-link entity="{{ $attachment->entity }}" :id="$attachment->article_id"/>
 						<x-tenant.show.my-text		value="{{ $attachment->file_type }}" label="File Type"/>

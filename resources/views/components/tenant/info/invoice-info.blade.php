@@ -45,8 +45,8 @@
 							<td><span class="badge {{ $invoice->pay_status_badge->badge }}">{{ $invoice->pay_status_badge->name}}</span></td>
 						</tr>
 						<tr>
-							<th>PO <a href="{{ route('pos.show',$invoice->po_id) }}" class="text-muted"><strong>>#{{ $invoice->po_id }}</strong></a> </th>
-							<td>{{ $invoice->po->summary }} </td>
+							<th>PO <a href="{{ route('pos.show',$invoice->po_id) }}" class="text-muted"><strong>>#{{ $invoice->po_id }}</strong></a></th>
+							<td>{{ $invoice->po->summary }}</td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>

@@ -64,7 +64,7 @@
 									<strong>{{ $menu->raw_route_name }}</strong>
 								</a>
 							</td>
-							<td>{{ $menu->route_name }} </td>
+							<td>{{ $menu->route_name }}</td>
 							<td><x-landlord.list.my-enable :value="$menu->enable" /></td>
 							<td>
 								<a href="{{ route('menus.show',$menu->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
@@ -76,7 +76,7 @@
 									data-name="{{ $menu->route_name }}"
 									data-status="{{ $menu->enable ? 'Disable' : 'Enable' }}" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="{{ $menu->enable ? 'Disable' : 'Enable' }}">
-									<i data-lucide="{{ $menu->enable ? 'bell-off' : 'bell' }} "></i>
+									<i data-lucide="{{ $menu->enable ? 'bell-off' : 'bell' }}"></i>
 								</a>
 							</td>
 						</tr>

@@ -55,7 +55,7 @@
 								<select class="form-control" name="pm_id" required>
 									<option value=""><< Project Manager >> </option>
 									@foreach ($pms as $user)
-										<option value="{{ $user->id }}" {{ $user->id == old('pm_id') ? 'selected' : '' }} >{{ $user->name }} </option>
+										<option value="{{ $user->id }}" {{ $user->id == old('pm_id') ? 'selected' : '' }} >{{ $user->name }}</option>
 									@endforeach
 								</select>
 								@error('pm_id')

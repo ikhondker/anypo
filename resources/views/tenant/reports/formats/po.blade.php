@@ -35,7 +35,7 @@
 			<tr>
 				<td class="sl">{{ $pol->line_num }}</td>
 				<td class="desc">{{ $pol->item_description }}</td>
-				<td class="desc">{{ $pol->item->uom->name }} </td>
+				<td class="desc">{{ $pol->item->uom->name }}</td>
 				<td class="numeric">{{ number_format($pol->price,2) }}</td>
 				<td class="numeric">{{ $pol->qty }}</td>
 				<td class="numeric">{{ number_format($pol->sub_total,2) }}</td>

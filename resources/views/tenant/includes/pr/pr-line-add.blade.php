@@ -10,7 +10,7 @@
 		<select class="form-control select2" data-toggle="select2" name="item_id" id="item_id" required>
 			<option value=""><< Item >> </option>
 			@foreach ($items as $item)
-				<option value="{{ $item->id }}" {{ $item->id == old('item_id') ? 'selected' : '' }} >{{ $item->code .' - '.$item->name }} </option>
+				<option value="{{ $item->id }}" {{ $item->id == old('item_id') ? 'selected' : '' }} >{{ $item->code .' - '.$item->name }}</option>
 			@endforeach
 		</select>
 		@error('item_id')
@@ -30,7 +30,7 @@
 			<select class="form-control" name="uom_id" id="uom_id" required>
 				<option value="">&lt;UoM&gt;</option>
 				@foreach ($uoms as $uom)
-					<option value="{{ $uom->id }}" {{ $uom->id == old('uom_id') ? 'selected' : '' }} >{{ $uom->name }} </option>
+					<option value="{{ $uom->id }}" {{ $uom->id == old('uom_id') ? 'selected' : '' }} >{{ $uom->name }}</option>
 				@endforeach
 			</select>
 			@error('uom_id')

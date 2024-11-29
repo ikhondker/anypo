@@ -24,10 +24,10 @@
 			<div class="card-body py-4">
 				<div class="d-flex align-items-start">
 					<div class="flex-grow-1">
-						<h3 class="mb-2">{{ $count_approved }} </h3>
+						<h3 class="mb-2">{{ $count_approved }}</h3>
 						<p class="mb-2">Approved Requisition</p>
 						<div class="mb-0">
-							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
+							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }}</span>
 							<span class="text-muted">{{ number_format($sum_approved, 2, '.', ',') }}</span>
 						</div>
 					</div>
@@ -46,10 +46,10 @@
 			<div class="card-body py-4">
 				<div class="d-flex align-items-start">
 					<div class="flex-grow-1">
-						<h3 class="mb-2">{{ $count_inprocess }} </h3>
+						<h3 class="mb-2">{{ $count_inprocess }}</h3>
 						<p class="mb-2">In-Process Requisition</p>
 						<div class="mb-0">
-							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
+							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }}</span>
 							<span class="text-muted">{{ number_format($sum_inprocess, 2, '.', ',') }}</span>
 						</div>
 					</div>
@@ -68,10 +68,10 @@
 			<div class="card-body py-4">
 				<div class="d-flex align-items-start">
 					<div class="flex-grow-1">
-						<h3 class="mb-2">{{ $count_rejected }} </h3>
+						<h3 class="mb-2">{{ $count_rejected }}</h3>
 						<p class="mb-2">Rejected Requisitions</p>
 						<div class="mb-0">
-							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }} </span>
+							<span class="badge badge-subtle-success me-2"> {{ $_setup->currency }}</span>
 							<span class="text-muted">{{ number_format($sum_rejected, 2, '.', ',') }}</span>
 						</div>
 					</div>

@@ -126,7 +126,7 @@ class ItemCategoryController extends Controller
 		$itemCategory->update();
 
 		// Write to Log
-		EventLog::event('category', $itemCategory->id, 'status', 'enable', $itemCategory->enable);
+		EventLog::event('item-category', $itemCategory->id, 'status', 'enable', $itemCategory->enable);
 
 		return redirect()->route('item-categories.index')->with('success', 'ItemCategory status Updated successfully');
 	}

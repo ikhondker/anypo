@@ -58,8 +58,6 @@
 											readonly/>
 										</td>
 									</tr>
-
-
 									@if ( auth()->user()->role->value == UserRoleEnum::USER->value || auth()->user()->role->value == UserRoleEnum::HOD->value )
 										<tr>
 											<th>Department :</th>
@@ -67,7 +65,7 @@
 												<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
 												<input type="text" class="form-control"
 													name="dept_name" id="dept_name" placeholder="dept_name"
-													value="{{$pr->dept->name }}"
+													value="{{ $pr->dept->name }}"
 													readonly/>
 											</td>
 										</tr>
@@ -77,7 +75,7 @@
 											<td>
 												<select class="form-control select2" data-toggle="select2" name="dept_id" id="dept_id">
 													@foreach ($depts as $dept)
-														<option {{ $dept->id == old('dept_id',$pr->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }} </option>
+														<option {{ $dept->id == old('dept_id',$pr->dept_id) ? 'selected' : '' }} value="{{ $dept->id }}">{{ $dept->name }}</option>
 													@endforeach
 												</select>
 												@error('dept_id')
@@ -93,7 +91,7 @@
 										<td>
 											<select class="form-control select2" data-toggle="select2" name="supplier_id" id="supplier_id">
 												@foreach ($suppliers as $supplier)
-													<option {{ $supplier->id == old('supplier_id',$pr->supplier_id) ? 'selected' : '' }} value="{{ $supplier->id }}">{{ $supplier->name }} </option>
+													<option {{ $supplier->id == old('supplier_id',$pr->supplier_id) ? 'selected' : '' }} value="{{ $supplier->id }}">{{ $supplier->name }}</option>
 												@endforeach
 											</select>
 											@error('supplier_id')
@@ -107,7 +105,7 @@
 										<td>
 											<select class="form-control select2" data-toggle="select2" name="project_id" id="project_id">
 												@foreach ($projects as $project)
-													<option {{ $project->id == old('project_id',$pr->project_id) ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->name }} </option>
+													<option {{ $project->id == old('project_id',$pr->project_id) ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->name }}</option>
 												@endforeach
 											</select>
 											@error('project_id')
@@ -147,7 +145,7 @@
 										<td>
 											<select class="form-control select2" data-toggle="select2" name="category_id" id="category_id">
 												@foreach ($categories as $category)
-													<option {{ $category->id == old('category_id',$po->category_id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }} </option>
+													<option {{ $category->id == old('category_id',$po->category_id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
 												@endforeach
 											</select>
 											@error('category_id')

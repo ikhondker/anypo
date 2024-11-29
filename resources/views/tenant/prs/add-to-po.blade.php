@@ -77,9 +77,9 @@
 							<tr>
 								<th>PR Value :</th>
 								<td>
-									{{number_format($pr->amount, 2)}} <span class="badge badge-subtle-primary">{{ $pr->currency }}</span>
+									{{number_format($pr->amount, 2)}}<span class="badge badge-subtle-primary">{{ $pr->currency }}</span>
 									@if ($pr->currency <> $_setup->currency)
-										{{number_format($pr->fc_amount, 2)}} <span class="badge badge-subtle-success">{{ $pr->fc_currency }}</span>
+										{{number_format($pr->fc_amount, 2)}}<span class="badge badge-subtle-success">{{ $pr->fc_currency }}</span>
 									@endif
 								</td>
 							</tr>

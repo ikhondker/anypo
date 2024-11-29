@@ -33,10 +33,10 @@
 					<tbody>
 
 						<tr>
-							<th>Account Name</th>
+							<th>Account Name :</th>
 							<td>
 								<input type="text" class="form-control @error('ac_name') is-invalid @enderror"
-									name="ac_name" id="ac_name" placeholder="Ac Name"
+									name="ac_name" id="ac_name" placeholder="Account Name"
 									value="{{ old('ac_name', '' ) }}"
 									required/>
 								@error('ac_name')
@@ -47,10 +47,10 @@
 
 
 						<tr>
-							<th>Account Number</th>
+							<th>Account Number :</th>
 							<td>
 								<input type="text" class="form-control @error('ac_number') is-invalid @enderror"
-								name="ac_number" id="ac_number" placeholder="Ac Number"
+								name="ac_number" id="ac_number" placeholder="Account Number"
 								value="{{ old('ac_number', '' ) }}"
 								required/>
 							@error('ac_number')
@@ -59,7 +59,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Routing Number</th>
+							<th>Routing Number :</th>
 							<td>
 								<input type="text" class="form-control @error('routing_number') is-invalid @enderror"
 								name="routing_number" id="routing_number" placeholder="99999999"
@@ -71,7 +71,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Bank Name</th>
+							<th>Bank Name :</th>
 							<td>
 								<input type="text" class="form-control @error('bank_name') is-invalid @enderror"
 								name="bank_name" id="bank_name" placeholder="Bank Name"
@@ -83,7 +83,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Branch Name</th>
+							<th>Branch Name :</th>
 							<td>
 								<input type="text" class="form-control @error('branch_name') is-invalid @enderror"
 								name="branch_name" id="branch_name" placeholder="Branch Name"
@@ -96,7 +96,7 @@
 						</tr>
 						<x-tenant.create.currency/>
 						<tr>
-							<th>Cash GL Code</th>
+							<th>Cash GL Code :</th>
 							<td>
 								<input type="text" class="form-control @error('ac_cash') is-invalid @enderror"
 								name="ac_cash" id="ac_cash" placeholder="A400001" maxlength="25"

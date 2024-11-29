@@ -2,7 +2,7 @@
 @section('title','Edit Dept')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('depts.index') }}" class="text-muted">Departments(?)</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('depts.index') }}" class="text-muted">Aeh(?)</a></li>
 	<li class="breadcrumb-item active">{{ $dept->name }}????</li>
 @endsection
 
@@ -48,7 +48,7 @@
 								<label class="form-label">PR Hierarchy</label>
 								<select class="form-control" name="pr_hierarchy_id">
 									@foreach ($hierarchies as $hierarchy)
-										<option {{ $hierarchy->id == old('pr_hierarchy_id',$dept->pr_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }} </option>
+										<option {{ $hierarchy->id == old('pr_hierarchy_id',$dept->pr_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }}</option>
 									@endforeach
 								</select>
 								@error('pr_hierarchy_id')
@@ -60,7 +60,7 @@
 								<label class="form-label">PO Hierarchy</label>
 								<select class="form-control" name="po_hierarchy_id">
 									@foreach ($hierarchies as $hierarchy)
-										<option {{ $hierarchy->id == old('po_hierarchy_id',$dept->po_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }} </option>
+										<option {{ $hierarchy->id == old('po_hierarchy_id',$dept->po_hierarchy_id) ? 'selected' : '' }} value="{{ $hierarchy->id }}">{{ $hierarchy->name }}</option>
 									@endforeach
 								</select>
 								@error('po_hierarchy_id')

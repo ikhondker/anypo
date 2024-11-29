@@ -68,8 +68,8 @@
 									{{ $config->address2 }}<br>
 								@endif
 								{{ $config->city . ', ' . $config->state . ', ' . $config->zip }}<br>
-								{{ $config->relCountry->name }} <br>
-								<a href="#">{{ $config->email }}</a> <br>
+								{{ $config->relCountry->name }}<br>
+								<a href="#">{{ $config->email }}</a><br>
 							</p>
 						</div>
 					</div>
