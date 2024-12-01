@@ -2,9 +2,9 @@
 
 namespace App\Models\Tenant\Lookup;
 
-
 use App\Traits\AddCreatedUpdatedBy;
-use App\Traits\CreatedUpdatedBy;
+use App\Traits\standardWhoColumn;
+
 //use App\Models\User;
 use App\Models\Tenant\Workflow\Hierarchy;
 
@@ -13,9 +13,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\User;
+use App\Models\Tenant\DeptBudget;
 class Dept extends Model
 {
-	use HasFactory, AddCreatedUpdatedBy, CreatedUpdatedBy;
+	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
 		'name', 'pr_hierarchy_id', 'po_hierarchy_id', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
@@ -60,7 +61,14 @@ class Dept extends Model
 		return $this->belongsTo(Hierarchy::class,'po_hierarchy_id');
 	}
 
+    public function hod(){
+		return $this->belongsTo(User::class,'hod_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
 	/* ---------------- created and updated by ---------------------- */
+    // Replaced by trait AddCreatedUpdatedBy
 	// public function user_created_by(){
 	// 	return $this->belongsTo(User::class,'created_by')->withDefault([
 	// 		'name' => '[ Empty ]',

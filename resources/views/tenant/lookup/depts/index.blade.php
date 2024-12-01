@@ -7,14 +7,6 @@
 
 @section('content')
 
-	{{-- <nav aria-label="breadcrumb">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="dashboard-default.html">Home</a></li>
-			<li class="breadcrumb-item"><a href="#">Library</a></li>
-			<li class="breadcrumb-item active">Data</li>
-		</ol>
-	</nav> --}}
-
 	<x-tenant.page-header>
 		@slot('title')
 			Department Lists

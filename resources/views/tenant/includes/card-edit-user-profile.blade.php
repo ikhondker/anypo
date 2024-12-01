@@ -2,7 +2,7 @@
 	<div class="card-header">
 		@can('viewAny', $user)
 			<div class="card-actions float-end">
-				{{-- <a href="{{ route('users.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a> --}}
+				{{-- <a href="{{ route('users.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a> --}}
 				{{-- <a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 			</div>
 		@endcan

@@ -19,7 +19,7 @@
 2. layout change for edit user page role change
 
 
-# 12. Icons
+# 12. Icons [Lucide] try not to use FontAwesome
 ====================================================================
 -	<i class="align-middle me-1" data-lucide="eye"></i> View Purchase Order
 -	<i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments
@@ -31,6 +31,15 @@
 -	<i class="align-middle me-1 text-danger" data-lucide="delete"></i> Delete Account (*)
 -	<i class="fas fa-plus"></i> New Ticket
 
+
+
+	<x-tenant.widgets.who-when
+		createdBy="{{ $dept->user_created_by->name }}"
+		createdAt="{{ $dept->created_at }}"
+		updatedBy="{{ $dept->user_updated_by->name }}"
+		updatedAt="{{ $dept->updated_at }}"
+	/>
+    
 
 # 12. Function Sequence in Controller 
 ====================================================================

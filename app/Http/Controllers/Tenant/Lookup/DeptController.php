@@ -43,7 +43,7 @@ use App\Helpers\Export;
 # 11. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 12. FUTURE 
+# 12. FUTURE
 
 
 
@@ -84,7 +84,7 @@ class DeptController extends Controller
 	 */
 	public function store(StoreDeptRequest $request)
 	{
-		
+
 		$this->authorize('create', Dept::class);
 
 		$dept = Dept::create($request->all());
@@ -102,6 +102,16 @@ class DeptController extends Controller
 		$this->authorize('view', $dept);
 
 		return view('tenant.lookup.depts.show', compact('dept'));
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Dept $dept)
+	{
+		$this->authorize('view', $dept);
+
+		return view('tenant.lookup.depts.timestamp', compact('dept'));
 	}
 
 	/**
@@ -126,7 +136,7 @@ class DeptController extends Controller
 		//$request->validate();
 		$request->validate([
 		]);
-		
+
 		// Write to Log
 		EventLog::event('dept', $dept->id, 'update', 'name', $request->name);
 		$dept->update($request->all());

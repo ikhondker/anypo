@@ -16,7 +16,7 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
 			<a href="{{ route('invoices.create-for-po', $po->id) }}" class="btn btn-primary float-end me-2">
-				<i data-lucide="plus-circle"></i> Create
+				<i data-lucide="plus"></i> Create
 			</a>
 
 			<x-tenant.actions.po-actions poId="{{ $po->id }}" show="true"/>

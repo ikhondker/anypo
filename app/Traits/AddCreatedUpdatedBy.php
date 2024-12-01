@@ -3,7 +3,7 @@
 
 // NOTES: https://dev.to/hasanmn/automatically-update-createdby-and-updatedby-in-laravel-using-bootable-traits-28g9
 namespace App\Traits;
-
+use App\Models\User;
 trait AddCreatedUpdatedBy
 {
 	// This functions name must start with boot
@@ -46,5 +46,17 @@ trait AddCreatedUpdatedBy
 				//$model->updated_by = auth()->user()->id;
 			}
 		});
+	}
+
+    /* ---------------- created and updated by ---------------------- */
+	public function user_created_by(){
+		return $this->belongsTo(User::class,'created_by')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+	public function user_updated_by(){
+		return $this->belongsTo(User::class,'updated_by')->withDefault([
+			'name' => '[ Empty ]',
+		]);
 	}
 }

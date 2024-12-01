@@ -130,7 +130,7 @@
 						<div class="card-header">
 							<div class="card-actions float-end">
 								<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
-								{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+								{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
 								<a href="{{ route('prs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 							</div>
 							<h5 class="card-title">Edit Requisition Additional Info</h5>

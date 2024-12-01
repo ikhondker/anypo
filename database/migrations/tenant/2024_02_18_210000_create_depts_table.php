@@ -19,12 +19,14 @@ return new class extends Migration
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();
-			$table->boolean('enable')->default(true); 
+            $table->uuid('hod_id')->nullable();
+			$table->boolean('enable')->default(true);
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
+			$table->foreign('hod_id')->references('id')->on('users');
 		});
 	}
 

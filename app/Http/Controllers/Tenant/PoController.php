@@ -714,7 +714,7 @@ class PoController extends Controller
 	public function recalculate(Po $po)
 	{
 
-        // TODO must uncomment
+		// TODO must uncomment
 		// $this->authorize('recalculate', $po);
 
 		if ($po->auth_status <> AuthStatusEnum::DRAFT->value) {

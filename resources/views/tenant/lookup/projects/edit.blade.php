@@ -27,7 +27,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('projects.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+					<a href="{{ route('projects.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
 					<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Project Info</h5>

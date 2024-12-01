@@ -21,8 +21,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('depts.edit', $dept->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('depts.index') }}" ><i class="fas fa-list"></i> View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('depts.edit', $dept->id ) }}"><i data-lucide="edit"></i></i> Edit</a>
 			</div>
 
 			<h5 class="card-title">Department Detail</h5>
@@ -41,19 +40,11 @@
 						<td><a href="{{ route('hierarchies.show',$dept->po_hierarchy_id) }}"><strong>{{ $dept->poHierarchy->name }}</strong></a></td>
 					</tr>
 					<x-tenant.show.my-boolean	value="{{ $dept->enable }}"/>
-					<x-tenant.show.my-created-at value="{{ $dept->updated_at }}"/>
-					<x-tenant.show.my-updated-at value="{{ $dept->created_at }}"/>
 				</tbody>
 			</table>
 		</div>
 	</div>
 
-	<x-tenant.widgets.who-when
-		createdBy="{{ $dept->user_created_by->name }}"
-		createdAt="{{ $dept->created_at }}"
-		updatedBy="{{ $dept->user_updated_by->name }}"
-		updatedAt="{{ $dept->updated_at }}"
-	/>
-
+    <x-tenant.widgets.back-to-list model="Dept"/>
 @endsection
 

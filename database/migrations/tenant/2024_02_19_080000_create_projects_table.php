@@ -15,7 +15,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('code')->unique();
 			$table->string('name')->unique();
-			$table->foreignUuid('pm_id')->constrained('users')->nullable();
+			$table->uuid('pm_id')->nullable();
 			$table->date('start_date')->default(DB::raw('(CURDATE())'));
 			$table->date('end_date')->nullable();
 			$table->boolean('budget_control')->default(true);
@@ -46,6 +46,7 @@ return new class extends Migration
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
+            $table->foreign('pm_id')->references('id')->on('users');
 		});
 	}
 

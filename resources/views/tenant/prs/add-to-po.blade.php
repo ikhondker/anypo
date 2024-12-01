@@ -53,7 +53,7 @@
 					</div>
 					<div class="mb-3 float-end">
 						<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ url()->previous() }}"><i class="far fa-times-circle"></i></i> Back</a>
-						<button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To PO"><i data-lucide="plus-circle"></i> Add To PO</button>
+						<button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add To PO"><i data-lucide="plus"></i> Add To PO</button>
 					</div>
 			</form>
 			<!-- /.form end -->

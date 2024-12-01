@@ -129,12 +129,12 @@ class UploadItemController extends Controller
 
 			$data = array();
 			foreach ($row_range as $row) {
-                // will skip row if item_code is empty
+				// will skip row if item_code is empty
 				$item_code		= Str::upper($sheet->getCell('A' . $row)->getValue());
-                if (empty($item_code)){
-                    continue;
-                }
-                $data[] = [
+				if (empty($item_code)){
+					continue;
+				}
+				$data[] = [
 					'owner_id'		=> $owner_id,
 					'item_code'		=> $item_code,
 					'item_name'		=> $sheet->getCell('B' . $row)->getValue(),
@@ -266,8 +266,8 @@ class UploadItemController extends Controller
 					}
 				}
 
-                // check if Item name is empty
-                if(empty($upload_item->item_name)) {
+				// check if Item name is empty
+				if(empty($upload_item->item_name)) {
 					Log::debug('tenant.Lookup.UploadItemController.check item_name is empty!');
 					self::markRowAsError($upload_item->id, 'E012');
 					continue;
@@ -279,7 +279,7 @@ class UploadItemController extends Controller
 						self::markRowAsError($upload_item->id, 'E013');
 						continue;
 					}
-                }
+				}
 
 
 				$itemCategory = ItemCategory::firstWhere('name', $upload_item->category_name);

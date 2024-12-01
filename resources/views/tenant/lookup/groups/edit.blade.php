@@ -26,7 +26,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('groups.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>Create</a>
+					<a href="{{ route('groups.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i>Create</a>
 					<a href="{{ route('groups.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>ew all</a>
 				</div>
 				<h5 class="card-title">Edit Item Group</h5>

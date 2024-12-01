@@ -40,12 +40,13 @@ class Attachment extends Model
 
 
 	/* ----------------- HasMany ------------------------ */
-	 
+
 	/* ----------------- belongsTo ---------------------- */
 	public function entity(){
 		return $this->belongsTo(Entity::class,'entity');
 	}
-	 public function owner(){
+
+    public function owner(){
 		return $this->belongsTo(User::class,'owner_id')->withDefault([
 			'name' => '[ Guest ]',
 		]);

@@ -375,6 +375,7 @@ php artisan make:component Tenant\LandlordNoticeOneTenant	<x-tenant.landlord-not
 --Widgets-------------------------------------
 PR/PO related are in anypo-tenant-pr-po-components-20240323.txt
 
+php artisan make:component Tenant/Widgets/BackToList			<x-tenant.widgets.back-to-list/>
 php artisan make:component Tenant/Widgets/WhoWhen
 php artisan make:component Tenant/Widgets/Invoice/ShowInvoiceHeader
 php artisan make:component Tenant/Widgets/Invoice/Payments

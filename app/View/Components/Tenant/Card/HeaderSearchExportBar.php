@@ -10,9 +10,9 @@ use Str;
 
 class HeaderSearchExportBar extends Component
 {
-	
+
 	public $route;
-	
+
 	/**
 	 * Create a new component instance.
 	 */
@@ -20,7 +20,6 @@ class HeaderSearchExportBar extends Component
 	{
 		$this->title = ($title == '') ? $this->object : $title;
 		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
-
 	}
 
 	/**

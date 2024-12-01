@@ -159,7 +159,7 @@ create
 
 
 
-respsnive layour
+responsive layout
 
 <div class="row">
 	<div class="col-12 col-lg-6">
@@ -169,3 +169,9 @@ respsnive layour
 
 	</div>
 </div>
+
+
+{{-- Short attribute syntax... --}}
+<x-profile :$userId :$name />
+ {{-- Is equivalent to... --}}
+<x-profile :user-id="$userId" :name="$name" />

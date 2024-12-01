@@ -356,7 +356,7 @@ class PrController extends Controller
 	public function recalculate(Pr $pr)
 	{
 		// Update pr.line_num
-        // TODO must uncomment
+		// TODO must uncomment
 		// $this->authorize('recalculate', $pr);
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {

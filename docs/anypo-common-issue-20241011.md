@@ -20,7 +20,7 @@ don't put inside any DIV. Only TD
 <td>
 <select class="form-control select2" data-toggle="select2" name="supplier_id" required>
 </td>
-2. confirmationis on scss compile
+2. confirmation on scss compile
 
 
 
@@ -69,8 +69,15 @@ composer.json
 "files": "app/Helpers/Tenant/Akk.php",
  you need to run composer dump-autoload to make sure that everything has been loaded.
 
+add function to all model like standard who and when column
+-------------------------------------------------------------
+trait CreatedUpdatedBy trait AddCreatedUpdatedBy
+class DeptBudget extends Model
+{
+	use HasFactory, AddCreatedUpdatedBy,CreatedUpdatedBy;
 
-ge current domain
+
+get current domain
 https://tenancyforlaravel.com/docs/v3/tenants/
 dd(tenant()->domains->first()->domain);
 

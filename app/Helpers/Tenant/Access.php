@@ -121,7 +121,7 @@ class Access
 				break;
 			default:
 				$editable			= false;
-			}
-			return $editable;
+		}
+		return $editable;
 	}
 }

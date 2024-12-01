@@ -10,7 +10,7 @@
 		@slot('buttons')
 			<x-tenant.buttons.header.lists object="Pol"/>
 			<a href="{{ route('receipts.create-for-pol',$pol->id) }}" class="btn btn-primary float-end me-2">
-				<i data-lucide="plus-circle"></i> Create</a>
+				<i data-lucide="plus"></i> Create</a>
 			{{-- <a href="{{ route('prs.show', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Pr</a> --}}
 			<div class="dropdown me-2 d-inline-block position-relative">
 				<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">

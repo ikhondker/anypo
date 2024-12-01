@@ -31,8 +31,6 @@ class SupplierSeeder extends Seeder
 				'email'				=> 'info@anypo.net',
 				'cell'				=> '+0012262804920',
 				'website'			=> 'https://www.anypo.net',
-
-
 			],
 		];
 

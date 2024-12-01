@@ -16,12 +16,12 @@
 			<div class="dropdown-divider"></div>
 			@if ($bankAccount->enable)
 				<a class="dropdown-item sw2-advance" href="{{ route('bank-accounts.destroy', $bankAccount->id) }}"
-					data-entity="BankAccount" data-name="{{ $bankAccount->name }}" data-status="Disable"
+					data-entity="BankAccount" data-name="{{ $bankAccount->ac_name }}" data-status="Disable"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Disable BankAccount">
 					<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Disable BankAccount</a>
 			@else
 				<a class="dropdown-item sw2-advance" href="{{ route('bank-accounts.destroy',$bankAccount->id) }}"
-					data-entity="BankAccount" data-name="{{ $bankAccount->name }}" data-status="Enable"
+					data-entity="BankAccount" data-name="{{ $bankAccount->ac_name }}" data-status="Enable"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Enable BankAccount">
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable BankAccount</a>
 			@endif

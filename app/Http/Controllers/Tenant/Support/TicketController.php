@@ -161,7 +161,7 @@ class TicketController extends Controller
 					'title' 		=> $request->input('title'),
 					'content' 		=> $request->input('content'),
 					'ticket_date'	=> date('Y-m-d H:i:s'),
-					'status_code'	=> \App\Enum\TicketStatusEnum::NEW->value,
+					'status_code'	=> \App\Enum\Landlord\TicketStatusEnum::NEW->value,
 					'owner_id' 		=> $user->id,
 					'account_id' 	=> $user->account_id,
 					'dept_id' 		=> 1004,	// Support
@@ -194,7 +194,7 @@ class TicketController extends Controller
 				return $ticket;
 		});
 
-		return redirect()->route('dashboards.index')->with('success', 'A New Ticket #' .$landlordTicket->id . ' is created. We will come back to you soon. Thanks.');
+		return redirect()->route('dashboards.index')->with('success', 'A New Ticket #' .$landlordTicket->id . ' is created. We will get back to you soon. Thanks.');
 
 	}
 

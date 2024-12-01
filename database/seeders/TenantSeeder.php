@@ -8,10 +8,10 @@ use Illuminate\Database\Seeder;
 // TODO Remove Testing
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
+use App\Models\Tenant\Lookup\Currency;
 use App\Models\Tenant\Admin\Setup;
 use App\Models\User;
 use App\Models\Tenant\Workflow\Hierarchyl;
-
 use App\Http\Controllers\Tenant\PrController;
 use App\Http\Controllers\Tenant\PoController;
 
@@ -78,6 +78,9 @@ class TenantSeeder extends Seeder
 		Po::query()->update(['currency' => 'BDT']);
 		// TODO Remove Finally
 		Setup::query()->update(['currency' => 'BDT','country' => 'BD','freezed' => true]);
+
+        // TODO Remove enable BDT
+        Currency::where('currency','BDT')->update(['enable'=>true]);
 
 		// TODO Remove Finally
 		// create hiaerarchy

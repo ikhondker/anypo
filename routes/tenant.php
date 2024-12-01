@@ -579,6 +579,7 @@ Route::middleware([
 	Route::resource('depts', DeptController::class);
 	Route::get('/dept/export',[DeptController::class, 'export'])->name('depts.export');
 	Route::get('/depts/delete/{dept}',[DeptController::class, 'destroy'])->name('depts.destroy');
+    Route::get('/depts/timestamp/{dept}',[DeptController::class, 'timestamp'])->name('depts.timestamp');
 
 	/* ======================== Designation ======================================== */
 	Route::resource('designations', DesignationController::class);

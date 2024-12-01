@@ -25,7 +25,7 @@ return new class extends Migration
 			/** ENUM */
 			$table->string('event')->default(EventEnum::BOOK->value);
 			/** end ENUM */
-			$table->foreignUuid('user_id')->nullable()->constrained('users');
+			$table->uuid('user_id')->nullable();
 			$table->foreignId('dept_id')->nullable()->constrained('depts');
 			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
@@ -45,6 +45,8 @@ return new class extends Migration
 			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 			$table->foreign('entity')->references('entity')->on('entities');
+            $table->foreign('user_id')->references('id')->on('users');
+
 		});
 	}
 

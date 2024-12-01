@@ -2,11 +2,9 @@
 
 		<div class="row mb-2 mb-xl-3">
 			<div class="col-auto d-none d-sm-block">
-				<h3>Dashboard</h3>
+				<h3><i class="align-middle text-muted" data-lucide="grid"></i> Dashboard</h3>
 			</div>
-
 			<div class="col-auto ms-auto text-end mt-n1">
-
 				<div class="dropdown me-2 d-inline-block position-relative">
 					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
 						<i class="align-middle mt-n1" data-lucide="calendar"></i> Today
@@ -20,7 +18,6 @@
 						<a class="dropdown-item" href="#">Separated link</a>
 					</div>
 				</div>
-
 				<button class="btn btn-primary shadow-sm">
 					<i class="align-middle" data-lucide="filter">&nbsp;</i>
 				</button>
@@ -31,13 +28,13 @@
 		</div>
 
 		<a href="#" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New project</a>
-		<h1 class="h3 mb-3">Reusable Widgets</h1>
+		<h1 class="h3 mb-3"><i class="align-middle text-muted" data-lucide="grid"></i> Reusable Widgets</h1>
 
 
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 					@if (auth()->user()->isSystem())
 						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
 					 @endif
@@ -51,9 +48,10 @@
 						<th>route </th>
 						<th>Page Dropdown</th>
 						<th>Page Buttons<br>x-tenant.page-header</th>
-						<th>Page Icons</th>
+						<th>Page Header Icons</th>
 						<th>Card Buttons</th>
-						<th>Card Icons</th>
+						<th>Card Button Icons</th>
+                        <th>Card Bellow</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,30 +62,34 @@
 						<td>[Lucide]</td>
 						<td>Search + Export</td>
 						<td>[Lucide]</td>
+                        <td></td>
 					</tr>
 					<tr>
 						<td>show</td>
-						<td>actions </td>
+						<td>[actions]</td>
 						<td>Create+View all</td>
 						<td>&nbsp;</td>
-						<td>Edit + View All </td>
-						<td>[FontAwesome]</td>
+						<td><a href="#" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a></td>
+						<td>[Lucide]</td>
+                        <td>[back-to-list]</td>
 					</tr>
 					<tr>
 						<td>edit</td>
-						<td>actions</td>
+						<td>[actions]</td>
 						<td>Create+View all</td>
 						<td>&nbsp;</td>
-						<td>Create + View All</td>
-						<td>[FontAwesome]</td>
+						<td><a href="#" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a></td>
+						<td>[Lucide]</td>
+                        <td></td>
 					</tr>
 					<tr>
 						<td>create</td>
 						<td>[index-actions] </td>
 						<td>View all</td>
 						<td>&nbsp;</td>
-						<td>[View All]</td>
-						<td>[FontAwesome]</td>
+						<td></td>
+						<td>[Lucide]</td>
+                        <td></td>
 					</tr>
 				</tbody>
 			</table>

@@ -20,7 +20,6 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('bank-accounts.edit', $bankAccount->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('bank-accounts.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Bank Account Detail</h5>
 			<h6 class="card-subtitle text-muted">Bank Account detail information.</h6>
@@ -40,13 +39,12 @@
 					<x-tenant.show.my-text 		value="{{ $bankAccount->address2 }}" label="Address2"/>
 					<x-tenant.show.my-text 		value="{{ $bankAccount->city.', '.$bankAccount->state.', '.$bankAccount->zip }}" label="City"/>
 					<x-tenant.show.my-text 		value="{{ $bankAccount->relCountry->name }}" label="Country"/>
-					<x-tenant.show.my-created_at value="{{ $bankAccount->created_at }}"/>
-					<x-tenant.show.my-updated_at value="{{ $bankAccount->updated_at }}"/>
 				</tbody>
 			</table>
 		</div>
 	</div>
 
+    <x-tenant.widgets.back-to-list route="bank-accounts"/>
 
 
 @endsection

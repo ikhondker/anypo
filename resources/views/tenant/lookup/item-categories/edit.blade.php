@@ -25,7 +25,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('item-categories.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+					<a href="{{ route('item-categories.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
 					<a href="{{ route('item-categories.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Item Category</h5>
