@@ -99,6 +99,18 @@ class SupplierController extends Controller
 		return view('tenant.lookup.suppliers.show', compact('supplier'));
 	}
 
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Supplier $supplier)
+	{
+		$this->authorize('view', $supplier);
+
+		return view('tenant.lookup.suppliers.timestamp', compact('supplier'));
+	}
+
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */
@@ -122,12 +134,12 @@ class SupplierController extends Controller
 		$request->validate([
 
 		]);
-		
+
 		// Write to Log
 		EventLog::event('supplier', $supplier->id, 'update', 'name', $supplier->name);
 		$supplier->update($request->all());
 
-		
+
 		return redirect()->route('suppliers.index')->with('success', 'Supplier updated successfully');
 	}
 

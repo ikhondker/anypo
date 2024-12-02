@@ -88,8 +88,21 @@ class ItemCategoryController extends Controller
 	 */
 	public function show(ItemCategory $itemCategory)
 	{
+        $this->authorize('view', $itemCategory);
 		return view('tenant.lookup.item-categories.show', compact('itemCategory'));
 	}
+
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(ItemCategory $itemCategory)
+	{
+		$this->authorize('view', $itemCategory);
+
+		return view('tenant.lookup.item-categories.timestamp', compact('itemCategory'));
+	}
+
 
 	/**
 	 * Show the form for editing the specified resource.

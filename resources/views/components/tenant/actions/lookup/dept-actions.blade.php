@@ -32,6 +32,7 @@
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Dept</a>
 			@endif
 		@endcan
+
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{ route('depts.timestamp', $dept->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 	</div>

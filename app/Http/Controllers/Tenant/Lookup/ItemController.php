@@ -123,6 +123,17 @@ class ItemController extends Controller
 
 	}
 
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Item $item)
+	{
+		$this->authorize('view', $item);
+
+		return view('tenant.lookup.items.timestamp', compact('item'));
+	}
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */

@@ -43,7 +43,7 @@ use App\Helpers\EventLog;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 class BankAccountController extends Controller
 {
@@ -66,11 +66,11 @@ class BankAccountController extends Controller
 	 * Show the form for creating a new resource.
 	 */
 	public function create()
-	{	
+	{
 		$this->authorize('create', BankAccount::class);
-		
+
 		return view('tenant.lookup.bank-accounts.create');
-		
+
 	}
 
 	/**
@@ -79,9 +79,9 @@ class BankAccountController extends Controller
 	public function store(StoreBankAccountRequest $request)
 	{
 		$this->authorize('create', BankAccount::class);
-		
-		
-		$request->merge([	
+
+
+		$request->merge([
 			'state' 	=> Str::upper($request['state']),
 			'ac_cash' 	=> Str::upper($request['ac_cash']),
 		]);
@@ -102,6 +102,16 @@ class BankAccountController extends Controller
 		$this->authorize('view', $bankAccount);
 
 		return view('tenant.lookup.bank-accounts.show', compact('bankAccount'));
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(BankAccount $bankAccount)
+	{
+		$this->authorize('view', $bankAccount);
+
+		return view('tenant.lookup.bank-accounts.timestamp', compact('bankAccount'));
 	}
 
 	/**
@@ -126,11 +136,11 @@ class BankAccountController extends Controller
 			'ac_cash' 	=> Str::upper($request['ac_cash']),
 		]);
 
-		
+
 		//$request->validate();
 		$request->validate([
 		]);
-		
+
 		// Write to Log
 		EventLog::event('bankAccount', $bankAccount->id, 'update', 'name', $request->ac_name);
 		$bankAccount->update($request->all());

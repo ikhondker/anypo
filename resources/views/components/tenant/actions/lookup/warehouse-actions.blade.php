@@ -3,7 +3,7 @@
 		<i class="align-middle text-info mt-n1" data-lucide="settings"></i> Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-		
+
 
 		@if (Route::current()->getName() == 'warehouses.edit')
 		<a class="dropdown-item" href="{{ route('warehouses.show', $warehouse->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Warehouse</a>
@@ -34,6 +34,10 @@
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Warehouse</a>
 			@endif
 		@endcan
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{{ route('warehouses.timestamp', $warehouse->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+
 
 	</div>
 </div>

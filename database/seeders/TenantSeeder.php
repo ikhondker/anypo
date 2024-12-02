@@ -64,59 +64,10 @@ class TenantSeeder extends Seeder
 
 		$this->call(\Database\Seeders\ReportSeeder::class);
 
-
 		// ========================================================
 		//TODO MUST Remove
-
-		$this->call(\Database\Seeders\PrSeeder::class);
-		$this->call(\Database\Seeders\PrlSeeder::class);
-		$this->call(\Database\Seeders\PoSeeder::class);
-		$this->call(\Database\Seeders\PolSeeder::class);
-		 // TODO Remove Finally
-		Pr::query()->update(['currency' => 'BDT']);
-		// TODO Remove Finally
-		Po::query()->update(['currency' => 'BDT']);
-		// TODO Remove Finally
-		Setup::query()->update(['currency' => 'BDT','country' => 'BD','freezed' => true]);
-
-        // TODO Remove enable BDT
-        Currency::where('currency','BDT')->update(['enable'=>true]);
-
-		// TODO Remove Finally
-		// create hiaerarchy
-		$system = User::where('email', 'system@anypo.net')->firstOrFail();
-		$pr=Hierarchyl::create([
-			'hid'			=> 1001,
-			'approver_id'	=> $system->id,
-		]);
-		$po=Hierarchyl::create([
-			'hid'			=> 1002,
-			'approver_id'	=> $system->id,
-		]);
-
-		// recalculate Pr
-		$pr = new PrController();
-		$pr1001 = Pr::where('id', '1001')->firstOrFail();
-		$result = $pr->recalculate($pr1001);
-		$pr1002 = Pr::where('id', '1002')->firstOrFail();
-		$result = $pr->recalculate($pr1002);
-		$pr1003 = Pr::where('id', '1003')->firstOrFail();
-		$result = $pr->recalculate($pr1002);
-
-		// recalculate Po
-		$po = new PoController();
-		$po1001 = Po::where('id', '1001')->firstOrFail();
-		$result = $po->recalculate($po1001);
-		$po1002 = Po::where('id', '1002')->firstOrFail();
-		$result = $po->recalculate($po1002);
-		$po1003 = Po::where('id', '1003')->firstOrFail();
-		$result = $po->recalculate($po1003);
-
-		// $this->call(\Database\Seeders\ReceiptSeeder::class);
-		// $this->call(\Database\Seeders\InvoiceSeeder::class);
-		// $this->call(\Database\Seeders\PaymentSeeder::class);
-		// ========================================================
-
+		$this->call(\Database\Seeders\DemoSeeder::class);
+	    // ========================================================
 
    		// This seeder set create_by and updated_by to default
 		$this->call(\Database\Seeders\TimestampSeeder::class);

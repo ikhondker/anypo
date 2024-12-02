@@ -33,5 +33,9 @@
 			@endif
 		@endcan
 
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{{ route('groups.timestamp', $group->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+
+
 	</div>
 </div>

@@ -98,6 +98,18 @@ class UomController extends Controller
 		return view('tenant.lookup.uoms.show', compact('uom'));
 	}
 
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Uom $uom)
+	{
+		$this->authorize('view', $uom);
+
+		return view('tenant.lookup.uoms.timestamp', compact('uom'));
+	}
+
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */
@@ -106,7 +118,7 @@ class UomController extends Controller
 		$this->authorize('update', $uom);
 
 		if ($uom->default){
-			return redirect()->route('uoms.index')->with('error', 'Wont be able to edit UoM Class defaults.');	
+			return redirect()->route('uoms.index')->with('error', 'Wont be able to edit UoM Class defaults.');
 		}
 
 		return view('tenant.lookup.uoms.edit', compact('uom'));
@@ -120,13 +132,13 @@ class UomController extends Controller
 		$this->authorize('update', $uom);
 
 		if ($uom->default){
-			return redirect()->route('uoms.index')->with('error', 'Wont be able to edit UoM Class defaults.');	
+			return redirect()->route('uoms.index')->with('error', 'Wont be able to edit UoM Class defaults.');
 		}
-		
+
 		// Write to Log
 		EventLog::event('uom', $uom->id, 'update', 'name', $uom->name);
 		$uom->update($request->all());
-		
+
 		return redirect()->route('uoms.index')->with('success', 'Uom updated successfully');
 	}
 
@@ -138,7 +150,7 @@ class UomController extends Controller
 		$this->authorize('delete', $uom);
 
 		if ($uom->default){
-			return redirect()->route('uoms.index')->with('error', 'Wont be able to disable UoM Class defaults.');	
+			return redirect()->route('uoms.index')->with('error', 'Wont be able to disable UoM Class defaults.');
 		}
 
 		$uom->fill(['enable' => !$uom->enable]);

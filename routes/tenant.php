@@ -245,6 +245,7 @@ Route::middleware([
 		/* ======================== Supplier ======================================== */
 		Route::resource('suppliers', SupplierController::class);
 		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
+        Route::get('/suppliers/timestamp/{supplier}',[SupplierController::class, 'timestamp'])->name('suppliers.timestamp');
 
 		/* ======================== Uom ======================================== */
 		Route::get('/uoms/get-uoms-by-class/{uom_class_id}',[UomController::class, 'getUomsByClass'])->name('uoms.get-uoms-by-class');
@@ -253,11 +254,14 @@ Route::middleware([
 		Route::resource('items', ItemController::class);
 		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
 		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
+        Route::get('/items/timestamp/{item}',[ItemController::class, 'timestamp'])->name('items.timestamp');
 
 		/* ======================== Project ======================================== */
 		Route::resource('projects', ProjectController::class);
 		Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
 		Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
+        Route::get('/projects/timestamp/{project}',[ProjectController::class, 'timestamp'])->name('projects.timestamp');
+
 
 		/* ======================== Pr ======================================== */
 		Route::resource('prs', PrController::class);
@@ -585,43 +589,53 @@ Route::middleware([
 	Route::resource('designations', DesignationController::class);
 	Route::get('/designation/export',[DesignationController::class, 'export'])->name('designations.export');
 	Route::get('/designations/delete/{designation}',[DesignationController::class, 'destroy'])->name('designations.destroy');
+    Route::get('/designations/timestamp/{designation}',[DesignationController::class, 'timestamp'])->name('designations.timestamp');
 
 	/* ======================== Group ======================================== */
 	Route::resource('groups', GroupController::class);
 	Route::get('/group/export',[GroupController::class,'export'])->name('groups.export');
 	Route::get('/groups/delete/{group}',[GroupController::class,'destroy'])->name('groups.destroy');
+    Route::get('/groups/timestamp/{group}',[GroupController::class, 'timestamp'])->name('groups.timestamp');
 
 	/* ======================== Warehouse ======================================== */
 	Route::resource('warehouses', WarehouseController::class);
 	Route::get('/warehouse/export',[WarehouseController::class,'export'])->name('warehouses.export');
 	Route::get('/warehouses/delete/{warehouse}',[WarehouseController::class,'destroy'])->name('warehouses.destroy');
+    Route::get('/warehouses/timestamp/{warehouse}',[WarehouseController::class, 'timestamp'])->name('warehouses.timestamp');
 
 	/* ======================== BankAccount ======================================== */
 	Route::resource('bank-accounts', BankAccountController::class);
 	Route::get('/bank-account/export',[BankAccountController::class,'export'])->name('bank-accounts.export');
 	Route::get('/bank-accounts/delete/{bankAccount}',[BankAccountController::class,'destroy'])->name('bank-accounts.destroy');
 	Route::post('/bank-account/attach',[BankAccountController::class,'attach'])->name('bank-accounts.attach');
+    Route::get('/bank-accounts/timestamp/{bankAccount}',[BankAccountController::class, 'timestamp'])->name('bank-accounts.timestamp');
 	//Route::get('/bank-accounts/attachments/{bankAccount}',[BankAccountController::class,'attachments'])->name('bank-accounts.detach');
 
 	/* ======================== Category ======================================== */
 	Route::resource('categories', CategoryController::class);
 	Route::get('/category/export',[CategoryController::class, 'export'])->name('categories.export');
 	Route::get('/categories/delete/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('/categories/timestamp/{category}',[CategoryController::class, 'timestamp'])->name('categories.timestamp');
 
     /* ======================== ItemCategory ======================================== */
 	Route::resource('item-categories', ItemCategoryController::class);
 	Route::get('/item-category/export',[ItemCategoryController::class, 'export'])->name('item-categories.export');
-	Route::get('/item-categories/delete/{category}',[ItemCategoryController::class, 'destroy'])->name('item-categories.destroy');
+	Route::get('/item-categories/delete/{itemCategory}',[ItemCategoryController::class, 'destroy'])->name('item-categories.destroy');
+    Route::get('/item-categories/timestamp/{itemCategory}',[ItemCategoryController::class, 'timestamp'])->name('item-categories.timestamp');
 
 	/* ======================== Uom ======================================== */
 	Route::resource('uoms', UomController::class);
 	Route::get('/uom/export',[UomController::class,'export'])->name('uoms.export');
 	Route::get('/uoms/delete/{uom}',[UomController::class,'destroy'])->name('uoms.destroy');
+    Route::get('/uoms/timestamp/{uom}',[UomController::class, 'timestamp'])->name('uoms.timestamp');
+
 
 	/* ======================== Oem ======================================== */
 	Route::resource('oems', OemController::class);
 	Route::get('/oem/export',[OemController::class,'export'])->name('oems.export');
 	Route::get('/oems/delete/{oem}',[OemController::class,'destroy'])->name('oems.destroy');
+    Route::get('/oems/timestamp/{oem}',[OemController::class, 'timestamp'])->name('oems.timestamp');
+
 
 	/* ======================== Setup ======================================== */
 	Route::resource('setups', SetupController::class);

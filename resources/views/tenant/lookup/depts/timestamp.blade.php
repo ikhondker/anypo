@@ -6,7 +6,6 @@
 	<li class="breadcrumb-item active">{{ $dept->name }}</li>
 @endsection
 
-
 @section('content')
 
 	<x-tenant.page-header>
@@ -18,8 +17,8 @@
 		@endslot
 	</x-tenant.page-header>
 
-    <x-tenant.widgets.who-when model="Dept" articleId="{{ $dept->id  }}"/>
+	<x-tenant.widgets.who-when model="Dept" articleId="{{ $dept->id  }}"/>
 
-    <x-tenant.widgets.back-to-list model="Dept"/>
+	<x-tenant.widgets.back-to-list model="Dept"/>
 @endsection
 

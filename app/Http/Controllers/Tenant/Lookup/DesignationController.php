@@ -97,6 +97,17 @@ class DesignationController extends Controller
 		return view('tenant.lookup.designations.show', compact('designation'));
 	}
 
+
+        /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Designation $designation)
+	{
+		$this->authorize('view', $designation);
+
+		return view('tenant.lookup.designations.timestamp', compact('designation'));
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */
@@ -118,7 +129,7 @@ class DesignationController extends Controller
 		$request->validate([
 
 		]);
-		
+
 		// Write to Log
 		EventLog::event('designation', $designation->id, 'update', 'name', $designation->name);
 		$designation->update($request->all());

@@ -94,6 +94,18 @@ class OemController extends Controller
 		return view('tenant.lookup.oems.show', compact('oem'));
 	}
 
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Oem $oem)
+	{
+		$this->authorize('view', $oem);
+
+		return view('tenant.lookup.oems.timestamp', compact('oem'));
+	}
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */
@@ -114,7 +126,7 @@ class OemController extends Controller
 		$request->validate([
 
 		]);
-		
+
 		// Write to Log
 		EventLog::event('oem', $oem->id, 'update', 'name', $oem->name);
 		$oem->update($request->all());

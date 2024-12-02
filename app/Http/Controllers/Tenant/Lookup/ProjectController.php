@@ -123,6 +123,17 @@ class ProjectController extends Controller
 		}
 	}
 
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Project $project)
+	{
+		$this->authorize('view', $project);
+
+		return view('tenant.lookup.projects.timestamp', compact('project'));
+	}
+
+
 	/**
 	 * Display the specified resource.
 	 */

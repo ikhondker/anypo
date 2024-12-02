@@ -88,7 +88,18 @@ class CategoryController extends Controller
 	 */
 	public function show(Category $category)
 	{
+        $this->authorize('view', $category);
 		return view('tenant.lookup.categories.show', compact('category'));
+	}
+
+     /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Category $category)
+	{
+		$this->authorize('view', $category);
+
+		return view('tenant.lookup.categories.timestamp', compact('category'));
 	}
 
 	/**
@@ -107,7 +118,7 @@ class CategoryController extends Controller
 	public function update(UpdateCategoryRequest $request, Category $category)
 	{
 		$this->authorize('update', $category);
-		
+
 		// Write to Log
 		EventLog::event('category', $category->id, 'update', 'name', $category->name);
 		$category->update($request->all());

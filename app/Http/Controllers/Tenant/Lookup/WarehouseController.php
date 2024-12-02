@@ -44,7 +44,7 @@ use App\Helpers\Export;
 # 11. Seeded
 use DB;
 use Str;
-# 12. FUTURE 
+# 12. FUTURE
 
 
 class WarehouseController extends Controller
@@ -105,6 +105,18 @@ class WarehouseController extends Controller
 		return view('tenant.lookup.warehouses.show', compact('warehouse'));
 	}
 
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Warehouse $warehouse)
+	{
+		$this->authorize('view', $warehouse);
+
+		return view('tenant.lookup.warehouses.timestamp', compact('warehouse'));
+	}
+
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */
@@ -125,16 +137,16 @@ class WarehouseController extends Controller
 		$request->merge([
 			'state' 			=> Str::upper($request['state']),
 		]);
-		
+
 		//$request->validate();
 		$request->validate([
 
 		]);
-		
+
 		// Write to Log
 		EventLog::event('warehouse', $warehouse->id, 'update', 'name', $warehouse->name);
 		$warehouse->update($request->all());
-		
+
 		return redirect()->route('warehouses.index')->with('success', 'Warehouse updated successfully');
 	}
 

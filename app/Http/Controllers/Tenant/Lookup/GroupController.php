@@ -41,7 +41,7 @@ use App\Helpers\Export;
 # 10. Events
 # 11. Seeded
 use DB;
-# 12. FUTURE 
+# 12. FUTURE
 
 
 
@@ -52,7 +52,7 @@ class GroupController extends Controller
 	 */
 	public function index()
 	{
-		
+
 		$this->authorize('viewAny', Group::class);
 
 		$groups = Group::query();
@@ -68,7 +68,7 @@ class GroupController extends Controller
 	 */
 	public function create()
 	{
-		
+
 		$this->authorize('create', Group::class);
 		return view('tenant.lookup.groups.create');
 	}
@@ -78,7 +78,7 @@ class GroupController extends Controller
 	 */
 	public function store(StoreGroupRequest $request)
 	{
-		
+
 		$this->authorize('create', Group::class);
 		$group = Group::create($request->all());
 		// Write to Log
@@ -97,12 +97,23 @@ class GroupController extends Controller
 		return view('tenant.lookup.groups.show', compact('group'));
 	}
 
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Group $group)
+	{
+		$this->authorize('view', $group);
+
+		return view('tenant.lookup.groups.timestamp', compact('group'));
+	}
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */
 	public function edit(Group $group)
 	{
-	
+
 		$this->authorize('update', $group);
 		return view('tenant.lookup.groups.edit', compact('group'));
 	}
@@ -112,18 +123,18 @@ class GroupController extends Controller
 	 */
 	public function update(UpdateGroupRequest $request, Group $group)
 	{
-		
+
 		$this->authorize('update', $group);
 
 		//$request->validate();
 		$request->validate([
 
 		]);
-		
+
 		// Write to Log
 		EventLog::event('group', $group->id, 'update', 'name', $group->name);
 		$group->update($request->all());
-		
+
 		return redirect()->route('groups.index')->with('success', 'Group updated successfully');
 	}
 
@@ -132,7 +143,7 @@ class GroupController extends Controller
 	 */
 	public function destroy(Group $group)
 	{
-		
+
 		$this->authorize('delete', $group);
 
 		$group->fill(['enable' => !$group->enable]);
@@ -146,10 +157,10 @@ class GroupController extends Controller
 
 	public function export()
 	{
-		
+
 		$this->authorize('export', Group::class);
 
-		$data = DB::select("SELECT id, name, email, cell, role, enable 
+		$data = DB::select("SELECT id, name, email, cell, role, enable
 			FROM users");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
