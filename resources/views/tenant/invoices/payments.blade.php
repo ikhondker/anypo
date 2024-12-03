@@ -14,7 +14,7 @@
 			Payments of Invoice #{{ $invoice->invoice_no }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Invoice" label="Invoice"/>
+			<x-tenant.buttons.header.lists model="Invoice" label="Invoice"/>
 			<x-tenant.actions.invoice-actions invoiceId="{{ $invoice->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>

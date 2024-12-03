@@ -247,6 +247,18 @@ class InvoiceController extends Controller
 		return view('tenant.invoices.show', compact('invoice'));
 	}
 
+
+    	/**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Invoice $invoice)
+	{
+		$this->authorize('view', $invoice);
+
+		return view('tenant.invoices.timestamp', compact('invoice'));
+	}
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */

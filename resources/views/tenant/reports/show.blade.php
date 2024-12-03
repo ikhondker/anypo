@@ -14,9 +14,9 @@
 			View Report
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Report"/>
-			{{-- <x-tenant.buttons.header.create object="Report"/> --}}
-			{{-- <x-tenant.buttons.header.edit object="Report" :id="$report->id"/> --}}
+			<x-tenant.buttons.header.lists model="Report"/>
+			{{-- <x-tenant.buttons.header.create model="Report"/> --}}
+			{{-- <x-tenant.buttons.header.edit model="Report" :id="$report->id"/> --}}
 		@endslot
 	</x-tenant.page-header>
 
@@ -27,7 +27,7 @@
 					<a class="btn btn-sm btn-danger text-white" href="{{ route('reports.edit', $report->code ) }}"><i class="fas fa-edit"></i> Edit</a>
 				@endif
 					<a class="btn btn-sm btn-light" href="{{ route('reports.parameter', $report->code ) }}"><i class="fas fa-print"></i> Run</a>
-			
+
 
 			</div>
 			<h5 class="card-title">Reports Detail</h5>

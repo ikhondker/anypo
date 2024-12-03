@@ -64,7 +64,7 @@ use App\Jobs\Tenant\RecordDeptBudgetUsage;
 use Exception;
 use Illuminate\Support\Facades\Session;
 use Stancl\Tenancy\Resolvers;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class TestController extends Controller
 {
@@ -79,6 +79,15 @@ class TestController extends Controller
 		//https://stackoverflow.com/questions/41758870/how-to-convert-result-table-to-json-array-in-mysql
 
 
+		//$admin = User::where('role', 'admin')->firstOrFail();
+		try {
+			 $admin = User::where('role', 'admin1')->firstOrFail();
+		} catch (ModelNotFoundException $exception) {
+			$admin = User::where('email', config('akk.SYSTEM_EMAIL_ID'))->firstOrFail();
+		}
+
+		Log::debug('tenant.test.run admin name  = '.$admin->name);
+		exit;
 
 
 		$prId = '1002';

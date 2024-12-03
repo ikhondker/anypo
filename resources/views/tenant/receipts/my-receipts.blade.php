@@ -11,7 +11,7 @@
 			My Receipt Lists
 		@endslot
 		@slot('buttons')
-			{{-- <x-tenant.buttons.header.create object="Receipt"/> --}}
+			{{-- <x-tenant.buttons.header.create model="Receipt"/> --}}
 			<x-tenant.actions.receipt-actions-index/>
 		@endslot
 	</x-tenant.page-header>
@@ -21,7 +21,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.card.header-search-bar object="Receipt"/>
+					<x-tenant.card.header-search-bar model="Receipt"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>

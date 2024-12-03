@@ -36,7 +36,7 @@
 							<tr>
 								<th>&nbsp;</th>
 								<td>
-									<x-tenant.show.my-edit-link object="Pr" :id="$pr->id"/>
+									<x-tenant.show.my-edit-link model="Pr" :id="$pr->id"/>
 								</td>
 							</tr>
 						@endcan

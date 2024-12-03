@@ -8,7 +8,7 @@
 			Departments
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Dept"/>
+			<x-tenant.buttons.header.create model="Dept"/>
 		@endslot
 	</x-tenant.page-header>
 

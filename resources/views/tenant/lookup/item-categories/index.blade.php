@@ -12,13 +12,13 @@
 			Item Category
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="ItemCategory"/>
+			<x-tenant.buttons.header.create model="ItemCategory"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.card.header-search-export-bar object="Category"/>
+			<x-tenant.card.header-search-export-bar model="Category"/>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>

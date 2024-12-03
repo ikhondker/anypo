@@ -13,8 +13,8 @@
 			Edit Wf
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Wf"/>
-			<x-tenant.buttons.header.create object="Wf"/>
+			<x-tenant.buttons.header.lists model="Wf"/>
+			<x-tenant.buttons.header.create model="Wf"/>
 		@endslot
 	</x-tenant.page-header>
 

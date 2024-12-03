@@ -13,7 +13,7 @@
 			Create PR/PO Category
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Category"/>
+			<x-tenant.buttons.header.lists model="Category"/>
 		@endslot
 	</x-tenant.page-header>
 

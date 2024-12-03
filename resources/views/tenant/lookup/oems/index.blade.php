@@ -11,14 +11,14 @@
 			OEM
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Oem"/>
+			<x-tenant.buttons.header.create model="Oem"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
 
-			<x-tenant.card.header-search-export-bar object="Oem"/>
+			<x-tenant.card.header-search-export-bar model="Oem"/>
 
 			<h5 class="card-title">
 				@if (request('term'))

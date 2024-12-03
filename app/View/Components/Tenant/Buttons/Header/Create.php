@@ -10,22 +10,19 @@ use Str;
 
 class Create extends Component
 {
-	public $object;
-	public $label;
+
 	public $route;
 	public $title;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($object, $label="")
+	public function __construct(public string $model, public string $label="")
 	{
-		 $this->object	= $object;
-		 $this->label	= $label;
 
-		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
-		//$this->title = 'Create '.$object;
-		//$this->title = 'Create '. ($this->label=="" ? $this->object : $this->label);
+		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
+		//$this->title = 'Create '.$model;
+		//$this->title = 'Create '. ($this->label=="" ? $this->model : $this->label);
 		$this->title = 'Create';
 
 

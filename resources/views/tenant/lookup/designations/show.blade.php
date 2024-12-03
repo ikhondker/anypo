@@ -14,7 +14,7 @@
 			View Designation
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Designation"/>
+			<x-tenant.buttons.header.lists model="Designation"/>
 			<x-tenant.actions.lookup.designation-actions designationId="{{ $designation->id }}"/>
 		@endslot
 	</x-tenant.page-header>

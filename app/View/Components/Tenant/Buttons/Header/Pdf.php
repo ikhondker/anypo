@@ -10,23 +10,19 @@ use Str;
 
 class Pdf extends Component
 {
-	public $object;
-	public $id;
 
 	public $route;
 	public $title;
 
-
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($object, $id=1)
+	public function __construct(public string $model, public string $id='1')
 	{
-		$this->object	= $object;
-		$this->id		= $id;
 
-		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
-		$this->title = 'Print '.$object;
+
+		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
+		$this->title = 'Print '.$model;
 	}
 
 	/**

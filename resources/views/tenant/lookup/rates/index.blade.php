@@ -18,7 +18,7 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.card.header-search-export-bar object="Rate" :export="true"/>
+					<x-tenant.card.header-search-export-bar model="Rate" :export="true"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>

@@ -10,7 +10,7 @@
 		<table class="table table-sm my-2">
 			<tbody>
 				<tr>
-					<th>Created By :</th>
+					<th width="25%">Created By :</th>
 					<td>{{ $article->user_created_by->name }}</td>
 				</tr>
 				<tr>

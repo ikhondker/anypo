@@ -14,7 +14,7 @@
 			Create Dept
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Dept"/>
+			<x-tenant.buttons.header.lists model="Dept"/>
 		@endslot
 	</x-tenant.page-header>
 

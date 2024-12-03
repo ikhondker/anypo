@@ -13,7 +13,7 @@
 			Create Custom Error
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="CustomError"/>
+			<x-tenant.buttons.header.lists model="CustomError"/>
 		@endslot
 	</x-tenant.page-header>
 

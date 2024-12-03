@@ -10,19 +10,17 @@ use Str;
 
 class MyEditLink extends Component
 {
-	//public $object;
-	//public $id;
+
 	public $route;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $object, public string $id='1')
+	public function __construct(public string $model, public string $id='1')
 	{
-		//$this->object	= $object;
-		//$this->id		= $id;
 
-		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
+
+		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
 	}
 
 	/**

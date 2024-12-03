@@ -12,7 +12,7 @@
 			Create OEM
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Oem"/>
+			<x-tenant.buttons.header.lists model="Oem"/>
 		@endslot
 	</x-tenant.page-header>
 

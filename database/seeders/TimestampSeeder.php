@@ -48,6 +48,8 @@ use App\Models\Tenant\Prl;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 
 class TimestampSeeder extends Seeder
 {
@@ -56,49 +58,45 @@ class TimestampSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		// get system user id
-		$system = User::where('email', config('akk.SYSTEM_EMAIL_ID'))->firstOrFail();
+		// get admin user id, if not found get system user
 
-		//Post::where('id',3)->update(['title'=>'Updated title']);
-		//User::where('id',3)->update(['created_by' => $system->id]);
-		// User::query()->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		User::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Setup::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Entity::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Status::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		CustomError::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Menu::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+		try {
+			$admin = User::where('role', 'admin')->firstOrFail();
+	   	} catch (ModelNotFoundException $exception) {
+            Log::error("message");('tenant.TimestampSeeder.run admin not found!');
+		   $admin = User::where('email', config('akk.SYSTEM_EMAIL_ID'))->firstOrFail();
+	   	}
 
-		//Template::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Group::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Category::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		ItemCategory::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Country::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Currency::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Hierarchy::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Hierarchyl::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Dept::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Designation::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+		User::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Setup::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Entity::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Status::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		CustomError::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Menu::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
 
-		GlType::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Oem::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Project::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Supplier::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		UomClass::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Uom::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Warehouse::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		BankAccount::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Item::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+		//Template::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Group::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Category::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		ItemCategory::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Country::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Currency::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Hierarchy::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Hierarchyl::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Dept::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Designation::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
 
-		Budget::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		DeptBudget::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Report::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+		GlType::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Oem::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Project::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Supplier::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		UomClass::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Uom::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Warehouse::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		BankAccount::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Item::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
 
-		// TODO Remove Finally
-		Pr::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Prl::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Po::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Pol::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-
+		Budget::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		DeptBudget::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
+		Report::where('created_by',NULL)->update(['created_by' => $admin->id,'updated_by' => $admin->id]);
 	}
 }

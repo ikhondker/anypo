@@ -9,8 +9,8 @@
 			Edit Report
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Report"/>
-			<x-tenant.buttons.header.create object="Report"/>
+			<x-tenant.buttons.header.lists model="Report"/>
+			<x-tenant.buttons.header.create model="Report"/>
 		@endslot
 	</x-tenant.page-header>
 

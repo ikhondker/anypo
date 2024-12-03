@@ -14,8 +14,8 @@
 			Accountings for Invoice #{{ $invoice->invoice_no }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Invoice" label="Requisition"/>
-			{{-- <x-tenant.buttons.header.create object="Invoice" label="Requisition"/> --}}
+			<x-tenant.buttons.header.lists model="Invoice" label="Requisition"/>
+			{{-- <x-tenant.buttons.header.create model="Invoice" label="Requisition"/> --}}
 			<x-tenant.actions.invoice-actions invoiceIid="{{ $invoice->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>

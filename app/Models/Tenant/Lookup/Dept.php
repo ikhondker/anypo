@@ -61,14 +61,14 @@ class Dept extends Model
 		return $this->belongsTo(Hierarchy::class,'po_hierarchy_id');
 	}
 
-    public function hod(){
+	public function hod(){
 		return $this->belongsTo(User::class,'hod_id')->withDefault([
 			'name' => '[ Empty ]',
 		]);
 	}
 
 	/* ---------------- created and updated by ---------------------- */
-    // Replaced by trait AddCreatedUpdatedBy
+	// Replaced by trait AddCreatedUpdatedBy
 	// public function user_created_by(){
 	// 	return $this->belongsTo(User::class,'created_by')->withDefault([
 	// 		'name' => '[ Empty ]',

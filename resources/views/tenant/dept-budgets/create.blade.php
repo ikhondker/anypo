@@ -13,7 +13,7 @@
 			Create DeptBudget
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="DeptBudget"/>
+			<x-tenant.buttons.header.lists model="DeptBudget"/>
 		@endslot
 	</x-tenant.page-header>
 

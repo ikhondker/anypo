@@ -12,7 +12,7 @@
 			Create Warehouse
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Warehouse"/>
+			<x-tenant.buttons.header.lists model="Warehouse"/>
 		@endslot
 	</x-tenant.page-header>
 

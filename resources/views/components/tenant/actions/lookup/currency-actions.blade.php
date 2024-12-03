@@ -10,7 +10,7 @@
 		@if (Route::current()->getName() == 'currencies.show')
 			@if (auth()->user()->isSystem())
 				<a class="dropdown-item" href="{{ route('currencies.edit', $currency->currency) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Currency</a>
-			@endif	
+			@endif
 		@endif
 
 		<a class="dropdown-item" href="{{ route('currencies.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
@@ -34,6 +34,8 @@
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Currency</a>
 			@endif
 		@endcan
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{{ route('currencies.timestamp', $currency->currency) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 	</div>
 </div>

@@ -104,7 +104,7 @@ class DeptController extends Controller
 		return view('tenant.lookup.depts.show', compact('dept'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Dept $dept)

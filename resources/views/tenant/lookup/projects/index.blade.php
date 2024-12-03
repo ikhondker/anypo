@@ -14,7 +14,7 @@
 		@endslot
 		@slot('buttons')
 			@can('create', App\Models\Tenant\Lookup\Project::class)
-				<x-tenant.buttons.header.create object="Project"/>
+				<x-tenant.buttons.header.create model="Project"/>
 			@endcan
 			@can('spends', App\Models\Tenant\Lookup\Project::class)
 				<a href="{{ route('projects.spends') }}" class="btn btn-primary float-end me-2"><i data-lucide="pie-chart"></i> Project Spends</a>
@@ -26,7 +26,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.card.header-search-export-bar object="Project"/>
+			<x-tenant.card.header-search-export-bar model="Project"/>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>

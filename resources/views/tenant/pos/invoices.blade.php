@@ -14,7 +14,7 @@
 			Invoices for PO #{{ $po->id }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.buttons.header.lists model="Po" label="Purchase Order"/>
 			<a href="{{ route('invoices.create-for-po', $po->id) }}" class="btn btn-primary float-end me-2">
 				<i data-lucide="plus"></i> Create
 			</a>

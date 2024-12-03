@@ -48,7 +48,7 @@ trait AddCreatedUpdatedBy
 		});
 	}
 
-    /* ---------------- created and updated by ---------------------- */
+	/* ---------------- created and updated by ---------------------- */
 	public function user_created_by(){
 		return $this->belongsTo(User::class,'created_by')->withDefault([
 			'name' => '[ Empty ]',

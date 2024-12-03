@@ -6,13 +6,28 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+use App\Models\Tenant\Lookup\BankAccount;
+use App\Models\Tenant\Lookup\Category;
 use App\Models\Tenant\Lookup\Dept;
+use App\Models\Tenant\Lookup\Designation;
+use App\Models\Tenant\Lookup\Group;
+use App\Models\Tenant\Lookup\Item;
+use App\Models\Tenant\Lookup\ItemCategory;
+use App\Models\Tenant\Lookup\Oem;
+use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Lookup\Supplier;
+use App\Models\Tenant\Lookup\Uom;
+use App\Models\Tenant\Lookup\Warehouse;
+use App\Models\Tenant\Lookup\Currency;
 
 use App\Models\Tenant\Pr;
 use App\Models\Tenant\Po;
+use App\Models\Tenant\Receipt;
+use App\Models\Tenant\Invoice;
+use App\Models\Tenant\Payment;
+
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
-use App\Models\Tenant\Invoice;
 # 2. Enums
 use App\Enum\Tenant\EntityEnum;
 //use Illuminate\Support\Facades\Log;
@@ -24,7 +39,7 @@ class WhoWhen extends Component
 	/**
 	 * Create a new component instance.
 	*/
-    public $route;
+	public $route;
 	public $article;
 
 	public function __construct(public string $model, public string $articleId)
@@ -32,49 +47,75 @@ class WhoWhen extends Component
 
 		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
 		switch ($model) {
+
+
+			case 'BankAccount':
+				$this->article = BankAccount::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Category':
+				$this->article = Category::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
 			case 'Dept':
 				$this->article = Dept::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
 				break;
-			// case EntityEnum::BUDGET->value:
-			// 	$budget = Budget::where('id', $attachment->article_id)->get()->firstOrFail();
-			// 	break;
-			// case EntityEnum::DEPTBUDGET->value:
-			// 	$deptBudget = DeptBudget::where('id', $attachment->article_id)->get()->firstOrFail();
-			// 	break;
-			// case EntityEnum::PR->value:
-			// 	$pr = Pr::where('id', $attachment->article_id)->get()->firstOrFail();
-			// 	break;
-			// case EntityEnum::PO->value:
-			// 	$po = PO::where('id', $attachment->article_id)->get()->firstOrFail();
-			// 	break;
-			// case EntityEnum::PROJECT->value:
-			// 	$project = Project::where('id', $attachment->article_id)->get()->firstOrFail();
-			// 	break;
-			// case EntityEnum::RECEIPT->value:
-			// 	$editable			= false;
-			// 	break;
-			// case EntityEnum::INVOICE->value:
-			// 	$invoice = Invoice::where('id', $attachment->article_id)->get()->firstOrFail();
-			// 	break;
-			case EntityEnum::PAYMENT->value:
-				$editable			= false;
+			case 'Designation':
+				$this->article = Designation::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Group':
+				$this->article = Group::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Item':
+				$this->article = Item::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'ItemCategory':
+				$this->article = ItemCategory::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Oem':
+				$this->article = Oem::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Project':
+				$this->article = Project::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Supplier':
+				$this->article = Supplier::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Uom':
+				$this->article = Uom::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Warehouse':
+				$this->article = Warehouse::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+			break;
+			case 'Currency':
+				$this->article		= Currency::where('currency', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				$this->article->id  = $this->article->currency;
+			break;
+
+			case 'Pr':
+				$this->article = Pr::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Po':
+				$this->article = Po::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+				case 'Receipt':
+				$this->article = Receipt::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Invoice':
+				$this->article = Invoice::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+			   	break;
+			case 'Payment':
+				$this->article = Payment::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Budget':
+				$this->article = Budget::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'DeptBudget':
+				$this->article = DeptBudget::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
 				break;
 			default:
-				$editable			= false;
+				null;
 		}
 
 	}
-
-	// public function __construct(
-	// 	public string $createdBy = '',
-	// 	public string $createdAt  = '',
-	// 	public string $updatedBy  = '',
-	// 	public string $updatedAt  = ''
-	// )
-	// {
-
-	// }
-
 	/**
 	 * Get the view / contents that represent the component.
 	 */

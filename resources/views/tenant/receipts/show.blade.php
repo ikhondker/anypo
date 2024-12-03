@@ -12,7 +12,7 @@
 			View Receipt
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Receipt"/>
+			<x-tenant.buttons.header.lists model="Receipt"/>
 			<x-tenant.actions.receipt-actions receiptId="{{ $receipt->id }}"/>
 		@endslot
 	</x-tenant.page-header>

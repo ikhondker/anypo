@@ -17,7 +17,7 @@
 		@endslot
 		@slot('buttons')
 
-			<x-tenant.buttons.header.lists object="Payment"/>
+			<x-tenant.buttons.header.lists model="Payment"/>
 
 			@if(!empty($invoice))
 				<x-tenant.actions.invoice-actions invoiceId="{{ $invoice->id }}"/>

@@ -12,7 +12,7 @@
 			Create Uom
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Uom"/>
+			<x-tenant.buttons.header.lists model="Uom"/>
 		@endslot
 	</x-tenant.page-header>
 

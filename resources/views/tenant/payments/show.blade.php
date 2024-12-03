@@ -16,7 +16,7 @@
 		@endslot
 		@slot('buttons')
 
-			<x-tenant.buttons.header.lists object="Payment"/>
+			<x-tenant.buttons.header.lists model="Payment"/>
 			<x-tenant.actions.payment-actions paymentId="{{ $payment->id }}"/>
 
 		@endslot

@@ -105,7 +105,7 @@ class WarehouseController extends Controller
 		return view('tenant.lookup.warehouses.show', compact('warehouse'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Warehouse $warehouse)

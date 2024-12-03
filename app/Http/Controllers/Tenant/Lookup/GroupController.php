@@ -97,7 +97,7 @@ class GroupController extends Controller
 		return view('tenant.lookup.groups.show', compact('group'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Group $group)

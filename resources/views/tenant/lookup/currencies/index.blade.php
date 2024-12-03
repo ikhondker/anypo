@@ -12,14 +12,14 @@
 		@endslot
 		@slot('buttons')
 		@if (auth()->user()->isSystem())
-			<x-tenant.buttons.header.create object="Currency"/>
+			<x-tenant.buttons.header.create model="Currency"/>
 		@endif
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.card.header-search-export-bar object="Currency"/>
+			<x-tenant.card.header-search-export-bar model="Currency"/>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>

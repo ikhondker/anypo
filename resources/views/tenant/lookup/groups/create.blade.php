@@ -13,7 +13,7 @@
 			Create Item Group
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Group"/>
+			<x-tenant.buttons.header.lists model="Group"/>
 		@endslot
 	</x-tenant.page-header>
 

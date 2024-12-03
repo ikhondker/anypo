@@ -14,7 +14,7 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.save/>
-			<x-tenant.buttons.header.lists object="Country"/>
+			<x-tenant.buttons.header.lists model="Country"/>
 		@endslot
 	</x-tenant.page-header>
 

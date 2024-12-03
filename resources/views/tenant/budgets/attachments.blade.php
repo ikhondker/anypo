@@ -13,9 +13,9 @@
 			Budget Attachments
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Budget"/>
-			<x-tenant.buttons.header.edit object="Budget" :id="$budget->id"/>
-			<x-tenant.buttons.header.create object="Budget"/>
+			<x-tenant.buttons.header.lists model="Budget"/>
+			<x-tenant.buttons.header.edit model="Budget" :id="$budget->id"/>
+			<x-tenant.buttons.header.create model="Budget"/>
 			<x-tenant.actions.budget-actions budgetId="{{ $budget->id }}"/>
 
 		@endslot

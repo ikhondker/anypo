@@ -11,7 +11,7 @@
 			Reports
 		@endslot
 		@slot('buttons')
-			{{-- <x-tenant.buttons.header.create object="Reports"/> --}}
+			{{-- <x-tenant.buttons.header.create model="Reports"/> --}}
 		@endslot
 	</x-tenant.page-header>
 
@@ -34,7 +34,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							
+
 							@foreach ($reports as $report)
 								<tr>
 									<td>{{ $reports->firstItem() + $loop->index }}</td>
@@ -47,7 +47,7 @@
 									</td>
 								</tr>
 							@endforeach
-							
+
 						</tbody>
 					</table>
 
@@ -55,7 +55,7 @@
 							{{ $reports->links() }}
 					</div>
 					<!-- end pagination -->
-					
+
 				</div>
 				<!-- end card-body -->
 			</div>

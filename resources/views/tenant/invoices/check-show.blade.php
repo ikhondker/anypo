@@ -8,9 +8,9 @@
 			View Invoice
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Invoice"/>
-			{{-- <x-tenant.buttons.header.create object="Invoice"/> --}}
-			{{-- <x-tenant.buttons.header.edit object="Invoice" :id="$invoice->id"/> --}}
+			<x-tenant.buttons.header.lists model="Invoice"/>
+			{{-- <x-tenant.buttons.header.create model="Invoice"/> --}}
+			{{-- <x-tenant.buttons.header.edit model="Invoice" :id="$invoice->id"/> --}}
 			<div class="dropdown me-2 d-inline-block position-relative">
 				<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
 					<i class="align-middle mt-n1" data-lucide="folder"></i> Actions
@@ -29,7 +29,7 @@
 						<i class="align-middle me-1" data-lucide="copy"></i> Cancel Invoice *</a>
 				</div>
 			</div>
-	
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -37,6 +37,6 @@
 
 	<x-tenant.widgets.po.payments :id="$invoice->id" />
 
-	
+
 @endsection
 

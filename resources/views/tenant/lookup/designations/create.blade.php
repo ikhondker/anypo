@@ -12,7 +12,7 @@
 			Create Designation
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Designation"/>
+			<x-tenant.buttons.header.lists model="Designation"/>
 		@endslot
 	</x-tenant.page-header>
 

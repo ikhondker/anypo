@@ -12,7 +12,7 @@
 		@endslot
 		@slot('buttons')
 			<a href="{{ route('prs.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> View All</a>
-			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
+			<x-tenant.buttons.header.create model="Pr" label="Requisition"/>
 			{{-- <a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-lucide="printer"></i> Print</a> --}}
 			<x-tenant.actions.pr-actions prId="{{ $pr->id }}"/>
 		@endslot

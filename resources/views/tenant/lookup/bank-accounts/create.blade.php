@@ -12,7 +12,7 @@
 			Create Bank Account
 		@endslot
 		@slot('buttons')
-            <x-tenant.buttons.header.lists object="BankAccount"/>
+            <x-tenant.buttons.header.lists model="BankAccount"/>
 		@endslot
 	</x-tenant.page-header>
 

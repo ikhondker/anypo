@@ -8,7 +8,7 @@
 		Prl
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Prl"/>
+			<x-tenant.buttons.header.create model="Prl"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -17,7 +17,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.card.header-search-export-bar object="Prl"/>
+					<x-tenant.card.header-search-export-bar model="Prl"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -54,7 +54,7 @@
 								<td>{{ $prl->amount }}</td>
 								<td><x-tenant.list.my-boolean :value="$prl->enable"/></td>
 								<td class="table-action">
-									<x-tenant.list.actions object="Prl" :id="$prl->id" :show="false"/>
+									<x-tenant.list.actions model="Prl" :id="$prl->id" :show="false"/>
 									<a href="{{ route('prls.destroy',$prl->id) }}" class="me-2 sw2-advance"
 										data-entity="Prl" data-name="{{ $prl->name }}" data-status="{{ ($prl->enable ? 'Disable' : 'Enable') }}"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($prl->enable ? 'Disable' : 'Enable') }}">

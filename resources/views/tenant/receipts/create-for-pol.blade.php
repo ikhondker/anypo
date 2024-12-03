@@ -18,7 +18,7 @@
 		@endslot
 		@slot('buttons')
 
-			<x-tenant.buttons.header.lists object="Receipt"/>
+			<x-tenant.buttons.header.lists model="Receipt"/>
 			@if(!empty($pol))
 				<x-tenant.actions.pol-actions polId="{{ $pol->id }}"/>
 			@endif

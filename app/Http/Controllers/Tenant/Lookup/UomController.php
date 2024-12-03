@@ -98,7 +98,7 @@ class UomController extends Controller
 		return view('tenant.lookup.uoms.show', compact('uom'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Uom $uom)

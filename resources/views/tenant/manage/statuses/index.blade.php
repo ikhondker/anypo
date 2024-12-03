@@ -10,14 +10,14 @@
 			Status Lists
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="status"/>
+			<x-tenant.buttons.header.create model="status"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 
 		<div class="card-header">
-			<x-tenant.card.header-search-export-bar object="Status" :export="true"/>
+			<x-tenant.card.header-search-export-bar model="Status" :export="true"/>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>

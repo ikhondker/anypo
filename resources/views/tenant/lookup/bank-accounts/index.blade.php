@@ -10,13 +10,13 @@
 			Bank Accounts
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="BankAccount"/>
+			<x-tenant.buttons.header.create model="BankAccount"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.card.header-search-export-bar object="BankAccount"/>
+			<x-tenant.card.header-search-export-bar model="BankAccount"/>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>

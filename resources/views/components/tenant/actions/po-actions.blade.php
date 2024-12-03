@@ -84,7 +84,8 @@
 				<i class="align-middle me-1 text-danger" data-lucide="refresh-cw"></i> Recalculate (Support)</a>
 		@endcan
 
-
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{{ route('pos.timestamp', $po->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 	</div>
 </div>

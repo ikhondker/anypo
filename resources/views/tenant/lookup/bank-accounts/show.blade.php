@@ -44,8 +44,7 @@
 		</div>
 	</div>
 
-    <x-tenant.widgets.back-to-list route="bank-accounts"/>
-
+     <x-tenant.widgets.back-to-list model="BankAccount"/>
 
 @endsection
 

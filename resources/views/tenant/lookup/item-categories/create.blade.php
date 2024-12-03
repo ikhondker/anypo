@@ -13,7 +13,7 @@
 			Create Item Category
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="ItemCategory"/>
+			<x-tenant.buttons.header.lists model="ItemCategory"/>
 		@endslot
 	</x-tenant.page-header>
 

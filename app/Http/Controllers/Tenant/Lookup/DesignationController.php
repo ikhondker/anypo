@@ -98,7 +98,7 @@ class DesignationController extends Controller
 	}
 
 
-        /**
+		/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Designation $designation)

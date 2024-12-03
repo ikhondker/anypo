@@ -104,7 +104,7 @@ class BankAccountController extends Controller
 		return view('tenant.lookup.bank-accounts.show', compact('bankAccount'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(BankAccount $bankAccount)

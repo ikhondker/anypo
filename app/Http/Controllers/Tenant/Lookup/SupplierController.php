@@ -99,7 +99,7 @@ class SupplierController extends Controller
 		return view('tenant.lookup.suppliers.show', compact('supplier'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Supplier $supplier)

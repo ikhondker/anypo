@@ -8,8 +8,8 @@
 		DeptBudget Revision
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="DeptBudget"/>
-			<x-tenant.buttons.header.lists object="DeptBudget"/>
+			<x-tenant.buttons.header.create model="DeptBudget"/>
+			<x-tenant.buttons.header.lists model="DeptBudget"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -68,7 +68,7 @@
 	</div>
 	 <!-- end row -->
 
-	 
+
 
 @endsection
 

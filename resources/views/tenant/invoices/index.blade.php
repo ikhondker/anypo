@@ -12,7 +12,7 @@
 		@endslot
 		@slot('buttons')
 			<a href="{{ route('invoices.create-for-po') }}" class="btn btn-primary float-end me-2"><i data-lucide="plus"></i> Create</a>
-			{{-- <x-tenant.buttons.header.create object="Invoice"/> --}}
+			{{-- <x-tenant.buttons.header.create model="Invoice"/> --}}
 			<x-tenant.actions.invoice-actions-index/>
 		@endslot
 	</x-tenant.page-header>
@@ -22,7 +22,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.card.header-search-bar object="Invoice"/>
+					<x-tenant.card.header-search-bar model="Invoice"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-danger">{{ request('term') }}</strong>

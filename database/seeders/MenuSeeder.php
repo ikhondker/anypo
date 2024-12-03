@@ -45,6 +45,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'prs.edit','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.create','route_name' 			=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.attachments','route_name'		=> 'prs.index', 'node_name' => 'workbench'],
+            [ 'raw_route_name' => 'prs.timestamp','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
 
 			[ 'raw_route_name' => 'prls.edit','route_name'  			=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prls.add-line','route_name'  		=> 'prs.index', 'node_name' => 'workbench'],
@@ -60,6 +61,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'pos.extra','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.invoice','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.attachments','route_name'		=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.timestamp','route_name'  				=> 'pos.index', 'node_name' => 'workbench'],
+
 
 			[ 'raw_route_name' => 'pols.show','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pols.edit','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
@@ -72,6 +75,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'receipts.show','route_name'  		=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.create-for-pol','route_name'=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.ael','route_name'			=> 'receipts.index', 'node_name' => 'workbench'],
+            [ 'raw_route_name' => 'receipts.timestamp','route_name'  		=> 'receipts.index', 'node_name' => 'workbench'],
+
 
 			[ 'raw_route_name' => 'invoices.index','route_name' 		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.my-invoices','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
@@ -81,6 +86,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'invoices.ael','route_name'  			=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.payments','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.attachments','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
+            [ 'raw_route_name' => 'invoices.timestamp','route_name'  		=> 'invoices.index', 'node_name' => 'workbench'],
 
 			[ 'raw_route_name' => 'invoice-lines.add-line','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoice-lines.edit','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
@@ -91,6 +97,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'payments.show','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.create-for-invoice','route_name'	=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.ael','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
+            [ 'raw_route_name' => 'payments.timestamp','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
 
 
 			[ 'raw_route_name' => 'aehs.index','route_name'				=> 'aehs.index', 'node_name' => 'workbench'],
@@ -109,6 +116,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'budgets.attachments','route_name'	=> 'budgets.index', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'budgets.revisions','route_name'		=> 'budgets.index', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'budgets.revisions-all','route_name'	=> 'budgets.revisions-all', 'node_name'	=> 'budget'],
+            [ 'raw_route_name' => 'budgets.timestamp','route_name' 			=> 'budgets.index', 'node_name' 		=> 'budget'],
 
 			[ 'raw_route_name' => 'dept-budgets.index','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.show','route_name' 		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
@@ -119,6 +127,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'dept-budgets.revisions','route_name'	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.revisions-all','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.revision-detail','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 	=> 'budget'],
+            [ 'raw_route_name' => 'dept-budgets.timestamp','route_name' 		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 
 			[ 'raw_route_name' => 'suppliers.spends','route_name' 		=> 'suppliers.spends', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'suppliers.po','route_name' 			=> 'suppliers.spends', 'node_name' 		=> 'budget'],
@@ -221,6 +230,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'currencies.show','route_name'		=> 'currencies.index', 'node_name' 	=> 'lookups'],
 			[ 'raw_route_name' => 'currencies.edit','route_name' 		=> 'currencies.index', 'node_name' 	=> 'lookups'],
 			[ 'raw_route_name' => 'currencies.create','route_name' 		=> 'currencies.index', 'node_name' 	=> 'lookups'],
+            [ 'raw_route_name' => 'currencies.timestamp','route_name'	=> 'currencies.index', 'node_name' 	=> 'lookups'],
 
 			/**
 			* ==================================================================================

@@ -14,10 +14,10 @@ class HeaderSearchBar extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $object, public string $title = "")
+	public function __construct(public string $model, public string $title = "")
 	{
-		$this->title = ($title == '') ? $this->object : $title;
-		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
+		$this->title = ($title == '') ? $this->model : $title;
+		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
 	}
 
 	/**

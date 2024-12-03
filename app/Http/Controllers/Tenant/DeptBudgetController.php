@@ -206,6 +206,15 @@ class DeptBudgetController extends Controller
 		return view('tenant.dept-budgets.show', compact('deptBudget'));
 	}
 
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(DeptBudget $deptBudget)
+	{
+		$this->authorize('view', $deptBudget);
+
+		return view('tenant.dept-budgets.timestamp', compact('deptBudget'));
+	}
 
 
 	/**

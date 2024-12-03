@@ -14,7 +14,7 @@
 			View Accounting
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Aeh"/>
+			<x-tenant.buttons.header.lists model="Aeh"/>
 		@endslot
 	</x-tenant.page-header>
 

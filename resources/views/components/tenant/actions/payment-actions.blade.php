@@ -23,6 +23,10 @@
 				data-entity="" data-name="PO #{{ $payment->id }}" data-status="Cancel"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Payment">
 				<i class="align-middle me-1 text-danger" data-lucide="x-circle"></i> Cancel Payment *</a>
-		@endcan 	
+		@endcan
+
+         <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{{ route('payments.timestamp', $payment->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+
 	</div>
 </div>

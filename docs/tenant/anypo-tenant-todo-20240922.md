@@ -1,5 +1,6 @@
 # 33. TODO
 -------------------------------------------------------------------------------------------------
+http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create 
 127. address/remove all TODO
 123. data-lucide="plus-circle" tp data-lucide="plus"
 111. HeaderSearchExportBar -> object to Model 

@@ -95,7 +95,7 @@ class OemController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Oem $oem)

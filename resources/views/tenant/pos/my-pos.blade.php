@@ -10,7 +10,7 @@
 			My Purchase Orders
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Po" label="Purchase Order"/>
+			<x-tenant.buttons.header.create model="Po" label="Purchase Order"/>
 			<x-tenant.actions.po-actions-index/>
 		@endslot
 	</x-tenant.page-header>
@@ -24,7 +24,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.card.header-search-bar object="Po"/>
+			<x-tenant.card.header-search-bar model="Po"/>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>

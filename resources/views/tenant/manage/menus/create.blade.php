@@ -12,7 +12,7 @@
 			Create Menu
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Menu"/>
+			<x-tenant.buttons.header.lists model="Menu"/>
 		@endslot
 	</x-tenant.page-header>
 

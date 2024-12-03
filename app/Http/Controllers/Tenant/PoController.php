@@ -259,6 +259,16 @@ class PoController extends Controller
 	}
 
 
+    	/**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Po $po)
+	{
+		$this->authorize('view', $po);
+
+		return view('tenant.pos.timestamp', compact('po'));
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */

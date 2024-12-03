@@ -14,8 +14,8 @@
 		@endslot
 		@slot('buttons')
 			<x-tenant.actions.manage.custom-error-actions code="{{ $customError->code }}"/>
-			<x-tenant.buttons.header.lists object="CustomError"/>
-			<x-tenant.buttons.header.create object="CustomError"/>
+			<x-tenant.buttons.header.lists model="CustomError"/>
+			<x-tenant.buttons.header.create model="CustomError"/>
 		@endslot
 	</x-tenant.page-header>
 

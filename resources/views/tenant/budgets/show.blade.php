@@ -51,7 +51,7 @@
 								<th>&nbsp;</th>
 								<td>
 									@if (! $budget->closed)
-										<x-tenant.show.my-edit-link object="Budget" :id="$budget->id"/>
+										<x-tenant.show.my-edit-link model="Budget" :id="$budget->id"/>
 									@endif
 								</td>
 							</tr>

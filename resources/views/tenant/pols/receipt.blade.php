@@ -8,7 +8,7 @@
 			Receipt for PO LINE ID#{{ $pol->id }}
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pol"/>
+			<x-tenant.buttons.header.lists model="Pol"/>
 			<a href="{{ route('receipts.create-for-pol',$pol->id) }}" class="btn btn-primary float-end me-2">
 				<i data-lucide="plus"></i> Create</a>
 			{{-- <a href="{{ route('prs.show', $pr->id) }}" class="btn btn-primary float-end me-2"><i class="fa-regular fa-eye"></i> View Pr</a> --}}

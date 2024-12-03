@@ -10,22 +10,17 @@ use Str;
 
 class Edit extends Component
 {
-	public $object;
-	public $id;
+
 	public $route;
 	public $title;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($object, $id=1001)
+	public function __construct(public string $model, public string $id='1001')
 	{
-		$this->object	= $object;
-		$this->id		= $id;
-		
-		//$this->route = Str::lower(Str::plural($object));
-		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
-		$this->title = 'View '.$object;
+		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
+		$this->title = 'View '.$model;
 	}
 	/**
 	 * Get the view / contents that represent the component.

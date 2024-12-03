@@ -12,7 +12,7 @@
 			Edit Purchase Order Line
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Po" label="Purchase Order"/>
+			<x-tenant.buttons.header.lists model="Po" label="Purchase Order"/>
 			<x-tenant.actions.pol-actions polId="{{ $pol->id }}"/>
 		@endslot
 	</x-tenant.page-header>

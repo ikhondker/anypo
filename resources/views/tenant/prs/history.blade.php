@@ -12,8 +12,8 @@
 			PR #{{ $pr->id }} : Approval History
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Pr" label="Requisition"/>
-			<x-tenant.buttons.header.create object="Pr" label="Requisition"/>
+			<x-tenant.buttons.header.lists model="Pr" label="Requisition"/>
+			<x-tenant.buttons.header.create model="Pr" label="Requisition"/>
 			<x-tenant.actions.pr-actions prId="{{ $pr->id }}" show="true"/>
 		@endslot
 	</x-tenant.page-header>

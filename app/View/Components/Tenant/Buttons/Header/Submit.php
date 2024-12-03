@@ -10,8 +10,6 @@ use Str;
 
 class Submit extends Component
 {
-	public $object;
-	public $id;
 
 	public $route;
 	public $title;
@@ -19,13 +17,12 @@ class Submit extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($object, $id=1)
+	public function __construct(public string $model, public string $id='1')
 	{
-		$this->object	= $object;
-		$this->id		= $id;
 
-		$this->route = Str::lower(Str::plural(Str::snake($object, '-')));
-		$this->title = 'Submit '.$object;
+
+		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
+		$this->title = 'Submit '.$model;
 	}
 
 	/**

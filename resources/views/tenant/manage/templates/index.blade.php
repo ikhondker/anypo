@@ -11,7 +11,7 @@
 			Templates Lists
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Template"/>
+			<x-tenant.buttons.header.create model="Template"/>
 		@endslot
 	</x-tenant.page-header>
 

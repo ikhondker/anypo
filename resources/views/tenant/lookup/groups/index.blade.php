@@ -11,13 +11,13 @@
 			Item Groups
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.create object="Group"/>
+			<x-tenant.buttons.header.create model="Group"/>
 		@endslot
 	</x-tenant.page-header>
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.card.header-search-export-bar object="Group" :export="true"/>
+			<x-tenant.card.header-search-export-bar model="Group" :export="true"/>
 		</div>
 		<div class="card-body">
 			<table class="table">

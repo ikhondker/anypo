@@ -13,7 +13,7 @@
 		@endslot
 		@slot('buttons')
 			@can('create', App\Models\Tenant\Lookup\Item::class)
-				<x-tenant.buttons.header.create object="Item"/>
+				<x-tenant.buttons.header.create model="Item"/>
 			@endcan
 		@endslot
 	</x-tenant.page-header>
@@ -23,7 +23,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.card.header-search-export-bar object="Item"/>
+			<x-tenant.card.header-search-export-bar model="Item"/>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>

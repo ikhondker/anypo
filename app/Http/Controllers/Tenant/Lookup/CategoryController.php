@@ -88,11 +88,11 @@ class CategoryController extends Controller
 	 */
 	public function show(Category $category)
 	{
-        $this->authorize('view', $category);
+		$this->authorize('view', $category);
 		return view('tenant.lookup.categories.show', compact('category'));
 	}
 
-     /**
+	 /**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Category $category)

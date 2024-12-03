@@ -41,7 +41,7 @@
 							<th>&nbsp;</th>
 							<td>
 								@if ($invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-									<x-tenant.show.my-edit-link object="Pr" :id="$invoice->id"/>
+									<x-tenant.show.my-edit-link model="Pr" :id="$invoice->id"/>
 								@endif
 							</td>
 						</tr>

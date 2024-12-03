@@ -12,9 +12,9 @@
 			Workflow Details
 		@endslot
 		@slot('buttons')
-			{{-- <x-tenant.buttons.header.lists object="Wf"/>
+			{{-- <x-tenant.buttons.header.lists model="Wf"/>
 			@can('update', $wf)
-				<x-tenant.buttons.header.edit object="Wf" :id="$wf->id"/>
+				<x-tenant.buttons.header.edit model="Wf" :id="$wf->id"/>
 			@endcan --}}
 		@endslot
 	</x-tenant.page-header>

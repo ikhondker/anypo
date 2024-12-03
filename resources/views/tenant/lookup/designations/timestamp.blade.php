@@ -14,12 +14,12 @@
 			View Designation
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists object="Designation"/>
-			<x-tenant.actions.lookup.designation-actions designationId="{{ $c->id }}"/>
+			<x-tenant.buttons.header.lists model="Designation"/>
+			<x-tenant.actions.lookup.designation-actions designationId="{{ $designation->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
-<x-tenant.widgets.who-when model="Designation" articleId="{{ $Designation->id  }}"/>
+<x-tenant.widgets.who-when model="Designation" articleId="{{ $designation->id  }}"/>
 
 <x-tenant.widgets.back-to-list model="Designation"/>
 

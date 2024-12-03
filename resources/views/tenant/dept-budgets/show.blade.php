@@ -61,7 +61,7 @@
 								<th>&nbsp;</th>
 								<td>
 									@if (! $deptBudget->closed)
-										<x-tenant.show.my-edit-link object="DeptBudget" :id="$deptBudget->id"/>
+										<x-tenant.show.my-edit-link model="DeptBudget" :id="$deptBudget->id"/>
 									@endif
 								</td>
 							</tr>
@@ -185,12 +185,7 @@
 					</table>
 				</div>
 			</div>
-			<x-tenant.widgets.who-when
-				createdBy="{{ $deptBudget->user_created_by->name }}"
-				createdAt="{{ $deptBudget->created_at }}"
-				updatedBy="{{ $deptBudget->user_updated_by->name }}"
-				updatedAt="{{ $deptBudget->updated_at }}"
-			/>
+
 
 		</div>
 		<!-- end col-6 -->
