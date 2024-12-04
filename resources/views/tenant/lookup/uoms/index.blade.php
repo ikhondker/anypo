@@ -37,8 +37,8 @@
 						<th>Conversion</th>
 						<th>UoM Class</th>
 						<th>Class Default</th>
-						<th>Enable</th>
-						<th>View</th>
+						<th>Enable?</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,7 +52,7 @@
 						<td><x-tenant.list.my-boolean :value="$uom->enable"/></td>
 						<td>
 							<a href="{{ route('uoms.show',$uom->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

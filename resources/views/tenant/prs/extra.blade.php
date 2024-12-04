@@ -26,7 +26,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a class="btn btn-sm btn-light" href="{{ route('prs.show', $pr->id) }}"><i class="fas fa-edit"></i> PR#{{ $pr->id }}</a>
+						<a class="btn btn-sm btn-light" href="{{ route('prs.show', $pr->id) }}"><i data-lucide="edit"></i> PR#{{ $pr->id }}</a>
 					</div>
 					<h5 class="card-title">Additional Information PR# {{ $pr->id }}</h5>
 					<h6 class="card-subtitle text-muted">Additional information of a Purchase Requisitions</h6>

@@ -46,7 +46,7 @@
 						<td><x-tenant.list.my-boolean :value="$country->enable"/></td>
 							<td>
 								<a href="{{ route('countries.show',$country->country) }}" class="btn btn-light"
-									data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+									data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 								</a>
 							</td>
 					</tr>

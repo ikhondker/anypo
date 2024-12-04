@@ -18,11 +18,11 @@
 		@can('update', $pr)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('prs.edit', $pr->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Requisition</a>
-			<a class="dropdown-item" href="{{ route('prls.add-line', $pr->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Requisition Line</a>
+			<a class="dropdown-item" href="{{ route('prls.add-line', $pr->id) }}"><i class="align-middle me-1" data-lucide="plus"></i> Add Requisition Line</a>
 		@endcan
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Requisition</a>
+		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Requisition</a>
 		<a class="dropdown-item sw2-advance" href="{{ route('prs.duplicate', $pr->id) }}"
 			data-entity="" data-name="PR #{{ $pr->id }}" data-status="Duplicate"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate PR">

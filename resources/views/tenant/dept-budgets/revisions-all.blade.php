@@ -34,7 +34,7 @@
 						<th class="text-end">Amount</th>
 						<th>Updated By</th>
 						<th>Updated At</th>
-						<th>View</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 
@@ -51,7 +51,7 @@
 						<td class=""><x-tenant.list.my-date-time :value="$deptBudget->created_at"/></td>
 						<td>
 							<a href="{{ route('dept-budgets.revision-detail',$deptBudget->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

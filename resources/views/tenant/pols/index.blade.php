@@ -38,7 +38,7 @@
 								<th>Qty</th>
 								<th>Price</th>
 								<th>Amount</th>
-								<th>Enable</th>
+								<th>Enable?</th>
 								<th>Actions</th>
 							</tr>
 						</thead>

@@ -16,7 +16,7 @@ class PoApprovalHistory extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($poId)
+	public function __construct(public string $poId)
 	{
 		$this->wfls = Wfl::with('performer.designation')->with('wf')
 			->whereHas('wf', function ($q) use ($poId) {

@@ -21,7 +21,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('item-categories.edit', $itemCategory->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('item-categories.edit', $itemCategory->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				<a class="btn btn-sm btn-light" href="{{ route('item-categories.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Category Detail</h5>

@@ -23,7 +23,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				@if (auth()->user()->isSystem())
-					<a class="btn btn-sm btn-danger text-white" href="{{ route('wfs.edit', $wf->id) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-danger text-white" href="{{ route('wfs.edit', $wf->id) }}"><i data-lucide="edit"></i> Edit</a>
 				@endif
 				<a href="{{ route('wfs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 			</div>

@@ -42,7 +42,12 @@ value="{{ old('invoice_date', date('Y-m-d',strtotime($invoice->invoice_date)) ) 
 
 <i class="fa fa-check-circle fa-5x text-success"></i>
 
+<i data-lucide="eye"></i>
+<i data-lucide="plus"></i>
+<i data-lucide="edit"></i>
 <i data-lucide="refresh-cw"></i>
+<i class="lucide-lg" data-lucide="heart"></i>
+
 $checkout->checkout_date	= date('Y-m-d H:i:s');
 
 {!! nl2br($ticket->content) !!}

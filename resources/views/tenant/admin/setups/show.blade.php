@@ -22,7 +22,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a class="btn btn-sm btn-light" href="{{ route('setups.edit', $setup->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-light" href="{{ route('setups.edit', $setup->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				</div>
 				<h5 class="card-title">Setup Information</h5>
 				<h6 class="card-subtitle text-muted">Setup Information.</h6>
@@ -58,7 +58,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a class="btn btn-sm btn-light" href="{{ route('setups.edit', $setup->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-light" href="{{ route('setups.edit', $setup->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				</div>
 				<h5 class="card-title">Address Information</h5>
 				<h6 class="card-subtitle text-muted">Address Information.</h6>
@@ -89,7 +89,7 @@
 		<div class="card">
 			<div class="card-header">
 				{{-- <div class="card-actions float-end">
-					<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
+					<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit User</a>
 				</div> --}}
 				<h5 class="card-title">Integration Information</h5>
 				<h6 class="card-subtitle text-muted">Integration Information.</h6>
@@ -108,7 +108,7 @@
 		<div class="card">
 			<div class="card-header">
 					{{-- <div class="card-actions float-end">
-						<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
+						<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit User</a>
 					</div> --}}
 					<h5 class="card-title">Announcement</h5>
 					<h6 class="card-subtitle text-muted">General Announcement configuration.</h6>

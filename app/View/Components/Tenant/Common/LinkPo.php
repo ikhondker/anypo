@@ -8,13 +8,13 @@ use Illuminate\View\Component;
 
 class LinkPo extends Component
 {
-		public $id;
+		//public $id;
 		/**
 		 * Create a new component instance.
 		 */
-		public function __construct($id=1001)
+		public function __construct(public string $id='1001')
 		{
-		$this->id =$id;
+		//$this->id =$id;
 		}
 
 		/**

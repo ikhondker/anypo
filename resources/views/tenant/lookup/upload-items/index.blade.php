@@ -43,7 +43,7 @@
 						<th>Uploaded By</th>
 						<th>Status</th>
 						<th>Error Code</th>
-						<th>View</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -77,7 +77,7 @@
 						<td><x-tenant.list.my-badge value="{{ $upload_item->error_code }}"/></td>
 						<td>
 							<a href="{{ route('upload-items.show',$upload_item->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 

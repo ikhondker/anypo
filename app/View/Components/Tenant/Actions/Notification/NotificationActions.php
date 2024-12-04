@@ -14,9 +14,9 @@ class NotificationActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $id='')
+	public function __construct(public string $id='')
 	{
-		$this->id 		= $id;
+		//$this->id 		= $id;
 		if ($this->id <> ''){
 			$this->notification 	= Notification::where('id', $this->id)->get()->firstOrFail();
 		} else {

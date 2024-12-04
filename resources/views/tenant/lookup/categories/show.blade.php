@@ -21,7 +21,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('categories.edit', $category->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('categories.edit', $category->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				<a class="btn btn-sm btn-light" href="{{ route('categories.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">PR/PO Category Detail</h5>
@@ -32,9 +32,6 @@
 				<tbody>
 					<x-tenant.show.my-text		value="{{ $category->name }}"/>
 					<x-tenant.show.my-boolean	value="{{ $category->enable }}"/>
-					<x-tenant.show.my-created-at value="{{ $category->updated_at }}"/>
-					<x-tenant.show.my-updated-at value="{{ $category->created_at }}"/>
-
 				</tbody>
 			</table>
 		</div>

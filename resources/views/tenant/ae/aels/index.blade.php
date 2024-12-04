@@ -67,7 +67,7 @@
 						<th>Currency</th>
 						<th>PO#</th>
 						<th>Reference</th>
-						<th>View</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -84,7 +84,7 @@
 						<td>{{ $ael->reference }}</td>
 						<td>
 							<a href="{{ route('aels.show',$ael->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

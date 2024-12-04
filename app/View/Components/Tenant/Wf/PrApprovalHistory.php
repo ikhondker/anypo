@@ -16,7 +16,7 @@ class PrApprovalHistory extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($prId)
+	public function __construct(public string $prId)
 	{
 		$this->wfls = Wfl::with('performer.designation')->with('wf')
 			->whereHas('wf', function ($q) use ($prId) {

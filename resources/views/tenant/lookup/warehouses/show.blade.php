@@ -19,7 +19,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('warehouses.edit', $warehouse->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('warehouses.edit', $warehouse->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				<a class="btn btn-sm btn-light" href="{{ route('warehouses.index') }}" ><i class="fas fa-list"></i> View all</a>
 
 			</div>

@@ -18,7 +18,7 @@
 
 		@can('create', App\Models\User::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create User</a>
+			<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create User</a>
 		@endcan
 
 

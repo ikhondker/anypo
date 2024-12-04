@@ -43,7 +43,7 @@
 						<th>#</th>
 						<th>Name</th>
 						<th>Purpose</th>
-						<th>View</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>

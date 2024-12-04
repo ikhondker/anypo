@@ -22,7 +22,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('designations.edit', $designation->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('designations.edit', $designation->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				<a class="btn btn-sm btn-light" href="{{ route('designations.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Designation Detail</h5>

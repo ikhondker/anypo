@@ -56,7 +56,7 @@
 								<th class="text-end">Invoice</th>
 								<th class="text-end">Payment</th>
 								<th>Closed?</th>
-								<th>View</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -75,7 +75,7 @@
 								<td><x-tenant.list.my-closed :value="$project->closed"/></td>
 								<td>
 									<a href="{{ route('projects.show',$project->id) }}" class="btn btn-light"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 									</a>
 								</td>
 							</tr>

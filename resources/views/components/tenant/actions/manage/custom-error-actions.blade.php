@@ -15,7 +15,7 @@
 
 		@can('create', App\Models\Tenant\Manage\CustomError::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('custom-errors.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Custom Error</a>
+			<a class="dropdown-item" href="{{ route('custom-errors.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Custom Error</a>
 		@endcan
 
 		@can('delete', $customError)

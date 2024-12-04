@@ -42,8 +42,8 @@
 						<th>Name</th>
 						<th>Contact Person</th>
 						<th>Cell</th>
-						<th>Enable</th>
-						<th>View</th>
+						<th>Enable?</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,7 +56,7 @@
 						<td><x-tenant.list.my-boolean :value="$supplier->enable"/></td>
 						<td class="table-action">
 							<a href="{{ route('suppliers.show',$supplier->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

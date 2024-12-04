@@ -20,7 +20,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				@can('update', $project)
-					<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				@endif
 				<a class="btn btn-sm btn-light" href="{{ route('projects.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>

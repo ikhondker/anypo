@@ -8,14 +8,14 @@ use Illuminate\View\Component;
 
 class Password extends Component
 {
-	public $id;
+	//public $id;
 
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct( $id=0)
+	public function __construct( public $id=0)
 	{
-		$this->id	= $id;
+		//$this->id	= $id;
 	}
 
 	/**

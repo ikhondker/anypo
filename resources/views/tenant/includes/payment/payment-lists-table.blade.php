@@ -13,7 +13,7 @@
 			<th>PO#</th>
 			<th>Paid By</th>
 			<th>Status</th>
-			<th>View</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -32,7 +32,7 @@
 			<td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
 			<td>
 				<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+					data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 				</a>
 			</td>
 		</tr>

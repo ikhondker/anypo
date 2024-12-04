@@ -19,7 +19,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('statuses.edit', $status->code ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('statuses.edit', $status->code ) }}"><i data-lucide="edit"></i> Edit</a>
 				<a class="btn btn-sm btn-light" href="{{ route('statuses.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Status Detail</h5>
@@ -31,7 +31,7 @@
 					<x-tenant.show.my-badge		value="{{ $status->code }}" label="Code"/>
 					<x-tenant.show.my-text		value="{{ $status->name }}"/>
 					<x-tenant.show.my-badge		value="{{ $status->badge }}" label="Badge"/>
-					
+
 					<x-tenant.show.my-boolean	value="{{ $status->enable }}"/>
 					<x-tenant.show.my-created-at value="{{ $status->updated_at }}"/>
 					<x-tenant.show.my-updated-at value="{{ $status->created_at }}"/>
@@ -40,7 +40,7 @@
 		</div>
 	</div>
 
-	
+
 
 @endsection
 

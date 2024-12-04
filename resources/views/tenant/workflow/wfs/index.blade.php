@@ -40,7 +40,7 @@
 								<th>WF Status</th>
 								<th>Auth Status</th>
 								<th>Date</th>
-								<th>View</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -55,7 +55,7 @@
 								<td><x-tenant.list.my-date-time :value="$wf->created_at"/></td>
 								<td>
 									<a href="{{ route('wfs.show',$wf->id) }}" class="btn btn-light"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 									</a>
 								</td>
 							</tr>

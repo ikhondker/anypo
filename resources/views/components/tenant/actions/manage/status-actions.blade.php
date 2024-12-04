@@ -15,7 +15,7 @@
 
 		@can('create', App\Models\Tenant\Manage\Status::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('statuses.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Status</a>
+			<a class="dropdown-item" href="{{ route('statuses.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Status</a>
 		@endcan
 
 		@can('delete', $status)

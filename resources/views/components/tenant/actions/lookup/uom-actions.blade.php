@@ -15,7 +15,7 @@
 
 		@can('create', App\Models\Tenant\Lookup\Uom::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('uoms.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create UoM</a>
+			<a class="dropdown-item" href="{{ route('uoms.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create UoM</a>
 		@endcan
 
 		@can('delete', $uom)

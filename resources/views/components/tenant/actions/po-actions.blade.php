@@ -13,7 +13,7 @@
 		@can('update', $po)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('pos.edit', $po->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order</a>
-			<a class="dropdown-item" href="{{ route('pols.add-line', $po->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Purchase Order Line</a>
+			<a class="dropdown-item" href="{{ route('pols.add-line', $po->id) }}"><i class="align-middle me-1" data-lucide="plus"></i> Add Purchase Order Line</a>
 		@endcan
 
 
@@ -21,7 +21,7 @@
 		<a class="dropdown-item" href="{{ route('pos.invoices', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
 
 		@can('createForPo', App\Models\Tenant\Invoice::class)
-			<a class="dropdown-item" href="{{ route('invoices.create-for-po', $po->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Invoice</a>
+			<a class="dropdown-item" href="{{ route('invoices.create-for-po', $po->id) }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Invoice</a>
 		@endcan
 
 		<div class="dropdown-divider"></div>

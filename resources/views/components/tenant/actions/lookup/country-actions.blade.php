@@ -15,7 +15,7 @@
 
 		@can('create', App\Models\Tenant\Lookup\Country::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('countries.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Country</a>
+			<a class="dropdown-item" href="{{ route('countries.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Country</a>
 		@endcan
 
 		@can('delete', $country)

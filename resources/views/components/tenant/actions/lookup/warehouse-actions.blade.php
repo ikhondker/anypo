@@ -17,7 +17,7 @@
 
 		@can('create', App\Models\Tenant\Lookup\Warehouse::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('warehouses.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Warehouse</a>
+			<a class="dropdown-item" href="{{ route('warehouses.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Warehouse</a>
 		@endcan
 
 		@can('delete', $warehouse)

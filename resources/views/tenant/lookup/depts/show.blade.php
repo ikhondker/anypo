@@ -21,7 +21,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('depts.edit', $dept->id ) }}"><i data-lucide="edit"></i></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('depts.edit', $dept->id ) }}"><i data-lucide="edit"></i> Edit</a>
 			</div>
 
 			<h5 class="card-title">Department Detail</h5>

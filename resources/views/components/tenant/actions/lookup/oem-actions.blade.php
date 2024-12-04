@@ -15,7 +15,7 @@
 
 		@can('create', App\Models\Tenant\Lookup\Oem::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('oems.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create OEM</a>
+			<a class="dropdown-item" href="{{ route('oems.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create OEM</a>
 		@endcan
 
 		@can('delete', $oem)

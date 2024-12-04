@@ -45,7 +45,7 @@
 								<th>Access</th>
 								<th>Start Date</th>
 								<th>End Date</th>
-								<th>Enable</th>
+								<th>Enable?</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -66,7 +66,7 @@
 								<td><x-tenant.list.my-boolean :value="$report->enable"/></td>
 								<td class="table-action">
 									<a href="{{ route('reports.show',$report->code) }}" class="btn btn-light"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 									</a>
 									<a href="{{ route('reports.edit',$report->code) }}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
 										<i class="align-middle" data-lucide="edit"></i></a>

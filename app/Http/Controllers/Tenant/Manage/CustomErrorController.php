@@ -26,7 +26,7 @@ use App\Helpers\EventLog;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class CustomErrorController extends Controller
@@ -52,7 +52,7 @@ class CustomErrorController extends Controller
 	public function create()
 	{
 		$this->authorize('create', CustomError::class);
-		
+
 		return view('tenant.manage.custom-errors.create');
 	}
 
@@ -62,7 +62,7 @@ class CustomErrorController extends Controller
 	public function store(StoreCustomErrorRequest $request)
 	{
 		$this->authorize('create', CustomError::class);
-		
+
 		$request->merge([
 			'code' => Str::upper($request['code']),
 		]);
@@ -107,7 +107,7 @@ class CustomErrorController extends Controller
 		$request->merge([
 			'code' => Str::upper($request['code']),
 		]);
-		
+
 		// Write to Log
 		EventLog::event('customError', $customError->code, 'update', 'message', $request->message);
 		$customError->update($request->all());
@@ -127,7 +127,7 @@ class CustomErrorController extends Controller
 		// Write to Log
 		EventLog::event('customError', $customError->code, 'status', 'enable', $customError->enable);
 
-		return redirect()->route('custom-errors.index')->with('success', 'Dept status changed successfully');
+		return redirect()->route('custom-errors.index')->with('success', 'Custom Error status changed successfully');
 	}
 
 	public function export()

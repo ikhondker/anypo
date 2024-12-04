@@ -10,7 +10,7 @@ use App\Models\Tenant\Po;
 
 class PoInfo extends Component
 {
-	
+
 	public $po;
 	public $photo;
 

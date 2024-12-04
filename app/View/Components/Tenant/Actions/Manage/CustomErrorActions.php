@@ -14,9 +14,9 @@ class CustomErrorActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public $code)
+	public function __construct(public string $code)
 	{
-		$this->code 		= $code;
+		//$this->code 		= $code;
 		$this->customError = CustomError::where('code', $this->code)->get()->firstOrFail();
 	}
 	/**

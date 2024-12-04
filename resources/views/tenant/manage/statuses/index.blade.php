@@ -36,7 +36,7 @@
 						<th>Code</th>
 						<th>Name</th>
 						<th>Badge</th>
-						<th>Enable</th>
+						<th>Enable?</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -50,7 +50,7 @@
 						<td><x-tenant.list.my-boolean :value="$status->enable"/></td>
 						<td>
 							<a href="{{ route('statuses.show',$status->code) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

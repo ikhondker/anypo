@@ -18,7 +18,7 @@
 
 		@can('create', App\Models\Tenant\Lookup\Item::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Item</a>
+			<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Item</a>
 		@endcan
 
 		@can('delete', $item)

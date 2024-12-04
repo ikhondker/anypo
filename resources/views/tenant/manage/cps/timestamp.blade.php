@@ -48,7 +48,7 @@
 						<th>Updated By</th>
 						<th>Created At</th>
 						<th>Updated At</th>
-						<th>View</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>

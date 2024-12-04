@@ -19,7 +19,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				@can('update', $uploadItem)
-					<a class="btn btn-sm btn-light" href="{{ route('upload-items.edit', $uploadItem->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-light" href="{{ route('upload-items.edit', $uploadItem->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				@endcan
 				{{-- <a class="btn btn-sm btn-light" href="{{ route('upload-items.index') }}" ><i class="fas fa-list"></i> View all</a> --}}
 			</div>

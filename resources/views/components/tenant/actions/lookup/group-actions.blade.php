@@ -15,7 +15,7 @@
 
 		@can('create', App\Models\Tenant\Lookup\Group::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('groups.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Group</a>
+			<a class="dropdown-item" href="{{ route('groups.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Group</a>
 		@endcan
 
 		@can('delete', $group)

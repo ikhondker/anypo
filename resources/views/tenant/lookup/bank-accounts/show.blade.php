@@ -19,7 +19,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('bank-accounts.edit', $bankAccount->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('bank-accounts.edit', $bankAccount->id ) }}"><i data-lucide="edit"></i> Edit</a>
 			</div>
 			<h5 class="card-title">Bank Account Detail</h5>
 			<h6 class="card-subtitle text-muted">Bank Account detail information.</h6>

@@ -16,7 +16,7 @@ class PolReceipts extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct($id)
+	public function __construct(public string $id)
 	{
 		$this->receipts 	= Receipt::with('pol')->with('receiver')->with('warehouse')->where('pol_id', $id)->get()->all();
 	}

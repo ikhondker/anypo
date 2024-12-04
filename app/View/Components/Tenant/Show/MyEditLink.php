@@ -18,8 +18,6 @@ class MyEditLink extends Component
 	 */
 	public function __construct(public string $model, public string $id='1')
 	{
-
-
 		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
 	}
 

@@ -47,7 +47,7 @@
 						<td class=""><x-tenant.list.my-date-time :value="$budget->created_at"/></td>
 						<td>
 							<a href="{{ route('dept-budgets.revision-detail',$budget->revision_dept_budget_id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View Source
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View Source
 							</a>
 						</td>
 					</tr>

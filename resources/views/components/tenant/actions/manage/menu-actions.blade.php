@@ -15,7 +15,7 @@
 
 		@can('create', App\Models\Tenant\Manage\Menu::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('menus.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create menu</a>
+			<a class="dropdown-item" href="{{ route('menus.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create menu</a>
 		@endcan
 
 		@can('delete', $menu)

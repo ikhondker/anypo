@@ -59,7 +59,7 @@
 								<td><x-tenant.list.my-badge :value="$prl->closure_status"/></td>
 								<td>
 									<a href="{{ route('prls.show',$prl->id) }}" class="btn btn-light"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 									</a>
 								</td>
 							</tr>

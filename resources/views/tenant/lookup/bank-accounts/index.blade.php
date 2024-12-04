@@ -36,7 +36,7 @@
 						<th>Routing #</th>
 						<th>Bank Name</th>
 						<th>Currency</th>
-						<th>Enable</th>
+						<th>Enable?</th>
 						<th class="text-middle">View</th>
 					</tr>
 				</thead>
@@ -52,7 +52,7 @@
 						<td><x-tenant.list.my-boolean :value="$bankAccount->enable"/></td>
 						<td>
 							<a href="{{ route('bank-accounts.show',$bankAccount->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

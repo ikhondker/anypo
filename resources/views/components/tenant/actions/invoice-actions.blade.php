@@ -29,7 +29,7 @@
 		@endcan
 
 		@can('createForPo', App\Models\Tenant\Invoice::class)
-			<a class="dropdown-item" href="{{ route('invoices.create-for-po', $invoice->po_id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Invoice</a>
+			<a class="dropdown-item" href="{{ route('invoices.create-for-po', $invoice->po_id) }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Invoice</a>
 		@endcan
 
 

@@ -12,6 +12,8 @@ use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 
 use App\Models\Tenant\Lookup\Currency;
+use App\Models\Tenant\Lookup\BankAccount;
+
 use App\Models\Tenant\Admin\Setup;
 use App\Models\User;
 use App\Models\Tenant\Workflow\Hierarchyl;
@@ -50,6 +52,9 @@ class DemoSeeder extends Seeder
 		// Enable BDT
 		Currency::where('currency','BDT')->update(['enable'=>true]);
 
+        // change currency of BankAccount
+        BankAccount::query()->update(['currency' => 'BDT']);
+
 		// create hiaerarchy
 		$pr=Hierarchyl::create([
 			'hid'			=> 1001,
@@ -74,7 +79,7 @@ class DemoSeeder extends Seeder
 		$pr1001->auth_status	= AuthStatusEnum::APPROVED->value;
 		$pr1001->auth_date		= date('Y-m-d H:i:s');
 		$pr1001->auth_user_id	= $system->id;
-		$pr1001->save();
+		//$pr1001->save();
 
 		// recalculate Po
 		$po = new PoController();
@@ -89,7 +94,7 @@ class DemoSeeder extends Seeder
 		$po1001->auth_status	= AuthStatusEnum::APPROVED->value;
 		$po1001->auth_date		= date('Y-m-d H:i:s');
 		$po1001->auth_user_id	= $system->id;
-		$po1001->save();
+		//$po1001->save();
 
 		// $this->call(\Database\Seeders\ReceiptSeeder::class);
 		// $this->call(\Database\Seeders\InvoiceSeeder::class);

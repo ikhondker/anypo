@@ -44,7 +44,7 @@
 								<th>Event</th>
 								<th>Project</th>
 								<th class="text-end">Amount</th>
-								<th>View</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -61,7 +61,7 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$dbu->amount"/></td>
 								<td>
 									<a href="{{ route('dbus.show',$dbu->id) }}" class="btn btn-light"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 									</a>
 								</td>
 							</tr>

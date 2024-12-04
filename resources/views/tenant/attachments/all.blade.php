@@ -38,7 +38,7 @@
 						<th>Upload Date</th>
 						<th>Owner</th>
 						<th>File</th>
-						<th>View</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,7 +54,7 @@
 						<td><x-tenant.attachment.single id="{{ $attachment->id }}"/></td>
 						<td>
 							<a href="{{ route('attachments.show',$attachment->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

@@ -37,7 +37,7 @@
 						<th>PR Hierarchy</th>
 						<th>PO Hierarchy</th>
 						<th>Enable?</th>
-						<th>View</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,7 +50,7 @@
 						<td><x-tenant.list.my-boolean :value="$dept->enable"/></td>
 						<td>
 							<a href="{{ route('depts.show',$dept->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

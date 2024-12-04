@@ -160,7 +160,7 @@ class BankAccountController extends Controller
 		// Write to Log
 		EventLog::event('bankAccount', $bankAccount->id, 'status', 'enable', $bankAccount->enable);
 
-		return redirect()->route('bank-accounts.index')->with('success', 'Dept status changed successfully');
+		return redirect()->route('bank-accounts.index')->with('success', 'Bank Account status changed successfully');
 	}
 
 	public function export()

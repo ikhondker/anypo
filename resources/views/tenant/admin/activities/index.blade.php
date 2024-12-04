@@ -40,7 +40,7 @@
 					<th>Old Value</th>
 					<th>Performed By</th>
 					<th>Role</th>
-					<th>View</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -62,7 +62,7 @@
 					</td>
 					<td>
 						<a href="{{ route('activities.show',$activity->id) }}" class="btn btn-light"
-							data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+							data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 						</a>
 					</td>
 				</tr>

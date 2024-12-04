@@ -11,7 +11,7 @@
 			<th>Receiver</th>
 			<th>Warehouse</th>
 			<th>Status</th>
-			<th>View</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,7 +29,7 @@
 			<td><span class="badge {{ $receipt->status_badge->badge }}">{{ $receipt->status_badge->name}}</span></td>
 			<td>
 				<a href="{{ route('receipts.show',$receipt->id) }}" class="btn btn-light"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+					data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 				</a>
 			</td>
 		</tr>

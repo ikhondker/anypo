@@ -31,7 +31,7 @@
 			<td><span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
 			<td class="table-action">
 				<a href="{{ route('prs.show',$pr->id) }}" class="btn btn-light"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+					data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 				</a>
 				{{-- <a href="{{ route('prs.show',$pr->id) }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
 					<i class="align-middle" data-lucide="eye"></i></a>

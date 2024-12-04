@@ -3,7 +3,7 @@
 		<i class="align-middle text-info mt-n1" data-lucide="settings"></i> Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-		
+
 		@if (Route::current()->getName() == 'hierarchies.edit')
 			<a class="dropdown-item" href="{{ route('hierarchies.show', $hierarchy->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Hierarchy</a>
 		@endif
@@ -11,15 +11,15 @@
 			<a class="dropdown-item" href="{{ route('hierarchies.edit', $hierarchy->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Hierarchy</a>
 		@endif
 
-		
+
 		<a class="dropdown-item" href="{{ route('hierarchies.index') }}"><i class="align-middle me-1" data-lucide="list"></i> Hierarchy List</a>
 
 		@can('create', App\Models\Tenant\Workflow\Hierarchy::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('hierarchies.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Hierarchy</a>
+			<a class="dropdown-item" href="{{ route('hierarchies.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Hierarchy</a>
 		@endcan
 
-		
+
 		@can('delete', $hierarchy)
 			<div class="dropdown-divider"></div>
 			@if ($hierarchy->enable)

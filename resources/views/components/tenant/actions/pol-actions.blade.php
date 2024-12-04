@@ -8,13 +8,13 @@
 		<a class="dropdown-item" href="{{ route('pols.ael', $polId) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Accounting **</a>
 
 		@can('createForPol', App\Models\Tenant\Receipt::class)
-			<a class="dropdown-item" href="{{ route('receipts.create-for-pol',$pol->id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Receipts</a>
+			<a class="dropdown-item" href="{{ route('receipts.create-for-pol',$pol->id) }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Receipts</a>
 		@endcan
 
 		@if ($pol->po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('pols.edit', $pol->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Purchase Order Line</a>
-			<a class="dropdown-item" href="{{ route('pols.add-line', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Add Purchase Order Line</a>
+			<a class="dropdown-item" href="{{ route('pols.add-line', $pol->po_id) }}"><i class="align-middle me-1" data-lucide="plus"></i> Add Purchase Order Line</a>
 		@endif
 
 		<div class="dropdown-divider"></div>

@@ -30,7 +30,7 @@
 					<div class="card-actions float-end">
 						<a class="btn btn-sm btn-light" href="{{ route('reports.payment', $payment->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
 						@can('createForInvoice', App\Models\Tenant\Payment::class)
-							<a href="{{ route('payments.create-for-invoice', $payment->invoice_id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Make Another Payment</a>
+							<a href="{{ route('payments.create-for-invoice', $payment->invoice_id) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Make Another Payment</a>
 						@endcan
 						<a href="{{ route('payments.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 					</div>

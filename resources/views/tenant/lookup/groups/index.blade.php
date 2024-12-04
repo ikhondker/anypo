@@ -25,7 +25,7 @@
 					<tr>
 						<th>#</th>
 						<th>Name</th>
-						<th>Enable</th>
+						<th>Enable?</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -37,7 +37,7 @@
 						<td><x-tenant.list.my-boolean :value="$group->enable"/></td>
 						<td>
 							<a href="{{ route('groups.show',$group->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

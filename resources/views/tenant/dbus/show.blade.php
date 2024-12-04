@@ -14,17 +14,17 @@
 			Budget Usages
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
-	
+
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a href="{{ route('dbus.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				@if (auth()->user()->isSystem())
-					<a class="btn btn-sm btn-danger text-white" href="{{ route('dbus.edit', $dbu->id) }}"><i class="fas fa-edit"></i> Edit</a>
+					<a class="btn btn-sm btn-danger text-white" href="{{ route('dbus.edit', $dbu->id) }}"><i data-lucide="edit"></i> Edit</a>
 				@endif
 			</div>
 			<h5 class="card-title">Budget Usages Information </h5>

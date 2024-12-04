@@ -3,7 +3,7 @@
 		<i class="align-middle text-info mt-n1" data-lucide="settings"></i> Actions
 	</a>
 	<div class="dropdown-menu dropdown-menu-end">
-		<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create User</a>
+		<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create User</a>
 		<a class="dropdown-item" href="{{ route('users.index') }}"><i class="align-middle me-1" data-lucide="list"></i> All User's</a>
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('users.export') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> Download User Lists</a>

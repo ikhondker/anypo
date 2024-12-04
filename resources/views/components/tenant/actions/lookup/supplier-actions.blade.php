@@ -22,7 +22,7 @@
 
 		@can('create', App\Models\Tenant\Lookup\Supplier::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Supplier</a>
+			<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Supplier</a>
 		@endcan
 
 

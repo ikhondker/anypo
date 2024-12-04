@@ -72,14 +72,14 @@
 					<i class="hamburger align-self-center"></i>
 				</a>
 
-				<form class="d-none d-sm-inline-block">
+				{{-- <form class="d-none d-sm-inline-block">
 					<div class="input-group input-group-navbar">
-						<input type="text" class="form-control" placeholder="Search PO…" aria-label="Search">
+						<input type="text" class="form-control" placeholder="Search projects…" aria-label="Search">
 						<button class="btn" type="button">
-						    <i class="align-middle" data-lucide="search"></i>
+						<i class="align-middle" data-lucide="search"></i>
 						</button>
 					</div>
-				</form>
+				</form> --}}
 
 				<ul class="navbar-nav">
 					<li class="nav-item px-2 dropdown d-none d-sm-inline-block">

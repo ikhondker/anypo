@@ -20,7 +20,7 @@
 
 		@can('create', App\Models\Tenant\DeptBudget::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('dept-budgets.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create Dept Budget</a>
+			<a class="dropdown-item" href="{{ route('dept-budgets.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Dept Budget</a>
 		@endcan
 
 		<div class="dropdown-divider"></div>

@@ -9,7 +9,7 @@
 
 		@can('create', App\Models\Tenant\Lookup\BankAccount::class)
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('bank-accounts.create') }}"><i class="align-middle me-1" data-lucide="plus-circle"></i> Create BankAccount</a>
+			<a class="dropdown-item" href="{{ route('bank-accounts.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create BankAccount</a>
 		@endcan
 
 		@can('delete', $bankAccount)

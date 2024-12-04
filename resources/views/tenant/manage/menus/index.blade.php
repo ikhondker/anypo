@@ -36,7 +36,7 @@
 						<th>Raw Route Name</th>
 						<th>Route Name</th>
 						<th>Node Name</th>
-						<th>Enable</th>
+						<th>Enable?</th>
 						<th class="text-end">Actions</th>
 					</tr>
 				</thead>
@@ -50,7 +50,7 @@
 						<td><x-tenant.list.my-boolean :value="$menu->enable"/></td>
 						<td>
 							<a href="{{ route('menus.show',$menu->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

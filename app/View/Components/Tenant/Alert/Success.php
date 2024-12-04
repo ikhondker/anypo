@@ -8,13 +8,13 @@ use Illuminate\View\Component;
 
 class Success extends Component
 {
-	public $message;
+	//public $message;
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct( $message)
+	public function __construct( public string $message)
 	{
-		$this->message = $message;
+		//$this->message = $message;
 	}
 
 	/**

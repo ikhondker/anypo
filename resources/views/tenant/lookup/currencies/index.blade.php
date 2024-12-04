@@ -51,7 +51,7 @@
 						<td><x-tenant.list.my-boolean :value="$currency->rates"/></td>
 						<td>
 							<a href="{{ route('currencies.show',$currency->currency) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

@@ -36,8 +36,8 @@
 					<tr>
 						<th>#</th>
 						<th>Name</th>
-						<th>Enable</th>
-						<th>View</th>
+						<th>Enable?</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,7 +48,7 @@
 						<td><x-tenant.list.my-boolean :value="$oem->enable"/></td>
 						<td>
 							<a href="{{ route('oems.show',$oem->id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
 							</a>
 						</td>
 					</tr>

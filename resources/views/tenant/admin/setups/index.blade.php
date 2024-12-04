@@ -11,10 +11,10 @@
 			Setup
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
-	
+
 	<div class="row">
 		<div class="col-12">
 
@@ -35,7 +35,7 @@
 								<th>Website</th>
 								<th>Primary Admin</th>
 								<th>Announcement?</th>
-								<th>View</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -75,7 +75,7 @@
 	</div>
 	 <!-- end row -->
 
-	
+
 
 @endsection
 

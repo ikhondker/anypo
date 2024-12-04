@@ -50,7 +50,8 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>  View all</a>
+						<a href="{{ route('users.index') }}" class="btn btn-lg btn-light"><i class="lucide-lg" data-lucide="refresh-cw"></i>  View all</a>
+                        <a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i data-lucide-lg="refresh-cw"></i>  View all</a>
 					</div>
 					<h5 class="card-title">Empty card</h5>
 					  <h6 class="card-subtitle text-muted">Heatmap is a visualization tool that employs.</h6>
@@ -61,7 +62,7 @@
 					<table class="table table-sm my-2">
 						<tbody>
 							<tr>
-								<th>Name {{ DomainTenantResolver::currentDomain }}</th>
+								<th>Name </th>
 								<td>Angelica Ramos</td>
 							</tr>
 
