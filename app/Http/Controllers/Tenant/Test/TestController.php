@@ -79,6 +79,20 @@ class TestController extends Controller
 		//https://stackoverflow.com/questions/41758870/how-to-convert-result-table-to-json-array-in-mysql
 
 
+
+
+		Log::debug('Value of config(app.domain)=' . config('app.domain'));
+		Log::debug('Value of env(APP_DOMAIN)=' . env('APP_DOMAIN'));
+
+		Log::debug('Value of config(app.url)=' . config('app.url'));
+		Log::debug('Value of env(APP_URL)=' . env('APP_URL'));
+
+		Log::debug('Value of env(ASSET_URL)=' . env('ASSET_URL'));
+
+		echo "Done";
+		exit;
+
+
 		//$admin = User::where('role', 'admin')->firstOrFail();
 		try {
 			 $admin = User::where('role', 'admin1')->firstOrFail();
@@ -247,16 +261,7 @@ class TestController extends Controller
 
 		exit;
 
-		Log::debug('Value of config(app.domain)=' . config('app.domain'));
-		Log::debug('Value of env(APP_DOMAIN)=' . env('APP_DOMAIN'));
 
-		Log::debug('Value of config(app.url)=' . config('app.url'));
-		Log::debug('Value of env(APP_URL)=' . env('APP_URL'));
-
-		Log::debug('Value of env(ASSET_URL)=' . env('ASSET_URL'));
-
-		echo "Done";
-		exit;
 
 		ChartData::budget();
 		ChartData::deptBudget();

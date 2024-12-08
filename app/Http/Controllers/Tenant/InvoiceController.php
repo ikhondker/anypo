@@ -248,7 +248,7 @@ class InvoiceController extends Controller
 	}
 
 
-    	/**
+		/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Invoice $invoice)

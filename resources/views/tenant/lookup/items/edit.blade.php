@@ -13,6 +13,7 @@
 			Edit Item
 		@endslot
 		@slot('buttons')
+
 			<x-tenant.actions.lookup.item-actions itemId="{{ $item->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -26,7 +27,6 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a href="{{ route('items.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
-					<a href="{{ route('items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Item</h5>
 				<h6 class="card-subtitle text-muted">Edit Item Details.</h6>
@@ -120,10 +120,9 @@
 			</div>
 		</div>
 
-
-
-
 	</form>
 	<!-- /.form end -->
+
+    <x-tenant.widgets.back-to-list model="Item"/>
 @endsection
 

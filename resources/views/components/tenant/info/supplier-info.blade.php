@@ -7,8 +7,8 @@
 			</div>
 			<div class="col-sm-9 col-xl-12 col-xxl-9">
 				<div class="card-actions float-end">
-					<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-					<a class="btn btn-sm btn-light" href="{{ route('suppliers.index') }}" ><i class="fas fa-list"></i> View all</a>
+					<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id ) }}"><i data-lucide="edit"></i> Edit</a>
+					<a class="btn btn-sm btn-light" href="{{ route('suppliers.index') }}"><i data-lucide="database"></i> View all</a>
 				</div>
 				<strong>SUPPLIER: {{ $supplier->name }}</strong>
 				<p>{!! nl2br($supplier->notes) !!}</p>

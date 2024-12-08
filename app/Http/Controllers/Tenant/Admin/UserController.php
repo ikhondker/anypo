@@ -176,7 +176,15 @@ class UserController extends Controller
 		return view('tenant.admin.users.show', compact('user'));
 	}
 
+	/**
+	 * Display the specified resource.
+	 */
+	public function timestamp(User $user)
+	{
+		$this->authorize('view', $user);
 
+		return view('tenant.admin.users.timestamp', compact('user'));
+	}
 
 
 	/**
@@ -271,17 +279,26 @@ class UserController extends Controller
 	}
 
 
-
-
 	public function export()
 	{
 		$this->authorize('export', User::class);
-		$data = DB::select("
-		SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable
-			FROM users u, depts dp, designations d
-			WHERE u.dept_id=dp.id
-			AND u.designation_id=d.id
-			");
+
+		if ( auth()->user()->seeded) {
+			$data = DB::select("
+			SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable
+				FROM users u, depts dp, designations d
+				WHERE u.dept_id=dp.id
+				AND u.designation_id=d.id
+				");
+		} else {
+			$data = DB::select("
+			SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable
+				FROM users u, depts dp, designations d
+				WHERE u.dept_id=dp.id
+				AND u.designation_id=d.id
+				AND u.seeded = 0
+				");
+		}
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 		return Export::csv('users', $dataArray);

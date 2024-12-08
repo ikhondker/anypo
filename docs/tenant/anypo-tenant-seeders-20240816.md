@@ -14,7 +14,7 @@ php artisan tenants:rollback --tenants='98374437-0e3c-449a-9b01-84466328ce3e'
 php artisan tenants:migrate --tenants='98374437-0e3c-449a-9b01-84466328ce3e'
 php artisan tenants:seed --class=TenantSeeder --tenants='98374437-0e3c-449a-9b01-84466328ce3e'
 
-php artisan tenants:seed --class=WfSeeder --tenants='98374437-0e3c-449a-9b01-84466328ce3e'
+php artisan tenants:seed --class=MenuSeeder --tenants='98374437-0e3c-449a-9b01-84466328ce3e'
 
 php artisan queue:listen
 php artisan tenants:seed --tenants=demo1

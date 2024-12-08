@@ -5,7 +5,7 @@
 	<div class="dropdown-menu dropdown-menu-end">
 
 		<a class="dropdown-item" href="{{ route('projects.show', $project->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Project</a>
-
+		<a class="dropdown-item" href="{{ route('projects.attachments',$project->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> Attachments</a>
 		@if (Route::current()->getName() == 'projects.show')
 			@can('update', $project)
 				<a class="dropdown-item" href="{{ route('projects.edit', $project->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Project</a>
@@ -14,13 +14,13 @@
 		@can('spends', App\Models\Tenant\Lookup\Project::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('projects.po', $project->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Project PO</a>
-			<a class="dropdown-item" href="{{ route('projects.budget', $project->id) }}"><i class="align-middle me-1" data-lucide="dollar-sign"></i> Project Budget Usage</a>
-			<a class="dropdown-item" href="{{ route('projects.spends') }}"><i class="align-middle me-1" data-lucide="pie-chart"></i> Project Spends</a>
+			<a class="dropdown-item" href="{{ route('projects.budget', $project->id) }}"><i class="align-middle me-1" data-lucide="dollar-sign"></i> Project Budgets</a>
+			<a class="dropdown-item" href="{{ route('projects.pbu', $project->id) }}"><i class="align-middle me-1" data-lucide="dollar-sign"></i> Budget Usage</a>
+			{{-- <a class="dropdown-item" href="{{ route('projects.spends') }}"><i class="align-middle me-1" data-lucide="pie-chart"></i> Project Spends</a> --}}
 		@endcan
-		<a class="dropdown-item" href="{{ route('projects.attachments',$project->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> Attachments</a>
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('projects.index') }}"><i class="align-middle me-1" data-lucide="list"></i> Project Lists</a>
+		<a class="dropdown-item" href="{{ route('projects.index') }}"><i class="align-middle me-1" data-lucide="database"></i> Project Lists</a>
 
 		@can('delete', $project)
 			<div class="dropdown-divider"></div>

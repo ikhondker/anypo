@@ -12,7 +12,7 @@
 			Create Currency
 		@endslot
 		@slot('buttons')
-
+			<x-tenant.buttons.header.lists model="Currency"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -23,7 +23,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('currencies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+
 				</div>
 				<h5 class="card-title">Create Currency</h5>
 				<h6 class="card-subtitle text-muted">Create new currency.</h6>

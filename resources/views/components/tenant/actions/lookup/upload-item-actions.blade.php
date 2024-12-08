@@ -13,7 +13,7 @@
 			<a class="dropdown-item" href="{{ route('upload-items.show', $uploadItem->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Interface Item</a>
 		@endif
 
-		<a class="dropdown-item" href="{{ route('upload-items.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('upload-items.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 
 		@can('delete', $uploadItem)

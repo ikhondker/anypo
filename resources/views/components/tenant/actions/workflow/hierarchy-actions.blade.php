@@ -12,7 +12,7 @@
 		@endif
 
 
-		<a class="dropdown-item" href="{{ route('hierarchies.index') }}"><i class="align-middle me-1" data-lucide="list"></i> Hierarchy List</a>
+		<a class="dropdown-item" href="{{ route('hierarchies.index') }}"><i class="align-middle me-1" data-lucide="database"></i> Hierarchy List</a>
 
 		@can('create', App\Models\Tenant\Workflow\Hierarchy::class)
 			<div class="dropdown-divider"></div>
@@ -34,6 +34,10 @@
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Hierarchy</a>
 			@endif
 		@endcan
+
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('hierarchies.timestamp', $hierarchy->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+
 
 	</div>
 </div>

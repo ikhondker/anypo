@@ -38,8 +38,6 @@ class CpController extends Controller
 		return view('tenant.manage.cps.index');
 	}
 
-
-
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -64,7 +62,6 @@ class CpController extends Controller
 	public function ui()
 	{
 		return view('tenant.manage.ui');
-
 	}
 
 	 /**

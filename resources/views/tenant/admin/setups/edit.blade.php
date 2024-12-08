@@ -67,7 +67,7 @@
 				<div class="card">
 					<div class="card-header">
 						<div class="card-actions float-end">
-							<a class="btn btn-sm btn-light" href="{{ route('setups.show', $setup->id ) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Setup</a>
+							<a class="btn btn-sm btn-light" href="{{ route('setups.show', $setup->id ) }}"><i class="align-middle me-1" data-lucide="eye"></i> View</a>
 						</div>
 						<h5 class="card-title">Logo (90x90)</h5>
 						<h6 class="card-subtitle text-muted">Edit Company Logo (90x90).</h6>
@@ -167,5 +167,7 @@
 
 	</form>
 	<!-- /.form end -->
+
+
 @endsection
 

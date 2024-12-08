@@ -11,6 +11,7 @@
 			View Bank Account
 		@endslot
 		@slot('buttons')
+			<x-tenant.buttons.header.create model="BankAccount"/>
 			<x-tenant.actions.lookup.bank-account-actions bankAccountId="{{ $bankAccount->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -44,7 +45,7 @@
 		</div>
 	</div>
 
-     <x-tenant.widgets.back-to-list model="BankAccount"/>
+	 <x-tenant.widgets.back-to-list model="BankAccount"/>
 
 @endsection
 

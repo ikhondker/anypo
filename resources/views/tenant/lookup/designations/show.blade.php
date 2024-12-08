@@ -14,7 +14,7 @@
 			View Designation
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists model="Designation"/>
+			<x-tenant.buttons.header.create model="Designation"/>
 			<x-tenant.actions.lookup.designation-actions designationId="{{ $designation->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -23,7 +23,6 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('designations.edit', $designation->id ) }}"><i data-lucide="edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('designations.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Designation Detail</h5>
 			<h6 class="card-subtitle text-muted">Designation details.</h6>
@@ -39,6 +38,6 @@
 			</table>
 		</div>
 	</div>
-
+    <x-tenant.widgets.back-to-list model="Designation"/>
 @endsection
 

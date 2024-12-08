@@ -4,7 +4,7 @@
 	</a>
 	<div class="dropdown-menu dropdown-menu-end">
 
-		<a class="dropdown-item" href="{{asset('downloads/anypo-bulk-item-upload-template-v1.xlsx') }}"><i class="align-middle me-1" data-lucide="download"></i>1. Download Templates</a>
+		<a class="dropdown-item" href="{{asset('downloads/anypo-bulk-item-upload-template-v1.xlsx') }}"><i class="align-middle me-1" data-lucide="download"></i>1. Download Template</a>
 		<a class="dropdown-item" href="{{ route('upload-items.create') }}"><i class="align-middle me-1" data-lucide="upload"></i> 2. Upload File</a>
 
 		<div class="dropdown-divider"></div>
@@ -12,7 +12,7 @@
 			data-entity="" data-name="Validation Process" data-status="Run"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Validate">
 			<i class="align-middle me-1" data-lucide="check"></i> 3. Validate</a>
-			
+
 		<a href="{{ route('upload-items.import') }}" class="dropdown-item sw2-advance"
 			data-entity="" data-name="Import Process" data-status="Run"
 			data-bs-toggle="tooltip" data-bs-placement="top" title="Validate">

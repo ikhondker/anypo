@@ -9,10 +9,10 @@
 				<div class="card-actions float-end">
 					@if ($invoice->status <> App\Enum\Tenant\InvoiceStatusEnum::POSTED->value)
 						@can('edit', $invoice)
-							<a href="{{ route('invoices.edit', $invoice->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+							<a href="{{ route('invoices.edit', $invoice->id ) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
 						@endcan
 					@endif
-					<a href="{{ route('invoices.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+					<a href="{{ route('invoices.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 				</div>
 
 				<strong>INVOICE #{{ $invoice->invoice_no }} : {{ $invoice->summary }}</strong>

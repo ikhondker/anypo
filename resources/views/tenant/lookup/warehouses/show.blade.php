@@ -11,6 +11,7 @@
 			View Warehouse
 		@endslot
 		@slot('buttons')
+            <x-tenant.buttons.header.create model="Warehouse"/>
 			<x-tenant.actions.lookup.warehouse-actions warehouseId="{{ $warehouse->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -20,8 +21,6 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('warehouses.edit', $warehouse->id ) }}"><i data-lucide="edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('warehouses.index') }}" ><i class="fas fa-list"></i> View all</a>
-
 			</div>
 			<h5 class="card-title">Warehouse detail</h5>
 			<h6 class="card-subtitle text-muted">Warehouse detail information.</h6>
@@ -42,8 +41,7 @@
 		</div>
 	</div>
 
-
-
+    <x-tenant.widgets.back-to-list model="Warehouse"/>
 
 @endsection
 

@@ -11,7 +11,7 @@
 			<a class="dropdown-item" href="{{ route('custom-errors.edit', $customError->code) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Custom Error</a>
 		@endif
 
-		<a class="dropdown-item" href="{{ route('custom-errors.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('custom-errors.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@can('create', App\Models\Tenant\Manage\CustomError::class)
 			<div class="dropdown-divider"></div>

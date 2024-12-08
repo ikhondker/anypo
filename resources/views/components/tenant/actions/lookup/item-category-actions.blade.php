@@ -11,7 +11,7 @@
 			<a class="dropdown-item" href="{{ route('item-categories.show', $itemCategory->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Category</a>
 		@endif
 
-		<a class="dropdown-item" href="{{ route('item-categories.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('item-categories.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 
 		@can('create', App\Models\Tenant\Lookup\Dept::class)
@@ -34,8 +34,8 @@
 			@endif
 		@endcan
 
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('item-categories.timestamp', $itemCategory->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('item-categories.timestamp', $itemCategory->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 
 	</div>

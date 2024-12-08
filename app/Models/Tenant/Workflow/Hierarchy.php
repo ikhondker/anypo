@@ -20,7 +20,6 @@ class Hierarchy extends Model
 		'name', 'summary', 'enable', 'seeded', 'updated_by', 'updated_at',
 	];
 
-
 	/* ----------------- Scopes ------------------------- */
 	/**
 	 * Scope a query to only All Approved PR for tenant.

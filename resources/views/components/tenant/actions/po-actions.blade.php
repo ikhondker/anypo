@@ -33,7 +33,7 @@
 		<a class="dropdown-item" href="#"><i class="align-middle me-1" data-lucide="printer"></i> Print PO Detail Report*</a>
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('pos.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All </a>
+		<a class="dropdown-item" href="{{ route('pos.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All </a>
 		@can('duplicate', App\Models\Tenant\Po::class)
 			<a class="dropdown-item sw2-advance" href="{{ route('pos.duplicate', $po->id) }}"
 				data-entity="" data-name="PO#{{ $po->id }}" data-status="Duplicate"
@@ -84,8 +84,8 @@
 				<i class="align-middle me-1 text-danger" data-lucide="refresh-cw"></i> Recalculate (Support)</a>
 		@endcan
 
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('pos.timestamp', $po->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('pos.timestamp', $po->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 	</div>
 </div>

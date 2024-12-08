@@ -26,7 +26,6 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a href="{{ route('categories.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
-					<a href="{{ route('categories.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit PR/PO Category</h5>
 				<h6 class="card-subtitle text-muted">Edit an PR/PO Category.</h6>
@@ -44,5 +43,6 @@
 
 	</form>
 	<!-- /.form end -->
+	<x-tenant.widgets.back-to-list model="Category"/>
 @endsection
 

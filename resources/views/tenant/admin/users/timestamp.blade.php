@@ -17,16 +17,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-
-	<div class="row">
-		<div class="col-md-4 col-xl-4">
-			<x-tenant.widgets.user.user-profile userId="{{ $user->id }}"/>
-		</div>
-
-		<div class="col-md-8 col-xl-8">
-			<x-tenant.widgets.user.user-detail userId="{{ $user->id }}"/>
-		</div>
-	</div>
+	<x-tenant.widgets.who-when model="User" articleId="{{ $user->id  }}"/>
 
 	<x-tenant.widgets.back-to-list model="User"/>
 

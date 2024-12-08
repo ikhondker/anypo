@@ -26,7 +26,6 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a href="{{ route('oems.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
-					<a href="{{ route('oems.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit OEM</h5>
 				<h6 class="card-subtitle text-muted">Edit an OEM</h6>
@@ -35,15 +34,15 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<x-tenant.edit.name :value="$oem->name"/>
-							<x-tenant.edit.save/>
+						<x-tenant.edit.save/>
 					</tbody>
 				</table>
 			</div>
 		</div>
-
-
-
 	</form>
 	<!-- /.form end -->
+
+    <x-tenant.widgets.back-to-list model="Oem"/>
+
 @endsection
 

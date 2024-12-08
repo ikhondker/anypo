@@ -24,7 +24,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('uoms.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+					{{-- <a href="{{ route('uoms.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 				</div>
 				<h5 class="card-title">Create UoM</h5>
 						<h6 class="card-subtitle text-muted">Create Unit of Measure (UoM) and conversion factor.</h6>

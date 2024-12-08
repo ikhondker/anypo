@@ -96,7 +96,7 @@ class CurrencyController extends Controller
 		return view('tenant.lookup.currencies.show', compact('currency'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Currency $currency)

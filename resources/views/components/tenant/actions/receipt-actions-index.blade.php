@@ -4,7 +4,7 @@
 	</a>
 	<div class="dropdown-menu dropdown-menu-end">
 		<a class="dropdown-item" href="{{ route('receipts.my-receipts') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Receipt's</a>
-		<a class="dropdown-item" href="{{ route('receipts.index') }}"><i class="align-middle me-1" data-lucide="list"></i> All Receipts's</a>
+		<a class="dropdown-item" href="{{ route('receipts.index') }}"><i class="align-middle me-1" data-lucide="database"></i> All Receipts's</a>
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('receipts.export') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> Download Receipts to CSV</a>
 	</div>

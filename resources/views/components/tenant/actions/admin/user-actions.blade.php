@@ -14,7 +14,7 @@
 		<a class="dropdown-item" href="{{ route('users.password-change', $user->id) }}"><i class="align-middle me-1" data-lucide="key"></i> Change Password</a>
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('users.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('users.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@can('create', App\Models\User::class)
 			<div class="dropdown-divider"></div>
@@ -36,6 +36,10 @@
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable User</a>
 			@endif
 		@endcan
+
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('users.timestamp', $user->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+
 
 	</div>
 </div>

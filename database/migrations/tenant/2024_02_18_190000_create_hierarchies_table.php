@@ -14,7 +14,7 @@ return new class extends Migration
 		Schema::create('hierarchies', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('name')->unique();
-            $table->string('summary')->nullable();
+			$table->string('summary')->nullable();
 			$table->boolean('enable')->default(true);
 			$table->boolean('seeded')->default(false);
 			$table->softDeletes();

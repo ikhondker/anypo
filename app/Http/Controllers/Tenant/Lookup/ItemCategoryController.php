@@ -149,10 +149,10 @@ class ItemCategoryController extends Controller
 		$this->authorize('export', ItemCategory::class);
 
 		$data = DB::select("SELECT id, name, IF(enable, 'Yes', 'No') as Enable
-			FROM categories");
+			FROM item_categories");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
 
-		return Export::csv('categories', $dataArray);
+		return Export::csv('item_categories', $dataArray);
 	}
 }

@@ -280,7 +280,7 @@ class PaymentController extends Controller
 		return view('tenant.payments.show', compact('payment'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Payment $payment)

@@ -257,7 +257,7 @@ class ReceiptController extends Controller
 		return view('tenant.receipts.show', compact('receipt'));
 	}
 
-    	/**
+		/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Receipt $receipt)

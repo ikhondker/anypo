@@ -108,6 +108,18 @@ class SetupController extends Controller
 		return view('tenant.admin.setups.show', compact('setup'));
 	}
 
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Setup $setup)
+	{
+		$this->authorize('view', $setup);
+
+		return view('tenant.admin.setups.timestamp', compact('setup'));
+	}
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -165,7 +177,7 @@ class SetupController extends Controller
 
 			$request->merge(['logo' => $thumbImage]);
 		}
-		
+
 		// Write to Log
 		EventLog::event('setup', $setup->id, 'update', 'name', $request->name);
 		$setup->update($request->all());

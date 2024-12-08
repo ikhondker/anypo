@@ -24,7 +24,6 @@
 				@if (auth()->user()->isSystem())
 					<a class="btn btn-sm btn-danger text-white" href="{{ route('currencies.edit', $currency->currency ) }}"><i data-lucide="edit"></i> Edit</a>
 				@endif
-				<a class="btn btn-sm btn-light" href="{{ route('currencies.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Currency Detail</h5>
 			<h6 class="card-subtitle text-muted">Currency details.</h6>
@@ -42,6 +41,6 @@
 			</table>
 		</div>
 	</div>
-
+    <x-tenant.widgets.back-to-list model="Currency"/>
 @endsection
 

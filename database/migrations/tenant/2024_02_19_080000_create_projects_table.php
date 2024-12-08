@@ -46,7 +46,7 @@ return new class extends Migration
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
-            $table->foreign('pm_id')->references('id')->on('users');
+			$table->foreign('pm_id')->references('id')->on('users');
 		});
 	}
 

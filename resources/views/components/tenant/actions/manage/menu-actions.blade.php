@@ -11,7 +11,7 @@
 			<a class="dropdown-item" href="{{ route('menus.edit', $menu->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit menu</a>
 		@endif
 
-		<a class="dropdown-item" href="{{ route('menus.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('menus.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@can('create', App\Models\Tenant\Manage\Menu::class)
 			<div class="dropdown-divider"></div>

@@ -29,7 +29,7 @@
 			<i class="align-middle me-1" data-lucide="copy"></i> Duplicate Requisition</a>
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle me-1" data-lucide="list"></i> All Requisitions</a>
+		<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle me-1" data-lucide="database"></i> All Requisitions</a>
 
 		@can('convert', $pr)
 			<a class="dropdown-item sw2-advance" href="{{ route('prs.convert', $pr->id) }}"
@@ -67,8 +67,8 @@
 				<i class="align-middle me-1 text-danger" data-lucide="refresh-cw"></i> Recalculate (Support)</a>
 		@endcan
 
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('prs.timestamp', $pr->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('prs.timestamp', $pr->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 	</div>
 </div>

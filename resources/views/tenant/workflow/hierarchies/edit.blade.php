@@ -26,8 +26,6 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a href="{{ route('hierarchies.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
-				<a href="{{ route('hierarchies.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
-
 			</div>
 			<h5 class="card-title">Hierarchy Info</h5>
 				<h6 class="card-subtitle text-muted">Hierarchy Detail Information.</h6>
@@ -109,7 +107,7 @@
 	</div>
 </form>
 
-
+<x-tenant.widgets.back-to-list model="Hierarchy"/>
 
 
 @endsection

@@ -4,13 +4,13 @@
 				<div class="card-actions float-end">
 					@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
 						@can('update', $po)
-							<a class="btn btn-sm btn-light" href="{{ route('pos.edit', $po->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+							<a class="btn btn-sm btn-light" href="{{ route('pos.edit', $po->id ) }}"><i data-lucide="edit"></i> Edit</a>
 						@endcan
 					@endif
 					<a class="btn btn-sm btn-light" href="{{ route('pos.show', $po->id ) }}">
 						<i class="far fa-file"></i> PO#{{ $po->id }}
 					</a>
-					<a class="btn btn-sm btn-light" href="{{ route('pos.index') }}" ><i class="fas fa-list"></i> View all</a>
+					<a class="btn btn-sm btn-light" href="{{ route('pos.index') }}" ><i data-lucide="database"></i> View all</a>
 				</div>
 				<h5 class="card-title mb-0">[PO#{{ $po->id }}] {{ $po->summary }}</h5>
 			</div>

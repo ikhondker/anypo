@@ -19,11 +19,11 @@ class WfSeeder extends Seeder
 	public function run(): void
 	{
 		//
-        // Auth::loginUsingId(1001, TRUE);
+		// Auth::loginUsingId(1001, TRUE);
 
-        // // recalculate
-        // $pr1 = Pr::where('id', '1003')->firstOrFail();
-        // $pr = new PrController();
-        // $result = $pr->recalculate($pr1);
+		// // recalculate
+		// $pr1 = Pr::where('id', '1003')->firstOrFail();
+		// $pr = new PrController();
+		// $result = $pr->recalculate($pr1);
 	}
 }

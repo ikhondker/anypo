@@ -13,7 +13,7 @@
 			@endif
 		@endif
 
-		<a class="dropdown-item" href="{{ route('currencies.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('currencies.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@can('create', App\Models\Tenant\Lookup\Currency::class)
 			<div class="dropdown-divider"></div>
@@ -34,8 +34,8 @@
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Currency</a>
 			@endif
 		@endcan
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('currencies.timestamp', $currency->currency) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('currencies.timestamp', $currency->currency) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 	</div>
 </div>

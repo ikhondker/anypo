@@ -12,7 +12,7 @@
 		@endslot
 		@slot('buttons')
 		@if (auth()->user()->isSystem())
-			<x-tenant.buttons.header.create model="Currency"/>
+            <a href="{{ route('currencies.create') }}" class="btn btn-danger me-1"><i data-lucide="plus"></i>Create</a>
 		@endif
 		@endslot
 	</x-tenant.page-header>

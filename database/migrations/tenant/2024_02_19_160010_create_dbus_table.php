@@ -45,7 +45,7 @@ return new class extends Migration
 			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
 			$table->foreign('entity')->references('entity')->on('entities');
-            $table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('user_id')->references('id')->on('users');
 
 		});
 	}

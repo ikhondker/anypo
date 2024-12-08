@@ -129,11 +129,10 @@
 				</table>
 			</div>
 		</div>
-
-
-
-
 	</form>
 	<!-- /.form end -->
+
+    <x-tenant.widgets.back-to-list model="UploadItem"/>
+
 @endsection
 

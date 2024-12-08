@@ -11,6 +11,9 @@
 			View Item
 		@endslot
 		@slot('buttons')
+            @can('create', App\Models\Tenant\Lookup\Item::class)
+				<x-tenant.buttons.header.create model="Item"/>
+			@endcan
 			<x-tenant.actions.lookup.item-actions itemId="{{ $item->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -21,7 +24,6 @@
 				@can('update', $item)
 					<a class="btn btn-sm btn-light" href="{{ route('items.edit', $item->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				@endcan
-				<a class="btn btn-sm btn-light" href="{{ route('items.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Item Detail</h5>
 			<h6 class="card-subtitle text-muted"><h6 class="card-subtitle text-muted">Detail Information of an Item.</h6>.</h6>
@@ -46,7 +48,7 @@
 			</table>
 		</div>
 	</div>
-
+    <x-tenant.widgets.back-to-list model="Item"/>
 
 @endsection
 

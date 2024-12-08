@@ -76,7 +76,7 @@
 					<div class="input-group input-group-navbar">
 						<input type="text" class="form-control" placeholder="Search PO…" aria-label="Search">
 						<button class="btn" type="button">
-						    <i class="align-middle" data-lucide="search"></i>
+							<i class="align-middle" data-lucide="search"></i>
 						</button>
 					</div>
 				</form>
@@ -259,16 +259,21 @@
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
-                                    <a href="{{ route('home') }}" class="text-muted"><i class="align-top text-muted" data-lucide="home"></i> Home</a>
-                                </li>
+									<a href="{{ route('home') }}" class="text-muted"><i class="align-top text-muted" data-lucide="home"></i> Home</a>
+								</li>
 								@yield('breadcrumb')
 							</ol>
 						</nav>
 						<!-- /.breadcrumb -->
 
-						<!-- content -->
-						@yield('content')
-						<!-- /.content -->
+						{{-- If tenant is enable --}}
+						@if ($_setup->enable)
+							<!-- content -->
+							@yield('content')
+							<!-- /.content -->
+						@else
+							<x-tenant.alerts.error message="This site is disable! You can not access it. Please contact your admin or create a support ticket via {{ config('app.url') }}." />
+						@endif
 					@else
 						@if (auth()->user()->isAdmin() || auth()->user()->isSystem() )
 							<!-- content -->
@@ -277,7 +282,6 @@
 						@else
 							<x-tenant.alerts.error message="Initial setup not done. Only admin can perform the initial setup."/>
 						@endif
-
 					@endif
 
 					{{-- <div class="row">

@@ -15,6 +15,7 @@
 			Edit Project
 		@endslot
 		@slot('buttons')
+
 			<x-tenant.actions.lookup.project-actions projectId="{{ $project->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -28,7 +29,6 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a href="{{ route('projects.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
-					<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Project Info</h5>
 				<h6 class="card-subtitle text-muted">Edit Project detail and other information.</h6>
@@ -88,5 +88,8 @@
 
 	</form>
 	<!-- /.form end -->
+
+    <x-tenant.widgets.back-to-list model="Project"/>
+
 @endsection
 

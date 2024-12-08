@@ -1,15 +1,15 @@
 @extends('layouts.tenant.app')
 @section('title','Projects')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Projects</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}" class="text-muted">Projects</a></li>
 	<li class="breadcrumb-item active">{{ $project->name }}</li>
 @endsection
 
-
 @section('content')
+
 	<x-tenant.page-header>
 		@slot('title')
-			Projects
+			Project
 		@endslot
 		@slot('buttons')
 			<x-tenant.actions.lookup.project-actions projectId="{{ $project->id }}"/>
@@ -18,8 +18,7 @@
 
 	<x-tenant.info.project-info projectId="{{ $project->id }}"/>
 
-
-    <div class="row">
+	<div class="row">
 		<div class="col-6">
 
 			<div class="card">
@@ -157,6 +156,5 @@
 			document.getElementById('frm1').submit();
 		}
 	</script>
-
 @endsection
 

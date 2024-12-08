@@ -132,6 +132,7 @@
 
 	</form>
 	<!-- /.form end -->
+	<x-tenant.widgets.back-to-list model="BankAccount"/>
 
 @endsection
 

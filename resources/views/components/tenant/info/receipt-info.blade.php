@@ -8,9 +8,9 @@
 			<div class="col-sm-9 col-xl-12 col-xxl-9">
 				<div class="card-actions float-end">
 					@if (auth()->user()->isSystem())
-						<a href="{{ route('receipts.edit', $receipt->id) }}" class="btn btn-sm btn-danger text-white" ><i class="fas fa-edit"></i> Edit</a>
+						<a href="{{ route('receipts.edit', $receipt->id) }}" class="btn btn-sm btn-danger text-white"><i data-lucide="edit"></i> Edit</a>
 					@endif
-					<a href="{{ route('receipts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+					<a href="{{ route('receipts.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 				</div>
 				<strong>RECEIPT #{{ $receipt->id }}</strong>
 				<p>{!! nl2br($receipt->notes) !!}</p>

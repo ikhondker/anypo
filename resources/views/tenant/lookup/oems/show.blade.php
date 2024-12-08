@@ -14,6 +14,7 @@
 			View OEM
 		@endslot
 		@slot('buttons')
+            <x-tenant.buttons.header.create model="Oem"/>
 			<x-tenant.actions.lookup.oem-actions oemId="{{ $oem->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -22,7 +23,6 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('oems.edit', $oem->id ) }}"><i data-lucide="edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('oems.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">OEM Detail</h5>
 			<h6 class="card-subtitle text-muted">OEM details.</h6>
@@ -39,5 +39,6 @@
 		</div>
 	</div>
 
+    <x-tenant.widgets.back-to-list model="Oem"/>
 @endsection
 

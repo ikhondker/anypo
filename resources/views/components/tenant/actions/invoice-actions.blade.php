@@ -34,7 +34,7 @@
 
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('invoices.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All </a>
+		<a class="dropdown-item" href="{{ route('invoices.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All </a>
 		<a class="dropdown-item" href="{{ route('pos.show', $invoice->po_id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Purchase Order</a>
 		<a class="dropdown-item" href="{{ route('reports.po', $invoice->po_id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Invoice **</a>
 
@@ -53,8 +53,8 @@
 				<i class="align-middle me-1 text-danger" data-lucide="refresh-cw"></i> Recalculate (Support)</a>
 		@endcan
 
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('invoices.timestamp', $invoice->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('invoices.timestamp', $invoice->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 	</div>
 </div>

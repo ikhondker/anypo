@@ -24,8 +24,8 @@
 			@endcan
 		@endif
 
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('receipts.timestamp', $receipt->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('receipts.timestamp', $receipt->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 	</div>
 </div>

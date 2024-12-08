@@ -11,7 +11,7 @@
 			<a class="dropdown-item" href="{{ route('groups.edit', $group->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Group</a>
 		@endif
 
-		<a class="dropdown-item" href="{{ route('groups.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('groups.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@can('create', App\Models\Tenant\Lookup\Group::class)
 			<div class="dropdown-divider"></div>
@@ -33,8 +33,8 @@
 			@endif
 		@endcan
 
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('groups.timestamp', $group->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('groups.timestamp', $group->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 
 	</div>

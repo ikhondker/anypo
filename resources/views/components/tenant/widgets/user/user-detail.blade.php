@@ -2,7 +2,7 @@
 	<div class="card-header">
 		<div class="card-actions float-end">
 			@can('update', $user)
-				<a class="btn btn-sm btn-light" href="{{ route('users.edit', $user->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+				<a class="btn btn-sm btn-light" href="{{ route('users.edit', $user->id ) }}"><i data-lucide="edit"></i> Edit</a>
 			@endcan
 			{{-- @can('viewAny', $user)
 				<a class="btn btn-sm btn-light" href="{{ route('users.index') }}" ><i class="fas fa-list"></i> View all</a>

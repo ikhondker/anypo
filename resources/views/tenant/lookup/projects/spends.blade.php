@@ -1,5 +1,5 @@
 @extends('layouts.tenant.app')
-@section('title','Project Spends')
+@section('title','Project Spend Summary')
 
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('projects.index') }}" class="text-muted">Projects</a></li>
@@ -11,7 +11,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Project Spends
+			Project Spend Summary
 		@endslot
 		@slot('buttons')
 			<x-tenant.buttons.header.lists model="Project"/>

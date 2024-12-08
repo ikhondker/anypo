@@ -11,7 +11,7 @@
 			<a class="dropdown-item" href="{{ route('oems.edit', $oem->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit OEM</a>
 		@endif
 
-		<a class="dropdown-item" href="{{ route('oems.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('oems.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@can('create', App\Models\Tenant\Lookup\Oem::class)
 			<div class="dropdown-divider"></div>
@@ -33,8 +33,8 @@
 			@endif
 		@endcan
 
-                <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('oems.timestamp', $oem->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+				<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('oems.timestamp', $oem->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 
 	</div>

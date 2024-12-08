@@ -259,7 +259,7 @@ class PoController extends Controller
 	}
 
 
-    	/**
+		/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Po $po)

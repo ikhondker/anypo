@@ -3,9 +3,9 @@
 	<div class="card-header">
 		<div class="card-actions float-end">
 			@can('update', $project)
-				<a href="{{ route('projects.edit', $project->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+				<a href="{{ route('projects.edit', $project->id ) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
 			@endcan
-			<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+			<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 		</div>
 		<h5 class="card-title mb-0">{{ $project->name }} [{{ $project->code }}]</h5>
 	</div>

@@ -14,6 +14,7 @@
 			View PR/PO Category
 		@endslot
 		@slot('buttons')
+			<x-tenant.buttons.header.create model="Category"/>
 			<x-tenant.actions.lookup.category-actions categoryId="{{ $category->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -22,7 +23,6 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('categories.edit', $category->id ) }}"><i data-lucide="edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('categories.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">PR/PO Category Detail</h5>
 			<h6 class="card-subtitle text-muted">PR/PO Category details.</h6>
@@ -36,6 +36,8 @@
 			</table>
 		</div>
 	</div>
+
+	<x-tenant.widgets.back-to-list model="Category"/>
 
 @endsection
 

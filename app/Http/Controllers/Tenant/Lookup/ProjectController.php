@@ -116,11 +116,11 @@ class ProjectController extends Controller
 	{
 		$this->authorize('view', $project);
 
-		if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
-			return view('tenant.lookup.projects.show-basic', compact('project'));
-		} else {
+		// if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
+		// 	return view('tenant.lookup.projects.show-basic', compact('project'));
+		// } else {
 			return view('tenant.lookup.projects.show', compact('project'));
-		}
+		// }
 	}
 
 	/**
@@ -142,6 +142,16 @@ class ProjectController extends Controller
 		$this->authorize('view', $project);
 
 		return view('tenant.lookup.projects.budget', compact('project'));
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function pbu(Project $project)
+	{
+		$this->authorize('view', $project);
+
+		return view('tenant.lookup.projects.pbu', compact('project'));
 	}
 
 	/**
@@ -205,7 +215,6 @@ class ProjectController extends Controller
 				FROM projects p, users u
 				WHERE p.pm_id = u.id
 			";
-
 		} else {
 			$sql="SELECT p.id, p.name, u.name pm_name, p.start_date, end_date,
 				amount budget, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_payment, p.notes,

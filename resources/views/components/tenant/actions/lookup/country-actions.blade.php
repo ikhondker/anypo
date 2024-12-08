@@ -11,7 +11,7 @@
 			<a class="dropdown-item" href="{{ route('countries.edit', $country->country) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Country</a>
 		@endif
 
-		<a class="dropdown-item" href="{{ route('countries.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('countries.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@can('create', App\Models\Tenant\Lookup\Country::class)
 			<div class="dropdown-divider"></div>

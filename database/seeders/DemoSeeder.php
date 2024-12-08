@@ -52,8 +52,8 @@ class DemoSeeder extends Seeder
 		// Enable BDT
 		Currency::where('currency','BDT')->update(['enable'=>true]);
 
-        // change currency of BankAccount
-        BankAccount::query()->update(['currency' => 'BDT']);
+		// change currency of BankAccount
+		BankAccount::query()->update(['currency' => 'BDT']);
 
 		// create hiaerarchy
 		$pr=Hierarchyl::create([

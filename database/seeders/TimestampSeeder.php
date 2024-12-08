@@ -63,7 +63,7 @@ class TimestampSeeder extends Seeder
 		try {
 			$admin = User::where('role', 'admin')->firstOrFail();
 	   	} catch (ModelNotFoundException $exception) {
-            Log::error("message");('tenant.TimestampSeeder.run admin not found!');
+			Log::error("message");('tenant.TimestampSeeder.run admin not found!');
 		   $admin = User::where('email', config('akk.SYSTEM_EMAIL_ID'))->firstOrFail();
 	   	}
 

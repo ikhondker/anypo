@@ -12,6 +12,7 @@
 			Approval Hierarchy
 		@endslot
 		@slot('buttons')
+            <x-tenant.buttons.header.create model="Hierarchy"/>
 			<x-tenant.actions.workflow.hierarchy-actions hierarchyId="{{ $hierarchy->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -33,7 +34,7 @@
 						<th>Title</th>
 						<th>Dept</th>
 						<th>Email</th>
-						<th>User Active</th>
+						<th>User Active?</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,6 +54,8 @@
 
 		</div>
 	</div>
+
+    <x-tenant.widgets.back-to-list model="Hierarchy"/>
 
 @endsection
 

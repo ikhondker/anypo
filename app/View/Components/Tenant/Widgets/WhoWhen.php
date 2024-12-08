@@ -28,9 +28,14 @@ use App\Models\Tenant\Payment;
 
 use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
+
+use App\Models\User;
+use App\Models\Tenant\Admin\Setup;
+use App\Models\Tenant\Workflow\Hierarchy;
+
 # 2. Enums
 use App\Enum\Tenant\EntityEnum;
-//use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log;
 
 use Str;
 
@@ -47,7 +52,6 @@ class WhoWhen extends Component
 
 		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
 		switch ($model) {
-
 
 			case 'BankAccount':
 				$this->article = BankAccount::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
@@ -111,8 +115,19 @@ class WhoWhen extends Component
 			case 'DeptBudget':
 				$this->article = DeptBudget::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
 				break;
+			case 'Setup':
+				//Log::debug('I AM HERE');
+				$this->article = Setup::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				//Log::debug('Article id = '.$this->article->name);
+				break;
+			case 'User':
+				$this->article = User::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
+			case 'Hierarchy':
+				$this->article = Hierarchy::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
+				break;
 			default:
-				null;
+			null;
 		}
 
 	}

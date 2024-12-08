@@ -178,6 +178,18 @@ class HierarchyController extends Controller
 		return view('tenant.workflow.hierarchies.show', compact('hierarchy', 'hierarchyls'));
 	}
 
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Hierarchy $hierarchy)
+	{
+		$this->authorize('view', $hierarchy);
+
+		return view('tenant.workflow.hierarchies.timestamp', compact('hierarchy'));
+	}
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 */

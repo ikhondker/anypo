@@ -13,6 +13,7 @@
 			Edit Supplier
 		@endslot
 		@slot('buttons')
+
 			<x-tenant.actions.lookup.supplier-actions supplierId="{{ $supplier->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -26,7 +27,6 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a href="{{ route('suppliers.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
-					<a href="{{ route('suppliers.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 				</div>
 				<h5 class="card-title">Edit Supplier</h5>
 				<h6 class="card-subtitle text-muted">Edit Suppliers Information.</h6>
@@ -53,6 +53,8 @@
 
 	</form>
 	<!-- /.form end -->
+
+    <x-tenant.widgets.back-to-list model="Supplier"/>
 
 @endsection
 

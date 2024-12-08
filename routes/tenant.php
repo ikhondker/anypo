@@ -208,6 +208,11 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
+        // TODO Remove
+        Route::get('/ui', function () {
+			return view('tenant.manage.ui');
+		})->name('ui');
+
 		/* ======================== Home Controller ======================================== */
 		Route::get('/home', [DashboardController::class, 'index'])->name('home');
 		Route::get('/help', [HomeController::class, 'help'])->name('help');
@@ -312,10 +317,10 @@ Route::middleware([
 
 		/* ======================== Project ======================================== */
 		Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
-
 		Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 		Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
 		Route::get('/projects/po/{project}',[ProjectController::class,'po'])->name('projects.po');
+        Route::get('/projects/pbu/{project}',[ProjectController::class,'pbu'])->name('projects.pbu');
 
 		/* ======================== Dbu ======================================== */
 		Route::resource('dbus', DbuController::class);
@@ -570,6 +575,7 @@ Route::middleware([
 	Route::post('/users/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
 	Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
 	Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
+    Route::get('/users/timestamp/{user}',[UserController::class, 'timestamp'])->name('users.timestamp');
 	//Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
 	// Route::get('/users/password/{user}',[UserController::class, 'password'])->name('users.password');
 	// Route::post('/users/change-pass/{user}',[UserController::class, 'changepass'])->name('users.change-pass');
@@ -653,11 +659,14 @@ Route::middleware([
 	Route::get('setups/tc/{setup}', [SetupController::class, 'tc'])->name('setups.tc');
 	Route::post('setups/update-tc/{setup}', [SetupController::class, 'updateTc'])->name('setups.update-tc');
 	Route::post('setups/freeze/{setup}', [SetupController::class, 'freeze'])->name('setups.freeze');
+    Route::get('/setups/timestamp/{setup}',[SetupController::class, 'timestamp'])->name('setups.timestamp');
 
 	/* ======================== Hierarchy ======================================== */
 	Route::resource('hierarchies', HierarchyController::class);
 	Route::get('/hierarchy/export',[HierarchyController::class,'export'])->name('hierarchies.export');
 	Route::get('/hierarchies/delete/{hierarchy}',[HierarchyController::class,'destroy'])->name('hierarchies.destroy');
+	Route::get('/hierarchies/timestamp/{hierarchy}',[HierarchyController::class, 'timestamp'])->name('hierarchies.timestamp');
+
 
 	/* ======================== Wf ======================================== */
 	Route::resource('wfs', WfController::class);

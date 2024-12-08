@@ -24,7 +24,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('projects.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+
 				</div>
 				<h5 class="card-title">Create new Project</h5>
 						<h6 class="card-subtitle text-muted">Create new Project and allocate budget.</h6>

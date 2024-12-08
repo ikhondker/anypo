@@ -12,7 +12,7 @@
 			Create Hierarchy
 		@endslot
 		@slot('buttons')
-
+            <x-tenant.buttons.header.lists model="Hierarchy"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -25,7 +25,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a class="btn btn-sm btn-light" href="{{ route('hierarchies.index') }}" ><i class="fas fa-list"></i> View all</a>
+
 				</div>
 
 				<h5 class="card-title">Create Hierarchy</h5>

@@ -165,7 +165,7 @@ class BudgetController extends Controller
 		return view('tenant.budgets.show', compact('budget'));
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Budget $budget)

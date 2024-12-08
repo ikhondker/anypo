@@ -12,7 +12,7 @@
 			Create Bank Account
 		@endslot
 		@slot('buttons')
-            <x-tenant.buttons.header.lists model="BankAccount"/>
+			<x-tenant.buttons.header.lists model="BankAccount"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -26,7 +26,7 @@
 					{{-- <a href="{{ route('bank-accounts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 				</div>
 				<h5 class="card-title">Create new Bank Account </h5>
-						<h6 class="card-subtitle text-muted">Create newBank Account with details.</h6>
+				<h6 class="card-subtitle text-muted">Create newBank Account with details.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">

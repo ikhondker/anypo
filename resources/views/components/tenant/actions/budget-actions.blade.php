@@ -16,7 +16,7 @@
 		<a class="dropdown-item" href="{{ route('budgets.revisions', $budget->id) }}"><i class="align-middle me-1" data-lucide="edit-3"></i> View Revisions (*)</a>
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('budgets.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('budgets.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item sw2-advance" href="{{ route('budgets.destroy',$budget->id) }}"
@@ -26,8 +26,8 @@
 			{{ ($budget->closed ? 'Open' : 'Close') }} Budget
 		</a>
 
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('budgets.timestamp', $budget->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('budgets.timestamp', $budget->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>
 
 	</div>
 </div>

@@ -51,7 +51,7 @@
 						<th>Page Header Icons</th>
 						<th>Card Buttons</th>
 						<th>Card Button Icons</th>
-                        <th>Card Bellow</th>
+						<th>Card Bellow</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -62,25 +62,25 @@
 						<td>[Lucide]</td>
 						<td>Search + Export</td>
 						<td>[Lucide]</td>
-                        <td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>show</td>
 						<td>[actions]</td>
-						<td>Create+View all</td>
+						<td>Create</td>
 						<td>&nbsp;</td>
 						<td><a href="#" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a></td>
 						<td>[Lucide]</td>
-                        <td>[back-to-list]</td>
+						<td>[back-to-list]</td>
 					</tr>
 					<tr>
 						<td>edit</td>
 						<td>[actions]</td>
-						<td>Create+View all</td>
+						<td></td>
 						<td>&nbsp;</td>
 						<td><a href="#" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a></td>
 						<td>[Lucide]</td>
-                        <td></td>
+						<td>[back-to-list]</td>
 					</tr>
 					<tr>
 						<td>create</td>
@@ -89,7 +89,7 @@
 						<td>&nbsp;</td>
 						<td></td>
 						<td>[Lucide]</td>
-                        <td></td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>

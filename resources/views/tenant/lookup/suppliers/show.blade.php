@@ -12,6 +12,9 @@
 			View Supplier
 		@endslot
 		@slot('buttons')
+   			@can('create', App\Models\Tenant\Lookup\Supplier::class)
+				<x-tenant.buttons.header.create model="Supplier"/>
+			@endcan
 			<x-tenant.actions.lookup.supplier-actions supplierId="{{ $supplier->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -22,7 +25,6 @@
 				@can('update', $supplier)
 					<a class="btn btn-sm btn-light" href="{{ route('suppliers.edit', $supplier->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				@endcan
-				<a class="btn btn-sm btn-light" href="{{ route('suppliers.index') }}" ><i class="fas fa-list"></i> View all</a>
 			</div>
 			<h5 class="card-title">Supplier Detail</h5>
 					<h6 class="card-subtitle text-muted">Supplier detail Information.</h6>
@@ -46,6 +48,8 @@
 			</table>
 		</div>
 	</div>
+
+    <x-tenant.widgets.back-to-list model="Supplier"/>
 
 @endsection
 

@@ -11,7 +11,7 @@
 			<a class="dropdown-item" href="{{ route('statuses.edit', $status->code) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Status</a>
 		@endif
 
-		<a class="dropdown-item" href="{{ route('statuses.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('statuses.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@can('create', App\Models\Tenant\Manage\Status::class)
 			<div class="dropdown-divider"></div>

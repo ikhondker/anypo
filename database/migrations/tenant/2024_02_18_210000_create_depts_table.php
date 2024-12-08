@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();
-            $table->uuid('hod_id')->nullable();
+			$table->uuid('hod_id')->nullable();
 			$table->boolean('enable')->default(true);
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();

@@ -73,17 +73,17 @@ class CustomErrorSeeder extends Seeder
 				'entity'	=> EntityEnum::ITEM->value,
 				'message'	=> 'Invalid GL_TYPE Name!',
 			],
-            [
+			[
 				'code'		=> 'E011',
 				'entity'	=> EntityEnum::ITEM->value,
 				'message'	=> 'Item code is Empty!',
 			],
-            [
+			[
 				'code'		=> 'E012',
 				'entity'	=> EntityEnum::ITEM->value,
 				'message'	=> 'Item Name is Empty!',
 			],
-            [
+			[
 				'code'		=> 'E013',
 				'entity'	=> EntityEnum::ITEM->value,
 				'message'	=> 'Item with same name already exists!',

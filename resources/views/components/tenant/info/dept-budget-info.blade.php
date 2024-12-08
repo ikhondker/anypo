@@ -2,8 +2,8 @@
 
 	<div class="card-header">
 		<div class="card-actions float-end">
-			<a class="btn btn-sm btn-light" href="{{ route('dept-budgets.edit', $deptBudget->id ) }}"><i class="fas fa-edit"></i> Edit</a>
-			<a class="btn btn-sm btn-light" href="{{ route('dept-budgets.index') }}" ><i class="fas fa-list"></i> View all</a>
+			<a class="btn btn-sm btn-light" href="{{ route('dept-budgets.edit', $deptBudget->id ) }}"><i data-lucide="edit"></i> Edit</a>
+			<a class="btn btn-sm btn-light" href="{{ route('dept-budgets.index') }}"><i data-lucide="database"></i> View all</a>
 		</div>
 		<h5 class="card-title mb-0">Dept Budget</h5>
 	</div>
@@ -13,7 +13,7 @@
 				<img src="{{ Storage::disk('s3t')->url('flow/dept-budget.jpg') }}" width="240" height="321" class="mt-2" alt="Dept Budget">
 			</div>
 			<div class="col-sm-9 col-xl-12 col-xxl-9">
-			
+
 				<strong>{{ $deptBudget->dept->name }}</strong>
 				<p>FY{{ $deptBudget->budget->fy }}: {{ $deptBudget->budget->name }}</p>
 
