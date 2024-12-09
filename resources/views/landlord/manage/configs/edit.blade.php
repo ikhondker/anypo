@@ -41,7 +41,7 @@
 										</div>
 									</td>
 								</tr>
-		
+
 								<x-landlord.edit.id-read-only :value="$config->id" />
 								<x-landlord.edit.name value="{{ $config->name }}" />
 								<x-landlord.edit.tagline value="{{ $config->tagline }}" />
@@ -60,7 +60,7 @@
 				<div class="card">
 					<div class="card-header">
 						<div class="card-actions float-end">
-							{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+							{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
 							<a href="{{ route('prs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 						</div>
 						<h5 class="card-title">Edit Requisition Additional Info</h5>
@@ -77,8 +77,8 @@
 									<x-landlord.edit.country :value="$config->country" />
 									<x-landlord.edit.website url="{{ $config->website }}" />
 									<x-landlord.edit.facebook url="{{ $config->facebook }}" />
-									<x-landlord.edit.linkedin url="{{ $config->linkedin }}" />	
-								
+									<x-landlord.edit.linkedin url="{{ $config->linkedin }}" />
+
 							</tbody>
 						</table>
 
@@ -153,7 +153,7 @@
 							</tbody>
 						</table>
 
-						
+
 
 					</div>
 				</div>
@@ -164,7 +164,7 @@
 				<div class="card">
 					<div class="card-header">
 						<div class="card-actions float-end">
-							{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+							{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
 							<a href="{{ route('prs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 						</div>
 						<h5 class="card-title">Edit Requisition Additional Info</h5>
@@ -174,7 +174,7 @@
 
 						<table class="table table-sm my-2">
 							<tbody>
-								
+
 								<tr>
 									<th>Days Gen Bill :</th>
 									<td>
@@ -270,7 +270,7 @@
 										@enderror
 									</td>
 								</tr>
-		
+
 								<tr>
 									<th>Maintenance Schedule:</th>
 									<td>
@@ -283,7 +283,7 @@
 												@error('maintenance_start_time')
 													<div class="small text-danger">{{ $message }}</div>
 												@enderror
-		
+
 											</div>
 											<div class="col-md-4">
 												<input type="datetime-local" class="form-control @error('maintenance_end_time') is-invalid @enderror"
@@ -297,7 +297,7 @@
 										</div>
 									</td>
 								</tr>
-		
+
 								<tr>
 									<th>Banner :</th>
 									<td>
@@ -311,7 +311,7 @@
 										@enderror
 									</td>
 								</tr>
-		
+
 								<tr>
 									<th>Banner Message :</th>
 									<td>
@@ -334,7 +334,7 @@
 				<div class="card">
 					<div class="card-header">
 						<div class="card-actions float-end">
-							{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+							{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
 							<a href="{{ route('prs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 						</div>
 						<h5 class="card-title">Future Information</h5>
@@ -345,8 +345,8 @@
 						<table class="table table-sm my-2">
 							<tbody>
 
-								
-								
+
+
 							</tbody>
 						</table>
 
@@ -360,26 +360,26 @@
 
 
 	<div class="card">
-		
+
 		<div class="card-body">
-			
+
 
 				<table class="table table-sm my-2">
 					<tbody>
-						
 
 
-						
-
-						
 
 
-					
+
+
+
+
+
 
 					</tbody>
 				</table>
 
-				
+
 			</form>
 		</div>
 	</div>

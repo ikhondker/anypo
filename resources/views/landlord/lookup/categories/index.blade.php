@@ -7,7 +7,7 @@
 
 @section('content')
 
-	<a href="{{ route('categories.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Category</a>
+	<a href="{{ route('categories.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Category</a>
 	<h1 class="h3 mb-3">All Categories</h1>
 
 	<div class="card">

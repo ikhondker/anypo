@@ -20,7 +20,7 @@
 				@else
 					<x-landlord.actions.account-actions accountId="{{ $account->id }}"/>
 				@endif
-				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
+				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Ticket</a>
 				@if (auth()->user()->isSupport())
 					<a href="{{ route('accounts.index') }}" class="btn btn-primary float-end me-1"><i class="fas fa-list"></i> View all</a>
 				@endif
@@ -30,7 +30,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a href="{{ route('accounts.edit', $account->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+				<a href="{{ route('accounts.edit', $account->id) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
 			</div>
 			<h5 class="card-title">Account Overview</h5>
 			<h6 class="card-subtitle text-muted">Detail Information of your account.</h6>
@@ -94,10 +94,10 @@
 									<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($account->created_at ))) }}</td>
 								</tr>
 								@if (auth()->user()->isSystem())
-								<tr>
-									<th scope="row" class="text-danger" >Lifetime Discount % :</th>
-									<td>{{ number_format($account->discount, 2) }}</td>
-								</tr>
+                                    <tr>
+                                        <th scope="row" class="text-danger" >Lifetime Discount % :</th>
+                                        <td>{{ number_format($account->discount, 2) }}</td>
+                                    </tr>
 								@endif
 							</tbody>
 						</table>
@@ -115,6 +115,13 @@
 								<x-landlord.show.my-url value="{{ $account->website }}" label="Website" />
 								<x-landlord.show.my-url value="{{ $account->facebook }}" label="Facebook" />
 								<x-landlord.show.my-url value="{{ $account->linkedin }}" label="LinkedIn" />
+                                @if (auth()->user()->isSystem())
+                                    <tr>
+                                        <th scope="row" class="text-danger" >Tenant id :</th>
+                                        <td>{{ $account->tenant_id }}</td>
+                                    </tr>
+								@endif
+
 							</tbody>
 						</table>
 					</div>

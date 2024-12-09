@@ -46,7 +46,7 @@ use App\Models\Landlord\Admin\Service;
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
 //use App\Enum\UserRoleEnum;
-//use App\Enum\Landlord\InvoiceTypeEnum;
+use App\Enum\Landlord\AccountStatusEnum;
 //use App\Enum\Landlord\CheckoutStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
@@ -241,7 +241,34 @@ class AccountController extends Controller
 		return redirect()->route('accounts.index')->with('success', 'Account Deleted successfully');
 	}
 
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param \App\Models\Account $account
+	 * @return \Illuminate\Http\Response
+	 */
+	public function tenant(Account $account)
+	{
+		$this->authorize('delete', $account);
+		if ($account->tenant_id ==''){
+			return redirect()->route('accounts.index')->with('error', 'Tenant Id is empty!');
+		}
 
+		$tenant = Tenant::find( $account->tenant_id);
+		Log::debug('Landlord.Accounts.tenant Updating Tenant Setup enable column for tenant_id='.$tenant->id);
+
+		$result = $tenant->run(function(){
+			Log::debug('Landlord.Accounts.tenant Updating Tenant Setup enable column');
+			$tenantSetup 			= \App\Models\Tenant\Admin\Setup::first();
+			$tenantSetup->fill(['enable'=>!$tenantSetup->enable]);
+			$tenantSetup->update();
+			}
+		);
+        // update account $account->tenant_enable
+        $account->tenant_enable = !$account->tenant_enable;
+        $account->update();
+        return redirect()->route('accounts.index')->with('success', 'Tenant Status change!');
+	}
 	/**
 	 * Remove the specified resource from storage.
 	 *

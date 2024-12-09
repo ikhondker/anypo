@@ -7,7 +7,7 @@
 
 @section('content')
 
-	<a href="{{ route('mail-lists.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New</a>
+	<a href="{{ route('mail-lists.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New</a>
 	<h1 class="h3 mb-3">Mailing Lists</h1>
 
 	<div class="card">

@@ -3,6 +3,7 @@
 
 # 7. TODO - Open
 ====================================================================
+123. diable site form landlord
 111. javascript invoice print issue in view invoice
 113. collaps top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 111. // Navbar brand $navbar-brand-padding-y: $spacer*0.875 !default; _app.scss

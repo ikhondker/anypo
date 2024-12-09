@@ -6,7 +6,7 @@
 
 @section('content')
 
-<a href="{{ route('activities.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Activity</a>
+<a href="{{ route('activities.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Activity</a>
 <h1 class="h3 mb-3">All Activities</h1>
 
 <div class="card">

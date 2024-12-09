@@ -16,7 +16,7 @@
 					<x-landlord.actions.invoice-actions-support invoiceId="{{ $invoice->id }}"/>
 				@endif
 				<a href="{{ route('invoices.index') }}" class="btn btn-primary float-end me-1"><i class="fas fa-list"></i> View all</a>
-				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
+				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Ticket</a>
 		@endslot
 	</x-landlord.page-header>
 
@@ -28,7 +28,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					@if (auth()->user()->isSystem())
-						<a class="btn btn-sm btn-danger text-white" href="{{ route('invoices.edit', $invoice->id) }}"><i class="fas fa-edit"></i> Edit(*)</a>
+						<a class="btn btn-sm btn-danger text-white" href="{{ route('invoices.edit', $invoice->id) }}"><i data-lucide="edit"></i> Edit(*)</a>
 					@endif
 				</div>
 				<h5 class="card-title text-danger">View Invoice (Confidential) </h5>

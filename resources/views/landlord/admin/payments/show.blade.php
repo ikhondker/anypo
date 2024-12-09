@@ -9,7 +9,7 @@
 
 	{{-- <a href="{{ route('payments.index') }}" class="btn btn-primary float-end"><i class="fas fa-list"></i> View all</a>
 	@if (auth()->user()->isSystem())
-		<a href="{{ route('payments.edit', $payment->id) }}" class="btn btn-danger float-end"><i class="fas fa-edit"></i> Edit(*)</a>
+		<a href="{{ route('payments.edit', $payment->id) }}" class="btn btn-danger float-end"><i data-lucide="edit"></i> Edit(*)</a>
 	@endif --}}
 
 	<a href="{{ route('payments.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
@@ -20,7 +20,7 @@
 					<div class="card-actions float-end">
 						{{-- <a href="{{ route('payments.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
 						@if (auth()->user()->isSystem())
-							<a class="btn btn-sm btn-danger text-white" href="{{ route('payments.edit', $payment->id) }}"><i class="fas fa-edit"></i> Edit</a>
+							<a class="btn btn-sm btn-danger text-white" href="{{ route('payments.edit', $payment->id) }}"><i data-lucide="edit"></i> Edit</a>
 						@endif
 					</div>
 				</div>

@@ -7,7 +7,7 @@
 @section('content')
 
 	@if (auth()->user()->account_id <> '')
-		<a href="{{ route('invoices.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> Generate Invoice **</a>
+		<a href="{{ route('invoices.index') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> Generate Invoice **</a>
 	@endif
 
 	<h1 class="h3 mb-3">All Invoices</h1>

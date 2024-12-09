@@ -12,7 +12,7 @@
 		@endslot
 		@slot('buttons')
 				<x-landlord.actions.account-actions/>
-				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New Ticket</a>
+				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Ticket</a>
 		@endslot
 	</x-landlord.page-header>
 

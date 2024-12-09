@@ -7,7 +7,7 @@
 
 @section('content')
 
-<a href="{{ route('attachments.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Attachment</a>
+<a href="{{ route('attachments.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Attachment</a>
 <h1 class="h3 mb-3">All Attachments</h1>
 
 <div class="card">

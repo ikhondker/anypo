@@ -7,7 +7,7 @@
 
 @section('content')
 
-	<a href="{{ route('users.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New User</a>
+	<a href="{{ route('users.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New User</a>
 	<h1 class="h3 mb-3">Edit User Profile</h1>
 
 	<!-- form start -->
@@ -19,7 +19,7 @@
 		<!-- content -->
 		@include('landlord.includes.card-edit-user-profile')
 		<!-- /.content -->
-		
+
 	</form>
 	<!-- /.form end -->
 

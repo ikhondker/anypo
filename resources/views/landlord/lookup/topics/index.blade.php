@@ -7,7 +7,7 @@
 
 @section('content')
 
-	<a href="{{ route('topics.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Topic</a>
+	<a href="{{ route('topics.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Topic</a>
 	<h1 class="h3 mb-3">All Topics</h1>
 
 	<div class="card">

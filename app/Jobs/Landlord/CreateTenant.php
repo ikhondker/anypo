@@ -268,7 +268,7 @@ class CreateTenant implements ShouldQueue
 		$account->email				= $checkout->email;
 
 		$account->site				= $checkout->site;
-		$account->primary_product_id = $checkout->product_id;
+		$account->primary_product_id= $checkout->product_id;
 		$account->owner_id			= $checkout->owner_id;
 
 		$account->base_mnth			= $checkout->mnth;

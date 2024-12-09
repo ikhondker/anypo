@@ -1,5 +1,11 @@
-<i class="fas fa-edit">
-	<i data-lucide="alert-circle"></i>
+<i class="fas fa-plus"></i>
+<i class="fas fa-edit"></i>
+
+
+<i data-lucide="plus"></i>
+<i data-lucide="edit"></i>
+<i data-lucide="database"></i>
+<i data-lucide="alert-circle"></i>
 <i data-lucide="plus-circle"></i>
 <i data-lucide="alert-triangle"></i>
 <i class="align-middle me-1" data-lucide="plus-circle"></i>

@@ -6,7 +6,7 @@
 
 @section('content')
 
-	<a href="{{ route('entities.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New Entity</a>
+	<a href="{{ route('entities.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Entity</a>
 	<h1 class="h3 mb-3">All Entity</h1>
 
 	<div class="card">

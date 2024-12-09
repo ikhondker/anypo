@@ -423,14 +423,17 @@ use App\Http\Controllers\Landlord\Manage\ErrorLogController;
 Route::middleware(['auth', 'verified','can:system'])->group(function () {
 
 	/* ======================== Account ======================================== */
+
 	Route::get('/accounts/delete/{account}',[AccountController::class, 'destroy'])->name('accounts.delete');
 	Route::get('/accounts/reset/{account}',[AccountController::class,'reset'])->name('accounts.reset');
+    Route::get('/accounts/tenant/{account}',[AccountController::class, 'tenant'])->name('accounts.tenant');
 
 	/* ======================== Cp ======================================== */
 	Route::resource('cps', CpController::class);
 	Route::get('/cp/changelog',[CpController::class,'changeLog'])->name('cps.changelog');
 	Route::get('/cp/codegen',[CpController::class,'codeGen'])->name('cps.codegen');
 	Route::get('/cp/ui',[CpController::class,'ui'])->name('cps.ui');
+    Route::get('/cp/sync',[CpController::class,'sync'])->name('cps.sync');
 
 	//Route::get('/menus/delete/{menu}',[MenuController::class,'destroy'])->name('menus.destroy');
 

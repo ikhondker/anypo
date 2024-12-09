@@ -15,18 +15,18 @@
 		</ol>
 	</nav> --}}
 
-	<x-tenant.page-header>
+	<x-landlord.page-header>
 		@slot('title')
 			Control Panel
 		@endslot
 		@slot('buttons')
 
 		@endslot
-	</x-tenant.page-header>
+	</x-landlord.page-header>
 
 	<div class="card">
 		<div class="card-header">
-			<x-tenant.card.header-search-export-bar object="Dept"/>
+
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -79,10 +79,10 @@
 					</tr>
 					<tr>
 						<td>4</td>
-						<td>Empty</td>
-						<td>Empty</td>
+						<td>Sync Landlord</td>
+						<td>Sync Landlord</td>
 						<td>
-							<a href="{{ route('home') }}" class="btn btn-light sw2"
+							<a href="{{ route('cps.sync') }}" class="btn btn-light sw2"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View">Run
 							</a>
 						</td>

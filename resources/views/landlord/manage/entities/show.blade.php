@@ -16,7 +16,7 @@
 					<div class="card-actions float-end">
 						<a href="{{ route('entities.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
 						@if (auth()->user()->isSystem())
-							<a class="btn btn-sm btn-danger text-white" href="{{ route('entities.edit', $entity->entity) }}"><i class="fas fa-edit"></i> Edit</a>
+							<a class="btn btn-sm btn-danger text-white" href="{{ route('entities.edit', $entity->entity) }}"><i data-lucide="edit"></i> Edit</a>
 						@endif
 					</div>
 					<h5 class="card-title">View Entity</h5>

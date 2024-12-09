@@ -12,7 +12,7 @@
 		@slot('buttons')
 				<x-landlord.actions.account-actions/>
 				@if (auth()->user()->isAdmin())
-					<a href="{{ route('invoices.generate') }}" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> Generate & Pay Advance Invoice</a>
+					<a href="{{ route('invoices.generate') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> Generate & Pay Advance Invoice</a>
 				@endif
 		@endslot
 	</x-landlord.page-header>

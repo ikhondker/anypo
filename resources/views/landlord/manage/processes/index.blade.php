@@ -7,7 +7,7 @@
 
 @section('content')
 
-	<a href="{{ route('processes.create') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> Submit New Process</a>
+	<a href="{{ route('processes.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> Submit New Process</a>
 	<h1 class="h3 mb-3">All Processes Logs</h1>
 
 	<div class="card">

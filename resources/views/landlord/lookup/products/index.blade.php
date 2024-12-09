@@ -7,7 +7,7 @@
 @section('content')
 
 @if (auth()->user()->isSystem())
-	<a href="{{ route('products.create') }}" class="btn btn-danger text-white float-end mt-n1"><i class="fas fa-plus"></i> New Product (*)</a>
+	<a href="{{ route('products.create') }}" class="btn btn-danger text-white float-end mt-n1"><i data-lucide="plus"></i> New Product (*)</a>
 @endif
 
 

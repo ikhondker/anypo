@@ -20,14 +20,10 @@
 namespace App\Enum\Landlord;
 
 
-enum AccountStatusEnum:string{
-	case ACTIVE		= 'active';
-    case INACTIVE	= 'in-active';
-	case ONHOLD		= 'on-hold';
-	case ARCHIVED	= 'archived';
-    case READONLY   = 'readonly';
-	case CANCELED	= 'canceled';
-    case DELETED	= 'deleted';
-    case LOCKED	    = 'locked';
-    case DEMO	    = 'demo';
+enum RankEnum:string{
+	case A		= 'a';
+	case B		= 'b';
+    case C		= 'c';
+    case D		= 'd';
+    case E		= 'e';
 }

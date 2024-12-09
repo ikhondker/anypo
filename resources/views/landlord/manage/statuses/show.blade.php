@@ -15,7 +15,7 @@
 					<div class="card-actions float-end">
 						<a href="{{ route('statuses.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
 						@if (auth()->user()->isSystem())
-						<a class="btn btn-sm btn-danger text-white" href="{{ route('statuses.edit', $status->code) }}"><i class="fas fa-edit"></i> Edit</a>
+						<a class="btn btn-sm btn-danger text-white" href="{{ route('statuses.edit', $status->code) }}"><i data-lucide="edit"></i> Edit</a>
 
 						@endif
 					</div>
@@ -28,7 +28,7 @@
 							<x-landlord.show.my-badge	value="{{ $status->code }}" label="Code"/>
 								<x-landlord.show.my-text	value="{{ $status->name }}"/>
 								<x-landlord.show.my-badge	value="{{ $status->badge }}" label="Badge"/>
-					
+
 								<x-landlord.show.my-enable	value="{{ $status->accounts }}" label="Accounts"/>
 								<x-landlord.show.my-enable	value="{{ $status->accounts }}" label="Services"/>
 								<x-landlord.show.my-enable	value="{{ $status->tickets }}" label="Tickets"/>

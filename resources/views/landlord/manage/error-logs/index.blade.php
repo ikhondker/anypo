@@ -6,7 +6,7 @@
 
 @section('content')
 	@if (auth()->user()->isSystem())
-		<a href="{{ route('error-logs.create') }}" class="btn btn-danger float-end mt-n1"><i class="fas fa-plus"></i> New Error Log (*)</a>
+		<a href="{{ route('error-logs.create') }}" class="btn btn-danger float-end mt-n1"><i data-lucide="plus"></i> New Error Log (*)</a>
 	@endif
 	<h1 class="h3 mb-3">All Error Logs</h1>
 

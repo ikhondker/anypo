@@ -25,6 +25,8 @@ use App\Models\Landlord\Manage\Cp;
 use App\Http\Requests\Landlord\Manage\StoreCpRequest;
 use App\Http\Requests\Landlord\Manage\UpdateCpRequest;
 
+use App\Jobs\Landlord\SyncLandlord;
+
 use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Number;
@@ -64,8 +66,16 @@ class CpController extends Controller
 	{
 		return view('landlord.manage.ui');
 	}
+    /**
+	 * Show the form for creating a new resource.
+	 */
+	public function sync()
+	{
+        SyncLandlord::dispatch();
+        return redirect()->route('cps.index')->with('success', 'Sync Job submitted');
+	}
 
-/**
+    /**
 	 * Display a listing of the resource.
 	 */
 	public function resetAccEndDate()

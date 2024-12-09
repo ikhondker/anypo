@@ -8,7 +8,7 @@
 @section('content')
 
 	@if (auth()->user()->isSystem())
-		<a href="{{ route('countries.create') }}" class="btn btn-danger text-white float-end mt-n1"><i class="fas fa-plus"></i> New Country(*)</a>
+		<a href="{{ route('countries.create') }}" class="btn btn-danger text-white float-end mt-n1"><i data-lucide="plus"></i> New Country(*)</a>
 	@endif
 
 	<h1 class="h3 mb-3">All Countries</h1>
