@@ -89,7 +89,7 @@
 	</form>
 	<!-- /.form end -->
 
-    <x-tenant.widgets.back-to-list model="Project"/>
+	<x-tenant.widgets.back-to-list model="Project"/>
 
 @endsection
 

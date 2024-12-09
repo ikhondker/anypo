@@ -11,7 +11,7 @@
 			View Item
 		@endslot
 		@slot('buttons')
-            @can('create', App\Models\Tenant\Lookup\Item::class)
+			@can('create', App\Models\Tenant\Lookup\Item::class)
 				<x-tenant.buttons.header.create model="Item"/>
 			@endcan
 			<x-tenant.actions.lookup.item-actions itemId="{{ $item->id }}"/>
@@ -48,7 +48,7 @@
 			</table>
 		</div>
 	</div>
-    <x-tenant.widgets.back-to-list model="Item"/>
+	<x-tenant.widgets.back-to-list model="Item"/>
 
 @endsection
 

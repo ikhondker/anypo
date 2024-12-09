@@ -14,7 +14,7 @@
 			View UoM
 		@endslot
 		@slot('buttons')
-            <x-tenant.buttons.header.create model="Uom"/>
+			<x-tenant.buttons.header.create model="Uom"/>
 			<x-tenant.actions.lookup.uom-actions uomId="{{ $uom->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -50,6 +50,6 @@
 		</div>
 	</div>
 
-    <x-tenant.widgets.back-to-list model="Uom"/>
+	<x-tenant.widgets.back-to-list model="Uom"/>
 @endsection
 

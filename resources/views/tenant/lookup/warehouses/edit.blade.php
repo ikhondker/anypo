@@ -48,7 +48,7 @@
 		</div>
 	</form>
 	<!-- /.form end -->
-    <x-tenant.widgets.back-to-list model="Warehouse"/>
+	<x-tenant.widgets.back-to-list model="Warehouse"/>
 
 @endsection
 

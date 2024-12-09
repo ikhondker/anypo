@@ -54,7 +54,7 @@
 	</form>
 	<!-- /.form end -->
 
-    <x-tenant.widgets.back-to-list model="Supplier"/>
+	<x-tenant.widgets.back-to-list model="Supplier"/>
 
 @endsection
 

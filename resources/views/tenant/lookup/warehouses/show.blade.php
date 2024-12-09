@@ -11,7 +11,7 @@
 			View Warehouse
 		@endslot
 		@slot('buttons')
-            <x-tenant.buttons.header.create model="Warehouse"/>
+			<x-tenant.buttons.header.create model="Warehouse"/>
 			<x-tenant.actions.lookup.warehouse-actions warehouseId="{{ $warehouse->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -41,7 +41,7 @@
 		</div>
 	</div>
 
-    <x-tenant.widgets.back-to-list model="Warehouse"/>
+	<x-tenant.widgets.back-to-list model="Warehouse"/>
 
 @endsection
 

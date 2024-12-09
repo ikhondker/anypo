@@ -13,7 +13,7 @@
 			Edit Designation
 		@endslot
 		@slot('buttons')
-            <x-tenant.actions.lookup.designation-actions designationId="{{ $designation->id }}"/>
+			<x-tenant.actions.lookup.designation-actions designationId="{{ $designation->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 
@@ -42,6 +42,6 @@
 
 	</form>
 	<!-- /.form end -->
-    <x-tenant.widgets.back-to-list model="Designation"/>
+	<x-tenant.widgets.back-to-list model="Designation"/>
 @endsection
 

@@ -14,7 +14,7 @@
 			View OEM
 		@endslot
 		@slot('buttons')
-            <x-tenant.buttons.header.create model="Oem"/>
+			<x-tenant.buttons.header.create model="Oem"/>
 			<x-tenant.actions.lookup.oem-actions oemId="{{ $oem->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -39,6 +39,6 @@
 		</div>
 	</div>
 
-    <x-tenant.widgets.back-to-list model="Oem"/>
+	<x-tenant.widgets.back-to-list model="Oem"/>
 @endsection
 

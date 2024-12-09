@@ -14,7 +14,7 @@
 			View Dept
 		@endslot
 		@slot('buttons')
-            <x-tenant.buttons.header.create model="Dept"/>
+			<x-tenant.buttons.header.create model="Dept"/>
 			<x-tenant.actions.lookup.dept-actions deptId="{{ $dept->id }}"/>
 		@endslot
 	</x-tenant.page-header>

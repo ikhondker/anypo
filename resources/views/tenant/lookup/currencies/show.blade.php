@@ -41,6 +41,6 @@
 			</table>
 		</div>
 	</div>
-    <x-tenant.widgets.back-to-list model="Currency"/>
+	<x-tenant.widgets.back-to-list model="Currency"/>
 @endsection
 

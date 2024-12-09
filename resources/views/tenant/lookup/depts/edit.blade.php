@@ -69,7 +69,7 @@
 
 	</form>
 	<!-- /.form end -->
-    <x-tenant.widgets.back-to-list model="Dept"/>
+	<x-tenant.widgets.back-to-list model="Dept"/>
 
 @endsection
 

@@ -12,7 +12,7 @@
 			Projects
 		@endslot
 		@slot('buttons')
-            @can('create', App\Models\Tenant\Lookup\Project::class)
+			@can('create', App\Models\Tenant\Lookup\Project::class)
 				<x-tenant.buttons.header.create model="Project"/>
 			@endcan
 			<x-tenant.actions.lookup.project-actions projectId="{{ $project->id }}"/>
@@ -50,7 +50,7 @@
 		</div>
 	</div>
 
-    <x-tenant.widgets.back-to-list model="Project"/>
+	<x-tenant.widgets.back-to-list model="Project"/>
 
 @endsection
 

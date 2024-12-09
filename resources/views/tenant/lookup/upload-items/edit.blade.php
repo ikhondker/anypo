@@ -132,7 +132,7 @@
 	</form>
 	<!-- /.form end -->
 
-    <x-tenant.widgets.back-to-list model="UploadItem"/>
+	<x-tenant.widgets.back-to-list model="UploadItem"/>
 
 @endsection
 

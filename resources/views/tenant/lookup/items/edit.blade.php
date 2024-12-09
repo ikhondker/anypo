@@ -123,6 +123,6 @@
 	</form>
 	<!-- /.form end -->
 
-    <x-tenant.widgets.back-to-list model="Item"/>
+	<x-tenant.widgets.back-to-list model="Item"/>
 @endsection
 

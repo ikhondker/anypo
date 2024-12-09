@@ -14,7 +14,7 @@
 			View Item Category
 		@endslot
 		@slot('buttons')
-            <x-tenant.buttons.header.create model="ItemCategory"/>
+			<x-tenant.buttons.header.create model="ItemCategory"/>
 			<x-tenant.actions.lookup.item-category-actions itemCategoryId="{{ $itemCategory->id }}"/>
 		@endslot
 	</x-tenant.page-header>
@@ -40,6 +40,6 @@
 		</div>
 	</div>
 
-    <x-tenant.widgets.back-to-list model="ItemCategory"/>
+	<x-tenant.widgets.back-to-list model="ItemCategory"/>
 @endsection
 

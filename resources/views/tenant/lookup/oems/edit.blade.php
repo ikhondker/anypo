@@ -42,7 +42,7 @@
 	</form>
 	<!-- /.form end -->
 
-    <x-tenant.widgets.back-to-list model="Oem"/>
+	<x-tenant.widgets.back-to-list model="Oem"/>
 
 @endsection
 

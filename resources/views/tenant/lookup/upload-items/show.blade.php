@@ -55,7 +55,7 @@
 		</div>
 	</div>
 
-    <x-tenant.widgets.back-to-list model="UploadItem"/>
+	<x-tenant.widgets.back-to-list model="UploadItem"/>
 
 @endsection
 

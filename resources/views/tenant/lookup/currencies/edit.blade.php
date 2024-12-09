@@ -50,6 +50,6 @@
 
 	</form>
 	<!-- /.form end -->
-    <x-tenant.widgets.back-to-list model="Currency"/>
+	<x-tenant.widgets.back-to-list model="Currency"/>
 @endsection
 

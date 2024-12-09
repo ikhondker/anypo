@@ -19,7 +19,7 @@
 	<x-tenant.info.project-info projectId="{{ $project->id }}"/>
 
 
-    <div class="row">
+	<div class="row">
 		<div class="col-6">
 
 			<div class="card">

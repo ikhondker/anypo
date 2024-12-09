@@ -12,7 +12,7 @@
 			Create Hierarchy
 		@endslot
 		@slot('buttons')
-            <x-tenant.buttons.header.lists model="Hierarchy"/>
+			<x-tenant.buttons.header.lists model="Hierarchy"/>
 		@endslot
 	</x-tenant.page-header>
 

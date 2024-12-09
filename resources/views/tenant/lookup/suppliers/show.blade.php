@@ -49,7 +49,7 @@
 		</div>
 	</div>
 
-    <x-tenant.widgets.back-to-list model="Supplier"/>
+	<x-tenant.widgets.back-to-list model="Supplier"/>
 
 @endsection
 

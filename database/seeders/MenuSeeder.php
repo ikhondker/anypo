@@ -156,13 +156,13 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'items.show','route_name' 			=> 'items.index', 'node_name' 			=> 'master'],
 			[ 'raw_route_name' => 'items.edit','route_name' 			=> 'items.index', 'node_name' 			=> 'master'],
 			[ 'raw_route_name' => 'items.create','route_name' 			=> 'items.index', 'node_name' 			=> 'master'],
-			[ 'raw_route_name' => 'items.timestamp','route_name' 		=> 'items.index', 'node_name' 		    => 'master'],
+			[ 'raw_route_name' => 'items.timestamp','route_name' 		=> 'items.index', 'node_name' 			=> 'master'],
 
 			[ 'raw_route_name' => 'suppliers.index','route_name' 		=> 'suppliers.index', 'node_name' 		=> 'master'],
 			[ 'raw_route_name' => 'suppliers.show','route_name' 		=> 'suppliers.index', 'node_name' 		=> 'master'],
 			[ 'raw_route_name' => 'suppliers.edit','route_name' 		=> 'suppliers.index', 'node_name' 		=> 'master'],
 			[ 'raw_route_name' => 'suppliers.create','route_name' 		=> 'suppliers.index', 'node_name' 		=> 'master'],
-			[ 'raw_route_name' => 'suppliers.timestamp','route_name' 	=> 'suppliers.index', 'node_name' 	    => 'master'],
+			[ 'raw_route_name' => 'suppliers.timestamp','route_name' 	=> 'suppliers.index', 'node_name' 		=> 'master'],
 
 			[ 'raw_route_name' => 'projects.index','route_name' 		=> 'projects.index', 'node_name' 		=> 'master'],
 			[ 'raw_route_name' => 'projects.show','route_name' 			=> 'projects.index', 'node_name' 		=> 'master'],
@@ -171,9 +171,9 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'projects.attachments','route_name' 	=> 'projects.index', 'node_name' 		=> 'master'],
 			[ 'raw_route_name' => 'projects.timestamp','route_name' 	=> 'projects.index', 'node_name' 		=> 'master'],
 
-            [ 'raw_route_name' => 'projects.budget','route_name' 		=> 'projects.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'projects.budget','route_name' 		=> 'projects.index', 'node_name' 		=> 'master'],
 			[ 'raw_route_name' => 'projects.po','route_name' 			=> 'projects.index', 'node_name' 		=> 'master'],
-            [ 'raw_route_name' => 'projects.pbu','route_name' 			=> 'projects.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'projects.pbu','route_name' 			=> 'projects.index', 'node_name' 		=> 'master'],
 
 
 			/**

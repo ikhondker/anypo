@@ -38,6 +38,6 @@
 			</table>
 		</div>
 	</div>
-    <x-tenant.widgets.back-to-list model="Designation"/>
+	<x-tenant.widgets.back-to-list model="Designation"/>
 @endsection
 
