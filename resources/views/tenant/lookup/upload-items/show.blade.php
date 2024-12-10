@@ -21,7 +21,7 @@
 				@can('update', $uploadItem)
 					<a class="btn btn-sm btn-light" href="{{ route('upload-items.edit', $uploadItem->id ) }}"><i data-lucide="edit"></i> Edit</a>
 				@endcan
-				{{-- <a class="btn btn-sm btn-light" href="{{ route('upload-items.index') }}" ><i class="fas fa-list"></i> View all</a> --}}
+				{{-- <a class="btn btn-sm btn-light" href="{{ route('upload-items.index') }}" ><i data-lucide="database"></i> View all</a> --}}
 			</div>
 			<h5 class="card-title">Item Detail (In Interface Table) </h5>
 				<h6 class="card-subtitle text-muted">Item Interface Data Detail.</h6>

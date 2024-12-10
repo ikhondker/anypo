@@ -8,7 +8,7 @@
 
 @section('content')
 
-	<a href="{{ route('users.index') }}" class="btn btn-primary float-end mt-n1 "><i class="fas fa-list"></i> View All</a>
+	<a href="{{ route('users.index') }}" class="btn btn-primary float-end mt-n1 "><i data-lucide="database"></i> View All</a>
 	<h1 class="h3 mb-3">Create User</h1>
 
 	<div class="card">

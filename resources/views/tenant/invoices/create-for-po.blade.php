@@ -41,7 +41,7 @@
 					<div class="card-header">
 						<div class="card-actions float-end">
 							@if(!empty($po))
-								<a class="btn btn-sm btn-light" href="{{ route('pos.invoices', $po->id) }}" ><i class="fas fa-list"></i> View Invoices</a>
+								<a class="btn btn-sm btn-light" href="{{ route('pos.invoices', $po->id) }}" ><i data-lucide="database"></i> View Invoices</a>
 							@endif
 
 						</div>
@@ -145,7 +145,7 @@
 					<div class="card-header">
 						<div class="card-actions float-end">
 							@if(!empty($po))
-								<a class="btn btn-sm btn-light" href="{{ route('pos.invoices', $po->id) }}" ><i class="fas fa-list"></i> View Invoices</a>
+								<a class="btn btn-sm btn-light" href="{{ route('pos.invoices', $po->id) }}" ><i data-lucide="database"></i> View Invoices</a>
 							@endif
 						</div>
 						<h5 class="card-title">Purchase Order Detail</h5>

@@ -1,7 +1,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="card-actions float-end">
-			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
+			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i>View all</a>
 		</div>
 		<h5 class="card-title">Folder: {{ request()->route()->parameter('dir') }}</h5>
 		<h6 class="card-subtitle text-muted">
@@ -16,8 +16,8 @@
 	<div class="card-body">
 		@php
 			$filesInFolder = \File::files(base_path() . $target_dir);
-		@endphp 	
-		@foreach($filesInFolder as $path) 
+		@endphp
+		@foreach($filesInFolder as $path)
 			<div class="alert alert-primary" role="alert">
 				<div class="alert-message">
 					@php

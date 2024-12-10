@@ -264,10 +264,10 @@ class AccountController extends Controller
 			$tenantSetup->update();
 			}
 		);
-        // update account $account->tenant_enable
-        $account->tenant_enable = !$account->tenant_enable;
-        $account->update();
-        return redirect()->route('accounts.index')->with('success', 'Tenant Status change!');
+		// update account $account->tenant_enable
+		$account->tenant_enable = !$account->tenant_enable;
+		$account->update();
+		return redirect()->route('accounts.index')->with('success', 'Tenant Status change!');
 	}
 	/**
 	 * Remove the specified resource from storage.

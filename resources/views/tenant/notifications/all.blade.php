@@ -24,7 +24,7 @@
 				<div class="card-header">
 
 					<div class="card-actions float-end">
-						<a href="{{ route('notifications.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> Unread Notifications</a>
+						<a href="{{ route('notifications.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> Unread Notifications</a>
 					</div>
 					<h5 class="card-title">All Notification Lists</h5>
 					<h6 class="card-subtitle text-muted">List of All Notifications.</h6>

@@ -13,19 +13,19 @@
 
 
 <div id="app">
- 
+
 	<main class="container">
 		<h1> IQBAL JQuery in Laravel 10? TENANT</h1>
-		
+
 		<button class="btn btn-success">Click Me</button>
 	</main>
 </div>
 
 <div id="app">
- 
+
 	<main class="container">
 		<h1> How To Install Sweetalert2 in Laravel? - ItSolutionstuiff.com TENANT</h1>
-		
+
 		<button class="btn btn-success">Click Me</button>
 	</main>
 </div>
@@ -53,7 +53,7 @@
 	<div class="dropdown me-2 d-inline-block position-relative">
 		<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
 		<i class="align-middle mt-n1" data-lucide="calendar"></i> Today
-		</a> 
+		</a>
 
 		<div class="dropdown-menu dropdown-menu-end">
 			<h6 class="dropdown-header">Settings</h6>
@@ -107,7 +107,7 @@
 	<div class="card-body">
 		<form id="myForm" action="{{ route('invoices.store') }}" method="POST">
 			@csrf
-			
+
 			<table class="table table-sm my-2">
 				<tbody>
 					<x-landlord.create.name/>
@@ -116,11 +116,11 @@
 
 			<button class="confirm-delete btn btn-danger">User Delete</button>
 
-			{{-- <button id="submit" name="submit" class="btn btn-primary swa-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i class="fas fa-save"></i> Generate</button> --}}
+			{{-- <button id="submit" name="submit" class="btn btn-primary swa-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i data-lucide="save"></i> Generate</button> --}}
 
 			<div class="mb-3 float-end">
 				<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ url()->previous() }}"><i class="fas fa-times"></i></i> Back</a>
-				{{-- <button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i class="fas fa-save"></i> Save</button> --}}
+				{{-- <button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Save</button> --}}
 			</div>
 
 			{{-- <a href="{{ route('categories.show', 1001) }}"
@@ -160,7 +160,7 @@
 	// 	});
 	// });
 	// https://stackoverflow.com/questions/66562974/how-to-catch-form-submit-method-with-sweetalert2
-	
+
 	$(function() {
 		const $myForm = $('#myForm')
 			.on('submit', function(e) {
@@ -213,7 +213,7 @@
 
 
 <script type="module">
-		
+
 		document.addEventListener("DOMContentLoaded", function() {
 
 			new Chart(document.getElementById("chartjs-bar"), {
@@ -238,7 +238,7 @@
 			});
 
 			// Bar chart
-			
+
 		});
 </script>
 

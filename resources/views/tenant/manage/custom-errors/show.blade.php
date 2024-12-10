@@ -22,7 +22,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('custom-errors.edit', $customError->code ) }}"><i data-lucide="edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('custom-errors.index') }}" ><i class="fas fa-list"></i> View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('custom-errors.index') }}" ><i data-lucide="database"></i> View all</a>
 			</div>
 			<h5 class="card-title">Custom Error Detail</h5>
 			<h6 class="card-subtitle text-muted">Custom Error detail information.</h6>

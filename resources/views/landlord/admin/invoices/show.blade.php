@@ -15,7 +15,7 @@
 				@if (auth()->user()->isSeeded())
 					<x-landlord.actions.invoice-actions-support invoiceId="{{ $invoice->id }}"/>
 				@endif
-				<a href="{{ route('invoices.index') }}" class="btn btn-primary float-end me-1"><i class="fas fa-list"></i> View all</a>
+				<a href="{{ route('invoices.index') }}" class="btn btn-primary float-end me-1"><i data-lucide="database"></i> View all</a>
 				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Ticket</a>
 		@endslot
 	</x-landlord.page-header>

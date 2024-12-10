@@ -3,7 +3,7 @@
 		@can('viewAny', $user)
 			<div class="card-actions float-end">
 				{{-- <a href="{{ route('users.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a> --}}
-				{{-- <a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
+				{{-- <a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a> --}}
 			</div>
 		@endcan
 		<h5 class="card-title">User Avatar</h5>

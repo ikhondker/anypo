@@ -13,7 +13,7 @@
 
 		@if (auth()->user()->isSystem())
 			<div class="dropdown-divider"></div>
-            @if ( $account->tenant_enable)
+			@if ( $account->tenant_enable)
 				<a class="dropdown-item sw2-advance" href="{{ route('accounts.tenant', $account->id) }}"
 					data-entity="Tenant" data-name="{{ $account->name }}" data-status="Disable"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Disable Tenant">
@@ -25,8 +25,8 @@
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Tenant</a>
 			@endif
 
-        	<div class="dropdown-divider"></div>
-    		<a class="dropdown-item text-danger" href="{{ route('accounts.edit',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="dollar-sign"></i> Lifetime Discount</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item text-danger" href="{{ route('accounts.edit',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="dollar-sign"></i> Lifetime Discount</a>
 			<a class="dropdown-item text-danger sw2" href="{{ route('accounts.reset',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="rotate-ccw"></i> Account Reset (*)</a>
 			<a class="dropdown-item text-danger sw2" href="{{ route('accounts.delete',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="delete"></i> Delete Account (*)</a>
 		@endif

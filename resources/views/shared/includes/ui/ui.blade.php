@@ -34,7 +34,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 					@if (auth()->user()->isSystem())
 						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i data-lucide="edit"></i> Edit</a>
 					 @endif
@@ -869,7 +869,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a href="{{ route('users.edit', 123) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
-					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i>View all</a>
 					@if (auth()->user()->isSystem())
 						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i data-lucide="edit"></i> Edit</a>
 					@endif
@@ -909,7 +909,7 @@
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('users.edit', 123) }}"><i data-lucide="edit"></i> Edit</a>
 					<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i>Create</a>
-					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
+					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i>View all</a>
 				</div>
 				<h5 class="card-title">Empty (Formateted)</h5>
 				<h6 class="card-subtitle text-muted">Please provide brief description of this card.</h6>

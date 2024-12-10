@@ -23,7 +23,7 @@
 				@if (auth()->user()->isSystem())
 				<a class="btn btn-sm btn-light" href="{{ route('attachments.edit', $attachment->id) }}"><i data-lucide="edit"></i> Edit</a>
 				@endif
-				<a href="{{ route('attachments.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+				<a href="{{ route('attachments.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 			</div>
 			<h5 class="card-title">Attachment Detail</h5>
 			<h6 class="card-subtitle text-muted">Attachment details.</h6>

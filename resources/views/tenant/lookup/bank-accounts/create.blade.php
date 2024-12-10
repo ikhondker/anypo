@@ -23,7 +23,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					{{-- <a href="{{ route('bank-accounts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
+					{{-- <a href="{{ route('bank-accounts.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a> --}}
 				</div>
 				<h5 class="card-title">Create new Bank Account </h5>
 				<h6 class="card-subtitle text-muted">Create newBank Account with details.</h6>

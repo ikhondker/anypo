@@ -22,7 +22,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('countries.edit', $country->country) }}"><i data-lucide="edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('countries.index') }}"><i class="fas fa-list"></i> View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('countries.index') }}"><i data-lucide="database"></i> View all</a>
 			</div>
 			<h5 class="card-title">Country Detail</h5>
 			<h6 class="card-subtitle text-muted">Country details.</h6>

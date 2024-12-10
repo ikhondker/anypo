@@ -5,13 +5,13 @@
 
 @section('content')
 
-<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end mt-n1 "><i class="fas fa-list"></i> View All</a>
+<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end mt-n1 "><i data-lucide="database"></i> View All</a>
 <h1 class="h3 mb-3">Assign Ticket</h1>
 
 <div class="card">
 	<div class="card-header">
 		<div class="card-actions float-end">
-			<a href="{{ route('tickets.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
+			<a href="{{ route('tickets.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i>View all</a>
 		</div>
 
 		<h5 class="card-title">Assign Ticket #{{ $ticket->id }}</h5>

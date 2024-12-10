@@ -27,11 +27,11 @@
 
 				<button class="confirm-delete btn btn-danger">User Delete</button>
 
-				{{-- <button id="submit" name="submit" class="btn btn-primary swa-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i class="fas fa-save"></i> Generate</button> --}}
+				{{-- <button id="submit" name="submit" class="btn btn-primary swa-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Generate"><i data-lucide="save"></i> Generate</button> --}}
 
 				{{-- <div class="mb-3 float-end"> --}}
 					{{-- <a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ url()->previous() }}"><i class="fas fa-times"></i></i> Back</a> --}}
-					{{-- <button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i class="fas fa-save"></i> Save</button> --}}
+					{{-- <button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Save</button> --}}
 				{{-- </div> --}}
 
 				{{-- <a href="{{ route('categories.show', 1001) }}"

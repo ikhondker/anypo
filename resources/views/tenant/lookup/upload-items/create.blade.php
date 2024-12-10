@@ -24,7 +24,7 @@
 				<div class="card">
 					<div class="card-header">
 						<div class="card-actions float-end">
-							<a href="{{ route('upload-items.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+							<a href="{{ route('upload-items.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 						</div>
 					<h5 class="card-title">Upload Items</h5>
 					<h6 class="card-subtitle text-muted">Upload data file to create Item by interface.</h6>

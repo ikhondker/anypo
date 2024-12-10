@@ -1,9 +1,14 @@
 <i data-lucide="plus"></i>
 <i class="fas fa-edit"></i>
-<i class="fas fa-save"></i>
+<i data-lucide="save"></i>
+<i class="fas fa-list"></i>
+<i class="fas fa-print"></i>
+
 
 <i data-lucide="plus"></i>
 <i data-lucide="edit"></i>
+<i data-lucide="save"></i>
+<i data-lucide="x-circle"></i>
 <i data-lucide="database"></i>
 <i data-lucide="alert-circle"></i>
 <i data-lucide="plus-circle"></i>
@@ -13,17 +18,17 @@
 show
 <div class="card-actions float-end">
 	<a href="{{ route('depts.edit', $dept->id ) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
-	<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+	<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 </div>
 
 edit
 <div class="card-actions float-end">
 	<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
-	<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+	<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 </div>
 
 create
-<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 
 <a href="{{ route('users.show',$user->id) }}" class="btn btn-light"
 	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View

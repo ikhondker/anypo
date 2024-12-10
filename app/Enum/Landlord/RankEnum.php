@@ -23,7 +23,7 @@ namespace App\Enum\Landlord;
 enum RankEnum:string{
 	case A		= 'a';
 	case B		= 'b';
-    case C		= 'c';
-    case D		= 'd';
-    case E		= 'e';
+	case C		= 'c';
+	case D		= 'd';
+	case E		= 'e';
 }

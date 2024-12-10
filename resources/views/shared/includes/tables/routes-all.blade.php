@@ -2,7 +2,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="card-actions float-end">
-			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 		</div>
 		<h5 class="card-title">All Routes</h5>
 		<h6 class="card-subtitle text-muted">Route::getRoutes()->getRoutesByName();</h6>
@@ -18,7 +18,7 @@
 					<th>Name</th>
 					<th>Actions</th>
 				</tr>
-				
+
 			</thead>
 			@php
 				$skip_routes = array(
@@ -36,7 +36,7 @@
 					'api/user',
 					'api/user',
 					'/',
-					'_debugbar/open',	
+					'_debugbar/open',
 					'_debugbar/clockwork/{id}',
 					'_debugbar/telescope/{id}',
 					'_debugbar/assets/stylesheets',

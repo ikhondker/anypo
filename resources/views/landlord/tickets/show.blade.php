@@ -17,7 +17,7 @@
 					<x-landlord.actions.ticket-actions ticketId="{{ $ticket->id }}"/>
 				@endif
 				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Ticket</a>
-				<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end me-1"><i class="fas fa-list"></i> View all</a>
+				<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end me-1"><i data-lucide="database"></i> View all</a>
 				<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="btn btn-primary float-end me-1"><i class="fas fa-print"></i> Print</a>
 		@endslot
 	</x-landlord.page-header>

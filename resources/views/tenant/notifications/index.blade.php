@@ -15,15 +15,15 @@
 			<x-tenant.actions.notification.notification-actions/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	<x-tenant.dashboards.notification-stat/>
-	
+
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('notifications.all') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+						<a href="{{ route('notifications.all') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 					</div>
 					<h5 class="card-title">Unread Notification Lists</h5>
 					<h6 class="card-subtitle text-muted">List of Notifications.</h6>
@@ -36,7 +36,7 @@
 	</div>
 
 
-	 
+
 
 @endsection
 

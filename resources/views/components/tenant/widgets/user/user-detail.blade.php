@@ -4,9 +4,6 @@
 			@can('update', $user)
 				<a class="btn btn-sm btn-light" href="{{ route('users.edit', $user->id ) }}"><i data-lucide="edit"></i> Edit</a>
 			@endcan
-			{{-- @can('viewAny', $user)
-				<a class="btn btn-sm btn-light" href="{{ route('users.index') }}" ><i class="fas fa-list"></i> View all</a>
-			@endcan --}}
 
 		</div>
 		<h5 class="card-title">User Profile</h5>

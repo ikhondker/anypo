@@ -6,14 +6,14 @@
 @endsection
 
 @section('content')
-	<a href="{{ route('activities.index') }}" class="btn btn-primary float-end mt-n1 me-1"><i class="fas fa-list"></i> View all</a>
+	<a href="{{ route('activities.index') }}" class="btn btn-primary float-end mt-n1 me-1"><i data-lucide="database"></i> View all</a>
 	<h1 class="h3 mb-3">View Event Log</h1>
 
 
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('activities.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
+						<a href="{{ route('activities.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i>View all</a>
 						@if (auth()->user()->isSystem())
 							<a class="btn btn-sm btn-danger text-white" href="{{ route('activities.edit', $activity->id) }}"><i data-lucide="edit"></i> Edit</a>
 						@endif

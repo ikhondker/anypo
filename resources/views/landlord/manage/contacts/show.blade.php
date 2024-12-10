@@ -7,14 +7,14 @@
 
 
 @section('content')
-	<a href="{{ route('contacts.index') }}" class="btn btn-primary float-end mt-n1"><i class="fas fa-list"></i> View all</a>
+	<a href="{{ route('contacts.index') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="database"></i> View all</a>
 	<h1 class="h3 mb-3">View Visitor Contact</h1>
 
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
 						<a class="btn btn-sm btn-light" href="{{ route('contacts.edit', $contact->id) }}"><i data-lucide="edit"></i> Edit</a>
-						<a href="{{ route('contacts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
+						<a href="{{ route('contacts.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i>View all</a>
 					</div>
 					<h5 class="card-title">View Visitor Contact</h5>
 					<h6 class="card-subtitle text-muted">View Visitor Contact Detail.</h6>

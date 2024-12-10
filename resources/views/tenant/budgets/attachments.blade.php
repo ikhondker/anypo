@@ -25,7 +25,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('budgets.edit', $budget->id ) }}"><i data-lucide="edit"></i> Edit</a>
-					<a class="btn btn-sm btn-light" href="{{ route('budgets.index') }}" ><i class="fas fa-list"></i> View all</a>
+					<a class="btn btn-sm btn-light" href="{{ route('budgets.index') }}" ><i data-lucide="database"></i> View all</a>
 				</div>
 				<h5 class="card-title">Budget Period</h5>
 				<h6 class="card-subtitle text-muted">Budget Brief Information.</h6>

@@ -25,7 +25,7 @@
 				@if (auth()->user()->isSystem())
 					<a class="btn btn-sm btn-danger text-white" href="{{ route('wfs.edit', $wf->id) }}"><i data-lucide="edit"></i> Edit</a>
 				@endif
-				<a href="{{ route('wfs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+				<a href="{{ route('wfs.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 			</div>
 			<h5 class="card-title">Workflow Details</h5>
 			<h6 class="card-subtitle text-muted">Details of workflow.</h6>

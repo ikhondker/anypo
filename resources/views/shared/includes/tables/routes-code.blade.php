@@ -1,7 +1,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="card-actions float-end">
-			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 		</div>
 		<h5 class="card-title">Folder: {{ request()->route()->parameter('dir') }}</h5>
 		<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}
@@ -14,7 +14,7 @@
 		</h6>
 	</div>
 	<div class="card-body">
-		@foreach($filesInFolder as $row) 
+		@foreach($filesInFolder as $row)
 				<div class="alert alert-primary" role="alert">
 					<div class="alert-message">
 
@@ -23,7 +23,7 @@
 	$object=strtolower($cname);
 	$objects=strtolower(Str::plural($object));
 @endphp
-	
+
 {{-- <p class="card-text">
 	/* ======================== Resource:route {{ $row['fname'] }} ======================================== */</br>
 	use App\Http\Controllers\Landlord\{{ $row['fname'] }}Controller;</br>

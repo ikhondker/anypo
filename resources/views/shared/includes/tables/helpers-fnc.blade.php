@@ -2,7 +2,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="card-actions float-end">
-			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 		</div>
 		<h5 class="card-title">Folder: {{ request()->route()->parameter('dir') }}</h5>
 		<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}
@@ -28,7 +28,7 @@
 
 				@foreach ($filesInFolder as $row)
 					@php
-					
+
 					$people = array("middleware", "getMiddleware", "callAction", "__call", "authorize",'authorizeForUser','authorizeResource','validateWith','validate','validateWithBag');
 					//$class = new ReflectionClass('App\Http\Controllers\Tenant\HomeController');
 

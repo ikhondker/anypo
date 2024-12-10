@@ -66,16 +66,16 @@ class CpController extends Controller
 	{
 		return view('landlord.manage.ui');
 	}
-    /**
+	/**
 	 * Show the form for creating a new resource.
 	 */
 	public function sync()
 	{
-        SyncLandlord::dispatch();
-        return redirect()->route('cps.index')->with('success', 'Sync Job submitted');
+		SyncLandlord::dispatch();
+		return redirect()->route('cps.index')->with('success', 'Sync Job submitted');
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function resetAccEndDate()

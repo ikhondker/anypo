@@ -108,7 +108,7 @@
 					<div class="card-header">
 						<div class="card-actions float-end">
 							{{-- <a href="{{ route('prs.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
-							<a href="{{ route('prs.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a> --}}
+							<a href="{{ route('prs.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a> --}}
 						</div>
 						<h5 class="card-title">Edit Requisition Additional Info</h5>
 						<h6 class="card-subtitle text-muted">Edit Requisition Additional Info.</h6>

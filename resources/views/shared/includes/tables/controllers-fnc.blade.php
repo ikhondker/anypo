@@ -1,7 +1,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="card-actions float-end">
-			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
+			<a href="{{ route('tables.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 		</div>
 		<h5 class="card-title">Folder: {{ request()->route()->parameter('dir') }}</h5>
 		<h6 class="card-subtitle text-info">Folder: {{ request()->route()->parameter('dir') }}
@@ -31,12 +31,12 @@
 				@foreach ($filesInFolder as $row)
 					@php
 					//$methods = (new ReflectionClass('\App\Blog'))->getMethods();
-					//dd($methods); 
+					//dd($methods);
 					$exclude = array("middleware", "getMiddleware", "callAction", "__call", "authorize",'authorizeForUser','authorizeResource','validateWith','validate','validateWithBag');
 					//$class = new ReflectionClass('App\Http\Controllers\Tenant\HomeController');
 					//$class = new ReflectionClass('App\Http\Controllers\Tenant\\'. $row["f"]);
 					//$class = new ReflectionClass(config('akk.DOC_DIR_CLASS') .'\\'. $row["f"]);
-					
+
 					//Log::debug('Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);
 					//$class = new ReflectionClass( $target_dir .'\\'. $row["f"]);
 					//Log::debug('Value of $target_dir-> row[f]=' . $target_dir .'\\'. $row["f"]);

@@ -20,7 +20,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('statuses.edit', $status->code ) }}"><i data-lucide="edit"></i> Edit</a>
-				<a class="btn btn-sm btn-light" href="{{ route('statuses.index') }}" ><i class="fas fa-list"></i> View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('statuses.index') }}" ><i data-lucide="database"></i> View all</a>
 			</div>
 			<h5 class="card-title">Status Detail</h5>
 			<h6 class="card-subtitle text-muted">Status details.</h6>

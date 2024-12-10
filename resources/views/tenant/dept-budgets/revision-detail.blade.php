@@ -22,7 +22,7 @@
 	<div class="card">
 		<div class="card-header">
 			<div class="card-actions float-end">
-				<a class="btn btn-sm btn-light" href="{{ route('dept-budgets.revisions',$deptBudget->parent_id) }}" ><i class="fas fa-list"></i> View all</a>
+				<a class="btn btn-sm btn-light" href="{{ route('dept-budgets.revisions',$deptBudget->parent_id) }}" ><i data-lucide="database"></i> View all</a>
 			</div>
 			<h5 class="card-title">Dept Budget Revision Detail</h5>
 			<h6 class="card-subtitle text-muted">Dept Budget Revision Detail detail.</h6>

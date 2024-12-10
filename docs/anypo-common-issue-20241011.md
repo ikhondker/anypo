@@ -112,3 +112,19 @@ $data = Po::select('id','currency','supplier_id')->with('supplier:id,name')->whe
 
 enum 
 as alias both entity and user role
+
+
+aws mail
+MAIL_MAILER=smtp
+#MAIL_HOST=email-smtp.us-west-2.amazonaws.com
+#MAIL_PORT=587
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=0d268833f949e9
+MAIL_PASSWORD=5e092a96c2609f
+MAIL_FROM_ADDR=i.khondker@hawarit.com
+MAIL_FROM_NAME='HawarIT IT Portal'
+MAIL_REPLYTO_ADDR=i.khondker@hawarit.com
+MAIL_REPLYTO_NAME='HawarIT-IT'
+MAIL_AUTO_EMBED_METHOD='attachment'
+MAIL_TLS_VERIFY_PEER=true
