@@ -39,7 +39,7 @@
 		updatedBy="{{ $dept->user_updated_by->name }}"
 		updatedAt="{{ $dept->updated_at }}"
 	/>
-    
+	
 
 # 12. Function Sequence in Controller 
 ====================================================================
