@@ -15,19 +15,6 @@
 						</a>
 					@endif
 				</div>
-
-				{{-- <button type="submit" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Search...">
-					<i class="fas fa-search"></i>
-				</button>
-
-				<a href="{{ route( $route.'.index') }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
-					<i class="fas fa-redo"></i>
-				</a>
-				@if ($export)
-					<a href="{{ route( $route.'.export') }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-						<i class="fas fa-cloud-download-alt"></i>
-					</a>
-				@endif --}}
 			</div>
 		</div>
 	</form>

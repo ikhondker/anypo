@@ -5,7 +5,7 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					<div class="dropdown position-relative">
-						<a href="{{ route('invoices.create-for-po', $poId) }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create Invoice</a>
+						<a href="{{ route('invoices.create-for-po', $poId) }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create Invoice</a>
 					</div>
 				</div>
 				<h5 class="card-title">Purchase Order Invoices</h5>

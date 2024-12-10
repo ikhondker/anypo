@@ -8,7 +8,7 @@
 @section('content')
 
 	@if (auth()->user()->isSystem())
-		<a href="{{ route('tenants.create') }}" class="btn btn-danger float-end mt-n1"><i class="fas fa-plus"></i> Create Tenant</a>
+		<a href="{{ route('tenants.create') }}" class="btn btn-danger float-end mt-n1"><i data-lucide="plus"></i> Create Tenant</a>
 	@endif
 
 	<h1 class="h3 mb-3">All Tenants</h1>

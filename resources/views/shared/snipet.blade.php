@@ -1,6 +1,6 @@
-<i class="fas fa-plus"></i>
+<i data-lucide="plus"></i>
 <i class="fas fa-edit"></i>
-
+<i class="fas fa-save"></i>
 
 <i data-lucide="plus"></i>
 <i data-lucide="edit"></i>
@@ -12,13 +12,13 @@
 
 show
 <div class="card-actions float-end">
-	<a href="{{ route('depts.edit', $dept->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+	<a href="{{ route('depts.edit', $dept->id ) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
 	<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 </div>
 
 edit
 <div class="card-actions float-end">
-	<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create</a>
+	<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create</a>
 	<a href="{{ route('depts.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 </div>
 
@@ -147,7 +147,7 @@ $user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
 @endif
 
 @if (auth()->user()->isSystem())
-	<a class="btn btn-sm btn-danger text-white" href="{{ route('activities.edit', $activity->id) }}"><i class="fas fa-edit"></i> Edit</a>
+	<a class="btn btn-sm btn-danger text-white" href="{{ route('activities.edit', $activity->id) }}"><i data-lucide="edit"></i> Edit</a>
 @endif
 
 index

@@ -93,12 +93,7 @@
 									<th scope="row">Created At :</th>
 									<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($account->created_at ))) }}</td>
 								</tr>
-								@if (auth()->user()->isSystem())
-                                    <tr>
-                                        <th scope="row" class="text-danger" >Lifetime Discount % :</th>
-                                        <td>{{ number_format($account->discount, 2) }}</td>
-                                    </tr>
-								@endif
+
 							</tbody>
 						</table>
 					</div>
@@ -115,12 +110,6 @@
 								<x-landlord.show.my-url value="{{ $account->website }}" label="Website" />
 								<x-landlord.show.my-url value="{{ $account->facebook }}" label="Facebook" />
 								<x-landlord.show.my-url value="{{ $account->linkedin }}" label="LinkedIn" />
-                                @if (auth()->user()->isSystem())
-                                    <tr>
-                                        <th scope="row" class="text-danger" >Tenant id :</th>
-                                        <td>{{ $account->tenant_id }}</td>
-                                    </tr>
-								@endif
 
 							</tbody>
 						</table>
@@ -129,6 +118,36 @@
 			</div>
 		</div>
 	</div>
+
+
+	@if (auth()->user()->isSeeded())
+		<div class="card">
+			<div class="card-header">
+				<div class="card-actions float-end">
+				</div>
+				<h5 class="card-title text-danger mb-0">Support Details</h5>
+			</div>
+			<div class="card-body pt-0">
+				<table class="table table-sm my-2">
+					<tbody>
+						<tr>
+							<th>Lifetime Discount % :</th>
+							<td>{{ number_format($account->discount, 2) }}</td>
+						</tr>
+						<tr>
+							<th>Tenant id :</th>
+							<td>{{ $account->tenant_id }}</td>
+						</tr>
+						<tr>
+							<th>Category :</th>
+							<td><span class="badge badge-subtle-success">aaa</span> </td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	@endif
 
 	<x-landlord.widgets.account-services accountId="{{ $account->id }}"/>
 

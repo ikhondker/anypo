@@ -3,7 +3,7 @@
 
 		<div class="card-header">
 			{{-- <div class="card-actions float-end">
-				<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit User</a>
+				<a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit User</a>
 			</div> --}}
 			<h5 class="card-title">User Profile</h5>
 			<h6 class="card-subtitle text-muted">View User Profile.</h6>

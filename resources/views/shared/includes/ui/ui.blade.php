@@ -27,7 +27,7 @@
 			</div>
 		</div>
 
-		<a href="#" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New project</a>
+		<a href="#" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New project</a>
 		<h1 class="h3 mb-3"><i class="align-middle text-muted" data-lucide="grid"></i> Reusable Widgets</h1>
 
 
@@ -36,7 +36,7 @@
 				<div class="card-actions float-end">
 					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i> View all</a>
 					@if (auth()->user()->isSystem())
-						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
+						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i data-lucide="edit"></i> Edit</a>
 					 @endif
 				</div>
 				<h5 class="card-title">Interface Components Guideline</h5>
@@ -868,10 +868,10 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a href="{{ route('users.edit', 123) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+					<a href="{{ route('users.edit', 123) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
 					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
 					@if (auth()->user()->isSystem())
-						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
+						<a class="btn btn-sm btn-danger text-white" href="{{ route('users.edit', 123) }}"><i data-lucide="edit"></i> Edit</a>
 					@endif
 				</div>
 				<h5 class="card-title">Empty card</h5>
@@ -907,8 +907,8 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					<a class="btn btn-sm btn-light" href="{{ route('users.edit', 123) }}"><i class="fas fa-edit"></i> Edit</a>
-					<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i>Create</a>
+					<a class="btn btn-sm btn-light" href="{{ route('users.edit', 123) }}"><i data-lucide="edit"></i> Edit</a>
+					<a href="{{ route('depts.create') }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i>Create</a>
 					<a href="{{ route('users.index') }}" class="btn btn-sm btn-light"><i class="fas fa-list"></i>View all</a>
 				</div>
 				<h5 class="card-title">Empty (Formateted)</h5>

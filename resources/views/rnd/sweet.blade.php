@@ -12,8 +12,8 @@
 								Dashboard
 						@endslot
 						@slot('buttons')
-								<a href="#" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> Home</a>
-								<a href="#" class="btn btn-primary float-end me-1"><i class="fas fa-plus"></i> New project</a>
+								<a href="#" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> Home</a>
+								<a href="#" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New project</a>
 						@endslot
 	</x-tenant.page-header>
 

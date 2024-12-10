@@ -7,7 +7,7 @@
 					<div class="dropdown position-relative">
 						<div class="card-actions float-end">
 							@can('createForInvoice', App\Models\Tenant\Payment::class)
-								<a href="{{ route('payments.create-for-invoice',$invoiceId) }}" class="btn btn-sm btn-light"><i class="fas fa-plus"></i> Create Payment</a>
+								<a href="{{ route('payments.create-for-invoice',$invoiceId) }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Create Payment</a>
 							@endcan
 						</div>
 					</div>

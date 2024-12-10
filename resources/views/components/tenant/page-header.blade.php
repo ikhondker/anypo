@@ -10,8 +10,6 @@
 				<i class="align-middle" data-lucide="help-circle"></i>
 			</a>
 			{{ $buttons }}
-		{{-- </div> --}}
-		{{-- <a href="#" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> Home</a>
-		<a href="#" class="btn btn-primary float-end mt-n1"><i class="fas fa-plus"></i> New project</a> --}}
+
 	</div>
 </div>

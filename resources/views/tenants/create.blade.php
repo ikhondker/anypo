@@ -15,7 +15,7 @@
 				<div class="card-header">
 					<div class="card-actions float-end">
 						<a class="btn btn-sm btn-light" href="{{ route('reports.pr', 11) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
-						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', 11 ) }}"><i class="fas fa-edit"></i> Edit</a>
+						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', 11 ) }}"><i data-lucide="edit"></i> Edit</a>
 					</div>
 					<h5 class="card-title">Create Tenant</h5>
 					<h6 class="card-subtitle text-muted">Create Tenant, bypassing payment</h6>
@@ -73,7 +73,7 @@
 				<div class="card-header">
 					<div class="card-actions float-end">
 						<a class="btn btn-sm btn-light" href="{{ route('reports.pr', 11) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
-						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', 11 ) }}"><i class="fas fa-edit"></i> Edit</a>
+						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', 11 ) }}"><i data-lucide="edit"></i> Edit</a>
 					</div>
 				</div>
 				<div class="card-body">
@@ -119,6 +119,6 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-	
+
 @endsection
 

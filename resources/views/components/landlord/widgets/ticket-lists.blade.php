@@ -9,7 +9,7 @@
 					<div class="text-sm-end">
 						<a href="{{ route('tickets.create') }}" class="btn btn-light btn-lg me-2"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Export">
-							<i class="fas fa-plus"></i> Create Ticket</a>
+							<i data-lucide="plus"></i> Create Ticket</a>
 					</div>
 				</div>
 			</div>

@@ -5,7 +5,7 @@
 				<div class="card-actions float-end">
 					<a class="btn btn-sm btn-light" href="{{ route('reports.pr', $pr->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
 					@can('update', $pr)
-						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i class="fas fa-edit"></i> Edit</a>
+						<a class="btn btn-sm btn-light" href="{{ route('prs.edit', $pr->id ) }}"><i data-lucide="edit"></i> Edit</a>
 					@endcan
 				</div>
 				<h5 class="card-title">Basic Information for PR#{{ $pr->id }}</h5>

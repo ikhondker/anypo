@@ -6,7 +6,7 @@
 					<a class="btn btn-sm btn-light" href="{{ route('reports.invoice', $invoice->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i data-lucide="printer"></i></a>
 					@if ($invoice->status == App\Enum\Tenant\InvoiceStatusEnum::DRAFT->value)
 						@can('update', $invoice)
-							<a href="{{ route('invoices.edit', $invoice->id ) }}" class="btn btn-sm btn-light"><i class="fas fa-edit"></i> Edit</a>
+							<a href="{{ route('invoices.edit', $invoice->id ) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
 						@endcan
 					@endif
 				</div>
