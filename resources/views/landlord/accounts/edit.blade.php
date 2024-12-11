@@ -33,7 +33,7 @@
 										placeholder="file_to_upload"
 										onchange="mySubmit()" style="display:none;" />
 										<a href="" class="btn btn-primary mt-n1" onclick="document.getElementById('file_to_upload').click(); return false">
-											<i class="fas fa-upload"></i> Upload</a>
+											<i data-lucide="upload-cloud"></i> Upload</a>
 									</div>
 									<small>For best results, use an image at least 128px by 128px in .jpg format</small>
 								</div>

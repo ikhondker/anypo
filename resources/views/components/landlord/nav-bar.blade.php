@@ -21,13 +21,13 @@
 				<li class="nav-item d-none d-md-inline-block">
 					@auth
 						<a href="{{ route('dashboards.index') }}" class="nav-link active px-lg-3">
-							<i class="align-middle fas fa-fw fa-chart-pie"></i>
+							<i data-lucide="chart-pie" class="align-middle"></i>
 							Dashboard
 						</a>
 					@endauth
 					@guest
 						<a href="{{ route('register') }}" class="nav-link active text-lg px-lg-3">
-							<i class="align-middle far fa-fw fa-user-circle"></i>
+							<i data-lucide="circle-user-round" class="align-middle"></i>
 							Register
 						</a>
 					@endguest
@@ -46,7 +46,7 @@
 				</li>
 				<li class="nav-item d-none d-md-inline-block">
 					<a href="{{ route('logout') }}" class="nav-link active px-lg-3">
-						<i class="align-middle fas fa-fw fa-power-off" style="color:red;"></i>
+						<i data-lucide="power" class="align-middle text-danger"></i>
 						Logout
 					</a>
 				</li>
@@ -54,7 +54,7 @@
 				@guest
 				<li class="nav-item d-none d-md-inline-block">
 						<a href="{{ route('login') }}" class="nav-link active text-lg px-lg-3">
-							<i class="align-middle fas fa-fw fa-power-off" ></i>
+							<i data-lucide="power" class="align-middle"></i>
 							Login
 						</a>
 					</li>

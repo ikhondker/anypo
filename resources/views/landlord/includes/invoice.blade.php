@@ -31,7 +31,7 @@
 								<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 								<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
 								<button class="btn btn-danger btn-sm" type="submit">
-									<i class="fas fa-dollar-sign"></i></i> Pay Invoice
+									<i data-lucide="dollar-sign"></i> Pay Invoice
 								</button>
 							</form>
 						@endif

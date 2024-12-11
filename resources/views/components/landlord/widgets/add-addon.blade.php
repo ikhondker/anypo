@@ -33,9 +33,9 @@
 								<div class="card-body">
 									<div class="mb-4">
 										@if ($addon->addon_type == 'user')
-											<i class="fas fa-user-plus text-info" class="" style="font-size: 5rem;"></i>
+											<i class="lucide-xxl text-info" data-lucide="user-plus"></i>
 										@else
-											<i class="fas fa-user-plus text-info" class="" style="font-size: 5rem;"></i>
+											<i class="lucide-xxl text-info" data-lucide="user-plus"></i>
 										@endif
 									</div>
 									<h3 class="card-title">{{ $addon->name }}</h3>

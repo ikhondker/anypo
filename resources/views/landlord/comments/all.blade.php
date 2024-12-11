@@ -83,7 +83,7 @@
 							</td>
 							<td>
 								<a href="{{ route('comments.show',$comment->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 								<a href="{{ route('comments.edit',$comment->id) }}" class="text-body" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="Edit"><i data-lucide="edit"></i></a>
 							</td>

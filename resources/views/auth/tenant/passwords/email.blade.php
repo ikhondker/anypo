@@ -15,28 +15,28 @@
 				<div class="text-center">
 					<img src="{{ Storage::disk('s3t')->url('avatar/avatar.png') }}" alt="Guest" class="img-fluid rounded-circle" width="132" height="132" />
 				</div>
-				
+
 				@if (session('status'))
 					<div class="mt-3">
 						<div class="alert alert-success alert-dismissible" role="alert">
 							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 							<div class="alert-icon">
-								<i class="far fa-fw fa-bell"></i>
+								<i data-lucide="bell"></i>
 							</div>
 							<div class="alert-message">
 								{{ session('status') }}
 							</div>
 						</div>
-					</div>	
+					</div>
 				@endif
 
 				<form action="{{ route('password.email') }}" method="post" onsubmit="return validateForm()">
 					@csrf
 					<div class="mb-3">
 						<label class="form-label">Email</label>
-						<input class="form-control form-control-lg @error('email') is-invalid @enderror" 
+						<input class="form-control form-control-lg @error('email') is-invalid @enderror"
 							type="email" name="email" value="{{ old('email') }}"
-							placeholder="Enter your email" 
+							placeholder="Enter your email"
 							required autocomplete="email" autofocus/>
 							@error('email')
 								<div class="text-danger text-xs">{{ $message }}</div>
@@ -51,7 +51,7 @@
 							<p class="small text-start">Already have an account? <a href="{{ route('login') }}">Sign In</a></p>
 						</div>
 						<div class="col-6 text-end pt-2">
-							
+
 						</div>
 					</div>
 

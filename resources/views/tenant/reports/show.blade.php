@@ -26,7 +26,7 @@
 				@if ( auth()->user()->isSystem() )
 					<a class="btn btn-sm btn-danger text-white" href="{{ route('reports.edit', $report->code ) }}"><i data-lucide="edit"></i> Edit</a>
 				@endif
-					<a class="btn btn-sm btn-light" href="{{ route('reports.parameter', $report->code ) }}"><i class="fas fa-print"></i> Run</a>
+					<a class="btn btn-sm btn-light" href="{{ route('reports.parameter', $report->code ) }}"><i data-lucide="printer"></i> Run</a>
 
 
 			</div>

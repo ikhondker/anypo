@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Tenant\Alert;
+namespace App\View\Components\Tenant\Alerts;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -12,7 +12,7 @@ class Success extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct( public string $message)
+	public function __construct(public string $message)
 	{
 		//$this->message = $message;
 	}

@@ -86,6 +86,10 @@ class AccountController extends Controller
 	 */
 	public function index()
 	{
+		$this->authorize('viewAll', Account::class);
+		$accounts = Account::with('status')->with('owner')->orderBy('id', 'DESC')->paginate(10);
+		return view('landlord.accounts.all', compact('accounts'));
+
 		//$this->authorize('viewAll', Account::class);
 		//$accounts = Account::with('status')->with('owner')->byAccount()->orderBy('id', 'DESC')->paginate(10);
 		//return view('landlord.accounts.index', compact('accounts'));
@@ -96,7 +100,7 @@ class AccountController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function all()
+	public function xxall()
 	{
 		$this->authorize('viewAll', Account::class);
 		$accounts = Account::with('status')->with('owner')->orderBy('id', 'DESC')->paginate(10);
@@ -207,6 +211,7 @@ class AccountController extends Controller
 
 		$account_id = $account->id;
 		Log::channel('bo')->info('Deleting Account id = ' . $account_id);
+		EventLog::event('account', $account->id, 'deleted', 'id', $account_id);
 
 		$tickets = Ticket::where('account_id', $account_id)->get();
 		$tickets->each(function ($tickets) {
@@ -257,6 +262,7 @@ class AccountController extends Controller
 		$tenant = Tenant::find( $account->tenant_id);
 		Log::debug('Landlord.Accounts.tenant Updating Tenant Setup enable column for tenant_id='.$tenant->id);
 
+
 		$result = $tenant->run(function(){
 			Log::debug('Landlord.Accounts.tenant Updating Tenant Setup enable column');
 			$tenantSetup 			= \App\Models\Tenant\Admin\Setup::first();
@@ -265,6 +271,7 @@ class AccountController extends Controller
 			}
 		);
 		// update account $account->tenant_enable
+		EventLog::event('tenant', $account->id, $account->tenant_enable, 'id', $account->tenant_id);
 		$account->tenant_enable = !$account->tenant_enable;
 		$account->update();
 		return redirect()->route('accounts.index')->with('success', 'Tenant Status change!');

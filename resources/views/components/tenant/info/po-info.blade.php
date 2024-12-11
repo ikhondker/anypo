@@ -8,7 +8,7 @@
 						@endcan
 					@endif
 					<a class="btn btn-sm btn-light" href="{{ route('pos.show', $po->id ) }}">
-						<i class="far fa-file"></i> PO#{{ $po->id }}
+						<i data-lucide="file"></i> PO#{{ $po->id }}
 					</a>
 					<a class="btn btn-sm btn-light" href="{{ route('pos.index') }}" ><i data-lucide="database"></i> View all</a>
 				</div>

@@ -15,7 +15,7 @@ class Setup extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'tagline', 'currency', 'freezed', 'prefix', 'tax_pc', 'gst_pc', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'cell', 'website', 'facebook', 'linkedin', 'timezone', 'days_payment', 'days_return', 'tolerance_invoice', 'tolerance_receipt', 'tolerance_payment', 'user_master_data_entry', 'ac_accrual', 'ac_liability', 'ac_clearing', 'tc', 'logo', 'banner_show', 'banner_message', 'version', 'build', 'admin_id', 'system_user_id', 'kam_id', 'landlord_account_id', 'last_rate_date', 'maintenance', 'debug', 'readonly', 'enable', 'updated_by', 'updated_at',
+		'name', 'tagline', 'currency', 'freezed', 'prefix', 'tax_pc', 'gst_pc', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'cell', 'website', 'facebook', 'linkedin', 'timezone', 'days_payment', 'days_return', 'tolerance_invoice', 'tolerance_receipt', 'tolerance_payment', 'user_master_data_entry', 'ac_accrual', 'ac_liability', 'ac_clearing', 'tc', 'logo', 'banner_show', 'banner_message', 'admin_id', 'system_user_id', 'kam_id', 'landlord_account_id', 'last_rate_date', 'maintenance', 'demo', 'debug', 'readonly', 'enable', 'version', 'build', 'updated_by', 'updated_at',
 	];
 
 	/**

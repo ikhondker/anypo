@@ -69,13 +69,30 @@
 				<a class="sidebar-toggle">
 					<i class="hamburger align-self-center"></i>
 				</a>
+				<form class="d-none d-sm-inline-block" action="{{ route('tickets.index') }}" method="GET" role="search">
+					<div class="input-group input-group-navbar">
+						<input type="text" class="form-control" placeholder="Search Ticket…" aria-label="Search"
+							minlength=3 name="term"
+							value="{{ old('term', request('term')) }}" id="term"
+							placeholder="Search tickets…" required>
+
+						<button class="btn" type="submit">
+							<i class="align-middle" data-lucide="search"></i>
+						</button>
+						@if (request('term'))
+							<a href="{{ route('tickets.index') }}" class="btn btn-lg"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+								<i data-lucide="refresh-cw"></i>
+							</a>
+						@endif
+					</div>
+				</form>
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 
 						<a class="nav-flag dropdown-toggle" href="#" id="flag" data-bs-toggle="no-dropdown">
 							<img src="{{ Storage::disk('s3l')->url('flags/'. Str::lower($_landlord_user->country).'.png') }}" alt="{{ $_landlord_user->country }}" />
 						</a>
-
 
 						<li class="nav-item dropdown">
 
@@ -106,6 +123,7 @@
 			<main class="content">
 
 				<div class="container-fluid p-0">
+
 
 					<!-- Form Success Message Box -->
 

@@ -63,28 +63,27 @@
 					</p> --}}
 					<!-- List -->
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
-						<li class="mt-1"><a href="#" class="text-white-50"><i class="align-middle me-2 fas fa-fw fa-map-marker-alt"></i> {{ $_config->address1 }}</a></li>
+						<li class="mt-1"><a href="#" class="text-white-50"><i data-lucide="map-pin" class="align-middle me-2"></i> {{ $_config->address1 }}</a></li>
 						<li class="mt-1"><a href="#" class="text-white-50">{{ $_config->city.' '.$_config->state.' '. $_config->zip. ', '. $_config->relCountry->name }}</a></li>
-						<li class="mt-1"><a href="tel:{{ $_config->cell}}" class="text-white-50"><i class="align-middle me-2 fas fa-fw fa-phone"></i> {{ $_config->cell }}</a></li>
+						<li class="mt-1"><a href="tel:{{ $_config->cell}}" class="text-white-50"><i data-lucide="phone" class="align-middle me-2"></i> {{ $_config->cell }}</a></li>
 					</ul>
 					<!-- End List -->
 				</div>
 				<div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-0">
 					<h4 class="text-light fs-5">Resources</h4>
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
-						<li class="mt-2"><a class="text-white-50" href="{{ route('faq') }}"><i class="align-middle far fa-fw fa-user-circle"></i> FAQ</a></li>
-						<li class="mt-2"><a class="text-white-50" href="{{ route('login') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Your Account</a></li>
-						<li class="mt-2"><a class="text-white-50" href="{{ route('request-demo') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Request Demo</a></li>
-						<li class="mt-2"><a class="text-white-50" href="{{ route('contact-us') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Contact us</a></li>
-
-					</ul>
+						<li class="mt-2"><a class="text-white-50" href="{{ route('faq') }}"><i data-lucide="circle-help" class="align-middle"></i> FAQ</a></li>
+						<li class="mt-2"><a class="text-white-50" href="{{ route('login') }}"><i data-lucide="circle-user-round" class="align-middle"></i> Your Account</a></li>
+						<li class="mt-2"><a class="text-white-50" href="{{ route('request-demo') }}"><i data-lucide="layout-grid" class="align-middle"></i> Request Demo</a></li>
+						<li class="mt-2"><a class="text-white-50" href="{{ route('contact-us') }}"><i data-lucide="mail-question" class="align-middle"></i> Contact us</a></li>
+ 					</ul>
 				</div>
 				<div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-0">
 					<h4 class="text-light fs-5">Legal & Privacy</h4>
 					<ul class="list-unstyled ps-0 mb-0 mt-3">
-						<li class="mt-2"><a class="text-white-50" href="{{ route('privacy') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Privacy &amp; Policy</a></li>
-						<li class="mt-2"><a class="text-white-50" href="{{ route('tos') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Terms of Services</a></li>
-						<li class="mt-2"><a class="text-white-50" href="{{ route('bug-report') }}"><i class="align-middle far fa-fw fa-user-circle"></i> Report a Bug</a></li>
+						<li class="mt-2"><a class="text-white-50" href="{{ route('privacy') }}"><i data-lucide="receipt-text" class="align-middle"></i> Privacy &amp; Policy</a></li>
+						<li class="mt-2"><a class="text-white-50" href="{{ route('tos') }}"><i data-lucide="receipt-text" class="align-middle"></i> Terms of Services</a></li>
+						<li class="mt-2"><a class="text-white-50" href="{{ route('bug-report') }}"><i data-lucide="bug" class="align-middle"></i> Report a Bug</a></li>
 
 					</ul>
 				</div>

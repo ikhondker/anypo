@@ -73,7 +73,7 @@
 						<td><x-landlord.attachment.show-by-id attachmentId="{{ $attachment->id }}"/></td>
 						<td>
 							<a href="{{ route('attachments.show',$attachment->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-								data-bs-placement="top" title="View">View</a>
+								data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 							<a href="{{ route('attachments.edit',$attachment->id) }}" class="text-body" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="Edit"><i data-lucide="edit"></i></a>
 						</td>

@@ -67,6 +67,10 @@
 			</div>
 		</nav>
 		<div class="main">
+            @if ($_setup->demo)
+				<x-tenant.alerts.warning message="This is a Demo Instance" />
+			@endif
+
 			<nav class="navbar navbar-expand navbar-bg">
 				<a class="sidebar-toggle">
 					<i class="hamburger align-self-center"></i>
@@ -229,7 +233,6 @@
 					<div class="row justify-start">
 						<div class="col-12">
 							@if ($_setup->banner_show && ($_setup->banner_message <> '') )
-
 								<div class="alert alert-danger alert-outline alert-dismissible" role="alert">
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									<div class="alert-icon">

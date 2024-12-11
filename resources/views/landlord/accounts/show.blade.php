@@ -21,9 +21,6 @@
 					<x-landlord.actions.account-actions accountId="{{ $account->id }}"/>
 				@endif
 				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Ticket</a>
-				@if (auth()->user()->isSupport())
-					<a href="{{ route('accounts.index') }}" class="btn btn-primary float-end me-1"><i data-lucide="database"></i> View all</a>
-				@endif
 		@endslot
 	</x-landlord.page-header>
 
@@ -131,18 +128,15 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>Lifetime Discount % :</th>
+							<th width="25%">Lifetime Discount % :</th>
 							<td>{{ number_format($account->discount, 2) }}</td>
 						</tr>
 						<tr>
 							<th>Tenant id :</th>
 							<td>{{ $account->tenant_id }}</td>
 						</tr>
-						<tr>
-							<th>Category :</th>
-							<td><span class="badge badge-subtle-success">aaa</span> </td>
-						</tr>
-
+						<x-landlord.show.my-enable :value="$account->tenant_enable" />
+						<x-landlord.show.my-badge :value="$account->rank" />
 					</tbody>
 				</table>
 			</div>

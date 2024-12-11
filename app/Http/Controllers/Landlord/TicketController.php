@@ -77,39 +77,23 @@ class TicketController extends Controller
 
 		$tickets = Ticket::query();
 		if (request('term')) {
-			$tickets->where('title', 'Like', '%' . request('term') . '%');
+			$tickets->where('title', 'Like', '%' . request('term') . '%')
+			->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
 
-		switch (auth()->user()->role->value) {
-			case UserRoleEnum::ADMIN->value:
-				$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byAccount()->orderBy('id', 'DESC')->paginate(10);
-				break;
-			default:
-				$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byUser()->orderBy('id', 'DESC')->paginate(10);
-				Log::warning("landlord.tickets.index Ignore. Other roles!");
+		if (auth()->user()->isSeeded()) {
+			$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(10);
+			return view('landlord.tickets.all', compact('tickets'));
+		} else {
+			switch (auth()->user()->role->value) {
+				case UserRoleEnum::ADMIN->value:
+					$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byAccount()->orderBy('id', 'DESC')->paginate(10);
+					break;
+				default:
+					$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byUser()->orderBy('id', 'DESC')->paginate(10);
+			}
+			return view('landlord.tickets.index', compact('tickets'));
 		}
-
-		return view('landlord.tickets.index', compact('tickets'));
-	}
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function all()
-	{
-
-		$this->authorize('viewAll',Ticket::class);
-
-		$tickets = Ticket::query();
-		if (request('term')) {
-			$tickets->where('title', 'Like', '%' . request('term') . '%');
-		}
-
-		$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(10);
-
-		return view('landlord.tickets.all', compact('tickets'));
 	}
 
 	/**

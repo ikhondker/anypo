@@ -193,6 +193,7 @@ class SetupController extends Controller
 	 */
 	public function destroy(Setup $setup)
 	{
+		// done from landlord
 		abort(403);
 		//$this->authorize('delete', $setup);
 	}

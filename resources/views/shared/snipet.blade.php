@@ -1,20 +1,41 @@
-<i data-lucide="plus"></i>
+<i class="fas fa-save"></i>
+<i class="fas fa-plus"></i>
 <i class="fas fa-edit"></i>
-<i data-lucide="save"></i>
 <i class="fas fa-list"></i>
 <i class="fas fa-print"></i>
+<i class="fas fa-upload"></i>
+<i class="fas fa-power-off text-danger"></i>
+<i class="fas fa-dollar-sign"></i>
 
 
+<i data-lucide="user-plus"></i>
+<i data-lucide="x-circle"></i>
+<i data-lucide="x"></i>
+<i data-lucide="bell"></i>
+<i data-lucide="file"></i>
+<i data-lucide="dollar-sign"></i>
+<i data-lucide="upload-cloud"></i>
+<i data-lucide="power"></i>
+<i data-lucide="printer"></i>
 <i data-lucide="plus"></i>
 <i data-lucide="edit"></i>
 <i data-lucide="save"></i>
+<i data-lucide="square"></i>
 <i data-lucide="x-circle"></i>
 <i data-lucide="database"></i>
 <i data-lucide="alert-circle"></i>
 <i data-lucide="plus-circle"></i>
 <i data-lucide="alert-triangle"></i>
 <i class="align-middle me-1" data-lucide="plus-circle"></i>
+<i data-lucide="home"></i>
+<i data-lucide="map-pin"></i>
+<i data-lucide="chart-pie"></i>
+<i data-lucide="power"></i>
+<i data-lucide="power-off"></i>
+<i data-lucide="circle-user-round"></i>
 
+Call support {{ config('akk.SUPPORT_PHONE_NO') }}</a>
+{{ env('APP_NAME') }}
 show
 <div class="card-actions float-end">
 	<a href="{{ route('depts.edit', $dept->id ) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
@@ -36,13 +57,14 @@ create
 
 
 // allow add attachment only if status is draft
+@php
 try {
 	$po = Po::where('id', $request->input('attach_po_id'))->get()->firstOrFail();
 } catch (Exception $e) {
 	Log::error(tenant('id'). ' tenant.po.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
 	return redirect()->back()->with(['error' => 'Purchase Order not Found!']);
 }
-
+@endphp
 
 $po->po_date		= now();
 
@@ -52,7 +74,6 @@ value="{{ old('invoice_date', date('Y-m-d',strtotime($invoice->invoice_date)) ) 
 
 
 <i class="fa fa-check-circle fa-5x text-success"></i>
-
 <i data-lucide="eye"></i>
 <i data-lucide="plus"></i>
 <i data-lucide="edit"></i>

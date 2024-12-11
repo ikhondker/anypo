@@ -6,7 +6,7 @@
 
 <li class="sidebar-item {{ $_route_name == 'dashboards.index' ? 'active' : '' }}">
 	<a class="sidebar-link" href="{{ route('dashboards.index') }}">
-		<i class="align-middle" data-lucide="sliders"></i> <span class="align-middle">Dashboards</span>
+		<i class="align-middle" data-lucide="chart-pie"></i> <span class="align-middle">Dashboards</span>
 	</a>
 </li>
 
@@ -18,7 +18,7 @@
 
 <li class="sidebar-item {{ $_route_name == 'tickets.index' ? 'active' : '' }}">
 	<a class="sidebar-link" href="{{ route('tickets.index') }}">
-		<i class="align-middle" data-lucide="list"></i> <span class="align-middle">All Tickets</span>
+		<i class="align-middle" data-lucide="list-todo"></i> <span class="align-middle">All Tickets</span>
 	</a>
 </li>
 
@@ -26,7 +26,7 @@
 @can('viewAdminMenu', App\Models\Landlord\Manage\Menu::class)
 	<li class="sidebar-item {{ ($_node_name == 'workbench' ? 'active' : '') }}">
 		<a data-bs-target="#workbench" data-bs-toggle="collapse" class="sidebar-link collapsed">
-			<i class="align-middle" data-lucide="layout-template"></i>
+			<i class="align-middle" data-lucide="layout-grid"></i>
 			<span class="align-middle">Admin</span>
 		</a>
 		<ul id="workbench" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'workbench' ? 'show' : '') }}" data-bs-parent="#sidebar">

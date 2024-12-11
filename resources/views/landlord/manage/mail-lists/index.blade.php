@@ -73,7 +73,7 @@
 							<td>
 
 								{{-- <a href="{{ route('mail-lists.show',$mailList->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a> --}}
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a> --}}
 
 									<a href="{{ route('mail-lists.destroy', $mailList->id) }}"
 										class="text-body sw2-advance" data-entity="Email"

@@ -22,6 +22,18 @@ don't put inside any DIV. Only TD
 </td>
 2. confirmation on scss compile
 
+Demo install limitation     @if ($_setup->demo)
+-----------------------------
+1. app layout top 	<x-tenant.alerts.warning message="This is a Demo Instance" />
+1. tenant sidebar Purchase
+2. admin can not change password  
+2. user can not change profile password  
+3. can not deactivate user usercontrolle.destroy
+	$setup = Setup::first();
+	if ($setup->demo){
+		return redirect()->route('dashboards.index')->with('error', config('akk.MSG_DEMO'));
+	}
+
 
 
 time ago

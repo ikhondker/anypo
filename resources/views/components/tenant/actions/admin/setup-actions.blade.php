@@ -10,20 +10,6 @@
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('setups.tc', $setup->id) }}"><i class="align-middle me-1" data-lucide="align-left"></i> PO Terms & Conditions</a>
 
-		@can('delete', $setup)
-			<div class="dropdown-divider"></div>
-			@if ($setup->enable)
-				<a class="dropdown-item sw2-advance" href="{{ route('setups.destroy', $setup->id) }}"
-					data-entity="Setup" data-name="{{ $setup->name }}" data-status="Disable"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="Disable Setup">
-					<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Disable Site</a>
-			@else
-				<a class="dropdown-item sw2-advance" href="{{ route('setups.destroy', $setup->id) }}"
-					data-entity="Setup" data-name="{{ $setup->name }}" data-status="Enable"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="Enable Setup">
-					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Site</a>
-			@endif
-		@endcan
 
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('setups.timestamp', $setup->id) }}"><i class="align-middle me-1" data-lucide="calendar"></i> Timestamp</a>

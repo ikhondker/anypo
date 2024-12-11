@@ -85,7 +85,7 @@
 							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
 							<td>
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 
 								<a href="{{ route('akk.invoice', $invoice->invoice_no) }}" class="text-body"
 									target="_blank" data-bs-toggle="tooltip"

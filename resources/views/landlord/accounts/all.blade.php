@@ -94,7 +94,7 @@
 						</td>
 						<td>
 							<a href="{{ route('accounts.show',$account->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-								data-bs-placement="top" title="View">View</a>
+								data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 						</td>
 					</tr>
 				@endforeach

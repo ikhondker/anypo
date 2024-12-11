@@ -87,7 +87,7 @@
 							<td><x-landlord.list.my-enable :value="$user->enable"/></td>
 							<td>
 								<a href="{{ route('users.show',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 
 									@if (session('original_user'))
 										{{-- <a href="{{ route('users.leave-impersonate') }}" class="me-2"

@@ -259,7 +259,6 @@
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
-								<i class="fas fa-home align-middle text-muted"></i>
 								<i class="align-top text-muted" data-lucide="home"></i>
 								<a href="{{ route('home') }}" class="text-muted"> Home</a></li>
 								@yield('breadcrumb')

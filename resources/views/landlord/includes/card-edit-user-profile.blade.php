@@ -23,7 +23,7 @@
 									placeholder="file_to_upload"
 									onchange="mySubmit()" style="display:none;" />
 									<a href="" class="btn btn-primary mt-n1" onclick="document.getElementById('file_to_upload').click(); return false">
-										<i class="fas fa-upload"></i> Upload</a>
+										<i data-lucide="upload-cloud"></i> Upload</a>
 								</div>
 								<small>For best results, use an image at least 128px by 128px in .jpg format</small>
 							</div>
@@ -34,7 +34,7 @@
 						<th>Email :</th>
 						<td><input type="email" name="email" id="email" class="form-control" placeholder="you@example.com" value="{{ $user->email }}" readonly></td>
 					</tr>
-					
+
 					@if ( (auth()->user()->isAdmin() || auth()->user()->isSupport() || auth()->user()->isSystem() ) && (auth()->user()->id <> $user->id) )
 						<tr>
 							<th class="text-danger">Modify Role:</th>
@@ -77,7 +77,7 @@
 						</td>
 					</tr>
 					<x-landlord.edit.notes value="{{ $user->notes }}"/>
-						
+
 
 				</tbody>
 			</table>

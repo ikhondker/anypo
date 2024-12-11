@@ -587,22 +587,22 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><i class="fas fa-square-full text-primary"></i> Direct</td>
+									<td><i class="text-primary" data-lucide="square"></i> Direct</td>
 									<td class="text-end">$ 2602</td>
 									<td class="text-end text-success">+43%</td>
 								</tr>
 								<tr>
-									<td><i class="fas fa-square-full text-warning"></i> Affiliate</td>
+									<td><i class="text-warning" data-lucide="square"></i> Affiliate</td>
 									<td class="text-end">$ 1253</td>
 									<td class="text-end text-success">+13%</td>
 								</tr>
 								<tr>
-									<td><i class="fas fa-square-full text-danger"></i> E-mail</td>
+									<td><i class="text-danger" data-lucide="square"></i> E-mail</td>
 									<td class="text-end">$ 541</td>
 									<td class="text-end text-success">+24%</td>
 								</tr>
 								<tr>
-									<td><i class="fas fa-square-full text-dark"></i> Other</td>
+									<td><i class="text-dark" data-lucide="square"></i> Other</td>
 									<td class="text-end">$ 1465</td>
 									<td class="text-end text-success">+11%</td>
 								</tr>

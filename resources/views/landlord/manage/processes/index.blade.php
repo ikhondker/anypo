@@ -67,7 +67,7 @@
 							<td>{{ strtoupper(date('d-M-Y H:i:s', strtotime($process->created_at))) }}</td>
 							<td>
 								<a href="{{ route('processes.show',$process->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 								{{-- <a href="{{ route('processes.edit',$process->id) }}" class="text-body" data-bs-toggle="tooltip"
 										data-bs-placement="top" title="View"> <i data-lucide="edit"></i></a> --}}
 								{{-- <a href="{{ route('processes.delete', $process->id) }}"

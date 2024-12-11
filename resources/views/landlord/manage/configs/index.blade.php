@@ -70,7 +70,7 @@
 							<td><x-landlord.list.my-enable :value="$config->maintenance" /></td>
 							<td class="text-end">
 								<a href="{{ route('configs.show',$config->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i>View</a>
 							</td>
 						</tr>
 					@endforeach

@@ -2,6 +2,7 @@
 # 3. TODO 
 ====================================================================
 1. bug report in both landlord and tenant
+remove <i class="bi bi-cart-check"></i>
 111. review TODO and P2
 66. search and remove //console.log
 1. .gitignore file modify

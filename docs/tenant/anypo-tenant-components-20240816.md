@@ -129,8 +129,9 @@ php artisan make:component Info --view		<x-tenant.info info="Note: You wont be a
 [php artisan make:component TableLinks --view] 	<x-tenant.table-links/>
 ?php artisan make:component RedStar --view	<x-red-star/>
 ?php artisan make:component PageHeader --view 	<x-page-header/>
-?php artisan make:component Alert/Success
-?php artisan make:component Alert/Error
+php artisan make:component Tenant\Alerts\Success
+php artisan make:component Tenant\Alerts\Error
+php artisan make:component Tenant\Alerts\Warning 
 php artisan make:component Share\Actions\TableActions --view
 
 # 13. Component to Display Notification

@@ -31,6 +31,7 @@ use App\Http\Requests\Tenant\Admin\UpdateUserRequest;
 use App\Models\Tenant\Lookup\Country;
 use App\Models\Tenant\Lookup\Designation;
 use App\Models\Tenant\Lookup\Dept;
+use App\Models\Tenant\Admin\Setup;
 # 2. Enums
 use App\Enum\UserRoleEnum;
 # 3. Helpers
@@ -261,6 +262,12 @@ class UserController extends Controller
 	{
 		$this->authorize('delete', $user);
 
+
+		$setup = Setup::first();
+		if ($setup->demo){
+			return redirect()->route('users.index')->with('error', config('akk.MSG_DEMO'));
+		}
+
 		$user->fill(['enable' => !$user->enable]);
 		$user->update();
 
@@ -321,6 +328,11 @@ class UserController extends Controller
 			'password1' => ['required'],
 			'password2' => ['same:password1'],
 		]);
+
+		$setup = Setup::first();
+		if ($setup->demo){
+			return redirect()->route('users.show',$user->id)->with('error', config('akk.MSG_DEMO'));
+		}
 
 		//dd($request->password1);
 		//$user->password = bcrypt($request->password1);
@@ -428,6 +440,11 @@ class UserController extends Controller
 			'password1' => ['required'],
 			'password2' => ['same:password1'],
 		]);
+
+		$setup = Setup::first();
+		if ($setup->demo){
+			return redirect()->route('users.profile',$user->id)->with('error', config('akk.MSG_DEMO'));
+		}
 
 		//dd($request->password1);
 		//$user->password = bcrypt($request->password1);

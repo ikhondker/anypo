@@ -7,7 +7,7 @@
 		<a class="dropdown-item" href="{{ route('invoices.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View Invoices</a>
 		<a class="dropdown-item" href="{{ route('payments.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View Payments</a>
 		<a class="dropdown-item" href="{{ route('users.index') }}"><i class="align-middle me-1" data-lucide="list"></i> View Users</a>
-		<a class="dropdown-item" href="{{ route('invoices.generate') }}"></i><i class="align-middle me-1 fas fa-dollar-sign"></i> Generate Invoice</a>
+		<a class="dropdown-item" href="{{ route('invoices.generate') }}"><i data-lucide="dollar-sign" class="align-middle me-1"></i> Generate Invoice</a>
 		<a class="dropdown-item" href="{{ route('services.index') }}"><i class="align-middle me-1" data-lucide="shopping-cart"></i> Buy Users</a>
 	</div>
 </div>

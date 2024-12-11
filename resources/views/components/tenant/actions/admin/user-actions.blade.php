@@ -30,7 +30,7 @@
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Disable User">
 					<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Disable User</a>
 			@else
-				<a class="dropdown-item sw2-advance" href="{{ route('users.destroy', $user-s>id) }}"
+				<a class="dropdown-item sw2-advance" href="{{ route('users.destroy', $user->id) }}"
 					data-entity="User" data-name="{{ $user->name }}" data-status="Enable"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Enable User">
 					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable User</a>

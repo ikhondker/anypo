@@ -74,7 +74,7 @@
 							<td><x-landlord.list.my-badge :value="$errorLog->status" /></td>
 							<td>
 								<a href="{{ route('error-logs.show',$errorLog->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 									<a href="{{ route('error-logs.edit',$errorLog->id) }}" class="text-body" data-bs-toggle="tooltip"
 										data-bs-placement="top" title="View"> <i data-lucide="edit"></i></a>
 							</td>

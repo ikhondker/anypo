@@ -1,7 +1,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="card-actions float-end">
-			<a class="btn btn-sm btn-light" href="{{ route($route.'.show', $article->id ) }}"><i data-lucide="eye"></i></i> View</a>
+			<a class="btn btn-sm btn-light" href="{{ route($route.'.show', $article->id ) }}"><i data-lucide="eye"></i> View</a>
 		</div>
 		<h5 class="card-title">Standard Who and When</h5>
 		<h6 class="card-subtitle text-muted">Standard Who and When Columns.</h6>

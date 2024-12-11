@@ -27,7 +27,7 @@
 		<div class="card-header">
 			<div class="card-actions float-end">
 				<a class="btn btn-sm btn-light" href="{{ route('pos.show', $po->id ) }}">
-					<i class="far fa-file"></i> PO#{{ $po->id }}
+					<i data-lucide="file"></i> PO#{{ $po->id }}
 				</a>
 			</div>
 

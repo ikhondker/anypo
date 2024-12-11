@@ -170,4 +170,18 @@
 
 	@include('tenant.includes.sidebar-my-account')
 
+	@if ($_setup->demo)
+		<div class="sidebar-cta">
+			<div class="sidebar-cta-content">
+				<strong class="d-inline-block mb-2">Demo Site</strong>
+				<div class="mb-3 text-sm">
+					This is the demo instance of {{ env('APP_NAME') }} to showcase its features, functionality and design.  {{ env('APP_URL') }}
+				</div>
+				<div class="d-grid">
+					<a href="{{ env('APP_URL') }}/pricing" class="btn btn-primary" target="_blank"><i data-lucide="shopping-cart" class="align-middle"></i>  Purchase</a>
+				</div>
+			</div>
+		</div>
+	@endif
+
 </ul>

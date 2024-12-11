@@ -67,7 +67,7 @@
 							<td><x-landlord.list.my-enable :value="$replyTemplate->enable" /></td>
 							<td>
 								<a href="{{ route('reply-templates.show',$replyTemplate->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 								<a href="{{ route('reply-templates.edit',$replyTemplate->id) }}" class="text-body" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="Edit"><i data-lucide="edit"></i></a>
 								<a href="{{ route('reply-templates.delete', $replyTemplate->id) }}"

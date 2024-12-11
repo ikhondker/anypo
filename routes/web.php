@@ -318,7 +318,6 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	//Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 	/* ======================== Ticket ========================================  */
-	Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
 	Route::get('/tickets/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
 	Route::post('/tickets/do-assign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.do-assign');
 	Route::get('/tickets/topics/{ticket}', [TicketController::class, 'topics'])->name('tickets.topics');
@@ -332,7 +331,7 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	//Route::get('/comments/delete/{comment}', [CommentController::class, 'destroy'])->name('comments.delete');
 
 	/* ======================== Accounts ========================================  */
-	Route::get('/account/all', [AccountController::class, 'all'])->name('accounts.all');
+	//Route::get('/account/all', [AccountController::class, 'all'])->name('accounts.all');
 
 	/* ======================== Services ======================================== */
 	Route::get('/service/all/{account?}', [ServiceController::class, 'all'])->name('services.all');

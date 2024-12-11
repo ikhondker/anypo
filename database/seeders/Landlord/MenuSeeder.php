@@ -44,7 +44,7 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 			[ 'raw_route_name' => 'tickets.index',	 	'route_name' => 'tickets.index',	'node_name' 	=> ''],
-			[ 'raw_route_name' => 'tickets.all',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			//[ 'raw_route_name' => 'tickets.all',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.show',	  	'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.update',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.edit',	  	'route_name' => 'tickets.index',	'node_name' 	=> ''],
@@ -80,7 +80,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'services.create',	'route_name' => 'services.index',	  'node_name' 	=> 'workbench'],
 
 			[ 'raw_route_name' => 'accounts.index',		'route_name' => 'accounts.index','node_name' 		=> 'workbench'],
-			[ 'raw_route_name' => 'accounts.all',	  	'route_name' => 'accounts.index',	'node_name' 	=> 'workbench'],
+			//[ 'raw_route_name' => 'accounts.all',	  	'route_name' => 'accounts.index',	'node_name' 	=> 'workbench'],
 			[ 'raw_route_name' => 'accounts.show',		'route_name' => 'accounts.show','node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'accounts.edit',	 	'route_name' => 'accounts.show','node_name' 		=> 'workbench'],
 			[ 'raw_route_name' => 'accounts.update',	'route_name' => 'accounts.index',	'node_name' 	=> 'workbench'],

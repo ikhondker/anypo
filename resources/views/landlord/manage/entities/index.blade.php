@@ -69,7 +69,7 @@
 							<td><x-landlord.list.my-enable :value="$entity->enable" /></td>
 							<td>
 								<a href="{{ route('entities.show',$entity->entity) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 								<a href="{{ route('entities.edit',$entity->entity) }}" class="text-body" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View"> <i data-lucide="edit"></i></a>
 								<a href="{{ route('entities.delete', $entity->entity) }}"

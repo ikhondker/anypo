@@ -72,7 +72,7 @@
 						<td><x-landlord.attachment.show-by-id attachmentId="{{ $contact->attachment_id }}"/></td>
 						<td>
 							<a href="{{ route('contacts.show',$contact->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-								data-bs-placement="top" title="View">View</a>
+								data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 						</td>
 					</tr>
 				@endforeach

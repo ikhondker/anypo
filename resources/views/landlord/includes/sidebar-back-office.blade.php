@@ -6,32 +6,32 @@
 
 <li class="sidebar-item {{ $_route_name == 'dashboards.index' ? 'active' : '' }}">
 	<a class="sidebar-link" href="{{ route('dashboards.index') }}">
-		<i class="align-middle" data-lucide="sliders"></i> <span class="align-middle">Dashboards</span>
+		<i class="align-middle" data-lucide="chart-pie"></i> <span class="align-middle">Dashboards</span>
 	</a>
 </li>
 
 <li class="sidebar-item {{ $_route_name == 'tickets.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('tickets.all') }}">
-		<i class="align-middle" data-lucide="sliders"></i> <span class="align-middle">All Tickets</span>
+	<a class="sidebar-link" href="{{ route('tickets.index') }}">
+		<i class="align-middle" data-lucide="list-todo"></i> <span class="align-middle">All Tickets</span>
 	</a>
 </li>
 
 <li class="sidebar-item {{ $_route_name == 'comments.index' ? 'active' : '' }}">
 	<a class="sidebar-link" href="{{ route('comments.all') }}">
-		<i class="align-middle" data-lucide="sliders"></i> <span class="align-middle">All Comments</span>
+		<i class="align-middle" data-lucide="list-todo"></i> <span class="align-middle">All Comments</span>
 	</a>
 </li>
 
 @can('viewWorkbenchMenu', App\Models\Landlord\Manage\Menu::class)
 	<li class="sidebar-item {{ ($_node_name == 'workbench' ? 'active' : '') }}">
 		<a data-bs-target="#workbench"s data-bs-toggle="collapse" class="sidebar-link collapsed">
-			<i class="align-middle" data-lucide="layout-template"></i>
+			<i class="align-middle" data-lucide="layout-grid"></i>
 			<span class="align-middle">Workbench</span>
 		</a>
 		<ul id="workbench" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'workbench' ? 'show' : '') }}" data-bs-parent="#sidebar">
 			{{-- <li class="sidebar-item {{ ($_route_name == 'tickets.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tickets.all') }}"><i class="align-middle" data-lucide="circle"></i>All Tickets</a></li> --}}
 			<li class="sidebar-item {{ ($_route_name == 'checkouts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('checkouts.index') }}"><i class="align-middle" data-lucide="circle"></i>All Checkouts</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'accounts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('accounts.all') }}"><i class="align-middle" data-lucide="circle"></i>All Accounts</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'accounts.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('accounts.index') }}"><i class="align-middle" data-lucide="circle"></i>All Accounts</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'services.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('services.all') }}"><i class="align-middle" data-lucide="circle"></i>All Services</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'invoices.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('invoices.all') }}"><i class="align-middle" data-lucide="circle"></i>All Invoices</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'payments.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('payments.all') }}"><i class="align-middle" data-lucide="circle"></i>All Payments</a></li>
@@ -48,7 +48,7 @@
 @can('viewLookupMenu', App\Models\Landlord\Manage\Menu::class)
 	<li class="sidebar-item {{ ($_node_name == 'lookups' ? 'active' : '') }}">
 		<a data-bs-target="#lookups" data-bs-toggle="collapse" class="sidebar-link collapsed">
-			<i class="align-middle" data-lucide="layout-template"></i>
+			<i class="align-middle" data-lucide="layout-grid"></i>
 			<span class="align-middle">Lookups</span>
 		</a>
 		<ul id="lookups" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'lookups' ? 'show' : '') }}" data-bs-parent="#sidebar">
@@ -63,7 +63,7 @@
 @can('viewSysAdminMenu', App\Models\Landlord\Manage\Menu::class)
 	<li class="sidebar-item {{ ($_node_name == 'sysadmin' ? 'active' : '') }}">
 		<a data-bs-target="#sysadmin" data-bs-toggle="collapse" class="sidebar-link collapsed">
-			<i class="align-middle" data-lucide="layout-template"></i>
+			<i class="align-middle" data-lucide="layout-grid"></i>
 			<span class="align-middle">SysAdmin</span>
 		</a>
 		<ul id="sysadmin" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'sysadmin' ? 'show' : '') }}" data-bs-parent="#sidebar">
@@ -78,7 +78,7 @@
 @can('viewSystemMenu', App\Models\Landlord\Manage\Menu::class)
 	<li class="sidebar-item {{ ($_node_name == 'system' ? 'active' : '') }}">
 		<a data-bs-target="#system" data-bs-toggle="collapse" class="sidebar-link collapsed">
-			<i class="align-middle" data-lucide="layout-template"></i>
+			<i class="align-middle" data-lucide="layout-grid"></i>
 			<span class="align-middle">System</span>
 		</a>
 		<ul id="system" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'system' ? 'show' : '') }}" data-bs-parent="#sidebar">

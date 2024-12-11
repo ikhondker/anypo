@@ -9,7 +9,9 @@
 		<a class="dropdown-item" href="{{ route('payments.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payments</a>
 		<a class="dropdown-item" href="{{ route('services.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Services</a>
 		<a class="dropdown-item" href="{{ route('users.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Users</a>
-		{{-- <a class="dropdown-item" href="{{ route('invoices.generate') }}"></i><i class="align-middle me-1 fas fa-dollar-sign"></i> Generate Invoice ***</a> --}}
+
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="{{ route('accounts.all') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@if (auth()->user()->isSystem())
 			<div class="dropdown-divider"></div>

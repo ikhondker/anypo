@@ -1,12 +1,11 @@
 @extends('layouts.landlord.app')
 @section('title','Tickets')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">All Tickets</li>
+	<li class="breadcrumb-item"><a href="{{ route('tickets.index') }}" class="text-muted">All Tickets</a></li>
 @endsection
 
 
 @section('content')
-
 
 	<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Ticket</a>
 	<h1 class="h3 mb-3">All Tickets</h1>
@@ -16,7 +15,7 @@
 			<div class="row mb-3">
 				<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
 					<!-- form -->
-					<form action="{{ route('tickets.all') }}" method="GET" role="search">
+					<form action="{{ route('tickets.index') }}" method="GET" role="search">
 						<div class="input-group input-group-search">
 							<input type="text" class="form-control" id="datatables-orders-search"
 								minlength=3 name="term"
@@ -25,7 +24,6 @@
 							<button class="btn" type="submit">
 								<i data-lucide="search"></i>
 							</button>
-
 						</div>
 							@if (request('term'))
 								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
@@ -35,7 +33,7 @@
 				<div class="col-md-6 col-xl-8">
 
 					<div class="text-sm-end">
-						<a href="{{ route('tickets.all') }}" class="btn btn-primary btn-lg"
+						<a href="{{ route('tickets.index') }}" class="btn btn-primary btn-lg"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
 							<i data-lucide="refresh-cw"></i></a>
 						<a href="{{ route('tickets.export') }}" class="btn btn-light btn-lg me-2"
@@ -94,7 +92,7 @@
 							</td>
 							<td>
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 								<a href="{{ route('tickets.assign',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="Assign">Assign</a>
 								<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="text-body"
