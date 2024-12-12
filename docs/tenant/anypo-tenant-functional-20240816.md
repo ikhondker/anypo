@@ -1,4 +1,12 @@
 
+#  System Is allowed to do
+----------------------------------
+1. disable tenant 'accounts.tenant
+2. mark landlord invocie as paid without pay invoices.pwop
+3. apply lifetime discount invoices.discount
+4. 
+
+
 #  Data Access 
 ----------------------------------
 Ref: ANYPO-objects-lists-20240507.xlsx -> access

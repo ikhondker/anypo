@@ -71,7 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail
 		// common columns
 		'name', 'email', 'role', 'password', 'email_verified_at', 'remember_token', 'cell', 'title', 'address1', 'address2', 'city', 'state', 'zip', 'country',
 		'website','facebook', 'linkedin', 'avatar', 'notes', 'timezone',
-		'seeded', 'enable', 'locked', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at',
+		'backend', 'enable', 'locked', 'last_login_at', 'last_login_ip', 'updated_by', 'updated_at',
 		// landlord column
 		'account_id',
 		// Tenant column
@@ -153,9 +153,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	// usages auth()->user()->isAdmin()
 
-	public function isSeeded()
+	public function isBackend()
 	{
-		return $this->seeded;
+		return $this->backend;
 	}
 
 	public function isUser()
@@ -299,7 +299,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	*/
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('seeded', false)
+		$query->where('backend', false)
 		->where('enable', true)
 		->orderBy('name', 'asc');
 	}
@@ -346,49 +346,43 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function scopeTenant(Builder $query): void
 	{
 		$query->where('enable', true)
-			->where('seeded', false);
+			->where('backend', false);
 	}
 
 	/**
-	 * Scope a query to only tenant all non-seeded users.
+	 * Scope a query to only tenant all non-backend users.
 	*/
 	public function scopeTenantAll(Builder $query): void
 	{
-		$query->where('seeded', false);
+		$query->where('backend', false);
 	}
 
 	public function scopeTenantAdmins(Builder $query): void
 	{
 		$query->where('role', UserRoleEnum::ADMIN->value)
 			->where('enable', true)
-			->where('seeded', false)
+			->where('backend', false)
 			->orderBy('name', 'asc');
 	}
 
 
-	/**
-	 * Scope a query to only non-seeded users.
-	*/
-	// public function scopeNonSeeded(Builder $query): void
-	// {
-	// 	$query->where('seeded', false);
-	// }
+
 
 	/**
-	 * Scope a query to only non-seeded users.
+	 * Scope a query to only non-backend users.
 	*/
 	public function scopeTenantInactive(Builder $query): void
 	{
 		$query->where('enable', false)
-			->where('seeded', false);
+			->where('backend', false);
 	}
 
 	/**
-	 * Scope a query to only non-seeded users.
+	 * Scope a query to only non-backend users.
 	*/
 	public function scopeTenantAdmin(Builder $query): void
 	{
-		$query->where('seeded', false)
+		$query->where('backend', false)
 			->where('role', UserRoleEnum::ADMIN->value );
 	}
 

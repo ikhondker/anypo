@@ -69,7 +69,7 @@
 							<td><x-landlord.list.my-date :value="$tenant->created_at" /></td>
 							<td>
 								<a href="{{ route('tenants.show',$tenant->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 							</td>
 						</tr>
 					@endforeach

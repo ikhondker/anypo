@@ -37,8 +37,8 @@
 				<x-landlord.show.my-date-time value="{{ $user->email_verified_at }}" label="Email Verified At" />
 				<x-landlord.show.my-date-time	value="{{ $user->last_login_at }}" label="Last Login"/>
 				<x-landlord.show.my-text		value="{{ $user->last_login_ip }}" label="Last Login IP"/>
-				@if (auth()->user()->isSeeded())
-					<x-tenant.show.my-boolean value="{{ $user->seeded }}" label="Seeded" />
+				@if (auth()->user()->isBackend())
+					<x-tenant.show.my-boolean value="{{ $user->backend }}" label="Backend" />
 				@endif
 			</tbody>
 		</table>

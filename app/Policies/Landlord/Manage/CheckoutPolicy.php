@@ -35,7 +35,7 @@ class CheckoutPolicy
 	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**
@@ -43,7 +43,7 @@ class CheckoutPolicy
 	 */
 	public function view(User $user, Checkout $checkout): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**
@@ -88,7 +88,7 @@ class CheckoutPolicy
 
 	public function export(User $user): bool
 	{
-		return ($user->isSeeded());
+		return ($user->isBackend());
 	}
 
 

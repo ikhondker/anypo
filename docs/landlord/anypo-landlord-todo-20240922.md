@@ -3,11 +3,11 @@
 
 # 7. TODO - Open
 ====================================================================
-123. diable site form landlord
-123. search ticket on top
-123. text for repaly temaplate
+x123. disable site form landlord
+x123. search ticket on top
+123. text for reply template
 111. javascript invoice print issue in view invoice
-113. collaps top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+113. collapse top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 111. // Navbar brand $navbar-brand-padding-y: $spacer*0.875 !default; _app.scss
 111. <nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar"> p-0 m-0
 110. change invoice description of advance payment 

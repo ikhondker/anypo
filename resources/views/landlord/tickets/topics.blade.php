@@ -14,7 +14,7 @@
 			Ticket #{{ $ticket->id }} Topics
 		@endslot
 		@slot('buttons')
-				@if (auth()->user()->isSeeded())
+				@if (auth()->user()->isBackend())
 					<x-landlord.actions.ticket-actions ticketId="{{ $ticket->id }}"/>
 				@endif
 				<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Ticket</a>

@@ -42,8 +42,8 @@ class AppServiceProvider extends ServiceProvider
  		* Landlord
  		* ==================================================================================
 		*/
-		Gate::define('seeded', function(User $user) {
-			return $user->isSeeded();
+		Gate::define('backend', function(User $user) {
+			return $user->isBackend();
 		});
 
 		/**

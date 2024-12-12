@@ -193,7 +193,7 @@ class ActivityController extends Controller
 	{
 		$this->authorize('export', Activity::class);
 
-		if (auth()->user()->isSeeded()){
+		if (auth()->user()->isBackend()){
 			$data = DB::select("
 				SELECT *
 				FROM activities a

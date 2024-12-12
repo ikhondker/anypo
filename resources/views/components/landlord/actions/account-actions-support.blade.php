@@ -11,7 +11,7 @@
 		<a class="dropdown-item" href="{{ route('users.all',$account->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Users</a>
 
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('accounts.all') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
+		<a class="dropdown-item" href="{{ route('accounts.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
 		@if (auth()->user()->isSystem())
 			<div class="dropdown-divider"></div>

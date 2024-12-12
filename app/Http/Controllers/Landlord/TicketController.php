@@ -81,7 +81,7 @@ class TicketController extends Controller
 			->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
 
-		if (auth()->user()->isSeeded()) {
+		if (auth()->user()->isBackend()) {
 			$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(10);
 			return view('landlord.tickets.all', compact('tickets'));
 		} else {
@@ -123,7 +123,7 @@ class TicketController extends Controller
 		$this->authorize('create',Ticket::class);
 
 		// if support create a Ticke on behalf of a User
-		if ( auth()->user()->isSeeded() ){
+		if ( auth()->user()->isBackend() ){
 			$owner 		= User::where('id', $request->input('owner_id'))->first();
 			$owner_id	= $owner->id;
 			$account_id	= $owner->account_id;
@@ -132,7 +132,7 @@ class TicketController extends Controller
 			$account_id	= auth()->user()->account_id;
 		}
 		Log::debug('landlord.TicketController.store $request->input(owner_id) = ' . $request->input('owner_id'));
-		Log::debug('landlord.TicketController.store isSeeded= ' . auth()->user()->isSeeded());
+		Log::debug('landlord.TicketController.store isSeeded= ' . auth()->user()->isBackend());
 		Log::debug('landlord.TicketController.store owner_id= ' . $owner_id);
 		Log::debug('landlord.TicketController.store account_id= ' . $account_id);
 
@@ -173,7 +173,7 @@ class TicketController extends Controller
 		$mgr = User::where('id', config('bo.SUPPORT_MGR_ID'))->first();
 		$mgr->notify(new TicketCreated($mgr, $ticket));
 
-		if ( auth()->user()->isSeeded() ){
+		if ( auth()->user()->isBackend() ){
 			return redirect()->route('tickets.all')->with('success', 'A New Ticket #' . $ticket->id . ' is created. We will come back to you soon. Thanks.');
 		} else {
 			return redirect()->route('tickets.index')->with('success', 'A New Ticket #' . $ticket->id . ' is created. We will come back to you soon. Thanks.');
@@ -349,7 +349,7 @@ class TicketController extends Controller
 	{
 		$this->authorize('export', Ticket::class);
 
-		if (auth()->user()->isSeeded()){
+		if (auth()->user()->isBackend()){
 			$data = DB::select("
 				SELECT t.id, t.title subject, t.content, t.ticket_date, u.name owner, a.name account, t.status_code, t.created_at
 				FROM tickets as t

@@ -33,7 +33,7 @@ class CountryPolicy
 	 */
 	public function view(User $user, Country $country): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**
@@ -41,7 +41,7 @@ class CountryPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**

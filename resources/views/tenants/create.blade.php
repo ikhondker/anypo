@@ -62,7 +62,7 @@
 							</div>
 						</div>
 						<hr class="my-4">
-						<button class="w-100 btn btn-primary btn-lg" onclick="return confirm('Do you really want to create this new Tenant? ')" type="submit"><i class="bi bi-cart-check"></i> Create Tenant</button>
+						<button class="w-100 btn btn-primary btn-lg" onclick="return confirm('Do you really want to create this new Tenant? ')" type="submit"><i data-lucide="shopping-cart"></i> Create Tenant</button>
 					</form>
 				</div>
 			</div>
@@ -110,7 +110,7 @@
 							<!-- End Row -->
 						</div>
 						<div class="d-grid">
-							{{-- <a class="btn btn-primary btn-lg" href="../demo-shop/checkout.html"><i class="bi bi-cart-check"></i> Checkout</a> --}}
+							{{-- <a class="btn btn-primary btn-lg" href="../demo-shop/checkout.html"><i data-lucide="shopping-cart"></i> Checkout</a> --}}
 						</div>
 					</form>
 				</div>

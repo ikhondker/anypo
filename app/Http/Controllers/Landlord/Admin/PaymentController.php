@@ -83,7 +83,7 @@ class PaymentController extends Controller
 			$payments = Payment::with('invoice')->with('account')->with('status')->orderBy('id', 'desc')->paginate(10);
 		} else {
 			$payments = Payment::with('invoice')->with('account')->with('status')
-				->where('account_id',$account->id)	
+				->where('account_id',$account->id)
 				->orderBy('id', 'desc')->paginate(10);
 		}
 
@@ -176,7 +176,7 @@ class PaymentController extends Controller
 	{
 		$this->authorize('export', Payment::class);
 
-		if (auth()->user()->isSeeded()){
+		if (auth()->user()->isBackend()){
 			$data = DB::select("
 				SELECT p.id, p.summary, p.pay_date, i.invoice_no, a.name account_name, p.amount, p.currency
 				FROM payments p, invoices i, accounts a

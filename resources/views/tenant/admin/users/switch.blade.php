@@ -51,7 +51,7 @@
 								<td>
 									<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
 									<a href="{{ route('users.show',$user->id) }}"><strong>{{ $user->name }}</strong></a>
-									@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value) && $user->seeded )
+									@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value) && $user->backend )
 										<span class="text-danger"> (*)</span>
 									@endif
 								</td>
@@ -72,7 +72,7 @@
 
 									@else
 										@can('impersonate', $user)
-											@if (! $user->isSeeded() )
+											@if (! $user->isBackend() )
 												<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 												data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i> Switch User</a>
 											@else

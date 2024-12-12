@@ -88,23 +88,11 @@ class AccountController extends Controller
 	{
 		$this->authorize('viewAll', Account::class);
 		$accounts = Account::with('status')->with('owner')->orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.accounts.all', compact('accounts'));
+		return view('landlord.accounts.index', compact('accounts'));
 
 		//$this->authorize('viewAll', Account::class);
 		//$accounts = Account::with('status')->with('owner')->byAccount()->orderBy('id', 'DESC')->paginate(10);
 		//return view('landlord.accounts.index', compact('accounts'));
-	}
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function xxall()
-	{
-		$this->authorize('viewAll', Account::class);
-		$accounts = Account::with('status')->with('owner')->orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.accounts.all', compact('accounts'));
 	}
 
 	/**
@@ -308,7 +296,7 @@ class AccountController extends Controller
 	{
 		$this->authorize('export', Account::class);
 		//$data = Size::all()->toArray();
-		if (auth()->user()->isSeeded()) {
+		if (auth()->user()->isBackend()) {
 			$data = DB::select("SELECT id, site, name, currency, tagline, address1, address2, city, state, zip, country, website, facebook, linkedin, email, cell, owner_id, primary_product_id, base_mnth, base_user, base_gb, base_price, mnth, user, gb, price, start_date, end_date, last_bill_from_date, last_bill_to_date, bill_generated, bill_gen_date, expired_at, count_user, count_product, used_gb, maintenance, status_code, logo, created_by, created_at, updated_by, updated_at, FROM accounts");
 		} elseif (auth()->user()->isAdmin()) {
 			$data = DB::select("SELECT id, site, name, currency, tagline, address1, address2, city, state, zip, country, website, facebook, linkedin, email, cell,

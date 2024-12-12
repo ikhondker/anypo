@@ -45,7 +45,7 @@
 						</td>
 					</tr>
 
-					@if (auth()->user()->isSeeded())
+					@if (auth()->user()->isBackend())
 
 						<tr>
 							<th>Status :</th>

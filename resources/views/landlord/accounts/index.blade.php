@@ -14,7 +14,7 @@
 		<div class="row mb-3">
 			<div class="col-md-6 col-xl-4 mb-2 mb-md-0">
 				<!-- form -->
-				<form action="{{ route('accounts.all') }}" method="GET" role="search">
+				<form action="{{ route('accounts.index') }}" method="GET" role="search">
 					<div class="input-group input-group-search">
 						<input type="text" class="form-control" id="datatables-account-search"
 							minlength=3 name="term"
@@ -34,7 +34,7 @@
 			<div class="col-md-6 col-xl-8">
 
 				<div class="text-sm-end">
-					<a href="{{ route('accounts.all') }}" class="btn btn-primary btn-lg"
+					<a href="{{ route('accounts.index') }}" class="btn btn-primary btn-lg"
 						data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
 						<i data-lucide="refresh-cw"></i></a>
 					<a href="{{ route('accounts.export') }}" class="btn btn-light btn-lg me-2"
@@ -60,6 +60,7 @@
 					<th>Next Inv No</th>
 
 					<th>Actions</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -96,6 +97,7 @@
 							<a href="{{ route('accounts.show',$account->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 								data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 						</td>
+
 					</tr>
 				@endforeach
 			</tbody>

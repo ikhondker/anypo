@@ -27,7 +27,7 @@
 
 				<table class="table table-sm my-2">
 					<tbody>
-						@if ( auth()->user()->isSeeded() )
+						@if ( auth()->user()->isBackend() )
 							<tr>
 								<th>For User :</th>
 								<td>

@@ -17,7 +17,7 @@ class ConfigPolicy
 		}
 		return null;
 	}
-	
+
 
 	/**
 	 * Determine whether the user can view any models.
@@ -32,7 +32,7 @@ class ConfigPolicy
 	 */
 	public function view(User $user, Config $config): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**

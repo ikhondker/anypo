@@ -35,14 +35,14 @@ class ServicePolicy
 	 */
 	public function view(User $user, Service $service): bool
 	{
-		//return (($user->account_id == $service->account_id) && $user->isAdmin()) || $user->isSeeded();
-		return $user->isSeeded();
+		//return (($user->account_id == $service->account_id) && $user->isAdmin()) || $user->isBackend();
+		return $user->isBackend();
 	}
 
 	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 
@@ -67,7 +67,7 @@ class ServicePolicy
 	 */
 	public function delete(User $user, Service $service): bool
 	{
-		return (($user->account_id == $service->account_id) && ($user->isAdmin()) || $user->isSeeded());
+		return (($user->account_id == $service->account_id) && ($user->isAdmin()) || $user->isBackend());
 	}
 
 	/**
@@ -88,6 +88,6 @@ class ServicePolicy
 
 	public function export(User $user): bool
 	{
-		return ($user->isSeeded());
+		return ($user->isBackend());
 	}
 }

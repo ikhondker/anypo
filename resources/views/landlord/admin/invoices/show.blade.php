@@ -12,7 +12,7 @@
 			Invoice #{{ $invoice->invoice_no }}
 		@endslot
 		@slot('buttons')
-				@if (auth()->user()->isSeeded())
+				@if (auth()->user()->isBackend())
 					<x-landlord.actions.invoice-actions-support invoiceId="{{ $invoice->id }}"/>
 				@endif
 				<a href="{{ route('invoices.index') }}" class="btn btn-primary float-end me-1"><i data-lucide="database"></i> View all</a>

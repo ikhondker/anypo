@@ -7,7 +7,7 @@
 
 			<div class="card-header d-flex justify-content-between align-items-center border-bottom">
 				<h5 class="card-header-title">Create Template</h5>
-				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i class="bi bi-save"></i> Save</button>
+				<button class="btn btn-primary btn-sm" type="submit" form="myform"><i data-lucide="save"></i> Save</button>
 			</div>
 
 			<!-- Body -->

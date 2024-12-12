@@ -2,7 +2,7 @@
 @section('title','Account')
 
 @section('breadcrumb')
-	@if (auth()->user()->isSeeded())
+	@if (auth()->user()->isBackend())
 		<li class="breadcrumb-item"><a href="{{ route('accounts.index') }}" class="text-muted">Accounts</a></li>
 	@endif
 	<li class="breadcrumb-item active">{{ $account->name }}</li>
@@ -15,7 +15,7 @@
 			Billing Account Overview
 		@endslot
 		@slot('buttons')
-				@if (auth()->user()->isSeeded())
+				@if (auth()->user()->isBackend())
 					<x-landlord.actions.account-actions-support accountId="{{ $account->id }}"/>
 				@else
 					<x-landlord.actions.account-actions accountId="{{ $account->id }}"/>
@@ -117,7 +117,7 @@
 	</div>
 
 
-	@if (auth()->user()->isSeeded())
+	@if (auth()->user()->isBackend())
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
@@ -137,6 +137,10 @@
 						</tr>
 						<x-landlord.show.my-enable :value="$account->tenant_enable" />
 						<x-landlord.show.my-badge :value="$account->rank" />
+                        <x-landlord.show.my-badge :value="$account->tenant_count_user" />
+                        <x-landlord.show.my-badge :value="$account->tenant_used_gb" />
+                        <x-landlord.show.my-badge :value="$account->tenant_count_pr" />
+                        <x-landlord.show.my-badge :value="$account->tenant_count_po" />
 					</tbody>
 				</table>
 			</div>

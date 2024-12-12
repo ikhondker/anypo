@@ -132,7 +132,7 @@ class UserController extends Controller
 		//user settings
 		//$request->merge(['account_id' => auth()->user()->account_id]);
 		$request->merge(['enable'	=> true]);
-		$request->merge(['seeded'	=> false]);
+		$request->merge(['backend'	=> false]);
 
 		// if($request->has('admin')){
 		// // Checkbox checked
@@ -290,7 +290,7 @@ class UserController extends Controller
 	{
 		$this->authorize('export', User::class);
 
-		if ( auth()->user()->seeded) {
+		if ( auth()->user()->isBackend()) {
 			$data = DB::select("
 			SELECT u.id, u.name, email, dp.name department,d.name designation, cell, role, IF(u.enable, 'Yes', 'No') as Enable
 				FROM users u, depts dp, designations d
@@ -303,7 +303,7 @@ class UserController extends Controller
 				FROM users u, depts dp, designations d
 				WHERE u.dept_id=dp.id
 				AND u.designation_id=d.id
-				AND u.seeded = 0
+				AND u.backend = 0
 				");
 		}
 		$dataArray = json_decode(json_encode($data), true);

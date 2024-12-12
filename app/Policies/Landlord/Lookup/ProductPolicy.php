@@ -33,7 +33,7 @@ class ProductPolicy
 	 */
 	public function view(User $user, Product $product): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**
@@ -49,7 +49,7 @@ class ProductPolicy
 	 */
 	public function update(User $user, Product $product): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**
@@ -57,7 +57,7 @@ class ProductPolicy
 	 */
 	public function delete(User $user, Product $product): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**

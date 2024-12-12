@@ -146,7 +146,7 @@
 
 			<div class="row">
 				<div class="mx-auto col-lg-10 col-xl-8">
-					<h1 class="h3">Get Started TODO1s <i class="bi bi-eye" style="font-size: 1.3rem;"></i></h1>
+					<h1 class="h3">Get Started TODO1s<i data-lucide="eye"></i></h1>
 					<hr class="my-4">
 					<div id="introduction" class="mb-5">
 						<h3>Introduction</h3>

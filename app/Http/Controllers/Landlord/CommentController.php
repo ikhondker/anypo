@@ -113,7 +113,7 @@ class CommentController extends Controller
 			'comment_date'		=> date('Y-m-d H:i:s'),
 			//'ticket_number'	=> Str::uuid()->toString(),
 			'owner_id'			=> auth()->user()->id ,
-			'by_back_office'		=> (auth()->user()->isSeeded()? true : false ),
+			'by_back_office'		=> (auth()->user()->isBackend()? true : false ),
 			'ip'				=> Request::ip()
 		]);
 
@@ -144,7 +144,7 @@ class CommentController extends Controller
 		}
 
 		// change ticket status PENDING if customer is updating
-		if (auth()->user()->isSeeded()) {
+		if (auth()->user()->isBackend()) {
 			// change ticket status if back office is updating
 			$ticket = Ticket::where('id', $request->input('ticket_id') )->first();
 			$status_code = $request->input('status_code');

@@ -30,7 +30,7 @@ class TicketComments extends Component
 		$this->id = $id;
 		$this->ENTITY = 'COMMENT';
 		$this->ticket = Ticket::where('id', $id)->first();
-		if (auth()->user()->isSeeded()) {
+		if (auth()->user()->isBackend()) {
 			$this->comments = Comment::with('owner')->where('ticket_id', $id)->orderBy('id', 'desc')->get()->all();
 		} else {
 			// Hide internal comments form user

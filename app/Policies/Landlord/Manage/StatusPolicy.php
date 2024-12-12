@@ -18,7 +18,7 @@ class StatusPolicy
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -32,7 +32,7 @@ class StatusPolicy
 	 */
 	public function view(User $user, Status $status): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**

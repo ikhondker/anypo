@@ -89,7 +89,7 @@
 									secured with ssl certificate</span>
 								<hr class="my-4">
 
-								<button class="w-100 btn btn-primary btn-lg" type="submit"><i class="bi bi-cart-check"></i> Continue to	Checkout</button>
+								<button class="w-100 btn btn-primary btn-lg" type="submit"><i data-lucide="shopping-cart"></i> Continue to	Checkout</button>
 
 							</form>
 						</div>
@@ -131,7 +131,7 @@
 									<!-- End Row -->
 								</div>
 								<div class="d-grid">
-									{{-- <a class="btn btn-primary btn-lg" href="../demo-shop/checkout.html"><i class="bi bi-cart-check"></i> Checkout</a> --}}
+									{{-- <a class="btn btn-primary btn-lg" href="../demo-shop/checkout.html"><i data-lucide="shopping-cart"></i> Checkout</a> --}}
 								</div>
 							</form>
 						</div>

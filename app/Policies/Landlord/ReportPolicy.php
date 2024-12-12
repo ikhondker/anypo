@@ -38,7 +38,7 @@ class ReportPolicy
 	 */
 	public function view(User $user, Report $report): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**

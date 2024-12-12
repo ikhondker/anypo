@@ -39,7 +39,7 @@ class Activity extends Model
 	{
 		//$query->where('user_id','>=', 1003);
 		$query->whereHas('user', function ($q) {
-				$q->where('seeded', false);
+				$q->where('backend', false);
 		});
 
 	}

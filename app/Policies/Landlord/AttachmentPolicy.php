@@ -37,7 +37,7 @@ class AttachmentPolicy
 	 */
 	public function view(User $user, Attachment $attachment): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**
@@ -53,7 +53,7 @@ class AttachmentPolicy
 	 */
 	public function update(User $user, Attachment $attachment): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**

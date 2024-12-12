@@ -43,7 +43,7 @@
 
 						<small class="text-muted">
 							@if ($comment->by_back_office)
-								@if (auth()->user()->isSeeded())
+								@if (auth()->user()->isBackend())
 									{{ $comment->owner->name }}
 								@else
 									Support Engineer

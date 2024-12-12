@@ -7,7 +7,7 @@
 		@foreach ($comments as $comment)
 			<div class="d-flex align-items-start">
 				@if ($comment->by_back_office)
-					@if (auth()->user()->isSeeded())
+					@if (auth()->user()->isBackend())
 						<img src="{{ Storage::disk('s3l')->url('avatar/'.$comment->owner->avatar) }}" width="56" height="56" class="rounded-circle me-3" alt="{{ $comment->owner->name }}" title="{{ $comment->owner->name }}">
 					@else
 						<img src="{{ Storage::disk('s3l')->url('avatar/avatarb.png') }}" width="56" height="56" class="rounded-circle me-3" alt="Support Engineer" title="Support Engineer">
@@ -26,7 +26,7 @@
 					<p class="mb-2">
 						<strong>
 							@if ($comment->by_back_office)
-								@if (auth()->user()->isSeeded())
+								@if (auth()->user()->isBackend())
 									{{ $comment->owner->name }}
 								@else
 									Support Engineer

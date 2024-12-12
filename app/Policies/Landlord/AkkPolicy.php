@@ -56,7 +56,7 @@ class AkkPolicy
 	 */
 	public function addon(User $user): bool
 	{
-		return ($user->isAdmin() || $user->isSeeded());
+		return ($user->isAdmin() || $user->isBackend());
 	}
 
 	/**
@@ -64,7 +64,7 @@ class AkkPolicy
 	 */
 	public function advance(User $user): bool
 	{
-		return ($user->isAdmin() || $user->isSeeded());
+		return ($user->isAdmin() || $user->isBackend());
 	}
 
 	/**

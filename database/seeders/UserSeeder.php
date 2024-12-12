@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 				'enable'			=> true,
-				'seeded'			=> true,
+				'backend'			=> true,
 				'avatar'			=> 'system.png',
 			],
 			[
@@ -74,7 +74,7 @@ class UserSeeder extends Seeder
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 				'enable'			=> true,
-				'seeded'			=> true,
+				'backend'			=> true,
 				'avatar'			=> 'support.png',
 			],
 			[
@@ -95,7 +95,7 @@ class UserSeeder extends Seeder
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
 				'enable'			=> true,
-				'seeded'			=> true,
+				'backend'			=> true,
 				'avatar'			=> 'support.png',
 			],
 		];
@@ -319,10 +319,10 @@ class UserSeeder extends Seeder
 		User::insert($usersDemo);
 
 
-		// Mask as seeded user and Activate
-		// User::where('id', 1001)->update(['enable' => true,'seeded' => false]);	// SYSTEM must make it true
-		// User::where('id', 1002)->update(['enable' => true,'seeded' => true]);
-		// User::where('id', 1003)->update(['enable' => true,'seeded' => false]);	// ADMIN must make it true
+		// Mask as backend user and Activate
+		// User::where('id', 1001)->update(['enable' => true,'backend' => false]);	// SYSTEM must make it true
+		// User::where('id', 1002)->update(['enable' => true,'backend' => true]);
+		// User::where('id', 1003)->update(['enable' => true,'backend' => false]);	// ADMIN must make it true
 
 		// Mark as enable for testing
 		// User::where('id', 1004)->update(['enable' => true]);

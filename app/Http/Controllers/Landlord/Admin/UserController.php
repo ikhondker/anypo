@@ -312,7 +312,7 @@ class UserController extends Controller
 	{
 		$this->authorize('export', User::class);
 
-		if (auth()->user()->isSeeded()){
+		if (auth()->user()->isBackend()){
 			$data = DB::select("SELECT id, name, email, cell, role,account_id,IF(enable, 'Yes', 'No') as Enable
 				FROM users");
 		} else if (auth()->user()->isAdmin()){

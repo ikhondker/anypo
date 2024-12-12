@@ -363,7 +363,7 @@ class InvoiceController extends Controller
 	{
 		$this->authorize('export', Invoice::class);
 
-		if (auth()->user()->isSeeded()){
+		if (auth()->user()->isBackend()){
 			$data = DB::select("
 				SELECT i.invoice_no, i.summary, i.invoice_type, a.name account_name, i.invoice_date,
 				i.from_date, i.to_date, i.currency, i.amount

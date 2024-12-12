@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
+				'backend'			=> true,
 			],
 			[
 				'id'				=> Str::uuid(),
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
+				'backend'			=> true,
 			],
 			[
 				'id'				=> Str::uuid(),
@@ -83,7 +83,7 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
+				'backend'			=> true,
 			],
 			[
 				'id'				=> Str::uuid(),
@@ -101,7 +101,7 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
+				'backend'			=> true,
 			],
 			[
 				'id'				=> Str::uuid(),
@@ -119,7 +119,7 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
+				'backend'			=> true,
 			],
 			[
 				'id'				=> Str::uuid(),
@@ -137,7 +137,7 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
+				'backend'			=> true,
 			],
 			[
 				'id'				=> Str::uuid(),
@@ -155,7 +155,7 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
+				'backend'			=> true,
 			],
 			[
 				'id'				=> Str::uuid(),
@@ -173,7 +173,7 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
+				'backend'			=> true,
 			],
 			[
 				'id'				=> Str::uuid(),
@@ -191,7 +191,7 @@ class UserSeeder extends Seeder
 				'zip'				=> $faker->postcode,
 				'facebook'			=> $faker->url,
 				'linkedin'			=> $faker->url,
-				'seeded'			=> true,
+				'backend'			=> true,
 			],
 		];
 

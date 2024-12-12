@@ -55,7 +55,7 @@ class Activity extends Model
 		// TODOP2 CHECK
 		$query->where('account_id', auth()->user()->account_id)
 			->whereHas('user', function ($q) {
-				$q->where('seeded', false);
+				$q->where('backend', false);
 		});
 
 	}

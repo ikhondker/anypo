@@ -2,7 +2,7 @@
 # 3. TODO 
 ====================================================================
 1. bug report in both landlord and tenant
-remove <i class="bi bi-cart-check"></i>
+111. xremove <i class="bi bi-cart-check"></i>
 111. review TODO and P2
 66. search and remove //console.log
 1. .gitignore file modify
@@ -18,7 +18,7 @@ remove <i class="bi bi-cart-check"></i>
 17.	Facebook boost post design
 18.	FAQ landlord 
 19.	FAQ tenant
-20.	good product g2, captive listing
+20.	list in good product g2, captive listing
 21.	chatbot
 22.	screenshots for site and FAQ
 24.	check max length  for float and text(255)

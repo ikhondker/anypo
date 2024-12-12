@@ -36,7 +36,7 @@ class TicketPolicy
 	// Only back office users can view all tickets
 	public function viewAll(User $user): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**
@@ -50,7 +50,7 @@ class TicketPolicy
 			return ($user->id == $ticket->owner_id);
 		} elseif ($user->isAdmin() ) {
 			return ($user->account_id == $ticket->account_id);
-		} elseif ($user->isSeeded()) {
+		} elseif ($user->isBackend()) {
 			return (true);
 		} else {
 			return (false);
@@ -68,7 +68,7 @@ class TicketPolicy
 			return ($user->id == $ticket->owner_id);
 		} elseif ($user->isAdmin() ) {
 			return ($user->account_id == $ticket->account_id);
-		} elseif ($user->isSeeded()) {
+		} elseif ($user->isBackend()) {
 			return (true);
 		} else {
 			return (false);
@@ -91,8 +91,8 @@ class TicketPolicy
 	public function update(User $user, Ticket $ticket): bool
 	{
 		// only back office user can edit non closed ticket
-		return ($user->isSeeded() && ($ticket->status_code <> TicketStatusEnum::CLOSED->value));
-		//return ($user->isSeeded() && ! $ticket->isClosed());
+		return ($user->isBackend() && ($ticket->status_code <> TicketStatusEnum::CLOSED->value));
+		//return ($user->isBackend() && ! $ticket->isClosed());
 		// anyone can close a ticket
 		//return (! $ticket->isClosed());
 	}
@@ -115,8 +115,8 @@ class TicketPolicy
 	public function assign(User $user, Ticket $ticket): bool
 	{
 		// only back office user can assign non closed ticket
-		//return ($user->isSeeded() && ($ticket->status_code <> TicketStatusEnum::CLOSED->value));
-		return ($user->isSeeded() && ! $ticket->isClosed());
+		//return ($user->isBackend() && ($ticket->status_code <> TicketStatusEnum::CLOSED->value));
+		return ($user->isBackend() && ! $ticket->isClosed());
 	}
 
 	/**
@@ -125,7 +125,7 @@ class TicketPolicy
 	public function addTopic(User $user, Ticket $ticket): bool
 	{
 		// only back office user can add topics to ticket
-		return ($user->isSeeded());
+		return ($user->isBackend());
 	}
 
 	public function export(User $user): bool

@@ -35,7 +35,7 @@
 
 							<x-landlord.show.my-text		value="{{ $activity->user->name }}" label="Performer"/>
 							<x-landlord.show.my-badge		value="{{ $activity->role }}" label="Role"/>
-							@if (auth()->user()->isSeeded())
+							@if (auth()->user()->isBackend())
 								<x-landlord.show.my-text		value="{{ $activity->object_type }}" label="Type"/>
 								<x-landlord.show.my-text		value="{{ $activity->ip }}" label="IP"/>
 								<x-landlord.show.my-text		value="{{ $activity->URL}}" label="URL"/>

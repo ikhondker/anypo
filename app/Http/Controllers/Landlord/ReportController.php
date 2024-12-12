@@ -105,7 +105,7 @@ class ReportController extends Controller
 
 		$pdf = PDF::loadView('landlord.reports.formats.invoice', $data);
 			// ->setOption('fontDir', public_path('/fonts/lato'));
-	
+
 		Watermark::set($pdf, $invoice->status->name,'P');
 
 		return $pdf->stream('Invoice'.$invoice->id.'.pdf');
@@ -119,7 +119,7 @@ class ReportController extends Controller
 		$this->authorize('pdfPayment', $payment);
 
 		$config = Config::first();
-		
+
 		$invoice = Invoice::where('id', $payment->invoice_id)->firstOrFail();
 		$account = Account::where('id', $payment->account_id)->firstOrFail();
 		$data = [
@@ -133,7 +133,7 @@ class ReportController extends Controller
 
 		$pdf = PDF::loadView('landlord.reports.formats.receipt', $data);
 
-	
+
 		Watermark::set($pdf, $payment->status->name,'P');
 
 		return $pdf->stream('receipt.pdf');
@@ -151,9 +151,9 @@ class ReportController extends Controller
 		$ticket = Ticket::where('id', $ticket->id)->firstOrFail();
 		$owner = User::where('id', $ticket->owner_id)->firstOrFail();
 		//$account = Account::where('id', $ticket->account_id)->firstOrFail();
-		
-		
-		if (auth()->user()->isSeeded()) {
+
+
+		if (auth()->user()->isBackend()) {
 			$comments = Comment::with('owner')->where('ticket_id', $ticket->id)->orderBy('id', 'desc')->get()->all();
 		} else {
 			// Hide internal comments form user
@@ -161,7 +161,7 @@ class ReportController extends Controller
 		}
 
 		$data = [
-		
+
 			'id' 		=> $ticket->id,
 			'date' 		=> date('m/d/Y'),
 			'config' 	=> $config,

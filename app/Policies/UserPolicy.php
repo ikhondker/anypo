@@ -31,24 +31,24 @@ class UserPolicy
 		if (tenant('id') == ''){
 			/*
 			|-----------------------------------------------------------------------------
-			| Landlord																	 + 
+			| Landlord																	 +
 			|-----------------------------------------------------------------------------
 			*/
 			return $user->isAdmin();
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
-			| Tenant																	 + 
+			| Tenant																	 +
 			|-----------------------------------------------------------------------------
 			*/
-			return ( $user->isAdmin() || $user->isSeeded() );
+			return ( $user->isAdmin() || $user->isBackend() );
 		}
 	}
 
 	// Only back office users can view all accounts
 	public function viewAll(User $user): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 
@@ -61,7 +61,7 @@ class UserPolicy
 		if (tenant('id') == ''){
 			/*
 			|-----------------------------------------------------------------------------
-			| Landlord																	 + 
+			| Landlord																	 +
 			|-----------------------------------------------------------------------------
 			*/
 			// owner, account admin and back office users can view ticket
@@ -69,7 +69,7 @@ class UserPolicy
 				return ($user->id == $model->id);
 			} elseif ($user->isAdmin() ) {
 				return ( $user->account_id == $model->account_id);
-			} elseif ($user->isSeeded()) {
+			} elseif ($user->isBackend()) {
 					return (true);
 			} else {
 				return ( false );
@@ -78,13 +78,13 @@ class UserPolicy
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
-			| Tenant																	 + 
+			| Tenant																	 +
 			|-----------------------------------------------------------------------------
 			*/
-			// only back-office can see/edit/ seeded users view
-			if ($model->seeded) {
-				return $user->isSeeded();
-			} else if ($user->isAdmin() & (! $model->seeded) ) {
+			// only back-office can see/edit/ backend users view
+			if ($model->backend) {
+				return $user->isBackend();
+			} else if ($user->isAdmin() & (! $model->backend) ) {
 				return ( true );
 			} else {
 				// allow to change only own password
@@ -102,19 +102,19 @@ class UserPolicy
 		if (tenant('id') == ''){
 			/*
 			|-----------------------------------------------------------------------------
-			| Landlord																	 + 
+			| Landlord																	 +
 			|-----------------------------------------------------------------------------
 			*/
 			// Admin role user only
-			return ( $user->isAdmin() || $user->isSeeded() );
+			return ( $user->isAdmin() || $user->isBackend() );
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
-			| Tenant																	 + 
+			| Tenant																	 +
 			|-----------------------------------------------------------------------------
 			*/
 			 // Admin role user only
-			 return ( $user->isAdmin() || $user->isSeeded() );
+			 return ( $user->isAdmin() || $user->isBackend() );
 		}
 	}
 
@@ -127,7 +127,7 @@ class UserPolicy
 		if (tenant('id') == ''){
 			/*
 			|-----------------------------------------------------------------------------
-			| Landlord																	 + 
+			| Landlord																	 +
 			|-----------------------------------------------------------------------------
 			*/
 			// owner, account admin and back office users can view ticket
@@ -136,7 +136,7 @@ class UserPolicy
 				return ($user->id == $model->id);
 			} elseif ($user->isAdmin() & ($user->account_id == $model->account_id) ) {
 				return ( true );
-			} elseif ($user->isSeeded()) {
+			} elseif ($user->isBackend()) {
 					return ( true);
 			} else {
 				return ( false );
@@ -144,51 +144,44 @@ class UserPolicy
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
-			| Tenant																	 + 
+			| Tenant																	 +
 			|-----------------------------------------------------------------------------
 			*/
-			// only back-office can see/edit/ seeded users view
-			if ($model->seeded) {
-				return $user->isSeeded();
-			} else if ($user->isAdmin() & (! $model->seeded) ) {
+			// only back-office can see/edit/ backend users view
+			if ($model->backend) {
+				return $user->isBackend();
+			} else if ($user->isAdmin() & (! $model->backend) ) {
 				return ( true );
 			} else {
 				// allow to change only own password
 				return ( $user->id === $model->id );
 			}
 
-			// only back-office can edit seeded users
-			// if ($model->seeded) {
-			// 	return $user->isSupport();
-			// } else {
-			// 	// admin can edit all and others can edit only own
-			// 	return ( $user->isAdmin() ||$user->isSupport() || ($user->id === $model->id) );
-			// }
+
 		}
 
 	}
 
-	
+
 
 	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function delete(User $user, User $model): bool
 	{
-		
-		
+
 		// only back-office can disable seeded users
 		if (tenant('id') == ''){
 			/*
 			|-----------------------------------------------------------------------------
-			| Landlord																	 + 
+			| Landlord																	 +
 			|-----------------------------------------------------------------------------
 			*/
 			// Admin user for current account users only
 			// stop deactivating himself
 			if ($user->isAdmin() && ($user->account_id == $model->account_id)) {
 				return ( $user->id <> $model->id );
-			} elseif ($user->isSeeded() && ($user->id <> $model->id) ) {
+			} elseif ($user->isBackend() && ($user->id <> $model->id) ) {
 					return ( true);
 			} else {
 				return ( false );
@@ -196,16 +189,16 @@ class UserPolicy
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
-			| Tenant																	 + 
+			| Tenant																	 +
 			|-----------------------------------------------------------------------------
 			*/
-			
+
 		 	if ($user->id == $model->id) {
 				// prevent all self deactivation
 				return ( false ) ;
-			} elseif ($model->seeded) {
-				// only back-office can edit seeded users
-				return $user->isSeeded();
+			} elseif ($model->backend) {
+				// only back-office can edit backend users
+				return $user->isBackend();
 			} else {
 				return $user->isAdmin();
 			}
@@ -226,7 +219,7 @@ class UserPolicy
 		if (tenant('id') == ''){
 			/*
 			|-----------------------------------------------------------------------------
-			| Landlord																	 + 
+			| Landlord																	 +
 			|-----------------------------------------------------------------------------
 			*/
 			if ($user->role->value == UserRoleEnum::USER->value) {
@@ -234,7 +227,7 @@ class UserPolicy
 				return ($user->id == $model->id);
 			} elseif ($user->isAdmin() ) {
 				return ( $user->account_id == $model->account_id);
-			} elseif ($user->isSeeded()) {
+			} elseif ($user->isBackend()) {
 					return ( true);
 			} else {
 				return ( false );
@@ -242,13 +235,13 @@ class UserPolicy
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
-			| Tenant																	 + 
+			| Tenant																	 +
 			|-----------------------------------------------------------------------------
 			*/
 			// only back-office can edit seeded users
-			if ($model->seeded) {
-				return $user->isSeeded();
-			} else if ($user->isAdmin() & (! $model->seeded) ) {
+			if ($model->backend) {
+				return $user->isBackend();
+			} else if ($user->isAdmin() & (! $model->backend) ) {
 				return ( true );
 			} else {
 				// allow to change only own password
@@ -281,17 +274,17 @@ class UserPolicy
 		if (tenant('id') == ''){
 			/*
 			|-----------------------------------------------------------------------------
-			| Landlord																	 + 
+			| Landlord																	 +
 			|-----------------------------------------------------------------------------
 			*/
-			return $user->isSeeded();
+			return $user->isBackend();
 		} else {
 			/*
 			|-----------------------------------------------------------------------------
-			| Tenant																	 + 
+			| Tenant																	 +
 			|-----------------------------------------------------------------------------
 			*/
-			return $user->isSeeded();
+			return $user->isBackend();
 		}
 
 	}
@@ -311,7 +304,7 @@ class UserPolicy
 
 	public function export(User $user): bool
 	{
-		return ($user->isAdmin() || $user->isSeeded());
+		return ($user->isAdmin() || $user->isBackend());
 	}
 
 }

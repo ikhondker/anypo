@@ -54,7 +54,7 @@
 				<ul class="sidebar-nav">
 
 					<!-- ========== SIDEBAR ========== -->
-					@if(auth()->user()->isSeeded())
+					@if(auth()->user()->isBackend())
 						@include('landlord.includes.sidebar-back-office')
 					@else
 						@include('landlord.includes.sidebar-front-office')

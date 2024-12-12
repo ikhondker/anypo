@@ -35,7 +35,7 @@ class DomainPolicy
 	 */
 	public function view(User $user, Domain $domain): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**

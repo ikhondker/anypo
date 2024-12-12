@@ -33,7 +33,7 @@ class AccountPolicy
 	// Only back office users can view all accounts
 	public function viewAll(User $user): bool
 	{
-		return $user->isSeeded();
+		return $user->isBackend();
 	}
 
 	/**
@@ -41,7 +41,7 @@ class AccountPolicy
 	 */
 	public function view(User $user, Account $account): bool
 	{
-		return (($user->account_id == $account->id) && $user->isAdmin()) || $user->isSeeded();
+		return (($user->account_id == $account->id) && $user->isAdmin()) || $user->isBackend();
 	}
 
 	/**
@@ -58,7 +58,7 @@ class AccountPolicy
 	public function update(User $user, Account $account): bool
 	{
 		// editable to its admin user only
-		return ((($user->account_id == $account->id) && $user->isAdmin()) || $user->isSeeded());
+		return ((($user->account_id == $account->id) && $user->isAdmin()) || $user->isBackend());
 
 	}
 

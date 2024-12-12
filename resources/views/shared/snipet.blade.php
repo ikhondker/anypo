@@ -33,6 +33,8 @@
 <i data-lucide="power"></i>
 <i data-lucide="power-off"></i>
 <i data-lucide="circle-user-round"></i>
+<i data-lucide="eye"></i>
+<i data-lucide="shopping-cart"></i>
 
 Call support {{ config('akk.SUPPORT_PHONE_NO') }}</a>
 {{ env('APP_NAME') }}
@@ -212,3 +214,10 @@ responsive layout
 <x-profile :$userId :$name />
  {{-- Is equivalent to... --}}
 <x-profile :user-id="$userId" :name="$name" />
+
+ <td><x-landlord.list.my-badge :value="{{ $account->count_user }}"/></td>
+<td><x-landlord.list.my-badge :value="{{ $account->count_gb }}"/></td>
+<td><x-landlord.list.my-badge :value="{{ $account->count_pr }}"/></td>
+<td><x-landlord.list.my-badge :value="{{ $account->count_po }}"/></td>
+<td><x-landlord.list.my-badge :value="{{ $account->rank }}"/></td>
+<td><x-landlord.list.my-badge :value="{{ $account->status }}"/></td>

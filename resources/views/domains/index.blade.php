@@ -50,16 +50,9 @@
 						<th>ID</th>
 						<th>Domain</th>
 						<th>Tenant ID</th>
-						<th>Start</th>
-						<th>End</th>
-						<th>User+GB</th>
-						<th>User</th>
-						<th>GB</th>
-						<th>PR</th>
-						<th>PO</th>
-						<th>Rank</th>
-						<th>Status</th>
-						<th>Actions</th>
+
+						<th>Action</th>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -80,18 +73,9 @@
 									<strong>{{ $domain->tenant_id }}</strong>
 								</a>
 							</td>
-							<td><x-landlord.list.my-date value={{ $domain->tenant->start_date }}/></td>
-							<td><x-landlord.list.my-date value={{ $domain->tenant->end_date }}/></td>
-							<td>{{ $domain->tenant->user }}-{{ $domain->tenant->gb }}</td>
-							<td><x-landlord.list.my-badge :value="$domain->tenant->count_user"/></td>
-							<td><x-landlord.list.my-badge :value="$domain->tenant->count_gb"/></td>
-							<td><x-landlord.list.my-badge :value="$domain->tenant->count_pr"/></td>
-							<td><x-landlord.list.my-badge :value="$domain->tenant->count_po"/></td>
-							<td><x-landlord.list.my-badge :value="$domain->tenant->rank"/></td>
-							<td><x-landlord.list.my-badge :value="$domain->tenant->status"/></td>
 							<td>
 								<a href="{{ route('domains.show',$domain->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 							</td>
 						</tr>
 					@endforeach

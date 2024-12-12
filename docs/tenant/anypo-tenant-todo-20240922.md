@@ -1,19 +1,15 @@
 # 33. TODO
 -------------------------------------------------------------------------------------------------
 http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create 
-enable/disable functionaly in tenant
 123. search pr/po on top
-<i class="fas fa-list"></i> remove
-setup.timestamp issue
-127. address/remove all TODO
-123. data-lucide="plus-circle" tp data-lucide="plus"
-111. HeaderSearchExportBar -> object to Model 
 119. **search PO/PO by Number
+111. setup.timestamp issue
+127. address/remove all TODO
 136. create UOM - UoM Class - default uom mention
 148. Find and replace 'PO #', 'PR #', debug('tenant, =$, @can('edit' , ANYPO.NET, <i class="bi"
 135. hierarchyl export serial number
 144. dbu export user_id -= null
-121. ac_expense validate now aplha_dash need to allow .
+121. ac_expense validate now alpha_dash need to allow .
 122. Manual Generate Accounting admin
 133. budget revision TODO check budget and dept_budge duplicate from front end.
 131. po.ListAllLines and po.CardTableRow with status-true/false Not sure?
@@ -37,7 +33,7 @@ setup.timestamp issue
 114. split RecordDeptBudgetUsage job into FIVE separate class
 113. Budget Utilized 30?
 112. finalize <x-tenant.widgets.budget-stat/>
-111. email gateway use AWS
+111. email gateway use AWS check snipeIT
 110. view composer in login page view name inside viewService provider
 109. setup->admin_id is degraded to user and edit setup admin_id drop down error
 108. start and end date date-time and date only seeder issue. seeder store date and time
@@ -95,6 +91,10 @@ setup.timestamp issue
 
 # 0. DONE
 -------------------------------------------------------------------------------------------------
+x123. enable/disable functionaly in tenant
+x123.<i class="fas fa-list"></i> remove
+x123. data-lucide="plus-circle" tp data-lucide="plus"
+x111. HeaderSearchExportBar -> object to Model 
 x128. pr po category in pr po crea/edit page
 x127. add approve PR to draft PO
 x118. disable prl/pol/invoice line edit by policy
