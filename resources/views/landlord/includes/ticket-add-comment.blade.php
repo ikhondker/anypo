@@ -23,21 +23,22 @@
 							@enderror
 						</td>
 					</tr>
-					<tr>
-						<th>Reply Template :</th>
-						<td>
-							<select class="form-control select2" data-toggle="select2" name="reply_template_id" id="reply_template_id">
-								<option value=""><< Reply Template >> </option>
-								@foreach ($replyTemplates as $replyTemplate)
-									<option value="{{ $replyTemplate->id }}" {{ $replyTemplate->id == old('reply_template_id') ? 'selected' : '' }} >{{ $replyTemplate->name }}</option>
-								@endforeach
-							</select>
-							@error('reply_template_id')
-								<div class="small text-danger">{{ $message }}</div>
-							@enderror
-						</td>
-					</tr>
-
+					@if (auth()->user()->isBackend())
+						<tr>
+							<th>Reply Template :</th>
+							<td>
+								<select class="form-control select2" data-toggle="select2" name="reply_template_id" id="reply_template_id">
+									<option value=""><< Reply Template >> </option>
+									@foreach ($replyTemplates as $replyTemplate)
+										<option value="{{ $replyTemplate->id }}" {{ $replyTemplate->id == old('reply_template_id') ? 'selected' : '' }} >{{ $replyTemplate->name }}</option>
+									@endforeach
+								</select>
+								@error('reply_template_id')
+									<div class="small text-danger">{{ $message }}</div>
+								@enderror
+							</td>
+						</tr>
+					@endif
 					<tr>
 						<th>Attachment :</th>
 						<td>
@@ -46,7 +47,6 @@
 					</tr>
 
 					@if (auth()->user()->isBackend())
-
 						<tr>
 							<th>Status :</th>
 							<td>
@@ -59,7 +59,6 @@
 								</select>
 							</td>
 						</tr>
-
 						<tr>
 							<th>Type of Update :</th>
 							<td>
@@ -84,7 +83,12 @@
 
 				</tbody>
 			</table>
-			<x-landlord.create.save/>
+
+
+            <div class="mb-3 float-end">
+                <a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ url()->previous() }}"><i data-lucide="x-circle"></i> Back</a>
+                <button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Update</button>
+            </div>
 		</form>
 		<!-- Form -->
 	</div>

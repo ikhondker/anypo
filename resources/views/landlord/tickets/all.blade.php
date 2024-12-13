@@ -26,7 +26,7 @@
 							</button>
 						</div>
 							@if (request('term'))
-								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+								Search result for: <strong class="text-info">{{ request('term') }}</strong>
 							@endif
 					</form>
 				</div>
@@ -47,9 +47,10 @@
 				<thead>
 					<tr>
 						<th>#</th>
+						<th>Date</th>
 						<th>Subject</th>
 						<th>Requestor</th>
-						<th>Date</th>
+                        <th>Account</th>
 						<th>Dept</th>
 						<th>Agent</th>
 						<th>Status</th>
@@ -70,6 +71,7 @@
 									<strong>{{ $ticket->id }}</strong>
 								</a>
 							</td>
+							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
 							<td>
 								<a class="" href="{{ route('tickets.show', $ticket->id) }}">
 									<strong class="text-muted mb-0">{{ Str::limit($ticket->title, 45) }}</strong>
@@ -78,10 +80,8 @@
 							<td>
 								<img src="{{ Storage::disk('s3l')->url('avatar/'.$ticket->owner->avatar) }}" width="32" height="32" class="rounded-circle my-n1" alt="{{ $ticket->owner->name }}" title="{{ $ticket->owner->name }}">
 								{{ $ticket->owner->name }}
-							</a>
 							</td>
-
-							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
+							<td>{{ $ticket->account->name }}</td>
 							<td>{{ $ticket->dept->name }}</td>
 							<td>{{ $ticket->agent->name }}</td>
 							<td>

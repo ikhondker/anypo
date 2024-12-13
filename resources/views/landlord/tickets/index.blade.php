@@ -7,8 +7,14 @@
 
 @section('content')
 
-	<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Ticket</a>
-	<h1 class="h3 mb-3">All Tickets</h1>
+    <x-landlord.page-header>
+		@slot('title')
+			All Tickets
+		@endslot
+		@slot('buttons')
+				<a href="{{ route('tickets.create') }}" class="btn btn-primary me-1"><i data-lucide="plus"></i> New Ticket</a>
+		@endslot
+	</x-landlord.page-header>
 
 	<div class="card">
 		<div class="card-body">
@@ -26,7 +32,7 @@
 							</button>
 						</div>
 							@if (request('term'))
-								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+								Search result for: <strong class="text-info">{{ request('term') }}</strong>
 							@endif
 					</form>
 				</div>
@@ -46,9 +52,9 @@
 				<thead>
 					<tr>
 						<th>#</th>
+						<th>Date</th>
 						<th>Subject</th>
 						<th>Requestor</th>
-						<th>Date</th>
 						<th>Status</th>
 						<th>Actions</th>
 					</tr>
@@ -66,6 +72,7 @@
 									<strong>{{ $ticket->id }}</strong>
 								</a>
 							</td>
+							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
 							<td>
 								<a class="" href="{{ route('tickets.show', $ticket->id) }}">
 									<strong class="text-muted mb-0">{{ Str::limit($ticket->title, 45) }}</strong>
@@ -77,7 +84,6 @@
 								{{ $ticket->owner->name }}
 							</td>
 
-							<td>{{ strtoupper(date('d-M-Y', strtotime($ticket->ticket_date ))) }}</td>
 							<td>
 								<x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/>
 							</td>

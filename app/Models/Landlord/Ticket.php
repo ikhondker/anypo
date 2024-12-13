@@ -183,6 +183,13 @@ class Ticket extends Model
 	}
 
 	/* ---------------- belongsTo ---------------------- */
+	public function account()
+	{
+		return $this->belongsTo(Account::class, 'account_id')->withDefault([
+			'name' => '[ Empty ]',
+		]);
+	}
+
 	public function dept()
 	{
 		return $this->belongsTo(Dept::class, 'dept_id')->withDefault([

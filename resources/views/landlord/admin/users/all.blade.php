@@ -27,7 +27,7 @@
 
 						</div>
 							@if (request('term'))
-								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+								Search result for: <strong class="text-info">{{ request('term') }}</strong>
 							@endif
 					</form>
 					<!--/. form -->
@@ -54,9 +54,9 @@
 						<th>Email</th>
 						<th>Account</th>
 						<th>Role</th>
-						<th>Verified</th>
-						<th>Seeded</th>
-						<th>Enable</th>
+						<th>Verified?</th>
+						<th>Backend?</th>
+						<th>Enable?</th>
 						<th>Actions</th>
 					</tr>
 				</thead>

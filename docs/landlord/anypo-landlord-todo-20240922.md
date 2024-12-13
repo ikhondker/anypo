@@ -5,6 +5,9 @@
 ====================================================================
 x123. disable site form landlord
 x123. search ticket on top
+123. filter open ticket only
+123. allow pdf invoice download as public
+123. create backend user form landlord account support action
 123. text for reply template
 111. javascript invoice print issue in view invoice
 113. collapse top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -22,6 +25,7 @@ x123. search ticket on top
 ====================================================================
 2.	predefined text in support ticket
 3.	date picker
+123. allow pdf payment download as public
 4.	storage usages statistics
 5.	prepare pest and dusk test cases
 6.	storage usages statistics

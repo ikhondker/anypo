@@ -11,9 +11,9 @@
 		@endslot
 		@slot('buttons')
 				<x-landlord.actions.account-actions/>
-				@if (auth()->user()->isAdmin())
+				{{-- @if (auth()->user()->isAdmin())
 					<a href="{{ route('invoices.generate') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> Generate & Pay Advance Invoice</a>
-				@endif
+				@endif --}}
 		@endslot
 	</x-landlord.page-header>
 
@@ -34,7 +34,7 @@
 
 						</div>
 							@if (request('term'))
-								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+								Search result for: <strong class="text-info">{{ request('term') }}</strong>
 							@endif
 					</form>
 					<!--/. form -->
@@ -42,6 +42,10 @@
 				<div class="col-md-6 col-xl-8">
 
 					<div class="text-sm-end">
+                        @if (auth()->user()->isAdmin())
+					        <a href="{{ route('invoices.generate') }}" class="btn btn-primary btn-lg"><i data-lucide="plus"></i> Generate & Pay Advance Invoice</a>
+				        @endif
+
 						<a href="{{ route('invoices.index') }}" class="btn btn-primary btn-lg"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
 							<i data-lucide="refresh-cw"></i></a>
@@ -62,7 +66,7 @@
 						<th class="align-middle">Type</th>
 						<th class="align-middle">Amount $</th>
 						<th class="align-middle">Status</th>
-						<th class="align-middle text-end">Actions</th>
+						<th class="align-middle">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -85,8 +89,7 @@
 							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
 							<td><x-landlord.list.my-number :value="$invoice->amount" /></td>
 							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
-
-							<td class="text-end">
+							<td>
 								<a href="{{ route('invoices.show',$invoice->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 

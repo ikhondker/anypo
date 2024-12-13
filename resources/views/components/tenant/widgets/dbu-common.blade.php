@@ -6,7 +6,7 @@
 				<x-tenant.cards.header-search-export-bar object="DeptBudget"/>
 				<h5 class="card-title">
 					@if (request('term'))
-						Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+						Search result for: <strong class="text-info">{{ request('term') }}</strong>
 					@else
 						Budget Usages
 					@endif

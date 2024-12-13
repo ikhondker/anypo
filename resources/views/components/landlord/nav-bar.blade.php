@@ -21,21 +21,18 @@
 				<li class="nav-item d-none d-md-inline-block">
 					@auth
 						<a href="{{ route('dashboards.index') }}" class="nav-link active px-lg-3">
-							<i data-lucide="chart-pie" class="align-middle"></i>
-							Dashboard
+							<i data-lucide="chart-pie" class="align-middle me-1"></i>Dashboard
 						</a>
 					@endauth
 					@guest
 						<a href="{{ route('register') }}" class="nav-link active text-lg px-lg-3">
-							<i data-lucide="circle-user-round" class="align-middle"></i>
-							Register
+							<i data-lucide="circle-user-round" class="align-middle me-1"></i>Register
 						</a>
 					@endguest
 				</li>
 
 				@auth
 				<li class="nav-item d-none d-md-inline-block">
-
 					<a href="{{ route('users.show', auth()->user()->id) }}" class="nav-link active px-lg-3">
 							<img class="img-fluid rounded-circle" src="{{ Storage::disk('s3l')->url('avatar/'.$_landlord_user->avatar) }}"
 							alt="{{ $_landlord_user->name }}" title="{{ $_landlord_user->name }}"
@@ -46,15 +43,14 @@
 				</li>
 				<li class="nav-item d-none d-md-inline-block">
 					<a href="{{ route('logout') }}" class="nav-link active px-lg-3">
-						<i data-lucide="power" class="align-middle text-danger"></i>
-						Logout
+						<i data-lucide="power" class="align-middle text-danger me-1"></i>Logout
 					</a>
 				</li>
 				@endauth
 				@guest
 				<li class="nav-item d-none d-md-inline-block">
 						<a href="{{ route('login') }}" class="nav-link active text-lg px-lg-3">
-							<i data-lucide="power" class="align-middle"></i>
+							<i data-lucide="power" class="align-middle me-1"></i>
 							Login
 						</a>
 					</li>

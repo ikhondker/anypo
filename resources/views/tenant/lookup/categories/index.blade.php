@@ -21,7 +21,7 @@
 			<x-tenant.card.header-search-export-bar model="Category"/>
 			<h5 class="card-title">
 				@if (request('term'))
-					Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+					Search result for: <strong class="text-info">{{ request('term') }}</strong>
 				@else
 					PR/PO Category Lists
 				@endif

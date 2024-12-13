@@ -126,8 +126,13 @@
 				</div>
 			</nav>
 
+			<main class="content">
+
+				<div class="container-fluid p-0">
+
 					<!-- Form Success Message Box -->
-                    @if (session('success'))
+
+					@if (session('success'))
 						<x-landlord.alerts.app-alert-success message="{{ session('success') }}" />
 					@endif
 					<!-- Form Error Message Box (including Form Validation ) -->
@@ -135,9 +140,6 @@
 						<x-landlord.alerts.app-alert-error message="{{ session('error') }}" />
 					@endif
 
-			<main class="content">
-
-				<div class="container-fluid p-0">
 					<!-- breadcrumb -->
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
@@ -152,6 +154,7 @@
 					<!-- /.content -->
 				</div>
 			</main>
+
 
 			<footer class="footer">
 				<div class="container-fluid">

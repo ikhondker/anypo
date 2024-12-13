@@ -26,7 +26,7 @@
 
 					</div>
 						@if (request('term'))
-							Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+							Search result for: <strong class="text-info">{{ request('term') }}</strong>
 						@endif
 				</form>
 				<!--/. form -->
@@ -80,7 +80,7 @@
 							</a>
 						</td>
 						<td>{{ $account->owner->name }}</td>
-						<td><x-landlord.list.my-date :value="$account->start_date" /> - <x-landlord.list.my-date :value="$account->end_date" /></td>
+						<td><x-landlord.list.my-date :value="$account->start_date" /> to <x-landlord.list.my-date :value="$account->end_date" /></td>
 						<td><span class="badge badge-subtle-primary">{{ $account->user }}</span></td>
 						<td><x-landlord.list.my-number :value="$account->price"/>$</td>
 						<td><x-landlord.list.my-badge :value="$account->status->name" badge="{{ $account->status->badge }}" /></td>

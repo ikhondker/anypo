@@ -33,7 +33,7 @@
 
 						</div>
 							@if (request('term'))
-								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+								Search result for: <strong class="text-info">{{ request('term') }}</strong>
 							@endif
 					</form>
 					<!--/. form -->
@@ -61,7 +61,7 @@
 						<th class="align-middle">Invoice #</th>
 						<th class="align-middle">Amount</th>
 						<th class="align-middle">Status</th>
-						<th class="align-middle text-end">Actions</th>
+						<th class="align-middle">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -80,7 +80,7 @@
 							<td>{{ $payment->invoice->invoice_no }}</td>
 							<td><x-landlord.list.my-number :value="$payment->amount"/> USD</td>
 							<td><x-landlord.list.my-badge :value="$payment->status->name" badge="{{ $payment->status->badge }}" /></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 								<a href="{{ route('reports.pdf-payment', $payment->id) }}" class="text-body" target="_blank"

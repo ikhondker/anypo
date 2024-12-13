@@ -21,7 +21,7 @@ class UserComposer
 	{
 		$user = new User();
 		if (auth()->check() ){
-			$user = User::where('id', auth()->user()->id)->first();
+			$user = User::with('account')->where('id', auth()->user()->id)->first();
 		}
 		$view->with(['_landlord_user' => $user]);
 		//$view->with('count', $this->users->count());

@@ -7,7 +7,7 @@
 
 @section('content')
 
-	<a href="{{ route('contacts.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Contact</a>
+	<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Ticket</a>
 	<h1 class="h3 mb-3">Dashboard</h1>
 
 	<div class="d-grid gap-1 gap-lg-1">

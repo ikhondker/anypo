@@ -27,7 +27,7 @@
 
 						</div>
 							@if (request('term'))
-								Search result for: <strong class="text-danger">{{ request('term') }}</strong>
+								Search result for: <strong class="text-info">{{ request('term') }}</strong>
 							@endif
 					</form>
 					<!--/. form -->
@@ -48,15 +48,15 @@
 			<table class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Account</th>
-						<th class="align-middle">Date</th>
-						<th class="align-middle">Mnth-User-GB</th>
-						<th class="align-middle">Price</th>
-						<th class="align-middle">Addon?</th>
-						<th class="align-middle">Enable</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>#</th>
+						<th>Name</th>
+						<th>Account</th>
+						<th>Date</th>
+						<th>Mnth-User-GB</th>
+						<th>Price</th>
+						<th>Addon?</th>
+						<th>Enable</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -80,7 +80,7 @@
 							<td><x-landlord.list.my-number :value="$service->price" /></td>
 							<td><x-landlord.list.my-enable :value="$service->addon" /></td>
 							<td><x-landlord.list.my-enable value="{{ $service->enable }}" /></td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('services.show',$service->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 							</td>

@@ -8,19 +8,19 @@ use Illuminate\View\Component;
 
 class Warning extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(public string $message)
-    {
-        //
-    }
+	/**
+	 * Create a new component instance.
+	 */
+	public function __construct(public string $message)
+	{
+		//
+	}
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('components.tenant.alerts.warning');
-    }
+	/**
+	 * Get the view / contents that represent the component.
+	 */
+	public function render(): View|Closure|string
+	{
+		return view('components.tenant.alerts.warning');
+	}
 }

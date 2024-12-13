@@ -10,8 +10,14 @@
 
 @section('content')
 
-	<a href="{{ route('tickets.index') }}" class="btn btn-primary float-end mt-n1 "><i data-lucide="database"></i> View All</a>
-	<h1 class="h3 mb-3">Create Ticket</h1>
+    <x-landlord.page-header>
+		@slot('title')
+			Create Ticket
+		@endslot
+		@slot('buttons')
+				<a href="{{ route('tickets.index') }}" class="btn btn-primary me-1"><i data-lucide="database"></i> View All</a>
+		@endslot
+	</x-landlord.page-header>
 
 	<div class="card">
 		<div class="card-header">

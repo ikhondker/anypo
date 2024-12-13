@@ -1,37 +1,38 @@
 
 # 3. TODO 
 ====================================================================
-1. bug report in both landlord and tenant
-111. xremove <i class="bi bi-cart-check"></i>
-111. review TODO and P2
-66. search and remove //console.log
-1. .gitignore file modify
-1.  update all laravel pack to last avialable version for laravel 10
-3.	//TODO php artisan route:cache error
-4.	https://www.youtube.com/watch?app=desktop&v=rtiK6iblU1I
-7.	fix file merge issue sp user model
-9.	use @forelse ($products as $product) everywhere
-10.	all model withDefault[Empty]
-11.	load balance one small vm with apache+2app+1 db server
-12.	P2 quick code snipe generator like breadcrumb, edit, add etc
-16.	flyer for anypo.net
-17.	Facebook boost post design
-18.	FAQ landlord 
-19.	FAQ tenant
-20.	list in good product g2, captive listing
-21.	chatbot
-22.	screenshots for site and FAQ
-24.	check max length  for float and text(255)
-27.	use bo and tenant Chanel instead of log
-28.	http://localhost:8000/email/verify/1 access denied
-30.	my-password-change menu entry
-31.	delete tenant helper
-33.	install laravel sentry for error monitoring
-34.	laravel pulse
-36.	throw new NotFoundHttpException();
-37.	index() and cache() in migration and model
-38.	unique in name for all lookup
-x32.	cell placeholder="+x(xxx)xxx-xx-xx"
+1.	demo access to user
+2.	bug report in both landlord and tenant
+3.	xremove <i class="bi bi-cart-check"></i>
+4.	review TODO and P2
+5.	search and remove //console.log
+6.	.gitignore file modify
+7.	update all laravel pack to last avialable version for laravel 10
+8.	//TODO php artisan route:cache error
+9.	https://www.youtube.com/watch?app=desktop&v=rtiK6iblU1I
+10.	fix file merge issue sp user model
+11.	use @forelse ($products as $product) everywhere
+12.	all model withDefault[Empty]
+13.	load balance one small vm with apache+2app+1 db server
+14.	P2 quick code snipe generator like breadcrumb, edit, add etc
+15.	flyer for anypo.net
+16.	Facebook boost post design
+17.	FAQ landlord 
+18.	FAQ tenant
+19.	list in good product g2, captive listing
+20.	chatbot
+21.	screenshots for site and FAQ
+22.	check max length  for float and text(255)
+23.	use bo and tenant Chanel instead of log
+24.	http://localhost:8000/email/verify/1 access denied
+25.	my-password-change menu entry
+26.	delete tenant helper
+27.	install laravel sentry for error monitoring
+28.	laravel pulse
+29.	throw new NotFoundHttpException();
+30.	index() and cache() in migration and model
+31.	unique in name for all lookup
+x32. cell placeholder="+x(xxx)xxx-xx-xx"
 x1.	fix bo.SYSTEM_USER_ID, akk.SYSTEM_USER_ID, bo.SUPPORT_MGR_ID
 
 # 2. TODO P2 

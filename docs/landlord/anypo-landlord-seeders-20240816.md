@@ -25,6 +25,8 @@ php artisan db:seed --class="UserSeeder"
 -------------------
 ~~~
 [ 
+php artisan db:seed --class="Database\Seeders\Landlord\TicketSeeder"
+php artisan db:seed --class="Database\Seeders\Landlord\CommentSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\UserSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\MenuSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\StatusSeeder"
@@ -48,8 +50,6 @@ php artisan db:seed --class="Database\Seeders\Landlord\ProductSeeder"
 #checkout
 php artisan db:seed --class="Database\Seeders\Landlord\AccountSeeder"
 xxphp artisan db:seed --class="Database\Seeders\Landlord\ServiceSeeder"
-php artisan db:seed --class="Database\Seeders\Landlord\TicketSeeder"
-php artisan db:seed --class="Database\Seeders\Landlord\CommentSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\InvoiceSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\PaymentSeeder"
 ]

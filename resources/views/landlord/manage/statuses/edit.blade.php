@@ -39,7 +39,19 @@
 									@enderror
 								</td>
 							</tr>
-							
+							<tr>
+								<th>Icon :</th>
+								<td>
+									<input type="text" class="form-control @error('icon') is-invalid @enderror"
+										name="icon" id="icon" placeholder="icon"
+										value="{{ old('icon', $status->icon) }}"
+										required/>
+									@error('icon')
+										<div class="small text-danger">{{ $message }}</div>
+									@enderror
+								</td>
+							</tr>
+
 					</tbody>
 				</table>
 

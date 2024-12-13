@@ -82,15 +82,15 @@ class TicketController extends Controller
 		}
 
 		if (auth()->user()->isBackend()) {
-			$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(10);
+			$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(20);
 			return view('landlord.tickets.all', compact('tickets'));
 		} else {
 			switch (auth()->user()->role->value) {
 				case UserRoleEnum::ADMIN->value:
-					$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byAccount()->orderBy('id', 'DESC')->paginate(10);
+					$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byAccount()->orderBy('id', 'DESC')->paginate(20);
 					break;
 				default:
-					$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byUser()->orderBy('id', 'DESC')->paginate(10);
+					$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byUser()->orderBy('id', 'DESC')->paginate(20);
 			}
 			return view('landlord.tickets.index', compact('tickets'));
 		}
@@ -328,7 +328,7 @@ class TicketController extends Controller
 
 	public function close(Ticket $ticket)
 	{
-		$this->authorize('update', $ticket);
+		$this->authorize('close', $ticket);
 
 		$ticket->status_code	= TicketStatusEnum::CLOSED->value;
 		$ticket->closed	= true;
