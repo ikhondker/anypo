@@ -22,6 +22,6 @@ class Error extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.alert.error');
+		return view('components.tenant.alerts.error');
 	}
 }

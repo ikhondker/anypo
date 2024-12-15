@@ -5,7 +5,7 @@
 				<input type="text" class="form-control form-control-sm" minlength=3 name="term" placeholder="Search..." value="{{ old('term', request('term') ) }}" id="term" required>
 
 				<div class="btn-group btn-group-lg">
-					<button type="submit"  class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Search"><i class="align-middle" data-lucide="search"></i></button>
+					<button type="submit" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Search"><i class="align-middle" data-lucide="search"></i></button>
 					<a href="{{ route( $route.'.index') }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
 						<i class="align-middle" data-lucide="refresh-cw"></i>
 					</a>

@@ -21,7 +21,7 @@
 	</x-tenant.page-header>
 
 
-	<x-tenant.widgets.who-when model="DeptBudget" articleId="{{ $deptBudget->id  }}"/>
+	<x-tenant.widgets.who-when model="DeptBudget" articleId="{{ $deptBudget->id }}"/>
 
 	<x-tenant.widgets.back-to-list model="DeptBudget"/>
 

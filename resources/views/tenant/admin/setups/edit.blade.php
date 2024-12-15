@@ -110,12 +110,12 @@
 								<tr>
 									<th>Accrual Account :</th>
 									<td>
-										<input type="text" class="form-control @error('ac_accrual') is-invalid @enderror"
-											name="ac_accrual" id="ac_accrual" placeholder="Accrual Account"
+										<input type="text" class="form-control @error('ac_ap_accrual') is-invalid @enderror"
+											name="ac_ap_accrual" id="ac_ap_accrual" placeholder="Accrual Account"
 											style="text-transform: uppercase"
-											value="{{ old('ac_accrual', $setup->ac_accrual ) }}"
+											value="{{ old('ac_ap_accrual', $setup->ac_ap_accrual ) }}"
 											required/>
-										@error('ac_accrual')
+										@error('ac_ap_accrual')
 											<div class="small text-danger">{{ $message }}</div>
 										@enderror
 									</td>

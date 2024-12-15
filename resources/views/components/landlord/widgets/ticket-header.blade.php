@@ -1,7 +1,7 @@
 <div class="card">
 	<div class="card-header bg-primary-subtle">
 		<div class="card-actions float-end">
-		    <button class="btn btn-{{ $ticket->status->badge }}" type="button"><i data-lucide="{{ $ticket->status->icon }}"></i> {{ $ticket->status->name }}</button>
+			<button class="btn btn-{{ $ticket->status->badge }}" type="button"><i data-lucide="{{ $ticket->status->icon }}"></i> {{ $ticket->status->name }}</button>
 			@can('close', $ticket)
 				<a href="{{ route('tickets.close',$ticket->id) }}" class="btn btn-light sw2"><i class="text-danger" data-lucide="power"></i> Close Ticket</a>
 			@endcan

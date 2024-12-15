@@ -21,8 +21,8 @@ return new class extends Migration
 			$table->string('branch_name')->nullable();
 			$table->date('start_date')->default(DB::raw('(CURDATE())'));
 			$table->date('end_date')->nullable();
-			$table->string('currency',3)->default('USD'); 
-			$table->string('ac_cash')->default('A400001');
+			$table->string('currency',3)->default('USD');
+			$table->string('ac_bank')->default('A100401');
 			$table->string('contact_person')->nullable();
 			$table->string('cell')->nullable();
 			$table->string('address1')->nullable();
@@ -33,7 +33,7 @@ return new class extends Migration
 			$table->string('country',2)->default('US');
 			$table->string('website')->nullable();
 			$table->string('email')->nullable();
-			$table->boolean('enable')->default(true); 
+			$table->boolean('enable')->default(true);
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

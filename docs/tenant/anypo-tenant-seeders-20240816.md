@@ -10,11 +10,11 @@ php artisan tenants:migrate-fresh --tenants=demo1
 
 
 >> seed ALL tenant table
-php artisan tenants:rollback --tenants='98374437-0e3c-449a-9b01-84466328ce3e'
-php artisan tenants:migrate --tenants='98374437-0e3c-449a-9b01-84466328ce3e'
-php artisan tenants:seed --class=TenantSeeder --tenants='98374437-0e3c-449a-9b01-84466328ce3e'
+php artisan tenants:rollback --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
+php artisan tenants:migrate --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
+php artisan tenants:seed --class=TenantSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 
-php artisan tenants:seed --class=MenuSeeder --tenants='98374437-0e3c-449a-9b01-84466328ce3e'
+php artisan tenants:seed --class=MenuSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 
 php artisan queue:listen
 php artisan tenants:seed --tenants=demo1
@@ -75,10 +75,10 @@ php artisan tenants:seed --class=ItemSeeder --tenants=demo1
 php artisan tenants:seed --class=BudgetSeeder --tenants=demo1
 php artisan tenants:seed --class=DeptBudgetSeeder --tenants=demo1 !! revision issue
 
-php artisan tenants:seed --class=PrSeeder --tenants'98374437-0e3c-449a-9b01-84466328ce3e
+php artisan tenants:seed --class=PrSeeder --tenants'96061cbc-30bb-4d74-b0a7-f5f555ac3f97
 php artisan tenants:seed --class=PrlSeeder --tenants=demo1
 
-php artisan tenants:seed --class=PoSeeder --tenants'98374437-0e3c-449a-9b01-84466328ce3e
+php artisan tenants:seed --class=PoSeeder --tenants'96061cbc-30bb-4d74-b0a7-f5f555ac3f97
 php artisan tenants:seed --class=PolSeeder --tenants=demo1
 
 php artisan tenants:seed --class=ReceiptSeeder --tenants=demo1

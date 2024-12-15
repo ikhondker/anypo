@@ -88,7 +88,7 @@ class AehInvoice implements ShouldQueue
 		$ael_cr->line_num			= 2;
 		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d');
 
-		$ael_dr->ac_code			= $setup->ac_accrual;
+		$ael_dr->ac_code			= $setup->ac_ap_accrual;
 		$ael_cr->ac_code			= $setup->ac_liability;
 
 		$ael_dr->line_description	= $ael_cr->line_description = $invoice->summary;

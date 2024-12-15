@@ -83,7 +83,7 @@ class BankAccountController extends Controller
 
 		$request->merge([
 			'state' 	=> Str::upper($request['state']),
-			'ac_cash' 	=> Str::upper($request['ac_cash']),
+			'ac_bank' 	=> Str::upper($request['ac_bank']),
 		]);
 
 
@@ -133,7 +133,7 @@ class BankAccountController extends Controller
 
 		$request->merge([
 			'state' 	=> Str::upper($request['state']),
-			'ac_cash' 	=> Str::upper($request['ac_cash']),
+			'ac_bank' 	=> Str::upper($request['ac_bank']),
 		]);
 
 

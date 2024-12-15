@@ -19,7 +19,7 @@
 				</tr>
 				<tr>
 					<th>Updated By :</th>
-					<td>{{ $article->user_updated_by->name  }}</td>
+					<td>{{ $article->user_updated_by->name }}</td>
 				</tr>
 				<tr>
 					<th>Updated At :</th>

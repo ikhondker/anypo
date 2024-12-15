@@ -98,7 +98,8 @@ class PoController extends Controller
 
 		$pos = Po::query();
 		if (request('term')) {
-			$pos->where('summary', 'LIKE', '%' . request('term') . '%');
+			$pos->where('summary', 'LIKE', '%' . request('term') . '%')
+            ->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::HOD->value:

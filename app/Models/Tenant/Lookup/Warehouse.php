@@ -19,7 +19,7 @@ class Warehouse extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name', 'contact_person', 'cell', 'address1', 'address2', 'city', 'zip', 'state', 'country', 'website', 'email', 'enable', 'ac_receiving', 'ac_clearing', 'updated_by', 'updated_at',
+		'name', 'contact_person', 'cell', 'address1', 'address2', 'city', 'zip', 'state', 'country', 'website', 'email', 'enable', 'ac_receiving', 'updated_by', 'updated_at',
 	];
 
 

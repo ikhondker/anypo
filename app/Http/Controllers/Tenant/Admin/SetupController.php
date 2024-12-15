@@ -149,7 +149,7 @@ class SetupController extends Controller
 		$this->authorize('update', $setup);
 
 		$request->merge([
-			'ac_accrual' => Str::upper($request['ac_accrual']),
+			'ac_ap_accrual' => Str::upper($request['ac_ap_accrual']),
 			'ac_liability' => Str::upper($request['ac_liability']),
 		]);
 

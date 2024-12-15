@@ -88,7 +88,7 @@ class AehReceipt implements ShouldQueue
 		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d');
 
 		$ael_dr->ac_code			= $receipt->pol->item->ac_expense;
-		$ael_cr->ac_code			= $setup->ac_accrual;
+		$ael_cr->ac_code			= $setup->ac_ap_accrual;
 
 		$ael_dr->line_description	= $ael_cr->line_description = $aeh->description;
 		$ael_dr->fc_currency		= $ael_cr->fc_currency 		= $setup->currency;

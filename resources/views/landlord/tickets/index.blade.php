@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <x-landlord.page-header>
+	<x-landlord.page-header>
 		@slot('title')
 			All Tickets
 		@endslot

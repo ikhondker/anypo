@@ -110,12 +110,12 @@
 						<tr>
 							<th>Cash GL Account :</th>
 							<td>
-								<input type="text" class="form-control @error('ac_cash') is-invalid @enderror"
-									name="ac_cash" id="ac_cash" placeholder="A400001" maxlength="255"
+								<input type="text" class="form-control @error('ac_bank') is-invalid @enderror"
+									name="ac_bank" id="ac_bank" placeholder="A400001" maxlength="255"
 									style="text-transform: uppercase"
-									value="{{ old('ac_cash', $bankAccount->ac_cash ) }}"
+									value="{{ old('ac_bank', $bankAccount->ac_bank ) }}"
 									required/>
-								@error('ac_cash')
+								@error('ac_bank')
 									<div class="small text-danger">{{ $message }}</div>
 								@enderror
 							</td>

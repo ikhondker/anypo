@@ -16,7 +16,7 @@
 	</x-tenant.page-header>
 
 
-	<x-tenant.widgets.who-when model="BankAccount" articleId="{{ $bankAccount->id  }}"/>
+	<x-tenant.widgets.who-when model="BankAccount" articleId="{{ $bankAccount->id }}"/>
 
 
 	<x-tenant.widgets.back-to-list model="BankAccount"/>

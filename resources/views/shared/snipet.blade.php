@@ -57,6 +57,8 @@ create
 	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View
 </a>
 
+<button class="btn btn-{{ $ticket->status->badge }}" type="button"><i data-lucide="{{ $ticket->status->icon }}"></i> {{ $ticket->status->name }}</button>
+
 
 // allow add attachment only if status is draft
 @php

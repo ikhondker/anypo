@@ -54,14 +54,14 @@
 			<table class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">#</th>
-						<th class="align-middle">Pay ID</th>
-						<th class="align-middle">Summary</th>
-						<th class="align-middle">Date</th>
-						<th class="align-middle">Invoice #</th>
-						<th class="align-middle">Amount</th>
-						<th class="align-middle">Status</th>
-						<th class="align-middle">Actions</th>
+						<th>#</th>
+						<th>Pay ID</th>
+						<th>Summary</th>
+						<th>Date</th>
+						<th>Invoice #</th>
+						<th>Amount</th>
+						<th>Status</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>

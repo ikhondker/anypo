@@ -57,7 +57,9 @@
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
 							<i data-lucide="external-link" class="text-white"></i> Submit</a>
 					@else
-						<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
+                    {{ $pr->auth_status_badge->badge }}
+                        <button class="btn btn-{{ $pr->auth_status_badge->badge }}" type="button"><i data-lucide="{{ $pr->auth_status_badge->icon }}"></i> {{ $pr->auth_status_badge->name }}</button>
+						{{-- <span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span> --}}
 					@endcan
 				</div>
 				<h5 class="card-title">Approval Status</h5>

@@ -19,7 +19,7 @@
 	</x-tenant.page-header>
 
 
-	<x-tenant.widgets.who-when model="Currency" articleId="{{ $currency->currency;  }}"/>
+	<x-tenant.widgets.who-when model="Currency" articleId="{{ $currency->currency; }}"/>
 
 	<x-tenant.widgets.back-to-list model="Currency"/>
 @endsection

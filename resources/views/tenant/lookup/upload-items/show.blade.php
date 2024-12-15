@@ -11,7 +11,7 @@
 			View Interface Item
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.lookup.upload-item-actions  uploadItemId="{{ $uploadItem->id }}"/>
+			<x-tenant.actions.lookup.upload-item-actions uploadItemId="{{ $uploadItem->id }}"/>
 		@endslot
 	</x-tenant.page-header>
 

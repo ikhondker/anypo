@@ -50,7 +50,7 @@
 						<th>Name</th>
 						<th>Acc-Svc-Tkt-Chk-Inv-Pay</th>
 						<th>Badge</th>
-                        <th>Icon</th>
+						<th>Icon</th>
 						<th>Enable</th>
 						<th>Actions</th>
 					</tr>
@@ -89,7 +89,7 @@
 									title="payments"></i>
 							</td>
 							<td><span class="badge bg-{{ $status->badge }}">{{ $status->badge }}</span></td>
-                            <td><i data-lucide="{{ $status->icon }}"></i></td>
+							<td><i data-lucide="{{ $status->icon }}"></i></td>
 							<td><x-landlord.list.my-enable :value="$status->enable" /></td>
 							<td>
 								<a href="{{ route('statuses.show',$status->code) }}" class="btn btn-light" data-bs-toggle="tooltip"

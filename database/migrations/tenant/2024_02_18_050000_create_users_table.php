@@ -39,7 +39,7 @@ return new class extends Migration
 			$table->string('avatar')->nullable()->default('avatar.png');
 			$table->text('notes')->nullable();
 			$table->string('timezone', 255)->default('UTC');
-            $table->boolean('backend')->default(false);
+			$table->boolean('backend')->default(false);
 			$table->boolean('enable')->default(false);	// only make first admin true
 			$table->boolean('locked')->default(false);
 			$table->datetime('last_login_at')->nullable();

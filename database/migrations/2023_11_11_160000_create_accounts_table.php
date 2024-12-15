@@ -34,13 +34,13 @@ return new class extends Migration
 			$table->string('cell')->nullable();
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->foreignId('primary_product_id')->nullable()->constrained('products');
-            $table->string('logo')->nullable()->default('logo.png');
-            // base columns
+			$table->string('logo')->nullable()->default('logo.png');
+			// base columns
 			$table->integer('base_mnth')->default(0);
 			$table->integer('base_user')->default(1);
 			$table->integer('base_gb')->default(10);
 			$table->decimal('base_price', 19, 2)->default(0);
-            // current columns
+			// current columns
 			$table->integer('mnth')->default(0);
 			$table->integer('user')->default(1);
 			$table->integer('gb')->default(10);
@@ -53,12 +53,12 @@ return new class extends Migration
 			$table->date('start_date');
 			$table->date('end_date');
 			// billing columns
-            // there will be only one unpaid invoice. updated when a subscription is generated
+			// there will be only one unpaid invoice. updated when a subscription is generated
 			$table->boolean('next_bill_generated')->default(false);
 			$table->integer('next_invoice_no')->nullable();
 			$table->date('last_bill_date')->nullable();
 			$table->date('expired_at')->nullable();
-            // maintenance columns
+			// maintenance columns
 			$table->boolean('banner_show')->default(false);	// Show account specific message from landlord
 			$table->text('banner_message')->nullable();		// Show account specific message from landlord
 			$table->boolean('maintenance')->default(false);
@@ -74,8 +74,8 @@ return new class extends Migration
 			$table->integer('tenant_count_grs')->default(0);
 			$table->integer('tenant_count_inv')->default(0); 	// only posted
 			$table->integer('tenant_count_pay')->default(0);
-            $table->boolean('tenant_enable')->default(true);
-            $table->string('rank')->default(RankEnum::C->value);
+			$table->boolean('tenant_enable')->default(true);
+			$table->string('rank')->default(RankEnum::C->value);
 			/** ENUM */
 			//$table->string('status')->default(AccountStatusEnum::ACTIVE->value);
 			/** end ENUM */

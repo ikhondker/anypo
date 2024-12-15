@@ -22,7 +22,7 @@ don't put inside any DIV. Only TD
 </td>
 2. confirmation on scss compile
 
-Demo install limitation     @if ($_setup->demo)
+Demo install limitation @if ($_setup->demo)
 -----------------------------
 1. app layout top 	<x-tenant.alerts.warning message="This is a Demo Instance" />
 1. tenant sidebar Purchase

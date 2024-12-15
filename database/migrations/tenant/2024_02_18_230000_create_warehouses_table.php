@@ -24,9 +24,8 @@ return new class extends Migration
 			$table->string('country',2)->default('US');
 			$table->string('website')->nullable();
 			$table->string('email')->nullable();
-			$table->boolean('enable')->default(true); 
-			$table->string('ac_receiving')->default('A200001');
-			$table->string('ac_clearing')->default('A200003');			// Future user
+			$table->boolean('enable')->default(true);
+			$table->string('ac_receiving')->default('A100101');		// future
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

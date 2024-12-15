@@ -97,7 +97,7 @@
 			<div class="card-body">
 				<table class="table table-sm my-2">
 					<tbody>
-						<x-tenant.show.my-text value="{{ $setup->ac_accrual }}" label="Accrual Account"/>
+						<x-tenant.show.my-text value="{{ $setup->ac_ap_accrual }}" label="Accrual Account"/>
 						<x-tenant.show.my-text value="{{ $setup->ac_liability }}" label="Liability Account"/>
 					</tbody>
 				</table>

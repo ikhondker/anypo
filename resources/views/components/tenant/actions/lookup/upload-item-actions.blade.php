@@ -21,7 +21,7 @@
 			<a class="dropdown-item sw2-advance" href="{{ route('upload-items.destroy', $uploadItem->id) }}"
 				data-entity="UploadItem" data-name="{{ $uploadItem->item_name }}" data-status="Delete"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Interface Item">
-				<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Delete  Interface Item</a>
+				<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Delete Interface Item</a>
 		@endcan
 
 	</div>

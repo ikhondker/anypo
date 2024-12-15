@@ -34,7 +34,7 @@
 					<x-tenant.show.my-currency	value="{{ $bankAccount->currency }}" label="Currency"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->bank_name }}" label="Bank Name"/>
 					<x-tenant.show.my-text		value="{{ $bankAccount->branch_name }}" label="Branch Name"/>
-					<x-tenant.show.my-text		value="{{ $bankAccount->ac_cash }}" label="Cash GL Account"/>
+					<x-tenant.show.my-text		value="{{ $bankAccount->ac_bank }}" label="Cash GL Account"/>
 					<x-tenant.show.my-boolean	value="{{ $bankAccount->enable }}"/>
 					<x-tenant.show.my-text 		value="{{ $bankAccount->address1 }}" label="Address1"/>
 					<x-tenant.show.my-text 		value="{{ $bankAccount->address2 }}" label="Address2"/>

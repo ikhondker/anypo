@@ -12,8 +12,7 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('setups', function (Blueprint $table) {
-			$table->id()->startingValue(1001);
-			$table->string('name');
+			$table->id()->startingValue(1001);			$table->string('name');
 			$table->string('tagline')->nullable();
 			$table->string('currency',3)->default('USD');
 			$table->boolean('freezed')->default(false);
@@ -37,21 +36,22 @@ return new class extends Migration
 			$table->decimal('tolerance_invoice', 15, 2)->default(1);		// Future
 			$table->decimal('tolerance_receipt', 15, 2)->default(1);		// Future
 			$table->decimal('tolerance_payment', 15, 2)->default(1);		// Future
-			$table->boolean('user_master_data_entry')->default(false); 	// Future. Allow user to create master data
-			$table->string('ac_accrual')->default('A200001');
-			$table->string('ac_liability')->default('A200004');
-			$table->string('ac_clearing')->default('A200006');			// Future user
+			$table->boolean('user_master_data_entry')->default(false); 	    // Future. Allow user to create master data
+			$table->string('ac_advance')->default('A500101');
+			$table->string('ac_ap_accrual')->default('A200101');
+			$table->string('ac_liability')->default('A200104');
+			//$table->string('ac_cash_clearing')->default('A100201');			// Future user
 			$table->text('tc')->nullable();
 			$table->string('logo')->nullable()->default('logo.png');
 			$table->boolean('banner_show')->default(false);
 			$table->text('banner_message')->nullable();
 			$table->uuid('admin_id')->nullable(); 					// No foreign key intentional
 			$table->uuid('system_user_id')->nullable();				// No foreign key intentional
-			$table->uuid('kam_id')->nullable(); 					// Future
+			$table->uuid('kam_id')->nullable(); 					// Future Use
 			$table->biginteger('landlord_account_id')->nullable();
 			$table->date('last_rate_date')->nullable();
 			$table->boolean('maintenance')->default(false);
-            $table->boolean('demo')->default(false);
+			$table->boolean('demo')->default(false);
 			$table->boolean('debug')->default(false);
 			$table->boolean('readonly')->default(false);
 			$table->boolean('enable')->default(true);

@@ -26,9 +26,9 @@ class UpdateSetupRequest extends FormRequest
 	{
 		return [
 			'name'				=> 'required|min:2|max:150',
-			//'ac_accrual'		=> 'required|min:2|max:255|alpha_dash',
-			//NO 'ac_accrual'		=> 'required|min:2|max:255',[new GlCode()],
-			'ac_accrual'		=> 'required|min:2|max:255|regex:/^[0-9A-Za-z.\-]+$/u',
+			//'ac_ap_accrual'		=> 'required|min:2|max:255|alpha_dash',
+			//NO 'ac_ap_accrual'		=> 'required|min:2|max:255',[new GlCode()],
+			'ac_ap_accrual'		=> 'required|min:2|max:255|regex:/^[0-9A-Za-z.\-]+$/u',
 			'ac_liability'		=> 'required|min:2|max:255|regex:/^[0-9A-Za-z.\-]+$/u',
 			'file_to_upload'	=> 'nullable|image|mimes:jpeg,png,jpg,svg|max:1024'
 		];
@@ -36,7 +36,7 @@ class UpdateSetupRequest extends FormRequest
 
 	public function messages() {
 		return [
-			'ac_accrual.regex'		=> 'GL Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
+			'ac_ap_accrual.regex'		=> 'GL Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
 			'ac_liability.regex'	=> 'GL Account code must only contain letters, numbers, dashes, and underscores. No space allowed.',
 		];
 	}

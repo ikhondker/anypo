@@ -137,10 +137,10 @@
 						</tr>
 						<x-landlord.show.my-enable :value="$account->tenant_enable" />
 						<x-landlord.show.my-badge :value="$account->rank" />
-                        <x-landlord.show.my-badge :value="$account->tenant_count_user" />
-                        <x-landlord.show.my-badge :value="$account->tenant_used_gb" />
-                        <x-landlord.show.my-badge :value="$account->tenant_count_pr" />
-                        <x-landlord.show.my-badge :value="$account->tenant_count_po" />
+						<x-landlord.show.my-badge :value="$account->tenant_count_user" />
+						<x-landlord.show.my-badge :value="$account->tenant_used_gb" />
+						<x-landlord.show.my-badge :value="$account->tenant_count_pr" />
+						<x-landlord.show.my-badge :value="$account->tenant_count_po" />
 					</tbody>
 				</table>
 			</div>

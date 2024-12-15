@@ -42,9 +42,9 @@
 				<div class="col-md-6 col-xl-8">
 
 					<div class="text-sm-end">
-                        @if (auth()->user()->isAdmin())
-					        <a href="{{ route('invoices.generate') }}" class="btn btn-primary btn-lg"><i data-lucide="plus"></i> Generate & Pay Advance Invoice</a>
-				        @endif
+						@if (auth()->user()->isAdmin())
+							<a href="{{ route('invoices.generate') }}" class="btn btn-primary btn-lg"><i data-lucide="plus"></i> Generate & Pay Advance Invoice</a>
+						@endif
 
 						<a href="{{ route('invoices.index') }}" class="btn btn-primary btn-lg"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">

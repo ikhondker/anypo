@@ -80,7 +80,7 @@
 						<input type="text" class="form-control" placeholder="Search Ticket…" aria-label="Search"
 							minlength=3 name="term"
 							value="{{ old('term', request('term')) }}" id="term"
-							placeholder="Search tickets…" required>
+							required>
 
 						<button class="btn" type="submit">
 							<i class="align-middle" data-lucide="search"></i>
@@ -127,7 +127,7 @@
 			</nav>
 
 					<!-- Form Success Message Box -->
-                    @if (session('success'))
+					@if (session('success'))
 						<x-landlord.alerts.app-alert-success message="{{ session('success') }}" />
 					@endif
 					<!-- Form Error Message Box (including Form Validation ) -->

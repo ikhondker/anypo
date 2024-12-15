@@ -15,7 +15,7 @@
 		@endslot
 	</x-tenant.page-header>
 
-<x-tenant.widgets.who-when model="Item" articleId="{{ $item->id  }}"/>
+<x-tenant.widgets.who-when model="Item" articleId="{{ $item->id }}"/>
 
 <x-tenant.widgets.back-to-list model="Item"/>
 @endsection

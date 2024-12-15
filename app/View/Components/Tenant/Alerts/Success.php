@@ -22,6 +22,6 @@ class Success extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.tenant.alert.success');
+		return view('components.tenant.alerts.success');
 	}
 }

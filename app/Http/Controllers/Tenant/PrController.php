@@ -97,7 +97,8 @@ class PrController extends Controller
 
 		$prs = Pr::query();
 		if (request('term')) {
-			$prs->where('summary', 'LIKE', '%' . request('term') . '%');
+			$prs->where('summary', 'LIKE', '%' . request('term') . '%')
+			->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:

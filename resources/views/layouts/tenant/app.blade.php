@@ -67,7 +67,7 @@
 			</div>
 		</nav>
 		<div class="main">
-            @if ($_setup->demo)
+			@if ($_setup->demo)
 				<x-tenant.alerts.warning message="This is a Demo Instance" />
 			@endif
 
@@ -75,16 +75,44 @@
 				<a class="sidebar-toggle">
 					<i class="hamburger align-self-center"></i>
 				</a>
+				@if (auth()->user()->role->value == UserRoleEnum::USER->value)
+					<form class="d-none d-sm-inline-block" action="{{ route('prs.index') }}" method="GET" role="search">
+						<div class="input-group input-group-navbar">
+							<input type="text" class="form-control" placeholder="Search PR…" aria-label="Search"
+								minlength=3 name="term"
+								value="{{ old('term', request('term')) }}" id="term"
+								required>
 
-				<form class="d-none d-sm-inline-block">
-					<div class="input-group input-group-navbar">
-						<input type="text" class="form-control" placeholder="Search PO…" aria-label="Search">
-						<button class="btn" type="button">
-							<i class="align-middle" data-lucide="search"></i>
-						</button>
-					</div>
-				</form>
-
+							<button class="btn" type="submit">
+								<i class="align-middle" data-lucide="search"></i>
+							</button>
+							@if (request('term'))
+								<a href="{{ route('prs.index') }}" class="btn btn-lg"
+									data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+									<i data-lucide="refresh-cw"></i>
+								</a>
+							@endif
+						</div>
+					</form>
+				@else
+					<form class="d-none d-sm-inline-block" action="{{ route('pos.index') }}" method="GET" role="search">
+						<div class="input-group input-group-navbar">
+							<input type="text" class="form-control" placeholder="Search PO…" aria-label="Search"
+								minlength=3 name="term"
+								value="{{ old('term', request('term')) }}" id="term"
+								required>
+							<button class="btn" type="submit">
+								<i class="align-middle" data-lucide="search"></i>
+							</button>
+							@if (request('term'))
+								<a href="{{ route('pos.index') }}" class="btn btn-lg"
+									data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+									<i data-lucide="refresh-cw"></i>
+								</a>
+							@endif
+						</div>
+					</form>
+				@endif
 				<ul class="navbar-nav">
 					<li class="nav-item px-2 dropdown d-none d-sm-inline-block">
 						<a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

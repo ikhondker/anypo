@@ -12,7 +12,7 @@
 			View Supplier
 		@endslot
 		@slot('buttons')
-   			@can('create', App\Models\Tenant\Lookup\Supplier::class)
+ 			@can('create', App\Models\Tenant\Lookup\Supplier::class)
 				<x-tenant.buttons.header.create model="Supplier"/>
 			@endcan
 			<x-tenant.actions.lookup.supplier-actions supplierId="{{ $supplier->id }}"/>

@@ -6,6 +6,7 @@
 x123. disable site form landlord
 x123. search ticket on top
 123. filter open ticket only
+123. allow filter only open ticket in all ticket page
 123. allow pdf invoice download as public
 123. create backend user form landlord account support action
 123. text for reply template
