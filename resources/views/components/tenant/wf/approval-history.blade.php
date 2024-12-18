@@ -25,7 +25,8 @@
 						<td><x-tenant.list.my-date-time value="{{ $wfl->start_date }}"/></td>
 						<td><x-tenant.list.my-date-time value="{{ $wfl->end_date }}"/></td>
 						<td>
-							<span class="badge {{ $wfl->action_badge->badge }}">{{ $wfl->action_badge->name}}</span>
+                            <button class="btn btn-sm btn-pill btn-{{ $wfl->action_badge->badge  }}" type="button"><i data-lucide="{{ $wfl->action_badge->icon }}"></i> {{ $wfl->action_badge->name }}</button>
+							{{-- <span class="badge badge-subtle-{{ $wfl->action_badge->badge }}">{{ $wfl->action_badge->name}}</span> --}}
 						</td>
 						<td>{!! nl2br($wfl->notes) !!}</td>
 					</tr>

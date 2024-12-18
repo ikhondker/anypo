@@ -79,6 +79,6 @@
 		<!-- End row -->
 	</div>
 	<!-- End Content -->
-	
+
 
 @endsection

@@ -31,7 +31,7 @@
 						<div class="text-center">
 						<label class="form-label" for="email">If you did not receive the email, request again by
 							entering your email bellow</label>
-						</div>		
+						</div>
 						<input id="email" type="email" placeholder="you@example.com"
 							class="form-control form-control-lg @error('email') is-invalid @enderror" name="email"
 							value="{{ old('email', " you@example.com" ) }}" required autocomplete="email" autofocus>

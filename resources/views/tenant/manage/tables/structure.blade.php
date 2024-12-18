@@ -1,7 +1,7 @@
 @extends('layouts.tenant.app')
 @section('title','Table Structure')
 @section('breadcrumb')
-	
+
 	<li class="breadcrumb-item"><a href="{{ route('tables.index') }}">Tables</a></li>
 	<li class="breadcrumb-item active"><strong>{{ $table }}</strong> </li>
 
@@ -23,6 +23,6 @@
 	@include('shared.includes.tables.structures')
 	<!-- ========== INCLUDE ========== -->
 
-	
+
 @endsection
 

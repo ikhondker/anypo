@@ -19,5 +19,5 @@
 	<!-- ========== INCLUDE ========== -->
 	@include('shared.includes.tables.helpers-fnc')
 	<!-- ========== INCLUDE ========== -->
-	
+
 @endsection

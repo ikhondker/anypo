@@ -12,7 +12,7 @@ use App\Models\User;
 
 class Status extends Model
 {
-	
+
 	use HasFactory;
 	use AddCreatedUpdatedBy;
 

@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Log;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. FUTURE 
+# 13. FUTURE
 
 class NotificationController extends Controller
 {

@@ -20,7 +20,7 @@
 				margin: auto;
 				margin-top: 50px;
 				margin-bottom: 50px;
-	} 
+	}
 	table th {
 			background-color: #ff9800;
 			color: #fff;

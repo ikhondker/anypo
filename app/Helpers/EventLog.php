@@ -63,9 +63,9 @@ class EventLog
 			//$log['user_id'] 	= auth()->check() ? auth()->user()->id : config('akk.SYSTEM_USER_ID');
 			$log['user_id'] 	= auth()->check() ? auth()->user()->id : '';
 		}
-		
+
 
 		Activity::create($log);
-		
+
 	}
 }

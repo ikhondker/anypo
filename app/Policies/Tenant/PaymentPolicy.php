@@ -22,7 +22,7 @@ class PaymentPolicy
 		return null;
 	}
 
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -78,7 +78,7 @@ class PaymentPolicy
 	{
 		return ($user->isBuyer() || $user->isSupport());
 	}
-	
+
 	/**
 	 * Determine whether the user can restore the model.
 	 */

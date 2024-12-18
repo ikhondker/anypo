@@ -30,7 +30,7 @@
 				<div class="mb-3">
 					<div class="">
 						<label class="form-label" for="email">Your email</label>
-					</div>		
+					</div>
 
 					<input id="email" type="email" placeholder="you@example.com"
 						class="form-control form-control-lg @error('email') is-invalid @enderror" name="email"
@@ -48,7 +48,7 @@
 		<div class="text-center">
 			Already have account? <a href="{{ route('login') }}">Log In</a>
 		</div>
-		
+
 	</div>
 </div>
 

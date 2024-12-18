@@ -12,7 +12,7 @@ use App\Models\User;
 class CustomError extends Model
 {
 	use HasFactory, AddCreatedUpdatedBy;
-	
+
 	protected $primaryKey	= 'code';
 	public $incrementing 	= false;
 	protected $keyType		= 'string';
@@ -32,5 +32,5 @@ class CustomError extends Model
 		'created_at'	=> 'datetime',
 	];
 
-	
+
 }

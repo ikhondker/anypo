@@ -81,7 +81,7 @@ class ProcessBilling implements ShouldQueue
 
 		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle process_id = '. $process->id);
 		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle config->days_gen_bill = '. $config->days_gen_bill);
-		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle end date before  = '. now()->addDays($config->days_gen_bill));
+		Log::channel('bo')->info('Jobs.Landlord.ProcessBilling.handle end date before = '. now()->addDays($config->days_gen_bill));
 
 		$accounts = Account::where('status_code', AccountStatusEnum::ACTIVE->value)
 			->where('next_bill_generated', false)

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <!--
-	HOW TO USE: 
+	HOW TO USE:
 	data-layout: fluid (default), boxed
 	data-sidebar-theme: dark (default), colored, light
 	data-sidebar-position: left (default), right
 	data-sidebar-behavior: sticky (default), fixed, compact
 -->
-<html lang="en" 
-	data-bs-theme="light" 
-	data-layout="fluid" 
-	data-sidebar-theme="dark" 
-	data-sidebar-position="left" 
+<html lang="en"
+	data-bs-theme="light"
+	data-layout="fluid"
+	data-sidebar-theme="dark"
+	data-sidebar-position="left"
 	data-sidebar-behavior="sticky">
 
 <head>
@@ -24,7 +24,7 @@
 
 	<link rel="canonical" href="https://www.anypo.net/404" />
 	<link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
-	
+
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
 	<!-- CSS Front Template -->
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/tenant.css') }}">
-	
+
 </head>
 
 <body>

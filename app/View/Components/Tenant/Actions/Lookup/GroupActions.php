@@ -14,7 +14,7 @@ class GroupActions extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string  $groupId)
+	public function __construct(public string $groupId)
 	{
 
 			$this->group 	= Group::where('id', $groupId)->get()->firstOrFail();

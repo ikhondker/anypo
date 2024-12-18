@@ -16,7 +16,7 @@ class AehActions extends Component
 	 */
 	public function __construct(public string $aehId='')
 	{
-		
+
 		if ($aehId <> ''){
 			$this->aeh 	= Aeh::where('id', $aehId)->get()->firstOrFail();
 		} else {

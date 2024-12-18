@@ -37,7 +37,7 @@ class Handler extends ExceptionHandler
 	// 	if($this->is404($exception)) {
 	// 		$this->log404($request);
 	// 	}
-	
+
 	// 	return parent::render($request, $exception);
 	// }
 	/**
@@ -50,13 +50,13 @@ class Handler extends ExceptionHandler
 		 $this->renderable(function (Throwable $e) {
 			 if($e instanceof NotFoundHttpException) {
 				 Log::info('From renderable method: '.$e->getMessage());
-	 
+
 				 // you can return a view, json object, e.t.c
 				 return response()->json([
 					 'message' => 'From renderable method: Resource not found'
 				 ], Response::HTTP_NOT_FOUND);
 			 }
-	 
+
 			 return response()->json([
 				 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
 				 'message' => $e->getMessage()
@@ -65,7 +65,7 @@ class Handler extends ExceptionHandler
 	 }
 
 
-	// TODO - rename one function which one you want 
+	// TODO - rename one function which one you want
 	public function dbregister(): void
 	{
 		$this->reportable(function (Throwable $e) {
@@ -118,5 +118,5 @@ class Handler extends ExceptionHandler
 		});
 	}
 
-	
+
 }

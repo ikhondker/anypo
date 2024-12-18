@@ -11,7 +11,7 @@ use App\Models\User;
 
 class FirstTenantAdminCreated extends Notification implements ShouldQueue
 {
-	
+
 
 	use Queueable;
 	protected $user;

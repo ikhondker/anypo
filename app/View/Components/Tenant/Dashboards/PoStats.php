@@ -11,7 +11,7 @@ use App\Models\Tenant\Po;
 class PoStats extends Component
 {
 	public $po;
-	
+
 
 	/**
 	 * Create a new component instance.

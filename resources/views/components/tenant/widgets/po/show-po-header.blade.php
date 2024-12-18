@@ -55,12 +55,13 @@
 
 					<div class="card-actions float-end">
 						@can('submit', $po)
-							<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
+							<a href="{{ route('pos.submit', $po->id) }}" class="btn btn-warning text-white me-2 sw2-advance"
 								data-entity="" data-name="PO#{{ $po->id }}" data-status="Submit"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
 								<i data-lucide="external-link" class="text-white"></i> Submit</a>
 						@else
-								<span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span>
+                                <button class="btn btn-pill btn-{{ $po->auth_status_badge->badge }} me-1" type="button"><i data-lucide="{{ $po->auth_status_badge->icon }}"></i> {{ $po->auth_status_badge->name }}</button>
+								{{-- <span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span> --}}
 						@endcan
 					</div>
 				</div>
@@ -72,11 +73,11 @@
 					<tbody>
 						<tr>
 							<th>Auth Status :</th>
-							<td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
+							<td><span class="badge badge-subtle-{{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
 						</tr>
 						<tr>
 							<th>Closure Status :</th>
-							<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
+							<td><span class="badge badge-subtle-{{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 						</tr>
 						<x-tenant.show.my-date-time	value="{{ $po->auth_date }}" label="Auth Date"/>
 						<x-tenant.show.my-date		value="{{ $po->need_by_date }}" label="Need by Date"/>

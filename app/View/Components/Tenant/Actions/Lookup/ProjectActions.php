@@ -10,7 +10,7 @@ use App\Models\Tenant\Lookup\Project;
 
 class ProjectActions extends Component
 {
-	
+
 	public $show;
 	public $project;
 
@@ -19,7 +19,7 @@ class ProjectActions extends Component
 	 */
 	public function __construct(public string $projectId, $show = false)
 	{
-		$this->show		= $show; 
+		$this->show		= $show;
 		$this->project = Project::where('id', $projectId)->get()->firstOrFail();
 	}
 

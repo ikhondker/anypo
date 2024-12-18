@@ -42,14 +42,14 @@ body{
 		padding:0.5em;
 
 }
-.spreadSheetGroup td:focus { 
+.spreadSheetGroup td:focus {
 	border:1px solid #fff;
 	-webkit-box-shadow:inset 0px 0px 0px 2px #5292F7;
 	-moz-box-shadow:inset 0px 0px 0px 2px #5292F7;
 	box-shadow:inset 0px 0px 0px 2px #5292F7;
 	outline: none;
 }
-.spreadSheetGroup .spreadSheetTitle{ 
+.spreadSheetGroup .spreadSheetTitle{
 	font-weight: bold;
 }
 .spreadSheetGroup tr td{
@@ -176,7 +176,7 @@ table.shipToFrom td, table.shipToFrom th{text-align:left}
 
 table.proposedWork td, table.proposedWork th{text-align:center}
 table.proposedWork td.description{text-align:left}
-	 
+
 </style>
 </head>
 <body>
@@ -186,8 +186,8 @@ table.proposedWork td.description{text-align:left}
 
 		<div class="document active">
 				<div class="spreadSheetGroup">
-			
-					
+
+
 					<table class="shipToFrom">
 						<thead style="font-weight:bold">
 							<tr>
@@ -214,10 +214,10 @@ table.proposedWork td.description{text-align:left}
 							</tr>
 						</tbody>
 					</table>
-			
+
 					<hr style="visibility:hidden"/>
-					
-					
+
+
 					<table class="tableBorder">
 						<thead style="font-weight:bold">
 							<tr>
@@ -234,9 +234,9 @@ table.proposedWork td.description{text-align:left}
 							</tr>
 						</tbody>
 					</table>
-					
-					
-					
+
+
+
 					<table class="proposedWork" width="100%" style="margin-top:20px">
 						<thead>
 							<th>QTY</th>
@@ -291,9 +291,9 @@ table.proposedWork td.description{text-align:left}
 							</tr>
 						</tfoot>
 					</table>
-			
-					
-					
+
+
+
 					<table width="100%">
 						<tbody>
 							<tr>
@@ -341,13 +341,13 @@ table.proposedWork td.description{text-align:left}
 							</tr>
 						</tbody>
 					</table>
-			
-				
-			
+
+
+
 				</div>
 			</div>
 
-		
+
 
 </body>
 </html>

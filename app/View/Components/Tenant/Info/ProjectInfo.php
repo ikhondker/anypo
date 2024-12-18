@@ -9,7 +9,7 @@ use App\Models\Tenant\Lookup\Project;
 
 class ProjectInfo extends Component
 {
-	
+
 	public $project;
 
 	/**

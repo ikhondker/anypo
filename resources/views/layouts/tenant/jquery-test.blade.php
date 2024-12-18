@@ -39,7 +39,7 @@
 </head>
 
 <body>
-	
+
 	<!-- ========== MAIN CONTENT ========== -->
 	<main id="content" role="main" class="">
 		 <!-- content -->
@@ -49,12 +49,12 @@
 		<script type="module">
 			@yield('javascript')
 		</script>
-		
+
 	</main>
 	<!-- ========== END MAIN CONTENT ========== -->
 	<script src="{{asset( 'js/app.js' )}}"></script>
 	{{-- <script	src="{{ Storage::disk('s3t')->url('js/app.js') }}"></script> --}}
-	
+
 
 </body>
 </html>

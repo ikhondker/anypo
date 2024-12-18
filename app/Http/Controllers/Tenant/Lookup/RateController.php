@@ -41,7 +41,7 @@ use App\Helpers\EventLog;
 # 11. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 12. FUTURE 
+# 12. FUTURE
 
 class RateController extends Controller
 {
@@ -114,7 +114,7 @@ class RateController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Rate::class);
-		
+
 		//$data = Uom::all()->toArray();
 		$data = DB::select('
 		SELECT id, rate_date, currency, fc_currency, from_date, to_date, rate, inverse_rate FROM rates

@@ -170,7 +170,7 @@ class Pr extends Model
 		Log::debug('tenant.pr.insertPrlsIntoPols TO po_id = ' . $poId);
 		// get last line num from POL
 		$last_pol_line_num = Pol::where('po_id', $poId )->max('line_num');
-		Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  = '.$last_pol_line_num);
+		Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num = '.$last_pol_line_num);
 		if (empty($last_pol_line_num)){
 			$last_pol_line_num = 0;
 		}
@@ -181,10 +181,10 @@ class Pr extends Model
 			$pol			= new Pol();
 
 			$pol->po_id 		= $poId;
-			$pol->line_num 		=  $last_pol_line_num + 1 ;
+			$pol->line_num 		= $last_pol_line_num + 1 ;
 
-			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->id = '.$prl->id);
-			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->item_description = '.$prl->item_description);
+			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num $prl->id = '.$prl->id);
+			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num $prl->item_description = '.$prl->item_description);
 
 			$pol->item_description = $prl->item_description;
 			$pol->item_id 		= $prl->item_id;
@@ -205,7 +205,7 @@ class Pr extends Model
 			$pol->save();
 
 			// increment counter
-			$last_pol_line_num =  $last_pol_line_num + 1 ;
+			$last_pol_line_num = $last_pol_line_num + 1 ;
 		}
 
 

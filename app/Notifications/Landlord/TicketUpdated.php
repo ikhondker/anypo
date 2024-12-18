@@ -15,7 +15,7 @@ class TicketUpdated extends Notification implements ShouldQueue
 {
 	use Queueable;
 	protected $user, $ticket;
-	
+
 	/**
 	 * Create a new notification instance.
 	 */

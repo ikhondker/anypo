@@ -39,12 +39,12 @@ use App\Helpers\EventLog;
 # 11. Controller
 # 12. Seeded
 use DB;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class EntityController extends Controller
 {
-	
+
 	/**
 	 * Display a listing of the resource.
 	 *

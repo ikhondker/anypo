@@ -41,7 +41,7 @@ use App\Helpers\EventLog;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 class MenuController extends Controller
 {
@@ -116,7 +116,7 @@ class MenuController extends Controller
 		//$request->validate();
 		$request->validate([
 		]);
-		
+
 		// Write to Log
 		EventLog::event('menu', $menu->id, 'update', 'name', $request->name);
 		$menu->update($request->all());

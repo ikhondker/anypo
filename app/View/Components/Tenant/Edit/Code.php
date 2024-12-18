@@ -13,9 +13,9 @@ class Code extends Component
 	 */
 	public function __construct(public string $value = '')
 	{
-		
+
 		//$this->value = $value;
-		
+
 	}
 
 	/**

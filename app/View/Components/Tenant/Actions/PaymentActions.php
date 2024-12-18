@@ -10,7 +10,7 @@ use App\Models\Tenant\Payment;
 
 class PaymentActions extends Component
 {
-	
+
 	public $payment;
 
 	/**

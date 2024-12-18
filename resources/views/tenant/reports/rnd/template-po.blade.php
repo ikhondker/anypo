@@ -13,7 +13,7 @@
 		margin-top: 100px; /* create space for header */
 		margin-bottom: 50px; /* create space for footer */
 	}
-	
+
 	#my-header-table {
 		font-family: Arial, Helvetica, sans-serif;
 		/* font-family: "Poppins", sans-serif; */
@@ -111,11 +111,11 @@
 	}
 
 	footer {
-		position: fixed; 
-		bottom: -60px; 
-		left: 0px; 
+		position: fixed;
+		bottom: -60px;
+		left: 0px;
 		right: 0px;
-		height: 50px; 
+		height: 50px;
 		font-size: 20px !important;
 
 		/** Extra personal styles **/
@@ -148,7 +148,7 @@
 	</header>
 
 	<footer>
-		Copyright © <?php echo date("Y");?> 
+		Copyright © <?php echo date("Y");?>
 	</footer> --}}
 
 
@@ -198,7 +198,7 @@
 			</td>
 		</tr>
 	</table>
-	
+
 	<table id="my-table">
 		<tr>
 			<th width="5%">SL#</th>

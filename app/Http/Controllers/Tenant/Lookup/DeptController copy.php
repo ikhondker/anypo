@@ -166,43 +166,45 @@ class DeptController extends Controller
 
 	public function export()
 	{
-		$this->authorize('export', Dept::class);
+		//$this->authorize('export', Dept::class);
 
-		//$fileName = 'dept.xlsx';
-		$fileName = 'export-depts-' . date('Ymd') . '.xlsx';
-		$depts = Dept::with('prHierarchy')->with('poHierarchy')->with('user_created_by')->with('user_updated_by')->get();
-
+		$depts = Dept::all();
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
-
 		$sheet->setCellValue('A1', 'Id');
 		$sheet->setCellValue('B1', 'Name');
-		$sheet->setCellValue('C1', 'PR Hierarchy');
-		$sheet->setCellValue('D1', 'PO Hierarchy');
-		$sheet->setCellValue('E1', 'Enable?');
-		$sheet->setCellValue('F1', 'Created By');
-		$sheet->setCellValue('G1', 'Created At');
-		$sheet->setCellValue('H1', 'Updated By');
-		$sheet->setCellValue('I1', 'Updated At');
-
+		// $sheet->setCellValue('C1', 'Age');
+		// $sheet->setCellValue('D1', 'Skills');
+		// $sheet->setCellValue('E1', 'Address');
+		// $sheet->setCellValue('F1', 'Designation');
 		$rows = 2;
 		foreach($depts as $dept){
-			$sheet->setCellValue('A' . $rows, $dept->id);
-			$sheet->setCellValue('B' . $rows, $dept->name);
-			$sheet->setCellValue('C' . $rows, $dept->prHierarchy->name);
-			$sheet->setCellValue('D' . $rows, $dept->poHierarchy->name);
-			$sheet->setCellValue('E' . $rows, ($dept->enable == 1 ? 'Yes' : 'No'));
-			$sheet->setCellValue('F' . $rows, $dept->user_created_by->name);
-			$sheet->setCellValue('G' . $rows, $dept->created_at);
-			$sheet->setCellValue('H' . $rows, $dept->user_updated_by->name);
-			$sheet->setCellValue('I' . $rows, $dept->updated_at);
+			$sheet->setCellValue('A' . $rows, $dept['id']);
+			$sheet->setCellValue('B' . $rows, $dept['name']);
+			// $sheet->setCellValue('C' . $rows, $empDetails['age']);
+			// $sheet->setCellValue('D' . $rows, $empDetails['skills']);
+			// $sheet->setCellValue('E' . $rows, $empDetails['address']);
+			// $sheet->setCellValue('F' . $rows, $empDetails['designation']);
 			$rows++;
 		}
+		$fileName = 'dept.xlsx';
+		//$fileName = "emp.".$type;
+
+		// if($type == 'xlsx') {
+		// $writer = new Xlsx($spreadsheet);
+		// } else if($type == 'xls') {
+		// $writer = new Xls($spreadsheet);
+		// }
+		// $writer->save("export/".$fileName);
+		// header("Content-Type: application/vnd.ms-excel");
+		// return redirect(url('/')."/export/".$fileName);
+
 
 		$writer = new Xlsx($spreadsheet);
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
 		$writer->save('php://output');
+
 	}
 
 	public function csvexport()

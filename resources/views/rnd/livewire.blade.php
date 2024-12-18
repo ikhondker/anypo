@@ -8,14 +8,14 @@
 	@livewireStyles
 </head>
 <body>
-	
+
 	{{-- @livewire('bootstrap-modal') --}}
-	
+
 	@livewire('lw-button')
 
 	{{-- @livewire('hello-world') --}}
 
-	
+
 	@livewireScripts
 </body>
 </html>

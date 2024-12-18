@@ -9,7 +9,7 @@ use App\Models\Tenant\Ae\Aeh;
 
 class AehInfo extends Component
 {
-	
+
 	public $aeh;
 
 	/**

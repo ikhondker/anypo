@@ -27,8 +27,8 @@
 			<td>{{ $pr->project->code }}</td>
 			<td class="text-end">{{ number_format($pr->amount, 2) }}</td>
 			<td>{{ $pr->currency }}</td>
-			<td><span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span></td>
-			<td><span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
+			<td><span class="badge badge-subtle-{{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span></td>
+			<td><span class="badge badge-subtle-{{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span></td>
 			<td class="table-action">
 				<a href="{{ route('prs.show',$pr->id) }}" class="btn btn-light"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View

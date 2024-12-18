@@ -28,17 +28,17 @@
 						</td>
 						<td class="text-center">
 							<a href="{{ route('notifications.show',$notification->id) }}" class="action-btn btn-view bs-tooltip me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-								<i data-feather="eye" class="fea text-muted"></i> 
+								<i data-feather="eye" class="fea text-muted"></i>
 							</a>
 							<a href="{{ route('notifications.read',$notification->id) }}" class="action-btn btn-view bs-tooltip me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as Read">
-								<i data-feather="edit" class="fea text-muted"></i> 
+								<i data-feather="edit" class="fea text-muted"></i>
 							</a>
 						</td>
-					</tr> 
+					</tr>
 				@empty
 					<tr>
 						There are no new notifications!
-					</tr> 
+					</tr>
 				@endforelse
 			@endif
 		</tbody>

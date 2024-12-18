@@ -95,7 +95,7 @@ class AehPayment implements ShouldQueue
 		$ael_dr->accounting_date 	= $ael_cr->accounting_date	= date('Y-m-d');
 
 		$ael_dr->ac_code			= $setup->ac_liability;
-		$ael_cr->ac_code			= $bankAccount->ac_cash;
+		$ael_cr->ac_code			= $bankAccount->ac_bank;
 
 		$ael_dr->line_description	= $ael_cr->line_description = $payment->invoice->summary;	// <- --------------
 		$ael_dr->fc_currency		= $ael_cr->fc_currency 		= $setup->currency;

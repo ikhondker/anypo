@@ -43,7 +43,7 @@ class DeptPolicy
 	public function create(User $user): bool
 	{
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
-	} 
+	}
 
 	/**
 	 * Determine whether the user can update the model.
@@ -61,7 +61,7 @@ class DeptPolicy
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
-	
+
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -86,5 +86,5 @@ class DeptPolicy
 	{
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
-	
+
 }

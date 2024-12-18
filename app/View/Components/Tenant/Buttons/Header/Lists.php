@@ -19,7 +19,7 @@ class Lists extends Component
 	/**
 	 * Create a new component instance.
 	 */
-	public function __construct(public string $model,public string  $label="")
+	public function __construct(public string $model,public string $label="")
 	{
 		$this->route = Str::lower(Str::plural(Str::snake($model, '-')));
 		$this->title = ($this->label=="" ? $this->model : $this->label) .' List';

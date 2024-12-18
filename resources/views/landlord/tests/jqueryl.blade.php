@@ -7,13 +7,13 @@
 <div id="app">
 	<main class="container">
 		<h1> IQBAL JQuery in Laravel 10? LANDLORD</h1>
-		
+
 		<button class="btn btn-success">Click Me</button>
 	</main>
 </div>
 
 <div id="app">
- 
+
 	<main class="container">
 		<h1> How To Install Sweetalert2 in Laravel? - ItSolutionstuiff.com</h1>
 		<button class="btn btn-success">Click Me</button>
@@ -33,12 +33,12 @@
 	<div class="col-sm-10">
 		<select class="form-control select2" data-toggle="select2" name="dept_id" required>
 			<option value=""><< Dept >> </option>
-			
+
 				<option value="1" >11111</option>
 				<option value="2" >21111</option>
 				<option value="3" >31111</option>
 				<option value="4" >41111</option>
-		
+
 		</select>
 	</div>
 </div>

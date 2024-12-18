@@ -24,7 +24,7 @@
 				<tbody>
 
 					<x-landlord.edit.id-read-only :value="$menu->id"/>
-				
+
 						<tr>
 							<th>Raw Route Name :</th>
 							<td>
@@ -50,7 +50,7 @@
 								@enderror
 							</td>
 						</tr>
-						
+
 						<tr>
 							<th>Access :</th>
 							<td>

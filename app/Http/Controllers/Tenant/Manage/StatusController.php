@@ -45,7 +45,7 @@ use App\Helpers\EventLog;
 # 12. Seeded
 use DB;
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 
@@ -124,7 +124,7 @@ class StatusController extends Controller
 		$this->authorize('update', $status);
 
 		//$request->validate();
-		
+
 		// Write to Log
 		EventLog::event('status', $status->code, 'update', 'name', $request->name);
 		$status->update($request->all());

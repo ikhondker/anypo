@@ -10,7 +10,7 @@ use App\Models\Tenant\Receipt;
 
 class ReceiptInfo extends Component
 {
-	
+
 	public $receipt;
 
 	/**

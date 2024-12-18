@@ -61,8 +61,8 @@ class ActivityPolicy
 	{
 		return false;
 	}
-	
-	
+
+
 	/**
 	 * Determine whether the user can restore the model.
 	 */

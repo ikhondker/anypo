@@ -53,7 +53,7 @@ class InvoiceLinePolicy
 	{
 		// only draft line can be edited
 		$invoice = Invoice::where('id', $invoiceLine->invoice_id)->first();
-		if ($invoice->status == AuthStatusEnum::DRAFT->value )  {
+		if ($invoice->status == AuthStatusEnum::DRAFT->value ) {
 			return true;
 		} else {
 			return ( false ) ;

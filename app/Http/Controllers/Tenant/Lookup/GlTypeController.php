@@ -36,7 +36,7 @@ use Illuminate\Http\Request;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
-# 12. FUTURE 
+# 12. FUTURE
 
 
 class GlTypeController extends Controller

@@ -40,7 +40,7 @@ use App\Helpers\EventLog;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class CategoryController extends Controller

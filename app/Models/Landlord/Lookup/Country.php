@@ -8,7 +8,7 @@
 * @path			\app\Models\Landlord\Lookup
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -47,8 +47,8 @@ class Country extends Model
 	}
 
 	/* ---------------- Scope ---------------------- */
-	
-	
+
+
 	/* ---------------- HasMany ---------------------- */
 
 

@@ -27,7 +27,7 @@
 			<i class="align-middle text-danger" data-lucide="power"></i><span class="align-middle"> Leave Impersonate</span>
 		</a>
 	</li>
-@else 
+@else
 	<li class="sidebar-item }}">
 		<a class="sidebar-link" href="{{ route('logout') }}">
 			<i class="align-middle text-danger" data-lucide="power"></i><span class="align-middle"> Sign out</span>

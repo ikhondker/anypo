@@ -20,7 +20,7 @@
 	<x-tenant.info.supplier-info supplierId="{{ $supplier->id }}"/>
 
 	<x-tenant.widgets.po.list-by-supplier id="{{ $supplier->id }}"/>
-	
-	
+
+
 @endsection
 

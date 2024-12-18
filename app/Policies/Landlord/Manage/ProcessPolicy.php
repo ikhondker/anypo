@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\Response;
 
 class ProcessPolicy
 {
-	
+
 	/**
 	 * Perform pre-authorization checks.
 	*/
@@ -19,7 +19,7 @@ class ProcessPolicy
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */

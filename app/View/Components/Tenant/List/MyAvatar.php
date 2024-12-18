@@ -8,14 +8,14 @@ use Illuminate\View\Component;
 
 class MyAvatar extends Component
 {
-	
+
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public string $avatar, public string $size="48px")
 	{
-		
+
 	}
 
 	/**

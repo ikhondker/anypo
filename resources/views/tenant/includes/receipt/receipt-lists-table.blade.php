@@ -26,7 +26,7 @@
 			<td>{{ $receipt->qty }}</td>
 			<td>{{ $receipt->receiver->name }}</td>
 			<td>{{ $receipt->warehouse->name }}</td>
-			<td><span class="badge {{ $receipt->status_badge->badge }}">{{ $receipt->status_badge->name}}</span></td>
+			<td><span class="badge badge-subtle-{{ $receipt->status_badge->badge }}">{{ $receipt->status_badge->name}}</span></td>
 			<td>
 				<a href="{{ route('receipts.show',$receipt->id) }}" class="btn btn-light"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View

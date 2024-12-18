@@ -45,7 +45,7 @@ class Kernel extends HttpKernel
 		],
 		// IQBAL 25-apr-23
 		'universal' => [
-		
+
 		],
 
 

@@ -17,7 +17,7 @@
 	<td class="text-end"><x-tenant.list.my-number :value="$pol->gst"/></td>
 	<td class="text-end"><x-tenant.list.my-number :value="$pol->amount"/></td>
 	@if ($status)
-		<td class="text-end"><span class="badge {{ $pol->close_status_badge->badge }}">{{ $pol->close_status_badge->name}}</span></td>
+		<td class="text-end"><span class="badge badge-subtle-{{ $pol->close_status_badge->badge }}">{{ $pol->close_status_badge->name}}</span></td>
 	@endif
 	@if ($action)
 		<td class="">

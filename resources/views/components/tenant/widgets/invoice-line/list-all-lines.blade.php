@@ -3,7 +3,7 @@
 		<div class="card-actions float-end">
 			<div class="dropdown position-relative">
 				@if ($invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-					<a href="{{ route('invoice-lines.add-line', $invoice->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus-square"></i> Add Line</a>
+					<a href="{{ route('invoice-lines.add-line', $invoice->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Add Line</a>
 				@endif
 			</div>
 		</div>
@@ -36,7 +36,7 @@
 			<tr>
 				<td class="" colspan="3" scope="col">
 					@if ($invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-						<a href="{{ route('invoice-lines.add-line', $invoice->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
+						<a href="{{ route('invoice-lines.add-line', $invoice->id) }}" class="text-warning d-inline-block"><i data-lucide="plus"></i> Add Lines</a>
 					@endif
 				</td>
 				<td class="text-end" scope="col"><strong>TOTAL ({{ $invoice->currency }}) :</strong></td>

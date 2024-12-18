@@ -122,33 +122,33 @@
 							<div class="d-md-flex align-items-start justify-content-start">
 								<div class="dropdown-mega-list">
 									<div class="dropdown-header"><strong>Transactions</strong></div>
-									<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Requisitions</a>
+									<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle" data-lucide="plus"></i> Create Requisitions</a>
 
 									@can('create', App\Models\Tenant\Po::class)
-										<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Purchase Orders</a>
+										<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle" data-lucide="plus"></i> Create Purchase Orders</a>
 									@endcan
 									@can('create', App\Models\Tenant\Lookup\Item::class)
-										<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Item</a>
+										<a class="dropdown-item" href="{{ route('items.create') }}"><i class="align-middle" data-lucide="plus"></i> Create Item</a>
 									@endcan
 									@can('create', App\Models\Tenant\Lookup\Supplier::class)
-										<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Supplier</a>
+										<a class="dropdown-item" href="{{ route('suppliers.create') }}"><i class="align-middle" data-lucide="plus"></i> Create Supplier</a>
 									@endcan
 									@can('create', App\Models\Tenant\Lookup\Project::class)
-										<a class="dropdown-item" href="{{ route('projects.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create Project</a>
+										<a class="dropdown-item" href="{{ route('projects.create') }}"><i class="align-middle" data-lucide="plus"></i> Create Project</a>
 									@endcan
 									@can('create', App\Models\Tenant\Admin\User::class)
-										<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle" data-lucide="plus-circle"></i> Create User</a>
+										<a class="dropdown-item" href="{{ route('users.create') }}"><i class="align-middle" data-lucide="plus"></i> Create User</a>
 									@endcan
 								</div>
 								<div class="dropdown-mega-list">
 									<div class="dropdown-header"><strong>Listing</strong></div>
-									<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle" data-lucide="list"></i> View Requisitions</a>
+									<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle" data-lucide="database"></i> View Requisitions</a>
 									@can('viewAny', App\Models\Tenant\Po::class)
-										<a class="dropdown-item" href="{{ route('pos.index') }}"><i class="align-middle" data-lucide="list"></i> View Purchase Orders</a>
+										<a class="dropdown-item" href="{{ route('pos.index') }}"><i class="align-middle" data-lucide="database"></i> View Purchase Orders</a>
 									@endcan
-									<a class="dropdown-item" href="{{ route('receipts.index') }}"><i class="align-middle" data-lucide="list"></i> View Receipts*</a>
-									<a class="dropdown-item" href="{{ route('invoices.index') }}"><i class="align-middle" data-lucide="list"></i> View Invoices*</a>
-									<a class="dropdown-item" href="{{ route('payments.index') }}"><i class="align-middle" data-lucide="list"></i> View Payments*</a>
+									<a class="dropdown-item" href="{{ route('receipts.index') }}"><i class="align-middle" data-lucide="database"></i> View Receipts*</a>
+									<a class="dropdown-item" href="{{ route('invoices.index') }}"><i class="align-middle" data-lucide="database"></i> View Invoices*</a>
+									<a class="dropdown-item" href="{{ route('payments.index') }}"><i class="align-middle" data-lucide="database"></i> View Payments*</a>
 								</div>
 							</div>
 						</div>

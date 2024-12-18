@@ -14,7 +14,7 @@ use App\Enum\Tenant\AuthStatusEnum;
 class PrlPolicy
 {
 	// /**
-	//  * Perform pre-authorization checks.
+	// * Perform pre-authorization checks.
 	// */
 	// public function before(User $user, string $ability): bool|null
 	// {
@@ -58,7 +58,7 @@ class PrlPolicy
 		$pr = Pr::where('id', $prl->pr_id)->first();
 		if ($user->id <> $pr->requestor_id) {
 			return false;
-		} elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value ) {
 			return true;
 		} elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;

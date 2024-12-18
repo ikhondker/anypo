@@ -40,7 +40,7 @@ use App\Helpers\EventLog;
 # 11. Controller
 # 12. Seeded
 use Illuminate\Support\Facades\Log;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 

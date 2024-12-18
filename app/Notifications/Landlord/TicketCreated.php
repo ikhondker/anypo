@@ -30,7 +30,7 @@ class TicketCreated extends Notification implements ShouldQueue
 		// find owner to notify
 		//$owner = User::where('id', $ticket->owner_id)->first();
 
-	
+
 	}
 
 	/**
@@ -69,7 +69,7 @@ class TicketCreated extends Notification implements ShouldQueue
 	}
 
 	/**
-	 * IQBAL Get the array representation of the notification. 
+	 * IQBAL Get the array representation of the notification.
 	 *
 	 * @param  mixed  $notifiable
 	 * @return array

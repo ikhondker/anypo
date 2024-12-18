@@ -11,7 +11,7 @@
 		Tenant Change Log
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 

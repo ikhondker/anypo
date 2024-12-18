@@ -11,11 +11,10 @@
 			Purchase Order #{{ $po->id }}
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('pos.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> View All</a>
 			@can('create', $po)
 				<x-tenant.buttons.header.create model="Po" label="Purchase Order"/>
 			@endcan
-
+			<a href="{{ route('pos.index') }}" class="btn btn-primary me-2"><i data-lucide="database"></i> View All</a>
 			<x-tenant.actions.po-actions poId="{{ $po->id }}"/>
 
 		@endslot

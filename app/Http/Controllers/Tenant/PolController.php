@@ -310,7 +310,7 @@ class PolController extends Controller
 		//http://demo1.localhost:8000/pols/get-pol/1005
 
 		$sql = "
-			SELECT  p.id po_id, p.currency,
+			SELECT p.id po_id, p.currency,
 			p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
 			uom.name uom_name, FORMAT(pol.qty,2) qty, FORMAT(pol.received_qty,2) received_qty,
 			d.name dept_name,prj.name project_name, u.name buyer_name,

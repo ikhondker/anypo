@@ -14,13 +14,13 @@ class AelForPo extends Component
 {
 	public $aels;
 	public $label;
-	
+
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public string $poId)
 	{
-		
+
 		$this->label= 'PO #'.$poId;
 		try {
 			$this->aels = Ael::with('aeh')->ByPo($poId)->get()->all();

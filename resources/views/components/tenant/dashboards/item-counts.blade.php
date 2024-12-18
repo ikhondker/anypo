@@ -31,7 +31,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
 
 			</div>

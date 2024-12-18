@@ -14,7 +14,7 @@ class UserRegistered extends Notification implements ShouldQueue
 	use Queueable;
 
 	protected $user;
-	
+
 	/**
 	 * Create a new notification instance.
 	 */
@@ -29,7 +29,7 @@ class UserRegistered extends Notification implements ShouldQueue
 	 * @return array<int, string>
 	 */
 	public function via(object $notifiable): array
-	{ 
+	{
 		return ['mail'];
 	}
 
@@ -47,7 +47,7 @@ class UserRegistered extends Notification implements ShouldQueue
 			->action('Login', url('/login'))
 			->line('Thank you for using '.config('app.name').' application!');
 	}
-	
+
 	/**
 	 * Get the array representation of the notification.
 	 *

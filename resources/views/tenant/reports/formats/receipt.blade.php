@@ -13,7 +13,7 @@
 		Supplier: <strong>{{ $receipt->pol->po->supplier->name }}</strong></br>
 		Receiver: {{ $receipt->receiver->name }}</br>
 		Rcv Date: {{ strtoupper(date('d-M-Y', strtotime($receipt->receive_date))) }}
-		{{-- 
+		{{--
 		Summary #: {{ $receipt->po->summary }}</br>
 		Project: {{ $receipt->po->project->name }}</br>
 	 	--}}

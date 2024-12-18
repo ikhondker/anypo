@@ -17,5 +17,5 @@
 	<!-- ========== INCLUDE ========== -->
 	@include('shared.includes.tables.controllers-fnc')
 	<!-- ========== INCLUDE ========== -->
-	
+
 @endsection

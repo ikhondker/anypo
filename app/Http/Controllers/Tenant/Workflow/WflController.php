@@ -231,7 +231,7 @@ class WflController extends Controller
 
 				// send approval mail to requestor
 				$action	 			= WflActionEnum::APPROVED->value;
-				$actionURL  		= route('prs.show', $pr->id);
+				$actionURL		 	= route('prs.show', $pr->id);
 				$requestor			= User::where('id', $pr->requestor_id)->first();
 				$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 				break;

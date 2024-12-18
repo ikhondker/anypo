@@ -91,7 +91,7 @@ class WhoWhen extends Component
 			break;
 			case 'Currency':
 				$this->article		= Currency::where('currency', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
-				$this->article->id  = $this->article->currency;
+				$this->article->id = $this->article->currency;
 			break;
 
 			case 'Pr':
@@ -105,7 +105,7 @@ class WhoWhen extends Component
 				break;
 			case 'Invoice':
 				$this->article = Invoice::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
-			   	break;
+			 	break;
 			case 'Payment':
 				$this->article = Payment::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
 				break;

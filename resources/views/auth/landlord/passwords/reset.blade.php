@@ -23,7 +23,7 @@
 			<form method="POST" action="{{ route('password.update') }}">
 				@csrf
 				<input type="hidden" name="token" value="{{ $token }}">
-				
+
 				<div class="mb-3">
 					<label class="form-label">Email</label>
 					<input id="email" type="email" placeholder="you@example.com"
@@ -67,7 +67,7 @@
 		<div class="mb-3">&nbsp;
 		</div>
 
-		
+
 	</div>
 </div>
 

@@ -41,7 +41,7 @@ class Uom extends Model
 
 	/* ----------------- Functions ---------------------- */
 
-	
+
 	/* ----------------- HasMany ------------------------ */
 	public function item() {
 		return $this->hasMany(Item::class);

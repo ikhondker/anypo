@@ -52,15 +52,15 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 					@can('submit', $pr)
-						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-warning text-white float-end me-2 sw2-advance"
+						<a href="{{ route('prs.submit', $pr->id) }}" class="btn btn-warning text-white me-2 sw2-advance"
 							data-entity="" data-name="PR#{{ $pr->id }}" data-status="Submit"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
 							<i data-lucide="external-link" class="text-white"></i> Submit</a>
 					@else
-                    {{ $pr->auth_status_badge->badge }}
-                        <button class="btn btn-{{ $pr->auth_status_badge->badge }}" type="button"><i data-lucide="{{ $pr->auth_status_badge->icon }}"></i> {{ $pr->auth_status_badge->name }}</button>
+						<button class="btn btn-pill btn-{{ $pr->auth_status_badge->badge }} me-1" type="button"><i data-lucide="{{ $pr->auth_status_badge->icon }}"></i> {{ $pr->auth_status_badge->name }}</button>
 						{{-- <span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span> --}}
 					@endcan
+
 				</div>
 				<h5 class="card-title">Approval Status</h5>
 				<h6 class="card-subtitle text-muted">Approval information of Purchase Requisition.</h6>
@@ -71,13 +71,13 @@
 						<tr>
 							<th width="20%">Auth Status :</th>
 							<td>
-								<span class="badge {{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
+								<span class="badge badge-subtle-{{ $pr->auth_status_badge->badge }}">{{ $pr->auth_status_badge->name}}</span>
 							</td>
 						</tr>
 						<tr>
 							<th>Closure Status :</th>
 							<td>
-								<span class="badge {{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span>
+								<span class="badge badge-subtle-{{ $pr->status_badge->badge }}">{{ $pr->status_badge->name}}</span>
 							</td>
 						</tr>
 						<x-tenant.show.my-text		value="{{ $pr->category->name }}" label="Category"/>

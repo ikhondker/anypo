@@ -278,10 +278,10 @@ class DeptBudgetController extends Controller
 		$revDeptBudget->closed		= true;
 		$revDeptBudget->revision	= true;
 		$revDeptBudget->parent_id	= $deptBudget->id;
-		$revDeptBudget->created_by  = $who ;
-		$revDeptBudget->created_at  = now();
-		$revDeptBudget->updated_by  = $who ;
-		$revDeptBudget->updated_at  = now();
+		$revDeptBudget->created_by	= $who ;
+		$revDeptBudget->created_at	= now();
+		$revDeptBudget->updated_by	= $who ;
+		$revDeptBudget->updated_at	= now();
 		$revDeptBudget->save();
 		$revision_dept_budget_id = $revDeptBudget->id;
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);

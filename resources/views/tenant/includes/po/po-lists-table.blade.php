@@ -27,8 +27,8 @@
 			<td class="text-end">{{ number_format($po->amount, 2) }}</td>
 			<td>{{ $po->currency }}</td>
 			<td>{{ $po->buyer->name }}</td>
-			<td><span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
-			<td><span class="badge {{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
+			<td><span class="badge badge-subtle-{{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span></td>
+			<td><span class="badge badge-subtle-{{ $po->status_badge->badge }}">{{ $po->status_badge->name}}</span></td>
 			<td>
 				<a href="{{ route('pos.show',$po->id) }}" class="btn btn-light"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View

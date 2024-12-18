@@ -15,7 +15,7 @@
 		<x-share.actions.table-actions/>
 		@endslot
 	</x-tenant.page-header>
-	
+
 	<!-- ========== INCLUDE ========== -->
 	@include('shared.includes.tables.routes-code')
 	<!-- ========== INCLUDE ========== -->

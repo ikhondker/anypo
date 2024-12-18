@@ -17,16 +17,22 @@
 		@endcan
 
 
-		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('pos.invoices', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
+        @if ( $po->auth_status ==  App\Enum\Tenant\AuthStatusEnum::APPROVED->value )
+		    <div class="dropdown-divider"></div>
+		    <a class="dropdown-item" href="{{ route('pos.invoices', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
+        @endif
 
-		@can('createForPo', App\Models\Tenant\Invoice::class)
-			<a class="dropdown-item" href="{{ route('invoices.create-for-po', $po->id) }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Invoice</a>
-		@endcan
+        @if ( ($po->auth_status ==  App\Enum\Tenant\AuthStatusEnum::APPROVED->value) && ($po->status ==  App\Enum\Tenant\ClosureStatusEnum::OPEN->value) )
+            @can('createForPo', App\Models\Tenant\Invoice::class)
+                <a class="dropdown-item" href="{{ route('invoices.create-for-po', $po->id) }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Invoice</a>
+            @endcan
+        @endif
 
+        @if ( $po->auth_status ==  App\Enum\Tenant\AuthStatusEnum::APPROVED->value )
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('pos.payments', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payments</a>
-		<a class="dropdown-item" href="{{ route('pos.ael', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View All Accounting **</a>
+            <a class="dropdown-item" href="{{ route('pos.payments', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payments</a>
+            <a class="dropdown-item" href="{{ route('pos.ael', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View All Accounting **</a>
+        @endif
 
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('reports.po', $po->id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Purchase Order</a>
@@ -41,8 +47,8 @@
 				<i class="align-middle me-1" data-lucide="copy"></i> Duplicate Purchase Order</a>
 		@endcan
 
-		<div class="dropdown-divider"></div>
 		@can('close', $po)
+		    <div class="dropdown-divider"></div>
 			<a class="dropdown-item sw2-advance" href="{{ route('pos.close', $po->id) }}"
 				data-entity="" data-name="PO #{{ $po->id }}" data-status="Force Close"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Force Close">

@@ -17,7 +17,7 @@ class NotificationAll extends Component
 	 */
 	public function __construct()
 	{
-		$this->notifications = auth()->user()->Notifications; 
+		$this->notifications = auth()->user()->Notifications;
 	}
 
 	/**

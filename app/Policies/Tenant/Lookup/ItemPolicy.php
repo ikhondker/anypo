@@ -61,7 +61,7 @@ class ItemPolicy
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
-	
+
 	/**
 	 * Determine whether the user can restore the model.
 	 */

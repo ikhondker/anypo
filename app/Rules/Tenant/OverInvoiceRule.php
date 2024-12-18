@@ -30,7 +30,7 @@ class OverInvoiceRule implements ValidationRule
 		$un_invoiced_amount = $this->po->amount - $this->po->amount_invoice;
 		if ( $value > $un_invoiced_amount ){
 			$fail('You can not create Invoice higher than the remaining un-invoiced amount i.e. '. number_format($un_invoiced_amount,2).' '. $this->po->currency);
-		} 
+		}
 
 	}
 }

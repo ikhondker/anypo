@@ -39,7 +39,7 @@
 			{!! nl2br($ticket->content) !!}
 		</p> --}}
 		<div class="alert alert-primary" role="alert">
-			    <div class="alert-message">
+				<div class="alert-message">
 				{{-- <strong>Issue Description: </strong> <br> --}}
 				{!! nl2br($ticket->content) !!}
 			</div>

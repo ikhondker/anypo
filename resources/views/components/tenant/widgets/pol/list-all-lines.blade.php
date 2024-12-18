@@ -3,7 +3,7 @@
 		<div class="card-actions float-end">
 			<div class="dropdown position-relative">
 				@can('update', $po)
-					<a href="{{ route('pols.add-line', $po->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus-square"></i> Add Line</a>
+					<a href="{{ route('pols.add-line', $po->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Add Line</a>
 				@endcan
 			</div>
 		</div>
@@ -39,7 +39,7 @@
 			<tr>
 				<td class="" colspan="2">
 				 @can('update', $po)
-					<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
+					<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus"></i> Add Lines</a>
 				@endcan
 				</td>
 				<td class="" colspan="3">&nbsp;</td>

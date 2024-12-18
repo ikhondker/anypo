@@ -20,7 +20,7 @@
 		<!-- ========== INCLUDE ========== -->
 		@include('shared.includes.tables.message')
 		<!-- ========== INCLUDE ========== -->
-	
+
 
 @endsection
 

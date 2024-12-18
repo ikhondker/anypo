@@ -9,7 +9,7 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Dashboard 
+			Dashboard
 		@endslot
 		@slot('buttons')
 			<x-tenant.actions.dashboard-actions/>
@@ -17,7 +17,7 @@
 	</x-tenant.page-header>
 
 	<x-tenant.landlord-notice-all-tenants/>
-	
+
 	<x-tenant.landlord-notice-one-tenant/>
 
 	<x-tenant.dashboards.po-counts-buyer/>

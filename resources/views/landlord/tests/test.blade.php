@@ -12,7 +12,7 @@
 					<a class="btn btn-light bg-white shadow-sm dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-display="static">
 					<i class="align-middle mt-n1" data-feather="calendar"></i> Today
 					</a>
-			
+
 					<div class="dropdown-menu dropdown-menu-end">
 						<h6 class="dropdown-header">Settings</h6>
 						<a class="dropdown-item" href="#">Action</a>

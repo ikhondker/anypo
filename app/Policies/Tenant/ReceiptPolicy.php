@@ -45,7 +45,7 @@ class ReceiptPolicy
 	{
 		return false;
 	}
-	
+
 	/**
 	 * Determine whether the user can create models.
 	 */
@@ -77,7 +77,7 @@ class ReceiptPolicy
 	{
 		return ($user->isBuyer() || $user->isSupport());
 	}
-	
+
 	/**
 	 * Determine whether the user can restore the model.
 	 */

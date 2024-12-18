@@ -42,7 +42,7 @@ class CloseInvoice implements ShouldQueue
 	public function handle(): void
 	{
 
-		Log::debug('Jobs.Tenant.CloseInvoice check Invoice close from  payment_id = ' . $this->payment_id);
+		Log::debug('Jobs.Tenant.CloseInvoice check Invoice close from payment_id = ' . $this->payment_id);
 
 		$payment	= Payment::with('invoice')->where('id', $this->payment_id)->firstOrFail();
 

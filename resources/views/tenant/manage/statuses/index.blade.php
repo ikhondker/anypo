@@ -1,5 +1,5 @@
 @extends('layouts.tenant.app')
-@section('title','status')
+@section('title','Tenant Status Lists')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">Statuses</li>
 @endsection
@@ -36,6 +36,7 @@
 						<th>Code</th>
 						<th>Name</th>
 						<th>Badge</th>
+                        <th>Icon</th>
 						<th>Enable?</th>
 						<th>Actions</th>
 					</tr>
@@ -46,7 +47,8 @@
 						<td>{{ $statuses->firstItem() + $loop->index}}</td>
 						<td>{{ $status->code }}</td>
 						<td><a href="{{ route('statuses.show',$status->code) }}"><strong>{{ $status->name }}</strong></a></td>
-						<td><span class="badge {{ $status->badge }}">{{ $status->badge }}</span></td>
+						<td><button class="btn btn-sm btn-{{ $status->badge }}">{{ $status->badge }}</button></td>
+                        <td><i data-lucide="{{ $status->icon }}"></i> </td>
 						<td><x-tenant.list.my-boolean :value="$status->enable"/></td>
 						<td>
 							<a href="{{ route('statuses.show',$status->code) }}" class="btn btn-light"

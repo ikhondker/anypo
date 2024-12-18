@@ -117,7 +117,7 @@ class CountryController extends Controller
 		//$request->validate();
 		$request->validate([
 		]);
-		
+
 		// Write to Log
 		EventLog::event('country', $country->name, 'update', 'name', $request->name);
 		$country->update($request->all());

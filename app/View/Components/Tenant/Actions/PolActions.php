@@ -18,7 +18,7 @@ class PolActions extends Component
 	 */
 	public function __construct(public string $polId)
 	{
-	
+
 		$this->pol 		= Pol::where('id', $polId)->get()->firstOrFail();
 	}
 

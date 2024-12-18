@@ -7,7 +7,7 @@
 			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
-			<h4 class="modal-title w-100">Are you sure?</h4>	
+			<h4 class="modal-title w-100">Are you sure?</h4>
 			This will upgrade your package immidiately. However, You will be billed on revised rate form your next bill cycle. Do you want to proceed?
 		</div>
 		<div class="modal-footer">

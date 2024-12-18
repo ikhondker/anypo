@@ -58,7 +58,7 @@ class PolPolicy
 		$po = Po::where('id', $pol->po_id)->first();
 		if ($user->id <> $po->buyer_id) {
 			return false;
-		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value ) {
 			return true;
 		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;

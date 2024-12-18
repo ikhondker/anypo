@@ -17,7 +17,7 @@ class NotificationUnread extends Component
 	 */
 	public function __construct()
 	{
-		$this->notifications = auth()->user()->unreadNotifications; 
+		$this->notifications = auth()->user()->unreadNotifications;
 	}
 
 	/**

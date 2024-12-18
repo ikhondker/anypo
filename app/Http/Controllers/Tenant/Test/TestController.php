@@ -100,7 +100,7 @@ class TestController extends Controller
 			$admin = User::where('email', config('akk.SYSTEM_EMAIL_ID'))->firstOrFail();
 		}
 
-		Log::debug('tenant.test.run admin name  = '.$admin->name);
+		Log::debug('tenant.test.run admin name = '.$admin->name);
 		exit;
 
 
@@ -108,17 +108,17 @@ class TestController extends Controller
 		//$prls	= Prl::all()->where('pr_id', $prId);
 		$prls	= Prl::where('pr_id', $prId)->get();
 		foreach ($prls as $prl) {
-			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->id = '.$prl->id);
-			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num  $prl->item_description = '.$prl->item_description);
+			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num $prl->id = '.$prl->id);
+			Log::debug('tenant.model.pr.insertPrlsIntoPols max prl line_num $prl->item_description = '.$prl->item_description);
 		}
 
 		exit;
 
 		$poId = '1033302';
-		Log::debug('tenant.test.run max prl poId  = '.$poId);
+		Log::debug('tenant.test.run max prl poId = '.$poId);
 		// get last line num from POL
 		$last_pol_line_num = Pol::where('po_id', $poId )->max('line_num');
-		Log::debug('tenant.test.run max prl line_num  = '.$last_pol_line_num);
+		Log::debug('tenant.test.run max prl line_num = '.$last_pol_line_num);
 		if (empty($last_pol_line_num)){
 			Log::debug('tenant.test.run max YES Empty');
 		}
@@ -135,7 +135,7 @@ class TestController extends Controller
 		$sql = "SELECT id,currency,amount FROM invoices WHERE id = '1002'";
 		Log::debug('Value of sql=' . $sql);
 		$result = DB::selectOne($sql);
-		Log::debug('Value of result id =' .  $result->id);
+		Log::debug('Value of result id =' . $result->id);
 
 
 		$sql = "SELECT JSON_OBJECT('id',id,'currency',currency) as 'aa' FROM invoices WHERE id = '1002'";
@@ -148,7 +148,7 @@ class TestController extends Controller
 			//Log::debug('Value of rows=' . print_r($row['aa']));
 			// $rows[] = [
 			// 'id'			=> $row['id'],
-			// 'currency'  	=> $row['currency'],
+			// 'currency'	=> $row['currency'],
 			// ];
 		}
 
@@ -196,7 +196,7 @@ class TestController extends Controller
 
 		//dd($data);
 		$response			= [];
-		$response['data'] 	=  $data;
+		$response['data'] 	= $data;
 
 
 		// works

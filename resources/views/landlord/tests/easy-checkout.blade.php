@@ -13,7 +13,7 @@
 				<h2>Checkout form</h2>
 				<p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
 			</div>
-	
+
 			<div class="row g-5">
 				<div class="col-md-5 col-lg-4 order-md-last">
 					<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -40,7 +40,7 @@
 							<strong>$20</strong>
 						</li>
 					</ul>
-	
+
 					{{-- <form class="card p-2">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Promo code">
@@ -57,7 +57,7 @@
 						<input type="hidden" value="{{ csrf_token() }}" name="_token" />
 
 						<div class="row g-3">
-								
+
 								<div class="col-12">
 										<label for="username" class="form-label">Sitename</label>
 										<div class="input-group has-validation">
@@ -84,18 +84,18 @@
 									Please enter a valid email address.
 								</div>
 							</div>
-	
+
 
 						</div>
-	
+
 						<hr class="my-4">
-		
+
 						<h4 class="mb-3">Payment</h4>
-	
- 
+
+
 						<span class="text-muted certificate-text"><i class="fa fa-lock"></i> Your transaction is secured with ssl certificate</span>
 						<hr class="my-4">
-	
+
 						<button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
 
 						<button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
@@ -109,15 +109,15 @@
 				</div>
 			</div>
 		</main>
-	
-	
+
+
 	</div>
 
 
 		<!-- Start -->
 		<section class="section">
-				
-			 
+
+
 				<div class="container mt-100 mt-60">
 						<div class="row">
 								<div class="col-md-3 col-6">
@@ -150,7 +150,7 @@
 						</div><!--end row-->
 				</div><!--end container-->
 
-				
+
 		</section><!--end section-->
 		<!-- End -->
 

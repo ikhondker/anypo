@@ -14,7 +14,7 @@ class AddonPurchased extends Notification implements ShouldQueue
 {
 	use Queueable;
 	protected $user, $account;
-	
+
 	/**
 	 * Create a new notification instance.
 	 */

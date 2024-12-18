@@ -42,14 +42,14 @@ use App\Helpers\EventLog;
 # 12. Seeded
 use Illuminate\Support\Facades\Log;
 use Str;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 
 class MenuController extends Controller
 {
 
-	
+
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -81,7 +81,7 @@ class MenuController extends Controller
 	{
 
 		$this->authorize('create', Menu::class);
-		
+
 		$request->merge(['access'	=> Str::upper($request->input('access')) ]);
 		$menu = Menu::create($request->all());
 		// Write to Log

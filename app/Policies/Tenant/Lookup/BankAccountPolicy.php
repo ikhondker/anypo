@@ -17,7 +17,7 @@ class BankAccountPolicy
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -57,7 +57,7 @@ class BankAccountPolicy
 	{
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
-	
+
 	/**
 	 * Determine whether the user can restore the model.
 	 */
@@ -80,5 +80,5 @@ class BankAccountPolicy
 	public function export(User $user): bool
 	{
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
-	}	
+	}
 }

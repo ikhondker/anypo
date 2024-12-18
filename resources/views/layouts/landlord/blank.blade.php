@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" 
-	data-bs-theme="light" 
-	data-layout="fluid" 
-	data-sidebar-theme="dark" 
-	data-sidebar-position="left" 
+<html lang="en"
+	data-bs-theme="light"
+	data-layout="fluid"
+	data-sidebar-theme="dark"
+	data-sidebar-position="left"
 	data-sidebar-behavior="sticky">
 
 <head>
@@ -19,7 +19,7 @@
 	 <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
 
  	<link rel="canonical" href="https://www.anypo.net/404" />
-	
+
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">

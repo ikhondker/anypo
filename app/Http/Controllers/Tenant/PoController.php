@@ -99,7 +99,7 @@ class PoController extends Controller
 		$pos = Po::query();
 		if (request('term')) {
 			$pos->where('summary', 'LIKE', '%' . request('term') . '%')
-            ->orWhere('id', 'Like', '%' . request('term') . '%');
+			->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::HOD->value:
@@ -929,7 +929,7 @@ class PoController extends Controller
 		//return response()->json($data);
 
 		$sql = "
-			SELECT  p.id po_id, p.currency,
+			SELECT p.id po_id, p.currency,
 			p.summary po_summary, DATE_FORMAT(p.po_date,'%d-%b-%Y') po_date, FORMAT(p.amount,2) po_amount,p.currency po_currency,
 			d.name dept_name,prj.name project_name, u.name buyer_name,
 			s.name supplier_name

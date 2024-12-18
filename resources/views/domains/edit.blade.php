@@ -44,7 +44,7 @@
 								@enderror
 							</td>
 						</tr>
-						
+
 					</tbody>
 				</table>
 

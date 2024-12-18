@@ -8,7 +8,7 @@
 	Summary: {{ $invoice->summary }}</br>
 	Date: {{ strtoupper(date('d-M-Y', strtotime($invoice->invoice_date))) }}
 	@endsection
-	
+
 	@section('info2')
 	PO #: {{ $invoice->po_id }}</br>
 	Summary #: {{ $invoice->po->summary }}</br>

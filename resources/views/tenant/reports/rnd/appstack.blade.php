@@ -17,7 +17,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 	{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
-	
+
 	{{-- http://geda.localhost:8000/testrun --}}
 	{{-- https://bbbootstrap.com/snippets/confirm-account-email-template-17848137 --}}
 
@@ -26,7 +26,7 @@
 	<!-- <link href="css/dark.css" rel="stylesheet"> -->
 	{{-- <link href="{{asset('css/light.css')}}" rel="stylesheet"> --}}
 	{{-- <link href="/tenancy/assets/css/light.css" rel="stylesheet"> --}}
-	
+
 	{{-- <link rel="stylesheet" type="text/css" href="{{ base_path().'/public/tenancy/assets/css/light.css' }}"> --}}
 	{{-- <link rel="stylesheet" type="text/css" href="light.css"> --}}
 	{{-- @include('includes.light') --}}
@@ -10824,7 +10824,7 @@ textarea.form-control-lg {
 
 </head>
 <!--
-	HOW TO USE: 
+	HOW TO USE:
 	data-theme: default (default), dark, light
 	data-layout: fluid (default), boxed
 	data-sidebar-position: left (default), right
@@ -10835,7 +10835,7 @@ textarea.form-control-lg {
 	<div class="main d-flex justify-content-center w-100 p-4">
 		<div class="row bg-dark">
 			aa {{ base_path() }} {{ public_path() }}
-			
+
 		</div>
 
 		<table class="tabletable-striped">

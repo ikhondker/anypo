@@ -10,7 +10,7 @@ use App\Models\Tenant\Po;
 
 class ShowPoHeader extends Component
 {
-	
+
 	public $po;
 
 	/**

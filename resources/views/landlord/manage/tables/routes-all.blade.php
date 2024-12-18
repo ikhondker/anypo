@@ -19,6 +19,6 @@
 	<!-- ========== INCLUDE ========== -->
 	@include('shared.includes.tables.routes-all')
 	<!-- ========== INCLUDE ========== -->
-	
+
 @endsection
 

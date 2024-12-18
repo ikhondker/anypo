@@ -25,7 +25,7 @@ class Oem extends Model
 	 */
 	public function scopePrimary(Builder $query): void
 	{
-		$query->where('enable', true)->orderBy('name', 'asc'); 
+		$query->where('enable', true)->orderBy('name', 'asc');
 	}
 
 	/* ----------------- Functions ---------------------- */

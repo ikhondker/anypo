@@ -28,6 +28,6 @@ class OverPaymentRule implements ValidationRule
 		$un_paid_amount = $this->invoice->amount - $this->invoice->amount_paid;
 		if ( $value > $un_paid_amount ){
 			$fail('You can not Pay higher than the remaining un-paid amount i.e. '. number_format($un_paid_amount,2).' '. $this->invoice->currency);
-		} 
+		}
 	}
 }

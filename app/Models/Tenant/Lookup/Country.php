@@ -45,7 +45,7 @@ class Country extends Model
 	}
 
 	/* ---------------- belongsTo ---------------------- */
-	
+
 
 	/* ---------------- created and updated by ---------------------- */
 

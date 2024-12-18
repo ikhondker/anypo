@@ -11,7 +11,7 @@
 	<div id="app">
 		<main class="container">
 			<h1> How to Install JQuery in Laravel 10? LANDLORD OK</h1>
-			
+
 			<button class="btn btn-success">Click Me</button>
 		</main>
 	</div>
@@ -21,4 +21,4 @@
 			alert("Thanks");
 		});
 	</script>
-</html>	
+</html>

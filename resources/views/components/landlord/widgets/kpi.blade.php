@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<span class="h1 d-inline-block mt-1 mb-3">{{ $value }}</span>
-			
+
 		</div>
 	</div>
 </div>

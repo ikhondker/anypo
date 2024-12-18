@@ -8,13 +8,13 @@ use Illuminate\View\Component;
 
 class MyBadge extends Component
 {
-	
+
 	/**
 	 * Create a new component instance.
 	 *
 	 * @return void
 	 */
-	public function __construct( 
+	public function __construct(
 		public string $value,
 		public string $badge ="info"
 		)

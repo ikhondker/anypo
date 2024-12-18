@@ -30,7 +30,7 @@ width: 100% !important;
 	<tr>
 	<td align="center">
 		<table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-			
+
 		<tr>
 			<td class="topspace">
 				&nbsp;
@@ -48,7 +48,7 @@ width: 100% !important;
 						{{ Illuminate\Mail\Markdown::parse($slot) }}
 
 						{{ $subcopy ?? '' }}
-						
+
 						</td>
 					</tr>
 				</table>

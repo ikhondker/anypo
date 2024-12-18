@@ -31,14 +31,14 @@
 					</div>
 				</div>
 				@php
-					
+
 					$count_unread	= auth()->user()->unreadNotifications->count();
 					$count_total	= auth()->user()->Notifications->count();
 					$count_read		= auth()->user()->readNotifications->count();
 					//$count_draft	 = Pr::where('auth_status',AuthStatusEnum::DRAFT->value )->count();
 				@endphp
 				<span class="h1 d-inline-block mt-1">{{ $count_unread }}</span>
-			
+
 			</div>
 		</div>
 	</div>
@@ -55,7 +55,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<span class="h1 d-inline-block mt-1">{{ $count_total }}</span>
 			</div>
 		</div>

@@ -18,7 +18,7 @@ class TemplatePolicy
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -50,7 +50,7 @@ class TemplatePolicy
 	{
 		return false;
 	}
-	
+
 	/**
 	 * Determine whether the user can delete the model.
 	 */

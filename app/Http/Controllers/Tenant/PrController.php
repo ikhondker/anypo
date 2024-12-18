@@ -284,7 +284,7 @@ class PrController extends Controller
 
 		$this->authorize('update', $pr);
 
-		$depts  	= Dept::primary()->get();
+		$depts		= Dept::primary()->get();
 
 		$suppliers 	= Supplier::primary()->get();
 		$projects 	= Project::primary()->get();

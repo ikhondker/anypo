@@ -10,7 +10,7 @@ use App\Models\Tenant\Lookup\Supplier;
 
 class SupplierInfo extends Component
 {
-	
+
 	public $supplier;
 
 	/**

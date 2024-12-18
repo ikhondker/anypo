@@ -5,7 +5,7 @@
 	<div class="dropdown-menu dropdown-menu-end">
 
 		<a class="dropdown-item" href="{{ route('receipts.show', $receipt->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Receipt</a>
-		<a class="dropdown-item" href="{{ route('receipts.show', $receipt->id) }}"><i class="align-middle me-1" data-lucide="printer"></i> Print Receipt ***</a>
+		<a class="dropdown-item" href="{{ route('reports.receipt', $receipt->id) }}"><i class="align-middle me-1" data-lucide="printer"></i> Print Receipt ***</a>
 
 		@can('createForPol', App\Models\Tenant\Receipt::class)
 			<a class="dropdown-item" href="{{ route('receipts.create-for-pol', $receipt->pol->id) }}"><i class="align-middle me-1" data-lucide="layout"></i> Create Receipt</a>

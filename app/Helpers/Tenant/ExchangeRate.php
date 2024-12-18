@@ -42,7 +42,7 @@ use DB;
 // $rate = ExchangeRate::getRate($pr->currency, $setup->currency);
 
 // called form Dashboard.index Setup.freeze
-// called form CurrencyController.destroy 
+// called form CurrencyController.destroy
 // ImportAllRate::dispatch();
 
 

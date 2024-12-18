@@ -29,7 +29,7 @@
 			<td><a href="{{ route('invoices.show',$payment->invoice_id) }}"><strong>{{ $payment->invoice->invoice_no }}</strong></a></td>
 			<td><x-tenant.common.link-po id="{{ $payment->invoice->po_id }}"/></td>
 			<td>{{ $payment->payee->name }}</td>
-			<td><span class="badge {{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
+			<td><span class="badge badge-subtle-{{ $payment->status_badge->badge }}">{{ $payment->status_badge->name}}</span></td>
 			<td>
 				<a href="{{ route('payments.show',$payment->id) }}" class="btn btn-light"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View

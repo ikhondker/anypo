@@ -11,7 +11,7 @@
 		Tenant Change Log
 		@endslot
 		@slot('buttons')
-			
+
 		@endslot
 	</x-tenant.page-header>
 
@@ -65,7 +65,7 @@
 						<td><span class="badge bg-primary">v1.0.0</span></td>
 						<td></td>
 					</tr>
-					
+
 				</tbody>
 			</table>
 		</div>

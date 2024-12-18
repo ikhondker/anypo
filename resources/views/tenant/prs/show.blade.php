@@ -11,9 +11,8 @@
 			Purchase Requisition #{{ $pr->id }}
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('prs.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> View All</a>
 			<x-tenant.buttons.header.create model="Pr" label="Requisition"/>
-			{{-- <a href="{{ route('reports.pr', $pr->id) }}" class="btn btn-primary float-end me-2"><i data-lucide="printer"></i> Print</a> --}}
+			<a href="{{ route('prs.index') }}" class="btn btn-primary me-2"><i data-lucide="database"></i> View All</a>
 			<x-tenant.actions.pr-actions prId="{{ $pr->id }}"/>
 		@endslot
 	</x-tenant.page-header>

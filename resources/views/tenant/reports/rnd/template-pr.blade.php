@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
+
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
 
 <style>
@@ -16,7 +16,7 @@
 		font-size: 12px;
 	}
 
-	
+
 	.letterhead {
 		font-size: 10px;
 		padding: 0px;
@@ -50,7 +50,7 @@
 	.header {
 		top: 0px;
 	}
-	
+
 	.footer {
 		font-size: 10px;
 		bottom: 0px;
@@ -138,7 +138,7 @@
 		<table id="report-footer">
 			<tr>
 				<td>
-					Printed at 8-Jun-22 by Iqbal H. Khondker 
+					Printed at 8-Jun-22 by Iqbal H. Khondker
 				</td>
 				<td style="text-align:right">
 					Page <span class="pagenum"></span>
@@ -206,7 +206,7 @@
 			</td>
 		</tr>
 	</table>
-	
+
 	<table id="my-table">
 		<tr>
 			<th width="5%">SL#</th>
@@ -341,7 +341,7 @@
 			</td>
 		</tr>
 
-		
+
 	</table>
 
 </body>

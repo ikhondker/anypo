@@ -56,7 +56,7 @@ class PoPolicy
 		// only buyer can submit own draft and rejected PO
 		if ($user->id <> $po->buyer_id) {
 			return false;
-		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value ) {
 			return true;
 		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;
@@ -81,7 +81,7 @@ class PoPolicy
 		// only buyer can edit draft and rejected PO
 		if ($user->id <> $po->buyer_id) {
 			return false;
-		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value ) {
 			return true;
 		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;

@@ -21,7 +21,7 @@ class CurrencyPolicy
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Determine whether the user can view any models.
 	 */
@@ -62,7 +62,7 @@ class CurrencyPolicy
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
-	
+
 
 	/**
 	 * Determine whether the user can restore the model.

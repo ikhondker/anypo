@@ -79,7 +79,7 @@ class RatePolicy
 	{
 		//
 	}
-	
+
 	/**
 	 * Determine whether the user can delete the model.
 	 */

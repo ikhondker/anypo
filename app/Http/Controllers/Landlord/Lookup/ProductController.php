@@ -49,7 +49,7 @@ class ProductController extends Controller
 	// define entity constant for file upload and workflow
 	const ENTITY	= 'PRODUCT';
 
-	
+
 	/**
 	 * Display a listing of the resource.
 	 */

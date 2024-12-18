@@ -25,7 +25,7 @@ class StoreCurrencyRequest extends FormRequest
 			'currency'		=> 'required|min:3|max:3|unique:currencies,currency',
 		];
 	}
-	
+
 	/**
 	 * Get the error messages for the defined validation rules.
 	 *

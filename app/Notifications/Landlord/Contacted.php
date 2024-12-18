@@ -39,7 +39,7 @@ class Contacted extends Notification implements ShouldQueue
 	{
 		//->line('Subject: '.$this->contact->subject)
 		//->line('Hi: '.$this->contact->first_name)
-		
+
 		return (new MailMessage)
 			->subject($this->contact->subject)
 			->greeting('Hello, '.$this->contact->first_name)

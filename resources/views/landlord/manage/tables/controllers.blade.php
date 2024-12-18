@@ -18,5 +18,5 @@
 	<!-- ========== INCLUDE ========== -->
 	@include('shared.includes.tables.controllers')
 	<!-- ========== INCLUDE ========== -->
-	
+
 @endsection

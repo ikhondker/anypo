@@ -10,10 +10,7 @@
 		<a class="dropdown-item" href="{{ route('prs.history', $pr->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Approval History</a>
 		<a class="dropdown-item" href="{{ route('reports.pr', $pr->id) }}" target="_blank"><i class="align-middle me-1" data-lucide="printer"></i> Print Requisition</a>
 
-		@can('addToPo', $pr)
-			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="{{ route('prs.add-to-po', $pr->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Add To PO</a>
-		@endcan
+
 
 		@can('update', $pr)
 			<div class="dropdown-divider"></div>
@@ -31,11 +28,15 @@
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle me-1" data-lucide="database"></i> All Requisitions</a>
 
+        <div class="dropdown-divider"></div>
 		@can('convert', $pr)
 			<a class="dropdown-item sw2-advance" href="{{ route('prs.convert', $pr->id) }}"
 				data-entity="" data-name="PR#{{ $pr->id }}" data-status="Convert to PO"
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Convert to PO">
 				<i class="align-middle me-1" data-lucide="copy"></i> Convert to PO</a>
+		@endcan
+        @can('addToPo', $pr)
+			<a class="dropdown-item" href="{{ route('prs.add-to-po', $pr->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Add To PO</a>
 		@endcan
 
 		<div class="dropdown-divider"></div>

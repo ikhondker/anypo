@@ -25,8 +25,8 @@
 				<div class="card-actions float-end">
 					{{-- <a href="{{ route('items.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a> --}}
 				</div>
-				<h5 class="card-title">Create and Item</h5>
-				<h6 class="card-subtitle text-muted">Create and Item.</h6>
+				<h5 class="card-title">Create Item</h5>
+				<h6 class="card-subtitle text-muted">Create Item.</h6>
 			</div>
 			<div class="card-body">
 				<table class="table table-sm my-2">

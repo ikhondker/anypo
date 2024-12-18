@@ -17,7 +17,7 @@
 	</x-tenant.page-header>
 
 	<x-tenant.landlord-notice-all-tenants/>
-	
+
 	<x-tenant.landlord-notice-one-tenant/>
 
 	<div class="row">

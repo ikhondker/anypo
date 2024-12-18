@@ -33,7 +33,7 @@ class OverReceiptRule implements ValidationRule
 		$un_received_qty = $this->pol->qty - $this->pol->received_qty;
 		if ( $value > $un_received_qty ){
 			$fail('You can not receive higher than the due quantities i.e. '. number_format($un_received_qty,2));
-		} 
+		}
 
 	}
 }

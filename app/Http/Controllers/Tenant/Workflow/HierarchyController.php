@@ -108,7 +108,7 @@ class HierarchyController extends Controller
 		$hasDuplicates = count($empList) > count(array_unique($empList));
 		Log::debug('hasDuplicates = '.$hasDuplicates);
 		if ($hasDuplicates){
-			return back()->withErrors('Duplicate Employee is not allowed in a  Hierarchy.')->withInput();
+			return back()->withErrors('Duplicate Employee is not allowed in a Hierarchy.')->withInput();
 		}
 
 		$hierarchy = Hierarchy::create($request->all());
@@ -291,7 +291,7 @@ class HierarchyController extends Controller
 		//Log::debug('hasDuplicates = '.$hasDuplicates);
 
 		if ($hasDuplicates){
-			return back()->withErrors('Duplicate Employee is not allowed in a  Hierarchy.')->withInput();
+			return back()->withErrors('Duplicate Employee is not allowed in a Hierarchy.')->withInput();
 		}
 
 		//dd($request);

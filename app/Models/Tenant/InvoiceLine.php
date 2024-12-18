@@ -27,7 +27,7 @@ class InvoiceLine extends Model
 		'updated_at'		=> 'datetime',
 		'created_at'		=> 'datetime',
 	];
-	
+
 
 	/* ----------------- Functions ---------------------- */
 

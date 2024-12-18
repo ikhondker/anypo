@@ -8,7 +8,7 @@
 * @path			\app\Helpers
 * @author		Iqbal H. Khondker <ihk@khondker.com>
 * @created		10-DEC-2023
-* @copyright	(c) Iqbal H. Khondker 
+* @copyright	(c) Iqbal H. Khondker
 * =====================================================================================
 * Revision History:
 * Date			Version	Author				Comments
@@ -43,10 +43,10 @@ class Docs
 	//https://stackoverflow.com/questions/7121479/listing-all-the-folders-subfolders-and-files-in-a-directory-using-php
 	public static function listFolderFiles($dir){
 		$ffs = scandir($dir);
-	
+
 		unset($ffs[array_search('.', $ffs, true)]);
 		unset($ffs[array_search('..', $ffs, true)]);
-	
+
 		// prevent empty ordered elements
 		if (count($ffs) < 1){
 			return;
@@ -60,10 +60,10 @@ class Docs
 			echo '</li>';
 		}
 		echo '</ol>';
-		
+
 		//echo '=========================================';
-		//	
-		
+		//
+
 	}
 
 	public static function getFiles($folder)
@@ -112,7 +112,7 @@ class Docs
 
 	public static function messages($folder)
 	{
-		
+
 		//$filesInFolder = \File::files(base_path() . '\app\Http\Controllers');
 		$filesInFolder = \File::files(base_path() . $folder);
 
@@ -137,4 +137,4 @@ class Docs
 		}
 	}
 
-}	
+}

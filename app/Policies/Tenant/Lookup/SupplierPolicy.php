@@ -51,7 +51,7 @@ class SupplierPolicy
 	 */
 	public function update(User $user, Supplier $supplier): bool
 	{
-		
+
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
 
@@ -62,7 +62,7 @@ class SupplierPolicy
 	{
 		return ($user->isBuyer() || $user->isAdmin() || $user->isSupport());
 	}
-	
+
 	/**
 	 * Determine whether the user can restore the model.
 	 */

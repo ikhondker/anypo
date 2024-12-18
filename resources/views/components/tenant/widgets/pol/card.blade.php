@@ -10,7 +10,7 @@
 					</div>
 				@else
 					@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-						<a href="{{ route('pols.add-line', $po->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus-square"></i> Add Line</a>
+						<a href="{{ route('pols.add-line', $po->id) }}" class="btn btn-sm btn-light"><i data-lucide="plus"></i> Add Line</a>
 					@endif
 				@endif
 			</div>
@@ -62,7 +62,7 @@
 			<tr>
 				<td class="" colspan="2">
 					@if ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-						<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus-square"></i> Add Lines</a>
+						<a href="{{ route('pols.add-line', $po->id) }}" class="text-warning d-inline-block"><i data-lucide="plus"></i> Add Lines</a>
 					@endif
 				</td>
 				<td class="" colspan="3">&nbsp;</td>

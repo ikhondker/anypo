@@ -17,7 +17,7 @@ class SpendsBySupplierBar extends Component
 
 	public $supplier_labels 	= [];
 	//public $project_colors 	= [];
-	
+
 	public $budget 			= [];
 	public $amount_pr 		= [];
 	public $amount_po 		= [];

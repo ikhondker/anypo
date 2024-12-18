@@ -37,7 +37,7 @@ use App\Http\Requests\Tenant\Workflow\UpdateHierarchylRequest;
 # 10. Events
 # 11. Controller
 # 12. Seeded
-# 13. FUTURE 
+# 13. FUTURE
 
 
 class HierarchylController extends Controller

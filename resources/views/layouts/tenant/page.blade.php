@@ -38,7 +38,7 @@
 	<nav class="navbar navbar-expand-md navbar-light landing-navbar">
 		<div class="container">
 			<a class="navbar-brand landing-brand" href="#">
-				<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="80px" height="80px"/> 
+				<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="80px" height="80px"/>
 			</a>
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item d-none d-md-inline-block">
@@ -57,7 +57,7 @@
 		</div>
 	</nav>
 
-	
+
 	<section class="py-6 bg-white">
 		<div class="container position-relative z-3">
 			<div class="row">
@@ -77,7 +77,7 @@
 		</div>
 	</section>
 
-	
+
 
 	<section class="py-6 bg-secondary">
 		<div class="container position-relative z-3">
@@ -86,7 +86,7 @@
 				<div class="col-xl-3 col-lg-4 col-md-6">
 					<div>
 						{{-- <h3 class="text-light">Logo</h3> --}}
-						<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="80px" height="80px"/> 
+						<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="80px" height="80px"/>
 						<p class="mb-30 text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad soluta facilis
 						eos quia optio iusto odit atque eum tempore, quisquam officiis vero veniam hic,</p>
 					</div>

@@ -25,11 +25,11 @@
 				<tbody>
 
 
-					
+
 					<x-landlord.edit.id-read-only :value="$entity->entity"/>
 					<x-landlord.edit.name :value="$entity->name"/>
 
-								
+
 						<tr>
 							<th>Model :</th>
 							<td>
@@ -69,7 +69,7 @@
 								@enderror
 							</td>
 						</tr>
-						
+
 				</tbody>
 			</table>
 

@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 class Country extends Component
 {
 	public $countries;
-	
+
 	/**
 	 * Create a new component instance.
 	 */

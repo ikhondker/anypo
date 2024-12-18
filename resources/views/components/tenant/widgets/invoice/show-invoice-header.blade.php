@@ -41,7 +41,7 @@
 							<th>&nbsp;</th>
 							<td>
 								@if ($invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-									<x-tenant.show.my-edit-link model="Pr" :id="$invoice->id"/>
+									<x-tenant.show.my-edit-link model="Invoice" :id="$invoice->id"/>
 								@endif
 							</td>
 						</tr>
@@ -62,7 +62,8 @@
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 							<i data-lucide="external-link" class="text-white"></i> Post</a>
 					@else
-						<span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span>
+                        <button class="btn btn-pill btn-{{ $invoice->status_badge->badge }} me-1" type="button"><i data-lucide="{{ $invoice->status_badge->icon }}"></i> {{ $invoice->status_badge->name }}</button>
+						{{-- <span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span> --}}
 					@endcan
 				</div>
 				<h5 class="card-title">Other Information</h5>

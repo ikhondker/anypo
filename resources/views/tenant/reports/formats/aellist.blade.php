@@ -3,7 +3,7 @@
 @section('title','Accounting Entries Report')
 
 @section('data')
-	
+
 		<thead>
 			<tr>
 				<th class="sl">#</th>
@@ -20,7 +20,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@php 
+			@php
 				$sum_dr = 0;
 				$sum_cr = 0;
 			@endphp
@@ -38,7 +38,7 @@
 				<td class="numeric">{{ number_format($ael->fc_dr_amount,2) }}</td>
 				<td class="numeric">{{ number_format($ael->fc_cr_amount,2) }}</td>
 			</tr>
-				@php 
+				@php
 					$sum_dr = $sum_dr + $ael->fc_dr_amount;
 					$sum_cr = $sum_cr + $ael->fc_cr_amount;
 				@endphp
@@ -51,6 +51,6 @@
 				<td style="text-align: right;">{{ number_format($sum_cr,2) }}</td>
 			</tr>
 		</tfoot>
-	
+
 
 @endsection

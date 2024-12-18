@@ -47,7 +47,7 @@ use App\Enum\UserRoleEnum;
 # 12. Seeded
 use Illuminate\Support\Facades\Log;
 use Request;
-# 13. FUTURE 
+# 13. FUTURE
 
 
 
@@ -61,7 +61,7 @@ class DashboardController extends Controller
 	 */
 	public function index()
 	{
-		
+
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
 				return self::userDashboard();
@@ -88,7 +88,7 @@ class DashboardController extends Controller
 		}
 	}
 
-	
+
 	private function userDashboard()
 	{
 
@@ -100,7 +100,7 @@ class DashboardController extends Controller
 
 		$ticketsOpen = Ticket::byuser()->orderBy('id', 'DESC');
 		$ticketsLast5 = Ticket::byuser()->orderBy('id', 'DESC')->limit(5);
-	
+
 		$count_tickets_open		= Ticket::byUserOpen()->count();
 		$count_tickets_total	= Ticket::byUser()->count();
 
@@ -133,7 +133,7 @@ class DashboardController extends Controller
 
 		$ticketsOpen = Ticket::byAccountOpen()->orderBy('id', 'DESC');
 		$ticketsLast5 = Ticket::byAccount()->orderBy('id', 'DESC')->limit(5);
-				
+
 		$count_tickets_open	= Ticket::byAccountOpen()->count();
 		$count_tickets_total= Ticket::byAccount()->count();
 
@@ -170,7 +170,7 @@ class DashboardController extends Controller
 			->where ('agent_id','=', null )
 			->limit(5)->get();
 
-	
+
 		$count_agent_open_tickets	= Ticket::byAgentOpen()->count();
 		$count_unassigned_tickets	= Ticket::byUnassigned()->count();
 		$count_all_open_tickets		= Ticket::byallopen()->count();
@@ -180,11 +180,11 @@ class DashboardController extends Controller
 		//$count_users		= User::all()->count();
 		return view('landlord.dashboards.backoffice', with(compact('notifications','config','count_notif',
 			'count_agent_open_tickets', 'count_unassigned_tickets',
-			'count_all_open_tickets', 'count_agent_closed_tickets', 
-			'tickets', 
+			'count_all_open_tickets', 'count_agent_closed_tickets',
+			'tickets',
 		)));
-			
-	
+
+
 	}
 
 
@@ -205,7 +205,7 @@ class DashboardController extends Controller
 			->where ('agent_id','=', null )
 			->limit(5)->get();
 
-		
+
 		$count_tickets = Ticket::all()->count();
 		$count_all_open_tickets 	= Ticket::byallopen()->count();
 		$count_unassigned_tickets	= Ticket::byunassigned()->count();
@@ -253,12 +253,12 @@ class DashboardController extends Controller
 		// $products			= Product::all()->take(5);
 		//return view('tenant.dashboard',compact('orders','products','settings','orders_weeks','sales_today','sales_week','sales_month','count_products','count_orders', 'count_users','sum_sales'));
 
-		
+
 		$count_tickets	= Ticket::all()->count();
 		$count_all_open_tickets		= Ticket::byallopen()->count();
 		$count_unassigned_tickets	= Ticket::byunassigned()->count();
 		$count_all_closed_tickets	= Ticket::byallclosed()->count();
-		
+
 		$count_accounts	= Account::all()->count();
 		$count_service	= Service::all()->count();
 		$count_invoices = Invoice::all()->count();
@@ -274,7 +274,7 @@ class DashboardController extends Controller
 			'count_accounts','count_service','count_invoices','count_payments',
 			'count_users','count_users_active','count_users_inactive','count_users_non_val'
 		)));
-			
+
 	}
 
 

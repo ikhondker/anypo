@@ -7,13 +7,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
-	
 
-	
+
+
 <style>
 	/* @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Lato:wght@200&display=swap'); 
+	@import url('https://fonts.googleapis.com/css2?family=Lato:wght@200&display=swap');
 	*/
 	#my-header-table {
 		border-collapse: collapse;
@@ -34,7 +34,7 @@
 	#my-header-table td {
 		border: 1px solid #FFFFFF;
 	}
-	
+
 	body {
 		font-family: "Lato", sans-serif;
 	}
@@ -42,7 +42,7 @@
 	div {
 		font-family: 'Oswald', sans-serif;
 	}
- 
+
 	.m{
 	font-family: 'Montserrat', sans-serif;
 	}
@@ -68,11 +68,11 @@
 		margin-top: 50px; /* create space for header */
 		margin-bottom: 50px; /* create space for footer */
 	}
-	
+
 </style>
 </head>
 <body>
-	
+
 	<table id="my-header-table">
 		<tr>
 			<td width="60%" style="text-align:left; vertical-align: bottom;">
@@ -97,7 +97,7 @@
 				<p class="l">
 					The quick brown fox jumps over the lazy dog - Lato
 				</p>
-			
+
 				<p class="r">
 					The quick brown fox jumps over the lazy dog - Roboto
 				</p>
@@ -106,7 +106,7 @@
 				<h2>PURCHASE REQUISITION</h2>
 				REQUISITION NO: <strong>[ 1234 ]</strong><br>
 				DATE: 4-AUG-2023
-				
+
 			</td>
 		</tr>
 	</table>

@@ -25,7 +25,7 @@ enum AccountStatusEnum:string{
 	case INACTIVE	= 'in-active';
 	case ONHOLD		= 'on-hold';
 	case ARCHIVED	= 'archived';
-	case READONLY   = 'readonly';
+	case READONLY	= 'readonly';
 	case CANCELED	= 'canceled';
 	case DELETED	= 'deleted';
 	case LOCKED	 	= 'locked';

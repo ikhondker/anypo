@@ -20,7 +20,7 @@ class AelForAeh extends Component
 	 */
 	public function __construct(public string $aehId)
 	{
-		
+
 		$this->label= 'Accounting #'.$aehId;
 		try {
 			$this->aels = Ael::with('aeh')->ByAeh($aehId)->get()->all();

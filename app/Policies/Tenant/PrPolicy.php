@@ -58,7 +58,7 @@ class PrPolicy
 		// only requester can submit own draft and rejected PR
 		if ($user->id <> $pr->requestor_id) {
 			return false;
-		} elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value ) {
 			return true;
 		} elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;
@@ -92,7 +92,7 @@ class PrPolicy
 		// only requester can edit draft and rejected PR
 		if ($user->id <> $pr->requestor_id) {
 			return false;
-		} elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value )  {
+		} elseif ($pr->auth_status == AuthStatusEnum::DRAFT->value ) {
 			return true;
 		} elseif ($pr->auth_status == AuthStatusEnum::REJECTED->value ) {
 			return true;
@@ -179,7 +179,7 @@ class PrPolicy
 	 */
 	public function recalculate(User $user, Pr $pr): bool
 	{
-		return ($user->isSupport()  && ($pr->auth_status <> AuthStatusEnum::APPROVED->value) ) ;
+		return ($user->isSupport() && ($pr->auth_status <> AuthStatusEnum::APPROVED->value) ) ;
 	}
 
 	public function export(User $user): bool

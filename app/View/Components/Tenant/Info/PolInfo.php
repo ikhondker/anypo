@@ -10,7 +10,7 @@ use App\Models\Tenant\Pol;
 
 class PolInfo extends Component
 {
-	
+
 	public $pol;
 
 	/**

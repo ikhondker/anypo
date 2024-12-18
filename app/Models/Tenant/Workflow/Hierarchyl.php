@@ -20,13 +20,13 @@ class Hierarchyl extends Model
 
 	/* ----------------- Functions ---------------------- */
 	/* ----------------- HasMany ------------------------ */
-	
+
 	/* ---------------- belongsTo ---------------------- */
-	public function hierarchy() { 
-		return $this->belongsTo(Hierarchy::class); 
+	public function hierarchy() {
+		return $this->belongsTo(Hierarchy::class);
 	}
 
-	public function approver() { 
-		return $this->belongsTo(User::class,'approver_id'); 
+	public function approver() {
+		return $this->belongsTo(User::class,'approver_id');
 	}
 }

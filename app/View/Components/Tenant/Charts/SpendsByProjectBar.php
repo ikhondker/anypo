@@ -15,7 +15,7 @@ class SpendsByProjectBar extends Component
 
 	public $project_labels 	= [];
 	public $project_colors 	= [];
-	
+
 	public $budget 			= [];
 	public $amount_pr 		= [];
 	public $amount_po 		= [];
@@ -31,7 +31,7 @@ class SpendsByProjectBar extends Component
 		// color: https://www.heavy.ai/blog/12-color-palettes-for-telling-better-stories-with-your-data
 		// 2. Dutch Field final
 		// "#dc0ab4" "#0bb4ff", "#50e991", "#e6d800", "#9b19f5","00bfa0"
-		 
+
 		$this->projects = Project::with("pm")->where('closed', false)->orderBy('id', 'DESC')->limit(10)->get();
 
 		foreach ($this->projects as $project){
@@ -44,7 +44,7 @@ class SpendsByProjectBar extends Component
 			$this->amount_invoice[] 	= (int) $project->amount_invoice;
 			$this->amount_payment[] 	= (int) $project->amount_payment;
 		}
-		
+
 		// Generate random colors for the groups
 		//for ($i = 0; $i <= $this->projects->count(); $i++) {
 		//	$this->project_colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);

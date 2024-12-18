@@ -10,7 +10,7 @@ use App\Models\Tenant\Invoice;
 
 class InvoiceInfo extends Component
 {
-	
+
 	public $invoice;
 
 	/**

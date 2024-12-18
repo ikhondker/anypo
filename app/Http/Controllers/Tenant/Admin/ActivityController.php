@@ -39,7 +39,7 @@ use App\Helpers\Export;
 # 10. Events
 # 11. Seeded
 use DB;
-# 12. FUTURE 
+# 12. FUTURE
 
 class ActivityController extends Controller
 {
@@ -55,7 +55,7 @@ class ActivityController extends Controller
 		if (request('term')) {
 			$activities->where('object_name', 'Like', '%' . request('term') . '%');
 		}
-		
+
 		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
 			$activities = $activities->with('user')->orderBy('id', 'DESC')->paginate(50);
 		} else {
@@ -121,12 +121,12 @@ class ActivityController extends Controller
 	public function export()
 	{
 		$this->authorize('export', Activity::class);
-		
+
 		//$data = Uom::all()->toArray();
 		$data = DB::select('SELECT a.id, a.object_name, a.object_id, a.event_name, a.column_name, a.prior_value, u.name,a.role, a.created_at
 			FROM activities a, users u
 			WHERE a.user_id = u.id
-			AND a.user_id >= 1003 
+			AND a.user_id >= 1003
 			');
 
 		$dataArray = json_decode(json_encode($data), true);

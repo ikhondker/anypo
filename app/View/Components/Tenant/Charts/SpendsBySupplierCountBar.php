@@ -16,7 +16,7 @@ class SpendsBySupplierCountBar extends Component
 
 	public $supplier_labels 	= [];
 	//public $project_colors 	= [];
-	
+
 	public $count_pr 		= [];
 	public $count_po 		= [];
 	public $count_grs 		= [];
